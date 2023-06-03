@@ -81,7 +81,7 @@ export default class LogsStreamsAlertsHomeCtrl {
    * @returns promise which will be resolve to the loaded alerts data
    * @memberof LogsStreamsAlertsHomeCtrl
    */
-  loadAlerts({ offset, pageSize, sort, criteria }) {
+  loadAlerts({ offset, pageSize = 1, sort, criteria }) {
     const filters = criteria.map((c) => {
       const name = c.property || 'title';
       return datagridToIcebergFilter(name, c.operator, c.value);

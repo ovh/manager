@@ -14,9 +14,7 @@ export default class LogsOrderService {
           .get(`/order/catalog/formatted/logs`, {
             params: { ovhSubsidiary: me.data.ovhSubsidiary },
           })
-          .then((catalog) => {
-            return catalog.data;
-          });
+          .then(({ data }) => data);
       })
       .catch(this.CucServiceHelper.errorHandler('logs_order_get_error'));
   }

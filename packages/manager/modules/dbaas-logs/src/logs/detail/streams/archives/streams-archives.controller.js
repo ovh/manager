@@ -78,7 +78,7 @@ export default class LogsStreamsArchivesCtrl {
     });
   }
 
-  loadArchives({ offset, pageSize, sort, criteria }) {
+  loadArchives({ offset, pageSize = 1, sort, criteria }) {
     this.stopRetrievalDelayUpdate();
     const filters = criteria.map((c) => {
       const name = c.property || 'filename';
@@ -275,13 +275,13 @@ export default class LogsStreamsArchivesCtrl {
       this.streamId,
       archive.archiveId,
     )
-      .then(() => {
-        return this.LogsStreamsArchivesService.getArchive(
+      .then(() =>
+        this.LogsStreamsArchivesService.getArchive(
           this.serviceName,
           this.streamId,
           archive.archiveId,
-        );
-      })
+        ),
+      )
       .then((updatedArchive) => {
         this.updateUnfreezingNotification(updatedArchive);
         this.ouiDatagridService.refresh('archives-datagrid', true);

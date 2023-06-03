@@ -62,9 +62,7 @@ export default class LogsStreamsArchivesService {
       .get(
         `/dbaas/logs/${serviceName}/output/graylog/stream/${streamId}/archive/${archiveId}`,
       )
-      .then((response) => {
-        return this.transformArchive(response.data);
-      });
+      .then(({ data }) => this.transformArchive(data));
   }
 
   /**
@@ -83,9 +81,7 @@ export default class LogsStreamsArchivesService {
           expirationInSeconds: this.LogsConstants.expirationInSeconds,
         },
       )
-      .then((response) => {
-        return response.data;
-      });
+      .then(({ data }) => data);
   }
 
   /**

@@ -25,7 +25,7 @@ export default class LogsIndexCtrl {
     this.bytes = $filter('bytes');
   }
 
-  loadIndices({ offset, pageSize, sort, criteria }) {
+  loadIndices({ offset, pageSize = 1, sort, criteria }) {
     const filters = criteria.map((c) => {
       const name = c.property || 'name';
       return datagridToIcebergFilter(name, c.operator, c.value);

@@ -36,8 +36,8 @@ export default class LogsInputsAddEditCtrl {
     } else {
       this.input = this.LogsInputsService.getNewInput();
     }
-    this.engines.load().then((details) => {
-      this.availableEngines = details.data.reduce((enginesList, engine) => {
+    this.engines.load().then(({ data }) => {
+      this.availableEngines = data.reduce((enginesList, engine) => {
         if (!engine.isDeprecated) {
           enginesList.push(engine);
         }

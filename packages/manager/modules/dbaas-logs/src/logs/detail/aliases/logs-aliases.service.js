@@ -88,9 +88,7 @@ export default class LogsAliasesService {
     return this.iceberg(`/dbaas/logs/${serviceName}/output/opensearch/alias`)
       .query()
       .execute()
-      .$promise.then((response) => {
-        return response.data;
-      });
+      .$promise.then(({ data }) => data);
   }
 
   /**
@@ -361,12 +359,11 @@ export default class LogsAliasesService {
       .get(
         `/dbaas/logs/${serviceName}/output/opensearch/alias/${alias.aliasId}/url`,
       )
-      .then(({ data: urls }) => {
-        const url = this.CucUrlHelper.constructor.findUrl(
+      .then(({ data: urls }) =>
+        this.CucUrlHelper.constructor.findUrl(
           { urls },
           this.LogsConstants.OPENSEARCH_API_URL,
-        );
-        return url;
-      });
+        ),
+      );
   }
 }

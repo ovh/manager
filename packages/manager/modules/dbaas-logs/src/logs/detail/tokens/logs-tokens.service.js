@@ -50,9 +50,7 @@ export default class LogsTokensService {
     return this.iceberg(`/dbaas/logs/${serviceName}/token`)
       .query()
       .execute()
-      .$promise.then((response) => {
-        return response.data;
-      });
+      .$promise.then(({ data }) => data);
   }
 
   /**

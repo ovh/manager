@@ -116,10 +116,11 @@ export default class LogsDashboardsService {
 
   getLastUpdatedDashboard(serviceName) {
     return this.getOwnDashboards(serviceName).then((dashboards) => {
+      let lastUpdatedDashboard = null;
       if (dashboards.length > 0) {
-        return dashboards[0];
+        [lastUpdatedDashboard] = dashboards;
       }
-      return null;
+      return lastUpdatedDashboard;
     });
   }
 

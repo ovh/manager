@@ -26,7 +26,7 @@ export default class LogsAliasesHomeCtrl {
     this.CucCloudMessage = CucCloudMessage;
   }
 
-  loadAliases({ offset, pageSize, sort, criteria }) {
+  loadAliases({ offset, pageSize = 1, sort, criteria }) {
     const filters = criteria.map((c) => {
       const name = c.property || 'name';
       return datagridToIcebergFilter(name, c.operator, c.value);
@@ -75,7 +75,7 @@ export default class LogsAliasesHomeCtrl {
     this.LogsIndexService.getIndicesForAlias(
       this.serviceName,
       alias.aliasId,
-    ).then((indexes) => {
+    ).then((indexes) =>
       this.$state.go('dbaas-logs.detail.aliases.home.alias.link', {
         serviceName: this.serviceName,
         aliasId: alias.aliasId,
@@ -83,8 +83,8 @@ export default class LogsAliasesHomeCtrl {
           indexes.length > 0
             ? this.LogsAliasesService.contentTypeEnum.INDICES
             : this.LogsAliasesService.contentTypeEnum.STREAMS,
-      });
-    });
+      }),
+    );
   }
 
   /**

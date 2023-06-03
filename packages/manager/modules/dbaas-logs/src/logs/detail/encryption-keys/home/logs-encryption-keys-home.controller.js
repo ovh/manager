@@ -30,7 +30,7 @@ export default class LogsEncryptionKeysHomeCtrl {
    * @param criteria Object Criteria object from ovh-ui datagrid
    * @return {*|Promise<any>}
    */
-  loadEncryptionKeys({ offset, pageSize, sort, criteria }) {
+  loadEncryptionKeys({ offset, pageSize = 1, sort, criteria }) {
     const filters = criteria.map((c) => {
       const name = c.property || 'title';
       return datagridToIcebergFilter(name, c.operator, c.value);

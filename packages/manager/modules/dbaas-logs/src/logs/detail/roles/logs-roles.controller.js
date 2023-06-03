@@ -21,7 +21,7 @@ export default class LogsRolesCtrl {
     this.CucCloudMessage = CucCloudMessage;
   }
 
-  loadRoles({ offset, pageSize, sort, criteria }) {
+  loadRoles({ offset, pageSize = 1, sort, criteria }) {
     const filters = criteria.map((c) => {
       const name = c.property || 'name';
       return datagridToIcebergFilter(name, c.operator, c.value);

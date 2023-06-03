@@ -27,7 +27,7 @@ export default class LogsDashboardsCtrl {
     this.CucControllerModalHelper = CucControllerModalHelper;
   }
 
-  loadDashboards({ offset, pageSize, sort, criteria }) {
+  loadDashboards({ offset, pageSize = 1, sort, criteria }) {
     const filters = criteria.map((c) => {
       const name = c.property || 'title';
       return datagridToIcebergFilter(name, c.operator, c.value);

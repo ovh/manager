@@ -26,8 +26,8 @@ export default class LogsRoleOverviewCtrl {
     this.LogsRolesService.getRolePermissions(
       this.serviceName,
       this.role.roleId,
-    ).then((permissions) => {
-      this.allPermissions = permissions.data;
+    ).then(({ data }) => {
+      this.allPermissions = data;
       this.loadAnySelectedAliases();
       this.loadAnySelectedIndices();
       this.loadAnySelectedDashboards();

@@ -52,9 +52,7 @@ export default class LogsEncryptionKeysService {
     return this.iceberg(`/dbaas/logs/${serviceName}/encryptionKey`)
       .query()
       .execute()
-      .$promise.then((response) => {
-        return response.data;
-      });
+      .$promise.then(({ data }) => data);
   }
 
   /**
@@ -110,8 +108,6 @@ export default class LogsEncryptionKeysService {
     )
       .query()
       .execute()
-      .$promise.then((response) => {
-        return response.data;
-      });
+      .$promise.then(({ data }) => data);
   }
 }

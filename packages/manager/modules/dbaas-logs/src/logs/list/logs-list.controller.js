@@ -26,7 +26,7 @@ export default class LogsListCtrl {
     this.messages = this.messageHandler.getMessages();
   }
 
-  loadServices({ offset, pageSize, sort, criteria }) {
+  loadServices({ offset, pageSize = 1, sort, criteria }) {
     const filters = criteria.map((c) => {
       const name = c.property || 'serviceName';
       return datagridToIcebergFilter(name, c.operator, c.value);

@@ -38,7 +38,7 @@ export default class LogsTokensCtrl {
     this.clusters.load();
   }
 
-  loadTokens({ offset, pageSize, sort, criteria }) {
+  loadTokens({ offset, pageSize = 1, sort, criteria }) {
     const filters = criteria.map((c) => {
       const name = c.property || 'name';
       return datagridToIcebergFilter(name, c.operator, c.value);

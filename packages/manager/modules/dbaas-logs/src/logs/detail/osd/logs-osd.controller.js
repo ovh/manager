@@ -20,7 +20,7 @@ export default class LogsOsdCtrl {
     this.$window = $window;
   }
 
-  loadOsds({ offset, pageSize, sort, criteria }) {
+  loadOsds({ offset, pageSize = 1, sort, criteria }) {
     const filters = criteria.map((c) => {
       const name = c.property || 'name';
       return datagridToIcebergFilter(name, c.operator, c.value);

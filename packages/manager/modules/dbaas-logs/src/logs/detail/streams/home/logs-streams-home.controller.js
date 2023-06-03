@@ -55,7 +55,7 @@ export default class LogsStreamsHomeCtrl {
     return this.$q.all([this.accountDetails.load()]);
   }
 
-  loadStreams({ offset, pageSize, sort, criteria }) {
+  loadStreams({ offset, pageSize = 1, sort, criteria }) {
     const filters = criteria.map((c) => {
       const name = c.property || 'title';
       return datagridToIcebergFilter(name, c.operator, c.value);

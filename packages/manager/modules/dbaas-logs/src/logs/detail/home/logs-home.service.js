@@ -38,17 +38,15 @@ export default class LogsHomeService {
   }
 
   getService(serviceName) {
-    return this.$http.get(`/dbaas/logs/${serviceName}`).then((response) => {
-      return response.data;
-    });
+    return this.$http
+      .get(`/dbaas/logs/${serviceName}`)
+      .then(({ data }) => data);
   }
 
   getMetricAccount(serviceName) {
     return this.$http
       .get(`/dbaas/logs/${serviceName}/metrics`)
-      .then((response) => {
-        return response.data;
-      });
+      .then(({ data }) => data);
   }
 
   /**
@@ -70,8 +68,9 @@ export default class LogsHomeService {
                   this.LogsConstants.DATA_STORAGE.TIME_PERIOD_MONTHS,
                   'month',
                 )
-                .unix() * 1000,
-              moment(service.createdAt).unix() * 1000,
+                .unix() * this.LogsConstants.DATA_STORAGE.MS_FOR_A_SEC,
+              moment(service.createdAt).unix() *
+                this.LogsConstants.DATA_STORAGE.MS_FOR_A_SEC,
             ),
             queries: [
               {
@@ -93,16 +92,15 @@ export default class LogsHomeService {
             data: JSON.stringify(query),
           });
         })
-        .then((data) => {
-          const timestamps =
-            data.data.length > 0 ? Object.keys(data.data[0].dps) : [];
+        .then(({ data }) => {
+          const timestamps = data.length > 0 ? Object.keys(data[0].dps) : [];
           // eslint-disable-next-line no-param-reassign
-          data = data.data.map((dat) =>
-            timestamps.map((timestamp) => dat.dps[timestamp]),
+          const usageData = data.map((value) =>
+            timestamps.map((timestamp) => value.dps[timestamp]),
           );
           return {
             timestamps: timestamps.map((timestamp) => timestamp * 1000),
-            usageData: data,
+            usageData,
           };
         })
         .catch(this.CucServiceHelper.errorHandler('logs_home_data_get_error'));
@@ -119,9 +117,7 @@ export default class LogsHomeService {
   getServiceInfos(serviceName) {
     return this.$http
       .get(`/dbaas/logs/${serviceName}/serviceInfos`)
-      .then((response) => {
-        return response.data;
-      })
+      .then(({ data }) => data)
       .catch(
         this.CucServiceHelper.errorHandler('logs_home_service_info_get_error'),
       );
@@ -289,9 +285,9 @@ export default class LogsHomeService {
             .get(
               `/dbaas/logs/${service.serviceName}/output/graylog/stream/${stream.streamId}/url`,
             )
-            .then((urls) => {
+            .then(({ data: urls }) => {
               set(service, 'last_stream', stream);
-              this.getGrayLogUrl(service.last_stream, urls.data);
+              this.getGrayLogUrl(service.last_stream, urls);
             });
         }
       },
@@ -307,9 +303,9 @@ export default class LogsHomeService {
           .get(
             `/dbaas/logs/${service.serviceName}/output/graylog/dashboard/${dashboard.dashboardId}/url`,
           )
-          .then((urls) => {
+          .then(({ data: urls }) => {
             set(service, 'last_dashboard', dashboard);
-            this.getGrayLogUrl(service.last_dashboard, urls.data);
+            this.getGrayLogUrl(service.last_dashboard, urls);
           });
       }
     });
@@ -318,13 +314,15 @@ export default class LogsHomeService {
   transformService(service) {
     this.getLastUpdatedStream(service);
     this.getLastUpdatedDashboard(service);
-    this.$http.get(`/dbaas/logs/${service.serviceName}/url`).then((urls) => {
-      this.getGrayLogUrl(service, urls.data);
-      this.getGrayLogApiUrl(service, urls.data);
-      this.getGrayLogEntryPoint(service, urls.data);
-      this.getElasticSearchApiUrl(service, urls.data);
-      this.getPortsAndMessages(service, urls.data);
-    });
+    this.$http
+      .get(`/dbaas/logs/${service.serviceName}/url`)
+      .then(({ data: urls }) => {
+        this.getGrayLogUrl(service, urls);
+        this.getGrayLogApiUrl(service, urls);
+        this.getGrayLogEntryPoint(service, urls);
+        this.getElasticSearchApiUrl(service, urls);
+        this.getPortsAndMessages(service, urls);
+      });
 
     return service;
   }

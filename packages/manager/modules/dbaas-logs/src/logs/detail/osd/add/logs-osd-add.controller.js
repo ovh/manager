@@ -67,7 +67,7 @@ export default class LogsOsdAddModalCtrl {
       {
         t0: this.osdPrice.price,
       },
-      undefined,
+      null,
       false,
       'sceParameters', // Expose devise symbol from API without sanitization
     );

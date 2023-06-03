@@ -10,13 +10,11 @@ export default class LogsDetailService {
   getServiceDetails(serviceName) {
     return this.$http
       .get(`/dbaas/logs/${serviceName}`)
-      .then((response) => {
-        return response.data;
-      })
+      .then(({ data }) => data)
       .catch(
         this.CucServiceHelper.errorHandler(
           'logs_details_error',
-          undefined,
+          null,
           'data.message',
         ),
       );

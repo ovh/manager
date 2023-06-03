@@ -23,52 +23,52 @@
             ></oui-spinner>
         </oui-datagrid-topbar>
         <oui-datagrid-column
-            title="::'logs_aliases_col_title' | translate"
-            property="name"
-            sortable="asc"
-            type="string"
-            searchable
-            filterable
+            data-title="::'logs_aliases_col_title' | translate"
+            data-property="name"
+            data-sortable="asc"
+            data-type="string"
+            data-searchable
+            data-filterable
         ></oui-datagrid-column>
         <oui-datagrid-column
-            title="::'logs_aliases_col_description' | translate"
-            property="description"
-            sortable
-            type="string"
-            searchable
-            filterable
+            data-title="::'logs_aliases_col_description' | translate"
+            data-property="description"
+            data-sortable
+            data-type="string"
+            data-searchable
+            data-filterable
         ></oui-datagrid-column>
         <oui-datagrid-column
             data-title="::'logs_aliases_col_streams' | translate"
-            property="nbStream"
-            sortable
-            type="number"
-            filterable
+            data-property="nbStream"
+            data-sortable
+            data-type="number"
+            data-filterable
         >
             {{ $row.nbStream || "-" }}
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title="::'logs_aliases_col_indices' | translate"
-            property="nbIndex"
-            sortable
-            type="number"
-            filterable
+            data-property="nbIndex"
+            data-sortable
+            data-type="number"
+            data-filterable
         >
             {{ $row.nbIndex || "-" }}
         </oui-datagrid-column>
         <oui-datagrid-column
-            title="::'logs_col_last_modified' | translate"
-            property="updatedAt"
-            sortable
-            type="date"
+            data-title="::'logs_col_last_modified' | translate"
+            data-property="updatedAt"
+            data-sortable
+            data-type="date"
         >
             {{ $row.updatedAt | cucMomentFormat:'L'}}
         </oui-datagrid-column>
         <oui-datagrid-column
-            title="::'logs_aliases_col_shared' | translate"
-            property="isEditable"
-            sortable
-            type="string"
+            data-title="::'logs_aliases_col_shared' | translate"
+            data-property="isEditable"
+            data-sortable
+            data-type="string"
         >
             <span data-ng-if="!$row.isEditable"
                 >{{ ::'logs_yes' | translate }}</span

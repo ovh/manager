@@ -179,6 +179,7 @@ export default {
   },
   DATA_STORAGE: {
     TIME_PERIOD_MONTHS: 10,
+    MS_FOR_A_SEC: 1000,
     METRICS: {
       STREAM_SIZE: 'ldp.service.stream.total',
       INDEX_SIZE: 'ldp.service.indice.total',

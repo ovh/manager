@@ -89,13 +89,13 @@ export default class LogsOsdService {
       .post(`/dbaas/logs/${serviceName}/output/opensearch/osd`, {
         description: object.description,
       })
-      .then((operation) => {
-        return this.LogsHelperService.handleOperation(
+      .then((operation) =>
+        this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'logs_kibana_to_create_success',
-        );
-      })
+        ),
+      )
       .catch((err) =>
         this.LogsHelperService.handleError('logs_kibana_create_error', err, {
           name: object.description,
@@ -108,14 +108,14 @@ export default class LogsOsdService {
       .put(`/dbaas/logs/${serviceName}/output/opensearch/osd/${osd.osdId}`, {
         description: osdInfo.description,
       })
-      .then((operation) => {
-        return this.LogsHelperService.handleOperation(
+      .then((operation) =>
+        this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'logs_kibana_edit_success',
           { name: osd.name },
-        );
-      })
+        ),
+      )
       .catch((err) =>
         this.LogsHelperService.handleError('logs_kibana_edit_error', err, {
           name: osd.name,
@@ -126,14 +126,14 @@ export default class LogsOsdService {
   deleteOsd(serviceName, osd) {
     return this.$http
       .delete(`/dbaas/logs/${serviceName}/output/opensearch/osd/${osd.osdId}`)
-      .then((operation) => {
-        return this.LogsHelperService.handleOperation(
+      .then((operation) =>
+        this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'logs_kibana_to_delete_success',
           { name: osd.name },
-        );
-      })
+        ),
+      )
       .catch((err) =>
         this.LogsHelperService.handleError('logs_kibana_delete_error', err, {
           name: osd.name,
@@ -144,12 +144,11 @@ export default class LogsOsdService {
   getOpenSearchUrl(serviceName, osd) {
     return this.$http
       .get(`/dbaas/logs/${serviceName}/output/opensearch/osd/${osd.osdId}/url`)
-      .then(({ data: urls }) => {
-        const url = this.CucUrlHelper.constructor.findUrl(
+      .then(({ data: urls }) =>
+        this.CucUrlHelper.constructor.findUrl(
           { urls },
           this.LogsConstants.OSD_WEBUI,
-        );
-        return url;
-      });
+        ),
+      );
   }
 }

@@ -128,10 +128,11 @@ export default class LogsStreamsService {
 
   getLastUpdatedStream(serviceName) {
     return this.getOwnStreams(serviceName).then((streams) => {
+      let lastUpdatedSteam = null;
       if (streams.length > 0) {
-        return streams[0];
+        [lastUpdatedSteam] = streams;
       }
-      return null;
+      return lastUpdatedSteam;
     });
   }
 
@@ -335,18 +336,15 @@ export default class LogsStreamsService {
 
   getRetentions(serviceName) {
     return this.LogsTokensService.getDefaultCluster(serviceName).then(
-      (defaultCluster) => {
-        return this.iceberg(
+      (defaultCluster) =>
+        this.iceberg(
           `/dbaas/logs/${serviceName}/cluster/${defaultCluster.clusterId}/retention`,
         )
           .query()
           .expand('CachedObjectList-Pages')
           .limit(10000)
           .execute()
-          .$promise.then((response) => {
-            return response.data;
-          });
-      },
+          .$promise.then(({ data }) => data),
     );
   }
 

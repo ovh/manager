@@ -50,53 +50,56 @@ export default class LogsStreamsAddCtrl {
       const selectedFamily = selectedCatalog.addonsFamily.find(
         (addon) => addon.family === this.LogsConstants.ADD_ON_FAMILY.NEW,
       );
-      const indexingCapacities = selectedFamily.addons.find(
-        (add) =>
-          add.plan.planCode === this.LogsConstants.CONSUMPTION_REFERENCE.STREAM,
-      );
-      const coldstoragePCACapacities = selectedFamily.addons.find(
-        (add) =>
+      selectedFamily.addons.forEach((add) => {
+        if (
+          add.plan.planCode === this.LogsConstants.CONSUMPTION_REFERENCE.STREAM
+        ) {
+          const indexingFirstStepPrice = add.plan.details.pricings.default.find(
+            (capabilities) =>
+              capabilities.capacities.includes(
+                this.LogsConstants.CONSUMPTION_CAPACITY,
+              ) &&
+              capabilities.maximumQuantity ===
+                this.LogsConstants.INDEXING_TIERING,
+          );
+          const indexingSecondStepPrice = add.plan.details.pricings.default.find(
+            (capabilities) =>
+              capabilities.capacities.includes(
+                this.LogsConstants.CONSUMPTION_CAPACITY,
+              ) &&
+              capabilities.minimumQuantity ===
+                this.LogsConstants.INDEXING_TIERING + 1,
+          );
+          this.indexingStoragePrice.FirstStep.price =
+            indexingFirstStepPrice.price.text;
+          this.indexingStoragePrice.SecondStep.price =
+            indexingSecondStepPrice.price.text;
+        }
+        if (
           add.plan.planCode ===
-          this.LogsConstants.CONSUMPTION_REFERENCE.COLDSTORAGE_PCA,
-      );
-      const coldstoragePCSCapacities = selectedFamily.addons.find(
-        (add) =>
+          this.LogsConstants.CONSUMPTION_REFERENCE.COLDSTORAGE_PCA
+        ) {
+          const coldstoragePCA = add.plan.details.pricings.default.find(
+            (capabilities) =>
+              capabilities.capacities.includes(
+                this.LogsConstants.CONSUMPTION_CAPACITY,
+              ),
+          );
+          this.coldStoragePrice.PCA.price = coldstoragePCA.price.text;
+        }
+        if (
           add.plan.planCode ===
-          this.LogsConstants.CONSUMPTION_REFERENCE.COLDSTORAGE_PCS,
-      );
-      const indexingFirstStepPrice = indexingCapacities.plan.details.pricings.default.find(
-        (capabilities) =>
-          capabilities.capacities.includes(
-            this.LogsConstants.CONSUMPTION_CAPACITY,
-          ) &&
-          capabilities.maximumQuantity === this.LogsConstants.INDEXING_TIERING,
-      );
-      const indexingSecondStepPrice = indexingCapacities.plan.details.pricings.default.find(
-        (capabilities) =>
-          capabilities.capacities.includes(
-            this.LogsConstants.CONSUMPTION_CAPACITY,
-          ) &&
-          capabilities.minimumQuantity ===
-            this.LogsConstants.INDEXING_TIERING + 1,
-      );
-      const coldstoragePCA = coldstoragePCACapacities.plan.details.pricings.default.find(
-        (capabilities) =>
-          capabilities.capacities.includes(
-            this.LogsConstants.CONSUMPTION_CAPACITY,
-          ),
-      );
-      const coldstoragePCS = coldstoragePCSCapacities.plan.details.pricings.default.find(
-        (capabilities) =>
-          capabilities.capacities.includes(
-            this.LogsConstants.CONSUMPTION_CAPACITY,
-          ),
-      );
-      this.coldStoragePrice.PCA.price = coldstoragePCA.price.text;
-      this.coldStoragePrice.PCS.price = coldstoragePCS.price.text;
-      this.indexingStoragePrice.FirstStep.price =
-        indexingFirstStepPrice.price.text;
-      this.indexingStoragePrice.SecondStep.price =
-        indexingSecondStepPrice.price.text;
+          this.LogsConstants.CONSUMPTION_REFERENCE.COLDSTORAGE_PCS
+        ) {
+          const coldstoragePCS = add.plan.details.pricings.default.find(
+            (capabilities) =>
+              capabilities.capacities.includes(
+                this.LogsConstants.CONSUMPTION_CAPACITY,
+              ),
+          );
+          this.coldStoragePrice.PCS.price = coldstoragePCS.price.text;
+        }
+      });
     });
 
     this.encryptionKeys.load();

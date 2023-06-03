@@ -72,9 +72,7 @@ export default class LogsIndexService {
     return this.iceberg(`/dbaas/logs/${serviceName}/output/opensearch/index`)
       .query()
       .execute()
-      .$promise.then((response) => {
-        return response.data;
-      });
+      .$promise.then(({ data }) => data);
   }
 
   getIndicesForAlias(serviceName, aliasId) {
@@ -184,12 +182,11 @@ export default class LogsIndexService {
       .get(
         `/dbaas/logs/${serviceName}/output/opensearch/index/${index.indexId}/url`,
       )
-      .then(({ data: urls }) => {
-        const url = this.CucUrlHelper.constructor.findUrl(
+      .then(({ data: urls }) =>
+        this.CucUrlHelper.constructor.findUrl(
           { urls },
           this.LogsConstants.OPENSEARCH_API_URL,
-        );
-        return url;
-      });
+        ),
+      );
   }
 }

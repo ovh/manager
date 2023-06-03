@@ -51,56 +51,8 @@ export default class LogsAliasesLinkCtrl {
           } else if (alias.data.nbIndex > 0) {
             this.selectedContent = this.contents[1].value;
           }
-          this.LogsIndexService.getOwnIndices(this.serviceName).then(
-            (result) => {
-              if (alias.indexes) {
-                const attached = filter(result, (index) =>
-                  find(
-                    alias.indexes.data,
-                    (indexId) => indexId === index.indexId,
-                  ),
-                );
-                const available = filter(
-                  result,
-                  (index) =>
-                    !find(
-                      alias.indexes.data,
-                      (indexId) => indexId === index.indexId,
-                    ),
-                );
-                this.attachedIndices = attached;
-                this.availableIndices = available;
-              } else {
-                this.attachedIndices = [];
-                this.availableIndices = result;
-              }
-            },
-          );
-          this.LogsStreamsService.getOwnStreams(this.serviceName).then(
-            (result) => {
-              if (alias.streams) {
-                const attached = filter(result, (stream) =>
-                  find(
-                    alias.streams.data,
-                    (streamId) => streamId === stream.streamId,
-                  ),
-                );
-                const available = filter(
-                  result,
-                  (stream) =>
-                    !find(
-                      alias.streams.data,
-                      (streamId) => streamId === stream.streamId,
-                    ),
-                );
-                this.attachedStreams = attached;
-                this.availableStreams = available;
-              } else {
-                this.attachedStreams = [];
-                this.availableStreams = result;
-              }
-            },
-          );
+          this.filterIndices(alias);
+          this.filterStreams(alias);
           return alias;
         }),
     });
@@ -111,6 +63,47 @@ export default class LogsAliasesLinkCtrl {
     } else {
       this.selectedContent = this.contents[0].value;
     }
+  }
+
+  filterIndices(alias) {
+    this.LogsIndexService.getOwnIndices(this.serviceName).then((result) => {
+      if (alias.indexes) {
+        this.attachedIndices = filter(result, (index) =>
+          find(alias.indexes.data, (indexId) => indexId === index.indexId),
+        );
+        this.availableIndices = filter(
+          result,
+          (index) =>
+            !find(alias.indexes.data, (indexId) => indexId === index.indexId),
+        );
+      } else {
+        this.attachedIndices = [];
+        this.availableIndices = result;
+      }
+    });
+  }
+
+  filterStreams(alias) {
+    this.LogsStreamsService.getOwnStreams(this.serviceName).then((result) => {
+      if (alias.streams) {
+        const attached = filter(result, (stream) =>
+          find(alias.streams.data, (streamId) => streamId === stream.streamId),
+        );
+        const available = filter(
+          result,
+          (stream) =>
+            !find(
+              alias.streams.data,
+              (streamId) => streamId === stream.streamId,
+            ),
+        );
+        this.attachedStreams = attached;
+        this.availableStreams = available;
+      } else {
+        this.attachedStreams = [];
+        this.availableStreams = result;
+      }
+    });
   }
 
   attachStream(items) {

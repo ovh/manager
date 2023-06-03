@@ -25,7 +25,7 @@ export default class LogsInputsHomeCtrl {
     this.LogsInputsService = LogsInputsService;
   }
 
-  loadInputs({ offset, pageSize, sort, criteria }) {
+  loadInputs({ offset, pageSize = 1, sort, criteria }) {
     const filters = criteria.map((c) => {
       const name = c.property || 'title';
       return datagridToIcebergFilter(name, c.operator, c.value);
