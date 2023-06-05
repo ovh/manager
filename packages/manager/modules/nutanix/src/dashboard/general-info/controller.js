@@ -23,7 +23,7 @@ export default class NutanixGeneralInfoCtrl {
   }
 
   $onInit() {
-    this.loadServcesDetails();
+    this.loadServicesDetails();
     this.clusterTechnicalDetails = this.getTechnicalDetails.nutanixCluster;
     this.technicalDetails = this.getTechnicalDetails.baremetalServers;
     this.setPrivateBandwidthServiceId();
@@ -31,7 +31,7 @@ export default class NutanixGeneralInfoCtrl {
     this.showRedeployWarningModal = false;
   }
 
-  loadServcesDetails() {
+  loadServicesDetails() {
     this.loadingServicesDetails = true;
     return this.NutanixService.getServicesDetails(this.serviceInfo.serviceId)
       .then((servicesDetails) => {

@@ -58,7 +58,19 @@ export default /* @ngInject */ ($stateProvider) => {
         NutanixService.getBandwidth(nodeId),
       bandwidthInformations: /* @ngInject */ (nodeId, NutanixService) =>
         NutanixService.getBandwidthOptions(nodeId),
-
+      serviceInfos: /* @ngInject */ ($stateParams, NutanixNode) =>
+        NutanixNode.getServiceInfos($stateParams.nodeId).then(
+          (serviceInfo) => ({
+            ...serviceInfo,
+            serviceType: 'DEDICATED_SERVER',
+          }),
+        ),
+      atTrack: /* @ngInject */ (atInternet) => (name) =>
+        atInternet.trackClick({
+          name,
+          type: 'action',
+          chapter1: 'dedicated',
+        }),
       breadcrumb: /* @ngInject */ () => null,
     },
     atInternet: {

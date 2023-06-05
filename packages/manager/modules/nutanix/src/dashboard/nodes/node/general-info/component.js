@@ -8,6 +8,7 @@ export default {
     server: '<',
     user: '<',
     bandwidthInformations: '<',
+    serviceInfos: '<',
     specifications: '<',
     technicalDetails: '<',
     trackingPrefix: '<',
