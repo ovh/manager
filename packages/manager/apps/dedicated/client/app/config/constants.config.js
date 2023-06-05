@@ -1343,9 +1343,9 @@ const constants = {
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
       },
       IN: {
-        express_order: 'https://ca.ovh.com/asia/order/express/#/express/',
+        express_order: 'https://ca.ovh.com/in/order/express/#/express/',
         express_order_resume:
-          'https://ca.ovh.com/asia/order/express/#/new/express/resume',
+          'https://ca.ovh.com/in/order/express/#/new/express/resume',
         support: 'http://www.ovh.co.uk/support/',
         support_contact: 'https://www.ovh.com/ca/en/support/',
         guides: {
