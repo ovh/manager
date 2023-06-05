@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.61.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.61.1...@ovh-ux/manager-dedicated@17.61.2) (2023-06-05)
+
+
+### Bug Fixes
+
+* **pcc:** nsx batch 1 ([#8829](https://github.com/ovh/manager/issues/8829)) ([70f68c8](https://github.com/ovh/manager/commit/70f68c8d33045ba38835b8d7ef91c9560b494810))
+
+
+
+
+
 ## [17.61.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.61.0...@ovh-ux/manager-dedicated@17.61.1) (2023-05-31)
 
 

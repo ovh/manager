@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.20.3...@ovh-ux/manager-container-app@0.20.4) (2023-06-05)
+
+
+### Bug Fixes
+
+* **pcc:** nsx batch 1 ([#8829](https://github.com/ovh/manager/issues/8829)) ([70f68c8](https://github.com/ovh/manager/commit/70f68c8d33045ba38835b8d7ef91c9560b494810))
+
+
+
+
+
 ## [0.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.20.2...@ovh-ux/manager-container-app@0.20.3) (2023-05-31)
 
 
