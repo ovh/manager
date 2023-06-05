@@ -12,9 +12,8 @@ import {
 
 export default class WebComponentsHostingDomainOffersController {
   /* @ngInject */
-  constructor($translate, $filter, coreConfig) {
+  constructor($translate, $filter) {
     this.$translate = $translate;
-    this.coreConfig = coreConfig;
     const bytes = $filter('bytes');
     const planCodeKey = 'legacyPlanCode'; // planCode
 
@@ -162,22 +161,9 @@ export default class WebComponentsHostingDomainOffersController {
     const Ctrl = WebComponentsHostingDomainOffersController;
     const CURRENT_OFFER = CURRENT_OFFERS[this.currentOffer];
 
-    // upgrade case
-    if (CURRENT_OFFER?.upgrade?.includes(offer.value)) {
-      return Ctrl.buildBadgeModel(BADGES.UPGRADE, 'warning');
-    }
-
     // equal case
     if (CURRENT_OFFER?.equal?.includes(offer.value)) {
       return Ctrl.buildBadgeModel(BADGES.EQUAL, 'success');
-    }
-
-    // downgrade case
-    if (
-      this.coreConfig.isRegion('EU') &&
-      CURRENT_OFFER?.downgrade?.includes(offer.value)
-    ) {
-      return Ctrl.buildBadgeModel(BADGES.DOWNGRADE, 'error');
     }
 
     // case new
