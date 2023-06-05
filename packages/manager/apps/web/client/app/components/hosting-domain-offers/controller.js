@@ -7,6 +7,7 @@ import {
   CURRENT_OFFERS,
   BADGES,
   NEW_OFFERS_PLAN_CODES,
+  CATEGORIES_MAP,
 } from './constants';
 
 export default class WebComponentsHostingDomainOffersController {
@@ -110,10 +111,10 @@ export default class WebComponentsHostingDomainOffersController {
 
   extendOffers() {
     return this.offers.map((offer) => {
-      const category = offer.value.startsWith('PERFORMANCE_')
-        ? 'performance'
-        : offer.value.toLowerCase();
-      const technicalsOffer = this.getOfferSelector(category, offer.value);
+      const category = this.constructor.getOfferCategory(offer);
+      const offerVersion =
+        CATEGORIES_MAP[offer.value.toLowerCase()] || offer.value;
+      const technicalsOffer = this.getOfferSelector(category, offerVersion);
       const { planCode } = technicalsOffer;
       const price = this.formatOfferPrice(category, planCode);
 
@@ -185,6 +186,10 @@ export default class WebComponentsHostingDomainOffersController {
     }
 
     return Ctrl.buildBadgeModel('', '');
+  }
+
+  static getOfferCategory(offer) {
+    return (CATEGORIES_MAP[offer.value] || offer.value).toLowerCase();
   }
 
   formatOfferPrice(offerCategory, planCode) {

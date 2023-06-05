@@ -50,6 +50,17 @@ export const NEW_OFFERS_MIGRATION_MAP = {
   },
 };
 
+export const CATEGORIES_MAP = {
+  perso2014: 'PERSO',
+  perso: 'PERSO',
+  pro: 'PRO',
+  pro2014: 'PRO',
+  PERFORMANCE_1: 'PERFORMANCE',
+  PERFORMANCE_2: 'PERFORMANCE',
+  PERFORMANCE_3: 'PERFORMANCE',
+  PERFORMANCE_4: 'PERFORMANCE',
+};
+
 export const CURRENT_OFFERS = {
   START: { downgrade: [], equal: [], upgrade: ['PERSO'] },
   KIMSUFI_2015: {
@@ -116,4 +127,5 @@ export default {
   CURRENT_OFFERS,
   BADGES,
   NEW_OFFERS_PLAN_CODES,
+  CATEGORIES_MAP,
 };
