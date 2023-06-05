@@ -29,6 +29,11 @@ export default /* @ngInject */ ($stateProvider) => {
       goToAddNotebook: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.notebooks.add', { projectId }),
 
+      goToUsersAndTokens: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.ai-dashboard.users-tokens', {
+          projectId,
+        }),
+
       notebooks: /* @ngInject */ (
         editors,
         frameworks,

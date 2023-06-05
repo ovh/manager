@@ -6,7 +6,7 @@ export default {
     projectId: '<',
     storageAddObjectLink: '<',
     goToApps: '<',
-    createToken: '<',
+    goToUsersAndTokens: '<',
     guideUrl: '<',
     guideTrackingSectionTags: '<',
     onAppAdd: '<',

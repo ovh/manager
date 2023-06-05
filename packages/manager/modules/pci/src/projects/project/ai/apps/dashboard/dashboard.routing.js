@@ -29,10 +29,9 @@ export default /* @ngInject */ ($stateProvider) => {
           appId,
         }),
 
-      goToGenerateToken: /* @ngInject */ ($state, projectId, appId) => () =>
-        $state.go('pci.projects.project.ai.tokens.add', {
+      goToUsersAndTokens: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.ai-dashboard.users-tokens', {
           projectId,
-          labelSelector: `id=${appId}`,
         }),
     },
     redirectTo: 'pci.projects.project.ai.apps.dashboard.general-information',

@@ -13,7 +13,7 @@ export default {
     currentActiveLink: '<',
     generalInformationLink: '<',
     attachDataLink: '<',
-    userAndRolesLink: '<',
+    goToUsersAndTokens: '<',
     steins: '<',
     customerRegions: '<',
     notebooksRegions: '<',

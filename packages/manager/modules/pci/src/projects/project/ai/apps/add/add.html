@@ -4,18 +4,16 @@
 
 <!--Banner messages-->
 <div class="mt-4" id="addMessages">
-    <!--Banner for User and Roles-->
+    <!--Banner for User and Token-->
     <oui-message data-type="info">
-        <span data-translate="pci_app_add_banner_token_description"></span>
-        <button
-            type="button"
-            class="oui-link"
-            data-ng-click="$ctrl.createToken()"
-        >
-            <span
-                data-translate="pci_app_add_banner_token_description_link"
-            ></span>
-        </button>
+        <span data-translate="pci_app_add_banner_user_token_description"></span>
+        <p class="m-0">
+            <a
+                rel="noopener"
+                data-translate="pci_app_add_banner_user_token_description_link"
+                data-ng-click="$ctrl.goToUsersAndTokens()"
+            ></a>
+        </p>
     </oui-message>
 
     <!--Dynamic banner message-->

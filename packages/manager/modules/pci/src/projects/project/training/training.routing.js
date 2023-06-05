@@ -109,6 +109,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+
+      goToUsersAndTokens: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.ai-dashboard.users-tokens', {
+          projectId,
+        }),
+
       jobList: /* @ngInject */ (
         PciProjectTrainingJobService,
         projectId,
