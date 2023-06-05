@@ -48,6 +48,7 @@
                 data-match="name"
                 data-model="offer.selectedVersion"
                 data-placeholder="{{ 'web_components_hosting_domain_offers_offer_select_version_placeholder' | translate }}"
+                data-on-change="$ctrl.onOfferClick({offer})"
                 data-inline
             >
                 <span data-ng-bind=":: $item.selector"></span>
