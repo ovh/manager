@@ -5,7 +5,7 @@ import './createPolicy.styles.scss';
 export default {
   bindings: {
     alert: '<',
-    goBack: '<',
+    goTo: '<',
     onboardingGuides: '<',
     policy: '<',
   },

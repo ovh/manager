@@ -2,14 +2,14 @@ import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import ocLazyLoad from 'oclazyload';
 
-const moduleName = 'ovhManagerIAMPolicyEditLazyLoading';
+const moduleName = 'ovhManagerIAMDashboardPoliciesDeleteLazyLoading';
 
 angular.module(moduleName, [uiRouter, ocLazyLoad]).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('iam.policy.edit.**', {
-      url: '/edit',
+    $stateProvider.state('iam.dashboard.policies.delete.**', {
+      url: '/delete',
       lazyLoad: (transition) =>
-        import('./edit.module').then((module) =>
+        import('./delete.module').then((module) =>
           transition
             .injector()
             .get('$ocLazyLoad')

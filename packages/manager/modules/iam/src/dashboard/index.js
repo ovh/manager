@@ -2,14 +2,14 @@ import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import ocLazyLoad from 'oclazyload';
 
-const moduleName = 'ovhManagerIAMPolicyResourceGroupsLazyLoading';
+const moduleName = 'ovhManagerIAMDashboardLazyLoading';
 
 angular.module(moduleName, [uiRouter, ocLazyLoad]).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('iam.policy.resourceGroups.**', {
-      url: '/resourceGroups',
+    $stateProvider.state('iam.dashboard.**', {
+      url: '/dashboard',
       lazyLoad: (transition) =>
-        import('./resourceGroups.module').then((module) =>
+        import('./dashboard.module').then((module) =>
           transition
             .injector()
             .get('$ocLazyLoad')

@@ -1,9 +1,9 @@
 import { cursorsType } from '../../iam.paramTypes';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('iam.policy.policies', {
-    url: `?cursors`,
-    component: 'iamPolicies',
+  $stateProvider.state('iam.dashboard.resourceGroups', {
+    url: '/resourceGroups?cursors',
+    component: 'iamResourceGroups',
     params: {
       cursors: {
         array: false,
@@ -18,12 +18,5 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
       cursors: /* @ngInject */ ($transition$) => $transition$.params().cursors,
     },
-    redirectTo: (transition) =>
-      transition
-        .injector()
-        .getAsync('hasPolicies')
-        .then((hasPolicies) =>
-          !hasPolicies ? { state: 'iam.onboarding' } : false,
-        ),
   });
 };

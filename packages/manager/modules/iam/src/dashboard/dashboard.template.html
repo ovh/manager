@@ -1,20 +1,22 @@
 <div>
-    <oui-header data-heading="{{:: 'iam_policy_header_heading' | translate }}">
+    <oui-header
+        data-heading="{{:: 'iam_dashboard_header_heading' | translate }}"
+    >
         <!-- <Tabs> -->
         <oui-header-tabs>
-            <oui-header-tabs-item data-state="iam.policy.policies"
+            <oui-header-tabs-item data-state="iam.dashboard.policies"
                 ><span
-                    data-translate="iam_policy_header_tabs_item_policies"
+                    data-translate="iam_dashboard_header_tabs_item_policies"
                 ></span
             ></oui-header-tabs-item>
             <oui-header-tabs-item data-href="{{ :: $ctrl.usersManagementLink }}"
                 ><span
-                    data-translate="iam_policy_header_tabs_item_identities"
+                    data-translate="iam_dashboard_header_tabs_item_identities"
                 ></span
             ></oui-header-tabs-item>
-            <oui-header-tabs-item data-state="iam.policy.resourceGroups"
+            <oui-header-tabs-item data-state="iam.dashboard.resourceGroups"
                 ><span
-                    data-translate="iam_policy_header_tabs_item_resource_groups"
+                    data-translate="iam_dashboard_header_tabs_item_resource_groups"
                 ></span
             ></oui-header-tabs-item>
         </oui-header-tabs>
@@ -22,7 +24,7 @@
 
         <!-- <Guide> -->
         <oui-guide-menu
-            data-text="{{:: 'iam_policy_header_guide_text' | translate }}"
+            data-text="{{:: 'iam_dashboard_header_guide_text' | translate }}"
         >
             <oui-guide-menu-item
                 data-ng-repeat="guide in $ctrl.onboardingGuides track by $index"

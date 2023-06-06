@@ -1,4 +1,4 @@
-import template from './policy.template.html';
+import template from './dashboard.template.html';
 
 export default {
   bindings: {

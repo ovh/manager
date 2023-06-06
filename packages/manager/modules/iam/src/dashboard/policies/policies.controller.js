@@ -24,7 +24,7 @@ export default class PoliciesController extends AbstractCursorDatagridController
    * @returns {Promise}
    */
   createPolicy() {
-    return this.goTo({ name: 'iam.createPolicy' });
+    return this.goTo({ name: 'iam.policy.create' });
   }
 
   /**
@@ -46,7 +46,7 @@ export default class PoliciesController extends AbstractCursorDatagridController
    */
   editPolicy({ id }) {
     return this.goTo({
-      name: 'iam.editPolicy',
+      name: 'iam.policy.edit',
       params: { policy: id },
     });
   }
@@ -58,7 +58,7 @@ export default class PoliciesController extends AbstractCursorDatagridController
    */
   deletePolicy({ id }) {
     return this.goTo({
-      name: 'iam.policy.policies.delete',
+      name: 'iam.dashboard.policies.delete',
       params: { ...this.params, policy: id },
     });
   }

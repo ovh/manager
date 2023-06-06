@@ -8,7 +8,7 @@ import deleteModule from './delete';
 import component from './policies.component';
 import routing from './policies.routing';
 
-const moduleName = 'ovhManagerIAMPolicyPolicies';
+const moduleName = 'ovhManagerIAMDashboardPolicies';
 
 angular
   .module(moduleName, [advancedModeSwitch, cursorDatagrid, deleteModule])

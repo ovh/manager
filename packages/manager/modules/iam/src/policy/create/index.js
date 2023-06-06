@@ -6,8 +6,8 @@ const moduleName = 'ovhManagerIAMPolicyCreateLazyLoading';
 
 angular.module(moduleName, [uiRouter, ocLazyLoad]).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('iam.createPolicy.**', {
-      url: '/policy/create',
+    $stateProvider.state('iam.policy.create.**', {
+      url: '/create',
       lazyLoad: (transition) =>
         import('./create.module').then((module) =>
           transition
