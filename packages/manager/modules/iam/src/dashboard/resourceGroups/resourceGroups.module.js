@@ -7,7 +7,7 @@ import deleteModule from './delete';
 import component from './resourceGroups.component';
 import routing from './resourceGroups.routing';
 
-const moduleName = 'ovhManagerIAMPolicyResourceGroups';
+const moduleName = 'ovhManagerIAMDashboardResourceGroups';
 
 angular
   .module(moduleName, [cursorDatagrid, deleteModule])

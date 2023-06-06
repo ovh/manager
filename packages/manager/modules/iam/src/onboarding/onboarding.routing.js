@@ -6,7 +6,9 @@ export default /* @ngInject */ ($stateProvider) => {
       transition
         .injector()
         .getAsync('hasPolicies')
-        .then((hasPolicies) => (hasPolicies ? { state: 'iam.policy' } : false)),
+        .then((hasPolicies) =>
+          hasPolicies ? { state: 'iam.dashboard' } : false,
+        ),
     resolve: {
       breadcrumb: () => null,
     },

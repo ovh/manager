@@ -194,11 +194,11 @@ export default class CreatePolicyController {
   }
 
   /**
-   * Cancel the policy creation by going back to the previous state
+   * Cancel the policy creation by going to the policies state
    * @returns {Promise}
    */
   cancelCreation() {
-    return this.goBack();
+    return this.goTo({ name: 'iam.dashboard.policies' });
   }
 
   /**
@@ -290,12 +290,13 @@ export default class CreatePolicyController {
     return promise
       .then(() => {
         this.error = {};
-        return this.goBack({
+        return this.goTo({
+          name: 'iam.dashboard.policies',
+          reload: true,
           success: {
             key: this.translations.success,
             values: { name: `<strong>${this.model.name}</strong>` },
           },
-          reload: true,
         });
       })
       .catch((error) => {
