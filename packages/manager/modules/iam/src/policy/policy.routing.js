@@ -1,10 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.policy', {
+    abstract: true,
     url: '/policy',
-    component: 'iamPolicy',
-    redirectTo: 'iam.policy.policies',
-    resolve: {
-      breadcrumb: () => null,
-    },
   });
 };

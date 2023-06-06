@@ -22,7 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .getAsync('features')
         .then((featureAvailabilityResult) =>
           featureAvailabilityResult.isFeatureAvailable(FEATURE.MAIN)
-            ? 'iam.policy'
+            ? 'iam.dashboard'
             : { state: UNAVAILABLE_STATE_NAME },
         ),
     resolve: {

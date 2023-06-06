@@ -40,7 +40,7 @@ export default class ResourceGroupsController extends AbstractCursorDatagridCont
    */
   deleteResourceGroup({ id }) {
     this.goTo({
-      name: 'iam.policy.resourceGroups.delete',
+      name: 'iam.dashboard.resourceGroups.delete',
       params: { resourceGroup: id },
     });
   }
