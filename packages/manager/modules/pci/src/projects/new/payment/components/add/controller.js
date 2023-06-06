@@ -150,6 +150,13 @@ export default class PciProjectNewPaymentMethodAddCtrl {
       });
   }
 
+  showSpecificCrossBorderSentenceForCardPayment() {
+    return (
+      this.hasSpecificCrossBorderSentenceForCardPayment &&
+      this.model.paymentMethod?.type?.isCreditCard()
+    );
+  }
+
   preselectPaymentMethod() {
     // Preselection for redirection case (return from HiPay or Worldline)
     const paymentMethodToPreselect = this.authorizedPaymentMethods.find(
