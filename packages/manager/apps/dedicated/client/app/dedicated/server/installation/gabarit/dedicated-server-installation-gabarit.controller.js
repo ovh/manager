@@ -42,7 +42,6 @@ angular
           postInstallationScriptLink: null,
           postInstallationScriptReturn: null,
           sshKeyName: null,
-          useDistributionKernel: false,
           useSpla: false,
           validForm: true,
         },
@@ -158,8 +157,6 @@ angular
           postInstallationScriptReturn:
             $scope.installation.selectGabarit.postInstallationScriptReturn,
           sshKeyName: $scope.installation.selectGabarit.sshKeyName,
-          useDistributionKernel:
-            $scope.installation.selectGabarit.useDistributionKernel,
           useSpla: false,
           validForm: true,
         };
@@ -295,7 +292,6 @@ angular
             postInstallationScriptReturn:
               $scope.installation.options.postInstallationScriptReturn,
             sshKeyName: $scope.installation.options.sshKeyName,
-            useDistribKernel: $scope.installation.options.useDistributionKernel,
             useSpla: $scope.installation.options.useSpla,
             softRaidDevices:
               $scope.informations.nbDisk > 2 &&
@@ -352,8 +348,6 @@ angular
               postInstallationScriptReturn:
                 $scope.installation.options.postInstallationScriptReturn,
               sshKeyName: $scope.installation.options.sshKeyName,
-              useDistributionKernel:
-                $scope.installation.options.useDistributionKernel,
             },
           ).then(
             () => {
