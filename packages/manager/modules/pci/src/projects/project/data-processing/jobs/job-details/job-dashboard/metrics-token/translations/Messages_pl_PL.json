@@ -1,8 +1,0 @@
-{
-  "data_processing_details_metrics_token_modal_title": "Dostęp do monitoringu",
-  "data_processing_details_metrics_token_modal_dismiss_button": "Zamknij",
-  "data_processing_details_metrics_token_modal_description_1": "Szczegółowe metryki zadania możesz sprawdzić w ",
-  "data_processing_details_metrics_token_modal_description_2": "Wyświetl dokumentację",
-  "data_processing_details_metrics_token_modal_token_label": "Użyj tokenu, aby uzyskać dostęp do metryk.",
-  "data_processing_details_metrics_token_modal_grafana_button": "Dostęp do Grafana"
-}

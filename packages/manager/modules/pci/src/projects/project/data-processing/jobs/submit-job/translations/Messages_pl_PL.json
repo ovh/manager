@@ -1,8 +1,8 @@
 {
   "data_processing_submit_job_title": "Uruchom nowe zadanie",
   "data_processing_submit_job_description_1": "OVHcloud Analytics Data Compute umożliwia uruchamianie zadań Apache Spark na żądanie oraz określenie ilości pamięci RAM i mocy vCPU.",
-  "data_processing_submit_job_description_2": "Pobierz kod w formacie JAR lub Python do kontenera Swift i wykonaj go za pomocą poniższego interfejsu. Śledź postęp zadania dzięki logom i metrykom w czasie rzeczywistym.",
-  "data_processing_submit_job_description_3": "Sprawdzaj logi i metryki w czasie rzeczywistym.",
+  "data_processing_submit_job_description_2": "Pobierz kod w formacie JAR lub Python do kontenera Swift i wykonaj go za pomocą poniższego interfejsu. Sprawdzaj prawidłowość wykonywania zadania dzięki logom wyświetlanym w czasie rzeczywistym.",
+  "data_processing_submit_job_description_3": "Sprawdzaj logi zadania w czasie rzeczywistym.",
   "data_processing_submit_job_stepper_region_title": "Wybierz region",
   "data_processing_submit_job_stepper_job_type_title": "Wybierz rodzaj zadania",
   "data_processing_submit_job_stepper_sizing_title": "Rozmiar zadania",
