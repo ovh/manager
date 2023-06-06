@@ -17,6 +17,26 @@
             ></a>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title=":: 'pci_ai_app_list_image' | translate"
+            data-type="string"
+            data-searchable
+            data-filterable
+            data-sortable
+        >
+            <div class="d-flex flex-column">
+                <span
+                    class="text-image-truncated"
+                    title="{{$row.spec.image}}"
+                    data-ng-bind="$row.spec.image"
+                ></span>
+                <small
+                    data-ng-if="$row.partner"
+                    data-translate="pci_ai_app_list_image_provided_by"
+                    data-translate-values="{partnerName: $row.partner.name}"
+                ></small>
+            </div>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title=":: 'pci_ai_app_list_region' | translate"
             data-property="region"
             data-type="string"
@@ -29,39 +49,32 @@
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title=":: 'pci_ai_app_list_cpu' | translate"
-            data-property="cpu"
+            data-title=":: 'pci_ai_app_list_resources' | translate"
+            data-property="specScore"
             data-type="number"
             data-sortable
             data-filterable
         >
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'pci_ai_app_list_gpu' | translate"
-            data-property="gpu"
-            data-type="number"
-            data-sortable
-            data-filterable
-        >
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'pci_ai_app_list_privacy' | translate"
-            data-property="unsecureHttp"
-            data-type="boolean"
-            data-sortable
-            data-filterable
-        >
-            <span
-                data-translate="{{:: $row.unsecureHttp ? 'pci_ai_app_list_privacy_public' : 'pci_ai_app_list_privacy_private' }}"
-            ></span>
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'pci_ai_app_list_replicas' | translate"
-            data-property="replicas"
-            data-type="number"
-            data-sortable
-            data-filterable
-        >
+            <div data-ng-if="!$row.gpu" class="d-flex">
+                <span
+                    class="oui-icon oui-icon-component_concept mr-1"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    data-translate="pci_ai_app_list_resources_cpu"
+                    data-translate-values="{cpu: $row.cpu, replicas: $row.replicas}"
+                ></span>
+            </div>
+            <div data-ng-if="$row.gpu" class="d-flex">
+                <span
+                    class="oui-icon oui-icon-hardware-gpu_concept mr-1"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    data-translate="pci_ai_app_list_resources_gpu"
+                    data-translate-values="{gpu: $row.gpu, replicas: $row.replicas}"
+                ></span>
+            </div>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_ai_app_list_creation_date' | translate"
