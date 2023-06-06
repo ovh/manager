@@ -22,6 +22,7 @@ export default {
     stopPollingAppStatus: '<',
     trackApps: '<',
     trackClick: '<',
+    goToUsersAndTokens: '<',
   },
   controller,
   template,

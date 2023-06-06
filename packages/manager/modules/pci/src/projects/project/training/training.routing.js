@@ -119,7 +119,10 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return PciProjectTrainingJobService.getAll(projectId);
       },
-
+      goToUsersAndTokens: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.ai-dashboard.users-tokens', {
+          projectId,
+        }),
       jobListRegions: /* @ngInject */ (jobList) =>
         Array.from(new Set(jobList.map(({ spec }) => spec.region))),
 

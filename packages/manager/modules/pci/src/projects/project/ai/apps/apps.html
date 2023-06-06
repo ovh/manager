@@ -2,6 +2,16 @@
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
+    <oui-message data-type="info" dismissable>
+        <span data-translate="pci_ai_app_banner_user_and_roles_info"></span>
+        <p class="m-0">
+            <a
+                rel="noopener"
+                data-translate="pci_ai_app_banner_user_and_roles_info_link"
+                data-ng-click="$ctrl.goToUsersAndTokens()"
+            ></a>
+        </p>
+    </oui-message>
     <oui-datagrid id="publicCloudAppsDatagrid" data-rows="$ctrl.apps">
         <oui-datagrid-column
             title=":: 'pci_ai_app_list_name' | translate"
