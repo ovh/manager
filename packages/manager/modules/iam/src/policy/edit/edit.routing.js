@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('iam.editPolicy', {
-    url: `/policy/edit/{policy:uuid}`,
+  $stateProvider.state('iam.policy.edit', {
+    url: '/edit/{policy:uuid}',
     component: 'iamCreatePolicy',
     resolve: {
       breadcrumb: /* @ngInject */ ($translate, policy) =>
