@@ -64,70 +64,6 @@
                     ></span>
                 </oui-tile-description>
             </oui-tile-definition>
-            <!--Charts -->
-            <div data-ng-if="$ctrl.hasCharts()">
-                <!-- Tile item :: Total memory -->
-                <span
-                    class="information-tile__definition"
-                    data-translate="data_processing_details_charts_total_memory"
-                ></span>
-                <div
-                    class="chart__nodata-container"
-                    data-ng-if="$ctrl.metrics.totalMemory.data.length === 0"
-                >
-                    <span
-                        data-translate="data_processing_details_no_data"
-                    ></span>
-                </div>
-                <pci-project-data-processing-metrics-chart
-                    data-ng-if="$ctrl.metrics.totalMemory.data.length !== 0"
-                    class="chart__container"
-                    data-data="$ctrl.metrics.totalMemory.data"
-                    data-labels="$ctrl.metrics.totalMemory.labels"
-                    data-unit="Mi"
-                >
-                </pci-project-data-processing-metrics-chart>
-                <!-- Tile item :: Active tasks -->
-                <span
-                    class="information-tile__definition"
-                    data-translate="data_processing_details_charts_num_active_tasks"
-                ></span>
-                <div
-                    class="chart__nodata-container"
-                    data-ng-if="$ctrl.metrics.activeTasks.data.length === 0"
-                >
-                    <span
-                        data-translate="data_processing_details_no_data"
-                    ></span>
-                </div>
-                <pci-project-data-processing-metrics-chart
-                    data-ng-if="$ctrl.metrics.activeTasks.data.length !== 0"
-                    class="chart__container"
-                    data-data="$ctrl.metrics.activeTasks.data"
-                    data-labels="$ctrl.metrics.activeTasks.labels"
-                >
-                </pci-project-data-processing-metrics-chart>
-                <!-- Tile item :: Blockmanager disk -->
-                <span
-                    class="information-tile__definition"
-                    data-translate="data_processing_details_charts_blockmanager_disk"
-                ></span>
-                <div
-                    class="chart__nodata-container"
-                    data-ng-if="$ctrl.metrics.blockManagerDiskUsed.data.length === 0"
-                >
-                    <span
-                        data-translate="data_processing_details_no_data"
-                    ></span>
-                </div>
-                <pci-project-data-processing-metrics-chart
-                    data-ng-if="$ctrl.metrics.blockManagerDiskUsed.data.length !== 0"
-                    class="chart__container"
-                    data-data="$ctrl.metrics.blockManagerDiskUsed.data"
-                    data-labels="$ctrl.metrics.blockManagerDiskUsed.labels"
-                >
-                </pci-project-data-processing-metrics-chart>
-            </div>
         </oui-tile>
     </div>
     <!-- Tile :: Actions -->
@@ -145,14 +81,6 @@
             >
                 {{ ::'data_processing_details_actions_show_ui_label' | translate
                 }}
-            </oui-tile-button>
-            <!-- Tile item :: Grafana -->
-            <oui-tile-button
-                title="{{ ::'data_processing_details_actions_show_grafana_label' | translate }}"
-                data-on-click="$ctrl.onMetricsClick()"
-            >
-                {{ ::'data_processing_details_actions_show_grafana_label' |
-                translate }}
             </oui-tile-button>
             <!-- Tile item :: Browse Swift -->
             <oui-tile-button

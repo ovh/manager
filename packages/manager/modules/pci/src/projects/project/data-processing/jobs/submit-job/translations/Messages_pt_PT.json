@@ -1,8 +1,8 @@
 {
   "data_processing_submit_job_title": "Iniciar um novo job",
   "data_processing_submit_job_description_1": "O OVHcloud Analytics Data Compute permite-lhe lançar jobs Apache Spark a pedido, especificando a quantidade de RAM e de vCPU que deve utilizar.",
-  "data_processing_submit_job_description_2": "Carregue o seu código em formato JAR ou código Python num container Swift e execute-o através da interface abaixo. Poderá seguir a execução do seu job através de logs e estatísticas em tempo real.",
-  "data_processing_submit_job_description_3": "Poderá aceder em tempo real aos logs e estatísticas do seu job.",
+  "data_processing_submit_job_description_2": "Carregue o seu código em formato JAR ou código Python num container Swift e execute-o através da interface abaixo. Pode controlar a execução do seu job através dos logs em tempo real.",
+  "data_processing_submit_job_description_3": "Poderá aceder em tempo real aos logs do seu job.",
   "data_processing_submit_job_stepper_region_title": "Selecionar uma região",
   "data_processing_submit_job_stepper_job_type_title": "Selecionar um tipo de job",
   "data_processing_submit_job_stepper_sizing_title": "Dimensionamento do job",

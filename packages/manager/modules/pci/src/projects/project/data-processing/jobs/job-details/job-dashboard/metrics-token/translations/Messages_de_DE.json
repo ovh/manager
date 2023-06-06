@@ -1,8 +1,0 @@
-{
-  "data_processing_details_metrics_token_modal_title": "Zugang zum Monitoring",
-  "data_processing_details_metrics_token_modal_dismiss_button": "Schließen",
-  "data_processing_details_metrics_token_modal_description_1": "Auf die detaillierten Metriken Ihres Auftrags haben Sie Zugriff über ",
-  "data_processing_details_metrics_token_modal_description_2": "Die Dokumentation anzeigen",
-  "data_processing_details_metrics_token_modal_token_label": "Nutzen Sie das untenstehende Token, um auf Ihre Messwerte zuzugreifen.",
-  "data_processing_details_metrics_token_modal_grafana_button": "Zugang zu Grafana"
-}
