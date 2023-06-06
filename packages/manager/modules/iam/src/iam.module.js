@@ -8,6 +8,7 @@ import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import uiKit from '@ovh-ux/ui-kit';
 
+import dashboard from './dashboard';
 import identities from './identities';
 import onboarding from './onboarding';
 import policy from './policy';
@@ -41,6 +42,7 @@ angular
     ngOvhFeatureFlipping,
     ngOvhUtils,
     uiKit,
+    dashboard,
     identities,
     onboarding,
     policy,
