@@ -210,6 +210,11 @@ export default /* @ngInject */ ($stateProvider) => {
           name: hit,
         });
       },
+
+      goToUsersAndTokens: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.ai-dashboard.users-tokens', {
+          projectId,
+        }),
     },
   });
 };

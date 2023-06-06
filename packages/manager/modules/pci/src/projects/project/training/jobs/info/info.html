@@ -1,41 +1,57 @@
-<oui-header
-    class="mb-3"
-    data-heading="{{::('pci_projects_project_training_job_info' | translate) +  $ctrl.job.id }}"
->
-    <oui-header-tabs>
-        <oui-header-tabs-item
-            data-active="$ctrl.currentActiveLink() === $ctrl.jobInfo"
-            data-href="{{ $ctrl.jobInfo }}"
+<header class="oui-header">
+    <div class="oui-header__container">
+        <div class="oui-header__content">
+            <h1 class="oui-header__title" ng-bind="$ctrl.job.spec.name"></h1>
+            <h2 class="oui-header__description" ng-bind="$ctrl.job.id"></h2>
+        </div>
+        <oui-guide-menu
+            data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
-            <span
-                data-translate="pci_projects_project_training_job_info_header"
-            ></span>
-        </oui-header-tabs-item>
-        <oui-header-tabs-item
-            data-href="{{ $ctrl.jobLogs}}"
-            data-active="$ctrl.currentActiveLink() === $ctrl.jobLogs"
-        >
-            <span
-                data-translate="pci_projects_project_training_job_logs_header"
-            ></span>
-        </oui-header-tabs-item>
-    </oui-header-tabs>
-
-    <oui-guide-menu
-        data-text="{{ :: 'pci_project_guides_header' | translate }}"
-    >
-        <oui-guide-menu-item
-            data-ng-repeat="guide in $ctrl.guideUrl.ai_training track by $index"
-            data-href="{{:: guide.url }}"
-            data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.ai_training + guide.tracking)"
-            data-external
-        >
-            <span
-                data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
-            ></span>
-        </oui-guide-menu-item>
-    </oui-guide-menu>
-</oui-header>
+            <oui-guide-menu-item
+                data-ng-repeat="guide in $ctrl.guideUrl.ai_notenooks track by $index"
+                data-href="{{:: guide.url }}"
+                data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.ai_notebooks + guide.tracking)"
+                data-external
+            >
+                <span
+                    data-translate="{{:: 'pci_project_guides_header_' + guide.key }}"
+                ></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </div>
+    <oui-message class="mt-2 mb-0" data-type="info" dismissable>
+        <span
+            data-translate="pci_projects_project_training_jobs_add_banner_user_token_description"
+        ></span>
+        <p class="m-0">
+            <a
+                rel="noopener"
+                data-translate="pci_projects_project_training_jobs_add_banner_user_token_description_link"
+                data-ng-click="$ctrl.goToUsersAndTokens()"
+            ></a>
+        </p>
+    </oui-message>
+    <div class="oui-header__tabs">
+        <oui-header-tabs class="my-1">
+            <oui-header-tabs-item
+                data-active="$ctrl.currentActiveLink() === $ctrl.jobInfo"
+                data-href="{{ $ctrl.jobInfo }}"
+            >
+                <span
+                    data-translate="pci_projects_project_training_job_info_header"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{ $ctrl.jobLogs}}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.jobLogs"
+            >
+                <span
+                    data-translate="pci_projects_project_training_job_logs_header"
+                ></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </div>
+</header>
 
 <div ui-view="content">
     <div class="row d-lg-flex mb-3">
