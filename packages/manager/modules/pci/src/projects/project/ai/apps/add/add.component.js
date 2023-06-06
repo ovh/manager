@@ -17,6 +17,7 @@ export default {
     storages: '<',
     prices: '<',
     getPriceIndex: '<',
+    goToUsersAndTokens: '<',
   },
   controller,
   template,

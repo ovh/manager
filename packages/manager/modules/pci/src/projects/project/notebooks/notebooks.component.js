@@ -25,6 +25,7 @@ export default {
     trackNotebooks: '<',
     trackClick: '<',
     goToStopNotebook: '<',
+    goToUsersAndTokens: '<',
   },
   controller,
   template,

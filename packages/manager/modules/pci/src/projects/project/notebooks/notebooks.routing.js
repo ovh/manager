@@ -142,6 +142,11 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
 
+      goToUsersAndTokens: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.ai-dashboard.users-tokens', {
+          projectId,
+        }),
+
       reloadState: /* @ngInject */ ($state) => () => {
         $state.go($state.current, {}, { reload: true });
       },
