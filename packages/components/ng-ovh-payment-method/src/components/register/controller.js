@@ -19,8 +19,7 @@ import {
 
 export default class OvhPaymentMethodRegisterCtrl {
   /* @ngInject */
-  constructor($q, ovhPaymentMethod, ovhPaymentMethodHelper, coreConfig) {
-    this.$q = $q;
+  constructor(ovhPaymentMethod, ovhPaymentMethodHelper, coreConfig) {
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
     this.coreConfig = coreConfig;
@@ -89,111 +88,98 @@ export default class OvhPaymentMethodRegisterCtrl {
 
     this.loading.init = true;
 
-    const promises = [
-      this.ovhPaymentMethodHelper.hasSpecificCrossBorderSentenceForCardPayment(),
-      this.ovhPaymentMethod.getAllAvailablePaymentMethodTypes(),
-    ];
+    return this.ovhPaymentMethod
+      .getAllAvailablePaymentMethodTypes()
+      .then((paymentMethodsTypes) => {
+        // sort available payment method types with the paymentMethodTypesOrder binding
+        this.availablePaymentMethodTypes.list = paymentMethodsTypes.sort(
+          (typeA, typeB) => {
+            const typeAIndex = this.paymentMethodTypesOrder.indexOf(
+              typeA.paymentType,
+            );
+            const typeBIndex = this.paymentMethodTypesOrder.indexOf(
+              typeB.paymentType,
+            );
+            return typeAIndex > typeBIndex;
+          },
+        );
 
-    return this.$q
-      .all(promises)
-      .then(
-        ([
-          hasSpecificCrossBorderSentenceForCardPayment,
-          paymentMethodsTypes,
-        ]) => {
-          // display or not the specific cross border sentence for given subsidiaries
-          this.hasSpecificCrossBorderSentenceForCardPayment = hasSpecificCrossBorderSentenceForCardPayment;
-          // sort available payment method types with the paymentMethodTypesOrder binding
-          this.availablePaymentMethodTypes.list = paymentMethodsTypes.sort(
-            (typeA, typeB) => {
-              const typeAIndex = this.paymentMethodTypesOrder.indexOf(
-                typeA.paymentType,
-              );
-              const typeBIndex = this.paymentMethodTypesOrder.indexOf(
-                typeB.paymentType,
-              );
-              return typeAIndex > typeBIndex;
-            },
-          );
+        // add a fallback image in case of no image provided by API (for legacies payment methods)
+        this.availablePaymentMethodTypes.list.forEach((paymentMethodType) => {
+          const paymentType = paymentMethodType;
+          if (!paymentType.icon) {
+            paymentType.icon = {};
+          }
+          paymentType.icon.data =
+            paymentType.icon.data || FALLBACK_IMAGES[paymentType.paymentType];
+        });
 
-          // add a fallback image in case of no image provided by API (for legacies payment methods)
-          this.availablePaymentMethodTypes.list.forEach((paymentMethodType) => {
-            const paymentType = paymentMethodType;
-            if (!paymentType.icon) {
-              paymentType.icon = {};
-            }
-            paymentType.icon.data =
-              paymentType.icon.data || FALLBACK_IMAGES[paymentType.paymentType];
-          });
+        // split available payment method types list by chunk of paymentMethodTypesPerLine number
+        this.availablePaymentMethodTypes.chunks = chunk(
+          this.availablePaymentMethodTypes.list,
+          this.paymentMethodTypesPerLine,
+        );
 
-          // split available payment method types list by chunk of paymentMethodTypesPerLine number
-          this.availablePaymentMethodTypes.chunks = chunk(
-            this.availablePaymentMethodTypes.list,
-            this.paymentMethodTypesPerLine,
-          );
+        const defaultPaymentMethodType = find(
+          this.availablePaymentMethodTypes.list,
+          {
+            paymentType: this.defaultPaymentMethodType,
+            ...(this.defaultPaymentMethodIntegration
+              ? { integration: this.defaultPaymentMethodIntegration }
+              : {}),
+          },
+        );
 
-          const defaultPaymentMethodType = find(
+        // set selected payment method type model
+        if (
+          !has(this.model, 'selectedPaymentMethodType') ||
+          isNil(this.model.selectedPaymentMethodType)
+        ) {
+          this.model.selectedPaymentMethodType = defaultPaymentMethodType;
+        } else if (this.model.selectedPaymentMethodType) {
+          // if the selected payment method type does not exist
+          // set the default one
+          const isModelTypeExists = some(
             this.availablePaymentMethodTypes.list,
             {
-              paymentType: this.defaultPaymentMethodType,
-              ...(this.defaultPaymentMethodIntegration
-                ? { integration: this.defaultPaymentMethodIntegration }
-                : {}),
+              paymentType: get(
+                this.model.selectedPaymentMethodType,
+                'paymentType',
+              ),
             },
           );
 
-          // set selected payment method type model
-          if (
-            !has(this.model, 'selectedPaymentMethodType') ||
-            isNil(this.model.selectedPaymentMethodType)
-          ) {
+          if (!isModelTypeExists) {
             this.model.selectedPaymentMethodType = defaultPaymentMethodType;
-          } else if (this.model.selectedPaymentMethodType) {
-            // if the selected payment method type does not exist
-            // set the default one
-            const isModelTypeExists = some(
-              this.availablePaymentMethodTypes.list,
-              {
-                paymentType: get(
-                  this.model.selectedPaymentMethodType,
-                  'paymentType',
-                ),
-              },
-            );
-
-            if (!isModelTypeExists) {
-              this.model.selectedPaymentMethodType = defaultPaymentMethodType;
-            }
           }
+        }
 
-          // set default model
-          if (
-            (!has(this.model, 'setAsDefault') ||
-              isNil(this.model.setAsDefault)) &&
-            this.automaticDefault
-          ) {
-            this.model.setAsDefault =
-              this.registeredPaymentMethods.length === 0;
-          }
+        // set default model
+        if (
+          (!has(this.model, 'setAsDefault') ||
+            isNil(this.model.setAsDefault)) &&
+          this.automaticDefault
+        ) {
+          this.model.setAsDefault = this.registeredPaymentMethods.length === 0;
+        }
 
-          // call onInitialized callback
-          // if it's a function reference ...
-          // otherwise the call will be made passing an Object Literal
-          // when testing if the callback function is a function ref or not
-          if (
-            this.onInitialized &&
-            isFunction(
-              this.onInitialized({
-                availablePaymentMethodTypes: this.availablePaymentMethodTypes
-                  .list,
-              }),
-            )
-          ) {
-            // ... invoke it
-            this.onInitialized()(this.availablePaymentMethodTypes.list);
-          }
-        },
-      )
+        // call onInitialized callback
+        // if it's a function reference ...
+        // otherwise the call will be made passing an Object Literal
+        // when testing if the callback function is a function ref or not
+        if (
+          this.onInitialized &&
+          isFunction(
+            this.onInitialized({
+              availablePaymentMethodTypes: this.availablePaymentMethodTypes
+                .list,
+            }),
+          )
+        ) {
+          // ... invoke it
+          this.onInitialized()(this.availablePaymentMethodTypes.list);
+        }
+      })
       .catch((error) => {
         // call onInitializationError callback
         // if it's a function reference ...
