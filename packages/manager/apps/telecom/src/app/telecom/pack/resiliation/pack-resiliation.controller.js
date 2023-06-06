@@ -3,7 +3,7 @@ import map from 'lodash/map';
 import remove from 'lodash/remove';
 import set from 'lodash/set';
 import some from 'lodash/some';
-import { ELIGIBLE, URL_PRO_FIBER } from './pack-resiliation.constant';
+import { STATUS, URL_PRO_FIBER } from './pack-resiliation.constant';
 
 export default class PackResiliationCtrl {
   /* @ngInject */
@@ -36,7 +36,7 @@ export default class PackResiliationCtrl {
   }
 
   $onInit() {
-    this.ELIGIBLE = ELIGIBLE;
+    this.STATUS = STATUS;
     this.model = {
       subServicesToKeep: {},
     };
@@ -466,11 +466,11 @@ export default class PackResiliationCtrl {
                       .get(`/xdsl/${accessName}/fiberEligibilities/${id}`)
                       .then((res) => {
                         this.eligibility = res.data;
-                        if (this.eligibility.status === this.ELIGIBLE) {
-                          this.isEligible = true;
-                        } else {
-                          this.isEligibleNotYet = true;
-                        }
+                        this.isEligible =
+                          this.eligibility.status === this.STATUS.eligible;
+                        this.isEligibleNotYet =
+                          this.eligibility.status ===
+                          this.STATUS.notYetEligible;
                       });
                   }
                 });
