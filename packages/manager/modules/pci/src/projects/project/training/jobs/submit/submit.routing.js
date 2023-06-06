@@ -20,6 +20,14 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('pci.projects.project.storages.object-storage.add', {
           projectId,
         }),
+      goToUsersAndTokens: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.ai-dashboard.users-tokens', {
+          projectId,
+        }),
+      createObjectStorage: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.storages.object-storage.add', {
+          projectId,
+        }),
     },
   });
 };

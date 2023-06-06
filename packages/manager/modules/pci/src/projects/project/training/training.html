@@ -45,7 +45,19 @@
             </oui-guide-menu-item>
         </oui-guide-menu>
     </oui-header>
-
+    <!--Banner user & role pop up-->
+    <oui-message data-type="info" dismissable>
+        <span
+            data-translate="pci_projects_project_training_jobs_user_and_roles_info"
+        ></span>
+        <p class="m-0">
+            <a
+                rel="noopener"
+                data-translate="pci_projects_project_training_jobs_user_and_roles_info_link"
+                data-ng-click="$ctrl.goToUsersAndTokens()"
+            ></a>
+        </p>
+    </oui-message>
     <!--Banner section messages-->
     <section>
         <pci-maintenance-banner

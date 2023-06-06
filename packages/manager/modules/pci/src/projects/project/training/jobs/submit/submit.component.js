@@ -14,5 +14,7 @@ export default {
     regions: '<',
     containers: '<',
     goToData: '<',
+    goToUsersAndTokens: '<',
+    createObjectStorage: '<',
   },
 };
