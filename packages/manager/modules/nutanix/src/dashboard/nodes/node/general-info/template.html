@@ -124,7 +124,10 @@
         </div>
 
         <!-- TECHNICAL DETAILS -->
-        <div class="col-md-4" data-ng-if="$ctrl.technicalDetails">
+        <div
+            class="col-md-4"
+            data-ng-if="$ctrl.technicalDetails && $ctrl.isNewCluster"
+        >
             <server-technical-details
                 technical-details="$ctrl.technicalDetails"
             ></server-technical-details>
