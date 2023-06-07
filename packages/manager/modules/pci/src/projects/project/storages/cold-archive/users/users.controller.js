@@ -106,15 +106,33 @@ export default class PciStoragesContainersUsersController {
   onShowSecretKeyClick(user) {
     this.scrollToTop();
     this.trackS3UsersClick(COLD_ARCHIVE_TRACKING.USER.ACTIONS.DISPLAY_SECRET);
-    this.CucCloudMessage.info({
-      textHtml: this.$translate.instant(
-        'pci_projects_project_storages_containers_users_show_secret_key_success',
-        {
-          user: `<strong>${user.username}</strong>`,
-          secret: `<code class="text-break">${user.s3Credentials.secret}</code>`,
-        },
-      ),
-    });
+    this.PciStoragesColdArchiveService.getS3Secret(
+      this.projectId,
+      user.id,
+      user.s3Credentials?.access,
+    )
+      .then((data) => {
+        this.CucCloudMessage.info({
+          textHtml: this.$translate.instant(
+            'pci_projects_project_storages_containers_users_show_secret_key_success',
+            {
+              user: `<strong>${user.username}</strong>`,
+              secret: `<code class="text-break">${data.secret}</code>`,
+            },
+          ),
+        });
+      })
+      .catch((error) => {
+        this.CucCloudMessage.error({
+          textHtml: this.$translate.instant(
+            'pci_projects_project_storages_containers_users_show_secret_key_error',
+            {
+              user: `<strong>${user.username}</strong>`,
+              message: error?.data?.message,
+            },
+          ),
+        });
+      });
   }
 
   onImportPolicyClick(user) {
