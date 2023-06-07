@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.127.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.126.0...@ovh-ux/manager-pci@5.127.0) (2023-06-07)
+
+
+### Bug Fixes
+
+* **pci:** fix active tab display ([#9359](https://github.com/ovh/manager/issues/9359)) ([c49aacc](https://github.com/ovh/manager/commit/c49aacc0fc050c62e7000f72c202306c21baa9fb))
+* **pci:** fix translation not loaded on user add ([#9392](https://github.com/ovh/manager/issues/9392)) ([3f5af57](https://github.com/ovh/manager/commit/3f5af577bd0c0b15a37a309f1322bc7c981d1033))
+
+
+### Features
+
+* **pci.dataprocessing:** eol metrics ([#9211](https://github.com/ovh/manager/issues/9211)) ([9cbb86f](https://github.com/ovh/manager/commit/9cbb86fc48eb08b2f221c6e88090cc9a5f149e80))
+
+
+
+
+
 # [5.126.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.125.0...@ovh-ux/manager-pci@5.126.0) (2023-05-31)
 
 

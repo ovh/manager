@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.63.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.63.0...@ovh-ux/manager-telecom@13.63.1) (2023-06-07)
+
+
+### Bug Fixes
+
+* **telecom:** check eligibility status before show retention message ([#9342](https://github.com/ovh/manager/issues/9342)) ([a66ba8e](https://github.com/ovh/manager/commit/a66ba8e58e3604d2ef5c5c49f85aba7f8cc1aac5))
+
+
+
+
+
 # [13.63.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.62.0...@ovh-ux/manager-telecom@13.63.0) (2023-05-31)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.61.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.61.2...@ovh-ux/manager-dedicated@17.61.3) (2023-06-07)
+
+
+### Bug Fixes
+
+* **dedicated:** make swap partition removable ([#9123](https://github.com/ovh/manager/issues/9123)) ([0c167ff](https://github.com/ovh/manager/commit/0c167ff52daca15b4b1e9d3a1c954afee0e4cb88))
+* **dedicated:** removal of usedistributionkernel, usedistribkernel options ([#9243](https://github.com/ovh/manager/issues/9243)) ([1227731](https://github.com/ovh/manager/commit/1227731139313da54450d49915b36baee3cacf73))
+
+
+
+
+
 ## [17.61.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.61.1...@ovh-ux/manager-dedicated@17.61.2) (2023-06-05)
 
 
