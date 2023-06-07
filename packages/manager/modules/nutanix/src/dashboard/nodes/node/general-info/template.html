@@ -126,7 +126,7 @@
         <!-- TECHNICAL DETAILS -->
         <div
             class="col-md-4"
-            data-ng-if="$ctrl.technicalDetails && $ctrl.isNewCluster"
+            data-ng-if="$ctrl.technicalDetails && !$ctrl.isOldCluster"
         >
             <server-technical-details
                 technical-details="$ctrl.technicalDetails"

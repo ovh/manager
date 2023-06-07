@@ -1,4 +1,4 @@
-import { NEW_CLUSTER_PLAN_CODE } from './constants';
+import { OLD_CLUSTER_PLAN_CODE } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.dashboard', {
@@ -21,10 +21,10 @@ export default /* @ngInject */ ($stateProvider) => {
         NutanixService.getServiceDetails(serviceInfo.serviceId),
       nutanixPlans: /* @ngInject */ (user, NutanixService) =>
         NutanixService.getNutanixPlans(user.ovhSubsidiary),
-      isNewCluster: /* @ngInject */ (NutanixService, serviceInfo) =>
+      isOldCluster: /* @ngInject */ (NutanixService, serviceInfo) =>
         // If the plan code is nutanix-standard or nutanix-advanced or nutanix-byol its newCluster
         NutanixService.getServicesDetails(serviceInfo.serviceId).then((data) =>
-          NEW_CLUSTER_PLAN_CODE.includes(data.billing.plan.code),
+          OLD_CLUSTER_PLAN_CODE.includes(data.billing.plan.code),
         ),
       getTechnicalDetails: /* @ngInject */ (
         NutanixService,
