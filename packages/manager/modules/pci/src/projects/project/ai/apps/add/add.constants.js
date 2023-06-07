@@ -56,6 +56,13 @@ export const APP_PROBE = {
   MAX_PORT: 65535,
 };
 
+export const APP_PARTNER_PRESET_LICENCING = {
+  PER_APP: 'per-app',
+  PER_RESOURCE: 'per-resource',
+  PER_REPLICA: 'per-replica',
+  FREE: 'per-free',
+};
+
 export default {
   APP_IMAGE,
   AUTOMATIC_SCALING_RESOURCE_TYPES,
@@ -63,4 +70,5 @@ export default {
   APP_LABELS,
   APP_PRIVACY_SETTINGS,
   APP_PROBE,
+  APP_PARTNER_PRESET_LICENCING,
 };

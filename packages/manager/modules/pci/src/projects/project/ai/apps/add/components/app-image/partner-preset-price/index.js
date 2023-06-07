@@ -3,11 +3,9 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 
-import component from './app-image.component';
+import component from './partner-preset-price.component';
 
-import partnerPresetPriceComponent from './partner-preset-price';
-
-const moduleName = 'ovhManagerPciProjectAppsAppImage';
+const moduleName = 'ovhManagerPciProjectAppsAppImagePartnerPresetPrice';
 
 angular
   .module(moduleName, [
@@ -15,9 +13,8 @@ angular
     'pascalprecht.translate',
     'ngOvhCloudUniverseComponents',
     ovhManagerCatalogPrice,
-    partnerPresetPriceComponent,
   ])
-  .component('appImage', component)
+  .component('partnerPresetPrice', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

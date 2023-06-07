@@ -5,6 +5,8 @@ export default {
   bindings: {
     image: '=',
     preset: '=',
+    partnerConditionsAccepted: '=',
+    showAdvancedImage: '=',
     presets: '<',
     prices: '<',
     flavors: '<',

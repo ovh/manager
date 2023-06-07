@@ -8,10 +8,10 @@ export default class AppImageController {
   /* @ngInject */
   constructor(coreConfig) {
     this.user = coreConfig.getUser();
+    this.language = coreConfig.getUserLocale();
   }
 
   $onInit() {
-    this.showAdvancedImage = false;
     this.APP_IMAGE = APP_IMAGE;
 
     this.docImagesDockerPortfolioUrl =
@@ -22,16 +22,13 @@ export default class AppImageController {
       APP_CUSTOM_DOCKER_IMAGE_DOC.DEFAULT;
   }
 
-  onClickAdvancedImage() {
-    this.image = null;
-    this.selected = null;
-    this.preset = null;
-    this.showAdvancedImage = !this.showAdvancedImage;
+  onPresetSelect(preset) {
+    this.partnerConditionsAccepted = preset.partner.contract.signedAt !== null;
+    this.preset = preset;
   }
 
-  onPresetSelect(preset) {
-    this.image = preset.id;
-    this.preset = preset;
-    this.showAdvancedImage = false;
+  getToSLink() {
+    const { termsOfService } = this.preset.partner.contract;
+    return (termsOfService[this.language] || termsOfService.default).url;
   }
 }
