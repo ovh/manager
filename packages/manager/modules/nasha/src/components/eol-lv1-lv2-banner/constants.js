@@ -9,11 +9,13 @@ export const EOL_LV1_LV2_SERVICES_LINK_INFO = {
   GB: 'https://docs.ovh.com/gb/en/storage/file-storage/nas/migration/',
   IE: 'https://docs.ovh.com/ie/en/storage/file-storage/nas/migration/',
   IT: 'https://docs.ovh.com/it/storage/file-storage/nas/migration/',
-  PL: 'https://docs.ovh.com/it/storage/file-storage/nas/migration/',
+  PL: 'https://docs.ovh.com/pl/storage/file-storage/nas/migration/',
   PT: 'https://docs.ovh.com/pt/storage/file-storage/nas/migration/',
   QC: 'https://docs.ovh.com/ca/fr/storage/file-storage/nas/migration/',
+  SG: 'https://docs.ovh.com/sg/en/storage/file-storage/nas/migration/',
   US: 'https://docs.ovh.com/us/en/storage/file-storage/nas/migration/',
-  WS: 'https://docs.ovh.com/es/storage/file-storage/nas/migration/',
+  WE: 'https://docs.ovh.com/us/en/storage/file-storage/nas/migration/',
+  WS: 'https://docs.ovh.com/us/es/storage/file-storage/nas/migration/',
 };
 export default {
   EOL_LV1_LV2_SERVICES_LINK_INFO,
