@@ -11,6 +11,12 @@ export const GUIDE_URL = {
   },
 };
 
+export const NEW_CLUSTER_PLAN_CODE = [
+  'nutanix-standard',
+  'nutanix-advanced',
+  'nutanix-byol',
+];
+
 export const LICENSE_REGISTRATION_ENDS_IN_DAYS = 90;
 
 export default {
@@ -18,4 +24,5 @@ export default {
   SERVER_OPTIONS,
   GUIDE_URL,
   LICENSE_REGISTRATION_ENDS_IN_DAYS,
+  NEW_CLUSTER_PLAN_CODE,
 };

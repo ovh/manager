@@ -15,6 +15,7 @@ export default {
     goToNetboot: '<',
     goToNutanixNode: '<',
     goToReboot: '<',
+    isNewCluster: '<',
   },
   controller,
   template,
