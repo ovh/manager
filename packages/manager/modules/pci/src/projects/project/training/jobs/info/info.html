@@ -1,8 +1,14 @@
 <header class="oui-header">
     <div class="oui-header__container">
         <div class="oui-header__content">
-            <h1 class="oui-header__title" ng-bind="$ctrl.job.spec.name"></h1>
-            <h2 class="oui-header__description" ng-bind="$ctrl.job.id"></h2>
+            <h1
+                class="oui-header__title"
+                data-ng-bind="$ctrl.job.spec.name"
+            ></h1>
+            <h2
+                class="oui-header__description"
+                data-ng-bind="$ctrl.job.id"
+            ></h2>
         </div>
         <oui-guide-menu
             data-text="{{:: 'pci_project_guides_header' | translate }}"
