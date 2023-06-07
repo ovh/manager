@@ -11,10 +11,16 @@ export const GUIDE_URL = {
   },
 };
 
-export const NEW_CLUSTER_PLAN_CODE = [
-  'nutanix-standard',
-  'nutanix-advanced',
-  'nutanix-byol',
+export const OLD_CLUSTER_PLAN_CODE = [
+  'nutanix-21hci01-byol',
+  'nutanix-21hci02-byol',
+  'nutanix-21hci03-byol',
+  'nutanix-pro-21hci01',
+  'nutanix-pro-21hci02',
+  'nutanix-pro-21hci03',
+  'nutanix-ultimate-21hci01',
+  'nutanix-ultimate-21hci02',
+  'nutanix-ultimate-21hci03',
 ];
 
 export const LICENSE_REGISTRATION_ENDS_IN_DAYS = 90;
@@ -24,5 +30,5 @@ export default {
   SERVER_OPTIONS,
   GUIDE_URL,
   LICENSE_REGISTRATION_ENDS_IN_DAYS,
-  NEW_CLUSTER_PLAN_CODE,
+  OLD_CLUSTER_PLAN_CODE,
 };

@@ -223,7 +223,7 @@
     </div>
 
     <!-- TECHNICAL DETAILS -->
-    <div class="col-md-6 col-lg-4 mb-3" data-ng-if="!$ctrl.isNewCluster">
+    <div class="col-md-6 col-lg-4 mb-3" data-ng-if="$ctrl.isOldCluster">
         <server-technical-details
             technical-details="$ctrl.technicalDetails"
         ></server-technical-details>
