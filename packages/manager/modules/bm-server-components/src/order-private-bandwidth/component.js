@@ -13,6 +13,7 @@ export default {
     user: '<',
     onError: '&?',
     onSuccess: '&?',
+    isClusterNode: '<',
   },
   controller,
   template,
