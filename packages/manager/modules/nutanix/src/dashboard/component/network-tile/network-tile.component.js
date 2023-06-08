@@ -7,6 +7,7 @@ export default {
     goToUpgradePrivateBandwidth: '<',
     onError: '&?',
     privateBandwidthServiceId: '<',
+    isOldCluster: '<',
   },
   controller,
   template,

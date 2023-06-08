@@ -90,7 +90,7 @@
     </oui-tile-description>
 </oui-tile-definition>
 <oui-tile-button
-    data-ng-if="!$ctrl.server.isExpired && $ctrl.server.canOrderVrackBandwith"
+    data-ng-if="!$ctrl.server.isExpired && $ctrl.server.canOrderVrackBandwith && !$ctrl.isOldCluster"
     data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
     data-href="{{ $ctrl.orderPrivateLink }}"
 >

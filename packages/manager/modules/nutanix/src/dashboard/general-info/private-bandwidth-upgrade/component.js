@@ -11,5 +11,6 @@ export default {
     trackingPrefix: '<',
     user: '<',
     handleError: '<',
+    isOldCluster: '<',
   },
 };
