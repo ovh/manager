@@ -51,7 +51,7 @@
                 <oui-button
                     data-variant="link"
                     data-icon-right="oui-icon-arrow-right"
-                    data-ng-if="$ctrl.privateBandwidthUpgradable && !$ctrl.loadingUpgradeOptions"
+                    data-ng-if="$ctrl.privateBandwidthUpgradable && !$ctrl.loadingUpgradeOptions && $ctrl.isOldCluster"
                     data-on-click="$ctrl.goToUpgradePrivateBandwidth()"
                 >
                     <span

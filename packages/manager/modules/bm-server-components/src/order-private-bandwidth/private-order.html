@@ -64,6 +64,10 @@
 
             <oui-message data-type="warning">
                 <span data-translate="server_order_bandwidth_warning"></span>
+                <span
+                    data-ng-if="$ctrl.isClusterNode"
+                    data-translate="server_node_order_bandwidth_warning"
+                ></span>
             </oui-message>
         </form>
     </div>
