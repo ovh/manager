@@ -5,18 +5,18 @@
         data-type="info"
         data-ng-if="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN && !$ctrl.displayError"
     >
-        <p
+        <span
             data-translate="user_account_identity_documents_verification_in_progress_info"
-        ></p>
+        ></span>
     </oui-message>
     <!-- information banner for required status with additional files-->
     <oui-message
         data-type="info"
         data-ng-if="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.REQUIRED && !!$ctrl.kycStatus.ticketId && !$ctrl.displayError"
     >
-        <p
+        <span
             data-translate="user_account_identity_documents_verification_waiting_info"
-        ></p>
+        ></span>
     </oui-message>
 
     <!--My Identity document title-->
@@ -52,25 +52,26 @@
 <div class="mt-2" data-ng-if="!$ctrl.loading && $ctrl.showUploadOption">
     <div data-ng-if="$ctrl.displayError">
         <oui-message data-type="error">
-            <p
+            <span
                 data-translate="user_account_identity_documents_submit_error_message_description"
-            ></p>
+            ></span>
         </oui-message>
     </div>
-    <form novalidate name="$ctrl.form">
-        <oui-field
-            data-label="{{:: 'user_account_identity_documents_selection_file_format' | translate }}"
-            data-size="l"
-        >
-            <oui-file
-                data-model="$ctrl.files"
-                data-accept="application/pdf,image/jpeg,image/png,image/jpg"
-                data-multiple
-                data-maxsize="$ctrl.maximum_size"
-                data-name="files"
-                data-disabled="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN"
-            ></oui-file>
-        </oui-field>
+    <small
+        class="bold"
+        data-translate="user_account_identity_documents_selection_file_format"
+    >
+    </small>
+    <form novalidate name="$ctrl.form" class="mt-2">
+        <oui-file
+            data-model="$ctrl.files"
+            data-accept="application/pdf,image/jpeg,image/png,image/jpg"
+            data-multiple
+            data-maxsize="$ctrl.maximum_size"
+            data-name="files"
+            data-disabled="$ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN"
+        ></oui-file>
+
         <oui-form-actions
             class="mt-5"
             data-disabled="$ctrl.form.$invalid || !$ctrl.files || $ctrl.files.length === 0 || $ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN"
