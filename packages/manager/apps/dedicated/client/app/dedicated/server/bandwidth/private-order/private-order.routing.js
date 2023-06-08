@@ -25,8 +25,12 @@ export default /* @ngInject */ ($stateProvider) => {
             .get(`/services/${serviceInfos.serviceId}/options`)
             .then(
               ({ data: options }) =>
-                options.find((option) =>
-                  option.billing.plan.code.startsWith('vrack-bandwidth'),
+                options.find(
+                  (option) =>
+                    option.billing.plan.code.startsWith('vrack-bandwidth') ||
+                    option.billing.plan.code.startsWith(
+                      'cluster-vrack-bandwidth',
+                    ),
                 )?.serviceId,
             ),
         trackingPrefix: () =>

@@ -28,6 +28,12 @@ export default class NutanixNodeService {
       .then((res) => res.data);
   }
 
+  getServiceInfos(serviceName) {
+    return this.$http
+      .get(`/dedicated/server/${serviceName}/serviceInfos`)
+      .then(({ data }) => data);
+  }
+
   static getTaskPath(productId, taskId) {
     return `apiv6/dedicated/server/${productId}/task/${taskId}`;
   }

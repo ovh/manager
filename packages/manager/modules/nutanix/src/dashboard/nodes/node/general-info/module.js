@@ -14,6 +14,7 @@ import component from './component';
 import routing from './routing';
 import netboot from './netboot';
 import reboot from './reboot';
+import bandwidthPrivateOrder from './bandwidth-private-order';
 import datacenterName from '../../../component/datacenter-name/module';
 
 const moduleName = 'ovhManagerNutanixNodeGeneralInfo';
@@ -30,6 +31,7 @@ angular
     serverNetwork,
     serverSupport,
     serverBandwidthDashboard,
+    bandwidthPrivateOrder,
     reboot,
     datacenterName,
   ])
