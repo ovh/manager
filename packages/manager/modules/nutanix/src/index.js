@@ -53,6 +53,7 @@ angular
     },
   )
   .service('NutanixService', service)
+  .run(/* @ngTranslationsInject:json ./translations */)
   .run(
     /* @ngInject */ ($translate, $transitions) => {
       $transitions.onBefore({ to: 'nutanix.**' }, () => $translate.refresh());
