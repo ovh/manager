@@ -25,7 +25,7 @@
             data-property="protocol"
             data-sortable
         >
-            {{ $row.protocol | uppercase }}
+            {{ $row.displayProtocol | uppercase }}
             <span data-ng-show="$row.port">: {{ $row.port }}</span>
         </oui-datagrid-column>
         <oui-datagrid-column
