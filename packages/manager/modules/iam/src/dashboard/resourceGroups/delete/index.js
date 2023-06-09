@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerIAMDashboardResourceGroupsDeleteLazyLoading';
 angular.module(moduleName, [uiRouter, ocLazyLoad]).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('iam.dashboard.resourceGroups.delete.**', {
-      url: '/delete',
+      url: '/delete/{resourceGroup:uuid}',
       lazyLoad: (transition) =>
         import('./delete.module').then((module) =>
           transition
