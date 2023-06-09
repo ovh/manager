@@ -1,9 +1,8 @@
 import { cloneDeep, isEqual } from 'lodash-es';
 
 import { ENTITY, ENTITY_NAME_PATTERN } from '../../iam.constants';
-import { URL } from '../../iam.service';
 
-export default class CreatePolicyController {
+export default class CreateResourceGroupController {
   /* @ngInject */
   constructor($q, $timeout, $translate, IAMService) {
     this.$q = $q;
@@ -13,7 +12,6 @@ export default class CreatePolicyController {
 
     this.ENTITY_NAME_PATTERN = ENTITY_NAME_PATTERN;
     this.ENTITY_RESOURCE_TYPE = ENTITY.RESOURCE_TYPE;
-    this.URL_RESOURCE_GROUP = URL.RESOURCE_GROUP;
 
     /**
      * The oui-select confirm-remove property works with promises
@@ -24,7 +22,7 @@ export default class CreatePolicyController {
 
     /**
      * A set of parsed error classes returned by the api
-     * Keys are policy property names and values are translated errors
+     * Keys are resourceGroup property names and values are translated errors
      *
      * For instance
      * { name: 'Some translated error' }
@@ -50,10 +48,8 @@ export default class CreatePolicyController {
      * @type {Object}
      */
     this.model = {
-      actions: { selection: [], isWildcardActive: false },
       name: '',
       resources: [],
-      resourceGroups: [],
       resourceTypes: [],
     };
 
@@ -64,12 +60,6 @@ export default class CreatePolicyController {
      */
     this.modelSnapshot = null;
 
-    /**
-     * List of resource groups loaded by the oui-select
-     * @type {Object[]?}
-     */
-    this.resourceGroups = null;
-
     // Can be passed as reference to a component
     this.onDeleteEntityGoBack = this.onDeleteEntityGoBack.bind(this);
   }
@@ -79,7 +69,9 @@ export default class CreatePolicyController {
    * @type {boolean}
    */
   get canSubmit() {
-    return !this.isSubmitting && this.form?.$valid && !this.policy?.readOnly;
+    return (
+      !this.isSubmitting && this.form?.$valid && !this.resourceGroup?.readOnly
+    );
   }
 
   /**
@@ -103,15 +95,6 @@ export default class CreatePolicyController {
   }
 
   /**
-   * Whether the user has registered resource groups
-   * Default is true until the api respond
-   * @returns {boolean}
-   */
-  get hasResourceGroups() {
-    return this.resourceGroups === null || this.resourceGroups.length > 0;
-  }
-
-  /**
    * Whether the user has selected at least one resource type
    * @returns {boolean}
    */
@@ -120,12 +103,12 @@ export default class CreatePolicyController {
   }
 
   /**
-   * THe Current controller's mode. If any policy is given, it is edition mode
+   * The Current controller's mode. If any resourceGroup is given, it is edition mode
    * Otherwise, it is creation mode
    * @returns {'create'|'edit'}
    */
   get mode() {
-    return this.policy ? 'edit' : 'create';
+    return this.resourceGroup ? 'edit' : 'create';
   }
 
   /**
@@ -133,7 +116,7 @@ export default class CreatePolicyController {
    * @returns {Object<string,string>}
    */
   get translations() {
-    const prefix = 'iam_create_policy';
+    const prefix = 'iam_create_resource_group';
     const { mode } = this;
     return {
       error: `${prefix}_error_${mode}`,
@@ -169,36 +152,25 @@ export default class CreatePolicyController {
 
     // Edit mode, feed the model
     if (this.mode === 'edit') {
-      const wildcardAction = this.policy.permissions.allow.find(
-        ({ action }) => action === '*',
-      );
-      this.model.actions.selection = this.policy.permissions.allow.filter(
-        (action) => action !== wildcardAction,
-      );
-      this.model.actions.isWildcardActive = Boolean(wildcardAction);
-      this.model.name = this.policy.name;
-      this.model.resources = this.policy.resources
-        .filter(({ resource }) => Boolean(resource))
-        .map(({ resource }) => resource);
-      this.model.resourceGroups = this.policy.resources
-        .filter(({ group }) => Boolean(group))
-        .map(({ group }) => group);
-      this.model.resourceTypes = [
-        ...this.model.resources.map(({ type }) => type),
-        ...this.model.actions.selection.map(({ resourceType }) => resourceType),
-      ].filter(
-        (resourceType, index, list) =>
-          Boolean(resourceType) && list.indexOf(resourceType) === index,
-      );
+      this.model.name = this.resourceGroup.name;
+      this.model.resources = [...this.resourceGroup.resources];
+      this.model.resourceTypes = this.model.resources
+        .map(({ type }) => type)
+        .filter(
+          (resourceType, index, list) =>
+            Boolean(resourceType) && list.indexOf(resourceType) === index,
+        );
     }
   }
 
   /**
-   * Cancel the policy creation by going to the policies state
+   * Cancel the resourceGroup creation by going back to the previous state
    * @returns {Promise}
    */
   cancelCreation() {
-    return this.goTo({ name: 'iam.dashboard.policies' });
+    return this.goTo({
+      name: 'iam.dashboard.resourceGroups',
+    });
   }
 
   /**
@@ -207,6 +179,20 @@ export default class CreatePolicyController {
    */
   createSnapshot() {
     this.modelSnapshot = cloneDeep(this.model);
+  }
+
+  /**
+   * Called back each time a resource types is deleted using the iamDeleteEntity component
+   * @param {boolean} success
+   */
+  onDeleteEntityGoBack({ success }) {
+    if (success) {
+      this.model.resources = this.model.resources?.filter(
+        (resource) => !this.deletion.data.resources.includes(resource),
+      );
+    }
+    this.deletion.resolve(success);
+    this.deletion = null;
   }
 
   /**
@@ -219,55 +205,18 @@ export default class CreatePolicyController {
   }
 
   /**
-   * Called back each time the resourceGroups have loaded
-   * @param {Array} resourceGroups
-   */
-  onResourceGroupsLoaded(resourceGroups) {
-    this.resourceGroups = resourceGroups;
-    // Restore references to the model
-    // /!\ Avoid having the same selected item twice
-    if (this.model.resourceGroups?.length) {
-      this.model.resourceGroups = this.model.resourceGroups.map(
-        (resourceGroup) =>
-          resourceGroups.find(({ id }) => resourceGroup.id === id) ||
-          resourceGroup,
-      );
-    }
-  }
-
-  /**
-   * Called back each time a resource types is deleted using the iamDeleteEntity component
-   * @param {boolean} success
-   */
-  onDeleteEntityGoBack({ success }) {
-    if (success) {
-      this.model.actions.selection = this.model.actions.selection.filter(
-        (action) => !this.deletion.data.actions.includes(action),
-      );
-      this.model.resources = this.model.resources?.filter(
-        (resource) => !this.deletion.data.resources.includes(resource),
-      );
-    }
-    this.deletion.resolve(success);
-    this.deletion = null;
-  }
-
-  /**
    * Called back each time a resource types is about to be deleted
    * If a deletion is detected, ask the user for a confirmation
    * @param {string} resourceType The resource type to delete
    */
   onResourceTypesConfirmRemove(resourceType) {
-    const actions = this.model.actions.selection.filter(
-      (action) => action.resourceType === resourceType,
-    );
     const resources = this.model.resources?.filter(
       (resource) => resource.type === resourceType,
     );
 
-    if (actions?.length || resources?.length) {
+    if (resources?.length) {
       this.deletion = this.$q.defer();
-      this.deletion.data = { name: resourceType, actions, resources };
+      this.deletion.data = { name: resourceType, resources };
       return this.deletion.promise;
     }
 
@@ -284,14 +233,14 @@ export default class CreatePolicyController {
 
     const promise =
       this.mode === 'edit'
-        ? this.IAMService.setPolicy(this.policy.id, this.toAPI())
-        : this.IAMService.createPolicy(this.toAPI());
+        ? this.IAMService.setResourceGroup(this.resourceGroup.id, this.toAPI())
+        : this.IAMService.createResourceGroup(this.toAPI());
 
     return promise
       .then(() => {
         this.error = {};
         return this.goTo({
-          name: 'iam.dashboard.policies',
+          name: 'iam.dashboard.resourceGroups',
           reload: true,
           success: {
             key: this.translations.success,
@@ -302,8 +251,8 @@ export default class CreatePolicyController {
       .catch((error) => {
         this.isSubmitting = false;
 
-        if (error.data.policy) {
-          this.error = error.data.policy;
+        if (error.data.resourceGroup) {
+          this.error = error.data.resourceGroup;
           this.runValidation();
           return;
         }
@@ -329,26 +278,13 @@ export default class CreatePolicyController {
 
   /**
    * Transform the current model to an API compliant data
-   * @see {IAMService#createPolicy}
+   * @see {IAMService#createResourceGroup}
    * @returns {Object}
    */
   toAPI() {
     return {
-      identities: [],
       name: this.model.name,
-      permissions: {
-        allow: this.model.actions.isWildcardActive
-          ? [{ action: '*' }]
-          : this.model.actions.selection.map(({ action }) => ({ action })),
-      },
-      resources: [
-        ...new Map(
-          [
-            ...this.model.resources.map(({ urn }) => ({ urn })),
-            ...this.model.resourceGroups.map(({ urn }) => ({ urn })),
-          ].map((resource) => [resource.urn, resource]),
-        ).values(),
-      ],
+      resources: this.model.resources.map(({ id }) => ({ id })),
     };
   }
 }
