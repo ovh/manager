@@ -3,9 +3,9 @@ import angular from 'angular';
 import create from './create';
 import edit from './edit';
 
-import routing from './policy.routing';
+import routing from './resourceGroup.routing';
 
-const moduleName = 'ovhManagerIAMPolicy';
+const moduleName = 'ovhManagerIAMRsourceGroup';
 
 angular.module(moduleName, [create, edit]).config(routing);
 
