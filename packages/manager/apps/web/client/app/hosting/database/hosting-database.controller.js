@@ -2,6 +2,8 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
+import { FREE_HOSTING_OFFER } from './hosting-database.constants';
+
 angular.module('App').controller(
   'HostingTabDatabasesCtrl',
   class HostingTabDatabasesCtrl {
@@ -244,6 +246,10 @@ angular.module('App').controller(
     onTransformItemDone() {
       this.loading.init = false;
       this.loading.databases = false;
+    }
+
+    isFreeHosting() {
+      return FREE_HOSTING_OFFER.includes(this.hosting.offer);
     }
   },
 );
