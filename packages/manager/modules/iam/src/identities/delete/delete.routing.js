@@ -2,7 +2,7 @@ import { ENTITY } from '../../iam.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.identities.delete', {
-    url: `/delete/{identity:urn}`,
+    url: '/delete/{identity:urn}',
     component: 'iamDeleteEntity',
     resolve: {
       breadcrumb: () => null,
