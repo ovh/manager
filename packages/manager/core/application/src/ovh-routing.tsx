@@ -26,6 +26,9 @@ type Module = {
   ErrorElement: Element;
   breadcrumb: () => unknown;
 };
+type TrackingObj = {
+  nbActionLoad: number;
+};
 
 function HidePreloader(): JSX.Element {
   const shell = useShell();
@@ -85,7 +88,7 @@ function buildRegularRoute(module: () => Promise<Module>, key: string) {
   };
 }
 
-export function createAppRouter(trackingObj: any) {
+export function createAppRouter(trackingObj: TrackingObj) {
   const preservedRoutesBlob = import.meta.glob<Module>(
     '/pages/(_app|404).tsx',
     { eager: true },

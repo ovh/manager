@@ -34,10 +34,6 @@ export default function OvhTracking({ trackingObj }) {
       OvhTrackPage();
     }
     trackingObj.nbActionLoad += 1; // eslint-disable-line no-param-reassign
-    console.info(
-      'location useEffect trackingObj.nbActionLoad : ',
-      trackingObj.nbActionLoad,
-    );
   }, [location]);
 
   const ovhTrackingParenNode = (event) => {
