@@ -6,10 +6,16 @@ import component from './hosting-database-order-public.component';
 import routing from './hosting-database-order-public.routing';
 import service from './hosting-database-order-public.service';
 
+import dbCategoriesOffers from './components/db-categories-offers';
+
 const moduleName = 'ovhManagerHostingDatabaseOrderPublic';
 
 angular
-  .module(moduleName, [angularTranslate, ovhManagerProductOffers])
+  .module(moduleName, [
+    angularTranslate,
+    ovhManagerProductOffers,
+    dbCategoriesOffers,
+  ])
   .component(component.name, component)
   .service('HostingDatabaseOrderPublicService', service)
   .config(routing)

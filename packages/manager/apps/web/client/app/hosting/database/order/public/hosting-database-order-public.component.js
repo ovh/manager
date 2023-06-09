@@ -6,11 +6,15 @@ export default {
   controller,
   template,
   bindings: {
+    user: '<',
     catalog: '<',
+    webCloudCatalog: '<',
     characteristicsOfAvailableProducts: '<',
     goBack: '<',
     hosting: '<',
     serviceName: '<',
+    preselectDbCategory: '<',
+    dbCategories: '<',
 
     onError: '<',
     onSuccess: '<',
