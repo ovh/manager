@@ -19,7 +19,7 @@ import { OdsCheckboxButtonSize } from '@ovhcloud/ods-core';
 export default function Onboarding() {
   const { t } = useTranslation('tuesday/onboarding');
 
-  const [isValueCheckboxChecked, setValueCheckboxChecked] = useState(false);
+  const [isValueCheckboxChecked] = useState(false);
   return (
     <div>
       <h1>{t('title')}</h1>

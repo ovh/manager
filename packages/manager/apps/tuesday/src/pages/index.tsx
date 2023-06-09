@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Await,
@@ -12,19 +12,10 @@ import '@ovhcloud/ods-theme-blue-jeans/index.css';
 
 import {
   OsdsLink,
-  OsdsButton,
-  OsdsCheckbox,
-  OsdsCheckboxButton,
-  OsdsToggle,
-  OsdsRadioGroup,
-  OsdsRadio,
-  OsdsTile,
-  OsdsSelectGroup,
   OsdsSelectOption,
   OsdsSelect,
 } from '@ovhcloud/ods-stencil/components/react/';
 import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
-import { OdsCheckboxButtonSize } from '@ovhcloud/ods-core';
 import { getDedicatedNashaList } from '@/api';
 
 export function loader() {

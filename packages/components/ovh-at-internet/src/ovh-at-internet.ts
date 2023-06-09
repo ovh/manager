@@ -115,6 +115,9 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   }
 
   shouldUsePianoAnalytics() {
+    if (window.location?.hostname === 'localhost') {
+      return true;
+    }
     return (
       !!window.pa &&
       ['EU', 'CA'].includes(this.region) &&
@@ -131,11 +134,15 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     if (!withConsent) {
       this.clearTrackQueue();
     }
+
     if (this.shouldUsePianoAnalytics()) {
       debug(`tracking init: PianoAnalytics (consent=${withConsent})`);
+      const isLocal = window.location?.hostname === 'localhost';
       window.pa.setConfigurations({
-        site: 563736, // EU & CA
-        collectDomain: 'https://logs1406.xiti.com', // EU & CA
+        site: isLocal ? 605597 : 563736, // EU & CA
+        collectDomain: isLocal
+          ? 'https://logs1409.xiti.com'
+          : 'https://logs1406.xiti.com', // EU & CA
         addEventURL: 'true',
         cookieDomain: (window.location.hostname.match(/\..+/) || [])[0] || '',
         campaignPrefix: ['at_'],
@@ -259,7 +266,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
       if (tracking.mv_test) {
         this.sendEvent('mv_test.display', filterTrackingData(tracking));
       } else {
-        console.error(
+        debug(
           'atinternet.trackPage invalid data: missing name attribute',
           data,
         );

@@ -6,3 +6,4 @@ packages/manager/apps/container
 packages/manager/core/generator/app/templates
 packages/components/ovh-shell
 packages/manager/core/generator
+packages/components/ovh-at-internet/src/ovh-at-internet.ts

@@ -37,10 +37,9 @@ export function createContainerElement() {
 }
 
 export function startApplication(appName: ApplicationId) {
+  const trackingObj = { nbActionLoad: 0 };
   const root = createRoot(createContainerElement());
-  const appRouter = createAppRouter();
-  console.info('entre dans startApplication');
-  console.info('startApplication appName : ', appName);
+  const appRouter = createAppRouter(trackingObj);
 
   root.render(
     <React.StrictMode>

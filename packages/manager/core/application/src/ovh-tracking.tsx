@@ -1,8 +1,7 @@
-import React, { useEffect, useContext, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import OvhContext from './ovh-context';
+import { useShell } from '.';
 
-const TRACKING_PREFIX = 'Manager';
 const ODS_COMPONENTS = ['OSDS-BUTTON', 'OSDS-LINK'];
 const ODS_COMPONENTS_GROUP = [
   'osds-select',
@@ -10,45 +9,49 @@ const ODS_COMPONENTS_GROUP = [
   'osds-checkbox',
 ];
 
-export default function OvhTracking() {
+export default function OvhTracking({ trackingObj }) {
   const location = useLocation();
-  const value = useContext(OvhContext);
-  const prefix = `${TRACKING_PREFIX}::Manager-${value.environment.universe}::${value.environment.universe}::${value.environment.applicationName}::`;
+
+  const shell = useShell();
+  const { tracking } = shell;
+
+  const OvhTrackPage = () => {
+    const path = location.pathname.split('/')[1];
+    tracking.trackPage({
+      name: path || 'homePage',
+      level2: '1',
+    });
+  };
 
   useEffect(() => {
-    console.info('init Tracking');
-    console.info('context value : ', value);
+    if (trackingObj.nbActionLoad === 0) {
+      tracking.init(false);
+    }
   }, []);
 
   useEffect(() => {
-    const trackingLoad = `Tracking page display : ${TRACKING_PREFIX}::${value.environment.region}::${value.environment.universe}::${value.environment.applicationName}`;
-    const path = location.pathname.split('/')[1];
-    if (path) console.info(`${trackingLoad}::${path}`);
-    else console.info(trackingLoad);
+    if (trackingObj.nbActionLoad) {
+      OvhTrackPage();
+    }
+    trackingObj.nbActionLoad += 1; // eslint-disable-line no-param-reassign
+    console.info(
+      'location useEffect trackingObj.nbActionLoad : ',
+      trackingObj.nbActionLoad,
+    );
   }, [location]);
 
-  const ovhTrackingAddPath = (path) => {
-    const lctn = location.pathname.split('/')[1];
-    console.info('ovhTrackingAddPath lctn : ', lctn);
-    if (lctn) return `${path}::${lctn}::`;
-    return path;
-  };
-
   const ovhTrackingParenNode = (event) => {
-    const element = event.target as HTMLElement;
-    console.info(
-      `Tracking click action : ${ovhTrackingAddPath(prefix)}${
-        element.tagName
-      }-${event.detail.value || event.detail.newValue}`,
-    );
+    tracking.trackClick({
+      name: event.detail.value || event.detail.newValue,
+      level2: '1',
+      type: 'action',
+    });
   };
 
   const addOdsEventListenerValue = () => {
     const elmTab = [];
     ODS_COMPONENTS_GROUP.forEach((element) => {
       const odsSelector = document.querySelectorAll(element);
-      console.info('****************************');
-      console.info('odsSelector : ', odsSelector);
       odsSelector.forEach((elementSlctr) => {
         elementSlctr?.addEventListener(
           'odsValueChange',
@@ -86,11 +89,11 @@ export default function OvhTracking() {
       ODS_COMPONENTS.indexOf(element.tagName) > -1 &&
       element['data-tracking']
     ) {
-      console.info(
-        `Tracking click action 1 : ${ovhTrackingAddPath(prefix)}${
-          element['data-tracking']
-        }`,
-      );
+      tracking.trackClick({
+        name: element['data-tracking'],
+        level2: '1',
+        type: 'action',
+      });
       return true;
     }
     return true;
