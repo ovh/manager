@@ -15,7 +15,6 @@ export default class AccountUserIdentityDocumentsController {
     this.$http = $http;
     this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
-    this.user_type = USER_TYPE;
     this.maximum_size = MAX_SIZE;
     this.atInternet = atInternet;
     this.LEGAL_LINK1 = LEGAL_LINK1;
@@ -33,6 +32,9 @@ export default class AccountUserIdentityDocumentsController {
     this.showUploadOption = true;
     this.displayError = false;
     this.dashboardRedirectURL = this.coreURLBuilder.buildURL('hub', '');
+    this.user_type = USER_TYPE[this.currentUser]
+      ? USER_TYPE[this.currentUser]
+      : USER_TYPE.default;
   }
 
   uploadIdentityDocuments() {
