@@ -56,6 +56,16 @@ const root: Node = {
           features: ['contact:management'],
         },
         {
+          id: 'carbon_footprint',
+          translation: 'sidebar_carbon_footprint',
+          routing: {
+            application: 'carbon-calculator',
+          },
+          count: false,
+          features: ['carbon-calculator'],
+          region: ['EU', 'CA'],
+        },
+        {
           id: 'billing_services',
           translation: 'sidebar_billing_ssh',
           routing: {

@@ -86,6 +86,13 @@ export default function AccountSidebar() {
         href: navigation.getURL('dedicated', '/contacts'),
         routeMatcher: new RegExp('^/contacts'),
       });
+
+      menu.push({
+        id: 'my-carbon-footprint',
+        label: t('sidebar_carbon_footprint'),
+        href: navigation.getURL('carbon-calculator', '/'),
+        routeMatcher: new RegExp('^/carbon-calculator'),
+      });
     }
 
     menu.push({
@@ -109,7 +116,7 @@ export default function AccountSidebar() {
     });
 
   useEffect(() => {
-    buildMenu().then((menu) => setMenu(sanitizeMenu(menu)));
+    buildMenu().then((_menu) => setMenu(sanitizeMenu(_menu)));
   }, []);
 
   const getFeatures = (): Promise<Record<string, string>> =>
