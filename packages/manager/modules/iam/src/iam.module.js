@@ -12,6 +12,7 @@ import dashboard from './dashboard';
 import identities from './identities';
 import onboarding from './onboarding';
 import policy from './policy';
+import resourceGroup from './resourceGroup';
 
 import paramTypes from './iam.paramTypes';
 import routing from './iam.routing';
@@ -46,6 +47,7 @@ angular
     identities,
     onboarding,
     policy,
+    resourceGroup,
   ])
   .config(routing)
   .config(registerTypes)

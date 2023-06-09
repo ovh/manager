@@ -6,6 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'iamDeleteEntity',
     resolve: {
       breadcrumb: () => null,
+
       /**
        * A polymorphic DTO required by the deleteEntity component
        * @returns {{
@@ -19,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return null;
       },
+
       /**
        * The resourceGroup parameter based on the resourceGroup's id
        * @returns {Object|null}

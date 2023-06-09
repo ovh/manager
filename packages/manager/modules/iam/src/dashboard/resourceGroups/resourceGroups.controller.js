@@ -21,7 +21,7 @@ export default class ResourceGroupsController extends AbstractCursorDatagridCont
    * @returns {Promise}
    */
   createResourceGroup() {
-    this.alert.error('createResourceGroup not implemented');
+    return this.goTo({ name: 'iam.resourceGroup.create' });
   }
 
   /**
@@ -30,7 +30,10 @@ export default class ResourceGroupsController extends AbstractCursorDatagridCont
    * @returns {Promise}
    */
   editResourceGroup({ id }) {
-    this.alert.error(`editResourceGroup not implemented [id=${id}]`);
+    return this.goTo({
+      name: 'iam.resourceGroup.edit',
+      params: { resourceGroup: id },
+    });
   }
 
   /**
