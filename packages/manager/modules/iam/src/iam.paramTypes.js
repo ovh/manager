@@ -128,7 +128,7 @@ const decodeUrn = (string) => {
   const [match, version, region, entity, components] =
     urnRegExp.exec(string) || [];
   if (!match) {
-    return undefined;
+    return null;
   }
   const splittedComponents = components.split(':');
   return {
