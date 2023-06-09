@@ -164,6 +164,7 @@
   "hosting_dashboard_service_renew": "Renouveler",
   "hosting_dashboard_service_change_offer": "Changer d'offre",
   "hosting_dashboard_service_change_offer_explanation": "Votre offre actuelle ne vous permet pas de créer des bases de données. Afin de pouvoir créer des bases de données, vous pouvez basculer sur un hébergement payant. C'est rapide et sans coupures. Nos offres vous permettrons d'obtenir :",
+  "hosting_dashboard_service_change_offer_explanation_only_one": "Vous disposez d'une seule base de données avec votre offre actuelle. Pour bénéficier de bases de données supplémentaires, choisissez une de nos offres supérieures.",
   "hosting_dashboard_service_change_offer_explanation_ftp": "Un FTP d'au moins 1 Go",
   "hosting_dashboard_service_change_offer_explanation_mail": "Un minimum de 2 adresses e-mail de 5 Go",
   "hosting_dashboard_service_change_offer_explanation_db": "Une base de données commençant à 100 Mo",
