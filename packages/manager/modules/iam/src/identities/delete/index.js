@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerIAMIdentitiesDeleteLazyLoading';
 angular.module(moduleName, [uiRouter, ocLazyLoad]).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('iam.identities.delete.**', {
-      url: '/delete',
+      url: '/delete/{identity:urn}',
       lazyLoad: (transition) =>
         import('./delete.module').then((module) =>
           transition

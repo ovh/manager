@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerIAMPolicyEditLazyLoading';
 angular.module(moduleName, [uiRouter, ocLazyLoad]).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('iam.policy.edit.**', {
-      url: '/edit',
+      url: '/edit/{policy:uuid}',
       lazyLoad: (transition) =>
         import('./edit.module').then((module) =>
           transition

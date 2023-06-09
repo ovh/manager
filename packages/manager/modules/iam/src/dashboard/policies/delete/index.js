@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerIAMDashboardPoliciesDeleteLazyLoading';
 angular.module(moduleName, [uiRouter, ocLazyLoad]).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('iam.dashboard.policies.delete.**', {
-      url: '/delete',
+      url: '/delete/{policy:uuid}',
       lazyLoad: (transition) =>
         import('./delete.module').then((module) =>
           transition

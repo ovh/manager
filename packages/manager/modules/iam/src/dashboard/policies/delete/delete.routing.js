@@ -2,7 +2,7 @@ import { ENTITY } from '../../../iam.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.dashboard.policies.delete', {
-    url: `/delete/{policy:uuid}`,
+    url: '/delete/{policy:uuid}',
     component: 'iamDeleteEntity',
     resolve: {
       breadcrumb: () => null,
