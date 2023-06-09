@@ -395,6 +395,22 @@ export default class IAMService {
   // Resource
 
   /**
+   * Create a resource group
+   * @param {{
+   *   name: string
+   *   resources?: { id: string }[]
+   * }} data The resource group's data
+   * @returns {Promise}
+   */
+  createResourceGroup(data) {
+    return this.httpApiv2({
+      method: 'post',
+      url: `${URL.RESOURCE_GROUP}`,
+      data,
+    }).then(({ data: resourceGroup }) => resourceGroup);
+  }
+
+  /**
    * Delete the resourceGroup given the id
    * @param {string} id The resourceGroup's id
    * @returns {Promise}
@@ -404,6 +420,19 @@ export default class IAMService {
       method: 'delete',
       url: `${URL.RESOURCE_GROUP}/${id}`,
     });
+  }
+
+  /**
+   * Get the resourceGroup given the id populated with more data
+   * @param {string} id The resourceGroup's id
+   * @returns {Promise}
+   */
+  getDetailedResourceGroup(id) {
+    return this.httpApiv2({
+      method: 'get',
+      url: `${URL.RESOURCE_GROUP}/${id}`,
+      params: { details: true },
+    }).then(({ data: resourceGroup }) => resourceGroup);
   }
 
   /**
@@ -425,5 +454,22 @@ export default class IAMService {
    */
   getResourceGroups({ cursor }) {
     return this.httpApiv2List({ url: URL.RESOURCE_GROUP }, { cursor });
+  }
+
+  /**
+   * Modify a resource group
+   * @param {string} id The resource group's id
+   * @param {{
+   *   name: string
+   *   resources?: { id: string }[]
+   * }} data The resource group's data
+   * @returns {Promise}
+   */
+  setResourceGroup(id, data) {
+    return this.httpApiv2({
+      method: 'put',
+      url: `${URL.RESOURCE_GROUP}/${id}`,
+      data,
+    }).then(({ data: resourceGroup }) => resourceGroup);
   }
 }

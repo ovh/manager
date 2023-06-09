@@ -20,8 +20,8 @@ export default {
   controller,
   template,
   transclude: {
-    resourcesHeaderSlot: '?resourcesHeader',
-    resourcesSiblingSlot: '?resourcesSibling',
-    resourceTypesHeaderSlot: '?resourceTypesHeader',
+    resourcesHeaderSlot: '?iamResourceSelectResourcesHeader',
+    resourcesSiblingSlot: '?iamResourceSelectResourcesSibling',
+    resourceTypesHeaderSlot: '?iamResourceSelectResourceTypesHeader',
   },
 };
