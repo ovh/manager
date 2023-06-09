@@ -167,7 +167,6 @@
   "hosting_dashboard_service_change_offer_explanation_ftp": "Un FTP d'au moins 1 Go",
   "hosting_dashboard_service_change_offer_explanation_mail": "Un minimum de 2 adresses e-mail de 5 Go",
   "hosting_dashboard_service_change_offer_explanation_db": "Une base de données commençant à 100 Mo",
-  "hosting_dashboard_service_change_offer_now": "Changer d'offre maintenant",
   "hosting_dashboard_service_change_cdn": "Changer de CDN",
   "hosting_dashboard_service_change_cdn_version": "Changer d'offre",
   "hosting_dashboard_service_order_ssl": "Commander un certificat SSL",
