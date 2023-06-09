@@ -18,5 +18,8 @@
   "vps_dashboard_state_upgrading": "Zmiana oferty w trakcie",
   "vps_dashboard_state_rescued": "W trybie rescue",
   "vps_dashboard_auto_migration_warning_new": "Twój VPS {{vps}} kwalifikuje się do migracji do wyższej gamy. Możesz to zrobić za pomocą kilku kliknięć.",
-  "vps_dashboard_migration_tile": "Migracja serwera VPS"
+  "vps_dashboard_migration_tile": "Migracja serwera VPS",
+  "vps_dashboard_starter_range_info_message_1": "Przejdź na wyższy poziom dzięki funkcjom dostępnym w ofercie Value: automatyczne tworzenie kopii zapasowych, licencje Plesk, cPanel i Windows, dodatkowe zasoby, dyski SSD NVMe.",
+  "vps_dashboard_starter_range_info_message_2": "Porównaj pozostałe oferty VPS.",
+  "vps_dashboard_automatic_backup_starter_range_info_message": "Opcja automatycznych kopii zapasowych jest dostępna począwszy od oferty Value. Aby z niej skorzystać, zaktualizuj serwer VPS do wyższej oferty."
 }
