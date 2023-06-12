@@ -4,23 +4,23 @@ import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@uirouter/angularjs';
 import 'angular-translate';
+import '@ovh-ux/ng-ovh-feature-flipping';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
-import dashboard from './dashboard';
-import onboarding from './onboarding';
+import carbonCalculatorDashboard from './dashboard';
 import routing from './routing';
 
 const moduleName = 'ovhManagerCarbonCalculator';
 
 angular
   .module(moduleName, [
+    'ngOvhFeatureFlipping',
     'ngUiRouterBreadcrumb',
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
-    onboarding,
-    dashboard,
+    carbonCalculatorDashboard,
     ListLayoutHelper.moduleName,
   ])
   .config(routing)
