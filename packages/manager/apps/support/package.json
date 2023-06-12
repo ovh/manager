@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-support-app",
-  "version": "2.9.16",
+  "version": "2.9.18",
   "private": true,
   "description": "Support standalone application.",
   "repository": {
@@ -17,10 +17,10 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-support-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^6.6.0",
-    "@ovh-ux/manager-core": "^12.12.10",
-    "@ovh-ux/manager-support": "^1.18.2",
-    "@ovh-ux/ng-at-internet": "^5.10.0",
+    "@ovh-ux/manager-config": "^7.0.0",
+    "@ovh-ux/manager-core": "^12.12.12",
+    "@ovh-ux/manager-support": "^1.18.4",
+    "@ovh-ux/ng-at-internet": "^5.10.2",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-http": "^5.0.6",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.6",

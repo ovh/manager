@@ -10,7 +10,6 @@ import values from 'lodash/values';
 import OptionsDescriptionsService from '../../descriptions/options-description.service';
 import ServicePackOptionService from '../../../../../service-pack/option/option.service';
 
-import { ACTIVATION_STATUS } from '../../components/activation-status/activation-status.constants';
 import { OPTION_TYPES } from '../../../../../service-pack/option/option.constants';
 import { ORDER_STATUS } from '../../options.constants';
 
@@ -201,12 +200,6 @@ class ModelBindings {
 
       return {
         ...option,
-        presentationUrl:
-          status === ACTIVATION_STATUS.disabled &&
-          this.ovhManagerPccServicePackOptionService.getPresentationUrl(
-            option.name,
-            this.model.currentUser.ovhSubsidiary,
-          ),
         status,
         available: some(this.model.servicePacks.all, (servicePack) => {
           return find(servicePack.options, { name: option.name });

@@ -1,4 +1,5 @@
 import OidcProvider from './OidcProvider.class';
+import { KUBE_INSTALLING_STATUS } from './service.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.kubernetes.details.service', {
@@ -88,6 +89,11 @@ export default /* @ngInject */ ($stateProvider) => {
 
       isVersionSupported: /* @ngInject */ (clusterMinorVersion, versions) =>
         versions.includes(clusterMinorVersion.toString()),
+
+      isKubernetesInstalling: /* @ngInject */ ($http, projectId, kubeId) =>
+        $http
+          .get(`/cloud/project/${projectId}/kube/${kubeId}`)
+          .then(({ data }) => data.status === KUBE_INSTALLING_STATUS),
 
       breadcrumb: () => false,
     },

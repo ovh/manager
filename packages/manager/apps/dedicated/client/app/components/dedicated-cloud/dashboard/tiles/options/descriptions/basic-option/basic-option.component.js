@@ -2,8 +2,8 @@ import template from './basic-option.html';
 
 export default {
   bindings: {
+    eol: '<?',
     optionName: '<',
-    presentationUrl: '<?',
     status: '<',
   },
   name: 'ovhManagerPccDashboardOptionsDescriptionsBasicOption',

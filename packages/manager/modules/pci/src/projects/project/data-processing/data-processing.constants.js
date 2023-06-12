@@ -71,7 +71,7 @@ export default {
   DATA_PROCESSING_ENDED_JOBS,
 };
 
-export const METRICS_REFRESH_INTERVAL = 5000;
+export const JOB_REFRESH_INTERVAL = 5000;
 
 export const NOTEBOOK_REFRESH_INTERVAL = 5000;
 

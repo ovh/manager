@@ -1,6 +1,6 @@
 import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
-import reactRefresh from '@vitejs/plugin-react-refresh';
+import react from '@vitejs/plugin-react';
 import legacy from '@vitejs/plugin-legacy';
 
 import IframeHmrPlugin from './plugin/iframe-hmr.js';
@@ -25,7 +25,7 @@ const getBaseConfig = (config) => {
       __VERSION__: process.env.VERSION ? `'${process.env.VERSION}'` : 'null',
     },
     plugins: [
-      reactRefresh(),
+      react(),
       legacy({
         targets: ['defaults'],
       }),

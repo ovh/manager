@@ -1,14 +1,14 @@
 import 'script-loader!jquery'; // eslint-disable-line
 import 'whatwg-fetch';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
-import { useShellClient } from '@ovh-ux/shell';
+import { initShellClient } from '@ovh-ux/shell';
 import { defineApplicationVersion } from '@ovh-ux/request-tagger';
 
 import { getShellClient, setShellClient } from './shell';
 
 defineApplicationVersion(__VERSION__);
 
-useShellClient('dedicated')
+initShellClient('dedicated')
   .then((client) => {
     if (!isTopLevelApplication()) {
       client.ux.startProgress();

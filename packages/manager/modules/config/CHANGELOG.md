@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@6.6.1...@ovh-ux/manager-config@7.0.0) (2023-06-12)
+
+
+### Features
+
+* **generator:**  add generator vitejs react v1 ([#9186](https://github.com/ovh/manager/issues/9186)) ([c911ee6](https://github.com/ovh/manager/commit/c911ee6168e2803e2022dc0e275f242953ad8255))
+
+
+### BREAKING CHANGES
+
+* **generator:** rename useShellClient into initShellClient
+
+
+
+
+
+## [6.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@6.6.0...@ovh-ux/manager-config@6.6.1) (2023-05-31)
+
+
+### Bug Fixes
+
+* **config:** avoid error for non existing app ([b16b63e](https://github.com/ovh/manager/commit/b16b63ea5b41bbe0c6bd809a3e595fb3d20709de))
+
+
+
+
+
 # [6.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@6.5.2...@ovh-ux/manager-config@6.6.0) (2023-02-07)
 
 

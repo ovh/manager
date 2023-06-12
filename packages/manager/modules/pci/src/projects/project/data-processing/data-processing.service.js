@@ -11,7 +11,6 @@ export default class DataProcessingService {
     this.OvhApiCloudProjectDataProcessingJobs = OvhApiCloudProjectDataProcessing.Jobs().iceberg();
     this.OvhApiCloudProjectDataProcessingCapabilities = OvhApiCloudProjectDataProcessing.Capabilities().iceberg();
     this.OvhApiCloudProjectDataProcessingAuthorization = OvhApiCloudProjectDataProcessing.Authorization().iceberg();
-    this.OvhApiCloudProjectDataProcessingMetrics = OvhApiCloudProjectDataProcessing.Metrics().iceberg();
   }
 
   static getIcebergHeaders() {
@@ -253,17 +252,6 @@ export default class DataProcessingService {
         true,
       )
       .$promise.then((res) => res.data);
-  }
-
-  /**
-   * Retrieve metrics token for the given project
-   * @param projectId string Id of the project
-   * @return {*}
-   */
-  getMetricsToken(projectId) {
-    return this.OvhApiCloudProjectDataProcessingMetrics.query().execute({
-      serviceName: projectId,
-    }).$promise;
   }
 
   /**

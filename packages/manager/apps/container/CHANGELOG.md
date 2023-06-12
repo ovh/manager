@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.20.4...@ovh-ux/manager-container-app@0.21.0) (2023-06-12)
+
+
+### Features
+
+* **generator:**  add generator vitejs react v1 ([#9186](https://github.com/ovh/manager/issues/9186)) ([c911ee6](https://github.com/ovh/manager/commit/c911ee6168e2803e2022dc0e275f242953ad8255))
+
+
+### BREAKING CHANGES
+
+* **generator:** rename useShellClient into initShellClient
+
+
+
+
+
+## [0.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.20.3...@ovh-ux/manager-container-app@0.20.4) (2023-06-05)
+
+
+### Bug Fixes
+
+* **pcc:** nsx batch 1 ([#8829](https://github.com/ovh/manager/issues/8829)) ([70f68c8](https://github.com/ovh/manager/commit/70f68c8d33045ba38835b8d7ef91c9560b494810))
+
+
+
+
+
+## [0.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.20.2...@ovh-ux/manager-container-app@0.20.3) (2023-05-31)
+
+
+### Bug Fixes
+
+* **container:** handle new applications in dev env ([3697ff5](https://github.com/ovh/manager/commit/3697ff5467544ea899b295d7ff7aa5c3e8d613e1))
+
+
+
+
+
 ## [0.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.20.1...@ovh-ux/manager-container-app@0.20.2) (2023-05-22)
 
 

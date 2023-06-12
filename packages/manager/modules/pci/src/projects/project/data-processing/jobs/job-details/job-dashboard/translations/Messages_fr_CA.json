@@ -7,7 +7,6 @@
   "data_processing_details_information_notebook_name_label": "Notebook",
   "data_processing_details_information_elapsed_label": "Temps écoulé",
   "data_processing_details_actions_show_ui_label": "Accéder à l'interface graphique du job",
-  "data_processing_details_actions_show_grafana_label": "Accéder au monitoring",
   "data_processing_details_actions_browse_swift_label": "Parcourir les objets du conteneur",
   "data_processing_details_actions_browse_swift_unavailable_label": "Le conteneur d'objets n'existe plus",
   "data_processing_details_actions_relaunch_label": "Dupliquer et relancer le job",
@@ -24,9 +23,5 @@
   "data_processing_details_configuration_jar_file_label": "Fichier JAR",
   "data_processing_details_configuration_python_file_label": "Fichier Python",
   "data_processing_details_configuration_main_class_label": "Classe principale",
-  "data_processing_details_configuration_arguments_label": "Arguments",
-  "data_processing_details_no_data": "Pas de données",
-  "data_processing_details_charts_total_memory": "Utilisation mémoire sur les 5 dernières minutes (Mi)",
-  "data_processing_details_charts_num_active_tasks": "# de tâches actives sur les 5 dernières minutes",
-  "data_processing_details_charts_blockmanager_disk": "Utilisation disque Blockmanager sur les 5 dernières minutes"
+  "data_processing_details_configuration_arguments_label": "Arguments"
 }

@@ -290,7 +290,7 @@
                         <oui-button
                             data-variant="link"
                             data-ng-click="$ctrl.downloadConfigFile()"
-                            data-disabled="$ctrl.loadingKubeConfig"
+                            data-disabled="$ctrl.loadingKubeConfig || $ctrl.isKubernetesInstalling"
                         >
                             <span data-ng-bind="$ctrl.CONFIG_FILENAME"></span>
                         </oui-button>

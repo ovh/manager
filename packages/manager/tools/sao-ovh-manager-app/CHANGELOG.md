@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.6.2...@ovh-ux/sao-ovh-manager-app@2.7.0) (2023-05-31)
+
+
+### Features
+
+* **sao-ovh:** update generator to use ovh-shell ([06a547c](https://github.com/ovh/manager/commit/06a547cd647b5077b7c1249f9aa9a4b7ad364853))
+
+
+
+
+
 ## [2.6.2](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.6.1...@ovh-ux/sao-ovh-manager-app@2.6.2) (2022-12-20)
 
 
