@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.127.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.127.0...@ovh-ux/manager-pci@5.127.1) (2023-06-12)
+
+
+### Bug Fixes
+
+* **pci.billing:** add ai-notebooks on billing page ([#9382](https://github.com/ovh/manager/issues/9382)) ([63d05c4](https://github.com/ovh/manager/commit/63d05c4af9566f192d45719fb7b4168189a854a7))
+* **public-cloud:** upgrade by using installation instead of renew ([#9410](https://github.com/ovh/manager/issues/9410)) ([440a26b](https://github.com/ovh/manager/commit/440a26b54c6071685eeb98f98b0a653c18b1ffdb))
+
+
+
+
+
 # [5.127.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.126.0...@ovh-ux/manager-pci@5.127.0) (2023-06-07)
 
 

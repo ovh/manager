@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.6.1...@ovh-ux/manager-iplb@1.7.0) (2023-06-12)
+
+
+### Features
+
+* **iplb:** display https protocol ([#9418](https://github.com/ovh/manager/issues/9418)) ([5ca86f3](https://github.com/ovh/manager/commit/5ca86f347f133d18131b4b5135a0e62eebd74cc1))
+
+
+
+
+
 ## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.6.0...@ovh-ux/manager-iplb@1.6.1) (2023-05-31)
 
 
