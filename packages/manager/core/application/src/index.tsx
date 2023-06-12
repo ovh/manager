@@ -38,7 +38,8 @@ export function createContainerElement() {
 
 export function startApplication(appName: ApplicationId) {
   const root = createRoot(createContainerElement());
-  const appRouter = createAppRouter();
+  const trackingObj = { nbActionLoad: 0 };
+  const appRouter = createAppRouter(trackingObj);
   root.render(
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>

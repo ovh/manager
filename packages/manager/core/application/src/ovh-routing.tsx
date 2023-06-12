@@ -14,6 +14,7 @@ import {
   generateRegularRoutes,
   generatePreservedRoutes,
 } from 'generouted/core';
+import OvhTracking from './ovh-tracking';
 
 import { useShell } from '.';
 
@@ -24,6 +25,9 @@ type Module = {
   action: ActionFunction;
   ErrorElement: Element;
   breadcrumb: () => unknown;
+};
+type TrackingObj = {
+  nbActionLoad: number;
 };
 
 function HidePreloader(): JSX.Element {
@@ -84,7 +88,7 @@ function buildRegularRoute(module: () => Promise<Module>, key: string) {
   };
 }
 
-export function createAppRouter() {
+export function createAppRouter(trackingObj: TrackingObj) {
   const preservedRoutesBlob = import.meta.glob<Module>(
     '/pages/(_app|404).tsx',
     { eager: true },
@@ -117,6 +121,7 @@ export function createAppRouter() {
               <OvhContainerRoutingSync />
               <HidePreloader />
               <Outlet />
+              <OvhTracking trackingObj={trackingObj} />
             </>
           }
         />
