@@ -80,9 +80,9 @@ export default function init(applicationId: ApplicationId) {
   let initPromise;
 
   if (isTopLevelApplication()) {
-    initPromise = fetchApplications().then((apps) =>
-      initStandaloneClientApi(applicationId, apps),
-    );
+    initPromise = fetchApplications().then((apps) => {
+      return initStandaloneClientApi(applicationId, apps);
+    });
   } else {
     initPromise = initIFrameClientApi(applicationId);
   }

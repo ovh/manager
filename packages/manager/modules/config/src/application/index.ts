@@ -1,20 +1,4 @@
-export type ApplicationId =
-  | 'billing'
-  | 'cloud'
-  | 'dedicated'
-  | 'exchange'
-  | 'freefax'
-  | 'hub'
-  | 'office'
-  | 'overthebox'
-  | 'pack-xdsl'
-  | 'public-cloud'
-  | 'sharepoint'
-  | 'sms'
-  | 'telecom'
-  | 'telephony'
-  | 'user'
-  | 'web';
+export type ApplicationId = string;
 
 export interface Container {
   enabled: boolean;

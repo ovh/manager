@@ -1,0 +1,35 @@
+import apiClient from '@ovh-ux/manager-core-api';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
+
+{{#if unknownTypeList}}
+{{#each unknownTypeList}}
+type {{this}} = unknown;
+{{/each}}
+{{/if}}
+{{#each operationList}}
+
+{{#if this.params}}
+export type {{pascalCase this.functionName}}Params = {
+  {{#each this.params}}
+  /** {{this.description}} */
+  {{this.name}}{{#if this.required}}?{{/if}}: {{this.type}};
+  {{/each}}
+};
+
+{{/if}}
+export const {{this.functionName}}QueryKey = {{#if this.urlParams}}(params: {{pascalCase this.functionName}}Params) => [`{{this.url}}`]{{else}}['{{this.url}}']{{/if}};
+
+{{#if this.description}}
+/**
+ * {{this.description}}
+ */
+{{/if}}
+export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalCase this.functionName}}Params{{/if}}): Promise<{{this.responseType}}> => {
+  const fetchData = async () => {
+    const response = await apiClient.v6.{{this.httpMethod}}({{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}});
+    return response.data;
+  };
+
+  return queryClient.fetchQuery({{this.functionName}}QueryKey{{#if this.urlParams}}(params){{/if}}, fetchData);
+};
+{{/each}}
