@@ -5,3 +5,14 @@ packages/manager/tools/sao-ovh-manager-module/template/default/src
 packages/manager/tools/sao-ovh-manager-app/template
 packages/manager/core/generator/app/templates
 packages/components/ovh-shell
+www
+screenshot
+loader
+docs-api
+custom-elements
+custom-elements-bundle
+react/src
+vue/src
+packages/manager/core/generator
+packages/components/ovh-at-internet/src/ovh-at-internet.ts
+packages/manager/apps/container
