@@ -1,27 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import {
-  Await,
-  defer,
-  Link,
-  Navigate,
-  Outlet,
-  useLoaderData,
-} from 'react-router-dom';
-
-import { get{{pascalCase listingEndpoint}} } from '../api';
-
-export function loader() {
-  return defer({
-    services: get{{pascalCase listingEndpoint}}(),
-  });
-}
->>>>>>> 669d25faed (feat: generate api v6 endpoints)
-=======
->>>>>>> 5c6f5029ff (feat(generator): update template vite js)
 
 export default function {{pascalCase appName}}() {
   const { t } = useTranslation('{{appName}}');

@@ -1,8 +1,6 @@
 /* eslint-disable import/extensions */
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { getApiPaths } from '../utils/api.js';
 import { getApiv6TemplateData } from '../utils/api-template.js';
 import {
@@ -10,16 +8,8 @@ import {
   createTranslations,
   createApiQueryFilesActions,
 } from '../utils/create-structure-helpers.js';
-<<<<<<< HEAD
-=======
-import { getApiPaths, getApiEndpointQueryData } from '../utils/api.js';
->>>>>>> 669d25faed (feat: generate api v6 endpoints)
-=======
 import { getApiPaths } from '../utils/api.js';
 import { getApiv6TemplateData } from '../utils/api-template.js';
->>>>>>> 81dbec510f (docs: add doc for api utils)
-=======
->>>>>>> 2a06818152 (feat(generator): add translations in generator corresponding to template)
 
 const appDirectory = dirname(fileURLToPath(import.meta.url));
 
@@ -57,49 +47,24 @@ export default (plop) => {
         },
       },
       {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 5c6f5029ff (feat(generator): update template vite js)
         type: 'checkbox',
         name: 'templates',
         message: 'What template do you want generate by default ?',
         choices: ['listing', 'dashboard', 'onboarding'],
-<<<<<<< HEAD
         when: async (data) => {
           const result = await getApiv6TemplateData(data.apiPath);
-=======
-        type: 'list',
-        name: 'listingEndpoint',
-        message: 'What is the listing endpoint?',
-=======
->>>>>>> 5c6f5029ff (feat(generator): update template vite js)
         when: async (data) => {
-<<<<<<< HEAD
           const result = await getApiEndpointQueryData(data.apiPath);
->>>>>>> 669d25faed (feat: generate api v6 endpoints)
-=======
-          const result = await getApiv6TemplateData(data.apiPath);
->>>>>>> 81dbec510f (docs: add doc for api utils)
           // eslint-disable-next-line no-param-reassign
           data.apiV6Endpoints = result;
           return true;
         },
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 5c6f5029ff (feat(generator): update template vite js)
       },
       {
         type: 'list',
         name: 'listingEndpoint',
         message: 'What is the listing endpoint?',
         when: (data) => data.templates.includes('listing'),
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> c5c6c0b474 (feat(generator): add apiv6 requests)
         choices: async ({ apiV6Endpoints }) => {
           return apiV6Endpoints?.get?.operationList?.map(
             ({ apiPath, functionName }) => ({
@@ -108,7 +73,6 @@ export default (plop) => {
             }),
           );
         },
-<<<<<<< HEAD
       },
       {
         type: 'list',
@@ -123,28 +87,17 @@ export default (plop) => {
             }),
           );
         },
-=======
-        type: 'addMany',
-        destination: join(appDirectory, '../../../apps/{{dashCase appName}}'),
-        templateFiles: join(appDirectory, './templates/**'),
-        base: join(appDirectory, './templates'),
->>>>>>> 15132344e7 (fix(generator): delete breadcrumb package + do some fixes on the)
       },
     ],
     actions: ({ apiV6Endpoints, templates, appName }) => {
       const apiFiles = createApiQueryFilesActions(apiV6Endpoints, appDirectory);
       const pages = createPages(templates, appDirectory);
       const translations = createTranslations(templates, appName, appDirectory);
-=======
-=======
->>>>>>> 5c6f5029ff (feat(generator): update template vite js)
         choices: async ({ apiV6Endpoints }) =>
           apiV6Endpoints.map(({ apiPath, fileName }) => ({
             name: apiPath,
             value: fileName,
           })),
-=======
->>>>>>> c5c6c0b474 (feat(generator): add apiv6 requests)
       },
       {
         type: 'list',
@@ -178,9 +131,6 @@ export default (plop) => {
         }),
       );
 
-<<<<<<< HEAD
->>>>>>> 669d25faed (feat: generate api v6 endpoints)
-=======
       const createPages = templates.map((template) => {
         if (template === 'listing') {
           return {
@@ -222,38 +172,23 @@ export default (plop) => {
         };
       });
 
->>>>>>> 5c6f5029ff (feat(generator): update template vite js)
-=======
-    actions: ({ apiV6Endpoints, templates, appName }) => {
-      const apiFiles = createApiQueryFilesActions(apiV6Endpoints, appDirectory);
-      const pages = createPages(templates, appDirectory);
-      const translations = createTranslations(templates, appName, appDirectory);
->>>>>>> 2a06818152 (feat(generator): add translations in generator corresponding to template)
-      return [
-        {
-          type: 'addMany',
-          destination: join(appDirectory, '../../../apps/{{dashCase appName}}'),
-          templateFiles: join(appDirectory, './templates/**'),
-          base: join(appDirectory, './templates'),
-        },
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 2a06818152 (feat(generator): add translations in generator corresponding to template)
-        ...apiFiles,
-        ...pages,
-        ...translations,
-        ({ packageName }) =>
-<<<<<<< HEAD
-=======
-        ...createApiQueryFilesActions,
-        ...createPages,
-        ({ appName, packageName }) =>
->>>>>>> 669d25faed (feat: generate api v6 endpoints)
-=======
->>>>>>> 2a06818152 (feat(generator): add translations in generator corresponding to template)
-          `App ${appName} generated. Please run \n  yarn install && yarn workspace ${packageName} run start:dev`,
-      ];
-    },
+      actions: ({ apiV6Endpoints, templates, appName }) => {
+        const apiFiles = createApiQueryFilesActions(apiV6Endpoints, appDirectory);
+        const pages = createPages(templates, appDirectory);
+        const translations = createTranslations(templates, appName, appDirectory);
+        return [
+          {
+            type: 'addMany',
+            destination: join(appDirectory, '../../../apps/{{dashCase appName}}'),
+            templateFiles: join(appDirectory, './templates/**'),
+            base: join(appDirectory, './templates'),
+          },
+          ...apiFiles,
+          ...pages,
+          ...translations,
+          ({ packageName }) =>
+            `App ${appName} generated. Please run \n  yarn install && yarn workspace ${packageName} run start:dev`,
+        ];
+      },
   });
 };

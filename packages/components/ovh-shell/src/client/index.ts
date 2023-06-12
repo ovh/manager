@@ -60,19 +60,10 @@ export function initStandaloneClientApi(
   appId: ApplicationId,
   applications: Record<string, Application>,
 ) {
-<<<<<<< HEAD
   const appConfig = applications[appId];
 
   if (!appConfig && window.location.hostname !== 'localhost') {
     throw new Error(`Unknown application '${appId}'`);
-=======
-  let appConfig = applications[appId];
-  if (!appConfig) {
-    //throw new Error(`Unknown application toto '${appId}'`);
-    // by default in local we add dedicated app
-    // if the app is not registred in 2api
-    appConfig = applications['dedicated'];
->>>>>>> ddfac4a33f (fix(generator): fix local application by default dedicated)
   }
 
   const url = buildURLIfStandalone(appConfig);

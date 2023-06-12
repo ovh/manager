@@ -9,40 +9,16 @@ import {
   useLoaderData,
 } from 'react-router-dom';
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { {{listingEndpoint}} } from '@/api';
 
 export function loader() {
   return defer({
     services: {{listingEndpoint}}(),
-=======
-import { get{{pascalCase listingEndpoint}} } from '@/api';
-
-export function loader() {
-  return defer({
-    services: get{{pascalCase listingEndpoint}}(),
->>>>>>> 5c6f5029ff (feat(generator): update template vite js)
-=======
-import { {{listingEndpoint}} } from '@/api';
-
-export function loader() {
-  return defer({
-    services: {{listingEndpoint}}(),
->>>>>>> c5c6c0b474 (feat(generator): add apiv6 requests)
   });
 }
 
 export default function Listing() {
-<<<<<<< HEAD
-<<<<<<< HEAD
   const { t } = useTranslation('{{appName}}/listing');
-=======
-  const { t } = useTranslation('{{appName}}');
->>>>>>> 5c6f5029ff (feat(generator): update template vite js)
-=======
-  const { t } = useTranslation('{{appName}}/listing');
->>>>>>> 2a06818152 (feat(generator): add translations in generator corresponding to template)
   const data = useLoaderData() as Record<string, unknown>;
 
   return (
@@ -71,15 +47,7 @@ export default function Listing() {
                 <ul>
                   {services.map((serviceName: string) => (
                     <li key={serviceName}>
-<<<<<<< HEAD
-<<<<<<< HEAD
                       <Link to={`/dashboard/${serviceName}`}>{serviceName}</Link>
-=======
-                      <Link to={`/details/${serviceName}`}>{serviceName}</Link>
->>>>>>> 5c6f5029ff (feat(generator): update template vite js)
-=======
-                      <Link to={`/dashboard/${serviceName}`}>{serviceName}</Link>
->>>>>>> 111b163b0c (feat(generator): add template dashboard api)
                     </li>
                   ))}
 
