@@ -4,8 +4,11 @@ import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
-import component from './component';
+import carbonCalculatorDashboard from './component';
+import carbonBalanceComposition from './carbon-balance-composition/component';
+import carbonFootprint from './carbon-footprint/component';
 import routing from './routing';
+import carbonFootprintService from './carbon-footprint/service';
 
 const moduleName = 'ovhManagerCarbonCalculatorDashboard';
 
@@ -17,7 +20,10 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('carbonCalculatorDashboard', component)
+  .component('carbonCalculatorDashboard', carbonCalculatorDashboard)
+  .component('carbonBalanceComposition', carbonBalanceComposition)
+  .component('carbonFootprint', carbonFootprint)
+  .service('carbonFootprintService', carbonFootprintService)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

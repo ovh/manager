@@ -12,7 +12,7 @@ angular
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('app.**', {
-        url: '/carbon',
+        url: '/billing',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
