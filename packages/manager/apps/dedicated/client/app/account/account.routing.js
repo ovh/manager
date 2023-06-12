@@ -1,7 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   [
     {
-      abstract: false,
+      abstract: true,
       name: 'app.account',
     },
     {

@@ -33,8 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return false;
       },
-      breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('user_account_identity_documents'),
+      breadcrumb: /* @ngInject */ () => null,
     },
     atInternet: {
       rename: TRACKING_PREFIX,
