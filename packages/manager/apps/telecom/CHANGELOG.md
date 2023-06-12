@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.63.1...@ovh-ux/manager-telecom@14.0.0) (2023-06-12)
+
+
+### Features
+
+* **generator:**  add generator vitejs react v1 ([#9186](https://github.com/ovh/manager/issues/9186)) ([c911ee6](https://github.com/ovh/manager/commit/c911ee6168e2803e2022dc0e275f242953ad8255))
+
+
+### BREAKING CHANGES
+
+* **generator:** rename useShellClient into initShellClient
+
+
+
+
+
 ## [13.63.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.63.0...@ovh-ux/manager-telecom@13.63.1) (2023-06-07)
 
 
