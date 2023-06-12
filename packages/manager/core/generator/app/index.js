@@ -1,4 +1,4 @@
-/* eslint-disable import/extensions */
+/* eslint-disable import/extensions, no-param-reassign */
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getApiPaths } from '../utils/api.js';
@@ -51,7 +51,6 @@ export default (plop) => {
         choices: ['listing', 'dashboard', 'onboarding'],
         when: async (data) => {
           const result = await getApiv6TemplateData(data.apiPath);
-          // eslint-disable-next-line no-param-reassign
           data.apiV6Endpoints = result;
           return true;
         },
@@ -83,6 +82,29 @@ export default (plop) => {
             }),
           );
         },
+      },
+      {
+        type: 'input',
+        name: 'pimID',
+        message: 'What is the PIM ID? (leave empty for no PIM ID)',
+        validate: (input) => {
+          const number = Number(input);
+          return !isNaN(number) && typeof number === 'number';
+        },
+      },
+      {
+        type: 'input',
+        name: 'serviceKey',
+        message: 'What is the service key ?',
+        when: (data) => {
+          // Add variables for templates
+          data.hasListing = data.templates.includes('listing');
+          data.hasDashboard = data.templates.includes('dashboard');
+          data.hasOnboarding = data.templates.includes('onboarding');
+
+          return data.templates.includes('listing');
+        },
+        validate: (input) => input.length > 0,
       },
     ],
     actions: ({ apiV6Endpoints, templates, appName }) => {
