@@ -1,4 +1,4 @@
-import { lazy, useEffect, Fragment, Suspense } from 'react';
+import React, { lazy, useEffect, Fragment, Suspense } from 'react';
 import {
   useLocation,
   RouteObject,
@@ -9,11 +9,14 @@ import {
   LoaderFunctionArgs,
   ActionFunctionArgs,
   useRouteError,
+  useNavigate,
+  matchRoutes,
 } from 'react-router-dom';
 import {
   generateRegularRoutes,
   generatePreservedRoutes,
 } from 'generouted/core';
+import OvhTracking from './ovh-tracking';
 
 import { useShell } from '.';
 
@@ -34,8 +37,10 @@ function HidePreloader(): JSX.Element {
   return undefined;
 }
 
-function OvhContainerRoutingSync(): JSX.Element {
+function OvhContainerRoutingSync({ routes }): JSX.Element {
   const location = useLocation();
+  const navigate = useNavigate();
+  const matches: any = matchRoutes(routes, { pathname: location.pathname });
 
   const shell = useShell();
   useEffect(() => {
@@ -43,6 +48,9 @@ function OvhContainerRoutingSync(): JSX.Element {
   }, []);
   useEffect(() => {
     shell.routing.onHashChange();
+    if (matches && matches[matches.length - 1].route?.element === undefined) {
+      navigate('/');
+    }
   }, [location]);
   return undefined;
 }
@@ -107,16 +115,29 @@ export function createAppRouter() {
   const appBlobKey = '/pages/_app.tsx';
   const appBlob = import.meta.glob<Module>('/pages/_app.tsx', { eager: true });
 
-  const routes = [...regularRoutes, { path: '*', element: <NotFound /> }];
+  const newRoutes = regularRoutes.map((route, index) => {
+    if (route.path === 'dashboard') {
+      return {
+        ...route,
+        path: '*',
+        errorElement: <NotFound />,
+        error: <NotFound />,
+      };
+    }
+    return route;
+  });
+
+  const routes = [...newRoutes, { path: '*', element: <NotFound /> }];
   return createHashRouter([
     {
       element: (
         <App
           children={
             <>
-              <OvhContainerRoutingSync />
+              <OvhContainerRoutingSync routes={routes} />
               <HidePreloader />
               <Outlet />
+              <OvhTracking />
             </>
           }
         />
