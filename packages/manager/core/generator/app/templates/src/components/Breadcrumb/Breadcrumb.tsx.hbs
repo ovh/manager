@@ -1,0 +1,94 @@
+/**
+ *  TODO - Move in the future
+ *  Super components manager library
+ */
+
+import React, { useEffect, useState } from 'react';
+import { Params, useMatches } from 'react-router-dom';
+import { OsdsBreadcrumb } from '@ovhcloud/ods-stencil/components/react';
+{{#if this.pimID}}
+import { useQueries, UseQueryResult } from '@tanstack/react-query';
+import { getPIMService } from '@/api';
+{{/if}}
+
+export type BreadcrumbHandleParams = {
+  data: unknown;
+  params: Params<string>;
+};
+
+type BreadcrumbItem = {
+  label: string;
+  href: string;
+};
+
+type MatchHandle = {
+  breadcrumb?: ({ data, params }: BreadcrumbHandleParams) => string;
+};
+
+type Match = {
+  handle: MatchHandle;
+  data: unknown;
+  params: Params<string>;
+};
+
+function Breadcrumb(): JSX.Element {
+  const matches = useMatches();
+  const [categoryCrumbs, setCategoryCrumbs] = useState<BreadcrumbItem[]>([]);
+  const [matchCrumbs, setMatchCrumbs] = useState<BreadcrumbItem[]>([]);
+
+  {{#if this.pimID}}
+  const pimService: UseQueryResult<any> = useQueries({
+    queries: [
+      { queryKey: ['pimService'], queryFn: getPIMService, staleTime: Infinity },
+    ],
+  })[0] as UseQueryResult<any>;
+
+  useEffect(() => {
+    if (
+      pimService.status === 'success' &&
+      Object.keys(pimService.data).length &&
+      Object.keys(pimService.data?.categories).length > 2 &&
+      pimService.data?.categories[1]
+    ) {
+      const categoryItem = {
+        label: pimService.data.categories[1],
+        href: pimService.data?.url,
+      };
+      setCategoryCrumbs(() => [categoryItem]);
+    }
+  }, [pimService.data]);
+  {{/if}}
+
+  useEffect(() => {
+    const items = matches.map(async (match) => {
+      const { handle, data, params }: Match = match;
+      const breadcrumb = await handle?.breadcrumb;
+      const crumb = {
+        label: await breadcrumb?.({ data, params }),
+        href: match.pathname,
+      };
+      return crumb;
+    });
+
+    Promise.all(items)
+      .then((breadcrumbs) => {
+        const validCrumbs = breadcrumbs.filter(
+          ({ label, href }) => !!label && !!href,
+        );
+        setMatchCrumbs(validCrumbs);
+      })
+      .catch((error) => {
+        console.error('Error fetching breadcrumbs:', error);
+      });
+  }, [matches]);
+
+  const rootName = `${window.location.origin}/#/{{appName}}`;
+  const crumbs = [...categoryCrumbs, ...matchCrumbs];
+  const dato = crumbs.map((crumb, index) => ({
+    label: crumb.label,
+    href: `${rootName}${crumb.href}`,
+  }));
+  return <OsdsBreadcrumb items={dato} />;
+}
+
+export default Breadcrumb;
