@@ -1,0 +1,55 @@
+import React, { Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useParams, useResolvedPath } from 'react-router-dom';
+import { useQueries, UseQueryResult } from '@tanstack/react-query';
+import Breadcrumb, {
+  BreadcrumbHandleParams,
+} from '@/components/Breadcrumb/Breadcrumb';
+import { {{dashboardEndpoint}} } from '@/api';
+import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
+import Loading from '@/components/Loading/Loading';
+import Error from '@/components/Error/Error';
+
+export function breadcrumb({ params }: BreadcrumbHandleParams) {
+  return params.serviceName;
+}
+
+interface ServiceData {
+  status: number;
+}
+
+export default function DashboardPage() {
+  const { t } = useTranslation('{{appName}}/dashboard');
+  const { serviceName } = useParams();
+  const service: UseQueryResult<ServiceData> = useQueries({
+    queries: [
+      { queryKey: [serviceName], queryFn: () => {{dashboardEndpoint}}({ serviceName }), staleTime: Infinity, },
+    ],
+  })[0] as UseQueryResult<ServiceData>;
+
+  const tabsList = [
+    {
+      name: 'general_infos',
+      title: t('general_informations'),
+      to: useResolvedPath('Tabs1').pathname,
+    },
+    {
+      name: 'custom tab',
+      title: 'custom tab',
+      to: useResolvedPath('Tabs2').pathname,
+    },
+  ];
+
+  if (service?.data?.status && service?.data?.status !== 200) {
+    return <Error error={service.data} />;
+  }
+
+  return (
+    <div>
+      <Breadcrumb />
+      <Suspense fallback={<Loading />}>
+        <Dashboard tabs={tabsList} />
+      </Suspense>
+    </div>
+  );
+}
