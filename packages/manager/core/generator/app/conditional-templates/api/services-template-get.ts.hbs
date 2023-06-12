@@ -1,0 +1,90 @@
+import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { fetchIceberg, apiClient } from '@ovh-ux/manager-core-api';
+{{#if this.pimID}}
+import i18next from 'i18next';
+{{/if}}
+
+{{#if unknownTypeList}}
+{{#each unknownTypeList}}
+type {{this}} = unknown;
+{{/each}}
+{{/if}}
+{{#each operationList}}
+
+{{#if this.params}}
+export type {{pascalCase this.functionName}}Params = {
+  {{#each this.params}}
+  /** {{this.description}} */
+  {{this.name}}{{#if this.required}}?{{/if}}: {{this.type}};
+  {{/each}}
+};
+
+{{/if}}
+export const {{this.functionName}}QueryKey = {{#if this.urlParams}}(params: {{pascalCase this.functionName}}Params) => [`{{this.url}}`]{{else}}['{{this.url}}']{{/if}};
+
+{{#if this.description}}
+/**
+ * {{this.description}}
+ */
+{{/if}}
+export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalCase this.functionName}}Params{{/if}}): Promise<{{this.responseType}}> => {
+  const fetchData = async () => {
+    const response: any = await apiClient.v6.{{this.httpMethod}}({{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}});
+    if (response?.code?.startsWith('ERR')) {
+      // Error in the request
+      const errorResponse = response.response;
+      console.error('Error with request', errorResponse);
+      return errorResponse;
+    }
+    return response.data;
+  };
+
+  return queryClient.fetchQuery({{this.functionName}}QueryKey{{#if this.urlParams}}(params){{/if}}, fetchData);
+};
+{{/each}}
+
+/**
+ *  Get listing with iceberg
+ */
+export const getListingIceberg = async () => {
+  try {
+    const List = await fetchIceberg({ route: '{{this.apiPath}}' }).then(
+      ({ data }) => data,
+    );
+    return List;
+  } catch (error) {
+    return null;
+  }
+}
+
+{{#if this.pimID}}
+export interface PIMElement {
+  id: number;
+  name: string;
+  description: string;
+  lang: string;
+  categories: string[];
+  regionTags: string[];
+}
+
+export const getPIMServiceQueryKey = [`/products/list`];
+
+/**
+ * Using the PIM ID `{{this.pimID}}` to search in PIM data model
+ */
+export const getPIMService = async (): Promise<string[]> => {
+  const fetchData = async () => {
+    const response = await apiClient.v6.get('/products/list');
+    const currentLang = i18next.language
+      ? i18next.language.replace('-', '_')
+      : 'fr_FR';
+    const pimElement = response.data.filter(
+      (element: PIMElement) =>
+        element.id === {{this.pimID}} && element.lang === currentLang,
+    )[0];
+    return pimElement || {};
+  };
+
+  return queryClient.fetchQuery(getPIMServiceQueryKey, fetchData);
+};
+{{/if}}
