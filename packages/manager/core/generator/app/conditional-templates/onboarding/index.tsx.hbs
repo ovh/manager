@@ -1,12 +1,66 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
+import { OnboardingLayout } from '../../components/layout-helpers/Onboarding';
+import { ManagerTile, ManagerTileType } from '../../components/ManagerTile';
+{{#if this.pimID}}
+import { useQueries, UseQueryResult } from '@tanstack/react-query';
+import { getPIMService } from '@/api';
+{{/if}}
+import onboardingImgSrc from './onboarding-img.png';
+import './index.scss';
 
 export default function Onboarding() {
   const { t } = useTranslation('{{appName}}/onboarding');
+  {{#if this.pimID}}
+  const pimService: UseQueryResult<any> = useQueries({
+    queries: [
+      { queryKey: ['pimService'], queryFn: getPIMService, staleTime: Infinity },
+    ],
+  })[0] as UseQueryResult<any>;
+  {{/if}}
+
+  const tileList = [
+    {
+      title: t('guide1Title'),
+      description: t('guide1Description'),
+      href: t('guide1Link'),
+    },
+    {
+      title: t('guide2Title'),
+      description: t('guide2Description'),
+      href: t('guide2Link'),
+    },
+    {
+      title: t('guide3Title'),
+      description: t('guide3Description'),
+      href: t('guide3Link'),
+    },
+  ];
+
+  const title: string = {{#if this.pimID}}pimService.data?.name?pimService.data?.name:t('title'){{else}}t('title'){{/if}};
+  const description: string = {{#if this.pimID}}pimService.data?.description?pimService.data?.description:t('title'){{else}}t('description'){{/if}};
 
   return (
-    <div>
-      <h1>{t('title')}</h1>
-    </div>
+    <OnboardingLayout
+      title={title}
+      imageSrc={onboardingImgSrc}
+      description={description}
+      orderButtonLabel={t('orderButtonLabel')}
+      orderHref={t('orderButtonLink')}
+      moreInfoButtonLabel={t('moreInfoButtonLabel')}
+      moreInfoHref={t('moreInfoButtonLink')}
+    >
+      <aside className="tile-grid">
+        {tileList.map((tile) => (
+          <ManagerTile
+            key={tile.title}
+            tileType={ManagerTileType.tutorial}
+            moreLabel={t('guideFindOutMoreLinkLabel')}
+            {...tile}
+          />
+        ))}
+      </aside>
+    </OnboardingLayout>
   );
 }
