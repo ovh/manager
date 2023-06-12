@@ -56,10 +56,12 @@ const Datagrid: React.FC<Props> = ({ serviceKey, data }) => {
               <td className="p-3" key={`datagrid-td-${header}-${indexTd}`}>
                 {header === serviceKey ? (
                   <OsdsLink
+                    data-tracking={`datagrid::${String(service[header]).slice(
+                      0,
+                      20,
+                    )}`}
                     color={OdsThemeColorIntent.primary}
-                    onClick={() =>
-                      navigate(`/dashboard/${service.serviceName}`)
-                    }
+                    onClick={() => navigate(`/${service[header]}`)}
                   >
                     {`${service[header]}`}
                   </OsdsLink>

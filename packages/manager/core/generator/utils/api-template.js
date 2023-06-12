@@ -33,7 +33,7 @@ const toOperationList = ({ path, description, operations }) =>
       const tsResponseType = getTypeFromString(responseType);
 
       return {
-        functionName,
+        functionName: functionName.replaceAll('-', ''),
         apiPath: path,
         description: `${description} : ${operationDescription}`,
         httpMethod: httpMethod.toLowerCase(),

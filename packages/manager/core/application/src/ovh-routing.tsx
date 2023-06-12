@@ -1,4 +1,10 @@
-import { lazy, useEffect, Fragment, Suspense } from 'react';
+import React, {
+  lazy,
+  useEffect,
+  Fragment,
+  Suspense,
+  useLayoutEffect,
+} from 'react';
 import {
   useLocation,
   RouteObject,
@@ -9,11 +15,14 @@ import {
   LoaderFunctionArgs,
   ActionFunctionArgs,
   useRouteError,
+  useOutlet,
+  useNavigate,
 } from 'react-router-dom';
 import {
   generateRegularRoutes,
   generatePreservedRoutes,
 } from 'generouted/core';
+import OvhTracking from './ovh-tracking';
 
 import { useShell } from '.';
 
@@ -36,6 +45,16 @@ function HidePreloader(): JSX.Element {
 
 function OvhContainerRoutingSync(): JSX.Element {
   const location = useLocation();
+  const outlet = useOutlet();
+  const navigate = useNavigate();
+  useEffect(() => {
+    setTimeout(() => {
+      const child = outlet.props?.children?.props?.children?.props?.children;
+      if (child === null || child === undefined) {
+        navigate('/');
+      }
+    }, 500);
+  }, [outlet]);
 
   const shell = useShell();
   useEffect(() => {
@@ -107,7 +126,19 @@ export function createAppRouter() {
   const appBlobKey = '/pages/_app.tsx';
   const appBlob = import.meta.glob<Module>('/pages/_app.tsx', { eager: true });
 
-  const routes = [...regularRoutes, { path: '*', element: <NotFound /> }];
+  const newRoutes = regularRoutes.map((route, index) => {
+    if (route.path === 'dashboard') {
+      return {
+        ...route,
+        path: '*',
+        errorElement: <NotFound />,
+        error: <NotFound />,
+      };
+    }
+    return route;
+  });
+
+  const routes = [...newRoutes, { path: '*', element: <NotFound /> }];
   return createHashRouter([
     {
       element: (
@@ -117,6 +148,7 @@ export function createAppRouter() {
               <OvhContainerRoutingSync />
               <HidePreloader />
               <Outlet />
+              <OvhTracking />
             </>
           }
         />
