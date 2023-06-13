@@ -39,14 +39,35 @@
         data-translate="user_account_identity_documents_sub_title"
     ></p>
     <!--My Identity document description-->
-    <p class="oui-tile__body">
-        <span
-            data-translate="{{'user_account_identity_documents_list_for_' + $ctrl.user_type}}"
-        ></span>
-        <span
-            data-translate="user_account_identity_documents_descriptiom"
-        ></span>
-    </p>
+    <span data-translate="user_account_identity_documents_description"></span>
+    <span
+        data-translate="{{'user_account_identity_documents_list_for_' + $ctrl.user_type}}"
+    ></span>
+    :
+    <ul class="mt-2">
+        <li>
+            <span
+                data-translate="user_account_identity_documents_list_doc1"
+            ></span>
+        </li>
+        <li>
+            <span
+                data-translate="user_account_identity_documents_list_doc2"
+            ></span>
+        </li>
+        <li data-ng-if="$ctrl.USER_TYPE.corporation === $ctrl.user_type">
+            <span
+                data-translate="user_account_identity_documents_list_doc3"
+            ></span>
+        </li>
+        <li
+            data-ng-if="$ctrl.USER_TYPE.corporation != $ctrl.user_type && $ctrl.USER_TYPE.individual != $ctrl.user_type"
+        >
+            <span
+                data-translate="user_account_identity_documents_list_doc3_optional"
+            ></span>
+        </li>
+    </ul>
 </div>
 <!--End of Header section-->
 
