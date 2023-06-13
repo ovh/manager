@@ -530,7 +530,6 @@
                         data-ng-hide="setPartition.delModel != null && progress.partition == installation.partitionSchemeModels[setPartition.delModel]"
                         data-ng-repeat="progress in bar.progress | orderBy:'partition.order'"
                         data-ng-style="{
-                             'background': progress.partition.progressColor,
                              'width': progress.progressSize + '%'
                          }"
                     ></div>
