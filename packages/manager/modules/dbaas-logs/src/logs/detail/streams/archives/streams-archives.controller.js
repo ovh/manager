@@ -80,9 +80,9 @@ export default class LogsStreamsArchivesCtrl {
 
   loadArchives({ offset, pageSize = 1, sort, criteria }) {
     this.stopRetrievalDelayUpdate();
-    const filters = criteria.map((c) => {
-      const name = c.property || 'filename';
-      return datagridToIcebergFilter(name, c.operator, c.value);
+    const filters = criteria.map((criterion) => {
+      const name = criterion.property || 'filename';
+      return datagridToIcebergFilter(name, criterion.operator, criterion.value);
     });
     const pageOffset = Math.ceil(offset / pageSize);
     return this.LogsStreamsArchivesService.getPaginatedArchives(

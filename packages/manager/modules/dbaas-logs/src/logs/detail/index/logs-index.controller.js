@@ -26,9 +26,9 @@ export default class LogsIndexCtrl {
   }
 
   loadIndices({ offset, pageSize = 1, sort, criteria }) {
-    const filters = criteria.map((c) => {
-      const name = c.property || 'name';
-      return datagridToIcebergFilter(name, c.operator, c.value);
+    const filters = criteria.map((criterion) => {
+      const name = criterion.property || 'name';
+      return datagridToIcebergFilter(name, criterion.operator, criterion.value);
     });
     const pageOffset = Math.ceil(offset / pageSize);
     return this.LogsIndexService.getPaginatedIndices(
