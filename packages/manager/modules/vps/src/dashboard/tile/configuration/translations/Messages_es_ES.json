@@ -18,5 +18,6 @@
   "vps_dashboard_tile_configuration_storage_add_upscale_elite": "Escale su VPS aumentando el almacenamiento",
   "vps_dashboard_tile_configuration_upgrade_wrong_nic_cpu": "Si necesita más vCores, póngase en contacto con el administrador de la cuenta: {{ nichandle }}.",
   "vps_dashboard_tile_configuration_upgrade_wrong_nic_memory": "Si necesita más memoria, póngase en contacto con el administrador de la cuenta: {{ nichandle }}.",
-  "vps_dashboard_tile_configuration_upgrade_wrong_nic_storage": "Si necesita más almacenamiento, póngase en contacto con el administrador de la cuenta: {{ nichandle }}."
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_storage": "Si necesita más almacenamiento, póngase en contacto con el administrador de la cuenta: {{ nichandle }}.",
+  "vps_dashboard_tile_configuration_starter_range_info_message": "La funcionalidad que permite ampliar la RAM o el almacenamiento de su VPS solo está disponible a partir de la gama Value."
 }

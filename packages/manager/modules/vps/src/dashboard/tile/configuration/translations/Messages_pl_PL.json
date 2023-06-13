@@ -18,5 +18,6 @@
   "vps_dashboard_tile_configuration_storage_add_upscale_elite": "Zwiększ przestrzeń dyskową i zmień model VPS na wyższy.",
   "vps_dashboard_tile_configuration_upgrade_wrong_nic_cpu": "Aby uzyskać więcej vCores, skontaktuj się z kontaktem administracyjnym: {{nichandle}}.",
   "vps_dashboard_tile_configuration_upgrade_wrong_nic_memory": "Aby uzyskać więcej pamięci, skontaktuj się z kontaktem administracyjnym: {{nichandle}}.",
-  "vps_dashboard_tile_configuration_upgrade_wrong_nic_storage": "Aby uzyskać więcej przestrzeni dyskowej, skontaktuj się z kontaktem administracyjnym: {{nichandle}}."
+  "vps_dashboard_tile_configuration_upgrade_wrong_nic_storage": "Aby uzyskać więcej przestrzeni dyskowej, skontaktuj się z kontaktem administracyjnym: {{nichandle}}.",
+  "vps_dashboard_tile_configuration_starter_range_info_message": "Funkcja pozwalająca na zwiększenie pamięci RAM lub przestrzeni dyskowej dostępna jest począwszy od oferty VPS Value."
 }

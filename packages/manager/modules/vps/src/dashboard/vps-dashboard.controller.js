@@ -5,14 +5,16 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import 'moment';
-
+import { RANGES } from '../upscale/upscale.constants';
 import {
+  VPS_RANGE_COMPARE_LINKS,
   COMMIT_IMPRESSION_TRACKING_DATA,
   DASHBOARD_FEATURES,
   MIGRATION_STATUS,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
   SERVICE_TYPE,
 } from './vps-dashboard.constants';
+
 import { CHANGE_OWNER_URL, RENEW_URL } from '../vps/constants';
 
 export default class {
@@ -89,6 +91,19 @@ export default class {
 
   canBeMigrated() {
     return this.vpsMigration?.status === MIGRATION_STATUS.AVAILABLE;
+  }
+
+  isStarter() {
+    return this.stateVps?.model?.name.includes(
+      RANGES.STARTER.toLocaleLowerCase(),
+    );
+  }
+
+  getRangeCompareLink() {
+    return (
+      VPS_RANGE_COMPARE_LINKS[this.coreConfig.getUser()?.ovhSubsidiary] ||
+      VPS_RANGE_COMPARE_LINKS.links.DEFAULT
+    );
   }
 
   $onDestroy() {
