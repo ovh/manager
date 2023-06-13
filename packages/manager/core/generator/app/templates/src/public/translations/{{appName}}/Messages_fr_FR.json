@@ -1,4 +1,6 @@
 {
   "title": "Bienvenue uapp",
-  "crumb": "Accueil"
+  "crumb": "{{appName}}",
+  "tabs_2": "Tabs 2",
+  "onboarding": "Onboarding"
 }

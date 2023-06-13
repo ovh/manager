@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import {
   isArrayType,
+  cleanTypeSyntax,
   getTypeFromString,
   isUnknownTypescriptType,
   removeTypeBrackets,
@@ -36,17 +37,18 @@ const toOperationList = ({ path, description, operations }) =>
         apiPath: path,
         description: `${description} : ${operationDescription}`,
         httpMethod: httpMethod.toLowerCase(),
-        responseType: tsResponseType,
+        responseType: tsResponseType.replaceAll('>', ''),
         params: parameters.map(
           ({ name, fullType, required, description: paramDescription }) => {
             const paramType = getTypeFromString(fullType);
-            const paramName =
+            let paramName =
               name ||
               `${paramType[0].toLowerCase()}${paramType
                 .substring(1)
-                .toLowerCase()}`;
+                .toLowerCase()}Custom`;
+            let nameCustom = paramName;
             return {
-              name: paramName,
+              name: nameCustom.replaceAll('.', ''),
               type: transformTypeToTypescript(paramType),
               required,
               description: paramDescription,
@@ -59,7 +61,8 @@ const toOperationList = ({ path, description, operations }) =>
             ...parameters.map(({ fullType }) => getTypeFromString(fullType)),
           ]
             .filter(isUnknownTypescriptType)
-            .map(removeTypeBrackets),
+            .map(removeTypeBrackets)
+            .map(cleanTypeSyntax),
         ),
       };
     },
