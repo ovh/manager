@@ -2,6 +2,7 @@ export const USER_TYPE = {
   corporation: 'enterprise',
   association: 'association',
   individual: 'particular',
+  institution: 'institution',
   default: 'others',
 };
 
