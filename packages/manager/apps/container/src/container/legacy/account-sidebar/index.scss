@@ -2,6 +2,7 @@
 $ovh-sidebar-width: 18.75rem;
 
 .manager-account-sidebar-wrapper {
+  visibility: hidden;
   position: fixed;
   top: 2.75rem;
   bottom: 0;
@@ -25,6 +26,7 @@ $ovh-sidebar-width: 18.75rem;
 
   &.force-large-screen-display {
     @media screen and (min-width: ($device-breakpoint-medium  - 1px)) {
+      visibility: visible;
       width: $ovh-sidebar-width;
       padding-left: 0;
       opacity: 1;
@@ -41,6 +43,7 @@ $ovh-sidebar-width: 18.75rem;
   }
 
   &[aria-expanded='true'] {
+    visibility: visible;
     width: $ovh-sidebar-width;
     padding-left: 0;
     opacity: 1;
