@@ -1029,6 +1029,7 @@
   "price_ttc_label": "{{ price }} TTC",
   "price_free": "Gratuit",
   "license_dashboard_table_title_type": "Type",
+  "license_dashboard_table_title_name": "Nom",
   "license_dashboard_table_title_id": "Licence ID",
   "license_dashboard_table_title_ip": "Ip",
   "license_dashboard_table_title_service": "Service",
