@@ -686,6 +686,7 @@
   "server_configuration_installation_ovh_step2_type": "Type",
   "server_configuration_installation_ovh_step2_type_disk": "Disques utilisés pour cette installation :",
   "server_configuration_installation_ovh_step2_type_disk_disable": "Disque non allouable pour cette installation :",
+  "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Même si la grappe de disques sélectionnée contient {{t0}} disques, le système d'exploitation choisi ne peut être installé que sur 2 disques au maximum",
   "server_configuration_installation_ovh_step2_show_all_disk": "Afficher les autres disques",
   "server_configuration_installation_ovh_step2_hide_all_disk": "Masquer les autres disques",
   "server_configuration_installation_ovh_step2_file_system": "Système de fichier",
