@@ -11,7 +11,7 @@ import { Price } from '@ovh-ux/manager-models';
 import { pricingConstants } from '@ovh-ux/manager-product-offers';
 
 import UpscaleService from './upscale.service';
-import { PRICING_MODES, RANGES } from './upscale.constants';
+import { PRICING_MODES, RANGES, LE_RANGES } from './upscale.constants';
 
 export default class UpscaleController {
   /* @ngInject */
@@ -219,6 +219,9 @@ export default class UpscaleController {
     rangeName,
   ) {
     const { cores, memory, storage } = configuration;
+    if (LE_RANGES.includes(rangeName)) {
+      return `vps-${rangeName}-${memory}-${storage}`;
+    }
     return `vps-${rangeName}-${cores}-${memory}-${storage}`;
   }
 
