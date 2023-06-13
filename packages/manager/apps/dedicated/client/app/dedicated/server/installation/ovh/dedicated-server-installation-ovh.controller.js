@@ -56,17 +56,17 @@ angular
       $scope.units = {
         model: [
           {
-            label: 'MB',
+            label: 'MiB',
             value: 1,
           },
           {
-            label: 'GB',
-            value: 1000,
+            label: 'GiB',
+            value: 1024,
           },
           {
-            label: 'TB',
+            label: 'TiB',
             // eslint-disable-next-line no-restricted-properties
-            value: Math.pow(1000, 2),
+            value: Math.pow(1024, 2),
           },
         ],
       };
@@ -780,31 +780,31 @@ angular
         let multiplicator = 1;
         switch (size.unit) {
           case 'KB':
-            multiplicator = 1024;
+            multiplicator = 1000;
             break;
           case 'MB':
             // eslint-disable-next-line no-restricted-properties
-            multiplicator = Math.pow(1024, 2);
+            multiplicator = Math.pow(1000, 2);
             break;
           case 'GB':
             // eslint-disable-next-line no-restricted-properties
-            multiplicator = Math.pow(1024, 3);
+            multiplicator = Math.pow(1000, 3);
             break;
           case 'TB':
             // eslint-disable-next-line no-restricted-properties
-            multiplicator = Math.pow(1024, 4);
+            multiplicator = Math.pow(1000, 4);
             break;
           case 'PB':
             // eslint-disable-next-line no-restricted-properties
-            multiplicator = Math.pow(1024, 5);
+            multiplicator = Math.pow(1000, 5);
             break;
           case 'EB':
             // eslint-disable-next-line no-restricted-properties
-            multiplicator = Math.pow(1024, 6);
+            multiplicator = Math.pow(1000, 6);
             break;
           case 'YB':
             // eslint-disable-next-line no-restricted-properties
-            multiplicator = Math.pow(1024, 7);
+            multiplicator = Math.pow(1000, 7);
             break;
           default:
             break;
@@ -835,7 +835,7 @@ angular
         $scope.informations.typeDisk = newDiskGroup.diskType;
         $scope.informations.nbPhysicalDisk = newDiskGroup.numberOfDisks;
         $scope.informations.diskSize = Math.round(
-          toBytes(newDiskGroup.diskSize) / 1000 / 1000,
+          toBytes(newDiskGroup.diskSize) / 1024 / 1024,
         );
         $scope.informations.nbDisk =
           newDiskGroup.raidController !== null ? 1 : newDiskGroup.numberOfDisks;
@@ -847,8 +847,8 @@ angular
         } else {
           $scope.informations.totalSize =
             newDiskGroup.raidController !== null
-              ? Math.round(toBytes(newDiskGroup.diskSize) / 1000 / 1000)
-              : Math.round(toBytes(newDiskGroup.diskSize) / 1000 / 1000) *
+              ? Math.round(toBytes(newDiskGroup.diskSize) / 1024 / 1024)
+              : Math.round(toBytes(newDiskGroup.diskSize) / 1024 / 1024) *
                 get(newDiskGroup, 'numberOfDisks', 0);
         }
 
@@ -859,7 +859,7 @@ angular
         $scope.informations.otherDisk = map(compact([otherDisk]), (disk) => ({
           typeDisk: disk.diskType,
           nbDisk: disk.numberOfDisks,
-          sizeDisk: Math.round(toBytes(disk.diskSize) / 1000 / 1000),
+          sizeDisk: Math.round(toBytes(disk.diskSize) / 1024 / 1024),
         }));
       };
 
@@ -1764,8 +1764,8 @@ angular
         unitIndex = 0,
       ) {
         if (!Number.isNaN(octetsSize)) {
-          if (octetsSize >= 1000 && unitIndex < $scope.units.model.length - 1) {
-            return $scope.getDisplaySize(octetsSize / 1000, unitIndex + 1);
+          if (octetsSize >= 1024 && unitIndex < $scope.units.model.length - 1) {
+            return $scope.getDisplaySize(octetsSize / 1024, unitIndex + 1);
           }
           return `${parseFloat(octetsSize).toFixed(1)} ${$translate.instant(
             `unit_size_${$scope.units.model[unitIndex].label}`,
@@ -2168,19 +2168,15 @@ angular
           $scope.installation.hardwareRaid.arrays &&
           $scope.installation.hardwareRaid.controller
         ) {
-          let diskSize =
-            $scope.installation.hardwareRaid.controller.disks[0].capacity.value;
+          const diskSize = Math.round(
+            toBytes(
+              $scope.installation.hardwareRaid.controller.disks[0].capacity,
+            ) /
+              1024 /
+              1024,
+          );
           const grappe = $scope.installation.hardwareRaid.arrays;
           const nbOfDisks = $scope.installation.hardwareRaid.disks;
-
-          angular.forEach($scope.units.model, (unit) => {
-            if (
-              unit.label ===
-              $scope.installation.hardwareRaid.controller.disks[0].capacity.unit
-            ) {
-              diskSize *= unit.value;
-            }
-          });
 
           $scope.installation.hardwareRaid.totalSpace =
             $scope.installation.hardwareRaid.disks * diskSize;
