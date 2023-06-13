@@ -1,8 +1,0 @@
-{
-  "pci_ai_tokens_update_warning": "Vuoi davvero rigenerare il token {{ tokenId }}? Il token precedente non sarà più valido.",
-  "pci_ai_tokens_update_success": "Il tuo token è stato rigenerato correttamente, registralo",
-  "pci_ai_tokens_update_error": "Si è verificato un errore durante la rigenerazione del token: {{ message }}",
-  "pci_ai_tokens_update": "Rigenerazione del token",
-  "pci_ai_tokens_update_common_update": "Rigenerare",
-  "pci_ai_tokens_update_common_cancel": "Annullare"
-}

@@ -1,8 +1,0 @@
-{
-  "pci_ai_tokens_update_warning": "Sind Sie sicher, dass Sie {{ tokenId }} neu erstellen möchten? Ihr bisheriges Token ist dann nicht mehr gültig.",
-  "pci_ai_tokens_update_success": "Ihr Token wurde erfolgreich neu generiert, speichern Sie es",
-  "pci_ai_tokens_update_error": "Bei der Neuerstellung des Tokens ist ein Fehler aufgetreten: {{ message }}",
-  "pci_ai_tokens_update": "Token neu generieren",
-  "pci_ai_tokens_update_common_update": "Neu generieren",
-  "pci_ai_tokens_update_common_cancel": "Abbrechen"
-}

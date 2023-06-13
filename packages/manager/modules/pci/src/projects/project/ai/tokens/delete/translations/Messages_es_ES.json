@@ -1,8 +1,0 @@
-{
-  "pci_ai_tokens_delete_warning": "¿Seguro que quiere eliminar el token {{ tokenId }}?",
-  "pci_ai_tokens_delete_success": "El token se ha eliminado correctamente.",
-  "pci_ai_tokens_delete_error": "Se ha producido un error al eliminar el token: {{ message }}",
-  "pci_ai_tokens_delete": "Eliminación del token",
-  "pci_ai_tokens_delete_common_delete": "Eliminar",
-  "pci_ai_tokens_delete_common_cancel": "Cancelar"
-}
