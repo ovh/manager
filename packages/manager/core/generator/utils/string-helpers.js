@@ -54,3 +54,12 @@ export const isUnknownTypescriptType = (typeStr) =>
   ['string', 'number', 'boolean', 'undefined', 'null'].every(
     (type) => !typeStr.includes(type),
   );
+
+
+/**
+ * @returns a valid string clean
+ */
+export const cleanTypeSyntax = (typeStr) => {
+  const str = typeStr.replaceAll('>', '');
+  return str;
+}

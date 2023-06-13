@@ -1,62 +1,58 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Await,
-  defer,
-  Link,
-  Navigate,
-  Outlet,
-  useLoaderData,
-} from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useQueries } from '@tanstack/react-query';
+import { getListingIceberg{{#if this.pimID}}, getPIMService{{/if}} } from '@/api';
+import Datagrid from '@/components/layout-helpers/Listing/dataGrid';
 
-import { {{listingEndpoint}} } from '@/api';
+function ServiceList({ data{{#if this.pimID}}, pim{{/if}} }: any) {
+  const { t } = useTranslation('{{appName}}/listing');
+  const count = data?.length;
 
-export function loader() {
-  return defer({
-    services: {{listingEndpoint}}(),
-  });
+  if (count === 0) return <Navigate to="onboarding" />;
+  if (count === 1) {
+    return (
+      <>
+        <Outlet />
+        <Navigate to={data[0].serviceName} />
+      </>
+    );
+  }
+  return (
+    <>
+      <h2>{{#if this.pimID}}{pim?.name?pim?.name:'{{appName}}'}{{else}}{{appName}}{{/if}}</h2>
+      <Datagrid data={data} />
+    </>
+  );
 }
 
 export default function Listing() {
-  const { t } = useTranslation('{{appName}}/listing');
-  const data = useLoaderData() as Record<string, unknown>;
+  const results: any = useQueries({
+    queries: [
+      { queryKey: ['servicesListingIceberg'], queryFn: getListingIceberg, staleTime: Infinity, },
+      {{#if this.pimID}}{ queryKey: ['pimService'], queryFn: getPIMService, staleTime: Infinity },{{/if}}
+    ],
+  });
+
+  const servicesListingIcebergResult = results[0];
+  {{#if this.pimID}}const pimServiceResult = results[1];{{/if}}
+
+  const isError = servicesListingIcebergResult.error{{#if this.pimID}} || pimServiceResult.error{{/if}};
+  const isLoading = servicesListingIcebergResult.isLoading{{#if this.pimID}} || pimServiceResult.isLoading{{/if}};
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <Navigate to="onboarding" />;
+  }
 
   return (
-    <div>
-      <h1>{t('title')}</h1>
-      <Suspense fallback="">
-        <Await resolve={data.services}>
-          {(services) => {
-            const count = services.length;
-            if (count === 0) {
-              return <Navigate to="onboarding" />;
-            }
-            if (count === 1) {
-              return (
-                <>
-                  <Outlet />
-                  <Navigate to={services[0]} />
-                </>
-              );
-            }
-            return (
-              <>
-                <h2>
-                  Services list
-                </h2>
-                <ul>
-                  {services.map((serviceName: string) => (
-                    <li key={serviceName}>
-                      <Link to={`/dashboard/${serviceName}`}>{serviceName}</Link>
-                    </li>
-                  ))}
-
-                </ul>
-              </>
-            );
-          }}
-        </Await>
-      </Suspense>
-    </div>
+    <ServiceList
+      data={servicesListingIcebergResult.data}
+      {{#if this.pimID}}pim={pimServiceResult.data}{{/if}}
+    />
   );
 }
+
