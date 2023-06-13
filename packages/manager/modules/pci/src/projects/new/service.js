@@ -95,9 +95,11 @@ export default class PciProjectNewService {
       };
       return Promise.reject(error);
     }
-
     // otherwise add it to the cart
-    const { duration, pricingMode } = head(cloudProjectOffer.prices);
+    const renewPrice = cloudProjectOffer.prices?.find((price) =>
+      price.capacities.includes('renew'),
+    );
+    const { duration, pricingMode } = renewPrice;
     const projectItem = await this.orderCart.addProductToCart(
       cartId,
       PCI_PROJECT_ORDER_CART.productName,
