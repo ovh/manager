@@ -8,7 +8,7 @@ import Breadcrumb, {
 import { {{dashboardEndpoint}} } from '@/api';
 import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
 import Loading from '@/components/Loading/Loading';
-import Error from '@/components/Error/Error';
+import ErrorBanner from '@/components/Error/Error';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.serviceName;
@@ -41,7 +41,7 @@ export default function DashboardPage() {
   ];
 
   if (service?.data?.status && service?.data?.status !== 200) {
-    return <Error error={service.data} />;
+    return <ErrorBanner error={service.data} />;
   }
 
   return (

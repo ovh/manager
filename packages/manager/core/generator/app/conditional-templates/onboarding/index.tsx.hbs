@@ -1,12 +1,20 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
+import {
+  useAuthentication,
+  useEnvironment,
+} from '@ovh-ux/manager-react-core-application';
 import { OnboardingLayout } from '../../components/layout-helpers/Onboarding';
 import { ManagerTile, ManagerTileType } from '../../components/ManagerTile';
 {{#if this.pimID}}
 import { useQueries, UseQueryResult } from '@tanstack/react-query';
 import { getPIMService } from '@/api';
 {{/if}}
+import { useGuideUtils } from '@/components/GuideLink/guide-utils';
+import useGuideUtils from '@/components/GuideLink/guide-utils';
+import { OnboardingLayout } from '@/components/layout-helpers/Onboarding';
+import { ManagerTile, ManagerTileType } from '@/components/ManagerTile';
 import onboardingImgSrc from './onboarding-img.png';
 import './index.scss';
 
@@ -19,22 +27,30 @@ export default function Onboarding() {
     ],
   })[0] as UseQueryResult<any>;
   {{/if}}
+  const environment = useEnvironment();
+  const region = environment.getRegion();
+  const guide = constants[region];
+  const { subsidiary } = useAuthentication();
+  const guideLink1 = useGuideUtils({ name: 'guideLink1' });
+  const guideLink2 = useGuideUtils({ name: 'guideLink2' });
+  const guideLink3 = useGuideUtils({ name: 'guideLink3' });
+  const link = useGuideUtils();
 
   const tileList = [
     {
       title: t('guide1Title'),
       description: t('guide1Description'),
-      href: t('guide1Link'),
+      href: link?.['guideLink1'],
     },
     {
       title: t('guide2Title'),
       description: t('guide2Description'),
-      href: t('guide2Link'),
+      href: link?.['guideLink2']
     },
     {
       title: t('guide3Title'),
       description: t('guide3Description'),
-      href: t('guide3Link'),
+      href: link?.['guideLink3']
     },
   ];
 
