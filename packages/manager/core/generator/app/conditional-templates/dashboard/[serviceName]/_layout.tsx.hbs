@@ -1,0 +1,57 @@
+import React, { Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Await, defer, useLoaderData, useResolvedPath } from 'react-router-dom';
+import Breadcrumb, {
+  BreadcrumbHandleParams,
+} from '@/components/Breadcrumb/Breadcrumb';
+import { {{dashboardEndpoint}} } from '@/api';
+import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
+import Loading from '@/components/Loading/Loading';
+
+export function breadcrumb({ params }: BreadcrumbHandleParams) {
+  return params.serviceName;
+}
+
+export function loader(params: any) {
+  const { serviceName } = params.params;
+  return defer({
+    services: {{dashboardEndpoint}}({ serviceName }),
+  });
+}
+
+export default function DashboardPage(props: any) {
+  const { t } = useTranslation('test-cdn/dashboard');
+  const data = useLoaderData() as Record<string, unknown>;
+
+  const tabsList = [
+    {
+      name: 'general_infos',
+      title: t('general_informations'),
+      to: useResolvedPath('Tabs1').pathname,
+    },
+    {
+      name: 'custom tab',
+      title: 'custom tab',
+      to: useResolvedPath('Tabs2').pathname,
+    },
+  ];
+
+  return (
+    <div>
+      <Breadcrumb />
+      <Suspense fallback={<Loading />}>
+        <Await resolve={data.services}>
+          {(services) => {
+            const count = services.length;
+            if (count === 0) {
+              return <div>{t('error_service')}</div>;
+            } else {
+              return false;
+            }
+          }}
+        </Await>
+        <Dashboard tabs={tabsList} />
+      </Suspense>
+    </div>
+  );
+}

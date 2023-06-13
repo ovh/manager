@@ -44,7 +44,7 @@ const toOperationList = ({ path, description, operations }) =>
               name ||
               `${paramType[0].toLowerCase()}${paramType
                 .substring(1)
-                .toLowerCase()}`;
+                .toLowerCase()}Custom`;
             return {
               name: paramName,
               type: transformTypeToTypescript(paramType),

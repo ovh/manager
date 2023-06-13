@@ -9,5 +9,7 @@ export function breadcrumb() {
 export default function App({ children }: { children: React.ReactNode }) {
   useTranslation('{{appName}}');
 
-  return <>{children}</>;
+  return (
+    <>{children}</>
+  );
 }

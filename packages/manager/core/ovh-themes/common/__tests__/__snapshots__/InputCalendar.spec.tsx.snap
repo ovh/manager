@@ -563,6 +563,8 @@ exports[`Input Calendar renders input calendar with passed date and calendar clo
   <div
     class="chakra-input__group css-bx0blc"
     data-group="true"
+    class="chakra-input__group css-bx0blc"
+    data-group="true"
   >
     <input
       aria-readonly="true"

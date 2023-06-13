@@ -1,62 +1,46 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Await,
-  defer,
-  Link,
-  Navigate,
-  Outlet,
-  useLoaderData,
-} from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { getListingIceberg, } from '@/api';
+import Datagrid from '@/components/layout-helpers/Listing/dataGrid';
+import '@ovhcloud/ods-theme-blue-jeans/index.css';
 
-import { {{listingEndpoint}} } from '@/api';
+function ServiceList({ data }: any) {
+  const { t } = useTranslation('{{appName}}/listing');
+  const count = data?.length;
 
-export function loader() {
-  return defer({
-    services: {{listingEndpoint}}(),
-  });
+  if (count === 0) return <Navigate to="onboarding" />;
+  if (count === 1) {
+    return (
+      <>
+        <Outlet />
+        <Navigate to={data[0].serviceName} />
+      </>
+    );
+  }
+  return (
+    <>
+      <h2>{t('title')}</h2>
+      <Datagrid data={data} />
+    </>
+  );
 }
 
 export default function Listing() {
-  const { t } = useTranslation('{{appName}}/listing');
-  const data = useLoaderData() as Record<string, unknown>;
-
-  return (
-    <div>
-      <h1>{t('title')}</h1>
-      <Suspense fallback="">
-        <Await resolve={data.services}>
-          {(services) => {
-            const count = services.length;
-            if (count === 0) {
-              return <Navigate to="onboarding" />;
-            }
-            if (count === 1) {
-              return (
-                <>
-                  <Outlet />
-                  <Navigate to={services[0]} />
-                </>
-              );
-            }
-            return (
-              <>
-                <h2>
-                  Services list
-                </h2>
-                <ul>
-                  {services.map((serviceName: string) => (
-                    <li key={serviceName}>
-                      <Link to={`/dashboard/${serviceName}`}>{serviceName}</Link>
-                    </li>
-                  ))}
-
-                </ul>
-              </>
-            );
-          }}
-        </Await>
-      </Suspense>
-    </div>
+  const { data, isError, isLoading } = useQuery(
+    ['services'],
+    getListingIceberg,
   );
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <Navigate to="onboarding" />;
+  }
+
+  return <ServiceList data={data} />;
 }
+
