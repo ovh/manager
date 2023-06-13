@@ -34,7 +34,7 @@
                         class="form-control"
                         id="selectDesktopType"
                         name="selectDesktopType"
-                        data-ng-options="desktop as ('server_configuration_installation_ovh_desktop_' + desktop | translate) for desktop in installation.desktopType"
+                        data-ng-options="desktop as desktop.label for desktop in installation.desktopType"
                         data-ng-model="installation.selectDesktopType"
                         data-ng-change="installation.hasData = false; setSelectDistribution(null);"
                     >
