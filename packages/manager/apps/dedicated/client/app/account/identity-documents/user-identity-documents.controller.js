@@ -23,6 +23,7 @@ export default class AccountUserIdentityDocumentsController {
       LEGAL_LINK3[coreConfig.getUser().ovhSubsidiary] || LEGAL_LINK3.OTHERS;
     this.KYC_STATUS = KYC_STATUS;
     this.TRACKING_TASK_TAG = TRACKING_TASK_TAG;
+    this.USER_TYPE = USER_TYPE;
   }
 
   $onInit() {
