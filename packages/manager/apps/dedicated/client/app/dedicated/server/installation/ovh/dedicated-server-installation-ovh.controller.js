@@ -77,6 +77,8 @@ angular
         server: angular.copy($scope.currentActionData.server),
         user: $scope.currentActionData.user,
 
+        defaultOsCategory: 'BASIC',
+
         // get by Server.getOvhPartitionSchemesTemplates
         raidList: null, // Map[nbDisk, available raid]
         fileSystemList: null,
@@ -130,7 +132,7 @@ angular
         warningExistPartition: false,
 
         // STEP1 SELECT
-        selectDesktopType: null,
+        selectDesktopType: {},
         selectFamily: null,
         selectDistribution: null,
         // saveSelectDistribution : save new distribution if a partition
@@ -307,17 +309,50 @@ angular
         const getHardRaid = $scope.getHardwareRaid();
         const getOvhTemplates = Server.getOvhTemplates($stateParams.productId)
           .then((templateList) => {
-            $scope.installation.desktopType = templateList.category.sort(
-              (a, b) => a.localeCompare(b),
+            angular.forEach(
+              templateList.category.sort((a, b) => a.localeCompare(b)),
+              (currentCategory) => {
+                if (
+                  $translate.instant(
+                    `server_configuration_installation_ovh_desktop_${currentCategory}`,
+                  ) !==
+                  `server_configuration_installation_ovh_desktop_${currentCategory}`
+                ) {
+                  $scope.installation.desktopType.push({
+                    id: currentCategory,
+                    label: $translate.instant(
+                      `server_configuration_installation_ovh_desktop_${currentCategory}`,
+                    ),
+                  });
+                } else {
+                  // translation does not exist
+                  $scope.installation.desktopType.push({
+                    id: currentCategory,
+                    label:
+                      currentCategory[0].toUpperCase() +
+                      currentCategory.slice(1).toLowerCase(),
+                  });
+                }
+                if (currentCategory === $scope.constants.defaultOsCategory) {
+                  [
+                    $scope.installation.selectDesktopType,
+                  ] = $scope.installation.desktopType.slice(-1);
+                }
+              },
             );
             $scope.installation.familyType = templateList.family.sort((a, b) =>
               a.localeCompare(b),
             );
             $scope.installation.distributionList =
               templateList.templates.results;
-            $scope.installation.selectDesktopType = head(
-              $scope.installation.desktopType,
-            );
+
+            if (
+              Object.keys($scope.installation.selectDesktopType).length === 0
+            ) {
+              $scope.installation.selectDesktopType = head(
+                $scope.installation.desktopType,
+              );
+            }
             $scope.installation.selectFamily = $scope.constants.warningLINUX;
           })
           .catch((data) => {
@@ -357,7 +392,7 @@ angular
       $scope.getCountFilter = function getCountFilter(itemFamily) {
         const tab = $filter('filter')($scope.installation.distributionList, {
           family: itemFamily,
-          category: $scope.installation.selectDesktopType,
+          category: $scope.installation.selectDesktopType.id,
         });
         $scope.countFilter[itemFamily] = tab.length;
         if ($scope.countFilter[itemFamily] > 0) {
