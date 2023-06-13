@@ -1,12 +1,20 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import Breadcrumb, { BreadcrumbHandleParams } from '@/components/Breadcrumb';
+
+export function breadcrumb({ params }: BreadcrumbHandleParams) {
+  return 'onboarding';
+}
 export default function Onboarding() {
   const { t } = useTranslation('{{appName}}/onboarding');
 
   return (
-    <div>
-      <h1>{t('title')}</h1>
-    </div>
+    <>
+      <Breadcrumb />
+      <div>
+        <h1>{t('title')}</h1>
+      </div>
+    </>
   );
 }
