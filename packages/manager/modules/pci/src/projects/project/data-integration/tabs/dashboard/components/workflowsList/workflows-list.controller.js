@@ -3,6 +3,7 @@ import {
   WORKFLOW_TABLE_COLUMNS,
   MAX_THRESHOLD_MODE,
   ITEMS_PER_PAGE,
+  PAGINATION_PER_PAGE,
 } from './workflows-list.constants';
 
 export default class DataIntegrationWorkflowsListCtrl {
@@ -15,7 +16,7 @@ export default class DataIntegrationWorkflowsListCtrl {
     this.WORKFLOW_STATUSES = WORKFLOW_STATUSES;
     this.columns = WORKFLOW_TABLE_COLUMNS;
     this.itemsPerPage = ITEMS_PER_PAGE;
-    this.paginationPage = 1;
+    this.paginationPage = PAGINATION_PER_PAGE;
     this.sort = {
       column: 'lastExecutionDate',
       type: 'date',

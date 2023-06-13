@@ -59,6 +59,7 @@ export const MAX_THRESHOLD_MODE = {
   select: 100,
 };
 export const ITEMS_PER_PAGE = 5;
+export const PAGINATION_PER_PAGE = 1;
 
 export default {
   WORKFLOW_TABLE_COLUMNS,
