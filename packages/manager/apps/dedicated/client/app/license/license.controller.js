@@ -1,3 +1,4 @@
+import capitalize from 'lodash/capitalize';
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import remove from 'lodash/remove';
@@ -140,6 +141,8 @@ export default /* @ngInject */ (
   };
 
   $scope.resetAction();
+
+  $scope.capitalize = capitalize;
 
   $scope.formatName = (license) => {
     const formattedVersion = startCase(license.version.replace(/-|_/g, ' '));

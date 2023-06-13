@@ -179,6 +179,15 @@
                     data-translate-values="{ nichandle: '<strong>' + $ctrl.serviceInfos.contactAdmin + '</strong>' }"
                 ></p>
             </oui-message>
+            <oui-message
+                data-ng-if="$ctrl.isVpsStarter"
+                type="info"
+                class="mb-3"
+            >
+                <p
+                    data-translate="vps_dashboard_tile_configuration_starter_range_info_message"
+                ></p>
+            </oui-message>
         </oui-tile-description>
     </oui-tile-definition>
 </oui-tile>

@@ -217,7 +217,6 @@ angular
         display: false,
         hasWarning: false,
         realSize: 0,
-        progressColor: null,
       };
 
       $scope.setPartition = {
@@ -608,8 +607,7 @@ angular
             // rename order by orderTable
             angular.forEach(
               $scope.installation.partitionSchemeModels,
-              (partition, _index) => {
-                set(partition, 'progressColor', $scope.getRandomColor(_index));
+              (partition) => {
                 set(partition, 'orderTable', angular.copy(partition.order));
               },
             );
@@ -1068,7 +1066,6 @@ angular
           );
         }
 
-        $scope.newPartition.progressColor = $scope.getRandomColor();
         if (validationTypePrimary(true)) {
           $scope.errorInst.typePrimary = true;
         } else if (
@@ -1925,37 +1922,6 @@ angular
         $scope.refreshBar();
 
         return $scope.informations.remainingSize;
-      };
-
-      $scope.getRandomColor = function getRandomColor(index, partition) {
-        const colorSequence = [
-          '#E91E63',
-          '#3F51B5',
-          '#00BCD4',
-          '#8BC34A',
-          '#FFC107',
-          '#795548',
-          '#9C27B0',
-          '#2196F3',
-          '#009688',
-          '#CDDC39',
-          '#FF9800',
-          '#607D8B',
-        ];
-
-        let color =
-          colorSequence[Math.floor(Math.random() * (colorSequence.length - 1))];
-        if (index) {
-          color =
-            colorSequence[
-              (colorSequence.length - index) % colorSequence.length
-            ];
-        }
-
-        if (partition) {
-          set(partition, 'progressColor', color);
-        }
-        return color;
       };
 
       $scope.$watch('installation.partitionSchemeModels', () => {

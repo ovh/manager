@@ -18,5 +18,8 @@
   "vps_dashboard_state_upgrading": "Changing solution...",
   "vps_dashboard_auto_migration_warning_new": "Your {{vps}} VPS is eligible for 1-click migration to the new range.",
   "vps_dashboard_state_rescued": "In rescue",
-  "vps_dashboard_migration_tile": "Migrate VPS"
+  "vps_dashboard_migration_tile": "Migrate VPS",
+  "vps_dashboard_starter_range_info_message_1": "Step up to the next level with features available from the Value range: automatic backup, Plesk, cPanel and Windows licenses, additional resources, NVMe SSD storage.",
+  "vps_dashboard_starter_range_info_message_2": "Compare our other VPS solutions.",
+  "vps_dashboard_automatic_backup_starter_range_info_message": "The automatic backup option is only available starting from the Value offer. To take advantage of this, you will need to upgrade your VPS to a higher solution."
 }

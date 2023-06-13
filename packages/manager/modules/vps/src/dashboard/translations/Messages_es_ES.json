@@ -18,5 +18,8 @@
   "vps_dashboard_state_upgrading": "Cambiando de solución",
   "vps_dashboard_state_rescued": "En rescue",
   "vps_dashboard_auto_migration_warning_new": "Le confirmamos que es posible migrar su VPS {{vps}} hacia la nueva gama en un clic.",
-  "vps_dashboard_migration_tile": "Migrar mi VPS"
+  "vps_dashboard_migration_tile": "Migrar mi VPS",
+  "vps_dashboard_starter_range_info_message_1": "Pase al siguiente nivel con las funcionalidades disponibles a partir de la gama Value: backup automático, licencias Plesk, cPanel y Windows, adición de recursos y almacenamiento SSD NVMe.",
+  "vps_dashboard_starter_range_info_message_2": "Compare nuestras gamas de VPS.",
+  "vps_dashboard_automatic_backup_starter_range_info_message": "La opción de backup automático solo está disponible a partir de la gama Value. Para poder disfrutar de este servicio, deberá migrar su VPS a una gama superior."
 }
