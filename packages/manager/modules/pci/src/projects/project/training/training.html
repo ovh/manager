@@ -3,33 +3,6 @@
         class="mb-3"
         data-heading="{{:: 'pci_projects_project_training_title' | translate }}"
     >
-        <oui-header-tabs>
-            <oui-header-tabs-item
-                data-active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
-                data-href="{{:: $ctrl.dashboardLink }}"
-            >
-                <span
-                    data-translate="pci_projects_project_training_dashboard_title"
-                ></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-href="{{:: $ctrl.jobsLink }}"
-                data-active="$ctrl.currentActiveLink() === $ctrl.jobsLink"
-            >
-                <span
-                    data-translate="pci_projects_project_training_jobs_title"
-                ></span>
-            </oui-header-tabs-item>
-            <oui-header-tabs-item
-                data-href="{{:: $ctrl.registriesLink }}"
-                data-active="$ctrl.currentActiveLink() === $ctrl.registriesLink"
-            >
-                <span
-                    data-translate="pci_projects_project_training_registries_title"
-                ></span>
-            </oui-header-tabs-item>
-        </oui-header-tabs>
-
         <oui-guide-menu
             data-text="{{:: 'pci_project_guides_header' | translate }}"
         >
@@ -45,6 +18,7 @@
             </oui-guide-menu-item>
         </oui-guide-menu>
     </oui-header>
+
     <!--Banner user & role pop up-->
     <oui-message data-type="info" dismissable>
         <span
@@ -58,6 +32,7 @@
             ></a>
         </p>
     </oui-message>
+
     <!--Banner section messages-->
     <section>
         <pci-maintenance-banner
