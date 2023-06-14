@@ -4,7 +4,10 @@ export const PRICING_MODES = {
   MONTHLY: 'monthly',
   UPFRONT: 'upfront',
 };
-export const LE_RANGES = ['le-2', 'le-4', 'le-16'];
+const LE_16 = 'le-16';
+const LE_4 = 'le-4';
+const LE_2 = 'le-2';
+export const LE_RANGES = [LE_2, LE_4, LE_16];
 
 export const RANGES = {
   BESTVALUE: 'bv',
@@ -13,9 +16,9 @@ export const RANGES = {
   ELITE: 'Elite',
   STARTER: 'Starter',
   VALUE: 'Value',
-  LE_16: 'le-16',
-  LE_4: 'le-4',
-  LE_2: 'le-2',
+  LE_2,
+  LE_4,
+  LE_16,
 };
 
 export default { PRICING_MODES, RANGES, LE_RANGES };
