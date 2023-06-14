@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.33.2...@ovh-ux/manager-vps@2.34.0) (2023-06-14)
+
+
+### Bug Fixes
+
+* **vps:** wrong range compare links ([#9449](https://github.com/ovh/manager/issues/9449)) ([3c43b33](https://github.com/ovh/manager/commit/3c43b338e4f75c0ea3bbfb3896c2f2dbbc7bd726))
+
+
+### Features
+
+* **vps:** display info msgs for starter range ([#9275](https://github.com/ovh/manager/issues/9275)) ([d622a23](https://github.com/ovh/manager/commit/d622a2302b6d81cba20cdd9e6e73ac5a42e81dc2))
+
+
+
+
+
 ## [2.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.33.1...@ovh-ux/manager-vps@2.33.2) (2023-05-09)
 
 

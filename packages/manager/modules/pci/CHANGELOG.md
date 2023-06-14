@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.128.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.127.1...@ovh-ux/manager-pci@5.128.0) (2023-06-14)
+
+
+### Features
+
+* **pci.project:** update the filtering of a cart service option ([#9415](https://github.com/ovh/manager/issues/9415)) ([d0863f2](https://github.com/ovh/manager/commit/d0863f2311c18768e51f621cca9993151a004d94))
+
+
+
+
+
 ## [5.127.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.127.0...@ovh-ux/manager-pci@5.127.1) (2023-06-12)
 
 

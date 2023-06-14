@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.7.0...@ovh-ux/sao-ovh-manager-app@2.7.1) (2023-06-14)
+
+
+### Bug Fixes
+
+* fix errors on uapp generator scaffolding tools ([#9431](https://github.com/ovh/manager/issues/9431)) ([425ee42](https://github.com/ovh/manager/commit/425ee429836691200bca01068a23629b3b2d8227))
+
+
+
+
+
 # [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-app@2.6.2...@ovh-ux/sao-ovh-manager-app@2.7.0) (2023-05-31)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.7.0...@ovh-ux/manager-iplb@1.7.1) (2023-06-14)
+
+
+### Bug Fixes
+
+* **dedicated.iplb:** order urls onboarding page ([#9434](https://github.com/ovh/manager/issues/9434)) ([0157a3d](https://github.com/ovh/manager/commit/0157a3dc93fafb1ad4b7262625840e5576d1d46b))
+
+
+
+
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.6.1...@ovh-ux/manager-iplb@1.7.0) (2023-06-12)
 
 
