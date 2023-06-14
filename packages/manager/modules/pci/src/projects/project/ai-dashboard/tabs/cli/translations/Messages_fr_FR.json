@@ -1,6 +1,7 @@
 {
   "pci_ai_dashboard_cli_description": "Utilisez notre interface ovhai afin d'accéder et gérer vos notebooks, jobs et apps en lignes de commande (CLI).",
   "pci_ai_dashboard_cli_install": "Installation",
+  "pci_ai_dashboard_cli_select_region": "Sélectionnez la région que vous souhaitez utiliser :",
   "pci_ai_dashboard_cli_install_restart_terminal": "Veillez à bien redémarrer votre terminal afin de pouvoir utiliser ovhai.",
   "pci_ai_dashboard_cli_documentation_title": "Documentation",
   "pci_ai_dashboard_cli_auth_title": "Authentification",

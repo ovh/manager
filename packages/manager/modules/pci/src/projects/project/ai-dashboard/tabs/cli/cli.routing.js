@@ -8,6 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: () => null, // Hide breadcrumb,
+      regions: /* @ngInject */ (AiDashboardService, projectId) =>
+        AiDashboardService.getRegions(projectId),
       usersTokensLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.ai-dashboard.users-tokens', {
           projectId,
