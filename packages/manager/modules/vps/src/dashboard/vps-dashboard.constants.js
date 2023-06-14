@@ -57,9 +57,10 @@ export const VPS_RANGE_COMPARE_LINKS = {
   AU: 'https://www.ovhcloud.com/en-au/vps/compare/',
   SG: 'https://www.ovhcloud.com/en-sg/vps/compare/',
   ASIA: 'https://www.ovhcloud.com/asia/vps/compare/',
-  WS: 'https://www.ovhcloud.com/en/vps/compare/',
+  WS: 'https://www.ovhcloud.com/es/vps/compare/',
+  WE: 'https://www.ovhcloud.com/en/vps/compare/ ',
   US: 'https://us.ovhcloud.com/vps/compare/',
-  DEFAULT: 'https://www.ovhcloud.com/en-ie/vps/compare/',
+  DEFAULT: 'https://www.ovhcloud.com/en/vps/compare/',
 };
 
 export default {
