@@ -11,12 +11,14 @@
   z-index: $base-z-index-panel;
   overflow-y: scroll;
   display: flex;
+  visibility: hidden;
   flex-direction: column;
   padding: 1rem;
   box-shadow: 0 0.875rem 0.938rem 0 rgba(51, 62, 77, 0.25);
   transition: transform 0.1s ease-out;
 
   &_toggle {
+    visibility: visible;
     transform: translateX(0);
   }
 }

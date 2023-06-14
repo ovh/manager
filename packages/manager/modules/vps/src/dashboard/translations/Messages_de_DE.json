@@ -18,5 +18,8 @@
   "vps_dashboard_state_upgrading": "Angebot hierfür wird gerade gewechselt",
   "vps_dashboard_auto_migration_warning_new": "Ihr VPS {{vps}} kann mit einem Klick auf die neue Reihe migriert werden.",
   "vps_dashboard_state_rescued": "im Rescue",
-  "vps_dashboard_migration_tile": "Meinen VPS migrieren"
+  "vps_dashboard_migration_tile": "Meinen VPS migrieren",
+  "vps_dashboard_starter_range_info_message_1": "Wechseln Sie mit den Funktionen der Value Angebote und höher auf die Überholspur. Neben automatischen Backups stehen Ihnen auch Plesk-, cPanel- und Windows-Lizenzen, Optionen zum Hinzufügen von Ressourcen und NVMe-SSD-Storage zur Verfügung.",
+  "vps_dashboard_starter_range_info_message_2": "Vergleichen Sie unsere anderen VPS Angebote.",
+  "vps_dashboard_automatic_backup_starter_range_info_message": "Die Option für automatische Backups ist nur ab dem Value Angebot verfügbar. Um diese nutzen zu können, müssen Sie Ihren VPS auf ein höheres Angebot upgraden."
 }

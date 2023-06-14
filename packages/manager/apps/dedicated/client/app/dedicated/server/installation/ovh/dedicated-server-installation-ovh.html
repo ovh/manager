@@ -34,7 +34,7 @@
                         class="form-control"
                         id="selectDesktopType"
                         name="selectDesktopType"
-                        data-ng-options="desktop as ('server_configuration_installation_ovh_desktop_' + desktop | translate) for desktop in installation.desktopType"
+                        data-ng-options="desktop as desktop.label for desktop in installation.desktopType"
                         data-ng-model="installation.selectDesktopType"
                         data-ng-change="installation.hasData = false; setSelectDistribution(null);"
                     >
@@ -476,6 +476,16 @@
                     <span
                         data-translate="server_configuration_installation_ovh_step2_type_disk"
                     ></span>
+                    <span
+                        data-ng-if="informations.softRaidOnlyMirroring && installation.diskGroup.numberOfDisks > 2"
+                    >
+                        <i
+                            class="fa fa-info-circle"
+                            data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_type_disk_warning_windows' | translate:{ t0: installation.diskGroup.numberOfDisks } }}"
+                            data-oui-tooltip-placement="bottom"
+                        >
+                        </i>
+                    </span>
                     <select
                         class="form-control"
                         data-ng-show="informations.nbDisk > 1"
@@ -520,7 +530,6 @@
                         data-ng-hide="setPartition.delModel != null && progress.partition == installation.partitionSchemeModels[setPartition.delModel]"
                         data-ng-repeat="progress in bar.progress | orderBy:'partition.order'"
                         data-ng-style="{
-                             'background': progress.partition.progressColor,
                              'width': progress.progressSize + '%'
                          }"
                     ></div>
@@ -757,6 +766,7 @@
                                     </span>
                                     <input
                                         type="text"
+                                        class="form-control"
                                         data-ng-show="isSetPartition(partition) && partition.typePartition == constants.warningLV"
                                         data-ng-model="partition.volumeName"
                                         data-ng-required="partition.typePartition == constants.warningLV"

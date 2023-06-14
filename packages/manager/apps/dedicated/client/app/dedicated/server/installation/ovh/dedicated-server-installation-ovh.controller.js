@@ -77,6 +77,8 @@ angular
         server: angular.copy($scope.currentActionData.server),
         user: $scope.currentActionData.user,
 
+        defaultOsCategory: 'BASIC',
+
         // get by Server.getOvhPartitionSchemesTemplates
         raidList: null, // Map[nbDisk, available raid]
         fileSystemList: null,
@@ -130,7 +132,7 @@ angular
         warningExistPartition: false,
 
         // STEP1 SELECT
-        selectDesktopType: null,
+        selectDesktopType: {},
         selectFamily: null,
         selectDistribution: null,
         // saveSelectDistribution : save new distribution if a partition
@@ -215,7 +217,6 @@ angular
         display: false,
         hasWarning: false,
         realSize: 0,
-        progressColor: null,
       };
 
       $scope.setPartition = {
@@ -308,17 +309,50 @@ angular
         const getHardRaid = $scope.getHardwareRaid();
         const getOvhTemplates = Server.getOvhTemplates($stateParams.productId)
           .then((templateList) => {
-            $scope.installation.desktopType = templateList.category.sort(
-              (a, b) => a.localeCompare(b),
+            angular.forEach(
+              templateList.category.sort((a, b) => a.localeCompare(b)),
+              (currentCategory) => {
+                if (
+                  $translate.instant(
+                    `server_configuration_installation_ovh_desktop_${currentCategory}`,
+                  ) !==
+                  `server_configuration_installation_ovh_desktop_${currentCategory}`
+                ) {
+                  $scope.installation.desktopType.push({
+                    id: currentCategory,
+                    label: $translate.instant(
+                      `server_configuration_installation_ovh_desktop_${currentCategory}`,
+                    ),
+                  });
+                } else {
+                  // translation does not exist
+                  $scope.installation.desktopType.push({
+                    id: currentCategory,
+                    label:
+                      currentCategory[0].toUpperCase() +
+                      currentCategory.slice(1).toLowerCase(),
+                  });
+                }
+                if (currentCategory === $scope.constants.defaultOsCategory) {
+                  [
+                    $scope.installation.selectDesktopType,
+                  ] = $scope.installation.desktopType.slice(-1);
+                }
+              },
             );
             $scope.installation.familyType = templateList.family.sort((a, b) =>
               a.localeCompare(b),
             );
             $scope.installation.distributionList =
               templateList.templates.results;
-            $scope.installation.selectDesktopType = head(
-              $scope.installation.desktopType,
-            );
+
+            if (
+              Object.keys($scope.installation.selectDesktopType).length === 0
+            ) {
+              $scope.installation.selectDesktopType = head(
+                $scope.installation.desktopType,
+              );
+            }
             $scope.installation.selectFamily = $scope.constants.warningLINUX;
           })
           .catch((data) => {
@@ -358,7 +392,7 @@ angular
       $scope.getCountFilter = function getCountFilter(itemFamily) {
         const tab = $filter('filter')($scope.installation.distributionList, {
           family: itemFamily,
-          category: $scope.installation.selectDesktopType,
+          category: $scope.installation.selectDesktopType.id,
         });
         $scope.countFilter[itemFamily] = tab.length;
         if ($scope.countFilter[itemFamily] > 0) {
@@ -548,7 +582,7 @@ angular
           }
         }
 
-        return realRemainingSize;
+        return Math.floor(realRemainingSize);
       }
 
       function showPartition() {
@@ -573,8 +607,7 @@ angular
             // rename order by orderTable
             angular.forEach(
               $scope.installation.partitionSchemeModels,
-              (partition, _index) => {
-                set(partition, 'progressColor', $scope.getRandomColor(_index));
+              (partition) => {
                 set(partition, 'orderTable', angular.copy(partition.order));
               },
             );
@@ -1033,7 +1066,6 @@ angular
           );
         }
 
-        $scope.newPartition.progressColor = $scope.getRandomColor();
         if (validationTypePrimary(true)) {
           $scope.errorInst.typePrimary = true;
         } else if (
@@ -1556,11 +1588,6 @@ angular
           $scope.installation.nbDiskUse > 1 &&
           !$scope.informations.raidController
         ) {
-          $scope.errorInst.raid0 =
-            partition.raid !== $scope.constants.warningRaid1 &&
-            partition.raid !== $scope.constants.warningRaid0 &&
-            (partition.mountPoint === $scope.constants.warningBoot ||
-              partition.mountPoint === $scope.constants.warningRoot);
           $scope.warning.raid0 =
             !$scope.errorInst.raid0 &&
             partition.raid === $scope.constants.warningRaid0;
@@ -1890,37 +1917,6 @@ angular
         $scope.refreshBar();
 
         return $scope.informations.remainingSize;
-      };
-
-      $scope.getRandomColor = function getRandomColor(index, partition) {
-        const colorSequence = [
-          '#E91E63',
-          '#3F51B5',
-          '#00BCD4',
-          '#8BC34A',
-          '#FFC107',
-          '#795548',
-          '#9C27B0',
-          '#2196F3',
-          '#009688',
-          '#CDDC39',
-          '#FF9800',
-          '#607D8B',
-        ];
-
-        let color =
-          colorSequence[Math.floor(Math.random() * (colorSequence.length - 1))];
-        if (index) {
-          color =
-            colorSequence[
-              (colorSequence.length - index) % colorSequence.length
-            ];
-        }
-
-        if (partition) {
-          set(partition, 'progressColor', color);
-        }
-        return color;
       };
 
       $scope.$watch('installation.partitionSchemeModels', () => {
