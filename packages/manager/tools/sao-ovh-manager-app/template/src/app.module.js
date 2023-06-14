@@ -3,7 +3,7 @@ import angular from 'angular';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import isString from 'lodash/isString';
-import uiRouter from '@uirouter/angularjs';
+import uiRouter, {RejectType} from '@uirouter/angularjs';
 import '@ovh-ux/ui-kit';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
@@ -128,8 +128,8 @@ export default async (containerEl, shellClient) => {
                     : null,
                 },
               },
-              { location: false }
-            )
+              { location: false },
+            );
           }
         });
       },
