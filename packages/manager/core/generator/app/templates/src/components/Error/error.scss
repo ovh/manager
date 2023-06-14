@@ -1,0 +1,16 @@
+.manager-error-page {
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  display: grid;
+  height: 100%;
+  overflow: auto;
+
+  div {
+    padding: 15px;
+  }
+
+  .buttons {
+    text-align: right;
+  }
+}

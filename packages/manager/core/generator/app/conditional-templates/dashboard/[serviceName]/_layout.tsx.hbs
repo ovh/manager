@@ -1,27 +1,31 @@
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Await, defer, useLoaderData, useResolvedPath } from 'react-router-dom';
+import { useParams, useResolvedPath } from 'react-router-dom';
+import { useQueries, UseQueryResult } from '@tanstack/react-query';
 import Breadcrumb, {
   BreadcrumbHandleParams,
 } from '@/components/Breadcrumb/Breadcrumb';
 import { {{dashboardEndpoint}} } from '@/api';
 import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
 import Loading from '@/components/Loading/Loading';
+import Error from '@/components/Error/Error';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.serviceName;
 }
 
-export function loader(params: any) {
-  const { serviceName } = params.params;
-  return defer({
-    services: {{dashboardEndpoint}}({ serviceName }),
-  });
+interface ServiceData {
+  status: number;
 }
 
 export default function DashboardPage(props: any) {
   const { t } = useTranslation('{{appName}}/dashboard');
-  const data = useLoaderData() as Record<string, unknown>;
+  const { serviceName } = useParams();
+  const service: UseQueryResult<ServiceData> = useQueries({
+    queries: [
+      { queryKey: [serviceName], queryFn: () => {{dashboardEndpoint}}({ serviceName }), staleTime: Infinity, },
+    ],
+  })[0] as UseQueryResult<ServiceData>;
 
   const tabsList = [
     {
@@ -36,20 +40,14 @@ export default function DashboardPage(props: any) {
     },
   ];
 
+  if (service?.data?.status && service?.data?.status !== 200) {
+    return <Error error={service.data} />;
+  }
+
   return (
     <div>
       <Breadcrumb />
       <Suspense fallback={<Loading />}>
-        <Await resolve={data.services}>
-          {(services) => {
-            const count = services.length;
-            if (count === 0) {
-              return <div>{t('error_service')}</div>;
-            } else {
-              return false;
-            }
-          }}
-        </Await>
         <Dashboard tabs={tabsList} />
       </Suspense>
     </div>
