@@ -32,5 +32,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       breadcrumb: () => null,
     },
+    atInternet: {
+      rename: 'hpc::nutanix::dashboard::general-info::edit-display-name',
+    },
   });
 };

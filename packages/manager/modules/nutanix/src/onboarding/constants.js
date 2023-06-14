@@ -1,3 +1,9 @@
+export const PREFIX_TRACKING_NUTANIX = 'hpc::nutanix';
+
+export const PREFIX_TRACKING_ONBOARDING = 'onboarding';
+
+export const PREFIX_TRACKING_ONBOARDING_GUIDES = 'onboarding::docs';
+
 export const GUIDES = [
   {
     title: 'nutanix_onboarding_guide1_title',
@@ -18,6 +24,7 @@ export const GUIDES = [
       WS: 'https://docs.ovh.com/us/en/nutanix/high-level-documentation/',
       US: 'https://docs.ovh.com/us/en/nutanix/high-level-documentation/',
     },
+    tracking: 'high-level-documentation',
   },
   {
     title: 'nutanix_onboarding_guide2_title',
@@ -38,6 +45,7 @@ export const GUIDES = [
       WS: 'https://docs.ovh.com/us/en/nutanix/available-services/',
       US: 'https://docs.ovh.com/us/en/nutanix/available-services/',
     },
+    tracking: 'available-services-documentation',
   },
 ];
 
