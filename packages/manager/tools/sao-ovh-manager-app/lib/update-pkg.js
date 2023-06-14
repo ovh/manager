@@ -30,7 +30,7 @@ module.exports = ({ name, description, regions }) => ({
     '@ovh-ux/ng-ovh-request-tagger': '^1.1.7',
     '@ovh-ux/ng-ovh-sso-auth': '^4.6.3',
     '@ovh-ux/ng-ovh-swimming-poll': '^5.0.6',
-    '@ovh-ux/ng-shell-tracking': '^0.1.4',
+    '@ovh-ux/ng-shell-tracking': '^0.2.1',
     '@ovh-ux/ng-translate-async-loader': '^2.1.5',
     '@ovh-ux/ng-ui-router-breadcrumb': '^1.1.7',
     '@ovh-ux/shell': '^1.8.1',
@@ -52,6 +52,7 @@ module.exports = ({ name, description, regions }) => ({
     flatpickr: '~4.6.3',
     oclazyload: '^1.1.0',
     'whatwg-fetch': '^3.5.0',
+    'regenerator-runtime': '^0.13.7',
   },
   devDependencies: {
     '@ovh-ux/manager-webpack-config': '^6.1.1',
