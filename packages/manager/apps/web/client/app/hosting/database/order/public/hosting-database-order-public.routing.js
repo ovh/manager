@@ -4,6 +4,9 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting.dashboard.database.order-public', {
     url: '/order-public',
     component: component.name,
+    params: {
+      preselectDbCategory: null,
+    },
     resolve: {
       catalog: /* @ngInject */ (HostingDatabase) =>
         HostingDatabase.getWebhostingCatalog(),
@@ -42,6 +45,41 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('ovhManagerHostingDatabaseOrderPublic_title'),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
+
+      preselectDbCategory: /* @ngInject */ ($transition$) =>
+        $transition$.params().preselectDbCategory,
+
+      dbCategories: /* @ngInject */ (
+        serviceName,
+        preProdCatalog,
+        webCloudCatalog,
+        HostingDatabaseOrderPublicService,
+      ) => {
+        return HostingDatabaseOrderPublicService.buildDbCategories(
+          preProdCatalog, // change to 'catalog' once it was update
+          webCloudCatalog,
+        );
+      },
+
+      user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
+
+      preProdCatalog: /* @ngInject */ (
+        user,
+        HostingDatabaseOrderPublicService,
+      ) => {
+        return HostingDatabaseOrderPublicService.getPreprodCatalog(
+          user.ovhSubsidiary,
+        );
+      },
+
+      webCloudCatalog: /* @ngInject */ (
+        user,
+        HostingDatabaseOrderPublicService,
+      ) => {
+        return HostingDatabaseOrderPublicService.getWebCloudCatalog(
+          user.ovhSubsidiary,
+        );
+      },
     },
   });
 };

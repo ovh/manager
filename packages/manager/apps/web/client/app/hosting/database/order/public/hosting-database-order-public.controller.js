@@ -5,6 +5,7 @@ import {
 
 import { WEBHOSTING_PRODUCT_NAME } from '../../hosting-database.constants';
 import HostingDatabaseOrderPublic from './hosting-database-order-public.service';
+import { DB_OFFERS } from './hosting-database-order-public.constants';
 
 export default class {
   /* @ngInject */
@@ -31,6 +32,10 @@ export default class {
         this.characteristicsOfAvailableProducts,
       ),
     };
+
+    this.model = {
+      dbCategory: {},
+    };
   }
 
   getPlanCode() {
@@ -41,5 +46,20 @@ export default class {
 
   getOrderState(state) {
     this.characteristics.isEditable = !state.isLoading;
+  }
+
+  isValidDbConfig() {
+    const { category, selectVersion, selectEngine } = this.model.dbCategory;
+    const { selectEngineVersion } = selectEngine || {};
+    const isValidStarterConfig =
+      category === DB_OFFERS.STARTER.CATEGORY && selectVersion;
+    const isValidPrivateConfig =
+      category === DB_OFFERS.PRIVATE.CATEGORY && selectEngineVersion;
+
+    return isValidStarterConfig || isValidPrivateConfig;
+  }
+
+  onDbCategoryClick(dbCategory) {
+    this.model.dbCategory = dbCategory;
   }
 }

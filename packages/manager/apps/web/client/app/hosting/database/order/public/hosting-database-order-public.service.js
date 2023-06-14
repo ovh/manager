@@ -1,12 +1,19 @@
+import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
+import groupBy from 'lodash/groupBy';
 import toNumber from 'lodash/toNumber';
-import { PRODUCT_NAME } from './hosting-database-order-public.constants';
+
+import {
+  DB_OFFERS,
+  PRODUCT_NAME,
+} from './hosting-database-order-public.constants';
 
 export default class {
   /* @ngInject */
   constructor(
     $q,
     $translate,
+    $http,
     coreConfig,
     OvhApiHostingWeb,
     OvhApiOrder,
@@ -14,6 +21,7 @@ export default class {
   ) {
     this.$q = $q;
     this.$translate = $translate;
+    this.$http = $http;
     this.coreConfig = coreConfig;
     this.OvhApiHostingWeb = OvhApiHostingWeb;
     this.OvhApiOrder = OvhApiOrder;
@@ -88,5 +96,78 @@ export default class {
             ),
         );
       });
+  }
+
+  static getStartSqlCategory(catalog) {
+    return catalog.addons.filter(({ planCode }) =>
+      planCode.startsWith(DB_OFFERS.STARTER.PLAN_CODE_PREFIX),
+    );
+  }
+
+  static getWebCloudCategory(webCloudCatalog) {
+    const offers = webCloudCatalog.plans
+      .filter(({ family }) => family === DB_OFFERS.PRIVATE.FAMILY)
+      .map((dbGroup) => ({
+        ...dbGroup,
+        productSize: dbGroup.product.split('-')[2],
+      }));
+
+    // init db engines
+    offers.forEach((dbOffer) => {
+      const dbms = dbOffer.configurations
+        .find(({ name }) => name === 'engine')
+        .values.map((db) => {
+          const [dbName, dbVersion] = db.split('_');
+          return { db, dbName, dbVersion };
+        });
+      const groupedDbms = groupBy(dbms, 'dbName');
+      const engines = Object.keys(groupedDbms).map((dbGroup) => ({
+        dbGroup,
+        versions: groupedDbms[dbGroup],
+      }));
+
+      set(dbOffer, 'engines', engines);
+    });
+
+    return offers;
+  }
+
+  buildDbCategories(catalog, webCloudCatalog) {
+    const startSqlCategory = this.constructor.getStartSqlCategory(catalog);
+    const webCloudCategory = this.constructor.getWebCloudCategory(
+      webCloudCatalog,
+    );
+
+    // const db groups
+    const groupedCategories = {
+      [DB_OFFERS.STARTER.CATEGORY]: startSqlCategory,
+      [DB_OFFERS.PRIVATE.CATEGORY]: webCloudCategory,
+    };
+    const dbCategories = Object.keys(groupedCategories).map((category) => {
+      const versions = groupedCategories[category];
+
+      return {
+        category,
+        versions,
+        selectVersion: versions[0],
+        selectEngine: null,
+      };
+    });
+
+    return dbCategories;
+  }
+
+  getWebCloudCatalog(ovhSubsidiary) {
+    return this.$http
+      .get(`/order/catalog/public/cloudDB?ovhSubsidiary=${ovhSubsidiary}`)
+      .then(({ data }) => data);
+  }
+
+  getPreprodCatalog(ovhSubsidiary) {
+    return this.$http
+      .get(
+        `/order/catalog/public/webhostingPreprod?ovhSubsidiary=${ovhSubsidiary}`,
+      )
+      .then(({ data }) => data);
   }
 }
