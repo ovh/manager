@@ -99,6 +99,7 @@ angular
         warningLV: 'LV',
         warningLogical: 'LOGICAL',
         warningPrimary: 'PRIMARY',
+        warningNone: 'NONE',
         warningSwap: 'SWAP',
         warningReiserfs: 'REISERFS',
         warningWindows: 'WINDOWS',
@@ -112,7 +113,6 @@ angular
 
         swapLabel: 'swap',
 
-        maxSizeSwap: 30000, // = 30Go
         minSizePartition: 10, // = 10Mo
         minSizeWindows: 32768, // = 32Go
         minSizeReiserfs: 32, // = 32Mo
@@ -169,7 +169,6 @@ angular
           postInstallationScriptLink: null,
           postInstallationScriptReturn: null,
           sshKeyName: null,
-          useDistributionKernel: false,
           useSpla: false,
           variablePartition: null,
           validForm: true,
@@ -242,13 +241,10 @@ angular
         order: false,
         orderFirst: false,
         orderFirstWin: false,
-        fileSystemSwap: false,
-        fileSystemNoSwap: false,
         raid0: false,
         raidLv: false,
         orderType: false,
         typePrimary: false,
-        typeLvSwap: false,
 
         mountPointEmpty: false,
         mountPoint: false,
@@ -259,7 +255,6 @@ angular
 
         partitionSizeToAdd: false,
         partitionSizeOver: false,
-        partitionSizeSwap: false,
         partitionSize: false,
         partitionSizeMin: false,
         partitionSizeWindows: false,
@@ -283,7 +278,6 @@ angular
         orderList: [],
         mountPointList: [],
         volumeNameList: [],
-        hasSwap: false,
         maxOrder: 0,
       };
 
@@ -920,7 +914,6 @@ angular
         $scope.validation.orderList = [];
         $scope.validation.mountPointList = [];
         $scope.validation.volumeNameList = [];
-        $scope.validation.hasSwap = false;
         $scope.validation.maxOrder = 0;
         angular.forEach(
           $scope.installation.partitionSchemeModels,
@@ -950,13 +943,6 @@ angular
               $scope.validation.volumeNameList[
                 partition.volumeName.toLowerCase()
               ] = true;
-            }
-            if (
-              partition.fileSystem === $scope.constants.warningSwap &&
-              (!excludedPartition ||
-                excludedPartition.fileSystem !== $scope.constants.warningSwap)
-            ) {
-              $scope.validation.hasSwap = true;
             }
           },
         );
@@ -1051,8 +1037,8 @@ angular
         if (validationTypePrimary(true)) {
           $scope.errorInst.typePrimary = true;
         } else if (
-          $scope.installation.selectDistribution.family ===
-            $scope.constants.warningWindows &&
+          $scope.informations.softRaidOnlyMirroring &&
+          $scope.newPartition.mountPoint === $scope.constants.warningCwin &&
           $scope.newPartition.partitionSize < $scope.constants.minSizeWindows
         ) {
           $scope.errorInst.partitionSizeWindows = true;
@@ -1084,7 +1070,6 @@ angular
         return (
           !$scope.hasErrorOrder() &&
           !$scope.hasErrorType() &&
-          !$scope.hasErrorFileSystem() &&
           !$scope.hasErrorMountPoint() &&
           !$scope.hasErrorVolumeName() &&
           !$scope.hasErrorRaid() &&
@@ -1419,7 +1404,6 @@ angular
       // ------TYPE VALIDATION------
       function validationVolumeNameByType(partition) {
         $scope.errorInst.volumeNameEmpty =
-          !$scope.errorInst.typeLvSwap &&
           partition.typePartition === $scope.constants.warningLV &&
           (!partition.volumeName || partition.volumeName === '');
       }
@@ -1428,16 +1412,11 @@ angular
         return (
           $scope.errorInst.orderType ||
           $scope.errorInst.typePrimary ||
-          $scope.errorInst.typeLvSwap ||
           $scope.errorInst.mountPointPrimary
         );
       };
 
       $scope.validationType = function validationType(partition) {
-        $scope.errorInst.typeLvSwap =
-          partition.typePartition === $scope.constants.warningLV &&
-          partition.fileSystem === $scope.constants.warningSwap;
-
         if (
           $scope.installation.selectDistribution.family ===
             $scope.constants.warningWindows &&
@@ -1455,7 +1434,6 @@ angular
         if (
           !$scope.errorInst.order &&
           !$scope.errorInst.orderFirst &&
-          !$scope.errorInst.typeLvSwap &&
           !$scope.errorInst.mountPointPrimary
         ) {
           angular.forEach(
@@ -1487,27 +1465,11 @@ angular
 
       // ------FILE SYSTEM VALIDATION------
 
-      $scope.hasErrorFileSystem = function hasErrorFileSystem() {
-        return (
-          $scope.errorInst.fileSystemSwap || $scope.errorInst.fileSystemNoSwap
-        );
-      };
       $scope.validationFileSystem = function validationFileSystem(partition) {
-        $scope.errorInst.fileSystemSwap =
-          $scope.validation.hasSwap &&
-          partition.fileSystem === $scope.constants.warningSwap;
-        $scope.errorInst.fileSystemNoSwap =
-          $scope.installation.selectDistribution.family !==
-            $scope.constants.warningWindows &&
-          !$scope.validation.hasSwap &&
-          partition.fileSystem !== $scope.constants.warningSwap;
-        if (!$scope.errorInst.fileSystemSwap) {
-          if (partition.fileSystem === $scope.constants.warningSwap) {
-            set(partition, 'mountPoint', $scope.constants.swapLabel);
-            $scope.validationMountPoint(partition);
-          }
-          $scope.validationSize(partition);
+        if (partition.fileSystem === $scope.constants.warningSwap) {
+          set(partition, 'mountPoint', $scope.constants.swapLabel);
         }
+        $scope.validationSize(partition);
       };
 
       // ------MOUNT POINT VALIDATION------
@@ -1553,10 +1515,7 @@ angular
               /^(ovh|gentoo-ovh_64|gentoo-ovh)$/.test(
                 $scope.installation.selectDistribution.family,
               );
-          } else if (
-            $scope.installation.selectDistribution.family ===
-            $scope.constants.warningWindows
-          ) {
+          } else {
             $scope.errorInst.mountPointWindows =
               !$scope.errorInst.mountPointEmpty &&
               !$scope.errorInst.mountPointUse &&
@@ -1590,6 +1549,9 @@ angular
         return $scope.errorInst.raid0;
       };
       $scope.validationRaid = function validationRaid(partition) {
+        if (partition.fileSystem === $scope.constants.warningSwap) {
+          set(partition, 'raid', $scope.constants.warningRaid1);
+        }
         if (
           $scope.installation.nbDiskUse > 1 &&
           !$scope.informations.raidController
@@ -1601,8 +1563,7 @@ angular
               partition.mountPoint === $scope.constants.warningRoot);
           $scope.warning.raid0 =
             !$scope.errorInst.raid0 &&
-            partition.raid === $scope.constants.warningRaid0 &&
-            partition.fileSystem !== $scope.constants.warningSwap;
+            partition.raid === $scope.constants.warningRaid0;
         }
         $scope.validationSize(partition);
       };
@@ -1612,7 +1573,6 @@ angular
       $scope.hasErrorSize = function hasErrorSize() {
         return (
           $scope.errorInst.partitionSizeOver ||
-          $scope.errorInst.partitionSizeSwap ||
           $scope.errorInst.partitionSize ||
           $scope.errorInst.partitionSizeBoot ||
           $scope.errorInst.partitionSizeReiserfs ||
@@ -1621,18 +1581,6 @@ angular
           $scope.errorInst.partitionSizeRequired
         );
       };
-
-      // swap size > 30Go = error
-      function validationSizeSwap(partition) {
-        $scope.errorInst.partitionSizeSwap =
-          partition.fileSystem === $scope.constants.warningSwap &&
-          $scope.getRealDisplaySize({
-            partition,
-            notDisplay: true,
-            noRaid: true,
-          }) > $scope.constants.maxSizeSwap;
-        return $scope.errorInst.partitionSizeSwap;
-      }
 
       // boot size < 50Mo = error
       function validationSizeBoot(partition) {
@@ -1661,8 +1609,8 @@ angular
       // windows size < 20Go = error
       function validationSizeWindowsMin(partition) {
         $scope.errorInst.partitionSizeWindows =
-          $scope.installation.selectDistribution.family ===
-            $scope.constants.warningWindows &&
+          $scope.informations.softRaidOnlyMirroring &&
+          partition.mountPoint === $scope.constants.warningCwin &&
           $scope.getRealDisplaySize({
             partition,
             notDisplay: true,
@@ -1697,7 +1645,6 @@ angular
         $scope.getRemainingSize();
         return (
           $scope.errorInst.partitionSizeOver ||
-          validationSizeSwap(partition) ||
           validationSizeBoot(partition) ||
           validationSizeReiserfs(partition) ||
           validationSizeWindowsMin(partition) ||
@@ -2416,7 +2363,6 @@ angular
           postInstallationScriptLink: null,
           postInstallationScriptReturn: null,
           sshKeyName: null,
-          useDistributionKernel: false,
           useSpla: false,
           variablePartition: null,
           validForm: true,
@@ -2457,9 +2403,7 @@ angular
         angular.forEach(
           $scope.installation.partitionSchemeModels,
           (partition) => {
-            if (partition.fileSystem !== $scope.constants.warningSwap) {
-              list.push(partition);
-            }
+            list.push(partition);
           },
         );
         return list;
@@ -2566,7 +2510,6 @@ angular
               ? $scope.installation.options.postInstallationScriptReturn
               : null,
             sshKeyName: $scope.installation.options.sshKeyName,
-            useDistribKernel: $scope.installation.options.useDistributionKernel,
             useSpla: $scope.installation.options.useSpla,
             softRaidDevices:
               $scope.informations.nbDisk > 2 &&
@@ -2660,8 +2603,6 @@ angular
               ? $scope.installation.options.postInstallationScriptReturn
               : null,
             sshKeyName: $scope.installation.options.sshKeyName,
-            useDistributionKernel:
-              $scope.installation.options.useDistributionKernel,
           },
         ).then(
           () => {

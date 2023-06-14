@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.63.1...@ovh-ux/manager-telecom@14.0.0) (2023-06-12)
+
+
+### Features
+
+* **generator:**  add generator vitejs react v1 ([#9186](https://github.com/ovh/manager/issues/9186)) ([c911ee6](https://github.com/ovh/manager/commit/c911ee6168e2803e2022dc0e275f242953ad8255))
+
+
+### BREAKING CHANGES
+
+* **generator:** rename useShellClient into initShellClient
+
+
+
+
+
+## [13.63.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.63.0...@ovh-ux/manager-telecom@13.63.1) (2023-06-07)
+
+
+### Bug Fixes
+
+* **telecom:** check eligibility status before show retention message ([#9342](https://github.com/ovh/manager/issues/9342)) ([a66ba8e](https://github.com/ovh/manager/commit/a66ba8e58e3604d2ef5c5c49f85aba7f8cc1aac5))
+
+
+
+
+
+# [13.63.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.62.0...@ovh-ux/manager-telecom@13.63.0) (2023-05-31)
+
+
+### Bug Fixes
+
+* set need new modem flag to false when no modem selected ([#9284](https://github.com/ovh/manager/issues/9284)) ([af64bde](https://github.com/ovh/manager/commit/af64bde4e70ff86b05e40fd4bd190835b383d971))
+
+
+### Features
+
+* **telecom:** add new security level for wifi on modem ([#9317](https://github.com/ovh/manager/issues/9317)) ([d5c33ae](https://github.com/ovh/manager/commit/d5c33aea662db9e3fd285ae762dba7d367c93cf3))
+
+
+
+
+
 # [13.62.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.61.1...@ovh-ux/manager-telecom@13.62.0) (2023-05-24)
 
 

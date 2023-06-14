@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-overthebox-app",
-  "version": "5.9.16",
+  "version": "5.9.18",
   "private": true,
   "description": "OverTheBox standalone application.",
   "repository": {
@@ -19,8 +19,8 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-overthebox-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^6.6.0",
-    "@ovh-ux/manager-core": "^12.12.10",
+    "@ovh-ux/manager-config": "^7.0.0",
+    "@ovh-ux/manager-core": "^12.12.12",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",
     "@ovh-ux/manager-overthebox": "^6.11.1",
     "@ovh-ux/manager-telecom-styles": "^4.6.1",

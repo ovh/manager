@@ -5,7 +5,7 @@ import 'ovh-api-services';
 
 import component from './user-add.component';
 
-const moduleName = 'ovhManagerPciUsersAddComponent';
+const moduleName = 'ovhManagerPciProjectColdArchiveUsersAdd';
 
 angular
   .module(moduleName, [

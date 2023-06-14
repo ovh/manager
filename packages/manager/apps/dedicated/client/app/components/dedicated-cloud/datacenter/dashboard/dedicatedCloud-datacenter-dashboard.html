@@ -64,64 +64,6 @@
                     data-description="{{:: $ctrl.datacenter.model.filers }}"
                 ></oui-tile-definition>
                 <oui-tile-definition
-                    data-term="{{:: 'dedicatedCloud_datacenter_VM_Backup' | translate }}"
-                    data-description="{{:: 'dedicatedCloud_coming_soon' | translate }}"
-                ></oui-tile-definition>
-                <oui-tile-definition
-                    data-ng-if="$ctrl.drpAvailability"
-                    data-term="{{:: 'dedicatedCloud_datacenter_drp' | translate }}"
-                >
-                    <oui-tile-description>
-                        <span
-                            class="oui-badge"
-                            data-ng-class="{
-                                  'oui-badge_error': $ctrl.drpGlobalStatus.error,
-                                  'oui-badge_warning': $ctrl.drpGlobalStatus.warning,
-                                  'oui-badge_success': $ctrl.drpGlobalStatus.success
-                            }"
-                        >
-                            <span
-                                data-ng-if="::!$ctrl.currentDrp.isWaitingVpnConfiguration"
-                                data-translate="{{ 'dedicatedCloud_options_zerto_status_' + $ctrl.drpStatus }}"
-                            ></span>
-                            <span
-                                data-ng-if="::$ctrl.currentDrp.isWaitingVpnConfiguration"
-                                data-translate="{{:: 'dedicatedCloud_options_zerto_status_vpn_' + $ctrl.currentDrp.vpnStatus }}"
-                            ></span>
-                        </span>
-                    </oui-tile-description>
-                    <oui-action-menu
-                        data-ng-if="::$ctrl.isDrpActionPossible"
-                        data-compact
-                        data-placement="end"
-                    >
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.goToDrp()"
-                            data-ng-if="$ctrl.drpStatus === 'disabled'"
-                        >
-                            <span
-                                data-translate="dedicatedCloud_options_zerto_action_install"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.goToDrpSummary()"
-                            data-ng-if="::$ctrl.currentDrp.vpnStatus === $ctrl.DRP_VPN_STATUS.notConfigured"
-                        >
-                            <span
-                                data-translate="dedicatedCloud_options_zerto_action_add_configuration"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-ng-if="$ctrl.drpStatus === $ctrl.DRP_STATUS.delivered && $ctrl.drpRemotePccStatus === $ctrl.DRP_STATUS.delivered"
-                            data-on-click="$ctrl.goToDeleteDrp()"
-                        >
-                            <span
-                                data-translate="dedicatedCloud_options_zerto_action_delete"
-                            ></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
-                </oui-tile-definition>
-                <oui-tile-definition
                     data-term="{{:: 'dedicatedCloud_subscription_links' | translate }}"
                 >
                     <oui-tile-description class="oui-link">
@@ -176,6 +118,68 @@
                             </span>
                         </a>
                     </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+
+        <div class="col-md-4">
+            <oui-tile
+                data-heading="{{:: 'dedicatedCloud_options_title' | translate }}"
+                data-loading="$ctrl.loading"
+            >
+                <oui-tile-definition
+                    data-ng-if="$ctrl.drpAvailability"
+                    data-term="{{:: 'dedicatedCloud_datacenter_drp' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="{
+                                  'oui-badge_error': $ctrl.drpGlobalStatus.error,
+                                  'oui-badge_warning': $ctrl.drpGlobalStatus.warning,
+                                  'oui-badge_success': $ctrl.drpGlobalStatus.success
+                            }"
+                        >
+                            <span
+                                data-ng-if="::!$ctrl.currentDrp.isWaitingVpnConfiguration"
+                                data-translate="{{ 'dedicatedCloud_options_zerto_status_' + $ctrl.drpStatus }}"
+                            ></span>
+                            <span
+                                data-ng-if="::$ctrl.currentDrp.isWaitingVpnConfiguration"
+                                data-translate="{{:: 'dedicatedCloud_options_zerto_status_vpn_' + $ctrl.currentDrp.vpnStatus }}"
+                            ></span>
+                        </span>
+                    </oui-tile-description>
+                    <oui-action-menu
+                        data-ng-if="::$ctrl.isDrpActionPossible"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToDrp()"
+                            data-ng-if="$ctrl.drpStatus === 'disabled'"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_options_zerto_action_install"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToDrpSummary()"
+                            data-ng-if="::$ctrl.currentDrp.vpnStatus === $ctrl.DRP_VPN_STATUS.notConfigured"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_options_zerto_action_add_configuration"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-ng-if="$ctrl.drpStatus === $ctrl.DRP_STATUS.delivered && $ctrl.drpRemotePccStatus === $ctrl.DRP_STATUS.delivered"
+                            data-on-click="$ctrl.goToDeleteDrp()"
+                        >
+                            <span
+                                data-translate="dedicatedCloud_options_zerto_action_delete"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
                 </oui-tile-definition>
             </oui-tile>
         </div>

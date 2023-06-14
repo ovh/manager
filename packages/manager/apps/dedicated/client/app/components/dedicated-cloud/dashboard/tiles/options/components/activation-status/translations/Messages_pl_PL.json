@@ -3,9 +3,10 @@
   "ovhManagerPccDashboardComponentActivationStatus_beingDeactivated": "Trwa wyłączanie",
   "ovhManagerPccDashboardComponentActivationStatus_cancelling": "Trwa anulowanie",
   "ovhManagerPccDashboardComponentActivationStatus_disabled": "Wyłączony",
-  "ovhManagerPccDashboardComponentActivationStatus_enabled": "Włączony",
+  "ovhManagerPccDashboardComponentActivationStatus_enabled": "Włączone",
   "ovhManagerPccDashboardComponentActivationStatus_inError": "Błąd",
   "ovhManagerPccDashboardComponentActivationStatus_needsConfiguration": "Trwa konfiguracja",
-  "ovhManagerPccDashboardComponentActivationStatus_awaitingValidation": "Trwa zatwierdzenie",
-  "ovhManagerPccDashboardComponentActivationStatus_unknown": "Nieznany status"
+  "ovhManagerPccDashboardComponentActivationStatus_awaitingValidation": "Trwa zatwierdzanie",
+  "ovhManagerPccDashboardComponentActivationStatus_unknown": "Nieznany status",
+  "ovhManagerPccDashboardComponentActivationStatus_hosted_on": "Hostowany w {{datacenter}}"
 }

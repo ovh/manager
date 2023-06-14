@@ -3,7 +3,8 @@
 exports[`Input Calendar displays calendar on input click 1`] = `
 <DocumentFragment>
   <div
-    class="chakra-input__group css-4302v8"
+    class="chakra-input__group css-bx0blc"
+    data-group="true"
   >
     <input
       aria-readonly="true"
@@ -61,7 +62,7 @@ exports[`Input Calendar displays calendar on input click 1`] = `
         <div
           class="chakra-popover__arrow css-0"
           data-popper-arrow-inner=""
-          style="transform: rotate(45deg); top: 0px; left: 0px; width: 100%; height: 100%; position: absolute; z-index: inherit; box-shadow: -1px -1px 1px 0 var(--popper-arrow-shadow-color);"
+          style="--popper-arrow-default-shadow: -1px -1px 1px 0 var(--popper-arrow-shadow-color); transform: rotate(45deg); top: 0px; left: 0px; width: 100%; height: 100%; position: absolute; z-index: inherit; box-shadow: var(--popper-arrow-shadow, var(--popper-arrow-default-shadow));"
         />
       </div>
       <div
@@ -560,7 +561,8 @@ exports[`Input Calendar displays calendar on input click 1`] = `
 exports[`Input Calendar renders input calendar with passed date and calendar closed 1`] = `
 <DocumentFragment>
   <div
-    class="chakra-input__group css-4302v8"
+    class="chakra-input__group css-bx0blc"
+    data-group="true"
   >
     <input
       aria-readonly="true"

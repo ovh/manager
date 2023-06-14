@@ -695,25 +695,20 @@
                                     >
                                     </select>
                                 </td>
-                                <td
-                                    class="form-group"
-                                    data-ng-class="{
-                                        'has-error': isSetPartition(partition) && hasErrorFileSystem()
-                                    }"
-                                >
+                                <td class="form-group">
                                     <span
-                                        data-ng-hide="isSetPartition(partition) && partition.fileSystem != constants.warningSwap"
+                                        data-ng-hide="isSetPartition(partition) && partition.fileSystem != constants.warningNone"
                                         data-translate="{{ 'server_configuration_installation_' + partition.fileSystem }}"
                                     >
                                     </span>
                                     <span
-                                        data-ng-if="constants.fileSystemList.length === 1 && isSetPartition(partition) && partition.fileSystem != constants.warningSwap && informations.softRaidOnlyMirroring"
+                                        data-ng-if="constants.fileSystemList.length === 1 && isSetPartition(partition) && informations.softRaidOnlyMirroring && partition.fileSystem != constants.warningNone"
                                         data-ng-bind="partition.fileSystem"
                                     >
                                     </span>
                                     <select
                                         class="form-control"
-                                        data-ng-if="constants.fileSystemList.length !== 1 && isSetPartition(partition) && partition.fileSystem != constants.warningSwap && !informations.softRaidOnlyMirroring"
+                                        data-ng-if="constants.fileSystemList.length !== 1 && isSetPartition(partition) && !informations.softRaidOnlyMirroring && partition.fileSystem != constants.warningNone"
                                         data-ng-options="fileSystem as ('server_configuration_installation_' + fileSystem | translate) for fileSystem in constants.fileSystemList"
                                         data-ng-model="partition.fileSystem"
                                         data-ng-change="validationFileSystem(partition)"
@@ -735,11 +730,12 @@
                                     <input
                                         type="text"
                                         class="form-control"
-                                        data-ng-if="isSetPartition(partition) && partition.fileSystem != constants.warningSwap"
+                                        data-ng-if="isSetPartition(partition)"
+                                        data-ng-show="isSetPartition(partition) && partition.fileSystem !== constants.warningSwap"
                                         data-ng-model="partition.mountPoint"
-                                        data-ng-required="true"
+                                        data-ng-required="partition.fileSystem !== constants.warningSwap"
                                         data-ng-change="validationMountPoint(partition)"
-                                        data-ng-disabled="!validation.hasSwap && partition.fileSystem == constants.warningSwap || informations.softRaidOnlyMirroring"
+                                        data-ng-disabled="informations.softRaidOnlyMirroring"
                                     />
                                 </td>
                                 <td
@@ -750,7 +746,7 @@
                                     }"
                                 >
                                     <span
-                                        data-ng-show="(partition.typePartition != constants.warningLV && partition.fileSystem != constants.warningZFS) || errorInst.typeLvSwap"
+                                        data-ng-show="partition.typePartition != constants.warningLV"
                                     >
                                         -
                                     </span>
@@ -761,7 +757,7 @@
                                     </span>
                                     <input
                                         type="text"
-                                        data-ng-show="isSetPartition(partition) && (partition.typePartition == constants.warningLV || partition.fileSystem == constants.warningZFS) && !errorInst.typeLvSwap"
+                                        data-ng-show="isSetPartition(partition) && partition.typePartition == constants.warningLV"
                                         data-ng-model="partition.volumeName"
                                         data-ng-required="partition.typePartition == constants.warningLV"
                                         data-ng-change="validationVolumeName(partition)"
@@ -831,23 +827,17 @@
                                     }"
                                 >
                                     <span
-                                        data-ng-hide="isSetPartition(partition) || partition.fileSystem != constants.warningSwap"
+                                        data-ng-hide="isSetPartition(partition)"
                                         data-ng-bind="installation.nbDiskUse"
                                     >
                                     </span>
                                     <span
-                                        data-ng-hide="isSetPartition(partition) || partition.fileSystem != constants.warningSwap"
+                                        data-ng-hide="isSetPartition(partition)"
                                     >
                                         x
                                     </span>
                                     <span
-                                        data-ng-hide="isSetPartition(partition) || partition.fileSystem != constants.warningSwap"
-                                        data-ng-bind="getDisplaySize(partition.partitionSize)"
-                                    >
-                                    </span>
-
-                                    <span
-                                        data-ng-hide="isSetPartition(partition) || partition.fileSystem == constants.warningSwap"
+                                        data-ng-hide="isSetPartition(partition)"
                                         data-ng-bind="getDisplaySize(partition.partitionSize)"
                                     >
                                     </span>
@@ -987,12 +977,7 @@
                                     >
                                     </select>
                                 </td>
-                                <td
-                                    class="form-group"
-                                    data-ng-class="{
-                                        'has-error': hasErrorFileSystem()
-                                    }"
-                                >
+                                <td class="form-group">
                                     <span
                                         data-ng-if="constants.fileSystemList.length === 1 && informations.softRaidOnlyMirroring"
                                         data-ng-bind="newPartition.fileSystem"
@@ -1014,13 +999,18 @@
                                         'has-error': hasErrorMountPoint()
                                     }"
                                 >
+                                    <span
+                                        data-ng-hide="newPartition.fileSystem !== constants.warningSwap"
+                                        data-ng-bind="newPartition.mountPoint"
+                                    >
+                                    </span>
                                     <input
                                         type="text"
                                         class="form-control"
+                                        data-ng-show="newPartition.fileSystem !== constants.warningSwap"
                                         data-ng-model="newPartition.mountPoint"
                                         data-ng-required="true"
                                         data-ng-change="validationMountPoint(newPartition)"
-                                        data-ng-disabled="!validation.hasSwap && newPartition.fileSystem == constants.warningSwap"
                                     />
                                 </td>
                                 <td
@@ -1051,9 +1041,14 @@
                                         'has-error': hasErrorRaid()
                                     }"
                                 >
+                                    <span
+                                        data-ng-hide="newPartition.fileSystem !== constants.warningSwap"
+                                    >
+                                        -
+                                    </span>
                                     <select
                                         class="form-control"
-                                        data-ng-if="!informations.softRaidOnlyMirroring"
+                                        data-ng-if="newPartition.fileSystem !== constants.warningSwap && !informations.softRaidOnlyMirroring"
                                         data-ng-options="raid as raid.replace('_','') for raid in getRaidList(installation.nbDiskUse)"
                                         data-ng-model="newPartition.raid"
                                         data-ng-change="validationRaid(newPartition)"
@@ -1279,25 +1274,6 @@
                                 data-translate="server_configuration_installation_ovh_step2_error_partition_mountPoint_windows"
                             ></span>
                         </li>
-                        <li data-ng-show="errorInst.fileSystemSwap">
-                            <span
-                                class="red"
-                                data-translate="server_configuration_installation_ovh_step2_error_partition_file_system_swap"
-                            ></span>
-                        </li>
-                        <li data-ng-show="errorInst.fileSystemNoSwap">
-                            <span
-                                class="red"
-                                data-translate="server_configuration_installation_ovh_step2_error_partition_file_system_no_swap"
-                            ></span>
-                        </li>
-                        <li data-ng-show="errorInst.partitionSizeSwap">
-                            <span
-                                class="red"
-                                data-translate="server_configuration_installation_ovh_step2_error_partition_size_swap"
-                                data-translate-values="{ t0: getDisplaySize(constants.maxSizeSwap) }"
-                            ></span>
-                        </li>
                         <li data-ng-show="errorInst.partitionSizeWindows">
                             <span
                                 class="red"
@@ -1332,10 +1308,16 @@
                                 data-translate="server_configuration_installation_ovh_step2_error_partition_type_order"
                             ></span>
                         </li>
-                        <li data-ng-show="errorInst.typeLvSwap">
+                        <li data-ng-show="errorInst.typeLogicalLv">
                             <span
                                 class="red"
-                                data-translate="server_configuration_installation_ovh_step2_error_partition_type_lv_swap"
+                                data-translate="server_configuration_installation_ovh_step2_error_partition_type_logical_lv"
+                            ></span>
+                        </li>
+                        <li data-ng-show="errorInst.raidLv">
+                            <span
+                                class="red"
+                                data-translate="server_configuration_installation_ovh_step2_error_partition_raid_LV"
                             ></span>
                         </li>
                         <li data-ng-show="configError.raidDiskUse">
@@ -1461,9 +1443,18 @@
                                     data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-translate="{{ 'server_configuration_installation_' + partition.typePartition }}"
                                 ></td>
-                                <td
-                                    data-translate="{{ 'server_configuration_installation_' + partition.fileSystem }}"
-                                ></td>
+                                <td>
+                                    <span
+                                        data-ng-if="partition.fileSystem == constants.warningNone"
+                                    >
+                                        -
+                                    </span>
+                                    <span
+                                        data-ng-if="partition.fileSystem != constants.warningNone"
+                                        data-translate="{{ 'server_configuration_installation_' + partition.fileSystem }}"
+                                    >
+                                    </span>
+                                </td>
                                 <td
                                     data-ng-if="!informations.softRaidOnlyMirroring"
                                     data-ng-bind="partition.mountPoint"
@@ -1866,22 +1857,6 @@
                                 data-ng-model="installation.options.postInstallationScriptReturn"
                                 data-ng-trim="true"
                             />
-                        </div>
-
-                        <!-- useDistributionKernel -->
-                        <div
-                            class="checkbox"
-                            data-ng-show="installation.selectDistribution.supportsDistributionKernel"
-                        >
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    data-ng-model="installation.options.useDistributionKernel"
-                                />
-                                <span
-                                    data-translate="server_configuration_installation_form_useDistribKernel"
-                                ></span>
-                            </label>
                         </div>
 
                         <!-- useSpla -->

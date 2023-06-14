@@ -25,6 +25,7 @@ const component = {
     addOidcProvider: '<',
     updateOidcProvider: '<',
     removeOidcProvider: '<',
+    isKubernetesInstalling: '<',
   },
   template,
   controller,

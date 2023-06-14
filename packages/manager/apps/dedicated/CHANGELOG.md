@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.61.4...@ovh-ux/manager-dedicated@18.0.0) (2023-06-12)
+
+
+### Features
+
+* **generator:**  add generator vitejs react v1 ([#9186](https://github.com/ovh/manager/issues/9186)) ([c911ee6](https://github.com/ovh/manager/commit/c911ee6168e2803e2022dc0e275f242953ad8255))
+
+
+### BREAKING CHANGES
+
+* **generator:** rename useShellClient into initShellClient
+
+
+
+
+
+## [17.61.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.61.3...@ovh-ux/manager-dedicated@17.61.4) (2023-06-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [17.61.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.61.2...@ovh-ux/manager-dedicated@17.61.3) (2023-06-07)
+
+
+### Bug Fixes
+
+* **dedicated:** make swap partition removable ([#9123](https://github.com/ovh/manager/issues/9123)) ([0c167ff](https://github.com/ovh/manager/commit/0c167ff52daca15b4b1e9d3a1c954afee0e4cb88))
+* **dedicated:** removal of usedistributionkernel, usedistribkernel options ([#9243](https://github.com/ovh/manager/issues/9243)) ([1227731](https://github.com/ovh/manager/commit/1227731139313da54450d49915b36baee3cacf73))
+
+
+
+
+
+## [17.61.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.61.1...@ovh-ux/manager-dedicated@17.61.2) (2023-06-05)
+
+
+### Bug Fixes
+
+* **pcc:** nsx batch 1 ([#8829](https://github.com/ovh/manager/issues/8829)) ([70f68c8](https://github.com/ovh/manager/commit/70f68c8d33045ba38835b8d7ef91c9560b494810))
+
+
+
+
+
+## [17.61.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.61.0...@ovh-ux/manager-dedicated@17.61.1) (2023-05-31)
+
+
+### Bug Fixes
+
+* **dedicated:** add missing translations ([#9314](https://github.com/ovh/manager/issues/9314)) ([8cac97a](https://github.com/ovh/manager/commit/8cac97a4cbf6ac1c65a39cdcc8b83900dc666d89))
+* **dedicated:** introducing none filesystem for partitioning ([#9136](https://github.com/ovh/manager/issues/9136)) ([afd8b77](https://github.com/ovh/manager/commit/afd8b77114922f6db90a6c91d3e48599d9561e32))
+* **dedicated:** windows partition minimum size is for c: only ([#9245](https://github.com/ovh/manager/issues/9245)) ([f48a9eb](https://github.com/ovh/manager/commit/f48a9ebc328cdf32792cad892156b791eed1e61e))
+
+
+
+
+
 # [17.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.60.4...@ovh-ux/manager-dedicated@17.61.0) (2023-05-30)
 
 

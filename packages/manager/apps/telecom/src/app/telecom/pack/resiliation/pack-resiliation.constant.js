@@ -1,5 +1,8 @@
-export const ELIGIBLE = 'eligible';
+export const STATUS = {
+  eligible: 'eligible',
+  notYetEligible: 'not_yet_eligible',
+};
 
 export const URL_PRO_FIBER = 'https://www.ovhtelecom.fr/fibre/';
 
-export default { ELIGIBLE, URL_PRO_FIBER };
+export default { STATUS, URL_PRO_FIBER };

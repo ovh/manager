@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.10.1...@ovh-ux/shell@2.0.0) (2023-06-12)
+
+
+### Features
+
+* **generator:**  add generator vitejs react v1 ([#9186](https://github.com/ovh/manager/issues/9186)) ([c911ee6](https://github.com/ovh/manager/commit/c911ee6168e2803e2022dc0e275f242953ad8255))
+
+
+### BREAKING CHANGES
+
+* **generator:** rename useShellClient into initShellClient
+
+
+
+
+
+## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.10.0...@ovh-ux/shell@1.10.1) (2023-05-31)
+
+
+### Bug Fixes
+
+* **ovh-shell:** handle non existing applications ([1940411](https://github.com/ovh/manager/commit/1940411486542fd417752e4e7a38e11c52cf13ca))
+
+
+
+
+
 # [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/shell@1.9.0...@ovh-ux/shell@1.10.0) (2023-03-06)
 
 

@@ -43,5 +43,7 @@
   "xdsl_modem_wifi_WPAandWPA2": "WPA and WPA2",
   "xdsl_modem_wifi_read_error": "Oops! We were unable to retrieve your WiFi information.",
   "xdsl_modem_wifi_write_error": "Oops! We were unable to update your WiFi.",
-  "xdsl_modem_wifi_config_info": "A WiFi network configuration change is already in progress. The changes you make will be applied once this change is complete."
+  "xdsl_modem_wifi_config_info": "A WiFi network configuration change is already in progress. The changes you make will be applied once this change is complete.",
+  "xdsl_modem_wifi_WPA2andWPA3": "WPA2 and WPA3",
+  "xdsl_modem_wifi_WPA3": "WPA3"
 }

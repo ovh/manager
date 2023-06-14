@@ -1,8 +1,8 @@
 {
   "data_processing_submit_job_title": "Iniciar un nuevo job",
   "data_processing_submit_job_description_1": "Analytics Data Compute de OVHcloud permite lanzar jobs Apache Stark bajo demanda, especificando la cantidad de RAM y de vCPU que quiere utilizar.",
-  "data_processing_submit_job_description_2": "Descargue su código en formato JAR o código Python en un contenedor Swift y ejecútelo a través de la siguiente interfaz. Podrá consultar el progreso de su job mediante los logs y las métricas en tiempo real.",
-  "data_processing_submit_job_description_3": "Puede acceder en tiempo real a los logs y métricas de su job.",
+  "data_processing_submit_job_description_2": "Descargue su código en formato JAR o código Python en un contenedor Swift y ejecútelo a través de la siguiente interfaz. Podrá controlar la correcta ejecución de su job utilizando los logs mostrados en tiempo real.",
+  "data_processing_submit_job_description_3": "Podrá acceder en tiempo real a los logs de su job.",
   "data_processing_submit_job_stepper_region_title": "Seleccionar una región",
   "data_processing_submit_job_stepper_job_type_title": "Seleccionar un tipo de job",
   "data_processing_submit_job_stepper_sizing_title": "Dimensionamiento del job",

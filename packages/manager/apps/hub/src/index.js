@@ -2,7 +2,7 @@ import 'script-loader!jquery'; // eslint-disable-line
 import 'whatwg-fetch';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import { useShellClient } from '@ovh-ux/shell';
+import { initShellClient } from '@ovh-ux/shell';
 
 import { buildURL } from '@ovh-ux/url-builder';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
@@ -14,7 +14,7 @@ import TRACKING from './components/at-internet/at-internet.constant';
 
 defineApplicationVersion(__VERSION__);
 
-useShellClient('hub')
+initShellClient('hub')
   .then(async (client) => {
     const isSidebarMenuVisible = await client.ux.isMenuSidebarVisible();
     if (!isTopLevelApplication()) {

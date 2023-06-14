@@ -8,9 +8,7 @@ export default {
   bindings: {
     job: '<',
     projectId: '<',
-    metricsToken: '<',
     terminateJob: '<',
-    showMetrics: '<',
     showBillingConsole: '<',
     browseObjectStorage: '<',
     goBack: '<',
