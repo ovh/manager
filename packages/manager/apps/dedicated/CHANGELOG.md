@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.0.0...@ovh-ux/manager-dedicated@18.1.0) (2023-06-14)
+
+
+### Bug Fixes
+
+* **dedicated:** allow user define raid higher than 1 on / partition ([#9276](https://github.com/ovh/manager/issues/9276)) ([bc7c9b9](https://github.com/ovh/manager/commit/bc7c9b92f1c41738b939219888b0c725dfcb3515))
+* **dedicated:** clean dead code related to partitioning ([#9384](https://github.com/ovh/manager/issues/9384)) ([8f69463](https://github.com/ovh/manager/commit/8f694636c47821f7392285af1984153954630ba1))
+* **dedicated:** removed duplicated netboot translations ([#9344](https://github.com/ovh/manager/issues/9344)) ([47ab804](https://github.com/ovh/manager/commit/47ab8047bf07c35bb5db660f25b442a990025302))
+
+
+### Features
+
+* **dedicated:** explain windows installation server 2+ disks impossible ([#9242](https://github.com/ovh/manager/issues/9242)) ([a80e22f](https://github.com/ovh/manager/commit/a80e22fad5fe878fcc539f46cd0326922350c499))
+* **dedicated:** licenses page display improvements ([#9383](https://github.com/ovh/manager/issues/9383)) ([746107e](https://github.com/ovh/manager/commit/746107e53e7f472b1fdd7fbea62deb2e3bb453c0))
+* **dedicated:** prepare new os backup usage for proxmox bs ([#9328](https://github.com/ovh/manager/issues/9328)) ([2df9a1e](https://github.com/ovh/manager/commit/2df9a1e5e3019e4b2f58eac18770fabbf59910b0))
+
+
+
+
+
 # [18.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@17.61.4...@ovh-ux/manager-dedicated@18.0.0) (2023-06-12)
 
 

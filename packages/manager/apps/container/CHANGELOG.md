@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.21.0...@ovh-ux/manager-container-app@0.21.1) (2023-06-14)
+
+
+### Bug Fixes
+
+* **container:** fix scss for screen reader ([#9414](https://github.com/ovh/manager/issues/9414)) ([d389fdf](https://github.com/ovh/manager/commit/d389fdf453b0ac360878892d4913d7aba996ed4b))
+
+
+
+
+
 # [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.20.4...@ovh-ux/manager-container-app@0.21.0) (2023-06-12)
 
 
