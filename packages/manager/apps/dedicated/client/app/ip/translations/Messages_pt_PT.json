@@ -1,6 +1,6 @@
 {
   "module_ip_dashboard_title": "Gerir endereços IP",
-  "module_ip_dashboard_order_IP_action_label": "Encomendar um IP",
+  "module_ip_dashboard_order_IP_action_label": "Encomendar endereços IP",
   "ip_dashboard_error": "Erro ao carregar informações.",
   "ip_services_error": "Erro ao carregar informação relativa aos serviços: {{t0}}. Tente novamente mais tarde.",
   "ip_block_error": "Erro ao carregar informações relativas a {{t0}}.",
