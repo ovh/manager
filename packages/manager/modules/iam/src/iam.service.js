@@ -18,12 +18,6 @@ export default class IAMService {
     this.$q = $q;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
-
-    /**
-     * Whether the advanced mode key is already set in the preferences
-     * @type {boolean}
-     */
-    this.isAdvancedModeRegistered = false;
   }
 
   // **********************************************************************************************
@@ -322,9 +316,10 @@ export default class IAMService {
    * @returns {Promise<null>}
    */
   disableAdvancedMode() {
-    return this.$http.put(
-      `${URL.PREFERENCES}/${PREFERENCES_KEY.ADVANCED_MODE}`,
-      { value: 'false' },
+    return this.registerAdvancedMode().then(() =>
+      this.$http.put(`${URL.PREFERENCES}/${PREFERENCES_KEY.ADVANCED_MODE}`, {
+        value: 'false',
+      }),
     );
   }
 
@@ -333,9 +328,10 @@ export default class IAMService {
    * @returns {Promise<null>}
    */
   enableAdvancedMode() {
-    return this.$http.put(
-      `${URL.PREFERENCES}/${PREFERENCES_KEY.ADVANCED_MODE}`,
-      { value: 'true' },
+    return this.registerAdvancedMode().then(() =>
+      this.$http.put(`${URL.PREFERENCES}/${PREFERENCES_KEY.ADVANCED_MODE}`, {
+        value: 'true',
+      }),
     );
   }
 
@@ -344,9 +340,11 @@ export default class IAMService {
    * @returns {Promise<boolean>}
    */
   isAdvancedModeEnabled() {
-    return this.$http
-      .get(`${URL.PREFERENCES}/${PREFERENCES_KEY.ADVANCED_MODE}`)
-      .then(({ data: { value } }) => value === 'true');
+    return this.registerAdvancedMode().then(() =>
+      this.$http
+        .get(`${URL.PREFERENCES}/${PREFERENCES_KEY.ADVANCED_MODE}`)
+        .then(({ data: { value } }) => value === 'true'),
+    );
   }
 
   /**
@@ -355,26 +353,15 @@ export default class IAMService {
    * @returns {Promise<boolean>}
    */
   registerAdvancedMode() {
-    if (this.isAdvancedModeRegistered) {
-      return this.$q.when(true);
-    }
-    const register = () => {
-      this.isAdvancedModeRegistered = true;
-      return true;
-    };
-    return this.isAdvancedModeEnabled()
-      .then(register)
-      .catch((error) => {
-        if (error.status === 404) {
-          return this.$http
-            .post(URL.PREFERENCES, {
-              key: PREFERENCES_KEY.ADVANCED_MODE,
-              value: 'false',
-            })
-            .then(register);
-        }
-        throw error;
-      });
+    return this.$http.get(URL.PREFERENCES).then(({ data: preferencesKeys }) => {
+      if (!preferencesKeys.includes(PREFERENCES_KEY.ADVANCED_MODE)) {
+        return this.$http.post(URL.PREFERENCES, {
+          key: PREFERENCES_KEY.ADVANCED_MODE,
+          value: 'false',
+        });
+      }
+      return null;
+    });
   }
 
   // **********************************************************************************************
