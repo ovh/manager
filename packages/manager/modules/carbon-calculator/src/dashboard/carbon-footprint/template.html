@@ -3,8 +3,21 @@
         class="carbon-balance"
         data-translate="carbon_calculator_dashboard_billing_explanation"
     ></p>
-    <oui-button data-variant="primary" data-on-click="" data-disabled="true">
-        <i class="fa fa-download" aria-hidden="true"></i>&nbsp;<span
+    <oui-button
+        data-variant="primary"
+        data-on-click="$ctrl.computeBilling()"
+        data-disabled="$ctrl.$asyncFetching"
+    >
+        <oui-spinner
+            data-size="s"
+            data-ng-if="$ctrl.$asyncFetching"
+        ></oui-spinner
+        ><i
+            class="fa fa-download"
+            aria-hidden="true"
+            data-ng-if="!$ctrl.$asyncFetching"
+        ></i
+        >&nbsp;<span
             data-translate="carbon_calculator_dashboard_billing_download"
             data-translate-values="{ month: $ctrl.previousMonth}"
         ></span>
