@@ -49,6 +49,13 @@ export default class SnapshotDownloadController {
           case 403:
             this.errorMessage = `Error ${error.status}:  ${error.message}`;
             break;
+          case 409:
+            this.errorMessage = `Error ${
+              error.status
+            }:   ${this.$translate.instant(
+              'vps_dashboard_snapshot_download_modal_snapshot_error_download_not_ready',
+            )}`;
+            break;
           case 500:
             this.errorMessage = `Error ${error.status}:  ${error.statusText}`;
             break;
