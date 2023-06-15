@@ -70,23 +70,6 @@
     <div>
         <div data-ovh-alert="dedicatedCloud"></div>
 
-        <oui-message
-            class="mb-3"
-            data-type="info"
-            data-ng-if="$ctrl.newProductUrl"
-        >
-            <span data-translate="dedicatedCloud_banner_new_product"></span>
-            <a
-                data-ng-href="{{ $ctrl.newProductUrl }}"
-                target="_blank"
-                rel="noopener"
-            >
-                <span
-                    data-translate="dedicatedCloud_banner_new_product_link"
-                ></span>
-            </a>
-        </oui-message>
-
         <div data-ui-view="pccView"></div>
     </div>
 </div>
