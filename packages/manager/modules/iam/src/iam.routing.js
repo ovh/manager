@@ -28,9 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
        * @returns {boolean}
        */
       advancedMode: /* @ngInject */ (IAMService) =>
-        IAMService.registerAdvancedMode().then(() =>
-          IAMService.isAdvancedModeEnabled(),
-        ),
+        IAMService.isAdvancedModeEnabled(),
 
       /**
        * Display a Alerter message
