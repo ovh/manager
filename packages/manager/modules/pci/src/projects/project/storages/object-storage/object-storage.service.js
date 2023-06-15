@@ -29,9 +29,7 @@ export default class PciStoragesObjectStorageService {
   getS3Credentials(projectId, userId) {
     return this.$http
       .get(`/cloud/project/${projectId}/user/${userId}/s3Credentials`)
-      .then(({ data }) => {
-        return data?.[0];
-      });
+      .then(({ data }) => data?.[0]);
   }
 
   getS3Secret(projectId, userId, userAccess) {
@@ -39,9 +37,7 @@ export default class PciStoragesObjectStorageService {
       .post(
         `/cloud/project/${projectId}/user/${userId}/s3Credentials/${userAccess}/secret`,
       )
-      .then(({ data }) => {
-        return data;
-      });
+      .then(({ data }) => data);
   }
 
   createUser(projectId, description, role) {
