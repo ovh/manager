@@ -3,6 +3,7 @@ import {
   DEDICATED_CLOUD_DATACENTER,
   COMMERCIAL_RANGE_NAME_EOL,
   VDC_MIRGRATION_GUIDE_LINK,
+  TRACKING_NEW_PRODUCT_BANNER,
 } from './dedicatedCloud-datacenter.constants';
 
 export default class {
@@ -12,6 +13,7 @@ export default class {
     this.DEDICATED_CLOUD_DATACENTER = DEDICATED_CLOUD_DATACENTER;
     this.ovhManagerPccDatacenterService = ovhManagerPccDatacenterService;
     this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
+    this.TRACKING_NEW_PRODUCT_BANNER = TRACKING_NEW_PRODUCT_BANNER;
   }
 
   $onInit() {
