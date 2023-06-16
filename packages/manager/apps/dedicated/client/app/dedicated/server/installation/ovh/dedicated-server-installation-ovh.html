@@ -1925,7 +1925,7 @@
 
                         <!-- nbDisk -->
                         <div
-                            class="form-group"
+                            class="form-inline"
                             data-ng-show="informations.nbDisk > 1 && !installation.customInstall"
                         >
                             <label
@@ -1934,6 +1934,17 @@
                                 data-translate="server_configuration_installation_form_nbdisk"
                             >
                             </label>
+                            <span
+                                data-ng-if="informations.softRaidOnlyMirroring && installation.diskGroup.numberOfDisks > 2"
+                            >
+                                <i
+                                    class="fa fa-info-circle"
+                                    data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_type_disk_warning_windows' | translate:{ t0: installation.diskGroup.numberOfDisks } }}"
+                                    data-oui-tooltip-placement="bottom"
+                                    aria-hidden="true"
+                                >
+                                </i>
+                            </span>
                             <select
                                 class="form-control"
                                 id="nbDiskUse"

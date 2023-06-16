@@ -28,6 +28,7 @@ angular
         selectFamily: null,
         selectGabarit: null,
         selectLanguage: null,
+        selectSoftRaidOnlyMirroring: null,
 
         diskGroupId: null,
         hasData: false,
@@ -78,6 +79,7 @@ angular
         $scope.installation.selectGabarit = null;
         $scope.installation.selectFamily = null;
         $scope.installation.selectLanguage = null;
+        $scope.installation.selectSoftRaidOnlyMirroring = null;
         $scope.installation.deleteGabarit = null;
 
         Server.getPersonalTemplates($stateParams.productId)
@@ -123,6 +125,8 @@ angular
         $scope.installation.selectGabarit = gabarit;
         $scope.installation.selectLanguage =
           $scope.installation.selectGabarit.defaultLanguage;
+        $scope.installation.selectSoftRaidOnlyMirroring =
+          $scope.installation.selectGabarit.softRaidOnlyMirroring;
       };
 
       $scope.clearErrorPersonalTemplate = function clearErrorPersonalTemplate() {
@@ -411,8 +415,16 @@ angular
 
       // return range between 1 and nbdisque of server if > 1
       $scope.getNbDisqueList = function getNbDisqueList(nbdisk) {
-        if (nbdisk > 1) {
+        if (nbdisk > 1 && !$scope.installation.selectSoftRaidOnlyMirroring) {
           return range(1, nbdisk + 1);
+        }
+        if (nbdisk > 1 && $scope.installation.selectSoftRaidOnlyMirroring) {
+          // For softRaidOnlyMirroring: Disks used for installation list should be limited to 2
+          $scope.installation.nbDiskUse =
+            $scope.installation.nbDiskUse === 1
+              ? $scope.installation.nbDiskUse
+              : 2;
+          return range(1, 3);
         }
         return [nbdisk];
       };
