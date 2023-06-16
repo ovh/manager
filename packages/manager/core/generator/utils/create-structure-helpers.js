@@ -27,45 +27,102 @@ const createApiQueryFilesActions = (apiV6Endpoints, appDirectory) => {
  * Corresponding to the template selected
  */
 const createPages = (templates, appDirectory) => {
-  return templates.map((template) => {
-    if (template === 'listing') {
-      return {
+  if (!templates.length) {
+    // no template selected
+    return [
+      {
         type: 'add',
         path: join(
           appDirectory,
-          `../../../apps/{{dashCase appName}}/src/pages/index.tsx`,
+          '../../../apps/{{dashCase appName}}/e2e/home.test.ts',
         ),
         force: true,
         templateFile: join(
           appDirectory,
-          `./conditional-templates/${template}/index.tsx.hbs`,
+          `./conditional-templates/default/home.test.ts.hbs`,
         ),
-      };
+      },
+    ];
+  }
+  return templates.flatMap((template) => {
+    if (template === 'listing') {
+      return [
+        {
+          type: 'add',
+          path: join(
+            appDirectory,
+            `../../../apps/{{dashCase appName}}/src/pages/index.tsx`,
+          ),
+          force: true,
+          templateFile: join(
+            appDirectory,
+            `./conditional-templates/${template}/index.tsx.hbs`,
+          ),
+        },
+        {
+          type: 'add',
+          path: join(
+            appDirectory,
+            '../../../apps/{{dashCase appName}}/e2e/home.test.ts',
+          ),
+          force: true,
+          templateFile: join(
+            appDirectory,
+            `./conditional-templates/${template}/listing.test.ts.hbs`,
+          ),
+        },
+      ];
     }
     if (template === 'dashboard') {
-      return {
+      return [
+        {
+          type: 'add',
+          path: join(
+            appDirectory,
+            `../../../apps/{{dashCase appName}}/src/pages/dashboard/[serviceName]/index.tsx`,
+          ),
+          templateFile: join(
+            appDirectory,
+            `./conditional-templates/${template}/index.tsx.hbs`,
+          ),
+        },
+        {
+          type: 'add',
+          path: join(
+            appDirectory,
+            `../../../apps/{{dashCase appName}}/e2e/dashboard.test.ts`,
+          ),
+          templateFile: join(
+            appDirectory,
+            `./conditional-templates/${template}/dashboard.test.ts.hbs`,
+          ),
+        },
+      ];
+    }
+    return [
+      {
         type: 'add',
         path: join(
           appDirectory,
-          `../../../apps/{{dashCase appName}}/src/pages/dashboard/[serviceName]/index.tsx`,
+          `../../../apps/{{dashCase appName}}/src/pages/${template}/index.tsx`,
         ),
         templateFile: join(
           appDirectory,
           `./conditional-templates/${template}/index.tsx.hbs`,
         ),
-      };
-    }
-    return {
-      type: 'add',
-      path: join(
-        appDirectory,
-        `../../../apps/{{dashCase appName}}/src/pages/${template}/index.tsx`,
-      ),
-      templateFile: join(
-        appDirectory,
-        `./conditional-templates/${template}/index.tsx.hbs`,
-      ),
-    };
+      },
+      {
+        type: 'add',
+        path: join(
+          appDirectory,
+          `../../../apps/{{dashCase appName}}/e2e/${template}.test.ts`,
+        ),
+        templateFile: join(
+          appDirectory,
+          `./conditional-templates/${template}/${template}.test.ts.hbs`,
+        ),
+      },
+    ];
   });
 };
 
