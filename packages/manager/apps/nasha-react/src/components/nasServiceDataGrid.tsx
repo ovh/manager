@@ -1,5 +1,5 @@
 import React from 'react';
-import Datagrid from './layout-helpers/list/Datagrid';
+import Datagrid from './layout-helpers/list/dataGrid';
 
 interface NasServiceDataGridProps {
   data: DataItem[];

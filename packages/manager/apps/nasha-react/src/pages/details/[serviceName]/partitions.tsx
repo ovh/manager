@@ -1,6 +1,10 @@
 import React from 'react';
+import { OsdsSpinner } from '@ovhcloud/ods-stencil/components/react/';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 import { getPartition } from '../../../api/nasha-react';
+
+import NotFound from '../../404';
 
 function Partitions(props: { serviceName: string }) {
   const { serviceName } = props;
@@ -8,12 +12,13 @@ function Partitions(props: { serviceName: string }) {
     ['partitions', { serviceName }],
     getPartition,
   );
+  const { t } = useTranslation('nasha-react/details/dashboard');
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <OsdsSpinner />;
   }
 
   if (isError) {
-    return <span>Error...</span>;
+    return <NotFound />;
   }
 
   const count = data?.length;

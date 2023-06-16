@@ -1,102 +1,105 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { service, createNashaPartition } from '../../../api/nasha-react';
+import {
+  OsdsInput,
+  OsdsLink,
+  OsdsIcon,
+  OsdsSpinner,
+} from '@ovhcloud/ods-stencil/components/react/';
+import { useTranslation } from 'react-i18next';
+import { OdsIconName, OdsIconSize } from '@ovhcloud/ods-core';
+import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
+import { createNashaPartition, service } from '@/api/nasha-react';
 
 function Configurations(props: { serviceName: string }) {
   const { serviceName } = props;
-  type PostData = {
-    partitionDescription: string | null;
-    partitionName: string;
-    size: number;
-    protocol: string;
-  };
-  const [partitionData, setPartitionData] = useState<PostData>({
+  const [partitionData, setPartitionData] = useState({
     partitionDescription: '',
     partitionName: 'partition-name',
     size: 10,
     protocol: 'NFS',
   });
+  const { t } = useTranslation('nasha-react/details/dashboard');
+
   const { isLoading, isError, data } = useQuery(
     ['informations', { serviceName }],
     service,
   );
 
-  if (isLoading) {
-    return <span>Loading...</span>;
-  }
-
-  if (isError) {
-    return <span>Error...</span>;
-  }
-
-  const count = data?.length;
-  if (count === 0) {
-    return <></>;
-  }
+  if (isLoading) return <OsdsSpinner />;
+  if (isError) return <span>{t('nasha_dashboard_suscriptions_error')}</span>;
+  if (data?.length === 0) return <></>;
 
   const handleClickPartition = async () => {
-    try {
-      const response = await createNashaPartition({
-        queryKey: [
-          'createPartition',
-          {
-            serviceName,
-            data: partitionData,
-          },
-        ],
-      });
-      // handle successful response here
-      // eslint-disable-next-line
-      console.log('creating partition:', response);
-    } catch (error) {
-      // handle error here
-      // eslint-disable-next-line
-      console.error('Error creating partition:', error);
-    }
+    await createNashaPartition({
+      queryKey: [
+        'createPartition',
+        {
+          serviceName,
+          data: partitionData,
+        },
+      ],
+    });
+    // handle successful response here
   };
 
   return (
     <>
-      <ul>
+      <div>
         {data.use.used.value} / {data.use.size.value} {data.use.size.unit}
-      </ul>
-      <ul>
-        <input
-          type="text"
+      </div>
+
+      <div>
+        <OsdsInput
           value={partitionData.partitionName}
-          onChange={(e) =>
-            setPartitionData({
-              ...partitionData,
-              partitionName: e.target.value,
-            })
+          onChange={(e: any) =>
+            setPartitionData((currentPartitionData) => ({
+              ...currentPartitionData,
+              partitionName: e.target?.value,
+            }))
           }
         />
-        <input
-          type="text"
+        <OsdsInput
           value={partitionData.partitionDescription}
-          onChange={(e) =>
-            setPartitionData({
-              ...partitionData,
-              partitionDescription: e.target.value,
-            })
+          onChange={(e: any) =>
+            setPartitionData((currentPartitionData) => ({
+              ...currentPartitionData,
+              partitionDescription: e.target?.value,
+            }))
           }
         />
-        <input
-          type="text"
+        <OsdsInput
           value={partitionData.size}
-          onChange={(e) =>
-            setPartitionData({ ...partitionData, size: Number(e.target.value) })
+          onChange={(e: any) =>
+            setPartitionData((currentPartitionData) => ({
+              ...currentPartitionData,
+              size: Number(e.target.value),
+            }))
           }
         />
-        <input
-          type="text"
+        <OsdsInput
           value={partitionData.protocol}
-          onChange={(e) =>
-            setPartitionData({ ...partitionData, protocol: e.target.value })
+          onChange={(e: any) =>
+            setPartitionData((currentPartitionData) => ({
+              ...currentPartitionData,
+              protocol: e.target?.value as string,
+            }))
           }
         />
-        <button onClick={handleClickPartition}>Créer</button>
-      </ul>
+      </div>
+      <OsdsLink
+        onClick={handleClickPartition}
+        color={OdsThemeColorIntent.primary}
+      >
+        {t('nasha_dashboard_partitions_create')}
+        <span slot="end">
+          <OsdsIcon
+            name={OdsIconName.ARROW_RIGHT}
+            size={OdsIconSize.xs}
+            color={OdsThemeColorIntent.primary}
+          />
+        </span>
+      </OsdsLink>
     </>
   );
 }
