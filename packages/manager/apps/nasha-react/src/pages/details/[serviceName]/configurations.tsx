@@ -31,7 +31,7 @@ function Configurations(props: { serviceName: string }) {
   if (data?.length === 0) return <></>;
 
   const handleClickPartition = async () => {
-    const response = await createNashaPartition({
+    await createNashaPartition({
       queryKey: [
         'createPartition',
         {
