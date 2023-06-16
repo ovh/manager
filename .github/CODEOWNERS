@@ -8,13 +8,13 @@
 /packages/manager/apps/ @ovh/team-manager-dev
 
 # Core
-/packages/manager/core/ @ovh/su-digital-tools-core-stack
+/packages/manager/core/ @ovh/team-manager-dev
 
 # Modules
 /packages/manager/modules/ @ovh/team-manager-dev
 
 # Build / Tooling
-/packages/manager/tools/ @ovh/su-digital-tools-core-stack @ovh/su-digital-tools-core-service-delivery
+/packages/manager/tools/ @ovh/team-manager-dev
 
 # Continuous Integration and scripts
 .github @ovh/su-digital-tools-core-service-delivery
