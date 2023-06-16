@@ -4,15 +4,9 @@ import {
 } from '@ovh-ux/manager-product-offers';
 
 import { WEBHOSTING_PRODUCT_NAME } from '../../hosting-database.constants';
-import HostingDatabaseOrderPublic from './hosting-database-order-public.service';
 import { DB_OFFERS } from './hosting-database-order-public.constants';
 
 export default class {
-  /* @ngInject */
-  constructor(HostingDatabaseOrderPublicService) {
-    this.HostingDatabaseOrderPublicService = HostingDatabaseOrderPublicService;
-  }
-
   $onInit() {
     this.productOffers = {
       pricingType: pricingConstants.PRICING_CAPACITIES.RENEW,
@@ -25,23 +19,16 @@ export default class {
       },
       workflowType: workflowConstants.WORKFLOW_TYPES.ORDER,
     };
-
-    this.characteristics = {
-      isEditable: true,
-      values: this.HostingDatabaseOrderPublicService.computeCharacteristics(
-        this.characteristicsOfAvailableProducts,
-      ),
-    };
-
     this.model = {
       dbCategory: {},
     };
   }
 
   getPlanCode() {
-    const { diskSpace, quantity } = this.characteristics.value.characteristics;
+    const { selectVersion, selectEngine } = this.model.dbCategory;
+    const { selectEngineVersion } = selectEngine || {};
 
-    return HostingDatabaseOrderPublic.buildPlanCode(diskSpace, quantity);
+    return selectEngineVersion?.planCode || selectVersion?.planCode;
   }
 
   getOrderState(state) {

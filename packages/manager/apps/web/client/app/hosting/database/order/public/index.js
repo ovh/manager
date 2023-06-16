@@ -6,7 +6,7 @@ import component from './hosting-database-order-public.component';
 import routing from './hosting-database-order-public.routing';
 import service from './hosting-database-order-public.service';
 
-import dbCategoriesOffers from './components/db-categories-offers';
+import dbCategoriesOffers from './components/steps/db-categories-offers';
 
 const moduleName = 'ovhManagerHostingDatabaseOrderPublic';
 
