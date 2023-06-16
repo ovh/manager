@@ -14,7 +14,7 @@ angular
     'ngOvhCloudUniverseComponents',
     ovhManagerCatalogPrice,
   ])
-  .component('partnerPresetPrice', component)
+  .component('pciProjectPartnerPresetPrice', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
