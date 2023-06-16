@@ -6,6 +6,7 @@ export default {
     addDatacenter: '<',
     dedicatedCloud: '<',
     goToDatacenter: '<',
+    trackClick: '<',
     orderDatastore: '<',
     orderHost: '<',
     setMessage: '<',

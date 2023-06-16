@@ -21,8 +21,16 @@ export const VDC_MIRGRATION_GUIDE_LINK = {
   DEFAULT: 'https://docs.ovh.com/gb/en/private-cloud/vdc-migration/',
 };
 
+export const TRACKING_NEW_PRODUCT_BANNER = {
+  on: 'click',
+  type: 'action',
+  name:
+    'dedicated::dedicatedCloud::details::datacenter::link-to-vmware-products',
+};
+
 export default {
   DEDICATED_CLOUD_DATACENTER,
   COMMERCIAL_RANGE_NAME_EOL,
   VDC_MIRGRATION_GUIDE_LINK,
+  TRACKING_NEW_PRODUCT_BANNER,
 };
