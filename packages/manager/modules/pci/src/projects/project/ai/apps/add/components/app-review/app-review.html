@@ -122,11 +122,10 @@
                         data-interval="'hour'"
                     >
                     </ovh-manager-catalog-price>
-                    <p ng-if="$ctrl.resourcePriceInUcents == 0">
-                        <span
-                            data-translate="pci_app_add_review_price_resource_free"
-                        ></span>
-                    </p>
+                    <p
+                        ng-if="$ctrl.resourcePriceInUcents === 0"
+                        data-translate="pci_app_add_review_price_resource_free"
+                    ></p>
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition
@@ -143,12 +142,11 @@
                         data-interval="'hour'"
                     >
                     </ovh-manager-catalog-price>
-                    <p ng-if="$ctrl.partnerPriceInUcents == 0">
-                        <span
-                            data-translate="pci_app_add_review_price_partner_free"
-                            data-translate-values="{ partner: $ctrl.appModel.image.preset.partnerName }"
-                        ></span>
-                    </p>
+                    <p
+                        ng-if="$ctrl.partnerPriceInUcents === 0"
+                        data-translate="pci_app_add_review_price_partner_free"
+                        data-translate-values="{ partner: $ctrl.appModel.image.preset.partnerName }"
+                    ></p>
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition

@@ -1,4 +1,4 @@
-import { APP_IMAGE } from '../../add.constants';
+import { APP_IMAGE, APP_IMAGE_DOCKER_ARCHITECTURE } from '../../add.constants';
 import {
   APP_CUSTOM_DOCKER_IMAGE_DOC,
   APP_DOCKER_IMAGE_PORTFOLIO,
@@ -13,6 +13,7 @@ export default class AppImageController {
 
   $onInit() {
     this.APP_IMAGE = APP_IMAGE;
+    this.APP_IMAGE_DOCKER_ARCHITECTURE = APP_IMAGE_DOCKER_ARCHITECTURE;
 
     this.docImagesDockerPortfolioUrl =
       APP_DOCKER_IMAGE_PORTFOLIO[this.user.ovhSubsidiary] ||

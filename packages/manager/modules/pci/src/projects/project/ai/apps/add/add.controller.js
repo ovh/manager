@@ -268,7 +268,7 @@ export default class AppAddController {
           defaultFlavor.id,
         );
 
-        presets.map((preset) => {
+        this.presets = presets.map((preset) => {
           const partnerPriceCPU = this.AppService.getPartnerPrice(
             this.prices,
             preset.partnerId,
@@ -289,12 +289,10 @@ export default class AppAddController {
               cpu: partnerPriceCPU,
               gpu: partnerPriceGPU,
             },
+            selectedVersion: preset.versions[0],
           });
         });
-        this.presets = presets.map((partner) => ({
-          ...partner,
-          selectedVersion: partner.versions[0],
-        }));
+
         this.defaultPrice = resourcePrice;
       })
       .finally(() => {
