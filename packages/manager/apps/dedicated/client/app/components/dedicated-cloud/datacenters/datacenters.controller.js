@@ -14,6 +14,11 @@ export default class {
       : false;
   }
 
+  onAddDatacenterClick() {
+    this.trackClick('datacenter::add');
+    return this.addDatacenter();
+  }
+
   loadDatacenters({ offset, pageSize }) {
     return this.DedicatedCloud.getDatacentersInformations(
       this.dedicatedCloud.serviceName,
