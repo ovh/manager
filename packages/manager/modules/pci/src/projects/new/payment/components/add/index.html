@@ -35,19 +35,27 @@
         data-translate="pci_project_new_payment_method_add_credit_card_explain_ovh_transaction"
     ></p>
     <!--Credit card info banner-->
-    <oui-message
-        class="text-justify"
-        data-type="info"
-        data-ng-if="$ctrl.model.paymentMethod.type.isCreditCard() && !$ctrl.isDisplayableRupayCreditCardInfoBanner"
-    >
-        <span
-            class="font-weight-bold"
-            data-translate="pci_project_new_payment_method_add_credit_card_info_part_1"
-        ></span>
-        <span
-            data-translate="pci_project_new_payment_method_add_credit_card_info_part_2"
-        ></span>
-    </oui-message>
+    <div data-ng-if="$ctrl.model.paymentMethod.type.isCreditCard()">
+        <p
+            data-translate="pci_project_new_payment_method_add_credit_card_selected_explain_generic_1"
+        ></p>
+        <p
+            data-translate="pci_project_new_payment_method_add_credit_card_selected_explain_generic_2"
+        ></p>
+        <oui-checkbox class="mt-4" model="$ctrl.validDefaultPayment.crediCard">
+            <oui-checkbox-label>
+                <span
+                    data-translate="pci_project_new_payment_method_add_credit_card_default_validation"
+                ></span>
+            </oui-checkbox-label>
+        </oui-checkbox>
+
+        <oui-message class="mt-4" type="info">
+            <span
+                data-translate="pci_project_new_payment_method_add_credit_card_default_validation_agreement"
+            ></span>
+        </oui-message>
+    </div>
 
     <!--Credit card / RuPay info banner for Indian customer-->
     <oui-message
@@ -62,16 +70,28 @@
     </oui-message>
 
     <!--PAYPAL charged tax info banner-->
-    <oui-message
-        class="text-justify"
-        data-type="warning"
+    <div
         data-ng-if="$ctrl.isDisplayablePaypalChargeBanner && $ctrl.model.paymentMethod.type.isPaypal()"
     >
-        <span
-            data-translate="pci_project_new_payment_method_add_warning_paypal_account"
-            data-translate-values="{ amount: ($ctrl.getPayPalChargeAmount() + $ctrl.customerCurrency) }"
-        ></span>
-    </oui-message>
+        <oui-message class="text-justify" data-type="warning">
+            <span
+                data-translate="pci_project_new_payment_method_add_warning_paypal_account"
+                data-translate-values="{ amount: ($ctrl.getPayPalChargeAmount() + $ctrl.customerCurrency) }"
+            ></span>
+        </oui-message>
+        <oui-checkbox class="mt-4" model="$ctrl.validDefaultPayment.payPal">
+            <oui-checkbox-label>
+                <span
+                    data-translate="pci_project_new_payment_method_add_credit_card_default_validation"
+                ></span>
+            </oui-checkbox-label>
+        </oui-checkbox>
+        <oui-message class="mt-4" type="info">
+            <span
+                data-translate="pci_project_new_payment_method_add_credit_card_default_validation_agreement"
+            ></span>
+        </oui-message>
+    </div>
 
     <!--BANK-ACCOUNT info banner-->
     <div data-ng-if="$ctrl.model.paymentMethod.paymentType !== 'CREDIT'">
@@ -83,15 +103,6 @@
                 data-translate="pci_project_new_payment_method_add_warning_bank_account"
             ></span>
         </oui-message>
-
-        <p>
-            <small
-                data-ng-if="$ctrl.model.paymentMethod && !$ctrl.model.paymentMethod.type.isCreditCard() && !$ctrl.model.paymentMethod.type.isRupayCard()"
-                data-translate="{{ 'pci_project_new_payment_method_add_info_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
-                data-translate-values="{ paymentMethodSection: $ctrl.paymentSectionHref }"
-            >
-            </small>
-        </p>
     </div>
 
     <!--SEPA banner info-->
@@ -99,12 +110,9 @@
         class="text-justify"
         data-ng-if="$ctrl.model.paymentMethod.type.isSepaDirectDebit()"
     >
-        <!--Description-->
         <p
             data-translate="pci_project_new_payment_method_add_info_sepa_direct_debit_main_info"
-            data-translate-values="{ break: '<br>' }"
         ></p>
-
         <!--Redirection to Worldline banner info-->
         <oui-message data-type="warning">
             <span
