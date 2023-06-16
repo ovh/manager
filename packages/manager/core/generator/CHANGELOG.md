@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.1.0...@ovh-ux/manager-generator@0.2.0) (2023-06-16)
+
+
+### Features
+
+* **generator.react:** playwright for E2E testing ([#9365](https://github.com/ovh/manager/issues/9365)) ([ddffcf9](https://github.com/ovh/manager/commit/ddffcf9155ec5712444c9483bd7e9851540e8468))
+
+
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.0.0...@ovh-ux/manager-generator@0.1.0) (2023-06-12)
 
 
