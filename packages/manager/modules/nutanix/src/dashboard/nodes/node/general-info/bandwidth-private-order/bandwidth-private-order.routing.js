@@ -1,3 +1,5 @@
+import { PRIVATE_BANDWIDTH_SERVICE_NODE_PREFIX } from '../constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'nutanix.dashboard.nodes.node.general-info.bandwidth-private-order',
@@ -21,7 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
               ({ data: options }) =>
                 options.find((option) =>
                   option.billing.plan.code.startsWith(
-                    'cluster-vrack-bandwidth',
+                    PRIVATE_BANDWIDTH_SERVICE_NODE_PREFIX,
                   ),
                 )?.serviceId,
             ),
