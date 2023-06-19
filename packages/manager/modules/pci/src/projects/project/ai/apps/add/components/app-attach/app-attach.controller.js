@@ -99,9 +99,10 @@ export default class AppAttachController {
   filterStorages() {
     this.filteredStorages = this.storages
       // Remove containers that are already on volume list
-      .filter(({ name, region, isHighPerfStorage }) => {
+      .filter(({ name, region, isHighPerfStorage, s3StorageType }) => {
         return (
           !isHighPerfStorage &&
+          !s3StorageType &&
           !this.volumes
             .filter(({ dataStore }) => dataStore)
             .map(({ container }) => `${container.name}-${container.alias}`)

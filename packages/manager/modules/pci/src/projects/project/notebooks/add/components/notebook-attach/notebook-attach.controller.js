@@ -98,9 +98,10 @@ export default class NotebookAttachController {
   filterStorages() {
     this.filteredStorages = this.storages
       // Remove containers that are already on volume list and and which are isHighPerfStorage.
-      .filter(({ name, region, isHighPerfStorage }) => {
+      .filter(({ name, region, isHighPerfStorage, s3StorageType }) => {
         return (
           !isHighPerfStorage &&
+          !s3StorageType &&
           !this.notebookModel.volumes
             .filter(({ dataStore }) => dataStore)
             .map(({ container }) => `${container.name}-${container.alias}`)
