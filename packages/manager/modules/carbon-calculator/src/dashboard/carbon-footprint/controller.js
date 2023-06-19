@@ -1,14 +1,23 @@
-import { API_FETCH_INTERVAL, TASK_STATUS_ENUM } from './constants';
+import {
+  API_FETCH_INTERVAL,
+  TASK_STATUS_ENUM,
+  TRACKING_NAME,
+} from './constants';
 
 export default class CarbonFootprintCtrl {
   /* @ngInject */
-  constructor($interval, $state, carbonFootprintService) {
+  constructor($interval, $state, atInternet, carbonFootprintService) {
     this.$interval = $interval;
     this.$state = $state;
+    this.atInternet = atInternet;
     this.carbonFootprintService = carbonFootprintService;
   }
 
   computeBilling() {
+    this.atInternet.trackClick({
+      name: `${TRACKING_NAME}::download-carbon-consumption`,
+      type: 'action',
+    });
     this.carbonFootprintService.computeBilling().then((task) => {
       if (this.$asyncFetching === null) {
         this.fetchStatusBilling(task);
