@@ -16,6 +16,7 @@ export default class PciStoragesContainersContainerController {
     atInternet,
     CucCloudMessage,
     PciProjectStorageContainersService,
+    ScrollService,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -24,6 +25,7 @@ export default class PciStoragesContainersContainerController {
     this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
+    this.ScrollService = ScrollService;
 
     this.guides = CONTAINER_GUIDES.map((guide) => ({
       ...guide,
@@ -42,6 +44,8 @@ export default class PciStoragesContainersContainerController {
   }
 
   $onInit() {
+    this.ScrollService.scrollTop();
+
     this.columnsParameters = [
       {
         name: 'retrievalState',
