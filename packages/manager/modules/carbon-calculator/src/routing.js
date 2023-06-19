@@ -1,9 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app', {
     url: '/billing',
-    template: `<div>
-                  <div data-ui-view></div>
-              </div>`,
+    template: `<div data-ui-view></div>`,
     redirectTo: (transition) =>
       transition
         .injector()
