@@ -22,6 +22,7 @@
   "web_components_hosting_domain_offers_offer_performance_technicals_cms": "CMS en 1-clic",
   "web_components_hosting_domain_offers_offer_performance_technicals_multisite": "Multisites",
   "web_components_hosting_domain_offers_offer_performance_technicals_ftp_ssh": "Accès FTP/SSH illimité",
+  "web_components_hosting_domain_offers_offer_performance_technicals_resource": "Ressources haute performance",
   "web_components_hosting_domain_offers_offer_performance_technicals_dbs": "{{value1}} × base de données MySQL {{value2}}",
   "web_components_hosting_domain_offers_offer_performance_technicals_services": "{{value1}} × service SQL/NoSQL - DB illimité",
   "web_components_hosting_domain_offers_offer_performance_technicals_cdn": "CDN basic",
