@@ -8,6 +8,7 @@ import '@ovh-ux/ui-kit';
 import ovhManagerAdvices from '@ovh-ux/manager-advices';
 import trustedNic from '@ovh-ux/manager-trusted-nic';
 
+import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import billing from './billing';
 import contacts from './contacts';
 import creating from './creating';
@@ -68,6 +69,7 @@ angular
     quotaExceedError,
     regions,
     privateRegistry,
+    ngOvhUtils,
     'oui',
     'ovhManagerCore',
     'ovh-api-services',
