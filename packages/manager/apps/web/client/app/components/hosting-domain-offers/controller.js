@@ -183,11 +183,11 @@ export default class WebComponentsHostingDomainOffersController {
     const selectedPlan = this.catalog.plans.find((plan) => {
       return plan.planCode === planCode;
     });
-    const { price, tax } = selectedPlan.pricings.find(
+    const { interval, price } = selectedPlan.pricings.find(
       ({ intervalUnit }) => intervalUnit === 'month',
     );
 
-    return `${((price - tax) / UCENTS_FACTOR).toFixed(2)} ${
+    return `${(price / (interval * UCENTS_FACTOR)).toFixed(2)} ${
       this.user.currency.symbol
     }`;
   }

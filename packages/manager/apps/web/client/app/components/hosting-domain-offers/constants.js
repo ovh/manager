@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export const UCENTS_FACTOR = 1000000000;
+export const UCENTS_FACTOR = 100000000;
 
 export const NEW_OFFERS_START_DATE = moment('2023-06-15');
 
