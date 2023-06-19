@@ -19,11 +19,16 @@ export default class WebHostingDatabaseOrderComponentsDbCategoriesOffersControll
   }
 
   getDbVersionPrice(dbCategoryVersion) {
-    const price = dbCategoryVersion?.pricings?.find(
-      ({ interval }) => interval === 12,
-    );
-    const computePrice = ((price.price - price.tax) / UCENTS_FACTOR).toFixed(2);
+    const pricePerMonth = dbCategoryVersion?.pricings?.find(
+      ({ interval }) => interval === 1,
+    )?.price;
+    // used as fallback
+    const pricePerYear =
+      dbCategoryVersion?.pricings?.find(({ interval }) => interval === 12)
+        ?.price / 12;
 
-    return `${computePrice} ${this.user.currency.symbol}`;
+    const price = (pricePerMonth || pricePerYear) / UCENTS_FACTOR;
+
+    return `${price.toFixed(2)} ${this.user.currency?.symbol || ''}`;
   }
 }

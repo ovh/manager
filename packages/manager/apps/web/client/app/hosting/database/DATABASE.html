@@ -96,7 +96,7 @@
                             </oui-action-menu-item>
                             <oui-action-menu-item
                                 data-ng-if="$ctrl.canOrderPublic"
-                                data-ui-sref="app.hosting.dashboard.database.order-public({preselectDbCategory: 'private'})"
+                                data-ui-sref="app.hosting.dashboard.database.order-public({preselectDbCategory: 'starter'})"
                             >
                                 <span
                                     data-translate="hosting_tab_DATABASES_configuration_order_title_button_public"
@@ -111,7 +111,7 @@
                                 ></span>
                             </oui-action-menu-item>
                             <oui-action-menu-item
-                                data-ui-sref="app.private-database-order-clouddb"
+                                data-ui-sref="app.hosting.dashboard.database.order-public({preselectDbCategory: 'private'})"
                             >
                                 <span
                                     data-translate="hosting_tab_DATABASES_configuration_order_title_button_private"
