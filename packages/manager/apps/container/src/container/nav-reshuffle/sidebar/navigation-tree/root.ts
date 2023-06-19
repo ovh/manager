@@ -56,7 +56,7 @@ const root: Node = {
           features: ['contact:management'],
         },
         {
-          id: 'carbon_footprint',
+          id: 'carbon_consumption',
           translation: 'sidebar_carbon_footprint',
           routing: {
             application: 'carbon-calculator',
