@@ -55,6 +55,7 @@ export default class WebComponentsHostingDomainOffersController {
           { prefix: 'cms', values: [] },
           { prefix: 'multisite', values: [] },
           { prefix: 'ftp_ssh', values: [] },
+          { prefix: 'resource', values: [] },
           { prefix: 'dbs', values: [4, bytes(1000, undefined, false, 'MB')] },
           { prefix: 'services', values: [1] },
           { prefix: 'cdn', values: [] },
