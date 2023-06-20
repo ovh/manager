@@ -308,7 +308,12 @@ export default class ActionTrees extends Array {
         )
         .filter(Boolean);
       Object.assign(category, {
-        actions,
+        actions: actions.map((action) => ({
+          ...action,
+          id: `${actionTree.value}_${category.value}_${action.value}`
+            .replace(/[^\w]/g, '-')
+            .toLocaleLowerCase(),
+        })),
         get selection() {
           return actions.filter(({ selected }) => selected);
         },
