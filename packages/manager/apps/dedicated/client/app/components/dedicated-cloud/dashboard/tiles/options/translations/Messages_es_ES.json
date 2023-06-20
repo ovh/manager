@@ -1,7 +1,8 @@
 {
   "ovhManagerPccDashboardOptions_openNewTab": "Abrir una nueva pestaña",
   "ovhManagerPccDashboardOptions_handleInitialData_error": "Se ha producido un error al cargar la información necesaria para mostrar las opciones.",
-  "ovhManagerPccDashboardOptions_heading": "Opciones y conformidad",
+  "ovhManagerPccDashboardOptions_heading_conformity": "Conformidad",
+  "ovhManagerPccDashboardOptions_heading_vmware_option": "Opciones VMware",
   "ovhManagerPccDashboardOptions_basicOptions_term": "Opciones incluidas",
   "ovhManagerPccDashboardOptions_basicOptions_actionMenu_activate": "Activar las opciones",
   "ovhManagerPccDashboardOptions_basicOptions_actionMenu_payCheckout": "Confirmar la activación",
@@ -24,7 +25,5 @@
   "ovhManagerPccDashboardOptions_security_drp_status_vpn_error": "Configuración de la VPN en error",
   "ovhManagerPccDashboardOptions_security_drp_action_add_configuration": "Añadir las direcciones IP",
   "ovhManagerPccDashboardOptions_security_drp_action_install": "Instalar un DRP",
-  "ovhManagerPccDashboardOptions_security_drp_action_delete": "Eliminar el DRP Zerto",
-  "ovhManagerPccDashboardOptions_heading_conformity": "Conformidad",
-  "ovhManagerPccDashboardOptions_heading_vmware_option": "Opciones VMware"
+  "ovhManagerPccDashboardOptions_security_drp_action_delete": "Eliminar el DRP Zerto"
 }

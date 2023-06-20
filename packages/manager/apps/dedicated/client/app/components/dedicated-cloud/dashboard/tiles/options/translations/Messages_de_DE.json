@@ -1,7 +1,8 @@
 {
   "ovhManagerPccDashboardOptions_openNewTab": "Öffnet einen neuen Tab",
   "ovhManagerPccDashboardOptions_handleInitialData_error": "Beim Abruf der für die Anzeige der Optionen notwendigen Daten ist ein Fehler aufgetreten.",
-  "ovhManagerPccDashboardOptions_heading": "Optionen und Compliance",
+  "ovhManagerPccDashboardOptions_heading_conformity": "Compliance",
+  "ovhManagerPccDashboardOptions_heading_vmware_option": "VMware-Optionen",
   "ovhManagerPccDashboardOptions_basicOptions_term": "Inklusiv-Optionen",
   "ovhManagerPccDashboardOptions_basicOptions_actionMenu_activate": "Optionen hinzufügen",
   "ovhManagerPccDashboardOptions_basicOptions_actionMenu_payCheckout": "Aktivierung bestätigen",
@@ -24,7 +25,5 @@
   "ovhManagerPccDashboardOptions_security_drp_status_vpn_error": "VPN-Konfiguration fehlgeschlagen",
   "ovhManagerPccDashboardOptions_security_drp_action_add_configuration": "IP-Adressen hinzufügen",
   "ovhManagerPccDashboardOptions_security_drp_action_install": "DRP installieren",
-  "ovhManagerPccDashboardOptions_security_drp_action_delete": "Zerto DRP löschen",
-  "ovhManagerPccDashboardOptions_heading_conformity": "Compliance",
-  "ovhManagerPccDashboardOptions_heading_vmware_option": "VMware-Optionen"
+  "ovhManagerPccDashboardOptions_security_drp_action_delete": "Zerto DRP löschen"
 }

@@ -2,10 +2,11 @@
   "data_processing_details_information_label": "Information",
   "data_processing_details_information_status_label": "Status",
   "data_processing_details_information_region_label": "Region",
+  "data_processing_details_information_return_code_label": "Rückgabecode",
   "data_processing_details_information_creation_date_label": "Erstellungsdatum",
+  "data_processing_details_information_notebook_name_label": "Notebook",
   "data_processing_details_information_elapsed_label": "Vergangene Zeit",
   "data_processing_details_actions_show_ui_label": "Auf das graphische Interface des Auftrags zugreifen",
-  "data_processing_details_actions_show_grafana_label": "Auf das Monitoring zugreifen",
   "data_processing_details_actions_browse_swift_label": "Die Objekte des Containers durchsuchen",
   "data_processing_details_actions_browse_swift_unavailable_label": "Der Objektcontainer existiert nicht mehr",
   "data_processing_details_actions_relaunch_label": "Den Auftrag duplizieren und erneut starten",
@@ -20,13 +21,7 @@
   "data_processing_details_configuration_swift_container_label": "Swift-Container",
   "data_processing_details_configuration_job_type_label": "Art des Auftrags",
   "data_processing_details_configuration_jar_file_label": "JAR-Datei",
-  "data_processing_details_configuration_main_class_label": "Übergeordnete Kategorie",
-  "data_processing_details_configuration_arguments_label": "Argumente",
-  "data_processing_details_no_data": "Keine Daten vorhanden",
-  "data_processing_details_charts_total_memory": "Speicherverwendung in den letzten 5 Minuten",
-  "data_processing_details_charts_num_active_tasks": "# Anzahl aktiver Aufträge in den letzten 5 Minuten",
-  "data_processing_details_charts_blockmanager_disk": "Verwendung von Festplattenspeicher durch Blockmanager in den letzten 5 Minuten",
   "data_processing_details_configuration_python_file_label": "Python-Datei",
-  "data_processing_details_information_return_code_label": "Rückgabecode",
-  "data_processing_details_information_notebook_name_label": "Notebook"
+  "data_processing_details_configuration_main_class_label": "Übergeordnete Kategorie",
+  "data_processing_details_configuration_arguments_label": "Argumente"
 }
