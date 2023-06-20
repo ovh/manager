@@ -66,16 +66,6 @@ export default class {
                         // We need set more parameters for express order url.
                         set(datacenter.addons, index, {
                           ...datacenter.addons[index],
-                          ...(datacenter.addons[index].planCode.includes(
-                            'host',
-                          ) && {
-                            configuration: [
-                              {
-                                label: 'datacenter_id',
-                                values: [0],
-                              },
-                            ],
-                          }),
                           pricingMode,
                           productId: 'privateCloud',
                           serviceName: this.serviceName,
