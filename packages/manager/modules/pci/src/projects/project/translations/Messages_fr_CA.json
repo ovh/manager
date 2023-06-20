@@ -26,6 +26,8 @@
   "pci_projects_project_documentation_billing_description": "Comprendre et gérer",
   "pci_projects_project_documentation_guides_term": "Guides",
   "pci_projects_project_documentation_guides_description": "Voir tous les guides Public Cloud",
+  "pci_projects_project_documentation_block_storage_term": "Block Storage",
+  "pci_projects_project_documentation_block_storage_description": "Créer un périphérique de stockage externe",
   "pci_projects_project_community_roadmap_term": "Roadmap",
   "pci_projects_project_community_roadmap_description": "Découvrez et participez",
   "pci_projects_project_community_discord_term": "Communauté",
