@@ -18,47 +18,6 @@
     ></small>
     <!-- </Wildcard> -->
 
-    <!-- <CustomAction> -->
-    <ng-form name="$ctrl.form">
-        <input
-            type="hidden"
-            name="{{ $ctrl.name }}"
-            data-ng-model="$ctrl.ngModel"
-            data-disabled="$ctrl.readOnly"
-        />
-
-        <oui-field
-            data-label="{{:: 'iam_action_select_custom_action_label' | translate }}"
-            data-error-messages="{
-                exist: ('iam_action_select_custom_action_error_exist' | translate)
-            }"
-        >
-            <div class="d-flex align-items-start">
-                <input
-                    data-ng-model="$ctrl.customActionModel"
-                    data-ng-keypress="$ctrl.onCustomActionKeyPressed($event)"
-                    class="oui-input mr-3"
-                    name="customAction"
-                    type="text"
-                    data-ng-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
-                />
-                <button
-                    type="button"
-                    class="iam-action-select__custom-action_button flex oui-button oui-button_ghost"
-                    data-ng-disabled="!$ctrl.canAddCustomAction"
-                    data-ng-click="$ctrl.addCustomAction()"
-                >
-                    <span
-                        data-translate="iam_action_select_custom_action_button"
-                    ></span>
-                    <span
-                        class="oui-icon oui-icon-plus mr-2"
-                        aria-hidden="true"
-                    ></span>
-                </button>
-            </div>
-        </oui-field>
-    </ng-form>
     <oui-message
         class="mb-3"
         data-ng-if="$ctrl.customActionSuccessMessage"
@@ -68,7 +27,6 @@
     >
         <span data-ng-bind-html="$ctrl.customActionSuccessMessage"></span>
     </oui-message>
-    <!-- </CustomAction> -->
 
     <!-- <Actions> -->
     <oui-collapsible
@@ -76,6 +34,55 @@
         data-heading="{{ 'iam_action_select_action_' + actionTree.value + '_heading' | translate }}"
         data-expanded="actionTree.expanded"
     >
+        <!-- <CustomAction> -->
+        <ng-form
+            name="$ctrl.form"
+            data-ng-if="actionTree.value === $ctrl.CUSTOM_RESOURCE_TYPE"
+        >
+            <input
+                type="hidden"
+                name="{{ $ctrl.name }}"
+                data-ng-model="$ctrl.ngModel"
+                data-disabled="$ctrl.readOnly"
+            />
+
+            <oui-field
+                data-label="{{:: 'iam_action_select_custom_action_label' | translate }}"
+                data-error-messages="{
+                    requirements: ('iam_action_select_custom_action_error_requirements' | translate),
+                    selected: ('iam_action_select_custom_action_error_selected' | translate),
+                }"
+            >
+                <div class="d-flex align-items-start">
+                    <input
+                        class="oui-input mr-3"
+                        name="customAction"
+                        type="text"
+                        data-ng-blur="$ctrl.triggerResize()"
+                        data-ng-change="$ctrl.triggerResize()"
+                        data-ng-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
+                        data-ng-model="$ctrl.customActionModel"
+                        data-ng-keypress="$ctrl.onCustomActionKeyPressed($event)"
+                    />
+                    <button
+                        type="button"
+                        class="iam-action-select__custom-action_button flex oui-button oui-button_ghost"
+                        data-ng-disabled="!$ctrl.canAddCustomAction"
+                        data-ng-click="$ctrl.addCustomAction()"
+                    >
+                        <span
+                            data-translate="iam_action_select_custom_action_button"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-plus mr-2"
+                            aria-hidden="true"
+                        ></span>
+                    </button>
+                </div>
+            </oui-field>
+        </ng-form>
+        <!-- </CustomAction> -->
+
         <!-- <Search> -->
         <oui-field
             data-ng-if="actionTree.searchable"
