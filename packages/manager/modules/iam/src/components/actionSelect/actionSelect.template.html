@@ -143,24 +143,39 @@
                 ></span>
                 <!-- </CategoryToggler> -->
             </div>
-            <div data-ng-show="category.expanded">
+            <div data-ng-if="category.expanded">
                 <!-- <CategoryActions> -->
-                <oui-checkbox
-                    class="ml-4"
-                    data-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
+                <div
+                    class="oui-checkbox ml-4"
                     data-ng-repeat="action in category.actions track by action.value"
-                    data-model="action.selected"
-                    data-on-change="$ctrl.onModelChanged()"
                 >
-                    <oui-checkbox-label>
-                        <div
-                            data-iam-highlight-text="{{ actionTree.searchQuery }}"
-                            data-iam-highlight-text-change="$ctrl.toggleCategory(category, true)"
-                        >
-                            <span data-ng-bind="action.value"></span>
-                        </div>
-                    </oui-checkbox-label>
-                </oui-checkbox>
+                    <input
+                        class="oui-checkbox__input"
+                        id="{{ action.id }}"
+                        type="checkbox"
+                        name="{{ action.id }}"
+                        data-ng-model="action.selected"
+                        data-ng-change="$ctrl.onModelChanged()"
+                        data-ng-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
+                        data-ng-required="$ctrl.required"
+                    />
+                    <label
+                        class="oui-checkbox__label-container"
+                        for="{{ action.id }}"
+                    >
+                        <span class="oui-checkbox__label">
+                            <span class="oui-checkbox__icon"></span>
+                            <span class="oui-checkbox__text">
+                                <span
+                                    data-iam-highlight-text="{{ actionTree.searchQuery }}"
+                                    data-iam-highlight-text-change="$ctrl.toggleCategory(category, true)"
+                                >
+                                    <span data-ng-bind="action.value"></span>
+                                </span>
+                            </span>
+                        </span>
+                    </label>
+                </div>
                 <!-- </CategoryActions> -->
             </div>
         </div>
