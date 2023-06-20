@@ -4,18 +4,20 @@ import './resourceSelect.styles.scss';
 
 export default {
   bindings: {
+    ngModel: '<',
     onChange: '&?',
     onError: '&?',
     onResourceTypesConfirmRemove: '&?',
     readOnly: '<?',
     required: '<',
     resourcesLabel: '@',
-    resourcesModel: '=',
     resourcesName: '@',
     resourcesRequiredMessage: '@?',
     resourceTypesLabel: '@',
-    resourceTypesModel: '=',
     resourceTypesName: '@',
+  },
+  require: {
+    requiredNgModel: '^ngModel',
   },
   controller,
   template,

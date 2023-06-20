@@ -9,8 +9,9 @@ import ActionTrees from './ActionTrees.class';
 
 export default class ActionSelectController {
   /* @ngInject */
-  constructor($attrs, $scope, $timeout, $translate, IAMService) {
+  constructor($attrs, $filter, $scope, $timeout, $translate, IAMService) {
     this.$attrs = $attrs;
+    this.$filter = $filter;
     this.$scope = $scope;
     this.$timeout = $timeout;
     this.$translate = $translate;
@@ -163,8 +164,8 @@ export default class ActionSelectController {
       const { action, created } = this.actionTrees.addAction(value);
       const translateValues = {
         action: `<strong>${action.value}</strong>`,
-        resourceType: `<strong>${$t(
-          `${key}_action_${action.resourceType}_heading`,
+        resourceType: `<strong>${this.$filter('iamResourceType')(
+          action.resourceType,
         )}</strong>`,
       };
 
