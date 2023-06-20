@@ -312,8 +312,7 @@ export default class AppAddController {
       : `${image.preset.id}:${image.preset.selectedVersion}`;
     const splitImage = imageModel.split('/');
     const lastImagePart = splitImage[splitImage.length - 1];
-    const splitTag = lastImagePart.split(':');
-    const prefix = splitTag[0];
+    const [prefix] = lastImagePart.split(':');
     this.appModel.name = `${prefix}-${nameGenerator()}`;
     return false;
   }
