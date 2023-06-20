@@ -5,7 +5,8 @@ import { URL } from '../../iam.service';
 
 export default class CreatePolicyController {
   /* @ngInject */
-  constructor($q, $timeout, $translate, IAMService) {
+  constructor($filter, $q, $timeout, $translate, IAMService) {
+    this.$filter = $filter;
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
@@ -52,9 +53,8 @@ export default class CreatePolicyController {
     this.model = {
       actions: { selection: [], isWildcardActive: false },
       name: '',
-      resources: [],
+      resources: { selection: [], types: [] },
       resourceGroups: [],
-      resourceTypes: [],
     };
 
     /**
@@ -116,7 +116,7 @@ export default class CreatePolicyController {
    * @returns {boolean}
    */
   get hasSelectedResourceTypes() {
-    return this.model.resourceTypes?.length > 0;
+    return this.model.resources.types?.length > 0;
   }
 
   /**
@@ -177,14 +177,14 @@ export default class CreatePolicyController {
       );
       this.model.actions.isWildcardActive = Boolean(wildcardAction);
       this.model.name = this.policy.name;
-      this.model.resources = this.policy.resources
+      this.model.resources.selection = this.policy.resources
         .filter(({ resource }) => Boolean(resource))
         .map(({ resource }) => resource);
       this.model.resourceGroups = this.policy.resources
         .filter(({ group }) => Boolean(group))
         .map(({ group }) => group);
-      this.model.resourceTypes = [
-        ...this.model.resources.map(({ type }) => type),
+      this.model.resources.types = [
+        ...this.model.resources.selection.map(({ type }) => type),
         ...this.model.actions.selection.map(({ resourceType }) => resourceType),
       ].filter(
         (resourceType, index, list) =>
@@ -240,16 +240,33 @@ export default class CreatePolicyController {
    * @param {boolean} success
    */
   onDeleteEntityGoBack({ success }) {
-    if (success) {
-      this.model.actions.selection = this.model.actions.selection.filter(
-        (action) => !this.deletion.data.actions.includes(action),
-      );
-      this.model.resources = this.model.resources?.filter(
-        (resource) => !this.deletion.data.resources.includes(resource),
-      );
-    }
+    this.deletion.promise
+      .then(() =>
+        this.$timeout(() => {
+          if (success) {
+            const {
+              data: { actions: deletedActions, resources: deletedResources },
+            } = this.deletion;
+
+            this.model.actions.selection = this.model.actions.selection.filter(
+              (action) => !deletedActions.includes(action),
+            );
+            this.model.resources = {
+              ...this.model.resources,
+              selection:
+                this.model.resources.selection?.filter(
+                  ({ id }) =>
+                    !deletedResources.find((resource) => id === resource.id),
+                ) || [],
+            };
+          }
+        }),
+      )
+      .then(() => {
+        this.deletion = null;
+      });
+
     this.deletion.resolve(success);
-    this.deletion = null;
   }
 
   /**
@@ -261,13 +278,17 @@ export default class CreatePolicyController {
     const actions = this.model.actions.selection.filter(
       (action) => action.resourceType === resourceType,
     );
-    const resources = this.model.resources?.filter(
+    const resources = this.model.resources.selection?.filter(
       (resource) => resource.type === resourceType,
     );
 
     if (actions?.length || resources?.length) {
       this.deletion = this.$q.defer();
-      this.deletion.data = { name: resourceType, actions, resources };
+      this.deletion.data = {
+        name: this.$filter('iamResourceType')(resourceType),
+        actions,
+        resources,
+      };
       return this.deletion.promise;
     }
 
@@ -349,7 +370,7 @@ export default class CreatePolicyController {
       resources: [
         ...new Map(
           [
-            ...this.model.resources.map(({ urn }) => ({ urn })),
+            ...this.model.resources.selection.map(({ urn }) => ({ urn })),
             ...this.model.resourceGroups.map(({ urn }) => ({ urn })),
           ].map((resource) => [resource.urn, resource]),
         ).values(),

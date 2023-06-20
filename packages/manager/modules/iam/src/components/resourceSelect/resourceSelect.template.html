@@ -16,15 +16,17 @@
         <oui-select
             data-load="{{:: $ctrl.URL.RESOURCE_TYPE }}"
             data-load-options="{ global: { serviceType: 'apiv2' } }"
-            data-model="$ctrl.resourceTypesModel"
+            data-match="label"
+            data-model="$ctrl.model.types"
             data-multiple="true"
             data-name="{{:: $ctrl.resourceTypesName }}"
             data-on-change="$ctrl.onResourceTypesChanged(modelValue)"
-            data-on-confirm-remove="$ctrl.onResourceTypesConfirmRemove({ item, index })"
+            data-on-confirm-remove="$ctrl.onResourceTypesConfirmRemove({ item: item.value, index })"
             data-on-error="$ctrl.onError(error)"
-            data-on-load="response.data.sort()"
+            data-on-load="$ctrl.transformResourceTypes(response.data)"
             data-required="$ctrl.isResourceTypesRequired"
             data-disabled="$ctrl.readOnly"
+            data-searchable
         ></oui-select>
     </oui-field>
     <!-- </ResourceTypes> -->
@@ -46,14 +48,22 @@
                 data-load="{{ $ctrl.hasSelectedResourceTypes ? $ctrl.resourceUrl : '' }}"
                 data-load-options="{ global: { serviceType: 'apiv2' } }"
                 data-match="displayName"
-                data-model="$ctrl.resourcesModel"
+                data-model="$ctrl.model.selection"
                 data-multiple="true"
                 data-name="{{:: $ctrl.resourcesName }}"
                 data-on-change="$ctrl.onResourcesChanged(modelValue)"
                 data-on-load="$ctrl.onResourcesLoaded(response)"
                 data-on-error="$ctrl.onError(error)"
                 data-required="$ctrl.isResourcesRequired"
-            ></oui-select>
+            >
+                <div>
+                    <span
+                        class="d-block font-weight-bold small text-primary"
+                        data-ng-bind=":: $item.type | iamResourceType"
+                    ></span>
+                    <span data-ng-bind=":: $item.displayName"></span>
+                </div>
+            </oui-select>
         </oui-field>
         <div
             class="w-100"
