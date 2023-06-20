@@ -1,4 +1,10 @@
 import { cloneDeep } from 'lodash-es';
+
+import {
+  CUSTOM_ACTION_PATTERN,
+  CUSTOM_RESOURCE_TYPE,
+} from '../../iam.constants';
+
 import ActionTrees from './ActionTrees.class';
 
 export default class ActionSelectController {
@@ -9,6 +15,8 @@ export default class ActionSelectController {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.IAMService = IAMService;
+
+    this.CUSTOM_RESOURCE_TYPE = CUSTOM_RESOURCE_TYPE;
 
     /**
      * List of actions
@@ -136,20 +144,6 @@ export default class ActionSelectController {
       });
   }
 
-  $postLink() {
-    const { customAction, [this.name]: name } = this.form;
-
-    // Custom required validator for the whole component
-    name.$validators.required = () =>
-      this.required
-        ? this.ngModel?.selection.length > 0 || this.ngModel?.isWildcardActive
-        : true;
-
-    // Custom exist validator to know if a custom action already exists
-    customAction.$validators.exist = (action) =>
-      !this.actionTrees?.isActionSelected(action);
-  }
-
   /**
    * Add the user entered custom action to the model
    * - If the action does not exist, create a custom one and select it
@@ -198,6 +192,31 @@ export default class ActionSelectController {
       actionTrees: this.actionTrees,
       resourceTypes: this.resourceTypes,
       selectedActions: this.ngModel?.selection || [],
+    });
+
+    // The custom form is not in the DOM yet
+    this.$timeout(() => {
+      const { customAction, [this.name]: name } = this.form;
+
+      // Custom required validator for the whole component
+      name.$validators.required = () =>
+        this.required
+          ? this.ngModel?.selection.length > 0 || this.ngModel?.isWildcardActive
+          : true;
+
+      // Custom "requirements" validator to know if a custom action meets all the requirements
+      customAction.$validators.requirements = (action) => {
+        const isEmpty = !action;
+        const isFound = this.actions.find(
+          ({ action: item }) => item === action,
+        );
+        const isValid = CUSTOM_ACTION_PATTERN.test(action);
+        return isEmpty || isValid || isFound;
+      };
+
+      // Custom "selected" validator to know if a custom action has already been selected
+      customAction.$validators.selected = (action) =>
+        !action || !this.actionTrees?.isActionSelected(action);
     });
   }
 
@@ -275,12 +294,16 @@ export default class ActionSelectController {
     Object.assign(category, {
       expanded: typeof force === 'boolean' ? force : !category.expanded,
     });
-    // This hack is a way to force the parent collapsible to recalculate its height
-    const [action] = category.actions;
-    Object.assign(action, { value: `${action.value} ` });
+    this.triggerResize();
+  }
+
+  /*
+   * This hack is a way to force the collapsibles to recalculate their height
+   */
+  triggerResize() {
     this.$timeout(() => {
-      Object.assign(action, { value: action.value.slice(0, -1) });
-    });
+      jQuery(window).trigger('resize');
+    }, 100);
   }
 
   /**

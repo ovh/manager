@@ -221,7 +221,7 @@ export default class ActionTrees extends Array {
               searchable: false,
               value: action.action,
             })),
-          expanded: false,
+          expanded: true,
           value: CUSTOM_RESOURCE_TYPE,
         };
   }
@@ -352,13 +352,19 @@ export default class ActionTrees extends Array {
     ];
 
     allActionTrees.forEach((actionTree) => {
-      const inputActionTree = input.actionTrees?.find(
+      let inputActionTree = input.actionTrees?.find(
         ({ value }) => value === actionTree.value,
       );
       const hasActionTreeSelectedActions = [
         ...(actionTree.actions || []),
         ...(actionTree.categories?.flatMap(({ actions }) => actions) || []),
       ].some(({ selected }) => selected);
+
+      // If it's the first time the custom actionTree is built
+      // Keep the default expanded value
+      if (!inputActionTree && actionTree.value === CUSTOM_RESOURCE_TYPE) {
+        inputActionTree = { expanded: this.buffer.customActionTree.expanded };
+      }
 
       Object.assign(actionTree, {
         expanded: inputActionTree

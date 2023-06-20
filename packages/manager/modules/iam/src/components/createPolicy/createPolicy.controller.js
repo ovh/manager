@@ -339,7 +339,12 @@ export default class CreatePolicyController {
       permissions: {
         allow: this.model.actions.isWildcardActive
           ? [{ action: '*' }]
-          : this.model.actions.selection.map(({ action }) => ({ action })),
+          : this.model.actions.selection
+              .map(({ action }) => ({ action }))
+              .filter(
+                (item, i, list) =>
+                  list.findIndex(({ action }) => item.action === action) === i,
+              ),
       },
       resources: [
         ...new Map(
