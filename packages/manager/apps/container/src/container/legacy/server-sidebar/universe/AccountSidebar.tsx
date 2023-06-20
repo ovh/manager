@@ -24,6 +24,16 @@ export default function AccountSidebar() {
   const region = environment.getRegion();
   const isEnterprise = environment.getUser()?.enterprise;
 
+  const getFeatures = (): Promise<Record<string, string>> =>
+    reketInstance.get(`/feature/${features.join(',')}/availability`, {
+      requestType: 'aapi',
+    });
+
+  const { data: sidebarDedicatedAvailability } = useQuery(
+    ['sidebar-dedicated-availability'],
+    getFeatures,
+  );
+
   const getAccountSidebar = () => {
     const menu = [];
 
@@ -87,12 +97,13 @@ export default function AccountSidebar() {
         routeMatcher: new RegExp('^/contacts'),
       });
 
-      menu.push({
-        id: 'my-carbon-footprint',
-        label: t('sidebar_carbon_footprint'),
-        href: navigation.getURL('carbon-calculator', '/'),
-        routeMatcher: new RegExp('^/carbon-calculator'),
-      });
+      if (sidebarDedicatedAvailability?.['carbon-calculator']) {
+        menu.push({
+          id: 'my-carbon-footprint',
+          label: t('sidebar_carbon_footprint'),
+          href: navigation.getURL('carbon-calculator', '/'),
+        });
+      }
     }
 
     menu.push({
@@ -117,30 +128,20 @@ export default function AccountSidebar() {
 
   useEffect(() => {
     buildMenu().then((_menu) => setMenu(sanitizeMenu(_menu)));
-  }, []);
-
-  const getFeatures = (): Promise<Record<string, string>> =>
-    reketInstance.get(`/feature/${features.join(',')}/availability`, {
-      requestType: 'aapi',
-    });
-
-  const { data: availability } = useQuery(
-    ['sidebar-dedicated-availability'],
-    getFeatures,
-  );
+  }, [sidebarDedicatedAvailability]);
 
   useEffect(() => {
-    if (availability) {
+    if (sidebarDedicatedAvailability) {
       setShopItems(
         dedicatedShopConfig(
           navigation,
           region,
           environment.getUser().ovhSubsidiary,
-          availability,
+          sidebarDedicatedAvailability,
         ),
       );
     }
-  }, [availability, i18n.language]);
+  }, [sidebarDedicatedAvailability, i18n.language]);
 
   return (
     <>

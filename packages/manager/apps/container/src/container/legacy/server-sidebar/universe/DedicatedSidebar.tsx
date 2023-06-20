@@ -48,6 +48,7 @@ export const features = [
   'logs-data-platform',
   'dedicated-server:ecoRangeOrder',
   'dedicated-server:nutanixOrder',
+  'carbon-calculator',
 ];
 
 export default function DedicatedSidebar() {
