@@ -1,6 +1,6 @@
 {
   "module_ip_dashboard_title": "Gestisci gli indirizzi IP",
-  "module_ip_dashboard_order_IP_action_label": "Ordinare un IP",
+  "module_ip_dashboard_order_IP_action_label": "Ordina IP",
   "ip_dashboard_error": "Si è verificato un errore durante il caricamento delle tue informazioni",
   "ip_services_error": "Si è verificato un errore durante il caricamento di questi servizi: {{t0}}. Ti preghiamo di riprovare più tardi.",
   "ip_block_error": "Si è verificato un errore durante il caricamento delle informazioni relative a {{t0}}.",
