@@ -36,5 +36,7 @@
   "server_configuration_netboot_confirm": "Bestätigen",
   "server_configuration_netboot_review": "Zusammenfassung",
   "server_configuration_netboot_save_in_progress": "Update wird durchgeführt...",
-  "server_configuration_netboot_invalid": "Ungültig"
+  "server_configuration_netboot_invalid": "Ungültig",
+  "server_configuration_netboot_rescue_help": "Der Rescue-Modus kann nützlich sein, um auf einem Dedicated Server Hardwareprobleme zu diagnostizieren.",
+  "server_configuration_netboot_rescue_help_link": "Sehen Sie sich die Anleitung für die Hardware-Diagnose an."
 }

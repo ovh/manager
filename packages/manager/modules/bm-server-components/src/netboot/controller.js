@@ -1,6 +1,8 @@
 import forEach from 'lodash/forEach';
 import isFunction from 'lodash/isFunction';
 
+import { getNetbootGuideUrl } from './constants';
+
 export default class BmServerComponentsNetbootCtrl {
   /* @ngInject */
   constructor(
@@ -8,6 +10,7 @@ export default class BmServerComponentsNetbootCtrl {
     $q,
     $translate,
     atInternet,
+    coreConfig,
     netbootService,
     $anchorScroll,
     $location,
@@ -15,6 +18,7 @@ export default class BmServerComponentsNetbootCtrl {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
+    this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
     this.atInternet = atInternet;
     this.netbootService = netbootService;
     this.$anchorScroll = $anchorScroll;
@@ -26,6 +30,8 @@ export default class BmServerComponentsNetbootCtrl {
     this.HARDDISK = 'harddisk';
     this.RESCUE = 'rescue';
     this.NETWORK = 'network';
+
+    this.DEFAULT_RESCUE = 'rescue-customer';
 
     this.loading = {
       init: true,
@@ -42,6 +48,7 @@ export default class BmServerComponentsNetbootCtrl {
     this.rootDevice = {
       root: null,
     };
+    this.hardwareDiagnosticsGuide = getNetbootGuideUrl(this.ovhSubsidiary);
 
     this.loadNetboots();
   }
@@ -62,6 +69,12 @@ export default class BmServerComponentsNetbootCtrl {
       forEach(eachNetboot, (eachNetbootItem) => {
         if (eachNetbootItem.id === this.server.bootId) {
           this.currentNetboot.type = eachNetbootItem.type.toLowerCase();
+          this.currentNetboot[netbootType] = eachNetbootItem;
+        }
+        if (
+          netbootType === this.RESCUE &&
+          eachNetbootItem.kernel === this.DEFAULT_RESCUE
+        ) {
           this.currentNetboot[netbootType] = eachNetbootItem;
         }
       });

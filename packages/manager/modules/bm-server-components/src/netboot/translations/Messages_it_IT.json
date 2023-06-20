@@ -36,5 +36,7 @@
   "server_configuration_netboot_confirm": "Conferma",
   "server_configuration_netboot_review": "Riepilogo",
   "server_configuration_netboot_save_in_progress": "Aggiornamento...",
-  "server_configuration_netboot_invalid": "Non valido"
+  "server_configuration_netboot_invalid": "Non valido",
+  "server_configuration_netboot_rescue_help": "La modalità Rescue può essere utile per diagnosticare malfunzionamenti hardware su un server dedicato.",
+  "server_configuration_netboot_rescue_help_link": "Accedi alla guida di diagnostica hardware."
 }
