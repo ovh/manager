@@ -2,10 +2,11 @@
   "data_processing_details_information_label": "Information",
   "data_processing_details_information_status_label": "Status",
   "data_processing_details_information_region_label": "Region",
+  "data_processing_details_information_return_code_label": "Return code",
   "data_processing_details_information_creation_date_label": "Creation date",
+  "data_processing_details_information_notebook_name_label": "Notebook",
   "data_processing_details_information_elapsed_label": "Time elapsed",
   "data_processing_details_actions_show_ui_label": "Access the graphical interface for the job",
-  "data_processing_details_actions_show_grafana_label": "Access monitoring",
   "data_processing_details_actions_browse_swift_label": "Browse container objects",
   "data_processing_details_actions_browse_swift_unavailable_label": "Object container no longer exists",
   "data_processing_details_actions_relaunch_label": "Duplicate and relaunch job",
@@ -22,11 +23,5 @@
   "data_processing_details_configuration_jar_file_label": "JAR file",
   "data_processing_details_configuration_python_file_label": "Python file",
   "data_processing_details_configuration_main_class_label": "Main class",
-  "data_processing_details_configuration_arguments_label": "Arguments",
-  "data_processing_details_no_data": "No data",
-  "data_processing_details_charts_total_memory": "Memory usage in the last 5 minutes (Mi)",
-  "data_processing_details_charts_num_active_tasks": "# active tasks in the last 5 minutes",
-  "data_processing_details_charts_blockmanager_disk": "BlockManager disk usage in the last 5 minutes",
-  "data_processing_details_information_return_code_label": "Return code",
-  "data_processing_details_information_notebook_name_label": "Notebook"
+  "data_processing_details_configuration_arguments_label": "Arguments"
 }

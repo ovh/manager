@@ -1,7 +1,8 @@
 {
   "ovhManagerPccDashboardOptions_openNewTab": "Opens a new tab",
   "ovhManagerPccDashboardOptions_handleInitialData_error": "An error has occurred retrieving the data required to display options.",
-  "ovhManagerPccDashboardOptions_heading": "Options and compliance",
+  "ovhManagerPccDashboardOptions_heading_conformity": "Compliance",
+  "ovhManagerPccDashboardOptions_heading_vmware_option": "VMware Options",
   "ovhManagerPccDashboardOptions_basicOptions_term": "Options included",
   "ovhManagerPccDashboardOptions_basicOptions_actionMenu_activate": "Enable options",
   "ovhManagerPccDashboardOptions_basicOptions_actionMenu_payCheckout": "Confirm activation",
@@ -24,7 +25,5 @@
   "ovhManagerPccDashboardOptions_security_drp_status_vpn_error": "Error configuring VPN",
   "ovhManagerPccDashboardOptions_security_drp_action_add_configuration": "Add IPs",
   "ovhManagerPccDashboardOptions_security_drp_action_install": "Add DRP",
-  "ovhManagerPccDashboardOptions_security_drp_action_delete": "Delete Zerto DRP",
-  "ovhManagerPccDashboardOptions_heading_conformity": "Compliance",
-  "ovhManagerPccDashboardOptions_heading_vmware_option": "VMware Options"
+  "ovhManagerPccDashboardOptions_security_drp_action_delete": "Delete Zerto DRP"
 }
