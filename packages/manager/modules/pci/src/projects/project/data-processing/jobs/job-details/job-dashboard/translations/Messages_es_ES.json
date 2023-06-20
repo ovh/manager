@@ -2,10 +2,11 @@
   "data_processing_details_information_label": "Información",
   "data_processing_details_information_status_label": "Estado",
   "data_processing_details_information_region_label": "Región",
+  "data_processing_details_information_return_code_label": "Código de devolución",
   "data_processing_details_information_creation_date_label": "Fecha de creación",
+  "data_processing_details_information_notebook_name_label": "AI Notebooks",
   "data_processing_details_information_elapsed_label": "Tiempo transcurrido",
   "data_processing_details_actions_show_ui_label": "Acceder a la interfaz gráfica del job",
-  "data_processing_details_actions_show_grafana_label": "Acceder a la monitorización",
   "data_processing_details_actions_browse_swift_label": "Recorrer los objetos del contenedor",
   "data_processing_details_actions_browse_swift_unavailable_label": "El contenedor de objetos ya no existe.",
   "data_processing_details_actions_relaunch_label": "Duplicar y relanzar el job",
@@ -22,11 +23,5 @@
   "data_processing_details_configuration_jar_file_label": "Archivo JAR",
   "data_processing_details_configuration_python_file_label": "Archivo Python",
   "data_processing_details_configuration_main_class_label": "Clase principal",
-  "data_processing_details_configuration_arguments_label": "Argumentos",
-  "data_processing_details_no_data": "No hay datos.",
-  "data_processing_details_charts_total_memory": "Utilización de la memoria en los últimos 5 minutos (Mi)",
-  "data_processing_details_charts_num_active_tasks": "# de tareas activas en los últimos 5 minutos",
-  "data_processing_details_charts_blockmanager_disk": "Utilización del disco Blockmanager en los últimos 5 minutos",
-  "data_processing_details_information_return_code_label": "Código de devolución",
-  "data_processing_details_information_notebook_name_label": "AI Notebooks"
+  "data_processing_details_configuration_arguments_label": "Argumentos"
 }
