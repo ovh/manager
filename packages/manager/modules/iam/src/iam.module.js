@@ -14,6 +14,7 @@ import onboarding from './onboarding';
 import policy from './policy';
 import resourceGroup from './resourceGroup';
 
+import filters from './iam.filters';
 import paramTypes from './iam.paramTypes';
 import routing from './iam.routing';
 import service from './iam.service';
@@ -52,6 +53,7 @@ angular
   .config(routing)
   .config(registerTypes)
   .service('IAMService', service)
+  .filter('iamResourceType', filters.resourceTypeFilter)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

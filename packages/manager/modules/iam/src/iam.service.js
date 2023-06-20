@@ -380,17 +380,6 @@ export default class IAMService {
     }).then(({ data: actions }) => actions);
   }
 
-  /**
-   * Get the list of resource types
-   * @returns {Promise}
-   */
-  getResourceTypes() {
-    return this.httpApiv2({
-      method: 'get',
-      url: URL.RESOURCE_TYPE,
-    }).then(({ data: resourceTypes }) => resourceTypes.sort());
-  }
-
   // **********************************************************************************************
   // Resource
 

@@ -1,10 +1,12 @@
 import punycode from 'punycode';
+import { cloneDeep } from 'lodash-es';
 
 import { URL } from '../../iam.service';
 
 export default class ResourceSelectController {
   /* @ngInject */
-  constructor($scope, $timeout, $transclude, $translate) {
+  constructor($filter, $timeout, $transclude, $translate) {
+    this.$filter = $filter;
     this.$timeout = $timeout;
     this.$translate = $translate;
 
@@ -26,6 +28,15 @@ export default class ResourceSelectController {
     );
 
     /**
+     * The form's data model
+     * @type {Object}
+     */
+    this.model = {
+      selection: [],
+      types: [],
+    };
+
+    /**
      * Resources loaded from the api when resourceTypes have changed
      * @type {Object[]}
      */
@@ -37,13 +48,6 @@ export default class ResourceSelectController {
      * @type {string}
      */
     this.resourceUrl = URL.RESOURCE;
-
-    // Two way bound properties do no trigger $onChanges events
-    $scope.$watch(
-      () => this.resourceTypesModel,
-      (value) => value && this.onResourceTypesChanged(),
-      true,
-    );
   }
 
   /**
@@ -59,7 +63,7 @@ export default class ResourceSelectController {
    * @returns {boolean}
    */
   get hasSelectedResourceTypes() {
-    return this.resourceTypesModel?.length > 0 || false;
+    return this.model.types?.length > 0 || false;
   }
 
   /**
@@ -84,8 +88,7 @@ export default class ResourceSelectController {
    */
   get isResourceTypesRequired() {
     return (
-      this.required &&
-      (!this.resourceTypesModel || this.resourceTypesModel.length === 0)
+      this.required && (!this.model.types || this.model.types.length === 0)
     );
   }
 
@@ -98,7 +101,14 @@ export default class ResourceSelectController {
     return this.form?.[this.resourceTypesName];
   }
 
-  $onChanges({ required }) {
+  $onChanges({ ngModel, required }) {
+    if (ngModel) {
+      this.model = cloneDeep(ngModel.currentValue);
+      if (this.model.types?.length) {
+        this.transformResourceTypes(this.model.types);
+      }
+    }
+
     if (!required) {
       return;
     }
@@ -117,11 +127,23 @@ export default class ResourceSelectController {
   }
 
   /**
+   * Set the required ngModel instance's value each time the model has changed
+   * The ngModel is of type { selection: Object[], types: string[] }
+   */
+  onModelChanged() {
+    this.requiredNgModel.$setViewValue({
+      selection: this.model.selection,
+      types: this.model.types.map(({ value }) => value),
+    });
+  }
+
+  /**
    * Called back each time the resources have changed
    * @param {Object} value
    */
   onResourcesChanged(value) {
     if (this.onChange) {
+      this.onModelChanged();
       this.onChange({ change: { type: 'resources', value } });
     }
   }
@@ -140,8 +162,8 @@ export default class ResourceSelectController {
 
     // Restore references to the model
     // /!\ Avoid having the same selected item twice
-    if (this.resourcesModel?.length) {
-      this.resourcesModel = this.resourcesModel.map(
+    if (this.model.selection?.length) {
+      this.model.selection = this.model.selection.map(
         (resource) =>
           resources.find(({ id }) => resource.id === id) || resource,
       );
@@ -157,12 +179,13 @@ export default class ResourceSelectController {
    */
   onResourceTypesChanged(value) {
     if (value && this.onChange) {
+      this.onModelChanged();
       this.onChange({ change: { type: 'resourceTypes', value } });
     }
     if (this.hasSelectedResourceTypes) {
       this.resourceUrl = [
         URL.RESOURCE,
-        this.resourceTypesModel.map((item) => `resourceType=${item}`).join('&'),
+        this.model.types.map((type) => `resourceType=${type.value}`).join('&'),
       ].join('?');
     }
     this.resources = null;
@@ -179,5 +202,24 @@ export default class ResourceSelectController {
       this.resourceTypesControl.$setDirty();
       this.resourceTypesControl.$validate();
     });
+  }
+
+  /**
+   * Post-process the list (translations, sorting, ...)
+   * @param {Array} resourceTypes
+   */
+  transformResourceTypes(resourceTypes) {
+    const resourceTypeFilter = this.$filter('iamResourceType');
+    resourceTypes.forEach((resourceType, i) => {
+      Object.assign(resourceTypes, {
+        [i]: {
+          label: resourceTypeFilter(resourceType),
+          value: resourceTypes[i],
+        },
+      });
+    });
+    resourceTypes.sort(({ label: labelA }, { label: labelB }) =>
+      labelA.toLowerCase() > labelB.toLowerCase() ? 1 : -1,
+    );
   }
 }
