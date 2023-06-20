@@ -34,5 +34,7 @@
   "pci_projects_project_community_roadmap_term": "Roadmapa",
   "pci_projects_project_community_roadmap_description": "Zapoznaj się i wnieś swój wkład",
   "pci_projects_project_community_discord_term": "Społeczność",
-  "pci_projects_project_community_discord_description": "Porozmawiaj na Discordzie"
+  "pci_projects_project_community_discord_description": "Porozmawiaj na Discordzie",
+  "pci_projects_project_documentation_block_storage_term": "Block Storage",
+  "pci_projects_project_documentation_block_storage_description": "Utwórz zewnętrzne urządzenie do przechowywania danych"
 }
