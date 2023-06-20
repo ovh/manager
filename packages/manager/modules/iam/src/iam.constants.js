@@ -12,6 +12,8 @@ const API_ERROR = {
   },
 };
 
+const CUSTOM_ACTION_PATTERN = /(^\*)|(\*$)/;
+
 const CUSTOM_RESOURCE_TYPE = 'custom';
 
 const DELETE_STATEMENT = 'Terminate';
@@ -85,6 +87,7 @@ const URN_VERSION = 1;
 export {
   ALERT_ID,
   API_ERROR,
+  CUSTOM_ACTION_PATTERN,
   CUSTOM_RESOURCE_TYPE,
   DELETE_STATEMENT,
   ENTITY,
