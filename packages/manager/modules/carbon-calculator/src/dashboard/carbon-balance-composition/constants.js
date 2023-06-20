@@ -1,11 +1,15 @@
-import IMG_CARBON_BALANCE_FR from './assets/carbon-balance-FR.svg';
-import IMG_CARBON_BALANCE_EN from './assets/carbon-balance-EN.svg';
+import IMG_MANUFACTURING from './assets/manufacturing.svg';
+import IMG_ELECTRICITY from './assets/rack.svg';
+import IMG_OPERATIONS from './assets/cog.svg';
+import IMG_CARBON from './assets/CO2.svg';
 
-export const CARBON_BALANCE_PICTURES = {
-  FR: IMG_CARBON_BALANCE_FR,
-  DEFAULT: IMG_CARBON_BALANCE_EN,
+export const ASSETS = {
+  IMG_MANUFACTURING,
+  IMG_ELECTRICITY,
+  IMG_OPERATIONS,
+  IMG_CARBON,
 };
 
 export default {
-  CARBON_BALANCE_PICTURES,
+  ASSETS,
 };

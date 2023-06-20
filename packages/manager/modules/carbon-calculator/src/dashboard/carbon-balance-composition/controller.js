@@ -1,10 +1,11 @@
-import { CARBON_BALANCE_PICTURES } from './constants';
+import { ASSETS } from './constants';
 
 export default class CarbonBalanceCompositionCtrl {
   /* @ngInject */
-  constructor(coreConfig) {
-    this.IMG_CARBON_BALANCE =
-      CARBON_BALANCE_PICTURES[coreConfig.getUser().ovhSubsidiary] ||
-      CARBON_BALANCE_PICTURES.DEFAULT;
+  constructor() {
+    this.IMG_CARBON = ASSETS.IMG_CARBON;
+    this.IMG_ELECTRICITY = ASSETS.IMG_ELECTRICITY;
+    this.IMG_OPERATIONS = ASSETS.IMG_OPERATIONS;
+    this.IMG_MANUFACTURING = ASSETS.IMG_MANUFACTURING;
   }
 }
