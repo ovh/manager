@@ -9,9 +9,7 @@ const defaultAxiosConfig = {};
 function handleAuthenticationError(error: AxiosError) {
   const { response } = error;
   let { status } = response;
-  const hasCustomCredentials = !!(response.config.headers || {})[
-    'Authorization'
-  ];
+  const hasCustomCredentials = !!(response.config.headers || {}).Authorization;
 
   if (status === 403) {
     const message = (response.data as {
@@ -62,7 +60,7 @@ ws.interceptors.response.use(null, handleAuthenticationError);
 
 export const v2 = axios.create({
   ...defaultAxiosConfig,
-  baseURL: '/engine/2.0',
+  baseURL: '/engine/api/v2',
 });
 v2.interceptors.response.use(null, handleAuthenticationError);
 
