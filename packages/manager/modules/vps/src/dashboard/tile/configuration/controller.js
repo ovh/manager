@@ -1,7 +1,8 @@
 export default class VpsDashboardTileConfigurationCtrl {
   /* @ngInject */
-  constructor(coreConfig) {
+  constructor($translate, coreConfig) {
     this.nichandle = coreConfig.getUser().nichandle;
+    this.$translate = $translate;
   }
 
   $onInit() {
@@ -11,5 +12,20 @@ export default class VpsDashboardTileConfigurationCtrl {
     this.isMaxEliteStorage =
       this.isMaxEliteVcore && this.stateVps.model.disk === 640;
     this.isVpsStarter = this.stateVps.model.name.indexOf('starter') >= 0;
+
+    this.doubleMemoryText =
+      this.configurationTile.upgrades.memory.plan && !this.isVpsStarter
+        ? this.$translate.instant(
+            'vps_dashboard_tile_configuration_memory_double',
+            {
+              additionalPrice: this.configurationTile.isUpfront
+                ? this.configurationTile.upgrades.memory.upfrontDiff.text
+                : this.configurationTile.upgrades.memory.diff.text,
+              price: this.configurationTile.isUpfront
+                ? this.configurationTile.upgrades.memory.upfrontTotal.text
+                : this.configurationTile.upgrades.memory.total.text,
+            },
+          )
+        : '';
   }
 }

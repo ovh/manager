@@ -73,8 +73,7 @@
             </oui-radio-toggle-group>
             <p
                 class="mt-2 mb-0"
-                data-translate="vps_dashboard_tile_configuration_memory_double"
-                data-translate-values="{ price: $ctrl.configurationTile.isUpfront ? $ctrl.configurationTile.upgrades.memory.upfrontDiff.text : $ctrl.configurationTile.upgrades.memory.diff.text }"
+                data-ng-bind-html=":: $ctrl.doubleMemoryText"
             ></p>
         </oui-tile-description>
 
