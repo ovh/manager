@@ -74,17 +74,16 @@
 
         <!-- <Resource> -->
         <iam-resource-select
+            data-ng-model="$ctrl.model.resources"
             data-on-change="$ctrl.onResourceChanged(change)"
             data-on-error="$ctrl.onError(error)"
             data-on-resource-types-confirm-remove="$ctrl.onResourceTypesConfirmRemove(item, index)"
             data-read-only="$ctrl.resourceGroup.readOnly"
             data-required="true"
             data-resources-label="{{:: 'iam_create_resource_group_form_resources_heading' | translate }}"
-            data-resources-model="$ctrl.model.resources"
             data-resources-name="resources"
             data-resources-required-message="{{:: 'iam_create_resource_group_form_resources_error_required' | translate }}"
             data-resource-types-label="{{:: 'iam_create_resource_group_form_resource_types_heading' | translate }}"
-            data-resource-types-model="$ctrl.model.resourceTypes"
             data-resource-types-name="resourceTypes"
         >
             <iam-resource-select-resource-types-header>
