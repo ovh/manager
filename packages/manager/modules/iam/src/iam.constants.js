@@ -31,48 +31,116 @@ const ENTITY = {
 
 const ENTITY_NAME_PATTERN = /^[a-zA-Z0-9-/_+]*$/;
 
-// TODO wait for other guide specifications
 const GUIDE = {
   IAM: {
-    FR: 'https://docs.ovh.com/fr/customer/IAM/',
+    DEFAULT:
+      'https://help.ovhcloud.com/csm/en-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056805',
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056797',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056803',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056802',
+    DE:
+      'https://help.ovhcloud.com/csm/de-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056810',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056800',
+    FR:
+      'https://help.ovhcloud.com/csm/fr-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056808',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056801',
+    IN:
+      'https://help.ovhcloud.com/csm/asia-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056797',
+    IT:
+      'https://help.ovhcloud.com/csm/it-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056796',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056807',
+    PT:
+      'https://help.ovhcloud.com/csm/pt-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056798',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056804',
+    SG:
+      'https://help.ovhcloud.com/csm/en-sg-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056799',
+    US:
+      'https://help.ovhcloud.com/csm/en-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056805',
+    WE:
+      'https://help.ovhcloud.com/csm/en-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056805',
+    WS:
+      'https://help.ovhcloud.com/csm/es-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056809',
   },
   USERS: {
-    ASIA: 'https://docs.ovh.com/asia/en/customer/managing-users/',
-    AUS: 'https://docs.ovh.com/au/en/customer/managing-users/',
-    CA: 'https://docs.ovh.com/ca/en/customer/managing-users/',
-    DE: 'https://docs.ovh.com/de/customer/benutzer-verwalten/',
-    ES: 'https://docs.ovh.com/es/customer/gestion-de-usuarios/',
-    FR: 'https://docs.ovh.com/fr/customer/gestion-utilisateurs/',
-    GB: 'https://docs.ovh.com/gb/en/customer/managing-users/',
-    IE: 'https://docs.ovh.com/ie/en/customer/managing-users/',
-    IT: 'https://docs.ovh.com/it/customer/gestisci_gli_utenti/',
-    PL: 'https://docs.ovh.com/pl/customer/zarzadzanie_uzytkownikami/',
-    PT: 'https://docs.ovh.com/pt/customer/gestao-utilizadores/',
-    SG: 'https://docs.ovh.com/sg/en/customer/managing-users/',
-    US: 'https://docs.ovh.com/us/en/customer/managing-users/',
-    WS: 'https://docs.ovh.com/us/es/customer/gestion-de-usuarios/',
+    DEFAULT:
+      'https://help.ovhcloud.com/csm/en-account-managing-users?id=kb_article_view&sysparm_article=KB0043055',
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-account-managing-users?id=kb_article_view&sysparm_article=KB0043053',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-account-managing-users?id=kb_article_view&sysparm_article=KB0043056',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-account-managing-users?id=kb_article_view&sysparm_article=KB0043050',
+    DE:
+      'https://help.ovhcloud.com/csm/de-account-managing-users?id=kb_article_view&sysparm_article=KB0043054',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-account-managing-users?id=kb_article_view&sysparm_article=KB0043340',
+    FR:
+      'https://help.ovhcloud.com/csm/fr-account-managing-users?id=kb_article_view&sysparm_article=KB0043058',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-account-managing-users?id=kb_article_view&sysparm_article=KB0030017',
+    IN:
+      'https://help.ovhcloud.com/csm/asia-account-managing-users?id=kb_article_view&sysparm_article=KB0043053',
+    IT:
+      'https://help.ovhcloud.com/csm/it-account-managing-users?id=kb_article_view&sysparm_article=KB0043350',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-account-managing-users?id=kb_article_view&sysparm_article=KB0043060',
+    PT:
+      'https://help.ovhcloud.com/csm/pt-account-managing-users?id=kb_article_view&sysparm_article=KB0043348',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-account-managing-users?id=kb_article_view&sysparm_article=KB0043059',
+    SG:
+      'https://help.ovhcloud.com/csm/en-sg-account-managing-users?id=kb_article_view&sysparm_article=KB0043057',
+    US:
+      'https://help.ovhcloud.com/csm/en-account-managing-users?id=kb_article_view&sysparm_article=KB0043055',
+    WE:
+      'https://help.ovhcloud.com/csm/en-account-managing-users?id=kb_article_view&sysparm_article=KB0043055',
+    WS:
+      'https://help.ovhcloud.com/csm/es-account-managing-users?id=kb_article_view&sysparm_article=KB0043061',
   },
   SAMLSSO: {
-    ASIA: 'https://docs.ovh.com/asia/en/customer/connect-saml-sso/',
-    AUS: 'https://docs.ovh.com/au/en/customer/connect-saml-sso/',
-    CA: 'https://docs.ovh.com/ca/en/customer/connect-saml-sso/',
-    DE: 'https://docs.ovh.com/de/customer/connect-saml-sso/',
-    ES: 'https://docs.ovh.com/es/customer/conect-saml-sso/',
-    FR: 'https://docs.ovh.com/fr/customer/connect-saml-sso/',
-    GB: 'https://docs.ovh.com/gb/en/customer/connect-saml-sso/',
-    IE: 'https://docs.ovh.com/ie/en/customer/connect-saml-sso/',
-    IT: 'https://docs.ovh.com/it/customer/connect-saml-sso/',
-    PL: 'https://docs.ovh.com/pl/customer/connect-saml-sso/',
-    PT: 'https://docs.ovh.com/pt/customer/connect-saml-sso/',
-    SG: 'https://docs.ovh.com/sg/en/customer/connect-saml-sso/',
-    US: 'https://docs.ovh.com/us/en/customer/connect-saml-sso/',
-    WS: 'https://docs.ovh.com/us/es/customer/conect-saml-sso/',
+    DEFAULT:
+      'https://help.ovhcloud.com/csm/en-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0042998',
+    ASIA:
+      'https://help.ovhcloud.com/csm/asia-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0042995',
+    AU:
+      'https://help.ovhcloud.com/csm/en-au-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0043006',
+    CA:
+      'https://help.ovhcloud.com/csm/en-ca-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0029959',
+    DE:
+      'https://help.ovhcloud.com/csm/de-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0043007',
+    ES:
+      'https://help.ovhcloud.com/csm/es-es-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0043003',
+    FR:
+      'https://help.ovhcloud.com/csm/fr-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0043306',
+    GB:
+      'https://help.ovhcloud.com/csm/en-gb-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0043008',
+    IN:
+      'https://help.ovhcloud.com/csm/asia-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0042995',
+    IT:
+      'https://help.ovhcloud.com/csm/it-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0043005',
+    PL:
+      'https://help.ovhcloud.com/csm/pl-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0043011',
+    PT:
+      'https://help.ovhcloud.com/csm/pt-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0043010',
+    QC:
+      'https://help.ovhcloud.com/csm/fr-ca-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0043018',
+    SG:
+      'https://help.ovhcloud.com/csm/en-sg-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0043002',
+    US:
+      'https://help.ovhcloud.com/csm/en-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0042998',
+    WE:
+      'https://help.ovhcloud.com/csm/en-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0042998',
+    WS:
+      'https://help.ovhcloud.com/csm/es-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0043009',
   },
 };
-
-GUIDE.IAM.DEFAULT = GUIDE.IAM.FR;
-GUIDE.USERS.DEFAULT = GUIDE.USERS.US;
-GUIDE.SAMLSSO.DEFAULT = GUIDE.SAMLSSO.US;
 
 const PAGE_SIZE = 25;
 
