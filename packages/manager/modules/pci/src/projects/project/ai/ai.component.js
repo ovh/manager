@@ -6,8 +6,6 @@ export default {
   template,
   bindings: {
     appsLink: '<',
-    tokensLink: '<',
-    currentActiveLink: '<',
     refreshState: '<',
     guideUrl: '<',
     guideTrackingSectionTags: '<',
