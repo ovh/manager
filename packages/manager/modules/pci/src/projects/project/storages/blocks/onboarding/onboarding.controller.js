@@ -20,8 +20,8 @@ export default class PciStorageBlocksOnboardingController {
           id: guide.id,
           link:
             this.coreConfig.getUser().ovhSubsidiary === IN_SUBSIDIARY
-              ? guide.asialink
-              : guide.defaultlink,
+              ? guide.asiaLink
+              : guide.defaultLink,
           title: this.$translate.instant(
             `pci_projects_project_storages_blocks_onboarding_guides_${guide.id}_title`,
           ),
