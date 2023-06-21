@@ -262,7 +262,7 @@ export default class CreatePolicyController {
           }
         }),
       )
-      .then(() => {
+      .finally(() => {
         this.deletion = null;
       });
 
