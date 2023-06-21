@@ -8,9 +8,7 @@ import 'ovh-api-services';
 
 import labs from '../../../components/project/labs';
 
-import registries from './registries';
 import jobs from './jobs';
-import dashboard from './dashboard';
 
 import onboarding from './onboarding';
 import component from './training.component';
@@ -31,9 +29,7 @@ angular
     'ui.router',
     labs,
     jobs,
-    registries,
     onboarding,
-    dashboard,
   ])
   .config(routing)
   .component('pciProjectTraining', component)
