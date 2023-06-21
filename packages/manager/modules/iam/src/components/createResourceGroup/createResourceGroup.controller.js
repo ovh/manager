@@ -49,8 +49,7 @@ export default class CreateResourceGroupController {
      */
     this.model = {
       name: '',
-      resources: [],
-      resourceTypes: [],
+      resources: { selection: [], types: [] },
     };
 
     /**
@@ -153,8 +152,8 @@ export default class CreateResourceGroupController {
     // Edit mode, feed the model
     if (this.mode === 'edit') {
       this.model.name = this.resourceGroup.name;
-      this.model.resources = [...this.resourceGroup.resources];
-      this.model.resourceTypes = this.model.resources
+      this.model.resources.selection = [...this.resourceGroup.resources];
+      this.model.resources.types = this.model.resources.selection
         .map(({ type }) => type)
         .filter(
           (resourceType, index, list) =>
@@ -186,13 +185,30 @@ export default class CreateResourceGroupController {
    * @param {boolean} success
    */
   onDeleteEntityGoBack({ success }) {
-    if (success) {
-      this.model.resources = this.model.resources?.filter(
-        (resource) => !this.deletion.data.resources.includes(resource),
-      );
-    }
+    this.deletion.promise
+      .then(() =>
+        this.$timeout(() => {
+          const {
+            data: { resources: deletedResources },
+          } = this.deletion;
+
+          if (success) {
+            this.model.resources = {
+              ...this.model.resources,
+              selection:
+                this.model.resources.selection?.filter(
+                  ({ id }) =>
+                    !deletedResources.find((resource) => id === resource.id),
+                ) || [],
+            };
+          }
+        }),
+      )
+      .finally(() => {
+        this.deletion = null;
+      });
+
     this.deletion.resolve(success);
-    this.deletion = null;
   }
 
   /**
@@ -210,7 +226,7 @@ export default class CreateResourceGroupController {
    * @param {string} resourceType The resource type to delete
    */
   onResourceTypesConfirmRemove(resourceType) {
-    const resources = this.model.resources?.filter(
+    const resources = this.model.resources.selection?.filter(
       (resource) => resource.type === resourceType,
     );
 
@@ -284,7 +300,7 @@ export default class CreateResourceGroupController {
   toAPI() {
     return {
       name: this.model.name,
-      resources: this.model.resources.map(({ id }) => ({ id })),
+      resources: this.model.resources.selection.map(({ id }) => ({ id })),
     };
   }
 }
