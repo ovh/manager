@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.0...@ovh-ux/manager-web@17.0.1) (2023-06-21)
+
+
+### Bug Fixes
+
+* fix backdrop stays when choosing section wizard module ([8e03b3e](https://github.com/ovh/manager/commit/8e03b3e82b004438358f45727e1dfa30eff8edc5))
+
+
+
+
+
 # [17.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@16.30.6...@ovh-ux/manager-web@17.0.0) (2023-06-12)
 
 
