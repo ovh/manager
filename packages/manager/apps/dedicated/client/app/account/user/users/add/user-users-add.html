@@ -144,7 +144,7 @@
                     <label
                         class="control-label"
                         for="group"
-                        data-translate="user_users_role"
+                        data-translate="user_users_group"
                     >
                     </label>
                     <select
@@ -152,20 +152,9 @@
                         id="group"
                         name="group"
                         required
+                        data-ng-options="group as group for group in $ctrl.groups"
                         data-ng-model="$ctrl.user.group"
                     >
-                        <option
-                            value="ADMIN"
-                            data-translate="user_roles_admin"
-                        ></option>
-                        <option
-                            value="DEFAULT"
-                            data-translate="user_roles_regular"
-                        ></option>
-                        <option
-                            value="UNPRIVILEGED"
-                            data-translate="user_roles_unprivileged"
-                        ></option>
                     </select>
                 </div>
 

@@ -67,7 +67,7 @@
             <thead>
                 <tr>
                     <th data-translate="user_users_login" scope="col"></th>
-                    <th data-translate="user_users_role" scope="col"></th>
+                    <th data-translate="user_users_group" scope="col"></th>
                     <th
                         data-translate="user_users_creation_date"
                         scope="col"
@@ -112,9 +112,7 @@
                         >
                         </span>
                     </td>
-                    <td
-                        data-ng-bind="'user_roles_' + user.role | lowercase | translate"
-                    ></td>
+                    <td data-ng-bind="user.group"></td>
                     <td data-ng-bind="user.creation | date"></td>
                     <td data-ng-bind="user.passwordLastUpdate | date"></td>
                     <td>
@@ -291,7 +289,6 @@
     <h4
         class="mb-4 border-bottom ng-scope"
         data-translate="user_users_groups_section_title"
-        data-ng-if="$ctrl.identityProvider != null"
     ></h4>
 
     <!-- GROUPS ADD BTN -->
@@ -299,15 +296,14 @@
         type="button"
         class="btn btn-primary mb-4"
         data-ng-click="setAction('users/groups/add/user-users-groups-add', user)"
-        data-ng-disabled="$ctrl.usersLoading"
-        data-ng-class="{'disabled': $ctrl.usersLoading}"
-        data-ng-if="$ctrl.identityProvider != null"
+        data-ng-disabled="$ctrl.groupsLoading"
+        data-ng-class="{'disabled': $ctrl.groupsLoading}"
     >
         <span data-translate="user_users_groups_add"></span>
     </button>
 
     <!-- IDENTITY PROVIDER GROUPS MAPPING -->
-    <div data-ng-show="$ctrl.identityProvider != null" class="table-responsive">
+    <div class="table-responsive">
         <table
             class="table table-hover"
             aria-label="{{:: 'user_users_groups_table_description' | translate }}"
@@ -344,7 +340,9 @@
                     <td>
                         <strong data-ng-bind="group.name"> </strong>
                     </td>
-                    <td data-ng-bind="group.role"></td>
+                    <td
+                        data-ng-bind="'user_roles_' + group.role | lowercase | translate"
+                    ></td>
                     <td>
                         <span
                             data-ng-bind="group.shortDescription"
@@ -398,7 +396,6 @@
 
     <!-- GROUPS PAGINATION -->
     <div
-        data-ng-if="$ctrl.identityProvider != null"
         data-pagination-front
         data-items="$ctrl.groupIds"
         data-paginated-items="$ctrl.groupsArray"
