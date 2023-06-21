@@ -43,7 +43,9 @@
             >
                 <oui-tile-description>
                     <!-- static -->
-                    <span ng-if="!$ctrl.appModel.scalingStrategy.autoscaling">
+                    <span
+                        data-ng-if="!$ctrl.appModel.scalingStrategy.autoscaling"
+                    >
                         <span
                             data-translate="pci_app_add_review_scaling_static"
                         ></span>
@@ -59,7 +61,9 @@
                         </ul>
                     </span>
                     <!-- autoscaling -->
-                    <span ng-if="$ctrl.appModel.scalingStrategy.autoscaling">
+                    <span
+                        data-ng-if="$ctrl.appModel.scalingStrategy.autoscaling"
+                    >
                         <span
                             data-translate="pci_app_add_review_scaling_auto"
                         ></span>
@@ -123,7 +127,7 @@
                     >
                     </ovh-manager-catalog-price>
                     <p
-                        ng-if="$ctrl.resourcePriceInUcents === 0"
+                        data-ng-if="$ctrl.resourcePriceInUcents === 0"
                         data-translate="pci_app_add_review_price_resource_free"
                     ></p>
                 </oui-tile-description>
@@ -143,7 +147,7 @@
                     >
                     </ovh-manager-catalog-price>
                     <p
-                        ng-if="$ctrl.partnerPriceInUcents === 0"
+                        data-ng-if="$ctrl.partnerPriceInUcents === 0"
                         data-translate="pci_app_add_review_price_partner_free"
                         data-translate-values="{ partner: $ctrl.appModel.image.preset.partnerName }"
                     ></p>
