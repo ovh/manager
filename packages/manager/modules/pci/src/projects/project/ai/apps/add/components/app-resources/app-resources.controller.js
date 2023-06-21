@@ -27,15 +27,6 @@ export default class AppResourcesController {
     this.IS_BETA = IS_BETA;
   }
 
-  filterType() {
-    return (item) => {
-      if (this.appModel.preset?.flavorTypes) {
-        return this.appModel.preset.flavorTypes.includes(item);
-      }
-      return true;
-    };
-  }
-
   selectDefaultFlavor(flavorType) {
     this.appModel.resource.flavor = this.flavors.find(
       (flavor) => flavor.type === flavorType && flavor.default,
@@ -49,20 +40,6 @@ export default class AppResourcesController {
     );
     this.resourcePriceTax = resourcePrice.tax * 60;
     this.resourcePriceInUcents = resourcePrice.priceInUcents * 60;
-
-    if (this.appModel.preset?.partner) {
-      const partnerPrice = this.AppService.getPartnerPrice(
-        this.prices,
-        this.appModel.preset.partner.id,
-        this.appModel.preset.partner.flavor,
-        this.appModel.resource.flavorType,
-      );
-      this.partnerPriceTax = partnerPrice.tax * 60;
-      this.partnerPriceInUcents = partnerPrice.priceInUcents * 60;
-    } else {
-      this.partnerPriceTax = 0;
-      this.partnerPriceInUcents = 0;
-    }
   }
 
   onUsecaseChange(flavorType) {
@@ -77,25 +54,18 @@ export default class AppResourcesController {
     );
   }
 
-  computeTotalPrice(resourcePrice, partnerPrice) {
+  computeTotalPrice(resourcePrice) {
     const replicas = this.appModel.scalingStrategy.autoscaling
       ? this.appModel.scalingStrategy.automatic.replicasMin
       : this.appModel.scalingStrategy.fixed.replicas;
-    return (
-      (resourcePrice + partnerPrice) *
-      this.appModel.resource.nbResources *
-      replicas
-    );
+    return resourcePrice * this.appModel.resource.nbResources * replicas;
   }
 
   get price() {
-    return this.computeTotalPrice(
-      this.resourcePriceInUcents,
-      this.partnerPriceInUcents,
-    );
+    return this.computeTotalPrice(this.resourcePriceInUcents);
   }
 
   get tax() {
-    return this.computeTotalPrice(this.resourcePriceTax, this.partnerPriceTax);
+    return this.computeTotalPrice(this.resourcePriceTax);
   }
 }

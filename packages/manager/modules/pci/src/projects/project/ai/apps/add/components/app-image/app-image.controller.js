@@ -1,4 +1,4 @@
-import { APP_IMAGE } from '../../add.constants';
+import { APP_IMAGE, APP_IMAGE_DOCKER_ARCHITECTURE } from '../../add.constants';
 import {
   APP_CUSTOM_DOCKER_IMAGE_DOC,
   APP_DOCKER_IMAGE_PORTFOLIO,
@@ -8,11 +8,12 @@ export default class AppImageController {
   /* @ngInject */
   constructor(coreConfig) {
     this.user = coreConfig.getUser();
+    this.language = coreConfig.getUserLocale();
   }
 
   $onInit() {
-    this.showAdvancedImage = false;
     this.APP_IMAGE = APP_IMAGE;
+    this.APP_IMAGE_DOCKER_ARCHITECTURE = APP_IMAGE_DOCKER_ARCHITECTURE;
 
     this.docImagesDockerPortfolioUrl =
       APP_DOCKER_IMAGE_PORTFOLIO[this.user.ovhSubsidiary] ||
@@ -22,16 +23,13 @@ export default class AppImageController {
       APP_CUSTOM_DOCKER_IMAGE_DOC.DEFAULT;
   }
 
-  onClickAdvancedImage() {
-    this.image = null;
-    this.selected = null;
-    this.preset = null;
-    this.showAdvancedImage = !this.showAdvancedImage;
+  onPresetSelect(preset) {
+    this.partnerConditionsAccepted = preset.partner.contract.signedAt !== null;
+    this.preset = preset;
   }
 
-  onPresetSelect(preset) {
-    this.image = preset.id;
-    this.preset = preset;
-    this.showAdvancedImage = false;
+  getToSLink() {
+    const { termsOfService } = this.preset.partner.contract;
+    return (termsOfService[this.language] || termsOfService.default).url;
   }
 }
