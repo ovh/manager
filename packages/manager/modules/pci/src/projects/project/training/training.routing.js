@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return { state: 'pci.projects.project.training.onboarding' };
         }
 
-        return { state: 'pci.projects.project.training.dashboard' };
+        return { state: 'pci.projects.project.training.jobs' };
       }),
     resolve: {
       lab: /* @ngInject */ (
@@ -78,37 +78,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.training.jobs.submit', {
           projectId,
         }),
-      dashboardLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.training.dashboard', {
-          projectId,
-        }),
-      goToDashboard: /* @ngInject */ ($state, CucCloudMessage, projectId) => (
-        message = false,
-        type = 'success',
-      ) => {
-        const reload = message && type === 'success';
-
-        const promise = $state.go(
-          'pci.projects.project.training.dashboard',
-          {
-            projectId,
-          },
-          {
-            reload,
-          },
-        );
-
-        if (message) {
-          promise.then(() =>
-            CucCloudMessage[type](
-              message,
-              'pci.projects.project.training.dashboard',
-            ),
-          );
-        }
-
-        return promise;
-      },
       jobList: /* @ngInject */ (
         PciProjectTrainingJobService,
         projectId,
