@@ -213,12 +213,22 @@
                             ></dt>
                             <dd
                                 class="oui-tile__description"
-                                data-translate="{{'server_datacenter_' + $ctrl.server.datacenter.split('_')[0]}}"
-                                data-translate-values="{
-                                    number: $ctrl.server.datacenter.split('_')[1]
-                                  }"
-                            ></dd>
+                            >
+                                <span data-ng-bind=":: $ctrl.server.datacenter.toUpperCase().split('_').join('') + ' - ' + ( 'server_datacenter_' + $ctrl.server.datacenter.toUpperCase().split('_')[0] | translate )"
+                                >
+                                </span>
+                            </dd>
                         </dl>
+                        <div class="d-flex align-items-center">
+                            <h2
+                                data-ng-hide=":: !$ctrl.server.iso"
+                                data-oui-tooltip="{{:: 'country_' + $ctrl.server.iso | translate }}"
+                                data-oui-tooltip-placement="bottom"
+                                class="oui-flag {{ 'oui-flag_' + $ctrl.server.iso.toLowerCase() }}"
+                                aria-hidden="true"
+                            >
+                            </h2>
+                        </div>
                     </div>
                     <div class="oui-tile__item">
                         <dl class="oui-tile__definition">

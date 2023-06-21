@@ -1,3 +1,20 @@
+export const DC_2_ISO = {
+  BHS: 'CA',
+  DC: 'CA',
+  ERI: 'GB',
+  GRA: 'FR',
+  GSW: 'FR',
+  HIL: 'US',
+  LIM: 'DE',
+  P: 'FR',
+  RBX: 'FR',
+  SBG: 'FR',
+  SGP: 'SG',
+  SYD: 'AU',
+  VIN: 'US',
+  WAW: 'PL',
+};
+
 export const ELIGIBLE_FOR_UPGRADE = {
   PLAN_NAME: 'RISE-2',
   SUBSIDIARIES: ['GB'],
@@ -43,6 +60,7 @@ export const HIDE_MRTG_FOR_SERVER_RANGES = ['scale', 'hgr'];
 export const VMS_URL_OTHERS = 'OTHERS';
 
 export default {
+  DC_2_ISO,
   ELIGIBLE_FOR_UPGRADE,
   URLS,
   WEATHERMAP_URL,

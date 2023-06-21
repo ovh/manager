@@ -4,6 +4,7 @@ import map from 'lodash/map';
 import some from 'lodash/some';
 
 import {
+  DC_2_ISO,
   URLS,
   WEATHERMAP_URL,
   COMMIT_IMPRESSION_TRACKING_DATA,
@@ -51,6 +52,9 @@ export default class DedicatedServerDashboard {
       vms: this.coreConfig.isRegion('US') ? null : this.getVmsLink(),
       status: this.constants.statusUrl,
     };
+
+    this.server.iso =
+      DC_2_ISO[this.server.datacenter.toUpperCase().split('_')[0]];
 
     this.infoServer = {
       rack: this.server.rack,
