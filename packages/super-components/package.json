@@ -5,6 +5,14 @@
   "description": "Manager Super Component library",
   "author": "OVH SAS",
   "license": "MIT",
+  "scripts": {
+    "generate:msc": "yarn workspace @ovhcloud/msc-generator run start",
+    "build": "lerna run msc:build",
+    "build:storybook": "yarn build && yarn workspace @ovhcloud/msc-storybook build",
+    "storybook": "yarn build && yarn workspace @ovhcloud/msc-storybook start",
+    "test": "lerna run msc:test",
+    "test:ci": "lerna run msc:test:ci"
+  },
   "devDependencies": {
     "@babel/core": "^7.22.1",
     "@octokit/core": "^4.2.1",

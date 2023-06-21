@@ -1,6 +1,6 @@
 import { Preview } from '@storybook/html';
 import { defineCustomElements as defineOdsCustomElements } from '@ovhcloud/ods-stencil/components/custom-elements-bundle';
-import { defineCustomElements as defineMscTile } from '../../components/msc-tile/loader';
+import './define-super-components';
 import '@ovhcloud/ods-theme-blue-jeans/index.css';
 
 const preview: Preview = {
@@ -16,6 +16,5 @@ const preview: Preview = {
 };
 
 defineOdsCustomElements();
-defineMscTile();
 
 export default preview;

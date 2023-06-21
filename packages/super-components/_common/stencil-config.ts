@@ -66,7 +66,7 @@ export const getStencilConfig = ({
       type: 'dist-custom-elements',
       copy: [
         {
-          src: '../../../scripts/custom-elements',
+          src: '../../../_common/custom-elements',
           dest: 'custom-elements',
           warn: true,
         },
@@ -76,7 +76,7 @@ export const getStencilConfig = ({
       type: 'dist-custom-elements-bundle',
       copy: [
         {
-          src: '../../../scripts/custom-elements-bundle',
+          src: '../../../_common/custom-elements-bundle',
           dest: 'custom-elements-bundle',
           warn: true,
         },

@@ -1,22 +1,14 @@
-import { HTMLStencilElement } from '@stencil/core/internal';
-import { setupE2eTest, badgesSlotExample, footerSlotExample } from './setup';
+import { setupE2eTest } from './setup';
 
-const imgSrc =
-  'https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png';
-
-describe('screenshot:msc-tile', () => {
+describe('screenshot:{{ componentTag }}', () => {
   describe('screenshots', () => {
     [
       {},
-      { imgSrc, imgAlt: 'test' },
-      { isExternal: true },
-      { isExternal: true, imgSrc, imgAlt: 'test' },
+      { content: 'Other test' },
     ].forEach((attributes) => {
       [
         '',
-        `${badgesSlotExample}${footerSlotExample}`,
-        badgesSlotExample,
-        footerSlotExample,
+        'test',
       ].forEach((html) => {
         it([JSON.stringify(attributes), html].join(', '), async () => {
           const { page } = await setupE2eTest({
@@ -26,8 +18,8 @@ describe('screenshot:msc-tile', () => {
           await page.waitForChanges();
 
           await page.evaluate(async () => {
-            const element = document.querySelector<HTMLStencilElement>(
-              'msc-tile',
+            const element = document.querySelector<HTMLElement>(
+              '{{ componentTag }}'
             );
 
             return {
@@ -36,7 +28,7 @@ describe('screenshot:msc-tile', () => {
             };
           });
           await page.setViewport({ width: 600, height: 600 });
-          const results = await page.compareScreenshot('Manager Tile', {
+          const results = await page.compareScreenshot('{{ name }}', {
             fullPage: false,
             omitBackground: true,
           });

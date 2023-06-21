@@ -8,3 +8,8 @@ packages/components/ovh-shell
 www
 screenshot
 loader
+docs-api
+custom-elements
+custom-elements-bundle
+react/src
+vue/src

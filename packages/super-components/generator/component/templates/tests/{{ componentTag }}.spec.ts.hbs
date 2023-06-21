@@ -1,0 +1,12 @@
+import { setupSpecTest } from './setup';
+
+describe('specs:{{ componentTag }}', () => {
+  it('renders without error', async () => {
+    const { page } = await setupSpecTest({});
+
+    expect(page.root?.shadowRoot).toBeTruthy();
+    expect(page.rootInstance).toBeTruthy();
+  });
+
+  describe('contents', () => {});
+});

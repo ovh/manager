@@ -30,7 +30,8 @@
     "**/custom-elements-bundle/**",
     "**/react/src/**",
     "**/vue/src/**",
-    "**/loader/**"
+    "**/loader/**",
+    "**/templates/**"
   ],
   "overrides": [
     {
