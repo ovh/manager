@@ -10,5 +10,7 @@ export default {
     trackingPrefix: '<',
     usersTokensLink: '<',
     cliGuides: '<',
+    regions: '<',
+    currentRegion: '<',
   },
 };
