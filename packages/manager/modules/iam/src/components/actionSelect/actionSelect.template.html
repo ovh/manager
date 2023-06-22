@@ -31,7 +31,7 @@
     <!-- <Actions> -->
     <oui-collapsible
         data-ng-repeat="actionTree in $ctrl.actionTrees track by actionTree.value"
-        data-heading="{{:: actionTree.value  | iamResourceType }}"
+        data-heading="{{ actionTree.value  | iamResourceType }}"
         data-expanded="actionTree.expanded"
     >
         <!-- <CustomAction> -->
