@@ -5,12 +5,6 @@ export default class BmServerComponentsIpmiService {
     this.$q = $q;
   }
 
-  canOrderKvm(serviceName) {
-    return this.$http
-      .get(`/dedicated/server/${serviceName}/orderable/kvm`)
-      .then(({ data }) => data);
-  }
-
   getKvmOrderDurations(serviceName) {
     return this.$http
       .get(`/order/dedicated/server/${serviceName}/kvm`)
