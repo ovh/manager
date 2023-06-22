@@ -56,13 +56,11 @@
                 data-on-error="$ctrl.onError(error)"
                 data-required="$ctrl.isResourcesRequired"
             >
-                <div>
-                    <span
-                        class="d-block font-weight-bold small text-primary"
-                        data-ng-bind=":: $item.type | iamResourceType"
-                    ></span>
-                    <span data-ng-bind=":: $item.displayName"></span>
-                </div>
+                <span
+                    class="d-block font-weight-bold small text-primary"
+                    data-ng-bind="$item.type | iamResourceType"
+                ></span>
+                <span data-ng-bind="$item.displayName"></span>
             </oui-select>
         </oui-field>
         <div
