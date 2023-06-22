@@ -5,17 +5,6 @@
         <p
             data-translate="hosting_dashboard_service_change_offer_explanation"
         ></p>
-        <ul>
-            <li
-                data-translate="hosting_dashboard_service_change_offer_explanation_ftp"
-            ></li>
-            <li
-                data-translate="hosting_dashboard_service_change_offer_explanation_mail"
-            ></li>
-            <li
-                data-translate="hosting_dashboard_service_change_offer_explanation_db"
-            ></li>
-        </ul>
         <oui-button data-disabled>
             <span
                 data-translate="hosting_tab_DATABASES_configuration_create_title_button"
@@ -39,20 +28,26 @@
         <div
             data-ng-if="!$ctrl.loading.init && !$ctrl.loading.orderCapabilities"
         >
-            <p
-                data-translate="hosting_tab_DATABASES_configuration_quota_info_calculation_period"
-            ></p>
-            <p
-                class="d-inline"
-                data-translate="hosting_tab_DATABASES_configuration_quota_warning_message"
-            ></p>
-            <button
-                type="button"
-                class="oui-popover-button"
-                data-oui-popover="{{ 'hosting_tab_DATABASES_configuration_quota_warning_resolution' | translate }}"
-                data-oui-popover-placement="right"
-            ></button>
-
+            <oui-message data-type="info" data-dismissable>
+                <p class="mb-0">
+                    <span
+                        class="d-inline-block align-middle"
+                        data-translate="hosting_database_banner_quota_part_1"
+                    ></span>
+                    <a
+                        class="d-inline-block align-middle oui-button oui-button_ghost oui-button_icon-right"
+                        href="{{ :: $ctrl.bannerGuideLink }}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <span
+                            data-translate="hosting_database_banner_quota_link"
+                        ></span>
+                        <span class="oui-icon oui-icon-arrow-right"></span>
+                    </a>
+                </p>
+                <p data-translate="hosting_database_banner_quota_part_2"></p>
+            </oui-message>
             <div class="mt-3" data-ng-if="!$ctrl.hasResult">
                 <oui-button
                     data-ng-click="setAction('database/add/hosting-database-add')"
