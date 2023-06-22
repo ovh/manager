@@ -2,7 +2,10 @@ import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 
-import { FREE_HOSTING_OFFER } from './hosting-database.constants';
+import {
+  FREE_HOSTING_OFFER,
+  BANNER_GUIDE_LINK,
+} from './hosting-database.constants';
 
 angular.module('App').controller(
   'HostingTabDatabasesCtrl',
@@ -16,6 +19,7 @@ angular.module('App').controller(
       $translate,
       atInternet,
       Alerter,
+      coreConfig,
       Hosting,
       HostingDatabase,
       HostingDatabaseOrderPublicService,
@@ -33,6 +37,9 @@ angular.module('App').controller(
       this.hostingDatabaseService = HostingDatabase;
       this.HostingDatabaseOrderPublicService = HostingDatabaseOrderPublicService;
       this.WucConverterService = WucConverterService;
+      this.bannerGuideLink =
+        BANNER_GUIDE_LINK[coreConfig.getUser().ovhSubsidiary] ||
+        BANNER_GUIDE_LINK.DEFAULT;
     }
 
     $onInit() {
