@@ -67,6 +67,10 @@
                 data-translate-values="{ amount: ($ctrl.getPayPalChargeAmount() + $ctrl.customerCurrency) }"
             ></span>
         </oui-message>
+        <p
+            data-translate="pci_project_new_payment_method_add_info_paypal"
+            data-translate-values="{ paymentMethodSection: $ctrl.paymentSectionHref }"
+        ></p>
         <oui-checkbox class="mt-4" model="$ctrl.validDefaultPayment.payPal">
             <oui-checkbox-label>
                 <span
@@ -99,18 +103,30 @@
         data-ng-if="$ctrl.model.paymentMethod.type.isSepaDirectDebit()"
     >
         <p
-            data-translate="pci_project_new_payment_method_add_info_sepa_direct_debit_main_info"
+            data-translate="pci_project_new_payment_method_add_info_sepa_direct_debit_redirect_warn"
+            data-translate-values="{ break: '<br>' }"
         ></p>
-        <!--Redirection to Worldline banner info-->
-        <oui-message data-type="warning">
-            <span
-                data-translate="pci_project_new_payment_method_add_info_sepa_direct_debit_redirect_warn"
-                data-translate-values="{ break: '<br>' }"
-            ></span>
+        <oui-message type="info" class="text-justify">
+            <p
+                class="mb-0"
+                data-translate="pci_project_new_payment_method_sepa_direct_debit_data_processing_info"
+            ></p>
+            <p
+                class="mb-0"
+                data-translate="pci_project_new_payment_method_add_sepa_direct_debit_digital_signature_info"
+            ></p>
         </oui-message>
 
+        <oui-checkbox class="mt-4" model="$ctrl.validDefaultPayment.sepa">
+            <oui-checkbox-label>
+                <span
+                    data-translate="pci_project_new_payment_method_add_credit_card_default_validation"
+                ></span>
+            </oui-checkbox-label>
+        </oui-checkbox>
+
         <!--Data collect banner info-->
-        <oui-message data-type="info">
+        <oui-message class="mt-4" data-type="info">
             <span
                 data-translate="pci_project_new_payment_method_add_info_sepa_direct_debit_collect_data_info"
                 data-translate-values="{ break: '<br>' }"
