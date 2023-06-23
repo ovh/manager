@@ -1,0 +1,13 @@
+<div>
+    <oui-header heading="{{:: $ctrl.serviceName }}">
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                href="{{:: $ctrl.dashboardLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
+            >
+                <span>Home</span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
+    <div ui-view></div>
+</div>
