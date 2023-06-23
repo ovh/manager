@@ -110,6 +110,7 @@ export default class {
       .map((dbGroup) => ({
         ...dbGroup,
         productSize: dbGroup.product.split('-')[2],
+        tracking: DB_OFFERS.PRIVATE.TRACKING,
       }));
 
     // init db engines
@@ -140,15 +141,22 @@ export default class {
 
     // const db groups
     const groupedCategories = {
-      [DB_OFFERS.STARTER.CATEGORY]: startSqlCategory,
-      [DB_OFFERS.PRIVATE.CATEGORY]: webCloudCategory,
+      [DB_OFFERS.STARTER.CATEGORY]: {
+        versions: startSqlCategory,
+        tracking: DB_OFFERS.STARTER.TRACKING,
+      },
+      [DB_OFFERS.PRIVATE.CATEGORY]: {
+        versions: webCloudCategory,
+        tracking: DB_OFFERS.PRIVATE.TRACKING,
+      },
     };
     const dbCategories = Object.keys(groupedCategories).map((category) => {
-      const versions = groupedCategories[category];
+      const { versions, tracking } = groupedCategories[category];
 
       return {
         category,
         versions,
+        tracking,
         selectVersion: versions[0],
         selectEngine: null,
       };

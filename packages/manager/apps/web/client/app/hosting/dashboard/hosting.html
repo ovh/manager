@@ -176,7 +176,7 @@
             <span data-translate="hosting_tab_FTP"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            href="{{ $ctrl.databaseLink }}"
+            data-on-click="$ctrl.onDatabaseTabClick()"
             active="$ctrl.currentActiveLink() === $ctrl.databaseLink"
         >
             <span data-translate="hosting_tab_DATABASE"></span>
