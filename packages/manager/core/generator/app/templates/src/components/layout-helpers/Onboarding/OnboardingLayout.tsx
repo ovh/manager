@@ -54,6 +54,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
             {description}
           </OsdsText>
           <div>
+<<<<<<< HEAD
             <span>
               <OsdsButton
                 color={OdsThemeColorIntent.primary}
@@ -75,6 +76,25 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
                   {moreInfoButtonLabel}
                 </OsdsButton>
               </span>
+=======
+            <OsdsButton
+              color={OdsThemeColorIntent.primary}
+              size={OdsButtonSize.md}
+              href={orderHref}
+            >
+              {orderButtonLabel}
+            </OsdsButton>
+            {moreInfoButtonLabel && moreInfoHref && (
+              <OsdsButton
+                className="more-info-button"
+                color={OdsThemeColorIntent.primary}
+                variant={OdsButtonVariant.stroked}
+                size={OdsButtonSize.md}
+                href={moreInfoHref}
+              >
+                {moreInfoButtonLabel}
+              </OsdsButton>
+>>>>>>> 8314b05f2b (fix(generator): add template dashboard listing onboarding)
             )}
           </div>
         </section>
