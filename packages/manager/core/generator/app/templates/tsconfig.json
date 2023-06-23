@@ -14,10 +14,13 @@
     "skipLibCheck": true,
     "noImplicitAny": true,
     "declaration": true,
+    "resolveJsonModule": true,
     "allowJs": true,
     "jsx": "react",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
     }
   },
   "include": ["src"],
