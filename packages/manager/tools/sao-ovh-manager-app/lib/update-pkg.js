@@ -20,7 +20,7 @@ module.exports = ({ name, description, regions }) => ({
   },
   dependencies: {
     '@ovh-ux/request-tagger': '^0.1.1',
-    '@ovh-ux/manager-config': '^6.5.1',
+    '@ovh-ux/manager-config': '^7.0.0',
     '@ovh-ux/manager-core': '^12.0.0 || ^13.0.0',
     '@ovh-ux/manager-error-page': '^2.3.1',
     [`@ovh-ux/manager-${name}`]: '^0.0.0 || ^1.0.0',
@@ -33,7 +33,7 @@ module.exports = ({ name, description, regions }) => ({
     '@ovh-ux/ng-shell-tracking': '^0.2.1',
     '@ovh-ux/ng-translate-async-loader': '^2.1.5',
     '@ovh-ux/ng-ui-router-breadcrumb': '^1.1.7',
-    '@ovh-ux/shell': '^1.8.1',
+    '@ovh-ux/shell': '^2.0.0',
     '@ovh-ux/ui-kit': '^6.3.0',
     '@uirouter/angularjs': '^1.0.23',
     angular: '^1.7.5',

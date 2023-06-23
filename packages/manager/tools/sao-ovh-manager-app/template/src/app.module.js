@@ -19,6 +19,10 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 export default async (containerEl, shellClient) => {
   const moduleName = '<%= pascalcasedName %>App';
 
+  const routingConfig = /* @ngInject */($urlRouterProvider) => {
+    $urlRouterProvider.otherwise('/<%= name %>');
+  };
+
   const [environment, locale] = await Promise.all([
     shellClient.environment.getEnvironment(),
     shellClient.i18n.getLocale(),
@@ -28,6 +32,77 @@ export default async (containerEl, shellClient) => {
     onLocaleChange: (lang) => {
       shellClient.i18n.setLocale(lang);
     },
+  };
+
+  const ssoAuthConfig = /* @ngInject */ (ssoAuthenticationProvider) => {
+    ssoAuthenticationProvider.setOnLogin(() => {
+      shellClient.auth.login();
+    });
+    ssoAuthenticationProvider.setOnLogout(() => {
+      shellClient.auth.logout();
+    });
+  };
+
+  const calendarConfigProvider = /* @ngInject */ (ouiCalendarConfigurationProvider) => {
+    const [lang] = locale.split('_');
+    return import(`flatpickr/dist/l10n/${lang}.js`)
+      .then((module) => {
+        ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
+      })
+      .catch(() => {});
+  };
+
+  const broadcastAppStarted = /* @ngInject */($rootScope, $transitions) => {
+    const unregisterHook = $transitions.onSuccess({}, async () => {
+      if (!isTopLevelApplication()) {
+        await shellClient.ux.hidePreloader();
+      }
+      $rootScope.$broadcast('app:started');
+      unregisterHook();
+    });
+  };
+
+  const transitionsConfig = /* @ngInject */ ($transitions) => {
+    if (!isTopLevelApplication()) {
+      $transitions.onBefore({}, (transition) => {
+        if (
+          !transition.ignored() &&
+          transition.from().name !== '' &&
+          transition.entering().length > 0
+        ) {
+          shellClient.ux.startProgress();
+        }
+      });
+
+      $transitions.onSuccess({}, () => {
+        shellClient.ux.stopProgress();
+      });
+
+      $transitions.onError({}, (transition) => {
+        if (!transition.error().redirected) {
+          shellClient.ux.stopProgress();
+        }
+      });
+    }
+  };
+
+  const defaultErrorHandler = /* @ngInject */($state) => {
+    $state.defaultErrorHandler((error) => {
+      if (error.type === RejectType.ERROR) {
+        $state.go(
+          'error',
+          {
+            detail: {
+              message: get(error.detail, 'data.message'),
+              code: has(error.detail, 'headers')
+                ? error.detail.headers('x-ovh-queryId')
+                : null,
+            },
+          },
+          { location: false },
+        );
+      }
+    });
   };
 
   angular
@@ -49,91 +124,16 @@ export default async (containerEl, shellClient) => {
     .config(
       /* @ngInject */($locationProvider) => $locationProvider.hashPrefix(''),
     )
-    .config(
-      /* @ngInject */($urlRouterProvider) => {
-        $urlRouterProvider.otherwise('/<%= name %>');
-      },
-    )
-    .config(
-      /* @ngInject */ (ssoAuthenticationProvider) => {
-        ssoAuthenticationProvider.setOnLogin(() => {
-          shellClient.auth.login();
-        });
-        ssoAuthenticationProvider.setOnLogout(() => {
-          shellClient.auth.logout();
-        });
-      },
-    )
+    .config(routingConfig)
+    .config(ssoAuthConfig)
     // @TODO initialize tracking configuration here
     // .config(async () => {
     //   await shellClient.tracking.setConfig(TRACKING);
     // })
-    .config(
-      /* @ngInject */ (ouiCalendarConfigurationProvider) => {
-        const [lang] = locale.split('_');
-        return import(`flatpickr/dist/l10n/${lang}.js`)
-          .then((module) => {
-            ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
-          })
-          .catch(() => {});
-      },
-    )
-    .run(
-      /* @ngInject */($rootScope, $transitions) => {
-        const unregisterHook = $transitions.onSuccess({}, async () => {
-          if (!isTopLevelApplication()) {
-            await shellClient.ux.hidePreloader();
-          }
-          $rootScope.$broadcast('app:started');
-          unregisterHook();
-        });
-      },
-    )
-    .run(
-      /* @ngInject */ ($transitions) => {
-        if (!isTopLevelApplication()) {
-          $transitions.onBefore({}, (transition) => {
-            if (
-              !transition.ignored() &&
-              transition.from().name !== '' &&
-              transition.entering().length > 0
-            ) {
-              shellClient.ux.startProgress();
-            }
-          });
-
-          $transitions.onSuccess({}, () => {
-            shellClient.ux.stopProgress();
-          });
-
-          $transitions.onError({}, (transition) => {
-            if (!transition.error().redirected) {
-              shellClient.ux.stopProgress();
-            }
-          });
-        }
-      },
-    )
-    .run(
-      /* @ngInject */($state) => {
-        $state.defaultErrorHandler((error) => {
-          if (error.type === RejectType.ERROR) {
-            $state.go(
-              'error',
-              {
-                detail: {
-                  message: get(error.detail, 'data.message'),
-                  code: has(error.detail, 'headers')
-                    ? error.detail.headers('x-ovh-queryId')
-                    : null,
-                },
-              },
-              { location: false },
-            );
-          }
-        });
-      },
-    );
+    .config(calendarConfigProvider)
+    .run(broadcastAppStarted)
+    .run(transitionsConfig)
+    .run(defaultErrorHandler);
 
   angular.bootstrap(containerEl, [moduleName], {
     strictDi: true,
