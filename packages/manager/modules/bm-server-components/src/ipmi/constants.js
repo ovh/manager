@@ -21,6 +21,9 @@ export const getIpmiGuideUrl = (subsidiary) => {
   return IPMI_GUIGES[subsidiary] || IPMI_GUIGES.DEFAULT;
 };
 
+export const KVM_PLAN_CODE = 'usb-kvm-ip';
+
 export default {
   getIpmiGuideUrl,
+  KVM_PLAN_CODE,
 };
