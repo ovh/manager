@@ -1,12 +1,11 @@
 import { SupportLevel, User } from '@ovh-ux/manager-config';
 
-import { EXCLUDED_ROLES } from './constants';
-
 interface UseUserInfos {
   getUser(): User;
   getUserNameInitials(): string;
   getUserDisplayName(): string;
   getSupportLevel(): SupportLevel;
+  isSubUser(): boolean;
   isTrustedUser(): boolean;
   getUserRole(): string;
 }
@@ -34,7 +33,7 @@ const useUserInfos = (user: User): UseUserInfos => {
   };
 
   const getUserDisplayName = (): string => {
-    return `${user.firstname} ${user.name}`;
+    return isSubUser() ? user.auth.user : `${user.firstname} ${user.name}`;
   };
 
   /**
@@ -53,10 +52,16 @@ const useUserInfos = (user: User): UseUserInfos => {
     return user.isTrusted;
   };
 
+  /**
+   * Check if the user is a sub-user.
+   * @return {Boolean}
+   */
+  const isSubUser = (): boolean => {
+    return ['provider', 'user'].includes(getUserRole());
+  };
+
   const getUserRole = (): string => {
-    return !EXCLUDED_ROLES.includes(user?.auth?.method)
-      ? user?.auth?.method
-      : '';
+    return user?.auth?.method || '';
   };
 
   return {
@@ -66,6 +71,7 @@ const useUserInfos = (user: User): UseUserInfos => {
     getSupportLevel,
     isTrustedUser,
     getUserRole,
+    isSubUser,
   };
 };
 
