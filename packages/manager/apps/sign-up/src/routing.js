@@ -75,8 +75,11 @@ export const state = {
       getRedirectLocation,
       me,
       signUp,
-    ) => () =>
+    ) => (smsConsent) =>
       signUp.saveNic(me.model).then(() => {
+        if (smsConsent) {
+          signUp.giveSmsConsent();
+        }
         // for tracking purposes
         if ($window.sessionStorage) {
           $window.sessionStorage.setItem('ovhSessionSuccess', true);
