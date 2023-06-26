@@ -424,7 +424,6 @@
   "server_configuration_task_status_INIT": "Initialisation",
   "server_configuration_task_status_OVH_ERROR": "En erreur",
   "server_configuration_task_status_TODO": "A traiter",
-  "server_configuration_impi_order_kvm": "Commander un KVM",
   "server_configuration_installation_successfull": "L'installation du serveur {{t0}} est terminée",
   "server_configuration_installation_fail_task": "Une erreur est survenue lors de la récupération du statut de l'installation en cours du serveur {{t0}}.",
   "server_configuration_installation_fail_state": "Impossible de récupérer la progression de l'installation. La tache associé est toujours en cours.",
