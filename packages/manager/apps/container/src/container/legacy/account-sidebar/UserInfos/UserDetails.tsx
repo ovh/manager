@@ -1,5 +1,7 @@
 import { User } from '@ovh-ux/manager-config';
 import React from 'react';
+import { useTranslation, Trans } from 'react-i18next';
+import { TRANSLATE_NAMESPACE } from '../constants';
 
 type Props = {
   cssBaseClassName?: string;
@@ -10,15 +12,12 @@ const UserDetails = ({
   cssBaseClassName = '',
   user = {} as User,
 }: Props): JSX.Element => {
+  const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const { organisation, email, nichandle, auth } = user;
 
   return (
     <p>
       {
-      auth.method === 'provider' ?
-        <span className={`d-block ${cssBaseClassName}_text-small text-break`}>
-          {auth.user}
-        </span> :
         <>
           {organisation && (
             <span className={`d-block ${cssBaseClassName}_text-small`}>
@@ -26,9 +25,13 @@ const UserDetails = ({
             </span>
           )}
           <span className={`d-block ${cssBaseClassName}_text-small text-break`}>
-            {email}
+            <Trans
+              t={t}
+              i18nKey="user_account_menu_notification_email"
+              values={{ email: email }}
+            ></Trans>
           </span>
-        </> 
+        </>
       }
 
       {email !== nichandle && (
