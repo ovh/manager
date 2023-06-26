@@ -71,7 +71,7 @@ const createTranslations = (templates, appName, appDirectory) => {
       ),
       templateFile: join(
         appDirectory,
-        `./conditional-translations/${template}/Messages_fr_FR.json`,
+        `./conditional-translations/${template}/Messages_fr_FR.json.hbs`,
       ),
     };
   });
