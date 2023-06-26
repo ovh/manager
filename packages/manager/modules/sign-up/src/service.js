@@ -39,4 +39,16 @@ export default class SignUpService {
   saveNic(nicInfos) {
     return this.$http.put('/me', nicInfos);
   }
+
+  giveSmsConsent() {
+    return this.$http.put('/me/marketing', {
+      denyAll: false,
+      sms: {
+        events: true,
+        newProductRecommendation: true,
+        newsletter: true,
+        offerAndDiscount: true,
+      },
+    });
+  }
 }
