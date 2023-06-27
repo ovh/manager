@@ -240,6 +240,8 @@ export default /* @ngInject */ ($stateProvider) => {
             );
             return options;
           }),
+      hasNsxOption: /* @ngInject */ (optionsAvailable) =>
+        !!optionsAvailable.find((option) => ['nsx', 'nsxt'].includes(option)),
       orderDatastore: /* @ngInject */ ($state, usesLegacyOrder) => (
         datacenterId,
       ) =>
