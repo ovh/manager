@@ -179,7 +179,7 @@ export default class CreatePolicyController {
       this.model.name = this.policy.name;
       this.model.resources.selection = this.policy.resources
         .filter(({ resource }) => Boolean(resource))
-        .map(({ resource }) => resource);
+        .map(({ urn, resource }) => ({ ...resource, urn }));
       this.model.resourceGroups = this.policy.resources
         .filter(({ group }) => Boolean(group))
         .map(({ group }) => group);
