@@ -24,6 +24,7 @@ export const features = [
   'failover-ip',
   'additional-ips',
   'public-gateways',
+  'octavia-load-balancer',
   'load-balancer',
   'kubernetes',
   'private-registry',
@@ -158,6 +159,15 @@ export function getPciProjectMenu(
           ),
         },
         {
+          id: 'octavia-load-balancer',
+          title: 'Load Balancer',
+          feature: 'octavia-load-balancer',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/octavia-load-balancer`,
+          ),
+        },
+        {
           id: 'failover-ip',
           title: 'Failover IP',
           feature: 'failover-ip',
@@ -188,21 +198,21 @@ export function getPciProjectMenu(
       title: 'Containers & Orchestration',
       subItems: [
         {
-          id: 'load-balancer',
-          title: 'Load Balancer',
-          feature: 'load-balancer',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/load-balancer`,
-          ),
-        },
-        {
           id: 'kubernetes',
           title: 'Managed Kubernetes Service',
           feature: 'kubernetes',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/kubernetes`,
+          ),
+        },
+        {
+          id: 'load-balancer',
+          title: 'Kubernetes Load Balancer',
+          feature: 'load-balancer',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/load-balancer`,
           ),
         },
         {
