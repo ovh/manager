@@ -1,3 +1,13 @@
+<oui-message
+    data-ng-if="!$ctrl.service && !$ctrl.hdsProjectOption"
+    data-type="error"
+>
+    <p
+        class="mb-0 pb-0"
+        data-translate="pci_projects_project_edit_error_forbidden"
+    ></p>
+    <a data-ng-href="$ctrl.iamLink" data-ng-bind="$ctrl.iamLink"></a>
+</oui-message>
 <form novalidate name="inputForm" data-ng-submit="$ctrl.submit()">
     <cui-message-container
         data-messages="$ctrl.messages"
