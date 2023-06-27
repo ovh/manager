@@ -355,7 +355,7 @@ export default class CreatePolicyController {
    */
   toAPI() {
     return {
-      identities: [],
+      identities: this.policy?.identities || [],
       name: this.model.name,
       permissions: {
         allow: this.model.actions.isWildcardActive
