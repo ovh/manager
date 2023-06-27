@@ -11,6 +11,7 @@ export default {
     enableUser: '<',
     modifyUserRights: '<',
     optionsAvailable: '<',
+    hasNsxOption: '<',
     passwordReset: '<',
     productId: '<',
     setMessage: '<',

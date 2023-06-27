@@ -5,6 +5,7 @@ export default {
   bindings: {
     goBack: '<',
     optionsAvailable: '<',
+    hasNsxOption: '<',
     productId: '<',
     user: '<',
   },

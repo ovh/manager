@@ -101,7 +101,7 @@
         </oui-field>
 
         <oui-field
-            data-ng-if="$ctrl.optionsAvailable.includes('nsx')"
+            data-ng-if=":: $ctrl.hasNsxOption"
             data-label="{{:: 'dedicatedCloud_USER_nsx' | translate }}"
         >
             <div class="oui-switch">
