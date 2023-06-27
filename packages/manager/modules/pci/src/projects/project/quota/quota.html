@@ -1,3 +1,14 @@
+<oui-message
+    data-ng-if="!$ctrl.service && !$ctrl.serviceOptions"
+    data-type="error"
+>
+    <p
+        class="mb-0 pb-0"
+        data-translate="pci_projects_project_quota_error_forbidden"
+    ></p>
+    <a data-ng-href="$ctrl.iamLink" data-ng-bind="$ctrl.iamLink"></a>
+</oui-message>
+
 <pci-project-quota-header
     data-guide-url="$ctrl.guideUrl"
     data-track-click="$ctrl.trackClick"

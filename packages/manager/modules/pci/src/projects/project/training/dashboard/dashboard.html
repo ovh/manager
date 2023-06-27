@@ -1,6 +1,13 @@
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
 <div ui-view>
+    <oui-message data-ng-if="!$ctrl.service" data-type="error">
+        <p
+            class="mb-0 pb-0"
+            data-translate="pci_projects_project_training_dashboard_error_forbidden"
+        ></p>
+        <a data-ng-href="$ctrl.iamLink" data-ng-bind="$ctrl.iamLink"></a>
+    </oui-message>
     <div class="row d-lg-flex mb-3">
         <div class="col-md-6">
             <oui-tile
@@ -150,6 +157,7 @@
             <oui-tile
                 class="h-100"
                 data-heading="{{ :: 'pci_projects_project_training_dashboard_billing_title' | translate }}"
+                data-ng-if="$ctrl.service"
             >
                 <span
                     class="d-block"
