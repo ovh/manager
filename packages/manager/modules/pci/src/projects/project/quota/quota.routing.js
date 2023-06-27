@@ -29,6 +29,12 @@ export default /* @ngInject */ ($stateProvider) => {
                   parseInt(RX_PLAN_CODE_PATTERN.exec(b.planCode)[1], 10)
                 );
               });
+          })
+          .catch((error) => {
+            if (error.status === 403) {
+              return null;
+            }
+            throw error;
           });
       },
     },
