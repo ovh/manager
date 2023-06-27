@@ -5,7 +5,7 @@ import * as constants from './iam.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam', {
-    url: '/iam',
+    url: '',
     template: Object.entries(constants).reduce(
       (content, [constant, value]) => content.replace(`%${constant}%`, value),
       template,
