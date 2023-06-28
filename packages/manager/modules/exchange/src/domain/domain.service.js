@@ -174,4 +174,18 @@ export default class ExchangeDomains {
       },
     );
   }
+
+  gettingExpectedDNSSettings(organization, serviceName, domain) {
+    return this.services.OvhHttp.get(
+      '/email/exchange/{organization}/service/{exchange}/domain/{domain}',
+      {
+        rootPath: 'apiv6',
+        urlParams: {
+          organization,
+          exchange: serviceName,
+          domain,
+        },
+      },
+    );
+  }
 }

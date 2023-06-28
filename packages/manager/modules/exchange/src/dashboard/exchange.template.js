@@ -76,6 +76,7 @@ import domainMxAutoconfigTemplate from '../domain/mx-autoconfig/domain-mx-autoco
 import domainRemoveTemplate from '../domain/remove/domain-remove.html';
 import domainUpdateTemplate from '../domain/update/domain-update.html';
 import domainSrvAutoconfigTemplate from '../domain/srv-autoconfig/domain-srv-autoconfig.html';
+import domainSpfAutoconfigTemplate from '../domain/spf-autoconfig/domain-spf-autoconfig.html';
 import domainAddTemplate from '../domain/add/domain-add.html';
 import exchangeRemoveTemplate from '../header/remove/exchange-remove.html';
 import serviceLicenseHistoryTemplate from '../header/license/service-license-history.html';
@@ -383,6 +384,10 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put(
     'exchange/domain/srv-autoconfig/domain-srv-autoconfig.html',
     domainSrvAutoconfigTemplate,
+  );
+  $templateCache.put(
+    'exchange/domain/spf-autoconfig/domain-spf-autoconfig.html',
+    domainSpfAutoconfigTemplate,
   );
   $templateCache.put('exchange/domain/add/domain-add.html', domainAddTemplate);
   $templateCache.put(

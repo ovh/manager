@@ -1,0 +1,64 @@
+<div data-ng-controller="ExchangeDomainSpfAutoconfigCtrl as ctrl">
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="configSPF"
+        data-wizard-title="'exchange_tab_domain_diagnostic_spf_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="ctrl.domainDiag.isOvhDomain"
+        >
+            <oui-spinner data-ng-if="!ctrl.domainDiag"></oui-spinner>
+
+            <div data-ng-if="ctrl.domainDiag">
+                <p
+                    data-translate="exchange_tab_domain_diagnostic_spf_intro_ovh"
+                    data-translate-values="{ t0: ctrl.domain.displayName}"
+                    data-ng-if="ctrl.domainDiag.isOvhDomain"
+                ></p>
+                <p
+                    data-ng-bind="'exchange_tab_domain_diagnostic_spf_no_ovh' | translate"
+                    data-ng-if="!ctrl.domainDiag.isOvhDomain"
+                ></p>
+
+                <dl class="dl-horizontal">
+                    <dt
+                        data-translate="exchange_tab_domain_diagnostic_spf_label_champ"
+                    ></dt>
+                    <dd
+                        data-ng-bind-html="'exchange_tab_domain_diagnostic_spf_config' | translate:{
+                        t0: ctrl.domainDiag.spf.subDomain,
+                        t4: ctrl.domainDiag.spf.target
+                    }"
+                    ></dd>
+                </dl>
+            </div>
+        </div>
+
+        <div data-wizard-step>
+            <p
+                data-ng-bind-html="'exchange_tab_domain_diagnostic_spf_recap' | translate:{ t0: ctrl.domainDiag.spf.subDomain }"
+            ></p>
+
+            <dl class="dl-horizontal">
+                <dt data-translate="exchange_tab_domain_domain"></dt>
+                <dd
+                    class="word-break"
+                    data-ng-bind="ctrl.domain.displayName | wucSliceContent: 150"
+                ></dd>
+
+                <dt
+                    data-translate="exchange_tab_domain_diagnostic_spf_label_champ"
+                ></dt>
+                <dd
+                    data-ng-bind-html="'exchange_tab_domain_diagnostic_spf_config' | translate:{
+                    t0: ctrl.domainDiag.spf.subDomain,
+                    t4: ctrl.domainDiag.spf.target
+                }"
+                ></dd>
+            </dl>
+        </div>
+    </div>
+</div>
