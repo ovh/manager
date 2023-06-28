@@ -2,6 +2,7 @@ import angular from 'angular';
 import angularTranslate from 'angular-translate';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ui-kit';
+import 'ovh-api-services';
 import uiRouter from '@uirouter/angularjs';
 
 import credits from './credits/billing-credits.module';
@@ -18,6 +19,7 @@ angular
   .module(moduleName, [
     angularTranslate,
     ngTranslateAsyncLoader,
+    'ovh-api-services',
     credits,
     fidelity,
     method,

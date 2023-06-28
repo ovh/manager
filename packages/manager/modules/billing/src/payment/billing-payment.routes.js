@@ -17,6 +17,11 @@ export default /* @ngInject */ ($stateProvider) => {
           .get('/me/voucherAccount')
           .then(({ data }) => data)
           .catch(() => []),
+      fidelityPoints: /* @ngInject */ (OvhApiMeFidelityAccount) =>
+        OvhApiMeFidelityAccount.v6()
+          .get()
+          .$promise.then((account) => account?.balance || 0)
+          .catch(() => []),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('billing_payment_title'),
     },

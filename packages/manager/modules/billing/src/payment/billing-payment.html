@@ -18,7 +18,7 @@
                 ><span data-translate="billing_payment_credits_title"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-ng-if="$ctrl.coreConfig.getRegion() === 'EU'"
+                data-ng-if="::$ctrl.hasFidelityAccess()"
                 data-href="{{ $ctrl.$state.href('app.account.billing.payment.fidelity') }}"
                 data-active="$ctrl.$state.includes('app.account.billing.payment.fidelity')"
                 ><span data-translate="billing_payment_fidelity_title"></span>
