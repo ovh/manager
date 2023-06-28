@@ -11,7 +11,7 @@ angular
   .module(moduleName, ['ngUiRouterBreadcrumb', 'ui.router', 'oc.lazyLoad'])
   .config(
     /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state('pci.projects.project.octavia-load-balancer.**', {
+      $stateProvider.state('octavia-load-balancer.**', {
         url: '/octavia-load-balancer',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
