@@ -19,7 +19,6 @@ import inactive from './inactive';
 import instances from './instances';
 import kubernetes from './kubernetes';
 import loadBalancer from './load-balancer';
-import octaviaLoadBalancer from './octavia-load-balancer';
 import notebooks from './notebooks';
 import ai from './ai';
 import sshKeys from './ssh-keys';
@@ -61,7 +60,6 @@ angular
     inactive,
     instances,
     loadBalancer,
-    octaviaLoadBalancer,
     notebooks,
     ai,
     kubernetes,
