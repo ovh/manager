@@ -7,6 +7,7 @@ const component = {
     dbCategories: '<',
     preselectDbCategory: '<',
     onDbCategoryClick: '&',
+    onDbCategoryEngineClick: '&',
   },
   controller,
   template,

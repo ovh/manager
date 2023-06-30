@@ -19,7 +19,7 @@
                 data-model="$ctrl.module"
                 data-values="[module]"
                 data-variant="light"
-                data-on-change="$ctrl.updateModule()"
+                data-on-change="$ctrl.onModuleClick(modelValue)"
             >
                 <oui-select-picker-description>
                     <p
@@ -50,7 +50,7 @@
                 data-model="$ctrl.module"
                 data-values="[null]"
                 data-variant="light"
-                data-on-change="$ctrl.updateModule()"
+                data-on-change="$ctrl.onModuleClick(null)"
             >
             </oui-select-picker>
         </div>

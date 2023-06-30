@@ -9,7 +9,7 @@ const component = {
     currentOffer: '<',
     customerRegion: '<',
     showDetails: '<',
-    onOfferClick: '&',
+    onGroupOfferClick: '&',
   },
   controller,
   template,

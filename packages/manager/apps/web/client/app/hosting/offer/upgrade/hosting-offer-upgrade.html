@@ -1,6 +1,6 @@
 <div class="row" data-ng-controller="HostingUpgradeOfferCtrl as $ctrl">
     <div class="w-100">
-        <oui-back-button data-sref="^">
+        <oui-back-button data-on-click="$ctrl.onPreviousPageClick()">
         </oui-back-button>
 
         <!--Title + description-->
@@ -34,6 +34,7 @@
                 data-header="{{:: 'hosting_order_upgrade_step_header_offer' | translate }}"
                 data-valid="$ctrl.model.offer"
                 data-prevent-next="true"
+                data-on-submit="$ctrl.onOfferNextStepClick()"
             >
                 <web-component-hosting-domain-offers
                     data-ng-if="$ctrl.catalog"
@@ -43,7 +44,7 @@
                     data-current-offer="$ctrl.hosting.offer"
                     data-customer-region="$ctrl.coreConfig.getRegion()"
                     data-show-details="true"
-                    data-on-offer-click="$ctrl.onHostingOfferClick(offer)"
+                    data-on-group-offer-click="$ctrl.onHostingGroupOfferClick(groupOffer, versionOffer)"
                 >
                 </web-component-hosting-domain-offers>
             </oui-step-form>

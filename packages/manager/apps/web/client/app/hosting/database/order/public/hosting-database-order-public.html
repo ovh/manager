@@ -18,12 +18,14 @@
         header="{{:: 'ovhManagerHostingDatabaseOrderPublic_customization_title' | translate }}"
         data-valid="$ctrl.isValidDbConfig()"
         data-prevent-next="true"
+        data-on-submit="$ctrl.onGoToNextStepClick()"
     >
         <web-hosting-database-order-db-categories-offers
             data-user="$ctrl.user"
             data-db-categories="$ctrl.dbCategories"
             data-preselect-db-category="$ctrl.preselectDbCategory"
             data-on-db-category-click="$ctrl.onDbCategoryClick(dbCategory)"
+            data-on-db-category-engine-click="$ctrl.onDbCategoryEngineClick(dbEngine)"
         ></web-hosting-database-order-db-categories-offers>
     </oui-step-form>
 </ovh-manager-product-offers>

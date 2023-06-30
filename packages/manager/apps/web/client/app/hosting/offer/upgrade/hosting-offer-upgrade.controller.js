@@ -3,6 +3,7 @@ import {
   DETACH_DEFAULT_OPTIONS,
   OFFERS_NAME_MAPPING,
 } from './hosting-offer-upgrade.constants';
+import { HOSTING_TRACKING } from '../../hosting.constants';
 
 angular.module('App').controller(
   'HostingUpgradeOfferCtrl',
@@ -281,9 +282,40 @@ angular.module('App').controller(
         });
     }
 
-    onHostingOfferClick(offer) {
-      const { name, value } = offer.selectedVersion;
+    trackClick(hit) {
+      return this.atInternet.trackClick({
+        name: hit,
+        type: 'action',
+      });
+    }
+
+    trackOffer(groupOffer, versionOffer) {
+      const { value } = groupOffer.selectedVersion;
+
+      if (versionOffer) {
+        this.trackClick(
+          `${HOSTING_TRACKING.STEP_1.SELECT_OFFER_LIST}${groupOffer.category}`,
+        );
+      }
+
+      this.trackClick(`${HOSTING_TRACKING.STEP_1.SELECT_OFFER}${value}`);
+    }
+
+    onHostingGroupOfferClick(groupOffer, versionOffer) {
+      const { name, value } = groupOffer.selectedVersion;
       this.model.offer = { name, value };
+
+      this.trackOffer(groupOffer, versionOffer);
+    }
+
+    onOfferNextStepClick() {
+      this.trackClick(HOSTING_TRACKING.STEP_1.GO_TO_NEXT_STEP);
+    }
+
+    onPreviousPageClick() {
+      this.trackClick(HOSTING_TRACKING.STEP_1.GO_TO_PREVIOUS_PAGE);
+
+      return this.$state.go('^');
     }
 
     static isProrataDuration({ duration }) {

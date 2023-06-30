@@ -6,6 +6,7 @@ import {
   FREE_HOSTING_OFFER,
   BANNER_GUIDE_LINK,
 } from './hosting-database.constants';
+import { DATABASES_TRACKING } from '../hosting.constants';
 
 angular.module('App').controller(
   'HostingTabDatabasesCtrl',
@@ -257,6 +258,41 @@ angular.module('App').controller(
 
     isFreeHosting() {
       return FREE_HOSTING_OFFER.includes(this.hosting.offer);
+    }
+
+    trackClick(hit) {
+      this.atInternet.trackClick({
+        name: hit,
+        type: 'action',
+      });
+    }
+
+    onActionsMenuClick() {
+      this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION);
+    }
+
+    onCreateDatabaseClick() {
+      this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION_CREATE_DB);
+
+      this.$scope.setAction('database/add/hosting-database-add');
+    }
+
+    onOrderDatabaseClick() {
+      this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION_ORDER_DB);
+    }
+
+    onOrderWebCloudDatabaseClick() {
+      this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION_ORDER_WEB_CLOUD_DB);
+    }
+
+    onCreateDatabaseBtnClick() {
+      this.trackClick(DATABASES_TRACKING.GO_TO_CREATE_DATABASE);
+
+      this.$scope.setAction('database/add/hosting-database-add');
+    }
+
+    onDatabaseChangeOfferClick() {
+      this.trackClick(DATABASES_TRACKING.GO_TO_CHANGE_DATABASE);
     }
   },
 );
