@@ -164,8 +164,8 @@ const pciNode: Node = {
           translation: 'sidebar_pci_octavia_load_balancer',
           serviceType: 'CLOUD_PROJECT_OCTAVIA_LOAD_BALANCER',
           routing: {
-            application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/octavia-load-balancer',
+            application: 'octavia-load-balancer',
+            hash: '#/octavia-load-balancer/{projectId}',
           },
           features: ['octavia-load-balancer'],
           forceVisibility: true,
