@@ -824,7 +824,7 @@ import union from 'lodash/union';
       getCatalog(ovhSubsidiary) {
         return this.$http
           .get(
-            `/order/catalog/public/webHosting?ovhSubsidiary=${ovhSubsidiary}`,
+            `/order/catalog/public/webhostingPreprod?ovhSubsidiary=${ovhSubsidiary}`, // todo: preprod for testing
           )
           .then(({ data }) => data);
       }
