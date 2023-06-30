@@ -8,5 +8,17 @@
   "dedicatedCloud_configuration_add_datacenter_option": "Modifica le opzioni",
   "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part1": "Hai scelto di aggiungere un virtual DataCenter (vDC) della gamma Premier, in cui NSX è attivo di default. Non è possibile aggiungere un vDC Premier finché NSX non è attivo sulla tua infrastruttura.",
   "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part2": "L'attivazione di NSX è possibile nella home page dell’infrastruttura VMware. Ricordiamo che questa operazione non ha impatto sulla tua infrastruttura e che potrebbe richiedere fino a due ore. Lo stato di avanzamento è consultabile nella scheda “Operazioni”.",
-  "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part3": "Una volta attivato NSX, sarà possibile aggiungere un virtual DataCenter Premier."
+  "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part3": "Una volta attivato NSX, sarà possibile aggiungere un virtual DataCenter Premier.",
+  "dedicatedCloud_configuration_add_datacenter_description": "I server fees rappresentano il costo delle VM di gestione (ad esempio il tuo vCenter, vROps o gli Edges NSX) ospitate al di fuori dei tuoi host dedicati, per disporre del 100% della loro capacità (CPU, RAM).",
+  "dedicatedCloud_configuration_add_datacenter_cta_submit": "Aggiungi un datacenter",
+  "dedicatedCloud_configuration_add_datacenter_cta_cancel": "Annulla",
+  "dedicatedCloud_configuration_add_datacenter_card_vsphere_label": "vSphere",
+  "dedicatedCloud_configuration_add_datacenter_card_vsphere_description": "Aggiungi un virtual DataCenter (vDC) vSphere alla tua infrastruttura VMware. Usufruisci dei moduli di osservabilità vROps, della licenza vSphere Enterprise Plus di default. Potrai anche aggiungere host vSAN per sfruttare l'iperconvergenza delle tue esigenze in termini di performance aggiuntive.",
+  "dedicatedCloud_configuration_add_datacenter_card_nsx-t_label": "NSX",
+  "dedicatedCloud_configuration_add_datacenter_card_nsx-t_description": "Aggiungi un virtual DataCenter (vDC) NSX alla tua infrastruttura VMware. Oltre a vSphere, vROps forniti di default, potrai usufruire del meglio della virtualizzazione di rete con NSX, potrai proteggere le tue VM grazie alla micro segmentazione. Potrai anche aggiungere host vSAN per sfruttare l'iperconvergenza delle tue esigenze in termini di performance aggiuntive.",
+  "dedicatedCloud_configuration_add_datacenter_card_essentials_label": "Essentials",
+  "dedicatedCloud_configuration_add_datacenter_card_essentials_description": "vSphere as a Service è semplice e familiare, facile da gestire ed economico.",
+  "dedicatedCloud_configuration_add_datacenter_card_premier_label": "Primo",
+  "dedicatedCloud_configuration_add_datacenter_card_premier_description": "Soluzione aziendale potente e integrata, basata su software in linea con gli standard di mercato e incentrata sui risultati e sulla resilienza",
+  "dedicatedCloud_datacenters_add_datacenter_new_price": "{{ price }} sulla tariffa"
 }
