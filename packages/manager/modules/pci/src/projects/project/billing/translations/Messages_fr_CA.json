@@ -42,5 +42,6 @@
   "cpbc_billing_control_consumption_plan_volume.snapshot.consumption": "Volume snapshot {{id}}",
   "cpbc_billing_control_consumption_plan_data-processing-job.core.minute.consumption": "Processeurs (vCores)",
   "cpbc_billing_control_consumption_plan_data-processing-job.memory-gib.minute.consumption": "Mémoire (RAM)",
-  "cpbc_billing_control_consumption_current_period": "La consommation actuelle affichée est calculée entre le {{ from }} et {{ to }}"
+  "cpbc_billing_control_consumption_current_period": "La consommation actuelle affichée est calculée entre le {{ from }} et {{ to }}",
+  "cpbc_billing_control_consumption_error_forbidden": "Vous n'avez pas suffisamment de droits pour afficher vos données de facturation. Veuillez contacter le propriétaire du service"
 }
