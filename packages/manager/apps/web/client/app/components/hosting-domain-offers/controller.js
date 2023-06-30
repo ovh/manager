@@ -8,6 +8,7 @@ import {
   BADGES,
   NEW_OFFERS_PLAN_CODES,
   CATEGORIES_MAP,
+  VERSION_MAP,
 } from './constants';
 
 export default class WebComponentsHostingDomainOffersController {
@@ -15,7 +16,6 @@ export default class WebComponentsHostingDomainOffersController {
   constructor($translate, $filter) {
     this.$translate = $translate;
     const bytes = $filter('bytes');
-    const planCodeKey = 'legacyPlanCode'; // planCode
 
     this.NEW_OFFERS = {
       PERSO: {
@@ -29,7 +29,7 @@ export default class WebComponentsHostingDomainOffersController {
         ],
         SELECTORS: {
           PERSO: {
-            planCode: NEW_OFFERS_PLAN_CODES.PERSO[planCodeKey],
+            planCode: NEW_OFFERS_PLAN_CODES.PERSO,
           },
         },
       },
@@ -44,7 +44,7 @@ export default class WebComponentsHostingDomainOffersController {
         ],
         SELECTORS: {
           PRO: {
-            planCode: NEW_OFFERS_PLAN_CODES.PRO[planCodeKey],
+            planCode: NEW_OFFERS_PLAN_CODES.PRO,
           },
         },
       },
@@ -62,22 +62,22 @@ export default class WebComponentsHostingDomainOffersController {
         ],
         SELECTORS: {
           PERFORMANCE_1: {
-            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_1[planCodeKey],
+            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_1,
             cores: 2,
             ram: bytes(4000, undefined, false, 'MB'),
           },
           PERFORMANCE_2: {
-            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_2[planCodeKey],
+            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_2,
             cores: 4,
             ram: bytes(8000, undefined, false, 'MB'),
           },
           PERFORMANCE_3: {
-            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_3[planCodeKey],
+            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_3,
             cores: 6,
             ram: bytes(12000, undefined, false, 'MB'),
           },
           PERFORMANCE_4: {
-            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_4[planCodeKey],
+            planCode: NEW_OFFERS_PLAN_CODES.PERFORMANCE_4,
             cores: 8,
             ram: bytes(16000, undefined, false, 'MB'),
           },
@@ -110,26 +110,36 @@ export default class WebComponentsHostingDomainOffersController {
   }
 
   extendOffers() {
-    return this.offers.map((offer) => {
-      const category = this.constructor.getOfferCategory(offer);
-      const offerVersion =
-        CATEGORIES_MAP[offer.value.toLowerCase()] || offer.value;
-      const technicalsOffer = this.getOfferSelector(category, offerVersion);
-      const { planCode } = technicalsOffer;
-      const price = this.formatOfferPrice(category, planCode);
+    return this.offers
+      .filter(
+        (offer) =>
+          ![
+            'hosting-free-100m',
+            'hosting-starter-ovh',
+            'hosting-starter',
+          ].includes(offer.value),
+      ) // todo: remove the filter when api will be up-to-date
+      .map((offer) => {
+        const category = this.constructor.getOfferCategory(offer);
+        const offerVersion =
+          VERSION_MAP[offer.value.toLowerCase()] || offer.value;
 
-      return {
-        ...offer,
-        badge: this.getOfferBadge(offer),
-        planCode,
-        category,
-        selector: this.$translate.instant(
-          `web_components_hosting_domain_offers_offer_select_version_performance`,
-          { coreNumber: technicalsOffer.cores, ramSize: technicalsOffer.ram },
-        ),
-        price,
-      };
-    });
+        const technicalsOffer = this.getOfferSelector(category, offerVersion);
+        const { planCode } = technicalsOffer;
+        const price = this.formatOfferPrice(category, planCode);
+
+        return {
+          ...offer,
+          badge: this.getOfferBadge(offer),
+          planCode,
+          category,
+          selector: this.$translate.instant(
+            `web_components_hosting_domain_offers_offer_select_version_performance`,
+            { coreNumber: technicalsOffer.cores, ramSize: technicalsOffer.ram },
+          ),
+          price,
+        };
+      });
   }
 
   buildOffersGroup() {

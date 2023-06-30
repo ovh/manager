@@ -45,7 +45,7 @@
                 data-ng-if="groupOffer.versions.length > 1"
                 data-name="hosting-group-offer-version-{{modelValue.name}}"
                 data-items="groupOffer.versions"
-                data-match="name"
+                data-match="selector"
                 data-model="groupOffer.selectedVersion"
                 data-placeholder="{{ 'web_components_hosting_domain_offers_offer_select_version_placeholder' | translate }}"
                 data-on-change="$ctrl.onGroupOfferClick({groupOffer, versionOffer: modelValue})"

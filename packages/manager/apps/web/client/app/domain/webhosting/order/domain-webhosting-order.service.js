@@ -172,7 +172,9 @@ export default class {
 
   getCatalog(ovhSubsidiary) {
     return this.$http
-      .get(`/order/catalog/public/webHosting?ovhSubsidiary=${ovhSubsidiary}`)
+      .get(
+        `/order/catalog/public/webhostingPreprod?ovhSubsidiary=${ovhSubsidiary}`, // todo: preprod for testing
+      )
       .then(({ data }) => data);
   }
 

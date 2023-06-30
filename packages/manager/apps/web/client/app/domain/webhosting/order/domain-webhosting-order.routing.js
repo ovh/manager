@@ -10,12 +10,12 @@ const resolve = {
 
   /** TODO: for the moment the available offers must be hardcoded. Later they will be dynamic */
   availableOffers: /* @ngInject */ () => [
-    'PERSO',
-    'PRO',
-    'PERFORMANCE_1',
-    'PERFORMANCE_2',
-    'PERFORMANCE_3',
-    'PERFORMANCE_4',
+    'hosting-perso',
+    'hosting-pro',
+    'hosting-performance-1',
+    'hosting-performance-2',
+    'hosting-performance-3',
+    'hosting-performance-4',
   ],
 
   cartId: /* @ngInject */ (assignCart, createCart) =>

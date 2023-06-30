@@ -9,56 +9,71 @@ export const NEW_OFFERS_END_DATE = moment(NEW_OFFERS_START_DATE).add(6, 'M');
 export const NEW_OFFERS_MIGRATION_MAP = {
   PERSO: {
     downgrade: [],
-    equal: ['PERSO'],
+    equal: ['hosting-perso'],
     upgrade: [
-      'PRO',
-      'PERFORMANCE_1',
-      'PERFORMANCE_2',
-      'PERFORMANCE_3',
-      'PERFORMANCE_4',
+      'hosting-pro',
+      'hosting-performance-1',
+      'hosting-performance-2',
+      'hosting-performance-3',
+      'hosting-performance-4',
     ],
   },
   PRO: {
-    downgrade: ['PERSO'],
-    equal: ['PRO'],
+    downgrade: ['hosting-perso'],
+    equal: ['hosting-pro'],
     upgrade: [
-      'PERFORMANCE_1',
-      'PERFORMANCE_2',
-      'PERFORMANCE_3',
-      'PERFORMANCE_4',
+      'hosting-performance-1',
+      'hosting-performance-2',
+      'hosting-performance-3',
+      'hosting-performance-4',
     ],
   },
   PERF1: {
-    downgrade: ['PRO'],
-    equal: ['PERFORMANCE_1'],
-    upgrade: ['PERFORMANCE_2', 'PERFORMANCE_3', 'PERFORMANCE_4'],
+    downgrade: ['hosting-pro'],
+    equal: ['hosting-performance-1'],
+    upgrade: [
+      'hosting-performance-2',
+      'hosting-performance-3',
+      'hosting-performance-4',
+    ],
   },
   PERF2: {
-    downgrade: ['PERFORMANCE_1'],
-    equal: ['PERFORMANCE_2'],
-    upgrade: ['PERFORMANCE_3', 'PERFORMANCE_4'],
+    downgrade: ['hosting-performance-1'],
+    equal: ['hosting-performance-2'],
+    upgrade: ['hosting-performance-3', 'hosting-performance-4'],
   },
   PERF3: {
-    downgrade: ['PERFORMANCE_1', 'PERFORMANCE_2'],
-    equal: ['PERFORMANCE_3'],
-    upgrade: ['PERFORMANCE_4'],
+    downgrade: ['hosting-performance-1', 'hosting-performance-2'],
+    equal: ['hosting-performance-3'],
+    upgrade: ['hosting-performance-4'],
   },
   PERF4: {
-    downgrade: ['PERFORMANCE_1', 'PERFORMANCE_2', 'PERFORMANCE_3'],
-    equal: ['PERFORMANCE_4'],
+    downgrade: [
+      'hosting-performance-1',
+      'hosting-performance-2',
+      'hosting-performance-3',
+    ],
+    equal: ['hosting-performance-4'],
     upgrade: [],
   },
 };
 
 export const CATEGORIES_MAP = {
-  perso2014: 'PERSO',
-  perso: 'PERSO',
-  pro: 'PRO',
-  pro2014: 'PRO',
-  PERFORMANCE_1: 'PERFORMANCE',
-  PERFORMANCE_2: 'PERFORMANCE',
-  PERFORMANCE_3: 'PERFORMANCE',
-  PERFORMANCE_4: 'PERFORMANCE',
+  'hosting-perso': 'PERSO',
+  'hosting-pro': 'PRO',
+  'hosting-performance-1': 'PERFORMANCE',
+  'hosting-performance-2': 'PERFORMANCE',
+  'hosting-performance-3': 'PERFORMANCE',
+  'hosting-performance-4': 'PERFORMANCE',
+};
+
+export const VERSION_MAP = {
+  'hosting-perso': 'PERSO',
+  'hosting-pro': 'PRO',
+  'hosting-performance-1': 'PERFORMANCE_1',
+  'hosting-performance-2': 'PERFORMANCE_2',
+  'hosting-performance-3': 'PERFORMANCE_3',
+  'hosting-performance-4': 'PERFORMANCE_4',
 };
 
 export const CURRENT_OFFERS = {
@@ -92,32 +107,13 @@ export const BADGES = {
   DOWNGRADE: 'downgrade',
 };
 
-/* TODO ::
-  1 - legacyPlanCode key could be removed once new catalog is prod
-  2 - use planCode key directly with related object
-*/
 export const NEW_OFFERS_PLAN_CODES = {
-  PERSO: {
-    legacyPlanCode: 'perso2014',
-    planCode: 'hosting-perso',
-  },
-  PRO: { legacyPlanCode: 'pro2014', planCode: 'hosting-pro' },
-  PERFORMANCE_1: {
-    legacyPlanCode: 'perf2014x1',
-    planCode: 'hosting-performance-1',
-  },
-  PERFORMANCE_2: {
-    legacyPlanCode: 'perf2014x2',
-    planCode: 'hosting-performance-2',
-  },
-  PERFORMANCE_3: {
-    legacyPlanCode: 'perf2014x3',
-    planCode: 'hosting-performance-3',
-  },
-  PERFORMANCE_4: {
-    legacyPlanCode: 'perf2014x4',
-    planCode: 'hosting-performance-4',
-  },
+  PERSO: 'hosting-perso',
+  PRO: 'hosting-pro',
+  PERFORMANCE_1: 'hosting-performance-1',
+  PERFORMANCE_2: 'hosting-performance-2',
+  PERFORMANCE_3: 'hosting-performance-3',
+  PERFORMANCE_4: 'hosting-performance-4',
 };
 
 export default {
@@ -128,4 +124,5 @@ export default {
   BADGES,
   NEW_OFFERS_PLAN_CODES,
   CATEGORIES_MAP,
+  VERSION_MAP,
 };
