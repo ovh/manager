@@ -5,7 +5,7 @@
   "iam_apiv2_error_POLICY_NAME_PARAMETER_TOO_LONG": "Le nom de la politique est trop long",
   "iam_apiv2_error_POLICY_NAME_POLICY_ALREADY_EXISTS": "Le nom de la politique est déjà existant",
   "iam_breadcrumb": "Gestion des identités et des accès (IAM)",
-  "iam_guide_description_iam": "",
+  "iam_guide_description_iam": "Découvrez comment donner des droits d'accès spécifiques à vos utilisateurs",
   "iam_guide_description_samlsso": "Découvrez comment associer votre service ADFS à votre compte OVHcloud via SAML 2.0",
   "iam_guide_description_users": "Découvrez comment ajouter des utilisateurs depuis votre compte OVHcloud.",
   "iam_guide_iam": "Créer et gérer des politiques",
