@@ -246,6 +246,8 @@
   "dedicatedCloud_survey_link": "partilhe a sua opinião sobre esta interface",
   "ip_order_renew_EPCC": "Os seus endereços IP serão automaticamente renovados com a sua infraestrutura Dedicated Cloud.",
   "ip_order_renew_MBM": "Os seus endereços IP serão automaticamente renovados com a sua infraestrutura Managed Bare Metal.",
-  "dedicatedCloud_premier_sbg_order_warning": "Não é possível realizar novas encomendas na nossa localização de Estrasburgo (SBG). As nossas equipas estão a fazer todos os possíveis para voltar a oferecer esta opção de encomenda assim que possível.",
-  "ip_order_renew_PCC": "Os seus endereços IP serão automaticamente renovados com a sua infraestrutura Dedicated Cloud."
+  "dedicatedCloud_premier_sbg_order_warning": "Não estamos em condições de fazer novas encomendas no nosso website de SBG. As nossas equipas estão plenamente mobilizadas e estamos a envidar todos os esforços para restabelecer esta possibilidade de encomenda num futuro próximo.",
+  "ip_order_renew_PCC": "Os seus endereços IP serão automaticamente renovados com a sua infraestrutura Dedicated Cloud.",
+  "dedicatedCloud_banner_new_product": "Pode desde já encomendar datacenters correspondentes a packs de software VMware diferentes no mesmo ambiente Private Cloud.",
+  "dedicatedCloud_banner_new_product_link": "Saber mais"
 }
