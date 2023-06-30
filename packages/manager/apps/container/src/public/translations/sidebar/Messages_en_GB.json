@@ -152,5 +152,6 @@
   "sidebar_telephony_type_sip": "SIP",
   "sidebar_telephony_type_fax": "Fax",
   "sidebar_pci_volume_backup": "Volume Backup",
-  "sidebar_vmware_all": "All my services"
+  "sidebar_vmware_all": "All my services",
+  "sidebar_account_iam": "Identities and Access (IAM)"
 }
