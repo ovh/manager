@@ -24,6 +24,7 @@ import emailproAddDomainCtrl from '../domain/add/emailpro-domain-add.controller'
 import emailproDomainMxAutoconfigCtrl from '../domain/mx-autoconfig/emailpro-domain-mx-autoconfig.controller';
 import emailproRemoveDomainCtrl from '../domain/remove/emailpro-domain-remove.controller';
 import emailproDomainSrvAutoconfigCtrl from '../domain/srv-autoconfig/emailpro-domain-srv-autoconfig.controller';
+import emailproDomainSpfAutoconfigCtrl from '../domain/spf-autoconfig/emailpro-domain-spf-autoconfig.controller';
 import emailproUpdateDomainCtrl from '../domain/update/emailpro-domain-update.controller';
 import emailproTabExternalContactsCtrl from '../external-contact/emailpro-external-contact-tab.controller';
 import emailproAddExternalContactCtrl from '../external-contact/add/emailpro-external-contact-add.controller';
@@ -90,6 +91,10 @@ angular
   .controller(
     'EmailProDomainSrvAutoconfigCtrl',
     emailproDomainSrvAutoconfigCtrl,
+  )
+  .controller(
+    'EmailProDomainSpfAutoconfigCtrl',
+    emailproDomainSpfAutoconfigCtrl,
   )
   .controller('EmailProUpdateDomainCtrl', emailproUpdateDomainCtrl)
   .controller(

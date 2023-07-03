@@ -169,4 +169,17 @@ export default /* @ngInject */ function EmailProDomains(EmailPro, OvhHttp) {
       }),
     );
   };
+
+  this.getExpectedDNSSettings = function getExpectedDNSSettings(
+    serviceName,
+    domain,
+  ) {
+    return OvhHttp.get('/email/pro/{service}/domain/{domain}', {
+      rootPath: 'apiv6',
+      urlParams: {
+        service: serviceName,
+        domain,
+      },
+    });
+  };
 }
