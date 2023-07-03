@@ -234,34 +234,73 @@
 
                     <div class="row">
                         <!-- POST CODE -->
-                        <oui-field
-                            label="{{:: 'telephony_service_contact_zipcode' | translate }}*"
-                            error-messages="{ 'required': ('telephony_service_contact_must_fill' | translate) }"
-                            class="col-md-6"
-                        >
-                            <input
-                                data-ng-if="$ctrl.autoCompletePostCode.length === 0"
-                                type="text"
-                                id="contactPostCode"
-                                name="contactPostCode"
-                                class="oui-input"
-                                required
-                                data-ng-change="$ctrl.onPostCodeChange()"
-                                data-ng-model="$ctrl.directoryForm.postCode"
-                                data-ng-model-options="{ debounce: 500 }"
-                            />
-                            <oui-select
-                                data-ng-if="$ctrl.autoCompletePostCode.length > 0"
-                                items="$ctrl.autoCompletePostCode"
-                                model="$ctrl.directoryForm.postCode"
-                                name="contactPostCode"
-                                id="contactPostCode"
-                                data-on-change="$ctrl.onPostCodeChange()"
-                                required
-                                searchable
-                            >
-                            </oui-select>
-                        </oui-field>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <oui-field
+                                    data-ng-if="!$ctrl.isServiceInUK()"
+                                    label="{{:: 'telephony_service_contact_zipcode' | translate }}*"
+                                    error-messages="{ 'required': ('telephony_service_contact_must_fill' | translate) }"
+                                    class="col-md-6"
+                                >
+                                    <input
+                                        data-ng-if="$ctrl.autoCompletePostCode.length === 0"
+                                        type="text"
+                                        id="contactPostCode"
+                                        name="contactPostCode"
+                                        class="oui-input"
+                                        required
+                                        data-ng-change="$ctrl.onPostCodeChange()"
+                                        data-ng-model="$ctrl.directoryForm.postCode"
+                                        data-ng-model-options="{ debounce: 500 }"
+                                    />
+                                    <oui-select
+                                        data-ng-if="$ctrl.autoCompletePostCode.length > 0"
+                                        items="$ctrl.isServiceInUKautoCompletePostCode"
+                                        model="$ctrl.directoryForm.postCode"
+                                        name="contactPostCode"
+                                        id="contactPostCode"
+                                        data-on-change="$ctrl.onPostCodeChange()"
+                                        required
+                                        searchable
+                                    >
+                                    </oui-select>
+                                </oui-field>
+
+                                <oui-field
+                                    data-ng-if="$ctrl.isServiceInUK()"
+                                    label="{{:: 'telephony_service_contact_outwardcode' | translate }}*"
+                                    error-messages="{ 'required': ('telephony_service_contact_must_fill' | translate) }"
+                                    data-ng-class="$ctrl.isServiceInUK() ? 'col-md-4' :  'col-md-12'"
+                                >
+                                    <oui-select
+                                        items="$ctrl.autoCompletePostCode"
+                                        model="$ctrl.ukPostCode.outwardPostCode"
+                                        name="contactOutwardPostCode"
+                                        id="contactOutwardPostCode"
+                                        data-on-change="$ctrl.onUKPostCodeChange()"
+                                        required
+                                        searchable
+                                    >
+                                    </oui-select>
+                                </oui-field>
+                                <oui-field
+                                    data-ng-if="$ctrl.isServiceInUK()"
+                                    label="{{:: 'telephony_service_contact_inwardcode' | translate }}*"
+                                    error-messages="{ 'required': ('telephony_service_contact_must_fill' | translate), 'pattern': ('telephony_service_contact_bad_inward' | translate) }"
+                                    class="col-md-4"
+                                >
+                                    <input
+                                        type="text"
+                                        id="contactInwardPostCode"
+                                        name="contactInwardPostCode"
+                                        class="oui-input"
+                                        required
+                                        data-ng-pattern="/^\d[a-zA-Z]{2}$/"
+                                        data-ng-model="$ctrl.ukPostCode.inwardPostCode"
+                                    />
+                                </oui-field>
+                            </div>
+                        </div>
 
                         <!-- CITY -->
                         <oui-field

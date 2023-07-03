@@ -55,6 +55,7 @@ export default class TelecomTelephonyServiceContactCtrl {
     this.autoCompletePostCode = null;
     this.autoCompleteCity = null;
     this.autoCompleteStreetName = null;
+    this.ukPostCode = { outwardPostCode: null, inwardPostCode: null };
 
     return this.$q
       .all({
@@ -90,6 +91,12 @@ export default class TelecomTelephonyServiceContactCtrl {
           ] || this.DIRECTORY_WAY_NUMBER_EXTRA_ENUM.OTHER;
 
         this.regex = this.REGEX;
+
+        if (this.isServiceInUK()) {
+          const [outward, inward] = this.directoryForm.postCode.split(' ');
+          this.ukPostCode.outwardPostCode = outward;
+          this.ukPostCode.inwardPostCode = inward;
+        }
 
         if (this.directory.ape && this.directory.directoryServiceCode) {
           return this.TelecomTelephonyServiceContactService.fetchDirectoryServiceCode(
@@ -313,6 +320,11 @@ export default class TelecomTelephonyServiceContactCtrl {
     }
   }
 
+  onUKPostCodeChange() {
+    this.directoryForm.postCode = this.ukPostCode.outwardPostCode;
+    this.onPostCodeChange();
+  }
+
   onCityChange(modelValue) {
     this.directoryForm.city = modelValue.name;
     this.directoryForm.cedex = '';
@@ -391,6 +403,14 @@ export default class TelecomTelephonyServiceContactCtrl {
         /&nbsp;/g,
         '',
       );
+    }
+
+    if (
+      this.isServiceInUK() &&
+      this.ukPostCode.outwardPostCode &&
+      this.ukPostCode.inwardPostCode
+    ) {
+      this.directoryForm.postCode = `${this.ukPostCode.outwardPostCode} ${this.ukPostCode.inwardPostCode}`;
     }
 
     const modified = assign(this.directory, this.directoryForm);
@@ -480,5 +500,10 @@ export default class TelecomTelephonyServiceContactCtrl {
       default:
         return this.$translate.instant('telephony_service_contact_sync_na');
     }
+  }
+
+  isServiceInUK() {
+    const regex = new RegExp(/^0044\d+/g);
+    return regex.test(this.serviceName);
   }
 }
