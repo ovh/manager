@@ -38,6 +38,27 @@
             </div>
 
             <div class="mt-4">
+                <p data-ng-if="$ctrl.currentNetboot.type === $ctrl.RESCUE">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    <span
+                        data-translate="server_configuration_netboot_rescue_help"
+                    ></span>
+                    <a
+                        href="{{::$ctrl.hardwareDiagnosticsGuide}}"
+                        rel="noopener"
+                        target="_blank"
+                    >
+                        <span
+                            data-translate="server_configuration_netboot_rescue_help_link"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        >
+                        </span>
+                    </a>
+                </p>
+
                 <p
                     data-ng-if="$ctrl.currentNetboot.type === $ctrl.RESCUE || $ctrl.currentNetboot.type === $ctrl.NETWORK"
                 >
@@ -55,12 +76,11 @@
                             class="form-control"
                             id="rescue"
                             name="rescue"
-                            data-ng-options="rescue as rescue.kernel for rescue in $ctrl.netboots.rescue"
+                            data-ng-options="rescue as rescue.kernel + ' - ' + rescue.description for rescue in $ctrl.netboots.rescue track by rescue.kernel"
                             data-ng-model="$ctrl.currentNetboot.rescue"
                             required
                         >
                             <option
-                                value=""
                                 data-ng-disabled="true"
                                 data-translate="select_option"
                             >

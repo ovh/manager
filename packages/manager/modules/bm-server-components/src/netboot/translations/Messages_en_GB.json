@@ -36,5 +36,7 @@
   "server_configuration_netboot_confirm": "Confirm",
   "server_configuration_netboot_review": "Summary",
   "server_configuration_netboot_save_in_progress": "Updating...",
-  "server_configuration_netboot_invalid": "Invalid"
+  "server_configuration_netboot_invalid": "Invalid",
+  "server_configuration_netboot_rescue_help": "Rescue mode is useful for diagnosing hardware faults on a dedicated server.",
+  "server_configuration_netboot_rescue_help_link": "Access the hardware diagnostic guide."
 }

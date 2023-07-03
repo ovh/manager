@@ -36,5 +36,7 @@
   "server_configuration_netboot_confirm": "Validar",
   "server_configuration_netboot_review": "Resumo",
   "server_configuration_netboot_save_in_progress": "Atualização...",
-  "server_configuration_netboot_invalid": "Inválida"
+  "server_configuration_netboot_invalid": "Inválida",
+  "server_configuration_netboot_rescue_help": "O rescue pode ser útil para diagnosticar avarias materiais num servidor dedicado.",
+  "server_configuration_netboot_rescue_help_link": "Aceder ao guia de diagnóstico de hardware."
 }

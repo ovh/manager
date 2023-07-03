@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.7.1...@ovh-ux/manager-iplb@1.7.2) (2023-06-21)
+
+
+### Bug Fixes
+
+* **dedicated.loadbalancer:** resolve split function issue ([#9465](https://github.com/ovh/manager/issues/9465)) ([784ca4f](https://github.com/ovh/manager/commit/784ca4f142bf01ed560fe02277d46047639789d3))
+
+
+
+
+
 ## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.7.0...@ovh-ux/manager-iplb@1.7.1) (2023-06-14)
 
 

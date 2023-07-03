@@ -1,6 +1,6 @@
 {
   "module_ip_dashboard_title": "Verwaltung der IP-Adressen",
-  "module_ip_dashboard_order_IP_action_label": "Eine IP bestellen",
+  "module_ip_dashboard_order_IP_action_label": "IP-Adressen bestellen",
   "ip_dashboard_error": "Beim Laden Ihrer Informationen ist ein Fehler aufgetreten.",
   "ip_services_error": "Beim Laden dieser Dienste ist ein Fehler aufgetreten: {{t0}}. Bitte versuchen Sie es später erneut.",
   "ip_block_error": "Beim Laden der Informationen von {{t0}} ist ein Fehler aufgetreten.",
