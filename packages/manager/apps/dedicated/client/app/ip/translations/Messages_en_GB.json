@@ -1,6 +1,6 @@
 {
   "module_ip_dashboard_title": "Manage IPs",
-  "module_ip_dashboard_order_IP_action_label": "Order an IP",
+  "module_ip_dashboard_order_IP_action_label": "Order IPs",
   "ip_dashboard_error": "An error has occurred loading your data.",
   "ip_services_error": "An error occurred when loading {{t0}} solutions. Please try again later.",
   "ip_block_error": "An error occurred on loading the {{t0}} data.",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.128.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.128.0...@ovh-ux/manager-pci@5.128.1) (2023-06-21)
+
+
+### Bug Fixes
+
+* **project.onboarding:** add an fr message for doc guide ([#9304](https://github.com/ovh/manager/issues/9304)) ([8b341fe](https://github.com/ovh/manager/commit/8b341fe98747441da6628e789b12360c937e9b22))
+
+
+
+
+
 # [5.128.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.127.1...@ovh-ux/manager-pci@5.128.0) (2023-06-14)
 
 

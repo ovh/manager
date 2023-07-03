@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.6.4...@ovh-ux/manager-bm-server-components@1.6.5) (2023-06-21)
+
+
+### Bug Fixes
+
+* **dedicated:** rescue boot mode improvements ([#9309](https://github.com/ovh/manager/issues/9309)) ([8d8eb29](https://github.com/ovh/manager/commit/8d8eb299ac470d14eb152e9e28f6aeb8f30299b1))
+
+
+
+
+
 ## [1.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.6.3...@ovh-ux/manager-bm-server-components@1.6.4) (2023-05-31)
 
 

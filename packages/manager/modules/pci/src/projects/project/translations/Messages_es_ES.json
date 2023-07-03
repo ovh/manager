@@ -34,5 +34,7 @@
   "pci_projects_project_community_roadmap_term": "Roadmap",
   "pci_projects_project_community_roadmap_description": "Descubra y participe",
   "pci_projects_project_community_discord_term": "Comunidad",
-  "pci_projects_project_community_discord_description": "Participar en Discord"
+  "pci_projects_project_community_discord_description": "Participar en Discord",
+  "pci_projects_project_documentation_block_storage_term": "Block Storage",
+  "pci_projects_project_documentation_block_storage_description": "Crear un dispositivo de almacenamiento externo"
 }

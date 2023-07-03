@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.1.0...@ovh-ux/manager-dedicated@18.2.0) (2023-06-21)
+
+
+### Bug Fixes
+
+* **dedicated:** change ip action label translation ([#9400](https://github.com/ovh/manager/issues/9400)) ([b3ff8d6](https://github.com/ovh/manager/commit/b3ff8d65c1e818bab0b331eee2fbfa60bd0956aa))
+* fix backdrop stays when choosing section wizard module ([8e03b3e](https://github.com/ovh/manager/commit/8e03b3e82b004438358f45727e1dfa30eff8edc5))
+
+
+### Features
+
+* **dedicated:** lv1/lv2 migration date ([#9393](https://github.com/ovh/manager/issues/9393)) ([5d663d9](https://github.com/ovh/manager/commit/5d663d9ceda37589451e25a3c6f3bab19c897f9e))
+
+
+
+
+
 # [18.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.0.0...@ovh-ux/manager-dedicated@18.1.0) (2023-06-14)
 
 

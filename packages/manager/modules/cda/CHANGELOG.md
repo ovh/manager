@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.6.0...@ovh-ux/manager-cda@1.6.1) (2023-06-21)
+
+
+### Bug Fixes
+
+* **cda:** display storage unit on listing page ([#9451](https://github.com/ovh/manager/issues/9451)) ([9dbc50e](https://github.com/ovh/manager/commit/9dbc50e2087d437027e61cd6595e5155ec40c791))
+
+
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cda@1.5.0...@ovh-ux/manager-cda@1.6.0) (2023-03-01)
 
 

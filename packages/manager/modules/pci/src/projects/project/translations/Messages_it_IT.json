@@ -34,5 +34,7 @@
   "pci_projects_project_community_roadmap_term": "Roadmap",
   "pci_projects_project_community_roadmap_description": "Scopri e partecipa",
   "pci_projects_project_community_discord_term": "Community",
-  "pci_projects_project_community_discord_description": "Parlane su Discord"
+  "pci_projects_project_community_discord_description": "Parlane su Discord",
+  "pci_projects_project_documentation_block_storage_term": "Block Storage",
+  "pci_projects_project_documentation_block_storage_description": "Creare una periferica di storage esterna"
 }

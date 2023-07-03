@@ -468,6 +468,11 @@ export default async (containerEl, shellClient) => {
     .constant('UNIVERSE', 'DEDICATED')
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
+        $transitions.onStart({}, () => {
+          $('#currentAction').modal('hide');
+          $('.modal-backdrop').remove();
+          $('.help4wizards').removeClass('open');
+        });
         const unregisterHook = $transitions.onSuccess({}, async () => {
           if (!isTopLevelApplication()) {
             await shellClient.ux.hidePreloader();

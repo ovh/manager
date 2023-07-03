@@ -14,6 +14,30 @@ export default /* @ngInject */ ($stateProvider) => {
       apiPath: () => '/dedicated/ceph',
       dataModel: () => 'dedicated.ceph.clusterGet.response',
       defaultFilterColumn: () => 'serviceName',
+      columnConfig: /* @ngInject */ () => ({
+        data: [
+          {
+            label: 'Service Name',
+            property: 'serviceName',
+            serviceLink: true,
+            hidden: false,
+          },
+          { label: 'Ceph Version', property: 'cephVersion', hidden: false },
+          { label: 'Create Date', property: 'createDate', hidden: false },
+          { label: 'Crush Tunables', property: 'crushTunables', hidden: false },
+          { label: 'Label', property: 'label', hidden: false },
+          { label: 'Region', property: 'region', hidden: true },
+          {
+            label: 'Size',
+            property: 'size',
+            hidden: true,
+            format: (value) => `${value.size} TB`,
+          },
+          { label: 'State', property: 'state', hidden: true },
+          { label: 'Status', property: 'status', hidden: true },
+          { label: 'Update Date', property: 'updateDate', hidden: true },
+        ],
+      }),
       header: /* @ngInject */ ($translate) => $translate.instant('cda_title'),
       customizableColumns: () => true,
       getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>

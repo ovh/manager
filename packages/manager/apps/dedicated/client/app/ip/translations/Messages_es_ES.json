@@ -1,6 +1,6 @@
 {
   "module_ip_dashboard_title": "Gestionar las direcciones IP",
-  "module_ip_dashboard_order_IP_action_label": "Contratar una IP",
+  "module_ip_dashboard_order_IP_action_label": "Contratar direcciones IP",
   "ip_dashboard_error": "Se ha producido un error al cargar la información.",
   "ip_services_error": "Se ha producido un error al cargar los servicios: {{t0}}. Por favor, vuelva a intentarlo más tarde.",
   "ip_block_error": "Se ha producido un error al cargar la información de {{t0}}.",

@@ -36,5 +36,7 @@
   "server_configuration_netboot_confirm": "Zatwierdź",
   "server_configuration_netboot_review": "Podsumowanie",
   "server_configuration_netboot_save_in_progress": "Aktualizacja...",
-  "server_configuration_netboot_invalid": "Nieprawidłowy"
+  "server_configuration_netboot_invalid": "Nieprawidłowy",
+  "server_configuration_netboot_rescue_help": "Tryb rescue może być przydatny podczas diagnozowania usterek sprzętowych na serwerze dedykowanym.",
+  "server_configuration_netboot_rescue_help_link": "Dostęp do przewodnika dotyczącego diagnostyki sprzętu."
 }
