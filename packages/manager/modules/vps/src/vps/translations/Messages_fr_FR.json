@@ -109,6 +109,7 @@
   "vps_dashboard_snapshot_download_modal_snapshot_curl_success": "Commande de téléchargement générée avec succès.",
   "vps_dashboard_snapshot_download_modal_snapshot_curl_info": "Veuillez copier la commande CURL ci-dessus et l'exécuter sur votre terminal. Pour en savoir plus sur CURL <a href=\"{{curlDocumentationLink}}\" target=\"_blank\">Cliquez ici</a>.",
   "vps_dashboard_snapshot_download_modal_snapshot_button_label": "Générer le lien de téléchargement",
+  "vps_dashboard_snapshot_download_modal_snapshot_error_download_not_ready": "La création du snapshot est en cours, merci de réessayer plus tard quand ce processus sera terminé.",
   "vps_configuration_monitoring_sla_ok_true": "La demande d'activation du monitoring SLA a bien été prise en compte.",
   "vps_configuration_monitoring_sla_error_true": "Une erreur est survenue lors de la demande d'activation du monitoring SLA.",
   "vps_configuration_monitoring_sla_ok_false": "La demande de désactivation du monitoring SLA a bien été prise en compte.",
