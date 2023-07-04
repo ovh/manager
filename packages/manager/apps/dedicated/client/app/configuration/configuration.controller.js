@@ -12,6 +12,7 @@ angular.module('App').controller(
       this.constants = constants;
       this.coreConfig = coreConfig;
       this.OvhHttp = OvhHttp;
+      this.user = coreConfig.getUser();
     }
 
     $onInit() {
@@ -20,7 +21,7 @@ angular.module('App').controller(
       this.urlToAllGuides = this.getURLFromSection(
         this.constants.TOP_GUIDES.all,
       );
-      this.user = this.coreConfig.getUser();
+
       this.$scope.$on('switchUniverse', (_, universe) =>
         this.buildingGuideURLs(universe),
       );
@@ -31,7 +32,11 @@ angular.module('App').controller(
       if (isString(section)) {
         return section;
       }
-      return section[this.currentLanguage] || section[this.fallbackLanguage];
+      return (
+        section[this.currentLanguage] ||
+        section[this.user.ovhSubsidiary] ||
+        section[this.fallbackLanguage]
+      );
     }
 
     buildingGuideURLs(universe) {
