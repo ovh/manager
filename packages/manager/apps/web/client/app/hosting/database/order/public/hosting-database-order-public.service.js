@@ -170,12 +170,4 @@ export default class {
       .get(`/order/catalog/public/cloudDB?ovhSubsidiary=${ovhSubsidiary}`)
       .then(({ data }) => data);
   }
-
-  getPreprodCatalog(ovhSubsidiary) {
-    return this.$http
-      .get(
-        `/order/catalog/public/webhostingPreprod?ovhSubsidiary=${ovhSubsidiary}`,
-      )
-      .then(({ data }) => data);
-  }
 }
