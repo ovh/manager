@@ -50,27 +50,17 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().preselectDbCategory,
 
       dbCategories: /* @ngInject */ (
-        serviceName,
-        preProdCatalog,
+        catalog,
         webCloudCatalog,
         HostingDatabaseOrderPublicService,
       ) => {
         return HostingDatabaseOrderPublicService.buildDbCategories(
-          preProdCatalog, // change to 'catalog' once it was update
+          catalog,
           webCloudCatalog,
         );
       },
 
       user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
-
-      preProdCatalog: /* @ngInject */ (
-        user,
-        HostingDatabaseOrderPublicService,
-      ) => {
-        return HostingDatabaseOrderPublicService.getPreprodCatalog(
-          user.ovhSubsidiary,
-        );
-      },
 
       webCloudCatalog: /* @ngInject */ (
         user,

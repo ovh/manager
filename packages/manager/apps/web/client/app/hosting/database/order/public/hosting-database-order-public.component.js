@@ -11,7 +11,6 @@ export default {
     user: '<',
     cart: '<',
     catalog: '<',
-    preProdCatalog: '<',
     webCloudCatalog: '<',
     preselectDbCategory: '<',
     dbCategories: '<',
