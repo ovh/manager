@@ -59,6 +59,7 @@
   "telephony_service_contact_status_done": "Effectué",
   "telephony_service_contact_apply": "Appliquer les modifications",
   "telephony_service_contact_must_fill": "Ce champ est obligatoire.",
+  "telephony_service_contact_bad_outward": "Le code doit être composé d'une lettre suivi de 1 à 3 caractères alphanumériques.",
   "telephony_service_contact_bad_inward": "Le code doit être composé d'un chiffre suivi de 2 caractères alphabétiques.",
   "telephony_service_contact_city_not_found": "Aucune ville n’a été trouvée pour ce code postal.",
   "telephony_service_contact_success": "Vos coordonnées ont bien été mises à jour.",

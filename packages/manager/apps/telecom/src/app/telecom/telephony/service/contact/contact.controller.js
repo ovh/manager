@@ -56,6 +56,7 @@ export default class TelecomTelephonyServiceContactCtrl {
     this.autoCompleteCity = null;
     this.autoCompleteStreetName = null;
     this.ukPostCode = { outwardPostCode: null, inwardPostCode: null };
+    this.isServiceInUK = new RegExp(REGEX.ukNumber).test(this.serviceName);
 
     return this.$q
       .all({
@@ -92,7 +93,7 @@ export default class TelecomTelephonyServiceContactCtrl {
 
         this.regex = this.REGEX;
 
-        if (this.isServiceInUK()) {
+        if (this.isServiceInUK) {
           const [outward, inward] = this.directoryForm.postCode.split(' ');
           this.ukPostCode.outwardPostCode = outward;
           this.ukPostCode.inwardPostCode = inward;
@@ -282,12 +283,12 @@ export default class TelecomTelephonyServiceContactCtrl {
     }
 
     // Fetch cities for given post code
-    if (this.directoryForm.postCode?.length >= 3) {
+    if (this.directoryForm.postCode?.length >= 2) {
       this.$q
         .resolve(
           this.TelecomTelephonyServiceContactService.getCityAvailable(
             this.directoryForm.postCode,
-            this.directory.country,
+            this.directory.country.toLowerCase(),
           ),
         )
         .then((cities) => {
@@ -406,7 +407,7 @@ export default class TelecomTelephonyServiceContactCtrl {
     }
 
     if (
-      this.isServiceInUK() &&
+      this.isServiceInUK &&
       this.ukPostCode.outwardPostCode &&
       this.ukPostCode.inwardPostCode
     ) {
@@ -500,10 +501,5 @@ export default class TelecomTelephonyServiceContactCtrl {
       default:
         return this.$translate.instant('telephony_service_contact_sync_na');
     }
-  }
-
-  isServiceInUK() {
-    const regex = new RegExp(/^0044\d+/g);
-    return regex.test(this.serviceName);
   }
 }
