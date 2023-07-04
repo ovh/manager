@@ -6,7 +6,7 @@ export default class LogsHelperService {
   /* @ngInject */
   constructor(
     $translate,
-    OvhApiDbaas,
+    $http,
     CucServiceHelper,
     CucCloudPoll,
     CucControllerModalHelper,
@@ -14,13 +14,11 @@ export default class LogsHelperService {
     ovhDocUrl,
   ) {
     this.$translate = $translate;
+    this.$http = $http;
     this.CucServiceHelper = CucServiceHelper;
     this.CucCloudPoll = CucCloudPoll;
     this.CucControllerModalHelper = CucControllerModalHelper;
     this.LogsConstants = LogsConstants;
-    this.OperationApiService = OvhApiDbaas.Logs()
-      .Operation()
-      .v6();
     this.ovhDocUrl = ovhDocUrl;
     this.initGuides();
   }
@@ -45,10 +43,9 @@ export default class LogsHelperService {
       interval: 3000,
       item: operation,
       pollFunction: (opn) =>
-        this.OperationApiService.get({
-          serviceName,
-          operationId: opn.operationId,
-        }).$promise,
+        this.$http.get(
+          `/dbaas/logs/${serviceName}/operation/${opn.operationId}`,
+        ),
       stopCondition: (opn) =>
         opn.state === this.LogsConstants.FAILURE ||
         opn.state === this.LogsConstants.SUCCESS ||

@@ -5,6 +5,7 @@ export default class LogsDashboardsCrudCtrl {
     $state,
     $stateParams,
     $uibModalInstance,
+    ouiDatagridService,
     LogsDashboardsService,
     CucControllerHelper,
     CucCloudMessage,
@@ -13,6 +14,7 @@ export default class LogsDashboardsCrudCtrl {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$uibModalInstance = $uibModalInstance;
+    this.ouiDatagridService = ouiDatagridService;
     this.serviceName = this.$stateParams.serviceName;
     this.LogsDashboardsService = LogsDashboardsService;
     this.CucControllerHelper = CucControllerHelper;
@@ -44,6 +46,7 @@ export default class LogsDashboardsCrudCtrl {
       this.dashboard = this.LogsDashboardsService.constructor.getNewDashboard();
       if (!this.dashboardName) {
         this.CucControllerHelper.request
+
           .getHashLoader({
             loaderFunction: () =>
               this.LogsDashboardsService.getDashboard(
@@ -61,10 +64,10 @@ export default class LogsDashboardsCrudCtrl {
       this.title = 'logs_dashboards_update_title';
       this.dashboard = this.CucControllerHelper.request.getHashLoader({
         loaderFunction: () =>
-          this.LogsDashboardsService.getAapiDashboard(
+          this.LogsDashboardsService.getDashboard(
             this.serviceName,
             this.$stateParams.dashboardId,
-          ).then((dashboard) => dashboard.info),
+          ),
       });
       this.dashboard.load();
     } else {
@@ -104,6 +107,7 @@ export default class LogsDashboardsCrudCtrl {
         ).finally(() => {
           this.$uibModalInstance.close();
           this.CucControllerHelper.scrollPageToTop();
+          this.ouiDatagridService.refresh('dashboards-datagrid', true);
         }),
     });
     return this.saving.load();
@@ -127,6 +131,7 @@ export default class LogsDashboardsCrudCtrl {
         ).finally(() => {
           this.$uibModalInstance.close();
           this.CucControllerHelper.scrollPageToTop();
+          this.ouiDatagridService.refresh('dashboards-datagrid', true);
         }),
     });
     return this.saving.load();
@@ -151,6 +156,7 @@ export default class LogsDashboardsCrudCtrl {
         ).finally(() => {
           this.$uibModalInstance.close();
           this.CucControllerHelper.scrollPageToTop();
+          this.ouiDatagridService.refresh('dashboards-datagrid', true);
         }),
     });
     return this.saving.load();

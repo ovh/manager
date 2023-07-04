@@ -1,37 +1,27 @@
-import set from 'lodash/set';
-
 export default class LogsIndexService {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $translate,
+    iceberg,
     CucCloudPoll,
     CucControllerHelper,
     LogsHelperService,
-    OvhApiDbaas,
+    CucUrlHelper,
     CucServiceHelper,
     LogsConstants,
-    LogsHomeService,
-    LogsOrderService,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
+    this.iceberg = iceberg;
     this.CucCloudPoll = CucCloudPoll;
     this.CucControllerHelper = CucControllerHelper;
     this.LogsHelperService = LogsHelperService;
+    this.CucUrlHelper = CucUrlHelper;
     this.CucServiceHelper = CucServiceHelper;
     this.LogsConstants = LogsConstants;
-    this.LogsHomeService = LogsHomeService;
-    this.LogsOrderService = LogsOrderService;
-    this.IndexApiService = OvhApiDbaas.Logs()
-      .Index()
-      .v6();
-    this.IndexAapiService = OvhApiDbaas.Logs()
-      .Index()
-      .Aapi();
-    this.OperationApiService = OvhApiDbaas.Logs()
-      .Operation()
-      .v6();
     this.newIndex = {
       description: '',
       alertNotifyEnabled: false,
@@ -39,30 +29,57 @@ export default class LogsIndexService {
     };
   }
 
-  getAccountDetails(serviceName) {
-    return this.LogsHomeService.getAccountDetails(serviceName);
-  }
-
-  getOrderCatalog(ovhSubsidiary) {
-    return this.LogsOrderService.getOrderCatalog(ovhSubsidiary);
-  }
-
   getNewIndex() {
     return this.newIndex;
   }
 
-  getIndicesIds(serviceName) {
-    return this.IndexApiService.query({ serviceName }).$promise;
+  getIndices(serviceName) {
+    return this.iceberg(`/dbaas/logs/${serviceName}/output/opensearch/index`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(10000)
+      .execute().$promise;
   }
 
-  getIndices(serviceName) {
-    return this.getIndicesIds(serviceName)
-      .then((indices) => {
-        const promises = indices.map((indexId) =>
-          this.getIndexDetails(serviceName, indexId),
-        );
-        return this.$q.all(promises);
-      })
+  getPaginatedIndices(
+    serviceName,
+    offset = 0,
+    pageSize = 25,
+    sort = { name: 'name', dir: 'desc' },
+    filters = null,
+  ) {
+    let res = this.iceberg(`/dbaas/logs/${serviceName}/output/opensearch/index`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(offset)
+      .sort(sort.name, sort.dir);
+    if (filters !== null) {
+      filters.forEach((filter) => {
+        res = res.addFilter(filter.name, filter.operator, filter.value);
+      });
+    }
+    return res.execute().$promise.then((response) => ({
+      data: response.data,
+      meta: {
+        totalCount:
+          parseInt(response.headers['x-pagination-elements'], 10) || 0,
+      },
+    }));
+  }
+
+  getIndiceIds(serviceName) {
+    return this.iceberg(`/dbaas/logs/${serviceName}/output/opensearch/index`)
+      .query()
+      .execute()
+      .$promise.then(({ data }) => data);
+  }
+
+  getIndicesForAlias(serviceName, aliasId) {
+    return this.$http
+      .get(
+        `/dbaas/logs/${serviceName}/output/opensearch/alias/${aliasId}/index`,
+      )
       .catch((err) =>
         this.LogsHelperService.handleError('logs_index_get_error', err, {}),
       );
@@ -70,27 +87,18 @@ export default class LogsIndexService {
 
   getOwnIndices(serviceName) {
     return this.getIndices(serviceName)
-      .then((indices) => indices.filter((index) => index.info.isEditable))
+      .then(({ data = [] }) => data.filter((index) => index.isEditable))
       .catch((err) =>
         this.LogsHelperService.handleError('logs_index_get_error', err, {}),
       );
   }
 
-  getIndexDetails(serviceName, indexId) {
-    return this.IndexAapiService.get({
-      serviceName,
-      indexId,
-    }).$promise.then((index) => this.constructor.transformAapiIndex(index));
-  }
-
-  static transformAapiIndex(index) {
-    if (index.info.currentStorage < 0) {
-      set(index, 'info.currentStorage', 0);
-    }
-    if (index.info.maxSize < 0) {
-      set(index, 'info.maxSize', 0);
-    }
-    return index;
+  getIndex(serviceName, indexId) {
+    return this.$http
+      .get(`/dbaas/logs/${serviceName}/output/opensearch/index/${indexId}`)
+      .catch((err) =>
+        this.LogsHelperService.handleError('logs_index_get_error', err, {}),
+      );
   }
 
   deleteModal(indexName) {
@@ -103,17 +111,14 @@ export default class LogsIndexService {
   }
 
   createIndex(serviceName, object) {
-    return this.IndexApiService.post(
-      { serviceName },
-      {
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/output/opensearch/index`, {
         alertNotifyEnabled: object.alertNotifyEnabled,
         description: object.description,
         suffix: object.suffix,
         nbShard: object.nbShard,
-      },
-    )
-      .$promise.then((operation) => {
-        this.resetAllCache();
+      })
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -129,15 +134,15 @@ export default class LogsIndexService {
   }
 
   updateIndex(serviceName, index, indexInfo) {
-    return this.IndexApiService.put(
-      { serviceName, indexId: index.indexId },
-      {
-        description: indexInfo.description,
-        alertNotifyEnabled: indexInfo.alertNotifyEnabled,
-      },
-    )
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .put(
+        `/dbaas/logs/${serviceName}/output/opensearch/index/${index.indexId}`,
+        {
+          description: indexInfo.description,
+          alertNotifyEnabled: indexInfo.alertNotifyEnabled,
+        },
+      )
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -153,9 +158,11 @@ export default class LogsIndexService {
   }
 
   deleteIndex(serviceName, index) {
-    return this.IndexApiService.delete({ serviceName, indexId: index.indexId })
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .delete(
+        `/dbaas/logs/${serviceName}/output/opensearch/index/${index.indexId}`,
+      )
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -170,8 +177,16 @@ export default class LogsIndexService {
       );
   }
 
-  resetAllCache() {
-    this.IndexApiService.resetAllCache();
-    this.IndexAapiService.resetAllCache();
+  getOpenSearchUrl(serviceName, index) {
+    return this.$http
+      .get(
+        `/dbaas/logs/${serviceName}/output/opensearch/index/${index.indexId}/url`,
+      )
+      .then(({ data: urls }) =>
+        this.CucUrlHelper.constructor.findUrl(
+          { urls },
+          this.LogsConstants.OPENSEARCH_API_URL,
+        ),
+      );
   }
 }

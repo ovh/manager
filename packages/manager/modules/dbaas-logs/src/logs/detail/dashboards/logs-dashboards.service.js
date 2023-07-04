@@ -1,19 +1,19 @@
 export default class LogsDashboardsService {
   /* @ngInject */
-  constructor($q, OvhApiDbaas, LogsHelperService, LogsConstants, CucUrlHelper) {
+  constructor(
+    $http,
+    $q,
+    LogsHelperService,
+    LogsConstants,
+    CucUrlHelper,
+    iceberg,
+  ) {
+    this.$http = $http;
     this.$q = $q;
-    this.DashboardsApiService = OvhApiDbaas.Logs()
-      .Dashboard()
-      .v6();
-    this.DashboardsAapiService = OvhApiDbaas.Logs()
-      .Dashboard()
-      .Aapi();
-    this.DetailsAapiService = OvhApiDbaas.Logs()
-      .Details()
-      .Aapi();
     this.LogsHelperService = LogsHelperService;
     this.LogsConstants = LogsConstants;
     this.CucUrlHelper = CucUrlHelper;
+    this.iceberg = iceberg;
   }
 
   /**
@@ -40,9 +40,7 @@ export default class LogsDashboardsService {
    */
   getOwnDashboards(serviceName) {
     return this.getDashboardsDetails(serviceName)
-      .then((dashboards) =>
-        dashboards.filter((dashboard) => dashboard.info.isEditable),
-      )
+      .then(({ data = [] }) => data.filter((dashboard) => dashboard.isEditable))
       .catch((err) =>
         this.LogsHelperService.handleError(
           'logs_dashboards_get_error',
@@ -60,23 +58,40 @@ export default class LogsDashboardsService {
    * @memberof LogsDashboardsService
    */
   getDashboardsDetails(serviceName) {
-    return this.getDashboardsIds(serviceName).then((dashboards) => {
-      const promises = dashboards.map((dashboardId) =>
-        this.getAapiDashboard(serviceName, dashboardId),
-      );
-      return this.$q.all(promises);
-    });
+    return this.iceberg(`/dbaas/logs/${serviceName}/output/graylog/dashboard`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(10000)
+      .execute().$promise;
   }
 
-  /**
-   * returns array of dashboards id's of logged in user
-   *
-   * @param {any} serviceName
-   * @returns promise which will be resolve to array of dashboards id's
-   * @memberof LogsDashboardsService
-   */
-  getDashboardsIds(serviceName) {
-    return this.DashboardsApiService.query({ serviceName }).$promise;
+  getPaginatedDashboards(
+    serviceName,
+    offset = 0,
+    pageSize = 25,
+    sort = { name: 'title', dir: 'desc' },
+    filters = null,
+  ) {
+    let res = this.iceberg(
+      `/dbaas/logs/${serviceName}/output/graylog/dashboard`,
+    )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(offset)
+      .sort(sort.name, sort.dir);
+    if (filters !== null) {
+      filters.forEach((filter) => {
+        res = res.addFilter(filter.name, filter.operator, filter.value);
+      });
+    }
+    return res.execute().$promise.then((response) => ({
+      data: response.data,
+      meta: {
+        totalCount:
+          parseInt(response.headers['x-pagination-elements'], 10) || 0,
+      },
+    }));
   }
 
   /**
@@ -88,37 +103,25 @@ export default class LogsDashboardsService {
    * @memberof LogsDashboardsService
    */
   getDashboard(serviceName, dashboardId) {
-    return this.DashboardsApiService.get({
-      serviceName,
-      dashboardId,
-    }).$promise.catch((err) =>
-      this.LogsHelperService.handleError(
-        'logs_dashboards_get_detail_error',
-        err,
-        {},
-      ),
-    );
+    return this.$http
+      .get(`/dbaas/logs/${serviceName}/output/graylog/dashboard/${dashboardId}`)
+      .catch((err) =>
+        this.LogsHelperService.handleError(
+          'logs_dashboards_get_detail_error',
+          err,
+          {},
+        ),
+      );
   }
 
-  /**
-   * returns details of an dashboard
-   *
-   * @param {any} serviceName
-   * @param {any} dashboardId
-   * @returns promise which will be resolve to dashboard object
-   * @memberof LogsDashboardsService
-   */
-  getAapiDashboard(serviceName, dashboardId) {
-    return this.DashboardsAapiService.get({
-      serviceName,
-      dashboardId,
-    }).$promise.catch((err) =>
-      this.LogsHelperService.handleError(
-        'logs_dashboards_get_detail_error',
-        err,
-        {},
-      ),
-    );
+  getLastUpdatedDashboard(serviceName) {
+    return this.getOwnDashboards(serviceName).then((dashboards) => {
+      let lastUpdatedDashboard = null;
+      if (dashboards.length > 0) {
+        [lastUpdatedDashboard] = dashboards;
+      }
+      return lastUpdatedDashboard;
+    });
   }
 
   /**
@@ -130,12 +133,11 @@ export default class LogsDashboardsService {
    * @memberof LogsDashboardsService
    */
   deleteDashboard(serviceName, dashboard) {
-    return this.DashboardsApiService.delete({
-      serviceName,
-      dashboardId: dashboard.dashboardId,
-    })
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .delete(
+        `/dbaas/logs/${serviceName}/output/graylog/dashboard/${dashboard.dashboardId}`,
+      )
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -147,7 +149,9 @@ export default class LogsDashboardsService {
         this.LogsHelperService.handleError(
           'logs_dashboards_delete_error',
           err,
-          { dashboardName: dashboard.title },
+          {
+            dashboardName: dashboard.title,
+          },
         ),
       );
   }
@@ -161,15 +165,12 @@ export default class LogsDashboardsService {
    * @memberof LogsDashboardsService
    */
   createDashboard(serviceName, dashboard) {
-    return this.DashboardsApiService.create(
-      { serviceName },
-      {
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/output/graylog/dashboard`, {
         description: dashboard.description,
         title: dashboard.title,
-      },
-    )
-      .$promise.then((operation) => {
-        this.resetAllCache();
+      })
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -181,7 +182,9 @@ export default class LogsDashboardsService {
         this.LogsHelperService.handleError(
           'logs_dashboards_create_error',
           err,
-          { dashboardName: dashboard.title },
+          {
+            dashboardName: dashboard.title,
+          },
         ),
       );
   }
@@ -195,12 +198,12 @@ export default class LogsDashboardsService {
    * @memberof LogsDashboardsService
    */
   duplicateDashboard(serviceName, dashboard, dashboardId) {
-    return this.DashboardsApiService.duplicate(
-      { serviceName, dashboardId },
-      this.constructor.transformDashboardToDuplicate(dashboard),
-    )
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .post(
+        `/dbaas/logs/${serviceName}/output/graylog/dashboard/${dashboardId}/duplicate`,
+        this.constructor.transformDashboardToDuplicate(dashboard),
+      )
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -212,7 +215,9 @@ export default class LogsDashboardsService {
         this.LogsHelperService.handleError(
           'logs_dashboards_create_error',
           err,
-          { dashboardName: dashboard.title },
+          {
+            dashboardName: dashboard.title,
+          },
         ),
       );
   }
@@ -226,15 +231,15 @@ export default class LogsDashboardsService {
    * @memberof LogsDashboardsService
    */
   updateDashboard(serviceName, dashboard) {
-    return this.DashboardsApiService.update(
-      { serviceName, dashboardId: dashboard.dashboardId },
-      {
-        title: dashboard.title,
-        description: dashboard.description,
-      },
-    )
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .put(
+        `/dbaas/logs/${serviceName}/output/graylog/dashboard/${dashboard.dashboardId}`,
+        {
+          title: dashboard.title,
+          description: dashboard.description,
+        },
+      )
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -246,7 +251,9 @@ export default class LogsDashboardsService {
         this.LogsHelperService.handleError(
           'logs_dashboards_update_error',
           err,
-          { dashboardName: dashboard.title },
+          {
+            dashboardName: dashboard.title,
+          },
         ),
       );
   }
@@ -274,19 +281,25 @@ export default class LogsDashboardsService {
    * @returns {string} graylog url, if not found empty string
    * @memberof LogsDashboardsService
    */
-  getDashboardGraylogUrl(aapiDashboard) {
-    const url = this.CucUrlHelper.constructor.findUrl(
-      aapiDashboard,
-      this.LogsConstants.GRAYLOG_WEBUI,
-    );
-    if (!url) {
-      this.LogsHelperService.handleError(
-        'logs_dashboards_get_graylog_url_error',
-        {},
-        { dashboardName: aapiDashboard.info.title },
-      );
-    }
-    return url;
+  getDashboardGraylogUrl(serviceName, dashboard) {
+    return this.$http
+      .get(
+        `/dbaas/logs/${serviceName}/output/graylog/dashboard/${dashboard.dashboardId}/url`,
+      )
+      .then(({ data: urls }) => {
+        const url = this.CucUrlHelper.constructor.findUrl(
+          { urls },
+          this.LogsConstants.GRAYLOG_WEBUI,
+        );
+        if (!url) {
+          this.LogsHelperService.handleError(
+            'logs_dashboards_get_graylog_url_error',
+            {},
+            { dashboardName: dashboard.title },
+          );
+        }
+        return url;
+      });
   }
 
   static transformDashboardToDuplicate(dashboard) {
@@ -299,12 +312,5 @@ export default class LogsDashboardsService {
       delete toDuplicate.streamId;
     }
     return toDuplicate;
-  }
-
-  resetAllCache() {
-    this.DashboardsApiService.resetAllCache();
-    this.DashboardsAapiService.resetAllCache();
-    // refresh home page last modified dashboard
-    this.DetailsAapiService.resetAllCache();
   }
 }

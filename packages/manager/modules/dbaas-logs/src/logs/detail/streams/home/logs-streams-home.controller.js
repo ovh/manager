@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import datagridToIcebergFilter from '../../logs-iceberg.utils';
 
 export default class LogsStreamsHomeCtrl {
   /* @ngInject */
@@ -8,6 +9,8 @@ export default class LogsStreamsHomeCtrl {
     $state,
     $stateParams,
     $translate,
+    $window,
+    ouiDatagridService,
     LogsConstants,
     LogsStreamsService,
     LogsHomeService,
@@ -19,6 +22,8 @@ export default class LogsStreamsHomeCtrl {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.$window = $window;
+    this.ouiDatagridService = ouiDatagridService;
     this.serviceName = this.$stateParams.serviceName;
     this.LogsConstants = LogsConstants;
     this.LogsStreamsService = LogsStreamsService;
@@ -26,6 +31,7 @@ export default class LogsStreamsHomeCtrl {
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.CucUrlHelper = CucUrlHelper;
+    this.retentions = [];
     this.bytes = $filter('bytes');
     this.initLoaders();
   }
@@ -36,14 +42,9 @@ export default class LogsStreamsHomeCtrl {
    * @memberof LogsStreamsHomeCtrl
    */
   initLoaders() {
-    this.retentions = [];
     this.accountDetails = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
         this.LogsHomeService.getAccountDetails(this.serviceName),
-    });
-    this.streams = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsStreamsService.getStreams(this.serviceName),
     });
     this.runLoaders().then(() => {
       this.loadRetentions();
@@ -51,7 +52,22 @@ export default class LogsStreamsHomeCtrl {
   }
 
   runLoaders() {
-    return this.$q.all([this.accountDetails.load(), this.streams.load()]);
+    return this.$q.all([this.accountDetails.load()]);
+  }
+
+  loadStreams({ offset, pageSize = 1, sort, criteria }) {
+    const filters = criteria.map((criterion) => {
+      const name = criterion.property || 'title';
+      return datagridToIcebergFilter(name, criterion.operator, criterion.value);
+    });
+    const pageOffset = Math.ceil(offset / pageSize);
+    return this.LogsStreamsService.getPaginatedStreams(
+      this.serviceName,
+      pageOffset,
+      pageSize,
+      { name: sort.property, dir: sort.dir === -1 ? 'DESC' : 'ASC' },
+      filters,
+    );
   }
 
   /**
@@ -118,7 +134,10 @@ export default class LogsStreamsHomeCtrl {
       loaderFunction: () =>
         this.LogsStreamsService.deleteStream(this.serviceName, stream)
           .then(() => this.initLoaders())
-          .finally(() => this.CucControllerHelper.scrollPageToTop()),
+          .finally(() => {
+            this.ouiDatagridService.refresh('streams-datagrid', true);
+            this.CucControllerHelper.scrollPageToTop();
+          }),
     });
     this.delete.load();
   }
@@ -138,9 +157,11 @@ export default class LogsStreamsHomeCtrl {
   }
 
   loadRetentions() {
-    this.retentions = this.accountDetails.data.clusters
-      .map(({ retentions }) => retentions)
-      .flat();
+    this.LogsStreamsService.getRetentions(this.serviceName).then(
+      (retentions) => {
+        this.retentions = retentions;
+      },
+    );
   }
 
   findRetention(stream) {
@@ -202,7 +223,7 @@ export default class LogsStreamsHomeCtrl {
   openGrayLog(stream) {
     this.LogsStreamsService.getStreamGraylogUrl(this.serviceName, stream).then(
       (url) => {
-        window.open(url, '_blank');
+        this.$window.open(url, '_blank');
       },
     );
   }

@@ -1,4 +1,4 @@
-import set from 'lodash/set';
+import datagridToIcebergFilter from '../logs-iceberg.utils';
 
 export default class LogsTokensCtrl {
   /* @ngInject */
@@ -7,6 +7,7 @@ export default class LogsTokensCtrl {
     $state,
     $stateParams,
     $translate,
+    ouiDatagridService,
     LogsTokensService,
     CucControllerHelper,
     CucCloudMessage,
@@ -16,6 +17,7 @@ export default class LogsTokensCtrl {
     this.$stateParams = $stateParams;
     this.serviceName = this.$stateParams.serviceName;
     this.$translate = $translate;
+    this.ouiDatagridService = ouiDatagridService;
     this.LogsTokensService = LogsTokensService;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
@@ -29,35 +31,26 @@ export default class LogsTokensCtrl {
    * @memberof LogsTokensCtrl
    */
   initLoaders() {
-    this.tokens = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsTokensService.getTokens(this.serviceName).then((tokens) =>
-          tokens.map((token) => {
-            set(token, 'isLoadingCluster', true);
-            return token;
-          }),
-        ),
-    });
     this.clusters = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
         this.LogsTokensService.getClusters(this.serviceName),
     });
-    this.tokens.load();
     this.clusters.load();
-    this.$q.all([this.clusters.promise, this.tokens.promise]).then((result) => {
-      const clusters = result[0];
-      const tokens = result[1];
-      tokens.map((token) => {
-        set(
-          token,
-          'cluster',
-          clusters.find((cluster) => cluster.clusterId === token.clusterId) ||
-            {},
-        );
-        set(token, 'isLoadingCluster', false);
-        return token;
-      });
+  }
+
+  loadTokens({ offset, pageSize = 1, sort, criteria }) {
+    const filters = criteria.map((criterion) => {
+      const name = criterion.property || 'name';
+      return datagridToIcebergFilter(name, criterion.operator, criterion.value);
     });
+    const pageOffset = Math.ceil(offset / pageSize);
+    return this.LogsTokensService.getPaginatedTokens(
+      this.serviceName,
+      pageOffset,
+      pageSize,
+      { name: sort.property, dir: sort.dir === -1 ? 'DESC' : 'ASC' },
+      filters,
+    );
   }
 
   /**
@@ -95,7 +88,10 @@ export default class LogsTokensCtrl {
       loaderFunction: () =>
         this.LogsTokensService.deleteToken(this.serviceName, token)
           .then(() => this.initLoaders())
-          .finally(() => this.CucControllerHelper.scrollPageToTop()),
+          .finally(() => {
+            this.ouiDatagridService.refresh('tokens-datagrid', true);
+            this.CucControllerHelper.scrollPageToTop();
+          }),
     });
     this.delete.load();
   }

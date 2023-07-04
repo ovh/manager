@@ -5,7 +5,10 @@
 
     <p data-translate="logs_tokens_description"></p>
 
-    <oui-datagrid rows="ctrl.tokens.data">
+    <oui-datagrid
+        id="tokens-datagrid"
+        data-rows-loader="ctrl.loadTokens($config)"
+    >
         <oui-datagrid-topbar>
             <button
                 type="button"

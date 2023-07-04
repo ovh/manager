@@ -9,6 +9,7 @@ export default class LogsInputsAddEditCtrl {
     CucControllerHelper,
     LogsConstants,
     LogsInputsService,
+    LogsOrderService,
     LogsStreamsService,
   ) {
     this.$q = $q;
@@ -21,6 +22,7 @@ export default class LogsInputsAddEditCtrl {
     this.CucControllerHelper = CucControllerHelper;
     this.LogsConstants = LogsConstants;
     this.LogsInputsService = LogsInputsService;
+    this.LogsOrderService = LogsOrderService;
     this.LogsStreamsService = LogsStreamsService;
     this.editMode = Boolean(this.inputId);
     this.availableEngines = [];
@@ -34,38 +36,32 @@ export default class LogsInputsAddEditCtrl {
     } else {
       this.input = this.LogsInputsService.getNewInput();
     }
-    this.details.load().then((details) => {
-      this.availableEngines = details.engines.reduce((enginesList, engine) => {
+    this.engines.load().then(({ data }) => {
+      this.availableEngines = data.reduce((enginesList, engine) => {
         if (!engine.isDeprecated) {
           enginesList.push(engine);
         }
         return enginesList;
       }, []);
     });
-    this.accountDetails
-      .load()
-      .then(() => {
-        this.ovhSubsidiary = this.accountDetails.data.me.ovhSubsidiary;
-        return this.catalog.load();
-      })
-      .then(() => {
-        const selectedCatalog = this.catalog.data.plans.find(
-          (plan) => plan.planCode === this.LogsConstants.LDP_PLAN_CODE,
-        );
-        const selectedFamily = selectedCatalog.addonsFamily.find(
-          (addon) => addon.family === this.LogsConstants.ADD_ON_FAMILY.NEW,
-        );
-        const inputInstanceCapacities = selectedFamily.addons.find(
-          (add) =>
-            add.plan.planCode ===
-            this.LogsConstants.CONSUMPTION_REFERENCE.NB_INSTANCE,
-        );
-        const inputInstance = inputInstanceCapacities.plan.details.pricings.default.find(
-          (capa) =>
-            capa.capacities.includes(this.LogsConstants.CONSUMPTION_CAPACITY),
-        );
-        this.inputInstancePrice.price = inputInstance.price.text;
-      });
+    this.catalog.load().then((catalog) => {
+      const selectedCatalog = catalog.plans.find(
+        (plan) => plan.planCode === this.LogsConstants.LDP_PLAN_CODE,
+      );
+      const selectedFamily = selectedCatalog.addonsFamily.find(
+        (addon) => addon.family === this.LogsConstants.ADD_ON_FAMILY.NEW,
+      );
+      const inputInstanceCapacities = selectedFamily.addons.find(
+        (add) =>
+          add.plan.planCode ===
+          this.LogsConstants.CONSUMPTION_REFERENCE.NB_INSTANCE,
+      );
+      const inputInstance = inputInstanceCapacities.plan.details.pricings.default.find(
+        (capa) =>
+          capa.capacities.includes(this.LogsConstants.CONSUMPTION_CAPACITY),
+      );
+      this.inputInstancePrice.price = inputInstance.price.text;
+    });
     this.streams.load();
   }
 
@@ -84,20 +80,16 @@ export default class LogsInputsAddEditCtrl {
           ).then((input) => this.LogsInputsService.transformInput(input)),
       });
     }
-    this.details = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.LogsInputsService.getDetails(this.serviceName),
+    this.engines = this.CucControllerHelper.request.getHashLoader({
+      loaderFunction: () =>
+        this.LogsInputsService.getInputEngines(this.serviceName),
     });
     this.streams = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () =>
         this.LogsStreamsService.getOwnStreams(this.serviceName),
     });
     this.catalog = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsInputsService.getOrderCatalog(this.ovhSubsidiary),
-    });
-    this.accountDetails = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.LogsInputsService.getAccountDetails(this.serviceName),
+      loaderFunction: () => this.LogsOrderService.getOrderCatalog(),
     });
   }
 

@@ -28,12 +28,9 @@
         on-change="ctrl.addAlert(modelValue.id)"
     >
     </oui-select>
-
-    <oui-spinner data-ng-show="ctrl.alertIds.loading"></oui-spinner>
     <oui-datagrid
-        data-ng-if="!ctrl.alertIds.loading"
-        rows-loader="ctrl.loadAlerts($config)"
-        data-page-size="25"
+        id="alerts-datagrid"
+        data-rows-loader="ctrl.loadAlerts($config)"
         class="mt-5"
     >
         <oui-datagrid-topbar>

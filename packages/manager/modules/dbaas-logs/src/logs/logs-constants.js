@@ -15,7 +15,7 @@ export default {
   suffixPattern: '^[a-z0-9_-]+$',
   LOGS_DOCS_NAME: 'logs-data-platform',
   LOGS_PRODUCT_URL: '/data-platforms/logs/',
-  ELASTICSEARCH_API_URL: 'ELASTICSEARCH_API',
+  OPENSEARCH_API_URL: 'OPENSEARCH_API',
   SERVICE_STATE_TO_CONFIG: 'TO_CONFIG',
   SERVICE_STATE_DISABLED: 'DISABLED',
   SERVICE_STATE_ENABLED: 'ENABLED',
@@ -28,6 +28,7 @@ export default {
   GELF: 'GELF',
   LTSV: 'LTSV',
   RFC5424: 'RFC5424',
+  OSD_WEBUI: 'OSD_WEBUI',
   GRAYLOG_WEBUI: 'GRAYLOG_WEBUI',
   X_OVH_TOKEN: 'X-OVH-TOKEN',
   GZIP: 'GZIP',
@@ -178,6 +179,7 @@ export default {
   },
   DATA_STORAGE: {
     TIME_PERIOD_MONTHS: 10,
+    MS_FOR_A_SEC: 1000,
     METRICS: {
       STREAM_SIZE: 'ldp.service.stream.total',
       INDEX_SIZE: 'ldp.service.indice.total',
@@ -242,7 +244,7 @@ export default {
     running: 'success',
     unknown: 'error',
   },
-  kibanaStateType: {
+  osdStateType: {
     DELIVERING: 'info',
     READY: 'success',
     DELETING: 'warning',

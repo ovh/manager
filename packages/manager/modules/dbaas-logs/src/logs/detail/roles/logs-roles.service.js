@@ -2,6 +2,7 @@ export default class LogsRolesService {
   /* @ngInject */
   constructor(
     $q,
+    $http,
     $translate,
     CucCloudPoll,
     CucControllerHelper,
@@ -11,11 +12,12 @@ export default class LogsRolesService {
     LogsIndexService,
     LogsConstants,
     LogsStreamsService,
-    LogsKibanaService,
-    OvhApiDbaas,
+    LogsOsdService,
+    iceberg,
     CucServiceHelper,
   ) {
     this.$q = $q;
+    this.$http = $http;
     this.$translate = $translate;
     this.CucServiceHelper = CucServiceHelper;
     this.CucControllerHelper = CucControllerHelper;
@@ -23,48 +25,31 @@ export default class LogsRolesService {
     this.LogsAliasesService = LogsAliasesService;
     this.LogsIndexService = LogsIndexService;
     this.LogsStreamsService = LogsStreamsService;
-    this.LogsKibanaService = LogsKibanaService;
+    this.LogsOsdService = LogsOsdService;
     this.LogsHelperService = LogsHelperService;
-
+    this.iceberg = iceberg;
     this.LogsConstants = LogsConstants;
     this.CucCloudPoll = CucCloudPoll;
-    this.LogsApiService = OvhApiDbaas.Logs().v6();
-    this.MembersApiService = OvhApiDbaas.Logs()
-      .Role()
-      .Member()
-      .v6();
-    this.PermissionsApiService = OvhApiDbaas.Logs()
-      .Role()
-      .Permission()
-      .v6();
-
-    this.OperationApiService = OvhApiDbaas.Logs()
-      .Operation()
-      .v6();
-    this.RolesApiService = OvhApiDbaas.Logs()
-      .Role()
-      .v6();
-    this.RolesAapiService = OvhApiDbaas.Logs()
-      .Role()
-      .Aapi();
 
     this.newRole = {
       description: '',
       name: '',
     };
+
     this.readOnlyPermissions = {
       dashboard: [],
       alias: [],
       index: [],
       stream: [],
-      kibana: [],
+      osd: [],
     };
+
     this.readWritePermissions = {
       dashboard: [],
       alias: [],
       index: [],
       stream: [],
-      kibana: [],
+      osd: [],
     };
   }
 
@@ -73,7 +58,7 @@ export default class LogsRolesService {
     this.readOnlyPermissions.alias.length = 0;
     this.readOnlyPermissions.index.length = 0;
     this.readOnlyPermissions.stream.length = 0;
-    this.readOnlyPermissions.kibana.length = 0;
+    this.readOnlyPermissions.osd.length = 0;
     return this.readOnlyPermissions;
   }
 
@@ -82,7 +67,7 @@ export default class LogsRolesService {
     this.readWritePermissions.alias.length = 0;
     this.readWritePermissions.index.length = 0;
     this.readWritePermissions.stream.length = 0;
-    this.readWritePermissions.kibana.length = 0;
+    this.readWritePermissions.osd.length = 0;
     return this.readWritePermissions;
   }
 
@@ -102,22 +87,16 @@ export default class LogsRolesService {
     return this.LogsIndexService.getOwnIndices(serviceName);
   }
 
-  getAllKibanas(serviceName) {
-    return this.LogsKibanaService.getOwnKibanas(serviceName);
+  getAllOsds(serviceName) {
+    return this.LogsOsdService.getOwnOsds(serviceName);
   }
 
   addAlias(serviceName, roleId, alias) {
-    return this.PermissionsApiService.addAlias(
-      {
-        serviceName,
-        roleId,
-      },
-      {
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/role/${roleId}/permission/alias`, {
         aliasId: alias.aliasId,
-      },
-    )
-      .$promise.then((operation) => {
-        this.RolesAapiService.resetAllCache();
+      })
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -131,18 +110,12 @@ export default class LogsRolesService {
   }
 
   addDashboard(serviceName, roleId, dashboard, permissionType) {
-    return this.PermissionsApiService.addDashboard(
-      {
-        serviceName,
-        roleId,
-      },
-      {
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/role/${roleId}/permission/dashboard`, {
         dashboardId: dashboard.dashboardId,
         permissionType,
-      },
-    )
-      .$promise.then((operation) => {
-        this.RolesAapiService.resetAllCache();
+      })
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -152,24 +125,20 @@ export default class LogsRolesService {
         this.LogsHelperService.handleError(
           'logs_roles_add_dashboard_error',
           err,
-          { tokenName: dashboard.title },
+          {
+            tokenName: dashboard.title,
+          },
         ),
       );
   }
 
   addIndex(serviceName, roleId, index, permissionType) {
-    return this.PermissionsApiService.addIndex(
-      {
-        serviceName,
-        roleId,
-      },
-      {
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/role/${roleId}/permission/index`, {
         indexId: index.indexId,
         permissionType,
-      },
-    )
-      .$promise.then((operation) => {
-        this.RolesAapiService.resetAllCache();
+      })
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -183,17 +152,11 @@ export default class LogsRolesService {
   }
 
   addStream(serviceName, roleId, stream) {
-    return this.PermissionsApiService.addStream(
-      {
-        serviceName,
-        roleId,
-      },
-      {
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/role/${roleId}/permission/stream`, {
         streamId: stream.streamId,
-      },
-    )
-      .$promise.then((operation) => {
-        this.RolesAapiService.resetAllCache();
+      })
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -206,19 +169,13 @@ export default class LogsRolesService {
       );
   }
 
-  addKibana(serviceName, roleId, kibana, permissionType) {
-    return this.PermissionsApiService.addKibana(
-      {
-        serviceName,
-        roleId,
-      },
-      {
-        kibanaId: kibana.kibanaId,
+  addOsd(serviceName, roleId, osd, permissionType) {
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/role/${roleId}/permission/osd`, {
+        osdId: osd.osdId,
         permissionType,
-      },
-    )
-      .$promise.then((operation) => {
-        this.RolesAapiService.resetAllCache();
+      })
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -226,27 +183,29 @@ export default class LogsRolesService {
       })
       .catch((err) =>
         this.LogsHelperService.handleError('logs_roles_add_kibana_error', err, {
-          tokenName: kibana.name,
+          tokenName: osd.name,
         }),
       );
   }
 
-  removePermission(serviceName, roleId, permission) {
-    return this.PermissionsApiService.remove(
-      { serviceName, roleId },
-      { permissionId: permission[0].permissionId },
-    )
-      .$promise.then((operation) =>
-        this.LogsHelperService.handleOperation(
+  removePermission(serviceName, roleId, permissionId) {
+    return this.$http
+      .delete(
+        `/dbaas/logs/${serviceName}/role/${roleId}/permission/${permissionId}`,
+      )
+      .then((operation) => {
+        return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
-        ),
-      )
+        );
+      })
       .catch((err) =>
         this.LogsHelperService.handleError(
           'logs_remove_permission_error',
           err,
-          { tokenName: permission[0].name || permission[0].title },
+          {
+            tokenName: permissionId,
+          },
         ),
       );
   }
@@ -256,47 +215,75 @@ export default class LogsRolesService {
   }
 
   getLogs() {
-    return this.LogsApiService.query()
-      .$promise.then((logs) => {
-        const promises = logs.map((serviceName) =>
-          this.getLogDetails(serviceName),
-        );
-        return this.$q.all(promises);
-      })
-      .catch(this.CucServiceHelper.errorHandler('logs_get_error'));
-  }
-
-  getLogDetails(serviceName) {
-    return this.LogsApiService.logDetail({ serviceName }).$promise;
+    return this.iceberg(`/dbaas/logs`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(10000)
+      .execute().$promise;
   }
 
   getRoles(serviceName) {
-    return this.RolesApiService.query({ serviceName })
-      .$promise.then((roles) => {
-        const promises = roles.map((roleId) =>
-          this.getRoleDetails(serviceName, roleId),
-        );
-        return this.$q.all(promises);
-      })
-      .catch((err) =>
-        this.LogsHelperService.handleError('logs_roles_get_error', err, {}),
-      );
+    return this.iceberg(`/dbaas/logs/${serviceName}/role`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(10000)
+      .execute().$promise;
+  }
+
+  getPaginatedRoles(
+    serviceName,
+    offset = 0,
+    pageSize = 25,
+    sort = { name: 'name', dir: 'desc' },
+    filters = null,
+  ) {
+    let res = this.iceberg(`/dbaas/logs/${serviceName}/role`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(offset)
+      .sort(sort.name, sort.dir);
+    if (filters !== null) {
+      filters.forEach((filter) => {
+        res = res.addFilter(filter.name, filter.operator, filter.value);
+      });
+    }
+    return res.execute().$promise.then((response) => ({
+      data: response.data,
+      meta: {
+        totalCount:
+          parseInt(response.headers['x-pagination-elements'], 10) || 0,
+      },
+    }));
+  }
+
+  getRoleMembers(serviceName, roleId) {
+    return this.iceberg(`/dbaas/logs/${serviceName}/role/${roleId}/member`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(10000)
+      .execute().$promise;
+  }
+
+  getRolePermissions(serviceName, roleId) {
+    return this.iceberg(`/dbaas/logs/${serviceName}/role/${roleId}/permission`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(10000)
+      .execute().$promise;
   }
 
   getRoleDetails(serviceName, roleId) {
-    return this.RolesAapiService.get({ serviceName, roleId }).$promise;
+    return this.$http.get(`/dbaas/logs/${serviceName}/role/${roleId}`);
   }
 
   addRole(serviceName, object) {
-    return this.RolesApiService.create(
-      { serviceName },
-      {
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/role`, {
         description: object.description,
         name: object.name,
-      },
-    )
-      .$promise.then((operation) => {
-        this.resetAllCache();
+      })
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -312,15 +299,12 @@ export default class LogsRolesService {
   }
 
   updateRole(serviceName, roleId, object) {
-    return this.RolesApiService.update(
-      { serviceName, roleId },
-      {
+    return this.$http
+      .put(`/dbaas/logs/${serviceName}/role/${roleId}`, {
         description: object.description,
         name: object.name,
-      },
-    )
-      .$promise.then((operation) => {
-        this.resetAllCache();
+      })
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -336,9 +320,9 @@ export default class LogsRolesService {
   }
 
   deleteRole(serviceName, role) {
-    return this.RolesApiService.remove({ serviceName, roleId: role.roleId })
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .delete(`/dbaas/logs/${serviceName}/role/${role.roleId}`)
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -363,15 +347,12 @@ export default class LogsRolesService {
   }
 
   createMember(serviceName, roleId, userDetails) {
-    return this.MembersApiService.create(
-      { serviceName, roleId },
-      {
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/role/${roleId}/member`, {
         note: userDetails.note,
         username: userDetails.username,
-      },
-    )
-      .$promise.then((operation) => {
-        this.resetAllCache();
+      })
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -387,9 +368,9 @@ export default class LogsRolesService {
   }
 
   removeMember(serviceName, roleId, username) {
-    return this.MembersApiService.remove({ serviceName, roleId, username })
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .delete(`/dbaas/logs/${serviceName}/role/${roleId}/member/${username}`)
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -401,7 +382,9 @@ export default class LogsRolesService {
         this.LogsHelperService.handleError(
           'logs_role_member_remove_error',
           err,
-          { name: username },
+          {
+            name: username,
+          },
         ),
       );
   }
@@ -413,11 +396,5 @@ export default class LogsRolesService {
         username,
       }),
     });
-  }
-
-  resetAllCache() {
-    this.RolesApiService.resetAllCache();
-    this.RolesAapiService.resetAllCache();
-    this.MembersApiService.resetAllCache();
   }
 }
