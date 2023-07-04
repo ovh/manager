@@ -238,7 +238,7 @@ export default class IpLoadBalancerHomeCtrl {
         text: this.$translate.instant('iplb_manage'),
         href: this.coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
           searchText: this.serviceName,
-          selectedType: 'IP_LOADBALANCER',
+          selectedType: 'IP_LOADBALANCING',
         }),
         isAvailable: () =>
           !this.subscription.loading && !this.subscription.hasErrors,
