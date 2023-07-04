@@ -121,9 +121,10 @@ export default class PciTrainingJobsSubmitController {
     this.filteredContainers = this.containers
       .filter(({ archive }) => !archive)
       // Remove containers that are already on volume list
-      .filter(({ name, region, isHighPerfStorage }) => {
+      .filter(({ name, region, isHighPerfStorage, s3StorageType }) => {
         return (
           !isHighPerfStorage &&
+          !s3StorageType &&
           !this.job.volumes
             // eslint-disable-next-line no-shadow
             .map(({ container, region }) => `${container}-${region}`)
