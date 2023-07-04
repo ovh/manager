@@ -1,5 +1,5 @@
 import angular from 'angular';
-
+import 'ovh-api-services';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@uirouter/angularjs';
@@ -18,6 +18,7 @@ angular
     'ngUiRouterBreadcrumb',
     'ovhManagerCore',
     'pascalprecht.translate',
+    'ovh-api-services',
     'ui.router',
     onboarding,
     dashboard,

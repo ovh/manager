@@ -3,7 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/onboarding',
     component: 'octaviaLoadBalancerOnboarding',
     resolve: {
-      breadcrumb: () => null,
+      breadcrumb: ($translate) => $translate.instant('octavia_load_balancer'),
     },
   });
 };
