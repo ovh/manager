@@ -50,11 +50,9 @@ export default class PciStoragesContainersService {
   }
 
   getAccessAndToken(projectId) {
-    return this.OvhApiCloudProjectStorage.v6()
-      .access({
-        projectId,
-      })
-      .$promise.then(({ token, endpoints }) => ({
+    return this.$http
+      .post(`/cloud/project/${projectId}/storage/access`)
+      .then(({ data: { token, endpoints } }) => ({
         token,
         endpoints: reduce(
           endpoints,
