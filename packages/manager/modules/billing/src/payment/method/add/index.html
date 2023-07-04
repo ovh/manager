@@ -69,9 +69,15 @@
                                     <p
                                         data-translate="billing_payment_method_add_credit_card_selected_explain_generic"
                                     ></p>
-                                    <p
-                                        data-translate="billing_payment_method_add_credit_card_selected"
-                                    ></p>
+                                    <p>
+                                        <span
+                                            data-translate="billing_payment_method_add_credit_card_selected"
+                                        ></span>
+                                        <span
+                                            data-ng-if="$ctrl.hasSpecificCrossBorderSentenceForCardPayment"
+                                            data-translate="billing_payment_method_add_credit_card_selected_explain_ovh_transaction"
+                                        ></span>
+                                    </p>
                                     <p
                                         data-ng-if="$ctrl.model.selectedPaymentMethodType.isLegacy() && $ctrl.model.selectedPaymentMethodType.integration !== $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IFRAME_VANTIV"
                                         data-translate="billing_payment_method_add_selected_common_redirect"
