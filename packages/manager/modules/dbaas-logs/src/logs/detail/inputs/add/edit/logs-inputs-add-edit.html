@@ -9,7 +9,7 @@
                 id="input_title"
                 name="input_title"
                 class="oui-input"
-                data-ng-model="ctrl.input.data.info.title"
+                data-ng-model="ctrl.input.data.title"
                 data-ng-class="{'oui-field_error': ctrl.form.$submitted && ctrl.form.input_title.$invalid}"
                 data-ng-minlength="ctrl.LogsConstants.TITLE_MIN_LENGTH"
                 data-ng-maxlength="ctrl.LogsConstants.TITLE_MAX_LENGTH"
@@ -27,7 +27,7 @@
                 id="input_description"
                 name="input_description"
                 data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.input_description.$invalid}"
-                data-ng-model="ctrl.input.data.info.description"
+                data-ng-model="ctrl.input.data.description"
                 data-ng-minlength="ctrl.LogsConstants.DESCRIPTION_MIN_LENGTH"
                 required
             >
@@ -51,7 +51,7 @@
                     id="input_software"
                     data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.input_software.$invalid}"
                     data-ng-options="engine.engineId as (engine.name + ' ' + engine.version) for engine in ctrl.availableEngines"
-                    data-ng-model="ctrl.input.data.info.engineId"
+                    data-ng-model="ctrl.input.data.engineId"
                     required
                 >
                     <option
@@ -75,7 +75,7 @@
             <oui-numeric
                 id="input_port"
                 name="input_port"
-                data-model="ctrl.input.data.info.exposedPort"
+                data-model="ctrl.input.data.exposedPort"
                 min="ctrl.LogsConstants.EXPOSED_PORT_MIN"
                 max="ctrl.LogsConstants.EXPOSED_PORT_MAX"
                 required
@@ -93,7 +93,7 @@
                 id="input_allowed_networks"
                 name="input_allowed_networks"
                 data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.input_allowed_networks.$invalid}"
-                data-ng-model="ctrl.input.data.info.allowedNetworks"
+                data-ng-model="ctrl.input.data.allowedNetworks"
             >
             </textarea>
         </oui-field>
@@ -110,7 +110,7 @@
                     id="input_stream"
                     data-ng-class="{'oui-input_error': ctrl.form.$submitted && ctrl.form.input_stream.$invalid}"
                     data-ng-options="stream.streamId as stream.title for stream in ctrl.streams.data"
-                    data-ng-model="ctrl.input.data.info.streamId"
+                    data-ng-model="ctrl.input.data.streamId"
                     required
                 >
                     <option
@@ -134,7 +134,7 @@
         >
             <oui-switch
                 name="input_autoscale"
-                data-model="ctrl.input.data.info.autoscale"
+                data-model="ctrl.input.data.autoscale"
             >
             </oui-switch>
         </oui-field>
@@ -143,12 +143,12 @@
             <oui-field
                 label="{{ ::'inputs_logs_edit_nb_instance_field' | translate }}"
                 size="xl"
-                data-ng-if="!ctrl.input.data.info.autoscale"
+                data-ng-if="!ctrl.input.data.autoscale"
             >
                 <oui-numeric
                     id="input_nbInstance"
                     name="input_nbInstance"
-                    data-model="ctrl.input.data.info.nbInstance"
+                    data-model="ctrl.input.data.nbInstance"
                     min="ctrl.LogsConstants.NB_INSTANCE_MIN"
                     max="ctrl.LogsConstants.NB_INSTANCE_MAX"
                 >
@@ -158,27 +158,27 @@
             <oui-field
                 label="{{ ::'inputs_logs_edit_min_instance_field' | translate }}"
                 size="xl"
-                data-ng-if="ctrl.input.data.info.autoscale"
+                data-ng-if="ctrl.input.data.autoscale"
             >
                 <oui-numeric
                     id="input_minScaleInstance"
                     name="input_minScaleInstance"
-                    data-model="ctrl.input.data.info.minScaleInstance"
+                    data-model="ctrl.input.data.minScaleInstance"
                     min="ctrl.LogsConstants.NB_INSTANCE_MIN"
-                    max="ctrl.input.data.info.maxScaleInstance - 1"
+                    max="ctrl.input.data.maxScaleInstance - 1"
                 >
                 </oui-numeric>
             </oui-field>
             <oui-field
                 label="{{ ::'inputs_logs_edit_max_instance_field' | translate }}"
                 size="xl"
-                data-ng-if="ctrl.input.data.info.autoscale"
+                data-ng-if="ctrl.input.data.autoscale"
             >
                 <oui-numeric
                     id="input_maxScaleInstance"
                     name="input_maxScaleInstance"
-                    data-model="ctrl.input.data.info.maxScaleInstance"
-                    min="ctrl.input.data.info.minScaleInstance + 1"
+                    data-model="ctrl.input.data.maxScaleInstance"
+                    min="ctrl.input.data.minScaleInstance + 1"
                     max="ctrl.LogsConstants.NB_INSTANCE_MAX"
                 >
                 </oui-numeric>
@@ -186,12 +186,12 @@
             <oui-field
                 label="{{ ::'logs_notification_title' | translate }}"
                 size="auto"
-                data-ng-if="ctrl.input.data.info.autoscale"
+                data-ng-if="ctrl.input.data.autoscale"
             >
                 <oui-checkbox
                     name="input_scaleNotification"
                     id="input_scaleNotification"
-                    data-model="ctrl.input.data.info.scalingNotifyEnabled"
+                    data-model="ctrl.input.data.scalingNotifyEnabled"
                     ><span
                         data-translate="inputs_autoscaled_notification_detail"
                     ></span>

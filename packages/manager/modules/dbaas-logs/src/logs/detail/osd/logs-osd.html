@@ -1,7 +1,7 @@
-<section class="log-kibana">
+<section class="log-osd">
     <h3 data-translate="logs_kibana_title"></h3>
     <p data-translate="logs_kibana_description"></p>
-    <oui-datagrid data-rows="ctrl.kibanas.data">
+    <oui-datagrid id="osds-datagrid" data-rows-loader="ctrl.loadOsds($config)">
         <oui-datagrid-topbar>
             <button
                 type="button"
@@ -21,7 +21,7 @@
         </oui-datagrid-topbar>
         <oui-datagrid-column
             data-title=":: 'logs_kibana_name_text' | translate"
-            data-property="info.name"
+            data-property="name"
             data-sortable="asc"
             data-type="string"
             data-searchable
@@ -29,7 +29,7 @@
         ></oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'logs_kibana_col_description' | translate"
-            data-property="info.description"
+            data-property="description"
             data-type="string"
             data-sortable
             data-searchable
@@ -37,24 +37,23 @@
         ></oui-datagrid-column>
         <oui-datagrid-column
             title="::'logs_kibana_col_status' | translate"
-            property="info.deliveryStatus"
+            property="deliveryStatus"
             data-type="string"
             searchable
             filterable
-        >
-            <span
+            ><span
                 class="oui-badge"
-                data-translate="{{ ::'logs_kibabana_deliveryStatus_' + $row.info.deliveryStatus }}"
+                data-translate="{{ ::'logs_kibabana_deliveryStatus_' + $row.deliveryStatus }}"
                 data-ng-class="{
-                    'oui-badge_info': $row.info.stateType === 'info',
-                    'oui-badge_success': $row.info.stateType === 'success',
-                    'oui-badge_warning': $row.info.stateType === 'warning'}"
+                    'oui-badge_info': $row.deliveryStatus == 'DELIVERING',
+                    'oui-badge_success': $row.deliveryStatus == 'READY',
+                    'oui-badge_warning': $row.deliveryStatus == 'DELETING'}"
             >
             </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'logs_col_last_modified' | translate"
-            data-property="info.updatedAt"
+            data-property="updatedAt"
             data-sortable
             data-type="date"
         >
@@ -64,29 +63,30 @@
             data-title=":: 'logs_kibana_col_shared' | translate"
             data-sortable
             data-type="string"
-            data-property="info.isEditable"
+            data-property="isEditable"
         >
             <span
-                data-ng-if="!$row.info.isEditable"
+                data-ng-if="!$row.isEditable"
                 data-ng-bind="::'logs_yes' | translate"
             ></span>
-            <span data-ng-if="$row.info.isEditable"> - </span>
+            <span data-ng-if="$row.isEditable"> - </span>
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
-                data-disabled="!$row.info.isEditable"
-                data-on-click="ctrl.add($row.info)"
+                data-disabled="(!$row.isEditable || $row.deliveryStatus !== 'READY')"
+                data-on-click="ctrl.add($row)"
                 ><span data-translate="logs_edit"></span
             ></oui-action-menu-item>
+            <oui-action-menu-item data-on-click="ctrl.openOsd($row)">
+                <span data-translate="logs_index_access_osd_webui"></span>
+                <i
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></i>
+            </oui-action-menu-item>
             <oui-action-menu-item
-                data-ng-repeat="url in $row.urls"
-                href="{{ url.address }}"
-                data-external
-                ><span data-translate="logs_index_access_osd_webui"></span
-            ></oui-action-menu-item>
-            <oui-action-menu-item
-                data-disabled="!$row.info.isEditable"
-                data-on-click="ctrl.showDeleteConfirm($row.info)"
+                data-disabled="(!$row.isEditable || $row.deliveryStatus !== 'READY')"
+                data-on-click="ctrl.showDeleteConfirm($row)"
                 ><span data-translate="logs_delete"></span
             ></oui-action-menu-item>
         </oui-action-menu>

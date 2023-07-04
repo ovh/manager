@@ -1,9 +1,12 @@
+import datagridToIcebergFilter from '../../../logs-iceberg.utils';
+
 export default class LogsStreamsAlertsHomeCtrl {
   /* @ngInject */
   constructor(
     $state,
     $stateParams,
     $translate,
+    ouiDatagridService,
     CucCloudMessage,
     CucControllerHelper,
     LogsStreamsService,
@@ -13,6 +16,7 @@ export default class LogsStreamsAlertsHomeCtrl {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.ouiDatagridService = ouiDatagridService;
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.LogsStreamsService = LogsStreamsService;
@@ -54,7 +58,6 @@ export default class LogsStreamsAlertsHomeCtrl {
    * @memberof LogsStreamsAlertsHomeCtrl
    */
   runLoaders() {
-    this.alertIds.load();
     this.stream.load();
   }
 
@@ -64,13 +67,6 @@ export default class LogsStreamsAlertsHomeCtrl {
    * @memberof LogsStreamsAlertsHomeCtrl
    */
   initLoaders() {
-    this.alertIds = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsStreamsAlertsService.getAlertIds(
-          this.serviceName,
-          this.streamId,
-        ),
-    });
     this.stream = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
         this.LogsStreamsService.getStream(this.serviceName, this.streamId),
@@ -85,22 +81,20 @@ export default class LogsStreamsAlertsHomeCtrl {
    * @returns promise which will be resolve to the loaded alerts data
    * @memberof LogsStreamsAlertsHomeCtrl
    */
-  loadAlerts({ offset, pageSize }) {
-    this.alerts = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsStreamsAlertsService.getAlerts(
-          this.serviceName,
-          this.streamId,
-          this.alertIds.data.slice(offset - 1, offset + pageSize - 1),
-        ),
+  loadAlerts({ offset, pageSize = 1, sort, criteria }) {
+    const filters = criteria.map((criterion) => {
+      const name = criterion.property || 'title';
+      return datagridToIcebergFilter(name, criterion.operator, criterion.value);
     });
-
-    return this.alerts.load().then((alerts) => ({
-      data: alerts,
-      meta: {
-        totalCount: this.alertIds.data.length,
-      },
-    }));
+    const pageOffset = Math.ceil(offset / pageSize);
+    return this.LogsStreamsAlertsService.getPaginatedAlerts(
+      this.serviceName,
+      this.streamId,
+      pageOffset,
+      pageSize,
+      { name: sort.property, dir: sort.dir === -1 ? 'DESC' : 'ASC' },
+      filters,
+    );
   }
 
   /**
@@ -135,9 +129,10 @@ export default class LogsStreamsAlertsHomeCtrl {
           this.serviceName,
           this.streamId,
           alert,
-        ).then(() => this.runLoaders()),
+        ).finally(() => {
+          this.ouiDatagridService.refresh('alerts-datagrid', true);
+        }),
     });
-    this.alertIds.loading = true;
     this.delete.load();
   }
 

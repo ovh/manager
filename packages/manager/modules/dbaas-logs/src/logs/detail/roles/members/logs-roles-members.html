@@ -5,11 +5,11 @@
 
     <p
         data-translate="logs_roles_members_subtitle"
-        translate-value-name="{{ctrl.roleDetails.data.info.name}}"
+        translate-value-name="{{ctrl.roleDetails.data.name}}"
     ></p>
     <p data-translate="logs_roles_members_description"></p>
 
-    <oui-datagrid rows="ctrl.roleDetails.data.members">
+    <oui-datagrid rows="ctrl.availableMembers.data">
         <oui-datagrid-topbar>
             <button
                 type="button"

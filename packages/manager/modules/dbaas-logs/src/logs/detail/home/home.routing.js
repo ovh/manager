@@ -17,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         isAccountDisabled
           ? $q.when([])
-          : LogsTokensService.getTokensIds(serviceName),
+          : LogsTokensService.getTokenIds(serviceName),
       defaultCluster: /* @ngInject */ (
         $q,
         isAccountDisabled,
@@ -74,7 +74,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         isAccountDisabled
           ? $q.when(null)
-          : LogsIndexService.getIndicesIds(serviceName),
+          : LogsIndexService.getIndiceIds(serviceName),
       aliasIds: /* @ngInject */ (
         $q,
         isAccountDisabled,
@@ -83,7 +83,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         isAccountDisabled
           ? $q.when(null)
-          : LogsAliasesService.getAliasesIds(serviceName),
+          : LogsAliasesService.getAliasIds(serviceName),
       encryptionKeysIds: /* @ngInject */ (
         $q,
         isAccountDisabled,

@@ -1,10 +1,15 @@
+import datagridToIcebergFilter from '../../logs-iceberg.utils';
+
 export default class LogsAliasesHomeCtrl {
   /* @ngInject */
   constructor(
     $state,
     $stateParams,
     $translate,
+    $window,
+    ouiDatagridService,
     LogsAliasesService,
+    LogsIndexService,
     CucControllerHelper,
     CucCloudMessage,
   ) {
@@ -12,25 +17,28 @@ export default class LogsAliasesHomeCtrl {
     this.$stateParams = $stateParams;
     this.serviceName = this.$stateParams.serviceName;
     this.$translate = $translate;
+    this.$window = $window;
+    this.ouiDatagridService = ouiDatagridService;
     this.serviceName = this.$stateParams.serviceName;
     this.LogsAliasesService = LogsAliasesService;
+    this.LogsIndexService = LogsIndexService;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
-
-    this.initLoaders();
   }
 
-  /**
-   * initializes aliases object by making API call to get data
-   *
-   * @memberof LogsAliasesHomeCtrl
-   */
-  initLoaders() {
-    this.aliases = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsAliasesService.getAliases(this.serviceName),
+  loadAliases({ offset, pageSize = 1, sort, criteria }) {
+    const filters = criteria.map((criterion) => {
+      const name = criterion.property || 'name';
+      return datagridToIcebergFilter(name, criterion.operator, criterion.value);
     });
-    this.aliases.load();
+    const pageOffset = Math.ceil(offset / pageSize);
+    return this.LogsAliasesService.getPaginatedAliases(
+      this.serviceName,
+      pageOffset,
+      pageSize,
+      { name: sort.property, dir: sort.dir === -1 ? 'DESC' : 'ASC' },
+      filters,
+    );
   }
 
   /**
@@ -60,18 +68,23 @@ export default class LogsAliasesHomeCtrl {
   /**
    * navigates to link content page
    *
-   * @param {any} aapiAlias
+   * @param {any} alias
    * @memberof LogsAliasesHomeCtrl
    */
-  attachContent(aapiAlias) {
-    this.$state.go('dbaas-logs.detail.aliases.home.alias.link', {
-      serviceName: this.serviceName,
-      aliasId: aapiAlias.info.aliasId,
-      defaultContent:
-        aapiAlias.indexes.length > 0
-          ? this.LogsAliasesService.contentTypeEnum.INDICES
-          : this.LogsAliasesService.contentTypeEnum.STREAMS,
-    });
+  attachContent(alias) {
+    this.LogsIndexService.getIndicesForAlias(
+      this.serviceName,
+      alias.aliasId,
+    ).then((indexes) =>
+      this.$state.go('dbaas-logs.detail.aliases.home.alias.link', {
+        serviceName: this.serviceName,
+        aliasId: alias.aliasId,
+        defaultContent:
+          indexes.length > 0
+            ? this.LogsAliasesService.contentTypeEnum.INDICES
+            : this.LogsAliasesService.contentTypeEnum.STREAMS,
+      }),
+    );
   }
 
   /**
@@ -101,14 +114,21 @@ export default class LogsAliasesHomeCtrl {
   remove(alias) {
     this.delete = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
-        this.LogsAliasesService.deleteAlias(this.serviceName, alias)
-          .then(() => this.initLoaders())
-          .finally(() => this.CucControllerHelper.scrollPageToTop()),
+        this.LogsAliasesService.deleteAlias(this.serviceName, alias).finally(
+          () => {
+            this.ouiDatagridService.refresh('aliases-datagrid', true);
+            this.CucControllerHelper.scrollPageToTop();
+          },
+        ),
     });
     this.delete.load();
   }
 
-  getElasticSearchUrl(alias) {
-    return this.LogsAliasesService.getElasticSearchUrl(alias);
+  openOpenSearch(alias) {
+    this.LogsAliasesService.getOpenSearchUrl(this.serviceName, alias).then(
+      (url) => {
+        this.$window.open(url, '_blank');
+      },
+    );
   }
 }

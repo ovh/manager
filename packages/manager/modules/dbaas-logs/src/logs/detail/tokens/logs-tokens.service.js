@@ -1,13 +1,11 @@
+import set from 'lodash/set';
+
 export default class LogsTokensService {
   /* @ngInject */
-  constructor($q, OvhApiDbaas, LogsHelperService) {
+  constructor($q, $http, iceberg, LogsHelperService) {
     this.$q = $q;
-    this.TokenApiService = OvhApiDbaas.Logs()
-      .Token()
-      .v6();
-    this.DetailsAapiService = OvhApiDbaas.Logs()
-      .Details()
-      .Aapi();
+    this.$http = $http;
+    this.iceberg = iceberg;
     this.LogsHelperService = LogsHelperService;
   }
 
@@ -19,58 +17,40 @@ export default class LogsTokensService {
    *          Each alias will have all details populated.
    * @memberof LogsTokensService
    */
-  getTokens(serviceName) {
-    return this.getTokensDetails(serviceName).catch((err) =>
-      this.LogsHelperService.handleError('logs_tokens_get_error', err, {}),
-    );
-  }
-
-  /**
-   * gets details for each token in array
-   *
-   * @param {any} serviceName
-   * @returns promise which will be resolve to an array of token objects
-   * @memberof LogsTokensService
-   */
-  getTokensDetails(serviceName) {
-    return this.getTokensIds(serviceName).then((tokens) => {
-      const promises = tokens.map((tokenId) =>
-        this.getToken(serviceName, tokenId),
-      );
-      return this.$q.all(promises);
-    });
-  }
-
-  /**
-   * returns array of tokens id's of logged in user
-   *
-   * @param {any} serviceName
-   * @returns promise which will be resolve to array of tokens id's
-   * @memberof LogsTokensService
-   */
-  getTokensIds(serviceName) {
-    return this.TokenApiService.query({ serviceName }).$promise;
-  }
-
-  /**
-   * returns details of an token
-   *
-   * @param {any} serviceName
-   * @param {any} tokenId
-   * @returns promise which will be resolve to token object
-   * @memberof LogsTokensService
-   */
-  getToken(serviceName, tokenId) {
-    return this.TokenApiService.get({
-      serviceName,
-      tokenId,
-    }).$promise.catch((err) =>
-      this.LogsHelperService.handleError(
-        'logs_tokens_get_detail_error',
-        err,
-        {},
+  getPaginatedTokens(
+    serviceName,
+    offset = 0,
+    pageSize = 25,
+    sort = { name: 'name', dir: 'desc' },
+    filters = null,
+  ) {
+    let res = this.iceberg(`/dbaas/logs/${serviceName}/token`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(offset)
+      .sort(sort.name, sort.dir);
+    if (filters !== null) {
+      filters.forEach((filter) => {
+        res = res.addFilter(filter.name, filter.operator, filter.value);
+      });
+    }
+    return res.execute().$promise.then((response) => ({
+      data: response.data.map((token) =>
+        this.transformToken(serviceName, token),
       ),
-    );
+      meta: {
+        totalCount:
+          parseInt(response.headers['x-pagination-elements'], 10) || 0,
+      },
+    }));
+  }
+
+  getTokenIds(serviceName) {
+    return this.iceberg(`/dbaas/logs/${serviceName}/token`)
+      .query()
+      .execute()
+      .$promise.then(({ data }) => data);
   }
 
   /**
@@ -82,9 +62,9 @@ export default class LogsTokensService {
    * @memberof LogsTokensService
    */
   deleteToken(serviceName, token) {
-    return this.TokenApiService.delete({ serviceName, tokenId: token.tokenId })
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .delete(`/dbaas/logs/${serviceName}/token/${token.tokenId}`)
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -108,9 +88,9 @@ export default class LogsTokensService {
    * @memberof LogsTokensService
    */
   createToken(serviceName, token) {
-    return this.TokenApiService.create({ serviceName }, token)
-      .$promise.then((operation) => {
-        this.resetAllCache();
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/token`, token)
+      .then((operation) => {
         return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
@@ -132,15 +112,12 @@ export default class LogsTokensService {
    * @returns promise which will be resolve to array of input IDs
    * @memberof LogsInputsService
    */
-  getClusters(serviceName, errorMessageParam) {
-    const errorMessage = errorMessageParam || 'logs_tokens_cluster_get_error';
-    return this.DetailsAapiService.me({ serviceName })
-      .$promise.then((details) => details.clusters)
-      .catch((err) =>
-        this.LogsHelperService.handleError(errorMessage, err, {
-          accountName: serviceName,
-        }),
-      );
+  getClusters(serviceName) {
+    return this.iceberg(`/dbaas/logs/${serviceName}/cluster`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(10000)
+      .execute().$promise;
   }
 
   /**
@@ -150,9 +127,11 @@ export default class LogsTokensService {
    * @returns promise which will be resolve to default cluster
    * @memberof LogsInputsService
    */
-  getDefaultCluster(serviceName, errorMessage) {
-    return this.getClusters(serviceName, errorMessage).then((clusters) => {
-      const defaultClusters = clusters.filter((cluster) => cluster.isDefault);
+  getDefaultCluster(serviceName) {
+    return this.getClusters(serviceName).then((clusters) => {
+      const defaultClusters = clusters.data.filter(
+        (cluster) => cluster.isDefault,
+      );
       return defaultClusters.length > 0 ? defaultClusters[0] : null;
     });
   }
@@ -170,7 +149,20 @@ export default class LogsTokensService {
     }));
   }
 
-  resetAllCache() {
-    this.TokenApiService.resetAllCache();
+  transformToken(serviceName, token) {
+    set(token, 'cluster', {
+      isLoadingCluster: true,
+      hostname: '-',
+    });
+    this.getClusters(serviceName).then((clusters) => {
+      set(
+        token,
+        'cluster',
+        clusters.data.find(
+          (cluster) => cluster.clusterId === token.clusterId,
+        ) || {},
+      );
+    });
+    return token;
   }
 }

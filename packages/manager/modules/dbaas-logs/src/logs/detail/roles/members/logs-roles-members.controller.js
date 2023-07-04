@@ -14,6 +14,7 @@ export default class LogsRolesMembersCtrl {
     this.CucControllerHelper = CucControllerHelper;
     this.LogsRolesService = LogsRolesService;
     this.CucCloudMessage = CucCloudMessage;
+    this.availableMembers = [];
 
     this.initLoaders();
   }
@@ -24,11 +25,17 @@ export default class LogsRolesMembersCtrl {
         this.LogsRolesService.getRoleDetails(this.serviceName, this.roleId),
     });
 
+    this.availableMembers = this.CucControllerHelper.request.getArrayLoader({
+      loaderFunction: () =>
+        this.LogsRolesService.getRoleMembers(this.serviceName, this.roleId),
+    });
+
     this.logs = this.CucControllerHelper.request.getArrayLoader({
       loaderFunction: () => this.LogsRolesService.getLogs(),
     });
 
     this.roleDetails.load();
+    this.availableMembers.load();
     this.logs.load();
   }
 

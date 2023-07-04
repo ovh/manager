@@ -19,7 +19,7 @@ import dashboards from './dashboards/dashboards.module';
 import home from './home/home.module';
 import index from './index/index.module';
 import inputs from './inputs/inputs.module';
-import kibana from './kibana/kibana.module';
+import osd from './osd/osd.module';
 import logsDashboardHeader from '../header/header.module';
 import logsDetailService from './logs-detail.service';
 import logsOrderService from './logs-order.service';
@@ -45,7 +45,7 @@ angular
     home,
     index,
     inputs,
-    kibana,
+    osd,
     logsDashboardHeader,
     roles,
     streams,

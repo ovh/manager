@@ -5,17 +5,21 @@ export default class LogsIndexAddModalCtrl {
     $stateParams,
     $uibModalInstance,
     $translate,
+    ouiDatagridService,
     CucControllerHelper,
     indexInfo,
     LogsIndexService,
+    LogsOrderService,
     LogsConstants,
   ) {
     this.$stateParams = $stateParams;
     this.$q = $q;
+    this.ouiDatagridService = ouiDatagridService;
     this.CucControllerHelper = CucControllerHelper;
     this.indexInfo = indexInfo;
     this.suffixPattern = '^[a-z0-9_-]+$';
     this.LogsIndexService = LogsIndexService;
+    this.LogsOrderService = LogsOrderService;
     this.LogsConstants = LogsConstants;
     this.$uibModalInstance = $uibModalInstance;
     this.$translate = $translate;
@@ -31,51 +35,40 @@ export default class LogsIndexAddModalCtrl {
       this.populateIndex();
     } else {
       this.clearIndex();
-      this.accountDetails
-        .load()
-        .then(() => {
-          this.ovhSubsidiary = this.accountDetails.data.me.ovhSubsidiary;
-          return this.catalog.load();
-        })
-        .then(() => {
-          const selectedCatalog = this.catalog.data.plans.find(
-            (plan) => plan.planCode === this.LogsConstants.LDP_PLAN_CODE,
-          );
-          const selectedFamily = selectedCatalog.addonsFamily.find(
-            (addon) => addon.family === this.LogsConstants.ADD_ON_FAMILY.NEW,
-          );
-          const indexShardCapacities = selectedFamily.addons.find(
-            (add) =>
-              add.plan.planCode ===
-              this.LogsConstants.CONSUMPTION_REFERENCE.NB_SHARD,
-          );
-          const indexVolumeCapacities = selectedFamily.addons.find(
-            (add) =>
-              add.plan.planCode ===
-              this.LogsConstants.CONSUMPTION_REFERENCE.INDEXED_DOCUMENTS,
-          );
-          const indexVolume = indexVolumeCapacities.plan.details.pricings.default.find(
-            (capa) =>
-              capa.capacities.includes(this.LogsConstants.CONSUMPTION_CAPACITY),
-          );
-          const indexShard = indexShardCapacities.plan.details.pricings.default.find(
-            (capa) =>
-              capa.capacities.includes(this.LogsConstants.CONSUMPTION_CAPACITY),
-          );
-          this.indexPrice.volume.price = indexVolume.price.text;
-          this.indexPrice.shard.price = indexShard.price.text;
-        });
+      this.catalog.load().then((catalog) => {
+        const selectedCatalog = catalog.plans.find(
+          (plan) => plan.planCode === this.LogsConstants.LDP_PLAN_CODE,
+        );
+        const selectedFamily = selectedCatalog.addonsFamily.find(
+          (addon) => addon.family === this.LogsConstants.ADD_ON_FAMILY.NEW,
+        );
+        const indexShardCapacities = selectedFamily.addons.find(
+          (add) =>
+            add.plan.planCode ===
+            this.LogsConstants.CONSUMPTION_REFERENCE.NB_SHARD,
+        );
+        const indexVolumeCapacities = selectedFamily.addons.find(
+          (add) =>
+            add.plan.planCode ===
+            this.LogsConstants.CONSUMPTION_REFERENCE.INDEXED_DOCUMENTS,
+        );
+        const indexVolume = indexVolumeCapacities.plan.details.pricings.default.find(
+          (capa) =>
+            capa.capacities.includes(this.LogsConstants.CONSUMPTION_CAPACITY),
+        );
+        const indexShard = indexShardCapacities.plan.details.pricings.default.find(
+          (capa) =>
+            capa.capacities.includes(this.LogsConstants.CONSUMPTION_CAPACITY),
+        );
+        this.indexPrice.volume.price = indexVolume.price.text;
+        this.indexPrice.shard.price = indexShard.price.text;
+      });
     }
   }
 
   initLoaders() {
     this.catalog = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () =>
-        this.LogsIndexService.getOrderCatalog(this.ovhSubsidiary),
-    });
-    this.accountDetails = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        this.LogsIndexService.getAccountDetails(this.serviceName),
+      loaderFunction: () => this.LogsOrderService.getOrderCatalog(),
     });
   }
 
@@ -131,7 +124,10 @@ export default class LogsIndexAddModalCtrl {
         this.LogsIndexService.createIndex(this.serviceName, this.index)
           .then((response) => this.$uibModalInstance.close(response))
           .catch((response) => this.$uibModalInstance.dismiss(response))
-          .finally(() => this.CucControllerHelper.scrollPageToTop()),
+          .finally(() => {
+            this.ouiDatagridService.refresh('indices-datagrid', true);
+            this.CucControllerHelper.scrollPageToTop();
+          }),
     });
     return this.saving.load();
   }
@@ -149,7 +145,10 @@ export default class LogsIndexAddModalCtrl {
         )
           .then((response) => this.$uibModalInstance.close(response))
           .catch((response) => this.$uibModalInstance.dismiss(response))
-          .finally(() => this.CucControllerHelper.scrollPageToTop()),
+          .finally(() => {
+            this.ouiDatagridService.refresh('indices-datagrid', true);
+            this.CucControllerHelper.scrollPageToTop();
+          }),
     });
     return this.saving.load();
   }
