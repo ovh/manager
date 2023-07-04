@@ -13,6 +13,8 @@ import {
   GST_SUBSIDIARIES,
   SECTIONS,
   FIELD_NAME_LIST,
+  IN_SUBSIDIARY,
+  USER_TYPE_ENTERPRISE,
 } from './new-account-form-component.constants';
 
 export default class NewAccountFormController {
@@ -27,6 +29,7 @@ export default class NewAccountFormController {
     Alerter,
     $translate,
     $anchorScroll,
+    coreURLBuilder,
   ) {
     this.$q = $q;
     this.$http = $http;
@@ -47,10 +50,19 @@ export default class NewAccountFormController {
     this.user = coreConfig.getUser();
     this.$anchorScroll = $anchorScroll;
     this.SECTIONS = SECTIONS;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
     this.loading = true;
+
+    // Indian subsidiary flag
+    this.isIndianSubsidiary = this.user.ovhSubsidiary === IN_SUBSIDIARY;
+    this.newSupportTicketUrl = this.coreURLBuilder.buildURL(
+      'dedicated',
+      '#/support/tickets/new',
+    );
+
     // backup of original model
     this.originalModel = angular.copy(this.model);
 
@@ -421,7 +433,8 @@ export default class NewAccountFormController {
 
   siretFieldIsAvailable() {
     const isSiretEnterprise =
-      this.model.legalform === 'corporation' && this.model.country === 'FR';
+      this.model.legalform === USER_TYPE_ENTERPRISE &&
+      this.model.country === 'FR';
     if (
       isSiretEnterprise &&
       this.fieldToFocus &&
