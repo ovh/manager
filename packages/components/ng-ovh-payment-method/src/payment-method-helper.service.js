@@ -7,8 +7,9 @@ import AdyenService from './components/integration/component/adyen/service';
 
 export default class OvhPaymentMethodHelperService {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, ovhFeatureFlipping) {
     this.$translate = $translate;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
 
     this.isValidIban = OvhPaymentMethodHelperService.isValidIban;
     this.isValidBic = OvhPaymentMethodHelperService.isValidBic;
@@ -36,6 +37,15 @@ export default class OvhPaymentMethodHelperService {
         typeParam,
       ).toLowerCase()}`,
     );
+  }
+
+  hasSpecificCrossBorderSentenceForCardPayment() {
+    const paymentCrossBorderFeatureId = 'payments-cross-border';
+    return this.ovhFeatureFlipping
+      .checkFeatureAvailability(paymentCrossBorderFeatureId)
+      .then((featureAvailability) =>
+        featureAvailability.isFeatureAvailable(paymentCrossBorderFeatureId),
+      );
   }
 
   static getCallbackIntegrationTypeRelated(locationSearch) {

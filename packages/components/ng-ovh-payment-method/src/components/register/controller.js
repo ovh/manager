@@ -6,8 +6,6 @@ import {
   isFunction,
   isNil,
   isObject,
-  map,
-  set,
   some,
 } from 'lodash-es';
 
@@ -73,6 +71,14 @@ export default class OvhPaymentMethodRegisterCtrl {
 
   /* -----  End of Initialization  ------ */
 
+  showSpecificCrossBorderSentenceForCardPayment() {
+    return (
+      this.hasSpecificCrossBorderSentenceForCardPayment &&
+      this.model.selectedPaymentMethodType.type.paymentType ===
+        DEFAULT_SELECTED_PAYMENT_METHOD_TYPE
+    );
+  }
+
   /* ============================
   =            Hooks            =
   ============================= */
@@ -99,20 +105,14 @@ export default class OvhPaymentMethodRegisterCtrl {
         );
 
         // add a fallback image in case of no image provided by API (for legacies payment methods)
-        this.availablePaymentMethodTypes.list = map(
-          this.availablePaymentMethodTypes.list,
-          (paymentTypeParam) => {
-            const paymentType = paymentTypeParam;
-            if (!get(paymentType, 'icon.data')) {
-              set(
-                paymentType,
-                'icon.data',
-                get(FALLBACK_IMAGES, paymentType.paymentType),
-              );
-            }
-            return paymentType;
-          },
-        );
+        this.availablePaymentMethodTypes.list.forEach((paymentMethodType) => {
+          const paymentType = paymentMethodType;
+          if (!paymentType.icon) {
+            paymentType.icon = {};
+          }
+          paymentType.icon.data =
+            paymentType.icon.data || FALLBACK_IMAGES[paymentType.paymentType];
+        });
 
         // split available payment method types list by chunk of paymentMethodTypesPerLine number
         this.availablePaymentMethodTypes.chunks = chunk(
