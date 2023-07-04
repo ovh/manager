@@ -15,7 +15,10 @@ export const DB_OFFERS = {
   },
 };
 
+export const REGEX_DB_OFFER_SORT = /(?:-|_)(\d+)(?:-|_)/;
+
 export default {
   PRODUCT_NAME,
   DB_OFFERS,
+  REGEX_DB_OFFER_SORT,
 };

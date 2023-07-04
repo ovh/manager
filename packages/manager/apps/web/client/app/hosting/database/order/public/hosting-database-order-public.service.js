@@ -6,6 +6,7 @@ import toNumber from 'lodash/toNumber';
 import {
   DB_OFFERS,
   PRODUCT_NAME,
+  REGEX_DB_OFFER_SORT,
 } from './hosting-database-order-public.constants';
 
 export default class {
@@ -133,11 +134,20 @@ export default class {
     return offers;
   }
 
-  buildDbCategories(catalog, webCloudCatalog) {
-    const startSqlCategory = this.constructor.getStartSqlCategory(catalog);
-    const webCloudCategory = this.constructor.getWebCloudCategory(
-      webCloudCatalog,
+  static dbOfferSort(a, b) {
+    return (
+      a.planCode.match(REGEX_DB_OFFER_SORT).pop() -
+      b.planCode.match(REGEX_DB_OFFER_SORT).pop()
     );
+  }
+
+  buildDbCategories(catalog, webCloudCatalog) {
+    const startSqlCategory = this.constructor
+      .getStartSqlCategory(catalog)
+      .sort(this.constructor.dbOfferSort);
+    const webCloudCategory = this.constructor
+      .getWebCloudCategory(webCloudCatalog)
+      .sort(this.constructor.dbOfferSort);
 
     // const db groups
     const groupedCategories = {
