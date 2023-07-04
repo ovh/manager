@@ -1128,5 +1128,5 @@
   "server_rtm_eol_info": "Informazione importante sull'obsolescenza di Real Time Monitoring: il servizio continuerà a funzionare fino al 30 giugno 2022. A partire da questa data la visualizzazione dei dati di consumo verrà interrotta, senza impatto sul funzionamento del tuo server.",
   "server_configuration_installation_NONE": "Nessuno",
   "server_configuration_installation_ovh_desktop_BACKUP": "Backup",
-  "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Anche se il pool selezionato contiene {{t0}} dischi, il sistema operativo scelto può essere installato solo su un massimo di 2 dischi."
+  "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Anche se il gruppo di dischi selezionato contiene {{t0}} dischi, il sistema operativo scelto può essere installato solo su un massimo di 2 dischi."
 }
