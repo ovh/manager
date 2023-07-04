@@ -32,7 +32,7 @@
             data-ng-focus="$ctrl.focused = true"
             data-ng-blur="$ctrl.focused = false"
             data-ng-pattern="$ctrl.inputValidator"
-            data-ng-disabled="$ctrl.rule.fieldName === $ctrl.FIELD_NAME_LIST.customerCode"
+            data-ng-disabled="$ctrl.disableInputField"
             data-ng-required="$ctrl.rule.mandatory"
         />
 
@@ -49,6 +49,7 @@
             data-ng-blur="$ctrl.focused = false"
             data-ng-pattern="$ctrl.inputValidator"
             data-ng-required="$ctrl.rule.mandatory"
+            disabled="$ctrl.disableDropDownSelection"
             searchable
         >
         </oui-select>
