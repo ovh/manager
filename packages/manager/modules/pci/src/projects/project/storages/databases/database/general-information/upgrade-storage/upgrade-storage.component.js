@@ -12,6 +12,7 @@ const component = {
     projectId: '<',
     trackDashboard: '<',
     trackDatabases: '<',
+    minStorageLimit: '<',
   },
   template,
   controller,

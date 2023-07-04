@@ -8,6 +8,7 @@ export default {
     max: '<',
     step: '<',
     model: '=',
+    lowLimitValue: '<?',
     initialValue: '<?',
     onChange: '&?',
     prices: '<',
