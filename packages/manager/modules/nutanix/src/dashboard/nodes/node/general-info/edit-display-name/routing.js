@@ -28,6 +28,10 @@ export default /* @ngInject */ ($stateProvider) => {
         },
         breadcrumb: () => null,
       },
+      atInternet: {
+        rename:
+          'hpc::nutanix::dashboard::nodes::node::general-info::edit-display-name',
+      },
     },
   );
 };
