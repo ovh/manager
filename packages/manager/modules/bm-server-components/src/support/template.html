@@ -13,17 +13,17 @@
     <oui-tile-definition
         term="{{:: 'server_support_open_tickets' | translate }}"
     >
-        <oui-tile-description data-ng-if="$ctrl.numberOfTickets === 0">
-            <span data-ng-bind="$ctrl.numberOfTickets"></span>
+        <oui-tile-description>
+            <span data-ng-if="$ctrl.numberOfTickets === 0">0</span>
+            <a
+                class="oui-link_icon"
+                data-ng-if="$ctrl.numberOfTickets > 0"
+                data-ng-href="{{ $ctrl.viewTicketsUrl }}"
+                data-on-click="$ctrl.trackClick('go-to-view-tickets')"
+            >
+                <span data-ng-bind="$ctrl.numberOfTickets"></span>
+            </a>
             <div class="mt-1">
-                <a
-                    class="oui-link_icon"
-                    data-ng-if="$ctrl.numberOfTickets > 0"
-                    data-ng-href="{{:: $ctrl.createNewTicketUrl }}"
-                    data-on-click="$ctrl.trackClick('go-to-create-ticket')"
-                >
-                    <span data-ng-bind="$ctrl.numberOfTickets"></span>
-                </a>
                 <a
                     class="oui-link_icon"
                     data-ng-href="{{:: $ctrl.createNewTicketUrl }}"
