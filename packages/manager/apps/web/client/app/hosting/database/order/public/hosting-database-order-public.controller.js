@@ -7,7 +7,8 @@ import { WEBHOSTING_PRODUCT_NAME } from '../../hosting-database.constants';
 import { DB_OFFERS } from './hosting-database-order-public.constants';
 import { DATABASES_TRACKING } from '../../../hosting.constants';
 
-export default class {
+export default class HostingDatabaseOrderPublicCtrl {
+  /* @ngInject */
   constructor(atInternet) {
     this.atInternet = atInternet;
   }
