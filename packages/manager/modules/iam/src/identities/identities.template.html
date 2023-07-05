@@ -16,6 +16,8 @@
             </oui-guide-menu-item>
         </oui-guide-menu>
         <!-- </Guide> -->
+
+        <oui-back-button data-on-click="$ctrl.goBack()"></oui-back-button>
     </oui-header>
 
     <div data-ng-if="$ctrl.loading">
@@ -45,19 +47,6 @@
                     data-ng-keypress="$ctrl.onUsersFieldKeypress($event)"
                     data-ng-disabled="$ctrl.policy.readOnly"
                 />
-                <button
-                    class="oui-button oui-button_secondary oui-button_icon-right"
-                    type="submit"
-                    data-ng-disabled="!$ctrl.newUser"
-                >
-                    <span
-                        data-translate="iam_identities_field_users_button_add"
-                    ></span>
-                    <span
-                        class="oui-icon oui-icon-plus"
-                        aria-hidden="true"
-                    ></span>
-                </button>
             </div>
             <div class="oui-chip__container">
                 <button
@@ -82,18 +71,13 @@
         <!-- <Footer> -->
         <div class="d-flex align-items-center">
             <button
-                type="button"
-                class="oui-button oui-button_l oui-button_link mr-3"
-                data-ng-click="$ctrl.goBack()"
+                class="oui-button oui-button_l oui-button_primary oui-button_icon-left"
+                type="submit"
+                data-ng-disabled="!$ctrl.newUser"
             >
-                <span data-translate="iam_identities_form_cancel"></span>
-            </button>
-            <button
-                type="button"
-                class="oui-button oui-button_l oui-button_primary mr-3"
-                data-ng-click="$ctrl.submit()"
-            >
-                <span data-translate="iam_identities_form_submit"></span>
+                <span
+                    data-translate="iam_identities_field_users_button_add"
+                ></span>
             </button>
         </div>
         <!-- </Footer> -->
