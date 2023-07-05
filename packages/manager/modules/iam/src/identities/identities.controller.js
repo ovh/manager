@@ -107,13 +107,4 @@ export default class IdentitiesController {
         });
       });
   }
-
-  submit() {
-    this.goBack({
-      success: this.$translate.instant(
-        'iam_identities_submit_identity_success',
-      ),
-      reload: true,
-    });
-  }
 }

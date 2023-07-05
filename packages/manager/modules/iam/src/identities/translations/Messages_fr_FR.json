@@ -7,8 +7,5 @@
   "iam_identities_field_users_button_add": "Ajouter",
   "iam_identities_error_load_users": "Une erreur est survenue lors de la récupération de vos utilisateurs : {{ message }}",
   "iam_identities_add_identity_error": "Le format de l'identité ajoutée n'est pas valable : {{ message }}",
-  "iam_identities_add_identity_success": "L'identité est rattachée à votre politique",
-  "iam_identities_submit_identity_success": "Les modifications de vos identités ont bien été réalisées.",
-  "iam_identities_form_cancel": "Annuler",
-  "iam_identities_form_submit": "Valider"
+  "iam_identities_add_identity_success": "L'identité est rattachée à votre politique"
 }
