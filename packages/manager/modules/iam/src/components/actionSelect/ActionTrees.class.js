@@ -2,6 +2,7 @@
  * @typedef {{
  *   resourceType: string
  *   selected: boolean
+ *   filtered: boolean
  *   value: string
  * }} Action
  *
@@ -86,6 +87,7 @@ export default class ActionTrees extends Array {
     const newAction = {
       resourceType: CUSTOM_RESOURCE_TYPE,
       selected: true,
+      filtered: true,
       value,
     };
 
@@ -190,6 +192,7 @@ export default class ActionTrees extends Array {
               (rawAction) => rawAction.action === value,
             ),
           ),
+          filtered: Boolean(action.filtered),
           value,
         };
       });

@@ -73,6 +73,15 @@ export default class ActionSelectController {
      * @type {boolean}
      */
     this.required = false;
+
+    /**
+     * Return filtered list of actions for a category
+     * @param {Actions[]} Actions
+     * @return {Actions[]}
+     */
+    this.getFilteredActionList = function(actions) {
+      return actions.filter((action) => action.filtered);
+    };
   }
 
   /**
@@ -131,7 +140,10 @@ export default class ActionSelectController {
     this.isLoading = true;
     return this.IAMService.getActions()
       .then((actions) => {
-        this.actions = cloneDeep(actions);
+        this.actions = cloneDeep(actions).map((action) => ({
+          ...action,
+          filtered: true,
+        }));
         this.createActionTrees();
         if (this.load) {
           this.load({ actions });
@@ -244,6 +256,30 @@ export default class ActionSelectController {
   }
 
   /**
+   * Filter actions when something is typed into the search bar
+   * @param {string} actionTreeName
+   */
+  onSearchChanged(actionTreeName) {
+    const actionTreeIndex = this.actionTrees.findIndex(
+      (item) => item.value === actionTreeName,
+    );
+    const actionTree = this.actionTrees[actionTreeIndex];
+
+    this.actions = this.actions.map(function(action) {
+      const item = action;
+      item.filtered = false;
+      if (item.action.match(new RegExp(actionTree.searchQuery, 'g'))) {
+        item.filtered = true;
+      }
+      return item;
+    });
+
+    this.toggleAllCategories(actionTree);
+
+    this.onModelChanged();
+  }
+
+  /**
    * Set the required ngModel instance's value each time the model has changed
    * The ngModel is of type { action: string, resourceType?: string }[]
    */
@@ -286,6 +322,18 @@ export default class ActionSelectController {
   }
 
   /**
+   * Toggle all categories
+   * Sometime, you need to toggle all categories in the same time.
+   * For instance, when something is type in search bar
+   * @param {ActionTree} actionTree
+   */
+  toggleAllCategories(actionTree) {
+    actionTree.categories.forEach((category) => {
+      this.toggleCategory(category, true);
+    });
+  }
+
+  /**
    * Categories are not callapsibles because it is very buggy
    * Toggle a category as it was a collapsible
    * @param {Category} category
@@ -310,18 +358,36 @@ export default class ActionSelectController {
   /**
    * Get the label translation key for the given category
    * @param {Category} category
+   * @param {Actions[]} filteredActions
+   * @param {string} searchQuery
    * @returns {string}
    */
-  static getCategoryLabel({ actions, selection }) {
+  static getCategoryLabel(
+    { actions, selection },
+    filteredActions,
+    searchQuery,
+  ) {
     const { length: selectionLength } = selection;
-    const prefix = 'iam_action_select_category_count';
-    if (selectionLength) {
-      return selectionLength === 1
-        ? `${prefix}_selection_one`
-        : `${prefix}_selection_many`;
+    const { length: filteredActionsLength } = filteredActions;
+    const searchQueryLength = searchQuery ? searchQuery.length : null;
+    let prefix = 'iam_action_select_category_count';
+
+    if (searchQueryLength) {
+      prefix =
+        filteredActionsLength > 1
+          ? `${prefix}_with_search_many`
+          : `${prefix}_with_search_one`;
     }
+
+    if (selectionLength) {
+      prefix =
+        selectionLength === 1
+          ? `${prefix}_selection_one`
+          : `${prefix}_selection_many`;
+    }
+
     return actions.length === 1
-      ? `${prefix}_no_selection_one`
-      : `${prefix}_no_selection_many`;
+      ? `${prefix}_total_one`
+      : `${prefix}_total_many`;
   }
 }
