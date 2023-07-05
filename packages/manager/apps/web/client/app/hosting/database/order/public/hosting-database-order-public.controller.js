@@ -83,8 +83,14 @@ export default class HostingDatabaseOrderPublicCtrl {
     );
   }
 
-  onDbCategoryEngineClick({ db }) {
-    this.trackClick(`${DATABASES_TRACKING.STEP_2.SELECT_DB_ENGINE}_${db}`);
+  onDbCategoryEngineClick(db) {
+    this.model.dbCategory.selectEngine = {
+      dbGroup: db.dbName,
+      selectEngineVersion: db,
+    };
+    this.trackClick(
+      `${DATABASES_TRACKING.STEP_2.SELECT_DB_ENGINE}_${db.dbName}`,
+    );
   }
 
   onGoToNextStepClick() {
