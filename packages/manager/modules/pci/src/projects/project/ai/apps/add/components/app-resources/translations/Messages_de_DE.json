@@ -31,7 +31,8 @@
   "pci_app_add_resources_scaling_trigger_threshold": "Schwellenwert (%)",
   "pci_app_add_resources_scaling_trigger_threshold_help_text": "Wert der Metrik in %",
   "pci_app_add_resources_scaling_price_warning": "Der Gesamtpreis der Bereitstellung wird anhand der Mindestanzahl der ausgewählten Replikas berechnet. Bitte beachten Sie, dass diese Kosten bei aktiviertem Autoscaling steigen können.",
-  "pci_app_add_resources_total": "Gesamtpreis der Bereitstellung",
+  "pci_app_add_resources_total": "Preis der ausgewählten Ressourcen",
   "pci_app_add_resources_resource_price": "Preis der Ressource",
-  "pci_app_add_resources_partner_price": "Preis der Lizenz"
+  "pci_app_add_resources_partner_price": "Preis der Lizenz",
+  "pci_app_add_resources_total_info": "Der oben angezeigte Preis gilt für die physischen Ressourcen für die Bereitstellung. Je nach gewähltem Partnermodell können zusätzliche Kosten anfallen. Weitere Informationen dazu finden Sie in der Übersicht."
 }

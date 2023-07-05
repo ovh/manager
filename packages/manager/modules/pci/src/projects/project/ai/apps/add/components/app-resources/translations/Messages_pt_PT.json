@@ -31,7 +31,8 @@
   "pci_app_add_resources_scaling_trigger_threshold": "Patamar de acionamento (%)",
   "pci_app_add_resources_scaling_trigger_threshold_help_text": "Valor da métrica, em percentagem.",
   "pci_app_add_resources_scaling_price_warning": "O preço total da implementação é calculado em função do número mínimo de réplicas escolhidas. Tenha em conta que este custo pode aumentar quando o Autoscaling está ativo.",
-  "pci_app_add_resources_total": "Preço total de implementação",
+  "pci_app_add_resources_total": "Preço dos recursos selecionados",
   "pci_app_add_resources_resource_price": "Preço do recurso",
-  "pci_app_add_resources_partner_price": "Preço da licença"
+  "pci_app_add_resources_partner_price": "Preço da licença",
+  "pci_app_add_resources_total_info": "O preço indicado acima é para os recursos físicos necessários para a implementação. Podem ser aplicadas despesas adicionais em função do modelo parceiro escolhido. Consulte o resumo."
 }
