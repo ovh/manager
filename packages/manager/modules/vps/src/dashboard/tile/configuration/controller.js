@@ -27,5 +27,19 @@ export default class VpsDashboardTileConfigurationCtrl {
             },
           )
         : '';
+    this.doubleStorageText =
+      this.configurationTile.upgrades.storage.plan && !this.isVpsStarter
+        ? this.$translate.instant(
+            'vps_dashboard_tile_configuration_storage_double',
+            {
+              additionalPrice: this.configurationTile.isUpfront
+                ? this.configurationTile.upgrades.storage.upfrontDiff.text
+                : this.configurationTile.upgrades.storage.diff.text,
+              price: this.configurationTile.isUpfront
+                ? this.configurationTile.upgrades.storage.upfrontTotal.text
+                : this.configurationTile.upgrades.storage.total.text,
+            },
+          )
+        : '';
   }
 }

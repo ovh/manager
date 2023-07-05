@@ -206,9 +206,22 @@ export default class ConfigurationTileService {
           diff: nextStorageVpsPlan
             ? this.getPlanPriceDiff(nextStorageVpsPlan, nextStorageTotalPrice)
             : null,
+          total: nextStorageVpsPlan
+            ? ConfigurationTileService.getPlanPriceTotal(
+                nextStorageVpsPlan,
+                nextStorageTotalPrice,
+              )
+            : null,
           upfrontDiff:
             nextStorageVpsPlan && this.isUpfront
               ? this.getPlanUpfrontPriceDiff(
+                  nextStorageVpsPlan,
+                  nextStorageTotalPrice,
+                )
+              : null,
+          upfrontTotal:
+            nextStorageVpsPlan && this.isUpfront
+              ? ConfigurationTileService.getPlanUpFrontPriceTotal(
                   nextStorageVpsPlan,
                   nextStorageTotalPrice,
                 )
