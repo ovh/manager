@@ -8,7 +8,7 @@ export default class DomainDnsAnycastConfirmTerminateCtrl {
   confirm() {
     this.loading = true;
     return this.Domain.terminateDnsAnycast(this.domainName, {
-      automatic: false,
+      automatic: true,
       deleteAtExpiration: true,
       forced: false,
     })
