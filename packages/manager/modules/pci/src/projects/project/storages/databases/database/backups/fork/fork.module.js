@@ -6,6 +6,7 @@ import '@ovh-ux/ui-kit';
 
 import forkComponent from './fork.component';
 import routing from './fork.routing';
+import command from './command';
 
 import databasePlanList from '../../../components/plans-list';
 import databaseFlavorsList from '../../../components/flavors-list';
@@ -24,6 +25,7 @@ angular
     databaseFlavorsList,
     databaseDiskSize,
     switchPriceComponent,
+    command,
   ])
   .config(routing)
   .component('ovhManagerPciStoragesDatabaseBackupsForkComponent', forkComponent)

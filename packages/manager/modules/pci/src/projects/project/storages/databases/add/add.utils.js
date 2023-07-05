@@ -1,3 +1,5 @@
+import { RESTORE_MODES } from '../database/backups/fork/fork.constants';
+
 export function getOrderDataFromModel(model) {
   const orderData = {
     description: model.name,
@@ -14,6 +16,21 @@ export function getOrderDataFromModel(model) {
         : model.disk.initialSize,
     },
   };
+
+  if (model.restoreMode) {
+    if (model.restoreMode === RESTORE_MODES.BACKUP) {
+      orderData.forkFrom = {
+        serviceId: model.databaseId,
+        backupId: model.backupId,
+      };
+    } else {
+      orderData.forkFrom = {
+        serviceId: model.databaseId,
+        pointInTime: model.timestamp,
+      };
+    }
+  }
+
   if (model.usePrivateNetwork && model.subnet?.id?.length > 0) {
     orderData.networkId = model.privateNetwork.regions?.find(
       (region) => region.region === model.subnet.ipPools[0]?.region,

@@ -16,6 +16,7 @@ const component = {
     addPrivateNetworksLink: '<',
     user: '<',
     onDatabaseAdd: '<',
+    goToCommand: '<',
   },
   controller,
   template,
