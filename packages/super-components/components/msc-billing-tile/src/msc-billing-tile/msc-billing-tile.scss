@@ -1,0 +1,18 @@
+.msc-billing-tile-wrapper {
+  display: block;
+  text-decoration: none;
+
+  .billing-tile-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 420px;
+
+    .menu-button {
+      margin-left: 340px;
+    }
+
+    .link-icon {
+      margin-left: 10px;
+    }
+  }
+}

@@ -9,7 +9,7 @@
     "jsx": "react",
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
-    "lib": ["dom", "es2018", "esnext.array"],
+    "lib": ["es6", "dom", "es2018", "esnext.array"],
     "module": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": true,

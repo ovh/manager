@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+        />
+        <title>Dev msc-billing-tile</title>
+        <link rel="stylesheet" href="/build/msc-billing-tile.css" />
+    </head>
+    <body>
+        <section
+            style="display: grid; grid-gap: 30px; grid-template-columns: repeat(3, 1fr);"
+        >
+            <!-- NAS-HA service -->
+            <msc-billing-tile
+                offer="zpool-128875"
+                data-tracking="home:dashboard:tuto"
+            >
+            </msc-billing-tile>
+
+            <!-- VPS service -->
+            <msc-billing-tile
+                offer="vps-0baa4fcf.vps.ovh.net"
+                data-tracking="home:dashboard:product"
+            >
+            </msc-billing-tile>
+        </section>
+        <script type="module">
+            !window.ods &&
+                (window.ods = { config: { logging: { active: true } } });
+        </script>
+
+        <script type="module" src="/build/msc-billing-tile.esm.js"></script>
+        <script nomodule src="/build/msc-billing-tile.js"></script>
+    </body>
+</html>
