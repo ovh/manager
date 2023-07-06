@@ -57,6 +57,27 @@ export default class UserAccountInfosService {
       });
   }
 
+  fetchMarketingConsentDecision() {
+    return this.$http.get('/me/marketing').then((response) => {
+      if (response.status < 300) {
+        return response.data;
+      }
+      return this.$q.reject(response);
+    });
+  }
+
+  updateSmsMarketingConsentDecision(value) {
+    return this.$http.put('/me/marketing', {
+      denyAll: false,
+      sms: {
+        events: value,
+        newProductRecommendation: value,
+        newsletter: value,
+        offerAndDiscount: value,
+      },
+    });
+  }
+
   fetchConsentDecision(campaignName) {
     return this.$http
       .get(
