@@ -85,33 +85,15 @@ export default class PciStoragesContainersUsersController {
   }
 
   showSecretKey(user) {
-    this.PciStoragesObjectStorageService.getS3Secret(
-      this.projectId,
-      user.id,
-      user.s3Credentials?.access,
-    )
-      .then((data) => {
-        this.CucCloudMessage.info({
-          textHtml: this.$translate.instant(
-            'pci_projects_project_storages_containers_users_show_secret_key_success',
-            {
-              user: `<strong>${user.username}</strong>`,
-              secret: `<code class="text-break">${data.secret}</code>`,
-            },
-          ),
-        });
-      })
-      .catch((error) => {
-        this.CucCloudMessage.error({
-          textHtml: this.$translate.instant(
-            'pci_projects_project_storages_containers_users_show_secret_key_error',
-            {
-              user: `<strong>${user.username}</strong>`,
-              message: error?.data?.message,
-            },
-          ),
-        });
-      });
+    this.CucCloudMessage.success({
+      textHtml: this.$translate.instant(
+        'pci_projects_project_storages_containers_users_show_secret_key_success',
+        {
+          user: user.username,
+          secret: `<code class="code-break">${user.s3Credentials.secret}</code>`,
+        },
+      ),
+    });
   }
 
   trackPage(page) {

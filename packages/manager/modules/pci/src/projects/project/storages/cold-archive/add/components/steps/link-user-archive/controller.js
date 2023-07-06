@@ -243,7 +243,7 @@ export default class ColdArchiveLinkUserArchiveController {
     const Service = this.pciStoragesColdArchiveService;
     const taskPromise = user.s3Credentials?.access
       ? Service.getS3Credentials(this.projectId, user.id).then(
-          (credentials) => credentials,
+          (credentials) => credentials?.[0],
         )
       : Service.generateS3Credentials(this.projectId, user.id);
 
