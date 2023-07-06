@@ -16,6 +16,8 @@
         <script type="module">
             !window.ods &&
                 (window.ods = { config: { logging: { active: true } } });
+            !window.process &&
+                (window.process = { env: { NODE_ENV: 'development' } });
         </script>
 
         <script type="module" src="/build/{{ componentTag }}.esm.js"></script>

@@ -15,31 +15,31 @@
     .tile-img {
       height: auto;
       max-width: 100%;
-      margin: 10px auto;
+      margin: var(--ods-size-03) auto;
     }
 
     .tile-type {
       display: block;
-      margin-bottom: 16px;
+      margin-bottom: var(--ods-size-05);
     }
 
     .tile-badge-list {
       display: inline-flex;
-      margin-left: 10px;
+      margin-left: var(--ods-size-03);
     }
 
     .tile-title {
       display: block;
-      margin-bottom: 16px;
+      margin-bottom: var(--ods-size-05);
     }
 
     .tile-description {
       display: block;
-      margin-bottom: 12px;
+      margin-bottom: var(--ods-size-04);
     }
 
     .link-icon {
-      margin-left: 10px;
+      margin-left: var(--ods-size-04);
     }
   }
 }

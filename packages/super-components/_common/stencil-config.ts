@@ -1,5 +1,6 @@
 import { Config } from '@stencil/core';
 import { getStencilConfig as getOdsStencilConfig } from '@ovhcloud/ods-stencil/libraries/stencil-core';
+import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 const excludeComponents = [
   'osds-icon',
@@ -50,6 +51,13 @@ const excludeComponents = [
   'osds-toggle',
 ];
 
+const esModules = [
+  'graphql',
+  '@ovh-ux/manager-core-api',
+  '@ovhcloud/msc-utils',
+  'axios',
+].join('|');
+
 const args = process.argv.slice(2);
 
 export const getStencilConfig = ({
@@ -58,8 +66,9 @@ export const getStencilConfig = ({
 }: {
   namespace: string;
   componentCorePackage: string;
-}): Config =>
-  getOdsStencilConfig({
+}): Config => {
+  // Get the base config
+  const baseConfig = getOdsStencilConfig({
     namespace,
     args,
     distCustomElements: {
@@ -85,8 +94,10 @@ export const getStencilConfig = ({
     jestConfig: {
       testRegex: '/(tests|src)/.*\\.(test|spec|screenshot|e2e)?\\.(ts|tsx)$',
       testPathIgnorePatterns: ['global.test.ts'],
+      transformIgnorePatterns: [`node_modules/(?!${esModules})`],
       transform: {
-        '^.+\\.ts?$': 'ts-jest',
+        '^.+\\.(ts|tsx|js|jsx|css)$': '@stencil/core/testing/jest-preprocessor',
+        '^.+\\.tsx?$': 'ts-jest',
       },
     },
     reactOutput: {
@@ -106,6 +117,25 @@ export const getStencilConfig = ({
     test: {
       globalScript: 'src/global.test.ts',
     },
-  }) as Config;
+  });
+
+  // Merge outputTargets with the new target
+  const outputTargets = [
+    ...(baseConfig.outputTargets || []),
+    {
+      type: 'www',
+      copy: [{ src: '../../../storybook/static', dest: '' }],
+    },
+  ];
+
+  // Return the combined config
+  return {
+    ...baseConfig,
+    outputTargets,
+    rollupPlugins: {
+      after: [nodePolyfills()],
+    },
+  } as Config;
+};
 
 export default getStencilConfig;

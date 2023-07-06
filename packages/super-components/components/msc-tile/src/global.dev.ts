@@ -5,3 +5,4 @@ import '@ovhcloud/ods-stencil/components/link';
 import '@ovhcloud/ods-stencil/components/icon';
 import '@ovhcloud/ods-stencil/components/text';
 import '@ovhcloud/ods-stencil/components/chip';
+import '@ovhcloud/ods-stencil/components/skeleton';
