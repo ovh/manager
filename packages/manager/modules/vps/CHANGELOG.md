@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.34.0...@ovh-ux/manager-vps@2.35.0) (2023-07-06)
+
+
+### Features
+
+* **vps:** add error message for vps download not ready ([#9313](https://github.com/ovh/manager/issues/9313)) ([64ed21e](https://github.com/ovh/manager/commit/64ed21e44e9b8df727327b6fe007b1478c136d83))
+
+
+
+
+
 # [2.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.33.2...@ovh-ux/manager-vps@2.34.0) (2023-06-14)
 
 

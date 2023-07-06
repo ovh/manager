@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.21.1...@ovh-ux/manager-container-app@0.22.0) (2023-07-06)
+
+
+### Features
+
+* **container.sidebar:** user info badge overflow ([#9516](https://github.com/ovh/manager/issues/9516)) ([758b8d8](https://github.com/ovh/manager/commit/758b8d82832d84a0466663734f735212a576d07e))
+
+
+
+
+
 ## [0.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.21.0...@ovh-ux/manager-container-app@0.21.1) (2023-06-14)
 
 

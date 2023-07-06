@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.2.0...@ovh-ux/manager-dedicated@18.2.1) (2023-07-06)
+
+
+### Bug Fixes
+
+* **dedicated:** add missing translations [CDS 2334] ([#9469](https://github.com/ovh/manager/issues/9469)) ([1476c79](https://github.com/ovh/manager/commit/1476c794f874917d0c239a42124756669e3ae08c))
+* **dedicated:** minimum partition size to 64mib according backend ([#9375](https://github.com/ovh/manager/issues/9375)) ([e2f4d3b](https://github.com/ovh/manager/commit/e2f4d3bd7f8f6824e8853f2e57d6a87c33ec49c6))
+* remove URI params on product label ([#9372](https://github.com/ovh/manager/issues/9372)) ([3df3030](https://github.com/ovh/manager/commit/3df303031e5536b53761ed0b0af3ef1acb7eb41e))
+
+
+
+
+
 # [18.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.1.0...@ovh-ux/manager-dedicated@18.2.0) (2023-06-21)
 
 
