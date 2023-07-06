@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.35.0...@ovh-ux/manager-vps@2.36.0) (2023-07-06)
+
+
+### Features
+
+* **vps.upscale:** vps limited edition ([66a1ab9](https://github.com/ovh/manager/commit/66a1ab9362184f64d7ba9de5d929bdb7da5b6226))
+
+
+
+
+
 # [2.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.34.0...@ovh-ux/manager-vps@2.35.0) (2023-07-06)
 
 
