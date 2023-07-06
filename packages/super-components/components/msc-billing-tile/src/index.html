@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+        />
+        <title>Dev msc-billing-tile</title>
+        <link rel="stylesheet" href="/build/msc-billing-tile.css" />
+    </head>
+    <body>
+        <section
+            style="
+                display: grid;
+                grid-gap: 30px;
+                grid-template-columns: repeat(3, 1fr);
+            "
+        >
+            <!-- NAS-HA service -->
+            <msc-billing-tile
+                service-path="dedicated/nasha/zpool-128894"
+                offer="zpool-128894"
+                data-tracking="home:dashboard:tuto"
+            >
+            </msc-billing-tile>
+
+            <!-- VPS service -->
+            <msc-billing-tile
+                service-path="vps/vps-0baa4fcf.vps.ovh.net"
+                offer="vps-0baa4fcf.vps.ovh.net"
+                language="en-GB"
+                data-tracking="home:dashboard:product"
+            >
+            </msc-billing-tile>
+
+            <!-- domain name -->
+            <msc-billing-tile
+                service-path="domain/agora3.ovh"
+                offer="agora3.ovh"
+                data-tracking="home:dashboard:product"
+            >
+            </msc-billing-tile>
+
+            <!-- VPS Cancelled service / Ended -->
+            <msc-billing-tile
+                service-path="vps/vps-37eb1a5a.vps.ovh.net"
+                offer="vps-37eb1a5a.vps.ovh.net"
+                data-tracking="home:dashboard:tuto"
+                language="en-GB"
+            >
+            </msc-billing-tile>
+
+            <!-- VPS Cancellation requested / Ends -->
+            <msc-billing-tile
+                service-path="vps/vps-9a706163.vps.ovh.net"
+                offer="vps-9a706163.vps.ovh.net"
+                data-tracking="home:dashboard:tuto"
+                language="en-GB"
+            >
+            </msc-billing-tile>
+        </section>
+        <script type="module">
+            !window.ods &&
+                (window.ods = { config: { logging: { active: true } } });
+        </script>
+
+        <script type="module" src="/build/msc-billing-tile.esm.js"></script>
+        <script nomodule src="/build/msc-billing-tile.js"></script>
+    </body>
+</html>

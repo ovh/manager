@@ -58,8 +58,9 @@ export const getStencilConfig = ({
 }: {
   namespace: string;
   componentCorePackage: string;
-}): Config =>
-  getOdsStencilConfig({
+}): Config => {
+  // Get the base config
+  const baseConfig = getOdsStencilConfig({
     namespace,
     args,
     distCustomElements: {
@@ -106,6 +107,19 @@ export const getStencilConfig = ({
     test: {
       globalScript: 'src/global.test.ts',
     },
-  }) as Config;
+  });
+
+  // Merge outputTargets with the new target
+  const outputTargets = [
+    ...(baseConfig.outputTargets || []),
+    {
+      type: 'www',
+      copy: [{ src: 'translations', dest: 'translations' }],
+    },
+  ];
+
+  // Return the combined config
+  return { ...baseConfig, outputTargets } as Config;
+};
 
 export default getStencilConfig;
