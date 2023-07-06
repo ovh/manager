@@ -2,14 +2,14 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "declaration": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "jsxFactory": "h",
     "jsxFragmentFactory": "Fragment",
-    "lib": ["dom", "es2018", "esnext.array"],
+    "lib": ["es6", "dom", "es2018", "esnext.array"],
     "module": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": true,
@@ -19,7 +19,8 @@
     "pretty": true,
     "skipLibCheck": true,
     "paths": {
-      "@ovhcloud/msc-stencil": ["./packages/super-components/*"]
+      "@ovhcloud/msc-stencil": ["./packages/super-components/*"],
+      "utils/*": ["./utils/*"]
     },
     "resolveJsonModule": true,
     "strictNullChecks": true,
