@@ -1,5 +1,4 @@
 import sortBy from 'lodash/sortBy';
-import capitalize from 'lodash/capitalize';
 import { DOMAIN_TRACKING } from '../../../../../hosting/hosting.constants';
 
 export default class {
@@ -19,11 +18,6 @@ export default class {
       ),
       'pricing.price',
     );
-
-    this.hostingOffers = this.availableOffers.map((offer) => ({
-      value: offer,
-      name: capitalize(offer.toLowerCase()).replace('_', ' '),
-    }));
   }
 
   trackClick(hit) {

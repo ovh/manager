@@ -117,13 +117,14 @@ export default class WebComponentsHostingDomainOffersController {
             'hosting-free-100m',
             'hosting-starter-ovh',
             'hosting-starter',
-          ].includes(offer.value),
+            'cloudweb1',
+            'cloudweb2',
+            'cloudweb3',
+          ].includes(offer.planCode),
       ) // todo: remove the filter when api will be up-to-date
       .map((offer) => {
         const category = this.constructor.getOfferCategory(offer);
-        const offerVersion =
-          VERSION_MAP[offer.value.toLowerCase()] || offer.value;
-
+        const offerVersion = VERSION_MAP[offer.planCode] || offer.planCode;
         const technicalsOffer = this.getOfferSelector(category, offerVersion);
         const { planCode } = technicalsOffer;
         const price = this.formatOfferPrice(category, planCode);
@@ -186,7 +187,7 @@ export default class WebComponentsHostingDomainOffersController {
   }
 
   static getOfferCategory(offer) {
-    return (CATEGORIES_MAP[offer.value] || offer.value).toLowerCase();
+    return (CATEGORIES_MAP[offer.planCode] || offer.planCode).toLowerCase();
   }
 
   formatOfferPrice(offerCategory, planCode) {
