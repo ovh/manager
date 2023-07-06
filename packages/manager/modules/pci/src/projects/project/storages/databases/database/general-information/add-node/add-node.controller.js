@@ -8,6 +8,7 @@ export default class {
   }
 
   $onInit() {
+    this.showMonthlyPrices = false;
     this.addingNode = false;
     this.name = this.database.description;
     this.trackDashboard('general_information::add_node');
@@ -21,7 +22,9 @@ export default class {
   }
 
   computePrice() {
-    const flavorPrice = this.currentFlavor.nodeHourlyPrice;
+    const flavorPrice = this.showMonthlyPrices
+      ? this.currentFlavor.nodeMonthlyPrice
+      : this.currentFlavor.nodeHourlyPrice;
     let addedStorageByNode =
       this.database.disk.size - this.currentFlavor.minDiskSize;
     // if engine is distributed, the stockage is distributed between the nodes, so to get the
@@ -29,10 +32,18 @@ export default class {
     if (this.dbEngine.isDistributedStorage) {
       addedStorageByNode /= this.database.nodeNumber;
     }
-    const additionalStoragePrice = Math.max(
-      0,
-      addedStorageByNode * this.currentFlavor.hourlyPricePerGB.priceInUcents,
-    );
+    const additionalStoragePrice = this.showMonthlyPrices
+      ? Math.max(
+          0,
+          addedStorageByNode *
+            this.currentFlavor.hourlyPricePerGB.priceInUcents,
+        )
+      : Math.max(
+          0,
+          addedStorageByNode *
+            this.currentFlavor.monthlyPricePerGB.priceInUcents,
+        );
+
     this.price = flavorPrice.priceInUcents + additionalStoragePrice;
   }
 
