@@ -4,19 +4,12 @@ import component from './domain-webhosting-order.component';
 const resolve = {
   assignCart: /* @ngInject */ (WucOrderCartService) => (cartId) =>
     WucOrderCartService.assignCart(cartId),
-  /* @ngInject */
-  getAvailableModules: (cartId, WebHostingOrder) => (offer) =>
+
+  getAvailableModules: /* @ngInject */ (cartId, WebHostingOrder) => (offer) =>
     WebHostingOrder.getAvailableModules(cartId, offer),
 
-  /** TODO: for the moment the available offers must be hardcoded. Later they will be dynamic */
-  availableOffers: /* @ngInject */ () => [
-    'hosting-perso',
-    'hosting-pro',
-    'hosting-performance-1',
-    'hosting-performance-2',
-    'hosting-performance-3',
-    'hosting-performance-4',
-  ],
+  availableOffers: /* @ngInject */ (cartId, user, WebHostingOrder) =>
+    WebHostingOrder.getAvailableOffers(cartId, user.ovhSubsidiary),
 
   cartId: /* @ngInject */ (assignCart, createCart) =>
     createCart().then(({ cartId }) => assignCart(cartId).then(() => cartId)),
@@ -56,9 +49,12 @@ const resolve = {
     ),
   openBill: /* @ngInject */ ($window) => (billUrl) =>
     $window.open(billUrl, '_blank'),
-  /* @ngInject */
-  prepareCheckout: (WebHostingOrder) => (cartId, cartOption, domainName) =>
-    WebHostingOrder.prepareCheckout(cartId, cartOption, domainName),
+
+  prepareCheckout: /* @ngInject */ (WebHostingOrder) => (
+    cartId,
+    cartOption,
+    domainName,
+  ) => WebHostingOrder.prepareCheckout(cartId, cartOption, domainName),
   validateCheckout: /* @ngInject */ (
     $timeout,
     $translate,
@@ -101,6 +97,10 @@ const resolve = {
               ),
         );
       }),
+
+  catalog: /* @ngInject */ (user, WebHostingOrder) =>
+    WebHostingOrder.getCatalog(user.ovhSubsidiary),
+
   breadcrumb: /* @ngInject */ ($translate) =>
     $translate.instant('domain_webhosting_order_title'),
 };
@@ -120,10 +120,6 @@ export default /* @ngInject */ ($stateProvider) => {
           $state.go('app.domain.product.information'),
 
         user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
-
-        catalog: /* @ngInject */ (user, WebHostingOrder) => {
-          return WebHostingOrder.getCatalog(user.ovhSubsidiary);
-        },
       },
     })
     .state('app.alldom.domain.webhosting.order', {

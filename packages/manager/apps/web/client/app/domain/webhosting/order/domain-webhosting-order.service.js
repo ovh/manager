@@ -35,11 +35,11 @@ export default class {
   getAvailableOffers(cartId, ovhSubsidiary) {
     return this.$q
       .all({
-        catalog: this.OvhApiOrder.Catalog()
-          .Public()
-          .v6()
-          .get({ productName: WEBHOSTING_ORDER_PRODUCT, ovhSubsidiary })
-          .$promise.then(({ plans }) => plans),
+        catalog: this.$http
+          .get(
+            `/order/catalog/public/webhostingPreprod?ovhSubsidiary=${ovhSubsidiary}`, // todo: preprod for testing
+          )
+          .then(({ data: { plans } }) => plans),
         offers: this.OvhApiOrder.Cart()
           .Product()
           .v6()
