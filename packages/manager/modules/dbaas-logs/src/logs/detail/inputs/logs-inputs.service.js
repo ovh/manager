@@ -81,6 +81,16 @@ export default class LogsInputsService {
       .execute().$promise;
   }
 
+  getInputEngineHelpers(serviceName, engineId) {
+    return this.iceberg(
+      `/dbaas/logs/${serviceName}/input/engine/${engineId}/helper`,
+    )
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(10000)
+      .execute().$promise;
+  }
+
   getFlowggerLogFormats() {
     return this.flowggerLogFormats;
   }
@@ -200,9 +210,9 @@ export default class LogsInputsService {
    * @returns promise which will be resolve to an input object
    * @memberof LogsInputsService
    */
-  getInputDetail(serviceName, inputId) {
+  getInputDetail(serviceName, inputId, extra) {
     return this.getInput(serviceName, inputId).then((input) =>
-      this.transformInput(input),
+      this.transformInput(input.data, extra),
     );
   }
 
@@ -322,13 +332,55 @@ export default class LogsInputsService {
    * @returns the transformed input
    * @memberof LogsInputsService
    */
-  transformInput(input) {
+  transformInput(input, extra) {
     this.getInputEngines(this.serviceName).then((engines) => {
       const engine = find(
         engines.data,
         (inputEngine) => input.engineId === inputEngine.engineId,
       );
       set(input, 'engine.software', [engine.name, engine.version].join(' '));
+      if (extra) {
+        set(input, 'engine.name', engine.name);
+        set(input, 'engine.version', engine.version);
+        if (engine.name === this.LogsConstants.logstash) {
+          this.getInputEngineHelpers(this.serviceName, input.engineId).then(
+            (helpers) => {
+              set(input, 'helpers', helpers.data);
+            },
+          );
+          this.getLogstashConfiguration(this.serviceName, input).then(
+            (configuration) => {
+              set(
+                input,
+                'engine.configuration.inputSection',
+                this.CucControllerHelper.constructor.htmlDecode(
+                  configuration.data.inputSection,
+                ),
+              );
+              set(
+                input,
+                'engine.configuration.filterSection',
+                this.CucControllerHelper.constructor.htmlDecode(
+                  configuration.data.filterSection,
+                ),
+              );
+              set(
+                input,
+                'engine.configuration.patternSection',
+                this.CucControllerHelper.constructor.htmlDecode(
+                  configuration.data.patternSection,
+                ),
+              );
+            },
+          );
+        } else {
+          this.getFlowggerConfiguration(this.serviceName, input).then(
+            (configuration) => {
+              set(input, 'engine.configuration', configuration.data);
+            },
+          );
+        }
+      }
     });
     set(input, 'exposedPort', parseInt(input.exposedPort, 10));
     if (Array.isArray(input.allowedNetworks)) {
@@ -395,7 +447,7 @@ export default class LogsInputsService {
 
   executeTest(serviceName, input) {
     return this.$http
-      .post(`/dbaas/logs/${serviceName}/input/${input.inputId}/test`)
+      .post(`/dbaas/logs/${serviceName}/input/${input.inputId}/configtest`)
       .then((operation) => {
         this.LogsHelperService.handleOperation(
           serviceName,
@@ -411,13 +463,13 @@ export default class LogsInputsService {
       );
   }
 
-  updateFlowgger(serviceName, input, flowgger) {
+  updateFlowgger(serviceName, input) {
     return this.$http
       .put(
         `/dbaas/logs/${serviceName}/input/${input.inputId}/configuration/flowgger`,
         {
-          logFormat: flowgger.logFormat,
-          logFraming: flowgger.logFraming,
+          logFormat: input.engine.configuration.logFormat,
+          logFraming: input.engine.configuration.logFraming,
         },
       )
       .then((operation) => {
@@ -439,14 +491,28 @@ export default class LogsInputsService {
       );
   }
 
-  updateLogstash(serviceName, input, logstash) {
+  getLogstashConfiguration(serviceName, input) {
+    return this.$http.get(
+      `/dbaas/logs/${serviceName}/input/${input.inputId}/configuration/logstash`,
+    );
+  }
+
+  getFlowggerConfiguration(serviceName, input) {
+    return this.$http.get(
+      `/dbaas/logs/${serviceName}/input/${input.inputId}/configuration/flowgger`,
+    );
+  }
+
+  updateLogstash(serviceName, input) {
+    console.log(input);
+
     return this.$http
       .put(
         `/dbaas/logs/${serviceName}/input/${input.inputId}/configuration/logstash`,
         {
-          filterSection: logstash.filterSection,
-          inputSection: logstash.inputSection,
-          patternSection: logstash.patternSection,
+          filterSection: input.engine.configuration.filterSection,
+          inputSection: input.engine.configuration.inputSection,
+          patternSection: input.engine.configuration.patternSection,
         },
       )
       .then((operation) => {

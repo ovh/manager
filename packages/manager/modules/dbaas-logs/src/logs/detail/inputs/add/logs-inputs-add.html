@@ -8,7 +8,7 @@
     <div ng-if="ctrl.editMode" class="mb-5">
         <span
             data-translate="inputs_logs_edit_description"
-            data-translate-values="{ name: ctrl.input.data.info.title}"
+            data-translate-values="{ name: ctrl.input.data.title}"
         ></span>
     </div>
 
@@ -36,7 +36,7 @@
                     class="oui-progress-tracker__status"
                     data-ui-sref="dbaas-logs.detail.inputs.input.editwizard.configure({
                         inputId: ctrl.inputId,
-                        exposedPort: ctrl.input.data.info.exposedPort
+                        exposedPort: ctrl.input.data.exposedPort
                     })"
                 >
                     <span

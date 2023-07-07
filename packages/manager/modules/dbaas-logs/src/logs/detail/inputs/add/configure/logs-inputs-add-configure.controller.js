@@ -25,11 +25,6 @@ export default class LogsInputsAddConfigureCtrl {
     this.LogsInputsService = LogsInputsService;
     this.LogsConstants = LogsConstants;
     this.CucCloudMessage = CucCloudMessage;
-    this.configuration = {
-      engineType: '',
-      flowgger: {},
-      logstash: {},
-    };
     this.loading = {
       engine: false,
     };
@@ -44,16 +39,10 @@ export default class LogsInputsAddConfigureCtrl {
   initLoaders() {
     this.input = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
-        this.LogsInputsService.getInput(this.serviceName, this.inputId).then(
-          (input) => {
-            this.configuration.engineType = input.info.engine.name;
-            if (this.configuration.engineType === this.LogsConstants.logstash) {
-              this.initLogstash(input.info.engine.configuration);
-            } else {
-              this.initFlowgger(input.info.engine.configuration);
-            }
-            return input;
-          },
+        this.LogsInputsService.getInputDetail(
+          this.serviceName,
+          this.inputId,
+          true,
         ),
     });
 
@@ -64,59 +53,36 @@ export default class LogsInputsAddConfigureCtrl {
           this.input.data,
         ),
     });
+
     this.previousTest = this.test;
 
     this.input.load().then(() => {
       this.previousTest.load();
-      if (this.configuration.engineType === this.LogsConstants.logstash) {
-        this.getEngine();
-      }
     });
-  }
-
-  getEngine() {
-    this.loading.engine = true;
-    this.LogsInputsService.getInputEngines(this.serviceName).then((engines) => {
-      this.engine = find(engines, {
-        engineId: this.input.data.info.engineId,
-      });
-      this.loading.engine = false;
-    });
-  }
-
-  initFlowgger(configuration) {
-    this.configuration.flowgger.logFormat = configuration.logFormat;
-    this.configuration.flowgger.logFraming = configuration.logFraming;
   }
 
   static findRowLength(str) {
-    const lines = str.split(/\r\n|\r|\n/);
-    return lines.length;
-  }
-
-  initLogstash(configuration) {
-    this.configuration.logstash.inputSection = this.CucControllerHelper.constructor.htmlDecode(
-      configuration.inputSection,
-    );
-    this.configuration.logstash.filterSection = this.CucControllerHelper.constructor.htmlDecode(
-      configuration.filterSection,
-    );
-    this.configuration.logstash.patternSection = this.CucControllerHelper.constructor.htmlDecode(
-      configuration.patternSection,
-    );
+    if (str) {
+      const lines = str.split(/\r\n|\r|\n/);
+      return lines.length;
+    }
+    return 5;
   }
 
   applyConfiguration(name) {
-    const helper = find(this.engine.helpers, { title: name });
-    this.configuration.logstash.inputSection = find(helper.sections, {
+    const helper = find(this.input.data.helpers, { title: name });
+    this.input.data.engine.configuration.inputSection = find(helper.sections, {
       name: 'LOGSTASH_INPUT',
-    }).content.replace('INPUT_PORT', this.input.data.info.exposedPort);
-    this.configuration.logstash.filterSection = find(helper.sections, {
+    }).content.replace('INPUT_PORT', this.input.data.exposedPort);
+    this.input.data.engine.configuration.filterSection = find(helper.sections, {
       name: 'LOGSTASH_FILTER',
     }).content;
-    this.configuration.logstash.patternSection = find(helper.sections, {
-      name: 'LOGSTASH_PATTERN',
-    }).content;
+    this.input.data.engine.configuration.patternSection = find(
+      helper.sections,
+      {
+        name: 'LOGSTASH_PATTERN',
+      },
+    ).content;
   }
 
   executeTest() {
@@ -127,16 +93,15 @@ export default class LogsInputsAddConfigureCtrl {
           ? this.LogsInputsService.updateLogstash(
               this.serviceName,
               this.input.data,
-              this.configuration.logstash,
             )
           : this.$q.when({})
         )
-          .then(() =>
+          .then(() => {
             this.LogsInputsService.executeTest(
               this.serviceName,
               this.input.data,
-            ),
-          )
+            );
+          })
           .catch(() => this.CucControllerHelper.scrollPageToTop()),
     });
     this.test.load();
@@ -152,11 +117,7 @@ export default class LogsInputsAddConfigureCtrl {
     this.CucCloudMessage.flushChildMessage();
     this.saving = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
-        this.LogsInputsService.updateFlowgger(
-          this.serviceName,
-          this.input.data,
-          this.configuration.flowgger,
-        )
+        this.LogsInputsService.updateFlowgger(this.serviceName, this.input.data)
           .then(() => this.goToInputs())
           .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
@@ -187,11 +148,7 @@ export default class LogsInputsAddConfigureCtrl {
     this.CucCloudMessage.flushChildMessage();
     this.saving = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
-        this.LogsInputsService.updateLogstash(
-          this.serviceName,
-          this.input.data,
-          this.configuration.logstash,
-        )
+        this.LogsInputsService.updateLogstash(this.serviceName, this.input.data)
           .then(() => this.goToInputs())
           .finally(() => this.CucControllerHelper.scrollPageToTop()),
     });
