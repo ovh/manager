@@ -55,14 +55,16 @@
         data-header="{{ $ctrl.getImageHeader(stepImage.display) }}"
         data-loading="$ctrl.loadingRegionDeps"
         data-on-focus="stepImage.display = true"
-        data-on-submit="stepImage.display = false"
+        data-on-submit="stepImage.display = $ctrl.onImageSubmit()"
         data-prevent-next="true"
-        data-valid="$ctrl.appModel.image"
+        data-valid="$ctrl.appModel.image.isCustom ? $ctrl.appModel.image.customImageName : ($ctrl.appModel.image.preset && $ctrl.appModel.image.partnerConditionsAccepted)"
     >
         <app-image
             data-ng-if="stepImage.display"
-            data-image="$ctrl.appModel.image"
-            data-preset="$ctrl.appModel.preset"
+            data-image="$ctrl.appModel.image.customImageName"
+            data-preset="$ctrl.appModel.image.preset"
+            data-partner-conditions-accepted="$ctrl.appModel.image.partnerConditionsAccepted"
+            data-show-advanced-image="$ctrl.appModel.image.isCustom"
             data-flavors="$ctrl.flavors"
             data-presets="$ctrl.presets"
             data-prices="$ctrl.prices"
@@ -98,7 +100,7 @@
         data-on-focus="stepVolumes.display = true"
         data-on-submit="stepVolumes.display = false"
         data-loading="$ctrl.loadingRegionDeps"
-        data-ng-if="!$ctrl.appModel.preset || $ctrl.appModel.preset.capabilities.volume"
+        data-ng-if="$ctrl.appModel.image.isCustom"
         data-prevent-next="true"
     >
         <app-attach
