@@ -24,9 +24,10 @@
                         <input
                             class="oui-input"
                             readonly
-                            data-ng-model="$ctrl.app.spec.image"
+                            data-ng-model="$ctrl.appName"
                         />
                         <oui-button
+                            data-ng-if="!$ctrl.app.partner"
                             data-size="m"
                             data-variant="link"
                             data-icon-right="oui-icon-pen"
@@ -66,6 +67,7 @@
 
                 <!--Container-->
                 <oui-tile-definition
+                    data-ng-if="!$ctrl.app.partner"
                     data-term="{{:: 'pci_apps_general_information_info_app_container' | translate }}"
                 >
                     <!--Nb total container-->
@@ -403,15 +405,5 @@
                 </oui-tile-definition>
             </oui-tile>
         </div>
-    </div>
-    <div data-ng-if="$ctrl.app.spec.partnerId">
-        <oui-tile
-            class="full-height"
-            data-heading="{{:: 'pci_apps_general_information_snippet_title' | translate }}"
-            data-loading="$ctrl.loading.instance"
-        >
-            <ng-bind-html data-ng-bind-html="$ctrl.preset.snippet">
-            </ng-bind-html>
-        </oui-tile>
     </div>
 </div>

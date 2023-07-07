@@ -145,6 +145,40 @@ export default class AppService {
       .then(({ data }) => data);
   }
 
+  getPartnersImages(serviceName, region) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/ai/capabilities/region/${region}/app/image`,
+        AppService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  getPartners(serviceName, region) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/ai/partners/region/${region}/partner`,
+        AppService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  getPartner(serviceName, region, partnerId) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/ai/partners/region/${region}/partner/${partnerId}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  upadatePartnerSignature(serviceName, region, partnerId) {
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/ai/partners/region/${region}/partner/${partnerId}/contract/signature`,
+      )
+      .then(({ data }) => data);
+  }
+
   getStorages(serviceName, archive = false, withObjects = false) {
     return this.OvhApiCloudProjectStorage.Aapi().query({
       serviceName,

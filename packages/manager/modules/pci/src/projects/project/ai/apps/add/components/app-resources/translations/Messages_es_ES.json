@@ -31,7 +31,8 @@
   "pci_app_add_resources_scaling_trigger_threshold": "Umbral de activación (%)",
   "pci_app_add_resources_scaling_trigger_threshold_help_text": "Valor de la métrica, en porcentaje.",
   "pci_app_add_resources_scaling_price_warning": "El precio total del despliegue se calcula en función del número mínimo de réplicas seleccionado. Tenga en cuenta que el coste total puede aumentar cuando el autoscaling está activado.",
-  "pci_app_add_resources_total": "Precio total del despliegue",
+  "pci_app_add_resources_total": "Precio de los recursos seleccionados",
   "pci_app_add_resources_resource_price": "Precio del recurso",
-  "pci_app_add_resources_partner_price": "Precio de la licencia"
+  "pci_app_add_resources_partner_price": "Precio de la licencia",
+  "pci_app_add_resources_total_info": "El precio mostrado arriba se aplica a los recursos físicos para el despliegue. En función del modelo de partners elegido, es posible que se apliquen cargos adicionales. Por favor, consulte el resumen."
 }
