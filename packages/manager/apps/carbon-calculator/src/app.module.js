@@ -13,6 +13,7 @@ import CarbonCalculator from '../../../modules/carbon-calculator/src';
 import errorPage from './error';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
+import { TRACKING } from '../../dedicated/client/app/at-internet.constants';
 
 export default async (containerEl, shellClient) => {
   const moduleName = 'CarbonCalculatorApp';
@@ -126,10 +127,9 @@ export default async (containerEl, shellClient) => {
     )
     .config(routingConfig)
     .config(ssoAuthConfig)
-    // @TODO initialize tracking configuration here
-    // .config(async () => {
-    //   await shellClient.tracking.setConfig(TRACKING);
-    // })
+    .config(async () => {
+      await shellClient.tracking.setConfig(TRACKING);
+    })
     .config(calendarConfigProvider)
     .run(broadcastAppStarted)
     .run(transitionsConfig)
