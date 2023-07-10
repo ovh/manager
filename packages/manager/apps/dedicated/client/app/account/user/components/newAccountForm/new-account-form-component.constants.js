@@ -372,6 +372,11 @@ export const PHONE_PREFIX = {
 
 export const IN_SUBSIDIARY = 'IN';
 export const USER_TYPE_ENTERPRISE = 'corporation';
+export const NEW_SUPPORT_TICKET_PARAMS = {
+  categoryName: 'account',
+  preFetchData: true,
+};
+
 export default {
   ENUM_TRANSLATION_RULES,
   MODEL_DEBOUNCE_DELAY,
@@ -385,4 +390,5 @@ export default {
   FIELD_NAME_LIST,
   IN_SUBSIDIARY,
   USER_TYPE_ENTERPRISE,
+  NEW_SUPPORT_TICKET_PARAMS,
 };

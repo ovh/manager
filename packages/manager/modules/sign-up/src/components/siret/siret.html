@@ -169,10 +169,10 @@
                     data-ng-model="$ctrl.model.organisation"
                     data-ng-required="$ctrl.rules.organisation.mandatory"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.companyName)"
+                    data-ng-disabled="$ctrl.disableField"
                     required
                 />
             </oui-field>
-
             <oui-field
                 class="col-lg-6"
                 data-label="{{ 'siret_manual_company_legal_form' | translate }}"
@@ -182,6 +182,7 @@
                     data-name="corporationType"
                     data-model="$ctrl.model.corporationType"
                     data-on-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.corporationType)"
+                    disabled="$ctrl.disableField"
                     data-required
                 >
                 </oui-select>
@@ -201,6 +202,7 @@
                     data-ng-pattern="$ctrl.rules.companyNationalIdentificationNumber.regularExpression"
                     type="text"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.siret)"
+                    data-ng-disabled="$ctrl.disableField"
                 />
             </oui-field>
 
@@ -217,6 +219,7 @@
                     data-ng-pattern="$ctrl.rules.vat.regularExpression"
                     type="text"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.vat)"
+                    disabled="$ctrl.disableField"
                 />
             </oui-field>
         </div>
