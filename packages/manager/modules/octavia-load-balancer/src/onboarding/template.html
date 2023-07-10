@@ -2,6 +2,7 @@
     class="mt-5"
     data-guides="$ctrl.GUIDES"
     data-image-source="$ctrl.illustration"
+    data-on-guide-click="$ctrl.onGuideClick(guide)"
 >
     <onboarding-title>
         <p data-translate="octavia_load_balancer_onboarding_title"></p>
@@ -21,11 +22,14 @@
         ></p>
         <a
             class="oui-button oui-button_primary oui-button_l text-light"
-            data-translate="octavia_load_balancer_onboarding_cta"
             href="{{:: $ctrl.cta }}"
             target="_blank"
+            data-track-on="click"
+            data-track-name="{{:: $scrl.ctaTrackName }}"
+            data-track-type="navigation"
             rel="noopener"
         >
+            <span data-translate="octavia_load_balancer_onboarding_cta"> </span>
         </a>
     </onboarding-description>
 </manager-on-boarding-layout>
