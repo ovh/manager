@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.130.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.129.0...@ovh-ux/manager-pci@5.130.0) (2023-07-10)
+
+
+### Features
+
+* **pci.ai:** ai deploy partners ([cf3bd73](https://github.com/ovh/manager/commit/cf3bd733b171a451ade603b823bca54c1bbc1a98))
+
+
+
+
+
 # [5.129.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.128.1...@ovh-ux/manager-pci@5.129.0) (2023-07-06)
 
 
