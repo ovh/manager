@@ -1,7 +1,7 @@
 {
   "private_registry_common_create": "Criar",
   "private_registry_common_confirm": "Confirmar",
-  "private_registry_common_close": "Encerrar",
+  "private_registry_common_close": "Fechar",
   "private_registry_common_delete": "Eliminar",
   "private_registry_title": "Managed Private Registry",
   "private_registry_create_registry": "Criar um registo privado",
@@ -64,13 +64,13 @@
   "private_registry_onboarding_guides_registry_title": "Gerir o registo",
   "private_registry_onboarding_guides_deploy_title": "Arranque rápido",
   "private_registry_onboarding_generate": "Gerar informações de identificação",
-  "private_registry_beta_warning": "Este produto está disponível em versão beta e deverá aceitar os termos da versão beta para poder continuar.",
+  "private_registry_beta_warning": "Este produto está disponível em versão beta, e deverá aceitar os termos da versão beta para poder continuar.",
   "private_registry_accept": "Eu aceito",
   "private_registry_accept_beta_terms": "os termos da versão beta",
   "private_registry_new_project_contracts": "Li e aceito os contratos: {{ contractsLinks }}.",
   "private_registry_guide_creating_and_using_a_private_image": "Criação e utilização de imagens privadas",
   "private_registry_guide_using_private_registry_with_kubernetes": "Utilização do Managed Private Registry com o Managed Kubernetes",
   "private_registry_guide_using_the_helm_chart_museum": "Utilização do Helm Chart Museum",
-  "private_registry_common_cancel": "Cancelar",
-  "private_registry_region": "Area"
+  "private_registry_common_cancel": "Anular",
+  "private_registry_region": "Região"
 }

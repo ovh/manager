@@ -27,11 +27,11 @@
   "private_registry_common_status_READY": "OK",
   "private_registry_common_status_DELETED": "Eliminado",
   "private_registry_common_status_SUSPENDED": "Suspendida",
-  "private_registry_common_status_INSTALLING": "Instalando...",
-  "private_registry_common_status_UPDATING": "Actualizando...",
-  "private_registry_common_status_RESTORING": "Restaurando",
+  "private_registry_common_status_INSTALLING": "Instalación en curso",
+  "private_registry_common_status_UPDATING": "Actualización en progreso",
+  "private_registry_common_status_RESTORING": "Restauración",
   "private_registry_common_status_TO_SUSPENDING": "Suspendiendo",
-  "private_registry_common_status_DELETING": "Eliminando...",
+  "private_registry_common_status_DELETING": "En proceso de eliminación",
   "private_registry_common_status_DONE": "Finalizado",
   "private_registry_common_status_SCALING_UP": "Cambio de plan",
   "private_registry_guide_main": "Guías",
@@ -72,5 +72,5 @@
   "private_registry_guide_using_private_registry_with_kubernetes": "Utilización de Managed Private Registry con Managed Kubernetes",
   "private_registry_guide_using_the_helm_chart_museum": "Utilización de Helm ChartMuseum",
   "private_registry_common_cancel": "Cancelar",
-  "private_registry_region": "Zona"
+  "private_registry_region": "Región"
 }
