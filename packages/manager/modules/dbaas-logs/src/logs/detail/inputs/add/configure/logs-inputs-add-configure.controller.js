@@ -61,12 +61,12 @@ export default class LogsInputsAddConfigureCtrl {
     });
   }
 
-  static findRowLength(str) {
+  findRowLength(str) {
     if (str) {
       const lines = str.split(/\r\n|\r|\n/);
       return lines.length;
     }
-    return 5;
+    return this.LogsConstants.DEFAULT_LINE_NUMBER;
   }
 
   applyConfiguration(name) {

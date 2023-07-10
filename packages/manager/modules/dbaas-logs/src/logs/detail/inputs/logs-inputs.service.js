@@ -449,7 +449,7 @@ export default class LogsInputsService {
     return this.$http
       .post(`/dbaas/logs/${serviceName}/input/${input.inputId}/configtest`)
       .then((operation) => {
-        this.LogsHelperService.handleOperation(
+        return this.LogsHelperService.handleOperation(
           serviceName,
           operation.data || operation,
           'logs_inputs_stop_success',
@@ -504,8 +504,6 @@ export default class LogsInputsService {
   }
 
   updateLogstash(serviceName, input) {
-    console.log(input);
-
     return this.$http
       .put(
         `/dbaas/logs/${serviceName}/input/${input.inputId}/configuration/logstash`,

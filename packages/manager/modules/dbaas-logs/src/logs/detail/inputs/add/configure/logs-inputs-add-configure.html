@@ -149,7 +149,7 @@
         <form
             novalidate
             name="ctrl.logstashForm"
-            data-ng-if="!(ctrl.input.loading)"
+            data-ng-if="!ctrl.input.loading"
         >
             <oui-field
                 label="{{ ::'inputs_logs_configure_logstash_wizard' | translate }}"
@@ -201,7 +201,7 @@
                         <textarea
                             id="input"
                             name="input"
-                            rows="{{ctrl.constructor.findRowLength(ctrl.input.data.engine.configuration.inputSection)}}"
+                            rows="{{ctrl.findRowLength(ctrl.input.data.engine.configuration.inputSection)}}"
                             type="text"
                             class="oui-input"
                             data-ng-model="ctrl.input.data.engine.configuration.inputSection"
@@ -232,7 +232,7 @@
                         <textarea
                             id="filter"
                             name="filter"
-                            rows="{{ctrl.constructor.findRowLength(ctrl.input.data.engine.configuration.filterSection)}}"
+                            rows="{{ctrl.findRowLength(ctrl.input.data.engine.configuration.filterSection)}}"
                             type="text"
                             class="oui-input"
                             data-ng-model="ctrl.input.data.engine.configuration.filterSection"
@@ -264,7 +264,7 @@
                         <textarea
                             id="grok"
                             name="grok"
-                            rows="{{ctrl.constructor.findRowLength(ctrl.input.data.engine.configuration.patternSection) + ctrl.LogsConstants.patternRowFill}}"
+                            rows="{{ctrl.findRowLength(ctrl.input.data.engine.configuration.patternSection) + ctrl.LogsConstants.patternRowFill}}"
                             type="text"
                             class="oui-input"
                             data-ng-model="ctrl.input.data.engine.configuration.patternSection"
