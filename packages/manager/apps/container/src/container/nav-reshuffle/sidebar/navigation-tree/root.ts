@@ -70,6 +70,7 @@ const root: Node = {
           translation: 'sidebar_carbon_footprint',
           routing: {
             application: 'carbon-calculator',
+            hash: '#/',
           },
           count: false,
           features: ['carbon-calculator'],
