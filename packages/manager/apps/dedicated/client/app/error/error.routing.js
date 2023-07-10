@@ -20,7 +20,8 @@ export default /* @ngInject */ ($stateProvider) => {
         const [, product] = $state
           .href(state, params, { lossy: true })
           .split('/');
-        return product;
+        // URI params are removed from error tracking
+        return product?.split('?')[0];
       },
       submitAction: /* @ngInject */ ($window) => () =>
         $window.location.reload(),

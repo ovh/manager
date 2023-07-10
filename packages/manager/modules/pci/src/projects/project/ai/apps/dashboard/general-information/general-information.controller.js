@@ -23,13 +23,12 @@ export default class {
     this.messageContainer =
       'pci.projects.project.ai.apps.dashboard.general-information';
     this.loadMessages();
+  }
 
-    if (this.preset) {
-      this.preset.snippet = this.preset.snippet.replaceAll(
-        '$URL',
-        this.app.accessUrl,
-      );
-    }
+  get appName() {
+    const { partner } = this.app;
+    const { image } = this.app.spec;
+    return partner ? `${partner.id}/${image}` : image;
   }
 
   loadMessages() {

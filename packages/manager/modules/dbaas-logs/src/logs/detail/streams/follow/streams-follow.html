@@ -1,14 +1,10 @@
 <div class="log-streams-follow">
-    <oui-back-button
-        data-state="dbaas-logs.detail.streams"
-        class="back_button_inline_text"
-        data-state-params="{ serviceName: ctrl.serviceName}"
+    <oui-back-button data-ui-sref="dbaas-logs.detail.streams"
         ><span data-translate="logs_streams_follow_live"></span
     ></oui-back-button>
-
     <p
         data-translate="logs_streams_follow_description"
-        data-translate-values="{name:ctrl.stream.data.info.title}"
+        data-translate-values="{name:ctrl.stream.data.title}"
     ></p>
 
     <oui-spinner data-ng-if="ctrl.stream.loading"></oui-spinner>
@@ -70,19 +66,19 @@
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-ng-if="ctrl.stream.data.info.isEditable"
+                data-ng-if="ctrl.stream.data.isEditable"
                 data-on-click="ctrl.testFlow(ctrl.LogsStreamsFollowService.testTypeEnum.GELF)"
             >
                 <span data-translate="logs_streams_follow_test_gelf"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-ng-if="ctrl.stream.data.info.isEditable"
+                data-ng-if="ctrl.stream.data.isEditable"
                 data-on-click="ctrl.testFlow(ctrl.LogsStreamsFollowService.testTypeEnum.LTSV)"
             >
                 <span data-translate="logs_streams_follow_test_ltsv"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-ng-if="ctrl.stream.data.info.isEditable"
+                data-ng-if="ctrl.stream.data.isEditable"
                 data-on-click="ctrl.testFlow(ctrl.testFlow(ctrl.LogsStreamsFollowService.testTypeEnum.RFC5424))"
             >
                 <span data-translate="logs_streams_follow_test_rfc"></span>

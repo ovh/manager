@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.130.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.129.0...@ovh-ux/manager-pci@5.130.0) (2023-07-10)
+
+
+### Features
+
+* **pci.ai:** ai deploy partners ([cf3bd73](https://github.com/ovh/manager/commit/cf3bd733b171a451ade603b823bca54c1bbc1a98))
+
+
+
+
+
+# [5.129.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.128.1...@ovh-ux/manager-pci@5.129.0) (2023-07-06)
+
+
+### Bug Fixes
+
+* **pci.ai:** add a filter on s3 storage container in ai tools ([#9481](https://github.com/ovh/manager/issues/9481)) ([f2af5c3](https://github.com/ovh/manager/commit/f2af5c3d45bb0e3e8a026440d55c7d1d78c1f3ca))
+* **pci:** change HTTP method ([#9386](https://github.com/ovh/manager/issues/9386)) ([822e4c3](https://github.com/ovh/manager/commit/822e4c31bc93d2acfb7a2777e7944630c7737e2d))
+* **pci:** fix call api storage access ([#9541](https://github.com/ovh/manager/issues/9541)) ([1f6c040](https://github.com/ovh/manager/commit/1f6c040eda22ae780f7cc5bb6c53a1fa8ba30769))
+* remove URI params on product label ([#9372](https://github.com/ovh/manager/issues/9372)) ([3df3030](https://github.com/ovh/manager/commit/3df303031e5536b53761ed0b0af3ef1acb7eb41e))
+
+
+### Features
+
+* add cross border payment sentence for TN/SA/MN ([#9343](https://github.com/ovh/manager/issues/9343)) ([32882a9](https://github.com/ovh/manager/commit/32882a9a4fdb83d7c62c32a98b431e9e133021f6))
+* **pci:** add guide advice for windows private mode vrack ([#9421](https://github.com/ovh/manager/issues/9421)) ([1024316](https://github.com/ovh/manager/commit/10243166ca26d90a45b5ae6e50e511ad1894e196))
+* **pci:** switch hourly and monthly billing options ([#9490](https://github.com/ovh/manager/issues/9490)) ([c9be577](https://github.com/ovh/manager/commit/c9be577fb2cde3a99eacfb4a537525e70e96f81f))
+
+
+### Reverts
+
+* Revert "fix(pci): change HTTP method (#9386)" ([229fa24](https://github.com/ovh/manager/commit/229fa24ecc709e20285f4cbe462978b0f76c2b74)), closes [#9386](https://github.com/ovh/manager/issues/9386)
+
+
+
+
+
 ## [5.128.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.128.0...@ovh-ux/manager-pci@5.128.1) (2023-06-21)
 
 

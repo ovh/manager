@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.6.3...@ovh-ux/manager-nutanix@1.7.0) (2023-07-06)
+
+
+### Features
+
+* **nutanix:** missing and wrong tracking data ([#9461](https://github.com/ovh/manager/issues/9461)) ([e13560c](https://github.com/ovh/manager/commit/e13560cb07ab5504630253b3dde33d6f1bd1e0a3))
+
+
+
+
+
 ## [1.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.6.2...@ovh-ux/manager-nutanix@1.6.3) (2023-06-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-nutanix

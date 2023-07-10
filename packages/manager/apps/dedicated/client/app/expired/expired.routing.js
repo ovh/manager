@@ -17,7 +17,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.configuration', { reload: true }),
       error: /* @ngInject */ ($transition$) =>
         get($transition$.params(), 'error'),
-      product: /* @ngInject */ ($transition$) => $transition$.params()?.product,
+      product: /* @ngInject */ ($transition$) => {
+        // URI params are removed from error tracking
+        const product = $transition$.params()?.product;
+        return product?.split('?')[0];
+      },
       translationsRefresh: /* @ngInject */ ($translate) => $translate.refresh(),
       breadcrumb: () => null,
     },

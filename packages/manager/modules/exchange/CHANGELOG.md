@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.7.1...@ovh-ux/manager-exchange@3.8.0) (2023-07-07)
+
+
+### Features
+
+* **web:** add spf banner ([05a5d70](https://github.com/ovh/manager/commit/05a5d70619206ac1e5d5f5649c25f9940a5a37fe))
+
+
+
+
+
 ## [3.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.7.0...@ovh-ux/manager-exchange@3.7.1) (2023-04-20)
 
 

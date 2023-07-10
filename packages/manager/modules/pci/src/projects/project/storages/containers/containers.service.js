@@ -53,11 +53,9 @@ export default class PciStoragesContainersService {
 
   getAccessAndToken(projectId, s3StorageType, selectedRegion) {
     if (!s3StorageType) {
-      return this.OvhApiCloudProjectStorage.v6()
-        .access({
-          projectId,
-        })
-        .$promise.then(({ token, endpoints }) => ({
+      return this.$http
+        .post(`/cloud/project/${projectId}/storage/access`)
+        .then(({ data: { token, endpoints } }) => ({
           token,
           endpoints: reduce(
             endpoints,

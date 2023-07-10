@@ -22,6 +22,7 @@ import {
   INSTANCE_MODES_ENUM,
   INSTANCE_READ_MORE_GUIDE,
   FLOATING_IP_AVAILABILITY_INFO_LINK,
+  WINDOWS_PRIVATE_MODE_LICENSE_GUIDE,
   FILTER_PRIVATE_NETWORK_BAREMETAL,
   FLAVORS_BAREMETAL,
   PUBLIC_NETWORK,
@@ -56,6 +57,9 @@ export default class PciInstancesAddController {
     this.instanceReadMoreUrl =
       INSTANCE_READ_MORE_GUIDE.ALL_GUIDE[this.user.ovhSubsidiary] ||
       INSTANCE_READ_MORE_GUIDE.ALL_GUIDE.DEFAULT;
+    this.windowsPrivateModeLicenseGuideUrl =
+      WINDOWS_PRIVATE_MODE_LICENSE_GUIDE[this.user.ovhSubsidiary] ||
+      WINDOWS_PRIVATE_MODE_LICENSE_GUIDE.DEFAULT;
     this.instanceModeEnum = INSTANCE_MODES_ENUM;
     this.currency = coreConfig.getUser().currency.symbol;
     this.PciProjectAdditionalIpService = PciProjectAdditionalIpService;
@@ -318,6 +322,10 @@ export default class PciInstancesAddController {
 
   isLinuxImageType() {
     return this.model.image?.type?.includes('linux');
+  }
+
+  isWindowsImageType() {
+    return this.model.image?.type?.includes('windows');
   }
 
   getBackupPrice() {

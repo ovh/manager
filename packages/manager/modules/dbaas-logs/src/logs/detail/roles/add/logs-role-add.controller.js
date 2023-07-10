@@ -4,12 +4,14 @@ export default class LogsRoleAddModalCtrl {
     $q,
     $stateParams,
     $uibModalInstance,
+    ouiDatagridService,
     CucControllerHelper,
     LogsRolesService,
     roleInfo,
   ) {
     this.$stateParams = $stateParams;
     this.$q = $q;
+    this.ouiDatagridService = ouiDatagridService;
     this.CucControllerHelper = CucControllerHelper;
     this.roleInfo = roleInfo;
     this.LogsRolesService = LogsRolesService;
@@ -64,7 +66,10 @@ export default class LogsRoleAddModalCtrl {
         this.LogsRolesService.addRole(this.serviceName, this.role)
           .then((response) => this.$uibModalInstance.close(response))
           .catch((response) => this.$uibModalInstance.dismiss(response))
-          .finally(() => this.CucControllerHelper.scrollPageToTop()),
+          .finally(() => {
+            this.ouiDatagridService.refresh('roles-datagrid', true);
+            this.CucControllerHelper.scrollPageToTop();
+          }),
     });
     return this.saving.load();
   }
@@ -82,7 +87,10 @@ export default class LogsRoleAddModalCtrl {
         )
           .then((response) => this.$uibModalInstance.close(response))
           .catch((response) => this.$uibModalInstance.dismiss(response))
-          .finally(() => this.CucControllerHelper.scrollPageToTop()),
+          .finally(() => {
+            this.ouiDatagridService.refresh('roles-datagrid', true);
+            this.CucControllerHelper.scrollPageToTop();
+          }),
     });
     return this.saving.load();
   }

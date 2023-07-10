@@ -19,7 +19,6 @@ export default class LogsAliasesAddModalCtrl {
           backdrop: 'static',
         },
       })
-      .then(() => this.$scope.$parent.ctrl.initLoaders())
       .finally(() => this.onCloseModal());
   }
 

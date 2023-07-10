@@ -1,10 +1,7 @@
 export default class LogsAccountService {
   /* @ngInject */
-  constructor(OvhApiDbaas, LogsHelperService, LogsConstants) {
-    this.UserApiService = OvhApiDbaas.Logs()
-      .User()
-      .v6();
-    this.LogsLexiService = OvhApiDbaas.Logs().v6();
+  constructor($http, LogsHelperService, LogsConstants) {
+    this.$http = $http;
     this.LogsHelperService = LogsHelperService;
     this.LogsConstants = LogsConstants;
     this.initializePasswordRules();
@@ -62,14 +59,11 @@ export default class LogsAccountService {
   }
 
   changePassword(serviceName, newPassword, isSetup) {
-    return this.UserApiService.changePassword(
-      { serviceName },
-      { password: newPassword },
-    )
-      .$promise.then((operation) => {
-        if (isSetup) {
-          this.resetAllCache();
-        }
+    return this.$http
+      .post(`/dbaas/logs/${serviceName}/user/changePassword`, {
+        password: newPassword,
+      })
+      .then((operation) => {
         const message = isSetup
           ? 'logs_password_setup_success'
           : 'logs_password_change_success';
@@ -91,9 +85,5 @@ export default class LogsAccountService {
 
   static escapeRegExp(msg) {
     return msg.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
-
-  resetAllCache() {
-    this.LogsLexiService.resetAllCache();
   }
 }

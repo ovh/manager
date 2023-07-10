@@ -36,7 +36,9 @@ export default /* @ngInject */ ($stateProvider) => {
         const url = $state.href(state, params, { lossy: true }).split('/');
         // url of all states follow #/pci/projects/projectId/(instance/storages/load-balancer)
         // if type of product is present, pick it otherwise generalise the label 'pci-project'
-        return `${url[1]}-${url[4] ? url[4] : 'project'}`;
+        // URI params are removed from error tracking
+        const subproduct = url[4]?.split('?')[0] || 'project';
+        return `${url[1]}-${subproduct}`;
       },
       submitAction: /* @ngInject */ ($window) => () =>
         $window.location.reload(),

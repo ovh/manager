@@ -1,7 +1,10 @@
 <section class="log-index">
     <h3 data-translate="logs_index_title"></h3>
     <p data-translate="logs_index_description"></p>
-    <oui-datagrid data-rows="ctrl.indices.data">
+    <oui-datagrid
+        id="indices-datagrid"
+        data-rows-loader="ctrl.loadIndices($config)"
+    >
         <oui-datagrid-topbar>
             <button
                 type="button"
@@ -21,7 +24,7 @@
         </oui-datagrid-topbar>
         <oui-datagrid-column
             data-title=":: 'logs_index_name_text' | translate"
-            data-property="info.name"
+            data-property="name"
             data-sortable="asc"
             data-type="string"
             data-searchable
@@ -29,7 +32,7 @@
         ></oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'logs_index_col_description' | translate"
-            data-property="info.description"
+            data-property="description"
             data-type="string"
             data-sortable
             data-searchable
@@ -37,28 +40,28 @@
         ></oui-datagrid-column>
         <oui-datagrid-column
             data-title="::'logs_index_col_nb_shard' | translate"
-            data-property="info.nbShard"
+            data-property="nbShard"
             data-sortable
             data-type="number"
         >
-            {{:: $row.info.nbShard || "-" }}
+            {{:: $row.nbShard || "-" }}
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title="::'logs_index_col_free_space' | translate"
             data-type="number"
-            data-property="info.currentStorage"
+            data-property="currentSize"
         >
             <span
                 class="oui-badge"
-                data-ng-if="$row.info.isEditable"
-                data-ng-class="ctrl.storageColor($row.info)"
-                data-ng-bind="($row.info.currentStorage | bytes:2:true) + '/' + ($row.info.maxSize | bytes:2:true)"
+                data-ng-if="$row.isEditable"
+                data-ng-class="ctrl.storageColor($row)"
+                data-ng-bind="($row.currentSize | bytes:2:true) + '/' + ($row.maxSize | bytes:2:true)"
             ></span>
-            <span data-ng-if="!$row.info.isEditable"> - </span>
+            <span data-ng-if="!$row.isEditable"> - </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'logs_col_last_modified' | translate"
-            data-property="info.updatedAt"
+            data-property="updatedAt"
             data-sortable
             data-type="date"
         >
@@ -68,29 +71,30 @@
             data-title=":: 'logs_index_col_shared' | translate"
             data-sortable
             type="string"
-            data-property="info.isEditable"
+            data-property="isEditable"
         >
             <span
-                data-ng-if="!$row.info.isEditable"
+                data-ng-if="!$row.isEditable"
                 data-ng-bind="::'logs_yes' | translate"
             ></span>
-            <span data-ng-if="$row.info.isEditable"> - </span>
+            <span data-ng-if="$row.isEditable"> - </span>
         </oui-datagrid-column>
         <oui-action-menu data-compact data-placement="end">
             <oui-action-menu-item
-                data-disabled="!$row.info.isEditable"
-                data-on-click="ctrl.add($row.info)"
+                data-disabled="!$row.isEditable"
+                data-on-click="ctrl.add($row)"
                 ><span data-translate="logs_edit"></span
             ></oui-action-menu-item>
+            <oui-action-menu-item data-on-click="ctrl.openOpenSearch($row)">
+                <span data-translate="logs_index_access_os_api"></span>
+                <i
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></i>
+            </oui-action-menu-item>
             <oui-action-menu-item
-                data-ng-repeat="url in $row.urls"
-                href="{{ url.address }}"
-                data-external
-                ><span data-translate="logs_index_access_os_api"></span
-            ></oui-action-menu-item>
-            <oui-action-menu-item
-                data-disabled="!$row.info.isEditable"
-                data-on-click="ctrl.showDeleteConfirm($row.info)"
+                data-disabled="!$row.isEditable"
+                data-on-click="ctrl.showDeleteConfirm($row)"
                 ><span data-translate="logs_delete"></span
             ></oui-action-menu-item>
         </oui-action-menu>

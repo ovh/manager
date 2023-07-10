@@ -70,6 +70,12 @@ export const APP_SCALING_INFO = {
 
 export const APP_MULTIPLY_SIGN = ' × ';
 
+export const APP_SPEC_WEIGHTS = {
+  CPU: 1,
+  GPU: 3,
+  REPLICAS: 2,
+};
+
 export default {
   IS_BETA,
   APP_TAGS,

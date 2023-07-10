@@ -24,6 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('pci.projects.project.ai.apps.add', { projectId }),
 
       apps: /* @ngInject */ (
+        $q,
         AppService,
         projectId,
         coreConfig,
@@ -32,13 +33,25 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         isAuthorized
           ? AppService.getApps(projectId).then((apps) =>
-              apps.map(
-                (app) =>
-                  new App(
+              $q.all(
+                apps.map((app) => {
+                  const appObject = new App(
                     app,
                     coreConfig.getUser().ovhSubsidiary,
                     ovhManagerRegionService.getRegion(app.spec.region),
-                  ),
+                  );
+                  if (app.spec.partnerId) {
+                    return AppService.getPartner(
+                      projectId,
+                      app.spec.region,
+                      app.spec.partnerId,
+                    ).then((partner) => {
+                      appObject.partner = partner;
+                      return appObject;
+                    });
+                  }
+                  return appObject;
+                }),
               ),
             )
           : [],

@@ -17,7 +17,7 @@
             <span data-ng-bind=":: $ctrl.vps.vcore"></span>
             <p
                 class="p-0"
-                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteVcore && !$ctrl.isInRescueMode && !$ctrl.isMigrating"
+                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxVcore && !$ctrl.isInRescueMode && !$ctrl.isMigrating"
             >
                 <a
                     data-ng-if="$ctrl.configurationTile.upgrades"
@@ -86,7 +86,7 @@
             ></span>
             <p
                 class="p-0"
-                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteRam && !$ctrl.isInRescueMode && !$ctrl.isMigrating"
+                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxRam && !$ctrl.isInRescueMode && !$ctrl.isMigrating"
             >
                 <a
                     data-ng-if="$ctrl.configurationTile.upgrades"
@@ -96,7 +96,7 @@
                     data-track-type="action"
                 >
                     <span
-                        data-translate="{{ $ctrl.isMaxEliteVcore ? 'vps_dashboard_tile_configuration_memory_add_upscale_elite' : 'vps_dashboard_tile_configuration_memory_add_upscale' }}"
+                        data-translate="{{ $ctrl.isMaxVcore ? 'vps_dashboard_tile_configuration_memory_add_upscale_elite' : 'vps_dashboard_tile_configuration_memory_add_upscale' }}"
                     ></span>
                 </a>
             </p>
@@ -155,7 +155,7 @@
             ></span>
             <p
                 class="p-0"
-                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxEliteStorage && !$ctrl.isInRescueMode"
+                data-ng-if="!$ctrl.vpsUpgradeTask && !$ctrl.isMaxStorage && !$ctrl.isInRescueMode"
             >
                 <a
                     data-ng-if="$ctrl.configurationTile.upgrades"
@@ -165,7 +165,7 @@
                     data-track-type="action"
                 >
                     <span
-                        data-translate="{{ $ctrl.isMaxEliteVcore ? 'vps_dashboard_tile_configuration_storage_add_upscale_elite' : 'vps_dashboard_tile_configuration_storage_add_upscale' }}"
+                        data-translate="{{ $ctrl.isMaxVcore ? 'vps_dashboard_tile_configuration_storage_add_upscale_elite' : 'vps_dashboard_tile_configuration_storage_add_upscale' }}"
                     ></span>
                 </a>
             </p>

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.11.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.11.7...@ovh-ux/manager-billing-components@3.11.8) (2023-07-06)
+
+
+### Bug Fixes
+
+* **billing.services:** fix rules wording ([#9532](https://github.com/ovh/manager/issues/9532)) ([3ac3ec6](https://github.com/ovh/manager/commit/3ac3ec68213b797014b91f56e651e75f8e188f1f))
+
+
+
+
+
 ## [3.11.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.11.6...@ovh-ux/manager-billing-components@3.11.7) (2023-06-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

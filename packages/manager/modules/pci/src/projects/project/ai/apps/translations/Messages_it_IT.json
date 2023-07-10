@@ -37,5 +37,10 @@
   "pci_ai_app_beta_warning_special_conditions": "AI Apps cambia nome e diventa AI Deploy. AI Deploy è soggetto alle ",
   "pci_ai_app_beta_warning_special_conditions_link": "Condizioni Speciali dei Servizi Public Cloud di OVHcloud",
   "pci_ai_app_list_creation_date": "Data di creazione",
-  "pci_ai_app_list_last_update_date": "Data di aggiornamento"
+  "pci_ai_app_list_last_update_date": "Data di aggiornamento",
+  "pci_ai_app_list_image": "Immagine",
+  "pci_ai_app_list_image_provided_by": "Immagine fornita da {{partnerName}}",
+  "pci_ai_app_list_resources": "Risorse implementate",
+  "pci_ai_app_list_resources_cpu": "{{cpu}} CPU / {{replicas}} repliche",
+  "pci_ai_app_list_resources_gpu": "{{gpu}} GPU / {{replicas}} repliche"
 }
