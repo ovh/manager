@@ -13,8 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
             : 'error',
         ),
     resolve: {
-      breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('carbon_calculator_my_account'),
+      breadcrumb: () => null,
     },
   });
 };
