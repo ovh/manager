@@ -32,17 +32,13 @@ export default class {
     if (this.dbEngine.isDistributedStorage) {
       addedStorageByNode /= this.database.nodeNumber;
     }
-    const additionalStoragePrice = this.showMonthlyPrices
-      ? Math.max(
-          0,
-          addedStorageByNode *
-            this.currentFlavor.hourlyPricePerGB.priceInUcents,
-        )
-      : Math.max(
-          0,
-          addedStorageByNode *
+    const additionalStoragePrice = Math.max(
+      0,
+      this.showMonthlyPrices
+        ? addedStorageByNode * this.currentFlavor.hourlyPricePerGB.priceInUcents
+        : addedStorageByNode *
             this.currentFlavor.monthlyPricePerGB.priceInUcents,
-        );
+    );
 
     this.price = flavorPrice.priceInUcents + additionalStoragePrice;
   }
