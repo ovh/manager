@@ -6,11 +6,11 @@ import 'regenerator-runtime/runtime';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import { defineApplicationVersion } from '@ovh-ux/request-tagger';
 
-import { useShellClient } from '@ovh-ux/shell';
+import { initShellClient } from '@ovh-ux/shell';
 
 defineApplicationVersion(__VERSION__);
 
-useShellClient('carbon-calculator').then((shellClient) => {
+initShellClient('carbon-calculator').then((shellClient) => {
   if (!isTopLevelApplication()) {
     shellClient.ux.startProgress();
   }
