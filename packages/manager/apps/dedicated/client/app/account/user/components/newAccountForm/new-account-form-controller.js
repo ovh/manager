@@ -18,6 +18,7 @@ import {
   FEATURES,
   IN_SUBSIDIARY,
   USER_TYPE_ENTERPRISE,
+  NEW_SUPPORT_TICKET_PARAMS,
 } from './new-account-form-component.constants';
 
 export default class NewAccountFormController {
@@ -68,6 +69,10 @@ export default class NewAccountFormController {
     this.newSupportTicketUrl = this.coreURLBuilder.buildURL(
       'dedicated',
       '#/support/tickets/new',
+      {
+        categoryName: NEW_SUPPORT_TICKET_PARAMS.categoryName,
+        preFetchData: NEW_SUPPORT_TICKET_PARAMS.preFetchData,
+      },
     );
 
     // backup of original model

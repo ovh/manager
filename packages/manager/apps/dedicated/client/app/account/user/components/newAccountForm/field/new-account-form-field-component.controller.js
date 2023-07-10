@@ -469,9 +469,8 @@ export default class NewAccountFormFieldController {
   */
   canDropDownDisabled() {
     if (this.isIndianSubsidiary) {
-      if (this.rule.fieldName === this.FIELD_NAME_LIST.legalform)
-        return this.user.legalform === USER_TYPE_ENTERPRISE;
       return !!(
+        this.rule.fieldName === this.FIELD_NAME_LIST.legalform ||
         this.rule.fieldName === this.FIELD_NAME_LIST.country ||
         this.rule.fieldName === this.FIELD_NAME_LIST.area
       );

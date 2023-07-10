@@ -4,11 +4,12 @@ import {
   LEGAL_FORM,
   PREFIX_TRANSLATION_LEGAL_FORM,
   TRACKING_PREFIX,
+  LEGAL_FORM_ENTERPRISE,
 } from './siret.constants';
 
 export default class SiretCtrl {
   /* @ngInject */
-  constructor(atInternet, $translate, SiretService) {
+  constructor(atInternet, $translate, SiretService, coreConfig) {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.siretService = SiretService;
@@ -16,9 +17,13 @@ export default class SiretCtrl {
     this.isFirstSearch = true;
     this.displayManualForm = false;
     this.activeSelectSuggest = null;
+    this.user = coreConfig.getUser();
   }
 
   $onInit() {
+    // disable if its from IN subsidiray and user is enterprise
+    this.disableField =
+      this.isIndianSubsidiary && this.user.legalform === LEGAL_FORM_ENTERPRISE;
     if (this.mode === 'modification') {
       this.isFirstSearch = false;
       this.displayManualForm = true;
