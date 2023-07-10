@@ -120,8 +120,17 @@ export default class Notebook {
     return this.status?.state === NOTEBOOK_STATUS.ERROR;
   }
 
+  isInSyncFailed() {
+    return this.status?.state === NOTEBOOK_STATUS.SYNC_FAILED;
+  }
+
   isTerminal() {
-    return this.isStopped() || this.isFailed() || this.isInError();
+    return (
+      this.isStopped() ||
+      this.isFailed() ||
+      this.isInError() ||
+      this.isInSyncFailed()
+    );
   }
 
   getLabelIndex(label) {
