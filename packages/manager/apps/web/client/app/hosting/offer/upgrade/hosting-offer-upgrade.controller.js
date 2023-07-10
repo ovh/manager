@@ -106,12 +106,14 @@ angular.module('App').controller(
 
       return this.Hosting.getAvailableOffer(this.productId).then(
         (availableOffers) => {
-          this.availableOffers = availableOffers.map((offer) => ({
-            name: this.$translate.instant(
-              `hosting_dashboard_service_offer_${offer}`,
-            ),
-            value: offer,
-          }));
+          const catalogProducts = this.catalog.plans.filter(({ planCode }) =>
+            availableOffers.includes(planCode),
+          );
+
+          this.availableOffers = availableOffers.flatMap(
+            (offers) =>
+              catalogProducts.find(({ planCode }) => offers === planCode) || [],
+          );
         },
       );
     }
@@ -159,12 +161,12 @@ angular.module('App').controller(
 
     getPrices() {
       if (this.isDetachable) {
-        return this.getDetachPrices(this.serviceId, this.model.offer.value);
+        return this.getDetachPrices(this.serviceId, this.model.offer.planCode);
       }
 
       return this.Hosting.getUpgradePrices(
         get(this.hosting, 'serviceName', this.$stateParams.productId),
-        this.model.offer.value,
+        this.model.offer.planCode,
       );
     }
 
@@ -185,7 +187,10 @@ angular.module('App').controller(
 
     executeOrder() {
       if (this.isDetachable) {
-        return this.executeDetachOrder(this.serviceId, this.model.offer.value);
+        return this.executeDetachOrder(
+          this.serviceId,
+          this.model.offer.planCode,
+        );
       }
 
       const startTime = moment(this.model.startTime, 'HH:mm:ss')
@@ -194,7 +199,7 @@ angular.module('App').controller(
 
       return this.Hosting.orderUpgrade(
         get(this.hosting, 'serviceName', this.$stateParams.productId),
-        this.model.offer.value,
+        this.model.offer.planCode,
         this.model.duration.duration,
         this.hosting.isCloudWeb ? startTime : null,
       );
@@ -302,8 +307,7 @@ angular.module('App').controller(
     }
 
     onHostingGroupOfferClick(groupOffer, versionOffer) {
-      const { name, value } = groupOffer.selectedVersion;
-      this.model.offer = { name, value };
+      this.model.offer = groupOffer.selectedVersion;
 
       this.trackOffer(groupOffer, versionOffer);
     }

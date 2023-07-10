@@ -110,19 +110,8 @@ export default class WebComponentsHostingDomainOffersController {
   }
 
   extendOffers() {
-    return this.offers
-      .filter(
-        (offer) =>
-          ![
-            'hosting-free-100m',
-            'hosting-starter-ovh',
-            'hosting-starter',
-            'cloudweb1',
-            'cloudweb2',
-            'cloudweb3',
-          ].includes(offer.planCode),
-      ) // todo: remove the filter when api will be up-to-date
-      .map((offer) => {
+    return this.offers.flatMap((offer) => {
+      try {
         const category = this.constructor.getOfferCategory(offer);
         const offerVersion = VERSION_MAP[offer.planCode] || offer.planCode;
         const technicalsOffer = this.getOfferSelector(category, offerVersion);
@@ -140,7 +129,10 @@ export default class WebComponentsHostingDomainOffersController {
           ),
           price,
         };
-      });
+      } catch (e) {
+        return [];
+      }
+    });
   }
 
   buildOffersGroup() {
@@ -174,7 +166,7 @@ export default class WebComponentsHostingDomainOffersController {
     const CURRENT_OFFER = CURRENT_OFFERS[this.currentOffer];
 
     // equal case
-    if (CURRENT_OFFER?.equal?.includes(offer.value)) {
+    if (CURRENT_OFFER?.equal?.includes(offer.planCode)) {
       return Ctrl.buildBadgeModel(BADGES.EQUAL, 'success');
     }
 

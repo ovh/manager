@@ -77,19 +77,6 @@ export const VERSION_MAP = {
 };
 
 export const CURRENT_OFFERS = {
-  START: { downgrade: [], equal: [], upgrade: ['PERSO'] },
-  KIMSUFI_2015: {
-    downgrade: [],
-    equal: [],
-    upgrade: [
-      'PERSO',
-      'PRO',
-      'PERFORMANCE_1',
-      'PERFORMANCE_2',
-      'PERFORMANCE_3',
-      'PERFORMANCE_4',
-    ],
-  },
   PERSO_2010: NEW_OFFERS_MIGRATION_MAP.PERSO,
   PERSO_2014: NEW_OFFERS_MIGRATION_MAP.PERSO,
   PRO_2010: NEW_OFFERS_MIGRATION_MAP.PRO,
