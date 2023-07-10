@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.12.0...@ovh-ux/manager-dbaas-logs@1.13.0) (2023-07-06)
+
+
+### Features
+
+* **dbaas-logs:** aapi cleaning, moving to iceberg ([#9310](https://github.com/ovh/manager/issues/9310)) ([039a16d](https://github.com/ovh/manager/commit/039a16dd0e1497e303c207f5f68a5d7f7801a986))
+
+
+
+
+
 # [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.11.2...@ovh-ux/manager-dbaas-logs@1.12.0) (2023-05-22)
 
 

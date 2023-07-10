@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-public-cloud",
-  "version": "5.0.2",
+  "version": "5.0.4",
   "private": true,
   "description": "OVHcloud Public Cloud control panel.",
   "repository": {
@@ -31,7 +31,7 @@
     "@ovh-ux/manager-core": "^12.12.12",
     "@ovh-ux/manager-error-page": "^2.3.2",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",
-    "@ovh-ux/manager-pci": "^5.128.1",
+    "@ovh-ux/manager-pci": "^5.130.0",
     "@ovh-ux/manager-telecom-styles": "^4.6.1",
     "@ovh-ux/ng-at-internet": "^5.10.2",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.3",
@@ -42,7 +42,7 @@
     "@ovh-ux/ng-ovh-contracts": "^4.2.3",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.7",
     "@ovh-ux/ng-ovh-http": "^5.0.6",
-    "@ovh-ux/ng-ovh-payment-method": "^9.5.3",
+    "@ovh-ux/ng-ovh-payment-method": "^9.6.0",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.6",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.8",
     "@ovh-ux/ng-ovh-responsive-popover": "^6.0.2",

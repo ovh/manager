@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.7.2...@ovh-ux/manager-iplb@1.7.3) (2023-07-06)
+
+
+### Bug Fixes
+
+* **dedicated.iplb:** add feature flipping on banner repricing ([#9503](https://github.com/ovh/manager/issues/9503)) ([010c271](https://github.com/ovh/manager/commit/010c27121f108b8423edf028a5dac9023e73b665))
+* **dedicated:** fix issue with manage iplb button ([#9354](https://github.com/ovh/manager/issues/9354)) ([1c045a8](https://github.com/ovh/manager/commit/1c045a8fb31d481800f53cbbfe4a6857ce3e3148))
+
+
+
+
+
 ## [1.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.7.1...@ovh-ux/manager-iplb@1.7.2) (2023-06-21)
 
 

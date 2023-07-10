@@ -21,7 +21,7 @@ export default class LogsHomeAccountCtrl {
 
   $onInit() {
     this.accountDetails.load().then(() => {
-      this.service = this.accountDetails.data.service;
+      this.service = this.accountDetails.data;
     });
   }
 

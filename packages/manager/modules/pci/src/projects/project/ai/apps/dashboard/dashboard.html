@@ -9,6 +9,7 @@
             ><span data-translate="pci_apps_dashboard_info_tab_title"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-ng-if="!$ctrl.app.partner"
             data-href="{{:: $ctrl.attachDataLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.attachDataLink"
             ><span

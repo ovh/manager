@@ -51,7 +51,7 @@
                     data-ng-if="$ctrl.service.isEngaged() && !$ctrl.service.isEngagementExpired() && !$ctrl.serviceInfos.hasPendingEngagement"
                     data-translate="{{ :: $ctrl.isAutoCommitmentStrategy ?
                         'manager_billing_subscription_engagement_status_engaged_renew' :
-                        'manager_billing_subscription_engagement_status_engaged_expired' }}"
+                        'manager_billing_subscription_engagement_status_engaged' }}"
                     data-translate-values="{ endDate: $ctrl.service.engagementEndDate || $ctrl.service.expirationDate }"
                 ></span>
                 <span

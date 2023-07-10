@@ -1,7 +1,10 @@
 <section class="log-streams">
     <h3 data-translate="logs_streams_title"></h3>
     <p data-translate="logs_streams_description"></p>
-    <oui-datagrid rows="ctrl.streams.data">
+    <oui-datagrid
+        data-id="streams-datagrid"
+        data-rows-loader="ctrl.loadStreams($config)"
+    >
         <oui-datagrid-topbar>
             <button
                 type="button"

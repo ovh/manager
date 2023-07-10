@@ -168,4 +168,19 @@ export default class BillingPaymentMethodAddCtrl {
   }
 
   /* -----  End of Callbacks  ------ */
+
+  /* ============================
+  =            Hooks            =
+  ============================= */
+
+  $onInit() {
+    return this.ovhPaymentMethodHelper
+      .hasSpecificCrossBorderSentenceForCardPayment()
+      .then((hasSpecificCrossBorderSentenceForCardPayment) => {
+        // display or not the specific cross border sentence for given subsidiaries
+        this.hasSpecificCrossBorderSentenceForCardPayment = hasSpecificCrossBorderSentenceForCardPayment;
+      });
+  }
+
+  /* -----  End of Hooks  ------ */
 }

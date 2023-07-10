@@ -10,13 +10,13 @@
     >
         <oui-field
             data-label="{{ ::'logs_kibana_modal_description' | translate }}"
-            data-help-text="{{ ctrl.isEdit ? '' : ctrl.showKibanaPrice() }}"
+            data-help-text="{{ ctrl.isEdit ? '' : ctrl.showOsdPrice() }}"
         >
             <textarea
                 id="description"
                 name="description"
                 class="oui-textarea"
-                data-ng-model="ctrl.kibana.description"
+                data-ng-model="ctrl.osd.description"
                 required
             ></textarea>
         </oui-field>

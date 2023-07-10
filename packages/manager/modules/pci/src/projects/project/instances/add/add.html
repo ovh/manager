@@ -499,6 +499,35 @@
                     </a>
                 </p>
             </oui-message>
+            <oui-message
+                data-type="info"
+                data-ng-if="$ctrl.isWindowsImageType()"
+            >
+                <p
+                    data-translate="pci_projects_project_instances_windows_private_mode_description1"
+                ></p>
+                <p>
+                    <span
+                        data-translate="pci_projects_project_instances_windows_private_mode_description2"
+                    >
+                    </span>
+                    <a
+                        class="oui-link oui-link_icon"
+                        data-ng-href="{{:: $ctrl.windowsPrivateModeLicenseGuideUrl }}"
+                        target="_blank"
+                        data-track-on="click"
+                        data-track-name="PublicCloud::pci::projects::project::instances::add::guide-activate-windows-license-in-private-mode"
+                    >
+                        <span
+                            data-translate="pci_projects_project_instances_windows_private_mode_description3"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-arrow-right"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
+                </p>
+            </oui-message>
         </div>
         <div data-ng-if="$ctrl.isAttachFloatingIP && $ctrl.isPrivateMode()">
             <oui-spinner

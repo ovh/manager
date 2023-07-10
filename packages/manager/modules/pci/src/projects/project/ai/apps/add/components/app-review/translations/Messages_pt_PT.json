@@ -1,13 +1,13 @@
 {
   "pci_app_add_review": "Configuração da app",
   "pci_app_add_review_region": "Região",
-  "pci_app_add_review_price_partner": "Preço da licença {{ partner }}",
+  "pci_app_add_review_price_partner": "Preço da licença parceiro {{ partner }}",
   "pci_app_add_review_price_partner_free": "Oferecido por {{ partner }}",
   "pci_app_add_review_price_resource": "Preço dos recursos selecionados",
   "pci_app_add_review_price_resource_free": "Recursos oferecidos pela OVHcloud durante a fase beta",
   "pci_app_add_review_price_total": "Preço total",
   "pci_app_add_review_price_info": "{{ price }} /hora + IVA",
-  "pci_app_add_review_resources": "Modelo e número de réplicas escolhidas",
+  "pci_app_add_review_resources": "Modelo e número de recursos por réplica",
   "pci_app_add_review_scaling": "Dimensionamento",
   "pci_app_add_review_scaling_static": "Dimensionamento fixo",
   "pci_app_add_review_scaling_auto": "Dimensionamento automático (Autoscaling)",
@@ -16,5 +16,6 @@
   "pci_app_add_review_scaling_max_replicas": "Máximo de réplicas:",
   "pci_app_add_review_scaling_trigger_resource": "Métrica vigiada:",
   "pci_app_add_review_scaling_trigger_resource_threshold": "Patamar de acionamento:",
-  "pci_app_add_review_probe": "Sonda de disponibilidade"
+  "pci_app_add_review_probe": "Sonda de disponibilidade",
+  "pci_app_add_review_image": "Imagem"
 }

@@ -20,7 +20,6 @@ export default class LogsHomeCtrl {
     LogsIndexService,
     LogsTokensService,
     LogsHelperService,
-    LogsDetailService,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -35,7 +34,6 @@ export default class LogsHomeCtrl {
     this.LogsIndexService = LogsIndexService;
     this.LogsTokensService = LogsTokensService;
     this.LogsHelperService = LogsHelperService;
-    this.LogsDetailService = LogsDetailService;
     this.LogsConstants = LogsConstants;
     this.canAccessToElasticsearch = false;
   }
@@ -55,7 +53,7 @@ export default class LogsHomeCtrl {
   }
 
   getPlanName() {
-    return OFFER_TYPES[this.accountDetails.service.plan];
+    return OFFER_TYPES[this.accountDetails.plan];
   }
 
   /**

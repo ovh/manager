@@ -540,5 +540,6 @@
   "vps_dashboard_snapshot_download_modal_snapshot_curl_success": "El pedido de la descarga se ha generado correctamente.",
   "vps_dashboard_snapshot_download_modal_snapshot_curl_info": "Copie el comando CURL anterior y ejecútelo en su terminal. Para más información sobre CURL, haga clic <a href=\"{{curlDocumentationLink}}\" target=\"_blank\">aquí</a>.",
   "vps_dashboard_snapshot_download_modal_snapshot_button_label": "Generar el enlace de descarga",
-  "vps_configuration_download_snapshot_title_button": "Descargar el snapshot"
+  "vps_configuration_download_snapshot_title_button": "Descargar el snapshot",
+  "vps_dashboard_snapshot_download_modal_snapshot_error_download_not_ready": "El snapshot se está creando. Vuelva a intentarlo más tarde una vez completado el proceso."
 }

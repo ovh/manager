@@ -238,7 +238,7 @@ export default class IpLoadBalancerHomeCtrl {
         text: this.$translate.instant('iplb_manage'),
         href: this.coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
           searchText: this.serviceName,
-          selectedType: 'IP_LOADBALANCER',
+          selectedType: 'IP_LOADBALANCING',
         }),
         isAvailable: () =>
           !this.subscription.loading && !this.subscription.hasErrors,
@@ -282,7 +282,6 @@ export default class IpLoadBalancerHomeCtrl {
   }
 
   showBillingEvolMessages(subscriptionInfos) {
-    this.displayBillingEvolutionInfoMessage();
     this.ovhFeatureFlipping
       .checkFeatureAvailability(LB_TEMPORARY_WARNING_BANNER_FEATURE)
       .then((tempWarnBannerFeatureResult) => {
@@ -296,6 +295,7 @@ export default class IpLoadBalancerHomeCtrl {
           moment(subscriptionInfos?.creation).isBefore(MESSAGE_DISPLAY_DATE)
         ) {
           this.displayBillingIssuesWarnMessage();
+          this.displayBillingEvolutionInfoMessage();
         }
       });
   }

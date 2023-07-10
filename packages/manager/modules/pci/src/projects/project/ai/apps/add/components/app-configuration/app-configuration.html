@@ -121,7 +121,7 @@
     ></span>
 </div>
 
-<div class="mb-4" ng-if="!$ctrl.appModel.preset.partner">
+<div class="mb-4" data-ng-if="$ctrl.appModel.image.isCustom">
     <oui-field
         data-label="{{:: 'pci_app_add_settings_port' | translate}}"
         data-help-text="{{:: 'pci_app_add_settings_port_help' | translate}}"

@@ -31,7 +31,8 @@
   "pci_app_add_resources_scaling_trigger_threshold": "Trigger threshold (%)",
   "pci_app_add_resources_scaling_trigger_threshold_help_text": "The metric value, in percent.",
   "pci_app_add_resources_scaling_price_warning": "The total price of the deployment is calculated based on the minimum number of replicas selected. Please note that this cost may increase when auto-scaling is enabled.",
-  "pci_app_add_resources_total": "Total deployment price",
+  "pci_app_add_resources_total": "Price for selected resources",
   "pci_app_add_resources_resource_price": "Resource price",
-  "pci_app_add_resources_partner_price": "Licence price"
+  "pci_app_add_resources_partner_price": "Licence price",
+  "pci_app_add_resources_total_info": "The price displayed above applies to the physical resources for deployment. Additional fees may apply depending on the partner model chosen. Please refer to the summary."
 }

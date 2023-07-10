@@ -1,12 +1,10 @@
 <div>
-    <oui-back-button
-        data-state="dbaas-logs.detail.aliases"
-        data-state-params="{ serviceName: ctrl.serviceName}"
-        ><span data-translate="logs_aliases_link_title"></span>
-    </oui-back-button>
+    <oui-back-button data-ui-sref="dbaas-logs.detail.aliases"
+        ><span data-translate="logs_aliases_link_title"></span
+    ></oui-back-button>
 
     <h6 data-ng-if="!ctrl.alias.loading" class="oui-heading_6">
-        {{ctrl.alias.data.info.name}}
+        {{ctrl.alias.data.name}}
     </h6>
     <p
         class="oui-paragraph mb-5"
@@ -29,9 +27,9 @@
                 target-list-label="{{::'logs_aliases_link_attached_streams' | translate}}"
                 source-list-empty-label="{{::'logs_aliases_link_all_streams_attached' | translate}}"
                 target-list-empty-label="{{::'logs_aliases_link_no_streams_attached' | translate}}"
-                property="info.title"
-                source-list="ctrl.availableStreams.promise"
-                target-list="ctrl.attachedStreams.promise"
+                property="title"
+                source-list="ctrl.availableStreams"
+                target-list="ctrl.attachedStreams"
                 on-add="ctrl.attachStream(items)"
                 on-remove="ctrl.detachStream(items)"
                 bulk-action-enabled="false"
@@ -54,9 +52,9 @@
                 target-list-label="{{::'logs_aliases_link_attached_indexes' | translate}}"
                 source-list-empty-label="{{::'logs_aliases_link_all_indexes_attached' | translate}}"
                 target-list-empty-label="{{::'logs_aliases_link_no_indexes_attached' | translate}}"
-                property="info.name"
-                source-list="ctrl.availableIndices.promise"
-                target-list="ctrl.attachedIndices.promise"
+                property="name"
+                source-list="ctrl.availableIndices"
+                target-list="ctrl.attachedIndices"
                 on-add="ctrl.attachIndex(items)"
                 on-remove="ctrl.detachIndex(items)"
                 bulk-action-enabled="false"

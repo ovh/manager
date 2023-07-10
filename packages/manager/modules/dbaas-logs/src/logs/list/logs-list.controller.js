@@ -1,3 +1,5 @@
+import datagridToIcebergFilter from '../detail/logs-iceberg.utils';
+
 export default class LogsListCtrl {
   /* @ngInject */
   constructor(
@@ -11,7 +13,6 @@ export default class LogsListCtrl {
     this.LogsConstants = LogsConstants;
     this.CucOrderHelperService = CucOrderHelperService;
     this.messages = [];
-    this.initLoaders();
   }
 
   $onInit() {
@@ -25,9 +26,17 @@ export default class LogsListCtrl {
     this.messages = this.messageHandler.getMessages();
   }
 
-  initLoaders() {
-    return this.LogsListService.getServices().then((list) => {
-      this.accounts = list;
+  loadServices({ offset, pageSize = 1, sort, criteria }) {
+    const filters = criteria.map((c) => {
+      const name = c.property || 'serviceName';
+      return datagridToIcebergFilter(name, c.operator, c.value);
     });
+    const pageOffset = Math.ceil(offset / pageSize);
+    return this.LogsListService.getPaginatedServices(
+      pageOffset,
+      pageSize,
+      { name: sort.property, dir: sort.dir === -1 ? 'DESC' : 'ASC' },
+      filters,
+    );
   }
 }

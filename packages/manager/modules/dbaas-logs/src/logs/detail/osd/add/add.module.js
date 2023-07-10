@@ -7,12 +7,9 @@ import 'angular-translate';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 
-import add from './add/add.module';
-import component from './kibana.component';
-import routing from './kibana.routing';
-import service from './logs-kibana.service';
+import controller from './logs-osd-add.controller';
 
-const moduleName = 'ovhManagerDbaasLogsDetailKibana';
+const moduleName = 'ovhManagerDbaasLogsDetailOsdAdd';
 
 angular
   .module(moduleName, [
@@ -22,11 +19,7 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
     'ui.router',
-    add,
   ])
-  .config(routing)
-  .component('dbaasLogsDetailKibana', component)
-  .service('LogsKibanaService', service)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .controller('LogsOsdAddModalCtrl', controller);
 
 export default moduleName;

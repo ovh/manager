@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.15...@ovh-ux/manager-billing@0.20.0-alpha.16) (2023-07-06)
+
+
+### Features
+
+* add cross border payment sentence for TN/SA/MN ([#9343](https://github.com/ovh/manager/issues/9343)) ([32882a9](https://github.com/ovh/manager/commit/32882a9a4fdb83d7c62c32a98b431e9e133021f6))
+
+
+
+
+
 # [0.20.0-alpha.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.14...@ovh-ux/manager-billing@0.20.0-alpha.15) (2023-05-15)
 
 

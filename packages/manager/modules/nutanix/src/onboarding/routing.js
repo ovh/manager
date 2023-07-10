@@ -1,3 +1,8 @@
+import {
+  PREFIX_TRACKING_NUTANIX,
+  PREFIX_TRACKING_ONBOARDING,
+} from './constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.onboarding', {
     url: '/onboarding',
@@ -15,6 +20,9 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       hideBreadcrumb: () => true,
+    },
+    atInternet: {
+      rename: `${PREFIX_TRACKING_NUTANIX}::${PREFIX_TRACKING_ONBOARDING}`,
     },
   });
 };

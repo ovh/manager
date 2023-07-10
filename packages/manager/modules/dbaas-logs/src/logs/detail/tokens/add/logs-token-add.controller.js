@@ -4,6 +4,7 @@ export default class LogsTokenAddCtrl {
     $q,
     $stateParams,
     $uibModalInstance,
+    ouiDatagridService,
     LogsTokensService,
     CucControllerHelper,
     CucCloudMessage,
@@ -11,6 +12,7 @@ export default class LogsTokenAddCtrl {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$uibModalInstance = $uibModalInstance;
+    this.ouiDatagridService = ouiDatagridService;
     this.serviceName = this.$stateParams.serviceName;
     this.LogsTokensService = LogsTokensService;
     this.CucControllerHelper = CucControllerHelper;
@@ -54,6 +56,7 @@ export default class LogsTokenAddCtrl {
         ).finally(() => {
           this.$uibModalInstance.close();
           this.CucControllerHelper.scrollPageToTop();
+          this.ouiDatagridService.refresh('tokens-datagrid', true);
         }),
     });
     return this.saving.load();

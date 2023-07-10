@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.0.0...@ovh-ux/manager-telecom@14.0.1) (2023-07-06)
+
+
+### Bug Fixes
+
+* remove URI params on product label ([#9372](https://github.com/ovh/manager/issues/9372)) ([3df3030](https://github.com/ovh/manager/commit/3df303031e5536b53761ed0b0af3ef1acb7eb41e))
+* **telecom.voip:** allow international number in calls filtering ([#9536](https://github.com/ovh/manager/issues/9536)) ([a13d61d](https://github.com/ovh/manager/commit/a13d61dcd5f5ad5c8cec1210dbe18db510436e01))
+
+
+
+
+
 # [14.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.63.1...@ovh-ux/manager-telecom@14.0.0) (2023-06-12)
 
 

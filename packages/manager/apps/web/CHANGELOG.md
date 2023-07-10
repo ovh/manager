@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.2...@ovh-ux/manager-web@17.0.3) (2023-07-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [17.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.1...@ovh-ux/manager-web@17.0.2) (2023-07-06)
+
+
+### Bug Fixes
+
+* remove URI params on product label ([#9372](https://github.com/ovh/manager/issues/9372)) ([3df3030](https://github.com/ovh/manager/commit/3df303031e5536b53761ed0b0af3ef1acb7eb41e))
+* **web.domain:** delete at expiration a dns anycast ([#9535](https://github.com/ovh/manager/issues/9535)) ([0f1ba36](https://github.com/ovh/manager/commit/0f1ba36dd823eff0573b4efe4ad3319acc6a9afc))
+
+
+### Reverts
+
+* Revert "fix(web.domain): delete at expiration a dns anycast (#9535)" ([3f59d50](https://github.com/ovh/manager/commit/3f59d505d880b102e8d0b9483e8bbbde9e35bc70)), closes [#9535](https://github.com/ovh/manager/issues/9535)
+
+
+
+
+
 ## [17.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.0...@ovh-ux/manager-web@17.0.1) (2023-06-21)
 
 

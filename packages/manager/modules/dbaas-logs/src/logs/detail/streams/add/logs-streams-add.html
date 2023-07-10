@@ -1,11 +1,9 @@
 <div>
-    <oui-back-button
-        data-state="dbaas-logs.detail.streams"
-        data-state-params="{ serviceName: ctrl.serviceName}"
+    <oui-back-button data-ui-sref="dbaas-logs.detail.streams"
         ><span
             data-ng-bind="::(ctrl.isEdit ? 'logs_streams_update_title' : 'logs_streams_add_data_feed') | translate"
-        ></span>
-    </oui-back-button>
+        ></span
+    ></oui-back-button>
 
     <div><oui-spinner data-ng-show="ctrl.stream.loading"></oui-spinner></div>
     <form

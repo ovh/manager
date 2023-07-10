@@ -115,7 +115,7 @@ angular
 
         swapLabel: 'swap',
 
-        minSizePartition: 10, // = 10Mo
+        minSizePartition: 64, // = 64Mo
         minSizeWindows: 32768, // = 32Go
         minSizeReiserfs: 32, // = 32Mo
         minSizeBoot: 50, // = 50Mo

@@ -8,7 +8,10 @@
         <section class="log-accounts">
             <p data-translate="logs_home_info"></p>
 
-            <oui-datagrid data-rows="ctrl.accounts">
+            <oui-datagrid
+                id="services-datagrid"
+                data-rows-loader="ctrl.loadServices($config)"
+            >
                 <oui-datagrid-topbar>
                     <a
                         class="oui-button oui-button_secondary"
