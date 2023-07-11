@@ -10,6 +10,7 @@ export default {
   NB_SHARD_MIN: 1,
   NB_SHARD_MAX: 16,
   DISPLAY_NAME_MAX_LENGTH: 255,
+  DEFAULT_LINE_NUMBER: 5,
   FAILURE: 'FAILURE',
   SUCCESS: 'SUCCESS',
   suffixPattern: '^[a-z0-9_-]+$',

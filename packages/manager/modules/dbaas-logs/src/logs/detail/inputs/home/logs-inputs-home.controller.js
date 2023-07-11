@@ -89,7 +89,7 @@ export default class LogsInputsHomeCtrl {
   reloadInputDetail(inputId) {
     this.inputReload = this.CucControllerHelper.request.getHashLoader({
       loaderFunction: () =>
-        this.LogsInputsService.getInputDetail(this.serviceName, inputId),
+        this.LogsInputsService.getInputDetail(this.serviceName, inputId, false),
     });
 
     return this.inputReload.load().then((input) => {
@@ -110,7 +110,7 @@ export default class LogsInputsHomeCtrl {
    */
   setInputToProcessing(input) {
     set(input, 'status', this.LogsConstants.inputStatus.PROCESSING);
-    this.LogsInputsService.transformInput(input);
+    this.LogsInputsService.transformInput(input, false);
   }
 
   /**

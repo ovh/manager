@@ -74,10 +74,11 @@ export default class LogsInputsAddEditCtrl {
     if (this.editMode) {
       this.input = this.CucControllerHelper.request.getHashLoader({
         loaderFunction: () =>
-          this.LogsInputsService.getInput(
+          this.LogsInputsService.getInputDetail(
             this.serviceName,
             this.inputId,
-          ).then((input) => this.LogsInputsService.transformInput(input)),
+            true,
+          ),
       });
     }
     this.engines = this.CucControllerHelper.request.getHashLoader({
@@ -136,7 +137,7 @@ export default class LogsInputsAddEditCtrl {
     this.$state.go('dbaas-logs.detail.inputs.input.editwizard.configure', {
       serviceName: this.serviceName,
       inputId,
-      exposedPort: this.input.data.info.exposedPort,
+      exposedPort: this.input.data.exposedPort,
     });
     return this.$q.resolve();
   }
