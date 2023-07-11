@@ -6,7 +6,9 @@ exports[`UI testing of the navbar renders correctly with environment and shell 1
     class="popoverClickAway hidden"
   />
   <div
+    aria-label="navbar_menu_name"
     class="oui-navbar navbar"
+    role="navigation"
   >
     <div>
       <button

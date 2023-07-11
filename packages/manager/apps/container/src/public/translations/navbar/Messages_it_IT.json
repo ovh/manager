@@ -12,5 +12,6 @@
   "navbar_notifications": "Notifiche",
   "navbar_language_change": "Modifica la lingua dell’interfaccia",
   "navbar_account": "Il tuo account",
-  "navbar_search": "Ricerca"
+  "navbar_search": "Ricerca",
+  "navbar_menu_name": "Menu principale"
 }
