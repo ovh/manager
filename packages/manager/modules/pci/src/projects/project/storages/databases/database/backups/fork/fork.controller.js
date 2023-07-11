@@ -367,7 +367,7 @@ export default class {
       initialSize: this.model.flavor.minDiskSize,
       additionalDiskSize: this.model.additionalDiskSize,
     };
-    this.goToCommand(this.model);
+    return this.goToCommand(this.model);
   }
 
   createFork() {
