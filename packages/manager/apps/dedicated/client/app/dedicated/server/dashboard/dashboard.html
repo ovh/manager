@@ -121,8 +121,7 @@
                             ></dt>
                             <dd class="oui-tile__description">
                                 <span
-                                    data-ng-if="$ctrl.server.os"
-                                    data-ng-bind="$ctrl.server.os === 'byoi_32' ? ('server_configuration_distribution_byoi' | translate) : $ctrl.server.os"
+                                    data-ng-bind-html=":: $ctrl.getOperatingSystemLabel()"
                                 ></span>
                                 <p
                                     class="small"
