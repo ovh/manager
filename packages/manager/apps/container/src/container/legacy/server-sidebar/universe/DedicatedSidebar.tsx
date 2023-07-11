@@ -82,6 +82,7 @@ export default function DedicatedSidebar() {
               href: navigation.getURL('dedicated', '#/server'),
               routeMatcher: new RegExp(`/server$`),
               ignoreSearch: true,
+              title: t('sidebar_access_list'),  
             },
             ...housing,
             ...servers,

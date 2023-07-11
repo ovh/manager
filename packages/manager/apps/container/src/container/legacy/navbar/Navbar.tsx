@@ -2,6 +2,9 @@ import React, { useCallback, useState } from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
 
+import { useTranslation } from 'react-i18next';
+import { TRANSLATE_NAMESPACE } from './constants';
+
 import Account from './Account';
 import Brand from './Brand';
 import Hamburger from './HamburgerMenu';
@@ -33,6 +36,7 @@ function Navbar({ environment }: Props): JSX.Element {
   const [searchURL] = useState<string>();
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const { setIsNotificationsSidebarVisible } = useHeader();
+  const { t } = useTranslation(TRANSLATE_NAMESPACE);
 
   const brandClickHandler = useCallback(
     () =>
@@ -61,7 +65,7 @@ function Navbar({ environment }: Props): JSX.Element {
           isDropdownOpen ? '' : modalStyle.hidden
         }`}
       ></div>
-      <div className={`oui-navbar ${style.navbar}`}>
+      <div className={`oui-navbar ${style.navbar}`} role="navigation" aria-label={t('navbar_menu_name')}>
         <Hamburger universe={universe} universes={getUniverses()} />
         <Brand
           targetURL={getHubUniverse()?.url || '#'}
