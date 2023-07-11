@@ -18,16 +18,27 @@ export function getOrderDataFromModel(model) {
   };
 
   if (model.restoreMode) {
-    if (model.restoreMode === RESTORE_MODES.BACKUP) {
-      orderData.forkFrom = {
-        serviceId: model.databaseId,
-        backupId: model.backupId,
-      };
-    } else {
-      orderData.forkFrom = {
-        serviceId: model.databaseId,
-        pointInTime: model.timestamp,
-      };
+    switch (model.restoreMode) {
+      case RESTORE_MODES.BACKUP:
+        orderData.forkFrom = {
+          serviceId: model.databaseId,
+          backupId: model.backupId,
+        };
+        break;
+      case RESTORE_MODES.TIMESTAMP:
+        orderData.forkFrom = {
+          serviceId: model.databaseId,
+          pointInTime: model.timestamp,
+        };
+        break;
+      case RESTORE_MODES.SOONEST:
+        orderData.forkFrom = {
+          serviceId: model.databaseId,
+          pointInTime: moment().toISOString(),
+        };
+        break;
+      default:
+        break;
     }
   }
 

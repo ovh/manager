@@ -6,7 +6,6 @@ import '@ovh-ux/ui-kit';
 
 import routing from './command.routing';
 import component from './command.component';
-import orderReview from '../../../../components/order-review';
 
 const moduleName = 'ovhManagerPciStoragesDatabaseBackupsForkCommandComponent';
 
@@ -16,7 +15,6 @@ angular
     ngTranslateAsyncLoader,
     'oui',
     uiRouter,
-    orderReview,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)

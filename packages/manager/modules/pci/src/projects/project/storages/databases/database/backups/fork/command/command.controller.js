@@ -8,10 +8,8 @@ import { ORDER_KEYS } from '../fork.constants';
 
 export default class ForkCommandCtrl {
   /* @ngInject  */
-  constructor($translate, DatabaseService) {
-    this.$translate = $translate;
+  constructor() {
     this.orderKeys = ORDER_KEYS;
-    this.DatabaseService = DatabaseService;
   }
 
   $onInit() {
