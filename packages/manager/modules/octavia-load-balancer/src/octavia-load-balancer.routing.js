@@ -6,10 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       projectId: /* @ngInject */ ($transition$) =>
         $transition$.params().projectId,
-      project: /* @ngInject */ (OvhApiCloudProject, projectId) =>
-        OvhApiCloudProject.v6().get({
-          serviceName: projectId,
-        }).$promise,
+      project: /* @ngInject */ ($http, projectId) =>
+        $http.get(`/cloud/project/${projectId}`).then(({ data }) => data),
       breadcrumb: (project) =>
         project.status !== 'creating' ? project.description : null,
     },
