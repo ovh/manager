@@ -154,7 +154,6 @@ export default function PublicCloudSidebar() {
           )}
           <input
             type="search"
-            role="treeitem"
             className="oui-input"
             placeholder={t('sidebar_pci_project_search')}
             value={projectSearchQuery}

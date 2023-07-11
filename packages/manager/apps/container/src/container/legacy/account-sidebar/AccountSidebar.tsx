@@ -20,6 +20,7 @@ const AccountSidebar = (): JSX.Element => {
           : ''
       }`}
       aria-expanded={isAccountSidebarVisible}
+      role="menu"
     >
       <div className="manager-account-sidebar">
         <UserInfos />

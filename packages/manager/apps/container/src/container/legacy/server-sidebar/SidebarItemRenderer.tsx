@@ -19,7 +19,6 @@ function ServerSidebarSearchField({
       <i className="ovh-font ovh-font-search" aria-hidden="true"></i>
       <input
         type="search"
-        role="treeitem"
         className="oui-input"
         placeholder={t('sidebar_search')}
         value={item.searchField}
@@ -28,9 +27,6 @@ function ServerSidebarSearchField({
           item.searchField = e.target.value;
           item.parent.searchQuery = e.target.value;
           onUpdate(e.target.value);
-        }}
-        {...{
-          'aria-level': item.depth,
         }}
       ></input>
     </div>
@@ -57,12 +53,7 @@ export default function ServerSidebarItemRenderer({
     );
   } else if (item.isNoResultField) {
     itemRender = (
-      <div
-        role="treeitem"
-        {...{
-          'aria-level': item.depth,
-        }}
-      >
+      <div>
         {t('sidebar_no_result')}
       </div>
     );
@@ -77,15 +68,11 @@ export default function ServerSidebarItemRenderer({
       <button
         type="button"
         disabled={item.isLoading}
-        role="group"
         onClick={() => onToggle(item)}
         {...{
-          'aria-expanded': !!item.isOpen,
-          'aria-level': item.depth,
-          'aria-selected': item.isSelected,
           'aria-busy': !!item.isLoading,
         }}
-        title={item.label}
+        title={item.isOpen ? '' : t('sidebar_load_services')}
         className={`${item.depth > 0 ? style.subButton : ''} ${
           item.isSelected ? style.selectedButton : ''
         }`}
@@ -123,7 +110,6 @@ export default function ServerSidebarItemRenderer({
       : {};
     itemRender = (
       <a
-        role="treeitem"
         style={{
           paddingLeft: item.depth === 0 ? '1.75rem' : '0',
           fontWeight: item.isSelected || item.depth === 0 ? 700 : 400,
@@ -132,11 +118,7 @@ export default function ServerSidebarItemRenderer({
         href={item.href || '#'}
         onClick={() => setIsResponsiveSidebarMenuOpen(false)}
         {...externalTarget}
-        {...{
-          'aria-level': item.depth,
-          'aria-selected': item.isSelected,
-        }}
-        title={item.label}
+        title={item.title || t('sidebar_access_dashboard')}
       >
         {item.icon && (
           <span className={style.menuItemIcon} aria-hidden="true">

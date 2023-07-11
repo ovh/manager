@@ -67,6 +67,7 @@ function HamburgerMenu({ universe = '', universes }: Props): JSX.Element {
             className={`oui-navbar-link oui-navbar-link_${
               u.isPrimary ? 'primary' : 'secondary'
             }`}
+            role="menuitem"
             key={u.universe}
             href={u.url}
             onClick={(event) =>

@@ -1,6 +1,7 @@
 export type SidebarMenuItem = {
   id: string | number;
   label?: string;
+  title?: string;
   icon?: JSX.Element;
   href?: string;
   isExternal?: boolean;
