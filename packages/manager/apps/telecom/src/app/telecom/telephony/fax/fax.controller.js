@@ -83,7 +83,7 @@ export default /* @ngInject */ function TelecomTelephonyFaxCtrl(
         atInternet.trackPage({
           name: 'Fax',
           type: 'navigation',
-          level2: 'Telecom',
+          level2: '87',
           chapter: 'telecom',
         });
       });
