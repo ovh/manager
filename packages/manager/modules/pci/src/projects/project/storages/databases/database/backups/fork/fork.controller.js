@@ -407,10 +407,7 @@ export default class {
       case RESTORE_MODES.SOONEST:
         this.orderData.forkFrom = {
           serviceId: this.database.id,
-          pointInTime: moment()
-            .seconds(0)
-            .milliseconds(0)
-            .toISOString(),
+          pointInTime: moment().toISOString(),
         };
         break;
       default:
