@@ -10,6 +10,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $http.get(`/cloud/project/${projectId}`).then(({ data }) => data),
       breadcrumb: (project) =>
         project.status !== 'creating' ? project.description : null,
+      breadcrumbUrl: /* @ngInject */ (projectId) =>
+        `/#/public-cloud/pci/projects/${projectId}`,
     },
   });
 };
