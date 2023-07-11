@@ -33,7 +33,7 @@ export default class TelecomTelephonyBillingAccountOrderAliasCtrl {
         this.atInternet.trackPage({
           name: 'orders-PhoneNumb',
           type: 'navigation',
-          level2: '87',
+          level2: 'Telecom',
           chapter1: 'telecom',
         });
       });

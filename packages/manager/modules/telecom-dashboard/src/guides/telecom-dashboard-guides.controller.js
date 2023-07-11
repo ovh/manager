@@ -25,7 +25,7 @@ export default class TelecomDashboardGuidesCtrl {
     return this.atInternet.trackClick({
       name: `TopGuide-Telecom-${index}`,
       type: 'navigation',
-      level2: '87',
+      level2: 'Telecom',
       chapter1: 'telecom',
     });
   }

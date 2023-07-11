@@ -43,7 +43,7 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
           this.atInternet.trackPage({
             name: 'configuration',
             type: 'navigation',
-            level2: '87',
+            level2: 'Telecom',
             chapter1: 'telecom',
           });
         });
