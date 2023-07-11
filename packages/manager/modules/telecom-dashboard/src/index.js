@@ -90,7 +90,7 @@ angular
             atInternet.trackPage({
               name: 'dashboard',
               type: 'navigation',
-              level2: 'Telecom',
+              level2: '87',
               chapter1: 'telecom',
             });
           },
