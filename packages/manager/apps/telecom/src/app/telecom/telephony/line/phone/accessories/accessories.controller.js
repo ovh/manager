@@ -63,7 +63,7 @@ export default class TelephonyLinePhoneAccessoriesCtrl {
         return this.atInternet.trackPage({
           name: 'accessories-Tel',
           type: 'navigation',
-          level2: '87',
+          level2: 'Telecom',
           chapter1: 'telecom',
         });
       });
