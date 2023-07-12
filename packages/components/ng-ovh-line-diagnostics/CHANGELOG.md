@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.1.2...@ovh-ux/ng-ovh-line-diagnostics@5.1.3) (2023-07-12)
+
+
+### Bug Fixes
+
+* **telecom:** fix incorrect level2 tracking for telecom ([#9427](https://github.com/ovh/manager/issues/9427)) ([0528100](https://github.com/ovh/manager/commit/05281008ea3558e466dbac2231fe1574bb3fea61))
+
+
+### Reverts
+
+* Revert "fix(telecom): fix incorrect level2 tracking for telecom (#9427)" (#9607) ([f42cedd](https://github.com/ovh/manager/commit/f42cedd80dcf5533e0c4f5cd0e07349c4a576c88)), closes [#9427](https://github.com/ovh/manager/issues/9427) [#9607](https://github.com/ovh/manager/issues/9607)
+
+
+
+
+
 ## [5.1.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.1.1...@ovh-ux/ng-ovh-line-diagnostics@5.1.2) (2023-01-19)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-line-diagnostics
