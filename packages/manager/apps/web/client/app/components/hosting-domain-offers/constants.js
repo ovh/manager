@@ -67,6 +67,14 @@ export const CATEGORIES_MAP = {
   'hosting-performance-4': 'PERFORMANCE',
 };
 
+export const CLOUDWEB_OFFER = ['cloudweb1', 'cloudweb2', 'cloudweb3'];
+
+export const CLOUDWEB_VERSION_MAP = {
+  cloudweb1: 'CLOUDWEB_1',
+  cloudweb2: 'CLOUDWEB_2',
+  cloudweb3: 'CLOUDWEB_3',
+};
+
 export const VERSION_MAP = {
   'hosting-perso': 'PERSO',
   'hosting-pro': 'PRO',
@@ -112,4 +120,6 @@ export default {
   NEW_OFFERS_PLAN_CODES,
   CATEGORIES_MAP,
   VERSION_MAP,
+  CLOUDWEB_OFFER,
+  CLOUDWEB_VERSION_MAP,
 };

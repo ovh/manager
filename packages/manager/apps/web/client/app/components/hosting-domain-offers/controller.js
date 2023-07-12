@@ -9,6 +9,8 @@ import {
   NEW_OFFERS_PLAN_CODES,
   CATEGORIES_MAP,
   VERSION_MAP,
+  CLOUDWEB_OFFER,
+  CLOUDWEB_VERSION_MAP,
 } from './constants';
 
 export default class WebComponentsHostingDomainOffersController {
@@ -111,27 +113,39 @@ export default class WebComponentsHostingDomainOffersController {
 
   extendOffers() {
     return this.offers.flatMap((offer) => {
-      try {
-        const category = this.constructor.getOfferCategory(offer);
-        const offerVersion = VERSION_MAP[offer.planCode] || offer.planCode;
-        const technicalsOffer = this.getOfferSelector(category, offerVersion);
-        const { planCode } = technicalsOffer;
-        const price = this.formatOfferPrice(category, planCode);
+      if (!CLOUDWEB_OFFER.includes(offer.planCode)) {
+        try {
+          const category = this.constructor.getOfferCategory(offer);
+          const offerVersion = VERSION_MAP[offer.planCode] || offer.planCode;
+          const technicalsOffer = this.getOfferSelector(category, offerVersion);
+          const { planCode } = technicalsOffer;
+          const price = this.formatOfferPrice(category, planCode);
 
-        return {
-          ...offer,
-          badge: this.getOfferBadge(offer),
-          planCode,
-          category,
-          selector: this.$translate.instant(
-            `web_components_hosting_domain_offers_offer_select_version_performance`,
-            { coreNumber: technicalsOffer.cores, ramSize: technicalsOffer.ram },
-          ),
-          price,
-        };
-      } catch (e) {
-        return [];
+          return {
+            ...offer,
+            badge: this.getOfferBadge(offer),
+            planCode,
+            category,
+            selector: this.$translate.instant(
+              `web_components_hosting_domain_offers_offer_select_version_performance`,
+              {
+                coreNumber: technicalsOffer.cores,
+                ramSize: technicalsOffer.ram,
+              },
+            ),
+            price,
+          };
+        } catch (e) {
+          return [];
+        }
       }
+      return {
+        ...offer,
+        price: this.formatOfferPrice(null, offer.planCode),
+        planCode: CLOUDWEB_VERSION_MAP[offer.planCode],
+        category: offer.planCode,
+        isCloudwebOffer: true,
+      };
     });
   }
 
@@ -142,7 +156,7 @@ export default class WebComponentsHostingDomainOffersController {
     return Object.keys(groupedOffers).map((category) => {
       const versions = groupedOffers[category];
       const equalOffer = versions.find(
-        ({ badge }) => badge.type === BADGES.EQUAL,
+        ({ badge }) => badge?.type === BADGES.EQUAL,
       );
       const selectedVersion = equalOffer || versions[0];
 
@@ -157,7 +171,7 @@ export default class WebComponentsHostingDomainOffersController {
 
   getEqualOffer() {
     return this.groupedOffers.find(
-      ({ selectedVersion }) => selectedVersion.badge.type === BADGES.EQUAL,
+      ({ selectedVersion }) => selectedVersion?.badge?.type === BADGES.EQUAL,
     );
   }
 

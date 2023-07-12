@@ -106,11 +106,15 @@ angular.module('App').controller(
 
       return this.Hosting.getAvailableOffer(this.productId).then(
         (availableOffers) => {
-          const catalogProducts = this.catalog.plans.filter(({ planCode }) =>
-            availableOffers.includes(planCode),
+          const availableOffersFormatted = availableOffers.map((offer) =>
+            offer.toLowerCase().replace(/_/g, ''),
           );
 
-          this.availableOffers = availableOffers.flatMap(
+          const catalogProducts = this.catalog.plans.filter(({ planCode }) =>
+            availableOffersFormatted.includes(planCode),
+          );
+
+          this.availableOffers = availableOffersFormatted.flatMap(
             (offers) =>
               catalogProducts.find(({ planCode }) => offers === planCode) || [],
           );
