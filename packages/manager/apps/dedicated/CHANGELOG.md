@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.2.3...@ovh-ux/manager-dedicated@18.2.4) (2023-07-12)
+
+
+### Bug Fixes
+
+* **dedicated:** add OS detail for dedicated server([#9268](https://github.com/ovh/manager/issues/9268)) ([421a5b1](https://github.com/ovh/manager/commit/421a5b1fd01ba0071e5dfed61334f35a093fe5a1))
+
+
+
+
+
 ## [18.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.2.2...@ovh-ux/manager-dedicated@18.2.3) (2023-07-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

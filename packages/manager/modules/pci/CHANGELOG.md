@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.131.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.130.0...@ovh-ux/manager-pci@5.131.0) (2023-07-12)
+
+
+### Features
+
+* **containers.private-registry:** add region column ([#9311](https://github.com/ovh/manager/issues/9311)) ([b0f8234](https://github.com/ovh/manager/commit/b0f82346994785ce2f825677c1625f84c9fe74df))
+
+
+
+
+
 # [5.130.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.129.0...@ovh-ux/manager-pci@5.130.0) (2023-07-10)
 
 

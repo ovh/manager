@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.22.0...@ovh-ux/manager-container-app@0.22.1) (2023-07-12)
+
+
+### Bug Fixes
+
+* **container:** sidebar menu accessibility ([#9023](https://github.com/ovh/manager/issues/9023)) ([1db5851](https://github.com/ovh/manager/commit/1db5851d6f11ed52dbe762f1be48b78b2d15980f))
+
+
+
+
+
 # [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.21.1...@ovh-ux/manager-container-app@0.22.0) (2023-07-06)
 
 
