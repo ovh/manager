@@ -7,7 +7,7 @@
   "server_order_bandwidth_ready": "Ihre Bestellung ist fertig. Sofern der Zahlungsprozess abgeschlossen ist, sollte die Bandbreite in Kürze verfügbar sein.",
   "server_order_bandwidth_see_order": "Bestellschein anzeigen",
   "server_order_bandwidth_vrack_load": "Angebote werden geladen...",
-  "server_order_bandwidth_empty_plans": "Es konnte kein Angebot zum Upgraden gefunden werden",
+  "server_order_bandwidth_empty_plans": "Für Ihren Dedicated Server ist kein Bandbreitenangebot verfügbar.",
   "select_bandwidth_type_label": "Wählen Sie ein Angebot aus",
   "select_bandwidth_vrack_type_label": "Wählen Sie ein Angebot aus",
   "select_bandwidth_plan_summary": "Bestellübersicht",
