@@ -7,11 +7,4 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
     },
   });
-
-  $stateProvider.state('iam.dashboard.identitiesRedirection', {
-    resolve: {
-      redirect: /* @ngInject */ (shellClient) =>
-        shellClient.navigation.navigateTo('dedicated', '#/useraccount/users'),
-    },
-  });
 };
