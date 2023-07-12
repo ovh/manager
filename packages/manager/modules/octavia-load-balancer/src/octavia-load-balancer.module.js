@@ -1,5 +1,4 @@
 import angular from 'angular';
-
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@uirouter/angularjs';
