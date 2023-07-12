@@ -9,11 +9,12 @@ import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import CarbonCalculator from '../../../modules/carbon-calculator/src';
 import errorPage from './error';
 
 import '@ovh-ux/ui-kit/dist/css/oui.css';
-import { TRACKING } from '../../dedicated/client/app/at-internet.constants';
+import TRACKING from './tracking/at-internet.constants';
 
 export default async (containerEl, shellClient) => {
   const moduleName = 'CarbonCalculatorApp';
@@ -29,6 +30,11 @@ export default async (containerEl, shellClient) => {
     ssoAuthenticationProvider.setOnLogout(() => {
       shellClient.auth.logout();
     });
+  };
+
+  const trackingConfig = /* @ngInject */ (atInternetConfigurationProvider) => {
+    atInternetConfigurationProvider.setSkipInit(true);
+    atInternetConfigurationProvider.setPrefix('dedicated');
   };
 
   const broadcastAppStarted = /* @ngInject */ ($rootScope, $transitions) => {
@@ -112,6 +118,7 @@ export default async (containerEl, shellClient) => {
       [
         registerCoreModule(environment, coreCallbacks),
         registerAtInternet(shellClient.tracking),
+        ovhManagerAtInternetConfiguration,
         ngOvhSsoAuth,
         ngUiRouterBreadcrumb,
         'oui',
@@ -128,8 +135,9 @@ export default async (containerEl, shellClient) => {
     .config(routingConfig)
     .config(ssoAuthConfig)
     .config(async () => {
-      await shellClient.tracking.setConfig(TRACKING);
+      await shellClient.tracking.setConfig(environment.getRegion(), TRACKING);
     })
+    .config(trackingConfig)
     .config(calendarConfigProvider)
     .run(broadcastAppStarted)
     .run(transitionsConfig)
