@@ -12,7 +12,7 @@ angular
   .config(
     /* @ngInject */ ($stateProvider) => {
       $stateProvider.state('octavia-load-balancer.**', {
-        url: '/octavia-load-balancer',
+        url: '/pci/projects/{projectId:[0-9a-zA-Z]{32}}/octavia-load-balancer',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
