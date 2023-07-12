@@ -296,4 +296,19 @@ export default class AutorenewCtrl {
     }
     return '-';
   }
+
+  shouldDisplayAutoRenewActionRequired() {
+    return (
+      this.BillingAutoRenew.isAutomaticRenewV2Available() &&
+      (!this.defaultPaymentMean || !this.nicRenew.active) &&
+      !this.currentUser.hasAutorenew2016()
+    );
+  }
+
+  canDisplayAutoRenew2016DeploymentBanner() {
+    return (
+      !this.shouldDisplayAutoRenewActionRequired() &&
+      this.isAutorenew2016DeploymentBannerAvailable
+    );
+  }
 }

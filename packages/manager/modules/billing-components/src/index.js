@@ -11,6 +11,7 @@ import servicesActions from './components/services-actions';
 import serviceStatus from './components/service-status';
 import splitPayment from './components/split-payment';
 import subscriptionTile from './components/subscription-tile';
+import autoRenew2016DeploymentBanner from './components/auto-renew-2016-deployment-banner';
 import { RENEW_URL } from './components/services-actions/service-actions.constants';
 import {
   SPLIT_PAYMENT,
@@ -31,6 +32,7 @@ angular.module(moduleName, [
   serviceStatus,
   splitPayment,
   subscriptionTile,
+  autoRenew2016DeploymentBanner,
 ]);
 
 export { RENEW_URL, SPLIT_PAYMENT, SPLIT_PAYMENT_FEATURE_NAME };
