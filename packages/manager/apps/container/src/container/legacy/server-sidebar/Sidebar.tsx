@@ -32,7 +32,7 @@ export default function ServerSidebar({ menu }: { menu: SidebarMenuItem }) {
   useEffect(() => {
     if (menu && location) {
       const appHash = location.pathname.replace(/^\/[^/]+/, '');
-      selectActiveItem(menu, appHash, refreshMenu);
+      selectActiveItem(menu, appHash, location.pathname, refreshMenu);
     }
   }, [menu, location]);
 

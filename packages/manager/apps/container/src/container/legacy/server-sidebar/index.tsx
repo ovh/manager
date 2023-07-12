@@ -35,13 +35,14 @@ export default function ServerSidebarIndex() {
           '/contacts',
           '/support',
           '/ticket',
-          '/iam',
         ].some((route) =>
           location.pathname.startsWith(
             `/${application.container.path}${route}`,
           ),
         ),
       );
+    } else if (application?.container?.path === 'iam') {
+      setIsAccountMenu(true);
     } else {
       setIsAccountMenu(false);
     }
