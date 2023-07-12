@@ -108,7 +108,7 @@ export default function AccountSidebar() {
         label: t('sidebar_account_iam'),
         badge: 'new',
         href: navigation.getURL('iam', '/'),
-        routeMatcher: new RegExp('^/iam'),
+        pathMatcher: new RegExp('^/iam'),
       });
     }
 

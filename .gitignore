@@ -1,7 +1,6 @@
 node_modules
 dist
 types
-!**/iam/**/types
 .memsourcerc.yaml
 /docs/docs/.vuepress/public/assets/json/packages.json
 .extras*

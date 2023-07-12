@@ -160,7 +160,7 @@ export function findPathToNodeByApp(
   appHash: string,
 ): Node[] {
   const path = findPathToNode(rootNode, comparatorFn, appId, appHash);
-  if (!path.length && appHash.split('/').length - 1 > 1) {
+  if (!path.length && appHash.includes('/')) {
     return findPathToNodeByApp(
       rootNode,
       comparatorFn,
