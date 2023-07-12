@@ -60,6 +60,11 @@ export const fetchConfiguration = async (
           )}`,
         });
       }
+      if (err?.status === 403) {
+        const region = err?.data?.region || 'EU';
+        window.top.location.hash = `/restricted?region=${region}`;
+        window.top.location.reload();
+      }
       environment.setRegion(HOSTNAME_REGIONS[window.location.hostname]);
       return environment;
     });
