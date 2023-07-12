@@ -10,8 +10,25 @@ export default /* @ngInject */ ($stateProvider) => {
         $http.get(`/cloud/project/${projectId}`).then(({ data }) => data),
       breadcrumb: (project) =>
         project.status !== 'creating' ? project.description : null,
-      breadcrumbUrl: /* @ngInject */ (projectId) =>
-        `/#/public-cloud/pci/projects/${projectId}`,
+      breadcrumbUrl: /* @ngInject */ (
+        $injector,
+        $q,
+        coreURLBuilder,
+        projectId,
+      ) => {
+        if ($injector.has('shellClient')) {
+          return $injector
+            .get('shellClient')
+            .navigation.getURL('public-cloud', `#/pci/projects/${projectId}`)
+            .then((url) => url);
+        }
+        return $q.when(
+          coreURLBuilder.buildURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}`,
+          ),
+        );
+      },
     },
   });
 };
