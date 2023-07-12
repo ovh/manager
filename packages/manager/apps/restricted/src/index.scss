@@ -1,0 +1,14 @@
+@import 'ovh-manager-webfont/dist/css/ovh-font.css';
+@import 'bootstrap/scss/_functions.scss';
+@import 'bootstrap/scss/_variables.scss';
+@import 'bootstrap/scss/_mixins.scss';
+@import 'bootstrap/scss/_utilities.scss';
+@import 'bootstrap/scss/_spinners.scss';
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
