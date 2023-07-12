@@ -22,11 +22,17 @@ import {
   OdsButtonVariant,
 } from '@ovhcloud/ods-core';
 import { HTMLStencilElement } from '@stencil/core/internal';
-// import { useTranslation } from 'react-i18next';
+import i18n from 'i18next';
+import Backend from 'i18next-http-backend';
+
+const ovhLocaleToI18next = (ovhLocale = '') => ovhLocale.replace('_', '-');
+const i18nextLocaleToOvh = (i18nextLocale = '') =>
+  i18nextLocale.replace('-', '_');
 
 export interface IMscBillingTile {
   offer?: string;
   dataTracking?: string;
+  language?: string;
 }
 
 /**
@@ -40,13 +46,40 @@ export interface IMscBillingTile {
 export class MscBillingTile implements IMscBillingTile {
   @Element() host!: HTMLStencilElement;
 
-  /** Label of the tile type displayed above the title (usually FAQ, Category...) */
   @Prop() public offer?: string = '';
 
   /** Label sent to the tracking service */
   @Prop() public dataTracking?: string = '';
 
   @State() private tabIndex = 0;
+
+  @Prop() public language?: string = 'fr-FR';
+
+  @State() i18nLoaded = false;
+
+  componentWillLoad() {
+    i18n.use(Backend).init({
+      lng: ovhLocaleToI18next(this.language),
+      fallbackLng: 'en-GB',
+      debug: true,
+      backend: {
+        loadPath: (lngs) => {
+          const [lng] = lngs;
+          return `translations/Messages_${i18nextLocaleToOvh(lng)}.json`;
+        },
+        // allowMultiLoading: true,
+      },
+    });
+
+    i18n.on('initialized', () => {
+      this.i18nLoaded = true;
+    });
+  }
+
+  getTranslation(key: string): string {
+    if (!this.i18nLoaded || !i18n.t(key)) return key;
+    return i18n.t(key, { lng: this.language });
+  }
 
   render() {
     const ButtonTooltip = (
@@ -79,7 +112,7 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._300}
             color={OdsThemeColorIntent.text}
           >
-            Subscription
+            {this.getTranslation('manager_billing_subscription')}
           </osds-text>
           {/* OFFER */}
           {this.offer && (
@@ -91,7 +124,7 @@ export class MscBillingTile implements IMscBillingTile {
                 size={OdsThemeTypographySize._200}
                 color={OdsThemeColorIntent.text}
               >
-                Offer
+                {this.getTranslation('manager_billing_subscription_offer')}
               </osds-text>
               <osds-text
                 class="tile-description"
@@ -111,7 +144,7 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.text}
           >
-            Creation date
+            {this.getTranslation('manager_billing_subscription_creation')}
           </osds-text>
           <osds-text
             class="tile-description"
@@ -129,7 +162,7 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.text}
           >
-            Next payment date
+            {this.getTranslation('manager_billing_subscription_next_due_date')}
           </osds-text>
           {ButtonTooltip}
           <osds-text
@@ -148,7 +181,7 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.text}
           >
-            Commitment
+            {this.getTranslation('manager_billing_subscription_engagement')}
           </osds-text>
           <osds-text
             class="tile-description"
@@ -170,7 +203,9 @@ export class MscBillingTile implements IMscBillingTile {
             href={'#'}
             target={OdsHTMLAnchorElementTarget._blank}
           >
-            Commit
+            {this.getTranslation(
+              'manager_billing_subscription_engagement_commit',
+            )}
             <osds-icon
               class="link-icon"
               size={OdsIconSize.xxs}
@@ -186,7 +221,7 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.text}
           >
-            Contact
+            {this.getTranslation('manager_billing_subscription_contacts')}
           </osds-text>
           <osds-text
             class="tile-description"
@@ -206,7 +241,9 @@ export class MscBillingTile implements IMscBillingTile {
             href={'#'}
             target={OdsHTMLAnchorElementTarget._blank}
           >
-            Manage contacts
+            {this.getTranslation(
+              'manager_billing_subscription_contacts_management',
+            )}
             <osds-icon
               class="link-icon"
               size={OdsIconSize.xxs}

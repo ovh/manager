@@ -23,6 +23,10 @@
     "msc:test:watch": "stencil test --spec --e2e --watchAll",
     "msc:watch": "stencil build --docs --watch"
   },
+  "dependencies": {
+    "i18next": "^23.2.10",
+    "i18next-http-backend": "^2.2.1"
+  },
   "devDependencies": {
     "@ovhcloud/ods-testing": "^13.0.1",
     "@stencil/postcss": "^2.1.0",
