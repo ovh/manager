@@ -211,7 +211,7 @@ export default function PublicCloudSidebar() {
           <div className="m-2" key={item.id}>
             <h2 className={style.menuTitle}>{item.title}</h2>
             {item.subItems?.length > 0 && (
-              <ul>
+              <ul className={style.menuUl}>
                 {item.subItems.map((subItem) => (
                   <li key={`${item.id}-${subItem.id}`}>
                     <a
