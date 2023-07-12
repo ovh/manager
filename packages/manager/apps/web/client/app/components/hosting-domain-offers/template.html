@@ -16,21 +16,24 @@
             <!--Offer name-->
             <p
                 class="font-weight-bold"
-                data-ng-bind="('web_components_hosting_domain_offers_offer_' + groupOffer.category | translate) | uppercase"
+                data-ng-bind="groupOffer.selectedVersion.isCloudwebOffer ?
+                    groupOffer.selectedVersion.invoiceName :
+                    ('web_components_hosting_domain_offers_offer_' + groupOffer.category | translate) | uppercase"
             ></p>
 
             <!--Offer label-->
-            <div class="m-0"
-                 data-ng-if="groupOffer.selectedVersion.badge.type"
-            >
-                <span class="oui-badge oui-badge_{{groupOffer.selectedVersion.badge.className}}"
-                      data-ng-bind="('web_components_hosting_domain_offers_offer_badge_' + groupOffer.selectedVersion.badge.type) | translate"
+            <div class="m-0" data-ng-if="groupOffer.selectedVersion.badge.type">
+                <span
+                    class="oui-badge oui-badge_{{groupOffer.selectedVersion.badge.className}}"
+                    data-ng-bind="('web_components_hosting_domain_offers_offer_badge_' + groupOffer.selectedVersion.badge.type) | translate"
                 ></span>
             </div>
         </oui-select-picker-label>
 
         <!--Offer picker body-->
-        <oui-select-picker-section>
+        <oui-select-picker-section
+            data-ng-if="!groupOffer.selectedVersion.isCloudwebOffer"
+        >
             <!--Technicals list info-->
             <ul data-ng-if="$ctrl.showDetails">
                 <li
