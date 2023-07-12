@@ -151,5 +151,9 @@
   "sidebar_clipboard_copy": "Copier dans le presse-papiers",
   "sidebar_tag_alpha": "Alpha",
   "sidebar_tag_beta": "Beta",
-  "sidebar_tag_new": "Nouveau"
+  "sidebar_tag_new": "Nouveau",
+  "sidebar_description": "Menu de mes services",
+  "sidebar_load_services": "Charger les services",
+  "sidebar_access_list": "Accéder à la liste",
+  "sidebar_access_dashboard": "Accéder au tableau de bord"
 }

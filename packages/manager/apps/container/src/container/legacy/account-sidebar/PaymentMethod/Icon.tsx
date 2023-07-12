@@ -16,7 +16,7 @@ const Icon = ({ defaultPaymentMethod = {} }: Props): JSX.Element => {
       ) : (
         <img
           src={defaultPaymentMethod.icon.data}
-          alt={defaultPaymentMethod.icon.label}
+          alt={defaultPaymentMethod.icon.label || ''}
           aria-hidden="true"
           className="mr-1"
         />

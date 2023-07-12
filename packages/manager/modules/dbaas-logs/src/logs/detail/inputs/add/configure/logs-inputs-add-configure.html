@@ -1,11 +1,11 @@
 <div class="inputs-logs-add-configure pt-0">
     <div
         class="flowgger-edit"
-        data-ng-if="ctrl.configuration.engineType === 'FLOWGGER'"
+        data-ng-if="ctrl.input.data.engine.name === 'FLOWGGER'"
     >
         <p class="oui-heading_3">
             {{::'inputs_logs_configure_flowgger_title' | translate}}
-            {{ctrl.input.data.info.engine.version}}
+            {{ctrl.input.data.engine.version}}
         </p>
 
         <oui-spinner data-ng-if="ctrl.input.loading"></oui-spinner>
@@ -23,7 +23,7 @@
                         class="oui-select__input float-left"
                         name="logs_inputs_configure_format"
                         id="logs_inputs_configure_format"
-                        data-ng-model="ctrl.configuration.flowgger.logFormat"
+                        data-ng-model="ctrl.input.data.engine.configuration.logFormat"
                     >
                         <option
                             data-ng-repeat="logType in ctrl.getFlowggerLogFormats()"
@@ -52,7 +52,7 @@
                                 class="oui-select__input float-left"
                                 name="logs_inputs_configure_delimiter"
                                 id="logs_inputs_configure_delimiter"
-                                data-ng-model="ctrl.configuration.flowgger.logFraming"
+                                data-ng-model="ctrl.input.data.engine.configuration.logFraming"
                             >
                                 <option
                                     data-ng-repeat="delimiter in ctrl.getDelimiters()"
@@ -68,7 +68,7 @@
                         </div>
                         <a
                             class="oui-link"
-                            data-ng-if="ctrl.configuration.flowgger.logFraming === 'LINE'"
+                            data-ng-if="ctrl.input.data.engine.configuration.logFraming === 'LINE'"
                             data-oui-tooltip="{{'input_logs_configure_delimiter_tooltip_LINE' | translate}}"
                         >
                             <i
@@ -78,7 +78,7 @@
                         </a>
                         <a
                             class="oui-link"
-                            data-ng-if="ctrl.configuration.flowgger.logFraming === 'NUL'"
+                            data-ng-if="ctrl.input.data.engine.configuration.logFraming === 'NUL'"
                             data-oui-tooltip="{{'input_logs_configure_delimiter_tooltip_NUL' | translate}}"
                         >
                             <i
@@ -88,7 +88,7 @@
                         </a>
                         <a
                             class="oui-link"
-                            data-ng-if="ctrl.configuration.flowgger.logFraming === 'SYSLEN'"
+                            data-ng-if="ctrl.input.data.engine.configuration.logFraming === 'SYSLEN'"
                             data-oui-tooltip="{{'input_logs_configure_delimiter_tooltip_SYSLEN' | translate}}"
                         >
                             <i
@@ -98,7 +98,7 @@
                         </a>
                         <a
                             class="oui-link"
-                            data-ng-if="ctrl.configuration.flowgger.logFraming === 'CAPNP'"
+                            data-ng-if="ctrl.input.data.engine.configuration.logFraming === 'CAPNP'"
                             data-oui-tooltip="{{'input_logs_configure_delimiter_tooltip_CAPNP' | translate}}"
                         >
                             <i
@@ -131,11 +131,11 @@
 
     <div
         class="logstash-edit"
-        data-ng-if="ctrl.configuration.engineType === 'LOGSTASH'"
+        data-ng-if="ctrl.input.data.engine.name === 'LOGSTASH'"
     >
         <p class="oui-heading_3">
             {{::'inputs_logs_configure_logstash_title' | translate}}
-            {{ctrl.input.data.info.engine.version}}
+            {{ctrl.input.data.engine.version}}
         </p>
         <p>
             <span data-translate="inputs_logs_configure_logstash_desc"></span>
@@ -145,13 +145,11 @@
             ></span>
         </p>
         <p data-translate="inputs_logs_configure_logstash_desc2"></p>
-        <oui-spinner
-            data-ng-if="ctrl.input.loading || ctrl.loading.engine"
-        ></oui-spinner>
+        <oui-spinner data-ng-if="ctrl.input.loading"></oui-spinner>
         <form
             novalidate
             name="ctrl.logstashForm"
-            data-ng-if="!(ctrl.input.loading || ctrl.loading.engine)"
+            data-ng-if="!ctrl.input.loading"
         >
             <oui-field
                 label="{{ ::'inputs_logs_configure_logstash_wizard' | translate }}"
@@ -162,8 +160,8 @@
                         class="oui-select__input float-left"
                         name="logs_inputs_configure_format"
                         id="logs_inputs_configure_format"
-                        data-ng-model="ctrl.configuration.logstash.logFormat"
-                        data-ng-change="ctrl.applyConfiguration(ctrl.configuration.logstash.logFormat)"
+                        data-ng-model="ctrl.input.data.engine.configuration.logFormat"
+                        data-ng-change="ctrl.applyConfiguration(ctrl.input.data.engine.configuration.logFormat)"
                         data-ng-disabled="ctrl.saving.loading"
                     >
                         <option
@@ -171,7 +169,7 @@
                             data-translate="inputs_logs_configure_choose_app"
                         ></option>
                         <option
-                            data-ng-repeat="logFormat in ctrl.engine.helpers track by $index"
+                            data-ng-repeat="logFormat in ctrl.input.data.helpers track by $index"
                             value="{{logFormat.title}}"
                             data-ng-bind="::logFormat.title"
                         >
@@ -203,10 +201,10 @@
                         <textarea
                             id="input"
                             name="input"
-                            rows="{{ctrl.constructor.findRowLength(ctrl.configuration.logstash.inputSection)}}"
+                            rows="{{ctrl.findRowLength(ctrl.input.data.engine.configuration.inputSection)}}"
                             type="text"
                             class="oui-input"
-                            data-ng-model="ctrl.configuration.logstash.inputSection"
+                            data-ng-model="ctrl.input.data.engine.configuration.inputSection"
                             data-ng-class="{'oui-textarea_error': ctrl.logstashForm.$submitted && ctrl.logstashForm.input.$invalid}"
                             required
                         >
@@ -234,10 +232,10 @@
                         <textarea
                             id="filter"
                             name="filter"
-                            rows="{{ctrl.constructor.findRowLength(ctrl.configuration.logstash.filterSection)}}"
+                            rows="{{ctrl.findRowLength(ctrl.input.data.engine.configuration.filterSection)}}"
                             type="text"
                             class="oui-input"
-                            data-ng-model="ctrl.configuration.logstash.filterSection"
+                            data-ng-model="ctrl.input.data.engine.configuration.filterSection"
                             data-ng-class="{'oui-textarea_error': ctrl.logstashForm.$submitted && ctrl.logstashForm.filter.$invalid}"
                         >
                         </textarea>
@@ -266,10 +264,10 @@
                         <textarea
                             id="grok"
                             name="grok"
-                            rows="{{ctrl.constructor.findRowLength(ctrl.configuration.logstash.patternSection) + ctrl.LogsConstants.patternRowFill}}"
+                            rows="{{ctrl.findRowLength(ctrl.input.data.engine.configuration.patternSection) + ctrl.LogsConstants.patternRowFill}}"
                             type="text"
                             class="oui-input"
-                            data-ng-model="ctrl.configuration.logstash.patternSection"
+                            data-ng-model="ctrl.input.data.engine.configuration.patternSection"
                             data-ng-class="{'oui-textarea_error': ctrl.logstashForm.$submitted && ctrl.logstashForm.grok.$invalid}"
                         >
                         </textarea>
@@ -318,7 +316,7 @@
                     <p
                         class="oui-message__body"
                         data-translate="input_logs_configure_test_timestamp"
-                        data-translate-values="{ timestamp: '{{ ctrl.test.data.updatedAt | amCalendar}}' }"
+                        data-translate-values="{ timestamp: '{{ ctrl.test.data.updatedAt | cucMomentFormat:'MMMM Do YYYY, h:mm:ss a'}}' }"
                     ></p>
                 </div>
             </div>

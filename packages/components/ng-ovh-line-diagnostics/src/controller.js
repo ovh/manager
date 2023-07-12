@@ -322,7 +322,7 @@ export default class LineDiagnosticsCtrl {
       name: `telecom::pack::xdsl::${action}`,
       type: 'action',
       chapter1: 'telecom',
-      level2: 'Telecom',
+      level2: '87',
     });
   }
 
@@ -331,7 +331,7 @@ export default class LineDiagnosticsCtrl {
       name: `telecom::pack::xdsl::${page}`,
       type: 'navigation',
       chapter1: 'telecom',
-      level2: 'Telecom',
+      level2: '87',
     });
   }
 }

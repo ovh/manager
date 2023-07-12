@@ -7,6 +7,7 @@
   "private_registry_create_registry": "Créer un registre privé",
   "private_registry_name": "Nom du Registre",
   "private_registry_id": "ID",
+  "private_registry_region": "Région",
   "private_registry_plan": "Plan",
   "private_registry_harbor_version": "Version d'Harbor",
   "private_registry_status": "État",

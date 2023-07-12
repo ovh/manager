@@ -74,17 +74,17 @@
         </oui-datagrid-column>
         <oui-datagrid-column
             title=":: 'inputs_autoscaled' | translate"
-            property="info.autoscale"
+            property="autoscale"
             type="boolean"
             searchable
             filterable
         >
             <span
                 class="oui-badge"
-                data-translate="{{ ::'inputs_autoscaled_' + $row.info.autoscale }}"
+                data-translate="{{ ::'inputs_autoscaled_' + $row.autoscale }}"
                 data-ng-class="{
-                    'oui-badge_info': $row.info.autoscale === false,
-                    'oui-badge_success': $row.info.autoscale === true}"
+                    'oui-badge_info': $row.autoscale === false,
+                    'oui-badge_success': $row.autoscale === true}"
             >
             </span>
         </oui-datagrid-column>

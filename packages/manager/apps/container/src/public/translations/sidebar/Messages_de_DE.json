@@ -152,5 +152,9 @@
   "sidebar_telephony_type_sip": "SIP",
   "sidebar_telephony_type_fax": "Fax",
   "sidebar_pci_volume_backup": "Volume Backup",
-  "sidebar_vmware_all": "Alle meine Dienste"
+  "sidebar_vmware_all": "Alle meine Dienste",
+  "sidebar_description": "Menü meiner Dienste",
+  "sidebar_load_services": "Dienste laden",
+  "sidebar_access_list": "Zur Liste",
+  "sidebar_access_dashboard": "Zum Dashboard"
 }

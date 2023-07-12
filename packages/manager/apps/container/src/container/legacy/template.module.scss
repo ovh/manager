@@ -35,7 +35,7 @@
   }
 
   // adjust left position if depending on sidebar
-  div[role='navigation'] + &_content {
+  div + &_content {
     left: $sidebar-width;
     @media (max-width: $device-breakpoint-tablet-max-width) {
       left: 0;
