@@ -1,6 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import useClickAway from 'react-use/lib/useClickAway';
 import style from './style.module.scss';
+import {  OsdsIcon } from '@ovhcloud/ods-stencil/components/react';
+import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
+import {  OdsIconName, OdsIconSize } from '@ovhcloud/ods-core';
 
 type OrderResponsivePopupProps = {
   button: HTMLElement;
@@ -13,18 +16,8 @@ export default function OrderResponsivePopup({
   children,
   onClose,
 }: OrderResponsivePopupProps) {
-  const { top } = button.getBoundingClientRect();
-  const [offsetY, setOffsetY] = useState(top);
-  const ref = useRef();
 
-  useEffect(() => {
-    const refreshOffset = () => {
-      const { top } = button.getBoundingClientRect();
-      setOffsetY(top + window.scrollY);
-    };
-    window.addEventListener('resize', refreshOffset);
-    return () => window.removeEventListener('resize', refreshOffset);
-  }, []);
+  const ref = useRef();
 
   useClickAway(ref, (e) => {
     const target: HTMLElement = e.target as HTMLElement;
@@ -40,16 +33,13 @@ export default function OrderResponsivePopup({
       <div className={style.popupOverlay}></div>
       <div
         className={style.popup}
-        style={{
-          top: offsetY + button.offsetHeight + 4,
-        }}
         ref={ref}
       >
         <div>
           {children}
           <div className={style.popupCloseButton}>
-            <button type="button" onClick={() => onClose && onClose()}>
-              <i className="ovh-font ovh-font-wrong" aria-hidden="true"></i>
+          <button type="button" onClick={() => onClose && onClose()} className={style.transparentButton}>
+              <OsdsIcon size={OdsIconSize.sm} name={OdsIconName.CLOSE} color={OdsThemeColorIntent.primary}/>
             </button>
           </div>
         </div>

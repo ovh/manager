@@ -15,7 +15,7 @@ export type SidebarMenuItem = {
   parentName?: string;
   serviceName?: string;
   extraParams?: Record<string, string>;
-  stateParams?: (number | string)[];
+  stateParams?: (number | string)[];
 
   loader?: () => Promise<SidebarMenuItem[]>;
   isLoading?: boolean;

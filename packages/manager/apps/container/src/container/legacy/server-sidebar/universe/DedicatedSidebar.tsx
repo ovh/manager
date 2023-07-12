@@ -130,13 +130,9 @@ export default function DedicatedSidebar() {
                   ...dc,
                   href: navigation.getURL(
                     'dedicated',
-                    `#/managedBaremetal/${
-                      service.serviceName
-                    }/datacenter/${dcId}`,
+                    `#/managedBaremetal/${service.serviceName}/datacenter/${dcId}`,
                   ),
-                  routeMatcher: new RegExp(
-                    `/datacenter/${dcId}`,
-                  ),
+                  routeMatcher: new RegExp(`/datacenter/${dcId}`),
                 };
               });
             },

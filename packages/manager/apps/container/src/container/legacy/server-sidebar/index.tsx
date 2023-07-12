@@ -77,7 +77,9 @@ export default function ServerSidebarIndex() {
     );
   }
   if (universe === 'public-cloud') {
-    const isPciSidebarHidden = !/\/pci\/projects\/\w{32,}/.test(location?.pathname);
+    const isPciSidebarHidden = !/\/pci\/projects\/\w{32,}/.test(
+      location?.pathname,
+    );
     if (isPciSidebarHidden) {
       return <></>;
     }
@@ -85,15 +87,14 @@ export default function ServerSidebarIndex() {
   if (isUniverseMenu) {
     return (
       <div
-        className={`${style.serverSidebar} ${
-          isResponsiveSidebarMenuOpen ? style.serverSidebarOpen : ''
-        }`}
-      >
-        {universe === 'public-cloud' && <PublicCloudSidebar />}
-        {universe === 'server' && <DedicatedSidebar />}
-        {universe === 'telecom' && <TelecomSidebar />}
-        {universe === 'web' && <WebSidebar />}
-      </div>
+  className={`${style.serverSidebar} ${isResponsiveSidebarMenuOpen ? style.serverSidebarOpen : ''}`}
+  role="navigation"
+>
+  {universe === 'public-cloud' && <PublicCloudSidebar />}
+  {universe === 'server' && <DedicatedSidebar />}
+  {universe === 'telecom' && <TelecomSidebar />}
+  {universe === 'web' && <WebSidebar />}
+</div>
     );
   }
   return undefined;
