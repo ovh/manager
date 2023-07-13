@@ -29,6 +29,7 @@ export default class ServerCtrl {
     Polling,
     Server,
     User,
+    ovhFeatureFlipping,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -44,6 +45,7 @@ export default class ServerCtrl {
     this.Polling = Polling;
     this.Server = Server;
     this.User = User;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
   }
 
   $onInit() {
@@ -352,7 +354,22 @@ export default class ServerCtrl {
       this.launchBringYourOwnImagePolling();
     }
 
+    this.checkCpanel();
+
     return this.$q.all([this.load(), this.fetchRTMInfo()]);
+  }
+
+  checkCpanel() {
+    this.ovhFeatureFlipping
+      .checkFeatureAvailability(['license:cpanel-eol-banner'])
+      .then((availability) => {
+        if (!availability.isFeatureAvailable('license:cpanel-eol-banner'))
+          return;
+        this.$scope.centos7Cpanel = this.server.os === 'Centos 7 cPanel';
+      })
+      .catch(() => {
+        this.$scope.centos7Cpanel = false;
+      });
   }
 
   load() {

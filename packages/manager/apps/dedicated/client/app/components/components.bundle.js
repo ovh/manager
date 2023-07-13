@@ -1,4 +1,5 @@
 import './address/address.filter';
+import './cpanel-eol-banner';
 import './expiration/service-expiration-date.component.controller';
 import './expiration/service-expiration-date.component';
 import './expiration/service-expiration-label.component.controller';
