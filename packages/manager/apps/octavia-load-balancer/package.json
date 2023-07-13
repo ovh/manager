@@ -19,6 +19,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-octavia-load-balancer-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
+    "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-config": "^7.0.0",
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-error-page": "^2.3.1",
