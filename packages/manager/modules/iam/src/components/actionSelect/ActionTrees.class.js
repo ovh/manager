@@ -255,7 +255,7 @@ export default class ActionTrees extends Array {
         .sort()
         .map((value) => ({
           expanded: false,
-          searchable: true,
+          searchable: false,
           searchQuery: input.actionTrees?.find(
             (actionTree) => actionTree.value === value,
           )?.searchQuery,
