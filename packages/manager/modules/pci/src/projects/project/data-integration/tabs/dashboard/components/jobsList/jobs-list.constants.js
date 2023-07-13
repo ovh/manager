@@ -1,0 +1,10 @@
+export const JOB_STATUSES = {
+  SUCCESS: ['COMPLETED'],
+  WARNING: ['PROVISIONING', 'SUBMITTED'],
+  ERROR: ['DELETED', 'FAILED', 'TERMINATED'],
+  INFO: ['RUNNING'],
+};
+
+export default {
+  JOB_STATUSES,
+};
