@@ -91,7 +91,7 @@ export default function AccountSidebar() {
         id: 'my-carbon-footprint',
         label: t('sidebar_carbon_footprint'),
         href: navigation.getURL('carbon-calculator', '/'),
-        routeMatcher: new RegExp('^/carbon-calculator'),
+        pathMatcher: new RegExp('^/carbon-calculator'),
       });
     }
 
