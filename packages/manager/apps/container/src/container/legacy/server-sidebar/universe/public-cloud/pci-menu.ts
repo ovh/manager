@@ -42,6 +42,7 @@ export const features = [
   'public-cloud:contacts',
   'public-cloud:project-settings',
   'ai-dashboard',
+  'data-integration',
 ];
 
 export function getPciProjectMenu(
@@ -268,6 +269,16 @@ export function getPciProjectMenu(
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/data-processing`,
+          ),
+        },
+        {
+          id: 'data-integration',
+          title: 'Data Integration',
+          badge: 'beta',
+          feature: 'data-integration',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/data-integration`,
           ),
         },
         {
