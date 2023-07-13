@@ -24,23 +24,27 @@ export default function ServerSidebarIndex() {
   const location = useLocation();
   const isUniverseMenu =
     ['public-cloud', 'server', 'telecom', 'web'].indexOf(universe) >= 0;
+  const accountMenuPath: Record<string, string[] | '*'> = {
+    dedicated: [
+      '/billing',
+      '/contact',
+      '/contacts',
+      '/support',
+      '/ticket',
+      '/useraccount',
+    ],
+    iam: '*',
+    'carbon-calculator': '*',
+  }
 
   useEffect(() => {
-    if (application?.container?.path === 'dedicated') {
-      setIsAccountMenu(
-        [
-          '/useraccount',
-          '/billing',
-          '/contact',
-          '/contacts',
-          '/support',
-          '/ticket',
-        ].some((route) =>
-          location.pathname.startsWith(
-            `/${application.container.path}${route}`,
-          ),
-        ),
-      );
+    const accountMenuPathEntry = Object.entries(accountMenuPath)
+      .find(([path]) => path === application?.container?.path);
+    if (accountMenuPathEntry) {
+      const [path, routes] = accountMenuPathEntry;
+      routes === '*'
+        ? setIsAccountMenu(true)
+        : setIsAccountMenu(routes.some((route) => location.pathname.startsWith(`/${path}${route}`)))
     } else {
       setIsAccountMenu(false);
     }

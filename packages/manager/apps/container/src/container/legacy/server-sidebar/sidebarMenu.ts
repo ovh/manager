@@ -6,8 +6,8 @@ export type SidebarMenuItem = {
   href?: string;
   isExternal?: boolean;
   routeMatcher?: RegExp;
+  pathMatcher?: RegExp;
   subItems?: SidebarMenuItem[];
-
   parent?: SidebarMenuItem;
   depth?: number;
 
@@ -212,6 +212,7 @@ export async function selectItem(
 export async function selectActiveItem(
   menu: SidebarMenuItem,
   route: string,
+  path: string,
   onMenuChange: CallableFunction,
 ): Promise<SidebarMenuItem> {
   const findMatchingItem = async (
@@ -220,10 +221,14 @@ export async function selectActiveItem(
     if (
       item.depth < 0 ||
       item.routeMatcher?.test(route) ||
+      item.pathMatcher?.test(path) ||
       (item.serviceName && route.indexOf(item.serviceName) >= 0) ||
       item.href?.endsWith(route)
     ) {
-      if (item.routeMatcher && !item.routeMatcher.test(route)) {
+      if (
+        (item.routeMatcher && !item.routeMatcher.test(route)) ||
+        (item.pathMatcher && !item.pathMatcher.test(path))
+      ) {
         return null;
       }
       selectItem(menu, item);
