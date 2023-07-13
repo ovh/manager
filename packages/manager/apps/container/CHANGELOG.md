@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.22.1...@ovh-ux/manager-container-app@0.23.0) (2023-07-13)
+
+
+### Features
+
+* **pci.data-integration:** add data-integration project ([#9338](https://github.com/ovh/manager/issues/9338)) ([7eba32f](https://github.com/ovh/manager/commit/7eba32ff7e3ecfb9d44932c794464e3658749828))
+
+
+
+
+
 ## [0.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.22.0...@ovh-ux/manager-container-app@0.22.1) (2023-07-12)
 
 
