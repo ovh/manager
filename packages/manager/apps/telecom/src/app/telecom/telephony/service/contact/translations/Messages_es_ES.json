@@ -63,5 +63,9 @@
   "telephony_service_contact_bulk_on_error": "¡Vaya! Se ha producido un error al modificar los datos.",
   "telephony_service_contact_required_fields": "Los campos con asterisco son obligatorios.",
   "telephony_service_contact_tva": "Número de IVA",
-  "telephony_service_contact_tva_invalid": "El número de IVA introducido no es válido."
+  "telephony_service_contact_tva_invalid": "El número de IVA introducido no es válido.",
+  "telephony_service_contact_outwardcode": "Código de salida",
+  "telephony_service_contact_inwardcode": "Inward code",
+  "telephony_service_contact_bad_outward": "El código debe estar formado por una letra seguida de 1 a 3 caracteres alfanuméricos.",
+  "telephony_service_contact_bad_inward": "El código debe estar formado por un número seguido de 2 caracteres alfabéticos."
 }
