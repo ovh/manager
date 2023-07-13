@@ -115,7 +115,7 @@
         <!-- <Categories> -->
         <div
             data-ng-repeat="category in actionTree.categories track by category.value"
-            data-ng-class="{ 'mt-3': !$first }"
+            data-ng-class="{ 'pt-3': !$first || !actionTree.searchable }"
         >
             <div class="d-flex justify-content-start">
                 <!-- <CategoryCheckbox> -->
