@@ -65,7 +65,7 @@ export default function AccountSidebar() {
         'dedicated',
         `/billing/autorenew${isEnterprise ? '/ssh' : '/'}`,
       ),
-      routeMatcher: new RegExp('^/billing/autorenew'),
+      routeMatcher: new RegExp('^/billing/autorenew', 'i'),
     });
 
     if (!isEnterprise) {
