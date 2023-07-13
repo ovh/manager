@@ -78,6 +78,13 @@ export default class UpgradeStorageCtrl {
     return newTax - this.initialTax;
   }
 
+  get priceUnitTranslation() {
+    const unitKey = this.showMonthlyPrices
+      ? 'pci_databases_general_information_upgrade_storage_summary_price_monthly_unit'
+      : 'pci_databases_general_information_upgrade_storage_summary_price_hourly_unit';
+    return this.$translate.instant(unitKey);
+  }
+
   upgradeStorage() {
     this.trackDashboard('general_information::popin_upgrade_storage_validate');
     this.upgradingStorage = true;
