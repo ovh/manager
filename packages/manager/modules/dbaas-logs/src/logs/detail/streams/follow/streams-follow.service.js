@@ -83,7 +83,19 @@ export default class LogsStreamsFollowService {
     return this.$http
       .get(`/dbaas/logs/${serviceName}/url`)
       .then(({ data: urls }) => {
-        return urls;
+        const rfc5424Url = this.CucUrlHelper.constructor.findUrl(
+          { urls },
+          this.LogsConstants.RFC_URL,
+        );
+        const ltsvUrl = this.CucUrlHelper.constructor.findUrl(
+          { urls },
+          this.LogsConstants.LTSV_URL,
+        );
+        const gelfUrl = this.CucUrlHelper.constructor.findUrl(
+          { urls },
+          this.LogsConstants.GELF_URL,
+        );
+        return { rfc5424Url, ltsvUrl, gelfUrl };
       })
       .catch((err) =>
         this.LogsHelperService.handleError(
@@ -257,7 +269,7 @@ export default class LogsStreamsFollowService {
       (token) => {
         const now = new Date();
         const timestamp = Math.round(now.getTime() / 1000);
-        const command = `echo -e '{"version":"1.1", "host": "example.org", "short_message": "A short GELF message that helps you identify what is going on", "full_message": "Backtrace here more stuff", "timestamp": ${timestamp}, "level": 1, "_user_id": 9001, "_some_info": "foo", "some_metric_num": 42.0, "_X-OVH-TOKEN":"${token}"}\\0' | openssl s_client -quiet -no_ign_eof  -connect ${gelfUrl}`;
+        const command = `echo -e '{"version":"1.1", "host": "example.org", "short_message": "A short GELF message that helps you identify what is going on", "full_message": "Backtrace here more stuff", "timestamp": ${timestamp}, "level": 1, "_user_id": 9001, "_some_info": "foo", "_some_metric_num": 42.0, "_X-OVH-TOKEN":"${token}"}\\0' | openssl s_client -quiet -no_ign_eof  -connect ${gelfUrl}`;
         const error = this.CucControllerHelper.constructor.copyToClipboard(
           command,
         );
@@ -325,7 +337,6 @@ export default class LogsStreamsFollowService {
             this.closeConnection();
           }
         });
-
         this.webSocket.onError((err) => {
           this.LogsHelperService.handleError(
             'logs_streams_follow_connection_error',
