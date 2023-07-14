@@ -24,6 +24,7 @@
     "msc:watch": "stencil build --docs --watch"
   },
   "dependencies": {
+    "@ovh-ux/manager-core-api": "^0.1.0",
     "i18next": "^23.2.10",
     "i18next-http-backend": "^2.2.1"
   },

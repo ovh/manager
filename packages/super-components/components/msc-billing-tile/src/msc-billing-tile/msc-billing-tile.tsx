@@ -24,6 +24,7 @@ import {
 import { HTMLStencilElement } from '@stencil/core/internal';
 import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
+import apiClient from '@ovh-ux/manager-core-api';
 
 const ovhLocaleToI18next = (ovhLocale = '') => ovhLocale.replace('_', '-');
 const i18nextLocaleToOvh = (i18nextLocale = '') =>
@@ -33,6 +34,7 @@ export interface IMscBillingTile {
   offer?: string;
   dataTracking?: string;
   language?: string;
+  servicePath: string;
 }
 
 /**
@@ -46,16 +48,27 @@ export interface IMscBillingTile {
 export class MscBillingTile implements IMscBillingTile {
   @Element() host!: HTMLStencilElement;
 
+  /** Name of the offer */
   @Prop() public offer?: string = '';
 
   /** Label sent to the tracking service */
   @Prop() public dataTracking?: string = '';
 
-  @State() private tabIndex = 0;
-
+  /** change the language of the billing-tile */
   @Prop() public language?: string = 'fr-FR';
 
+  /** service path for the API */
+  @Prop() public servicePath = '';
+
+  @State() private tabIndex = 0;
+
   @State() i18nLoaded = false;
+
+  @State() serviceId: string;
+
+  @State() creationDate: Date;
+
+  @State() nextBillingDate: Date;
 
   componentWillLoad() {
     i18n.use(Backend).init({
@@ -63,7 +76,7 @@ export class MscBillingTile implements IMscBillingTile {
       fallbackLng: 'en-GB',
       debug: true,
       backend: {
-        loadPath: (lngs) => {
+        loadPath: (lngs: string) => {
           const [lng] = lngs;
           return `translations/Messages_${i18nextLocaleToOvh(lng)}.json`;
         },
@@ -74,11 +87,38 @@ export class MscBillingTile implements IMscBillingTile {
     i18n.on('initialized', () => {
       this.i18nLoaded = true;
     });
+
+    this.fetchServiceId();
   }
 
   getTranslation(key: string): string {
     if (!this.i18nLoaded || !i18n.t(key)) return key;
     return i18n.t(key, { lng: this.language });
+  }
+
+  fetchServiceId() {
+    apiClient.v6
+      .get(`${this.servicePath}/serviceInfos`)
+      .then((response) => {
+        this.serviceId = response.data.serviceId;
+        // this.fetchServiceDetails(this.serviceId);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+
+  fetchServiceDetails(serviceId: string) {
+    apiClient.v6
+      .get(`/service/${serviceId}`)
+      .then((response) => {
+        const { data } = response;
+        this.creationDate = new Date(data.creationDate);
+        this.nextBillingDate = new Date(data.expirationDate);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }
 
   render() {
@@ -152,7 +192,7 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.default}
           >
-            1 February 2023
+            {this.creationDate?.toString()}
           </osds-text>
           {/* NEXT PAYMENT DATE */}
           <osds-divider separator={true} />
@@ -171,7 +211,7 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.default}
           >
-            1 February 2023
+            {this.nextBillingDate?.toString()}
           </osds-text>
           {/* COMMITMENT */}
           <osds-divider separator={true} />
