@@ -22,7 +22,7 @@ import {
   OdsButtonVariant,
 } from '@ovhcloud/ods-core';
 import { HTMLStencilElement } from '@stencil/core/internal';
-import i18n from 'i18next';
+import { i18n, createInstance } from 'i18next';
 import Backend from 'i18next-http-backend';
 import apiClient from '@ovh-ux/manager-core-api';
 
@@ -70,30 +70,43 @@ export class MscBillingTile implements IMscBillingTile {
 
   @State() nextBillingDate: Date;
 
+  private i18nInstance: i18n;
+
   componentWillLoad() {
-    i18n.use(Backend).init({
-      lng: ovhLocaleToI18next(this.language),
-      fallbackLng: 'en-GB',
-      debug: true,
-      backend: {
-        loadPath: (lngs: string) => {
-          const [lng] = lngs;
-          return `translations/Messages_${i18nextLocaleToOvh(lng)}.json`;
+    this.i18nInstance = createInstance();
+
+    return new Promise<void>((resolve) => {
+      this.i18nInstance.use(Backend).init(
+        {
+          lng: ovhLocaleToI18next(this.language),
+          fallbackLng: 'fr-FR',
+          debug: true,
+          backend: {
+            loadPath: (lngs: string) => {
+              const [lng] = lngs;
+              return `translations/Messages_${i18nextLocaleToOvh(lng)}.json`;
+            },
+            allowMultiLoading: true,
+          },
         },
-        // allowMultiLoading: true,
-      },
-    });
+        (err, t) => {
+          console.log('err translation', err, t);
+          // After initialization completed, set loaded flag to true
+          this.i18nLoaded = true;
+          resolve();
+        },
+      );
 
-    i18n.on('initialized', () => {
-      this.i18nLoaded = true;
+      this.fetchServiceId();
     });
-
-    this.fetchServiceId();
   }
 
   getTranslation(key: string): string {
-    if (!this.i18nLoaded || !i18n.t(key)) return key;
-    return i18n.t(key, { lng: this.language });
+    if (!this.i18nLoaded) return key;
+    const translation = this.i18nInstance.t(key, { lng: this.language });
+    console.log(key, '->', translation);
+    if (!translation) return key;
+    return translation;
   }
 
   fetchServiceId() {
