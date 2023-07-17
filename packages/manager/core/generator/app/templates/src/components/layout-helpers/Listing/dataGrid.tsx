@@ -57,7 +57,7 @@ const Datagrid = <T,>(props: { data: DataItem<T>[] }) => {
         {data.map((service: any, index: number) => (
           <tr key={index}>
             {tableHeaders.map((header, indexTd) => (
-              <td key={`datagrid-td-${header}-${indexTd}`}>
+              <td className="p-3" key={`datagrid-td-${header}-${indexTd}`}>
                 {matchServiceLink(header) > -1 ? (
                   <OsdsLink
                     color={OdsThemeColorIntent.primary}

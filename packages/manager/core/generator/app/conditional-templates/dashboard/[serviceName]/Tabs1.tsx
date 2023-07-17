@@ -1,26 +1,26 @@
 import React, { lazy } from 'react';
 import TileCustom from '@/components/layout-helpers/Dashboard/TileCustom';
 
-const TiileExemple = lazy(() => import('./Tabs1/TileExemple'));
+const TileExemple = lazy(() => import('./Tabs1/TileExemple'));
 
 function Tabs1() {
   return (
-    <div className="dashboard-section">
+    <div className="dashboard-section pt-4">
       <div>
         <TileCustom title="tile-exemple">
-          <TiileExemple />
+          <TileExemple />
         </TileCustom>
       </div>
       <div>
         <TileCustom title="tile-exemple-2">
           <div>
-            <TiileExemple />
+            <TileExemple />
           </div>
         </TileCustom>
       </div>
       <div>
         <TileCustom title="tile-exemple-3">
-          <TiileExemple />
+          <TileExemple />
         </TileCustom>
       </div>
     </div>

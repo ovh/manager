@@ -43,31 +43,36 @@ const ErrorBanner: React.FC<ErrorObject> = ({ error }) => {
   const navigate = useNavigate();
   const location = useLocation();
   return (
-    <div className="manager-error-page">
-      <div>
+    <div className="manager-error-page p-5">
+      <div className="manager-error-page-image">
         <img src={OOPS} alt="OOPS" />
       </div>
 
-      <OsdsText size={OdsTextSize._600} level={OdsTextLevel.heading}>
-        {t('manager_error_page_title')}
-      </OsdsText>
+      <div className="py-2">
+        <OsdsText size={OdsTextSize._600} level={OdsTextLevel.heading}>
+          {t('manager_error_page_title')}
+        </OsdsText>
+      </div>
 
-      <OsdsMessage
-        color={OdsThemeColorIntent.error}
-        type={OdsMessageType.error}
-      >
-        <div>
-          {t('manager_error_page_default')} <br />
-          {error?.data?.message && <strong>{error.data.message}</strong>}
-          {error?.headers['x-ovh-queryid'] && (
-            <p>
-              {t('manager_error_page_detail_code')}
-              {error.headers['x-ovh-queryid']}
-            </p>
-          )}
-        </div>
-      </OsdsMessage>
-      <div className="buttons">
+      <div>
+        <OsdsMessage
+          color={OdsThemeColorIntent.error}
+          type={OdsMessageType.error}
+        >
+          <div>
+            {t('manager_error_page_default')} <br />
+            {error?.data?.message && <strong>{error.data.message}</strong>}
+            {error?.headers['x-ovh-queryid'] && (
+              <p>
+                {t('manager_error_page_detail_code')}
+                {error.headers['x-ovh-queryid']}
+              </p>
+            )}
+          </div>
+        </OsdsMessage>
+      </div>
+
+      <div className="manager-error-page-footer py-2">
         <OsdsButton
           color={OdsThemeColorIntent.primary}
           variant={OdsButtonVariant.ghost}

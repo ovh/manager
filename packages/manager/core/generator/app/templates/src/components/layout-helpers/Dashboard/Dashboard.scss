@@ -6,7 +6,6 @@
   }
   @media (min-width: 768px) {
     .dashboard-section {
-      padding-top: 1rem;
       display: grid;
       gap: 30px;
       grid-template-columns: repeat(3, 1fr);
@@ -18,7 +17,6 @@
   }
   @media (max-width: 767px) {
     .dashboard-section {
-      padding-top: 1rem;
       display: block !important;
       .tile-content {
         display: block;
@@ -36,10 +34,5 @@
 
   .element-tile-right {
     align-items: flex-end;
-  }
-
-  .dashboard-layout-subtitle {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
   }
 }

@@ -55,11 +55,7 @@ export const isUnknownTypescriptType = (typeStr) =>
     (type) => !typeStr.includes(type),
   );
 
-
 /**
  * @returns a valid string clean
  */
-export const cleanTypeSyntax = (typeStr) => {
-  const str = typeStr.replaceAll('>', '');
-  return str;
-}
+export const cleanTypeSyntax = (typeStr) => (typeStr.replaceAll('>', ''));
