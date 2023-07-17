@@ -1,15 +1,6 @@
 import { createBillingTile } from './create-billing-tile';
 
 const defaultLabels = {
-  tileType: 'Catégorie',
-  tileTitle: 'Titre du produit',
-  tileDescription:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  href: 'https://ovh.com',
-  imgSrc:
-    'https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png',
-  imgAlt: 'offer',
-  seeMoreLabel: 'En savoir plus',
   dataTracking: 'home::dashboard::test',
 };
 
@@ -24,46 +15,28 @@ export default {
     </section>
   `,
   argTypes: {
-    tileNumber: { control: 'number', default: 1 },
-    tileType: { control: 'text' },
-    tileTitle: { control: 'text' },
-    tileDescription: { control: 'text' },
-    href: { control: 'text' },
-    isExternalHref: { control: 'boolean' },
-    seeMoreLabel: { control: 'text' },
-    imgSrc: { control: 'text' },
-    imgAlt: { control: 'text' },
-    hasBadges: { control: 'boolean' },
-    hasFooter: { control: 'boolean' },
+    language: { control: 'text', default: 'fr-FR' },
   },
 };
 
-export const FAQ = {
+export const NASHA = {
   args: {
+    ...defaultLabels,
+    offer: 'zpool-123456',
+    language: 'en-GB',
+  },
+};
+
+export const VPS = {
+  args: {
+    offer: 'vps-1234abcd.vps.ovh.net',
     ...defaultLabels,
   },
 };
 
-/*
-export const Product = {
+export const Domains = {
   args: {
+    offer: 'agora3.ovh',
     ...defaultLabels,
-    hasBadges: true,
-    hasFooter: true,
   },
 };
-
-export const WithBadges = {
-  args: {
-    ...defaultLabels,
-    hasBadges: true,
-  },
-};
-
-export const WithFooter = {
-  args: {
-    ...defaultLabels,
-    hasFooter: true,
-  },
-};
-*/

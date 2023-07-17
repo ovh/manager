@@ -4,27 +4,8 @@ import { OdsComponentAttributes2StringAttributes } from '@ovhcloud/ods-core';
 import { MscBillingTile, IMscBillingTile } from '../src';
 
 const defaultAttributes = {
-  tileType: 'FAQ',
-  tileTitle: 'FAQ title',
-  tileDescription:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  href: 'https://ovh.com',
-  seeMoreLabel: 'See more',
   dataTracking: 'home::dashboard::test',
 };
-
-export const badgesSlotExample = `
-  <span slot="badges">
-    <osds-chip color="primary" size="sm">OVHcloud</osds-chip>
-    <osds-chip color="success" size="sm">Beta</osds-chip>
-  </span>
-`;
-
-export const footerSlotExample = `
-  <div slot="footer">
-    <osds-button color="primary" style="margin-top: 1.5rem">Commander</osds-button>
-  </div>
-`;
 
 export const setupSpecTest = async ({
   attributes = {},
