@@ -15,7 +15,7 @@ export const ORDER_KEYS = [
   'networkId',
   'subnetId',
   'forkFrom.serviceId',
-  'forkFrom.id',
+  'forkFrom.backupId',
   'forkFrom.pointInTime',
 ];
 

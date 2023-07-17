@@ -8,7 +8,7 @@
   "pci_databases_fork_command_parameters_info": "Plus d’informations sur les paramètres disponibles :",
   "pci_databases_fork_command_parameters_info_description": "Nom de votre service",
   "pci_databases_fork_command_parameters_info_forkFrom_serviceId": "Id du service d'origine",
-  "pci_databases_fork_command_parameters_info_forkFrom_id": "Id de la sauvegarde",
+  "pci_databases_fork_command_parameters_info_forkFrom_backupId": "Id de la sauvegarde",
   "pci_databases_fork_command_parameters_info_forkFrom_pointInTime": "Point de restauration",
   "pci_databases_fork_command_parameters_info_networkId": "Réseau privé openstack id",
   "pci_databases_fork_command_parameters_info_subnetId": "Sous-réseau id",
