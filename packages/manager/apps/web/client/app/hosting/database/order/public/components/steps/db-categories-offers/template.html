@@ -3,8 +3,8 @@
     <oui-select-picker
         class="d-inline-block col-sm-12 col-md-4 my-3"
         data-ng-repeat="dbCategory in ::$ctrl.dbCategories track by $index"
-        data-values="[dbCategory]"
-        data-model="$ctrl.model.dbCategory"
+        data-values="[dbCategory.category]"
+        data-model="$ctrl.model.dbCategory.category"
         data-id="db-category-{{dbCategory.category}}"
         data-name="db-category-{{dbCategory.category}}"
         data-variant="light"
@@ -20,7 +20,6 @@
 
         <!--Offer picker body-->
         <oui-select-picker-section>
-
             <!--Description-->
             <p
                 data-ng-bind=":: ('web_hosting_database_order_components_db_categories_offers_category_' + dbCategory.category + '_description') | translate"
@@ -54,11 +53,11 @@
     </oui-select-picker>
 </div>
 
-
 <!--DB engines-->
-<div class="row"
-     data-ng-if="$ctrl.getDbEngines().length > 0"
-     data-ng-init="dbCategory = $ctrl.model.dbCategory"
+<div
+    class="row"
+    data-ng-if="$ctrl.getDbEngines().length > 0"
+    data-ng-init="dbCategory = $ctrl.model.dbCategory"
 >
     <oui-select-picker
         class="d-inline-block col-sm-12 col-md-3 my-3"

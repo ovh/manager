@@ -2,7 +2,10 @@
 
 <!--Title + description-->
 <div class="ml-2">
-    <span class="oui-heading_4" data-translate="ovhManagerHostingDatabaseOrderPublic_title"></span>
+    <span
+        class="oui-heading_4"
+        data-translate="ovhManagerHostingDatabaseOrderPublic_title"
+    ></span>
     <p data-translate="ovhManagerHostingDatabaseOrderPublic_description"></p>
 </div>
 
@@ -26,6 +29,7 @@
             data-preselect-db-category="$ctrl.preselectDbCategory"
             data-on-db-category-click="$ctrl.onDbCategoryClick(dbCategory)"
             data-on-db-category-engine-click="$ctrl.onDbCategoryEngineClick(dbEngine)"
+            data-model="$ctrl.model"
         ></web-hosting-database-order-db-categories-offers>
     </oui-step-form>
 </ovh-manager-product-offers>
