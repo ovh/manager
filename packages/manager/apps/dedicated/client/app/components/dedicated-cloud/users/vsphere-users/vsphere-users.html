@@ -2,8 +2,8 @@
     id="pcc-user-datagrid"
     data-rows-loader="$ctrl.loadUsers($config)"
     data-columns-parameters="[{
-        name: 'nsx',
-        hidden: !$ctrl.optionsAvailable.includes('nsx')
+        name: 'nsxRight',
+        hidden: !$ctrl.hasNsxOption
     }]"
     customizable
 >
@@ -128,7 +128,6 @@
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'dedicatedCloud_USER_nsx' | translate"
-        data-ng-if="$ctrl.nsxOptions === 'enabled'"
         data-property="nsxRight"
         data-type="boolean"
         data-filterable
