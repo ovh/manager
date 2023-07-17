@@ -3,34 +3,49 @@ import { decodeUrn, encodeUrn } from '../iam.paramTypes';
 
 export default class IdentitiesController {
   /* @ngInject */
-  constructor($q, $translate, IAMService, coreConfig) {
+  constructor($http, $q, $translate, IAMService, coreConfig) {
+    this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
     this.IAMService = IAMService;
+    this.account = '';
     this.region = coreConfig.getRegion();
-    this.user = coreConfig.getUser();
   }
 
   $onInit() {
+    const decodedIdentities = this.policy.identities.map(decodeUrn);
+
     this.loading = true;
 
-    this.identities = this.policy.identities
-      .map(decodeUrn)
-      .map((urn) => ({ title: urn.componentsString, urn }));
+    this.identities = decodedIdentities.map((urn) => ({
+      title: urn.componentsString,
+      urn,
+    }));
 
     this.$q
       .all({
-        users: this.IAMService.getIdentityUsers(),
         groups: this.IAMService.getIdentityGroups(),
+        users: this.IAMService.getIdentityUsers(),
+        account: this.$http
+          .get('/auth/details')
+          .then(({ data: { account } }) => account),
       })
-      .then(({ users, groups }) => {
+      .then(({ users, groups, account }) => {
+        this.account = account;
         this.userList = [
           ...users.map((user) => ({ accountType: 'user', userName: user })),
           ...groups.map((group) => ({
             accountType: 'group',
             userName: group,
           })),
-        ];
+        ].filter(
+          ({ accountType, userName }) =>
+            !decodedIdentities.find(
+              ({ components: [identityAccountType, identityUserName] }) =>
+                identityAccountType === accountType &&
+                identityUserName === `${account}/${userName}`,
+            ),
+        );
       })
       .catch((error) => {
         const { message } = error.data ?? {};
@@ -55,13 +70,13 @@ export default class IdentitiesController {
   }
 
   get newUserIdentityUrn() {
-    const { newUser, region, suggestion, user } = this;
+    const { newUser, region, suggestion, account } = this;
     return encodeUrn({
       version: URN_VERSION,
       region: region.toUpperCase(),
       entity: ENTITY.IDENTITY,
       components: suggestion
-        ? [suggestion.accountType, `${user.nichandle}/${suggestion.userName}`]
+        ? [suggestion.accountType, `${account}/${suggestion.userName}`]
         : ['account', newUser],
     });
   }
