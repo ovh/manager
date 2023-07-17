@@ -41,7 +41,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
 
   return (
     <div className="dashboard-layout-helpers">
-      <div className="dashboard-layout-subtitle">
+      <div className="dashboard-layout-subtitle py-4">
         <OsdsText
           level={OdsThemeTypographyLevel.heading}
           color={OdsThemeColorIntent.text}

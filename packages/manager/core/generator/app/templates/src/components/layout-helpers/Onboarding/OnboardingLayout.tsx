@@ -33,14 +33,14 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   children,
 }) => {
   return (
-    <div className="manager-on-boarding-layout">
+    <div className="manager-on-boarding-layout px-3">
       {!hideHeadingSection && (
         <section className="on-boarding-illustration-section">
-          <div className="on-boarding-illustration-container">
+          <div className="on-boarding-illustration-container py-3">
             <img src={imageSrc || placeholderSrc} alt="" />
           </div>
           <OsdsText
-            className="on-boarding-title"
+            className="on-boarding-title mb-3"
             color={OdsThemeColorIntent.primary}
             level={OdsThemeTypographyLevel.heading}
             size={OdsThemeTypographySize._700}
@@ -48,29 +48,33 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
             {title}
           </OsdsText>
           <OsdsText
-            className="on-boarding-description"
+            className="on-boarding-description mb-2"
             level={OdsThemeTypographyLevel.body}
           >
             {description}
           </OsdsText>
           <div>
-            <OsdsButton
-              color={OdsThemeColorIntent.primary}
-              size={OdsButtonSize.md}
-              href={orderHref}
-            >
-              {orderButtonLabel}
-            </OsdsButton>
-            {moreInfoButtonLabel && moreInfoHref && (
+            <span>
               <OsdsButton
-                className="more-info-button"
                 color={OdsThemeColorIntent.primary}
-                variant={OdsButtonVariant.stroked}
                 size={OdsButtonSize.md}
-                href={moreInfoHref}
+                href={orderHref}
               >
-                {moreInfoButtonLabel}
+                {orderButtonLabel}
               </OsdsButton>
+            </span>
+            {moreInfoButtonLabel && moreInfoHref && (
+              <span className="m-2">
+                <OsdsButton
+                  className="more-info-button ml-1"
+                  color={OdsThemeColorIntent.primary}
+                  variant={OdsButtonVariant.stroked}
+                  size={OdsButtonSize.md}
+                  href={moreInfoHref}
+                >
+                  {moreInfoButtonLabel}
+                </OsdsButton>
+              </span>
             )}
           </div>
         </section>
