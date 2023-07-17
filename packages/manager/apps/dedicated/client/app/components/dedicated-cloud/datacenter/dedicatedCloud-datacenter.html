@@ -97,17 +97,21 @@
         </a>
     </oui-message>
 
-    <oui-message class="mb-1" type="info" ng-if="$ctrl.surveyUrl">
-        <span data-translate="dedicatedCloud_survey"></span>
+    <oui-message class="mb-3" data-type="info" data-ng-if="$ctrl.newProductUrl">
+        <span data-translate="dedicatedCloud_banner_new_product"></span>
         <a
-            data-ng-href="{{ $ctrl.surveyUrl }}"
-            data-track-on="click"
-            data-track-name="alert::hpc::go-to-hpc-survey"
+            data-ng-href="{{ :: $ctrl.newProductUrl }}"
             target="_blank"
             rel="noopener"
+            data-track-on="{{ :: $ctrl.TRACKING_NEW_PRODUCT_BANNER.on }}"
+            data-track-type="{{ :: $ctrl.TRACKING_NEW_PRODUCT_BANNER.type }}"
+            data-track-name="{{ :: $ctrl.TRACKING_NEW_PRODUCT_BANNER.name }}"
         >
-            <span data-translate="dedicatedCloud_survey_link"></span>
+            <span
+                data-translate="dedicatedCloud_banner_new_product_link"
+            ></span>
         </a>
     </oui-message>
+
     <div data-ui-view="pccDatacenterView"></div>
 </div>

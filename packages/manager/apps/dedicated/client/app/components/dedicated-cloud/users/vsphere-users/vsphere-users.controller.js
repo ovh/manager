@@ -22,12 +22,10 @@ export default class DedicatedCloudVsphereUsersCtrl {
           this.productId,
         ),
         policy: this.DedicatedCloud.getPasswordPolicy(this.productId),
-        nsxOptions: this.DedicatedCloud.getOptionState('nsx', this.productId),
       })
       .then((response) => {
         this.federationEnabled = response.federationStatus?.state === 'enabled';
         this.passwordPolicy = response.policy;
-        this.nsxOptions = response.nsxOptions;
       })
       .catch((err) => {
         this.setMessage(

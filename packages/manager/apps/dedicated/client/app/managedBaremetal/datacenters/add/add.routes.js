@@ -4,9 +4,8 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       url: '/add-datacenter',
       views: {
-        modal: {
-          component: 'ovhManagerDedicatedCloudDatacenterAdd',
-        },
+        'pccView@app.managedBaremetal.details':
+          'ovhManagerDedicatedCloudDatacenterAdd',
       },
       layout: 'modal',
       resolve: {

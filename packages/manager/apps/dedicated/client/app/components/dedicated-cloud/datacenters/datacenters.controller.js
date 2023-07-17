@@ -1,8 +1,6 @@
 import get from 'lodash/get';
 import includes from 'lodash/includes';
 
-import { REGEX_COMMERCIAL_RANGE_NAME_NSX } from './datacenters.constants';
-
 export default class {
   /* @ngInject */
   constructor($q, DedicatedCloud) {
@@ -10,16 +8,15 @@ export default class {
     this.DedicatedCloud = DedicatedCloud;
   }
 
-  $onInit() {
-    this.isNSXPcc = REGEX_COMMERCIAL_RANGE_NAME_NSX.test(
-      this.dedicatedCloud.commercialRange,
-    );
-  }
-
   getRight(order) {
     return this.dedicatedCloud
       ? !includes(this.dedicatedCloud.orderRight, order)
       : false;
+  }
+
+  onAddDatacenterClick() {
+    this.trackClick('datacenter::add');
+    return this.addDatacenter();
   }
 
   loadDatacenters({ offset, pageSize }) {
