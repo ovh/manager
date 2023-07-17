@@ -70,6 +70,8 @@
   "dedicatedCloud_datacenters_commercial_name_VSPHERE-NSX-VROPS": "vSphere avec vROps",
   "dedicatedCloud_datacenters_commercial_name_VSPHERE-UNKNOWN": "vSphere",
   "dedicatedCloud_datacenters_commercial_name_VSPHERE-DEFAULT": "vSphere",
+  "dedicatedCloud_datacenters_commercial_name_VSPHERE-WITHOUT-NSX": "vSphere",
+  "dedicatedCloud_datacenters_commercial_name_VSPHERE-VROPS-WITHOUT-NSX": "vSphere avec vROps",
   "dedicatedCloud_datacenters_commercial_name_NSX-T": "NSX",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-HDS": "NSX HDS",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-HIPAA": "NSX HIPAA",
@@ -78,5 +80,7 @@
   "dedicatedCloud_datacenters_commercial_name_NSX-T-NSX": "NSX",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-NSX-VROPS": "NSX avec vROps",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-UNKNOWN": "NSX",
-  "dedicatedCloud_datacenters_commercial_name_NSX-T-DEFAULT": "NSX"
+  "dedicatedCloud_datacenters_commercial_name_NSX-T-DEFAULT": "NSX",
+  "dedicatedCloud_datacenters_commercial_name_NSX-T-WITHOUT-NSX": "NSX",
+  "dedicatedCloud_datacenters_commercial_name_NSX-T-VROPS-WITHOUT-NSX": "NSX avec vROps"
 }

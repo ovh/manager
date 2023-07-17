@@ -248,6 +248,6 @@
   "ip_order_renew_MBM": "Gli IP verranno rinnovati automaticamente insieme all’infrastruttura Managed Bare Metal.",
   "dedicatedCloud_premier_sbg_order_warning": "Non siamo in grado di effettuare nuovi ordini sul nostro sito di SBG. I team OVHcloud sono pienamente operativi e stiamo facendo il possibile per ripristinare questa possibilità di ordine nel prossimo futuro.",
   "ip_order_renew_PCC": "Gli IP verranno rinnovati automaticamente con la tua infrastruttura Dedicated Cloud.",
-  "dedicatedCloud_banner_new_product": "Ordina datacenter corrispondenti a diversi pacchetti software VMware all'interno dello stesso ambiente Private Cloud.",
+  "dedicatedCloud_banner_new_product": "Adesso è possibile selezionare datacenter corrispondenti a pacchetti software VMware differenti all'interno di uno stesso ambiente Private Cloud.",
   "dedicatedCloud_banner_new_product_link": "Scopri di più"
 }

@@ -86,5 +86,9 @@
   "dedicatedCloud_datacenters_commercial_name_VSPHERE-NSX-VROPS": "vSphere com vROps",
   "dedicatedCloud_datacenters_commercial_name_VSPHERE-UNKNOWN": "vSphere",
   "dedicatedCloud_datacenters_commercial_name_VSPHERE-DEFAULT": "vSphere",
-  "dedicatedCloud_datacenters_commercial_name_NSX-T-DEFAULT": "NSX"
+  "dedicatedCloud_datacenters_commercial_name_NSX-T-DEFAULT": "NSX",
+  "dedicatedCloud_datacenters_commercial_name_VSPHERE-WITHOUT-NSX": "vSphere",
+  "dedicatedCloud_datacenters_commercial_name_VSPHERE-VROPS-WITHOUT-NSX": "vSphere com vROps",
+  "dedicatedCloud_datacenters_commercial_name_NSX-T-WITHOUT-NSX": "NSX",
+  "dedicatedCloud_datacenters_commercial_name_NSX-T-VROPS-WITHOUT-NSX": "NSX com vROps"
 }
