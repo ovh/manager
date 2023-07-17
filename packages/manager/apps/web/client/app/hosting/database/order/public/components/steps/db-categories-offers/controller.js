@@ -4,7 +4,9 @@ export default class WebHostingDatabaseOrderComponentsDbCategoriesOffersControll
   $onInit() {
     // preselect equal offer (if exist)
     this.model = {
-      dbCategory: this.getDbCategoryToPreselect(),
+      dbCategory: {
+        ...(this.preselectDbCategory && this.getDbCategoryToPreselect()),
+      },
     };
   }
 

@@ -8,6 +8,7 @@ const component = {
     preselectDbCategory: '<',
     onDbCategoryClick: '&',
     onDbCategoryEngineClick: '&',
+    model: '=',
   },
   controller,
   template,
