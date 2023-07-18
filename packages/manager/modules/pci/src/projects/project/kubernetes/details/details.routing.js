@@ -12,7 +12,14 @@ export default /* @ngInject */ ($stateProvider) => {
             serviceName: projectId,
             kubeId,
           })
-          .$promise.then((cluster) => new Kubernetes(cluster)),
+          .$promise.then((cluster) => new Kubernetes(cluster))
+          .catch((err) => {
+            const error = new Error();
+            error.data = {
+              message: `${err.status} : ${err.statusText}`,
+            };
+            throw error;
+          }),
       containersLink: /* @ngInject */ ($state, kubeId, projectId) =>
         $state.href('pci.projects.project.kubernetes.details.containers', {
           kubeId,
