@@ -1,4 +1,5 @@
 import { cursorsType } from '../../iam.paramTypes';
+import { TAG } from '../../iam.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.dashboard.policies', {
@@ -25,5 +26,8 @@ export default /* @ngInject */ ($stateProvider) => {
         .then((hasPolicies) =>
           !hasPolicies ? { state: 'iam.onboarding' } : false,
         ),
+    atInternet: {
+      rename: TAG.POLICIES,
+    },
   });
 };
