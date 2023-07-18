@@ -151,3 +151,5 @@ export default {
   SSL_MODE_NA,
   SSL_MODE_SSL_TLS,
 };
+
+export const MYSQL_QUERY_STATISTICS_TO_MS = 1000000000;

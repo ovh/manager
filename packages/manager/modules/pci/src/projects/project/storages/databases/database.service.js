@@ -10,7 +10,10 @@ import {
   ENGINES_STATUS,
   ENGINES_PRICE_SUFFIX,
 } from '../../../../components/project/storages/databases/engines.constants';
-import { DATABASE_TYPES } from './databases.constants';
+import {
+  DATABASE_TYPES,
+  MYSQL_QUERY_STATISTICS_TO_MS,
+} from './databases.constants';
 
 import Backup from '../../../../components/project/storages/databases/backup.class';
 import Database from '../../../../components/project/storages/databases/database.class';
@@ -910,11 +913,11 @@ export default class DatabaseService {
                 query.digestText,
                 query.sumRowsSent,
                 query.countStar,
-                query.minTimerWait,
-                query.maxTimerWait,
-                query.avgTimerWait,
+                query.minTimerWait / MYSQL_QUERY_STATISTICS_TO_MS,
+                query.maxTimerWait / MYSQL_QUERY_STATISTICS_TO_MS,
+                query.avgTimerWait / MYSQL_QUERY_STATISTICS_TO_MS,
                 0,
-                query.sumTimerWait,
+                query.sumTimerWait / MYSQL_QUERY_STATISTICS_TO_MS,
               );
         }),
       );
