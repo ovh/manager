@@ -42,10 +42,11 @@ export default (plop) => {
       {
         type: 'input',
         name: 'componentTag',
-        message: 'What is the tag of the new component ?',
+        message: 'What is the tag of the new component ? (start with msc-)',
         default: 'msc-hello',
         validate: (componentTag) =>
           componentTag.length > 1 &&
+          componentTag.startsWith('msc-') &&
           !currentComponentList.includes(componentTag),
       },
       {
@@ -54,7 +55,6 @@ export default (plop) => {
         message:
           'What is the package name of the new component (without msc-) ?',
         validate: (packageName) => packageName.length > 1,
-        default: ({ componentTag }) => componentTag.split('-')[1],
       },
       {
         type: 'input',
