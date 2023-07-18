@@ -140,5 +140,8 @@ export default /* @ngInject */ ($stateProvider) => {
         atInternet.trackPage({ name });
       },
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

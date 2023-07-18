@@ -211,8 +211,17 @@ const TAG = {
   // OK
   ONBOARDING__DOCUMENTATION: (guideKey) =>
     `dedicated::account::iam::onboarding::documentation::${guideKey}`,
+  // OK
   POLICIES: 'dedicated::account::iam::policies',
+  // OK
   POLICIES__ADD: 'dedicated::account::iam::policies::add',
+  // OK
+  POLICIES__DELETE: 'dedicated::account::iam::policies::delete',
+  // OK
+  POLICIES__EDIT: 'dedicated::account::iam::policies::edit',
+  // OK
+  POLICIES__MANAGE_IDENTITIES:
+    'dedicated::account::iam::policies::manage-identities',
   POLICIES__CREATE_POLICY_CONFIRM_BANNER__ERROR:
     'iam::policies::create-policy-confirm-banner::error',
   POLICIES__CREATE_POLICY_CONFIRM_BANNER__SUCCESS:
