@@ -55,6 +55,8 @@ export default class TelecomTelephonyServiceContactCtrl {
     this.autoCompletePostCode = null;
     this.autoCompleteCity = null;
     this.autoCompleteStreetName = null;
+    this.ukPostCode = { outwardPostCode: null, inwardPostCode: null };
+    this.isServiceInUK = new RegExp(REGEX.ukNumber).test(this.serviceName);
 
     return this.$q
       .all({
@@ -90,6 +92,12 @@ export default class TelecomTelephonyServiceContactCtrl {
           ] || this.DIRECTORY_WAY_NUMBER_EXTRA_ENUM.OTHER;
 
         this.regex = this.REGEX;
+
+        if (this.isServiceInUK) {
+          const [outward, inward] = this.directoryForm.postCode.split(' ');
+          this.ukPostCode.outwardPostCode = outward;
+          this.ukPostCode.inwardPostCode = inward;
+        }
 
         if (this.directory.ape && this.directory.directoryServiceCode) {
           return this.TelecomTelephonyServiceContactService.fetchDirectoryServiceCode(
@@ -275,12 +283,12 @@ export default class TelecomTelephonyServiceContactCtrl {
     }
 
     // Fetch cities for given post code
-    if (this.directoryForm.postCode?.length >= 3) {
+    if (this.directoryForm.postCode?.length >= 2) {
       this.$q
         .resolve(
           this.TelecomTelephonyServiceContactService.getCityAvailable(
             this.directoryForm.postCode,
-            this.directory.country,
+            this.directory.country.toLowerCase(),
           ),
         )
         .then((cities) => {
@@ -311,6 +319,11 @@ export default class TelecomTelephonyServiceContactCtrl {
           }
         });
     }
+  }
+
+  onUKPostCodeChange() {
+    this.directoryForm.postCode = this.ukPostCode.outwardPostCode;
+    this.onPostCodeChange();
   }
 
   onCityChange(modelValue) {
@@ -391,6 +404,14 @@ export default class TelecomTelephonyServiceContactCtrl {
         /&nbsp;/g,
         '',
       );
+    }
+
+    if (
+      this.isServiceInUK &&
+      this.ukPostCode.outwardPostCode &&
+      this.ukPostCode.inwardPostCode
+    ) {
+      this.directoryForm.postCode = `${this.ukPostCode.outwardPostCode} ${this.ukPostCode.inwardPostCode}`;
     }
 
     const modified = assign(this.directory, this.directoryForm);

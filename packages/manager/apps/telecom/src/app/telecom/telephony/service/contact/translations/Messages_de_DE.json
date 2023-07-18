@@ -63,5 +63,9 @@
   "telephony_service_contact_tva": "USt-IdNr.",
   "telephony_service_contact_tva_invalid": "Die angegebene Umsatzsteuer-Identifikationsnummer ist ungültig.",
   "telephony_service_contact_sync_error": "Synchronisierung nicht möglich, bitte überprüfen Sie Ihre Angaben.",
-  "telephony_service_contact_sync_na": "Nicht zutreffend"
+  "telephony_service_contact_sync_na": "Nicht zutreffend",
+  "telephony_service_contact_outwardcode": "Outward Code",
+  "telephony_service_contact_inwardcode": "Inward Code",
+  "telephony_service_contact_bad_outward": "Der Code muss aus einem Buchstaben gefolgt von 1 bis 3 alphanumerischen Zeichen bestehen.",
+  "telephony_service_contact_bad_inward": "Der Code muss aus einer Ziffer und zwei alphabetischen Zeichen bestehen."
 }
