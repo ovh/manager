@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.2.4...@ovh-ux/manager-dedicated@18.2.5) (2023-07-18)
+
+
+### Bug Fixes
+
+* **pcc.vmware:** NSX Batch 2 ([#9220](https://github.com/ovh/manager/issues/9220)) ([cf7404d](https://github.com/ovh/manager/commit/cf7404d260b5959e61251a3ae9a1c638b4786229))
+
+
+
+
+
 ## [18.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.2.3...@ovh-ux/manager-dedicated@18.2.4) (2023-07-12)
 
 
