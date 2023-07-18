@@ -1,4 +1,7 @@
-<manager-on-boarding-layout data-guides=":: $ctrl.onboardingGuides">
+<manager-on-boarding-layout
+    data-guides=":: $ctrl.onboardingGuides"
+    data-on-guide-click="$ctrl.onGuideClick(guide.key)"
+>
     <onboarding-title>
         <p data-translate="iam_onboarding_title"></p>
     </onboarding-title>
@@ -15,10 +18,10 @@
         </a>
         <a
             class="mt-3 oui-button oui-button_secondary oui-button_l"
-            data-translate="iam_onboarding_cta_2"
-            href="{{:: $ctrl.usersManagementLink }}"
             target="_self"
             rel="noopener"
+            data-ng-href="{{:: $ctrl.accountUsersURL }}"
+            data-translate="iam_onboarding_cta_2"
         >
         </a>
         <iam-advanced-mode-switch

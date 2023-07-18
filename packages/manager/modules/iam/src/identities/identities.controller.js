@@ -1,4 +1,4 @@
-import { URN_VERSION, ENTITY } from '../iam.constants';
+import { URN_VERSION, ENTITY, TAG } from '../iam.constants';
 import { decodeUrn, encodeUrn } from '../iam.paramTypes';
 
 export default class IdentitiesController {
@@ -106,5 +106,13 @@ export default class IdentitiesController {
           reload: true,
         });
       });
+  }
+
+  /**
+   * Called back when a guide menu item is clicked
+   * @param {string} guideKey
+   */
+  onGuideClick(guideKey) {
+    this.trackClick(TAG.IDENTITIES__GUIDE(guideKey));
   }
 }

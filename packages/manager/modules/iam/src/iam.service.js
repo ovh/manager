@@ -133,7 +133,6 @@ export default class IAMService {
           description: this.$translate.instant(
             `iam_guide_description_${lowerKey}`,
           ),
-          // TODO augment with tracking data
         };
       });
   }

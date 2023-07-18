@@ -1,6 +1,6 @@
 import { cloneDeep, isEqual } from 'lodash-es';
 
-import { ENTITY, ENTITY_NAME_PATTERN } from '../../iam.constants';
+import { ENTITY, ENTITY_NAME_PATTERN, TAG } from '../../iam.constants';
 import { URL } from '../../iam.service';
 
 export default class CreatePolicyController {
@@ -267,6 +267,14 @@ export default class CreatePolicyController {
       });
 
     this.deletion.resolve(success);
+  }
+
+  /**
+   * Called back when a guide menu item is clicked
+   * @param {string} guideKey
+   */
+  onGuideClick(guideKey) {
+    this.trackClick(TAG.ADD_POLICY__GUIDE(guideKey));
   }
 
   /**
