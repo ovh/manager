@@ -24,6 +24,7 @@
             <oui-guide-menu-item
                 data-ng-repeat="guide in $ctrl.onboardingGuides track by $index"
                 data-href="{{:: guide.link }}"
+                data-on-click="$ctrl.onGuideClick(guide.key)"
                 data-external
             >
                 <span data-ng-bind=":: guide.title"></span>

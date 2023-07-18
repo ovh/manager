@@ -8,6 +8,7 @@ export default {
     goTo: '<',
     onboardingGuides: '<',
     policy: '<',
+    trackClick: '<',
   },
   controller,
   template,
