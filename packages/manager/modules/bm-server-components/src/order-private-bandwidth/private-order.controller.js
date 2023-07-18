@@ -18,43 +18,37 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
   $onInit() {
     this.model = {};
     this.plans = null;
-    this.isLoading = false;
+    this.isLoading = true;
 
+    this.OrderPrivateBandwidthService.getBareMetalPrivateBandwidthOptions(
+      this.serviceId,
+    )
+      .then((plans) => {
+        this.plans = BmServerComponentsOrderPrivateBandwidthCtrl.getValidBandwidthPlans(
+          plans,
+        );
+        this.plans.sort(
+          (a, b) =>
+            a.prices.find((el) => el.capacities.includes('renew'))
+              .priceInUcents -
+            b.prices.find((el) => el.capacities.includes('renew'))
+              .priceInUcents,
+        );
+      })
+      .catch((error) => {
+        this.handleError(
+          error,
+          this.$translate.instant('server_error_bandwidth_order', error.data),
+        );
+        this.goBack();
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
     this.steps = [
       {
         isValid: () => this.model.plan,
         isLoading: () => this.isLoading,
-        load: () => {
-          this.isLoading = true;
-          return this.OrderPrivateBandwidthService.getBareMetalPrivateBandwidthOptions(
-            this.serviceId,
-          )
-            .then((plans) => {
-              this.plans = BmServerComponentsOrderPrivateBandwidthCtrl.getValidBandwidthPlans(
-                plans,
-              );
-              this.plans.sort(
-                (a, b) =>
-                  a.prices.find((el) => el.capacities.includes('renew'))
-                    .priceInUcents -
-                  b.prices.find((el) => el.capacities.includes('renew'))
-                    .priceInUcents,
-              );
-            })
-            .catch((error) => {
-              this.handleError(
-                error,
-                this.$translate.instant(
-                  'server_error_bandwidth_order',
-                  error.data,
-                ),
-              );
-              this.goBack();
-            })
-            .finally(() => {
-              this.isLoading = false;
-            });
-        },
       },
       {
         isValid: () => this.model.plan,
