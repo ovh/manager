@@ -1,6 +1,6 @@
 import { cloneDeep, isEqual } from 'lodash-es';
 
-import { ENTITY, ENTITY_NAME_PATTERN } from '../../iam.constants';
+import { ENTITY, ENTITY_NAME_PATTERN, TAG } from '../../iam.constants';
 
 export default class CreateResourceGroupController {
   /* @ngInject */
@@ -218,6 +218,14 @@ export default class CreateResourceGroupController {
   onError(error) {
     const { message } = error.data ?? {};
     this.alert.error(this.translations.error, { message });
+  }
+
+  /**
+   * Called back when a guide menu item is clicked
+   * @param {string} guideKey
+   */
+  onGuideClick(guideKey) {
+    this.trackClick(TAG.ADD_RESOURCE_GROUP__GUIDE(guideKey));
   }
 
   /**

@@ -23,6 +23,8 @@
     "@ovh-ux/manager-core": "^12.12.9",
     "@ovh-ux/manager-iam": "^1.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",
+    "@ovh-ux/ng-at-internet": "^5.10.2",
+    "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.3",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.7",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",

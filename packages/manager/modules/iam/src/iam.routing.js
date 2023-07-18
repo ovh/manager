@@ -42,7 +42,6 @@ export default /* @ngInject */ ($stateProvider) => {
        * @returns {{
        *   success: (key: string, values?: { [x: string]: any }) => void
        *   error: (key, values?: { [x: string]: any }) => void
-       *   apiError: (key, object, values?: { [x: string]: any }) => void
        * }}
        */
       alert: /* @ngInject */ ($translate, Alerter) => ({
@@ -124,11 +123,22 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
 
       /**
-       * Builds the url to go to the user management page
-       * @returns {string}
+       * Track a click action using the AT Internet provider
+       * @returns {void}
        */
-      usersManagementLink: /* @ngInject */ (coreURLBuilder) =>
-        coreURLBuilder.buildURL('dedicated', '#/useraccount/users'),
+      trackClick: /* @ngInject */ (atInternet) => (name) => {
+        console.log('trackClick', name);
+        atInternet.trackClick({ name, type: 'action' });
+      },
+
+      /**
+       * Track a page using the AT Internet provider
+       * @returns {void}
+       */
+      trackPage: /* @ngInject */ (atInternet) => (name) => {
+        console.log('trackPage', name);
+        atInternet.trackPage({ name });
+      },
     },
   });
 };

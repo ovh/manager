@@ -4,6 +4,8 @@ import uiRouter from '@uirouter/angularjs';
 
 import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
+import ngAtInternet from '@ovh-ux/ng-at-internet';
+import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import uiKit from '@ovh-ux/ui-kit';
@@ -41,6 +43,8 @@ angular
     OnboardingLayoutHelper,
     angularTranslate,
     uiRouter,
+    ngAtInternet,
+    ngAtInternetUiRouterPlugin,
     ngOvhFeatureFlipping,
     ngOvhUtils,
     uiKit,
