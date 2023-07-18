@@ -40,8 +40,10 @@ export const useFeatureAvailability = (
     return result.data || {};
   };
 
-  return useQuery<Record<string, boolean>>(
-    [`${featureAvailabilityBaseQueryKey}-${featuresListToCheck.join('-')}`],
-    fetchFeatureAvailabilityData,
-  );
+  return useQuery<Record<string, boolean>>({
+    queryKey: [
+      `${featureAvailabilityBaseQueryKey}-${featuresListToCheck.join('-')}`,
+    ],
+    queryFn: fetchFeatureAvailabilityData,
+  });
 };
