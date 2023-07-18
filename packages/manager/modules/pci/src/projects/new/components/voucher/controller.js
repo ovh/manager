@@ -163,7 +163,12 @@ export default class PciProjectNewVoucherCtrl {
   }
 
   getVoucherError() {
-    return `pci_projects_new_voucher_form_field_error_${this.model.voucher.error.statusText.toLowerCase()}`;
+    const { statusText } = this.model.voucher?.error;
+    const ERROR_LABEL =
+      statusText
+        .substring(statusText.indexOf(':') + 1, statusText.lastIndexOf(')'))
+        .trim() || 'invalid';
+    return `pci_projects_new_voucher_form_field_error_${ERROR_LABEL.toLowerCase()}`;
   }
 
   /* -----  End of Helpers  ------ */
