@@ -26,6 +26,9 @@ export default class BreadcrumbService {
         this.breadcrumb = [];
 
         while (state.parent && !hideBreadcrumb) {
+          const breadcrumbUrlResolvable = state.resolvables.find(
+            (resolvable) => resolvable.token === 'breadcrumbUrl',
+          );
           const breadcrumbResolvable = state.resolvables.find(
             (resolvable) => resolvable.token === 'breadcrumb',
           );
@@ -55,6 +58,15 @@ export default class BreadcrumbService {
                 );
               }
             });
+
+            if (breadcrumbUrlResolvable) {
+              transition
+                .injector(state.name)
+                .getAsync('breadcrumbUrl')
+                .then((url) => {
+                  entry.url = url;
+                });
+            }
           }
 
           state = state.parent.self.$$state();
