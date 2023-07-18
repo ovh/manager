@@ -12,6 +12,8 @@ export default {
     readOnly: '<?',
     required: '@?',
     resourceTypes: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
   require: {
     requiredNgModel: '^ngModel',

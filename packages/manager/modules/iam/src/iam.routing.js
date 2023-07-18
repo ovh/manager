@@ -81,13 +81,15 @@ export default /* @ngInject */ ($stateProvider) => {
        * @param {boolean} reload The state.go reload option
        * @param {string | { key: string, values: { [x: string]: any }}} success The success message to display
        * @param {string | { key: string, values: { [x: string]: any }}} error The error message to display
+       * @param {string} tag The page to tag
        */
-      goTo: /* @ngInject */ ($state, alert) => ({
+      goTo: /* @ngInject */ ($state, alert, trackPage) => ({
         name,
         params,
         reload,
         success,
         error,
+        tag,
       }) => {
         const options = {
           ...(typeof reload !== 'undefined' && { reload }),
@@ -97,6 +99,9 @@ export default /* @ngInject */ ($stateProvider) => {
             alert.success(success.key || success, success.values);
           } else if (error) {
             alert.error(error.key || error, error.values);
+          }
+          if (tag) {
+            trackPage(tag);
           }
           return result;
         });
