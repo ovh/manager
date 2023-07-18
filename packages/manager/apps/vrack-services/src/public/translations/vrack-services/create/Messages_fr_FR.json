@@ -1,0 +1,11 @@
+{
+  "crumb": "vRack services",
+  "goBackLinkLabel": "Retour à la page précédente",
+  "title": "Créer un vRack Services",
+  "displayNameLabel": "Nom (facultatif)",
+  "displayNamePlaceholder": "nom du vRack Services",
+  "zoneLabel": "Régionalisation",
+  "zoneDescription": "Un vRack Services est un service régional. Vous devez donc choisir dans quelle localisation vous comptez l'utiliser. Pour bénéficier du Service Endpoint, vous devez sélectionner la localisation correspondant à votre service managé OVHcloud.",
+  "createButtonLabel": "Créer un vRack Services",
+  "creationServiceError": "Une erreur est survenue. Merci de réessayer ultérieurement."
+}
