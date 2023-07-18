@@ -6,5 +6,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => null,
     },
+    atInternet: {
+      ignore: true,
+    },
   });
 };

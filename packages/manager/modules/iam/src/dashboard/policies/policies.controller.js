@@ -1,3 +1,4 @@
+import { TAG } from '../../iam.constants';
 import AbstractCursorDatagridController from '../../components/cursorDatagrid/cursorDatagrid.controller';
 
 export default class PoliciesController extends AbstractCursorDatagridController {
@@ -24,6 +25,7 @@ export default class PoliciesController extends AbstractCursorDatagridController
    * @returns {Promise}
    */
   createPolicy() {
+    this.trackClick(TAG.POLICIES__ADD);
     return this.goTo({ name: 'iam.policy.create' });
   }
 
@@ -33,6 +35,7 @@ export default class PoliciesController extends AbstractCursorDatagridController
    * @returns {Promise}
    */
   editIdentities({ id }) {
+    this.trackClick(TAG.POLICIES__MANAGE_IDENTITIES);
     return this.goTo({
       name: 'iam.identities',
       params: { policy: id },
@@ -45,6 +48,7 @@ export default class PoliciesController extends AbstractCursorDatagridController
    * @returns {Promise}
    */
   editPolicy({ id }) {
+    this.trackClick(TAG.POLICIES__EDIT);
     return this.goTo({
       name: 'iam.policy.edit',
       params: { policy: id },
@@ -57,6 +61,7 @@ export default class PoliciesController extends AbstractCursorDatagridController
    * @returns {Promise}
    */
   deletePolicy({ id }) {
+    this.trackClick(TAG.POLICIES__DELETE);
     return this.goTo({
       name: 'iam.dashboard.policies.delete',
       params: { ...this.params, policy: id },
