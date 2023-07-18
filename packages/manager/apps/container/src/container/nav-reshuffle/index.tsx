@@ -23,6 +23,8 @@ import Preloader from '../common/Preloader';
 import usePreloader from '../common/Preloader/usePreloader';
 import useMfaEnrollment from '@/container/mfa-enrollment';
 import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
+import AccessibilityAppLogger from '../common/AccessibilityAppLogger/AccessibilityAppLogger';
+import SkipNav from '../common/SkipNav/SkipNav';
 
 function NavReshuffleContainer(): JSX.Element {
   const iframeRef = useRef(null);
@@ -65,6 +67,8 @@ function NavReshuffleContainer(): JSX.Element {
 
   return (
     <div className={style.navReshuffle}>
+      <AccessibilityAppLogger iframeRef={iframeRef} pageLoading={isProgressAnimating} applicationLoading={preloaderVisible} />
+      <SkipNav iframeRef={iframeRef} />
       <div
         className={`${style.sidebar} ${
           isNavigationSidebarOpened ? '' : style.hidden

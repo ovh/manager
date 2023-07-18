@@ -23,9 +23,11 @@ import usePreloader from '../common/Preloader/usePreloader';
 import useContainer from '@/core/container';
 import useMfaEnrollment from '@/container/mfa-enrollment';
 import MfaEnrollment from '@/container/mfa-enrollment/MfaEnrollment';
+import AccessibilityAppLogger from '../common/AccessibilityAppLogger/AccessibilityAppLogger';
+import SkipNav from '../common/SkipNav/SkipNav';
 
 function LegacyContainer(): JSX.Element {
-  const iframeRef = useRef(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframe, setIframe] = useState<HTMLIFrameElement>(null);
   const { betaVersion } = useContainer();
 
@@ -65,6 +67,8 @@ function LegacyContainer(): JSX.Element {
     <LegacyContainerProvider>
       <>
         <Progress isAnimating={isProgressAnimating}></Progress>
+        <AccessibilityAppLogger iframeRef={iframeRef} pageLoading={isProgressAnimating} applicationLoading={preloaderVisible} />
+        <SkipNav iframeRef={iframeRef} />
 
         <div className={style.managerShell}>
           <Suspense fallback="">
