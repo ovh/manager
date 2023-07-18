@@ -13,6 +13,7 @@ export default {
     orderIpAvailable: '<',
     params: '<',
     serviceType: '<',
+    isAdditionalIp: '<',
     setAction: '<',
     trackClick: '<',
     trackPage: '<',
