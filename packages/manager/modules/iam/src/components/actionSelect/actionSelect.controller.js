@@ -176,8 +176,8 @@ export default class ActionSelectController {
     }
 
     this.customActionModel = '';
-    this.trackClick(TAG.ADD_POLICY__ADD_MANUALLY);
-    this.trackPage(TAG.ADD_POLICY__ADD_MANUALLY_SUCCESS);
+    this.trackActionSelect('Click', TAG.ADD_ACTION_MANUALLY);
+    this.trackActionSelect('Page', TAG.ADD_ACTION_MANUALLY_SUCCESS);
     this.onModelChanged();
   }
 
@@ -251,10 +251,9 @@ export default class ActionSelectController {
    * @param {boolean} isEnabled
    */
   onIsWildcardActiveChanged(isEnabled) {
-    this.trackClick(
-      isEnabled
-        ? TAG.ADD_POLICY__ENABLE_ALLOW_ALL_ACTIONS
-        : TAG.ADD_POLICY__DISABLE_ALLOW_ALL_ACTIONS,
+    this.trackActionSelect(
+      'Click',
+      isEnabled ? TAG.ENABLE_ALLOW_ALL_ACTIONS : TAG.DISABLE_ALLOW_ALL_ACTIONS,
     );
     this.onModelChanged();
   }
@@ -312,6 +311,15 @@ export default class ActionSelectController {
       expanded: typeof force === 'boolean' ? force : !category.expanded,
     });
     this.triggerResize();
+  }
+
+  /**
+   * Custom trackClick wrapper witch uses the tagPrefix bound property
+   * @param {'Click'|'Page'} type
+   * @param {string} tag
+   */
+  trackActionSelect(type, tag) {
+    this[`track${type}`]([this.tagPrefix, tag].filter(Boolean).join('::'));
   }
 
   /*
