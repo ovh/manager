@@ -2,7 +2,8 @@ import { apiClient } from '@ovh-ux/manager-core-api';
 import MockAdapter from 'axios-mock-adapter';
 import { Handler } from './msw-helpers';
 
-const createUrlRe = (url: string) => url.replace('*', '.*').replace(':id', '*');
+const createUrlRe = (url: string) =>
+  url.replace('*', '.*').replace(/:[a-zA-Z]+/gm, '*');
 
 export type ApiVersion = 'v2' | 'v6' | 'aapi' | 'ws';
 

@@ -1,5 +1,5 @@
 import { test, expect, Page, ElementHandle } from '@playwright/test';
-import '@playwright-helpers/login';
+import '@playwright-helpers/setup';
 import * as translation from '../src/public/translations/catalog/Messages_en_GB.json';
 
 const clickButtonByName = async (page: Page, name: string): Promise<void> => {

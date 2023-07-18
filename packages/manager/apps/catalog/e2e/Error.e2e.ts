@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import '@playwright-helpers/login';
+import '@playwright-helpers/setup';
 import * as translationsError from '../src/public/translations/catalog/error/Messages_fr_FR.json';
 
 test('should display Error component if fetch fails', async ({ page }) => {

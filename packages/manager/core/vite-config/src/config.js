@@ -24,6 +24,7 @@ const getBaseConfig = (config) => {
     },
     define: {
       __VERSION__: process.env.VERSION ? `'${process.env.VERSION}'` : 'null',
+      'process.env.NODE_ENV': process.env.NODE_ENV,
     },
     plugins: [
       react(),

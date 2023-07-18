@@ -59,10 +59,10 @@ export default function TelecomSidebar() {
       }
     });
 
-  const { data: isBeta, isLoading: betaPreferenceLoading } = useQuery(
-    ['sidebar-telecom-beta'],
-    getBetaPreference,
-  );
+  const { data: isBeta, isLoading: betaPreferenceLoading } = useQuery({
+    queryKey: ['sidebar-telecom-beta'],
+    queryFn: getBetaPreference
+  });
 
   const getTelecomMenu = (feature: Record<string, string>) => {
     const menu = [];
@@ -272,10 +272,10 @@ export default function TelecomSidebar() {
       requestType: 'aapi',
     });
 
-  const { data: availability } = useQuery(
-    ['sidebar-telecom-availability'],
-    getFeatures,
-  );
+  const { data: availability } = useQuery({
+    queryKey: ['sidebar-telecom-availability'],
+    queryFn: getFeatures,
+  });
 
   useEffect(() => {
     if (availability && !betaPreferenceLoading) {

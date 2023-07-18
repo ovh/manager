@@ -150,8 +150,8 @@ export class MscTile implements IMscTile {
           <osds-text
             class="tile-description"
             level={ODS_TEXT_LEVEL.body}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.default}
+            size={ODS_TEXT_SIZE._100}
+            color={ODS_THEME_COLOR_INTENT.text}
           >
             {this.tileDescription}
           </osds-text>
