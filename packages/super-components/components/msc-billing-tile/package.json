@@ -1,5 +1,5 @@
 {
-  "name": "@ovhcloud/msc-billing-billing-tile",
+  "name": "@ovhcloud/msc-stencil-billing-tile",
   "version": "1.0.0",
   "description": "ODS Tile with custom content",
   "license": "BSD-3-Clause",

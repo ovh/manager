@@ -114,7 +114,7 @@ export class MscBillingTile implements IMscBillingTile {
       .get(`${this.servicePath}/serviceInfos`)
       .then((response) => {
         this.serviceId = response.data.serviceId;
-        // this.fetchServiceDetails(this.serviceId);
+        this.fetchServiceDetails(this.serviceId);
       })
       .catch((error) => {
         console.error('Error:', error);

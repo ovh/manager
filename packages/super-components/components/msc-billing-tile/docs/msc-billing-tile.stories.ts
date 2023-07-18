@@ -22,13 +22,15 @@ export default {
 export const NASHA = {
   args: {
     ...defaultLabels,
-    offer: 'zpool-123456',
+    servicePath: 'dedicated/nasha/zpool-128894',
+    offer: 'zpool-128894',
     language: 'en-GB',
   },
 };
 
 export const VPS = {
   args: {
+    servicePath: 'vps/vps-0baa4fcf.vps.ovh.net',
     offer: 'vps-1234abcd.vps.ovh.net',
     ...defaultLabels,
   },
@@ -36,6 +38,7 @@ export const VPS = {
 
 export const Domains = {
   args: {
+    servicePath: 'domain/agora3.ovh',
     offer: 'agora3.ovh',
     ...defaultLabels,
   },

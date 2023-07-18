@@ -1,4 +1,5 @@
 import './global';
+import '../../../mock/billing-tile.mock';
 import '@ovhcloud/ods-stencil/components/tile';
 import '@ovhcloud/ods-stencil/components/button';
 import '@ovhcloud/ods-stencil/components/link';
