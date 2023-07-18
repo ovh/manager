@@ -1,0 +1,136 @@
+<section class="mb-4">
+    <oui-tile>
+        <h4 data-translate="pci_data_integration_destinations_title"></h4>
+        <!-- destinations list -->
+        <oui-datagrid
+            data-ng-if="$ctrl.destinations.length > 0"
+            data-page-size="10"
+            data-rows="$ctrl.destinations"
+        >
+            <oui-datagrid-column
+                title=":: 'pci_data_integration_destinations_list_column_name' | translate"
+                data-property="name"
+                data-type="string"
+                data-searchable
+                data-filterable
+                data-sortable="asc"
+            >
+                <div class="d-flex flex-column">
+                    <span data-ng-bind="$row.name"></span>
+                    <small data-ng-bind="$row.id"></small>
+                </div>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_data_integration_destinations_list_column_connector' | translate"
+                data-property="connectorName"
+                data-type="string"
+                data-searchable
+                data-sortable
+            >
+                <div class="d-flex flex-column">
+                    <span data-ng-bind="$row.connectorName"></span>
+                    <small data-ng-bind="$row.connectorId"></small>
+                </div>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_data_integration_destinations_list_column_version' | translate"
+                data-property="connectorVersion"
+                data-type="string"
+                data-searchable
+                data-sortable
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'pci_data_integration_destinations_list_column_status' | translate"
+                data-property="status"
+                data-sortable
+                data-type="string"
+            >
+                <span
+                    class="oui-badge"
+                    data-ng-class="{
+                        'oui-badge_success': $row.status === 'CONNECTION_SUCCEED',
+                        'oui-badge_warning': $row.status === 'CONNECTION_RUNNING',
+                        'oui-badge_error': $row.status === 'CONNECTION_FAILED',
+                    }"
+                >
+                    <span
+                        data-ng-bind=":: ('pci_data_integration_destinations_list_column_status_' + $row.status) | translate"
+                    ></span>
+                </span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_data_integration_destinations_list_column_creation_date' | translate"
+                data-property="creationDate"
+                data-type="date"
+                data-searchable
+                data-filterable
+                data-sortable
+            >
+                <span data-ng-bind="$row.creationDate | date: 'medium'"></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                title=":: 'pci_data_integration_destinations_list_column_last_update' | translate"
+                data-property="lastUpdateDate"
+                data-type="date"
+                data-searchable
+                data-filterable
+                data-sortable
+            >
+                <span
+                    data-ng-bind="$row.lastUpdateDate | date: 'medium'"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-row-detail>
+                <table class="oui-table">
+                    <caption
+                        class="d-none"
+                        data-translate="pci_data_integration_destinations_list_details_description"
+                    ></caption>
+                    <thead>
+                        <tr>
+                            <th
+                                class="oui-table__header pr-4"
+                                data-translate="pci_data_integration_destinations_list_details_column_name"
+                            ></th>
+                            <th
+                                class="oui-table__header w-100"
+                                data-translate="pci_data_integration_destinations_list_details_column_value"
+                            ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            class="oui-table__row"
+                            data-ng-repeat="parameter in $row.parameters"
+                        >
+                            <td
+                                class="oui-table__cell text-uppercase pr-4"
+                                data-ng-bind="parameter.name"
+                            ></td>
+                            <td
+                                class="oui-table__cell w-100"
+                                data-ng-bind="parameter.value"
+                            ></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </oui-datagrid-row-detail>
+        </oui-datagrid>
+
+        <!-- No destination message-->
+        <oui-message
+            data-type="info"
+            data-ng-if="$ctrl.destinations.length == 0"
+        >
+            <span
+                data-translate="pci_data_integration_destinations_no_destinations"
+            ></span>
+            <a data-ng-href="{{::$ctrl.cliLink}}"
+                ><strong
+                    data-translate="pci_data_integration_destinations_no_destinations_cli_link"
+                ></strong>
+            </a>
+        </oui-message>
+    </oui-tile>
+</section>

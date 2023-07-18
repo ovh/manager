@@ -262,16 +262,6 @@ export function getPciProjectMenu(
       regions: ['EU', 'CA'],
       subItems: [
         {
-          id: 'data-processing',
-          title: 'Data Processing',
-          badge: 'new',
-          feature: 'data-processing',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/data-processing`,
-          ),
-        },
-        {
           id: 'data-integration',
           title: 'Data Integration',
           badge: 'beta',
@@ -279,6 +269,16 @@ export function getPciProjectMenu(
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/data-integration`,
+          ),
+        },
+        {
+          id: 'data-processing',
+          title: 'Data Processing',
+          badge: 'new',
+          feature: 'data-processing',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/data-processing`,
           ),
         },
         {

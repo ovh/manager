@@ -8,8 +8,9 @@ import {
 
 export default class DataIntegrationWorkflowsListCtrl {
   /* @ngInject */
-  constructor($scope) {
+  constructor($scope, ovhManagerRegionService) {
     this.$scope = $scope;
+    this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   $onInit() {

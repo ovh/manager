@@ -1,4 +1,8 @@
-<manager-on-boarding-layout data-image-source="$ctrl.logo.desktop">
+<manager-on-boarding-layout
+    data-guides="$ctrl.guides"
+    data-on-guide-click="$ctrl.onDocumentationClick(guide)"
+    data-image-source="$ctrl.logo.desktop"
+>
     <div class="mobile-logo ">
         <img data-ng-src="{{$ctrl.logo.mobile}}" alt="logo mobile" />
     </div>

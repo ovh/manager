@@ -2,10 +2,19 @@
 <p data-translate="pci_data_integration_cli_description"></p>
 <!-- Installation -->
 <h4 data-translate="pci_data_integration_cli_download"></h4>
-<pci-code-sample
-    data-code="$ctrl.CLI_INSTALL_CODE"
-    data-language="'bash'"
-></pci-code-sample>
+
+<oui-tabs class="mb-4">
+    <oui-tabs-item
+        data-ng-repeat="os in $ctrl.CLI_INSTALL_CODES"
+        data-heading="{{::os.title}}"
+    >
+        <pci-code-sample
+            data-code="os.code"
+            data-language="'bash'"
+        ></pci-code-sample>
+    </oui-tabs-item>
+</oui-tabs>
+
 <!-- Authentification -->
 <h4 data-translate="pci_data_integration_cli_auth_title"></h4>
 

@@ -11,6 +11,8 @@ import service from './data-integration.service';
 
 import onboarding from './onboarding';
 import dashboard from './tabs/dashboard';
+import sources from './tabs/sources';
+import destinations from './tabs/destinations';
 import cli from './tabs/cli';
 
 const moduleName = 'ovhManagerPciDataIntegration';
@@ -19,6 +21,8 @@ angular
   .module(moduleName, [
     onboarding,
     dashboard,
+    sources,
+    destinations,
     cli,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',

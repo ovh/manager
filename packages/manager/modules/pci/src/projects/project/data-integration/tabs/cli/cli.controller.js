@@ -1,7 +1,7 @@
-import { CLI_INSTALL_CODE } from './cli.constants';
+import { CLI_INSTALL_CODES } from './cli.constants';
 
 export default class DataIntegrationCliCtrl {
   $onInit() {
-    this.CLI_INSTALL_CODE = CLI_INSTALL_CODE;
+    this.CLI_INSTALL_CODES = CLI_INSTALL_CODES;
   }
 }

@@ -1,10 +1,12 @@
-import { DATA_INTEGRATION_LAB_LINK } from './data-integration.constants';
+import {
+  DATA_INTEGRATION_LAB_LINK,
+  DATA_INTEGRATION_TRACKING_PREFIX_FULL,
+} from './data-integration.constants';
 
 export default class DataIntegrationCtrl {
   /* @ngInject */
-  constructor(CucCloudMessage, coreConfig, atInternet) {
+  constructor(CucCloudMessage, atInternet) {
     this.cucCloudMessage = CucCloudMessage;
-    this.coreConfig = coreConfig;
     this.atInternet = atInternet;
   }
 
@@ -27,9 +29,9 @@ export default class DataIntegrationCtrl {
     this.messages = this.messageHandler.getMessages();
   }
 
-  trackClick(guide) {
+  trackFreeBetaLink() {
     this.atInternet.trackClick({
-      name: `${this.trackingPrefix}::guide::${guide.id}`,
+      name: `${DATA_INTEGRATION_TRACKING_PREFIX_FULL}::dashboard::link-to-free-beta`,
       type: 'action',
     });
   }

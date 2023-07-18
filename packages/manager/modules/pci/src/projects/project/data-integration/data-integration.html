@@ -6,6 +6,7 @@
     ></oui-header>
     <p data-translate="pci_data_integration_description"></p>
     <a
+        data-ng-click="$ctrl.trackFreeBetaLink()"
         data-ng-href="{{::$ctrl.labLink}}"
         target="_blank"
         class="oui-button oui-button_ghost"
@@ -24,7 +25,20 @@
                     data-translate="pci_data_integration_tab_dashboard"
                 ></span>
             </oui-header-tabs-item>
-
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.sourcesLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.sourcesLink"
+            >
+                <span data-translate="pci_data_integration_tab_sources"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.destinationsLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.destinationsLink"
+            >
+                <span
+                    data-translate="pci_data_integration_tab_destinations"
+                ></span>
+            </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-href="{{:: $ctrl.cliLink }}"
                 data-active="$ctrl.currentActiveLink() === $ctrl.cliLink"

@@ -22,6 +22,14 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.data-integration.dashboard', {
           projectId,
         }),
+      sourcesLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.data-integration.sources', {
+          projectId,
+        }),
+      destinationsLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.data-integration.destinations', {
+          projectId,
+        }),
       cliLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.data-integration.cli', {
           projectId,

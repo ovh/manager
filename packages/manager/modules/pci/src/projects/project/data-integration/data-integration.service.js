@@ -36,4 +36,40 @@ export default class DataIntegrationService {
       )
       .then(({ data }) => data);
   }
+
+  getSources(serviceName) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/dataIntegration/sources`,
+        DataIntegrationService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  getSourceConnectors(serviceName) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/dataIntegration/sourceConnectors`,
+        DataIntegrationService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  getDestinations(serviceName) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/dataIntegration/destinations`,
+        DataIntegrationService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
+
+  getDestinationConnectors(serviceName) {
+    return this.$http
+      .get(
+        `/cloud/project/${serviceName}/dataIntegration/destinationConnectors`,
+        DataIntegrationService.getIcebergHeaders(),
+      )
+      .then(({ data }) => data);
+  }
 }

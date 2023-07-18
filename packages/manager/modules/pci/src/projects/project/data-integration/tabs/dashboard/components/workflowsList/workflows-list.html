@@ -81,6 +81,11 @@
                     ></span>
                 </td>
                 <td class="oui-datagrid__cell">
+                    <span
+                        data-ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMacroRegion(workflow.region)"
+                    ></span>
+                </td>
+                <td class="oui-datagrid__cell">
                     <oui-switch disabled="true" model="workflow.enabled">
                     </oui-switch>
                 </td>

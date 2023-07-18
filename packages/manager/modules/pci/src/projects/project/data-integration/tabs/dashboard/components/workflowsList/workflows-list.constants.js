@@ -42,6 +42,13 @@ export const WORKFLOW_TABLE_COLUMNS = [
     },
   },
   {
+    name: 'region',
+    sort: {
+      property: 'region',
+      type: 'string',
+    },
+  },
+  {
     name: 'activated',
     sort: {
       property: 'enabled',
