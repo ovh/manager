@@ -1,0 +1,17 @@
+{
+  "title": "vRack Services",
+  "description": "Les vRack Services vous permettent de bénéficier de services réseau sur le vRack. Le premier service réseau disponible est le Service Endpoint. Ce dernier vous permet d'exposer, via une adresse IP, un service managé par OVHcloud sur votre vRack. D'autres services seront disponibles à l’avenir.",
+  "createVrackServicesButtonLabel": "Créer un vRack Services",
+  "displayName": "Nom",
+  "productStatus": "Statut",
+  "zone": "Régionalisation",
+  "vrackId": "vRack",
+  "createdAt": "Date de création",
+  "ACTIVE": "Actif",
+  "DISABLED": "Inactif",
+  "DRAFT": "A configurer",
+  "LIM": "Allemagne, Limbourg (LIM)",
+  "GRA": "France, Gravelines (GRA)",
+  "RBX": "France, Roubaix (RBX)",
+  "BHS": "Canada, Beauharnois (BHS)"
+}

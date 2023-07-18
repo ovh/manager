@@ -1,4 +1,4 @@
-import { rest } from 'msw';
+import { rest, RequestHandler } from 'msw';
 import { apiClient } from '@ovh-ux/manager-core-api';
 
 export type Handler = {
@@ -19,7 +19,7 @@ export type Handler = {
   baseUrl?: string;
 };
 
-export const toMswHandlers = (handlers: Handler[]) =>
+export const toMswHandlers = (handlers: Handler[]): RequestHandler[] =>
   handlers.map(
     ({
       url,
@@ -31,7 +31,9 @@ export const toMswHandlers = (handlers: Handler[]) =>
       baseUrl,
     }: Handler) =>
       rest[method](
-        `${baseUrl ?? apiClient[api].getUri()}/${url}`,
+        `${baseUrl ?? apiClient[api].getUri()}${
+          url.startsWith('/') ? '' : '/'
+        }${url}`,
         (_, res, ctx) =>
           res(
             ...[

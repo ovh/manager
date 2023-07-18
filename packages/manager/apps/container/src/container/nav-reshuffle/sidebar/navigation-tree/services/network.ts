@@ -7,6 +7,7 @@ export default {
     'veeam-cloud-connect',
     'ip-load-balancer',
     'dedicated-cdn',
+    'vrack-services',
   ],
   children: [
     {
@@ -28,6 +29,16 @@ export default {
         hash: '#/ip',
       },
       features: ['ip'],
+    },
+    {
+      id: 'ovhvrack-services',
+      translation: 'sidebar_vrack_services',
+      serviceType: 'VRACKSERVICES',
+      routing: {
+        application: 'dedicated',
+        hash: '#/vrack-services',
+      },
+      features: ['vrack-services'],
     },
     {
       id: 'ovhcloud-connect',

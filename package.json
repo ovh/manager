@@ -60,6 +60,7 @@
     "rollup-plugin-sass": "1.12.16",
     "@babel/runtime": "7.22.15"
   },
+  "dependencies": {},
   "devDependencies": {
     "@babel/helper-string-parser": "^7.18.10",
     "@commitlint/cli": "^17.1.2",
