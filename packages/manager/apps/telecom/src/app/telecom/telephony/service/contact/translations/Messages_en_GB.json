@@ -63,5 +63,9 @@
   "telephony_service_contact_bulk_on_error": "Oops! An error occurred while changing the contact details.",
   "telephony_service_contact_required_fields": "Fields followed by an asterisk are mandatory.",
   "telephony_service_contact_tva": "VAT number",
-  "telephony_service_contact_tva_invalid": "Invalid VAT number entered"
+  "telephony_service_contact_tva_invalid": "Invalid VAT number entered",
+  "telephony_service_contact_outwardcode": "Outward code",
+  "telephony_service_contact_inwardcode": "Inward code",
+  "telephony_service_contact_bad_outward": "The code must be composed of a letter followed by 1 to 3 alphanumeric characters.",
+  "telephony_service_contact_bad_inward": "The code must be composed of a number followed by 2 alphabetic characters."
 }
