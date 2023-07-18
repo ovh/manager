@@ -1,8 +1,5 @@
 import get from 'lodash/get';
-import {
-  DETACH_DEFAULT_OPTIONS,
-  OFFERS_NAME_MAPPING,
-} from './hosting-offer-upgrade.constants';
+import { DETACH_DEFAULT_OPTIONS } from './hosting-offer-upgrade.constants';
 import { HOSTING_TRACKING } from '../../hosting.constants';
 
 angular.module('App').controller(
@@ -93,14 +90,7 @@ angular.module('App').controller(
             );
           })
           .then((availableOffers) => {
-            this.availableOffers = availableOffers.map((offer) => ({
-              name: this.$translate.instant(
-                `hosting_dashboard_service_offer_${
-                  OFFERS_NAME_MAPPING[offer.planCode]
-                }`,
-              ),
-              value: offer.planCode,
-            }));
+            this.availableOffers = availableOffers;
           });
       }
 
