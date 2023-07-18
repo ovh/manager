@@ -4,6 +4,11 @@ export const APP_TAGS = {
   MAX: 20,
 };
 
+export const APP_TYPES = {
+  CPU: 'cpu',
+  GPU: 'gpu',
+};
+
 export const APP_STATUS = {
   QUEUED: 'QUEUED',
   INITIALIZING: 'INITIALIZING',
@@ -76,9 +81,38 @@ export const APP_SPEC_WEIGHTS = {
   REPLICAS: 2,
 };
 
+export const APP_PARTNER_PRESET_LICENSING = {
+  PER_APP: 'per-app',
+  PER_RESOURCE: 'per-resource',
+  PER_REPLICA: 'per-replica',
+  PER_SECOND_BRACKET: 'per-second-bracket',
+  FREE: 'per-free',
+};
+
+export const APP_PARTNER_VOXIST_DETAILS = {
+  partnerId: 'voxist',
+  pricesLink: {
+    DEFAULT: 'https://www.ovhcloud.com/en-gb/public-cloud/prices/#11264',
+    DE: 'https://www.ovhcloud.com/de/public-cloud/prices/#11264',
+    ES: 'https://www.ovhcloud.com/es-es/public-cloud/prices/#11264',
+    FR: 'https://www.ovhcloud.com/fr/public-cloud/prices/#11264',
+    GB: 'https://www.ovhcloud.com/en-gb/public-cloud/prices/#11264',
+    IE: 'https://www.ovhcloud.com/en-ie/public-cloud/prices/#11264',
+    IT: 'https://www.ovhcloud.com/it/public-cloud/prices/#11264',
+    LT: 'https://www.ovhcloud.com/en-ie/public-cloud/prices/#11264',
+    MA: 'https://www.ovhcloud.com/fr-ma/public-cloud/prices/#11264',
+    NL: 'https://www.ovhcloud.com/nl/public-cloud/prices/#11264',
+    PL: 'https://www.ovhcloud.com/pl/public-cloud/prices/#11264',
+    PT: 'https://www.ovhcloud.com/pt/public-cloud/prices/#11264',
+    SN: 'https://www.ovhcloud.com/fr-sn/public-cloud/prices/#11264',
+    TN: 'https://www.ovhcloud.com/fr-tn/public-cloud/prices/#11264',
+  },
+};
+
 export default {
   IS_BETA,
   APP_TAGS,
+  APP_TYPES,
   APP_STATUS,
   APP_STATES,
   APP_VOLUME_TYPE,
@@ -91,4 +125,6 @@ export default {
   APP_CUSTOM_DOCKER_IMAGE_DOC,
   APP_SCALING_INFO,
   APP_MULTIPLY_SIGN,
+  APP_PARTNER_PRESET_LICENSING,
+  APP_PARTNER_VOXIST_DETAILS,
 };

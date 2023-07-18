@@ -56,13 +56,6 @@ export const APP_PROBE = {
   MAX_PORT: 65535,
 };
 
-export const APP_PARTNER_PRESET_LICENCING = {
-  PER_APP: 'per-app',
-  PER_RESOURCE: 'per-resource',
-  PER_REPLICA: 'per-replica',
-  FREE: 'per-free',
-};
-
 export const APP_IMAGE_DOCKER_ARCHITECTURE = 'linux/AMD64';
 
 export default {
@@ -72,6 +65,5 @@ export default {
   APP_LABELS,
   APP_PRIVACY_SETTINGS,
   APP_PROBE,
-  APP_PARTNER_PRESET_LICENCING,
   APP_IMAGE_DOCKER_ARCHITECTURE,
 };

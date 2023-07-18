@@ -134,7 +134,7 @@
             </oui-tile-definition>
             <oui-tile-definition
                 data-ng-if="!$ctrl.appModel.image.isCustom"
-                data-term="{{:: $ctrl.getLicencePartner() }}"
+                data-term="{{:: $ctrl.getLicensePartner() }}"
             >
                 <oui-tile-description>
                     <ovh-manager-catalog-price
@@ -151,6 +151,33 @@
                         data-translate="pci_app_add_review_price_partner_free"
                         data-translate-values="{ partner: $ctrl.appModel.image.preset.partnerName }"
                     ></p>
+                    <oui-message
+                        class="mt-2"
+                        data-type="info"
+                        data-ng-if="$ctrl.showVoxistBracketInfo"
+                    >
+                        <p
+                            class="mb-0"
+                            data-translate="pci_app_add_review_license_voxist_info_1"
+                        ></p>
+                        <p
+                            class="mb-0"
+                            data-translate="pci_app_add_review_license_voxist_info_2"
+                        ></p>
+                        <a
+                            data-ng-href="{{::$ctrl.VOXIST_PRICES_LINK}}"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            <span
+                                data-translate="pci_app_add_review_license_voxist_info_link"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-external-link"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </oui-message>
                 </oui-tile-description>
             </oui-tile-definition>
             <oui-tile-definition
@@ -165,6 +192,16 @@
                         data-interval="'hour'"
                     >
                     </ovh-manager-catalog-price>
+                    <oui-message
+                        class="mt-2"
+                        data-type="info"
+                        data-ng-if="$ctrl.showVoxistBracketInfo"
+                    >
+                        <p
+                            class="mb-0"
+                            data-translate="pci_app_add_review_total_price_voxist_info"
+                        ></p>
+                    </oui-message>
                 </oui-tile-description>
             </oui-tile-definition>
         </oui-tile>
