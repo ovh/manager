@@ -6,6 +6,7 @@ export default {
     advancedMode: '<',
     alert: '<',
     goTo: '<',
+    trackClick: '<',
   },
   template,
   controller,
