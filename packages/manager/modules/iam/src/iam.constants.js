@@ -172,12 +172,6 @@ const TAG = {
   ADD_POLICY__REMOVE_PRODUCT_TYPE:
     'dedicated::account::iam::add-policy::remove-product-type',
   // OK
-  ADD_POLICY__REMOVE_PRODUCT_TYPE_CANCEL:
-    'DEDICATED::account::iam::add-policy::remove-product-type-cancel',
-  // OK
-  ADD_POLICY__REMOVE_PRODUCT_TYPE_CONFIRM:
-    'dedicated::account::iam::add-policy::remove-product-type-confirm',
-  // OK
   ADD_POLICY__GUIDE: (guideKey) =>
     `dedicated::account::iam::add-policy::guide-${guideKey}`,
   ADD_RESOURCE_GROUP: 'dedicated::account::iam::add-group-ressources',
@@ -188,8 +182,11 @@ const TAG = {
   // OK
   ADD_RESOURCE_GROUP__GUIDE: (guideKey) =>
     `dedicated::account::iam::add-group-ressources::guide-${guideKey}`,
+  // OK
   DELETE_POLICY: 'dedicated::account::iam::delete-policy',
+  // OK
   DELETE_POLICY__CANCEL: 'dedicated::account::iam::delete-policy::cancel',
+  // OK
   DELETE_POLICY__CONFIRM: 'dedicated::account::iam::delete-policy::confirm',
   DELETE_RESOURCE_GROUP: 'dedicated::account::iam::delete-group-ressources',
   DELETE_RESOURCE_GROUP__CANCEL:
@@ -244,8 +241,10 @@ const TAG = {
   // OK
   POLICIES__CREATE_POLICY_CONFIRM_BANNER__SUCCESS:
     'iam::policies::create-policy-confirm-banner::success',
+  // OK
   POLICIES__DELETE_POLICY_CONFIRM_BANNER__ERROR:
     'iam::policies::delete-policy-confirm-banner::error',
+  // OK
   POLICIES__DELETE_POLICY_CONFIRM_BANNER__SUCCESS:
     'iam::policies::delete-policy-confirm-banner::success',
   POLICIES__EDIT_POLICY_CONFIRM_BANNER__ERROR:
@@ -265,6 +264,10 @@ const TAG = {
     'dedicated::account::iam::policies::table-option-menu::edit',
   POLICIES__TABLE_OPTION_MENU__IDENTITIES:
     'dedicated::account::iam::policies::table-option-menu::manage-identities',
+  // OK
+  REMOVE_PRODUCT_TYPE_CANCEL: 'remove-product-type-cancel',
+  // OK
+  REMOVE_PRODUCT_TYPE_CONFIRM: 'remove-product-type-confirm',
   RESOURCE_GROUPS: 'dedicated::account::iam::group-ressources',
   RESOURCE_GROUPS__ADD: 'dedicated::account::iam::group-ressources::add',
   RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__ERROR:
