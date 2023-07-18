@@ -198,6 +198,7 @@ export default class CreatePolicyController {
    * @returns {Promise}
    */
   cancelCreation() {
+    this.trackClick(TAG.ADD_POLICY__CANCEL);
     return this.goTo({ name: 'iam.dashboard.policies' });
   }
 
@@ -267,6 +268,11 @@ export default class CreatePolicyController {
       });
 
     this.deletion.resolve(success);
+    this.trackClick(
+      success
+        ? TAG.ADD_POLICY__REMOVE_PRODUCT_TYPE_CONFIRM
+        : TAG.ADD_POLICY__REMOVE_PRODUCT_TYPE_CANCEL,
+    );
   }
 
   /**
@@ -289,6 +295,8 @@ export default class CreatePolicyController {
     const resources = this.model.resources.selection?.filter(
       (resource) => resource.type === resourceType,
     );
+
+    this.trackClick(TAG.ADD_POLICY__REMOVE_PRODUCT_TYPE);
 
     if (actions?.length || resources?.length) {
       this.deletion = this.$q.defer();
@@ -316,6 +324,8 @@ export default class CreatePolicyController {
         ? this.IAMService.setPolicy(this.policy.id, this.toAPI())
         : this.IAMService.createPolicy(this.toAPI());
 
+    this.trackClick(TAG.ADD_POLICY__CONFIRM);
+
     return promise
       .then(() => {
         this.error = {};
@@ -326,10 +336,13 @@ export default class CreatePolicyController {
             key: this.translations.success,
             values: { name: `<strong>${this.model.name}</strong>` },
           },
+          tag: TAG.POLICIES__CREATE_POLICY_CONFIRM_BANNER__SUCCESS,
         });
       })
       .catch((error) => {
         this.isSubmitting = false;
+
+        this.trackPage(TAG.POLICIES__CREATE_POLICY_CONFIRM_BANNER__ERROR);
 
         if (error.data.policy) {
           this.error = error.data.policy;

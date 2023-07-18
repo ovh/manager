@@ -9,6 +9,7 @@ export default {
     onboardingGuides: '<',
     policy: '<',
     trackClick: '<',
+    trackPage: '<',
   },
   controller,
   template,

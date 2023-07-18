@@ -3,6 +3,7 @@ import { cloneDeep } from 'lodash-es';
 import {
   CUSTOM_ACTION_PATTERN,
   CUSTOM_RESOURCE_TYPE,
+  TAG,
 } from '../../iam.constants';
 
 import ActionTrees from './ActionTrees.class';
@@ -175,6 +176,8 @@ export default class ActionSelectController {
     }
 
     this.customActionModel = '';
+    this.trackClick(TAG.ADD_POLICY__ADD_MANUALLY);
+    this.trackPage(TAG.ADD_POLICY__ADD_MANUALLY_SUCCESS);
     this.onModelChanged();
   }
 
@@ -241,6 +244,19 @@ export default class ActionSelectController {
       event.preventDefault();
       this.addCustomAction();
     }
+  }
+
+  /**
+   * Called back when the wild card switch state has changed
+   * @param {boolean} isEnabled
+   */
+  onIsWildcardActiveChanged(isEnabled) {
+    this.trackClick(
+      isEnabled
+        ? TAG.ADD_POLICY__ENABLE_ALLOW_ALL_ACTIONS
+        : TAG.ADD_POLICY__DISABLE_ALLOW_ALL_ACTIONS,
+    );
+    this.onModelChanged();
   }
 
   /**

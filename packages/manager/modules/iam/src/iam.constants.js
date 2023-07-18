@@ -149,18 +149,34 @@ const PREFERENCES_KEY = {
 };
 
 const TAG = {
+  // OK
   ADD_POLICY: 'dedicated::account::iam::add-policy',
+  // OK
   ADD_POLICY__ADD_MANUALLY: 'dedicated::account::iam::add-policy::add-manually',
   ADD_POLICY__ADD_MANUALLY_ERROR:
     'dedicated::account::iam::add-policy::add-manually-error',
+  // OK
   ADD_POLICY__ADD_MANUALLY_SUCCESS:
     'dedicated::account::iam::add-policy::add-manually-success',
+  // OK
   ADD_POLICY__CANCEL: 'dedicated::account::iam::add-policy::cancel',
+  // OK
   ADD_POLICY__CONFIRM: 'dedicated::account::iam::add-policy::confirm',
+  // OK
   ADD_POLICY__DISABLE_ALLOW_ALL_ACTIONS:
     'dedicated::account::iam::add-policy::disable-allow-all-actions',
+  // OK
   ADD_POLICY__ENABLE_ALLOW_ALL_ACTIONS:
     'dedicated::account::iam::add-policy::enable-allow-all-actions',
+  // OK
+  ADD_POLICY__REMOVE_PRODUCT_TYPE:
+    'dedicated::account::iam::add-policy::remove-product-type',
+  // OK
+  ADD_POLICY__REMOVE_PRODUCT_TYPE_CANCEL:
+    'DEDICATED::account::iam::add-policy::remove-product-type-cancel',
+  // OK
+  ADD_POLICY__REMOVE_PRODUCT_TYPE_CONFIRM:
+    'dedicated::account::iam::add-policy::remove-product-type-confirm',
   // OK
   ADD_POLICY__GUIDE: (guideKey) =>
     `dedicated::account::iam::add-policy::guide-${guideKey}`,
@@ -222,8 +238,10 @@ const TAG = {
   // OK
   POLICIES__MANAGE_IDENTITIES:
     'dedicated::account::iam::policies::manage-identities',
+  // OK
   POLICIES__CREATE_POLICY_CONFIRM_BANNER__ERROR:
     'iam::policies::create-policy-confirm-banner::error',
+  // OK
   POLICIES__CREATE_POLICY_CONFIRM_BANNER__SUCCESS:
     'iam::policies::create-policy-confirm-banner::success',
   POLICIES__DELETE_POLICY_CONFIRM_BANNER__ERROR:
