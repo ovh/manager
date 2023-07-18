@@ -214,6 +214,7 @@ export default /* @ngInject */ ($stateProvider) => {
         pciProjectNew.checkEligibility(voucher).catch((error) => ({
           voucher: {
             error: error.status,
+            message: error.data.message,
           },
         })),
 
