@@ -152,22 +152,9 @@ const TAG = {
   // OK
   ADD_POLICY: 'dedicated::account::iam::add-policy',
   // OK
-  ADD_POLICY__ADD_MANUALLY: 'dedicated::account::iam::add-policy::add-manually',
-  ADD_POLICY__ADD_MANUALLY_ERROR:
-    'dedicated::account::iam::add-policy::add-manually-error',
-  // OK
-  ADD_POLICY__ADD_MANUALLY_SUCCESS:
-    'dedicated::account::iam::add-policy::add-manually-success',
-  // OK
   ADD_POLICY__CANCEL: 'dedicated::account::iam::add-policy::cancel',
   // OK
   ADD_POLICY__CONFIRM: 'dedicated::account::iam::add-policy::confirm',
-  // OK
-  ADD_POLICY__DISABLE_ALLOW_ALL_ACTIONS:
-    'dedicated::account::iam::add-policy::disable-allow-all-actions',
-  // OK
-  ADD_POLICY__ENABLE_ALLOW_ALL_ACTIONS:
-    'dedicated::account::iam::add-policy::enable-allow-all-actions',
   // OK
   ADD_POLICY__REMOVE_PRODUCT_TYPE:
     'dedicated::account::iam::add-policy::remove-product-type',
@@ -193,9 +180,18 @@ const TAG = {
     'dedicated::account::iam::delete-group-ressources::cancel',
   DELETE_RESOURCE_GROUP__CONFIRM:
     'dedicated::account::iam::delete-group-ressources::confirm',
+  // OK
   EDIT_POLICY: 'dedicated::account::iam::edit-policy',
+  // OK
   EDIT_POLICY__CANCEL: 'dedicated::account::iam::edit-policy::cancel',
+  // OK
   EDIT_POLICY__CONFIRM: 'dedicated::account::iam::edit-policy::confirm',
+  // OK
+  EDIT_POLICY__REMOVE_PRODUCT_TYPE:
+    'dedicated::account::iam::edit-policy::remove-product-type',
+  // OK
+  EDIT_POLICY__GUIDE: (guideKey) =>
+    `dedicated::account::iam::edit-policy::guide-${guideKey}`,
   EDIT_RESOURCE_GROUP: 'dedicated::account::iam::edit-group-ressources',
   EDIT_RESOURCE_GROUP__CANCEL:
     'dedicated::account::iam::edit-group-ressources::cancel',
@@ -247,10 +243,12 @@ const TAG = {
   // OK
   POLICIES__DELETE_POLICY_CONFIRM_BANNER__SUCCESS:
     'iam::policies::delete-policy-confirm-banner::success',
+  // OK
   POLICIES__EDIT_POLICY_CONFIRM_BANNER__ERROR:
     'iam::policies::edit-policy-confirm-banner::error',
-  POLICIES__EDIT_POLICY_CONFIRM_BANNER__SUCCESS_ERROR:
-    'iam::policies::edit-policy-confirm-banner::success-error',
+  // OK
+  POLICIES__EDIT_POLICY_CONFIRM_BANNER__SUCCESS:
+    'iam::policies::edit-policy-confirm-banner::success',
   // OK
   POLICIES__GUIDE: (guideKey) =>
     `dedicated::account::iam::policies::guide-${guideKey}`,
@@ -258,12 +256,6 @@ const TAG = {
     'iam::policies::manage-identities-confirm-banner::error',
   POLICIES__IDENTITIES_CONFIRM_BANNER__SUCCESS:
     'iam::policies::manage-identities-confirm-banner::success',
-  POLICIES__TABLE_OPTION_MENU__DELETE:
-    'dedicated::account::iam::policies::table-option-menu::delete',
-  POLICIES__TABLE_OPTION_MENU__EDIT:
-    'dedicated::account::iam::policies::table-option-menu::edit',
-  POLICIES__TABLE_OPTION_MENU__IDENTITIES:
-    'dedicated::account::iam::policies::table-option-menu::manage-identities',
   // OK
   REMOVE_PRODUCT_TYPE_CANCEL: 'remove-product-type-cancel',
   // OK
@@ -289,11 +281,18 @@ const TAG = {
     'dedicated::account::iam::group-ressources::table-option-menu::delete',
   RESOURCE_GROUPS__TABLE_OPTION_MENU__EDIT:
     'dedicated::account::iam::group-ressources::table-option-menu::edit',
-
+  // OK
+  ADD_ACTION_MANUALLY: 'add-manually',
+  // OK
+  ADD_ACTION_MANUALLY_SUCCESS: 'add-manually-success',
   // OK
   ENABLE_ADVANCED_MODE: 'dedicated::account::iam::enable-advanced-mode',
   // OK
   DISABLE_ADVANCED_MODE: 'dedicated::account::iam::disable-advanced-mode',
+  // OK
+  ENABLE_ALLOW_ALL_ACTIONS: 'enable-allow-all-actions',
+  // OK
+  DISABLE_ALLOW_ALL_ACTIONS: 'disable-allow-all-actions',
 };
 
 const UNAVAILABLE_STATE_NAME = 'app.account.user';

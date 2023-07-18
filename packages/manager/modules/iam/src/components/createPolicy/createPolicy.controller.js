@@ -130,6 +130,37 @@ export default class CreatePolicyController {
   }
 
   /**
+   * A contextualized Set where each key map to a tag
+   * @returns {Object<string,string>}
+   */
+  get tag() {
+    const { mode } = this;
+    if (mode === 'create') {
+      return {
+        cancel: TAG.ADD_POLICY__CANCEL,
+        guide: TAG.ADD_POLICY__GUIDE,
+        prefix: TAG.ADD_POLICY,
+        removeResourceType: TAG.ADD_POLICY__REMOVE_PRODUCT_TYPE,
+        submit: TAG.ADD_POLICY__CONFIRM,
+        submitError: TAG.POLICIES__CREATE_POLICY_CONFIRM_BANNER__ERROR,
+        submitSuccess: TAG.POLICIES__CREATE_POLICY_CONFIRM_BANNER__SUCCESS,
+      };
+    }
+    if (mode === 'edit') {
+      return {
+        cancel: TAG.EDIT_POLICY__CANCEL,
+        guide: TAG.EDIT_POLICY__GUIDE,
+        prefix: TAG.EDIT_POLICY,
+        removeResourceType: TAG.EDIT_POLICY__REMOVE_PRODUCT_TYPE,
+        submit: TAG.EDIT_POLICY__CONFIRM,
+        submitError: TAG.POLICIES__EDIT_POLICY_CONFIRM_BANNER__ERROR,
+        submitSuccess: TAG.POLICIES__EDIT_POLICY_CONFIRM_BANNER__SUCCESS,
+      };
+    }
+    return null;
+  }
+
+  /**
    * A contextualized Set where each key map to a translation
    * @returns {Object<string,string>}
    */
@@ -199,7 +230,7 @@ export default class CreatePolicyController {
    * @returns {Promise}
    */
   cancelCreation() {
-    this.trackClick(TAG.ADD_POLICY__CANCEL);
+    this.trackClick(this.tag?.cancel);
     return this.goTo({ name: 'iam.dashboard.policies' });
   }
 
@@ -276,7 +307,7 @@ export default class CreatePolicyController {
    * @param {string} guideKey
    */
   onGuideClick(guideKey) {
-    this.trackClick(TAG.ADD_POLICY__GUIDE(guideKey));
+    this.trackClick(this.tag?.guide(guideKey));
   }
 
   /**
@@ -292,7 +323,7 @@ export default class CreatePolicyController {
       (resource) => resource.type === resourceType,
     );
 
-    this.trackClick(TAG.ADD_POLICY__REMOVE_PRODUCT_TYPE);
+    this.trackClick(this.tag?.removeResourceType);
 
     if (actions?.length || resources?.length) {
       this.deletion = this.$q.defer();
@@ -320,7 +351,7 @@ export default class CreatePolicyController {
         ? this.IAMService.setPolicy(this.policy.id, this.toAPI())
         : this.IAMService.createPolicy(this.toAPI());
 
-    this.trackClick(TAG.ADD_POLICY__CONFIRM);
+    this.trackClick(this.tag?.submit);
 
     return promise
       .then(() => {
@@ -332,13 +363,13 @@ export default class CreatePolicyController {
             key: this.translations.success,
             values: { name: `<strong>${this.model.name}</strong>` },
           },
-          tag: TAG.POLICIES__CREATE_POLICY_CONFIRM_BANNER__SUCCESS,
+          tag: this.tag?.submitSuccess,
         });
       })
       .catch((error) => {
         this.isSubmitting = false;
 
-        this.trackPage(TAG.POLICIES__CREATE_POLICY_CONFIRM_BANNER__ERROR);
+        this.trackPage(this.tag?.submitError);
 
         if (error.data.policy) {
           this.error = error.data.policy;

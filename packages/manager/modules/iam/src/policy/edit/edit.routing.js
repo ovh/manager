@@ -1,3 +1,5 @@
+import { TAG } from '../../iam.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.policy.edit', {
     url: '/edit/{policy:uuid}',
@@ -14,6 +16,9 @@ export default /* @ngInject */ ($stateProvider) => {
         const { policy: uuid } = $transition$.params();
         return uuid ? IAMService.getDetailedPolicy(uuid) : null;
       },
+    },
+    atInternet: {
+      rename: TAG.EDIT_POLICY,
     },
   });
 };

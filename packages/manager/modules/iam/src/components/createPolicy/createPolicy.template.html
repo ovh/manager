@@ -4,7 +4,7 @@
         data-entity="{ data: $ctrl.deletion.data, type: $ctrl.ENTITY_RESOURCE_TYPE }"
         data-go-back="$ctrl.onDeleteEntityGoBack"
         data-statement="false"
-        data-tag-prefix=":: $ctrl.TAG.ADD_POLICY"
+        data-tag-prefix=":: $ctrl.tag.prefix"
         data-track-click=":: $ctrl.trackClick"
     >
         <strong
@@ -144,8 +144,9 @@
             data-ng-model="$ctrl.model.actions"
             data-resource-types="$ctrl.model.resources.types"
             data-read-only="$ctrl.policy.readOnly"
-            data-track-click="$ctrl.trackClick"
-            data-track-page="$ctrl.trackPage"
+            data-tag-prefix=":: $ctrl.tag.prefix"
+            data-track-click=":: $ctrl.trackClick"
+            data-track-page=":: $ctrl.trackPage"
         ></iam-action-select>
         <!-- </Actions> -->
 

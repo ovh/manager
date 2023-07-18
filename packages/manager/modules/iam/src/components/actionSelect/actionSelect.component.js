@@ -12,6 +12,7 @@ export default {
     readOnly: '<?',
     required: '@?',
     resourceTypes: '<',
+    tagPrefix: '<',
     trackClick: '<',
     trackPage: '<',
   },
