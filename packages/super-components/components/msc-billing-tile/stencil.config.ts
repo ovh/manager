@@ -6,12 +6,4 @@ export const config = getStencilConfig({
   componentCorePackage,
 });
 
-// Add a new output target to copy the translation files
-config.outputTargets = [
-  {
-    type: 'www',
-    copy: [{ src: 'translations', dest: 'translations' }],
-  },
-];
-
-export default config;
+export default { config };
