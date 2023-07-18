@@ -1,3 +1,5 @@
+import { TAG } from '../iam.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.onboarding', {
     url: '/onboarding',
@@ -11,6 +13,9 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       breadcrumb: () => null,
+    },
+    atInternet: {
+      rename: TAG.ONBOARDING,
     },
   });
 };
