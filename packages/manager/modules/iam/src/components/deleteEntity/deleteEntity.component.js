@@ -7,6 +7,8 @@ export default {
     entity: '<',
     goBack: '<',
     statement: '<',
+    tagPrefix: '<',
+    trackClick: '<',
   },
   controller,
   template,

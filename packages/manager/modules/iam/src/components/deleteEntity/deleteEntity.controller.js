@@ -1,4 +1,4 @@
-import { DELETE_STATEMENT, ENTITY } from '../../iam.constants';
+import { DELETE_STATEMENT, ENTITY, TAG } from '../../iam.constants';
 import { encodeUrn } from '../../iam.paramTypes';
 
 export default class DeleteEntityController {
@@ -38,6 +38,33 @@ export default class DeleteEntityController {
   }
 
   /**
+   * A contextualized Set where each key map to a tag
+   * @returns {{
+   *  close: string;
+   *  delete: string;
+   *  error?: string;
+   *  success?: string;
+   * } | null}
+   */
+  get tag() {
+    if (this.entity.type === ENTITY.POLICY) {
+      return {
+        close: TAG.DELETE_POLICY__CANCEL,
+        delete: TAG.DELETE_POLICY__CONFIRM,
+        error: TAG.POLICIES__DELETE_POLICY_CONFIRM_BANNER__ERROR,
+        success: TAG.POLICIES__DELETE_POLICY_CONFIRM_BANNER__SUCCESS,
+      };
+    }
+    if (this.entity.type === ENTITY.RESOURCE_TYPE) {
+      return {
+        close: TAG.REMOVE_PRODUCT_TYPE_CANCEL,
+        delete: TAG.REMOVE_PRODUCT_TYPE_CONFIRM,
+      };
+    }
+    return null;
+  }
+
+  /**
    * A contextualized Set where each key map to a translation
    * @returns {{
    *   field: string,
@@ -64,6 +91,7 @@ export default class DeleteEntityController {
    * @returns {Promise}
    */
   close() {
+    this.trackDeleteEntityClick('close');
     return this.goBack({ params: this.$stateParams });
   }
 
@@ -86,14 +114,24 @@ export default class DeleteEntityController {
       promise = this.$q.reject({ data: { message: 'Unknown entity type' } });
     }
 
+    this.trackDeleteEntityClick('delete');
+
     promise
       .then(() =>
-        this.goBack({ success: this.translate.success, reload: true }),
+        this.goBack({
+          reload: true,
+          success: this.translate.success,
+          ...(this.tag?.success && { tag: this.tag.success }),
+        }),
       )
       .catch((error) => {
         const { message } = error.data ?? {};
         return this.goBack({
-          error: { key: this.translate.error, values: { message } },
+          error: {
+            key: this.translate.error,
+            values: { message },
+            ...(this.tag?.error && { tag: this.tag.error }),
+          },
         });
       });
 
@@ -129,5 +167,16 @@ export default class DeleteEntityController {
    */
   deleteResourceGroup() {
     return this.IAMService.deleteResourceGroup(this.entity.data.id);
+  }
+
+  /**
+   * Custom trackClick wrapper witch uses the tagPrefix bound property
+   * @param {'close'|'delete'} tagKey
+   */
+  trackDeleteEntityClick(tagKey) {
+    const tag = this.tag?.[tagKey];
+    if (tag) {
+      this.trackClick([this.tagPrefix, tag].filter(Boolean).join('::'));
+    }
   }
 }

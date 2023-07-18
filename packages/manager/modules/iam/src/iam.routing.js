@@ -66,13 +66,15 @@ export default /* @ngInject */ ($stateProvider) => {
        * @param {boolean} reload The state.go reload option
        * @param {string | { key: string, values: { [x: string]: any }}} success The success message to display
        * @param {string | { key: string, values: { [x: string]: any }}} error The error message to display
+       * @param {string} tag The page to tag
        */
       goBack: /* @ngInject */ (goTo) => ({
         params,
         reload,
         success,
         error,
-      } = {}) => goTo({ params, reload, success, error, name: '^' }),
+        tag,
+      } = {}) => goTo({ params, reload, success, error, tag, name: '^' }),
 
       /**
        * Go to a specific IAM state

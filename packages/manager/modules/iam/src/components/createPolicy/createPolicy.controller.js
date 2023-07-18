@@ -15,6 +15,7 @@ export default class CreatePolicyController {
     this.ENTITY_NAME_PATTERN = ENTITY_NAME_PATTERN;
     this.ENTITY_RESOURCE_TYPE = ENTITY.RESOURCE_TYPE;
     this.URL_RESOURCE_GROUP = URL.RESOURCE_GROUP;
+    this.TAG = TAG;
 
     /**
      * The oui-select confirm-remove property works with promises
@@ -268,11 +269,6 @@ export default class CreatePolicyController {
       });
 
     this.deletion.resolve(success);
-    this.trackClick(
-      success
-        ? TAG.ADD_POLICY__REMOVE_PRODUCT_TYPE_CONFIRM
-        : TAG.ADD_POLICY__REMOVE_PRODUCT_TYPE_CANCEL,
-    );
   }
 
   /**
