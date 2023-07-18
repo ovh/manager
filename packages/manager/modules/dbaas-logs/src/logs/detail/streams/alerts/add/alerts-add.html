@@ -1,5 +1,5 @@
 <div>
-    {{ctrl.alert.conditionType}}
+    <span data-ng-bind="ctrl.alert.conditionType"></span>
     <oui-back-button data-on-click="ctrl.cancel()"
         ><span
             data-translate="{{ (ctrl.editMode ? 'edit_alert_title_' : 'add_alert_title_') + ctrl.alertType.toLowerCase() }}"
