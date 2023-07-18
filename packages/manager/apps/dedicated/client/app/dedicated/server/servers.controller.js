@@ -3,7 +3,7 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
 
-import { DC_2_ISO } from './dashboard/dashboard.constants';
+import { MONITORING_STATUSES, DC_2_ISO } from './dashboard/dashboard.constants';
 
 export default class ServersCtrl {
   /* @ngInject */
@@ -46,14 +46,14 @@ export default class ServersCtrl {
   }
 
   static getMonitoringStatus(monitored, noIntervention) {
-    let monitoring = 'disabled';
+    let monitoring = MONITORING_STATUSES.DISABLED;
     // proactive intervention
     if (monitored && !noIntervention) {
-      monitoring = 'proactive';
+      monitoring = MONITORING_STATUSES.PROACTIVE;
     }
     // no proactive intervention
     if (monitored && noIntervention) {
-      monitoring = 'no-proactive';
+      monitoring = MONITORING_STATUSES.NOPROACTIVE;
     }
     return monitoring;
   }

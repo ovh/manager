@@ -1,3 +1,9 @@
+export const MONITORING_STATUSES = {
+  DISABLED: 'disabled',
+  NOPROACTIVE: 'no-proactive',
+  PROACTIVE: 'proactive',
+};
+
 export const DC_2_ISO = {
   BHS: 'CA',
   DC: 'CA',
@@ -60,6 +66,7 @@ export const HIDE_MRTG_FOR_SERVER_RANGES = ['scale', 'hgr'];
 export const VMS_URL_OTHERS = 'OTHERS';
 
 export default {
+  MONITORING_STATUSES,
   DC_2_ISO,
   ELIGIBLE_FOR_UPGRADE,
   URLS,
