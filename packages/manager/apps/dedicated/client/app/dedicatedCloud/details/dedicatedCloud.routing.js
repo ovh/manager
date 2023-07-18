@@ -6,7 +6,7 @@ import sortBy from 'lodash/sortBy';
 import uniq from 'lodash/uniq';
 
 import { DedicatedCloud as DedicatedCloudInfo } from '@ovh-ux/manager-models';
-import { SURVEY } from './dedicatedCloud.constants';
+import { NEW_PRODUCT_LINK } from './dedicatedCloud.constants';
 
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
@@ -240,6 +240,8 @@ export default /* @ngInject */ ($stateProvider) => {
             );
             return options;
           }),
+      hasNsxOption: /* @ngInject */ (optionsAvailable) =>
+        !!optionsAvailable.find((option) => ['nsx', 'nsxt'].includes(option)),
       orderDatastore: /* @ngInject */ ($state, usesLegacyOrder) => (
         datacenterId,
       ) =>
@@ -271,13 +273,15 @@ export default /* @ngInject */ ($stateProvider) => {
       trackingPrefix: () => 'dedicated::dedicatedClouds',
       usesLegacyOrder: /* @ngInject */ (currentService) =>
         currentService.usesLegacyOrder,
-      surveyUrl: /* @ngInject */ (ovhFeatureFlipping, coreConfig) =>
+      newProductUrl: /* @ngInject */ (ovhFeatureFlipping, coreConfig) =>
         ovhFeatureFlipping
-          .checkFeatureAvailability('dedicated-cloud:survey')
+          .checkFeatureAvailability('dedicated-cloud:newProductBanner')
           .then((featureAvailability) =>
-            featureAvailability.isFeatureAvailable('dedicated-cloud:survey')
-              ? SURVEY[coreConfig.getUserLanguage().toUpperCase()] ||
-                SURVEY.default
+            featureAvailability.isFeatureAvailable(
+              'dedicated-cloud:newProductBanner',
+            )
+              ? NEW_PRODUCT_LINK[coreConfig.getUser().ovhSubsidiary] ||
+                NEW_PRODUCT_LINK.default
               : null,
           ),
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,

@@ -23,12 +23,14 @@ const OptionsService = class OptionsService {
   /* @ngInject */
   constructor(
     $q,
+    DedicatedCloud,
     OvhApiDedicatedCloud,
     ovhManagerPccDashboardOptionsOrderService,
     ovhManagerPccDashboardOptionsUserService,
     ovhManagerPccServicePackService,
   ) {
     this.$q = $q;
+    this.DedicatedCloud = DedicatedCloud;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
     this.ovhManagerPccDashboardOptionsOrderService = ovhManagerPccDashboardOptionsOrderService;
     this.ovhManagerPccDashboardOptionsUserService = ovhManagerPccDashboardOptionsUserService;
@@ -152,49 +154,64 @@ const OptionsService = class OptionsService {
             serviceName,
           ),
           servicePacks: this.getServicePacks(serviceName, ovhSubsidiary),
+          nsxtOption: this.DedicatedCloud.getOptionState('nsxt', serviceName),
         }),
       )
-      .then(({ pendingOrder, currentOrFutureServicePack, servicePacks }) => {
-        const model = {
-          options: {},
-          pendingOrder: OptionsService.computePendingOrder(
-            pendingOrder,
-            currentOrFutureServicePack,
-          ),
-          servicePacks: {
-            all: servicePacks,
-          },
-        };
-
-        model.options.basic = OptionsService.computeOptionsBasic();
-
-        model.servicePacks.ordered = OptionsService.computeServicePacksOrdered(
-          servicePacks,
-          model.pendingOrder,
+      .then(
+        ({
+          pendingOrder,
           currentOrFutureServicePack,
-        );
-
-        model.servicePacks.current = OptionsService.computeServicePackCurrent(
           servicePacks,
-          model.pendingOrder,
-          currentServicePackName,
-        );
+          nsxtOption,
+        }) => {
+          const model = {
+            options: {},
+            pendingOrder: OptionsService.computePendingOrder(
+              pendingOrder,
+              currentOrFutureServicePack,
+            ),
+            servicePacks: {
+              all: servicePacks,
+            },
+          };
 
-        model.servicePacks.orderable = OptionsService.computeServicePacksOrderable(
-          servicePacks,
-          get(model.servicePacks.current, 'name'),
-          model.pendingOrder.exists &&
-            model.pendingOrder.orderedServicePackName,
-        );
+          model.options.basic = OptionsService.computeOptionsBasic();
 
-        if (!model.pendingOrder.exists) {
-          this.ovhManagerPccDashboardOptionsOrderService.deleteServicePackOrder(
-            serviceName,
+          model.servicePacks.ordered = OptionsService.computeServicePacksOrdered(
+            servicePacks,
+            model.pendingOrder,
+            currentOrFutureServicePack,
           );
-        }
 
-        return model;
-      });
+          model.servicePacks.current = OptionsService.computeServicePackCurrent(
+            servicePacks,
+            model.pendingOrder,
+            currentServicePackName,
+          );
+
+          if (nsxtOption === 'enabled') {
+            model.servicePacks.current.options = [
+              ...model.servicePacks.current.options,
+              { name: 'nsxt' },
+            ];
+          }
+
+          model.servicePacks.orderable = OptionsService.computeServicePacksOrderable(
+            servicePacks,
+            get(model.servicePacks.current, 'name'),
+            model.pendingOrder.exists &&
+              model.pendingOrder.orderedServicePackName,
+          );
+
+          if (!model.pendingOrder.exists) {
+            this.ovhManagerPccDashboardOptionsOrderService.deleteServicePackOrder(
+              serviceName,
+            );
+          }
+
+          return model;
+        },
+      );
   }
 
   static computePendingOrder(pendingOrder, currentOrFutureServicePack) {

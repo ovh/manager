@@ -30,7 +30,6 @@ export default {
     pccType: '<',
     productId: '<',
     setMessage: '<',
-    surveyUrl: '<',
     trackingPrefix: '<',
   },
   template,
