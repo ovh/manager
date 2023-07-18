@@ -202,8 +202,11 @@ const TAG = {
     'dedicated::account::iam::manage-identities::remove-user-cancel',
   IDENTITIES__REMOVE_USER_CONFIRM:
     'dedicated::account::iam::manage-identities::remove-user-confirm',
+  // OK
   ONBOARDING: 'dedicated::account::iam::onboarding',
+  // OK
   ONBOARDING__ADD_POLICY: 'dedicated::account::iam::onboarding::add-policy',
+  // OK
   ONBOARDING__ADD_USER: 'dedicated::account::iam::onboarding::add-user',
   // OK
   ONBOARDING__DOCUMENTATION: (guideKey) =>
@@ -256,6 +259,11 @@ const TAG = {
     'dedicated::account::iam::group-ressources::table-option-menu::delete',
   RESOURCE_GROUPS__TABLE_OPTION_MENU__EDIT:
     'dedicated::account::iam::group-ressources::table-option-menu::edit',
+
+  // OK
+  ENABLE_ADVANCED_MODE: 'dedicated::account::iam::enable-advanced-mode',
+  // OK
+  DISABLE_ADVANCED_MODE: 'dedicated::account::iam::disable-advanced-mode',
 };
 
 const UNAVAILABLE_STATE_NAME = 'app.account.user';

@@ -7,6 +7,7 @@ export default {
     alert: '<',
     cursors: '<',
     goTo: '<',
+    trackClick: '<',
   },
   controller,
   template,
