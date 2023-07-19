@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
@@ -13,6 +13,7 @@ import {
   OdsButtonVariant,
   OdsTextSize,
 } from '@ovhcloud/ods-core';
+import { useShell } from '@ovh-ux/manager-react-core-application';
 
 import OOPS from '../../assets/error-banner-oops.png';
 import './error.scss';
@@ -23,9 +24,17 @@ export const TRACKING_LABELS = {
   PAGE_LOAD: 'error_during_page_loading',
 };
 
-function getTrackingTypology() {
-  const { error } = this.state;
+interface errorMessage {
+  message: string;
+  status: number;
+  detail: any;
+}
 
+interface ErrorObject {
+  [key: string]: any;
+}
+
+function getTrackingTypology(error: errorMessage) {
   if (error?.detail?.status && Math.floor(error.detail.status / 100) === 4) {
     return [401, 403].includes(error.detail.status)
       ? TRACKING_LABELS.UNAUTHORIZED
@@ -34,14 +43,29 @@ function getTrackingTypology() {
   return TRACKING_LABELS.PAGE_LOAD;
 }
 
-interface ErrorObject {
-  [key: string]: any;
-}
-
 const ErrorBanner: React.FC<ErrorObject> = ({ error }) => {
   const { t } = useTranslation('{{appName}}/error');
   const navigate = useNavigate();
   const location = useLocation();
+  const shell = useShell();
+  const { tracking, environment } = shell;
+  const env = environment.getEnvironment();
+
+  useEffect(() => {
+    tracking.init(false);
+    env.then((response) => {
+      const { applicationName } = response;
+      const name = `errors::${getTrackingTypology(error)}::${applicationName}`;
+      console.info('lance le track page navigation error');
+      tracking.trackPage({
+        name,
+        level2: '81',
+        type: 'navigation',
+        page_category: location.pathname,
+      });
+    });
+  }, []);
+
   return (
     <div className="manager-error-page p-5">
       <div className="manager-error-page-image">
