@@ -35,7 +35,7 @@ export default function Listing() {
     return <p>Loading...</p>;
   }
 
-  if (isError) {
+  if (isError || results[0].data.status !== 200) {
     return <Navigate to="onboarding" />;
   }
 
