@@ -56,7 +56,7 @@ export default function Listing() {
     return <p>Loading...</p>;
   }
 
-  if (isError) {
+  if (isError || results[0].data.status !== 200) {
     return <Navigate to="onboarding" />;
   }
 
@@ -64,7 +64,7 @@ export default function Listing() {
     <>
       <Breadcrumb />
       <ServiceList
-        data={servicesListingIcebergResult.data}
+        data={servicesListingIcebergResult.data.data}
         {{#if this.pimID}}appName={pimServiceResult.data?.name}{{/if}}
       />
     </>
