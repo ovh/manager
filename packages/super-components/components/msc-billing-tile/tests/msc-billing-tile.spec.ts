@@ -1,4 +1,4 @@
-import { setupSpecTest, footerSlotExample, badgesSlotExample } from './setup';
+import { setupSpecTest } from './setup';
 
 describe('specs:msc-billing-tile', () => {
   it('renders without error', async () => {
@@ -8,20 +8,22 @@ describe('specs:msc-billing-tile', () => {
     expect(page.rootInstance).toBeTruthy();
   });
 
-  describe('contents', () => {
-    it('should have a badges slot', async () => {
-      const { badgesSlot } = await setupSpecTest({
-        html: badgesSlotExample,
-      });
-      expect(badgesSlot).toBeTruthy();
+  it('Language should be french and title is "Abonnement"', async () => {
+    const { page } = await setupSpecTest({});
+
+    const element = page.root?.shadowRoot?.querySelector('*');
+    expect(element).not.toBeNull();
+    expect(element?.textContent).toContain('Abonnement');
+  });
+
+  it('Language should be english and title is "Subscription"', async () => {
+    const { page } = await setupSpecTest({
+      attributes: { language: 'en-GB' },
     });
 
-    it('should have a footer slot', async () => {
-      const { footerSlot } = await setupSpecTest({
-        html: footerSlotExample,
-      });
-      expect(footerSlot).toBeTruthy();
-    });
+    const element = page.root?.shadowRoot?.querySelector('*');
+    expect(element).not.toBeNull();
+    expect(element?.textContent).toContain('Subscription');
   });
 
   describe('tracking', () => {

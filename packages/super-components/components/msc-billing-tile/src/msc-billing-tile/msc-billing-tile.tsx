@@ -66,9 +66,15 @@ export class MscBillingTile implements IMscBillingTile {
 
   @State() serviceId: string;
 
-  @State() creationDate: Date;
+  @State() creationDate: string;
 
-  @State() nextBillingDate: Date;
+  @State() nextBillingDate: string;
+
+  @State() contactAdmin: string;
+
+  @State() contactBilling: string;
+
+  @State() contactTech: string;
 
   private i18nInstance: i18n;
 
@@ -104,7 +110,6 @@ export class MscBillingTile implements IMscBillingTile {
   getTranslation(key: string): string {
     if (!this.i18nLoaded) return key;
     const translation = this.i18nInstance.t(key, { lng: this.language });
-    console.log(key, '->', translation);
     if (!translation) return key;
     return translation;
   }
@@ -113,7 +118,11 @@ export class MscBillingTile implements IMscBillingTile {
     apiClient.v6
       .get(`${this.servicePath}/serviceInfos`)
       .then((response) => {
-        this.serviceId = response.data.serviceId;
+        const { data } = response;
+        this.contactAdmin = data.contactAdmin;
+        this.contactBilling = data.contactBilling;
+        this.contactTech = data.contactTech;
+        this.serviceId = data.serviceId;
         this.fetchServiceDetails(this.serviceId);
       })
       .catch((error) => {
@@ -126,8 +135,16 @@ export class MscBillingTile implements IMscBillingTile {
       .get(`/service/${serviceId}`)
       .then((response) => {
         const { data } = response;
-        this.creationDate = new Date(data.creationDate);
-        this.nextBillingDate = new Date(data.expirationDate);
+        this.creationDate = new Intl.DateTimeFormat('fr-FR', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }).format(data.creationDate);
+        this.nextBillingDate = new Intl.DateTimeFormat('fr-FR', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }).format(data.nextBillingDate);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -205,7 +222,7 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.default}
           >
-            {this.creationDate?.toString()}
+            {this.creationDate}
           </osds-text>
           {/* NEXT PAYMENT DATE */}
           <osds-divider separator={true} />
@@ -224,7 +241,7 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.default}
           >
-            {this.nextBillingDate?.toString()}
+            {this.nextBillingDate}
           </osds-text>
           {/* COMMITMENT */}
           <osds-divider separator={true} />
@@ -282,11 +299,24 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.default}
           >
-            ls148374-ovh Administrator
-            <br />
-            ls148374-ovh Technical
-            <br />
-            ls148374-ovh Billing
+            <div>
+              {this.contactAdmin}{' '}
+              {this.getTranslation(
+                'manager_billing_subscription_contacts_admin',
+              )}
+            </div>
+            <div>
+              {this.contactTech}{' '}
+              {this.getTranslation(
+                'manager_billing_subscription_contacts_tech',
+              )}
+            </div>
+            <div>
+              {this.contactBilling}{' '}
+              {this.getTranslation(
+                'manager_billing_subscription_contacts_billing',
+              )}
+            </div>
           </osds-text>
           <osds-link
             data-tracking={this.dataTracking}

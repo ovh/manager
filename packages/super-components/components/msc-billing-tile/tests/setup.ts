@@ -23,17 +23,11 @@ export const setupSpecTest = async ({
       stringAttributes,
     )}>${html}</msc-billing-tile>`,
   });
-  const badgesSlot = page.root?.shadowRoot?.querySelector(
-    'slot[name="badges"]',
-  );
-  const footerSlot = page.root?.shadowRoot?.querySelector(
-    'slot[name="footer"]',
-  );
   const innerLink = page.root?.shadowRoot?.querySelector('osds-link');
   const wrapperLink = page.root?.shadowRoot?.querySelector(
     'a.msc-billing-tile-wrapper',
   );
-  return { page, badgesSlot, footerSlot, innerLink, wrapperLink };
+  return { page, innerLink, wrapperLink };
 };
 
 export const setupE2eTest = async ({

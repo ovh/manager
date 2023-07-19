@@ -32,7 +32,7 @@ mock.onGet(`dedicated/nasha/zpool-128894/serviceInfos`).reply(200, {
   renewalType: 'automaticV2016',
   domain: 'zpool-128894',
   contactBilling: 'ls148374-ovh',
-  contactAdmin: 'ls148374-ovh',
+  contactAdmin: 'ls148375-ovh',
   engagedUpTo: null,
   expiration: '2023-02-01',
   renew: {
@@ -62,7 +62,7 @@ mock.onGet(`domain/agora3.ovh/serviceInfos`).reply(200, {
   status: 'ok',
   renewalType: 'automaticV2016',
   contactTech: 'ls148374-ovh',
-  contactBilling: 'ls148374-ovh',
+  contactBilling: 'ls148376-ovh',
   canDeleteAtExpiration: true,
   serviceId: 29162449,
   expiration: '2023-01-27',
