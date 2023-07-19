@@ -2,8 +2,10 @@
     <iam-delete-entity
         data-ng-if="$ctrl.deletion"
         data-entity="{ data: $ctrl.deletion.data, type: $ctrl.ENTITY_RESOURCE_TYPE }"
-        data-statement="false"
         data-go-back="$ctrl.onDeleteEntityGoBack"
+        data-statement="false"
+        data-tag-prefix=":: $ctrl.TAG.ADD_RESOURCE_GROUP"
+        data-track-click=":: $ctrl.trackClick"
     >
         <strong
             class="d-block"
