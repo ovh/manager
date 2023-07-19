@@ -266,16 +266,20 @@ const TAG = {
   REMOVE_PRODUCT_TYPE_CANCEL: 'remove-product-type-cancel',
   // OK
   REMOVE_PRODUCT_TYPE_CONFIRM: 'remove-product-type-confirm',
+  // OK
   RESOURCE_GROUPS: 'dedicated::account::iam::group-ressources',
+  // OK
   RESOURCE_GROUPS__ADD: 'dedicated::account::iam::group-ressources::add',
   RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__ERROR:
     'iam::group-ressources::add-group-confirm-banner::error',
   RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__SUCCESS:
-    'iam::group-ressources::add-group-confirm-banner::success',
+    'iam::group-ressources::add-group-confirm-banner::success', // OK
+  RESOURCE_GROUPS__DELETE: 'dedicated::account::iam::group-ressources::delete',
   RESOURCE_GROUPS__DELETE_GROUP_CONFIRM_BANNER__ERROR:
     'iam::group-ressources::delete-group-confirm-banner::error',
   RESOURCE_GROUPS__DELETE_GROUP_CONFIRM_BANNER__SUCCESS:
-    'iam::group-ressources::delete-group-confirm-banner::success',
+    'iam::group-ressources::delete-group-confirm-banner::success', // OK
+  RESOURCE_GROUPS__EDIT: 'dedicated::account::iam::group-ressources::edit',
   RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__ERROR:
     'iam::group-ressources::edit-group-confirm-banner::error',
   RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__SUCCESS:
@@ -283,10 +287,6 @@ const TAG = {
   // OK
   RESOURCE_GROUPS__GUIDE: (guideKey) =>
     `dedicated::account::iam::group-ressources::guide-${guideKey}`,
-  RESOURCE_GROUPS__TABLE_OPTION_MENU__DELETE:
-    'dedicated::account::iam::group-ressources::table-option-menu::delete',
-  RESOURCE_GROUPS__TABLE_OPTION_MENU__EDIT:
-    'dedicated::account::iam::group-ressources::table-option-menu::edit',
   // OK
   ADD_ACTION_MANUALLY: 'add-manually',
   // OK

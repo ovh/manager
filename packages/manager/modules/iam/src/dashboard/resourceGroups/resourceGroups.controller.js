@@ -1,3 +1,4 @@
+import { TAG } from '../../iam.constants';
 import AbstractCursorDatagridController from '../../components/cursorDatagrid/cursorDatagrid.controller';
 
 export default class ResourceGroupsController extends AbstractCursorDatagridController {
@@ -21,6 +22,7 @@ export default class ResourceGroupsController extends AbstractCursorDatagridCont
    * @returns {Promise}
    */
   createResourceGroup() {
+    this.trackClick(TAG.RESOURCE_GROUPS__ADD);
     return this.goTo({ name: 'iam.resourceGroup.create' });
   }
 
@@ -30,6 +32,7 @@ export default class ResourceGroupsController extends AbstractCursorDatagridCont
    * @returns {Promise}
    */
   editResourceGroup({ id }) {
+    this.trackClick(TAG.RESOURCE_GROUPS__EDIT);
     return this.goTo({
       name: 'iam.resourceGroup.edit',
       params: { resourceGroup: id },
@@ -42,6 +45,7 @@ export default class ResourceGroupsController extends AbstractCursorDatagridCont
    * @returns {Promise}
    */
   deleteResourceGroup({ id }) {
+    this.trackClick(TAG.RESOURCE_GROUPS__DELETE);
     this.goTo({
       name: 'iam.dashboard.resourceGroups.delete',
       params: { resourceGroup: id },
