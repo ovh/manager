@@ -31,12 +31,10 @@ export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalC
   const fetchData = async () => {
     const response: any = await apiClient.v6.{{this.httpMethod}}({{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}});
     if (response?.code?.startsWith('ERR')) {
-      // Error in the request
       const errorResponse = response.response;
-      console.error('Error with request', errorResponse);
       return errorResponse;
     }
-    return response.data;
+    return { ...response.data, status: response.status };
   };
 
   return queryClient.fetchQuery({{this.functionName}}QueryKey{{#if this.urlParams}}(params){{/if}}, fetchData);
@@ -49,7 +47,7 @@ export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalC
 export const getListingIceberg = async () => {
   try {
     const List = await fetchIceberg({ route: '{{this.apiPath}}' }).then(
-      ({ data }) => data,
+      ({ data, status }) => ({ data, status})
     );
     return List;
   } catch (error) {
@@ -82,7 +80,7 @@ export const getPIMService = async (): Promise<string[]> => {
       (element: PIMElement) =>
         element.id === {{this.pimID}} && element.lang === currentLang,
     )[0];
-    return pimElement || {};
+    return ({...pimElement, status: response.status} || {});
   };
 
   return queryClient.fetchQuery(getPIMServiceQueryKey, fetchData);
