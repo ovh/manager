@@ -1,3 +1,4 @@
+import { TAG } from '../../iam.constants';
 import { cursorsType } from '../../iam.paramTypes';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -17,6 +18,9 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => null,
       cursors: /* @ngInject */ ($transition$) => $transition$.params().cursors,
+    },
+    atInternet: {
+      rename: TAG.RESOURCE_GROUPS,
     },
   });
 };
