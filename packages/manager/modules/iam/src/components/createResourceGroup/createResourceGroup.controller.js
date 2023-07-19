@@ -12,6 +12,7 @@ export default class CreateResourceGroupController {
 
     this.ENTITY_NAME_PATTERN = ENTITY_NAME_PATTERN;
     this.ENTITY_RESOURCE_TYPE = ENTITY.RESOURCE_TYPE;
+    this.TAG = TAG;
 
     /**
      * The oui-select confirm-remove property works with promises
@@ -167,6 +168,7 @@ export default class CreateResourceGroupController {
    * @returns {Promise}
    */
   cancelCreation() {
+    this.trackClick(TAG.ADD_RESOURCE_GROUP__CANCEL);
     return this.goTo({
       name: 'iam.dashboard.resourceGroups',
     });
@@ -238,6 +240,8 @@ export default class CreateResourceGroupController {
       (resource) => resource.type === resourceType,
     );
 
+    this.trackClick(TAG.ADD_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE);
+
     if (resources?.length) {
       this.deletion = this.$q.defer();
       this.deletion.data = { name: resourceType, resources };
@@ -260,6 +264,8 @@ export default class CreateResourceGroupController {
         ? this.IAMService.setResourceGroup(this.resourceGroup.id, this.toAPI())
         : this.IAMService.createResourceGroup(this.toAPI());
 
+    this.trackClick(TAG.ADD_RESOURCE_GROUP__CONFIRM);
+
     return promise
       .then(() => {
         this.error = {};
@@ -270,10 +276,13 @@ export default class CreateResourceGroupController {
             key: this.translations.success,
             values: { name: `<strong>${this.model.name}</strong>` },
           },
+          tag: TAG.RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__SUCCESS,
         });
       })
       .catch((error) => {
         this.isSubmitting = false;
+
+        this.trackPage(TAG.RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__ERROR);
 
         if (error.data.resourceGroup) {
           this.error = error.data.resourceGroup;
