@@ -1,4 +1,4 @@
-import { ENTITY } from '../../iam.constants';
+import { ENTITY, TAG } from '../../iam.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.identities.delete', {
@@ -38,6 +38,9 @@ export default /* @ngInject */ ($stateProvider) => {
        * @returns {boolean}
        */
       statement: () => false,
+    },
+    atInternet: {
+      rename: TAG.DELETE_IDENTITY,
     },
   });
 };

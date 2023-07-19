@@ -57,10 +57,16 @@ export default class IdentitiesController {
   }
 
   goToDeleteIdentity(identity) {
+    this.trackClick(TAG.IDENTITIES__REMOVE_USER);
     return this.goTo({
       name: 'iam.identities.delete',
       params: { identity },
     });
+  }
+
+  onBackButtonClick() {
+    this.trackClick(TAG.IDENTITIES__CANCEL);
+    return this.goBack();
   }
 
   onUsersFieldKeypress(event) {
@@ -82,6 +88,7 @@ export default class IdentitiesController {
   }
 
   editIdentitites() {
+    this.trackClick(TAG.IDENTITIES__CONFIRM);
     return this.IAMService.setPolicyIdentities(this.policy.id, [
       ...this.policy.identities,
       this.newUserIdentityUrn,
