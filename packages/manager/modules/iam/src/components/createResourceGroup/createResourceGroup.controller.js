@@ -12,7 +12,6 @@ export default class CreateResourceGroupController {
 
     this.ENTITY_NAME_PATTERN = ENTITY_NAME_PATTERN;
     this.ENTITY_RESOURCE_TYPE = ENTITY.RESOURCE_TYPE;
-    this.TAG = TAG;
 
     /**
      * The oui-select confirm-remove property works with promises
@@ -112,6 +111,37 @@ export default class CreateResourceGroupController {
   }
 
   /**
+   * A contextualized Set where each key map to a tag
+   * @returns {Object<string,string>}
+   */
+  get tag() {
+    const { mode } = this;
+    if (mode === 'create') {
+      return {
+        cancel: TAG.ADD_RESOURCE_GROUP__CANCEL,
+        guide: TAG.ADD_RESOURCE_GROUP__GUIDE,
+        prefix: TAG.ADD_RESOURCE_GROUP,
+        removeResourceType: TAG.ADD_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE,
+        submit: TAG.ADD_RESOURCE_GROUP__CONFIRM,
+        submitError: TAG.RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__ERROR,
+        submitSuccess: TAG.RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__SUCCESS,
+      };
+    }
+    if (mode === 'edit') {
+      return {
+        cancel: TAG.EDIT_RESOURCE_GROUP__CANCEL,
+        guide: TAG.EDIT_RESOURCE_GROUP__GUIDE,
+        prefix: TAG.EDIT_RESOURCE_GROUP,
+        removeResourceType: TAG.EDIT_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE,
+        submit: TAG.EDIT_RESOURCE_GROUP__CONFIRM,
+        submitError: TAG.RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__ERROR,
+        submitSuccess: TAG.RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__SUCCESS,
+      };
+    }
+    return null;
+  }
+
+  /**
    * A contextualized Set where each key map to a translation
    * @returns {Object<string,string>}
    */
@@ -168,7 +198,7 @@ export default class CreateResourceGroupController {
    * @returns {Promise}
    */
   cancelCreation() {
-    this.trackClick(TAG.ADD_RESOURCE_GROUP__CANCEL);
+    this.trackClick(this.tag?.cancel);
     return this.goTo({
       name: 'iam.dashboard.resourceGroups',
     });
@@ -227,7 +257,7 @@ export default class CreateResourceGroupController {
    * @param {string} guideKey
    */
   onGuideClick(guideKey) {
-    this.trackClick(TAG.ADD_RESOURCE_GROUP__GUIDE(guideKey));
+    this.trackClick(this.tag?.guide(guideKey));
   }
 
   /**
@@ -240,7 +270,7 @@ export default class CreateResourceGroupController {
       (resource) => resource.type === resourceType,
     );
 
-    this.trackClick(TAG.ADD_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE);
+    this.trackClick(this.tag?.removeResourceType);
 
     if (resources?.length) {
       this.deletion = this.$q.defer();
@@ -264,7 +294,7 @@ export default class CreateResourceGroupController {
         ? this.IAMService.setResourceGroup(this.resourceGroup.id, this.toAPI())
         : this.IAMService.createResourceGroup(this.toAPI());
 
-    this.trackClick(TAG.ADD_RESOURCE_GROUP__CONFIRM);
+    this.trackClick(this.tag?.submit);
 
     return promise
       .then(() => {
@@ -276,13 +306,13 @@ export default class CreateResourceGroupController {
             key: this.translations.success,
             values: { name: `<strong>${this.model.name}</strong>` },
           },
-          tag: TAG.RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__SUCCESS,
+          tag: this.tag?.submitSuccess,
         });
       })
       .catch((error) => {
         this.isSubmitting = false;
 
-        this.trackPage(TAG.RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__ERROR);
+        this.trackPage(this.tag?.submitError);
 
         if (error.data.resourceGroup) {
           this.error = error.data.resourceGroup;
