@@ -18,5 +18,15 @@
   "manager_billing_subscription_engagement_status_commitement_pending": "El compromiso de permanencia del servicio comenzará el {{ nextBillingDate }}",
   "manager_billing_subscription_engagement_commit_with_discount": "Contratar con compromiso de permanencia y disfrutar de un descuento",
   "manager_billing_subscription_engagement_commit_again_with_discount": "Volver a contratar con compromiso de permanencia y disfrutar de un descuento",
-  "manager_billing_subscription_offer": "Producto"
+  "manager_billing_subscription_offer": "Producto",
+  "manager_billing_service_status": "Estado",
+  "manager_billing_service_status_auto": "Renovación automática",
+  "manager_billing_service_status_automatic": "Renovación automática",
+  "manager_billing_service_status_manual": "Renovación manual",
+  "manager_billing_service_status_manualPayment": "Renovación manual",
+  "manager_billing_service_status_pending_debt": "Factura pendiente",
+  "manager_billing_service_status_delete_at_expiration": "Baja solicitada",
+  "manager_billing_service_status_expired": "Dado de baja",
+  "manager_billing_service_status_billing_suspended": "Facturación aplazada",
+  "manager_billing_service_status_forced_manual": "Renovación manual"
 }

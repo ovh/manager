@@ -1,5 +1,7 @@
 import { setupSpecTest } from './setup';
 
+jest.mock('@ovh-ux/manager-core-api', () => jest.fn());
+
 describe('specs:msc-billing-tile', () => {
   it('renders without error', async () => {
     const { page } = await setupSpecTest({});

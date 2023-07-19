@@ -76,6 +76,10 @@ export class MscBillingTile implements IMscBillingTile {
 
   @State() contactTech: string;
 
+  @State() renewStatus: string;
+
+  @State() commitmentStatus: string;
+
   private i18nInstance: i18n;
 
   componentWillLoad() {
@@ -123,6 +127,29 @@ export class MscBillingTile implements IMscBillingTile {
         this.contactBilling = data.contactBilling;
         this.contactTech = data.contactTech;
         this.serviceId = data.serviceId;
+        // we check if the service status is ok
+        if (data.status === 'ok') {
+          if (data.renew.deleteAtExpiration === true)
+            // Red chip 'Cancellation requested', link in menu 'Stop cancellation of service'
+            this.renewStatus = 'deleteAtExpiration';
+          if (
+            data.renew.automatic === true &&
+            data.renew.manualPayment === false
+          )
+            // Green chip 'Automatic renewal', link in menu 'Manage my commitment' and 'Cancel subscription'
+            this.renewStatus = 'automatic';
+          if (
+            data.renew.automatic === false &&
+            data.renew.manualPayment === true
+          )
+            // Yellow chip 'Manual renewal'
+            this.renewStatus = 'manualPayment';
+        }
+        if (data.status === 'expired') {
+          // Red chip 'Cancelled'
+          this.renewStatus = 'cancelled';
+        }
+
         this.fetchServiceDetails(this.serviceId);
       })
       .catch((error) => {
@@ -145,6 +172,23 @@ export class MscBillingTile implements IMscBillingTile {
           month: 'long',
           day: 'numeric',
         }).format(data.nextBillingDate);
+        if (data.billing.engagement === null) {
+          // should be null if no commitment
+          // Red chip 'None', no link or link 'Commit'
+          this.commitmentStatus = 'none';
+        } else if (data.billing.engagement?.endDate < new Date()) {
+          // Red chip 'Ended DATE', no link
+          this.commitmentStatus = 'ended';
+        } else if (data.billing.engagement?.endDate > new Date()) {
+          // No chip 'Renews on DATE', link 'Re-commit and get a discount'
+          this.commitmentStatus = 'renews';
+        } else if (data.billing.engagementRequest) {
+          // No chip 'Your service commitment will begin from DATE'
+          this.commitmentStatus = 'requested';
+        } else if (data.billing.expirationDate) {
+          // No chip 'Ends DATE'
+          this.commitmentStatus = 'ends';
+        }
       })
       .catch((error) => {
         console.error('Error:', error);

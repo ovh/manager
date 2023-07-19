@@ -18,5 +18,15 @@
   "manager_billing_subscription_engagement_status_commitement_pending": "Die Vertragsbindung für diesen Dienst beginnt am {{ nextBillingDate }}.",
   "manager_billing_subscription_engagement_commit_with_discount": "Vertrag mit fester Laufzeit bestellen und von der Ermäßigung profitieren",
   "manager_billing_subscription_engagement_commit_again_with_discount": "Abonnement mit fester Laufzeit verlängern und Vorzugspreis sichern",
-  "manager_billing_subscription_offer": "Angebot"
+  "manager_billing_subscription_offer": "Angebot",
+  "manager_billing_service_status": "Status",
+  "manager_billing_service_status_auto": "Automatische Verlängerung",
+  "manager_billing_service_status_automatic": "Automatische Verlängerung",
+  "manager_billing_service_status_manual": "Manuelle Verlängerung",
+  "manager_billing_service_status_manualPayment": "Manuelle Verlängerung",
+  "manager_billing_service_status_pending_debt": "Ausstehende Rechnung",
+  "manager_billing_service_status_delete_at_expiration": "Kündigung angefordert",
+  "manager_billing_service_status_expired": "Gekündigt",
+  "manager_billing_service_status_billing_suspended": "Rechnungsstellung verschoben",
+  "manager_billing_service_status_forced_manual": "Manuelle Verlängerung"
 }
