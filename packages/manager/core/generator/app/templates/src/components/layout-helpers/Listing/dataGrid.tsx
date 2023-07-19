@@ -57,7 +57,7 @@ const Datagrid: React.FC<Props> = ({ serviceKey, data }) => {
                 {header === serviceKey ? (
                   <OsdsLink
                     color={OdsThemeColorIntent.primary}
-                    onClick={() => navigate(`/${service.serviceName}`)}
+                    onClick={() => navigate(`/${service[serviceKey]}`)}
                   >
                     {`${service[header]}`}
                   </OsdsLink>
