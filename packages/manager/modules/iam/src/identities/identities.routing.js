@@ -1,3 +1,5 @@
+import { TAG } from '../iam.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.identities', {
     url: '/identities/{policy:uuid}',
@@ -14,6 +16,9 @@ export default /* @ngInject */ ($stateProvider) => {
         const { policy: uuid } = $transition$.params();
         return uuid ? IAMService.getPolicy(uuid) : null;
       },
+    },
+    atInternet: {
+      rename: TAG.IDENTITIES,
     },
   });
 };

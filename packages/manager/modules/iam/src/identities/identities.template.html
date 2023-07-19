@@ -1,4 +1,4 @@
-<div>
+<div class="iam-identities">
     <oui-header
         data-heading="{{ 'iam_identities_title' | translate : { policy: $ctrl.policy.name } }}"
         data-description="{{ 'iam_identities_description' | translate }}"
@@ -18,7 +18,9 @@
         </oui-guide-menu>
         <!-- </Guide> -->
 
-        <oui-back-button data-on-click="$ctrl.goBack()"></oui-back-button>
+        <oui-back-button
+            data-on-click="$ctrl.onBackButtonClick()"
+        ></oui-back-button>
     </oui-header>
 
     <div data-ng-if="$ctrl.loading">
@@ -32,6 +34,7 @@
         data-ng-submit="$ctrl.editIdentitites()"
     >
         <oui-field
+            class="iam-identities__field"
             label="{{ 'iam_identities_field_users_selection_label' | translate }}"
             size="xl"
         >
@@ -49,28 +52,29 @@
                     data-ng-disabled="$ctrl.policy.readOnly"
                 />
             </div>
-            <div class="oui-chip__container">
-                <button
-                    data-ng-repeat="identity in $ctrl.identities track by $index"
-                    class="oui-chip"
-                    data-ng-class="{
-                        'oui-chip_closable': !$ctrl.policy.readOnly,
-                    }"
-                    type="button"
-                    data-ng-click="$ctrl.goToDeleteIdentity(identity.urn)"
-                    data-ng-disabled="$ctrl.policy.readOnly"
-                >
-                    <span data-ng-bind="identity.title"></span>
-                    <span
-                        data-ng-if="!$ctrl.policy.readOnly"
-                        class="oui-chip__close oui-icon oui-icon-close"
-                    ></span>
-                </button>
-            </div>
         </oui-field>
 
+        <div class="oui-chip__container">
+            <button
+                data-ng-repeat="identity in $ctrl.identities track by $index"
+                class="oui-chip"
+                data-ng-class="{
+                    'oui-chip_closable': !$ctrl.policy.readOnly,
+                }"
+                type="button"
+                data-ng-click="$ctrl.goToDeleteIdentity(identity.urn)"
+                data-ng-disabled="$ctrl.policy.readOnly"
+            >
+                <span data-ng-bind="identity.title"></span>
+                <span
+                    data-ng-if="!$ctrl.policy.readOnly"
+                    class="oui-chip__close oui-icon oui-icon-close"
+                ></span>
+            </button>
+        </div>
+
         <!-- <Footer> -->
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center mt-5">
             <button
                 class="oui-button oui-button_l oui-button_primary oui-button_icon-left"
                 type="submit"
