@@ -149,181 +149,136 @@ const PREFERENCES_KEY = {
 };
 
 const TAG = {
-  // OK
+  // Policy creation
   ADD_POLICY: 'dedicated::account::iam::add-policy',
-  // OK
   ADD_POLICY__CANCEL: 'dedicated::account::iam::add-policy::cancel',
-  // OK
   ADD_POLICY__CONFIRM: 'dedicated::account::iam::add-policy::confirm',
-  // OK
-  ADD_POLICY__REMOVE_PRODUCT_TYPE:
-    'dedicated::account::iam::add-policy::remove-product-type',
-  // OK
   ADD_POLICY__GUIDE: (guideKey) =>
     `dedicated::account::iam::add-policy::guide-${guideKey}`,
-  // OK
+  ADD_POLICY__REMOVE_PRODUCT_TYPE:
+    'dedicated::account::iam::add-policy::remove-product-type',
+
+  // Resource group creation
   ADD_RESOURCE_GROUP: 'dedicated::account::iam::add-group-ressources',
-  // OK
   ADD_RESOURCE_GROUP__CANCEL:
     'dedicated::account::iam::add-group-ressources::cancel',
-  // OK
   ADD_RESOURCE_GROUP__CONFIRM:
     'dedicated::account::iam::add-group-ressources::confirm',
-  // OK
-  ADD_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE:
-    'dedicated::account::iam::add-group-ressources::remove-product-type',
-  // OK
   ADD_RESOURCE_GROUP__GUIDE: (guideKey) =>
     `dedicated::account::iam::add-group-ressources::guide-${guideKey}`,
-  // OK
+  ADD_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE:
+    'dedicated::account::iam::add-group-ressources::remove-product-type',
+
+  // Entities deletion
   DELETE_IDENTITY: 'dedicated::account::iam::delete-identity',
-  // OK
   DELETE_POLICY: 'dedicated::account::iam::delete-policy',
-  // OK
   DELETE_POLICY__CANCEL: 'dedicated::account::iam::delete-policy::cancel',
-  // OK
   DELETE_POLICY__CONFIRM: 'dedicated::account::iam::delete-policy::confirm',
-  // OK
   DELETE_RESOURCE_GROUP: 'dedicated::account::iam::delete-group-ressources',
-  // OK
   DELETE_RESOURCE_GROUP__CANCEL:
     'dedicated::account::iam::delete-group-ressources::cancel',
-  // OK
   DELETE_RESOURCE_GROUP__CONFIRM:
     'dedicated::account::iam::delete-group-ressources::confirm',
-  // OK
+
+  // Policy edition
   EDIT_POLICY: 'dedicated::account::iam::edit-policy',
-  // OK
   EDIT_POLICY__CANCEL: 'dedicated::account::iam::edit-policy::cancel',
-  // OK
   EDIT_POLICY__CONFIRM: 'dedicated::account::iam::edit-policy::confirm',
-  // OK
-  EDIT_POLICY__REMOVE_PRODUCT_TYPE:
-    'dedicated::account::iam::edit-policy::remove-product-type',
-  // OK
   EDIT_POLICY__GUIDE: (guideKey) =>
     `dedicated::account::iam::edit-policy::guide-${guideKey}`,
-  // OK
+  EDIT_POLICY__REMOVE_PRODUCT_TYPE:
+    'dedicated::account::iam::edit-policy::remove-product-type',
+
+  // Resource group edition
   EDIT_RESOURCE_GROUP: 'dedicated::account::iam::edit-group-ressources',
-  // OK
   EDIT_RESOURCE_GROUP__CANCEL:
     'dedicated::account::iam::edit-group-ressources::cancel',
-  // OK
   EDIT_RESOURCE_GROUP__CONFIRM:
     'dedicated::account::iam::edit-group-ressources::confirm',
-  // OK
   EDIT_RESOURCE_GROUP__GUIDE: (guideKey) =>
     `dedicated::account::iam::edit-group-ressources::guide-${guideKey}`,
-  // OK
   EDIT_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE:
     'dedicated::account::iam::edit-group-ressources::remove-product-type',
-  // OK
+
+  // Identities
   IDENTITIES: 'dedicated::account::iam::manage-identities',
-  // OK
   IDENTITIES__CANCEL: 'dedicated::account::iam::manage-identities::cancel',
-  // OK
   IDENTITIES__CONFIRM: 'dedicated::account::iam::manage-identities::confirm',
-  // OK
   IDENTITIES__GUIDE: (guideKey) =>
     `dedicated::account::iam::manage-identities::guide-${guideKey}`,
-  // OK
-  IDENTITIES__REMOVE_USER:
-    'dedicated::account::iam::manage-identities::remove-user',
-  // OK
   IDENTITIES__REMOVE_USER_CANCEL:
     'dedicated::account::iam::manage-identities::remove-user-cancel',
-  // OK
   IDENTITIES__REMOVE_USER_CONFIRM:
     'dedicated::account::iam::manage-identities::remove-user-confirm',
-  // OK
+  IDENTITIES__REMOVE_USER:
+    'dedicated::account::iam::manage-identities::remove-user',
+
+  // Onboarding
   ONBOARDING: 'dedicated::account::iam::onboarding',
-  // OK
   ONBOARDING__ADD_POLICY: 'dedicated::account::iam::onboarding::add-policy',
-  // OK
   ONBOARDING__ADD_USER: 'dedicated::account::iam::onboarding::add-user',
-  // OK
   ONBOARDING__DOCUMENTATION: (guideKey) =>
     `dedicated::account::iam::onboarding::documentation::${guideKey}`,
-  // OK
+
+  // List of policies
   POLICIES: 'dedicated::account::iam::policies',
-  // OK
   POLICIES__ADD: 'dedicated::account::iam::policies::add',
-  // OK
   POLICIES__DELETE: 'dedicated::account::iam::policies::delete',
-  // OK
   POLICIES__EDIT: 'dedicated::account::iam::policies::edit',
-  // OK
-  POLICIES__MANAGE_IDENTITIES:
-    'dedicated::account::iam::policies::manage-identities',
-  // OK
-  POLICIES__CREATE_POLICY_CONFIRM_BANNER__ERROR:
-    'iam::policies::create-policy-confirm-banner::error',
-  // OK
-  POLICIES__CREATE_POLICY_CONFIRM_BANNER__SUCCESS:
-    'iam::policies::create-policy-confirm-banner::success',
-  // OK
-  POLICIES__DELETE_POLICY_CONFIRM_BANNER__ERROR:
-    'iam::policies::delete-policy-confirm-banner::error',
-  // OK
-  POLICIES__DELETE_POLICY_CONFIRM_BANNER__SUCCESS:
-    'iam::policies::delete-policy-confirm-banner::success',
-  // OK
-  POLICIES__EDIT_POLICY_CONFIRM_BANNER__ERROR:
-    'iam::policies::edit-policy-confirm-banner::error',
-  // OK
-  POLICIES__EDIT_POLICY_CONFIRM_BANNER__SUCCESS:
-    'iam::policies::edit-policy-confirm-banner::success',
-  // OK
   POLICIES__GUIDE: (guideKey) =>
     `dedicated::account::iam::policies::guide-${guideKey}`,
+  POLICIES__MANAGE_IDENTITIES:
+    'dedicated::account::iam::policies::manage-identities',
+
+  // List of policies - banners
+  POLICIES__CREATE_POLICY_CONFIRM_BANNER__ERROR:
+    'iam::policies::create-policy-confirm-banner::error',
+  POLICIES__CREATE_POLICY_CONFIRM_BANNER__SUCCESS:
+    'iam::policies::create-policy-confirm-banner::success',
+  POLICIES__DELETE_POLICY_CONFIRM_BANNER__ERROR:
+    'iam::policies::delete-policy-confirm-banner::error',
+  POLICIES__DELETE_POLICY_CONFIRM_BANNER__SUCCESS:
+    'iam::policies::delete-policy-confirm-banner::success',
+  POLICIES__EDIT_POLICY_CONFIRM_BANNER__ERROR:
+    'iam::policies::edit-policy-confirm-banner::error',
+  POLICIES__EDIT_POLICY_CONFIRM_BANNER__SUCCESS:
+    'iam::policies::edit-policy-confirm-banner::success',
   POLICIES__IDENTITIES_CONFIRM_BANNER__ERROR:
     'iam::policies::manage-identities-confirm-banner::error',
   POLICIES__IDENTITIES_CONFIRM_BANNER__SUCCESS:
     'iam::policies::manage-identities-confirm-banner::success',
-  // OK
-  REMOVE_PRODUCT_TYPE_CANCEL: 'remove-product-type-cancel',
-  // OK
-  REMOVE_PRODUCT_TYPE_CONFIRM: 'remove-product-type-confirm',
-  // OK
+
+  // List of resource groups
   RESOURCE_GROUPS: 'dedicated::account::iam::group-ressources',
-  // OK
   RESOURCE_GROUPS__ADD: 'dedicated::account::iam::group-ressources::add',
-  // OK
-  RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__ERROR:
-    'iam::group-ressources::add-group-confirm-banner::error',
-  // OK
-  RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__SUCCESS:
-    'iam::group-ressources::add-group-confirm-banner::success', // OK
   RESOURCE_GROUPS__DELETE: 'dedicated::account::iam::group-ressources::delete',
-  // OK
-  RESOURCE_GROUPS__DELETE_GROUP_CONFIRM_BANNER__ERROR:
-    'iam::group-ressources::delete-group-confirm-banner::error',
-  // OK
-  RESOURCE_GROUPS__DELETE_GROUP_CONFIRM_BANNER__SUCCESS:
-    'iam::group-ressources::delete-group-confirm-banner::success',
-  // OK
   RESOURCE_GROUPS__EDIT: 'dedicated::account::iam::group-ressources::edit',
-  // OK
-  RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__ERROR:
-    'iam::group-ressources::edit-group-confirm-banner::error',
-  // OK
-  RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__SUCCESS:
-    'iam::group-ressources::edit-group-confirm-banner::success',
-  // OK
   RESOURCE_GROUPS__GUIDE: (guideKey) =>
     `dedicated::account::iam::group-ressources::guide-${guideKey}`,
-  // OK
-  ADD_ACTION_MANUALLY: 'add-manually',
-  // OK
+
+  // List of resource groups - banners
+  RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__ERROR:
+    'iam::group-ressources::add-group-confirm-banner::error',
+  RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__SUCCESS:
+    'iam::group-ressources::add-group-confirm-banner::success',
+  RESOURCE_GROUPS__DELETE_GROUP_CONFIRM_BANNER__ERROR:
+    'iam::group-ressources::delete-group-confirm-banner::error',
+  RESOURCE_GROUPS__DELETE_GROUP_CONFIRM_BANNER__SUCCESS:
+    'iam::group-ressources::delete-group-confirm-banner::success',
+  RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__ERROR:
+    'iam::group-ressources::edit-group-confirm-banner::error',
+  RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__SUCCESS:
+    'iam::group-ressources::edit-group-confirm-banner::success',
+
+  // Commons
   ADD_ACTION_MANUALLY_SUCCESS: 'add-manually-success',
-  // OK
-  ENABLE_ADVANCED_MODE: 'dedicated::account::iam::enable-advanced-mode',
-  // OK
+  ADD_ACTION_MANUALLY: 'add-manually',
   DISABLE_ADVANCED_MODE: 'dedicated::account::iam::disable-advanced-mode',
-  // OK
-  ENABLE_ALLOW_ALL_ACTIONS: 'enable-allow-all-actions',
-  // OK
   DISABLE_ALLOW_ALL_ACTIONS: 'disable-allow-all-actions',
+  ENABLE_ADVANCED_MODE: 'dedicated::account::iam::enable-advanced-mode',
+  ENABLE_ALLOW_ALL_ACTIONS: 'enable-allow-all-actions',
+  REMOVE_PRODUCT_TYPE_CANCEL: 'remove-product-type-cancel',
+  REMOVE_PRODUCT_TYPE_CONFIRM: 'remove-product-type-confirm',
 };
 
 const UNAVAILABLE_STATE_NAME = 'app.account.user';
