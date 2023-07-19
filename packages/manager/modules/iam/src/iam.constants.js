@@ -203,11 +203,20 @@ const TAG = {
   // OK
   EDIT_POLICY__GUIDE: (guideKey) =>
     `dedicated::account::iam::edit-policy::guide-${guideKey}`,
+  // OK
   EDIT_RESOURCE_GROUP: 'dedicated::account::iam::edit-group-ressources',
+  // OK
   EDIT_RESOURCE_GROUP__CANCEL:
     'dedicated::account::iam::edit-group-ressources::cancel',
+  // OK
   EDIT_RESOURCE_GROUP__CONFIRM:
     'dedicated::account::iam::edit-group-ressources::confirm',
+  // OK
+  EDIT_RESOURCE_GROUP__GUIDE: (guideKey) =>
+    `dedicated::account::iam::edit-group-ressources::guide-${guideKey}`,
+  // OK
+  EDIT_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE:
+    'dedicated::account::iam::edit-group-ressources::remove-product-type',
   // OK
   IDENTITIES: 'dedicated::account::iam::manage-identities',
   // OK
@@ -294,8 +303,10 @@ const TAG = {
     'iam::group-ressources::delete-group-confirm-banner::success',
   // OK
   RESOURCE_GROUPS__EDIT: 'dedicated::account::iam::group-ressources::edit',
+  // OK
   RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__ERROR:
     'iam::group-ressources::edit-group-confirm-banner::error',
+  // OK
   RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__SUCCESS:
     'iam::group-ressources::edit-group-confirm-banner::success',
   // OK

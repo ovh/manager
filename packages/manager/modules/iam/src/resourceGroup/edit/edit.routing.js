@@ -1,3 +1,5 @@
+import { TAG } from '../../iam.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.resourceGroup.edit', {
     url: '/edit/{resourceGroup:uuid}',
@@ -16,6 +18,9 @@ export default /* @ngInject */ ($stateProvider) => {
         const { resourceGroup: uuid } = $transition$.params();
         return uuid ? IAMService.getDetailedResourceGroup(uuid) : null;
       },
+    },
+    atInternet: {
+      rename: TAG.EDIT_RESOURCE_GROUP,
     },
   });
 };
