@@ -177,9 +177,12 @@ const TAG = {
   DELETE_POLICY__CANCEL: 'dedicated::account::iam::delete-policy::cancel',
   // OK
   DELETE_POLICY__CONFIRM: 'dedicated::account::iam::delete-policy::confirm',
+  // OK
   DELETE_RESOURCE_GROUP: 'dedicated::account::iam::delete-group-ressources',
+  // OK
   DELETE_RESOURCE_GROUP__CANCEL:
     'dedicated::account::iam::delete-group-ressources::cancel',
+  // OK
   DELETE_RESOURCE_GROUP__CONFIRM:
     'dedicated::account::iam::delete-group-ressources::confirm',
   // OK
@@ -275,10 +278,13 @@ const TAG = {
   RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__SUCCESS:
     'iam::group-ressources::add-group-confirm-banner::success', // OK
   RESOURCE_GROUPS__DELETE: 'dedicated::account::iam::group-ressources::delete',
+  // OK
   RESOURCE_GROUPS__DELETE_GROUP_CONFIRM_BANNER__ERROR:
     'iam::group-ressources::delete-group-confirm-banner::error',
+  // OK
   RESOURCE_GROUPS__DELETE_GROUP_CONFIRM_BANNER__SUCCESS:
-    'iam::group-ressources::delete-group-confirm-banner::success', // OK
+    'iam::group-ressources::delete-group-confirm-banner::success',
+  // OK
   RESOURCE_GROUPS__EDIT: 'dedicated::account::iam::group-ressources::edit',
   RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__ERROR:
     'iam::group-ressources::edit-group-confirm-banner::error',
