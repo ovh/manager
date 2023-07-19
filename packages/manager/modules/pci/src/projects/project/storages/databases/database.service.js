@@ -14,7 +14,6 @@ import { DATABASE_TYPES } from './databases.constants';
 
 import Backup from '../../../../components/project/storages/databases/backup.class';
 import Database from '../../../../components/project/storages/databases/database.class';
-import Engine from '../../../../components/project/storages/databases/engine.class';
 import Lab from '../../../../components/project/labs/lab.class';
 import Node from '../../../../components/project/storages/databases/node.class';
 import ServiceIntegration from '../../../../components/project/storages/databases/serviceIntegration.class';
@@ -224,19 +223,19 @@ export default class DatabaseService {
       .then(({ data }) => data);
   }
 
-  getEngines(projectId) {
+  getMappedAvailabilites(projectId) {
     return this.$q
       .all({
-        availability: this.getAvailability(projectId),
+        availabilities: this.getAvailability(projectId),
         capabilities: this.getCapabilities(projectId),
         prices: this.CucPriceHelper.getPrices(projectId),
       })
-      .then(({ availability, capabilities, prices }) => {
-        availability.forEach((plan) => {
-          let prefix = `databases.${plan.engine.toLowerCase()}-${plan.plan}-${
-            plan.flavor
-          }`;
-          if (plan.status === ENGINES_STATUS.BETA) {
+      .then(({ availabilities, capabilities, prices }) => {
+        availabilities.forEach((availability) => {
+          let prefix = `databases.${availability.engine.toLowerCase()}-${
+            availability.plan
+          }-${availability.flavor}`;
+          if (availability.status === ENGINES_STATUS.BETA) {
             if (
               prices[`${prefix}-${ENGINES_PRICE_SUFFIX.BETA}.hour.consumption`]
             ) {
@@ -244,54 +243,53 @@ export default class DatabaseService {
             }
           }
           set(
-            plan,
+            availability,
             'hourlyPrice',
             get(prices, `${prefix}.hour.consumption`, {}),
           );
           set(
-            plan,
+            availability,
             'monthlyPrice',
             get(prices, `${prefix}.month.consumption`, {}),
           );
           // set storage prices
           set(
-            plan,
+            availability,
             'hourlyPricePerGB',
             get(
               prices,
-              `databases.${plan.engine.toLowerCase()}-${
-                plan.plan
+              `databases.${availability.engine.toLowerCase()}-${
+                availability.plan
               }-additionnal-storage-gb.hour.consumption`,
               {},
             ),
           );
           set(
-            plan,
+            availability,
             'monthlyPricePerGB',
             get(
-              prices,
-              `databases.${plan.engine.toLowerCase()}-${
-                plan.plan
+              availability,
+              `databases.${availability.engine.toLowerCase()}-${
+                availability.plan
               }-additionnal-storage-gb.month.consumption`,
               {},
             ),
           );
           set(
-            plan,
+            availability,
             'flavor',
-            find(capabilities.flavors, { name: plan.flavor }),
+            find(capabilities.flavors, { name: availability.flavor }),
           );
-          set(plan, 'plan', find(capabilities.plans, { name: plan.plan }));
+          set(
+            availability,
+            'plan',
+            find(capabilities.plans, { name: availability.plan }),
+          );
         });
-        return capabilities.engines.map(
-          (engine) =>
-            new Engine(
-              engine,
-              availability,
-              capabilities.plans,
-              capabilities.flavors,
-            ),
-        );
+        return {
+          availabilities,
+          capabilities,
+        };
       });
   }
 

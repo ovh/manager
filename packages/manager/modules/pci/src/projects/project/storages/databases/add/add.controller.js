@@ -40,7 +40,8 @@ export default class {
     this.messageContainer = 'pci.projects.project.storages.databases.add';
     this.loadMessages();
     this.model = {
-      engine: find(this.engines, 'isDefault') || this.engines[0],
+      engine:
+        find(this.availableEngines, 'isDefault') || this.availableEngines[0],
       plan: {
         name: null,
       },
@@ -91,7 +92,7 @@ export default class {
     const { steps } = this.redirectTarget;
     if (steps) {
       this.model.engine =
-        this.engines.find(({ name }) => name === steps.STEP_1) ||
+        this.availableEngines.find(({ name }) => name === steps.STEP_1) ||
         this.model.engine;
 
       this.model.plan.name = steps.STEP_2;
