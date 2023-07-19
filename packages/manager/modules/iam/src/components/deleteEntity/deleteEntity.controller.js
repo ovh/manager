@@ -1,5 +1,6 @@
-import { DELETE_STATEMENT, ENTITY, TAG } from '../../iam.constants';
+import { DELETE_STATEMENT, ENTITY } from '../../iam.constants';
 import { encodeUrn } from '../../iam.paramTypes';
+import { DELETE_ENTITY_TAG } from './deleteEntity.constants';
 
 export default class DeleteEntityController {
   /* @ngInject */
@@ -39,45 +40,10 @@ export default class DeleteEntityController {
 
   /**
    * A contextualized Set where each key map to a tag
-   * @returns {{
-   *  close: string;
-   *  delete: string;
-   *  error?: string;
-   *  success?: string;
-   * } | null}
+   * @returns {import('./deleteEntity.constants').DeleteEntityTag|null}
    */
   get tag() {
-    if (this.entity.type === ENTITY.POLICY) {
-      return {
-        close: TAG.DELETE_POLICY__CANCEL,
-        delete: TAG.DELETE_POLICY__CONFIRM,
-        error: TAG.POLICIES__DELETE_POLICY_CONFIRM_BANNER__ERROR,
-        success: TAG.POLICIES__DELETE_POLICY_CONFIRM_BANNER__SUCCESS,
-      };
-    }
-    if (this.entity.type === ENTITY.RESOURCE_TYPE) {
-      return {
-        close: TAG.REMOVE_PRODUCT_TYPE_CANCEL,
-        delete: TAG.REMOVE_PRODUCT_TYPE_CONFIRM,
-      };
-    }
-    if (this.entity.type === ENTITY.IDENTITY) {
-      return {
-        close: TAG.IDENTITIES__REMOVE_USER_CANCEL,
-        delete: TAG.IDENTITIES__REMOVE_USER_CONFIRM,
-        error: TAG.POLICIES__IDENTITIES_CONFIRM_BANNER__ERROR,
-        success: TAG.POLICIES__IDENTITIES_CONFIRM_BANNER__SUCCESS,
-      };
-    }
-    if (this.entity.type === ENTITY.RESOURCE_GROUP) {
-      return {
-        close: TAG.DELETE_RESOURCE_GROUP__CANCEL,
-        delete: TAG.DELETE_RESOURCE_GROUP__CONFIRM,
-        error: TAG.RESOURCE_GROUPS__DELETE_GROUP_CONFIRM_BANNER__ERROR,
-        success: TAG.RESOURCE_GROUPS__DELETE_GROUP_CONFIRM_BANNER__SUCCESS,
-      };
-    }
-    return null;
+    return DELETE_ENTITY_TAG[this.entity.type] ?? null;
   }
 
   /**

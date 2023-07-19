@@ -2,6 +2,7 @@ import { cloneDeep, isEqual } from 'lodash-es';
 
 import { ENTITY, ENTITY_NAME_PATTERN, TAG } from '../../iam.constants';
 import { URL } from '../../iam.service';
+import { CREATE_POLICY_TAG } from './createPolicy.constants';
 
 export default class CreatePolicyController {
   /* @ngInject */
@@ -131,33 +132,10 @@ export default class CreatePolicyController {
 
   /**
    * A contextualized Set where each key map to a tag
-   * @returns {Object<string,string>}
+   * @returns {import('./createPolicy.constants').CreatePolicyTag|null}
    */
   get tag() {
-    const { mode } = this;
-    if (mode === 'create') {
-      return {
-        cancel: TAG.ADD_POLICY__CANCEL,
-        guide: TAG.ADD_POLICY__GUIDE,
-        prefix: TAG.ADD_POLICY,
-        removeResourceType: TAG.ADD_POLICY__REMOVE_PRODUCT_TYPE,
-        submit: TAG.ADD_POLICY__CONFIRM,
-        submitError: TAG.POLICIES__CREATE_POLICY_CONFIRM_BANNER__ERROR,
-        submitSuccess: TAG.POLICIES__CREATE_POLICY_CONFIRM_BANNER__SUCCESS,
-      };
-    }
-    if (mode === 'edit') {
-      return {
-        cancel: TAG.EDIT_POLICY__CANCEL,
-        guide: TAG.EDIT_POLICY__GUIDE,
-        prefix: TAG.EDIT_POLICY,
-        removeResourceType: TAG.EDIT_POLICY__REMOVE_PRODUCT_TYPE,
-        submit: TAG.EDIT_POLICY__CONFIRM,
-        submitError: TAG.POLICIES__EDIT_POLICY_CONFIRM_BANNER__ERROR,
-        submitSuccess: TAG.POLICIES__EDIT_POLICY_CONFIRM_BANNER__SUCCESS,
-      };
-    }
-    return null;
+    return CREATE_POLICY_TAG[this.mode] ?? null;
   }
 
   /**
