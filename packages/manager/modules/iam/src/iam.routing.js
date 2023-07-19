@@ -134,7 +134,6 @@ export default /* @ngInject */ ($stateProvider) => {
        * @returns {void}
        */
       trackClick: /* @ngInject */ (atInternet) => (name) => {
-        console.log('iam.trackClick', { name, type: 'action' });
         atInternet.trackClick({ name, type: 'action' });
       },
 
@@ -143,7 +142,6 @@ export default /* @ngInject */ ($stateProvider) => {
        * @returns {void}
        */
       trackPage: /* @ngInject */ (atInternet) => (name) => {
-        console.log('iam.trackPage', { name });
         atInternet.trackPage({ name });
       },
     },
