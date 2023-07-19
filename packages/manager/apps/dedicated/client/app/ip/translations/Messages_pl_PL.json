@@ -1,6 +1,6 @@
 {
   "module_ip_dashboard_title": "Zarządzaj adresami IP",
-  "module_ip_dashboard_order_IP_action_label": "Zamów IP",
+  "module_ip_dashboard_order_IP_action_label": "Zamów adresy IP",
   "ip_dashboard_error": "Wystąpił błąd podczas pobierania informacji.",
   "ip_services_error": "Wystąpił błąd podczas ładowania tych usług: {{t0}}.  Spróbuj ponownie później.",
   "ip_block_error": "Wystąpił błąd podczas pobierania informacji {{t0}}.",
