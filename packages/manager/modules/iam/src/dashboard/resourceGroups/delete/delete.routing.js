@@ -1,4 +1,4 @@
-import { ENTITY } from '../../../iam.constants';
+import { ENTITY, TAG } from '../../../iam.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.dashboard.resourceGroups.delete', {
@@ -36,6 +36,9 @@ export default /* @ngInject */ ($stateProvider) => {
        */
       statement: /* @ngInject */ (entity) =>
         entity.type === ENTITY.RESOURCE_GROUP,
+    },
+    atInternet: {
+      rename: TAG.DELETE_RESOURCE_GROUP,
     },
   });
 };
