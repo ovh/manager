@@ -69,6 +69,14 @@ export default class DeleteEntityController {
         success: TAG.POLICIES__IDENTITIES_CONFIRM_BANNER__SUCCESS,
       };
     }
+    if (this.entity.type === ENTITY.RESOURCE_GROUP) {
+      return {
+        close: TAG.DELETE_RESOURCE_GROUP__CANCEL,
+        delete: TAG.DELETE_RESOURCE_GROUP__CONFIRM,
+        error: TAG.RESOURCE_GROUPS__DELETE_GROUP_CONFIRM_BANNER__ERROR,
+        success: TAG.RESOURCE_GROUPS__DELETE_GROUP_CONFIRM_BANNER__SUCCESS,
+      };
+    }
     return null;
   }
 
@@ -138,8 +146,8 @@ export default class DeleteEntityController {
           error: {
             key: this.translate.error,
             values: { message },
-            ...(this.tag?.error && { tag: this.tag.error }),
           },
+          ...(this.tag?.error && { tag: this.tag.error }),
         });
       });
 
