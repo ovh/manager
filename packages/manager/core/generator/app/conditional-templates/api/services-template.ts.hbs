@@ -30,7 +30,6 @@ export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalC
     if (response?.code?.startsWith('ERR')) {
       // Error in the request
       const errorResponse = response.response;
-      console.error('Error with request', errorResponse);
       return errorResponse;
     }
     return { ...response.data, status: response?.status };
