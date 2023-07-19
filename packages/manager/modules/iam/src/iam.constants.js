@@ -170,6 +170,8 @@ const TAG = {
   ADD_RESOURCE_GROUP__GUIDE: (guideKey) =>
     `dedicated::account::iam::add-group-ressources::guide-${guideKey}`,
   // OK
+  DELETE_IDENTITY: 'dedicated::account::iam::delete-identity',
+  // OK
   DELETE_POLICY: 'dedicated::account::iam::delete-policy',
   // OK
   DELETE_POLICY__CANCEL: 'dedicated::account::iam::delete-policy::cancel',
@@ -197,18 +199,22 @@ const TAG = {
     'dedicated::account::iam::edit-group-ressources::cancel',
   EDIT_RESOURCE_GROUP__CONFIRM:
     'dedicated::account::iam::edit-group-ressources::confirm',
+  // OK
   IDENTITIES: 'dedicated::account::iam::manage-identities',
-  IDENTITIES__ADD_USERS:
-    'dedicated::account::iam::manage-identities::add-users',
+  // OK
   IDENTITIES__CANCEL: 'dedicated::account::iam::manage-identities::cancel',
+  // OK
   IDENTITIES__CONFIRM: 'dedicated::account::iam::manage-identities::confirm',
   // OK
   IDENTITIES__GUIDE: (guideKey) =>
     `dedicated::account::iam::manage-identities::guide-${guideKey}`,
+  // OK
   IDENTITIES__REMOVE_USER:
     'dedicated::account::iam::manage-identities::remove-user',
+  // OK
   IDENTITIES__REMOVE_USER_CANCEL:
     'dedicated::account::iam::manage-identities::remove-user-cancel',
+  // OK
   IDENTITIES__REMOVE_USER_CONFIRM:
     'dedicated::account::iam::manage-identities::remove-user-confirm',
   // OK

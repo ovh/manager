@@ -61,6 +61,14 @@ export default class DeleteEntityController {
         delete: TAG.REMOVE_PRODUCT_TYPE_CONFIRM,
       };
     }
+    if (this.entity.type === ENTITY.IDENTITY) {
+      return {
+        close: TAG.IDENTITIES__REMOVE_USER_CANCEL,
+        delete: TAG.IDENTITIES__REMOVE_USER_CONFIRM,
+        error: TAG.POLICIES__IDENTITIES_CONFIRM_BANNER__ERROR,
+        success: TAG.POLICIES__IDENTITIES_CONFIRM_BANNER__SUCCESS,
+      };
+    }
     return null;
   }
 
