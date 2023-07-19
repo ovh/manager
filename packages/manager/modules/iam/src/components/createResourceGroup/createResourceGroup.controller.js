@@ -1,6 +1,7 @@
 import { cloneDeep, isEqual } from 'lodash-es';
 
-import { ENTITY, ENTITY_NAME_PATTERN, TAG } from '../../iam.constants';
+import { ENTITY, ENTITY_NAME_PATTERN } from '../../iam.constants';
+import { CREATE_RESOURCE_GROUP_TAG } from './createResourceGroup.constants';
 
 export default class CreateResourceGroupController {
   /* @ngInject */
@@ -112,33 +113,10 @@ export default class CreateResourceGroupController {
 
   /**
    * A contextualized Set where each key map to a tag
-   * @returns {Object<string,string>}
+   * @returns {import('./createResourceGroup.constants').CreateResourceGroupTag|null}
    */
   get tag() {
-    const { mode } = this;
-    if (mode === 'create') {
-      return {
-        cancel: TAG.ADD_RESOURCE_GROUP__CANCEL,
-        guide: TAG.ADD_RESOURCE_GROUP__GUIDE,
-        prefix: TAG.ADD_RESOURCE_GROUP,
-        removeResourceType: TAG.ADD_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE,
-        submit: TAG.ADD_RESOURCE_GROUP__CONFIRM,
-        submitError: TAG.RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__ERROR,
-        submitSuccess: TAG.RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__SUCCESS,
-      };
-    }
-    if (mode === 'edit') {
-      return {
-        cancel: TAG.EDIT_RESOURCE_GROUP__CANCEL,
-        guide: TAG.EDIT_RESOURCE_GROUP__GUIDE,
-        prefix: TAG.EDIT_RESOURCE_GROUP,
-        removeResourceType: TAG.EDIT_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE,
-        submit: TAG.EDIT_RESOURCE_GROUP__CONFIRM,
-        submitError: TAG.RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__ERROR,
-        submitSuccess: TAG.RESOURCE_GROUPS__EDIT_GROUP_CONFIRM_BANNER__SUCCESS,
-      };
-    }
-    return null;
+    return CREATE_RESOURCE_GROUP_TAG[this.mode] ?? null;
   }
 
   /**
