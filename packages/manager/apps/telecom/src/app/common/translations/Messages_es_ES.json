@@ -164,7 +164,6 @@
   "common_menu_support_chatbot": "Iniciar una conversación",
   "common_menu_telephony_redirection": "Redirección al área de cliente de Telefonía",
   "common_menu_support_changelog": "Historial de actualizaciones",
-  "common_skip_to_main_content": "Ir al contenido principal",
   "global_logout": "Salir",
   "common_pagination_display": "Ver",
   "common_account_balance_warning_flash": "Su cuenta de prepago tiene un saldo negativo de <span class=\"balance-price\">{{value}} €</span> a fecha {{date | date:'medium'}}. Acceda a la sección «<a href=\"{{link}}\">Facturación</a>» para recargarla.",

@@ -164,7 +164,6 @@
   "common_menu_support_chatbot": "Start a conversation",
   "common_menu_telephony_redirection": "Redirect to Telephony manager",
   "common_menu_support_changelog": "Change log",
-  "common_skip_to_main_content": "Skip to main content",
   "global_logout": "Log out",
   "common_pagination_display": "Show",
   "common_account_balance_warning_flash": "Your prepaid account is in debit by <span class=\"balance-price\">€{{value}}</span> as at {{date | date:'medium'}}. Please go to the <a href=\"{{link}}\">billing</a> section to add credit.",

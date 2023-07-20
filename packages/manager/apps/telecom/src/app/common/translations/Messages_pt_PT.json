@@ -164,7 +164,6 @@
   "common_menu_support_chatbot": "Iniciar uma conversa",
   "common_menu_telephony_redirection": "Redirection vers le manager Téléphonie",
   "common_menu_support_changelog": "Histórico das atualizações",
-  "common_skip_to_main_content": "Aceder ao conteúdo principal",
   "global_logout": "Terminar sessão",
   "common_pagination_display": "Mostrar",
   "common_account_balance_warning_flash": "Votre compte prépayé est débiteur de <span class=\"balance-price\">{{value}}€</span> au {{date | date:'medium'}}. Rendez-vous dans la section <a href=\"{{link}}\">facturation</a> pour le créditer.",
