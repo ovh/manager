@@ -37,4 +37,38 @@ describe('specs:msc-billing-tile', () => {
       expect(innerLink).toEqualAttribute('data-tracking', testTrackingLabel);
     });
   });
+
+  describe('chips', () => {
+    it('renders chip with correct color and text for each status', async () => {
+      const { page } = await setupSpecTest({
+        attributes: { language: 'en-GB' },
+      });
+      // Mock getTranslation method
+      page.rootInstance.getTranslation = jest.fn((key) => key);
+
+      const statuses = [
+        'deleteAtExpiration',
+        'automatic',
+        'manualPayment',
+        'cancelled',
+      ];
+      const expectedColors = [
+        'OdsThemeColorIntent.error',
+        'OdsThemeColorIntent.accent',
+        'OdsThemeColorIntent.warning',
+        'OdsThemeColorIntent.error',
+      ];
+      const expectedTexts = statuses.map(
+        (status) => `mb_service_status_${status}`,
+      );
+
+      statuses.forEach((status, i) => {
+        page.rootInstance.renewStatus = status;
+
+        const chip = page.root?.querySelector('osds-chip');
+        expect(chip).toHaveAttribute('color', expectedColors[i]);
+        expect(chip).toHaveTextContent(expectedTexts[i]);
+      });
+    });
+  });
 });

@@ -74,101 +74,198 @@ mock.onGet(`domain/agora3.ovh/serviceInfos`).reply(200, {
 /* ------- service ------- */
 
 // VPS
-mock.onGet(`service/118977335`).reply(200, {
-  quantity: 1,
-  state: 'ok',
-  expirationDate: '2023-08-01',
-  engagementDate: null,
-  renew: {
-    mode: 'automaticV2016',
-    interval: 'P1M',
-    possibleIntervals: ['P1M'],
-    possibleModes: ['automaticV2016'],
-    dayOfMonth: 1,
-  },
+mock.onGet(`services/118977335`).reply(200, {
   route: {
-    vars: [
-      {
-        value: 'vps-0baa4fcf.vps.ovh.net',
-        key: 'serviceName',
-      },
-    ],
     path: '/vps/{serviceName}',
     url: '/vps/vps-0baa4fcf.vps.ovh.net',
+    vars: [
+      {
+        key: 'serviceName',
+        value: 'vps-0baa4fcf.vps.ovh.net',
+      },
+    ],
+  },
+  billing: {
+    nextBillingDate: '2023-08-01T17:31:17+02:00',
+    expirationDate: '2023-08-01T17:31:17+02:00',
+    plan: {
+      code: 'vps-elite-8-8-160',
+      invoiceName: 'VPS Elite 8-8-160',
+    },
+    pricing: {
+      capacities: ['renew'],
+      description: 'Monthly fees',
+      interval: 1,
+      duration: 'P1M',
+      minimumQuantity: 1,
+      maximumQuantity: 100,
+      minimumRepeat: 1,
+      maximumRepeat: null,
+      price: {
+        currencyCode: 'EUR',
+        text: '34.50 €',
+        value: 34.5,
+      },
+      priceInUcents: 3450000000,
+      pricingMode: 'default',
+      pricingType: 'rental',
+      engagementConfiguration: null,
+    },
+    group: null,
+    lifecycle: {
+      current: {
+        pendingActions: [],
+        terminationDate: null,
+        creationDate: '2023-01-16T17:31:17+02:00',
+        state: 'active',
+      },
+      capacities: {
+        actions: ['earlyRenewal', 'terminateAtExpirationDate'],
+      },
+    },
+    renew: {
+      current: {
+        mode: 'automatic',
+        nextDate: '2023-08-01T17:31:17+02:00',
+        period: 'P1M',
+      },
+      capacities: {
+        mode: ['automatic', 'manual'],
+      },
+    },
+    engagement: null,
+    engagementRequest: null,
   },
   resource: {
     displayName: 'vps-0baa4fcf.vps.ovh.net',
     name: 'vps-0baa4fcf.vps.ovh.net',
-    state: 'ok',
-  },
-  plan: {
-    code: null,
+    state: 'active',
     product: {
-      name: null,
+      name: 'vps-elite-8-8-160',
+      description: 'VPS Elite 8 vCPU 8 GB RAM 160 GB disk',
     },
+    resellingProvider: null,
   },
-  creationDate: '2023-01-16',
-  nextBillingDate: '2023-08-01',
-  details: [],
+  serviceId: 118977335,
+  parentServiceId: null,
+  customer: {
+    contacts: [
+      {
+        customerCode: 'ls148374-ovh',
+        type: 'administrator',
+      },
+      {
+        customerCode: 'ls148374-ovh',
+        type: 'technical',
+      },
+      {
+        customerCode: 'ls148374-ovh',
+        type: 'billing',
+      },
+    ],
+  },
+  tags: [],
 });
 
 // NAS-HA
-mock.onGet(`service/116391915`).reply(200, {
-  expirationDate: '2023-02-01',
-  plan: {
-    product: {
-      name: null,
-    },
-    code: null,
-  },
-  renew: {
-    possibleModes: ['automaticV2016'],
-    mode: 'automaticV2016',
-    possibleIntervals: ['P1M'],
-    dayOfMonth: 1,
-    interval: 'P1M',
-  },
-  engagementDate: null,
-  nextBillingDate: '2023-02-01',
-  state: 'ok',
+mock.onGet(`services/116391915`).reply(200, {
   route: {
+    path: '/dedicated/nasha/{serviceName}',
+    url: '/dedicated/nasha/zpool-128894',
     vars: [
       {
         key: 'serviceName',
         value: 'zpool-128894',
       },
     ],
-    path: '/dedicated/nasha/{serviceName}',
-    url: '/dedicated/nasha/zpool-128894',
+  },
+  billing: {
+    nextBillingDate: '2023-02-01T15:46:13+02:00',
+    expirationDate: '2023-02-01T15:46:13+02:00',
+    plan: {
+      code: 'nas-ha-ssd-48t',
+      invoiceName: 'NASHA SSD 48TB',
+    },
+    pricing: {
+      capacities: ['installation', 'renew'],
+      description: 'rental for 1 month',
+      interval: 1,
+      duration: 'P1M',
+      minimumQuantity: 1,
+      maximumQuantity: 5,
+      minimumRepeat: 1,
+      maximumRepeat: 12,
+      price: {
+        currencyCode: 'EUR',
+        text: '1732.00 €',
+        value: 1732,
+      },
+      priceInUcents: 173200000000,
+      pricingMode: 'default',
+      pricingType: 'rental',
+      engagementConfiguration: null,
+    },
+    group: null,
+    lifecycle: {
+      current: {
+        pendingActions: [],
+        terminationDate: null,
+        creationDate: '2022-07-26T15:46:13+02:00',
+        state: 'active',
+      },
+      capacities: {
+        actions: ['earlyRenewal', 'terminateAtExpirationDate'],
+      },
+    },
+    renew: {
+      current: {
+        mode: 'automatic',
+        nextDate: '2023-02-01T15:46:13+02:00',
+        period: 'P1M',
+      },
+      capacities: {
+        mode: ['automatic', 'manual'],
+      },
+    },
+    engagement: null,
+    engagementRequest: {
+      pricingMode: 'degressivity12',
+      requestDate: '2023-07-17',
+    },
   },
   resource: {
     displayName: 'zpool-128894',
-    state: 'ok',
     name: 'zpool-128894',
+    state: 'active',
+    product: {
+      name: 'nas-ha-ssd-48t',
+      description: 'NAS HA SSD 48TB',
+    },
+    resellingProvider: null,
   },
-  details: [],
-  creationDate: '2022-07-26',
-  quantity: 1,
+  serviceId: 116391915,
+  parentServiceId: null,
+  customer: {
+    contacts: [
+      {
+        customerCode: 'ls148374-ovh',
+        type: 'administrator',
+      },
+      {
+        customerCode: 'ls148374-ovh',
+        type: 'technical',
+      },
+      {
+        customerCode: 'ls148374-ovh',
+        type: 'billing',
+      },
+    ],
+  },
+  tags: [],
 });
 
 // Domain
-mock.onGet(`service/116391915`).reply(200, {
-  engagementDate: null,
-  details: [],
-  expirationDate: '2023-01-27',
-  quantity: 1,
-  creationDate: '2020-01-27',
-  plan: {
-    product: {
-      name: null,
-    },
-    code: null,
-  },
-  resource: {
-    state: 'ok',
-    name: 'agora3.ovh',
-    displayName: 'agora3.ovh',
-  },
+mock.onGet(`services/29162449`).reply(200, {
   route: {
     path: '/domain/{serviceName}',
     url: '/domain/agora3.ovh',
@@ -179,13 +276,84 @@ mock.onGet(`service/116391915`).reply(200, {
       },
     ],
   },
-  renew: {
-    possibleIntervals: null,
-    possibleModes: ['automaticV2016', 'deleteAtExpiration'],
-    dayOfMonth: 1,
-    mode: 'deleteAtExpiration',
-    interval: null,
+  billing: {
+    nextBillingDate: '2023-01-27T14:48:11+02:00',
+    expirationDate: '2023-01-27T14:48:11+02:00',
+    plan: {
+      code: 'ovh',
+      invoiceName: '.ovh',
+    },
+    pricing: {
+      capacities: ['renew'],
+      description: 'Renewal of a .ovh domain name - 1 year',
+      interval: 12,
+      duration: 'P12M',
+      minimumQuantity: 1,
+      maximumQuantity: 10,
+      minimumRepeat: 1,
+      maximumRepeat: null,
+      price: {
+        currencyCode: 'EUR',
+        text: '2.99 €',
+        value: 2.99,
+      },
+      priceInUcents: 299000000,
+      pricingMode: 'create-default',
+      pricingType: 'rental',
+      engagementConfiguration: null,
+    },
+    group: null,
+    lifecycle: {
+      current: {
+        pendingActions: [],
+        terminationDate: '2023-01-27T14:48:11+02:00',
+        creationDate: '2020-01-27T14:48:11+02:00',
+        state: 'active',
+      },
+      capacities: {
+        actions: ['earlyRenewal'],
+      },
+    },
+    renew: {
+      current: {
+        mode: 'manual',
+        nextDate: null,
+        period: null,
+      },
+      capacities: {
+        mode: ['automatic', 'manual'],
+      },
+    },
+    engagement: null,
+    engagementRequest: null,
   },
-  state: 'ok',
-  nextBillingDate: null,
+  resource: {
+    displayName: 'agora3.ovh',
+    name: 'agora3.ovh',
+    state: 'active',
+    product: {
+      name: 'ovh-product',
+      description: 'Domain .ovh',
+    },
+    resellingProvider: null,
+  },
+  serviceId: 29162449,
+  parentServiceId: null,
+  customer: {
+    contacts: [
+      {
+        customerCode: 'ls148374-ovh',
+        type: 'administrator',
+      },
+      {
+        customerCode: 'ls148374-ovh',
+        type: 'technical',
+      },
+      {
+        customerCode: 'ls148374-ovh',
+        type: 'billing',
+      },
+    ],
+  },
+  tags: [],
 });

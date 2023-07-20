@@ -94,6 +94,7 @@ export class MscBillingTile implements IMscBillingTile {
           backend: {
             loadPath: (lngs: string) => {
               const [lng] = lngs;
+              if (lng.length < 3) return ``;
               return `translations/Messages_${i18nextLocaleToOvh(lng)}.json`;
             },
             allowMultiLoading: true,
@@ -127,6 +128,11 @@ export class MscBillingTile implements IMscBillingTile {
         this.contactBilling = data.contactBilling;
         this.contactTech = data.contactTech;
         this.serviceId = data.serviceId;
+        this.creationDate = new Intl.DateTimeFormat('fr-FR', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }).format(new Date(data.creation));
         // we check if the service status is ok
         if (data.status === 'ok') {
           if (data.renew.deleteAtExpiration === true)
@@ -149,7 +155,6 @@ export class MscBillingTile implements IMscBillingTile {
           // Red chip 'Cancelled'
           this.renewStatus = 'cancelled';
         }
-
         this.fetchServiceDetails(this.serviceId);
       })
       .catch((error) => {
@@ -159,19 +164,14 @@ export class MscBillingTile implements IMscBillingTile {
 
   fetchServiceDetails(serviceId: string) {
     apiClient.v6
-      .get(`/service/${serviceId}`)
+      .get(`/services/${serviceId}`)
       .then((response) => {
         const { data } = response;
-        this.creationDate = new Intl.DateTimeFormat('fr-FR', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        }).format(data.creationDate);
         this.nextBillingDate = new Intl.DateTimeFormat('fr-FR', {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
-        }).format(data.nextBillingDate);
+        }).format(new Date(data.billing?.nextBillingDate));
         if (data.billing.engagement === null) {
           // should be null if no commitment
           // Red chip 'None', no link or link 'Commit'
@@ -266,6 +266,18 @@ export class MscBillingTile implements IMscBillingTile {
       );
     };
 
+    const ChipCommitment = () => {
+      return (
+        <osds-chip
+          color={OdsThemeColorIntent.error}
+          size={OdsChipSize.sm}
+          variant={OdsChipVariant.flat}
+        >
+          None
+        </osds-chip>
+      );
+    };
+
     const content = (
       <osds-tile
         class="msc-ods-tile"
@@ -331,14 +343,14 @@ export class MscBillingTile implements IMscBillingTile {
           >
             {this.getTranslation('manager_billing_subscription_next_due_date')}
           </osds-text>
-          {ButtonTooltip}
+          <div>{ButtonTooltip}</div>
           <osds-text
             class="tile-description"
             level={OdsThemeTypographyLevel.body}
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.default}
           >
-            {this.nextBillingDate}
+            <div>{this.nextBillingDate}</div>
             {ChipRenewal()}
           </osds-text>
           {/* COMMITMENT */}
@@ -357,13 +369,7 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.default}
           >
-            <osds-chip
-              color={OdsThemeColorIntent.error}
-              size={OdsChipSize.sm}
-              variant={OdsChipVariant.flat}
-            >
-              None
-            </osds-chip>
+            {ChipCommitment()}
           </osds-text>
           <osds-link
             data-tracking={this.dataTracking}
