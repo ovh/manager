@@ -163,7 +163,7 @@
   "hosting_dashboard_service_web_info_other": "na {{t0}} zalecanych",
   "hosting_dashboard_service_renew": "Odnów",
   "hosting_dashboard_service_change_offer": "Zmień ofertę",
-  "hosting_dashboard_service_change_offer_explanation": "Twój aktualny pakiet nie pozwala na tworzenie baz danych. Abyś mógł tworzyć bazy danych, zmień ofertę na płatny hosting. Operacja jest szybka i nie powoduje przerw w działaniu usługi. Nasze pakiety pozwolą Ci uzyskać:",
+  "hosting_dashboard_service_change_offer_explanation": "Twój aktualny pakiet nie pozwala na tworzenie baz danych. Abyś mógł tworzyć bazy danych, zmień ofertę na płatny hosting. Operacja jest szybka i nie powoduje przerw w działaniu usługi.",
   "hosting_dashboard_service_change_offer_explanation_ftp": "Przestrzeń FTP co najmniej 1 GB",
   "hosting_dashboard_service_change_offer_explanation_mail": "Minimum 2 konta e-mail o pojemności 5 GB",
   "hosting_dashboard_service_change_offer_explanation_db": "Baza danych od 100 MB",
@@ -1354,5 +1354,18 @@
   "hosting_dashboard_service_common_inactive": "Nieaktywny",
   "hosting_dashboard_email_offer_get_error": "Nie można pobrać adresu e-mail",
   "hosting_dashboard_stats_status": "Beta",
-  "hosting_dashboard_tabs_dropdown": "Więcej"
+  "hosting_dashboard_tabs_dropdown": "Więcej",
+  "hosting_dashboard_service_offer_HOSTING_FREE_100_M": "Darmowy hosting 100M",
+  "hosting_dashboard_service_offer_HOSTING_STARTER_OVH": "Starter",
+  "hosting_dashboard_service_offer_HOSTING_STARTER": "Starter",
+  "hosting_dashboard_service_offer_HOSTING_PERSO": "Perso",
+  "hosting_dashboard_service_offer_HOSTING_PRO": "Pro",
+  "hosting_dashboard_service_offer_HOSTING_PERFORMANCE_1": "Performance 1",
+  "hosting_dashboard_service_offer_HOSTING_PERFORMANCE_2": "Performance 2",
+  "hosting_dashboard_service_offer_HOSTING_PERFORMANCE_3": "Performance 3",
+  "hosting_dashboard_service_offer_HOSTING_PERFORMANCE_4": "Performance 4",
+  "hosting_dashboard_service_change_offer_explanation_only_one": "Dysponujesz jedną bazą danych w ramach aktualnej oferty. Aby korzystać z dodatkowych baz danych, wybierz jedną z naszych usług.",
+  "hosting_tab_DOMAINS_configuration_add_step1_only_one_db_and_no_left": "Aktualna oferta pozwala na zainstalowanie jednej strony. Aby skorzystać z dodatkowej strony, wybierz jedną z wyższych ofert.",
+  "hosting_tab_DOMAINS_configuration_add_buttom_update_offer": "Zmień ofertę",
+  "hosting_order_upgrade_modal_header_description": "Twój projekt dynamicznie się rozwija? Blog, profesjonalna strona WWW, platforma e-commerce lub aplikacja internetowa: wybierz ofertę najlepiej dopasowaną do Twoich nowych potrzeb."
 }
