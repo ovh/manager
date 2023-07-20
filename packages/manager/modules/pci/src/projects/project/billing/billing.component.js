@@ -13,6 +13,8 @@ export default {
     trackClick: '<',
     historyLink: '<',
     projectId: '<',
+    service: '<',
+    iamLink: '<',
   },
   controller,
   template,

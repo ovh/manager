@@ -39,7 +39,13 @@ export default class PublicCloud {
       )
       .sort(sort, sortOrder)
       .execute(null, true)
-      .$promise.then(({ data }) => data);
+      .$promise.then(({ data }) => data)
+      .catch((error) => {
+        if (error.status === 403) {
+          return [];
+        }
+        throw error;
+      });
   }
 
   getDefaultProject() {
