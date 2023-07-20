@@ -213,6 +213,59 @@ export class MscBillingTile implements IMscBillingTile {
       </div>
     );
 
+    const ChipRenewal = () => {
+      const status = this.renewStatus;
+      const getColor = () => {
+        switch (status) {
+          case 'deleteAtExpiration':
+            return OdsThemeColorIntent.error;
+          case 'automatic':
+            return OdsThemeColorIntent.success;
+          case 'manualPayment':
+            return OdsThemeColorIntent.warning;
+          case 'cancelled':
+            return OdsThemeColorIntent.error;
+          default:
+            return OdsThemeColorIntent.default;
+        }
+      };
+
+      const getText = () => {
+        switch (status) {
+          case 'deleteAtExpiration':
+            return this.getTranslation(
+              'manager_billing_service_status_delete_at_expiration',
+            );
+          case 'automatic':
+            return this.getTranslation(
+              'manager_billing_service_status_automatic',
+            );
+          case 'manualPayment':
+            return this.getTranslation(
+              'manager_billing_service_status_manualPayment',
+            );
+          case 'cancelled':
+            return this.getTranslation(
+              'manager_billing_service_status_cancelled',
+            );
+          default:
+            return this.getTranslation(
+              `manager_billing_service_status_${status}`,
+            );
+        }
+      };
+
+      return (
+        <osds-chip
+          color={getColor()}
+          size={OdsChipSize.sm}
+          variant={OdsChipVariant.flat}
+        >
+          {getText()}
+        </osds-chip>
+      );
+    };
+
     const content = (
       <osds-tile
         class="msc-ods-tile"
@@ -286,6 +339,7 @@ export class MscBillingTile implements IMscBillingTile {
             color={OdsThemeColorIntent.default}
           >
             {this.nextBillingDate}
+            {ChipRenewal()}
           </osds-text>
           {/* COMMITMENT */}
           <osds-divider separator={true} />
