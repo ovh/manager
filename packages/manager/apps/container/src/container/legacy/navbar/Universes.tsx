@@ -20,7 +20,7 @@ function NavbarUniverses({
 
   return (
     <div className="oui-navbar-list">
-      <div className="oui-navbar-list oui-navbar-list_main oui-navbar_desktop-only">
+      <div className="oui-navbar-list oui-navbar-list_main oui-navbar_desktop-only" role="tablist" tabIndex={0}>
         {universes.length ? (
           universes.map((u) => (
             <a
@@ -29,6 +29,8 @@ function NavbarUniverses({
                 oui-navbar-link_${u.isPrimary ? 'primary' : 'secondary'}
                 ${universe === u.universe ? 'oui-navbar-link_active' : ''}
               `}
+              role="tab"
+              aria-selected={universe === u.universe}
               key={u.universe}
               href={u.url}
               onClick={(event) => onClick({ event, universe: u.universe })}
