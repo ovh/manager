@@ -8,7 +8,7 @@ import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Environment } from '@ovh-ux/manager-config';
+import { Environment, convertLanguageFromOVHToBCP47 } from '@ovh-ux/manager-config';
 import { defineApplicationVersion } from '@ovh-ux/request-tagger';
 import { UIKitTheme } from '@ovh-ux/manager-themes';
 import { extendTheme, ChakraProvider } from '@chakra-ui/react';
@@ -38,6 +38,7 @@ initShell().then((shell) => {
     .getPlugin('environment')
     .getEnvironment();
   const locale = environment.getUserLocale();
+  document.documentElement.lang = convertLanguageFromOVHToBCP47(locale);
   const config = () => import(`./config-${environment.getRegion()}.js`);
 
   setupDevApplication(shell);
