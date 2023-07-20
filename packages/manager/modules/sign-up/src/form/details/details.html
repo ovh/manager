@@ -57,6 +57,35 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-lg">
+            <!-- language -->
+            <oui-field
+                data-label="{{ 'sign_up_details_field_language' | translate }}"
+            >
+                <label class="oui-select">
+                    <select
+                        id="language"
+                        name="language"
+                        class="oui-select__input"
+                        data-ng-options="language.value as language.label for language in $ctrl.signUpFormCtrl.rules.language.in"
+                        data-ng-model="$ctrl.signUpFormCtrl.model.language"
+                        data-ng-required="$ctrl.signUpFormCtrl.rules.language.mandatory"
+                        data-ng-disabled="$ctrl.signUpFormCtrl.rules.language.in.length === 0"
+                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.language)"
+                    >
+                    </select>
+                    <span
+                        class="oui-icon oui-icon-chevron-down bg-transparent"
+                        aria-hidden="true"
+                    >
+                    </span>
+                </label>
+            </oui-field>
+            <!-- /select[name="language"] -->
+        </div>
+    </div>
+
     <div class="row" data-ng-if="$ctrl.signUpFormCtrl.rules.phoneType">
         <div class="col-lg">
             <oui-field>
