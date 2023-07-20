@@ -1,0 +1,14 @@
+{
+  "iam_identities_title": "Manage {{ policy }} policy identities",
+  "iam_identities_description": "You can associate or delete identities with your policy (users, NIC, email, user groups...)",
+  "iam_identities_guide_text": "Manuals",
+  "iam_identities_field_users_selection_label": "Users and sub-users",
+  "iam_identities_field_users_selection_placeholder": "NIC, users, user groups...",
+  "iam_identities_field_users_button_add": "Add",
+  "iam_identities_error_load_users": "An error has occurred retrieving your users: {{ message }}",
+  "iam_identities_add_identity_error": "The format of the added identity is not valid: {{ message }}",
+  "iam_identities_add_identity_success": "Identity is tied to your policy",
+  "iam_identities_submit_identity_success": "Your identities have been modified.",
+  "iam_identities_form_cancel": "Cancel",
+  "iam_identities_form_submit": "Confirm"
+}
