@@ -8,6 +8,7 @@ import '@ovh-ux/ui-kit';
 import routing from './ai-dashboard.routing';
 import component from './ai-dashboard.component';
 import service from './ai-dashboard.service';
+import registries from './tabs/registries';
 
 import aiPipelineComponent from './components/ai-pipeline';
 
@@ -24,6 +25,7 @@ angular
     home,
     usersTokens,
     cli,
+    registries,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ngOvhCloudUniverseComponents',

@@ -44,6 +44,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.ai-dashboard.cli', {
           projectId,
         }),
+      registriesLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.ai-dashboard.registries', {
+          projectId,
+        }),
     },
   });
 };
