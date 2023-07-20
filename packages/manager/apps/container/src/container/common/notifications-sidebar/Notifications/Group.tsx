@@ -17,6 +17,7 @@ const NotificationsGroup = ({
   return (
     <li>
       <div className={style.notificationsList_group_title}>{title}</div>
+      <ul>
       {notifications.map((notification, key) => (
         <Notification key={`notification-${key}`}>
           <>
@@ -46,6 +47,7 @@ const NotificationsGroup = ({
           </>
         </Notification>
       ))}
+      </ul>
     </li>
   );
 };
