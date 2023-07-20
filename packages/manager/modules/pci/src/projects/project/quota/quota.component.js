@@ -16,6 +16,8 @@ export default {
     getStateName: '<',
     goToRegion: '<',
     serviceOptions: '<',
+    service: '<',
+    iamLink: '<',
   },
   controller,
   template,

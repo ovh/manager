@@ -1,3 +1,10 @@
+<oui-message data-ng-if="!$ctrl.service" data-type="error">
+    <p
+        class="mb-0 pb-0"
+        data-translate="cpbc_billing_control_consumption_error_forbidden"
+    ></p>
+    <a data-ng-href="$ctrl.iamLink" data-ng-bind="$ctrl.iamLink"></a>
+</oui-message>
 <oui-header
     data-heading="{{:: 'cpbc_billing_control' | translate }}"
     class="mb-3"
@@ -39,7 +46,7 @@
 </div>
 
 <div class="py-4" data-ui-view>
-    <div class="row mb-3">
+    <div class="row mb-3" data-ng-if="$ctrl.consumption">
         <div class="col-md-3 px-0">
             <div class="oui-box text-right h-100">
                 <h4 class="oui-box__heading d-flex align-items-center">
