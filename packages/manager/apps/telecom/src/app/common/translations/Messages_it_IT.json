@@ -164,7 +164,6 @@
   "common_menu_support_chatbot": "Inizia una conversazione",
   "common_menu_telephony_redirection": "Reindirizzamento allo Spazio Cliente OVH Telecom...",
   "common_menu_support_changelog": "Cronologia aggiornamenti",
-  "common_skip_to_main_content": "Skip to main content",
   "global_logout": "Logout",
   "common_pagination_display": "Mostra",
   "common_account_balance_warning_flash": "Il tuo conto prepagato ha un saldo negativo di <span class=\"balance-price\">{{value}}€</span> al {{date | date:'medium'}}. Per accreditarlo, accedi alla sezione <a href=\"{{link}}\">fatturazione</a>.",
