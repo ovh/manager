@@ -9,6 +9,12 @@ import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
+import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
+import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
+import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
+
+import { TRACKING } from './iam.constants';
 
 import './iam.styles.scss';
 
@@ -37,6 +43,10 @@ export default async (element, shellClient) => {
       ovhManagerIAM,
       ngOvhFeatureFlipping,
       ngUiRouterBreadcrumb,
+      ovhManagerAtInternetConfiguration,
+      ngAtInternet,
+      ngAtInternetUiRouterPlugin,
+      registerAtInternet(shellClient.tracking),
       registerCoreModule(environment, {
         onLocaleChange: (lang) => {
           shellClient.i18n.setLocale(lang);
@@ -75,6 +85,15 @@ export default async (element, shellClient) => {
             ouiCalendarConfigurationProvider.setLocale(module.default[lang]);
           })
           .catch(() => {});
+      },
+    )
+    .config(async () => {
+      await shellClient.tracking.setConfig(environment.getRegion(), TRACKING);
+    })
+    .config(
+      /* @ngInject */ (atInternetConfigurationProvider) => {
+        atInternetConfigurationProvider.setSkipInit(true);
+        atInternetConfigurationProvider.setPrefix('');
       },
     )
     .run(
