@@ -1,5 +1,25 @@
-<manager-on-boarding-layout data-guides="$ctrl.GUIDES">
-    <oui-button data-variant="primary" data-on-click="$ctrl.discover()">
-        <span>Discover product</span>
+<manager-on-boarding-layout
+    data-guides="$ctrl.GUIDES"
+    data-on-click-guide="$ctrl.onGuideClick(guide)"
+>
+    <h2 data-translate="vrack_services_onboarding_subtitle"></h2>
+    <p data-translate="vrack_services_onboarding_description"></p>
+    <p data-translate="vrack_services_onboarding_description_2"></p>
+    <oui-button
+        class="mr-3"
+        data-variant="primary"
+        data-on-click="$ctrl.createVrack()"
+        data-size="l"
+    >
+        <span data-translate="vrack_services_onboarding_cta_1"></span>
     </oui-button>
+    <a
+        class="oui-button oui-button_secondary oui-button_l oui-link_icon"
+        target="_blank"
+        rel="noopener"
+        data-ng-href="{{:: $ctrl.discoverCta }}"
+    >
+        <span data-translate="vrack_services_onboarding_cta_2"></span>
+        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
+    </a>
 </manager-on-boarding-layout>
