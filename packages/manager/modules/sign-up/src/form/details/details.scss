@@ -1,5 +1,11 @@
 .sign-up-form-details {
   .oui-field {
+    margin-bottom: 0.625rem;
+
+    .oui-field__header {
+      padding-left: 0.625rem;
+    }
+
     .oui-input-group.zip-group {
       box-shadow: -1px 0 0 rgba(40, 89, 192, 0.2),
         1px 0 0 rgba(40, 89, 192, 0.2);
