@@ -4,6 +4,7 @@ export type SidebarMenuItem = {
   title?: string;
   icon?: JSX.Element;
   href?: string;
+  badge?: string;
   isExternal?: boolean;
   routeMatcher?: RegExp;
   pathMatcher?: RegExp;
