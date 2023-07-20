@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.0.2...@ovh-ux/manager-telecom@14.1.0) (2023-07-20)
+
+
+### Features
+
+* **telecom:** add inward postcode for uk phone number ([716e7a5](https://github.com/ovh/manager/commit/716e7a54cc9fa1aa1d30addd357f63cdf664d91f))
+
+
+
+
+
 ## [14.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.0.1...@ovh-ux/manager-telecom@14.0.2) (2023-07-12)
 
 
