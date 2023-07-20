@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
     template: `<div>
              <div data-ui-view></div>
         </div>`,
-    // redirectTo: 'vrack-services.index',
+    redirectTo: 'vrack-services.index',
     resolve: {
       breadcrumb: () => 'vrack-services',
     },
@@ -16,6 +16,8 @@ export default /* @ngInject */ ($stateProvider) => {
     // url: `?${ListLayoutHelper.urlQueryParams}`,
     // component: 'managerListLayout',
     // params: ListLayoutHelper.stateParams,
+    // TODO: Redirect to onboarding only if customer have services
+    redirectTo: 'vrack-services.onboarding',
     // redirectTo: (transition) =>
     //   transition
     //     .injector()
@@ -28,12 +30,12 @@ export default /* @ngInject */ ($stateProvider) => {
     //         : false,
     //     ),
     resolve: {
-      //  ...ListLayoutHelper.stateResolves,
-      //   apiPath: () => '/vrackServices',
-      //   dataModel: () => 'vrackServices.vrackServices',
-      //   defaultFilterColumn: () => 'serviceName',
-      header: () => 'vrack-services',
-      //   customizableColumns: () => true,
+      // ...ListLayoutHelper.stateResolves,
+      // apiPath: () => '/vrackServices/resource',
+      // dataModel: () => 'vrackServices.vrackServices',
+      // defaultFilterColumn: () => 'serviceName',
+      // header: () => 'vrack-services',
+      // customizableColumns: () => true,
       //   getServiceNameLink: /* @ngInject */ ($state) => ({
       //     serviceName,
       //   }) =>
