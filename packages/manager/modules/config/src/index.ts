@@ -60,6 +60,10 @@ export const fetchConfiguration = async (
           )}`,
         });
       }
+      if (err?.status === 403) {
+        const region = err?.data?.region || 'EU';
+        window.top.location.href = `/restricted?region=${region}`;
+      }
       environment.setRegion(HOSTNAME_REGIONS[window.location.hostname]);
       return environment;
     });

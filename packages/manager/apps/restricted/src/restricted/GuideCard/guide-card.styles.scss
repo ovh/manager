@@ -1,0 +1,31 @@
+.guide-card {
+  border: 2px solid #bef1ff;
+  box-shadow: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  strong {
+    font-size: 1.125rem;
+  }
+
+  .oui-icon {
+    background-color: transparent;
+
+    &.oui-icon-guides {
+      font-size: 2.2rem;
+      padding: 0;
+      margin-right: 0.3rem;
+    }
+  }
+
+  .oui-tile__description {
+    word-break: initial;
+  }
+
+  .guide-title {
+    color: #0050d7;
+  }
+}
