@@ -14,6 +14,7 @@ import {
   READ_ONLY_PARAMS,
 } from './form.constants';
 import { WatchableModel } from '../watchableModel.class';
+import { PHONE_PREFIX } from './details/details.constants';
 
 export default class SignUpFormCtrl {
   /* @ngInject */
@@ -36,6 +37,7 @@ export default class SignUpFormCtrl {
       });
       if (rule && has(rule, 'in')) {
         let label;
+        let prefix;
         rule.in = map(rule.in, (value) => {
           if (translationRules.dependsOfCountry) {
             label = this.$translate.instant(
@@ -49,10 +51,14 @@ export default class SignUpFormCtrl {
                 translationRules.fallbackFieldName || translationRules.fieldName
               ).toLowerCase()}_${value}`,
             );
+            if (translationRules.fieldName === 'phoneCountry') {
+              prefix = PHONE_PREFIX[value];
+            }
           }
           return {
             label,
             value,
+            prefix,
           };
         });
 
@@ -178,7 +184,9 @@ export default class SignUpFormCtrl {
       Object.defineProperty(this.model, `$${name}`, {
         enumerable: false,
         value: new WatchableModel(
-          get(this.me, name),
+          // User is created with 'landline' phone type but we want to encourage
+          // user to choose mobile by setting it by default
+          name === 'phoneType' ? 'mobile' : get(this.me, name),
           this.getRules.bind(this),
           MODEL_DEBOUNCE_DELAY,
         ),
