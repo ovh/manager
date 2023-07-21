@@ -3,7 +3,6 @@ import { TAG } from '../../iam.constants';
 /**
  * @typedef {{
  *   cancel: string;
- *   guide: (tagKey: string) => string;
  *   prefix: string;
  *   removeResourceType: string;
  *   submit: string;
@@ -21,7 +20,6 @@ import { TAG } from '../../iam.constants';
 export const CREATE_RESOURCE_GROUP_TAG = {
   create: {
     cancel: TAG.ADD_RESOURCE_GROUP__CANCEL,
-    guide: TAG.ADD_RESOURCE_GROUP__GUIDE,
     prefix: TAG.ADD_RESOURCE_GROUP,
     removeResourceType: TAG.ADD_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE,
     submit: TAG.ADD_RESOURCE_GROUP__CONFIRM,
@@ -30,7 +28,6 @@ export const CREATE_RESOURCE_GROUP_TAG = {
   },
   edit: {
     cancel: TAG.EDIT_RESOURCE_GROUP__CANCEL,
-    guide: TAG.EDIT_RESOURCE_GROUP__GUIDE,
     prefix: TAG.EDIT_RESOURCE_GROUP,
     removeResourceType: TAG.EDIT_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE,
     submit: TAG.EDIT_RESOURCE_GROUP__CONFIRM,

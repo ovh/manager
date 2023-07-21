@@ -10,6 +10,6 @@ export default class OnboardingController {
    * @param {string} guideKey
    */
   onGuideClick(guideKey) {
-    this.trackClick(TAG.ONBOARDING__DOCUMENTATION(guideKey));
+    this.trackClick(TAG.GUIDE(guideKey));
   }
 }

@@ -285,7 +285,7 @@ export default class CreatePolicyController {
    * @param {string} guideKey
    */
   onGuideClick(guideKey) {
-    this.trackClick(this.tag?.guide(guideKey));
+    this.trackClick(TAG.GUIDE(guideKey));
   }
 
   /**

@@ -1,6 +1,6 @@
 import { cloneDeep, isEqual } from 'lodash-es';
 
-import { ENTITY, ENTITY_NAME_PATTERN } from '../../iam.constants';
+import { ENTITY, ENTITY_NAME_PATTERN, TAG } from '../../iam.constants';
 import { CREATE_RESOURCE_GROUP_TAG } from './createResourceGroup.constants';
 
 export default class CreateResourceGroupController {
@@ -235,7 +235,7 @@ export default class CreateResourceGroupController {
    * @param {string} guideKey
    */
   onGuideClick(guideKey) {
-    this.trackClick(this.tag?.guide(guideKey));
+    this.trackClick(TAG.GUIDE(guideKey));
   }
 
   /**
