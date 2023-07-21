@@ -144,8 +144,31 @@ export default function HostedPrivateCloudSidebar() {
         label: t('sidebar_network'),
         icon: getIcon('oui-icon oui-icon-bandwidth_concept'),
         minSearchItems: 0,
-        routeMatcher: new RegExp('^(/vrack|/cloud-connect)'),
+        routeMatcher: new RegExp('^(/ip(/|$)|(/network)?/iplb|/vrack|/cloud-connect)'),
         subItems: [
+          feature.ip && {
+            id: 'hpc-ip',
+            label: t('sidebar_ip_short'),
+            icon: getIcon('ovh-font ovh-font-ip'),
+            href: navigation.getURL('dedicated', '#/ip'),
+            routeMatcher: new RegExp('/ip(/|$)'),
+          },
+          feature['ip-load-balancer'] && 
+            {
+              id: 'ip-loadbalancer',
+              label: t('sidebar_pci_load_balancer'),
+              icon: getIcon('ovh-font ovh-font-iplb'),
+              routeMatcher: new RegExp('^(/network)?/iplb'),
+              async loader() {
+                const iplb = await loadServices('/ipLoadbalancing');
+                return [
+                  ...iplb.map((iplbItem) => ({
+                    ...iplbItem,
+                    icon: getIcon('ovh-font ovh-font-iplb'),
+                  })),
+                ];
+              },
+            },
           feature['vrack:bare-metal-cloud'] && {
             id: 'hpc-vrack',
             label: t('sidebar_vrack'),
@@ -180,16 +203,6 @@ export default function HostedPrivateCloudSidebar() {
             },
           },
         ],
-      });
-    }
-
-    if (feature.ip) {
-      menu.push({
-        id: 'hpc-ip',
-        label: t('sidebar_ip_short'),
-        icon: getIcon('ovh-font ovh-font-ip'),
-        href: navigation.getURL('dedicated', '#/ip'),
-        routeMatcher: new RegExp('/ip(/|$)'),
       });
     }
 
