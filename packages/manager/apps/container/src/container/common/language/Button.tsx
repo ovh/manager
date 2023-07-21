@@ -20,10 +20,13 @@ function LanguageButton({
   const isSmallDevice = useMediaQuery({
     query: `(max-width: ${SMALL_DEVICE_MAX_SIZE})`,
   });
+
   return (
     <button
-      aria-haspopup={show}
+      id="language-menu-button"
+      aria-haspopup="true"
       aria-expanded={show}
+      aria-owns="language-menu"
       aria-label={t('language_change')}
       title={t('language_change')}
       type="button"

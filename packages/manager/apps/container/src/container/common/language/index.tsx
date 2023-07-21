@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import {useKey} from 'react-use';
 
 import useClickAway from 'react-use/lib/useClickAway';
 
@@ -33,7 +34,7 @@ function LanguageMenu({
   }, [show]);
 
   useClickAway(ref, handleRootClose);
-
+  useKey('Escape', handleRootClose);
   const [currentLanguage, setCurrentLanguage] = useState(null);
   const [availableLanguages, setAvailableLanguages] = useState([]);
 
@@ -78,8 +79,10 @@ function LanguageMenu({
         {getLanguageLabel()}
       </LanguageButton>
       <LanguageList
+        currentLanguage={currentLanguage.key}
         languages={availableLanguages}
         onSelect={onLocaleChange}
+        show={show}
       ></LanguageList>
     </div>
   );
