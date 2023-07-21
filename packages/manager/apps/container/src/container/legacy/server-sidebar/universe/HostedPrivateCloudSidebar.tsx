@@ -35,6 +35,7 @@ const features = [
   'veeam-enterprise:order',
   'vrack:bare-metal-cloud',
   'vrack:order',
+  'vrack-services',
   'ip-load-balancer',
   'logs-data-platform',
   'dedicated-server:ecoRangeOrder',
@@ -144,7 +145,7 @@ export default function HostedPrivateCloudSidebar() {
         label: t('sidebar_network'),
         icon: getIcon('oui-icon oui-icon-bandwidth_concept'),
         minSearchItems: 0,
-        routeMatcher: new RegExp('^(/ip(/|$)|(/network)?/iplb|/vrack|/cloud-connect)'),
+        routeMatcher: new RegExp('^(/ip(/|$)|(/network)?/iplb|/vrack|/cloud-connect|/vrack-services)'),
         subItems: [
           feature.ip && {
             id: 'hpc-ip',
@@ -153,7 +154,7 @@ export default function HostedPrivateCloudSidebar() {
             href: navigation.getURL('dedicated', '#/ip'),
             routeMatcher: new RegExp('/ip(/|$)'),
           },
-          feature['ip-load-balancer'] && 
+          feature['ip-load-balancer'] &&
             {
               id: 'ip-loadbalancer',
               label: t('sidebar_pci_load_balancer'),
@@ -176,6 +177,30 @@ export default function HostedPrivateCloudSidebar() {
             routeMatcher: new RegExp('^/vrack'),
             async loader() {
               return loadServices('/vrack');
+            },
+          },
+          feature['vrack-services'] && { //TODO remove negation
+            id: 'dedicated-vrackservices',
+            label: t('sidebar_vrack_services'),
+            icon: getIcon('oui-icon oui-icon-line-communicating_concept'),// TODO Add new icon
+            routeMatcher: new RegExp('^/vrack-services'),
+            async loader() {
+              const services = await loadServices('/vrackServices/resource');//TODO Needs to relook with apiv2 api
+              return [
+                {
+                  id: 'vrack_services-all',
+                  label: t('sidebar_service_all'),
+                  href: navigation.getURL('dedicated', '#/vrack-services'),
+                  ignoreSearch: true,
+                },
+                ...services.map((service) => ({
+                  ...service,
+                  href: navigation.getURL(
+                    'dedicated',
+                    `#/vrack-services/${service.currentState.vrackId}`,
+                  ),
+                })),
+              ];
             },
           },
           feature['cloud-connect'] && {
