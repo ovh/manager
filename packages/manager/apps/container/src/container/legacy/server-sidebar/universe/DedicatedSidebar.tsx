@@ -32,6 +32,7 @@ export const features = [
   'vrack:bare-metal-cloud',
   'vrack:hosted-private-cloud',
   'cloud-connect',
+  'vrack-services',
   'netapp',
   'exchange:dedicated-dashboard',
   'license',
@@ -278,7 +279,7 @@ export default function DedicatedSidebar() {
         label: t('sidebar_network'),
         icon: getIcon('oui-icon oui-icon-bandwidth_concept'),
         minSearchItems: 0,
-        routeMatcher: new RegExp('^(/vrack|/cloud-connect)'),
+        routeMatcher: new RegExp('^(/vrack|/cloud-connect|/vrack-services)'),
         subItems: [
           feature['vrack:bare-metal-cloud'] && {
             id: 'dedicated-vrack',
@@ -287,6 +288,30 @@ export default function DedicatedSidebar() {
             routeMatcher: new RegExp('^/vrack'),
             async loader() {
               return loadServices('/vrack');
+            },
+          },
+          feature['vrack-services'] && {//TODO remove nagation
+            id: 'dedicated-vrackservices',
+            label: t('sidebar_vrack_services'),
+            icon: getIcon('oui-icon oui-icon-line-communicating_concept'),// TODO Add new icon
+            routeMatcher: new RegExp('^/vrack-services'),
+            async loader() {
+              const services = await loadServices('/vrackServices/resource');//TODO Needs to relook with apiv2 api
+              return [
+                {
+                  id: 'vrack_services-all',
+                  label: t('sidebar_service_all'),
+                  href: navigation.getURL('dedicated', '#/vrack-services'),
+                  ignoreSearch: true,
+                },
+                ...services.map((service) => ({
+                  ...service,
+                  href: navigation.getURL(
+                    'dedicated',
+                    `#/vrack-services/${service.currentState.vrackId}`,
+                  ),
+                })),
+              ];
             },
           },
           feature['cloud-connect'] && {

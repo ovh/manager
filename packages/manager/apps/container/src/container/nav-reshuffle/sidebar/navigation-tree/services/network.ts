@@ -30,6 +30,16 @@ export default {
       features: ['ip'],
     },
     {
+      id: 'ovhvrack-services',
+      translation: 'sidebar_vrack_services',
+      serviceType: 'VRACKSERVICES',
+      routing: {
+        application: 'dedicated',
+        hash: '#/vrack-services',
+      },
+      features: ['vrack-services'],
+    },
+    {
       id: 'ovhcloud-connect',
       translation: 'sidebar_cloud_connect',
       serviceType: 'OVHCLOUDCONNECT',
