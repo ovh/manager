@@ -1,0 +1,5 @@
+{
+  "iam_resource_select_resource_types_error_required": "Wybierz jeden lub kilka rodzajów usług.",
+  "iam_resource_select_resource_types_error_resources": "Brak dostępnych zasobów dla tego lub tych typów usługów.",
+  "iam_resource_select_resources_error_required": "Wybierz jeden lub kilka zasobów"
+}
