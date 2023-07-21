@@ -9,6 +9,11 @@ export const HOSTNAME_REGIONS: Record<string, Region> = {
   'us.ovhcloud.com': Region.US,
 };
 
+export const RESTRICTED_DEFAULTS: Record<string, string> = {
+  region: 'EU',
+  publicURL: '/manager/restricted/',
+};
+
 export { Environment, User };
 export * from './locale';
 
@@ -61,8 +66,12 @@ export const fetchConfiguration = async (
         });
       }
       if (err?.status === 403) {
-        const region = err?.data?.region || 'EU';
-        window.top.location.href = `/restricted?region=${region}`;
+        const region = err?.data?.region || RESTRICTED_DEFAULTS.region;
+        const publicURL =
+          err?.data?.applications?.restricted?.publicURL ||
+          RESTRICTED_DEFAULTS.publicURL;
+
+        window.top.location.href = `${publicURL}?region=${region}`;
       }
       environment.setRegion(HOSTNAME_REGIONS[window.location.hostname]);
       return environment;
