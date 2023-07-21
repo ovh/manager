@@ -153,8 +153,6 @@ const TAG = {
   ADD_POLICY: 'dedicated::account::iam::add-policy',
   ADD_POLICY__CANCEL: 'dedicated::account::iam::add-policy::cancel',
   ADD_POLICY__CONFIRM: 'dedicated::account::iam::add-policy::confirm',
-  ADD_POLICY__GUIDE: (guideKey) =>
-    `dedicated::account::iam::add-policy::guide-${guideKey}`,
   ADD_POLICY__REMOVE_PRODUCT_TYPE:
     'dedicated::account::iam::add-policy::remove-product-type',
 
@@ -164,8 +162,6 @@ const TAG = {
     'dedicated::account::iam::add-group-ressources::cancel',
   ADD_RESOURCE_GROUP__CONFIRM:
     'dedicated::account::iam::add-group-ressources::confirm',
-  ADD_RESOURCE_GROUP__GUIDE: (guideKey) =>
-    `dedicated::account::iam::add-group-ressources::guide-${guideKey}`,
   ADD_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE:
     'dedicated::account::iam::add-group-ressources::remove-product-type',
 
@@ -184,8 +180,6 @@ const TAG = {
   EDIT_POLICY: 'dedicated::account::iam::edit-policy',
   EDIT_POLICY__CANCEL: 'dedicated::account::iam::edit-policy::cancel',
   EDIT_POLICY__CONFIRM: 'dedicated::account::iam::edit-policy::confirm',
-  EDIT_POLICY__GUIDE: (guideKey) =>
-    `dedicated::account::iam::edit-policy::guide-${guideKey}`,
   EDIT_POLICY__REMOVE_PRODUCT_TYPE:
     'dedicated::account::iam::edit-policy::remove-product-type',
 
@@ -195,17 +189,13 @@ const TAG = {
     'dedicated::account::iam::edit-group-ressources::cancel',
   EDIT_RESOURCE_GROUP__CONFIRM:
     'dedicated::account::iam::edit-group-ressources::confirm',
-  EDIT_RESOURCE_GROUP__GUIDE: (guideKey) =>
-    `dedicated::account::iam::edit-group-ressources::guide-${guideKey}`,
   EDIT_RESOURCE_GROUP__REMOVE_PRODUCT_TYPE:
     'dedicated::account::iam::edit-group-ressources::remove-product-type',
 
   // Identities
   IDENTITIES: 'dedicated::account::iam::manage-identities',
+  IDENTITIES__ADD: 'dedicated::account::iam::manage-identities::add',
   IDENTITIES__CANCEL: 'dedicated::account::iam::manage-identities::cancel',
-  IDENTITIES__CONFIRM: 'dedicated::account::iam::manage-identities::confirm',
-  IDENTITIES__GUIDE: (guideKey) =>
-    `dedicated::account::iam::manage-identities::guide-${guideKey}`,
   IDENTITIES__REMOVE_USER_CANCEL:
     'dedicated::account::iam::manage-identities::remove-user-cancel',
   IDENTITIES__REMOVE_USER_CONFIRM:
@@ -217,16 +207,12 @@ const TAG = {
   ONBOARDING: 'dedicated::account::iam::onboarding',
   ONBOARDING__ADD_POLICY: 'dedicated::account::iam::onboarding::add-policy',
   ONBOARDING__ADD_USER: 'dedicated::account::iam::onboarding::add-user',
-  ONBOARDING__DOCUMENTATION: (guideKey) =>
-    `dedicated::account::iam::onboarding::documentation::${guideKey}`,
 
   // List of policies
   POLICIES: 'dedicated::account::iam::policies',
   POLICIES__ADD: 'dedicated::account::iam::policies::add',
   POLICIES__DELETE: 'dedicated::account::iam::policies::delete',
   POLICIES__EDIT: 'dedicated::account::iam::policies::edit',
-  POLICIES__GUIDE: (guideKey) =>
-    `dedicated::account::iam::policies::guide-${guideKey}`,
   POLICIES__MANAGE_IDENTITIES:
     'dedicated::account::iam::policies::manage-identities',
 
@@ -253,8 +239,6 @@ const TAG = {
   RESOURCE_GROUPS__ADD: 'dedicated::account::iam::group-ressources::add',
   RESOURCE_GROUPS__DELETE: 'dedicated::account::iam::group-ressources::delete',
   RESOURCE_GROUPS__EDIT: 'dedicated::account::iam::group-ressources::edit',
-  RESOURCE_GROUPS__GUIDE: (guideKey) =>
-    `dedicated::account::iam::group-ressources::guide-${guideKey}`,
 
   // List of resource groups - banners
   RESOURCE_GROUPS__ADD_GROUP_CONFIRM_BANNER__ERROR:
@@ -277,6 +261,7 @@ const TAG = {
   DISABLE_ALLOW_ALL_ACTIONS: 'disable-allow-all-actions',
   ENABLE_ADVANCED_MODE: 'dedicated::account::iam::enable-advanced-mode',
   ENABLE_ALLOW_ALL_ACTIONS: 'enable-allow-all-actions',
+  GUIDE: (guideKey) => `dedicated::account::iam::guide-${guideKey}`,
   REMOVE_PRODUCT_TYPE_CANCEL: 'remove-product-type-cancel',
   REMOVE_PRODUCT_TYPE_CONFIRM: 'remove-product-type-confirm',
 };

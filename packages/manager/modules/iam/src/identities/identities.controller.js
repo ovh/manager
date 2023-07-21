@@ -88,7 +88,7 @@ export default class IdentitiesController {
   }
 
   editIdentitites() {
-    this.trackClick(TAG.IDENTITIES__CONFIRM);
+    this.trackClick(TAG.IDENTITIES__ADD);
     return this.IAMService.setPolicyIdentities(this.policy.id, [
       ...this.policy.identities,
       this.newUserIdentityUrn,
@@ -101,6 +101,7 @@ export default class IdentitiesController {
             'iam_identities_add_identity_success',
           ),
           reload: true,
+          tag: TAG.POLICIES__IDENTITIES_CONFIRM_BANNER__SUCCESS,
         });
       })
       .catch((e) => {
@@ -111,6 +112,7 @@ export default class IdentitiesController {
             message: e?.data?.message,
           }),
           reload: true,
+          tag: TAG.POLICIES__IDENTITIES_CONFIRM_BANNER__ERROR,
         });
       });
   }
@@ -120,6 +122,6 @@ export default class IdentitiesController {
    * @param {string} guideKey
    */
   onGuideClick(guideKey) {
-    this.trackClick(TAG.IDENTITIES__GUIDE(guideKey));
+    this.trackClick(TAG.GUIDE(guideKey));
   }
 }
