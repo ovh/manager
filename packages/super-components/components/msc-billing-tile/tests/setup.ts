@@ -23,11 +23,7 @@ export const setupSpecTest = async ({
       stringAttributes,
     )}>${html}</msc-billing-tile>`,
   });
-  const innerLink = page.root?.shadowRoot?.querySelector('osds-link');
-  const wrapperLink = page.root?.shadowRoot?.querySelector(
-    'a.msc-billing-tile-wrapper',
-  );
-  return { page, innerLink, wrapperLink };
+  return { page };
 };
 
 export const setupE2eTest = async ({
@@ -51,7 +47,6 @@ export const setupE2eTest = async ({
   await page.evaluate(() => document.body.style.setProperty('margin', '0px'));
 
   const el = await page.find('msc-billing-tile');
-  const linkElement = await page.find('msc-billing-tile >>> a');
 
-  return { page, el, linkElement };
+  return { page, el };
 };

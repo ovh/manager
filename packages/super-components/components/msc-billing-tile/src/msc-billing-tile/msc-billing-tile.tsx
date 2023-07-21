@@ -81,9 +81,11 @@ export class MscBillingTile implements IMscBillingTile {
 
   @State() commitmentStatus: string;
 
+  @State() requestDate: string;
+
   @State() showTooltip = false; // will be removed with ODS-MENU
 
-  @Listen('click', { target: 'document' }) // will be removed with ODS-MENU
+  @Listen('click') // will be removed with ODS-MENU
   handleDocumentClick(event: Event) {
     const tooltipEl = this.host.shadowRoot?.querySelector('.menu-button');
     if (tooltipEl && !tooltipEl.contains(event.target as Node)) {
@@ -106,7 +108,7 @@ export class MscBillingTile implements IMscBillingTile {
       this.i18nInstance.use(Backend).init(
         {
           lng: ovhLocaleToI18next(this.language),
-          fallbackLng: 'fr-FR',
+          fallbackLng: this.language,
           debug: true,
           backend: {
             loadPath: (lngs: string) => {
@@ -129,9 +131,12 @@ export class MscBillingTile implements IMscBillingTile {
     });
   }
 
-  getTranslation(key: string): string {
+  getTranslation(key: string, options?: Record<string, any>): string {
     if (!this.i18nLoaded) return key;
-    const translation = this.i18nInstance.t(key, { lng: this.language });
+    const translation = this.i18nInstance.t(key, {
+      ...options,
+      lng: this.language,
+    });
     if (!translation) return key;
     return translation;
   }
@@ -145,7 +150,7 @@ export class MscBillingTile implements IMscBillingTile {
         this.contactBilling = data.contactBilling;
         this.contactTech = data.contactTech;
         this.serviceId = data.serviceId;
-        this.creationDate = new Intl.DateTimeFormat('fr-FR', {
+        this.creationDate = new Intl.DateTimeFormat(this.language, {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
@@ -169,8 +174,8 @@ export class MscBillingTile implements IMscBillingTile {
             this.renewStatus = 'manualPayment';
         }
         if (data.status === 'expired') {
-          // Red chip 'Cancelled'
-          this.renewStatus = 'cancelled';
+          // Red chip 'expired'
+          this.renewStatus = 'expired';
         }
         this.fetchServiceDetails(this.serviceId);
       })
@@ -189,7 +194,10 @@ export class MscBillingTile implements IMscBillingTile {
           month: 'long',
           day: 'numeric',
         }).format(new Date(data.billing?.nextBillingDate));
-        if (data.billing.engagement === null) {
+        if (
+          data.billing.engagement === null &&
+          !data.billing.engagementRequest
+        ) {
           // should be null if no commitment
           // Red chip 'None', no link or link 'Commit'
           this.commitmentStatus = 'none';
@@ -202,6 +210,7 @@ export class MscBillingTile implements IMscBillingTile {
         } else if (data.billing.engagementRequest) {
           // No chip 'Your service commitment will begin from DATE'
           this.commitmentStatus = 'requested';
+          this.requestDate = data.billing.engagementRequest.requestDate;
         } else if (data.billing.expirationDate) {
           // No chip 'Ends DATE'
           this.commitmentStatus = 'ends';
@@ -234,7 +243,7 @@ export class MscBillingTile implements IMscBillingTile {
             return OdsThemeColorIntent.success;
           case 'manualPayment':
             return OdsThemeColorIntent.warning;
-          case 'cancelled':
+          case 'expired':
             return OdsThemeColorIntent.error;
           default:
             return OdsThemeColorIntent.default;
@@ -255,9 +264,9 @@ export class MscBillingTile implements IMscBillingTile {
             return this.getTranslation(
               'manager_billing_service_status_manualPayment',
             );
-          case 'cancelled':
+          case 'expired':
             return this.getTranslation(
-              'manager_billing_service_status_cancelled',
+              'manager_billing_service_status_expired',
             );
           default:
             return this.getTranslation(
@@ -393,7 +402,8 @@ export class MscBillingTile implements IMscBillingTile {
               color={OdsThemeColorIntent.default}
             >
               {this.getTranslation(
-                'manager_billing_subscription_engagement_commit_again_with_discount',
+                'manager_billing_subscription_engagement_status_engaged_expired',
+                { endDate: this.nextBillingDate },
               )}
             </osds-text>
           );
@@ -420,6 +430,7 @@ export class MscBillingTile implements IMscBillingTile {
             >
               {this.getTranslation(
                 'manager_billing_subscription_engagement_status_commitement_pending',
+                { nextBillingDate: this.requestDate },
               )}
             </osds-text>
           );
@@ -443,7 +454,9 @@ export class MscBillingTile implements IMscBillingTile {
               size={OdsChipSize.sm}
               variant={OdsChipVariant.flat}
             >
-              None
+              {this.getTranslation(
+                'manager_billing_subscription_engagement_status_none',
+              )}
             </osds-chip>
           );
       }
@@ -587,7 +600,7 @@ export class MscBillingTile implements IMscBillingTile {
           <osds-link
             data-tracking={this.dataTracking}
             color={OdsThemeColorIntent.primary}
-            href={'#'}
+            href={`https://www.ovh.com/manager/#/dedicated/contacts/services?serviceName=${this.getServiceName()}`}
             target={OdsHTMLAnchorElementTarget._blank}
           >
             {this.getTranslation(

@@ -71,6 +71,29 @@ mock.onGet(`domain/agora3.ovh/serviceInfos`).reply(200, {
   engagedUpTo: null,
 });
 
+/* example of expired service */
+mock.onGet(`vps/vps-37eb1a5a.vps.ovh.net/serviceInfos`).reply(200, {
+  expiration: '2021-04-06',
+  domain: 'vps-37eb1a5a.vps.ovh.net',
+  status: 'expired',
+  serviceId: 30500113,
+  creation: '2020-04-06',
+  canDeleteAtExpiration: true,
+  contactTech: 'ls148374-ovh',
+  engagedUpTo: null,
+  renew: {
+    automatic: false,
+    period: 12,
+    deleteAtExpiration: true,
+    manualPayment: true,
+    forced: false,
+  },
+  renewalType: 'automaticV2016',
+  contactAdmin: 'ls148374-ovh',
+  possibleRenewPeriod: [1, 3, 6, 12],
+  contactBilling: 'ls148374-ovh',
+});
+
 /* ------- service ------- */
 
 // VPS
@@ -338,6 +361,113 @@ mock.onGet(`services/29162449`).reply(200, {
     resellingProvider: null,
   },
   serviceId: 29162449,
+  parentServiceId: null,
+  customer: {
+    contacts: [
+      {
+        customerCode: 'ls148374-ovh',
+        type: 'administrator',
+      },
+      {
+        customerCode: 'ls148374-ovh',
+        type: 'technical',
+      },
+      {
+        customerCode: 'ls148374-ovh',
+        type: 'billing',
+      },
+    ],
+  },
+  tags: [],
+});
+
+// VPS Expired
+mock.onGet(`services/30500113`).reply(200, {
+  route: {
+    path: '/vps/{serviceName}',
+    url: '/vps/vps-37eb1a5a.vps.ovh.net',
+    vars: [
+      {
+        key: 'serviceName',
+        value: 'vps-37eb1a5a.vps.ovh.net',
+      },
+    ],
+  },
+  billing: {
+    nextBillingDate: '2021-04-06T09:05:28+02:00',
+    expirationDate: '2021-04-06T09:05:28+02:00',
+    plan: {
+      code: 'vps-comfort-4-8-80',
+      invoiceName: 'VPS Comfort 4-8-80',
+    },
+    pricing: {
+      capacities: ['renew'],
+      description: '12 months fees',
+      interval: 12,
+      duration: 'P12M',
+      minimumQuantity: 1,
+      maximumQuantity: 100,
+      minimumRepeat: 1,
+      maximumRepeat: null,
+      price: {
+        currencyCode: 'EUR',
+        text: '157.32 €',
+        value: 157.32,
+      },
+      priceInUcents: 15732000000,
+      pricingMode: 'upfront12',
+      pricingType: 'rental',
+      engagementConfiguration: {
+        duration: 'P12M',
+        type: 'upfront',
+        defaultEndAction: 'REACTIVATE_ENGAGEMENT',
+      },
+    },
+    group: null,
+    lifecycle: {
+      current: {
+        pendingActions: [],
+        terminationDate: '2021-04-06T09:05:28+02:00',
+        creationDate: '2020-04-06T09:05:28+02:00',
+        state: 'unrenewed',
+      },
+      capacities: {
+        actions: ['earlyRenewal'],
+      },
+    },
+    renew: {
+      current: {
+        mode: 'manual',
+        nextDate: null,
+        period: null,
+      },
+      capacities: {
+        mode: ['automatic', 'manual'],
+      },
+    },
+    engagement: {
+      endDate: '2021-04-06',
+      endRule: {
+        possibleStrategies: [
+          'CANCEL_SERVICE',
+          'STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE',
+        ],
+        strategy: 'REACTIVATE_ENGAGEMENT',
+      },
+    },
+    engagementRequest: null,
+  },
+  resource: {
+    displayName: 'Essential-12-upfront-vps-37eb1a5a.vps.ovh.net',
+    name: 'vps-37eb1a5a.vps.ovh.net',
+    state: 'active',
+    product: {
+      name: 'vps-comfort-4-8-80',
+      description: 'VPS Comfort 4 vCPU 8 GB RAM 80 GB disk',
+    },
+    resellingProvider: null,
+  },
+  serviceId: 30500113,
   parentServiceId: null,
   customer: {
     contacts: [
