@@ -39,7 +39,6 @@
             data-filterable
             data-sortable
         >
-            <span data-ng-bind="$value"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_ai_dashboard_private_docker_registries_url' | translate"
@@ -49,7 +48,6 @@
             data-filterable
             data-sortable
         >
-            <span data-ng-bind="$value"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_ai_dashboard_private_docker_registries_username' | translate"
@@ -59,7 +57,6 @@
             data-filterable
             data-sortable
         >
-            <span data-ng-bind="$value"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_ai_dashboard_private_docker_registries_creator' | translate"
@@ -69,7 +66,6 @@
             data-filterable
             data-sortable
         >
-            <span data-ng-bind="$value"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_ai_dashboard_private_docker_registries_created' | translate"
@@ -180,17 +176,21 @@
             </div>
         </div>
         <p class="mb-0">
-            {{:: 'pci_ai_dashboard_shared_registry_section_1_message_2' |
-            translate }}
+            <span
+                data-translate="pci_ai_dashboard_shared_registry_section_1_message_2"
+            ></span>
             <a
                 data-ng-href="{{:: $ctrl.userLink }}"
                 target="_top"
                 class="align-baseline"
-                >{{:: 'pci_ai_dashboard_shared_registry_section_1_message_3' |
-                translate }}</a
             >
-            {{:: 'pci_ai_dashboard_shared_registry_section_1_message_4' |
-            translate }}
+                <span
+                    data-translate="pci_ai_dashboard_shared_registry_section_1_message_3"
+                ></span>
+            </a>
+            <span
+                data-translate="pci_ai_dashboard_shared_registry_section_1_message_4"
+            ></span>
         </p>
         <p
             data-translate="pci_ai_dashboard_shared_registry_section_1_message_5"

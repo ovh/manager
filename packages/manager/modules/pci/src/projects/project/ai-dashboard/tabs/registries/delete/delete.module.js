@@ -8,12 +8,7 @@ import component from './delete.component';
 const moduleName = 'ovhManagerPciAiDashboardRegistriesDelete';
 
 angular
-  .module(moduleName, [
-    ngTranslateAsyncLoader,
-    'oui',
-    'ovh-api-services',
-    uiRouter,
-  ])
+  .module(moduleName, [ngTranslateAsyncLoader, 'oui', uiRouter])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
   .component('pciProjectAiDashboardRegistriesDeleteModal', component);

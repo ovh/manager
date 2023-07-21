@@ -156,19 +156,13 @@ export default class AiDashboardService {
 
   getRegistry(projectId, registryId) {
     return this.$http
-      .get(
-        `/cloud/project/${projectId}/ai/registry/${registryId}`,
-        AiDashboardService.getIcebergHeaders(),
-      )
+      .get(`/cloud/project/${projectId}/ai/registry/${registryId}`)
       .then(({ data }) => data);
   }
 
   getAllRegistry(projectId) {
     return this.$http
-      .get(
-        `/cloud/project/${projectId}/ai/registry`,
-        AiDashboardService.getIcebergHeaders(),
-      )
+      .get(`/cloud/project/${projectId}/ai/registry`)
       .then(({ data }) => data);
   }
 

@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-
 export default class AiDashboardRegistriesDeleteCtrl {
   /* @ngInject */
   constructor($translate, atInternet, AiDashboardService) {
@@ -34,12 +32,9 @@ export default class AiDashboardRegistriesDeleteCtrl {
       )
       .catch((error) =>
         this.goBack(
-          this.$translate.instant(
+          `${this.$translate.instant(
             'pci_projects_project_ai_dashboard_registries_delete_error',
-            {
-              message: get(error, 'data.message'),
-            },
-          ),
+          )}: ${error.data.message || error}`,
           'error',
         ),
       );
