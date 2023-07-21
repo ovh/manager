@@ -50,6 +50,9 @@ export default function ServerSidebarIndex() {
     }
   }, [universe, location]);
 
+  if (universe === 'hub') {
+    return <></>
+  }
   if (isAccountMenu) {
     return (
       <div
