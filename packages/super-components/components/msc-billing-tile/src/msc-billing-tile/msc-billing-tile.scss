@@ -10,6 +10,14 @@
     .menu-button {
       margin-left: 340px;
       position: absolute;
+
+      .tooltip {
+        background-color: white;
+      }
+
+      .tooltiplinks {
+        display: inline-grid;
+      }
     }
 
     .link-icon {

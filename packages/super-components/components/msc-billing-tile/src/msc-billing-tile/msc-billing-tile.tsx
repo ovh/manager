@@ -6,6 +6,7 @@ import {
   Host,
   State,
   Fragment,
+  Listen,
 } from '@stencil/core';
 import {
   OdsThemeColorIntent,
@@ -79,6 +80,22 @@ export class MscBillingTile implements IMscBillingTile {
   @State() renewStatus: string;
 
   @State() commitmentStatus: string;
+
+  @State() showTooltip = false; // will be removed with ODS-MENU
+
+  @Listen('click', { target: 'document' }) // will be removed with ODS-MENU
+  handleDocumentClick(event: Event) {
+    const tooltipEl = this.host.shadowRoot?.querySelector('.menu-button');
+    if (tooltipEl && !tooltipEl.contains(event.target as Node)) {
+      this.showTooltip = !this.showTooltip;
+    }
+  }
+
+  handleTooltipToggle(event: Event) {
+    // will be removed with ODS-MENU
+    event.stopPropagation();
+    this.showTooltip = !this.showTooltip;
+  }
 
   private i18nInstance: i18n;
 
@@ -195,25 +212,19 @@ export class MscBillingTile implements IMscBillingTile {
       });
   }
 
-  render() {
-    const ButtonTooltip = (
-      <div class="menu-button">
-        <osds-button
-          type={OdsButtonType.button}
-          variant={OdsButtonVariant.stroked}
-          color={OdsThemeColorIntent.primary}
-          circle
-        >
-          <osds-icon
-            name="ellipsis-vertical"
-            size="xs"
-            color={OdsThemeColorIntent.primary}
-          />
-        </osds-button>
-      </div>
-    );
+  getServiceName() {
+    const parts = this.servicePath.split('/');
+    return parts[parts.length - 1]; // get the last part
+  }
 
-    const ChipRenewal = () => {
+  getServiceType() {
+    const parts = this.servicePath.split('/');
+    parts.pop(); // Remove the service name
+    return parts.join('_').toUpperCase(); // Join remaining parts with '_', and convert to upper case
+  }
+
+  render() {
+    const RenewalContent = () => {
       const status = this.renewStatus;
       const getColor = () => {
         switch (status) {
@@ -255,27 +266,187 @@ export class MscBillingTile implements IMscBillingTile {
         }
       };
 
+      const getMenuLink = () => {
+        switch (status) {
+          case 'deleteAtExpiration':
+            return (
+              <osds-link color={OdsThemeColorIntent.primary}>
+                {this.getTranslation(
+                  'billing_services_actions_menu_manage_renew',
+                )}
+              </osds-link>
+            );
+          case 'manualPayment':
+            return (
+              <div class="tooltiplinks">
+                <osds-link
+                  href={`https://www.ovh.com/manager/#/dedicated/billing/autorenew/delete?serviceId=${this.getServiceName()}&serviceType=${this.getServiceType()}`}
+                  color={OdsThemeColorIntent.primary}
+                >
+                  {this.getTranslation(
+                    'billing_services_actions_menu_manage_renew',
+                  )}
+                </osds-link>
+                <osds-link
+                  href={`https://www.ovh.com/manager/#/dedicated/server/${this.getServiceName()}/commitment`}
+                  color={OdsThemeColorIntent.primary}
+                >
+                  {this.getTranslation(
+                    'billing_services_actions_menu_anticipate_renew',
+                  )}
+                </osds-link>
+                <osds-link
+                  href={`https://www.ovh.com/manager/#/dedicated/billing/autorenew/delete?serviceId=${this.getServiceName()}&serviceType=${this.getServiceType()}`}
+                  color={OdsThemeColorIntent.primary}
+                >
+                  {this.getTranslation(
+                    'billing_services_actions_menu_resiliate',
+                  )}
+                </osds-link>
+              </div>
+            );
+          default:
+            // automatic and others
+            return (
+              <div class="tooltiplinks">
+                <osds-link
+                  href={`https://www.ovh.com/manager/#/dedicated/billing/autorenew/delete?serviceId=${this.getServiceName()}&serviceType=${this.getServiceType()}`}
+                  color={OdsThemeColorIntent.primary}
+                >
+                  {this.getTranslation(
+                    'billing_services_actions_menu_manage_renew',
+                  )}
+                </osds-link>
+                <osds-link
+                  href={`https://www.ovh.com/manager/#/dedicated/server/${this.getServiceName()}/commitment`}
+                  color={OdsThemeColorIntent.primary}
+                >
+                  {this.getTranslation(
+                    'billing_services_actions_menu_anticipate_renew',
+                  )}
+                </osds-link>
+                <osds-link
+                  href={`https://www.ovh.com/manager/#/dedicated/billing/autorenew/delete?serviceId=${this.getServiceName()}&serviceType=${this.getServiceType()}`}
+                  color={OdsThemeColorIntent.primary}
+                >
+                  {this.getTranslation(
+                    'billing_services_actions_menu_resiliate',
+                  )}
+                </osds-link>
+              </div>
+            );
+        }
+      };
+
       return (
-        <osds-chip
-          color={getColor()}
-          size={OdsChipSize.sm}
-          variant={OdsChipVariant.flat}
-        >
-          {getText()}
-        </osds-chip>
+        <>
+          <div>
+            <div class="menu-button">
+              <osds-button
+                type={OdsButtonType.button}
+                variant={OdsButtonVariant.stroked}
+                color={OdsThemeColorIntent.primary}
+                circle
+              >
+                <osds-icon
+                  name="ellipsis-vertical"
+                  size="xs"
+                  color={OdsThemeColorIntent.primary}
+                />
+              </osds-button>
+              {this.showTooltip && (
+                <div class="tooltip">
+                  <div class="tooltiptext">{getMenuLink()}</div>
+                  <slot />
+                </div>
+              )}
+            </div>
+          </div>
+          <osds-text
+            class="tile-description"
+            level={OdsThemeTypographyLevel.body}
+            size={OdsThemeTypographySize._200}
+            color={OdsThemeColorIntent.default}
+          >
+            <div>{this.nextBillingDate}</div>
+            <osds-chip
+              color={getColor()}
+              size={OdsChipSize.sm}
+              variant={OdsChipVariant.flat}
+            >
+              {getText()}
+            </osds-chip>
+          </osds-text>
+        </>
       );
     };
 
     const ChipCommitment = () => {
-      return (
-        <osds-chip
-          color={OdsThemeColorIntent.error}
-          size={OdsChipSize.sm}
-          variant={OdsChipVariant.flat}
-        >
-          None
-        </osds-chip>
-      );
+      const status = this.commitmentStatus;
+      switch (status) {
+        case 'ended':
+          return (
+            <osds-text
+              class="tile-description"
+              level={OdsThemeTypographyLevel.body}
+              size={OdsThemeTypographySize._200}
+              color={OdsThemeColorIntent.default}
+            >
+              {this.getTranslation(
+                'manager_billing_subscription_engagement_commit_again_with_discount',
+              )}
+            </osds-text>
+          );
+        case 'renews':
+          return (
+            <osds-text
+              class="tile-description"
+              level={OdsThemeTypographyLevel.body}
+              size={OdsThemeTypographySize._200}
+              color={OdsThemeColorIntent.default}
+            >
+              {this.getTranslation(
+                'manager_billing_subscription_engagement_status_engaged_renew',
+              )}
+            </osds-text>
+          );
+        case 'requested':
+          return (
+            <osds-text
+              class="tile-description"
+              level={OdsThemeTypographyLevel.body}
+              size={OdsThemeTypographySize._200}
+              color={OdsThemeColorIntent.default}
+            >
+              {this.getTranslation(
+                'manager_billing_subscription_engagement_status_commitement_pending',
+              )}
+            </osds-text>
+          );
+        case 'ends':
+          return (
+            <osds-text
+              class="tile-description"
+              level={OdsThemeTypographyLevel.body}
+              size={OdsThemeTypographySize._200}
+              color={OdsThemeColorIntent.default}
+            >
+              {this.getTranslation(
+                'manager_billing_subscription_engagement_status_engaged',
+              )}
+            </osds-text>
+          );
+        default:
+          return (
+            <osds-chip
+              color={OdsThemeColorIntent.error}
+              size={OdsChipSize.sm}
+              variant={OdsChipVariant.flat}
+            >
+              None
+            </osds-chip>
+          );
+      }
     };
 
     const content = (
@@ -343,16 +514,7 @@ export class MscBillingTile implements IMscBillingTile {
           >
             {this.getTranslation('manager_billing_subscription_next_due_date')}
           </osds-text>
-          <div>{ButtonTooltip}</div>
-          <osds-text
-            class="tile-description"
-            level={OdsThemeTypographyLevel.body}
-            size={OdsThemeTypographySize._200}
-            color={OdsThemeColorIntent.default}
-          >
-            <div>{this.nextBillingDate}</div>
-            {ChipRenewal()}
-          </osds-text>
+          {RenewalContent()}
           {/* COMMITMENT */}
           <osds-divider separator={true} />
           <osds-text
