@@ -7,7 +7,6 @@ import 'angular-translate';
 import '@ovh-ux/ng-at-internet';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
-
 import { isString, get, has } from 'lodash-es';
 
 import '@ovh-ux/ui-kit';
@@ -29,6 +28,8 @@ import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import './index.less';
 import './index.scss';
+
+console.log('a');
 
 const getEnvironment = (shellClient) => {
   return shellClient.environment.getEnvironment();
