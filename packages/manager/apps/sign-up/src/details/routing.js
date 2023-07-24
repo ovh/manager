@@ -9,6 +9,12 @@ export const state = {
   resolve: {
     onFieldError: /* @ngInject */ (trackError) => (field) =>
       trackError('step2', field),
+    trackField: /* @ngInject */ (atInternet) => (field, value) => {
+      atInternet.trackClick({
+        type: 'action',
+        name: `accountcreation::${field}::${value}`,
+      });
+    },
   },
   atInternet: {
     rename: 'accountcreation-step2',
