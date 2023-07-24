@@ -1,11 +1,13 @@
 import isFunction from 'lodash/isFunction';
+import { KVM_ORDER_TRACKING_PREFIX } from '../constants';
 
 export default class BmServerComponentsOrderKvmController {
   /* @ngInject */
-  constructor($translate, $window, IpmiService) {
+  constructor($translate, $window, IpmiService, atInternet) {
     this.$translate = $translate;
     this.$window = $window;
     this.IpmiService = IpmiService;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -40,6 +42,12 @@ export default class BmServerComponentsOrderKvmController {
       });
   }
 
+  trackBanner(bannerType) {
+    this.atInternet.trackPage({
+      name: `${KVM_ORDER_TRACKING_PREFIX}-${bannerType}`,
+    });
+  }
+
   displayKvmOrderError(error) {
     this.contractAgreement = false;
     return this.handleError(
@@ -50,6 +58,10 @@ export default class BmServerComponentsOrderKvmController {
 
   orderKvm() {
     this.pendingOrder = true;
+    this.atInternet.trackClick({
+      name: `${KVM_ORDER_TRACKING_PREFIX}-confirm`,
+      type: 'action',
+    });
     this.IpmiService.orderKvm(this.cartId)
       .then(({ url, orderId }) => {
         this.handleSuccess(
@@ -79,6 +91,7 @@ export default class BmServerComponentsOrderKvmController {
   }
 
   handleError(error, message = null) {
+    this.trackBanner('error');
     if (isFunction(this.onError)) {
       this.onError({
         error: { message, data: error },
@@ -87,6 +100,7 @@ export default class BmServerComponentsOrderKvmController {
   }
 
   handleSuccess(message) {
+    this.trackBanner('success');
     if (isFunction(this.onSuccess)) {
       this.onSuccess({
         message,
