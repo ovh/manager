@@ -775,6 +775,7 @@ export default class BmServerComponentsIpmiController {
 
   orderKvm() {
     if (isFunction(this.onKvmOrder)) {
+      this.trackClick('order-kvm');
       this.onKvmOrder();
     }
   }

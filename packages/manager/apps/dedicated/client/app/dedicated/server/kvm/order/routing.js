@@ -15,5 +15,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('server_configuration_impi_order_kvm'),
     },
+    atInternet: {
+      rename: 'dedicated::dedicated-server::server::ipmi::order-kvm',
+    },
   });
 };
