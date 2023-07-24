@@ -10,7 +10,7 @@
   "user_account_menu_support_level_premium-accredited_trusted": "Vertrauenswürdige Zone Premium Advanced",
   "user_account_menu_support_level_business_trusted": "Vertrauenswürdige Zone Business",
   "user_account_menu_support_level_enterprise_trusted": "Vertrauenswürdige Zone Enterprise",
-  "user_account_menu_role_user": "Als Subuser angemeldet",
+  "user_account_menu_role_user": "Mit einem Benutzer-Account angemeldet",
   "user_account_menu_role_none": "Nur mit Lesefunktion angemeldet",
   "user_account_menu_logout": "Abmelden",
   "user_account_menu_payment_method_title": "Zahlungsmittel",
@@ -42,5 +42,8 @@
   "user_account_menu_profile": "Mein Profil",
   "user_account_menu_beta_feedback": "Geben Sie uns Ihr Feedback!",
   "user_account_menu_beta_feedback_text": "Helfen Sie uns, OVHcloud zu verbessern",
-  "user_account_menu_role_provider": "Über SSO verbunden"
+  "user_account_menu_role_provider": "Über SSO verbunden",
+  "user_account_menu_role_account": "Im Administrator-Account angemeldet",
+  "user_account_menu_notification_email": "Benachrichtigung: {{email}}",
+  "user_account_menu_notification_email_strong": "Benachrichtigung: <strong>{{email}}</strong>"
 }

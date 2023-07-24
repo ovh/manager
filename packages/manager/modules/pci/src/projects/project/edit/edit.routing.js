@@ -68,7 +68,14 @@ export default /* @ngInject */ ($stateProvider) => {
             options.find(({ planCode }) =>
               planCode.match(`^${PCI_HDS_ADDON.planCodeScope}`),
             ),
-          ),
+          )
+          .catch((error) => {
+            if (error.status === 403) {
+              // undefined is used as a value for other business rules
+              return undefined;
+            }
+            throw error;
+          }),
 
       isCertifiedHdsProject: /* @ngInject */ (
         $http,

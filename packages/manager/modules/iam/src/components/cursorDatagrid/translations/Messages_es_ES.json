@@ -1,0 +1,4 @@
+{
+  "iam_cursor_datagrid_error_cursor": "La página no existe",
+  "iam_cursor_datagrid_error_data": "Se ha producido un error al cargar los datos: {{ error }}"
+}

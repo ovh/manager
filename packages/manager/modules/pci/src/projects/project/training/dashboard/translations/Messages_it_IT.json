@@ -21,5 +21,6 @@
   "pci_projects_project_training_dashboard_users_list_description": "Descrizione",
   "pci_projects_project_training_dashboard_users_list_none": "Non hai creato utenti con i ruoli \"AI Training Operator\" e \"ObjectStore Operator\"",
   "pci_projects_project_training_dashboard_jobs_list_see_jobs": "Visualizza tutti i job",
-  "pci_projects_project_training_jobs_resubmit": "Riavvia"
+  "pci_projects_project_training_jobs_resubmit": "Riavvia",
+  "pci_projects_project_training_dashboard_error_forbidden": "Non disponi di diritti sufficienti per visualizzare i dati di fatturazione. Contatta il proprietario del servizio"
 }

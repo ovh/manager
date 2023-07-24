@@ -4,7 +4,7 @@ import publicCloud from './services/publicCloud';
 import webCloud from './services/webCloud';
 import network from './services/network';
 import telecom from './services/telecom';
-import { Node } from './node';
+import { Node, NodeTag } from './node';
 
 const root: Node = {
   id: 'home',
@@ -54,6 +54,17 @@ const root: Node = {
           },
           count: false,
           features: ['contact:management'],
+        },
+        {
+          id: 'account_iam',
+          translation: 'sidebar_account_iam',
+          routing: {
+            application: 'iam',
+            hash: '#/',
+          },
+          tag: NodeTag.NEW,
+          count: false,
+          features: ['iam'],
         },
         {
           id: 'billing_services',

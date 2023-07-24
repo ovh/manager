@@ -1,0 +1,5 @@
+{
+  "iam_resource_select_resource_types_error_required": "Seleccione uno o más tipos de producto.",
+  "iam_resource_select_resource_types_error_resources": "No hay recursos disponibles para estos tipos de productos.",
+  "iam_resource_select_resources_error_required": "Seleccione uno o varios recursos"
+}

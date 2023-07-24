@@ -29,5 +29,7 @@ export default {
     userLink: '<',
     goToJobs: '<',
     regions: '<',
+    service: '<',
+    iamLink: '<',
   },
 };

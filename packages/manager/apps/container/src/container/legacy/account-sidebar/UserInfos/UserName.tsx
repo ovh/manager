@@ -12,10 +12,10 @@ const UserName = ({
   cssBaseClassName = '',
   user = {} as User,
 }: Props): JSX.Element => {
-  const { getUserDisplayName } = useUserInfos(user);
+  const { getUserDisplayName, isSubUser } = useUserInfos(user);
 
   return (
-    <p className={`${cssBaseClassName}_profile_link mb-1`}>
+    <p className={`${cssBaseClassName}_profile_link mb-1 ${isSubUser() && 'text-truncate'}`}>
       {getUserDisplayName()}
     </p>
   );

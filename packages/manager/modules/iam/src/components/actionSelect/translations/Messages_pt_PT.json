@@ -1,0 +1,18 @@
+{
+  "iam_action_select_action_custom_heading": "Ações adicionadas manualmente",
+  "iam_action_select_action_search_label": "Procurar uma ação",
+  "iam_action_select_all_actions_description": "Serão autorizadas todas as ações existentes e futuras em todos os tipos de produtos",
+  "iam_action_select_all_actions_label": "Autorizar todas as ações",
+  "iam_action_select_category_count_selection_many": "({{ selected }} ações selecionadas / {{ total }})",
+  "iam_action_select_category_count_selection_one": "(1 ação selecionada / {{ total }})",
+  "iam_action_select_category_count_no_selection_many": "({{ total }} ações)",
+  "iam_action_select_category_count_no_selection_one": "(1 ação)",
+  "iam_action_select_custom_action_button": "Adicionar",
+  "iam_action_select_custom_action_error_requirements": "Esta ação não existe",
+  "iam_action_select_custom_action_error_selected": "A ação já está selecionada",
+  "iam_action_select_custom_action_label": "Adicionar ações manualmente",
+  "iam_action_select_custom_action_success_created": "A ação {{ action }} foi adicionada a {{ resourceType }}",
+  "iam_action_select_custom_action_success_selected": "A ação {{ action }} foi selecionada em {{ resourceType }}",
+  "iam_action_select_custom_action_success_wildcard": "A opção « Autorizar todas as ações » foi ativada",
+  "iam_action_select_error_required": "Deve selecionar pelo menos uma ação, autorizar todas as ações ou adicionar uma ação manualmente"
+}

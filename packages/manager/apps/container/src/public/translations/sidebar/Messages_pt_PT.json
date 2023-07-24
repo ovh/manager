@@ -156,5 +156,6 @@
   "sidebar_description": "Menu dos meus serviços",
   "sidebar_load_services": "Carregar os serviços",
   "sidebar_access_list": "Aceder à lista",
-  "sidebar_access_dashboard": "Aceder ao painel de controlo"
+  "sidebar_access_dashboard": "Aceder ao painel de controlo",
+  "sidebar_account_iam": "Identidades e acessos (IAM)"
 }

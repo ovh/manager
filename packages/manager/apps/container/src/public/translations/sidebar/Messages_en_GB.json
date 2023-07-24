@@ -156,5 +156,6 @@
   "sidebar_description": "My services menu",
   "sidebar_load_services": "Load services",
   "sidebar_access_list": "Access list",
-  "sidebar_access_dashboard": "Access dashboard"
+  "sidebar_access_dashboard": "Access dashboard",
+  "sidebar_account_iam": "Identity and Access Management (IAM)"
 }

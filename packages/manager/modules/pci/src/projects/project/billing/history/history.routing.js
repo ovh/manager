@@ -103,11 +103,13 @@ export default /* @ngInject */ ($stateProvider) => {
           .startOf('month')
           .toISOString();
         return (
-          history.find(({ endDate }) => endDate === date) || {
+          history.find(({ endDate }) => endDate === date) ||
+          (service && {
             price: {
               text: formatPrice(service.billing?.pricing?.price, 0),
             },
-          }
+          }) ||
+          null
         );
       },
       monthHistory: /* @ngInject */ (

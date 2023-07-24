@@ -24,7 +24,11 @@ export default function AccountSidebar() {
   const region = environment.getRegion();
   const isEnterprise = environment.getUser()?.enterprise;
 
-  const getAccountSidebar = () => {
+  const getAccountSidebar = (availability: Record<string, string> | null) => {
+    if (!availability) {
+      return [];
+    }
+
     const menu = [];
 
     menu.push({
@@ -61,7 +65,7 @@ export default function AccountSidebar() {
         'dedicated',
         `/billing/autorenew${isEnterprise ? '/ssh' : '/'}`,
       ),
-      routeMatcher: new RegExp('^/billing/autorenew'),
+      routeMatcher: new RegExp('^/billing/autorenew', 'i'),
     });
 
     if (!isEnterprise) {
@@ -98,19 +102,18 @@ export default function AccountSidebar() {
       routeMatcher: new RegExp('^/(ticket|support)'),
     });
 
+    if (availability.iam) {
+      menu.push({
+        id: 'iam',
+        label: t('sidebar_account_iam'),
+        badge: 'new',
+        href: navigation.getURL('iam', '/'),
+        pathMatcher: new RegExp('^/iam'),
+      });
+    }
+
     return menu;
   };
-
-  const buildMenu = () =>
-    Promise.resolve({
-      id: 'my-account-sidebar',
-      label: '',
-      subItems: [...getAccountSidebar()],
-    });
-
-  useEffect(() => {
-    buildMenu().then((menu) => setMenu(sanitizeMenu(menu)));
-  }, []);
 
   const getFeatures = (): Promise<Record<string, string>> =>
     reketInstance.get(`/feature/${features.join(',')}/availability`, {
@@ -121,6 +124,17 @@ export default function AccountSidebar() {
     ['sidebar-dedicated-availability'],
     getFeatures,
   );
+
+  const buildMenu = () =>
+    Promise.resolve({
+      id: 'my-account-sidebar',
+      label: '',
+      subItems: [...getAccountSidebar(availability)],
+    });
+
+  useEffect(() => {
+    buildMenu().then((menu) => setMenu(sanitizeMenu(menu)));
+  }, [availability, i18n.language]);
 
   useEffect(() => {
     if (availability) {
