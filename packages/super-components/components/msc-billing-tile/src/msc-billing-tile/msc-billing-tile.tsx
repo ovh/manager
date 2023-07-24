@@ -146,6 +146,7 @@ export class MscBillingTile implements IMscBillingTile {
       .get(`${this.servicePath}/serviceInfos`)
       .then((response) => {
         const { data } = response;
+        console.log(`${this.servicePath}/serviceInfos`, data);
         this.contactAdmin = data.contactAdmin;
         this.contactBilling = data.contactBilling;
         this.contactTech = data.contactTech;
@@ -157,24 +158,27 @@ export class MscBillingTile implements IMscBillingTile {
         }).format(new Date(data.creation));
         // we check if the service status is ok
         if (data.status === 'ok') {
-          if (data.renew.deleteAtExpiration === true)
+          if (data.renew.deleteAtExpiration === true) {
             // Red chip 'Cancellation requested', link in menu 'Stop cancellation of service'
             this.renewStatus = 'deleteAtExpiration';
-          if (
-            data.renew.automatic === true &&
-            data.renew.manualPayment === false
-          )
-            // Green chip 'Automatic renewal', link in menu 'Manage my commitment' and 'Cancel subscription'
-            this.renewStatus = 'automatic';
-          if (
-            data.renew.automatic === false &&
-            data.renew.manualPayment === true
-          )
-            // Yellow chip 'Manual renewal'
-            this.renewStatus = 'manualPayment';
+          } else {
+            // service still active
+            if (
+              data.renew.automatic === true &&
+              data.renew.manualPayment === false
+            )
+              // Green chip 'Automatic renewal', link in menu 'Manage my commitment' and 'Cancel subscription'
+              this.renewStatus = 'automatic';
+            if (
+              data.renew.automatic === false &&
+              data.renew.manualPayment === true
+            )
+              // Yellow chip 'Manual renewal'
+              this.renewStatus = 'manualPayment';
+          }
         }
         if (data.status === 'expired') {
-          // Red chip 'expired'
+          // Red chip 'expired', link in menu 'Renew service'
           this.renewStatus = 'expired';
         }
         this.fetchServiceDetails(this.serviceId);
@@ -189,7 +193,7 @@ export class MscBillingTile implements IMscBillingTile {
       .get(`/services/${serviceId}`)
       .then((response) => {
         const { data } = response;
-        this.nextBillingDate = new Intl.DateTimeFormat('fr-FR', {
+        this.nextBillingDate = new Intl.DateTimeFormat(this.language, {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
@@ -277,11 +281,29 @@ export class MscBillingTile implements IMscBillingTile {
 
       const getMenuLink = () => {
         switch (status) {
+          case 'expired':
+            return (
+              <osds-link
+                color={OdsThemeColorIntent.primary}
+                href={`https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser=${this.getServiceName}`}
+              >
+                {this.getTranslation('billing_services_actions_menu_renew')}
+                <osds-icon
+                  class="link-icon"
+                  size={OdsIconSize.xxs}
+                  name={OdsIconName.EXTERNAL_LINK}
+                  color={OdsThemeColorIntent.primary}
+                />
+              </osds-link>
+            );
           case 'deleteAtExpiration':
             return (
-              <osds-link color={OdsThemeColorIntent.primary}>
+              <osds-link
+                color={OdsThemeColorIntent.primary}
+                href={`https://www.ovh.com/manager/dedicated/#/${this.servicePath}/dashboard/cancel-resiliation`}
+              >
                 {this.getTranslation(
-                  'billing_services_actions_menu_manage_renew',
+                  'billing_services_actions_menu_resiliate_cancel',
                 )}
               </osds-link>
             );
@@ -297,7 +319,7 @@ export class MscBillingTile implements IMscBillingTile {
                   )}
                 </osds-link>
                 <osds-link
-                  href={`https://www.ovh.com/manager/#/dedicated/server/${this.getServiceName()}/commitment`}
+                  href={`https://www.ovh.com/manager/#/dedicated/${this.servicePath}/commitment`}
                   color={OdsThemeColorIntent.primary}
                 >
                   {this.getTranslation(
@@ -327,7 +349,7 @@ export class MscBillingTile implements IMscBillingTile {
                   )}
                 </osds-link>
                 <osds-link
-                  href={`https://www.ovh.com/manager/#/dedicated/server/${this.getServiceName()}/commitment`}
+                  href={`https://www.ovh.com/manager/#/${this.servicePath}/commitment`}
                   color={OdsThemeColorIntent.primary}
                 >
                   {this.getTranslation(
@@ -403,7 +425,13 @@ export class MscBillingTile implements IMscBillingTile {
             >
               {this.getTranslation(
                 'manager_billing_subscription_engagement_status_engaged_expired',
-                { endDate: this.nextBillingDate },
+                {
+                  endDate: new Intl.DateTimeFormat(this.language, {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  }).format(new Date(this.nextBillingDate)),
+                },
               )}
             </osds-text>
           );
@@ -417,6 +445,13 @@ export class MscBillingTile implements IMscBillingTile {
             >
               {this.getTranslation(
                 'manager_billing_subscription_engagement_status_engaged_renew',
+                {
+                  endDate: new Intl.DateTimeFormat(this.language, {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  }).format(new Date(this.nextBillingDate)),
+                },
               )}
             </osds-text>
           );
@@ -430,24 +465,17 @@ export class MscBillingTile implements IMscBillingTile {
             >
               {this.getTranslation(
                 'manager_billing_subscription_engagement_status_commitement_pending',
-                { nextBillingDate: this.requestDate },
+                {
+                  nextBillingDate: new Intl.DateTimeFormat(this.language, {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  }).format(new Date(this.requestDate)),
+                },
               )}
             </osds-text>
           );
         case 'ends':
-          return (
-            <osds-text
-              class="tile-description"
-              level={OdsThemeTypographyLevel.body}
-              size={OdsThemeTypographySize._200}
-              color={OdsThemeColorIntent.default}
-            >
-              {this.getTranslation(
-                'manager_billing_subscription_engagement_status_engaged',
-              )}
-            </osds-text>
-          );
-        default:
           return (
             <osds-chip
               color={OdsThemeColorIntent.error}
@@ -455,9 +483,48 @@ export class MscBillingTile implements IMscBillingTile {
               variant={OdsChipVariant.flat}
             >
               {this.getTranslation(
-                'manager_billing_subscription_engagement_status_none',
+                'manager_billing_subscription_engagement_status_engaged',
+                {
+                  endDate: new Intl.DateTimeFormat(this.language, {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  }).format(new Date(this.nextBillingDate)),
+                },
               )}
             </osds-chip>
+          );
+        default:
+          return (
+            <>
+              <osds-chip
+                color={OdsThemeColorIntent.error}
+                size={OdsChipSize.sm}
+                variant={OdsChipVariant.flat}
+              >
+                {this.getTranslation(
+                  'manager_billing_subscription_engagement_status_none',
+                )}
+              </osds-chip>
+              <div>
+                <osds-link
+                  data-tracking={this.dataTracking}
+                  color={OdsThemeColorIntent.primary}
+                  href={'#'}
+                  target={OdsHTMLAnchorElementTarget._blank}
+                >
+                  {this.getTranslation(
+                    'manager_billing_subscription_engagement_commit',
+                  )}
+                  <osds-icon
+                    class="link-icon"
+                    size={OdsIconSize.xxs}
+                    name={OdsIconName.ARROW_RIGHT}
+                    color={OdsThemeColorIntent.primary}
+                  />
+                </osds-link>
+              </div>
+            </>
           );
       }
     };
@@ -546,22 +613,6 @@ export class MscBillingTile implements IMscBillingTile {
           >
             {ChipCommitment()}
           </osds-text>
-          <osds-link
-            data-tracking={this.dataTracking}
-            color={OdsThemeColorIntent.primary}
-            href={'#'}
-            target={OdsHTMLAnchorElementTarget._blank}
-          >
-            {this.getTranslation(
-              'manager_billing_subscription_engagement_commit',
-            )}
-            <osds-icon
-              class="link-icon"
-              size={OdsIconSize.xxs}
-              name={OdsIconName.ARROW_RIGHT}
-              color={OdsThemeColorIntent.primary}
-            />
-          </osds-link>
           {/* CONTACT */}
           <osds-divider separator={true} />
           <osds-text

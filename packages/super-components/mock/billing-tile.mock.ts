@@ -94,6 +94,29 @@ mock.onGet(`vps/vps-37eb1a5a.vps.ovh.net/serviceInfos`).reply(200, {
   contactBilling: 'ls148374-ovh',
 });
 
+/* example of cancelled service */
+mock.onGet(`vps/vps-9a706163.vps.ovh.net/serviceInfos`).reply(200, {
+  contactBilling: 'ls148374-ovh',
+  possibleRenewPeriod: [1, 3, 6, 12],
+  contactTech: 'ls148374-ovh',
+  engagedUpTo: '2023-09-23',
+  expiration: '2023-09-23',
+  creation: '2022-09-23',
+  domain: 'vps-9a706163.vps.ovh.net',
+  renewalType: 'automaticV2016',
+  canDeleteAtExpiration: true,
+  contactAdmin: 'ls148374-ovh',
+  renew: {
+    forced: false,
+    period: 1,
+    manualPayment: false,
+    deleteAtExpiration: true,
+    automatic: true,
+  },
+  status: 'ok',
+  serviceId: 117150473,
+});
+
 /* ------- service ------- */
 
 // VPS
@@ -468,6 +491,113 @@ mock.onGet(`services/30500113`).reply(200, {
     resellingProvider: null,
   },
   serviceId: 30500113,
+  parentServiceId: null,
+  customer: {
+    contacts: [
+      {
+        customerCode: 'ls148374-ovh',
+        type: 'administrator',
+      },
+      {
+        customerCode: 'ls148374-ovh',
+        type: 'technical',
+      },
+      {
+        customerCode: 'ls148374-ovh',
+        type: 'billing',
+      },
+    ],
+  },
+  tags: [],
+});
+
+// VPS Cancelled
+mock.onGet(`services/117150473`).reply(200, {
+  route: {
+    path: '/vps/{serviceName}',
+    url: '/vps/vps-9a706163.vps.ovh.net',
+    vars: [
+      {
+        key: 'serviceName',
+        value: 'vps-9a706163.vps.ovh.net',
+      },
+    ],
+  },
+  billing: {
+    nextBillingDate: '2023-02-01T16:47:19+02:00',
+    expirationDate: '2023-02-01T16:47:19+02:00',
+    plan: {
+      code: 'vps-elite-8-16-160',
+      invoiceName: 'VPS Elite 8-16-160',
+    },
+    pricing: {
+      capacities: ['renew'],
+      description: 'Monthly fees',
+      interval: 1,
+      duration: 'P1M',
+      minimumQuantity: 1,
+      maximumQuantity: 100,
+      minimumRepeat: 1,
+      maximumRepeat: null,
+      price: {
+        currencyCode: 'EUR',
+        text: '40.48 €',
+        value: 40.48,
+      },
+      priceInUcents: 4048000000,
+      pricingMode: 'degressivity12',
+      pricingType: 'rental',
+      engagementConfiguration: {
+        duration: 'P12M',
+        type: 'periodic',
+        defaultEndAction: 'REACTIVATE_ENGAGEMENT',
+      },
+    },
+    group: null,
+    lifecycle: {
+      current: {
+        pendingActions: ['terminateAtEngagementDate'],
+        terminationDate: '2023-09-23T00:00:00+02:00',
+        creationDate: '2022-09-23T16:47:19+02:00',
+        state: 'active',
+      },
+      capacities: {
+        actions: ['terminateAtExpirationDate', 'terminateAtEngagementDate'],
+      },
+    },
+    renew: {
+      current: {
+        mode: 'automatic',
+        nextDate: '2023-02-01T16:47:19+02:00',
+        period: 'P1M',
+      },
+      capacities: {
+        mode: ['automatic'],
+      },
+    },
+    engagement: {
+      endDate: '2023-09-23',
+      endRule: {
+        possibleStrategies: [
+          'REACTIVATE_ENGAGEMENT',
+          'STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE',
+        ],
+        strategy: 'CANCEL_SERVICE',
+      },
+    },
+    engagementRequest: null,
+  },
+  resource: {
+    displayName: 'vps-9a706163.vps.ovh.net',
+    name: 'vps-9a706163.vps.ovh.net',
+    state: 'active',
+    product: {
+      name: 'vps-elite-8-16-160',
+      description: 'VPS Elite 8 vCPU 16 GB RAM 160 GB disk',
+    },
+    resellingProvider: null,
+  },
+  serviceId: 117150473,
   parentServiceId: null,
   customer: {
     contacts: [
