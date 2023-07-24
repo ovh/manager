@@ -29,5 +29,6 @@
   "pci_notebook_permission_RW": "Odczyt i Zapis",
   "pci_notebook_permission_RWD": "Odczyt, Zapis oraz Usuwanie",
   "pci_notebook_data_cache": "Cache",
-  "pci_notebook_list_status_DELETING": "Trwa usuwanie kampanii"
+  "pci_notebook_list_status_DELETING": "Trwa usuwanie kampanii",
+  "pci_notebook_list_status_SYNC_FAILED": "Błąd synchronizacji"
 }

@@ -46,5 +46,6 @@
   "pci_notebooks_general_information_other_resources_info_workspace_storage": "Arbeitsplatz: {{ storage }} SSD inklusive",
   "pci_notebooks_general_information_other_resources_info_ephemeral_storage_popover": "Leistungsstarker lokaler Speicher ohne Backup",
   "pci_notebooks_general_information_other_resources_info_workspace_storage_popover": "Remote Speicher mit Backup. Nach Nutzung des Storage an 30 aufeinanderfolgenden Tagen oder/und bei Überschreiten des Quotas von {{freeStorage}} gelten die Preise für Public Cloud Object Storage.",
-  "pci_notebooks_general_information_other_resources_info_bandwidth": "Öffentliches Netzwerk {{ bandwidth }}/s"
+  "pci_notebooks_general_information_other_resources_info_bandwidth": "Öffentliches Netzwerk {{ bandwidth }}/s",
+  "pci_notebooks_general_information_life_cycle_status_SYNC_FAILED": "Synchronisierungsfehler"
 }

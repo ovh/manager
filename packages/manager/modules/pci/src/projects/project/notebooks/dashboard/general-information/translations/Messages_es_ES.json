@@ -46,5 +46,6 @@
   "pci_notebooks_general_information_other_resources_info_workspace_storage": "Espacio de trabajo: {{ storage }} SSD incluidos",
   "pci_notebooks_general_information_other_resources_info_ephemeral_storage_popover": "Almacenamiento local potente, pero sin copia de seguridad",
   "pci_notebooks_general_information_other_resources_info_workspace_storage_popover": "Almacenamiento remoto con copia de seguridad Una vez transcurridos 30 días consecutivos de almacenamiento o si supera el límite de {{freeStorage}}, se aplicarán las tarifas del servicio Object Storage de Public Cloud.",
-  "pci_notebooks_general_information_other_resources_info_bandwidth": "Red pública: {{ bandwidth }}/s"
+  "pci_notebooks_general_information_other_resources_info_bandwidth": "Red pública: {{ bandwidth }}/s",
+  "pci_notebooks_general_information_life_cycle_status_SYNC_FAILED": "Error de sincronización"
 }
