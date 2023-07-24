@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.6.4...@ovh-ux/ng-ovh-sso-auth@4.7.0) (2023-07-24)
+
+
+### Features
+
+* **iam:** add IAM & Restricted applications ([f928cc6](https://github.com/ovh/manager/commit/f928cc6b28b94fbf9c0c99f460f217f08ede283d))
+
+
+
+
+
 ## [4.6.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-sso-auth@4.6.3...@ovh-ux/ng-ovh-sso-auth@4.6.4) (2023-01-19)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-sso-auth

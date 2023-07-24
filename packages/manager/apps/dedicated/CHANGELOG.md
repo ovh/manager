@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.3.0...@ovh-ux/manager-dedicated@18.4.0) (2023-07-24)
+
+
+### Features
+
+* **iam:** add IAM & Restricted applications ([f928cc6](https://github.com/ovh/manager/commit/f928cc6b28b94fbf9c0c99f460f217f08ede283d))
+
+
+
+
+
 # [18.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.2.5...@ovh-ux/manager-dedicated@18.3.0) (2023-07-20)
 
 

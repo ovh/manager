@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.11.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.11.9...@ovh-ux/manager-billing-components@3.11.10) (2023-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
 ## [3.11.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.11.8...@ovh-ux/manager-billing-components@3.11.9) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

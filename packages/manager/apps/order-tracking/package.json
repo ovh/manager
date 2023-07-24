@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/order-tracking-app",
-  "version": "2.7.11",
+  "version": "2.7.12",
   "private": true,
   "description": "Order tracking standalone application.",
   "repository": {
@@ -17,13 +17,13 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/order-tracking-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^7.0.0",
-    "@ovh-ux/manager-core": "^12.12.13",
-    "@ovh-ux/ng-at-internet": "^5.10.2",
+    "@ovh-ux/manager-config": "^7.1.0",
+    "@ovh-ux/manager-core": "^12.12.14",
+    "@ovh-ux/ng-at-internet": "^5.10.3",
     "@ovh-ux/ng-ovh-http": "^5.0.6",
     "@ovh-ux/ng-ovh-order-tracking": "^2.2.3",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.8",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.6.4",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.7.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.7",
     "@ovh-ux/ng-translate-async-loader": "^2.1.6",
     "@ovh-ux/request-tagger": "^0.1.1",

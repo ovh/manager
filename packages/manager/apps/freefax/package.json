@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-freefax-app",
-  "version": "7.1.37",
+  "version": "7.1.38",
   "private": true,
   "description": "Freefax standalone application.",
   "repository": {
@@ -20,12 +20,12 @@
   },
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.6.3",
-    "@ovh-ux/manager-config": "^7.0.0",
-    "@ovh-ux/manager-core": "^12.12.13",
+    "@ovh-ux/manager-config": "^7.1.0",
+    "@ovh-ux/manager-core": "^12.12.14",
     "@ovh-ux/manager-freefax": "^7.7.2",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.3",
     "@ovh-ux/manager-telecom-styles": "^4.6.2",
-    "@ovh-ux/ng-at-internet": "^5.10.2",
+    "@ovh-ux/ng-at-internet": "^5.10.3",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.0.6",
     "@ovh-ux/ng-ovh-contracts": "^4.2.4",
@@ -34,7 +34,7 @@
     "@ovh-ux/ng-ovh-order-tracking": "^2.2.3",
     "@ovh-ux/ng-ovh-payment-method": "^9.6.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.8",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.6.4",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.7.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.7",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^7.20.3",
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.0.6",
