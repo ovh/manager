@@ -50,5 +50,7 @@
   "billing_services_actions_menu_see_dashboard": "Wyświetl szczegółowe informacje o usłudze",
   "billing_services_actions_menu_commit": "Zarządzanie usługą z opcją umowy terminowej",
   "billing_services_actions_menu_commit_cancel": "Anuluj zamówienie usługi z opcją umowy terminowej",
-  "billing_services_actions_menu_resiliate_my_engagement": "Rezygnacja z umowy terminowej"
+  "billing_services_actions_menu_resiliate_my_engagement": "Rezygnacja z umowy terminowej",
+  "billing_services_actions_menu_change_owner": "Zmień właściciela",
+  "billing_services_actions_menu_configuration_update_owner": "Aktualizuj dane właściciela"
 }

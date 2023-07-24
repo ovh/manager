@@ -50,5 +50,7 @@
   "billing_services_actions_menu_see_dashboard": "Dienstdetails anzeigen",
   "billing_services_actions_menu_commit": "Meine Abonnementlaufzeit verwalten",
   "billing_services_actions_menu_commit_cancel": "Abonnementbestellung mit fester Laufzeit stornieren",
-  "billing_services_actions_menu_resiliate_my_engagement": "Meine Vertragsbindung kündigen"
+  "billing_services_actions_menu_resiliate_my_engagement": "Meine Vertragsbindung kündigen",
+  "billing_services_actions_menu_change_owner": "Inhaber ändern",
+  "billing_services_actions_menu_configuration_update_owner": "Angaben des Inhabers aktualisieren"
 }

@@ -6,7 +6,6 @@ import {
   Host,
   State,
   Fragment,
-  Listen,
 } from '@stencil/core';
 import {
   OdsThemeColorIntent,
@@ -85,18 +84,18 @@ export class MscBillingTile implements IMscBillingTile {
 
   @State() showTooltip = false; // will be removed with ODS-MENU
 
-  @Listen('click') // will be removed with ODS-MENU
-  handleDocumentClick(event: Event) {
-    const tooltipEl = this.host.shadowRoot?.querySelector('.menu-button');
-    if (tooltipEl && !tooltipEl.contains(event.target as Node)) {
-      this.showTooltip = !this.showTooltip;
-    }
-  }
+  @State() showTooltipContact = false; // will be removed with ODS-MENU
 
   handleTooltipToggle(event: Event) {
     // will be removed with ODS-MENU
     event.stopPropagation();
     this.showTooltip = !this.showTooltip;
+  }
+
+  handleTooltipToggleContact(event: Event) {
+    // will be removed with ODS-MENU
+    event.stopPropagation();
+    this.showTooltipContact = !this.showTooltipContact;
   }
 
   private i18nInstance: i18n;
@@ -146,7 +145,6 @@ export class MscBillingTile implements IMscBillingTile {
       .get(`${this.servicePath}/serviceInfos`)
       .then((response) => {
         const { data } = response;
-        console.log(`${this.servicePath}/serviceInfos`, data);
         this.contactAdmin = data.contactAdmin;
         this.contactBilling = data.contactBilling;
         this.contactTech = data.contactTech;
@@ -372,8 +370,9 @@ export class MscBillingTile implements IMscBillingTile {
       return (
         <>
           <div>
-            <div class="menu-button">
+            <div class="menu-button menu-button-renew">
               <osds-button
+                onClick={(event: Event) => this.handleTooltipToggle(event)}
                 type={OdsButtonType.button}
                 variant={OdsButtonVariant.stroked}
                 color={OdsThemeColorIntent.primary}
@@ -529,6 +528,90 @@ export class MscBillingTile implements IMscBillingTile {
       }
     };
 
+    const ContactContent = () => {
+      const getMenuLink = () => {
+        return (
+          <div class="tooltiplinks">
+            <osds-link
+              href={`https://www.ovh.com/manager/#/dedicated/contacts/services?serviceName=${this.getServiceName()}`}
+              color={OdsThemeColorIntent.primary}
+            >
+              {this.getTranslation(
+                'manager_billing_subscription_contacts_management',
+              )}
+            </osds-link>
+            <osds-link href={``} color={OdsThemeColorIntent.primary}>
+              {this.getTranslation(
+                'billing_services_actions_menu_change_owner',
+              )}
+              <osds-icon
+                class="link-icon"
+                size={OdsIconSize.xxs}
+                name={OdsIconName.EXTERNAL_LINK}
+                color={OdsThemeColorIntent.primary}
+              />
+            </osds-link>
+            <osds-link href={``} color={OdsThemeColorIntent.primary}>
+              {this.getTranslation(
+                'billing_services_actions_menu_configuration_update_owner',
+              )}
+            </osds-link>
+          </div>
+        );
+      };
+
+      return (
+        <>
+          <div class="menu-button menu-button-contact">
+            <osds-button
+              onClick={(event: Event) => this.handleTooltipToggleContact(event)}
+              type={OdsButtonType.button}
+              variant={OdsButtonVariant.stroked}
+              color={OdsThemeColorIntent.primary}
+              circle
+            >
+              <osds-icon
+                name="ellipsis-vertical"
+                size="xs"
+                color={OdsThemeColorIntent.primary}
+              />
+            </osds-button>
+            {this.showTooltipContact && (
+              <div class="tooltip">
+                <div class="tooltiptext">{getMenuLink()}</div>
+                <slot />
+              </div>
+            )}
+          </div>
+          <osds-text
+            class="tile-description"
+            level={OdsThemeTypographyLevel.body}
+            size={OdsThemeTypographySize._200}
+            color={OdsThemeColorIntent.default}
+          >
+            <div>
+              {this.contactAdmin}{' '}
+              {this.getTranslation(
+                'manager_billing_subscription_contacts_admin',
+              )}
+            </div>
+            <div>
+              {this.contactTech}{' '}
+              {this.getTranslation(
+                'manager_billing_subscription_contacts_tech',
+              )}
+            </div>
+            <div>
+              {this.contactBilling}{' '}
+              {this.getTranslation(
+                'manager_billing_subscription_contacts_billing',
+              )}
+            </div>
+          </osds-text>
+        </>
+      );
+    };
+
     const content = (
       <osds-tile
         class="msc-ods-tile"
@@ -623,31 +706,8 @@ export class MscBillingTile implements IMscBillingTile {
           >
             {this.getTranslation('manager_billing_subscription_contacts')}
           </osds-text>
-          <osds-text
-            class="tile-description"
-            level={OdsThemeTypographyLevel.body}
-            size={OdsThemeTypographySize._200}
-            color={OdsThemeColorIntent.default}
-          >
-            <div>
-              {this.contactAdmin}{' '}
-              {this.getTranslation(
-                'manager_billing_subscription_contacts_admin',
-              )}
-            </div>
-            <div>
-              {this.contactTech}{' '}
-              {this.getTranslation(
-                'manager_billing_subscription_contacts_tech',
-              )}
-            </div>
-            <div>
-              {this.contactBilling}{' '}
-              {this.getTranslation(
-                'manager_billing_subscription_contacts_billing',
-              )}
-            </div>
-          </osds-text>
+          <div>{ContactContent()}</div>
+          {/* removed link using menu
           <osds-link
             data-tracking={this.dataTracking}
             color={OdsThemeColorIntent.primary}
@@ -663,7 +723,8 @@ export class MscBillingTile implements IMscBillingTile {
               name={OdsIconName.ARROW_RIGHT}
               color={OdsThemeColorIntent.primary}
             />
-          </osds-link>
+            </osds-link>
+            */}
         </div>
       </osds-tile>
     );

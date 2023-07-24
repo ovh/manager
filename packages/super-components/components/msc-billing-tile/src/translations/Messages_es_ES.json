@@ -50,5 +50,7 @@
   "billing_services_actions_menu_see_dashboard": "Ver el detalle del servicio",
   "billing_services_actions_menu_commit": "Gestionar mi compromiso de permanencia",
   "billing_services_actions_menu_commit_cancel": "Cancelar la solicitud de contratación con compromiso de permanencia",
-  "billing_services_actions_menu_resiliate_my_engagement": "Cancelar mi compromiso"
+  "billing_services_actions_menu_resiliate_my_engagement": "Cancelar mi compromiso",
+  "billing_services_actions_menu_change_owner": "Cambiar de propietario",
+  "billing_services_actions_menu_configuration_update_owner": "Actualizar la información del propietario"
 }
