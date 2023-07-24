@@ -30,6 +30,7 @@ import './index.less';
 import './index.scss';
 
 console.log('a');
+console.log('b');
 
 const getEnvironment = (shellClient) => {
   return shellClient.environment.getEnvironment();
