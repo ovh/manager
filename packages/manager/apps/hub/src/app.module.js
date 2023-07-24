@@ -31,6 +31,7 @@ import './index.scss';
 
 console.log('a');
 console.log('b');
+console.log('c');
 
 const getEnvironment = (shellClient) => {
   return shellClient.environment.getEnvironment();
