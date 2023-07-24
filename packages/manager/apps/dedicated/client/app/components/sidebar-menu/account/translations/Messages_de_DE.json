@@ -29,5 +29,6 @@
   "menu_users_management": "Verwaltung der Benutzer",
   "menu_emails": "Empfangene E-Mails",
   "menu_contacts": "Meine Kontakte",
-  "menu_agreements": "Meine Verträge"
+  "menu_agreements": "Meine Verträge",
+  "menu_iam": "Identity and Access (IAM)"
 }

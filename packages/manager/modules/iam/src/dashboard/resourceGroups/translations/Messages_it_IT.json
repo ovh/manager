@@ -1,0 +1,9 @@
+{
+  "iam_resource_groups_datagrid_column_group_name": "Nome del gruppo",
+  "iam_resource_groups_datagrid_column_resources_count": "Numero di risorse",
+  "iam_resource_groups_datagrid_column_creation_date": "Data di creazione",
+  "iam_resource_groups_datagrid_column_last_modification_date": "Data dell’ultima modifica",
+  "iam_resource_groups_datagrid_action_edit_group": "Modifica il gruppo di risorse",
+  "iam_resource_groups_datagrid_action_delete_group": "Elimina il gruppo di risorse",
+  "iam_resource_groups_datagrid_topbar_create_resource_group": "Crea un gruppo di risorse"
+}

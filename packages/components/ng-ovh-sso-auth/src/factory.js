@@ -9,7 +9,7 @@
 
 import angular from 'angular';
 
-export default /* @ngInject */ function($q, ssoAuthentication) {
+export default /* @ngInject */ function($q, $timeout, ssoAuthentication) {
   return {
     /**
      * @ngdoc function
@@ -43,6 +43,11 @@ export default /* @ngInject */ function($q, ssoAuthentication) {
 
           if (config.timeout) {
             const deferredObjTimeout = $q.defer();
+
+            // config.timeout can be a number
+            if (Number.isInteger(config.timeout)) {
+              config.timeout = $timeout(() => {}, config.timeout);
+            }
 
             // Can be cancelled by user
             config.timeout.then(() => {

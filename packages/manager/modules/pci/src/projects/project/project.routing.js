@@ -190,6 +190,9 @@ export default /* @ngInject */ ($stateProvider) => {
               };
             }),
         ),
+
+      iamLink: /* @ngInject */ (coreURLBuilder) =>
+        coreURLBuilder.buildURL('dedicated', '#/iam/policy'),
     },
   });
 };

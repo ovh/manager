@@ -19,8 +19,8 @@
   "user_users_error": "Es ist ein Fehler aufgetreten:",
   "user_users_role": "Rolle",
   "user_roles_admin": "Administrator",
-  "user_roles_regular": "Nutzer",
-  "user_roles_unprivileged": "Keine",
+  "user_roles_regular": "Eingeschränkter Administrator",
+  "user_roles_unprivileged": "Nur Lesen",
   "user_users_disable": "Nutzer deaktivieren",
   "user_users_delete_modal_step1_question": "Sind Sie sicher, dass Sie den Nutzer <strong>{{login}}</strong> löschen möchten?",
   "user_users_disable_modal_step1_question": "Sind Sie sicher, dass Sie den Nutzer <strong>{{login}}</strong> deaktivieren möchten?",
@@ -114,5 +114,7 @@
   "user_users_groups_update_error_message": "Bei der Aktualisierung der Gruppe ist ein Fehler aufgetreten:",
   "user_users_groups_update_modal_group_description": "Beschreibung der Gruppe",
   "user_users_groups_update": "Gruppe bearbeiten",
-  "user_users_groups_table_description": "Gruppen des Identity Providers"
+  "user_users_groups_table_description": "Gruppen des Identity Providers",
+  "user_roles_none": "Keine",
+  "user_users_group": "Gruppe"
 }
