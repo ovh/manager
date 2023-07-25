@@ -90,6 +90,15 @@
             {{ $row.nbAlertCondition || "-" }}
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title="::'logs_streams_col_subscriptions' | translate"
+            property="nbSubscription"
+            sortable
+            type="number"
+            filterable
+        >
+            {{ $row.nbSubscription || "-" }}
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="::'logs_col_last_modified' | translate"
             property="updatedAt"
             sortable
@@ -141,8 +150,13 @@
             ></oui-action-menu-item>
             <oui-action-menu-item
                 disabled="!$row.coldStorageEnabled && $row.nbArchive === 0"
-                on-click="ctrl.gotoArchives($row)"
+                on-click="ctrl.goToArchives($row)"
                 ><span data-translate="logs_streams_archives"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item
+                disabled="!$row.isEditable || $row.nbSubscription === 0"
+                on-click="ctrl.goToSubscriptions($row)"
+                ><span data-translate="logs_streams_subscriptions"></span
             ></oui-action-menu-item>
             <oui-action-menu-item
                 disabled="!$row.isEditable"
