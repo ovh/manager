@@ -233,6 +233,7 @@
   "ip_order_abonnement": "Abbonamento mensile:",
   "ip_order_free": "GRATIS",
   "ip_order_bloc": "Blocco",
+  "ip_order_renew_PCC": "Gli IP verranno rinnovati automaticamente con la tua infrastruttura Dedicated Cloud.",
   "ip_order_resume": "Riepilogo dell’ordine",
   "ip_order_price_HT": "Prezzo totale IVA esclusa:",
   "ip_order_price_TTC": "Prezzo totale IVA inclusa:",
@@ -242,12 +243,9 @@
   "ip_order_finish_error": "Si è verificato un errore durante l'ordine di IP aggiuntivi.",
   "ip_order_free_activation_fee": "Per le macchine con IP aggiuntivi inclusi, le spese di attivazione non vengono rifatturate al rinnovo del server.",
   "ip_order_resume_short": "Blocco/{{ blockSize }}: {{ price }}",
-  "dedicatedCloud_survey": "Per migliorare la qualità del servizio Hosted Private Cloud, ti chiediamo di",
-  "dedicatedCloud_survey_link": "condividere il tuo feedback tramite questa interfaccia.",
   "ip_order_renew_EPCC": "Gli IP verranno rinnovati automaticamente con la tua infrastruttura Dedicated Cloud.",
   "ip_order_renew_MBM": "Gli IP verranno rinnovati automaticamente insieme all’infrastruttura Managed Bare Metal.",
   "dedicatedCloud_premier_sbg_order_warning": "Non siamo in grado di effettuare nuovi ordini sul nostro sito di SBG. I team OVHcloud sono pienamente operativi e stiamo facendo il possibile per ripristinare questa possibilità di ordine nel prossimo futuro.",
-  "ip_order_renew_PCC": "Gli IP verranno rinnovati automaticamente con la tua infrastruttura Dedicated Cloud.",
   "dedicatedCloud_banner_new_product": "Adesso è possibile selezionare datacenter corrispondenti a pacchetti software VMware differenti all'interno di uno stesso ambiente Private Cloud.",
   "dedicatedCloud_banner_new_product_link": "Scopri di più"
 }
