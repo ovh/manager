@@ -617,3 +617,22 @@ mock.onGet(`services/117150473`).reply(200, {
   },
   tags: [],
 });
+
+/* ------- domain ------- */
+
+mock.onGet(`domain/agora3.ovh`).reply(200, {
+  state: 'ok',
+  glueRecordMultiIpSupported: true,
+  parentService: null,
+  suspensionState: 'not_suspended',
+  glueRecordIpv6Supported: true,
+  domain: 'agora3.ovh',
+  whoisOwner: '13466563',
+  offer: 'platinum',
+  lastUpdate: '2022-12-06T17:00:45+01:00',
+  nameServerType: 'external',
+  hostSupported: true,
+  owoSupported: false,
+  transferLockStatus: 'locked',
+  dnssecSupported: true,
+});

@@ -37,9 +37,6 @@ export interface IMscBillingTile {
   servicePath: string;
 }
 
-/**
- * @slot footer - Footer content
- */
 @Component({
   tag: 'msc-billing-tile',
   styleUrl: 'msc-billing-tile.scss',
@@ -81,6 +78,8 @@ export class MscBillingTile implements IMscBillingTile {
   @State() commitmentStatus: string;
 
   @State() requestDate: string;
+
+  @State() whoisOwnerDomain: string;
 
   @State() showTooltip = false; // will be removed with ODS-MENU
 
@@ -127,6 +126,8 @@ export class MscBillingTile implements IMscBillingTile {
       );
 
       this.fetchServiceId();
+      if (this.getServiceType() === 'DOMAIN')
+        this.fetchDomainOwner(this.getServiceName());
     });
   }
 
@@ -223,6 +224,19 @@ export class MscBillingTile implements IMscBillingTile {
       });
   }
 
+  fetchDomainOwner(domain: string) {
+    apiClient.v6
+      .get(`/domain/${domain}`)
+      .then((response) => {
+        const { data } = response;
+        console.log('response:', response);
+        this.whoisOwnerDomain = data.whoisOwner;
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+
   getServiceName() {
     const parts = this.servicePath.split('/');
     return parts[parts.length - 1]; // get the last part
@@ -283,7 +297,8 @@ export class MscBillingTile implements IMscBillingTile {
             return (
               <osds-link
                 color={OdsThemeColorIntent.primary}
-                href={`https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser=${this.getServiceName}`}
+                href={`https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser=${this.getServiceName()}`}
+                target="blank"
               >
                 {this.getTranslation('billing_services_actions_menu_renew')}
                 <osds-icon
@@ -509,7 +524,7 @@ export class MscBillingTile implements IMscBillingTile {
                 <osds-link
                   data-tracking={this.dataTracking}
                   color={OdsThemeColorIntent.primary}
-                  href={'#'}
+                  href={`https://www.ovh.com/manager/dedicated/#/${this.servicePath}/dashboard/commitment`}
                   target={OdsHTMLAnchorElementTarget._blank}
                 >
                   {this.getTranslation(
@@ -540,22 +555,52 @@ export class MscBillingTile implements IMscBillingTile {
                 'manager_billing_subscription_contacts_management',
               )}
             </osds-link>
-            <osds-link href={``} color={OdsThemeColorIntent.primary}>
-              {this.getTranslation(
-                'billing_services_actions_menu_change_owner',
-              )}
-              <osds-icon
-                class="link-icon"
-                size={OdsIconSize.xxs}
-                name={OdsIconName.EXTERNAL_LINK}
+            {this.getServiceType() === 'DOMAIN' && (
+              <>
+                <osds-link
+                  href={`https://www.ovh.com/fr/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'${this.getServiceName()})`}
+                  target="blank"
+                  color={OdsThemeColorIntent.primary}
+                >
+                  {this.getTranslation(
+                    'billing_services_actions_menu_change_owner',
+                  )}
+                  <osds-icon
+                    class="link-icon"
+                    size={OdsIconSize.xxs}
+                    name={OdsIconName.EXTERNAL_LINK}
+                    color={OdsThemeColorIntent.primary}
+                  />
+                </osds-link>
+                <osds-link
+                  href={`https://www.ovh.com/manager/#/dedicated/contact/${this.getServiceName()}/${
+                    this.whoisOwnerDomain
+                  }`}
+                  color={OdsThemeColorIntent.primary}
+                >
+                  {this.getTranslation(
+                    'billing_services_actions_menu_configuration_update_owner',
+                  )}
+                </osds-link>
+              </>
+            )}
+            {this.getServiceType() !== 'DOMAIN' && (
+              <osds-link
+                href={`https://www.ovh.com/cgi-bin/fr/procedure/procedureChangeOwner.cgi`}
+                target="blank"
                 color={OdsThemeColorIntent.primary}
-              />
-            </osds-link>
-            <osds-link href={``} color={OdsThemeColorIntent.primary}>
-              {this.getTranslation(
-                'billing_services_actions_menu_configuration_update_owner',
-              )}
-            </osds-link>
+              >
+                {this.getTranslation(
+                  'billing_services_actions_menu_change_owner',
+                )}
+                <osds-icon
+                  class="link-icon"
+                  size={OdsIconSize.xxs}
+                  name={OdsIconName.EXTERNAL_LINK}
+                  color={OdsThemeColorIntent.primary}
+                />
+              </osds-link>
+            )}
           </div>
         );
       };
