@@ -233,6 +233,7 @@
   "ip_order_abonnement": "Monatsabo:",
   "ip_order_free": "KOSTENLOS",
   "ip_order_bloc": "Block",
+  "ip_order_renew_PCC": "Ihre IP-Adressen werden automatisch mit Ihrer Dedicated Cloud Infrastruktur verlängert.",
   "ip_order_resume": "Zusammenfassung Ihrer Bestellung",
   "ip_order_price_HT": "Gesamtpreis zzgl. MwSt.:",
   "ip_order_price_TTC": "Gesamtpreis inkl. MwSt.:",
@@ -242,12 +243,9 @@
   "ip_order_finish_error": "Bei der Bestellung zusätzlicher IP-Adressen ist ein Fehler aufgetreten.",
   "ip_order_free_activation_fee": "Bei Servern, für die der Bezug zusätzlicher IP-Adressen kostenlos ist, werden diese Aktivierungsgebühren bei der Verlängerung des Servers nicht erneut in Rechnung gestellt.",
   "ip_order_resume_short": "Block / {{ blockSize }}: {{ price }}",
-  "dedicatedCloud_survey": "Zur Verbesserung der Qualität des Dienstes Hosted Private Cloud: Bitte",
-  "dedicatedCloud_survey_link": "teilen Sie uns Ihre Meinung zu diesem Interface mit.",
   "ip_order_renew_EPCC": "Ihre IP-Adressen werden automatisch mit Ihrer Dedicated Cloud Infrastruktur verlängert.",
   "ip_order_renew_MBM": "Ihre IP-Adressen werden automatisch mit Ihrer Managed Bare Metal Infrastruktur verlängert.",
   "dedicatedCloud_premier_sbg_order_warning": "Wir können auf unserer SBG-Website keine neuen Bestellungen annehmen. Unsere Teams sind voll im Einsatz und wir tun alles, um diese Bestellmöglichkeit in naher Zukunft wiederherzustellen.",
-  "ip_order_renew_PCC": "Ihre IP-Adressen werden automatisch mit Ihrer Dedicated Cloud Infrastruktur verlängert.",
   "dedicatedCloud_banner_new_product": "Ab sofort können Sie Datacenter bestellen, die unterschiedlichen VMware-Softwarepaketen in einer einzigen Private Cloud Umgebung entsprechen.",
   "dedicatedCloud_banner_new_product_link": "Mehr erfahren"
 }
