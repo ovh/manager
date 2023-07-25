@@ -102,5 +102,6 @@
   "plan_vrack-bandwidth-25000-upto-50000-scale-us": "25Gbit/s unlimited and guaranteed",
   "plan_price_per_month": "ex. VAT/month",
   "wizard_pay": "Pay ",
-  "wizard_close": "Close"
+  "wizard_close": "Close",
+  "server_node_order_bandwidth_warning": "For your cluster to work properly, you need to enable the same bandwidth option on each node in your cluster."
 }
