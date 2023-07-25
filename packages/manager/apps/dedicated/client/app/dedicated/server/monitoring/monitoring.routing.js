@@ -27,8 +27,20 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
           ),
         ),
-      languageEnum: /* @ngInject */ (models) =>
-        models.data.models['dedicated.server.AlertLanguageEnum'].enum,
+      languageEnum: /* @ngInject */ ($translate, models) =>
+        models.data.models['dedicated.server.AlertLanguageEnum'].enum.sort(
+          (a, b) => {
+            const translateA = $translate.instant(`language_${a}`);
+            const translateB = $translate.instant(`language_${b}`);
+            if (translateA < translateB) {
+              return -1;
+            }
+            if (translateB < translateA) {
+              return 1;
+            }
+            return 0;
+          },
+        ),
       monitoringIntervalEnum: /* @ngInject */ (models) =>
         models.data.models['dedicated.server.MonitoringIntervalEnum'].enum.sort(
           compare,
