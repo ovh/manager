@@ -6483,15 +6483,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^6.5.1":
+"@ovh-ux/ui-kit@^6.3.0", "@ovh-ux/ui-kit@^6.5.1", "@ovh-ux/ui-kit@^6.6.0":
   version "6.6.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.6.0.tgz#83c7c486ea01b5507925682e1b6a42532444d840"
   integrity sha512-xHRwA7EbbLVYP2bU3+rqSOu7cd+KafkTYdTYEsrjbsKnOzH+6CUIDshghicd/fxQKUSzhCG3QBUEMUER7CVaug==
-
-"@ovh-ux/ui-kit@^6.5.3":
-  version "6.5.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.5.3.tgz#f18abcce1b49d672b448ceff40beb850a57281b3"
-  integrity sha512-opCtuNe4FGPMF+wW0iqfb49O/cYWXatfTNKRF9AQi5nx5j5zfJrTniHtEeN4ySIOge+EzwowXo3W2sfeWBXx+Q==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"

@@ -179,29 +179,29 @@ export default function HostedPrivateCloudSidebar() {
               return loadServices('/vrack');
             },
           },
-          feature['vrack-services'] && { //TODO remove negation
+          feature['vrack-services'] && {
             id: 'dedicated-vrackservices',
             label: t('sidebar_vrack_services'),
-            icon: getIcon('oui-icon oui-icon-line-communicating_concept'),// TODO Add new icon
+            icon: getIcon('oui-icon oui-icon-vRack-services_concept'),// TODO Add new icon
             routeMatcher: new RegExp('^/vrack-services'),
-            async loader() {
-              const services = await loadServices('/vrackServices/resource');//TODO Needs to relook with apiv2 api
-              return [
-                {
-                  id: 'vrack_services-all',
-                  label: t('sidebar_service_all'),
-                  href: navigation.getURL('dedicated', '#/vrack-services'),
-                  ignoreSearch: true,
-                },
-                ...services.map((service) => ({
-                  ...service,
-                  href: navigation.getURL(
-                    'dedicated',
-                    `#/vrack-services/${service.currentState.vrackId}`,
-                  ),
-                })),
-              ];
-            },
+            // async loader() {
+            //   const services = await loadServices('/vrackServices/resource');//TODO Needs to relook with apiv2 api
+            //   return [
+            //     {
+            //       id: 'vrack_services-all',
+            //       label: t('sidebar_service_all'),
+            //       href: navigation.getURL('dedicated', '#/vrack-services'),
+            //       ignoreSearch: true,
+            //     },
+            //     ...services.map((service) => ({
+            //       ...service,
+            //       href: navigation.getURL(
+            //         'dedicated',
+            //         `#/vrack-services/${service.currentState.vrackId}`,
+            //       ),
+            //     })),
+            //   ];
+            // },
           },
           feature['cloud-connect'] && {
             id: 'hpc-ovhcloudconnect',

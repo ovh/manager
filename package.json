@@ -46,6 +46,7 @@
   "resolutions": {
     "flatpickr": "4.6.9"
   },
+  "dependencies": {},
   "devDependencies": {
     "@babel/helper-string-parser": "^7.18.10",
     "@commitlint/cli": "^17.1.2",

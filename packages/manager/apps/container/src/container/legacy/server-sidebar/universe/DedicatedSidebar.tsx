@@ -293,29 +293,29 @@ export default function DedicatedSidebar() {
               return loadServices('/vrack');
             },
           },
-          feature['vrack-services'] && {//TODO remove nagation
+          feature['vrack-services'] && {
             id: 'dedicated-vrackservices',
             label: t('sidebar_vrack_services'),
-            icon: getIcon('oui-icon oui-icon-line-communicating_concept'),// TODO Add new icon
-            routeMatcher: new RegExp('^/vrack-services'),
-            async loader() {
-              const services = await loadServices('/vrackServices/resource');//TODO Needs to relook with apiv2 api
-              return [
-                {
-                  id: 'vrack_services-all',
-                  label: t('sidebar_service_all'),
-                  href: navigation.getURL('dedicated', '#/vrack-services'),
-                  ignoreSearch: true,
-                },
-                ...services.map((service) => ({
-                  ...service,
-                  href: navigation.getURL(
-                    'dedicated',
-                    `#/vrack-services/${service.currentState.vrackId}`,
-                  ),
-                })),
-              ];
-            },
+            icon: getIcon('oui-icon oui-icon-vRack-services_concept'),// TODO Add new icon
+            routeMatcher: new RegExp('^/dedicated/vrack-services'),
+            // async loader() {
+            //   const services = await loadServices('/vrackServices/resource');//TODO Needs to relook with apiv2 api
+            //   return [
+            //     {
+            //       id: 'vrack_services-all',
+            //       label: t('sidebar_service_all'),
+            //       href: navigation.getURL('dedicated', '#/vrack-services'),
+            //       ignoreSearch: true,
+            //     },
+            //     ...services.map((service) => ({
+            //       ...service,
+            //       href: navigation.getURL(
+            //         'dedicated',
+            //         `#/vrack-services/${service.currentState.vrackId}`,
+            //       ),
+            //     })),
+            //   ];
+            // },
           },
           feature['cloud-connect'] && {
             id: 'dedicated-ovhcloudconnect',
@@ -393,6 +393,15 @@ export default function DedicatedSidebar() {
       });
     }
 
+    if (feature.ip) {
+      menu.push({
+        id: 'dedicated-ip',
+        label: t('sidebar_ip_short'),
+        icon: getIcon('ovh-font ovh-font-ip'),
+        href: navigation.getURL('dedicated', '#/ip'),
+        routeMatcher: new RegExp('/ip(/|$)'),
+      });
+    }
     return menu;
   };
 

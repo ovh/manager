@@ -7,6 +7,7 @@ export default {
     'veeam-cloud-connect',
     'ip-load-balancer',
     'dedicated-cdn',
+    'vrack-services',
   ],
   children: [
     {
