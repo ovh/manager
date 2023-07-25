@@ -59,7 +59,7 @@ export default class BmServerComponentsOrderKvmController {
   orderKvm() {
     this.pendingOrder = true;
     this.atInternet.trackClick({
-      name: `${KVM_ORDER_TRACKING_PREFIX}-confirm`,
+      name: `${KVM_ORDER_TRACKING_PREFIX}::confirm`,
       type: 'action',
     });
     this.IpmiService.orderKvm(this.cartId)
