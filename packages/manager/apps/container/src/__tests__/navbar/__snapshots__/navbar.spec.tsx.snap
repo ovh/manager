@@ -32,21 +32,21 @@ exports[`UI testing of the navbar renders correctly with environment and shell 1
         role="menu"
       />
     </div>
-    <a
-      aria-label="OVHcloud"
+    <div
       class="oui-navbar__brand"
-      href="#"
     >
       <span
         aria-hidden="true"
         class="oui-icon oui-icon-ovh"
       />
-    </a>
+    </div>
     <div
       class="oui-navbar-list"
     >
       <div
         class="oui-navbar-list oui-navbar-list_main oui-navbar_desktop-only"
+        role="tablist"
+        tabindex="0"
       >
         <span>
           navbar_loading_universes
@@ -67,9 +67,11 @@ exports[`UI testing of the navbar renders correctly with environment and shell 1
         >
           <button
             aria-expanded="false"
-            aria-haspopup="false"
+            aria-haspopup="true"
             aria-label="language_change"
+            aria-owns="language-menu"
             class="oui-navbar-link oui-navbar-link_dropdown "
+            id="language-menu-button"
             title="language_change"
             type="button"
           >
@@ -96,18 +98,25 @@ exports[`UI testing of the navbar renders correctly with environment and shell 1
                 class="oui-navbar-list_dropdown p-4"
               >
                 <span
+                  aria-hidden="true"
                   class="oui-navbar-list__title title"
                 >
                   language_change
                 </span>
                 <ul
+                  aria-expanded="false"
                   class="oui-navbar-list"
+                  id="language-menu"
+                  role="menu"
                 >
                   <li
                     class="oui-navbar-list__item"
+                    lang="de-DE"
+                    role="presentation"
                   >
                     <button
                       class="oui-navbar-link oui-navbar-link_tertiary p-0"
+                      role="menuitem"
                       type="button"
                     >
                       Deutsch
@@ -115,9 +124,12 @@ exports[`UI testing of the navbar renders correctly with environment and shell 1
                   </li>
                   <li
                     class="oui-navbar-list__item"
+                    lang="es-ES"
+                    role="presentation"
                   >
                     <button
                       class="oui-navbar-link oui-navbar-link_tertiary p-0"
+                      role="menuitem"
                       type="button"
                     >
                       Español
@@ -125,9 +137,12 @@ exports[`UI testing of the navbar renders correctly with environment and shell 1
                   </li>
                   <li
                     class="oui-navbar-list__item"
+                    lang="fr-FR"
+                    role="presentation"
                   >
                     <button
                       class="oui-navbar-link oui-navbar-link_tertiary p-0"
+                      role="menuitem"
                       type="button"
                     >
                       Français
@@ -135,9 +150,12 @@ exports[`UI testing of the navbar renders correctly with environment and shell 1
                   </li>
                   <li
                     class="oui-navbar-list__item"
+                    lang="fr-CA"
+                    role="presentation"
                   >
                     <button
                       class="oui-navbar-link oui-navbar-link_tertiary p-0"
+                      role="menuitem"
                       type="button"
                     >
                       Français (Canadien)
@@ -145,9 +163,12 @@ exports[`UI testing of the navbar renders correctly with environment and shell 1
                   </li>
                   <li
                     class="oui-navbar-list__item"
+                    lang="it-IT"
+                    role="presentation"
                   >
                     <button
                       class="oui-navbar-link oui-navbar-link_tertiary p-0"
+                      role="menuitem"
                       type="button"
                     >
                       Italiano
@@ -155,9 +176,12 @@ exports[`UI testing of the navbar renders correctly with environment and shell 1
                   </li>
                   <li
                     class="oui-navbar-list__item"
+                    lang="pl-PL"
+                    role="presentation"
                   >
                     <button
                       class="oui-navbar-link oui-navbar-link_tertiary p-0"
+                      role="menuitem"
                       type="button"
                     >
                       Polski
@@ -165,9 +189,12 @@ exports[`UI testing of the navbar renders correctly with environment and shell 1
                   </li>
                   <li
                     class="oui-navbar-list__item"
+                    lang="pt-PT"
+                    role="presentation"
                   >
                     <button
                       class="oui-navbar-link oui-navbar-link_tertiary p-0"
+                      role="menuitem"
                       type="button"
                     >
                       Português
