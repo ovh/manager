@@ -12,7 +12,10 @@
         data-on-page-change="$ctrl.onPageChange($pagination)"
         data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
         data-on-sort-change="$ctrl.onSortChange($sort)"
-        data-customizable
+        data-columns="$ctrl.columnsConfig"
+        columns-parameters="$ctrl.columnsParameters"
+        on-columns-parameters-change="$ctrl.onColumnsParametersChange(id, columns)"
+        customizable
     >
         <oui-datagrid-column
             data-title=":: 'dedicated_servers_id' | translate"

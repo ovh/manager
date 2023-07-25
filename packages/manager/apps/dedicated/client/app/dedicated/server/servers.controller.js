@@ -7,10 +7,11 @@ import { MONITORING_STATUSES, DC_2_ISO } from './dashboard/dashboard.constants';
 
 export default class ServersCtrl {
   /* @ngInject */
-  constructor($q, $translate, ouiDatagridService) {
+  constructor($q, $translate, ouiDatagridService, ovhUserPref) {
     this.$q = $q;
     this.$translate = $translate;
     this.ouiDatagridService = ouiDatagridService;
+    this.ovhUserPref = ovhUserPref;
   }
 
   $onInit() {
@@ -39,6 +40,34 @@ export default class ServersCtrl {
       this.dedicatedServers.data,
       'commercialRange',
     );
+    this.columnsConfig = [
+      { name: 'name', sortable: this.getSorting('name') },
+      { name: 'reverse', sortable: this.getSorting('reverse') },
+      { name: 'commercialRange', sortable: this.getSorting('commercialRange') },
+      { name: 'datacenter', sortable: this.getSorting('datacenter') },
+      { name: 'state', sortable: this.getSorting('state') },
+    ];
+
+    this.getColumnsPreferences();
+  }
+
+  getColumnsPreferences() {
+    this.ovhUserPref
+      .getValue('DEDICATED_SERVER_DG_CONFIG')
+      .then((columns) => {
+        this.columnsParameters = columns;
+      })
+      .catch(() => {
+        // do nothing (defautl columns will be displayed)
+      });
+  }
+
+  onColumnsParametersChange(id, columns) {
+    // save cols
+    // todo: add debounce
+    this.ovhUserPref.create('DEDICATED_SERVER_DG_CONFIG', columns).catch(() => {
+      // fails to save: do nothing
+    });
   }
 
   static toUpperSnakeCase(str) {
