@@ -37,6 +37,9 @@ export default class AiDashboardRegistriesDeleteCtrl {
           )}: ${error.data.message || error}`,
           'error',
         ),
-      );
+      )
+      .finally(() => {
+        this.loading = false;
+      });
   }
 }

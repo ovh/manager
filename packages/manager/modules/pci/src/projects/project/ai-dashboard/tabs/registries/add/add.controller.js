@@ -35,6 +35,9 @@ export default class AIDashboardAddRegistryCtrl {
           )}: ${error.data.message || error}`,
           'error',
         ),
-      );
+      )
+      .finally(() => {
+        this.loading = false;
+      });
   }
 }
