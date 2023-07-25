@@ -119,6 +119,7 @@ export default function ServerSidebarItemRenderer({
         onClick={() => setIsResponsiveSidebarMenuOpen(false)}
         {...externalTarget}
         title={item.title || t('sidebar_access_dashboard')}
+        role="menuitem"
       >
         {item.icon && (
           <span className={style.menuItemIcon} aria-hidden="true">

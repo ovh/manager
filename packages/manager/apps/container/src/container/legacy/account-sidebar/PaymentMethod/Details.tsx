@@ -21,7 +21,7 @@ const Details = ({
 
   return (
     <div className="m-auto p-1 minw-0 w-100">
-      <h3>{t(`${translationBase}_title`)}</h3>
+      <p className="font-weight-bold">{t(`${translationBase}_title`)}</p>
       {defaultPaymentMethod ? (
         <div className={`${cssBaseClassName}_label`}>
           <p className="m-0 text-truncate">{defaultPaymentMethod.label}</p>
