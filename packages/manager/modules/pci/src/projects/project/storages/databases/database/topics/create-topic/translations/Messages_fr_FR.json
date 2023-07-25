@@ -10,7 +10,7 @@
   "pci_databases_topics_create_topic_replication": "Réplication",
   "pci_databases_topics_create_topic_partitions": "Partitions",
   "pci_databases_topics_create_topic_retention_bytes": "Taille de rétention (octets)",
-  "pci_databases_topics_create_topic_retention_hours": "Temps de rétention",
+  "pci_databases_topics_create_topic_retention_hours": "Temps de rétention (heures)",
   "pci_databases_topics_create_topic_min_insync_replicas": "Réplica in-sync minimum",
   "pci_databases_topics_create_topic_min_cleanup_policy": "Politique de suppression"
 }
