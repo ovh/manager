@@ -1,14 +1,7 @@
 {
   "dedicatedCloud_configuration_add_datacenter_title": "Añadir un datacenter",
   "dedicatedCloud_configuration_add_datacenter_confirmation": "Seleccione el tipo de datacenter que quiera añadir:",
-  "dedicatedCloud_datacenters_adding_success": "Enseguida se creará un nuevo datacenter.",
-  "dedicatedCloud_datacenters_adding_error": "Se ha producido un error al añadir un datacenter.",
-  "dedicatedCloud_datacenters_adding_load_error": "Se ha producido un error al cargar los datos para la adición de un datacenter.",
   "dedicatedCloud_datacenters_adding_select": "Seleccionar...",
-  "dedicatedCloud_configuration_add_datacenter_option": "Modificar las opciones",
-  "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part1": "Ha elegido añadir un datacenter virtual (vDC) de la gama Premier, en la que NSX está activado por defecto. No es posible añadir un datacenter virtual (vDC) Premier hasta que NSX esté activado en su infraestructura.",
-  "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part2": "Debe activar NSX desde la página de inicio de su infraestructura VMware (esta acción no afectará al funcionamiento de su infraestructura). Tenga en cuenta que la activación puede tardar hasta dos horas. Puede seguir el progreso de la tarea desde la pestaña «Operaciones».",
-  "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part3": "Una vez activado NSX, ya podrá añadir un datacenter virtual (vDC) Premier.",
   "dedicatedCloud_configuration_add_datacenter_description": "Los gastos de gestión («management fees») representan el coste de las MV de gestión (por ejemplo, su vCenter o vROps) que se alojan fuera de sus hosts dedicados, lo que le permite disponer del 100 % de la capacidad disponible (CPU, RAM).",
   "dedicatedCloud_configuration_add_datacenter_cta_submit": "Añadir un datacenter",
   "dedicatedCloud_configuration_add_datacenter_cta_cancel": "Cancelar",
@@ -20,5 +13,12 @@
   "dedicatedCloud_configuration_add_datacenter_card_essentials_description": "vSphere as a Service es una solución simple, fácil de gestionar y económica.",
   "dedicatedCloud_configuration_add_datacenter_card_premier_label": "Premier",
   "dedicatedCloud_configuration_add_datacenter_card_premier_description": "Solución empresarial potente e integrada, basada en programas conformes con las principales normas del mercado y orientada al rendimiento y la resiliencia.",
+  "dedicatedCloud_configuration_add_datacenter_option": "Modificar las opciones",
+  "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part1": "Ha elegido añadir un datacenter virtual (vDC) de la gama Premier, en la que NSX está activado por defecto. No es posible añadir un datacenter virtual (vDC) Premier hasta que NSX esté activado en su infraestructura.",
+  "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part2": "Debe activar NSX desde la página de inicio de su infraestructura VMware (esta acción no afectará al funcionamiento de su infraestructura). Tenga en cuenta que la activación puede tardar hasta dos horas. Puede seguir el progreso de la tarea desde la pestaña «Operaciones».",
+  "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part3": "Una vez activado NSX, ya podrá añadir un datacenter virtual (vDC) Premier.",
+  "dedicatedCloud_datacenters_adding_success": "Enseguida se creará un nuevo datacenter.",
+  "dedicatedCloud_datacenters_adding_error": "Se ha producido un error al añadir un datacenter.",
+  "dedicatedCloud_datacenters_adding_load_error": "Se ha producido un error al cargar los datos para la adición de un datacenter.",
   "dedicatedCloud_datacenters_add_datacenter_new_price": "{{ price }} sobre su tarifa"
 }
