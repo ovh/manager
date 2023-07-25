@@ -37,7 +37,7 @@ export default class {
       .all({
         catalog: this.$http
           .get(
-            `/order/catalog/public/webhostingPreprod?ovhSubsidiary=${ovhSubsidiary}`, // todo: preprod for testing
+            `/order/catalog/public/webHosting?ovhSubsidiary=${ovhSubsidiary}`,
           )
           .then(({ data: { plans } }) => plans),
         offers: this.OvhApiOrder.Cart()
@@ -172,9 +172,7 @@ export default class {
 
   getCatalog(ovhSubsidiary) {
     return this.$http
-      .get(
-        `/order/catalog/public/webhostingPreprod?ovhSubsidiary=${ovhSubsidiary}`, // todo: preprod for testing
-      )
+      .get(`/order/catalog/public/webHosting?ovhSubsidiary=${ovhSubsidiary}`)
       .then(({ data }) => data);
   }
 

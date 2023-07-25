@@ -33,14 +33,11 @@ angular.module('services').service(
      */
     getWebhostingCatalog() {
       return this.$http
-        .get(
-          '/order/catalog/public/webhostingPreprod', // todo: preprod for testing
-          {
-            params: {
-              ovhSubsidiary: this.coreConfig.getUser().ovhSubsidiary,
-            },
+        .get('/order/catalog/public/webHosting', {
+          params: {
+            ovhSubsidiary: this.coreConfig.getUser().ovhSubsidiary,
           },
-        )
+        })
         .then(({ data }) => data);
     }
 
