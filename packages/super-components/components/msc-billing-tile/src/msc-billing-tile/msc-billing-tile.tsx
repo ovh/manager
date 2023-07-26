@@ -297,7 +297,10 @@ export class MscBillingTile implements IMscBillingTile {
                 color={OdsThemeColorIntent.primary}
                 href={`https://www.ovh.com/manager/dedicated/#/${this.servicePath}/dashboard/cancel-resiliation`}
               >
-                {this.localStrings.billing_services_actions_menu_resiliate_cancel}
+                {
+                  this.localStrings
+                    .billing_services_actions_menu_resiliate_cancel
+                }
               </osds-link>
             );
           case 'manualPayment':
@@ -553,7 +556,10 @@ export class MscBillingTile implements IMscBillingTile {
                   }`}
                   color={OdsThemeColorIntent.primary}
                 >
-                  {this.localStrings.billing_services_actions_menu_configuration_update_owner}
+                  {
+                    this.localStrings
+                      .billing_services_actions_menu_configuration_update_owner
+                  }
                 </osds-link>
               </>
             )}
