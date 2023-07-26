@@ -70,7 +70,7 @@ export default class BmServerComponentsOrderKvmController {
           ),
         );
         this.$window.open(url, '_blank', 'noopener');
-        this.goBack(orderId);
+        this.orderId = orderId;
       })
       .catch((error) => this.displayKvmOrderError(error))
       .finally(() => {
