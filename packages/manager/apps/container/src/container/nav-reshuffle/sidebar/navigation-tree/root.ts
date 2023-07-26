@@ -65,6 +65,16 @@ const root: Node = {
           tag: NodeTag.NEW,
           count: false,
           features: ['iam'],
+        }, {
+          id: 'carbon_consumption',
+          translation: 'sidebar_carbon_footprint',
+          routing: {
+            application: 'carbon-calculator',
+            hash: '#/',
+          },
+          count: false,
+          features: ['carbon-calculator'],
+          region: ['EU', 'CA'],
         },
         {
           id: 'billing_services',
