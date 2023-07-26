@@ -22,13 +22,7 @@ import {
   OdsButtonVariant,
 } from '@ovhcloud/ods-core';
 import { HTMLStencilElement } from '@stencil/core/internal';
-import { i18n, createInstance } from 'i18next';
-import Backend from 'i18next-http-backend';
 import apiClient from '@ovh-ux/manager-core-api';
-
-const ovhLocaleToI18next = (ovhLocale = '') => ovhLocale.replace('_', '-');
-const i18nextLocaleToOvh = (i18nextLocale = '') =>
-  i18nextLocale.replace('-', '_');
 
 export interface IMscBillingTile {
   offer?: string;
@@ -56,6 +50,8 @@ export class MscBillingTile implements IMscBillingTile {
 
   /** service path for the API */
   @Prop() public servicePath = '';
+
+  @State() localStrings: { [key: string]: string };
 
   @State() private tabIndex = 0;
 
@@ -97,51 +93,43 @@ export class MscBillingTile implements IMscBillingTile {
     this.showTooltipContact = !this.showTooltipContact;
   }
 
-  private i18nInstance: i18n;
+  async componentWillLoad() {
+    this.localStrings = await this.fetchLocaleStringsForComponent();
+    await this.fetchServiceId();
+    if (this.getServiceType() === 'DOMAIN')
+      await this.fetchDomainOwner(this.getServiceName());
+  }
 
-  componentWillLoad() {
-    this.i18nInstance = createInstance();
+  ovhLocaleToI18next() {
+    return this.language?.replace('-', '_') || '';
+  }
 
-    return new Promise<void>((resolve) => {
-      this.i18nInstance.use(Backend).init(
-        {
-          lng: ovhLocaleToI18next(this.language),
-          fallbackLng: this.language,
-          debug: true,
-          backend: {
-            loadPath: (lngs: string) => {
-              const [lng] = lngs;
-              if (lng.length < 3) return ``;
-              return `translations/Messages_${i18nextLocaleToOvh(lng)}.json`;
-            },
-            allowMultiLoading: true,
-          },
+  async fetchLocaleStringsForComponent(): Promise<any> {
+    return new Promise((resolve, reject): void => {
+      fetch(`translations/Messages_${this.ovhLocaleToI18next()}.json`).then(
+        (result) => {
+          if (result.ok) {
+            resolve(result.clone().json());
+          } else reject();
         },
-        (err, t) => {
-          console.log('err translation', err, t);
-          // After initialization completed, set loaded flag to true
-          this.i18nLoaded = true;
-          resolve();
-        },
+        () => reject(),
       );
-
-      this.fetchServiceId();
-      if (this.getServiceType() === 'DOMAIN')
-        this.fetchDomainOwner(this.getServiceName());
     });
   }
 
   getTranslation(key: string, options?: Record<string, any>): string {
     if (!this.i18nLoaded) return key;
-    const translation = this.i18nInstance.t(key, {
-      ...options,
-      lng: this.language,
-    });
-    if (!translation) return key;
-    return translation;
+    console.info('options : ', options);
+    return 'To replace'; /* A remplacer car on peut faire sans le I18n instance */
+    // const translation = this.i18nInstance.t(key, {
+    //   ...options,
+    //   lng: this.language,
+    // });
+    // if (!translation) return key;
+    // return translation;
   }
 
-  fetchServiceId() {
+  async fetchServiceId() {
     apiClient.v6
       .get(`${this.servicePath}/serviceInfos`)
       .then((response) => {
@@ -187,7 +175,7 @@ export class MscBillingTile implements IMscBillingTile {
       });
   }
 
-  fetchServiceDetails(serviceId: string) {
+  async fetchServiceDetails(serviceId: string) {
     apiClient.v6
       .get(`/services/${serviceId}`)
       .then((response) => {
@@ -224,7 +212,7 @@ export class MscBillingTile implements IMscBillingTile {
       });
   }
 
-  fetchDomainOwner(domain: string) {
+  async fetchDomainOwner(domain: string) {
     apiClient.v6
       .get(`/domain/${domain}`)
       .then((response) => {
@@ -269,25 +257,19 @@ export class MscBillingTile implements IMscBillingTile {
       const getText = () => {
         switch (status) {
           case 'deleteAtExpiration':
-            return this.getTranslation(
-              'manager_billing_service_status_delete_at_expiration',
-            );
+            return this.localStrings
+              .manager_billing_service_status_delete_at_expiration;
           case 'automatic':
-            return this.getTranslation(
-              'manager_billing_service_status_automatic',
-            );
+            return this.localStrings.manager_billing_service_status_automatic;
           case 'manualPayment':
-            return this.getTranslation(
-              'manager_billing_service_status_manualPayment',
-            );
+            return this.localStrings
+              .manager_billing_service_status_manualPayment;
           case 'expired':
-            return this.getTranslation(
-              'manager_billing_service_status_expired',
-            );
+            return this.localStrings.manager_billing_service_status_expired;
           default:
-            return this.getTranslation(
-              `manager_billing_service_status_${status}`,
-            );
+            return this.localStrings[
+              `manager_billing_service_status_${status}`
+            ];
         }
       };
 
@@ -300,7 +282,7 @@ export class MscBillingTile implements IMscBillingTile {
                 href={`https://eu.ovh.com/fr/cgi-bin/order/renew.cgi?domainChooser=${this.getServiceName()}`}
                 target="blank"
               >
-                {this.getTranslation('billing_services_actions_menu_renew')}
+                {this.localStrings.billing_services_actions_menu_renew}
                 <osds-icon
                   class="link-icon"
                   size={OdsIconSize.xxs}
@@ -315,9 +297,7 @@ export class MscBillingTile implements IMscBillingTile {
                 color={OdsThemeColorIntent.primary}
                 href={`https://www.ovh.com/manager/dedicated/#/${this.servicePath}/dashboard/cancel-resiliation`}
               >
-                {this.getTranslation(
-                  'billing_services_actions_menu_resiliate_cancel',
-                )}
+                {this.localStrings.billing_services_actions_menu_resiliate_cancel}
               </osds-link>
             );
           case 'manualPayment':
@@ -327,25 +307,22 @@ export class MscBillingTile implements IMscBillingTile {
                   href={`https://www.ovh.com/manager/#/dedicated/billing/autorenew/delete?serviceId=${this.getServiceName()}&serviceType=${this.getServiceType()}`}
                   color={OdsThemeColorIntent.primary}
                 >
-                  {this.getTranslation(
-                    'billing_services_actions_menu_manage_renew',
-                  )}
+                  {this.localStrings.billing_services_actions_menu_manage_renew}
                 </osds-link>
                 <osds-link
                   href={`https://www.ovh.com/manager/#/dedicated/${this.servicePath}/commitment`}
                   color={OdsThemeColorIntent.primary}
                 >
-                  {this.getTranslation(
-                    'billing_services_actions_menu_anticipate_renew',
-                  )}
+                  {
+                    this.localStrings
+                      .billing_services_actions_menu_anticipate_renew
+                  }
                 </osds-link>
                 <osds-link
                   href={`https://www.ovh.com/manager/#/dedicated/billing/autorenew/delete?serviceId=${this.getServiceName()}&serviceType=${this.getServiceType()}`}
                   color={OdsThemeColorIntent.primary}
                 >
-                  {this.getTranslation(
-                    'billing_services_actions_menu_resiliate',
-                  )}
+                  {this.localStrings.billing_services_actions_menu_resiliate}
                 </osds-link>
               </div>
             );
@@ -357,25 +334,22 @@ export class MscBillingTile implements IMscBillingTile {
                   href={`https://www.ovh.com/manager/#/dedicated/billing/autorenew/delete?serviceId=${this.getServiceName()}&serviceType=${this.getServiceType()}`}
                   color={OdsThemeColorIntent.primary}
                 >
-                  {this.getTranslation(
-                    'billing_services_actions_menu_manage_renew',
-                  )}
+                  {this.localStrings.billing_services_actions_menu_manage_renew}
                 </osds-link>
                 <osds-link
                   href={`https://www.ovh.com/manager/#/${this.servicePath}/commitment`}
                   color={OdsThemeColorIntent.primary}
                 >
-                  {this.getTranslation(
-                    'billing_services_actions_menu_anticipate_renew',
-                  )}
+                  {
+                    this.localStrings
+                      .billing_services_actions_menu_anticipate_renew
+                  }
                 </osds-link>
                 <osds-link
                   href={`https://www.ovh.com/manager/#/dedicated/billing/autorenew/delete?serviceId=${this.getServiceName()}&serviceType=${this.getServiceType()}`}
                   color={OdsThemeColorIntent.primary}
                 >
-                  {this.getTranslation(
-                    'billing_services_actions_menu_resiliate',
-                  )}
+                  {this.localStrings.billing_services_actions_menu_resiliate}
                 </osds-link>
               </div>
             );
@@ -516,9 +490,10 @@ export class MscBillingTile implements IMscBillingTile {
                 size={OdsChipSize.sm}
                 variant={OdsChipVariant.flat}
               >
-                {this.getTranslation(
-                  'manager_billing_subscription_engagement_status_none',
-                )}
+                {
+                  this.localStrings
+                    .manager_billing_subscription_engagement_status_none
+                }
               </osds-chip>
               <div>
                 <osds-link
@@ -527,9 +502,10 @@ export class MscBillingTile implements IMscBillingTile {
                   href={`https://www.ovh.com/manager/dedicated/#/${this.servicePath}/dashboard/commitment`}
                   target={OdsHTMLAnchorElementTarget._blank}
                 >
-                  {this.getTranslation(
-                    'manager_billing_subscription_engagement_commit',
-                  )}
+                  {
+                    this.localStrings
+                      .manager_billing_subscription_engagement_commit
+                  }
                   <osds-icon
                     class="link-icon"
                     size={OdsIconSize.xxs}
@@ -551,9 +527,10 @@ export class MscBillingTile implements IMscBillingTile {
               href={`https://www.ovh.com/manager/#/dedicated/contacts/services?serviceName=${this.getServiceName()}`}
               color={OdsThemeColorIntent.primary}
             >
-              {this.getTranslation(
-                'manager_billing_subscription_contacts_management',
-              )}
+              {
+                this.localStrings
+                  .manager_billing_subscription_contacts_management
+              }
             </osds-link>
             {this.getServiceType() === 'DOMAIN' && (
               <>
@@ -562,9 +539,7 @@ export class MscBillingTile implements IMscBillingTile {
                   target="blank"
                   color={OdsThemeColorIntent.primary}
                 >
-                  {this.getTranslation(
-                    'billing_services_actions_menu_change_owner',
-                  )}
+                  {this.localStrings.billing_services_actions_menu_change_owner}
                   <osds-icon
                     class="link-icon"
                     size={OdsIconSize.xxs}
@@ -578,9 +553,7 @@ export class MscBillingTile implements IMscBillingTile {
                   }`}
                   color={OdsThemeColorIntent.primary}
                 >
-                  {this.getTranslation(
-                    'billing_services_actions_menu_configuration_update_owner',
-                  )}
+                  {this.localStrings.billing_services_actions_menu_configuration_update_owner}
                 </osds-link>
               </>
             )}
@@ -590,9 +563,7 @@ export class MscBillingTile implements IMscBillingTile {
                 target="blank"
                 color={OdsThemeColorIntent.primary}
               >
-                {this.getTranslation(
-                  'billing_services_actions_menu_change_owner',
-                )}
+                {this.localStrings.billing_services_actions_menu_change_owner}
                 <osds-icon
                   class="link-icon"
                   size={OdsIconSize.xxs}
@@ -636,21 +607,15 @@ export class MscBillingTile implements IMscBillingTile {
           >
             <div>
               {this.contactAdmin}{' '}
-              {this.getTranslation(
-                'manager_billing_subscription_contacts_admin',
-              )}
+              {this.localStrings.manager_billing_subscription_contacts_admin}
             </div>
             <div>
               {this.contactTech}{' '}
-              {this.getTranslation(
-                'manager_billing_subscription_contacts_tech',
-              )}
+              {this.localStrings.manager_billing_subscription_contacts_tech}
             </div>
             <div>
               {this.contactBilling}{' '}
-              {this.getTranslation(
-                'manager_billing_subscription_contacts_billing',
-              )}
+              {this.localStrings.manager_billing_subscription_contacts_billing}
             </div>
           </osds-text>
         </>
@@ -670,7 +635,7 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._300}
             color={OdsThemeColorIntent.text}
           >
-            {this.getTranslation('manager_billing_subscription')}
+            {this.localStrings.manager_billing_subscription}
           </osds-text>
           {/* OFFER */}
           {this.offer && (
@@ -682,7 +647,7 @@ export class MscBillingTile implements IMscBillingTile {
                 size={OdsThemeTypographySize._200}
                 color={OdsThemeColorIntent.text}
               >
-                {this.getTranslation('manager_billing_subscription_offer')}
+                {this.localStrings.manager_billing_subscription_offer}
               </osds-text>
               <osds-text
                 class="tile-description"
@@ -702,7 +667,7 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.text}
           >
-            {this.getTranslation('manager_billing_subscription_creation')}
+            {this.localStrings.manager_billing_subscription_creation}
           </osds-text>
           <osds-text
             class="tile-description"
@@ -720,7 +685,7 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.text}
           >
-            {this.getTranslation('manager_billing_subscription_next_due_date')}
+            {this.localStrings.manager_billing_subscription_next_due_date}
           </osds-text>
           {RenewalContent()}
           {/* COMMITMENT */}
@@ -731,7 +696,7 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.text}
           >
-            {this.getTranslation('manager_billing_subscription_engagement')}
+            {this.localStrings.manager_billing_subscription_engagement}
           </osds-text>
           <osds-text
             class="tile-description"
@@ -749,7 +714,7 @@ export class MscBillingTile implements IMscBillingTile {
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.text}
           >
-            {this.getTranslation('manager_billing_subscription_contacts')}
+            {this.localStrings.manager_billing_subscription_contacts}
           </osds-text>
           <div>{ContactContent()}</div>
           {/* removed link using menu

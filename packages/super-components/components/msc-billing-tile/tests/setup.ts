@@ -5,10 +5,16 @@ import { MscBillingTile, IMscBillingTile } from '../src';
 
 const defaultAttributes = {
   dataTracking: 'home::dashboard::test',
+  servicePath: 'dedicated/nasha/zpool-128894',
+  offer: 'zpool-128894',
 };
 
 export const setupSpecTest = async ({
-  attributes = {},
+  attributes = {
+    dataTracking: 'home::dashboard::test',
+    servicePath: 'dedicated/nasha/zpool-128894',
+    offer: 'zpool-128894',
+  },
   html = ``,
 }: {
   attributes?: Partial<IMscBillingTile>;
