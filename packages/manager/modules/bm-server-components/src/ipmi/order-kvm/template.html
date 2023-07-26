@@ -1,7 +1,7 @@
 <div class="text-center" data-ng-if="$ctrl.loading">
     <oui-spinner></oui-spinner>
 </div>
-<div class="container-fluid" data-ng-if="!$ctrl.loading">
+<div class="container-fluid" data-ng-if="!$ctrl.loading && !$ctrl.orderId">
     <oui-back-button on-click="$ctrl.goBack()">
         <span data-translate="server_configuration_impi_order_kvm"></span>
     </oui-back-button>
