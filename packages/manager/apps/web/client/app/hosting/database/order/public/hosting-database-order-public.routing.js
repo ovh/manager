@@ -53,10 +53,12 @@ export default /* @ngInject */ ($stateProvider) => {
         catalog,
         webCloudCatalog,
         HostingDatabaseOrderPublicService,
+        hosting,
       ) => {
         return HostingDatabaseOrderPublicService.buildDbCategories(
           catalog,
           webCloudCatalog,
+          hosting.offer,
         );
       },
 

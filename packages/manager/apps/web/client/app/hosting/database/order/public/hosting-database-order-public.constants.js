@@ -15,10 +15,13 @@ export const DB_OFFERS = {
   },
 };
 
+export const OFFERS_WITHOUT_START_SQL = ['HOSTING_STARTER'];
+
 export const REGEX_DB_OFFER_SORT = /(?:-|_)(\d+)(?:-|_)/;
 
 export default {
   PRODUCT_NAME,
   DB_OFFERS,
   REGEX_DB_OFFER_SORT,
+  OFFERS_WITHOUT_START_SQL,
 };
