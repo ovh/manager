@@ -138,14 +138,16 @@ export default class WebComponentsHostingDomainOffersController {
         } catch (e) {
           return [];
         }
+      } else if (CLOUDWEB_OFFER.includes(offer.planCode) && offer.invoiceName) {
+        return {
+          ...offer,
+          price: this.formatOfferPrice(null, offer.planCode),
+          planCode: CLOUDWEB_VERSION_MAP[offer.planCode],
+          category: offer.planCode,
+          isCloudwebOffer: true,
+        };
       }
-      return {
-        ...offer,
-        price: this.formatOfferPrice(null, offer.planCode),
-        planCode: CLOUDWEB_VERSION_MAP[offer.planCode],
-        category: offer.planCode,
-        isCloudwebOffer: true,
-      };
+      return [];
     });
   }
 
