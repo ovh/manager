@@ -7,6 +7,7 @@ import {
   DB_OFFERS,
   PRODUCT_NAME,
   REGEX_DB_OFFER_SORT,
+  OFFERS_WITHOUT_START_SQL,
 } from './hosting-database-order-public.constants';
 
 export default class {
@@ -141,7 +142,7 @@ export default class {
     );
   }
 
-  buildDbCategories(catalog, webCloudCatalog) {
+  buildDbCategories(catalog, webCloudCatalog, offer) {
     const startSqlCategory = this.constructor
       .getStartSqlCategory(catalog)
       .sort(this.constructor.dbOfferSort);
@@ -151,10 +152,12 @@ export default class {
 
     // const db groups
     const groupedCategories = {
-      [DB_OFFERS.STARTER.CATEGORY]: {
-        versions: startSqlCategory,
-        tracking: DB_OFFERS.STARTER.TRACKING,
-      },
+      ...(!OFFERS_WITHOUT_START_SQL.includes(offer) && {
+        [DB_OFFERS.STARTER.CATEGORY]: {
+          versions: startSqlCategory,
+          tracking: DB_OFFERS.STARTER.TRACKING,
+        },
+      }),
       [DB_OFFERS.PRIVATE.CATEGORY]: {
         versions: webCloudCategory,
         tracking: DB_OFFERS.PRIVATE.TRACKING,
