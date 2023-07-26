@@ -42,6 +42,16 @@ angular
     'PRO',
     'START',
   ])
+  .constant('HOSTING_NEW_OFFER_UPGRADES', [
+    'HOSTING_STARTER',
+    'HOSTING_STARTER_OVH',
+    'HOSTING_PERSO',
+    'HOSTING_PRO',
+    'HOSTING_PERFORMANCE_1',
+    'HOSTING_PERFORMANCE_2',
+    'HOSTING_PERFORMANCE_3',
+    'HOSTING_PERFORMANCE_4',
+  ])
   .constant('HOSTING_FLUSH_STATE', {
     OK: 'ok',
     CHECK: 'check',

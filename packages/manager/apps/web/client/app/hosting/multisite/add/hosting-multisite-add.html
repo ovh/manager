@@ -144,7 +144,6 @@
             data-wizard-step
             data-wizard-step-on-load="loadStep2"
             data-wizard-step-valid="model.step2Valid && !domainsAlreadyExists() && !domainIsNotValid() && isPathValid() && (selected.mode === model.mode.EXTERNAL || ((selected.ownLog === 'ACTIVE' && selected.ownLogDomain) || (!selected.ownLog || selected.ownLog === 'NONE')))"
-            data-ng-if="!model.needChangeOffer"
         >
             <div class="text-center" data-ng-if="model.domains == null">
                 <oui-spinner></oui-spinner>
@@ -160,7 +159,6 @@
             data-wizard-step
             data-wizard-step-on-load="loadStep3"
             data-wizard-step-valid="!loading"
-            data-ng-if="!model.needChangeOffer"
         >
             <p
                 data-translate="hosting_tab_DOMAINS_configuration_add_step3_summary"
