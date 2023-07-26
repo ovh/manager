@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.7...@ovh-ux/manager-web@17.0.8) (2023-07-26)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix wizard add multisite ([59b5d4b](https://github.com/ovh/manager/commit/59b5d4b13ce431f69466940d4ccce421a089066d))
+
+
+
+
+
 ## [17.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.6...@ovh-ux/manager-web@17.0.7) (2023-07-26)
 
 
