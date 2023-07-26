@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@5.3.2...@ovh-ux/manager-product-offers@5.3.3) (2023-07-26)
+
+
+### Bug Fixes
+
+* **web.hosting:** new web hosting offer ([aa79837](https://github.com/ovh/manager/commit/aa79837b1924ad7b853a9ca11fa5d5f50961cc1c))
+
+
+
+
+
 ## [5.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@5.3.1...@ovh-ux/manager-product-offers@5.3.2) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-product-offers
