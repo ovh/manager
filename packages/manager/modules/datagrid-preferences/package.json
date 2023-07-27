@@ -1,0 +1,34 @@
+{
+  "name": "@ovh-ux/datagrid-preferences",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Store and retrieve datagrid configuration",
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/datagrid-preferences#readme",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/modules/datagrid-preferences"
+  },
+  "license": "BSD-3-Clause",
+  "sideEffects": false,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc",
+    "dev:watch": "tsc --watch",
+    "prepare": "yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/datagrid-preferences' --include-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/datagrid-preferences' --include-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/datagrid-preferences' --include-dependencies -- yarn run dev:watch"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.15"
+  }
+}
