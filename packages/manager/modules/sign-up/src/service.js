@@ -40,14 +40,14 @@ export default class SignUpService {
     return this.$http.put('/me', nicInfos);
   }
 
-  giveSmsConsent() {
+  sendSmsConsent(consent = false) {
     return this.$http.put('/me/marketing', {
-      denyAll: false,
+      denyAll: consent !== true,
       sms: {
-        events: true,
-        newProductRecommendation: true,
-        newsletter: true,
-        offerAndDiscount: true,
+        events: consent,
+        newProductRecommendation: consent,
+        newsletter: consent,
+        offerAndDiscount: consent,
       },
     });
   }
