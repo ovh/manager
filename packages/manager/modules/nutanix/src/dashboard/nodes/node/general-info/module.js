@@ -8,6 +8,7 @@ import {
   serverSupport,
   serverNetwork,
   serverBandwidthDashboard,
+  serverTechnicalDetails,
 } from '@ovh-ux/manager-bm-server-components';
 
 import component from './component';
@@ -30,6 +31,7 @@ angular
     ngOvhUtils,
     serverNetwork,
     serverSupport,
+    serverTechnicalDetails,
     serverBandwidthDashboard,
     bandwidthPrivateOrder,
     reboot,

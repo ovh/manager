@@ -254,7 +254,7 @@ export default class NutanixService {
 
   getNutanixPlans(ovhSubsidiary) {
     return this.$http
-      .get('/order/catalog/public/nutanixStaging', {
+      .get('/order/catalog/public/nutanix', {
         params: {
           ovhSubsidiary,
         },

@@ -94,14 +94,14 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
   }
 
   cancel() {
-    this.atTrack(`${this.trackingPrefix}cancel`);
+    this.trackClick(`${this.trackingPrefix}cancel`);
     this.goBack();
   }
 
   order() {
     if (this.model.plan) {
       this.isLoading = true;
-      this.atTrack(`${this.trackingPrefix}confirm`);
+      this.trackClick(`${this.trackingPrefix}confirm`);
       return this.OrderPrivateBandwidthService.bareMetalPrivateBandwidthPlaceOrder(
         this.serviceId,
         this.model.plan,

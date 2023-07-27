@@ -8,6 +8,13 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       nodeId: /* @ngInject */ ($transition$) => $transition$.params().nodeId,
+      getOrderPrivateBandwidthLink: /* @ngInject */ ($state, nodeId) => () =>
+        $state.href(
+          'nutanix.dashboard.nodes.node.general-info.bandwidth-private-order',
+          {
+            nodeId,
+          },
+        ),
       server: /* @ngInject */ (node) => node,
       trackingPrefix: /* @ngInject */ () =>
         'hpc::nutanix::cluster::node::dashboard',
@@ -65,7 +72,7 @@ export default /* @ngInject */ ($stateProvider) => {
             serviceType: 'DEDICATED_SERVER',
           }),
         ),
-      atTrack: /* @ngInject */ (atInternet) => (name) =>
+      trackClick: /* @ngInject */ (atInternet) => (name) =>
         atInternet.trackClick({
           name,
           type: 'action',

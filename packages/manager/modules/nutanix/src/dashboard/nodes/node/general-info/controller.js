@@ -2,15 +2,7 @@ import { NO_OS_INSTALLED_REGEX, TRAVAUX_LINK } from './constants';
 
 export default class NutanixNodeGeneralInfoCtrl {
   /* @ngInject */
-  constructor(
-    $state,
-    $translate,
-    coreConfig,
-    NutanixNode,
-    $rootScope,
-    Alerter,
-  ) {
-    this.$state = $state;
+  constructor($translate, coreConfig, NutanixNode, $rootScope, Alerter) {
     this.$translate = $translate;
     this.region = coreConfig.getRegion();
     this.nutanixNodeService = NutanixNode;
@@ -19,12 +11,6 @@ export default class NutanixNodeGeneralInfoCtrl {
   }
 
   $onInit() {
-    this.orderPrivateBandwidthLink = this.$state.href(
-      'nutanix.dashboard.nodes.node.general-info.bandwidth-private-order',
-      {
-        nodeId: this.nodeId,
-      },
-    );
     this.isRebooting = false;
     this.TRAVAUX_LINK = TRAVAUX_LINK;
     this.loadServer();

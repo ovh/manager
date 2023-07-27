@@ -4,7 +4,7 @@ export default {
   template,
   bindings: {
     alertError: '<',
-    atTrack: '<',
+    trackClick: '<',
     goBack: '<',
     hasDefaultPaymentMethod: '<',
     serverName: '<',
