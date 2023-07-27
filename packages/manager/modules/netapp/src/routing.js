@@ -39,6 +39,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      id: () => 'netapps',
       apiPath: () => '/storage/netapp',
       dataModel: () => 'storage.NetAppService',
       defaultFilterColumn: () => 'id',

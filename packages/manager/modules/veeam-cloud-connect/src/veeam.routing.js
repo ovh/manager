@@ -11,6 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     params: ListLayoutHelper.stateParams,
     resolve: {
+      id: () => 'veeamCloudConnect',
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/veeamCloudConnect',
       dataModel: () => 'veeamCloudConnect.Account',

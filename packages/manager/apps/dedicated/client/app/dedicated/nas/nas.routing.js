@@ -13,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/dedicated/nas',
       dataModel: () => 'dedicated.nas.Nas',
+      id: () => 'nashas',
       defaultFilterColumn: () => 'serviceName',
       header: () => 'NAS',
       customizableColumns: () => true,

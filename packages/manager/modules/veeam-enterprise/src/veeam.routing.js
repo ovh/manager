@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
             : false,
         ),
     resolve: {
+      id: () => 'veeamEnterprise',
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/veeam/veeamEnterprise',
       dataModel: () => 'veeam.veeamEnterprise.Account',

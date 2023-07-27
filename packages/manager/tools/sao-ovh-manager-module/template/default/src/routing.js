@@ -28,6 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      id: () => '<%= name %>',
       apiPath: () => '<%= apiPath %>',
       dataModel: () => '<%= apiModel %>',
       defaultFilterColumn: () => '<%= serviceName %>',

@@ -18,6 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      id: () => 'hostings',
       apiPath: () => '/hosting/web',
       dataModel: () => 'hosting.web.Service',
       loadResource: /* @ngInject */ ($translate) => (resource) => {

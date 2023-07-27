@@ -1,6 +1,11 @@
 import get from 'lodash/get';
 import map from 'lodash/map';
 
+import {
+  retrieveColumnsConfig,
+  saveColumnsConfig,
+} from '@ovh-ux/datagrid-preferences';
+
 import { NUMBER_COLUMN_OPTIONS, STRING_COLUMN_OPTIONS } from './constants';
 
 export default class ListLayoutCtrl {
@@ -28,6 +33,8 @@ export default class ListLayoutCtrl {
     this.numberColumnOptions = {
       operators: NUMBER_COLUMN_OPTIONS,
     };
+
+    this.getColumnsPreferences();
   }
 
   loadPage() {
@@ -41,6 +48,14 @@ export default class ListLayoutCtrl {
 
   getSorting(property) {
     return this.sort === property ? this.sortOrder.toLowerCase() : '';
+  }
+
+  getColumnsPreferences() {
+    this.$q.when(retrieveColumnsConfig(this.datagridId)).then((columns) => {
+      if (columns) {
+        this.columnsParameters = columns;
+      }
+    });
   }
 
   getDisplayedColumns(columns) {
@@ -89,6 +104,7 @@ export default class ListLayoutCtrl {
 
   onColumnChange(id, columns) {
     this.getDisplayedColumns(columns);
+    saveColumnsConfig(id, columns);
     return this.onListParamsChange();
   }
 }

@@ -11,6 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
     params: ListLayoutHelper.stateParams,
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      id: () => 'metrics',
       apiPath: () => '/metrics',
       dataModel: () => 'metrics.api.Service',
       defaultFilterColumn: () => 'name',

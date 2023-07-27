@@ -11,6 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
     params: ListLayoutHelper.stateParams,
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      id: () => 'iplbs',
       apiPath: () => '/ipLoadbalancing',
       dataModel: () => 'ipLoadbalancing.Ip',
       defaultFilterColumn: () => 'serviceName',

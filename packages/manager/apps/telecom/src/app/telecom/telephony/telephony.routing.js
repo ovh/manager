@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
     params: ListLayoutHelper.stateParams,
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      id: () => 'telephony',
       apiPath: () => '/telephony',
       defaultFilterColumn: () => 'billingAccount',
       dataModel: () => 'telephony.BillingAccount',

@@ -23,6 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      id: () => 'domains',
       apiPath: () => '/domain',
       schema: /* @ngInject */ ($http) =>
         $http.get('/domain.json').then(({ data: schema }) => schema),

@@ -14,6 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      id: () => 'sharepoints',
       apiPath: () => '/msServices',
       dataModel: () => 'msServices.SharepointServiceInfo',
       resources: /* @ngInject */ ($http) =>

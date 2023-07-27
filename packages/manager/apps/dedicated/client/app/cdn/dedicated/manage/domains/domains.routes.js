@@ -13,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
         `/cdn/dedicated/${serviceName}/domains`,
       schema: /* @ngInject */ ($http) =>
         $http.get('/cdn/dedicated.json').then(({ data }) => data),
+      id: () => 'domains',
       dataModel: () => 'cdnanycast.Domain',
       defaultFilterColumn: () => 'domain',
       customizableColumns: () => true,

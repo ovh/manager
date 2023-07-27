@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
       staticResources: () => true,
       apiPath: () => '/dedicatedCloud',
       dataModel: () => 'dedicatedCloud.dedicatedCloud',
+      id: () => 'dedicatedClouds',
       defaultFilterColumn: () => 'serviceName',
       resources: /* @ngInject */ ($http, apiPath) =>
         $http

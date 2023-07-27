@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     params: ListLayoutHelper.stateParams,
     resolve: {
+      id: () => 'sms',
       apiPath: () => '/sms',
       ...ListLayoutHelper.stateResolves,
       defaultFilterColumn: () => 'name',

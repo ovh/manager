@@ -7,6 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'managerListLayout',
     params: ListLayoutHelper.stateParams,
     resolve: {
+      id: () => 'vracks',
       ...ListLayoutHelper.stateResolves,
       apiPath: /* @ngInject */ () => '/vrack',
       dataModel: () => 'vrack.vrack',

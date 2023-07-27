@@ -13,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/dedicated/ceph',
       dataModel: () => 'dedicated.ceph.clusterGet.response',
+      id: () => 'cdas',
       defaultFilterColumn: () => 'serviceName',
       columnConfig: /* @ngInject */ () => ({
         data: [

@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      id: () => 'privateDatabases',
       apiPath: () => '/hosting/privateDatabase',
       dataModel: () => 'hosting.privateDatabase.Service',
       defaultFilterColumn: () => 'serviceName',

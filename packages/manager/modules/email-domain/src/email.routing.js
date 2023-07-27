@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      id: () => 'emailDomains',
       apiPath: () => '/email/domain',
       dataModel: () => 'email.domain.DomainService',
       defaultFilterColumn: () => 'domain',
@@ -52,6 +53,7 @@ export default /* @ngInject */ ($stateProvider) => {
     params: ListLayoutHelper.stateParams,
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      id: () => 'emailDelefates',
       schema: /* @ngInject */ ($http) =>
         $http.get('/email/domain.json').then(({ data }) => data),
       apiPath: () => '/email/domain/delegatedAccount',

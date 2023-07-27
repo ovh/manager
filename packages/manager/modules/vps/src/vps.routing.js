@@ -11,6 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     params: ListLayoutHelper.stateParams,
     resolve: {
+      id: () => 'vps',
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/vps',
       dataModel: () => 'vps.VPS',

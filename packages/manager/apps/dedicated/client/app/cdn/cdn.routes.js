@@ -10,6 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/cdn/dedicated',
       dataModel: () => 'cdnanycast.Anycast',
+      id: () => 'cdns',
       defaultFilterColumn: () => 'service',
       header: /* @ngInject */ ($translate) => $translate.instant('cdn_title'),
       customizableColumns: () => true,

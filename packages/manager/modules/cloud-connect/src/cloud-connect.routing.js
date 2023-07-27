@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
       params: ListLayoutHelper.stateParams,
       resolve: {
         ...ListLayoutHelper.stateResolves,
+        id: () => 'cloudConnects',
         apiPath: () => '/ovhCloudConnect',
         dataModel: () => 'ovhcloudconnect.Service',
         defaultFilterColumn: () => 'uuid',

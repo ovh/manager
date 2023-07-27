@@ -5,7 +5,7 @@
 
     <oui-datagrid
         class="table-striped"
-        id="dg-servers"
+        id="{{ $ctrl.datagridId }}"
         data-page-size="{{ $ctrl.paginationSize }}"
         data-rows-loader="$ctrl.loadServers()"
         data-criteria="$ctrl.criteria"

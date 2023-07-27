@@ -12,6 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
       apiPath: () => '/dedicatedCloud',
       dataModel: () => 'dedicatedCloud.dedicatedCloud',
       defaultFilterColumn: () => 'serviceName',
+      id: () => 'managedBaremetals',
       resources: /* @ngInject */ ($http, apiPath) =>
         $http
           .get(apiPath, {

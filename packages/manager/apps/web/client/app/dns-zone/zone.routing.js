@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      id: () => 'dnsZones',
       schema: /* @ngInject */ ($http) =>
         $http.get('/domain.json').then(({ data }) => data),
       apiPath: () => '/domain/zone',

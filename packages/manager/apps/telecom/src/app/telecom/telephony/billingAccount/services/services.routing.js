@@ -13,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
     params: ListLayoutHelper.stateParams,
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      id: () => 'telephonyBillingAccounts',
       apiPath: /* @ngInject */ (billingAccountId) =>
         `/telephony/${billingAccountId}/service`,
       schema: /* @ngInject */ (OvhApiTelephony) =>

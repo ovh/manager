@@ -42,6 +42,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         ...ListLayoutHelper.stateResolves,
+        id: () => 'telephonyRepayments',
         apiPath: () => '/me/sva/cdr',
         dataModel: () => 'me.sva.Cdr',
         defaultFilterColumn: () => 'startDate',

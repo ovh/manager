@@ -1,5 +1,6 @@
 import punycode from 'punycode';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { retrieveColumnsConfig } from '@ovh-ux/datagrid-preferences';
 
 import {
   DOMAIN_STATUS,
@@ -29,10 +30,11 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
   }
 
   $onInit() {
-    super.$onInit();
+    this.id = 'datagridDomain';
     this.datagridId = 'datagridDomain';
     this.defaultFilterColumn = 'domain';
     this.punycode = punycode;
+    super.$onInit();
 
     this.columnsConfig = [
       { name: 'domain', sortable: this.getSorting('domain') },
@@ -92,6 +94,15 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
         {},
       ),
     };
+    this.getColumnsPreferences();
+  }
+
+  getColumnsPreferences() {
+    this.$q.when(retrieveColumnsConfig(this.datagridId)).then((columns) => {
+      if (columns) {
+        this.columnsParameters = columns;
+      }
+    });
   }
 
   linkContactBuilder({ domain, whoisOwner }) {

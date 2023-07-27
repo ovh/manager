@@ -2,16 +2,20 @@ import get from 'lodash/get';
 import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
+import {
+  retrieveColumnsConfig,
+  saveColumnsConfig,
+} from '@ovh-ux/datagrid-preferences';
 
 import { MONITORING_STATUSES, DC_2_ISO } from './dashboard/dashboard.constants';
 
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["onColumnsParametersChange"] }] */
 export default class ServersCtrl {
   /* @ngInject */
-  constructor($q, $translate, ouiDatagridService, ovhUserPref) {
+  constructor($q, $translate, ouiDatagridService) {
     this.$q = $q;
     this.$translate = $translate;
     this.ouiDatagridService = ouiDatagridService;
-    this.ovhUserPref = ovhUserPref;
   }
 
   $onInit() {
@@ -20,6 +24,7 @@ export default class ServersCtrl {
       this,
     );
 
+    this.datagridId = 'dg-servers';
     this.criteria = JSON.parse(this.filter).map((criteria) => ({
       property: get(criteria, 'field') || 'name',
       operator: get(criteria, 'comparator'),
@@ -52,22 +57,15 @@ export default class ServersCtrl {
   }
 
   getColumnsPreferences() {
-    this.ovhUserPref
-      .getValue('DEDICATED_SERVER_DG_CONFIG')
-      .then((columns) => {
+    this.$q.when(retrieveColumnsConfig(this.datagridId)).then((columns) => {
+      if (columns) {
         this.columnsParameters = columns;
-      })
-      .catch(() => {
-        // do nothing (defautl columns will be displayed)
-      });
+      }
+    });
   }
 
   onColumnsParametersChange(id, columns) {
-    // save cols
-    // todo: add debounce
-    this.ovhUserPref.create('DEDICATED_SERVER_DG_CONFIG', columns).catch(() => {
-      // fails to save: do nothing
-    });
+    saveColumnsConfig(id, columns);
   }
 
   static toUpperSnakeCase(str) {

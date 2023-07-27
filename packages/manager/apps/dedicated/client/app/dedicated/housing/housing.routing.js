@@ -9,6 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/dedicated/housing',
       dataModel: () => 'dedicated.housing.Housing',
+      id: () => 'housing',
       defaultFilterColumn: () => 'name',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_housing'),

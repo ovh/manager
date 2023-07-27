@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      id: () => 'offices',
       apiPath: () => '/license/office',
       resources: /* @ngInject */ ($http) =>
         $http
