@@ -165,7 +165,9 @@ export default class OrderWorkflow extends Workflow {
       configuration,
     };
 
-    const serviceName = this.serviceNameToAddProduct;
+    const serviceName = isFunction(this.serviceNameToAddProduct)
+      ? this.serviceNameToAddProduct()
+      : this.serviceNameToAddProduct;
 
     return this.$q
       .when()
@@ -174,13 +176,17 @@ export default class OrderWorkflow extends Workflow {
         isString(serviceName) && !isEmpty(serviceName)
           ? this.WucOrderCartService.addProductServiceOptionToCart(
               this.cartId,
-              this.productName,
+              isFunction(this.productName)
+                ? this.productName()
+                : this.productName,
               serviceName,
               checkoutInformations.product,
             )
           : this.WucOrderCartService.addProductToCart(
               this.cartId,
-              this.productName,
+              isFunction(this.productName)
+                ? this.productName()
+                : this.productName,
               checkoutInformations.product,
             ),
       )
