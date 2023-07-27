@@ -76,20 +76,19 @@ export const state = {
       me,
       signUp,
     ) => (smsConsent) =>
-      signUp.saveNic(me.model).then(() => {
-        if (smsConsent) {
-          signUp.giveSmsConsent();
-        }
-        // for tracking purposes
-        if ($window.sessionStorage) {
-          $window.sessionStorage.setItem('ovhSessionSuccess', true);
-        }
-        // manage redirection
-        const redirectUrl = getRedirectLocation(me.nichandle);
-        if (redirectUrl) {
-          $window.location.assign(redirectUrl);
-        }
-      }),
+      signUp.saveNic(me.model).then(() =>
+        signUp.sendSmsConsent(smsConsent).then(() => {
+          // for tracking purposes
+          if ($window.sessionStorage) {
+            $window.sessionStorage.setItem('ovhSessionSuccess', true);
+          }
+          // manage redirection
+          const redirectUrl = getRedirectLocation(me.nichandle);
+          if (redirectUrl) {
+            $window.location.assign(redirectUrl);
+          }
+        }),
+      ),
 
     steps: () => [
       {
