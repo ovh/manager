@@ -57,4 +57,7 @@ angular
     CHECK: 'check',
     DOING: 'doing',
   })
-  .constant('DETACHABLE_PRODUCT_NAMES', ['start10m-addon-v1']);
+  .constant('DETACHABLE_PRODUCT_NAMES', [
+    'start10m-addon-v1',
+    'hosting-free-100m',
+  ]);
