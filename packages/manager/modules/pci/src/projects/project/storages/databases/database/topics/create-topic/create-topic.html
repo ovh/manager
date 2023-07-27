@@ -29,10 +29,10 @@
             group="advanced_configuration"
         >
             <!--Advanced config-->
-            <div class="row">
+            <div class="row justify-content-between">
                 <oui-field
                     data-label="{{:: 'pci_databases_topics_create_topic_replication' | translate }}"
-                    class="col"
+                    class="col-5"
                 >
                     <oui-numeric
                         model="$ctrl.model.replication"
@@ -44,7 +44,7 @@
                 </oui-field>
                 <oui-field
                     data-label="{{:: 'pci_databases_topics_create_topic_partitions' | translate }}"
-                    class="col"
+                    class="col-5"
                 >
                     <oui-numeric
                         model="$ctrl.model.partitions"
@@ -53,23 +53,11 @@
                     >
                     </oui-numeric>
                 </oui-field>
-                <oui-field
-                    data-label="{{:: 'pci_databases_topics_create_topic_retention_bytes' | translate }}"
-                    class="col"
-                >
-                    <input
-                        class="oui-input"
-                        name="retentionBytes"
-                        type="number"
-                        ng-model="$ctrl.model.retentionBytes"
-                        min="-1"
-                    />
-                </oui-field>
             </div>
-            <div class="row">
+            <div class="row justify-content-between">
                 <oui-field
                     data-label="{{:: 'pci_databases_topics_create_topic_retention_hours' | translate }}"
-                    class="col"
+                    class="col-5"
                 >
                     <oui-numeric
                         model="$ctrl.model.retentionHours"
@@ -80,7 +68,7 @@
                 </oui-field>
                 <oui-field
                     data-label="{{:: 'pci_databases_topics_create_topic_min_insync_replicas' | translate }}"
-                    class="col"
+                    class="col-5"
                 >
                     <oui-numeric
                         model="$ctrl.model.minInsyncReplicas"
@@ -89,9 +77,23 @@
                     >
                     </oui-numeric>
                 </oui-field>
+            </div>
+            <div class="row justify-content-between">
+                <oui-field
+                    data-label="{{:: 'pci_databases_topics_create_topic_retention_bytes' | translate }}"
+                    class="col-5"
+                >
+                    <input
+                        class="oui-input"
+                        name="retentionBytes"
+                        type="number"
+                        ng-model="$ctrl.model.retentionBytes"
+                        min="-1"
+                    />
+                </oui-field>
                 <oui-field
                     data-label="{{:: 'pci_databases_topics_create_topic_min_cleanup_policy' | translate }}"
-                    class="col"
+                    class="col-5"
                 >
                     <oui-select
                         name="cleanupPolicy"
