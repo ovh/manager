@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.8...@ovh-ux/manager-web@17.0.9) (2023-07-27)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix the order of web cloud database ([1f5abbe](https://github.com/ovh/manager/commit/1f5abbe4c1b281cef19eee3cc350dde8fc5531d2))
+* **web.hosting:** upgrade free 100m offer ([69eb42b](https://github.com/ovh/manager/commit/69eb42b7d64a1f7f7a7419b67a37820ac60f892b))
+
+
+
+
+
 ## [17.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.7...@ovh-ux/manager-web@17.0.8) (2023-07-26)
 
 
