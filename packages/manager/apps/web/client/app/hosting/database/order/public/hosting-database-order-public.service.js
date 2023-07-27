@@ -156,15 +156,17 @@ export default class {
         [DB_OFFERS.STARTER.CATEGORY]: {
           versions: startSqlCategory,
           tracking: DB_OFFERS.STARTER.TRACKING,
+          productName: DB_OFFERS.STARTER.PRODUCT_NAME,
         },
       }),
       [DB_OFFERS.PRIVATE.CATEGORY]: {
         versions: webCloudCategory,
         tracking: DB_OFFERS.PRIVATE.TRACKING,
+        productName: DB_OFFERS.PRIVATE.PRODUCT_NAME,
       },
     };
     const dbCategories = Object.keys(groupedCategories).map((category) => {
-      const { versions, tracking } = groupedCategories[category];
+      const { versions, tracking, productName } = groupedCategories[category];
 
       return {
         category,
@@ -172,6 +174,7 @@ export default class {
         tracking,
         selectVersion: versions[0],
         selectEngine: null,
+        productName,
       };
     });
 

@@ -4,7 +4,11 @@ import {
 } from '@ovh-ux/manager-product-offers';
 
 import { WEBHOSTING_PRODUCT_NAME } from '../../hosting-database.constants';
-import { DB_OFFERS } from './hosting-database-order-public.constants';
+import {
+  DB_OFFERS,
+  DATACENTER_CONFIGURATION_KEY,
+  ENGINE_CONFIGURATION_KEY,
+} from './hosting-database-order-public.constants';
 import { DATABASES_TRACKING } from '../../../hosting.constants';
 
 export default class HostingDatabaseOrderPublicCtrl {
@@ -20,10 +24,11 @@ export default class HostingDatabaseOrderPublicCtrl {
       workflowOptions: {
         catalog,
         catalogItemTypeName,
-        productName: WEBHOSTING_PRODUCT_NAME,
-        serviceNameToAddProduct: this.serviceName,
+        productName: this.getProductName.bind(this),
+        serviceNameToAddProduct: this.getServiceNameToAddProduct.bind(this),
         getPlanCode: this.getPlanCode.bind(this),
         getRightCatalogConfig: this.getRightCatalogConfig.bind(this),
+        onGetConfiguration: this.getOnGetConfiguration.bind(this),
       },
       workflowType: workflowConstants.WORKFLOW_TYPES.ORDER,
     };
@@ -37,6 +42,41 @@ export default class HostingDatabaseOrderPublicCtrl {
     const { selectEngineVersion } = selectEngine || {};
 
     return selectEngineVersion?.planCode || selectVersion?.planCode;
+  }
+
+  getProductName() {
+    const { productName } = this.model.dbCategory;
+    return productName;
+  }
+
+  getServiceNameToAddProduct() {
+    return this.model.dbCategory.productName === WEBHOSTING_PRODUCT_NAME
+      ? this.serviceName
+      : '';
+  }
+
+  getOnGetConfiguration() {
+    const { productName } = this.model.dbCategory;
+    if (productName === DB_OFFERS.PRIVATE.PRODUCT_NAME) {
+      const { db } = this.model.dbCategory.selectEngine.selectEngineVersion;
+      const [
+        datacenterValue,
+      ] = this.model.dbCategory.selectVersion.configurations.find(
+        (item) => item.name === DATACENTER_CONFIGURATION_KEY,
+      )?.values;
+
+      return [
+        {
+          label: ENGINE_CONFIGURATION_KEY,
+          value: db,
+        },
+        {
+          label: DATACENTER_CONFIGURATION_KEY,
+          value: datacenterValue,
+        },
+      ];
+    }
+    return [];
   }
 
   isValidDbConfig() {
