@@ -2,14 +2,11 @@ import React from 'react';
 import {
   OsdsLink,
   OsdsTile,
-  OsdsText,
   OsdsIcon,
 } from '@ovhcloud/ods-stencil/components/react';
-import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-  OdsThemeTypographySize,
-} from '@ovhcloud/ods-theming';
+import { OsdsText } from '@ovhcloud/ods-components/text/react';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
 import {
   OdsIconName,
   OdsIconSize,
@@ -57,8 +54,8 @@ export const ManagerTile: React.FC<ManagerTileProps> = ({
         <div>
           <OsdsText
             className="tile-type"
-            level={OdsThemeTypographyLevel.heading}
-            size={OdsThemeTypographySize._200}
+            level={ODS_TEXT_LEVEL.heading}
+            size={ODS_TEXT_SIZE._200}
             color={OdsThemeColorIntent.primary}
           >
             {tileType === ManagerTileType.tutorial ? 'Tutorial' : 'Catalog'}
@@ -66,16 +63,16 @@ export const ManagerTile: React.FC<ManagerTileProps> = ({
 
           <OsdsText
             className="tile-title"
-            level={OdsThemeTypographyLevel.heading}
-            size={OdsThemeTypographySize._400}
+            level={ODS_TEXT_LEVEL.heading}
+            size={ODS_TEXT_SIZE._400}
             color={OdsThemeColorIntent.text}
           >
             {title}
           </OsdsText>
           <OsdsText
             className="tile-description"
-            level={OdsThemeTypographyLevel.body}
-            size={OdsThemeTypographySize._400}
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
             color={OdsThemeColorIntent.default}
           >
             {description}

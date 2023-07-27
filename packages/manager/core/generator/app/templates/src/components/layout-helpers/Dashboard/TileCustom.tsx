@@ -1,9 +1,7 @@
 import React, { ReactNode } from 'react';
-import {
-  OsdsText,
-  OsdsDivider,
-  OsdsTile,
-} from '@ovhcloud/ods-stencil/components/react/';
+import { OsdsDivider, OsdsTile } from '@ovhcloud/ods-stencil/components/react/';
+import { OsdsText } from '@ovhcloud/ods-components/text/react';
+import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components/text';
 import {
   OdsThemeColorIntent,
   OdsThemeTypographyLevel,
@@ -19,10 +17,7 @@ interface SectionProps {
 const TileCustom: React.FC<SectionProps> = ({ title, children }) => (
   <OsdsTile flex>
     <div className="tile-content">
-      <OsdsText
-        level={OdsThemeTypographyLevel.heading}
-        color={OdsThemeColorIntent.text}
-      >
+      <OsdsText level={ODS_TEXT_LEVEL.heading} color={OdsThemeColorIntent.text}>
         {title}
       </OsdsText>
       <OsdsDivider separator></OsdsDivider>

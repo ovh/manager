@@ -1,10 +1,8 @@
 import React from 'react';
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-stencil/components/react';
-import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-  OdsThemeTypographySize,
-} from '@ovhcloud/ods-theming';
+import { OsdsButton } from '@ovhcloud/ods-stencil/components/react';
+import { OsdsText } from '@ovhcloud/ods-components/text/react';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
 import { OdsButtonSize, OdsButtonVariant } from '@ovhcloud/ods-core';
 import placeholderSrc from './placeholder.png';
 import './OnboardingLayout.scss';
@@ -42,14 +40,14 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
           <OsdsText
             className="on-boarding-title mb-3"
             color={OdsThemeColorIntent.primary}
-            level={OdsThemeTypographyLevel.heading}
-            size={OdsThemeTypographySize._700}
+            level={ODS_TEXT_LEVEL.heading}
+            size={ODS_TEXT_SIZE._700}
           >
             {title}
           </OsdsText>
           <OsdsText
             className="on-boarding-description mb-2"
-            level={OdsThemeTypographyLevel.body}
+            level={ODS_TEXT_LEVEL.body}
           >
             {description}
           </OsdsText>

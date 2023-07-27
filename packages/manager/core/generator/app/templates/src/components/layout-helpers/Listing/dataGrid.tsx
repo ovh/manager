@@ -1,15 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import {
-  OsdsText,
-  OsdsLink,
-  OsdsIcon,
-} from '@ovhcloud/ods-stencil/components/react/';
-import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-} from '@ovhcloud/ods-theming';
+import { OsdsLink, OsdsIcon } from '@ovhcloud/ods-stencil/components/react/';
+import { OsdsText } from '@ovhcloud/ods-components/text/react';
+import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components/text';
+import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
 import { OdsIconName, OdsIconSize } from '@ovhcloud/ods-core';
 import './dataGrid.scss';
 
@@ -37,7 +32,7 @@ const Datagrid = <T,>(props: { data: DataItem<T>[] }) => {
           {tableHeaders.map((header, indexTh) => (
             <th key={`datagrid-th-${indexTh}`}>
               <OsdsText
-                level={OdsThemeTypographyLevel.subheading}
+                level={ODS_TEXT_LEVEL.subheading}
                 color={OdsThemeColorIntent.text}
               >
                 {t(header)}

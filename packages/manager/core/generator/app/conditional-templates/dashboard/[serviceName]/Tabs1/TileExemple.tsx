@@ -1,8 +1,9 @@
 import React from 'react';
-import { OsdsText, OsdsDivider } from '@ovhcloud/ods-stencil/components/react/';
+import { OsdsDivider } from '@ovhcloud/ods-stencil/components/react/';
+import { OsdsText } from '@ovhcloud/ods-components/text/react';
+import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components/text';
 import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
+  OdsThemeColorIntent
 } from '@ovhcloud/ods-theming';
 import ButtonTooltip from '@/components/ButtonTooltip/ButtonTooltip';
 
@@ -11,7 +12,7 @@ const TileToRename1: React.FC = () => {
     <>
       <div>
         <OsdsText
-          level={OdsThemeTypographyLevel.subheading}
+          level={ODS_TEXT_LEVEL.subheading}
           color={OdsThemeColorIntent.text}
         >
           Subtitle 1
@@ -44,7 +45,7 @@ const TileToRename1: React.FC = () => {
       <div>
         <div>
           <OsdsText
-            level={OdsThemeTypographyLevel.subheading}
+            level={ODS_TEXT_LEVEL.subheading}
             color={OdsThemeColorIntent.text}
           >
             Subtitle 2
@@ -59,7 +60,7 @@ const TileToRename1: React.FC = () => {
       <div>
         <div>
           <OsdsText
-            level={OdsThemeTypographyLevel.subheading}
+            level={ODS_TEXT_LEVEL.subheading}
             color={OdsThemeColorIntent.text}
           >
             Subtitle 3
@@ -74,7 +75,7 @@ const TileToRename1: React.FC = () => {
       <div>
         <div>
           <OsdsText
-            level={OdsThemeTypographyLevel.subheading}
+            level={ODS_TEXT_LEVEL.subheading}
             color={OdsThemeColorIntent.text}
           >
             Subtitle 4

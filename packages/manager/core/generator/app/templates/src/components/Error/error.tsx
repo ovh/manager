@@ -3,16 +3,12 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   OsdsMessage,
-  OsdsText,
   OsdsButton,
 } from '@ovhcloud/ods-stencil/components/react/';
+import { OsdsText } from '@ovhcloud/ods-components/text/react';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
-import {
-  OdsMessageType,
-  OdsTextLevel,
-  OdsButtonVariant,
-  OdsTextSize,
-} from '@ovhcloud/ods-core';
+import { OdsMessageType, OdsButtonVariant } from '@ovhcloud/ods-core';
 
 import OOPS from '../../assets/error-banner-oops.png';
 import './error.scss';
@@ -49,7 +45,7 @@ const ErrorBanner: React.FC<ErrorObject> = ({ error }) => {
       </div>
 
       <div className="py-2">
-        <OsdsText size={OdsTextSize._600} level={OdsTextLevel.heading}>
+        <OsdsText size={ODS_TEXT_SIZE._600} level={ODS_TEXT_LEVEL.heading}>
           {t('manager_error_page_title')}
         </OsdsText>
       </div>
