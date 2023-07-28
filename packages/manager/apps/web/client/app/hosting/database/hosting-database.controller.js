@@ -5,6 +5,7 @@ import set from 'lodash/set';
 import {
   FREE_HOSTING_OFFER,
   BANNER_GUIDE_LINK,
+  STARTER_OFFERS,
 } from './hosting-database.constants';
 import { DATABASES_TRACKING } from '../hosting.constants';
 
@@ -258,6 +259,10 @@ angular.module('App').controller(
 
     isFreeHosting() {
       return FREE_HOSTING_OFFER.includes(this.hosting.offer);
+    }
+
+    isStarterOffer() {
+      return STARTER_OFFERS.includes(this.hosting.offer);
     }
 
     trackClick(hit) {
