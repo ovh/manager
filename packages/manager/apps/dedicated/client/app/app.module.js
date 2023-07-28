@@ -364,6 +364,7 @@ export default async (containerEl, shellClient) => {
             'vrack',
             'cloud-connect',
             'error',
+            'iplb',
           ];
 
           const stateIncludes = Object.keys(transition.$to().includes);
