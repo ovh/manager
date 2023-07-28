@@ -46,5 +46,6 @@
   "pci_notebooks_general_information_other_resources_info_workspace_storage": "Workspace: {{storage}} SSD included",
   "pci_notebooks_general_information_other_resources_info_ephemeral_storage_popover": "High-performance local storage, but not backed up",
   "pci_notebooks_general_information_other_resources_info_workspace_storage_popover": "Remote storage backed up. After 30 consecutive days of storage or/and exceeding this quota of {{freeStorage}}, the prices applied will be those for Public Cloud Object Storage.",
-  "pci_notebooks_general_information_other_resources_info_bandwidth": "Public network: {{bandwidth}}/s"
+  "pci_notebooks_general_information_other_resources_info_bandwidth": "Public network: {{bandwidth}}/s",
+  "pci_notebooks_general_information_life_cycle_status_SYNC_FAILED": "Synchronization failed"
 }
