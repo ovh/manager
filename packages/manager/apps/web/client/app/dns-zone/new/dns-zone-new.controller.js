@@ -11,7 +11,16 @@ import { TEMPLATES } from '../../domain/zone/activate/activate.constants';
 
 export default class newDnsZoneCtrl {
   /* @ngInject */
-  constructor($translate, atInternet, Alerter, constants) {
+  constructor(
+    $anchorScroll,
+    $location,
+    $translate,
+    atInternet,
+    Alerter,
+    constants,
+  ) {
+    this.$anchorScroll = $anchorScroll;
+    this.$location = $location;
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.Alerter = Alerter;
@@ -57,6 +66,10 @@ export default class newDnsZoneCtrl {
       });
   }
 
+  static getAlerterId(alerter) {
+    return alerter.replaceAll('.', '_');
+  }
+
   getConfiguration() {
     return map(this.configuration, (value, label) => ({
       label,
@@ -75,9 +88,12 @@ export default class newDnsZoneCtrl {
   }
 
   onDnsOrderError(error) {
+    const message = error?.data?.message || error.message;
+    this.$location.hash(newDnsZoneCtrl.getAlerterId(this.alerts.main));
+    this.$anchorScroll();
     return this.Alerter.error(
       this.$translate.instant('domains_newdnszone_order_error', {
-        message: error.message,
+        message,
       }),
       this.alerts.main,
     );

@@ -10,7 +10,10 @@
     </oui-guide-menu>
 </oui-header>
 
-<div data-ovh-alert="{{$ctrl.alerts.main}}"></div>
+<div
+    data-ng-attr-id="{{:: $ctrl.constructor.getAlerterId($ctrl.alerts.main)}}"
+    data-ovh-alert="{{$ctrl.alerts.main}}"
+></div>
 <p data-translate="domains_newdnszone_order_example"></p>
 <p class="font-italic" data-translate="domains_newdnszone_order_usage"></p>
 
