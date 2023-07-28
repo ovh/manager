@@ -6,6 +6,7 @@ import '@ovh-ux/ng-ovh-utils';
 import 'angular-ui-bootstrap';
 import '@ovh-ux/manager-filters';
 
+import cpanelEolBanner from '../components/cpanel-eol-banner';
 import deleteModule from './delete/license-delete.module';
 import deleteAtExpirationModule from './delete/at-expiration/license-delete-at-expiration.module';
 import detailModule from './detail/license-detail.module';
@@ -32,6 +33,7 @@ angular
     uiRouter,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    cpanelEolBanner,
     deleteModule,
     deleteAtExpirationModule,
     detailModule,

@@ -1,0 +1,4 @@
+{
+  "server_cpanel_alert_1": "À partir de la version 112, cPanel & WHM ne supportent plus CentOS 7.  Nous ne proposons donc plus centos7-cpanel-last à l'installation après le 2023-07-31.",
+  "server_cpanel_alert_2": "Il est conseillé aux clients d'installer alma8-cpanel-last à la place. Pour plus d'information: "
+}
