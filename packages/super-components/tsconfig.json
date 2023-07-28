@@ -17,7 +17,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "pretty": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "paths": {
       "@ovhcloud/msc-stencil": ["./packages/super-components/*"]
     },
