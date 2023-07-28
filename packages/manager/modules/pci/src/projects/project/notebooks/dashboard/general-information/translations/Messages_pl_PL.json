@@ -46,5 +46,6 @@
   "pci_notebooks_general_information_other_resources_info_workspace_storage": "Przestrzeń robocza: {{storage}} SSD w cenie",
   "pci_notebooks_general_information_other_resources_info_ephemeral_storage_popover": "Wydajna, ale nie zapisana lokalna przestrzeń dyskowa",
   "pci_notebooks_general_information_other_resources_info_workspace_storage_popover": "Kopia zapasowa zdalnej przestrzeni dyskowej Po upływie 30 następujących po sobie dni przechowywania i/lub przekroczeniu tego limitu {{freeStorage}}, stosowane będą ceny usługi Public Cloud Object Storage.",
-  "pci_notebooks_general_information_other_resources_info_bandwidth": "Sieć publiczna: {{bandwidth}}/s"
+  "pci_notebooks_general_information_other_resources_info_bandwidth": "Sieć publiczna: {{bandwidth}}/s",
+  "pci_notebooks_general_information_life_cycle_status_SYNC_FAILED": "Błąd synchronizacji"
 }
