@@ -477,7 +477,7 @@
 
                     <!-- nbDisk -->
                     <div
-                        class="form-group"
+                        class="form-inline"
                         data-ng-if="informations.nbDisk > 1"
                     >
                         <label
@@ -486,6 +486,17 @@
                             data-translate="server_configuration_installation_form_nbdisk"
                         >
                         </label>
+                        <span
+                            data-ng-if="installation.selectSoftRaidOnlyMirroring && installation.server.nbDisk > 2"
+                        >
+                            <i
+                                class="fa fa-info-circle"
+                                data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_type_disk_warning_windows' | translate:{ t0: installation.server.nbDisk } }}"
+                                data-oui-tooltip-placement="bottom"
+                                aria-hidden="true"
+                            >
+                            </i>
+                        </span>
                         <select
                             class="form-control"
                             id="nbDiskUse"
