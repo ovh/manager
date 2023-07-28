@@ -126,7 +126,8 @@ export const GUIDES = [
       IE: 'https://docs.ovh.com/ie/en/public-cloud/volume-backup',
       SG: 'https://docs.ovh.com/sg/en/public-cloud/volume-backup',
       ES: 'https://docs.ovh.com/es/public-cloud/volume-backup',
-      US: 'https://docs.ovh.com/us/en/public-cloud/volume-backup/',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/15694887096851-How-to-Create-a-Volume-Backup',
       FR: 'https://docs.ovh.com/fr/public-cloud/volume-backup',
       QC: 'https://docs.ovh.com/ca/fr/public-cloud/volume-backup',
       IT: 'https://docs.ovh.com/it/public-cloud/volume-backup',
