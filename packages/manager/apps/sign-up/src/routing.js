@@ -1,6 +1,6 @@
 import find from 'lodash/find';
 
-import { SANITIZATION } from './constants';
+import { SANITIZATION, FEATURES } from './constants';
 
 import signupFormComponent from './form/component';
 
@@ -70,14 +70,26 @@ export const state = {
       }
     },
 
+    isSmsConsentAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+      ovhFeatureFlipping
+        .checkFeatureAvailability(FEATURES.smsConsent)
+        .then((featureAvailability) =>
+          featureAvailability.isFeatureAvailable(FEATURES.smsConsent),
+        ),
+
     finishSignUp: /* @ngInject */ (
       $window,
+      $q,
       getRedirectLocation,
       me,
       signUp,
+      isSmsConsentAvailable,
     ) => (smsConsent) =>
-      signUp.saveNic(me.model).then(() =>
-        signUp.sendSmsConsent(smsConsent).then(() => {
+      signUp.saveNic(me.model).then(() => {
+        const promise = isSmsConsentAvailable
+          ? signUp.sendSmsConsent(smsConsent)
+          : $q.resolve();
+        return promise.then(() => {
           // for tracking purposes
           if ($window.sessionStorage) {
             $window.sessionStorage.setItem('ovhSessionSuccess', true);
@@ -87,8 +99,8 @@ export const state = {
           if (redirectUrl) {
             $window.location.assign(redirectUrl);
           }
-        }),
-      ),
+        });
+      }),
 
     steps: () => [
       {
