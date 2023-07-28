@@ -17,7 +17,6 @@ import 'angular-translate';
 import 'angular-translate-loader-partial';
 import 'angular-translate-storage-cookie';
 import 'angular-translate-storage-local';
-import 'script-loader!moment/min/moment.min.js';
 import 'script-loader!fullcalendar/dist/fullcalendar.js';
 import 'angular-ui-calendar';
 import 'script-loader!ui-select/dist/select.js';
