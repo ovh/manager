@@ -10,5 +10,6 @@ export default {
   bindings: {
     filters: '=ngModel',
     onChange: '&telephonySchedulerFiltersOnChange',
+    timeCondition: '<',
   },
 };
