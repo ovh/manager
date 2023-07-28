@@ -544,55 +544,488 @@ const constants = {
         cs_CZ: 'https://docs.ovh.com/cz/cs/dedicated/',
       },
       sd: {
-        fr_FR: [
+        FR: [
           {
             title: 'core_sd_top_guide_1_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-1',
+            atInternetClickTag: 'getting-started-with-dedicated-server',
             url:
-              'https://docs.ovh.com/fr/dedicated/premiers-pas-serveur-dedie/',
+              'https://help.ovhcloud.com/csm/fr-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043481',
           },
           {
             title: 'core_sd_top_guide_2_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-2',
-            url: 'https://www.ovh.com/fr/g845.netboot',
+            atInternetClickTag: 'getting-started-with-eco-server',
+            url:
+              'https://help.ovhcloud.com/csm/fr-dedicated-servers-getting-started-dedicated-server-eco?id=kb_article_view&sysparm_article=KB0043494',
           },
           {
             title: 'core_sd_top_guide_3_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-3',
-            url: 'https://www.ovh.com/fr/g849.configurer_le_reverse',
+            atInternetClickTag: 'how-to-secure-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/fr-dedicated-servers-securing-server?id=kb_article_view&sysparm_article=KB0043978',
           },
           {
-            title: 'core_sd_top_guide_firewall_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-Firewall',
-            url: 'https://docs.ovh.com/fr/dedicated/firewall-network/',
+            title: 'core_sd_top_guide_4_title',
+            atInternetClickTag: 'how-to-create-ssh-key',
+            url:
+              'https://help.ovhcloud.com/csm/fr-dedicated-servers-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0043385',
           },
           {
             title: 'core_sd_top_guide_5_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-5',
-            url: 'https://docs.ovh.com/fr/dedicated/network-virtual-mac/',
+            atInternetClickTag: 'ipmi-for-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/fr-dedicated-servers-ipmi?id=kb_article_view&sysparm_article=KB0044038',
           },
           {
             title: 'core_sd_top_guide_6_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-6',
-            url: 'https://docs.ovh.com/fr/dedicated/network-ipaliasing/',
+            atInternetClickTag: 'migrate-data-between-servers',
+            url:
+              'https://help.ovhcloud.com/csm/fr-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043707',
           },
           {
             title: 'core_sd_top_guide_7_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-7',
-            url: 'https://docs.ovh.com/fr/dedicated/ovh-rescue/',
-          },
-          {
-            title: 'core_sd_top_guide_8_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-8',
+            atInternetClickTag: 'configure-new-window-server-installation',
             url:
-              'https://docs.ovh.com/fr/dedicated/find-disk-serial-number/#pour-un-raid-materiel_1',
+              'https://help.ovhcloud.com/csm/fr-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044082',
           },
         ],
-        en_GB: [
+        DE: [
+          {
+            title: 'core_sd_top_guide_1_title',
+            atInternetClickTag: 'getting-started-with-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/de-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0030498',
+          },
+          {
+            title: 'core_sd_top_guide_2_title',
+            atInternetClickTag: 'getting-started-with-eco-server',
+            url:
+              'https://help.ovhcloud.com/csm/de-dedicated-servers-getting-started-dedicated-server-eco?id=kb_article_view&sysparm_article=KB0043485',
+          },
+          {
+            title: 'core_sd_top_guide_3_title',
+            atInternetClickTag: 'how-to-secure-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/de-dedicated-servers-securing-server?id=kb_article_view&sysparm_article=KB0043981',
+          },
+          {
+            title: 'core_sd_top_guide_4_title',
+            atInternetClickTag: 'how-to-create-ssh-key',
+            url:
+              'https://help.ovhcloud.com/csm/de-dedicated-servers-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0030395',
+          },
+          {
+            title: 'core_sd_top_guide_5_title',
+            atInternetClickTag: 'ipmi-for-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/de-dedicated-servers-ipmi?id=kb_article_view&sysparm_article=KB0031092',
+          },
+          {
+            title: 'core_sd_top_guide_6_title',
+            atInternetClickTag: 'migrate-data-between-servers',
+            url:
+              'https://help.ovhcloud.com/csm/de-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043692',
+          },
           {
             title: 'core_sd_top_guide_7_title',
-            atInternetClickTag: 'TopGuide-DedicatedServers-7',
-            url: 'https://docs.ovh.com/ca/en/dedicated/rescue-mode',
+            atInternetClickTag: 'configure-new-window-server-installation',
+            url:
+              'https://help.ovhcloud.com/csm/de-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044073',
+          },
+        ],
+        ES: [
+          {
+            title: 'core_sd_top_guide_1_title',
+            atInternetClickTag: 'getting-started-with-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/es-es-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043480',
+          },
+          {
+            title: 'core_sd_top_guide_2_title',
+            atInternetClickTag: 'getting-started-with-eco-server',
+            url:
+              'https://help.ovhcloud.com/csm/es-es-dedicated-servers-getting-started-dedicated-server-eco?id=kb_article_view&sysparm_article=KB0043496',
+          },
+          {
+            title: 'core_sd_top_guide_3_title',
+            atInternetClickTag: 'how-to-secure-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/es-es-dedicated-servers-securing-server?id=kb_article_view&sysparm_article=KB0043976',
+          },
+          {
+            title: 'core_sd_top_guide_4_title',
+            atInternetClickTag: 'how-to-create-ssh-key',
+            url:
+              'https://help.ovhcloud.com/csm/es-es-dedicated-servers-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0043383',
+          },
+          {
+            title: 'core_sd_top_guide_5_title',
+            atInternetClickTag: 'ipmi-for-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/es-es-dedicated-servers-ipmi?id=kb_article_view&sysparm_article=KB0044040',
+          },
+          {
+            title: 'core_sd_top_guide_6_title',
+            atInternetClickTag: 'migrate-data-between-servers',
+            url:
+              'https://help.ovhcloud.com/csm/es-es-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043701',
+          },
+          {
+            title: 'core_sd_top_guide_7_title',
+            atInternetClickTag: 'configure-new-window-server-installation',
+            url:
+              'https://help.ovhcloud.com/csm/es-es-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044080',
+          },
+        ],
+        IT: [
+          {
+            title: 'core_sd_top_guide_1_title',
+            atInternetClickTag: 'getting-started-with-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/it-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043487',
+          },
+          {
+            title: 'core_sd_top_guide_2_title',
+            atInternetClickTag: 'getting-started-with-eco-server',
+            url:
+              'https://help.ovhcloud.com/csm/it-dedicated-servers-getting-started-dedicated-server-eco?id=kb_article_view&sysparm_article=KB0043497',
+          },
+          {
+            title: 'core_sd_top_guide_3_title',
+            atInternetClickTag: 'how-to-secure-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/it-dedicated-servers-securing-server?id=kb_article_view&sysparm_article=KB0043982',
+          },
+          {
+            title: 'core_sd_top_guide_4_title',
+            atInternetClickTag: 'how-to-create-ssh-key',
+            url:
+              'https://help.ovhcloud.com/csm/it-dedicated-servers-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0043384',
+          },
+          {
+            title: 'core_sd_top_guide_5_title',
+            atInternetClickTag: 'ipmi-for-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/it-dedicated-servers-ipmi?id=kb_article_view&sysparm_article=KB0044044',
+          },
+          {
+            title: 'core_sd_top_guide_6_title',
+            atInternetClickTag: 'migrate-data-between-servers',
+            url:
+              'https://help.ovhcloud.com/csm/it-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043708',
+          },
+          {
+            title: 'core_sd_top_guide_7_title',
+            atInternetClickTag: 'configure-new-window-server-installation',
+            url:
+              'https://help.ovhcloud.com/csm/it-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044085',
+          },
+        ],
+        IE: [
+          {
+            title: 'core_sd_top_guide_1_title',
+            atInternetClickTag: 'getting-started-with-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043476',
+          },
+          {
+            title: 'core_sd_top_guide_2_title',
+            atInternetClickTag: 'getting-started-with-eco-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-getting-started-dedicated-server-eco?id=kb_article_view&sysparm_article=KB0043490',
+          },
+          {
+            title: 'core_sd_top_guide_3_title',
+            atInternetClickTag: 'how-to-secure-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-securing-server?id=kb_article_view&sysparm_article=KB0043971',
+          },
+          {
+            title: 'core_sd_top_guide_4_title',
+            atInternetClickTag: 'how-to-create-ssh-key',
+            url:
+              'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0043380',
+          },
+          {
+            title: 'core_sd_top_guide_5_title',
+            atInternetClickTag: 'ipmi-for-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-ipmi?id=kb_article_view&sysparm_article=KB0044035',
+          },
+          {
+            title: 'core_sd_top_guide_6_title',
+            atInternetClickTag: 'migrate-data-between-servers',
+            url:
+              'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043689',
+          },
+          {
+            title: 'core_sd_top_guide_7_title',
+            atInternetClickTag: 'configure-new-window-server-installation',
+            url:
+              'https://help.ovhcloud.com/csm/en-ie-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044074',
+          },
+        ],
+        PL: [
+          {
+            title: 'core_sd_top_guide_1_title',
+            atInternetClickTag: 'getting-started-with-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/pl-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043483',
+          },
+          {
+            title: 'core_sd_top_guide_2_title',
+            atInternetClickTag: 'getting-started-with-eco-server',
+            url:
+              'https://help.ovhcloud.com/csm/pl-dedicated-servers-getting-started-dedicated-server-eco?id=kb_article_view&sysparm_article=KB0043504',
+          },
+          {
+            title: 'core_sd_top_guide_3_title',
+            atInternetClickTag: 'how-to-secure-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/pl-dedicated-servers-securing-server?id=kb_article_view&sysparm_article=KB0043983',
+          },
+          {
+            title: 'core_sd_top_guide_4_title',
+            atInternetClickTag: 'how-to-create-ssh-key',
+            url:
+              'https://help.ovhcloud.com/csm/pl-dedicated-servers-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0043388',
+          },
+          {
+            title: 'core_sd_top_guide_5_title',
+            atInternetClickTag: 'ipmi-for-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/pl-dedicated-servers-ipmi?id=kb_article_view&sysparm_article=KB0044045',
+          },
+          {
+            title: 'core_sd_top_guide_6_title',
+            atInternetClickTag: 'migrate-data-between-servers',
+            url:
+              'https://help.ovhcloud.com/csm/pl-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043709',
+          },
+          {
+            title: 'core_sd_top_guide_7_title',
+            atInternetClickTag: 'configure-new-window-server-installation',
+            url:
+              'https://help.ovhcloud.com/csm/pl-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044407',
+          },
+        ],
+        PT: [
+          {
+            title: 'core_sd_top_guide_1_title',
+            atInternetClickTag: 'getting-started-with-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/pt-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043484',
+          },
+          {
+            title: 'core_sd_top_guide_2_title',
+            atInternetClickTag: 'getting-started-with-eco-server',
+            url:
+              'https://help.ovhcloud.com/csm/pt-dedicated-servers-getting-started-dedicated-server-eco?id=kb_article_view&sysparm_article=KB0043502',
+          },
+          {
+            title: 'core_sd_top_guide_3_title',
+            atInternetClickTag: 'how-to-secure-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/pt-dedicated-servers-securing-server?id=kb_article_view&sysparm_article=KB0043986',
+          },
+          {
+            title: 'core_sd_top_guide_4_title',
+            atInternetClickTag: 'how-to-create-ssh-key',
+            url:
+              'https://help.ovhcloud.com/csm/pt-dedicated-servers-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0043386',
+          },
+          {
+            title: 'core_sd_top_guide_5_title',
+            atInternetClickTag: 'ipmi-for-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/pt-dedicated-servers-ipmi?id=kb_article_view&sysparm_article=KB0044042',
+          },
+          {
+            title: 'core_sd_top_guide_6_title',
+            atInternetClickTag: 'migrate-data-between-servers',
+            url:
+              'https://help.ovhcloud.com/csm/pt-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043702',
+          },
+          {
+            title: 'core_sd_top_guide_7_title',
+            atInternetClickTag: 'configure-new-window-server-installation',
+            url:
+              'https://help.ovhcloud.com/csm/pt-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044084',
+          },
+        ],
+        EN: [
+          {
+            title: 'core_sd_top_guide_1_title',
+            atInternetClickTag: 'getting-started-with-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043475',
+          },
+          {
+            title: 'core_sd_top_guide_2_title',
+            atInternetClickTag: 'getting-started-with-eco-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-getting-started-dedicated-server-eco?id=kb_article_view&sysparm_article=KB0043488',
+          },
+          {
+            title: 'core_sd_top_guide_3_title',
+            atInternetClickTag: 'how-to-secure-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-securing-server?id=kb_article_view&sysparm_article=KB0043969',
+          },
+          {
+            title: 'core_sd_top_guide_4_title',
+            atInternetClickTag: 'how-to-create-ssh-key',
+            url:
+              'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0043377',
+          },
+          {
+            title: 'core_sd_top_guide_5_title',
+            atInternetClickTag: 'ipmi-for-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-ipmi?id=kb_article_view&sysparm_article=KB0044034',
+          },
+          {
+            title: 'core_sd_top_guide_6_title',
+            atInternetClickTag: 'migrate-data-between-servers',
+            url:
+              'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043697',
+          },
+          {
+            title: 'core_sd_top_guide_7_title',
+            atInternetClickTag: 'configure-new-window-server-installation',
+            url:
+              'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044077',
+          },
+        ],
+        AU: [
+          {
+            title: 'core_sd_top_guide_1_title',
+            atInternetClickTag: 'getting-started-with-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-au-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043474',
+          },
+          {
+            title: 'core_sd_top_guide_2_title',
+            atInternetClickTag: 'getting-started-with-eco-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-au-dedicated-servers-getting-started-dedicated-server-eco?id=kb_article_view&sysparm_article=KB0043486',
+          },
+          {
+            title: 'core_sd_top_guide_3_title',
+            atInternetClickTag: 'how-to-secure-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-au-dedicated-servers-securing-server?id=kb_article_view&sysparm_article=KB0043972',
+          },
+          {
+            title: 'core_sd_top_guide_4_title',
+            atInternetClickTag: 'how-to-create-ssh-key',
+            url:
+              'https://help.ovhcloud.com/csm/en-au-dedicated-servers-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0043375',
+          },
+          {
+            title: 'core_sd_top_guide_5_title',
+            atInternetClickTag: 'ipmi-for-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-au-dedicated-servers-ipmi?id=kb_article_view&sysparm_article=KB0044033',
+          },
+          {
+            title: 'core_sd_top_guide_6_title',
+            atInternetClickTag: 'migrate-data-between-servers',
+            url:
+              'https://help.ovhcloud.com/csm/en-au-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043696',
+          },
+          {
+            title: 'core_sd_top_guide_7_title',
+            atInternetClickTag: 'configure-new-window-server-installation',
+            url:
+              'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044077', // TODO
+          },
+        ],
+        ASIA: [
+          {
+            title: 'core_sd_top_guide_1_title',
+            atInternetClickTag: 'getting-started-with-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/asia-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043472',
+          },
+          {
+            title: 'core_sd_top_guide_2_title',
+            atInternetClickTag: 'getting-started-with-eco-server',
+            url:
+              'https://help.ovhcloud.com/csm/asia-dedicated-servers-getting-started-dedicated-server-eco?id=kb_article_view&sysparm_article=KB0030513',
+          },
+          {
+            title: 'core_sd_top_guide_3_title',
+            atInternetClickTag: 'how-to-secure-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/asia-dedicated-servers-securing-server?id=kb_article_view&sysparm_article=KB0031024',
+          },
+          {
+            title: 'core_sd_top_guide_4_title',
+            atInternetClickTag: 'how-to-create-ssh-key',
+            url:
+              'https://help.ovhcloud.com/csm/asia-dedicated-servers-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0043373',
+          },
+          {
+            title: 'core_sd_top_guide_5_title',
+            atInternetClickTag: 'ipmi-for-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/asia-dedicated-servers-ipmi?id=kb_article_view&sysparm_article=KB0044031',
+          },
+          {
+            title: 'core_sd_top_guide_6_title',
+            atInternetClickTag: 'migrate-data-between-servers',
+            url:
+              'https://help.ovhcloud.com/csm/asia-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0030724',
+          },
+          {
+            title: 'core_sd_top_guide_7_title',
+            atInternetClickTag: 'configure-new-window-server-installation',
+            url:
+              'https://help.ovhcloud.com/csm/en-ca-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044076',
+          },
+        ],
+        SG: [
+          {
+            title: 'core_sd_top_guide_1_title',
+            atInternetClickTag: 'getting-started-with-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043478',
+          },
+          {
+            title: 'core_sd_top_guide_2_title',
+            atInternetClickTag: 'getting-started-with-eco-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-getting-started-dedicated-server-eco?id=kb_article_view&sysparm_article=KB0043493',
+          },
+          {
+            title: 'core_sd_top_guide_3_title',
+            atInternetClickTag: 'how-to-secure-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-securing-server?id=kb_article_view&sysparm_article=KB0043974',
+          },
+          {
+            title: 'core_sd_top_guide_4_title',
+            atInternetClickTag: 'how-to-create-ssh-key',
+            url:
+              'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0043379',
+          },
+          {
+            title: 'core_sd_top_guide_5_title',
+            atInternetClickTag: 'ipmi-for-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-ipmi?id=kb_article_view&sysparm_article=KB0044032',
+          },
+          {
+            title: 'core_sd_top_guide_6_title',
+            atInternetClickTag: 'migrate-data-between-servers',
+            url:
+              'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043699',
+          },
+          {
+            title: 'core_sd_top_guide_7_title',
+            atInternetClickTag: 'configure-new-window-server-installation',
+            url:
+              'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044079',
           },
         ],
       },
@@ -1112,7 +1545,98 @@ const constants = {
         cs_CZ: 'http://www.ovh.cz/podpora/new_nic.xml',
       },
     },
-    TOP_GUIDES: {},
+    TOP_GUIDES: {
+      sd: {
+        CA: [
+          {
+            title: 'core_sd_top_guide_1_title',
+            atInternetClickTag: 'getting-started-with-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-ca-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043473',
+          },
+          {
+            title: 'core_sd_top_guide_2_title',
+            atInternetClickTag: 'getting-started-with-eco-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-ca-dedicated-servers-getting-started-dedicated-server-eco?id=kb_article_view&sysparm_article=KB0043489',
+          },
+          {
+            title: 'core_sd_top_guide_3_title',
+            atInternetClickTag: 'how-to-secure-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-ca-dedicated-servers-securing-server?id=kb_article_view&sysparm_article=KB0043970',
+          },
+          {
+            title: 'core_sd_top_guide_4_title',
+            atInternetClickTag: 'how-to-create-ssh-key',
+            url:
+              'https://help.ovhcloud.com/csm/en-ca-dedicated-servers-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0043376',
+          },
+          {
+            title: 'core_sd_top_guide_5_title',
+            atInternetClickTag: 'ipmi-for-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/en-ca-dedicated-servers-ipmi?id=kb_article_view&sysparm_article=KB0044036',
+          },
+          {
+            title: 'core_sd_top_guide_6_title',
+            atInternetClickTag: 'migrate-data-between-servers',
+            url:
+              'https://help.ovhcloud.com/csm/en-ca-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043695',
+          },
+          {
+            title: 'core_sd_top_guide_7_title',
+            atInternetClickTag: 'configure-new-window-server-installation',
+            url:
+              'https://help.ovhcloud.com/csm/en-ca-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044076',
+          },
+        ],
+        QC: [
+          {
+            title: 'core_sd_top_guide_1_title',
+            atInternetClickTag: 'getting-started-with-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043482',
+          },
+          {
+            title: 'core_sd_top_guide_2_title',
+            atInternetClickTag: 'getting-started-with-eco-server',
+            url:
+              'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-getting-started-dedicated-server-eco?id=kb_article_view&sysparm_article=KB0043495',
+          },
+          {
+            title: 'core_sd_top_guide_3_title',
+            atInternetClickTag: 'how-to-secure-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-securing-server?id=kb_article_view&sysparm_article=KB0043979',
+          },
+          {
+            title: 'core_sd_top_guide_4_title',
+            atInternetClickTag: 'how-to-create-ssh-key',
+            url:
+              'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0043382',
+          },
+          {
+            title: 'core_sd_top_guide_5_title',
+            atInternetClickTag: 'ipmi-for-dedicated-server',
+            url:
+              'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-ipmi?id=kb_article_view&sysparm_article=KB0044039',
+          },
+          {
+            title: 'core_sd_top_guide_6_title',
+            atInternetClickTag: 'migrate-data-between-servers',
+            url:
+              'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043706',
+          },
+          {
+            title: 'core_sd_top_guide_7_title',
+            atInternetClickTag: 'configure-new-window-server-installation',
+            url:
+              'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044083',
+          },
+        ],
+      },
+    },
     accountCreation: {
       default: 'http://www.ovh.com/ca/fr/support/new_nic.xml',
       DE: 'http://www.ovh.de/support/new_nic.xml',
@@ -1342,6 +1866,22 @@ const constants = {
 };
 /* in urls, all keys represents the two first letter of the language list in uppercase, except GB */
 constants.EU.URLS.EN = constants.EU.URLS.GB;
+
+// language fallback for EU help center (dedicated servers section)
+constants.EU.TOP_GUIDES.sd.NL = constants.EU.TOP_GUIDES.sd.IE;
+constants.EU.TOP_GUIDES.sd.en_GB = constants.EU.TOP_GUIDES.sd.EN;
+constants.EU.TOP_GUIDES.sd.en_IE = constants.EU.TOP_GUIDES.sd.IE;
+constants.EU.TOP_GUIDES.sd.fr_CA = constants.CA.TOP_GUIDES.sd.QC;
+constants.EU.TOP_GUIDES.sd.fr_FR = constants.EU.TOP_GUIDES.sd.FR;
+constants.EU.TOP_GUIDES.sd.de_DE = constants.EU.TOP_GUIDES.sd.DE;
+constants.EU.TOP_GUIDES.sd.es_ES = constants.EU.TOP_GUIDES.sd.ES;
+constants.EU.TOP_GUIDES.sd.it_IT = constants.EU.TOP_GUIDES.sd.IT;
+constants.EU.TOP_GUIDES.sd.pt_PT = constants.EU.TOP_GUIDES.sd.PT;
+constants.EU.TOP_GUIDES.sd.pl_PL = constants.EU.TOP_GUIDES.sd.PL;
+
+// language fallback for CA help center (dedicated servers section)
+constants.CA.TOP_GUIDES.sd.fr_CA = constants.CA.TOP_GUIDES.sd.QC;
+constants.CA.TOP_GUIDES.sd.en_CA = constants.CA.TOP_GUIDES.sd.CA;
 
 // Since all languages are availables in both CA and UE worlPart,
 // they must have access to all languages conf
