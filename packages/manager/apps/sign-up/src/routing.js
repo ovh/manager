@@ -70,14 +70,20 @@ export const state = {
       }
     },
 
+    region: /* @ngInject */ (coreConfig) => coreConfig.getRegion(),
+
     finishSignUp: /* @ngInject */ (
       $window,
+      $q,
       getRedirectLocation,
       me,
       signUp,
+      region,
     ) => (smsConsent) =>
-      signUp.saveNic(me.model).then(() =>
-        signUp.sendSmsConsent(smsConsent).then(() => {
+      signUp.saveNic(me.model).then(() => {
+        const promise =
+          region !== 'US' ? signUp.sendSmsConsent(smsConsent) : $q.resolve();
+        return promise.then(() => {
           // for tracking purposes
           if ($window.sessionStorage) {
             $window.sessionStorage.setItem('ovhSessionSuccess', true);
@@ -87,8 +93,8 @@ export const state = {
           if (redirectUrl) {
             $window.location.assign(redirectUrl);
           }
-        }),
-      ),
+        });
+      }),
 
     steps: () => [
       {
