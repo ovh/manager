@@ -10,6 +10,7 @@ export default class {
   }
 
   $onInit() {
+    this.showMonthlyPrices = false;
     this.selectedFlavor = this.currentFlavor;
     this.upgradingFlavor = false;
     this.trackDatabases('config_upgrade_node', 'page');
