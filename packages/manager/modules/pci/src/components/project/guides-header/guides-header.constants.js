@@ -730,6 +730,9 @@ export const GUIDES_LIST = {
       tracking: '::guides::go_to_export_tensorflow_models',
     },
   },
+  private_network: {
+    ...DEFAULT_GUIDES,
+  },
 };
 
 export default {
