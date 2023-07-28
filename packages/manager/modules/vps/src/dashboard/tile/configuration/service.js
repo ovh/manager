@@ -37,21 +37,21 @@ export default class ConfigurationTileService {
     return startsWith(this.pricingMode, 'upfront');
   }
 
-  getPlanPriceDiff(upperPlan) {
-    const upperPlanTotalPriceValue = ConfigurationTileService.getPlanPriceValue(
-      upperPlan,
-    );
-
+  getPlanPriceDiff(upperPlan, upperPlanTotalPriceValue) {
     return ConfigurationTileService.getPriceStructure(
       upperPlanTotalPriceValue - this.price,
       upperPlan.prices[0].price,
     );
   }
 
-  getPlanUpfrontPriceDiff(upperPlan) {
-    const upperPlanTotalPriceValue = ConfigurationTileService.getPlanPriceValue(
-      upperPlan,
+  static getPlanPriceTotal(upperPlan, upperPlanTotalPriceValue) {
+    return ConfigurationTileService.getPriceStructure(
+      upperPlanTotalPriceValue,
+      upperPlan.prices[0].price,
     );
+  }
+
+  getPlanUpfrontPriceDiff(upperPlan, upperPlanTotalPriceValue) {
     const priceWhoWillDetermineInterval = find(
       upperPlan.prices,
       ({ price }) => price.value > 0,
@@ -61,6 +61,18 @@ export default class ConfigurationTileService {
 
     return ConfigurationTileService.getPriceStructure(
       priceDiff / priceWhoWillDetermineInterval.interval,
+      upperPlan.prices[0].price,
+    );
+  }
+
+  static getPlanUpFrontPriceTotal(upperPlan, upperPlanTotalPriceValue) {
+    const priceWhoWillDetermineInterval = find(
+      upperPlan.prices,
+      ({ price }) => price.value > 0,
+    );
+
+    return ConfigurationTileService.getPriceStructure(
+      upperPlanTotalPriceValue / priceWhoWillDetermineInterval.interval,
       upperPlan.prices[0].price,
     );
   }
@@ -124,11 +136,16 @@ export default class ConfigurationTileService {
         );
       });
 
+      // Next VPS plan info
       const nextRamVpsPlan = nextRamVps
         ? find(this.availableUpgrades, {
             planCode: nextRamVps.name,
           })
         : null;
+
+      const nextVpsTotalPrice = ConfigurationTileService.getPlanPriceValue(
+        nextRamVpsPlan,
+      );
 
       // get next storage plan infos
       const nextStorageVps = find(availableCatalogProducts, ({ blobs }) => {
@@ -155,24 +172,59 @@ export default class ConfigurationTileService {
           })
         : null;
 
+      const nextStorageTotalPrice = nextStorageVpsPlan
+        ? ConfigurationTileService.getPlanPriceValue(nextStorageVpsPlan)
+        : null;
+
       // return an object with calculated plans and price diff
       return {
         memory: {
           plan: nextRamVpsPlan,
-          diff: nextRamVpsPlan ? this.getPlanPriceDiff(nextRamVpsPlan) : null,
+          diff: nextRamVpsPlan
+            ? this.getPlanPriceDiff(nextRamVpsPlan, nextVpsTotalPrice)
+            : null,
+          total: nextRamVpsPlan
+            ? ConfigurationTileService.getPlanPriceTotal(
+                nextRamVpsPlan,
+                nextVpsTotalPrice,
+              )
+            : null,
           upfrontDiff:
             nextRamVpsPlan && this.isUpfront
-              ? this.getPlanUpfrontPriceDiff(nextRamVpsPlan)
+              ? this.getPlanUpfrontPriceDiff(nextRamVpsPlan, nextVpsTotalPrice)
+              : null,
+          upfrontTotal:
+            nextRamVpsPlan && this.isUpfront
+              ? ConfigurationTileService.getPlanUpFrontPriceTotal(
+                  nextRamVpsPlan,
+                  nextVpsTotalPrice,
+                )
               : null,
         },
         storage: {
           plan: nextStorageVpsPlan,
           diff: nextStorageVpsPlan
-            ? this.getPlanPriceDiff(nextStorageVpsPlan)
+            ? this.getPlanPriceDiff(nextStorageVpsPlan, nextStorageTotalPrice)
+            : null,
+          total: nextStorageVpsPlan
+            ? ConfigurationTileService.getPlanPriceTotal(
+                nextStorageVpsPlan,
+                nextStorageTotalPrice,
+              )
             : null,
           upfrontDiff:
             nextStorageVpsPlan && this.isUpfront
-              ? this.getPlanUpfrontPriceDiff(nextStorageVpsPlan)
+              ? this.getPlanUpfrontPriceDiff(
+                  nextStorageVpsPlan,
+                  nextStorageTotalPrice,
+                )
+              : null,
+          upfrontTotal:
+            nextStorageVpsPlan && this.isUpfront
+              ? ConfigurationTileService.getPlanUpFrontPriceTotal(
+                  nextStorageVpsPlan,
+                  nextStorageTotalPrice,
+                )
               : null,
         },
       };
