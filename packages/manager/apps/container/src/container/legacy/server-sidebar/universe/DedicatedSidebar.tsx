@@ -42,6 +42,7 @@ export const features = [
   'license',
   'kubernetes',
   'dedicated-cloud:order',
+  'dedicated-cloud:sapHanaOrder',
   'veeam-cloud-connect:order',
   'veeam-enterprise:order',
   'vrack:order',
