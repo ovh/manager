@@ -63,7 +63,12 @@ export default class ResourceSelectController {
    * @returns {boolean}
    */
   get hasSelectedResourceTypes() {
-    return this.model.types?.length > 0 || false;
+    const { model, resourceTypesControl } = this;
+    return (
+      model.types?.length > 0 ||
+      resourceTypesControl?.$$rawModelValue?.length > 0 ||
+      false
+    );
   }
 
   /**
@@ -133,7 +138,9 @@ export default class ResourceSelectController {
   onModelChanged() {
     this.requiredNgModel.$setViewValue({
       selection: this.model.selection,
-      types: this.model.types.map(({ value }) => value),
+      types: this.resourceTypesControl.$$rawModelValue?.map(
+        ({ value }) => value,
+      ),
     });
   }
 
