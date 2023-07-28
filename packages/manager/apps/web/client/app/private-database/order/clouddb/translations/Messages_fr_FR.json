@@ -8,7 +8,6 @@
   "private_database_order_clouddb_server_version_mariadb": "MariaDB {{version}}",
   "private_database_order_clouddb_server_version_mysql": "MySQL {{version}}",
   "private_database_order_clouddb_server_version_postgresql": "PostgreSQL {{version}}",
-  "private_database_order_clouddb_server_version_mongodb": "MongoDB {{version}}",
   "private_database_order_clouddb_server_version_redis": "Redis {{version}}",
 
   "private_database_order_clouddb_ram_option": "RAM",
