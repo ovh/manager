@@ -11,15 +11,25 @@
         data-translate="pci_databases_general_information_upgrade_plan_warning"
     ></span>
 </oui-message>
-<p
-    data-translate="pci_databases_general_information_upgrade_plan_description"
-></p>
+<div class="row">
+    <section class="col-sm-12 col-md-10">
+        <p
+            data-translate="pci_databases_general_information_upgrade_plan_description"
+        ></p>
+    </section>
+    <section class="col-sm-12 col-md-2">
+        <pci-projects-project-database-switch-price
+            data-show-monthly-prices="$ctrl.showMonthlyPrices"
+        ></pci-projects-project-database-switch-price>
+    </section>
+</div>
 <database-plans-list
     data-current-plan="$ctrl.currentPlan"
     data-on-change="$ctrl.onPlanSelect(selectedPlan)"
     data-plans="$ctrl.plans"
     data-selected-plan="$ctrl.selectedPlan"
     data-user="$ctrl.user"
+    data-show-monthly-prices="$ctrl.showMonthlyPrices"
 ></database-plans-list>
 <div ng-if="$ctrl.showFlavors">
     <p

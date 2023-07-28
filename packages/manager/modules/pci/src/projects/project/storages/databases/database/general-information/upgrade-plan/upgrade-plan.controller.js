@@ -9,6 +9,7 @@ export default class {
   }
 
   $onInit() {
+    this.showMonthlyPrices = false;
     this.selectedPlan = null;
     this.selectedFlavor = { name: this.database.flavor };
     this.showFlavors = false;
