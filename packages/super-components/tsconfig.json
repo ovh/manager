@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "baseUrl": ".",
+    "declaration": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "lib": ["dom", "es2018", "esnext.array"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "pretty": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@ovhcloud/msc-stencil": ["./packages/super-components/*"]
+    },
+    "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "strict": false,
+    "target": "es2017"
+  },
+  "exclude": [
+    "node_modules",
+    "**/**/*.spec.ts",
+    "**/**/*.spec.tsx",
+    "**/**/*.e2e.ts",
+    "**/**/*.e2e.screenshot.ts",
+    "**/.stencil",
+    "**/**/*.d.ts",
+    "**/**/global.dev.ts",
+    "**/**/global.test.ts",
+    "react"
+  ]
+}

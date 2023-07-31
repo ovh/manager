@@ -1,11 +1,13 @@
 {
   "*.html": [
-    "htmlhint --ignore \"**/dist/**\" \"packages/**/*.html\"",
+    "htmlhint --ignore \"**/dist/**,**/www/**,**/screenshot/**,**/docs-api/**\" \"packages/**/*.html\"",
     "prettier --write"
   ],
   "*.{tsx,ts}": [
     "eslint --fix \"packages/manager/apps/**/*.{tsx,ts,md}\"",
-    "prettier --write \"packages/manager/apps/**/*.{tsx,ts}\""
+    "eslint --fix \"packages/super-components/**/*.{tsx,ts}\"",
+    "prettier --write \"packages/manager/apps/**/*.{tsx,ts}\"",
+    "prettier --write \"packages/super-components/**/*.{tsx,ts}\""
   ],
   "*.js": ["eslint --fix"],
   "*.{css,less,scss}": ["stylelint --fix"],
