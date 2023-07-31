@@ -33,6 +33,6 @@ export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalC
     return queryClient.fetchQuery({{this.functionName}}QueryKey{{#if this.urlParams}}(params){{/if}}, fetchData);
   } catch(error) {
     return Promise.reject(error);
-  }  
+  }
 };
 {{/each}}

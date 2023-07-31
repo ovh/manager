@@ -4584,6 +4584,11 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theming/-/ods-theming-14.1.1.tgz#88e911595c682a9b58a0225e6ec780940e53acb6"
   integrity sha512-on/UOG/Qj6KJ8x4SIyqETRRAn6906255QUyC71Z0J+AG5M3ljoerxquG2qr34iIkXLajgbRV1ekFPLACiKCPMw==
 
+"@ovhcloud/ods-cdk@^14.0.1":
+  version "14.0.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-cdk/-/ods-cdk-14.0.1.tgz#7180905c369752104669a133d178a64b4623d4d1"
+  integrity sha512-919EK9tIoXfzfTBjXEmjLIJtmBrnUB0AQqRz2bGDgMGq5HN0vAIiSA7P35w0IPEYzCgRRW0BcZTlYGGVY93bjA==
+
 "@ovhcloud/ods-core@^13.0.1":
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-core/-/ods-core-13.0.1.tgz#0433b0e868e45ada0f8748274beb0e91a824e27c"
@@ -4613,6 +4618,11 @@
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theming/-/ods-theming-13.0.1.tgz#3bb70a69ef8cd0305a9601db30cc9dc5b1f6da5c"
   integrity sha512-8PCAmiQDJnTOuKTXSRdqQJpnEPhLWqNLYnEj4qa0IsLs/g9HE8C9Fvt2PzhpgOBvsktfMg/qYvvbqLIkNaZv9A==
+
+"@ovhcloud/ods-theming@^14.0.1":
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theming/-/ods-theming-14.1.1.tgz#88e911595c682a9b58a0225e6ec780940e53acb6"
+  integrity sha512-on/UOG/Qj6KJ8x4SIyqETRRAn6906255QUyC71Z0J+AG5M3ljoerxquG2qr34iIkXLajgbRV1ekFPLACiKCPMw==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"

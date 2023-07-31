@@ -18,7 +18,7 @@ type UseFunction = (page: Page) => Promise<void>;
 
 export async function setupPage({ page }: { page: Page }, use: UseFunction) {
   await login(page);
-  await page.waitForTimeout(4000); // for the tests when we need to do goto
+  await page.waitForTimeout(2000); // for the tests when we need to do goto
 
   await use(page);
 

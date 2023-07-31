@@ -157,6 +157,15 @@ export default (plop) => {
         },
         validate: (input) => input.length > 0,
       },
+      {
+        type: 'input',
+        name: 'pimID',
+        message: 'What is the PIM ID? (leave empty for no PIM ID)',
+        validate: (input) => {
+          const number = Number(input);
+          return !isNaN(number) && typeof number === 'number';
+        },
+      },
     ],
     actions: ({ apiV6Endpoints, apiV2Endpoints, templates, appName, apiV6Computed, apiV2Computed, isApiV6 }) => {
  

@@ -38,6 +38,24 @@ export default function Onboarding() {
   const title: string = t("title");
   const description: string = t("description");
 
+  const tileList = [
+    {
+      title: t('guide1Title'),
+      description: t('guide1Description'),
+      href: t('guide1Link'),
+    },
+    {
+      title: t('guide2Title'),
+      description: t('guide2Description'),
+      href: t('guide2Link'),
+    },
+    {
+      title: t('guide3Title'),
+      description: t('guide3Description'),
+      href: t('guide3Link'),
+    },
+  ];
+
   return (
     <OnboardingLayout
       title={title}
