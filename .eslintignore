@@ -3,7 +3,6 @@ node_modules
 packages/manager/tools/sao-ovh-manager-module/template/apiv2/src
 packages/manager/tools/sao-ovh-manager-module/template/default/src
 packages/manager/tools/sao-ovh-manager-app/template
-packages/manager/apps/container
 packages/manager/core/generator/app/templates
 packages/components/ovh-shell
 www
@@ -14,3 +13,5 @@ custom-elements
 custom-elements-bundle
 react/src
 vue/src
+packages/manager/core/generator
+packages/manager/apps/container
