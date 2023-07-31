@@ -12,7 +12,6 @@ export const STATE_ENUM = {
   INTERRUPTING: 'INTERRUPTING',
   INTERRUPTED: 'INTERRUPTED',
   DONE: 'DONE',
-  SYNC_FAILED: 'SYNC_FAILED',
 };
 
 export default class Job {
@@ -43,7 +42,6 @@ export default class Job {
     switch (this.status.state) {
       case STATE_ENUM.FAILED:
       case STATE_ENUM.ERROR:
-      case STATE_ENUM.SYNC_FAILED:
         return 'oui-badge_error';
       case STATE_ENUM.TIMEOUT:
       case STATE_ENUM.INTERRUPTING:
@@ -85,11 +83,7 @@ export default class Job {
   }
 
   isFailed() {
-    return [
-      STATE_ENUM.FAILED,
-      STATE_ENUM.ERROR,
-      STATE_ENUM.SYNC_FAILED,
-    ].includes(this.status.state);
+    return [STATE_ENUM.FAILED, STATE_ENUM.ERROR].includes(this.status.state);
   }
 
   isTerminal() {

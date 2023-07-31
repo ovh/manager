@@ -29,6 +29,5 @@
   "pci_notebook_permission_RW": "Lettura e scrittura",
   "pci_notebook_permission_RWD": "Lettura, scrittura ed eliminazione",
   "pci_notebook_data_cache": "Cache",
-  "pci_notebook_list_status_DELETING": "Eliminazione in corso...",
-  "pci_notebook_list_status_SYNC_FAILED": "Sincronizzazione non riuscita"
+  "pci_notebook_list_status_DELETING": "Eliminazione in corso..."
 }
