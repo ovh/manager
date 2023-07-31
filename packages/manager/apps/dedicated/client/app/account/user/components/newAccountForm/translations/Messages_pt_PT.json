@@ -759,5 +759,8 @@
   "signup_enum_IN_area_IN-UP": "Uttar Pradesh",
   "signup_enum_IN_area_IN-UT": "Uttarakhand",
   "signup_enum_IN_area_IN-WB": "West Bengal",
-  "signup_field_add_companyNationalIdentificationNumber_siret_success": "A sua atualização foi devidamente tida em conta."
+  "signup_field_add_companyNationalIdentificationNumber_siret_success": "A sua atualização foi devidamente tida em conta.",
+  "signup_enum_phoneType_landline": "Fixo",
+  "signup_enum_phoneType_mobile": "Telemóvel",
+  "signup_field_smsConsent": "Aceito receber SMS relativos às novidades e ofertas comerciais da OVHcloud"
 }
