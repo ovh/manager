@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.0.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.9...@ovh-ux/manager-web@17.0.10) (2023-07-31)
+
+
+### Bug Fixes
+
+* **web:** check dns zone availabilty ([#9613](https://github.com/ovh/manager/issues/9613)) ([afea425](https://github.com/ovh/manager/commit/afea4259fee319d1f2934fef6a3b39f4a5cf91b2))
+* **web:** fix text out of the box for DNS records ([#9706](https://github.com/ovh/manager/issues/9706)) ([9c34a42](https://github.com/ovh/manager/commit/9c34a42d817aef804107bd8fb7c2dedb6bf8a2fb))
+* **web:** remove mongodb ([#9241](https://github.com/ovh/manager/issues/9241)) ([551ce8e](https://github.com/ovh/manager/commit/551ce8eb8b2c6a2fef492c6b22e2a255c63ab800))
+
+
+
+
+
 ## [17.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.8...@ovh-ux/manager-web@17.0.9) (2023-07-27)
 
 

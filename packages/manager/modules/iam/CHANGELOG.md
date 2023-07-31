@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.1.0...@ovh-ux/manager-iam@1.1.1) (2023-07-31)
+
+
+### Bug Fixes
+
+* **iam:** resource selection does not change on error ([#9711](https://github.com/ovh/manager/issues/9711)) ([4185966](https://github.com/ovh/manager/commit/41859664f3cf0edca68f6d3b53d2d0b697f7a315))
+
+
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.0.0...@ovh-ux/manager-iam@1.1.0) (2023-07-24)
 
 

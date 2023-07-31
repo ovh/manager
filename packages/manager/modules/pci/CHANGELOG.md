@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.135.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.134.0...@ovh-ux/manager-pci@5.135.0) (2023-07-31)
+
+
+### Bug Fixes
+
+* add guide link for us subsidiary ([#9651](https://github.com/ovh/manager/issues/9651)) ([40021c6](https://github.com/ovh/manager/commit/40021c6ce07de92d20d2d2ee6db6a9ff61d74458))
+* **public-cloud:** change projects registry EN label wording ([#9538](https://github.com/ovh/manager/issues/9538)) ([3d91c05](https://github.com/ovh/manager/commit/3d91c05ce25c736e36cb2a7d3addfb7dafa70d54))
+* **public-cloud:** remove duplicate paypal sentence in creation project ([#9441](https://github.com/ovh/manager/issues/9441)) ([efbe86b](https://github.com/ovh/manager/commit/efbe86b2c2b588ef66f1e64651c4c771b2ccffae))
+* **public-cloud:** wrong guide url in private networks ([#9468](https://github.com/ovh/manager/issues/9468)) ([5f5ce81](https://github.com/ovh/manager/commit/5f5ce811bc1132337d83b65ca1112cf4e0fea962))
+
+
+### Features
+
+* **pci.ai:** add sync failed status in ai tools ([#9614](https://github.com/ovh/manager/issues/9614)) ([f85b70d](https://github.com/ovh/manager/commit/f85b70d11bc50bfe3746583044f8d58e6d3b393c))
+* **pci:** support hour month toggle in pages displaying prices ([#9583](https://github.com/ovh/manager/issues/9583)) ([d0f187e](https://github.com/ovh/manager/commit/d0f187eb6228b11b3cf1ebebf4f1b147a021a318))
+* **public-cloud:** update label and placeholder text ([#9544](https://github.com/ovh/manager/issues/9544)) ([12c5a70](https://github.com/ovh/manager/commit/12c5a700b1a7c00ee553afaeed714782289102f5))
+
+
+
+
+
 # [5.134.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.133.0...@ovh-ux/manager-pci@5.134.0) (2023-07-24)
 
 

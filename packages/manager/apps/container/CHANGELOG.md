@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.25.0...@ovh-ux/manager-container-app@0.26.0) (2023-07-31)
+
+
+### Bug Fixes
+
+* **server-sidebar:** add SAP HANA in order menu ([#9178](https://github.com/ovh/manager/issues/9178)) ([0cd04eb](https://github.com/ovh/manager/commit/0cd04eb56664959c945e3211fc96a38037b5aa30))
+
+
+### Features
+
+* **dedicated:** move IP/load balancer sections into network ([#9703](https://github.com/ovh/manager/issues/9703)) ([2e6d294](https://github.com/ovh/manager/commit/2e6d294935be38730342d3205cae7a981ca09f12))
+
+
+### Reverts
+
+* Revert "fix(server-sidebar): add SAP HANA in order menu (#9178)" (#9756) ([eb16274](https://github.com/ovh/manager/commit/eb16274dd73b374b34fa20e3c9367581716342cd)), closes [#9178](https://github.com/ovh/manager/issues/9178) [#9756](https://github.com/ovh/manager/issues/9756)
+
+
+
+
+
 # [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.24.0...@ovh-ux/manager-container-app@0.25.0) (2023-07-27)
 
 
