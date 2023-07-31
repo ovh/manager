@@ -1,0 +1,37 @@
+{
+  "name": "@ovhcloud/msc-storybook",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "@ovhcloud/ods-core": "^13.0.1",
+    "@ovhcloud/ods-stencil": "^13.0.1",
+    "@ovhcloud/ods-testing": "^13.0.1",
+    "@ovhcloud/ods-theme-blue-jeans": "^13.0.1",
+    "@ovhcloud/ods-theming": "^13.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.1",
+    "@stencil/core": "^3.0.0",
+    "@stencil/postcss": "^2.1.0",
+    "@stencil/react-output-target": "^0.5.0",
+    "@stencil/sass": "^3.0.2",
+    "@stencil/vue-output-target": "^0.8.5",
+    "@storybook/addon-essentials": "^7.0.12",
+    "@storybook/addon-interactions": "^7.0.12",
+    "@storybook/addon-links": "^7.0.12",
+    "@storybook/blocks": "^7.0.12",
+    "@storybook/html": "^7.0.12",
+    "@storybook/html-vite": "^7.0.12",
+    "@storybook/testing-library": "^0.0.14-next.2",
+    "@types/node": "^18.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.0.12",
+    "typescript": "^4.9.5"
+  },
+  "scripts": {
+    "build": "storybook build -o dist",
+    "start": "storybook dev -p 6007"
+  }
+}

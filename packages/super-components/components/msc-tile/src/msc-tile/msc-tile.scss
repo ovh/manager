@@ -1,0 +1,45 @@
+.msc-tile-wrapper {
+  display: block;
+  text-decoration: none;
+  height: 100%;
+
+  .msc-ods-tile {
+    width: 100%;
+    height: 100%;
+  }
+
+  .tile-content {
+    display: flex;
+    flex-direction: column;
+
+    .tile-img {
+      height: auto;
+      max-width: 100%;
+      margin: 10px auto;
+    }
+
+    .tile-type {
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .tile-badge-list {
+      display: inline-flex;
+      margin-left: 10px;
+    }
+
+    .tile-title {
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .tile-description {
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .link-icon {
+      margin-left: 10px;
+    }
+  }
+}
