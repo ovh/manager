@@ -254,32 +254,37 @@ export default function DedicatedSidebar() {
       });
     }
 
-    if (feature['ip-load-balancer']) {
-      menu.push({
-        id: 'ip-loadbalancer',
-        label: t('sidebar_pci_load_balancer'),
-        icon: getIcon('ovh-font ovh-font-iplb'),
-        routeMatcher: new RegExp('^(/network)?/iplb'),
-        async loader() {
-          const iplb = await loadServices('/ipLoadbalancing');
-          return [
-            ...iplb.map((iplbItem) => ({
-              ...iplbItem,
-              icon: getIcon('ovh-font ovh-font-iplb'),
-            })),
-          ];
-        },
-      });
-    }
-
     if (feature['dedicated-network']) {
       menu.push({
         id: 'dedicated-network',
         label: t('sidebar_network'),
         icon: getIcon('oui-icon oui-icon-bandwidth_concept'),
         minSearchItems: 0,
-        routeMatcher: new RegExp('^(/vrack|/cloud-connect)'),
+        routeMatcher: new RegExp('^(/ip(/|$)|/vrack|/cloud-connect|(/network)?/iplb)'),
         subItems: [
+          feature.ip && {
+            id: 'dedicated-ip',
+            label: t('sidebar_ip_short'),
+            icon: getIcon('ovh-font ovh-font-ip'),
+            href: navigation.getURL('dedicated', '#/ip'),
+            routeMatcher: new RegExp('/ip(/|$)'),
+          },
+          feature['ip-load-balancer'] && 
+            {
+              id: 'ip-loadbalancer',
+              label: t('sidebar_pci_load_balancer'),
+              icon: getIcon('ovh-font ovh-font-iplb'),
+              routeMatcher: new RegExp('^(/network)?/iplb'),
+              async loader() {
+                const iplb = await loadServices('/ipLoadbalancing');
+                return [
+                  ...iplb.map((iplbItem) => ({
+                    ...iplbItem,
+                    icon: getIcon('ovh-font ovh-font-iplb'),
+                  })),
+                ];
+              },
+            },
           feature['vrack:bare-metal-cloud'] && {
             id: 'dedicated-vrack',
             label: t('sidebar_vrack'),
@@ -362,16 +367,6 @@ export default function DedicatedSidebar() {
         icon: getIcon('ovh-font ovh-font-certificate'),
         href: navigation.getURL('dedicated', '#/license'),
         routeMatcher: new RegExp('/license'),
-      });
-    }
-
-    if (feature.ip) {
-      menu.push({
-        id: 'dedicated-ip',
-        label: t('sidebar_ip_short'),
-        icon: getIcon('ovh-font ovh-font-ip'),
-        href: navigation.getURL('dedicated', '#/ip'),
-        routeMatcher: new RegExp('/ip(/|$)'),
       });
     }
 

@@ -119,6 +119,8 @@ export const CONTAINER_GUIDES = [
       ES: 'https://docs.ovh.com/es/storage/sync-rclone-object-storage/',
       IT: 'https://docs.ovh.com/it/storage/sync-rclone-object-storage/',
       PT: 'https://docs.ovh.com/pt/storage/sync-rclone-object-storage/',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/4605024491667-How-to-Back-Up-Your-Files-to-S3-Object-Storage-with-Rclone',
     },
     link: '',
   },
@@ -133,6 +135,8 @@ export const CONTAINER_GUIDES = [
       ES: 'https://docs.ovh.com/es/storage/s3/veeam/',
       IT: 'https://docs.ovh.com/it/storage/s3/veeam/',
       PT: 'https://docs.ovh.com/pt/storage/s3/veeam/',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/4605427690131-How-to-Use-S3-Object-Storage-with-Veeam',
     },
     link: '',
   },
@@ -147,6 +151,8 @@ export const CONTAINER_GUIDES = [
       ES: 'https://docs.ovh.com/es/storage/s3/limitations/',
       IT: 'https://docs.ovh.com/it/storage/s3/limitations/',
       PT: 'https://docs.ovh.com/pt/storage/s3/limitations/',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/4605467875603-Object-Storage-Technical-Limitations',
     },
     link: '',
   },

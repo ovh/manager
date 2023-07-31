@@ -8,6 +8,9 @@
 
     <div>
         <div class="row d-md-flex mb-3">
+            <ovh-manager-cpanel-eol-banner
+                data-ng-if="hasCpanel"
+            ></ovh-manager-cpanel-eol-banner>
             <div class="col-md-6">
                 <h2
                     class="oui-heading_3"
@@ -38,7 +41,10 @@
             </div>
         </div>
 
-        <oui-datagrid class="table-striped" rows-loader="loadDatagridLicences($config)">
+        <oui-datagrid
+            class="table-striped"
+            rows-loader="loadDatagridLicences($config)"
+        >
             <oui-datagrid-column
                 title=":: 'license_dashboard_table_title_type' | translate"
                 property="type"

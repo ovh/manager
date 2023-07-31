@@ -19,6 +19,7 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
     this.model = {};
     this.plans = null;
     this.isLoading = true;
+    this.isInitializing = true;
 
     this.OrderPrivateBandwidthService.getBareMetalPrivateBandwidthOptions(
       this.serviceId,
@@ -44,6 +45,7 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
       })
       .finally(() => {
         this.isLoading = false;
+        this.isInitializing = false;
       });
     this.steps = [
       {
@@ -83,10 +85,6 @@ export default class BmServerComponentsOrderPrivateBandwidthCtrl {
         },
       },
     ];
-  }
-
-  initFirstStep() {
-    this.steps[0].load();
   }
 
   initSecondStep() {

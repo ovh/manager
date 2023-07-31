@@ -6,6 +6,7 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
+import cpanelEolBanner from '../../../components/cpanel-eol-banner';
 import bandwidth from '../bandwidth/bandwidth.module';
 import dashboard from '../dashboard';
 import install from '../install';
@@ -30,6 +31,7 @@ const moduleName = 'ovhManagerDedicatedServer';
 angular
   .module(moduleName, [
     bandwidth,
+    cpanelEolBanner,
     dashboard,
     install,
     interfaces,

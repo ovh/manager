@@ -1,6 +1,6 @@
 <!-- Data loading modal -->
 <oui-modal
-    data-ng-if="$ctrl.isLoading"
+    data-ng-if="$ctrl.isInitializing"
     data-heading="{{:: 'server_order_bandwidth_title' | translate}}"
 >
     <div class="text-center">
@@ -9,7 +9,7 @@
     </div>
 </oui-modal>
 <!-- Bandwidth addons order modal -->
-<div data-ng-if="!$ctrl.isLoading && $ctrl.plans.length > 0">
+<div data-ng-if="!$ctrl.isInitializing && $ctrl.plans.length > 0">
     <div
         data-ng-if="!$ctrl.model.orderUrl"
         data-wizard
@@ -22,11 +22,7 @@
         data-wizard-bread-crumb
         data-wizard-confirm-button-text=":: 'wizard_pay' | translate"
     >
-        <div
-            data-wizard-step
-            data-wizard-step-valid="$ctrl.steps[0].isValid()"
-            data-wizard-step-on-load="$ctrl.initFirstStep.bind($ctrl)"
-        >
+        <div data-wizard-step data-wizard-step-valid="$ctrl.steps[0].isValid()">
             <form>
                 <p data-translate="select_bandwidth_type_label"></p>
                 <div data-ng-repeat="plan in $ctrl.plans track by $index">
@@ -133,7 +129,7 @@
 </div>
 <!-- No bandwidth plan modal -->
 <oui-modal
-    data-ng-if="!$ctrl.isLoading && $ctrl.plans.length === 0"
+    data-ng-if="!$ctrl.isInitializing && $ctrl.plans.length === 0"
     data-heading="{{:: 'server_order_bandwidth_title' | translate}}"
     data-primary-label="{{:: 'wizard_close' | translate }}"
     data-primary-action=":: $ctrl.goBack()"

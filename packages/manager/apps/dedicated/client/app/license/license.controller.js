@@ -15,6 +15,7 @@ export default /* @ngInject */ (
   ovhFeatureFlipping,
   LICENCE_TYPES,
   atInternet,
+  iceberg,
 ) => {
   $scope.licencesTableLoading = false;
   $scope.licenses = null;
@@ -27,6 +28,7 @@ export default /* @ngInject */ (
   };
   $scope.filterType = null;
   $scope.$state = $state;
+  $scope.iceberg = iceberg;
 
   /**
    * Search
@@ -100,6 +102,7 @@ export default /* @ngInject */ (
           }
         });
         $scope.licenses = licenses;
+
         return {
           ...licenses,
           list: {
@@ -171,7 +174,27 @@ export default /* @ngInject */ (
     $state.go('app.license.order');
   };
 
+  const checkCpanel = () => {
+    ovhFeatureFlipping
+      .checkFeatureAvailability(['license:cpanel-eol-banner'])
+      .then((availability) => {
+        if (!availability.isFeatureAvailable('license:cpanel-eol-banner'))
+          return;
+        $scope
+          .iceberg(`/license/cpanel`)
+          .query()
+          .execute()
+          .$promise.then(({ data }) => {
+            $scope.hasCpanel = data.length > 0;
+          });
+      })
+      .catch(() => {
+        $scope.hasCpanel = false;
+      });
+  };
+
   const init = () => {
+    checkCpanel();
     $scope.loadingLicensesInformations = true;
     return ovhFeatureFlipping
       .checkFeatureAvailability(['license:upgrade'])

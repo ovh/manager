@@ -8,7 +8,7 @@
         <dd data-ng-bind="ctrl.model.fieldType"></dd>
 
         <dt data-translate="domain_configuration_dns_entry_add_domain"></dt>
-        <dd data-ng-bind="ctrl.getResumeDomain()"></dd>
+        <dd data-ng-bind="ctrl.getResumeDomain()" class="word-break"></dd>
 
         <dt
             data-ng-show="ctrl.model.ttlSelect === 'custom' && model.ttl !== null"

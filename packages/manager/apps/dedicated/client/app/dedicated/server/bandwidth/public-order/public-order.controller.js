@@ -13,6 +13,7 @@ export default class {
     this.model = {};
     this.plans = null;
     this.isLoading = true;
+    this.isInitializing = true;
 
     this.Server.getBareMetalPublicBandwidthOptions(this.serviceId)
       .then((plans) => {
@@ -32,6 +33,7 @@ export default class {
       })
       .finally(() => {
         this.isLoading = false;
+        this.isInitializing = false;
       });
 
     this.steps = [
@@ -68,10 +70,6 @@ export default class {
         },
       },
     ];
-  }
-
-  initFirstStep() {
-    this.steps[0].load();
   }
 
   initSecondStep() {
