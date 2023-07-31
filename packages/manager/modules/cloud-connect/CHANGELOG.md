@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.9.1...@ovh-ux/manager-cloud-connect@1.9.2) (2023-07-31)
+
+
+### Bug Fixes
+
+* add guide link for us subsidiary ([#9651](https://github.com/ovh/manager/issues/9651)) ([40021c6](https://github.com/ovh/manager/commit/40021c6ce07de92d20d2d2ee6db6a9ff61d74458))
+
+
+
+
+
 ## [1.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.9.0...@ovh-ux/manager-cloud-connect@1.9.1) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-cloud-connect

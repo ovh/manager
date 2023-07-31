@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.4.0...@ovh-ux/manager-dedicated@18.5.0) (2023-07-31)
+
+
+### Bug Fixes
+
+* **dedicated.server:** restore bandwidth order wizard ([#9717](https://github.com/ovh/manager/issues/9717)) ([f9dd7b1](https://github.com/ovh/manager/commit/f9dd7b199c6509d108a0d1b518994446125c2155))
+* **dedicated:** fix titles/links dedicated help center ([#9560](https://github.com/ovh/manager/issues/9560)) ([3d3b295](https://github.com/ovh/manager/commit/3d3b2959b57ce6fa30470a3ef04fc893a731cf14))
+
+
+### Features
+
+* **dedicated:** add banner for cpanel users ([#9645](https://github.com/ovh/manager/issues/9645)) ([b2948a6](https://github.com/ovh/manager/commit/b2948a668901e04f8d71facfccbab639f9a4f38e))
+* **dedicated:** move IP/load balancer sections into network ([#9703](https://github.com/ovh/manager/issues/9703)) ([2e6d294](https://github.com/ovh/manager/commit/2e6d294935be38730342d3205cae7a981ca09f12))
+* **dedicated:** restrict +explain windows install max 2 disks gabarits ([#9476](https://github.com/ovh/manager/issues/9476)) ([d9d007a](https://github.com/ovh/manager/commit/d9d007a393299e39ae6be3e8e43008d112d9cb8d))
+
+
+
+
+
 # [18.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.3.0...@ovh-ux/manager-dedicated@18.4.0) (2023-07-24)
 
 

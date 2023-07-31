@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.7.0...@ovh-ux/manager-bm-server-components@1.7.1) (2023-07-31)
+
+
+### Bug Fixes
+
+* **dedicated.server:** restore bandwidth order wizard ([#9717](https://github.com/ovh/manager/issues/9717)) ([f9dd7b1](https://github.com/ovh/manager/commit/f9dd7b199c6509d108a0d1b518994446125c2155))
+
+
+
+
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.6.5...@ovh-ux/manager-bm-server-components@1.7.0) (2023-07-20)
 
 

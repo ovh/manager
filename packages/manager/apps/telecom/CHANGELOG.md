@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.1.1...@ovh-ux/manager-telecom@14.1.2) (2023-07-31)
+
+
+### Bug Fixes
+
+* **telecom.voip:** fix callid on live call dashboard contact center ([#9638](https://github.com/ovh/manager/issues/9638)) ([ef1965d](https://github.com/ovh/manager/commit/ef1965df28d703cd01f0fea8074b3f44c2e6af65))
+* **telecom:** disable the time condition option on ccs expert ([#9704](https://github.com/ovh/manager/issues/9704)) ([114aa66](https://github.com/ovh/manager/commit/114aa660cbef583fdd1664888e88332b76455c19))
+* **telecom:** fix allow security deposit transfer ([#9580](https://github.com/ovh/manager/issues/9580)) ([457870a](https://github.com/ovh/manager/commit/457870a543746b46c8dc20ed2d179c7ae56691f6))
+
+
+
+
+
 ## [14.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.1.0...@ovh-ux/manager-telecom@14.1.1) (2023-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

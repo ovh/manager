@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.36.1...@ovh-ux/manager-vps@2.36.2) (2023-07-31)
+
+
+### Bug Fixes
+
+* **dedicated:** incorrect price displayed for vps upgrade memory ([#9530](https://github.com/ovh/manager/issues/9530)) ([239c6c3](https://github.com/ovh/manager/commit/239c6c3c86ea438ad4875d6b4c5290742685777f))
+
+
+
+
+
 ## [2.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.36.0...@ovh-ux/manager-vps@2.36.1) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-vps
