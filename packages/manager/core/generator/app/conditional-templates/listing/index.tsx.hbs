@@ -4,6 +4,13 @@ import { useQueries } from '@tanstack/react-query';
 import { getListingIceberg{{#if this.pimID}}, getPIMService{{/if}} } from '@/api';
 import Datagrid from '@/components/layout-helpers/Listing/dataGrid';
 import appConfig from '@/{{this.appName}}.config';
+import Breadcrumb, {
+  BreadcrumbHandleParams,
+} from '@/components/Breadcrumb/Breadcrumb';
+
+export function breadcrumb({ params }: BreadcrumbHandleParams) {
+  return params.serviceName;
+}
 
 type ServiceData = {
   serviceName: string;
@@ -54,10 +61,13 @@ export default function Listing() {
   }
 
   return (
-    <ServiceList
-      data={servicesListingIcebergResult.data}
-      {{#if this.pimID}}pim={pimServiceResult.data}{{/if}}
-    />
+    <>
+      <Breadcrumb />
+      <ServiceList
+        data={servicesListingIcebergResult.data}
+        {{#if this.pimID}}pim={pimServiceResult.data}{{/if}}
+      />
+    </>
   );
 }
 
