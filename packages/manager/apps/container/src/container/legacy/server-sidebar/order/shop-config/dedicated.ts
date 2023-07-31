@@ -182,15 +182,6 @@ const dedicatedShopConfig = (
         tracking: 'dedicated::orders::dedicated-servers-nutanix::order',
       }
     : null,
-  features['dedicated-cloud:sapHanaOrder'] && ORDER_URLS[region].sap_hana
-    ? {
-        label: 'order_item_sap_hana',
-        icon: OVHFontDedicatedCloud,
-        url: getOrderURL('sap_hana', region, sub),
-        external: true,
-        tracking: 'dedicated::orders::sap-hana::order',
-      }
-    : null,
 ];
 
 export default dedicatedShopConfig;
