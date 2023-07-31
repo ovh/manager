@@ -1,0 +1,37 @@
+import {
+  OdsThemeColorIntent,
+  OdsThemeTypographyLevel,
+  OdsThemeTypographySize,
+} from '@ovhcloud/ods-theming';
+import { Component, Prop, h, Element, Host } from '@stencil/core';
+import { HTMLStencilElement } from '@stencil/core/internal';
+
+export interface I{{ pascalCase componentTag }} {
+  content: string;
+}
+
+@Component({
+  tag: '{{ componentTag }}',
+  styleUrl: '{{ componentTag }}.scss',
+  shadow: true,
+})
+export class {{ pascalCase componentTag }} implements I{{ pascalCase componentTag }} {
+  @Element() host!: HTMLStencilElement;
+
+  @Prop() public content = '';
+
+  render() {
+    return (
+      <Host>
+        <osds-text
+          class="example"
+          level={OdsThemeTypographyLevel.heading}
+          size={OdsThemeTypographySize._400}
+          color={OdsThemeColorIntent.info}
+        >
+          Hello {this.content}
+        </osds-text>
+      </Host>
+    );
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "eslint-plugin-tsdoc"
+  ],
+  "extends": [
+    "eslint:recommended"
+  ],
+  "rules": {
+    "strict": "error",
+    "tsdoc/syntax": "warn",
+    "no-console": 1,
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "@typescript-eslint/ban-ts-comment": 0,
+    "@typescript-eslint/no-empty-interface": 0
+  },
+  "ignorePatterns": [
+    "**/vendor/**",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/www/**",
+    "**/custom-elements/**",
+    "**/custom-elements-bundle/**",
+    "**/react/src/**",
+    "**/vue/src/**",
+    "**/loader/**",
+    "**/templates/**"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.tsx"
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+        "no-underscore-dangle": 0
+      },
+      "env": {
+        "browser": true
+      }
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "rules": {
+        "no-underscore-dangle": 0,
+        "@typescript-eslint/no-empty-interface": 0,
+        "@typescript-eslint/explicit-module-boundary-types": 0
+      }
+    },
+    {
+      "files": [
+        "*.spec.js",
+        "jest.config.js"
+      ],
+      "env": {
+        "mocha": true,
+        "node": true,
+        "jest": true
+      }
+    },
+    {
+      "files": [
+        "*.test.ts"
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "env": {
+        "mocha": true,
+        "node": true,
+        "jest": true
+      }
+    },
+    {
+      "files": [
+        "get-repo-releases.js",
+        "generate-ods-doc.mjs",
+        "generate-ods-version.js",
+        "generate-ocdk-version.js"
+      ],
+      "env": {
+        "node": true
+      },
+      "rules": {
+        "no-console": 0
+      }
+    }
+  ]
+}
