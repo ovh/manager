@@ -1,12 +1,52 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
+import { OnboardingLayout } from '../../components/layout-helpers/Onboarding';
+import { ManagerTile, ManagerTileType } from '../../components/ManagerTile';
+import onboardingImgSrc from './onboarding-img.png';
+import './index.scss';
 
 export default function Onboarding() {
   const { t } = useTranslation('{{appName}}/onboarding');
 
+  const tileList = [
+    {
+      title: t('guide1Title'),
+      description: t('guide1Description'),
+      href: t('guide1Link'),
+    },
+    {
+      title: t('guide2Title'),
+      description: t('guide2Description'),
+      href: t('guide2Link'),
+    },
+    {
+      title: t('guide3Title'),
+      description: t('guide3Description'),
+      href: t('guide3Link'),
+    },
+  ];
+
   return (
-    <div>
-      <h1>{t('title')}</h1>
-    </div>
+    <OnboardingLayout
+      title={t('title')}
+      imageSrc={onboardingImgSrc}
+      description={t('description')}
+      orderButtonLabel={t('orderButtonLabel')}
+      orderHref={t('orderButtonLink')}
+      moreInfoButtonLabel={t('moreInfoButtonLabel')}
+      moreInfoHref={t('moreInfoButtonLink')}
+    >
+      <aside className="tile-grid">
+        {tileList.map((tile) => (
+          <ManagerTile
+            key={tile.title}
+            tileType={ManagerTileType.tutorial}
+            moreLabel={t('guideFindOutMoreLinkLabel')}
+            {...tile}
+          />
+        ))}
+      </aside>
+    </OnboardingLayout>
   );
 }

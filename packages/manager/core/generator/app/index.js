@@ -84,6 +84,15 @@ export default (plop) => {
           );
         },
       },
+      {
+        type: 'input',
+        name: 'pimID',
+        message: 'What is the PIM ID? (leave empty for no PIM ID)',
+        validate: (input) => {
+          const number = Number(input);
+          return !isNaN(number) && typeof number === 'number';
+        },
+      },
     ],
     actions: ({ apiV6Endpoints, templates, appName }) => {
       const apiFiles = createApiQueryFilesActions(apiV6Endpoints, appDirectory);
