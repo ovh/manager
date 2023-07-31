@@ -1,0 +1,49 @@
+{
+  "name": "@ovhcloud/msc-stencil-tile",
+  "version": "1.0.0",
+  "description": "ODS Tile with custom content",
+  "license": "BSD-3-Clause",
+  "main": "dist/index.cjs.js",
+  "unpkg": "dist/msc-tile/msc-tile.esm.js",
+  "module": "dist/index.js",
+  "types": "dist/types/components.d.ts",
+  "scripts": {
+    "msc:build": "yarn run msc:build:stencil --if-present && yarn run msc:build:react --if-present && yarn run msc:build:vue --if-present",
+    "msc:build:react": "npm --prefix react run build",
+    "msc:build:stencil": "stencil build --docs --prod --config stencil.config.ts",
+    "msc:build:vue": "npm --prefix vue run build",
+    "msc:doc:api": "typedoc --plugin none src/*",
+    "msc:ignore:rm": "git clean -Xdf",
+    "msc:start": "stencil build --docs --dev --watch --serve",
+    "msc:test": "stencil test --spec --e2e --passWithNoTests",
+    "msc:test:e2e": "stencil test --e2e --passWithNoTests",
+    "msc:test:e2e:screenshot": "stencil test --e2e --screenshot --config stencil.config.ts --passWithNoTests",
+    "msc:test:e2e:screenshot:update": "stencil test --e2e --screenshot --config stencil.config.ts --update-screenshot --passWithNoTests",
+    "msc:test:spec": "stencil test --spec --passWithNoTests",
+    "msc:test:watch": "stencil test --spec --e2e --watchAll",
+    "msc:watch": "stencil build --docs --watch"
+  },
+  "devDependencies": {
+    "@ovhcloud/ods-testing": "^13.0.1",
+    "@stencil/postcss": "^2.1.0",
+    "@types/jest": "^27.0.3",
+    "autoprefixer": "^10.4.13",
+    "jest": "^27.0.3",
+    "jest-cli": "^27.4.5",
+    "postcss": "^8.4.19",
+    "postcss-nested": "^6.0.0",
+    "puppeteer": "^10.0.0",
+    "typedoc": "0.22.10"
+  },
+  "peerDependencies": {
+    "@stencil/core": "^2.20.0",
+    "@ovhcloud/ods-core": "^13.0.1",
+    "@ovhcloud/ods-stencil": "^13.0.1",
+    "@ovhcloud/ods-theme-blue-jeans": "^13.0.1",
+    "@ovhcloud/ods-theming": "^13.0.1"
+  },
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "es2015": "dist/esm/index.js",
+  "es2017": "dist/esm/index.js"
+}

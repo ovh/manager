@@ -1,0 +1,18 @@
+export default {
+  title: 'Components/{{ name }}',
+  tags: ['autodocs'],
+  render: ({ content }: { content: string }) => `
+    <section>
+      <{{ componentTag }} content="${content}" />
+    </section>
+  `,
+  argTypes: {
+    content: { control: 'text', default: 'World' },
+  },
+};
+
+export const StoryExample = {
+  args: {
+    content: 'Another Example',
+  },
+};

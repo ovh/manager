@@ -1,0 +1,9 @@
+{
+  "name": "@ovhcloud/msc-stencil-custom-elements",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Manager Super Components exported as custom elements, extending HTMLElement.",
+  "sideEffects": false,
+  "main": "./index.js",
+  "types": "./custom-elements.d.ts"
+}
