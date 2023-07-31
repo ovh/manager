@@ -122,6 +122,16 @@ export default class LogsStreamsAlertsService {
     }));
   }
 
+  getAlert(serviceName, streamId, alertId) {
+    return this.$http
+      .get(
+        `/dbaas/logs/${serviceName}/output/graylog/stream/${streamId}/alert/${alertId}`,
+      )
+      .then((alert) => {
+        return alert.data;
+      });
+  }
+
   /**
    * Returns a new alert object with the default properties
    *

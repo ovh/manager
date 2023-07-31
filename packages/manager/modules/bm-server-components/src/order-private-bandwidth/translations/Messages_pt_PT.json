@@ -7,7 +7,7 @@
   "server_order_bandwidth_ready": "A sua encomenda está pronta. Dependendo do processamento do pagamento, a largura de banda deverá ficar disponível em breve.",
   "server_order_bandwidth_see_order": "Consultar a nota de encomenda",
   "server_order_bandwidth_vrack_load": "Alteração das ofertas em curso ...",
-  "server_order_bandwidth_empty_plans": "Não foi possível encontrar planos para atualizar",
+  "server_order_bandwidth_empty_plans": "Nenhuma oferta de largura de banda disponível para o seu servidor dedicado",
   "select_bandwidth_type_label": "Selecionar uma oferta",
   "select_bandwidth_vrack_type_label": "Selecionar uma oferta",
   "select_bandwidth_plan_summary": "Resumo da encomenda",

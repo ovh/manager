@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.134.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.133.0...@ovh-ux/manager-pci@5.134.0) (2023-07-24)
+
+
+### Features
+
+* **iam:** add IAM & Restricted applications ([f928cc6](https://github.com/ovh/manager/commit/f928cc6b28b94fbf9c0c99f460f217f08ede283d))
+
+
+
+
+
+# [5.133.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.132.0...@ovh-ux/manager-pci@5.133.0) (2023-07-20)
+
+
+### Bug Fixes
+
+* **pci:** add missing translation key for project status ([#9504](https://github.com/ovh/manager/issues/9504)) ([b1d42f8](https://github.com/ovh/manager/commit/b1d42f891e773e11aaf2606648d3957a1a6a7074))
+* **storage:** secure the display of s3 user secret key ([874bf1d](https://github.com/ovh/manager/commit/874bf1d1b44edeb1e016a38f7766bb7352857031))
+
+
+### Features
+
+* **pci:** add legal text and checkbox when adding payment means ([39b3b7e](https://github.com/ovh/manager/commit/39b3b7e9681fb17bd6ea9337320d75f9d9c45dac))
+* **pci:** display banner only for freetrail voucher ([586aca6](https://github.com/ovh/manager/commit/586aca623246e9aad1f7a08189f887e5fcb75214))
+* **pci:** display error message when resource not found ([#9513](https://github.com/ovh/manager/issues/9513)) ([6aa3297](https://github.com/ovh/manager/commit/6aa3297bdfdfa2beb8b5e4774344312ba0e7cc53))
+* **pci:** display voucher form error message using the API response ([fcc59e3](https://github.com/ovh/manager/commit/fcc59e39bd4bff804344add3ae54e6582347f76d))
+
+
+### Reverts
+
+* Revert "feat(pci): add legal text and checkbox when adding payment means" ([4e08220](https://github.com/ovh/manager/commit/4e08220ba7c0c366f6845a5255300ceac258ee75))
+
+
+
+
+
 # [5.132.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.131.0...@ovh-ux/manager-pci@5.132.0) (2023-07-13)
 
 

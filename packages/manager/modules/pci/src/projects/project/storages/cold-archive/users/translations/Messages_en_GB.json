@@ -15,5 +15,6 @@
   "pci_projects_project_storages_containers_users_import_success_message": "The JSON file linked to the {{user}} user has been downloaded.",
   "pci_projects_project_storages_containers_users_import_error_message": "An error has occurred downloading the JSON file linked to the user: {{message}}",
   "pci_projects_project_storages_containers_users_show_secret_key_success": "Your {{user}} user's secret key is {{secret}}.",
-  "pci_projects_project_storages_containers_users_add_success_field_secret_key": "Your S3 secret key:"
+  "pci_projects_project_storages_containers_users_add_success_field_secret_key": "Your S3 secret key:",
+  "pci_projects_project_storages_containers_users_show_secret_key_error": "An error has occurred retrieving the secret key for the user {{ user }} : {{ message }}"
 }

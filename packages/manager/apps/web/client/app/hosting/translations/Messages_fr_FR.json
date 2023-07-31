@@ -1,4 +1,11 @@
 {
   "hostings_title": "Hébergements",
-  "hostings_order": "Commander"
+  "hostings_order": "Commander",
+  "hostings_offer_starter": "Starter",
+  "hostings_offer_perso": "Perso",
+  "hostings_offer_pro": "Pro",
+  "hostings_offer_performance_1": "Performance 1",
+  "hostings_offer_performance_2": "Performance 2",
+  "hostings_offer_performance_3": "Performance 3",
+  "hostings_offer_performance_4": "Performance 4"
 }

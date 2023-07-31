@@ -73,11 +73,15 @@ export default /* @ngInject */ ($stateProvider) => {
                   },
                 ),
               }))
-              .catch(() => ({
-                price: {
-                  text: formatPrice(service.billing?.pricing?.price, 0),
-                },
-              }))
+              .catch(() =>
+                service
+                  ? {
+                      price: {
+                        text: formatPrice(service.billing?.pricing?.price, 0),
+                      },
+                    }
+                  : null,
+              )
           : {},
       consumptionDetails: /* @ngInject */ (
         $http,

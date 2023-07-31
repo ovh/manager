@@ -7,7 +7,7 @@
   "server_order_bandwidth_ready": "Il tuo ordine è pronto. Subito dopo il saldo dell’ordine, la banda passante dovrebbe essere disponibile.",
   "server_order_bandwidth_see_order": "Visualizza il buono d'ordine",
   "server_order_bandwidth_vrack_load": "Caricamento delle offerte in corso...",
-  "server_order_bandwidth_empty_plans": "Impossibile trovare soluzioni per effettuare l’aggiornamento",
+  "server_order_bandwidth_empty_plans": "Non sono disponibili soluzioni di banda passante disponibili per il tuo server dedicato.",
   "select_bandwidth_type_label": "Seleziona una soluzione",
   "select_bandwidth_vrack_type_label": "Seleziona una soluzione",
   "select_bandwidth_plan_summary": "Riepilogo dell’ordine",

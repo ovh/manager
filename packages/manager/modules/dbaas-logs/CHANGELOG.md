@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.13.1...@ovh-ux/manager-dbaas-logs@1.13.2) (2023-07-20)
+
+
+### Bug Fixes
+
+* **dedicated:** edit alert conditions ([8a6874c](https://github.com/ovh/manager/commit/8a6874cded9c28a813f03858387481c8ad02e360))
+* **dedicated:** gelf sample line ([43eaf7d](https://github.com/ovh/manager/commit/43eaf7d35cf39dfa250afe538f07f0b364a65d7e))
+
+
+
+
+
 ## [1.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.13.0...@ovh-ux/manager-dbaas-logs@1.13.1) (2023-07-12)
 
 

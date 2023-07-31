@@ -166,6 +166,9 @@ export const REGEX = {
   ape: /^\d{4}\w$/,
   wayName: /[\w|\W|\s]+/,
   addressExtra: /^[A-Za-z0-9 ]*$/,
+  ukNumber: /^0044\d+/g,
+  inwardCode: /^\d[a-zA-Z]{2}$/,
+  outwardCode: /^[a-zA-Z]\w{1,3}$/,
 };
 
 export default {

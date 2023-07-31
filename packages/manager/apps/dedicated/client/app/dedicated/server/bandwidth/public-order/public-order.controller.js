@@ -12,34 +12,33 @@ export default class {
   $onInit() {
     this.model = {};
     this.plans = null;
-    this.isLoading = false;
+    this.isLoading = true;
+
+    this.Server.getBareMetalPublicBandwidthOptions(this.serviceId)
+      .then((plans) => {
+        this.plans = this.Server.getValidBandwidthPlans(plans);
+        this.plans.sort(
+          (a, b) =>
+            a.prices.find((el) => el.capacities.includes('renew'))
+              .priceInUcents -
+            b.prices.find((el) => el.capacities.includes('renew'))
+              .priceInUcents,
+        );
+      })
+      .catch((error) => {
+        this.goBack().then(() =>
+          this.alertError('server_error_bandwidth_order', error.data),
+        );
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
 
     this.steps = [
       {
-        isValid: () => this.model.plan,
+        isValid: () =>
+          !this.isLoading && (this.plans?.length === 0 || this.model.plan),
         isLoading: () => this.isLoading,
-        load: () => {
-          this.isLoading = true;
-          return this.Server.getBareMetalPublicBandwidthOptions(this.serviceId)
-            .then((plans) => {
-              this.plans = this.Server.getValidBandwidthPlans(plans);
-              this.plans.sort(
-                (a, b) =>
-                  a.prices.find((el) => el.capacities.includes('renew'))
-                    .priceInUcents -
-                  b.prices.find((el) => el.capacities.includes('renew'))
-                    .priceInUcents,
-              );
-            })
-            .catch((error) => {
-              this.goBack().then(() =>
-                this.alertError('server_error_bandwidth_order', error.data),
-              );
-            })
-            .finally(() => {
-              this.isLoading = false;
-            });
-        },
       },
       {
         isValid: () => this.model.plan,

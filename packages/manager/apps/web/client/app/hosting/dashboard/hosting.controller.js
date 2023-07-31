@@ -8,6 +8,7 @@ import set from 'lodash/set';
 import some from 'lodash/some';
 import union from 'lodash/union';
 import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
+import { DATABASES_TRACKING } from '../hosting.constants';
 
 export default class {
   /* @ngInject */
@@ -25,6 +26,7 @@ export default class {
     Hosting,
     Alerter,
     Navigator,
+    atInternet,
     automatedEmailsLink,
     boostLink,
     constants,
@@ -46,6 +48,7 @@ export default class {
     generalInformationLink,
     goToDetachEmail,
     goToDetachPrivateDB,
+    goToDatabaseTab,
     goToEmails,
     WucUser,
     HostingDatabase,
@@ -96,6 +99,7 @@ export default class {
     this.Hosting = Hosting;
     this.Alerter = Alerter;
     this.Navigator = Navigator;
+    this.atInternet = atInternet;
     this.automatedEmailsLink = automatedEmailsLink;
     this.boostLink = boostLink;
     this.constants = constants;
@@ -115,6 +119,7 @@ export default class {
     this.generalInformationLink = generalInformationLink;
     this.goToDetachEmail = goToDetachEmail;
     this.goToDetachPrivateDB = goToDetachPrivateDB;
+    this.goToDatabaseTab = goToDatabaseTab;
     this.WucUser = WucUser;
     this.HostingDatabase = HostingDatabase;
     this.HostingDomain = HostingDomain;
@@ -865,5 +870,14 @@ export default class {
       .catch(() => {
         this.$scope.isUpgradable = false;
       });
+  }
+
+  onDatabaseTabClick() {
+    this.atInternet.trackClick({
+      name: DATABASES_TRACKING.GO_TO_ORDER_DATABASE,
+      type: 'action',
+    });
+
+    return this.goToDatabaseTab();
   }
 }

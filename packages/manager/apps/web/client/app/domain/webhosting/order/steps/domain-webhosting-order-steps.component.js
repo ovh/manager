@@ -4,6 +4,7 @@ import template from './domain-webhosting-order-steps.html';
 export default {
   bindings: {
     getAvailableModules: '&',
+    catalog: '<',
     availableOffers: '<',
     cartId: '<',
     deleteCartItems: '<',

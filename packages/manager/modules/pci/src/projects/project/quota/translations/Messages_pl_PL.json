@@ -24,5 +24,6 @@
   "pci_projects_project_quota_autoscaling_off": "Wyłączony",
   "pci_projects_project_quota_autoscaling_error": "Wystąpił błąd podczas aktualizowania limitu autoscalingu",
   "pci_projects_project_quota_autoscaling_help": "Limit dostosowuje się automatycznie w zależności od wykorzystania zasobów oraz od wybranych kryteriów.",
-  "pci_projects_project_quota_protect_contact_support": "Skontaktuj się z pomocą techniczną"
+  "pci_projects_project_quota_protect_contact_support": "Skontaktuj się z pomocą techniczną",
+  "pci_projects_project_quota_error_forbidden": "Nie masz wystarczających uprawnień, aby zarządzać limitami. Skontaktuj się z właścicielem usługi"
 }

@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.8...@ovh-ux/manager-web@17.0.9) (2023-07-27)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix the order of web cloud database ([1f5abbe](https://github.com/ovh/manager/commit/1f5abbe4c1b281cef19eee3cc350dde8fc5531d2))
+* **web.hosting:** upgrade free 100m offer ([69eb42b](https://github.com/ovh/manager/commit/69eb42b7d64a1f7f7a7419b67a37820ac60f892b))
+
+
+
+
+
+## [17.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.7...@ovh-ux/manager-web@17.0.8) (2023-07-26)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix wizard add multisite ([59b5d4b](https://github.com/ovh/manager/commit/59b5d4b13ce431f69466940d4ccce421a089066d))
+
+
+
+
+
+## [17.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.6...@ovh-ux/manager-web@17.0.7) (2023-07-26)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix preprod nwo ([#9719](https://github.com/ovh/manager/issues/9719)) ([b8db070](https://github.com/ovh/manager/commit/b8db0706a2f74a2e8c3ea08146e42ae3c7e5c6d0))
+* **web.hosting:** new web hosting offer ([aa79837](https://github.com/ovh/manager/commit/aa79837b1924ad7b853a9ca11fa5d5f50961cc1c))
+
+
+
+
+
+## [17.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.5...@ovh-ux/manager-web@17.0.6) (2023-07-24)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [17.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.4...@ovh-ux/manager-web@17.0.5) (2023-07-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [17.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.3...@ovh-ux/manager-web@17.0.4) (2023-07-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

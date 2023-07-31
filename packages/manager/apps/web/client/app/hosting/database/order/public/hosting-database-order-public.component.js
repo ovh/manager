@@ -6,13 +6,18 @@ export default {
   controller,
   template,
   bindings: {
-    catalog: '<',
-    characteristicsOfAvailableProducts: '<',
-    goBack: '<',
-    hosting: '<',
     serviceName: '<',
+    hosting: '<',
+    user: '<',
+    cart: '<',
+    catalog: '<',
+    webCloudCatalog: '<',
+    preselectDbCategory: '<',
+    dbCategories: '<',
 
     onError: '<',
     onSuccess: '<',
+
+    goBack: '<',
   },
 };

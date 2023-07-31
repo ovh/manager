@@ -19,8 +19,8 @@
   "user_users_error": "Si è verificato un errore:",
   "user_users_role": "Ruolo",
   "user_roles_admin": "Amministratore",
-  "user_roles_regular": "Utente",
-  "user_roles_unprivileged": "Nessuno",
+  "user_roles_regular": "Amministratore con restrizioni",
+  "user_roles_unprivileged": "Sola lettura",
   "user_users_disable": "Disattivare l'utente",
   "user_users_delete_modal_step1_question": "Vuoi davvero eliminare l'utente <strong>{{login}}</strong>?",
   "user_users_disable_modal_step1_question": "Vuoi davvero disattivare l'utente <strong>{{login}}</strong>?",
@@ -114,5 +114,7 @@
   "user_users_groups_update_error_message": "Si è verificato un errore durante l'aggiornamento del gruppo:",
   "user_users_groups_update_modal_group_description": "Descrizione del gruppo",
   "user_users_groups_update": "Modificare il gruppo",
-  "user_users_groups_table_description": "Gruppi dell'identity provider"
+  "user_users_groups_table_description": "Gruppi dell'identity provider",
+  "user_roles_none": "Nessuno",
+  "user_users_group": "Gruppo"
 }

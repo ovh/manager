@@ -23,7 +23,14 @@
                 class="alert alert-danger"
                 role="alert"
                 data-translate="hosting_tab_DOMAINS_configuration_add_step1_no_db_left"
-                data-ng-if="model.hosting && model.options && model.domainsCount >= model.capabilities.attachedDomains"
+                data-ng-if="model.hosting && model.options && model.domainsCount >= model.capabilities.attachedDomains && !model.needChangeOffer"
+            ></div>
+
+            <div
+                class="alert alert-warning"
+                role="alert"
+                data-translate="hosting_tab_DOMAINS_configuration_add_step1_only_one_db_and_no_left"
+                data-ng-if="model.hosting && model.options && model.needChangeOffer"
             ></div>
 
             <div

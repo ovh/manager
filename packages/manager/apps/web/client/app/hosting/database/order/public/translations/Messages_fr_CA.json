@@ -1,6 +1,7 @@
 {
-  "ovhManagerHostingDatabaseOrderPublic_title": "Commander une base de données Start SQL",
-  "ovhManagerHostingDatabaseOrderPublic_customization_title": "Personnalisation",
+  "ovhManagerHostingDatabaseOrderPublic_title": "Commander une solution de bases de données",
+  "ovhManagerHostingDatabaseOrderPublic_description": "Nous vous proposons de commander une base unitaire START SQL, 3 tailles au choix ou pour des besoins plus avancés, l'une de nos offres Web Cloud Databases SQL/NoSQL avec ressources garanties.",
+  "ovhManagerHostingDatabaseOrderPublic_customization_title": "Choisissez votre solution",
   "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_title": "Sélectionnez les caractéristiques voulues",
   "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_placeholder": "Sélectionnez",
   "ovhManagerHostingDatabaseOrderPublic_customization_characteristics_display_1": "{{quantity}} base de {{diskSpace}}Mo",

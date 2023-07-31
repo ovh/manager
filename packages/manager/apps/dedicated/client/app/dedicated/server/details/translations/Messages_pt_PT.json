@@ -767,7 +767,7 @@
   "select_bandwidth_plan_summary": "Resumo da encomenda",
   "plan_bandwidth": "{{bandwidth}} Gbps ilimitados e garantidos",
   "plan_vrack-bandwidth": "{{bandwidth}} Gbps ilimitados e garantidos - Opção vRack",
-  "server_order_bandwidth_empty_plans": "Não foi possível encontrar planos para atualizar",
+  "server_order_bandwidth_empty_plans": "Nenhuma oferta de largura de banda disponível para o seu servidor dedicado",
   "select_traffic_type_label": "Selecionar uma oferta",
   "toggle_button_label_ultimate": "Ultimate",
   "toggle_button_label_premium": "Premium",

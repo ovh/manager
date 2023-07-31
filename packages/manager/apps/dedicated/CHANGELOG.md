@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.3.0...@ovh-ux/manager-dedicated@18.4.0) (2023-07-24)
+
+
+### Features
+
+* **iam:** add IAM & Restricted applications ([f928cc6](https://github.com/ovh/manager/commit/f928cc6b28b94fbf9c0c99f460f217f08ede283d))
+
+
+
+
+
+# [18.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.2.5...@ovh-ux/manager-dedicated@18.3.0) (2023-07-20)
+
+
+### Bug Fixes
+
+* **dedicated:** issue with partitioning size unit conversions ([e201d97](https://github.com/ovh/manager/commit/e201d970585a3f1f5d0b91cdeff1967251f46cf3))
+
+
+### Features
+
+* **dedicated:** improve message no bandwidth addons available ([867102d](https://github.com/ovh/manager/commit/867102d6b155c6193ca98f856ee0792442d7647f))
+* **dedicated:** ip strat missing ip types ([7e9ad93](https://github.com/ovh/manager/commit/7e9ad9383bce22f342187d199c3981a5e85c1301))
+* **dedicated:** remove header buttons and tab on ip onboarding page ([b2cba7b](https://github.com/ovh/manager/commit/b2cba7bb5cb1820ee3ad45e0cfb3da6b1c80bbaa))
+
+
+
+
+
 ## [18.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.2.4...@ovh-ux/manager-dedicated@18.2.5) (2023-07-18)
 
 

@@ -15,42 +15,47 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiCloudProjectUsageCurrent,
         projectId,
         service,
-      ) =>
-        isLegacyProject
-          ? OvhApiCloudProjectUsageCurrent.v6()
-              .get({ serviceName: projectId })
-              .$promise.catch(() => {
-                return {
-                  resourcesUsage: [],
-                };
-              })
-              .then((usage) =>
-                flatten(
-                  map(
-                    filter(usage.resourcesUsage, {
-                      type: 'ai-training',
-                    }),
-                    'totalPrice',
-                  ),
-                ).reduce((a, b) => a + b, 0),
-              )
-              .then((usage) => {
-                const locale = coreConfig.getUserLocale().replace('_', '-');
-                const currency = coreConfig.getUser().currency.code;
-                return new Intl.NumberFormat(locale, {
-                  style: 'currency',
-                  currency,
-                }).format(usage);
-              })
-          : $http
-              .get(`/services/${service.serviceId}/consumption`)
-              .then(({ data }) => data)
-              .then(
-                (consumption) =>
-                  consumption.priceByPlanFamily.find(
-                    ({ planFamily }) => planFamily === 'ai-training',
-                  )?.price?.text,
-              ),
+      ) => {
+        if (isLegacyProject) {
+          return OvhApiCloudProjectUsageCurrent.v6()
+            .get({ serviceName: projectId })
+            .$promise.catch(() => {
+              return {
+                resourcesUsage: [],
+              };
+            })
+            .then((usage) =>
+              flatten(
+                map(
+                  filter(usage.resourcesUsage, {
+                    type: 'ai-training',
+                  }),
+                  'totalPrice',
+                ),
+              ).reduce((a, b) => a + b, 0),
+            )
+            .then((usage) => {
+              const locale = coreConfig.getUserLocale().replace('_', '-');
+              const currency = coreConfig.getUser().currency.code;
+              return new Intl.NumberFormat(locale, {
+                style: 'currency',
+                currency,
+              }).format(usage);
+            });
+        }
+        if (service) {
+          return $http
+            .get(`/services/${service.serviceId}/consumption`)
+            .then(({ data }) => data)
+            .then(
+              (consumption) =>
+                consumption.priceByPlanFamily.find(
+                  ({ planFamily }) => planFamily === 'ai-training',
+                )?.price?.text,
+            );
+        }
+        return null;
+      },
       goToInstallDetails: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.training.dashboard.install', {
           projectId,

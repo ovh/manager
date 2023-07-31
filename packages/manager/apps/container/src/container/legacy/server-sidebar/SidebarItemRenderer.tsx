@@ -104,9 +104,9 @@ export default function ServerSidebarItemRenderer({
   } else {
     const externalTarget = item.isExternal
       ? {
-          target: '_blank',
-          rel: 'noopener',
-        }
+        target: '_blank',
+        rel: 'noopener',
+      }
       : {};
     itemRender = (
       <a
@@ -126,6 +126,13 @@ export default function ServerSidebarItemRenderer({
           </span>
         )}
         <span>{item.label}</span>
+        {item?.badge && (
+          <span
+            className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
+          >
+            {item.badge}
+          </span>
+        )}
       </a>
     );
   }
