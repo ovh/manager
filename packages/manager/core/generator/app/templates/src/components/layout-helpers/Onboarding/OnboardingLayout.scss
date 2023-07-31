@@ -1,0 +1,30 @@
+.manager-on-boarding-layout {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  margin-left: auto;
+
+  .on-boarding-illustration-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .on-boarding-illustration-container {
+      display: flex;
+      justify-content: center;
+      img {
+        max-height: 150px;
+      }
+    }
+
+    .on-boarding-title {
+      display: block;
+      text-align: center;
+    }
+
+    .on-boarding-description {
+      display: block;
+      text-align: center;
+    }
+  }
+}
