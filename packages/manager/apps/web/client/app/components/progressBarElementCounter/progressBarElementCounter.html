@@ -11,7 +11,8 @@
     </span>
 
     <span class="availableIp-number"
-        >{{nbElements}}<span data-ng-if="maxElements < upperLimit"
+        >{{nbElements}}<span
+            data-ng-if="maxElements < upperLimit || forceDisplayMaxElements"
             >/{{maxElements}}</span
         ></span
     >

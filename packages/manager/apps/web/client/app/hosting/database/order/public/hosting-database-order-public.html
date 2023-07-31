@@ -1,6 +1,13 @@
-<oui-back-button data-on-click=":: $ctrl.goBack()">
-    <span data-translate="ovhManagerHostingDatabaseOrderPublic_title"></span>
-</oui-back-button>
+<oui-back-button data-on-click=":: $ctrl.goBack()"></oui-back-button>
+
+<!--Title + description-->
+<div class="ml-2">
+    <span
+        class="oui-heading_4"
+        data-translate="ovhManagerHostingDatabaseOrderPublic_title"
+    ></span>
+    <p data-translate="ovhManagerHostingDatabaseOrderPublic_description"></p>
+</div>
 
 <ovh-manager-product-offers
     pricing-type="$ctrl.productOffers.pricingType"
@@ -12,22 +19,17 @@
 >
     <oui-step-form
         header="{{:: 'ovhManagerHostingDatabaseOrderPublic_customization_title' | translate }}"
-        editable="$ctrl.characteristics.isEditable"
+        data-valid="$ctrl.isValidDbConfig()"
+        data-prevent-next="true"
+        data-on-submit="$ctrl.onGoToNextStepClick()"
     >
-        <oui-field
-            label="{{:: 'ovhManagerHostingDatabaseOrderPublic_customization_characteristics_title' | translate }}"
-            size="xl"
-        >
-            <oui-select
-                name="characteristics"
-                model="$ctrl.characteristics.value"
-                title="{{:: 'ovhManagerHostingDatabaseOrderPublic_customization_characteristics_placeholder' | translate }}"
-                placeholder="{{:: 'ovhManagerHostingDatabaseOrderPublic_customization_characteristics_placeholder' | translate }}"
-                items="$ctrl.characteristics.values"
-                match="display"
-                required
-            >
-            </oui-select>
-        </oui-field>
+        <web-hosting-database-order-db-categories-offers
+            data-user="$ctrl.user"
+            data-db-categories="$ctrl.dbCategories"
+            data-preselect-db-category="$ctrl.preselectDbCategory"
+            data-on-db-category-click="$ctrl.onDbCategoryClick(dbCategory)"
+            data-on-db-category-engine-click="$ctrl.onDbCategoryEngineClick(dbEngine)"
+            data-model="$ctrl.model"
+        ></web-hosting-database-order-db-categories-offers>
     </oui-step-form>
 </ovh-manager-product-offers>

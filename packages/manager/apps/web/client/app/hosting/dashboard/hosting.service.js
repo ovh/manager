@@ -29,6 +29,7 @@ import union from 'lodash/union';
         WucConverterService,
         HOSTING,
         HOSTING_UPGRADES,
+        HOSTING_NEW_OFFER_UPGRADES,
         HOSTING_OPERATION_STATUS,
         DETACHABLE_PRODUCT_NAMES,
         OvhHttp,
@@ -42,6 +43,7 @@ import union from 'lodash/union';
         this.WucConverterService = WucConverterService;
         this.HOSTING = HOSTING;
         this.HOSTING_UPGRADES = HOSTING_UPGRADES;
+        this.HOSTING_NEW_OFFER_UPGRADES = HOSTING_NEW_OFFER_UPGRADES;
         this.HOSTING_OPERATION_STATUS = HOSTING_OPERATION_STATUS;
         this.DETACHABLE_PRODUCT_NAMES = DETACHABLE_PRODUCT_NAMES;
         this.OvhHttp = OvhHttp;
@@ -491,9 +493,14 @@ import union from 'lodash/union';
        * @param {string} offer
        */
       getOfferCapabilities(offer) {
-        const formattedOffer = this.HOSTING_UPGRADES.includes(offer)
-          ? offer
-          : replace(toLower(offer), /_/g, '');
+        let formattedOffer = '';
+        if (this.HOSTING_UPGRADES.includes(offer)) {
+          formattedOffer = offer;
+        } else if (this.HOSTING_NEW_OFFER_UPGRADES.includes(offer)) {
+          formattedOffer = replace(toLower(offer), /_/g, '-');
+        } else {
+          formattedOffer = replace(toLower(offer), /_/g, '');
+        }
 
         return this.OvhHttp.get('/hosting/web/offerCapabilities', {
           rootPath: 'apiv6',
@@ -819,6 +826,14 @@ import union from 'lodash/union';
           rootPath: 'apiv6',
           data: {},
         });
+      }
+
+      getCatalog(ovhSubsidiary) {
+        return this.$http
+          .get(
+            `/order/catalog/public/webHosting?ovhSubsidiary=${ovhSubsidiary}`,
+          )
+          .then(({ data }) => data);
       }
     },
   );

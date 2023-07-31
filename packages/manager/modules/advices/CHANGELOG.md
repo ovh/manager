@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-advices@1.6.2...@ovh-ux/manager-advices@1.6.3) (2023-07-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-advices
+
+
+
+
+
 ## [1.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-advices@1.6.1...@ovh-ux/manager-advices@1.6.2) (2023-01-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-advices

@@ -4,11 +4,13 @@ import component from './domain-webhosting-order.component';
 const resolve = {
   assignCart: /* @ngInject */ (WucOrderCartService) => (cartId) =>
     WucOrderCartService.assignCart(cartId),
-  /* @ngInject */
-  getAvailableModules: (cartId, WebHostingOrder) => (offer) =>
+
+  getAvailableModules: /* @ngInject */ (cartId, WebHostingOrder) => (offer) =>
     WebHostingOrder.getAvailableModules(cartId, offer),
+
   availableOffers: /* @ngInject */ (cartId, user, WebHostingOrder) =>
     WebHostingOrder.getAvailableOffers(cartId, user.ovhSubsidiary),
+
   cartId: /* @ngInject */ (assignCart, createCart) =>
     createCart().then(({ cartId }) => assignCart(cartId).then(() => cartId)),
   createCart: /* @ngInject */ (WucOrderCartService, user) => () =>
@@ -47,9 +49,12 @@ const resolve = {
     ),
   openBill: /* @ngInject */ ($window) => (billUrl) =>
     $window.open(billUrl, '_blank'),
-  /* @ngInject */
-  prepareCheckout: (WebHostingOrder) => (cartId, cartOption, domainName) =>
-    WebHostingOrder.prepareCheckout(cartId, cartOption, domainName),
+
+  prepareCheckout: /* @ngInject */ (WebHostingOrder) => (
+    cartId,
+    cartOption,
+    domainName,
+  ) => WebHostingOrder.prepareCheckout(cartId, cartOption, domainName),
   validateCheckout: /* @ngInject */ (
     $timeout,
     $translate,
@@ -92,6 +97,10 @@ const resolve = {
               ),
         );
       }),
+
+  catalog: /* @ngInject */ (user, WebHostingOrder) =>
+    WebHostingOrder.getCatalog(user.ovhSubsidiary),
+
   breadcrumb: /* @ngInject */ ($translate) =>
     $translate.instant('domain_webhosting_order_title'),
 };
@@ -109,6 +118,8 @@ export default /* @ngInject */ ($stateProvider) => {
         ...resolve,
         goBackToDashboard: /* @ngInject */ ($state) => () =>
           $state.go('app.domain.product.information'),
+
+        user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
       },
     })
     .state('app.alldom.domain.webhosting.order', {

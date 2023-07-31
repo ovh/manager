@@ -19,8 +19,8 @@
   "user_users_error": "Ocorreu um erro:",
   "user_users_role": "Privilégio",
   "user_roles_admin": "Administrador",
-  "user_roles_regular": "Utilizador",
-  "user_roles_unprivileged": "Nenhum",
+  "user_roles_regular": "Administrador restrito",
+  "user_roles_unprivileged": "Apenas leitura",
   "user_users_disable": "Desativar utilizador",
   "user_users_delete_modal_step1_question": "Tem a certeza de que quer eliminar o utilizador <strong>{{login}}</strong>?",
   "user_users_disable_modal_step1_question": "Tem a certeza de que deseja desativar o utilizador <strong>{{login}}</strong>?",
@@ -114,5 +114,7 @@
   "user_users_groups_update_error_message": "Ocorreu um erro durante a atualização do grupo:",
   "user_users_groups_update_modal_group_description": "Descrição do grupo",
   "user_users_groups_update": "Modificar o grupo",
-  "user_users_groups_table_description": "Grupos do identity provider"
+  "user_users_groups_table_description": "Grupos do identity provider",
+  "user_roles_none": "Nenhum",
+  "user_users_group": "Grupo"
 }

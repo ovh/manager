@@ -32,7 +32,12 @@ const UserAccountMenu = ({
     .getEnvironment()
     .getUser();
 
-  const isProvider = user.auth.method === 'provider';
+  const isSubUser = ['provider', 'user'].includes(user.auth.method);
+
+  const displayUserName = {
+    userName: isSubUser ? user.auth.user : `${user.firstname} ${user.name}`,
+    className: `oui-heading_4 mb-1 ${isSubUser && 'text-truncate'}`
+  };
 
   const onLougoutBtnClick = () => {
     trackingPlugin.trackClick({
@@ -68,20 +73,24 @@ const UserAccountMenu = ({
         className="oui-navbar-menu oui-navbar-menu_fixed oui-navbar-menu_end p-3"
         data-navi-id="account-sidebar-block"
       >
-        <h1 className="oui-heading_4 mb-1">{`${user.firstname} ${user.name}`}</h1>
+        <h1 className={displayUserName.className}>{displayUserName.userName}</h1>
         {['EU', 'CA'].includes(region) && (
           <p className="oui-chip mb-0">
             <strong className={style.supportLevel}>
               {t(
-                `user_account_menu_support_level_${user.supportLevel.level}${
-                  user.isTrusted ? '_trusted' : ''
+                `user_account_menu_support_level_${user.supportLevel.level}${user.isTrusted ? '_trusted' : ''
                 }`,
               )}
             </strong>
           </p>
         )}
-        <p className="mb-0" data-navi-id={ isProvider ? "account-username" : "account-email" }>
-          <strong>{ isProvider? user.auth.user : user.email }</strong>
+        <p className="mb-0" data-navi-id="account-email">
+          <Trans
+            t={t}
+            i18nKey="user_account_menu_notification_email_strong"
+            values={{ email: user.email }}
+          >
+          </Trans>
         </p>
         {user.email !== user.nichandle && (
           <p className="mb-0">
@@ -93,11 +102,9 @@ const UserAccountMenu = ({
           </p>
         )}
 
-        {isProvider && (
-          <p className={`ml-0 oui-badge oui-badge_warning`} data-navi-id="account-auth-method">
-            <strong>{t(`user_account_menu_role_provider`)}</strong>
-          </p>
-        )}
+        <p className={`ml-0 oui-badge oui-badge_warning`} data-navi-id="account-auth-method">
+          <strong>{t(`user_account_menu_role_${user.auth.method}`)}</strong>
+        </p>
 
         {!user.enterprise && (
           <UserDefaultPaymentMethod

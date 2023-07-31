@@ -42,5 +42,6 @@
   "cpbc_billing_control_consumption_history": "Historial",
   "cpbc_billing_control_consumption_family_floatingip": "Floating IP",
   "cpbc_billing_control_consumption_family_gateway": "Gateway",
-  "cpbc_billing_control_consumption_family_octavia-loadbalancer": "Load Balancer"
+  "cpbc_billing_control_consumption_family_octavia-loadbalancer": "Load Balancer",
+  "cpbc_billing_control_consumption_error_forbidden": "No tiene suficientes permisos para ver sus datos de facturación. Contacte con el propietario del servicio"
 }

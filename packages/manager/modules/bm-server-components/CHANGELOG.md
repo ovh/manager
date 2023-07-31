@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.6.5...@ovh-ux/manager-bm-server-components@1.7.0) (2023-07-20)
+
+
+### Features
+
+* **dedicated:** improve message no bandwidth addons available ([867102d](https://github.com/ovh/manager/commit/867102d6b155c6193ca98f856ee0792442d7647f))
+
+
+
+
+
 ## [1.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.6.4...@ovh-ux/manager-bm-server-components@1.6.5) (2023-06-21)
 
 

@@ -1,7 +1,9 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.ip.onboarding', {
     url: '/onboarding',
-    component: 'ipOnboarding',
+    views: {
+      'ipview@app.ip': 'ipOnboarding',
+    },
     redirectTo: (transition) =>
       transition
         .injector()

@@ -5,7 +5,6 @@ export default class LogsStreamsFollowCtrl {
     $stateParams,
     $translate,
     CucControllerHelper,
-    CucUrlHelper,
     CucCloudMessage,
     LogsStreamsService,
     LogsStreamsFollowService,
@@ -17,7 +16,6 @@ export default class LogsStreamsFollowCtrl {
     this.streamId = this.$stateParams.streamId;
     this.$translate = $translate;
     this.CucControllerHelper = CucControllerHelper;
-    this.CucUrlHelper = CucUrlHelper;
     this.CucCloudMessage = CucCloudMessage;
     this.LogsStreamsService = LogsStreamsService;
     this.LogsStreamsFollowService = LogsStreamsFollowService;
@@ -49,21 +47,10 @@ export default class LogsStreamsFollowCtrl {
       loaderFunction: () =>
         this.LogsStreamsFollowService.getTestClientUrls(this.serviceName).then(
           (serviceInfo) => {
-            this.rfc5424Url = this.CucUrlHelper.constructor.findUrl(
-              serviceInfo,
-              this.LogsConstants.RFC_URL,
-              false,
-            );
-            this.ltsvUrl = this.CucUrlHelper.constructor.findUrl(
-              serviceInfo,
-              this.LogsConstants.LTSV_URL,
-              false,
-            );
-            this.gelfUrl = this.CucUrlHelper.constructor.findUrl(
-              serviceInfo,
-              this.LogsConstants.GELF_URL,
-              false,
-            );
+            this.rfc5424Url = serviceInfo.rfc5424Url;
+            this.ltsvUrl = serviceInfo.ltsvUrl;
+            this.gelfUrl = serviceInfo.gelfUrl;
+            return serviceInfo;
           },
         ),
     });
@@ -89,7 +76,7 @@ export default class LogsStreamsFollowCtrl {
 
   openConnection() {
     this.CucCloudMessage.flushChildMessage();
-    this.LogsStreamsFollowService.openConnection(this.stream.data);
+    this.LogsStreamsFollowService.openConnection(this.serviceName, this.stream);
   }
 
   isConnectionClosed() {

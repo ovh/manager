@@ -7,7 +7,7 @@
   "server_order_bandwidth_ready": "Votre commande est prête. Sous réserve de paiement, votre bande passante devrait être disponible prochainement.",
   "server_order_bandwidth_see_order": "Voir le bon de commande",
   "server_order_bandwidth_vrack_load": "Chargement des offres en cours...",
-  "server_order_bandwidth_empty_plans": "Impossible de trouver des plans pour mettre à niveau",
+  "server_order_bandwidth_empty_plans": "Aucune offre de bande passante disponible pour votre serveur dédié",
   "select_bandwidth_type_label": "Sélectionnez une offre",
   "select_bandwidth_vrack_type_label": "Sélectionnez une offre",
   "select_bandwidth_plan_summary": "Récapitulatif de la commande",

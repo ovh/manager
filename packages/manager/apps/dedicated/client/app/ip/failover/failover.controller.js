@@ -6,6 +6,7 @@ export default class IpFailoverController {
     this.$scope = $scope;
     this.atInternet = atInternet;
     this.unusedFilter = false;
+    this.isAdditionalIp = true;
   }
 
   toggleUnusedFilter() {

@@ -156,5 +156,7 @@
   "sidebar_description": "Menu moich usług",
   "sidebar_load_services": "Pobieranie usług",
   "sidebar_access_list": "Dostęp do listy",
-  "sidebar_access_dashboard": "Dostęp do interfejsu"
+  "sidebar_access_dashboard": "Dostęp do interfejsu",
+  "sidebar_account_iam": "Tożsamości i uprawnienia (IAM)",
+  "sidebar_carbon_footprint": "Mój ślad węglowy"
 }

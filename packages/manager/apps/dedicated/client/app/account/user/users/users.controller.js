@@ -77,10 +77,7 @@ export default class UserAccountUsersCtrl {
 
   onTransformItem(userId) {
     this.usersLoading = true;
-    return this.usersService.getUser(userId).then((user) => {
-      set(user, 'role', this.groups[user.group].role);
-      return user;
-    });
+    return this.usersService.getUser(userId);
   }
 
   onTransformItemDone() {

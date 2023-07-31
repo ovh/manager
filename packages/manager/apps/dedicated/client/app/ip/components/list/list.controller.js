@@ -120,6 +120,7 @@ export default class IpListController {
       $scope.serviceType =
         self.serviceType || $location.search().serviceType || null;
       $scope.params = self.params || null;
+      $scope.isAdditionalIp = self.isAdditionalIp;
 
       $scope.tracking = {
         'enable-permanent-mitigation': `${TRACKING_PREFIX}::enable-permanent-mitigation`,
@@ -252,6 +253,7 @@ export default class IpListController {
         pageNumber: $scope.pageNumber,
         pageSize: $scope.pageSize,
         version: $scope.version,
+        isAdditionalIp: $scope.isAdditionalIp,
       });
       cancelFetch = cancel;
       request

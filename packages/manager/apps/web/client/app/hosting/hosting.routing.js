@@ -1,5 +1,6 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { getHostingOrderUrl } from './hosting.order';
+import { NEW_OFFERS_NAME } from './hosting.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.hosting.index', {
@@ -19,6 +20,17 @@ export default /* @ngInject */ ($stateProvider) => {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/hosting/web',
       dataModel: () => 'hosting.web.Service',
+      loadResource: /* @ngInject */ ($translate) => (resource) => {
+        const offerPrefix = NEW_OFFERS_NAME[resource.offer];
+        const offerName = offerPrefix
+          ? $translate.instant(`hostings_offer_${offerPrefix}`)
+          : resource.offer;
+
+        return {
+          ...resource,
+          offer: offerName,
+        };
+      },
       defaultFilterColumn: () => 'serviceName',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('hostings_title'),

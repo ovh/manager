@@ -3,13 +3,14 @@
     data-editable="!$ctrl.stepper.loadingCheckout"
     data-description="{{:: 'domain_webhosting_order_dns_configuration_step_subtitle' | translate }}"
     data-on-focus="$ctrl.enableHelpers()"
-    data-on-submit="$ctrl.updateDnsConfiguration()"
+    data-on-submit="$ctrl.onGoToNextStepClick()"
     data-position="{{::$ctrl.stepperPosition}}"
 >
     <div>
         <oui-checkbox
             class="d-inline-block"
             data-model="$ctrl.dnsConfiguration.enableHosting"
+            data-on-change="$ctrl.onDnsConfigClick()"
         >
             <span
                 data-translate="domain_webhosting_order_dns_configuration_enable_hosting"
@@ -33,6 +34,7 @@
         <oui-checkbox
             class="d-inline-block"
             data-model="$ctrl.dnsConfiguration.enableEmails"
+            data-on-change="$ctrl.onEmailConfigClick()"
         >
             <span
                 data-translate="domain_webhosting_order_dns_configuration_enable_emails"

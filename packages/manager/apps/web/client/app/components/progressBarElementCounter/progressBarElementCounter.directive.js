@@ -9,6 +9,7 @@ export default () => ({
     nbElements: '=wucPbecNbElements',
     maxElements: '=wucPbecMaxElements',
     upperLimit: '=wucPbecUpperLimit',
+    forceDisplayMaxElements: '=wucPbecForceDisplayMaxElements',
   },
   template,
   link($scope) {
