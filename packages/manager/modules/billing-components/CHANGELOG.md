@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.11.10...@ovh-ux/manager-billing-components@3.12.0) (2023-08-01)
+
+
+### Features
+
+* **web:** add spf diag and fix mx and srv ([#9773](https://github.com/ovh/manager/issues/9773)) ([3576462](https://github.com/ovh/manager/commit/3576462dabfffa70174fe6127c7d6050bfda57aa))
+
+
+
+
+
 ## [3.11.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.11.9...@ovh-ux/manager-billing-components@3.11.10) (2023-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components

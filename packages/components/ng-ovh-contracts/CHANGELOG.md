@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.2.4...@ovh-ux/ng-ovh-contracts@4.3.0) (2023-08-01)
+
+
+### Features
+
+* **web:** add spf diag and fix mx and srv ([#9773](https://github.com/ovh/manager/issues/9773)) ([3576462](https://github.com/ovh/manager/commit/3576462dabfffa70174fe6127c7d6050bfda57aa))
+
+
+
+
+
 ## [4.2.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-contracts@4.2.3...@ovh-ux/ng-ovh-contracts@4.2.4) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-contracts

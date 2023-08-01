@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "17.0.10",
+  "version": "17.1.0",
   "private": true,
   "description": "OVHcloud Web control panel.",
   "repository": {
@@ -29,9 +29,9 @@
     "@ovh-ux/manager-email-domain": "^1.4.1",
     "@ovh-ux/manager-emailpro": "^3.5.1",
     "@ovh-ux/manager-error-page": "^2.3.3",
-    "@ovh-ux/manager-exchange": "^3.8.1",
+    "@ovh-ux/manager-exchange": "^3.9.0",
     "@ovh-ux/manager-filters": "^1.1.1",
-    "@ovh-ux/manager-ng-layout-helpers": "^2.6.3",
+    "@ovh-ux/manager-ng-layout-helpers": "^2.7.0",
     "@ovh-ux/manager-office": "^2.9.3",
     "@ovh-ux/manager-phone-prefix": "^1.0.2",
     "@ovh-ux/manager-product-offers": "^5.3.4",
@@ -42,7 +42,7 @@
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.16",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.7.2",
-    "@ovh-ux/ng-ovh-contracts": "^4.2.4",
+    "@ovh-ux/ng-ovh-contracts": "^4.3.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.0.6",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.7",
     "@ovh-ux/ng-ovh-http": "^5.0.6",
