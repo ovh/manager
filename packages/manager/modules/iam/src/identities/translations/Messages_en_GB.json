@@ -7,8 +7,5 @@
   "iam_identities_field_users_button_add": "Add",
   "iam_identities_error_load_users": "An error occurred while retrieving your users: {{ message }}",
   "iam_identities_add_identity_error": "The format of the added ID is not valid: {{ message }}",
-  "iam_identities_add_identity_success": "ID is added to your policy",
-  "iam_identities_submit_identity_success": "Your identities have been modified.",
-  "iam_identities_form_cancel": "Exit",
-  "iam_identities_form_submit": "Validate"
+  "iam_identities_add_identity_success": "ID is added to your policy"
 }

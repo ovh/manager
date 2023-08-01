@@ -1,6 +1,5 @@
 {
   "domain_webhosting_order_hosting_step_title": "Wählen Sie Ihr Angebot",
-  "domain_webhosting_order_hosting_step_subtitle": "Blog, Webseite, E-Commerce-Plattform oder Webanwendung: Die OVHcloud-Unterbringungsmöglichkeiten bieten Ihnen Einfachheit, Sicherheit und Leistung.",
   "domain_webhosting_order_module_step_title": "Wählen Sie Ihr vorinstalliertes Inhaltsverwaltungsmodul aus",
   "domain_webhosting_order_module_step_subtitle": "Wie kann man eine Website schaffen, ohne die technischen Fertigkeiten zu besitzen? Finden Sie unsere verfügbaren Module mit einer Unterkunft.",
   "domain_webhosting_order_dns_configuration_step_title": "Konfiguration Ihrer DNS",
@@ -76,10 +75,10 @@
   "domain_webhosting_order_duration_P1Y": "12 monat",
   "domain_webhosting_order_payment_choice": "Um Ihre Anfrage zu bestätigen, wählen Sie bitte Ihre Zahlungsmethode und akzeptieren Sie die Nutzungsbedingungen.",
   "domain_webhosting_order_payment_get_checkout_error": "Beim Abruf der Informationen zu Ihrem Warenkorb ist ein Fehler aufgetreten: {{message }}",
+  "domain_webhosting_order_payment_get_checkout_error_unknown": "Beim Abruf der Informationen zu Ihrem Warenkorb ist ein Fehler aufgetreten.",
   "domain_webhosting_order_payment_get_payment_method_error": "Bei der Rückforderung der Zahlungsmittel ist ein Fehler aufgetreten.",
   "domain_webhosting_order_payment_checkout_error": "Bei der Bezahlung für den Inhalt Ihres Warenkorbs ist ein Fehler aufgetreten: {{message }}",
+  "domain_webhosting_order_payment_checkout_error_unknown": "Bei der Bezahlung des Inhalts Ihres Warenkorbs ist ein Fehler aufgetreten.",
   "domain_webhosting_order_payment_checkout_success": "Ihre Bestellung über ein Shared Hosting wurde registriert. Ihr Konto {{accountId}} wurde mit {{price} belastet. Ihr Produkt wird am {{renewDate}} automatisch verlängert.<a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Rechnung anzeigen</a>",
-  "domain_webhosting_order_bill_success": "Ihr <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Kaufauftrag</a> wurde generiert. Ihr Hosting-Pakete wird aktiviert, sobald Sie es validiert haben.",
-  "domain_webhosting_order_payment_get_checkout_error_unknown": "Beim Abruf der Informationen zu Ihrem Warenkorb ist ein Fehler aufgetreten.",
-  "domain_webhosting_order_payment_checkout_error_unknown": "Bei der Bezahlung des Inhalts Ihres Warenkorbs ist ein Fehler aufgetreten."
+  "domain_webhosting_order_bill_success": "Ihr <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Kaufauftrag</a> wurde generiert. Ihr Hosting-Pakete wird aktiviert, sobald Sie es validiert haben."
 }

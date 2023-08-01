@@ -1,6 +1,5 @@
 {
   "domain_webhosting_order_hosting_step_title": "Scegli la tua offerta",
-  "domain_webhosting_order_hosting_step_subtitle": "Blog, sito professionale, piattaforma e-commerce o applicazione Web: per qualsiasi tipo di esigenza, le soluzioni di hosting OVHcloud propongono semplicità, sicurezza e performance ottimali.",
   "domain_webhosting_order_module_step_title": "Scegli il tuo CMS preinstallato",
   "domain_webhosting_order_module_step_subtitle": "Come creare un sito senza competenze tecniche specifiche? Scopri i moduli disponibili con i nostri hosting",
   "domain_webhosting_order_dns_configuration_step_title": "Configurazione dei DNS",
@@ -76,10 +75,10 @@
   "domain_webhosting_order_duration_P1Y": "12 mesi",
   "domain_webhosting_order_payment_choice": "Per confermare la richiesta, seleziona il metodo di pagamento e accetta le condizioni di utilizzo.",
   "domain_webhosting_order_payment_get_checkout_error": "Si è verificato un errore durante il recupero delle informazioni relative al carrello: {{ message }}",
+  "domain_webhosting_order_payment_get_checkout_error_unknown": "Si è verificato un errore durante il recupero delle informazioni relative al carrello:",
   "domain_webhosting_order_payment_get_payment_method_error": "Si è verificato un errore durante il recupero dei metodi di pagamento",
   "domain_webhosting_order_payment_checkout_error": "Si è verificato un errore durante il pagamento degli articoli nel carrello: {{ message }}",
+  "domain_webhosting_order_payment_checkout_error_unknown": "Si è verificato un errore durante il pagamento degli articoli nel carrello.",
   "domain_webhosting_order_payment_checkout_success": "L’ordine effettuato per l’hosting condiviso è stato preso in carico correttamente. L’addebito di {{price}} è stato effettuato correttamente sull’account {{accountId}}. La solzione attivata verrà rinnovata sutomaticamente il {{renewDate}}.<a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Visualizza la fattura</a>",
-  "domain_webhosting_order_bill_success": "Il tuo <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">ordine</a> è stato generato correttamente. Una volta convalidato, l’hosting sarà attivo.",
-  "domain_webhosting_order_payment_get_checkout_error_unknown": "Si è verificato un errore durante il recupero delle informazioni relative al carrello:",
-  "domain_webhosting_order_payment_checkout_error_unknown": "Si è verificato un errore durante il pagamento degli articoli nel carrello."
+  "domain_webhosting_order_bill_success": "Il tuo <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">ordine</a> è stato generato correttamente. Una volta convalidato, l’hosting sarà attivo."
 }

@@ -1,6 +1,5 @@
 {
   "domain_webhosting_order_hosting_step_title": "Elija su plan",
-  "domain_webhosting_order_hosting_step_subtitle": "¿Quiere crear un blog, un sitio web profesional, una plataforma de e-commerce o una aplicación web? Los planes de hosting de OVHcloud le ofrecen sencillez, seguridad y excelentes prestaciones.",
   "domain_webhosting_order_module_step_title": "Seleccione su módulo de gestión de contenidos preinstalado",
   "domain_webhosting_order_module_step_subtitle": "¿Cómo crear un sitio web sin conocimientos técnicos? Descubra nuestros módulos disponibles con los planes de hosting.",
   "domain_webhosting_order_dns_configuration_step_title": "Configuración personalizada de sus DNS",
@@ -76,10 +75,10 @@
   "domain_webhosting_order_duration_P1Y": "12 meses",
   "domain_webhosting_order_payment_choice": "Para confirmar su solicitud, seleccione su forma de pago y acepte las condiciones de uso.",
   "domain_webhosting_order_payment_get_checkout_error": "Se ha producido un error al cargar la información de su cesta: {{ message }}",
+  "domain_webhosting_order_payment_get_checkout_error_unknown": "Se ha producido un error al cargar la información de su cesta.",
   "domain_webhosting_order_payment_get_payment_method_error": "Se ha producido un error al intentar cargar las formas de pago",
   "domain_webhosting_order_payment_checkout_error": "Se ha producido un error al abonar el importe de su cesta: {{ message }}",
+  "domain_webhosting_order_payment_checkout_error_unknown": "Se ha producido un error al abonar el importe de su cesta.",
   "domain_webhosting_order_payment_checkout_success": "La contratación de su alojamiento compartido se ha registrado correctamente. Se ha cargado un importe de {{price}} a su cuenta {{accountId}}. El producto se renovará automáticamente el {{renewDate}}.<a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Ver mi factura</a>",
-  "domain_webhosting_order_bill_success": "La <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">orden de pedido</a> se ha generado correctamente. El alojamiento se activará una vez que lo haya validado.",
-  "domain_webhosting_order_payment_get_checkout_error_unknown": "Se ha producido un error al cargar la información de su cesta.",
-  "domain_webhosting_order_payment_checkout_error_unknown": "Se ha producido un error al abonar el importe de su cesta."
+  "domain_webhosting_order_bill_success": "La <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">orden de pedido</a> se ha generado correctamente. El alojamiento se activará una vez que lo haya validado."
 }
