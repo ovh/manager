@@ -1,4 +1,7 @@
-<form id="removeOidcProvider" data-ng-submit="$ctrl.onRemoveOidcProviderConfirm()">
+<form
+    id="removeOidcProvider"
+    data-ng-submit="$ctrl.onRemoveOidcProviderConfirm()"
+>
     <oui-modal
         data-on-dismiss="$ctrl.goBack()"
         data-primary-label="{{:: 'pci_projects_project_kubernetes_details_service_remove_oidc_provider_action_remove' | translate}}"
@@ -11,6 +14,5 @@
             data-translate="pci_projects_project_kubernetes_details_service_remove_oidc_provider_description"
             data-translate-values="{ clientId: $ctrl.oidcProvider.clientId }"
         ></p>
-
     </oui-modal>
 </form>

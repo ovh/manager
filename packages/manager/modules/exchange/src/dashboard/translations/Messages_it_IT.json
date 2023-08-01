@@ -1635,5 +1635,14 @@
   "exchange_reset_mfa_success": "L’autenticazione a due fattori è stata ripristinata correttamente.",
   "exchange_mfa_error": "Si è verificato un errore: {{error}}",
   "exchange_delete_mfa_success": "L’autenticazione a due fattori è stata eliminata correttamente.",
-  "exchange_delete_mfa_error": "Si è verificato un errore durante l’eliminazione della doppia autenticazione: {{error}}"
+  "exchange_delete_mfa_error": "Si è verificato un errore durante l’eliminazione della doppia autenticazione: {{error}}",
+  "exchange_wizardHostedCreation_configureDNSZone_manual_table_spf": "SPF",
+  "exchange_tab_domain_diagnostic_spf_intro_ovh": "Il tuo dominio è ospitato in OVHcloud, puoi configurare il record SPF del dominio {0} nel modo seguente",
+  "exchange_tab_domain_diagnostic_spf_label_champ": "Record SPF",
+  "exchange_tab_domain_diagnostic_spf_config": "Sottodominio: <strong>{0}</strong><br /> Destinazione: <strong>{4}</strong>",
+  "exchange_tab_domain_diagnostic_spf_no_ovh": "Se il dominio non è gestito dallo stesso identificativo cliente della tua piattaforma Exchange o non è registrato in OVH, non è possibile eseguire la configurazione automatica. Crea manualmente il record SPF su questo dominio fornendo le stesse informazioni indicate qui sotto.",
+  "exchange_tab_domain_diagnostic_spf_recap": "Un record SPF sarà aggiunto alla zona DNS del tuo dominio.",
+  "exchange_tab_domain_diagnostic_spf": "SPF",
+  "exchange_tab_domain_diagnostic_spf_title": "Diagnostica SPF",
+  "exchange_tab_domain_diagnostic_spf_toolbox_ok": "Configurazione automatica effettuata"
 }
