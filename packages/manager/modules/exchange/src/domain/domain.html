@@ -227,6 +227,23 @@
                                     data-simplepopover-placement="top"
                                     data-simplepopover-single="true"
                                 ></button>
+                                <button
+                                    class="oui-badge oui-badge_error"
+                                    type="button"
+                                    data-translate="exchange_tab_domain_diagnostic_spf"
+                                    data-ng-click="setAction('exchange/domain/spf-autoconfig/domain-spf-autoconfig', domain)"
+                                    data-ng-if="!domain.spfValid"
+                                ></button>
+                                <button
+                                    class="oui-badge oui-badge_success"
+                                    type="button"
+                                    data-translate="exchange_tab_domain_diagnostic_spf"
+                                    data-ng-if="domain.spfValid"
+                                    data-simplepopover="{{domain.spfTooltip}}"
+                                    data-simplepopover-title="{{'exchange_tab_domain_diagnostic_spf_title' | translate}}"
+                                    data-simplepopover-placement="top"
+                                    data-simplepopover-single="true"
+                                ></button>
                             </div>
 
                             <button

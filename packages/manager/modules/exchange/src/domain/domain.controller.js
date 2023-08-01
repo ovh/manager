@@ -102,6 +102,7 @@ export default class ExchangeTabDomainsCtrl {
         if (this.exchange != null) {
           this.setMxTooltip(domain);
           this.setSrvTooltip(domain);
+          this.setSpfTooltip(domain);
         }
       });
     }
@@ -143,6 +144,27 @@ export default class ExchangeTabDomainsCtrl {
         'srvTooltip',
         this.services.$translate.instant(
           'exchange_tab_domain_diagnostic_srv_toolbox',
+          { t0: this.exchange.hostname },
+        ),
+      );
+    }
+  }
+
+  setSpfTooltip(domain) {
+    if (domain.spfValid) {
+      set(
+        domain,
+        'spfTooltip',
+        this.services.$translate.instant(
+          'exchange_tab_domain_diagnostic_spf_toolbox_ok',
+        ),
+      );
+    } else {
+      set(
+        domain,
+        'spfTooltip',
+        this.services.$translate.instant(
+          'exchange_tab_domain_diagnostic_spf_toolbox',
           { t0: this.exchange.hostname },
         ),
       );
