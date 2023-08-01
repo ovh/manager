@@ -7,8 +7,5 @@
   "iam_identities_field_users_button_add": "Hinzufügen",
   "iam_identities_error_load_users": "Beim Abrufen Ihrer Benutzer ist ein Fehler aufgetreten: {{ message }}",
   "iam_identities_add_identity_error": "Das Format der hinzugefügten Identität ist ungültig: {{ message }}",
-  "iam_identities_add_identity_success": "Die Identität wurde zu Ihrer Richtlinie hinzugefügt",
-  "iam_identities_submit_identity_success": "Ihre Identitäten wurden erfolgreich bearbeitet.",
-  "iam_identities_form_cancel": "Abbrechen",
-  "iam_identities_form_submit": "Bestätigen"
+  "iam_identities_add_identity_success": "Die Identität wurde zu Ihrer Richtlinie hinzugefügt"
 }
