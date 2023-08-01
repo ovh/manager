@@ -473,7 +473,6 @@
   "core_sd_top_guide_5_title": "Utilização do IPMI para servidores dedicados",
   "core_sd_top_guide_6_title": "Migrar os dados de um servidor dedicado para outro",
   "core_sd_top_guide_7_title": "Configurar uma nova instalação do Windows Server",
-  "core_sd_top_guide_8_title": "Criar um Raid Hardware na Área de Cliente OVH",
   "core_sd_top_guide_firewall_title": "Configurar a \"Firewall Network\"",
   "core_type_of_guide_pcc": "Hosted Private Cloud",
   "core_pcc_top_guide_1_title": "Aceder ao vSphere",
@@ -486,6 +485,7 @@
   "core_pcc_top_guide_8_title": "Compreender as licenças SPLA Windows",
   "core_pcc_top_guide_9_title": "Primeiros passos com o NSX",
   "core_pcc_top_guide_10_title": "Documentação oficial do NSX",
+  "core_pcc_top_guide_11_title": "Documentação oficial da Nutanix",
   "sso_modal_title": "OVH - Autenticação",
   "sso_modal_loading": "A carregar...",
   "sso_modal_user_title": "Estava ligado como:",
@@ -544,7 +544,5 @@
   "common_subscription_contacts_billing": "Faturação",
   "common_subscription_contacts_tech": "Técnico ",
   "common_unavailable_information": "Informação indisponível",
-  "common_resiliate_contact_support": "Para cancelar este serviço, contacte o nosso apoio ao cliente através do <strong>+351 213 155 642</strong>. Obrigado pela sua compreensão.",
-  "core_pcc_top_guide_11_title": "Documentação oficial da Nutanix",
-  "core_pcc_top_guide_12_title": "Documentação oficial do SAP HANA on Private Cloud"
+  "common_resiliate_contact_support": "Para cancelar este serviço, contacte o nosso apoio ao cliente através do <strong>+351 213 155 642</strong>. Obrigado pela sua compreensão."
 }

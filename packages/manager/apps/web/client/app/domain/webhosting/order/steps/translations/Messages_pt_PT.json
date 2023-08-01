@@ -1,6 +1,5 @@
 {
   "domain_webhosting_order_hosting_step_title": "Escolha a sua oferta",
-  "domain_webhosting_order_hosting_step_subtitle": "Blogue, site profissional, plataforma de e-commerce ou aplicação web: independentemente das suas necessidades, as soluções de alojamento OVHcloud oferecem-lhe simplicidade, segurança e desempenho.",
   "domain_webhosting_order_module_step_title": "Escolha o seu módulo de gestão de conteúdos pré-instalado",
   "domain_webhosting_order_module_step_subtitle": "Como criar um site sem competências técnicas? Descubra os nossos módulos disponíveis com um alojamento.",
   "domain_webhosting_order_dns_configuration_step_title": "Configuração das DNS",
@@ -76,10 +75,10 @@
   "domain_webhosting_order_duration_P1Y": "12 meses",
   "domain_webhosting_order_payment_choice": "Para confirmar o pedido, escolha o seu método de pagamento e aceite as condições de utilização.",
   "domain_webhosting_order_payment_get_checkout_error": "Ocorreu um erro aquando da recuperação das informações do seu carrinho: {{ message }}",
+  "domain_webhosting_order_payment_get_checkout_error_unknown": "Ocorreu um erro aquando da recuperação das informações do seu carrinho.",
   "domain_webhosting_order_payment_get_payment_method_error": "Ocorreu um erro durante a recuperação dos métodos de pagamento.",
   "domain_webhosting_order_payment_checkout_error": "Ocorreu um erro durante o pagamento do montante do carrinho: {{ message }}",
+  "domain_webhosting_order_payment_checkout_error_unknown": "Ocorreu um erro durante o pagamento do montante do carrinho.",
   "domain_webhosting_order_payment_checkout_success": "A sua encomenda para o alojamento partilhado foi devidamente registada. Foi efetuado um débito de {{price}} na sua conta {{accountId}}. O seu produto será automaticamente renovado a {{renewDate}}.<a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Ver a minha fatura</a>",
-  "domain_webhosting_order_bill_success": "A sua <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">nota de encomenda</a> foi gerada. O seu alojamento será ativado quando o validar.",
-  "domain_webhosting_order_payment_get_checkout_error_unknown": "Ocorreu um erro aquando da recuperação das informações do seu carrinho.",
-  "domain_webhosting_order_payment_checkout_error_unknown": "Ocorreu um erro durante o pagamento do montante do carrinho."
+  "domain_webhosting_order_bill_success": "A sua <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">nota de encomenda</a> foi gerada. O seu alojamento será ativado quando o validar."
 }
