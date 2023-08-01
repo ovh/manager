@@ -59,6 +59,7 @@ import ExchangeTabDomainsCtrl from '../domain/domain.controller';
 import ExchangeDomainMxAutoconfigCtrl from '../domain/mx-autoconfig/domain-mx-autoconfig.controller';
 import ExchangeRemoveDomainCtrl from '../domain/remove/domain-remove.controller';
 import ExchangeDomainSrvAutoconfigCtrl from '../domain/srv-autoconfig/domain-srv-autoconfig.controller';
+import ExchangeDomainSpfAutoconfigCtrl from '../domain/spf-autoconfig/domain-spf-autoconfig.controller';
 import ExchangeUpdateDomainCtrl from '../domain/update/domain-update.controller';
 import ExchangeDeleteSharedAccountCtrl from '../shared-account/delete/shared-account-delete.controller';
 import ExchangeTabSharedAccountsCtrl from '../shared-account/shared-account.controller';
@@ -171,6 +172,10 @@ angular
   .controller(
     'ExchangeDomainSrvAutoconfigCtrl',
     ExchangeDomainSrvAutoconfigCtrl,
+  )
+  .controller(
+    'ExchangeDomainSpfAutoconfigCtrl',
+    ExchangeDomainSpfAutoconfigCtrl,
   )
   .controller('ExchangeUpdateDomainCtrl', ExchangeUpdateDomainCtrl)
   .controller(

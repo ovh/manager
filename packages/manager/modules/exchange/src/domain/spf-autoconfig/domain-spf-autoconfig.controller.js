@@ -1,13 +1,11 @@
-export default class ExchangeDomainMxAutoconfigCtrl {
+export default class ExchangeDomainSpfAutoconfigCtrl {
   /* @ngInject */
   constructor(
     $scope,
     wucExchange,
     ExchangeDomains,
-    EXCHANGE_MX_CONFIG,
-    coreConfig,
-    messaging,
     navigation,
+    messaging,
     $translate,
     exchangeStates,
   ) {
@@ -15,10 +13,8 @@ export default class ExchangeDomainMxAutoconfigCtrl {
       $scope,
       wucExchange,
       ExchangeDomains,
-      EXCHANGE_MX_CONFIG,
-      coreConfig,
-      messaging,
       navigation,
+      messaging,
       $translate,
       exchangeStates,
     };
@@ -26,8 +22,6 @@ export default class ExchangeDomainMxAutoconfigCtrl {
     this.$routerParams = wucExchange.getParams();
     this.domain = navigation.currentActionData;
     this.domainDiag = {};
-    this.domainDiag.mx = [];
-    this.domainDiag.mx.spam = [];
 
     this.services.ExchangeDomains.gettingDNSSettings(
       this.$routerParams.organization,
@@ -36,7 +30,6 @@ export default class ExchangeDomainMxAutoconfigCtrl {
     )
       .then((data) => {
         this.domainDiag.isOvhDomain = data.isOvhDomain;
-        this.domainDiag.mx.noSpam = data.mx.noSpam;
       })
       .catch((failure) => {
         navigation.resetAction();
@@ -54,18 +47,17 @@ export default class ExchangeDomainMxAutoconfigCtrl {
       this.domain.name,
     )
       .then((data) => {
-        const re = /^IN ([A-Z]*) (\d+) ([^ ]*)$/i;
-        data.expectedMX.forEach((mx) => {
-          const extract = mx.match(re);
-          this.domainDiag.mx.spam.push({
-            fieldType: extract[1],
-            target: extract[3],
-            priority: extract[2],
-            weight: null,
-            port: null,
-            subDomain: null,
-          });
-        });
+        const re = /^IN ([A-Z]*) (v=spf.*all)/i;
+        const extract = data.expectedSPF.match(re);
+
+        this.domainDiag.spf = {
+          fieldType: 'SPF',
+          target: `"${extract[2]}"`,
+          priority: 0,
+          weight: 0,
+          port: null,
+          subDomain: null,
+        };
       })
       .catch((failure) => {
         navigation.resetAction();
@@ -77,30 +69,20 @@ export default class ExchangeDomainMxAutoconfigCtrl {
         );
       });
 
-    $scope.configMX = () => this.configMX();
+    $scope.configSPF = () => this.configSPF();
   }
 
-  prepareModel() {
-    let data = this.domainDiag.mx.noSpam;
-
-    if (this.model.antiSpam) {
-      data = this.domainDiag.mx.spam;
-    }
-
-    return {
-      domain: this.domain.name,
-      fieldList: data,
-    };
-  }
-
-  configMX() {
+  configSPF() {
     this.services.ExchangeDomains.addingZoneDnsField(
       this.$routerParams.organization,
       this.$routerParams.productId,
-      this.prepareModel(),
+      {
+        domain: this.domain.name,
+        fieldList: [this.domainDiag.spf],
+      },
     )
-      .then((data) => {
-        if (this.services.exchangeStates.constructor.isOk(data)) {
+      .then((success) => {
+        if (this.services.exchangeStates.constructor.isOk(success)) {
           this.services.messaging.writeSuccess(
             this.services.$translate.instant(
               'exchange_tab_domain_diagnostic_add_field_success',
@@ -111,7 +93,6 @@ export default class ExchangeDomainMxAutoconfigCtrl {
             this.services.$translate.instant(
               'exchange_tab_domain_diagnostic_add_field_failure',
             ),
-            data,
           );
         }
       })
@@ -120,10 +101,7 @@ export default class ExchangeDomainMxAutoconfigCtrl {
           this.services.$translate.instant(
             'exchange_tab_domain_diagnostic_add_field_failure',
           ),
-          {
-            code: this.domain.name,
-            message: failure.message,
-          },
+          failure,
         );
       })
       .finally(() => {

@@ -1635,5 +1635,14 @@
   "exchange_reset_mfa_success": "A dupla autenticação foi reiniciada com êxito.",
   "exchange_mfa_error": "Ocorreu um erro: {{error}}",
   "exchange_delete_mfa_success": "A dupla autenticação foi eliminada com êxito.",
-  "exchange_delete_mfa_error": "Ocorreu um erro aquando da eliminação da dupla autenticação: {{error}}"
+  "exchange_delete_mfa_error": "Ocorreu um erro aquando da eliminação da dupla autenticação: {{error}}",
+  "exchange_wizardHostedCreation_configureDNSZone_manual_table_spf": "SPF",
+  "exchange_tab_domain_diagnostic_spf_intro_ovh": "O seu domínio está alojado na OVH. Pode configurar o campo SPF do seu domínio {0} da seguinte forma",
+  "exchange_tab_domain_diagnostic_spf_label_champ": "Campo SPF",
+  "exchange_tab_domain_diagnostic_spf_config": "Subdomínio: <strong>{0}</strong><br /> Destino: <strong>{4}</strong>",
+  "exchange_tab_domain_diagnostic_spf_no_ovh": "Se o domínio não é gerido pelo mesmo identificador de cliente que o seu serviço Exchange, ou o seu domínio não está alojado na OVH, não é possível utilizar a configuração automática. Crie manualmente o registo SPF para este domínio ao fornecer as mesmas informações que se seguem.",
+  "exchange_tab_domain_diagnostic_spf_recap": "Um campo SPF será adicionado à zona DNS do seu domínio.",
+  "exchange_tab_domain_diagnostic_spf": "SPF",
+  "exchange_tab_domain_diagnostic_spf_title": "Diagnóstico SPF",
+  "exchange_tab_domain_diagnostic_spf_toolbox_ok": "Configuração automática efetuada"
 }
