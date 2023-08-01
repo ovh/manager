@@ -1635,5 +1635,14 @@
   "exchange_reset_mfa_success": "Dwuetapowa weryfikacja została zresetowana.",
   "exchange_mfa_error": "Wystąpił błąd: {{error}}",
   "exchange_delete_mfa_success": "Weryfikacja dwuetapowa za pomocą wiadomości SMS została usunięta.",
-  "exchange_delete_mfa_error": "Wystąpił błąd podczas usuwania weryfikacji dwuetapowej: {{error}}"
+  "exchange_delete_mfa_error": "Wystąpił błąd podczas usuwania weryfikacji dwuetapowej: {{error}}",
+  "exchange_wizardHostedCreation_configureDNSZone_manual_table_spf": "SPF",
+  "exchange_tab_domain_diagnostic_spf_intro_ovh": "Twoja domena jest zainstalowana w OVH. Możesz skonfigurować pole SPF domeny {0} w następujący sposób",
+  "exchange_tab_domain_diagnostic_spf_label_champ": "Pole SPF",
+  "exchange_tab_domain_diagnostic_spf_config": "Subdomena: <strong>{0}</strong><br /> Adres docelowy: <strong>{4}</strong>",
+  "exchange_tab_domain_diagnostic_spf_no_ovh": "Jeśli domena nie jest zarządzana z poziomu tego samego konta klienta co usługa Exchange lub jeśli domena nie jest obsługiwana w OVH, automatyczna konfiguracja nie będzie możliwa. Utwórz ręcznie pole SPF dla tej domeny, podając poniższe informacje.",
+  "exchange_tab_domain_diagnostic_spf_recap": "Pole SPF zostanie dodane do strefy DNS domeny.",
+  "exchange_tab_domain_diagnostic_spf": "SPF",
+  "exchange_tab_domain_diagnostic_spf_title": "Diagnostyka SPF",
+  "exchange_tab_domain_diagnostic_spf_toolbox_ok": "Automatyczna konfiguracja została wykonana."
 }
