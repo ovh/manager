@@ -1,6 +1,5 @@
 {
   "domain_webhosting_order_hosting_step_title": "Wybierz ofertę",
-  "domain_webhosting_order_hosting_step_subtitle": "Blog, profesjonalna strona WWW, platforma e-commerce lub aplikacja internetowa: niezależnie od Twoich potrzeb rozwiązania hostingowe OVHcloud zapewniają prostotę, bezpieczeństwo i wydajność.",
   "domain_webhosting_order_module_step_title": "Wybierz wstępnie zainstalowany moduł zarządzania treścią ",
   "domain_webhosting_order_module_step_subtitle": "Jak zbudować stronę WWW bez posiadania umiejętności technicznych? Poznaj oferowane przez nas moduły dostępne z hostingiem.",
   "domain_webhosting_order_dns_configuration_step_title": "Konfiguracja DNS",
@@ -76,10 +75,10 @@
   "domain_webhosting_order_duration_P1Y": "12 miesięcy",
   "domain_webhosting_order_payment_choice": "Aby potwierdzić zlecenie, wybierz sposób płatności i zaakceptuj warunki korzystania z usługi.",
   "domain_webhosting_order_payment_get_checkout_error": "Wystąpił błąd podczas pobierania informacji o koszyku: {{ message }}",
+  "domain_webhosting_order_payment_get_checkout_error_unknown": "Wystąpił błąd podczas pobierania informacji o koszyku.",
   "domain_webhosting_order_payment_get_payment_method_error": "Wystąpił błąd podczas odzyskiwania sposobów płatności",
   "domain_webhosting_order_payment_checkout_error": "Wystąpił błąd podczas spłaty Twojego salda: {{ message }}.",
+  "domain_webhosting_order_payment_checkout_error_unknown": "Wystąpił błąd podczas spłaty Twojego salda.",
   "domain_webhosting_order_payment_checkout_success": "Zamówienie dotyczące hostingu zostało zarejestrowane. Twoje konto {{accountId}} zostało obciążone kwotą {{price}}. Twój produkt zostanie automatycznie odnowiony w dniu {{renewDate}}. <a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Sprawdź fakturę</a>",
-  "domain_webhosting_order_bill_success": "<a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Zamówienie</a> zostało wygenerowane. Twój hosting zostanie włączony, gdy go zatwierdzisz.",
-  "domain_webhosting_order_payment_get_checkout_error_unknown": "Wystąpił błąd podczas pobierania informacji o koszyku.",
-  "domain_webhosting_order_payment_checkout_error_unknown": "Wystąpił błąd podczas spłaty Twojego salda."
+  "domain_webhosting_order_bill_success": "<a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Zamówienie</a> zostało wygenerowane. Twój hosting zostanie włączony, gdy go zatwierdzisz."
 }

@@ -7,7 +7,6 @@
   "private_database_order_clouddb_server_version_mariadb": "MariaDB {{version}}",
   "private_database_order_clouddb_server_version_mysql": "MySQL {{version}}",
   "private_database_order_clouddb_server_version_postgresql": "PostgreSQL {{version}}",
-  "private_database_order_clouddb_server_version_mongodb": "MongoDB {{version}}",
   "private_database_order_clouddb_server_version_redis": "Redis {{version}}",
   "private_database_order_clouddb_ram_option": "RAM",
   "private_database_order_clouddb_ram_option_placeholder": "Wählen Sie die Größe des RAMs",
@@ -25,7 +24,7 @@
   "private_database_order_clouddb_payment_get_payment_method_error": "Bei der Rückforderung der Zahlungsmittel ist ein Fehler aufgetreten.",
   "private_database_order_clouddb_payment_checkout_error": "Bei der Bezahlung Ihres Korbs ist ein Fehler aufgetreten.",
   "private_database_order_clouddb_payment_checkout_success": "Die Bestellung Ihrer Datenbank mit der Lösung Web Cloud Databases wurde registriert. Ihr Konto {{accountId} wurde mit {{price} belastet.",
-  "private_database_order_clouddb_bill_success": "Ihre {{link}} wurde erstellt. Ihre Datenbank mit der Lösung Web Cloud Databases ist nach deren Bezahlung aktiv.",
   "private_database_order_clouddb_payment_checkout_success_link": "Rechnung anzeigen",
+  "private_database_order_clouddb_bill_success": "Ihre {{link}} wurde erstellt. Ihre Datenbank mit der Lösung Web Cloud Databases ist nach deren Bezahlung aktiv.",
   "private_database_order_clouddb_bill_success_link": "Bestellschein"
 }
