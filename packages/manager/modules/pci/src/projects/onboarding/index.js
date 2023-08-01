@@ -2,8 +2,6 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import './onboarding.less';
-
 const moduleName = 'ovhManagerPciProjectsOnBoardingLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
