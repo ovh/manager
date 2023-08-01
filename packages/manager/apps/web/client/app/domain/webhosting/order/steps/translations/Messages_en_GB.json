@@ -1,6 +1,5 @@
 {
   "domain_webhosting_order_hosting_step_title": "Choose your solution",
-  "domain_webhosting_order_hosting_step_subtitle": "Whether you are looking to launch a blog, a business website, an e-commerce platform or a web application, OVHcloud offers simplicity, security and high performance.",
   "domain_webhosting_order_module_step_title": "Select a pre-installed content management system module",
   "domain_webhosting_order_module_step_subtitle": "Want to build a website without needing the technical expertise? Explore the modules we offer with web hosting plans.",
   "domain_webhosting_order_dns_configuration_step_title": "Configuration of your DNS",
@@ -76,10 +75,10 @@
   "domain_webhosting_order_duration_P1Y": "12 months",
   "domain_webhosting_order_payment_choice": "To confirm your request, please choose a payment method, and accept the Terms & Conditions of Use.",
   "domain_webhosting_order_payment_get_checkout_error": "An error has occurred retrieving information on your basket: {{ message }}",
+  "domain_webhosting_order_payment_get_checkout_error_unknown": "An error has occurred retrieving information on your basket.",
   "domain_webhosting_order_payment_get_payment_method_error": "An error has occurred retrieving payment methods.",
   "domain_webhosting_order_payment_checkout_error": "An error has occurred paying for the orders in your basket: {{ message }}",
+  "domain_webhosting_order_payment_checkout_error_unknown": "An error has occurred paying for the orders in your basket.",
   "domain_webhosting_order_payment_checkout_success": "Your web hosting plan order has been processed. Your {{accountId}} account has been charged {{price}}. Your product will be renewed automatically on {{renewDate}}.<a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">View my bill</a>",
-  "domain_webhosting_order_bill_success": "Your <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">purchase order</a> has been generated. Your web hosting plan will be enabled once you have validated it.",
-  "domain_webhosting_order_payment_get_checkout_error_unknown": "An error has occurred retrieving information on your basket.",
-  "domain_webhosting_order_payment_checkout_error_unknown": "An error has occurred paying for the orders in your basket."
+  "domain_webhosting_order_bill_success": "Your <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">purchase order</a> has been generated. Your web hosting plan will be enabled once you have validated it."
 }

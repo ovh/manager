@@ -7,8 +7,5 @@
   "iam_identities_field_users_button_add": "Añadir",
   "iam_identities_error_load_users": "Se ha producido un error al cargar los usuarios: {{ message }}",
   "iam_identities_add_identity_error": "El formato de la identidad agregada no es válido: {{ message }}",
-  "iam_identities_add_identity_success": "La identidad está asociada a su política",
-  "iam_identities_submit_identity_success": "Los cambios de identidad se han realizado correctamente.",
-  "iam_identities_form_cancel": "Cancelar",
-  "iam_identities_form_submit": "Confirmar"
+  "iam_identities_add_identity_success": "La identidad está asociada a su política"
 }
