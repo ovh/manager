@@ -58,12 +58,7 @@ export default class UserAccountInfosService {
   }
 
   fetchMarketingConsentDecision() {
-    return this.$http.get('/me/marketing').then((response) => {
-      if (response.status < 300) {
-        return response.data;
-      }
-      return this.$q.reject(response);
-    });
+    return this.$http.get('/me/marketing').then((response) => response.data);
   }
 
   updateSmsMarketingConsentDecision(value) {

@@ -229,7 +229,7 @@ export default class NewAccountFormFieldController {
     if (this.rule.fieldType) {
       return this.rule.fieldType;
     }
-    if ((this.rule.fieldName || '') === this.FIELD_NAME_LIST.phoneType) {
+    if (this.rule.fieldName === this.FIELD_NAME_LIST.phoneType) {
       return 'radio';
     }
     if (this.rule.in) {
@@ -365,8 +365,7 @@ export default class NewAccountFormFieldController {
   }
 
   shouldDisplayLabel() {
-    const type = this.getFieldType();
-    return type !== 'checkbox' && type !== 'radio';
+    return !['checkbox', 'radio'].includes(this.getFieldType());
   }
 
   // callback for when model changed

@@ -377,6 +377,11 @@ export const PHONE_PREFIX = {
 
 export const FIELD_WITHOUT_MARGIN_BOTTOM = ['email', 'phoneType', 'phone'];
 
+export const FEATURES = {
+  emailConsent: 'account:email-consent',
+  smsConsent: 'account:sms-consent',
+};
+
 export default {
   ENUM_TRANSLATION_RULES,
   MODEL_DEBOUNCE_DELAY,
@@ -389,4 +394,5 @@ export default {
   CONSENT_MARKETING_EMAIL_NAME,
   FIELD_NAME_LIST,
   FIELD_WITHOUT_MARGIN_BOTTOM,
+  FEATURES,
 };

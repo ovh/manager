@@ -14,6 +14,7 @@ import {
   SECTIONS,
   FIELD_NAME_LIST,
   FIELD_WITHOUT_MARGIN_BOTTOM,
+  FEATURES,
 } from './new-account-form-component.constants';
 
 export default class NewAccountFormController {
@@ -29,6 +30,7 @@ export default class NewAccountFormController {
     $translate,
     $anchorScroll,
     $scope,
+    ovhFeatureFlipping,
   ) {
     this.$q = $q;
     this.$http = $http;
@@ -49,6 +51,7 @@ export default class NewAccountFormController {
     this.user = coreConfig.getUser();
     this.$anchorScroll = $anchorScroll;
     this.$scope = $scope;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.SECTIONS = SECTIONS;
   }
 
@@ -63,12 +66,22 @@ export default class NewAccountFormController {
     return this.$q
       .all({
         rules: this.fetchRules(this.model),
+        featureAvailability: this.ovhFeatureFlipping.checkFeatureAvailability([
+          FEATURES.emailConsent,
+          FEATURES.smsConsent,
+        ]),
       })
       .then((result) => {
         this.rules = result.rules;
+        this.isEmailConsentAvailable = result.featureAvailability.isFeatureAvailable(
+          FEATURES.emailConsent,
+        );
+        this.isSmsConsentAvailable = result.featureAvailability.isFeatureAvailable(
+          FEATURES.smsConsent,
+        );
       })
       .catch((err) => {
-        this.initError = err.data.message || err.message || err;
+        this.initError = err.data?.message || err.message || err;
       })
       .finally(() => {
         this.loading = false;
@@ -121,9 +134,10 @@ export default class NewAccountFormController {
         sms: this.userAccountServiceInfos.fetchMarketingConsentDecision(),
       })
       .then(({ email, sms }) => {
-        this.consentDecision = email.value || false;
-        this.smsConsentDecision =
-          Object.keys(sms.sms).some((key) => sms.sms[key]) || false;
+        this.consentDecision = !!email.value;
+        this.smsConsentDecision = !!Object.keys(sms.sms).some(
+          (key) => sms.sms[key],
+        );
       })
       .then(() => this.userAccountServiceInfos.postRules(params))
       .then((result) => {
@@ -142,9 +156,10 @@ export default class NewAccountFormController {
             editedRule.hasBottomMargin = this.coreConfig.isRegion('US');
           } else {
             editedRule.readonly = this.readonly.includes(editedRule.fieldName);
-            editedRule.hasBottomMargin =
-              FIELD_WITHOUT_MARGIN_BOTTOM.indexOf(editedRule.fieldName) === -1;
-            if (editedRule.fieldName === 'phone') {
+            editedRule.hasBottomMargin = !FIELD_WITHOUT_MARGIN_BOTTOM.includes(
+              editedRule.fieldName,
+            );
+            if (['phone'].includes(editedRule.fieldName)) {
               phoneFieldIndex = index;
             }
           }
@@ -326,37 +341,39 @@ export default class NewAccountFormController {
         );
     }
 
-    if (!this.coreConfig.isRegion('US')) {
-      const consentRequests = [];
-      if (
-        this.originalModel.commercialCommunicationsApproval !==
+    const consentRequests = [];
+    if (
+      this.isEmailConsentAvailable &&
+      this.originalModel.commercialCommunicationsApproval !==
         this.model.commercialCommunicationsApproval
-      ) {
-        consentRequests.push(
-          this.userAccountServiceInfos.updateConsentDecision(
-            CONSENT_MARKETING_EMAIL_NAME,
-            this.model.commercialCommunicationsApproval || false,
-          ),
+    ) {
+      consentRequests.push(
+        this.userAccountServiceInfos.updateConsentDecision(
+          CONSENT_MARKETING_EMAIL_NAME,
+          this.model.commercialCommunicationsApproval || false,
+        ),
+      );
+    }
+    if (
+      this.isSmsConsentAvailable &&
+      this.originalModel.smsConsent !== this.model.smsConsent
+    ) {
+      consentRequests.push(
+        this.userAccountServiceInfos.updateSmsMarketingConsentDecision(
+          this.model.smsConsent || false,
+        ),
+      );
+    }
+    if (consentRequests.length > 0) {
+      promise = promise
+        .then(() => this.$q.all(consentRequests))
+        .then(
+          () =>
+            this.$timeout(
+              angular.noop,
+              3000,
+            ) /* add some delay for task creation */,
         );
-      }
-      if (this.originalModel.smsConsent !== this.model.smsConsent) {
-        consentRequests.push(
-          this.userAccountServiceInfos.updateSmsMarketingConsentDecision(
-            this.model.smsConsent || false,
-          ),
-        );
-      }
-      if (consentRequests.length > 0) {
-        promise = promise
-          .then(() => this.$q.all(consentRequests))
-          .then(
-            () =>
-              this.$timeout(
-                angular.noop,
-                3000,
-              ) /* add some delay for task creation */,
-          );
-      }
     }
 
     return promise
