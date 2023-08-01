@@ -9,6 +9,7 @@
 
 <ul>
     <li
+        class="contract-wrap"
         data-ng-repeat="contract in $ctrl.contracts track by $index"
         data-ng-class="{'d-inline': $ctrl.inlineContracts }"
     >
@@ -18,7 +19,7 @@
             rel="noopener"
             target="_blank"
         >
-            <span data-ng-bind="contract.name"> </span>
+            <span data-ng-bind="contract.name"></span>
             <span
                 class="m-0 oui-icon oui-icon-external-link"
                 aria-hidden="true"
