@@ -8,12 +8,14 @@ import {
   serverSupport,
   serverNetwork,
   serverBandwidthDashboard,
+  serverTechnicalDetails,
 } from '@ovh-ux/manager-bm-server-components';
 
 import component from './component';
 import routing from './routing';
 import netboot from './netboot';
 import reboot from './reboot';
+import bandwidthPrivateOrder from './bandwidth-private-order';
 import datacenterName from '../../../component/datacenter-name/module';
 
 const moduleName = 'ovhManagerNutanixNodeGeneralInfo';
@@ -29,7 +31,9 @@ angular
     ngOvhUtils,
     serverNetwork,
     serverSupport,
+    serverTechnicalDetails,
     serverBandwidthDashboard,
+    bandwidthPrivateOrder,
     reboot,
     datacenterName,
   ])

@@ -15,5 +15,6 @@
   "nutanix_cluster_list_localisation_value": "{{dcName}} (Szafa {{rackName}})",
   "nutanix_order": "Zamów",
   "nutanix_cluster_list_pack_type": "Typ pakietu",
-  "nutanix_cluster_list_pack_type_details": "Wyświetl szczegóły"
+  "nutanix_cluster_list_pack_type_details": "Wyświetl szczegóły",
+  "nutanix_cluster_unit_gbps": "{{t0}} Gbps"
 }

@@ -15,5 +15,6 @@
   "nutanix_cluster_list_localisation_value": "{{dcName}} ({{rackName}} rack)",
   "nutanix_order": "Order",
   "nutanix_cluster_list_pack_type": "Pack type",
-  "nutanix_cluster_list_pack_type_details": "See more information"
+  "nutanix_cluster_list_pack_type_details": "See more information",
+  "nutanix_cluster_unit_gbps": "{{t0}}Gbps"
 }

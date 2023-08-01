@@ -102,5 +102,6 @@
   "plan_vrack-bandwidth-25000-upto-50000-scale-us": "25 Gb/s ilimitado y garantizado",
   "plan_price_per_month": "/mes + IVA",
   "wizard_pay": "Abonar",
-  "wizard_close": "Cerrar"
+  "wizard_close": "Cerrar",
+  "server_node_order_bandwidth_warning": "Para el buen funcionamiento de su clúster, es obligatorio activar la misma opción de ancho de banda en cada nodo del clúster."
 }

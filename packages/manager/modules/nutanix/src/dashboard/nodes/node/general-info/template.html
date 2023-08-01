@@ -124,7 +124,10 @@
         </div>
 
         <!-- TECHNICAL DETAILS -->
-        <div class="col-md-4" data-ng-if="$ctrl.technicalDetails">
+        <div
+            class="col-md-4"
+            data-ng-if="$ctrl.technicalDetails && !$ctrl.isOldCluster"
+        >
             <server-technical-details
                 technical-details="$ctrl.technicalDetails"
             ></server-technical-details>
@@ -164,10 +167,11 @@
                         data-bandwidth-option="$ctrl.bandwidthInformations.bandwidthOption"
                         data-bandwidth-vrack-option="$ctrl.bandwidthInformations.bandwidthVrackOptions"
                         data-bandwidth-vrack-order-option="$ctrl.bandwidthInformations.bandwidthVrackOrderOptions"
-                        data-order-private-link="$ctrl.orderPrivateBandwidthLink"
+                        data-order-private-link="$ctrl.getOrderPrivateBandwidthLink()"
                         data-order-public-link="$ctrl.orderPublicBandwidthLink"
                         data-server="$ctrl.server"
                         data-specifications="$ctrl.specifications"
+                        data-is-old-cluster="$ctrl.isOldCluster"
                     >
                     </server-bandwidth-dashboard>
                 </div>
