@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.36.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.36.2...@ovh-ux/manager-vps@2.36.3) (2023-08-01)
+
+
+### Bug Fixes
+
+* **vps:** display dashboard for vps value flavour ([#9766](https://github.com/ovh/manager/issues/9766)) ([9a884c7](https://github.com/ovh/manager/commit/9a884c74841e9e412abc5381f3b6161bf3807d6f))
+
+
+
+
+
 ## [2.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.36.1...@ovh-ux/manager-vps@2.36.2) (2023-07-31)
 
 
