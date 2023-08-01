@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.7.1...@ovh-ux/manager-bm-server-components@1.8.0) (2023-08-01)
+
+
+### Features
+
+* **dedicated.nutanix:** changes related to nutanix scale up and down ([92b21f8](https://github.com/ovh/manager/commit/92b21f8112dec42ba4a4f99c3b7c4f7f03fab037))
+
+
+
+
+
 ## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.7.0...@ovh-ux/manager-bm-server-components@1.7.1) (2023-07-31)
 
 

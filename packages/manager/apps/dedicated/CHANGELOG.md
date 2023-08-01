@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.5.0...@ovh-ux/manager-dedicated@18.6.0) (2023-08-01)
+
+
+### Features
+
+* **dedicated.nutanix:** changes related to nutanix scale up and down ([92b21f8](https://github.com/ovh/manager/commit/92b21f8112dec42ba4a4f99c3b7c4f7f03fab037))
+
+
+
+
+
 # [18.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.4.0...@ovh-ux/manager-dedicated@18.5.0) (2023-07-31)
 
 
