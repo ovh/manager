@@ -143,9 +143,9 @@ export default class ConfigurationTileService {
           })
         : null;
 
-      const nextVpsTotalPrice = ConfigurationTileService.getPlanPriceValue(
-        nextRamVpsPlan,
-      );
+      const nextVpsTotalPrice = nextRamVpsPlan
+        ? ConfigurationTileService.getPlanPriceValue(nextRamVpsPlan)
+        : null;
 
       // get next storage plan infos
       const nextStorageVps = find(availableCatalogProducts, ({ blobs }) => {
