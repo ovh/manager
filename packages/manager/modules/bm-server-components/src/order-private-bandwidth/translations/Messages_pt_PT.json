@@ -102,5 +102,6 @@
   "plan_vrack-bandwidth-25000-upto-50000-scale-us": "25 Gbps ilimitados e garantidos",
   "plan_price_per_month": "HT/mois",
   "wizard_pay": "Pagar",
-  "wizard_close": "Fechar"
+  "wizard_close": "Fechar",
+  "server_node_order_bandwidth_warning": "Para o bom funcionamento do seu cluster, é imperativo ativar a mesma opção de largura de banda em cada nó do seu cluster."
 }

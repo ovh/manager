@@ -102,5 +102,6 @@
   "plan_vrack-bandwidth-25000-upto-50000-scale-us": "25 Gbps illimitata e garantita",
   "plan_price_per_month": "+IVA/mese",
   "wizard_pay": "Salda",
-  "wizard_close": "Chiudi"
+  "wizard_close": "Chiudi",
+  "server_node_order_bandwidth_warning": "Per il corretto funzionamento del cluster è necessario attivare la stessa opzione di banda passante in ogni nodo del cluster."
 }

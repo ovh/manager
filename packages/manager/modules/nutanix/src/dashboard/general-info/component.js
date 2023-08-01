@@ -17,6 +17,7 @@ export default {
     handleError: '<',
     nutanixPlans: '<',
     getTechnicalDetails: '<',
+    isOldCluster: '<',
   },
   controller,
   template,
