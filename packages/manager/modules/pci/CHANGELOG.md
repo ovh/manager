@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.136.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.135.0...@ovh-ux/manager-pci@5.136.0) (2023-08-01)
+
+
+### Features
+
+* **web:** add spf diag and fix mx and srv ([#9773](https://github.com/ovh/manager/issues/9773)) ([3576462](https://github.com/ovh/manager/commit/3576462dabfffa70174fe6127c7d6050bfda57aa))
+
+
+
+
+
 # [5.135.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.134.0...@ovh-ux/manager-pci@5.135.0) (2023-07-31)
 
 

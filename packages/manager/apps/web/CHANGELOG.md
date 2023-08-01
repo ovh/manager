@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.10...@ovh-ux/manager-web@17.1.0) (2023-08-01)
+
+
+### Features
+
+* **web:** add spf diag and fix mx and srv ([#9773](https://github.com/ovh/manager/issues/9773)) ([3576462](https://github.com/ovh/manager/commit/3576462dabfffa70174fe6127c7d6050bfda57aa))
+
+
+
+
+
 ## [17.0.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.9...@ovh-ux/manager-web@17.0.10) (2023-07-31)
 
 
