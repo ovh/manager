@@ -12,5 +12,6 @@ export default {
     resiliatePublicLink: '<',
     server: '<',
     specifications: '<',
+    isOldCluster: '<',
   },
 };

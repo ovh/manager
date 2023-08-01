@@ -102,5 +102,6 @@
   "plan_vrack-bandwidth-25000-upto-50000-scale-us": "25 Gbps bez limitu i z gwarancją przepustowości ",
   "plan_price_per_month": "netto/m-c",
   "wizard_pay": "Zapłać",
-  "wizard_close": "Zamknij"
+  "wizard_close": "Zamknij",
+  "server_node_order_bandwidth_warning": "Aby zapewnić prawidłowe działanie klastra, należy włączyć tę samą opcję przepustowości dla każdego węzła w klastrze."
 }

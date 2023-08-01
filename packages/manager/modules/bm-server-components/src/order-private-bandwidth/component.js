@@ -3,7 +3,7 @@ import template from './private-order.html';
 
 export default {
   bindings: {
-    atTrack: '<',
+    trackClick: '<',
     goBack: '<',
     hasDefaultPaymentMethod: '<',
     serverName: '<',
@@ -13,6 +13,7 @@ export default {
     user: '<',
     onError: '&?',
     onSuccess: '&?',
+    isClusterNode: '<',
   },
   controller,
   template,

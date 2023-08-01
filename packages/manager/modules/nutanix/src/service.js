@@ -1,4 +1,3 @@
-import map from 'lodash/map';
 import { BillingService, DedicatedServer } from '@ovh-ux/manager-models';
 import {
   NOT_SUBSCRIBED,
@@ -9,9 +8,10 @@ import Cluster from './cluster.class';
 
 export default class NutanixService {
   /* @ngInject */
-  constructor($q, $http, iceberg) {
+  constructor($q, $http, $translate, iceberg) {
     this.$q = $q;
     this.$http = $http;
+    this.$translate = $translate;
     this.iceberg = iceberg;
   }
 
@@ -204,7 +204,8 @@ export default class NutanixService {
 
   getOrderables(productId, optionName) {
     return this.$http
-      .get(`dedicated/server/${productId}/orderable/${optionName}`)
+      .get(`/dedicated/server/${productId}/orderable/${optionName}`)
+      .then(({ data }) => data)
       .catch((err) => {
         if (err.status === 460 || err.status === 400) {
           return {};
@@ -214,10 +215,10 @@ export default class NutanixService {
   }
 
   transformOrderableBandwidths(bandwidths) {
-    return map(bandwidths, (bandwidth) => ({
+    return bandwidths.map((bandwidth) => ({
       value: bandwidth,
       unit: 'mbps',
-      text: this.$translate.instant('unit_gbps', {
+      text: this.$translate.instant('nutanix_cluster_unit_gbps', {
         t0: Math.floor(bandwidth / 1000),
       }),
     }));

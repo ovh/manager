@@ -5,7 +5,7 @@
 >
     <div class="text-center">
         <oui-spinner></oui-spinner>
-        <p data-translate="server_order_bandwidth_load"></p>
+        <p data-translate="server_order_bandwidth_vrack_load"></p>
     </div>
 </oui-modal>
 <!-- Bandwidth addons order modal -->
@@ -60,6 +60,10 @@
                 <oui-message data-type="warning">
                     <span
                         data-translate="server_order_bandwidth_warning"
+                    ></span>
+                    <span
+                        data-ng-if="$ctrl.isClusterNode"
+                        data-translate="server_node_order_bandwidth_warning"
                     ></span>
                 </oui-message>
             </form>
