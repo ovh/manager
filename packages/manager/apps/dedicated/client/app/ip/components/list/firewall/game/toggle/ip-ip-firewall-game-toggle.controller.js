@@ -12,6 +12,12 @@ export default /* @ngInject */ function EnableDisableGameFirewallRuleCtrl(
   self.datas = $scope.currentActionData;
   self.loading = false;
 
+  $scope.resetAction = function() {
+    self.datas.firewall.firewallModeEnabled = !self.datas.firewall
+      .firewallModeEnabled;
+    $scope.setAction(false);
+  };
+
   $scope.enableDisableGameFirewallRule = function enableDisableGameFirewallRule() {
     self.loading = true;
 
@@ -41,7 +47,7 @@ export default /* @ngInject */ function EnableDisableGameFirewallRuleCtrl(
         },
       )
       .finally(() => {
-        $scope.resetAction();
+        $scope.setAction(false);
       });
   };
 }

@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
     reloadOnSearch: false,
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('ip_firewall_game'),
+        $translate.instant('ip_game_mitigation_title'),
     },
   });
 };
