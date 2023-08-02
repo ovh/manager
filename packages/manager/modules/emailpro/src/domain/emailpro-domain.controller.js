@@ -105,12 +105,31 @@ export default /* @ngInject */ (
     }
   }
 
+  function setSpfTooltip(domain) {
+    if (domain.spfValid) {
+      set(
+        domain,
+        'spfTooltip',
+        $translate.instant('emailpro_tab_domain_diagnostic_spf_toolbox_ok'),
+      );
+    } else {
+      set(
+        domain,
+        'spfTooltip',
+        $translate.instant('emailpro_tab_domain_diagnostic_spf_toolbox', {
+          t0: $scope.exchange.hostname,
+        }),
+      );
+    }
+  }
+
   function setTooltips(paginated) {
     if (paginated && paginated.domains && paginated.domains.length) {
       angular.forEach($scope.paginated.domains, (domain) => {
         if ($scope.exchange) {
           setMxTooltip(domain);
           setSrvTooltip(domain);
+          setSpfTooltip(domain);
         }
       });
     }

@@ -234,6 +234,23 @@
                                         data-simplepopover-placement="top"
                                         data-simplepopover-single="true"
                                     ></button>
+                                    <button
+                                        class="oui-badge oui-badge_error"
+                                        type="button"
+                                        data-translate="emailpro_tab_domain_diagnostic_spf"
+                                        data-ng-click="setAction('emailpro/domain/spf-autoconfig/emailpro-domain-spf-autoconfig', domain)"
+                                        data-ng-if="!domain.spfValid && !exchange.isMXPlan"
+                                    ></button>
+                                    <button
+                                        class="oui-badge oui-badge_success"
+                                        type="button"
+                                        data-translate="emailpro_tab_domain_diagnostic_spf"
+                                        data-ng-if="domain.spfValid && !exchange.isMXPlan"
+                                        data-simplepopover="{{domain.spfTooltip}}"
+                                        data-simplepopover-title="{{ 'emailpro_tab_domain_diagnostic_spf_title' | translate }}"
+                                        data-simplepopover-placement="top"
+                                        data-simplepopover-single="true"
+                                    ></button>
                                 </div>
                                 <button
                                     class="oui-badge oui-badge_error"
