@@ -11,6 +11,7 @@ import info from './info';
 import submit from './submit';
 import resubmit from './resubmit';
 import kill from './kill';
+import deleteJob from './delete-job';
 import component from './jobs.component';
 import routing from './jobs.routing';
 import service from '../job.service';
@@ -31,6 +32,7 @@ angular
     submit,
     resubmit,
     kill,
+    deleteJob,
   ])
   .config(routing)
   .component('pciProjectTrainingJobsComponent', component)

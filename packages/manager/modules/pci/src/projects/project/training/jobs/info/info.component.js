@@ -20,5 +20,6 @@ export default {
     guideTrackingSectionTags: '<',
     trackClick: '<',
     goToUsersAndTokens: '<',
+    goToJobDelete: '<',
   },
 };
