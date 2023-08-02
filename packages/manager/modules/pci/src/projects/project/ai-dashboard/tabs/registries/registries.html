@@ -4,9 +4,8 @@
     ></cui-message-container>
     <h3 class="mb-3" data-translate="pci_ai_dashboard_registries_title"></h3>
     <p data-translate="pci_ai_dashboard_registries_description"></p>
-
     <h4
-        class="mb-1"
+        class="mb-3"
         data-translate="pci_ai_dashboard_private_docker_registries_title"
     ></h4>
     <p
@@ -14,6 +13,19 @@
     ></p>
     <p
         data-translate="pci_ai_dashboard_private_docker_registries_description_2"
+    ></p>
+    <oui-button
+        class="mb-4"
+        data-variant="secondary"
+        data-on-click="$ctrl.goToPrivateRegistry()"
+    >
+        <span
+            data-translate="pci_ai_dashboard_managed_private_registries_button"
+        ></span>
+    </oui-button>
+    <p
+        class="mb-3"
+        data-translate="pci_ai_dashboard_private_docker_registries_description_3"
     ></p>
     <oui-datagrid
         id="publicCloudTrainingRegistrysDatagrid"
@@ -111,17 +123,6 @@
             </button>
         </oui-datagrid-topbar>
     </oui-datagrid>
-
-    <oui-button
-        class="mb-3"
-        data-variant="secondary"
-        data-on-click="$ctrl.goToPrivateRegistry()"
-    >
-        <span
-            data-translate="pci_ai_dashboard_managed_private_registries_button"
-        ></span>
-    </oui-button>
-
     <h4
         class="mb-2"
         data-translate="pci_ai_dashboard_shared_registries_title"
