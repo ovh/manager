@@ -59,6 +59,11 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
+      emailObfuscationLink: /* @ngInject */ ($state, domainName) =>
+        $state.href('app.domain.product.emailObfuscation', {
+          productId: domainName,
+        }),
+
       enableWebhostingLink: /* @ngInject */ ($state, domainName) =>
         $state.href('app.domain.product.information.enable-webhosting', {
           productId: domainName,
