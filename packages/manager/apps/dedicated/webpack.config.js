@@ -97,6 +97,7 @@ module.exports = (env = {}) => {
       filename: '[name].[chunkhash].bundle.js',
     },
     resolve: {
+      alias: { chart: require.resolve('chart.js') },
       modules: [
         './node_modules',
         path.resolve(process.cwd(), './node_modules'),

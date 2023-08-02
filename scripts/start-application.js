@@ -96,10 +96,16 @@ inquirer
     try {
       if (container) {
         const appId = await getApplicationId(packageName);
+        const viteContainerAppCommand =
+          process.platform === 'win32'
+            ? `set VITE_CONTAINER_APP=${appId} &&`
+            : `VITE_CONTAINER_APP=${appId}`;
+        const containerCommand =
+          process.platform === 'win32' ? `set CONTAINER=1 &&` : `CONTAINER=1`;
         await concurrently(
           [
-            `VITE_CONTAINER_APP=${appId} yarn workspace ${containerPackageName} run start:dev`,
-            `CONTAINER=1 yarn workspace ${packageName} run start:dev`,
+            `${viteContainerAppCommand} yarn workspace ${containerPackageName} run start:dev`,
+            `${containerCommand} yarn workspace ${packageName} run start:dev`,
           ],
           {
             raw: true,

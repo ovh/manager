@@ -11,7 +11,10 @@ const injectTranslationImport = (languages, trads, id, subdirectory) => {
   trads.forEach((trad) => {
     const currentPath = path.dirname(id);
     const absolutePath = path.resolve(currentPath, trad, subdirectory);
-    const relativePath = path.relative(currentPath, absolutePath);
+    const relativePath = path
+      .relative(currentPath, absolutePath)
+      .split(path.sep)
+      .join(path.posix.sep);
     if (fs.existsSync(absolutePath)) {
       result += `
       promises.push(
