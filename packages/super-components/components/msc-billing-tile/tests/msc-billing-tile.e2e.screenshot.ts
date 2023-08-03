@@ -1,14 +1,9 @@
 import { HTMLStencilElement } from '@stencil/core/internal';
 import { setupE2eTest } from './setup';
-import { vpsResponseUnified } from './mockRequests';
 
 jest.mock('@ovh-ux/manager-core-api', () => ({
   v6: {
-    get: jest.fn(() =>
-      Promise.resolve({
-        data: vpsResponseUnified,
-      }),
-    ),
+    get: jest.fn(() => Promise.resolve({})),
   },
 }));
 

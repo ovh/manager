@@ -96,12 +96,13 @@ export class MscBillingTile implements IMscBillingTile {
   async componentWillLoad() {
     this.localStrings = await fetchLocaleStringsForComponent(this.language);
     await this.fetchServiceId();
+    await this.fetchServiceDetails(this.serviceId);
     if (this.getServiceType() === 'DOMAIN')
       await this.fetchDomainOwner(this.getServiceName());
   }
 
   async fetchServiceId() {
-    apiClient.v6
+    return apiClient.v6
       .get(`${this.servicePath}/serviceInfos`)
       .then((response) => {
         const { data } = response;
@@ -135,7 +136,6 @@ export class MscBillingTile implements IMscBillingTile {
           // Red chip 'expired', link in menu 'Renew service'
           this.renewStatus = 'expired';
         }
-        this.fetchServiceDetails(this.serviceId);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -143,7 +143,7 @@ export class MscBillingTile implements IMscBillingTile {
   }
 
   async fetchServiceDetails(serviceId: string) {
-    apiClient.v6
+    return apiClient.v6
       .get(`/services/${serviceId}`)
       .then((response) => {
         const { data } = response;
@@ -179,7 +179,7 @@ export class MscBillingTile implements IMscBillingTile {
   }
 
   async fetchDomainOwner(domain: string) {
-    apiClient.v6
+    return apiClient.v6
       .get(`/domain/${domain}`)
       .then((response) => {
         const { data } = response;

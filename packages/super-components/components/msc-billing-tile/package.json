@@ -15,13 +15,13 @@
     "msc:doc:api": "typedoc --plugin none src/*",
     "msc:ignore:rm": "git clean -Xdf",
     "msc:start": "stencil build --docs --dev --watch --serve",
-    "msc:test": "stencil test --spec --e2e --passWithNoTests",
-    "msc:test:e2e": "stencil test --e2e --passWithNoTests",
-    "msc:test:e2e:screenshot": "stencil test --e2e --screenshot --config stencil.config.ts --passWithNoTests",
-    "msc:test:e2e:screenshot:update": "stencil test --e2e --screenshot --config stencil.config.ts --update-screenshot --passWithNoTests",
-    "msc:test:spec": "stencil test --spec --passWithNoTests",
-    "msc:test:watch": "stencil test --spec --e2e --watchAll",
-    "msc:watch": "stencil build --docs --watch"
+    "msc:test": "stencil test --spec --e2e --passWithNoTests --port 3338",
+    "msc:test:e2e": "stencil test --e2e --passWithNoTests --port 3338",
+    "msc:test:e2e:screenshot": "stencil test --e2e --screenshot --config stencil.config.ts --passWithNoTests --port 3338",
+    "msc:test:e2e:screenshot:update": "stencil test --e2e --screenshot --config stencil.config.ts --update-screenshot --passWithNoTests --port 3338",
+    "msc:test:spec": "stencil test --spec --passWithNoTests --port 3338",
+    "msc:test:watch": "stencil test --spec --e2e --watchAll --port 3338",
+    "msc:watch": "stencil build --docs --watch --port 3338"
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "*",

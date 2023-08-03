@@ -60,21 +60,22 @@ export const setupE2eTest = async ({
 
   await page.setRequestInterception(true);
 
-  page.on('request', (request) => {
-    if (request.url().includes('vps/vps-0baa4fcf.vps.ovh.net/serviceInfos')) {
-      request.respond({
-        status: 200,
-        body: JSON.stringify({
-          data: vpsResponseUnified,
-        }),
-      });
-    }
-    if (request.url().includes('services/118977335')) {
-      request.respond({
-        status: 200,
-        body: JSON.stringify({
-          data: vpsResponseUnified,
-        }),
+  page.on('response', (response) => {
+    if (response.url() === 'http://localhost:3338/') {
+      (page as any).removeAllListeners('request');
+      page.on('request', (request) => {
+        // you can mock responses here
+        if (
+          request.url().includes('vps/vps-0baa4fcf.vps.ovh.net/serviceInfos') ||
+          request.url().includes('services/118977335')
+        ) {
+          request.respond({
+            status: 200,
+            body: JSON.stringify(vpsResponseUnified),
+          });
+        } else {
+          request.continue();
+        }
       });
     }
   });
