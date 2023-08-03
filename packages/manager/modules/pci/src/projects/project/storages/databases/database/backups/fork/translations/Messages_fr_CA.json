@@ -61,5 +61,6 @@
   "pci_databases_backups_fork_price_unit_hour": "/heure",
   "pci_databases_backups_fork_price_unit_switch_label": "Afficher les prix au mois",
   "pci_databases_backups_fork_restore_mode_title": "Point de restauration",
-  "pci_databases_backups_fork_restore_mode_description": "Sélectionnez le point de restauration à partir duquel le service sera dupliqué."
+  "pci_databases_backups_fork_restore_mode_description": "Sélectionnez le point de restauration à partir duquel le service sera dupliqué.",
+  "pci_databases_backups_fork_show_command": "Équivalent API"
 }

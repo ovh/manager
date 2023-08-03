@@ -62,5 +62,6 @@
   "pci_databases_backups_fork_restore_mode_title": "Restore point",
   "pci_databases_backups_fork_restore_mode_description": "Select the restore point from which the service will be duplicated.",
   "pci_databases_backups_fork_spec_flavor_CPU_one": "{{cpu}} vCore",
-  "pci_databases_backups_fork_spec_flavor_CPU_many": "{{cpu}} vCores"
+  "pci_databases_backups_fork_spec_flavor_CPU_many": "{{cpu}} vCores",
+  "pci_databases_backups_fork_show_command": "API equivalent"
 }
