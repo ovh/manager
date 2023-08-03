@@ -865,5 +865,13 @@
   "emailpro_GROUPS_partial_account": "Se ha producido un error al cargar: {0}.",
   "emailpro_resilitation_cancel_action_confirmation_1": "Va a cancelar la baja del servicio «{0}».",
   "emailpro_resilitation_cancel_action_confirmation_2": "¿Quiere realizar dicha operación?",
-  "emailpro_resilitation_cancel_action_confirmation_3": "En ese caso, el servicio pasará a renovación automática."
+  "emailpro_resilitation_cancel_action_confirmation_3": "En ese caso, el servicio pasará a renovación automática.",
+  "emailpro_tab_domain_diagnostic_spf_intro_ovh": "Si su dominio está alojado en OVH, puede configurar el campo SPF del dominio {0} como se indica a continuación",
+  "emailpro_tab_domain_diagnostic_spf_label_champ": "Registro SPF",
+  "emailpro_tab_domain_diagnostic_spf_config": "Subdominio: <strong>{{t0}}</strong><br /> Destino: <strong>{{t1}}</strong>",
+  "emailpro_tab_domain_diagnostic_spf_no_ovh": "Si el dominio no es gestionado por el mismo ID de cliente que el servicio Exchange, o si el dominio no está alojado en OVH, no es posible realizar la configuración automática. En ese caso, cree el registro SPF en el dominio manualmente introduciendo la información arriba indicada.",
+  "emailpro_tab_domain_diagnostic_spf_recap": "Va a añadir un registro SPF a la zona DNS del dominio.",
+  "emailpro_tab_domain_diagnostic_spf": "SPF",
+  "emailpro_tab_domain_diagnostic_spf_title": "Diagnóstico SPF",
+  "emailpro_tab_domain_diagnostic_spf_toolbox_ok": "Se ha realizado la configuración automática."
 }
