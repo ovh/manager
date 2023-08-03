@@ -266,6 +266,15 @@ export default class SignUpDetailsCtrl {
   onPhoneTypeChange() {
     if (this.signUpFormCtrl.model.phoneType === 'landline') {
       this.signUpFormCtrl.smsConsent = false;
+      this.onSmsConsentChange(this.signUpFormCtrl.smsConsent);
     }
+    this.trackField(
+      'phone-type',
+      `select-${this.signUpFormCtrl.model.phoneType}`,
+    );
+  }
+
+  onSmsConsentChange(consent) {
+    this.trackField('sms-consent', consent ? 'enabled' : 'disabled');
   }
 }

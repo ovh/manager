@@ -75,9 +75,16 @@ export default class SignUpFormAppCtrl {
   onStepperFinished() {
     this.saveError = null;
 
-    this.atInternet.trackPage({
+    const tracking = {
       name: `accountcreation-ok-${this.me.model.legalform}`,
-    });
+    };
+
+    if (this.isSmsConsentAvailable) {
+      tracking.account_sms_consent = this.smsConsent ? 'opt-in' : 'opt-out';
+      tracking.account_phone_type = this.me.model.phoneType;
+    }
+
+    this.atInternet.trackPage(tracking);
 
     // call to finishSignUp binding
     if (isFunction(this.finishSignUp)) {

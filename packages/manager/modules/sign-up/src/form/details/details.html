@@ -113,6 +113,60 @@
 
     <div class="row">
         <div class="col-lg">
+            <!-- language -->
+            <oui-field
+                data-label="{{ 'sign_up_details_field_language' | translate }}"
+            >
+                <label class="oui-select">
+                    <select
+                        id="language"
+                        name="language"
+                        class="oui-select__input"
+                        data-ng-options="language.value as language.label for language in $ctrl.signUpFormCtrl.rules.language.in"
+                        data-ng-model="$ctrl.signUpFormCtrl.model.language"
+                        data-ng-required="$ctrl.signUpFormCtrl.rules.language.mandatory"
+                        data-ng-disabled="$ctrl.signUpFormCtrl.rules.language.in.length === 0"
+                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.language)"
+                    >
+                    </select>
+                    <span
+                        class="oui-icon oui-icon-chevron-down bg-transparent"
+                        aria-hidden="true"
+                    >
+                    </span>
+                </label>
+            </oui-field>
+            <!-- /select[name="language"] -->
+        </div>
+    </div>
+
+    <div class="row" data-ng-if="$ctrl.signUpFormCtrl.rules.phoneType">
+        <div class="col-lg">
+            <oui-field>
+                <oui-radio-group
+                    name="phoneType"
+                    data-model="$ctrl.signUpFormCtrl.model.phoneType"
+                    data-required
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.phoneType)"
+                    data-on-change="$ctrl.onPhoneTypeChange()"
+                >
+                    <oui-radio data-value="'mobile'" inline>
+                        <span
+                            data-translate="sign_up_details_field_mobile_phone"
+                        ></span>
+                    </oui-radio>
+                    <oui-radio data-value="'landline'" inline>
+                        <span
+                            data-translate="sign_up_details_field_landline_phone"
+                        ></span>
+                    </oui-radio>
+                </oui-radio-group>
+            </oui-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg">
             <!-- phone -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_phone' | translate }}"
@@ -164,6 +218,7 @@
                     name="sms-consent"
                     data-model="$ctrl.signUpFormCtrl.smsConsent"
                     data-disabled="$ctrl.signUpFormCtrl.model.phoneType !== 'mobile'"
+                    data-on-change="$ctrl.onSmsConsentChange(modelValue)"
                 >
                     <span
                         data-translate="sign_up_details_field_sms_consent"
