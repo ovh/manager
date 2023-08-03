@@ -6,11 +6,12 @@ import { CREATE_POLICY_TAG } from './createPolicy.constants';
 
 export default class CreatePolicyController {
   /* @ngInject */
-  constructor($filter, $q, $timeout, $translate, IAMService) {
+  constructor($filter, $q, $timeout, $translate, $anchorScroll, IAMService) {
     this.$filter = $filter;
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.$anchorScroll = $anchorScroll;
     this.IAMService = IAMService;
 
     this.ENTITY_NAME_PATTERN = ENTITY_NAME_PATTERN;
@@ -348,6 +349,7 @@ export default class CreatePolicyController {
         this.isSubmitting = false;
 
         this.trackPage(this.tag?.submitError);
+        this.$anchorScroll();
 
         if (error.data.policy) {
           this.error = error.data.policy;
