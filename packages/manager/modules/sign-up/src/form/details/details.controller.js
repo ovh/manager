@@ -262,4 +262,10 @@ export default class SignUpDetailsCtrl {
       this.onFieldError(startCase(field.$name));
     }
   }
+
+  onPhoneTypeChange() {
+    if (this.signUpFormCtrl.model.phoneType === 'landline') {
+      this.signUpFormCtrl.smsConsent = false;
+    }
+  }
 }

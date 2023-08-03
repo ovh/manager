@@ -13,6 +13,7 @@ export default class SignUpFormAppCtrl {
     this.saveError = null;
 
     this.isValid = false;
+    this.smsConsent = false;
 
     this.loading = {
       init: true,
@@ -80,7 +81,7 @@ export default class SignUpFormAppCtrl {
 
     // call to finishSignUp binding
     if (isFunction(this.finishSignUp)) {
-      return this.finishSignUp()
+      return this.finishSignUp(this.smsConsent)
         .then(() => {
           localStorage.removeItem(OVH_SUBSIDIARY_ITEM_NAME);
         })
