@@ -13,6 +13,8 @@ import {
   GST_SUBSIDIARIES,
   SECTIONS,
   FIELD_NAME_LIST,
+  FIELD_WITHOUT_MARGIN_BOTTOM,
+  FEATURES,
 } from './new-account-form-component.constants';
 
 export default class NewAccountFormController {
@@ -27,6 +29,8 @@ export default class NewAccountFormController {
     Alerter,
     $translate,
     $anchorScroll,
+    $scope,
+    ovhFeatureFlipping,
   ) {
     this.$q = $q;
     this.$http = $http;
@@ -46,6 +50,8 @@ export default class NewAccountFormController {
     this.originalManagerLanguage = coreConfig.getUserLocale();
     this.user = coreConfig.getUser();
     this.$anchorScroll = $anchorScroll;
+    this.$scope = $scope;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.SECTIONS = SECTIONS;
   }
 
@@ -55,16 +61,27 @@ export default class NewAccountFormController {
     this.originalModel = angular.copy(this.model);
 
     this.consentDecision = null;
+    this.smsConsentDecision = null;
 
     return this.$q
       .all({
         rules: this.fetchRules(this.model),
+        featureAvailability: this.ovhFeatureFlipping.checkFeatureAvailability([
+          FEATURES.emailConsent,
+          FEATURES.smsConsent,
+        ]),
       })
       .then((result) => {
         this.rules = result.rules;
+        this.isEmailConsentAvailable = result.featureAvailability.isFeatureAvailable(
+          FEATURES.emailConsent,
+        );
+        this.isSmsConsentAvailable = result.featureAvailability.isFeatureAvailable(
+          FEATURES.smsConsent,
+        );
       })
       .catch((err) => {
-        this.initError = err.data.message || err.message || err;
+        this.initError = err.data?.message || err.message || err;
       })
       .finally(() => {
         this.loading = false;
@@ -109,14 +126,23 @@ export default class NewAccountFormController {
 
     params.action = this.action;
 
-    return this.userAccountServiceInfos
-      .fetchConsentDecision(CONSENT_MARKETING_EMAIL_NAME)
-      .then((fetchedConsentDecision) => {
-        this.consentDecision = fetchedConsentDecision.value || false;
+    return this.$q
+      .all({
+        email: this.userAccountServiceInfos.fetchConsentDecision(
+          CONSENT_MARKETING_EMAIL_NAME,
+        ),
+        sms: this.userAccountServiceInfos.fetchMarketingConsentDecision(),
+      })
+      .then(({ email, sms }) => {
+        this.consentDecision = !!email.value;
+        this.smsConsentDecision = !!Object.keys(sms.sms).some(
+          (key) => sms.sms[key],
+        );
       })
       .then(() => this.userAccountServiceInfos.postRules(params))
       .then((result) => {
         let emailFieldIndex;
+        let phoneFieldIndex;
 
         // hide rules that are not editable
         const rules = result.map((rule, index) => {
@@ -130,7 +156,12 @@ export default class NewAccountFormController {
             editedRule.hasBottomMargin = this.coreConfig.isRegion('US');
           } else {
             editedRule.readonly = this.readonly.includes(editedRule.fieldName);
-            editedRule.hasBottomMargin = true;
+            editedRule.hasBottomMargin = !FIELD_WITHOUT_MARGIN_BOTTOM.includes(
+              editedRule.fieldName,
+            );
+            if (['phone'].includes(editedRule.fieldName)) {
+              phoneFieldIndex = index;
+            }
           }
 
           return editedRule;
@@ -155,6 +186,19 @@ export default class NewAccountFormController {
             prefix: null,
             examples: null,
             hasBottomMargin: true,
+          });
+          rules.splice(phoneFieldIndex + 1, 0, {
+            in: null,
+            mandatory: false,
+            defaultValue: null,
+            initialValue: this.smsConsentDecision,
+            fieldName: FIELD_NAME_LIST.smsConsent,
+            fieldType: 'checkbox',
+            regularExpression: null,
+            prefix: null,
+            examples: null,
+            hasBottomMargin: true,
+            disabled: () => this.model.phoneType !== 'mobile',
           });
         }
         return rules;
@@ -297,18 +341,32 @@ export default class NewAccountFormController {
         );
     }
 
+    const consentRequests = [];
     if (
+      this.isEmailConsentAvailable &&
       this.originalModel.commercialCommunicationsApproval !==
-        this.model.commercialCommunicationsApproval &&
-      !this.coreConfig.isRegion('US')
+        this.model.commercialCommunicationsApproval
     ) {
+      consentRequests.push(
+        this.userAccountServiceInfos.updateConsentDecision(
+          CONSENT_MARKETING_EMAIL_NAME,
+          this.model.commercialCommunicationsApproval || false,
+        ),
+      );
+    }
+    if (
+      this.isSmsConsentAvailable &&
+      this.originalModel.smsConsent !== this.model.smsConsent
+    ) {
+      consentRequests.push(
+        this.userAccountServiceInfos.updateSmsMarketingConsentDecision(
+          this.model.smsConsent || false,
+        ),
+      );
+    }
+    if (consentRequests.length > 0) {
       promise = promise
-        .then(() =>
-          this.userAccountServiceInfos.updateConsentDecision(
-            CONSENT_MARKETING_EMAIL_NAME,
-            this.model.commercialCommunicationsApproval || false,
-          ),
-        )
+        .then(() => this.$q.all(consentRequests))
         .then(
           () =>
             this.$timeout(
@@ -408,6 +466,11 @@ export default class NewAccountFormController {
     if (value !== this.model[rule.fieldName]) {
       // update model
       this.model[rule.fieldName] = value;
+
+      // if phone type is set to a value other than 'mobile' we reset the sms consent value
+      if (rule.fieldName === 'phoneType' && value !== 'mobile') {
+        this.$scope.$broadcast('account.smsConsent.reset');
+      }
 
       return this.updateRules();
     }
