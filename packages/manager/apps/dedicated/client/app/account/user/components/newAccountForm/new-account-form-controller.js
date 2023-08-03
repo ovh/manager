@@ -14,6 +14,7 @@ import {
   SECTIONS,
   FIELD_NAME_LIST,
   FIELD_WITHOUT_MARGIN_BOTTOM,
+  TRACKING_PREFIX,
   FEATURES,
 } from './new-account-form-component.constants';
 
@@ -175,13 +176,6 @@ export default class NewAccountFormController {
             initialValue: this.consentDecision,
             fieldName: FIELD_NAME_LIST.commercialCommunicationsApproval,
             fieldType: 'checkbox',
-            tracking: {
-              name: 'ovh_products_consent',
-              type: 'action',
-              chapter1: 'account',
-              chapter2: 'myaccount',
-              chapter3: 'consent',
-            },
             regularExpression: null,
             prefix: null,
             examples: null,
@@ -315,17 +309,31 @@ export default class NewAccountFormController {
     let promise = this.userAccountServiceInfos
       .updateUseraccountInfos(model)
       .then((result) => {
+        const tracking = {
+          name: `dedicated::account::user::infos_${
+            result !== 'null' ? 'error' : 'success'
+          }`,
+          type: 'navigation',
+        };
+        if (this.isEmailConsentAvailable) {
+          const emailConsent =
+            typeof this.model.commercialCommunicationsApproval !== 'undefined'
+              ? this.model.commercialCommunicationsApproval
+              : this.consentDecision;
+          tracking.account_email_consent = emailConsent ? 'opt-in' : 'opt-out';
+        }
+        if (this.isSmsConsentAvailable) {
+          const smsConsent =
+            typeof this.model.smsConsent !== 'undefined'
+              ? this.model.smsConsent
+              : this.smsConsentDecision;
+          tracking.account_sms_consent = smsConsent ? 'opt-in' : 'opt-out';
+          tracking.account_phone_type = this.model.phoneType;
+        }
+        this.atInternet.trackPage(tracking);
         if (result !== 'null') {
-          this.atInternet.trackPage({
-            name: 'dedicated::account::user::infos_error',
-            type: 'navigation',
-          });
           return this.$q.reject(result);
         }
-        this.atInternet.trackPage({
-          name: 'dedicated::account::user::infos_success',
-          type: 'navigation',
-        });
         return result;
       });
 
@@ -467,9 +475,36 @@ export default class NewAccountFormController {
       // update model
       this.model[rule.fieldName] = value;
 
-      // if phone type is set to a value other than 'mobile' we reset the sms consent value
-      if (rule.fieldName === 'phoneType' && value !== 'mobile') {
-        this.$scope.$broadcast('account.smsConsent.reset');
+      if (rule.fieldName === FIELD_NAME_LIST.commercialCommunicationsApproval) {
+        this.atInternet.trackClick({
+          name: `${TRACKING_PREFIX}::product-email-consent::${
+            value ? 'enable' : 'disable'
+          }`,
+          type: 'action',
+          chapter1: 'account',
+          chapter2: 'myaccount',
+          chapter3: 'consent',
+        });
+      }
+
+      if (rule.fieldName === FIELD_NAME_LIST.phoneType) {
+        this.atInternet.trackClick({
+          name: `${TRACKING_PREFIX}::phone-type::select-${value}`,
+          type: 'action',
+        });
+        // if phone type is set to a value other than 'mobile' we reset the sms consent value
+        if (value !== 'mobile') {
+          this.$scope.$broadcast('account.smsConsent.reset');
+        }
+      }
+
+      if (rule.fieldName === FIELD_NAME_LIST.smsConsent) {
+        this.atInternet.trackClick({
+          name: `${TRACKING_PREFIX}::sms-consent::${
+            value ? 'enable' : 'disable'
+          }`,
+          type: 'action',
+        });
       }
 
       return this.updateRules();

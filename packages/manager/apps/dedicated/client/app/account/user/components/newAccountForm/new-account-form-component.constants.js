@@ -377,6 +377,8 @@ export const PHONE_PREFIX = {
 
 export const FIELD_WITHOUT_MARGIN_BOTTOM = ['email', 'phoneType', 'phone'];
 
+export const TRACKING_PREFIX = 'accountmodification';
+
 export const FEATURES = {
   emailConsent: 'account:email-consent',
   smsConsent: 'account:sms-consent',
@@ -394,5 +396,6 @@ export default {
   CONSENT_MARKETING_EMAIL_NAME,
   FIELD_NAME_LIST,
   FIELD_WITHOUT_MARGIN_BOTTOM,
+  TRACKING_PREFIX,
   FEATURES,
 };

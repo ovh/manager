@@ -229,7 +229,11 @@ export default class NewAccountFormFieldController {
     if (this.rule.fieldType) {
       return this.rule.fieldType;
     }
+<<<<<<< HEAD
     if (this.rule.fieldName === this.FIELD_NAME_LIST.phoneType) {
+=======
+    if (this.rule?.fieldName === this.FIELD_NAME_LIST.phoneType) {
+>>>>>>> feat(dedicated.account): add phone type and sms consent to account edition
       return 'radio';
     }
     if (this.rule.in) {
