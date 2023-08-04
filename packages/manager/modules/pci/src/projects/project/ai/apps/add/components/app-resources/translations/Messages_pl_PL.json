@@ -31,7 +31,7 @@
   "pci_app_add_resources_scaling_trigger_threshold": "Próg uruchomienia (%)",
   "pci_app_add_resources_scaling_trigger_threshold_help_text": "Wartość metryki, w procentach.",
   "pci_app_add_resources_scaling_price_warning": "Łączną cenę wdrożenia oblicza się na podstawie minimalnej liczby wybranych replik. Pamiętaj, że koszt ten może wzrosnąć, gdy Autoscaling jest włączony.",
-  "pci_app_add_resources_total": "Cena wybranych zasobów",
+  "pci_app_add_resources_total": "Ceny wybranych zasobów",
   "pci_app_add_resources_resource_price": "Cena zasobu",
   "pci_app_add_resources_partner_price": "Cena licencji",
   "pci_app_add_resources_total_info": "Podana powyżej cena dotyczy zasobów fizycznych potrzebnych na wdrożenie. W zależności od wybranego modelu partnerskiego mogą zostać nałożone dodatkowe opłaty. W tym celu sprawdź informacje podane w podsumowaniu."
