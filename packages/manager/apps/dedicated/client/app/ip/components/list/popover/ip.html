@@ -74,12 +74,12 @@
 
         <li
             class="divider"
-            data-ng-if="ipBlock.service.category !== 'CLOUD' || ipBlock.type === 'FAILOVER'"
+            data-ng-if="ipBlock.service.category !== 'CLOUD' || ipBlock.type === FAILOVER"
             role="separator"
         ></li>
 
         <!-- VIRTUAL MAC -->
-        <li data-ng-if="ipBlock.type === 'FAILOVER'">
+        <li data-ng-if="ipBlock.type === FAILOVER">
             <button
                 type="button"
                 class="btn btn-link"
@@ -91,7 +91,7 @@
             ></button>
         </li>
         <li
-            data-ng-if="ipBlock.service.category === 'DEDICATED' && ipBlock.type == 'FAILOVER' && ipBlock.virtualMac.status === 'OK' && ipBlock.virtualMac.virtualMacs[ip.ip]"
+            data-ng-if="ipBlock.service.category === 'DEDICATED' && ipBlock.type == FAILOVER && ipBlock.virtualMac.status === 'OK' && ipBlock.virtualMac.virtualMacs[ip.ip]"
         >
             <button
                 type="button"
@@ -101,7 +101,7 @@
             ></button>
         </li>
         <li
-            data-ng-if="ipBlock.service.category == 'DEDICATED' && ipBlock.type == 'FAILOVER' && ipBlock.virtualMac.status === 'OK' && ipBlock.virtualMac.virtualMacs[ip.ip]"
+            data-ng-if="ipBlock.service.category == 'DEDICATED' && ipBlock.type == FAILOVER && ipBlock.virtualMac.status === 'OK' && ipBlock.virtualMac.virtualMacs[ip.ip]"
         >
             <button
                 type="button"
@@ -254,13 +254,13 @@
 
         <li
             class="divider"
-            data-ng-if="ipBlock.type == 'FAILOVER' && ipBlock.isUniq"
+            data-ng-if="ipBlock.type == FAILOVER && ipBlock.isUniq"
             role="separator"
         ></li>
 
         <!-- ORGANISATION -->
         <li
-            data-ng-if="ipBlock.type === 'FAILOVER' && ipBlock.isUniq && ipBlock.organizationId"
+            data-ng-if="ipBlock.type === FAILOVER && ipBlock.isUniq && ipBlock.organizationId"
         >
             <button
                 type="button"
@@ -271,7 +271,7 @@
         </li>
 
         <li
-            data-ng-if="ipBlock.type === 'FAILOVER' && ipBlock.isUniq && ipBlock.organizationId"
+            data-ng-if="ipBlock.type === FAILOVER && ipBlock.isUniq && ipBlock.organizationId"
         >
             <button
                 type="button"
@@ -282,7 +282,7 @@
         </li>
 
         <!-- IPMOVE -->
-        <li data-ng-if="ipBlock.type === 'FAILOVER' && ipBlock.isUniq">
+        <li data-ng-if="ipBlock.type === FAILOVER && ipBlock.isUniq">
             <button
                 type="button"
                 class="btn btn-link"
@@ -291,8 +291,21 @@
             ></button>
         </li>
 
-        <!-- IP DELETE -->
-        <li data-ng-if="ipBlock.type === 'FAILOVER' && ipBlock.isUniq">
+        <!-- PCC DELETE / VRACK DELETE-->
+        <li data-ng-if="ipBlock.type === PCC || ipBlock.type === VRACK">
+            <button
+                type="button"
+                class="btn btn-link"
+                data-ng-click="setAction('ip/block/delete/ip-ip-block-delete', { ipBlock: ipBlock , tracking : (ipBlock.type === PCC ? tracking['delete-pcc'] : tracking['delete-vrack'])})"
+                data-oui-tooltip="{{ !ipBlock.canBeTerminated ? ('ip_failover_impossible_delete' | translate) : '' }}"
+                data-oui-tooltip-placement="left"
+                data-ng-disabled="!ipBlock.canBeTerminated"
+                data-ng-bind=":: ('ip_table_manage_delete_ipblock' | translate) + ADDITIONAL_IP"
+            ></button>
+        </li>
+
+        <!-- Additional IP DELETE -->
+        <li data-ng-if="ipBlock.type === FAILOVER && ipBlock.isUniq">
             <button
                 type="button"
                 class="btn btn-link"
