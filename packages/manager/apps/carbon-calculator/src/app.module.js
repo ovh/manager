@@ -20,7 +20,7 @@ export default async (containerEl, shellClient) => {
   const moduleName = 'CarbonCalculatorApp';
 
   const routingConfig = /* @ngInject */ ($urlRouterProvider) => {
-    $urlRouterProvider.otherwise('/billing');
+    $urlRouterProvider.otherwise('/');
   };
 
   const ssoAuthConfig = /* @ngInject */ (ssoAuthenticationProvider) => {
