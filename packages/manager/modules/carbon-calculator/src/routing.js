@@ -1,19 +1,22 @@
 export default /* @ngInject */ ($stateProvider) => {
+  const featureName = 'carbon-calculator';
+
   $stateProvider.state('app', {
-    url: '/billing',
+    url: '',
     template: `<div data-ui-view></div>`,
     redirectTo: (transition) =>
       transition
         .injector()
-        .get('ovhFeatureFlipping') // getAsync('features') throws error;
-        .checkFeatureAvailability('carbon-calculator')
+        .getAsync('features')
         .then((featureAvailability) =>
-          featureAvailability.isFeatureAvailable('carbon-calculator')
+          featureAvailability.isFeatureAvailable(featureName)
             ? 'app.dashboard'
             : 'error',
         ),
     resolve: {
       breadcrumb: () => null,
+      features: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping.checkFeatureAvailability(featureName),
     },
   });
 };
