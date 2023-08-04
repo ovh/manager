@@ -1,5 +1,4 @@
 import clone from 'lodash/clone';
-import find from 'lodash/find';
 import includes from 'lodash/includes';
 
 angular.module('App').controller(
@@ -83,17 +82,32 @@ angular.module('App').controller(
           };
         });
 
-        field.selectedValue = find(field.availableValues, {
-          id: field.value,
+        field.selectedValue = field.availableValues.find(
+          (value) => value.id === field.value,
+        );
+      } else if (field.key === 'innodb_buffer_pool_size') {
+        field.type = 'select';
+
+        Object.keys(field.availableValues).forEach((key) => {
+          if (
+            Number(field.availableValues[key].text.slice(0, -1)) >=
+            Number(this.database.ram.value)
+          ) {
+            delete field.availableValues[key];
+          }
         });
+
+        field.selectedValue = field.availableValues.find(
+          (value) => value.id === field.value,
+        );
       } else if (field.availableValues.length === 2) {
         field.type = 'toggle';
         field.selectedValue = { id: field.value };
       } else {
         field.type = 'select';
-        field.selectedValue = find(field.availableValues, {
-          id: field.value,
-        });
+        field.selectedValue = field.availableValues.find(
+          (value) => value.id === field.value,
+        );
       }
 
       return field;
