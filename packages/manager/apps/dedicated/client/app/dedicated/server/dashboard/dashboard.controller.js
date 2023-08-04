@@ -4,6 +4,8 @@ import map from 'lodash/map';
 import some from 'lodash/some';
 
 import {
+  MONITORING_STATUSES,
+  DC_2_ISO,
   URLS,
   WEATHERMAP_URL,
   COMMIT_IMPRESSION_TRACKING_DATA,
@@ -51,6 +53,9 @@ export default class DedicatedServerDashboard {
       vms: this.coreConfig.isRegion('US') ? null : this.getVmsLink(),
       status: this.constants.statusUrl,
     };
+
+    this.server.iso =
+      DC_2_ISO[this.server.datacenter.toUpperCase().split('_')[0]];
 
     this.infoServer = {
       rack: this.server.rack,
@@ -257,16 +262,16 @@ export default class DedicatedServerDashboard {
 
   getMonitoringStatus() {
     const { monitored, noIntervention } = this.server;
-    let monitoringStatus = 'disabled';
+    let monitoringStatus = MONITORING_STATUSES.DISABLED;
 
     // proactive intervention
     if (monitored && !noIntervention) {
-      monitoringStatus = 'proactive';
+      monitoringStatus = MONITORING_STATUSES.PROACTIVE;
     }
 
     // no proactive intervention
     if (monitored && noIntervention) {
-      monitoringStatus = 'no-proactive';
+      monitoringStatus = MONITORING_STATUSES.NOPROACTIVE;
     }
 
     return monitoringStatus;
