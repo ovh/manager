@@ -90,7 +90,9 @@ export default function AccountSidebar() {
         href: navigation.getURL('dedicated', '/contacts'),
         routeMatcher: new RegExp('^/contacts'),
       });
+    }
 
+    if (availability['carbon-calculator']) {
       menu.push({
         id: 'my-carbon-footprint',
         label: t('sidebar_carbon_footprint'),
