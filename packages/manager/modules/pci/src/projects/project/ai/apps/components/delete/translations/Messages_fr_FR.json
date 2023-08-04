@@ -4,5 +4,5 @@
   "pci_ai_apps_delete": "Suppression de l'app",
   "pci_ai_apps_delete_common_delete": "Confirmer",
   "pci_ai_apps_delete_common_cancel": "Annuler",
-  "pci_ai_apps_delete_warning": "Êtes-vous sûr de vouloir supprimer l'app <strong>{{ appId }}</strong> ?"
+  "pci_ai_apps_delete_warning": "Êtes-vous sûr de vouloir supprimer l'app {{ appId }} ?"
 }

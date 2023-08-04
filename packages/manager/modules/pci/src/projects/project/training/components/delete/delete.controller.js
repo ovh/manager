@@ -1,4 +1,4 @@
-export default class PciTrainingJobsDeleteJobController {
+export default class PciTrainingDeleteController {
   /* @ngInject */
   constructor($translate, PciProjectTrainingJobService) {
     this.$translate = $translate;
@@ -9,14 +9,6 @@ export default class PciTrainingJobsDeleteJobController {
     this.isLoading = false;
   }
 
-  goBack() {
-    if (this.previousState === 'info') {
-      this.goToJobInfo();
-    } else {
-      this.goToJobs();
-    }
-  }
-
   onDeleteJobConfirmClick() {
     this.isLoading = true;
     return this.PciProjectTrainingJobService.removeJob(
@@ -24,16 +16,16 @@ export default class PciTrainingJobsDeleteJobController {
       this.jobId,
     )
       .then(() => {
-        return this.goToJobs(
+        return this.goBack(
           this.$translate.instant(
-            'pci_projects_project_training_jobs_delete_job_action_delete_success',
+            'pci_projects_project_training_delete_job_action_delete_success',
           ),
         );
       })
       .catch((error) => {
-        return this.goToJobs(
+        return this.goBack(
           this.$translate.instant(
-            'pci_projects_project_training_jobs_delete_job_action_delete_fail',
+            'pci_projects_project_training_delete_job_action_delete_fail',
             {
               name: this.job.spec.name,
               message: error.data.message,

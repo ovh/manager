@@ -4,20 +4,17 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import component from './delete-job.component';
-import routing from './delete-job.routing';
+import component from './delete.component';
 
-const moduleName = 'ovhManagerPciTrainingJobsDeleteJob';
+const moduleName = 'ovhManagerPciTrainingDeleteJobComponent';
 
 angular
   .module(moduleName, [
-    'ui.router',
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .config(routing)
-  .component('pciProjectTrainingJobsDeleteJobComponent', component)
+  .component('ovhManagerPciProjectTrainingDeleteJob', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
