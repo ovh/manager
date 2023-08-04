@@ -4,6 +4,7 @@
     ></oui-header>
 
     <oui-datagrid
+        class="table-striped"
         id="dg-servers"
         data-page-size="{{ $ctrl.paginationSize }}"
         data-rows-loader="$ctrl.loadServers()"
@@ -11,51 +12,92 @@
         data-on-page-change="$ctrl.onPageChange($pagination)"
         data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
         data-on-sort-change="$ctrl.onSortChange($sort)"
-        data-columns="$ctrl.columnsConfig"
+        data-customizable
     >
+        <oui-datagrid-column
+            data-title=":: 'dedicated_servers_id' | translate"
+            data-property="serverId"
+            data-filterable
+            data-sortable
+            data-type="number"
+            data-hidden
+        >
+        </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicated_servers_name' | translate"
             data-property="name"
-            data-searchable
             data-filterable
             data-sortable
             data-type="string"
+            data-prevent-customization
         >
             <a data-ng-href="{{ $ctrl.getServerDashboardLink($row) }}"
                 >{{$value}}</a
             >
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title=":: 'dedicated_servers_reverse' | translate"
-            data-property="reverse"
-            data-searchable
+            data-title=":: 'dedicated_servers_ip' | translate"
+            data-property="ip"
             data-filterable
             data-sortable
             data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicated_servers_reverse' | translate"
+            data-property="reverse"
+            data-filterable
+            data-sortable
+            data-type="string"
+            data-hidden
         >
         </oui-datagrid-column>
         <oui-datagrid-column
             title=":: 'dedicated_servers_model' | translate"
             data-property="commercialRange"
-            data-searchable
             data-filterable
             data-sortable
-            data-type="string"
+            data-type="options"
+            data-type-options="$ctrl.modelEnumFilter"
         >
         </oui-datagrid-column>
         <oui-datagrid-column
-            data-title=":: 'dedicated_servers_localization' | translate"
+            title=":: 'dedicated_servers_rack' | translate"
+            data-property="rack"
+            data-filterable
+            data-sortable
+            data-type="string"
+            data-hidden
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'dedicated_servers_datacenter' | translate"
             data-property="datacenter"
-            data-searchable
             data-filterable
             data-sortable
             data-type="options"
             data-type-options="$ctrl.datacenterEnumFilter"
         >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'dedicated_servers_city' | translate"
+            data-property="city"
+            data-type="string"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicated_servers_country' | translate"
+            data-property="country"
+            data-type="string"
+        >
             <span
-                data-translate="{{:: 'server_datacenter_' + $ctrl.constructor.toUpperSnakeCase($value).split('_')[0] }}"
-                data-translate-values="{ number:  $ctrl.constructor.toUpperSnakeCase($value).split('_')[1] }"
-            ></span>
+                data-ng-hide="$value === 'none'"
+                data-oui-tooltip="{{:: 'country_' + $value.toUpperCase() | translate }}"
+                data-oui-tooltip-placement="bottom"
+                class="oui-flag {{ 'oui-flag_' + $value }}"
+                aria-hidden="true"
+            >
+            </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicated_servers_status' | translate"
@@ -75,6 +117,29 @@
                 data-translate="{{:: 'server_configuration_state_' + $ctrl.constructor.toUpperSnakeCase($value) }}"
             ></span>
         </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicated_servers_monitoring' | translate"
+            data-property="monitoringStatus"
+            data-type="string"
+            data-hidden
+        >
+            <span
+                class="oui-badge"
+                data-ng-class="{
+                    'oui-badge_success': $value !== 'disabled',
+                    'oui-badge_warning': $value === 'disabled'
+                    }"
+                data-translate="{{:: 'server_configuration_monitoring_status_' + $value }}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
+            <oui-action-menu-item
+                href="{{ $ctrl.getServerDashboardLink($row) }}"
+                ><span
+                    data-translate="dedicated_servers_popover_details"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
         <oui-datagrid-topbar>
             <a
                 class="oui-button oui-button_secondary oui-button_icon-right"

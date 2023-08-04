@@ -12,7 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
         squash: true,
       },
       pageSize: {
-        value: '10',
+        value: '25',
         squash: true,
       },
       sort: {
@@ -117,8 +117,6 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiDedicatedServer.v6().schema().$promise,
       serverStateEnum: /* @ngInject */ (schema) =>
         get(schema.models, 'dedicated.server.StateEnum').enum,
-      datacenterEnum: /* @ngInject */ (schema) =>
-        get(schema.models, 'dedicated.DatacenterEnum').enum,
 
       onListParamsChange: /* @ngInject */ ($state) => (params) =>
         $state.go('.', params, {
