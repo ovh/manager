@@ -210,9 +210,12 @@ export default class ActionSelectController {
 
       // Custom "requirements" validator to know if a custom action meets all the requirements
       customAction.$validators.requirements = (action) => {
+        const [actionWithoutParams] = action.split('?');
         const isEmpty = !action;
         const isFound = this.actions.find(
-          ({ action: item }) => item === action,
+          ({ action: item, hasQueryParameters }) =>
+            item === action ||
+            (hasQueryParameters && item === actionWithoutParams),
         );
         const isValid = CUSTOM_ACTION_PATTERN.test(action);
         return isEmpty || isValid || isFound;
