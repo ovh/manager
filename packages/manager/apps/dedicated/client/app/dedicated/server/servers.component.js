@@ -10,7 +10,6 @@ export default {
     orderUrl: '<',
     orderEcoRangeUrl: '<',
     serverStateEnum: '<',
-    datacenterEnum: '<',
     onListParamsChange: '<',
     getServerDashboardLink: '<',
     paginationNumber: '<',
