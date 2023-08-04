@@ -11,7 +11,7 @@
   "iam_create_policy_deletion_resources_one": "1 ressource sera supprimée",
   "iam_create_policy_form_actions_description": "Sélectionnez les actions autorisées aux identités sur les ressources choisies.",
   "iam_create_policy_form_actions_heading": "Actions",
-  "iam_create_policy_form_name_error_pattern": "Le format du nom de la politique n'est pas conforme",
+  "iam_create_policy_form_name_error_pattern": "Le nom de la politique ne peut contenir que des caractères alphanumériques et \"-\", \"/\", \"_\", \"+\"",
   "iam_create_policy_form_name_heading": "Nom de la politique",
   "iam_create_policy_form_resource_groups_create": "Créer un groupe de ressources",
   "iam_create_policy_form_resource_groups_heading": "Groupes de ressources",
