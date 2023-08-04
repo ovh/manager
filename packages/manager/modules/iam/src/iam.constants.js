@@ -14,6 +14,8 @@ const API_ERROR = {
 
 const CUSTOM_ACTION_PATTERN = /(^\*)|(\*$)/;
 
+const CUSTOM_ACTION_SAMPLE = 'vps:apiovh:automatedBackup/*';
+
 const CUSTOM_RESOURCE_TYPE = 'custom';
 
 const DELETE_STATEMENT = 'Terminate';
@@ -274,6 +276,7 @@ export {
   ALERT_ID,
   API_ERROR,
   CUSTOM_ACTION_PATTERN,
+  CUSTOM_ACTION_SAMPLE,
   CUSTOM_RESOURCE_TYPE,
   DELETE_STATEMENT,
   ENTITY,
