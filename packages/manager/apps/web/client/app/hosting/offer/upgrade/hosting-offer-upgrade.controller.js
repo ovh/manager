@@ -1,5 +1,8 @@
 import get from 'lodash/get';
-import { DETACH_DEFAULT_OPTIONS } from './hosting-offer-upgrade.constants';
+import {
+  DETACH_DEFAULT_OPTIONS,
+  OFFERS_WITHOUT_FREEDOM,
+} from './hosting-offer-upgrade.constants';
 import { HOSTING_TRACKING } from '../../hosting.constants';
 
 angular.module('App').controller(
@@ -318,6 +321,10 @@ angular.module('App').controller(
 
     static isProrataDuration({ duration }) {
       return /^upto/.test(duration);
+    }
+
+    hasFreedom() {
+      return !OFFERS_WITHOUT_FREEDOM.includes(this.hosting.offer);
     }
   },
 );
