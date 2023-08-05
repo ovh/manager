@@ -64,8 +64,8 @@
   "telephony_service_contact_tva_invalid": "Podany numer VAT jest nieprawidłowy",
   "telephony_service_contact_sync_error": "Niemożliwa synchronizacja, sprawdź swoje dane.",
   "telephony_service_contact_sync_na": "Nie dotyczy",
-  "telephony_service_contact_outwardcode": "Kod",
-  "telephony_service_contact_inwardcode": "Kod Inward",
-  "telephony_service_contact_bad_outward": "Kod składa się z litery, po której następuje od 1 do 3 znaków alfanumerycznych.",
-  "telephony_service_contact_bad_inward": "Kod musi składać się z cyfry, po której następuje 2 znaków alfabetycznych."
+  "telephony_service_contact_outwardcode": "Kod oprogramowania",
+  "telephony_service_contact_inwardcode": "Kod indeksu",
+  "telephony_service_contact_bad_outward": "Kod musi składać się z litery, po której następuje od 1 do 3 znaków alfanumerycznych.",
+  "telephony_service_contact_bad_inward": "Kod musi składać się z cyfry i 2 znaków alfabetycznych."
 }
