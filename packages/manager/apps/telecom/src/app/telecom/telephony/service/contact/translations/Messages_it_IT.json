@@ -64,7 +64,7 @@
   "telephony_service_contact_required_fields": "I campi contrassegnati dall'asterisco sono obbligatori.",
   "telephony_service_contact_tva": "Partita IVA",
   "telephony_service_contact_tva_invalid": "Il numero di partita IVA inserito non è valido",
-  "telephony_service_contact_outwardcode": "Codice Outward",
+  "telephony_service_contact_outwardcode": "Outward code",
   "telephony_service_contact_inwardcode": "Inward code",
   "telephony_service_contact_bad_outward": "Il codice deve essere composto da una lettera seguita da 1 a 3 caratteri alfanumerici.",
   "telephony_service_contact_bad_inward": "Il codice deve essere composto da una cifra seguita da 2 caratteri alfabetici."
