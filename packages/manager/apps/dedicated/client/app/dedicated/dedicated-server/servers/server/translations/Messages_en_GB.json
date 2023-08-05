@@ -764,7 +764,7 @@
   "select_bandwidth_plan_summary": "Order summary",
   "plan_bandwidth": "{{bandwidth}} Gbit/s unlimited and guaranteed",
   "plan_vrack-bandwidth": "{{bandwidth}} Gbit/s unlimited and guaranteed - vRack option",
-  "server_order_bandwidth_empty_plans": "No bandwidth solution available for your dedicated server",
+  "server_order_bandwidth_empty_plans": "No bandwidth offers available for your dedicated server",
   "select_traffic_type_label": "Select a solution",
   "toggle_button_label_ultimate": "Ultimate",
   "toggle_button_label_premium": "Premium",

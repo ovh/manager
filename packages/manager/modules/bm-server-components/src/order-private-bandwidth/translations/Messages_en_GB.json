@@ -7,7 +7,7 @@
   "server_order_bandwidth_ready": "Your order is ready. Depending on when payment is processed, the bandwidth should be available shortly.",
   "server_order_bandwidth_see_order": "View purchase order",
   "server_order_bandwidth_vrack_load": "Loading solutions...",
-  "server_order_bandwidth_empty_plans": "No bandwidth solution available for your dedicated server",
+  "server_order_bandwidth_empty_plans": "No bandwidth offers available for your dedicated server",
   "select_bandwidth_type_label": "Select a solution",
   "select_bandwidth_vrack_type_label": "Select a solution",
   "select_bandwidth_plan_summary": "Order summary",
