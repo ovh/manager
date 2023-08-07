@@ -5,7 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/onboarding',
     component: 'octaviaLoadBalancerOnboarding',
     resolve: {
-      breadcrumb: ($translate) => $translate.instant('octavia_load_balancer'),
+      breadcrumb: () => null,
     },
     atInternet: {
       rename: TRACKING_NAME,
