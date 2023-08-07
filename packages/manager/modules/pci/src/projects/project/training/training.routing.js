@@ -61,6 +61,10 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           jobId,
         }),
+      deleteJob: /* @ngInject */ ($state) => (jobId) =>
+        $state.go('pci.projects.project.training.jobs.delete', {
+          jobId,
+        }),
       jobInfoLink: /* @ngInject */ ($state, projectId) => (jobId) =>
         $state.href('pci.projects.project.training.jobs.info', {
           projectId,

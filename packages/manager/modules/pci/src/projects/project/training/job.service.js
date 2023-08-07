@@ -3,7 +3,8 @@ import Job from './job.class';
 
 export default class PciProjectTrainingJobService {
   /* @ngInject */
-  constructor(OvhApiCloudProjectAi) {
+  constructor($http, OvhApiCloudProjectAi) {
+    this.$http = $http;
     this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
   }
 
@@ -102,5 +103,11 @@ export default class PciProjectTrainingJobService {
         },
         null,
       ).$promise;
+  }
+
+  removeJob(projectId, jobId) {
+    return this.$http
+      .delete(`/cloud/project/${projectId}/ai/job/${jobId}`)
+      .then(({ data }) => data);
   }
 }
