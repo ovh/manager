@@ -9,6 +9,7 @@ import 'ovh-api-services';
 import component from './info.component';
 import routing from './info.routing';
 
+import deleteJobModale from './delete';
 import logs from './logs';
 
 const moduleName = 'ovhManagerPciTrainingJobsInfo';
@@ -23,6 +24,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     logs,
+    deleteJobModale,
   ])
   .config(routing)
   .component('pciProjectTrainingJobsInfoComponent', component)
