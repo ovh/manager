@@ -13,23 +13,19 @@ import {
 import { OdsIconName, OdsIconSize } from '@ovhcloud/ods-core';
 import './dataGrid.scss';
 
-interface DataItem<T> {
-  [key: string]: T;
-}
+type Props = {
+  data: {
+    serviceName: string;
+    [key: string]: string | number | boolean;
+  }[];
+  serviceKey: string;
+};
 
-const servicesLink = ['service', 'serviceName', 'domain', 'Name', 'Id'];
-
-const Datagrid = <T,>(props: { data: DataItem<T>[] }) => {
-  const { data } = props;
+const Datagrid: React.FC<Props> = ({ serviceKey, data }) => {
   const navigate = useNavigate();
   const tableHeaders = Object.keys(data[0]);
   const { t } = useTranslation('test-cdn/listing');
 
-  const matchServiceLink = (name: string) => {
-    return servicesLink.findIndex(
-      (elem) => elem.toLocaleLowerCase() === name.toLocaleLowerCase(),
-    );
-  };
   return (
     <table className="datagrid">
       <thead>
@@ -58,15 +54,17 @@ const Datagrid = <T,>(props: { data: DataItem<T>[] }) => {
           <tr key={index}>
             {tableHeaders.map((header, indexTd) => (
               <td className="p-3" key={`datagrid-td-${header}-${indexTd}`}>
-                {matchServiceLink(header) > -1 ? (
+                {header === serviceKey ? (
                   <OsdsLink
                     color={OdsThemeColorIntent.primary}
-                    onClick={() => navigate(`/dashboard/${service[header]}`)}
+                    onClick={() =>
+                      navigate(`/dashboard/${service.serviceName}`)
+                    }
                   >
-                    {String(service[header])}
+                    {`${service[header]}`}
                   </OsdsLink>
                 ) : (
-                  String(service[header]).slice(0, 20)
+                  `${service[header]}`.slice(0, 20)
                 )}
               </td>
             ))}
