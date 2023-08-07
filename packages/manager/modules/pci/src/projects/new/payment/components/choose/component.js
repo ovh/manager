@@ -13,5 +13,6 @@ export default {
     eligibility: '<',
     globalLoading: '<',
     model: '<',
+    isDisplayableRupayCreditCardInfoBanner: '<',
   },
 };

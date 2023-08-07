@@ -66,22 +66,33 @@
                                 data-ng-switch="$ctrl.model.selectedPaymentMethodType.paymentType"
                             >
                                 <div data-ng-switch-when="CREDIT_CARD">
-                                    <p
-                                        data-translate="billing_payment_method_add_credit_card_selected_explain_generic"
-                                    ></p>
-                                    <p>
-                                        <span
-                                            data-translate="billing_payment_method_add_credit_card_selected"
-                                        ></span>
-                                        <span
-                                            data-ng-if="$ctrl.hasSpecificCrossBorderSentenceForCardPayment"
-                                            data-translate="billing_payment_method_add_credit_card_selected_explain_ovh_transaction"
-                                        ></span>
-                                    </p>
-                                    <p
-                                        data-ng-if="$ctrl.model.selectedPaymentMethodType.isLegacy() && $ctrl.model.selectedPaymentMethodType.integration !== $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IFRAME_VANTIV"
-                                        data-translate="billing_payment_method_add_selected_common_redirect"
-                                    ></p>
+                                    <div
+                                        data-ng-if="!$ctrl.isDisplayableRupayCreditCardInfoBanner"
+                                    >
+                                        <p
+                                            data-translate="billing_payment_method_add_credit_card_selected_explain_generic"
+                                        ></p>
+                                        <p>
+                                            <span
+                                                data-translate="billing_payment_method_add_credit_card_selected"
+                                            ></span>
+                                            <span
+                                                data-ng-if="$ctrl.hasSpecificCrossBorderSentenceForCardPayment"
+                                                data-translate="billing_payment_method_add_credit_card_selected_explain_ovh_transaction"
+                                            ></span>
+                                        </p>
+                                        <p
+                                            data-ng-if="$ctrl.model.selectedPaymentMethodType.isLegacy() && $ctrl.model.selectedPaymentMethodType.integration !== $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IFRAME_VANTIV"
+                                            data-translate="billing_payment_method_add_selected_common_redirect"
+                                        ></p>
+                                    </div>
+                                    <div
+                                        data-ng-if="$ctrl.isDisplayableRupayCreditCardInfoBanner"
+                                    >
+                                        <p
+                                            data-translate="billing_payment_method_add_credit_card_info_for_india"
+                                        ></p>
+                                    </div>
                                 </div>
                                 <p data-ng-switch-when="PAYPAL">
                                     <span
@@ -124,6 +135,11 @@
                                             data-translate="billing_payment_method_add_sepa_direct_debit_digital_signature_info"
                                         ></p>
                                     </oui-message>
+                                </div>
+                                <div data-ng-switch-when="RUPAY">
+                                    <p
+                                        data-translate="billing_payment_method_add_credit_card_info_for_india"
+                                    ></p>
                                 </div>
                             </div>
                         </ovh-payment-method-register-explanation-text>
