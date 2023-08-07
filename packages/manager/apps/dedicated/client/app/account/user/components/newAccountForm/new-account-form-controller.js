@@ -320,15 +320,15 @@ export default class NewAccountFormController {
             typeof this.model.commercialCommunicationsApproval !== 'undefined'
               ? this.model.commercialCommunicationsApproval
               : this.consentDecision;
-          tracking.account_email_consent = emailConsent ? 'opt-in' : 'opt-out';
+          tracking.accountEmailConsent = emailConsent ? 'opt-in' : 'opt-out';
         }
         if (this.isSmsConsentAvailable) {
           const smsConsent =
             typeof this.model.smsConsent !== 'undefined'
               ? this.model.smsConsent
               : this.smsConsentDecision;
-          tracking.account_sms_consent = smsConsent ? 'opt-in' : 'opt-out';
-          tracking.account_phone_type = this.model.phoneType;
+          tracking.accountSmsConsent = smsConsent ? 'opt-in' : 'opt-out';
+          tracking.accountPhoneType = this.model.phoneType;
         }
         this.atInternet.trackPage(tracking);
         if (result !== 'null') {

@@ -264,7 +264,10 @@ export default class SignUpDetailsCtrl {
   }
 
   onPhoneTypeChange() {
-    if (this.signUpFormCtrl.model.phoneType === 'landline') {
+    if (
+      this.signUpFormCtrl.model.phoneType === 'landline' &&
+      this.signUpFormCtrl.smsConsent
+    ) {
       this.signUpFormCtrl.smsConsent = false;
       this.onSmsConsentChange(this.signUpFormCtrl.smsConsent);
     }
@@ -275,6 +278,6 @@ export default class SignUpDetailsCtrl {
   }
 
   onSmsConsentChange(consent) {
-    this.trackField('sms-consent', consent ? 'enabled' : 'disabled');
+    this.trackField('sms-consent', consent ? 'enable' : 'disable');
   }
 }

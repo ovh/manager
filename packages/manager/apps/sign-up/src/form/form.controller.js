@@ -80,8 +80,8 @@ export default class SignUpFormAppCtrl {
     };
 
     if (this.isSmsConsentAvailable) {
-      tracking.account_sms_consent = this.smsConsent ? 'opt-in' : 'opt-out';
-      tracking.account_phone_type = this.me.model.phoneType;
+      tracking.accountSmsConsent = this.smsConsent ? 'opt-in' : 'opt-out';
+      tracking.accountPhoneType = this.me.model.phoneType;
     }
 
     this.atInternet.trackPage(tracking);
