@@ -1367,5 +1367,6 @@
   "hosting_dashboard_service_change_offer_explanation_only_one": "Con la soluzione attuale disponi di un solo database. Per usufruire di database aggiuntivi, scegli un piano superiore.",
   "hosting_tab_DOMAINS_configuration_add_step1_only_one_db_and_no_left": "La soluzione attuale permette di installare un solo sito. Per usufruire di un sito aggiuntivo, scegli un piano superiore.",
   "hosting_tab_DOMAINS_configuration_add_buttom_update_offer": "Modificare soluzione",
-  "hosting_order_upgrade_modal_header_description": "Il tuo progetto si evolve? Blog, sito professionale, piattaforma e-commerce o applicazione Web: scegli la soluzione più adatta alle tue nuove esigenze."
+  "hosting_order_upgrade_modal_header_description": "Il tuo progetto si evolve? Blog, sito professionale, piattaforma e-commerce o applicazione Web: scegli la soluzione più adatta alle tue nuove esigenze.",
+  "hosting_order_upgrade_no_contract": "Nessun nuovo contratto da convalidare"
 }
