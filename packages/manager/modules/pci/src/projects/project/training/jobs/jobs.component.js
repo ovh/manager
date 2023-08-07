@@ -20,5 +20,6 @@ export default {
     goToJobSubmit: '<',
     jobId: '<',
     onListParamChange: '<',
+    deleteJob: '<',
   },
 };
