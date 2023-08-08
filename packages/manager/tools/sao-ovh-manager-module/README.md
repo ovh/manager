@@ -43,12 +43,16 @@ The above command will prompt some questions
 **ApiV2 questions :**
 | Question | Default | Description |
 |--- | --- | --- |
-| `What API base route is used` | /{camelCaseModuleName} | Enter the route which list all the resources needed. *eg : `/iam/resource`* |
+| `What API base route is used` | /{camelCaseModuleName} | Enter the ApiV2 route which list all the resources needed. *eg : `/iam/resource`* |
 | `What property is used as unique identifier` | id |  Enter the name of the property used to retrieve the resource detail. *eg for iam it is the `id` property : `/iam/resource/{id}`* |
 | `What property is used as a link to dashboard page` | id | Enter the name of the property you want to be a link to the detail page. *eg for iam it can be `name` |
 
-**Apiv6 questions :**
-TODO
+**ApiV1 questions :**
+| Question | Default | Description |
+|--- | --- | --- |
+| `What API base route is used` | /{camelCaseModuleName} | Enter the API(v1) route which list all the resources needed. *eg : [/domain](https://api.ovh.com/console-preview/?section=%2Fdomain&branch=v1#get-/domain)* |
+| `What API model describes an instance of a product` | {camelCaseModuleName}.{camelCaseModuleName} |  Enter the name of the schema used by the resource detail. *eg for domain it is the `domain.Domain` schema : `/domain/{serviceName}`*. If there is no schema for the detail page, the module will give an error |
+| `What property is used as unique identifier` | serviceName | Enter the name of the property used to retrieve the resource detail this will also be a link to the detail page. *eg for domain it can be `domain`* |
 
 ### 2 - Link module to a uapp
 
