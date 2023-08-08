@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@5.3.4...@ovh-ux/manager-product-offers@5.4.0) (2023-08-08)
+
+
+### Features
+
+* **web:** hide contracts list when empty ([#9758](https://github.com/ovh/manager/issues/9758)) ([80685a1](https://github.com/ovh/manager/commit/80685a130a57a8a92593388d33dd8e0d64334384))
+
+
+
+
+
 ## [5.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-product-offers@5.3.3...@ovh-ux/manager-product-offers@5.3.4) (2023-07-27)
 
 

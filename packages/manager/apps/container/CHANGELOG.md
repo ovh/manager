@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.26.0...@ovh-ux/manager-container-app@0.26.1) (2023-08-08)
+
+
+### Bug Fixes
+
+* **container:** fix carbon calculator feature flipping ([#9741](https://github.com/ovh/manager/issues/9741)) ([b4e6f93](https://github.com/ovh/manager/commit/b4e6f93512ff3239d931a4a595d03c7238a4c2ae))
+
+
+
+
+
 # [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.25.0...@ovh-ux/manager-container-app@0.26.0) (2023-07-31)
 
 

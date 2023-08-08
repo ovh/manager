@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.1.1...@ovh-ux/manager-web@17.1.2) (2023-08-08)
+
+
+### Bug Fixes
+
+* **web:** hide the freedom banner for some offer ([#9744](https://github.com/ovh/manager/issues/9744)) ([4f75b9b](https://github.com/ovh/manager/commit/4f75b9ba9eb481d19d89378830b29b1d21573207))
+* **web:** limit innodb_buffer_pool_size choices ([#9337](https://github.com/ovh/manager/issues/9337)) ([3dc0e18](https://github.com/ovh/manager/commit/3dc0e18b673b133d29e6254eb582e02aa47c707e))
+
+
+
+
+
 ## [17.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.1.0...@ovh-ux/manager-web@17.1.1) (2023-08-03)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
