@@ -1,14 +1,9 @@
-import filter from 'lodash/filter';
-import head from 'lodash/head';
-import set from 'lodash/set';
-import size from 'lodash/size';
-import sortBy from 'lodash/sortBy';
-
 export default class {
   /* @ngInject */
-  constructor($q, $translate, OvhHttp, User) {
+  constructor($q, $translate, $http, OvhHttp, User) {
     this.$q = $q;
     this.$translate = $translate;
+    this.$http = $http;
     this.OvhHttp = OvhHttp;
     this.User = User;
   }
@@ -57,10 +52,7 @@ export default class {
         },
       },
     )
-      .then((offers) => {
-        const filtered = filter(offers, { family: 'host' });
-        return filtered;
-      })
+      .then((offers) => offers.filter((offer) => offer.family === 'host'))
       .then((offers) =>
         this.OvhHttp.get(
           '/dedicatedCloud/{serviceName}/datacenter/{datacenterId}/orderableHostProfiles',
@@ -71,24 +63,46 @@ export default class {
               datacenterId: this.datacenterId,
             },
           },
-        ).then((profiles) => {
-          const result = [];
+        ).then((profiles) =>
+          this.$http
+            .get('/products/partners/plans', {
+              params: {
+                ovhSubsidiary: this.user.ovhSubsidiary,
+                publicPlanCode: profiles.map((p) => p.name),
+              },
+            })
+            .then((response) => {
+              const plans = response.data;
 
-          angular.forEach(offers, (offer) => {
-            const profile = filter(profiles, { name: offer.planCode });
-            if (size(profile) === 1) {
-              set(offer, 'profile', head(profile));
-              result.push(offer);
-            }
-          });
+              const sortedResult = offers
+                .filter((offer) =>
+                  profiles.find((p) => p.name === offer.planCode),
+                )
+                .map((offer) => {
+                  const plan = plans.find(
+                    (p) => p.publicPlanCode === offer.planCode,
+                  )?.partnerPlan;
+                  const { prices } = offer;
+                  // If available replace pricing text and value with partner ones
+                  if (plan) {
+                    prices[0].price.text = plan.pricings[0].formattedPrice;
+                    prices[0].price.value = plan.pricings[0].price / 100000000;
+                  }
+                  return {
+                    ...offer,
+                    profile: profiles.find((p) => p.name === offer.planCode),
+                    prices,
+                  };
+                })
+                .sort(
+                  (offerA, offerB) =>
+                    offerA.prices[0].price.value - offerB.prices[0].price.value,
+                );
 
-          const sortedResult = sortBy(
-            result,
-            (item) => item.prices[0].price.value,
-          );
-          this.selectedOffer = head(sortedResult);
-          return sortedResult;
-        }),
+              [this.selectedOffer] = sortedResult;
+              return sortedResult;
+            }),
+        ),
       );
   }
 
@@ -96,13 +110,13 @@ export default class {
     return this.fetchOffers().then((offers) => ({
       data: offers,
       meta: {
-        totalCount: size(offers),
+        totalCount: offers?.length || 0,
       },
     }));
   }
 
   getOrderUrl() {
-    const price = head(this.selectedOffer.prices);
+    const [price] = this.selectedOffer.prices;
     const normalizedQuantity = Math.floor(this.quantity);
 
     return `${this.expressOrderUrl}review?products=${JSURL.stringify([
