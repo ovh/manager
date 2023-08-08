@@ -125,6 +125,7 @@
         </div>
 
         <ovh-contracts-summary
+            data-ng-if="$ctrl.workflow.contracts.length"
             data-items="$ctrl.workflow.contracts"
             data-model="$ctrl.workflow.agreeContracts"
         >

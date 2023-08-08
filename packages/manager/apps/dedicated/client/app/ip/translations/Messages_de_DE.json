@@ -193,7 +193,7 @@
   "ip_virtualmac_delete_success": "Die virtuelle MAC-Adresse {{t0}} der IP {{t1}} wird in einigen Minuten gelöscht.",
   "ip_virtualmac_delete_failure": "Beim Löschen der virtuellen MAC-Adresse {{t0}} der IP {{t1}} ist ein Fehler aufgetreten",
   "ip_failover_short": "Failover",
-  "ip_failover_impossible_delete": "Diese IP kann nicht gelöscht werden",
+  "ip_failover_impossible_delete": "Dieser Additional IP Dienst kann nicht entfernt werden.",
   "ip_failover_impossible_move": "Diese IP kann nicht umgezogen werden",
   "ip_failover_cloud_move_info": "In Kürze können Sie die Additional IPs auch anderen Produkten von OVHcloud zuweisen.",
   "ip_position": "Priorität",

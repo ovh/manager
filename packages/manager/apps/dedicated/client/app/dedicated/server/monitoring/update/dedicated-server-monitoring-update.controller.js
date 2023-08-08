@@ -1,4 +1,5 @@
 import { MONITORING_TRACKING_PREFIX } from './dedicated-server-monitoring-update.constants';
+import { MONITORING_STATUSES } from '../../dashboard/dashboard.constants';
 
 angular.module('App').controller(
   'DedicatedServerMonitoringUpdateCtrl',
@@ -60,16 +61,16 @@ angular.module('App').controller(
 
     getMonitoringStatus() {
       const { monitored, noIntervention } = this.server;
-      let monitoringStatus = 'disabled';
+      let monitoringStatus = MONITORING_STATUSES.DISABLED;
 
       // proactive intervention
       if (monitored && !noIntervention) {
-        monitoringStatus = 'proactive';
+        monitoringStatus = MONITORING_STATUSES.PROACTIVE;
       }
 
       // no proactive intervention
       if (monitored && noIntervention) {
-        monitoringStatus = 'no-proactive';
+        monitoringStatus = MONITORING_STATUSES.NOPROACTIVE;
       }
 
       return monitoringStatus;

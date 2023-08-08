@@ -180,7 +180,7 @@
                 </oui-message>
                 <oui-message
                     data-type="warning"
-                    data-ng-if="!$ctrl.hosting.isCloudWeb"
+                    data-ng-if=":: $ctrl.hasFreedom()"
                 >
                     <strong
                         data-translate="hosting_order_upgrade_freedom_warning"
