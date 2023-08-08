@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import component from './component';
+import { PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID } from './constants';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   const name = 'app.account.billing.payment.method.add';
@@ -75,6 +76,20 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       }),
 
       callback: /* @ngInject */ ($location) => $location.search(),
+
+      isDisplayableRupayCreditCardInfoBanner: /* @ngInject */ (
+        ovhFeatureFlipping,
+      ) => {
+        return ovhFeatureFlipping
+          .checkFeatureAvailability(
+            PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID,
+          )
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(
+              PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID,
+            ),
+          );
+      },
 
       defaultPaymentMethodIntegration: /* @ngInject */ (
         $location,

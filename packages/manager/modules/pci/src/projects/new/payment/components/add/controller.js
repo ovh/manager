@@ -27,7 +27,6 @@ export default class PciProjectNewPaymentMethodAddCtrl {
     this.PCI_FEATURES = PCI_FEATURES;
 
     // other attributes
-    this.customerCurrency = coreConfig.getUser().currency.symbol;
 
     this.authorizedPaymentMethods = null;
 
@@ -98,6 +97,8 @@ export default class PciProjectNewPaymentMethodAddCtrl {
   ============================= */
 
   $onInit() {
+    this.user = this.coreConfig.getUser();
+    this.customerCurrency = this.user.currency.symbol;
     const paymentMethodsAuthorized = map(
       this.eligibility.paymentMethodsAuthorized,
       (method) => snakeCase(method).toUpperCase(),
