@@ -278,10 +278,16 @@ angular.module('App').controller(
 
     onCreateDatabaseClick() {
       this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION_CREATE_DB);
+
+      this.$scope.setAction('database/add/hosting-database-add');
     }
 
     onOrderDatabaseClick() {
       this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION_ORDER_DB);
+    }
+
+    onActivateWebCloudDatabaseClick() {
+      this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION_CREATE_DB);
     }
 
     onOrderWebCloudDatabaseClick() {
