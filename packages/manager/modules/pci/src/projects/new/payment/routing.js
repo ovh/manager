@@ -3,7 +3,10 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 
 import { CREDIT_PROVISIONING } from './components/add/constants';
-import { PCI_PROJECT_STEPS } from '../constants';
+import {
+  PCI_PROJECT_STEPS,
+  PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID,
+} from '../constants';
 
 import component from './component';
 
@@ -111,6 +114,19 @@ export default /* @ngInject */ ($stateProvider) => {
         // set valid payment methods of eligibility in order to centralize requirements
         eligibility.setValidPaymentMethods(validPaymentMethods);
         return validPaymentMethods;
+      },
+      isDisplayableRupayCreditCardInfoBanner: /* @ngInject */ (
+        ovhFeatureFlipping,
+      ) => {
+        return ovhFeatureFlipping
+          .checkFeatureAvailability(
+            PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID,
+          )
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(
+              PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID,
+            ),
+          );
       },
 
       hasComponentRedirectCallback: /* @ngInject */ (

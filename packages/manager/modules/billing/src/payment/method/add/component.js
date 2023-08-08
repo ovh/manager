@@ -17,5 +17,6 @@ export default {
     model: '<',
     onPaymentMethodAdded: '<',
     paymentMethods: '<',
+    isDisplayableRupayCreditCardInfoBanner: '<',
   },
 };
