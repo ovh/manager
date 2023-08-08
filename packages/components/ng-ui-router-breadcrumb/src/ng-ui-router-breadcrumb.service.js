@@ -64,11 +64,11 @@ export default class BreadcrumbService {
             transition
               .injector(state.name)
               .getAsync('breadcrumbPrefix')
-              .then((prefixs) => {
-                prefixs.forEach(({ name, url }, index, prefixArray) =>
+              .then((prefixes) => {
+                prefixes.forEach(({ name, url }, index) =>
                   this.breadcrumb.splice(index, 0, {
                     name,
-                    url: index !== 0 ? prefixArray[index - 1].url + url : url,
+                    url,
                     active: false,
                   }),
                 );
