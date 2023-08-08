@@ -1367,5 +1367,6 @@
   "hosting_dashboard_service_change_offer_explanation_only_one": "You only have one database with your current solution. To get additional databases, upgrade to one of our higher plans.",
   "hosting_tab_DOMAINS_configuration_add_step1_only_one_db_and_no_left": "With your current plan, you can install only one website. To get an additional website, upgrade to one of our higher plans.",
   "hosting_tab_DOMAINS_configuration_add_buttom_update_offer": "Change plan",
-  "hosting_order_upgrade_modal_header_description": "Is your project growing? From blogs and business websites to online shops and web applications, you can choose the best plan for your new needs."
+  "hosting_order_upgrade_modal_header_description": "Is your project growing? From blogs and business websites to online shops and web applications, you can choose the best plan for your new needs.",
+  "hosting_order_upgrade_no_contract": "No new contracts to validate"
 }
