@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.136.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.136.0...@ovh-ux/manager-pci@5.136.1) (2023-08-08)
+
+
+### Bug Fixes
+
+* **pci:** display price per hour and qty per hour ([#9569](https://github.com/ovh/manager/issues/9569)) ([f7bb8d6](https://github.com/ovh/manager/commit/f7bb8d620cd8a3480553b8301d0576cabb717133))
+* **public-cloud:** display correct value for vcores number ([#9425](https://github.com/ovh/manager/issues/9425)) ([0a673ed](https://github.com/ovh/manager/commit/0a673ed674e9b7e290660a30ed14af6ceb665ea2))
+* **public-cloud:** fixing grammar error ([#9622](https://github.com/ovh/manager/issues/9622)) ([b6967cb](https://github.com/ovh/manager/commit/b6967cb997d9a0df2b5c05fd0b329a38ab9eb418))
+
+
+
+
+
 # [5.136.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.135.0...@ovh-ux/manager-pci@5.136.0) (2023-08-01)
 
 

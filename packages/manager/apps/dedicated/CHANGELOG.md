@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.6.2...@ovh-ux/manager-dedicated@18.7.0) (2023-08-08)
+
+
+### Features
+
+* **dedicated:** additional ip badge condition ([#9488](https://github.com/ovh/manager/issues/9488)) ([139e60f](https://github.com/ovh/manager/commit/139e60f6f26d0f1054fee1c1d92c869e785a1394))
+* **dedicated:** dedicated server list page improvements ([#9520](https://github.com/ovh/manager/issues/9520)) ([83c881f](https://github.com/ovh/manager/commit/83c881fe5d1f6182ea8c4d2386f800d50632dc83))
+* **dedicated:** enable delete ip option for vrack and pcc ([#9022](https://github.com/ovh/manager/issues/9022)) ([9c991c9](https://github.com/ovh/manager/commit/9c991c94b6d8cd03987a7c17d2baf3cbdd8bfff4))
+
+
+
+
+
 ## [18.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.6.1...@ovh-ux/manager-dedicated@18.6.2) (2023-08-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
