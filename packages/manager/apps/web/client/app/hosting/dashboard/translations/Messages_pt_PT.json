@@ -1367,5 +1367,6 @@
   "hosting_dashboard_service_change_offer_explanation_only_one": "Com a sua oferta atual, dispõe de uma única base de dados. Para beneficiar de bases de dados suplementares, escolha uma das nossas ofertas superiores.",
   "hosting_tab_DOMAINS_configuration_add_step1_only_one_db_and_no_left": "A sua oferta atual permite-lhe instalar um único site. Para beneficiar de um site suplementar, escolha uma das nossas ofertas superiores.",
   "hosting_tab_DOMAINS_configuration_add_buttom_update_offer": "Mudar de oferta",
-  "hosting_order_upgrade_modal_header_description": "O seu projeto precisa de evoluir? Blogue, site profissional, plataforma de e-commerce ou aplicação web: escolha a oferta mais adaptada às suas novas necessidades."
+  "hosting_order_upgrade_modal_header_description": "O seu projeto precisa de evoluir? Blogue, site profissional, plataforma de e-commerce ou aplicação web: escolha a oferta mais adaptada às suas novas necessidades.",
+  "hosting_order_upgrade_no_contract": "Não há novos contratos a validar"
 }
