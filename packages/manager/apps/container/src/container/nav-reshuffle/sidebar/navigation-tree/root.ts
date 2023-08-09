@@ -46,6 +46,16 @@ const root: Node = {
           count: false,
         },
         {
+          id: 'account_identity_documents',
+          translation: 'sidebar_account_identity_documents',
+          routing: {
+            application: 'dedicated',
+            hash: '#/identity-documents',
+          },
+          count: false,
+          features: ['additional-ips'],
+        },
+        {
           id: 'account_contacts',
           translation: 'sidebar_account_contacts',
           routing: {
