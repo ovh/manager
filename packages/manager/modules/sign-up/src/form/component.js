@@ -9,5 +9,6 @@ export default {
     onRulesUpdated: '&',
     model: '=',
     isValid: '=',
+    smsConsent: '=',
   },
 };

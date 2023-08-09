@@ -57,6 +57,17 @@ export default class NewAccountFormFieldController {
       });
     }
 
+    // reset sms consent value when phone type is no longer 'mobile'
+    if (this.rule.fieldName === 'smsConsent') {
+      this.$scope.$on('account.smsConsent.reset', () => {
+        // switch value to false only if it is true
+        if (this.value) {
+          this.onChange();
+          this.value = false;
+        }
+      });
+    }
+
     // handle special phone prefix case
     if (this.getFieldType() === 'phone') {
       this.$scope.$watch(
@@ -218,6 +229,9 @@ export default class NewAccountFormFieldController {
     if (this.rule.fieldType) {
       return this.rule.fieldType;
     }
+    if (this.rule.fieldName === this.FIELD_NAME_LIST.phoneType) {
+      return 'radio';
+    }
     if (this.rule.in) {
       return 'select';
     }
@@ -268,8 +282,11 @@ export default class NewAccountFormFieldController {
       };
     });
 
-    result = this.$filter('orderBy')(result, 'translated', false, (a, b) =>
-      String(a.value).localeCompare(String(b.value)),
+    result = this.$filter('orderBy')(
+      result,
+      'translated',
+      this.rule.fieldName === this.FIELD_NAME_LIST.phoneType,
+      (a, b) => String(a.value).localeCompare(String(b.value)),
     );
 
     // if there is only a single value, auto select it
@@ -345,6 +362,10 @@ export default class NewAccountFormFieldController {
   // true if field is a phone number
   isPhoneNumberField() {
     return ['phone', 'fax'].includes(this.rule.fieldName);
+  }
+
+  shouldDisplayLabel() {
+    return !['checkbox', 'radio'].includes(this.getFieldType());
   }
 
   // callback for when model changed

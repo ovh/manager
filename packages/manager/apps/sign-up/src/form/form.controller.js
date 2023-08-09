@@ -13,6 +13,7 @@ export default class SignUpFormAppCtrl {
     this.saveError = null;
 
     this.isValid = false;
+    this.smsConsent = false;
 
     this.loading = {
       init: true,
@@ -74,13 +75,20 @@ export default class SignUpFormAppCtrl {
   onStepperFinished() {
     this.saveError = null;
 
-    this.atInternet.trackPage({
+    const tracking = {
       name: `accountcreation-ok-${this.me.model.legalform}`,
-    });
+    };
+
+    if (this.isSmsConsentAvailable) {
+      tracking.accountSmsConsent = this.smsConsent ? 'opt-in' : 'opt-out';
+      tracking.accountPhoneType = this.me.model.phoneType;
+    }
+
+    this.atInternet.trackPage(tracking);
 
     // call to finishSignUp binding
     if (isFunction(this.finishSignUp)) {
-      return this.finishSignUp()
+      return this.finishSignUp(this.smsConsent)
         .then(() => {
           localStorage.removeItem(OVH_SUBSIDIARY_ITEM_NAME);
         })
