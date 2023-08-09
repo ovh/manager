@@ -586,10 +586,12 @@ angular
       }
 
       function showPartition() {
-        // Select hight priority partition scheme
-        [
-          $scope.installation.selectPartitionScheme,
-        ] = $scope.installation.partitionSchemesList;
+        if ($scope.installation.selectPartitionScheme === null) {
+          // Select hight priority partition scheme
+          [
+            $scope.installation.selectPartitionScheme,
+          ] = $scope.installation.partitionSchemesList;
+        }
 
         // Get Partition list of largest partition scheme
         Server.getOvhPartitionSchemesTemplatesDetail(
@@ -732,7 +734,7 @@ angular
                   )
                   .then(() => {
                     $scope.installation.partitionSchemesList.unshift(
-                      newPartitioningScheme,
+                      newPartitioningScheme.name,
                     );
                     showPartition();
                   })

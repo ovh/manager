@@ -518,7 +518,20 @@
                     ></span>
                     <strong
                         data-ng-bind="getDisplaySize(informations.remainingSize)"
-                    ></strong>
+                    ></strong
+                    >&nbsp;
+                    <span
+                        data-translate="server_configuration_installation_ovh_step2_scheme"
+                        data-ng-show="installation.partitionSchemesList.length > 1 && !installation.noPartitioning"
+                    ></span>
+                    <select
+                        class="form-control"
+                        data-ng-show="installation.partitionSchemesList.length > 1 && !installation.noPartitioning"
+                        data-ng-options="partitionScheme as partitionScheme for partitionScheme in installation.partitionSchemesList"
+                        data-ng-model="installation.selectPartitionScheme"
+                        data-ng-change="loadPartition()"
+                    >
+                    </select>
                 </div>
 
                 <div
@@ -1363,6 +1376,27 @@
                 <p
                     data-translate="server_configuration_installation_ovh_step3_info"
                 ></p>
+
+                <p
+                    class="form-inline"
+                    data-ng-show="installation.partitionSchemesList.length > 1 && installation.noPartitioning"
+                >
+                    <label
+                        for="selectPartitionScheme"
+                        class="control-label"
+                        data-translate="server_configuration_installation_ovh_step3_scheme"
+                    >
+                    </label>
+                    <select
+                        class="form-control"
+                        id="selectPartitionScheme"
+                        name="selectPartitionScheme"
+                        data-ng-options="partitionScheme as partitionScheme for partitionScheme in installation.partitionSchemesList"
+                        data-ng-model="installation.selectPartitionScheme"
+                        data-ng-change="loadPartition()"
+                    >
+                    </select>
+                </p>
 
                 <div class="table-responsive">
                     <table class="table table-striped">
