@@ -11,7 +11,7 @@ import map from 'lodash/map';
 import range from 'lodash/range';
 import set from 'lodash/set';
 import some from 'lodash/some';
-import sortBy from 'lodash/sortBy';
+import orderBy from 'lodash/orderBy';
 import take from 'lodash/take';
 import {
   RTM_GUIDE_URLS,
@@ -587,15 +587,14 @@ angular
 
       function showPartition() {
         // Select hight priority partition scheme
-        $scope.installation.selectPartitionScheme =
-          $scope.installation.partitionSchemesList[
-            $scope.installation.partitionSchemesList.length - 1
-          ];
+        [
+          $scope.installation.selectPartitionScheme,
+        ] = $scope.installation.partitionSchemesList;
 
         // Get Partition list of largest partition scheme
         Server.getOvhPartitionSchemesTemplatesDetail(
           $scope.informations.gabaritName,
-          $scope.installation.selectPartitionScheme.name,
+          $scope.installation.selectPartitionScheme,
         ).then(
           (partitionSchemeModels) => {
             $scope.loader.loading = false;
@@ -697,8 +696,10 @@ angular
             $scope.informations.customInstall,
           ).then(
             (partitionSchemesList) => {
-              $scope.installation.partitionSchemesList =
-                partitionSchemesList.results;
+              $scope.installation.partitionSchemesList = map(
+                orderBy(partitionSchemesList.results, 'priority', 'desc'),
+                'name',
+              );
 
               $scope.informations.gabaritName =
                 partitionSchemesList.gabaritName;
@@ -730,12 +731,8 @@ angular
                     ),
                   )
                   .then(() => {
-                    $scope.installation.partitionSchemesList.push(
+                    $scope.installation.partitionSchemesList.unshift(
                       newPartitioningScheme,
-                    );
-                    $scope.installation.partitionSchemesList = sortBy(
-                      $scope.installation.partitionSchemesList,
-                      'priority',
                     );
                     showPartition();
                   })
@@ -751,10 +748,6 @@ angular
                     );
                   });
               }
-              $scope.installation.partitionSchemesList = sortBy(
-                $scope.installation.partitionSchemesList,
-                'priority',
-              );
               if ($scope.installation.partitionSchemesList.length > 0) {
                 showPartition();
               }
@@ -1136,7 +1129,7 @@ angular
 
             Server.postAddPartition(
               $scope.informations.gabaritName,
-              $scope.installation.selectPartitionScheme.name,
+              $scope.installation.selectPartitionScheme,
               {
                 raid: $scope.newPartition.raid,
                 fileSystem: $scope.newPartition.fileSystem,
@@ -1242,7 +1235,7 @@ angular
 
             Server.putSetPartition(
               $scope.informations.gabaritName,
-              $scope.installation.selectPartitionScheme.name,
+              $scope.installation.selectPartitionScheme,
               {
                 raid: partitionToSet.raid,
                 fileSystem: partitionToSet.fileSystem,
@@ -1308,7 +1301,7 @@ angular
         $scope.buttonControl.deleteInProgress = true;
         Server.deleteSetPartition(
           $scope.informations.gabaritName,
-          $scope.installation.selectPartitionScheme.name,
+          $scope.installation.selectPartitionScheme,
           $scope.installation.partitionSchemeModels[
             $scope.setPartition.delModel
           ].mountPoint,
@@ -2426,7 +2419,7 @@ angular
             $scope.loader.loading = true;
             Server.putSetPartition(
               $scope.informations.gabaritName,
-              $scope.installation.selectPartitionScheme.name,
+              $scope.installation.selectPartitionScheme,
               {
                 raid: $scope.installation.options.variablePartition.raid,
                 fileSystem:
@@ -2552,7 +2545,7 @@ angular
         Server.postHardwareRaid(
           $stateParams.productId,
           $scope.informations.gabaritName,
-          $scope.installation.selectPartitionScheme.name,
+          $scope.installation.selectPartitionScheme,
           disks,
           $scope.installation.hardwareRaid.raid,
         )
@@ -2561,7 +2554,7 @@ angular
               return Server.putHardwareRaid(
                 $stateParams.productId,
                 $scope.informations.gabaritName,
-                $scope.installation.selectPartitionScheme.name,
+                $scope.installation.selectPartitionScheme,
                 disks,
                 $scope.installation.hardwareRaid.raid,
               );
