@@ -33,7 +33,13 @@ export default /* @ngInject */ ($stateProvider) => {
                     ),
                 )?.serviceId,
             ),
-        trackingPrefix: () =>
+        trackClick: /* @ngInject */ (atInternet) => (name) =>
+          atInternet.trackClick({
+            name,
+            type: 'action',
+            chapter1: 'dedicated',
+          }),
+        trackingPrefix: /* @ngInject */ () =>
           'dedicated::server::interfaces::bandwidth-private-order::',
       },
     });

@@ -4,11 +4,11 @@ export default {
   template,
   bindings: {
     alertError: '<',
-    atTrack: '<',
     goBack: '<',
     hasDefaultPaymentMethod: '<',
     serverName: '<',
     specifications: '<',
+    trackClick: '<',
     trackingPrefix: '<',
     user: '<',
     handleError: '<',

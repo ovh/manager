@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.1.2...@ovh-ux/manager-web@17.2.0) (2023-08-08)
+
+
+### Features
+
+* **web.hosting:** hide contracts list when empty ([#9760](https://github.com/ovh/manager/issues/9760)) ([dd42639](https://github.com/ovh/manager/commit/dd42639a0134b8f77fe7b50a9d53bf4d2e2b06bf))
+
+
+
+
+
 ## [17.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.1.1...@ovh-ux/manager-web@17.1.2) (2023-08-08)
 
 
