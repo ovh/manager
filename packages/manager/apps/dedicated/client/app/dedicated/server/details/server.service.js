@@ -8,7 +8,7 @@ import map from 'lodash/map';
 import parseInt from 'lodash/parseInt';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
-import sortBy from 'lodash/sortBy';
+import orderBy from 'lodash/orderBy';
 import uniq from 'lodash/uniq';
 
 export default class Server {
@@ -2152,16 +2152,14 @@ export default class Server {
     );
   }
 
-  getHighestPriorityPartitionScheme(productId, templateName) {
+  getPartitionSchemesByPriority(productId, templateName) {
     return this.getPartitionSchemes(productId, templateName).then((schemes) => {
       const getSchemes = map(schemes, (scheme) =>
         this.getPartitionSchemePriority(productId, templateName, scheme),
       );
 
       return this.$q.all(getSchemes).then((schemesDetails) => {
-        const list = sortBy(schemesDetails, 'priority').reverse();
-
-        return list[0];
+        return map(orderBy(schemesDetails, 'priority', 'desc'), 'name');
       });
     });
   }

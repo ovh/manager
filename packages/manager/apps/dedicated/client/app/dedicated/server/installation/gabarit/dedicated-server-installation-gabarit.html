@@ -476,7 +476,7 @@
                     </div>
 
                     <!-- nbDisk -->
-                    <div
+                    <p
                         class="form-inline"
                         data-ng-if="informations.nbDisk > 1"
                     >
@@ -505,7 +505,28 @@
                             data-ng-model="installation.nbDiskUse"
                         >
                         </select>
-                    </div>
+                    </p>
+
+                    <!-- selectPartitionScheme -->
+                    <p
+                        class="form-inline"
+                        data-ng-show="installation.partitionSchemesList.length > 1"
+                    >
+                        <label
+                            for="selectPartitionScheme"
+                            class="control-label"
+                            data-translate="server_configuration_installation_ovh_step3_scheme"
+                        >
+                        </label>
+                        <select
+                            class="form-control"
+                            id="selectPartitionScheme"
+                            name="selectPartitionScheme"
+                            data-ng-options="partitionScheme as partitionScheme for partitionScheme in installation.partitionSchemesList"
+                            data-ng-model="installation.selectPartitionScheme"
+                        >
+                        </select>
+                    </p>
                 </form>
 
                 <p
