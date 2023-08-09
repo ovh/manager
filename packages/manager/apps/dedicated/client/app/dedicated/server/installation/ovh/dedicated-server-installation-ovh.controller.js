@@ -159,7 +159,7 @@ angular
         partitionSchemeModels: null, // detail of partitionScheme selected
         nbDiskUse: null, // if nbPhysicalDisk > 2 user can select nb disk to use
         // dirtyPartition: true if variable partition size
-        // has been customized(change to false in loadPartiton())
+        // has been customized(change to false in loadPartition())
         dirtyPartition: true,
         // STEP3
         gabaritNameSave: null,
@@ -674,7 +674,7 @@ angular
       }
 
       // ------STEP2------
-      $scope.loadPartiton = function loadPartiton() {
+      $scope.loadPartition = function loadPartition() {
         if (
           !$scope.installation.partitionSchemeModels ||
           $scope.informations.totalSize !==
@@ -2297,7 +2297,7 @@ angular
         } else {
           $scope.reduceModal();
         }
-        $scope.loadPartiton();
+        $scope.loadPartition();
         $scope.installation.partitionSchemeModels = false;
       };
 
@@ -2379,7 +2379,7 @@ angular
           );
           addRemainingSize();
         } else {
-          $scope.loadPartiton();
+          $scope.loadPartition();
         }
       };
 
