@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+        />
+        <title>Dev msc-msc-tail-logs</title>
+        <link rel="stylesheet" href="/build/msc-tail-logs.css" />
+    </head>
+    <body>
+        <section>
+            Sort on asc without a limit (default 500)
+            <msc-tail-logs
+                source="cloud/project/123fdshfjkdshfdjkshf/database/mongodb/1s97897h-98989-787878-e798789GHH/logs"
+                sort="asc"
+            ></msc-tail-logs>
+        </section>
+        <section>
+            Sort on asc with a limit at 2
+            <msc-tail-logs
+                source="cloud/project/df878787878HJHJ97/database/mongodb/fdsfsHJH878dffdsfds4123-78787fdfdsf/logs"
+                sort="asc"
+                log-limit="2"
+            ></msc-tail-logs>
+        </section>
+
+        <section>
+            Sort on DESC
+            <msc-tail-logs
+                source="cloud/project/1fdsfdsfJHJHdsfsdJHf789/database/mongodb/1fdsfds0987-4123-eHJHfdsfsd1234/logs"
+                sort="desc"
+            ></msc-tail-logs>
+        </section>
+
+        <script type="module">
+            !window.ods &&
+                (window.ods = { config: { logging: { active: true } } });
+        </script>
+
+        <script type="module" src="/build/msc-tail-logs.esm.js"></script>
+        <script nomodule src="/build/msc-tail-logs.js"></script>
+    </body>
+</html>

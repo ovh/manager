@@ -1,0 +1,18 @@
+.msc-tail-wrapper {
+  padding: 15px;
+}
+
+.msc-tail-table-wrapper {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  table-layout: fixed;
+}
+
+.msc-tail-table-wrapper th,
+.msc-tail-table-wrapper td {
+  text-align: left;
+  padding: 8px;
+  width: auto;
+  word-wrap: break-word;
+}
