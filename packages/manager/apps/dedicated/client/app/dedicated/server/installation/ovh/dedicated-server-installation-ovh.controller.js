@@ -2486,6 +2486,7 @@ angular
         Server.startInstallation(
           $stateParams.productId,
           $scope.informations.gabaritName,
+          $scope.installation.selectPartitionScheme,
           {
             language: camelCase($scope.installation.selectLanguage),
             installRTM: $scope.installation.options.installRTM || false,

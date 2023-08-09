@@ -295,6 +295,7 @@ angular
         Server.startInstallation(
           $stateParams.productId,
           $scope.installation.selectGabarit.id,
+          $scope.installation.selectPartitionScheme,
           {
             language: camelCase($scope.installation.selectLanguage),
             customHostname: $scope.installation.options.customHostname,
