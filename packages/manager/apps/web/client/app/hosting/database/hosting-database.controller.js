@@ -5,6 +5,7 @@ import set from 'lodash/set';
 import {
   FREE_HOSTING_OFFER,
   BANNER_GUIDE_LINK,
+  STARTER_OFFERS,
 } from './hosting-database.constants';
 import { DATABASES_TRACKING } from '../hosting.constants';
 
@@ -260,6 +261,10 @@ angular.module('App').controller(
       return FREE_HOSTING_OFFER.includes(this.hosting.offer);
     }
 
+    isStarterOffer() {
+      return STARTER_OFFERS.includes(this.hosting.offer);
+    }
+
     trackClick(hit) {
       this.atInternet.trackClick({
         name: hit,
@@ -279,6 +284,10 @@ angular.module('App').controller(
 
     onOrderDatabaseClick() {
       this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION_ORDER_DB);
+    }
+
+    onActivateWebCloudDatabaseClick() {
+      this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION_CREATE_DB);
     }
 
     onOrderWebCloudDatabaseClick() {
