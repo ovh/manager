@@ -28,6 +28,7 @@
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.3",
     "@ovh-ux/ng-ovh-http": "^5.0.6",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.8",
+    "@ovh-ux/ng-ovh-feature-flipping": "^1.0.7",
     "@ovh-ux/ng-ovh-sso-auth": "^4.7.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.6",
     "@ovh-ux/request-tagger": "^0.1.1",

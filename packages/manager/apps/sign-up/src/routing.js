@@ -1,6 +1,6 @@
 import find from 'lodash/find';
 
-import { SANITIZATION } from './constants';
+import { SANITIZATION, FEATURES } from './constants';
 
 import signupFormComponent from './form/component';
 
@@ -70,22 +70,36 @@ export const state = {
       }
     },
 
+    isSmsConsentAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+      ovhFeatureFlipping
+        .checkFeatureAvailability(FEATURES.smsConsent)
+        .then((featureAvailability) =>
+          featureAvailability.isFeatureAvailable(FEATURES.smsConsent),
+        ),
+
     finishSignUp: /* @ngInject */ (
       $window,
+      $q,
       getRedirectLocation,
       me,
       signUp,
-    ) => () =>
+      isSmsConsentAvailable,
+    ) => (smsConsent) =>
       signUp.saveNic(me.model).then(() => {
-        // for tracking purposes
-        if ($window.sessionStorage) {
-          $window.sessionStorage.setItem('ovhSessionSuccess', true);
-        }
-        // manage redirection
-        const redirectUrl = getRedirectLocation(me.nichandle);
-        if (redirectUrl) {
-          $window.location.assign(redirectUrl);
-        }
+        const promise = isSmsConsentAvailable
+          ? signUp.sendSmsConsent(smsConsent)
+          : $q.resolve();
+        return promise.then(() => {
+          // for tracking purposes
+          if ($window.sessionStorage) {
+            $window.sessionStorage.setItem('ovhSessionSuccess', true);
+          }
+          // manage redirection
+          const redirectUrl = getRedirectLocation(me.nichandle);
+          if (redirectUrl) {
+            $window.location.assign(redirectUrl);
+          }
+        });
       }),
 
     steps: () => [

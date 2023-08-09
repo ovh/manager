@@ -16,6 +16,7 @@ import '@uirouter/angularjs';
 import 'regenerator-runtime/runtime';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 
+import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth'; // peerDep of manager-core
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ovhManagerCookiePolicy from '@ovh-ux/manager-cookie-policy';
@@ -48,6 +49,7 @@ export default (containerEl, environment) => {
       ovhManagerAtInternetConfiguration,
       ovhManagerCookiePolicy,
       ngAtInternetUiRouterPlugin,
+      ngOvhFeatureFlipping,
       ngOvhSsoAuth,
       signUpFormView,
       detailsState,

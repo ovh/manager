@@ -6,6 +6,7 @@ export const READY_ONLY_RULES_PARAMS = [
   'state',
   'commercialCommunicationsApproval',
   'managerLanguage',
+  'smsConsent',
 ];
 
 export const READY_ONLY_PARAMS = [
@@ -72,8 +73,10 @@ export const SECTIONS = {
     'city',
     'zip',
     'area',
+    'phoneType',
     'phoneCountry',
     'phone',
+    'smsConsent',
     'fax',
   ],
   language: ['language', 'managerLanguage'],
@@ -111,8 +114,10 @@ export const FIELD_NAME_LIST = {
   address: 'address',
   zip: 'zip',
   city: 'city',
+  phoneType: 'phoneType',
   phoneCountry: 'phoneCountry',
   phone: 'phone',
+  smsConsent: 'smsConsent',
   fax: 'fax',
   language: 'language',
   managerLanguage: 'managerLanguage',
@@ -370,6 +375,15 @@ export const PHONE_PREFIX = {
   ZW: '263',
 };
 
+export const FIELD_WITHOUT_MARGIN_BOTTOM = ['email', 'phoneType', 'phone'];
+
+export const TRACKING_PREFIX = 'accountmodification';
+
+export const FEATURES = {
+  emailConsent: 'account:email-consent',
+  smsConsent: 'account:sms-consent',
+};
+
 export default {
   ENUM_TRANSLATION_RULES,
   MODEL_DEBOUNCE_DELAY,
@@ -381,4 +395,7 @@ export default {
   PHONE_PREFIX,
   CONSENT_MARKETING_EMAIL_NAME,
   FIELD_NAME_LIST,
+  FIELD_WITHOUT_MARGIN_BOTTOM,
+  TRACKING_PREFIX,
+  FEATURES,
 };
