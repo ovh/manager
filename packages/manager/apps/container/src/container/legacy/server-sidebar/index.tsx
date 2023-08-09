@@ -32,6 +32,7 @@ export default function ServerSidebarIndex() {
       '/support',
       '/ticket',
       '/useraccount',
+      '/identity-documents',
     ],
     iam: '*',
     'carbon-calculator': '*',

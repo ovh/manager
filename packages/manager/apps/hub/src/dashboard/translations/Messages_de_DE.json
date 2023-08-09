@@ -8,5 +8,7 @@
   "manager_hub_dashboard_modal_siret_part_2": "Mit Ihrem KBIS wird diese Aktualisierung nur wenige Sekunden dauern.",
   "manager_hub_dashboard_modal_siret_link": "Aktualisieren",
   "manager_hub_dashboard_modal_siret_cancel": "Nicht jetzt",
-  "manager_hub_dashboard_modal_title": "Aktualisierung Ihrer Kontaktdaten"
+  "manager_hub_dashboard_modal_title": "Aktualisierung Ihrer Kontaktdaten",
+  "manager_hub_dashboard_kyc_banner_description": "Sie möchten ein OVHcloud Produkt bestellen: Aufgrund der geltenden Vorschriften muss Ihre Identität überprüft werden. Bitte fügen Sie Ihre Ausweisdokumente hinzu.",
+  "manager_hub_dashboard_kyc_banner_link": "Meine Dokumente"
 }
