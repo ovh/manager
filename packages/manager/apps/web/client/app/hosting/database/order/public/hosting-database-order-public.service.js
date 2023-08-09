@@ -59,7 +59,11 @@ export default class {
       .$promise.then((products) =>
         sortBy(
           products
-            .filter((product) => product.planCode.startsWith('sql_perso'))
+            .filter(
+              (product) =>
+                product.planCode.startsWith('sql_perso') ||
+                product.planCode.startsWith('sql_optional'),
+            )
             .map((product) => {
               const [, , diskSpace, quantity] = product.planCode.split('_');
 
