@@ -5,7 +5,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { Params, useMatches } from 'react-router-dom';
-import { useLogger } from '@ovh-ux/manager-react-core-application';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-stencil/components/react';
 {{#if this.pimID}}
 import { useQueries, UseQueryResult } from '@tanstack/react-query';
@@ -36,7 +35,6 @@ function Breadcrumb(): JSX.Element {
   const matches = useMatches();
   const [categoryCrumbs, setCategoryCrumbs] = useState<BreadcrumbItem[]>([]);
   const [matchCrumbs, setMatchCrumbs] = useState<BreadcrumbItem[]>([]);
-  const logger = useLogger();
 
   {{#if this.pimID}}
   const pimService: UseQueryResult<any> = useQueries({
@@ -46,16 +44,19 @@ function Breadcrumb(): JSX.Element {
   })[0] as UseQueryResult<any>;
 
   useEffect(() => {
-    console.log('useEffect');
-    if (pimService.data?.categories[1]) {
-      console.log('service.data?.categories[1]');
+    if (
+      pimService.status === 'success' &&
+      Object.keys(pimService.data).length &&
+      Object.keys(pimService.data?.categories).length > 2 &&
+      pimService.data?.categories[1]
+    ) {
       const categoryItem = {
         label: pimService.data.categories[1],
-        href: pimService.data.url,
+        href: pimService.data?.url,
       };
-      setCategoryCrumbs((prevCrumbs) => [categoryItem]);
+      setCategoryCrumbs(() => [categoryItem]);
     }
-  }, [pimService.data?.categories]); 
+  }, [pimService.data]);
   {{/if}}
 
   useEffect(() => {
@@ -87,7 +88,7 @@ function Breadcrumb(): JSX.Element {
     label: crumb.label,
     href: `${rootName}${crumb.href}`,
   }));
-  return crumbs?.length <= 1 ? <></> : <OsdsBreadcrumb items={dato} />;
+  return <OsdsBreadcrumb items={dato} />;
 }
 
 export default Breadcrumb;
