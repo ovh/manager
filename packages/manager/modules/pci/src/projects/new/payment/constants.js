@@ -1,0 +1,9 @@
+export const PAYMENT_MEANS = {
+  CREDIT: 'CREDIT',
+  SEPA_DIRECT_DEBIT: 'SEPA_DIRECT_DEBIT',
+  PAYPAL: 'PAYPAL',
+};
+
+export default {
+  PAYMENT_MEANS,
+};
