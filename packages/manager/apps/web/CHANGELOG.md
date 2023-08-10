@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.2.0...@ovh-ux/manager-web@17.2.1) (2023-08-10)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix rules of display action menu in database section ([#9749](https://github.com/ovh/manager/issues/9749)) ([c5ffb10](https://github.com/ovh/manager/commit/c5ffb10e8ec8c1bd84705b38ca854387e4799769))
+
+
+
+
+
 # [17.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.1.2...@ovh-ux/manager-web@17.2.0) (2023-08-08)
 
 
