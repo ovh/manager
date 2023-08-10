@@ -42,7 +42,10 @@
         <p
             data-translate="pci_project_new_payment_method_add_credit_card_selected_explain_generic_2"
         ></p>
-        <oui-checkbox class="mt-4">
+        <oui-checkbox
+            class="mt-4"
+            data-on-change="$ctrl.onCreditCardAgreementCheckboxChange(modelValue)"
+        >
             <oui-checkbox-label>
                 <span
                     data-translate="pci_project_new_payment_method_add_credit_card_default_validation"
@@ -83,7 +86,10 @@
             data-translate="pci_project_new_payment_method_add_info_paypal"
             data-translate-values="{ paymentMethodSection: $ctrl.paymentSectionHref }"
         ></p>
-        <oui-checkbox class="mt-4">
+        <oui-checkbox
+            class="mt-4"
+            data-on-change="$ctrl.onPaypalAgreementCheckboxChange(modelValue)"
+        >
             <oui-checkbox-label>
                 <span
                     data-translate="pci_project_new_payment_method_add_credit_card_default_validation"
@@ -129,7 +135,10 @@
             ></p>
         </oui-message>
 
-        <oui-checkbox class="mt-4">
+        <oui-checkbox
+            class="mt-4"
+            data-on-change="$ctrl.onBankAccountAgreementCheckboxChange(modelValue)"
+        >
             <oui-checkbox-label>
                 <span
                     data-translate="pci_project_new_payment_method_add_credit_card_default_validation"

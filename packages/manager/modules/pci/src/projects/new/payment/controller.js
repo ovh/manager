@@ -5,6 +5,7 @@ import {
   ORDER_FOLLOW_UP_STATUS_ENUM,
   ORDER_FOLLOW_UP_STEP_ENUM,
 } from '../../projects.constant';
+import { PAYMENT_MEANS } from './constants';
 
 const getPaymentMethodTimeoutLimit = 30000;
 const ANTI_FRAUD = {
@@ -226,7 +227,7 @@ export default class PciProjectNewPaymentCtrl {
 
     if (
       this.model.paymentMethod &&
-      this.model.paymentMethod.paymentType === 'CREDIT' &&
+      this.model.paymentMethod.paymentType === PAYMENT_MEANS.CREDIT &&
       this.model.credit &&
       !this.cart.creditOption
     ) {
@@ -369,7 +370,7 @@ export default class PciProjectNewPaymentCtrl {
     // call integration submit function if some
     if (
       this.eligibility.isAddPaymentMethodRequired() &&
-      this.model.paymentMethod.paymentType !== 'CREDIT' &&
+      this.model.paymentMethod.paymentType !== PAYMENT_MEANS.CREDIT &&
       this.integrationSubmitFn
     ) {
       return this.integrationSubmitFn();
@@ -526,6 +527,36 @@ export default class PciProjectNewPaymentCtrl {
       },
     );
 
+    this.resetLegalAgreements();
+
+    return null;
+  }
+
+  resetLegalAgreements() {
+    this.model.legalAgreements = {
+      credit: false,
+      payPal: false,
+      bankAccount: false,
+    };
+    return null;
+  }
+
+  displayCreateProjectButton() {
+    if (this.model.paymentMethod.type.isCreditCard()) {
+      return this.model.legalAgreements.credit;
+    }
+    if (
+      (this.model.legalAgreements.bankAccount &&
+        this.model.paymentMethod.type.paymentType ===
+          PAYMENT_MEANS.SEPA_DIRECT_DEBIT) ||
+      (this.model.legalAgreements.paypal &&
+        this.model.paymentMethod.type.paymentType === PAYMENT_MEANS.PAYPAL)
+    ) {
+      return [
+        this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.REDIRECT,
+        this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IN_CONTEXT,
+      ].includes(this.model.paymentMethod.integration);
+    }
     return null;
   }
 
