@@ -150,6 +150,30 @@ export default class PciProjectNewPaymentMethodAddCtrl {
       });
   }
 
+  resetLegalAgreements() {
+    this.model.legalAgreements = {
+      credit: false,
+      payPal: false,
+      bankAccount: false,
+    };
+    return null;
+  }
+
+  onCreditCardAgreementCheckboxChange(modelValue) {
+    this.resetLegalAgreements();
+    this.model.legalAgreements.credit = modelValue;
+  }
+
+  onBankAccountAgreementCheckboxChange(modelValue) {
+    this.resetLegalAgreements();
+    this.model.legalAgreements.bankAccount = modelValue;
+  }
+
+  onPaypalAgreementCheckboxChange(modelValue) {
+    this.resetLegalAgreements();
+    this.model.legalAgreements.paypal = modelValue;
+  }
+
   showSpecificCrossBorderSentenceForCardPayment() {
     return (
       this.hasSpecificCrossBorderSentenceForCardPayment &&
