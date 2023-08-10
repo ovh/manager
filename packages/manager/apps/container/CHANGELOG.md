@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.26.1...@ovh-ux/manager-container-app@0.27.0) (2023-08-10)
+
+
+### Features
+
+* acquisition storage ([#9209](https://github.com/ovh/manager/issues/9209)) ([e709587](https://github.com/ovh/manager/commit/e7095878ae5722620edfe81813d385923a0894a3))
+
+
+
+
+
 ## [0.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.26.0...@ovh-ux/manager-container-app@0.26.1) (2023-08-08)
 
 
