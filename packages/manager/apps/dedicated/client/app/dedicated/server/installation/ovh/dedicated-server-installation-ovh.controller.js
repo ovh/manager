@@ -2498,38 +2498,42 @@ angular
         );
       }
 
-      function setHardwareRaid() {
+      function setHardwareRaid(
+        schemeNameFilterList = [$scope.installation.selectPartitionScheme],
+      ) {
         const disks = prepareDiskList();
 
-        Server.postHardwareRaid(
-          $stateParams.productId,
-          $scope.informations.gabaritName,
-          $scope.installation.selectPartitionScheme,
-          disks,
-          $scope.installation.hardwareRaid.raid,
-        )
-          .catch((error) => {
-            if (error.status === 409) {
-              return Server.putHardwareRaid(
-                $stateParams.productId,
-                $scope.informations.gabaritName,
-                $scope.installation.selectPartitionScheme,
-                disks,
-                $scope.installation.hardwareRaid.raid,
+        angular.forEach(schemeNameFilterList, (schemeNameFilter) => {
+          Server.postHardwareRaid(
+            $stateParams.productId,
+            $scope.informations.gabaritName,
+            schemeNameFilter,
+            disks,
+            $scope.installation.hardwareRaid.raid,
+          )
+            .catch((error) => {
+              if (error.status === 409) {
+                return Server.putHardwareRaid(
+                  $stateParams.productId,
+                  $scope.informations.gabaritName,
+                  schemeNameFilter,
+                  disks,
+                  $scope.installation.hardwareRaid.raid,
+                );
+              }
+              return $q.reject(error);
+            })
+            .then(() => {
+              startInstall();
+            })
+            .catch(() => {
+              $scope.loader.loading = false;
+              $scope.saveRemainingSize($scope.installation.saveSize, true);
+              $scope.errorInst.wsinstall = $translate.instant(
+                'server_configuration_installation_error_hardwareRaid',
               );
-            }
-            return $q.reject(error);
-          })
-          .then(() => {
-            startInstall();
-          })
-          .catch(() => {
-            $scope.loader.loading = false;
-            $scope.saveRemainingSize($scope.installation.saveSize, true);
-            $scope.errorInst.wsinstall = $translate.instant(
-              'server_configuration_installation_error_hardwareRaid',
-            );
-          });
+            });
+        });
       }
 
       function setGabarit() {
@@ -2554,7 +2558,8 @@ angular
               $scope.installation.options.gabaritNameSave,
             );
             if ($scope.installation.hardwareRaid.raid) {
-              setHardwareRaid();
+              setHardwareRaid($scope.installation.partitionSchemesList);
+              // means we append the HW conf to all the partitioning schemes because we are saving a customer template, so user could choose another partitioning scheme next time
             } else {
               startInstall();
             }
