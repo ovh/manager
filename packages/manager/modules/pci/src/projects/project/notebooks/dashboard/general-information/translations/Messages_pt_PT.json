@@ -47,5 +47,5 @@
   "pci_notebooks_general_information_other_resources_info_ephemeral_storage_popover": "Armazenamento local eficiente, mas sem backup",
   "pci_notebooks_general_information_other_resources_info_workspace_storage_popover": "Armazenamento remoto guardado. Para além de 30 dias consecutivos de armazenamento ou/e do excesso desta quota de {{freeStorage}}, as tarifas aplicadas serão as do Public Cloud Object Storage.",
   "pci_notebooks_general_information_other_resources_info_bandwidth": "Rede pública: {{ bandwidth }}/s",
-  "pci_notebooks_general_information_life_cycle_status_SYNC_FAILED": "Falha na sincronização"
+  "pci_notebooks_general_information_life_cycle_status_SYNC_FAILED": "Falha de sincronização"
 }
