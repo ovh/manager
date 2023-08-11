@@ -1,10 +1,10 @@
+import { Node, NodeTag } from './node';
 import bareMetalCloud from './services/bareMetalCloud';
 import hostedPrivateCloud from './services/hostedPrivateCloud';
-import publicCloud from './services/publicCloud';
-import webCloud from './services/webCloud';
 import network from './services/network';
+import publicCloud from './services/publicCloud';
 import telecom from './services/telecom';
-import { Node, NodeTag } from './node';
+import webCloud from './services/webCloud';
 
 const root: Node = {
   id: 'home',
@@ -72,7 +72,7 @@ const root: Node = {
             application: 'iam',
             hash: '#/',
           },
-          tag: NodeTag.NEW,
+          tag: NodeTag.BETA,
           count: false,
           features: ['iam'],
         }, {
