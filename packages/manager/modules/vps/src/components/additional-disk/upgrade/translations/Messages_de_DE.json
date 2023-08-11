@@ -5,6 +5,6 @@
   "vps_additional_disk_upgrade_action_upgrade_success_info": "Ihre Anfrage zur Erweiterung Ihrer Festplatte ist registriert.",
   "vps_additional_disk_upgrade_action_upgrade_payment_info": "Bitte bestätigen Sie Ihre Bestellung über diesen Link mit einem Zahlungsmittel.",
   "vps_additional_disk_upgrade_action_upgrade_error": "Bei der Erweiterung der Festplatte ist ein Fehler aufgetreten.",
-  "vps_additional_disk_upgrade_action_upgrade": "Wird zunehmen.",
+  "vps_additional_disk_upgrade_action_upgrade": "Vergrößern",
   "vps_additional_disk_upgrade_action_cancel": "Abbrechen"
 }
