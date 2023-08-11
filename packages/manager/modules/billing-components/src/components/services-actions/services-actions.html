@@ -99,7 +99,7 @@
         </oui-action-menu-item>
         <oui-action-menu-item
             ng-if="$ctrl.service.menuItems.manageEmailAccountsInExchange"
-            href="{{ $ctrl.renewLink }}"
+            href="{{ $ctrl.getExchangeBilling() }}"
             on-click="$ctrl.trackAction('go-to-modify-billing-ExchangeAccounts')"
             data-navi-id="go-to-modify-billing-ExchangeAccounts"
             top
