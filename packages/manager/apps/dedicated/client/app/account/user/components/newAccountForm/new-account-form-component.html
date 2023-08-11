@@ -16,6 +16,20 @@
     data-ng-submit="$ctrl.submit()"
     novalidate
 >
+    <oui-message type="info" data-ng-if="$ctrl.isIndianSubsidiary">
+        <span
+            data-translate="signup_information_banner_for_indian_subsidiary"
+        ></span>
+        <a
+            data-ng-href="{{ $ctrl.newSupportTicketUrl }}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span
+                data-translate="signup_information_banner_link_for_indian_subsidiary"
+            ></span>
+        </a>
+    </oui-message>
     <oui-message
         type="success"
         on-dismiss="$ctrl.onDismiss()"
@@ -40,6 +54,7 @@
                 data-rule="rule"
                 data-ng-if="rule.fieldName !== 'phoneCountry' && !($ctrl.siretFieldIsAvailable() && section === 'activity')"
                 data-fieldset=":: ovhSignupForm['form_part_' + section]"
+                data-is-indian-subsidiary="$ctrl.isIndianSubsidiary"
             >
             </new-account-form-field>
 
@@ -52,6 +67,7 @@
                 data-mode="'modification'"
                 data-ng-if="$ctrl.siretFieldIsAvailable() && section === 'activity'"
                 data-rules="$ctrl.siretModuleRules"
+                data-is-indian-subsidiary="$ctrl.isIndianSubsidiary"
             ></siret-component>
         </div>
     </fieldset>
