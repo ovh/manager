@@ -1,40 +1,11 @@
+import { KVM_PLAN_CODE } from './constants';
+
 export default class BmServerComponentsIpmiService {
   /* @ngInject */
-  constructor($http, $q) {
+  constructor($http, $q, coreConfig) {
     this.$http = $http;
     this.$q = $q;
-  }
-
-  canOrderKvm(serviceName) {
-    return this.$http
-      .get(`/dedicated/server/${serviceName}/orderable/kvm`)
-      .then(({ data }) => data);
-  }
-
-  getKvmOrderDurations(serviceName) {
-    return this.$http
-      .get(`/order/dedicated/server/${serviceName}/kvm`)
-      .then(({ data }) => data);
-  }
-
-  getKvmOrderDetail(serviceName, duration) {
-    return this.$http
-      .get(`/order/dedicated/server/${serviceName}/kvm/${duration}`)
-      .then(({ data }) => data);
-  }
-
-  getKvmOrderDetails(serviceName, durations) {
-    return this.$q.all(
-      durations.map((duration) =>
-        this.getKvmOrderDetail(serviceName, duration),
-      ),
-    );
-  }
-
-  postKvmOrderInfos(serviceName, duration) {
-    return this.$http
-      .post(`/order/dedicated/server/${serviceName}/kvm/${duration}`)
-      .then(({ data }) => data);
+    this.user = coreConfig.getUser();
   }
 
   getKvmFeatures(serviceName) {
@@ -125,5 +96,77 @@ export default class BmServerComponentsIpmiService {
         },
       })
       .then(({ data }) => data);
+  }
+
+  createAndAssignNewCart() {
+    return this.$http
+      .post('/order/cart', {
+        ovhSubsidiary: this.user.ovhSubsidiary,
+      })
+      .then(({ data }) =>
+        this.$http.post(`/order/cart/${data.cartId}/assign`).then(() => ({
+          cartId: data.cartId,
+        })),
+      );
+  }
+
+  addKvmOptionToCart(cartId, duration, pricingMode, quantity) {
+    return this.$http
+      .post(`/order/cart/${cartId}/eco`, {
+        duration,
+        planCode: KVM_PLAN_CODE,
+        pricingMode,
+        quantity,
+      })
+      .then(({ data }) => data);
+  }
+
+  addKvmConfigurationToCart(itemId, cartId, serviceName, datacenter) {
+    return this.$q.all([
+      this.$http.post(`/order/cart/${cartId}/item/${itemId}/configuration`, {
+        label: 'dedicated_datacenter',
+        value: datacenter,
+      }),
+      this.$http.post(`/order/cart/${cartId}/item/${itemId}/configuration`, {
+        label: 'server',
+        value: serviceName,
+      }),
+    ]);
+  }
+
+  checkoutCart(cartId) {
+    return this.$http
+      .post(`/order/cart/${cartId}/checkout`, {
+        autoPayWithPreferredPaymentMethod: true,
+      })
+      .then(({ data }) => data);
+  }
+
+  getCart(cartId) {
+    return this.$http
+      .get(`/order/cart/${cartId}/checkout`)
+      .then(({ data }) => ({
+        cartId,
+        ...data,
+      }));
+  }
+
+  prepareKvmCart(serviceName, datacenter) {
+    let cartId = '';
+
+    return this.createAndAssignNewCart()
+      .then((data) => {
+        cartId = data.cartId;
+        return this.addKvmOptionToCart(cartId, 'P1M', 'default', 1);
+      })
+      .then(({ itemId }) =>
+        this.addKvmConfigurationToCart(itemId, cartId, serviceName, datacenter),
+      )
+      .then(() => this.getCart(cartId))
+      .catch(() => this.$http.delete(`/order/cart/${cartId}`));
+  }
+
+  orderKvm(cartId) {
+    return this.checkoutCart(cartId);
   }
 }
