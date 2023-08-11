@@ -16,6 +16,9 @@ import {
   FIELD_WITHOUT_MARGIN_BOTTOM,
   TRACKING_PREFIX,
   FEATURES,
+  IN_SUBSIDIARY,
+  USER_TYPE_ENTERPRISE,
+  NEW_SUPPORT_TICKET_PARAMS,
 } from './new-account-form-component.constants';
 
 export default class NewAccountFormController {
@@ -32,6 +35,7 @@ export default class NewAccountFormController {
     $anchorScroll,
     $scope,
     ovhFeatureFlipping,
+    coreURLBuilder,
   ) {
     this.$q = $q;
     this.$http = $http;
@@ -54,10 +58,23 @@ export default class NewAccountFormController {
     this.$scope = $scope;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.SECTIONS = SECTIONS;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
     this.loading = true;
+
+    // Indian subsidiary flag
+    this.isIndianSubsidiary = this.user.ovhSubsidiary === IN_SUBSIDIARY;
+    this.newSupportTicketUrl = this.coreURLBuilder.buildURL(
+      'dedicated',
+      '#/support/tickets/new',
+      {
+        categoryName: NEW_SUPPORT_TICKET_PARAMS.categoryName,
+        preFetchData: NEW_SUPPORT_TICKET_PARAMS.preFetchData,
+      },
+    );
+
     // backup of original model
     this.originalModel = angular.copy(this.model);
 
@@ -519,7 +536,8 @@ export default class NewAccountFormController {
 
   siretFieldIsAvailable() {
     const isSiretEnterprise =
-      this.model.legalform === 'corporation' && this.model.country === 'FR';
+      this.model.legalform === USER_TYPE_ENTERPRISE &&
+      this.model.country === 'FR';
     if (
       isSiretEnterprise &&
       this.fieldToFocus &&
