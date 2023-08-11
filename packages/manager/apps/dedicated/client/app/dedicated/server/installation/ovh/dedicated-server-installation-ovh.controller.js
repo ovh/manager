@@ -676,99 +676,55 @@ angular
 
       // ------STEP2------
       $scope.loadPartition = function loadPartition() {
-        if (
-          !$scope.installation.partitionSchemeModels ||
-          $scope.informations.totalSize !==
-            $scope.installation.hardwareRaid.availableSpace
-        ) {
-          $scope.informations.softRaidOnlyMirroring = null;
-          $scope.loader.loading = true;
+        $scope.informations.softRaidOnlyMirroring = null;
+        $scope.loader.loading = true;
 
-          // init
-          $scope.newPartition.display = false;
-          $scope.setPartition.save = null;
-          $scope.setPartition.indexSet = -1;
-          $scope.setPartition.delModel = null;
-          clearError();
+        // init
+        $scope.newPartition.display = false;
+        $scope.setPartition.save = null;
+        $scope.setPartition.indexSet = -1;
+        $scope.setPartition.delModel = null;
+        clearError();
 
-          Server.getOvhPartitionSchemesTemplates(
-            $stateParams.productId,
-            $scope.installation.selectDistribution.id,
-            $scope.installation.selectLanguage,
-            $scope.informations.customInstall,
-          ).then(
-            (partitionSchemesList) => {
-              $scope.installation.partitionSchemesList = map(
-                orderBy(partitionSchemesList.results, 'priority', 'desc'),
-                'name',
-              );
+        Server.getOvhPartitionSchemesTemplates(
+          $stateParams.productId,
+          $scope.installation.selectDistribution.id,
+          $scope.installation.selectLanguage,
+          $scope.informations.customInstall,
+        ).then(
+          (partitionSchemesList) => {
+            $scope.installation.partitionSchemesList = map(
+              orderBy(partitionSchemesList.results, 'priority', 'desc'),
+              'name',
+            );
 
-              $scope.informations.gabaritName =
-                partitionSchemesList.gabaritName;
-              $scope.constants.raidList =
-                partitionSchemesList.partitionRaidEnumMap;
-              $scope.constants.fileSystemList =
-                partitionSchemesList.templateOsFileSystemEnum;
-              $scope.constants.partitionTypeList =
-                partitionSchemesList.templatePartitionTypeEnum;
-              $scope.informations.softRaidOnlyMirroring =
-                partitionSchemesList.softRaidOnlyMirroring;
-
-              // if hardware Raid
-              if ($scope.installation.hardwareRaid.raid) {
-                const newPartitioningScheme = {
-                  name: `hardwareRaid-${$scope.installation.hardwareRaid.raid}`,
-                  priority: 50,
-                };
-                return Server.createPartitioningScheme(
-                  $stateParams.productId,
-                  $scope.informations.gabaritName,
-                  newPartitioningScheme,
-                )
-                  .then(() =>
-                    Server.cloneDefaultPartitioningScheme(
-                      $stateParams.productId,
-                      $scope.informations.gabaritName,
-                      `hardwareRaid-${$scope.installation.hardwareRaid.raid}`,
-                    ),
-                  )
-                  .then(() => {
-                    $scope.installation.partitionSchemesList.unshift(
-                      newPartitioningScheme.name,
-                    );
-                    showPartition();
-                  })
-                  .catch((error) => {
-                    $scope.loader.loading = false;
-                    $scope.resetAction();
-                    Alerter.alertFromSWS(
-                      $translate.instant(
-                        'server_configuration_installation_ovh_stephardraid_loading_error',
-                      ),
-                      error,
-                      'server_dashboard_alert',
-                    );
-                  });
-              }
-              if ($scope.installation.partitionSchemesList.length > 0) {
-                showPartition();
-              }
-              return null;
-            },
-            (data) => {
-              $scope.loader.loading = false;
-              $scope.resetAction();
-              Alerter.alertFromSWS(
-                $translate.instant(
-                  'server_configuration_installation_ovh_fail_partition_schemes',
-                  { t0: $scope.constants.server.name },
-                ),
-                data.data,
-                'server_dashboard_alert',
-              );
-            },
-          );
-        }
+            $scope.informations.gabaritName = partitionSchemesList.gabaritName;
+            $scope.constants.raidList =
+              partitionSchemesList.partitionRaidEnumMap;
+            $scope.constants.fileSystemList =
+              partitionSchemesList.templateOsFileSystemEnum;
+            $scope.constants.partitionTypeList =
+              partitionSchemesList.templatePartitionTypeEnum;
+            $scope.informations.softRaidOnlyMirroring =
+              partitionSchemesList.softRaidOnlyMirroring;
+            if ($scope.installation.partitionSchemesList.length > 0) {
+              showPartition();
+            }
+            return null;
+          },
+          (data) => {
+            $scope.loader.loading = false;
+            $scope.resetAction();
+            Alerter.alertFromSWS(
+              $translate.instant(
+                'server_configuration_installation_ovh_fail_partition_schemes',
+                { t0: $scope.constants.server.name },
+              ),
+              data.data,
+              'server_dashboard_alert',
+            );
+          },
+        );
       };
 
       function toBytes(size) {
@@ -2621,10 +2577,10 @@ angular
         if ($scope.installation.options.saveGabarit) {
           $scope.loader.loading = true;
           setGabarit();
-        } else if ($scope.installation.hardwareRaid.raid) {
-          $scope.installation.options.gabaritNameSave = `tmp-mgr-hardwareRaid-${moment().unix()}`;
-          setGabarit();
         } else {
+          if ($scope.installation.hardwareRaid.raid) {
+            setHardwareRaid();
+          }
           startInstall();
         }
       };
