@@ -58,6 +58,11 @@ angular
             type: 'string',
             squash: true,
           },
+          preFetchData: {
+            value: null,
+            type: 'bool',
+            squash: true,
+          },
         },
         resolve: {
           goToTickets: /* @ngInject */ ($state) => () =>
@@ -68,6 +73,8 @@ angular
             $transition$.params().serviceName,
           serviceTypeName: /* @ngInject */ ($transition$) =>
             $transition$.params().serviceTypeName,
+          preFetchData: /* @ngInject */ ($transition$) =>
+            $transition$.params().preFetchData,
           urls: /* @ngInject */ (OvhApiMe, CORE_URLS) =>
             OvhApiMe.v6()
               .get()
@@ -78,7 +85,7 @@ angular
           breadcrumb: /* @ngInject */ ($translate) =>
             $translate.instant('ovhManagerSupport_new'),
         },
-        url: '/new?categoryName&serviceName&serviceTypeName',
+        url: '/new?categoryName&serviceName&serviceTypeName&preFetchData',
         views: {
           'support@support': component.name,
         },

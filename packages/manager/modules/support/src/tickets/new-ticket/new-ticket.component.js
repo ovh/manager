@@ -7,6 +7,7 @@ export default {
     categoryName: '<?',
     serviceName: '<?',
     serviceTypeName: '<?',
+    preFetchData: '<?',
     urls: '<',
   },
   controller,

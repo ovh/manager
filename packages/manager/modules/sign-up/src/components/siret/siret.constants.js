@@ -18,8 +18,11 @@ export const TRACKING_PREFIX = {
   modification: 'accountmodification::company-search::',
 };
 
+export const LEGAL_FORM_ENTERPRISE = 'corporation';
+
 export default {
   LEGAL_FORM,
   PREFIX_TRANSLATION_LEGAL_FORM,
   TRACKING_PREFIX,
+  LEGAL_FORM_ENTERPRISE,
 };

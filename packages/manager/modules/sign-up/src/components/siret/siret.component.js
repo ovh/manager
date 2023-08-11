@@ -14,5 +14,6 @@ export default {
     onFieldError: '<?',
     mode: '<',
     fieldToFocus: '<',
+    isIndianSubsidiary: '<?',
   },
 };

@@ -762,5 +762,7 @@
   "signup_field_add_companyNationalIdentificationNumber_siret_success": "Your update has been processed.",
   "signup_enum_phoneType_landline": "Landline",
   "signup_enum_phoneType_mobile": "Mobile",
-  "signup_field_smsConsent": "I agree to receive SMS messages regarding OVHcloud news and commercial offers"
+  "signup_field_smsConsent": "I agree to receive SMS messages regarding OVHcloud news and commercial offers",
+  "signup_information_banner_for_indian_subsidiary": "To modify your account information, please contact our customer support team by ",
+  "signup_information_banner_link_for_indian_subsidiary": "clicking here."
 }
