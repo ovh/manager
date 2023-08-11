@@ -8,6 +8,7 @@ export default {
     goToKvmOrder: '<',
     handleError: '<',
     handleSuccess: '<',
+    trackingPrefix: '<',
   },
   template,
 };
