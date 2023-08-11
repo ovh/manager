@@ -237,10 +237,20 @@ export default class AdditionalIpController {
     return this.createFloatingIp();
   }
 
+  static checkInstanceWithIpAddressV4(instance) {
+    return filter(
+      instance.ipAddresses,
+      (network) => network.type === 'private' && network.version === 4,
+    )?.length;
+  }
+
   filterInstances(regionName) {
     if (this.selectedIpType.name === IP_TYPE_ENUM.FLOATING) {
       this.filteredInstances = filter(this.floatingIpInstances, (instance) => {
-        return instance.region === regionName;
+        return (
+          instance.region === regionName &&
+          AdditionalIpController.checkInstanceWithIpAddressV4(instance)
+        );
       });
     } else {
       const country = this.ip.region?.name?.toLowerCase();
