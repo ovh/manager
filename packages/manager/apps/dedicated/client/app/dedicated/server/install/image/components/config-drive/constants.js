@@ -1,5 +1,5 @@
 export const DOCUMENTATION_LINK =
-  'https://cloudinit.readthedocs.io/en/latest/topics/datasources/configdrive.html';
+  'https://cloudinit.readthedocs.io/en/latest/reference/datasources/configdrive.html';
 
 export const SUPPORTED_SSH_KEY_FORMATS = [
   {
