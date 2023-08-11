@@ -7,5 +7,5 @@
   "pci_projects_project_sshKeys_add_name": "Nome",
   "pci_projects_project_sshKeys_add_key": "Chave",
   "pci_projects_project_sshKeys_add_key_description": "Introduza a sua chave",
-  "pci_projects_project_sshKeys_add_infos": "São aceites as chaves SSH RSA, ECDSA e ED25519."
+  "pci_projects_project_sshKeys_add_infos": "As chaves SSH de tipo RSA, ECDSA e ED25519 são aceites."
 }

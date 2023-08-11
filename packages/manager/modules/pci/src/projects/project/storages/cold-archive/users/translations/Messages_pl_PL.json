@@ -16,5 +16,5 @@
   "pci_projects_project_storages_containers_users_import_error_message": "Wystąpił błąd podczas pobierania pliku JSON powiązanego z użytkownikiem: {{message}}",
   "pci_projects_project_storages_containers_users_show_secret_key_success": "Tajny klucz dla Twojego użytkownika {{user}} to {{secret}}.",
   "pci_projects_project_storages_containers_users_add_success_field_secret_key": "Twój tajny klucz S3:",
-  "pci_projects_project_storages_containers_users_show_secret_key_error": "Wystąpił błąd podczas pobierania tajnego klucza użytkownika {{ user }}: {{ message }}"
+  "pci_projects_project_storages_containers_users_show_secret_key_error": "Wystąpił błąd podczas pobierania tajnego klucza użytkownika {{user}}: {{message}}"
 }
