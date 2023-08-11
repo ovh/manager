@@ -762,5 +762,7 @@
   "signup_enum_IN_area_IN-UT": "Uttarakhand",
   "signup_enum_IN_area_IN-WB": "West Bengal",
   "signup_enum_phoneType_landline": "Fixe",
-  "signup_enum_phoneType_mobile": "Mobile"
+  "signup_enum_phoneType_mobile": "Mobile",
+  "signup_information_banner_for_indian_subsidiary": "Pour modifier des informations relatives à votre compte, veuillez contacter notre assistance client en ",
+  "signup_information_banner_link_for_indian_subsidiary": "cliquant ici."
 }
