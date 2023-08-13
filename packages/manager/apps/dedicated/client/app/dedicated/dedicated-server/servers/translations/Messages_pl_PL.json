@@ -13,12 +13,12 @@
   "dedicated_servers_installation_ovhcloud_template_wizard_message": "nie będzie już można uruchomić ponownej instalacji {{osDescription}} na Twoim serwerze dedykowanym. Będziesz mógł korzystać z serwera dedykowanego z zainstalowanym wcześniej systemem operacyjnym lub ponownie zainstalować serwer dedykowany, ale z nowszym systemem operacyjnym.",
   "dedicated_servers_installation_customer_template_wizard_message": "nie będzie już można uruchomić ponownej instalacji {{osDescription}} na Twoim serwerze dedykowanym. W związku z tym Twój szablon {{customerTemplateName}} zostanie usunięty. Będziesz mógł korzystać z serwera dedykowanego z zainstalowanym wcześniej systemem operacyjnym lub ponownie zainstalować serwer dedykowany, ale z nowszym systemem operacyjnym.",
   "server_configuration_installation_no_public_network": "Ponieważ konfiguracja sieci zastosowana na Twoim serwerze nie umożliwia dostępu do sieci publicznej, nie można na nim zainstalować ani ponownie zainstalować systemu operacyjnego. Aby odblokować tę operację, zmień konfigurację sieci w zakładce „interfejsy sieciowe”.",
-  "dedicated_servers_id": "Id Serwer",
+  "dedicated_servers_id": "ID serwera",
   "dedicated_servers_ip": "Adres IP",
   "dedicated_servers_city": "Miasto",
   "dedicated_servers_rack": "Rack",
   "dedicated_servers_datacenter": "Centrum danych",
   "dedicated_servers_country": "Kraj",
-  "dedicated_servers_monitoring": "Status Monitoring",
+  "dedicated_servers_monitoring": "Stan monitoringu",
   "dedicated_servers_popover_details": "Szczegóły"
 }

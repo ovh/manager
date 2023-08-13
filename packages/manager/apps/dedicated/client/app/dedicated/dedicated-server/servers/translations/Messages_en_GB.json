@@ -13,7 +13,7 @@
   "dedicated_servers_installation_template_wizard_prefix_message": "From",
   "dedicated_servers_installation_ovhcloud_template_wizard_message": "onwards, it will no longer be possible to reinstall {{osDescription}} on your dedicated server. You can still use your dedicated server with the previously installed operating system, or reinstall your dedicated server with a more recent operating system.",
   "dedicated_servers_installation_customer_template_wizard_message": "onwards, it will no longer be possible to reinstall {{osName}} on your dedicated server, and your {{customerTemplateName}} template will be deleted as a result. You can still use your dedicated server with the previously installed operating system, or reinstall your dedicated server with a more recent operating system.",
-  "dedicated_servers_id": "Server Id",
+  "dedicated_servers_id": "Server ID",
   "dedicated_servers_ip": "IP address",
   "dedicated_servers_city": "City",
   "dedicated_servers_rack": "Rack",

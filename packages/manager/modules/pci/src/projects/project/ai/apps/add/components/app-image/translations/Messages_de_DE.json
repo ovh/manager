@@ -15,7 +15,7 @@
   "pci_app_submit_select_image_info_message_1": "Wenn sich Ihr Docker-Image in einer privaten Registry befindet, müssen Sie diese zuerst als autorisierte Registry hinzufügen.",
   "pci_app_submit_select_image_info_message_2": "Bitte beachten Sie, dass Ihr Image mit der Docker-Plattform {{architectures}} erstellt werden muss. Die Verwendung von Docker-Compose ist nicht möglich.",
   "pci_app_submit_select_image_info_message_3": "Stellen Sie sicher, dass der/die OVHcloud-Nutzer:in (42420:42420) über die erforderlichen Berechtigungen verfügt, um die Prozesse für Ihr Image zu starten.",
-  "pci_app_submit_select_image_info_custom_doc": "Weitere Informationen hierzu finden Sie in unserer Dokumentation.",
+  "pci_app_submit_select_image_info_custom_doc": "Weitere Informationen hierzu finden Sie in unserer Dokumentation",
   "pci_app_submit_select_image_name": "Zugriffspfad zu Ihrem Docker Image",
   "pci_app_submit_select_image_tips_help": "Angenommen werden Images, die in einem privaten oder öffentlichen Register gehostet werden (GitHub, GitLab, DockerHub...)",
   "pci_app_submit_select_image_portfolio": "Lernen Sie unser Angebot an gebrauchsfertigen AI-Anwendungen kennen",
