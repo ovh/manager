@@ -84,7 +84,7 @@
   "privateDatabase_configuration_wait_timeout": "Liczba sekund, podczas których serwer czeka zanim zamknie połączenie, gdy nie ma aktywności podczas połączenia zewnętrznego.",
   "privateDatabase_configuration_field_autocommit": "Określa, czy transakcje SQL są wykonywane automatycznie czy nie.",
   "privateDatabase_configuration_field_event_scheduler": "Pozwala aktywować wykonywanie zaplanowanych zapytań bezpośrednio na serwerze MySQL.",
-  "privateDatabase_configuration_field_innodb_buffer_pool_size": "Wybór rozmiaru pamięci buforowej (w megabajtach) Nie może przekraczać 50% pamięci RAM.",
+  "privateDatabase_configuration_field_innodb_buffer_pool_size": "Wybierz rozmiar buforu (w MB). Nie może przekroczyć 50% pamięci RAM.",
   "privateDatabase_configuration_field_interactive_timeout": "Czas (w sekundach) oczekiwania serwera na działanie w interaktywnym połączeniu przed zamknięciem połączenia.",
   "privateDatabase_configuration_field_max_allowed_packet": "Maksymalny rozmiar pakietów (w MB).",
   "privateDatabase_configuration_field_max_connections": "Liczba autoryzowanych jednoczesnych połączeń w Private SQL.",

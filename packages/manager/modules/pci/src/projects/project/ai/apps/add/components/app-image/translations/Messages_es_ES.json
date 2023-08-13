@@ -15,7 +15,7 @@
   "pci_app_submit_select_image_info_message_1": "Si su imagen Docker está en un registro privado, asegúrese de añadirla previamente como registro autorizado.",
   "pci_app_submit_select_image_info_message_2": "Tenga en cuenta que la imagen debe construirse con la plataforma Docker {{architectures}}. No es posible utilizar Docker Compose.",
   "pci_app_submit_select_image_info_message_3": "Asegúrese de que el usuario de OVHcloud (42420:42420) tiene los permisos necesarios para lanzar los procesos de su imagen.",
-  "pci_app_submit_select_image_info_custom_doc": "Para más información, consulte nuestra documentación.",
+  "pci_app_submit_select_image_info_custom_doc": "Para más información, consulte nuestra documentación",
   "pci_app_submit_select_image_name": "Ruta de acceso a su imagen Docker",
   "pci_app_submit_select_image_tips_help": "Se aceptan las imágenes alojadas en un registro público o privado (GitHub, GitLab, DockerHub, etc.).",
   "pci_app_submit_select_image_portfolio": "Descubra nuestra cartera de aplicaciones AI listas para usar",
