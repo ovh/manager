@@ -13,7 +13,7 @@
   "dedicated_servers_installation_template_wizard_prefix_message": "A partir de",
   "dedicated_servers_installation_ovhcloud_template_wizard_message": "já não será possível iniciar uma reinstalação de {{ osDescription }} no seu servidor dedicado. Poderá continuar a utilizar o seu servidor dedicado com o sistema operativo anteriormente instalado, ou então reinstalar o servidor dedicado com um sistema operativo mais recente.",
   "dedicated_servers_installation_customer_template_wizard_message": "já não será possível iniciar uma reinstalação de {{ osName }} no seu servidor dedicado, pelo que o seu template {{ customerTemplateName }} será eliminado. Poderá continuar a utilizar o seu servidor dedicado com o sistema operativo anteriormente instalado, ou então reinstalar o servidor dedicado com um sistema operativo mais recente.",
-  "dedicated_servers_id": "Id do Servidor",
+  "dedicated_servers_id": "ID do servidor",
   "dedicated_servers_ip": "Endereço IP",
   "dedicated_servers_city": "Cidade",
   "dedicated_servers_rack": "Rack",

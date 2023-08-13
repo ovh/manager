@@ -84,7 +84,7 @@
   "privateDatabase_configuration_wait_timeout": "The number of seconds of inactivity during an external connection, after which the server closes the connection.    ",
   "privateDatabase_configuration_field_autocommit": "Defines whether SQL transactions are automatically submitted or not.",
   "privateDatabase_configuration_field_event_scheduler": "Is used to trigger the execution of requests programmed directly on the MySQL server.",
-  "privateDatabase_configuration_field_innodb_buffer_pool_size": "The selected buffer memory size (in megabytes). Cannot exceed 50% of RAM.",
+  "privateDatabase_configuration_field_innodb_buffer_pool_size": "Choice of buffer size (in megabytes). Cannot exceed 50% of RAM.",
   "privateDatabase_configuration_field_interactive_timeout": "Number of seconds for which the server will wait for activity on an interactive connection before closing the connection.",
   "privateDatabase_configuration_field_max_allowed_packet": "Maximum packet size (in megabytes).",
   "privateDatabase_configuration_field_max_connections": "Number of concurrent connections authorised on Private SQL.",
