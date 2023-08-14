@@ -53,5 +53,6 @@
   "billing_services_actions_menu_resiliate_my_engagement": "Cancel subscription",
   "billing_services_actions_menu_change_owner": "Change owner",
   "billing_services_actions_menu_configuration_update_owner": "Refresh holder information",
-  "billing_services_domain_contact_owner": "Holder"
+  "billing_services_domain_contact_owner": "Holder",
+  "billing_services_actions_menu_change_offer": "Switch offer"
 }

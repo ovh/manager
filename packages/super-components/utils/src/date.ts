@@ -1,5 +1,7 @@
-// Utility function to format a date
-export default function formatDate(
+/**
+ * Format date string
+ */
+export function formatDate(
   dateString: string,
   language: string | undefined,
 ): string {
@@ -10,3 +12,5 @@ export default function formatDate(
     day: 'numeric',
   });
 }
+
+export default formatDate;

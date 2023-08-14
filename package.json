@@ -47,7 +47,8 @@
     "test:playwright:run": "lerna run test:e2e:script --concurrency 1"
   },
   "resolutions": {
-    "flatpickr": "4.6.9"
+    "flatpickr": "4.6.9",
+    "graphql": "16.6.0"
   },
   "devDependencies": {
     "@babel/helper-string-parser": "^7.18.10",

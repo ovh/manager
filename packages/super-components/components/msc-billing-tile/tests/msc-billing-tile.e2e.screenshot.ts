@@ -1,30 +1,37 @@
 import { HTMLStencilElement } from '@stencil/core/internal';
 import { setupE2eTest } from './setup';
 
-jest.mock('@ovh-ux/manager-core-api', () => ({
-  v6: {
-    get: jest.fn(() => Promise.resolve({})),
-  },
-}));
-
 describe('screenshot:msc-billing-tile', () => {
   describe('screenshots', () => {
     [
       {
-        language: 'fr-FR',
-        servicePath: 'vps/vps-0baa4fcf.vps.ovh.net',
-        offer: 'vps-0baa4fcf.vps.ovh.net',
+        testCase: 'english language',
+        language: 'en-GB',
+        servicePath: 'vps/vps-00000000.vps.ovh.net',
       },
       {
-        language: 'en-GB',
-        servicePath: 'vps/vps-0baa4fcf.vps.ovh.net',
-        offer: 'vps-0baa4fcf.vps.ovh.net',
+        testCase: 'Offer without menu',
+        servicePath: 'emails/domain/domain-test.ovh',
+      },
+      {
+        testCase: 'Offer and a menu to change offer',
+        servicePath: 'hosting/web/abcdef.test.hosting.ovh.net',
+      },
+      {
+        testCase: 'Delete at expiration',
+        servicePath: 'vps/vps-99999999.vps.ovh.net',
+      },
+      {
+        testCase: 'Expired service',
+        servicePath: 'vps/vps-33333333.vps.ovh.net',
+      },
+      {
+        testCase: 'Contact list with owner',
+        servicePath: 'domain/domain-test.ovh',
       },
     ].forEach((attributes) => {
-      it([JSON.stringify(attributes)].join(', '), async () => {
-        const { page } = await setupE2eTest({
-          attributes,
-        });
+      it(attributes.testCase, async () => {
+        const { page } = await setupE2eTest(attributes);
         await page.waitForChanges();
 
         await page.evaluate(async () => {

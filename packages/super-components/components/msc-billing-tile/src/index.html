@@ -10,61 +10,43 @@
         <link rel="stylesheet" href="/build/msc-billing-tile.css" />
     </head>
     <body>
-        <section
-            style="
-                display: grid;
-                grid-gap: 30px;
-                grid-template-columns: repeat(3, 1fr);
-            "
-        >
+        <section style="display: grid; grid-gap: 30px; grid-template-columns: repeat(2, 1fr);" >
             <!-- NAS-HA service -->
-            <msc-billing-tile
-                service-path="dedicated/nasha/zpool-128894"
-                offer="zpool-128894"
-                data-tracking="home:dashboard:tuto"
-            >
-            </msc-billing-tile>
+            <msc-billing-tile service-path="dedicated/nasha/zpool-111111"></msc-billing-tile>
 
             <!-- VPS service -->
             <msc-billing-tile
-                service-path="vps/vps-0baa4fcf.vps.ovh.net"
-                offer="vps-0baa4fcf.vps.ovh.net"
+                service-path="vps/vps-00000000.vps.ovh.net"
                 language="en-GB"
-                data-tracking="home:dashboard:product"
-            >
-            </msc-billing-tile>
+            ></msc-billing-tile>
 
             <!-- domain name -->
-            <msc-billing-tile
-                service-path="domain/agora3.ovh"
-                offer="agora3.ovh"
-                data-tracking="home:dashboard:product"
-            >
-            </msc-billing-tile>
+            <msc-billing-tile service-path="domain/domain-test.ovh"></msc-billing-tile>
 
             <!-- VPS Cancelled service / Ended -->
             <msc-billing-tile
-                service-path="vps/vps-37eb1a5a.vps.ovh.net"
-                offer="vps-37eb1a5a.vps.ovh.net"
-                data-tracking="home:dashboard:tuto"
+                service-path="vps/vps-33333333.vps.ovh.net"
                 language="en-GB"
-            >
-            </msc-billing-tile>
+            ></msc-billing-tile>
 
             <!-- VPS Cancellation requested / Ends -->
             <msc-billing-tile
-                service-path="vps/vps-9a706163.vps.ovh.net"
-                offer="vps-9a706163.vps.ovh.net"
-                data-tracking="home:dashboard:tuto"
+                service-path="vps/vps-99999999.vps.ovh.net"
                 language="en-GB"
-            >
-            </msc-billing-tile>
+            ></msc-billing-tile>
+
+            <!-- Email example -->
+            <msc-billing-tile service-path="emails/domain/domain-test.ovh"></msc-billing-tile>
+
+            <!-- Hosting web -->
+            <msc-billing-tile service-path="hosting/web/abcdef.test.hosting.ovh.net"></msc-billing-tile>
         </section>
         <script type="module">
             !window.ods &&
                 (window.ods = { config: { logging: { active: true } } });
+            !window.process &&
+                (window.process = { env: { NODE_ENV: 'development' } });
         </script>
-
         <script type="module" src="/build/msc-billing-tile.esm.js"></script>
         <script nomodule src="/build/msc-billing-tile.js"></script>
     </body>

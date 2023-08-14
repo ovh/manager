@@ -1,13 +1,39 @@
-.menu-button {
-  margin-left: 340px;
+.menu {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  right: 10px;
+  align-items: flex-end;
+  top: 50%;
 
-  .tooltip {
-    background-color: white;
+  .triangle {
+    position: absolute;
+    right: 0;
+    top: -12px;
+    display: inline-block;
+    height: 0;
+    width: 0;
+    border-right: 9px solid transparent;
+    border-bottom: 12px solid white;
+    border-left: 9px solid transparent;
+    margin-right: 7px;
   }
 
-  .tooltiptext {
-    width: 300px;
-    display: grid;
+  .tooltip {
+    position: relative;
+    filter: drop-shadow(0px 0px 5px #e7e8f6);
+    border-radius: 10px;
+    border: 1px solid white;
+    background-color: white;
+    z-index: 1;
+    padding: 5px 15px;
+    display: none;
+    row-gap: 5px;
+    white-space: nowrap;
+    margin-top: 12px;
+
+    &.visible {
+      display: grid;
+    }
   }
 }

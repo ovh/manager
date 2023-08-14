@@ -12,19 +12,27 @@ import {
   OdsThemeTypographyLevel,
   OdsThemeTypographySize,
 } from '@ovhcloud/ods-theming';
-import { HTMLStencilElement } from '@stencil/core/internal';
-import { fetchLocaleStringsForComponent } from '../../../../utils/translation.utils';
-import formatDate from '../../../../utils/date.utils';
-import { fetchServiceId, fetchServiceDetails, fetchDomainOwner } from './Api';
-import ContactContent from './Contact';
-import RenewalContent from './Renewal';
-import CommitmentContent from './Commitment';
+import { HTMLStencilElement, Watch } from '@stencil/core/internal';
+import { fetchTranslation, formatDate } from '@ovhcloud/msc-utils';
+import { apiClient } from '@ovh-ux/manager-core-api';
+import {
+  ServiceDetails,
+  ServiceInfos,
+  Translations,
+} from './msc-billing.types';
 
 export interface IMscBillingTile {
-  offer?: string;
-  dataTracking?: string;
   language: string;
   servicePath: string;
+  commitmentDataTracking?: string;
+  changeOwnerDataTracking?: string;
+  updateOwnerDataTracking?: string;
+  subscriptionManagementDataTracking?: string;
+  renewLinkDataTracking?: string;
+  cancelResiliationDataTracking?: string;
+  manageRenewDataTracking?: string;
+  resiliateDataTracking?: string;
+  anticipateRenewDataTracking?: string;
 }
 
 @Component({
@@ -33,246 +41,181 @@ export interface IMscBillingTile {
   shadow: true,
 })
 export class MscBillingTile implements IMscBillingTile {
+  serviceName: string;
+
   @Element() host!: HTMLStencilElement;
 
-  /** Name of the offer */
-  @Prop() public offer?: string = '';
-
-  /** label sent to the tracking service */
-  @Prop() public dataTracking?: string = '';
-
-  /** language of the billing-tile, french default */
   @Prop() public language = 'fr-FR';
 
-  /** service path for the API */
-  @Prop() public servicePath = '';
+  @Prop() public servicePath: string;
 
-  @State() localStrings: { [key: string]: string };
+  @Prop() public commitmentDataTracking?: string = '';
 
-  @State() private tabIndex = 0;
+  @Prop() public changeOwnerDataTracking?: string;
 
-  @State() serviceId: string;
+  @Prop() public updateOwnerDataTracking?: string;
 
-  @State() creationDate: string;
+  @Prop() public subscriptionManagementDataTracking?: string;
 
-  @State() nextBillingDate: string;
+  @Prop() public renewLinkDataTracking?: string;
 
-  @State() contactAdmin: string;
+  @Prop() public cancelResiliationDataTracking?: string;
 
-  @State() contactBilling: string;
+  @Prop() public manageRenewDataTracking?: string;
 
-  @State() contactTech: string;
+  @Prop() public resiliateDataTracking?: string;
 
-  @State() contactProperty: string;
+  @Prop() public anticipateRenewDataTracking?: string;
 
-  @State() renewStatus: string;
+  @Prop() public changeOfferDataTracking?: string;
 
-  @State() commitmentStatus: string;
+  @State() localeStrings?: Translations;
 
-  @State() requestDate: string;
+  @State() serviceInfos?: ServiceInfos;
 
-  @State() whoisOwnerDomain: string;
+  @State() serviceDetails?: ServiceDetails;
+
+  @Watch('language')
+  async updateTranslations() {
+    fetchTranslation<Translations>(this.language).then((translations) => {
+      this.localeStrings = translations;
+    });
+  }
 
   async componentWillLoad() {
-    this.localStrings = await fetchLocaleStringsForComponent(this.language);
-    await fetchServiceId(this.servicePath).then((serviceData) => {
-      this.contactAdmin = serviceData.contactAdmin;
-      this.contactBilling = serviceData.contactBilling;
-      this.contactTech = serviceData.contactTech;
-      this.serviceId = serviceData.serviceId;
-      this.creationDate = formatDate(serviceData.creation, this.language);
-      if (serviceData.status === 'ok') {
-        if (serviceData.renew.deleteAtExpiration === true) {
-          // Red chip 'Cancellation requested', link in menu 'Stop cancellation of service'
-          this.renewStatus = 'deleteAtExpiration';
-        } else {
-          // service still active
-          if (
-            serviceData.renew.automatic === true &&
-            serviceData.renew.manualPayment === false
-          )
-            // Green chip 'Automatic renewal', link in menu 'Manage my commitment' and 'Cancel subscription'
-            this.renewStatus = 'automatic';
-          if (
-            serviceData.renew.automatic === false &&
-            serviceData.renew.manualPayment === true
-          )
-            // Yellow chip 'Manual renewal'
-            this.renewStatus = 'manualPayment';
-        }
-      }
-      if (serviceData.status === 'expired') {
-        // Red chip 'expired', link in menu 'Renew service'
-        this.renewStatus = 'expired';
-      }
+    this.updateTranslations();
+
+    apiClient.v6.get(`${this.servicePath}/serviceInfos`).then((response) => {
+      this.serviceInfos = response.data;
+      apiClient.v6
+        .get(`/services/${this.serviceInfos?.serviceId}`)
+        .then((responseDetails) => {
+          this.serviceDetails = responseDetails.data;
+        });
     });
-    await fetchServiceDetails(this.serviceId).then((serviceData) => {
-      this.nextBillingDate = formatDate(
-        serviceData.billing?.nextBillingDate,
-        this.language,
-      );
-      if (
-        serviceData.billing.engagement === null &&
-        !serviceData.billing.engagementRequest
-      ) {
-        // should be null if no commitment
-        // Red chip 'None', no link or link 'Commit'
-        this.commitmentStatus = 'none';
-      } else if (serviceData.billing.engagement?.endDate < new Date()) {
-        // Red chip 'Ended DATE', no link
-        this.commitmentStatus = 'ended';
-      } else if (serviceData.billing.engagement?.endDate >= new Date()) {
-        // No chip 'Renews on DATE', link 'Re-commit and get a discount'
-        this.commitmentStatus = 'renews';
-      } else if (serviceData.billing.engagementRequest) {
-        // No chip 'Your service commitment will begin from DATE'
-        this.commitmentStatus = 'requested';
-        this.requestDate = serviceData.billing.engagementRequest.requestDate;
-      } else if (serviceData.billing.expirationDate) {
-        // No chip 'Ends DATE'
-        this.commitmentStatus = 'ends';
-      }
-    });
-    if (this.getServiceType() === 'DOMAIN')
-      await fetchDomainOwner(this.getServiceName()).then((serviceData) => {
-        this.whoisOwnerDomain = serviceData.whoisOwner;
-      });
   }
 
-  getServiceName() {
-    const parts = this.servicePath.split('/');
-    return parts[parts.length - 1];
+  private getServiceName() {
+    return this.servicePath.substring(this.servicePath.lastIndexOf('/') + 1);
   }
 
-  getServiceType() {
-    const parts = this.servicePath.split('/');
-    parts.pop(); // Remove the service name
-    return parts.join('_').toUpperCase();
+  private getServiceType() {
+    return this.servicePath
+      .substring(
+        this.servicePath.startsWith('/') ? 1 : 0,
+        this.servicePath.lastIndexOf('/'),
+      )
+      .split('/')
+      .join('_')
+      .toUpperCase();
   }
 
-  render() {
-    const content = (
-      <osds-tile
-        class="msc-ods-tile"
-        color={OdsThemeColorIntent.default}
-        rounded
-      >
-        <div class="billing-tile-content">
-          <osds-text
-            class="tile-type"
-            level={OdsThemeTypographyLevel.heading}
-            size={OdsThemeTypographySize._300}
-            color={OdsThemeColorIntent.text}
-          >
-            {this.localStrings.manager_billing_subscription}
-          </osds-text>
-          {/* OFFER */}
-          {this.offer && (
-            <>
-              <osds-divider separator={true} />
-              <osds-text
-                class="tile-title"
-                level={OdsThemeTypographyLevel.heading}
-                size={OdsThemeTypographySize._200}
-                color={OdsThemeColorIntent.text}
-              >
-                {this.localStrings.manager_billing_subscription_offer}
-              </osds-text>
-              <osds-text
-                class="tile-description"
-                level={OdsThemeTypographyLevel.body}
-                size={OdsThemeTypographySize._200}
-                color={OdsThemeColorIntent.default}
-              >
-                {this.offer}
-              </osds-text>
-            </>
-          )}
-          {/* CREATION DATE */}
-          <osds-divider separator={true} />
-          <osds-text
-            class="tile-title"
-            level={OdsThemeTypographyLevel.heading}
-            size={OdsThemeTypographySize._200}
-            color={OdsThemeColorIntent.text}
-          >
-            {this.localStrings.manager_billing_subscription_creation}
-          </osds-text>
+  private getFormattedNextBillingDate() {
+    return this.serviceDetails
+      ? formatDate(this.serviceDetails.billing?.nextBillingDate, this.language)
+      : '';
+  }
+
+  private getCreationDateBlock() {
+    return (
+      <>
+        <osds-divider separator />
+        <osds-text
+          class="tile-title"
+          level={OdsThemeTypographyLevel.heading}
+          size={OdsThemeTypographySize._200}
+          color={OdsThemeColorIntent.text}
+        >
+          {this.localeStrings?.manager_billing_subscription_creation}
+        </osds-text>
+        {this.serviceInfos ? (
           <osds-text
             class="tile-description"
             level={OdsThemeTypographyLevel.body}
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.default}
           >
-            {this.creationDate}
+            {formatDate(this.serviceInfos.creation, this.language)}
           </osds-text>
-          {/* NEXT PAYMENT DATE */}
-          <osds-divider separator={true} />
-          <osds-text
-            class="tile-title"
-            level={OdsThemeTypographyLevel.heading}
-            size={OdsThemeTypographySize._200}
-            color={OdsThemeColorIntent.text}
-          >
-            {this.localStrings.manager_billing_subscription_next_due_date}
-          </osds-text>
-          {RenewalContent(
-            this.getServiceName(),
-            this.getServiceType(),
-            this.servicePath,
-            this.renewStatus,
-            this.localStrings,
-            this.nextBillingDate,
-            this.dataTracking,
-          )}
-          {/* COMMITMENT */}
-          <osds-divider separator={true} />
-          <osds-text
-            class="tile-title"
-            level={OdsThemeTypographyLevel.heading}
-            size={OdsThemeTypographySize._200}
-            color={OdsThemeColorIntent.text}
-          >
-            {this.localStrings.manager_billing_subscription_engagement}
-          </osds-text>
-          {CommitmentContent(
-            this.servicePath,
-            this.commitmentStatus,
-            this.localStrings,
-            this.language,
-            this.nextBillingDate,
-            this.requestDate,
-            this.dataTracking,
-          )}
-          {/* CONTACT */}
-          <osds-divider separator={true} />
-          <osds-text
-            class="tile-title"
-            level={OdsThemeTypographyLevel.heading}
-            size={OdsThemeTypographySize._200}
-            color={OdsThemeColorIntent.text}
-          >
-            {this.localStrings.manager_billing_subscription_contacts}
-          </osds-text>
-          <div>
-            {ContactContent(
-              this.getServiceName(),
-              this.getServiceType(),
-              this.localStrings,
-              this.contactAdmin,
-              this.contactBilling,
-              this.contactTech,
-              this.contactProperty,
-              this.whoisOwnerDomain,
-            )}
-          </div>
-        </div>
-      </osds-tile>
+        ) : (
+          <osds-skeleton />
+        )}
+      </>
     );
+  }
+
+  public render() {
+    if (!this.localeStrings) {
+      return (
+        <osds-tile rounded>
+          <osds-skeleton />
+        </osds-tile>
+      );
+    }
 
     return (
-      <Host tabIndex={this.tabIndex}>
-        <div class="msc-billing-tile-wrapper">{content}</div>
+      <Host>
+        <div class="msc-billing-tile-wrapper">
+          <osds-tile rounded>
+            <div class="billing-tile-content">
+              <osds-text
+                level={OdsThemeTypographyLevel.heading}
+                size={OdsThemeTypographySize._300}
+                color={OdsThemeColorIntent.text}
+              >
+                {this.localeStrings.manager_billing_subscription}
+              </osds-text>
+              {this.getCreationDateBlock()}
+              <msc-billing-offer
+                class="block"
+                serviceType={this.getServiceType()}
+                servicePath={this.servicePath}
+                serviceInfos={this.serviceInfos}
+                serviceDetails={this.serviceDetails}
+                localeStrings={this.localeStrings}
+                changeOfferDataTracking={this.changeOfferDataTracking}
+              />
+              <msc-billing-renewal
+                class="block"
+                serviceInfos={this.serviceInfos}
+                serviceDetails={this.serviceDetails}
+                localeStrings={this.localeStrings}
+                serviceName={this.getServiceName()}
+                serviceType={this.getServiceType()}
+                servicePath={this.servicePath}
+                nextBillingDate={this.getFormattedNextBillingDate()}
+                renewLinkDataTracking={this.renewLinkDataTracking}
+                cancelResiliationDataTracking={
+                  this.cancelResiliationDataTracking
+                }
+                manageRenewDataTracking={this.manageRenewDataTracking}
+                resiliateDataTracking={this.resiliateDataTracking}
+                anticipateRenewDataTracking={this.anticipateRenewDataTracking}
+              />
+              <msc-billing-commitment
+                class="block"
+                servicePath={this.servicePath}
+                serviceDetails={this.serviceDetails}
+                nextBillingDate={this.getFormattedNextBillingDate()}
+                language={this.language}
+                localeStrings={this.localeStrings}
+                commitmentDataTracking={this.commitmentDataTracking}
+              />
+              <msc-billing-contact
+                class="block"
+                serviceInfos={this.serviceInfos}
+                localeStrings={this.localeStrings}
+                serviceName={this.getServiceName()}
+                serviceType={this.getServiceType()}
+                changeOwnerDataTracking={this.changeOwnerDataTracking}
+                updateOwnerDataTracking={this.updateOwnerDataTracking}
+                subscriptionManagementDataTracking={
+                  this.subscriptionManagementDataTracking
+                }
+              />
+            </div>
+          </osds-tile>
+        </div>
       </Host>
     );
   }

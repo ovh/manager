@@ -34,8 +34,10 @@
     "@stencil/postcss": "^2.1.0",
     "@types/jest": "^27.0.3",
     "autoprefixer": "^10.4.13",
+    "axios-mock-adapter": "^1.21.5",
     "jest": "^27.0.3",
     "jest-cli": "^27.4.5",
+    "msw": "^1.2.3",
     "postcss": "^8.4.19",
     "postcss-nested": "^6.0.0",
     "puppeteer": "^10.0.0",
@@ -43,6 +45,7 @@
     "typescript": "~4.3.5"
   },
   "peerDependencies": {
+    "@ovhcloud/msc-utils": "^0.1.0",
     "@ovhcloud/ods-core": "^13.0.1",
     "@ovhcloud/ods-stencil": "^13.0.1",
     "@ovhcloud/ods-theme-blue-jeans": "^13.0.1",

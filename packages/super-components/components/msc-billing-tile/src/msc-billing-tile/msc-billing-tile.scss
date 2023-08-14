@@ -1,11 +1,13 @@
 .msc-billing-tile-wrapper {
   display: block;
   text-decoration: none;
+  padding: 2px;
 
   .billing-tile-content {
     display: flex;
     flex-direction: column;
     min-width: 420px;
+    padding: 2px;
 
     .tooltiplinks {
       display: inline-grid;
@@ -16,7 +18,7 @@
     }
   }
 
-  div {
-    padding: 2px;
+  .block {
+    position: relative;
   }
 }

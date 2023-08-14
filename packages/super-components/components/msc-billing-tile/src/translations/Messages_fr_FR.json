@@ -53,5 +53,6 @@
   "billing_services_actions_menu_commit_cancel": "Annuler la demande d'engagement",
   "billing_services_actions_menu_change_owner": "Changer de propriétaire",
   "billing_services_actions_menu_configuration_update_owner": "Actualiser les informations du propriétaire",
-  "billing_services_domain_contact_owner": "Propriétaire"
+  "billing_services_domain_contact_owner": "Propriétaire",
+  "billing_services_actions_menu_change_offer": "Changer d'offre"
 }

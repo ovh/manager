@@ -1,97 +1,81 @@
-import { createBillingTile } from './create-billing-tile';
-import {
-  vpsResponseUnified,
-  domainResponseUnified,
-} from '../tests/mockRequests';
-import * as TradFR from '../src/translations/Messages_fr_FR.json';
-import * as TradEN from '../src/translations/Messages_en_GB.json';
+import { setupWorker, rest } from 'msw';
+import tradFR from '../src/translations/Messages_fr_FR.json';
+import tradEN from '../src/translations/Messages_en_GB.json';
+import handlers from '../mock/handlers';
 
-const mockData = [
-  {
-    url: '/translations/Messages_fr_FR.json',
-    method: 'GET',
-    status: 200,
-    response: TradFR,
-  },
-  {
-    url: '/translations/Messages_en_GB.json',
-    method: 'GET',
-    status: 200,
-    response: TradEN,
-  },
-  {
-    url: '/engine/apiv6/vps/vps-0baa4fcf.vps.ovh.net/serviceInfos',
-    method: 'GET',
-    status: 200,
-    response: vpsResponseUnified,
-  },
-  {
-    url: '/engine/apiv6/services/118977335',
-    method: 'GET',
-    status: 200,
-    response: vpsResponseUnified,
-  },
-  {
-    url: '/engine/apiv6/domain/agora3.ovh/serviceInfos',
-    method: 'GET',
-    status: 200,
-    response: domainResponseUnified,
-  },
-  {
-    url: '/engine/apiv6/services/29162449',
-    method: 'GET',
-    status: 200,
-    response: domainResponseUnified,
-  },
-  {
-    url: '/engine/apiv6/domain/agora3.ovh',
-    method: 'GET',
-    status: 200,
-    response: domainResponseUnified,
-  },
-];
-
-const defaultLabels = {
-  dataTracking: 'home::dashboard::test',
-  servicePath: 'vps/vps-0baa4fcf.vps.ovh.net',
-  offer: 'vps-0baa4fcf.vps.ovh.net',
-};
+setupWorker(
+  ...handlers,
+  rest.get('/translations/Messages_fr_FR.json', (_, res, ctx) =>
+    res(ctx.json(tradFR), ctx.status(200)),
+  ),
+  rest.get('/translations/Messages_en_GB.json', (_, res, ctx) =>
+    res(ctx.json(tradEN), ctx.status(200)),
+  ),
+).start({ onUnhandledRequest: 'bypass' });
 
 export default {
   title: 'Components/Manager Billing Tile',
   tags: ['autodocs'],
-  render: ({ tileNumber = 1, ...args }) => `
+  render: ({
+    tileNumber = 1,
+    language,
+    servicePath,
+  }: {
+    tileNumber: number;
+    language: string;
+    servicePath: string;
+  }) => `
     <section style="display: grid; grid-gap: 30px; grid-template-columns: repeat(3, 1fr);">
       ${[...new Array(tileNumber)]
-        .map(() => createBillingTile(args))
+        .map(
+          () =>
+            `<msc-billing-tile
+              language="${language}"
+              service-path="${servicePath}"
+            />`,
+        )
         .join('\n')}
     </section>
   `,
   argTypes: {
-    language: { control: 'text', default: 'fr-FR' },
-    offer: { control: 'text', default: 'vps-0baa4fcf.vps.ovh.net' },
-    servicePath: { control: 'text', default: 'vps/vps-0baa4fcf.vps.ovh.net' },
-    dataTracking: { control: 'text', default: 'home::dashboard::test' },
-  },
-  parameters: {
-    mockData,
+    language: {
+      control: 'select',
+      options: ['fr-FR', 'en-GB'],
+      default: 'fr-FR',
+    },
+    servicePath: {
+      control: 'select',
+      options: [
+        'vps/vps-00000000.vps.ovh.net',
+        'dedicated/nasha/zpool-111111',
+        'domain/domain-test.ovh',
+        'vps/vps-33333333.vps.ovh.net',
+        'vps/vps-99999999.vps.ovh.net',
+        'emails/domain/domain-test.ovh',
+        'hosting/web/abcdef.test.hosting.ovh.net',
+      ],
+      default: 'vps/vps-00000000.vps.ovh.net',
+    },
   },
 };
 
 export const VPS = {
   args: {
-    dataTracking: 'home::dashboard::test',
-    servicePath: 'vps/vps-0baa4fcf.vps.ovh.net',
-    offer: 'vps-0baa4fcf.vps.ovh.net',
+    servicePath: 'vps/vps-00000000.vps.ovh.net',
     language: 'en-GB',
   },
 };
 
 export const Domain = {
   args: {
-    dataTracking: 'home::dashboard::test',
-    servicePath: 'domain/agora3.ovh',
-    offer: 'agora3.ovh',
+    servicePath: 'domain/domain-test.ovh',
     language: 'en-GB',
+  },
+};
+
+export const Emails = {
+  args: {
+    servicePath: 'emails/domain/domain-test.ovh',
+    language: 'fr-FR',
   },
 };
