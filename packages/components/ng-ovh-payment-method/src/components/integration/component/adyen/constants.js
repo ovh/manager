@@ -12,7 +12,7 @@ export const ADYEN_CONFIG = {
     paymentMethodsResponse: {
       paymentMethods: [
         {
-          brands: ['cartebancaire', 'mc', 'visa'],
+          brands: ['rupay'], // ToDo Only for testing
           details: [
             {
               key: 'encryptedCardNumber',

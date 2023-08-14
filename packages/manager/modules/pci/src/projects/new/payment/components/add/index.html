@@ -85,7 +85,7 @@
 
         <p>
             <small
-                data-ng-if="$ctrl.model.paymentMethod && !$ctrl.model.paymentMethod.type.isCreditCard()"
+                data-ng-if="$ctrl.model.paymentMethod && !$ctrl.model.paymentMethod.type.isCreditCard() && !$ctrl.model.paymentMethod.type.isRupayCard()"
                 data-translate="{{ 'pci_project_new_payment_method_add_info_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
                 data-translate-values="{ paymentMethodSection: $ctrl.paymentSectionHref }"
             >

@@ -165,10 +165,10 @@
                         </oui-spinner>
                     </div>
 
-                    <!--Continue project btn for CB (CREDIT_CARD)-->
+                    <!--Continue project btn for CB (CREDIT_CARD) or RuPay-->
                     <div
                         class="d-flex"
-                        data-ng-if="$ctrl.model.paymentMethod.type.isCreditCard()"
+                        data-ng-if="$ctrl.model.paymentMethod.type.isCreditCard() || $ctrl.model.paymentMethod.type.isRupayCard()"
                     >
                         <oui-button
                             variant="primary"
