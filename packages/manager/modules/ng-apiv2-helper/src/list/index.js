@@ -1,7 +1,6 @@
 import angular from 'angular';
 import angularTranslate from 'angular-translate';
 import '@ovh-ux/ui-kit';
-// import '@ovh-ux/ng-ovh-api-wrappers';
 
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import Apiv2Service from '../apiv2.service';
