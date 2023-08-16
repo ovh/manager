@@ -4,8 +4,9 @@ import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@uirouter/angularjs';
 import 'angular-translate';
+import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 
-import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { ApiV2ListHelper } from '../../ng-apiv2-helper/src';
 
 import dashboard from './dashboard';
 import onboarding from './onboarding';
@@ -19,9 +20,10 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
+    ngOvhUtils,
     onboarding,
     dashboard,
-    ListLayoutHelper.moduleName,
+    ApiV2ListHelper.moduleName,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
