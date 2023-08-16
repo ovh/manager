@@ -10,13 +10,18 @@ export default class VrackServicesCtrl {
   }
 
   $onInit() {
-    this.informations.data = this.serviceInformations;
+    this.informations.data = this.resource;
+
     this.informations.data.statusCode = VrackServicesCtrl.initializeStatusCode(
-      this.informations.data.status,
+      this.informations.data.currentState.productStatus,
     );
-    this.informations.data.creationDateFormatted = this.formatDate(
-      this.informations.data.creationDate,
+    this.informations.data.creationDateFormatted =
+      this.informations.data.createdAt &&
+      this.formatDate(this.informations.data.createdAt);
+    [this.informations.data.zoneCode] = this.resource.currentState.zone.split(
+      '-',
     );
+
     this.informations.loading = false;
   }
 
@@ -42,8 +47,4 @@ export default class VrackServicesCtrl {
     });
     return formatter.format(new Date(date));
   }
-
-  // TODO: when api is working
-  // goToVRack(vrack) {
-  // }
 }

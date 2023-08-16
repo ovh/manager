@@ -3,12 +3,13 @@ import template from './template.html';
 
 export default {
   bindings: {
-    serviceName: '<',
+    resourceId: '<',
     currentActiveLink: '<',
     dashboardLink: '<',
     subnetLink: '<',
     endpointsLink: '<',
-    serviceInformations: '<',
+    resource: '<',
+    vrackLink: '<',
   },
   controller,
   template,

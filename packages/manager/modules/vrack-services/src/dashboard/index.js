@@ -7,7 +7,7 @@ const moduleName = 'ovhManagerVrackServicesDashboardLazyLoading';
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('vrack-services.dashboard.**', {
-      url: '/:serviceName',
+      url: '/:resourceId',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
