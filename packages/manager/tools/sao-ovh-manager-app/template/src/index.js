@@ -6,14 +6,17 @@ import 'regenerator-runtime/runtime';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import { defineApplicationVersion } from '@ovh-ux/request-tagger';
 
-import { useShellClient } from '@ovh-ux/shell';
+import { initShellClient } from '@ovh-ux/shell';
 
 defineApplicationVersion(__VERSION__);
 
-useShellClient('<%= name %>').then((shellClient) => {
+initShellClient('<%= name %>').then((shellClient) => {
   if (!isTopLevelApplication()) {
     shellClient.ux.startProgress();
   }
+  shellClient.i18n.onLocaleChange(() => {
+    window.top.location.reload();
+  });
   shellClient.environment.getEnvironment().then((environment) => {
     environment.setVersion(__VERSION__);
     import(`./config-${environment.getRegion()}`)
