@@ -7,16 +7,10 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      goBack: /* @ngInject */ /* @ngInject */ ($state, serverName) => () =>
-        $state.go('app.dedicated-server.server.ipmi', {
-          productId: serverName,
-        }),
+      goBack: /* @ngInject */ (goToServerDetails) => goToServerDetails,
       user: /* @ngInject */ (currentUser) => currentUser,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('server_configuration_impi_order_kvm'),
-    },
-    atInternet: {
-      rename: 'dedicated::dedicated-server::server::ipmi::order-kvm',
     },
   });
 };

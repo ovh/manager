@@ -84,10 +84,20 @@ export default class BmServerComponentsIpmiController {
 
           // load kvm features if IPMI is not activated
           if (!this.ipmi.isActivated()) {
-            return this.IpmiService.getKvmFeatures(this.serviceName)
-              .catch(() => ({}))
-              .then((kvmFeatures) => {
-                const canOrderKvm = !Object.keys(kvmFeatures).length;
+            return this.$q
+              .all({
+                kvmFeatures: this.IpmiService.getKvmFeatures(
+                  this.serviceName,
+                ).catch((error) => {
+                  this.handleError(
+                    error,
+                    this.$translate.instant('server_configuration_kvm_error'),
+                  );
+                  return {};
+                }),
+                canOrderKvm: this.IpmiService.canOrderKvm(this.serviceName),
+              })
+              .then(({ kvmFeatures, canOrderKvm }) => {
                 this.kvm = new Kvm(kvmFeatures, canOrderKvm);
               });
           }
@@ -775,7 +785,6 @@ export default class BmServerComponentsIpmiController {
 
   orderKvm() {
     if (isFunction(this.onKvmOrder)) {
-      this.trackClick('order-kvm');
       this.onKvmOrder();
     }
   }
