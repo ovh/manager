@@ -17,10 +17,10 @@
   "iam_create_resource_group_form_resources_heading": "Recursos",
   "iam_create_resource_group_header_description": "Seleccione los recursos que desee para crear el grupo de recursos.",
   "iam_create_resource_group_header_guide_text": "Guías",
-  "iam_create_resource_group_header_heading_create": "Crear grupo de recursos",
+  "iam_create_resource_group_header_heading_create": "Crear un grupo de recursos",
   "iam_create_resource_group_header_heading_edit": "Modificar grupo de recursos",
-  "iam_create_resource_group_submit_create": "Crear grupo de recursos",
-  "iam_create_resource_group_submit_edit": "Modificar grupo de recursos",
+  "iam_create_resource_group_submit_create": "Crear el grupo de recursos",
+  "iam_create_resource_group_submit_edit": "Modificar el grupo de recursos",
   "iam_create_resource_group_success_create": "El grupo de recursos {{ name }} se ha creado correctamente",
   "iam_create_resource_group_success_edit": "El grupo de recursos {{ name }} se ha modificado correctamente"
 }
