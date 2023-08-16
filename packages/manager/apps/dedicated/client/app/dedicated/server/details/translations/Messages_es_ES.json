@@ -153,7 +153,7 @@
   "server_tab_cloud_backup": "Backup Storage",
   "server_tab_ftp_backup": "Backup Storage",
   "server_tab_task": "Tareas",
-  "server_tab_ipmi": "IPMI / KVM",
+  "server_tab_ipmi": "IPMI",
   "server_tab_dashboard": "Estado del servidor",
   "server_tab_dashboard_install_progress": "El sistema operativo se está desplegando. Esta operación puede tardar unos diez minutos. Al finalizar la instalación, el servidor se reiniciará en los discos seleccionados.",
   "server_tab_dashboard_install_progress_link": "Haga clic aquí para consultar el progreso.",
