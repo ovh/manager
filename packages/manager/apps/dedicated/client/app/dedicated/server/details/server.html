@@ -99,7 +99,7 @@
         ></oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.getTabItemUrl('ipmi') }}"
-            active="$ctrl.getTabItemUrl('ipmi') === $ctrl.currentActiveLink() || $ctrl.getTabItemUrl('order-kvm') === $ctrl.currentActiveLink()"
+            active="$ctrl.getTabItemUrl('ipmi') === $ctrl.currentActiveLink()"
             data-disabled="server.isExpired"
             ><span data-translate="server_tab_ipmi"></span
         ></oui-header-tabs-item>

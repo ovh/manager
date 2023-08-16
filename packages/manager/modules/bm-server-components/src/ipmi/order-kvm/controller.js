@@ -1,80 +1,84 @@
 import isFunction from 'lodash/isFunction';
-import { KVM_ORDER_TRACKING_PREFIX } from '../constants';
+import set from 'lodash/set';
 
 export default class BmServerComponentsOrderKvmController {
   /* @ngInject */
-  constructor($translate, $window, IpmiService, atInternet) {
+  constructor($translate, $window, IpmiService) {
     this.$translate = $translate;
     this.$window = $window;
     this.IpmiService = IpmiService;
-    this.atInternet = atInternet;
   }
 
   $onInit() {
     this.serviceName = this.server.name;
-    const [datacenter] = this.server.datacenter.split('_');
-    this.datacenter = datacenter.toLowerCase();
-    this.contractAgreement = false;
-    this.pendingOrder = false;
-    this.prepareKvmCart();
+    this.order = {};
+    this.loaders = {
+      details: false,
+      validation: false,
+    };
+    this.loadOptionDetails();
   }
 
-  prepareKvmCart() {
-    this.loading = true;
-    this.IpmiService.prepareKvmCart(this.serviceName, this.datacenter)
-      .then(
-        ({
-          cartId,
-          contracts,
-          prices: {
-            withTax: { text },
-          },
-        }) => {
-          this.cartId = cartId;
-          this.contracts = contracts;
-          this.contractAgreement = contracts?.length === 0;
-          this.kvmPrice = text;
-        },
+  loadOptionDetails() {
+    this.loaders.details = true;
+    return this.IpmiService.getKvmOrderDurations(this.serviceName)
+      .then((durations) => {
+        return this.IpmiService.getKvmOrderDetails(
+          this.serviceName,
+          durations,
+        ).then((orderDetails) => {
+          this.order.details = orderDetails.map((detail, i) => {
+            set(detail, 'duration', durations[i]);
+            return detail;
+          });
+          return this.order.details;
+        });
+      })
+      .catch((error) =>
+        this.handleError(
+          error,
+          this.$translate.instant('server_configuration_kvm_order_error'),
+        ),
       )
-      .catch((error) => this.displayKvmOrderError(error))
       .finally(() => {
-        this.loading = false;
+        this.loaders.details = false;
       });
   }
 
-  trackBanner(bannerType) {
-    this.atInternet.trackPage({
-      name: `${KVM_ORDER_TRACKING_PREFIX}-${bannerType}`,
-    });
-  }
-
-  displayKvmOrderError(error) {
-    this.contractAgreement = false;
-    return this.handleError(
-      error,
-      this.$translate.instant('server_configuration_kvm_order_error'),
-    );
+  loadDetail() {
+    this.orderDetail =
+      this.order.details.filter(
+        (detail) => detail.duration === this.order.durationSelected,
+      )[0] || {};
   }
 
   orderKvm() {
-    this.pendingOrder = true;
-    this.atInternet.trackClick({
-      name: `${KVM_ORDER_TRACKING_PREFIX}::confirm`,
-      type: 'action',
-    });
-    this.IpmiService.orderKvm(this.cartId)
-      .then(({ url, orderId }) => {
+    this.loaders.validation = true;
+    return this.IpmiService.postKvmOrderInfos(
+      this.serviceName,
+      this.order.durationSelected,
+    )
+      .then((data) => {
         this.handleSuccess(
           this.$translate.instant(
             'server_configuration_kvm_order_finish_success',
+            {
+              orderUrl: data.url,
+              orderId: data.orderId,
+            },
           ),
         );
-        this.$window.open(url, '_blank', 'noopener');
-        this.orderId = orderId;
+        this.$window.open(data.url, '_blank', 'noopener');
+        return data;
       })
-      .catch((error) => this.displayKvmOrderError(error))
+      .catch((error) =>
+        this.handleError(
+          error,
+          this.$translate.instant('server_configuration_kvm_order_error'),
+        ),
+      )
       .finally(() => {
-        this.pendingOrder = false;
+        this.loaders.validation = false;
       });
   }
 
@@ -91,7 +95,6 @@ export default class BmServerComponentsOrderKvmController {
   }
 
   handleError(error, message = null) {
-    this.trackBanner('error');
     if (isFunction(this.onError)) {
       this.onError({
         error: { message, data: error },
@@ -100,7 +103,6 @@ export default class BmServerComponentsOrderKvmController {
   }
 
   handleSuccess(message) {
-    this.trackBanner('success');
     if (isFunction(this.onSuccess)) {
       this.onSuccess({
         message,

@@ -21,13 +21,6 @@ export const getIpmiGuideUrl = (subsidiary) => {
   return IPMI_GUIGES[subsidiary] || IPMI_GUIGES.DEFAULT;
 };
 
-export const KVM_PLAN_CODE = 'usb-kvm-ip';
-
-export const KVM_ORDER_TRACKING_PREFIX =
-  'dedicated::dedicated-server::server::ipmi::order-kvm';
-
 export default {
   getIpmiGuideUrl,
-  KVM_PLAN_CODE,
-  KVM_TRACKING_PREFIX: KVM_ORDER_TRACKING_PREFIX,
 };
