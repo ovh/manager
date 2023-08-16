@@ -1,5 +1,5 @@
 {
   "iam_advanced_mode_switch_toggle_label": "Modo avanzado",
-  "iam_advanced_mode_switch_popover": "El modo avanzado le permite mostrar sus políticas en «read only». Estas políticas no se pueden modificar ni suprimir.",
+  "iam_advanced_mode_switch_popover": "El modo avanzado le permite mostrar sus políticas en «read only». Estas políticas no se pueden modificar ni eliminar.",
   "iam_advanced_mode_switch_error": "Se ha producido un error: {{ message }}"
 }

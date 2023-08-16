@@ -13,7 +13,7 @@
   "iam_create_policy_form_actions_heading": "Acciones",
   "iam_create_policy_form_name_error_pattern": "El nombre de la política solo puede contener caracteres alfanuméricos y los siguientes símbolos: guiones («-»), barras («/»), guiones bajos («_») y símbolo de más («+»). ",
   "iam_create_policy_form_name_heading": "Nombre de la política",
-  "iam_create_policy_form_resource_groups_create": "Crear grupo de recursos",
+  "iam_create_policy_form_resource_groups_create": "Crear un grupo de recursos",
   "iam_create_policy_form_resource_groups_heading": "Grupos de recursos",
   "iam_create_policy_form_resource_types_description": "Seleccione el tipo de producto que corresponde a las acciones y recursos que desea agregar.",
   "iam_create_policy_form_resource_types_error_required": "Seleccione uno o más tipos de producto.",
