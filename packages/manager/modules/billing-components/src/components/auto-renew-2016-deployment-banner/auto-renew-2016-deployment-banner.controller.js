@@ -8,7 +8,6 @@ export default class AutoRenew2016DeploymentBannerController {
 
   $onInit() {
     this.FAQ_LINK =
-      FAQ_LINK[this.coreConfig.getUserLanguage().toUpperCase()] ||
-      FAQ_LINK.DEFAULT;
+      FAQ_LINK[this.coreConfig.getUser().ovhSubsidiary] || FAQ_LINK.DEFAULT;
   }
 }

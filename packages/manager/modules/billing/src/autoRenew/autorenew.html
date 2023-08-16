@@ -40,6 +40,11 @@
 
 <div data-ui-view>
     <div data-ovh-alert></div>
+
+    <ovh-manager-auto-renew-2016-deployment-banner
+        data-ng-if="$ctrl.canDisplayAutoRenew2016DeploymentBanner()"
+    ></ovh-manager-auto-renew-2016-deployment-banner>
+
     <oui-message
         class="mb-4"
         data-ng-if="$ctrl.shouldDisplayAutoRenewActionRequired()"
@@ -63,10 +68,6 @@
             </a>
         </p>
     </oui-message>
-
-    <ovh-manager-auto-renew-2016-deployment-banner
-        data-ng-if="$ctrl.canDisplayAutoRenew2016DeploymentBanner()"
-    ></ovh-manager-auto-renew-2016-deployment-banner>
 
     <div data-ng-if="$ctrl.nics.length > 1">
         <label
