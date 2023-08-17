@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.7.0...@ovh-ux/sign-up@2.8.0) (2023-08-17)
+
+
+### Features
+
+* **dedicated.account:** customer account changes ([#9728](https://github.com/ovh/manager/issues/9728)) ([bc9d697](https://github.com/ovh/manager/commit/bc9d6972a812057e19b004eea440960492671122))
+
+
+
+
+
 # [2.7.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.6.4...@ovh-ux/sign-up@2.7.0) (2023-08-10)
 
 

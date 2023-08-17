@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-overthebox-app",
-  "version": "5.9.21",
+  "version": "5.9.22",
   "private": true,
   "description": "OverTheBox standalone application.",
   "repository": {
@@ -35,7 +35,7 @@
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.0.6",
     "@ovh-ux/ng-tail-logs": "^2.0.9",
     "@ovh-ux/ng-translate-async-loader": "^2.1.6",
-    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.8",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.0",
     "@ovh-ux/ng-ui-router-title": "^3.0.6",
     "@ovh-ux/request-tagger": "^0.1.1",
     "@ovh-ux/ui-kit": "^6.5.3",

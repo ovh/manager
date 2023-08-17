@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.12.0...@ovh-ux/manager-billing-components@3.12.1) (2023-08-17)
+
+
+### Bug Fixes
+
+* **billing:** update exchange accounts menu link ([#9718](https://github.com/ovh/manager/issues/9718)) ([5f4a4c7](https://github.com/ovh/manager/commit/5f4a4c735d0bbc9f4057041b02ef2c6b6c881328))
+
+
+
+
+
 # [3.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.11.10...@ovh-ux/manager-billing-components@3.12.0) (2023-08-01)
 
 

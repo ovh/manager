@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.18.6...@ovh-ux/manager-support@1.19.0) (2023-08-17)
+
+
+### Features
+
+* **dedicated.account:** customer account changes ([#9728](https://github.com/ovh/manager/issues/9728)) ([bc9d697](https://github.com/ovh/manager/commit/bc9d6972a812057e19b004eea440960492671122))
+
+
+
+
+
 ## [1.18.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.18.5...@ovh-ux/manager-support@1.18.6) (2023-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-support

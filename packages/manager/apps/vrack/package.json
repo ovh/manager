@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-app",
-  "version": "1.8.16",
+  "version": "1.8.17",
   "private": true,
   "description": "vRack standalone application.",
   "repository": {
@@ -36,7 +36,7 @@
     "@ovh-ux/ng-ovh-toaster": "^2.0.6",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.6",
     "@ovh-ux/ng-translate-async-loader": "^2.1.6",
-    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.8",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.0",
     "@ovh-ux/request-tagger": "^0.1.1",
     "@ovh-ux/ui-kit": "^6.5.3",
     "@uirouter/angularjs": "^1.0.23",
