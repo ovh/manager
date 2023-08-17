@@ -585,7 +585,7 @@ angular
         return Math.floor(realRemainingSize);
       }
 
-      function showPartition() {
+      $scope.showPartition = function showPartition() {
         if ($scope.installation.selectPartitionScheme === null) {
           // Select hight priority partition scheme
           [
@@ -672,7 +672,7 @@ angular
             );
           },
         );
-      }
+      };
 
       // ------STEP2------
       $scope.loadPartition = function loadPartition() {
@@ -708,7 +708,7 @@ angular
             $scope.informations.softRaidOnlyMirroring =
               partitionSchemesList.softRaidOnlyMirroring;
             if ($scope.installation.partitionSchemesList.length > 0) {
-              showPartition();
+              $scope.showPartition();
             }
             return null;
           },

@@ -529,7 +529,7 @@
                         data-ng-show="installation.partitionSchemesList.length > 1 && !installation.noPartitioning"
                         data-ng-options="partitionScheme as partitionScheme for partitionScheme in installation.partitionSchemesList"
                         data-ng-model="installation.selectPartitionScheme"
-                        data-ng-change="loadPartition()"
+                        data-ng-change="showPartition()"
                     >
                     </select>
                 </div>
@@ -1393,7 +1393,7 @@
                         name="selectPartitionScheme"
                         data-ng-options="partitionScheme as partitionScheme for partitionScheme in installation.partitionSchemesList"
                         data-ng-model="installation.selectPartitionScheme"
-                        data-ng-change="loadPartition()"
+                        data-ng-change="showPartition()"
                     >
                     </select>
                 </p>
