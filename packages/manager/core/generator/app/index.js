@@ -166,9 +166,23 @@ export default (plop) => {
           return !isNaN(number) && typeof number === 'number';
         },
       },
+      {
+        type: 'input',
+        name: 'serviceKey',
+        message: 'What is the service key ?',
+        when: (data) => {
+          // Add variables for templates
+          data.hasListing = data.templates.includes('listing');
+          data.hasDashboard = data.templates.includes('dashboard');
+          data.hasOnboarding = data.templates.includes('onboarding');
+
+          return data.templates.includes('listing');
+        },
+        validate: (input) => input.length > 0,
+      },
     ],
     actions: ({ apiV6Endpoints, apiV2Endpoints, templates, appName, apiV6Computed, apiV2Computed, isApiV6 }) => {
- 
+
       const apiV2Files =
         Object.keys(apiV2Endpoints).length > 0
           ? createApiQueryFilesActions({
@@ -186,7 +200,7 @@ export default (plop) => {
             appDirectory,
           })
           : [];
-      
+
       const pages = createPages(templates, appDirectory, isApiV6);
       const translations = createTranslations(templates, appName, appDirectory);
       return [
