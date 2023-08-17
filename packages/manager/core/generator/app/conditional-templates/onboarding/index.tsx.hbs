@@ -56,6 +56,9 @@ export default function Onboarding() {
     },
   ];
 
+  const title: string = {{#if this.pimID}}pimService.data?.name?pimService.data?.name:t('title'){{else}}t('title'){{/if}};
+  const description: string = {{#if this.pimID}}pimService.data?.description?pimService.data?.description:t('title'){{else}}t('description'){{/if}};
+
   return (
     <OnboardingLayout
       title={title}
