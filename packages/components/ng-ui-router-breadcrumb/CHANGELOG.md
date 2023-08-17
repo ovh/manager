@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-breadcrumb@1.1.8...@ovh-ux/ng-ui-router-breadcrumb@1.2.0) (2023-08-17)
+
+
+### Features
+
+* fix old generator and add apiv2 generator ([#9844](https://github.com/ovh/manager/issues/9844)) ([60011de](https://github.com/ovh/manager/commit/60011de7ffff69d6ba2f228bd244f9d32b308908))
+
+
+
+
+
 ## [1.1.8](https://github.com/ovh/manager/compare/@ovh-ux/ng-ui-router-breadcrumb@1.1.7...@ovh-ux/ng-ui-router-breadcrumb@1.1.8) (2023-01-19)
 
 **Note:** Version bump only for package @ovh-ux/ng-ui-router-breadcrumb

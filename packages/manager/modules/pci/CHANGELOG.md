@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.136.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.136.1...@ovh-ux/manager-pci@5.136.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **pci.ai:** cli guides section name ([#9588](https://github.com/ovh/manager/issues/9588)) ([8f2d9bc](https://github.com/ovh/manager/commit/8f2d9bc549642d46cc6d5d66871b9c38a33ac848))
+* **pci:** scroll top at object page init ([#9667](https://github.com/ovh/manager/issues/9667)) ([276137a](https://github.com/ovh/manager/commit/276137adec9fc2d95a708dacc93b0da9add1113a))
+
+
+
+
+
 ## [5.136.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.136.0...@ovh-ux/manager-pci@5.136.1) (2023-08-08)
 
 

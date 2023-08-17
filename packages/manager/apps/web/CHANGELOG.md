@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.2.1...@ovh-ux/manager-web@17.2.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **hosting.ssl:** do not send empty body to apiv6 ([#9691](https://github.com/ovh/manager/issues/9691)) ([1ecf7ba](https://github.com/ovh/manager/commit/1ecf7ba024e895994adc11775f6e70231b8096ac))
+
+
+
+
+
 ## [17.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.2.0...@ovh-ux/manager-web@17.2.1) (2023-08-10)
 
 

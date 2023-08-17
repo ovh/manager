@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@5.1.4...@ovh-ux/manager-public-cloud@5.1.5) (2023-08-17)
+
+
+### Bug Fixes
+
+* **build:** adding missing dependency in public cloud ([#9841](https://github.com/ovh/manager/issues/9841)) ([4dcb70c](https://github.com/ovh/manager/commit/4dcb70c3dbeefdc9e8e29d96f2953838c1a16846))
+* **pci:** scroll top at object page init ([#9667](https://github.com/ovh/manager/issues/9667)) ([276137a](https://github.com/ovh/manager/commit/276137adec9fc2d95a708dacc93b0da9add1113a))
+
+
+
+
+
 ## [5.1.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@5.1.3...@ovh-ux/manager-public-cloud@5.1.4) (2023-08-10)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

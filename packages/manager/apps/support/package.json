@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-support-app",
-  "version": "2.9.21",
+  "version": "2.9.22",
   "private": true,
   "description": "Support standalone application.",
   "repository": {
@@ -19,7 +19,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^7.1.0",
     "@ovh-ux/manager-core": "^12.12.14",
-    "@ovh-ux/manager-support": "^1.18.6",
+    "@ovh-ux/manager-support": "^1.19.0",
     "@ovh-ux/ng-at-internet": "^5.10.4",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-http": "^5.0.6",
@@ -28,7 +28,7 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.7.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.7",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.6",
-    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.8",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.0",
     "@ovh-ux/request-tagger": "^0.1.1",
     "@ovh-ux/ui-kit": "^6.5.3",
     "@uirouter/angularjs": "^1.0.23",

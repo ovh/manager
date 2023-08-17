@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sharepoint-app",
-  "version": "0.7.24",
+  "version": "0.7.25",
   "private": true,
   "repository": {
     "type": "git",
@@ -32,10 +32,10 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.7.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.7",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.6",
-    "@ovh-ux/ng-ovh-utils": "^14.0.19",
+    "@ovh-ux/ng-ovh-utils": "^14.0.20",
     "@ovh-ux/ng-ovh-web-universe-components": "^9.11.2",
     "@ovh-ux/ng-translate-async-loader": "^2.1.6",
-    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.8",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.0",
     "@ovh-ux/request-tagger": "^0.1.1",
     "@ovh-ux/ui-kit": "^6.5.3",
     "@uirouter/angularjs": "^1.0.23",

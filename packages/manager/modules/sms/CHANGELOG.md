@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.3...@ovh-ux/manager-sms@8.13.4) (2023-08-17)
+
+
+### Bug Fixes
+
+* **telecom.sms:** use a new systemid format for smpp ([#9709](https://github.com/ovh/manager/issues/9709)) ([263624c](https://github.com/ovh/manager/commit/263624cce8eb15560a575b2c377363f3170de5fc))
+
+
+
+
+
 ## [8.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.2...@ovh-ux/manager-sms@8.13.3) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-sms
