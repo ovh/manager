@@ -38,7 +38,6 @@ angular
         options: {
           saveGabarit: false,
           gabaritNameSave: null,
-          changeLog: null,
           customHostname: null,
           postInstallationScriptLink: null,
           postInstallationScriptReturn: null,
@@ -154,7 +153,6 @@ angular
         $scope.installation.options = {
           saveGabarit: false,
           gabaritNameSave: null,
-          changeLog: $scope.installation.selectGabarit.changeLog,
           customHostname: $scope.installation.selectGabarit.customHostname,
           postInstallationScriptLink:
             $scope.installation.selectGabarit.postInstallationScriptLink,
@@ -345,7 +343,6 @@ angular
             $scope.installation.selectGabarit.id,
             $scope.installation.options.gabaritNameSave,
             {
-              changeLog: $scope.installation.options.changeLog,
               customHostname: $scope.installation.options.customHostname,
               postInstallationScriptLink:
                 $scope.installation.options.postInstallationScriptLink,
