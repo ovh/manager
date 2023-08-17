@@ -78,10 +78,11 @@ export const getPIMService = async (): Promise<string[]> => {
     const currentLang = i18next.language
       ? i18next.language.replace('-', '_')
       : 'fr_FR';
-    return response.data.filter(
+    const pimElement = response.data.filter(
       (element: PIMElement) =>
         element.id === {{this.pimID}} && element.lang === currentLang,
     )[0];
+    return pimElement || {};
   };
 
   return queryClient.fetchQuery(getPIMServiceQueryKey, fetchData);
