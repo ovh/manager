@@ -18,7 +18,7 @@ interface ServiceData {
   status: number;
 }
 
-export default function DashboardPage(props: any) {
+export default function DashboardPage() {
   const { t } = useTranslation('{{appName}}/dashboard');
   const { serviceName } = useParams();
   const service: UseQueryResult<ServiceData> = useQueries({
