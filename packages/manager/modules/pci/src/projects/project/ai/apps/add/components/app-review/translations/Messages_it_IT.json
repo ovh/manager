@@ -17,5 +17,9 @@
   "pci_app_add_review_scaling_trigger_resource": "Metrica monitorata:",
   "pci_app_add_review_scaling_trigger_resource_threshold": "Soglia di attivazione:",
   "pci_app_add_review_probe": "Sonda di disponibilità",
-  "pci_app_add_review_image": "Immagine"
+  "pci_app_add_review_image": "Immagine",
+  "pci_app_add_review_license_voxist_info_1": "La licenza partner viene calcolata in base alla durata del file da trascrivere. Questa durata può essere diversa da quella di utilizzo delle risorse selezionate.",
+  "pci_app_add_review_license_voxist_info_2": "Tariffa applicabile fino a 100.000 minuti tradotti. Oltre questa soglia, le tariffe applicabili sono disponibili al seguente link:",
+  "pci_app_add_review_license_voxist_info_link": "Consultare le tariffe applicabili",
+  "pci_app_add_review_total_price_voxist_info": "Tariffa applicabile esclusivamente per 1 ora di utilizzo delle risorse selezionate e 1 ora di utilizzo della licenza partner."
 }
