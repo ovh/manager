@@ -17,5 +17,9 @@
   "pci_app_add_review_price_total": "Prix total",
   "pci_app_add_review_price_info": "{{ price }} HT /heure",
   "pci_app_add_review_resources": "Modèle et nombre de ressources par réplica",
-  "pci_app_add_review_probe": "Sonde de disponibilité"
+  "pci_app_add_review_probe": "Sonde de disponibilité",
+  "pci_app_add_review_license_voxist_info_1": "La licence partenaire est calculée en fonction de la durée du fichier à transcrire. Cette durée peut être différente de la durée d'utilisation des ressources sélectionnées.",
+  "pci_app_add_review_license_voxist_info_2": "Prix applicable jusqu'à 100 000 minutes traduites. Au-delà, les tarifs applicables sont disponibles via le lien suivant :",
+  "pci_app_add_review_license_voxist_info_link": "Consulter les tarifs applicables",
+  "pci_app_add_review_total_price_voxist_info": "Prix applicable uniquement pour 1h d'utilisation des ressources sélectionnées et 1h d'utilisation de la licence partenaire."
 }
