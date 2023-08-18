@@ -179,6 +179,7 @@ export default /* @ngInject */ (
       name: `${$scope.data?.tracking}::cancel`,
       type: 'action',
     });
+    $rootScope.$broadcast('ips.firewall.cancelToggle');
     Ip.cancelActionParam('toggleFirewall');
     $scope.resetAction();
   };
