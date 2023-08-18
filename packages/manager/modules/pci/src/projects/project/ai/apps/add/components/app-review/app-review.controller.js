@@ -1,5 +1,8 @@
-import { IS_BETA } from '../../../app.constants';
-import { APP_PARTNER_PRESET_LICENCING } from '../../add.constants';
+import {
+  IS_BETA,
+  APP_PARTNER_PRESET_LICENSING,
+  APP_PARTNER_VOXIST_DETAILS,
+} from '../../../app.constants';
 
 export default class AppReviewController {
   /* @ngInject */
@@ -14,6 +17,9 @@ export default class AppReviewController {
     this.IS_BETA = IS_BETA;
     this.getPrices();
     this.appSpecs = this.convertModelToSpecs(this.appModel);
+    this.VOXIST_PRICES_LINK =
+      APP_PARTNER_VOXIST_DETAILS.pricesLink[this.user.ovhSubsidiary] ||
+      APP_PARTNER_VOXIST_DETAILS.pricesLink.DEFAULT;
   }
 
   getPrices() {
@@ -37,16 +43,19 @@ export default class AppReviewController {
       const { preset } = this.appModel.image;
       let multiplierPartner = 1;
       switch (preset.licensing) {
-        case APP_PARTNER_PRESET_LICENCING.PER_APP:
+        case APP_PARTNER_PRESET_LICENSING.PER_APP:
           multiplierPartner *= 60;
           break;
-        case APP_PARTNER_PRESET_LICENCING.PER_RESOURCE:
+        case APP_PARTNER_PRESET_LICENSING.PER_RESOURCE:
           multiplierPartner *= 60 * nbResources * replicas;
           break;
-        case APP_PARTNER_PRESET_LICENCING.PER_REPLICA:
+        case APP_PARTNER_PRESET_LICENSING.PER_REPLICA:
           multiplierPartner *= 60 * replicas;
           break;
-        case APP_PARTNER_PRESET_LICENCING.FREE:
+        case APP_PARTNER_PRESET_LICENSING.PER_SECOND_BRACKET:
+          multiplierPartner *= 3600;
+          break;
+        case APP_PARTNER_PRESET_LICENSING.FREE:
           multiplierPartner *= 0;
           break;
         default:
@@ -56,6 +65,7 @@ export default class AppReviewController {
         this.prices,
         preset.partnerId,
         preset.id,
+        preset.licensing,
         this.appModel.resource.flavorType,
       );
       this.partnerPriceTax = partnerPrice.tax * multiplierPartner;
@@ -67,7 +77,7 @@ export default class AppReviewController {
     }
   }
 
-  getLicencePartner() {
+  getLicensePartner() {
     return this.$translate.instant('pci_app_add_review_price_partner', {
       partner: this.appModel.image.preset.partnerName,
     });
@@ -98,5 +108,14 @@ export default class AppReviewController {
     return image.isCustom
       ? image.customImageName
       : `${image.preset.partnerId}/${image.preset.id}:${image.preset.selectedVersion}`;
+  }
+
+  get showVoxistBracketInfo() {
+    const { image } = this.appModel;
+    return (
+      !image.isCustom &&
+      image.preset.partnerId === APP_PARTNER_VOXIST_DETAILS.partnerId &&
+      image.preset.licensing === APP_PARTNER_PRESET_LICENSING.PER_SECOND_BRACKET
+    );
   }
 }

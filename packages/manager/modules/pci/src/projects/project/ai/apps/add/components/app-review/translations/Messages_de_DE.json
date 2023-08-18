@@ -17,5 +17,9 @@
   "pci_app_add_review_scaling_trigger_resource": "Überwachte Metrik:",
   "pci_app_add_review_scaling_trigger_resource_threshold": "Schwellenwert:",
   "pci_app_add_review_probe": "Verfügbarkeitsprobe",
-  "pci_app_add_review_image": "Image"
+  "pci_app_add_review_image": "Image",
+  "pci_app_add_review_license_voxist_info_1": "Die Partnerlizenz wird basierend auf der Dauer der zu transkribierenden Datei berechnet. Diese Dauer kann von der Dauer der Verwendung der ausgewählten Ressourcen abweichen.",
+  "pci_app_add_review_license_voxist_info_2": "Preis gültig für bis zu 100.000 übersetzte Minuten. Danach können Sie die geltenden Preise über folgenden Link einsehen:",
+  "pci_app_add_review_license_voxist_info_link": "Geltende Preise ansehen",
+  "pci_app_add_review_total_price_voxist_info": "Der Preis gilt nur für 1 Stunde Nutzung der ausgewählten Ressourcen und 1 Stunde Nutzung der Partnerlizenz."
 }
