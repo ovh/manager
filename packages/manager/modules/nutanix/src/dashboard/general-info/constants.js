@@ -26,6 +26,10 @@ export const GENERAL_INFO_TILE_TITLE = {
 
 export const NUTANIX_PERSONAL_LICENSE_EDITION = 'Personal license';
 
+export const FEATURES = {
+  PACK_TYPE: 'nutanix:pack-type',
+};
+
 export default {
   TRAVAUX_LINK,
   PRIVATE_BANDWIDTH_SERVICE_PREFIX,
@@ -34,4 +38,5 @@ export default {
   NUTANIX_INVOICE_TYPE,
   NUTANIX_PERSONAL_LICENSE_EDITION,
   GENERAL_INFO_TILE_TITLE,
+  FEATURES,
 };
