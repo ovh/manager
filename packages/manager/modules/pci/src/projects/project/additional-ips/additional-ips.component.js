@@ -12,6 +12,8 @@ export default {
     failoverIpsLink: '<',
     floatingIpsLink: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     projectId: '<',
     getStateName: '<',
     steins: '<',

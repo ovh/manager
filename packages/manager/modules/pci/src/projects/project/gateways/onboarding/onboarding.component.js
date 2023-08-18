@@ -9,6 +9,8 @@ export default {
     gateways: '<',
     trackPublicGateways: '<',
     guideUrl: '<',
+    guideTrackingSectionTags: '<',
+    trackClick: '<',
     goToAddPublicGateway: '<',
   },
 };
