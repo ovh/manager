@@ -3,6 +3,7 @@ import find from 'lodash/find';
 import { merge } from 'lodash';
 import { APP_PRIVACY_SETTINGS, APP_SCALING_SETTINGS } from './add.constants';
 import { nameGenerator } from '../../../../../name-generator.constant';
+import { APP_TYPES } from '../app.constants';
 
 export default class AppAddController {
   /* @ngInject */
@@ -57,9 +58,9 @@ export default class AppAddController {
       },
       resource: {
         nbResources: 1,
-        usage: 'cpu',
+        usage: APP_TYPES.CPU,
         flavor: null,
-        flavorType: 'cpu',
+        flavorType: APP_TYPES.CPU,
       },
     };
   }
@@ -262,36 +263,44 @@ export default class AppAddController {
       .then(([flavors, presets, partners]) => {
         this.flavors = flavors;
         // We assume that cpu has the lowest price
-        const defaultFlavor = find(this.flavors, { type: 'cpu' });
+        const defaultFlavor = find(this.flavors, { type: APP_TYPES.CPU });
         const resourcePrice = this.AppService.getPrice(
           this.prices,
           defaultFlavor.id,
         );
 
-        this.presets = presets.map((preset) => {
-          const partnerPriceCPU = this.AppService.getPartnerPrice(
-            this.prices,
-            preset.partnerId,
-            preset.id,
-            'cpu',
-          );
-          const partnerPriceGPU = this.AppService.getPartnerPrice(
-            this.prices,
-            preset.partnerId,
-            preset.id,
-            'gpu',
-          );
-          const partner = partners.find((part) => part.id === preset.partnerId);
+        this.presets = presets
+          .map((preset) => {
+            const partnerPriceCPU = this.AppService.getPartnerPrice(
+              this.prices,
+              preset.partnerId,
+              preset.id,
+              preset.licensing,
+              APP_TYPES.CPU,
+            );
+            const partnerPriceGPU = this.AppService.getPartnerPrice(
+              this.prices,
+              preset.partnerId,
+              preset.id,
+              preset.licensing,
+              APP_TYPES.GPU,
+            );
+            const partner = partners.find(
+              (part) => part.id === preset.partnerId,
+            );
 
-          return merge(preset, {
-            partner,
-            prices: {
-              cpu: partnerPriceCPU,
-              gpu: partnerPriceGPU,
-            },
-            selectedVersion: preset.versions[0],
-          });
-        });
+            return merge(preset, {
+              partner,
+              prices: {
+                cpu: partnerPriceCPU,
+                gpu: partnerPriceGPU,
+              },
+              selectedVersion: preset.versions[0],
+            });
+          })
+          .sort((a, b) =>
+            `${a.partnerId}-${a.id}`.localeCompare(`${b.partnerId}-${b.id}`),
+          );
 
         this.defaultPrice = resourcePrice;
       })

@@ -6,5 +6,6 @@
   "pci_app_submit_select_image_partner_preset_price_unit_per_hour_per_resource": "por recurso/hora",
   "pci_app_submit_select_image_partner_preset_price_unit_per_hour_per_replica": "por réplica/hora",
   "pci_app_submit_select_image_partner_preset_price_unit_free": "gratis",
-  "pci_app_submit_select_image_partner_preset_price_unit_per_hour": "por hora"
+  "pci_app_submit_select_image_partner_preset_price_unit_per_hour": "por hora",
+  "pci_app_submit_select_image_partner_preset_price_unit_per_hour_per_unit": "por hora de uso (consultar la documentación)"
 }
