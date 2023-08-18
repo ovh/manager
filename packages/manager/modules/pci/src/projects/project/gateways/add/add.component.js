@@ -13,6 +13,7 @@ export default {
     defaults: '<',
     goToPrivateNetwork: '<',
     onGoBackClick: '<',
+    guideTrackingSectionTags: '<',
     trackClick: '<',
     regionsLink: '<',
   },
