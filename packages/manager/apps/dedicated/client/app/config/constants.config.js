@@ -1032,6 +1032,12 @@ const constants = {
       pcc: {
         fr_FR: [
           {
+            title: 'core_pcc_top_guide_12_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-12',
+            url:
+              'https://help.ovhcloud.com/csm/fr-documentation-hosted-private-cloud-sap-ovhcloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=2060f0edb41ca5141e11b36be2047d2a',
+          },
+          {
             title: 'core_pcc_top_guide_11_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-11',
             url: 'https://docs.ovh.com/fr/nutanix/',
@@ -1084,6 +1090,12 @@ const constants = {
         ],
         de_DE: [
           {
+            title: 'core_pcc_top_guide_12_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-12',
+            url:
+              'https://help.ovhcloud.com/csm/de-documentation-hosted-private-cloud-sap-ovhcloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=2060f0edb41ca5141e11b36be2047d2a',
+          },
+          {
             title: 'core_pcc_top_guide_1_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-1',
             url:
@@ -1130,6 +1142,12 @@ const constants = {
           },
         ],
         en_GB: [
+          {
+            title: 'core_pcc_top_guide_12_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-12',
+            url:
+              'https://help.ovhcloud.com/csm/en-gb-documentation-hosted-private-cloud-sap-ovhcloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=2060f0edb41ca5141e11b36be2047d2a',
+          },
           {
             title: 'core_pcc_top_guide_11_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-11',
@@ -1633,6 +1651,169 @@ const constants = {
             atInternetClickTag: 'configure-new-window-server-installation',
             url:
               'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044083',
+          },
+        ],
+      },
+      pcc: {
+        fr_FR: [
+          {
+            title: 'core_pcc_top_guide_12_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-12',
+            url:
+              'https://help.ovhcloud.com/csm/fr-documentation-hosted-private-cloud-sap-ovhcloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=2060f0edb41ca5141e11b36be2047d2a',
+          },
+          {
+            title: 'core_pcc_top_guide_11_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-11',
+            url: 'https://docs.ovh.com/fr/nutanix/',
+          },
+          {
+            title: 'core_pcc_top_guide_1_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-1',
+            url:
+              'https://docs.ovh.com/fr/private-cloud/connexion-interface-vsphere/',
+          },
+          {
+            title: 'core_pcc_top_guide_2_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-2',
+            url:
+              'https://docs.ovh.com/fr/private-cloud/deploiement-d-une-machine-virtuelle/',
+          },
+          {
+            title: 'core_pcc_top_guide_3_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-3',
+            url:
+              'https://docs.ovh.com/fr/private-cloud/configuration-ip-machine-virtuelle/',
+          },
+          {
+            title: 'core_pcc_top_guide_4_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-4',
+            url:
+              'https://docs.ovh.com/fr/private-cloud/modification-des-ressources-d-une-machine-virtuelle/',
+          },
+          {
+            title: 'core_pcc_top_guide_5_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-5',
+            url: 'https://docs.ovh.com/fr/private-cloud/connexion-en-sftp/',
+          },
+          {
+            title: 'core_pcc_top_guide_6_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-6',
+            url: 'https://www.vmware.com/support/pubs/',
+          },
+          {
+            title: 'core_pcc_top_guide_7_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-7',
+            url:
+              'https://docs.ovh.com/fr/private-cloud/suppression-serveur-hote/#supprimer-le-serveur-hote',
+          },
+          {
+            title: 'core_pcc_top_guide_10_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-10',
+            url: 'http://pubs.vmware.com/NSX-62/index.jsp?lang=fr',
+          },
+        ],
+        de_DE: [
+          {
+            title: 'core_pcc_top_guide_12_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-12',
+            url:
+              'https://help.ovhcloud.com/csm/de-documentation-hosted-private-cloud-sap-ovhcloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=2060f0edb41ca5141e11b36be2047d2a',
+          },
+          {
+            title: 'core_pcc_top_guide_1_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-1',
+            url:
+              'https://docs.ovh.com/de/private-cloud/den_vsphere_client_installieren/',
+          },
+          {
+            title: 'core_pcc_top_guide_2_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-2',
+            url:
+              'https://docs.ovh.com/de/private-cloud/virtuelle-maschine-deployen/',
+          },
+          {
+            title: 'core_pcc_top_guide_3_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-3',
+            url:
+              ' https://docs.ovh.com/de/private-cloud/ip-server-konfiguration/',
+          },
+          {
+            title: 'core_pcc_top_guide_4_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-4',
+            url:
+              'https://docs.ovh.com/de/private-cloud/nderung_der_hardware-konfiguration_einer_virtuellen_maschine/',
+          },
+          {
+            title: 'core_pcc_top_guide_5_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-5',
+            url: 'https://docs.ovh.com/de/private-cloud/verbindung_per_sftp/',
+          },
+          {
+            title: 'core_pcc_top_guide_6_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-6',
+            url: 'https://www.vmware.com/support/pubs/',
+          },
+          {
+            title: 'core_pcc_top_guide_7_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-7',
+            url: 'https://docs.ovh.com/de/private-cloud/host-server-loeschen/',
+          },
+          {
+            title: 'core_pcc_top_guide_10_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-10',
+            url:
+              'https://docs.vmware.com/de/VMware-NSX-Data-Center-for-vSphere/index.html',
+          },
+        ],
+        en_GB: [
+          {
+            title: 'core_pcc_top_guide_12_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-12',
+            url:
+              'https://help.ovhcloud.com/csm/en-gb-documentation-hosted-private-cloud-sap-ovhcloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=2060f0edb41ca5141e11b36be2047d2a',
+          },
+          {
+            title: 'core_pcc_top_guide_11_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-11',
+            url: 'https://docs.ovh.com/us/en/nutanix/',
+          },
+          {
+            title: 'core_pcc_top_guide_3_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-3',
+            url:
+              'https://www.ovh.co.uk/g582.configure_an_ip_address_on_a_virtual_machine',
+          },
+          {
+            title: 'core_pcc_top_guide_4_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-4',
+            url:
+              'https://www.ovh.co.uk/g587.modify_the_hardware_configuration_of_your_virtual_machine',
+          },
+          {
+            title: 'core_pcc_top_guide_5_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-5',
+            url: 'https://www.ovh.co.uk/g589.sftp_connection',
+          },
+          {
+            title: 'core_pcc_top_guide_6_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-6',
+            url: 'https://www.vmware.com/support/pubs/',
+          },
+          {
+            title: 'core_pcc_top_guide_7_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-7',
+            url: 'https://pccdocs.ovh.net/display/VS/Remove+a+host',
+          },
+          {
+            title: 'core_pcc_top_guide_9_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-9',
+            url: 'https://pccdocs.ovh.net/display/ND/Getting+Started+with+NSX',
+          },
+          {
+            title: 'core_pcc_top_guide_10_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-10',
+            url: 'http://pubs.vmware.com/NSX-62/index.jsp?lang=en',
           },
         ],
       },
