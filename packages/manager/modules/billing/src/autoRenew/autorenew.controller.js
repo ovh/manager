@@ -304,11 +304,4 @@ export default class AutorenewCtrl {
       !this.currentUser.hasAutorenew2016()
     );
   }
-
-  canDisplayAutoRenew2016DeploymentBanner() {
-    return (
-      !this.shouldDisplayAutoRenewActionRequired() &&
-      this.isAutorenew2016DeploymentBannerAvailable
-    );
-  }
 }
