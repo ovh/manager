@@ -97,6 +97,7 @@
             <!-- type of pack -->
             <oui-tile-definition
                 term="{{:: 'nutanix_dashboard_cluster_type_of_pack' | translate }}"
+                data-ng-if="$ctrl.isPackTypeAvailable"
             >
                 <oui-tile-description>
                     <span data-ng-bind="$ctrl.typeOfPack"></span>
@@ -182,6 +183,7 @@
             service-id="$ctrl.serviceInfo.serviceId"
             licence-name="$ctrl.cluster.targetSpec.license"
             pack-type="$ctrl.typeOfPack"
+            show-pack-type="$ctrl.isPackTypeAvailable"
             on-error="$ctrl.handleError(error)"
         >
         </nutanix-licence-tile>
