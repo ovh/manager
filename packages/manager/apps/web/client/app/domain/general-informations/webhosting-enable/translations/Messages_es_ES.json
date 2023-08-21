@@ -17,5 +17,6 @@
   "domain_configuration_enable_web_hosting_activate": "Activar",
   "domain_configuration_enable_web_hosting_success": "Activando el alojamiento... La operación podría tardar unos minutos.",
   "domain_configuration_enable_web_hosting_checkout_error": "Se ha producido un error: {{ message }}",
-  "domain_configuration_enable_web_hosting_error": "Se ha producido un error al activar el alojamiento: {{ message }}"
+  "domain_configuration_enable_web_hosting_error": "Se ha producido un error al activar el alojamiento: {{ message }}",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-free-100m": "Alojamiento gratuito 100 MB"
 }

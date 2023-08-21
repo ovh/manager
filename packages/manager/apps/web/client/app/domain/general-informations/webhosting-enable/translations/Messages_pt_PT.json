@@ -17,5 +17,6 @@
   "domain_configuration_enable_web_hosting_activate": "Ativar",
   "domain_configuration_enable_web_hosting_success": "A ativação do alojamento está em curso. Esta operação poderá demorar alguns minutos.",
   "domain_configuration_enable_web_hosting_checkout_error": "Ocorreu um erro: {{ message }}",
-  "domain_configuration_enable_web_hosting_error": "Ocorreu um erro ao ativar o seu alojamento: {{ message }}"
+  "domain_configuration_enable_web_hosting_error": "Ocorreu um erro ao ativar o seu alojamento: {{ message }}",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-free-100m": "Alojamento gratuito 100M"
 }
