@@ -1,4 +1,7 @@
-export const TRAVAUX_LINK = 'https://www.status-ovhcloud.com/';
+export const TRAVAUX_LINK = {
+  US: 'https://status.us.ovhcloud.com/',
+  DEFAULT: 'https://www.status-ovhcloud.com/',
+};
 
 export const PRIVATE_BANDWIDTH_SERVICE_PREFIX = 'cluster-vrack-bandwidth';
 
