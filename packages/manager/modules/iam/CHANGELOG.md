@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.1.2...@ovh-ux/manager-iam@1.1.3) (2023-08-21)
+
+
+### Bug Fixes
+
+* **iam:** manage hasQueryParams for custom actions ([#9858](https://github.com/ovh/manager/issues/9858)) ([2f9be4f](https://github.com/ovh/manager/commit/2f9be4f7f9d4e6c1e1018177026cdf9664e02cb8))
+
+
+
+
+
 ## [1.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.1.1...@ovh-ux/manager-iam@1.1.2) (2023-08-17)
 
 

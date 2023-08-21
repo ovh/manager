@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.8.0...@ovh-ux/manager-bm-server-components@1.8.1) (2023-08-21)
+
+
+### Bug Fixes
+
+* **dedicated.nutanix:** add number of tickets and cta on support tile ([#9561](https://github.com/ovh/manager/issues/9561)) ([1c45af4](https://github.com/ovh/manager/commit/1c45af45b52a72c28c24c12ae0287b42ce997523))
+
+
+
+
+
 # [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.7.1...@ovh-ux/manager-bm-server-components@1.8.0) (2023-08-01)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.9.0...@ovh-ux/manager-dedicated@18.10.0) (2023-08-21)
+
+
+### Features
+
+* **dedicated.pcc:** wip add link guide for sap hana ([#9807](https://github.com/ovh/manager/issues/9807)) ([6d0cdf5](https://github.com/ovh/manager/commit/6d0cdf56ff293f6c0e817ad577a23e48ffe81f97))
+
+
+
+
+
 # [18.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.8.0...@ovh-ux/manager-dedicated@18.9.0) (2023-08-17)
 
 
