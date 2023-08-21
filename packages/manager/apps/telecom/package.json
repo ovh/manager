@@ -70,7 +70,7 @@
     "@ovh-ux/ng-ui-router-title": "^3.0.6",
     "@ovh-ux/request-tagger": "^0.1.1",
     "@ovh-ux/shell": "^2.1.1",
-    "@ovh-ux/ui-kit": "^6.5.3",
+    "@ovh-ux/ui-kit": "^6.6.1",
     "@uirouter/angularjs": "^1.0.23",
     "CSV-JS": "^1.0.0",
     "angular": "^1.7.5",
