@@ -85,6 +85,11 @@ export default class ActionSelectController {
      * @type {boolean}
      */
     this.required = false;
+
+    /**
+     * Whether to show or not an error message below search input
+     */
+    this.showSearchNotFoundError = false;
   }
 
   /**
@@ -287,6 +292,28 @@ export default class ActionSelectController {
       isEnabled ? TAG.ENABLE_ALLOW_ALL_ACTIONS : TAG.DISABLE_ALLOW_ALL_ACTIONS,
     );
     this.onModelChanged({ value: WILDCARD, selected: isEnabled });
+  }
+
+  /**
+   * Called back when the search query changes
+   * @param {string} actionTree
+   * @param {object} event
+   */
+  onSearchQueryChanged(actionTree) {
+    if (actionTree.searchQuery?.length <= 2) {
+      this.showSearchNotFoundError = false;
+      return;
+    }
+    // Check if any action of this category contains the searchQuery string
+    this.showSearchNotFoundError = !actionTree.categories
+      .reduce(
+        (result, category) => [
+          ...result,
+          ...category.actions.map(({ value }) => value),
+        ],
+        [],
+      )
+      .some((action) => action.indexOf(actionTree.searchQuery) > -1);
   }
 
   /**
