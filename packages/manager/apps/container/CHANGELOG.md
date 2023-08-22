@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.27.0...@ovh-ux/manager-container-app@0.27.1) (2023-08-17)
+
+
+### Bug Fixes
+
+* **container:** username and initials layered on top of each other ([#9812](https://github.com/ovh/manager/issues/9812)) ([907619c](https://github.com/ovh/manager/commit/907619c86d8975cefed5a325439c452ca64c7d8b))
+* **iam:** change new tag to beta tag ([#9794](https://github.com/ovh/manager/issues/9794)) ([ae90a12](https://github.com/ovh/manager/commit/ae90a125be1fc7e9ce967dbc1307b4ba5be5ff93))
+
+
+
+
+
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.26.1...@ovh-ux/manager-container-app@0.27.0) (2023-08-10)
+
+
+### Features
+
+* acquisition storage ([#9209](https://github.com/ovh/manager/issues/9209)) ([e709587](https://github.com/ovh/manager/commit/e7095878ae5722620edfe81813d385923a0894a3))
+
+
+
+
+
 ## [0.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.26.0...@ovh-ux/manager-container-app@0.26.1) (2023-08-08)
 
 

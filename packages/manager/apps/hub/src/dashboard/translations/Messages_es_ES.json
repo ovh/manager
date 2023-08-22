@@ -8,5 +8,7 @@
   "manager_hub_dashboard_modal_siret_part_2": "Esta actualización se realizará en tan solo unos segundos. Tenga en cuenta que necesitará su extracto KBIS.",
   "manager_hub_dashboard_modal_siret_link": "Actualizar ahora",
   "manager_hub_dashboard_modal_siret_cancel": "En otro momento",
-  "manager_hub_dashboard_modal_title": "Actualización de sus datos"
+  "manager_hub_dashboard_modal_title": "Actualización de sus datos",
+  "manager_hub_dashboard_kyc_banner_description": "Según la normativa vigente, es necesario verificar su identidad para contratar los servicios de OVHcloud. Por favor, añada sus documentos de identidad.",
+  "manager_hub_dashboard_kyc_banner_link": "Mis documentos"
 }

@@ -1,4 +1,22 @@
 <hub-dashboard-welcome data-name="$ctrl.me.firstname"></hub-dashboard-welcome>
+<!-- Banner for India KYC -->
+<oui-message
+    data-type="info"
+    data-on-dismiss="$ctrl.onDismiss()"
+    data-dismissable
+    data-ng-if="$ctrl.showKycBanner"
+>
+    <span data-translate="manager_hub_dashboard_kyc_banner_description"></span>
+    <a
+        class="oui-link_icon"
+        data-ng-href="{{:: $ctrl.myIdentitySectionLink }}"
+        data-ng-click="$ctrl.trackClick($ctrl.KYC_HIT_PREFIX))"
+        target="_blank"
+        rel="noopener"
+    >
+        <span data-translate="manager_hub_dashboard_kyc_banner_link"></span>
+    </a>
+</oui-message>
 <div class="row">
     <ovh-manager-hub-support
         class="col-md-8"

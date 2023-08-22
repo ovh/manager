@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.4.3...@ovh-ux/ovh-at-internet@0.5.0) (2023-08-10)
+
+
+### Features
+
+* sms marketing consent ([#9797](https://github.com/ovh/manager/issues/9797)) ([5ca7626](https://github.com/ovh/manager/commit/5ca7626097dc31ef1b3565626ebc024cc816a150))
+
+
+
+
+
 ## [0.4.3](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.4.2...@ovh-ux/ovh-at-internet@0.4.3) (2023-07-24)
 
 **Note:** Version bump only for package @ovh-ux/ovh-at-internet

@@ -485,7 +485,6 @@
   "core_pcc_top_guide_8_title": "Understanding Windows SPLA licences",
   "core_pcc_top_guide_9_title": "NSX startup guide",
   "core_pcc_top_guide_10_title": "NSX official documentation",
-  "core_pcc_top_guide_11_title": "Nutanix official documentation",
   "sso_modal_title": "OVH - Authentication",
   "sso_modal_loading": "Loading...",
   "sso_modal_user_title": "You were logged in as:",
@@ -544,5 +543,7 @@
   "common_subscription_contacts_billing": "Billing",
   "common_subscription_contacts_tech": "Technical",
   "common_unavailable_information": "Information unavailable",
-  "common_resiliate_contact_support": "To cancel this service, please call our support team on: <strong>0333 370 0425</strong>. Thank you for choosing OVH."
+  "common_resiliate_contact_support": "To cancel this service, please call our support team on: <strong>0333 370 0425</strong>. Thank you for choosing OVH.",
+  "core_pcc_top_guide_11_title": "Nutanix official documentation",
+  "core_pcc_top_guide_12_title": "SAP HANA on Private Cloud official documentation"
 }

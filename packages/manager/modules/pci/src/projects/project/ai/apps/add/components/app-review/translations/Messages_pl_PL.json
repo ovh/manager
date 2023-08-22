@@ -17,5 +17,9 @@
   "pci_app_add_review_scaling_trigger_resource": "Monitorowana metryka:",
   "pci_app_add_review_scaling_trigger_resource_threshold": "Próg uruchomienia:",
   "pci_app_add_review_probe": "Sonda dostępności",
-  "pci_app_add_review_image": "Obraz"
+  "pci_app_add_review_image": "Obraz",
+  "pci_app_add_review_license_voxist_info_1": "Licencja partnerska jest obliczana na podstawie czasu trwania pliku do transkrypcji. Czas ten może różnić się od czasu wykorzystania wybranych zasobów.",
+  "pci_app_add_review_license_voxist_info_2": "Wskazana cena obowiązuje do progu 100 000 przetłumaczonych minut. Powyżej tego progu obowiązują ceny dostępne pod linkiem:",
+  "pci_app_add_review_license_voxist_info_link": "Sprawdź cennik",
+  "pci_app_add_review_total_price_voxist_info": "Cena dotyczy tylko 1 godziny korzystania z wybranych zasobów i 1 godziny korzystania z licencji partnerskiej."
 }

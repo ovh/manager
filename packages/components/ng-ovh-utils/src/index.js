@@ -30,6 +30,7 @@ import tooltipBox from './tooltipBox/tooltipBox';
 import triStateCheckbox from './triStateCheckbox/triStateCheckbox';
 import wizard from './wizard/wizard';
 import wizardForm from './wizardForm/wizardForm';
+import scroll from './scroll/scroll';
 
 const moduleName = 'ngOvhUtils';
 
@@ -43,6 +44,7 @@ angular.module(moduleName, [
   poll,
   popover,
   price,
+  scroll,
   storage,
   tooltipBox,
   triStateCheckbox,

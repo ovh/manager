@@ -158,5 +158,6 @@
   "sidebar_access_list": "Access list",
   "sidebar_access_dashboard": "Access dashboard",
   "sidebar_account_iam": "Identity and Access Management (IAM)",
-  "sidebar_carbon_footprint": "My carbon footprint"
+  "sidebar_carbon_footprint": "My carbon footprint",
+  "sidebar_account_identity_documents": "My identity documents"
 }

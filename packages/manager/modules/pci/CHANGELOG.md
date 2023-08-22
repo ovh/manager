@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.137.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.136.2...@ovh-ux/manager-pci@5.137.0) (2023-08-21)
+
+
+### Bug Fixes
+
+* **pci:** map guide urls for gateway and additional ips ([#9851](https://github.com/ovh/manager/issues/9851)) ([df9cda6](https://github.com/ovh/manager/commit/df9cda6c43bd43979bd05260b5a13912d3cc450f))
+
+
+### Features
+
+* **pci.ai.apps:** add voxist pricing ([#9696](https://github.com/ovh/manager/issues/9696)) ([8b14dc1](https://github.com/ovh/manager/commit/8b14dc1fa841e4cdecea3d596b8a86995cf8318c))
+
+
+
+
+
+## [5.136.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.136.1...@ovh-ux/manager-pci@5.136.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **pci.ai:** cli guides section name ([#9588](https://github.com/ovh/manager/issues/9588)) ([8f2d9bc](https://github.com/ovh/manager/commit/8f2d9bc549642d46cc6d5d66871b9c38a33ac848))
+* **pci:** scroll top at object page init ([#9667](https://github.com/ovh/manager/issues/9667)) ([276137a](https://github.com/ovh/manager/commit/276137adec9fc2d95a708dacc93b0da9add1113a))
+
+
+
+
+
 ## [5.136.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.136.0...@ovh-ux/manager-pci@5.136.1) (2023-08-08)
 
 

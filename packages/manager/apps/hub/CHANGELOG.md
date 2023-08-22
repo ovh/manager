@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@4.1.0...@ovh-ux/manager-hub-app@4.1.1) (2023-08-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+# [4.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@4.0.4...@ovh-ux/manager-hub-app@4.1.0) (2023-08-10)
+
+
+### Features
+
+* acquisition storage ([#9209](https://github.com/ovh/manager/issues/9209)) ([e709587](https://github.com/ovh/manager/commit/e7095878ae5722620edfe81813d385923a0894a3))
+
+
+
+
+
 ## [4.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@4.0.3...@ovh-ux/manager-hub-app@4.0.4) (2023-08-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

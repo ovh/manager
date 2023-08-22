@@ -8,7 +8,6 @@
   "select_product_on_left": "Bitte wählen Sie in der linken Spalte ein zu konfigurierendes Produkt aus.",
   "select_product_on_top": "Bitte wählen Sie oben ein zu konfigurierendes Produkt aus.",
   "index_nav_bar_logo_alt": "OVH Dedicated Kundencenter",
-  "older_interface": "Altes Kundeninterface",
   "universe_univers-v3_name": "Altes Kunden-Interface",
   "unit_size_B": "B",
   "unit_size_KB": "KB",
@@ -485,7 +484,6 @@
   "core_pcc_top_guide_8_title": "Windows SPLA Lizenzen ",
   "core_pcc_top_guide_9_title": "Die ersten Schritte mit NSX ",
   "core_pcc_top_guide_10_title": "Offizielle NSX Dokumentation ",
-  "core_pcc_top_guide_11_title": "Offizielle Dokumentation zu Nutanix",
   "sso_modal_title": "OVH - Authentifizierung",
   "sso_modal_loading": "Wird geladen...",
   "sso_modal_user_title": "Sie sind verbunden als:",
@@ -544,5 +542,8 @@
   "common_subscription_contacts_billing": "Abrechnung",
   "common_subscription_contacts_tech": "Technisch",
   "common_unavailable_information": "Information nicht verfügbar",
-  "common_resiliate_contact_support": "Um diesen Dienst zu kündigen, kontaktieren Sie bitte unseren Support unter <strong>+49 (0) 681 906730</strong>. Vielen Dank für Ihr Verständnis."
+  "common_resiliate_contact_support": "Um diesen Dienst zu kündigen, kontaktieren Sie bitte unseren Support unter <strong>+49 (0) 681 906730</strong>. Vielen Dank für Ihr Verständnis.",
+  "core_pcc_top_guide_11_title": "Offizielle Dokumentation zu Nutanix",
+  "older_interface": "Altes Kundeninterface",
+  "core_pcc_top_guide_12_title": "Offizielle Dokumentation zu SAP HANA on Private Cloud"
 }

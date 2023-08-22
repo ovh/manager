@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.9.0...@ovh-ux/sign-up-app@2.9.1) (2023-08-17)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+# [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.8.6...@ovh-ux/sign-up-app@2.9.0) (2023-08-10)
+
+
+### Features
+
+* sms marketing consent ([#9797](https://github.com/ovh/manager/issues/9797)) ([5ca7626](https://github.com/ovh/manager/commit/5ca7626097dc31ef1b3565626ebc024cc816a150))
+
+
+
+
+
 ## [2.8.6](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.8.5...@ovh-ux/sign-up-app@2.8.6) (2023-07-24)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app

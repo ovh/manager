@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import App from './App.class';
+import { APP_PARTNER_PRESET_LICENSING } from './app.constants';
 
 export default class AppService {
   static buildGetAppUrl(serviceName, appId) {
@@ -216,7 +217,10 @@ export default class AppService {
     return `ai-app.${flavorId}.minute.consumption`;
   }
 
-  static getPricePartnerIndex(partnerId, flavorId, type) {
+  static getPricePartnerIndex(partnerId, flavorId, licensing, type) {
+    if (licensing === APP_PARTNER_PRESET_LICENSING.PER_SECOND_BRACKET) {
+      return `ai-${partnerId}.${flavorId}-${type}-bracket1.unit.consumption`;
+    }
     return `ai-app.${partnerId}-${flavorId}-${type}.minute.consumption`;
   }
 
@@ -237,10 +241,11 @@ export default class AppService {
     });
   }
 
-  getPartnerPrice(prices, partnerId, flavorId, type) {
+  getPartnerPrice(prices, partnerId, flavorId, licensing, type) {
     const priceIndex = this.constructor.getPricePartnerIndex(
       partnerId,
       flavorId,
+      licensing,
       type,
     );
     return get(prices, priceIndex, {

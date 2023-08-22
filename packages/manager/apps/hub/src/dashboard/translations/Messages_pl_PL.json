@@ -8,5 +8,7 @@
   "manager_hub_dashboard_modal_siret_part_2": "Aktualizacja danych zajmie tylko kilka sekund. Dane znajdziesz w wyciągu z rejestru handlowego.",
   "manager_hub_dashboard_modal_siret_link": "Aktualizuj",
   "manager_hub_dashboard_modal_siret_cancel": "Nie teraz",
-  "manager_hub_dashboard_modal_title": "Aktualizacja danych"
+  "manager_hub_dashboard_modal_title": "Aktualizacja danych",
+  "manager_hub_dashboard_kyc_banner_description": "Chcesz zamówić produkt OVHcloud: obowiązujące przepisy wymagają sprawdzenia Twojej tożsamości. Dodaj dokumenty tożsamości.",
+  "manager_hub_dashboard_kyc_banner_link": "Moje dokumenty"
 }

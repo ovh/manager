@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nutanix-app",
-  "version": "1.4.26",
+  "version": "1.4.29",
   "private": true,
   "description": "OVHcloud Nutanix app",
   "repository": {
@@ -19,14 +19,14 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-nutanix-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-bm-server-components": "^1.8.0",
+    "@ovh-ux/manager-bm-server-components": "^1.8.1",
     "@ovh-ux/manager-components": "^1.8.1",
     "@ovh-ux/manager-config": "^7.1.0",
     "@ovh-ux/manager-core": "^12.12.14",
     "@ovh-ux/manager-error-page": "^2.3.3",
     "@ovh-ux/manager-ng-layout-helpers": "^2.7.0",
     "@ovh-ux/manager-nutanix": "^1.8.0",
-    "@ovh-ux/ng-at-internet": "^5.10.3",
+    "@ovh-ux/ng-at-internet": "^5.10.4",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.7",
     "@ovh-ux/ng-ovh-http": "^5.0.6",
@@ -34,9 +34,9 @@
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.8",
     "@ovh-ux/ng-ovh-sso-auth": "^4.7.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.7",
-    "@ovh-ux/ng-ovh-utils": "^14.0.19",
+    "@ovh-ux/ng-ovh-utils": "^14.0.20",
     "@ovh-ux/ng-translate-async-loader": "^2.1.6",
-    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.8",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.0",
     "@ovh-ux/request-tagger": "^0.1.1",
     "@ovh-ux/ui-kit": "^6.5.3",
     "@uirouter/angularjs": "^1.0.23",

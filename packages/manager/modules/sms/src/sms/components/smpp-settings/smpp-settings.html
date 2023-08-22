@@ -6,7 +6,9 @@
         data-term="{{ 'sms_component_smppSettings_label_systemId' | translate }}"
     >
         <oui-tile-description>
-            <oui-clipboard data-model="$ctrl.serviceName"></oui-clipboard>
+            <oui-clipboard
+                data-model="$ctrl.smppSettings.systemID"
+            ></oui-clipboard>
         </oui-tile-description>
     </oui-tile-definition>
     <oui-tile-definition
