@@ -338,11 +338,11 @@ angular
           $stateParams.productId,
           $scope.model.domain,
         )
-          .then((domain) => {
+          .then((data) => {
             $scope.loading.domains = false;
-            $scope.pathPrefix = /\/$/.test(domain.path)
-              ? domain.path
-              : `${domain.path}/`;
+            $scope.pathPrefix = /\/$/.test(data.path)
+              ? data.path
+              : `${data.path}/`;
 
             if (/^[/.]/.test($scope.pathPrefix)) {
               $scope.rootPathPrefix = '';
