@@ -706,7 +706,7 @@
   "server_configuration_installation_ovh_step2_remaining_size": "Spazio rimanente:",
   "server_configuration_installation_ovh_step2_remaining_size_button": "Spazio rimanente",
   "server_configuration_installation_ovh_step2_info": "Configurazione degli schemi di partizione della distribuzione <b>{{t0}}</b>",
-  "server_configuration_installation_ovh_step2_scheme": "Scelta dello schema di partizione:",
+  "server_configuration_installation_ovh_step2_scheme": "Schema di partizionamento predefinito:",
   "server_configuration_installation_ovh_step2_raid_hard": "(Raid hard)",
   "server_configuration_installation_ovh_step2_info_partition_cachecade": "In una configurazione CacheCade, lo spazio disco dedicato non può essere partizionato",
   "server_configuration_installation_ovh_step2_error_empty_scheme": "Non esistono schemi di partizione compatibili per il server {{t0}} per la distribuzione {{t1}}. Scegli un'altra distribuzione",
@@ -1128,5 +1128,6 @@
   "server_rtm_eol_info": "Informazione importante sull'obsolescenza di Real Time Monitoring: il servizio continuerà a funzionare fino al 30 giugno 2022. A partire da questa data la visualizzazione dei dati di consumo verrà interrotta, senza impatto sul funzionamento del tuo server.",
   "server_configuration_installation_NONE": "Nessuno",
   "server_configuration_installation_ovh_desktop_BACKUP": "Backup",
-  "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Anche se il gruppo di dischi selezionato contiene {{t0}} dischi, il sistema operativo scelto può essere installato solo su un massimo di 2 dischi."
+  "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Anche se il gruppo di dischi selezionato contiene {{t0}} dischi, il sistema operativo scelto può essere installato solo su un massimo di 2 dischi.",
+  "server_configuration_installation_ovh_step3_scheme": "Schema di partizionamento:"
 }

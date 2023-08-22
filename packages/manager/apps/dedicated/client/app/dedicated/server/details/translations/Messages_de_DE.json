@@ -706,7 +706,7 @@
   "server_configuration_installation_ovh_step2_remaining_size": "Verbleibender Speicherplatz:",
   "server_configuration_installation_ovh_step2_remaining_size_button": "Verbleibender Speicherplatz",
   "server_configuration_installation_ovh_step2_info": "Konfiguration des Partitionsschemas der Distribution <b>{{t0}}</b>",
-  "server_configuration_installation_ovh_step2_scheme": "Wahl des Partitionsschemas:",
+  "server_configuration_installation_ovh_step2_scheme": "Vordefiniertes Partitionierungsschema:",
   "server_configuration_installation_ovh_step2_raid_hard": "(Hardware RAID)",
   "server_configuration_installation_ovh_step2_info_partition_cachecade": "Bei einer CacheCade-Konfiguration kann der für den Cache verwendete Speicherplatz nicht partitioniert werden",
   "server_configuration_installation_ovh_step2_error_empty_scheme": "Für die Distribution {{t1}} gibt es beim Server {{t0}} kein kompatibles Partitionsschema. Bitte wählen Sie eine andere Distribution aus.",
@@ -1128,5 +1128,6 @@
   "server_rtm_eol_info": "Wichtige Informationen zur Einstellung des veralterten Dienstes Real Time Monitoring. Dieser Dienst wird nur noch bis zum 30. Juni 2022 betrieben. Nach diesem Datum wird die Anzeige der Daten Ihrer Nutzung eingestellt. Dies hat keine Auswirkungen auf den Betrieb Ihres Servers.",
   "server_configuration_installation_NONE": "Keine",
   "server_configuration_installation_ovh_desktop_BACKUP": "Backup",
-  "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Auch wenn das ausgewählte Disk-Array {{t0}} Festplatten enthält, kann das gewählte Betriebssystem nur auf maximal 2 Festplatten installiert werden."
+  "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Auch wenn das ausgewählte Disk-Array {{t0}} Festplatten enthält, kann das gewählte Betriebssystem nur auf maximal 2 Festplatten installiert werden.",
+  "server_configuration_installation_ovh_step3_scheme": "Partitionierungsschema:"
 }
