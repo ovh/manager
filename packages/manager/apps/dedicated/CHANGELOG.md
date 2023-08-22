@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.9.0...@ovh-ux/manager-dedicated@18.10.0) (2023-08-21)
+
+
+### Features
+
+* **dedicated.pcc:** wip add link guide for sap hana ([#9807](https://github.com/ovh/manager/issues/9807)) ([6d0cdf5](https://github.com/ovh/manager/commit/6d0cdf56ff293f6c0e817ad577a23e48ffe81f97))
+
+
+
+
+
+# [18.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.8.0...@ovh-ux/manager-dedicated@18.9.0) (2023-08-17)
+
+
+### Bug Fixes
+
+* **dedicated:** fix broken link to cloud-init documentation ([#9555](https://github.com/ovh/manager/issues/9555)) ([c14332f](https://github.com/ovh/manager/commit/c14332ff99d7f4860a44b2980f45912c5fa4992d))
+* **i18n:** add missing translations ([#9821](https://github.com/ovh/manager/issues/9821)) ([47f860e](https://github.com/ovh/manager/commit/47f860ec7d3cfe46d86608906cea506424550808))
+
+
+### Features
+
+* **dedicated.account:** customer account changes ([#9728](https://github.com/ovh/manager/issues/9728)) ([bc9d697](https://github.com/ovh/manager/commit/bc9d6972a812057e19b004eea440960492671122))
+* **dedicated:** update kvm order ([#9748](https://github.com/ovh/manager/issues/9748)) ([3e593b8](https://github.com/ovh/manager/commit/3e593b81ee6850966a5c4ba09f568323f11bb884))
+
+
+### Reverts
+
+* Revert "feat(dedicated) : update kvm order (#9748)" (#9849) ([8a61e94](https://github.com/ovh/manager/commit/8a61e94a643abf59f1603601c0a68b88e114c991)), closes [#9748](https://github.com/ovh/manager/issues/9748) [#9849](https://github.com/ovh/manager/issues/9849)
+
+
+
+
+
+# [18.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.7.1...@ovh-ux/manager-dedicated@18.8.0) (2023-08-10)
+
+
+### Features
+
+* acquisition storage ([#9209](https://github.com/ovh/manager/issues/9209)) ([e709587](https://github.com/ovh/manager/commit/e7095878ae5722620edfe81813d385923a0894a3))
+* sms marketing consent ([#9797](https://github.com/ovh/manager/issues/9797)) ([5ca7626](https://github.com/ovh/manager/commit/5ca7626097dc31ef1b3565626ebc024cc816a150))
+
+
+
+
+
 ## [18.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.7.0...@ovh-ux/manager-dedicated@18.7.1) (2023-08-08)
 
 

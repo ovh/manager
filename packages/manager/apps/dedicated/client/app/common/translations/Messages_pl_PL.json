@@ -485,7 +485,6 @@
   "core_pcc_top_guide_8_title": "Działanie licencji SPLA Windows",
   "core_pcc_top_guide_9_title": "Pierwsze kroki z NSX",
   "core_pcc_top_guide_10_title": "Oficjalna dokumentacja NSX",
-  "core_pcc_top_guide_11_title": "Oficjalna dokumentacja Nutanix",
   "sso_modal_title": "OVH - Uwierzytelnianie",
   "sso_modal_loading": "Pobieranie...",
   "sso_modal_user_title": "Byłeś zalogowany jako:",
@@ -544,5 +543,7 @@
   "common_subscription_contacts_billing": "Płatności",
   "common_subscription_contacts_tech": "Kontakt techniczny",
   "common_unavailable_information": "Informacja niedostępna",
-  "common_resiliate_contact_support": "Aby zrezygnować z tej usługi, skontaktuj się z Pomocą techniczną. Zadzwoń na numer: <strong>71 750 02 00</strong> i <strong>wybierz 3.</strong> Dziękujemy za wyrozumiałość."
+  "common_resiliate_contact_support": "Aby zrezygnować z tej usługi, skontaktuj się z Pomocą techniczną. Zadzwoń na numer: <strong>71 750 02 00</strong> i <strong>wybierz 3.</strong> Dziękujemy za wyrozumiałość.",
+  "core_pcc_top_guide_11_title": "Oficjalna dokumentacja Nutanix",
+  "core_pcc_top_guide_12_title": "Oficjalna dokumentacja SAP HANA on Private Cloud"
 }

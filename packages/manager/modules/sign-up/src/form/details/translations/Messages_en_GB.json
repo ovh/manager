@@ -8,5 +8,8 @@
   "sign_up_details_field_address": "Address",
   "sign_up_details_field_area": "Region",
   "sign_up_details_field_state": "State",
-  "sign_up_details_field_province": "Province"
+  "sign_up_details_field_province": "Province",
+  "sign_up_details_field_mobile_phone": "Mobile",
+  "sign_up_details_field_landline_phone": "Landline",
+  "sign_up_details_field_sms_consent": "I agree to receive SMS messages regarding OVHcloud news and commercial offers"
 }

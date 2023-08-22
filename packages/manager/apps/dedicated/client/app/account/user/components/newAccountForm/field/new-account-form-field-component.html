@@ -6,10 +6,7 @@
                     'oui-field_error': $ctrl.isInvalid()
     }"
 >
-    <div
-        class="oui-field__header"
-        data-ng-if="$ctrl.getFieldType() !== 'checkbox'"
-    >
+    <div class="oui-field__header" data-ng-if="$ctrl.shouldDisplayLabel()">
         <label
             class="oui-field__label"
             data-ng-if="$ctrl.rule.fieldName !== 'area'"
@@ -35,7 +32,7 @@
             data-ng-focus="$ctrl.focused = true"
             data-ng-blur="$ctrl.focused = false"
             data-ng-pattern="$ctrl.inputValidator"
-            data-ng-disabled="$ctrl.rule.fieldName === $ctrl.FIELD_NAME_LIST.customerCode"
+            data-ng-disabled="$ctrl.disableInputField"
             data-ng-required="$ctrl.rule.mandatory"
         />
 
@@ -52,6 +49,7 @@
             data-ng-blur="$ctrl.focused = false"
             data-ng-pattern="$ctrl.inputValidator"
             data-ng-required="$ctrl.rule.mandatory"
+            disabled="$ctrl.disableDropDownSelection"
             searchable
         >
         </oui-select>
@@ -162,11 +160,31 @@
             data-ng-blur="$ctrl.focused = false"
             data-ng-pattern="$ctrl.inputValidator"
             data-ng-required="$ctrl.rule.mandatory"
+            data-disabled="$ctrl.rule.disabled()"
         >
             <span
                 data-translate="{{ 'signup_field_' + $ctrl.rule.displayFieldName | translate }} {{ !$ctrl.rule.mandatory ? 'signup_not_mandatory_field' : '' | translate }}"
             ></span>
         </oui-checkbox>
+
+        <oui-radio-group
+            data-ng-if="$ctrl.getFieldType() === 'radio'"
+            data-ng-attr-id="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-ng-attr-name="{{ 'ovh_field_' + $ctrl.rule.fieldName }}"
+            data-model="$ctrl.value"
+            data-ng-required="$ctrl.rule.mandatory"
+            data-on-change="$ctrl.onChange()"
+            data-ng-focus="$ctrl.focused = true"
+            data-ng-blur="$ctrl.focused = false"
+        >
+            <oui-radio
+                data-ng-repeat="value in $ctrl.getTranslatedEnums()"
+                data-value="value.key"
+                inline
+            >
+                <span data-ng-bind="value.translated"></span>
+            </oui-radio>
+        </oui-radio-group>
 
         <p
             class="help-block text-danger"

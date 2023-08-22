@@ -1,6 +1,6 @@
 <div class="sign-up-form-details">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg">
             <!-- legalform -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_legalform' | translate }}"
@@ -26,8 +26,9 @@
             </oui-field>
             <!-- /select[name="legalform"] -->
         </div>
-
-        <div class="col-lg-6">
+    </div>
+    <div class="row">
+        <div class="col-lg">
             <!-- country -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_country' | translate }}"
@@ -57,50 +58,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-6">
-            <!-- phone -->
-            <oui-field
-                data-label="{{ 'sign_up_details_field_phone' | translate }}"
-            >
-                <div class="oui-input-group phone-number-field">
-                    <ui-select
-                        data-ng-model="$ctrl.signUpFormCtrl.model.phoneCountry"
-                        data-on-select="$ctrl.onPhoneCountrySelect()"
-                        theme="ui-select-oui-kit"
-                    >
-                        <ui-select-match>
-                            <country-flag
-                                data-country="$select.selected.value"
-                            ></country-flag>
-                        </ui-select-match>
-                        <ui-select-choices
-                            data-repeat="phoneCountry.value as phoneCountry in ($ctrl.signUpFormCtrl.rules.phoneCountry.in | filter: $select.search) track by $index"
-                        >
-                            <country-flag
-                                data-country="phoneCountry.value"
-                                data-label="{{ phoneCountry.label }}"
-                            >
-                            </country-flag>
-                        </ui-select-choices>
-                    </ui-select>
-                    <input
-                        type="text"
-                        class="oui-input oui-input_phone m-0"
-                        name="phone"
-                        id="phone"
-                        data-ng-model="$ctrl.phoneModel.model"
-                        data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
-                        data-ng-required="$ctrl.signUpFormCtrl.rules.phone.mandatory"
-                        data-ng-pattern="$ctrl.phoneModel.validator"
-                        data-ng-attr-placeholder="{{ $ctrl.signUpFormCtrl.phonePlaceHolder }}"
-                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.phone)"
-                    />
-                </div>
-            </oui-field>
-            <!-- /input[name="phone"] -->
-        </div>
-
-        <div class="col-lg-6">
+        <div class="col-lg">
             <!-- language -->
             <oui-field
                 data-label="{{ 'sign_up_details_field_language' | translate }}"
@@ -128,53 +86,91 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-6">
-            <!-- zip -->
-            <oui-field
-                data-label="{{ 'sign_up_details_field_zip' | translate }}"
-            >
-                <div
-                    data-ng-class="{ 'oui-input-group zip-group' : $ctrl.signUpFormCtrl.rules.zip.prefix }"
+    <div class="row" data-ng-if="$ctrl.signUpFormCtrl.rules.phoneType">
+        <div class="col-lg">
+            <oui-field>
+                <oui-radio-group
+                    name="phoneType"
+                    data-model="$ctrl.signUpFormCtrl.model.phoneType"
+                    data-required
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.phoneType)"
+                    data-on-change="$ctrl.onPhoneTypeChange()"
                 >
-                    <span
-                        data-ng-if="$ctrl.signUpFormCtrl.rules.zip.prefix"
-                        data-ng-bind="$ctrl.signUpFormCtrl.rules.zip.prefix"
+                    <oui-radio data-value="'mobile'" inline>
+                        <span
+                            data-translate="sign_up_details_field_mobile_phone"
+                        ></span>
+                    </oui-radio>
+                    <oui-radio data-value="'landline'" inline>
+                        <span
+                            data-translate="sign_up_details_field_landline_phone"
+                        ></span>
+                    </oui-radio>
+                </oui-radio-group>
+            </oui-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg">
+            <!-- phone -->
+            <oui-field
+                data-label="{{ 'sign_up_details_field_phone' | translate }}"
+            >
+                <div class="oui-input-group phone-number-field">
+                    <ui-select
+                        data-ng-model="$ctrl.signUpFormCtrl.model.phoneCountry"
+                        data-on-select="$ctrl.onPhoneCountrySelect()"
+                        theme="ui-select-oui-kit"
                     >
-                    </span>
+                        <ui-select-match>
+                            <country-flag
+                                data-country="$select.selected.value"
+                                data-label="+{{ $select.selected.prefix }}"
+                            ></country-flag>
+                        </ui-select-match>
+                        <ui-select-choices
+                            data-repeat="phoneCountry.value as phoneCountry in ($ctrl.signUpFormCtrl.rules.phoneCountry.in | filter: $select.search) track by $index"
+                        >
+                            <country-flag
+                                data-country="phoneCountry.value"
+                                data-label="{{ phoneCountry.label + ' (+' + phoneCountry.prefix + ')' }}"
+                            >
+                            </country-flag>
+                        </ui-select-choices>
+                    </ui-select>
                     <input
                         type="text"
-                        class="oui-input"
-                        name="zip"
-                        id="zip"
-                        data-ng-model="$ctrl.zipModel.model"
+                        class="oui-input oui-input_phone m-0"
+                        name="phone"
+                        id="phone"
+                        data-ng-model="$ctrl.phoneModel.model"
                         data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
-                        data-ng-required="$ctrl.signUpFormCtrl.rules.zip.mandatory"
-                        data-ng-pattern="$ctrl.zipModel.validator"
-                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.zip)"
+                        data-ng-required="$ctrl.signUpFormCtrl.rules.phone.mandatory"
+                        data-ng-pattern="$ctrl.phoneModel.validator"
+                        data-ng-attr-placeholder="{{ $ctrl.signUpFormCtrl.phonePlaceHolder }}"
+                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.phone)"
                     />
                 </div>
             </oui-field>
-            <!-- /input[name="zip"] -->
+            <!-- /input[name="phone"] -->
         </div>
+    </div>
 
-        <div class="col-lg-6">
-            <!-- city -->
-            <oui-field
-                data-label="{{ 'sign_up_details_field_city' | translate }}"
-            >
-                <input
-                    type="text"
-                    class="oui-input"
-                    name="city"
-                    id="city"
-                    data-ng-model="$ctrl.signUpFormCtrl.model.city"
-                    data-ng-required="$ctrl.signUpFormCtrl.rules.city.mandatory"
-                    data-ng-pattern="$ctrl.signUpFormCtrl.rules.city.regularExpression"
-                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.city)"
-                />
+    <div class="row" data-ng-if="$ctrl.signUpFormCtrl.rules.phoneType">
+        <div class="col-lg">
+            <oui-field>
+                <oui-checkbox
+                    name="sms-consent"
+                    data-model="$ctrl.signUpFormCtrl.smsConsent"
+                    data-disabled="$ctrl.signUpFormCtrl.model.phoneType !== 'mobile'"
+                    data-on-change="$ctrl.onSmsConsentChange(modelValue)"
+                >
+                    <span
+                        data-translate="sign_up_details_field_sms_consent"
+                    ></span>
+                </oui-checkbox>
             </oui-field>
-            <!-- /input[name="city"] -->
         </div>
     </div>
 
@@ -223,6 +219,58 @@
                 </label>
             </oui-field>
             <!-- /select[name="area"] -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg">
+            <!-- zip -->
+            <oui-field
+                data-label="{{ 'sign_up_details_field_zip' | translate }}"
+            >
+                <div
+                    data-ng-class="{ 'oui-input-group zip-group' : $ctrl.signUpFormCtrl.rules.zip.prefix }"
+                >
+                    <span
+                        data-ng-if="$ctrl.signUpFormCtrl.rules.zip.prefix"
+                        data-ng-bind="$ctrl.signUpFormCtrl.rules.zip.prefix"
+                    >
+                    </span>
+                    <input
+                        type="text"
+                        class="oui-input"
+                        name="zip"
+                        id="zip"
+                        data-ng-model="$ctrl.zipModel.model"
+                        data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
+                        data-ng-required="$ctrl.signUpFormCtrl.rules.zip.mandatory"
+                        data-ng-pattern="$ctrl.zipModel.validator"
+                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.zip)"
+                    />
+                </div>
+            </oui-field>
+            <!-- /input[name="zip"] -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg">
+            <!-- city -->
+            <oui-field
+                data-label="{{ 'sign_up_details_field_city' | translate }}"
+            >
+                <input
+                    type="text"
+                    class="oui-input"
+                    name="city"
+                    id="city"
+                    data-ng-model="$ctrl.signUpFormCtrl.model.city"
+                    data-ng-required="$ctrl.signUpFormCtrl.rules.city.mandatory"
+                    data-ng-pattern="$ctrl.signUpFormCtrl.rules.city.regularExpression"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.city)"
+                />
+            </oui-field>
+            <!-- /input[name="city"] -->
         </div>
     </div>
 </div>

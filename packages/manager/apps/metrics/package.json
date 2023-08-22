@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-metrics-app",
-  "version": "1.8.7",
+  "version": "1.8.9",
   "private": true,
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
     "@ovh-ux/manager-core": "^12.12.14",
     "@ovh-ux/manager-metrics": "^1.4.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.7.0",
-    "@ovh-ux/ng-at-internet": "^5.10.3",
+    "@ovh-ux/ng-at-internet": "^5.10.4",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.16",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.7.2",
@@ -37,7 +37,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.7",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.6",
     "@ovh-ux/ng-translate-async-loader": "^2.1.6",
-    "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.8",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.0",
     "@ovh-ux/request-tagger": "^0.1.1",
     "@ovh-ux/ui-kit": "^6.5.3",
     "@uirouter/angularjs": "^1.0.23",

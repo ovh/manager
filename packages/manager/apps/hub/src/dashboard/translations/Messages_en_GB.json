@@ -8,5 +8,7 @@
   "manager_hub_dashboard_modal_siret_part_2": "With your KBIS, this update will only take a few seconds.",
   "manager_hub_dashboard_modal_siret_link": "Update",
   "manager_hub_dashboard_modal_siret_cancel": "Not now",
-  "manager_hub_dashboard_modal_title": "Update your contact details"
+  "manager_hub_dashboard_modal_title": "Update your contact details",
+  "manager_hub_dashboard_kyc_banner_description": "Before you order an OVHcloud product, current regulations require verification of your identity. Please add your identity documents.",
+  "manager_hub_dashboard_kyc_banner_link": "My documents"
 }

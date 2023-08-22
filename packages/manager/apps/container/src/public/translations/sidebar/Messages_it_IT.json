@@ -158,5 +158,6 @@
   "sidebar_access_list": "Accedere alla lista",
   "sidebar_access_dashboard": "Accedere alla dashboard",
   "sidebar_account_iam": "Identità e accessi (IAM)",
-  "sidebar_carbon_footprint": "La mia impronta di carbonio"
+  "sidebar_carbon_footprint": "La mia impronta di carbonio",
+  "sidebar_account_identity_documents": "I miei documenti d'identità"
 }

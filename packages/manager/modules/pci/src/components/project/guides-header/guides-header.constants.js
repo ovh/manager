@@ -492,6 +492,8 @@ export const GUIDE_TRACKING_TAG = {
   instances: `${PREFIX_UNIVERSE_NAME}_instances`,
   block_storage: `${PREFIX_UNIVERSE_NAME}_block_storage`,
   object_storage: `${PREFIX_UNIVERSE_NAME}_object_storage`,
+  additional_ips: `${PREFIX_UNIVERSE_NAME}_additional_ips`,
+  gateway: `${PREFIX_UNIVERSE_NAME}_gateway`,
   databases: `${PREFIX_UNIVERSE_NAME}_databases`,
   cloud_archive: `${PREFIX_UNIVERSE_NAME}_cloud_archive`,
   volume_snapshot: `${PREFIX_UNIVERSE_NAME}_volume_snapshot`,

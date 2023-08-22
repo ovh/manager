@@ -1,4 +1,4 @@
-<% const pascalcasedName = this.camelcase(name, { pascalCase: true }) -%>
+<% const pascalcasedName = this.camelcase(name, { pascalCase: false }) -%>
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.onboarding', {
     url: '/onboarding',

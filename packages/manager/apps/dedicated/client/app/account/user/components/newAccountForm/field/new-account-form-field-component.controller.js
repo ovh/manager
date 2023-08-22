@@ -9,11 +9,20 @@ import {
   PHONE_PREFIX,
   MODEL_DEBOUNCE_DELAY,
   FIELD_NAME_LIST,
+  USER_TYPE_ENTERPRISE,
 } from '../new-account-form-component.constants';
 
 export default class NewAccountFormFieldController {
   /* @ngInject */
-  constructor($filter, $locale, $scope, $timeout, $translate, atInternet) {
+  constructor(
+    $filter,
+    $locale,
+    $scope,
+    $timeout,
+    $translate,
+    atInternet,
+    coreConfig,
+  ) {
     this.$filter = $filter;
     this.$locale = $locale;
     this.$scope = $scope;
@@ -21,9 +30,14 @@ export default class NewAccountFormFieldController {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.FIELD_NAME_LIST = FIELD_NAME_LIST;
+    this.user = coreConfig.getUser();
   }
 
   $onInit() {
+    // Indian subsidiary changes
+    this.disableInputField = this.canInputFieldDisabled();
+    this.disableDropDownSelection = this.canDropDownDisabled();
+
     // unique field identifier
     this.id = `ovh_field_${this.rule.fieldName}`;
 
@@ -53,6 +67,17 @@ export default class NewAccountFormFieldController {
       this.$scope.$on('account.email.response.validity', (ev, isValid) => {
         if (this.value) {
           this.fieldset[this.id].$setValidity('emailAvailable', isValid);
+        }
+      });
+    }
+
+    // reset sms consent value when phone type is no longer 'mobile'
+    if (this.rule.fieldName === 'smsConsent') {
+      this.$scope.$on('account.smsConsent.reset', () => {
+        // switch value to false only if it is true
+        if (this.value) {
+          this.onChange();
+          this.value = false;
         }
       });
     }
@@ -218,6 +243,9 @@ export default class NewAccountFormFieldController {
     if (this.rule.fieldType) {
       return this.rule.fieldType;
     }
+    if (this.rule.fieldName === this.FIELD_NAME_LIST.phoneType) {
+      return 'radio';
+    }
     if (this.rule.in) {
       return 'select';
     }
@@ -268,8 +296,11 @@ export default class NewAccountFormFieldController {
       };
     });
 
-    result = this.$filter('orderBy')(result, 'translated', false, (a, b) =>
-      String(a.value).localeCompare(String(b.value)),
+    result = this.$filter('orderBy')(
+      result,
+      'translated',
+      this.rule.fieldName === this.FIELD_NAME_LIST.phoneType,
+      (a, b) => String(a.value).localeCompare(String(b.value)),
     );
 
     // if there is only a single value, auto select it
@@ -347,6 +378,10 @@ export default class NewAccountFormFieldController {
     return ['phone', 'fax'].includes(this.rule.fieldName);
   }
 
+  shouldDisplayLabel() {
+    return !['checkbox', 'radio'].includes(this.getFieldType());
+  }
+
   // callback for when model changed
   onChange() {
     let { value } = this;
@@ -411,5 +446,35 @@ export default class NewAccountFormFieldController {
       .replace('dd', 'd')
       .replace(/MM|M/g, 'm')
       .replace(/yy|y/g, 'Y');
+  }
+
+  /*
+      inputField disability rules:
+      if the user is from Indian subsidiary or if the field is customer code
+      if the field is vat and the user is from Indian subsidiary and is ENTERPRISE 
+  */
+  canInputFieldDisabled() {
+    if (this.isIndianSubsidiary)
+      return !(
+        this.rule.fieldName === this.FIELD_NAME_LIST.vat &&
+        this.user.legalform !== USER_TYPE_ENTERPRISE
+      );
+    return this.rule.fieldName === this.FIELD_NAME_LIST.customerCode;
+  }
+
+  /*
+      dropDown disability rules:
+      if the user is from Indian subsidiary and field is country or area
+      if the dropdown is legalform and if the user is from Indian subsidiary and is ENTERPRISE
+  */
+  canDropDownDisabled() {
+    if (this.isIndianSubsidiary) {
+      return !!(
+        this.rule.fieldName === this.FIELD_NAME_LIST.legalform ||
+        this.rule.fieldName === this.FIELD_NAME_LIST.country ||
+        this.rule.fieldName === this.FIELD_NAME_LIST.area
+      );
+    }
+    return false;
   }
 }
