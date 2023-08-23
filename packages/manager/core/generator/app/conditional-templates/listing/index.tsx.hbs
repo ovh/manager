@@ -16,7 +16,7 @@ type ServiceData = {
   serviceName: string;
 };
 
-const ServiceList: React.FC<{ data: ServiceData[]{{#if this.pimID}}; pim: string{{/if}} }> = ({ data{{#if this.pimID}}, pim{{/if}} }) => {
+const ServiceList: React.FC<{ data: ServiceData[]{{#if this.pimID}}; appName: string{{/if}} }> = ({ data{{#if this.pimID}}, appName{{/if}} }) => {
   const count = data?.length;
 
   if (count === 0) return <Navigate to="onboarding" />;
@@ -30,7 +30,7 @@ const ServiceList: React.FC<{ data: ServiceData[]{{#if this.pimID}}; pim: string
     )
     : (
       <>
-        <h2>{{#if this.pimID}}{pim?.name?pim?.name:'{{appName}}'}{{else}}{{appName}}{{/if}}</h2>
+        <h2>{{#if this.pimID}}{ appName || '{{appName}}' }{{else}}{{appName}}{{/if}}</h2>
         <Datagrid
           data={data}
           serviceKey={appConfig.listing.datagrid.serviceKey as string} />
@@ -65,9 +65,8 @@ export default function Listing() {
       <Breadcrumb />
       <ServiceList
         data={servicesListingIcebergResult.data}
-        {{#if this.pimID}}pim={pimServiceResult.data}{{/if}}
+        {{#if this.pimID}}appName={pimServiceResult.data?.name}{{/if}}
       />
     </>
   );
 }
-
