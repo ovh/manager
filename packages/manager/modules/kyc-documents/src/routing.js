@@ -1,3 +1,5 @@
+import { FRAUD_STATUS } from './constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('kyc-documents', {
     url: '/documents',
@@ -31,6 +33,9 @@ export default /* @ngInject */ ($stateProvider) => {
       apiPath: () => '/me/procedure/fraud',
       resource: /* @ngInject */ ($http, apiPath) =>
         $http.get(apiPath).then(({ data }) => data),
+      // TODO: Change desabled when status is REQUIRED
+      isDisabled: /* @ngInject */ (resource) =>
+        resource.status !== FRAUD_STATUS.OK,
       user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
     },
   });

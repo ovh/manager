@@ -10,29 +10,30 @@
     ></p>
     <ul>
         <li data-ng-repeat="document in $ctrl.documentList track by $index">
-            <span
-                data-ng-if="document !== $ctrl.DOCUMENT_TYPE.OTHER"
-                data-translate="{{'documents_dashboard_document_' + document}}"
-            ></span>
-            <span
-                data-ng-if="document === $ctrl.DOCUMENT_TYPE.OTHER"
-                data-translate="{{'documents_dashboard_document_' + $ctrl.user.legalform + '_' + document}}"
-            ></span>
+            <span data-ng-bind="document"></span>
         </li>
     </ul>
-    <div class="col-lg-6 mb-5">
-        <oui-file
-            class="mb-3"
-            disabled="false"
-            maxsize="150000"
-            model="$ctrl.model"
-            multiple
-        >
-        </oui-file>
-        <button
-            class="oui-button oui-button_primary"
-            data-translate="documents_dashboard_cta_send"
-        ></button>
+    <div class="col-lg-6 text-center mb-5" data-ng-if="$ctrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+    <div class="col-lg-6 mb-5" data-ng-if="!$ctrl.loading">
+        <form novalidate name="$ctrl.form" class="mt-2">
+            <oui-file
+                data-model="$ctrl.documents"
+                data-accept="application/pdf,image/jpeg,image/png,image/jpg"
+                data-multiple
+                data-maxsize="$ctrl.maximum_size"
+                data-name="documents"
+                data-disabled="$ctrl.isDisabled"
+            ></oui-file>
+
+            <oui-form-actions
+                class="mt-5"
+                data-disabled="$ctrl.form.$invalid || !$ctrl.documents || $ctrl.documents.length === 0 || $ctrl.isDisabled"
+                data-on-submit="$ctrl.uploadDocuments()"
+                data-submit-text="{{:: 'documents_dashboard_cta_send' | translate}}"
+            ></oui-form-actions>
+        </form>
     </div>
 
     <small

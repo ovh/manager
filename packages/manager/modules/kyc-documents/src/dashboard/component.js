@@ -5,6 +5,7 @@ export default {
   bindings: {
     user: '<',
     resource: '<',
+    isDisabled: '<',
   },
   controller,
   template,
