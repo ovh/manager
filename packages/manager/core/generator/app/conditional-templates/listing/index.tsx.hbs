@@ -1,20 +1,41 @@
-import React, { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  Await,
-  defer,
-  Link,
-  Navigate,
-  Outlet,
-  useLoaderData,
-} from 'react-router-dom';
+import React from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useQueries } from '@tanstack/react-query';
+import { getListingIceberg{{#if this.pimID}}, getPIMService{{/if}} } from '@/api';
+import Datagrid from '@/components/layout-helpers/Listing/dataGrid';
+import appConfig from '@/{{this.appName}}.config';
+import Breadcrumb, {
+  BreadcrumbHandleParams,
+} from '@/components/Breadcrumb/Breadcrumb';
 
-import { {{listingEndpoint}} } from '@/api';
+export function breadcrumb({ params }: BreadcrumbHandleParams) {
+  return params.serviceName;
+}
 
-export function loader() {
-  return defer({
-    services: {{listingEndpoint}}(),
-  });
+type ServiceData = {
+  serviceName: string;
+};
+
+const ServiceList: React.FC<{ data: ServiceData[]{{#if this.pimID}}; appName: string{{/if}} }> = ({ data{{#if this.pimID}}, appName{{/if}} }) => {
+  const count = data?.length;
+
+  if (count === 0) return <Navigate to="onboarding" />;
+
+  return (count === 1)
+    ? (
+      <>
+        <Outlet />
+        <Navigate to={data[0].serviceName} />
+      </>
+    )
+    : (
+      <>
+        <h2>{{#if this.pimID}}{ appName || '{{appName}}' }{{else}}{{appName}}{{/if}}</h2>
+        <Datagrid
+          data={data}
+          serviceKey={appConfig.listing.datagrid.serviceKey as string} />
+      </>
+    );
 }
 
 export default function Listing() {
@@ -22,41 +43,12 @@ export default function Listing() {
   const data = useLoaderData() as Record<string, unknown>;
 
   return (
-    <div>
-      <h1>{t('title')}</h1>
-      <Suspense fallback="">
-        <Await resolve={data.services}>
-          {(services) => {
-            const count = services.length;
-            if (count === 0) {
-              return <Navigate to="onboarding" />;
-            }
-            if (count === 1) {
-              return (
-                <>
-                  <Outlet />
-                  <Navigate to={services[0]} />
-                </>
-              );
-            }
-            return (
-              <>
-                <h2>
-                  Services list
-                </h2>
-                <ul>
-                  {services.map((serviceName: string) => (
-                    <li key={serviceName}>
-                      <Link to={`/dashboard/${serviceName}`}>{serviceName}</Link>
-                    </li>
-                  ))}
-
-                </ul>
-              </>
-            );
-          }}
-        </Await>
-      </Suspense>
-    </div>
+    <>
+      <Breadcrumb />
+      <ServiceList
+        data={servicesListingIcebergResult.data}
+        {{#if this.pimID}}appName={pimServiceResult.data?.name}{{/if}}
+      />
+    </>
   );
 }
