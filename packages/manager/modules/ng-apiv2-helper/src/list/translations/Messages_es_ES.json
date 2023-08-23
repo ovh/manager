@@ -1,0 +1,4 @@
+{
+  "cursor_datagrid_error_cursor": "Esta página no existe",
+  "cursor_datagrid_error_data": "Se ha producido un error al cargar sus datos: {{ message }}"
+}
