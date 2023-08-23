@@ -1,0 +1,4 @@
+{
+  "cursor_datagrid_error_cursor": "Diese Seite existiert nicht",
+  "cursor_datagrid_error_data": "Beim Abrufen Ihrer Daten ist ein Fehler aufgetreten: {{ message }}"
+}
