@@ -1,0 +1,42 @@
+<div>
+    <oui-header
+        heading="{{:: 'documents_dashboard_title' | translate}}"
+        description="{{:: 'documents_dashboard_explanation' | translate}}"
+    >
+    </oui-header>
+    <h4 data-translate="documents_dashboard_subtitle"></h4>
+    <p
+        data-translate="{{'documents_dashboard_' + $ctrl.user.legalform + '_requirement'}}"
+    ></p>
+    <ul>
+        <li data-ng-repeat="document in $ctrl.documentList track by $index">
+            <span
+                data-ng-if="document !== $ctrl.DOCUMENT_TYPE.OTHER"
+                data-translate="{{'documents_dashboard_document_' + document}}"
+            ></span>
+            <span
+                data-ng-if="document === $ctrl.DOCUMENT_TYPE.OTHER"
+                data-translate="{{'documents_dashboard_document_' + $ctrl.user.legalform + '_' + document}}"
+            ></span>
+        </li>
+    </ul>
+    <div class="col-lg-6 mb-5">
+        <oui-file
+            class="mb-3"
+            disabled="false"
+            maxsize="150000"
+            model="$ctrl.model"
+            multiple
+        >
+        </oui-file>
+        <button
+            class="oui-button oui-button_primary"
+            data-translate="documents_dashboard_cta_send"
+        ></button>
+    </div>
+
+    <small
+        class="col-lg-12"
+        data-translate="documents_dashboard_legal_text"
+    ></small>
+</div>
