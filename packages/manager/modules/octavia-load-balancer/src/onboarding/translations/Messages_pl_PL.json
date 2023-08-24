@@ -1,0 +1,13 @@
+{
+  "octavia_load_balancer_onboarding_title": "Rozdziel ruch z Twoich aplikacji pomiędzy kilka instancji",
+  "octavia_load_balancer_onboarding_description_1": "Dzięki usłudze Load Balancer zwiększysz skalowalność i wydajność aplikacji Public Cloud.",
+  "octavia_load_balancer_onboarding_description_2": "Zarządzanie Load Balancerem Public Cloud nie jest obecnie zintegrowane z Panelem klienta. Można nim jednak zarządzać za pomocą wiersza poleceń, API OpenStack oraz Terraform.",
+  "octavia_load_balancer_onboarding_description_3": "Zapoznaj się z przewodnikami dotyczącymi tworzenia i konfiguracji Load Balancera.",
+  "octavia_load_balancer_onboarding_cta": "Sprawdź usługę Load Balancer Public Cloud",
+  "octavia_load_balancer_onboarding_guide1_title": "Pierwsze kroki z Load Balancerem",
+  "octavia_load_balancer_onboarding_guide1_description": "Dowiedz się, jak rozpocząć pracę z Load Balancerem Public Cloud",
+  "octavia_load_balancer_onboarding_guide2_title": "Uruchom Load Balancer",
+  "octavia_load_balancer_onboarding_guide2_description": "Dowiedz się, jak skonfigurować Load Balancer Public Cloud",
+  "octavia_load_balancer_onboarding_guide3_title": "Skonfiguruj Load Balancer przy użyciu Let's Encrypt",
+  "octavia_load_balancer_onboarding_guide3_description": "Dowiedz się, jak skonfigurować Load Balancer Public Cloud przy użyciu Let’s Encrypt"
+}
