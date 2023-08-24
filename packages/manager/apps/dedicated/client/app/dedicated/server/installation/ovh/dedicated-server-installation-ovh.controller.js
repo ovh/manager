@@ -14,8 +14,6 @@ import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
 import take from 'lodash/take';
 import {
-  RTM_GUIDE_URLS,
-  RTM_INSTALL_FEATURE,
   MOUNT_POINTS,
   MAX_MOUNT_POINTS,
 } from './dedicated-server-installation-ovh.constants';
@@ -289,12 +287,6 @@ angular
 
       $scope.sshList = [];
 
-      $scope.rtmGuideLink = get(
-        RTM_GUIDE_URLS,
-        $scope.constants.user.ovhSubsidiary,
-        get(RTM_GUIDE_URLS, 'GB'),
-      );
-
       $scope.trackClick = function trackClick(name) {
         atInternet.trackClick({
           name,
@@ -371,20 +363,8 @@ angular
             $scope.sshList = data;
           },
         );
-        const getRtmInstallAvailability = ovhFeatureFlipping
-          .checkFeatureAvailability(RTM_INSTALL_FEATURE)
-          .then((rtmFeatureResult) => {
-            $scope.isRtmAvailable = rtmFeatureResult.isFeatureAvailable(
-              RTM_INSTALL_FEATURE,
-            );
-          });
 
-        $q.all([
-          getHardRaid,
-          getOvhTemplates,
-          getSshKeys,
-          getRtmInstallAvailability,
-        ]).finally(() => {
+        $q.all([getHardRaid, getOvhTemplates, getSshKeys]).finally(() => {
           $scope.loader.loading = false;
         });
       };
@@ -2482,18 +2462,12 @@ angular
       }
 
       function startInstall() {
-        $scope.trackClick(
-          `dedicated::dedicated::server::system-install::public-catalog::rtm::${
-            $scope.installation.options.installRTM ? 'activate' : 'deactivate'
-          }`,
-        );
         $scope.loader.loading = true;
         Server.startInstallation(
           $stateParams.productId,
           $scope.informations.gabaritName,
           {
             language: camelCase($scope.installation.selectLanguage),
-            installRTM: $scope.installation.options.installRTM || false,
             customHostname: $scope.installation.options.customHostname,
             postInstallationScriptLink:
               $scope.installation.options.postInstallationScriptLink,
