@@ -485,8 +485,8 @@
                             <oui-switch
                                 class="d-inline-block"
                                 name="schema-registry-switch"
-                                model="$ctrl.enableSchemaRegistry"
-                                on-change="$ctrl.onSchemaRegistryStatusChange(modelValue)"
+                                data-model="$ctrl.enableSchemaRegistry"
+                                data-on-change="$ctrl.onSchemaRegistryStatusChange(modelValue)"
                                 data-disabled="$ctrl.loading.schemaRegistry || !$ctrl.database.isActive()"
                             >
                             </oui-switch>
