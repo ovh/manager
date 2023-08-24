@@ -158,5 +158,6 @@
   "sidebar_access_list": "Zur Liste",
   "sidebar_access_dashboard": "Zum Dashboard",
   "sidebar_account_iam": "Identity and Access (IAM)",
-  "sidebar_carbon_footprint": "Mein CO2-Fußabdruck"
+  "sidebar_carbon_footprint": "Mein CO2-Fußabdruck",
+  "sidebar_pci_octavia_load_balancer": "Load Balancer"
 }
