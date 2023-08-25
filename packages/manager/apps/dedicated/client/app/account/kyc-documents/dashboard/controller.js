@@ -3,11 +3,10 @@ import { DOCUMENT_TYPE, DOCUMENT_LIST, MAXIMUM_SIZE } from './constants';
 
 export default class KycDocumentsCtrl {
   /* @ngInject */
-  constructor($translate, coreURLBuilder) {
+  constructor($translate) {
     this.$translate = $translate;
     this.maximum_size = MAXIMUM_SIZE;
     this.DOCUMENT_TYPE = DOCUMENT_TYPE;
-    this.coreURLBuilder = coreURLBuilder;
     this.FRAUD_STATUS = FRAUD_STATUS;
   }
 
@@ -18,11 +17,6 @@ export default class KycDocumentsCtrl {
     // personnalcorporation user is like corporation user
     if (this.user.legalform === 'personalcorporation')
       this.user.legalform = 'corporation';
-
-    this.supportLink = this.coreURLBuilder.buildURL(
-      'dedicated',
-      '#/support/tickets',
-    );
 
     // retrieve mandatory / optionnal documents
     this.getDocumentList();

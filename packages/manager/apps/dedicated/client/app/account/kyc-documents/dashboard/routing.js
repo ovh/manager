@@ -5,6 +5,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('kyc_documents_breadcrumb'),
+      supportLink: /* @ngInject */ (coreURLBuilder) =>
+        coreURLBuilder.buildURL('dedicated', '#/support/tickets'),
     },
   });
 };

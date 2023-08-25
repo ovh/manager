@@ -6,6 +6,7 @@ export default {
     user: '<',
     resource: '<',
     isDisabled: '<',
+    supportLink: '<',
   },
   controller,
   template,
