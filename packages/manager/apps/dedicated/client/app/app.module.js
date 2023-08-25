@@ -119,8 +119,6 @@ import dedicatedNas from './dedicated/nas';
 import dedicatedHousing from './dedicated/housing';
 import userContracts from './user-contracts';
 import otrs from './otrs';
-// import ovhManagerKycDocuments from '@ovh-ux/kyc-documents';
-import ovhManagerKycDocuments from '../../../../modules/kyc-documents/src';
 
 import { TRACKING } from './at-internet.constants';
 
@@ -217,7 +215,6 @@ export default async (containerEl, shellClient) => {
         ovhManagerVps,
         ovhManagerVrack,
         ovhManagerCloudConnect,
-        ovhManagerKycDocuments,
         ovhPaymentMethod,
         'pascalprecht.translate',
         'services',

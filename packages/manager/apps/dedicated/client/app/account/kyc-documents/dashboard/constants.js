@@ -45,5 +45,8 @@ export default {
   DOCUMENT_TYPE,
   DOCUMENT_LIST,
   MAXIMUM_SIZE,
+<<<<<<< HEAD
   LEGAL_FORMS,
+=======
+>>>>>>> 8159b2a06e (feat(dedicated): kyc documents page and required document list)
 };

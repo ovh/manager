@@ -48,6 +48,19 @@
 
     <!-- Upload document -->
     <div class="col-lg-6 mb-5" data-ng-if="!$ctrl.loading">
+        <div data-ng-if="$ctrl.displayError">
+            <!-- Upload Error -->
+            <oui-message data-type="error">
+                <span
+                    data-translate="documents_dashboard_submit_error_message_description"
+                ></span>
+            </oui-message>
+        </div>
+        <!-- <oui-message data-type="success" data-dismissable="true">
+            <p
+                data-translate="documents_dashboard_submit_success_message"
+            ></p>
+        </oui-message> -->
         <!-- Upload Form -->
         <form novalidate name="$ctrl.form" class="mt-2">
             <oui-file

@@ -16,6 +16,8 @@ export default class KycDocumentsCtrl {
   }
 
   $onInit() {
+    this.loading = false;
+
     // init uploaded documents list
     this.documents = [];
 
@@ -25,6 +27,11 @@ export default class KycDocumentsCtrl {
     // other user is like individual user
     if (this.user.legalform === LEGAL_FORMS.OTHER)
       this.user.legalform = LEGAL_FORMS.INDIVIDUAL;
+
+    this.supportLink = this.coreURLBuilder.buildURL(
+      'dedicated',
+      '#/support/tickets',
+    );
 
     // retrieve mandatory / optionnal documents
     this.getDocumentList();
@@ -56,7 +63,60 @@ export default class KycDocumentsCtrl {
   }
 
   uploadDocuments() {
-    // TODO: Upload document in next ticket
     this.loading = true;
+    if (!this.form.$invalid) {
+      this.getUploadDocumentsLinks(this.documents.length)
+        .then(() => {
+          this.loading = false;
+          this.resource.status = FRAUD_STATUS.OPEN;
+        })
+        .catch(() => {
+          this.displayErrorBanner();
+        });
+    } else {
+      this.documents = null;
+      this.displayErrorBanner();
+    }
+  }
+
+  getUploadDocumentsLinks(count) {
+    return this.$http
+      .post(`/me/procedure/fraud`, {
+        numberOfDocuments: count,
+      })
+      .then(({ data: response }) => {
+        const { uploadLinks } = response;
+        return this.$q.all(
+          uploadLinks.map((uploadLink, index) =>
+            this.uploadDocumentsToS3usingLinks(
+              uploadLink,
+              this.documents[index],
+            ),
+          ),
+        );
+      })
+      .then(() => {
+        this.$http.post(`/me/procedure/fraud/finalize`);
+      })
+      .catch(() => {
+        this.displayErrorBanner();
+      });
+  }
+
+  uploadDocumentsToS3usingLinks(uploadLink, uploadedfile) {
+    return this.$http({
+      method: uploadLink.method,
+      url: uploadLink.link,
+      data: uploadedfile,
+      headers: { ...uploadLink.headers },
+    }).catch(() => {
+      this.displayErrorBanner();
+      throw new Error('upload');
+    });
+  }
+
+  displayErrorBanner() {
+    this.loading = false;
+    this.displayError = true;
   }
 }

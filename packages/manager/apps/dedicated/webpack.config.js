@@ -73,7 +73,10 @@ module.exports = (env = {}) => {
         ],
       },
     },
-    env,
+    {
+      ...env,
+      config: { host: 'www.build-ovh.com' },
+    },
   );
 
   config.plugins.push(
