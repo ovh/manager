@@ -4,6 +4,7 @@ import {
   DOCUMENT_LIST,
   MAXIMUM_SIZE,
   LEGAL_FORMS,
+  MAXIMUM_DOCUMENTS,
 } from './constants';
 
 export default class KycDocumentsCtrl {
@@ -12,11 +13,15 @@ export default class KycDocumentsCtrl {
     this.$translate = $translate;
     this.maximum_size = MAXIMUM_SIZE;
     this.DOCUMENT_TYPE = DOCUMENT_TYPE;
+    this.maximum_documents = MAXIMUM_DOCUMENTS;
+    this.coreURLBuilder = coreURLBuilder;
     this.FRAUD_STATUS = FRAUD_STATUS;
   }
 
   $onInit() {
     this.loading = false;
+    this.showModal = false;
+    this.documentsUploaded = false;
 
     // init uploaded documents list
     this.documents = [];
@@ -64,11 +69,11 @@ export default class KycDocumentsCtrl {
 
   uploadDocuments() {
     this.loading = true;
+    this.showModal = true;
     if (!this.form.$invalid) {
       this.getUploadDocumentsLinks(this.documents.length)
         .then(() => {
           this.loading = false;
-          this.resource.status = FRAUD_STATUS.OPEN;
         })
         .catch(() => {
           this.displayErrorBanner();
@@ -80,27 +85,25 @@ export default class KycDocumentsCtrl {
   }
 
   getUploadDocumentsLinks(count) {
-    return this.$http
-      .post(`/me/procedure/fraud`, {
-        numberOfDocuments: count,
-      })
-      .then(({ data: response }) => {
-        const { uploadLinks } = response;
-        return this.$q.all(
-          uploadLinks.map((uploadLink, index) =>
-            this.uploadDocumentsToS3usingLinks(
-              uploadLink,
-              this.documents[index],
-            ),
-          ),
-        );
-      })
-      .then(() => {
-        this.$http.post(`/me/procedure/fraud/finalize`);
-      })
-      .catch(() => {
-        this.displayErrorBanner();
-      });
+    return this.$q.when(count);
+    // return this.$http
+    //   .post(`/me/procedure/fraud`, {
+    //     numberOfDocuments: count,
+    //   })
+    //   .then(({ data: response }) => {
+    //     const { uploadLinks } = response;
+    //     return this.$q.all(
+    //       uploadLinks.map((uploadLink, index) =>
+    //         this.uploadDocumentsToS3usingLinks(
+    //           uploadLink,
+    //           this.documents[index],
+    //         ),
+    //       ),
+    //     );
+    //   })
+    //   .catch(() => {
+    //     this.displayErrorBanner();
+    //   });
   }
 
   uploadDocumentsToS3usingLinks(uploadLink, uploadedfile) {
@@ -115,8 +118,27 @@ export default class KycDocumentsCtrl {
     });
   }
 
-  displayErrorBanner() {
+  cancelSubmit() {
+    this.showModal = false;
     this.loading = false;
+  }
+
+  finalizeSubmit() {
+    this.showModal = false;
+    this.loading = true;
+    // THEN MOCK
+    this.loading = false;
+    this.documentsUploaded = true;
+    // END
+
+    // this.$http.post(`/me/procedure/fraud/finalize`)
+    //   .then(() => {
+    //     this.loading = false;
+    //     this.documentsUploaded = true;
+    //   });
+  }
+
+  displayErrorBanner() {
     this.displayError = true;
   }
 }

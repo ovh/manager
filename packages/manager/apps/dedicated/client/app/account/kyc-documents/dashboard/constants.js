@@ -1,4 +1,5 @@
 export const MAXIMUM_SIZE = 10000000;
+export const MAXIMUM_DOCUMENTS = 10;
 
 export const DOCUMENT_TYPE = {
   ID: 'ID',
@@ -45,8 +46,6 @@ export default {
   DOCUMENT_TYPE,
   DOCUMENT_LIST,
   MAXIMUM_SIZE,
-<<<<<<< HEAD
   LEGAL_FORMS,
-=======
->>>>>>> 8159b2a06e (feat(dedicated): kyc documents page and required document list)
+  MAXIMUM_DOCUMENTS,
 };
