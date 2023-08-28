@@ -149,13 +149,15 @@ export default class NewAccountFormController {
         email: this.userAccountServiceInfos.fetchConsentDecision(
           CONSENT_MARKETING_EMAIL_NAME,
         ),
-        sms: this.userAccountServiceInfos.fetchMarketingConsentDecision(),
+        sms: this.isSmsConsentAvailable
+          ? this.userAccountServiceInfos.fetchMarketingConsentDecision()
+          : this.$q.resolve(),
       })
       .then(({ email, sms }) => {
         this.consentDecision = !!email.value;
-        this.smsConsentDecision = !!Object.keys(sms.sms).some(
-          (key) => sms.sms[key],
-        );
+        this.smsConsentDecision =
+          this.isSmsConsentAvailable &&
+          !!Object.keys(sms.sms).some((key) => sms.sms[key]);
       })
       .then(() => this.userAccountServiceInfos.postRules(params))
       .then((result) => {
