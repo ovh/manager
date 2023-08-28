@@ -461,7 +461,7 @@
   "inputs_info_description": "Click on the options shown to copy them to your clipboard.",
   "inputs_info_hostname": "Host name",
   "inputs_info_ipaddress": "Public IP (address)",
-  "inputs_info_certificate": "Certificate type",
+  "inputs_info_certificate": "Server certificate",
   "inputs_logs_title": "Console output for {{inputTitle}}",
   "inputs_logs_no_logs": "No messages received in the last hour.",
   "inputs_logs_title_add": "Add a new data-gathering tool",
@@ -767,5 +767,6 @@
   "inputs_autoscaled_false": "Disabled",
   "inputs_autoscaled_notification_detail": "Notify me via email when an automatic scaling occurs.",
   "inputs_logs_edit_min_instance_field": "Minimum number of instances",
-  "inputs_logs_edit_max_instance_field": "Maximum number of instances"
+  "inputs_logs_edit_max_instance_field": "Maximum number of instances",
+  "inputs_info_ca_certificate": "Certification authority certificate"
 }

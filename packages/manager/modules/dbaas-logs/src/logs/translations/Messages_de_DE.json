@@ -461,7 +461,7 @@
   "inputs_info_description": "Klicken Sie auf die angebotenen Optionen, um Sie in Ihre Zwischenablage zu kopieren.",
   "inputs_info_hostname": "Hostname",
   "inputs_info_ipaddress": "Öffentliche IP-Adresse",
-  "inputs_info_certificate": "Zertifikattyp",
+  "inputs_info_certificate": "Serverzertifikat",
   "inputs_logs_title": "Konsolen-Output von {{inputTitle}}",
   "inputs_logs_no_logs": "Keine Nachrichten innerhalb der letzten Stunde empfangen.",
   "inputs_logs_title_add": "Datensammler hinzufügen",
@@ -767,5 +767,6 @@
   "inputs_autoscaled_false": "Deaktiviert",
   "inputs_autoscaled_notification_detail": "Mich per E-Mail benachrichtigen, wenn ein automatisches Skalieren stattfindet.",
   "inputs_logs_edit_min_instance_field": "Mindestanzahl an Instanzen",
-  "inputs_logs_edit_max_instance_field": "Maximale Anzahl an Instanzen"
+  "inputs_logs_edit_max_instance_field": "Maximale Anzahl an Instanzen",
+  "inputs_info_ca_certificate": "Zertifikat der Zertifizierungsstelle"
 }
