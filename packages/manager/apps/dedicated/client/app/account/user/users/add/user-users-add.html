@@ -140,7 +140,10 @@
                     </span>
                 </div>
 
-                <div class="form-group">
+                <div
+                    class="form-group"
+                    data-ng-class="{ 'has-error': $ctrl.userAccountUsersAddForm.group.$touched && $ctrl.userAccountUsersAddForm.group.$invalid }"
+                >
                     <label
                         class="control-label"
                         for="group"
@@ -156,6 +159,17 @@
                         data-ng-model="$ctrl.user.group"
                     >
                     </select>
+                    <span
+                        class="help-block"
+                        role="alert"
+                        data-ng-if="$ctrl.userAccountUsersAddForm.group.$touched"
+                        data-ng-messages="$ctrl.userAccountUsersAddForm.group.$touched && $ctrl.userAccountUsersAddForm.group.$error"
+                    >
+                        <span
+                            data-ng-message="required"
+                            data-translate="user_users_add_required"
+                        ></span>
+                    </span>
                 </div>
 
                 <div
