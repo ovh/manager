@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_DE": "Une copie recto-verso de votre pièce d'identité (carte d'identité, passeport)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_DE": "Une preuve de votre résidence, plus de 3 mois, avec votre nom et l'adresse que vous avez indiquée sur votre profil (par exemple, relevé de compte, facture de services municipaux tels que l'eau, l'électricité, etc.)",
+  "documents_dashboard_document_CORPORATE_ID_DE": "Extrait du registre du commerce datant de moins de trois mois",
+  "documents_dashboard_document_ADMINISTRATION_ID_DE": "Autorité de gestion : Preuve du statut de l'autorité",
+  "documents_dashboard_document_ASSOCIATION_ID_DE": "Extrait du registre des associations et dernier procès-verbal des réunions",
+  "documents_dashboard_document_individual_OTHER_DE": "Tout document utile pour comprendre votre situation (hébergement, déménagement,...)",
+  "documents_dashboard_document_corporation_OTHER_DE": "Si vous n'êtes pas mentionné dans l'extrait du registre du commerce de votre entreprise ou des statuts de votre association, merci de joindre une copie d'un document d'identité d'une personne qui y est mentionnée.",
+  "documents_dashboard_document_association_OTHER_DE": "Si vous n'êtes pas mentionné dans l'extrait du registre du commerce de votre entreprise ou des statuts de votre association, merci de joindre une copie d'un document d'identité d'une personne qui y est mentionnée.",
+  "documents_dashboard_document_administration_OTHER_DE": "Si vous n'êtes pas mentionné dans l'extrait du registre du commerce de votre entreprise ou des statuts de votre association, merci de joindre une copie d'un document d'identité d'une personne qui y est mentionnée.",
+  "documents_dashboard_document_other_OTHER_DE": "Tout document utile pour comprendre votre situation (hébergement, déménagement,...)"
+}
