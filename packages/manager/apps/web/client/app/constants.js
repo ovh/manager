@@ -38,10 +38,10 @@ export const HOSTING_ORDER_URL = {
 
 export const DOMAIN_ORDER_URL = {
   EU: {
-    CZ: 'https://www.ovh.cz/cgi-bin/newOrder/order.cgi',
+    CZ: 'https://www.ovh.ie/order/webcloud/',
     DE: 'https://www.ovh.de/order/webcloud/',
     ES: 'https://www.ovh.es/order/webcloud/',
-    FI: 'https://www.ovh-hosting.fi/cgi-bin/newOrder/order.cgi',
+    FI: 'https://www.ovh.ie/order/webcloud/',
     FR: 'https://www.ovh.com/fr/order/webcloud/',
     GB: 'https://www.ovh.co.uk/order/webcloud',
     IE: 'https://www.ovh.ie/order/webcloud',
@@ -50,6 +50,9 @@ export const DOMAIN_ORDER_URL = {
     NL: 'https://www.ovh.nl/order/webcloud/',
     PL: 'https://www.ovh.pl/order/webcloud/',
     PT: 'https://www.ovh.pt/order/webcloud/',
+    MA: 'https://www.ovh.com/ma/order/webcloud',
+    SN: 'https://www.ovh.sn/order/webcloud',
+    TN: 'https://www.ovh.com/tn/order/webcloud',
   },
   CA: {
     ASIA: 'https://ca.ovh.com/asia/order/webcloud',

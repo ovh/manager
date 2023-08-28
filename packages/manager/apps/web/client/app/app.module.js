@@ -640,13 +640,13 @@ export default async (containerEl, shellClient) => {
     .provider(
       'DOMAIN_ORDER_URL',
       /* @ngInject */ (coreConfigProvider) => ({
-        $get: () => HOSTING_ORDER_URL[coreConfigProvider.getRegion()],
+        $get: () => DOMAIN_ORDER_URL[coreConfigProvider.getRegion()],
       }),
     )
     .provider(
       'HOSTING_ORDER_URL',
       /* @ngInject */ (coreConfigProvider) => ({
-        $get: () => DOMAIN_ORDER_URL[coreConfigProvider.getRegion()],
+        $get: () => HOSTING_ORDER_URL[coreConfigProvider.getRegion()],
       }),
     );
 
