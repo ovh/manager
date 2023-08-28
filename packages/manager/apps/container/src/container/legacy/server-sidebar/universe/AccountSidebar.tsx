@@ -62,6 +62,16 @@ export default function AccountSidebar() {
       }
     }
 
+    const { status } = await reketInstance.get(`/me/procedure/fraud`);
+    if (['required', 'open'].includes(status)) {
+      menu.push({
+        id: 'kyc-documents',
+        label: t('sidebar_account_kyc_documents'),
+        href: navigation.getURL('dedicated', '/documents'),
+        routeMatcher: new RegExp('^/documents'),
+      });
+    }
+
     if (!isEnterprise) {
       menu.push({
         id: 'my-bills',

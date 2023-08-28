@@ -1,0 +1,75 @@
+<div>
+    <oui-header
+        heading="{{:: 'documents_dashboard_title' | translate}}"
+        description="{{:: 'documents_dashboard_explanation' | translate}}"
+    >
+    </oui-header>
+
+    <!-- information banner for open status -->
+    <oui-message
+        class="mb-2"
+        data-type="info"
+        data-ng-if="$ctrl.resource.status === $ctrl.FRAUD_STATUS.OPEN"
+    >
+        <span
+            class="mb-1"
+            data-translate="document_dashboard_open_banner_text"
+        ></span>
+        <a
+            data-ng-href="{{:: $ctrl.supportLink}}"
+            data-translate="document_dashboard_open_banner_link"
+        ></a>
+    </oui-message>
+
+    <h4 data-translate="documents_dashboard_subtitle"></h4>
+
+    <!-- Document list -->
+    <p
+        data-translate="{{'documents_dashboard_' + $ctrl.user.legalform + '_requirement'}}"
+    ></p>
+    <ul>
+        <li
+            data-ng-repeat="document in $ctrl.documentList.mandatory track by $index"
+        >
+            <span data-ng-bind="document"></span>
+        </li>
+        <li
+            data-ng-repeat="document in $ctrl.documentList.optional track by $index"
+        >
+            <span data-ng-bind="document"></span>
+            <span data-translate="documents_dashboard_optional_document"></span>
+        </li>
+    </ul>
+
+    <!-- loader -->
+    <div class="col-lg-6 text-center mb-5" data-ng-if="$ctrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <!-- Upload document -->
+    <div class="col-lg-6 mb-5" data-ng-if="!$ctrl.loading">
+        <!-- Upload Form -->
+        <form novalidate name="$ctrl.form" class="mt-2">
+            <oui-file
+                data-model="$ctrl.documents"
+                data-accept="application/pdf,image/jpeg,image/png,image/jpg"
+                data-multiple
+                data-maxsize="$ctrl.maximum_size"
+                data-name="documents"
+                data-disabled="$ctrl.isDisabled"
+            ></oui-file>
+
+            <oui-form-actions
+                class="mt-5"
+                data-disabled="$ctrl.form.$invalid || !$ctrl.documents || $ctrl.documents.length === 0 || $ctrl.isDisabled"
+                data-on-submit="$ctrl.uploadDocuments()"
+                data-submit-text="{{:: 'documents_dashboard_cta_send' | translate}}"
+            ></oui-form-actions>
+        </form>
+    </div>
+
+    <small
+        class="col-lg-12"
+        data-translate="documents_dashboard_legal_text"
+    ></small>
+</div>

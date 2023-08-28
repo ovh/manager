@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_ES": "Une copie recto verso de votre carte d'identité (passeport, carte nationale d'identité)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_ES": "Un justificatif de domicile de moins de 3 mois, à votre nom et à l'adresse indiquée dans votre profil (relevé bancaire, facture de service public...)",
+  "documents_dashboard_document_CORPORATE_ID_ES": "Carte CIF d'entreprise mise à jour ou document d'accréditation correspondant",
+  "documents_dashboard_document_ADMINISTRATION_ID_ES": "Document d'inscription à la sécurité sociale ou similaire",
+  "documents_dashboard_document_ASSOCIATION_ID_ES": "L'extrait de publication dans la BOE ou la pièce justificative correspondante",
+  "documents_dashboard_document_individual_OTHER_ES": "Tout document utile pour comprendre votre situation actuelle (hébergement, déménagement,...)",
+  "documents_dashboard_document_corporation_OTHER_ES": "Si vous n'êtes pas mentionné dans le registre du commerce de votre entreprise ou dans le statut de l'association, une copie de la carte d'identité d'une personne qui y figure.",
+  "documents_dashboard_document_association_OTHER_ES": "Si vous n'êtes pas mentionné dans le registre du commerce de votre entreprise ou dans le statut de l'association, une copie de la carte d'identité d'une personne qui y figure.",
+  "documents_dashboard_document_administration_OTHER_ES": "Si vous n'êtes pas mentionné dans le registre du commerce de votre entreprise ou dans le statut de l'association, une copie de la carte d'identité d'une personne qui y figure.",
+  "documents_dashboard_document_other_OTHER_ES": "Tout document utile pour comprendre votre situation (hébergement, déménagement,...)"
+}

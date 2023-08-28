@@ -173,6 +173,28 @@ const Sidebar = (): JSX.Element => {
         }
 
         /**
+         * Remove Documents menu
+         * Documents page is added by default in ./navigation-tree/root.ts but not accessible if fraud status is not required or open
+         */
+        let isKycDocumentsVisible = true;
+        if (results['documents']) {
+          const { status } = await reketInstance.get(`/me/procedure/fraud`);
+          if (!['required','open'].includes(status)) {
+            isKycDocumentsVisible = false;
+          }
+        }
+
+        if (!isKycDocumentsVisible) {
+          const account = findNodeById(tree, 'account');
+          account.children.splice(
+            account.children.findIndex(
+              (node) => node.id === 'account_kyc_documents',
+            ),
+            1,
+          );
+        }
+
+        /**
          * US enterprise customers special case
          */
         ['billing_bills', 'billing_payment', 'orders'].forEach((nodeId) => {

@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_SN": "Une copie recto-verso de votre pièce d'identité (Passeport, Carte Nationale d'Identité)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_SN": "Un justificatif de domicile de moins de 3 mois, à votre nom et à l'adresse indiquée dans votre profil",
+  "documents_dashboard_document_CORPORATE_ID_SN": "Un extrait du registre des entreprises, du commerce ou des impôts ou toute pièce officielle justifiant de l'existence de votre entité daté de moins de 3 mois",
+  "documents_dashboard_document_ADMINISTRATION_ID_SN": "Un extrait du registre des entreprises, du commerce ou des impôts ou toute pièce officielle justifiant de l'existence de votre entité",
+  "documents_dashboard_document_ASSOCIATION_ID_SN": "Un extrait du registre des entreprises, du commerce ou des impôts ou toute pièce officielle justifiant de l'existence de votre entité",
+  "documents_dashboard_document_individual_OTHER_SN": "Tout document utile pour comprendre votre situation (hebergement, demenagement,...)",
+  "documents_dashboard_document_corporation_OTHER_SN": "Si vous n'êtes pas mentionné sur les documents de votre entreprise/statut de l'association, merci de nous transmettre une copie de la pièce d'identité d'une personne y figurant.",
+  "documents_dashboard_document_association_OTHER_SN": "Si vous n'êtes pas mentionné sur les documents de votre entreprise/statut de l'association, merci de nous transmettre une copie de la pièce d'identité d'une personne y figurant.",
+  "documents_dashboard_document_administration_OTHER_SN": "Si vous n'êtes pas mentionné sur les documents de votre entreprise/statut de l'association, merci de nous transmettre une copie de la pièce d'identité d'une personne y figurant.",
+  "documents_dashboard_document_other_OTHER_SN": "Tout document utile pour comprendre votre situation (hébergement, déménagement,...)"
+}
