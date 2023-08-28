@@ -168,16 +168,17 @@
             >
                 <span data-translate="kube_node_pool_add"></span>
             </oui-button>
-            <button
-                class="pl-2 d-inline-flex oui-datagrid-topbar__refresh oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+            <oui-button
                 data-title="{{:: 'kube_node_pool_refreh' | translate }}"
+                data-variant="secondary"
+                data-size="s"
                 data-ng-click="$ctrl.refreshNodePools()"
             >
                 <span
                     class="oui-icon oui-icon-refresh"
                     aria-hidden="true"
                 ></span>
-            </button>
+            </oui-button>
         </oui-datagrid-topbar>
     </oui-datagrid>
 </div>
