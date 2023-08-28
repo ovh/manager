@@ -28,8 +28,16 @@
         data-translate="{{'documents_dashboard_' + $ctrl.user.legalform + '_requirement'}}"
     ></p>
     <ul>
-        <li data-ng-repeat="document in $ctrl.documentList track by $index">
+        <li
+            data-ng-repeat="document in $ctrl.documentList.mandatory track by $index"
+        >
             <span data-ng-bind="document"></span>
+        </li>
+        <li
+            data-ng-repeat="document in $ctrl.documentList.optional track by $index"
+        >
+            <span data-ng-bind="document"></span>
+            <span data-translate="documents_dashboard_optional_document"></span>
         </li>
     </ul>
 
