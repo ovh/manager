@@ -36,6 +36,8 @@ export default /* @ngInject */ ($stateProvider) => {
       isDisabled: /* @ngInject */ (resource) =>
         resource.status !== FRAUD_STATUS.REQUIRED,
       user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
+      hubLink: /* @ngInject */ (coreURLBuilder) =>
+        coreURLBuilder.buildURL('hub', '/#'),
     },
   });
 };

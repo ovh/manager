@@ -7,6 +7,7 @@ export default {
     resource: '<',
     isDisabled: '<',
     supportLink: '<',
+    hubLink: '<',
   },
   controller,
   template,
