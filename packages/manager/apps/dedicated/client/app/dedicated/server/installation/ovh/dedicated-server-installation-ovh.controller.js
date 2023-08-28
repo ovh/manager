@@ -409,7 +409,10 @@ angular
       function getHardwareSpecification() {
         return Server.getHardwareSpecifications($stateParams.productId).then(
           (spec) => {
-            $scope.informations.diskGroups = spec.diskGroups;
+            $scope.informations.diskGroups =
+              spec.diskGroups?.sort((a, b) =>
+                a.description.localeCompare(b.description),
+              ) || [];
             resetDiskGroup();
           },
         );
