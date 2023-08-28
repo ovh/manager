@@ -88,7 +88,9 @@
         <oui-field
             data-ng-if="$ctrl.nicRenew.isMandatory && $ctrl.defaultPaymentMean && $ctrl.nicRenew.active"
             data-label="{{::'autorenew_service_autorenew_day' | translate}}"
-            data-label-popover="{{::'autorenew_service_autorenew_day_tooltip' | translate}}"
+            data-label-popover="{{ :: $ctrl.choiceRenewDayTooltipAvailable ?
+                'autorenew_service_autorenew_day_tooltip_autorenew_2016' :
+                'autorenew_service_autorenew_day_tooltip' | translate }}"
             data-size="l"
         >
             <label class="oui-select" data-ng-hide="$ctrl.nicRenewLoading">

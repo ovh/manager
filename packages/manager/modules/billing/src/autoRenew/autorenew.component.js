@@ -35,6 +35,7 @@ export default {
     sshLink: '<',
     guides: '<',
     trackClick: '<',
+    choiceRenewDayTooltipAvailable: '<',
   },
   controller,
   template,
