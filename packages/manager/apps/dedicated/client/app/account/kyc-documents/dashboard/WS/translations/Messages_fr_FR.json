@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_WS": "Une copie (recto et verso) d'un document d'identité personnel délivré par le gouvernement (comme un passeport, une carte d'identité nationale ou un permis de conduire)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_WS": "Un justificatif de domicile de moins de 3 mois, à votre nom et à l'adresse indiquée dans votre profil (relevé bancaire, facture de service public...)",
+  "documents_dashboard_document_CORPORATE_ID_WS": "Un extrait de la société, du bureau d'enregistrement ou du bureau d'enregistrement fiscal, ou tout document officiel prouvant l'existence de l'entité organisationnelle datant de moins de 3 mois",
+  "documents_dashboard_document_ADMINISTRATION_ID_WS": "Document d'inscription à la sécurité sociale ou similaire",
+  "documents_dashboard_document_ASSOCIATION_ID_WS": "L'extrait de publication dans la BOE ou la pièce justificative correspondante",
+  "documents_dashboard_document_individual_OTHER_WS": "Tout document utile pour comprendre votre situation (hébergement, déménagement,...)",
+  "documents_dashboard_document_corporation_OTHER_WS": "Si vous n'êtes pas mentionné sur le registre de la société, de l'association ou de l'administration, une copie de la carte d'identité d'une personne figurant dans la documentation pertinente comme autorisé à agir en son nom.",
+  "documents_dashboard_document_association_OTHER_WS": "Si vous n'êtes pas mentionné dans le registre du commerce de votre entreprise ou dans le statut de l'association, une copie de la carte d'identité d'une personne qui y figure.",
+  "documents_dashboard_document_administration_OTHER_WS": "Si vous n'êtes pas mentionné dans le registre du commerce de votre entreprise ou dans le statut de l'association, une copie de la carte d'identité d'une personne qui y figure.",
+  "documents_dashboard_document_other_OTHER_WS": "Tout document utile pour comprendre votre situation (hébergement, déménagement,...)"
+}
