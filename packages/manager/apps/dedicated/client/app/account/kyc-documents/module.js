@@ -5,6 +5,7 @@ import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@uirouter/angularjs';
 import 'angular-translate';
 
+import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import dashboard from './dashboard';
 import routing from './routing';
 
@@ -17,6 +18,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     dashboard,
+    OnboardingLayoutHelper,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
