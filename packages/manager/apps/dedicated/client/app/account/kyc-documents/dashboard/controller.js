@@ -7,15 +7,19 @@ import {
   MAXIMUM_DOCUMENTS,
 } from './constants';
 
+import illustration from './assets/picto.svg';
+
 export default class KycDocumentsCtrl {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, $q, $http) {
+    this.$http = $http;
     this.$translate = $translate;
+    this.$q = $q;
     this.maximum_size = MAXIMUM_SIZE;
     this.DOCUMENT_TYPE = DOCUMENT_TYPE;
     this.maximum_documents = MAXIMUM_DOCUMENTS;
-    this.coreURLBuilder = coreURLBuilder;
     this.FRAUD_STATUS = FRAUD_STATUS;
+    this.illustration = illustration;
   }
 
   $onInit() {
@@ -32,11 +36,6 @@ export default class KycDocumentsCtrl {
     // other user is like individual user
     if (this.user.legalform === LEGAL_FORMS.OTHER)
       this.user.legalform = LEGAL_FORMS.INDIVIDUAL;
-
-    this.supportLink = this.coreURLBuilder.buildURL(
-      'dedicated',
-      '#/support/tickets',
-    );
 
     // retrieve mandatory / optionnal documents
     this.getDocumentList();
@@ -69,11 +68,11 @@ export default class KycDocumentsCtrl {
 
   uploadDocuments() {
     this.loading = true;
-    this.showModal = true;
+    this.showModal = false;
     if (!this.form.$invalid) {
       this.getUploadDocumentsLinks(this.documents.length)
         .then(() => {
-          this.loading = false;
+          this.finalizeSubmit();
         })
         .catch(() => {
           this.displayErrorBanner();
@@ -85,25 +84,24 @@ export default class KycDocumentsCtrl {
   }
 
   getUploadDocumentsLinks(count) {
-    return this.$q.when(count);
-    // return this.$http
-    //   .post(`/me/procedure/fraud`, {
-    //     numberOfDocuments: count,
-    //   })
-    //   .then(({ data: response }) => {
-    //     const { uploadLinks } = response;
-    //     return this.$q.all(
-    //       uploadLinks.map((uploadLink, index) =>
-    //         this.uploadDocumentsToS3usingLinks(
-    //           uploadLink,
-    //           this.documents[index],
-    //         ),
-    //       ),
-    //     );
-    //   })
-    //   .catch(() => {
-    //     this.displayErrorBanner();
-    //   });
+    return this.$http
+      .post(`/me/procedure/fraud`, {
+        numberOfDocuments: count,
+      })
+      .then(({ data: response }) => {
+        const { uploadLinks } = response;
+        return this.$q.all(
+          uploadLinks.map((uploadLink, index) =>
+            this.uploadDocumentsToS3usingLinks(
+              uploadLink,
+              this.documents[index],
+            ),
+          ),
+        );
+      })
+      .catch(() => {
+        this.displayErrorBanner();
+      });
   }
 
   uploadDocumentsToS3usingLinks(uploadLink, uploadedfile) {
@@ -124,21 +122,19 @@ export default class KycDocumentsCtrl {
   }
 
   finalizeSubmit() {
-    this.showModal = false;
-    this.loading = true;
-    // THEN MOCK
-    this.loading = false;
-    this.documentsUploaded = true;
-    // END
-
-    // this.$http.post(`/me/procedure/fraud/finalize`)
-    //   .then(() => {
-    //     this.loading = false;
-    //     this.documentsUploaded = true;
-    //   });
+    this.$http
+      .post(`/me/procedure/fraud/finalize`)
+      .then(() => {
+        this.loading = false;
+        this.documentsUploaded = true;
+      })
+      .catch(() => {
+        this.displayErrorBanner();
+      });
   }
 
   displayErrorBanner() {
+    this.loading = false;
     this.displayError = true;
   }
 }

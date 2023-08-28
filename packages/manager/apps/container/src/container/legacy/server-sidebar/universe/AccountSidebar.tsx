@@ -45,7 +45,7 @@ export default function AccountSidebar() {
     });
 
     const featureAvailability = await reketInstance.get(
-      `/feature/identity-documents,documents/availability`,
+      `/feature/identity-documents/availability`,
       {
         requestType: 'aapi',
       },

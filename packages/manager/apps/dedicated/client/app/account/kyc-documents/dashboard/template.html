@@ -1,4 +1,12 @@
 <div>
+    <div data-ng-if="$ctrl.displayError">
+        <!-- Upload Error -->
+        <oui-message data-type="error">
+            <span
+                data-translate="documents_dashboard_submit_error_message_description"
+            ></span>
+        </oui-message>
+    </div>
     <oui-header
         heading="{{:: 'documents_dashboard_title' | translate}}"
         description="{{:: 'documents_dashboard_explanation' | translate}}"
@@ -11,7 +19,7 @@
         data-heading="{{:: 'documents_dashboard_modal_header' | translate }}"
         data-type="help"
         data-primary-label="{{:: 'documents_dashboard_modal_primary_label' | translate }}"
-        data-primary-action="$ctrl.finalizeSubmit()"
+        data-primary-action="$ctrl.uploadDocuments()"
         data-secondary-label="{{:: 'documents_dashboard_modal_secondary_label' | translate }}"
         data-secondary-action="$ctrl.cancelSubmit()"
         data-secondary-disabled="false"
@@ -38,7 +46,6 @@
             ></a>
         </oui-message>
 
-
         <h4 data-translate="documents_dashboard_subtitle"></h4>
 
         <!-- Document list -->
@@ -55,7 +62,9 @@
                 data-ng-repeat="document in $ctrl.documentList.optional track by $index"
             >
                 <span data-ng-bind="document"></span>
-                <span data-translate="documents_dashboard_optional_document"></span>
+                <span
+                    data-translate="documents_dashboard_optional_document"
+                ></span>
             </li>
         </ul>
 
@@ -66,14 +75,6 @@
 
         <!-- Upload document -->
         <div class="col-lg-6 mb-5" data-ng-if="!$ctrl.loading">
-            <div data-ng-if="$ctrl.displayError">
-                <!-- Upload Error -->
-                <oui-message data-type="error">
-                    <span
-                        data-translate="documents_dashboard_submit_error_message_description"
-                    ></span>
-                </oui-message>
-            </div>
             <!-- Upload Form -->
             <form novalidate name="$ctrl.form" class="mt-2">
                 <oui-file
@@ -99,7 +100,7 @@
                 <oui-form-actions
                     class="mt-5"
                     data-disabled="$ctrl.form.$invalid || !$ctrl.documents || $ctrl.documents.length === 0 || $ctrl.documents.length > $ctrl.maximum_documents || $ctrl.isDisabled "
-                    data-on-submit="$ctrl.uploadDocuments()"
+                    data-on-submit="$ctrl.showModal = true"
                     data-submit-text="{{:: 'documents_dashboard_cta_send' | translate}}"
                 ></oui-form-actions>
             </form>
@@ -112,7 +113,10 @@
     </div>
     <!-- IF DOCUMENTS JUST UPDLOADED -->
     <div data-ng-if="$ctrl.documentsUploaded">
-        <manager-on-boarding-layout class="mt-5">
+        <manager-on-boarding-layout
+            class="mt-5"
+            data-image-source=":: $ctrl.illustration"
+        >
             <onboarding-title>
                 <p
                     data-translate="documents_dashboard_submit_success_title"

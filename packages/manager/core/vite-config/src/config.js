@@ -29,10 +29,7 @@ const getBaseConfig = (config) => {
       legacy({
         targets: ['defaults'],
       }),
-      viteOvhDevServerPlugin({
-        isContainerApp,
-        config: { ...envConfig, host: 'www.build-ovh.com' },
-      }),
+      viteOvhDevServerPlugin({ isContainerApp, config: envConfig }),
       IframeHmrPlugin(),
     ],
     css: {

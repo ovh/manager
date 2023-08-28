@@ -46,10 +46,7 @@ module.exports = (env = {}) => {
         ],
       },
     },
-    {
-      ...env,
-      config: { host: 'www.build-ovh.com' },
-    },
+    env,
   );
 
   // Extra config files
