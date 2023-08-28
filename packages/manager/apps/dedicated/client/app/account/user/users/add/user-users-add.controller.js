@@ -17,9 +17,7 @@ export default class UserAccountUsersAddCtrl {
     this.alerter = Alerter;
     this.$translate = $translate;
     this.me = coreConfig.getUser();
-    this.user = {
-      group: 'REGULAR',
-    };
+    this.user = {};
     this.groups = [];
     this.loader = true;
     this.PASSWORD_MIN_LENGTH = 8;
