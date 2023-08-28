@@ -1,4 +1,5 @@
 export const MAXIMUM_SIZE = 10000000;
+export const MAXIMUM_DOCUMENTS = 10;
 
 export const DOCUMENT_TYPE = {
   ID: 'ID',
@@ -46,4 +47,5 @@ export default {
   DOCUMENT_LIST,
   MAXIMUM_SIZE,
   LEGAL_FORMS,
+  MAXIMUM_DOCUMENTS,
 };

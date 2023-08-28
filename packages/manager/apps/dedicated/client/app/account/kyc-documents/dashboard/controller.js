@@ -4,18 +4,29 @@ import {
   DOCUMENT_LIST,
   MAXIMUM_SIZE,
   LEGAL_FORMS,
+  MAXIMUM_DOCUMENTS,
 } from './constants';
+
+import illustration from './assets/picto.svg';
 
 export default class KycDocumentsCtrl {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, $q, $http) {
+    this.$http = $http;
     this.$translate = $translate;
+    this.$q = $q;
     this.maximum_size = MAXIMUM_SIZE;
     this.DOCUMENT_TYPE = DOCUMENT_TYPE;
+    this.maximum_documents = MAXIMUM_DOCUMENTS;
     this.FRAUD_STATUS = FRAUD_STATUS;
+    this.illustration = illustration;
   }
 
   $onInit() {
+    this.loading = false;
+    this.showModal = false;
+    this.documentsUploaded = false;
+
     // init uploaded documents list
     this.documents = [];
 
@@ -56,7 +67,74 @@ export default class KycDocumentsCtrl {
   }
 
   uploadDocuments() {
-    // TODO: Upload document in next ticket
     this.loading = true;
+    this.showModal = false;
+    if (!this.form.$invalid) {
+      this.getUploadDocumentsLinks(this.documents.length)
+        .then(() => {
+          this.finalizeSubmit();
+        })
+        .catch(() => {
+          this.displayErrorBanner();
+        });
+    } else {
+      this.documents = null;
+      this.displayErrorBanner();
+    }
+  }
+
+  getUploadDocumentsLinks(count) {
+    return this.$http
+      .post(`/me/procedure/fraud`, {
+        numberOfDocuments: count,
+      })
+      .then(({ data: response }) => {
+        const { uploadLinks } = response;
+        return this.$q.all(
+          uploadLinks.map((uploadLink, index) =>
+            this.uploadDocumentsToS3usingLinks(
+              uploadLink,
+              this.documents[index],
+            ),
+          ),
+        );
+      })
+      .catch(() => {
+        this.displayErrorBanner();
+      });
+  }
+
+  uploadDocumentsToS3usingLinks(uploadLink, uploadedfile) {
+    return this.$http({
+      method: uploadLink.method,
+      url: uploadLink.link,
+      data: uploadedfile,
+      headers: { ...uploadLink.headers },
+    }).catch(() => {
+      this.displayErrorBanner();
+      throw new Error('upload');
+    });
+  }
+
+  cancelSubmit() {
+    this.showModal = false;
+    this.loading = false;
+  }
+
+  finalizeSubmit() {
+    this.$http
+      .post(`/me/procedure/fraud/finalize`)
+      .then(() => {
+        this.loading = false;
+        this.documentsUploaded = true;
+      })
+      .catch(() => {
+        this.displayErrorBanner();
+      });
+  }
+
+  displayErrorBanner() {
+    this.loading = false;
+    this.displayError = true;
   }
 }
