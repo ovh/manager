@@ -81,22 +81,19 @@ export default class NewAccountFormController {
     this.consentDecision = null;
     this.smsConsentDecision = null;
 
-    return this.$q
-      .all({
-        rules: this.fetchRules(this.model),
-        featureAvailability: this.ovhFeatureFlipping.checkFeatureAvailability([
-          FEATURES.emailConsent,
-          FEATURES.smsConsent,
-        ]),
-      })
+    return this.ovhFeatureFlipping
+      .checkFeatureAvailability([FEATURES.emailConsent, FEATURES.smsConsent])
       .then((result) => {
-        this.rules = result.rules;
-        this.isEmailConsentAvailable = result.featureAvailability.isFeatureAvailable(
+        this.isEmailConsentAvailable = result.isFeatureAvailable(
           FEATURES.emailConsent,
         );
-        this.isSmsConsentAvailable = result.featureAvailability.isFeatureAvailable(
+        this.isSmsConsentAvailable = result.isFeatureAvailable(
           FEATURES.smsConsent,
         );
+      })
+      .then(() => this.fetchRules(this.model))
+      .then((rules) => {
+        this.rules = rules;
       })
       .catch((err) => {
         this.initError = err.data?.message || err.message || err;
