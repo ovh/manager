@@ -1,26 +1,34 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+import transform from 'lodash/transform';
+import union from 'lodash/union';
+
 import { TRACKING_PREFIX } from '../list.constant';
 
 export default /* @ngInject */ function IpFirewallCtrl(
-  $scope,
-  $rootScope,
-  $timeout,
-  $translate,
-  Ip,
-  IpFirewall,
-  goToDashboard,
+  $http,
   $location,
   $route,
+  $rootScope,
+  $scope,
   $stateParams,
-  $http,
+  $timeout,
+  $translate,
+  Alerter,
   atInternet,
+  goToDashboard,
+  Ip,
+  IpFirewall,
+  Validator,
 ) {
   const self = this;
 
-  $scope.selectedBlock = null;
-  $scope.selectedIp = null;
-  $scope.rules = null;
-  $scope.rulesLoading = false;
-  $scope.rulesLoadingError = null;
+  self.selectedBlock = null;
+  self.selectedIp = null;
+  self.rules = null;
+  self.rulesLoading = false;
+  self.rulesLoadingError = null;
 
   self.rulesTable = [];
 
@@ -28,80 +36,132 @@ export default /* @ngInject */ function IpFirewallCtrl(
     MAX_RULES: 20,
     PAGE_SIZE_MIN: 10,
     PAGE_SIZE_MAX: 20,
+    CREATION_PENDING: 'creationPending',
+    REMOVAL_PENDING: 'removalPending',
+    PORT_MIN: 0,
+    PORT_MAX: 65535,
   };
 
+  self.isAddingRule = false;
+
+  self.rule = {};
+
+  self.validator = {
+    required: false,
+    source: true,
+    sourcePort: true,
+    destinationPort: true,
+    fragment: true,
+  };
+
+  self.successMessage = null;
+  self.denyMessage = null;
+
   function paginate(pageSize, offset) {
-    self.rulesTable = $scope.rules.list.results.slice(
+    self.rulesTable = self.rules.list.results.slice(
       offset - 1,
       offset + pageSize - 1,
     );
   }
 
+  function loadRules(rulesCount, offset) {
+    if (!self.selectedIp && !self.selectedBlock) {
+      self.selectedIp = $stateParams.ip;
+      $http
+        .get(`/ip?ip=${window.encodeURIComponent($stateParams.ip)}`)
+        .then(({ data }) => {
+          if (data.length) {
+            [self.selectedBlock] = data;
+            self.fetchRules(rulesCount, offset);
+          }
+        });
+    } else if (self.selectedIp) {
+      self.fetchRules(rulesCount, offset);
+    }
+  }
+
   function init(params) {
-    $scope.rulesLoadingError = null;
-    $scope.rules = null;
+    self.rulesLoadingError = null;
+    self.rules = null;
     if (params) {
-      $scope.selectedBlock = params.ipBlock.ipBlock;
-      $scope.selectedIp = params.ip.ip;
+      self.selectedBlock = params.ipBlock.ipBlock;
+      self.selectedIp = params.ip.ip;
     }
     $timeout(() => {
       $scope.$broadcast('paginationServerSide.loadPage', 1, 'rulesTable');
     }, 99);
-    $scope.tracking = {
+    self.tracking = {
       'ip-firewall-add-rule': `${TRACKING_PREFIX}::ip::firewall::add-rule`,
       'ip-firewall-delete-rule': `${TRACKING_PREFIX}::ip::firewall::delete-rule`,
       'update-firewall-status': `${TRACKING_PREFIX}::ip::firewall::update-firewall-status`,
     };
-    $scope.loadRules(self.FIREWALL_MAX_RULES, 0);
+    loadRules(self.FIREWALL_MAX_RULES, 0);
   }
 
   function defaultLoad() {
     init({
-      ip: { ip: $location.search().ip },
-      ipBlock: { ipBlock: $location.search().ipBlock },
+      ip: {
+        ip: $location.search().ip,
+      },
+      ipBlock: {
+        ipBlock: $location.search().ipBlock,
+      },
     });
   }
+
   function reloadRules() {
     IpFirewall.killPollFirewallRule();
-    $scope.$broadcast('paginationServerSide.reload', 'rulesTable');
+    loadRules(self.FIREWALL_MAX_RULES, 0);
   }
 
   function getFirewallDetail() {
-    IpFirewall.getFirewallDetails($scope.selectedBlock, $scope.selectedIp).then(
+    IpFirewall.getFirewallDetails(self.selectedBlock, self.selectedIp).then(
       (firewallDetails) => {
         self.ipBlock = {
-          ipBlock: $scope.selectedBlock,
+          ipBlock: self.selectedBlock,
         };
         self.firewallToggle = {
           status: firewallDetails.enabled,
-          ip: $scope.selectedIp,
+          ip: self.selectedIp,
           firewall: firewallDetails.enabled ? 'ACTIVATED' : 'DEACTIVATED',
         };
       },
     );
   }
 
-  function fetchRules(rulesCount, offset) {
-    $scope.rulesLoading = true;
+  function changeRuleStatus(index, state) {
+    if (
+      index >= 0 &&
+      index < self.rules.list.results.length &&
+      self.rules.list.results[index]
+    ) {
+      self.rules.list.results[index].state = state;
+    }
+    paginate(self.pageSize, self.offset);
+  }
+
+  self.fetchRules = (rulesCount, offset) => {
+    self.rulesLoading = true;
 
     IpFirewall.getFirewallRules(
-      $scope.selectedBlock,
-      $scope.selectedIp,
+      self.selectedBlock,
+      self.selectedIp,
       rulesCount,
       offset,
     )
       .then(
         (rules) => {
-          $scope.rules = rules;
+          self.rules = rules;
           let options;
 
           if (
-            $scope.rules &&
-            $scope.rules.list &&
-            $scope.rules.list.results &&
-            $scope.rules.list.results.length
+            self.rules &&
+            self.rules.list &&
+            self.rules.list.results &&
+            self.rules.list.results.length
           ) {
-            angular.forEach($scope.rules.list.results, (result, i) => {
+            let isDenyRule = false;
+            angular.forEach(self.rules.list.results, (result, i) => {
               options = [];
               if (result.fragments) {
                 options.push($translate.instant('ip_firewall_rule_fragments'));
@@ -110,30 +170,48 @@ export default /* @ngInject */ function IpFirewallCtrl(
                 options.push(result.tcpOption);
               }
 
-              $scope.rules.list.results[i].options = options.join('<br/>');
+              if (result.action === 'deny') {
+                isDenyRule = true;
+              }
+
+              self.rules.list.results[i].options = options.join('<br/>');
 
               // Go poll
               if (
-                result.state === 'CREATION_PENDING' ||
-                result.state === 'REMOVAL_PENDING'
+                result.state === self.constants.CREATION_PENDING ||
+                result.state === self.constants.REMOVAL_PENDING
               ) {
                 IpFirewall.pollFirewallRule(
-                  $scope.selectedBlock,
-                  $scope.selectedIp,
+                  self.selectedBlock,
+                  self.selectedIp,
                   result.sequence,
-                ).then(() => {
-                  reloadRules();
+                ).then((rulePoll) => {
+                  if (result.state === self.constants.CREATION_PENDING) {
+                    self.successMessage = $translate.instant(
+                      'ip_firewall_add_success',
+                    );
+                    changeRuleStatus(i, rulePoll.state);
+                  } else {
+                    reloadRules();
+                  }
                 });
               }
             });
+            if (!isDenyRule) {
+              self.denyMessage = true;
+              // TODO : set the correct value
+              self.denyUrl = '#';
+            } else {
+              self.denyMessage = false;
+            }
           }
         },
         (reason) => {
-          $scope.rulesLoadingError = reason.message;
+          self.rulesLoadingError = reason.message;
         },
       )
       .finally(() => {
-        $scope.rulesLoading = false;
+        self.rulesLoading = false;
 
         getFirewallDetail();
 
@@ -144,7 +222,7 @@ export default /* @ngInject */ function IpFirewallCtrl(
         self.offset = 1 + (self.pageNumber - 1) * self.pageSize;
         paginate(self.pageSize, self.offset);
       });
-  }
+  };
 
   $scope.$on('ips.firewall.informations.reload', () => {
     reloadRules();
@@ -154,23 +232,7 @@ export default /* @ngInject */ function IpFirewallCtrl(
     getFirewallDetail();
   });
 
-  $scope.loadRules = function loadRules(rulesCount, offset) {
-    if (!$scope.selectedIp && !$scope.selectedBlock) {
-      $scope.selectedIp = $stateParams.ip;
-      $http
-        .get(`/ip?ip=${window.encodeURIComponent($stateParams.ip)}`)
-        .then(({ data }) => {
-          if (data.length) {
-            [$scope.selectedBlock] = data;
-            fetchRules(rulesCount, offset);
-          }
-        });
-    } else if ($scope.selectedIp) {
-      fetchRules(rulesCount, offset);
-    }
-  };
-
-  $scope.hideFirewall = function hideFirewall() {
+  self.hideFirewall = function hideFirewall() {
     atInternet.trackClick({
       name: `${TRACKING_PREFIX}::ip::firewall::back`,
       type: 'action',
@@ -216,5 +278,171 @@ export default /* @ngInject */ function IpFirewallCtrl(
     $location.search('page', self.pageNumber);
     $location.search('pageSize', self.pageSize);
     paginate(pageSize, offset);
+  };
+
+  function loadConstants() {
+    IpFirewall.getFirewallRuleConstants().then((constants) => {
+      const sequences = transform(constants.sequences, (result, name, key) => {
+        const newResult = result;
+        const map = {
+          key: name,
+          name: parseInt(name.replace('_', ''), 10),
+        };
+        newResult[key] = map;
+      });
+      set(constants, 'sequences', sequences);
+      set(constants, 'tcpOptions', union(['NONE'], constants.tcpOptions));
+      self.constants = {
+        ...self.constants,
+        ...constants,
+      };
+    });
+  }
+
+  self.resetOptionField = () => {
+    if (self.rule.protocol !== 'tcp') {
+      delete self.rule.tcpOptions;
+    } else {
+      if (!self.rule.tcpOptions) {
+        self.rule.tcpOptions = {};
+      }
+      self.rule.tcpOptions.option = 'NONE';
+    }
+
+    if (self.rule.protocol !== 'tcp' && self.rule.protocol !== 'udp') {
+      delete self.rule.sourcePort;
+      delete self.rule.destinationPort;
+    }
+
+    self.isFirewallRuleFormValid();
+  };
+
+  function resetFields() {
+    delete self.rule.sequence;
+    delete self.rule.action;
+    delete self.rule.protocol;
+    delete self.rule.source;
+    delete self.rule.sourcePort;
+    delete self.rule.destinationPort;
+    delete self.rule.tcpOptions;
+  }
+
+  self.addRuleClick = () => {
+    loadConstants();
+    self.isAddingRule = true;
+  };
+
+  self.cancel = () => {
+    self.isAddingRule = false;
+    resetFields();
+  };
+
+  self.isFirewallRuleFormValid = () => {
+    const sourceIp = /^(0+\.)+0+$/; // Test only here because it's a firewall specitic case
+
+    // Required field
+    self.validator.required =
+      self.rule.sequence !== undefined &&
+      self.rule.action !== undefined &&
+      self.rule.protocol !== undefined;
+
+    if (self.rule.source) {
+      self.validator.source =
+        (Validator.isValidIpv4(self.rule.source) &&
+          !sourceIp.test(self.rule.source)) ||
+        Validator.isValidIpv4Block(self.rule.source);
+    } else {
+      self.validator.source = true;
+    }
+
+    // sourcePort && destinationPort
+    if (self.rule.protocol === 'tcp' || self.rule.protocol === 'udp') {
+      self.validator.sourcePort = self.rule.sourcePort
+        ? !Number.isNaN(self.rule.sourcePort) &&
+          !(self.rule.sourcePort < 0 || self.rule.sourcePort > 65535)
+        : true;
+      self.validator.destinationPort = self.rule.destinationPort
+        ? !Number.isNaN(self.rule.destinationPort) &&
+          !(self.rule.destinationPort < 0 || self.rule.destinationPort > 65535)
+        : true;
+    } else {
+      self.validator.sourcePort = true;
+      self.validator.destinationPort = true;
+    }
+
+    // Fragment
+    if (
+      self.rule.tcpOptions &&
+      self.rule.tcpOptions.fragments === true &&
+      self.rule.protocol === 'tcp'
+    ) {
+      self.validator.fragment =
+        (self.rule.sourcePort == null || self.rule.sourcePort === '') &&
+        (self.rule.destinationPort == null || self.rule.destinationPort === '');
+    } else {
+      self.validator.fragment = true;
+    }
+
+    return (
+      self.validator.required &&
+      self.validator.source &&
+      self.validator.sourcePort &&
+      self.validator.destinationPort &&
+      self.validator.fragment
+    );
+  };
+
+  self.addFirewallRule = () => {
+    const isValid = self.isFirewallRuleFormValid();
+    if (!isValid) {
+      return;
+    }
+
+    atInternet.trackClick({
+      name: self.tracking['ip-firewall-add-rule'],
+      type: 'action',
+    });
+
+    // set empty string to null values to avoid API error
+    self.rule.source = isEmpty(get(self.rule, 'source', '')?.trim())
+      ? null
+      : self.rule.source;
+    self.rule.sourcePort = isEmpty(get(self.rule, 'sourcePort', '').trim())
+      ? null
+      : self.rule.sourcePort;
+    self.rule.destinationPort = isEmpty(
+      get(self.rule, 'destinationPort', '').trim(),
+    )
+      ? null
+      : self.rule.destinationPort;
+
+    IpFirewall.addFirewallRule(
+      self.selectedBlock,
+      self.selectedIp,
+      self.rule,
+    ).then(
+      (data) => {
+        // Reload rules
+        $rootScope.$broadcast('ips.firewall.informations.reload', data);
+        self.isAddingRule = false;
+        resetFields();
+      },
+      (data) => {
+        $scope.loading = false;
+        Alerter.alertFromSWS(
+          $translate.instant('ip_firewall_add_rule_fail'),
+          data.data,
+          'addRuleAlert',
+        );
+      },
+    );
+  };
+
+  self.onDismissSuccess = () => {
+    self.successMessage = null;
+  };
+
+  self.onDismissDeny = () => {
+    self.denyMessage = null;
   };
 }
