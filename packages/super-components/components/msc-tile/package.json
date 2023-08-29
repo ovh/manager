@@ -24,7 +24,7 @@
     "msc:watch": "stencil build --docs --watch"
   },
   "devDependencies": {
-    "@ovhcloud/ods-testing": "^13.0.1",
+    "@ovhcloud/ods-testing": "^15.0.0",
     "@stencil/postcss": "^2.1.0",
     "@types/jest": "^27.0.3",
     "autoprefixer": "^10.4.13",
@@ -36,11 +36,11 @@
     "typedoc": "0.22.10"
   },
   "peerDependencies": {
-    "@stencil/core": "^2.20.0",
-    "@ovhcloud/ods-core": "^13.0.1",
-    "@ovhcloud/ods-stencil": "^13.0.1",
-    "@ovhcloud/ods-theme-blue-jeans": "^13.0.1",
-    "@ovhcloud/ods-theming": "^13.0.1"
+    "@ovhcloud/ods-core": "^15.0.0",
+    "@ovhcloud/ods-stencil": "^15.0.0",
+    "@ovhcloud/ods-theme-blue-jeans": "^15.0.0",
+    "@ovhcloud/ods-theming": "^15.0.0",
+    "@stencil/core": "^2.20.0"
   },
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",

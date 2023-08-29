@@ -11,7 +11,7 @@ setupWorker(
   rest.get('/translations/Messages_en_GB.json', (_, res, ctx) =>
     res(ctx.json(tradEN), ctx.status(200)),
   ),
-).start({ onUnhandledRequest: 'bypass' });
+).start({ onUnhandledRequest: 'bypass', quiet: true });
 
 export default {
   title: 'Components/Manager Billing Tile',
