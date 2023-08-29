@@ -427,7 +427,7 @@ const Sidebar = (): JSX.Element => {
               type: 'action',
             })
           }
-          href={navigationPlugin.getURL('hub', '#/catalog')}
+          href={'#/catalog'}
         >
           <span
             className={`oui-icon oui-icon-plus ${style.sidebar_action_icon}`}

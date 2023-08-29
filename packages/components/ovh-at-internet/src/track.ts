@@ -31,6 +31,7 @@ export interface GenericTrackingData {
   site_level2: string;
   page_category?: string;
   complete_page_name?: string;
+  page_theme?: string;
 }
 
 export interface PageTrackingData extends GenericTrackingData {
@@ -38,7 +39,6 @@ export interface PageTrackingData extends GenericTrackingData {
   page_chapter1: string;
   page_chapter2: string;
   page_chapter3: string;
-  page_complete?: string;
 }
 
 export interface ClickTrackingData
