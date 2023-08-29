@@ -1,5 +1,6 @@
 /**
  * @typedef {{
+ *   description: string
  *   resourceType: string
  *   selected: boolean
  *   value: string
@@ -184,6 +185,7 @@ export default class ActionTrees extends Array {
       .map((action) => {
         const value = action.action;
         return {
+          description: action.description,
           resourceType: action.resourceType,
           selected: Boolean(
             input.selectedActions?.find(
