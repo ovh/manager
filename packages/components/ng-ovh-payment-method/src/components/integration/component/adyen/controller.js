@@ -2,7 +2,11 @@ import AdyenCheckout from '@adyen/adyen-web';
 
 import AdyenService from './service';
 
-import { ADYEN_CONFIG, ADYEN_RESULT_CODE } from './constants';
+import {
+  ADYEN_CONFIG,
+  ADYEN_RESULT_CODE,
+  PAYMENT_METHOD_BRANDS,
+} from './constants';
 import { AVAILABLE_CALLBACK_STATUS_ENUM } from '../../constants';
 
 export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
@@ -48,6 +52,15 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
   /* Component related methods */
 
   initializeComponent() {
+    Object.assign(
+      ADYEN_CONFIG.DEFAULT.paymentMethodsResponse.paymentMethods[0],
+      {
+        brands:
+          PAYMENT_METHOD_BRANDS[
+            this.initialParams.paymentMethod.type.paymentType
+          ],
+      },
+    );
     const adyenConfiguration = {
       onChange: (state) => {
         this.$timeout(() => {

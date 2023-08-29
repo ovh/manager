@@ -346,6 +346,7 @@ export default class PciProjectNewPaymentCtrl {
       paymentMethod: this.model.paymentMethod,
       setAsDefault: true,
     };
+    this.model.reloadHandleByComponent = true;
   }
 
   onPaymentFormSubmit() {
