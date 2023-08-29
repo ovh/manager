@@ -7,7 +7,7 @@
         data-wizard-title="'privateDatabase_change_ram_title' | translate"
     >
         <!-- Step 1: Select a capacity -->
-        <div data-wizard-step data-wizard-step-valid="ramCtrl.model.ram">
+        <div data-wizard-step data-wizard-step-valid="ramCtrl.model.capacity">
             <form name="orderRamForm">
                 <label
                     class="oui-label"
@@ -20,8 +20,8 @@
                         name="capacity"
                         id="selectRamCapacity"
                         data-ng-disabled="ramCtrl.loading.availableRam"
-                        data-ng-model="ramCtrl.model.ram"
-                        data-ng-options="element.capacity + ('unit_size_MB' | translate) for element in ramCtrl.data.availableRam | orderBy:sortRam track by element.planCode"
+                        data-ng-model="ramCtrl.model.capacity"
+                        data-ng-options="ram + ('unit_size_MB' | translate) for ram in ramCtrl.data.availableRam | orderBy:sortRam"
                     >
                         <option
                             value=""
@@ -59,7 +59,7 @@
             <form name="orderRamForm" data-ng-if="!ramCtrl.loading.durations">
                 <div
                     class="oui-radio"
-                    data-ng-repeat="duration in (ramCtrl.data.durations.available) track by $index"
+                    data-ng-repeat="duration in (ramCtrl.data.durations.available | orderBy:'duration':false) track by $index"
                 >
                     <input
                         type="radio"
@@ -76,12 +76,19 @@
                         <span class="oui-radio__label">
                             <span class="oui-radio__icon"></span>
                             <span class="oui-radio__text">
-                                <span data-ng-bind-html="duration.description">
+                                <span
+                                    data-ng-if="ramCtrl.constructor.isProrataDuration(duration)"
+                                    data-ng-bind-html="duration.duration | wucDuration:'longDate':{prorata:true}"
+                                >
+                                </span>
+                                <span
+                                    data-ng-if="!ramCtrl.constructor.isProrataDuration(duration)"
+                                    data-ng-bind-html="duration.duration | wucDuration:'longDate'"
+                                >
                                 </span
                                 >&nbsp;:
                                 <span
-                                    class="font-weight-bold"
-                                    data-ng-bind-html="duration.prices.withoutTax.text"
+                                    data-ng-bind-html="duration.prices | price: ramCtrl.data.ovhSubsidiary"
                                 ></span>
                             </span>
                         </span>
