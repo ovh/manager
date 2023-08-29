@@ -1,7 +1,6 @@
 {
   "name": "@ovhcloud/msc-vue-billing-tile",
   "version": "1.0.0",
-  "private": true,
   "description": "Vue specific wrapper for Manager super components",
   "keywords": [],
   "license": "Apache-2.0",
@@ -19,7 +18,7 @@
     "compile:esm": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@ovhcloud/msc-billing-billing-tile": "^1.0.0"
+    "@ovhcloud/msc-stencil-billing-tile": "^1.0.0"
   },
   "devDependencies": {
     "rimraf": "^3.0.2",
