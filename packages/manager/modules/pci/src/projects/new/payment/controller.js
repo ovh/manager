@@ -525,6 +525,12 @@ export default class PciProjectNewPaymentCtrl {
     return null;
   }
 
+  hasLegalAgreements() {
+    return Object.values(this.model.legalAgreements).find(
+      (elm) => elm === true,
+    );
+  }
+
   displayCreateProjectButton() {
     if (this.model.paymentMethod.type.isCreditCard()) {
       return this.model.legalAgreements.credit;

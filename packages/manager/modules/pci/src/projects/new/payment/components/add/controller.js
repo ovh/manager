@@ -89,6 +89,7 @@ export default class PciProjectNewPaymentMethodAddCtrl {
   onPaymentTypeRadioChange() {
     this.model.credit = null;
     this.model.defaultPaymentMethod = null;
+    this.resetLegalAgreements();
   }
 
   /* -----  End of Events  ------ */
