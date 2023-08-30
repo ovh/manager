@@ -14,7 +14,7 @@
   "dependencies": {
     "@ovh-ux/ui-kit": "^6.6.1",
     "bootstrap": "^3.4.1",
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "bootstrap4": "twbs/bootstrap#v4.6.2",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {

@@ -56,7 +56,7 @@
     "angular-ui-bootstrap": "1.3.3",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "~3.3.0",
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "bootstrap4": "twbs/bootstrap#v4.6.2",
     "flatpickr": "~4.5.2",
     "jquery": "^2.1.3",
     "ovh-api-services": "^17.0.0",

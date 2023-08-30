@@ -22,7 +22,7 @@
     "@ovh-ux/shell": "^3.0.0",
     "@tanstack/react-query": "^4.29.3",
     "@tanstack/react-query-devtools": "^4.29.3",
-    "generouted": "^1.6.4",
+    "generouted": "1.6.4",
     "i18next": "^20.4.0",
     "i18next-http-backend": "^1.3.0",
     "react": "^18.2.0",
