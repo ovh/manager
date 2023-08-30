@@ -873,5 +873,14 @@
   "emailpro_tab_domain_diagnostic_spf_recap": "Un record SPF sarà aggiunto alla zona DNS del tuo dominio.",
   "emailpro_tab_domain_diagnostic_spf": "SPF",
   "emailpro_tab_domain_diagnostic_spf_title": "Diagnostica SPF",
-  "emailpro_tab_domain_diagnostic_spf_toolbox_ok": "Configurazione automatica effettuata"
+  "emailpro_tab_domain_diagnostic_spf_toolbox_ok": "Configurazione automatica effettuata",
+  "emailpro_tab_TASKS_ADD_DOMAIN_DKIM": "Aggiungere un record DKIM",
+  "emailpro_tab_domain_diagnostic_dkim": "DKIM",
+  "emailpro_tab_domain_diagnostic_dkim_title_error": "Diagnostica DKIM",
+  "emailpro_tab_domain_diagnostic_dkim_title_activation": "Attivare DKIM",
+  "emailpro_tab_domain_diagnostic_dkim_configuration_nok": "La configurazione non è corretta. Segui il procedimento indicato nella seguente <a href=\"{{url}}\" target=\"_blank\">guida</a>.",
+  "emailpro_tab_domain_diagnostic_dkim_activation_no_ovhcloud": "Il dominio non è ospitato in OVHcloud e non può quindi essere configurato automaticamente. Per configurare una DKIM, consulta questa <a href=\"{{url}}\" target=\"_blank\">guida</a>.",
+  "emailpro_tab_domain_diagnostic_dkim_activation_ovhcloud": "Stiamo per configurare una DKIM per te, l'attivazione completa potrebbe richiedere 24 ore.",
+  "emailpro_tab_domain_diagnostic_dkim_activation_success": "La configurazione della DKIM è in corso. Ti ricordiamo che la propagazione dell'aggiornamento potrebbe richiedere fino a 24 ore.",
+  "emailpro_tab_domain_diagnostic_dkim_activation_error": "Si è verificato un errore durante la configurazione della DKIM."
 }
