@@ -80,6 +80,25 @@
             />
         </oui-field>
         <!-- </Name> -->
+
+        <!-- <Description> -->
+        <oui-field
+            data-label="{{ :: 'iam_create_policy_form_description_heading' | translate }}"
+            data-error-messages="{
+                api: $ctrl.error.description,
+                pattern: ('iam_create_policy_form_description_error_pattern' | translate)
+            }"
+        >
+            <textarea
+                class="oui-input"
+                name="description"
+                data-ng-pattern="$ctrl.ENTITY_DESCRIPTION_PATTERN"
+                data-ng-model="$ctrl.model.description"
+                rows="3"
+            ></textarea>
+        </oui-field>
+        <!-- </Description> -->
+
         <!-- <Resource> -->
         <iam-resource-select
             data-ng-model="$ctrl.model.resources"

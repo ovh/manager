@@ -36,6 +36,7 @@ const ENTITY = {
 };
 
 const ENTITY_NAME_PATTERN = /^[a-zA-Z0-9-/_+]*$/;
+const ENTITY_DESCRIPTION_PATTERN = /^[a-zA-Z0-9-/_+ ]*$/;
 
 const GUIDE = {
   IAM: {
@@ -285,6 +286,7 @@ export {
   CUSTOM_RESOURCE_TYPE,
   DELETE_STATEMENT,
   ENTITY,
+  ENTITY_DESCRIPTION_PATTERN,
   ENTITY_NAME_PATTERN,
   FEATURE,
   GUIDE,
