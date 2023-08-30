@@ -9229,13 +9229,9 @@ bootstrap-additions@~0.3.1:
   resolved "https://registry.yarnpkg.com/bootstrap-additions/-/bootstrap-additions-0.3.1.tgz#9ab976c2d88b9ab747c376c757a80031f2ccf83e"
   integrity sha1-mrl2wtiLmrdHw3bHV6gAMfLM+D4=
 
-bootstrap4@twbs/bootstrap#v4.0.0:
-  version "4.0.0"
-  resolved "https://codeload.github.com/twbs/bootstrap/tar.gz/8a628b943cf31ca0a002c08af661a95772480225"
-
-bootstrap4@twbs/bootstrap#v4.3.1:
-  version "4.3.1"
-  resolved "https://codeload.github.com/twbs/bootstrap/tar.gz/8fa0d3010112dca5dd6dd501173415856001ba8b"
+bootstrap4@twbs/bootstrap#v4.6.2:
+  version "4.6.2"
+  resolved "https://codeload.github.com/twbs/bootstrap/tar.gz/e5643aaa89eb67327a5b4abe7db976f0ea276b70"
 
 bootstrap@4.6.0:
   version "4.6.0"
@@ -9256,6 +9252,11 @@ bootstrap@^4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.4.1.tgz#8582960eea0c5cd2bede84d8b0baf3789c3e8b01"
   integrity sha512-tbx5cHubwE6e2ZG7nqM3g/FZ5PQEDMWmMGNrCUBVRPHXTJaH7CBDdsLeu3eCh3B1tzAxTnAbtmrzvWEvT2NNEA==
+
+bootstrap@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.2.tgz#8e0cd61611728a5bf65a3a2b8d6ff6c77d5d7479"
+  integrity sha512-51Bbp/Uxr9aTuy6ca/8FbFloBUJZLHwnhTcnjIeRn2suQWsWzcuJhGjKDB5eppVte/8oCdOL3VuwxvZDUggwGQ==
 
 bootstrap@~3.3.0, bootstrap@~3.3.7:
   version "3.3.7"
@@ -13703,16 +13704,14 @@ flag-icon-css@^2.3.1:
   integrity sha512-SeHvGEB43XFPZiJz6lFFRGHfp+Db+s1qGiClW70cZauQVbPM42wImlNUEuXSXs94kPchz7xvoxP0QK1y6FxLfg==
 
 flag-icon-css@^3.2.0, flag-icon-css@^3.4.2:
-  version "3.4.5"
-  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-3.4.5.tgz#584d618563034e69cb9a5b7a7c8477ec8c029a49"
-  integrity sha512-COo/PuJY/JddBLkdi7jL3gWF0z/hcvBRA4kfMXUjLeLglFf5IsyAzKZuXaXfCubVrkraVizmEp7Bn05upTXofA==
-  dependencies:
-    opencollective-postinstall "2.0.2"
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-3.5.0.tgz#430747d5cb91e60babf85494de99173c16dc7cf2"
+  integrity sha512-pgJnJLrtb0tcDgU1fzGaQXmR8h++nXvILJ+r5SmOXaaL/2pocunQo2a8TAXhjQnBpRLPtZ1KCz/TYpqeNuE2ew==
 
 flag-icon-css@~0.8.5:
   version "0.8.6"
   resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-0.8.6.tgz#7dab89f99040c2a1113108132a1eab8c1dea44c4"
-  integrity sha1-fauJ+ZBAwqERMQgTKh6rjB3qRMQ=
+  integrity sha512-OQdsWTHoPB1gi79Be6mLgKD1GprOLur/Qv370nh91+Lrw0rIhGMjYc+CVgS05ZhjaMYn/CEQUNreW4SN1giQQw==
 
 flagged-respawn@^2.0.0:
   version "2.0.0"
@@ -19294,11 +19293,6 @@ open@^8.0.9, open@^8.4.0:
     define-lazy-prop "^2.0.0"
     is-docker "^2.1.1"
     is-wsl "^2.2.0"
-
-opencollective-postinstall@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.2.tgz#5657f1bede69b6e33a45939b061eb53d3c6c3a89"
-  integrity sha512-pVOEP16TrAO2/fjej1IdOyupJY8KDUM1CvsaScRbw6oddvpQoOfGk4ywha0HKKVAD6RkW4x6Q+tNBwhf3Bgpuw==
 
 optionator@^0.8.1, optionator@^0.8.3:
   version "0.8.3"
