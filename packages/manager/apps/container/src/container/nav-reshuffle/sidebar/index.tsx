@@ -176,13 +176,8 @@ const Sidebar = (): JSX.Element => {
          * Remove Documents menu
          * Documents page is added by default in ./navigation-tree/root.ts but not accessible if fraud status is not required or open
          */
-        let isKycDocumentsVisible = true;
-        if (results['documents']) {
-          const { status } = await reketInstance.get(`/me/procedure/fraud`);
-          if (!['required','open'].includes(status)) {
-            isKycDocumentsVisible = false;
-          }
-        }
+        const { status } = await reketInstance.get(`/me/procedure/fraud`);
+        const isKycDocumentsVisible = ['required','open'].includes(status);
 
         if (!isKycDocumentsVisible) {
           const account = findNodeById(tree, 'account');
