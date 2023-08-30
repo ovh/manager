@@ -13,7 +13,7 @@
   "main": "./src/index.js",
   "dependencies": {
     "@ovh-ux/url-builder": "^1.1.1",
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "bootstrap": "^4.6.2",
     "flag-icon-css": "~0.8.5",
     "lodash": "^4.17.14"
   },
