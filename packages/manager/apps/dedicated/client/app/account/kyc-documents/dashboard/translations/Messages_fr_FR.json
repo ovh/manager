@@ -16,7 +16,7 @@
   "document_dashboard_open_banner_text": "Le traitement de vos documents est actuellement en cours d'analyse par notre équipe. Pour plus d'information, vous pouvez consulter {{link}}.",
   "document_dashboard_open_banner_link": "Mes demandes d'assistance",
   "documents_dashboard_optional_document": "(optionnel)",
-  "documents_dashboard_too_much_documents_error": "Le nombre maximal de documents supporté est de {{maximum}}",
+  "documents_dashboard_form_requirement": "Formats acceptés: {{accept}}. Poids max: {{maximum_size}} Mo. Nombre de documents max: {{maximum_documents}}",
   "documents_dashboard_modal_header": "Avez vous bien ajouté l'ensemble des documents demandés ?",
   "documents_dashboard_modal_primary_label": "Oui",
   "documents_dashboard_modal_secondary_label": "Non"

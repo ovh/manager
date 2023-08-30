@@ -77,6 +77,14 @@
         <div class="col-lg-6 mb-5" data-ng-if="!$ctrl.loading">
             <!-- Upload Form -->
             <form novalidate name="$ctrl.form" class="mt-2">
+                <small
+                    data-translate="documents_dashboard_form_requirement"
+                    data-translate-values="{
+                        maximum_size: $ctrl.maximum_size_mo,
+                        maximum_documents: $ctrl.maximum_documents,
+                        accept: 'pdf, jpeg, png, jpg'
+                    }"
+                ></small>
                 <oui-file
                     data-model="$ctrl.documents"
                     data-accept="application/pdf,image/jpeg,image/png,image/jpg"
@@ -85,17 +93,6 @@
                     data-name="documents"
                     data-disabled="$ctrl.isDisabled"
                 ></oui-file>
-
-                <oui-message
-                    class="mt-3"
-                    data-type="info"
-                    data-ng-if="$ctrl.documents.length > $ctrl.maximum_documents"
-                >
-                    <span
-                        data-translate="documents_dashboard_too_much_documents_error"
-                        data-translate-values="{maximum: $ctrl.maximum_documents}"
-                    ></span>
-                </oui-message>
 
                 <oui-form-actions
                     class="mt-5"
