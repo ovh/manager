@@ -1,3 +1,4 @@
+import { Language } from '@ovhcloud/msc-utils';
 import { setupSpecTest } from './setup';
 
 describe('specs:msc-billing-tile', () => {
@@ -21,14 +22,17 @@ describe('specs:msc-billing-tile', () => {
     expect(renewalBlock).toBeTruthy();
   });
 
-  it.each(['fr-FR', 'en-GB'])('Switch language to %s', async (language) => {
-    const { title, tradFR, tradEN } = await setupSpecTest({ language });
-    expect(title.textContent).toContain(
-      language === 'fr-FR'
-        ? tradFR.manager_billing_subscription
-        : tradEN.manager_billing_subscription,
-    );
-  });
+  it.each(['fr-FR', 'en-GB'] as Language[])(
+    'Switch language to %s',
+    async (language) => {
+      const { title, tradFR, tradEN } = await setupSpecTest({ language });
+      expect(title.textContent).toContain(
+        language === 'fr-FR'
+          ? tradFR.manager_billing_subscription
+          : tradEN.manager_billing_subscription,
+      );
+    },
+  );
 
   describe('offer', () => {
     it('renders no offer', async () => {

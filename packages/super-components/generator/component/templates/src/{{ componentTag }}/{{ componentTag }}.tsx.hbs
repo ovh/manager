@@ -5,9 +5,12 @@ import {
 } from '@ovhcloud/ods-theming';
 import { Component, Prop, h, Element, Host } from '@stencil/core';
 import { HTMLStencilElement } from '@stencil/core/internal';
+import { Language } from '@ovhcloud/msc-utils';
+import { getTranslations } from './translations';
 
 export interface I{{ pascalCase componentTag }} {
   content: string;
+  language?: Language;
 }
 
 @Component({
@@ -20,7 +23,26 @@ export class {{ pascalCase componentTag }} implements I{{ pascalCase componentTa
 
   @Prop() public content = '';
 
+  @Prop() public language = 'fr-FR' as Language;
+
+  @State() localeStrings?: Translations;
+
+  @Watch('language')
+  async updateTranslations() {
+    this.localeStrings = await getTranslations(this.language);
+  }
+
+  async componentWillLoad() {
+    this.updateTranslations();
+  }
+
   render() {
+    if (!this.localeStrings) {
+      return (
+        <osds-skeleton />
+      );
+    }
+
     return (
       <Host>
         <osds-text
@@ -29,7 +51,7 @@ export class {{ pascalCase componentTag }} implements I{{ pascalCase componentTa
           size={OdsThemeTypographySize._400}
           color={OdsThemeColorIntent.info}
         >
-          Hello {this.content}
+          Hello {this.content} {this.localeStrings.test}
         </osds-text>
       </Host>
     );

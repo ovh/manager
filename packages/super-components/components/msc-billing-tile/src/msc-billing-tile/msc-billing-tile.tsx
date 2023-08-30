@@ -13,8 +13,9 @@ import {
   OdsThemeTypographySize,
 } from '@ovhcloud/ods-theming';
 import { HTMLStencilElement, Watch } from '@stencil/core/internal';
-import { fetchTranslation, formatDate } from '@ovhcloud/msc-utils';
+import { Language, formatDate } from '@ovhcloud/msc-utils';
 import { apiClient } from '@ovh-ux/manager-core-api';
+import { getTranslations } from './translations';
 import {
   ServiceDetails,
   ServiceInfos,
@@ -22,8 +23,8 @@ import {
 } from './msc-billing.types';
 
 export interface IMscBillingTile {
-  language: string;
   servicePath: string;
+  language?: Language;
   commitmentDataTracking?: string;
   changeOwnerDataTracking?: string;
   updateOwnerDataTracking?: string;
@@ -41,11 +42,9 @@ export interface IMscBillingTile {
   shadow: true,
 })
 export class MscBillingTile implements IMscBillingTile {
-  serviceName: string;
-
   @Element() host!: HTMLStencilElement;
 
-  @Prop() public language = 'fr-FR';
+  @Prop() public language = 'fr-FR' as Language;
 
   @Prop() public servicePath: string;
 
@@ -77,9 +76,7 @@ export class MscBillingTile implements IMscBillingTile {
 
   @Watch('language')
   async updateTranslations() {
-    fetchTranslation<Translations>(this.language).then((translations) => {
-      this.localeStrings = translations;
-    });
+    this.localeStrings = await getTranslations(this.language);
   }
 
   async componentWillLoad() {

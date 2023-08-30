@@ -79,7 +79,6 @@ export const getStencilConfig = ({
           dest: 'custom-elements',
           warn: true,
         },
-        { src: 'translations', dest: 'custom-elements/translations' },
       ],
     },
     distCustomElementsBundle: {
@@ -90,7 +89,6 @@ export const getStencilConfig = ({
           dest: 'custom-elements-bundle',
           warn: true,
         },
-        { src: 'translations', dest: 'custom-elements-bundle/translations' },
       ],
     },
     jestConfig: {
@@ -126,10 +124,7 @@ export const getStencilConfig = ({
     ...(baseConfig.outputTargets || []),
     {
       type: 'www',
-      copy: [
-        { src: 'translations', dest: 'translations' },
-        { src: '../../../storybook/static', dest: '' },
-      ],
+      copy: [{ src: '../../../storybook/static', dest: '' }],
     },
   ];
 

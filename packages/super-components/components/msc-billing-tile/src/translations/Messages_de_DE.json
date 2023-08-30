@@ -53,5 +53,6 @@
   "billing_services_actions_menu_resiliate_my_engagement": "Meine Vertragsbindung kündigen",
   "billing_services_actions_menu_change_owner": "Inhaber ändern",
   "billing_services_actions_menu_configuration_update_owner": "Angaben des Inhabers aktualisieren",
-  "billing_services_domain_contact_owner": "Inhaber"
+  "billing_services_domain_contact_owner": "Inhaber",
+  "billing_services_actions_menu_change_offer": "Changer d'offre"
 }
