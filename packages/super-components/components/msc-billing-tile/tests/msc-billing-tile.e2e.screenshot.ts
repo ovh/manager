@@ -1,4 +1,5 @@
 import { HTMLStencilElement } from '@stencil/core/internal';
+import { Language } from '@ovhcloud/msc-utils';
 import { setupE2eTest } from './setup';
 
 describe('screenshot:msc-billing-tile', () => {
@@ -6,7 +7,7 @@ describe('screenshot:msc-billing-tile', () => {
     [
       {
         testCase: 'english language',
-        language: 'en-GB',
+        language: 'en-GB' as Language,
         servicePath: 'vps/vps-00000000.vps.ovh.net',
       },
       {

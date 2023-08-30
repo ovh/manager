@@ -17,18 +17,20 @@ import {
   OdsIconName,
   OdsIconSize,
 } from '@ovhcloud/ods-core';
-import { HTMLStencilElement } from '@stencil/core/internal';
+import { HTMLStencilElement, Watch } from '@stencil/core/internal';
+import { Language } from '@ovhcloud/msc-utils';
+import { getTranslations, Translations } from './translations';
 
 export interface IMscTile {
   href?: string;
   isExternalHref?: boolean;
   imgSrc?: string;
   imgAlt?: string;
-  tileType: string;
+  tileType: 'product' | 'faq';
   tileTitle: string;
   tileDescription: string;
-  seeMoreLabel: string;
   dataTracking?: string;
+  language?: Language;
 }
 
 /**
@@ -50,16 +52,13 @@ export class MscTile implements IMscTile {
   @Prop() public isExternalHref?: boolean;
 
   /** Label of the tile type displayed above the title (usually FAQ, Category...) */
-  @Prop() public tileType = '';
+  @Prop() public tileType: 'product' | 'faq';
 
   /** Tile title */
   @Prop() public tileTitle = '';
 
   /** Tile description */
   @Prop() public tileDescription = '';
-
-  /** See more link label */
-  @Prop() public seeMoreLabel = '';
 
   /** Optional header image URL */
   @Prop() public imgSrc?: string = '';
@@ -70,9 +69,22 @@ export class MscTile implements IMscTile {
   /** Label sent to the tracking service */
   @Prop() public dataTracking?: string = '';
 
+  @Prop() public language = 'fr-FR' as Language;
+
+  @State() private localeStrings?: Translations;
+
   @State() private tabIndex = 0;
 
   @State() private hasFooterContent = false;
+
+  @Watch('language')
+  async updateTranslations() {
+    this.localeStrings = await getTranslations(this.language);
+  }
+
+  async componentWillLoad() {
+    this.updateTranslations();
+  }
 
   @Listen('focus')
   onFocus(event: FocusEvent) {
@@ -96,6 +108,14 @@ export class MscTile implements IMscTile {
   };
 
   render() {
+    if (!this.localeStrings) {
+      return (
+        <osds-tile rounded>
+          <osds-skeleton />
+        </osds-tile>
+      );
+    }
+
     const content = (
       <osds-tile
         class="msc-ods-tile"
@@ -112,7 +132,9 @@ export class MscTile implements IMscTile {
             size={OdsThemeTypographySize._200}
             color={OdsThemeColorIntent.primary}
           >
-            {this.tileType}
+            {this.tileType === 'product'
+              ? this.localeStrings?.product_tile_type
+              : this.localeStrings?.faq_tile_type}
             <span class="tile-badge-list">
               <slot name="badges"></slot>
             </span>
@@ -141,7 +163,7 @@ export class MscTile implements IMscTile {
             href={this.href}
             target={OdsHTMLAnchorElementTarget._blank}
           >
-            {this.seeMoreLabel}
+            {this.localeStrings?.see_more_label}
             <osds-icon
               slot="end"
               class="link-icon"

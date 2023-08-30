@@ -2,12 +2,28 @@
   "name": "@ovhcloud/msc-stencil-{{ packageName }}",
   "version": "1.0.0",
   "description": "{{ description }}",
+  "keywords": [
+    "ovh",
+    "ovhcloud",
+    "super-component"
+  ],
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/super-components/components/{{ componentTag }}#readme",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/super-components/components/{{ componentTag }}"
+  },
   "license": "BSD-3-Clause",
+  "author": "OVH SAS",
   "main": "dist/index.cjs.js",
   "unpkg": "dist/{{ componentTag }}/{{ componentTag }}.esm.js",
   "module": "dist/index.js",
   "types": "dist/types/components.d.ts",
   "scripts": {
+    "prepare": "yarn msc:build",
     "msc:build": "yarn run msc:build:stencil --if-present && yarn run msc:build:react --if-present && yarn run msc:build:vue --if-present",
     "msc:build:react": "npm --prefix react run build",
     "msc:build:stencil": "stencil build --docs --prod --config stencil.config.ts",
@@ -25,12 +41,14 @@
     "msc:watch": "stencil build --docs --watch"
   },
   "devDependencies": {
-    "@ovhcloud/ods-testing": "^15.0.0",
+    "@ovhcloud/ods-testing": "^14.1.0",
     "@stencil/postcss": "^2.1.0",
     "@types/jest": "^27.0.3",
     "autoprefixer": "^10.4.13",
+    "axios-mock-adapter": "^1.21.5",
     "jest": "^27.0.3",
     "jest-cli": "^27.4.5",
+    "msw": "^1.2.3",
     "postcss": "^8.4.19",
     "postcss-nested": "^6.0.0",
     "puppeteer": "^10.0.0",
@@ -38,11 +56,12 @@
     "typescript": "~4.3.5"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-core-api": "*",
     "@ovhcloud/msc-utils": "^0.1.0",
-    "@ovhcloud/ods-core": "^15.0.0",
-    "@ovhcloud/ods-stencil": "^15.0.0",
-    "@ovhcloud/ods-theme-blue-jeans": "^15.0.0",
-    "@ovhcloud/ods-theming": "^15.0.0",
+    "@ovhcloud/ods-core": "^14.1.0",
+    "@ovhcloud/ods-stencil": "^14.1.0",
+    "@ovhcloud/ods-theme-blue-jeans": "^14.1.0",
+    "@ovhcloud/ods-theming": "^14.1.0",
     "@stencil/core": "^2.20.0"
   },
   "collection": "dist/collection/collection-manifest.json",

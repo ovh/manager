@@ -4,7 +4,6 @@ type CreateTileArgs = Partial<{
   tileDescription: string;
   href: string;
   isExternalHref: boolean;
-  seeMoreLabel: string;
   dataTracking: string;
   imgSrc: string;
   imgAlt: string;
@@ -18,7 +17,6 @@ export const createTile = ({
   tileDescription,
   href,
   isExternalHref,
-  seeMoreLabel,
   dataTracking,
   imgSrc,
   imgAlt,
@@ -34,7 +32,6 @@ export const createTile = ({
       ${isExternalHref ? 'is-external-href="true"' : ''}
       img-src="${imgSrc}"
       img-alt="${imgAlt}"
-      see-more-label="${seeMoreLabel}"
       data-tracking="${dataTracking}"
     >
       ${

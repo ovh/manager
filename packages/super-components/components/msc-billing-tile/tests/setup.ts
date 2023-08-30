@@ -3,12 +3,12 @@ import {
   E2EPage,
   newSpecPage,
   newE2EPage,
-  mockFetch,
 } from '@stencil/core/testing';
 import { OdsStringAttributes2Str } from '@ovhcloud/ods-testing';
 import { OdsComponentAttributes2StringAttributes } from '@ovhcloud/ods-core';
 import MockAdapter from 'axios-mock-adapter';
 import apiClient from '@ovh-ux/manager-core-api';
+import { Language } from '@ovhcloud/msc-utils';
 import { MscBillingTile, IMscBillingTile } from '../src';
 import { MscBillingCommitment } from '../src/msc-billing-tile/msc-billing-commitment';
 import { MscBillingContact } from '../src/msc-billing-tile/msc-billing-contact';
@@ -21,21 +21,25 @@ import tradEN from '../src/translations/Messages_en_GB.json';
 
 const defaultAttributes = {
   servicePath: 'dedicated/nasha/zpool-111111',
-  language: 'fr-FR',
+  language: 'fr-FR' as Language,
 };
 
-export const setupSpecTest = async (attributes?: Partial<IMscBillingTile>) => {
-  mockFetch.json(tradFR, '/translations/Messages_fr_FR.json');
-  mockFetch.json(tradEN, '/translations/Messages_en_GB.json');
+export const mockRequests = () => {
   const mock = new MockAdapter(apiClient.v6);
   config.forEach(({ url, method = 'get', status = 200, response }) => {
     const mockMethod = `on${method[0].toUpperCase()}${method?.substring(1)}`;
     const mockUrl = url.includes(':id')
       ? new RegExp(url.replace(':id', '*'))
       : url;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     mock[mockMethod](mockUrl).reply(status, response);
   });
+  return mock;
+};
 
+export const setupSpecTest = async (attributes?: Partial<IMscBillingTile>) => {
+  const mock = mockRequests();
   const stringAttributes = OdsComponentAttributes2StringAttributes<
     Partial<IMscBillingTile>
   >({ ...defaultAttributes, ...attributes }, defaultAttributes);
@@ -110,20 +114,6 @@ export const setupE2eTest = async (attributes?: Partial<IMscBillingTile>) => {
             body: JSON.stringify(response.response),
           });
         }
-        if (request.url().includes('/translations/Messages_fr_FR.json')) {
-          return request.respond({
-            status: 200,
-            contentType: 'application/json',
-            body: JSON.stringify(tradFR),
-          });
-        }
-        if (request.url().includes('/translations/Messages_en_GB.json')) {
-          return request.respond({
-            status: 200,
-            contentType: 'application/json',
-            body: JSON.stringify(tradFR),
-          });
-        }
         return request.continue();
       });
     }
@@ -133,6 +123,7 @@ export const setupE2eTest = async (attributes?: Partial<IMscBillingTile>) => {
     `<msc-billing-tile ${OdsStringAttributes2Str(
       stringAttributes,
     )}></msc-billing-tile>`,
+    { timeout: 30000 },
   );
 
   await page.waitForChanges();

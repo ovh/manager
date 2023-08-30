@@ -1,17 +1,10 @@
-import { setupWorker, rest } from 'msw';
-import tradFR from '../src/translations/Messages_fr_FR.json';
-import tradEN from '../src/translations/Messages_en_GB.json';
+import { setupWorker } from 'msw';
 import handlers from '../mock/handlers';
 
-setupWorker(
-  ...handlers,
-  rest.get('/translations/Messages_fr_FR.json', (_, res, ctx) =>
-    res(ctx.json(tradFR), ctx.status(200)),
-  ),
-  rest.get('/translations/Messages_en_GB.json', (_, res, ctx) =>
-    res(ctx.json(tradEN), ctx.status(200)),
-  ),
-).start({ onUnhandledRequest: 'bypass', quiet: true });
+setupWorker(...handlers).start({
+  onUnhandledRequest: 'bypass',
+  quiet: true,
+});
 
 export default {
   title: 'Components/Manager Billing Tile',
@@ -39,11 +32,15 @@ export default {
   `,
   argTypes: {
     language: {
+      description: 'Language of the labels',
       control: 'select',
       options: ['fr-FR', 'en-GB'],
-      default: 'fr-FR',
+      table: {
+        defaultValue: { summary: 'fr-FR' },
+      },
     },
     servicePath: {
+      description: 'API route of the service',
       control: 'select',
       options: [
         'vps/vps-00000000.vps.ovh.net',

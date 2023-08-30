@@ -3,7 +3,16 @@
   "version": "1.0.0",
   "description": "React specific wrapper for Manager super components",
   "keywords": [],
-  "license": "Apache-2.0",
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/super-components/components/msc-billing-tile#readme",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/super-components/components/msc-billing-tile/react"
+  },
+  "license": "BSD-3-Clause",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
@@ -15,7 +24,8 @@
     "clean": "rimraf dist",
     "compile": "npm run compile:esm && npm run compile:cjs",
     "compile:cjs": "tsc -p tsconfig.cjs.json",
-    "compile:esm": "tsc -p tsconfig.json"
+    "compile:esm": "tsc -p tsconfig.json",
+    "prepare": "yarn build"
   },
   "dependencies": {
     "@ovhcloud/msc-stencil-billing-tile": "*",
@@ -31,7 +41,7 @@
     "typescript": "5.1.3"
   },
   "peerDependencies": {
-    "@ovhcloud/ods-stencil": "^15.0.0",
+    "@ovhcloud/ods-stencil": "^14.1.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   }

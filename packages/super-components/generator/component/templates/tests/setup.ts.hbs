@@ -1,10 +1,30 @@
 import { newSpecPage, newE2EPage } from '@stencil/core/testing';
 import { OdsStringAttributes2Str } from '@ovhcloud/ods-testing';
 import { OdsComponentAttributes2StringAttributes } from '@ovhcloud/ods-core';
+import { Language } from '@ovhcloud/msc-utils';
+import MockAdapter from 'axios-mock-adapter';
+import { apiClient } from '@ovh-ux/manager-core-api';
 import { {{ pascalCase componentTag }}, I{{ pascalCase componentTag }} } from '../src';
+import { config } from '../mock/handlers';
+import tradFR from '../src/translations/Messages_fr_FR.json';
 
 const defaultAttributes = {
   content: 'World',
+  language: 'fr-FR' as Language
+};
+
+export const mockRequests = () => {
+  const mock = new MockAdapter(apiClient.v6);
+  config.forEach(({ url, method = 'get', status = 200, response }) => {
+    const mockMethod = `on${method[0].toUpperCase()}${method?.substring(1)}`;
+    const mockUrl = url.includes(':id')
+      ? new RegExp(url.replace(':id', '*'))
+      : url;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    mock[mockMethod](mockUrl).reply(status, response);
+  });
+  return mock;
 };
 
 export const setupSpecTest = async ({
@@ -14,6 +34,7 @@ export const setupSpecTest = async ({
   attributes?: Partial<I{{ pascalCase componentTag }}>;
   html?: string;
 }) => {
+  const mock = mockRequests();
   const stringAttributes = OdsComponentAttributes2StringAttributes<
     Partial<I{{ pascalCase componentTag }}>
   >({ ...defaultAttributes, ...attributes }, defaultAttributes);
@@ -23,7 +44,7 @@ export const setupSpecTest = async ({
       stringAttributes,
     )}>${html}</{{ componentTag }}>`,
   });
-  return { page };
+  return { page, mock, tradFR };
 };
 
 export const setupE2eTest = async ({
@@ -37,14 +58,48 @@ export const setupE2eTest = async ({
     Partial<I{{ pascalCase componentTag }}>
   >({ ...defaultAttributes, ...attributes }, defaultAttributes);
 
-  const page = await newE2EPage();
+  const page = await newE2EPage({ timeout: 30000 });
+
+  await page.setRequestInterception(true);
+
+  page.on('response', (res) => {
+    if (res.url().includes('localhost')) {
+      (page as any).removeAllListeners('request');
+      page.on('request', (request) => {
+        const response = config.find(({ url }) => {
+          const urlToMatch = url.includes(':id')
+            ? new RegExp(
+                `^${page.url()}${apiClient.v6
+                  .getUri()
+                  .substring(1)}/${url.replace(':id', '\\d+')}$`,
+              )
+            : `^${page.url()}${apiClient.v6.getUri().substring(1)}/${url}$`;
+
+          return request.url().match(urlToMatch);
+        });
+
+        if (response) {
+          return request.respond({
+            status: response.status ?? 200,
+            contentType: 'application/json',
+            body: JSON.stringify(response.response),
+          });
+        }
+        return request.continue();
+      });
+    }
+  });
 
   await page.setContent(
     `<{{ componentTag }} ${OdsStringAttributes2Str(stringAttributes)}>${html}</{{ componentTag }}>`,
+    { timeout: 30000 },
   );
+
+  await page.waitForChanges();
+
   await page.evaluate(() => document.body.style.setProperty('margin', '0px'));
 
   const el = await page.find('{{ componentTag }}');
 
-  return { page, el };
+  return { page, el, };
 };
