@@ -36,7 +36,7 @@
     "angular": "^1.7.5",
     "angular-translate": "^2.11.0",
     "angularjs-scroll-glue": "^2.2.0",
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "bootstrap4": "twbs/bootstrap#v4.6.2",
     "moment": "^2.24.0",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^15.0.0",
