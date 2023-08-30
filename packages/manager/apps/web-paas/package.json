@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-paas-app",
-  "version": "1.6.26",
+  "version": "1.6.27",
   "private": true,
   "repository": {
     "type": "git",
@@ -27,11 +27,11 @@
     "@ovh-ux/manager-webpack-dev-server": "^2.10.0 || ^3.0.0",
     "@ovh-ux/ng-at-internet": "^5.10.4",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.7.2",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.7.3",
     "@ovh-ux/ng-ovh-contracts": "^4.3.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.7",
     "@ovh-ux/ng-ovh-http": "^5.0.6",
-    "@ovh-ux/ng-ovh-payment-method": "^9.6.1",
+    "@ovh-ux/ng-ovh-payment-method": "^9.7.0",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.6",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.8",
     "@ovh-ux/ng-ovh-sso-auth": "^4.7.0",

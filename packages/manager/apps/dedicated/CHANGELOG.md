@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.10.0...@ovh-ux/manager-dedicated@18.10.1) (2023-08-30)
+
+
+### Bug Fixes
+
+* **dedicated.account:** remove call to marketing for us ([#9893](https://github.com/ovh/manager/issues/9893)) ([7b0e36e](https://github.com/ovh/manager/commit/7b0e36e995570a8e7b4221f3e795a6be04ed9707))
+* **dedicated.account:** remove call to marketing for us ([#9902](https://github.com/ovh/manager/issues/9902)) ([bf8433c](https://github.com/ovh/manager/commit/bf8433c38f6a43c60091871a44b10b907fa68fcc))
+* **dedicated.ip:** fetch max qty from catalog ([#9108](https://github.com/ovh/manager/issues/9108)) ([3ef40f0](https://github.com/ovh/manager/commit/3ef40f059c1d6a944f998f5a3abcf9fdf0c5d4bd))
+* **dedicated:** add translation key for language enum ([#9713](https://github.com/ovh/manager/issues/9713)) ([30ed44f](https://github.com/ovh/manager/commit/30ed44f8ce8277f5f2839ba88ab8d3984a2e9a0b))
+* **dedicated:** remove customer template changelog (description) ([#9853](https://github.com/ovh/manager/issues/9853)) ([7b107d8](https://github.com/ovh/manager/commit/7b107d8176cf5482b5e10846180cc7ed8dcb33dc))
+* **dedicated:** sort disk list on installation ([#9827](https://github.com/ovh/manager/issues/9827)) ([9bbdbbd](https://github.com/ovh/manager/commit/9bbdbbd15c948bf290b47c5fa7e19161ceea8019))
+* **dedicated:** update url order ([#9519](https://github.com/ovh/manager/issues/9519)) ([2463202](https://github.com/ovh/manager/commit/246320268febf3bc96ebaf42af85f5accec83ddb))
+* **user management:** required "group" field not well validated by form ([8cd35bc](https://github.com/ovh/manager/commit/8cd35bce5210e50c7e5dc32659fcacadf3704e50))
+
+
+
+
+
 # [18.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.9.0...@ovh-ux/manager-dedicated@18.10.0) (2023-08-21)
 
 
