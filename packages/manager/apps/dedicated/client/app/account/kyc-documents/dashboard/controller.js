@@ -26,6 +26,7 @@ export default class KycDocumentsCtrl {
     this.loading = false;
     this.showModal = false;
     this.documentsUploaded = false;
+    this.maximum_size_mo = this.maximum_size / 10 ** 6;
 
     // init uploaded documents list
     this.documents = [];
