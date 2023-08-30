@@ -13,14 +13,8 @@
         data-translate-values="{ t0: IpGameFirewallCtrl.datas.selectedIp }"
     ></h4>
 
-<<<<<<< HEAD
     <p data-translate="ip_game_mitigation_description"></p>
     <p data-translate="ip_game_mitigation_description_tip"></p>
-=======
-    <oui-message data-type="info" class="mb-3">
-        <p data-translate="ip_game_mitigation_description"></p>
-    </oui-message>
->>>>>>> d9b0180e7f (feat(dedicated.ip): configure game firewall - datagrid)
 
     <div data-ng-hide="IpGameFirewallCtrl.loaders.firewall">
         <p
@@ -96,7 +90,7 @@
             >
                 <tr>
                     <td
-                        colspan="4"
+                        colspan="5"
                         class="text-center"
                         data-translate="ip_game_mitigation_table_error"
                     ></td>
@@ -197,18 +191,58 @@
                 >
                     <th
                         scope="row"
-                        data-ng-if="!rule.errorMessage"
+                        data-ng-if="!rule.isEditable &&!rule.errorMessage"
                         data-ng-bind="rule.protocol"
                     ></th>
                     <td
-                        data-ng-if="!rule.errorMessage"
+                        scope="rows"
+                        data-ng-if="rule.isEditable && !rule.errorMessage"
+                    >
+                        <select
+                            required
+                            id="protocol"
+                            name="protocol"
+                            class="form-control"
+                            data-ng-model="IpGameFirewallCtrl.editRule.protocol"
+                            data-ng-options="IpGameFirewallCtrl.getProtocoleText(protocol) for protocol in IpGameFirewallCtrl.enums.protocols"
+                        >
+                        </select>
+                    </td>
+                    <td
+                        data-ng-if="!rule.isEditable && !rule.errorMessage"
                         data-ng-bind="rule.ports.from"
                     ></td>
+                    <td data-ng-if="rule.isEditable && !rule.errorMessage">
+                        <input
+                            type="number"
+                            data-ng-model="IpGameFirewallCtrl.editRule.ports.from"
+                            class="form-control"
+                            required
+                            id="portFrom"
+                            name="portFrom"
+                            data-ng-min="IpGameFirewallCtrl.constantes.PORT_MIN"
+                            data-ng-max="IpGameFirewallCtrl.constantes.PORT_MAX"
+                            data-ng-pattern="IpGameFirewallCtrl.constantes.PORT_PATTERN"
+                        />
+                    </td>
                     <td
-                        data-ng-if="!rule.errorMessage"
+                        data-ng-if="!rule.isEditable && !rule.errorMessage"
                         data-ng-bind="rule.ports.to"
                     ></td>
-                    <td data-ng-if="!rule.errorMessage">
+                    <td data-ng-if="rule.isEditable && !rule.errorMessage">
+                        <input
+                            type="number"
+                            class="form-control"
+                            data-ng-model="IpGameFirewallCtrl.editRule.ports.to"
+                            id="portTo"
+                            name="portTo"
+                            data-ng-min="IpGameFirewallCtrl.constantes.PORT_MIN"
+                            data-ng-max="IpGameFirewallCtrl.constantes.PORT_MAX"
+                            data-ng-pattern="IpGameFirewallCtrl.constantes.PORT_PATTERN"
+                        />
+                    </td>
+                    <td data-ng-if="!rule.errorMessage && rule.isEditable"></td>
+                    <td data-ng-if="!rule.isEditable && !rule.errorMessage">
                         <span
                             class="oui-badge"
                             data-ng-if="!rule.errorMessage"
@@ -220,7 +254,50 @@
                         >
                         </span>
                     </td>
-                    <td data-ng-if="!rule.errorMessage">
+                    <td data-ng-if="rule.isEditable && !rule.errorMessage">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            title="{{ 'ip_game_mitigation_rule_apply' | translate }}"
+                            data-ng-click="IpGameFirewallCtrl.applyUpdateRule(rule)"
+                        >
+                            <span
+                                class="oui-icon oui-icon-check"
+                                aria-hidden="true"
+                                title="{{:: 'ip_game_mitigation_rule_apply' | translate }}"
+                            >
+                            </span>
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            title="{{:: 'ip_game_mitigation_rule_cancel' | translate }}"
+                            data-ng-click="IpGameFirewallCtrl.cancelUpdateRule(rule)"
+                        >
+                            <span
+                                class="oui-icon oui-icon-close"
+                                aria-hidden="true"
+                                title="{{:: 'ip_game_mitigation_rule_cancel' | translate }}"
+                            >
+                            </span>
+                        </button>
+                    </td>
+                    <td data-ng-if="!rule.isEditable && !rule.errorMessage">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            data-ng-if="!rule.errorMessage"
+                            title="{{:: 'ip_game_mitigation_rule_edit' | translate }}"
+                            data-ng-disabled="rule.state !== IpGameFirewallCtrl.constantes.OK"
+                            data-ng-click="IpGameFirewallCtrl.editRule(rule)"
+                        >
+                            <span
+                                class="oui-icon oui-icon-pen"
+                                aria-hidden="true"
+                                title="{{:: 'ip_game_mitigation_rule_edit' | translate }}"
+                            >
+                            </span>
+                        </button>
                         <button
                             type="button"
                             class="btn btn-link"
@@ -246,7 +323,7 @@
             </tbody>
             <tbody data-ng-show="IpGameFirewallCtrl.loaders.rules">
                 <tr>
-                    <td colspan="4" class="text-center">
+                    <td colspan="5" class="text-center">
                         <oui-spinner data-size="s"></oui-spinner>
                     </td>
                 </tr>

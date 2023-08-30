@@ -370,4 +370,58 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   self.cancel = function cancel() {
     self.displayAddRuleLine = false;
   };
+
+  self.editRule = (rule) => {
+    // Load protocols
+    self.loading = true;
+    self.loadProtocols();
+
+    const index = findIndex(self.table.rules, { id: rule.id });
+    self.table.rules[index].isEditable = true;
+    self.editRule = self.table.rules[index];
+  };
+
+  self.cancelUpdateRule = (rule) => {
+    const index = findIndex(self.table.rules, { id: rule.id });
+    self.table.rules[index].isEditable = false;
+  };
+
+  self.applyUpdateRule = (rule) => {
+    // First, remove rule
+    IpGameFirewall.deleteRule(
+      self.datas.selectedBlock,
+      self.datas.selectedIp,
+      rule.id,
+    ).then(() => {
+      const index = findIndex(self.table.rules, { id: rule.id });
+      self.table.rules[index].isEditable = false;
+
+      changeStateRule(rule.id, self.constantes.DELETE_RULE_PENDING);
+
+      IpGameFirewall.pollRuleState(
+        self.datas.selectedBlock,
+        self.datas.selectedIp,
+        rule.id,
+      ).then(() => {
+        removeRule(rule.id);
+
+        // Then create rule
+        self.rule = {
+          protocol: null,
+          ports: {
+            to: null,
+            from: null,
+          },
+        };
+        self.rule.ports.from = rule.ports.from;
+        if (!rule.ports.to) {
+          self.rule.ports.to = rule.ports.from;
+        } else {
+          self.rule.ports.to = rule.ports.to;
+        }
+        self.rule.protocol = rule.protocol;
+        self.addGameFirewallRule();
+      });
+    });
+  };
 }
