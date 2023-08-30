@@ -1,5 +1,6 @@
 import findIndex from 'lodash/findIndex';
 import remove from 'lodash/remove';
+import startCase from 'lodash/startCase';
 
 export default /* @ngInject */ function IpGameFirewallCtrl(
   $location,
@@ -23,6 +24,9 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
     MAX_RULES: 30,
     PAGE_SIZE_MIN: 10,
     PAGE_SIZE_MAX: 30,
+    PORT_MIN: 1,
+    PORT_MAX: 65535,
+    PORT_PATTERN: /^[0-9]*$/,
   };
 
   self.datas = {
@@ -42,6 +46,25 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
 
   self.firewallModeEnabled = false;
   self.rules = [];
+  self.displayAddRuleLine = false;
+
+  self.enums = {
+    protocols: [],
+  };
+
+  self.rule = {
+    protocol: null,
+    ports: {
+      to: null,
+      from: null,
+    },
+  };
+
+  self.loading = false;
+
+  self.getProtocoleText = function getProtocoleText(protocol) {
+    return startCase(protocol);
+  };
 
   function paginate(pageSize, offset) {
     self.rules = self.table.rules.slice(offset - 1, offset + pageSize - 1);
@@ -119,7 +142,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
             )
             .finally(() => {
               self.loaders.rules = false;
-              paginate($scope.pageSize, $scope.offset);
+              paginate(self.pageSize, self.offset);
             });
         } else {
           self.loaders.rules = false;
@@ -137,19 +160,10 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
     getRules();
 
     // pagination
-    const { page, pageSize } = $location.search();
-    $scope.pageNumber = +page || 1;
-    $scope.pageSize = +pageSize || self.constantes.PAGE_SIZE_MIN;
-    $scope.pageSizeMax = self.constantes.PAGE_SIZE_MAX;
-    if ($scope.pageNumber < 1) {
-      $scope.pageNumber = 1;
-    }
-    if ($scope.pageSize < self.constantes.PAGE_SIZE_MIN) {
-      $scope.pageSize = self.constantes.PAGE_SIZE_MIN;
-    } else if ($scope.pageSize > self.constantes.PAGE_SIZE_MAX) {
-      $scope.pageSize = self.constantes.PAGE_SIZE_MAX;
-    }
-    $scope.offset = 1 + ($scope.pageNumber - 1) * $scope.pageSize;
+    self.pageNumber = 1;
+    self.pageSize = self.constantes.PAGE_SIZE_MIN;
+    self.pageSizeMax = self.constantes.PAGE_SIZE_MAX;
+    self.offset = 1 + (self.pageNumber - 1) * self.pageSize;
   }
 
   function changeStateRule(ruleId, state) {
@@ -161,7 +175,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
     ) {
       self.table.rules[index].state = state;
     }
-    paginate($scope.pageSize, $scope.offset);
+    paginate(self.pageSize, self.offset);
   }
 
   function removeRule(ruleId) {
@@ -169,7 +183,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
       self.table.rules,
       (ruleToDrop) => ruleToDrop.id !== ruleId,
     );
-    paginate($scope.pageSize, $scope.offset);
+    paginate(self.pageSize, self.offset);
   }
 
   function getRule(ruleId) {
@@ -212,7 +226,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
 
   $scope.$on('ips.gameFirewall.display.add', (event, rule) => {
     self.table.rules.push(rule);
-    paginate($scope.pageSize, $scope.offset);
+    paginate(self.pageSize, self.offset);
 
     IpGameFirewall.pollRuleState(
       self.datas.selectedBlock,
@@ -238,12 +252,105 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
     IpGameFirewall.killPollRuleState();
   });
 
-  $scope.onPaginationChange = ({ offset, pageSize }) => {
-    $scope.pageSize = pageSize;
-    $scope.pageNumber = 1 + Math.floor((offset - 1) / pageSize);
-    $scope.offset = 1 + ($scope.pageNumber - 1) * $scope.pageSize;
-    $location.search('page', $scope.pageNumber);
-    $location.search('pageSize', $scope.pageSize);
+  self.onPaginationChange = ({ offset, pageSize }) => {
+    self.pageSize = pageSize;
+    self.pageNumber = 1 + Math.floor((offset - 1) / pageSize);
+    self.offset = 1 + (self.pageNumber - 1) * self.pageSize;
+    $location.search('page', self.pageNumber);
+    $location.search('pageSize', self.pageSize);
     paginate(pageSize, offset);
+  };
+
+  self.addRuleClick = () => {
+    self.loading = true;
+
+    // Reset fields
+    self.rule = {
+      protocol: null,
+      ports: {
+        to: null,
+        from: null,
+      },
+    };
+
+    // Load protocol list
+    self.loadProtocols();
+
+    self.displayAddRuleLine = true;
+  };
+
+  self.loadProtocols = () => {
+    // Load protocol list
+    Ip.getIpModels()
+      .then(
+        (model) => {
+          self.enums.protocols =
+            model['ip.GameMitigationRuleProtocolEnum'].enum;
+        },
+        () => {
+          Alerter.error(
+            $translate.instant('ip_game_mitigation_rule_add_init_error'),
+            alert,
+          );
+          self.loading = false;
+        },
+      )
+      .finally(() => {
+        self.loading = false;
+      });
+  };
+
+  self.addGameFirewallRule = function addGameFirewallRule() {
+    self.loading = true;
+
+    if (!self.rule.ports.to) {
+      self.rule.ports.to = self.rule.ports.from;
+    }
+
+    if (self.rule.ports.to < self.rule.ports.from) {
+      const inversePort = {
+        to: self.rule.ports.from,
+        from: self.rule.ports.to,
+      };
+      self.rule.ports = inversePort;
+    }
+
+    // Check if ports are valid
+    if (
+      self.rule.ports.from === undefined ||
+      self.rule.ports.to === undefined
+    ) {
+      Alerter.error(
+        $translate.instant('ip_game_mitigation_rule_add_invalid_parameters'),
+        alert,
+      );
+      self.loading = false;
+      return;
+    }
+
+    IpGameFirewall.postRule(
+      self.datas.selectedBlock,
+      self.datas.selectedIp,
+      self.rule,
+    ).then(
+      (rule) => {
+        $rootScope.$broadcast('ips.gameFirewall.display.add', rule);
+        self.displayAddRuleLine = false;
+        self.loading = false;
+      },
+      (data) => {
+        Alerter.error(
+          $translate.instant('ip_game_mitigation_rule_add_error', {
+            message: data.message,
+          }),
+          alert,
+        );
+        self.loading = false;
+      },
+    );
+  };
+
+  self.cancel = function cancel() {
+    self.displayAddRuleLine = false;
   };
 }

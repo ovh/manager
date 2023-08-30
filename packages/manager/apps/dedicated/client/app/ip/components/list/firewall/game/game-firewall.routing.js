@@ -1,4 +1,4 @@
-import controller from './ip-ip-firewall-game.controler';
+import controller from './ip-ip-firewall-game.controller';
 import template from './ip-ip-firewall-game.html';
 
 export default /* @ngInject */ ($stateProvider) => {
