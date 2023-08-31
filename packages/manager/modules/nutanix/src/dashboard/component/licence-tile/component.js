@@ -8,6 +8,7 @@ export default {
     licenceName: '<',
     onError: '&?',
     packType: '<',
+    showPackType: '<',
   },
   controller,
   template,

@@ -1,3 +1,5 @@
+import { FEATURES } from './constants';
+
 const STATUS_DONE = 'DONE';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.dashboard.general-info', {
@@ -44,6 +46,13 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('nutanix.dashboard.general-info.redeploy'),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('nutanix_dashboard_general_info'),
+      isPackTypeAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability([FEATURES.PACK_TYPE])
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(FEATURES.PACK_TYPE),
+          )
+          .catch(() => false),
     },
     atInternet: {
       rename: 'hpc::nutanix::cluster::dashboard',

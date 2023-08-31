@@ -30,7 +30,12 @@ export const NUTANIX_ORDER_URL = {
   TN: 'https://www.ovhcloud.com/fr-tn/hosted-private-cloud/nutanix/',
   WE: 'https://www.ovhcloud.com/en/hosted-private-cloud/nutanix/',
   WS: 'https://www.ovhcloud.com/en/hosted-private-cloud/nutanix/',
+  US: 'https://us.ovhcloud.com/contact-sales/',
   DEFAULT: 'https://www.ovhcloud.com/en/hosted-private-cloud/nutanix/',
+};
+
+export const FEATURES = {
+  PACK_TYPE: 'nutanix:pack-type',
 };
 
 export function getNutanixOrderUrl(subsidiary) {
@@ -42,4 +47,5 @@ export default {
   NOT_SUBSCRIBED,
   SERVER_OPTIONS,
   NUTANIX_SERVICE_TYPE,
+  FEATURES,
 };

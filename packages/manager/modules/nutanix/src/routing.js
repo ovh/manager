@@ -3,7 +3,7 @@ import statusTemplate from './templates/status.html';
 import prismUrl from './templates/prismUrl.html';
 import serviceLink from './templates/serviceLink.html';
 import localizationTemplate from './templates/localization.html';
-import { getNutanixOrderUrl } from './constants';
+import { getNutanixOrderUrl, FEATURES } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.index', {
@@ -46,7 +46,7 @@ export default /* @ngInject */ ($stateProvider) => {
       header: /* @ngInject */ ($translate) =>
         $translate.instant('nutanix_title'),
       customizableColumns: () => true,
-      columns: /* @ngInject */ ($translate) => {
+      columns: /* @ngInject */ ($translate, isPackTypeAvailable) => {
         return [
           {
             title: $translate.instant('nutanix_cluster_list_name'),
@@ -61,7 +61,7 @@ export default /* @ngInject */ ($stateProvider) => {
             template: '{{::$row.getNumberOfNodes()}}',
             property: 'targetSpec.nodes',
           },
-          {
+          isPackTypeAvailable && {
             title: $translate.instant('nutanix_cluster_list_pack_type'),
             property: 'targetSpec.name',
             template:
@@ -81,7 +81,7 @@ export default /* @ngInject */ ($stateProvider) => {
             title: $translate.instant('nutanix_cluster_admin_interface'),
             property: 'targetSpec.controlPanelURL',
           },
-        ];
+        ].filter((column) => !!column);
       },
       getServiceNameLink: /* @ngInject */ ($state) => ({ serviceName }) =>
         $state.href('nutanix.dashboard', {
@@ -112,6 +112,13 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       }),
       hideBreadcrumb: () => true,
+      isPackTypeAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability([FEATURES.PACK_TYPE])
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(FEATURES.PACK_TYPE),
+          )
+          .catch(() => false),
     },
     atInternet: {
       rename: 'hpc::nutanix::clusters',
