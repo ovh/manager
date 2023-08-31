@@ -7,6 +7,8 @@ export const SERVER_OPTIONS = {
 export const GUIDE_URL = {
   ALL_GUIDE: {
     FR: 'https://docs.ovh.com/fr/nutanix/',
+    US:
+      'https://support.us.ovhcloud.com/hc/en-us/categories/115000423390-Dedicated-Servers',
     DEFAULT: 'https://docs.ovh.com/gb/en/nutanix/',
   },
 };

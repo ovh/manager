@@ -2,13 +2,22 @@ import { SUPPORT_LEVELS } from './constants';
 
 export default class DedicatedServerSupportTileController {
   /* @ngInject */
-  constructor($http, $translate, $q, $window, atInternet, coreURLBuilder) {
+  constructor(
+    $http,
+    $translate,
+    $q,
+    $window,
+    atInternet,
+    coreURLBuilder,
+    coreConfig,
+  ) {
     this.$http = $http;
     this.$translate = $translate;
     this.$q = $q;
     this.$window = $window;
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -57,7 +66,11 @@ export default class DedicatedServerSupportTileController {
   }
 
   getCreateNewTicketUrl() {
-    return this.coreURLBuilder.buildURL('dedicated', '#/support/tickets/new');
+    return this.coreConfig.isRegion('US')
+      ? this.coreURLBuilder.buildURL('dedicated', '#/ticket', {
+          create: true,
+        })
+      : this.coreURLBuilder.buildURL('dedicated', '#/support/tickets/new');
   }
 
   trackClick(trackText) {

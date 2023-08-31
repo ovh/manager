@@ -10,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
   });
 
   $stateProvider.state('app.otrs.tickets', {
-    url: '/ticket?archived&filters&pageNumber&pageSize&sortBy&sortOrder',
+    url: '/ticket?archived&filters&pageNumber&pageSize&sortBy&sortOrder&create',
     params: {
       archived: {
         type: 'bool',
@@ -46,6 +46,11 @@ export default /* @ngInject */ ($stateProvider) => {
         array: true,
         type: 'json',
         value: null,
+      },
+      create: {
+        type: 'bool',
+        squash: true,
+        value: false,
       },
     },
     views: {
@@ -117,6 +122,8 @@ export default /* @ngInject */ ($stateProvider) => {
               return ticket;
             }),
           ),
+      triggerTicketCreation: /* @ngInject */ ($transition$) =>
+        $transition$.params().create,
     },
   });
 
