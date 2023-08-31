@@ -61,7 +61,7 @@ angular.module('services').service(
         data: {
           key,
           type,
-          value,
+          value: value.toString(),
         },
       }).then((data) => {
         this.Hosting.resetEnvvars();
@@ -70,13 +70,11 @@ angular.module('services').service(
       });
     }
 
-    edit(serviceName, oldKey, { key, type, value }) {
-      return this.OvhHttp.put(`/hosting/web/${serviceName}/envVar/${oldKey}`, {
+    edit(serviceName, key, value) {
+      return this.OvhHttp.put(`/hosting/web/${serviceName}/envVar/${key}`, {
         rootPath: 'apiv6',
         data: {
-          key,
-          type,
-          value,
+          value: value.toString(),
         },
       }).then((data) => {
         this.Hosting.resetEnvvars();
