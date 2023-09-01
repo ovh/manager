@@ -1,5 +1,6 @@
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { apiClient } from '@ovh-ux/manager-core-api';
+import i18next from 'i18next';
 
 type Item = unknown;
 
@@ -24,4 +25,32 @@ export const getProduct360ManagerHubCatalogList = async (): Promise<Item[]> => {
     getProduct360ManagerHubCatalogListQueryKey,
     fetchData,
   );
+};
+
+// -----
+
+export interface PIMElement {
+  id: number;
+  name: string;
+  description: string;
+  lang: string;
+  categories: string[];
+  regionTags: string[];
+}
+
+export const getPIMServiceQueryKey = [`/products/list`];
+
+/**
+ * Using the PIM ID `{{this.pimID}}` to search in PIM data model
+ */
+export const getPIMService = async (): Promise<string[]> => {
+  const fetchData = async () => {
+    const response = await apiClient.v6.get('/products/list');
+    const currentLang = i18next.language
+      ? i18next.language.replace('-', '_')
+      : 'fr_FR';
+    return response.data;
+  };
+
+  return queryClient.fetchQuery(getPIMServiceQueryKey, fetchData);
 };

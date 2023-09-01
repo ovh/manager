@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  OsdsInput,
   OsdsButton,
+  OsdsText,
   OsdsIcon,
 } from '@ovhcloud/ods-stencil/components/react/';
 import {
@@ -9,23 +9,25 @@ import {
   OdsIconSize,
   OdsButtonVariant,
   OdsButtonType,
+  OdsTextLevel,
   OdsButtonSize,
-  OdsInputType,
 } from '@ovhcloud/ods-core';
 import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
 import { useTranslation } from 'react-i18next';
 
-// import './SearchBar.scss'; TODO
+// import './Filters.scss'; TODO
 // eslint-disable-next-line
-interface SearchBarProps {} // TODO
+interface FiltersProps {} // TODO
 
-const SearchBar: React.FC<SearchBarProps> = (props) => {
+const Filters: React.FC<FiltersProps> = (props) => {
   // const { filtersContent } = props;
   const [showFilters, setShowFilters] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
   const filtersRef = useRef<HTMLDivElement>(null);
 
-  const { t } = useTranslation('catalog-revamp/search');
+  const { t } = useTranslation('catalog-revamp/filters');
+
+  const universes: string[] = [];
+  const categories: string[] = [];
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
@@ -51,33 +53,42 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
     setShowFilters(!showFilters);
   };
 
-  const handleSearchChange = (e) => {
-    setSearchValue(e.target.value);
-  };
-
   return (
     <>
-      <OsdsInput
-        onChange={handleSearchChange}
-        value={searchValue}
-        type={OdsInputType.search}
-        placeholder={t('manager_catalog_search_placeholder')}
-      ></OsdsInput>
       <OsdsButton
-        type={OdsButtonType.button}
-        variant={OdsButtonVariant.flat}
         size={OdsButtonSize.sm}
+        type={OdsButtonType.button}
+        variant={OdsButtonVariant.stroked}
         color={OdsThemeColorIntent.primary}
         onClick={handleTooltipToggle}
       >
         <OsdsIcon
-          name={OdsIconName.SEARCH}
+          name={OdsIconName.FILTER}
           size={OdsIconSize.xxs}
-          contrasted={true}
+          color={OdsThemeColorIntent.primary}
         />
+        {t('manager_catalog_filters_button')}
       </OsdsButton>
+      {showFilters && (
+        <div ref={filtersRef} className="filters">
+          <div className="filters-text">
+            <OsdsText level={OdsTextLevel.heading}>
+              {t('manager_catalog_filters_universes')}
+            </OsdsText>
+            {universes.map((item, id) => (
+              <div key={`universe${id}`}>{item}</div>
+            ))}
+            <OsdsText level={OdsTextLevel.heading}>
+              {t('manager_catalog_filters_categories')}
+            </OsdsText>
+            {categories.map((item, id) => (
+              <div key={`category${id}`}>{item}</div>
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 };
 
-export default SearchBar;
+export default Filters;
