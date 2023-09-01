@@ -12,7 +12,6 @@ import credit from './credit';
 import routing from './routing';
 import component from './component';
 import paymentService from './service';
-import './index.scss';
 
 const moduleName = 'pciProjectNewPayment';
 
