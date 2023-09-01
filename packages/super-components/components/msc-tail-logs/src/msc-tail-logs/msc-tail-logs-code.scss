@@ -1,0 +1,14 @@
+.msc-tail-logs-table-wrapper {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  table-layout: fixed;
+
+  & th,
+  td {
+    text-align: left;
+    padding: 8px;
+    width: auto;
+    word-wrap: break-word;
+  }
+}
