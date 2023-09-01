@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.137.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.137.0...@ovh-ux/manager-pci@5.137.1) (2023-08-30)
+
+
+### Bug Fixes
+
+* **pci.kube:** fix alignement button refresh pool ([#9876](https://github.com/ovh/manager/issues/9876)) ([e433eed](https://github.com/ovh/manager/commit/e433eed3da77823a9c7fa23585325524190fab25))
+* **pci:** display latest state of task ([#9795](https://github.com/ovh/manager/issues/9795)) ([dee74a0](https://github.com/ovh/manager/commit/dee74a0e87165fe861463a692b0151373cd63647))
+
+
+
+
+
 # [5.137.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.136.2...@ovh-ux/manager-pci@5.137.0) (2023-08-21)
 
 

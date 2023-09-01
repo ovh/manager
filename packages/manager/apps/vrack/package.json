@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-app",
-  "version": "1.8.17",
+  "version": "1.8.18",
   "private": true,
   "description": "vRack standalone application.",
   "repository": {
@@ -19,13 +19,13 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-vrack-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-cloud-styles": "^1.5.2",
+    "@ovh-ux/manager-cloud-styles": "^1.5.3",
     "@ovh-ux/manager-config": "^7.1.0",
     "@ovh-ux/manager-core": "^12.12.14",
     "@ovh-ux/manager-ng-layout-helpers": "^2.7.0",
     "@ovh-ux/manager-vrack": "^1.6.2",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.7.2",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.7.3",
     "@ovh-ux/ng-ovh-contracts": "^4.3.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.7",
     "@ovh-ux/ng-ovh-http": "^5.0.6",
@@ -38,7 +38,7 @@
     "@ovh-ux/ng-translate-async-loader": "^2.1.6",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.0",
     "@ovh-ux/request-tagger": "^0.1.1",
-    "@ovh-ux/ui-kit": "^6.5.3",
+    "@ovh-ux/ui-kit": "^6.6.1",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-cookies": "^1.7.8",

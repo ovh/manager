@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [17.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.2.2...@ovh-ux/manager-web@17.3.0) (2023-08-30)
+
+
+### Bug Fixes
+
+* **web.hosting:** disable autofill from saved password ([#9873](https://github.com/ovh/manager/issues/9873)) ([81e2dc3](https://github.com/ovh/manager/commit/81e2dc3688de7e5638136d8a4c91686d02e048e1))
+* **web:** fix constante order domain url ([#9881](https://github.com/ovh/manager/issues/9881)) ([0c43e09](https://github.com/ovh/manager/commit/0c43e09ed30089c9c57b859ec1f6c09b8c93a646))
+* **web:** missing translation key on add free hosting ([#9729](https://github.com/ovh/manager/issues/9729)) ([206b03e](https://github.com/ovh/manager/commit/206b03ef6a3a5cbd1f83e07f8091405cfd6d80ee))
+
+
+### Features
+
+* **web.database:** remove deprecated calls ([#9694](https://github.com/ovh/manager/issues/9694)) ([39b054e](https://github.com/ovh/manager/commit/39b054eb65c41f7cc40bc6de9ebe21d5039b6a53))
+
+
+### Reverts
+
+* Revert "feat(web.database): remove deprecated calls (#9694)" ([9b11063](https://github.com/ovh/manager/commit/9b110637e6a277709cebe0b2289d4402d4094337)), closes [#9694](https://github.com/ovh/manager/issues/9694)
+
+
+
+
+
 ## [17.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.2.1...@ovh-ux/manager-web@17.2.2) (2023-08-17)
 
 

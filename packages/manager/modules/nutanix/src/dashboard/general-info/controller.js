@@ -11,10 +11,17 @@ import { CLUSTER_STATUS } from '../../constants';
 
 export default class NutanixGeneralInfoCtrl {
   /* @ngInject */
-  constructor($translate, atInternet, ovhManagerRegionService, NutanixService) {
+  constructor(
+    $translate,
+    atInternet,
+    coreConfig,
+    ovhManagerRegionService,
+    NutanixService,
+  ) {
     this.$translate = $translate;
     this.atInternet = atInternet;
-    this.TRAVAUX_LINK = TRAVAUX_LINK;
+    this.TRAVAUX_LINK =
+      TRAVAUX_LINK[coreConfig.getRegion()] || TRAVAUX_LINK.DEFAULT;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.NutanixService = NutanixService;
     this.REPLICATION_FACTOR_PREFIX = REPLICATION_FACTOR_PREFIX;

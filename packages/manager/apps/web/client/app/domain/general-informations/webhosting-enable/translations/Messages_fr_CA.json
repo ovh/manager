@@ -2,6 +2,7 @@
   "domain_configuration_enable_web_hosting": "Activer votre hébergement web",
   "domain_configuration_enable_web_hosting_offer": "Votre offre",
   "domain_configuration_enable_web_hosting_offer_START_hosting-start10m": "Start 10M",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-free-100m": "Hébergement gratuit 100M",
   "domain_configuration_web_hosting_offer_START_explain": "L'offre Start10m est incluse dans votre offre mais dispose de fonctionnalités basiques.",
   "domain_configuration_web_hosting_choose_offer_explain": "Pour en savoir plus sur nos offres et connaître leurs spécifications techniques ainsi que leurs différentes options, rendez-vous sur <a href=\"{{url}}\" target=\"_blank\">notre site</a>.",
   "domain_configuration_enable_web_hosting_dns_configuration": "Configuration de vos DNS",

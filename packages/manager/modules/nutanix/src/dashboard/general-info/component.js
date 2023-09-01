@@ -18,6 +18,7 @@ export default {
     nutanixPlans: '<',
     getTechnicalDetails: '<',
     isOldCluster: '<',
+    isPackTypeAvailable: '<',
   },
   controller,
   template,

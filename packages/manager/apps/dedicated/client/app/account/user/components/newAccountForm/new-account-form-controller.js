@@ -81,22 +81,19 @@ export default class NewAccountFormController {
     this.consentDecision = null;
     this.smsConsentDecision = null;
 
-    return this.$q
-      .all({
-        rules: this.fetchRules(this.model),
-        featureAvailability: this.ovhFeatureFlipping.checkFeatureAvailability([
-          FEATURES.emailConsent,
-          FEATURES.smsConsent,
-        ]),
-      })
+    return this.ovhFeatureFlipping
+      .checkFeatureAvailability([FEATURES.emailConsent, FEATURES.smsConsent])
       .then((result) => {
-        this.rules = result.rules;
-        this.isEmailConsentAvailable = result.featureAvailability.isFeatureAvailable(
+        this.isEmailConsentAvailable = result.isFeatureAvailable(
           FEATURES.emailConsent,
         );
-        this.isSmsConsentAvailable = result.featureAvailability.isFeatureAvailable(
+        this.isSmsConsentAvailable = result.isFeatureAvailable(
           FEATURES.smsConsent,
         );
+      })
+      .then(() => this.fetchRules(this.model))
+      .then((rules) => {
+        this.rules = rules;
       })
       .catch((err) => {
         this.initError = err.data?.message || err.message || err;
@@ -149,13 +146,15 @@ export default class NewAccountFormController {
         email: this.userAccountServiceInfos.fetchConsentDecision(
           CONSENT_MARKETING_EMAIL_NAME,
         ),
-        sms: this.userAccountServiceInfos.fetchMarketingConsentDecision(),
+        sms: this.isSmsConsentAvailable
+          ? this.userAccountServiceInfos.fetchMarketingConsentDecision()
+          : this.$q.resolve(),
       })
       .then(({ email, sms }) => {
         this.consentDecision = !!email.value;
-        this.smsConsentDecision = !!Object.keys(sms.sms).some(
-          (key) => sms.sms[key],
-        );
+        this.smsConsentDecision =
+          this.isSmsConsentAvailable &&
+          !!Object.keys(sms.sms).some((key) => sms.sms[key]);
       })
       .then(() => this.userAccountServiceInfos.postRules(params))
       .then((result) => {

@@ -22,7 +22,8 @@ export const GUIDES = [
       FR: 'https://docs.ovh.com/fr/nutanix/high-level-documentation/',
       WE: 'https://docs.ovh.com/us/en/nutanix/high-level-documentation/',
       WS: 'https://docs.ovh.com/us/en/nutanix/high-level-documentation/',
-      US: 'https://docs.ovh.com/us/en/nutanix/high-level-documentation/',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/16038767836307-Overview-of-Nutanix-on-OVHcloud',
     },
     tracking: 'high-level-documentation',
   },
@@ -43,7 +44,8 @@ export const GUIDES = [
       FR: 'https://docs.ovh.com/fr/nutanix/available-services/',
       WE: 'https://docs.ovh.com/us/en/nutanix/available-services/',
       WS: 'https://docs.ovh.com/us/en/nutanix/available-services/',
-      US: 'https://docs.ovh.com/us/en/nutanix/available-services/',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/16044245989523-Overview-of-Nutanix-Hyperconvergence',
     },
     tracking: 'available-services-documentation',
   },

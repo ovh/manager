@@ -19,6 +19,7 @@ export const DC_2_ISO = {
   SYD: 'AU',
   VIN: 'US',
   WAW: 'PL',
+  YNM: 'IN',
 };
 
 export const ELIGIBLE_FOR_UPGRADE = {
