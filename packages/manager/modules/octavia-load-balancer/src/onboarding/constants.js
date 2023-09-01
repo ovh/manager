@@ -169,7 +169,9 @@ export const CTA = {
   WS: 'https://www.ovhcloud.com/es/public-cloud/load-balancer/',
 };
 
-export const TRACKING_NAME =
-  'PublicCloud::pci::projects::project::octavia-loadbalancer::onboarding';
+export const TRACKING_CHAPTER_1 = 'publicCloud';
 
-export default { GUIDES, CTA, TRACKING_NAME };
+export const TRACKING_NAME =
+  'pci::projects::project::octavia-loadbalancer::onboarding';
+
+export default { GUIDES, CTA, TRACKING_NAME, TRACKING_CHAPTER_1 };
