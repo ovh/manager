@@ -21,4 +21,9 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('billing_payment_title'),
     },
   });
+
+  $stateProvider.state(`${name}.mean`, {
+    url: '/mean',
+    redirectTo: `${name}.method`,
+  });
 };

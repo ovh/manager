@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.6.1...@ovh-ux/ng-ovh-payment-method@9.7.0) (2023-08-30)
+
+
+### Features
+
+* renaming fidelity points labels ([#9846](https://github.com/ovh/manager/issues/9846)) ([81ca283](https://github.com/ovh/manager/commit/81ca283c6c76aedf70223a7cdccfad4e92e17ffb))
+
+
+
+
+
 ## [9.6.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.6.0...@ovh-ux/ng-ovh-payment-method@9.6.1) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-payment-method

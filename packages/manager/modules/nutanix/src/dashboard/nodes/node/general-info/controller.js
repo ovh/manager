@@ -8,11 +8,11 @@ export default class NutanixNodeGeneralInfoCtrl {
     this.nutanixNodeService = NutanixNode;
     this.$rootScope = $rootScope;
     this.Alerter = Alerter;
+    this.TRAVAUX_LINK = TRAVAUX_LINK[this.region] || TRAVAUX_LINK.DEFAULT;
   }
 
   $onInit() {
     this.isRebooting = false;
-    this.TRAVAUX_LINK = TRAVAUX_LINK;
     this.loadServer();
     // Server Restart
     this.$rootScope.$on('nutanix.node.reboot', (e, _task) => {

@@ -1,5 +1,8 @@
 export const NO_OS_INSTALLED_REGEX = /^none_\d{2}?$/;
-export const TRAVAUX_LINK = 'https://www.status-ovhcloud.com/';
+export const TRAVAUX_LINK = {
+  US: 'https://status.us.ovhcloud.com/',
+  DEFAULT: 'https://www.status-ovhcloud.com/',
+};
 export const NUTANIX_NODE_STATUS = {
   DONE: 'DONE',
 };
