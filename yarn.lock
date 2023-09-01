@@ -7934,27 +7934,12 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-core/-/ods-core-13.0.1.tgz#0433b0e868e45ada0f8748274beb0e91a824e27c"
   integrity sha512-L4x3JG7mEepjaaGy0KgGUirBQ09nexrYZWZocUQSb0T0lNomw3vV7FLD4GV7mhSjSE7WRo2yi84g0RGqxujdcQ==
 
-"@ovhcloud/ods-core@^14.0.1":
-  version "14.1.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-core/-/ods-core-14.1.1.tgz#dc4881af21e6e49fdd4d27340d96c1fa4439d6bb"
-  integrity sha512-xcLgJTJaiRDArm0uUXQSaBON3A8zVShulT2ChSbjNRW8BXE4dJql0DgVCFDCGnzKU3oKmdM+0wPtdNkWZ1mZyA==
-  dependencies:
-    "@ovhcloud/ods-cdk" "^14.1.1"
-
 "@ovhcloud/ods-stencil@^13.0.1":
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-stencil/-/ods-stencil-13.0.1.tgz#d479bd7be3f631afa3e2e884a42d0cd01702d587"
   integrity sha512-f6PVZ1YsUbwnr8fUnF0AG20YcC5Ks8y1HDB1pNPxrHY7D2HKjK+x6YtuJeXrQQNbg85qVfvfYzch8xUuVYA+MA==
   dependencies:
     "@ovhcloud/ods-theme-blue-jeans" "^13.0.1"
-    "@stencil/core" "~2.18.1"
-
-"@ovhcloud/ods-stencil@^14.0.1":
-  version "14.1.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-stencil/-/ods-stencil-14.1.1.tgz#c7b85531f2bf243a1b435bd577110a3b483b7ae7"
-  integrity sha512-SWCpMb9PH/w3XsskSNMqvoX1ZoEvwii+jUxRancQIv/ORiDZ0XrRhoe9DoNy9GgT2qdJEiD5znAaluHUB7595g==
-  dependencies:
-    "@ovhcloud/ods-theme-blue-jeans" "^14.1.1"
     "@stencil/core" "~2.18.1"
 
 "@ovhcloud/ods-testing@^13.0.1":
@@ -7969,22 +7954,10 @@
   dependencies:
     "@ovhcloud/ods-theming" "^13.0.1"
 
-"@ovhcloud/ods-theme-blue-jeans@^14.0.1", "@ovhcloud/ods-theme-blue-jeans@^14.1.1":
-  version "14.1.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-14.1.1.tgz#fd004bd3be6b4ef99f5829a922205f61481becb4"
-  integrity sha512-OIoAuskxS5cabxQ4n7zmWaWfEKE+2DghmfUsNb/XmJoCVSc163le1MkUNqTz2LexSzUa/IS3LTxZBC0fB5TfOg==
-  dependencies:
-    "@ovhcloud/ods-theming" "^14.1.1"
-
 "@ovhcloud/ods-theming@^13.0.1":
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theming/-/ods-theming-13.0.1.tgz#3bb70a69ef8cd0305a9601db30cc9dc5b1f6da5c"
   integrity sha512-8PCAmiQDJnTOuKTXSRdqQJpnEPhLWqNLYnEj4qa0IsLs/g9HE8C9Fvt2PzhpgOBvsktfMg/qYvvbqLIkNaZv9A==
-
-"@ovhcloud/ods-theming@^14.0.1", "@ovhcloud/ods-theming@^14.1.1":
-  version "14.1.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theming/-/ods-theming-14.1.1.tgz#88e911595c682a9b58a0225e6ec780940e53acb6"
-  integrity sha512-on/UOG/Qj6KJ8x4SIyqETRRAn6906255QUyC71Z0J+AG5M3ljoerxquG2qr34iIkXLajgbRV1ekFPLACiKCPMw==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -9056,15 +9029,6 @@
   version "4.29.3"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-4.29.3.tgz#3ffd833d66918208bc6f2f5b4008d094754140b3"
   integrity sha512-Ne/K9+gskn8zM4sbLWl4mq5x0ha0JIg7I078K+t6seorL6oq9Y9E30wlP4y/IVa9hgn8DHB1Q6GoPtA2iu6p2g==
-  dependencies:
-    "@tanstack/match-sorter-utils" "^8.7.0"
-    superjson "^1.10.0"
-    use-sync-external-store "^1.2.0"
-
-"@tanstack/react-query-devtools@^4.9.0":
-  version "4.32.6"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-4.32.6.tgz#651002855459f65304802595cce55b205831a250"
-  integrity sha512-Gd9pBkm2sbeze9P5Yp8R7y0rZVUdoIOhduomDjz138WdJuVbRS4Y8p6gX2uMJFsUFVe7jA6fX/D6NfQ9o5OS/A==
   dependencies:
     "@tanstack/match-sorter-utils" "^8.7.0"
     superjson "^1.10.0"
@@ -12167,11 +12131,6 @@ bootstrap@^4.4.1:
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.4.1.tgz#8582960eea0c5cd2bede84d8b0baf3789c3e8b01"
   integrity sha512-tbx5cHubwE6e2ZG7nqM3g/FZ5PQEDMWmMGNrCUBVRPHXTJaH7CBDdsLeu3eCh3B1tzAxTnAbtmrzvWEvT2NNEA==
 
-bootstrap@^5.3.0:
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.3.1.tgz#8ca07040ad15d7f75891d1504cf14c5dedfb1cfe"
-  integrity sha512-jzwza3Yagduci2x0rr9MeFSORjcHpt0lRZukZPZQJT1Dth5qzV7XcgGqYzi39KGAVYR8QEDVoO0ubFKOxzMG+g==
-
 bootstrap@~3.3.0, bootstrap@~3.3.7:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
@@ -13430,11 +13389,6 @@ clone@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/clone/-/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
   integrity sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
-
-clsx@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
-  integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
 
 cmd-shim@^5.0.0:
   version "5.0.0"
@@ -28032,17 +27986,17 @@ semver@7.3.7:
   dependencies:
     lru-cache "^6.0.0"
 
-semver@^6.0.0, semver@^6.1.0, semver@^6.1.1, semver@^6.1.2, semver@^6.2.0, semver@^6.3.0:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.1.tgz#556d2ef8689146e46dcea4bfdd095f3434dffcb4"
-  integrity sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==
-
-semver@^7.0.0, semver@^7.1.1, semver@^7.3.2, semver@^7.3.4, semver@^7.3.5, semver@^7.3.7:
+semver@7.x, semver@^7.0.0, semver@^7.1.1, semver@^7.3.2, semver@^7.3.4, semver@^7.3.5, semver@^7.3.7:
   version "7.5.4"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.5.4.tgz#483986ec4ed38e1c6c48c34894a9182dbff68a6e"
   integrity sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==
   dependencies:
     lru-cache "^6.0.0"
+
+semver@^6.0.0, semver@^6.1.0, semver@^6.1.1, semver@^6.1.2, semver@^6.2.0, semver@^6.3.0:
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.1.tgz#556d2ef8689146e46dcea4bfdd095f3434dffcb4"
+  integrity sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==
 
 send@0.17.1:
   version "0.17.1"
