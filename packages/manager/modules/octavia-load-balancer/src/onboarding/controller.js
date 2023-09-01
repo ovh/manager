@@ -1,4 +1,4 @@
-import { GUIDES, CTA, TRACKING_NAME } from './constants';
+import { GUIDES, CTA, TRACKING_NAME, TRACKING_CHAPTER_1 } from './constants';
 import illustration from './assets/public-cloud-network_load-balancer-v2.png';
 
 export default class OctaviaLoadBalancerOnboardingCtrl {
@@ -14,12 +14,12 @@ export default class OctaviaLoadBalancerOnboardingCtrl {
     this.illustration = illustration;
     this.cta = CTA[ovhSubsidiary] || CTA.DEFAULT;
     this.atInternet = atInternet;
-    this.ctaTrackName = `${TRACKING_NAME}::add`;
+    this.ctaTrackName = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::add`;
   }
 
   onGuideClick(guide) {
     this.atInternet.trackClick({
-      name: `${TRACKING_NAME}::documentation::${guide.title
+      name: `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::documentation::${guide.title
         .toLowerCase()
         .replace(/[\s']/g, '_')}`,
       type: 'navigation',
