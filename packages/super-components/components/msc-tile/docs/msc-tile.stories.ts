@@ -1,3 +1,4 @@
+import { languageList, defaultLanguage } from '@ovhcloud/msc-utils';
 import { createTile } from './create-tile';
 
 const defaultLabels = {
@@ -21,20 +22,62 @@ export default {
     </section>
   `,
   argTypes: {
-    tileNumber: { control: 'number', default: 1 },
+    tileNumber: {
+      control: 'number',
+      min: 1,
+      default: 1,
+      description: 'Number of tiles to display (only in the storybook)',
+    },
     tileType: {
+      description: 'Change the top label of the tile according to its type',
       control: 'select',
       options: ['product', 'faq'],
-      default: 'product',
     },
-    tileTitle: { control: 'text' },
-    tileDescription: { control: 'text' },
-    href: { control: 'text' },
-    isExternalHref: { control: 'boolean' },
-    imgSrc: { control: 'text' },
-    imgAlt: { control: 'text' },
-    hasBadges: { control: 'boolean' },
-    hasFooter: { control: 'boolean' },
+    tileTitle: { control: 'text', description: 'Title of the tile' },
+    tileDescription: { control: 'text', description: 'Texte of the tile' },
+    href: { control: 'text', description: 'URL of the tile and link' },
+    isExternalHref: {
+      control: 'boolean',
+      description:
+        'Change the icon of the link to indicate if the link is internal or external',
+      table: {
+        defaultValue: { summary: false },
+      },
+    },
+    imgSrc: {
+      control: 'text',
+      description: 'URL of the image to display in the header of the tile',
+    },
+    imgAlt: { control: 'text', description: 'Alternative label of the image' },
+    hasBadges: {
+      control: 'boolean',
+      description:
+        'Display examples of badges in the story (in the actual code there is a badge slot)',
+    },
+    hasFooter: {
+      control: 'boolean',
+      description:
+        'Display an example of footer containing a button in the tile (in the actual code there is a footer slot)',
+    },
+    language: {
+      description: 'Language of the labels',
+      control: 'select',
+      options: languageList,
+      table: {
+        defaultValue: { summary: defaultLanguage },
+      },
+    },
+    dataTracking: {
+      description: 'Tracking label sent when the tile or the link is clicked',
+    },
+  },
+  args: {
+    tileNumber: 1,
+    tileType: 'faq',
+    hasBadges: true,
+    hasFooter: true,
+    isExternalHref: false,
+    language: defaultLanguage,
   },
 };
 

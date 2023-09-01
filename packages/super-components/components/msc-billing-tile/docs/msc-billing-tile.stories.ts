@@ -1,4 +1,5 @@
 import { setupWorker } from 'msw';
+import { languageList, defaultLanguage } from '@ovhcloud/msc-utils';
 import handlers from '../mock/handlers';
 
 setupWorker(...handlers).start({
@@ -34,9 +35,9 @@ export default {
     language: {
       description: 'Language of the labels',
       control: 'select',
-      options: ['fr-FR', 'en-GB'],
+      options: languageList,
       table: {
-        defaultValue: { summary: 'fr-FR' },
+        defaultValue: { summary: defaultLanguage },
       },
     },
     servicePath: {
@@ -53,6 +54,10 @@ export default {
       ],
       default: 'vps/vps-00000000.vps.ovh.net',
     },
+  },
+  args: {
+    servicePath: 'vps/vps-00000000.vps.ovh.net',
+    language: defaultLanguage,
   },
 };
 

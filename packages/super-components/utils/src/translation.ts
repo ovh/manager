@@ -8,6 +8,19 @@ export type Language =
   | 'pl-PL'
   | 'pt-PT';
 
+export const languageList: Language[] = [
+  'de-DE',
+  'en-GB',
+  'es-ES',
+  'fr-CA',
+  'fr-FR',
+  'it-IT',
+  'pl-PL',
+  'pt-PT',
+];
+
+export const defaultLanguage: Language = 'fr-FR';
+
 /**
  * Get translations with variables
  */

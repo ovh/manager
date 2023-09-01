@@ -13,7 +13,7 @@ import {
   OdsThemeTypographySize,
 } from '@ovhcloud/ods-theming';
 import { HTMLStencilElement, Watch } from '@stencil/core/internal';
-import { Language, formatDate } from '@ovhcloud/msc-utils';
+import { Language, defaultLanguage, formatDate } from '@ovhcloud/msc-utils';
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { getTranslations } from './translations';
 import {
@@ -44,7 +44,7 @@ export interface IMscBillingTile {
 export class MscBillingTile implements IMscBillingTile {
   @Element() host!: HTMLStencilElement;
 
-  @Prop() public language = 'fr-FR' as Language;
+  @Prop() public language = defaultLanguage;
 
   @Prop() public servicePath: string;
 

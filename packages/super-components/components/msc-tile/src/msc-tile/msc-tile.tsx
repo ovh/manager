@@ -18,7 +18,7 @@ import {
   OdsIconSize,
 } from '@ovhcloud/ods-core';
 import { HTMLStencilElement, Watch } from '@stencil/core/internal';
-import { Language } from '@ovhcloud/msc-utils';
+import { Language, defaultLanguage } from '@ovhcloud/msc-utils';
 import { getTranslations, Translations } from './translations';
 
 export interface IMscTile {
@@ -69,7 +69,7 @@ export class MscTile implements IMscTile {
   /** Label sent to the tracking service */
   @Prop() public dataTracking?: string = '';
 
-  @Prop() public language = 'fr-FR' as Language;
+  @Prop() public language = defaultLanguage;
 
   @State() private localeStrings?: Translations;
 

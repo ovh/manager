@@ -7,6 +7,7 @@ type CreateTileArgs = Partial<{
   dataTracking: string;
   imgSrc: string;
   imgAlt: string;
+  language: string;
   hasBadges: boolean;
   hasFooter: boolean;
 }>;
@@ -20,6 +21,7 @@ export const createTile = ({
   dataTracking,
   imgSrc,
   imgAlt,
+  language,
   hasBadges,
   hasFooter,
 }: CreateTileArgs) =>
@@ -33,6 +35,7 @@ export const createTile = ({
       img-src="${imgSrc}"
       img-alt="${imgAlt}"
       data-tracking="${dataTracking}"
+      language="${language}"
     >
       ${
         hasBadges
