@@ -93,14 +93,6 @@ const webShopConfig = (
         tracking: 'web::orders::licences-office-reseller::order',
       }
     : null,
-  features.sharepoint
-    ? {
-        label: 'order_item_sharepoint',
-        icon: 'ms-Icon ms-Icon--SharepointLogo',
-        url: navigation.getURL('web', '#/sharepoint/order'),
-        tracking: 'web::orders::microsoft-sharepoint::order',
-      }
-    : null,
   features['cloud-database']
     ? {
         label: 'order_item_cloudDatabase',
