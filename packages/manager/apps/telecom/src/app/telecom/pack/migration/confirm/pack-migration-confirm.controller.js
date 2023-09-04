@@ -74,7 +74,6 @@ export default class TelecomPackMigrationConfirmCtrl {
       totalOfferPrice =
         this.process.selectedOffer.displayedPrice.value -
         firstYearPromo +
-        modemRental +
         providerOrange +
         providerAI;
     }
