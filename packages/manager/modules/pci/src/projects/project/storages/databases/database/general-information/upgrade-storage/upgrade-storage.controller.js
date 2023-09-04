@@ -12,6 +12,8 @@ export default class UpgradeStorageCtrl {
   $onInit() {
     this.trackDatabases('config_upgrade_storage', 'page');
 
+    this.showMonthlyPrices = false;
+
     this.originallyAddedDiskSize =
       this.database.disk.size - this.flavor.minDiskSize;
     this.additionalDiskSize = this.originallyAddedDiskSize;
@@ -21,37 +23,66 @@ export default class UpgradeStorageCtrl {
     );
     this.nbNodes = this.database.nodes.length;
     this.storageNodeFactor = engine.isDistributedStorage ? 1 : this.nbNodes;
+  }
 
-    // compute initial price and tax
-    this.initialPrice =
-      this.nbNodes * this.flavor.hourlyPrice.priceInUcents +
-      this.flavor.hourlyPricePerGB.priceInUcents *
-        this.originallyAddedDiskSize *
-        this.storageNodeFactor;
+  get flavorPrice() {
+    return this.showMonthlyPrices
+      ? this.flavor.monthlyPrice
+      : this.flavor.hourlyPrice;
+  }
 
-    this.initialTax =
-      this.nbNodes * this.flavor.hourlyPrice.tax +
-      this.flavor.hourlyPricePerGB.tax *
-        this.originallyAddedDiskSize *
-        this.storageNodeFactor;
+  get additionalDiskPrice() {
+    return this.showMonthlyPrices
+      ? this.flavor.monthlyPricePerGB
+      : this.flavor.hourlyPricePerGB;
+  }
+
+  computeStoragePrice(flavorPrice, additionalDiskPrice, storage) {
+    return (
+      this.nbNodes * flavorPrice +
+      additionalDiskPrice * storage * this.storageNodeFactor
+    );
+  }
+
+  get initialPrice() {
+    return this.computeStoragePrice(
+      this.flavorPrice.priceInUcents,
+      this.additionalDiskPrice.priceInUcents,
+      this.originallyAddedDiskSize,
+    );
+  }
+
+  get initialTax() {
+    return this.computeStoragePrice(
+      this.flavorPrice.tax,
+      this.additionalDiskPrice.tax,
+      this.originallyAddedDiskSize,
+    );
   }
 
   get priceDelta() {
-    const newPrice =
-      this.nbNodes * this.flavor.hourlyPrice.priceInUcents +
-      this.flavor.hourlyPricePerGB.priceInUcents *
-        this.additionalDiskSize *
-        this.storageNodeFactor;
+    const newPrice = this.computeStoragePrice(
+      this.flavorPrice.priceInUcents,
+      this.additionalDiskPrice.priceInUcents,
+      this.additionalDiskSize,
+    );
     return newPrice - this.initialPrice;
   }
 
   get taxDelta() {
-    const newTax =
-      this.nbNodes * this.flavor.hourlyPrice.tax +
-      this.flavor.hourlyPricePerGB.tax *
-        this.additionalDiskSize *
-        this.storageNodeFactor;
+    const newTax = this.computeStoragePrice(
+      this.flavorPrice.tax,
+      this.additionalDiskPrice.tax,
+      this.additionalDiskSize,
+    );
     return newTax - this.initialTax;
+  }
+
+  get priceUnitTranslation() {
+    const unitKey = this.showMonthlyPrices
+      ? 'pci_databases_general_information_upgrade_storage_summary_price_monthly_unit'
+      : 'pci_databases_general_information_upgrade_storage_summary_price_hourly_unit';
+    return this.$translate.instant(unitKey);
   }
 
   upgradeStorage() {

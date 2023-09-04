@@ -88,5 +88,5 @@
   "pci_databases_general_information_storage_type_local-ssd": "Disque SSD local",
   "pci_databases_general_information_storage_type_high-speed": "Disque distant de première génération",
   "pci_databases_general_information_storage_type_high-speed-gen2": "Disque distant de deuxième génération",
-  "pci_databases_general_information_storage_upgrade_link": "Ajouter du stockage supplémentaire"
+  "pci_databases_general_information_storage_upgrade_link": "Éditer le stockage supplémentaire"
 }
