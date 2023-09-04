@@ -49,7 +49,7 @@ export default function ServerSidebarIndex() {
     } else {
       setIsAccountMenu(false);
     }
-  }, [universe, location]);
+  }, [universe, location, application]);
 
   if (universe === 'hub') {
     return <></>
