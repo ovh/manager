@@ -11,7 +11,7 @@
   "iam_create_policy_deletion_resources_one": "1 Ressource wird gelöscht",
   "iam_create_policy_form_actions_description": "Wählen Sie die Aktionen aus, die den Identitäten für die ausgewählten Ressourcen erlaubt sind.",
   "iam_create_policy_form_actions_heading": "Aktionen",
-  "iam_create_policy_form_name_error_pattern": "Das Format des Richtliniennamens ist ungültig",
+  "iam_create_policy_form_name_error_pattern": "Der Richtlinienname darf nur alphanumerische Zeichen und „-“, „/“, „_“, „+“ enthalten.",
   "iam_create_policy_form_name_heading": "Name der Richtlinie",
   "iam_create_policy_form_resource_groups_create": "Ressourcengruppe erstellen",
   "iam_create_policy_form_resource_groups_heading": "Ressourcengruppen",

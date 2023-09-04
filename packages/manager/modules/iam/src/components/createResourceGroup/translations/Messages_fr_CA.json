@@ -7,7 +7,7 @@
   "iam_create_resource_group_error_heading_create": "Certaines erreurs dans le formulaire empêchent la création de ce groupe de ressources. Merci de les corriger avant de le soumettre à nouveau.",
   "iam_create_resource_group_error_heading_edit": "Certaines erreurs dans le formulaire empêchent la modification de ce groupe de ressources. Merci de les corriger avant de le soumettre à nouveau.",
   "iam_create_resource_group_error_no_resources": "Aucune ressource n'est disponible pour ce ou ces types de produits.",
-  "iam_create_resource_group_form_name_error_pattern": "Le format du nom du groupe de ressources n'est pas conforme",
+  "iam_create_resource_group_form_name_error_pattern": "Le nom du groupe de ressources ne peut contenir que des caractères alphanumériques et \"-\", \"/\", \"_\", \"+\"",
   "iam_create_resource_group_form_name_heading": "Nom du groupe de ressources",
   "iam_create_resource_group_form_resource_types_description": "Sélectionnez le type de produits qui correspond aux ressources que vous souhaitez ajouter.",
   "iam_create_resource_group_form_resource_types_error_required": "Veuillez sélectionner un ou plusieurs types de produits.",
