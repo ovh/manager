@@ -87,6 +87,6 @@
   "pci_databases_general_information_storage_type_local-ssd": "Lokalny dysk SSD",
   "pci_databases_general_information_storage_type_high-speed": "Dysk zdalny pierwszej generacji",
   "pci_databases_general_information_storage_type_high-speed-gen2": "Dysk zdalny drugiej generacji",
-  "pci_databases_general_information_storage_upgrade_link": "Dodaj przestrzeń dyskową",
+  "pci_databases_general_information_storage_upgrade_link": "Zmień rozmiar dodatkowej przestrzeni dyskowej",
   "pci_databases_general_information_fork": "Duplikuj (Fork)"
 }
