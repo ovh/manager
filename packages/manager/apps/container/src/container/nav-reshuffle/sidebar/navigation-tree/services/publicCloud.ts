@@ -334,8 +334,8 @@ const pciNode: Node = {
           translation: 'sidebar_pci_horizon',
           count: false,
           url: {
-            CA: 'https://horizon.cloud.ovh.net/auth/login/',
-            EU: 'https://horizon.cloud.ovh.net/auth/login/',
+            CA: 'https://auth.cloud.ovh.net/v3/auth/OS-FEDERATION/identity_providers/ovhcloud-world/protocols/openid/websso?origin=https://horizon.cloud.ovh.net/auth/websso/',
+            EU: 'https://auth.cloud.ovh.net/v3/auth/OS-FEDERATION/identity_providers/ovhcloud-emea/protocols/openid/websso?origin=https://horizon.cloud.ovh.net/auth/websso/',
             US: 'https://horizon.cloud.ovh.us/auth/login/',
           },
           isExternal: true,
