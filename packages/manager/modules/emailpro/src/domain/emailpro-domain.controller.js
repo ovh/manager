@@ -1,6 +1,12 @@
 import angular from 'angular';
 import set from 'lodash/set';
 
+import {
+  GLOBAL_DKIM_STATUS,
+  DKIM_STATUS,
+  DKIM_MATCHING_SCHEMA_STATUS,
+} from './emailpro-domain.constants';
+
 export default /* @ngInject */ (
   $scope,
   $http,
@@ -14,6 +20,7 @@ export default /* @ngInject */ (
   $scope.stateCreating = EmailPro.stateCreating;
   $scope.stateDeleting = EmailPro.stateDeleting;
   $scope.stateOk = EmailPro.stateOk;
+  $scope.GLOBAL_DKIM_STATUS = GLOBAL_DKIM_STATUS;
 
   const init = function init() {
     $scope.loading = false;
@@ -67,6 +74,23 @@ export default /* @ngInject */ (
     if (domain.state === $scope.stateOk && domain.accountsCount === 0) {
       $scope.setAction('emailpro/domain/remove/emailpro-domain-remove', domain);
     }
+  };
+
+  $scope.dkimGlobalStatus = function dkimGlobalStatus({ dkim }) {
+    if (dkim.length === 0) {
+      return this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED;
+    }
+
+    if (
+      dkim.find(({ status }) =>
+        DKIM_MATCHING_SCHEMA_STATUS.OK.includes(status),
+      ) &&
+      dkim.find(({ status }) => status === DKIM_STATUS.READY)
+    ) {
+      return this.GLOBAL_DKIM_STATUS.OK;
+    }
+
+    return this.GLOBAL_DKIM_STATUS.NOK;
   };
 
   function setMxTooltip(domain) {
