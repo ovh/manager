@@ -27,6 +27,7 @@ import emailproAccountAddTemplate from '../account/add/emailpro-account-add.html
 import emailproAccountTemplate from '../account/emailpro-account.html';
 import emailproServiceConfigureTemplate from '../service/configure/emailpro-service-configure.html';
 import emailproDomainMxAutoconfigTemplate from '../domain/mx-autoconfig/emailpro-domain-mx-autoconfig.html';
+import emailproDomainDkimAutoconfigTemplate from '../domain/dkim-autoconfig/emailpro-domain-dkim-autoconfig.html';
 import emailproDomainTemplate from '../domain/emailpro-domain.html';
 import emailproDomainRemoveTemplate from '../domain/remove/emailpro-domain-remove.html';
 import emailproDomainUpdateTemplate from '../domain/update/emailpro-domain-update.html';
@@ -157,6 +158,10 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put(
     'emailpro/domain/mx-autoconfig/emailpro-domain-mx-autoconfig.html',
     emailproDomainMxAutoconfigTemplate,
+  );
+  $templateCache.put(
+    'emailpro/domain/dkim-autoconfig/emailpro-domain-dkim-autoconfig.html',
+    emailproDomainDkimAutoconfigTemplate,
   );
   $templateCache.put(
     'emailpro/domain/emailpro-domain.html',
