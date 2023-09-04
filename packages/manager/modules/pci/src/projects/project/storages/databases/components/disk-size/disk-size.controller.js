@@ -4,8 +4,8 @@ export default class DiskSizeController {
   }
 
   checkRange() {
-    if (this.initialValue && this.model < this.initialValue) {
-      this.model = this.initialValue;
+    if (this.lowLimitValue && this.model < this.lowLimitValue) {
+      this.model = this.lowLimitValue;
     }
     if (this.model < this.min) {
       this.model = this.min;

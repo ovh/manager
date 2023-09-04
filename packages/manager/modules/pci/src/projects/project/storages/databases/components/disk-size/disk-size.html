@@ -26,7 +26,20 @@
                 step="{{$ctrl.step}}"
                 data-ng-model="$ctrl.model"
                 data-ng-change="$ctrl.checkRange()"
+                list="markers"
             />
+            <datalist id="markers">
+                <option
+                    data-ng-if="$ctrl.lowLimitValue"
+                    ng-value="$ctrl.lowLimitValue"
+                    data-ng-bind="$ctrl.lowLimitValue"
+                ></option>
+                <option
+                    data-ng-if="$ctrl.initialValue"
+                    ng-value="$ctrl.initialValue"
+                    data-ng-bind="$ctrl.initialValue"
+                ></option>
+            </datalist>
         </div>
         <div class="text-center">
             <span data-ng-bind="$ctrl.model | bytes:2:false:'GB'"></span>

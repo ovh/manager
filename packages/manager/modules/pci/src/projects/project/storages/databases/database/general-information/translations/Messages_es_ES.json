@@ -87,6 +87,6 @@
   "pci_databases_general_information_storage_type_local-ssd": "Disco SSD local",
   "pci_databases_general_information_storage_type_high-speed": "Disco remoto de primera generación",
   "pci_databases_general_information_storage_type_high-speed-gen2": "Disco remoto de segunda generación",
-  "pci_databases_general_information_storage_upgrade_link": "Añadir almacenamiento adicional",
+  "pci_databases_general_information_storage_upgrade_link": "Modificar el almacenamiento adicional",
   "pci_databases_general_information_fork": "Duplicar (fork)"
 }
