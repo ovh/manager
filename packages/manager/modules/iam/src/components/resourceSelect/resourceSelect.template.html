@@ -40,7 +40,8 @@
             class="w-100"
             data-label="{{:: $ctrl.resourcesLabel }}"
             data-error-messages="{
-                required: $ctrl.resourcesRequiredMessage || ('iam_resource_select_resources_error_required' | translate)
+                required: $ctrl.resourcesRequiredMessage || ('iam_resource_select_resources_error_required' | translate),
+                limit: $ctrl.resourcesLimitMessage || ('iam_resource_select_resources_error_limit' | translate),
             }"
         >
             <oui-select
