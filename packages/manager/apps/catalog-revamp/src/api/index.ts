@@ -1,1 +1,1 @@
-export * from './GET/aapi/services';
+export * from './GET/aapi/service';
