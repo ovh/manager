@@ -1,0 +1,37 @@
+<div data-ng-controller="ExchangeDomainDkimAutoconfigCtrl as ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="configDkim"
+        data-wizard-hide-confirm-button="ctrl.hideConfirmButton"
+        data-wizard-title="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOK ?
+            'exchange_tab_domain_diagnostic_dkim_title_error' :
+            'exchange_tab_domain_diagnostic_dkim_title_activation' | translate"
+    >
+        <div data-wizard-step>
+            <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
+
+            <div data-ng-if="!ctrl.loading">
+                <!-- if configuration nok -->
+                <p
+                    data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOK"
+                    data-translate="exchange_tab_domain_diagnostic_dkim_configuration_nok"
+                    data-translate-values="{ url: ctrl.dkimGuideLink }"
+                ></p>
+
+                <!-- if unconfigured without OVHcloud domain -->
+                <p
+                    data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOT_CONFIGURED && !ctrl.domainDiag.isOvhDomain"
+                    data-translate="exchange_tab_domain_diagnostic_dkim_activation_no_ovhcloud"
+                    data-translate-values="{ url: ctrl.dkimGuideLink }"
+                ></p>
+
+                <!-- if unconfigured with OVHcloud domain -->
+                <p
+                    data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOT_CONFIGURED && ctrl.domainDiag.isOvhDomain"
+                    data-translate="exchange_tab_domain_diagnostic_dkim_activation_ovhcloud"
+                ></p>
+            </div>
+        </div>
+    </div>
+</div>
