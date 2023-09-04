@@ -461,7 +461,7 @@
   "inputs_info_description": "Clicca sulle opzioni proposte per copiarle negli appunti.",
   "inputs_info_hostname": "Nome dell'host",
   "inputs_info_ipaddress": "(Indirizzo) IP pubblico",
-  "inputs_info_certificate": "Tipo di certificato",
+  "inputs_info_certificate": "Certificato del server",
   "inputs_logs_title": "Output della console di {{inputTitle}}",
   "inputs_logs_no_logs": "Nessun messaggio ricevuto nell'ultima ora",
   "inputs_logs_title_add": "Aggiungi uno strumento di raccolta",
@@ -767,5 +767,6 @@
   "inputs_autoscaled_false": "Disattivato",
   "inputs_autoscaled_notification_detail": "Ricevere una notifica via email quando viene effettuato uno scaling automatico.",
   "inputs_logs_edit_min_instance_field": "Numero minimo di istanze",
-  "inputs_logs_edit_max_instance_field": "Numero massimo di istanze"
+  "inputs_logs_edit_max_instance_field": "Numero massimo di istanze",
+  "inputs_info_ca_certificate": "Certificato dell'autorità di certificazione"
 }
