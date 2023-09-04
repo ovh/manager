@@ -81,7 +81,6 @@ export default class MoveResumeCtrl {
       totalOfferPrice =
         this.offer.selected.offer.displayedPrice.value -
         firstYearPromo +
-        modemRental +
         providerOrange +
         providerAI;
       this.offer.selected.offer.displayedPrice = this.getDisplayedPrice(
