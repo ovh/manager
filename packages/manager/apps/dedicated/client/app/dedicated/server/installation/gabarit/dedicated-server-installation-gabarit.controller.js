@@ -76,6 +76,8 @@ angular
       $scope.load = function load() {
         $scope.loader.loading = true;
         $scope.installation.selectGabarit = null;
+        $scope.installation.partitionSchemesList = null;
+        $scope.installation.selectPartitionScheme = null;
         $scope.installation.selectFamily = null;
         $scope.installation.selectLanguage = null;
         $scope.installation.selectSoftRaidOnlyMirroring = null;
@@ -163,20 +165,25 @@ angular
           validForm: true,
         };
 
-        Server.getHighestPriorityPartitionScheme(
+        Server.getPartitionSchemesByPriority(
           $stateParams.productId,
           $scope.installation.selectGabarit.id,
         )
+          .then((response) => {
+            $scope.installation.partitionSchemesList = response;
+            [$scope.installation.selectPartitionScheme] = response;
+            return response;
+          })
           .then((response) =>
             Server.getPartitionSchemeHardwareRaid(
               $stateParams.productId,
               $scope.installation.selectGabarit.id,
-              response.name,
+              response[0],
             ),
           )
           .then((response) => {
-            if (response) {
-              tempHardwareRaid = response;
+            if (response[0]) {
+              [tempHardwareRaid] = response;
               return Server.getHardwareRaidProfile($stateParams.productId);
             }
             return null;
@@ -286,6 +293,7 @@ angular
         Server.startInstallation(
           $stateParams.productId,
           $scope.installation.selectGabarit.id,
+          $scope.installation.selectPartitionScheme,
           {
             language: camelCase($scope.installation.selectLanguage),
             customHostname: $scope.installation.options.customHostname,
