@@ -238,8 +238,7 @@ export default class AdditionalIpController {
   }
 
   static checkInstanceWithIpAddressV4(instance) {
-    return filter(
-      instance.ipAddresses,
+    return instance?.ipAddresses.filter(
       (network) => network.type === 'private' && network.version === 4,
     )?.length;
   }
