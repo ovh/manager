@@ -36,8 +36,6 @@ const constants = {
         vpsCloud: 'http://www.ovh.cz/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/cz/cs/dedicated/pouziti-ipmi-dedikovane-servery/',
-        RealTimeMonitoring:
-          'https://docs.ovh.com/cz/cs/dedicated/instalace-rtm',
         changeOwner:
           'https://www.ovh.cz/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -74,8 +72,6 @@ const constants = {
         vpsCloud: 'http://www.ovh.de/virtual_server/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/de/dedicated/verwendung-ipmi-dedicated-server/',
-        RealTimeMonitoring:
-          'https://docs.ovh.com/de/dedicated/rtm-installieren/',
         changeOwner:
           'https://www.ovh.de/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -111,7 +107,6 @@ const constants = {
         vpsCloud: 'http://www.ovh.es/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/es/dedicated/utilizar-ipmi-servidor-dedicado/',
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         changeOwner:
           'https://www.ovh.es/cgi-bin/procedure/procedureChangeOwner.cgi',
         dedicated2016News: 'http://www.ovh.es/a1837.news',
@@ -150,7 +145,6 @@ const constants = {
         vpsCloud: 'http://www.ovh-hosting.fi/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/fi/dedicated/ipmi-konsolin-kaytto-dedikoidut-palvelimet/',
-        RealTimeMonitoring: 'https://docs.ovh.com/fi/dedicated/rtm-asennus/',
         changeOwner:
           'https://www.ovh.com/cgi-bin/fi/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -200,7 +194,6 @@ const constants = {
         vpsCloud: 'https://www.ovh.com/fr/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/fr/dedicated/utilisation-ipmi-serveurs-dedies/',
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         changeOwner:
           'https://www.ovh.com/cgi-bin/fr/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -253,7 +246,6 @@ const constants = {
         vpsCloud: 'http://www.ovh.co.uk/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         changeOwner:
           'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -292,7 +284,6 @@ const constants = {
         vpsCloud: 'http://www.ovh.it/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/it/dedicated/utilizzo-ipmi-server-dedicati/',
-        RealTimeMonitoring: 'https://docs.ovh.com/it/dedicated/installare-rtm/',
         changeOwner:
           'https://www.ovh.it/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -332,7 +323,6 @@ const constants = {
         vpsCloud: 'http://www.ovh.lt/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/lt/dedicated/use-ipmi-dedicated-servers/',
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         changeOwner:
           'https://www.ovh.com/cgi-bin/lt/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -409,7 +399,6 @@ const constants = {
         vpsCloud: 'https://www.ovh.pl/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/pl/dedicated/uzywanie-ipmi-serwery-dedykowane/',
-        RealTimeMonitoring: 'https://docs.ovh.com/pl/dedicated/instalacja-rtm/',
         changeOwner:
           'https://www.ovh.pl/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -449,7 +438,6 @@ const constants = {
         vpsCloud: 'http://www.ovh.pt/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/pt/dedicated/usar-ipmi-servidores-dedicados/',
-        RealTimeMonitoring: 'https://docs.ovh.com/pt/dedicated/instalar-rtm/',
         changeOwner:
           'https://www.ovh.pt/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -1307,7 +1295,6 @@ const constants = {
           'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
@@ -1344,7 +1331,6 @@ const constants = {
           'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
@@ -1382,7 +1368,6 @@ const constants = {
           'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/ca/en/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/ca/en/vps/faq-help.xml',
@@ -1420,7 +1405,6 @@ const constants = {
           'https://www.ovh.com/cgi-bin/fr/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.com/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/ca/fr/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/fr/serveurs-dedies/faq.xml',
         faqVps: 'https://www.ovh.com/ca/fr/vps/aide-faq.xml',
@@ -1456,7 +1440,6 @@ const constants = {
           'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
         faq: 'https://www.ovh.es/servidores_dedicados/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
@@ -1492,7 +1475,6 @@ const constants = {
           'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
         faq: 'https://www.ovh.es/servidores_dedicados/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
@@ -1528,7 +1510,6 @@ const constants = {
           'https://www.ovh.es/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.es/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/us/es/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/us/es/servidores-dedicados/faq.xml',
         faqVps: 'https://www.ovh.com/us/es/vps/ayuda-faq.xml',
@@ -1941,8 +1922,6 @@ const constants = {
           'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring:
-          'https://support.us.ovhcloud.com/hc/en-us/articles/115001821044-Learning-About-OVH-US-Monitoring',
         exchangeOrder: 'https://www.ovh.com/ca/en/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/ca/en/vps/faq-help.xml',
