@@ -1,40 +1,35 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useQueries, UseQueryResult } from '@tanstack/react-query';
-import { getProduct360ManagerHubCatalogList } from '@/api';
-import Loading from '@/components/Loading/Loading';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import {
+  getManagerHubCatalogList,
+  getManagerHubCatalogListQueryKey,
+} from '@/api';
 import Error from '@/components/Error/Error';
 
 interface ServiceData {
   status: number;
+  data: any;
 }
 
-export default function CatalogReact() {
-  const { t } = useTranslation('catalog-react');
+export default function CatalogRevamp() {
+  const { t } = useTranslation('catalog-revamp');
 
-  const service: UseQueryResult<ServiceData> = useQueries({
-    queries: [
-      {
-        queryKey: ['hubCatalog'],
-        queryFn: () => getProduct360ManagerHubCatalogList(),
-        staleTime: Infinity,
-      },
-    ],
-  })[0] as UseQueryResult<ServiceData>;
+  const service: UseQueryResult<ServiceData> = useQuery({
+    queryKey: getManagerHubCatalogListQueryKey,
+    queryFn: () => getManagerHubCatalogList(),
+    staleTime: Infinity,
+  });
 
-  if (service?.data?.status && service?.data?.status !== 200) {
+  if (!service.isLoading && service.data.status !== 200) {
     return <Error error={service.data} />;
   }
-
+  const data = service.data?.data?.catalog?.data;
   return (
     <div>
       <h1>{t('title')}</h1>
-      <div>Catalog</div>
-      <div>
-        <Suspense fallback={<Loading />}>
-          {JSON.stringify(service.data)}
-        </Suspense>
-      </div>
+      <div>Start your application</div>
+      <div>{JSON.stringify(data)}</div>
     </div>
   );
 }

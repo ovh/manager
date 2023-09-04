@@ -1,3 +1,3 @@
-# @ovh-ux/manager-catalog-revamp-app
+# @ovh-ux/manager-catalog-app
 
-> Catalog of products
+> catalog revamp react app
