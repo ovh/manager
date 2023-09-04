@@ -7,7 +7,7 @@
   "iam_create_resource_group_error_heading_create": "Algunos errores del formulario impiden la creación de este grupo de recursos. Por favor, corríjalos antes de volver a enviar.",
   "iam_create_resource_group_error_heading_edit": "Algunos errores del formulario impiden la modificación de este grupo de recursos. Por favor, corríjalos antes de volver a enviar.",
   "iam_create_resource_group_error_no_resources": "No hay recursos disponibles para estos tipos de productos.",
-  "iam_create_resource_group_form_name_error_pattern": "El formato del nombre del grupo de recursos no es válido",
+  "iam_create_resource_group_form_name_error_pattern": "El nombre del grupo de recursos solo puede contener caracteres alfanuméricos y los siguientes símbolos: guiones («-»), barras («/»), guiones bajos («_») y símbolo de más («+»). ",
   "iam_create_resource_group_form_name_heading": "Nombre del grupo de recursos",
   "iam_create_resource_group_form_resource_types_description": "Seleccione el tipo de producto que corresponde a los recursos que desea agregar.",
   "iam_create_resource_group_form_resource_types_error_required": "Seleccione uno o más tipos de producto.",
