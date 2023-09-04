@@ -1,8 +1,8 @@
 {
-  "name": "@ovh-ux/manager-catalog-revamp-app",
+  "name": "@ovh-ux/manager-catalog-app",
   "version": "0.0.0",
   "private": true,
-  "description": "Catalog of products",
+  "description": "catalog revamp react app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
@@ -13,9 +13,9 @@
   "scripts": {
     "build": "tsc && vite build",
     "dev": "tsc && vite",
-    "start": "lerna exec --stream --scope='@ovh-ux/manager-catalog-revamp-app' --include-dependencies -- npm run build --if-present",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-catalog-revamp-app' --include-dependencies -- npm run dev --if-present",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-catalog-revamp-app' --include-dependencies -- npm run dev:watch --if-present",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-catalog-app' --include-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-catalog-app' --include-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-catalog-app' --include-dependencies -- npm run dev:watch --if-present",
     "test:e2e": "tsc && npx playwright test --headed",
     "test:e2e:ci": "tsc && npx playwright test",
     "test:e2e:script": "tsc && node ../../../../scripts/run-playwright.js"
