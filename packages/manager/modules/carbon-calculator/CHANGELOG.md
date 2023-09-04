@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-carbon-calculator@0.1.1...@ovh-ux/manager-carbon-calculator@0.1.2) (2023-09-04)
+
+
+### Bug Fixes
+
+* **dedicated:** pick last date of previous month to download ([#9911](https://github.com/ovh/manager/issues/9911)) ([9fc24c1](https://github.com/ovh/manager/commit/9fc24c108a9762848e839f3e53b93fd0eca2e3e6))
+
+
+
+
+
 ## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-carbon-calculator@0.1.0...@ovh-ux/manager-carbon-calculator@0.1.1) (2023-08-08)
 
 

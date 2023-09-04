@@ -166,7 +166,6 @@ angular
         options: {
           saveGabarit: false,
           gabaritNameSave: null,
-          changeLog: null,
           customHostname: null,
           postInstallationScriptLink: null,
           postInstallationScriptReturn: null,
@@ -409,7 +408,10 @@ angular
       function getHardwareSpecification() {
         return Server.getHardwareSpecifications($stateParams.productId).then(
           (spec) => {
-            $scope.informations.diskGroups = spec.diskGroups;
+            $scope.informations.diskGroups =
+              spec.diskGroups?.sort((a, b) =>
+                a.description.localeCompare(b.description),
+              ) || [];
             resetDiskGroup();
           },
         );
@@ -2350,7 +2352,6 @@ angular
         $scope.installation.options = {
           saveGabarit: false,
           gabaritNameSave: null,
-          changeLog: null,
           customHostname: null,
           postInstallationScriptLink: null,
           postInstallationScriptReturn: null,
@@ -2586,7 +2587,6 @@ angular
           $scope.informations.gabaritName,
           $scope.installation.options.gabaritNameSave,
           {
-            changeLog: $scope.installation.options.changeLog,
             customHostname: $scope.installation.options.customHostname,
             postInstallationScriptLink:
               $scope.installation.options.postInstallationScriptLink,

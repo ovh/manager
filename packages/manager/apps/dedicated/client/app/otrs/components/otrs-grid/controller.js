@@ -53,6 +53,10 @@ export default class OtrsGridCtrl {
         totalCount: this.totalCount,
       },
     };
+
+    if (this.triggerTicketCreation) {
+      this.openTicketCreationModal();
+    }
   }
 
   getTickets() {

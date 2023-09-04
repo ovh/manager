@@ -17,6 +17,10 @@ angular.module('App').controller(
 
       this.$scope.edit = () => this.edit();
       this.$scope.isValid = () => this.isValid();
+
+      if (this.entryToEdit.type === 'integer') {
+        this.entryToEdit.value = Number(this.entryToEdit.value);
+      }
     }
 
     isValid() {
@@ -31,7 +35,7 @@ angular.module('App').controller(
       return this.HostingEnvvars.edit(
         this.$stateParams.productId,
         this.entryToEdit.key,
-        this.entryToEdit,
+        this.entryToEdit.value,
       )
         .then(() => {
           this.Alerter.success(

@@ -17,5 +17,6 @@
   "domain_configuration_enable_web_hosting_activate": "Activate",
   "domain_configuration_enable_web_hosting_success": "Your web hosting plan is being activated. This may take a few minutes.",
   "domain_configuration_enable_web_hosting_checkout_error": "An error has occurred {{ message }}",
-  "domain_configuration_enable_web_hosting_error": "An error has occurred activating your web hosting plan. {{ message }}"
+  "domain_configuration_enable_web_hosting_error": "An error has occurred activating your web hosting plan. {{ message }}",
+  "domain_configuration_enable_web_hosting_offer_START_hosting-free-100m": "100 MB free hosting"
 }

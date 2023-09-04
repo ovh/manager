@@ -18,7 +18,7 @@ export const PRODUCT_TYPES = {
 export const IP_AGORA = {
   IPv4Failover: {
     typeName: 'IPv4Failover',
-    maxQty: 8,
+    maxQty: 64,
     minQty: 1,
   },
   IPv4Block: {
