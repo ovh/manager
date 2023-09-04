@@ -1,0 +1,56 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Product1",
+      "universe": "Universe1",
+      "category": "Category1",
+      "description": "Description1",
+      "lang": "EN",
+      "categories": ["Cat1"],
+      "url": "http://example.com/1",
+      "regionTags": ["Region1"],
+      "productName": "ProductName1",
+      "order": "Order1"
+    },
+    {
+      "id": 2,
+      "name": "Product2",
+      "universe": "Universe1",
+      "category": "Category2",
+      "description": "Description2",
+      "lang": "EN",
+      "categories": ["Cat2"],
+      "url": "http://example.com/2",
+      "regionTags": ["Region2"],
+      "productName": "ProductName2",
+      "order": "Order2"
+    },
+    {
+      "id": 3,
+      "name": "Product3",
+      "universe": "Universe2",
+      "category": "Category1",
+      "description": "Description3",
+      "lang": "EN",
+      "categories": ["Cat1"],
+      "url": "http://example.com/3",
+      "regionTags": ["Region3"],
+      "productName": "ProductName3",
+      "order": "Order3"
+    },
+    {
+      "id": 4,
+      "name": "Product4",
+      "universe": "Universe2",
+      "category": "Category3",
+      "description": "Description4",
+      "lang": "EN",
+      "categories": ["Cat3"],
+      "url": "http://example.com/4",
+      "regionTags": ["Region4"],
+      "productName": "ProductName4",
+      "order": "Order4"
+    }
+  ]
+}

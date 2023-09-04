@@ -10,11 +10,6 @@ export const getManagerHubCatalogListQueryKey = ['/hub/catalog'];
  * Manager-catalog endpoints : Get manager-catalog
  */
 export const getManagerHubCatalogList = async (): Promise<Item[]> => {
-  /**
-   * TO REFACTOR
-   * PUT THIS IN AXIOS INTERCEPTOR OR CLIENT REACT QUERY
-   * get user locale dynamicly with useShell getEnvironement
-   * */
   const fetchData = async () => {
     const config = {
       headers: {
