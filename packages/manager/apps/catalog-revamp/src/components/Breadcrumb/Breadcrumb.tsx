@@ -5,7 +5,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Params, useMatches } from 'react-router-dom';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-stencil/components/react';
+import { OsdsBreadcrumb } from '@ovhcloud/ods-components/breadcrumb/react';
 
 export type BreadcrumbHandleParams = {
   data: unknown;

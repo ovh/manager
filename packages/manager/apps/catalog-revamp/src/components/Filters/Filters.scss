@@ -1,0 +1,51 @@
+.filters-container {
+  margin: 48px;
+  text-align: left;
+
+  @media (max-width: 639px) {
+    margin: 0;
+  }
+
+  .title {
+    margin-bottom: 15px;
+    display: block;
+  }
+
+  .filters-universes {
+    flex: 2;
+  }
+
+  .filters-categories {
+    position: relative;
+    flex: 4;
+
+    .filter-item {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+  }
+}
+
+.filter-button {
+  padding-left: 55px;
+}
+
+.filters-footer-container {
+  width: 100%;
+  margin: 48px;
+  display: flex;
+  justify-content: center;
+
+  .filters-footer {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: 160px;
+    gap: 32px;
+
+    @media (max-width: 639px) {
+      right: 20px;
+      gap: 10px;
+    }
+  }
+}
