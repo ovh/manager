@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.3.0...@ovh-ux/manager-web@17.3.1) (2023-09-04)
+
+
+### Bug Fixes
+
+* **hosting:** fix value type for environnement variable ([#9908](https://github.com/ovh/manager/issues/9908)) ([7f40ab7](https://github.com/ovh/manager/commit/7f40ab76b4fae30bf988193db1f784ad92f6e1f9))
+
+
+
+
+
 # [17.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.2.2...@ovh-ux/manager-web@17.3.0) (2023-08-30)
 
 
