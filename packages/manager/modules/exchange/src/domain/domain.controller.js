@@ -3,6 +3,11 @@ import forEach from 'lodash/forEach';
 import has from 'lodash/has';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
+import {
+  GLOBAL_DKIM_STATUS,
+  DKIM_STATUS,
+  DKIM_MATCHING_SCHEMA_STATUS,
+} from './domain.constants';
 
 export default class ExchangeTabDomainsCtrl {
   /* @ngInject */
@@ -57,6 +62,8 @@ export default class ExchangeTabDomainsCtrl {
     $scope.getDomains = (count, offset) => this.getDomains(count, offset);
     $scope.getPaginated = () => this.paginated;
     $scope.getLoading = () => this.loading;
+
+    this.GLOBAL_DKIM_STATUS = GLOBAL_DKIM_STATUS;
   }
 
   goSearch() {
@@ -94,6 +101,23 @@ export default class ExchangeTabDomainsCtrl {
       .finally(() => {
         this.loading = false;
       });
+  }
+
+  dkimGlobalStatus({ dkim }) {
+    if (dkim.length === 0) {
+      return this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED;
+    }
+
+    if (
+      dkim.find(({ status }) =>
+        DKIM_MATCHING_SCHEMA_STATUS.OK.includes(status),
+      ) &&
+      dkim.find(({ status }) => status === DKIM_STATUS.READY)
+    ) {
+      return this.GLOBAL_DKIM_STATUS.OK;
+    }
+
+    return this.GLOBAL_DKIM_STATUS.NOK;
   }
 
   setTooltips() {
