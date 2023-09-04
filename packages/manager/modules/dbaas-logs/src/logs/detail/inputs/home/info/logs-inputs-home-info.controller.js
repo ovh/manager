@@ -1,7 +1,8 @@
 export default class LogsInputsHomeInfoModalCtrl {
   /* @ngInject */
-  constructor($uibModalInstance, currentInput) {
+  constructor($uibModalInstance, currentInput, defaultCluster) {
     this.currentInput = currentInput;
+    this.defaultCluster = defaultCluster;
     this.$uibModalInstance = $uibModalInstance;
   }
 
