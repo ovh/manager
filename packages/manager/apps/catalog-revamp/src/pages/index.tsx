@@ -1,46 +1,58 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useQueries, UseQueryResult } from '@tanstack/react-query';
-import { OsdsDivider } from '@ovhcloud/ods-stencil/components/react/';
-import {
-  getManagerHubCatalogList,
-  getManagerHubCatalogListQueryKey,
-} from '@/api';
-import Loading from '@/components/Loading/Loading';
-import Error from '@/components/Error/Error';
+import { OsdsText } from '@ovhcloud/ods-components/text/react/';
+import { OsdsDivider } from '@ovhcloud/ods-components/divider/react/';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import SearchBar from '@/components/SearchBar/SearchBar';
-import Filters from '@/components/Filters/Filters';
-
-interface ServiceData {
-  status: number;
-  data: any;
-}
+import { useCatalog } from '@/hooks/useCatalog';
+import { Product } from '@/utils/utils';
+import { MscTile } from '../../../../../super-components/components/msc-tile/react';
 
 export default function CatalogReact() {
   const { t } = useTranslation('catalog-revamp');
+  // state universe, categorie
+  const [selectedCategories, setSelectedCategories] = React.useState<string[]>(
+    [],
+  );
+  const [selectedUniverses, setSelectedUniverses] = React.useState<string[]>(
+    [],
+  );
+  const [searchValue, setSearchValue] = React.useState<string>('');
 
-  const service: UseQueryResult<ServiceData> = useQuery({
-    queryKey: getManagerHubCatalogListQueryKey,
-    queryFn: () => getManagerHubCatalogList(),
-    staleTime: Infinity,
+  const { results, products } = useCatalog({
+    categories: selectedCategories,
+    universes: selectedUniverses,
+    searchText: searchValue,
   });
 
-  if (service.isLoading) {
-    return <Loading />;
-  }
-
-  if (!service.isLoading && service.data.status !== 200) {
-    return <Error error={service.data} />;
-  }
-
-  const data = service.data?.data?.catalog?.data;
   return (
     <div>
-      <h1>{t('title')}</h1>
-      <SearchBar />
-      <Filters />
-      <OsdsDivider />
-      <div>{JSON.stringify(service.data)}</div>
+      <OsdsText size={ODS_TEXT_SIZE._700} level={ODS_TEXT_LEVEL.heading}>
+        {t('title')}
+      </OsdsText>
+      <SearchBar
+        products={products}
+        setSearchValue={setSearchValue}
+        setSelectedCategories={setSelectedCategories}
+        setSelectedUniverses={setSelectedUniverses}
+      />
+      <OsdsDivider separator />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {results.map((item: Product, id: number) => (
+          <div key={id} className="break-words m-5 p-4">
+            {
+              <MscTile
+                key={item.id}
+                tileTitle={item.name}
+                tileType={item.category}
+                tileDescription={item.description}
+                seeMoreLabel={t('seeMoreLabel')}
+                href={item.order}
+              />
+            }
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import {
-  OsdsText,
   OsdsTabs,
   OsdsTabBar,
   OsdsTabBarItem,
-} from '@ovhcloud/ods-stencil/components/react';
+} from '@ovhcloud/ods-components/tabs/react';
 import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-  OdsThemeTypographySize,
-} from '@ovhcloud/ods-theming';
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_TYPOGRAPHY_SIZE,
+} from '@ovhcloud/ods-common-theming';
 
 import './Dashboard.scss';
 
@@ -43,9 +43,9 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
     <div className="dashboard-layout-helpers">
       <div className="dashboard-layout-subtitle py-4">
         <OsdsText
-          level={OdsThemeTypographyLevel.heading}
-          color={OdsThemeColorIntent.text}
-          size={OdsThemeTypographySize._600}
+          level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_THEME_TYPOGRAPHY_SIZE._600}
         >
           {location.pathname.split('/')[2]}
         </OsdsText>
