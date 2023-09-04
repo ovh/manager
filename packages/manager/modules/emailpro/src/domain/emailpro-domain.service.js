@@ -3,7 +3,11 @@ import isEmpty from 'lodash/isEmpty';
 import pick from 'lodash/pick';
 import transform from 'lodash/transform';
 
-export default /* @ngInject */ function EmailProDomains(EmailPro, OvhHttp) {
+export default /* @ngInject */ function EmailProDomains(
+  $http,
+  EmailPro,
+  OvhHttp,
+) {
   this.getDomains = function getDomains(
     serviceName,
     pageSize,
@@ -181,5 +185,17 @@ export default /* @ngInject */ function EmailProDomains(EmailPro, OvhHttp) {
         domain,
       },
     });
+  };
+
+  this.getDkimSelector = function getDkimSelector(serviceName, domain) {
+    return $http
+      .get(`/email/pro/${serviceName}/domain/${domain}/dkimSelector`)
+      .then(({ data }) => data);
+  };
+
+  this.postDkim = function postDkim(serviceName, domain, params) {
+    return $http
+      .post(`/email/pro/${serviceName}/domain/${domain}/dkim`, params)
+      .then(({ data }) => data);
   };
 }
