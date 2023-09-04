@@ -706,7 +706,7 @@
   "server_configuration_installation_ovh_step2_remaining_size": "Espacio restante:",
   "server_configuration_installation_ovh_step2_remaining_size_button": "Espacio restante",
   "server_configuration_installation_ovh_step2_info": "Configuración de la tabla de particiones de la distribución <b>{{t0}}</b>",
-  "server_configuration_installation_ovh_step2_scheme": "Selección de la tabla de particiones:",
+  "server_configuration_installation_ovh_step2_scheme": "Esquema de partición predefinido:",
   "server_configuration_installation_ovh_step2_raid_hard": "(RAID por hardware)",
   "server_configuration_installation_ovh_step2_info_partition_cachecade": "En una configuración CacheCade, el espacio en disco dedicado a la caché no puede particionarse.",
   "server_configuration_installation_ovh_step2_error_empty_scheme": "No hay ninguna tabla de particiones compatible con la distribución {{t1}} para el servidor {{t0}}. Elija otra distribución.",
@@ -756,10 +756,10 @@
   "server_configuration_installation_ovh_step3_partition_size": "Tamaño: <b>{{t0}}</b>",
   "server_configuration_installation_ovh_step3_error_integrity": "Se ha detectado un error al probar la coherencia de su instalación personalizada ({{t0}}). No se ha podido realizar la instalación.",
   "server_configuration_installation_ovh_step3_error_integrity_info": "Corrija el error haciendo clic en «Anterior».",
-  "server_configuration_installation_ovh_step3_partiton_variable": "Partición de tamaño variable:",
-  "server_configuration_installation_ovh_step3_partiton_variable_help": "Esta partición ocupará el espacio disponible restante para adaptar la plantilla a un servidor que tiene un espacio total diferente.",
-  "server_configuration_installation_ovh_step3_partiton_variable_info": "La partición <b>{{t0}}</b> adaptará su tamaño para ocupar el espacio disponible restante de otro servidor.",
-  "server_configuration_installation_ovh_step3_partiton_none": "Ninguna",
+  "server_configuration_installation_ovh_step3_partition_variable": "Partición de tamaño variable:",
+  "server_configuration_installation_ovh_step3_partition_variable_help": "Esta partición ocupará el espacio disponible restante para adaptar la plantilla a un servidor que tiene un espacio total diferente.",
+  "server_configuration_installation_ovh_step3_partition_variable_info": "La partición <b>{{t0}}</b> adaptará su tamaño para ocupar el espacio disponible restante de otro servidor.",
+  "server_configuration_installation_ovh_step3_partition_none": "Ninguna",
   "server_configuration_installation_ovh_step3_saveGabarit": "Guardar esta instalación",
   "server_configuration_installation_ovh_step3_saveGabarit_help": "Guardar la instalación (plantilla) permite instalar o reinstalar rápidamente un servidor compatible con esta distribución.",
   "server_configuration_installation_ovh_step3_remaining_error": "Se ha producido un error al cambiar la partición {{t0}} a partición variable ({{t1}}).",
@@ -1128,5 +1128,6 @@
   "server_rtm_eol_info": "Información importante sobre la obsolescencia de Real Time Monitoring: el servicio seguirá funcionando hasta el 30 de junio de 2022. A partir de esa fecha, sus datos de consumo dejarán de mostrarse, sin que ello afecte al funcionamiento de su servidor.",
   "server_configuration_installation_NONE": "Ninguno",
   "server_configuration_installation_ovh_desktop_BACKUP": "Copia de seguridad",
-  "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Aunque el conjunto de discos seleccionado contenga {{t0}} discos, el sistema operativo elegido solo puede instalarse en 2 discos como máximo."
+  "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Aunque el conjunto de discos seleccionado contenga {{t0}} discos, el sistema operativo elegido solo puede instalarse en 2 discos como máximo.",
+  "server_configuration_installation_ovh_step3_scheme": "Esquema de partición:"
 }
