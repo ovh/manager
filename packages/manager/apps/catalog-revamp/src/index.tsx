@@ -1,8 +1,8 @@
 import { startApplication } from '@ovh-ux/manager-react-core-application';
 import { initShellClient } from '@ovh-ux/shell';
 import { setShellClient } from './shell';
-import 'bootstrap/scss/bootstrap-utilities.scss';
-import '@ovhcloud/ods-theme-blue-jeans/index.css';
+import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
+import './global.scss';
 
 initShellClient('catalog-revamp')
   .then((client) => {
