@@ -5,8 +5,10 @@
   "description": "Manager documentation deployed with GitHub Pages",
   "scripts": {
     "build": "vuepress build docs",
+    "postbuild": "yarn build:msc-storybook",
+    "build:msc-storybook": "cd ../packages/super-components && yarn build:storybook && rm -rf ../../docs/docs/.vuepress/public/super-components && mv ./storybook/dist ../../docs/docs/.vuepress/public/super-components",
     "deploy": "yarn run build && gh-pages -d docs/.vuepress/dist -m \"docs: update documentation [skip ci]\"",
-    "dev": "vuepress dev docs"
+    "dev": "yarn build:msc-storybook && vuepress dev docs"
   },
   "devDependencies": {
     "@vuepress/plugin-search": "^2.0.0-beta.67",

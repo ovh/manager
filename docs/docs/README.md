@@ -39,6 +39,16 @@ footer: BSD 3-Clause Licensed | Copyright © 2020-present OVH SAS
       <external-link-icon/>
     </a>
   </div>
+  <div class="feature">
+    <h2>Super components</h2>
+    <p>You can check the super-components storybook to see published reusable components.</p>
+      <a
+        href="/super-components/"
+        rel="noopener noreferrer"
+        target="_blank">
+        Storybook
+      </a>
+  </div>
 </div>
 
 ::: warning COMPATIBILITY NOTE
