@@ -591,7 +591,6 @@
   "server_configuration_installation_form_option": "Installation options:",
   "server_configuration_installation_form_gabaritNameSave": "Template name:",
   "server_configuration_installation_form_gabaritNameSave_pattern": "Invalid format.",
-  "server_configuration_installation_form_changeLog": "Description:",
   "server_configuration_installation_form_customHostname": "Host name:",
   "server_configuration_installation_form_customHostname_pattern": "Invalid format.",
   "server_configuration_installation_form_postInstallationScriptLink": "Installation script (URL):",

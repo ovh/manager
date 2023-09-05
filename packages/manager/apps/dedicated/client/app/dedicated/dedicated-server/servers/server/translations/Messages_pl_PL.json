@@ -591,7 +591,6 @@
   "server_configuration_installation_form_option": "Opcje instalacji:",
   "server_configuration_installation_form_gabaritNameSave": "Nazwa szablonu:",
   "server_configuration_installation_form_gabaritNameSave_pattern": "Nieprawidłowy format.",
-  "server_configuration_installation_form_changeLog": "Opis:",
   "server_configuration_installation_form_customHostname": "Hostname:",
   "server_configuration_installation_form_customHostname_pattern": "Nieprawidłowy format.",
   "server_configuration_installation_form_postInstallationScriptLink": "Skrypt instalacji (URL) :",

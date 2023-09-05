@@ -591,7 +591,6 @@
   "server_configuration_installation_form_option": "Opções de instalação:",
   "server_configuration_installation_form_gabaritNameSave": "Nome do template:",
   "server_configuration_installation_form_gabaritNameSave_pattern": "Formato inválido.",
-  "server_configuration_installation_form_changeLog": "Descrição:",
   "server_configuration_installation_form_customHostname": "Hostname:",
   "server_configuration_installation_form_customHostname_pattern": "Formato inválido.",
   "server_configuration_installation_form_postInstallationScriptLink": "Script de instalação (url):",
