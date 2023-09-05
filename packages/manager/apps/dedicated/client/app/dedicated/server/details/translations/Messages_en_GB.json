@@ -575,6 +575,7 @@
   "server_configuration_installation_ZFS": "ZFS",
   "server_configuration_installation_REISERFS": "ReiserFS",
   "server_configuration_installation_SWAP": "SWAP",
+  "server_configuration_installation_NONE": "None",
   "server_configuration_installation_UFS": "UFS",
   "server_configuration_installation_LOGICAL": "logical",
   "server_configuration_installation_LV": "LV",
@@ -591,7 +592,6 @@
   "server_configuration_installation_form_option": "Installation options:",
   "server_configuration_installation_form_gabaritNameSave": "Template name:",
   "server_configuration_installation_form_gabaritNameSave_pattern": "Invalid format.",
-  "server_configuration_installation_form_changeLog": "Description:",
   "server_configuration_installation_form_customHostname": "Host name:",
   "server_configuration_installation_form_customHostname_pattern": "Invalid format.",
   "server_configuration_installation_form_postInstallationScriptLink": "Installation script (URL):",
@@ -612,6 +612,7 @@
   "server_configuration_installation_ovh_fail_os": "An error has occurred retrieving the operating systems available for the {{t0}} server",
   "server_configuration_installation_ovh_fail_partition_schemes": "An error has occurred retrieving the partition diagrams for the {{t0}} server",
   "server_configuration_installation_ovh_beta": "Beta",
+  "server_configuration_installation_ovh_desktop_BACKUP": "Backup",
   "server_configuration_installation_ovh_desktop_BASIC": "Basic",
   "server_configuration_installation_ovh_desktop_CUSTOMER": "Custom",
   "server_configuration_installation_ovh_desktop_DATABASE": "Database ",
@@ -653,6 +654,7 @@
   "server_configuration_installation_ovh_step2_type": "Type",
   "server_configuration_installation_ovh_step2_type_disk": "Disks used for this installation:",
   "server_configuration_installation_ovh_step2_type_disk_disable": "Disk cannot be allocated for this installation:",
+  "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Even if the selected disk group contains {{t0}} disks, the chosen operating system can only be installed on up to 2 disks",
   "server_configuration_installation_ovh_step2_show_all_disk": "Show other disks",
   "server_configuration_installation_ovh_step2_hide_all_disk": "Hide other disks",
   "server_configuration_installation_ovh_step2_file_system": "File system",
@@ -1084,8 +1086,5 @@
   "server_nutanix_cluster_node_warning_1": "This dedicated server is part of a Nutanix cluster: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "We recommend making all of the configuration changes directly in the dashboard of the server linked to your Nutanix cluster: {{clusterNodeDashboardLink}}",
   "server_nutanix_cluster_node_warning_3": "All billing actions linked to this server are visible on your Nutanix cluster: {{clusterDashboardLink}}",
-  "server_rtm_eol_info": "Important information - the Real Time Monitoring Service will soon be obsolete. It will continue running until 30 June 2022. After this date, we will stop displaying your consumption data. This will not affect your server’s operation.",
-  "server_configuration_installation_NONE": "None",
-  "server_configuration_installation_ovh_desktop_BACKUP": "Backup",
-  "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Even if the selected disk group contains {{t0}} disks, the chosen operating system can only be installed on up to 2 disks"
+  "server_rtm_eol_info": "Important information - the Real Time Monitoring Service will soon be obsolete. It will continue running until 30 June 2022. After this date, we will stop displaying your consumption data. This will not affect your server’s operation."
 }

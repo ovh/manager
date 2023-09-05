@@ -592,7 +592,6 @@
   "server_configuration_installation_form_option": "Options d'installation :",
   "server_configuration_installation_form_gabaritNameSave": "Nom du gabarit :",
   "server_configuration_installation_form_gabaritNameSave_pattern": "Format invalide.",
-  "server_configuration_installation_form_changeLog": "Description :",
   "server_configuration_installation_form_customHostname": "Hostname :",
   "server_configuration_installation_form_customHostname_pattern": "Format invalide.",
   "server_configuration_installation_form_postInstallationScriptLink": "Script d'installation (url) :",
