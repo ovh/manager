@@ -4,6 +4,8 @@ import {
   TRACKING_PREFIX_POPUP,
   KYC_TRACKING_PREFIX,
   KYC_HIT_PREFIX,
+  IAM_TRACKING_PREFIX,
+  IAM_HIT_PREFIX,
 } from './dashboard.constant';
 
 export default class DashboardController {
@@ -16,17 +18,21 @@ export default class DashboardController {
     this.SIRET_HIT_PREFIX = SIRET_HIT_PREFIX;
     this.TRACKING_PREFIX_POPUP = TRACKING_PREFIX_POPUP;
     this.KYC_HIT_PREFIX = KYC_HIT_PREFIX;
+    this.IAM_TRACKING_PREFIX = IAM_TRACKING_PREFIX;
+    this.IAM_HIT_PREFIX = IAM_HIT_PREFIX;
     this.$http = $http;
     this.myIdentitySectionLink = coreURLBuilder.buildURL(
       'dedicated',
       '#/identity-documents',
     );
+    this.iamBannerLink = coreURLBuilder.buildURL('iam', '#/dashboard/policies');
   }
 
   $onInit() {
     this.availableSiretBanner = false;
     this.availableSiretPopup = false;
     this.showKycBanner = false;
+    this.showIamBanner = false;
     this.$http
       .get(`/feature/identity-documents/availability`, {
         serviceType: 'aapi',
@@ -72,6 +78,13 @@ export default class DashboardController {
         if (this.availableSiretPopup) {
           this.atInternet.trackPage({
             name: TRACKING_PREFIX_POPUP,
+            type: 'navigation',
+          });
+        }
+        this.showIamBanner = data?.isFeatureAvailable('hub:banner-iam-invite');
+        if (this.showIamBanner) {
+          this.atInternet.trackPage({
+            name: IAM_TRACKING_PREFIX,
             type: 'navigation',
           });
         }
