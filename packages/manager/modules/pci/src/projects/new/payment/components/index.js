@@ -2,6 +2,7 @@ import angular from 'angular';
 
 import credit from './credit';
 import challenge from './challenge';
+import challengeIndia from './challenge-india';
 import choose from './choose';
 import defaultMethod from './default';
 import dlp from './dlp';
@@ -13,6 +14,7 @@ const moduleName = 'pciProjectNewPaymentComponents';
 angular.module(moduleName, [
   credit,
   challenge,
+  challengeIndia,
   choose,
   defaultMethod,
   dlp,

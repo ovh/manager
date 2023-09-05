@@ -5,9 +5,9 @@ import get from 'lodash/get';
 import { CREDIT_PROVISIONING } from './components/add/constants';
 import {
   PCI_PROJECT_STEPS,
+  SUBSIDIARY_INDIA,
   PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID,
 } from '../constants';
-
 import component from './component';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -42,12 +42,15 @@ export default /* @ngInject */ ($stateProvider) => {
       'credits@pci.projects.new.payment': 'pciProjectNewPaymentCreditType',
 
       'challenge@pci.projects.new.payment': {
-        componentProvider: /* @ngInject */ (eligibility) =>
-          eligibility.isChallengePaymentMethodRequired()
-            ? 'pciProjectNewPaymentChallenge'
-            : null,
+        componentProvider: /* @ngInject */ (me, eligibility) => {
+          if (eligibility.isChallengePaymentMethodRequired()) {
+            return me.ovhSubsidiary === SUBSIDIARY_INDIA
+              ? 'pciProjectNewPaymentChallengeIndia'
+              : 'pciProjectNewPaymentChallenge';
+          }
+          return null;
+        },
       },
-
       'voucher@pci.projects.new.payment': 'pciProjectNewVoucher',
 
       'dlp@pci.projects.new.payment': {

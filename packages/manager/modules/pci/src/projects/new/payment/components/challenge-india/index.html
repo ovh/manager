@@ -1,0 +1,82 @@
+<form
+    class="pci-project-new-payment-challenge-india"
+    data-ng-switch="$ctrl.defaultPaymentMethod.paymentType"
+    novalidate
+    name="challengeIndiaForm"
+    id="challengeIndiaForm"
+>
+    <oui-message
+        data-ng-if="$ctrl.model.challengeIndia.error"
+        data-type="error"
+    >
+        <span
+            data-translate="{{ 'pci_project_new_payment_challenge_india_error_' + $ctrl.model.challengeIndia.error.toLowerCase() }}"
+        ></span>
+    </oui-message>
+
+    <div
+        data-ng-switch-when="CREDIT_CARD"
+        class="oui-box border-0 rounded-0 m-0 row"
+    >
+        <div
+            class="col-md-6"
+            data-translate="pci_project_new_payment_challenge_india_credit_card"
+        ></div>
+        <div class="col-md-6">
+            <div class="challenge-india-credit-card">
+                <input
+                    type="text"
+                    name="challengeIndia"
+                    class="challenge-india-input"
+                    data-ng-model="$ctrl.model.challenge.value"
+                    data-ng-attr-placeholder="{{ $ctrl.inputPlaceHolder }}"
+                    data-ng-attr-maxlength="{{ $ctrl.inputMaxLength }}"
+                    data-ng-disabled="$ctrl.globalLoading.finalize"
+                />
+            </div>
+        </div>
+    </div>
+
+    <div data-ng-switch-when="RUPAY" class="oui-box border-0 rounded-0 m-0 row">
+        <div
+            class="col-md-6"
+            data-translate="pci_project_new_payment_challenge_india_credit_card"
+        ></div>
+        <div class="col-md-6">
+            <div class="challenge-india-credit-card">
+                <input
+                    type="text"
+                    name="challengeIndia"
+                    class="challenge-india-input"
+                    data-ng-model="$ctrl.model.challenge.value"
+                    data-ng-attr-placeholder="{{ $ctrl.inputPlaceHolder }}"
+                    data-ng-attr-maxlength="{{ $ctrl.inputMaxLength }}"
+                    data-ng-disabled="$ctrl.globalLoading.finalize"
+                />
+            </div>
+        </div>
+    </div>
+
+    <div
+        data-ng-switch-when="PAYPAL"
+        class="oui-box border-0 rounded-0 m-0"
+        data-translate="pci_project_new_payment_challenge_india_paypal"
+    ></div>
+
+    <div
+        data-ng-switch-when="BANK_ACCOUNT"
+        class="oui-box border-0 rounded-0 m-0"
+    >
+        <p
+            data-translate="pci_project_new_payment_challenge_india_bank_account"
+        ></p>
+        <input
+            class="oui-input"
+            type="text"
+            id="challengeIndia"
+            name="challengeIndia"
+            data-ng-model="$ctrl.model.challengeIndia.value"
+            data-ng-disabled="$ctrl.globalLoading.finalize"
+        />
+    </div>
+</form>

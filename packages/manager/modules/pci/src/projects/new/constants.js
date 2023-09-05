@@ -24,6 +24,7 @@ export const PCI_PROJECT_STEPS = {
   CONFIGURATION: 'configuration',
   PAYMENT: 'payment',
 };
+export const SUBSIDIARY_INDIA = 'IN';
 
 export const PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID =
   'payments:rupay-message';
@@ -34,4 +35,5 @@ export default {
   PCI_PROJECT_ORDER_CART,
   PCI_PROJECT_STEPS,
   PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID,
+  SUBSIDIARY_INDIA,
 };

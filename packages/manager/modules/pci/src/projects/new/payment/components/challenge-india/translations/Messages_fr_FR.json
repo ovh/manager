@@ -1,0 +1,6 @@
+{
+  "pci_project_new_payment_challenge_india_credit_card": "Pour vérifier votre moyen de paiement, <strong>veuillez saisir les 4 derniers chiffres de votre carte bancaire ci-contre :</strong>",
+  "pci_project_new_payment_challenge_india_paypal": "Afin de vérifiez votre moyen de paiement, veuillez vous reconnecter à votre compte paypal.",
+  "pci_project_new_payment_challenge_india_bank_account": "Afin de vérifier votre moyen de paiement, veuillez saisir votre numéro IBAN ci-dessous :",
+  "pci_project_new_payment_challenge_india_error_retry_challenge": "Vous n'avez pas réussi à vérifier votre moyen de paiement, merci de réessayer."
+}
