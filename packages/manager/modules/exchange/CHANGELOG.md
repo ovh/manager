@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.9.0...@ovh-ux/manager-exchange@3.10.0) (2023-09-05)
+
+
+### Features
+
+* **web:** add dkim feature ([#9686](https://github.com/ovh/manager/issues/9686)) ([77a1b05](https://github.com/ovh/manager/commit/77a1b05a9fc019e6d9fc745d0169ccbc28994c78))
+
+
+
+
+
 # [3.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.8.1...@ovh-ux/manager-exchange@3.9.0) (2023-08-01)
 
 

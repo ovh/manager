@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.138.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.137.1...@ovh-ux/manager-pci@5.138.0) (2023-09-05)
+
+
+### Bug Fixes
+
+* **public-cloud:** add hourly unit in kafka and fix trans ([#9714](https://github.com/ovh/manager/issues/9714)) ([cc25607](https://github.com/ovh/manager/commit/cc2560773f191475357154acc500c63f7fc4d82d))
+* **public-cloud:** disable name modification ([#9855](https://github.com/ovh/manager/issues/9855)) ([0dd12bb](https://github.com/ovh/manager/commit/0dd12bbc6ec86b168b1c927f4c7538332d941e78))
+* **public-cloud:** fix call api storage static ([#9621](https://github.com/ovh/manager/issues/9621)) ([bbd8fd3](https://github.com/ovh/manager/commit/bbd8fd36d04841e1bd0c9ae2bed4efe3000879b0))
+
+
+### Features
+
+* **public-cloud:** add equivalent api on fork page ([#9571](https://github.com/ovh/manager/issues/9571)) ([26e784d](https://github.com/ovh/manager/commit/26e784d04f891518a3a94ff3187e64e6f922b526))
+* **public-cloud:** allow storage decrease ([#9612](https://github.com/ovh/manager/issues/9612)) ([d818d4b](https://github.com/ovh/manager/commit/d818d4b68c2f70366e565b7a67a3515302652514))
+
+
+
+
+
 ## [5.137.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.137.0...@ovh-ux/manager-pci@5.137.1) (2023-08-30)
 
 

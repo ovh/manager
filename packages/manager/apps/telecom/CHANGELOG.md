@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.2.3...@ovh-ux/manager-telecom@14.2.4) (2023-09-05)
+
+
+### Bug Fixes
+
+* **telecom:** fix errors on total displayed on resumes pages ([#9891](https://github.com/ovh/manager/issues/9891)) ([7ceefee](https://github.com/ovh/manager/commit/7ceefeef57aad48ec59050707152579167d8f59d))
+
+
+
+
+
 ## [14.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.2.2...@ovh-ux/manager-telecom@14.2.3) (2023-08-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

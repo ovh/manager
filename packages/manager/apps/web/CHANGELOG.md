@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [17.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.3.1...@ovh-ux/manager-web@17.3.2) (2023-09-05)
+
+
+### Bug Fixes
+
+* **web:** typography in FR ([#9860](https://github.com/ovh/manager/issues/9860)) ([2d80bd3](https://github.com/ovh/manager/commit/2d80bd303bce449adf996ed35b0f418abce72869))
+
+
+
+
+
 ## [17.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.3.0...@ovh-ux/manager-web@17.3.1) (2023-09-04)
 
 
