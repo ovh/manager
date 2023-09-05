@@ -205,11 +205,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicated-server.server.dashboard.monitoringUpdate', {
           productId: serverName,
         }),
-      monitoringProtocolEnum: /* @ngInject */ (Server) =>
-        Server.getModels().then(
-          (models) =>
-            models.data.models['dedicated.server.MonitoringProtocolEnum'].enum,
-        ),
       orderPrivateBandwidthLink: /* @ngInject */ (
         $state,
         isLegacy,
@@ -238,8 +233,6 @@ export default /* @ngInject */ ($stateProvider) => {
               'app.dedicated-server.server.dashboard.bandwidth-public-order',
               { productId: serverName },
             ),
-      serviceMonitoring: /* @ngInject */ ($transition$, Server) =>
-        Server.getAllServiceMonitoring($transition$.params().productId),
       technicalDetails: /* @ngInject */ ($http, serverName) =>
         $http
           .get(`/dedicated/technical-details/${serverName}`, {

@@ -42,9 +42,6 @@ import './server/installation/progress/dedicated-server-installation-progress.co
 import './server/ip/dedicated-server-ip-mitigation-statistics.controller';
 import './server/ip/dedicated-server-ip-mitigation.controller';
 import './server/ip/dedicated-server-ip.controller';
-import './server/monitoring/add/dedicated-server-monitoring-add.controller';
-import './server/monitoring/monitoring-update.controller';
-import './server/monitoring/delete/dedicated-server-monitoring-delete.controller';
 import './server/monitoring/update/dedicated-server-monitoring-update.controller';
 import './server/monitoring/legacy-update/dedicated-server-monitoring-update.controller';
 import './server/monitoring/update/dedicated-server-monitoring-update.routes';
