@@ -827,5 +827,7 @@
   "domain_configuration_renew": "Il tuo dominio è sospeso, ma ti ricordiamo che puoi rinnovarlo durante il Grace Period. Trascorso questo termine, verranno applicate spese supplementari.",
   "domain_configuration_restorable": "Il dominio è in corso di eliminazione. Per recuperarlo con una spesa aggiuntiva, clicca sul link “Ripristinare”. In caso contrario il dominio verrà definitivamente eliminato.",
   "domain_configuration_restorable_title_button": "Ripristinare",
-  "domain_hosting_price_ht_label": "{{price}} +IVA"
+  "domain_hosting_price_ht_label": "{{price}} +IVA",
+  "domain_dashboard_obfuscated_email": "Indirizzi anti-Spam",
+  "domain_dashboard_obfuscated_email_regenerate_button": "Gestisci gli indirizzi anti-Spam"
 }
