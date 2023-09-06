@@ -32,6 +32,11 @@ export const IP_TYPE_ENUM = {
   FLOATING: 'floating_ip',
 };
 
+export const IP_VERSION = {
+  V4: 4,
+  V6: 6,
+};
+
 export const REGIONS = {
   EU: ['EUROPE', 'CANADA'],
   CA: ['EUROPE', 'CANADA'],
@@ -100,4 +105,5 @@ export default {
   GATEWAY_TRACKING_PREFIX,
   TRACKING_PREFIX_FORM_SUBMIT,
   FLOATING_IP_PLAN,
+  IP_VERSION,
 };
