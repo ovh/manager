@@ -5,13 +5,14 @@ import {
   MAXIMUM_SIZE,
   LEGAL_FORMS,
   MAXIMUM_DOCUMENTS,
+  PRIVACY_LINKS,
 } from './constants';
 
 import illustration from './assets/picto.svg';
 
 export default class KycDocumentsCtrl {
   /* @ngInject */
-  constructor($translate, $q, $http) {
+  constructor($translate, $q, $http, coreConfig) {
     this.$http = $http;
     this.$translate = $translate;
     this.$q = $q;
@@ -20,6 +21,9 @@ export default class KycDocumentsCtrl {
     this.maximum_documents = MAXIMUM_DOCUMENTS;
     this.FRAUD_STATUS = FRAUD_STATUS;
     this.illustration = illustration;
+    this.privacyLink =
+      PRIVACY_LINKS[coreConfig.getUser().ovhSubsidiary] ||
+      PRIVACY_LINKS.DEFAULT;
   }
 
   $onInit() {
@@ -102,6 +106,7 @@ export default class KycDocumentsCtrl {
       })
       .catch(() => {
         this.displayErrorBanner();
+        throw new Error('upload');
       });
   }
 
