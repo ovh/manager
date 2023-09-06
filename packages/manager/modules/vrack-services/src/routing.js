@@ -6,7 +6,6 @@ export default /* @ngInject */ ($stateProvider) => {
     template: `<div data-ui-view></div>`,
     redirectTo: 'vrack-services.index',
     resolve: {
-      breadcrumb: () => 'vrack-services',
       apiPath: () => '/vrackServices/resource',
       createItemsPromise: /* @ngInject */ ($q, apiPath, Apiv2Service) => ({
         cursor,
@@ -20,6 +19,8 @@ export default /* @ngInject */ ($stateProvider) => {
           data,
         }));
       },
+      hideBreadcrumb: () => true,
+      breadcrumb: () => 'vRack Services',
     },
   });
 
@@ -27,7 +28,6 @@ export default /* @ngInject */ ($stateProvider) => {
     url: `?cursors`,
     component: 'apiV2ListLayout',
     params: ApiV2ListHelper.stateParams,
-    // TODO: Redirect to onboarding only if customer have services
     redirectTo: (transition) =>
       transition
         .injector()
@@ -44,7 +44,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       ...ApiV2ListHelper.stateResolves,
       pageSize: () => 25,
-      header: () => 'Vrack Services',
+      header: () => 'vRack Services',
       description: () =>
         'Auto generated list page which list the main resource using the cursor style apiv2 listing',
       columns: () => [
@@ -57,7 +57,7 @@ export default /* @ngInject */ ($stateProvider) => {
       linkProperty: () => 'id',
       resourceIdProperty: () => 'id',
       getResourceLink: /* @ngInject */ ($state) => (resourceId) => {
-        return $state.href('app.dashboard', { resourceId });
+        return $state.href('vrack-services.dashboard', { resourceId });
       },
       hideBreadcrumb: () => true,
     },

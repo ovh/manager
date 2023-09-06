@@ -1,13 +1,91 @@
 <div>
-    <oui-header heading="{{:: $ctrl.serviceName }}">
+    <oui-header
+        heading="{{:: $ctrl.title }}"
+        description="{{:: 'vrack_services_dashboard_description' | translate }}"
+    >
         <oui-header-tabs>
             <oui-header-tabs-item
                 href="{{:: $ctrl.dashboardLink }}"
                 active="$ctrl.currentActiveLink() === $ctrl.dashboardLink"
             >
-                <span>Home</span>
+                <span
+                    data-translate="vrack_services_dashboard_tab_overview"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{:: $ctrl.subnetLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.subnetLink"
+            >
+                <span
+                    data-translate="vrack_services_dashboard_tab_subnet"
+                ></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{:: $ctrl.endpointsLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.endpointsLink"
+            >
+                <span
+                    data-translate="vrack_services_dashboard_tab_endpoints"
+                ></span>
             </oui-header-tabs-item>
         </oui-header-tabs>
     </oui-header>
-    <div ui-view></div>
+    <div class="col-xm-12 col-md-4">
+        <oui-tile
+            data-heading="{{ ::'vrack_services_dashboard_information_tile' | translate }}"
+            class="oui-tile-h-100 h-100"
+        >
+            <oui-tile-definition data-ng-if="$ctrl.informations.loading">
+                <oui-tile-description>
+                    <oui-skeleton data-randomized></oui-skeleton>
+                    <oui-skeleton data-randomized></oui-skeleton>
+                    <oui-skeleton data-randomized></oui-skeleton>
+                    <oui-skeleton data-randomized></oui-skeleton>
+                    <oui-skeleton data-randomized></oui-skeleton>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <div data-ng-if="!$ctrl.informations.loading">
+                <oui-tile-definition
+                    data-term="{{ ::'vrack_services_dashboard_information_tile_name' | translate }}"
+                    data-description="{{ ::$ctrl.informations.data.currentState.displayName }}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'vrack_services_dashboard_information_tile_status' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-translate="{{ ::$ctrl.informations.data.currentState.productStatus }}"
+                            data-ng-class="'oui-badge_' + $ctrl.informations.data.statusCode"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'vrack_services_dashboard_information_tile_localization' | translate }}"
+                    data-description="{{ :: 'vrack_services_datacenter_' + $ctrl.informations.data.zoneCode | translate }}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'vrack_services_dashboard_information_tile_vrack' | translate }}"
+                >
+                    <oui-tile-description>
+                        <a
+                            class="oui-button oui-button_link"
+                            data-ng-href="{{$ctrl.vrackLink}}"
+                        >
+                            <span
+                                data-ng-bind="$ctrl.informations.data.currentState.vrackId"
+                            ></span>
+                        </a>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'vrack_services_dashboard_information_tile_creation_date' | translate }}"
+                    data-description="{{ ::$ctrl.informations.data.creationDateFormatted }}"
+                >
+                </oui-tile-definition>
+            </div>
+        </oui-tile>
+    </div>
 </div>
