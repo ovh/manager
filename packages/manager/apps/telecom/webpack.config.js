@@ -1,4 +1,4 @@
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
@@ -56,7 +56,16 @@ module.exports = (env = {}) => {
             to: 'assets',
           },
           { from: foundNodeModulesFolder('angular-i18n'), to: 'angular-i18n' },
-          { from: path.resolve(__dirname, './src/**/*.html'), context: 'src' },
+          {
+            from: path.resolve(__dirname, './src/**/*.html'),
+            context: 'src/',
+            filter: (resource) => {
+              if (resource === path.resolve(__dirname, 'src/index.html')) {
+                return false;
+              }
+              return true;
+            },
+          },
         ],
       },
     },
@@ -77,6 +86,10 @@ module.exports = (env = {}) => {
     },
     resolve: {
       mainFields: ['module', 'browser', 'main'],
+      fallback: {
+        stream: require.resolve('stream-browserify'),
+        os: require.resolve('os-browserify/browser'),
+      },
     },
     plugins: [
       new webpack.ContextReplacementPlugin(
