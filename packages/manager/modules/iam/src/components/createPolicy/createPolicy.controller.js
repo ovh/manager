@@ -1,6 +1,11 @@
 import { cloneDeep, isEqual } from 'lodash-es';
 
-import { ENTITY, ENTITY_NAME_PATTERN, TAG } from '../../iam.constants';
+import {
+  ENTITY,
+  ENTITY_NAME_PATTERN,
+  TAG,
+  WILDCARD,
+} from '../../iam.constants';
 import { URL } from '../../iam.service';
 import { CREATE_POLICY_TAG } from './createPolicy.constants';
 
@@ -181,7 +186,7 @@ export default class CreatePolicyController {
     // Edit mode, feed the model
     if (this.mode === 'edit') {
       const wildcardAction = this.policy.permissions.allow.find(
-        ({ action }) => action === '*',
+        ({ action }) => action === WILDCARD,
       );
       this.model.actions.selection = this.policy.permissions.allow.filter(
         (action) => action !== wildcardAction,
@@ -387,8 +392,11 @@ export default class CreatePolicyController {
       name: this.model.name,
       permissions: {
         allow: this.model.actions.isWildcardActive
-          ? [{ action: '*' }]
+          ? [{ action: WILDCARD }]
           : this.model.actions.selection
+              // actions tagged as embedded are covered by custom actions
+              // there is no need to persist them
+              .filter(({ embedded }) => !embedded)
               .map(({ action }) => ({ action }))
               .filter(
                 (item, i, list) =>
