@@ -9,7 +9,6 @@ export default {
     guideUrl: '<',
     guideTrackingSectionTags: '<',
     trackClick: '<',
-    lab: '<',
     onDatabaseAdd: '<',
     projectId: '<',
     privateNetworks: '<',

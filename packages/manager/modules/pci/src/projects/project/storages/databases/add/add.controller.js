@@ -5,7 +5,6 @@ import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 import capitalize from 'lodash/capitalize';
 import animateScrollTo from 'animated-scroll-to';
-import { ENGINES_STATUS } from '../../../../../components/project/storages/databases/engines.constants';
 import { ENGINE_LOGOS } from '../databases.constants';
 import { PRIVATE_NETWORK_GUIDE } from './add.constants';
 import { getOrderDataFromModel } from './add.utils';
@@ -36,7 +35,6 @@ export default class {
 
   $onInit() {
     this.showMonthlyPrices = false;
-    this.labAccepted = this.lab.isActivated();
     this.messageContainer = 'pci.projects.project.storages.databases.add';
     this.loadMessages();
     this.model = {
@@ -108,14 +106,6 @@ export default class {
     } else {
       this.$anchorScroll(id);
     }
-  }
-
-  acceptLab(accepted) {
-    this.labAccepted = accepted;
-  }
-
-  clickOnContract() {
-    this.trackDatabases('config_create_database::ga_contracts');
   }
 
   loadMessages() {
@@ -342,23 +332,11 @@ export default class {
       false,
     );
     const orderData = getOrderDataFromModel(this.model);
-    // We only need to check the lab for BETA status
-    const createDatabasePromise =
-      this.model.engine.selectedVersion.status === ENGINES_STATUS.BETA
-        ? this.DatabaseService.activateLab(this.projectId, this.lab).then(() =>
-            this.DatabaseService.createDatabase(
-              this.projectId,
-              this.model.engine.name,
-              orderData,
-            ),
-          )
-        : this.DatabaseService.createDatabase(
-            this.projectId,
-            this.model.engine.name,
-            orderData,
-          );
-
-    return createDatabasePromise
+    return this.DatabaseService.createDatabase(
+      this.projectId,
+      this.model.engine.name,
+      orderData,
+    )
       .then((databaseInfo) => {
         this.trackDatabases(
           `config_create_database_validated::${this.model.engine.name}`,
@@ -386,9 +364,5 @@ export default class {
         this.$anchorScroll('addMessages');
         this.processingOrder = false;
       });
-  }
-
-  $onDestroy() {
-    this.DatabaseService.stopPollingLabActivationStatus(this.lab.id);
   }
 }
