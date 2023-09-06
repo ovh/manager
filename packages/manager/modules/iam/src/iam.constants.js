@@ -16,7 +16,11 @@ const CUSTOM_ACTION_PATTERN = /(^\*)|(\*$)/;
 
 const CUSTOM_ACTION_SAMPLE = 'vps:apiovh:automatedBackup/*';
 
+const CUSTOM_ACTION_WILDCARD_PATTERN = /^[^\d]*\*$/;
+
 const CUSTOM_RESOURCE_TYPE = 'custom';
+
+const WILDCARD = '*';
 
 const DELETE_STATEMENT = 'Terminate';
 
@@ -277,6 +281,7 @@ export {
   API_ERROR,
   CUSTOM_ACTION_PATTERN,
   CUSTOM_ACTION_SAMPLE,
+  CUSTOM_ACTION_WILDCARD_PATTERN,
   CUSTOM_RESOURCE_TYPE,
   DELETE_STATEMENT,
   ENTITY,
@@ -288,4 +293,5 @@ export {
   TAG,
   UNAVAILABLE_STATE_NAME,
   URN_VERSION,
+  WILDCARD,
 };
