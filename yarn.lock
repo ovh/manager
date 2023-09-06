@@ -6066,10 +6066,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.6.1.tgz#48836fa613e785c7ba66bcacd6b7bcf82387011b"
   integrity sha512-h8tfj2e8cqcqTYfgespVogYCIA4ZZuw12UyzcKwY9VVFE493yN8zKx8GZ0kudqyXlhH6wwTPwjeOBB//1KM6Gw==
 
-"@ovh-ux/ui-kit@^6.5.3":
-  version "6.5.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.5.3.tgz#f18abcce1b49d672b448ceff40beb850a57281b3"
-  integrity sha512-opCtuNe4FGPMF+wW0iqfb49O/cYWXatfTNKRF9AQi5nx5j5zfJrTniHtEeN4ySIOge+EzwowXo3W2sfeWBXx+Q==
+"@ovh-ux/ui-kit@^6.6.1":
+  version "6.6.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.6.2.tgz#93835665465ac246ec10cec1dda6b8b3fc5e0543"
+  integrity sha512-7XFGcUOig2+W+QCgKmcgzlY/S97i8+R2BawFywKckpx1bqLfDbinIz/7yCBVcReBvFFolKS+rRoxM8ZgmLvQXw==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
