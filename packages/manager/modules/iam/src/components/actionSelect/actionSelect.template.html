@@ -104,7 +104,7 @@
             class="ml-4"
             data-ng-repeat="action in actionTree.actions track by action.value"
             data-model="action.selected"
-            data-on-change="$ctrl.onModelChanged()"
+            data-on-change="$ctrl.onModelChanged(action)"
             data-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
         >
             <oui-checkbox-label>
@@ -129,9 +129,9 @@
                     <oui-checkbox-label>
                         <strong data-ng-bind="category.value"></strong>
                         <span
-                            data-translate="{{ $ctrl.constructor.getCategoryLabel(category) }}"
+                            data-translate="{{ $ctrl.getCategoryLabel(category) }}"
                             data-translate-values="{
-                                selected: category.selection.length,
+                                selected: $ctrl.constructor.countSelectedActions(category.actions),
                                 total: category.actions.length,
                             }"
                         ></span>
@@ -164,7 +164,7 @@
                         name="{{ action.id }}"
                         data-ng-model="action.selected"
                         data-ng-change="$ctrl.onModelChanged()"
-                        data-ng-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
+                        data-ng-disabled="$ctrl.readOnly || action.embedded"
                         data-ng-required="$ctrl.required"
                     />
                     <label

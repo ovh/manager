@@ -3,8 +3,10 @@ import { cloneDeep } from 'lodash-es';
 import {
   CUSTOM_ACTION_PATTERN,
   CUSTOM_ACTION_SAMPLE,
+  CUSTOM_ACTION_WILDCARD_PATTERN,
   CUSTOM_RESOURCE_TYPE,
   TAG,
+  WILDCARD,
 } from '../../iam.constants';
 
 import ActionTrees from './ActionTrees.class';
@@ -159,9 +161,8 @@ export default class ActionSelectController {
     const successKey = `${key}_custom_action_success`;
     const { instant: $t } = this.$translate;
 
-    if (value === '*') {
+    if (value === WILDCARD) {
       this.isWildcardActive = true;
-      this.customActionModel = '';
       this.customActionSuccessMessage = $t(`${successKey}_wildcard`);
     } else {
       const { action, created } = this.actionTrees.addAction(value);
@@ -171,7 +172,6 @@ export default class ActionSelectController {
           action.resourceType,
         )}</strong>`,
       };
-
       this.customActionSuccessMessage = created
         ? $t(`${successKey}_created`, translateValues)
         : $t(`${successKey}_selected`, translateValues);
@@ -192,13 +192,21 @@ export default class ActionSelectController {
       return;
     }
 
+    const selectedActions = this.ngModel?.selection || [];
+
     this.actionTrees = ActionTrees.create({
       $scope: this.$scope,
       actions: this.actions,
       actionTrees: this.actionTrees,
       resourceTypes: this.resourceTypes,
-      selectedActions: this.ngModel?.selection || [],
+      selectedActions,
     });
+
+    this.actionTrees.initAllSelectedEmbeddedActions(
+      this.isWildcardActive
+        ? [{ action: WILDCARD, selected: true }]
+        : selectedActions,
+    );
 
     // The custom form is not in the DOM yet
     this.$timeout(() => {
@@ -259,24 +267,36 @@ export default class ActionSelectController {
     this.trackActionSelectClick(
       isEnabled ? TAG.ENABLE_ALLOW_ALL_ACTIONS : TAG.DISABLE_ALLOW_ALL_ACTIONS,
     );
-    this.onModelChanged();
+    this.onModelChanged({ value: WILDCARD, selected: isEnabled });
   }
 
   /**
    * Set the required ngModel instance's value each time the model has changed
    * The ngModel is of type { action: string, resourceType?: string }[]
    */
-  onModelChanged() {
+  onModelChanged(actionModel = null) {
     // Give time to the action selected flags to react on change
     this.$timeout(() => {
-      const mappedSelection = this.actionTrees?.selection.map(
-        ({ value: action, resourceType }) => ({ action, resourceType }),
+      const selection = this.actionTrees?.selection || [];
+      const mappedSelection = selection.map(
+        ({ value: action, resourceType, embedded }) => ({
+          action,
+          resourceType,
+          embedded,
+        }),
       );
-
       this.requiredNgModel.$setViewValue({
         isWildcardActive: this.isWildcardActive,
-        selection: mappedSelection || [],
+        selection: mappedSelection,
       });
+      // if a custom action with wilcard exits(ie. resource:urn/*)
+      // all embedded actions have to be updated
+      if (
+        actionModel &&
+        CUSTOM_ACTION_WILDCARD_PATTERN.test(actionModel.value)
+      ) {
+        this.actionTrees.tagAllEmbeddedActions(actionModel);
+      }
 
       // Run a manual validation
       const { customAction, [this.name]: name } = this.form;
@@ -347,16 +367,25 @@ export default class ActionSelectController {
    * @param {Category} category
    * @returns {string}
    */
-  static getCategoryLabel({ actions, selection }) {
-    const { length: selectionLength } = selection;
+  getCategoryLabel({ actions }) {
+    const selectionCount = this.constructor.countSelectedActions(actions);
     const prefix = 'iam_action_select_category_count';
-    if (selectionLength) {
-      return selectionLength === 1
+    if (selectionCount) {
+      return selectionCount === 1
         ? `${prefix}_selection_one`
         : `${prefix}_selection_many`;
     }
     return actions.length === 1
       ? `${prefix}_no_selection_one`
       : `${prefix}_no_selection_many`;
+  }
+
+  /**
+   * compute the number of selected actions
+   * @param {Action[]} actions
+   * @returns {Number}
+   */
+  static countSelectedActions(actions) {
+    return actions?.filter(({ selected }) => selected).length;
   }
 }
