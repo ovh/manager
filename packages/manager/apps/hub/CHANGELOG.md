@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@4.1.3...@ovh-ux/manager-hub-app@4.2.0) (2023-09-06)
+
+
+### Features
+
+* **hub:** adding iam invite banner ([#9892](https://github.com/ovh/manager/issues/9892)) ([a6b8fc3](https://github.com/ovh/manager/commit/a6b8fc3a2ff747e857d07d38b3b26eac1da1e1a5))
+
+
+
+
+
 ## [4.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@4.1.2...@ovh-ux/manager-hub-app@4.1.3) (2023-09-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app
