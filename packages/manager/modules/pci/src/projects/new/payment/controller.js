@@ -548,9 +548,6 @@ export default class PciProjectNewPaymentCtrl {
   }
 
   displayCreateProjectButton() {
-    if (this.model.paymentMethod.type.isCreditCard()) {
-      return this.model.legalAgreements.credit;
-    }
     if (
       (this.model.legalAgreements.bankAccount &&
         this.model.paymentMethod.type.paymentType ===
