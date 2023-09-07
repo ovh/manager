@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-responsive-popover@6.0.2...@ovh-ux/ng-ovh-responsive-popover@6.0.3) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-responsive-popover
+
+
+
+
+
 ## [6.0.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-responsive-popover@6.0.1...@ovh-ux/ng-ovh-responsive-popover@6.0.2) (2023-01-19)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-responsive-popover

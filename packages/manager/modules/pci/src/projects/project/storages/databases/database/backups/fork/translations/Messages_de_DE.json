@@ -37,8 +37,6 @@
   "pci_databases_backups_fork_spec_region": "Datacenter:",
   "pci_databases_backups_fork_spec_region_name": "{{region}} ({{alias}})",
   "pci_databases_backups_fork_spec_flavor": "Node-Modell:",
-  "pci_databases_backups_fork_spec_flavor_CPU_one": "{{cpu}} vCore",
-  "pci_databases_backups_fork_spec_flavor_CPU_many": "{{cpu}} vCores",
   "pci_databases_backups_fork_spec_flavor_RAM": "{{ram}} RAM",
   "pci_databases_backups_fork_spec_cluster": "Cluster:",
   "pci_databases_backups_fork_spec_network": "Netzwerktyp:",
@@ -61,5 +59,8 @@
   "pci_databases_backups_fork_price_unit_hour": "/ Stunde",
   "pci_databases_backups_fork_price_unit_switch_label": "Preise pro Monat anzeigen",
   "pci_databases_backups_fork_restore_mode_title": "Wiederherstellungspunkt",
-  "pci_databases_backups_fork_restore_mode_description": "Wählen Sie den Wiederherstellungspunkt aus, von dem aus der Dienst dupliziert wird."
+  "pci_databases_backups_fork_restore_mode_description": "Wählen Sie den Wiederherstellungspunkt aus, von dem aus der Dienst dupliziert wird.",
+  "pci_databases_backups_fork_spec_flavor_CPU_one": "{{cpu}} vCore",
+  "pci_databases_backups_fork_spec_flavor_CPU_many": "{{cpu}} vCores",
+  "pci_databases_backups_fork_show_command": "API-Äquivalent"
 }

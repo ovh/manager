@@ -461,7 +461,7 @@
   "inputs_info_description": "Kliknij na proponowane opcje i skopiuj je do schowka. ",
   "inputs_info_hostname": "Nazwa hosta",
   "inputs_info_ipaddress": "Publiczny adres IP",
-  "inputs_info_certificate": "Typ certyfikatu",
+  "inputs_info_certificate": "Certyfikat serwera",
   "inputs_logs_title": "Wyjście konsoli {{inputTitle}}",
   "inputs_logs_no_logs": "Brak wiadomości odebranych w ciągu ostatniej godziny",
   "inputs_logs_title_add": "Dodaj nowe narzędzie do gromadzenia logów",
@@ -767,5 +767,6 @@
   "inputs_autoscaled_false": "Wyłączone",
   "inputs_autoscaled_notification_detail": "Powiadom mnie w wiadomości e-mail, jeśli nastąpi automatyczne skalowanie.",
   "inputs_logs_edit_min_instance_field": "Minimalna liczba instancji",
-  "inputs_logs_edit_max_instance_field": "Maksymalna liczba instancji"
+  "inputs_logs_edit_max_instance_field": "Maksymalna liczba instancji",
+  "inputs_info_ca_certificate": "Certyfikat instytucji certyfikującej"
 }

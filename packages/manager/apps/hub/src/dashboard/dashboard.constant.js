@@ -10,6 +10,10 @@ export const KYC_TRACKING_PREFIX = 'alert::kyc-india';
 
 export const KYC_HIT_PREFIX = `${KYC_TRACKING_PREFIX}::verify-identity`;
 
+export const IAM_TRACKING_PREFIX = 'alert::iam-availability';
+
+export const IAM_HIT_PREFIX = `${IAM_TRACKING_PREFIX}::goto-iam`;
+
 export default {
   SIRET_TRACKING_PREFIX,
   SIRET_HIT_PREFIX,
@@ -17,4 +21,6 @@ export default {
   TRACKING_PREFIX_EDIT,
   KYC_TRACKING_PREFIX,
   KYC_HIT_PREFIX,
+  IAM_TRACKING_PREFIX,
+  IAM_HIT_PREFIX,
 };

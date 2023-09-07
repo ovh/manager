@@ -211,10 +211,9 @@
                                 class="oui-tile__term"
                                 data-translate="server_configuration_datacenter"
                             ></dt>
-                            <dd
-                                class="oui-tile__description"
-                            >
-                                <span data-ng-bind=":: $ctrl.server.datacenter.toUpperCase().split('_').join('') + ' - ' + ( 'server_datacenter_' + $ctrl.server.datacenter.toUpperCase().split('_')[0] | translate )"
+                            <dd class="oui-tile__description">
+                                <span
+                                    data-ng-bind=":: $ctrl.server.datacenter.toUpperCase().split('_').join('') + ' - ' + ( 'server_datacenter_' + $ctrl.server.datacenter.toUpperCase().split('_')[0] | translate )"
                                 >
                                 </span>
                             </dd>
@@ -226,8 +225,7 @@
                                 data-oui-tooltip-placement="bottom"
                                 class="oui-flag {{ 'oui-flag_' + $ctrl.server.iso.toLowerCase() }}"
                                 aria-hidden="true"
-                            >
-                            </h2>
+                            ></h2>
                         </div>
                     </div>
                     <div class="oui-tile__item">
@@ -894,13 +892,6 @@
         class="mb-5"
         data-ng-if="$ctrl.trafficInformations.traffic.data.hasQuota"
         data-ng-include="'dedicated/server/consumption/consumption.html'"
-    ></div>
-
-    <!-- RTM -->
-    <div
-        class="mb-5"
-        data-ng-if="!$ctrl.server.isExpired"
-        data-ng-include="'dedicated/server/statistics/rtm/dedicated-server-statistics-rtm.html'"
     ></div>
 
     <!-- MRTG -->

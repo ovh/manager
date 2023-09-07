@@ -1644,5 +1644,14 @@
   "exchange_tab_domain_diagnostic_spf_recap": "Pole SPF zostanie dodane do strefy DNS domeny.",
   "exchange_tab_domain_diagnostic_spf": "SPF",
   "exchange_tab_domain_diagnostic_spf_title": "Diagnostyka SPF",
-  "exchange_tab_domain_diagnostic_spf_toolbox_ok": "Automatyczna konfiguracja została wykonana."
+  "exchange_tab_domain_diagnostic_spf_toolbox_ok": "Automatyczna konfiguracja została wykonana.",
+  "exchange_tab_TASKS_ADD_EXCHANGE_DOMAIN_DKIM": "Dodanie rekordu DKIM",
+  "exchange_tab_domain_diagnostic_dkim": "DKIM",
+  "exchange_tab_domain_diagnostic_dkim_title_error": "Diagnostyka DKIM",
+  "exchange_tab_domain_diagnostic_dkim_title_activation": "Włącz DKIM",
+  "exchange_tab_domain_diagnostic_dkim_configuration_nok": "Konfiguracja jest nieprawidłowa. Postępuj zgodnie z instrukcjami zawartymi w <a href=\"{{url}}\" target=\"_blank\">przewodniku</a>.",
+  "exchange_tab_domain_diagnostic_dkim_activation_no_ovhcloud": "Nie możemy automatycznie skonfigurować Twojej domeny, ponieważ nie jest ona hostowana w OVHCloud. Skonfiguruj DKIM, postępując zgodnie z instrukcjami zawartymi w tym <a href=\"{{url}}\" target=\"_blank\">przewodniku</a>.",
+  "exchange_tab_domain_diagnostic_dkim_activation_ovhcloud": "Skonfigurujemy dla Ciebie DKIM. Pełna aktywacja może potrwać 24 godziny.",
+  "exchange_tab_domain_diagnostic_dkim_activation_success": "Trwa konfiguracja DKIM. Aktualizacja może potrwać do 24 godzin.",
+  "exchange_tab_domain_diagnostic_dkim_activation_error": "Wystąpił błąd podczas konfiguracji DKIM."
 }

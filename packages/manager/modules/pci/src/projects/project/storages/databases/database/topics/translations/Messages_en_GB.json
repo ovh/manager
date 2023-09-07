@@ -4,7 +4,7 @@
   "pci_databases_topics_tab_partitions": "Partitions",
   "pci_databases_topics_tab_replication": "Replication",
   "pci_databases_topics_tab_minInsyncReplicas": "Minimum in-sync replica",
-  "pci_databases_topics_tab_retention_hours": "Retention time",
+  "pci_databases_topics_tab_retention_hours": "Retention time (hours)",
   "pci_databases_topics_tab_retention_bytes": "Retention size (bytes)",
   "pci_databases_topics_tab_cleanup_policy": "Deletion policy",
   "pci_databases_topics_tab_status": "Status",

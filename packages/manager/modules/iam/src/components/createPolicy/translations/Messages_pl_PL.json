@@ -11,7 +11,7 @@
   "iam_create_policy_deletion_resources_one": "1 zasób zostanie usunięty",
   "iam_create_policy_form_actions_description": "Wybierz zezwolone operacje dla tożsamości wybranych zasobów.",
   "iam_create_policy_form_actions_heading": "Operacje",
-  "iam_create_policy_form_name_error_pattern": "Format nazwy polityki jest niezgodny w wymaganiami",
+  "iam_create_policy_form_name_error_pattern": "Nazwa polityki może zawierać tylko znaki alfanumeryczne oraz „-”, „/”, „_”, „+”",
   "iam_create_policy_form_name_heading": "Nazwa polityki",
   "iam_create_policy_form_resource_groups_create": "Tworzenie grupy zasobów",
   "iam_create_policy_form_resource_groups_heading": "Grupy zasobów",

@@ -461,7 +461,7 @@
   "inputs_info_description": "Haga clic en las opciones propuestas para copiarlas al portapapeles.",
   "inputs_info_hostname": "Nombre del host",
   "inputs_info_ipaddress": "Dirección IP pública",
-  "inputs_info_certificate": "Tipo de certificado",
+  "inputs_info_certificate": "Certificado del servidor",
   "inputs_logs_title": "Respuesta de la consola a {{inputTitle}}",
   "inputs_logs_no_logs": "No se ha recibido ningún mensaje durante la última hora.",
   "inputs_logs_title_add": "Añadir un recopilador",
@@ -767,5 +767,6 @@
   "inputs_autoscaled_false": "Desactivado",
   "inputs_autoscaled_notification_detail": "Avisarme por correo electrónico cuando se realice un escalado automático.",
   "inputs_logs_edit_min_instance_field": "Número mínimo de instancias",
-  "inputs_logs_edit_max_instance_field": "Número máximo de instancias"
+  "inputs_logs_edit_max_instance_field": "Número máximo de instancias",
+  "inputs_info_ca_certificate": "Certificado de la autoridad de certificación"
 }

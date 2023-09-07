@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.1.3...@ovh-ux/manager-iam@1.2.0) (2023-09-05)
+
+
+### Features
+
+* **iam:** change pattern error text ([#9890](https://github.com/ovh/manager/issues/9890)) ([9e44f6c](https://github.com/ovh/manager/commit/9e44f6c1a49942784cd4ce2c02afa2ad1f30fc1d))
+* **iam:** restrict number of selections of resources on create ([#9852](https://github.com/ovh/manager/issues/9852)) ([37a62d8](https://github.com/ovh/manager/commit/37a62d8348bf4c5e8d58506e126e171f900e5aeb))
+
+
+
+
+
 ## [1.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.1.2...@ovh-ux/manager-iam@1.1.3) (2023-08-21)
 
 

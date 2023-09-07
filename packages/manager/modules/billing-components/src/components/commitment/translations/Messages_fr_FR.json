@@ -18,7 +18,7 @@
   "billing_commitment_payment_method_none": "Vous ne disposez pas d'un moyen de paiement valide.",
   "billing_commitment_payment_method_add": "Ajouter un nouveau moyen de paiement",
   "billing_commitment_summary": "Finalisation",
-  "billing_commitment_summary_description_periodic": "À compter du {{ renewDate }}, votre moyen de paiement par défaut ({{ paymentMethodName }}) sera automatiquement facturé de {{ monthlyPrice }} pour votre service {{ serviceName }} tous les mois jusqu’au{{ engagementEndDate }}.",
+  "billing_commitment_summary_description_periodic": "À compter du {{ renewDate }}, votre moyen de paiement par défaut ({{ paymentMethodName }}) sera automatiquement facturé de {{ monthlyPrice }} pour votre service {{ serviceName }} tous les mois jusqu’au {{ engagementEndDate }}.",
   "billing_commitment_summary_description_periodic_end": "Après le {{ engagementEndDate }}, votre service {{ serviceName }} sera tacitement réengagé pour une durée similaire à votre dernier engagement.",
   "billing_commitment_summary_description_upfront": "Au {{ renewDate }}, votre moyen de paiement par défaut ({{ paymentMethodName }}) sera automatiquement facturé de {{ upfrontPrice }} pour l'intégralité de la période d'engagement.",
   "billing_commitment_summary_description_upfront_end": "Après le {{ engagementEndDate }}, votre service {{ serviceName }} sera tacitement réengagé pour une durée et une modalité de paiement similaire à votre dernier engagement.",

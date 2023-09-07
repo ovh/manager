@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.7.27...@ovh-ux/manager-exchange-app@0.8.0) (2023-09-07)
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
+## [0.7.27](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.7.26...@ovh-ux/manager-exchange-app@0.7.27) (2023-09-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
 ## [0.7.26](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.7.25...@ovh-ux/manager-exchange-app@0.7.26) (2023-08-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-exchange-app

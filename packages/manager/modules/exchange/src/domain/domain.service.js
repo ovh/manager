@@ -188,4 +188,21 @@ export default class ExchangeDomains {
       },
     );
   }
+
+  getDkimSelector(organization, serviceName, domain) {
+    return this.services.$http
+      .get(
+        `/email/exchange/${organization}/service/${serviceName}/domain/${domain}/dkimSelector`,
+      )
+      .then(({ data }) => data);
+  }
+
+  postDkim(organization, serviceName, domain, params) {
+    return this.services.$http
+      .post(
+        `/email/exchange/${organization}/service/${serviceName}/domain/${domain}/dkim`,
+        params,
+      )
+      .then(({ data }) => data);
+  }
 }

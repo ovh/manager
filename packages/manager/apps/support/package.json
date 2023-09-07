@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-support-app",
-  "version": "2.9.23",
+  "version": "2.9.24",
   "private": true,
   "description": "Support standalone application.",
   "repository": {
@@ -17,18 +17,18 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-support-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^7.1.0",
-    "@ovh-ux/manager-core": "^12.12.14",
-    "@ovh-ux/manager-support": "^1.19.0",
-    "@ovh-ux/ng-at-internet": "^5.10.4",
+    "@ovh-ux/manager-config": "^7.1.1",
+    "@ovh-ux/manager-core": "^12.12.15",
+    "@ovh-ux/manager-support": "^1.19.1",
+    "@ovh-ux/ng-at-internet": "^5.10.5",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
-    "@ovh-ux/ng-ovh-http": "^5.0.6",
-    "@ovh-ux/ng-ovh-proxy-request": "^2.0.6",
-    "@ovh-ux/ng-ovh-request-tagger": "^1.1.8",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.7.0",
-    "@ovh-ux/ng-ovh-swimming-poll": "^5.0.7",
-    "@ovh-ux/ng-ovh-user-pref": "^2.0.6",
-    "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.0",
+    "@ovh-ux/ng-ovh-http": "^5.0.7",
+    "@ovh-ux/ng-ovh-proxy-request": "^2.0.7",
+    "@ovh-ux/ng-ovh-request-tagger": "^1.1.9",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.7.1",
+    "@ovh-ux/ng-ovh-swimming-poll": "^5.0.8",
+    "@ovh-ux/ng-ovh-user-pref": "^2.0.7",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.1",
     "@ovh-ux/request-tagger": "^0.1.1",
     "@ovh-ux/ui-kit": "^6.6.1",
     "@uirouter/angularjs": "^1.0.23",
@@ -51,7 +51,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^6.1.2",
+    "@ovh-ux/manager-webpack-config": "^7.0.0",
     "glob": "^7.1.6",
     "webpack-merge": "^4.2.2"
   },
