@@ -1,6 +1,4 @@
-import clone from 'lodash/clone';
 import isArray from 'lodash/isArray';
-import isEmpty from 'lodash/isEmpty';
 
 angular.module('App').controller(
   'HostingEnvvarsCtrl',
@@ -31,25 +29,19 @@ angular.module('App').controller(
       this.maxEnvvars = 0;
 
       this.$scope.$on(this.Hosting.events.tabEnvvarsRefresh, () =>
-        this.getIds(),
+        this.getEnvvars(),
       );
 
-      return this.getIds().then(() => this.loadCapabilities());
+      return this.getEnvvars().then(() => this.loadCapabilities());
     }
 
     /**
      * Load all environment variables keys from API
      */
-    getIds() {
+    getEnvvars() {
       return this.HostingEnvvars.list(this.$stateParams.productId)
-        .then((keys) => {
-          if (!isArray(keys)) {
-            throw this.$translate.instant(
-              'hosting_tab_ENVVARS_list_error_temporary',
-            );
-          }
-
-          this.envvars = keys.map((key) => ({ key }));
+        .then((envvars) => {
+          this.envvars = envvars;
         })
         .catch((err) => {
           this.Alerter.error(
@@ -59,23 +51,8 @@ angular.module('App').controller(
           );
         })
         .finally(() => {
-          this.hasResult = isArray(this.envvars) && !isEmpty(this.envvars);
           this.loading = false;
         });
-    }
-
-    /**
-     * Load an environment variable given its key
-     */
-    getEnvvar(row) {
-      return this.HostingEnvvars.get(this.$stateParams.productId, row.key).then(
-        (envvar) => {
-          const formattedEnvar = clone(envvar);
-          formattedEnvar.loaded = true;
-
-          return envvar;
-        },
-      );
     }
 
     canAddEnvvar() {
