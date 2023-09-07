@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@2.9.25...@ovh-ux/manager-nasha-app@3.0.0) (2023-09-07)
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
 ## [2.9.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha-app@2.9.24...@ovh-ux/manager-nasha-app@2.9.25) (2023-09-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-nasha-app

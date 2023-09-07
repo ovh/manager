@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.3](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@2.4.2...@ovh-ux/mfa-enrollment@2.4.3) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/mfa-enrollment
+
+
+
+
+
 ## [2.4.2](https://github.com/ovh/manager/compare/@ovh-ux/mfa-enrollment@2.4.1...@ovh-ux/mfa-enrollment@2.4.2) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/mfa-enrollment

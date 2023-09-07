@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@2.3.3...@ovh-ux/manager-error-page@2.3.4) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-error-page
+
+
+
+
+
 ## [2.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@2.3.2...@ovh-ux/manager-error-page@2.3.3) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-error-page
