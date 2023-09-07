@@ -20,5 +20,5 @@
   "data_processing_notebooks_details_resources_notebook_NB1-1_label": "{{clusterName}} 1 vCore CPU, 4 GiB memory.",
   "data_processing_notebooks_details_resources_cluster_label": "Cluster",
   "data_processing_notebooks_details_resources_cluster_description": "The cluster is sized by selecting the kernel from within JupyterLab.",
-  "data_processing_notebooks_details_resources_cluster_description_label": "{{clusterName}} driver - {{driverCores}} vCore CPU / {{driverMemory}} GiB memory (+ {{driverMemoryOverhead}} MiB overhead), executor {{executorCores}} vCores CPU / {{executorMemory}} GiB memory (+ {{executorMemoryOverhead}} MiB overhead), {{executorNumber}} executors, £{{htPrice}} ex. VAT (£{{ttcPrice}} incl. VAT)/min."
+  "data_processing_notebooks_details_resources_cluster_description_label": "{{clusterName}} driver - {{driverCores}} vCore CPU / {{driverMemory}} GiB memory (+ {{driverMemoryOverhead}} MiB overhead), executor {{executorCores}} vCores CPU / {{executorMemory}} GiB memory (+ {{executorMemoryOverhead}} MiB overhead), {{executorNumber}} executors, {{htPrice}} € ex. VAT ({{ttcPrice}} incl. VAT)/min."
 }

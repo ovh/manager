@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const fs = require('fs');
 const glob = require('glob');
@@ -55,6 +55,14 @@ module.exports = (env = {}) => {
           {
             from: path.resolve(__dirname, './client/**/*.html'),
             context: 'client/app',
+            filter: (resource) => {
+              if (
+                resource === path.resolve(__dirname, 'client/app/index.html')
+              ) {
+                return false;
+              }
+              return true;
+            },
           },
           {
             from: path.resolve(__dirname, './client/app/images/**/*.*'),

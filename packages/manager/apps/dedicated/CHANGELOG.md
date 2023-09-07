@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.11.0...@ovh-ux/manager-dedicated@19.0.0) (2023-09-07)
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
+# [18.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.10.2...@ovh-ux/manager-dedicated@18.11.0) (2023-09-05)
+
+
+### Bug Fixes
+
+* **dedicated:** remove RTM component ([#9889](https://github.com/ovh/manager/issues/9889)) ([eadef59](https://github.com/ovh/manager/commit/eadef59b2347ab65a0890626bf4ef7b31d9b4541))
+
+
+### Features
+
+* **dedicated:** dropdown partitioning scheme ovh customer ([#9837](https://github.com/ovh/manager/issues/9837)) ([51ac44a](https://github.com/ovh/manager/commit/51ac44af6fb01fdb071af4da151feda55967c66f))
+
+
+
+
+
 ## [18.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.10.1...@ovh-ux/manager-dedicated@18.10.2) (2023-08-31)
 
 

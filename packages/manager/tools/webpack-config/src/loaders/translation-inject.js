@@ -1,4 +1,3 @@
-const loaderUtils = require('loader-utils');
 const get = require('lodash/get');
 const merge = require('lodash/merge');
 const pick = require('lodash/pick');
@@ -9,11 +8,10 @@ const privateMethods = require('acorn-private-methods');
 const componentConfig = require('@ovh-ux/component-rollup-config');
 const acornDynamicImport = require('acorn-dynamic-import');
 
-const getOptions = Object.assign(loaderUtils.getOptions);
 const dynamicImport = acornDynamicImport.default;
 
 module.exports = function injectTranslationsLoader(source) {
-  const options = merge({ filtering: false }, getOptions(this));
+  const options = merge({ filtering: false }, this.getOptions());
   const translationInject = get(componentConfig, 'plugins.translationInject');
 
   const parser = acorn.Parser.extend(dynamicImport)

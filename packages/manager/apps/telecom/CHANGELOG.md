@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.2.4...@ovh-ux/manager-telecom@15.0.0) (2023-09-07)
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
+## [14.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.2.3...@ovh-ux/manager-telecom@14.2.4) (2023-09-05)
+
+
+### Bug Fixes
+
+* **telecom:** fix errors on total displayed on resumes pages ([#9891](https://github.com/ovh/manager/issues/9891)) ([7ceefee](https://github.com/ovh/manager/commit/7ceefeef57aad48ec59050707152579167d8f59d))
+
+
+
+
+
 ## [14.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.2.2...@ovh-ux/manager-telecom@14.2.3) (2023-08-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

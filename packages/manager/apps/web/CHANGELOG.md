@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.3.2...@ovh-ux/manager-web@18.0.0) (2023-09-07)
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
+## [17.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.3.1...@ovh-ux/manager-web@17.3.2) (2023-09-05)
+
+
+### Bug Fixes
+
+* **web:** typography in FR ([#9860](https://github.com/ovh/manager/issues/9860)) ([2d80bd3](https://github.com/ovh/manager/commit/2d80bd303bce449adf996ed35b0f418abce72869))
+
+
+
+
+
 ## [17.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.3.0...@ovh-ux/manager-web@17.3.1) (2023-09-04)
 
 

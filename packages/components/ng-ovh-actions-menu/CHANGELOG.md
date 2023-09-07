@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.17](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-actions-menu@5.0.16...@ovh-ux/ng-ovh-actions-menu@5.0.17) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-actions-menu
+
+
+
+
+
 ## [5.0.16](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-actions-menu@5.0.15...@ovh-ux/ng-ovh-actions-menu@5.0.16) (2023-01-19)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-actions-menu

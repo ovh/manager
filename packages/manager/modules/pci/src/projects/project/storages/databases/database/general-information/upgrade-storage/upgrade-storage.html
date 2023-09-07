@@ -8,7 +8,7 @@
 </oui-back-button>
 <div class="row bm-4">
     <div class="col-md-7 col-xl-9 mb-2">
-        <oui-message data-type="warning">
+        <oui-message data-type="info">
             <span
                 data-translate="pci_databases_general_information_upgrade_storage_warning"
             ></span>
@@ -25,6 +25,7 @@
         <pci-projects-project-database-disk-size
             data-min="0"
             data-max="($ctrl.flavor.maxDiskSize - $ctrl.flavor.minDiskSize)"
+            data-low-limit-value="$ctrl.minStorageLimit"
             data-initial-value="$ctrl.originallyAddedDiskSize"
             data-step="$ctrl.flavor.stepDiskSize"
             data-model="$ctrl.additionalDiskSize"
@@ -57,16 +58,25 @@
                                 class="oui-color-as-500 bold"
                                 data-ng-bind="'+ ' + ($ctrl.additionalDiskSize - $ctrl.originallyAddedDiskSize | bytes:2:false:'GB')"
                             ></span>
+                            <span
+                                data-ng-if="$ctrl.additionalDiskSize - $ctrl.originallyAddedDiskSize < 0"
+                                class="oui-color-aw-500 bold"
+                                data-ng-bind="'- ' + ($ctrl.originallyAddedDiskSize - $ctrl.additionalDiskSize | bytes:2:false:'GB')"
+                            ></span>
                         </div>
                     </oui-tile-description>
                 </oui-tile-definition>
 
-                <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_upgrade_storage_summary_price' | translate}}"
-                >
+                <oui-tile-definition>
                     <oui-tile-description>
+                        <pci-projects-project-database-switch-price
+                            data-show-monthly-prices="$ctrl.showMonthlyPrices"
+                        ></pci-projects-project-database-switch-price>
+                        <strong
+                            data-translate="pci_databases_general_information_upgrade_storage_summary_price"
+                        ></strong>
                         <div class="d-flex flex-column">
-                            <span>
+                            <div>
                                 <ovh-manager-catalog-price
                                     data-price="$ctrl.initialPrice"
                                     data-tax="$ctrl.initialTax"
@@ -77,10 +87,10 @@
                                 >
                                 </ovh-manager-catalog-price>
                                 <span
-                                    data-translate="pci_databases_general_information_upgrade_storage_summary_price_hourly_unit"
+                                    data-ng-bind="$ctrl.priceUnitTranslation"
                                 ></span>
-                            </span>
-                            <span
+                            </div>
+                            <div
                                 class="oui-color-as-500 bold"
                                 data-ng-if="$ctrl.additionalDiskSize - $ctrl.originallyAddedDiskSize > 0"
                             >
@@ -94,9 +104,26 @@
                                 >
                                 </ovh-manager-catalog-price>
                                 <span
-                                    data-translate="pci_databases_general_information_upgrade_storage_summary_price_hourly_unit"
+                                    data-ng-bind="$ctrl.priceUnitTranslation"
                                 ></span>
-                            </span>
+                            </div>
+                            <div
+                                class="oui-color-aw-500 bold"
+                                data-ng-if="$ctrl.additionalDiskSize - $ctrl.originallyAddedDiskSize < 0"
+                            >
+                                <ovh-manager-catalog-price
+                                    data-price="$ctrl.priceDelta"
+                                    data-tax="$ctrl.taxDelta"
+                                    data-user="$ctrl.user"
+                                    data-show-zero-price="true"
+                                    data-perform-rounding="false"
+                                    data-maximum-fraction-digits="3"
+                                >
+                                </ovh-manager-catalog-price>
+                                <span
+                                    data-ng-bind="$ctrl.priceUnitTranslation"
+                                ></span>
+                            </div>
                         </div>
                     </oui-tile-description>
                 </oui-tile-definition>
@@ -105,7 +132,7 @@
                     data-variant="primary"
                     block
                     data-on-click="$ctrl.upgradeStorage()"
-                    data-disabled="(($ctrl.flavor.minDiskSize + $ctrl.additionalDiskSize) <= $ctrl.database.disk.size) || $ctrl.upgradingStorage"
+                    data-disabled="(($ctrl.flavor.minDiskSize + $ctrl.additionalDiskSize) === $ctrl.database.disk.size) || $ctrl.upgradingStorage"
                 >
                     <span
                         data-ng-if="!$ctrl.upgradingStorage"

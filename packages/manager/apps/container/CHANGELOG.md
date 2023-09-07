@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.28.0...@ovh-ux/manager-container-app@0.28.1) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+# [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.27.2...@ovh-ux/manager-container-app@0.28.0) (2023-09-05)
+
+
+### Bug Fixes
+
+* **container:** add SAP HANA in order menu ([#9865](https://github.com/ovh/manager/issues/9865)) ([f8b8281](https://github.com/ovh/manager/commit/f8b828178dbaf8f80285d47e98a7d9467734a0a0))
+
+
+### Features
+
+* **public-cloud:** update horizon link for pci ([#9842](https://github.com/ovh/manager/issues/9842)) ([6ee69ff](https://github.com/ovh/manager/commit/6ee69ff0fcc58028c8843d8deaf2d6ca123a6a6c))
+
+
+
+
+
 ## [0.27.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.27.1...@ovh-ux/manager-container-app@0.27.2) (2023-08-30)
 
 

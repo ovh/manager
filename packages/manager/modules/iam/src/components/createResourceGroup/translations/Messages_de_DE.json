@@ -7,7 +7,7 @@
   "iam_create_resource_group_error_heading_create": "Einige Fehler im Formular verhindern die Erstellung dieser Ressourcengruppe. Bitte korrigieren Sie diese, bevor Sie es erneut absenden.",
   "iam_create_resource_group_error_heading_edit": "Einige Fehler im Formular verhindern die Bearbeitung dieser Ressourcengruppe. Bitte korrigieren Sie diese, bevor Sie es erneut absenden.",
   "iam_create_resource_group_error_no_resources": "Für diese Produkttypen sind keine Ressourcen verfügbar.",
-  "iam_create_resource_group_form_name_error_pattern": "Der Name der Ressourcengruppe hat ein ungültiges Format",
+  "iam_create_resource_group_form_name_error_pattern": "Der Name der Ressourcengruppe darf nur alphanumerische Zeichen und „-“, „/“, „_“, „+“ enthalten.",
   "iam_create_resource_group_form_name_heading": "Name der Ressourcengruppe",
   "iam_create_resource_group_form_resource_types_description": "Wählen Sie den Produkttyp für die Ressourcen aus, die Sie hinzufügen möchten.",
   "iam_create_resource_group_form_resource_types_error_required": "Wählen Sie mindestens einen Produkttyp aus.",

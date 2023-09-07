@@ -1,15 +1,16 @@
 {
-  "pci_databases_general_information_upgrade_storage": "Añadir almacenamiento adicional",
+  "pci_databases_general_information_upgrade_storage": "Modificar el almacenamiento adicional",
   "pci_databases_general_information_upgrade_storage_back": "Información general",
   "pci_databases_general_information_upgrade_storage_confirm": "Confirmar",
   "pci_databases_general_information_upgrade_storage_cancel": "Cancelar",
   "pci_databases_general_information_upgrade_storage_description": "Su modelo de nodo {{flavorName}} incluye {{includedStorage}} de almacenamiento al que es posible añadir hasta {{addableStorage}} de almacenamiento adicional por intervalos de {{step}}.",
-  "pci_databases_general_information_upgrade_storage_warning": "Una vez realizado el cambio, no podrá volver a un modelo de almacenamiento inferior.",
-  "pci_databases_general_information_upgrade_storage_success": "El almacenamiento adicional se ha añadido correctamente. Será efectivo en unos minutos.",
-  "pci_databases_general_information_upgrade_storage_error": "El almacenamiento adicional no se ha añadido correctamente: {{message}}",
-  "pci_databases_general_information_upgrade_storage_processing": "Añadiendo almacenamiento adicional...",
+  "pci_databases_general_information_upgrade_storage_warning": "El tiempo necesario para reducir el almacenamiento puede variar en función del servicio.",
+  "pci_databases_general_information_upgrade_storage_success": "El almacenamiento adicional se ha modificado correctamente. Los cambios serán efectivos en unos minutos.",
+  "pci_databases_general_information_upgrade_storage_error": "El almacenamiento adicional no se ha modificado correctamente: {{message}}",
+  "pci_databases_general_information_upgrade_storage_processing": "Modificando el almacenamiento adicional...",
   "pci_databases_general_information_upgrade_storage_summary_title": "Su cluster",
   "pci_databases_general_information_upgrade_storage_summary_storage": "Almacenamiento",
   "pci_databases_general_information_upgrade_storage_summary_price": "Precio",
-  "pci_databases_general_information_upgrade_storage_summary_price_hourly_unit": "/hora"
+  "pci_databases_general_information_upgrade_storage_summary_price_hourly_unit": "/hora",
+  "pci_databases_general_information_upgrade_storage_summary_price_monthly_unit": "/mes"
 }

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.6.0...@ovh-ux/manager-emailpro@3.7.0) (2023-09-05)
+
+
+### Features
+
+* **web:** add dkim feature ([#9693](https://github.com/ovh/manager/issues/9693)) ([ca79bd6](https://github.com/ovh/manager/commit/ca79bd68adfc7b8023ea793de28288eb16328fc3))
+
+
+
+
+
 # [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.5.1...@ovh-ux/manager-emailpro@3.6.0) (2023-08-03)
 
 
