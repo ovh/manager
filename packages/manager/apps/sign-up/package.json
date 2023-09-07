@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "scripts": {
-    "build": "webpack --env.production",
+    "build": "webpack --env production",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/sign-up-app' --include-dependencies -- npm run build --if-present",
@@ -40,7 +40,7 @@
     "angular-sanitize": "^1.7.8",
     "angular-translate": "^2.18.1",
     "bloodhound-js": "^1.2.3",
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "bootstrap4": "twbs/bootstrap#v4.6.2",
     "clipboard": "^2.0.4",
     "flatpickr": "^4.6.3",
     "lodash": "^4.17.15",
@@ -52,8 +52,8 @@
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^6.1.2",
     "glob": "^7.1.4",
-    "webpack": "^4.44.2",
-    "webpack-merge": "^4.2.2"
+    "webpack": "^5.76.2",
+    "webpack-merge": "^5.0.2"
   },
   "regions": [
     "CA",

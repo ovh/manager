@@ -11,7 +11,7 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "build": "webpack --env.production",
+    "build": "webpack --env production",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-web' --include-dependencies -- npm run build --if-present",
@@ -88,7 +88,7 @@
     "animate.css": "^3.5.0",
     "bloodhound-js": "^1.2.3",
     "bootstrap": "^3.3.6",
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "bootstrap4": "twbs/bootstrap#v4.6.2",
     "chart.js": "^2.7.2",
     "chartjs-plugin-zoom": "^0.5.0",
     "clipboard": "^2.0.4",
@@ -129,8 +129,8 @@
     "@ovh-ux/manager-webpack-config": "^6.1.2",
     "eslint-plugin-angular": "^4.0.1",
     "glob": "^7.1.4",
-    "webpack": "^4.44.2",
-    "webpack-merge": "^4.2.2"
+    "webpack": "^5.76.2",
+    "webpack-merge": "^5.0.2"
   },
   "regions": [
     "CA",

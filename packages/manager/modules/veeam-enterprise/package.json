@@ -15,13 +15,13 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "bootstrap4": "twbs/bootstrap#v4.0.0"
+    "bootstrap4": "twbs/bootstrap#v4.6.2"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.0.0",
-    "@ovh-ux/ng-translate-async-loader": "^2.1.6",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.0.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.6",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
     "@ovh-ux/ng-ui-router-layout": "^4.1.0",
     "@ovh-ux/ui-kit": "^6.5.3",
