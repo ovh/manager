@@ -174,7 +174,7 @@
                             variant="primary"
                             type="button"
                             on-click="$ctrl.initComponentInitialParams()"
-                            data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.isCheckingPaymentMethod"
+                            data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.isCheckingPaymentMethod && ($ctrl.model.legalAgreements.credit || $ctrl.model.legalAgreements.rupay)"
                             disabled="$ctrl.globalLoading.finalize  || $ctrl.model.reloadHandleByComponent"
                         >
                             <span

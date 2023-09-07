@@ -79,8 +79,8 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
 
       isDisplayableRupayCreditCardInfoBanner: /* @ngInject */ (
         ovhFeatureFlipping,
-      ) => {
-        return ovhFeatureFlipping
+      ) =>
+        ovhFeatureFlipping
           .checkFeatureAvailability(
             PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID,
           )
@@ -88,8 +88,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
             featureAvailability.isFeatureAvailable(
               PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID,
             ),
-          );
-      },
+          ),
 
       defaultPaymentMethodIntegration: /* @ngInject */ (
         $location,

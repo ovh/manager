@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 import set from 'lodash/set';
 
-import { CREDITCARD_FOOTPRINT_AMOUNT } from './constants';
+import { CREDITCARD_FOOTPRINT_AMOUNT, CHARGES } from './constants';
 
 export default class BillingPaymentMethodAddCtrl {
   /* @ngInject */
@@ -26,6 +26,9 @@ export default class BillingPaymentMethodAddCtrl {
     this.OVH_PAYMENT_METHOD_TYPE = OVH_PAYMENT_METHOD_TYPE;
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
     this.coreConfig = coreConfig;
+    this.registrationCharges = `${CHARGES}${
+      this.coreConfig.getUser().currency.code
+    }`;
 
     // other attributes used in view
     this.creditCardFootprintAmount = CREDITCARD_FOOTPRINT_AMOUNT;

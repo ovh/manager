@@ -13,10 +13,11 @@ import { DEFAULT_BINDINGS_VALUES } from './constants';
 
 export default class OvhPaymentMethodIntegrationCtrl {
   /* @ngInject */
-  constructor($location, $window, ovhPaymentMethod) {
+  constructor($location, $window, ovhPaymentMethod, $translate) {
     this.$location = $location;
     this.$window = $window;
     this.ovhPaymentMethod = ovhPaymentMethod;
+    this.$translate = $translate;
 
     // other attributes
     this.loading = {
@@ -157,7 +158,19 @@ export default class OvhPaymentMethodIntegrationCtrl {
         })
         .catch((error) => {
           // in all case (even with finalize required) call onSubmitError callback
-          this.manageCallback('onSubmitError', { error });
+          if (get(error, 'status') === 500) {
+            this.manageCallback('onSubmitError', {
+              error: {
+                data: {
+                  message: this.$translate.instant(
+                    'ovh_payment_method_registration_failure',
+                  ),
+                },
+              },
+            });
+          } else {
+            this.manageCallback('onSubmitError', { error });
+          }
           return Promise.reject(error);
         });
     });

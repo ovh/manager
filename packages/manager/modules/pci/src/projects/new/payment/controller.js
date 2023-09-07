@@ -492,7 +492,7 @@ export default class PciProjectNewPaymentCtrl {
       'payment',
       'pci_project_new_payment_create_error',
     );
-
+    this.resetLegalAgreements();
     this.componentInitialParams = null;
     this.hasComponentRedirectCallback = false;
   }

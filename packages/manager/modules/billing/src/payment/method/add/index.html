@@ -90,7 +90,8 @@
                                         data-ng-if="$ctrl.isDisplayableRupayCreditCardInfoBanner"
                                     >
                                         <p
-                                            data-translate="billing_payment_method_add_credit_card_info_for_india"
+                                            data-translate="billing_payment_method_add_credit_card_registration_charges_info"
+                                            data-translate-values="{ 'registrationCharges' : $ctrl.registrationCharges }"
                                         ></p>
                                     </div>
                                 </div>
@@ -138,7 +139,8 @@
                                 </div>
                                 <div data-ng-switch-when="RUPAY">
                                     <p
-                                        data-translate="billing_payment_method_add_credit_card_info_for_india"
+                                        data-translate="billing_payment_method_add_credit_card_registration_charges_info"
+                                        data-translate-values="{ 'registrationCharges' : $ctrl.registrationCharges }"
                                     ></p>
                                 </div>
                             </div>

@@ -8,6 +8,7 @@ import {
   PAYMENT_METHOD_AUTHORIZED_ENUM,
   PREFERRED_PAYMENT_METHOD_ORDER,
   PCI_FEATURES,
+  CHARGES,
 } from './constants';
 
 export default class PciProjectNewPaymentMethodAddCtrl {
@@ -23,6 +24,9 @@ export default class PciProjectNewPaymentMethodAddCtrl {
     this.$location = $location;
     this.coreConfig = coreConfig;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
+    this.registrationCharges = `${CHARGES}${
+      this.coreConfig.getUser().currency.code
+    }`;
 
     this.PCI_FEATURES = PCI_FEATURES;
 

@@ -23,10 +23,13 @@ export const CREDIT_PROVISIONING = {
   PRICE_MODE: 'default',
 };
 
+export const CHARGES = 2;
+
 export const PCI_FEATURES = FEATURES;
 
 export default {
   PAYMENT_METHOD_AUTHORIZED_ENUM,
   PREFERRED_PAYMENT_METHOD_ORDER,
   CREDIT_PROVISIONING,
+  CHARGES,
 };
