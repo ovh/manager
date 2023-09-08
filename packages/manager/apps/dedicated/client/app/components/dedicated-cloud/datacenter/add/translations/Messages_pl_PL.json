@@ -9,7 +9,7 @@
   "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part1": "Wybrałeś dodanie wirtualnego DataCenter (vDC) z gamy Premier, w którym NSX jest domyślnie włączony. Nie możemy dodać vDC Premier, dopóki NSX nie zostanie włączony w Twojej infrastrukturze.",
   "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part2": "Włączenie NSX następuje na stronie głównej infrastruktury VMware i nie wpływa na Twoją infrastrukturę, może potrwać do dwóch godzin, a jego postęp można śledzić w zakładce operacje.",
   "dedicatedCloud_configuration_add_datacenter_description_no_nsx_part3": "Po włączeniu NSX będziesz mógł wznowić dodawanie wirtualnego DataCenter Premier.",
-  "dedicatedCloud_configuration_add_datacenter_description": "Koszty zarządzania to koszty wirtualnych maszyn do zarządzania usługami (np. vCenter, vROps lub Edges NSX) hostowanych poza Twoimi dedykowanymi hostami, dzięki czemu możesz dysponować 100% swoich mocy (procesor, RAM).",
+  "dedicatedCloud_configuration_add_datacenter_description": "Zarządzanie fees to koszt wirtualnych maszyn zarządzających (na przykład vCenter, vROps), które są zainstalowane poza dedykowanymi hostami, dzięki czemu dysponujesz 100% ich pojemności (CPU, RAM).",
   "dedicatedCloud_configuration_add_datacenter_cta_submit": "Dodaj centrum danych",
   "dedicatedCloud_configuration_add_datacenter_cta_cancel": "Anuluj",
   "dedicatedCloud_configuration_add_datacenter_card_vsphere_label": "vSphere",
