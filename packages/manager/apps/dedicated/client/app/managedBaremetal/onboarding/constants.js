@@ -134,7 +134,7 @@ export const US_GUIDES = [
     title: 'managed_baremetal_onboarding_us_guide2_title',
     description: 'managed_baremetal_onboarding_us_guide2_description',
     link:
-      'https://support.us.ovhcloud.com/hc/en-us/articles/360015989419-How-to-Log-Into-the-vSphere-Web-Client',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/360017547920-How-to-Log-Into-the-vSphere-Web-Client',
   },
 ];
 export const US_CTA = 'https://us.ovhcloud.com/managed-bare-metal/';
