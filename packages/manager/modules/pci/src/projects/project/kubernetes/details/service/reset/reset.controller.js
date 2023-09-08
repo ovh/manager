@@ -1,6 +1,12 @@
 import get from 'lodash/get';
 
-import { RESET_CONFIRMATION_INPUT, WORKER_NODE_POLICIES } from './constants';
+import {
+  RESET_CONFIRMATION_INPUT,
+  WORKER_NODE_POLICIES,
+  KUBEPROXYMODE,
+  KUBEPROXYMODE_VALUE,
+  KUBEPROXYMODE_SCHEDULER,
+} from './constants';
 
 export default class kubernetesResetCtrl {
   /* @ngInject */
@@ -9,10 +15,13 @@ export default class kubernetesResetCtrl {
     this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
     this.RESET_CONFIRMATION_INPUT = RESET_CONFIRMATION_INPUT;
     this.WORKER_NODE_POLICIES = WORKER_NODE_POLICIES;
+    this.KUBEPROXYMODE = KUBEPROXYMODE;
+    this.KUBEPROXYMODE_SCHEDULER = KUBEPROXYMODE_SCHEDULER;
     this.Kubernetes = Kubernetes;
   }
 
   $onInit() {
+    const kubeProxyMode = KUBEPROXYMODE.IPTABLES;
     this.isReseting = false;
     const privateNetworkNone = {
       id: null,
@@ -32,6 +41,8 @@ export default class kubernetesResetCtrl {
     this.model = {
       version: kubernetesResetCtrl.getFormatedVersion(this.cluster.version),
       workerNodesPolicy: WORKER_NODE_POLICIES.DELETE,
+      kubeProxyMode,
+      kubeProxy: KUBEPROXYMODE_VALUE[kubeProxyMode],
       network: {
         private: currentPrivateNetwork || privateNetworkNone,
         gateway: {
@@ -57,6 +68,12 @@ export default class kubernetesResetCtrl {
     const options = {
       version: this.model.version,
       workerNodesPolicy: this.model.workerNodesPolicy,
+      kubeProxyMode: this.model.kubeProxyMode,
+      customization: {
+        kubeProxy: {
+          [this.model.kubeProxyMode]: this.model.kubeProxy,
+        },
+      },
       privateNetworkId: this.model.network.private.clusterRegion?.openstackId,
       ...(this.model.network.gateway.enabled && {
         privateNetworkConfiguration: {
@@ -86,12 +103,20 @@ export default class kubernetesResetCtrl {
       );
   }
 
-  onResetModalCancel() {
+  onResetCancel() {
     this.sendKubeTrack('details::service::reset::cancel');
     this.goBack();
   }
 
+  onKubeProxyModeChange() {
+    this.model.kubeProxy = KUBEPROXYMODE_VALUE[this.model.kubeProxyMode];
+  }
+
   static getFormatedVersion(version) {
     return version.substring(0, version.lastIndexOf('.'));
+  }
+
+  static getDuration(duration) {
+    return duration?.match(/([0-9]+)/)?.[1] || '';
   }
 }

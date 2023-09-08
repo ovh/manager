@@ -4,15 +4,15 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       url: '/reset',
       views: {
-        modal: {
+        '@pci.projects.project.kubernetes.details': {
           component: 'pciProjectKubernetesServiceReset',
         },
       },
-      layout: 'modal',
       resolve: {
         goBack: /* @ngInject */ (goToKubernetesDetails) =>
           goToKubernetesDetails,
-        breadcrumb: () => null,
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('pci_projects_project_kubernetes_service_reset'),
       },
     },
   );

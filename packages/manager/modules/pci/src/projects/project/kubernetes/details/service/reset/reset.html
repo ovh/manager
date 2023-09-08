@@ -1,77 +1,176 @@
+<oui-header
+    data-heading="{{ ::'pci_projects_project_kubernetes_service_reset' | translate }}"
+/>
+<oui-message data-type="warning">
+    <span
+        data-translate="pci_projects_project_kubernetes_service_reset_message"
+    />
+</oui-message>
+<oui-message data-type="warning">
+    <span
+        data-translate="pci_projects_project_kubernetes_service_reset_proxy_message"
+    />
+</oui-message>
 <form
     id="kubeClusterReset"
     name="kubeClusterReset"
     data-ng-submit="kubeClusterReset.$valid && $ctrl.reset()"
     novalidate
 >
-    <oui-modal
-        data-primary-label="{{ ::'pci_projects_project_kubernetes_service_reset_common_confirm' | translate }}"
-        data-secondary-action="$ctrl.onResetModalCancel()"
-        data-secondary-label="{{ ::'pci_projects_project_kubernetes_service_reset_common_cancel' | translate }}"
-        data-on-dismiss="$ctrl.goBack()"
-        data-loading="$ctrl.isReseting"
-        data-type="warning"
-        data-heading="{{ ::'pci_projects_project_kubernetes_service_reset' | translate }}"
+    <!-- nodes -->
+    <oui-field
+        data-label="{{ ::'pci_projects_project_kubernetes_service_reset_nodes' | translate }}"
     >
-        <oui-message data-type="warning">
-            <span
-                data-translate="pci_projects_project_kubernetes_service_reset_message"
-            ></span>
-        </oui-message>
-        <oui-field
-            data-label="{{ ::'pci_projects_project_kubernetes_service_reset_nodes' | translate }}"
-        >
-            <oui-radio-group data-model="$ctrl.model.workerNodesPolicy">
-                <oui-radio data-value="$ctrl.WORKER_NODE_POLICIES.DELETE">
-                    <span
-                        data-translate="pci_projects_project_kubernetes_service_reset_common_delete"
-                    ></span>
-                </oui-radio>
-                <oui-radio data-value="$ctrl.WORKER_NODE_POLICIES.REINSTALL">
-                    <span
-                        data-translate="pci_projects_project_kubernetes_service_reset_common_reinstall"
-                    ></span>
-                </oui-radio>
-            </oui-radio-group>
-        </oui-field>
-        <oui-field
-            data-label="{{ ::'pci_projects_project_kubernetes_service_reset_version' | translate }}"
-        >
-            <oui-select
-                data-name="version"
-                data-model="$ctrl.model.version"
-                data-items="$ctrl.versions"
-            >
-            </oui-select>
-        </oui-field>
-        <!-- private network -->
-        <oui-field
-            data-label="{{ :: 'kubernetes_add_private_network_label' | translate }}"
-        >
-            <oui-select
-                data-name="privateNetwork"
-                data-model="$ctrl.model.network.private"
-                data-items="$ctrl.availablePrivateNetworks"
-                data-match="name"
-                data-searchable
-            >
-            </oui-select>
-            <p>
+        <oui-radio-group data-model="$ctrl.model.workerNodesPolicy">
+            <oui-radio data-value="$ctrl.WORKER_NODE_POLICIES.DELETE">
                 <span
-                    data-translate="kubernetes_add_private_network_description"
+                    data-translate="pci_projects_project_kubernetes_service_reset_common_delete"
                 ></span>
-                <a
-                    data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
-                    data-translate="kubernetes_add_private_network_add"
-                    target="_top"
-                ></a>
-            </p>
-        </oui-field>
+            </oui-radio>
+            <oui-radio data-value="$ctrl.WORKER_NODE_POLICIES.REINSTALL">
+                <span
+                    data-translate="pci_projects_project_kubernetes_service_reset_common_reinstall"
+                ></span>
+            </oui-radio>
+        </oui-radio-group>
+    </oui-field>
 
-        <!--Chose OVHcloud or vRack gateway-->
-        <gateway-management-component
-            data-ng-if="$ctrl.model.network.private.id"
-            data-network="$ctrl.model.network"
-        ></gateway-management-component>
-    </oui-modal>
+    <!-- mode -->
+    <oui-field
+        data-label="{{ ::'pci_projects_project_kubernetes_service_reset_mode' | translate }}"
+    >
+        <oui-radio-group
+            data-model="$ctrl.model.kubeProxyMode"
+            data-on-change="$ctrl.onKubeProxyModeChange()"
+        >
+            <oui-radio data-value="$ctrl.KUBEPROXYMODE.IPVS">
+                <span data-ng-bind="$ctrl.KUBEPROXYMODE.IPVS"></span>
+            </oui-radio>
+            <oui-radio data-value="$ctrl.KUBEPROXYMODE.IPTABLES">
+                <span data-ng-bind="$ctrl.KUBEPROXYMODE.IPTABLES"></span>
+            </oui-radio>
+        </oui-radio-group>
+    </oui-field>
+    <p
+        class="p-0 mb-2"
+        data-translate="pci_projects_project_kubernetes_service_reset_mode_description"
+    ></p>
+    <table class="oui-table w-50">
+        <thead>
+            <tr>
+                <th
+                    class="oui-table__header"
+                    data-translate="pci_projects_project_kubernetes_service_reset_mode_table_param"
+                ></th>
+                <th
+                    class="oui-table__header"
+                    data-translate="pci_projects_project_kubernetes_service_reset_mode_table_value"
+                ></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr
+                class="oui-table__row"
+                data-ng-repeat="(key, value) in $ctrl.model.kubeProxy track by key"
+            >
+                <td class="oui-table__cell">
+                    <span data-ng-bind="key"></span>
+                    <span
+                        class="fa fa-question-circle"
+                        data-oui-tooltip="{{:: ('pci_projects_project_kubernetes_service_reset_mode_' + key) | translate }}"
+                        data-oui-tooltip-placement="right"
+                        aria-hidden="true"
+                    ></span>
+                </td>
+                <td
+                    class="oui-table__cell"
+                    data-ng-switch="$ctrl.constructor.getDuration(value)"
+                >
+                    <span
+                        data-ng-switch-when=""
+                        data-translate="pci_projects_project_kubernetes_service_reset_mode_none"
+                    ></span>
+                    <span
+                        data-ng-switch-when="0"
+                        data-translate="pci_projects_project_kubernetes_service_reset_mode_duration_zero"
+                    ></span>
+                    <span
+                        data-ng-switch-when="1"
+                        data-translate="pci_projects_project_kubernetes_service_reset_mode_duration_one"
+                    ></span>
+                    <span
+                        data-ng-switch-default
+                        data-translate="pci_projects_project_kubernetes_service_reset_mode_duration_other"
+                        data-translate-values="{ count: $ctrl.constructor.getDuration(value) }"
+                    ></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- version -->
+    <oui-field
+        data-label="{{ ::'pci_projects_project_kubernetes_service_reset_version' | translate }}"
+    >
+        <oui-select
+            data-name="version"
+            data-model="$ctrl.model.version"
+            data-items="$ctrl.versions"
+        >
+        </oui-select>
+    </oui-field>
+
+    <!-- private network -->
+    <oui-field
+        data-label="{{ :: 'kubernetes_add_private_network_label' | translate }}"
+    >
+        <oui-select
+            data-name="privateNetwork"
+            data-model="$ctrl.model.network.private"
+            data-items="$ctrl.availablePrivateNetworks"
+            data-match="name"
+            data-searchable
+        >
+        </oui-select>
+        <p>
+            <span
+                data-translate="kubernetes_add_private_network_description"
+            ></span>
+            <a
+                data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
+                data-translate="kubernetes_add_private_network_add"
+                target="_top"
+            ></a>
+        </p>
+    </oui-field>
+
+    <!--Chose OVHcloud or vRack gateway-->
+    <gateway-management-component
+        data-ng-if="$ctrl.model.network.private.id"
+        data-network="$ctrl.model.network"
+    ></gateway-management-component>
+
+    <div class="form-group">
+        <oui-button
+            class="mr-3"
+            data-type="button"
+            data-variant="secondary"
+            data-size="l"
+            data-on-click="$ctrl.onResetCancel()"
+        >
+            <span
+                data-translate="pci_projects_project_kubernetes_service_reset_common_cancel"
+            ></span>
+        </oui-button>
+        <oui-button
+            data-type="submit"
+            data-variant="primary"
+            data-size="l"
+            data-disabled="kubeClusterReset.$invalid"
+        >
+            <span
+                data-translate="pci_projects_project_kubernetes_service_reset_common_confirm"
+            ></span>
+        </oui-button>
+    </div>
 </form>
