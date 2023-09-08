@@ -444,12 +444,6 @@
                 class="{'h-100': !$ctrl.screenshot}"
                 data-loading="$ctrl.loading.domainInfos"
             >
-                <!-- OFFER -->
-                <oui-tile-definition
-                    data-term="{{ ::'domain_dashboard_offer' | translate }}"
-                    data-description="{{ ::$ctrl.domain.offer }}"
-                >
-                </oui-tile-definition>
                 <!-- RENEWAL -->
                 <wuc-service-status-action
                     data-ng-if="!$ctrl.isAllDom && $ctrl.domain.name && $ctrl.domainInfos"
