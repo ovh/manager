@@ -714,7 +714,7 @@
   "server_configuration_installation_ovh_step3_partition_size": "Größe: <b>{{t0}}</b>",
   "server_configuration_installation_ovh_step3_error_integrity": "Beim Kohärenztest Ihrer angepassten Installation ({{t0}}) wurde ein Fehler festgestellt. Die Installation kann nicht durchgeführt werden.",
   "server_configuration_installation_ovh_step3_error_integrity_info": "Bitte korrigieren Sie den Fehler, indem Sie auf den „Zurück“-Button klicken",
-  "server_configuration_installation_ovh_step3_partition_variable": "Partition mit variabler Größe:",
+  "server_configuration_installation_ovh_step3_partition_variable": "Partition variabler Größe:",
   "server_configuration_installation_ovh_step3_partition_variable_help": "Diese Partition belegt den verbleibenden Speicherplatz, um das Template für einen Server mit abweichendem Gesamtspeicherplatz anzupassen.",
   "server_configuration_installation_ovh_step3_partition_variable_info": "Die Partition <b>{{t0}}</b> passt so ihre Größe an, um den noch verfügbaren Speicherplatz eines anderen Servers zu verwenden.",
   "server_configuration_installation_ovh_step3_partition_none": "Keine",

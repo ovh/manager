@@ -1644,5 +1644,14 @@
   "exchange_tab_domain_diagnostic_spf_recap": "An SPF record will be added to your domain’s DNS zone.",
   "exchange_tab_domain_diagnostic_spf": "SPF",
   "exchange_tab_domain_diagnostic_spf_title": "SPF Diagnosis",
-  "exchange_tab_domain_diagnostic_spf_toolbox_ok": "Automatic configuration complete"
+  "exchange_tab_domain_diagnostic_spf_toolbox_ok": "Automatic configuration complete",
+  "exchange_tab_TASKS_ADD_EXCHANGE_DOMAIN_DKIM": "Adding a DKIM record",
+  "exchange_tab_domain_diagnostic_dkim": "DKIM",
+  "exchange_tab_domain_diagnostic_dkim_title_error": "DKIM diagnostic",
+  "exchange_tab_domain_diagnostic_dkim_title_activation": "Enable DKIM",
+  "exchange_tab_domain_diagnostic_dkim_configuration_nok": "Your configuration is incorrect. Please follow the instructions in the <a href=\"{{url}}\" target=\"_blank\">guide</a>.",
+  "exchange_tab_domain_diagnostic_dkim_activation_no_ovhcloud": "Since your domain is not hosted with OVHcloud, we cannot configure it automatically. You can configure DKIM by following this <a href=\"{{url}}\" target=\"_blank\">guide</a>.",
+  "exchange_tab_domain_diagnostic_dkim_activation_ovhcloud": "We will configure DKIM for you. It may take 24 hours to fully activate.",
+  "exchange_tab_domain_diagnostic_dkim_activation_success": "DKIM configuration in progress. Please note that the update may take up to 24 hours to propagate.",
+  "exchange_tab_domain_diagnostic_dkim_activation_error": "An error occurred while configuring the DKIM."
 }
