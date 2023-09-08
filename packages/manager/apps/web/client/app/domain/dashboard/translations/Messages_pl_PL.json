@@ -827,5 +827,7 @@
   "domain_configuration_renew": "Twoja domena jest zawieszona. Możesz ją odnowić w okresie karencji. Po tym terminie zostaną zastosowane dodatkowe opłaty.",
   "domain_configuration_restorable": "Trwa usuwanie Twojej domeny. Możesz ją przywrócić za dodatkową opłatą przy użyciu przeznaczonego do tego celu linku. W przeciwnym razie Twoja domena zostanie definitywnie usunięta.",
   "domain_configuration_restorable_title_button": "Przywróć",
-  "domain_hosting_price_ht_label": "{{price}} netto"
+  "domain_hosting_price_ht_label": "{{price}} netto",
+  "domain_dashboard_obfuscated_email": "Adresy antyspamowe",
+  "domain_dashboard_obfuscated_email_regenerate_button": "Zarządzanie adresami antyspamowymi"
 }
