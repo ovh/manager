@@ -32,11 +32,11 @@
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.7",
     "@ovh-ux/ng-ovh-sso-auth": "^4.6.3",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.6",
-    "@ovh-ux/ng-shell-tracking": "^0.2.1",
+    "@ovh-ux/ng-shell-tracking": "^0.3.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.5",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.7",
     "@ovh-ux/request-tagger": "^0.1.1",
-    "@ovh-ux/shell": "^2.0.0",
+    "@ovh-ux/shell": "^3.0.0",
     "@ovh-ux/ui-kit": "^6.3.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
@@ -58,7 +58,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^6.1.1",
+    "@ovh-ux/manager-webpack-config": "^7.0.0",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack": "^4.44.2",
