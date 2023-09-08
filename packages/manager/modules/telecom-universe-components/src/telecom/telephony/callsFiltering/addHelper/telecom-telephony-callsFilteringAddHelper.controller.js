@@ -2,7 +2,6 @@ import angular from 'angular';
 import map from 'lodash/map';
 
 export default /* @ngInject */ function(
-  $stateParams,
   $translate,
   $q,
   $uibModalInstance,
@@ -41,20 +40,7 @@ export default /* @ngInject */ function(
         '+9',
       ],
       special: ['+338'],
-      short: [
-        '10',
-        '11',
-        '12',
-        '13',
-        '14',
-        '16',
-        '19',
-        '30',
-        '31',
-        '32',
-        '36',
-        '39',
-      ],
+      short: ['10', '13', '14', '16', '30', '31', '32', '36', '39'],
     };
   }
 
