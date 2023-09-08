@@ -672,7 +672,7 @@
   "server_configuration_installation_ovh_step2_remaining_size": "Espacio restante:",
   "server_configuration_installation_ovh_step2_remaining_size_button": "Espacio restante",
   "server_configuration_installation_ovh_step2_info": "Configuración de la tabla de particiones de la distribución <b>{{t0}}</b>",
-  "server_configuration_installation_ovh_step2_scheme": "Esquema de partición predefinido:",
+  "server_configuration_installation_ovh_step2_scheme": "Esquema de particionado predefinido:",
   "server_configuration_installation_ovh_step2_raid_hard": "(RAID por hardware)",
   "server_configuration_installation_ovh_step2_info_partition_cachecade": "En una configuración CacheCade, el espacio en disco dedicado a la caché no puede particionarse.",
   "server_configuration_installation_ovh_step2_error_empty_scheme": "No hay ninguna tabla de particiones compatible con la distribución {{t1}} para el servidor {{t0}}. Elija otra distribución.",
