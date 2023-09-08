@@ -40,12 +40,14 @@
 
 <div data-ui-view>
     <div data-ovh-alert></div>
+
+    <ovh-manager-auto-renew-2016-deployment-banner
+        data-show="$ctrl.isAutorenew2016DeploymentBannerAvailable"
+    ></ovh-manager-auto-renew-2016-deployment-banner>
+
     <oui-message
         class="mb-4"
-        data-ng-if="$ctrl.BillingAutoRenew.isAutomaticRenewV2Available() && (
-                !$ctrl.defaultPaymentMean
-                || ($ctrl.defaultPaymentMean && !$ctrl.nicRenew.active))
-                && !$ctrl.currentUser.hasAutorenew2016()"
+        data-ng-if="$ctrl.shouldDisplayAutoRenewActionRequired()"
         data-type="error"
         data-dismissable
     >
