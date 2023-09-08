@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.8.2...@ovh-ux/manager-nutanix@1.9.0) (2023-09-08)
+
+
+### Features
+
+* **dedicated.nutanix:** onboarding order url for us ([#9953](https://github.com/ovh/manager/issues/9953)) ([915ca47](https://github.com/ovh/manager/commit/915ca47a53bbcb6d3c80ee61a20274fc90c7e16e))
+
+
+
+
+
 ## [1.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.8.1...@ovh-ux/manager-nutanix@1.8.2) (2023-09-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-nutanix

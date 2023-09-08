@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.0.0...@ovh-ux/manager-web@18.0.1) (2023-09-08)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix delete envvar request ([#9960](https://github.com/ovh/manager/issues/9960)) ([66e5c27](https://github.com/ovh/manager/commit/66e5c270626dcf448c306480e875cd80e65e7237))
+
+
+
+
+
 # [18.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.3.2...@ovh-ux/manager-web@18.0.0) (2023-09-07)
 
 

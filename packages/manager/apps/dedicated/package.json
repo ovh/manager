@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "19.0.0",
+  "version": "19.0.1",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -36,7 +36,7 @@
     "@ovh-ux/manager-core": "^12.12.15",
     "@ovh-ux/manager-dbaas-logs": "^1.14.0",
     "@ovh-ux/manager-error-page": "^2.3.4",
-    "@ovh-ux/manager-exchange": "^4.0.0",
+    "@ovh-ux/manager-exchange": "^4.0.1",
     "@ovh-ux/manager-filters": "^1.1.1",
     "@ovh-ux/manager-iplb": "^1.7.4",
     "@ovh-ux/manager-metrics": "^1.4.1",
@@ -44,7 +44,7 @@
     "@ovh-ux/manager-nasha": "^2.7.2",
     "@ovh-ux/manager-netapp": "^1.5.6",
     "@ovh-ux/manager-ng-layout-helpers": "^2.7.1",
-    "@ovh-ux/manager-nutanix": "^1.8.2",
+    "@ovh-ux/manager-nutanix": "^1.9.0",
     "@ovh-ux/manager-support": "^1.19.1",
     "@ovh-ux/manager-trusted-nic": "^1.1.1",
     "@ovh-ux/manager-veeam-cloud-connect": "^2.5.1",
