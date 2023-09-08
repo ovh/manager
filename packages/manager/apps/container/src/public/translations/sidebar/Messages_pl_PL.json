@@ -159,5 +159,6 @@
   "sidebar_access_dashboard": "Dostęp do interfejsu",
   "sidebar_account_iam": "Tożsamości i uprawnienia (IAM)",
   "sidebar_carbon_footprint": "Mój ślad węglowy",
-  "sidebar_account_identity_documents": "Moje dokumenty tożsamości"
+  "sidebar_account_identity_documents": "Moje dokumenty tożsamości",
+  "sidebar_pci_octavia_load_balancer": "Load Balancer"
 }
