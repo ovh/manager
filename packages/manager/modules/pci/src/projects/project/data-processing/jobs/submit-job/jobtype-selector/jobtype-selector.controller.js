@@ -1,4 +1,5 @@
 import { startCase } from 'lodash';
+import { VERSION_STATUS, getVersionStatus } from './jobtype-selector.constants';
 
 export default class {
   /* @ngInject */
@@ -6,34 +7,46 @@ export default class {
     this.$translate = $translate;
     // define available compute engines
     this.availableEngines = [];
+    this.VERSION_STATUS = VERSION_STATUS;
   }
 
   $onChanges() {
     if (this.jobEngines) {
-      this.availableEngines = Object.values(this.jobEngines).map((engine) => ({
-        name: startCase(engine.name),
-        description: this.$translate.instant(
-          `data_processing_submit_job_${engine.name}_description`,
-        ),
-        versions: engine.availableVersions.map((v) => ({
-          id: `${engine.name}@${v.name}`,
+      this.availableEngines = Object.values(this.jobEngines)
+        .map((engine) => ({
+          name: startCase(engine.name),
+          description: this.$translate.instant(
+            `data_processing_submit_job_${engine.name}_description`,
+          ),
           engine: engine.name,
-          version: v.name,
-          description: v.description,
-        })),
-      }));
-      this.onChange(this.availableEngines[0].versions[0]);
+          versions: engine.availableVersions
+            .map((v) => ({
+              id: `${engine.name}@${v.name}`,
+              engine: engine.name,
+              version: v.name,
+              status: getVersionStatus(v),
+              description: v.description,
+            }))
+            // do not display ended versions
+            .filter((version) => version.status !== VERSION_STATUS.EOL),
+        }))
+        .map((availableEngine) => ({
+          ...availableEngine,
+          selectedVersion: availableEngine.versions[0],
+        }));
+
+      this.onChange(this.availableEngines[0]);
     }
   }
 
   /**
    * Handle change events
    */
-  onChange(selectedJob) {
-    this.jobType = selectedJob;
+  onChange(selectedEngine) {
+    this.jobEngine = selectedEngine;
     this.onChangeHandler({
-      engine: selectedJob.engine,
-      version: selectedJob.version,
+      engine: this.jobEngine.selectedVersion.engine,
+      version: this.jobEngine.selectedVersion.version,
     });
   }
 }
