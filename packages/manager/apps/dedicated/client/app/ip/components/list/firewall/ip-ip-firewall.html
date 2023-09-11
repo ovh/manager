@@ -39,10 +39,14 @@
         dismissable
         class="mt-2 mb-2"
     >
-        <span
-            data-translate="ip_firewall_deny"
-            data-translate-values="{ 'denyUrl': IpFirewallCtrl.denyUrl}"
-        ></span>
+        <span data-translate="ip_firewall_deny_part_1"></span>
+        <a
+            href="javascript:void(0)"
+            data-ng-click="IpFirewallCtrl.createDenyRule()"
+        >
+            <span data-translate="ip_firewall_deny_link"></span>
+        </a>
+        <span data-translate="ip_firewall_deny_part_2"></span>
     </oui-message>
 
     <div class="d-flex justify-content-between">
