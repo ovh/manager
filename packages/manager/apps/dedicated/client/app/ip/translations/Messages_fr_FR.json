@@ -440,6 +440,7 @@
   "ip_firewall_new_success": "Le firewall sera créé dans quelques instant sur l'IP {{t0}}.",
   "ip_firewall_new_failed": "Une erreur est survenue lors de la création du firewall sur l'IP {{t0}}",
   "ip_firewall_add_success": "La règle a bien été créée !",
+  "ip_firewall_delete_success": "La règle a bien été supprimée !",
   "ip_firewall_deny_part_1": "Nous n'avons détecté que des règles \"Accepter\" et aucune règle \"Refuser\", donc aucun trafic ne sera bloqué par cette configuration. Nous vous suggérons la dernière règle pour rendre votre configuration efficace. Cliquez ici ",
   "ip_firewall_deny_link": "créer une règle de refus",
   "ip_firewall_deny_part_2": " pour ajouter règle.",
