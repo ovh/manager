@@ -14,6 +14,9 @@ initShellClient('octavia-load-balancer').then((shellClient) => {
   if (!isTopLevelApplication()) {
     shellClient.ux.startProgress();
   }
+  shellClient.i18n.onLocaleChange(() => {
+    window.top.location.reload();
+  });
   shellClient.environment.getEnvironment().then((environment) => {
     environment.setVersion(__VERSION__);
     import(`./config-${environment.getRegion()}`)
