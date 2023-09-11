@@ -85,5 +85,9 @@
   "pci_projects_project_training_jobs_submit_select_privacy_settings_item_restricted_description": "Dostęp do zadania jest zarezerwowany dla użytkowników Public Cloud OVHcloud utworzonych w Twoim projekcie.",
   "pci_projects_project_training_jobs_submit_select_privacy_settings_item_public": "Dostęp publiczny",
   "pci_projects_project_training_jobs_submit_select_privacy_settings_item_public_description": "Twoje zadanie jest dostępne dla wszystkich poprzez URL. Każdy może uzyskać dostęp do Twojego kodu i powiązanych z nim danych.",
-  "pci_projects_project_training_jobs_submit_select_privacy_settings_item_public_warning": "Zachowaj ostrożność w przypadku danych wrażliwych."
+  "pci_projects_project_training_jobs_submit_select_privacy_settings_item_public_warning": "Zachowaj ostrożność w przypadku danych wrażliwych.",
+  "pci_projects_project_training_jobs_add_banner_user_token_description": "Aby móc korzystać z AI Tools, upewnij się, że korzystasz ze skonfigurowanego użytkownika AI lub tokena.",
+  "pci_projects_project_training_jobs_add_banner_user_token_description_link": "Zarządzaj moimi użytkownikami AI i tokenami",
+  "pci_projects_project_training_jobs_add_banner_object_storage_description": "Jeśli chcesz powiązać kontener z Twoim zadaniem, zalecamy jego wcześniejsze utworzenie w interfejsie Object Storage.",
+  "pci_projects_project_training_jobs_add_banner_object_storage_description_link": "Utwórz kontener obiektów"
 }

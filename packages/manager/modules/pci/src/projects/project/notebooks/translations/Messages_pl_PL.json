@@ -30,5 +30,7 @@
   "pci_notebook_permission_RWD": "Odczyt, Zapis oraz Usuwanie",
   "pci_notebook_data_cache": "Cache",
   "pci_notebook_list_status_DELETING": "Trwa usuwanie kampanii",
-  "pci_notebook_list_status_SYNC_FAILED": "Błąd synchronizacji"
+  "pci_notebook_list_status_SYNC_FAILED": "Błąd synchronizacji",
+  "pci_ai_dashboard_banner_user_and_roles_info": "Aby móc korzystać z AI Tools, upewnij się, że korzystasz ze skonfigurowanego użytkownika AI lub tokena.",
+  "pci_ai_dashboard_banner_user_and_roles_info_link": "Zarządzaj moimi użytkownikami AI i tokenami"
 }
