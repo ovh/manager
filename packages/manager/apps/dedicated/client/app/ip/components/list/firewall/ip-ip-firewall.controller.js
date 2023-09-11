@@ -198,6 +198,9 @@ export default /* @ngInject */ function IpFirewallCtrl(
                     );
                     changeRuleStatus(i, rulePoll.state);
                   } else {
+                    self.successMessage = $translate.instant(
+                      'ip_firewall_delete_success',
+                    );
                     reloadRules();
                   }
                 });
