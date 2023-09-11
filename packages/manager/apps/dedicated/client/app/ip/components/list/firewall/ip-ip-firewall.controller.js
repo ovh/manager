@@ -37,6 +37,7 @@ export default /* @ngInject */ function IpFirewallCtrl(
     PAGE_SIZE_MIN: 10,
     PAGE_SIZE_MAX: 20,
     CREATION_PENDING: 'creationPending',
+    REMOVAL_PENDING: 'removalPending',
     PORT_MIN: 0,
     PORT_MAX: 65535,
     OK: 'ok',
@@ -317,6 +318,7 @@ export default /* @ngInject */ function IpFirewallCtrl(
   }
 
   self.addRuleClick = () => {
+    resetFields();
     self.isAddingRule = true;
   };
 
@@ -445,5 +447,54 @@ export default /* @ngInject */ function IpFirewallCtrl(
 
     self.isAddingRule = true;
     self.rulesLoading = false;
+  };
+
+  self.editRule = (index) => {
+    self.rules.list.results[index].isEditable = true;
+
+    self.rule.action = self.rules.list.results[index].action;
+    const i = self.constants.sequences.findIndex((element) => {
+      return element.name === self.rules.list.results[index].sequence;
+    });
+    self.rule.sequence = self.constants.sequences[i];
+    self.rule.source = self.rules.list.results[index].source;
+    if (self.rule.source === 'any') {
+      self.rule.source = '';
+    }
+    self.rule.destinationPort = self.rules.list.results[index].destinationPort;
+    self.rule.sourcePort = self.rules.list.results[index].sourcePort;
+    if (self.rules.list.results[index].fragments) {
+      self.rule.fragments = self.rules.list.results[index].fragments;
+    }
+    self.rule.protocol = self.rules.list.results[index].protocol;
+    if (self.rules.list.results[index].tcpOption) {
+      self.rule.tcpOption = self.rules.list.results[index].tcpOption;
+    }
+  };
+
+  self.applyEdit = (index) => {
+    const { sequence } = self.rules.list.results[index];
+    // First step : delete rule
+    IpFirewall.removeFirewallRule(
+      self.selectedBlock,
+      self.selectedIp,
+      sequence,
+    ).then(() => {
+      changeRuleStatus(index, self.constants.REMOVAL_PENDING);
+      delete self.rules.list.results[index].isEditable;
+
+      IpFirewall.pollFirewallRule(
+        self.selectedBlock,
+        self.selectedIp,
+        sequence,
+      ).then(() => {
+        // Next step : create rule
+        self.addFirewallRule();
+      });
+    });
+  };
+
+  self.cancelEdit = (index) => {
+    delete self.rules.list.results[index].isEditable;
   };
 }
