@@ -1,6 +1,0 @@
-{
-  "server_reversedns_delete_title": "Delete reverse DNS",
-  "server_reversedns_delete_reversedns_confirmation": "Are you sure you want to delete the following reverse DNS: {{t0}}?",
-  "server_reversedns_delete_loading_error": "An error has occurred loading your service.",
-  "server_reversedns_delete_confirm": "Delete reverse DNS"
-}

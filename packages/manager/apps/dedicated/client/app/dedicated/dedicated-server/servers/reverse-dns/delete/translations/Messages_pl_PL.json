@@ -1,0 +1,6 @@
+{
+  "server_reversedns_delete_title": "Usuń rewers DNS",
+  "server_reversedns_delete_reversedns_confirmation": "Czy chcesz usunąć revers DNS: {{t0}} ?",
+  "server_reversedns_delete_loading_error": "Wystąpił błąd podczas ładowania usługi. ",
+  "server_reversedns_delete_confirm": "Usuń rewers DNS"
+}
