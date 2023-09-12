@@ -768,5 +768,5 @@
   "inputs_autoscaled_notification_detail": "Powiadom mnie w wiadomości e-mail, jeśli nastąpi automatyczne skalowanie.",
   "inputs_logs_edit_min_instance_field": "Minimalna liczba instancji",
   "inputs_logs_edit_max_instance_field": "Maksymalna liczba instancji",
-  "inputs_info_ca_certificate": "Certyfikat instytucji certyfikującej"
+  "inputs_info_ca_certificate": "Certyfikat urzędu certyfikacji"
 }
