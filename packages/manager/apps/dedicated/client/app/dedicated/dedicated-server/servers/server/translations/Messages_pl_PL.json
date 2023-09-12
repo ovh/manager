@@ -667,7 +667,7 @@
   "server_configuration_installation_ovh_step2_remaining_size": "Pozostała przestrzeń:",
   "server_configuration_installation_ovh_step2_remaining_size_button": "Pozostała przestrzeń",
   "server_configuration_installation_ovh_step2_info": "Konfiguracja układu partycji dla dystrybucji <b>{{t0}</b>",
-  "server_configuration_installation_ovh_step2_scheme": "Predefiniowany układ partycji:",
+  "server_configuration_installation_ovh_step2_scheme": "Predefiniowany schemat partycji:",
   "server_configuration_installation_ovh_step2_raid_hard": "(RAID Hard)",
   "server_configuration_installation_ovh_step2_info_partition_cachecade": "W konfiguracji CacheCade przestrzeń dyskowa przeznaczona na cache nie może zostać podzielona na partycje.",
   "server_configuration_installation_ovh_step2_error_empty_scheme": "Brak układu partycji kompatybilnego z serwerem {{t0}} dla dystrybucji {{t1}}.  Wybierz inną dystrybucję.",

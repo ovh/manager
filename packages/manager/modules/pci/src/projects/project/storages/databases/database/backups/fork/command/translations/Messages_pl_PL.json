@@ -7,7 +7,7 @@
   "pci_databases_fork_command_parameters": "Ustawienia:",
   "pci_databases_fork_command_parameters_info": "Więcej informacji na temat dostępnych ustawień:",
   "pci_databases_fork_command_parameters_info_description": "Nazwa usługi",
-  "pci_databases_fork_command_parameters_info_forkFrom_serviceId": "Id oryginalnej usługi",
+  "pci_databases_fork_command_parameters_info_forkFrom_serviceId": "ID usługi źródłowej",
   "pci_databases_fork_command_parameters_info_forkFrom_backupId": "ID kopii zapasowej",
   "pci_databases_fork_command_parameters_info_forkFrom_pointInTime": "Punkt przywracania",
   "pci_databases_fork_command_parameters_info_networkId": "ID sieci prywatnej openstack",
