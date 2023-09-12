@@ -22,6 +22,7 @@ export const GUIDES = {
   WE: 'https://docs.ovh.com/us/en/',
   WS: 'https://docs.ovh.com/us/es/',
   US: 'https://docs.us.ovhcloud.com',
+  IN: 'https://docs.ovh.com/asia/en/',
 };
 
 export const OFFER_TYPES = {

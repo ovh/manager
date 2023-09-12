@@ -17,6 +17,7 @@ export const SSH_CREATE_GUIDES = {
   WS: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
   US:
     'http://support.us.ovhcloud.com/hc/en-us/articles/115001588250-SSH-Key-Management',
+  IN: 'https://www.ovh.com/ca/en/g1769.creating_ssh_keys',
 };
 
 export const SSH_ADD_GUIDES = {
@@ -38,6 +39,7 @@ export const SSH_ADD_GUIDES = {
   WS: 'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
   US:
     'http://support.us.ovhcloud.com/hc/en-us/articles/115001588250-SSH-Key-Management',
+  IN: 'https://www.ovh.com/ca/en/g1924.configuring_additionnal_ssh_key',
 };
 
 export const SSH_CHANGE_GUIDES = {
@@ -61,6 +63,7 @@ export const SSH_CHANGE_GUIDES = {
   WS: 'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
   sshChange:
     'http://support.us.ovhcloud.com/hc/en-us/articles/115001588250-SSH-Key-Management',
+  IN: 'https://www.ovh.com/ca/en/g2069.replacing_your_lost_ssh_key_pair',
 };
 
 export default {

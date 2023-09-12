@@ -3,6 +3,8 @@ export const DEDICATED_CLOUD_ORDER_URLS = {
     'https://ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
   ASIA:
     'https://ovhcloud.com/asia/enterprise/products/hosted-private-cloud/prices/',
+  IN:
+    'https://www.ovhcloud.com/en-in/enterprise/products/hosted-private-cloud/prices/',
   DE:
     'https://ovhcloud.com/de/enterprise/products/hosted-private-cloud/prices/',
   ES:

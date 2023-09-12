@@ -74,10 +74,12 @@ export default {
       SG: `${helpRoot}/en-sg`,
       WE: `${helpRoot}/en`,
       WS: `${helpRoot}/es`,
+      IN: `${helpRoot}/asia`,
     },
     tasks: 'https://www.status-ovhcloud.com/',
     expressOrder: {
       ASIA: 'https://ca.ovh.com/asia/order/express/#/express/review',
+      IN: 'https://ca.ovh.com/in/order/express/#/express/review',
       AU: 'https://ca.ovh.com/au/order/express/#/express/review',
       CA: 'https://ca.ovh.com/en/order/express/#/express/review',
       QC: 'https://ca.ovh.com/fr/order/express/#/express/review',

@@ -56,6 +56,8 @@ export const SECURITY_URL = {
     'https://www.ovhcloud.com/en-sg/security/anti-ddos/ddos-attack-mitigation/',
   ASIA:
     'https://www.ovhcloud.com/asia/security/anti-ddos/ddos-attack-mitigation/',
+  IN:
+    'https://www.ovhcloud.com/en-in/security/anti-ddos/ddos-attack-mitigation/',
   EU: 'https://www.ovhcloud.com/en/security/anti-ddos/ddos-attack-mitigation/',
   WE: 'https://www.ovhcloud.com/en/security/anti-ddos/ddos-attack-mitigation/',
   WS: 'https://www.ovhcloud.com/es/security/anti-ddos/ddos-attack-mitigation/',

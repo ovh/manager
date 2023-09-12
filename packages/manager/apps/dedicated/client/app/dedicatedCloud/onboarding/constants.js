@@ -33,6 +33,8 @@ export const GUIDES = [
       WS: 'https://docs.ovh.com/us/es/private-cloud/manager-ovh-private-cloud/',
       US:
         'https://docs.ovh.com/us/en/private-cloud/control-panel-ovh-private-cloud/',
+      IN:
+        'https://docs.ovh.com/asia/en/private-cloud/deploying-a-virtual-machine/',
     },
   },
   {
@@ -62,6 +64,7 @@ export const GUIDES = [
       WE: 'https://docs.ovh.com/us/en/private-cloud/tanzu-tkgm-presentation/',
       WS: 'https://docs.ovh.com/us/es/private-cloud/tanzu-tkgm-presentation/',
       US: 'https://docs.ovh.com/us/en/private-cloud/tanzu-tkgm-presentation/',
+      IN: 'https://docs.ovh.com/asia/en/private-cloud/tanzu-tkgm-presentation/',
     },
   },
   {
@@ -107,6 +110,7 @@ export const GUIDES = [
         'https://docs.ovh.com/us/es/private-cloud/configuracion-ip-maquina-virtual/',
       US:
         'https://docs.ovh.com/us/en/private-cloud/configure-ip-on-virtual-machine/',
+      IN: 'https://docs.ovh.com/asia/en/private-cloud/configure-ip-on-virtual-machine/',
     },
   },
 ];
@@ -126,6 +130,7 @@ export const CTAS = {
   SN: 'https://www.ovhcloud.com/fr-sn/hosted-private-cloud/vmware/prices/',
   TN: 'https://www.ovhcloud.com/fr-tn/hosted-private-cloud/vmware/prices/',
   ASIA: 'https://www.ovhcloud.com/asia/hosted-private-cloud/vmware/prices/',
+  IN: 'https://www.ovhcloud.com/asia/hosted-private-cloud/vmware/prices/',
   AU: 'https://www.ovhcloud.com/en-au/hosted-private-cloud/vmware/prices/',
   CA: 'https://www.ovhcloud.com/en-ca/hosted-private-cloud/vmware/prices/',
   QC: 'https://www.ovhcloud.com/fr-ca/hosted-private-cloud/vmware/prices/',

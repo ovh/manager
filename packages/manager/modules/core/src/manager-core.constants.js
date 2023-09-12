@@ -62,6 +62,7 @@ export const URLS = {
   support_level: {
     default: 'https://www.ovhcloud.com/en-gb/support-levels',
     ASIA: 'https://www.ovhcloud.com/asia/support-levels',
+    IN: 'https://www.ovhcloud.com/en-in/support-levels',
     AU: 'https://www.ovhcloud.com/en-au/support-levels',
     CA: 'https://www.ovhcloud.com/en-ca/support-levels',
     DE: 'https://www.ovhcloud.com/de/support-levels',
@@ -322,6 +323,8 @@ export const URLS = {
         'https://docs.ovh.com/us/en/hosting/guide_to_using_the_geocache_accelerator_on_a_web_hosting_package/',
       WS:
         'https://docs.ovh.com/us/es/hosting/guia_de_uso_del_acelerador_geocache_en_un_alojamiento_web/',
+      IN:
+        'https://docs.ovh.com/asia/en/hosting/guide_to_using_the_geocache_accelerator_on_a_web_hosting_package/',
     },
     cda: 'storage/',
     ip_failover: {
@@ -467,6 +470,7 @@ export const URLS = {
       TN: 'https://docs.ovh.com/tn/fr/storage/',
       WE: 'https://docs.ovh.com/en/storage/',
       WS: 'https://docs.ovh.com/es/storage/',
+      IN: 'https://docs.ovh.com/asia/en/storage/',
     },
     xauthtoken: {
       FR: 'https://www.ovh.com/fr/publiccloud/guides/g1872.gestion_des_tokens',

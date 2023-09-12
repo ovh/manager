@@ -50,6 +50,7 @@ export const GUIDES = [
 export const CTAS = {
   DEFAULT: 'https://ovhcloud.com/en/emails/email-pro/',
   ASIA: 'https://ovhcloud.com/asia/emails/email-pro/',
+  IN: 'https://www.ovhcloud.com/en-in/emails/email-pro/',
   DE: 'https://ovhcloud.com/de/emails/email-pro/',
   ES: 'https://ovhcloud.com/es-es/emails/email-pro/',
   IE: 'https://ovhcloud.com/en-ie/emails/email-pro/',

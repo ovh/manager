@@ -27,6 +27,7 @@ export const GUIDES = [
 export const CTAS = {
   DEFAULT: 'https://ovhcloud.com/en/storage-solutions/veeam-enterprise',
   ASIA: 'https://ovhcloud.com/asia/storage-solutions/veeam-enterprise',
+  IN: 'https://www.ovhcloud.com/en-in/storage-solutions/veeam-enterprise',
   DE: 'https://ovhcloud.com/de/storage-solutions/veeam-enterprise',
   ES: 'https://ovhcloud.com/es-es/storage-solutions/veeam-enterprise',
   IE: 'https://ovhcloud.com/en-ie/storage-solutions/veeam-enterprise',

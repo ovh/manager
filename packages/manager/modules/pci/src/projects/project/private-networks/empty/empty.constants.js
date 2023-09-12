@@ -65,6 +65,7 @@ export const GUIDES = [
     id: 'private_networks',
     links: {
       ASIA: 'https://www.ovhcloud.com/asia/public-cloud/private-network',
+      IN: 'https://www.ovhcloud.com/en-in/public-cloud/private-network',
       AU: 'https://www.ovhcloud.com/en-au/public-cloud/private-network',
       CA: 'https://www.ovhcloud.com/en-ca/public-cloud/private-network',
       DE: 'https://www.ovhcloud.com/de/public-cloud/private-network',
