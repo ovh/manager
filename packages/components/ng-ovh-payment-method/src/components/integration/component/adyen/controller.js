@@ -82,6 +82,7 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
       )
         ? ADYEN_CONFIG.ENV_ENUM.TEST
         : ADYEN_CONFIG.ENV_ENUM.LIVE,
+      redirectFromTopWhenInIframe: true,
     };
 
     this.createAdyenComponent(adyenConfiguration);
