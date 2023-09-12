@@ -27,6 +27,7 @@ export const HOSTING_ORDER_URL = {
   },
   CA: {
     ASIA: 'https://www.ovh.com/asia/web-hosting/',
+    IN: 'https://www.ovh.com/en-in/web-hosting/',
     AU: 'https://www.ovh.com.au/web-hosting/',
     CA: 'https://www.ovh.com/ca/en/web-hosting/',
     QC: 'https://www.ovh.com/ca/fr/hebergement-web/',
@@ -56,6 +57,7 @@ export const DOMAIN_ORDER_URL = {
   },
   CA: {
     ASIA: 'https://ca.ovh.com/asia/order/webcloud',
+    IN: 'https://ca.ovh.com/in/order/webcloud',
     AU: 'https://ca.ovh.com/au/order/webcloud',
     CA: 'https://ca.ovh.com/en/order/webcloud',
     QC: 'https://ca.ovh.com/fr/order/webcloud',

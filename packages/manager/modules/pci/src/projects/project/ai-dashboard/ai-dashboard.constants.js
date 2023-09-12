@@ -54,6 +54,8 @@ export const AI_PRICES_URL = {
     'https://www.ovhcloud.com/en-sg/public-cloud/prices/#ai-&-machine-learning',
   ASIA:
     'https://www.ovhcloud.com/asia/public-cloud/prices/#ai-&-machine-learning',
+  IN:
+    'https://www.ovhcloud.com/en-in/public-cloud/prices/#ai-&-machine-learning',
 };
 
 export const AI_ROLES_NAMES = ['ai_training_operator', 'ai_training_read'];

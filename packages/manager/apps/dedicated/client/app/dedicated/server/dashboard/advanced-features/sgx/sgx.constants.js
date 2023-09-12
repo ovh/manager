@@ -16,6 +16,7 @@ export const DOCUMENTATION_BY_SUB = {
   PL: 'https://docs.ovh.com/pl/dedicated/wlaczanie_i_uzywanie_intel_sgx/',
   PT: 'https://docs.ovh.com/pt/dedicated/ativar-e-usar-intel-sgx/',
   SG: 'https://docs.ovh.com/sg/en/dedicated/enable-and-use-intel-sgx/',
+  IN: 'https://docs.ovh.com/asia/en/dedicated/enable-and-use-intel-sgx/',
 };
 
 /**

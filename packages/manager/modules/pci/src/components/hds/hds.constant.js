@@ -26,6 +26,7 @@ export const HDS_INFO = {
 export const SUPPORT_LEVEL_INFO = {
   DEFAULT: 'https://www.ovhcloud.com/en/support-levels/',
   ASIA: 'https://www.ovhcloud.com/asia/support-levels/',
+  IN: 'https://www.ovhcloud.com/en-in/support-levels/',
   AU: 'https://www.ovhcloud.com/en-au/support-levels/',
   CA: 'https://www.ovhcloud.com/en-ca/support-levels/',
   DE: 'https://www.ovhcloud.com/de/support-levels/',

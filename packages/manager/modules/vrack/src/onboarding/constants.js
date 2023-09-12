@@ -37,6 +37,8 @@ export const GUIDES = [
         'https://docs.ovh.com/us/en/dedicated/configuring-vrack-on-dedicated-servers/',
       US:
         'https://docs.ovh.com/us/en/dedicated/configuring-vrack-on-dedicated-servers/',
+      IN:
+        'https://docs.ovh.com/asia/en/dedicated/configuring-vrack-on-dedicated-servers/',
     },
   },
   {
@@ -60,6 +62,7 @@ export const GUIDES = [
       WE: 'https://docs.ovh.com/us/en/dedicated/network-jumbo/',
       WS: 'https://docs.ovh.com/us/en/dedicated/network-jumbo/',
       US: 'https://docs.ovh.com/us/en/dedicated/network-jumbo/',
+      IN: 'https://docs.ovh.com/asia/en/dedicated/network-jumbo/',
     },
   },
   {
@@ -90,6 +93,7 @@ export const GUIDES = [
       WE: 'https://docs.ovh.com/us/en/dedicated/ip-block-vrack/',
       WS: 'https://docs.ovh.com/us/en/dedicated/ip-block-vrack/',
       US: 'https://docs.ovh.com/us/en/dedicated/ip-block-vrack/',
+      IN: 'https://docs.ovh.com/asia/en/dedicated/ip-block-vrack/',
     },
   },
 ];
@@ -131,6 +135,8 @@ export const CTAS = {
     "https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
   ASIA:
     "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+  IN:
+    'https://ca.ovh.com/in/order/express/#/new/express/resume?products=~(~(planCode~vrack~quantity~1~productId~vrack))',
   AU:
     "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
   CA:

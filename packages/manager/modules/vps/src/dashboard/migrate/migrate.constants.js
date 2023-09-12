@@ -1,6 +1,7 @@
 export const MIGRATE_FAQ_LINK = {
   DEFAULT: 'https://www.ovhcloud.com/en/vps/vps-offer-migration/',
   ASIA: 'https://www.ovhcloud.com/asia/vps/vps-offer-migration/',
+  IN: 'https://www.ovhcloud.com/en-in/vps/vps-offer-migration/',
   AU: 'https://www.ovhcloud.com/en-au/vps/vps-offer-migration/',
   CA: 'https://www.ovhcloud.com/en-ca/vps/vps-offer-migration/',
   DE: 'https://www.ovhcloud.com/de/vps/vps-offer-migration/',
