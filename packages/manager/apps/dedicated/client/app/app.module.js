@@ -114,7 +114,7 @@ import expiredPage from './expired';
 import ip from './ip';
 import ipComponents from './components/ip/ip-components.module';
 
-import dedicatedServer from './dedicated/server';
+import dedicatedServer from './dedicated/dedicated-server';
 import dedicatedNas from './dedicated/nas';
 import dedicatedHousing from './dedicated/housing';
 import userContracts from './user-contracts';
