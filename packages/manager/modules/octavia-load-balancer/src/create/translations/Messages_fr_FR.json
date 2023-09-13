@@ -8,5 +8,16 @@
   "octavia_load_balancer_create_size_flavour_description_s": "Adaptée aux petites applications. Idéale pour des tests et environnements de développement ou pour de petits projets.",
   "octavia_load_balancer_create_size_flavour_description_m": "Convient à la plupart des projets traitant un trafic moyen.",
   "octavia_load_balancer_create_size_flavour_description_l": "Lorsque le trafic de vos applications atteint sa plus haute densité, vous pouvez avoir besoin des meilleures performances du Load Balancer pour y faire face.",
-  "octavia_load_balancer_create_size_flavour_price_interval": " / heure"
+  "octavia_load_balancer_create_size_flavour_price_interval": " / heure",
+  "octavia_load_balancer_create_region_title": "Sélectionnez une région",
+  "octavia_load_balancer_create_region_intro": "Veuillez sélectionner la région Public Cloud où votre Load Balancer (no translation) sera hébergé. Parmi les regions public cloud où un réseau privé est défini, sélectionnez celle où le LB sera hébergé. Vous ne trouvez pas la région que vous désirez dans la liste ? Pour en savoir plus sur la disponibilité des fonctions par région, ",
+  "octavia_load_balancer_create_region_link": "Cliquez ici",
+  "octavia_load_balancer_create_region_GRA": "Gravelines",
+  "octavia_load_balancer_create_region_DE": "Francfort",
+  "octavia_load_balancer_create_region_BHS": "Beauharnois",
+  "octavia_load_balancer_create_region_SGP": "Singapour",
+  "octavia_load_balancer_create_region_SYD": "Sidney",
+  "octavia_load_balancer_create_region_UK": "London",
+  "octavia_load_balancer_create_region_WAW": "Varsovie",
+  "octavia_load_balancer_create_region_SBG": "Strasbourg"
 }

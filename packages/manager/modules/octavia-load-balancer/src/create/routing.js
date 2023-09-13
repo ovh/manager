@@ -37,8 +37,57 @@ export default /* @ngInject */ ($stateProvider) => {
               return filtered;
             }, []),
           ),
+      regionsPlans: /* @ngInject */ ($http, $q, projectId, coreConfig) =>
+        $q
+          .all({
+            plans: $http.get(
+              `/cloud/project/${projectId}/capabilities/productAvailability?addonFamily=octavia-loadbalancer&ovhSubsidiary=${
+                coreConfig.getUser().ovhSubsidiary
+              }`,
+            ),
+            privateNetworks: $http.get(
+              `/cloud/project/${projectId}/network/private`,
+            ),
+          })
+          .then(({ plans, privateNetworks }) =>
+            // Get only hourly plans and format them
+            plans.data.plans.reduce((filtered, plan) => {
+              const found = plan.code.match(SIZE_FLAVOUR_REGEX);
+              if (found) {
+                // If there is no private network for this region, we disable it
+                const mappedRegionPlans = plan.regions.map((region) => {
+                  let isRegionEnable = false;
+
+                  privateNetworks.data.forEach((privateNetwork) => {
+                    if (
+                      privateNetwork.regions.some(
+                        (privateNetworkRegion) =>
+                          privateNetworkRegion.region === region.name,
+                      )
+                    ) {
+                      isRegionEnable = true;
+                    }
+                  });
+
+                  return {
+                    ...region,
+                    hasEnoughQuota: () => isRegionEnable,
+                  };
+                });
+
+                filtered.push({
+                  code: found[1],
+                  regions: mappedRegionPlans,
+                  disabled: false,
+                });
+              }
+              return filtered;
+            }, []),
+          ),
       trackingProductPage: () =>
         `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::goto-product-page`,
+      trackingRegionAvailability: () =>
+        `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::goto-region-availability`,
     },
   });
 };
