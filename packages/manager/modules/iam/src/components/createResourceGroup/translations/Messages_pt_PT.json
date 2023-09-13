@@ -7,7 +7,7 @@
   "iam_create_resource_group_error_heading_create": "Existem erros no formulário que impedem a criação deste grupo de recursos. Por favor, corrija-os antes de voltar a submetê-lo.",
   "iam_create_resource_group_error_heading_edit": "Existem erros no formulário que impedem a alteração deste grupo de recursos. Por favor, corrija-os antes de voltar a submetê-lo.",
   "iam_create_resource_group_error_no_resources": "Não existem recursos disponíveis para este ou estes tipos de produtos.",
-  "iam_create_resource_group_form_name_error_pattern": "O nome do grupo de recursos só pode conter caracteres alfanuméricos e \"-\", \"/\", \"_\", \"+\"",
+  "iam_create_resource_group_form_name_error_pattern": "O nome do grupo de recursos só pode conter caracteres alfanuméricos e «-», «/», «_», «+»",
   "iam_create_resource_group_form_name_heading": "Nome do grupo de recursos",
   "iam_create_resource_group_form_resource_types_description": "Selecione o tipo de produtos que corresponde aos recursos que deseja adicionar.",
   "iam_create_resource_group_form_resource_types_error_required": "Selecione um ou vários tipos de produtos.",
