@@ -6,6 +6,7 @@ export { default as serverIpmi } from './ipmi';
 export { default as serverOrderKvm } from './ipmi/order-kvm';
 export { default as serverNetboot } from './netboot';
 export { default as serverNetwork } from './network-tile';
+export { default as serverGeneralInformation } from './general-information';
 export { default as serverTechnicalDetails } from './technical-details';
 export { default as serverOrderPrivateBandwidth } from './order-private-bandwidth';
 export { default as serverBandwidthDashboard } from './bandwidth-dashboard';

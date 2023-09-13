@@ -5,7 +5,8 @@ angular.module('App').config(
       {
         url: '/display-name',
         controller: 'DisplayNameCtrl',
-        templateUrl: 'dedicated/server/display-name/display-name.html',
+        templateUrl:
+          'dedicated/dedicated-server/servers/display-name/display-name.html',
         layout: 'modal',
         translations: { value: ['.'], format: 'json' },
         resolve: {

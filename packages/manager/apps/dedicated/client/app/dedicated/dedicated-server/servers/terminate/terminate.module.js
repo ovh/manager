@@ -21,7 +21,7 @@ angular
   .component('dedicatedServerDashboardTerminate', component)
   .config(routing)
   // TODO: inject own translations
-  .run(/* @ngTranslationsInject:json ../details/translations */)
+  .run(/* @ngTranslationsInject:json ../server/translations */)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

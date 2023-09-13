@@ -23,12 +23,6 @@ export const BYOI_STARTING_MESSAGE = 'starting';
 
 export const SERVICE_TYPE = 'DEDICATED_SERVER';
 
-export const OPERATING_SYSTEM_ENUM = {
-  NONE_64: 'none_64',
-  NONE_32: 'none_32',
-  BRING_YOUR_OWN_IMAGE: 'byoi_32',
-};
-
 export default {
   BYOI_STARTING_MESSAGE,
   BYOI_STATUS_ENUM,

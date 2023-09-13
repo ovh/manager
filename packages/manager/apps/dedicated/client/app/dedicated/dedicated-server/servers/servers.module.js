@@ -9,6 +9,6 @@ angular
   .module(moduleName, [ngOvhFeatureFlipping])
   .component('dedicatedServerServers', component)
   .config(routing)
-  .run(/* @ngTranslationsInject ./translations ./details/translations */);
+  .run(/* @ngTranslationsInject ./translations ./server/translations */);
 
 export default moduleName;
