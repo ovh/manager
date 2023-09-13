@@ -19,6 +19,7 @@ export default {
     hasAutoRenew: '<',
     homeLink: '<',
     isAutorenewManagementAvailable: '<',
+    isAutorenew2016DeploymentBannerAvailable: '<',
     isEnterpriseCustomer: '<',
     nicBilling: '<',
     nicRenew: '<',

@@ -7,6 +7,7 @@ export default {
     dedicatedServers: '<',
     isOrderAvailable: '<',
     isEcoRangeOrderAvailable: '<',
+    isAutorenew2016DeploymentBannerAvailable: '<',
     orderUrl: '<',
     orderEcoRangeUrl: '<',
     serverStateEnum: '<',

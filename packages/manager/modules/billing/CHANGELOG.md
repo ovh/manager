@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.18...@ovh-ux/manager-billing@0.20.0-alpha.19) (2023-09-12)
+
+
+### Features
+
+* **dedicated:** adding banner for autorenew 2016 deployment ([#9650](https://github.com/ovh/manager/issues/9650)) ([2feaba1](https://github.com/ovh/manager/commit/2feaba1957136ced5fed54cff7771a39f4289bec))
+
+
+
+
+
 # [0.20.0-alpha.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.17...@ovh-ux/manager-billing@0.20.0-alpha.18) (2023-08-30)
 
 

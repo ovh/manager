@@ -1,0 +1,35 @@
+<manager-on-boarding-layout
+    class="mt-5"
+    data-guides="$ctrl.GUIDES"
+    data-image-source="$ctrl.illustration"
+    data-on-guide-click="$ctrl.onGuideClick(guide)"
+>
+    <onboarding-title>
+        <p data-translate="octavia_load_balancer_onboarding_title"></p>
+    </onboarding-title>
+    <onboarding-description>
+        <p
+            class="text-left"
+            data-translate="octavia_load_balancer_onboarding_description_1"
+        ></p>
+        <p
+            class="text-left"
+            data-translate="octavia_load_balancer_onboarding_description_2"
+        ></p>
+        <p
+            class="text-left"
+            data-translate="octavia_load_balancer_onboarding_description_3"
+        ></p>
+        <a
+            class="oui-button oui-button_primary oui-button_l text-light"
+            href="{{:: $ctrl.cta }}"
+            target="_blank"
+            data-track-on="click"
+            data-track-name="{{:: $ctrl.ctaTrackName }}"
+            data-track-type="navigation"
+            rel="noopener"
+        >
+            <span data-translate="octavia_load_balancer_onboarding_cta"> </span>
+        </a>
+    </onboarding-description>
+</manager-on-boarding-layout>

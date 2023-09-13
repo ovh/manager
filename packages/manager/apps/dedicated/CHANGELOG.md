@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.0.1...@ovh-ux/manager-dedicated@19.1.0) (2023-09-12)
+
+
+### Bug Fixes
+
+* **dedicated:** update US guide links ([#9763](https://github.com/ovh/manager/issues/9763)) ([cb5920f](https://github.com/ovh/manager/commit/cb5920f9ba2a2420ec70628abe2d2e9bbc7ddaa9))
+* **kyc.india:** change content for legal notice ([#9894](https://github.com/ovh/manager/issues/9894)) ([8db779e](https://github.com/ovh/manager/commit/8db779e4c7f9d1e352816970cc2ccdc5f64b122a))
+
+
+### Features
+
+* **dedicated:** adding banner for autorenew 2016 deployment ([#9650](https://github.com/ovh/manager/issues/9650)) ([2feaba1](https://github.com/ovh/manager/commit/2feaba1957136ced5fed54cff7771a39f4289bec))
+
+
+
+
+
+## [19.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.0.0...@ovh-ux/manager-dedicated@19.0.1) (2023-09-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 # [19.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.11.0...@ovh-ux/manager-dedicated@19.0.0) (2023-09-07)
 
 

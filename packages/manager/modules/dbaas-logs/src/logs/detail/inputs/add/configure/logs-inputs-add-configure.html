@@ -274,44 +274,37 @@
                     </div>
                 </div>
             </div>
-
             <button
                 class="oui-button oui-button_secondary"
                 data-ng-click="ctrl.executeTest()"
                 data-ng-if="!ctrl.previousTest.loading"
-                data-ng-disabled="ctrl.test.loading || ctrl.saving.loading"
+                data-ng-disabled="ctrl.loading"
             >
-                {{ ctrl.test.loading ? 'input_logs_configure_test_progress' :
+                {{ ctrl.loading ? 'input_logs_configure_test_progress' :
                 'input_logs_configure_test' | translate }}
             </button>
-            <div
-                data-ng-if="!ctrl.input.loading && !ctrl.test.loading && ctrl.test.data.updatedAt"
-            >
+            <div data-ng-if="!ctrl.loading">
                 <div
                     class="oui-message m-0 mt-4"
-                    data-ng-class="{'oui-message_success': ctrl.test.data.stdout, 'oui-message_error': ctrl.test.data.stderr}"
+                    data-ng-class="ctrl.test.data.isValid ? 'oui-message_success' : 'oui-message_error'"
                     role="alert"
                 >
-                    <i
-                        class="oui-icon"
-                        data-ng-class="{'oui-icon-success-circle': ctrl.test.data.stdout, 'oui-icon-error-circle': ctrl.test.data.stderr}"
-                        aria-hidden="true"
-                    ></i>
-                    <div class="oui-message__body">
-                        <div data-ng-if="!ctrl.test.data.stdout">
-                            <p
-                                data-translate="logs_inputs_logstash_save_warning_unsuccessful"
-                            ></p>
-                            <pre
-                                data-translate="input_logs_configure_test_failure"
-                                data-translate-values="{ output: ctrl.test.data.stdout ? ctrl.test.data.stdout : ctrl.test.data.stderr }"
-                            ></pre>
-                        </div>
+                    <p>
                         <span
-                            data-ng-if="ctrl.test.data.stdout"
-                            data-translate="input_logs_configure_test_success"
+                            class="oui-message__icon oui-icon"
+                            aria-hidden="true"
+                            data-ng-class="ctrl.test.data.isValid ? 'oui-icon-success-circle' : 'oui-icon-error-circle'"
+                        ></span>
+                        <span
+                            data-translate="{{ctrl.test.data.isValid ? 'input_logs_configure_test_success' : 'logs_inputs_logstash_save_warning_unsuccessful'}}"
                             data-translate-values="{ output: ctrl.test.data.stdout ? ctrl.test.data.stdout : ctrl.test.data.stderr }"
                         ></span>
+                    </p>
+                    <div data-ng-if="!ctrl.test.data.isValid">
+                        <pre
+                            data-translate="input_logs_configure_test_failure"
+                            data-translate-values="{ output: ctrl.test.data.stdout ? ctrl.test.data.stdout : ctrl.test.data.stderr }"
+                        ></pre>
                     </div>
                     <p
                         class="oui-message__body"
@@ -322,10 +315,8 @@
             </div>
 
             <div class="cui-form-actions">
-                <oui-spinner
-                    data-ng-if="ctrl.saving.loading || ctrl.test.loading"
-                ></oui-spinner>
-                <div data-ng-if="!(ctrl.saving.loading || ctrl.test.loading)">
+                <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
+                <div data-ng-if="!ctrl.loading">
                     <a
                         class="oui-button oui-button_secondary"
                         data-translate="logs_previous"

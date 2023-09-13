@@ -1643,7 +1643,7 @@
   "exchange_tab_domain_diagnostic_spf_no_ovh": "If the domain is not managed under the same NIC handle as the Exchange solution, or if your domain is registered elsewhere, automatic configuration is not available. Please manually create an SPF record on this domain using the same information that you gave below.",
   "exchange_tab_domain_diagnostic_spf_recap": "An SPF record will be added to your domain’s DNS zone.",
   "exchange_tab_domain_diagnostic_spf": "SPF",
-  "exchange_tab_domain_diagnostic_spf_title": "SPF Diagnosis",
+  "exchange_tab_domain_diagnostic_spf_title": "SPF diagnostic",
   "exchange_tab_domain_diagnostic_spf_toolbox_ok": "Automatic configuration complete",
   "exchange_tab_TASKS_ADD_EXCHANGE_DOMAIN_DKIM": "Adding a DKIM record",
   "exchange_tab_domain_diagnostic_dkim": "DKIM",

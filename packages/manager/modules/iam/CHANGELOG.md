@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.2.0...@ovh-ux/manager-iam@1.2.1) (2023-09-12)
+
+
+### Bug Fixes
+
+* **iam:** fix resourcesGroup filtering on edit mode ([#9928](https://github.com/ovh/manager/issues/9928)) ([fb87bc5](https://github.com/ovh/manager/commit/fb87bc52a9d89688912a25726de6cf3b54fd555c))
+* **iam:** update US guide links ([#9754](https://github.com/ovh/manager/issues/9754)) ([54fb56b](https://github.com/ovh/manager/commit/54fb56b4b01b2873b280f9a136f8ad339c03e0c0))
+
+
+
+
+
 # [1.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.1.3...@ovh-ux/manager-iam@1.2.0) (2023-09-05)
 
 
