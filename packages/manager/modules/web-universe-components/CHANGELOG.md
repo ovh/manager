@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.11.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.11.3...@ovh-ux/ng-ovh-web-universe-components@9.11.4) (2023-09-12)
+
+
+### Bug Fixes
+
+* **web.email:** fix mailinglists guide url ([#9915](https://github.com/ovh/manager/issues/9915)) ([cca5290](https://github.com/ovh/manager/commit/cca52901807504159327040b0dc912e3384124e5))
+
+
+
+
+
 ## [9.11.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.11.2...@ovh-ux/ng-ovh-web-universe-components@9.11.3) (2023-08-30)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-web-universe-components

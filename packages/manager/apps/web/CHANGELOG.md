@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.0.1...@ovh-ux/manager-web@18.1.0) (2023-09-12)
+
+
+### Features
+
+* **web:** re enable owo ([#9822](https://github.com/ovh/manager/issues/9822)) ([27df901](https://github.com/ovh/manager/commit/27df901f78f4568a43522341c8b859b2c5c8344e))
+* **web:** remove plan solution information ([#9907](https://github.com/ovh/manager/issues/9907)) ([ff29264](https://github.com/ovh/manager/commit/ff29264d74c4957e4429008c2d12c3ec8c180a3a))
+
+
+
+
+
+## [18.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.0.0...@ovh-ux/manager-web@18.0.1) (2023-09-08)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix delete envvar request ([#9960](https://github.com/ovh/manager/issues/9960)) ([66e5c27](https://github.com/ovh/manager/commit/66e5c270626dcf448c306480e875cd80e65e7237))
+
+
+
+
+
 # [18.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.3.2...@ovh-ux/manager-web@18.0.0) (2023-09-07)
 
 

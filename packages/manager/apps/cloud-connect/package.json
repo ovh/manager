@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-connect-app",
-  "version": "1.7.20",
+  "version": "1.7.21",
   "private": true,
   "description": "OVHcloud Connect standalone application.",
   "repository": {
@@ -19,14 +19,14 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-cloud-connect-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-cloud-connect": "^1.9.2",
+    "@ovh-ux/manager-cloud-connect": "^1.10.0",
     "@ovh-ux/manager-config": "^7.1.1",
     "@ovh-ux/manager-core": "^12.12.15",
     "@ovh-ux/manager-ng-layout-helpers": "^2.7.1",
     "@ovh-ux/ng-at-internet": "^5.10.5",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.4",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.7.4",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.7.5",
     "@ovh-ux/ng-ovh-http": "^5.0.7",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.7",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.9",
@@ -36,7 +36,7 @@
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.1",
     "@ovh-ux/ng-ui-router-layout": "^4.1.4",
     "@ovh-ux/request-tagger": "^0.1.1",
-    "@ovh-ux/ui-kit": "^6.6.1",
+    "@ovh-ux/ui-kit": "^6.6.2",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-animate": "^1.7.5",

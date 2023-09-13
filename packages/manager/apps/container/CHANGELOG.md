@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.28.1...@ovh-ux/manager-container-app@0.29.0) (2023-09-12)
+
+
+### Features
+
+* **octavia:** add ocatvia  ([#9948](https://github.com/ovh/manager/issues/9948)) ([e8c32ab](https://github.com/ovh/manager/commit/e8c32ab29c65496b251ef008418e04f543c5f46e))
+
+
+
+
+
 ## [0.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.28.0...@ovh-ux/manager-container-app@0.28.1) (2023-09-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

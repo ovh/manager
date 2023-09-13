@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.7.0...@ovh-ux/manager-emailpro@3.7.1) (2023-09-08)
+
+
+### Bug Fixes
+
+* **web.emailpro:** remove double refresh after disclaimer update ([#9949](https://github.com/ovh/manager/issues/9949)) ([e9d4bd6](https://github.com/ovh/manager/commit/e9d4bd65d2d5ae1ebabfa8ab6074606f7890bf3a))
+
+
+
+
+
 # [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.6.0...@ovh-ux/manager-emailpro@3.7.0) (2023-09-05)
 
 

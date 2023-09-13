@@ -556,6 +556,18 @@ export const DE = {
       ],
     },
   ],
+  emailsMailingList: [
+    {
+      title: 'guide_mailing_list_title',
+      list: [
+        {
+          url:
+            'https://help.ovhcloud.com/csm/de-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052009',
+          title: 'guide_emails_mailing_list',
+        },
+      ],
+    },
+  ],
 };
 
 export const ES = {
@@ -719,6 +731,18 @@ export const ES = {
         {
           url: 'https://www.ovh.es/g2052.guia_de_creacion_de_un_contestador',
           title: 'guide_emails_responder',
+        },
+      ],
+    },
+  ],
+  emailsMailingList: [
+    {
+      title: 'guide_mailing_list_title',
+      list: [
+        {
+          url:
+            'https://help.ovhcloud.com/csm/es-es-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052024',
+          title: 'guide_emails_mailing_list',
         },
       ],
     },
@@ -931,7 +955,7 @@ export const FI = {
       list: [
         {
           url:
-            'https://www.ovh-hosting.fi/g1596.webhotellin_sahkoposti_sahkopostilistan_kayttopas',
+            'https://help.ovhcloud.com/csm/en-ie-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052017',
           title: 'guide_emails_mailing_list',
         },
       ],
@@ -1178,7 +1202,7 @@ export const FR = {
       list: [
         {
           url:
-            'https://docs.ovh.com/fr/emails/guide-dutilisation-mailing-list/',
+            'https://help.ovhcloud.com/csm/fr-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052018',
           title: 'guide_emails_mailing_list',
         },
       ],
@@ -1295,6 +1319,18 @@ export const GB = {
         {
           url: 'https://www.ovh.co.uk/g2028.web_hosting_the_spf_record',
           title: 'guide_emails_emails_spf',
+        },
+      ],
+    },
+  ],
+  emailsMailingList: [
+    {
+      title: 'guide_mailing_list_title',
+      list: [
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052014',
+          title: 'guide_emails_mailing_list',
         },
       ],
     },
@@ -1502,7 +1538,7 @@ export const IT = {
       list: [
         {
           url:
-            'https://www.ovh.it/g1596.mail_mutualise_guide_dutilisation_mailing-list',
+            'https://help.ovhcloud.com/csm/it-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052028',
           title: 'guide_emails_mailing_list',
         },
       ],
@@ -1735,7 +1771,7 @@ export const LT = {
       list: [
         {
           url:
-            'https://www.ovh.lt/g1596.svetainiu_talpinimo_el_pastas_el_pasto_konferencijos_naudojimo_gidas',
+            'https://help.ovhcloud.com/csm/en-ie-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052017',
           title: 'guide_emails_mailing_list',
         },
       ],
@@ -1854,6 +1890,18 @@ export const NL = {
         {
           url: 'https://www.ovh.nl/g2028.het_spf_veld',
           title: 'guide_emails_emails_spf',
+        },
+      ],
+    },
+  ],
+  emailsMailingList: [
+    {
+      title: 'guide_mailing_list_title',
+      list: [
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ie-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052017',
+          title: 'guide_emails_mailing_list',
         },
       ],
     },
@@ -2083,7 +2131,8 @@ export const PL = {
       title: 'guide_mailing_list_title',
       list: [
         {
-          url: 'https://www.ovh.pl/g1596.hosting_www_listy_mailingowe',
+          url:
+            'https://help.ovhcloud.com/csm/pl-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052031',
           title: 'guide_emails_mailing_list',
         },
       ],
@@ -2317,7 +2366,7 @@ export const PT = {
       list: [
         {
           url:
-            'https://www.ovh.pt/g1596.email_partilhado_guia_de_utilizacao_de_mailing-lists',
+            'https://help.ovhcloud.com/csm/pt-mx-plan-mailing-lists?id=kb_article_view&sysparm_article=KB0052029',
           title: 'guide_emails_mailing_list',
         },
       ],
@@ -2556,18 +2605,6 @@ export const QC = {
           url:
             'https://docs.ovh.com/ca/fr/emails/mise-en-place-repondeur-mail/',
           title: 'guide_emails_responder',
-        },
-      ],
-    },
-  ],
-  emailsMailingList: [
-    {
-      title: 'guide_mailing_list_title',
-      list: [
-        {
-          url:
-            'https://docs.ovh.com/ca/fr/emails/guide-dutilisation-mailing-list/',
-          title: 'guide_emails_mailing_list',
         },
       ],
     },

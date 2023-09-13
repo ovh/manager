@@ -25,9 +25,7 @@ export default class LogsInputsAddConfigureCtrl {
     this.LogsInputsService = LogsInputsService;
     this.LogsConstants = LogsConstants;
     this.CucCloudMessage = CucCloudMessage;
-    this.loading = {
-      engine: false,
-    };
+    this.loading = false;
     this.initLoaders();
   }
 
@@ -86,25 +84,19 @@ export default class LogsInputsAddConfigureCtrl {
   }
 
   executeTest() {
-    this.CucCloudMessage.flushChildMessage();
-    this.test = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () =>
-        (this.logstashForm.$dirty
-          ? this.LogsInputsService.updateLogstash(
-              this.serviceName,
-              this.input.data,
-            )
-          : this.$q.when({})
-        )
-          .then(() => {
-            this.LogsInputsService.executeTest(
-              this.serviceName,
-              this.input.data,
-            );
-          })
-          .catch(() => this.CucControllerHelper.scrollPageToTop()),
+    this.loading = true;
+    (this.logstashForm.$dirty
+      ? this.LogsInputsService.updateLogstash(this.serviceName, this.input.data)
+      : this.$q.when({})
+    ).then(() => {
+      this.LogsInputsService.executeTest(
+        this.serviceName,
+        this.input.data,
+      ).then((result) => {
+        this.loading = false;
+        this.test = result;
+      });
     });
-    this.test.load();
   }
 
   saveFlowgger() {
@@ -128,7 +120,7 @@ export default class LogsInputsAddConfigureCtrl {
     if (this.logstashForm.$invalid) {
       return this.$q.reject();
     }
-    if (!this.test.data.stdout) {
+    if (!this.test.data.isValid) {
       return this.CucControllerModalHelper.showWarningModal({
         title: this.$translate.instant(
           'logs_inputs_logstash_save_warning_title',

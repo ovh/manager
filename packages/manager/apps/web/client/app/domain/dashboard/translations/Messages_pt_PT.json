@@ -827,5 +827,7 @@
   "domain_configuration_renew": "O seu domínio foi suspenso, mas pode renová-lo durante o período de graça. Decorrido este prazo, serão aplicadas taxas adicionais.",
   "domain_configuration_restorable": "O seu domínio está a ser eliminado. Pode restaurá-lo, com custos adicionais, através do link «Restaurar». Caso contrário, o domínio será eliminado de forma definitiva.",
   "domain_configuration_restorable_title_button": "Restaurar",
-  "domain_hosting_price_ht_label": "{{price}} s/IVA"
+  "domain_hosting_price_ht_label": "{{price}} s/IVA",
+  "domain_dashboard_obfuscated_email": "Endereços anti-spam",
+  "domain_dashboard_obfuscated_email_regenerate_button": "Gerir os endereços anti-spam"
 }

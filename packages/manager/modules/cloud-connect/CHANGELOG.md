@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.9.2...@ovh-ux/manager-cloud-connect@1.10.0) (2023-09-12)
+
+
+### Features
+
+* **dedicated:** remove limitation on service key ([#9899](https://github.com/ovh/manager/issues/9899)) ([4be9479](https://github.com/ovh/manager/commit/4be9479af165cac1b5564e731bdc2894a5ae07e2))
+
+
+
+
+
 ## [1.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.9.1...@ovh-ux/manager-cloud-connect@1.9.2) (2023-07-31)
 
 

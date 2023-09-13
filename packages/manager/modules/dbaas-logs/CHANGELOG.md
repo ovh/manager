@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.14.0...@ovh-ux/manager-dbaas-logs@1.14.1) (2023-09-12)
+
+
+### Bug Fixes
+
+* **ldp:** config test ([#9838](https://github.com/ovh/manager/issues/9838)) ([5ef9757](https://github.com/ovh/manager/commit/5ef9757c46c370aa976b07f508fb38d43b087cd5))
+
+
+
+
+
 # [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.13.2...@ovh-ux/manager-dbaas-logs@1.14.0) (2023-09-05)
 
 
