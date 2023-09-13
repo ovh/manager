@@ -11,7 +11,7 @@
   "iam_create_policy_deletion_resources_one": "1 recurso será eliminado",
   "iam_create_policy_form_actions_description": "Selecione as ações autorizadas às identidades nos recursos escolhidos.",
   "iam_create_policy_form_actions_heading": "Ações",
-  "iam_create_policy_form_name_error_pattern": "O nome da política só pode conter caracteres alfanuméricos e \"-\", \"/\", \"_\", \"+\"",
+  "iam_create_policy_form_name_error_pattern": "O nome da política só pode conter caracteres alfanuméricos e «-», «/», «_», «+»",
   "iam_create_policy_form_name_heading": "Nome da política",
   "iam_create_policy_form_resource_groups_create": "Criar um grupo de recursos",
   "iam_create_policy_form_resource_groups_heading": "Grupos de recursos",
