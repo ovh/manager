@@ -205,7 +205,7 @@ export default class ServerCtrl {
         this.$scope.currentAction = action;
         this.$scope.currentActionData = data;
 
-        this.$scope.stepPath = `dedicated/server/${this.$scope.currentAction}.html`;
+        this.$scope.stepPath = `dedicated/dedicated-server/servers/${this.$scope.currentAction}.html`;
 
         $('#currentAction').modal({
           keyboard: true,

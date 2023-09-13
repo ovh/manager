@@ -28,7 +28,7 @@ angular
           lazyLoad: ($transition$) => {
             const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-            return import('./details/index.js').then((mod) =>
+            return import('./server/index.js').then((mod) =>
               $ocLazyLoad.inject(mod.default || mod),
             );
           },

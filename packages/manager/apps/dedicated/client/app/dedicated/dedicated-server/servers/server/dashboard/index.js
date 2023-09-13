@@ -10,6 +10,7 @@ import ovhManagerAdvices from '@ovh-ux/manager-advices';
 import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 import {
   serverTechnicalDetails,
+  serverGeneralInformation,
   serverBandwidthDashboard,
 } from '@ovh-ux/manager-bm-server-components';
 import advancedFeatures from './advanced-features';
@@ -18,7 +19,7 @@ import cancelCommitment from './cancel-commitment';
 import cancelResiliation from './cancel-resiliation';
 import resiliation from './resiliation';
 import professionalUse from './professional-use';
-import terminate from '../terminate/terminate.module';
+import terminate from '../../terminate/terminate.module';
 import upgrade from './upgrade';
 
 import component from './dashboard.component';
@@ -42,6 +43,7 @@ angular
     resiliation,
     ovhManagerAdvices,
     terminate,
+    serverGeneralInformation,
     serverTechnicalDetails,
     serverBandwidthDashboard,
   ])

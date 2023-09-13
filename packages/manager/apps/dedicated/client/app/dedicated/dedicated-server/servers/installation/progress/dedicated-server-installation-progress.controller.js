@@ -5,7 +5,7 @@ import includes from 'lodash/includes';
 import {
   BYOI_STATUS_ENUM,
   BYOI_STARTING_MESSAGE,
-} from '../../details/server.constants';
+} from '../../server/server.constants';
 
 angular
   .module('App')

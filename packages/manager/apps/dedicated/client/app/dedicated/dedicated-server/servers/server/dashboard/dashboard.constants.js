@@ -27,12 +27,6 @@ export const ELIGIBLE_FOR_UPGRADE = {
   SUBSIDIARIES: ['GB'],
 };
 
-export const URLS = {
-  GB: {
-    UPGRADE: 'https://www.ovh.co.uk/dedicated_servers/rise/rise-2/',
-  },
-};
-
 export const WEATHERMAP_URL = {
   US: 'http://weathermap.ovh.net/#usa',
   IN: 'https://weathermap.ovh.net/#mumbai_core',
@@ -70,7 +64,6 @@ export default {
   MONITORING_STATUSES,
   DC_2_ISO,
   ELIGIBLE_FOR_UPGRADE,
-  URLS,
   WEATHERMAP_URL,
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,

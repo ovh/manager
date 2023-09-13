@@ -1,9 +1,6 @@
 <header class="oui-header" role="banner">
-    <div class="d-flex pt-4">
-        <h1
-            class="word-break mb-0 oui-header-2"
-            data-ng-bind="server.displayName"
-        ></h1>
+    <div class="d-flex">
+        <h1 class="oui-header__title" data-ng-bind="server.displayName"></h1>
         <button
             type="button"
             data-translate-attr="{ title: 'wizard_modify' }"
@@ -16,9 +13,10 @@
             ></span>
         </button>
     </div>
-    <p
+    <h2
+        class="oui-header__description"
         data-ng-bind="server.reverse || ('server_configuration_reverse_not_configured' | translate)"
-    ></p>
+    ></h2>
 
     <!-- Nutanix node warning -->
     <oui-message
@@ -42,24 +40,6 @@
                 clusterDashboardLink: '<a href=' + $ctrl.getNutanixClusterDashboardLink($ctrl.nutanixCluster.serviceName) + '>' + $ctrl.nutanixCluster.serviceName + '</a>'
             }"
         ></div>
-    </oui-message>
-
-    <!-- Firewall Cisco ASA EOL -->
-    <oui-message
-        class="mb-3"
-        data-type="info"
-        data-ng-if="$ctrl.firewallAsaIsEnabled"
-    >
-        <span data-translate="server_configuration_firewall_asa_EOL"></span>
-        <a
-            data-ng-href="{{ :: $ctrl.linkFirewallCiscoAsa }}"
-            target="_blank"
-            rel="noopener"
-        >
-            <span
-                data-translate="server_configuration_firewall_asa_EOL_link"
-            ></span>
-        </a>
     </oui-message>
 
     <oui-header-tabs>

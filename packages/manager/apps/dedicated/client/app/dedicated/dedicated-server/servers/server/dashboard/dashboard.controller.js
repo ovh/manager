@@ -6,14 +6,13 @@ import some from 'lodash/some';
 import {
   MONITORING_STATUSES,
   DC_2_ISO,
-  URLS,
   WEATHERMAP_URL,
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
   HIDE_MRTG_FOR_SERVER_RANGES,
   VMS_URL_OTHERS,
 } from './dashboard.constants';
-import { NEW_RANGE, OPERATING_SYSTEM_ENUM } from '../details/server.constants';
+import { NEW_RANGE } from '../server.constants';
 
 export default class DedicatedServerDashboard {
   /* @ngInject */
@@ -44,7 +43,6 @@ export default class DedicatedServerDashboard {
   }
 
   $onInit() {
-    this.URLS = URLS;
     this.COMMIT_IMPRESSION_TRACKING_DATA = COMMIT_IMPRESSION_TRACKING_DATA;
     this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
     this.servicesStateLinks = {
@@ -293,16 +291,6 @@ export default class DedicatedServerDashboard {
     );
   }
 
-  canInstallOs() {
-    if (get(this.dedicatedServer, '$scope.disable.installationInProgress')) {
-      return false;
-    }
-    if (this.ola && this.ola.isConfigured()) {
-      return !this.server.os;
-    }
-    return true;
-  }
-
   removeHack() {
     return this.Server.removeHack(this.$stateParams.productId)
       .then(() => {
@@ -329,22 +317,6 @@ export default class DedicatedServerDashboard {
 
   onBillingInformationError(error) {
     return this.Alerter.error(error, 'server_dashboard_alert');
-  }
-
-  openOsInstallation(type) {
-    if (type === 'progress') {
-      this.trackPage(`${this.trackingPrefix}::system-installation-progress`);
-    } else {
-      this.trackPage(`${this.trackingPrefix}::system-install`);
-    }
-    return this.dedicatedServer.$scope.setAction(
-      `installation/${type}/dedicated-server-installation-${type}`,
-      {
-        server: this.server,
-        serverCtrl: this.dedicatedServer,
-        user: this.user,
-      },
-    );
   }
 
   trackPage(name) {
@@ -420,18 +392,5 @@ export default class DedicatedServerDashboard {
     return !HIDE_MRTG_FOR_SERVER_RANGES.includes(
       this.technicalDetails?.server?.range,
     );
-  }
-
-  getOperatingSystemLabel() {
-    const { os } = this.server;
-    if (!os || Object.values(OPERATING_SYSTEM_ENUM).includes(os)) {
-      return this.$translate.instant(
-        os === OPERATING_SYSTEM_ENUM.BRING_YOUR_OWN_IMAGE
-          ? 'server_configuration_distribution_byoi'
-          : 'server_configuration_distribution_none',
-      );
-    }
-
-    return os;
   }
 }
