@@ -38,10 +38,7 @@
                             data-model="$ctrl.model.plan"
                             data-value="plan.planCode"
                         >
-                            <span
-                                data-translate="cluster_vrack-bandwidth"
-                                data-translate-values="{'bandwidth' : plan.bandwidth / 1000}"
-                            ></span>
+                            <span data-ng-bind="plan.planCode"></span>
                         </oui-radio>
                     </div>
                     <div class="col-md-3 pl-0">
@@ -87,8 +84,7 @@
                         data-value="$ctrl.provisionalPlan.planCode"
                     >
                         <span
-                            data-translate="cluster_vrack-bandwidth"
-                            data-translate-values="{ bandwidth: $ctrl.provisionalPlan.bandwidth / 1000 }"
+                            data-ng-bind="$ctrl.provisionalPlan.planCode"
                         ></span>
                     </oui-radio>
                 </div>
