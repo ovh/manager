@@ -1,5 +1,9 @@
 ul {
   li.d-inline {
+    .contract-wrap {
+      white-space: nowrap;
+    }
+    
     &::after {
       content: ',';
     }
