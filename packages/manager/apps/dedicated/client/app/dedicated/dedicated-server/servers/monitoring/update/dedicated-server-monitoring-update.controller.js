@@ -1,5 +1,5 @@
 import { MONITORING_TRACKING_PREFIX } from './dedicated-server-monitoring-update.constants';
-import { MONITORING_STATUSES } from '../../server/dashboard/dashboard.constants';
+import { MONITORING_STATUSES } from '../../servers.constants';
 
 angular.module('App').controller(
   'DedicatedServerMonitoringUpdateCtrl',

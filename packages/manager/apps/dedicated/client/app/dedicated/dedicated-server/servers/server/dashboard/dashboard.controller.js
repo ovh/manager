@@ -1,14 +1,11 @@
 import get from 'lodash/get';
 
 import {
-  MONITORING_STATUSES,
-  DC_2_ISO,
-  WEATHERMAP_URL,
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
-  VMS_URL_OTHERS,
 } from './dashboard.constants';
 import { NEW_RANGE } from '../server.constants';
+import { DC_2_ISO } from '../../servers.constants';
 
 export default class DedicatedServerDashboard {
   /* @ngInject */
@@ -41,12 +38,6 @@ export default class DedicatedServerDashboard {
   $onInit() {
     this.COMMIT_IMPRESSION_TRACKING_DATA = COMMIT_IMPRESSION_TRACKING_DATA;
     this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
-    this.servicesStateLinks = {
-      weathermap:
-        WEATHERMAP_URL[this.user.ovhSubsidiary] || WEATHERMAP_URL.OTHERS,
-      vms: this.coreConfig.isRegion('US') ? null : this.getVmsLink(),
-      status: this.constants.statusUrl,
-    };
 
     this.server.iso =
       DC_2_ISO[this.server.datacenter.toUpperCase().split('_')[0]];
@@ -66,34 +57,6 @@ export default class DedicatedServerDashboard {
     this.pattern = NEW_RANGE.PATTERN;
   }
 
-  getVmsLink() {
-    return (
-      this.constants.vmsUrl[this.user.ovhSubsidiary] ||
-      this.constants.vmsUrl[VMS_URL_OTHERS]
-    );
-  }
-
-  rebootServer() {
-    return this.$state.go('app.dedicated-server.server.dashboard.reboot');
-  }
-
-  getMonitoringStatus() {
-    const { monitored, noIntervention } = this.server;
-    let monitoringStatus = MONITORING_STATUSES.DISABLED;
-
-    // proactive intervention
-    if (monitored && !noIntervention) {
-      monitoringStatus = MONITORING_STATUSES.PROACTIVE;
-    }
-
-    // no proactive intervention
-    if (monitored && noIntervention) {
-      monitoringStatus = MONITORING_STATUSES.NOPROACTIVE;
-    }
-
-    return monitoringStatus;
-  }
-
   canOrderTraffic() {
     return (
       this.DedicatedServerFeatureAvailability.allowDedicatedServerOrderTrafficOption() &&
@@ -108,24 +71,6 @@ export default class DedicatedServerDashboard {
       this.server.canOrderQuota &&
       get(this.trafficInformations.trafficOrderables.data, 'length')
     );
-  }
-
-  removeHack() {
-    return this.Server.removeHack(this.$stateParams.productId)
-      .then(() => {
-        this.dedicatedServer.setMessage(
-          this.$translate.instant('server_remove_hack_success'),
-        );
-      })
-      .catch((data) => {
-        this.dedicatedServer.setMessage(
-          this.$translate.instant('server_remove_hack_fail'),
-          {
-            ...data.data,
-            type: 'ERROR',
-          },
-        );
-      });
   }
 
   onBillingInformationError(error) {
@@ -190,14 +135,5 @@ export default class DedicatedServerDashboard {
       .finally(() => {
         this.updatingNoIntervention = false;
       });
-  }
-
-  onMonitoringUpdateClick() {
-    this.atInternet.trackClick({
-      name: 'dedicated::dedicated-server::server::dashboard::update-monitoring',
-      type: 'action',
-    });
-
-    return this.goToMonitoringUpdate();
   }
 }

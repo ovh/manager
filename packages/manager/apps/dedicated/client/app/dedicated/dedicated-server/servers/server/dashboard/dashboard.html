@@ -36,8 +36,8 @@
     </div>
 
     <div class="row d-md-flex mb-5">
+        <!-- GENERAL INFORMATIONS -->
         <div class="col-md-4 mb-3">
-            <!-- GENERAL INFORMATIONS -->
             <server-general-information
                 data-server="$ctrl.server"
                 data-eligible-data="$ctrl.eligibleData"
@@ -52,9 +52,9 @@
         <!-- TECHNICAL DETAILS -->
         <div class="col-md-4 mb-3" data-ng-if="$ctrl.technicalDetails">
             <server-technical-details
-                technical-details="$ctrl.technicalDetails"
-                go-to-upgrade="$ctrl.goToUpgrade"
-                upgrade-task="$ctrl.upgradeTask"
+                data-technical-details="$ctrl.technicalDetails"
+                data-go-to-upgrade="$ctrl.goToUpgrade"
+                data-upgrade-task="$ctrl.upgradeTask"
             ></server-technical-details>
         </div>
 
@@ -63,206 +63,16 @@
             class="col-md-4 mb-3"
             data-ng-if="$ctrl.server.commercialRange !== 'housing'"
         >
-            <!-- STATE -->
-            <oui-tile
-                data-heading="{{ ::'server_services_state' | translate }}"
-                class="mb-3 h-100"
-            >
-                <!-- Status -->
-                <oui-tile-definition
-                    data-term="{{ ::'server_configuration_state_title' | translate }}"
-                >
-                    <oui-tile-description>
-                        <span
-                            class="oui-badge"
-                            data-ng-class="{
-                                    'oui-badge_success': $ctrl.server.state === 'OK',
-                                    'oui-badge_warning': $ctrl.server.state === 'ERROR',
-                                    'oui-badge_error': $ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'
-                                }"
-                            data-translate="{{:: 'server_configuration_state_' + $ctrl.server.state}}"
-                        >
-                        </span>
-                    </oui-tile-description>
-                    <oui-action-menu
-                        data-compact
-                        aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_configuration_state_title' | translate)} }}"
-                        data-placement="end"
-                    >
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.rebootServer()"
-                            data-disabled="$ctrl.dedicatedServer.$scope.disable.reboot || $ctrl.dedicatedServer.$scope.disable.byOtherTask || $ctrl.dedicatedServer.$scope.disable.install"
-                            data-ng-if="!$ctrl.server.isExpired"
-                        >
-                            <span
-                                data-translate="server_configuration_reboot_title_button"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.removeHack()"
-                            data-disabled="$ctrl.server.state === 'HACKED_BLOCKED'"
-                            data-ng-if="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
-                        >
-                            <span
-                                data-translate="server_remove_hack_button"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-ng-href="{{:: $ctrl.terminateLink }}"
-                            data-ng-if="(!$ctrl.server.isExpired && !$ctrl.server.engagement)"
-                        >
-                            <span data-translate="server_close_service"></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
-                </oui-tile-definition>
-
-                <!--Legacy monitoring options-->
-                <oui-tile-definition
-                    data-ng-if="!$ctrl.isMonitoringOptionsAvailable"
-                    data-term="{{ ::'server_configuration_monitoring' | translate }}"
-                >
-                    <oui-tile-description>
-                        <span
-                            class="oui-badge"
-                            data-ng-class="{
-                                    'oui-badge_success': $ctrl.server.monitored,
-                                    'oui-badge_error': !$ctrl.server.monitored
-                                }"
-                            data-translate="{{'server_configuration_monitoring_' + ($ctrl.server.monitored && 'activated' || 'disabled')}}"
-                            data-oui-tooltip="{{ ($ctrl.server.monitored && 'server_configuration_monitoring_activate_information' | translate) || ('server_configuration_monitoring_deactivate_information' | translate) }}"
-                            data-oui-tooltip-placement="top-start"
-                        ></span>
-                    </oui-tile-description>
-                    <oui-action-menu
-                        aria-label="{{:: 'menu_action_label' | translate:{t0: ('server_configuration_monitoring' | translate)} }}"
-                        data-compact
-                        data-placement="end"
-                        data-disabled="$ctrl.ola.isConfigured() || $ctrl.updatingNoIntervention"
-                        data-ng-if="!$ctrl.server.isExpired"
-                    >
-                        <oui-action-menu-item
-                            data-ui-sref="app.dedicated-server.server.dashboard.monitoringLegacyUpdate"
-                            data-ng-if="$ctrl.server.monitored"
-                        >
-                            <span
-                                data-translate="server_configuration_monitoring_deactivate_title_button"
-                            ></span>
-                        </oui-action-menu-item>
-                        <oui-action-menu-item
-                            data-ui-sref="app.dedicated-server.server.dashboard.monitoringLegacyUpdate"
-                            data-ng-if="!$ctrl.server.monitored"
-                        >
-                            <span
-                                data-translate="server_configuration_monitoring_activate_title_button"
-                            ></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
-                </oui-tile-definition>
-
-                <!--Monitoring options-->
-                <oui-tile-definition
-                    data-ng-if="$ctrl.isMonitoringOptionsAvailable"
-                    data-term="{{ ::'server_configuration_monitoring' | translate }}"
-                >
-                    <oui-tile-description>
-                        <span
-                            class="oui-badge"
-                            data-ng-class="{
-                                    'oui-badge_success': $ctrl.server.monitored,
-                                    'oui-badge_warning': !$ctrl.server.monitored
-                                }"
-                            data-translate="server_configuration_monitoring_status_{{$ctrl.getMonitoringStatus()}}"
-                            data-oui-tooltip="{{ ('server_configuration_monitoring_status_tooltip_' + $ctrl.getMonitoringStatus()) | translate }}"
-                            data-oui-tooltip-placement="top-start"
-                        ></span>
-                    </oui-tile-description>
-                    <oui-tile-description>
-                        <oui-button
-                            data-variant="link"
-                            data-icon-right="oui-icon-chevron-right"
-                            data-on-click="$ctrl.onMonitoringUpdateClick()"
-                        >
-                            <span
-                                data-translate="server_configuration_monitoring_cta_setting"
-                            ></span>
-                        </oui-button>
-                    </oui-tile-description>
-                </oui-tile-definition>
-
-                <!-- Links -->
-                <oui-tile-definition
-                    data-term="{{ ::'server_configuration_services_state_links' | translate }}"
-                    class="border-bottom-0"
-                >
-                    <oui-tile-description>
-                        <div class="oui-list">
-                            <ul class="oui-list__items">
-                                <li class="oui-list__item">
-                                    <a
-                                        class="oui-list__link oui-button_ghost"
-                                        href="{{:: $ctrl.servicesStateLinks.weathermap}}"
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        <span
-                                            data-translate="server_configuration_services_state_links_weathermap"
-                                        ></span>
-                                        <span
-                                            class="oui-icon oui-icon-external-link"
-                                            aria-hidden="true"
-                                        ></span>
-                                        <span
-                                            class="sr-only"
-                                            data-translate="core_new_window"
-                                        ></span>
-                                    </a>
-                                </li>
-                                <li class="oui-list__item">
-                                    <a
-                                        class="oui-list__link oui-button_ghost"
-                                        data-ng-if="$ctrl.servicesStateLinks.vms"
-                                        href="{{:: $ctrl.servicesStateLinks.vms}}"
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        <span
-                                            data-translate="server_configuration_services_state_links_vms"
-                                        ></span>
-                                        <span
-                                            class="oui-icon oui-icon-external-link"
-                                            aria-hidden="true"
-                                        ></span>
-                                        <span
-                                            class="sr-only"
-                                            data-translate="core_new_window"
-                                        ></span>
-                                    </a>
-                                </li>
-                                <li class="oui-list__item">
-                                    <a
-                                        class="oui-list__link oui-button_ghost"
-                                        href="{{:: $ctrl.servicesStateLinks.status }}"
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        <span
-                                            data-translate="server_configuration_services_state_links_travaux"
-                                        ></span>
-                                        <span
-                                            class="oui-icon oui-icon-external-link"
-                                            aria-hidden="true"
-                                        ></span>
-                                        <span
-                                            class="sr-only"
-                                            data-translate="core_new_window"
-                                        ></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </oui-tile-description>
-                </oui-tile-definition>
-            </oui-tile>
+            <server-service-status
+                data-server="$ctrl.server"
+                data-dedicated-server="$ctrl.dedicatedServer"
+                data-terminate-link="$ctrl.terminateLink"
+                data-monitoring-protocol-enum="$ctrl.monitoringProtocolEnum"
+                data-service-monitoring="$ctrl.serviceMonitoring"
+                data-ola="$ctrl.ola"
+                data-go-to-monitoring-update="$ctrl.goToMonitoringUpdate"
+                data-is-monitoring-options-available="$ctrl.isMonitoringOptionsAvailable"
+            ></server-service-status>
         </div>
 
         <!-- SUBSCRIPTION -->

@@ -11,6 +11,7 @@ import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 import {
   serverTechnicalDetails,
   serverGeneralInformation,
+  serverServiceStatus,
   serverBandwidthDashboard,
 } from '@ovh-ux/manager-bm-server-components';
 import advancedFeatures from './advanced-features';
@@ -45,6 +46,7 @@ angular
     terminate,
     serverGeneralInformation,
     serverTechnicalDetails,
+    serverServiceStatus,
     serverBandwidthDashboard,
   ])
   .component('dedicatedServerDashboard', component)
