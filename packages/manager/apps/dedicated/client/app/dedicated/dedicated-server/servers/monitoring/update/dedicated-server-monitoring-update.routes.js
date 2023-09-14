@@ -7,7 +7,7 @@ angular.module('App').config(
       {
         url: '/monitoring/update',
         templateUrl:
-          'dedicated/server/monitoring/update/dedicated-server-monitoring-update.html',
+          'dedicated/dedicated-server/servers/monitoring/update/dedicated-server-monitoring-update.html',
         controller: 'DedicatedServerMonitoringUpdateCtrl',
         controllerAs: '$ctrl',
         layout: 'modal',

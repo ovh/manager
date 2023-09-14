@@ -8,6 +8,7 @@ export { default as serverNetboot } from './netboot';
 export { default as serverNetwork } from './network-tile';
 export { default as serverGeneralInformation } from './general-information';
 export { default as serverTechnicalDetails } from './technical-details';
+export { default as serverServiceStatus } from './service-status';
 export { default as serverOrderPrivateBandwidth } from './order-private-bandwidth';
 export { default as serverBandwidthDashboard } from './bandwidth-dashboard';
 export { default as serverBandwidthTile } from './bandwidth-tile';

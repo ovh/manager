@@ -5,7 +5,7 @@ angular.module('App').config(
       {
         url: '/monitoring/legacy-update',
         templateUrl:
-          'dedicated/server/monitoring/legacy-update/dedicated-server-monitoring-update.html',
+          'dedicated/dedicated-server/servers/monitoring/legacy-update/dedicated-server-monitoring-update.html',
         controller: 'DedicatedServerMonitoringLegacyUpdateCtrl',
         controllerAs: '$ctrl',
         layout: 'modal',
