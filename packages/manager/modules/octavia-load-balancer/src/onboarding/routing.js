@@ -17,6 +17,13 @@ export default /* @ngInject */ ($stateProvider) => {
         $http
           .get(`/cloud/project/${projectId}/aggregated/loadbalancer`)
           .then(({ data }) => data.resources),
+      hasPrivateNetwork: /* @ngInject */ ($http, $stateParams) =>
+        $http
+          .get(`/cloud/project/${$stateParams.projectId}/network/private`)
+          .then(({ data }) => data && data.length > 0),
+    },
+    params: {
+      showNoPrivateNetworkModal: false,
     },
     atInternet: {
       rename: TRACKING_NAME,
