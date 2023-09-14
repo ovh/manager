@@ -20,12 +20,12 @@ export default class {
           ),
           engine: engine.name,
           versions: engine.availableVersions
-            .map((v) => ({
-              id: `${engine.name}@${v.name}`,
+            .map((version) => ({
+              id: `${engine.name}@${version.name}`,
               engine: engine.name,
-              version: v.name,
-              status: getVersionStatus(v),
-              description: v.description,
+              version: version.name,
+              status: getVersionStatus(version),
+              description: version.description,
             }))
             // do not display ended versions
             .filter((version) => version.status !== VERSION_STATUS.EOL),
