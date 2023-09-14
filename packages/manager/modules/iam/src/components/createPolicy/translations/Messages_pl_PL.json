@@ -28,5 +28,7 @@
   "iam_create_policy_submit_create": "Tworzenie polityki",
   "iam_create_policy_submit_edit": "Zmień politykę",
   "iam_create_policy_success_create": "Polityka {{ name }} została utworzona",
-  "iam_create_policy_success_edit": "Polityka {{ name }} została poprawnie zmieniona"
+  "iam_create_policy_success_edit": "Polityka {{ name }} została poprawnie zmieniona",
+  "iam_create_policy_form_description_error_pattern": "Nazwa polityki może zawierać tylko znaki alfanumeryczne, spacje oraz „-”, „/”, „_”, „+”",
+  "iam_create_policy_form_description_heading": "Opis polityki"
 }
