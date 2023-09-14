@@ -1,15 +1,15 @@
 {
-  "domain_email_obfuscation_back_button": "Rigenera gli indirizzi email riservati",
-  "domain_email_obfuscation_label": "Seleziona i contatti per cui vuoi rigenerare gli indirizzi email riservati:",
-  "domain_email_obfuscation_regenerate": "Registrare le modifiche",
+  "domain_email_obfuscation_back_button": "Rigenerare gli indirizzi email anti-Spam",
+  "domain_email_obfuscation_label": "Selezionare i contatti per cui vuoi rigenerare gli indirizzi email anti-Spam:",
+  "domain_email_obfuscation_regenerate": "Salvare le modifiche",
   "domain_email_obfuscation_contact_admin": "Contatto amministratore",
   "domain_email_obfuscation_contact_owner": "Contatto proprietario",
   "domain_email_obfuscation_contact_tech": "Contatto tecnico",
-  "domain_email_obfuscation_active": "Oscura",
-  "domain_email_obfuscation_inactive": "Visualizza in chiaro",
-  "domain_email_obfuscation_mail": "l'indirizzo email personale del contatto",
-  "domain_email_obfuscation_refresh": "Rigenerare l'indirizzo email oscurato",
+  "domain_email_obfuscation_active": "Offuscare",
+  "domain_email_obfuscation_inactive": "Mostrare in chiaro",
+  "domain_email_obfuscation_mail": "l’indirizzo email personale del contatto",
+  "domain_email_obfuscation_refresh": "Rigenerare l’email di offuscamento",
   "domain_email_obfuscation_refresh_success": "Gli indirizzi email sono stati rigenerati.",
-  "domain_email_obfuscation_refresh_error": "Si è verificato un errore durante la rigenerazione dei tuoi indirizzi email: {{ message }}",
-  "domain_email_obfuscation_error": "Si è verificato un errore nel caricamento delle informazioni"
+  "domain_email_obfuscation_refresh_error": "Si è verificato un errore durante la rigenerazione degli indirizzi email. {{ message }}",
+  "domain_email_obfuscation_error": "Si è verificato un errore durante il caricamento delle informazioni."
 }

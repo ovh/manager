@@ -1,6 +1,6 @@
 {
-  "domain_email_obfuscation_back_button": "Régénérer les adresses e-mail de substitution",
-  "domain_email_obfuscation_label": "Sélectionner les contacts pour lesquels vous souhaitez régénérer les adresses e-mail de substitution :",
+  "domain_email_obfuscation_back_button": "Régénérer les adresses e-mail Anti-spam",
+  "domain_email_obfuscation_label": "Sélectionner les contacts pour lesquels vous souhaitez régénérer les adresses e-mail Anti-spam :",
   "domain_email_obfuscation_regenerate": "Enregistrer les modifications",
   "domain_email_obfuscation_contact_admin": "Contact administrateur",
   "domain_email_obfuscation_contact_owner": "Contact propriétaire",

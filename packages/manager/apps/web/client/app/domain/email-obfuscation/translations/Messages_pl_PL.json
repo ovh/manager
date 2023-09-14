@@ -1,15 +1,15 @@
 {
-  "domain_email_obfuscation_back_button": "Wygeneruj ponownie zastępcze adresy e-mail",
-  "domain_email_obfuscation_label": "Wybierz kontakty, dla których chcesz ponownie wygenerować zastępcze adresy e-mail:",
+  "domain_email_obfuscation_back_button": "Wygeneruj ponownie adresy e-mail z ochroną antyspamową",
+  "domain_email_obfuscation_label": "Wybierz kontakty, dla których chcesz ponownie wygenerować adresy e-mail z ochroną antyspamową:",
   "domain_email_obfuscation_regenerate": "Zapisz zmiany",
   "domain_email_obfuscation_contact_admin": "Kontakt administracyjny",
-  "domain_email_obfuscation_contact_owner": "Właściciel",
+  "domain_email_obfuscation_contact_owner": "Kontakt do właściciela",
   "domain_email_obfuscation_contact_tech": "Kontakt techniczny",
   "domain_email_obfuscation_active": "Ukryj",
-  "domain_email_obfuscation_inactive": "Wyświetl pełny adres e-mail",
+  "domain_email_obfuscation_inactive": "Wyświetl",
   "domain_email_obfuscation_mail": "prywatny adres e-mail kontaktu",
   "domain_email_obfuscation_refresh": "Wygeneruj ponownie ukryty adres e-mail",
   "domain_email_obfuscation_refresh_success": "Adresy e-mail zostały ponownie wygenerowane.",
-  "domain_email_obfuscation_refresh_error": "Wystąpił błąd podczas ponownego generowania adresów e-mail. {{ message }}",
-  "domain_email_obfuscation_error": "Wystąpił błąd podczas ładowania informacji."
+  "domain_email_obfuscation_refresh_error": "Wystąpił błąd podczas ponownego generowania adresów e-mail. {{message}}",
+  "domain_email_obfuscation_error": "Wystąpił błąd podczas pobierania informacji."
 }
