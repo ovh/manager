@@ -2,6 +2,7 @@ import { cloneDeep } from 'lodash-es';
 
 import {
   CUSTOM_ACTION_PATTERN,
+  CUSTOM_ACTION_SAMPLE,
   CUSTOM_RESOURCE_TYPE,
   TAG,
 } from '../../iam.constants';
@@ -18,6 +19,7 @@ export default class ActionSelectController {
     this.$translate = $translate;
     this.IAMService = IAMService;
 
+    this.CUSTOM_ACTION_SAMPLE = CUSTOM_ACTION_SAMPLE;
     this.CUSTOM_RESOURCE_TYPE = CUSTOM_RESOURCE_TYPE;
 
     /**

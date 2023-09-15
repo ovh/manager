@@ -11,6 +11,7 @@
   "iam_action_select_custom_action_error_requirements": "Cette action n'existe pas",
   "iam_action_select_custom_action_error_selected": "L'action est déjà sélectionnée",
   "iam_action_select_custom_action_label": "Ajouter manuellement des actions",
+  "iam_action_select_custom_action_placeholder": "Exemple : {{ sample }}",
   "iam_action_select_custom_action_success_created": "L'action {{ action }} a été ajoutée à {{ resourceType }}",
   "iam_action_select_custom_action_success_selected": "L'action {{ action }} a été sélectionnée dans {{ resourceType }}",
   "iam_action_select_custom_action_success_wildcard": "« Autoriser toutes les actions » a été activé",
