@@ -1,0 +1,42 @@
+<div class="mt-5">
+    <oui-header
+        heading="{{:: 'octavia_load_balancer_create_title' | translate }}"
+    ></oui-header>
+    <p data-translate="octavia_load_balancer_create_description"></p>
+    <h4 data-translate="octavia_load_balancer_create_size_title"></h4>
+
+    <!-- SIZE FLAVOUR SELECTION -->
+    <p>
+        <span data-translate="octavia_load_balancer_create_size_intro"></span>
+        <a
+            data-ng-href="{{$ctrl.productPageLink}}"
+            data-at-internet-click="{name: $ctrl.trackingProductPage}"
+        >
+            <span data-translate="octavia_load_balancer_create_size_intro_link">
+            </span>
+        </a>
+    </p>
+    <oui-select-picker
+        class="d-inline-block col-md-6 col-xl-3 my-3"
+        data-ng-repeat="size in $ctrl.sizeFlavour | orderBy:'price' track by $index"
+        data-label="{{:: 'octavia_load_balancer_create_size_flavour_title' | translate:{sizeCode: size.label} }}"
+        data-description="{{:: 'octavia_load_balancer_create_size_flavour_description_' + size.code | translate}}"
+        data-model="$ctrl.model.size"
+        data-on-change="$ctrl.model.size = size"
+        data-variant="light"
+        data-values="[size]"
+    >
+        <oui-select-picker-section>
+            <div class="text-center">
+                <ovh-manager-catalog-price
+                    data-price="size.price"
+                    data-user="$ctrl.user"
+                >
+                </ovh-manager-catalog-price>
+                <span
+                    data-translate="octavia_load_balancer_create_size_flavour_price_interval"
+                ></span>
+            </div>
+        </oui-select-picker-section>
+    </oui-select-picker>
+</div>
