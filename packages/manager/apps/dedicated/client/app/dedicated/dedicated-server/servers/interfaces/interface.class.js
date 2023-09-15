@@ -56,4 +56,8 @@ export default class Interface {
   setTaskInProgress(progress) {
     this.taskInProgress = progress;
   }
+
+  isVrackAggregation() {
+    return this.type === VIRTUAL_TYPE.vrackAggregation;
+  }
 }

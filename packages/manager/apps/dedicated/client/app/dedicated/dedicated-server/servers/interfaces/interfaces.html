@@ -59,68 +59,12 @@
         class="col-md-4 mb-5"
         data-ng-if="$ctrl.ola.isAvailable() && $ctrl.ola.isActivated()"
     >
-        <oui-tile
-            class="h-100"
-            data-heading="{{:: 'dedicated_server_interfaces_step_checker_title' | translate }}"
-        >
-            <oui-message class="mb-3" data-type="info">
-                <p class="mb-0">
-                    <span
-                        data-translate="dedicated_server_interfaces_ola_alert_configuration_needed_small"
-                    ></span>
-                    <a
-                        class="oui-link_icon"
-                        data-ng-href="{{::$ctrl.guideUrl}}"
-                        target="_blank"
-                        rel="noopener"
-                    >
-                        <span
-                            data-translate="dedicated_server_interfaces_ola_alert_configuration_needed_link"
-                        ></span>
-                        <span
-                            class="oui-icon oui-icon-external-link"
-                            aria-hidden="true"
-                        ></span>
-                        <span
-                            class="sr-only"
-                            data-translate="dedicated_server_interfaces_new_tab"
-                        ></span>
-                    </a>
-                </p>
-            </oui-message>
-
-            <!-- OLA -->
-            <oui-tile-definition data-term="{{:: 'server_ola' | translate}}">
-                <oui-tile-description>
-                    <span data-translate="server_ola_active"></span>
-                </oui-tile-description>
-            </oui-tile-definition>
-
-            <!-- OLA Mode -->
-            <oui-tile-definition
-                data-term="{{:: 'server_ola_mode' | translate}}"
-            >
-                <oui-tile-description>
-                    <span
-                        data-translate="server_ola_mode_{{ $ctrl.ola.getCurrentMode() }}"
-                    ></span>
-                </oui-tile-description>
-                <oui-action-menu data-compact data-placement="end">
-                    <oui-action-menu-item
-                        data-ng-if="$ctrl.ola.isConfigured()"
-                        data-ui-sref="app.dedicated-server.server.interfaces.ola-reset"
-                    >
-                        <span data-translate="server_ola_reset"></span>
-                    </oui-action-menu-item>
-                    <oui-action-menu-item
-                        data-ng-if="!$ctrl.ola.isConfigured()"
-                        data-ui-sref="app.dedicated-server.server.interfaces.ola-configuration"
-                    >
-                        <span data-translate="server_ola_configure"></span>
-                    </oui-action-menu-item>
-                </oui-action-menu>
-            </oui-tile-definition>
-        </oui-tile>
+        <!-- OLA -->
+        <server-ola
+            data-server="$ctrl.server"
+            data-guide-url="{{::$ctrl.guideUrl}}"
+            data-ola="$ctrl.ola"
+        ></server-ola>
     </div>
 
     <div class="col-md-4 mb-5">
