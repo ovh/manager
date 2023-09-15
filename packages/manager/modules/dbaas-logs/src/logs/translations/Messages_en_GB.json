@@ -768,5 +768,5 @@
   "inputs_autoscaled_notification_detail": "Notify me via email when an automatic scaling occurs.",
   "inputs_logs_edit_min_instance_field": "Minimum number of instances",
   "inputs_logs_edit_max_instance_field": "Maximum number of instances",
-  "inputs_info_ca_certificate": "Certification authority certificate"
+  "inputs_info_ca_certificate": "Certificate authority certificate"
 }
