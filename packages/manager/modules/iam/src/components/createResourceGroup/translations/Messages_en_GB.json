@@ -7,7 +7,7 @@
   "iam_create_resource_group_error_heading_create": "Some errors in the form are preventing this resource group from being created. Please correct them before resubmitting.",
   "iam_create_resource_group_error_heading_edit": "Some errors in the form are preventing this resource group from being modified. Please correct them before resubmitting.",
   "iam_create_resource_group_error_no_resources": "No resources are available for this product type.",
-  "iam_create_resource_group_form_name_error_pattern": "The resource group name can only contain alphanumeric characters and \"-\", \"/\", \"_\", \"+\"",
+  "iam_create_resource_group_form_name_error_pattern": "The resource group name can only contain alphanumeric characters and “-” “/” “_” “+”",
   "iam_create_resource_group_form_name_heading": "Resource group name",
   "iam_create_resource_group_form_resource_types_description": "Select the type of products that correspond to the resources you want to add.",
   "iam_create_resource_group_form_resource_types_error_required": "Please select one or more product types.",
