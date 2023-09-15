@@ -399,51 +399,6 @@
                     </oui-tile-description>
                 </oui-tile-definition>
 
-                <!-- No intervention -->
-                <!--
-                TODO: Needs to be uncommented (relates to MANAGER-7799).
-                <oui-tile-definition
-                    data-term="{{ ::'server_configuration_no_intervention' | translate }}"
-                    class="border-top-0 padding-top-0"
-                >
-                    <oui-tile-description>
-                        <oui-switch
-                            data-disabled="$ctrl.ola.isConfigured() || $ctrl.updatingNoIntervention"
-                            model="$ctrl.server.noIntervention"
-                            on-change="$ctrl.onChangeIntervention(modelValue)"
-                            data-ng-if="!$ctrl.server.isExpired && $ctrl.server.monitored"
-                        >
-                        </oui-switch>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                -->
-                <!-- Monitored services -->
-                <oui-tile-definition
-                    data-term="{{ ::'server_configuration_monitoring_services' | translate }}"
-                >
-                    <oui-tile-description>
-                        <span
-                            class="oui-badge"
-                            data-ng-repeat="monitoringProtocol in $ctrl.monitoringProtocolEnum"
-                            data-ng-class="$ctrl.isMonitoringEnabled(monitoringProtocol) ? 'oui-badge_success' : 'oui-badge_warning'"
-                            data-ng-bind="monitoringProtocol"
-                        ></span>
-                    </oui-tile-description>
-                    <oui-action-menu
-                        aria-label="{{:: 'menu_action_label' | translate:{t0: ('server_configuration_monitoring_services' | translate)}"
-                        data-compact
-                        data-placement="end"
-                        data-ng-if="!$ctrl.server.isExpired"
-                    >
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.goToMonitoring()"
-                        >
-                            <span
-                                data-translate="server_configuration_monitoring_services_use"
-                            ></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
-                </oui-tile-definition>
                 <!-- Links -->
                 <oui-tile-definition
                     data-term="{{ ::'server_configuration_services_state_links' | translate }}"
