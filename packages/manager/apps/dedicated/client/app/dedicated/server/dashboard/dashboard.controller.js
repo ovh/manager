@@ -277,18 +277,6 @@ export default class DedicatedServerDashboard {
     return monitoringStatus;
   }
 
-  goToMonitoring() {
-    return this.$state.go('app.dedicated-server.server.dashboard.monitoring');
-  }
-
-  isMonitoringEnabled(protocol) {
-    return (
-      this.serviceMonitoring.filter(
-        (monitoring) => monitoring.enabled && monitoring.protocol === protocol,
-      ).length > 0
-    );
-  }
-
   canOrderTraffic() {
     return (
       this.DedicatedServerFeatureAvailability.allowDedicatedServerOrderTrafficOption() &&
