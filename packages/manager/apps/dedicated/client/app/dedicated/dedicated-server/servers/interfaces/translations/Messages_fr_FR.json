@@ -75,11 +75,6 @@
   "dedicated_server_interfaces_detach_private_network_text": "Êtes-vous sûr de vouloir détacher le vrack «{{vrack}}» de l'interface «{{interface}}» ?",
   "dedicated_server_interfaces_resiliate_label": "Résilier",
 
-  "dedicated_server_interfaces_bandwith_title": "Bande passante",
-  "dedicated_server_interfaces_bandwith_description": "La bande passante publique (depuis et vers internet) n’est pas limitée en entrée. Vous pouvez augmenter la bande passante publique et privée en souscrivant à une option",
-  "dedicated_server_interfaces_bandwith_ola_warning": "Dans le cadre d’une configuration agrégation privée complète, votre option de bande passante sortante publique ne sera pas utilisée du fait que l’interface dédiée au réseau public sera utilisée pour le réseau privé.",
-  "dedicated_server_interfaces_bandwith_public": "Bande passante publique",
-  "dedicated_server_interfaces_bandwith_private": "Bande passante privée",
   "dedicated_server_interfaces_task_error": "Une erreur est survenue lors de la configuration : {{ errorMessage }}",
   "dedicated_server_interfaces_vrack_operation_attach": "En cours d’attachement",
   "dedicated_server_interfaces_vrack_operation_detach": "En cours de détachement",
