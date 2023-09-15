@@ -14,6 +14,7 @@ import kill from './kill';
 import component from './jobs.component';
 import routing from './jobs.routing';
 import service from '../job.service';
+import deleteJob from './delete';
 
 const moduleName = 'ovhManagerPciTrainingJobs';
 
@@ -31,6 +32,7 @@ angular
     submit,
     resubmit,
     kill,
+    deleteJob,
   ])
   .config(routing)
   .component('pciProjectTrainingJobsComponent', component)

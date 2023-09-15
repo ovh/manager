@@ -12,5 +12,6 @@
   "pci_ai_dashboard_cli_auth_steps_step_3": "wprowadź informacje dotyczące logowania do wybranego użytkownika lub powiązanego z nim tokena",
   "pci_ai_dashboard_cli_auth_steps_step_4": "ten proces został zakończony",
   "pci_ai_dashboard_cli_commands_title": "Komendy",
-  "pci_ai_dashboard_cli_commands_desc": "Rozpocznij {{command}}, aby uzyskać listę dostępnych operacji."
+  "pci_ai_dashboard_cli_commands_desc": "Rozpocznij {{command}}, aby uzyskać listę dostępnych operacji.",
+  "pci_ai_dashboard_cli_select_region": "Wybierz region, którego chcesz użyć:"
 }

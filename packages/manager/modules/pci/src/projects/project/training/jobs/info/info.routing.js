@@ -34,6 +34,24 @@ export default /* @ngInject */ ($stateProvider) => {
           jobId,
           previousState: 'info',
         }),
+      goToJobDelete: /* @ngInject */ ($state, jobId) => () =>
+        $state.go('pci.projects.project.training.jobs.info.delete', {
+          jobId,
+        }),
+      goToUsersAndTokens: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.ai-dashboard.users-tokens', {
+          projectId,
+        }),
+      goBackToJob: /* @ngInject */ ($state) => (jobId, reload = false) =>
+        $state.go(
+          'pci.projects.project.training.jobs.info',
+          {
+            jobId,
+          },
+          {
+            reload,
+          },
+        ),
     },
   });
 };

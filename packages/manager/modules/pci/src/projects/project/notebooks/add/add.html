@@ -21,22 +21,29 @@
 
 <!--Banner messages-->
 <div class="mt-4" id="addMessages">
-    <!--Banner for User and Roles-->
-    <oui-message data-type="info">
+    <!--Banner for Object container / usertoken-->
+    <oui-message data-type="info" dismissable>
         <span
             data-translate="pci_notebook_add_banner_object_storage_description"
         ></span>
-        <button
-            type="button"
-            class="oui-link"
-            data-ng-click="$ctrl.createObjectStorage()"
-        >
-            <span
+        <p class="mb-2">
+            <a
+                rel="noopener"
                 data-translate="pci_notebook_add_banner_object_storage_description_link"
-            ></span>
-        </button>
+                data-ng-click="$ctrl.createObjectStorage()"
+            ></a>
+        </p>
+        <span
+            data-translate="pci_notebook_add_banner_user_token_description"
+        ></span>
+        <p class="m-0">
+            <a
+                rel="noopener"
+                data-translate="pci_notebook_add_banner_user_token_description_link"
+                data-ng-click="$ctrl.goToUsersAndTokens()"
+            ></a>
+        </p>
     </oui-message>
-
     <!--Dynamic banner message-->
     <cui-message-container
         data-messages="$ctrl.messages"

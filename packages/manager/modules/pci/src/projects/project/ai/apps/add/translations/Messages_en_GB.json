@@ -1,8 +1,8 @@
 {
   "pci_app_add_title": "Deploy an app",
   "pci_app_add_description": "Launch your apps in the cloud quickly and easily.",
-  "pci_app_add_banner_token_description": "Please note that if you want to access your app, you will need to create a token.",
-  "pci_app_add_banner_token_description_link": "Create a token now",
+  "pci_app_add_banner_token_description": "To use AI Tools, please ensure that you are using a configured AI user or a token.",
+  "pci_app_add_banner_token_description_link": "Manage my AI users and tokens",
   "pci_app_add_configuration_title": "Configure your app",
   "pci_app_add_configuration_title_selected": "App name: {{app}} ({{labelsLength}} labels) / Region: {{region}} / Access: {{privacy}}",
   "pci_app_add_privacy_settings_title": "Privacy settings",

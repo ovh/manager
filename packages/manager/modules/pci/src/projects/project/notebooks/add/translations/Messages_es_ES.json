@@ -26,5 +26,7 @@
   "pci_notebook_add_notebook_create_success": "Su notebook se ha creado correctamente.",
   "pci_notebook_add_notebook_create_error": "Error al crear el notebook: {{ message }}.",
   "pci_notebook_add_ssh_keys": "Asociar claves públicas SSH",
-  "pci_notebook_add_ssh_keys_selected": "Claves públicas SSH asociadas: {{quantity}}"
+  "pci_notebook_add_ssh_keys_selected": "Claves públicas SSH asociadas: {{quantity}}",
+  "pci_notebook_add_banner_user_token_description": "Para utilizar las AI Tools, asegúrese de identificarse con un usuario AI configurado o un token.",
+  "pci_notebook_add_banner_user_token_description_link": "Gestionar mis usuarios AI y tokens"
 }
