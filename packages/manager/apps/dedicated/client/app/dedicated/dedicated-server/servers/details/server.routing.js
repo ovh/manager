@@ -1,8 +1,6 @@
 import { DedicatedServer } from '@ovh-ux/manager-models';
 import { SERVICE_TYPE } from './server.constants';
 
-import Ola from '../interfaces/ola.class';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-server.server', {
     url: '/server/:productId',
@@ -29,8 +27,13 @@ export default /* @ngInject */ ($stateProvider) => {
           'dedicated-server:dns',
           'dedicated-server:upgradeWithTicket',
         ]),
-      ola: /* @ngInject */ ($stateParams, interfaces, specifications) =>
-        new Ola({
+      ola: /* @ngInject */ (
+        $stateParams,
+        interfaces,
+        specifications,
+        olaService,
+      ) =>
+        olaService.computeOlaData({
           interfaces,
           ...specifications.ola,
           ...$stateParams,

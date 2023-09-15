@@ -1,4 +1,4 @@
-import { redirectTo as pendingTaskRedirectTo } from '../ola-pending-task/ola-pending-task.routing';
+import { redirectTo as pendingTaskRedirectTo } from './ola-pending-task.routing';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-server.server.interfaces.ola-reset', {
