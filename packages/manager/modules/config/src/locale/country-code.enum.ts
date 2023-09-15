@@ -8,4 +8,10 @@ export enum CountryCode {
   PT = 'PT',
   IT = 'IT',
   DE = 'DE',
+  IE = 'IE',
+  QC = 'QC',
+  WE = 'WE',
+  WS = 'WS',
 }
+
+export default CountryCode;

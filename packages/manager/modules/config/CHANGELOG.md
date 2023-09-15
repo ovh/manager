@@ -3,11 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@7.0.0...@ovh-ux/manager-config@7.2.0) (2023-08-08)
+
+
+### Features
+
+* **config:** add more country code enum ([f928cc6](https://github.com/ovh/manager/commit/f928cc6b28b94fbf9c0c99f460f217f08ede283d))
+
+
+
 ## [7.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@7.1.0...@ovh-ux/manager-config@7.1.1) (2023-09-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-config
-
-
 
 
 
@@ -17,7 +24,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * **iam:** add IAM & Restricted applications ([f928cc6](https://github.com/ovh/manager/commit/f928cc6b28b94fbf9c0c99f460f217f08ede283d))
-
 
 
 
