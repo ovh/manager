@@ -9,6 +9,7 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import dashboard from './dashboard';
 import onboarding from './onboarding';
 import routing from './octavia-load-balancer.routing';
+import create from './create';
 
 const moduleName = 'ovhManagerOctaviaLoadBalancer';
 
@@ -20,6 +21,7 @@ angular
     'ui.router',
     onboarding,
     dashboard,
+    create,
     ListLayoutHelper.moduleName,
   ])
   .config(routing)
