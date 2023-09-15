@@ -14,5 +14,6 @@
   "iam_action_select_custom_action_success_created": "Die Aktion {{ action }} wurde zu {{ resourceType }} hinzugefügt",
   "iam_action_select_custom_action_success_selected": "Die Aktion {{ action }} wurde in {{ resourceType }} ausgewählt",
   "iam_action_select_custom_action_success_wildcard": "„Alle Aktionen zulassen“ wurde aktiviert",
-  "iam_action_select_error_required": "Sie müssen mindestens eine Aktion auswählen, alle Aktionen zulassen oder eine Aktion manuell hinzufügen"
+  "iam_action_select_error_required": "Sie müssen mindestens eine Aktion auswählen, alle Aktionen zulassen oder eine Aktion manuell hinzufügen",
+  "iam_action_select_custom_action_placeholder": "Beispiel: {{ sample }}"
 }
