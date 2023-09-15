@@ -3,7 +3,7 @@ import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import map from 'lodash/map';
 
-import { OLA_MODES } from './ola-configuration.constants';
+import { OLA_MODES } from '../ola.constants';
 
 export default class {
   /* @ngInject */

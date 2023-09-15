@@ -1,4 +1,4 @@
-import { redirectTo } from '../ola-pending-task/ola-pending-task.routing';
+import { redirectTo } from './ola-pending-task.routing';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(

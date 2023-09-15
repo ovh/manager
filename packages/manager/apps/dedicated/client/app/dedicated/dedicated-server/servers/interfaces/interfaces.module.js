@@ -1,17 +1,18 @@
-import { serverBandwidthTile } from '@ovh-ux/manager-bm-server-components';
+import {
+  serverBandwidthTile,
+  serverOla,
+} from '@ovh-ux/manager-bm-server-components';
 import interfaceAttach from './attach/interfaces-attach.module';
 import interfaceDetach from './detach/interfaces-detach.module';
 import interfaceRename from './rename/interfaces-rename.module';
-import olaActivation from './ola-activation/ola-activation.module';
-import olaReset from './ola-reset/ola-reset.module';
-import olaConfiguration from './ola-configuration/ola-configuration.module';
-import olaPendingTask from './ola-pending-task/ola-pending-task.module';
 
 import component from './interfaces.component';
 import routing from './interfaces.routing';
 import service from './interfaces.service';
-
-import stepCheckerComponent from './ola-step-checker/ola-step-checker.component';
+import olaActivationRouting from './ola/ola-activation.routing';
+import olaConfigurationRouting from './ola/ola-configuration.routing';
+import { routing as olaPendingTaskRouting } from './ola/ola-pending-task.routing';
+import olaResetRouting from './ola/ola-reset.routing';
 
 const moduleName = 'ovhManagerDedicatedServerInterfaces';
 
@@ -20,18 +21,18 @@ angular
     interfaceAttach,
     interfaceDetach,
     interfaceRename,
-    olaActivation,
-    olaReset,
-    olaConfiguration,
-    olaPendingTask,
     'ovh-api-services',
     'ui.router',
     serverBandwidthTile,
+    serverOla,
   ])
   .component('dedicatedServerInterfaces', component)
-  .component('olaStepChecker', stepCheckerComponent)
   .service('DedicatedServerInterfacesService', service)
   .config(routing)
+  .config(olaActivationRouting)
+  .config(olaConfigurationRouting)
+  .config(olaPendingTaskRouting)
+  .config(olaResetRouting)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
