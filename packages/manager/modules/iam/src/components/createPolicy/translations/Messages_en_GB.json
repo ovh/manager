@@ -11,7 +11,7 @@
   "iam_create_policy_deletion_resources_one": "1 resource will be deleted",
   "iam_create_policy_form_actions_description": "Select the actions authorised to identities on the chosen resources.",
   "iam_create_policy_form_actions_heading": "Actions",
-  "iam_create_policy_form_name_error_pattern": "The policy name can only contain alphanumeric characters and \"-\", \"/\", \"_\", \"+\"",
+  "iam_create_policy_form_name_error_pattern": "The policy name can only contain alphanumeric characters and “-” “/” “_” “+”",
   "iam_create_policy_form_name_heading": "Policy name",
   "iam_create_policy_form_resource_groups_create": "Create a resource group",
   "iam_create_policy_form_resource_groups_heading": "Resource groups",

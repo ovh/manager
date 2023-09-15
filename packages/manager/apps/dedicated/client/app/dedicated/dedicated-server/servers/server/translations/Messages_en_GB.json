@@ -667,7 +667,7 @@
   "server_configuration_installation_ovh_step2_remaining_size": "Space remaining:",
   "server_configuration_installation_ovh_step2_remaining_size_button": "Space remaining",
   "server_configuration_installation_ovh_step2_info": "Configuration of partition schemes for the <b>{{t0}}</b> operating system",
-  "server_configuration_installation_ovh_step2_scheme": "Predefined partitioning scheme:",
+  "server_configuration_installation_ovh_step2_scheme": "Predefined partition table:",
   "server_configuration_installation_ovh_step2_raid_hard": "(HardRAID)",
   "server_configuration_installation_ovh_step2_info_partition_cachecade": "In a CacheCade configuration, the disk space dedicated to the cache cannot be partitioned.",
   "server_configuration_installation_ovh_step2_error_empty_scheme": "No compatible partition tables for the {{t0}} server on the {{t1}} operating system. Please select another operating system.",
