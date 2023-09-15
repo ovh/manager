@@ -1,3 +1,4 @@
+import { serverBandwidthTile } from '@ovh-ux/manager-bm-server-components';
 import interfaceAttach from './attach/interfaces-attach.module';
 import interfaceDetach from './detach/interfaces-detach.module';
 import interfaceRename from './rename/interfaces-rename.module';
@@ -25,6 +26,7 @@ angular
     olaPendingTask,
     'ovh-api-services',
     'ui.router',
+    serverBandwidthTile,
   ])
   .component('dedicatedServerInterfaces', component)
   .component('olaStepChecker', stepCheckerComponent)
