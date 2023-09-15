@@ -33,5 +33,9 @@
   "pci_projects_project_training_jobs_price_estimate": "Estimativa do tempo de execução do job",
   "pci_projects_project_training_jobs_state_TIMEOUT": "Timeout",
   "pci_projects_project_training_discord": "Comunidade OVHcloud AI em Discord",
-  "pci_projects_project_training_jobs_state_SYNC_FAILED": "Falha na sincronização"
+  "pci_projects_project_training_jobs_state_SYNC_FAILED": "Falha na sincronização",
+  "pci_projects_project_training_jobs_delete": "Eliminar",
+  "pci_projects_project_training_jobs_resubmit": "Relançar",
+  "pci_projects_project_training_jobs_user_and_roles_info": "Para usar as AI Tools, certifique-se de que utiliza um utilizador AI configurado ou um token.",
+  "pci_projects_project_training_jobs_user_and_roles_info_link": "Gerir os meus utilizadores AI e tokens"
 }

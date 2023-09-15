@@ -6,5 +6,6 @@
   "pci_ai_dashboard_guide_documentation": "AI &amp; Machine Learning",
   "pci_ai_dashboard_tab_home": "Dashboard",
   "pci_ai_dashboard_tab_users_tokens": "Users &amp; tokens",
-  "pci_ai_dashboard_tab_cli": "Command Line Interface"
+  "pci_ai_dashboard_tab_cli": "Command Line Interface",
+  "pci_ai_dashboard_tab_registries": "Docker Registries"
 }

@@ -30,5 +30,7 @@
   "pci_notebook_permission_RO": "Lecture Seule",
   "pci_notebook_permission_RW": "Lecture & Ecriture",
   "pci_notebook_permission_RWD": "Lecture & Ecriture & Suppression",
-  "pci_notebook_data_cache": "Cache"
+  "pci_notebook_data_cache": "Cache",
+  "pci_ai_dashboard_banner_user_and_roles_info": "Afin d'utiliser les AI Tools, veuillez vous assurer d'utiliser un utilisateur AI configuré ou bien un token.",
+  "pci_ai_dashboard_banner_user_and_roles_info_link": "Gérer mes utilisateurs AI et tokens"
 }

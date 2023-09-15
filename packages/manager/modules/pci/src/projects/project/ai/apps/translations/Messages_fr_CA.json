@@ -36,5 +36,7 @@
   "pci_ai_app_beta_warning_special_conditions": "AI Apps change de nom et devient AI Deploy. AI Deploy est couvert par les ",
   "pci_ai_app_beta_warning_special_conditions_link": "Conditions Spéciales des Services Public Cloud d'OVHcloud",
   "pci_ai_app_list_creation_date": "Date de création",
-  "pci_ai_app_list_last_update_date": "Date de mise à jour"
+  "pci_ai_app_list_last_update_date": "Date de mise à jour",
+  "pci_ai_app_banner_user_and_roles_info": "Afin d'utiliser les AI Tools, veuillez vous assurer d'utiliser un utilisateur AI configuré ou bien un token.",
+  "pci_ai_app_banner_user_and_roles_info_link": "Gérer mes utilisateurs AI et tokens"
 }
