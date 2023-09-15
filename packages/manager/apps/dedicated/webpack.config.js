@@ -111,6 +111,9 @@ module.exports = (env = {}) => {
         path.resolve(process.cwd(), '../../../../node_modules'),
       ],
       mainFields: ['module', 'browser', 'main'],
+      fallback: {
+        buffer: require.resolve('buffer/'),
+      },
     },
     plugins: [
       new webpack.ContextReplacementPlugin(
@@ -126,6 +129,9 @@ module.exports = (env = {}) => {
         __NODE_ENV__: process.env.NODE_ENV
           ? `'${process.env.NODE_ENV}'`
           : '"development"',
+      }),
+      new webpack.ProvidePlugin({
+        Buffer: ['buffer', 'Buffer'],
       }),
     ],
     optimization: {
