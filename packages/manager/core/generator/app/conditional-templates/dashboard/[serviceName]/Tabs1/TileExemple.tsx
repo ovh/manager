@@ -5,6 +5,7 @@ import {
   OdsThemeTypographyLevel,
 } from '@ovhcloud/ods-theming';
 import ButtonTooltip from '@/components/ButtonTooltip/ButtonTooltip';
+import GuideLink from '@/components/GuideLink/GuideLink';
 
 const TileToRename1: React.FC = () => {
   return (
@@ -52,7 +53,9 @@ const TileToRename1: React.FC = () => {
         </div>
 
         <div>
-          <OsdsText color={OdsThemeColorIntent.text}>Label</OsdsText>
+          <OsdsText color={OdsThemeColorIntent.text}>
+          <GuideLink name="guideLink1">Guide external link 1</GuideLink>
+          </OsdsText>
         </div>
       </div>
       <OsdsDivider separator />
@@ -67,7 +70,9 @@ const TileToRename1: React.FC = () => {
         </div>
 
         <div>
-          <OsdsText color={OdsThemeColorIntent.text}>Label</OsdsText>
+          <OsdsText color={OdsThemeColorIntent.text}>
+          <GuideLink name="guideLink2">Guide external link 2</GuideLink>
+          </OsdsText>
         </div>
       </div>
       <OsdsDivider separator />
@@ -79,10 +84,6 @@ const TileToRename1: React.FC = () => {
           >
             Subtitle 4
           </OsdsText>
-        </div>
-
-        <div>
-          <OsdsText color={OdsThemeColorIntent.text}>Label</OsdsText>
         </div>
       </div>
     </>
