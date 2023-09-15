@@ -9,3 +9,4 @@ export { default as serverNetwork } from './network-tile';
 export { default as serverTechnicalDetails } from './technical-details';
 export { default as serverOrderPrivateBandwidth } from './order-private-bandwidth';
 export { default as serverBandwidthDashboard } from './bandwidth-dashboard';
+export { default as serverBandwidthTile } from './bandwidth-tile';
