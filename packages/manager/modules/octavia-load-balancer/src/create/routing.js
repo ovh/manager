@@ -27,12 +27,13 @@ export default /* @ngInject */ ($stateProvider) => {
             data.addons.reduce((filtered, addon) => {
               const regex = SIZE_FLAVOUR_REGEX;
               const found = addon.planCode.match(regex);
-              if (!found) return filtered;
-              filtered.push({
-                code: found[1],
-                price: addon.pricings[0].price,
-                label: found[1].toUpperCase(),
-              });
+              if (found) {
+                filtered.push({
+                  code: found[1],
+                  price: addon.pricings[0].price,
+                  label: found[1].toUpperCase(),
+                });
+              }
               return filtered;
             }, []),
           ),
