@@ -14,7 +14,6 @@ import {
   INTERFACE_TASK,
   INTERFACE_GROUP_TASK,
   INTERFACE_UNGROUP_TASK,
-  OLA_PLAN_CODE,
   VIRTUAL_TYPE,
 } from './interfaces.constants';
 
@@ -29,6 +28,7 @@ export default class DedicatedServerInterfacesService {
     OvhApiDedicatedServerVirtualInterface,
     OvhApiOrderCartServiceOption,
     Poller,
+    olaConstants,
   ) {
     this.$http = $http;
     this.$q = $q;
@@ -38,6 +38,7 @@ export default class DedicatedServerInterfacesService {
     this.VirtualInterface = OvhApiDedicatedServerVirtualInterface;
     this.OvhApiOrderCartServiceOption = OvhApiOrderCartServiceOption;
     this.Poller = Poller;
+    this.olaConstants = olaConstants;
   }
 
   getNetworkInterfaceControllers(serverName) {
@@ -239,10 +240,10 @@ export default class DedicatedServerInterfacesService {
         serviceName,
       })
       .$promise.then((options) => {
-        let planCode = OLA_PLAN_CODE;
+        let planCode = this.olaConstants.OLA_PLAN_CODE;
 
         if (this.coreConfig.isRegion('US')) {
-          planCode = `${OLA_PLAN_CODE}-${suffix}`;
+          planCode = `${planCode}-${suffix}`;
         }
 
         const prices = get(
