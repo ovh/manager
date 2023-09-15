@@ -42,5 +42,7 @@
   "pci_ai_app_list_image_provided_by": "Imagem fornecida por {{partnerName}}",
   "pci_ai_app_list_resources": "Recursos atribuídos",
   "pci_ai_app_list_resources_cpu": "{{cpu}} CPU / {{replicas}} réplicas",
-  "pci_ai_app_list_resources_gpu": "{{gpu}} GPU / {{replicas}} réplicas"
+  "pci_ai_app_list_resources_gpu": "{{gpu}} GPU / {{replicas}} réplicas",
+  "pci_ai_app_banner_user_and_roles_info": "Para usar as AI Tools, certifique-se de que utiliza um utilizador AI configurado ou um token.",
+  "pci_ai_app_banner_user_and_roles_info_link": "Gerir os meus utilizadores AI e tokens"
 }

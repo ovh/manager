@@ -85,5 +85,9 @@
   "pci_projects_project_training_jobs_submit_select_privacy_settings_item_restricted_description": "Solamente los usuarios de Public Cloud de OVHcloud creados en su proyecto pueden acceder a su job.",
   "pci_projects_project_training_jobs_submit_select_privacy_settings_item_public": "Acceso público",
   "pci_projects_project_training_jobs_submit_select_privacy_settings_item_public_description": "Todos los usuarios pueden acceder a su job a través de su URL. Cualquier usuario puede acceder al código y a los datos asociados.",
-  "pci_projects_project_training_jobs_submit_select_privacy_settings_item_public_warning": "¡Preste especial atención a los datos sensibles!"
+  "pci_projects_project_training_jobs_submit_select_privacy_settings_item_public_warning": "¡Preste especial atención a los datos sensibles!",
+  "pci_projects_project_training_jobs_add_banner_user_token_description": "Para utilizar las AI Tools, asegúrese de identificarse con un usuario AI configurado o un token.",
+  "pci_projects_project_training_jobs_add_banner_user_token_description_link": "Gestionar mis usuarios AI y tokens",
+  "pci_projects_project_training_jobs_add_banner_object_storage_description": "Si quiere asociar un contenedor a su job, le recomendamos que lo cree previamente en la interfaz Object Storage.",
+  "pci_projects_project_training_jobs_add_banner_object_storage_description_link": "Crear un contenedor de objetos"
 }

@@ -18,6 +18,7 @@ export default {
     flavors: '<',
     storages: '<',
     prices: '<',
+    goToUsersAndTokens: '<',
   },
   controller,
   template,
