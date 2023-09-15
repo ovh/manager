@@ -1,7 +1,4 @@
 import isEmpty from 'lodash/isEmpty';
-import { VIRTUAL_TYPE } from './interfaces.constants';
-
-import { OLA_MODES } from './ola-configuration/ola-configuration.constants';
 
 export default class Ola {
   constructor(resource) {
@@ -10,8 +7,8 @@ export default class Ola {
 
   getCurrentMode() {
     return this.isConfigured()
-      ? OLA_MODES.VRACK_AGGREGATION
-      : OLA_MODES.DEFAULT;
+      ? this.constants.OLA_MODES.VRACK_AGGREGATION
+      : this.constants.OLA_MODES.DEFAULT;
   }
 
   isActivated() {
@@ -24,8 +21,7 @@ export default class Ola {
 
   isConfigured() {
     return (
-      this.interfaces.length === 1 &&
-      this.interfaces[0].type === VIRTUAL_TYPE.vrackAggregation
+      this.interfaces.length === 1 && this.interfaces[0].isVrackAggregation()
     );
   }
 }

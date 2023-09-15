@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import startsWith from 'lodash/startsWith';
 
-import { OLA_PLAN_CODE } from '../interfaces.constants';
+import { OLA_PLAN_CODE } from '../ola.constants';
 
 export default class DedicatedServerInterfacesOlaActivationCtrl {
   /* @ngInject */
