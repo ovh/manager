@@ -99,12 +99,8 @@ export default class BillingPaymentMethodAddCtrl {
   }
 
   onPaymentMethodIntegrationSubmitError(error) {
-    this.Alerter.error(
-      this.$translate.instant('billing_payment_method_add_error', {
-        errorMessage: get(error, 'data.message'),
-      }),
-      'billing_payment_method_add_alert',
-    );
+    this.loading.redirecting = true;
+    this.onPaymentMethodAddError(error);
   }
 
   onPaymentMethodIntegrationSuccess(paymentMethod, selectedPaymentMethodType) {

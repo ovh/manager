@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   const name = 'app.account.billing.payment.method.add';
 
   $stateProvider.state(name, {
-    url: '/add?callbackUrl&status',
+    url: '/add?callbackUrl&status&redirectResult&paymentMethodId&transactionId',
     views: {
       '@app.account.billing.payment': {
         component: component.name,
@@ -123,7 +123,9 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       },
 
       model: () => ({}),
-
+      status: /* @ngInject */ ($transition$) => $transition$.params().status,
+      redirectResult: /* @ngInject */ ($transition$) =>
+        $transition$.params().redirectResult,
       onPaymentMethodAdded: /* @ngInject */ (
         $transition$,
         $translate,
@@ -150,12 +152,27 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           get($transition$.params(), 'from', null),
         );
       },
-      goToPaymentListPage: /* @ngInject */ (
+      onPaymentMethodAddError: /* @ngInject */ (
         $transition$,
         $translate,
         goPaymentList,
+      ) => (error) => {
+        return goPaymentList(
+          {
+            type: 'error',
+            text: $translate.instant('billing_payment_method_add_error', {
+              errorMessage: get(error, 'data.message'),
+            }),
+          },
+          get($transition$.params(), 'from', null),
+        );
+      },
+      goToPaymentListPage: /* @ngInject */ (
+        $translate,
+        status,
+        redirectResult,
+        goPaymentList,
       ) => {
-        const { status } = $transition$.params();
         const MESSAGE_TYPE = {
           error: 'error',
           failure: 'error',
@@ -163,7 +180,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           cancel: 'error',
           success: 'success',
         };
-        if (status) {
+        if (status && !redirectResult) {
           goPaymentList({
             type: MESSAGE_TYPE[status],
             text: $translate.instant(

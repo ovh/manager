@@ -12,7 +12,12 @@ import component from './component';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.new.payment', {
-    url: '/payment?paymentStatus&paymentType',
+    url:
+      '/payment?paymentStatus&paymentType&redirectResult&paymentMethodId&transactionId',
+    params: {
+      skipCallback: null,
+      showError: null,
+    },
     views: {
       '': component.name,
 
@@ -72,8 +77,25 @@ export default /* @ngInject */ ($stateProvider) => {
       }
     },
     resolve: {
-      callback: /* @ngInject */ ($location) => $location.search(),
-
+      skipCallback: /* @ngInject */ ($transition$) =>
+        $transition$.params().skipCallback,
+      showError: /* @ngInject */ ($transition$) =>
+        $transition$.params().showError,
+      callback: /* @ngInject */ ($location, $transition$) =>
+        $transition$.params().skipCallback ? {} : $location.search(),
+      displayErrorMessageOnIntegrationSubmitError: /* @ngInject */ (
+        $translate,
+        skipCallback,
+        showError,
+        CucCloudMessage,
+      ) => {
+        if (skipCallback && showError) {
+          CucCloudMessage.error(
+            $translate.instant('pci_project_new_payment_create_error'),
+            'pci.projects.new.payment',
+          );
+        }
+      },
       isDisplayablePaypalChargeBanner: /* @ngInject */ (ovhFeatureFlipping) => {
         const paypalChargeId = 'public-cloud:paypal-charge';
         return ovhFeatureFlipping

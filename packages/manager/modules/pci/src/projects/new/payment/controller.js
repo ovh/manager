@@ -19,6 +19,8 @@ export default class PciProjectNewPaymentCtrl {
     $translate,
     $q,
     $window,
+    $state,
+    $location,
     coreConfig,
     coreURLBuilder,
     CucCloudMessage,
@@ -31,6 +33,8 @@ export default class PciProjectNewPaymentCtrl {
     this.$translate = $translate;
     this.$q = $q;
     this.$window = $window;
+    this.$state = $state;
+    this.$location = $location;
     this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
     this.CucCloudMessage = CucCloudMessage;
@@ -103,6 +107,12 @@ export default class PciProjectNewPaymentCtrl {
             'payment',
             'pci_project_new_payment_check_payment_method_status',
           );
+          if (this.model.paymentMethod.isHandleByComponent())
+            this.$state.go(
+              'pci.projects.new.payment',
+              { skipCallback: true },
+              { inherit: false },
+            );
         }
       })
       .finally(() => {
@@ -495,6 +505,12 @@ export default class PciProjectNewPaymentCtrl {
     this.resetLegalAgreements();
     this.componentInitialParams = null;
     this.hasComponentRedirectCallback = false;
+    if (this.model.paymentMethod.isHandleByComponent())
+      this.$state.go(
+        'pci.projects.new.payment',
+        { skipCallback: true, showError: true },
+        { inherit: false },
+      );
   }
 
   /* -----  End of Callbacks  ------ */
