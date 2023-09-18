@@ -21,7 +21,7 @@
                 data-ng-repeat="contrat in $ctrl.contracts track by $index"
                 class="list-group-item border-0 p-0"
             >
-                <a target="_blank" href="{{::contrat.url}}"
+                <a target="_blank" rel="noopener" href="{{::contrat.url}}"
                     >{{::contrat.name}}</a
                 >
             </li>
