@@ -46,6 +46,41 @@ export const REGION_AVAILABILITY_LINK = {
   DEFAULT: 'https://www.ovhcloud.com/en/public-cloud/regions-availability/',
 };
 
+export const GETTING_STARTED_LINK = {
+  FR:
+    'https://docs.ovh.com/fr/load-balancer-octavia/premiers-pas-avec-load-balancer-public-cloud/',
+  DE:
+    'https://docs.ovh.com/de/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+  ES:
+    'https://docs.ovh.com/es/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+  IE:
+    'https://docs.ovh.com/ie/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+  IT:
+    'https://docs.ovh.com/it/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+  PL:
+    'https://docs.ovh.com/pl/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+  PT:
+    'https://docs.ovh.com/pt/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+  GB:
+    'https://docs.ovh.com/gb/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+  CA:
+    'https://docs.ovh.com/ca/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+  QC:
+    'https://docs.ovh.com/ca/fr/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+  WS:
+    'https://docs.ovh.com/us/es/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+  AU:
+    'https://docs.ovh.com/au/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+  SG:
+    'https://docs.ovh.com/sg/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+  ASIA:
+    'https://docs.ovh.com/asia/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+  US:
+    'https://docs.ovh.com/us/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+  DEFAULT:
+    'https://docs.ovh.com/ie/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+};
+
 export const TRACKING_CHAPTER_1 = 'PublicCloud';
 
 export const TRACKING_NAME =
@@ -57,6 +92,8 @@ export const TRACKING_REGION_AVAILABILITY = `${TRACKING_CHAPTER_1}::${TRACKING_N
 
 export const TRACKING_PRIVATE_NETWORK_CREATION = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::create-private-network`;
 
+export const TRACKING_INSTANCE_DOCUMENTATION = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::goto-documentation`;
+
 export const AGORA_ADDON_FAMILY = 'octavia-loadbalancer';
 
 export const SIZE_FLAVOUR_REGEX = /octavia-loadbalancer.loadbalancer-([sml]).hour.consumption/;
@@ -67,10 +104,12 @@ export const NETWORK_PRIVATE_VISIBILITY = 'private';
 export default {
   PRODUCT_LINK,
   REGION_AVAILABILITY_LINK,
+  GETTING_STARTED_LINK,
   TRACKING_CHAPTER_1,
   TRACKING_PRODUCT_PAGE,
   TRACKING_REGION_AVAILABILITY,
   TRACKING_PRIVATE_NETWORK_CREATION,
+  TRACKING_INSTANCE_DOCUMENTATION,
   AGORA_ADDON_FAMILY,
   TRACKING_NAME,
   SIZE_FLAVOUR_REGEX,
