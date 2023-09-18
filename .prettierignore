@@ -1,2 +1,7 @@
 packages/manager/apps/container
-
+custom-elements-bundle
+dist
+custom-elements
+loader
+react
+vue
