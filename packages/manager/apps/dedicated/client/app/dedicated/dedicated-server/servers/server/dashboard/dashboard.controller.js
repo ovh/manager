@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-
 import {
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
@@ -55,22 +53,6 @@ export default class DedicatedServerDashboard {
     };
 
     this.pattern = NEW_RANGE.PATTERN;
-  }
-
-  canOrderTraffic() {
-    return (
-      this.DedicatedServerFeatureAvailability.allowDedicatedServerOrderTrafficOption() &&
-      !this.server.isExpired &&
-      this.server.canOrderQuota
-    );
-  }
-
-  canOrderMoreTraffic() {
-    return (
-      !this.server.isExpired &&
-      this.server.canOrderQuota &&
-      get(this.trafficInformations.trafficOrderables.data, 'length')
-    );
   }
 
   onBillingInformationError(error) {
