@@ -19,24 +19,27 @@
         <div data-ng-if="!$ctrl.isServerHacked()">
             <div data-ng-if="!$ctrl.ipmi.isActivated()">
                 <div data-ng-if="!$ctrl.kvm.featuresAvailable()">
+                    <h3 data-translate="server_configuration_ipmi_title"></h3>
                     <p data-translate="server_configuration_impi_off"></p>
-                    <div data-ng-if="$ctrl.kvm.canOrderKvm()">
+                    <div data-ng-if="$ctrl.kvm.canOrderKvm()" class="pt-3">
+                        <h3
+                            data-translate="server_configuration_kvm_title"
+                        ></h3>
+                        <p
+                            data-translate="server_configuration_kvm_explanation"
+                            class="mb-0"
+                        ></p>
                         <p
                             data-translate="server_configuration_impi_off_kvm"
                         ></p>
-                        <button
-                            type="button"
-                            class="btn btn-default"
-                            data-ng-click="$ctrl.orderKvm()"
+                        <oui-button
+                            data-variant="primary"
+                            data-on-click="$ctrl.orderKvm()"
                         >
-                            <span
-                                class="oui-icon oui-icon-cart"
-                                aria-hidden="true"
-                            ></span>
                             <span
                                 data-translate="server_configuration_impi_order_kvm"
                             ></span>
-                        </button>
+                        </oui-button>
                     </div>
                 </div>
                 <div data-ng-if="$ctrl.kvm.featuresAvailable()">
