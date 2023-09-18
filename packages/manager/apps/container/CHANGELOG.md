@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.29.0...@ovh-ux/manager-container-app@0.30.0) (2023-09-18)
+
+
+### Bug Fixes
+
+* **container.livechat:** add level of customer support ([#9581](https://github.com/ovh/manager/issues/9581)) ([28a520a](https://github.com/ovh/manager/commit/28a520a9c8412548afae9c264ebbca1106a5be44))
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
 # [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.28.1...@ovh-ux/manager-container-app@0.29.0) (2023-09-12)
 
 

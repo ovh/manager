@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms-app",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "private": true,
   "description": "SMS standalone application.",
   "repository": {
@@ -21,7 +21,7 @@
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.6.4",
     "@ovh-ux/manager-config": "^7.1.1",
-    "@ovh-ux/manager-core": "^12.12.15",
+    "@ovh-ux/manager-core": "^12.13.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.7.1",
     "@ovh-ux/manager-sms": "^8.13.7",
     "@ovh-ux/manager-telecom-styles": "^4.6.5",

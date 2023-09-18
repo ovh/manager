@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.0.0...@ovh-ux/manager-pci@6.1.0) (2023-09-18)
+
+
+### Bug Fixes
+
+* **pci:** expects the credentials data to be an array ([#9984](https://github.com/ovh/manager/issues/9984)) ([fcbe46f](https://github.com/ovh/manager/commit/fcbe46fe4ba83f4f11eefeb8290013a6bfde7073))
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+* **pci.ai:** ai-dashboard 1.1  ([#9507](https://github.com/ovh/manager/issues/9507)) ([1d7146c](https://github.com/ovh/manager/commit/1d7146c341ace23d736adcffa5dbf1870483463d))
+
+
+
+
+
 # [6.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.138.0...@ovh-ux/manager-pci@6.0.0) (2023-09-07)
 
 

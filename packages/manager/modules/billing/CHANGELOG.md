@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.19...@ovh-ux/manager-billing@0.20.0-alpha.20) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
 # [0.20.0-alpha.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.18...@ovh-ux/manager-billing@0.20.0-alpha.19) (2023-09-12)
 
 

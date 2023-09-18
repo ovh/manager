@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-dashboard-app",
-  "version": "7.0.1",
+  "version": "7.0.2",
   "private": true,
   "description": "Telecom dashboard standalone application.",
   "repository": {
@@ -21,7 +21,7 @@
   "dependencies": {
     "@ovh-ux/manager-banner": "^1.2.16",
     "@ovh-ux/manager-config": "^7.1.1",
-    "@ovh-ux/manager-core": "^12.12.15",
+    "@ovh-ux/manager-core": "^12.13.0",
     "@ovh-ux/manager-telecom-dashboard": "^6.4.11",
     "@ovh-ux/manager-telecom-styles": "^4.6.5",
     "@ovh-ux/ng-at-internet": "^5.10.5",

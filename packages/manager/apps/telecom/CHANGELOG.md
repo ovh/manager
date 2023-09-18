@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.1...@ovh-ux/manager-telecom@15.0.2) (2023-09-18)
+
+
+### Bug Fixes
+
+* **telecom:** fix api parameter value for function keys ([#9980](https://github.com/ovh/manager/issues/9980)) ([4418f66](https://github.com/ovh/manager/commit/4418f665551c88ea6f86d569e206ef27ded119b5))
+
+
+
+
+
 ## [15.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.0...@ovh-ux/manager-telecom@15.0.1) (2023-09-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

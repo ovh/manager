@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.1.0...@ovh-ux/manager-dedicated@19.2.0) (2023-09-18)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** fix export IPs in CSV ([#9975](https://github.com/ovh/manager/issues/9975)) ([d1caaa0](https://github.com/ovh/manager/commit/d1caaa07e3f2733accf5545fc17ca96c33419d79))
+
+
+### Features
+
+* **dedicated:** remove service monitoring ([#9942](https://github.com/ovh/manager/issues/9942)) ([3c8eac8](https://github.com/ovh/manager/commit/3c8eac8234286edcac368c1c8409a795135851f5))
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
 # [19.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.0.1...@ovh-ux/manager-dedicated@19.1.0) (2023-09-12)
 
 

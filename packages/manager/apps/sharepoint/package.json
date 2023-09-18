@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sharepoint-app",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "private": true,
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.6.4",
     "@ovh-ux/manager-config": "^7.1.1",
-    "@ovh-ux/manager-core": "^12.12.15",
+    "@ovh-ux/manager-core": "^12.13.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.7.1",
     "@ovh-ux/manager-sharepoint": "^2.9.2",
     "@ovh-ux/ng-at-internet": "^5.10.5",

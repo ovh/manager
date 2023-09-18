@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.7.0...@ovh-ux/manager-catalog-price@1.8.0) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-price@1.6.2...@ovh-ux/manager-catalog-price@1.7.0) (2023-02-13)
 
 

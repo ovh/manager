@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.2.1...@ovh-ux/manager-iam@1.3.0) (2023-09-18)
+
+
+### Features
+
+* **iam:** add placeholder for custom actions ([#9933](https://github.com/ovh/manager/issues/9933)) ([8abd94d](https://github.com/ovh/manager/commit/8abd94dc739d5d17c992a5361d452b5b59a890a1))
+
+
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.2.0...@ovh-ux/manager-iam@1.2.1) (2023-09-12)
 
 
