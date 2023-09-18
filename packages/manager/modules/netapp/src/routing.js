@@ -40,6 +40,60 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       ...ListLayoutHelper.stateResolves,
       apiPath: () => '/storage/netapp',
+      columnConfig: /* @ngInject */ ($translate) => ({
+        data: [
+          {
+            label: $translate.instant(`netapp_list_columns_header_id`),
+            hidden: false,
+            property: 'id',
+          },
+          {
+            label: $translate.instant(`netapp_list_columns_header_status`),
+            property: 'status',
+            format: (value) => value.status,
+            map: (row) => {
+              switch (row.status) {
+                case 'creating':
+                case 'reopening':
+                case 'running':
+                  return 'success';
+                case 'deleted':
+                case 'deleting':
+                  return 'warning';
+                case 'suspended':
+                case 'suspending':
+                  return 'error';
+                default:
+                  return 'info';
+              }
+            },
+          },
+          {
+            label: $translate.instant(`netapp_list_columns_header_region`),
+            property: 'region',
+          },
+          {
+            label: $translate.instant(`netapp_list_columns_header_quota`),
+            property: 'quota',
+          },
+          {
+            label: $translate.instant(`netapp_list_columns_header_product`),
+            property: 'product',
+          },
+          {
+            label: $translate.instant(
+              `netapp_list_columns_header_performanceLevel`,
+            ),
+            property: 'performanceLevel',
+            hidden: true,
+          },
+          {
+            label: $translate.instant(`netapp_list_columns_header_name`),
+            property: 'name',
+            hidden: true,
+          },
+        ],
+      }),
       dataModel: () => 'storage.NetAppService',
       defaultFilterColumn: () => 'id',
       header: () => 'Enterprise File Storage',
@@ -50,23 +104,6 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       schema: /* @ngInject */ ($http) =>
         $http.get('/storage.json').then(({ data }) => data),
-
-      /**
-       * Used into ngLayoutHelper to customize datagrid columns name
-       */
-      customizeColumnsMap: /* @ngInject */ ($translate, configuration) => {
-        return configuration.data.reduce(
-          (columnsMap, { property }) => ({
-            ...columnsMap,
-            [property]: {
-              title: $translate.instant(
-                `netapp_list_columns_header_${property}`,
-              ),
-            },
-          }),
-          {},
-        );
-      },
 
       /**
        * Used into ngLayoutHelper to define datagrid Topbar CTA
