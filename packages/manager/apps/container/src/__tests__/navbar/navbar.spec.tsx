@@ -1,7 +1,7 @@
 import React from 'react';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
-import { act, waitFor } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 import { Environment, User } from '@ovh-ux/manager-config';
 import { renderWithShell } from '../__test-utils__/contextRenders';
 
@@ -56,7 +56,7 @@ describe('UI testing of the navbar', () => {
       getUserLocale: () => 'fr_FR',
     };
 
-    let render = null;
+    let render;
 
     await act(async () => {
       render = await renderWithShell(
@@ -67,8 +67,8 @@ describe('UI testing of the navbar', () => {
       );
     });
 
-    await waitFor(() => {
-      expect(render.asFragment()).toMatchSnapshot();
-    });
+    await screen.findByText(user.firstname as string, { exact: false });
+    await screen.findByRole('button', { name: 'Français' });
+    expect(render.asFragment()).toMatchSnapshot();
   });
 });
