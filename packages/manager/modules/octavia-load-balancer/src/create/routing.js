@@ -3,6 +3,7 @@ import {
   TRACKING_CHAPTER_1,
   SIZE_FLAVOUR_REGEX,
   AGORA_ADDON_FAMILY,
+  AGORA_GATEWAY_REGEX,
 } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -17,27 +18,31 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().serviceName,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('octavia_load_balancer_create_title'),
-      sizeFlavour: /* @ngInject */ ($http, coreConfig) =>
+      catalog: /* @ngInject */ ($http, coreConfig) =>
         $http
           .get(
             `/order/catalog/public/cloud?ovhSubsidiary=${
               coreConfig.getUser().ovhSubsidiary
             }`,
           )
-          .then(({ data }) =>
-            data.addons.reduce((filtered, addon) => {
-              const regex = SIZE_FLAVOUR_REGEX;
-              const found = addon.planCode.match(regex);
-              if (found) {
-                filtered.push({
-                  code: found[1],
-                  price: addon.pricings[0].price,
-                  label: found[1].toUpperCase(),
-                });
-              }
-              return filtered;
-            }, []),
-          ),
+          .then(({ data }) => data),
+      sizeFlavour: /* @ngInject */ (catalog) =>
+        catalog.addons.reduce((filtered, addon) => {
+          const regex = SIZE_FLAVOUR_REGEX;
+          const found = addon.planCode.match(regex);
+          if (found) {
+            filtered.push({
+              code: found[1],
+              price: addon.pricings[0].price,
+              label: found[1].toUpperCase(),
+            });
+          }
+          return filtered;
+        }, []),
+      catalogGateway: /* @ngInject */ (catalog) =>
+        catalog.addons.filter((addon) =>
+          addon.planCode.match(AGORA_GATEWAY_REGEX),
+        )[0],
       regionsPlansGroupBySize: /* @ngInject */ (
         $http,
         $q,
@@ -87,6 +92,19 @@ export default /* @ngInject */ ($stateProvider) => {
         `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::goto-product-page`,
       trackingRegionAvailability: () =>
         `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::goto-region-availability`,
+      trackingPrivateNetworkCreation: () =>
+        `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::create-private-network`,
+      privateNetworkCreationLink: /* @ngInject */ (
+        $q,
+        projectId,
+        coreURLBuilder,
+      ) =>
+        $q.when(
+          coreURLBuilder.buildURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/private-networks/new`,
+          ),
+        ),
     },
   });
 };

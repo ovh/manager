@@ -3,7 +3,6 @@
         heading="{{:: 'octavia_load_balancer_create_title' | translate }}"
     ></oui-header>
     <p data-translate="octavia_load_balancer_create_description"></p>
-
     <oui-stepper data-on-finish="$ctrl.createLoadBalancer()">
         <!-- SIZE FLAVOUR SELECTION -->
         <oui-step-form
@@ -62,7 +61,6 @@
             data-name="{{:: stepRegion.name}}"
             data-header="{{:: 'octavia_load_balancer_create_region_title' | translate }}"
             data-on-focus="stepRegion.display = true"
-            data-on-submit="stepRegion.display = false"
             data-prevent-next="true"
         >
             <div class="mb-4">
@@ -85,6 +83,107 @@
                     data-selected-region="$ctrl.model.region"
                     data-on-change="$ctrl.onRegionChange(region)"
                 ></pci-project-regions-list>
+            </div>
+        </oui-step-form>
+
+        <!-- PRIVATE NETWORK SELECTION -->
+        <oui-step-form
+            data-ng-init="stepPrivateNetwork = $ctrl.stepper.loadBalancerPrivateNetwork"
+            data-name="{{:: stepPrivateNetwork.name}}"
+            data-header="{{:: 'octavia_load_balancer_create_private_network_title' | translate }}"
+            data-on-focus="stepPrivateNetwork.display = true"
+            data-on-submit="stepPrivateNetwork.display = false"
+            data-prevent-next="true"
+            data-valid="!$ctrl.gatewayLoading && !$ctrl.subnetLoading && !$ctrl.privateNetworkLoading"
+        >
+            <div class="mb-4">
+                <p
+                    data-translate="octavia_load_balancer_create_private_network_intro"
+                ></p>
+            </div>
+            <!-- PRIVATE NETWORKS -->
+            <oui-spinner data-ng-if="$ctrl.privateNetworkLoading"></oui-spinner>
+            <oui-field
+                data-label="{{:: 'octavia_load_balancer_create_private_network_field' | translate }}"
+                data-ng-if="!$ctrl.privateNetworkLoading"
+            >
+                <oui-select
+                    data-items="$ctrl.privateNetworks"
+                    data-match="name"
+                    data-model="$ctrl.model.privateNetwork"
+                    data-title="{{:: 'octavia_load_balancer_create_private_network_field' | translate }}"
+                    data-placeholder="{{:: 'octavia_load_balancer_create_private_network_field' | translate }}"
+                    data-name="{{:: stepPrivateNetwork.name + '_select'}}"
+                    on-change="$ctrl.getSubnets(modelValue)"
+                    searchable
+                >
+                </oui-select>
+            </oui-field>
+
+            <!-- SUBNETS -->
+            <oui-spinner data-ng-if="$ctrl.subnetLoading"></oui-spinner>
+            <div data-ng-if="!$ctrl.subnetLoading">
+                <!-- Display message if private network have no subnet -->
+                <oui-message
+                    data-type="error"
+                    data-ng-if="$ctrl.subnets && $ctrl.subnets.length === 0"
+                >
+                    <p>
+                        <span
+                            data-translate="octavia_load_balancer_create_private_network_no_subnet_text"
+                        ></span>
+                        <a
+                            data-ng-href="{{::$ctrl.privateNetworkCreationLink}}"
+                            data-at-internet-click="{name: $ctrl.trackingPrivateNetworkCreation}"
+                        >
+                            <span
+                                data-translate="octavia_load_balancer_create_private_network_no_subnet_link"
+                            ></span>
+                        </a>
+                    </p>
+                </oui-message>
+
+                <oui-field
+                    data-label="{{:: 'octavia_load_balancer_create_private_network_field_subnet' | translate }}"
+                >
+                    <oui-select
+                        data-disabled="!$ctrl.subnets || $ctrl.subnets.length  == 0"
+                        data-items="$ctrl.subnets"
+                        data-match="displayName"
+                        data-model="$ctrl.model.subnet"
+                        data-title="{{:: 'octavia_load_balancer_create_private_network_field_subnet' | translate }}"
+                        data-placeholder="{{:: 'octavia_load_balancer_create_private_network_field_subnet' | translate }}"
+                        data-name="{{:: stepPrivateNetwork.name + '_select_subnet'}}"
+                        on-change="$ctrl.checkGateway(modelValue)"
+                        searchable
+                    >
+                    </oui-select>
+                </oui-field>
+                <!-- Display message if subnet have no gateway-->
+                <oui-spinner data-ng-if="$ctrl.gatewayLoading"></oui-spinner>
+                <oui-message
+                    data-type="info"
+                    data-ng-if="!$ctrl.gatewayLoading && $ctrl.model.subnet && (!$ctrl.gateways || $ctrl.gateways.length === 0)"
+                >
+                    <p
+                        data-translate="octavia_load_balancer_create_private_network_no_gateway_text"
+                    ></p>
+                    <p>
+                        <span
+                            data-translate="octavia_load_balancer_create_private_network_no_gateway_text_price"
+                        ></span>
+                        <ovh-manager-catalog-price
+                            data-price="$ctrl.catalogGateway.pricings[0].price"
+                            data-user="$ctrl.user"
+                            data-minimum-fraction-digits="5"
+                            data-perform-rounding="false"
+                        >
+                        </ovh-manager-catalog-price>
+                        <span
+                            data-translate="octavia_load_balancer_create_gateway_price_interval"
+                        ></span>
+                    </p>
+                </oui-message>
             </div>
         </oui-step-form>
     </oui-stepper>
