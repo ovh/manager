@@ -238,22 +238,6 @@ export default class DedicatedServerDashboard {
       });
   }
 
-  canOrderTraffic() {
-    return (
-      this.DedicatedServerFeatureAvailability.allowDedicatedServerOrderTrafficOption() &&
-      !this.server.isExpired &&
-      this.server.canOrderQuota
-    );
-  }
-
-  canOrderMoreTraffic() {
-    return (
-      !this.server.isExpired &&
-      this.server.canOrderQuota &&
-      get(this.trafficInformations.trafficOrderables.data, 'length')
-    );
-  }
-
   static convertData(list) {
     return map(list, (value) =>
       value.unit === 'bps' ? (value.y / 1024).toFixed(2) : value.y,

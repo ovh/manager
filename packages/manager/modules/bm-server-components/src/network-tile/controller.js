@@ -68,6 +68,22 @@ export default class BmServerComponentsNetworkTileController {
     }
   }
 
+  canOrderTraffic() {
+    return (
+      this.dedicatedServerFeatureAvailability?.allowDedicatedServerOrderTrafficOption() &&
+      !this.server.isExpired &&
+      this.server.canOrderQuota
+    );
+  }
+
+  canOrderMoreTraffic() {
+    return (
+      !this.server.isExpired &&
+      this.server.canOrderQuota &&
+      this.trafficInformations?.trafficOrderables.data.length
+    );
+  }
+
   trackClick(trackText) {
     if (this.trackingPrefix) {
       this.atInternet.trackClick({

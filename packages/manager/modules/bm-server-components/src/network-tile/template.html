@@ -1,67 +1,251 @@
 <oui-tile
     class="h-100"
-    data-heading="{{:: 'server_network_title' | translate }}"
     data-loading="$ctrl.loading"
+    data-heading="{{:: 'server_network_title' | translate }}"
 >
+    <div ovh-alert="bandwithError" data-ng-if="bandwithError"></div>
+
     <!-- IPv4 -->
-    <oui-tile-definition term="IPv4">
+    <oui-tile-definition term="{{ :: 'server_network_ipv4' | translate }}">
         <oui-tile-description>
             <oui-clipboard class="ip-clipboard" data-model="$ctrl.server.ip">
             </oui-clipboard>
         </oui-tile-description>
-        <oui-action-menu data-compact data-placement="end">
+        <oui-action-menu
+            aria-label="{{:: 'menu_action_label' | translate:{t0: ('server_network_ipv4' | translate)} }}"
+            data-compact
+            data-placement="end"
+        >
             <oui-action-menu-item
-                data-href="{{ ::$ctrl.manageIpUrl }}"
+                data-ui-sref="app.ip({serviceName: $ctrl.server.name})"
                 data-on-click="$ctrl.trackClick('go-to-manage-ipv4')"
                 top
             >
-                <span data-translate="server_network_manage"></span>
+                <span data-translate="server_network_ipv4_manage"></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-tile-definition>
 
+    <!-- Gateway IPv4-->
+    <oui-tile-definition
+        data-ng-if="$ctrl.specifications.routing.ipv4.gateway"
+        term="{{:: 'server_network_gateway_ipv4' | translate }}"
+    >
+        <oui-tile-description>
+            <oui-clipboard
+                class="ip-clipboard"
+                data-model="$ctrl.specifications.routing.ipv4.gateway"
+            >
+            </oui-clipboard>
+        </oui-tile-description>
+    </oui-tile-definition>
+
     <!-- IPv6 -->
-    <oui-tile-definition term="IPv6">
+    <oui-tile-definition term="{{:: 'server_network_ipv6' | translate }}">
         <oui-tile-description>
             <oui-clipboard class="ip-clipboard" data-model="$ctrl.server.ipv6">
             </oui-clipboard>
         </oui-tile-description>
     </oui-tile-definition>
-
-    <!-- transclude content -->
-    <div data-ng-transclude></div>
-
-    <!-- vRack -->
+    <!-- Gateway IPv6-->
     <oui-tile-definition
-        data-ng-if="$ctrl.bandwidth && !!$ctrl.vrackInfos"
-        data-term="{{:: 'server_network_vrack' | translate}}"
+        data-ng-if="$ctrl.specifications.routing.ipv6.gateway"
+        term="{{:: 'server_network_gateway_ipv6' | translate }}"
     >
         <oui-tile-description>
-            <span
-                data-ng-if="!$ctrl.vrackInfos.length"
-                data-translate="server_network_vrack_none"
+            <oui-clipboard
+                class="ip-clipboard"
+                data-model="$ctrl.specifications.routing.ipv6.gateway"
             >
-            </span>
-            <div class="oui-list" data-ng-if="$ctrl.vrackInfos.length">
-                <ul class="oui-list__items">
-                    <li
-                        class="oui-list__item"
-                        data-ng-repeat="vrack in $ctrl.vrackInfos track by $index"
-                    >
-                        <a
-                            class="oui-link oui-link_icon"
-                            href="{{ ::$ctrl.getVrackUrl(vrack.serviceName) }}"
-                        >
-                            <span
-                                data-ng-bind="vrack.name || vrack.serviceName"
-                            ></span>
-                            <span data-ng-if="vrack.description">
-                                (<span data-ng-bind="vrack.description"></span>)
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            </oui-clipboard>
         </oui-tile-description>
     </oui-tile-definition>
+
+    <div data-ng-if="$ctrl.bandwidthInformations.bandwidth">
+        <!-- Reverse -->
+        <oui-tile-definition
+            term="{{:: 'server_network_reverse' | translate }}"
+        >
+            <oui-tile-description>
+                <oui-clipboard
+                    class="ip-clipboard"
+                    data-model="$ctrl.server.reverse || ('server_network_reverse_not_configured' | translate)"
+                >
+                </oui-clipboard>
+            </oui-tile-description>
+            <oui-action-menu
+                aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_network_reverse' | translate) } }}"
+                data-compact
+                data-placement="end"
+            >
+                <oui-action-menu-item
+                    data-ui-sref="app.dedicated-server.server.dashboard.update-reverse-dns({productId: $ctrl.server.name})"
+                >
+                    <span
+                        data-translate="server_network_reverse_edit_button"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ui-sref="app.dedicated-server.server.dashboard.delete-reverse-dns({productId: $ctrl.server.name})"
+                    data-ng-if="$ctrl.server.reverse"
+                >
+                    <span data-translate="common_delete"></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-tile-definition>
+
+        <server-bandwidth-dashboard
+            data-bandwidth-option="$ctrl.bandwidthInformations.bandwidthOption"
+            data-bandwidth-vrack-option="$ctrl.bandwidthInformations.bandwidthVrackOptions"
+            data-bandwidth-vrack-order-option="$ctrl.bandwidthInformations.bandwidthVrackOrderOptions"
+            data-order-private-link="$ctrl.orderPrivateBandwidthLink"
+            data-order-public-link="$ctrl.orderPublicBandwidthLink"
+            data-server="$ctrl.server"
+            data-is-old-cluster="$ctrl.isOldCluster"
+            data-specifications="$ctrl.specifications"
+            data-service-id="$ctrl.serviceInfos.serviceId"
+        >
+        </server-bandwidth-dashboard>
+
+        <!-- Traffic -->
+        <oui-tile-definition
+            data-ng-if="$ctrl.server.canOrderQuota"
+            data-term="{{:: 'server_network_traffic' | translate }}"
+        >
+            <oui-tile-description>
+                <span
+                    data-ng-if="$ctrl.trafficInformations.traffic.data.usage.outputQuotaSize.text"
+                    data-translate="server_network_traffic_text"
+                    data-translate-values="{ t0: $ctrl.trafficInformations.traffic.data.usage.outputQuotaSize.text }"
+                >
+                </span>
+                <span
+                    data-ng-if="!$ctrl.trafficInformations.traffic.data.usage.outputQuotaSize.text"
+                    data-translate="server_network_traffic_unlimited_text"
+                    data-translate-values="{ t0: ($ctrl.bandwidthInformations.bandwidth.OvhToInternet) }"
+                >
+                </span>
+                <small
+                    class="oui-tile__extra"
+                    data-ng-if="trafficOption === 'released'"
+                    data-translate="server_network_traffic_option_released"
+                >
+                </small>
+            </oui-tile-description>
+            <oui-action-menu
+                aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_network_traffic' | translate) } }}"
+                data-ng-if="($ctrl.trafficInformations.traffic.data.hasQuota && $ctrl.canOrderTraffic() && $ctrl.canOrderMoreTraffic()) || (!$ctrl.server.isExpired && trafficOption === 'subscribed')"
+                data-compact
+                data-placement="end"
+            >
+                <oui-action-menu-item
+                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('traffic/order/dedicated-server-traffic-order', $ctrl.server.name)"
+                    data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
+                    data-ng-if="$ctrl.trafficInformations.traffic.data.hasQuota && $ctrl.canOrderTraffic() && $ctrl.canOrderMoreTraffic()"
+                >
+                    <span
+                        data-ng-bind="(trafficOption !== 'subscribed' ? 'server_network_traffic_order_button' : 'server_network_traffic_change_button') | translate"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="$ctrl.dedicatedServer.$scope.setAction('traffic/cancel/dedicated-server-traffic-cancel', $ctrl.server.name)"
+                    data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
+                    data-ng-if="!$ctrl.server.isExpired && trafficOption === 'subscribed'"
+                >
+                    <span
+                        data-translate="server_network_traffic_cancel_button"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-tile-definition>
+
+        <!-- OLA -->
+        <oui-tile-definition
+            data-ng-if="$ctrl.ola.isAvailable()"
+            data-term="{{:: 'server_network_ola' | translate}}"
+        >
+            <oui-tile-description>
+                <div data-ng-if="$ctrl.ola.isActivated()">
+                    <span
+                        data-ng-if="$ctrl.ola.isConfigured()"
+                        data-translate="server_network_ola_mode_{{ $ctrl.ola.getCurrentMode() }}"
+                    >
+                    </span>
+                    <span
+                        data-ng-if="!$ctrl.ola.isConfigured()"
+                        data-translate="server_network_ola_active"
+                    >
+                    </span>
+                </div>
+                <span
+                    data-ng-if="!$ctrl.ola.isActivated()"
+                    data-translate="server_network_ola_inactive"
+                ></span>
+            </oui-tile-description>
+            <oui-action-menu
+                aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_network_ola' | translate) } }}"
+                data-compact
+                data-placement="end"
+            >
+                <oui-action-menu-item
+                    data-ng-if="!$ctrl.ola.isActivated()"
+                    data-ui-sref="app.dedicated-server.server.interfaces"
+                >
+                    <span data-translate="server_network_ola_activate"></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.ola.isConfigured()"
+                    data-ui-sref="app.dedicated-server.server.interfaces.ola-reset"
+                >
+                    <span data-translate="server_network_ola_reset"></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-if="$ctrl.ola.isActivated() && !$ctrl.ola.isConfigured()"
+                    data-ui-sref="app.dedicated-server.server.interfaces.ola-configuration"
+                >
+                    <span data-translate="server_network_ola_configure"></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-tile-definition>
+
+        <!-- vRack -->
+        <oui-tile-definition
+            data-ng-if="!!$ctrl.vrackInfos"
+            data-term="{{:: 'server_network_vrack' | translate}}"
+        >
+            <oui-tile-description>
+                <span
+                    data-ng-if="!$ctrl.vrackInfos.length"
+                    data-translate="server_network_vrack_none"
+                >
+                </span>
+                <div class="oui-list">
+                    <ul
+                        class="oui-list__items"
+                        data-ng-if="$ctrl.vrackInfos.length"
+                    >
+                        <li
+                            class="oui-list__item"
+                            data-ng-repeat="vrack in $ctrl.vrackInfos track by $index"
+                        >
+                            <a
+                                class="oui-link oui-link_icon"
+                                href="{{ :: $ctrl.getVrackUrl(vrack.serviceName) }}"
+                            >
+                                <span
+                                    data-ng-bind="vrack.name || vrack.serviceName"
+                                ></span>
+                                <span data-ng-if="vrack.description">
+                                    (<span
+                                        data-ng-bind="vrack.description"
+                                    ></span
+                                    >)
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </oui-tile-description>
+        </oui-tile-definition>
+    </div>
 </oui-tile>
