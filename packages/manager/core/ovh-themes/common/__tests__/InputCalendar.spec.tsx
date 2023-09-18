@@ -2,13 +2,6 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { format } from 'date-fns';
 // import { axe, toHaveNoViolations } from 'jest-axe';
-
-import {
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
-} from '@chakra-ui/react';
 import { InputCalendar } from '../components';
 
 const selectedDate = new Date(2022, 5, 18);
