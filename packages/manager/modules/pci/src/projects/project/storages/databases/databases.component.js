@@ -27,6 +27,7 @@ export default {
     steins: '<',
     customerRegions: '<',
     databasesRegions: '<',
+    type: '<',
   },
   controller,
   template,

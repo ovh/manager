@@ -8,7 +8,7 @@ import Engine from '../../../../components/project/storages/databases/engine.cla
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.databases', {
-    url: '/databases?id',
+    url: '/databases/:type?id',
     component: 'ovhManagerPciProjectDatabases',
     params: {
       id: {
@@ -19,9 +19,9 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('databases')
-        .then((databases) =>
-          databases.length === 0
+        .getAsync('allDatabases')
+        .then((allDatabases) =>
+          allDatabases.length === 0
             ? { state: 'pci.projects.project.storages.databases.onboarding' }
             : false,
         ),
@@ -29,7 +29,9 @@ export default /* @ngInject */ ($stateProvider) => {
       goToAddDatabase: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.storages.databases.add', { projectId }),
       databaseId: /* @ngInject */ ($transition$) => $transition$.params().id,
-      databases: /* @ngInject */ (
+      type: /* @ngInject */ ($transition$) =>
+        $transition$.params().type ? $transition$.params().type : 'full',
+      allDatabases: /* @ngInject */ (
         $q,
         DatabaseService,
         getDatabaseObject,
@@ -38,6 +40,10 @@ export default /* @ngInject */ ($stateProvider) => {
         DatabaseService.getAllDatabases(projectId).then((databases) =>
           $q.all(map(databases, (database) => getDatabaseObject(database))),
         ),
+      databases: /* @ngInject */ (allDatabases, type) =>
+        type === 'all'
+          ? allDatabases
+          : allDatabases.filter((d) => d.engine === type),
 
       databasesRegions: /* @ngInject */ (databases) => {
         return Array.from(
@@ -100,11 +106,11 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
         );
       },
-      availableEngines: /* @ngInject */ (mappedAvailabilites) => {
+      availableEngines: /* @ngInject */ (mappedAvailabilites, type) => {
         const { availabilities, capabilities } = mappedAvailabilites;
-        const filteredAvailabilities = availabilities.filter(
-          (a) => a.status !== 'DEPRECATED',
-        );
+        const filteredAvailabilities = availabilities
+          .filter((a) => a.status !== 'DEPRECATED')
+          .filter((a) => (type === 'all' ? true : a.engine === type));
         return capabilities.engines
           .map(
             (engine) =>

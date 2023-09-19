@@ -105,16 +105,6 @@ export function getPciProjectMenu(
           ),
         },
         {
-          id: 'databases',
-          title: 'Databases',
-          badge: 'new',
-          feature: 'databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases`,
-          ),
-        },
-        {
           id: 'snapshot',
           title: 'Volume Snapshot',
           feature: 'snapshot',
@@ -143,6 +133,154 @@ export function getPciProjectMenu(
           ),
         },
       ],
+    },
+    {
+      id: 'databases',
+      title: 'Databases',
+      subItems: [
+        {
+          id: 'databases-mongodb',
+          title: 'MongoDB',
+          badge: 'new',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/mongodb`,
+          ),
+        },
+        {
+          id: 'databases-postgresql',
+          title: 'PostgreSQL',
+          badge: 'new',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/postgresql`,
+          ),
+        },
+        {
+          id: 'databases-mysql',
+          title: 'MySQL',
+          badge: 'new',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/mysql`,
+          ),
+        },
+        {
+          id: 'databases-redis',
+          title: 'Redis',
+          badge: 'new',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/redis`,
+          ),
+        },
+        {
+          id: 'databases-cassandra',
+          title: 'Cassandra',
+          badge: 'new',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/cassandra`,
+          ),
+        },
+        {
+          id: 'databases-m3db',
+          title: 'M3',
+          badge: 'new',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/m3db`,
+          ),
+        },
+        {
+          id: 'databases-m3-aggregator',
+          title: 'M3 Aggregator',
+          badge: 'new',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/m3aggregator`,
+          ),
+        },
+      ]
+    },
+    {
+      id: 'data-streaming',
+      title: 'Data-Streaming',
+      subItems: [
+        {
+          id: 'databases-kafka',
+          title: 'Kafka',
+          badge: 'new',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/kafka`,
+          ),
+        },
+        {
+          id: 'databases-kafka-connect',
+          title: 'Kafka Connect',
+          badge: 'new',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/kafkaConnect`,
+          ),
+        },
+        {
+          id: 'databases-kafka-mirrormaker',
+          title: 'Kafka MirrorMaker',
+          badge: 'new',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/kafkaMirrorMaker`,
+          ),
+        },
+      ],
+    },
+    {
+      id: 'data-analysis',
+      title: 'Data Analysis',
+      subItems: [
+        {
+          id: 'databases-clickhouse',
+          title: 'Clickhouse',
+          badge: 'beta',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/clickhouse`,
+          ),
+        },
+        {
+          id: 'databases-opensearch',
+          title: 'Opensearch',
+          badge: 'new',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/opensearch`,
+          ),
+        },
+        {
+          id: 'databases-grafana',
+          title: 'Grafana',
+          badge: 'new',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/grafana`,
+          ),
+        },
+      ]
     },
     {
       id: 'network',
