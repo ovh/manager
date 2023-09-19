@@ -10,7 +10,7 @@ import sgx from './sgx';
 
 import component from './advanced-features.component';
 
-const moduleName = 'ovhManagerDedicatedServerDashboardAdvancedFeatures';
+const moduleName = 'ovhManagerBmServerComponentsAdvancedFeatures';
 
 angular
   .module(moduleName, [
@@ -20,7 +20,7 @@ angular
     sgx,
     'ui.router',
   ])
-  .component('dedicatedServerDashboardAdvancedFeatures', component)
+  .component('serverAdvancedFeatures', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
