@@ -12,7 +12,10 @@ interface Props {
   name: string;
 }
 
-const GuideLink: React.FC<Props> = ({ name, children }) => {
+const GuideLink: React.FC<React.PropsWithChildren<Props>> = ({
+  name,
+  children,
+}) => {
   const link = useGuideUtils();
 
   return (

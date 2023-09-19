@@ -90,36 +90,39 @@ export class MscBillingCommitment implements IMscBillingCommitment {
   }
 
   private getDescription(): string {
-    const labelByStatus = {
-      [CommitmentStatus.ENDED]: translate(
-        this.localeStrings,
-        'manager_billing_subscription_engagement_status_engaged_expired',
-        {
-          endDate: this.nextBillingDate,
-        },
-      ),
-      [CommitmentStatus.RENEWS]: translate(
-        this.localeStrings,
-        'manager_billing_subscription_engagement_status_engaged_renew',
-        {
-          endDate: this.nextBillingDate,
-        },
-      ),
-      [CommitmentStatus.REQUESTED]: translate(
-        this.localeStrings,
-        'manager_billing_subscription_engagement_status_commitement_pending',
-        {
-          nextBillingDate: formatDate(
-            this.serviceDetails?.billing.engagementRequest
-              ?.requestDate as string,
-            this.locale,
-          ),
-        },
-      ),
-      [CommitmentStatus.NONE]: '',
-      [CommitmentStatus.ENDS]: '',
-    };
-    return labelByStatus[this.commitmentStatus];
+    switch (this.commitmentStatus) {
+      case CommitmentStatus.ENDED:
+        return translate(
+          this.localeStrings,
+          'manager_billing_subscription_engagement_status_engaged_expired',
+          {
+            endDate: this.nextBillingDate,
+          },
+        );
+
+      case CommitmentStatus.RENEWS:
+        return translate(
+          this.localeStrings,
+          'manager_billing_subscription_engagement_status_engaged_renew',
+          {
+            endDate: this.nextBillingDate,
+          },
+        );
+      case CommitmentStatus.REQUESTED:
+        return translate(
+          this.localeStrings,
+          'manager_billing_subscription_engagement_status_commitement_pending',
+          {
+            nextBillingDate: formatDate(
+              this.serviceDetails?.billing.engagementRequest
+                ?.requestDate as string,
+              this.locale,
+            ),
+          },
+        );
+      default:
+        return '';
+    }
   }
 
   render() {
