@@ -30,7 +30,7 @@
         </span>
     </oui-message>
 
-    <div class="row d-md-flex mb-5">
+    <div class="row d-md-flex">
         <!-- GENERAL INFORMATIONS -->
         <div class="col-md-4 mb-3">
             <server-general-information
@@ -174,10 +174,10 @@
             data-ng-if="!$ctrl.server.isExpired && $ctrl.biosSettings.sgx"
         >
             <dedicated-server-dashboard-advanced-features
-                sgx="$ctrl.biosSettings.sgx"
-                go-to-sgx-introduction="$ctrl.goToSgxIntroduction"
-                go-to-sgx-manage="$ctrl.goToSgxManage"
-                user="$ctrl.user"
+                data-sgx="$ctrl.biosSettings.sgx"
+                data-go-to-sgx-introduction="$ctrl.goToSgxIntroduction"
+                data-go-to-sgx-manage="$ctrl.goToSgxManage"
+                data-user="$ctrl.user"
             ></dedicated-server-dashboard-advanced-features>
         </div>
         <!-- Retention Advices -->
@@ -202,10 +202,16 @@
 
     <!-- QUOTA -->
     <div
-        class="mb-5"
+        class="mb-3"
         data-ng-if="$ctrl.trafficInformations.traffic.data.hasQuota"
-        data-ng-include="'dedicated/server/consumption/consumption.html'"
-    ></div>
+    >
+        <consumption-tile
+            data-server="$ctrl.server"
+            data-traffic-informations="$ctrl.trafficInformations"
+            data-dedicated-server="$ctrl.dedicatedServer"
+        >
+        </consumption-tile>
+    </div>
 
     <!-- MRTG -->
     <div

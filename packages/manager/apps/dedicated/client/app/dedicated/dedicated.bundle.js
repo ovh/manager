@@ -17,7 +17,6 @@ import './dedicated-server/servers/bandwidth-legacy/order-private/dedicated-serv
 import './dedicated-server/servers/bandwidth-legacy/order-private/order-private.routing';
 import './dedicated-server/servers/bandwidth-legacy/order-public/dedicated-server-bandwidth-order.controller';
 import './dedicated-server/servers/bandwidth-legacy/order-public/order-public.routing';
-import './dedicated-server/servers/consumption/ServerConsumptionController';
 import './dedicated-server/servers/display-name/display-name.controller';
 import './dedicated-server/servers/display-name/display-name.routes';
 import './dedicated-server/servers/dns/add/dedicated-server-dns-add.controller';
