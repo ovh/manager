@@ -7,7 +7,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 
 import component from './component';
 
-const moduleName = 'ovhManagerBmServerComponentsConsumptionTile';
+const moduleName = 'ovhManagerBmServerComponentsDashboardMrtgTile';
 
 angular
   .module(moduleName, [
@@ -16,7 +16,7 @@ angular
     'ngTranslateAsyncLoader',
     ovhManagerCore,
   ])
-  .component('serverConsumptionTile', component)
+  .component('serverMrtgTile', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
