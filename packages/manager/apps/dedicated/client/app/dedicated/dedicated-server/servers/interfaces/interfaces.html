@@ -54,11 +54,15 @@
 </div>
 
 <!-- QUOTA -->
-<div
-    class="mb-5"
-    data-ng-if="$ctrl.trafficInformations.traffic.data.hasQuota"
-    data-ng-include="'dedicated/server/consumption/consumption.html'"
-></div>
+<div class="mb-5" data-ng-if="$ctrl.trafficInformations.traffic.data.hasQuota">
+    <consumption-tile
+        data-server="$ctrl.server"
+        data-traffic-informations="$ctrl.trafficInformations"
+        data-dedicated-server="$ctrl.dedicatedServer"
+        data-current-active-link="$ctrl.currentActiveLink"
+    >
+    </consumption-tile>
+</div>
 
 <!-- MRTG -->
 <div

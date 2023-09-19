@@ -14,6 +14,7 @@ import {
   serverServiceStatus,
   serverBandwidthDashboard,
   serverNetwork,
+  serverConsumptionTile,
 } from '@ovh-ux/manager-bm-server-components';
 import advancedFeatures from './advanced-features';
 import commitment from './commitment';
@@ -50,6 +51,7 @@ angular
     serverServiceStatus,
     serverBandwidthDashboard,
     serverNetwork,
+    serverConsumptionTile,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)
