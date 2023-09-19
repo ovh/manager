@@ -49,13 +49,13 @@
     "test:playwright:run": "lerna run test:e2e:script --concurrency 1"
   },
   "resolutions": {
+    "@rollup/plugin-commonjs": "11.0.2",
+    "@uirouter/angularjs": "1.0.23",
     "flatpickr": "4.6.9",
     "graphql": "16.6.0",
     "lodash-es": "4.17.21",
     "lodash": "4.17.21",
     "rollup": "2.79.1",
-    "@rollup/plugin-commonjs": "11.0.2",
-    "@uirouter/angularjs": "1.0.23",
     "sass": "1.56.1",
     "rollup-plugin-sass": "1.12.16",
     "@babel/runtime": "7.22.15"
