@@ -11,7 +11,7 @@ const moduleName = 'ovhManagerDedicatedServerServersLazyLoading';
 angular
   .module(moduleName, ['ui.router', 'oc.lazyLoad', onboarding])
   .config(
-    /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+    /* @ngInject */ ($stateProvider) => {
       $stateProvider
         .state('app.dedicated-server.index.**', {
           url: '/server',
@@ -33,20 +33,6 @@ angular
             );
           },
         });
-
-      $urlRouterProvider.when(/^\/configuration\/server/, () => {
-        window.location.href = window.location.href.replace(
-          '/configuration/server',
-          '/server',
-        );
-      });
-
-      $urlRouterProvider.when(/^\/configuration\/servers/, () => {
-        window.location.href = window.location.href.replace(
-          '/configuration/servers',
-          '/server',
-        );
-      });
     },
   )
   .run(/* @ngTranslationsInject:json ./translations */);
