@@ -9,9 +9,9 @@
     "dev": "vuepress dev docs"
   },
   "devDependencies": {
-    "@vuepress/plugin-search": "^2.0.0-beta.53",
+    "@vuepress/plugin-search": "2.0.0-beta.53",
     "get-monorepo-packages": "^1.2.0",
     "gh-pages": "^2.2.0",
-    "vuepress-webpack": "^2.0.0-beta.53"
+    "vuepress-webpack": "2.0.0-beta.53"
   }
 }
