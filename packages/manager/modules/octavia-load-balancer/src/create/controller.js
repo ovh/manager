@@ -1,4 +1,4 @@
-import { PRODUCT_LINK, REGION_LINK } from './constants';
+import { PRODUCT_LINK, REGION_AVAILABILITY_LINK } from './constants';
 
 export default class OctaviaLoadBalancerCreateCtrl {
   /* @ngInject */
@@ -11,7 +11,8 @@ export default class OctaviaLoadBalancerCreateCtrl {
       PRODUCT_LINK[this.user.ovhSubsidiary] || PRODUCT_LINK.DEFAULT;
 
     this.regionPageLink =
-      REGION_LINK[this.user.ovhSubsidiary] || REGION_LINK.DEFAULT;
+      REGION_AVAILABILITY_LINK[this.user.ovhSubsidiary] ||
+      REGION_AVAILABILITY_LINK.DEFAULT;
 
     this.model = {};
 

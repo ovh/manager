@@ -22,7 +22,7 @@ export const PRODUCT_LINK = {
   DEFAULT: 'https://www.ovhcloud.com/en/public-cloud/load-balancer/',
 };
 
-export const REGION_LINK = {
+export const REGION_AVAILABILITY_LINK = {
   FR: 'https://www.ovhcloud.com/fr/public-cloud/regions-availability',
   DE: 'https://www.ovhcloud.com/de/public-cloud/regions-availability/',
   ES: 'https://www.ovhcloud.com/es-es/public-cloud/regions-availability/',
@@ -55,7 +55,7 @@ export const SIZE_FLAVOUR_REGEX = /octavia-loadbalancer.loadbalancer-([sml]).hou
 
 export default {
   PRODUCT_LINK,
-  REGION_LINK,
+  REGION_AVAILABILITY_LINK,
   TRACKING_CHAPTER_1,
   TRACKING_NAME,
   SIZE_FLAVOUR_REGEX,
