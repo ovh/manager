@@ -1,0 +1,24 @@
+.msc-billing-tile-wrapper {
+  display: block;
+  text-decoration: none;
+  padding: var(--ods-size-01);
+
+  .billing-tile-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 420px;
+    padding: var(--ods-size-01);
+
+    .tooltiplinks {
+      display: inline-grid;
+    }
+
+    .link-icon {
+      margin-left: var(--ods-size-03);
+    }
+  }
+
+  .block {
+    position: relative;
+  }
+}
