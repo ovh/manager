@@ -34,7 +34,10 @@ export default {
       options: ['product', 'faq'],
     },
     tileTitle: { control: 'text', description: 'Title of the tile' },
-    tileDescription: { control: 'text', description: 'Texte of the tile' },
+    tileDescription: {
+      control: 'text',
+      description: 'Description of the tile',
+    },
     href: { control: 'text', description: 'URL of the tile and link' },
     isExternalHref: {
       control: 'boolean',

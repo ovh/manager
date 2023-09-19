@@ -5,13 +5,19 @@
   "description": "Manager documentation deployed with GitHub Pages",
   "scripts": {
     "build": "vuepress build docs",
-    "deploy": "yarn run build && gh-pages -d docs/.vuepress/dist -m \"docs: update documentation [skip ci]\"",
+    "postbuild": "yarn build:msc-storybook",
+    "prebuild:msc-storybook": "rm -rf ./docs/.vuepress/public/super-components",
+    "build:msc-storybook": "yarn workspace @ovhcloud/msc-lib build:storybook",
+    "postbuild:msc-storybook": "mv ../packages/super-components/storybook/dist ./docs/.vuepress/public/super-components",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d docs/.vuepress/dist -m \"docs: update documentation [skip ci]\"",
+    "predev": "yarn build:msc-storybook",
     "dev": "vuepress dev docs"
   },
   "devDependencies": {
-    "@vuepress/plugin-search": "^2.0.0-beta.53",
+    "@vuepress/plugin-search": "2.0.0-beta.53",
     "get-monorepo-packages": "^1.2.0",
     "gh-pages": "^2.2.0",
-    "vuepress-webpack": "^2.0.0-beta.53"
+    "vuepress-webpack": "2.0.0-beta.53"
   }
 }
