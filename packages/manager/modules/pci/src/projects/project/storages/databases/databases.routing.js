@@ -1,6 +1,10 @@
 import map from 'lodash/map';
 
-import { NODES_PER_ROW, SHELL_NAMES } from './databases.constants';
+import {
+  ENGINES_TYPES,
+  NODES_PER_ROW,
+  SHELL_NAMES,
+} from './databases.constants';
 import { WARNING_DATE } from '../../../../components/project/warning-message/warning.constants';
 import Database from '../../../../components/project/storages/databases/database.class';
 import Node from '../../../../components/project/storages/databases/node.class';
@@ -30,7 +34,9 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('pci.projects.project.storages.databases.add', { projectId }),
       databaseId: /* @ngInject */ ($transition$) => $transition$.params().id,
       type: /* @ngInject */ ($transition$) =>
-        $transition$.params().type ? $transition$.params().type : 'full',
+        $transition$.params().type
+          ? $transition$.params().type
+          : ENGINES_TYPES.full.label,
       allDatabases: /* @ngInject */ (
         $q,
         DatabaseService,
@@ -41,9 +47,9 @@ export default /* @ngInject */ ($stateProvider) => {
           $q.all(map(databases, (database) => getDatabaseObject(database))),
         ),
       databases: /* @ngInject */ (allDatabases, type) =>
-        type === 'all'
-          ? allDatabases
-          : allDatabases.filter((d) => d.engine === type),
+        allDatabases.filter((d) =>
+          ENGINES_TYPES[type].engines.includes(d.engine),
+        ),
 
       databasesRegions: /* @ngInject */ (databases) => {
         return Array.from(
@@ -110,7 +116,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const { availabilities, capabilities } = mappedAvailabilites;
         const filteredAvailabilities = availabilities
           .filter((a) => a.status !== 'DEPRECATED')
-          .filter((a) => (type === 'all' ? true : a.engine === type));
+          .filter((a) => ENGINES_TYPES[type].engines.includes(a.engine));
         return capabilities.engines
           .map(
             (engine) =>

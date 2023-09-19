@@ -132,155 +132,13 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/storages/instance-backups`,
           ),
         },
-      ],
-    },
-    {
-      id: 'databases',
-      title: 'Databases',
-      subItems: [
         {
-          id: 'databases-mongodb',
-          title: 'MongoDB',
-          badge: 'new',
-          feature: 'databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases/mongodb`,
-          ),
-        },
-        {
-          id: 'databases-postgresql',
-          title: 'PostgreSQL',
-          badge: 'new',
-          feature: 'databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases/postgresql`,
-          ),
-        },
-        {
-          id: 'databases-mysql',
-          title: 'MySQL',
-          badge: 'new',
-          feature: 'databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases/mysql`,
-          ),
-        },
-        {
-          id: 'databases-redis',
-          title: 'Redis',
-          badge: 'new',
-          feature: 'databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases/redis`,
-          ),
-        },
-        {
-          id: 'databases-cassandra',
-          title: 'Cassandra',
-          badge: 'new',
-          feature: 'databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases/cassandra`,
-          ),
-        },
-        {
-          id: 'databases-m3db',
-          title: 'M3',
-          badge: 'new',
-          feature: 'databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases/m3db`,
-          ),
-        },
-        {
-          id: 'databases-m3-aggregator',
-          title: 'M3 Aggregator',
-          badge: 'new',
-          feature: 'databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases/m3aggregator`,
-          ),
-        },
-      ]
-    },
-    {
-      id: 'data-streaming',
-      title: 'Data-Streaming',
-      subItems: [
-        {
-          id: 'databases-kafka',
-          title: 'Kafka',
-          badge: 'new',
-          feature: 'databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases/kafka`,
-          ),
-        },
-        {
-          id: 'databases-kafka-connect',
-          title: 'Kafka Connect',
-          badge: 'new',
-          feature: 'databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases/kafkaConnect`,
-          ),
-        },
-        {
-          id: 'databases-kafka-mirrormaker',
-          title: 'Kafka MirrorMaker',
-          badge: 'new',
-          feature: 'databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases/kafkaMirrorMaker`,
-          ),
+          id: 'workflow-management',
+          title: 'Workflow Management',
+          feature: 'workflow-management',
+          href: getURL('public-cloud', `#/pci/projects/${projectId}/workflow`),
         },
       ],
-    },
-    {
-      id: 'data-analysis',
-      title: 'Data Analysis',
-      subItems: [
-        {
-          id: 'databases-clickhouse',
-          title: 'Clickhouse',
-          badge: 'beta',
-          feature: 'databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases/clickhouse`,
-          ),
-        },
-        {
-          id: 'databases-opensearch',
-          title: 'Opensearch',
-          badge: 'new',
-          feature: 'databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases/opensearch`,
-          ),
-        },
-        {
-          id: 'databases-grafana',
-          title: 'Grafana',
-          badge: 'new',
-          feature: 'databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases/grafana`,
-          ),
-        },
-      ]
     },
     {
       id: 'network',
@@ -326,21 +184,21 @@ export function getPciProjectMenu(
       title: 'Containers & Orchestration',
       subItems: [
         {
-          id: 'load-balancer',
-          title: 'Load Balancer',
-          feature: 'load-balancer',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/load-balancer`,
-          ),
-        },
-        {
           id: 'kubernetes',
           title: 'Managed Kubernetes Service',
           feature: 'kubernetes',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/kubernetes`,
+          ),
+        },
+        {
+          id: 'load-balancer',
+          title: 'Load Balancer for MKS',
+          feature: 'load-balancer',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/load-balancer`,
           ),
         },
         {
@@ -352,11 +210,69 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/private-registry`,
           ),
         },
+      ],
+    },
+    {
+      id: 'analytics',
+      title: 'Databases & Analytics',
+      regions: ['EU', 'CA'],
+      subItems: [
+
         {
-          id: 'workflow-management',
-          title: 'Workflow Management',
-          feature: 'workflow-management',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/workflow`),
+          id: 'databases',
+          title: 'Databases',
+          badge: 'new',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/storage`,
+          ),
+        },
+        {
+          id: 'databases-streaming',
+          title: 'Data Streaming',
+          badge: 'new',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/streaming`,
+          ),
+        },
+        {
+          id: 'data-integration',
+          title: 'Data Integration',
+          badge: 'beta',
+          feature: 'data-integration',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/data-integration`,
+          ),
+        },
+        {
+          id: 'data-processing',
+          title: 'Data Processing',
+          badge: 'new',
+          feature: 'data-processing',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/data-processing`,
+          ),
+        },
+        {
+          id: 'databases-analysis',
+          title: 'Data Analysis',
+          badge: 'new',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases/analysis`,
+          ),
+        },
+        {
+          id: 'logs-data-platform',
+          title: 'Logs Data Platform',
+          feature: 'logs-data-platform',
+          href: getURL('dedicated', `#/dbaas/logs`),
         },
       ],
     },
@@ -365,6 +281,7 @@ export function getPciProjectMenu(
       title: 'AI & Machine Learning',
       regions: ['EU', 'CA'],
       subItems: [
+
         {
           id: 'dashboard',
           title: 'AI Dashboard',
@@ -392,39 +309,7 @@ export function getPciProjectMenu(
           feature: 'ai-apps',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/apps`),
         },
-      ],
-    },
-    {
-      id: 'analytics',
-      title: 'Data & Analytics',
-      regions: ['EU', 'CA'],
-      subItems: [
-        {
-          id: 'data-processing',
-          title: 'Data Processing',
-          badge: 'new',
-          feature: 'data-processing',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/data-processing`,
-          ),
-        },
-        {
-          id: 'data-integration',
-          title: 'Data Integration',
-          badge: 'beta',
-          feature: 'data-integration',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/data-integration`,
-          ),
-        },
-        {
-          id: 'logs-data-platform',
-          title: 'Logs Data Platform',
-          feature: 'logs-data-platform',
-          href: getURL('dedicated', `#/dbaas/logs`),
-        },
+        
       ],
     },
     {
