@@ -1,7 +1,7 @@
 {
   "name": "@ovhcloud/msc-vue-billing-tile",
   "version": "1.0.0",
-  "description": "Vue specific wrapper for Manager super components",
+  "description": "Vue specific wrapper for Billing Tile super component",
   "keywords": [],
   "homepage": "https://github.com/ovh/manager/tree/master/packages/super-components/components/msc-billing-tile#readme",
   "bugs": {
