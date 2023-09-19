@@ -1,15 +1,15 @@
 {
-  "domain_email_obfuscation_back_button": "Ersatz-E-Mails neu generieren",
-  "domain_email_obfuscation_label": "Wählen Sie die Kontakte aus, für die Sie die Ersatz-E-Mails neu generieren möchten:",
+  "domain_email_obfuscation_back_button": "Antispam-E-Mail-Adressen neu generieren",
+  "domain_email_obfuscation_label": "Wählen Sie die Kontakte aus, für die Sie Antispam-E-Mail-Adressen neu generieren möchten:",
   "domain_email_obfuscation_regenerate": "Änderungen speichern",
   "domain_email_obfuscation_contact_admin": "Administrator-Kontakt",
-  "domain_email_obfuscation_contact_owner": "Inhaber-Kontakt",
-  "domain_email_obfuscation_contact_tech": "Techkontakt",
+  "domain_email_obfuscation_contact_owner": "Inhaberkontakt",
+  "domain_email_obfuscation_contact_tech": "Technischer Kontakt",
   "domain_email_obfuscation_active": "Verschleiern",
-  "domain_email_obfuscation_inactive": "Offene Anzeige",
-  "domain_email_obfuscation_mail": "der persönlichen E-Mail-Adresse des Kontakts",
-  "domain_email_obfuscation_refresh": "Verschleierungs-E-Mail neu generieren",
+  "domain_email_obfuscation_inactive": "In Klartext anzeigen",
+  "domain_email_obfuscation_mail": "Die persönliche E-Mail-Adresse des Kontakts",
+  "domain_email_obfuscation_refresh": "Verschleierungs-E-Mail erneut generieren",
   "domain_email_obfuscation_refresh_success": "Die E-Mail-Adressen wurden neu generiert.",
-  "domain_email_obfuscation_refresh_error": "Bei der Neugenerierung Ihrer E-Mail-Adressen ist ein Fehler aufgetreten: {{ message }}",
+  "domain_email_obfuscation_refresh_error": "Bei der Neugenerierung Ihrer E-Mail-Adressen ist ein Fehler aufgetreten. {{ message }}",
   "domain_email_obfuscation_error": "Beim Laden der Informationen ist ein Fehler aufgetreten."
 }
