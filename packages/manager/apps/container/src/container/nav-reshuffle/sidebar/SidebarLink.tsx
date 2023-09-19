@@ -65,7 +65,7 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
         ></span>
       )}
       <SidebarLinkTag node={node} />
-      {count > 0 && (
+      {count as number > 0 && (
         <span
           className={`oui-badge oui-badge_s oui-badge_new ml-1 ${style.sidebar_chip}`}
         >
@@ -113,7 +113,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
         ''
       )}
       <SidebarLinkTag node={node} />
-      {count > 0 && (
+      {count as number > 0 && (
         <span
           className={`oui-badge oui-badge_s oui-badge_new ml-1 ${style.sidebar_chip}`}
         >
