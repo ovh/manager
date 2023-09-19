@@ -7,7 +7,8 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "lerna run msc:build",
-    "build:storybook": "yarn build && yarn workspace @ovhcloud/msc-storybook build",
+    "prebuild:storybook": "yarn build",
+    "build:storybook": "yarn workspace @ovhcloud/msc-storybook build:storybook",
     "generate:msc": "yarn workspace @ovhcloud/msc-generator start",
     "prestorybook": "yarn build",
     "storybook": "yarn workspace @ovhcloud/msc-storybook start",
@@ -42,7 +43,7 @@
     "stencil-inline-svg": "^1.1.0",
     "ts-jest": "^26.0.0",
     "typescript": "^5.1.3",
-    "vite": "^3.2.5",
+    "vite": "^4.3.6",
     "workbox-build": "4.3.1"
   },
   "msw": {
