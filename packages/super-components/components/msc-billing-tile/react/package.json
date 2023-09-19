@@ -1,7 +1,7 @@
 {
   "name": "@ovhcloud/msc-react-billing-tile",
   "version": "1.0.0",
-  "description": "React specific wrapper for Manager super components",
+  "description": "React specific wrapper for Billing Tile super component",
   "keywords": [],
   "homepage": "https://github.com/ovh/manager/tree/master/packages/super-components/components/msc-billing-tile#readme",
   "bugs": {
@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@types/lodash": "4.14.197",
-    "@types/react": "17.0.39",
+    "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
