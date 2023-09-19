@@ -10,6 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     redirectTo,
     resolve: {
+      serverService: /* @ngInject */ (Server) => Server,
       alertError: /* @ngInject */ ($timeout, $translate, Alerter) => (
         translateId,
         error,

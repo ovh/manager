@@ -5,11 +5,11 @@ import 'angular-translate';
 
 import component from './component';
 
-const moduleName = 'ovhManagerBmServerComponentsConsumptionTileComponent';
+const moduleName = 'ovhManagerBmServerComponentsConsumptionTile';
 
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate'])
-  .component('consumptionTile', component)
+  .component('serverConsumptionTile', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

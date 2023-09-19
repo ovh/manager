@@ -23,5 +23,6 @@ export default {
     technicalDetails: '<',
     urls: '<',
     user: '<',
+    serverService: '<',
   },
 };
