@@ -9,6 +9,7 @@ import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import cpanelEolBanner from '../../../../components/cpanel-eol-banner';
 import bandwidth from '../bandwidth/bandwidth.module';
 import dashboard from './dashboard';
+import displayName from './display-name';
 import install from '../install';
 import interfaces from '../interfaces/interfaces.module';
 import tasks from '../tasks';
@@ -43,6 +44,7 @@ angular
     ipmi,
     orderKvm,
     netboot,
+    displayName,
   ])
   .component('dedicatedServer', component)
   .config(routing)

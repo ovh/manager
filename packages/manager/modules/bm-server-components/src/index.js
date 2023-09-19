@@ -9,6 +9,7 @@ export { default as serverNetwork } from './network-tile';
 export { default as serverConsumptionTile } from './consumption-tile';
 export { default as serverMrtgTile } from './mrtg-tile';
 export { default as serverAdvancedFeatures } from './advanced-features';
+export { default as serverDisplayName } from './display-name';
 export { default as serverGeneralInformation } from './general-information';
 export { default as serverTechnicalDetails } from './technical-details';
 export { default as serverServiceStatus } from './service-status';
