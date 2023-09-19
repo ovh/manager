@@ -16,8 +16,8 @@ import {
   serverNetwork,
   serverConsumptionTile,
   serverMrtgTile,
+  serverAdvancedFeatures,
 } from '@ovh-ux/manager-bm-server-components';
-import advancedFeatures from './advanced-features';
 import commitment from './commitment';
 import cancelCommitment from './cancel-commitment';
 import cancelResiliation from './cancel-resiliation';
@@ -33,7 +33,6 @@ const moduleName = 'ovhManagerDedicatedServerDashboard';
 
 angular
   .module(moduleName, [
-    advancedFeatures,
     commitment,
     cancelCommitment,
     cancelResiliation,
@@ -54,6 +53,7 @@ angular
     serverNetwork,
     serverConsumptionTile,
     serverMrtgTile,
+    serverAdvancedFeatures,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)

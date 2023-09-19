@@ -169,17 +169,19 @@
             </billing-subscription-tile>
         </div>
 
+        <!-- Advanced Features -->
         <div
             class="col-md-4 mb-3"
             data-ng-if="!$ctrl.server.isExpired && $ctrl.biosSettings.sgx"
         >
-            <dedicated-server-dashboard-advanced-features
+            <server-advanced-features
                 data-sgx="$ctrl.biosSettings.sgx"
                 data-go-to-sgx-introduction="$ctrl.goToSgxIntroduction"
                 data-go-to-sgx-manage="$ctrl.goToSgxManage"
                 data-user="$ctrl.user"
-            ></dedicated-server-dashboard-advanced-features>
+            ></server-advanced-features>
         </div>
+
         <!-- Retention Advices -->
         <ovh-advices
             data-ng-if="!$ctrl.server.isExpired"
@@ -189,6 +191,7 @@
             advice-type="retention"
         >
         </ovh-advices>
+
         <!-- Advices -->
         <div class="col-md-4 mb-3" data-ng-if="!$ctrl.server.isExpired">
             <ovh-advices
