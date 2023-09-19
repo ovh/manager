@@ -20,7 +20,6 @@
   "user_account_identity_documents_go_back_to_dashboard": "Ver mi panel de control",
   "user_account_identity_documents_legal_info1": "OVH SAS es el responsable del tratamiento de sus datos personales. Los datos recopilados a través de este formulario son tratados en cumplimiento de las <a href=\"{{ link1 }}\" target=\"_blank\">Directrices de Ciberseguridad del 28/04/2022</a> publicadas por el CERT-In en virtud de las disposiciones de la subsección (6) del <a href=\"{{ link2 }}\" target=\"_blank\">artículo 70-B</a> de la Information Technology (IT) Act, 2000.",
   "user_account_identity_documents_legal_info2": "Para más información sobre el tratamiento de sus datos y sus derechos, consulte la <a href=\"{{ link }}\" target=\"_blank\">Política de uso de datos personales de OVHcloud</a>.",
-  "user_account_identity_documents_legal_info3": "Para más información sobre el tratamiento de sus datos y sus derechos, consulte la <a href=\"{{ link }}\" target=\"_blank\">Política de uso de datos personales de OVHcloud</a>.",
   "user_account_identity_documents_verification_in_progress_info": "Nuestro equipo está analizando el tratamiento de sus documentos.",
   "user_account_identity_documents_verification_waiting_info": "Su solicitud ha sido analizada, pero es necesaria información adicional. Consulte su tíquet de soporte.",
   "user_account_identity_documents_selection_file_format_invalid": "Formato de archivo no compatible. Por favor, utilice cualquiera de los formatos aceptados: jpg, jpeg, pdf y png.",

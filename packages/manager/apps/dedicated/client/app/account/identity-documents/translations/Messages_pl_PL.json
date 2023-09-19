@@ -20,7 +20,6 @@
   "user_account_identity_documents_go_back_to_dashboard": "Wyświetl mój dashboard",
   "user_account_identity_documents_legal_info1": "Grupa OVH S.A.S jest odpowiedzialna za przetwarzanie  Twoich danych osobowych. Dane gromadzone za pomocą tego formularza są przetwarzane w celu zapewnienia zgodności z <a href=\"{{ link1 }}\" target=\"_blank\">Wytycznymi dotyczącymi cyberbezpieczeństwa z dnia 28.04.2022</a> opublikowanymi przez CERT-IN na podstawie przepisów zawartych w podsekcji 6 <a href=\"{{ link2 }}\" target=\"_blank\">art. 70B</a> ustawy o technologii informacyjnej (IT) z 2000 r.",
   "user_account_identity_documents_legal_info2": "Aby dowiedzieć się więcej o przetwarzaniu Twoich danych osobowych i przysługujących Ci prawach, zapoznaj się z naszą <a href=\"{{ link }}\" target=\"_blank\">Polityką ochrony danych osobowych.</a>",
-  "user_account_identity_documents_legal_info3": "Aby dowiedzieć się więcej o przetwarzaniu Twoich danych osobowych i przysługujących Ci prawach, zapoznaj się z naszą <a href=\"{{ link }}\" target=\"_blank\">Polityką ochrony danych osobowych.</a>",
   "user_account_identity_documents_verification_in_progress_info": "Twoje dokumenty są obecnie przetwarzane przez nasz zespół.",
   "user_account_identity_documents_verification_waiting_info": "Twój wniosek został przeanalizowany, ale wymaga dodatkowych dokumentów. Sprawdź Twoje zgłoszenie pomocy.",
   "user_account_identity_documents_selection_file_format_invalid": "Nieobsługiwany format pliku. Użyj jednego z akceptowanych formatów: jpg, jpeg, pdf i png",
