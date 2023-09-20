@@ -1,15 +1,15 @@
 {
-  "domain_email_obfuscation_back_button": "Regenerate substitute email addresses",
-  "domain_email_obfuscation_label": "Select the contacts you want to regenerate substitute email addresses for:",
-  "domain_email_obfuscation_regenerate": "Save the changes",
+  "domain_email_obfuscation_back_button": "Regenerate Anti-spam email addresses",
+  "domain_email_obfuscation_label": "Select the contacts for which you want to regenerate the Anti-spam email addresses:",
+  "domain_email_obfuscation_regenerate": "Save changes",
   "domain_email_obfuscation_contact_admin": "Admin contact",
   "domain_email_obfuscation_contact_owner": "Owner contact",
-  "domain_email_obfuscation_contact_tech": "Technical contact",
+  "domain_email_obfuscation_contact_tech": "Technical contact ",
   "domain_email_obfuscation_active": "Obfuscate",
-  "domain_email_obfuscation_inactive": "Show in plain text",
-  "domain_email_obfuscation_mail": "contact's personal email address",
+  "domain_email_obfuscation_inactive": "De-obfuscate",
+  "domain_email_obfuscation_mail": "the contact’s personal email address",
   "domain_email_obfuscation_refresh": "Regenerate obfuscation email",
-  "domain_email_obfuscation_refresh_success": "Email addresses regenerated.",
-  "domain_email_obfuscation_refresh_error": "An error has occurred regenerating your email addresses. {{ message }}",
-  "domain_email_obfuscation_error": "An error has occurred loading the information."
+  "domain_email_obfuscation_refresh_success": "The email addresses have been regenerated.",
+  "domain_email_obfuscation_refresh_error": "An error occurred while regenerating your email addresses. {{ message }}",
+  "domain_email_obfuscation_error": "An error has occurred loading information."
 }
