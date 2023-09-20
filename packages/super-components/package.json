@@ -7,7 +7,8 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "lerna run msc:build",
-    "build:storybook": "yarn build && yarn workspace @ovhcloud/msc-storybook build",
+    "prebuild:storybook": "yarn build",
+    "build:storybook": "yarn workspace @ovhcloud/msc-storybook build:storybook",
     "generate:msc": "yarn workspace @ovhcloud/msc-generator start",
     "prestorybook": "yarn build",
     "storybook": "yarn workspace @ovhcloud/msc-storybook start",

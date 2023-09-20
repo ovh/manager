@@ -6,8 +6,11 @@
   "scripts": {
     "build": "vuepress build docs",
     "postbuild": "yarn build:msc-storybook",
-    "build:msc-storybook": "rm -rf ./docs/.vuepress/public/super-components && cd ../packages/super-components && yarn build:storybook && mv ./storybook/dist ../../docs/docs/.vuepress/public/super-components",
-    "deploy": "yarn build && gh-pages -d docs/.vuepress/dist -m \"docs: update documentation [skip ci]\"",
+    "prebuild:msc-storybook": "rm -rf ./docs/.vuepress/public/super-components",
+    "build:msc-storybook": "yarn workspace @ovhcloud/msc-lib build:storybook",
+    "postbuild:msc-storybook": "mv ../packages/super-components/storybook/dist ./docs/.vuepress/public/super-components",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d docs/.vuepress/dist -m \"docs: update documentation [skip ci]\"",
     "predev": "yarn build:msc-storybook",
     "dev": "vuepress dev docs"
   },
