@@ -1,6 +1,6 @@
 import { TRACKING_PREFIX } from '../list.constant';
 
-export default /* @ngInject */ (
+export default /* @ngInject */ function IpFirewallCtrl(
   $scope,
   $rootScope,
   $timeout,
@@ -13,21 +13,46 @@ export default /* @ngInject */ (
   $stateParams,
   $http,
   atInternet,
-) => {
+) {
+  const self = this;
+
   $scope.selectedBlock = null;
   $scope.selectedIp = null;
   $scope.rules = null;
   $scope.rulesLoading = false;
   $scope.rulesLoadingError = null;
 
+  self.rulesTable = [];
+
+  self.constants = {
+    MAX_RULES: 20,
+    PAGE_SIZE_MIN: 10,
+    PAGE_SIZE_MAX: 20,
+  };
+
+  function paginate(pageSize, offset) {
+    self.rulesTable = $scope.rules.list.results.slice(
+      offset - 1,
+      offset + pageSize - 1,
+    );
+  }
+
   function init(params) {
     $scope.rulesLoadingError = null;
     $scope.rules = null;
-    $scope.selectedBlock = params.ipBlock.ipBlock;
-    $scope.selectedIp = params.ip.ip;
+    if (params) {
+      $scope.selectedBlock = params.ipBlock.ipBlock;
+      $scope.selectedIp = params.ip.ip;
+    }
     $timeout(() => {
       $scope.$broadcast('paginationServerSide.loadPage', 1, 'rulesTable');
     }, 99);
+    $scope.tracking = {
+      'ip-firewall-add-rule': `${TRACKING_PREFIX}::ip::firewall::add-rule`,
+      'ip-firewall-delete-rule': `${TRACKING_PREFIX}::ip::firewall::delete-rule`,
+      'update-firewall-status': `${TRACKING_PREFIX}::ip::firewall::update-firewall-status`,
+    };
+    $scope.loadRules(self.FIREWALL_MAX_RULES, 0);
   }
 
   function defaultLoad() {
@@ -39,6 +64,21 @@ export default /* @ngInject */ (
   function reloadRules() {
     IpFirewall.killPollFirewallRule();
     $scope.$broadcast('paginationServerSide.reload', 'rulesTable');
+  }
+
+  function getFirewallDetail() {
+    IpFirewall.getFirewallDetails($scope.selectedBlock, $scope.selectedIp).then(
+      (firewallDetails) => {
+        self.ipBlock = {
+          ipBlock: $scope.selectedBlock,
+        };
+        self.firewallToggle = {
+          status: firewallDetails.enabled,
+          ip: $scope.selectedIp,
+          firewall: firewallDetails.enabled ? 'ACTIVATED' : 'DEACTIVATED',
+        };
+      },
+    );
   }
 
   function fetchRules(rulesCount, offset) {
@@ -94,11 +134,24 @@ export default /* @ngInject */ (
       )
       .finally(() => {
         $scope.rulesLoading = false;
+
+        getFirewallDetail();
+
+        // Pagination
+        self.pageNumber = 1;
+        self.pageSize = self.constants.PAGE_SIZE_MIN;
+        self.pageSizeMax = self.constants.PAGE_SIZE_MAX;
+        self.offset = 1 + (self.pageNumber - 1) * self.pageSize;
+        paginate(self.pageSize, self.offset);
       });
   }
 
   $scope.$on('ips.firewall.informations.reload', () => {
     reloadRules();
+  });
+
+  $scope.$on('ips.firewall.cancelToggle', () => {
+    getFirewallDetail();
   });
 
   $scope.loadRules = function loadRules(rulesCount, offset) {
@@ -151,5 +204,17 @@ export default /* @ngInject */ (
         $route.reload();
       },
     );
+  } else {
+    init();
   }
-};
+
+  // Change page
+  self.onChangePage = ({ pageSize, offset }) => {
+    self.pageSize = pageSize;
+    self.pageNumber = 1 + Math.floor((offset - 1) / pageSize);
+    self.offset = 1 + (self.pageNumber - 1) * self.pageSize;
+    $location.search('page', self.pageNumber);
+    $location.search('pageSize', self.pageSize);
+    paginate(pageSize, offset);
+  };
+}
