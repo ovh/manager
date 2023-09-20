@@ -11,7 +11,7 @@ import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
-import OctaviaLoadBalancer from '../../../modules/octavia-load-balancer/src';
+import OctaviaLoadBalancer from '@ovh-ux/manager-octavia-load-balancer';
 import errorPage from './error';
 
 import TRACKING from './tracking/at-internet.constants';
