@@ -35,18 +35,10 @@ export default /* @ngInject */ ($stateProvider) => {
         }).$promise,
       guideUrl: /* @ngInject */ (DedicatedServerInterfacesService) =>
         DedicatedServerInterfacesService.getGuideUrl(),
-      optionPrice: /* @ngInject */ (
-        DedicatedServerInterfacesService,
-        server,
-        serverName,
-        ola,
-      ) => {
+      optionPrice: /* @ngInject */ (olaService, server, serverName, ola) => {
         // option price is only available for servers migrated to agora
         if (ola.isAvailable() && (!ola.isActivated() || !ola.isConfigured())) {
-          return DedicatedServerInterfacesService.getOlaPrice(
-            serverName,
-            server,
-          );
+          return olaService.getOlaPrice(serverName, server);
         }
         return [];
       },
