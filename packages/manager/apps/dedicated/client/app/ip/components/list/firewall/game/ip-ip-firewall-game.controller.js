@@ -66,6 +66,23 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
     return startCase(protocol);
   };
 
+  self.enums = {
+    protocols: [],
+  };
+
+  self.rule = {
+    protocol: null,
+    ports: {
+      to: null,
+      from: null,
+    },
+  };
+
+  self.loading = false;
+
+  self.getProtocoleText = function getProtocoleText(protocol) {
+    return startCase(protocol);
+  };
   function paginate(pageSize, offset) {
     self.rules = self.table.rules.slice(offset - 1, offset + pageSize - 1);
   }
@@ -250,6 +267,10 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
 
   $scope.$on('$destroy', () => {
     IpGameFirewall.killPollRuleState();
+  });
+
+  $scope.$on('ips.gameFirewall.cancelToggle', () => {
+    self.firewallModeEnabled = !self.firewallModeEnabled;
   });
 
   self.onPaginationChange = ({ offset, pageSize }) => {
