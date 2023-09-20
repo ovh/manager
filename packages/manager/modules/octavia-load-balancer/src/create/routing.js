@@ -38,7 +38,12 @@ export default /* @ngInject */ ($stateProvider) => {
               return filtered;
             }, []),
           ),
-      regionsPlans: /* @ngInject */ ($http, $q, projectId, coreConfig) =>
+      regionsPlansGroupBySize: /* @ngInject */ (
+        $http,
+        $q,
+        projectId,
+        coreConfig,
+      ) =>
         $q
           .all({
             plans: $http.get(
@@ -59,7 +64,7 @@ export default /* @ngInject */ ($stateProvider) => {
                 const mappedRegionPlans = plan.regions.map((region) => {
                   let isRegionEnable = false;
 
-                  privateNetworks.data.forEach((privateNetwork) => {
+                  privateNetworks.data.some((privateNetwork) => {
                     if (
                       privateNetwork.regions.some(
                         (privateNetworkRegion) =>
@@ -67,7 +72,9 @@ export default /* @ngInject */ ($stateProvider) => {
                       )
                     ) {
                       isRegionEnable = true;
+                      return true;
                     }
+                    return false;
                   });
 
                   return {
@@ -77,9 +84,8 @@ export default /* @ngInject */ ($stateProvider) => {
                 });
 
                 filtered.push({
-                  code: found[1],
+                  size: found[1],
                   regions: mappedRegionPlans,
-                  disabled: false,
                 });
               }
               return filtered;

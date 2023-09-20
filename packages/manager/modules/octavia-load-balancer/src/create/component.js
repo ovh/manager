@@ -6,7 +6,7 @@ export default {
     projectId: '<',
     serviceName: '<',
     sizeFlavour: '<',
-    regionsPlans: '<',
+    regionsPlansGroupBySize: '<',
     trackingProductPage: '@',
     trackingRegionAvailability: '@',
   },

@@ -25,8 +25,8 @@ export default class OctaviaLoadBalancerCreateCtrl {
   onSizeChange(newSize) {
     this.model.size = newSize;
     this.model.region = {};
-    this.regionsFilteredBySize = this.regionsPlans.find(
-      (plan) => plan.code === newSize.code,
+    this.regionsFilteredBySize = this.regionsPlansGroupBySize.find(
+      (plan) => plan.size === newSize.code,
     ).regions;
   }
 
