@@ -48,5 +48,7 @@
   "manager_components_region_continent_UK": "Europa Occidentale",
   "manager_components_region_continent_SGP": "Asia Pacifica",
   "manager_components_region_continent_SYD": "Oceania",
-  "manager_components_region_continent_US": "Stati Uniti"
+  "manager_components_region_continent_US": "Stati Uniti",
+  "manager_components_region_SHA_micro": "Gravelines (SHADOW-EU-1)",
+  "manager_components_region_continent_SHA": "Europa Occidentale"
 }
