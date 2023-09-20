@@ -81,4 +81,26 @@ export default class FlavorGroup {
   hasFlexOption() {
     return some(this.flavors, (flavor) => flavor.isFlex());
   }
+
+  /**
+   * @doc method
+   * @methodOf FlavorGroup
+   * @name FlavorGroup#getOsTypesByRegion
+   * @param {string} region The region for which we want the osTypes available.
+   * @returns {Array<string>} The list of available osTypes
+   *
+   * @description
+   * Return os types available for a region.
+   */
+  getOsTypesByRegion(region) {
+    return this.flavors.reduce((osTypes, flavor) => {
+      if (
+        flavor.regions.find((regionInfo) => regionInfo.region === region) &&
+        !osTypes.includes(flavor.osType)
+      ) {
+        osTypes.push(flavor.osType);
+      }
+      return osTypes;
+    }, []);
+  }
 }
