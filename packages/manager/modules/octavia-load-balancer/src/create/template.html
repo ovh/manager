@@ -126,7 +126,7 @@
                 <!-- Display message if private network have no subnet -->
                 <oui-message
                     data-type="error"
-                    data-ng-if="$ctrl.subnets && $ctrl.subnets.length === 0"
+                    data-ng-if="$ctrl.subnets && !$ctrl.subnets.length"
                 >
                     <p>
                         <span
@@ -147,7 +147,7 @@
                     data-label="{{:: 'octavia_load_balancer_create_private_network_field_subnet' | translate }}"
                 >
                     <oui-select
-                        data-disabled="!$ctrl.subnets || $ctrl.subnets.length  == 0"
+                        data-disabled="!$ctrl.subnets.length"
                         data-items="$ctrl.subnets"
                         data-match="displayName"
                         data-model="$ctrl.model.subnet"
@@ -163,7 +163,7 @@
                 <oui-spinner data-ng-if="$ctrl.gatewayLoading"></oui-spinner>
                 <oui-message
                     data-type="info"
-                    data-ng-if="!$ctrl.gatewayLoading && $ctrl.model.subnet && (!$ctrl.gateways || $ctrl.gateways.length === 0)"
+                    data-ng-if="!$ctrl.gatewayLoading && $ctrl.model.subnet && !$ctrl.gateways.length"
                 >
                     <p
                         data-translate="octavia_load_balancer_create_private_network_no_gateway_text"

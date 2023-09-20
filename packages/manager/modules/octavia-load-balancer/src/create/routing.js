@@ -1,6 +1,5 @@
 import {
   TRACKING_NAME,
-  TRACKING_CHAPTER_1,
   SIZE_FLAVOUR_REGEX,
   AGORA_ADDON_FAMILY,
   AGORA_GATEWAY_REGEX,
@@ -28,8 +27,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .then(({ data }) => data),
       sizeFlavour: /* @ngInject */ (catalog) =>
         catalog.addons.reduce((filtered, addon) => {
-          const regex = SIZE_FLAVOUR_REGEX;
-          const found = addon.planCode.match(regex);
+          const found = addon.planCode.match(SIZE_FLAVOUR_REGEX);
           if (found) {
             filtered.push({
               code: found[1],
@@ -88,12 +86,6 @@ export default /* @ngInject */ ($stateProvider) => {
               return filtered;
             }, []),
           ),
-      trackingProductPage: () =>
-        `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::goto-product-page`,
-      trackingRegionAvailability: () =>
-        `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::goto-region-availability`,
-      trackingPrivateNetworkCreation: () =>
-        `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::create-private-network`,
       privateNetworkCreationLink: /* @ngInject */ (
         $q,
         projectId,

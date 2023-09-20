@@ -51,6 +51,12 @@ export const TRACKING_CHAPTER_1 = 'PublicCloud';
 export const TRACKING_NAME =
   'pci::projects::project::octavia-loadbalancer::add';
 
+export const TRACKING_PRODUCT_PAGE = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::goto-product-page`;
+
+export const TRACKING_REGION_AVAILABILITY = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::goto-region-availability`;
+
+export const TRACKING_PRIVATE_NETWORK_CREATION = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::create-private-network`;
+
 export const AGORA_ADDON_FAMILY = 'octavia-loadbalancer';
 
 export const SIZE_FLAVOUR_REGEX = /octavia-loadbalancer.loadbalancer-([sml]).hour.consumption/;
@@ -62,6 +68,9 @@ export default {
   PRODUCT_LINK,
   REGION_AVAILABILITY_LINK,
   TRACKING_CHAPTER_1,
+  TRACKING_PRODUCT_PAGE,
+  TRACKING_REGION_AVAILABILITY,
+  TRACKING_PRIVATE_NETWORK_CREATION,
   AGORA_ADDON_FAMILY,
   TRACKING_NAME,
   SIZE_FLAVOUR_REGEX,

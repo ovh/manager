@@ -1,13 +1,23 @@
-import { PRODUCT_LINK, REGION_AVAILABILITY_LINK } from './constants';
+import {
+  PRODUCT_LINK,
+  REGION_AVAILABILITY_LINK,
+  TRACKING_PRIVATE_NETWORK_CREATION,
+  TRACKING_PRODUCT_PAGE,
+  TRACKING_REGION_AVAILABILITY,
+} from './constants';
 
 export default class OctaviaLoadBalancerCreateCtrl {
   /* @ngInject */
   constructor(coreConfig, OctaviaLoadBalancerCreateService) {
     this.user = coreConfig.getUser();
-    this.CreateService = OctaviaLoadBalancerCreateService;
+    this.OctaviaLoadBalancerCreateService = OctaviaLoadBalancerCreateService;
   }
 
   $onInit() {
+    this.trackingProductPage = TRACKING_PRODUCT_PAGE;
+    this.trackingRegionAvailability = TRACKING_REGION_AVAILABILITY;
+    this.trackingPrivateNetworkCreation = TRACKING_PRIVATE_NETWORK_CREATION;
+
     this.productPageLink =
       PRODUCT_LINK[this.user.ovhSubsidiary] || PRODUCT_LINK.DEFAULT;
 
@@ -37,12 +47,12 @@ export default class OctaviaLoadBalancerCreateCtrl {
 
   onRegionChange(region) {
     this.model.region = region;
-    this.regionSelected();
+    this.getPrivateNetworks();
   }
 
-  regionSelected() {
+  getPrivateNetworks() {
     this.privateNetworkLoading = true;
-    this.CreateService.getPrivateNetworks(
+    this.OctaviaLoadBalancerCreateService.getPrivateNetworks(
       this.projectId,
       this.model.region.name,
     )
@@ -58,7 +68,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
 
   getSubnets(privateNetwork) {
     this.subnetLoading = true;
-    this.CreateService.getSubnets(
+    this.OctaviaLoadBalancerCreateService.getSubnets(
       this.projectId,
       this.model.region.name,
       privateNetwork,
@@ -79,7 +89,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
 
   checkGateway(subnet) {
     this.gatewayLoading = true;
-    this.CreateService.checkGateway(
+    this.OctaviaLoadBalancerCreateService.checkGateway(
       this.projectId,
       this.model.region.name,
       subnet,
