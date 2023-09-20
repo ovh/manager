@@ -3,40 +3,89 @@
         heading="{{:: 'octavia_load_balancer_create_title' | translate }}"
     ></oui-header>
     <p data-translate="octavia_load_balancer_create_description"></p>
-    <h4 data-translate="octavia_load_balancer_create_size_title"></h4>
 
-    <!-- SIZE FLAVOUR SELECTION -->
-    <p>
-        <span data-translate="octavia_load_balancer_create_size_intro"></span>
-        <a
-            data-ng-href="{{$ctrl.productPageLink}}"
-            data-at-internet-click="{name: $ctrl.trackingProductPage}"
+    <oui-stepper data-on-finish="$ctrl.createLoadBalancer()">
+        <!-- SIZE FLAVOUR SELECTION -->
+        <oui-step-form
+            data-ng-init="stepSize = $ctrl.stepper.loadBalancerSize"
+            data-name="{{:: stepSize.name}}"
+            data-header="{{:: 'octavia_load_balancer_create_size_title' | translate }}"
+            data-on-focus="stepSize.display = true"
+            data-on-submit="stepSize.display = false"
+            data-prevent-next="true"
+            data-valid="$ctrl.model.size"
         >
-            <span data-translate="octavia_load_balancer_create_size_intro_link">
-            </span>
-        </a>
-    </p>
-    <oui-select-picker
-        class="d-inline-block col-md-6 col-xl-3 my-3"
-        data-ng-repeat="size in $ctrl.sizeFlavour | orderBy:'price' track by $index"
-        data-label="{{:: 'octavia_load_balancer_create_size_flavour_title' | translate:{sizeCode: size.label} }}"
-        data-description="{{:: 'octavia_load_balancer_create_size_flavour_description_' + size.code | translate}}"
-        data-model="$ctrl.model.size"
-        data-on-change="$ctrl.model.size = size"
-        data-variant="light"
-        data-values="[size]"
-    >
-        <oui-select-picker-section>
-            <div class="text-center">
-                <ovh-manager-catalog-price
-                    data-price="size.price"
-                    data-user="$ctrl.user"
+            <div class="mb-4">
+                <p>
+                    <span
+                        data-translate="octavia_load_balancer_create_size_intro"
+                    ></span>
+                    <a
+                        data-ng-href="{{$ctrl.productPageLink}}"
+                        data-at-internet-click="{name: $ctrl.trackingProductPage}"
+                    >
+                        <span
+                            data-translate="octavia_load_balancer_create_size_intro_link"
+                        >
+                        </span>
+                    </a>
+                </p>
+                <oui-select-picker
+                    class="d-inline-block col-md-6 col-xl-3 my-3"
+                    data-ng-repeat="size in $ctrl.sizeFlavour | orderBy:'price' track by $index"
+                    data-label="{{:: 'octavia_load_balancer_create_size_flavour_title' | translate:{sizeCode: size.label} }}"
+                    data-description="{{:: 'octavia_load_balancer_create_size_flavour_description_' + size.code | translate}}"
+                    data-model="$ctrl.model.size"
+                    data-on-change="$ctrl.onSizeChange(size)"
+                    data-variant="light"
+                    data-values="[size]"
                 >
-                </ovh-manager-catalog-price>
-                <span
-                    data-translate="octavia_load_balancer_create_size_flavour_price_interval"
-                ></span>
+                    <oui-select-picker-section>
+                        <div class="text-center">
+                            <ovh-manager-catalog-price
+                                data-price="size.price"
+                                data-user="$ctrl.user"
+                            >
+                            </ovh-manager-catalog-price>
+                            <span
+                                data-translate="octavia_load_balancer_create_size_flavour_price_interval"
+                            ></span>
+                        </div>
+                    </oui-select-picker-section>
+                </oui-select-picker>
             </div>
-        </oui-select-picker-section>
-    </oui-select-picker>
+        </oui-step-form>
+
+        <!-- REGION SELECTION -->
+        <oui-step-form
+            data-ng-init="stepRegion = $ctrl.stepper.loadBalancerRegion"
+            data-name="{{:: stepRegion.name}}"
+            data-header="{{:: 'octavia_load_balancer_create_region_title' | translate }}"
+            data-on-focus="stepRegion.display = true"
+            data-on-submit="stepRegion.display = false"
+            data-prevent-next="true"
+        >
+            <div class="mb-4">
+                <p>
+                    <span
+                        data-translate="octavia_load_balancer_create_region_intro"
+                    ></span>
+                    <a
+                        data-ng-href="{{ $ctrl.regionPageLink }}"
+                        data-at-internet-click="{name: $ctrl.trackingRegionAvailability}"
+                    >
+                        <span
+                            data-translate="octavia_load_balancer_create_region_link"
+                        ></span>
+                    </a>
+                </p>
+                <pci-project-regions-list
+                    data-ng-if="$ctrl.regionsFilteredBySize && $ctrl.regionsFilteredBySize.length > 0"
+                    data-regions="$ctrl.regionsFilteredBySize"
+                    data-selected-region="$ctrl.model.region"
+                    data-on-change="$ctrl.onRegionChange(region)"
+                ></pci-project-regions-list>
+            </div>
+        </oui-step-form>
+    </oui-stepper>
 </div>

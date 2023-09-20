@@ -1,0 +1,7 @@
+{
+  "pci_project_regions_list_continent_all": "Todas las localizaciones",
+  "pci_project_regions_list_empty": "No hay localizaciones disponibles.",
+  "pci_project_regions_list_add": "Por favor, active las últimas localizaciones de cada zona en la sección <a href=\"{{url}}\" class=\"oui-link\">Localizaciones</a>.",
+  "pci_project_regions_list_region": "Localización",
+  "pci_project_regions_list_quota": "Aumentar los límites de mi cuota"
+}

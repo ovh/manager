@@ -2,6 +2,7 @@ import {
   TRACKING_NAME,
   TRACKING_CHAPTER_1,
   SIZE_FLAVOUR_REGEX,
+  AGORA_ADDON_FAMILY,
 } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -37,8 +38,55 @@ export default /* @ngInject */ ($stateProvider) => {
               return filtered;
             }, []),
           ),
+      regionsPlansGroupBySize: /* @ngInject */ (
+        $http,
+        $q,
+        projectId,
+        coreConfig,
+      ) =>
+        $q
+          .all({
+            plans: $http.get(
+              `/cloud/project/${projectId}/capabilities/productAvailability?addonFamily=${AGORA_ADDON_FAMILY}&ovhSubsidiary=${
+                coreConfig.getUser().ovhSubsidiary
+              }`,
+            ),
+            privateNetworks: $http.get(
+              `/cloud/project/${projectId}/network/private`,
+            ),
+          })
+          .then(({ plans, privateNetworks }) =>
+            // Get only hourly plans and format them
+            plans.data.plans.reduce((filtered, plan) => {
+              const found = plan.code.match(SIZE_FLAVOUR_REGEX);
+              if (found) {
+                // If there is no private network for this region, we disable it
+                const mappedRegionPlans = plan.regions.map((region) => {
+                  const isRegionEnable = privateNetworks.data.some(
+                    (privateNetwork) =>
+                      privateNetwork.regions.some(
+                        (privateNetworkRegion) =>
+                          privateNetworkRegion.region === region.name,
+                      ),
+                  );
+                  return {
+                    ...region,
+                    hasEnoughQuota: () => isRegionEnable,
+                  };
+                });
+
+                filtered.push({
+                  size: found[1],
+                  regions: mappedRegionPlans,
+                });
+              }
+              return filtered;
+            }, []),
+          ),
       trackingProductPage: () =>
         `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::goto-product-page`,
+      trackingRegionAvailability: () =>
+        `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::goto-region-availability`,
     },
   });
 };
