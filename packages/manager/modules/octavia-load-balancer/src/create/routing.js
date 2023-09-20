@@ -62,21 +62,13 @@ export default /* @ngInject */ ($stateProvider) => {
               if (found) {
                 // If there is no private network for this region, we disable it
                 const mappedRegionPlans = plan.regions.map((region) => {
-                  let isRegionEnable = false;
-
-                  privateNetworks.data.some((privateNetwork) => {
-                    if (
+                  const isRegionEnable = privateNetworks.data.some(
+                    (privateNetwork) =>
                       privateNetwork.regions.some(
                         (privateNetworkRegion) =>
                           privateNetworkRegion.region === region.name,
-                      )
-                    ) {
-                      isRegionEnable = true;
-                      return true;
-                    }
-                    return false;
-                  });
-
+                      ),
+                  );
                   return {
                     ...region,
                     hasEnoughQuota: () => isRegionEnable,
