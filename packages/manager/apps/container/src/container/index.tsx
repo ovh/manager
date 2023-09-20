@@ -70,7 +70,7 @@ export default function Container(): JSX.Element {
           </>
         )}
         <LiveChat
-          supportLevel={supportLevel.level}
+          supportLevel={supportLevel?.level}
           language={language}
           subsidiary={ovhSubsidiary}
           open={chatbotOpen}
