@@ -9,6 +9,7 @@ import pciUniverseComponents from '@ovh-ux/ng-ovh-pci-universe-components';
 
 import component from './component';
 import routing from './routing';
+import service from './service';
 
 const moduleName = 'ovhManagerOctaviaLoadBalancerCreate';
 
@@ -23,6 +24,7 @@ angular
   ])
   .config(routing)
   .component('octaviaLoadBalancerCreate', component)
+  .service('OctaviaLoadBalancerCreateService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

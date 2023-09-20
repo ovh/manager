@@ -1,14 +1,10 @@
-import {
-  NETWORK_PRIVATE_VISIBILITY,
-  PRODUCT_LINK,
-  REGION_AVAILABILITY_LINK,
-} from './constants';
+import { PRODUCT_LINK, REGION_AVAILABILITY_LINK } from './constants';
 
 export default class OctaviaLoadBalancerCreateCtrl {
   /* @ngInject */
-  constructor($http, coreConfig) {
-    this.$http = $http;
+  constructor(coreConfig, OctaviaLoadBalancerCreateService) {
     this.user = coreConfig.getUser();
+    this.CreateService = OctaviaLoadBalancerCreateService;
   }
 
   $onInit() {
@@ -46,16 +42,14 @@ export default class OctaviaLoadBalancerCreateCtrl {
 
   regionSelected() {
     this.privateNetworkLoading = true;
-    this.$http
-      .get(
-        `/cloud/project/${this.projectId}/region/${this.model.region.name}/network`,
-      )
-      .then(({ data }) => {
-        this.privateNetworks = data.filter(
-          (network) => network.visibility === NETWORK_PRIVATE_VISIBILITY,
-        );
-        [this.model.privateNetwork] = this.privateNetworks;
-        this.getSubnets(this.privateNetworks[0]);
+    this.CreateService.getPrivateNetworks(
+      this.projectId,
+      this.model.region.name,
+    )
+      .then((privateNetworks) => {
+        this.privateNetworks = privateNetworks;
+        [this.model.privateNetwork] = privateNetworks;
+        this.getSubnets(privateNetworks[0]);
       })
       .finally(() => {
         this.privateNetworkLoading = false;
@@ -64,21 +58,16 @@ export default class OctaviaLoadBalancerCreateCtrl {
 
   getSubnets(privateNetwork) {
     this.subnetLoading = true;
-    this.$http
-      .get(
-        `/cloud/project/${this.projectId}/region/${this.model.region.name}/network/${privateNetwork.id}/subnet`,
-      )
-      .then(({ data }) => {
-        this.subnets = data.map((subnet) => ({
-          ...subnet,
-          displayName:
-            subnet.name !== ''
-              ? `${subnet.name} - ${subnet.cidr}`
-              : subnet.cidr,
-        }));
-        if (this.subnets?.length > 0) {
-          [this.model.subnet] = this.subnets;
-          this.checkGateway(this.subnets[0]);
+    this.CreateService.getSubnets(
+      this.projectId,
+      this.model.region.name,
+      privateNetwork,
+    )
+      .then((subnets) => {
+        this.subnets = subnets;
+        if (subnets?.length > 0) {
+          [this.model.subnet] = subnets;
+          this.checkGateway(subnets[0]);
         } else {
           this.model.subnet = null;
         }
@@ -90,13 +79,13 @@ export default class OctaviaLoadBalancerCreateCtrl {
 
   checkGateway(subnet) {
     this.gatewayLoading = true;
-    this.$http
-      .get(
-        `/cloud/project/${this.projectId}/region/${this.model.region.name}/gateway?subnetId=${subnet.id}`,
-      )
-      .then(({ data }) => {
-        this.gateways = data;
-        this.subnetLoading = false;
+    this.CreateService.checkGateway(
+      this.projectId,
+      this.model.region.name,
+      subnet,
+    )
+      .then((gateways) => {
+        this.gateways = gateways;
       })
       .finally(() => {
         this.gatewayLoading = false;
