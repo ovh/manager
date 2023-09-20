@@ -66,7 +66,7 @@ export class MscBillingOffer implements IMscBillingOffer {
   }
 
   private getMenu() {
-    return this.serviceProperties.offer && !this.isUpgradableOffer() ? (
+    return this.serviceProperties?.offer && !this.isUpgradableOffer() ? (
       <></>
     ) : (
       <menu-custom>
