@@ -13,7 +13,7 @@ export const GUIDES = {
   SG: 'https://docs.ovh.com/sg/en/dedicated/ola-manager/',
   US:
     'https://support.us.ovhcloud.com/hc/en-us/articles/360009918959-How-to-Configure-OVHcloud-Link-Aggregation-in-the-OVHcloud-Manager',
-  default: 'https://docs.ovh.com/gb/en/dedicated/ola-manager/',
+  DEFAULT: 'https://docs.ovh.com/gb/en/dedicated/ola-manager/',
 };
 
 export const INTERFACE_TASK = 'INFRA_002_VirtualNetworkInterface';
