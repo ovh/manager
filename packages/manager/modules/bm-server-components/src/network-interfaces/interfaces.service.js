@@ -1,45 +1,26 @@
 import filter from 'lodash/filter';
-import find from 'lodash/find';
-import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isString from 'lodash/isString';
 import map from 'lodash/map';
 import flatMap from 'lodash/flatMap';
-import startsWith from 'lodash/startsWith';
 import some from 'lodash/some';
 import uniq from 'lodash/uniq';
 
 import Interface from './interface.class';
-import {
-  INTERFACE_TASK,
-  INTERFACE_GROUP_TASK,
-  INTERFACE_UNGROUP_TASK,
-  VIRTUAL_TYPE,
-  GUIDES,
-} from './interfaces.constants';
+import { VIRTUAL_TYPE, GUIDES } from './interfaces.constants';
 
 export default class DedicatedServerInterfacesService {
   /* @ngInject */
   constructor(
-    $http,
     $q,
     coreConfig,
-    OvhApiDedicatedServerOla,
     OvhApiDedicatedServerPhysicalInterface,
     OvhApiDedicatedServerVirtualInterface,
-    OvhApiOrderCartServiceOption,
-    Poller,
-    olaConstants,
   ) {
-    this.$http = $http;
     this.$q = $q;
     this.coreConfig = coreConfig;
-    this.Ola = OvhApiDedicatedServerOla;
     this.PhysicalInterface = OvhApiDedicatedServerPhysicalInterface;
     this.VirtualInterface = OvhApiDedicatedServerVirtualInterface;
-    this.OvhApiOrderCartServiceOption = OvhApiOrderCartServiceOption;
-    this.Poller = Poller;
-    this.olaConstants = olaConstants;
   }
 
   getNetworkInterfaceControllers(serverName) {
@@ -135,126 +116,6 @@ export default class DedicatedServerInterfacesService {
               : [],
         ),
       ]);
-  }
-
-  getTasks(serverName) {
-    return this.$http
-      .get(`/dedicated/server/${serverName}/task`, {
-        headers: {
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-          'X-Pagination-Size': 5000,
-          'X-Pagination-Filter': `function:in=${INTERFACE_TASK},${INTERFACE_GROUP_TASK},${INTERFACE_UNGROUP_TASK}`,
-        },
-      })
-      .then(({ data }) => data);
-  }
-
-  waitTasks(serverName) {
-    return this.getTasks(serverName).then((tasks) =>
-      this.waitAllTasks(serverName, tasks),
-    );
-  }
-
-  setPrivateAggregation(serverName, name, interfacesToGroup) {
-    return this.$http
-      .post(`/dedicated/server/${serverName}/ola/aggregation`, {
-        name,
-        virtualNetworkInterfaces: map(interfacesToGroup, 'id'),
-      })
-      .then((task) => this.waitForTask(serverName, task.data.taskId));
-  }
-
-  setDefaultInterfaces(serverName, interfaceToUngroup) {
-    return this.$http
-      .post(`/dedicated/server/${serverName}/ola/reset`, {
-        virtualNetworkInterface: interfaceToUngroup.id,
-      })
-      .then((task) => this.waitForTask(serverName, task.data.taskId));
-  }
-
-  waitForTask(serverName, taskId) {
-    return this.Poller.poll(
-      `/dedicated/server/${serverName}/task/${taskId}`,
-      {},
-      {
-        namespace: 'dedicated.server.interfaces.ola.aggregation',
-        method: 'get',
-        successRule: {
-          status: 'done',
-        },
-        errorRule: (task) => {
-          return task.status === 'ovhError' || task.status === 'customerError';
-        },
-      },
-    )
-      .then(() => true)
-      .catch((error) => (error.status === 404 ? true : Promise.reject(error)));
-  }
-
-  resetOlaInterfaces(serverName, olaInterfaces) {
-    return this.$q
-      .all(
-        olaInterfaces.map(({ id }) =>
-          this.$http
-            .post(`/dedicated/server/${serverName}/ola/reset`, {
-              virtualNetworkInterface: id,
-            })
-            .then(({ data }) => data),
-        ),
-      )
-      .then((tasks) => this.waitAllTasks(serverName, tasks));
-  }
-
-  waitAllTasks(serverName, tasks) {
-    return this.$q.all(
-      tasks.map((task) =>
-        this.Poller.poll(
-          `/dedicated/server/${serverName}/task/${task.taskId}`,
-          null,
-          { namespace: 'dedicated.server.interfaces.ola', method: 'get' },
-        ),
-      ),
-    );
-  }
-
-  terminateOla(serverName) {
-    return this.$http.delete(`/dedicated/server/${serverName}/option/OLA`).then(
-      (response) => response.data,
-      (error) => {
-        throw error;
-      },
-    );
-  }
-
-  getOlaPrice(serviceName, { datacenter }) {
-    let suffix = 'eu';
-    if (startsWith(datacenter, 'HIL') || startsWith(datacenter, 'VIN')) {
-      suffix = 'us';
-    }
-    if (startsWith(datacenter, 'BHS')) {
-      suffix = 'ca';
-    }
-
-    return this.OvhApiOrderCartServiceOption.v6()
-      .get({
-        productName: 'baremetalServers',
-        serviceName,
-      })
-      .$promise.then((options) => {
-        let planCode = this.olaConstants.OLA_PLAN_CODE;
-
-        if (this.coreConfig.isRegion('US')) {
-          planCode = `${planCode}-${suffix}`;
-        }
-
-        const prices = get(
-          find(options, {
-            planCode,
-          }),
-          'prices',
-        );
-        return get(find(prices, { pricingMode: 'default' }), 'price');
-      });
   }
 
   /**

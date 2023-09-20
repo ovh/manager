@@ -36,7 +36,7 @@ export default class Interface {
   }
 
   hasFailoverIps() {
-    return !this.failoverIps || !this.failoverIps.length;
+    return this.failoverIps?.length;
   }
 
   hasVrack() {

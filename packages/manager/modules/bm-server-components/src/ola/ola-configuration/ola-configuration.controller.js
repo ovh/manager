@@ -13,7 +13,7 @@ export default class {
     $translate,
     Alerter,
     ouiDatagridService,
-    DedicatedServerInterfacesService,
+    olaService,
     OvhApiDedicatedServerPhysicalInterface,
     OvhApiDedicatedServerVirtualInterface,
   ) {
@@ -21,7 +21,7 @@ export default class {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.Alerter = Alerter;
-    this.InterfaceService = DedicatedServerInterfacesService;
+    this.olaService = olaService;
     this.PhysicalInterface = OvhApiDedicatedServerPhysicalInterface;
     this.VirtualInterface = OvhApiDedicatedServerVirtualInterface;
     this.ouiDatagridService = ouiDatagridService;
@@ -81,13 +81,13 @@ export default class {
   configureInterface() {
     switch (this.configuration.mode) {
       case OLA_MODES.VRACK_AGGREGATION:
-        return this.InterfaceService.setPrivateAggregation(
+        return this.olaService.setPrivateAggregation(
           this.serverName,
           this.configuration.name,
           this.selectedInterfaces,
         );
       case OLA_MODES.DEFAULT:
-        return this.InterfaceService.setDefaultInterfaces(
+        return this.olaService.setDefaultInterfaces(
           this.serverName,
           this.selectedInterfaces[0],
         );
