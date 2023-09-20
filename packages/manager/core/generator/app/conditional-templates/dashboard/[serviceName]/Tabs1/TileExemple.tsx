@@ -27,13 +27,13 @@ const TileToRename1: React.FC = () => {
           <ButtonTooltip
             tooltipContent={[
               {
-                label: 'Label',
+                label: 'Label1',
               },
               {
-                label: 'Label',
+                label: 'Label2',
               },
               {
-                label: 'Label',
+                label: 'Label3',
               },
             ]}
           />
@@ -54,7 +54,7 @@ const TileToRename1: React.FC = () => {
 
         <div>
           <OsdsText color={OdsThemeColorIntent.text}>
-          <GuideLink name="guideLink1">Guide external link 1</GuideLink>
+            <GuideLink name="guideLink1">Guide external link 1</GuideLink>
           </OsdsText>
         </div>
       </div>
@@ -71,7 +71,7 @@ const TileToRename1: React.FC = () => {
 
         <div>
           <OsdsText color={OdsThemeColorIntent.text}>
-          <GuideLink name="guideLink2">Guide external link 2</GuideLink>
+            <GuideLink name="guideLink2">Guide external link 2</GuideLink>
           </OsdsText>
         </div>
       </div>
