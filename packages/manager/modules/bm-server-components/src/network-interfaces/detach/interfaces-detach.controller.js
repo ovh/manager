@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-
 export default class {
   /* @ngInject */
   constructor($translate, OvhApiVrack, Poller) {
@@ -14,38 +12,34 @@ export default class {
     }
   }
 
-  attach() {
+  detach() {
     this.loading = true;
     return this.Vrack.DedicatedServerInterface()
       .v6()
-      .post(
-        {
-          serviceName: this.vrack,
-        },
-        {
-          dedicatedServerInterface: this.interface.id,
-        },
-      )
+      .delete({
+        serviceName: this.interface.vrack,
+        dedicatedServerInterface: this.interface.id,
+      })
       .$promise.then((task) => {
         return this.goBack(
-          this.$translate.instant('server_vrack_attach_in_progress', {
-            vRackname: this.vrack,
+          this.$translate.instant('server_vrack_detach_in_progress', {
+            vRackname: this.interface.vrack,
           }),
           'success',
         ).then(() => {
-          this.interface.operation = 'attach';
+          this.interface.operation = 'detach';
           this.interface.setTaskInProgress(true);
-          this.checkStatus(this.vrack, task.data.id).then(() => {
-            this.interface.setVrack(this.vrack);
+          this.checkStatus(this.interface.vrack, task.data.id).then(() => {
+            this.interface.setVrack(null);
             this.interface.setTaskInProgress(false);
           });
         });
       })
-      .catch((error) => {
+      .catch(({ data, message }) => {
         return this.goBack(
-          this.$translate.instant('server_error_vrack_attach', {
-            vRackname: this.vrack,
-            error: get(error, 'data.message', error.message),
+          this.$translate.instant('server_error_vrack_detach', {
+            vRackname: this.interface.vrack,
+            error: data?.message || message,
           }),
           'error',
         );

@@ -15,6 +15,7 @@ import {
   INTERFACE_GROUP_TASK,
   INTERFACE_UNGROUP_TASK,
   VIRTUAL_TYPE,
+  GUIDES,
 } from './interfaces.constants';
 
 export default class DedicatedServerInterfacesService {
@@ -254,5 +255,14 @@ export default class DedicatedServerInterfacesService {
         );
         return get(find(prices, { pricingMode: 'default' }), 'price');
       });
+  }
+
+  /**
+   * provide guide URL for given subsidiary
+   * @return {string}
+   */
+  getGuideUrl() {
+    const { ovhSubsidiary } = this.coreConfig.getUser();
+    return GUIDES[ovhSubsidiary] || GUIDES.DEFAULT;
   }
 }
