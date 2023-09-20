@@ -110,7 +110,8 @@ export const GUIDES = [
         'https://docs.ovh.com/us/es/private-cloud/configuracion-ip-maquina-virtual/',
       US:
         'https://docs.ovh.com/us/en/private-cloud/configure-ip-on-virtual-machine/',
-      IN: 'https://docs.ovh.com/asia/en/private-cloud/configure-ip-on-virtual-machine/',
+      IN:
+        'https://docs.ovh.com/asia/en/private-cloud/configure-ip-on-virtual-machine/',
     },
   },
 ];
