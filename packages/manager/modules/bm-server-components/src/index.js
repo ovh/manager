@@ -11,3 +11,4 @@ export { default as serverOrderPrivateBandwidth } from './order-private-bandwidt
 export { default as serverBandwidthDashboard } from './bandwidth-dashboard';
 export { default as serverBandwidthTile } from './bandwidth-tile';
 export { default as serverOla } from './ola';
+export { default as serverNetworkInterfaces } from './network-interfaces';

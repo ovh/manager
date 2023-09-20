@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-import { GUIDES } from './interfaces.constants';
 import { redirectTo } from './ola/ola-pending-task.routing';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -18,16 +16,13 @@ export default /* @ngInject */ ($stateProvider) => {
         appendError = false,
       ) =>
         $timeout(() => {
+          const message = error.message || error;
           Alerter.set(
             'alert-danger',
             appendError
-              ? `${$translate.instant(translateId)}<br />${get(
-                  error,
-                  'message',
-                  error,
-                )}`
+              ? `${$translate.instant(translateId)}<br />${message}`
               : $translate.instant(translateId, {
-                  error: get(error, 'message', error),
+                  error: message,
                 }),
           );
         }),
@@ -38,8 +33,8 @@ export default /* @ngInject */ ($stateProvider) => {
           'routedTo.serviceName': serverName,
           type: 'failover',
         }).$promise,
-      guideUrl: /* @ngInject */ (user) =>
-        get(GUIDES, `${user.ovhSubsidiary}`, GUIDES.default),
+      guideUrl: /* @ngInject */ (DedicatedServerInterfacesService) =>
+        DedicatedServerInterfacesService.getGuideUrl(),
       optionPrice: /* @ngInject */ (
         DedicatedServerInterfacesService,
         server,

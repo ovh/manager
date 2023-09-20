@@ -11,9 +11,6 @@ import './controllers.module';
 import './dedicated/dedicated.module';
 import './dedicated/dedicated-server/servers/bandwidth/private-order/private-order.module';
 import './dedicated/dedicated-server/servers/bandwidth/public-order/public-order.module';
-import './dedicated/dedicated-server/servers/interfaces/attach/interfaces-attach.module';
-import './dedicated/dedicated-server/servers/interfaces/detach/interfaces-detach.module';
-import './dedicated/dedicated-server/servers/interfaces/rename/interfaces-rename.module';
 import './license/license.module';
 
 import './components/components.bundle';

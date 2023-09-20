@@ -1,11 +1,9 @@
 import component from './interfaces-attach.component';
-import routing from './interfaces-attach.routing';
 
 const moduleName = 'ovhManagerDedicatedServerInterfacesAttach';
 
 angular
-  .module(moduleName, ['ui.router'])
-  .config(routing)
+  .module(moduleName, ['ovh-api-services'])
   .component('dedicatedServerInterfacesAttach', component)
   .run(/* @ngTranslationsInject:json ../translations */);
 
