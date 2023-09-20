@@ -2,6 +2,7 @@ import {
   TRACKING_NAME,
   TRACKING_CHAPTER_1,
   SIZE_FLAVOUR_REGEX,
+  AGORA_ADDON_FAMILY,
 } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -41,7 +42,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $q
           .all({
             plans: $http.get(
-              `/cloud/project/${projectId}/capabilities/productAvailability?addonFamily=octavia-loadbalancer&ovhSubsidiary=${
+              `/cloud/project/${projectId}/capabilities/productAvailability?addonFamily=${AGORA_ADDON_FAMILY}&ovhSubsidiary=${
                 coreConfig.getUser().ovhSubsidiary
               }`,
             ),
