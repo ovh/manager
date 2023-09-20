@@ -1,12 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useEnvironment } from '@ovh-ux/manager-react-core-application';
 {{#if this.pimID}}
 import { useQueries, UseQueryResult } from '@tanstack/react-query';
 import { getPIMService } from '@/api';
 {{/if}}
+import { MscTile } from '@ovhcloud/msc-react-tile';
+import { Locale } from '@ovhcloud/msc-utils';
 import useGuideUtils from '@/components/GuideLink/guide-utils';
 import { OnboardingLayout } from '@/components/layout-helpers/Onboarding';
-import { ManagerTile, ManagerTileType } from '@/components/ManagerTile';
 import onboardingImgSrc from './onboarding-img.png';
 import './index.scss';
 
@@ -19,23 +21,25 @@ export default function Onboarding() {
     ],
   })[0] as UseQueryResult<any>;
   {{/if}}
+  const environment = useEnvironment();
+  const locale = environment.getUserLocale() as Locale;
   const link = useGuideUtils();
 
   const tileList = [
     {
-      title: t('guide1Title'),
-      description: t('guide1Description'),
-      href: link?.['guideLink1'],
+      tileTitle: t('guide1Title'),
+      tileDescription: t('guide1Description'),
+      href: link?.guideLink1,
     },
     {
-      title: t('guide2Title'),
-      description: t('guide2Description'),
-      href: link?.['guideLink2']
+      tileTitle: t('guide2Title'),
+      tileDescription: t('guide2Description'),
+      href: link?.guideLink2,
     },
     {
-      title: t('guide3Title'),
-      description: t('guide3Description'),
-      href: link?.['guideLink3']
+      tileTitle: t('guide3Title'),
+      tileDescription: t('guide3Description'),
+      href: link?.guideLink3,
     },
   ];
 
@@ -54,10 +58,10 @@ export default function Onboarding() {
     >
       <aside className="tile-grid">
         {tileList.map((tile) => (
-          <ManagerTile
-            key={tile.title}
-            tileType={ManagerTileType.tutorial}
-            moreLabel={t('guideFindOutMoreLinkLabel')}
+          <MscTile
+            key={tile.tileTitle}
+            tileType="faq"
+            locale={locale}
             {...tile}
           />
         ))}
