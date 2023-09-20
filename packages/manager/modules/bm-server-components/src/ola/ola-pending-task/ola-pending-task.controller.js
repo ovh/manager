@@ -1,30 +1,23 @@
-import get from 'lodash/get';
-
 export default class {
   /* @ngInject */
-  constructor(
-    $q,
-    $timeout,
-    $translate,
-    Alerter,
-    DedicatedServerInterfacesService,
-  ) {
+  constructor($q, $timeout, $translate, Alerter, olaService) {
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.Alerter = Alerter;
-    this.InterfaceService = DedicatedServerInterfacesService;
+    this.olaService = olaService;
   }
 
   $onInit() {
-    this.InterfaceService.waitTasks(this.serverName)
+    this.olaService
+      .waitTasks(this.serverName)
       .then(() => {
         this.goToInterfaces();
       })
-      .catch((error) =>
+      .catch(({ comment }) =>
         this.Alerter.error(
           this.$translate.instant('dedicated_server_interfaces_task_error', {
-            errorMessage: get(error, 'comment'),
+            errorMessage: comment,
           }),
         ),
       );

@@ -1,21 +1,16 @@
-import filter from 'lodash/filter';
-
 const redirectTo = (transition) => {
   const injector = transition.injector();
   return injector
     .getAsync('serverName')
     .then((serverName) => {
       return injector
-        .getAsync('DedicatedServerInterfacesService')
-        .then((DedicatedServerInterfacesService) =>
-          DedicatedServerInterfacesService.getTasks(serverName),
-        )
-        .then((tasks) => {
-          const pendingTasks = filter(tasks, ({ status }) => {
-            return ['todo', 'init', 'doing'].includes(status);
-          });
-          return pendingTasks;
-        });
+        .getAsync('olaService')
+        .then((olaService) => olaService.getTasks(serverName))
+        .then((tasks) =>
+          tasks.filter(({ status }) =>
+            ['todo', 'init', 'doing'].includes(status),
+          ),
+        );
     })
     .then((pendingTasks) => {
       return pendingTasks.length > 0
