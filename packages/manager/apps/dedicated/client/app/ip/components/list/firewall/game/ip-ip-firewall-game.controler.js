@@ -2,13 +2,13 @@ import findIndex from 'lodash/findIndex';
 import remove from 'lodash/remove';
 
 export default /* @ngInject */ function IpGameFirewallCtrl(
+  $location,
   $scope,
   $rootScope,
   $translate,
   goToDashboard,
   Ip,
   IpGameFirewall,
-
   Alerter,
   $q,
 ) {
@@ -20,6 +20,9 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   self.constantes = {
     DELETE_RULE_PENDING: 'deleteRulePending',
     OK: 'ok',
+    MAX_RULES: 30,
+    PAGE_SIZE_MIN: 10,
+    PAGE_SIZE_MAX: 30,
   };
 
   self.datas = {
@@ -37,6 +40,13 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
     rules: false,
   };
 
+  self.firewallModeEnabled = false;
+  self.rules = [];
+
+  function paginate(pageSize, offset) {
+    self.rules = self.table.rules.slice(offset - 1, offset + pageSize - 1);
+  }
+
   function getFirewall() {
     self.loaders.firewall = true;
     self.datas.firewall = null;
@@ -44,6 +54,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
       .then(
         (firewall) => {
           self.datas.firewall = firewall;
+          self.firewallModeEnabled = firewall.firewallModeEnabled;
 
           if (firewall.state !== self.constantes.OK) {
             IpGameFirewall.pollFirewallState(
@@ -108,6 +119,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
             )
             .finally(() => {
               self.loaders.rules = false;
+              paginate($scope.pageSize, $scope.offset);
             });
         } else {
           self.loaders.rules = false;
@@ -123,6 +135,21 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   function init() {
     getFirewall();
     getRules();
+
+    // pagination
+    const { page, pageSize } = $location.search();
+    $scope.pageNumber = +page || 1;
+    $scope.pageSize = +pageSize || self.constantes.PAGE_SIZE_MIN;
+    $scope.pageSizeMax = self.constantes.PAGE_SIZE_MAX;
+    if ($scope.pageNumber < 1) {
+      $scope.pageNumber = 1;
+    }
+    if ($scope.pageSize < self.constantes.PAGE_SIZE_MIN) {
+      $scope.pageSize = self.constantes.PAGE_SIZE_MIN;
+    } else if ($scope.pageSize > self.constantes.PAGE_SIZE_MAX) {
+      $scope.pageSize = self.constantes.PAGE_SIZE_MAX;
+    }
+    $scope.offset = 1 + ($scope.pageNumber - 1) * $scope.pageSize;
   }
 
   function changeStateRule(ruleId, state) {
@@ -134,6 +161,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
     ) {
       self.table.rules[index].state = state;
     }
+    paginate($scope.pageSize, $scope.offset);
   }
 
   function removeRule(ruleId) {
@@ -141,6 +169,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
       self.table.rules,
       (ruleToDrop) => ruleToDrop.id !== ruleId,
     );
+    paginate($scope.pageSize, $scope.offset);
   }
 
   function getRule(ruleId) {
@@ -169,10 +198,6 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
     });
   }
 
-  self.refreshRules = function refreshRules() {
-    getRules();
-  };
-
   $scope.$on('ips.gameFirewall.display.remove', (event, ruleId) => {
     changeStateRule(ruleId, self.constantes.DELETE_RULE_PENDING);
 
@@ -187,6 +212,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
 
   $scope.$on('ips.gameFirewall.display.add', (event, rule) => {
     self.table.rules.push(rule);
+    paginate($scope.pageSize, $scope.offset);
 
     IpGameFirewall.pollRuleState(
       self.datas.selectedBlock,
@@ -211,4 +237,13 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   $scope.$on('$destroy', () => {
     IpGameFirewall.killPollRuleState();
   });
+
+  $scope.onPaginationChange = ({ offset, pageSize }) => {
+    $scope.pageSize = pageSize;
+    $scope.pageNumber = 1 + Math.floor((offset - 1) / pageSize);
+    $scope.offset = 1 + ($scope.pageNumber - 1) * $scope.pageSize;
+    $location.search('page', $scope.pageNumber);
+    $location.search('pageSize', $scope.pageSize);
+    paginate(pageSize, offset);
+  };
 }
