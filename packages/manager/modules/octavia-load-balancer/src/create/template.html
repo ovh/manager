@@ -131,15 +131,12 @@
                     <p>
                         <span
                             data-translate="octavia_load_balancer_create_private_network_no_subnet_text"
+                            data-translate-values="{
+                                createPrivateNetworkLink: $ctrl.privateNetworkCreationLink,
+                                trackLabel: $ctrl.trackingPrivateNetworkCreation
+                            }"
+                            data-translate-compile
                         ></span>
-                        <a
-                            data-ng-href="{{::$ctrl.privateNetworkCreationLink}}"
-                            data-at-internet-click="{name: $ctrl.trackingPrivateNetworkCreation}"
-                        >
-                            <span
-                                data-translate="octavia_load_balancer_create_private_network_no_subnet_link"
-                            ></span>
-                        </a>
                     </p>
                 </oui-message>
 

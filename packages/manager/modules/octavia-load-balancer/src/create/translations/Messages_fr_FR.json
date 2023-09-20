@@ -16,8 +16,7 @@
   "octavia_load_balancer_create_private_network_intro": "Configurer le réseau privé dans lequel sera hébergé votre load balancer",
   "octavia_load_balancer_create_private_network_field": "Choisissez un réseau privé",
   "octavia_load_balancer_create_private_network_field_subnet": "Choisissez un subnet",
-  "octavia_load_balancer_create_private_network_no_subnet_text": "Le réseau privé sélectionné n'a pas de subnet : choisissez ou ",
-  "octavia_load_balancer_create_private_network_no_subnet_link": "Créez un autre réseau privé",
+  "octavia_load_balancer_create_private_network_no_subnet_text": "Le réseau privé sélectionné n'a pas de subnet : choisissez ou <a href=\"{{ createPrivateNetworkLink }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">Créez un autre réseau privé.</a>",
   "octavia_load_balancer_create_private_network_no_gateway_text": "Nous avons détecté qu'il manque une gateway sur le réseau privé / subnet selectionné. Nous allons en créer une pour vous  au moment de la création du load balancer",
   "octavia_load_balancer_create_private_network_no_gateway_text_price": "Prix de la nouvelle gateway :",
   "octavia_load_balancer_create_gateway_price_interval": " / heure"
