@@ -4,8 +4,7 @@ import {
   newSpecPage,
   newE2EPage,
 } from '@stencil/core/testing';
-import { OdsStringAttributes2Str } from '@ovhcloud/ods-testing';
-import { OdsComponentAttributes2StringAttributes } from '@ovhcloud/ods-core';
+import { OdsStringAttributes2Str } from '@ovhcloud/ods-common-testing';
 import { defaultLocale } from '@ovhcloud/msc-utils';
 import { MscBillingTile, IMscBillingTile } from '../src';
 import { MscBillingCommitment } from '../src/msc-billing-tile/msc-billing-commitment';
@@ -28,9 +27,7 @@ const defaultAttributes = {
 
 export const setupSpecTest = async (attributes?: Partial<IMscBillingTile>) => {
   const mock = mockRequests(config);
-  const stringAttributes = OdsComponentAttributes2StringAttributes<
-    Partial<IMscBillingTile>
-  >({ ...defaultAttributes, ...attributes }, defaultAttributes);
+  const stringAttributes = { ...defaultAttributes, ...attributes };
   const page = await newSpecPage({
     components: [
       MscBillingTile,
@@ -71,9 +68,7 @@ export const setupSpecTest = async (attributes?: Partial<IMscBillingTile>) => {
 };
 
 export const setupE2eTest = async (attributes?: Partial<IMscBillingTile>) => {
-  const stringAttributes = OdsComponentAttributes2StringAttributes<
-    Partial<IMscBillingTile>
-  >({ ...defaultAttributes, ...attributes }, defaultAttributes);
+  const stringAttributes = { ...defaultAttributes, ...attributes };
 
   const page: E2EPage = await newE2EPage({ timeout: 30000 });
 

@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.22.1",
-    "@stencil/core": "^3.0.0",
+    "@ovhcloud/ods-common-testing": "^16.0.1",
+    "@stencil/core": "^4.3.0",
     "@stencil/postcss": "^2.1.0",
     "@stencil/react-output-target": "^0.5.0",
     "@stencil/sass": "^3.0.2",
@@ -28,10 +29,9 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "@ovhcloud/ods-core": "^14.1.0",
-    "@ovhcloud/ods-stencil": "^14.1.0",
-    "@ovhcloud/ods-testing": "^14.1.0",
-    "@ovhcloud/ods-theme-blue-jeans": "^14.1.0",
-    "@ovhcloud/ods-theming": "^14.1.0"
+    "@ovhcloud/ods-common-core": "^16.0.1",
+    "@ovhcloud/ods-common-theming": "^16.0.1",
+    "@ovhcloud/ods-components": "^16.0.1",
+    "@ovhcloud/ods-theme-blue-jeans": "^16.0.1"
   }
 }

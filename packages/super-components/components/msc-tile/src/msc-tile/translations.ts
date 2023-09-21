@@ -2,8 +2,6 @@ import { Locale } from '@ovhcloud/msc-utils';
 
 export type Translations = {
   see_more_label: string;
-  product_tile_type: string;
-  faq_tile_type: string;
 };
 
 /**
