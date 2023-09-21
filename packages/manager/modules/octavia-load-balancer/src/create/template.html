@@ -183,5 +183,34 @@
                 </oui-message>
             </div>
         </oui-step-form>
+
+        <!-- INSTANCES -->
+        <oui-step-form
+            data-ng-init="stepInstance = $ctrl.stepper.loadBalancerInstance"
+            data-name="{{:: stepInstance.name}}"
+            data-header="{{:: 'octavia_load_balancer_create_instance_title' | translate }}"
+            data-on-focus="stepInstance.display = true"
+            data-on-submit="stepInstance.display = false"
+            data-prevent-next="true"
+        >
+            <p
+                data-translate="octavia_load_balancer_create_instance_intro"
+                data-translate-values="{
+                    linkUrl: $ctrl.gettingStartedLink,
+                    trackLabel: $ctrl.trackingInstanceDocumentation
+                }"
+                data-translate-compile
+            ></p>
+            <oui-message data-type="info">
+                <p
+                    data-translate="octavia_load_balancer_create_instance_banner_text"
+                ></p>
+                <p>
+                    <b
+                        data-translate="octavia_load_balancer_create_instance_banner_text_bold"
+                    ></b>
+                </p>
+            </oui-message>
+        </oui-step-form>
     </oui-stepper>
 </div>
