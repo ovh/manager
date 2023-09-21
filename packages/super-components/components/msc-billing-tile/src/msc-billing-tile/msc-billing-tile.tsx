@@ -7,11 +7,8 @@ import {
   State,
   Fragment,
 } from '@stencil/core';
-import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-  OdsThemeTypographySize,
-} from '@ovhcloud/ods-theming';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { HTMLStencilElement, Watch } from '@stencil/core/internal';
 import { Locale, defaultLocale, formatDate } from '@ovhcloud/msc-utils';
 import { apiClient } from '@ovh-ux/manager-core-api';
@@ -119,18 +116,18 @@ export class MscBillingTile implements IMscBillingTile {
         <osds-divider separator />
         <osds-text
           class="tile-title"
-          level={OdsThemeTypographyLevel.heading}
-          size={OdsThemeTypographySize._200}
-          color={OdsThemeColorIntent.text}
+          level={ODS_TEXT_LEVEL.heading}
+          size={ODS_TEXT_SIZE._200}
+          color={ODS_THEME_COLOR_INTENT.text}
         >
           {this.localeStrings?.manager_billing_subscription_creation}
         </osds-text>
         {this.serviceInfos ? (
           <osds-text
             class="tile-description"
-            level={OdsThemeTypographyLevel.body}
-            size={OdsThemeTypographySize._200}
-            color={OdsThemeColorIntent.default}
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._200}
+            color={ODS_THEME_COLOR_INTENT.default}
           >
             {formatDate(this.serviceInfos.creation, this.locale)}
           </osds-text>
@@ -144,7 +141,7 @@ export class MscBillingTile implements IMscBillingTile {
   public render() {
     if (!this.localeStrings) {
       return (
-        <osds-tile rounded>
+        <osds-tile rounded inline>
           <osds-skeleton />
         </osds-tile>
       );
@@ -153,12 +150,12 @@ export class MscBillingTile implements IMscBillingTile {
     return (
       <Host>
         <div class="msc-billing-tile-wrapper">
-          <osds-tile rounded>
+          <osds-tile rounded inline>
             <div class="billing-tile-content">
               <osds-text
-                level={OdsThemeTypographyLevel.heading}
-                size={OdsThemeTypographySize._300}
-                color={OdsThemeColorIntent.text}
+                level={ODS_TEXT_LEVEL.heading}
+                size={ODS_TEXT_SIZE._300}
+                color={ODS_THEME_COLOR_INTENT.text}
               >
                 {this.localeStrings.manager_billing_subscription}
               </osds-text>

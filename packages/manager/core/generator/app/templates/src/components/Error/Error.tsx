@@ -1,18 +1,13 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import {
-  OsdsMessage,
-  OsdsText,
-  OsdsButton,
-} from '@ovhcloud/ods-stencil/components/react/';
-import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
-import {
-  OdsMessageType,
-  OdsTextLevel,
-  OdsButtonVariant,
-  OdsTextSize,
-} from '@ovhcloud/ods-core';
+import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
+import { OsdsText } from '@ovhcloud/ods-components/text/react';
+import { OsdsButton } from '@ovhcloud/ods-components/button/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components/button';
 import { useShell } from '@ovh-ux/manager-react-core-application';
 
 import OOPS from '../../assets/error-banner-oops.png';
@@ -73,15 +68,15 @@ const ErrorBanner: React.FC<ErrorObject> = ({ error }) => {
       </div>
 
       <div className="py-2">
-        <OsdsText size={OdsTextSize._600} level={OdsTextLevel.heading}>
+        <OsdsText size={ODS_TEXT_SIZE._600} level={ODS_TEXT_LEVEL.heading}>
           {t('manager_error_page_title')}
         </OsdsText>
       </div>
 
       <div>
         <OsdsMessage
-          color={OdsThemeColorIntent.error}
-          type={OdsMessageType.error}
+          color={ODS_THEME_COLOR_INTENT.error}
+          type={ODS_MESSAGE_TYPE.error}
         >
           <div>
             {t('manager_error_page_default')} <br />
@@ -98,15 +93,15 @@ const ErrorBanner: React.FC<ErrorObject> = ({ error }) => {
 
       <div className="manager-error-page-footer py-2">
         <OsdsButton
-          color={OdsThemeColorIntent.primary}
-          variant={OdsButtonVariant.ghost}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          variant={ODS_BUTTON_VARIANT.ghost}
           onClick={() => navigate('/', { replace: true })}
         >
           {t('manager_error_page_action_home_label')}
         </OsdsButton>
         <OsdsButton
-          color={OdsThemeColorIntent.primary}
-          variant={OdsButtonVariant.flat}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          variant={ODS_BUTTON_VARIANT.flat}
           onClick={() => navigate(location.pathname, { replace: true })}
         >
           {t('manager_error_page_action_reload_label')}

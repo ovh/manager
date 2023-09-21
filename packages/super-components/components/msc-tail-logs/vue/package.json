@@ -37,7 +37,6 @@
     "vue": "^3.3.4"
   },
   "peerDependencies": {
-    "@ovhcloud/ods-stencil": "^14.1.0",
     "vue": ">=3"
   }
 }

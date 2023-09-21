@@ -8,18 +8,10 @@ import {
   Fragment,
 } from '@stencil/core';
 import { HTMLStencilElement } from '@stencil/core/internal';
-import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-  OdsThemeTypographySize,
-} from '@ovhcloud/ods-theming';
-import {
-  OdsIconName,
-  OdsIconSize,
-  OdsChipSize,
-  OdsHTMLAnchorElementTarget,
-  OdsChipVariant,
-} from '@ovhcloud/ods-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+import { ODS_CHIP_SIZE, ODS_CHIP_VARIANT } from '@ovhcloud/ods-components/chip';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { translate, formatDate, Locale } from '@ovhcloud/msc-utils';
 import { ServiceDetails, Translations } from './msc-billing.types';
 import { getEngagementCommitUrl } from './urls';
@@ -132,9 +124,9 @@ export class MscBillingCommitment implements IMscBillingCommitment {
         <osds-divider separator />
         <osds-text
           class="tile-title"
-          level={OdsThemeTypographyLevel.heading}
-          size={OdsThemeTypographySize._200}
-          color={OdsThemeColorIntent.text}
+          level={ODS_TEXT_LEVEL.heading}
+          size={ODS_TEXT_SIZE._200}
+          color={ODS_THEME_COLOR_INTENT.text}
         >
           {this.localeStrings.manager_billing_subscription_engagement}
         </osds-text>
@@ -145,18 +137,19 @@ export class MscBillingCommitment implements IMscBillingCommitment {
             {description && (
               <osds-text
                 class="tile-description"
-                level={OdsThemeTypographyLevel.body}
-                size={OdsThemeTypographySize._200}
-                color={OdsThemeColorIntent.default}
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_TEXT_SIZE._200}
+                color={ODS_THEME_COLOR_INTENT.default}
               >
                 {description}
               </osds-text>
             )}
             {this.commitmentStatus === CommitmentStatus.ENDS && (
               <osds-chip
-                color={OdsThemeColorIntent.error}
-                size={OdsChipSize.sm}
-                variant={OdsChipVariant.flat}
+                color={ODS_THEME_COLOR_INTENT.error}
+                size={ODS_CHIP_SIZE.sm}
+                variant={ODS_CHIP_VARIANT.flat}
+                inline
               >
                 {translate(
                   this.localeStrings,
@@ -170,14 +163,15 @@ export class MscBillingCommitment implements IMscBillingCommitment {
             {this.commitmentStatus === CommitmentStatus.NONE && (
               <osds-text
                 class="tile-description"
-                level={OdsThemeTypographyLevel.body}
-                size={OdsThemeTypographySize._200}
-                color={OdsThemeColorIntent.default}
+                level={ODS_TEXT_LEVEL.body}
+                size={ODS_TEXT_SIZE._200}
+                color={ODS_THEME_COLOR_INTENT.default}
               >
                 <osds-chip
-                  color={OdsThemeColorIntent.error}
-                  size={OdsChipSize.sm}
-                  variant={OdsChipVariant.flat}
+                  color={ODS_THEME_COLOR_INTENT.error}
+                  size={ODS_CHIP_SIZE.sm}
+                  variant={ODS_CHIP_VARIANT.flat}
+                  inline
                 >
                   {
                     this.localeStrings
@@ -187,9 +181,9 @@ export class MscBillingCommitment implements IMscBillingCommitment {
                 <osds-link
                   class="resub-link"
                   data-tracking={this.commitmentDataTracking}
-                  color={OdsThemeColorIntent.primary}
+                  color={ODS_THEME_COLOR_INTENT.primary}
                   href={getEngagementCommitUrl(this.servicePath)}
-                  target={OdsHTMLAnchorElementTarget._blank}
+                  target="_blank"
                 >
                   {
                     this.localeStrings
@@ -197,9 +191,9 @@ export class MscBillingCommitment implements IMscBillingCommitment {
                   }
                   <osds-icon
                     class="link-icon"
-                    size={OdsIconSize.xxs}
-                    name={OdsIconName.ARROW_RIGHT}
-                    color={OdsThemeColorIntent.primary}
+                    size={ODS_ICON_SIZE.xxs}
+                    name={ODS_ICON_NAME.ARROW_RIGHT}
+                    color={ODS_THEME_COLOR_INTENT.primary}
                   />
                 </osds-link>
               </osds-text>
