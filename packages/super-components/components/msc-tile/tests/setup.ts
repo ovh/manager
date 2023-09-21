@@ -1,11 +1,10 @@
 import { newSpecPage, newE2EPage, E2EPage } from '@stencil/core/testing';
-import { OdsStringAttributes2Str } from '@ovhcloud/ods-testing';
-import { OdsComponentAttributes2StringAttributes } from '@ovhcloud/ods-core';
+import { OdsStringAttributes2Str } from '@ovhcloud/ods-common-testing';
 import { defaultLocale } from '@ovhcloud/msc-utils';
 import { MscTile, IMscTile } from '../src';
 
 const defaultAttributes = {
-  tileType: 'faq',
+  category: 'Tutoriel',
   tileTitle: 'FAQ title',
   tileDescription:
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
@@ -17,8 +16,8 @@ const defaultAttributes = {
 
 export const badgesSlotExample = `
   <span slot="badges">
-    <osds-chip color="primary" size="sm">OVHcloud</osds-chip>
-    <osds-chip color="success" size="sm">Beta</osds-chip>
+    <osds-chip color="primary" size="sm" inline>OVHcloud</osds-chip>
+    <osds-chip color="success" size="sm" inline>Beta</osds-chip>
   </span>
 `;
 
@@ -35,9 +34,7 @@ export const setupSpecTest = async ({
   attributes?: Partial<IMscTile>;
   html?: string;
 }) => {
-  const stringAttributes = OdsComponentAttributes2StringAttributes<
-    Partial<IMscTile>
-  >({ ...defaultAttributes, ...attributes }, defaultAttributes);
+  const stringAttributes = { ...defaultAttributes, ...attributes };
   const page = await newSpecPage({
     components: [MscTile],
     html: `<msc-tile ${OdsStringAttributes2Str(
@@ -64,9 +61,7 @@ export const setupE2eTest = async ({
   attributes?: Partial<IMscTile>;
   html?: string;
 }) => {
-  const stringAttributes = OdsComponentAttributes2StringAttributes<
-    Partial<IMscTile>
-  >({ ...defaultAttributes, ...attributes }, defaultAttributes);
+  const stringAttributes = { ...defaultAttributes, ...attributes };
 
   const page: E2EPage = await newE2EPage();
 

@@ -7,16 +7,9 @@ import {
   Element,
   Fragment,
 } from '@stencil/core';
-import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-  OdsThemeTypographySize,
-} from '@ovhcloud/ods-theming';
-import {
-  OdsHTMLAnchorElementTarget,
-  OdsIconName,
-  OdsIconSize,
-} from '@ovhcloud/ods-core';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { HTMLStencilElement } from '@stencil/core/internal';
 import { apiClient } from '@ovh-ux/manager-core-api';
 import {
@@ -107,16 +100,16 @@ export class MscBillingContact implements IMscBillingContact {
         <osds-link
           data-tracking={this.subscriptionManagementDataTracking}
           href={getContactManagementUrl(this.serviceName)}
-          color={OdsThemeColorIntent.primary}
-          target={OdsHTMLAnchorElementTarget._blank}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          target="_blank"
         >
           {this.localeStrings.manager_billing_subscription_contacts_management}
           <osds-icon
             slot="end"
             class="new-link-icon"
-            size={OdsIconSize.xxs}
-            name={OdsIconName.ARROW_RIGHT}
-            color={OdsThemeColorIntent.primary}
+            size={ODS_ICON_SIZE.xxs}
+            name={ODS_ICON_NAME.ARROW_RIGHT}
+            color={ODS_THEME_COLOR_INTENT.primary}
           />
         </osds-link>
         {this.isOwnerChangeableServiceType() && (
@@ -126,8 +119,8 @@ export class MscBillingContact implements IMscBillingContact {
               isDomainService: this.isDomainServiceType(),
               serviceName: this.serviceName,
             })}
-            target={OdsHTMLAnchorElementTarget._blank}
-            color={OdsThemeColorIntent.primary}
+            target="_blank"
+            color={ODS_THEME_COLOR_INTENT.primary}
           >
             <span class="link-text">
               {this.localeStrings.billing_services_actions_menu_change_owner}
@@ -135,9 +128,9 @@ export class MscBillingContact implements IMscBillingContact {
             <osds-icon
               slot="end"
               class="new-link-icon"
-              size={OdsIconSize.xxs}
-              name={OdsIconName.EXTERNAL_LINK}
-              color={OdsThemeColorIntent.primary}
+              size={ODS_ICON_SIZE.xxs}
+              name={ODS_ICON_NAME.EXTERNAL_LINK}
+              color={ODS_THEME_COLOR_INTENT.primary}
             />
           </osds-link>
         )}
@@ -148,8 +141,8 @@ export class MscBillingContact implements IMscBillingContact {
               serviceName: this.serviceName,
               ownerId: this.domainProperties?.whoisOwner,
             })}
-            color={OdsThemeColorIntent.primary}
-            target={OdsHTMLAnchorElementTarget._blank}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            target="_blank"
           >
             {
               this.localeStrings
@@ -167,9 +160,9 @@ export class MscBillingContact implements IMscBillingContact {
         <osds-divider separator />
         <osds-text
           class="tile-title"
-          level={OdsThemeTypographyLevel.heading}
-          size={OdsThemeTypographySize._200}
-          color={OdsThemeColorIntent.text}
+          level={ODS_TEXT_LEVEL.heading}
+          size={ODS_TEXT_SIZE._200}
+          color={ODS_THEME_COLOR_INTENT.text}
         >
           {this.localeStrings.manager_billing_subscription_contacts}
         </osds-text>
@@ -178,10 +171,7 @@ export class MscBillingContact implements IMscBillingContact {
           {!this.serviceInfos ? (
             <osds-skeleton />
           ) : (
-            <osds-text
-              level={OdsThemeTypographyLevel.body}
-              size={OdsThemeTypographySize._200}
-            >
+            <osds-text level={ODS_TEXT_LEVEL.body} size={ODS_TEXT_SIZE._200}>
               {[
                 `${this.serviceInfos.contactAdmin} ${this.localeStrings.manager_billing_subscription_contacts_admin}`,
                 `${this.serviceInfos.contactBilling} ${this.localeStrings.manager_billing_subscription_contacts_billing}`,

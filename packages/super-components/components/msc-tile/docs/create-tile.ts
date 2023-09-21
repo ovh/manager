@@ -1,5 +1,5 @@
 type CreateTileArgs = Partial<{
-  tileType: string;
+  category: string;
   tileTitle: string;
   tileDescription: string;
   href: string;
@@ -13,7 +13,7 @@ type CreateTileArgs = Partial<{
 }>;
 
 export const createTile = ({
-  tileType,
+  category,
   tileTitle,
   tileDescription,
   href,
@@ -27,7 +27,7 @@ export const createTile = ({
 }: CreateTileArgs) =>
   `
     <msc-tile
-      tile-type="${tileType}"
+      category="${category}"
       tile-title="${tileTitle}"
       tile-description="${tileDescription}"
       href="${href}"
@@ -41,8 +41,8 @@ export const createTile = ({
         hasBadges
           ? `
         <span slot="badges">
-          <osds-chip color="primary" size="sm">OVHcloud</osds-chip>
-          <osds-chip color="success" size="sm">Beta</osds-chip>
+          <osds-chip color="primary" size="sm" inline>OVHcloud</osds-chip>
+          <osds-chip color="success" size="sm" inline>Beta</osds-chip>
         </span>
       `
           : ''

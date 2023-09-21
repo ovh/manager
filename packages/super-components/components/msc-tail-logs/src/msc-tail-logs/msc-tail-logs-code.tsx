@@ -1,27 +1,24 @@
 import { Component, Prop, h } from '@stencil/core';
-import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-  OdsThemeTypographySize,
-} from '@ovhcloud/ods-theming';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { LogEntry } from './msc-tail-logs.type';
 
 function getMessageColor(
   message: string,
-): { color: OdsThemeColorIntent; contrasted?: boolean } {
+): { color: ODS_THEME_COLOR_INTENT; contrasted?: boolean } {
   if (
     /warning/i.test(message) ||
     /status\s*>=\s*300\s*&&\s*status\s*<\s*499/i.test(message)
   ) {
-    return { color: OdsThemeColorIntent.warning };
+    return { color: ODS_THEME_COLOR_INTENT.warning };
   }
   if (/crit|alert|emerg/i.test(message) || /status\s*> 499/i.test(message)) {
-    return { color: OdsThemeColorIntent.error };
+    return { color: ODS_THEME_COLOR_INTENT.error };
   }
   if (/debug/i.test(message)) {
-    return { color: OdsThemeColorIntent.default };
+    return { color: ODS_THEME_COLOR_INTENT.default };
   }
-  return { color: OdsThemeColorIntent.default, contrasted: true };
+  return { color: ODS_THEME_COLOR_INTENT.default, contrasted: true };
 }
 
 export interface IMscTailLogsCode {
@@ -57,8 +54,8 @@ export class MscTailLogsCode implements IMscTailLogsCode {
                 {log.timestamp && (
                   <td>
                     <osds-text
-                      level={OdsThemeTypographyLevel.caption}
-                      size={OdsThemeTypographySize._200}
+                      level={ODS_TEXT_LEVEL.caption}
+                      size={ODS_TEXT_SIZE._200}
                       {...messageColor}
                     >
                       {new Date(log.timestamp * 1000).toISOString()}
@@ -70,8 +67,8 @@ export class MscTailLogsCode implements IMscTailLogsCode {
                   .map(([, value]) => (
                     <td key={value}>
                       <osds-text
-                        level={OdsThemeTypographyLevel.caption}
-                        size={OdsThemeTypographySize._200}
+                        level={ODS_TEXT_LEVEL.caption}
+                        size={ODS_TEXT_SIZE._200}
                         {...messageColor}
                       >
                         {value}
