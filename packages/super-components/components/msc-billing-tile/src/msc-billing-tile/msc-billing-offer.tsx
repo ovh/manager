@@ -7,11 +7,8 @@ import {
   Element,
   Fragment,
 } from '@stencil/core';
-import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-  OdsThemeTypographySize,
-} from '@ovhcloud/ods-theming';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { HTMLStencilElement } from '@stencil/core/internal';
 import { apiClient } from '@ovh-ux/manager-core-api';
 import {
@@ -73,7 +70,7 @@ export class MscBillingOffer implements IMscBillingOffer {
         <osds-link
           data-tracking={this.changeOfferDataTracking}
           href={getChangeOfferUrl(this.serviceType)}
-          color={OdsThemeColorIntent.primary}
+          color={ODS_THEME_COLOR_INTENT.primary}
         >
           {this.localeStrings.billing_services_actions_menu_change_offer}
         </osds-link>
@@ -91,9 +88,9 @@ export class MscBillingOffer implements IMscBillingOffer {
         <osds-divider separator />
         <osds-text
           class="tile-title"
-          level={OdsThemeTypographyLevel.heading}
-          size={OdsThemeTypographySize._200}
-          color={OdsThemeColorIntent.text}
+          level={ODS_TEXT_LEVEL.heading}
+          size={ODS_TEXT_SIZE._200}
+          color={ODS_THEME_COLOR_INTENT.text}
         >
           {this.localeStrings?.manager_billing_subscription_offer}
         </osds-text>
@@ -106,9 +103,9 @@ export class MscBillingOffer implements IMscBillingOffer {
           ) : (
             <osds-text
               class="tile-description"
-              level={OdsThemeTypographyLevel.body}
-              size={OdsThemeTypographySize._200}
-              color={OdsThemeColorIntent.default}
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_TEXT_SIZE._200}
+              color={ODS_THEME_COLOR_INTENT.default}
             >
               {this.serviceProperties.offer}
             </osds-text>
