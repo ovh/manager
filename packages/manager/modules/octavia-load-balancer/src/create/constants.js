@@ -48,37 +48,37 @@ export const REGION_AVAILABILITY_LINK = {
 
 export const GETTING_STARTED_LINK = {
   FR:
-    'https://docs.ovh.com/fr/load-balancer-octavia/premiers-pas-avec-load-balancer-public-cloud/',
+    'https://help.ovhcloud.com/csm/fr-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050200',
   DE:
-    'https://docs.ovh.com/de/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+    'https://help.ovhcloud.com/csm/de-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0037842',
   ES:
-    'https://docs.ovh.com/es/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+    'https://help.ovhcloud.com/csm/es-es-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050208',
   IE:
-    'https://docs.ovh.com/ie/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050193',
   IT:
-    'https://docs.ovh.com/it/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+    'https://help.ovhcloud.com/csm/it-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050199',
   PL:
-    'https://docs.ovh.com/pl/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+    'https://help.ovhcloud.com/csm/pl-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050201',
   PT:
-    'https://docs.ovh.com/pt/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+    'https://help.ovhcloud.com/csm/pt-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050202',
   GB:
-    'https://docs.ovh.com/gb/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050203',
   CA:
-    'https://docs.ovh.com/ca/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+    'https://help.ovhcloud.com/csm/en-ca-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050188',
   QC:
-    'https://docs.ovh.com/ca/fr/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+    'https://help.ovhcloud.com/csm/fr-ca-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050196',
   WS:
-    'https://docs.ovh.com/us/es/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+    'https://help.ovhcloud.com/csm/es-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050197',
   AU:
-    'https://docs.ovh.com/au/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+    'https://help.ovhcloud.com/csm/en-au-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050198',
   SG:
-    'https://docs.ovh.com/sg/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+    'https://help.ovhcloud.com/csm/en-sg-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050206',
   ASIA:
-    'https://docs.ovh.com/asia/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+    'https://help.ovhcloud.com/csm/asia-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050195',
   US:
-    'https://docs.ovh.com/us/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+    'https://support.us.ovhcloud.com/hc/en-us/articles/18610207964051-Getting-Started-with-Load-Balancer-on-Public-Cloud',
   DEFAULT:
-    'https://docs.ovh.com/ie/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050193',
 };
 
 export const TRACKING_CHAPTER_1 = 'PublicCloud';
