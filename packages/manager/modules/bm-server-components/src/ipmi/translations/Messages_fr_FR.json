@@ -47,7 +47,7 @@
   "server_configuration_kvm_contract_validation_text": "Merci de lire et d'accepter le(s) contrat(s) ci-dessous :",
   "server_configuration_kvm_contract_agreement": "J'ai lu et j'accepte les contrats",
   "server_configuration_kvm_contract_agreed": "Vous avez déjà accepté les termes et conditions précédemment définis.",
-  "server_configuration_kvm_proceed_payment": "Passer au paiement",
+  "server_configuration_kvm_proceed_payment": "Payer",
   "server_configuration_kvm_order_finish_success": "Votre service a bien été commandé. Le service est en cours d'installation par nos équipes en datacentre. Vous recevrez un mail lorsque l'installation sera finalisée.",
   "server_configuration_kvm_order_error": "Une erreur est survenue lors de la commande de KVM.",
   "server_configuration_kvm_informations": "Informations de votre KVM",
