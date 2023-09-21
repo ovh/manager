@@ -19,5 +19,9 @@
   "octavia_load_balancer_create_private_network_no_subnet_text": "Le réseau privé sélectionné n'a pas de subnet : choisissez ou <a href=\"{{ createPrivateNetworkLink }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">Créez un autre réseau privé.</a>",
   "octavia_load_balancer_create_private_network_no_gateway_text": "Nous avons détecté qu'il manque une gateway sur le réseau privé / subnet selectionné. Nous allons en créer une pour vous  au moment de la création du load balancer",
   "octavia_load_balancer_create_private_network_no_gateway_text_price": "Prix de la nouvelle gateway :",
-  "octavia_load_balancer_create_gateway_price_interval": " / heure"
+  "octavia_load_balancer_create_gateway_price_interval": " / heure",
+  "octavia_load_balancer_create_instance_title": "Ajouter des instances",
+  "octavia_load_balancer_create_instance_intro": "Pour configurer votre Load Balancer, définissez vos listeners (front ends) avec un port et un protocole. Attribuez-le ensuite à un pool d'instances (back ends) joignables sur un port et un protocole spécifiques. Si vous disposez de plusieurs protocoles et/ou ports par instance, vous pouvez configurer plusieurs pools par listener <a href=\"{{ linkUrl }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">en consultant la documentation</a>",
+  "octavia_load_balancer_create_instance_banner_text": "Vous pouvez ajouter jusqu'à 5 listeners et 20 instances au maximum dans cet assistant. Pour plus d'options ou pour éditer des fonctionnalités plus avancées (comme les protocoles proxy, le health check ou les politiques L7), passez en mode édition.",
+  "octavia_load_balancer_create_instance_banner_text_bold": "Vous pourrez saisir des membres via IP après la création de votre Load Balancer dans la section membres de la vue Pool"
 }
