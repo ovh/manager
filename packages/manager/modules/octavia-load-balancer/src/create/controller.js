@@ -1,6 +1,8 @@
 import {
+  GETTING_STARTED_LINK,
   PRODUCT_LINK,
   REGION_AVAILABILITY_LINK,
+  TRACKING_INSTANCE_DOCUMENTATION,
   TRACKING_PRIVATE_NETWORK_CREATION,
   TRACKING_PRODUCT_PAGE,
   TRACKING_REGION_AVAILABILITY,
@@ -17,6 +19,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
     this.trackingProductPage = TRACKING_PRODUCT_PAGE;
     this.trackingRegionAvailability = TRACKING_REGION_AVAILABILITY;
     this.trackingPrivateNetworkCreation = TRACKING_PRIVATE_NETWORK_CREATION;
+    this.trackingInstanceDocumentation = TRACKING_INSTANCE_DOCUMENTATION;
 
     this.productPageLink =
       PRODUCT_LINK[this.user.ovhSubsidiary] || PRODUCT_LINK.DEFAULT;
@@ -24,6 +27,10 @@ export default class OctaviaLoadBalancerCreateCtrl {
     this.regionPageLink =
       REGION_AVAILABILITY_LINK[this.user.ovhSubsidiary] ||
       REGION_AVAILABILITY_LINK.DEFAULT;
+
+    this.gettingStartedLink =
+      GETTING_STARTED_LINK[this.user.ovhSubsidiary] ||
+      GETTING_STARTED_LINK.DEFAULT;
 
     this.model = {};
 
@@ -34,6 +41,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
         name: 'load_balancer_private_network',
         display: null,
       },
+      loadBalancerInstance: { name: 'load_balancer_instance', display: null },
     };
   }
 
