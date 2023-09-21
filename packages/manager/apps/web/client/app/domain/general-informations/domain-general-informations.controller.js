@@ -491,7 +491,9 @@ export default class DomainTabGeneralInformationsCtrl {
             this.options.dnsAnycast = {
               option: 'dnsAnycast',
               optionActivated: true,
-              isTerminated: get(data, 'renew.mode') === 'deleteAtExpiration',
+              isTerminated:
+                get(data, 'renew.mode') === 'deleteAtExpiration' ||
+                get(data, 'renew.mode') === 'manual',
               ...data,
             };
           })
