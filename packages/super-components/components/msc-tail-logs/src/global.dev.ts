@@ -1,8 +1,8 @@
 import './global';
-import '@ovhcloud/ods-stencil/components/text';
-import '@ovhcloud/ods-stencil/components/skeleton';
-import '@ovhcloud/ods-stencil/components/code';
-import '@ovhcloud/ods-stencil/components/toggle';
+import '@ovhcloud/ods-components/text';
+import '@ovhcloud/ods-components/skeleton';
+import '@ovhcloud/ods-components/code';
+import '@ovhcloud/ods-components/toggle';
 import { setupWorker } from 'msw';
 import handlers from '../mock/handlers';
 

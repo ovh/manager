@@ -2,11 +2,8 @@ import { Component, Prop, h, Element, Host, State, Watch } from '@stencil/core';
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { HTMLStencilElement } from '@stencil/core/internal';
 import { Locale, defaultLocale } from '@ovhcloud/msc-utils';
-import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-  OdsThemeTypographySize,
-} from '@ovhcloud/ods-theming';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { getTranslations, Translations } from './translations';
 import { LogEntry, SortOrder } from './msc-tail-logs.type';
 
@@ -109,7 +106,7 @@ export class MscTailLogs implements IMscTailLogs {
       <Host>
         <section class="msc-tail-logs-wrapper">
           <osds-toggle
-            color={OdsThemeColorIntent.primary}
+            color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => {
               if (this.logEntryList !== null) {
                 this.autoRefresh = !this.autoRefresh;
@@ -121,7 +118,7 @@ export class MscTailLogs implements IMscTailLogs {
             <osds-text
               slot="start"
               level="heading"
-              color={OdsThemeColorIntent.text}
+              color={ODS_THEME_COLOR_INTENT.text}
             >
               {this.localeStrings.refresh_button_label}
             </osds-text>
@@ -132,9 +129,9 @@ export class MscTailLogs implements IMscTailLogs {
             <osds-code>
               {this.hasError && (
                 <osds-text
-                  level={OdsThemeTypographyLevel.caption}
-                  size={OdsThemeTypographySize._400}
-                  color={OdsThemeColorIntent.error}
+                  level={ODS_TEXT_LEVEL.caption}
+                  size={ODS_TEXT_SIZE._400}
+                  color={ODS_THEME_COLOR_INTENT.error}
                 >
                   {this.localeStrings.service_error_message}
                 </osds-text>
