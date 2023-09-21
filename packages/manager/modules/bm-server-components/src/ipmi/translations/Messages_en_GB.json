@@ -76,5 +76,5 @@
   "server_configuration_kvm_contract_validation_text": "Please read and accept the terms and conditions below:",
   "server_configuration_kvm_contract_agreement": "I confirm that I have read and understood the terms &amp; conditions.",
   "server_configuration_kvm_contract_agreed": "You have already accepted the terms and conditions previously set out.",
-  "server_configuration_kvm_proceed_payment": "Go to payment"
+  "server_configuration_kvm_proceed_payment": "Pay"
 }

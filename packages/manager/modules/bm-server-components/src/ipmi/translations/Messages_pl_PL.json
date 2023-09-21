@@ -76,5 +76,5 @@
   "server_configuration_kvm_contract_validation_text": "Przeczytaj i zaakceptuj poniższy regulamin/regulaminy:",
   "server_configuration_kvm_contract_agreement": "Przeczytałem i akceptuję regulaminy.",
   "server_configuration_kvm_contract_agreed": "Zaakceptowałeś już obowiązujące warunki.",
-  "server_configuration_kvm_proceed_payment": "Przejdź do płatności"
+  "server_configuration_kvm_proceed_payment": "Zapłać"
 }

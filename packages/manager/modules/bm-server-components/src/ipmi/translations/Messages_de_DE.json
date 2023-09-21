@@ -76,5 +76,5 @@
   "server_configuration_kvm_contract_validation_text": "Bitte lesen und akzeptieren Sie die folgenden Verträge:",
   "server_configuration_kvm_contract_agreement": "Ich habe die Verträge gelesen und akzeptiere sie.",
   "server_configuration_kvm_contract_agreed": "Sie haben die zuvor festgelegten Bedingungen bereits akzeptiert.",
-  "server_configuration_kvm_proceed_payment": "Zur Zahlung wechseln"
+  "server_configuration_kvm_proceed_payment": "Bezahlen"
 }

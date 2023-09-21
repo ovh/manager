@@ -76,5 +76,5 @@
   "server_configuration_kvm_contract_validation_text": "Agradecemos que leia e aceite o(s) contrato(s) abaixo:",
   "server_configuration_kvm_contract_agreement": "Li e aceito os contratos",
   "server_configuration_kvm_contract_agreed": "Já aceitou os termos e condições definidos anteriormente.",
-  "server_configuration_kvm_proceed_payment": "Passar ao pagamento"
+  "server_configuration_kvm_proceed_payment": "Pagar"
 }
