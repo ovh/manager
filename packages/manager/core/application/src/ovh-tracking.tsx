@@ -3,13 +3,34 @@ import { useLocation } from 'react-router-dom';
 import { AT_INTERNET_LEVEL2 } from '@ovh-ux/ovh-at-internet';
 import { useShell } from '.';
 
-// Send hit with data-tracking attributes
-const ODS_COMPONENTS = ['OSDS-BUTTON', 'OSDS-LINK'];
-// Send hit when value attributes change
-const ODS_COMPONENTS_GROUP = [
-  'osds-select',
-  'osds-radio-group',
-  'osds-checkbox',
+const OSDS_COMPONENT = [
+  'OSDS-ACCORDION',
+  'OSDS-ACCORDION-GROUP',
+  'OSDS-BREADCRUMB',
+  'OSDS-BUTTON',
+  'OSDS-CHECKBOX',
+  'OSDS-CHECKBOX-BUTTON',
+  'OSDS-CHIP',
+  'OSDS-CLIPBOARD',
+  'OSDS-INPUT',
+  'OSDS-LINK',
+  'OSDS-MODAL',
+  'OSDS-PAGINATION',
+  'OSDS-PASSWORD',
+  'OSDS-PHONE-NUMBER',
+  'OSDS-RADIO-GROUP',
+  'OSDS-RADIO',
+  'OSDS-RADIO-BUTTON',
+  'OSDS-RANGE',
+  'OSDS-SEARCH-BAR',
+  'OSDS-SWITCH',
+  'OSDS-SWITCH-ITEM',
+  'OSDS-TABS',
+  'OSDS-TAB-BAR',
+  'OSDS-TAB-BAR-ITEM',
+  'OSDS-TEXTAREA',
+  'OSDS-TILE',
+  'OSDS-TOGGLE',
 ];
 
 export default function OvhTracking() {
@@ -21,20 +42,16 @@ export default function OvhTracking() {
   const myStateRef = useRef(locationPath);
 
   const trackLevel2 = (universe: string) => {
-    const result = Object.keys(AT_INTERNET_LEVEL2).filter((element) => {
-      if (
-        AT_INTERNET_LEVEL2[element]
-          .toLowerCase()
-          .indexOf(universe.toLowerCase()) > -1
-      ) {
-        return element;
-      }
-      return false;
-    });
+    const result = Object.keys(AT_INTERNET_LEVEL2).filter((element) =>
+      AT_INTERNET_LEVEL2[element]
+        .toLowerCase()
+        .indexOf(universe.toLowerCase()) > -1
+        ? element
+        : false,
+    );
     return result ? result[0] : '0';
   };
 
-  // Use trackingPage to send action load
   const OvhTrackPage = (loc: any) => {
     const path = loc?.pathname.split('/')[1];
     const partsReplace = loc.pathname.substring(1).replaceAll('/', '::');
@@ -50,21 +67,10 @@ export default function OvhTracking() {
     });
   };
 
-  useEffect(() => {
-    tracking.init(false);
-  }, []);
-
-  useEffect(() => {
-    // When location change, send tracking load page
-    OvhTrackPage(location);
-    myStateRef.current = location;
-    setLocationPath(location);
-  }, [location]);
-
-  const ovhTrackingSendCLick = (value: string) => {
-    const path = myStateRef.current.pathname.split('/')[1];
+  const ovhTrackingSenClick = (value: string) => {
     env.then((response) => {
       const { applicationName, universe } = response;
+      const path = myStateRef.current.pathname.split('/')[1];
       const name = `${applicationName}::${path || 'homepage'}::${value}`;
       const page = `${universe}::${applicationName}::${path || 'homepage'}`;
       tracking.trackClick({
@@ -77,68 +83,49 @@ export default function OvhTracking() {
     });
   };
 
-  // Send tracking click for the ODS_COMPONENTS_GROUP
-  const ovhTrackingParentNode = (event) => {
-    const value = event.detail.value || event.detail.newValue;
-    ovhTrackingSendCLick(value);
-  };
-
-  // Init event listener for each ODS_COMPONENTS_GROUP on value change
-  const addOdsEventListenerValue = () => {
-    const elmTab = [];
-    ODS_COMPONENTS_GROUP.forEach((element) => {
-      const odsSelector = document.querySelectorAll(element);
-      odsSelector.forEach((elementSlctr) => {
-        elementSlctr?.addEventListener(
-          'odsValueChange',
-          ovhTrackingParentNode,
-          false,
-        );
-        elmTab.push(elementSlctr);
-      });
-    });
-    return elmTab;
-  };
-
-  useLayoutEffect(() => {
-    let tabsEvents = [];
-    const timer = setTimeout(() => {
-      // After the layout and all ods components loaded
-      // Add events listener
-      tabsEvents = addOdsEventListenerValue();
-    }, 500);
-
-    // Clean every listener events
-    return () => {
-      clearTimeout(timer);
-      if (tabsEvents.length > 0)
-        tabsEvents.forEach((element) => {
-          element.removeEventListener(
-            'odsValueChange',
-            ovhTrackingParentNode,
-            false,
-          );
-        });
-    };
-  }, [location]);
-
-  // Get the data-tracking value from ODS_COMPONENTS
-  // To send a track click
-  const ohvTrackingAction = (event) => {
+  const ovhTrackingAction = (event) => {
     const element = event.target as HTMLElement;
+    const closestWithTracking = element.closest(`[${'data-tracking'}]`);
+    const trackingValue = closestWithTracking.getAttribute('data-tracking');
     if (
-      ODS_COMPONENTS.indexOf(element.tagName) > -1 &&
-      element['data-tracking']
-    )
-      ovhTrackingSendCLick(element['data-tracking']);
+      trackingValue &&
+      OSDS_COMPONENT.includes(closestWithTracking.tagName.toUpperCase())
+    ) {
+      ovhTrackingSenClick(trackingValue);
+    }
+  };
+
+  const ovhTrackSelectOption = (event) => {
+    const element = event.target as HTMLElement;
+    const closestWithTracking = element.closest(`[${'data-tracking'}]`);
+    const trackingValue = closestWithTracking.getAttribute('data-tracking');
+    if (trackingValue) {
+      ovhTrackingSenClick(trackingValue);
+    }
   };
 
   useEffect(() => {
-    // Add event listener click on the window
-    window.addEventListener('click', ohvTrackingAction, false);
+    tracking.init(false);
+  }, []);
+
+  useEffect(() => {
+    OvhTrackPage(location);
+    myStateRef.current = location;
+    setLocationPath(location);
+  }, [location]);
+
+  useLayoutEffect(() => {
+    document.body.addEventListener('click', ovhTrackingAction);
+    document.body.addEventListener(
+      'odsSelectOptionClick',
+      ovhTrackSelectOption,
+    );
     return () => {
-      // clean all events listener
-      window.removeEventListener('click', ohvTrackingAction, false);
+      document.body.removeEventListener('click', ovhTrackingAction);
+      document.body.removeEventListener(
+        'odsSelectOptionClick',
+        ovhTrackSelectOption,
+      );
     };
   }, []);
 
