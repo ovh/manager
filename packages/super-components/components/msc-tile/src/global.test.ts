@@ -4,10 +4,10 @@
 // ###
 
 import './global';
-import '@ovhcloud/ods-stencil/components/tile';
-import '@ovhcloud/ods-stencil/components/button';
-import '@ovhcloud/ods-stencil/components/link';
-import '@ovhcloud/ods-stencil/components/icon';
-import '@ovhcloud/ods-stencil/components/text';
-import '@ovhcloud/ods-stencil/components/chip';
-import '@ovhcloud/ods-stencil/components/skeleton';
+import '@ovhcloud/ods-components/tile';
+import '@ovhcloud/ods-components/button';
+import '@ovhcloud/ods-components/link';
+import '@ovhcloud/ods-components/icon';
+import '@ovhcloud/ods-components/text';
+import '@ovhcloud/ods-components/chip';
+import '@ovhcloud/ods-components/skeleton';
