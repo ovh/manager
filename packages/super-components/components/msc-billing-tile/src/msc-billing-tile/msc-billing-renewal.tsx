@@ -1,16 +1,8 @@
 import { h, Fragment, Component, Prop } from '@stencil/core';
-import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-  OdsThemeTypographySize,
-} from '@ovhcloud/ods-theming';
-import {
-  OdsIconName,
-  OdsIconSize,
-  OdsChipSize,
-  OdsChipVariant,
-  OdsHTMLAnchorElementTarget,
-} from '@ovhcloud/ods-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+import { ODS_CHIP_SIZE, ODS_CHIP_VARIANT } from '@ovhcloud/ods-components/chip';
 import {
   RenewalStatus,
   ServiceDetails,
@@ -41,14 +33,14 @@ export interface IMSCBillingRenewal {
 }
 
 const chipColorMap = {
-  [RenewalStatus.AUTOMATIC]: OdsThemeColorIntent.success,
-  [RenewalStatus.AUTO]: OdsThemeColorIntent.success,
-  [RenewalStatus.MANUAL]: OdsThemeColorIntent.warning,
-  [RenewalStatus.BILLING_SUSPENDED]: OdsThemeColorIntent.info,
-  [RenewalStatus.MANUAL_FORCED]: OdsThemeColorIntent.info,
-  [RenewalStatus.DELETE_AT_EXPIRATION]: OdsThemeColorIntent.error,
-  [RenewalStatus.EXPIRED]: OdsThemeColorIntent.error,
-  [RenewalStatus.UNKNOWN]: OdsThemeColorIntent.error,
+  [RenewalStatus.AUTOMATIC]: ODS_THEME_COLOR_INTENT.success,
+  [RenewalStatus.AUTO]: ODS_THEME_COLOR_INTENT.success,
+  [RenewalStatus.MANUAL]: ODS_THEME_COLOR_INTENT.warning,
+  [RenewalStatus.BILLING_SUSPENDED]: ODS_THEME_COLOR_INTENT.info,
+  [RenewalStatus.MANUAL_FORCED]: ODS_THEME_COLOR_INTENT.info,
+  [RenewalStatus.DELETE_AT_EXPIRATION]: ODS_THEME_COLOR_INTENT.error,
+  [RenewalStatus.EXPIRED]: ODS_THEME_COLOR_INTENT.error,
+  [RenewalStatus.UNKNOWN]: ODS_THEME_COLOR_INTENT.error,
 };
 
 @Component({
@@ -116,16 +108,16 @@ export class MscBillingRenewal implements IMSCBillingRenewal {
         return (
           <osds-link
             data-tracking={this.renewLinkDataTracking}
-            color={OdsThemeColorIntent.primary}
+            color={ODS_THEME_COLOR_INTENT.primary}
             href={getRenewUrl(this.serviceName)}
-            target={OdsHTMLAnchorElementTarget._blank}
+            target="_blank"
           >
             {this.localeStrings.billing_services_actions_menu_renew}
             <osds-icon
               class="new-link-icon"
-              size={OdsIconSize.xxs}
-              name={OdsIconName.EXTERNAL_LINK}
-              color={OdsThemeColorIntent.primary}
+              size={ODS_ICON_SIZE.xxs}
+              name={ODS_ICON_NAME.EXTERNAL_LINK}
+              color={ODS_THEME_COLOR_INTENT.primary}
             />
           </osds-link>
         );
@@ -133,8 +125,8 @@ export class MscBillingRenewal implements IMSCBillingRenewal {
         return (
           <osds-link
             data-tracking={this.cancelResiliationDataTracking}
-            target={OdsHTMLAnchorElementTarget._blank}
-            color={OdsThemeColorIntent.primary}
+            target="_blank"
+            color={ODS_THEME_COLOR_INTENT.primary}
             href={getCancelResiliationUrl(this.servicePath)}
           >
             {this.localeStrings.billing_services_actions_menu_resiliate_cancel}
@@ -145,20 +137,20 @@ export class MscBillingRenewal implements IMSCBillingRenewal {
           <>
             <osds-link
               data-tracking={this.manageRenewDataTracking}
-              target={OdsHTMLAnchorElementTarget._blank}
+              target="_blank"
               href={getManageRenewUrl({
                 serviceName: this.serviceName,
                 serviceType: this.serviceType,
               })}
-              color={OdsThemeColorIntent.primary}
+              color={ODS_THEME_COLOR_INTENT.primary}
             >
               {this.localeStrings.billing_services_actions_menu_manage_renew}
             </osds-link>
             <osds-link
               data-tracking={this.anticipateRenewDataTracking}
-              target={OdsHTMLAnchorElementTarget._blank}
+              target="_blank"
               href={getAnticipateRenew(this.servicePath)}
-              color={OdsThemeColorIntent.primary}
+              color={ODS_THEME_COLOR_INTENT.primary}
             >
               {
                 this.localeStrings
@@ -167,12 +159,12 @@ export class MscBillingRenewal implements IMSCBillingRenewal {
             </osds-link>
             <osds-link
               data-tracking={this.resiliateDataTracking}
-              target={OdsHTMLAnchorElementTarget._blank}
+              target="_blank"
               href={getResiliateUrl({
                 serviceName: this.serviceName,
                 serviceType: this.serviceType,
               })}
-              color={OdsThemeColorIntent.primary}
+              color={ODS_THEME_COLOR_INTENT.primary}
             >
               {this.localeStrings.billing_services_actions_menu_resiliate}
             </osds-link>
@@ -183,7 +175,8 @@ export class MscBillingRenewal implements IMSCBillingRenewal {
 
   render() {
     const renewStatus = this.getRenewStatus();
-    const chipColor = chipColorMap[renewStatus] || OdsThemeColorIntent.default;
+    const chipColor =
+      chipColorMap[renewStatus] || ODS_THEME_COLOR_INTENT.default;
 
     const chipTextMap: { [key in RenewalStatus]: string } = {
       [RenewalStatus.DELETE_AT_EXPIRATION]: this.localeStrings
@@ -214,9 +207,9 @@ export class MscBillingRenewal implements IMSCBillingRenewal {
         <osds-divider separator />
         <osds-text
           class="tile-title"
-          level={OdsThemeTypographyLevel.heading}
-          size={OdsThemeTypographySize._200}
-          color={OdsThemeColorIntent.text}
+          level={ODS_TEXT_LEVEL.heading}
+          size={ODS_TEXT_SIZE._200}
+          color={ODS_THEME_COLOR_INTENT.text}
         >
           {this.localeStrings.manager_billing_subscription_next_due_date}
         </osds-text>
@@ -229,16 +222,16 @@ export class MscBillingRenewal implements IMSCBillingRenewal {
             </div>
             <osds-text
               class="next-billing-date-label"
-              level={OdsThemeTypographyLevel.body}
-              size={OdsThemeTypographySize._200}
-              color={OdsThemeColorIntent.default}
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_TEXT_SIZE._200}
+              color={ODS_THEME_COLOR_INTENT.default}
             >
               {this.nextBillingDate}
             </osds-text>
             <osds-chip
               color={chipColor}
-              size={OdsChipSize.sm}
-              variant={OdsChipVariant.flat}
+              size={ODS_CHIP_SIZE.sm}
+              variant={ODS_CHIP_VARIANT.flat}
             >
               {chipText}
             </osds-chip>

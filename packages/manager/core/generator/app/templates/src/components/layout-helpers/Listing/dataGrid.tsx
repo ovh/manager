@@ -1,16 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import {
-  OsdsText,
-  OsdsLink,
-  OsdsIcon,
-} from '@ovhcloud/ods-stencil/components/react/';
-import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-} from '@ovhcloud/ods-theming';
-import { OdsIconName, OdsIconSize } from '@ovhcloud/ods-core';
+import { OsdsText } from '@ovhcloud/ods-components/text/react';
+import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components/text';
+import { OsdsLink } from '@ovhcloud/ods-components/link/react';
+import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import './dataGrid.scss';
 
 type Props = {
@@ -33,8 +29,8 @@ const Datagrid: React.FC<Props> = ({ serviceKey, data }) => {
           {tableHeaders.map((header, indexTh) => (
             <th key={`datagrid-th-${indexTh}`}>
               <OsdsText
-                level={OdsThemeTypographyLevel.subheading}
-                color={OdsThemeColorIntent.text}
+                level={ODS_TEXT_LEVEL.subheading}
+                color={ODS_THEME_COLOR_INTENT.text}
               >
                 {t(header)}
               </OsdsText>
@@ -42,9 +38,9 @@ const Datagrid: React.FC<Props> = ({ serviceKey, data }) => {
           ))}
           <th>
             <OsdsIcon
-              size={OdsIconSize.xxs}
-              name={OdsIconName.SETTINGS}
-              color={OdsThemeColorIntent.primary}
+              size={ODS_ICON_SIZE.xxs}
+              name={ODS_ICON_NAME.SETTINGS}
+              color={ODS_THEME_COLOR_INTENT.primary}
             ></OsdsIcon>
           </th>
         </tr>
@@ -56,7 +52,7 @@ const Datagrid: React.FC<Props> = ({ serviceKey, data }) => {
               <td className="p-3" key={`datagrid-td-${header}-${indexTd}`}>
                 {header === serviceKey ? (
                   <OsdsLink
-                    color={OdsThemeColorIntent.primary}
+                    color={ODS_THEME_COLOR_INTENT.primary}
                     onClick={() => navigate(`/${service[serviceKey]}`)}
                   >
                     {`${service[header]}`}

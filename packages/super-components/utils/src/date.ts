@@ -5,7 +5,7 @@ import { Locale } from './translation';
  */
 export function formatDate(dateString: string, locale?: Locale): string {
   const date = new Date(dateString);
-  return date.toLocaleDateString(locale, {
+  return date.toLocaleDateString(locale?.replace('_', '-'), {
     year: 'numeric',
     month: 'long',
     day: 'numeric',

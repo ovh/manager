@@ -1,6 +1,5 @@
 import { newSpecPage, newE2EPage } from '@stencil/core/testing';
-import { OdsStringAttributes2Str } from '@ovhcloud/ods-testing';
-import { OdsComponentAttributes2StringAttributes } from '@ovhcloud/ods-core';
+import { OdsStringAttributes2Str } from '@ovhcloud/ods-common-testing';
 import { defaultLocale } from '@ovhcloud/msc-utils';
 import { MscTailLogs, IMscTailLogs } from '../src';
 import { MscTailLogsCode } from '../src/msc-tail-logs/msc-tail-logs-code';
@@ -19,9 +18,7 @@ const defaultAttributes = {
 
 export const setupSpecTest = async (attributes: Partial<IMscTailLogs> = {}) => {
   const mock = mockRequests(config);
-  const stringAttributes = OdsComponentAttributes2StringAttributes<
-    Partial<IMscTailLogs>
-  >({ ...defaultAttributes, ...attributes }, defaultAttributes);
+  const stringAttributes = { ...defaultAttributes, ...attributes };
   const page = await newSpecPage({
     components: [MscTailLogs, MscTailLogsCode],
     html: `<msc-tail-logs ${OdsStringAttributes2Str(
@@ -40,9 +37,7 @@ export const setupSpecTest = async (attributes: Partial<IMscTailLogs> = {}) => {
 };
 
 export const setupE2eTest = async (attributes: Partial<IMscTailLogs> = {}) => {
-  const stringAttributes = OdsComponentAttributes2StringAttributes<
-    Partial<IMscTailLogs>
-  >({ ...defaultAttributes, ...attributes }, defaultAttributes);
+  const stringAttributes = { ...defaultAttributes, ...attributes };
 
   const page = await newE2EPage({ timeout: 30000 });
 

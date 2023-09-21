@@ -60,7 +60,7 @@ export default function Onboarding() {
         {tileList.map((tile) => (
           <MscTile
             key={tile.tileTitle}
-            tileType="faq"
+            category={t('guideCategory')}
             locale={locale}
             {...tile}
           />

@@ -1,3 +1,3 @@
 import './global';
-import '@ovhcloud/ods-stencil/components/text';
-import '@ovhcloud/ods-stencil/components/skeleton';
+import '@ovhcloud/ods-components/text';
+import '@ovhcloud/ods-components/skeleton';
