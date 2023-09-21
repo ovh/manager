@@ -174,7 +174,7 @@
                             variant="primary"
                             type="button"
                             on-click="$ctrl.initComponentInitialParams()"
-                            data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.isCheckingPaymentMethod && ($ctrl.model.legalAgreements.credit || $ctrl.model.legalAgreements.rupay)"
+                            data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.isCheckingPaymentMethod"
                             disabled="$ctrl.globalLoading.finalize  || $ctrl.model.reloadHandleByComponent"
                         >
                             <span
@@ -246,7 +246,7 @@
 
         <h2
             class="oui-heading_underline"
-            data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && $ctrl.componentInitialParams"
+            data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && $ctrl.componentInitialParams && $ctrl.model.reloadHandleByComponent"
             data-translate="pci_project_new_payment_information"
         ></h2>
 

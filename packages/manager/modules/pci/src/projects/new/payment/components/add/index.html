@@ -38,29 +38,28 @@
     <oui-message
         class="text-justify"
         data-type="info"
-        data-ng-if="$ctrl.model.paymentMethod.type.isCreditCard()"
+        data-ng-if="$ctrl.model.paymentMethod.type.isCreditCard() && !$ctrl.isDisplayableRupayCreditCardInfoBanner"
     >
-        <p
+        <span
+            class="font-weight-bold"
+            data-translate="pci_project_new_payment_method_add_credit_card_info_part_1"
+        ></span>
+        <span
+            data-translate="pci_project_new_payment_method_add_credit_card_info_part_2"
+        ></span>
+    </oui-message>
+
+    <!--Credit card / RuPay info banner for Indian customer-->
+    <oui-message
+        class="text-justify"
+        data-type="info"
+        data-ng-if="($ctrl.model.paymentMethod.type.isCreditCard() || $ctrl.model.paymentMethod.type.isRupayCard()) && $ctrl.isDisplayableRupayCreditCardInfoBanner"
+    >
+        <span
             data-translate="pci_project_new_payment_method_add_credit_card_registration_charges_info"
             data-translate-values="{ 'registrationCharges' : $ctrl.registrationCharges }"
-        ></p>
-        <oui-checkbox
-            class="mt-4"
-            data-on-change="$ctrl.onRupayCardAgreementCheckboxChange(modelValue)"
-        >
-            <oui-checkbox-label>
-                <span
-                    data-translate="pci_project_new_payment_method_add_credit_card_default_validation"
-                ></span>
-            </oui-checkbox-label>
-        </oui-checkbox>
-
-        <oui-message class="mt-4" type="info">
-            <span
-                data-translate="pci_project_new_payment_method_add_credit_card_default_validation_agreement"
-            ></span>
-        </oui-message>
-    </div>
+        ></span>
+    </oui-message>
 
     <!--PAYPAL charged tax info banner-->
     <oui-message
