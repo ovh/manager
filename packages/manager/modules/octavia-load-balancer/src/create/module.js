@@ -6,6 +6,7 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 
 import ovhManagerCatalogPrice from '@ovh-ux/manager-catalog-price';
 import pciUniverseComponents from '@ovh-ux/ng-ovh-pci-universe-components';
+import octaviaComponents from '../components';
 
 import component from './component';
 import routing from './routing';
@@ -20,6 +21,7 @@ angular
     'ui.router',
     ovhManagerCatalogPrice,
     pciUniverseComponents,
+    octaviaComponents,
     ngAtInternet,
   ])
   .config(routing)
