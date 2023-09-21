@@ -148,5 +148,6 @@
   "billing_common_link_new_window": "(nova janela)",
   "billing_autorenew_renew_action": "Renovar",
   "billing_autorenew_service_renew_requires_mean_and_date": "Para terminar a ativação da renovação automática, adicione um método de pagamento e, de seguida, poderá selecionar a data de débito.",
-  "billing_autorenew_service_activate_alert": "A renovação automática foi configurada para, pelo menos, um dos seus serviços, mais ainda não autorizou esta opção."
+  "billing_autorenew_service_activate_alert": "A renovação automática foi configurada para, pelo menos, um dos seus serviços, mais ainda não autorizou esta opção.",
+  "autorenew_service_autorenew_day_tooltip_autorenew_2016": "Se tiver serviços com renovação automática, pode escolher o dia de renovação (opção não compatível com os produtos Bare Metal e VPS, cuja data de renovação é definida para o primeiro dia do mês, por predefinição, para esta categoria de produto)."
 }
