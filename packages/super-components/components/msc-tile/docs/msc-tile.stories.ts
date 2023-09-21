@@ -2,7 +2,7 @@ import { localeList, defaultLocale } from '@ovhcloud/msc-utils';
 import { createTile } from './create-tile';
 
 const defaultLabels = {
-  tileType: 'product',
+  category: 'NAS',
   tileTitle: 'Titre du produit',
   tileDescription:
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
@@ -28,10 +28,9 @@ export default {
       default: 1,
       description: 'Number of tiles to display (only in the storybook)',
     },
-    tileType: {
-      description: 'Change the top label of the tile according to its type',
-      control: 'select',
-      options: ['product', 'faq'],
+    category: {
+      description: 'Top label of the tile',
+      control: 'text',
     },
     tileTitle: { control: 'text', description: 'Title of the tile' },
     tileDescription: {
@@ -76,7 +75,7 @@ export default {
   },
   args: {
     tileNumber: 1,
-    tileType: 'faq',
+    category: 'Tutoriel',
     hasBadges: true,
     hasFooter: true,
     isExternalHref: false,

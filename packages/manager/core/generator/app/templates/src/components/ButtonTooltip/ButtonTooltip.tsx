@@ -1,13 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-stencil/components/react/';
+import { OsdsButton } from '@ovhcloud/ods-components/button/react';
+import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import {
-  OdsIconName,
-  OdsIconSize,
-  OdsButtonVariant,
-  OdsButtonType,
-} from '@ovhcloud/ods-core';
-import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
-
+  ODS_BUTTON_TYPE,
+  ODS_BUTTON_VARIANT,
+} from '@ovhcloud/ods-components/button';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import './ButtonTooltip.scss';
 
 interface TooltipItem {
@@ -41,7 +40,7 @@ const ButtonTooltip: React.FC<ButtonTooltipProps> = (props) => {
   }, []);
 
   const handleTooltipToggle = (
-    event: React.MouseEvent<HTMLOsdsButtonElement, MouseEvent>,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     event.stopPropagation();
     setShowTooltip(!showTooltip);
@@ -50,16 +49,16 @@ const ButtonTooltip: React.FC<ButtonTooltipProps> = (props) => {
   return (
     <>
       <OsdsButton
-        type={OdsButtonType.button}
-        variant={OdsButtonVariant.stroked}
-        color={OdsThemeColorIntent.primary}
+        type={ODS_BUTTON_TYPE.button}
+        variant={ODS_BUTTON_VARIANT.stroked}
+        color={ODS_THEME_COLOR_INTENT.primary}
         onClick={handleTooltipToggle}
         circle
       >
         <OsdsIcon
-          name={OdsIconName.ELLIPSIS_VERTICAL}
-          size={OdsIconSize.xxs}
-          color={OdsThemeColorIntent.primary}
+          name={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
+          size={ODS_ICON_SIZE.xxs}
+          color={ODS_THEME_COLOR_INTENT.primary}
         />
       </OsdsButton>
       {showTooltip && (

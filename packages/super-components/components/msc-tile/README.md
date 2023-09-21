@@ -38,8 +38,8 @@ export class Example {
           data-tracking="home:dashboard:product"
         >
           <span slot="badges">
-            <osds-chip color="primary" size="sm">OVHcloud</osds-chip>
-            <osds-chip color="success" size="sm">Beta</osds-chip>
+            <osds-chip color="primary" size="sm" inline>OVHcloud</osds-chip>
+            <osds-chip color="success" size="sm" inline>Beta</osds-chip>
           </span>
           <div slot="footer">
             <osds-button color="primary" style="margin-top: 1.5rem" tabindex="0">

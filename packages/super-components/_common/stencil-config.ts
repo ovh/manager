@@ -1,5 +1,5 @@
 import { Config } from '@stencil/core';
-import { getStencilConfig as getOdsStencilConfig } from '@ovhcloud/ods-stencil/libraries/stencil-core';
+import { getStencilConfig as getOdsStencilConfig } from '@ovhcloud/ods-common-stencil';
 import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 const excludeComponents = [
