@@ -251,6 +251,15 @@ export default class PciTrainingJobsSubmitController {
     this.computePrice(1);
   }
 
+  onFlavorChange() {
+    this.job.resources = {
+      flavor: this.flavorSelected.id,
+    };
+    if (!this.resourceN || this.resourceN > this.flavorSelected.max) {
+      this.resourceN = this.flavorSelected.max;
+    }
+  }
+
   computePrice(modelValue) {
     this.resourceN = modelValue;
     this.flavorPrice =
@@ -266,6 +275,14 @@ export default class PciTrainingJobsSubmitController {
 
   getFlavorPrice(flavor) {
     return this.PriceFormatter.format(flavor.catalog.price.value * 60);
+  }
+
+  getFlavorPriceWithResources(flavor) {
+    return this.resourceN * flavor.catalog.priceInUcents * 60;
+  }
+
+  getFlavorPriceTaxWithResources(flavor) {
+    return this.resourceN * flavor.catalog.tax * 60;
   }
 
   submitJob() {

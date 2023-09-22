@@ -682,11 +682,11 @@
                                 >
                                 </strong>
                                 <ovh-manager-catalog-price
-                                    data-price="$ctrl.flavorPrice"
-                                    data-tax="$ctrl.flavorPriceTax"
+                                    data-price="$ctrl.getFlavorPriceWithResources(flavor)"
+                                    data-tax="$ctrl.getFlavorPriceTaxWithResources(flavor)"
                                     data-user="$ctrl.user"
                                     data-perform-rounding="false"
-                                    data-maximum-fraction-digits="3"
+                                    data-maximum-fraction-digits="2"
                                     data-interval="'hour'"
                                 >
                                 </ovh-manager-catalog-price>
