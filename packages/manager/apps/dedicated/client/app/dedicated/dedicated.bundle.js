@@ -46,8 +46,6 @@ import './dedicated-server/servers/monitoring/legacy-update/dedicated-server-mon
 import './dedicated-server/servers/mrtg/mrtg.controller';
 import './dedicated-server/servers/ovh-tasks/dedicated-server-ovh-tasks.routes';
 import './dedicated-server/servers/pro-use/order/dedicated-server-pro-use-order.controller';
-import './dedicated-server/servers/reboot/dedicated-server-reboot.controller';
-import './dedicated-server/servers/reboot/dedicated-server-reboot.routes';
 import './dedicated-server/servers/rendezvous/dedicated-server-rendezvous.controller';
 import './dedicated-server/servers/rendezvous/dedicated-server-rendezvous.routes';
 import './dedicated-server/servers/reverse-dns/delete/reverse-dns-delete.controller';

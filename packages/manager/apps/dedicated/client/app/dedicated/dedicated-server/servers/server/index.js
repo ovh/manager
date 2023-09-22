@@ -10,6 +10,7 @@ import cpanelEolBanner from '../../../../components/cpanel-eol-banner';
 import bandwidth from '../bandwidth/bandwidth.module';
 import dashboard from './dashboard';
 import displayName from './display-name';
+import reboot from './reboot';
 import install from '../install';
 import interfaces from '../interfaces/interfaces.module';
 import tasks from '../tasks';
@@ -45,6 +46,7 @@ angular
     orderKvm,
     netboot,
     displayName,
+    reboot,
   ])
   .component('dedicatedServer', component)
   .config(routing)
