@@ -768,5 +768,18 @@
   "inputs_autoscaled_notification_detail": "Mich per E-Mail benachrichtigen, wenn ein automatisches Skalieren stattfindet.",
   "inputs_logs_edit_min_instance_field": "Mindestanzahl an Instanzen",
   "inputs_logs_edit_max_instance_field": "Maximale Anzahl an Instanzen",
-  "inputs_info_ca_certificate": "Zertifikat der Zertifizierungsstelle"
+  "inputs_info_ca_certificate": "Zertifikat der Zertifizierungsstelle",
+  "logs_streams_subscriptions": "Abonnements",
+  "logs_streams_col_subscriptions": "Abonnements",
+  "streams_subscriptions_current_title": "Verwaltung Ihrer Abonnements für den Stream „{{ name }}“",
+  "streams_subscriptions_intro_text": "Mit diesen Abonnements können Sie die Logs Ihrer OVHcloud Produkte in Ihren eigenen Streams abrufen.",
+  "streams_subscriptions_resource_type_label": "Dienst",
+  "streams_subscriptions_resource_name_label": "Name des Dienstes",
+  "streams_subscriptions_delete_modal_title": "Abonnement löschen",
+  "streams_subscriptions_delete_modal_content": "Möchten Sie das Abonnement für die Ressource {{resourceName}} wirklich löschen?",
+  "streams_subscriptions_delete_success": "Das Abonnement für die Ressource „{{resourceName}}“ wurde erfolgreich gelöscht.",
+  "streams_subscriptions_delete_error": "Beim Löschen des Abonnements für die Ressource „{{resourceName}}“ ist ein Fehler aufgetreten: {{message}}",
+  "streams_subscriptions_resource_products_ldp": "Logs Data Platform",
+  "streams_subscriptions_resource_products_webhosting": "Webhosting",
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service"
 }
