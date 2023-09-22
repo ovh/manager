@@ -27,6 +27,7 @@
   "signup_field_add_companyNationalIdentificationNumber_siret_success": "Votre mise à jour a bien été prise en compte.",
   "signup_field_sex": "Sexe",
   "signup_field_vat": "Numéro de TVA Intracommunautaire",
+  "signup_field_iceNumber": "Numéro ICE",
   "signup_field_gst": "Numéro de taxe sur les produits et services (GST)",
   "signup_field_address": "Adresse",
   "signup_field_area": "Région",
