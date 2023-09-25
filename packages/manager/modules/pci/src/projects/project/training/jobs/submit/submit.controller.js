@@ -278,10 +278,12 @@ export default class PciTrainingJobsSubmitController {
   }
 
   getFlavorPriceWithResources(flavor) {
+    if (!flavor.catalog) return 0;
     return this.resourceN * flavor.catalog.priceInUcents * 60;
   }
 
   getFlavorPriceTaxWithResources(flavor) {
+    if (!flavor.catalog) return 0;
     return this.resourceN * flavor.catalog.tax * 60;
   }
 
