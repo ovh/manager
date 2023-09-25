@@ -173,7 +173,6 @@
                     <label
                         class="oui-checkbox__label-container"
                         for="{{ action.id }}"
-                        data-oui-tooltip="{{ ::action.description }}"
                     >
                         <span class="oui-checkbox__label">
                             <span class="oui-checkbox__icon"></span>
@@ -187,6 +186,10 @@
                             </span>
                         </span>
                     </label>
+                    <div
+                        class="ml-4 small"
+                        data-ng-bind-html="::action.description"
+                    ></div>
                 </div>
                 <!-- </CategoryActions> -->
             </div>

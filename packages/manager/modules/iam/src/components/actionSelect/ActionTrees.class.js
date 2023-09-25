@@ -47,9 +47,14 @@
  */
 
 import {
+<<<<<<< HEAD
   CUSTOM_ACTION_WILDCARD_PATTERN,
   CUSTOM_RESOURCE_TYPE,
   WILDCARD,
+=======
+  CUSTOM_RESOURCE_TYPE,
+  ACTION_DESCRIPTION_UNDEFINED,
+>>>>>>> fb4d24fabb (feat(iam): add action description below the label)
 } from '../../iam.constants';
 
 export default class ActionTrees extends Array {
@@ -234,18 +239,18 @@ export default class ActionTrees extends Array {
     const { actions } = input;
     this.buffer.actions = [...actions]
       .sort(({ action: a }, { action: b }) => (a > b ? 1 : -1))
-      .map((action) => {
-        const value = action.action;
+      .map(({ resourceType, description, action }) => {
         return {
-          description: action.description,
-          resourceType: action.resourceType,
+          description:
+            description !== ACTION_DESCRIPTION_UNDEFINED ? description : null,
+          resourceType,
           embedded: false,
           selected: Boolean(
             input.selectedActions?.find(
-              (rawAction) => rawAction.action === value,
+              (rawAction) => rawAction.action === action,
             ),
           ),
-          value,
+          value: action,
         };
       });
   }
