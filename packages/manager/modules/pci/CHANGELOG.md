@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.1.0...@ovh-ux/manager-pci@6.2.0) (2023-09-25)
+
+
+### Features
+
+* filter deprecated availabilites ([8965a78](https://github.com/ovh/manager/commit/8965a7826e836a87c17ce24b58ebbeb29a79a688))
+
+
+
+
+
 # [6.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.0.0...@ovh-ux/manager-pci@6.1.0) (2023-09-18)
 
 

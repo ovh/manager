@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.2.0...@ovh-ux/manager-web@18.2.1) (2023-09-25)
+
+
+### Bug Fixes
+
+* **domain:** fix issue on general information with alldom ([10b8472](https://github.com/ovh/manager/commit/10b84722c17c8c0c201a2d0e996564a6079f7d13))
+
+
+
+
+
 # [18.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.1.0...@ovh-ux/manager-web@18.2.0) (2023-09-18)
 
 

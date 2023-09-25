@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.3.0...@ovh-ux/manager-dedicated@19.4.0) (2023-09-25)
+
+
+### Bug Fixes
+
+* **dedicated-cloud:** fix description text in add vdc section ([#9956](https://github.com/ovh/manager/issues/9956)) ([d1a51cd](https://github.com/ovh/manager/commit/d1a51cda0867e37d04263731cab034b38e88153e))
+
+
+### Features
+
+* **signup:** update VAT number to ICE number for Morocco customers ([#9981](https://github.com/ovh/manager/issues/9981)) ([958872a](https://github.com/ovh/manager/commit/958872ab3dca7b006b768be2574f4012c7837f18))
+
+
+
+
+
 # [19.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.2.0...@ovh-ux/manager-dedicated@19.3.0) (2023-09-19)
 
 

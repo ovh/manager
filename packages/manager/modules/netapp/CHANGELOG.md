@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.6.0...@ovh-ux/manager-netapp@1.7.0) (2023-09-25)
+
+
+### Features
+
+* **dedicated:** show badge for status in file storage list ([bfa5667](https://github.com/ovh/manager/commit/bfa566725aa9a7036df1dfac6d742c53f498616d))
+
+
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.5.6...@ovh-ux/manager-netapp@1.6.0) (2023-09-18)
 
 
