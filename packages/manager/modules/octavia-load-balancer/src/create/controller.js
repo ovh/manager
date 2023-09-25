@@ -1,5 +1,6 @@
 import {
   GETTING_STARTED_LINK,
+  LOAD_BALANCER_NAME_REGEX,
   PRODUCT_LINK,
   REGION_AVAILABILITY_LINK,
   TRACKING_INSTANCE_DOCUMENTATION,
@@ -32,6 +33,8 @@ export default class OctaviaLoadBalancerCreateCtrl {
       GETTING_STARTED_LINK[this.user.ovhSubsidiary] ||
       GETTING_STARTED_LINK.DEFAULT;
 
+    this.loadBalancerNameRegex = LOAD_BALANCER_NAME_REGEX;
+
     this.model = {};
 
     this.stepper = {
@@ -42,6 +45,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
         display: null,
       },
       loadBalancerInstance: { name: 'load_balancer_instance', display: null },
+      loadBalancerName: { name: 'load_balancer_name', display: null },
     };
   }
 
@@ -55,6 +59,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
 
   onRegionChange(region) {
     this.model.region = region;
+    this.model.loadBalancerName = `LB_${this.model.size.label}_${this.model.region.name}`;
     this.getPrivateNetworks();
   }
 

@@ -98,6 +98,7 @@ export const AGORA_ADDON_FAMILY = 'octavia-loadbalancer';
 
 export const SIZE_FLAVOUR_REGEX = /octavia-loadbalancer.loadbalancer-([sml]).hour.consumption/;
 export const AGORA_GATEWAY_REGEX = /gateway.s.hour.consumption/;
+export const LOAD_BALANCER_NAME_REGEX = /^[A-Za-z0-9_.-]+$/;
 
 export const NETWORK_PRIVATE_VISIBILITY = 'private';
 
@@ -115,4 +116,5 @@ export default {
   SIZE_FLAVOUR_REGEX,
   AGORA_GATEWAY_REGEX,
   NETWORK_PRIVATE_VISIBILITY,
+  LOAD_BALANCER_NAME_REGEX,
 };
