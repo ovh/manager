@@ -9,8 +9,6 @@
             data-ng-init="stepSize = $ctrl.stepper.loadBalancerSize"
             data-name="{{:: stepSize.name}}"
             data-header="{{:: 'octavia_load_balancer_create_size_title' | translate }}"
-            data-on-focus="stepSize.display = true"
-            data-on-submit="stepSize.display = false"
             data-prevent-next="true"
             data-valid="$ctrl.model.size"
         >
@@ -60,7 +58,6 @@
             data-ng-init="stepRegion = $ctrl.stepper.loadBalancerRegion"
             data-name="{{:: stepRegion.name}}"
             data-header="{{:: 'octavia_load_balancer_create_region_title' | translate }}"
-            data-on-focus="stepRegion.display = true"
             data-prevent-next="true"
         >
             <div class="mb-4">
@@ -91,8 +88,6 @@
             data-ng-init="stepPrivateNetwork = $ctrl.stepper.loadBalancerPrivateNetwork"
             data-name="{{:: stepPrivateNetwork.name}}"
             data-header="{{:: 'octavia_load_balancer_create_private_network_title' | translate }}"
-            data-on-focus="stepPrivateNetwork.display = true"
-            data-on-submit="stepPrivateNetwork.display = false"
             data-prevent-next="true"
             data-valid="!$ctrl.gatewayLoading && !$ctrl.subnetLoading && !$ctrl.privateNetworkLoading"
         >
@@ -104,6 +99,7 @@
             <!-- PRIVATE NETWORKS -->
             <oui-spinner data-ng-if="$ctrl.privateNetworkLoading"></oui-spinner>
             <oui-field
+                class="col-lg-4 col-md-6 col-sm-12"
                 data-label="{{:: 'octavia_load_balancer_create_private_network_field' | translate }}"
                 data-ng-if="!$ctrl.privateNetworkLoading"
             >
@@ -142,6 +138,7 @@
 
                 <oui-field
                     data-label="{{:: 'octavia_load_balancer_create_private_network_field_subnet' | translate }}"
+                    class="col-lg-4 col-md-6 col-sm-12"
                 >
                     <oui-select
                         data-disabled="!$ctrl.subnets.length"
@@ -189,8 +186,6 @@
             data-ng-init="stepInstance = $ctrl.stepper.loadBalancerInstance"
             data-name="{{:: stepInstance.name}}"
             data-header="{{:: 'octavia_load_balancer_create_instance_title' | translate }}"
-            data-on-focus="stepInstance.display = true"
-            data-on-submit="stepInstance.display = false"
             data-prevent-next="true"
         >
             <p
@@ -212,6 +207,29 @@
                 </p>
             </oui-message>
             <instances-table></instances-table>
+        </oui-step-form>
+
+        <!-- NAME -->
+        <oui-step-form
+            data-ng-init="stepName = $ctrl.stepper.loadBalancerName"
+            data-name="{{:: stepName.name}}"
+            data-header="{{:: 'octavia_load_balancer_create_name_title' | translate }}"
+            data-prevent-next="true"
+        >
+            <oui-field
+                data-label="{{:: 'octavia_load_balancer_create_name_field_label' | translate }}"
+                class="col-lg-4 col-md-6 col-sm-12"
+            >
+                <input
+                    class="oui-input"
+                    name="{{:: stepName.name + '_select_name'}}"
+                    type="text"
+                    data-ng-model="$ctrl.model.loadBalancerName"
+                    data-ng-maxlength="70"
+                    data-ng-pattern="$ctrl.loadBalancerNameRegex"
+                    required
+                />
+            </oui-field>
         </oui-step-form>
     </oui-stepper>
 </div>
