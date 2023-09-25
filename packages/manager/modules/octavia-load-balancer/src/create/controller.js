@@ -4,6 +4,11 @@ import {
   PRODUCT_LINK,
   REGION_AVAILABILITY_LINK,
   TRACKING_INSTANCE_DOCUMENTATION,
+  TRACKING_LOAD_BALANCER_CREATION_CANCEL,
+  TRACKING_LOAD_BALANCER_CREATION_SUBMIT,
+  TRACKING_LOAD_BALANCER_CREATION_SUBMIT_DETAIL,
+  TRACKING_LOAD_BALANCER_CREATION_SUBMIT_ERROR,
+  TRACKING_LOAD_BALANCER_CREATION_SUBMIT_SUCCESS,
   TRACKING_PRIVATE_NETWORK_CREATION,
   TRACKING_PRODUCT_PAGE,
   TRACKING_REGION_AVAILABILITY,
@@ -11,7 +16,16 @@ import {
 
 export default class OctaviaLoadBalancerCreateCtrl {
   /* @ngInject */
-  constructor(coreConfig, OctaviaLoadBalancerCreateService) {
+  constructor(
+    $anchorScroll,
+    $state,
+    atInternet,
+    coreConfig,
+    OctaviaLoadBalancerCreateService,
+  ) {
+    this.$anchorScroll = $anchorScroll;
+    this.$state = $state;
+    this.atInternet = atInternet;
     this.user = coreConfig.getUser();
     this.OctaviaLoadBalancerCreateService = OctaviaLoadBalancerCreateService;
   }
@@ -47,6 +61,8 @@ export default class OctaviaLoadBalancerCreateCtrl {
       loadBalancerInstance: { name: 'load_balancer_instance', display: null },
       loadBalancerName: { name: 'load_balancer_name', display: null },
     };
+
+    this.currentStep = 0;
   }
 
   onSizeChange(newSize) {
@@ -115,8 +131,50 @@ export default class OctaviaLoadBalancerCreateCtrl {
       });
   }
 
+  onCancel() {
+    this.currentStep = 0;
+    this.model = {};
+    this.atInternet.trackClick({
+      name: TRACKING_LOAD_BALANCER_CREATION_CANCEL,
+      type: 'action',
+    });
+  }
+
   createLoadBalancer() {
-    // TODO: REMOVE THIS LINE
-    this.model.submit = true;
+    this.atInternet.trackClick({
+      name: TRACKING_LOAD_BALANCER_CREATION_SUBMIT,
+      type: 'action',
+    });
+
+    this.atInternet.trackClick({
+      name: `${TRACKING_LOAD_BALANCER_CREATION_SUBMIT_DETAIL}::${this.model.size.code}::${this.model.region.name}`,
+      type: 'action',
+    });
+
+    this.OctaviaLoadBalancerCreateService.createLoadBalancer(
+      this.projectId,
+      this.model.size,
+      this.model.region.name,
+      this.model.privateNetwork,
+      this.model.subnet,
+      this.gateways,
+      // null, // TODO: AFTER LISTENERS DEVELOPEMENT
+      this.model.loadBalancerName,
+    )
+      .then(() => {
+        this.atInternet.trackPage({
+          name: TRACKING_LOAD_BALANCER_CREATION_SUBMIT_SUCCESS,
+        });
+
+        this.$state.go('octavia-load-balancer', {
+          displayCreationBanner: true,
+        });
+      })
+      .catch(() => {
+        this.$anchorScroll();
+        this.atInternet.trackPage({
+          name: TRACKING_LOAD_BALANCER_CREATION_SUBMIT_ERROR,
+        });
+      });
   }
 }
