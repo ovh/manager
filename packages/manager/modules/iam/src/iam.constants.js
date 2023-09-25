@@ -20,6 +20,8 @@ const CUSTOM_RESOURCE_TYPE = 'custom';
 
 const DELETE_STATEMENT = 'Terminate';
 
+const ACTION_DESCRIPTION_UNDEFINED = 'missing description';
+
 const FEATURE = {
   MAIN: 'iam',
 };
@@ -288,4 +290,5 @@ export {
   TAG,
   UNAVAILABLE_STATE_NAME,
   URN_VERSION,
+  ACTION_DESCRIPTION_UNDEFINED,
 };
