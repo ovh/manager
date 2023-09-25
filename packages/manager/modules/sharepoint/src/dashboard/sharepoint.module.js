@@ -23,7 +23,6 @@ import domainsCtrl from '../domain/sharepoint-domain.controller';
 import domainAddCtrl from '../domain/add/sharepoint-domain-add.controller';
 import domainDeleteCtrl from '../domain/delete/sharepoint-domain-delete.controller';
 import informationsCtrl from '../information/sharepoint-information.controller';
-import orderCtrl from '../order/sharepoint-order.controller';
 import updateRenewCtrl from '../renew/update/sharepoint-renew-update.controller';
 import tasksCtrl from '../task/sharepoint-task.controller';
 import urlCtrl from '../url/sharepoint-url.controller';
@@ -66,7 +65,6 @@ angular
   .controller('SharepointAddDomainController', domainAddCtrl)
   .controller('SharepointDeleteDomainController', domainDeleteCtrl)
   .controller('SharepointInformationsCtrl', informationsCtrl)
-  .controller('SharepointOrderCtrl', orderCtrl)
   .controller('SharepointUpdateRenewCtrl', updateRenewCtrl)
   .controller('SharepointTasksCtrl', tasksCtrl)
   .controller('SharepointUrlCtrl', urlCtrl);
