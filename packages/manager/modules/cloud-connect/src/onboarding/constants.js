@@ -36,7 +36,8 @@ export const GUIDES = [
       FR: 'https://docs.ovh.com/fr/ovhcloud-connect/ovhcloudconnect-faq/',
       WE: 'https://docs.ovh.com/us/en/ovhcloud-connect/ovhcloudconnect-faq/',
       WS: 'https://docs.ovh.com/us/en/ovhcloud-connect/ovhcloudconnect-faq/',
-      US: 'https://support.us.ovhcloud.com/hc/en-us/articles/6980557660819-OVHcloud-Connect-FAQ',
+      US:
+        'https://support.us.ovhcloud.com/hc/en-us/articles/6980557660819-OVHcloud-Connect-FAQ',
       IN: 'https://docs.ovh.com/asia/en/ovhcloud-connect/ovhcloudconnect-faq/',
     },
   },
