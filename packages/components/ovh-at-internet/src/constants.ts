@@ -22,6 +22,7 @@ export const AT_INTERNET_WEBSITE: Record<string, string> = {
   FR: 'France',
   GB: 'United Kingdom',
   IE: 'Ireland',
+  IN: 'India',
   IT: 'Italy',
   MA: 'Morocco',
   NL: 'Netherlands',
