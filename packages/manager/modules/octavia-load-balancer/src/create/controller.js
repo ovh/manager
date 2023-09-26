@@ -49,8 +49,6 @@ export default class OctaviaLoadBalancerCreateCtrl {
 
     this.loadBalancerNameRegex = LOAD_BALANCER_NAME_REGEX;
 
-    this.model = {};
-
     this.stepper = {
       loadBalancerSize: { name: 'load_balancer_size', display: null },
       loadBalancerRegion: { name: 'load_balancer_region', display: null },
@@ -62,7 +60,12 @@ export default class OctaviaLoadBalancerCreateCtrl {
       loadBalancerName: { name: 'load_balancer_name', display: null },
     };
 
+    this.resetCurrentStep();
+  }
+
+  resetCurrentStep() {
     this.currentStep = 0;
+    this.model = {};
   }
 
   onSizeChange(newSize) {
@@ -132,8 +135,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
   }
 
   onCancel() {
-    this.currentStep = 0;
-    this.model = {};
+    this.resetCurrentStep();
     this.atInternet.trackClick({
       name: TRACKING_LOAD_BALANCER_CREATION_CANCEL,
       type: 'action',

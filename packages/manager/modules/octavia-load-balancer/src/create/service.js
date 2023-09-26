@@ -108,7 +108,7 @@ export default class OctaviaLoadBalancerCreateService {
           data.find(
             (regionalizedFlavors) =>
               regionalizedFlavors.name === size.technicalName,
-          ).id,
+          )?.id,
       );
   }
 }
