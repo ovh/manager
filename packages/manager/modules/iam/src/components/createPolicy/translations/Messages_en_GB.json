@@ -21,7 +21,7 @@
   "iam_create_policy_form_resources_description": "Add the resources affected by your policy.",
   "iam_create_policy_form_resources_error_required": "Please select one or more resources or resource groups",
   "iam_create_policy_form_resources_heading": "Resources",
-  "iam_create_policy_header_description": "The policy contains a list of actions authorized to a list of identities applying to resources.",
+  "iam_create_policy_header_description": "The policy contains a list of actions that are allowed in a list of identities that apply to resources.",
   "iam_create_policy_header_guide_text": "Guides",
   "iam_create_policy_header_heading_create": "Create a policy",
   "iam_create_policy_header_heading_edit": "Modify a policy",
