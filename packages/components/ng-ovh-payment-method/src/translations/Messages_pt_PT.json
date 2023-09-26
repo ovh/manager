@@ -28,5 +28,7 @@
   "ovh_payment_status_null": "Informação indisponível",
   "ovh_payment_type_sepa_direct_debit": "Débito direto",
   "ovh_payment_status_validating": "Validação em curso",
-  "ovh_payment_status_rejected": "Recusado"
+  "ovh_payment_status_rejected": "Recusado",
+  "ovh_payment_type_rupay": "RuPay",
+  "ovh_payment_method_registration_failure": "O registo do seu método de pagamento falhou. Não foi debitado nenhum valor. Tente novamente ou contacte o seu banco se o problema persistir. Pode igualmente alterar o seu método de pagamento."
 }

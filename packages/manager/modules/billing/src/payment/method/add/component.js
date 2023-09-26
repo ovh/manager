@@ -16,6 +16,8 @@ export default {
     getBackButtonHref: '<',
     model: '<',
     onPaymentMethodAdded: '<',
+    onPaymentMethodAddError: '<',
     paymentMethods: '<',
+    isDisplayableRupayCreditCardInfoBanner: '<',
   },
 };
