@@ -13,6 +13,7 @@ import displayName from './display-name';
 import reboot from './reboot';
 import install from '../install';
 import interfaces from '../interfaces/interfaces.module';
+import monitoring from './monitoring';
 import tasks from '../tasks';
 import interventions from '../intervention';
 import ipmi from '../ipmi';
@@ -47,6 +48,7 @@ angular
     netboot,
     displayName,
     reboot,
+    monitoring,
   ])
   .component('dedicatedServer', component)
   .config(routing)

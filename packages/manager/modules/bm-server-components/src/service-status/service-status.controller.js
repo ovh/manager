@@ -82,18 +82,6 @@ export default class BmServerComponentsGeneralInformationController {
     return monitoringStatus;
   }
 
-  goToMonitoring() {
-    return this.$state.go('app.dedicated-server.server.dashboard.monitoring');
-  }
-
-  isMonitoringEnabled(protocol) {
-    return (
-      this.serviceMonitoring.filter(
-        (monitoring) => monitoring.enabled && monitoring.protocol === protocol,
-      ).length > 0
-    );
-  }
-
   onMonitoringUpdateClick() {
     this.atInternet.trackClick({
       name: 'dedicated::dedicated-server::server::dashboard::update-monitoring',

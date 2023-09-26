@@ -6,9 +6,6 @@ import routing from './display-name.routing';
 
 const moduleName = 'ovhManagerDedicatedServerDisplayName';
 
-angular
-  .module(moduleName, ['ui.router', serverDisplayName])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+angular.module(moduleName, ['ui.router', serverDisplayName]).config(routing);
 
 export default moduleName;
