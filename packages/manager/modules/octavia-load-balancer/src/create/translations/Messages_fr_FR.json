@@ -25,5 +25,7 @@
   "octavia_load_balancer_create_instance_banner_text": "Vous pouvez ajouter jusqu'à 5 listeners et 20 instances au maximum dans cet assistant. Pour plus d'options ou pour éditer des fonctionnalités plus avancées (comme les protocoles proxy, le health check ou les politiques L7), passez en mode édition.",
   "octavia_load_balancer_create_instance_banner_text_bold": "Vous pourrez saisir des membres via IP après la création de votre Load Balancer dans la section membres de la vue Pool",
   "octavia_load_balancer_create_name_title": "Informations",
-  "octavia_load_balancer_create_name_field_label": "Nom du Load Balancer"
+  "octavia_load_balancer_create_name_field_label": "Nom du Load Balancer",
+  "octavia_load_balancer_create_submit": "Créer un Load Balancer",
+  "octavia_load_balancer_create_banner": "Votre Load Balancer est en cours de création. Cela ne prendra que quelques minutes."
 }

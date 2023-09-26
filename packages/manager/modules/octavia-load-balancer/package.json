@@ -21,11 +21,13 @@
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.1",
     "@ovh-ux/ng-at-internet": "^5.10.3",
     "@ovh-ux/ng-ovh-pci-universe-components": "^1.0.0",
+    "@ovh-ux/ng-ovh-utils": "^14.0.21",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.0.0",
     "@ovh-ux/ui-kit": "^4.4.3",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "oclazyload": "^1.1.0"
+    "oclazyload": "^1.1.0",
+    "ovh-ui-kit-bs": "^4.2.0"
   }
 }

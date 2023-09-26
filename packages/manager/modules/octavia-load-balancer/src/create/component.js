@@ -9,6 +9,8 @@ export default {
     catalogGateway: '<',
     regionsPlansGroupBySize: '<',
     privateNetworkCreationLink: '<',
+    creationPageLink: '<',
+    goToListingPage: '<',
   },
   controller,
   template,
