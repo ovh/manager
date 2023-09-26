@@ -8,8 +8,6 @@ export default {
     trackingPrefix: '<',
     infoServer: '<',
     terminateLink: '<',
-    monitoringProtocolEnum: '<',
-    serviceMonitoring: '<',
     ola: '<',
     goToMonitoringUpdate: '<',
     isMonitoringOptionsAvailable: '<',

@@ -39,11 +39,6 @@ import './dedicated-server/servers/installation/progress/dedicated-server-instal
 import './dedicated-server/servers/ip/dedicated-server-ip-mitigation-statistics.controller';
 import './dedicated-server/servers/ip/dedicated-server-ip-mitigation.controller';
 import './dedicated-server/servers/ip/dedicated-server-ip.controller';
-import './dedicated-server/servers/monitoring/update/dedicated-server-monitoring-update.controller';
-import './dedicated-server/servers/monitoring/legacy-update/dedicated-server-monitoring-update.controller';
-import './dedicated-server/servers/monitoring/update/dedicated-server-monitoring-update.routes';
-import './dedicated-server/servers/monitoring/legacy-update/dedicated-server-monitoring-update.routes';
-import './dedicated-server/servers/mrtg/mrtg.controller';
 import './dedicated-server/servers/ovh-tasks/dedicated-server-ovh-tasks.routes';
 import './dedicated-server/servers/pro-use/order/dedicated-server-pro-use-order.controller';
 import './dedicated-server/servers/rendezvous/dedicated-server-rendezvous.controller';

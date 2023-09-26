@@ -235,6 +235,14 @@ export default /* @ngInject */ ($stateProvider) => {
               'app.dedicated-server.server.dashboard.bandwidth-public-order',
               { productId: serverName },
             ),
+      goToUpdateReverseDns: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.dashboard.update-reverse-dns', {
+          productId: serverName,
+        }),
+      goToDeleteReverseDns: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.dashboard.delete-reverse-dns', {
+          productId: serverName,
+        }),
       technicalDetails: /* @ngInject */ ($http, serverName) =>
         $http
           .get(`/dedicated/technical-details/${serverName}`, {
