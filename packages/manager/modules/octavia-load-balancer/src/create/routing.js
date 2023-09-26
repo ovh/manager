@@ -33,6 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
               code: found[1],
               price: addon.pricings[0].price,
               label: found[1].toUpperCase(),
+              technicalName: addon.blobs.technical.name,
             });
           }
           return filtered;
@@ -97,6 +98,10 @@ export default /* @ngInject */ ($stateProvider) => {
             `#/pci/projects/${projectId}/private-networks/new`,
           ),
         ),
+      creationPageLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('octavia-load-balancer.create', {
+          projectId,
+        }),
     },
   });
 };
