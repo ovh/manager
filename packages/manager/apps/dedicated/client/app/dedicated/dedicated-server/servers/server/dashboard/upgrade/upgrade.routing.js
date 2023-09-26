@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/upgrade/:upgradeType',
     views: {
       'dashboard@app.dedicated-server.server.dashboard': {
-        component: 'dedicatedServerUpgrade',
+        component: 'serverUpgrade',
       },
     },
     resolve: {

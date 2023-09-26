@@ -16,6 +16,7 @@ export { default as serverReverseDnsUpdate } from './reverse-dns/update';
 export { default as serverReverseDnsDelete } from './reverse-dns/delete';
 export { default as serverGeneralInformation } from './general-information';
 export { default as serverTechnicalDetails } from './technical-details';
+export { default as serverUpgrade } from './upgrade-server';
 export { default as serverServiceStatus } from './service-status';
 export { default as serverOrderPrivateBandwidth } from './order-private-bandwidth';
 export { default as serverBandwidthDashboard } from './bandwidth-dashboard';
