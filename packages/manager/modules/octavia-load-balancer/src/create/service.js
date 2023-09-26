@@ -58,7 +58,7 @@ export default class OctaviaLoadBalancerCreateService {
       subnetId: subnet.id,
     };
 
-    if (!gateway || !gateway.length) {
+    if (!gateway?.length) {
       networkInformation.gateway = {
         model: 's',
         name: `gateway-${regionName}`,
