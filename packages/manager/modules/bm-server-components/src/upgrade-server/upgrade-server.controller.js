@@ -1,11 +1,11 @@
-import 'moment';
+import moment from 'moment';
 
 import {
   COMPOSITE_UPGRADE,
   MIN_INTERVENTION_GAP,
   UPGRADE_MODE,
   DEFAULT_INTERVAL,
-} from './upgrade.constants';
+} from './upgrade-server.constants';
 
 export default class {
   /* @ngInject */

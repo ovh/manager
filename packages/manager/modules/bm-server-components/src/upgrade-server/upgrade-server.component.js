@@ -1,5 +1,5 @@
-import controller from './upgrade.controller';
-import template from './upgrade.html';
+import controller from './upgrade-server.controller';
+import template from './upgrade-server.html';
 
 export default {
   controller,
