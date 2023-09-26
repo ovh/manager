@@ -1,8 +1,8 @@
 {
   "iam_action_select_action_custom_heading": "Actions added manually",
   "iam_action_select_action_search_label": "Search for an action",
-  "iam_action_select_all_actions_description": "All existing and future actions on all product types will be authorised",
-  "iam_action_select_all_actions_label": "Authorise all actions",
+  "iam_action_select_all_actions_description": "All existing and future actions on all product types will be authorized",
+  "iam_action_select_all_actions_label": "Authorize all actions",
   "iam_action_select_category_count_selection_many": "({{ selected }} actions selected/{{ total }})",
   "iam_action_select_category_count_selection_one": "(1 action selected/{{ total }})",
   "iam_action_select_category_count_no_selection_many": "({{ total }} actions)",
@@ -13,7 +13,7 @@
   "iam_action_select_custom_action_label": "Manually add actions",
   "iam_action_select_custom_action_success_created": "The action {{ action }} has been added to {{ resourceType }}",
   "iam_action_select_custom_action_success_selected": "The action {{ action }} has been selected in {{ resourceType }}",
-  "iam_action_select_custom_action_success_wildcard": "“Authorise all actions” has been enabled",
-  "iam_action_select_error_required": "You must select at least one action, authorise all actions, or add an action manually",
+  "iam_action_select_custom_action_success_wildcard": "“Authorize all actions” has been enabled",
+  "iam_action_select_error_required": "You must select at least one action, authorize all actions, or add an action manually",
   "iam_action_select_custom_action_placeholder": "Example: {{ sample }}"
 }
