@@ -28,5 +28,6 @@ export default {
     sendTrack: '<',
     trackProjectCreationError: '<',
     onProgressStepClick: '<',
+    isDisplayableRupayCreditCardInfoBanner: '<',
   },
 };
