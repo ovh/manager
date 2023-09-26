@@ -16,6 +16,8 @@ export default {
     trafficInformations: '<?',
     dedicatedServerFeatureAvailability: '<?',
     ola: '<?',
+    goToUpdateReverseDns: '<?',
+    goToDeleteReverseDns: '<?',
   },
   controller,
   template,

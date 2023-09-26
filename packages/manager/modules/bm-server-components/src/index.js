@@ -12,6 +12,8 @@ export { default as serverAdvancedFeatures } from './advanced-features';
 export { default as serverDisplayName } from './display-name';
 export { default as serverReboot } from './server-reboot';
 export { default as serverMonitoring } from './monitoring';
+export { default as serverReverseDnsUpdate } from './reverse-dns/update';
+export { default as serverReverseDnsDelete } from './reverse-dns/delete';
 export { default as serverGeneralInformation } from './general-information';
 export { default as serverTechnicalDetails } from './technical-details';
 export { default as serverServiceStatus } from './service-status';

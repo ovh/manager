@@ -14,6 +14,8 @@ import reboot from './reboot';
 import install from '../install';
 import interfaces from '../interfaces/interfaces.module';
 import monitoring from './monitoring';
+import reverseDnsUpdate from './reverse-dns/update';
+import reverseDnsDelete from './reverse-dns/delete';
 import tasks from '../tasks';
 import interventions from '../intervention';
 import ipmi from '../ipmi';
@@ -49,6 +51,8 @@ angular
     displayName,
     reboot,
     monitoring,
+    reverseDnsUpdate,
+    reverseDnsDelete,
   ])
   .component('dedicatedServer', component)
   .config(routing)

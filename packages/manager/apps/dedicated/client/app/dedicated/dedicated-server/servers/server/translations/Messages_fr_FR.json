@@ -790,6 +790,8 @@
   "server_dashboard_change_prices": "Votre serveur change de prix,",
   "server_dashboard_change_price_click_here": "cliquez ici",
   "server_dashboard_change_price_more": "pour en savoir plus.",
+  "server_configuration_reverse_not_configured": "Non configuré",
+  "server_close_service": "Supprimer mon service",
   "server_close_service_form_label": "Sélectionner l'action à effectuer",
   "server_close_service_form_option_terminate": "Supprimer le service immédiatement",
   "server_close_service_form_option_delete_at_expiration": "Supprimer le service à la date d'expiration",
