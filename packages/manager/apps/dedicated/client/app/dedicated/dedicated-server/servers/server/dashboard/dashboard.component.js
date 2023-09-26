@@ -41,6 +41,8 @@ export default {
     handleError: '<',
     handleSuccess: '<',
     nutanixCluster: '<',
+    goToUpdateReverseDns: '<',
+    goToDeleteReverseDns: '<',
   },
   controller,
   template,

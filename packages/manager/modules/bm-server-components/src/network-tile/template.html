@@ -77,16 +77,17 @@
                 aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_network_reverse' | translate) } }}"
                 data-compact
                 data-placement="end"
+                data-ng-if="$ctrl.goToUpdateReverseDns || $ctrl.goToDeleteReverseDns"
             >
                 <oui-action-menu-item
-                    data-ui-sref="app.dedicated-server.server.dashboard.update-reverse-dns({productId: $ctrl.server.name})"
+                    data-ng-click="$ctrl.goToUpdateReverseDns()"
                 >
                     <span
                         data-translate="server_network_reverse_edit_button"
                     ></span>
                 </oui-action-menu-item>
                 <oui-action-menu-item
-                    data-ui-sref="app.dedicated-server.server.dashboard.delete-reverse-dns({productId: $ctrl.server.name})"
+                    data-ng-click="$ctrl.goToDeleteReverseDns()"
                     data-ng-if="$ctrl.server.reverse"
                 >
                     <span data-translate="common_delete"></span>
