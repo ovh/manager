@@ -1,4 +1,20 @@
 {
   "octavia_load_balancer": "Load Balancer",
-  "octavia_load_balancer_global_error": "L'erreur suivante est survenue : <br> {{message}}<br> request_id: {{requestId}}"
+  "octavia_load_balancers": "Load Balancers",
+  "octavia_load_balancer_global_error": "L'erreur suivante est survenue : <br> {{message}}<br> request_id: {{requestId}}",
+  "octavia_load_balancers_title": "Load Balancers",
+  "octavia_load_balancers_add_button": "Ajouter un Load Balancer",
+  "octavia_load_balancer_name": "Nom",
+  "octavia_load_balancer_region": "Région",
+  "octavia_load_balancer_ip": "Adresse IP privée",
+  "octavia_load_balancer_creation_date": "Date de création",
+  "octavia_load_balancer_status": "Statut d'opération",
+  "octavia_load_balancer_actions_detail": "Détail du Load Balancer",
+  "octavia_load_balancer_actions_delete": "Supprimer",
+  "octavia_load_balancer_status_online": "Actif",
+  "octavia_load_balancer_status_offline": "Hors-ligne",
+  "octavia_load_balancer_status_degraded": "Dégradé",
+  "octavia_load_balancer_status_draining": "Purge",
+  "octavia_load_balancer_status_error": "Erreur",
+  "octavia_load_balancer_delete_success": "Votre Load Balancer a été supprimé avec succès"
 }
