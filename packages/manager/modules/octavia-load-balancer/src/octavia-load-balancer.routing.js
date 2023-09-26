@@ -44,6 +44,10 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         ]);
       },
+      goToListingPage: /* @ngInject */ ($state) => () =>
+        $state.go('octavia-load-balancer', {
+          displayCreationBanner: true,
+        }),
     },
   });
 };

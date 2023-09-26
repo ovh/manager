@@ -47,12 +47,13 @@
                                     ></small>
                                     <span
                                         class="oui-icon oui-icon-help"
+                                        aria-hidden="true"
                                         oui-tooltip="{{:: 'octavia_load_balancer_instances_table_protocol_tooltip' | translate }}"
                                     ></span>
                                 </label>
                                 <oui-select
                                     data-name="select-listener-protocol"
-                                    data-model="$ctrl.listeners[$index].protocol"
+                                    data-model="listener.protocol"
                                     data-match="name"
                                     data-items="$ctrl.listenerProtocols"
                                     data-on-change="$ctrl.selectListenerProtocol(modelValue)"
@@ -70,6 +71,7 @@
                                     ></small>
                                     <span
                                         class="oui-icon oui-icon-help"
+                                        aria-hidden="true"
                                         oui-tooltip="{{:: 'octavia_load_balancer_instances_table_port_tooltip' | translate }}"
                                     ></span>
                                 </label>
@@ -77,7 +79,7 @@
                                     class="oui-input"
                                     type="text"
                                     name="select-listener-port"
-                                    data-ng-model="$ctrl.listeners[$index].port"
+                                    data-ng-model="listener.port"
                                 />
                             </div>
                             <div class="col-3 align-self-end">
@@ -113,12 +115,13 @@
                                     ></small>
                                     <span
                                         class="oui-icon oui-icon-help"
+                                        aria-hidden="true"
                                         oui-tooltip="{{:: 'octavia_load_balancer_instances_table_health_monitor_tooltip' | translate }}"
                                     ></span>
                                 </label>
                                 <oui-select
                                     data-name="select-health-monitor"
-                                    data-model="$ctrl.listeners[$index].healthMonitor"
+                                    data-model="listener.healthMonitor"
                                     data-items="$ctrl.healthMonitors"
                                     data-on-change="$ctrl.selectHealthMonitor(modelValue)"
                                 >

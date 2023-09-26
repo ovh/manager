@@ -10,6 +10,7 @@ export default {
     regionsPlansGroupBySize: '<',
     privateNetworkCreationLink: '<',
     creationPageLink: '<',
+    goToListingPage: '<',
   },
   controller,
   template,

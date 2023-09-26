@@ -18,13 +18,11 @@ export default class OctaviaLoadBalancerCreateCtrl {
   /* @ngInject */
   constructor(
     $anchorScroll,
-    $state,
     atInternet,
     coreConfig,
     OctaviaLoadBalancerCreateService,
   ) {
     this.$anchorScroll = $anchorScroll;
-    this.$state = $state;
     this.atInternet = atInternet;
     this.user = coreConfig.getUser();
     this.OctaviaLoadBalancerCreateService = OctaviaLoadBalancerCreateService;
@@ -168,9 +166,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
           name: TRACKING_LOAD_BALANCER_CREATION_SUBMIT_SUCCESS,
         });
 
-        this.$state.go('octavia-load-balancer', {
-          displayCreationBanner: true,
-        });
+        this.goToListingPage();
       })
       .catch(() => {
         this.$anchorScroll();
