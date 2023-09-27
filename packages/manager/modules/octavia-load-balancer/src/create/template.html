@@ -216,7 +216,11 @@
                     ></b>
                 </p>
             </oui-message>
-            <instances-table></instances-table>
+            <octavia-load-balancer-instances-table
+                data-project-id="$ctrl.projectId"
+                data-region="$ctrl.model.region"
+            >
+            </octavia-load-balancer-instances-table>
         </oui-step-form>
 
         <!-- NAME -->
