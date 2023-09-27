@@ -3,7 +3,7 @@ import { TRACKING_NAME, TRACKING_CHAPTER_1 } from '../constants';
 
 export default class OctaviaLoadBalancerOnboardingCtrl {
   /* @ngInject */
-  constructor(coreConfig, atInternet, coreURLBuilder, $window, $state) {
+  constructor(coreConfig, atInternet, coreURLBuilder, $window) {
     const { ovhSubsidiary } = coreConfig.getUser();
     this.privateNetworkHelpUrl =
       PRIVATE_NETWORK_HELP[ovhSubsidiary] || PRIVATE_NETWORK_HELP.DEFAULT;
@@ -11,11 +11,6 @@ export default class OctaviaLoadBalancerOnboardingCtrl {
     this.ctaTrackName = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::add`;
     this.$window = $window;
     this.coreURLBuilder = coreURLBuilder;
-    this.$state = $state;
-  }
-
-  dismissPrivateNetworkModal() {
-    this.$state.go('^');
   }
 
   goToPrivateNetworkCreation() {

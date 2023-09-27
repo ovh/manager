@@ -7,6 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
       projectId: /* @ngInject */ ($transition$) =>
         $transition$.params().projectId,
+      goBack: /* @ngInject */ ($state) => () => $state.go('^'),
     },
     views: {
       modal: {
