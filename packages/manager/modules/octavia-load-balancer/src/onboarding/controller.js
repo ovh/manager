@@ -9,14 +9,7 @@ import illustration from './assets/public-cloud-network_load-balancer-v2.png';
 
 export default class OctaviaLoadBalancerOnboardingCtrl {
   /* @ngInject */
-  constructor(
-    $translate,
-    coreConfig,
-    atInternet,
-    coreURLBuilder,
-    $window,
-    $state,
-  ) {
+  constructor($translate, coreConfig, atInternet, coreURLBuilder) {
     const { ovhSubsidiary } = coreConfig.getUser();
     this.GUIDES = GUIDES.map((guide) => ({
       ...guide,
@@ -30,9 +23,7 @@ export default class OctaviaLoadBalancerOnboardingCtrl {
       PRIVATE_NETWORK_HELP[ovhSubsidiary] || PRIVATE_NETWORK_HELP.DEFAULT;
     this.atInternet = atInternet;
     this.ctaTrackName = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::add`;
-    this.$window = $window;
     this.coreURLBuilder = coreURLBuilder;
-    this.$state = $state;
   }
 
   onGuideClick(guide) {
@@ -46,9 +37,9 @@ export default class OctaviaLoadBalancerOnboardingCtrl {
 
   createLoadBalancer($event) {
     if (this.hasPrivateNetwork) {
-      this.$state.go('octavia-load-balancer.create');
+      this.goToLoadBalancerCreation();
     } else {
-      this.$state.go('octavia-load-balancer.onboarding.no-private-network');
+      this.goToNoPrivateNetwork();
       $event.preventDefault();
     }
   }
