@@ -48,10 +48,23 @@ export default class AppResourcesController {
     this.selectDefaultFlavor(flavorType);
   }
 
+  onFlavorChange(flavor) {
+    if (
+      !this.appModel.resource.nbResources ||
+      this.appModel.resource.nbResources > flavor.max
+    ) {
+      this.appModel.resource.nbResources = flavor.max;
+    }
+  }
+
   getScalingInfoLink() {
     return (
       APP_SCALING_INFO[this.user.ovhSubsidiary] || APP_SCALING_INFO.DEFAULT
     );
+  }
+
+  getFlavorPrice(flavor) {
+    return this.AppService.getPrice(this.prices, flavor.id);
   }
 
   computeTotalPrice(resourcePrice) {
@@ -61,11 +74,29 @@ export default class AppResourcesController {
     return resourcePrice * this.appModel.resource.nbResources * replicas;
   }
 
+  getResourcePriceWithResources(flavor) {
+    return (
+      this.getFlavorPrice(flavor).priceInUcents *
+      this.appModel.resource.nbResources *
+      60
+    );
+  }
+
+  getResourceTaxWithResources(flavor) {
+    return (
+      this.getFlavorPrice(flavor).tax * this.appModel.resource.nbResources * 60
+    );
+  }
+
   get price() {
-    return this.computeTotalPrice(this.resourcePriceInUcents);
+    return this.computeTotalPrice(
+      this.getFlavorPrice(this.appModel.resource.flavor).priceInUcents * 60,
+    );
   }
 
   get tax() {
-    return this.computeTotalPrice(this.resourcePriceTax);
+    return this.computeTotalPrice(
+      this.getFlavorPrice(this.appModel.resource.flavor).tax * 60,
+    );
   }
 }

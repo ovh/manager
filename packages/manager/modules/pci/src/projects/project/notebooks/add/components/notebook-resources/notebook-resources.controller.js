@@ -73,4 +73,33 @@ export default class NotebookResourcesController {
     this.notebookModel.selected.resource.flavorType = flavorType;
     this.selectDefaultFlavor(flavorType);
   }
+
+  onFlavorChange(flavor) {
+    if (
+      !this.notebookModel.nbResources ||
+      this.notebookModel.nbResources > flavor.max
+    ) {
+      this.notebookModel.nbResources = flavor.max;
+    }
+  }
+
+  getFlavorPriceWithResources(flavor) {
+    const priceIndex = NotebookResourcesController.getPriceIndex(flavor.id);
+    const flavorPricing = this.prices[priceIndex];
+    return (
+      this.notebookModel.nbResources *
+      flavorPricing.priceInUcents *
+      NOTEBOOK_MINUTES_IN_HOUR
+    );
+  }
+
+  getFlavorPriceTaxWithResources(flavor) {
+    const priceIndex = NotebookResourcesController.getPriceIndex(flavor.id);
+    const flavorPricing = this.prices[priceIndex];
+    return (
+      this.notebookModel.nbResources *
+      flavorPricing.tax *
+      NOTEBOOK_MINUTES_IN_HOUR
+    );
+  }
 }

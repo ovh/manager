@@ -120,8 +120,8 @@
                     data-translate="pci_app_add_resources_resource_price"
                 ></span>
                 <ovh-manager-catalog-price
-                    data-price="$ctrl.resourcePriceInUcents * $ctrl.appModel.resource.nbResources"
-                    data-tax="$ctrl.resourcePriceTax * $ctrl.appModel.resource.nbResources"
+                    data-price="$ctrl.getResourcePriceWithResources(flavor)"
+                    data-tax="$ctrl.getResourcePriceWithResources(flavor)"
                     data-user="$ctrl.user"
                     data-show-zero-price="true"
                     data-interval="'hour'"
