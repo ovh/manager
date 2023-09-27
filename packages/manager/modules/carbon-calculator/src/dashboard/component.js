@@ -4,6 +4,7 @@ export default {
   bindings: {
     currentActiveLink: '<',
     dashboardLink: '<',
+    hasInvoice: '<',
   },
   template,
 };
