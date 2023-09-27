@@ -1,6 +1,5 @@
 import { queryClient, useShell } from '@ovh-ux/manager-react-core-application';
 import { apiClient } from '@ovh-ux/manager-core-api';
-
 import i18next from 'i18next';
 
 type Item = unknown;
@@ -19,7 +18,7 @@ export const getManagerHubCatalogList = async (): Promise<Item[]> => {
   const fetchData = async () => {
     const config = {
       headers: {
-        'Content-Language': 'fr_FR',
+        'Content-Language': i18next.language.replace('-', '_'),
       },
     };
     const response: any = await apiClient.aapi.get('/hub/catalog', config);

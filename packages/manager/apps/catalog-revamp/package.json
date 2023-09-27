@@ -23,6 +23,7 @@
   "dependencies": {
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-react-core-application": "*",
+    "@ovh-ux/shell": "^3.0.0",
     "@ovhcloud/ods-core": "^14.0.1",
     "@ovhcloud/ods-stencil": "^14.0.1",
     "@ovhcloud/ods-theme-blue-jeans": "^14.0.1",
