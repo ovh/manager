@@ -232,6 +232,7 @@ export class MscBillingRenewal implements IMSCBillingRenewal {
               color={chipColor}
               size={ODS_CHIP_SIZE.sm}
               variant={ODS_CHIP_VARIANT.flat}
+              inline
             >
               {chipText}
             </osds-chip>
