@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.4.0...@ovh-ux/manager-dedicated@19.5.0) (2023-09-27)
+
+
+### Bug Fixes
+
+* **dedicated:** update india order link for ldp ([#10009](https://github.com/ovh/manager/issues/10009)) ([2757431](https://github.com/ovh/manager/commit/275743124f50d075e2e2ada630530358b5f457a7))
+
+
+### Features
+
+* **dedicated:** use agora to order license ([#10002](https://github.com/ovh/manager/issues/10002)) ([8336364](https://github.com/ovh/manager/commit/8336364993227bf63b5dcc629eb01aa95613ac3d))
+
+
+
+
+
 # [19.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.3.0...@ovh-ux/manager-dedicated@19.4.0) (2023-09-25)
 
 

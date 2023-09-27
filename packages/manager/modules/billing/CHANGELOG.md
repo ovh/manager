@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.20...@ovh-ux/manager-billing@0.20.0-alpha.21) (2023-09-27)
+
+
+### Features
+
+* india payment method management ([#9809](https://github.com/ovh/manager/issues/9809)) ([#9833](https://github.com/ovh/manager/issues/9833)) ([474db9f](https://github.com/ovh/manager/commit/474db9f32384704329b5edb5ab9d0b2e8a7f97b0))
+
+
+
+
+
 # [0.20.0-alpha.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.19...@ovh-ux/manager-billing@0.20.0-alpha.20) (2023-09-18)
 
 
