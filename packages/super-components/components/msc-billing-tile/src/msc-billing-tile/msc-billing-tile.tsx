@@ -150,7 +150,7 @@ export class MscBillingTile implements IMscBillingTile {
     return (
       <Host>
         <div class="msc-billing-tile-wrapper">
-          <osds-tile rounded inline>
+          <osds-tile rounded>
             <div class="billing-tile-content">
               <osds-text
                 level={ODS_TEXT_LEVEL.heading}
