@@ -158,5 +158,6 @@
   "sidebar_access_list": "Aceder à lista",
   "sidebar_access_dashboard": "Aceder ao painel de controlo",
   "sidebar_account_iam": "Identidades e acessos (IAM)",
-  "sidebar_carbon_footprint": "A minha pegada de carbono"
+  "sidebar_carbon_footprint": "A minha pegada de carbono",
+  "sidebar_pci_data_integration": "Integração de Dados"
 }

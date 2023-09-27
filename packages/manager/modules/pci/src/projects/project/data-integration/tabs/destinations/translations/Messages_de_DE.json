@@ -1,0 +1,17 @@
+{
+  "pci_data_integration_destinations_title": "Ziele",
+  "pci_data_integration_destinations_no_destinations": "Sie haben noch kein Ziel für Ihre Datenintegrationen erstellt. Besuchen Sie zuerst unsere Hilfeseite:",
+  "pci_data_integration_destinations_no_destinations_cli_link": "Befehlszeilenschnittstelle",
+  "pci_data_integration_destinations_list_column_name": "Name/ID",
+  "pci_data_integration_destinations_list_column_connector": "Connector",
+  "pci_data_integration_destinations_list_column_version": "Version",
+  "pci_data_integration_destinations_list_column_status": "Verbindung",
+  "pci_data_integration_destinations_list_column_creation_date": "Erstellungsdatum",
+  "pci_data_integration_destinations_list_column_last_update": "Letztes Update",
+  "pci_data_integration_destinations_list_column_status_CONNECTION_RUNNING": "Wird ausgeführt",
+  "pci_data_integration_destinations_list_column_status_CONNECTION_SUCCEED": "Bereit",
+  "pci_data_integration_destinations_list_column_status_CONNECTION_FAILED": "Fehlgeschlagen",
+  "pci_data_integration_destinations_list_details_description": "Zieleinstellungen",
+  "pci_data_integration_destinations_list_details_column_name": "Name",
+  "pci_data_integration_destinations_list_details_column_value": "Wert"
+}

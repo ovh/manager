@@ -1,0 +1,17 @@
+{
+  "pci_data_integration_sources_title": "Sources",
+  "pci_data_integration_sources_no_sources": "You have not yet created a source for your data integrations. First, visit our guide page:",
+  "pci_data_integration_sources_no_sources_cli_link": "Command Line Interface",
+  "pci_data_integration_sources_list_column_name": "Name/ID",
+  "pci_data_integration_sources_list_column_connector": "Connector",
+  "pci_data_integration_sources_list_column_version": "Version",
+  "pci_data_integration_sources_list_column_status": "Connection",
+  "pci_data_integration_sources_list_column_creation_date": "Creation date",
+  "pci_data_integration_sources_list_column_last_update": "Last updated",
+  "pci_data_integration_sources_list_column_status_CONNECTION_RUNNING": "In progress",
+  "pci_data_integration_sources_list_column_status_CONNECTION_SUCCEED": "Ready",
+  "pci_data_integration_sources_list_column_status_CONNECTION_FAILED": "Failed",
+  "pci_data_integration_sources_list_details_description": "Source Settings",
+  "pci_data_integration_sources_list_details_column_name": "Name",
+  "pci_data_integration_sources_list_details_column_value": "Value"
+}

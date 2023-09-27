@@ -9,5 +9,6 @@
   "pci_data_integration_dashboard_workflow_list_status_CREATING": "Erstellung",
   "pci_data_integration_dashboard_workflow_list_status_READY": "Bereit",
   "pci_data_integration_dashboard_workflow_list_status_ERROR": "Fehlgeschlagen",
-  "pci_data_integration_dashboard_workflow_description": "Liste Ihrer Workflows"
+  "pci_data_integration_dashboard_workflow_description": "Liste Ihrer Workflows",
+  "pci_data_integration_dashboard_workflow_list_column_region": "Ort"
 }

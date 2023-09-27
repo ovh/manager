@@ -2,5 +2,11 @@
   "pci_data_integration_onboarding_title": "Data Integration",
   "pci_data_integration_onboarding_subtitle": "La circulación de datos simplificada",
   "pci_data_integration_onboarding_description": "¿Desea ingerir datos y construir pipelines de datos fácilmente? Automatice la circulación de sus datos con nuestra solución Data Integration. Disfrute de un catálogo de fuentes y destinos para configurar el transporte de sus datos tanto en forma de archivo (Object Storage, HTTP files, SFTP, FTP), como en base de datos (PostgreSQL, MySQL, MongoDB, Oracle, SQL Server) o incluso en motor de búsqueda (Elasticsearch, OpenSearch.). Únase a nuestra beta gratuita haciendo clic en el botón que aparece a continuación.",
-  "pci_data_integration_onboarding_button": "Explorar sus integraciones de datos"
+  "pci_data_integration_onboarding_button": "Explorar sus integraciones de datos",
+  "pci_data_integration_onboarding_guides_cli-installation_title": "CLI - Instalación (EN)",
+  "pci_data_integration_onboarding_guides_cli-installation_description": "Descubra cómo instalar la CLI para interactuar con el servicio de integración de datos.",
+  "pci_data_integration_onboarding_guides_cli-commands-reference_title": "CLI - Crear una integración de datos",
+  "pci_data_integration_onboarding_guides_cli-commands-reference_description": "Descubra cómo crear conectores de origen y destino y, a continuación, interconectarlos.",
+  "pci_data_integration_onboarding_guides_ui-visualize_title": "Visualizar una integración de datos",
+  "pci_data_integration_onboarding_guides_ui-visualize_description": "Descubra cómo visualizar una integración de datos y los jobs asociados."
 }

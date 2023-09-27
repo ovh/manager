@@ -1,0 +1,17 @@
+{
+  "pci_data_integration_sources_title": "Sorgenti",
+  "pci_data_integration_sources_no_sources": "Non sono state ancora create sorgenti per le integrazioni di dati. Per prima cosa, consulta la nostra pagina di guida:",
+  "pci_data_integration_sources_no_sources_cli_link": "Command Line Interface",
+  "pci_data_integration_sources_list_column_name": "Nome/ID",
+  "pci_data_integration_sources_list_column_connector": "Connector",
+  "pci_data_integration_sources_list_column_version": "Versione",
+  "pci_data_integration_sources_list_column_status": "Connessione",
+  "pci_data_integration_sources_list_column_creation_date": "Data di creazione",
+  "pci_data_integration_sources_list_column_last_update": "Ultimo aggiornamento",
+  "pci_data_integration_sources_list_column_status_CONNECTION_RUNNING": "In corso",
+  "pci_data_integration_sources_list_column_status_CONNECTION_SUCCEED": "Pronto",
+  "pci_data_integration_sources_list_column_status_CONNECTION_FAILED": "Fallito",
+  "pci_data_integration_sources_list_details_description": "Parametri della sorgente",
+  "pci_data_integration_sources_list_details_column_name": "Nome",
+  "pci_data_integration_sources_list_details_column_value": "Valore"
+}

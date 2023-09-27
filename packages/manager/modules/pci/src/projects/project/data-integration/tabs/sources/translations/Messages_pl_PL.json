@@ -1,0 +1,17 @@
+{
+  "pci_data_integration_sources_title": "Źródła",
+  "pci_data_integration_sources_no_sources": "Nie utworzyłeś jeszcze źródła, którego będziesz używał do integracji danych. Najpierw odwiedź stronę, na której znajdziesz nasz przewodnik:",
+  "pci_data_integration_sources_no_sources_cli_link": "Command Line Interface",
+  "pci_data_integration_sources_list_column_name": "Nazwa/ID",
+  "pci_data_integration_sources_list_column_connector": "Konektor",
+  "pci_data_integration_sources_list_column_version": "Wersja",
+  "pci_data_integration_sources_list_column_status": "Połączenie",
+  "pci_data_integration_sources_list_column_creation_date": "Data utworzenia",
+  "pci_data_integration_sources_list_column_last_update": "Ostatnia aktualizacja",
+  "pci_data_integration_sources_list_column_status_CONNECTION_RUNNING": "W realizacji",
+  "pci_data_integration_sources_list_column_status_CONNECTION_SUCCEED": "Gotowe",
+  "pci_data_integration_sources_list_column_status_CONNECTION_FAILED": "Połączenie nieudane",
+  "pci_data_integration_sources_list_details_description": "Ustawienia źródła",
+  "pci_data_integration_sources_list_details_column_name": "Nazwa",
+  "pci_data_integration_sources_list_details_column_value": "Wartość"
+}

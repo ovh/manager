@@ -9,5 +9,6 @@
   "pci_data_integration_dashboard_workflow_list_status_CREATING": "Criação",
   "pci_data_integration_dashboard_workflow_list_status_READY": "Pronto",
   "pci_data_integration_dashboard_workflow_list_status_ERROR": "Falhou",
-  "pci_data_integration_dashboard_workflow_description": "Lista dos seus fluxos de trabalho"
+  "pci_data_integration_dashboard_workflow_description": "Lista dos seus fluxos de trabalho",
+  "pci_data_integration_dashboard_workflow_list_column_region": "Residência"
 }

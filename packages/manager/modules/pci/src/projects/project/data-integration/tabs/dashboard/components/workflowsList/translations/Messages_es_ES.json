@@ -9,5 +9,6 @@
   "pci_data_integration_dashboard_workflow_list_status_CREATING": "Creación",
   "pci_data_integration_dashboard_workflow_list_status_READY": "Listo",
   "pci_data_integration_dashboard_workflow_list_status_ERROR": "Fallido",
-  "pci_data_integration_dashboard_workflow_description": "Lista de workflows"
+  "pci_data_integration_dashboard_workflow_description": "Lista de workflows",
+  "pci_data_integration_dashboard_workflow_list_column_region": "Residencia"
 }

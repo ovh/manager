@@ -158,5 +158,6 @@
   "sidebar_access_list": "Dostęp do listy",
   "sidebar_access_dashboard": "Dostęp do interfejsu",
   "sidebar_account_iam": "Tożsamości i uprawnienia (IAM)",
-  "sidebar_carbon_footprint": "Mój ślad węglowy"
+  "sidebar_carbon_footprint": "Mój ślad węglowy",
+  "sidebar_pci_data_integration": "Data Integration"
 }
