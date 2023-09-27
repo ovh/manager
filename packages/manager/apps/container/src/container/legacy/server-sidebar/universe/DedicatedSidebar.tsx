@@ -26,8 +26,6 @@ export const features = [
   'cloud-disk-array',
   'veeam-cloud-connect',
   'metrics',
-  'logs-data-platform',
-  'ip-load-balancer',
   'dedicated-network',
   'vrack:bare-metal-cloud',
   'vrack:hosted-private-cloud',
@@ -39,9 +37,9 @@ export const features = [
   'iam',
   'public-cloud',
   'dedicated-server:order',
-  'license',
   'kubernetes',
   'dedicated-cloud:order',
+  'dedicated-cloud:sapHanaOrder',
   'veeam-cloud-connect:order',
   'veeam-enterprise:order',
   'vrack:order',
@@ -49,6 +47,7 @@ export const features = [
   'logs-data-platform',
   'dedicated-server:ecoRangeOrder',
   'dedicated-server:nutanixOrder',
+  'carbon-calculator',
 ];
 
 export default function DedicatedSidebar() {

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.9.4...@ovh-ux/manager-office@2.10.0) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
+## [2.9.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.9.3...@ovh-ux/manager-office@2.9.4) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-office
+
+
+
+
+
 ## [2.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-office@2.9.2...@ovh-ux/manager-office@2.9.3) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-office

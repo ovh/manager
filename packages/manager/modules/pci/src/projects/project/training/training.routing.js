@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return { state: 'pci.projects.project.training.onboarding' };
         }
 
-        return { state: 'pci.projects.project.training.dashboard' };
+        return { state: 'pci.projects.project.training.jobs' };
       }),
     resolve: {
       lab: /* @ngInject */ (
@@ -61,6 +61,10 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           jobId,
         }),
+      deleteJob: /* @ngInject */ ($state) => (jobId) =>
+        $state.go('pci.projects.project.training.jobs.delete', {
+          jobId,
+        }),
       jobInfoLink: /* @ngInject */ ($state, projectId) => (jobId) =>
         $state.href('pci.projects.project.training.jobs.info', {
           projectId,
@@ -78,37 +82,6 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.training.jobs.submit', {
           projectId,
         }),
-      dashboardLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.training.dashboard', {
-          projectId,
-        }),
-      goToDashboard: /* @ngInject */ ($state, CucCloudMessage, projectId) => (
-        message = false,
-        type = 'success',
-      ) => {
-        const reload = message && type === 'success';
-
-        const promise = $state.go(
-          'pci.projects.project.training.dashboard',
-          {
-            projectId,
-          },
-          {
-            reload,
-          },
-        );
-
-        if (message) {
-          promise.then(() =>
-            CucCloudMessage[type](
-              message,
-              'pci.projects.project.training.dashboard',
-            ),
-          );
-        }
-
-        return promise;
-      },
       jobList: /* @ngInject */ (
         PciProjectTrainingJobService,
         projectId,
@@ -119,7 +92,10 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return PciProjectTrainingJobService.getAll(projectId);
       },
-
+      goToUsersAndTokens: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.ai-dashboard.users-tokens', {
+          projectId,
+        }),
       jobListRegions: /* @ngInject */ (jobList) =>
         Array.from(new Set(jobList.map(({ spec }) => spec.region))),
 

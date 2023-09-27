@@ -3,6 +3,8 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
 
+import { MONITORING_STATUSES, DC_2_ISO } from './dashboard/dashboard.constants';
+
 export default class ServersCtrl {
   /* @ngInject */
   constructor($q, $translate, ouiDatagridService) {
@@ -12,6 +14,11 @@ export default class ServersCtrl {
   }
 
   $onInit() {
+    this.dedicatedServers.data = this.dedicatedServers.data.map(
+      this.transformDedicatedServers,
+      this,
+    );
+
     this.criteria = JSON.parse(this.filter).map((criteria) => ({
       property: get(criteria, 'field') || 'name',
       operator: get(criteria, 'comparator'),
@@ -22,63 +29,98 @@ export default class ServersCtrl {
       this.serverStateEnum,
       'server_configuration_state_',
     );
-    this.datacenterEnumFilter = this.getDcEnumFilter(
-      this.datacenterEnum,
-      'server_datacenter_',
+
+    this.datacenterEnumFilter = this.getEnumFilterFromCustomerData(
+      this.dedicatedServers.data,
+      'datacenter',
     );
 
-    this.columnsConfig = [
-      { name: 'name', sortable: this.getSorting('name') },
-      { name: 'reverse', sortable: this.getSorting('reverse') },
-      { name: 'commercialRange', sortable: this.getSorting('commercialRange') },
-      { name: 'datacenter', sortable: this.getSorting('datacenter') },
-      { name: 'state', sortable: this.getSorting('state') },
-    ];
+    this.modelEnumFilter = this.getEnumFilterFromCustomerData(
+      this.dedicatedServers.data,
+      'commercialRange',
+    );
   }
 
   static toUpperSnakeCase(str) {
     return snakeCase(str).toUpperCase();
   }
 
-  getDcEnumFilter(list, translationPrefix) {
-    return {
-      values: reduce(
-        list,
-        (result, item) => {
-          const splittedDcEnumItem = item.split(/(\d+)/);
-
-          return {
-            ...result,
-            [item]: this.$translate.instant(
-              `${translationPrefix}${this.constructor.toUpperSnakeCase(
-                splittedDcEnumItem[0],
-              )}`,
-              { number: splittedDcEnumItem?.[1] },
-            ),
-          };
-        },
-        {},
-      ),
-    };
+  static getMonitoringStatus(monitored, noIntervention) {
+    let monitoring = MONITORING_STATUSES.DISABLED;
+    // proactive intervention
+    if (monitored && !noIntervention) {
+      monitoring = MONITORING_STATUSES.PROACTIVE;
+    }
+    // no proactive intervention
+    if (monitored && noIntervention) {
+      monitoring = MONITORING_STATUSES.NOPROACTIVE;
+    }
+    return monitoring;
   }
 
-  getEnumFilter(list, translationPrefix) {
+  transformDedicatedServers(param) {
+    const server = { ...param };
+    server.monitoringStatus = this.constructor.getMonitoringStatus(
+      server.monitoring,
+      server.noIntervention,
+    );
+    server.city = this.$translate.instant(
+      `server_datacenter_${
+        this.constructor.toUpperSnakeCase(server.datacenter).split('_')[0]
+      }`,
+    );
+    server.country = (
+      DC_2_ISO[
+        this.constructor
+          .toUpperSnakeCase(server.datacenter)
+          .split('_')[0]
+          .toUpperCase()
+      ] || 'none'
+    ).toLowerCase();
+    return server;
+  }
+
+  getEnumFilterFromCustomerData(data, attribute, prefix = null) {
+    return this.getEnumFilter(
+      data
+        .map((server) => server[attribute])
+        .filter((value, index, self) => self.indexOf(value) === index),
+      prefix,
+      false,
+    );
+  }
+
+  getEnumFilter(list, translationPrefix, toUpperSnakeCaseFlag = true) {
+    if (translationPrefix === null) {
+      return {
+        values: reduce(
+          list,
+          (result, item) => ({
+            ...result,
+            [item]: toUpperSnakeCaseFlag
+              ? this.constructor.toUpperSnakeCase(item)
+              : item,
+          }),
+          {},
+        ),
+      };
+    }
     return {
       values: reduce(
         list,
         (result, item) => ({
           ...result,
           [item]: this.$translate.instant(
-            `${translationPrefix}${this.constructor.toUpperSnakeCase(item)}`,
+            `${translationPrefix}${
+              toUpperSnakeCaseFlag
+                ? this.constructor.toUpperSnakeCase(item)
+                : item
+            }`,
           ),
         }),
         {},
       ),
     };
-  }
-
-  getSorting(property) {
-    return this.sort === property ? this.sortOrder.toLowerCase() : '';
   }
 
   loadServers() {

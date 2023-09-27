@@ -1367,5 +1367,6 @@
   "hosting_dashboard_service_change_offer_explanation_only_one": "Dysponujesz jedną bazą danych w ramach aktualnej oferty. Aby korzystać z dodatkowych baz danych, wybierz jedną z naszych usług.",
   "hosting_tab_DOMAINS_configuration_add_step1_only_one_db_and_no_left": "Aktualna oferta pozwala na zainstalowanie jednej strony. Aby skorzystać z dodatkowej strony, wybierz jedną z wyższych ofert.",
   "hosting_tab_DOMAINS_configuration_add_buttom_update_offer": "Zmień ofertę",
-  "hosting_order_upgrade_modal_header_description": "Twój projekt dynamicznie się rozwija? Blog, profesjonalna strona WWW, platforma e-commerce lub aplikacja internetowa: wybierz ofertę najlepiej dopasowaną do Twoich nowych potrzeb."
+  "hosting_order_upgrade_modal_header_description": "Twój projekt dynamicznie się rozwija? Blog, profesjonalna strona WWW, platforma e-commerce lub aplikacja internetowa: wybierz ofertę najlepiej dopasowaną do Twoich nowych potrzeb.",
+  "hosting_order_upgrade_no_contract": "Brak nowych regulaminów do zatwierdzenia"
 }

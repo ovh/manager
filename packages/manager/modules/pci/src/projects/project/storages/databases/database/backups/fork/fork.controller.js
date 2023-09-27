@@ -40,7 +40,7 @@ export default class {
       PRIVATE_NETWORK_GUIDE.DEFAULT;
 
     // Retrieve data from db object
-    const engine = this.database.getEngineFromList(this.engines);
+    const engine = this.database.getEngineFromList(this.availableEngines);
     const version = engine.getVersion(this.database.version);
     engine.selectedVersion = version;
     this.originalPlan = version.getPlan(this.database.plan);
@@ -361,6 +361,15 @@ export default class {
     );
   }
 
+  goToAPICommand() {
+    this.model.databaseId = this.database.id;
+    this.model.disk = {
+      initialSize: this.model.flavor.minDiskSize,
+      additionalDiskSize: this.model.additionalDiskSize,
+    };
+    return this.goToCommand(this.model);
+  }
+
   createFork() {
     this.orderData = {
       description: this.model.name,
@@ -374,9 +383,6 @@ export default class {
         size: this.model.flavor.minDiskSize + this.model.additionalDiskSize,
       },
       version: this.model.engine.selectedVersion.version,
-      backup: {
-        serviceId: this.database.id,
-      },
     };
     if (this.model.usePrivateNetwork && this.model.subnet?.id?.length > 0) {
       this.orderData.networkId = this.model.privateNetwork.regions?.find(
@@ -387,13 +393,22 @@ export default class {
 
     switch (this.model.restoreMode) {
       case RESTORE_MODES.BACKUP:
-        this.orderData.backup.id = this.model.backupId;
+        this.orderData.forkFrom = {
+          backupId: this.model.backupId,
+          serviceId: this.database.id,
+        };
         break;
       case RESTORE_MODES.TIMESTAMP:
-        this.orderData.backup.pointInTime = this.model.timestamp;
+        this.orderData.forkFrom = {
+          serviceId: this.database.id,
+          pointInTime: this.model.timestamp,
+        };
         break;
       case RESTORE_MODES.SOONEST:
-        this.orderData.backup.pointInTime = moment().toISOString();
+        this.orderData.forkFrom = {
+          serviceId: this.database.id,
+          pointInTime: moment().toISOString(),
+        };
         break;
       default:
         break;

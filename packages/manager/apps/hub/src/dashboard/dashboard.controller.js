@@ -1,7 +1,11 @@
 import {
-  TRACKING_PREFIX,
-  HIT_PREFIX,
+  SIRET_TRACKING_PREFIX,
+  SIRET_HIT_PREFIX,
   TRACKING_PREFIX_POPUP,
+  KYC_TRACKING_PREFIX,
+  KYC_HIT_PREFIX,
+  IAM_TRACKING_PREFIX,
+  IAM_HIT_PREFIX,
 } from './dashboard.constant';
 
 export default class DashboardController {
@@ -10,15 +14,41 @@ export default class DashboardController {
     this.coreURLBuilder = coreURLBuilder;
     this.atInternet = atInternet;
     this.$window = $window;
-    this.TRACKING_PREFIX = TRACKING_PREFIX;
-    this.HIT_PREFIX = HIT_PREFIX;
+    this.SIRET_TRACKING_PREFIX = SIRET_TRACKING_PREFIX;
+    this.SIRET_HIT_PREFIX = SIRET_HIT_PREFIX;
     this.TRACKING_PREFIX_POPUP = TRACKING_PREFIX_POPUP;
+    this.KYC_HIT_PREFIX = KYC_HIT_PREFIX;
+    this.IAM_TRACKING_PREFIX = IAM_TRACKING_PREFIX;
+    this.IAM_HIT_PREFIX = IAM_HIT_PREFIX;
     this.$http = $http;
+    this.myIdentitySectionLink = coreURLBuilder.buildURL(
+      'dedicated',
+      '#/identity-documents',
+    );
+    this.iamBannerLink = coreURLBuilder.buildURL('iam', '#/dashboard/policies');
   }
 
   $onInit() {
     this.availableSiretBanner = false;
     this.availableSiretPopup = false;
+    this.showKycBanner = false;
+    this.showIamBanner = false;
+    this.$http
+      .get(`/feature/identity-documents/availability`, {
+        serviceType: 'aapi',
+      })
+      .then(({ data: featureAvailability }) => {
+        if (featureAvailability['identity-documents']) {
+          this.$http.get(`/me/procedure/identity`).then(({ data }) => {
+            this.showKycBanner = ['required', 'open'].includes(data.status);
+            if (this.showKycBanner)
+              this.atInternet.trackPage({
+                name: KYC_TRACKING_PREFIX,
+                type: 'navigation',
+              });
+          });
+        }
+      });
 
     this.$http
       .get('/me')
@@ -34,20 +64,27 @@ export default class DashboardController {
       })
       .then((data) => {
         this.availableSiretBanner =
-          data.isFeatureAvailable('hub:banner-hub-invite-customer-siret') &&
+          data?.isFeatureAvailable('hub:banner-hub-invite-customer-siret') &&
           this.userSiretFR;
         this.availableSiretPopup =
-          data.isFeatureAvailable('hub:popup-hub-invite-customer-siret') &&
+          data?.isFeatureAvailable('hub:popup-hub-invite-customer-siret') &&
           this.userSiretFR;
         if (this.availableSiretBanner) {
           this.atInternet.trackPage({
-            name: TRACKING_PREFIX,
+            name: SIRET_TRACKING_PREFIX,
             type: 'navigation',
           });
         }
         if (this.availableSiretPopup) {
           this.atInternet.trackPage({
             name: TRACKING_PREFIX_POPUP,
+            type: 'navigation',
+          });
+        }
+        this.showIamBanner = data?.isFeatureAvailable('hub:banner-iam-invite');
+        if (this.showIamBanner) {
+          this.atInternet.trackPage({
+            name: IAM_TRACKING_PREFIX,
             type: 'navigation',
           });
         }
@@ -79,9 +116,9 @@ export default class DashboardController {
     this.availableSiretPopup = false;
   }
 
-  trackClick() {
+  trackClick(hit) {
     this.atInternet.trackClick({
-      name: `${TRACKING_PREFIX}::${HIT_PREFIX}`,
+      name: hit,
       type: 'action',
     });
   }

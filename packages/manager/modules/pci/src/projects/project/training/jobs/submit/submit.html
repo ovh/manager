@@ -6,6 +6,30 @@
         <span data-ng-bind="$ctrl.error"></span>
     </oui-message>
 
+    <!--Banner for Object container / usertoken-->
+    <oui-message data-type="info" dismissable>
+        <span
+            data-translate="pci_projects_project_training_jobs_add_banner_object_storage_description"
+        ></span>
+        <p class="mb-2">
+            <a
+                rel="noopener"
+                data-translate="pci_projects_project_training_jobs_add_banner_object_storage_description_link"
+                data-ng-click="$ctrl.createObjectStorage()"
+            ></a>
+        </p>
+        <span
+            data-translate="pci_projects_project_training_jobs_add_banner_user_token_description"
+        ></span>
+        <p class="m-0">
+            <a
+                rel="noopener"
+                data-translate="pci_projects_project_training_jobs_add_banner_user_token_description_link"
+                data-ng-click="$ctrl.goToUsersAndTokens()"
+            ></a>
+        </p>
+    </oui-message>
+
     <oui-stepper data-on-finish="$ctrl.onStepperFinish()">
         <oui-step-form
             data-header="{{:: 'pci_projects_project_training_jobs_submit_select_region' | translate  }}"

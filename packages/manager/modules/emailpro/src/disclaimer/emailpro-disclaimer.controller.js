@@ -106,9 +106,11 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro) => {
     }
   };
 
-  $scope.$on(EmailPro.events.disclaimersChanged, () => {
-    $scope.refreshList();
-  });
+  $scope.$on(EmailPro.events.disclaimersChanged, () =>
+    $scope.loadParams.pageSize && $scope.loadParams.offset
+      ? $scope.refreshList()
+      : null,
+  );
 
   $scope.newDisclaimersDisabled = function newDisclaimersDisabled() {
     let result = false;

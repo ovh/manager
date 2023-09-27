@@ -24,7 +24,7 @@ export default function AccountSidebar() {
   const region = environment.getRegion();
   const isEnterprise = environment.getUser()?.enterprise;
 
-  const getAccountSidebar = (availability: Record<string, string> | null) => {
+  const getAccountSidebar = async (availability: Record<string, string> | null) => {
     if (!availability) {
       return [];
     }
@@ -43,6 +43,24 @@ export default function AccountSidebar() {
       href: navigation.getURL('dedicated', '/useraccount/dashboard'),
       routeMatcher: new RegExp('^/useraccount'),
     });
+
+    const featureAvailability = await reketInstance.get(
+      `/feature/identity-documents/availability`,
+      {
+        requestType: 'aapi',
+      },
+    );
+    if (featureAvailability['identity-documents']) {
+      const { status } = await reketInstance.get(`/me/procedure/identity`);
+      if (['required','open'].includes(status)) {
+        menu.push({
+          id: 'my-identity-documents',
+          label: t('sidebar_account_identity_documents'),
+          href: navigation.getURL('dedicated', '/identity-documents'),
+          routeMatcher: new RegExp('^/identity-documents'),
+        });
+      }
+    }
 
     if (!isEnterprise) {
       menu.push({
@@ -90,7 +108,9 @@ export default function AccountSidebar() {
         href: navigation.getURL('dedicated', '/contacts'),
         routeMatcher: new RegExp('^/contacts'),
       });
+    }
 
+    if (availability['carbon-calculator']) {
       menu.push({
         id: 'my-carbon-footprint',
         label: t('sidebar_carbon_footprint'),
@@ -113,7 +133,7 @@ export default function AccountSidebar() {
       menu.push({
         id: 'iam',
         label: t('sidebar_account_iam'),
-        badge: 'new',
+        badge: t('sidebar_tag_beta'),
         href: navigation.getURL('iam', '/'),
         pathMatcher: new RegExp('^/iam'),
       });
@@ -132,11 +152,11 @@ export default function AccountSidebar() {
     getFeatures,
   );
 
-  const buildMenu = () =>
+  const buildMenu = async () =>
     Promise.resolve({
       id: 'my-account-sidebar',
       label: '',
-      subItems: [...getAccountSidebar(availability)],
+      subItems: [...(await getAccountSidebar(availability))],
     });
 
   useEffect(() => {

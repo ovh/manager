@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-payment-method@0.1.2...@ovh-ux/ovh-payment-method@0.2.0) (2023-09-27)
+
+
+### Features
+
+* india payment method management ([#9809](https://github.com/ovh/manager/issues/9809)) ([#9833](https://github.com/ovh/manager/issues/9833)) ([474db9f](https://github.com/ovh/manager/commit/474db9f32384704329b5edb5ab9d0b2e8a7f97b0))
+
+
+
+
+
+## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/ovh-payment-method@0.1.1...@ovh-ux/ovh-payment-method@0.1.2) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/ovh-payment-method
+
+
+
+
+
 ## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-payment-method@0.1.0...@ovh-ux/ovh-payment-method@0.1.1) (2023-01-19)
 
 **Note:** Version bump only for package @ovh-ux/ovh-payment-method

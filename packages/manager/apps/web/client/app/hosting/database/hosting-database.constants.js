@@ -3,6 +3,8 @@ export const WEBHOSTING_PRODUCT_NAME = 'webHosting';
 
 export const FREE_HOSTING_OFFER = ['HOSTING_FREE_100_M', 'START_10_M'];
 
+export const STARTER_OFFERS = ['HOSTING_STARTER', 'HOSTING_STARTER_OVH'];
+
 export const BANNER_GUIDE_LINK = {
   DE:
     'https://help.ovhcloud.com/csm/de-web-hosting-database-overquota?id=kb_article_view&sysparm_article=KB0056167',
@@ -53,4 +55,5 @@ export default {
   PRIVATE_SQL_PLAN_CODE,
   WEBHOSTING_PRODUCT_NAME,
   BANNER_GUIDE_LINK,
+  STARTER_OFFERS,
 };

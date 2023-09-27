@@ -447,7 +447,7 @@
                                      && !configError.raidDiskUse
                                      && !errorInst.partitionSizeOver"
             data-wizard-step-on-previous="checkPrev1"
-            data-wizard-step-on-load="loadPartiton"
+            data-wizard-step-on-load="loadPartition"
         >
             <div class="text-center" data-ng-show="loader.loading">
                 <oui-spinner></oui-spinner>
@@ -518,7 +518,20 @@
                     ></span>
                     <strong
                         data-ng-bind="getDisplaySize(informations.remainingSize)"
-                    ></strong>
+                    ></strong
+                    >&nbsp;
+                    <span
+                        data-translate="server_configuration_installation_ovh_step2_scheme"
+                        data-ng-show="installation.partitionSchemesList.length > 1 && !installation.noPartitioning"
+                    ></span>
+                    <select
+                        class="form-control"
+                        data-ng-show="installation.partitionSchemesList.length > 1 && !installation.noPartitioning"
+                        data-ng-options="partitionScheme as partitionScheme for partitionScheme in installation.partitionSchemesList"
+                        data-ng-model="installation.selectPartitionScheme"
+                        data-ng-change="showPartition()"
+                    >
+                    </select>
                 </div>
 
                 <div
@@ -1364,6 +1377,27 @@
                     data-translate="server_configuration_installation_ovh_step3_info"
                 ></p>
 
+                <p
+                    class="form-inline"
+                    data-ng-show="installation.partitionSchemesList.length > 1 && installation.noPartitioning"
+                >
+                    <label
+                        for="selectPartitionScheme"
+                        class="control-label"
+                        data-translate="server_configuration_installation_ovh_step3_scheme"
+                    >
+                    </label>
+                    <select
+                        class="form-control"
+                        id="selectPartitionScheme"
+                        name="selectPartitionScheme"
+                        data-ng-options="partitionScheme as partitionScheme for partitionScheme in installation.partitionSchemesList"
+                        data-ng-model="installation.selectPartitionScheme"
+                        data-ng-change="showPartition()"
+                    >
+                    </select>
+                </p>
+
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -1603,49 +1637,6 @@
                         </dl>
                     </div>
 
-                    <!-- installRTM -->
-                    <div
-                        data-ng-if="isRtmAvailable && installation.selectDistribution.supportsRTM"
-                        class="mb-3"
-                    >
-                        <h5
-                            class="mb-0"
-                            data-translate="server_configuration_installation_form_rtm"
-                        ></h5>
-
-                        <p>
-                            <span
-                                data-translate="server_configuration_installation_form_rtm_explain"
-                            ></span>
-                            <a
-                                data-ng-href="{{ ::rtmGuideLink }}"
-                                target="_blank"
-                                rel="noopener"
-                                data-track-on="click"
-                                data-track-name="dedicated::dedicated::server::system-install::public-catalog::rtm-documentation"
-                                data-track-type="action"
-                            >
-                                <span
-                                    data-translate="server_configuration_installation_form_rtm_explain_link_name"
-                                ></span>
-                            </a>
-                        </p>
-
-                        <oui-switch
-                            data-model="installation.options.installRTM"
-                            data-id="installRTM"
-                            data-name="installRTM"
-                            data-disabled="$ctrl.loaders.launchInstall"
-                        >
-                        </oui-switch>
-                        <label
-                            for="installRTM"
-                            class="d-inline-block"
-                            data-translate="{{ !installation.options.installRTM ? 'server_configuration_installation_form_rtm_deactivated' : 'server_configuration_installation_form_rtm_activated' }}"
-                        >
-                        </label>
-                    </div>
-
                     <h5
                         data-translate="server_configuration_installation_form_option"
                     ></h5>
@@ -1717,12 +1708,12 @@
                                 class="control-label"
                             >
                                 <span
-                                    data-translate="server_configuration_installation_ovh_step3_partiton_variable"
+                                    data-translate="server_configuration_installation_ovh_step3_partition_variable"
                                 ></span
                                 >&nbsp;
                                 <span
                                     class="icon-warning"
-                                    data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step3_partiton_variable_help' | translate }}"
+                                    data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step3_partition_variable_help' | translate }}"
                                     data-oui-tooltip-placement="right"
                                 >
                                 </span>
@@ -1735,31 +1726,10 @@
                             >
                                 <option
                                     value
-                                    data-ng-bind=":: 'server_configuration_installation_ovh_step3_partiton_none' | translate"
+                                    data-ng-bind=":: 'server_configuration_installation_ovh_step3_partition_none' | translate"
                                 >
                                 </option>
                             </select>
-                        </div>
-
-                        <!-- changeLog -->
-                        <div
-                            class="form-group"
-                            data-ng-show="installation.options.saveGabarit == true"
-                        >
-                            <label
-                                for="changeLog"
-                                class="control-label"
-                                data-translate="server_configuration_installation_form_changeLog"
-                            >
-                            </label>
-                            <textarea
-                                class="form-control"
-                                id="changeLog"
-                                name="changeLog"
-                                rows="1"
-                                data-ng-model="installation.options.changeLog"
-                            >
-                            </textarea>
                         </div>
 
                         <!-- customHostname -->
@@ -1967,7 +1937,7 @@
                             <p
                                 class="text-danger"
                                 data-ng-if="installation.options.variablePartition && installation.options.saveGabarit"
-                                data-translate="server_configuration_installation_ovh_step3_partiton_variable_info"
+                                data-translate="server_configuration_installation_ovh_step3_partition_variable_info"
                                 data-translate-values="{ t0: installation.options.variablePartition.mountPoint }"
                             ></p>
                         </div>

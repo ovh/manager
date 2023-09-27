@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.6.4...@ovh-ux/manager-telecom-styles@4.6.5) (2023-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom-styles
+
+
+
+
+
+## [4.6.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.6.3...@ovh-ux/manager-telecom-styles@4.6.4) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom-styles
+
+
+
+
+
+## [4.6.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.6.2...@ovh-ux/manager-telecom-styles@4.6.3) (2023-08-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom-styles
+
+
+
+
+
 ## [4.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-styles@4.6.1...@ovh-ux/manager-telecom-styles@4.6.2) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom-styles

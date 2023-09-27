@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.6.0...@ovh-ux/manager-netapp@1.7.0) (2023-09-25)
+
+
+### Features
+
+* **dedicated:** show badge for status in file storage list ([bfa5667](https://github.com/ovh/manager/commit/bfa566725aa9a7036df1dfac6d742c53f498616d))
+
+
+
+
+
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.5.6...@ovh-ux/manager-netapp@1.6.0) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
+## [1.5.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.5.5...@ovh-ux/manager-netapp@1.5.6) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp
+
+
+
+
+
 ## [1.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.5.4...@ovh-ux/manager-netapp@1.5.5) (2023-07-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp

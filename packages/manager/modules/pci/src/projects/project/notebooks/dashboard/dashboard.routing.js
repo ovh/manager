@@ -30,8 +30,8 @@ export default /* @ngInject */ ($stateProvider) => {
           notebookId,
         }),
 
-      userAndRolesLink: /* @ngInject */ ($state, projectId) =>
-        $state.href('pci.projects.project.users.add', {
+      goToUsersAndTokens: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.ai-dashboard.users-tokens', {
           projectId,
         }),
     },

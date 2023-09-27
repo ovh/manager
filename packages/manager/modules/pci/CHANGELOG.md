@@ -3,6 +3,137 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.2.0...@ovh-ux/manager-pci@6.3.0) (2023-09-27)
+
+
+### Features
+
+* india payment method management ([#9809](https://github.com/ovh/manager/issues/9809)) ([#9833](https://github.com/ovh/manager/issues/9833)) ([474db9f](https://github.com/ovh/manager/commit/474db9f32384704329b5edb5ab9d0b2e8a7f97b0))
+
+
+
+
+
+# [6.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.1.0...@ovh-ux/manager-pci@6.2.0) (2023-09-25)
+
+
+### Features
+
+* filter deprecated availabilites ([8965a78](https://github.com/ovh/manager/commit/8965a7826e836a87c17ce24b58ebbeb29a79a688))
+
+
+
+
+
+# [6.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.0.0...@ovh-ux/manager-pci@6.1.0) (2023-09-18)
+
+
+### Bug Fixes
+
+* **pci:** expects the credentials data to be an array ([#9984](https://github.com/ovh/manager/issues/9984)) ([fcbe46f](https://github.com/ovh/manager/commit/fcbe46fe4ba83f4f11eefeb8290013a6bfde7073))
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+* **pci.ai:** ai-dashboard 1.1  ([#9507](https://github.com/ovh/manager/issues/9507)) ([1d7146c](https://github.com/ovh/manager/commit/1d7146c341ace23d736adcffa5dbf1870483463d))
+
+
+
+
+
+# [6.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.138.0...@ovh-ux/manager-pci@6.0.0) (2023-09-07)
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
+# [5.138.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.137.1...@ovh-ux/manager-pci@5.138.0) (2023-09-05)
+
+
+### Bug Fixes
+
+* **public-cloud:** add hourly unit in kafka and fix trans ([#9714](https://github.com/ovh/manager/issues/9714)) ([cc25607](https://github.com/ovh/manager/commit/cc2560773f191475357154acc500c63f7fc4d82d))
+* **public-cloud:** disable name modification ([#9855](https://github.com/ovh/manager/issues/9855)) ([0dd12bb](https://github.com/ovh/manager/commit/0dd12bbc6ec86b168b1c927f4c7538332d941e78))
+* **public-cloud:** fix call api storage static ([#9621](https://github.com/ovh/manager/issues/9621)) ([bbd8fd3](https://github.com/ovh/manager/commit/bbd8fd36d04841e1bd0c9ae2bed4efe3000879b0))
+
+
+### Features
+
+* **public-cloud:** add equivalent api on fork page ([#9571](https://github.com/ovh/manager/issues/9571)) ([26e784d](https://github.com/ovh/manager/commit/26e784d04f891518a3a94ff3187e64e6f922b526))
+* **public-cloud:** allow storage decrease ([#9612](https://github.com/ovh/manager/issues/9612)) ([d818d4b](https://github.com/ovh/manager/commit/d818d4b68c2f70366e565b7a67a3515302652514))
+
+
+
+
+
+## [5.137.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.137.0...@ovh-ux/manager-pci@5.137.1) (2023-08-30)
+
+
+### Bug Fixes
+
+* **pci.kube:** fix alignement button refresh pool ([#9876](https://github.com/ovh/manager/issues/9876)) ([e433eed](https://github.com/ovh/manager/commit/e433eed3da77823a9c7fa23585325524190fab25))
+* **pci:** display latest state of task ([#9795](https://github.com/ovh/manager/issues/9795)) ([dee74a0](https://github.com/ovh/manager/commit/dee74a0e87165fe861463a692b0151373cd63647))
+
+
+
+
+
+# [5.137.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.136.2...@ovh-ux/manager-pci@5.137.0) (2023-08-21)
+
+
+### Bug Fixes
+
+* **pci:** map guide urls for gateway and additional ips ([#9851](https://github.com/ovh/manager/issues/9851)) ([df9cda6](https://github.com/ovh/manager/commit/df9cda6c43bd43979bd05260b5a13912d3cc450f))
+
+
+### Features
+
+* **pci.ai.apps:** add voxist pricing ([#9696](https://github.com/ovh/manager/issues/9696)) ([8b14dc1](https://github.com/ovh/manager/commit/8b14dc1fa841e4cdecea3d596b8a86995cf8318c))
+
+
+
+
+
+## [5.136.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.136.1...@ovh-ux/manager-pci@5.136.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **pci.ai:** cli guides section name ([#9588](https://github.com/ovh/manager/issues/9588)) ([8f2d9bc](https://github.com/ovh/manager/commit/8f2d9bc549642d46cc6d5d66871b9c38a33ac848))
+* **pci:** scroll top at object page init ([#9667](https://github.com/ovh/manager/issues/9667)) ([276137a](https://github.com/ovh/manager/commit/276137adec9fc2d95a708dacc93b0da9add1113a))
+
+
+
+
+
+## [5.136.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.136.0...@ovh-ux/manager-pci@5.136.1) (2023-08-08)
+
+
+### Bug Fixes
+
+* **pci:** display price per hour and qty per hour ([#9569](https://github.com/ovh/manager/issues/9569)) ([f7bb8d6](https://github.com/ovh/manager/commit/f7bb8d620cd8a3480553b8301d0576cabb717133))
+* **public-cloud:** display correct value for vcores number ([#9425](https://github.com/ovh/manager/issues/9425)) ([0a673ed](https://github.com/ovh/manager/commit/0a673ed674e9b7e290660a30ed14af6ceb665ea2))
+* **public-cloud:** fixing grammar error ([#9622](https://github.com/ovh/manager/issues/9622)) ([b6967cb](https://github.com/ovh/manager/commit/b6967cb997d9a0df2b5c05fd0b329a38ab9eb418))
+
+
+
+
+
 # [5.136.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.135.0...@ovh-ux/manager-pci@5.136.0) (2023-08-01)
 
 

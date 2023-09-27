@@ -865,5 +865,22 @@
   "emailpro_resilitation_cancel_action_confirmation_1": "Sie sind im Begriff, die Kündigung des Dienstes „{0}“ zu stornieren.",
   "emailpro_resilitation_cancel_action_confirmation_2": "Möchten Sie fortfahren?",
   "emailpro_resilitation_cancel_action_confirmation_3": "Der Dienst wird dann auf automatische Verlängerung umgestellt.",
-  "emailpro_GROUPS_partial_account": "Beim Laden ist ein Fehler aufgetreten: {0}"
+  "emailpro_GROUPS_partial_account": "Beim Laden ist ein Fehler aufgetreten: {0}",
+  "emailpro_tab_domain_diagnostic_spf_intro_ovh": "Ihre Domain {0} ist bei OVH gehostet, Sie können deren SPF-Eintrag wie folgt konfigurieren",
+  "emailpro_tab_domain_diagnostic_spf_label_champ": "SPF-Eintrag",
+  "emailpro_tab_domain_diagnostic_spf_config": "Subdomain: <strong>{{t0}}</strong><br /> Ziel: <strong>{{t1}}</strong>",
+  "emailpro_tab_domain_diagnostic_spf_no_ovh": "Wenn die Domain nicht über dieselbe Kundenkennung wie Exchange verwaltet oder nicht bei OVH gehostet wird, ist die automatische Konfiguration nicht möglich. Erstellen Sie in diesem Fall den MX-Eintrag für diese Domain manuell unter Verwendung der untenstehenden Informationen.",
+  "emailpro_tab_domain_diagnostic_spf_recap": "Es wird ein SPF-Eintrag zur DNS-Zone Ihrer Domain hinzugefügt.",
+  "emailpro_tab_domain_diagnostic_spf": "SPF",
+  "emailpro_tab_domain_diagnostic_spf_title": "SPF-Diagnose",
+  "emailpro_tab_domain_diagnostic_spf_toolbox_ok": "Automatische Konfiguration ausgeführt",
+  "emailpro_tab_TASKS_ADD_DOMAIN_DKIM": "DKIM-Eintrag hinzufügen",
+  "emailpro_tab_domain_diagnostic_dkim": "DKIM",
+  "emailpro_tab_domain_diagnostic_dkim_title_error": "DKIM-Diagnose",
+  "emailpro_tab_domain_diagnostic_dkim_title_activation": "DKIM aktivieren",
+  "emailpro_tab_domain_diagnostic_dkim_configuration_nok": "Ihre Konfiguration ist falsch, bitte folgen Sie den Anweisungen in der <a href=\"{{url}}\" target=\"_blank\">Anleitung</a>.",
+  "emailpro_tab_domain_diagnostic_dkim_activation_no_ovhcloud": "Da Ihre Domain nicht bei OVHcloud gehostet wird, können wir sie nicht automatisch konfigurieren. Sie können DKIM mithilfe dieser <a href=\"{{url}}\" target=\"_blank\">Anleitung</a> konfigurieren.",
+  "emailpro_tab_domain_diagnostic_dkim_activation_ovhcloud": "Wir richten DKIM für Sie ein. Die vollständige Aktivierung kann 24 Stunden dauern.",
+  "emailpro_tab_domain_diagnostic_dkim_activation_success": "Die DKIM-Konfiguration wird ausgeführt. Beachten Sie, dass es bis zu 24 Stunden dauern kann, bis die Änderung übernommen wird.",
+  "emailpro_tab_domain_diagnostic_dkim_activation_error": "Bei der DKIM-Konfiguration ist ein Fehler aufgetreten."
 }

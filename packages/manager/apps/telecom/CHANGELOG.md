@@ -3,6 +3,88 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.2...@ovh-ux/manager-telecom@15.0.3) (2023-09-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.1...@ovh-ux/manager-telecom@15.0.2) (2023-09-18)
+
+
+### Bug Fixes
+
+* **telecom:** fix api parameter value for function keys ([#9980](https://github.com/ovh/manager/issues/9980)) ([4418f66](https://github.com/ovh/manager/commit/4418f665551c88ea6f86d569e206ef27ded119b5))
+
+
+
+
+
+## [15.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.0...@ovh-ux/manager-telecom@15.0.1) (2023-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+# [15.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.2.4...@ovh-ux/manager-telecom@15.0.0) (2023-09-07)
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
+## [14.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.2.3...@ovh-ux/manager-telecom@14.2.4) (2023-09-05)
+
+
+### Bug Fixes
+
+* **telecom:** fix errors on total displayed on resumes pages ([#9891](https://github.com/ovh/manager/issues/9891)) ([7ceefee](https://github.com/ovh/manager/commit/7ceefeef57aad48ec59050707152579167d8f59d))
+
+
+
+
+
+## [14.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.2.2...@ovh-ux/manager-telecom@14.2.3) (2023-08-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [14.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.2.1...@ovh-ux/manager-telecom@14.2.2) (2023-08-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [14.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.2.0...@ovh-ux/manager-telecom@14.2.1) (2023-08-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
 # [14.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@14.1.2...@ovh-ux/manager-telecom@14.2.0) (2023-08-01)
 
 

@@ -3,6 +3,96 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.0.2...@ovh-ux/manager-hub-app@5.0.3) (2023-09-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [5.0.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.0.1...@ovh-ux/manager-hub-app@5.0.2) (2023-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [5.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.0.0...@ovh-ux/manager-hub-app@5.0.1) (2023-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+# [5.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@4.2.0...@ovh-ux/manager-hub-app@5.0.0) (2023-09-07)
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
+# [4.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@4.1.3...@ovh-ux/manager-hub-app@4.2.0) (2023-09-06)
+
+
+### Features
+
+* **hub:** adding iam invite banner ([#9892](https://github.com/ovh/manager/issues/9892)) ([a6b8fc3](https://github.com/ovh/manager/commit/a6b8fc3a2ff747e857d07d38b3b26eac1da1e1a5))
+
+
+
+
+
+## [4.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@4.1.2...@ovh-ux/manager-hub-app@4.1.3) (2023-09-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [4.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@4.1.1...@ovh-ux/manager-hub-app@4.1.2) (2023-08-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [4.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@4.1.0...@ovh-ux/manager-hub-app@4.1.1) (2023-08-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+# [4.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@4.0.4...@ovh-ux/manager-hub-app@4.1.0) (2023-08-10)
+
+
+### Features
+
+* acquisition storage ([#9209](https://github.com/ovh/manager/issues/9209)) ([e709587](https://github.com/ovh/manager/commit/e7095878ae5722620edfe81813d385923a0894a3))
+
+
+
+
+
 ## [4.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@4.0.3...@ovh-ux/manager-hub-app@4.0.4) (2023-08-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

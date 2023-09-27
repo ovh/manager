@@ -12,7 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
         squash: true,
       },
       pageSize: {
-        value: '10',
+        value: '25',
         squash: true,
       },
       sort: {
@@ -33,24 +33,19 @@ export default /* @ngInject */ ($stateProvider) => {
       orderUrl: /* @ngInject */ (User) => User.getUrlOf('dedicatedOrder'),
       orderEcoRangeUrl: /* @ngInject */ (User) =>
         User.getUrlOf('dedicatedEcoRangeOrder'),
-      isOrderAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
-        ovhFeatureFlipping
-          .checkFeatureAvailability(['dedicated-server:order'])
-          .then((orderAvailability) =>
-            orderAvailability.isFeatureAvailable('dedicated-server:order'),
-          )
-          .catch(() => false),
-      isEcoRangeOrderAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
-        ovhFeatureFlipping
-          .checkFeatureAvailability([
-            'dedicated-server:ecoRangeOrderSectionDedicated',
-          ])
-          .then((orderAvailability) =>
-            orderAvailability.isFeatureAvailable(
-              'dedicated-server:ecoRangeOrderSectionDedicated',
-            ),
-          )
-          .catch(() => false),
+      featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping.checkFeatureAvailability([
+          'dedicated-server:order',
+          'dedicated-server:ecoRangeOrderSectionDedicated',
+          'billing:autorenew2016Deployment',
+        ]),
+      isOrderAvailable: /* @ngInject */ (featureAvailability) =>
+        featureAvailability?.isFeatureAvailable('dedicated-server:order') ||
+        false,
+      isEcoRangeOrderAvailable: /* @ngInject */ (featureAvailability) =>
+        featureAvailability?.isFeatureAvailable(
+          'dedicated-server:ecoRangeOrderSectionDedicated',
+        ) || false,
       getServerDashboardLink: /* @ngInject */ ($state) => (server) =>
         $state.href('app.dedicated-server.server', { productId: server.name }),
       noFiltersServers: /* @ngInject */ (iceberg) =>
@@ -117,8 +112,6 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiDedicatedServer.v6().schema().$promise,
       serverStateEnum: /* @ngInject */ (schema) =>
         get(schema.models, 'dedicated.server.StateEnum').enum,
-      datacenterEnum: /* @ngInject */ (schema) =>
-        get(schema.models, 'dedicated.DatacenterEnum').enum,
 
       onListParamsChange: /* @ngInject */ ($state) => (params) =>
         $state.go('.', params, {
@@ -129,6 +122,13 @@ export default /* @ngInject */ ($stateProvider) => {
       sortOrder: /* @ngInject */ (dedicatedServers) =>
         get(dedicatedServers.headers, 'x-pagination-sort-order'),
       hideBreadcrumb: () => true,
+
+      isAutorenew2016DeploymentBannerAvailable: /* @ngInject */ (
+        featureAvailability,
+      ) =>
+        featureAvailability?.isFeatureAvailable(
+          'billing:autorenew2016Deployment',
+        ) || false,
     },
     redirectTo: (transition) =>
       transition

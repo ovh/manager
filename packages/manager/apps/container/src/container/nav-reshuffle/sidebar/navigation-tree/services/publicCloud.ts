@@ -141,6 +141,7 @@ const pciNode: Node = {
       translation: 'sidebar_pci_network',
       features: [
         'private-network',
+        'octavia-load-balancer',
         'failover-ip',
         'additional-ips',
         'public-gateways',
@@ -156,6 +157,17 @@ const pciNode: Node = {
             hash: '#/pci/projects/{projectId}/private-networks',
           },
           features: ['private-network'],
+          forceVisibility: true,
+        },
+        {
+          id: 'pci-octavia-load-balancer',
+          translation: 'sidebar_pci_octavia_load_balancer',
+          serviceType: 'CLOUD_PROJECT_OCTAVIA_LOAD_BALANCER',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/octavia-load-balancer',
+          },
+          features: ['octavia-load-balancer'],
           forceVisibility: true,
         },
         {
@@ -223,6 +235,19 @@ const pciNode: Node = {
             application: 'public-cloud',
             hash: '#/pci/projects/{projectId}/load-balancer',
           },
+          region: ['EU', 'CA'],
+          features: ['load-balancer'],
+          forceVisibility: true,
+        },
+        {
+          id: 'pci-kubernetes-load-balancer',
+          translation: 'sidebar_pci_load_balancer',
+          serviceType: 'CLOUD_PROJECT_LOADBALANCER',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/load-balancer',
+          },
+          region: ['US'],
           features: ['load-balancer'],
           forceVisibility: true,
         },
@@ -346,8 +371,8 @@ const pciNode: Node = {
           translation: 'sidebar_pci_horizon',
           count: false,
           url: {
-            CA: 'https://horizon.cloud.ovh.net/auth/login/',
-            EU: 'https://horizon.cloud.ovh.net/auth/login/',
+            CA: 'https://auth.cloud.ovh.net/v3/auth/OS-FEDERATION/identity_providers/ovhcloud-world/protocols/openid/websso?origin=https://horizon.cloud.ovh.net/auth/websso/',
+            EU: 'https://auth.cloud.ovh.net/v3/auth/OS-FEDERATION/identity_providers/ovhcloud-emea/protocols/openid/websso?origin=https://horizon.cloud.ovh.net/auth/websso/',
             US: 'https://horizon.cloud.ovh.us/auth/login/',
           },
           isExternal: true,

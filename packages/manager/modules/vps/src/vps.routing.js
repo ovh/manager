@@ -8,6 +8,12 @@ export default /* @ngInject */ ($stateProvider) => {
       vpsContainer: {
         component: 'managerListLayout',
       },
+      vpsHeader: {
+        component: 'ovhManagerAutoRenew2016DeploymentBanner',
+        bindings: {
+          show: 'isAutorenew2016DeploymentBannerAvailable',
+        },
+      },
     },
     params: ListLayoutHelper.stateParams,
     resolve: {
@@ -46,6 +52,16 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       }),
       hideBreadcrumb: () => true,
+      isAutorenew2016DeploymentBannerAvailable: /* @ngInject */ (
+        ovhFeatureFlipping,
+      ) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('billing:autorenew2016Deployment')
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(
+              'billing:autorenew2016Deployment',
+            ),
+          ),
     },
     redirectTo: (transition) => {
       return transition

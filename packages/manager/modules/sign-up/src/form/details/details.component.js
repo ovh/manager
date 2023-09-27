@@ -6,6 +6,7 @@ export default {
   controller,
   bindings: {
     onFieldError: '<',
+    trackField: '<',
   },
   template,
   require: {

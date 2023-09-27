@@ -159,5 +159,7 @@
   "sidebar_access_dashboard": "Zum Dashboard",
   "sidebar_account_iam": "Identity and Access (IAM)",
   "sidebar_carbon_footprint": "Mein CO2-Fußabdruck",
-  "sidebar_pci_data_integration": "Datenintegration"
+  "sidebar_pci_data_integration": "Datenintegration",
+  "sidebar_account_identity_documents": "Meine Ausweisdokumente",
+  "sidebar_pci_octavia_load_balancer": "Load Balancer"
 }

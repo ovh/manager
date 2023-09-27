@@ -55,6 +55,7 @@ export const GUIDES = [
 export const CTAS = {
   DEFAULT: 'https://ovhcloud.com/en/cdn/infrastructure/',
   ASIA: 'https://ovhcloud.com/asia/cdn/infrastructure/',
+  IN: 'https://www.ovhcloud.com/en-in/cdn/infrastructure/',
   DE: 'https://ovhcloud.com/de/cdn/infrastructure/',
   ES: 'https://ovhcloud.com/es-es/cdn/infrastructure/',
   IE: 'https://ovhcloud.com/en-ie/cdn/infrastructure/',

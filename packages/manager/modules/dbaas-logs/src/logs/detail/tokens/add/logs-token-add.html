@@ -23,8 +23,7 @@
         <oui-field
             data-label="{{ ::'logs_tokens_select_cluster' | translate }}"
         >
-            <oui-spinner data-ng-if="ctrl.clusters.loading"></oui-spinner>
-            <div class="oui-select" data-ng-if="!ctrl.clusters.loading">
+            <div class="oui-select">
                 <select
                     class="oui-select__input"
                     name="token_cluster"

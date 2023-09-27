@@ -29,6 +29,14 @@ export default /* @ngInject */ ($stateProvider) => {
           $transition$.params().restoreMode,
         backupId: /* @ngInject */ ($transition$) =>
           $transition$.params().backupId,
+        goToCommand: /* @ngInject */ ($state) => (data) => {
+          return $state.go(
+            'pci.projects.project.storages.databases.dashboard.backups.fork.command',
+            {
+              data,
+            },
+          );
+        },
         onDatabaseAdd: /* @ngInject */ (
           databases,
           getDatabaseObject,

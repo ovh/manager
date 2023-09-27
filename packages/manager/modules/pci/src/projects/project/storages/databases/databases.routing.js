@@ -4,6 +4,7 @@ import { NODES_PER_ROW, SHELL_NAMES } from './databases.constants';
 import { WARNING_DATE } from '../../../../components/project/warning-message/warning.constants';
 import Database from '../../../../components/project/storages/databases/database.class';
 import Node from '../../../../components/project/storages/databases/node.class';
+import Engine from '../../../../components/project/storages/databases/engine.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.databases', {
@@ -85,9 +86,37 @@ export default /* @ngInject */ ($stateProvider) => {
 
       getNodeObject: () => (node) => new Node(node),
 
-      engines: /* @ngInject */ (DatabaseService, projectId) =>
-        DatabaseService.getEngines(projectId),
-
+      mappedAvailabilites: /* @ngInject */ (DatabaseService, projectId) =>
+        DatabaseService.getMappedAvailabilites(projectId),
+      engines: /* @ngInject */ (mappedAvailabilites) => {
+        const { availabilities, capabilities } = mappedAvailabilites;
+        return capabilities.engines.map(
+          (engine) =>
+            new Engine(
+              engine,
+              availabilities,
+              capabilities.plans,
+              capabilities.flavors,
+            ),
+        );
+      },
+      availableEngines: /* @ngInject */ (mappedAvailabilites) => {
+        const { availabilities, capabilities } = mappedAvailabilites;
+        const filteredAvailabilities = availabilities.filter(
+          (a) => a.status !== 'DEPRECATED',
+        );
+        return capabilities.engines
+          .map(
+            (engine) =>
+              new Engine(
+                engine,
+                filteredAvailabilities,
+                capabilities.plans,
+                capabilities.flavors,
+              ),
+          )
+          .filter((engine) => engine.versions.length > 0);
+      },
       newDatabases: () => ({}),
 
       goToDatabases: ($state, CucCloudMessage, projectId) => (

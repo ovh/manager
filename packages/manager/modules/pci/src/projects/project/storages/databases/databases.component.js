@@ -16,6 +16,7 @@ export default {
     guideTrackingSectionTags: '<',
     trackClick: '<',
     engines: '<',
+    availableEngines: '<',
     databaseId: '<',
     databases: '<',
     onListParamChange: '<',

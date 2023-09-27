@@ -14,6 +14,7 @@ export default {
     homeLink: '<',
     usersTokensLink: '<',
     cliLink: '<',
+    registriesLink: '<',
   },
   controller,
   template,

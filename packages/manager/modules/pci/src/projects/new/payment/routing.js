@@ -3,13 +3,21 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 
 import { CREDIT_PROVISIONING } from './components/add/constants';
-import { PCI_PROJECT_STEPS } from '../constants';
+import {
+  PCI_PROJECT_STEPS,
+  PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID,
+} from '../constants';
 
 import component from './component';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.new.payment', {
-    url: '/payment?paymentStatus&paymentType',
+    url:
+      '/payment?paymentStatus&paymentType&redirectResult&paymentMethodId&transactionId',
+    params: {
+      skipCallback: null,
+      showError: null,
+    },
     views: {
       '': component.name,
 
@@ -69,8 +77,25 @@ export default /* @ngInject */ ($stateProvider) => {
       }
     },
     resolve: {
-      callback: /* @ngInject */ ($location) => $location.search(),
-
+      skipCallback: /* @ngInject */ ($transition$) =>
+        $transition$.params().skipCallback,
+      showError: /* @ngInject */ ($transition$) =>
+        $transition$.params().showError,
+      callback: /* @ngInject */ ($location, $transition$) =>
+        $transition$.params().skipCallback ? {} : $location.search(),
+      displayErrorMessageOnIntegrationSubmitError: /* @ngInject */ (
+        $translate,
+        skipCallback,
+        showError,
+        CucCloudMessage,
+      ) => {
+        if (skipCallback && showError) {
+          CucCloudMessage.error(
+            $translate.instant('pci_project_new_payment_create_error'),
+            'pci.projects.new.payment',
+          );
+        }
+      },
       isDisplayablePaypalChargeBanner: /* @ngInject */ (ovhFeatureFlipping) => {
         const paypalChargeId = 'public-cloud:paypal-charge';
         return ovhFeatureFlipping
@@ -112,6 +137,18 @@ export default /* @ngInject */ ($stateProvider) => {
         eligibility.setValidPaymentMethods(validPaymentMethods);
         return validPaymentMethods;
       },
+      isDisplayableRupayCreditCardInfoBanner: /* @ngInject */ (
+        ovhFeatureFlipping,
+      ) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(
+            PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID,
+          )
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable(
+              PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID,
+            ),
+          ),
 
       hasComponentRedirectCallback: /* @ngInject */ (
         callback,

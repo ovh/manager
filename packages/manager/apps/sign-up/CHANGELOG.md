@@ -3,6 +3,85 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.4](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.0.3...@ovh-ux/sign-up-app@3.0.4) (2023-09-27)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [3.0.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.0.2...@ovh-ux/sign-up-app@3.0.3) (2023-09-25)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [3.0.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.0.1...@ovh-ux/sign-up-app@3.0.2) (2023-09-18)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.0.0...@ovh-ux/sign-up-app@3.0.1) (2023-09-12)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+# [3.0.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.9.2...@ovh-ux/sign-up-app@3.0.0) (2023-09-07)
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
+## [2.9.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.9.1...@ovh-ux/sign-up-app@2.9.2) (2023-08-30)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [2.9.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.9.0...@ovh-ux/sign-up-app@2.9.1) (2023-08-17)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+# [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.8.6...@ovh-ux/sign-up-app@2.9.0) (2023-08-10)
+
+
+### Features
+
+* sms marketing consent ([#9797](https://github.com/ovh/manager/issues/9797)) ([5ca7626](https://github.com/ovh/manager/commit/5ca7626097dc31ef1b3565626ebc024cc816a150))
+
+
+
+
+
 ## [2.8.6](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@2.8.5...@ovh-ux/sign-up-app@2.8.6) (2023-07-24)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app

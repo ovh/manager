@@ -3,6 +3,226 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.4.0...@ovh-ux/manager-dedicated@19.5.0) (2023-09-27)
+
+
+### Bug Fixes
+
+* **dedicated:** update india order link for ldp ([#10009](https://github.com/ovh/manager/issues/10009)) ([2757431](https://github.com/ovh/manager/commit/275743124f50d075e2e2ada630530358b5f457a7))
+
+
+### Features
+
+* **dedicated:** use agora to order license ([#10002](https://github.com/ovh/manager/issues/10002)) ([8336364](https://github.com/ovh/manager/commit/8336364993227bf63b5dcc629eb01aa95613ac3d))
+
+
+
+
+
+# [19.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.3.0...@ovh-ux/manager-dedicated@19.4.0) (2023-09-25)
+
+
+### Bug Fixes
+
+* **dedicated-cloud:** fix description text in add vdc section ([#9956](https://github.com/ovh/manager/issues/9956)) ([d1a51cd](https://github.com/ovh/manager/commit/d1a51cda0867e37d04263731cab034b38e88153e))
+
+
+### Features
+
+* **signup:** update VAT number to ICE number for Morocco customers ([#9981](https://github.com/ovh/manager/issues/9981)) ([958872a](https://github.com/ovh/manager/commit/958872ab3dca7b006b768be2574f4012c7837f18))
+
+
+
+
+
+# [19.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.2.0...@ovh-ux/manager-dedicated@19.3.0) (2023-09-19)
+
+
+### Features
+
+* **dedicated:** update kvm order workflow ([6a6882b](https://github.com/ovh/manager/commit/6a6882bdc36706371f026c0cfb5040a1a7c974de))
+
+
+
+
+
+# [19.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.1.0...@ovh-ux/manager-dedicated@19.2.0) (2023-09-18)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** fix export IPs in CSV ([#9975](https://github.com/ovh/manager/issues/9975)) ([d1caaa0](https://github.com/ovh/manager/commit/d1caaa07e3f2733accf5545fc17ca96c33419d79))
+
+
+### Features
+
+* **dedicated:** remove service monitoring ([#9942](https://github.com/ovh/manager/issues/9942)) ([3c8eac8](https://github.com/ovh/manager/commit/3c8eac8234286edcac368c1c8409a795135851f5))
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
+# [19.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.0.1...@ovh-ux/manager-dedicated@19.1.0) (2023-09-12)
+
+
+### Bug Fixes
+
+* **dedicated:** update US guide links ([#9763](https://github.com/ovh/manager/issues/9763)) ([cb5920f](https://github.com/ovh/manager/commit/cb5920f9ba2a2420ec70628abe2d2e9bbc7ddaa9))
+* **kyc.india:** change content for legal notice ([#9894](https://github.com/ovh/manager/issues/9894)) ([8db779e](https://github.com/ovh/manager/commit/8db779e4c7f9d1e352816970cc2ccdc5f64b122a))
+
+
+### Features
+
+* **dedicated:** adding banner for autorenew 2016 deployment ([#9650](https://github.com/ovh/manager/issues/9650)) ([2feaba1](https://github.com/ovh/manager/commit/2feaba1957136ced5fed54cff7771a39f4289bec))
+
+
+
+
+
+## [19.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.0.0...@ovh-ux/manager-dedicated@19.0.1) (2023-09-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [19.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.11.0...@ovh-ux/manager-dedicated@19.0.0) (2023-09-07)
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
+# [18.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.10.2...@ovh-ux/manager-dedicated@18.11.0) (2023-09-05)
+
+
+### Bug Fixes
+
+* **dedicated:** remove RTM component ([#9889](https://github.com/ovh/manager/issues/9889)) ([eadef59](https://github.com/ovh/manager/commit/eadef59b2347ab65a0890626bf4ef7b31d9b4541))
+
+
+### Features
+
+* **dedicated:** dropdown partitioning scheme ovh customer ([#9837](https://github.com/ovh/manager/issues/9837)) ([51ac44a](https://github.com/ovh/manager/commit/51ac44af6fb01fdb071af4da151feda55967c66f))
+
+
+
+
+
+## [18.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.10.1...@ovh-ux/manager-dedicated@18.10.2) (2023-08-31)
+
+
+### Bug Fixes
+
+* **dedicated.nutanix:** us fixes ([c70eeb3](https://github.com/ovh/manager/commit/c70eeb36797b79d78482df1dcdf0d83c286e446e))
+
+
+
+
+
+## [18.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.10.0...@ovh-ux/manager-dedicated@18.10.1) (2023-08-30)
+
+
+### Bug Fixes
+
+* **dedicated.account:** remove call to marketing for us ([#9893](https://github.com/ovh/manager/issues/9893)) ([7b0e36e](https://github.com/ovh/manager/commit/7b0e36e995570a8e7b4221f3e795a6be04ed9707))
+* **dedicated.account:** remove call to marketing for us ([#9902](https://github.com/ovh/manager/issues/9902)) ([bf8433c](https://github.com/ovh/manager/commit/bf8433c38f6a43c60091871a44b10b907fa68fcc))
+* **dedicated.ip:** fetch max qty from catalog ([#9108](https://github.com/ovh/manager/issues/9108)) ([3ef40f0](https://github.com/ovh/manager/commit/3ef40f059c1d6a944f998f5a3abcf9fdf0c5d4bd))
+* **dedicated:** add translation key for language enum ([#9713](https://github.com/ovh/manager/issues/9713)) ([30ed44f](https://github.com/ovh/manager/commit/30ed44f8ce8277f5f2839ba88ab8d3984a2e9a0b))
+* **dedicated:** remove customer template changelog (description) ([#9853](https://github.com/ovh/manager/issues/9853)) ([7b107d8](https://github.com/ovh/manager/commit/7b107d8176cf5482b5e10846180cc7ed8dcb33dc))
+* **dedicated:** sort disk list on installation ([#9827](https://github.com/ovh/manager/issues/9827)) ([9bbdbbd](https://github.com/ovh/manager/commit/9bbdbbd15c948bf290b47c5fa7e19161ceea8019))
+* **dedicated:** update url order ([#9519](https://github.com/ovh/manager/issues/9519)) ([2463202](https://github.com/ovh/manager/commit/246320268febf3bc96ebaf42af85f5accec83ddb))
+* **user management:** required "group" field not well validated by form ([8cd35bc](https://github.com/ovh/manager/commit/8cd35bce5210e50c7e5dc32659fcacadf3704e50))
+
+
+
+
+
+# [18.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.9.0...@ovh-ux/manager-dedicated@18.10.0) (2023-08-21)
+
+
+### Features
+
+* **dedicated.pcc:** wip add link guide for sap hana ([#9807](https://github.com/ovh/manager/issues/9807)) ([6d0cdf5](https://github.com/ovh/manager/commit/6d0cdf56ff293f6c0e817ad577a23e48ffe81f97))
+
+
+
+
+
+# [18.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.8.0...@ovh-ux/manager-dedicated@18.9.0) (2023-08-17)
+
+
+### Bug Fixes
+
+* **dedicated:** fix broken link to cloud-init documentation ([#9555](https://github.com/ovh/manager/issues/9555)) ([c14332f](https://github.com/ovh/manager/commit/c14332ff99d7f4860a44b2980f45912c5fa4992d))
+* **i18n:** add missing translations ([#9821](https://github.com/ovh/manager/issues/9821)) ([47f860e](https://github.com/ovh/manager/commit/47f860ec7d3cfe46d86608906cea506424550808))
+
+
+### Features
+
+* **dedicated.account:** customer account changes ([#9728](https://github.com/ovh/manager/issues/9728)) ([bc9d697](https://github.com/ovh/manager/commit/bc9d6972a812057e19b004eea440960492671122))
+* **dedicated:** update kvm order ([#9748](https://github.com/ovh/manager/issues/9748)) ([3e593b8](https://github.com/ovh/manager/commit/3e593b81ee6850966a5c4ba09f568323f11bb884))
+
+
+### Reverts
+
+* Revert "feat(dedicated) : update kvm order (#9748)" (#9849) ([8a61e94](https://github.com/ovh/manager/commit/8a61e94a643abf59f1603601c0a68b88e114c991)), closes [#9748](https://github.com/ovh/manager/issues/9748) [#9849](https://github.com/ovh/manager/issues/9849)
+
+
+
+
+
+# [18.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.7.1...@ovh-ux/manager-dedicated@18.8.0) (2023-08-10)
+
+
+### Features
+
+* acquisition storage ([#9209](https://github.com/ovh/manager/issues/9209)) ([e709587](https://github.com/ovh/manager/commit/e7095878ae5722620edfe81813d385923a0894a3))
+* sms marketing consent ([#9797](https://github.com/ovh/manager/issues/9797)) ([5ca7626](https://github.com/ovh/manager/commit/5ca7626097dc31ef1b3565626ebc024cc816a150))
+
+
+
+
+
+## [18.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.7.0...@ovh-ux/manager-dedicated@18.7.1) (2023-08-08)
+
+
+### Bug Fixes
+
+* **dedicated.server:** order private bandwidth upgrade ([#9815](https://github.com/ovh/manager/issues/9815)) ([e943086](https://github.com/ovh/manager/commit/e94308602f029c21ecb339ea7148e7b804f181ea))
+
+
+
+
+
+# [18.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.6.2...@ovh-ux/manager-dedicated@18.7.0) (2023-08-08)
+
+
+### Features
+
+* **dedicated:** additional ip badge condition ([#9488](https://github.com/ovh/manager/issues/9488)) ([139e60f](https://github.com/ovh/manager/commit/139e60f6f26d0f1054fee1c1d92c869e785a1394))
+* **dedicated:** dedicated server list page improvements ([#9520](https://github.com/ovh/manager/issues/9520)) ([83c881f](https://github.com/ovh/manager/commit/83c881fe5d1f6182ea8c4d2386f800d50632dc83))
+* **dedicated:** enable delete ip option for vrack and pcc ([#9022](https://github.com/ovh/manager/issues/9022)) ([9c991c9](https://github.com/ovh/manager/commit/9c991c94b6d8cd03987a7c17d2baf3cbdd8bfff4))
+
+
+
+
+
 ## [18.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@18.6.1...@ovh-ux/manager-dedicated@18.6.2) (2023-08-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

@@ -102,7 +102,7 @@
                 <span
                     class="oui-badge"
                     data-ng-if="$row.executions && $row.executions.length"
-                    data-ng-init="execution = $row.executions[$row.executions.length - 1]"
+                    data-ng-init="execution = $row.executions[0]"
                     data-ng-class="{
                         'oui-badge_success': execution.state === 'SUCCESS',
                         'oui-badge_warning': execution.state === 'PAUSED',

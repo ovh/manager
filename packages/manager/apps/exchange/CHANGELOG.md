@@ -3,6 +3,90 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.8.3...@ovh-ux/manager-exchange-app@0.8.4) (2023-09-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.8.2...@ovh-ux/manager-exchange-app@0.8.3) (2023-09-18)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.8.1...@ovh-ux/manager-exchange-app@0.8.2) (2023-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.8.0...@ovh-ux/manager-exchange-app@0.8.1) (2023-09-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.7.27...@ovh-ux/manager-exchange-app@0.8.0) (2023-09-07)
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
+## [0.7.27](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.7.26...@ovh-ux/manager-exchange-app@0.7.27) (2023-09-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.7.26](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.7.25...@ovh-ux/manager-exchange-app@0.7.26) (2023-08-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.7.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.7.24...@ovh-ux/manager-exchange-app@0.7.25) (2023-08-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
+## [0.7.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.7.23...@ovh-ux/manager-exchange-app@0.7.24) (2023-08-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-exchange-app
+
+
+
+
+
 ## [0.7.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange-app@0.7.22...@ovh-ux/manager-exchange-app@0.7.23) (2023-08-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-exchange-app

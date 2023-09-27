@@ -7,12 +7,18 @@ import values from 'lodash/values';
 import { LANGUAGES } from '@ovh-ux/manager-config';
 
 import {
+  CONSENT_MARKETING_EMAIL_NAME,
+  FIELD_NAME_LIST,
   READY_ONLY_PARAMS,
   READY_ONLY_RULES_PARAMS,
-  CONSENT_MARKETING_EMAIL_NAME,
-  GST_SUBSIDIARIES,
   SECTIONS,
-  FIELD_NAME_LIST,
+  FIELD_WITHOUT_MARGIN_BOTTOM,
+  TRACKING_PREFIX,
+  FEATURES,
+  IN_SUBSIDIARY,
+  USER_TYPE_ENTERPRISE,
+  NEW_SUPPORT_TICKET_PARAMS,
+  SUBSIDIARIES_VAT_FIELD_OVERRIDE,
 } from './new-account-form-component.constants';
 
 export default class NewAccountFormController {
@@ -27,6 +33,9 @@ export default class NewAccountFormController {
     Alerter,
     $translate,
     $anchorScroll,
+    $scope,
+    ovhFeatureFlipping,
+    coreURLBuilder,
   ) {
     this.$q = $q;
     this.$http = $http;
@@ -46,25 +55,48 @@ export default class NewAccountFormController {
     this.originalManagerLanguage = coreConfig.getUserLocale();
     this.user = coreConfig.getUser();
     this.$anchorScroll = $anchorScroll;
+    this.$scope = $scope;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.SECTIONS = SECTIONS;
+    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
     this.loading = true;
+
+    // Indian subsidiary flag
+    this.isIndianSubsidiary = this.user.ovhSubsidiary === IN_SUBSIDIARY;
+    this.newSupportTicketUrl = this.coreURLBuilder.buildURL(
+      'dedicated',
+      '#/support/tickets/new',
+      {
+        categoryName: NEW_SUPPORT_TICKET_PARAMS.categoryName,
+        preFetchData: NEW_SUPPORT_TICKET_PARAMS.preFetchData,
+      },
+    );
+
     // backup of original model
     this.originalModel = angular.copy(this.model);
 
     this.consentDecision = null;
+    this.smsConsentDecision = null;
 
-    return this.$q
-      .all({
-        rules: this.fetchRules(this.model),
-      })
+    return this.ovhFeatureFlipping
+      .checkFeatureAvailability([FEATURES.emailConsent, FEATURES.smsConsent])
       .then((result) => {
-        this.rules = result.rules;
+        this.isEmailConsentAvailable = result.isFeatureAvailable(
+          FEATURES.emailConsent,
+        );
+        this.isSmsConsentAvailable = result.isFeatureAvailable(
+          FEATURES.smsConsent,
+        );
+      })
+      .then(() => this.fetchRules(this.model))
+      .then((rules) => {
+        this.rules = rules;
       })
       .catch((err) => {
-        this.initError = err.data.message || err.message || err;
+        this.initError = err.data?.message || err.message || err;
       })
       .finally(() => {
         this.loading = false;
@@ -109,14 +141,25 @@ export default class NewAccountFormController {
 
     params.action = this.action;
 
-    return this.userAccountServiceInfos
-      .fetchConsentDecision(CONSENT_MARKETING_EMAIL_NAME)
-      .then((fetchedConsentDecision) => {
-        this.consentDecision = fetchedConsentDecision.value || false;
+    return this.$q
+      .all({
+        email: this.userAccountServiceInfos.fetchConsentDecision(
+          CONSENT_MARKETING_EMAIL_NAME,
+        ),
+        sms: this.isSmsConsentAvailable
+          ? this.userAccountServiceInfos.fetchMarketingConsentDecision()
+          : this.$q.resolve(),
+      })
+      .then(({ email, sms }) => {
+        this.consentDecision = !!email.value;
+        this.smsConsentDecision =
+          this.isSmsConsentAvailable &&
+          !!Object.keys(sms.sms).some((key) => sms.sms[key]);
       })
       .then(() => this.userAccountServiceInfos.postRules(params))
       .then((result) => {
         let emailFieldIndex;
+        let phoneFieldIndex;
 
         // hide rules that are not editable
         const rules = result.map((rule, index) => {
@@ -130,7 +173,12 @@ export default class NewAccountFormController {
             editedRule.hasBottomMargin = this.coreConfig.isRegion('US');
           } else {
             editedRule.readonly = this.readonly.includes(editedRule.fieldName);
-            editedRule.hasBottomMargin = true;
+            editedRule.hasBottomMargin = !FIELD_WITHOUT_MARGIN_BOTTOM.includes(
+              editedRule.fieldName,
+            );
+            if (['phone'].includes(editedRule.fieldName)) {
+              phoneFieldIndex = index;
+            }
           }
 
           return editedRule;
@@ -144,17 +192,23 @@ export default class NewAccountFormController {
             initialValue: this.consentDecision,
             fieldName: FIELD_NAME_LIST.commercialCommunicationsApproval,
             fieldType: 'checkbox',
-            tracking: {
-              name: 'ovh_products_consent',
-              type: 'action',
-              chapter1: 'account',
-              chapter2: 'myaccount',
-              chapter3: 'consent',
-            },
             regularExpression: null,
             prefix: null,
             examples: null,
             hasBottomMargin: true,
+          });
+          rules.splice(phoneFieldIndex + 1, 0, {
+            in: null,
+            mandatory: false,
+            defaultValue: null,
+            initialValue: this.smsConsentDecision,
+            fieldName: FIELD_NAME_LIST.smsConsent,
+            fieldType: 'checkbox',
+            regularExpression: null,
+            prefix: null,
+            examples: null,
+            hasBottomMargin: true,
+            disabled: () => this.model.phoneType !== 'mobile',
           });
         }
         return rules;
@@ -203,11 +257,11 @@ export default class NewAccountFormController {
         const displayRules = rules
           .map((rule) => {
             let displayFieldName = rule.fieldName;
-            if (
-              rule.fieldName === FIELD_NAME_LIST.vat &&
-              GST_SUBSIDIARIES.includes(this.user.country)
-            ) {
-              displayFieldName = FIELD_NAME_LIST.gst;
+            if (rule.fieldName === FIELD_NAME_LIST.vat) {
+              displayFieldName =
+                SUBSIDIARIES_VAT_FIELD_OVERRIDE[
+                  this.user.country.toUpperCase()
+                ] || displayFieldName;
             }
             return {
               ...rule,
@@ -271,17 +325,31 @@ export default class NewAccountFormController {
     let promise = this.userAccountServiceInfos
       .updateUseraccountInfos(model)
       .then((result) => {
+        const tracking = {
+          name: `dedicated::account::user::infos_${
+            result !== 'null' ? 'error' : 'success'
+          }`,
+          type: 'navigation',
+        };
+        if (this.isEmailConsentAvailable) {
+          const emailConsent =
+            typeof this.model.commercialCommunicationsApproval !== 'undefined'
+              ? this.model.commercialCommunicationsApproval
+              : this.consentDecision;
+          tracking.accountEmailConsent = emailConsent ? 'opt-in' : 'opt-out';
+        }
+        if (this.isSmsConsentAvailable) {
+          const smsConsent =
+            typeof this.model.smsConsent !== 'undefined'
+              ? this.model.smsConsent
+              : this.smsConsentDecision;
+          tracking.accountSmsConsent = smsConsent ? 'opt-in' : 'opt-out';
+          tracking.accountPhoneType = this.model.phoneType;
+        }
+        this.atInternet.trackPage(tracking);
         if (result !== 'null') {
-          this.atInternet.trackPage({
-            name: 'dedicated::account::user::infos_error',
-            type: 'navigation',
-          });
           return this.$q.reject(result);
         }
-        this.atInternet.trackPage({
-          name: 'dedicated::account::user::infos_success',
-          type: 'navigation',
-        });
         return result;
       });
 
@@ -297,18 +365,32 @@ export default class NewAccountFormController {
         );
     }
 
+    const consentRequests = [];
     if (
+      this.isEmailConsentAvailable &&
       this.originalModel.commercialCommunicationsApproval !==
-        this.model.commercialCommunicationsApproval &&
-      !this.coreConfig.isRegion('US')
+        this.model.commercialCommunicationsApproval
     ) {
+      consentRequests.push(
+        this.userAccountServiceInfos.updateConsentDecision(
+          CONSENT_MARKETING_EMAIL_NAME,
+          this.model.commercialCommunicationsApproval || false,
+        ),
+      );
+    }
+    if (
+      this.isSmsConsentAvailable &&
+      this.originalModel.smsConsent !== this.model.smsConsent
+    ) {
+      consentRequests.push(
+        this.userAccountServiceInfos.updateSmsMarketingConsentDecision(
+          this.model.smsConsent || false,
+        ),
+      );
+    }
+    if (consentRequests.length > 0) {
       promise = promise
-        .then(() =>
-          this.userAccountServiceInfos.updateConsentDecision(
-            CONSENT_MARKETING_EMAIL_NAME,
-            this.model.commercialCommunicationsApproval || false,
-          ),
-        )
+        .then(() => this.$q.all(consentRequests))
         .then(
           () =>
             this.$timeout(
@@ -409,6 +491,38 @@ export default class NewAccountFormController {
       // update model
       this.model[rule.fieldName] = value;
 
+      if (rule.fieldName === FIELD_NAME_LIST.commercialCommunicationsApproval) {
+        this.atInternet.trackClick({
+          name: `${TRACKING_PREFIX}::product-email-consent::${
+            value ? 'enable' : 'disable'
+          }`,
+          type: 'action',
+          chapter1: 'account',
+          chapter2: 'myaccount',
+          chapter3: 'consent',
+        });
+      }
+
+      if (rule.fieldName === FIELD_NAME_LIST.phoneType) {
+        this.atInternet.trackClick({
+          name: `${TRACKING_PREFIX}::phone-type::select-${value}`,
+          type: 'action',
+        });
+        // if phone type is set to a value other than 'mobile' we reset the sms consent value
+        if (value !== 'mobile') {
+          this.$scope.$broadcast('account.smsConsent.reset');
+        }
+      }
+
+      if (rule.fieldName === FIELD_NAME_LIST.smsConsent) {
+        this.atInternet.trackClick({
+          name: `${TRACKING_PREFIX}::sms-consent::${
+            value ? 'enable' : 'disable'
+          }`,
+          type: 'action',
+        });
+      }
+
       return this.updateRules();
     }
     return null;
@@ -421,7 +535,8 @@ export default class NewAccountFormController {
 
   siretFieldIsAvailable() {
     const isSiretEnterprise =
-      this.model.legalform === 'corporation' && this.model.country === 'FR';
+      this.model.legalform === USER_TYPE_ENTERPRISE &&
+      this.model.country === 'FR';
     if (
       isSiretEnterprise &&
       this.fieldToFocus &&

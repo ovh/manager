@@ -36,8 +36,6 @@ const constants = {
         vpsCloud: 'http://www.ovh.cz/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/cz/cs/dedicated/pouziti-ipmi-dedikovane-servery/',
-        RealTimeMonitoring:
-          'https://docs.ovh.com/cz/cs/dedicated/instalace-rtm',
         changeOwner:
           'https://www.ovh.cz/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -74,8 +72,6 @@ const constants = {
         vpsCloud: 'http://www.ovh.de/virtual_server/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/de/dedicated/verwendung-ipmi-dedicated-server/',
-        RealTimeMonitoring:
-          'https://docs.ovh.com/de/dedicated/rtm-installieren/',
         changeOwner:
           'https://www.ovh.de/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -111,7 +107,6 @@ const constants = {
         vpsCloud: 'http://www.ovh.es/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/es/dedicated/utilizar-ipmi-servidor-dedicado/',
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         changeOwner:
           'https://www.ovh.es/cgi-bin/procedure/procedureChangeOwner.cgi',
         dedicated2016News: 'http://www.ovh.es/a1837.news',
@@ -150,7 +145,6 @@ const constants = {
         vpsCloud: 'http://www.ovh-hosting.fi/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/fi/dedicated/ipmi-konsolin-kaytto-dedikoidut-palvelimet/',
-        RealTimeMonitoring: 'https://docs.ovh.com/fi/dedicated/rtm-asennus/',
         changeOwner:
           'https://www.ovh.com/cgi-bin/fi/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -200,7 +194,6 @@ const constants = {
         vpsCloud: 'https://www.ovh.com/fr/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/fr/dedicated/utilisation-ipmi-serveurs-dedies/',
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         changeOwner:
           'https://www.ovh.com/cgi-bin/fr/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -253,7 +246,6 @@ const constants = {
         vpsCloud: 'http://www.ovh.co.uk/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         changeOwner:
           'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -292,7 +284,6 @@ const constants = {
         vpsCloud: 'http://www.ovh.it/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/it/dedicated/utilizzo-ipmi-server-dedicati/',
-        RealTimeMonitoring: 'https://docs.ovh.com/it/dedicated/installare-rtm/',
         changeOwner:
           'https://www.ovh.it/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -332,7 +323,6 @@ const constants = {
         vpsCloud: 'http://www.ovh.lt/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/lt/dedicated/use-ipmi-dedicated-servers/',
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         changeOwner:
           'https://www.ovh.com/cgi-bin/lt/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -409,7 +399,6 @@ const constants = {
         vpsCloud: 'https://www.ovh.pl/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/pl/dedicated/uzywanie-ipmi-serwery-dedykowane/',
-        RealTimeMonitoring: 'https://docs.ovh.com/pl/dedicated/instalacja-rtm/',
         changeOwner:
           'https://www.ovh.pl/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -449,7 +438,6 @@ const constants = {
         vpsCloud: 'http://www.ovh.pt/vps/vps-cloud.xml',
         dedicatedIpmi:
           'https://docs.ovh.com/pt/dedicated/usar-ipmi-servidores-dedicados/',
-        RealTimeMonitoring: 'https://docs.ovh.com/pt/dedicated/instalar-rtm/',
         changeOwner:
           'https://www.ovh.pt/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
@@ -668,6 +656,38 @@ const constants = {
             atInternetClickTag: 'migrate-data-between-servers',
             url:
               'https://help.ovhcloud.com/csm/es-es-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043701',
+          },
+          {
+            title: 'core_sd_top_guide_1_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-1',
+            url:
+              'https://docs.ovh.com/ca/en/dedicated/getting-started-dedicated-server/',
+          },
+          {
+            title: 'core_sd_top_guide_2_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-2',
+            url: 'https://docs.ovh.com/ca/en/dedicated/',
+          },
+          {
+            title: 'core_sd_top_guide_3_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-3',
+            url:
+              'https://docs.ovh.com/ca/en/public-cloud/configure-reverse-dns-instance/',
+          },
+          {
+            title: 'core_sd_top_guide_firewall_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-Firewall',
+            url: 'https://docs.ovh.com/ca/en/dedicated/firewall-network/',
+          },
+          {
+            title: 'core_sd_top_guide_5_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-5',
+            url: 'https://docs.ovh.com/ca/en/dedicated/network-virtual-mac/',
+          },
+          {
+            title: 'core_sd_top_guide_6_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-6',
+            url: 'https://docs.ovh.com/ca/en/dedicated/network-ipaliasing/',
           },
           {
             title: 'core_sd_top_guide_7_title',
@@ -1027,10 +1047,22 @@ const constants = {
             url:
               'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044079',
           },
+          {
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-8',
+            url:
+              'https://docs.ovh.com/ca/en/dedicated/find-disk-serial-number/',
+          },
         ],
       },
       pcc: {
         fr_FR: [
+          {
+            title: 'core_pcc_top_guide_12_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-12',
+            url:
+              'https://help.ovhcloud.com/csm/fr-documentation-hosted-private-cloud-sap-ovhcloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=2060f0edb41ca5141e11b36be2047d2a',
+          },
           {
             title: 'core_pcc_top_guide_11_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-11',
@@ -1084,6 +1116,12 @@ const constants = {
         ],
         de_DE: [
           {
+            title: 'core_pcc_top_guide_12_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-12',
+            url:
+              'https://help.ovhcloud.com/csm/de-documentation-hosted-private-cloud-sap-ovhcloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=2060f0edb41ca5141e11b36be2047d2a',
+          },
+          {
             title: 'core_pcc_top_guide_1_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-1',
             url:
@@ -1130,6 +1168,12 @@ const constants = {
           },
         ],
         en_GB: [
+          {
+            title: 'core_pcc_top_guide_12_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-12',
+            url:
+              'https://help.ovhcloud.com/csm/en-gb-documentation-hosted-private-cloud-sap-ovhcloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=2060f0edb41ca5141e11b36be2047d2a',
+          },
           {
             title: 'core_pcc_top_guide_11_title',
             atInternetClickTag: 'TopGuide-PrivateCloud-11',
@@ -1289,12 +1333,47 @@ const constants = {
           'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/asia/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/asia/',
+        cloudProjectOrder:
+          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+        iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
+      },
+      IN: {
+        express_order: 'https://ca.ovh.com/in/order/express/#/express/',
+        express_order_resume:
+          'https://ca.ovh.com/in/order/express/#/new/express/resume',
+        support: 'http://www.ovh.co.uk/support/',
+        support_contact: 'https://www.ovh.com/ca/en/support/',
+        guides: {
+          home: 'https://docs.ovh.com/ca/en/',
+          privateCloudHome: 'https://docs.ovh.com/ca/en/private-cloud/',
+          reinitPassword:
+            'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
+          ipv6Vps: 'https://www.ovh.com/us/g2365.vps-ipv6',
+        },
+        presentations: {
+          home: 'https://www.ovh.com/asia/private-cloud/',
+          nsx: 'https://www.ovh.com/asia/private-cloud/options/nsx.xml',
+          veeam: 'https://www.ovh.com/asia/private-cloud/options/veeam.xml',
+          vrops: 'https://www.ovh.com/asia/private-cloud/options/vrops.xml',
+        },
+        vpsCloud: 'https://www.ovh.com/ca/en/vps/vps-cloud.xml',
+        dedicatedIpmi:
+          'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
+        changeOwner:
+          'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
+        exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
+        faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
+        faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
+        dedicatedOrder: 'https://www.ovhcloud.com/en-in/bare-metal/prices/',
+        dedicatedEcoRangeOrder: 'https://eco.static.ovh.net/en-in/',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
@@ -1326,7 +1405,6 @@ const constants = {
           'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
@@ -1364,7 +1442,6 @@ const constants = {
           'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/ca/en/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/ca/en/vps/faq-help.xml',
@@ -1402,7 +1479,6 @@ const constants = {
           'https://www.ovh.com/cgi-bin/fr/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.com/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/ca/fr/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/fr/serveurs-dedies/faq.xml',
         faqVps: 'https://www.ovh.com/ca/fr/vps/aide-faq.xml',
@@ -1438,7 +1514,6 @@ const constants = {
           'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
         faq: 'https://www.ovh.es/servidores_dedicados/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
@@ -1474,7 +1549,6 @@ const constants = {
           'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
         faq: 'https://www.ovh.es/servidores_dedicados/faq.xml',
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
@@ -1510,7 +1584,6 @@ const constants = {
           'https://www.ovh.es/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.es/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
         exchangeOrder: 'https://www.ovh.com/us/es/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/us/es/servidores-dedicados/faq.xml',
         faqVps: 'https://www.ovh.com/us/es/vps/ayuda-faq.xml',
@@ -1633,6 +1706,169 @@ const constants = {
             atInternetClickTag: 'configure-new-window-server-installation',
             url:
               'https://help.ovhcloud.com/csm/fr-ca-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044083',
+          },
+        ],
+      },
+      pcc: {
+        fr_FR: [
+          {
+            title: 'core_pcc_top_guide_12_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-12',
+            url:
+              'https://help.ovhcloud.com/csm/fr-documentation-hosted-private-cloud-sap-ovhcloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=2060f0edb41ca5141e11b36be2047d2a',
+          },
+          {
+            title: 'core_pcc_top_guide_11_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-11',
+            url: 'https://docs.ovh.com/fr/nutanix/',
+          },
+          {
+            title: 'core_pcc_top_guide_1_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-1',
+            url:
+              'https://docs.ovh.com/fr/private-cloud/connexion-interface-vsphere/',
+          },
+          {
+            title: 'core_pcc_top_guide_2_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-2',
+            url:
+              'https://docs.ovh.com/fr/private-cloud/deploiement-d-une-machine-virtuelle/',
+          },
+          {
+            title: 'core_pcc_top_guide_3_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-3',
+            url:
+              'https://docs.ovh.com/fr/private-cloud/configuration-ip-machine-virtuelle/',
+          },
+          {
+            title: 'core_pcc_top_guide_4_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-4',
+            url:
+              'https://docs.ovh.com/fr/private-cloud/modification-des-ressources-d-une-machine-virtuelle/',
+          },
+          {
+            title: 'core_pcc_top_guide_5_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-5',
+            url: 'https://docs.ovh.com/fr/private-cloud/connexion-en-sftp/',
+          },
+          {
+            title: 'core_pcc_top_guide_6_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-6',
+            url: 'https://www.vmware.com/support/pubs/',
+          },
+          {
+            title: 'core_pcc_top_guide_7_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-7',
+            url:
+              'https://docs.ovh.com/fr/private-cloud/suppression-serveur-hote/#supprimer-le-serveur-hote',
+          },
+          {
+            title: 'core_pcc_top_guide_10_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-10',
+            url: 'http://pubs.vmware.com/NSX-62/index.jsp?lang=fr',
+          },
+        ],
+        de_DE: [
+          {
+            title: 'core_pcc_top_guide_12_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-12',
+            url:
+              'https://help.ovhcloud.com/csm/de-documentation-hosted-private-cloud-sap-ovhcloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=2060f0edb41ca5141e11b36be2047d2a',
+          },
+          {
+            title: 'core_pcc_top_guide_1_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-1',
+            url:
+              'https://docs.ovh.com/de/private-cloud/den_vsphere_client_installieren/',
+          },
+          {
+            title: 'core_pcc_top_guide_2_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-2',
+            url:
+              'https://docs.ovh.com/de/private-cloud/virtuelle-maschine-deployen/',
+          },
+          {
+            title: 'core_pcc_top_guide_3_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-3',
+            url:
+              ' https://docs.ovh.com/de/private-cloud/ip-server-konfiguration/',
+          },
+          {
+            title: 'core_pcc_top_guide_4_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-4',
+            url:
+              'https://docs.ovh.com/de/private-cloud/nderung_der_hardware-konfiguration_einer_virtuellen_maschine/',
+          },
+          {
+            title: 'core_pcc_top_guide_5_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-5',
+            url: 'https://docs.ovh.com/de/private-cloud/verbindung_per_sftp/',
+          },
+          {
+            title: 'core_pcc_top_guide_6_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-6',
+            url: 'https://www.vmware.com/support/pubs/',
+          },
+          {
+            title: 'core_pcc_top_guide_7_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-7',
+            url: 'https://docs.ovh.com/de/private-cloud/host-server-loeschen/',
+          },
+          {
+            title: 'core_pcc_top_guide_10_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-10',
+            url:
+              'https://docs.vmware.com/de/VMware-NSX-Data-Center-for-vSphere/index.html',
+          },
+        ],
+        en_GB: [
+          {
+            title: 'core_pcc_top_guide_12_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-12',
+            url:
+              'https://help.ovhcloud.com/csm/en-gb-documentation-hosted-private-cloud-sap-ovhcloud?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=2060f0edb41ca5141e11b36be2047d2a',
+          },
+          {
+            title: 'core_pcc_top_guide_11_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-11',
+            url: 'https://docs.ovh.com/us/en/nutanix/',
+          },
+          {
+            title: 'core_pcc_top_guide_3_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-3',
+            url:
+              'https://www.ovh.co.uk/g582.configure_an_ip_address_on_a_virtual_machine',
+          },
+          {
+            title: 'core_pcc_top_guide_4_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-4',
+            url:
+              'https://www.ovh.co.uk/g587.modify_the_hardware_configuration_of_your_virtual_machine',
+          },
+          {
+            title: 'core_pcc_top_guide_5_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-5',
+            url: 'https://www.ovh.co.uk/g589.sftp_connection',
+          },
+          {
+            title: 'core_pcc_top_guide_6_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-6',
+            url: 'https://www.vmware.com/support/pubs/',
+          },
+          {
+            title: 'core_pcc_top_guide_7_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-7',
+            url: 'https://pccdocs.ovh.net/display/VS/Remove+a+host',
+          },
+          {
+            title: 'core_pcc_top_guide_9_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-9',
+            url: 'https://pccdocs.ovh.net/display/ND/Getting+Started+with+NSX',
+          },
+          {
+            title: 'core_pcc_top_guide_10_title',
+            atInternetClickTag: 'TopGuide-PrivateCloud-10',
+            url: 'http://pubs.vmware.com/NSX-62/index.jsp?lang=en',
           },
         ],
       },
@@ -1760,8 +1996,6 @@ const constants = {
           'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
         domainOrderTrade:
           "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
-        RealTimeMonitoring:
-          'https://support.us.ovhcloud.com/hc/en-us/articles/115001821044-Learning-About-OVH-US-Monitoring',
         exchangeOrder: 'https://www.ovh.com/ca/en/emails/hosted-exchange/',
         faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
         faqVps: 'https://www.ovh.com/ca/en/vps/faq-help.xml',

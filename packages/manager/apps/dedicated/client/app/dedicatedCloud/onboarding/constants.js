@@ -33,6 +33,8 @@ export const GUIDES = [
       WS: 'https://docs.ovh.com/us/es/private-cloud/manager-ovh-private-cloud/',
       US:
         'https://docs.ovh.com/us/en/private-cloud/control-panel-ovh-private-cloud/',
+      IN:
+        'https://docs.ovh.com/asia/en/private-cloud/deploying-a-virtual-machine/',
     },
   },
   {
@@ -62,6 +64,7 @@ export const GUIDES = [
       WE: 'https://docs.ovh.com/us/en/private-cloud/tanzu-tkgm-presentation/',
       WS: 'https://docs.ovh.com/us/es/private-cloud/tanzu-tkgm-presentation/',
       US: 'https://docs.ovh.com/us/en/private-cloud/tanzu-tkgm-presentation/',
+      IN: 'https://docs.ovh.com/asia/en/private-cloud/tanzu-tkgm-presentation/',
     },
   },
   {
@@ -107,57 +110,34 @@ export const GUIDES = [
         'https://docs.ovh.com/us/es/private-cloud/configuracion-ip-maquina-virtual/',
       US:
         'https://docs.ovh.com/us/en/private-cloud/configure-ip-on-virtual-machine/',
+      IN:
+        'https://docs.ovh.com/asia/en/private-cloud/configure-ip-on-virtual-machine/',
     },
   },
 ];
 
 export const CTAS = {
-  DEFAULT:
-    'https://ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
-  ASIA:
-    'https://ovhcloud.com/asia/enterprise/products/hosted-private-cloud/prices/',
-  DE:
-    'https://ovhcloud.com/de/enterprise/products/hosted-private-cloud/prices/',
-  ES:
-    'https://ovhcloud.com/es-es/enterprise/products/hosted-private-cloud/prices/',
-  IE:
-    'https://ovhcloud.com/en-ie/enterprise/products/hosted-private-cloud/prices/',
-  IT:
-    'https://ovhcloud.com/it/enterprise/products/hosted-private-cloud/prices/',
-  NL:
-    'https://ovhcloud.com/nl/enterprise/products/hosted-private-cloud/prices/',
-  PL:
-    'https://ovhcloud.com/pl/enterprise/products/hosted-private-cloud/prices/',
-  PT:
-    'https://ovhcloud.com/pt/enterprise/products/hosted-private-cloud/prices/',
-  GB:
-    'https://ovhcloud.com/en-gb/enterprise/products/hosted-private-cloud/prices/',
-  CA:
-    'https://ovhcloud.com/en-ca/enterprise/products/hosted-private-cloud/prices/',
-  QC:
-    'https://ovhcloud.com/fr-ca/enterprise/products/hosted-private-cloud/prices/',
-  MA:
-    'https://ovhcloud.com/fr-ma/enterprise/products/hosted-private-cloud/prices/',
-  SN:
-    'https://ovhcloud.com/fr-sn/enterprise/products/hosted-private-cloud/prices/',
-  TN:
-    'https://ovhcloud.com/fr-tn/enterprise/products/hosted-private-cloud/prices/',
-  AU:
-    'https://ovhcloud.com/en-au/enterprise/products/hosted-private-cloud/prices/',
-  SG:
-    'https://ovhcloud.com/en-sg/enterprise/products/hosted-private-cloud/prices/',
-  FR:
-    'https://ovhcloud.com/fr/enterprise/products/hosted-private-cloud/prices/',
-  CZ:
-    'https://ovhcloud.com/cz-cs/enterprise/products/hosted-private-cloud/prices/',
-  FI:
-    'https://ovhcloud.com/fi/enterprise/products/hosted-private-cloud/prices/',
-  LT:
-    'https://ovhcloud.com/lt/enterprise/products/hosted-private-cloud/prices/',
-  WE:
-    'https://www.ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
-  WS:
-    'https://www.ovhcloud.com/es/enterprise/products/hosted-private-cloud/prices/',
+  DEFAULT: 'https://www.ovhcloud.com/en/hosted-private-cloud/vmware/prices/',
+  DE: 'https://www.ovhcloud.com/de/hosted-private-cloud/vmware/prices/',
+  ES: 'https://www.ovhcloud.com/es-es/hosted-private-cloud/vmware/prices/',
+  FR: 'https://www.ovhcloud.com/fr/hosted-private-cloud/vmware/prices/',
+  GB: 'https://www.ovhcloud.com/en-gb/hosted-private-cloud/vmware/prices/',
+  IE: 'https://www.ovhcloud.com/en-ie/hosted-private-cloud/vmware/prices/',
+  IT: 'https://www.ovhcloud.com/it/hosted-private-cloud/vmware/prices/',
+  MA: 'https://www.ovhcloud.com/fr-ma/hosted-private-cloud/vmware/prices/',
+  NL: 'https://www.ovhcloud.com/nl/hosted-private-cloud/vmware/prices/',
+  PL: 'https://www.ovhcloud.com/pl/hosted-private-cloud/vmware/prices/',
+  PT: 'https://www.ovhcloud.com/pt/hosted-private-cloud/vmware/prices/',
+  SN: 'https://www.ovhcloud.com/fr-sn/hosted-private-cloud/vmware/prices/',
+  TN: 'https://www.ovhcloud.com/fr-tn/hosted-private-cloud/vmware/prices/',
+  ASIA: 'https://www.ovhcloud.com/asia/hosted-private-cloud/vmware/prices/',
+  IN: 'https://www.ovhcloud.com/asia/hosted-private-cloud/vmware/prices/',
+  AU: 'https://www.ovhcloud.com/en-au/hosted-private-cloud/vmware/prices/',
+  CA: 'https://www.ovhcloud.com/en-ca/hosted-private-cloud/vmware/prices/',
+  QC: 'https://www.ovhcloud.com/fr-ca/hosted-private-cloud/vmware/prices/',
+  SG: 'https://www.ovhcloud.com/en-sg/hosted-private-cloud/vmware/prices/',
+  WE: 'https://www.ovhcloud.com/en/hosted-private-cloud/vmware/prices/',
+  WS: 'https://www.ovhcloud.com/es/hosted-private-cloud/vmware/prices/',
 };
 
 export const US_GUIDES = [
@@ -183,5 +163,4 @@ export const US_GUIDES = [
       'https://support.us.ovhcloud.com/hc/en-us/articles/1500007893502-How-to-Authorize-IP-Addresses-for-vCenter-Access',
   },
 ];
-export const US_CTA =
-  'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud/';
+export const US_CTA = 'https://us.ovhcloud.com/hosted-private-cloud/vmware/';

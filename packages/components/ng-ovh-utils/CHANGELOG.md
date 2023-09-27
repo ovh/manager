@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [14.0.21](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.20...@ovh-ux/ng-ovh-utils@14.0.21) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-utils
+
+
+
+
+
+## [14.0.20](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.19...@ovh-ux/ng-ovh-utils@14.0.20) (2023-08-17)
+
+
+### Bug Fixes
+
+* **pci:** scroll top at object page init ([#9667](https://github.com/ovh/manager/issues/9667)) ([276137a](https://github.com/ovh/manager/commit/276137adec9fc2d95a708dacc93b0da9add1113a))
+
+
+
+
+
 ## [14.0.19](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.0.18...@ovh-ux/ng-ovh-utils@14.0.19) (2023-01-19)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-utils

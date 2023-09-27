@@ -356,7 +356,7 @@ export default class ServerCtrl {
 
     this.checkCpanel();
 
-    return this.$q.all([this.load(), this.fetchRTMInfo()]);
+    return this.$q.all([this.load()]);
   }
 
   checkCpanel() {
@@ -682,16 +682,5 @@ export default class ServerCtrl {
       'dedicated',
       `#/nutanix/${clusterServiceName}/nodes/${nodeServiceName}`,
     );
-  }
-
-  fetchRTMInfo() {
-    return this.Server.getRtmVersion(this.$stateParams.productId).then(() => {
-      this.Alerter.set(
-        'alert-info',
-        this.$translate.instant('server_rtm_eol_info'),
-        null,
-        'rtm_eol_info',
-      );
-    });
   }
 }

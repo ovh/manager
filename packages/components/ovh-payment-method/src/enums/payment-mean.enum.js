@@ -11,6 +11,7 @@ export const PAYMENT_MEAN_TYPE_ENUM = {
   CREDIT_CARD: 'creditCard',
   DEFERRED_PAYMENT_ACCOUNT: 'deferredPaymentAccount',
   PAYPAL: 'paypal',
+  RUPAY: 'rupay',
 };
 
 export default {

@@ -27,10 +27,12 @@ import emailproAccountAddTemplate from '../account/add/emailpro-account-add.html
 import emailproAccountTemplate from '../account/emailpro-account.html';
 import emailproServiceConfigureTemplate from '../service/configure/emailpro-service-configure.html';
 import emailproDomainMxAutoconfigTemplate from '../domain/mx-autoconfig/emailpro-domain-mx-autoconfig.html';
+import emailproDomainDkimAutoconfigTemplate from '../domain/dkim-autoconfig/emailpro-domain-dkim-autoconfig.html';
 import emailproDomainTemplate from '../domain/emailpro-domain.html';
 import emailproDomainRemoveTemplate from '../domain/remove/emailpro-domain-remove.html';
 import emailproDomainUpdateTemplate from '../domain/update/emailpro-domain-update.html';
 import emailproDomainSrvAutoconfigTemplate from '../domain/srv-autoconfig/emailpro-domain-srv-autoconfig.html';
+import emailproDomainSpfAutoconfigTemplate from '../domain/spf-autoconfig/emailpro-domain-spf-autoconfig.html';
 import emailproDomainAddTemplate from '../domain/add/emailpro-domain-add.html';
 import emailproMailingListUpdateTemplate from '../mailing-list/update/emailpro-mailing-list-update.html';
 import emailproMailingListDeleteTemplate from '../mailing-list/delete/emailpro-mailing-list-delete.html';
@@ -158,6 +160,10 @@ export default /* @ngInject */ ($templateCache) => {
     emailproDomainMxAutoconfigTemplate,
   );
   $templateCache.put(
+    'emailpro/domain/dkim-autoconfig/emailpro-domain-dkim-autoconfig.html',
+    emailproDomainDkimAutoconfigTemplate,
+  );
+  $templateCache.put(
     'emailpro/domain/emailpro-domain.html',
     emailproDomainTemplate,
   );
@@ -172,6 +178,10 @@ export default /* @ngInject */ ($templateCache) => {
   $templateCache.put(
     'emailpro/domain/srv-autoconfig/emailpro-domain-srv-autoconfig.html',
     emailproDomainSrvAutoconfigTemplate,
+  );
+  $templateCache.put(
+    'emailpro/domain/spf-autoconfig/emailpro-domain-spf-autoconfig.html',
+    emailproDomainSpfAutoconfigTemplate,
   );
   $templateCache.put(
     'emailpro/domain/add/emailpro-domain-add.html',

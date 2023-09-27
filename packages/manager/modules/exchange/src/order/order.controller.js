@@ -58,7 +58,7 @@ export default class ExchangeOrderCtrl {
   getExchangeOrderUrl() {
     if (this.alreadyHasAnExchange && this.firstExchangeAccount != null) {
       return this.coreURLBuilder.buildURL(
-        'exchange',
+        'web',
         '#/configuration/:type/:organization/:productId',
         {
           type: this.firstExchangeAccount.type.toLowerCase(),

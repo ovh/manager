@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.37.0...@ovh-ux/manager-vps@2.38.0) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
+# [2.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.36.5...@ovh-ux/manager-vps@2.37.0) (2023-09-12)
+
+
+### Features
+
+* **dedicated:** adding banner for autorenew 2016 deployment ([#9650](https://github.com/ovh/manager/issues/9650)) ([2feaba1](https://github.com/ovh/manager/commit/2feaba1957136ced5fed54cff7771a39f4289bec))
+
+
+
+
+
+## [2.36.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.36.4...@ovh-ux/manager-vps@2.36.5) (2023-08-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 19] ([#9636](https://github.com/ovh/manager/issues/9636)) ([3811b71](https://github.com/ovh/manager/commit/3811b71a2b01270e97b45623d01092614c01b192))
+
+
+
+
+
+## [2.36.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.36.3...@ovh-ux/manager-vps@2.36.4) (2023-08-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([#9801](https://github.com/ovh/manager/issues/9801)) ([aac3838](https://github.com/ovh/manager/commit/aac3838ee15f2f8c1ac0b2530d0f0e9e762687ee))
+
+
+
+
+
 ## [2.36.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.36.2...@ovh-ux/manager-vps@2.36.3) (2023-08-01)
 
 

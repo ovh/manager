@@ -4,7 +4,7 @@ import './fork.scss';
 
 const component = {
   bindings: {
-    engines: '<',
+    availableEngines: '<',
     backupList: '<',
     restoreMode: '<',
     backupId: '<',
@@ -16,6 +16,7 @@ const component = {
     addPrivateNetworksLink: '<',
     user: '<',
     onDatabaseAdd: '<',
+    goToCommand: '<',
   },
   controller,
   template,

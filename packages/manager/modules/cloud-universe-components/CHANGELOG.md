@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.8.0...@ovh-ux/ng-ovh-cloud-universe-components@2.8.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* **dedicated:** update india order link for ldp ([#10009](https://github.com/ovh/manager/issues/10009)) ([2757431](https://github.com/ovh/manager/commit/275743124f50d075e2e2ada630530358b5f457a7))
+
+
+
+
+
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.7.5...@ovh-ux/ng-ovh-cloud-universe-components@2.8.0) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
+## [2.7.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.7.4...@ovh-ux/ng-ovh-cloud-universe-components@2.7.5) (2023-09-12)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+## [2.7.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.7.3...@ovh-ux/ng-ovh-cloud-universe-components@2.7.4) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
+## [2.7.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.7.2...@ovh-ux/ng-ovh-cloud-universe-components@2.7.3) (2023-08-30)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
 ## [2.7.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.7.1...@ovh-ux/ng-ovh-cloud-universe-components@2.7.2) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components

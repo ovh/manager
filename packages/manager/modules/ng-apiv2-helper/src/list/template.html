@@ -1,0 +1,17 @@
+<div data-ovh-alert="cursor-datagrid-alert-id" class="mt-3"></div>
+<oui-header
+    data-ng-if="$ctrl.header"
+    class="mb-2"
+    data-heading="{{:: $ctrl.header }}"
+></oui-header>
+<div data-ng-bind-html="$ctrl.description"></div>
+<oui-datagrid
+    id="{{ $ctrl.datagridId }}"
+    data-rows-loader="$ctrl.getItems($config)"
+    data-page="{{ $ctrl.cursors.index || 1 }}"
+    data-page-size="{{ $ctrl.PAGE_SIZE }}"
+    data-pagination-mode="arrows"
+    customizable="$ctrl.customizableColumns"
+    columns="$ctrl.columns"
+>
+</oui-datagrid>

@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-module@1.2.3...@ovh-ux/sao-ovh-manager-module@1.3.0) (2023-08-17)
+
+
+### Features
+
+* fix old generator and add apiv2 generator ([#9844](https://github.com/ovh/manager/issues/9844)) ([60011de](https://github.com/ovh/manager/commit/60011de7ffff69d6ba2f228bd244f9d32b308908))
+
+
+
+
+
 ## [1.2.3](https://github.com/ovh/manager/compare/@ovh-ux/sao-ovh-manager-module@1.2.2...@ovh-ux/sao-ovh-manager-module@1.2.3) (2021-10-27)
 
 
@@ -95,6 +111,3 @@
 ### BREAKING CHANGES
 
 * init module @ovh-ux/sao-ovh-manager-module
-
-
-

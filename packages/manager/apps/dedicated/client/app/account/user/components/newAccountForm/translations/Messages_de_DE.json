@@ -759,5 +759,11 @@
   "signup_enum_IN_area_IN-UP": "Uttar Pradesh",
   "signup_enum_IN_area_IN-UT": "Uttarakhand",
   "signup_enum_IN_area_IN-WB": "Westbengalen",
-  "signup_field_add_companyNationalIdentificationNumber_siret_success": "Ihr Update wurde registriert."
+  "signup_field_add_companyNationalIdentificationNumber_siret_success": "Ihr Update wurde registriert.",
+  "signup_enum_phoneType_landline": "Festnetz",
+  "signup_enum_phoneType_mobile": "Mobil",
+  "signup_field_smsConsent": "Ich bin damit einverstanden, SMS zu Neuheiten und kommerziellen Angeboten von OVHcloud zu erhalten",
+  "signup_information_banner_for_indian_subsidiary": "Wenden Sie sich an unseren Kundensupport, um Ihre Kontoinformationen zu ändern. ",
+  "signup_information_banner_link_for_indian_subsidiary": "Klicken Sie einfach hier.",
+  "signup_field_iceNumber": "ICE-Nummer"
 }

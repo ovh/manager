@@ -37,7 +37,7 @@
             <h2 id="engine" data-translate="pci_database_add_step1_title"></h2>
             <p data-translate="pci_database_add_step1_description"></p>
             <database-engines-list
-                data-engines="$ctrl.engines"
+                data-engines="$ctrl.availableEngines"
                 data-selected-engine="$ctrl.model.engine"
                 data-on-change="$ctrl.onEngineChanged(selectedEngine)"
             ></database-engines-list>
@@ -386,8 +386,8 @@
                                     data-ng-pluralize
                                     data-count="$ctrl.model.flavor.core"
                                     data-when="{
-                                        '1': ('pci_database_add_spec_flavor_CPU_one' | translate: { cpu: $ctrl.model.flavor.core }),
-                                        'other': ('pci_database_add_spec_flavor_CPU_many' | translate: { cpu: $ctrl.model.flavor.core }),
+                                        '1': ('pci_database_add_spec_flavor_CPU_one' | translate: { cpu: {} }),
+                                        'other': ('pci_database_add_spec_flavor_CPU_many' | translate: { cpu: {} }),
                                     }"
                                 ></span>
                             </div>

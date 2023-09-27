@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.13.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.6...@ovh-ux/manager-sms@8.13.7) (2023-09-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms
+
+
+
+
+
+## [8.13.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.5...@ovh-ux/manager-sms@8.13.6) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-sms
+
+
+
+
+
+## [8.13.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.4...@ovh-ux/manager-sms@8.13.5) (2023-08-30)
+
+
+### Bug Fixes
+
+* **telecom.sms:** fix issue with index if data grid is sorted ([#9879](https://github.com/ovh/manager/issues/9879)) ([a135843](https://github.com/ovh/manager/commit/a135843b0081eb840eee11fac7e5139a5a209f25))
+
+
+
+
+
+## [8.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.3...@ovh-ux/manager-sms@8.13.4) (2023-08-17)
+
+
+### Bug Fixes
+
+* **telecom.sms:** use a new systemid format for smpp ([#9709](https://github.com/ovh/manager/issues/9709)) ([263624c](https://github.com/ovh/manager/commit/263624cce8eb15560a575b2c377363f3170de5fc))
+
+
+
+
+
 ## [8.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.2...@ovh-ux/manager-sms@8.13.3) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-sms

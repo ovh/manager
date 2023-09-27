@@ -8,31 +8,29 @@ export const ORDER_URLS: Record<
     },
     dedicated_cloud: {
       DE:
-        'https://www.ovhcloud.com/de/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/de/hosted-private-cloud/vmware/prices/',
       ES:
-        'https://www.ovhcloud.com/es-es/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/es-es/hosted-private-cloud/vmware/prices/',
       FR:
-        'https://www.ovhcloud.com/fr/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/fr/hosted-private-cloud/vmware/prices/',
       GB:
-        'https://www.ovhcloud.com/en-gb/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/en-gb/hosted-private-cloud/vmware/prices/',
       IE:
-        'https://www.ovhcloud.com/en-ie/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/en-ie/hosted-private-cloud/vmware/prices/',
       IT:
-        'https://www.ovhcloud.com/it/enterprise/products/hosted-private-cloud/prices/',
-      LT:
-        'https://www.ovhcloud.com/en-ie/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/it/hosted-private-cloud/vmware/prices/',
       MA:
-        'https://www.ovh.com/ma/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/fr-ma/hosted-private-cloud/vmware/prices/',
       NL:
-        'https://www.ovhcloud.com/nl/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/nl/hosted-private-cloud/vmware/prices/',
       PL:
-        'https://www.ovhcloud.com/pl/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/pl/hosted-private-cloud/vmware/prices/',
       PT:
-        'https://www.ovhcloud.com/pt/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/pt/hosted-private-cloud/vmware/prices/',
       SN:
-        'https://www.ovhcloud.com/fr-sn/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/fr-sn/hosted-private-cloud/vmware/prices/',
       TN:
-        'https://www.ovhcloud.com/fr-tn/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/fr-tn/hosted-private-cloud/vmware/prices/',
     },
     managed_bare_metal: {
       CZ: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/',
@@ -50,6 +48,20 @@ export const ORDER_URLS: Record<
       PT: 'https://www.ovhcloud.com/pt/managed-bare-metal/',
       SN: 'https://www.ovhcloud.com/fr-sn/managed-bare-metal/',
       TN: 'https://www.ovhcloud.com/fr-tn/managed-bare-metal/',
+    },
+    sap_hana: {
+      FR: 'https://www.ovhcloud.com/fr/hosted-private-cloud/sap-hana/',
+      TN: 'https://www.ovhcloud.com/fr-tn/hosted-private-cloud/sap-hana/',
+      IT: 'https://www.ovhcloud.com/it/hosted-private-cloud/sap-hana/',
+      PL: 'https://www.ovhcloud.com/pl/hosted-private-cloud/sap-hana/',
+      NL: 'https://www.ovhcloud.com/nl/hosted-private-cloud/sap-hana/',
+      PT: 'https://www.ovhcloud.com/pt/hosted-private-cloud/sap-hana/',
+      SN: 'https://www.ovhcloud.com/fr-sn/hosted-private-cloud/sap-hana/',
+      MA: 'https://www.ovhcloud.com/fr-ma/hosted-private-cloud/sap-hana/',
+      ES: 'https://www.ovhcloud.com/es-es/hosted-private-cloud/sap-hana/',
+      IE: 'https://www.ovhcloud.com/en-ie/hosted-private-cloud/sap-hana/',
+      GB: 'https://www.ovhcloud.com/en-gb/hosted-private-cloud/sap-hana/',
+      DE: 'https://www.ovhcloud.com/de/hosted-private-cloud/sap-hana/',
     },
     vrack: {
       CZ:
@@ -365,9 +377,11 @@ export const ORDER_URLS: Record<
       SG: 'https://ca.ovh.com/manager/dedicated/',
       WE: 'https://ca.ovh.com/manager/dedicated/',
       WS: 'https://ca.ovh.com/manager/dedicated/',
+      IN: 'https://ca.ovh.com/manager/dedicated/',
     },
     orderDomain: {
       ASIA: 'https://ca.ovh.com/asia/order/webcloud',
+      IN: 'https://ca.ovh.com/in/order/webcloud',
       AU: 'https://ca.ovh.com/au/order/webcloud',
       CA: 'https://ca.ovh.com/en/order/webcloud',
       QC: 'https://ca.ovh.com/fr/order/webcloud',
@@ -377,6 +391,7 @@ export const ORDER_URLS: Record<
     },
     orderHosting: {
       ASIA: 'https://www.ovh.com/asia/web-hosting/',
+      IN: 'https://www.ovh.com/en-in/web-hosting/',
       AU: 'https://www.ovh.com.au/web-hosting/',
       CA: 'https://www.ovh.com/ca/en/web-hosting/',
       QC: 'https://www.ovh.com/ca/fr/hebergement-web/',
@@ -386,28 +401,40 @@ export const ORDER_URLS: Record<
     },
     dedicated_cloud: {
       ASIA:
-        'https://www.ovhcloud.com/en-sg/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/asia/hosted-private-cloud/vmware/prices/',
+      IN: 'https://www.ovhcloud.com/en-in/hosted-private-cloud/vmware/prices/',
       AU:
-        'https://www.ovhcloud.com/en-au/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/en-au/hosted-private-cloud/vmware/prices/',
       CA:
-        'https://www.ovhcloud.com/en-ca/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/en-ca/hosted-private-cloud/vmware/prices/',
       QC:
-        'https://www.ovhcloud.com/fr-ca/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/fr-ca/hosted-private-cloud/vmware/prices/',
       SG:
-        'https://www.ovhcloud.com/en-sg/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/en-sg/hosted-private-cloud/vmware/prices/',
       WE:
-        'https://www.ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/en/hosted-private-cloud/vmware/prices/',
       WS:
-        'https://www.ovhcloud.com/es/enterprise/products/hosted-private-cloud/prices/',
+        'https://www.ovhcloud.com/es/hosted-private-cloud/vmware/prices/',
     },
     managed_bare_metal: {
       ASIA: 'https://www.ovhcloud.com/asia/managed-bare-metal/',
+      IN: 'https://www.ovhcloud.com/en-in/managed-bare-metal/',
       AU: 'https://www.ovhcloud.com/en-au/managed-bare-metal/',
       CA: 'https://www.ovhcloud.com/en-ca/managed-bare-metal/',
       QC: 'https://www.ovhcloud.com/fr-ca/managed-bare-metal/',
       SG: 'https://www.ovhcloud.com/en-sg/managed-bare-metal/',
       WE: 'https://www.ovhcloud.com/en/managed-bare-metal/',
       WS: 'https://www.ovhcloud.com/es/managed-bare-metal/',
+    },
+    sap_hana: {
+      QC: 'https://www.ovhcloud.com/fr-ca/hosted-private-cloud/sap-hana/',
+      WS: 'https://www.ovhcloud.com/es/hosted-private-cloud/sap-hana/',
+      WE: 'https://www.ovhcloud.com/en/hosted-private-cloud/sap-hana/',
+      SG: 'https://www.ovhcloud.com/en-sg/hosted-private-cloud/sap-hana/',
+      CA: 'https://www.ovhcloud.com/en-ca/hosted-private-cloud/sap-hana/',
+      AU: 'https://www.ovhcloud.com/en-au/hosted-private-cloud/sap-hana/',
+      ASIA: 'https://www.ovhcloud.com/asia/hosted-private-cloud/sap-hana/',
+      IN: 'https://www.ovhcloud.com/asia/hosted-private-cloud/sap-hana/',
     },
     cloud_disk_array: {},
     dbaas_logs: {
@@ -417,10 +444,12 @@ export const ORDER_URLS: Record<
     veeam_enterprise: {
       CA: 'https://www.ovh.com/ca/en/storage-solutions/veeam-enterprise.xml',
       QC: 'https://www.ovh.com/ca/fr/storage-solutions/veeam-enterprise.xml',
+      IN: 'https://www.ovh.com/asia/storage-solutions/veeam-enterprise.xml'
     },
     vrack: {
       ASIA:
         "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      IN: 'https://ca.ovh.com/in/order/express/#/new/express/resume?products=~(~(planCode~vrack~quantity~1~productId~vrack))',
       AU:
         "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
       CA:
@@ -445,6 +474,7 @@ export const ORDER_URLS: Record<
     },
     dedicatedOrder: {
       ASIA: 'https://www.ovhcloud.com/asia/bare-metal/prices/',
+      IN: 'https://www.ovhcloud.com/en-in/bare-metal/prices/',
       AU: 'https://www.ovhcloud.com/en-au/bare-metal/prices/',
       CA: 'https://www.ovhcloud.com/en-ca/bare-metal/prices/',
       QC: 'https://www.ovhcloud.com/fr-ca/bare-metal/prices/',
@@ -454,6 +484,7 @@ export const ORDER_URLS: Record<
     },
     dedicatedEcoRangeOrder: {
       ASIA: 'https://eco.ovhcloud.com/asia/',
+      IN: 'https://eco.static.ovh.net/en-in/',
       AU: 'https://eco.ovhcloud.com/en-au/',
       CA: 'https://eco.ovhcloud.com/en-ca/',
       QC: 'https://eco.ovhcloud.com/fr-ca/',
@@ -463,6 +494,7 @@ export const ORDER_URLS: Record<
     },
     cloudProjectOrder: {
       ASIA: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+      IN: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
       AU: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
       CA: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
       QC: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
@@ -478,6 +510,7 @@ export const ORDER_URLS: Record<
       SG: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
       WE: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
       WS: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
+      IN: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
     },
     publicCloudKubernetes: {
       CA:
@@ -485,6 +518,7 @@ export const ORDER_URLS: Record<
     },
     express_review_base: {
       ASIA: 'https://ca.ovh.com/asia/order/express/#/express/review',
+      IN: 'https://ca.ovh.com/in/order/express/#/express/review',
       AU: 'https://ca.ovh.com/au/order/express/#/express/review',
       CA: 'https://ca.ovh.com/en/order/express/#/express/review',
       QC: 'https://ca.ovh.com/fr/order/express/#/express/review',
@@ -494,6 +528,7 @@ export const ORDER_URLS: Record<
     },
     vps: {
       ASIA: 'https://www.ovh.com/asia/vps/',
+      IN: 'https://www.ovhcloud.com/en-in/vps/',
       AU: 'https://www.ovh.com.au/vps/',
       CA: 'https://www.ovh.com/ca/en/vps/',
       QC: 'https://www.ovh.com/ca/fr/vps/',
@@ -503,6 +538,7 @@ export const ORDER_URLS: Record<
     },
     dedicatedNutanixOrder: {
       ASIA: 'https://www.ovhcloud.com/asia/hosted-private-cloud/nutanix/',
+      IN: 'https://www.ovhcloud.com/en-in/hosted-private-cloud/nutanix/',
       AU: 'https://www.ovhcloud.com/en-au/hosted-private-cloud/nutanix/',
       CA: 'https://www.ovhcloud.com/en-ca/hosted-private-cloud/nutanix/',
       QC: 'https://www.ovhcloud.com/fr-ca/hosted-private-cloud/nutanix/',
@@ -513,6 +549,7 @@ export const ORDER_URLS: Record<
     ovh_cloud_connect: {
       CA: 'https://www.ovhcloud.com/en-ca/network/ovhcloud-connect/',
       QC: 'https://www.ovhcloud.com/fr-ca/network/ovhcloud-connect/',
+      IN: 'https://www.ovhcloud.com/asia/network/ovhcloud-connect/',
     },
   },
   US: {
@@ -520,10 +557,13 @@ export const ORDER_URLS: Record<
       US: 'https://us.ovhcloud.com/bare-metal/',
     },
     dedicated_cloud: {
-      US: 'https://us.ovhcloud.com/enterprise/products/hosted-private-cloud',
+      US: 'https://us.ovhcloud.com/hosted-private-cloud/vmware/',
     },
     managed_bare_metal: {
       US: 'https://us.ovhcloud.com/managed-bare-metal/',
+    },
+    sap_hana: {
+      US: 'https://us.ovhcloud.com/hosted-private-cloud/sap-hana/',
     },
     cloud_disk_array: {
       US: 'https://us.ovhcloud.com/cloud/cloud-disk-array/',

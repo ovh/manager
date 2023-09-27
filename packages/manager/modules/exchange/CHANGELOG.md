@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.0.1...@ovh-ux/manager-exchange@4.1.0) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
+## [4.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.0.0...@ovh-ux/manager-exchange@4.0.1) (2023-09-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2488] ([#9945](https://github.com/ovh/manager/issues/9945)) ([fc9be7e](https://github.com/ovh/manager/commit/fc9be7e60c02b78511de4b6bbf3d96f62d5376da))
+
+
+
+
+
+# [4.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.10.0...@ovh-ux/manager-exchange@4.0.0) (2023-09-07)
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
+# [3.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.9.0...@ovh-ux/manager-exchange@3.10.0) (2023-09-05)
+
+
+### Features
+
+* **web:** add dkim feature ([#9686](https://github.com/ovh/manager/issues/9686)) ([77a1b05](https://github.com/ovh/manager/commit/77a1b05a9fc019e6d9fc745d0169ccbc28994c78))
+
+
+
+
+
 # [3.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@3.8.1...@ovh-ux/manager-exchange@3.9.0) (2023-08-01)
 
 

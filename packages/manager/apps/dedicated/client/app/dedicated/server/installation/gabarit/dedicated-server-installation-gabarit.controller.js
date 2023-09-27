@@ -38,7 +38,6 @@ angular
         options: {
           saveGabarit: false,
           gabaritNameSave: null,
-          changeLog: null,
           customHostname: null,
           postInstallationScriptLink: null,
           postInstallationScriptReturn: null,
@@ -77,6 +76,8 @@ angular
       $scope.load = function load() {
         $scope.loader.loading = true;
         $scope.installation.selectGabarit = null;
+        $scope.installation.partitionSchemesList = null;
+        $scope.installation.selectPartitionScheme = null;
         $scope.installation.selectFamily = null;
         $scope.installation.selectLanguage = null;
         $scope.installation.selectSoftRaidOnlyMirroring = null;
@@ -154,7 +155,6 @@ angular
         $scope.installation.options = {
           saveGabarit: false,
           gabaritNameSave: null,
-          changeLog: $scope.installation.selectGabarit.changeLog,
           customHostname: $scope.installation.selectGabarit.customHostname,
           postInstallationScriptLink:
             $scope.installation.selectGabarit.postInstallationScriptLink,
@@ -165,20 +165,25 @@ angular
           validForm: true,
         };
 
-        Server.getHighestPriorityPartitionScheme(
+        Server.getPartitionSchemesByPriority(
           $stateParams.productId,
           $scope.installation.selectGabarit.id,
         )
+          .then((response) => {
+            $scope.installation.partitionSchemesList = response;
+            [$scope.installation.selectPartitionScheme] = response;
+            return response;
+          })
           .then((response) =>
             Server.getPartitionSchemeHardwareRaid(
               $stateParams.productId,
               $scope.installation.selectGabarit.id,
-              response.name,
+              response[0],
             ),
           )
           .then((response) => {
-            if (response) {
-              tempHardwareRaid = response;
+            if (response[0]) {
+              [tempHardwareRaid] = response;
               return Server.getHardwareRaidProfile($stateParams.productId);
             }
             return null;
@@ -288,6 +293,7 @@ angular
         Server.startInstallation(
           $stateParams.productId,
           $scope.installation.selectGabarit.id,
+          $scope.installation.selectPartitionScheme,
           {
             language: camelCase($scope.installation.selectLanguage),
             customHostname: $scope.installation.options.customHostname,
@@ -345,7 +351,6 @@ angular
             $scope.installation.selectGabarit.id,
             $scope.installation.options.gabaritNameSave,
             {
-              changeLog: $scope.installation.options.changeLog,
               customHostname: $scope.installation.options.customHostname,
               postInstallationScriptLink:
                 $scope.installation.options.postInstallationScriptLink,

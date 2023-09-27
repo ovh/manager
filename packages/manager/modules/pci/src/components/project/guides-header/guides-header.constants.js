@@ -20,6 +20,7 @@ export const PUBLIC_CLOUD_GUIDES = {
   MA: 'https://docs.ovh.com/fr/public-cloud/',
   TN: 'https://docs.ovh.com/fr/public-cloud/',
   SN: 'https://docs.ovh.com/fr/public-cloud/',
+  IN: 'https://docs.ovh.com/asia/en/public-cloud/',
 };
 
 export const PUBLIC_CLOUD_STORAGE_GUIDES = {
@@ -43,6 +44,7 @@ export const PUBLIC_CLOUD_STORAGE_GUIDES = {
   MA: 'https://docs.ovh.com/fr/storage/',
   TN: 'https://docs.ovh.com/fr/storage/',
   SN: 'https://docs.ovh.com/fr/storage/',
+  IN: 'https://docs.ovh.com/asia/en/storage/',
 };
 
 export const FIRST_STEPS_WITH_INSTANCES = {
@@ -66,6 +68,7 @@ export const FIRST_STEPS_WITH_INSTANCES = {
   SG: 'https://docs.ovh.com/sg/en/public-cloud/public-cloud-first-steps/',
   WE: 'https://docs.ovh.com/us/en/public-cloud/public-cloud-first-steps/',
   WS: 'https://docs.ovh.com/us/es/public-cloud/public-cloud-primeros-pasos/',
+  IN: 'https://docs.ovh.com/asia/en/public-cloud/public-cloud-first-steps/',
 };
 
 export const IP_FAIL_OVER = {
@@ -87,6 +90,7 @@ export const IP_FAIL_OVER = {
   SG: 'https://docs.ovh.com/sg/en/public-cloud/configure_a_failover_ip/',
   WE: 'https://docs.ovh.com/us/en/public-cloud/configure_a_failover_ip/',
   WS: 'https://docs.ovh.com/us/es/public-cloud/configurer-une-ip-failover/',
+  IN: 'https://docs.ovh.com/asia/en/public-cloud/configure_a_failover_ip/',
 };
 
 export const USER_ROOT_AND_PASSWORD = {
@@ -123,6 +127,8 @@ export const USER_ROOT_AND_PASSWORD = {
     'https://docs.ovh.com/us/en/public-cloud/become_the_root_user_and_select_a_password/',
   WS:
     'https://docs.ovh.com/us/es/public-cloud/conectarse_como_usuario_root_y_establecer_una_contrasena/',
+  IN:
+    'https://docs.ovh.com/asia/en/public-cloud/become_the_root_user_and_select_a_password/',
 };
 
 export const REVERSE_DNS = {
@@ -153,6 +159,8 @@ export const REVERSE_DNS = {
   WE: 'https://docs.ovh.com/us/en/public-cloud/configure-reverse-dns-instance/',
   WS:
     'https://docs.ovh.com/us/es/public-cloud/configurar-el-inverso-dns-de-una-instancia/',
+  IN:
+    'https://docs.ovh.com/asia/en/public-cloud/configure-reverse-dns-instance/',
 };
 
 export const FIRST_STEPS_WITH_DATABASES = {
@@ -172,6 +180,7 @@ export const FIRST_STEPS_WITH_DATABASES = {
   SG: 'https://docs.ovh.com/sg/en/publiccloud/databases/getting-started/',
   WE: 'https://docs.ovh.com/us/en/publiccloud/databases/getting-started/',
   WS: 'https://docs.ovh.com/us/es/publiccloud/databases/getting-started/',
+  IN: 'https://docs.ovh.com/asia/en/publiccloud/databases/getting-started/',
 };
 
 export const MONGO_DB_CAPABILITIES_AND_LIMITATIONS = {
@@ -193,6 +202,8 @@ export const MONGO_DB_CAPABILITIES_AND_LIMITATIONS = {
   SG: 'https://docs.ovh.com/sg/en/publiccloud/databases/mongodb/capabilities/',
   WE: 'https://docs.ovh.com/us/en/publiccloud/databases/mongodb/capabilities/',
   WS: 'https://docs.ovh.com/us/es/publiccloud/databases/mongodb/capabilities/',
+  IN:
+    'https://docs.ovh.com/asia/en/publiccloud/databases/mongodb/capabilities/',
 };
 
 export const MYSQL_CAPABILITIES_AND_LIMITATIONS = {
@@ -214,6 +225,7 @@ export const MYSQL_CAPABILITIES_AND_LIMITATIONS = {
   SG: 'https://docs.ovh.com/sg/en/publiccloud/databases/mysql/capabilities/',
   WE: 'https://docs.ovh.com/us/en/publiccloud/databases/mysql/capabilities/',
   WS: 'https://docs.ovh.com/us/es/publiccloud/databases/mysql/capabilities/',
+  IN: 'https://docs.ovh.com/asia/en/publiccloud/databases/mysql/capabilities/',
 };
 
 export const CREATE_A_CLUSTER = {
@@ -240,6 +252,7 @@ export const DEPLOY_AN_APPLICATION = {
   CA: 'https://docs.ovh.com/ca/en/kubernetes/deploying-an-application/',
   SG: 'https://docs.ovh.com/sg/en/kubernetes/deploying-an-application/',
   WE: 'https://docs.ovh.com/us/en/kubernetes/deploying-an-application/',
+  IN: 'https://docs.ovh.com/asia/en/kubernetes/deploying-an-application/',
 };
 
 export const LOADBALANCER_KUBE = {
@@ -253,6 +266,7 @@ export const LOADBALANCER_KUBE = {
   CA: 'https://docs.ovh.com/ca/en/kubernetes/using-lb/',
   SG: 'https://docs.ovh.com/sg/en/kubernetes/using-lb/',
   WE: 'https://docs.ovh.com/us/en/kubernetes/using-lb/',
+  IN: 'https://docs.ovh.com/asia/en/kubernetes/using-lb/',
 };
 
 export const FAQ_MANAGED_PRIVATE_REGISTRY = {
@@ -273,6 +287,8 @@ export const FAQ_MANAGED_PRIVATE_REGISTRY = {
     'https://docs.ovh.com/sg/en/private-registry/managed-private-registry-faq/',
   WE:
     'https://docs.ovh.com/us/en/private-registry/managed-private-registry-faq/',
+  IN:
+    'https://docs.ovh.com/asia/en/private-registry/managed-private-registry-faq/',
 };
 
 export const CREATE_A_MANAGED_PRIVATE_REGISTER = {
@@ -292,6 +308,8 @@ export const CREATE_A_MANAGED_PRIVATE_REGISTER = {
     'https://docs.ovh.com/sg/en/private-registry/creating-a-private-registry/',
   WE:
     'https://docs.ovh.com/us/en/private-registry/creating-a-private-registry/',
+  IN:
+    'https://docs.ovh.com/asia/en/private-registry/creating-a-private-registry/',
 };
 
 export const CREATE_AND_USE_A_PRIVATE_IMAGE = {
@@ -322,6 +340,7 @@ export const DIFFERENCES_BETWEEN_AI_NOTEBOOKS_AI_TRAINING_AI_APPS = {
   CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/ai-comparative-tables/',
   SG: 'https://docs.ovh.com/sg/en/publiccloud/ai/ai-comparative-tables/',
   WE: 'https://docs.ovh.com/us/en/publiccloud/ai/ai-comparative-tables/',
+  IN: 'https://docs.ovh.com/asia/en/publiccloud/ai/ai-comparative-tables/',
 };
 
 export const AI_APPS_CAPABILITIES_AND_LIMITATIONS = {
@@ -333,6 +352,7 @@ export const AI_APPS_CAPABILITIES_AND_LIMITATIONS = {
   CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/apps/capabilities/',
   SG: 'https://docs.ovh.com/sg/en/publiccloud/ai/apps/capabilities/',
   WE: 'https://docs.ovh.com/us/en/publiccloud/ai/apps/capabilities/',
+  IN: 'https://docs.ovh.com/asia/en/publiccloud/ai/apps/capabilities/',
 };
 
 export const ACCESSING_YOUR_AI_APPS_WITH_TOKENS = {
@@ -344,6 +364,7 @@ export const ACCESSING_YOUR_AI_APPS_WITH_TOKENS = {
   CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/ai-apps-tokens/',
   SG: 'https://docs.ovh.com/sg/en/publiccloud/ai/ai-apps-tokens/',
   WE: 'https://docs.ovh.com/us/en/publiccloud/ai/ai-apps-tokens/',
+  IN: 'https://docs.ovh.com/asia/en/publiccloud/ai/ai-apps-tokens/',
 };
 
 export const PRESENTATION_OF_DATA_PROCESSING = {
@@ -355,6 +376,7 @@ export const PRESENTATION_OF_DATA_PROCESSING = {
   CA: 'https://docs.ovh.com/ca/en/data-processing/overview/',
   SG: 'https://docs.ovh.com/sg/en/data-processing/overview/',
   WE: 'https://docs.ovh.com/us/en/data-processing/overview/',
+  IN: 'https://docs.ovh.com/asia/en/data-processing/overview/',
 };
 
 export const DATA_PROCESSING_CAPABILITIES_AND_LIMITATIONS = {
@@ -366,6 +388,7 @@ export const DATA_PROCESSING_CAPABILITIES_AND_LIMITATIONS = {
   CA: 'https://docs.ovh.com/ca/en/data-processing/capabilities/',
   SG: 'https://docs.ovh.com/sg/en/data-processing/capabilities/',
   WE: 'https://docs.ovh.com/us/en/data-processing/capabilities/',
+  IN: 'https://docs.ovh.com/asia/en/data-processing/capabilities/',
 };
 
 export const SUBMIT_A_JAVA_SCALA_JOB = {
@@ -377,6 +400,7 @@ export const SUBMIT_A_JAVA_SCALA_JOB = {
   CA: 'https://docs.ovh.com/ca/en/data-processing/submit-javascala/',
   SG: 'https://docs.ovh.com/sg/en/data-processing/submit-javascala/',
   WE: 'https://docs.ovh.com/us/en/data-processing/submit-javascala/',
+  IN: 'https://docs.ovh.com/asia/en/data-processing/submit-javascala/',
 };
 
 export const AI_NOTEBOOKS_STARTUP = {
@@ -388,6 +412,7 @@ export const AI_NOTEBOOKS_STARTUP = {
   CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/cli/getting-started-cli/',
   SG: 'https://docs.ovh.com/sg/en/publiccloud/ai/cli/getting-started-cli/',
   WE: 'https://docs.ovh.com/us/en/publiccloud/ai/cli/getting-started-cli/',
+  IN: 'https://docs.ovh.com/asia/en/publiccloud/ai/cli/getting-started-cli/',
 };
 
 export const AI_NOTEBOOKS_DEFINITION = {
@@ -399,6 +424,7 @@ export const AI_NOTEBOOKS_DEFINITION = {
   CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/notebooks/definition/',
   SG: 'https://docs.ovh.com/sg/en/publiccloud/ai/notebooks/definition/',
   WE: 'https://docs.ovh.com/us/en/publiccloud/ai/notebooks/definition/',
+  IN: 'https://docs.ovh.com/asia/en/publiccloud/ai/notebooks/definition/',
 };
 
 export const USING_DATA_FORM_OBJECT_STORAGE = {
@@ -411,6 +437,7 @@ export const USING_DATA_FORM_OBJECT_STORAGE = {
   CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/notebooks/manage-data-ui/',
   SG: 'https://docs.ovh.com/sg/en/publiccloud/ai/notebooks/manage-data-ui/',
   WE: 'https://docs.ovh.com/us/en/publiccloud/ai/notebooks/manage-data-ui/',
+  IN: 'https://docs.ovh.com/asia/en/publiccloud/ai/notebooks/manage-data-ui/',
 };
 
 export const AI_TRAINING_CAPABILITIES_AND_LIMITATIONS = {
@@ -422,6 +449,7 @@ export const AI_TRAINING_CAPABILITIES_AND_LIMITATIONS = {
   CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/training/capabilities/',
   SG: 'https://docs.ovh.com/sg/en/publiccloud/ai/training/capabilities/',
   WE: 'https://docs.ovh.com/us/en/publiccloud/ai/training/capabilities/',
+  IN: 'https://docs.ovh.com/asia/en/publiccloud/ai/training/capabilities/',
 };
 
 export const SUBMIT_A_JOB_VIA_THE_USER_INTERFACE = {
@@ -433,6 +461,7 @@ export const SUBMIT_A_JOB_VIA_THE_USER_INTERFACE = {
   CA: 'https://docs.ovh.com/ca/en/publiccloud/ai/training/submit-job/',
   SG: 'https://docs.ovh.com/sg/en/publiccloud/ai/training/submit-job/',
   WE: 'https://docs.ovh.com/us/en/publiccloud/ai/training/submit-job/',
+  IN: 'https://docs.ovh.com/asia/en/publiccloud/ai/training/submit-job/',
 };
 
 export const MANAGING_A_CUSTOM_IMAGE = {
@@ -451,6 +480,8 @@ export const MANAGING_A_CUSTOM_IMAGE = {
     'https://docs.ovh.com/sg/en/publiccloud/ai/training/build-use-custom-image/',
   WE:
     'https://docs.ovh.com/us/en/publiccloud/ai/training/build-use-custom-image/',
+  IN:
+    'https://docs.ovh.com/asia/en/publiccloud/ai/training/build-use-custom-image/',
 };
 
 export const DEPLOYING_A_CUSTOM_MODEL = {
@@ -462,6 +493,7 @@ export const DEPLOYING_A_CUSTOM_MODEL = {
   CA: 'https://docs.ovh.com/ca/en/ml-serving/deploy-serialized-models/',
   SG: 'https://docs.ovh.com/sg/en/ml-serving/deploy-serialized-models/',
   WE: 'https://docs.ovh.com/us/en/ml-serving/deploy-serialized-models/',
+  IN: 'https://docs.ovh.com/asia/en/ml-serving/deploy-serialized-models/',
 };
 
 export const MODELS_DEFINITION = {
@@ -473,6 +505,7 @@ export const MODELS_DEFINITION = {
   CA: 'https://docs.ovh.com/ca/en/ml-serving/models/',
   SG: 'https://docs.ovh.com/sg/en/ml-serving/models/',
   WE: 'https://docs.ovh.com/us/en/ml-serving/models/',
+  IN: 'https://docs.ovh.com/asia/en/ml-serving/models/',
 };
 
 export const EXPORTING_A_TENSORFLOW_MODEL = {
@@ -484,6 +517,7 @@ export const EXPORTING_A_TENSORFLOW_MODEL = {
   CA: 'https://docs.ovh.com/ca/en/ml-serving/export-tensorflow-models/',
   SG: 'https://docs.ovh.com/sg/en/ml-serving/export-tensorflow-models/',
   WE: 'https://docs.ovh.com/us/en/ml-serving/export-tensorflow-models/',
+  IN: 'https://docs.ovh.com/asia/en/ml-serving/export-tensorflow-models/',
 };
 
 export const PREFIX_UNIVERSE_NAME = 'public-cloud';
@@ -492,6 +526,8 @@ export const GUIDE_TRACKING_TAG = {
   instances: `${PREFIX_UNIVERSE_NAME}_instances`,
   block_storage: `${PREFIX_UNIVERSE_NAME}_block_storage`,
   object_storage: `${PREFIX_UNIVERSE_NAME}_object_storage`,
+  additional_ips: `${PREFIX_UNIVERSE_NAME}_additional_ips`,
+  gateway: `${PREFIX_UNIVERSE_NAME}_gateway`,
   databases: `${PREFIX_UNIVERSE_NAME}_databases`,
   cloud_archive: `${PREFIX_UNIVERSE_NAME}_cloud_archive`,
   volume_snapshot: `${PREFIX_UNIVERSE_NAME}_volume_snapshot`,

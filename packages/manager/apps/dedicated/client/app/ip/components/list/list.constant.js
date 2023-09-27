@@ -20,6 +20,9 @@ export const TRACKING_OPTIONS = {
   ALL_IPS: 'all_ips',
   TRACK_CHAPTER1: 'all_ips_filter',
 };
+export const VRACK = 'VRACK';
+export const PCC = 'PCC';
+export const FAILOVER = 'FAILOVER';
 
 export const SECURITY_URL = {
   DEFAULT:
@@ -53,6 +56,8 @@ export const SECURITY_URL = {
     'https://www.ovhcloud.com/en-sg/security/anti-ddos/ddos-attack-mitigation/',
   ASIA:
     'https://www.ovhcloud.com/asia/security/anti-ddos/ddos-attack-mitigation/',
+  IN:
+    'https://www.ovhcloud.com/en-in/security/anti-ddos/ddos-attack-mitigation/',
   EU: 'https://www.ovhcloud.com/en/security/anti-ddos/ddos-attack-mitigation/',
   WE: 'https://www.ovhcloud.com/en/security/anti-ddos/ddos-attack-mitigation/',
   WS: 'https://www.ovhcloud.com/es/security/anti-ddos/ddos-attack-mitigation/',
@@ -76,4 +81,7 @@ export default {
   IP_COMPONENTS_LIST_TRACKING_HIT,
   PAGE_SIZE_MIN,
   PAGE_SIZE_MAX,
+  VRACK,
+  PCC,
+  FAILOVER,
 };

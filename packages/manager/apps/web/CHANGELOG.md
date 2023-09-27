@@ -3,6 +3,177 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.2.1...@ovh-ux/manager-web@18.2.2) (2023-09-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [18.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.2.0...@ovh-ux/manager-web@18.2.1) (2023-09-25)
+
+
+### Bug Fixes
+
+* **domain:** fix issue on general information with alldom ([10b8472](https://github.com/ovh/manager/commit/10b84722c17c8c0c201a2d0e996564a6079f7d13))
+
+
+
+
+
+# [18.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.1.0...@ovh-ux/manager-web@18.2.0) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
+# [18.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.0.1...@ovh-ux/manager-web@18.1.0) (2023-09-12)
+
+
+### Features
+
+* **web:** re enable owo ([#9822](https://github.com/ovh/manager/issues/9822)) ([27df901](https://github.com/ovh/manager/commit/27df901f78f4568a43522341c8b859b2c5c8344e))
+* **web:** remove plan solution information ([#9907](https://github.com/ovh/manager/issues/9907)) ([ff29264](https://github.com/ovh/manager/commit/ff29264d74c4957e4429008c2d12c3ec8c180a3a))
+
+
+
+
+
+## [18.0.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.0.0...@ovh-ux/manager-web@18.0.1) (2023-09-08)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix delete envvar request ([#9960](https://github.com/ovh/manager/issues/9960)) ([66e5c27](https://github.com/ovh/manager/commit/66e5c270626dcf448c306480e875cd80e65e7237))
+
+
+
+
+
+# [18.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.3.2...@ovh-ux/manager-web@18.0.0) (2023-09-07)
+
+
+### Build System
+
+* bump nodejs to v18 and webpack to v5 ([6270204](https://github.com/ovh/manager/commit/6270204e59bbfb87ec000c5853be08027affbb69))
+
+
+### BREAKING CHANGES
+
+* bump webpack from v4 to v5
+
+Signed-off-by: Florian Renaut <florian.renaut@corp.ovh.com>
+Co-authored-by: Jisay <jean-christophe.alleman@corp.ovh.com>
+Co-authored-by: Anoop N <anoop.n@ovhcloud.com>
+
+
+
+
+
+## [17.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.3.1...@ovh-ux/manager-web@17.3.2) (2023-09-05)
+
+
+### Bug Fixes
+
+* **web:** typography in FR ([#9860](https://github.com/ovh/manager/issues/9860)) ([2d80bd3](https://github.com/ovh/manager/commit/2d80bd303bce449adf996ed35b0f418abce72869))
+
+
+
+
+
+## [17.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.3.0...@ovh-ux/manager-web@17.3.1) (2023-09-04)
+
+
+### Bug Fixes
+
+* **hosting:** fix value type for environnement variable ([#9908](https://github.com/ovh/manager/issues/9908)) ([7f40ab7](https://github.com/ovh/manager/commit/7f40ab76b4fae30bf988193db1f784ad92f6e1f9))
+
+
+
+
+
+# [17.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.2.2...@ovh-ux/manager-web@17.3.0) (2023-08-30)
+
+
+### Bug Fixes
+
+* **web.hosting:** disable autofill from saved password ([#9873](https://github.com/ovh/manager/issues/9873)) ([81e2dc3](https://github.com/ovh/manager/commit/81e2dc3688de7e5638136d8a4c91686d02e048e1))
+* **web:** fix constante order domain url ([#9881](https://github.com/ovh/manager/issues/9881)) ([0c43e09](https://github.com/ovh/manager/commit/0c43e09ed30089c9c57b859ec1f6c09b8c93a646))
+* **web:** missing translation key on add free hosting ([#9729](https://github.com/ovh/manager/issues/9729)) ([206b03e](https://github.com/ovh/manager/commit/206b03ef6a3a5cbd1f83e07f8091405cfd6d80ee))
+
+
+### Features
+
+* **web.database:** remove deprecated calls ([#9694](https://github.com/ovh/manager/issues/9694)) ([39b054e](https://github.com/ovh/manager/commit/39b054eb65c41f7cc40bc6de9ebe21d5039b6a53))
+
+
+### Reverts
+
+* Revert "feat(web.database): remove deprecated calls (#9694)" ([9b11063](https://github.com/ovh/manager/commit/9b110637e6a277709cebe0b2289d4402d4094337)), closes [#9694](https://github.com/ovh/manager/issues/9694)
+
+
+
+
+
+## [17.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.2.1...@ovh-ux/manager-web@17.2.2) (2023-08-17)
+
+
+### Bug Fixes
+
+* **hosting.ssl:** do not send empty body to apiv6 ([#9691](https://github.com/ovh/manager/issues/9691)) ([1ecf7ba](https://github.com/ovh/manager/commit/1ecf7ba024e895994adc11775f6e70231b8096ac))
+
+
+
+
+
+## [17.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.2.0...@ovh-ux/manager-web@17.2.1) (2023-08-10)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix rules of display action menu in database section ([#9749](https://github.com/ovh/manager/issues/9749)) ([c5ffb10](https://github.com/ovh/manager/commit/c5ffb10e8ec8c1bd84705b38ca854387e4799769))
+
+
+
+
+
+# [17.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.1.2...@ovh-ux/manager-web@17.2.0) (2023-08-08)
+
+
+### Features
+
+* **web.hosting:** hide contracts list when empty ([#9760](https://github.com/ovh/manager/issues/9760)) ([dd42639](https://github.com/ovh/manager/commit/dd42639a0134b8f77fe7b50a9d53bf4d2e2b06bf))
+
+
+
+
+
+## [17.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.1.1...@ovh-ux/manager-web@17.1.2) (2023-08-08)
+
+
+### Bug Fixes
+
+* **web:** hide the freedom banner for some offer ([#9744](https://github.com/ovh/manager/issues/9744)) ([4f75b9b](https://github.com/ovh/manager/commit/4f75b9ba9eb481d19d89378830b29b1d21573207))
+* **web:** limit innodb_buffer_pool_size choices ([#9337](https://github.com/ovh/manager/issues/9337)) ([3dc0e18](https://github.com/ovh/manager/commit/3dc0e18b673b133d29e6254eb582e02aa47c707e))
+
+
+
+
+
+## [17.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.1.0...@ovh-ux/manager-web@17.1.1) (2023-08-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 # [17.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@17.0.10...@ovh-ux/manager-web@17.1.0) (2023-08-01)
 
 

@@ -2,11 +2,11 @@
     <div data-ng-if="$ctrl.ASIATOUCH.includes($ctrl.ovhSubsidiary)">
         <span
             class="bold"
-            data-ng-bind="{{'price_price_gst_excl_label' | translate}}"
+            data-ng-bind="{{'price_gst_excl_label' | translate}}"
             data-translate-values="{ price: $ctrl.getPriceText($ctrl.price) }"
         ></span>
         (<span
-            data-translate="price_price_gst_incl_label"
+            data-translate="price_gst_incl_label"
             data-translate-values="{ price: $ctrl.getPriceText($ctrl.price + $ctrl.tax) }"
         ></span
         >)

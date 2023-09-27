@@ -13,6 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicated-server.server.order-kvm', {
           productId: serverName,
         }),
+      trackingPrefix: () => 'dedicated::dedicated-server::server::ipmi',
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_server_ipmi'),
     },

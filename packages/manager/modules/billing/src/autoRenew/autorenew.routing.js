@@ -89,13 +89,20 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
 
           return promise;
         },
-        isAutorenewManagementAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
-          ovhFeatureFlipping
-            .checkFeatureAvailability(['billing:management'])
-            .then((commitmentAvailability) =>
-              commitmentAvailability.isFeatureAvailable('billing:management'),
-            )
-            .catch(() => false),
+        featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+          ovhFeatureFlipping.checkFeatureAvailability([
+            'billing:management',
+            'billing:autorenew2016Deployment',
+          ]),
+        isAutorenewManagementAvailable: /* @ngInject */ (featureAvailability) =>
+          featureAvailability?.isFeatureAvailable('billing:management') ||
+          false,
+        isAutorenew2016DeploymentBannerAvailable: /* @ngInject */ (
+          featureAvailability,
+        ) =>
+          featureAvailability?.isFeatureAvailable(
+            'billing:autorenew2016Deployment',
+          ) || false,
         hideBreadcrumb: /* @ngInject */ () => true,
         trackingPrefix: () => 'dedicated::account::billing::autorenew',
       },

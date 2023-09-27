@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.21.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.20.4...@ovh-ux/ng-ovh-telecom-universe-components@7.21.0) (2023-09-12)
+
+
+### Features
+
+* **telecom:** remove few numbers from filtering call ([#9798](https://github.com/ovh/manager/issues/9798)) ([ce29367](https://github.com/ovh/manager/commit/ce293675c102522b778643a819fe284f1a24e379))
+
+
+
+
+
+## [7.20.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.20.3...@ovh-ux/ng-ovh-telecom-universe-components@7.20.4) (2023-08-30)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-telecom-universe-components
+
+
+
+
+
 ## [7.20.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.20.2...@ovh-ux/ng-ovh-telecom-universe-components@7.20.3) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-telecom-universe-components

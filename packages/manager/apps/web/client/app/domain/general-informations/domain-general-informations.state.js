@@ -22,6 +22,11 @@ const commonResolves = {
       domainName,
     ).catch(() => []),
 
+  emailObfuscationLink: /* @ngInject */ ($state, domainName) =>
+    $state.href('app.domain.product.emailObfuscation', {
+      productId: domainName,
+    }),
+
   start10mOffers: /* @ngInject */ (availableOptions) =>
     availableOptions.filter(({ family }) => family === 'hosting'),
 

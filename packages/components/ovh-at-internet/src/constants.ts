@@ -22,6 +22,7 @@ export const AT_INTERNET_WEBSITE: Record<string, string> = {
   FR: 'France',
   GB: 'United Kingdom',
   IE: 'Ireland',
+  IN: 'India',
   IT: 'Italy',
   MA: 'Morocco',
   NL: 'Netherlands',
@@ -45,6 +46,9 @@ export const AT_INTERNET_CUSTOM_PROPS: Record<string, string> = {
   pciCreationNumProjects: 'pci_number_of_project',
   pciCreationNumProjects3: 'pci_number_of_project',
   orderStatus: 'order_status',
+  accountEmailConsent: 'account_email_consent',
+  accountSmsConsent: 'account_sms_consent',
+  accountPhoneType: 'account_phone_type',
 };
 
 export const TMS_SCRIPT_URL = 'https://analytics.ovh.com/ovh/ovh_manager.js';

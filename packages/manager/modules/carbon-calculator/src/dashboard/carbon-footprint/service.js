@@ -27,10 +27,10 @@ export default class CarbonFootprintService {
   }
 
   computeBilling() {
+    // expected API date -> Previous month date between 1st to 31st any one date
     const now = new Date();
-    const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-    // expected API date format -> ISO iso8601 (yyyy-MM-dd)
-    const date = firstDayOfMonth.toISOString().substring(0, 10);
+    now.setUTCDate(0); // sets the date to the last date of the previous month
+    const date = now.toISOString().substring(0, 10);
     return this.$http.post(API_PATH, { date }).then(({ data }) => data);
   }
 

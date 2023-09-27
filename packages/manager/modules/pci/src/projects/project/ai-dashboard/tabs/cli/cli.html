@@ -5,8 +5,32 @@
             <p data-translate="pci_ai_dashboard_cli_description"></p>
             <!-- Installation -->
             <h4 data-translate="pci_ai_dashboard_cli_install"></h4>
+            <div class="mb-1">
+                <span
+                    data-translate="pci_ai_dashboard_cli_select_region"
+                ></span>
+                <label class="oui-select oui-select_inline" for="region">
+                    <select
+                        class="oui-select__input"
+                        data-ng-model="$ctrl.currentRegion"
+                        id="region"
+                        data-ng-change="$ctrl.onRegionChange()"
+                    >
+                        <option
+                            ng-repeat="region in $ctrl.regions"
+                            ng-value="region"
+                            >{{region.id}}</option
+                        >
+                    </select>
+                    <span
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></span>
+                </label>
+            </div>
+
             <pci-code-sample
-                data-code="$ctrl.CLI_INSTALL_CODE"
+                data-code="$ctrl.cliBashCmd.toLowerCase()"
                 data-language="'bash'"
             ></pci-code-sample>
             <oui-message class="mt-2" data-type="info">

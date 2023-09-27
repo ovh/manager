@@ -8,6 +8,7 @@ export default {
   bindings: {
     rule: '<', // api rule
     fieldset: '<', // parent form fieldset
+    isIndianSubsidiary: '<',
   },
   template,
   controller,

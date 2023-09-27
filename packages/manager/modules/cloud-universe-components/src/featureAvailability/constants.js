@@ -15,7 +15,16 @@ const ALL_EUROPEAN_SUBSIDIARIES = [
   'SN',
   'TN',
 ];
-const ALL_CANADIAN_SUBSIDIARIES = ['ASIA', 'AU', 'CA', 'QC', 'SG', 'WE', 'WS'];
+const ALL_CANADIAN_SUBSIDIARIES = [
+  'ASIA',
+  'AU',
+  'CA',
+  'QC',
+  'SG',
+  'WE',
+  'WS',
+  'IN',
+];
 
 export const FEATURE_AVAILABILITY = {
   VPS: {

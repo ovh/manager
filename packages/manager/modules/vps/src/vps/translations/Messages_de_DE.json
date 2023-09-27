@@ -475,7 +475,7 @@
   "vps_database_version_mysql_55": "MySQL 5.5",
   "vps_database_version_mysql_56": "MySQL 5.6",
   "vps_database_version_mysql_57": "MySQL 5.7",
-  "vps_database_version_mysql_80": "<b>MySQL 8.0</b>",
+  "vps_database_version_mysql_80": "MySQL 8.0",
   "vps_database_version_postgresql_10": "PostgreSQL 10",
   "vps_database_version_postgresql_11": "PostgreSQL 11",
   "vps_database_version_postgresql_12": "PostgreSQL 12",

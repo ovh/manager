@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.8.0...@ovh-ux/manager-freefax@7.8.1) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-freefax
+
+
+
+
+
+# [7.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.7.2...@ovh-ux/manager-freefax@7.8.0) (2023-08-30)
+
+
+### Features
+
+* renaming fidelity points labels ([#9846](https://github.com/ovh/manager/issues/9846)) ([81ca283](https://github.com/ovh/manager/commit/81ca283c6c76aedf70223a7cdccfad4e92e17ffb))
+
+
+
+
+
 ## [7.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax@7.7.1...@ovh-ux/manager-freefax@7.7.2) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-freefax

@@ -22,8 +22,10 @@ import emailproUpdateDisclaimerCtrl from '../disclaimer/update/emailpro-disclaim
 import emailproTabDomainCtrl from '../domain/emailpro-domain.controller';
 import emailproAddDomainCtrl from '../domain/add/emailpro-domain-add.controller';
 import emailproDomainMxAutoconfigCtrl from '../domain/mx-autoconfig/emailpro-domain-mx-autoconfig.controller';
+import emailproDomainDkimAutoconfigCtrl from '../domain/dkim-autoconfig/emailpro-domain-dkim-autoconfig.controller';
 import emailproRemoveDomainCtrl from '../domain/remove/emailpro-domain-remove.controller';
 import emailproDomainSrvAutoconfigCtrl from '../domain/srv-autoconfig/emailpro-domain-srv-autoconfig.controller';
+import emailproDomainSpfAutoconfigCtrl from '../domain/spf-autoconfig/emailpro-domain-spf-autoconfig.controller';
 import emailproUpdateDomainCtrl from '../domain/update/emailpro-domain-update.controller';
 import emailproTabExternalContactsCtrl from '../external-contact/emailpro-external-contact-tab.controller';
 import emailproAddExternalContactCtrl from '../external-contact/add/emailpro-external-contact-add.controller';
@@ -86,10 +88,18 @@ angular
   .controller('EmailProTabDomainsCtrl', emailproTabDomainCtrl)
   .controller('EmailProAddDomainController', emailproAddDomainCtrl)
   .controller('EmailProDomainMxAutoconfigCtrl', emailproDomainMxAutoconfigCtrl)
+  .controller(
+    'EmailProDomainDkimAutoconfigCtrl',
+    emailproDomainDkimAutoconfigCtrl,
+  )
   .controller('EmailProRemoveDomainCtrl', emailproRemoveDomainCtrl)
   .controller(
     'EmailProDomainSrvAutoconfigCtrl',
     emailproDomainSrvAutoconfigCtrl,
+  )
+  .controller(
+    'EmailProDomainSpfAutoconfigCtrl',
+    emailproDomainSpfAutoconfigCtrl,
   )
   .controller('EmailProUpdateDomainCtrl', emailproUpdateDomainCtrl)
   .controller(

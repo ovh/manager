@@ -2,6 +2,7 @@ import { cloneDeep } from 'lodash-es';
 
 import {
   CUSTOM_ACTION_PATTERN,
+  CUSTOM_ACTION_SAMPLE,
   CUSTOM_RESOURCE_TYPE,
   TAG,
 } from '../../iam.constants';
@@ -18,6 +19,7 @@ export default class ActionSelectController {
     this.$translate = $translate;
     this.IAMService = IAMService;
 
+    this.CUSTOM_ACTION_SAMPLE = CUSTOM_ACTION_SAMPLE;
     this.CUSTOM_RESOURCE_TYPE = CUSTOM_RESOURCE_TYPE;
 
     /**
@@ -210,9 +212,12 @@ export default class ActionSelectController {
 
       // Custom "requirements" validator to know if a custom action meets all the requirements
       customAction.$validators.requirements = (action) => {
+        const [actionWithoutParams] = action.split('?');
         const isEmpty = !action;
         const isFound = this.actions.find(
-          ({ action: item }) => item === action,
+          ({ action: item, hasQueryParameters }) =>
+            item === action ||
+            (hasQueryParameters && item === actionWithoutParams),
         );
         const isValid = CUSTOM_ACTION_PATTERN.test(action);
         return isEmpty || isValid || isFound;

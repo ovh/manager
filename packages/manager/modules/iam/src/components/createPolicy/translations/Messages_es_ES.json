@@ -11,7 +11,7 @@
   "iam_create_policy_deletion_resources_one": "1 recurso se eliminará",
   "iam_create_policy_form_actions_description": "Seleccione las acciones permitidas para las identidades en los recursos seleccionados.",
   "iam_create_policy_form_actions_heading": "Acciones",
-  "iam_create_policy_form_name_error_pattern": "El formato del nombre de la política no es válido",
+  "iam_create_policy_form_name_error_pattern": "El nombre de la política solo puede contener caracteres alfanuméricos y los siguientes símbolos: guiones («-»), barras («/»), guiones bajos («_») y símbolo de más («+»). ",
   "iam_create_policy_form_name_heading": "Nombre de la política",
   "iam_create_policy_form_resource_groups_create": "Crear grupo de recursos",
   "iam_create_policy_form_resource_groups_heading": "Grupos de recursos",

@@ -417,6 +417,19 @@
                         ></span>
                     </oui-tile-description>
                 </oui-tile-definition>
+                <!-- Obfuscated Email regeneration -->
+                <oui-tile-definition
+                    data-term="{{ ::'domain_dashboard_obfuscated_email' | translate }}"
+                    data-ng-if="$ctrl.domain.owoSupported"
+                >
+                    <oui-tile-description>
+                        <a
+                            data-ng-href="{{ $ctrl.emailObfuscationLink}}"
+                            class="oui-button oui-button_secondary"
+                            data-translate="domain_dashboard_obfuscated_email_regenerate_button"
+                        ></a>
+                    </oui-tile-description>
+                </oui-tile-definition>
             </oui-tile>
         </div>
         <div class="col-md-4 mb-5">
@@ -444,12 +457,6 @@
                 class="{'h-100': !$ctrl.screenshot}"
                 data-loading="$ctrl.loading.domainInfos"
             >
-                <!-- OFFER -->
-                <oui-tile-definition
-                    data-term="{{ ::'domain_dashboard_offer' | translate }}"
-                    data-description="{{ ::$ctrl.domain.offer }}"
-                >
-                </oui-tile-definition>
                 <!-- RENEWAL -->
                 <wuc-service-status-action
                     data-ng-if="!$ctrl.isAllDom && $ctrl.domain.name && $ctrl.domainInfos"

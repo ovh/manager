@@ -7,7 +7,7 @@
   "iam_create_resource_group_error_heading_create": "Niektóre błędy w formularzu uniemożliwiają utworzenie tej grupy zasobów. Popraw dane przed ponownym przesłaniem.",
   "iam_create_resource_group_error_heading_edit": "Niektóre błędy w formularzu uniemożliwiają modyfikację tej grupy zasobów. Popraw dane przed ponownym przesłaniem.",
   "iam_create_resource_group_error_no_resources": "Brak dostępnych zasobów dla tego lub tych typów usługów.",
-  "iam_create_resource_group_form_name_error_pattern": "Format nazwy grupy zasobów jest niezgodny",
+  "iam_create_resource_group_form_name_error_pattern": "Nazwa grupy zasobów może zawierać tylko znaki alfanumeryczne oraz „-”, „/”, „_”, „+”",
   "iam_create_resource_group_form_name_heading": "Nazwa grupy zasobów",
   "iam_create_resource_group_form_resource_types_description": "Wybierz rodzaj usług, który odpowiada zasobom, które chcesz dodać.",
   "iam_create_resource_group_form_resource_types_error_required": "Wybierz jeden lub kilka rodzajów usług.",

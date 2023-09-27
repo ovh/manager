@@ -1,3 +1,15 @@
 {
-  "dedicated_server_monitoring": "Monitoring"
+  "dedicated_server_monitoring": "Monitoring",
+  "language_cz": "Czeski",
+  "language_de": "Niemiecki",
+  "language_en": "Angielski",
+  "language_es": "Hiszpański",
+  "language_fi": "Fiński",
+  "language_fr": "Francuski",
+  "language_ie": "irlandzki",
+  "language_it": "Włoski",
+  "language_lt": "Litewski",
+  "language_nl": "Holenderski",
+  "language_pl": "Polski",
+  "language_pt": "Portugalski"
 }

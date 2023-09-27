@@ -73,6 +73,7 @@ export const GUIDES = [
 export const CTAS = {
   DEFAULT: 'https://ovhcloud.com/en/vps',
   ASIA: 'https://ovhcloud.com/asia/vps',
+  IN: 'https://www.ovhcloud.com/en-in/vps',
   DE: 'https://ovhcloud.com/de/vps',
   ES: 'https://ovhcloud.com/es-es/vps',
   IE: 'https://ovhcloud.com/en-ie/vps',

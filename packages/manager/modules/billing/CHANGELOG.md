@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.20...@ovh-ux/manager-billing@0.20.0-alpha.21) (2023-09-27)
+
+
+### Features
+
+* india payment method management ([#9809](https://github.com/ovh/manager/issues/9809)) ([#9833](https://github.com/ovh/manager/issues/9833)) ([474db9f](https://github.com/ovh/manager/commit/474db9f32384704329b5edb5ab9d0b2e8a7f97b0))
+
+
+
+
+
+# [0.20.0-alpha.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.19...@ovh-ux/manager-billing@0.20.0-alpha.20) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
+# [0.20.0-alpha.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.18...@ovh-ux/manager-billing@0.20.0-alpha.19) (2023-09-12)
+
+
+### Features
+
+* **dedicated:** adding banner for autorenew 2016 deployment ([#9650](https://github.com/ovh/manager/issues/9650)) ([2feaba1](https://github.com/ovh/manager/commit/2feaba1957136ced5fed54cff7771a39f4289bec))
+
+
+
+
+
+# [0.20.0-alpha.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.17...@ovh-ux/manager-billing@0.20.0-alpha.18) (2023-08-30)
+
+
+### Bug Fixes
+
+* **billing:** create redirection from state mean to payment ([#9888](https://github.com/ovh/manager/issues/9888)) ([ee52df1](https://github.com/ovh/manager/commit/ee52df1c60bb80aacba33ec47702641a59cf1d94))
+
+
+### Features
+
+* renaming fidelity points labels ([#9846](https://github.com/ovh/manager/issues/9846)) ([81ca283](https://github.com/ovh/manager/commit/81ca283c6c76aedf70223a7cdccfad4e92e17ffb))
+
+
+
+
+
 # [0.20.0-alpha.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.16...@ovh-ux/manager-billing@0.20.0-alpha.17) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing

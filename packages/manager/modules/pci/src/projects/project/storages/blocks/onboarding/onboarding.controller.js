@@ -1,12 +1,13 @@
 import reduce from 'lodash/reduce';
 import illustration from './assets/blocks.png';
 
-import { GUIDES } from './onboarding.constants';
+import { GUIDES, IN_SUBSIDIARY } from './onboarding.constants';
 
 export default class PciStorageBlocksOnboardingController {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, coreConfig) {
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -16,7 +17,11 @@ export default class PciStorageBlocksOnboardingController {
       (list, guide) => [
         ...list,
         {
-          ...guide,
+          id: guide.id,
+          link:
+            this.coreConfig.getUser().ovhSubsidiary === IN_SUBSIDIARY
+              ? guide.asiaLink
+              : guide.defaultLink,
           title: this.$translate.instant(
             `pci_projects_project_storages_blocks_onboarding_guides_${guide.id}_title`,
           ),

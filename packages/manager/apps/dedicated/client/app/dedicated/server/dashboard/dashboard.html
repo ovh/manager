@@ -213,12 +213,22 @@
                             ></dt>
                             <dd
                                 class="oui-tile__description"
-                                data-translate="{{'server_datacenter_' + $ctrl.server.datacenter.split('_')[0]}}"
-                                data-translate-values="{
-                                    number: $ctrl.server.datacenter.split('_')[1]
-                                  }"
-                            ></dd>
+                            >
+                                <span data-ng-bind=":: $ctrl.server.datacenter.toUpperCase().split('_').join('') + ' - ' + ( 'server_datacenter_' + $ctrl.server.datacenter.toUpperCase().split('_')[0] | translate )"
+                                >
+                                </span>
+                            </dd>
                         </dl>
+                        <div class="d-flex align-items-center">
+                            <h2
+                                data-ng-hide=":: !$ctrl.server.iso"
+                                data-oui-tooltip="{{:: 'country_' + $ctrl.server.iso | translate }}"
+                                data-oui-tooltip-placement="bottom"
+                                class="oui-flag {{ 'oui-flag_' + $ctrl.server.iso.toLowerCase() }}"
+                                aria-hidden="true"
+                            >
+                            </h2>
+                        </div>
                     </div>
                     <div class="oui-tile__item">
                         <dl class="oui-tile__definition">
@@ -389,51 +399,6 @@
                     </oui-tile-description>
                 </oui-tile-definition>
 
-                <!-- No intervention -->
-                <!--
-                TODO: Needs to be uncommented (relates to MANAGER-7799).
-                <oui-tile-definition
-                    data-term="{{ ::'server_configuration_no_intervention' | translate }}"
-                    class="border-top-0 padding-top-0"
-                >
-                    <oui-tile-description>
-                        <oui-switch
-                            data-disabled="$ctrl.ola.isConfigured() || $ctrl.updatingNoIntervention"
-                            model="$ctrl.server.noIntervention"
-                            on-change="$ctrl.onChangeIntervention(modelValue)"
-                            data-ng-if="!$ctrl.server.isExpired && $ctrl.server.monitored"
-                        >
-                        </oui-switch>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                -->
-                <!-- Monitored services -->
-                <oui-tile-definition
-                    data-term="{{ ::'server_configuration_monitoring_services' | translate }}"
-                >
-                    <oui-tile-description>
-                        <span
-                            class="oui-badge"
-                            data-ng-repeat="monitoringProtocol in $ctrl.monitoringProtocolEnum"
-                            data-ng-class="$ctrl.isMonitoringEnabled(monitoringProtocol) ? 'oui-badge_success' : 'oui-badge_warning'"
-                            data-ng-bind="monitoringProtocol"
-                        ></span>
-                    </oui-tile-description>
-                    <oui-action-menu
-                        aria-label="{{:: 'menu_action_label' | translate:{t0: ('server_configuration_monitoring_services' | translate)}"
-                        data-compact
-                        data-placement="end"
-                        data-ng-if="!$ctrl.server.isExpired"
-                    >
-                        <oui-action-menu-item
-                            data-on-click="$ctrl.goToMonitoring()"
-                        >
-                            <span
-                                data-translate="server_configuration_monitoring_services_use"
-                            ></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
-                </oui-tile-definition>
                 <!-- Links -->
                 <oui-tile-definition
                     data-term="{{ ::'server_configuration_services_state_links' | translate }}"
@@ -884,13 +849,6 @@
         class="mb-5"
         data-ng-if="$ctrl.trafficInformations.traffic.data.hasQuota"
         data-ng-include="'dedicated/server/consumption/consumption.html'"
-    ></div>
-
-    <!-- RTM -->
-    <div
-        class="mb-5"
-        data-ng-if="!$ctrl.server.isExpired"
-        data-ng-include="'dedicated/server/statistics/rtm/dedicated-server-statistics-rtm.html'"
     ></div>
 
     <!-- MRTG -->

@@ -276,13 +276,9 @@ export default class PciStoragesContainersService {
   }
 
   setContainerAsStatic(projectId, container) {
-    return this.OvhApiCloudProjectStorage.v6().static(
-      {
-        projectId,
-        containerId: container.id,
-      },
-      {},
-    ).$promise;
+    return this.$http
+      .post(`/cloud/project/${projectId}/storage/${container.id}/static`)
+      .then(({ data }) => data);
   }
 
   setContainerAsPublic(projectId, container) {

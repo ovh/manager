@@ -159,5 +159,7 @@
   "sidebar_access_dashboard": "Acceder al panel de control",
   "sidebar_account_iam": "Identidades y acceso (IAM)",
   "sidebar_carbon_footprint": "Mi huella de carbono",
-  "sidebar_pci_data_integration": "Data Integration"
+  "sidebar_pci_data_integration": "Data Integration",
+  "sidebar_account_identity_documents": "Mis documentos de identidad",
+  "sidebar_pci_octavia_load_balancer": "Load Balancer"
 }

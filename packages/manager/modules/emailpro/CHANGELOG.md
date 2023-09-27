@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.7.1...@ovh-ux/manager-emailpro@3.8.0) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
+## [3.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.7.0...@ovh-ux/manager-emailpro@3.7.1) (2023-09-08)
+
+
+### Bug Fixes
+
+* **web.emailpro:** remove double refresh after disclaimer update ([#9949](https://github.com/ovh/manager/issues/9949)) ([e9d4bd6](https://github.com/ovh/manager/commit/e9d4bd65d2d5ae1ebabfa8ab6074606f7890bf3a))
+
+
+
+
+
+# [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.6.0...@ovh-ux/manager-emailpro@3.7.0) (2023-09-05)
+
+
+### Features
+
+* **web:** add dkim feature ([#9693](https://github.com/ovh/manager/issues/9693)) ([ca79bd6](https://github.com/ovh/manager/commit/ca79bd68adfc7b8023ea793de28288eb16328fc3))
+
+
+
+
+
+# [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.5.1...@ovh-ux/manager-emailpro@3.6.0) (2023-08-03)
+
+
+### Features
+
+* **emailpro:** add spf on emailpro ([#9592](https://github.com/ovh/manager/issues/9592)) ([2f66105](https://github.com/ovh/manager/commit/2f66105a8de13efd13ef63eac6611e9dd82a8ec4))
+
+
+
+
+
 ## [3.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.5.0...@ovh-ux/manager-emailpro@3.5.1) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-emailpro

@@ -14,6 +14,8 @@ const API_ERROR = {
 
 const CUSTOM_ACTION_PATTERN = /(^\*)|(\*$)/;
 
+const CUSTOM_ACTION_SAMPLE = 'vps:apiovh:automatedBackup/*';
+
 const CUSTOM_RESOURCE_TYPE = 'custom';
 
 const DELETE_STATEMENT = 'Terminate';
@@ -62,7 +64,7 @@ const GUIDE = {
     SG:
       'https://help.ovhcloud.com/csm/en-sg-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056799',
     US:
-      'https://help.ovhcloud.com/csm/en-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056805',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/16583913962771-How-to-Use-IAM-Policies-with-OVHcloud-API',
     WE:
       'https://help.ovhcloud.com/csm/en-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056805',
     WS:
@@ -98,7 +100,7 @@ const GUIDE = {
     SG:
       'https://help.ovhcloud.com/csm/en-sg-account-managing-users?id=kb_article_view&sysparm_article=KB0043057',
     US:
-      'https://help.ovhcloud.com/csm/en-account-managing-users?id=kb_article_view&sysparm_article=KB0043055',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/360000589270-How-to-Manage-Authorized-Users',
     WE:
       'https://help.ovhcloud.com/csm/en-account-managing-users?id=kb_article_view&sysparm_article=KB0043055',
     WS:
@@ -134,7 +136,7 @@ const GUIDE = {
     SG:
       'https://help.ovhcloud.com/csm/en-sg-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0043002',
     US:
-      'https://help.ovhcloud.com/csm/en-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0042998',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/14378994761747-How-to-Enable-SSO-Connections-with-your-OVHcloud-Account',
     WE:
       'https://help.ovhcloud.com/csm/en-customer-connect-saml-sso?id=kb_article_view&sysparm_article=KB0042998',
     WS:
@@ -274,6 +276,7 @@ export {
   ALERT_ID,
   API_ERROR,
   CUSTOM_ACTION_PATTERN,
+  CUSTOM_ACTION_SAMPLE,
   CUSTOM_RESOURCE_TYPE,
   DELETE_STATEMENT,
   ENTITY,

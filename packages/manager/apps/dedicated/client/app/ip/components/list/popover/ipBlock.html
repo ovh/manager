@@ -65,12 +65,12 @@
 
         <li
             class="divider"
-            data-ng-if="ipBlock.type === 'FAILOVER'"
+            data-ng-if="ipBlock.type === FAILOVER"
             role="separator"
         ></li>
 
         <!-- ORGANISATION -->
-        <li data-ng-if="ipBlock.type === 'FAILOVER' && ipBlock.organizationId">
+        <li data-ng-if="ipBlock.type === FAILOVER && ipBlock.organizationId">
             <button
                 type="button"
                 class="btn btn-link"
@@ -79,7 +79,7 @@
             ></button>
         </li>
 
-        <li data-ng-if="ipBlock.type === 'FAILOVER' && ipBlock.organizationId">
+        <li data-ng-if="ipBlock.type === FAILOVER && ipBlock.organizationId">
             <button
                 type="button"
                 class="btn btn-link"
@@ -89,7 +89,7 @@
         </li>
 
         <!-- IPMOVE -->
-        <li data-ng-if="ipBlock.type === 'FAILOVER'">
+        <li data-ng-if="ipBlock.type === FAILOVER">
             <button
                 type="button"
                 class="btn btn-link"
@@ -98,8 +98,10 @@
             ></button>
         </li>
 
-        <!-- IP DELETE -->
-        <li data-ng-if="ipBlock.type == 'FAILOVER' && !ipBlock.bringYourOwnIp">
+        <!-- Additional IP / PCC / VRACK DELETE-->
+        <li
+            data-ng-if="(ipBlock.type === FAILOVER && !ipBlock.bringYourOwnIp) || ipBlock.type === PCC || ipBlock.type === VRACK"
+        >
             <button
                 type="button"
                 class="btn btn-link"

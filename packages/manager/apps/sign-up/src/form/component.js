@@ -11,5 +11,6 @@ export default {
     cancelStep: '<',
     onStepFocus: '<',
     finishSignUp: '<',
+    isSmsConsentAvailable: '<',
   },
 };

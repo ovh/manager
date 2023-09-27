@@ -28,5 +28,7 @@
   "ovh_payment_status_null": "Información no disponible",
   "ovh_payment_type_sepa_direct_debit": "Domiciliación bancaria",
   "ovh_payment_status_validating": "Validando...",
-  "ovh_payment_status_rejected": "Denegado"
+  "ovh_payment_status_rejected": "Denegado",
+  "ovh_payment_type_rupay": "RuPay",
+  "ovh_payment_method_registration_failure": "No hemos podido registrar su forma de pago. No se ha realizado ningún cargo. Por favor, inténtelo de nuevo o póngase en contacto con su banco si el problema persiste. También puede utilizar una forma de pago diferente."
 }

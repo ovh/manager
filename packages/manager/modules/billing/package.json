@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing",
-  "version": "0.20.0-alpha.17",
+  "version": "0.20.0-alpha.21",
   "private": true,
   "description": "Manager billing section",
   "repository": {
@@ -15,7 +15,7 @@
     "moment": "^2.24.0"
   },
   "devDependencies": {
-    "@ovh-ux/ui-kit": "^6.5.3",
+    "@ovh-ux/ui-kit": "^6.6.2",
     "bootstrap": "^4.4.1",
     "lodash-es": "^4.17.15"
   },

@@ -106,6 +106,19 @@ export default class ResourceSelectController {
     return this.form?.[this.resourceTypesName];
   }
 
+  $onInit() {
+    this.computeURLResource();
+  }
+
+  computeURLResource() {
+    if (this.hasSelectedResourceTypes) {
+      this.resourceUrl = [
+        URL.RESOURCE,
+        this.model.types.map((type) => `resourceType=${type.value}`).join('&'),
+      ].join('?');
+    }
+  }
+
   $onChanges({ ngModel, required }) {
     if (ngModel) {
       this.model = cloneDeep(ngModel.currentValue);
@@ -149,6 +162,11 @@ export default class ResourceSelectController {
    * @param {Object} value
    */
   onResourcesChanged(value) {
+    // #MANAGER-11336: As backend only allow 10 resources, we limit it
+    this.form[this.resourcesName].$setValidity(
+      'limit',
+      this.model.selection.length <= 10,
+    );
     if (this.onChange) {
       this.onModelChanged();
       this.onChange({ change: { type: 'resources', value } });
@@ -189,12 +207,7 @@ export default class ResourceSelectController {
       this.onModelChanged();
       this.onChange({ change: { type: 'resourceTypes', value } });
     }
-    if (this.hasSelectedResourceTypes) {
-      this.resourceUrl = [
-        URL.RESOURCE,
-        this.model.types.map((type) => `resourceType=${type.value}`).join('&'),
-      ].join('?');
-    }
+    this.computeURLResource();
     this.resources = null;
     this.runValidation();
   }

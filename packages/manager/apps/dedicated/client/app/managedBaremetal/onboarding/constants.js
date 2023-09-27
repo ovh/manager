@@ -30,6 +30,8 @@ export const GUIDES = [
         'https://docs.ovh.com/us/en/managed-bare-metal/control-panel-ovhcloud/',
       US:
         'https://docs.ovh.com/us/en/managed-bare-metal/control-panel-ovhcloud/',
+      IN:
+        'https://docs.ovh.com/asia/en/managed-bare-metal/control-panel-ovhcloud/',
     },
   },
   {
@@ -53,6 +55,7 @@ export const GUIDES = [
       WE: 'https://docs.ovh.com/us/en/managed-bare-metal/add-ip-block/',
       WS: 'https://docs.ovh.com/us/en/managed-bare-metal/add-ip-block/',
       US: 'https://docs.ovh.com/us/en/managed-bare-metal/add-ip-block/',
+      IN: 'https://docs.ovh.com/asia/en/managed-bare-metal/add-ip-block/',
     },
   },
   {
@@ -93,6 +96,8 @@ export const GUIDES = [
         'https://docs.ovh.com/us/en/managed-bare-metal/login-vsphere-interface/',
       US:
         'https://docs.ovh.com/us/en/managed-bare-metal/login-vsphere-interface/',
+      IN:
+        'https://docs.ovh.com/asia/en/managed-bare-metal/login-vsphere-interface/',
     },
   },
 ];
@@ -121,6 +126,7 @@ export const CTAS = {
   LT: 'https://ovhcloud.com/lt/managed-bare-metal/',
   WE: 'https://ovhcloud.com/us-en/managed-bare-metal/',
   WS: 'https://ovhcloud.com/us-en/managed-bare-metal/',
+  IN: 'https://ovhcloud.com/asia/managed-bare-metal/',
 };
 
 export const US_GUIDES = [
@@ -134,7 +140,7 @@ export const US_GUIDES = [
     title: 'managed_baremetal_onboarding_us_guide2_title',
     description: 'managed_baremetal_onboarding_us_guide2_description',
     link:
-      'https://support.us.ovhcloud.com/hc/en-us/articles/360015989419-How-to-Log-Into-the-vSphere-Web-Client',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/360017547920-How-to-Log-Into-the-vSphere-Web-Client',
   },
 ];
 export const US_CTA = 'https://us.ovhcloud.com/managed-bare-metal/';

@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.13.1...@ovh-ux/manager-billing-components@3.14.0) (2023-09-12)
+
+
+### Features
+
+* **dedicated:** adding banner for autorenew 2016 deployment ([#9650](https://github.com/ovh/manager/issues/9650)) ([2feaba1](https://github.com/ovh/manager/commit/2feaba1957136ced5fed54cff7771a39f4289bec))
+
+
+
+
+
+## [3.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.13.0...@ovh-ux/manager-billing-components@3.13.1) (2023-09-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-billing-components
+
+
+
+
+
+# [3.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.12.1...@ovh-ux/manager-billing-components@3.13.0) (2023-09-05)
+
+
+### Features
+
+* **dedicated:** fix a typo for billing commitment ([#9543](https://github.com/ovh/manager/issues/9543)) ([449fb29](https://github.com/ovh/manager/commit/449fb29d3fe245b20b466fa315b7ef243664eeb8))
+
+
+
+
+
+## [3.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.12.0...@ovh-ux/manager-billing-components@3.12.1) (2023-08-17)
+
+
+### Bug Fixes
+
+* **billing:** update exchange accounts menu link ([#9718](https://github.com/ovh/manager/issues/9718)) ([5f4a4c7](https://github.com/ovh/manager/commit/5f4a4c735d0bbc9f4057041b02ef2c6b6c881328))
+
+
+
+
+
 # [3.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.11.10...@ovh-ux/manager-billing-components@3.12.0) (2023-08-01)
 
 

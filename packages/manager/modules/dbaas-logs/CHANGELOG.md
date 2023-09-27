@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.14.1...@ovh-ux/manager-dbaas-logs@1.15.0) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
+## [1.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.14.0...@ovh-ux/manager-dbaas-logs@1.14.1) (2023-09-12)
+
+
+### Bug Fixes
+
+* **ldp:** config test ([#9838](https://github.com/ovh/manager/issues/9838)) ([5ef9757](https://github.com/ovh/manager/commit/5ef9757c46c370aa976b07f508fb38d43b087cd5))
+
+
+
+
+
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.13.2...@ovh-ux/manager-dbaas-logs@1.14.0) (2023-09-05)
+
+
+### Features
+
+* **dedicated:** data-gathering tools useful informations popup ([#9335](https://github.com/ovh/manager/issues/9335)) ([392773d](https://github.com/ovh/manager/commit/392773d90af64f38e3c91bdfa8a182c42709f0e6))
+
+
+
+
+
 ## [1.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.13.1...@ovh-ux/manager-dbaas-logs@1.13.2) (2023-07-20)
 
 
