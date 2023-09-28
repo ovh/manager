@@ -1,25 +1,33 @@
 import {
   LISTENER_PROTOCOL_LIST,
+  MAX_INSTANCES_BY_LISTENER,
+  MAX_LISTENER,
   PROTOCOLS,
   TRACKING_ADD_LISTENER,
 } from './instances-table.constants';
 
 export default class RegionsListController {
   /* @ngInject */
-  constructor($http, atInternet, OctaviaLoadBalancerInstanceService) {
+  constructor(
+    $http,
+    $translate,
+    atInternet,
+    OctaviaLoadBalancerInstanceService,
+  ) {
     this.$http = $http;
+    this.$translate = $translate;
     this.listenerProtocols = LISTENER_PROTOCOL_LIST;
     this.atInternet = atInternet;
     this.OctaviaLoadBalancerInstanceService = OctaviaLoadBalancerInstanceService;
-    this.addInstance = RegionsListController.addInstance;
-    this.deleteListener = RegionsListController.deleteListener;
-    this.selectListenerProtocol = RegionsListController.selectListenerProtocol;
-    this.isPoolSectionDisabled = RegionsListController.isPoolSectionDisabled;
+
+    this.maxListener = MAX_LISTENER;
+    this.maxInstancesByListener = MAX_INSTANCES_BY_LISTENER;
   }
 
   $onInit() {
-    this.listeners = [];
+    if (!this.listeners) this.listeners = [];
     this.instances = [];
+    this.healthMonitorsInit();
   }
 
   $onChanges(changes) {
@@ -33,8 +41,21 @@ export default class RegionsListController {
     }
   }
 
+  healthMonitorsInit() {
+    this.listenerProtocols.forEach((listenerProtocol) => {
+      if (listenerProtocol.healthMonitors) {
+        listenerProtocol.healthMonitors.unshift({
+          name: this.$translate.instant(
+            'octavia_load_balancer_instances_table_health_monitor_empty',
+          ),
+          value: null,
+        });
+      }
+    });
+  }
+
   addListener() {
-    if (this.listeners.length < 5) {
+    if (this.listeners.length < MAX_LISTENER) {
       this.atInternet.trackClick({
         name: TRACKING_ADD_LISTENER,
         type: 'action',
@@ -46,16 +67,33 @@ export default class RegionsListController {
   }
 
   static addInstance(listener) {
-    listener.instances.push({});
+    if (listener.instances.length < MAX_INSTANCES_BY_LISTENER) {
+      listener.instances.push({});
+    }
   }
 
-  static deleteListener(index) {
+  static onInstanceSelected(instance, listener) {
+    const instanceModel = instance;
+    instanceModel.port = RegionsListController.initInstancePort(listener);
+  }
+
+  deleteListener(index) {
     this.listeners.splice(index, 1);
   }
 
+  static deleteInstance(instances, index) {
+    instances.splice(index, 1);
+  }
+
   static selectListenerProtocol(protocol, listener) {
-    // eslint-disable-next-line no-param-reassign
-    listener.port = protocol.defaultPort;
+    const listenerModel = listener;
+    if (!listenerModel.port) listenerModel.port = protocol.defaultPort;
+  }
+
+  static initInstancePort(listener) {
+    if ([PROTOCOLS.HTTP, PROTOCOLS.HTTPS].includes(listener.protocol.value))
+      return 80;
+    return null;
   }
 
   static isPoolSectionDisabled(listener) {
@@ -68,9 +106,4 @@ export default class RegionsListController {
     }
     return true;
   }
-
-  // selectHealthMonitor(healthMonitor, listener) {
-  // console.log(listener);
-  // console.log(healthMonitor);
-  // }
 }

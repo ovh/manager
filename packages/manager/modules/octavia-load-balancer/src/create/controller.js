@@ -132,6 +132,11 @@ export default class OctaviaLoadBalancerCreateCtrl {
       });
   }
 
+  skipListeners() {
+    this.model.listeners = [];
+    this.currentStep += 1;
+  }
+
   onCancel() {
     this.resetCurrentStep();
     this.atInternet.trackClick({
@@ -158,7 +163,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
       this.model.privateNetwork,
       this.model.subnet,
       this.gateways,
-      // null, // TODO: AFTER LISTENERS DEVELOPEMENT
+      this.model.listeners,
       this.model.loadBalancerName,
     )
       .then(() => {

@@ -7,14 +7,13 @@ export const PROTOCOLS = {
 };
 
 export const HEALTH_MONITORS = {
-  NONE: 'NONE',
-  HTTP_GET: 'HTTP GET',
-  HTTPS_GET: 'HTTPS GET',
-  PING: 'PING',
-  SCTP: 'SCTP',
-  TCP: 'TCP',
-  TLS_HELLO: 'TLS-HELLO',
-  UDP_CONNECT: 'UDP-CONNECT',
+  HTTP_GET: 'http',
+  HTTPS_GET: 'https',
+  PING: 'ping',
+  SCTP: 'sctp',
+  TCP: 'tcp',
+  TLS_HELLO: 'tls-hello',
+  UDP_CONNECT: 'udp-connect',
 };
 
 export const LISTENER_PROTOCOL_LIST = [
@@ -23,12 +22,11 @@ export const LISTENER_PROTOCOL_LIST = [
     value: PROTOCOLS.HTTP,
     defaultPort: 80,
     healthMonitors: [
-      HEALTH_MONITORS.NONE,
-      HEALTH_MONITORS.HTTP_GET,
-      HEALTH_MONITORS.HTTPS_GET,
-      HEALTH_MONITORS.PING,
-      HEALTH_MONITORS.TCP,
-      HEALTH_MONITORS.TLS_HELLO,
+      { name: 'HTTP GET', value: HEALTH_MONITORS.HTTP_GET },
+      { name: 'HTTPS GET', value: HEALTH_MONITORS.HTTPS_GET },
+      { name: 'PING', value: HEALTH_MONITORS.PING },
+      { name: 'TCP', value: HEALTH_MONITORS.TCP },
+      { name: 'TLS-HELLO', value: HEALTH_MONITORS.TLS_HELLO },
     ],
   },
   {
@@ -36,35 +34,32 @@ export const LISTENER_PROTOCOL_LIST = [
     value: PROTOCOLS.HTTPS,
     defaultPort: 443,
     healthMonitors: [
-      HEALTH_MONITORS.NONE,
-      HEALTH_MONITORS.HTTP_GET,
-      HEALTH_MONITORS.HTTPS_GET,
-      HEALTH_MONITORS.PING,
-      HEALTH_MONITORS.TCP,
-      HEALTH_MONITORS.TLS_HELLO,
+      { name: 'HTTP GET', value: HEALTH_MONITORS.HTTP_GET },
+      { name: 'HTTPS GET', value: HEALTH_MONITORS.HTTPS_GET },
+      { name: 'PING', value: HEALTH_MONITORS.PING },
+      { name: 'TCP', value: HEALTH_MONITORS.TCP },
+      { name: 'TLS-HELLO', value: HEALTH_MONITORS.TLS_HELLO },
     ],
   },
   {
     name: 'TCP',
     value: PROTOCOLS.TCP,
     healthMonitors: [
-      HEALTH_MONITORS.NONE,
-      HEALTH_MONITORS.HTTP_GET,
-      HEALTH_MONITORS.HTTPS_GET,
-      HEALTH_MONITORS.PING,
-      HEALTH_MONITORS.TCP,
-      HEALTH_MONITORS.TLS_HELLO,
+      { name: 'HTTP GET', value: HEALTH_MONITORS.HTTP_GET },
+      { name: 'HTTPS GET', value: HEALTH_MONITORS.HTTPS_GET },
+      { name: 'PING', value: HEALTH_MONITORS.PING },
+      { name: 'TCP', value: HEALTH_MONITORS.TCP },
+      { name: 'TLS-HELLO', value: HEALTH_MONITORS.TLS_HELLO },
     ],
   },
   {
     name: 'UDP',
     value: PROTOCOLS.UDP,
     healthMonitors: [
-      HEALTH_MONITORS.NONE,
-      HEALTH_MONITORS.HTTP_GET,
-      HEALTH_MONITORS.SCTP,
-      HEALTH_MONITORS.TCP,
-      HEALTH_MONITORS.UDP_CONNECT,
+      { name: 'HTTP GET', value: HEALTH_MONITORS.HTTP_GET },
+      { name: 'SCTP', value: HEALTH_MONITORS.SCTP },
+      { name: 'TCP', value: HEALTH_MONITORS.TCP },
+      { name: 'UDP-CONNECT', value: HEALTH_MONITORS.UDP_CONNECT },
     ],
   },
   {
@@ -73,6 +68,9 @@ export const LISTENER_PROTOCOL_LIST = [
   },
 ];
 
+export const MAX_LISTENER = 5;
+export const MAX_INSTANCES_BY_LISTENER = 5;
+
 export const TRACKING_ADD_LISTENER =
   'pci::projects::project::octavia-loadbalancer::add::add-listener';
 
@@ -80,4 +78,6 @@ export default {
   PROTOCOLS,
   LISTENER_PROTOCOL_LIST,
   TRACKING_ADD_LISTENER,
+  MAX_LISTENER,
+  MAX_INSTANCES_BY_LISTENER,
 };

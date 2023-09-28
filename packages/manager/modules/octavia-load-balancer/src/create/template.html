@@ -197,6 +197,7 @@
             data-header="{{:: 'octavia_load_balancer_create_instance_title' | translate }}"
             data-prevent-next="true"
             data-skippable="true"
+            data-on-skip="$ctrl.skipListeners()"
         >
             <p
                 data-translate="octavia_load_balancer_create_instance_intro"
@@ -219,6 +220,7 @@
             <octavia-load-balancer-instances-table
                 data-project-id="$ctrl.projectId"
                 data-region="$ctrl.model.region"
+                data-listeners="$ctrl.model.listeners"
             >
             </octavia-load-balancer-instances-table>
         </oui-step-form>

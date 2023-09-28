@@ -50,7 +50,7 @@ export default class OctaviaLoadBalancerCreateService {
     privateNetwork,
     subnet,
     gateway,
-    // listeners,
+    listeners,
     name,
   ) {
     const networkInformation = {
@@ -65,6 +65,50 @@ export default class OctaviaLoadBalancerCreateService {
       };
     }
 
+    const formattedListeners = listeners.map((listener) => {
+      let pools;
+
+      const instances = listener.instances?.reduce((filtered, instance) => {
+        if (Object.keys(instance).length > 0) {
+          filtered.push({
+            address: instance.instance.ipAddress.ip,
+            protocolPort: instance.port,
+          });
+        }
+        return filtered;
+      }, []);
+
+      if (instances.length || listener.healthMonitor?.value) {
+        pools = [
+          {
+            algorithm: 'roundRobin',
+            default: true,
+            protocol: listener.protocol.value,
+          },
+        ];
+
+        if (listener.healthMonitor?.value) {
+          pools[0].healthMonitor = {
+            name: `health-monitor-${listener.healthMonitor.value}`,
+            monitorType: listener.healthMonitor.value,
+            maxRetries: 3,
+            periodicity: 5,
+            timeout: 5,
+          };
+        }
+
+        if (instances.length) {
+          pools[0].members = instances;
+        }
+      }
+
+      return {
+        port: listener.port,
+        protocol: listener.protocol.value,
+        pools,
+      };
+    });
+
     return this.getFlavorId(projectId, regionName, size).then((flavorId) => {
       // TODO: Add listeners when ticket 10670 is done
       return this.$http
@@ -74,6 +118,7 @@ export default class OctaviaLoadBalancerCreateService {
             flavorId,
             networkInformation,
             name,
+            listeners: formattedListeners,
           },
         )
         .then(({ data }) => {
