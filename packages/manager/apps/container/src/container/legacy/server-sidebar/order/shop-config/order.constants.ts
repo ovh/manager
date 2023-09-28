@@ -391,7 +391,7 @@ export const ORDER_URLS: Record<
     },
     orderHosting: {
       ASIA: 'https://www.ovh.com/asia/web-hosting/',
-      IN: 'https://www.ovh.com/en-in/web-hosting/',
+      IN: 'https://www.ovhcloud.com/en-in/web-hosting/',
       AU: 'https://www.ovh.com.au/web-hosting/',
       CA: 'https://www.ovh.com/ca/en/web-hosting/',
       QC: 'https://www.ovh.com/ca/fr/hebergement-web/',
@@ -434,7 +434,7 @@ export const ORDER_URLS: Record<
       CA: 'https://www.ovhcloud.com/en-ca/hosted-private-cloud/sap-hana/',
       AU: 'https://www.ovhcloud.com/en-au/hosted-private-cloud/sap-hana/',
       ASIA: 'https://www.ovhcloud.com/asia/hosted-private-cloud/sap-hana/',
-      IN: 'https://www.ovhcloud.com/asia/hosted-private-cloud/sap-hana/',
+      IN: 'https://www.ovhcloud.com/en-in/hosted-private-cloud/sap-hana/',
     },
     cloud_disk_array: {},
     dbaas_logs: {
@@ -444,12 +444,13 @@ export const ORDER_URLS: Record<
     veeam_enterprise: {
       CA: 'https://www.ovh.com/ca/en/storage-solutions/veeam-enterprise.xml',
       QC: 'https://www.ovh.com/ca/fr/storage-solutions/veeam-enterprise.xml',
-      IN: 'https://www.ovh.com/asia/storage-solutions/veeam-enterprise.xml'
+      IN: 'https://www.ovhcloud.com/en-in/storage-solutions/veeam-enterprise'
     },
     vrack: {
       ASIA:
         "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
-      IN: 'https://ca.ovh.com/in/order/express/#/new/express/resume?products=~(~(planCode~vrack~quantity~1~productId~vrack))',
+      IN:
+        "https://ca.ovh.com/in/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
       AU:
         "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
       CA:
@@ -465,6 +466,7 @@ export const ORDER_URLS: Record<
     },
     load_balancer: {
       ASIA: 'https://www.ovh.com/asia/solutions/ip-load-balancing/',
+      IN: 'https://www.ovhcloud.com/en-in/network/load-balancer/',
       AU: 'https://www.ovh.com.au/solutions/ip-load-balancing/',
       CA: 'https://www.ovh.com/ca/en/solutions/ip-load-balancing/',
       QC: 'https://www.ovh.com/ca/fr/solutions/ip-load-balancing/',
@@ -484,7 +486,7 @@ export const ORDER_URLS: Record<
     },
     dedicatedEcoRangeOrder: {
       ASIA: 'https://eco.ovhcloud.com/asia/',
-      IN: 'https://eco.static.ovh.net/en-in/',
+      IN: 'https://eco.ovhcloud.com/en-in/',
       AU: 'https://eco.ovhcloud.com/en-au/',
       CA: 'https://eco.ovhcloud.com/en-ca/',
       QC: 'https://eco.ovhcloud.com/fr-ca/',
@@ -549,7 +551,7 @@ export const ORDER_URLS: Record<
     ovh_cloud_connect: {
       CA: 'https://www.ovhcloud.com/en-ca/network/ovhcloud-connect/',
       QC: 'https://www.ovhcloud.com/fr-ca/network/ovhcloud-connect/',
-      IN: 'https://www.ovhcloud.com/asia/network/ovhcloud-connect/',
+      IN: 'https://www.ovhcloud.com/en-in/network/ovhcloud-connect/',
     },
   },
   US: {

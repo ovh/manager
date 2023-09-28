@@ -36,7 +36,7 @@ export const VRACK_ORDER_URLS = {
   ASIA:
     "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
   IN:
-    'https://ca.ovh.com/in/order/express/#/new/express/resume?products=~(~(planCode~vrack~quantity~1~productId~vrack))',
+    "https://ca.ovh.com/in/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
   AU:
     "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
   CA:
