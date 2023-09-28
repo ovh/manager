@@ -50,7 +50,7 @@
   "server_configuration_kvm_order_step2_duration": "Periodo:",
   "server_configuration_kvm_order_step2_details": "Dettagli dell'ordine:",
   "server_configuration_kvm_order_step2_price": "Prezzo:",
-  "server_configuration_kvm_order_finish_success": "Il servizio è stato ordinato correttamente. I nostri team stanno installando il servizio nel datacenter. Una volta terminata l’installazione, riceverai un’email.",
+  "server_configuration_kvm_order_finish_success": "Il buono d'ordine numero  <a href='{{url}}' target='_blank'>{{orderId}}</a> è stato generato correttamente. Per completare l’ordine, effettua il pagamento cliccando su questo <a href='{{url}}' target='_blank'>link</a>.",
   "server_configuration_kvm_order_error": "Si è verificato un errore durante l'ordine del KVM.",
   "server_configuration_kvm_informations": "Informazioni del KVM",
   "server_configuration_kvm_informations_name": "Nome:",

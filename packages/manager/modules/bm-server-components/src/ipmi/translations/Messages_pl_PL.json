@@ -50,7 +50,7 @@
   "server_configuration_kvm_order_step2_duration": "Okres:",
   "server_configuration_kvm_order_step2_details": "Informacje dotyczące zamówienia:",
   "server_configuration_kvm_order_step2_price": "Cena:",
-  "server_configuration_kvm_order_finish_success": "Usługa została zamówiona. Usługa jest w tej chwili instalowana przez nasze zespoły w centrum danych. Po zakończeniu instalacji otrzymasz e-mail.",
+  "server_configuration_kvm_order_finish_success": "Zamówienie numer <a href='{{url}}' target='_blank'>{{orderId}}</a> zostało złożone. Prosimy o sfinalizowanie zamówienia, klikając <a href='{{url}}' target='_blank'>link</a>.",
   "server_configuration_kvm_order_error": "Wystąpił błąd podczas zamawiania usługi KVM.",
   "server_configuration_kvm_informations": "Informacje dotyczące usługi KVM",
   "server_configuration_kvm_informations_name": "Nazwa:",
