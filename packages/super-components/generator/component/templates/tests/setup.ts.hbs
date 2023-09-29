@@ -21,7 +21,7 @@ export const setupSpecTest = async ({
   attributes?: Partial<I{{ pascalCase componentTag }}>;
   html?: string;
 }) => {
-  const mock = mockRequests(config);
+  const mock = mockRequests(config, 'v6');
   const stringAttributes = { ...defaultAttributes, ...attributes };
   const page = await newSpecPage({
     components: [{{ pascalCase componentTag }}],
@@ -45,7 +45,7 @@ export const setupE2eTest = async ({
 
   await page.setRequestInterception(true);
 
-  page.on('response', e2eMockResponseHandler({ page, handlers: config }));
+  page.on('response', e2eMockResponseHandler({ page, handlers: config, apiVersion: 'v6' }));
 
   await page.setContent(
     `<{{ componentTag }} ${OdsStringAttributes2Str(stringAttributes)}>${html}</{{ componentTag }}>`,

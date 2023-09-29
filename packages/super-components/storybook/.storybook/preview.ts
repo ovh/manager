@@ -73,6 +73,7 @@ defineInput();
 defineLink();
 defineMenu();
 defineMessage();
+defineModal();
 definePagination();
 definePassword();
 definePopover();
