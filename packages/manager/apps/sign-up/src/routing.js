@@ -61,6 +61,41 @@ export const state = {
       ssoAuthentication.logout($location.search().onsuccess);
     },
 
+    isKycFeatureAvailable: /* @ngInject */ ($http) => {
+      return $http
+        .get(`/feature/identity-documents/availability`, {
+          serviceType: 'aapi',
+        })
+        .then(
+          ({ data: featureAvailability }) =>
+            featureAvailability['identity-documents'],
+        );
+    },
+
+    kycStatus: /* @ngInject */ ($http, isKycFeatureAvailable) => {
+      if (isKycFeatureAvailable) {
+        return $http.get(`/me/procedure/identity`).then(({ data }) => data);
+      }
+      return false;
+    },
+
+    needkyc: /* @ngInject */ (isKycFeatureAvailable, kycStatus) => {
+      if (isKycFeatureAvailable) {
+        return ['required', 'open'].includes(kycStatus.status);
+      }
+      return false;
+    },
+
+    goToKycDocumentUploadPage: /* @ngInject */ (
+      $window,
+      coreURLBuilder,
+    ) => () => {
+      // eslint-disable-next-line no-param-reassign
+      $window.location.href = coreURLBuilder.buildURL(
+        'dedicated',
+        '#/identity-documents',
+      );
+    },
     onStepFocus: /* @ngInject */ ($state, getStepByName) => (stepName) => {
       const focusedStep = getStepByName(stepName);
       if ($state.current.name !== focusedStep.state) {
