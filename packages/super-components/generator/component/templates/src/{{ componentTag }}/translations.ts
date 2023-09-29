@@ -2,7 +2,7 @@ import { Locale } from '@ovhcloud/msc-utils';
 
 export type Translations = {
   test: string;
-  // TODO: Put your translation keys
+  //  Put your translation keys
 };
 
 /**
@@ -10,7 +10,7 @@ export type Translations = {
  */
 export async function getTranslations(locale?: Locale): Promise<Translations> {
   try {
-    // TODO: uncomment this structure once the other locales are generated
+    //  uncomment this structure once the other locales are generated
     // switch (locale) {
     //   case 'de-DE':
     //     return await import('../translations/Messages_de_DE.json');

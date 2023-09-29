@@ -8,6 +8,7 @@ import {
   Fragment,
 } from '@stencil/core';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { HTMLStencilElement } from '@stencil/core/internal';
@@ -18,11 +19,7 @@ import {
   ServiceInfos,
   Translations,
 } from './msc-billing.types';
-import {
-  getChangeOwnerUrl,
-  getContactManagementUrl,
-  getUpdateOwnerUrl,
-} from './urls';
+import { BillingTileURLs } from './urls';
 
 export interface IMscBillingContact {
   serviceName: string;
@@ -32,6 +29,7 @@ export interface IMscBillingContact {
   updateOwnerDataTracking?: string;
   subscriptionManagementDataTracking?: string;
   localeStrings: Translations;
+  urls?: BillingTileURLs;
 }
 
 @Component({
@@ -55,6 +53,8 @@ export class MscBillingContact implements IMscBillingContact {
   @Prop() subscriptionManagementDataTracking?: string;
 
   @Prop() localeStrings: Translations;
+
+  @Prop() urls?: BillingTileURLs;
 
   @State() domainProperties?: DomainProperties;
 
@@ -99,9 +99,9 @@ export class MscBillingContact implements IMscBillingContact {
       <>
         <osds-link
           data-tracking={this.subscriptionManagementDataTracking}
-          href={getContactManagementUrl(this.serviceName)}
+          href={this.urls?.contactManagementUrl}
           color={ODS_THEME_COLOR_INTENT.primary}
-          target="_blank"
+          target={OdsHTMLAnchorElementTarget._blank}
         >
           {this.localeStrings.manager_billing_subscription_contacts_management}
           <osds-icon
@@ -115,11 +115,12 @@ export class MscBillingContact implements IMscBillingContact {
         {this.isOwnerChangeableServiceType() && (
           <osds-link
             data-tracking={this.changeOwnerDataTracking}
-            href={getChangeOwnerUrl({
-              isDomainService: this.isDomainServiceType(),
-              serviceName: this.serviceName,
-            })}
-            target="_blank"
+            href={
+              this.isDomainServiceType()
+                ? this.urls?.changeDomainOwnerUrl
+                : this.urls?.changeOwnerUrl
+            }
+            target={OdsHTMLAnchorElementTarget._blank}
             color={ODS_THEME_COLOR_INTENT.primary}
           >
             <span class="link-text">
@@ -137,12 +138,12 @@ export class MscBillingContact implements IMscBillingContact {
         {this.isDomainServiceType() && this.domainProperties?.whoisOwner && (
           <osds-link
             data-tracking={this.updateOwnerDataTracking}
-            href={getUpdateOwnerUrl({
-              serviceName: this.serviceName,
-              ownerId: this.domainProperties?.whoisOwner,
-            })}
+            href={this.urls?.updateOwnerUrl.replace(
+              '{ownerId}',
+              this.domainProperties.whoisOwner,
+            )}
             color={ODS_THEME_COLOR_INTENT.primary}
-            target="_blank"
+            target={OdsHTMLAnchorElementTarget._blank}
           >
             {
               this.localeStrings
