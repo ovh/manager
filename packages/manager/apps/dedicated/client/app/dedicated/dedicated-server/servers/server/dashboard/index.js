@@ -26,6 +26,12 @@ import professionalUse from './professional-use';
 import terminate from '../../terminate/terminate.module';
 import upgrade from './upgrade';
 
+import installationChoice from './installation/choice';
+import installationGabarit from './installation/gabarit';
+import installationOvh from './installation/ovh';
+import installationProgress from './installation/progress';
+import install from '../install';
+
 import component from './dashboard.component';
 import routing from './dashboard.routing';
 
@@ -54,6 +60,11 @@ angular
     serverConsumptionTile,
     serverMrtgTile,
     serverAdvancedFeatures,
+    installationChoice,
+    installationGabarit,
+    installationOvh,
+    installationProgress,
+    install,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)

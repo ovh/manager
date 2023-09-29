@@ -31,11 +31,6 @@ import './dedicated-server/servers/ftp-backup/dedicated-server-ftp-backup.routes
 import './dedicated-server/servers/ftp-backup/delete/dedicated-server-ftp-backup-delete.controller';
 import './dedicated-server/servers/ftp-backup/order/dedicated-server-ftp-backup-order.controller';
 import './dedicated-server/servers/ftp-backup/password/request/dedicated-server-ftp-backup-password-request.controller';
-import './dedicated-server/servers/installation/choice/dedicated-server-installation-choice.controller';
-import './dedicated-server/servers/installation/dedicated-server-installation.controller';
-import './dedicated-server/servers/installation/gabarit/dedicated-server-installation-gabarit.controller';
-import './dedicated-server/servers/installation/ovh/dedicated-server-installation-ovh.controller';
-import './dedicated-server/servers/installation/progress/dedicated-server-installation-progress.controller';
 import './dedicated-server/servers/ip/dedicated-server-ip-mitigation-statistics.controller';
 import './dedicated-server/servers/ip/dedicated-server-ip-mitigation.controller';
 import './dedicated-server/servers/ip/dedicated-server-ip.controller';

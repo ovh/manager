@@ -10,6 +10,7 @@ export default class DedicatedServerDashboard {
   constructor(
     $q,
     $scope,
+    $rootScope,
     $state,
     $stateParams,
     $translate,
@@ -22,6 +23,7 @@ export default class DedicatedServerDashboard {
   ) {
     this.$q = $q;
     this.$scope = $scope;
+    this.$rootScope = $rootScope;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
@@ -34,6 +36,7 @@ export default class DedicatedServerDashboard {
   }
 
   $onInit() {
+    this.$rootScope.serverCtrl = this.dedicatedServer;
     this.COMMIT_IMPRESSION_TRACKING_DATA = COMMIT_IMPRESSION_TRACKING_DATA;
     this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
 
