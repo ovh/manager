@@ -9,6 +9,7 @@ describe('screenshot:msc-billing-tile', () => {
         testCase: 'english locale',
         locale: 'en-GB' as Locale,
         servicePath: 'vps/vps-00000000.vps.ovh.net',
+        subsidiary: 'GB',
       },
       {
         testCase: 'Offer without menu',

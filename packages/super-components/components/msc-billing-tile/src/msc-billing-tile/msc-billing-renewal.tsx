@@ -1,5 +1,6 @@
 import { h, Fragment, Component, Prop } from '@stencil/core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_CHIP_SIZE, ODS_CHIP_VARIANT } from '@ovhcloud/ods-components/chip';
@@ -9,13 +10,7 @@ import {
   ServiceInfos,
   Translations,
 } from './msc-billing.types';
-import {
-  getAnticipateRenew,
-  getCancelResiliationUrl,
-  getManageRenewUrl,
-  getRenewUrl,
-  getResiliateUrl,
-} from './urls';
+import { BillingTileURLs } from './urls';
 
 export interface IMSCBillingRenewal {
   serviceName: string;
@@ -30,6 +25,7 @@ export interface IMSCBillingRenewal {
   resiliateDataTracking?: string;
   anticipateRenewDataTracking?: string;
   localeStrings: Translations;
+  urls?: BillingTileURLs;
 }
 
 const chipColorMap = {
@@ -58,6 +54,8 @@ export class MscBillingRenewal implements IMSCBillingRenewal {
   @Prop() public resiliateDataTracking?: string;
 
   @Prop() public anticipateRenewDataTracking?: string;
+
+  @Prop() urls?: BillingTileURLs;
 
   @Prop() serviceName: string;
 
@@ -109,8 +107,8 @@ export class MscBillingRenewal implements IMSCBillingRenewal {
           <osds-link
             data-tracking={this.renewLinkDataTracking}
             color={ODS_THEME_COLOR_INTENT.primary}
-            href={getRenewUrl(this.serviceName)}
-            target="_blank"
+            href={this.urls?.renewUrl}
+            target={OdsHTMLAnchorElementTarget._blank}
           >
             {this.localeStrings.billing_services_actions_menu_renew}
             <osds-icon
@@ -125,9 +123,9 @@ export class MscBillingRenewal implements IMSCBillingRenewal {
         return (
           <osds-link
             data-tracking={this.cancelResiliationDataTracking}
-            target="_blank"
+            target={OdsHTMLAnchorElementTarget._blank}
             color={ODS_THEME_COLOR_INTENT.primary}
-            href={getCancelResiliationUrl(this.servicePath)}
+            href={this.urls?.cancelResiliationUrl}
           >
             {this.localeStrings.billing_services_actions_menu_resiliate_cancel}
           </osds-link>
@@ -137,19 +135,16 @@ export class MscBillingRenewal implements IMSCBillingRenewal {
           <>
             <osds-link
               data-tracking={this.manageRenewDataTracking}
-              target="_blank"
-              href={getManageRenewUrl({
-                serviceName: this.serviceName,
-                serviceType: this.serviceType,
-              })}
+              target={OdsHTMLAnchorElementTarget._blank}
+              href={this.urls?.manageRenewUrl}
               color={ODS_THEME_COLOR_INTENT.primary}
             >
               {this.localeStrings.billing_services_actions_menu_manage_renew}
             </osds-link>
             <osds-link
               data-tracking={this.anticipateRenewDataTracking}
-              target="_blank"
-              href={getAnticipateRenew(this.servicePath)}
+              target={OdsHTMLAnchorElementTarget._blank}
+              href={this.urls?.anticipateRenew}
               color={ODS_THEME_COLOR_INTENT.primary}
             >
               {
@@ -159,11 +154,8 @@ export class MscBillingRenewal implements IMSCBillingRenewal {
             </osds-link>
             <osds-link
               data-tracking={this.resiliateDataTracking}
-              target="_blank"
-              href={getResiliateUrl({
-                serviceName: this.serviceName,
-                serviceType: this.serviceType,
-              })}
+              target={OdsHTMLAnchorElementTarget._blank}
+              href={this.urls?.resiliateUrl}
               color={ODS_THEME_COLOR_INTENT.primary}
             >
               {this.localeStrings.billing_services_actions_menu_resiliate}

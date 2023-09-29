@@ -29,6 +29,9 @@ export class Example {
       <Host>
         <msc-billing-tile
           service-path="vps/vps-33333333.vps.ovh.net"
+          app-public-url="https://www.ovh.com/manager/#/app-name/"
+          region="EU"
+          subsidiary="GB"
           locale="en-GB">
         </msc-billing-tile>
       </Host>
