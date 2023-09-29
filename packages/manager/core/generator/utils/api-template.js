@@ -43,7 +43,9 @@ const toOperationList = (apiVersion) => ({ path, description, operations }) =>
         responseType: tsResponseType.replaceAll('>', ''),
         params: parameters.map(
           ({ name, fullType, required, description: paramDescription }) => {
-            const paramType = getTypeFromString(fullType);
+            const paramType = fullType
+              ? getTypeFromString(fullType)
+              : 'unknown';
             let paramName =
               name ||
               `${paramType[0].toLowerCase()}${paramType
