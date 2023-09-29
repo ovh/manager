@@ -15,7 +15,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/ui-kit": "^6.6.2",
+    "@ovh-ux/ui-kit": "^6.6.3",
     "bootstrap": "^3.3.7"
   },
   "peerDependencies": {

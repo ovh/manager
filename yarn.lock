@@ -6061,15 +6061,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^6.6.2":
-  version "6.6.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.6.2.tgz#93835665465ac246ec10cec1dda6b8b3fc5e0543"
-  integrity sha512-7XFGcUOig2+W+QCgKmcgzlY/S97i8+R2BawFywKckpx1bqLfDbinIz/7yCBVcReBvFFolKS+rRoxM8ZgmLvQXw==
-
-"@ovh-ux/ui-kit@^6.6.1":
-  version "6.6.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.6.2.tgz#93835665465ac246ec10cec1dda6b8b3fc5e0543"
-  integrity sha512-7XFGcUOig2+W+QCgKmcgzlY/S97i8+R2BawFywKckpx1bqLfDbinIz/7yCBVcReBvFFolKS+rRoxM8ZgmLvQXw==
+"@ovh-ux/ui-kit@^6.3.0", "@ovh-ux/ui-kit@^6.6.3":
+  version "6.6.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.6.3.tgz#f666a3192d6ed1f220608a689cd0ce5dedb3c99d"
+  integrity sha512-zFHSuUvt2IgLAauCXpbzUun72o4AD7z8fQ4UW92hbv/+SifzFz5azfv4eeRoWvHwzccsnNNP/I5dbAjHa2An9Q==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -13733,10 +13728,15 @@ flat@^5.0.2:
   resolved "https://registry.npmjs.org/flat/-/flat-5.0.2.tgz#8ca6fe332069ffa9d324c327198c598259ceb241"
   integrity sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ==
 
-flatpickr@4.6.9, flatpickr@^4.6.3, flatpickr@~4.5.2, flatpickr@~4.6.3:
+flatpickr@^4.6.3, flatpickr@~4.6.3:
   version "4.6.9"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
   integrity sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==
+
+flatpickr@~4.5.2:
+  version "4.5.7"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.7.tgz#6efc0d93c65547aa77294205c67830ebabe3565c"
+  integrity sha512-JqPfihUc9A/j9QAsh6otoARmMyUauPE17vRBEG+ThJwbl8zAq4ssGpxlPK3wWM/i8EFxkHg9UuVo0ds7XluKxw==
 
 flatted@^2.0.0:
   version "2.0.1"
