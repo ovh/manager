@@ -5,7 +5,6 @@ import {
   newE2EPage,
 } from '@stencil/core/testing';
 import { OdsStringAttributes2Str } from '@ovhcloud/ods-common-testing';
-import { defaultLocale } from '@ovhcloud/msc-utils';
 import { MscBillingTile, IMscBillingTile } from '../src';
 import { MscBillingCommitment } from '../src/msc-billing-tile/msc-billing-commitment';
 import { MscBillingContact } from '../src/msc-billing-tile/msc-billing-contact';
@@ -22,13 +21,14 @@ import tradEN from '../src/translations/Messages_en_GB.json';
 
 const defaultAttributes = {
   servicePath: 'dedicated/nasha/zpool-111111',
-  locale: defaultLocale,
+  appPublicUrl: 'https://www.ovh.com/manager/#/app-name/',
 };
 
 export const setupSpecTest = async (attributes?: Partial<IMscBillingTile>) => {
   const mock = mockRequests(config);
   const stringAttributes = { ...defaultAttributes, ...attributes };
   const page = await newSpecPage({
+    url: defaultAttributes.appPublicUrl,
     components: [
       MscBillingTile,
       MscBillingCommitment,

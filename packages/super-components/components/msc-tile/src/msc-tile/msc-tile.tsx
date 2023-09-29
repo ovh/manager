@@ -8,6 +8,10 @@ import {
   State,
 } from '@stencil/core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  OdsHTMLAnchorElementTarget,
+  OdsHTMLAnchorElementRel,
+} from '@ovhcloud/ods-common-core';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { HTMLStencilElement, Watch } from '@stencil/core/internal';
@@ -152,7 +156,7 @@ export class MscTile implements IMscTile {
             data-tracking={this.dataTracking}
             color={ODS_THEME_COLOR_INTENT.primary}
             href={this.href}
-            target="_blank"
+            target={OdsHTMLAnchorElementTarget._blank}
           >
             {this.localeStrings?.see_more_label}
             <osds-icon
@@ -180,8 +184,8 @@ export class MscTile implements IMscTile {
         ) : (
           <a
             class="msc-tile-wrapper"
-            target="_blank"
-            rel="noopener"
+            target={OdsHTMLAnchorElementTarget._blank}
+            rel={OdsHTMLAnchorElementRel.noopener}
             href={this.href}
             onFocus={() => {
               this.tabIndex = -1;
