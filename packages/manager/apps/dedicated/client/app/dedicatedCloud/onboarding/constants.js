@@ -131,7 +131,7 @@ export const CTAS = {
   SN: 'https://www.ovhcloud.com/fr-sn/hosted-private-cloud/vmware/prices/',
   TN: 'https://www.ovhcloud.com/fr-tn/hosted-private-cloud/vmware/prices/',
   ASIA: 'https://www.ovhcloud.com/asia/hosted-private-cloud/vmware/prices/',
-  IN: 'https://www.ovhcloud.com/asia/hosted-private-cloud/vmware/prices/',
+  IN: 'https://www.ovhcloud.com/en-in/hosted-private-cloud/vmware/prices/',
   AU: 'https://www.ovhcloud.com/en-au/hosted-private-cloud/vmware/prices/',
   CA: 'https://www.ovhcloud.com/en-ca/hosted-private-cloud/vmware/prices/',
   QC: 'https://www.ovhcloud.com/fr-ca/hosted-private-cloud/vmware/prices/',
