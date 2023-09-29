@@ -44,6 +44,7 @@
   "signup_field_ovhSubsidiary": "Filiale OVH",
   "signup_field_timezone": "Fuseau horaire",
   "signup_field_customerCode": "Code client",
+  "signup_field_purposeOfPurchase": "Raison de l'achat",
   "signup_field_italianSDI": "Numéro SDI",
   "signup_field_smsConsent": "J'accepte de recevoir des SMS relatifs aux nouveautés et offres commerciales d'OVHcloud",
   "signup_field_required_error": "Veuillez compléter ce champ.",
