@@ -2,7 +2,9 @@ import { URLS, OPERATING_SYSTEM_ENUM } from './general-information.constants';
 
 export default class BmServerComponentsGeneralInformationController {
   /* @ngInject */
-  constructor($translate, atInternet, coreConfig) {
+  constructor($scope, $state, $translate, atInternet, coreConfig) {
+    this.$scope = $scope;
+    this.$state = $state;
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.user = coreConfig.getUser();
@@ -29,11 +31,10 @@ export default class BmServerComponentsGeneralInformationController {
       this.trackPage(`${this.trackingPrefix}::system-install`);
     }
 
-    return this.dedicatedServer.$scope.setAction(
-      `installation/${type}/dedicated-server-installation-${type}`,
+    return this.$state.go(
+      `app.dedicated-server.server.dashboard.installation-${type}`,
       {
         server: this.server,
-        serverCtrl: this.dedicatedServer,
         user: this.user,
       },
     );

@@ -11,7 +11,6 @@ import bandwidth from '../bandwidth/bandwidth.module';
 import dashboard from './dashboard';
 import displayName from './display-name';
 import reboot from './reboot';
-import install from '../install';
 import interfaces from '../interfaces/interfaces.module';
 import monitoring from './monitoring';
 import reverseDnsUpdate from './reverse-dns/update';
@@ -37,7 +36,6 @@ angular
     bandwidth,
     cpanelEolBanner,
     dashboard,
-    install,
     interfaces,
     'oui',
     ngOvhFeatureFlipping,
