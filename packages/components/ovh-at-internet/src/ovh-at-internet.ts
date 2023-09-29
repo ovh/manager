@@ -4,7 +4,6 @@ import {
   IOvhAtInternetTrack,
   LegacyTrackingData,
   GenericTrackingData,
-  ClickTrackingData,
   ImpressionTrackingData,
   PageTrackingData,
 } from './track';

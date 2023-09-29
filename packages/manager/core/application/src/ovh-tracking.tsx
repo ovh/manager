@@ -86,12 +86,14 @@ export default function OvhTracking() {
   const ovhTrackingAction = (event) => {
     const element = event.target as HTMLElement;
     const closestWithTracking = element.closest(`[${'data-tracking'}]`);
-    const trackingValue = closestWithTracking.getAttribute('data-tracking');
-    if (
-      trackingValue &&
-      OSDS_COMPONENT.includes(closestWithTracking.tagName.toUpperCase())
-    ) {
-      ovhTrackingSenClick(trackingValue);
+    if (closestWithTracking) {
+      const trackingValue = closestWithTracking.getAttribute('data-tracking');
+      if (
+        trackingValue &&
+        OSDS_COMPONENT.includes(closestWithTracking.tagName.toUpperCase())
+      ) {
+        ovhTrackingSenClick(trackingValue);
+      }
     }
   };
 
