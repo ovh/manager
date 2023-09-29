@@ -9,12 +9,13 @@ import {
 } from '@stencil/core';
 import { HTMLStencilElement } from '@stencil/core/internal';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_CHIP_SIZE, ODS_CHIP_VARIANT } from '@ovhcloud/ods-components/chip';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { translate, formatDate, Locale } from '@ovhcloud/msc-utils';
 import { ServiceDetails, Translations } from './msc-billing.types';
-import { getEngagementCommitUrl } from './urls';
+import { BillingTileURLs } from './urls';
 
 enum CommitmentStatus {
   NONE = 'none',
@@ -30,6 +31,7 @@ export interface IMscBillingCommitment {
   nextBillingDate?: string;
   locale: Locale;
   localeStrings: Translations;
+  urls?: BillingTileURLs;
   commitmentDataTracking?: string;
 }
 
@@ -52,6 +54,8 @@ export class MscBillingCommitment implements IMscBillingCommitment {
   @Prop() serviceDetails?: ServiceDetails;
 
   @Prop() commitmentDataTracking?: string;
+
+  @Prop() urls?: BillingTileURLs;
 
   @State() commitmentStatus: CommitmentStatus;
 
@@ -182,8 +186,8 @@ export class MscBillingCommitment implements IMscBillingCommitment {
                   class="resub-link"
                   data-tracking={this.commitmentDataTracking}
                   color={ODS_THEME_COLOR_INTENT.primary}
-                  href={getEngagementCommitUrl(this.servicePath)}
-                  target="_blank"
+                  href={this.urls?.engagementCommitUrl}
+                  target={OdsHTMLAnchorElementTarget._blank}
                 >
                   {
                     this.localeStrings

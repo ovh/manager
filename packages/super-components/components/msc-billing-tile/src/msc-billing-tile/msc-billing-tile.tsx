@@ -10,7 +10,15 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { HTMLStencilElement, Watch } from '@stencil/core/internal';
-import { Locale, defaultLocale, formatDate } from '@ovhcloud/msc-utils';
+import {
+  Locale,
+  defaultLocale,
+  formatDate,
+  Region,
+  Subsidiary,
+  defaultRegion,
+  defaultSubsidiary,
+} from '@ovhcloud/msc-utils';
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { getTranslations } from './translations';
 import {
@@ -18,10 +26,14 @@ import {
   ServiceInfos,
   Translations,
 } from './msc-billing.types';
+import { getBillingTileURLs, BillingTileURLs } from './urls';
 
 export interface IMscBillingTile {
   servicePath: string;
+  appPublicUrl: string;
   locale?: Locale;
+  region?: Region;
+  subsidiary?: Subsidiary;
   commitmentDataTracking?: string;
   changeOwnerDataTracking?: string;
   updateOwnerDataTracking?: string;
@@ -45,7 +57,13 @@ export class MscBillingTile implements IMscBillingTile {
 
   @Prop() public servicePath: string;
 
-  @Prop() public commitmentDataTracking?: string = '';
+  @Prop() public appPublicUrl: string;
+
+  @Prop() public region = defaultRegion;
+
+  @Prop() public subsidiary = defaultSubsidiary;
+
+  @Prop() public commitmentDataTracking?: string;
 
   @Prop() public changeOwnerDataTracking?: string;
 
@@ -71,12 +89,30 @@ export class MscBillingTile implements IMscBillingTile {
 
   @State() serviceDetails?: ServiceDetails;
 
+  @State() urls?: BillingTileURLs;
+
+  @Watch('appPublicUrl')
+  @Watch('region')
+  @Watch('subsidiary')
+  @Watch('servicePath')
+  setURLs() {
+    this.urls = getBillingTileURLs({
+      appPublicURL: this.appPublicUrl,
+      region: this.region,
+      subsidiary: this.subsidiary,
+      serviceName: this.getServiceName(),
+      servicePath: this.servicePath,
+      serviceType: this.getServiceType(),
+    });
+  }
+
   @Watch('locale')
   async updateTranslations() {
     this.localeStrings = await getTranslations(this.locale);
   }
 
   async componentWillLoad() {
+    this.setURLs();
     this.updateTranslations();
 
     apiClient.v6.get(`${this.servicePath}/serviceInfos`).then((response) => {
@@ -139,7 +175,7 @@ export class MscBillingTile implements IMscBillingTile {
   }
 
   public render() {
-    if (!this.localeStrings) {
+    if (!this.localeStrings || !this.urls) {
       return (
         <osds-tile rounded inline>
           <osds-skeleton />
@@ -167,6 +203,7 @@ export class MscBillingTile implements IMscBillingTile {
                 serviceInfos={this.serviceInfos}
                 serviceDetails={this.serviceDetails}
                 localeStrings={this.localeStrings}
+                urls={this.urls}
                 changeOfferDataTracking={this.changeOfferDataTracking}
               />
               <msc-billing-renewal
@@ -178,6 +215,7 @@ export class MscBillingTile implements IMscBillingTile {
                 serviceType={this.getServiceType()}
                 servicePath={this.servicePath}
                 nextBillingDate={this.getFormattedNextBillingDate()}
+                urls={this.urls}
                 renewLinkDataTracking={this.renewLinkDataTracking}
                 cancelResiliationDataTracking={
                   this.cancelResiliationDataTracking
@@ -193,6 +231,7 @@ export class MscBillingTile implements IMscBillingTile {
                 nextBillingDate={this.getFormattedNextBillingDate()}
                 locale={this.locale}
                 localeStrings={this.localeStrings}
+                urls={this.urls}
                 commitmentDataTracking={this.commitmentDataTracking}
               />
               <msc-billing-contact
@@ -201,6 +240,7 @@ export class MscBillingTile implements IMscBillingTile {
                 localeStrings={this.localeStrings}
                 serviceName={this.getServiceName()}
                 serviceType={this.getServiceType()}
+                urls={this.urls}
                 changeOwnerDataTracking={this.changeOwnerDataTracking}
                 updateOwnerDataTracking={this.updateOwnerDataTracking}
                 subscriptionManagementDataTracking={
