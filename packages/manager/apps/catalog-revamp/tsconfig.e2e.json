@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./e2e-dist"
+  },
+  "include": ["e2e/*.e2e.ts"]
+}

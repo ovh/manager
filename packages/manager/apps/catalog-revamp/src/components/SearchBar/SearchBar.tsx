@@ -52,6 +52,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
         </span>
         <span>
           <OsdsButton
+            name="filterButton"
             size={ODS_BUTTON_SIZE.sm}
             type={ODS_BUTTON_TYPE.button}
             variant={ODS_BUTTON_VARIANT.stroked}
@@ -64,7 +65,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
               color={ODS_THEME_COLOR_INTENT.primary}
               className="mr-2"
             />
-            {t('manager_catalog_search_button')}
+            {t('manager_catalog_search_filter_button')}
           </OsdsButton>
         </span>
       </div>
