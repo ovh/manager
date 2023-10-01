@@ -12,4 +12,9 @@ export default defineConfig({
     // Collect trace when retrying the failed test.
     trace: 'retain-on-failure',
   },
+  testMatch: '**/*.e2e.ts',
+  webServer: {
+    command: 'yarn run dev',
+    url: 'http://localhost:9000/',
+  },
 });

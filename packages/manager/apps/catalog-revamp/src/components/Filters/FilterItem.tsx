@@ -32,6 +32,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
     <span className="break-inside-avoid">
       <OsdsCheckbox
         checked={isChecked}
+        name={`checkbox-${type}-${label.replace(/\s+/g, '')}`}
         onOdsCheckedChange={(event: CustomEvent) =>
           onCheckboxChange(type, label, event)
         }
