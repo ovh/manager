@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions, no-param-reassign */
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { getApiPaths } from '../utils/api.js';
-import { getApiv6TemplateData } from '../utils/api-template.js';
+import { getApiPaths, isV2Endpoint } from '../utils/api.js';
+import { getApiTemplateData } from '../utils/api-template.js';
 import {
   createPages,
   createTranslations,
@@ -10,6 +10,23 @@ import {
 } from '../utils/create-structure-helpers.js';
 
 const appDirectory = dirname(fileURLToPath(import.meta.url));
+
+const toChoice = ({ apiPath, functionName }) => ({
+  name: apiPath,
+  value: `${apiPath}-${functionName}`,
+});
+
+const getApiV2AndV6GetEndpointsChoices = ({
+  apiV6Endpoints,
+  apiV2Endpoints,
+}) => [
+  { type: 'separator', line: 'V2 endpoints' },
+  ...(apiV2Endpoints?.get?.operationList?.map(toChoice) || []),
+  { type: 'separator' },
+  { type: 'separator', line: 'V6 endpoints' },
+  ...(apiV6Endpoints?.get?.operationList?.map(toChoice) || []),
+  { type: 'separator' },
+];
 
 export default (plop) => {
   plop.setGenerator('app', {
@@ -36,22 +53,31 @@ export default (plop) => {
         validate: (description) => description.length > 1,
       },
       {
-        type: 'autocomplete',
-        name: 'apiPath',
-        message: 'What API base route is used?',
-        source: async (_, input) => {
-          const paths = await getApiPaths();
-          return paths.filter((p) => p.includes(input || '/'));
-        },
+        type: 'checkbox',
+        name: 'apiPaths',
+        message: 'Which API base route is used?',
+        choices: getApiPaths,
+        validate: (apiPaths) => apiPaths.length > 0,
       },
       {
         type: 'checkbox',
         name: 'templates',
-        message: 'What template do you want generate by default ?',
+        message: 'Which templates do you want to generate?',
         choices: ['listing', 'dashboard', 'onboarding'],
         when: async (data) => {
-          const result = await getApiv6TemplateData(data.apiPath);
-          data.apiV6Endpoints = result;
+          data.apiPathsByApiVersion = data.apiPaths.reduce(
+            (res, path) => {
+              res[isV2Endpoint(path) ? 'v2' : 'v6'].push(path);
+              return res;
+            },
+            { v2: [], v6: [] },
+          );
+          data.apiV6Endpoints = await getApiTemplateData(
+            data.apiPathsByApiVersion.v6,
+          );
+          data.apiV2Endpoints = await getApiTemplateData(
+            data.apiPathsByApiVersion.v2,
+          );
           return true;
         },
       },
@@ -60,33 +86,20 @@ export default (plop) => {
         name: 'listingEndpoint',
         message: 'What is the listing endpoint?',
         when: (data) => data.templates.includes('listing'),
-        choices: async ({ apiV6Endpoints }) => {
-          return apiV6Endpoints?.get?.operationList?.map(
-            ({ apiPath, functionName }) => ({
-              name: apiPath,
-              value: functionName,
-            }),
-          );
-        },
+        choices: getApiV2AndV6GetEndpointsChoices,
       },
       {
         type: 'list',
         name: 'dashboardEndpoint',
         message: 'What is the dashboard endpoint?',
         when: (data) => data.templates.includes('dashboard'),
-        choices: async ({ apiV6Endpoints }) => {
-          return apiV6Endpoints?.get?.operationList?.map(
-            ({ apiPath, functionName }) => ({
-              name: apiPath,
-              value: functionName,
-            }),
-          );
-        },
+        choices: getApiV2AndV6GetEndpointsChoices,
       },
       {
         type: 'input',
         name: 'pimID',
         message: 'What is the PIM ID? (leave empty for no PIM ID)',
+        when: (data) => data.apiPathsByApiVersion.v6.length > 0,
         validate: (input) => {
           const number = Number(input);
           return !isNaN(number) && typeof number === 'number';
@@ -102,13 +115,47 @@ export default (plop) => {
           data.hasDashboard = data.templates.includes('dashboard');
           data.hasOnboarding = data.templates.includes('onboarding');
 
-          return data.templates.includes('listing');
+          if (data.hasListing) {
+            const [listingPath, listingFn] =
+              data.listingEndpoint?.split('-') || [];
+            data.listingEndpointPath = listingPath;
+            data.listingEndpointFn = listingFn;
+            data.mainApiPath = listingPath;
+            data.mainApiPathApiVersion = data.apiV2Endpoints.get?.operationList
+              .map(({ apiPath }) => apiPath)
+              .includes(data.mainApiPath)
+              ? 'v2'
+              : 'v6';
+          }
+          if (data.hasDashboard) {
+            const [dashboardPath, dashboardFn] =
+              data.dashboardEndpoint?.split('-') || [];
+            data.dashboardEndpointPath = dashboardPath;
+            data.dashboardEndpointFn = dashboardFn;
+          }
+
+          return data.hasListing;
         },
         validate: (input) => input.length > 0,
       },
     ],
-    actions: ({ apiV6Endpoints, templates, appName }) => {
-      const apiFiles = createApiQueryFilesActions(apiV6Endpoints, appDirectory);
+    actions: ({ apiV6Endpoints, apiV2Endpoints, templates, appName }) => {
+      const apiV2Files =
+        Object.keys(apiV2Endpoints).length > 0
+          ? createApiQueryFilesActions({
+              endpoints: apiV2Endpoints,
+              apiVersion: 'v2',
+              appDirectory,
+            })
+          : [];
+      const apiV6Files =
+        Object.keys(apiV6Endpoints).length > 0
+          ? createApiQueryFilesActions({
+              endpoints: apiV6Endpoints,
+              apiVersion: 'v6',
+              appDirectory,
+            })
+          : [];
       const pages = createPages(templates, appDirectory);
       const translations = createTranslations(templates, appName, appDirectory);
       return [
@@ -118,12 +165,13 @@ export default (plop) => {
           templateFiles: join(appDirectory, './templates/**'),
           base: join(appDirectory, './templates'),
         },
-        ...apiFiles,
+        ...apiV6Files,
+        ...apiV2Files,
         ...pages,
         ...translations,
         ({ packageName }) =>
           `App ${appName} generated. Please run \n  yarn install && yarn workspace ${packageName} run start:dev`,
-      ];
+      ].filter(Boolean);
     },
   });
 };
