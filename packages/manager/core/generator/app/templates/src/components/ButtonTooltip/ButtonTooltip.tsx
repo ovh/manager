@@ -7,7 +7,6 @@ import {
   ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components/button';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import './ButtonTooltip.scss';
 
 interface TooltipItem {
   label: string;
@@ -62,10 +61,12 @@ const ButtonTooltip: React.FC<ButtonTooltipProps> = (props) => {
         />
       </OsdsButton>
       {showTooltip && (
-        <div ref={tooltipRef} className="tooltip">
-          <div className="tooltip-text">
+        <div ref={tooltipRef} className="relative inline-block left-[-80%]">
+          <div className="absolute bg-white rounded whitespace-nowrap mt-[-4px] right-[-100%] border-2 border-gray-300 text-left z-50">
             {tooltipContent.map((item: TooltipItem) => (
-              <div key={item.label}>{item.label}</div>
+              <div key={item.label} className="px-10 py-20 cursor-pointer">
+                {item.label}
+              </div>
             ))}
           </div>
         </div>

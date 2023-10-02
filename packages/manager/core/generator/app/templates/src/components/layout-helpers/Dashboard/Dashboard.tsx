@@ -9,8 +9,6 @@ import {
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
-import './Dashboard.scss';
-
 export type DashboardTabItemProps = {
   name: string;
   title: string;
@@ -37,8 +35,8 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
   }, [location.pathname]);
 
   return (
-    <div className="dashboard-layout-helpers">
-      <div className="dashboard-layout-subtitle py-4">
+    <>
+      <div className="py-4">
         <OsdsText
           level={ODS_TEXT_LEVEL.heading}
           color={ODS_THEME_COLOR_INTENT.text}
@@ -51,13 +49,15 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
         <OsdsTabBar slot="top">
           {tabs.map((tab: DashboardTabItemProps, key: number) => (
             <OsdsTabBarItem key={`osds-tab-bar-item-${key}`} panel={tab.name}>
-              <NavLink to={tab.to}>{tab.title}</NavLink>
+              <NavLink to={tab.to} className="no-underline">
+                {tab.title}
+              </NavLink>
             </OsdsTabBarItem>
           ))}
         </OsdsTabBar>
       </OsdsTabs>
       <Outlet />
-    </div>
+    </>
   );
 };
 
