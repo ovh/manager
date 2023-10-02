@@ -10,7 +10,6 @@ import { Locale } from '@ovhcloud/msc-utils';
 import useGuideUtils from '@/components/GuideLink/guide-utils';
 import { OnboardingLayout } from '@/components/layout-helpers/Onboarding';
 import onboardingImgSrc from './onboarding-img.png';
-import './index.scss';
 
 export default function Onboarding() {
   const { t } = useTranslation('{{appName}}/onboarding');
@@ -56,7 +55,7 @@ export default function Onboarding() {
       moreInfoButtonLabel={t('moreInfoButtonLabel')}
       moreInfoHref={t('moreInfoButtonLink')}
     >
-      <aside className="tile-grid">
+      <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
         {tileList.map((tile) => (
           <MscTile
             key={tile.tileTitle}

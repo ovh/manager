@@ -8,7 +8,6 @@ import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import placeholderSrc from './placeholder.png';
-import './OnboardingLayout.scss';
 
 export type OnboardingLayoutProps = {
   hideHeadingSection?: boolean;
@@ -34,28 +33,32 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   children,
 }) => {
   return (
-    <div className="manager-on-boarding-layout px-3">
+    <div className="flex flex-col mx-auto px-3">
       {!hideHeadingSection && (
-        <section className="on-boarding-illustration-section">
-          <div className="on-boarding-illustration-container py-3">
-            <img src={imageSrc || placeholderSrc} alt="" />
+        <section className="flex flex-col items-center">
+          <div className="flex justify-center py-3 max-h-28">
+            <img
+              className="max-h-150px"
+              src={imageSrc || placeholderSrc}
+              alt=""
+            />
           </div>
           <OsdsText
-            className="on-boarding-title mb-3"
             color={ODS_THEME_COLOR_INTENT.primary}
             level={ODS_TEXT_LEVEL.heading}
             size={ODS_TEXT_SIZE._700}
+            className="block text-center mb-3"
           >
             {title}
           </OsdsText>
           <OsdsText
-            className="on-boarding-description mb-2"
             level={ODS_TEXT_LEVEL.body}
+            className="block text-center mb-2"
           >
             {description}
           </OsdsText>
-          <div>
-            <span>
+          <div className="flex sm:py-8 xs:w-full xs:flex-col sm:items-center sm:w-fit sm:flex-row">
+            <div className="w-full xs:py-3">
               <OsdsButton
                 color={ODS_THEME_COLOR_INTENT.primary}
                 size={ODS_BUTTON_SIZE.md}
@@ -63,11 +66,11 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
               >
                 {orderButtonLabel}
               </OsdsButton>
-            </span>
+            </div>
             {moreInfoButtonLabel && moreInfoHref && (
-              <span className="m-2">
+              <div className="w-full sm:m-2 xs:py-3 xs:mb-6">
                 <OsdsButton
-                  className="more-info-button ml-1"
+                  className="sm:ml-1"
                   color={ODS_THEME_COLOR_INTENT.primary}
                   variant={ODS_BUTTON_VARIANT.stroked}
                   size={ODS_BUTTON_SIZE.md}
@@ -75,7 +78,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
                 >
                   {moreInfoButtonLabel}
                 </OsdsButton>
-              </span>
+              </div>
             )}
           </div>
         </section>
