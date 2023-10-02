@@ -47,14 +47,10 @@
  */
 
 import {
-<<<<<<< HEAD
   CUSTOM_ACTION_WILDCARD_PATTERN,
   CUSTOM_RESOURCE_TYPE,
   WILDCARD,
-=======
-  CUSTOM_RESOURCE_TYPE,
   ACTION_DESCRIPTION_UNDEFINED,
->>>>>>> fb4d24fabb (feat(iam): add action description below the label)
 } from '../../iam.constants';
 
 export default class ActionTrees extends Array {
