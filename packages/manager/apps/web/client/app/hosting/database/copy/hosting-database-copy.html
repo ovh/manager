@@ -1,0 +1,106 @@
+<div data-ng-controller="HostingDatabaseCopyCtrl as $ctrl">
+    <div
+        data-wizard
+        data-wizard-bread-crumb
+        data-wizard-on-cancel="resetAction"
+        data-wizard-on-finish="$ctrl.copyDatabase.bind($ctrl)"
+        data-wizard-title="'hosting_tab_DATABASES_configuration_copy_title' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="$ctrl.load.bind($ctrl)"
+            data-wizard-step-valid="$ctrl.isStep1Valid()"
+        >
+            <oui-spinner data-ng-if="!$ctrl.mainDatabases"></oui-spinner>
+
+            <form
+                name="hostingCopyDatabaseForm"
+                data-ng-if="$ctrl.mainDatabases"
+            >
+                <p
+                    data-translate="hosting_tab_DATABASES_configuration_copy_step1_question"
+                    data-translate-values="{ databaseName: $ctrl.currentDatabase.name }"
+                ></p>
+
+                <oui-radio
+                    data-model="$ctrl.selectedType"
+                    name="oui-radio-1"
+                    data-on-change="$ctrl.onChangeCopyType()"
+                    data-value="$ctrl.COPY_TYPE_MAIN_DATABASE"
+                >
+                    <span
+                        data-translate="hosting_tab_DATABASES_configuration_copy_step1_select_database"
+                    ></span>
+                </oui-radio>
+                <div class="mb-2">
+                    <div class="d-flex align-items-end">
+                        <oui-select
+                            class="oui-select__input w-100"
+                            data-disabled="$ctrl.selectedType !== $ctrl.COPY_TYPE_MAIN_DATABASE"
+                            data-placeholder="{{::'hosting_tab_DATABASES_configuration_copy_step1_select_database_placeholder' | translate}}"
+                            data-model="$ctrl.selectedMain"
+                            data-on-change="$ctrl.loadAvailableDatabase()"
+                            data-items="$ctrl.mainDatabases"
+                        >
+                        </oui-select>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <div class="d-flex align-items-end">
+                        <oui-select
+                            class="oui-select__input w-100"
+                            data-disabled="$ctrl.selectedType !== $ctrl.COPY_TYPE_MAIN_DATABASE || !$ctrl.selectedMain"
+                            data-placeholder="{{::'hosting_tab_DATABASES_configuration_copy_step1_select_database_placeholder' | translate}}"
+                            data-model="$ctrl.selectedDatabase"
+                            data-items="$ctrl.targetDatabases"
+                        >
+                        </oui-select>
+                    </div>
+                </div>
+
+                <oui-radio
+                    data-model="$ctrl.selectedType"
+                    name="oui-radio-2"
+                    data-on-change="$ctrl.onChangeCopyType()"
+                    data-value="$ctrl.COPY_TYPE_WEBCLOUD_DATABASE"
+                >
+                    <span
+                        data-translate="hosting_tab_DATABASES_configuration_copy_step1_select_webcloud_database"
+                    ></span>
+                </oui-radio>
+
+                <div class="mb-2">
+                    <div class="d-flex align-items-end">
+                        <oui-select
+                            class="oui-select__input w-100"
+                            data-disabled="$ctrl.selectedType !== $ctrl.COPY_TYPE_WEBCLOUD_DATABASE"
+                            data-placeholder="{{::'hosting_tab_DATABASES_configuration_copy_step1_select_webcloud_placeholder' | translate}}"
+                            data-model="$ctrl.selectedWebCloud"
+                            data-on-change="$ctrl.loadAvailableWebCloudDatabases()"
+                            data-items="$ctrl.webCloudDatabases"
+                        >
+                        </oui-select>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <div class="d-flex align-items-end">
+                        <oui-select
+                            class="oui-select__input w-100"
+                            data-disabled="$ctrl.selectedType !== $ctrl.COPY_TYPE_WEBCLOUD_DATABASE || !$ctrl.targetWebCouldDatabases"
+                            data-placeholder="{{::'hosting_tab_DATABASES_configuration_copy_step1_select_database_placeholder' | translate}}"
+                            data-model="$ctrl.selectedWebCloudDatabase"
+                            data-items="$ctrl.targetWebCouldDatabases"
+                        >
+                        </oui-select>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div data-wizard-step>
+            <p
+                data-translate="hosting_tab_DATABASES_configuration_copy_step2_confirmation_description"
+            ></p>
+        </div>
+    </div>
+</div>

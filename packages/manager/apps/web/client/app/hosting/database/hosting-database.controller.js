@@ -282,6 +282,13 @@ angular.module('App').controller(
       this.$scope.setAction('database/add/hosting-database-add');
     }
 
+    onCopyDatabaseClick(element) {
+      this.$scope.setAction('database/copy/hosting-database-copy', {
+        currentDatabase: element,
+        serviceName: this.hosting.serviceName,
+      });
+    }
+
     onOrderDatabaseClick() {
       this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION_ORDER_DB);
     }
