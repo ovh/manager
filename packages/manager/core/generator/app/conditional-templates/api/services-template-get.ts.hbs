@@ -15,12 +15,12 @@ type {{this}} = unknown;
 export type {{pascalCase this.functionName}}Params = {
   {{#each this.params}}
   /** {{this.description}} */
-  {{this.name}}{{#if this.required}}?{{/if}}: {{this.type}};
+  '{{this.name}}'{{#if this.required}}?{{/if}}: {{this.type}};
   {{/each}}
 };
 
 {{/if}}
-export const {{this.functionName}}QueryKey = {{#if this.urlParams}}(params: {{pascalCase this.functionName}}Params) => [`{{this.url}}`]{{else}}['{{this.url}}']{{/if}};
+export const {{this.functionName}}QueryKey = {{#if this.urlParams}}(params: {{pascalCase this.functionName}}Params) => [`{{this.httpMethod}}{{this.url}}`]{{else}}['{{this.httpMethod}}{{this.url}}']{{/if}};
 
 {{#if this.description}}
 /**
@@ -29,7 +29,7 @@ export const {{this.functionName}}QueryKey = {{#if this.urlParams}}(params: {{pa
 {{/if}}
 export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalCase this.functionName}}Params{{/if}}): Promise<{{this.responseType}}> => {
   const fetchData = async () => {
-    const response: any = await apiClient.v6.{{this.httpMethod}}({{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}});
+    const response: any = await apiClient.{{this.apiVersion}}.{{this.httpMethod}}({{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}});
     if (response?.code?.startsWith('ERR')) {
       const errorResponse = response.response;
       return errorResponse;
@@ -39,14 +39,14 @@ export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalC
 
   return queryClient.fetchQuery({{this.functionName}}QueryKey{{#if this.urlParams}}(params){{/if}}, fetchData);
 };
-{{/each}}
+{{#ifEqListingEndpoint value=functionName url=url}}
 
 /**
  *  Get listing with iceberg
  */
 export const getListingIceberg = async () => {
   try {
-    const List = await fetchIceberg({ route: '{{this.apiPath}}' }).then(
+    const List = await fetchIceberg({ route: '{{url}}' }).then(
       ({ data, status }) => ({ data, status})
     );
     return List;
@@ -54,6 +54,8 @@ export const getListingIceberg = async () => {
     return null;
   }
 }
+{{/ifEqListingEndpoint}}
+{{/each}}
 
 {{#if this.pimID}}
 export interface PIMElement {
@@ -65,14 +67,14 @@ export interface PIMElement {
   regionTags: string[];
 }
 
-export const getPIMServiceQueryKey = [`/products/list`];
+export const getPIMServiceQueryKey = [`getpim/products/list`];
 
 /**
  * Using the PIM ID `{{this.pimID}}` to search in PIM data model
  */
 export const getPIMService = async (): Promise<string[]> => {
   const fetchData = async () => {
-    const response = await apiClient.v6.get('/products/list');
+    const response = await apiClient.{{this.apiVersion}}.get('/products/list');
     const currentLang = i18next.language
       ? i18next.language.replace('-', '_')
       : 'fr_FR';

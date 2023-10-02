@@ -7,12 +7,12 @@ import {
   removeTypeBrackets,
   transformTypeToTypescript,
 } from './string-helpers.js';
-import { getApiServiceOperations } from './api.js';
+import { getApiServiceOperations, isV2Endpoint } from './api.js';
 
 /**
  * Tranform endpoint data into a list of operations template data
  */
-const toOperationList = ({ path, description, operations }) =>
+const toOperationList = (apiVersion) => ({ path, description, operations }) =>
   operations.map(
     ({
       httpMethod,
@@ -34,6 +34,7 @@ const toOperationList = ({ path, description, operations }) =>
 
       return {
         functionName,
+        apiVersion,
         apiPath: path,
         description: `${description} : ${operationDescription}`,
         httpMethod: httpMethod.toLowerCase(),
@@ -126,13 +127,16 @@ const groupOperationsByHttpMethod = (groupedByMethod, operation) => {
 /**
  * @returns template data for API service operations
  */
-export const getApiv6TemplateData = async (apiPath) => {
-  const endpoints = await getApiServiceOperations(apiPath);
-  const result = endpoints
-    .flatMap(toOperationList)
+export const getApiTemplateData = async (apiPaths) => {
+  let endpoints = [];
+  for (const path of apiPaths) {
+    const result = await getApiServiceOperations(path);
+    endpoints = endpoints.concat(result);
+  }
+  return endpoints
+    .flatMap(toOperationList(isV2Endpoint(apiPaths[0]) ? 'v2' : 'v6'))
     .map(setUrlAndBodyParams)
     .reduce(groupOperationsByHttpMethod, {});
-  return result;
 };
 
-export default getApiv6TemplateData;
+export default getApiTemplateData;
