@@ -1,8 +1,9 @@
 import { startApplication } from '@ovh-ux/manager-react-core-application';
-import { initShellClient, } from '@ovh-ux/shell';
+import { initShellClient } from '@ovh-ux/shell';
 import { setShellClient } from './shell';
-import 'bootstrap/scss/bootstrap-utilities.scss';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
+import './index.scss'
+import './global.css';
 
 initShellClient('{{ appName }}')
   .then((client) => {
