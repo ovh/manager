@@ -11,7 +11,6 @@ import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components/button';
 import { useShell } from '@ovh-ux/manager-react-core-application';
 
 import OOPS from '../../assets/error-banner-oops.png';
-import './error.scss';
 
 export const TRACKING_LABELS = {
   SERVICE_NOT_FOUND: 'service_not_found',
@@ -62,8 +61,8 @@ const ErrorBanner: React.FC<ErrorObject> = ({ error }) => {
   }, []);
 
   return (
-    <div className="manager-error-page p-5">
-      <div className="manager-error-page-image">
+    <div className="mx-auto w-full max-w-[600px] grid h-full overflow-hidden p-5">
+      <div className="w-full">
         <img src={OOPS} alt="OOPS" />
       </div>
 
@@ -91,7 +90,7 @@ const ErrorBanner: React.FC<ErrorObject> = ({ error }) => {
         </OsdsMessage>
       </div>
 
-      <div className="manager-error-page-footer py-2">
+      <div className="text-right overflow-hidden py-2">
         <OsdsButton
           color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.ghost}
