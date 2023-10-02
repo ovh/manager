@@ -1,6 +1,6 @@
 export const PRIVATE_NETWORK_HELP = {
   DEFAULT:
-    'https://docs.ovh.com/fr/publiccloud/network-services/networking-concepts/',
+    'https://docs.ovh.com/gb/en/publiccloud/network-services/networking-concepts/',
   ASIA:
     'https://docs.ovh.com/asia/en/publiccloud/network-services/networking-concepts/',
   AU:
