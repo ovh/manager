@@ -66,7 +66,13 @@ export default class OctaviaLoadBalancerCreateService {
     }
 
     const formattedListeners = listeners.map((listener) => {
-      let pools;
+      const pools = [
+        {
+          algorithm: 'roundRobin',
+          default: true,
+          protocol: listener.protocol.value,
+        },
+      ];
 
       const instances = listener.instances?.reduce((filtered, instance) => {
         if (Object.keys(instance).length > 0) {
@@ -78,32 +84,22 @@ export default class OctaviaLoadBalancerCreateService {
         return filtered;
       }, []);
 
-      if (instances.length || listener.healthMonitor?.value) {
-        pools = [
-          {
-            algorithm: 'roundRobin',
-            default: true,
-            protocol: listener.protocol.value,
+      if (listener.healthMonitor?.value) {
+        pools[0].healthMonitor = {
+          name: `health-monitor-${listener.healthMonitor.value}`,
+          monitorType: listener.healthMonitor.value,
+          maxRetries: 4,
+          periodicity: 'PT5S',
+          timeout: 4,
+          httpConfiguration: {
+            httpMethod: 'GET',
+            urlPath: '/',
           },
-        ];
+        };
+      }
 
-        if (listener.healthMonitor?.value) {
-          pools[0].healthMonitor = {
-            name: `health-monitor-${listener.healthMonitor.value}`,
-            monitorType: listener.healthMonitor.value,
-            maxRetries: 4,
-            periodicity: 'PT5S',
-            timeout: 4,
-            httpConfiguration: {
-              httpMethod: 'GET',
-              urlPath: '/',
-            },
-          };
-        }
-
-        if (instances.length) {
-          pools[0].members = instances;
-        }
+      if (instances.length) {
+        pools[0].members = instances;
       }
 
       return {
