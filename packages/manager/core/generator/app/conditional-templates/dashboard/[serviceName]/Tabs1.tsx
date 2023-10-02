@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React from 'react';
 import { MscBillingTile } from '@ovhcloud/msc-react-billing-tile';
 import { useParams } from 'react-router-dom';
 import { useEnvironment } from '@ovh-ux/manager-react-core-application';
@@ -25,7 +25,7 @@ function Tabs1() {
       </div>
       <div className="p-3">
         <MscBillingTile
-          servicePath={`{{this.apiPath}}/${serviceName}`}
+          servicePath={`{{this.mainApiPath}}/${serviceName}`}
           locale={locale}
         />
       </div>
