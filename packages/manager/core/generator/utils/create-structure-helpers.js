@@ -6,12 +6,16 @@ import { join } from 'node:path';
  * into src/api/**
  * Corresponding to the api used by apiv6
  */
-export const createApiQueryFilesActions = (apiV6Endpoints, appDirectory) =>
-  Object.entries(apiV6Endpoints).map(([method, data]) => ({
+export const createApiQueryFilesActions = ({
+  endpoints,
+  apiVersion,
+  appDirectory,
+}) =>
+  Object.entries(endpoints).map(([method, data]) => ({
     type: 'add',
     path: join(
       appDirectory,
-      `../../../apps/{{dashCase appName}}/src/api/${method.toUpperCase()}/apiv6/services.ts`,
+      `../../../apps/{{dashCase appName}}/src/api/${method.toUpperCase()}/api${apiVersion}/services.ts`,
     ),
     templateFile: join(
       appDirectory,
@@ -19,7 +23,7 @@ export const createApiQueryFilesActions = (apiV6Endpoints, appDirectory) =>
         method.toUpperCase() === 'GET' ? '-get' : ''
       }.ts.hbs`,
     ),
-    data,
+    data: { ...data, apiVersion },
   }));
 
 /**
