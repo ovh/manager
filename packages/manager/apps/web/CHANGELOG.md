@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.2.2...@ovh-ux/manager-web@18.2.3) (2023-10-02)
+
+
+### Bug Fixes
+
+* india release ([#10042](https://github.com/ovh/manager/issues/10042)) ([953d1fd](https://github.com/ovh/manager/commit/953d1fdd754c475a4c435d1061dfd16d137335d9))
+* **web:** fix domain hosting order without payment method ([#10040](https://github.com/ovh/manager/issues/10040)) ([1d91924](https://github.com/ovh/manager/commit/1d91924a82d281edcabfae6071d95128a3de170b))
+
+
+
+
+
 ## [18.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.2.1...@ovh-ux/manager-web@18.2.2) (2023-09-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

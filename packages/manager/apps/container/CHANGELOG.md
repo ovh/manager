@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.30.2...@ovh-ux/manager-container-app@0.30.3) (2023-10-02)
+
+
+### Bug Fixes
+
+* india release ([#10042](https://github.com/ovh/manager/issues/10042)) ([953d1fd](https://github.com/ovh/manager/commit/953d1fdd754c475a4c435d1061dfd16d137335d9))
+
+
+
+
+
 ## [0.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.30.1...@ovh-ux/manager-container-app@0.30.2) (2023-09-27)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

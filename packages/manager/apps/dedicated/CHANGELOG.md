@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.5.0...@ovh-ux/manager-dedicated@19.5.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* **dedicated:** add purchase of purpose trans ([#10043](https://github.com/ovh/manager/issues/10043)) ([a6fc1d3](https://github.com/ovh/manager/commit/a6fc1d3b93249f7c54c9b4c3f19214d18eb0700e))
+* india release ([#10042](https://github.com/ovh/manager/issues/10042)) ([953d1fd](https://github.com/ovh/manager/commit/953d1fdd754c475a4c435d1061dfd16d137335d9))
+
+
+
+
+
 # [19.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.4.0...@ovh-ux/manager-dedicated@19.5.0) (2023-09-27)
 
 

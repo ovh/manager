@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.7.0...@ovh-ux/manager-vrack@1.7.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* india release ([#10042](https://github.com/ovh/manager/issues/10042)) ([953d1fd](https://github.com/ovh/manager/commit/953d1fdd754c475a4c435d1061dfd16d137335d9))
+
+
+
+
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.6.3...@ovh-ux/manager-vrack@1.7.0) (2023-09-18)
 
 
