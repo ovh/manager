@@ -1,5 +1,5 @@
 {
-  "module_ip_dashboard_title": "Gérer les IPs",
+  "module_ip_dashboard_title": "Gérer les IPs (test)",
   "module_ip_dashboard_order_IP_action_label": "Commander des IPs",
   "ip_dashboard_error": "Une erreur est survenue lors du chargement de vos informations.",
   "ip_services_error": "Une erreur est survenue lors du chargement de ces services : {{t0}}. Veuillez réessayer plus tard.",
