@@ -91,9 +91,13 @@ export default class OctaviaLoadBalancerCreateService {
           pools[0].healthMonitor = {
             name: `health-monitor-${listener.healthMonitor.value}`,
             monitorType: listener.healthMonitor.value,
-            maxRetries: 3,
-            periodicity: 5,
-            timeout: 5,
+            maxRetries: 4,
+            periodicity: 'PT5S',
+            timeout: 4,
+            httpConfiguration: {
+              httpMethod: 'GET',
+              urlPath: '/',
+            },
           };
         }
 
