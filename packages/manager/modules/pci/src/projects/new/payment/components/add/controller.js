@@ -8,7 +8,8 @@ import {
   PAYMENT_METHOD_AUTHORIZED_ENUM,
   PREFERRED_PAYMENT_METHOD_ORDER,
   PCI_FEATURES,
-  CHARGES,
+  CONFIRM_CREDIT_CARD_TEST_AMOUNT,
+  LANGUAGE_OVERRIDE,
 } from './constants';
 
 export default class PciProjectNewPaymentMethodAddCtrl {
@@ -24,9 +25,16 @@ export default class PciProjectNewPaymentMethodAddCtrl {
     this.$location = $location;
     this.coreConfig = coreConfig;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
-    this.registrationCharges = `${CHARGES}${
-      this.coreConfig.getUser().currency.code
-    }`;
+    const { currency, ovhSubsidiary } = this.coreConfig.getUser();
+    this.registrationCharges = new Intl.NumberFormat(
+      LANGUAGE_OVERRIDE[ovhSubsidiary]
+        ? LANGUAGE_OVERRIDE[ovhSubsidiary]
+        : ovhSubsidiary.toLowerCase(),
+      {
+        style: 'currency',
+        currency: currency.code,
+      },
+    ).format(CONFIRM_CREDIT_CARD_TEST_AMOUNT);
 
     this.PCI_FEATURES = PCI_FEATURES;
 
