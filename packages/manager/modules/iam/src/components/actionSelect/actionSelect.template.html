@@ -108,7 +108,10 @@
             data-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
         >
             <oui-checkbox-label>
-                <span data-ng-bind="action.value"></span>
+                <span
+                    data-oui-tooltip="{{ ::action.description }}"
+                    data-ng-bind="action.value"
+                ></span>
             </oui-checkbox-label>
         </oui-checkbox>
         <!-- </NoCategoryActions> -->
@@ -182,6 +185,10 @@
                                 </span>
                             </span>
                         </span>
+                        <div
+                            class="ml-4"
+                            data-ng-bind-html="::action.description"
+                        ></div>
                     </label>
                 </div>
                 <!-- </CategoryActions> -->
