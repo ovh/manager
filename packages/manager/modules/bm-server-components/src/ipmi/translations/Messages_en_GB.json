@@ -50,7 +50,7 @@
   "server_configuration_kvm_order_step2_duration": "Period:",
   "server_configuration_kvm_order_step2_details": "Order details:",
   "server_configuration_kvm_order_step2_price": "Price:",
-  "server_configuration_kvm_order_finish_success": "Your service has been ordered. Our datacenter teams are currently installing the service. You will receive an email when the installation is complete.",
+  "server_configuration_kvm_order_finish_success": "Your purchase order number <a href='{{url}}' target='_blank'>{{orderId}}</a> has been issued. Please complete your order by paying via the following <a href='{{url}}' target='_blank'>link</a>.",
   "server_configuration_kvm_order_error": "An error has occurred ordering the KVM.",
   "server_configuration_kvm_informations": "KVM details",
   "server_configuration_kvm_informations_name": "Name:",
@@ -76,5 +76,5 @@
   "server_configuration_kvm_contract_validation_text": "Please read and accept the terms and conditions below:",
   "server_configuration_kvm_contract_agreement": "I confirm that I have read and understood the terms &amp; conditions.",
   "server_configuration_kvm_contract_agreed": "You have already accepted the terms and conditions previously set out.",
-  "server_configuration_kvm_proceed_payment": "Go to payment"
+  "server_configuration_kvm_proceed_payment": "Pay"
 }

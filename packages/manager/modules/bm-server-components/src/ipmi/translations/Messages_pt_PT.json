@@ -50,7 +50,7 @@
   "server_configuration_kvm_order_step2_duration": "Período:",
   "server_configuration_kvm_order_step2_details": "Detalhes da encomenda:",
   "server_configuration_kvm_order_step2_price": "Preço:",
-  "server_configuration_kvm_order_finish_success": "O seu serviço foi encomendado com êxito. O serviço está em curso de instalação pelas nossas equipas no datacenter. Receberá um e-mail quando a instalação estiver finalizada.",
+  "server_configuration_kvm_order_finish_success": "A sua nota de encomenda número <a href='{{url}}' target='_blank'>{{orderId}}</a> foi emitida com sucesso. Finalize a sua encomenda efetuando o pagamento através da seguinte <a href='{{url}}' target='_blank'>ligação</a>.",
   "server_configuration_kvm_order_error": "Ocorreu um erro aquando da encomenda do seu KVM.",
   "server_configuration_kvm_informations": "Informações do seu KVM",
   "server_configuration_kvm_informations_name": "Nome",
@@ -76,5 +76,5 @@
   "server_configuration_kvm_contract_validation_text": "Agradecemos que leia e aceite o(s) contrato(s) abaixo:",
   "server_configuration_kvm_contract_agreement": "Li e aceito os contratos",
   "server_configuration_kvm_contract_agreed": "Já aceitou os termos e condições definidos anteriormente.",
-  "server_configuration_kvm_proceed_payment": "Passar ao pagamento"
+  "server_configuration_kvm_proceed_payment": "Pagar"
 }
