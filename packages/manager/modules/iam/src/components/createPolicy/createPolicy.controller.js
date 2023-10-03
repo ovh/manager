@@ -2,9 +2,10 @@ import { cloneDeep, isEqual } from 'lodash-es';
 
 import {
   ENTITY,
+  WILDCARD,
+  ENTITY_DESCRIPTION_PATTERN,
   ENTITY_NAME_PATTERN,
   TAG,
-  WILDCARD,
 } from '../../iam.constants';
 import { URL } from '../../iam.service';
 import { CREATE_POLICY_TAG } from './createPolicy.constants';
@@ -20,6 +21,7 @@ export default class CreatePolicyController {
     this.IAMService = IAMService;
 
     this.ENTITY_NAME_PATTERN = ENTITY_NAME_PATTERN;
+    this.ENTITY_DESCRIPTION_PATTERN = ENTITY_DESCRIPTION_PATTERN;
     this.ENTITY_RESOURCE_TYPE = ENTITY.RESOURCE_TYPE;
     this.URL_RESOURCE_GROUP = URL.RESOURCE_GROUP;
     this.TAG = TAG;
@@ -60,6 +62,7 @@ export default class CreatePolicyController {
      */
     this.model = {
       actions: { selection: [], isWildcardActive: false },
+      description: '',
       name: '',
       resources: { selection: [], types: [] },
       resourceGroups: [],
@@ -156,6 +159,7 @@ export default class CreatePolicyController {
       errorHeading: `${prefix}_error_heading_${mode}`,
       formHeading: {
         name: `${prefix}_form_name_heading`,
+        description: `${prefix}_form_description_heading`,
         resources: `${prefix}_form_resources_heading`,
         resourceTypes: `${prefix}_form_resource_types_heading`,
       },
@@ -193,6 +197,7 @@ export default class CreatePolicyController {
       );
       this.model.actions.isWildcardActive = Boolean(wildcardAction);
       this.model.name = this.policy.name;
+      this.model.description = this.policy.description;
       this.model.resources.selection = this.policy.resources
         .filter(({ resource }) => Boolean(resource))
         .map(({ urn, resource }) => ({ ...resource, urn }));
@@ -390,6 +395,7 @@ export default class CreatePolicyController {
     return {
       identities: this.policy?.identities || [],
       name: this.model.name,
+      description: this.model.description,
       permissions: {
         allow: this.model.actions.isWildcardActive
           ? [{ action: WILDCARD }]
