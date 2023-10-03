@@ -17,7 +17,6 @@ export default /* @ngInject */ ($stateProvider) => {
             serviceType: 'aapi',
           })
           .then(({ data }) => data),
-      ctaURL: ($state) => $state.href('sharepoint.order'),
     },
   });
 };

@@ -48,14 +48,6 @@ angular
             );
           },
         })
-        .state(`${routeBase}.order.**`, {
-          url: '/order',
-          lazyLoad,
-        })
-        .state(`${routeBase}.config.**`, {
-          url: '/activate/:organizationId/:exchangeId',
-          lazyLoad,
-        })
         .state(`${routeBase}.product.**`, {
           url: '/:exchangeId/:productId',
           lazyLoad,
