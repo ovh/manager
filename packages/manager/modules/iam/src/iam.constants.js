@@ -24,6 +24,8 @@ const WILDCARD = '*';
 
 const DELETE_STATEMENT = 'Terminate';
 
+const ACTION_DESCRIPTION_UNDEFINED = 'missing description';
+
 const FEATURE = {
   MAIN: 'iam',
 };
@@ -294,4 +296,5 @@ export {
   UNAVAILABLE_STATE_NAME,
   URN_VERSION,
   WILDCARD,
+  ACTION_DESCRIPTION_UNDEFINED,
 };
