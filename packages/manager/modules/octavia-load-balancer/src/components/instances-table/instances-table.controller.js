@@ -25,7 +25,6 @@ export default class RegionsListController {
   }
 
   $onInit() {
-    if (!this.listeners) this.listeners = [];
     this.instances = [];
     this.healthMonitorsInit();
   }
@@ -55,6 +54,7 @@ export default class RegionsListController {
   }
 
   addListener() {
+    if (!this.listeners) this.listeners = [];
     if (this.listeners.length < MAX_LISTENER) {
       this.atInternet.trackClick({
         name: TRACKING_ADD_LISTENER,

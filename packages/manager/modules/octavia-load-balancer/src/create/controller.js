@@ -66,6 +66,17 @@ export default class OctaviaLoadBalancerCreateCtrl {
     this.model = {};
   }
 
+  regionStepFocus() {
+    delete this.model.region;
+    delete this.model.privateNetwork;
+    delete this.model.subnet;
+    delete this.model.listeners;
+  }
+
+  privateNetworkStepFocus() {
+    delete this.model.listeners;
+  }
+
   onSizeChange(newSize) {
     this.model.size = newSize;
     this.model.region = {};

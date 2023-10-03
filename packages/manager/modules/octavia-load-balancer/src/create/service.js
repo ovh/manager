@@ -25,12 +25,17 @@ export default class OctaviaLoadBalancerCreateService {
         `/cloud/project/${projectId}/region/${regionName}/network/${privateNetwork.id}/subnet`,
       )
       .then(({ data }) => {
-        const subnets = data.map((subnet) => ({
-          ...subnet,
-          displayName: subnet.name
-            ? `${subnet.name} - ${subnet.cidr}`
-            : subnet.cidr,
-        }));
+        const subnets = data.reduce((filtered, subnet) => {
+          if (subnet.gatewayIp) {
+            filtered.push({
+              ...subnet,
+              displayName: subnet.name
+                ? `${subnet.name} - ${subnet.cidr}`
+                : subnet.cidr,
+            });
+          }
+          return filtered;
+        }, []);
         return subnets;
       });
   }
@@ -51,28 +56,36 @@ export default class OctaviaLoadBalancerCreateService {
     subnet,
     gateway,
     listeners,
-    name,
+    loadBalancerName,
   ) {
-    const networkInformation = {
-      networkId: privateNetwork.id,
-      subnetId: subnet.id,
+    const network = {
+      private: {
+        floatingIpCreate: {
+          description: loadBalancerName,
+        },
+        network: {
+          id: privateNetwork.id,
+          subnetId: subnet.id,
+        },
+      },
     };
 
     if (!gateway?.length) {
-      networkInformation.gateway = {
+      network.private.gatewayCreate = {
         model: 's',
         name: `gateway-${regionName}`,
+      };
+    } else {
+      network.private.gateway = {
+        id: gateway[0].id,
       };
     }
 
     const formattedListeners = listeners.map((listener) => {
-      const pools = [
-        {
-          algorithm: 'roundRobin',
-          default: true,
-          protocol: listener.protocol.value,
-        },
-      ];
+      const pool = {
+        algorithm: 'roundRobin',
+        protocol: listener.protocol.value,
+      };
 
       const instances = listener.instances?.reduce((filtered, instance) => {
         if (Object.keys(instance).length > 0) {
@@ -85,7 +98,7 @@ export default class OctaviaLoadBalancerCreateService {
       }, []);
 
       if (listener.healthMonitor?.value) {
-        pools[0].healthMonitor = {
+        pool.healthMonitor = {
           name: `health-monitor-${listener.healthMonitor.value}`,
           monitorType: listener.healthMonitor.value,
           maxRetries: 4,
@@ -99,13 +112,13 @@ export default class OctaviaLoadBalancerCreateService {
       }
 
       if (instances.length) {
-        pools[0].members = instances;
+        pool.members = instances;
       }
 
       return {
         port: listener.port,
         protocol: listener.protocol.value,
-        pools,
+        pool,
       };
     });
 
@@ -116,8 +129,8 @@ export default class OctaviaLoadBalancerCreateService {
           `/cloud/project/${projectId}/region/${regionName}/loadbalancing/loadbalancer`,
           {
             flavorId,
-            networkInformation,
-            name,
+            network,
+            name: loadBalancerName,
             listeners: formattedListeners,
           },
         )
@@ -134,7 +147,7 @@ export default class OctaviaLoadBalancerCreateService {
           this.Alerter.error(
             this.$translate.instant('octavia_load_balancer_global_error', {
               message: error.data.message,
-              requestId: error.config.headers['X-OVH-MANAGER-REQUEST-ID'],
+              requestId: error.headers('X-Ovh-Queryid'),
             }),
             'octavia.alerts.global',
           );
