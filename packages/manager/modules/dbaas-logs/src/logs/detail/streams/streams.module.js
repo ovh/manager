@@ -18,6 +18,7 @@ import follow from './follow/follow.module';
 import home from './home/home.module';
 import routing from './streams.routing';
 import service from './logs-streams.service';
+import subscriptions from './subscriptions/subscriptions.module';
 
 const moduleName = 'ovhManagerDbaasLogsDetailStreams';
 
@@ -35,6 +36,7 @@ angular
     edit,
     follow,
     home,
+    subscriptions,
   ])
   .config(routing)
   .service('LogsStreamsService', service)
