@@ -8,7 +8,6 @@
   "dedicatedCloud_datacenters_order_host": "Commander un Host",
   "dedicatedCloud_datacenters_order_datastore": "Commander un Datastore",
   "dedicatedCloud_datacenters_loading_error": "Une erreur est survenue lors du chargement des informations des datacentres.",
-  "dedicatedCloud_datacenters_add_not_available": "L’ajout de nouveau datacentre n’est pas disponible pour le moment. Nous travaillons à rendre cette fonctionnalité disponible très prochainement.",
   "dedicatedCloud_datacenters_commercial_name_DC": "Dedicated Cloud",
   "dedicatedCloud_datacenters_commercial_name_DC-HDS": "Dedicated Cloud HDS",
   "dedicatedCloud_datacenters_commercial_name_DC-HIPAA": "Dedicated Cloud HIPAA",
@@ -82,5 +81,7 @@
   "dedicatedCloud_datacenters_commercial_name_NSX-T-UNKNOWN": "NSX",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-DEFAULT": "NSX",
   "dedicatedCloud_datacenters_commercial_name_NSX-T-WITHOUT-NSX": "NSX",
-  "dedicatedCloud_datacenters_commercial_name_NSX-T-VROPS-WITHOUT-NSX": "NSX avec vROps"
+  "dedicatedCloud_datacenters_commercial_name_NSX-T-VROPS-WITHOUT-NSX": "NSX avec vROps",
+  "dedicatedCloud_datacenters_migration_banner_first": "Fin de vie du composant VMware NSX-V au 15 janvier 2024 : veuillez-vous reporter à l'email envoyé en juillet/aout 2023 pour connaitre les modalités de migration. Pour des compléments techniques, <a href=\"{{href}}\" target=\"_blank\">veuillez consulter nos guides</a>.",
+  "dedicatedCloud_datacenters_migration_banner_second": "DÉSACTIVATION IMMINENTE du composant VMware NSX-V à compter du 15 janvier 2024. Veuillez <a href=\"{{href}}\" target=\"_blank\">consulter nos guides de migration</a> pour plus d'informations."
 }

@@ -1,11 +1,27 @@
-import get from 'lodash/get';
 import includes from 'lodash/includes';
+import {
+  REGEX_LEGACY_DATACENTER,
+  REGEX_EXCLUDE_LEGACY_DATACENTER,
+  MIGRATION_GUIDE,
+} from './datacenter.constants';
 
 export default class {
   /* @ngInject */
-  constructor($q, DedicatedCloud) {
+  constructor($q, DedicatedCloud, coreConfig) {
     this.$q = $q;
     this.DedicatedCloud = DedicatedCloud;
+    this.hasNsxDatacenter = false;
+    this.migrationGuideUrl =
+      MIGRATION_GUIDE[coreConfig.getUser().ovhSubsidiary] ||
+      MIGRATION_GUIDE.DEFAULT;
+  }
+
+  displayMigrationBanner() {
+    return (
+      (this.migrationBannerAvailable.firstBanner ||
+        this.migrationBannerAvailable.secondBanner) &&
+      this.hasLegacyDatacenter
+    );
   }
 
   getRight(order) {
@@ -25,12 +41,26 @@ export default class {
       pageSize,
       offset - 1,
     )
-      .then((result) => ({
-        data: get(result, 'list.results'),
-        meta: {
-          totalCount: result.count,
-        },
-      }))
+      .then((result) => {
+        const data = result.list?.results;
+
+        this.hasLegacyDatacenter =
+          !!data.find((datacenter) => {
+            return REGEX_LEGACY_DATACENTER.test(datacenter.commercialName);
+          }) &&
+          !data.find((datacenter) => {
+            return REGEX_EXCLUDE_LEGACY_DATACENTER.test(
+              datacenter.commercialName,
+            );
+          });
+
+        return {
+          data,
+          meta: {
+            totalCount: result.count,
+          },
+        };
+      })
       .catch((err) => {
         this.setMessage(
           `${this.$translate.instant(
