@@ -28,5 +28,7 @@
   "iam_create_policy_submit_create": "Crea la policy",
   "iam_create_policy_submit_edit": "Modifica la policy",
   "iam_create_policy_success_create": "La policy {{ name }} è stata creata correttamente",
-  "iam_create_policy_success_edit": "La policy {{ name }} è stata modificata correttamente"
+  "iam_create_policy_success_edit": "La policy {{ name }} è stata modificata correttamente",
+  "iam_create_policy_form_description_error_pattern": "Il nome della politica può contenere solo caratteri alfanumerici, spazi e \"-\", \"/\", \"_\", \"+\"",
+  "iam_create_policy_form_description_heading": "Descrizione della policy"
 }

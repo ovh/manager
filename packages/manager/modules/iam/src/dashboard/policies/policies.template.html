@@ -19,6 +19,15 @@
             </oui-button>
         </oui-datagrid-column>
         <oui-datagrid-column
+            data-title="'iam_policies_datagrid_column_description' | translate"
+        >
+            <span
+                data-oui-tooltip="{{ ::$row.description }}"
+                class="policy-description-column-label d-inline-block text-truncate"
+                data-ng-bind="$row.description"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
             data-title="'iam_policies_datagrid_column_identities' | translate"
         >
             <span data-ng-bind="$row.identities.length"></span>
