@@ -48,14 +48,6 @@ export default class HeaderController {
         application: 'web',
         path: '#/configuration/microsoft/office/license/order',
       },
-      ACTIVATE_SHAREPOINT: {
-        application: 'web',
-        path: '#/sharepoint/activate/:organizationId/:exchangeId',
-        params: {
-          organizationId: this.exchangeService.organization,
-          exchangeId: this.exchangeService.domain,
-        },
-      },
     });
   }
 
