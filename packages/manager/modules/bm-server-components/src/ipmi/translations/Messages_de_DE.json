@@ -50,7 +50,7 @@
   "server_configuration_kvm_order_step2_duration": "Zeitraum:",
   "server_configuration_kvm_order_step2_details": "Details der Bestellung:",
   "server_configuration_kvm_order_step2_price": "Preis:",
-  "server_configuration_kvm_order_finish_success": "Ihr Dienst wurde bestellt. Der Dienst wird gerade von unseren Teams im Rechenzentrum installiert. Sie erhalten eine E-Mail, sobald die Installation abgeschlossen ist.",
+  "server_configuration_kvm_order_finish_success": "Ihr Bestellschein mit der Nummer <a href='{{url}}' target='_blank'>{{orderId}}</a> wurde ausgestellt. Bitte schließen Sie Ihre Bestellung ab, indem Sie die Zahlung über <a href='{{url}}' target='_blank'>folgenden Link</a> vornehmen.",
   "server_configuration_kvm_order_error": "Bei der KVM-Bestellung ist ein Fehler aufgetreten.",
   "server_configuration_kvm_informations": "KVM-Informationen",
   "server_configuration_kvm_informations_name": "Name:",
@@ -76,5 +76,5 @@
   "server_configuration_kvm_contract_validation_text": "Bitte lesen und akzeptieren Sie die folgenden Verträge:",
   "server_configuration_kvm_contract_agreement": "Ich habe die Verträge gelesen und akzeptiere sie.",
   "server_configuration_kvm_contract_agreed": "Sie haben die zuvor festgelegten Bedingungen bereits akzeptiert.",
-  "server_configuration_kvm_proceed_payment": "Zur Zahlung wechseln"
+  "server_configuration_kvm_proceed_payment": "Bezahlen"
 }

@@ -137,7 +137,7 @@ export default class BmServerComponentsIpmiService {
   checkoutCart(cartId) {
     return this.$http
       .post(`/order/cart/${cartId}/checkout`, {
-        autoPayWithPreferredPaymentMethod: true,
+        autoPayWithPreferredPaymentMethod: false,
       })
       .then(({ data }) => data);
   }

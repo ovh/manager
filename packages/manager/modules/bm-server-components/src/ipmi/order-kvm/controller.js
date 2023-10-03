@@ -67,6 +67,10 @@ export default class BmServerComponentsOrderKvmController {
         this.handleSuccess(
           this.$translate.instant(
             'server_configuration_kvm_order_finish_success',
+            {
+              url,
+              orderId,
+            },
           ),
         );
         this.$window.open(url, '_blank', 'noopener');
