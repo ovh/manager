@@ -6,7 +6,7 @@ export const TASK_STATUS_ENUM = {
 
 export const API_ROOT_PATH = '/me/carbonCalculator/';
 
-export const INVOICE_API_PATH = `${API_ROOT_PATH}invoice`;
+export const INVOICE_API_PATH = `${API_ROOT_PATH}hasInvoice`;
 
 export const TASK_API_PATH = `${API_ROOT_PATH}task`;
 
