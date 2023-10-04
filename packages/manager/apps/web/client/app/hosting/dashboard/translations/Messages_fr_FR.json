@@ -1,6 +1,6 @@
 {
   "hosting_change_offer_for_service": "Ce service n'est pas accessible pour cette offre.",
-  "hosting_change_offer_for_service_start10m": "Ce service n'est pas accessible pour l'offre Start10m.",
+  "hosting_change_offer_for_service_offer": "Ce service n'est pas accessible pour l'offre {{offer}}.",
   "hosting_common_password_conditions": "Attention, le mot de passe doit respecter les conditions suivantes : <br/>- Minimum {{t0}} caractères<br/>- Maximum {{t1}} caractères<br/>- Au moins une lettre majuscule<br/>- Au moins une lettre minuscule<br/>- Au moins un chiffre<br/>- Doit être composé uniquement de chiffres et de lettres",
   "hosting_common_path_help_inline": "Les caractères acceptés pour les dossiers sont les lettres, les chiffres, et les caractères -_./ Par ailleurs, il est interdit d'accéder aux dossiers parents en utilisant ..",
   "hosting_common_target_new_window": "(Nouvelle fenêtre)",
