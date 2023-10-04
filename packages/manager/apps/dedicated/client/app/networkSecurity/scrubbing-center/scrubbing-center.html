@@ -1,0 +1,100 @@
+<div>
+    <div class="oui-box mt-2 mb-2 d-flex justify-content-between">
+        <div class="d-flex">
+            <label
+                class="oui-label"
+                data-translate="network_security_dashboard_display_filter"
+            >
+            </label>
+            <span class="oui-select ml-2">
+                <select
+                    class="form-control oui-select__input"
+                    id="services"
+                    data-ng-model="$ctrl.service"
+                    data-ng-change="$ctrl.selectService()"
+                    data-ng-options="service as service.serviceName group by (('network_security_dashboard_service_' + service.category) | translate) for service in $ctrl.services track by service.serviceName"
+                >
+                    <option
+                        value=""
+                        data-ng-bind="'network_security_dashboard_service_all' | translate"
+                    ></option>
+                </select>
+            </span>
+            <span class="ml-2">
+                <input
+                    class="oui-input form-control"
+                    type="text"
+                    id="selectIp"
+                    name="ip"
+                    data-ui-validate="'$ctrl.checkSelectedIp($value)'"
+                    data-uib-typeahead="ip as ip.serviceName for ip in $ctrl.getIps($viewValue)"
+                    data-uib-typeahead-loading="$ctrl.loaderIp"
+                    data-ng-model="$ctrl.selectedIp"
+                />
+            </span>
+        </div>
+        <div class="d-flex">
+            <label class="oui-label mr-2"
+                >{{:: 'network_security_dashboard_period_filter' |
+                translate}}</label
+            >
+            <oui-select
+                data-items="$ctrl.periods"
+                data-model="$ctrl.period"
+                id="periods"
+                data-inline
+                data-match="label"
+                data-on-change="$ctrl.getAllEvents()"
+            ></oui-select>
+        </div>
+    </div>
+
+    <div class="text-center" data-ng-if="$ctrl.isLoading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <oui-datagrid
+        data-page-size="{{$ctrl.pageSize}}"
+        data-rows="$ctrl.events"
+        data-ng-if="!$ctrl.isLoading"
+    >
+        <oui-datagrid-column
+            data-title=":: 'network_security_dashboard_col_detect' | translate"
+            data-property="startedAt"
+            data-sortable
+            data-filterable
+        >
+            <span
+                data-ng-bind="$row.startedAt | date:'yyyy-MM-dd HH:mm:ss'"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'network_security_dashboard_col_end' | translate"
+            data-property="endedAt"
+            data-filterable
+        >
+            <span
+                data-ng-bind="$row.endedAt | date:'yyyy-MM-dd HH:mm:ss'"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'network_security_dashboard_col_ip' | translate"
+            data-property="subnet"
+            data-filterable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'network_security_dashboard_col_vector' | translate"
+            data-property="vectors"
+            data-filterable
+        >
+            <span data-ng-bind="$row.vectors.toString()"></span>
+        </oui-datagrid-column>
+        <oui-action-menu data-compact data-placement="end">
+            <oui-action-menu-item on-click="$ctrl.showStats($row)">
+                <span
+                    data-translate="network_security_dashboard_show_stats"
+                ></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>

@@ -66,7 +66,7 @@ export default {
       serviceType: 'NETWORK_SECURITY',
       routing: {
         application: 'dedicated',
-        hash: '#/networkSecurity',
+        hash: '#/network-security',
       },
       features: ['network-security'],
     },

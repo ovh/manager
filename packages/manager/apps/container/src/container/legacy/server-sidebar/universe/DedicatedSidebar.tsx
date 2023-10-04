@@ -289,7 +289,7 @@ export default function DedicatedSidebar() {
             id: 'dedicated-network-security',
             label: t('sidebar_network_security'),
             icon: getIcon('oui-icon oui-icon-shield_concept'),
-            href: navigation.getURL('dedicated', '#/networkSecurity'),
+            href: navigation.getURL('dedicated', '#/network-security'),
             routeMatcher: new RegExp('^/networkSecurity'),
           },
           feature['vrack:bare-metal-cloud'] && {

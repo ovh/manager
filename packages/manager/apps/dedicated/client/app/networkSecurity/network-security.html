@@ -1,0 +1,34 @@
+<div data-ui-view="networkSecurityView">
+    <div data-ovh-alert="network_security_error"></div>
+    <oui-header
+        data-heading="{{:: 'network_security_dashboard_title' | translate }}"
+    >
+        <oui-guide-menu
+            text="{{:: 'network_security_dashboard_guides' | translate }}"
+        >
+            <oui-guide-menu-item href="#" external>
+                <!-- TODO: use the correct label -->
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-header>
+
+    <p data-translate="network_security_dashboard_header_content_survey"></p>
+    <p data-translate="network_security_dashboard_header_content_note"></p>
+
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            active="$ctrl.isScrubbingCenterActive()"
+            data-ng-click="NetworkSecurityCtrl.onScrubbingCenterTabClick()"
+        >
+            <span data-translate="network_security_dashboard_scrubbing"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            active="$ctrl.isTrafficChartActive()"
+            data-ng-click="$ctrl.onTrafficChartTabClick()"
+        >
+            <span translate="network_security_dashboard_traffic"></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+
+    <div ui-view></div>
+</div>

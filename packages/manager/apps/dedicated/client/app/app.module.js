@@ -120,6 +120,8 @@ import dedicatedHousing from './dedicated/housing';
 import userContracts from './user-contracts';
 import otrs from './otrs';
 
+import networkSecurity from './networkSecurity';
+
 import { TRACKING } from './at-internet.constants';
 
 const getEnvironment = (shellClient) => {
@@ -228,6 +230,7 @@ export default async (containerEl, shellClient) => {
         userContracts,
         'xeditable',
         ovhManagerCda,
+        networkSecurity,
       ].filter(isString),
     )
     .service('Polling', pollingService)
@@ -365,6 +368,7 @@ export default async (containerEl, shellClient) => {
             'cloud-connect',
             'error',
             'iplb',
+            'network-security',
           ];
 
           const stateIncludes = Object.keys(transition.$to().includes);
