@@ -3,6 +3,7 @@ import { map, uniq } from 'lodash';
 import {
   AUTOMATIC_SCALING_RESOURCE_TYPES,
   APP_SCALING_SETTINGS,
+  NUMBER_OF_MINUTES_IN_ONE_HOUR,
 } from '../../add.constants';
 
 import { APP_SCALING_INFO, IS_BETA } from '../../../app.constants';
@@ -38,8 +39,9 @@ export default class AppResourcesController {
       this.prices,
       this.appModel.resource.flavor.id,
     );
-    this.resourcePriceTax = resourcePrice.tax * 60;
-    this.resourcePriceInUcents = resourcePrice.priceInUcents * 60;
+    this.resourcePriceTax = resourcePrice.tax * NUMBER_OF_MINUTES_IN_ONE_HOUR;
+    this.resourcePriceInUcents =
+      resourcePrice.priceInUcents * NUMBER_OF_MINUTES_IN_ONE_HOUR;
   }
 
   onUsecaseChange(flavorType) {
@@ -78,25 +80,29 @@ export default class AppResourcesController {
     return (
       this.getFlavorPrice(flavor).priceInUcents *
       this.appModel.resource.nbResources *
-      60
+      NUMBER_OF_MINUTES_IN_ONE_HOUR
     );
   }
 
   getResourceTaxWithResources(flavor) {
     return (
-      this.getFlavorPrice(flavor).tax * this.appModel.resource.nbResources * 60
+      this.getFlavorPrice(flavor).tax *
+      this.appModel.resource.nbResources *
+      NUMBER_OF_MINUTES_IN_ONE_HOUR
     );
   }
 
   get price() {
     return this.computeTotalPrice(
-      this.getFlavorPrice(this.appModel.resource.flavor).priceInUcents * 60,
+      this.getFlavorPrice(this.appModel.resource.flavor).priceInUcents *
+        NUMBER_OF_MINUTES_IN_ONE_HOUR,
     );
   }
 
   get tax() {
     return this.computeTotalPrice(
-      this.getFlavorPrice(this.appModel.resource.flavor).tax * 60,
+      this.getFlavorPrice(this.appModel.resource.flavor).tax *
+        NUMBER_OF_MINUTES_IN_ONE_HOUR,
     );
   }
 }
