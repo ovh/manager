@@ -8,7 +8,7 @@ export const ADYEN_CONFIG = {
     showPayButton: false,
     hasHolderName: true,
     holderNameRequired: true,
-    showBrandsUnderCardNumber: false,
+    showBrandsUnderCardNumber: true,
     paymentMethodsResponse: {
       paymentMethods: [
         {
