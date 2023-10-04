@@ -28,9 +28,6 @@ export default /* @ngInject */ ($stateProvider) => {
       goToNoPrivateNetwork: /* @ngInject */ ($state) => () =>
         $state.go('octavia-load-balancer.onboarding.no-private-network'),
     },
-    params: {
-      showNoPrivateNetworkModal: false,
-    },
     atInternet: {
       rename: TRACKING_NAME,
     },
