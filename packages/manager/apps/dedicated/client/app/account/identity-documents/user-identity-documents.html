@@ -104,7 +104,7 @@
         <oui-form-actions
             class="mt-5"
             data-disabled="$ctrl.form.$invalid || !$ctrl.files || $ctrl.files.length === 0 || $ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN"
-            data-on-submit="$ctrl.uploadIdentityDocuments()"
+            data-on-submit="$ctrl.handleUploadConfirmModal(true)"
             data-submit-text="{{:: 'user_account_identity_documents_submit' | translate}}"
         ></oui-form-actions>
     </form>
@@ -159,3 +159,9 @@
     </small>
 </div>
 <!--end of legal section-->
+<!-- Modal confirmation for uploading documents -->
+<upload-identity-documents-confirm
+    data-is-open-modal="$ctrl.isOpenModal"
+    data-on-confirm="$ctrl.uploadIdentityDocuments()"
+    data-on-cancel="$ctrl.handleUploadConfirmModal(false)"
+></upload-identity-documents-confirm>
