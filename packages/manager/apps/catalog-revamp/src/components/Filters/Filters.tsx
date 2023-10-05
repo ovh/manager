@@ -76,8 +76,8 @@ const Filters: React.FC<FiltersProps> = ({
 
   return (
     <>
-      <div className="filters-container filters-container grid grid-cols-1 md:flex text-left">
-        <div className="filters-universes flex-[2]">
+      <span className="filters-container filters-container grid grid-cols-1 md:flex text-left">
+        <span className="filters-universes flex-[2]">
           <OsdsText
             level={ODS_TEXT_LEVEL.heading}
             size={ODS_TEXT_SIZE._400}
@@ -102,8 +102,8 @@ const Filters: React.FC<FiltersProps> = ({
           ) : (
             <LoadingFilterItem lineNumber={5} />
           )}
-        </div>
-        <div className="filters-categories grid flex-[4]">
+        </span>
+        <span className="filters-categories grid flex-[4]">
           <OsdsText
             level={ODS_TEXT_LEVEL.heading}
             size={ODS_TEXT_SIZE._400}
@@ -112,7 +112,7 @@ const Filters: React.FC<FiltersProps> = ({
           >
             {t('manager_catalog_filters_categories')}
           </OsdsText>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <span className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {categories.length ? (
               categories.map(
                 (item: { category: string; count: number }, id: number) => (
@@ -129,11 +129,11 @@ const Filters: React.FC<FiltersProps> = ({
             ) : (
               <LoadingFilterItem lineNumber={15} />
             )}
-          </div>
-        </div>
-      </div>
-      <div className="filters-footer-container">
-        <div className="filters-footer flex justify-end gap-x-5">
+          </span>
+        </span>
+      </span>
+      <span className="filters-footer-container">
+        <span className="filters-footer flex justify-end gap-x-5">
           <OsdsLink
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => resetFilters()}
@@ -147,8 +147,8 @@ const Filters: React.FC<FiltersProps> = ({
           >
             {t('manager_catalog_filters_button_apply')}
           </OsdsButton>
-        </div>
-      </div>
+        </span>
+      </span>
     </>
   );
 };
