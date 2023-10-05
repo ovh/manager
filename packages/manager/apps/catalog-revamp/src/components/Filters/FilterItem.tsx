@@ -29,7 +29,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
   const resultsNumber = count ? ` (${count})` : '';
 
   return (
-    <div className="break-inside-avoid">
+    <span className="break-inside-avoid">
       <OsdsCheckbox
         checked={isChecked}
         onOdsCheckedChange={(event: CustomEvent) =>
@@ -51,7 +51,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
           </span>
         </OsdsCheckboxButton>
       </OsdsCheckbox>
-    </div>
+    </span>
   );
 };
 
