@@ -106,16 +106,6 @@ export function getPciProjectMenu(
           ),
         },
         {
-          id: 'databases',
-          title: 'Databases',
-          badge: 'new',
-          feature: 'databases',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases`,
-          ),
-        },
-        {
           id: 'snapshot',
           title: 'Volume Snapshot',
           feature: 'snapshot',
@@ -142,6 +132,12 @@ export function getPciProjectMenu(
             'public-cloud',
             `#/pci/projects/${projectId}/storages/instance-backups`,
           ),
+        },
+        {
+          id: 'workflow-management',
+          title: 'Workflow Management',
+          feature: 'workflow-management',
+          href: getURL('public-cloud', `#/pci/projects/${projectId}/workflow`),
         },
       ],
     },
@@ -240,21 +236,21 @@ export function getPciProjectMenu(
       regions: ['US'],
       subItems: [
         {
-          id: 'load-balancer',
-          title: 'Load Balancer',
-          feature: 'load-balancer',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/load-balancer`,
-          ),
-        },
-        {
           id: 'kubernetes',
           title: 'Managed Kubernetes Service',
           feature: 'kubernetes',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/kubernetes`,
+          ),
+        },
+        {
+          id: 'load-balancer',
+          title: 'Load Balancer for MKS',
+          feature: 'load-balancer',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/load-balancer`,
           ),
         },
         {
@@ -266,11 +262,66 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/private-registry`,
           ),
         },
+      ],
+    },
+    {
+      id: 'analytics',
+      title: 'Databases & Analytics',
+      regions: ['EU', 'CA'],
+      subItems: [
+
         {
-          id: 'workflow-management',
-          title: 'Workflow Management',
-          feature: 'workflow-management',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/workflow`),
+          id: 'databases',
+          title: 'Databases',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases-analytics/databases`,
+          ),
+        },
+        {
+          id: 'databases-streaming',
+          title: 'Data Streaming',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases-analytics/datastreaming`,
+          ),
+        },
+        {
+          id: 'data-integration',
+          title: 'Data Integration',
+          badge: 'beta',
+          feature: 'data-integration',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/data-integration`,
+          ),
+        },
+        {
+          id: 'data-processing',
+          title: 'Data Processing',
+          badge: 'new',
+          feature: 'data-processing',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/data-processing`,
+          ),
+        },
+        {
+          id: 'databases-analysis',
+          title: 'Data Analysis',
+          feature: 'databases',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/storages/databases-analytics/dataanalysis`,
+          ),
+        },
+        {
+          id: 'logs-data-platform',
+          title: 'Logs Data Platform',
+          feature: 'logs-data-platform',
+          href: getURL('dedicated', `#/dbaas/logs`),
         },
       ],
     },
@@ -305,39 +356,6 @@ export function getPciProjectMenu(
           regions: ['CA', 'EU'],
           feature: 'ai-apps',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ai/apps`),
-        },
-      ],
-    },
-    {
-      id: 'analytics',
-      title: 'Data & Analytics',
-      regions: ['EU', 'CA'],
-      subItems: [
-        {
-          id: 'data-processing',
-          title: 'Data Processing',
-          badge: 'new',
-          feature: 'data-processing',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/data-processing`,
-          ),
-        },
-        {
-          id: 'data-integration',
-          title: 'Data Integration',
-          badge: 'beta',
-          feature: 'data-integration',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/data-integration`,
-          ),
-        },
-        {
-          id: 'logs-data-platform',
-          title: 'Logs Data Platform',
-          feature: 'logs-data-platform',
-          href: getURL('dedicated', `#/dbaas/logs`),
         },
       ],
     },

@@ -138,6 +138,50 @@ export const SSL_MODE_REQUIRED = ['require', 'required', 'REQUIRED'];
 export const SSL_MODE_NA = ['n/a'];
 export const SSL_MODE_SSL_TLS = ['TLS/SSL'];
 
+export const ENGINES_TYPES = {
+  databases: {
+    label: 'databases',
+    engines: [
+      DATABASE_TYPES.MONGO_DB,
+      DATABASE_TYPES.POSTGRESQL,
+      DATABASE_TYPES.MYSQL,
+      DATABASE_TYPES.REDIS,
+      DATABASE_TYPES.CASSANDRA,
+      DATABASE_TYPES.M3DB,
+      DATABASE_TYPES.M3AGGEGATOR,
+    ],
+  },
+  datastreaming: {
+    label: 'datastreaming',
+    engines: [
+      DATABASE_TYPES.KAFKA,
+      DATABASE_TYPES.KAFKA_CONNECT,
+      DATABASE_TYPES.KAFKA_MIRROR_MAKER,
+    ],
+  },
+  dataanalysis: {
+    label: 'dataanalysis',
+    engines: [DATABASE_TYPES.OPEN_SEARCH, DATABASE_TYPES.GRAFANA],
+  },
+  all: {
+    label: 'all',
+    engines: [
+      DATABASE_TYPES.MONGO_DB,
+      DATABASE_TYPES.POSTGRESQL,
+      DATABASE_TYPES.MYSQL,
+      DATABASE_TYPES.REDIS,
+      DATABASE_TYPES.CASSANDRA,
+      DATABASE_TYPES.M3DB,
+      DATABASE_TYPES.M3AGGEGATOR,
+      DATABASE_TYPES.KAFKA,
+      DATABASE_TYPES.KAFKA_CONNECT,
+      DATABASE_TYPES.KAFKA_MIRROR_MAKER,
+      DATABASE_TYPES.OPEN_SEARCH,
+      DATABASE_TYPES.GRAFANA,
+    ],
+  },
+};
+
 export default {
   DATABASE_TYPES,
   SHELL_NAMES,
