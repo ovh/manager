@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.3.1...@ovh-ux/manager-pci@6.3.2) (2023-10-05)
+
+
+### Bug Fixes
+
+* **pci.instances:** disable unavailable regions and images ([534cade](https://github.com/ovh/manager/commit/534cade932fb22d62c3645c068271863b352bdcb))
+* **pci:** display currency symbol ([198307e](https://github.com/ovh/manager/commit/198307eca9a84f5939122d4e0e19b1f8ae9349a0))
+
+
+
+
+
 ## [6.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.3.0...@ovh-ux/manager-pci@6.3.1) (2023-10-02)
 
 

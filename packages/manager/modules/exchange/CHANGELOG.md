@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.1.0...@ovh-ux/manager-exchange@4.1.1) (2023-10-05)
+
+
+### Bug Fixes
+
+* **web.sharepoint:** remove order button ([#9923](https://github.com/ovh/manager/issues/9923)) ([519ebb0](https://github.com/ovh/manager/commit/519ebb0ba48e0d52fdcaecc3687af24d32c9eece))
+
+
+
+
+
 # [4.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.0.1...@ovh-ux/manager-exchange@4.1.0) (2023-09-18)
 
 

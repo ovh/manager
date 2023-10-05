@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-carbon-calculator@0.1.2...@ovh-ux/manager-carbon-calculator@0.2.0) (2023-10-05)
+
+
+### Features
+
+* **dedicated:** fix has invoice api call ([f1617c9](https://github.com/ovh/manager/commit/f1617c9f5c9ddd0688c8f904cccdd69839c4ff97))
+* **dedicated:** hide carbon calculator cta when no data ([1b4508f](https://github.com/ovh/manager/commit/1b4508f6380fa69ac09b3a70a66fa129bce0d8a7))
+
+
+
+
+
 ## [0.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-carbon-calculator@0.1.1...@ovh-ux/manager-carbon-calculator@0.1.2) (2023-09-04)
 
 

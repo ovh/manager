@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.2.3...@ovh-ux/manager-web@18.3.0) (2023-10-05)
+
+
+### Bug Fixes
+
+* **web:** fix hosting order whitout any contract to agree ([f45b63d](https://github.com/ovh/manager/commit/f45b63d7ead3d619b4aa0a3ad8b8bfa3fcdbe93e))
+
+
+### Features
+
+* **web:** add new hosting offer sticker info ([62606fa](https://github.com/ovh/manager/commit/62606fa6022b98fa6bbf8ba24d931e8ad20704f8))
+
+
+
+
+
 ## [18.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.2.2...@ovh-ux/manager-web@18.2.3) (2023-10-02)
 
 

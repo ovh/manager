@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.9.2...@ovh-ux/manager-sharepoint@2.9.3) (2023-10-05)
+
+
+### Bug Fixes
+
+* **web.sharepoint:** remove order button ([#9923](https://github.com/ovh/manager/issues/9923)) ([519ebb0](https://github.com/ovh/manager/commit/519ebb0ba48e0d52fdcaecc3687af24d32c9eece))
+
+
+
+
+
 ## [2.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint@2.9.1...@ovh-ux/manager-sharepoint@2.9.2) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-sharepoint

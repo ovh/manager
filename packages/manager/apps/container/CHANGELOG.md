@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.30.3...@ovh-ux/manager-container-app@0.30.4) (2023-10-05)
+
+
+### Bug Fixes
+
+* **iam:** display account navbar when iam loads ([e152333](https://github.com/ovh/manager/commit/e1523335f7f6be91fb3495b05c3b8f7b4e0a3abe))
+* **web.sharepoint:** remove order button ([#9923](https://github.com/ovh/manager/issues/9923)) ([519ebb0](https://github.com/ovh/manager/commit/519ebb0ba48e0d52fdcaecc3687af24d32c9eece))
+
+
+
+
+
 ## [0.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.30.2...@ovh-ux/manager-container-app@0.30.3) (2023-10-02)
 
 

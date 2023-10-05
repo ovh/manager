@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.5.1...@ovh-ux/manager-dedicated@19.5.2) (2023-10-05)
+
+
+### Bug Fixes
+
+* **dedicated-cloud:** add migration banner ([#9932](https://github.com/ovh/manager/issues/9932)) ([4745e78](https://github.com/ovh/manager/commit/4745e78b60d6d5a870e1adcb324c0d63020395c9))
+
+
+
+
+
 ## [19.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.5.0...@ovh-ux/manager-dedicated@19.5.1) (2023-10-02)
 
 
