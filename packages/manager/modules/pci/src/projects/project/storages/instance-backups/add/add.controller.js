@@ -5,6 +5,7 @@ import Datacenter from '../../../../../components/project/regions-list/datacente
 import Quota from '../../../../../components/project/instance/quota/quota.class';
 import { PATTERN } from '../../../../../components/project/instance/name/constants';
 import Instance from '../../../../../components/project/instance/instance.class';
+import { BAREMETAL_LABEL, PUBLIC_NETWORK_TYPE_NAMES } from './add.constants';
 
 export default class PciInstancesAddController {
   /* @ngInject */
@@ -123,15 +124,25 @@ export default class PciInstancesAddController {
     this.messages = this.messageHandler.getMessages();
   }
 
+  isBareMetalBackup() {
+    return !!this.backup.type.includes(BAREMETAL_LABEL);
+  }
+
   onPrivateNetworkChange(modelValue) {
     const networkId = get(modelValue, 'id');
+    const publicNetwork = this.publicNetworks?.find((network) => {
+      const networkName = this.isBareMetalBackup()
+        ? PUBLIC_NETWORK_TYPE_NAMES.BAREMETAL
+        : PUBLIC_NETWORK_TYPE_NAMES.CLASSIC;
+      return network.name === networkName;
+    });
     this.instance.networks = networkId
       ? [
           {
             networkId,
           },
           {
-            networkId: this.publicNetwork.id,
+            networkId: publicNetwork?.id,
           },
         ]
       : [];
