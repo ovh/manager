@@ -1,15 +1,16 @@
 import angular from 'angular';
 
-import '@ovh-ux/ui-kit';
 import 'angular-translate';
+import '@ovh-ux/ui-kit';
 
-import component from './component';
+import component from './terminate.component';
 
-const moduleName = 'ovhManagerBmServerComponentsReverseDnsDelete';
+const moduleName =
+  'ovhManagerBmServerComponentsDashboardServiceStatusTerminate';
 
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate'])
-  .component('serverReverseDnsDelete', component)
+  .component('serverServiceStatusTerminate', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

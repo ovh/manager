@@ -2,8 +2,7 @@ import { BYOI_FEATURE } from './server-installation-choice.constants';
 
 export default class ServerInstallationChoiceCtrl {
   /* @ngInject */
-  constructor($scope, $state, atInternet, ovhFeatureFlipping) {
-    this.$scope = $scope;
+  constructor($state, atInternet, ovhFeatureFlipping) {
     this.$state = $state;
     this.atInternet = atInternet;
     this.ovhFeatureFlipping = ovhFeatureFlipping;

@@ -4,10 +4,6 @@ export default class QuotaTileController {
     this.$state = $state;
   }
 
-  canOrderTraffic() {
-    return !this.server.isExpired && this.server.canOrderQuota;
-  }
-
   canOrderMoreTraffic() {
     return (
       !this.server.isExpired &&

@@ -1,5 +1,3 @@
-import some from 'lodash/some';
-
 import { DOCUMENTATION_LINK, SUPPORTED_SSH_KEY_FORMATS } from './constants';
 
 export default class DedicatedServerInstallImageConfigDriveCtrl {
@@ -33,7 +31,7 @@ export default class DedicatedServerInstallImageConfigDriveCtrl {
   }
 
   static validateSshFormat(sshKey) {
-    return some(SUPPORTED_SSH_KEY_FORMATS, ({ regex }) => regex.test(sshKey));
+    return SUPPORTED_SSH_KEY_FORMATS.some(({ regex }) => regex.test(sshKey));
   }
 
   /*= =============================

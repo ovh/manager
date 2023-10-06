@@ -164,41 +164,45 @@
                 >
                 </span>
 
-                <oui-checkbox
-                    data-disabled="!$ctrl.canPersonnalizeRaid()"
-                    data-model="installation.raidSetup"
+                <div
+                    data-ng-hide="installation.warningExistPartition || informations.gabaritName != null"
                 >
-                    <oui-checkbox-label
-                        ><span
-                            data-translate="server_configuration_installation_ovh_step1_hardwareRaid"
-                        ></span
-                    ></oui-checkbox-label>
-                    <oui-checkbox-description
-                        ><p class="text-danger">
-                            <span
-                                data-ng-if="installation.selectDistribution.hardRaidConfiguration === false"
-                                data-translate="server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported"
-                            >
-                            </span>
-                            <span
-                                data-ng-if="informations.hardwareRaid.error.wrongLocation"
-                                data-translate="server_configuration_installation_ovh_step1_hardwareRaid_wrong_location"
-                            >
-                            </span>
-                        </p>
-                    </oui-checkbox-description>
-                </oui-checkbox>
+                    <oui-checkbox
+                        data-disabled="!$ctrl.canPersonnalizeRaid()"
+                        data-model="installation.raidSetup"
+                    >
+                        <oui-checkbox-label
+                            ><span
+                                data-translate="server_configuration_installation_ovh_step1_hardwareRaid"
+                            ></span
+                        ></oui-checkbox-label>
+                        <oui-checkbox-description
+                            ><p class="text-danger">
+                                <span
+                                    data-ng-if="installation.selectDistribution.hardRaidConfiguration === false"
+                                    data-translate="server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported"
+                                >
+                                </span>
+                                <span
+                                    data-ng-if="informations.hardwareRaid.error.wrongLocation"
+                                    data-translate="server_configuration_installation_ovh_step1_hardwareRaid_wrong_location"
+                                >
+                                </span>
+                            </p>
+                        </oui-checkbox-description>
+                    </oui-checkbox>
 
-                <oui-checkbox
-                    data-disabled="informations.gabaritName != null || installation.noPartitioning"
-                    data-model="installation.customInstall"
-                >
-                    <oui-checkbox-label
-                        ><span
-                            data-translate="server_configuration_installation_ovh_step1_custom"
-                        ></span
-                    ></oui-checkbox-label>
-                </oui-checkbox>
+                    <oui-checkbox
+                        data-disabled="informations.gabaritName != null || installation.noPartitioning"
+                        data-model="installation.customInstall"
+                    >
+                        <oui-checkbox-label
+                            ><span
+                                data-translate="server_configuration_installation_ovh_step1_custom"
+                            ></span
+                        ></oui-checkbox-label>
+                    </oui-checkbox>
+                </div>
 
                 <div data-ng-if="installation.warningExistPartition">
                     <p

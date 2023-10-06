@@ -3,7 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/terminate',
     views: {
       modal: {
-        component: 'dedicatedServerDashboardTerminate',
+        component: 'serverServiceStatusTerminate',
       },
     },
     layout: 'modal',

@@ -289,7 +289,6 @@ export default class ServerInstallationGabaritCtrl {
         }
       })
       .catch((error) => {
-        this.$scope.resetAction();
         this.Alerter.alertFromSWS(
           this.$translate.instant(
             'server_configuration_installation_ovh_fail_partition_schemes',
@@ -298,6 +297,7 @@ export default class ServerInstallationGabaritCtrl {
           error,
           'server_dashboard_alert',
         );
+        this.goBack();
       })
       .finally(() => {
         this.$scope.loader.loading = false;

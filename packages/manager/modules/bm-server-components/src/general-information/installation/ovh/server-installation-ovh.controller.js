@@ -1,19 +1,11 @@
 import moment from 'moment';
 import chunk from 'lodash/chunk';
 import camelCase from 'lodash/camelCase';
-import compact from 'lodash/compact';
-import find from 'lodash/find';
-import findLastIndex from 'lodash/findLastIndex';
 import forEachRight from 'lodash/forEachRight';
-import get from 'lodash/get';
 import head from 'lodash/head';
-import includes from 'lodash/includes';
-import map from 'lodash/map';
 import range from 'lodash/range';
 import set from 'lodash/set';
 import some from 'lodash/some';
-import orderBy from 'lodash/orderBy';
-import take from 'lodash/take';
 import {
   MOUNT_POINTS,
   MAX_MOUNT_POINTS,
@@ -299,7 +291,7 @@ export default class ServerInstallationOvhCtrl {
       if (newValue) {
         if (
           newValue.diskGroupId !==
-          get(this.$scope.informations.diskGroups[0] || {}, 'diskGroupId')
+          this.$scope.informations.diskGroups[0]?.diskGroupId
         ) {
           this.$scope.installation.raidSetup = false;
         }
@@ -332,35 +324,13 @@ export default class ServerInstallationOvhCtrl {
         ] = this.$scope.informations.hardwareRaid.availableDisks;
         this.recalculateAvailableArrays();
       }
-      if (this.$scope.informations.hardwareRaid.availableArrays.length === 1) {
-        [
-          this.$scope.installation.hardwareRaid.arrays,
-        ] = this.$scope.informations.hardwareRaid.availableArrays;
-        this.recalculateSpace();
-        if (
-          this.$scope.installation.hardwareRaid.disks &&
-          this.$scope.installation.hardwareRaid.arrays
-        ) {
-          this.$scope.installation.hardwareRaid.error = this.invalidHardRaid();
-        }
-      }
+      this.hasOnlyOneAvailableArraysDisk();
     });
 
     this.$scope.$watch('installation.hardwareRaid.disks', () => {
       this.clearHardwareRaidSpace();
       this.recalculateAvailableArrays();
-      if (this.$scope.informations.hardwareRaid.availableArrays.length === 1) {
-        [
-          this.$scope.installation.hardwareRaid.arrays,
-        ] = this.$scope.informations.hardwareRaid.availableArrays;
-        this.recalculateSpace();
-        if (
-          this.$scope.installation.hardwareRaid.disks &&
-          this.$scope.installation.hardwareRaid.arrays
-        ) {
-          this.$scope.installation.hardwareRaid.error = this.invalidHardRaid();
-        }
-      }
+      this.hasOnlyOneAvailableArraysDisk();
     });
 
     this.$scope.$watch('installation.hardwareRaid.arrays', () => {
@@ -395,6 +365,21 @@ export default class ServerInstallationOvhCtrl {
         'class',
         bigSize ? 'modal-dialog dedicated-server-large-modal' : 'modal-dialog',
       );
+  }
+
+  hasOnlyOneAvailableArraysDisk() {
+    if (this.$scope.informations.hardwareRaid.availableArrays.length === 1) {
+      [
+        this.$scope.installation.hardwareRaid.arrays,
+      ] = this.$scope.informations.hardwareRaid.availableArrays;
+      this.recalculateSpace();
+      if (
+        this.$scope.installation.hardwareRaid.disks &&
+        this.$scope.installation.hardwareRaid.arrays
+      ) {
+        this.$scope.installation.hardwareRaid.error = this.invalidHardRaid();
+      }
+    }
   }
 
   // ------STEP1------
@@ -567,9 +552,8 @@ export default class ServerInstallationOvhCtrl {
     }
 
     if (
-      this.$scope.installation.selectDistribution &&
-      this.$scope.installation.selectDistribution.hardRaidConfiguration ===
-        false
+      this.$scope.installation.selectDistribution?.hardRaidConfiguration ===
+      false
     ) {
       this.$scope.installation.raidSetup = false;
     }
@@ -586,7 +570,7 @@ export default class ServerInstallationOvhCtrl {
     return this.Server.getHardwareRaidProfile(this.$stateParams.productId).then(
       (raidProfile) => {
         this.$scope.informations.hardwareRaid.profile = raidProfile;
-        if (some(get(raidProfile, 'controllers'))) {
+        if (some(raidProfile?.controllers)) {
           this.$scope.installation.hardwareRaid.controller = head(
             raidProfile.controllers,
           );
@@ -722,12 +706,8 @@ export default class ServerInstallationOvhCtrl {
               );
 
               if (
-                get(
-                  this.$scope.installation.partitionSchemeModels[
-                    partitionIndex
-                  ],
-                  'partitionSize',
-                ) === 0
+                this.$scope.installation.partitionSchemeModels[partitionIndex]
+                  ?.partitionSize === 0
               ) {
                 set(
                   this.$scope.installation.partitionSchemeModels[
@@ -792,10 +772,9 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.informations.customInstall,
     ).then(
       (partitionSchemesList) => {
-        this.$scope.installation.partitionSchemesList = map(
-          orderBy(partitionSchemesList.results, 'priority', 'desc'),
-          'name',
-        );
+        this.$scope.installation.partitionSchemesList = partitionSchemesList.results
+          .sort((a, b) => b.priority - a.priority)
+          .map((r) => r.name);
 
         this.$scope.informations.gabaritName = partitionSchemesList.gabaritName;
         this.$scope.constants.raidList =
@@ -890,20 +869,26 @@ export default class ServerInstallationOvhCtrl {
               ServerInstallationOvhCtrl.toBytes(newDiskGroup.diskSize) /
                 1024 /
                 1024,
-            ) * get(newDiskGroup, 'numberOfDisks', 0);
+            ) * newDiskGroup?.numberOfDisks || 0;
     }
 
-    const otherDisk = find(
-      this.$scope.informations.diskGroups,
+    const otherDisk = this.$scope.informations.diskGroups.find(
       (diskGroup) => diskGroup.diskGroupId !== newDiskGroup.diskGroupId,
     );
-    this.$scope.informations.otherDisk = map(compact([otherDisk]), (disk) => ({
-      typeDisk: disk.diskType,
-      nbDisk: disk.numberOfDisks,
-      sizeDisk: Math.round(
-        ServerInstallationOvhCtrl.toBytes(disk.diskSize) / 1024 / 1024,
-      ),
-    }));
+
+    this.$scope.informations.otherDisk = otherDisk
+      ? [
+          {
+            typeDisk: otherDisk.diskType,
+            nbDisk: otherDisk.numberOfDisks,
+            sizeDisk: Math.round(
+              ServerInstallationOvhCtrl.toBytes(otherDisk.diskSize) /
+                1024 /
+                1024,
+            ),
+          },
+        ]
+      : [];
   }
 
   validationNbDiskUse(nbDisk) {
@@ -919,15 +904,14 @@ export default class ServerInstallationOvhCtrl {
           if (
             !this.$scope.installation.dirtyPartition &&
             indexVarPartition === null &&
-            partitionSchemeModel &&
-            partitionSchemeModel.isRemainingSizePartition
+            partitionSchemeModel?.isRemainingSizePartition
           ) {
             indexVarPartition = partitionSchemeModelIndex;
           }
 
           if (
             this.$scope.informations.nbDisk > 2 &&
-            !includes(raidList, partitionSchemeModel.raid)
+            !raidList.includes(partitionSchemeModel.raid)
           ) {
             this.$scope.configError.raidDiskUse = true;
             set(partitionSchemeModel, 'hasWarning', true);
@@ -1048,8 +1032,7 @@ export default class ServerInstallationOvhCtrl {
     );
 
     if (
-      includes(
-        this.$scope.constants.partitionTypeList,
+      this.$scope.constants.partitionTypeList.includes(
         this.$scope.constants.warningLogical,
       )
     ) {
@@ -1066,8 +1049,7 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.constants.warningWindows
     ) {
       if (
-        includes(
-          this.$scope.constants.fileSystemList,
+        this.$scope.constants.fileSystemList.includes(
           this.$scope.constants.warningNTFS,
         )
       ) {
@@ -1080,8 +1062,7 @@ export default class ServerInstallationOvhCtrl {
         );
       }
     } else if (
-      includes(
-        this.$scope.constants.fileSystemList,
+      this.$scope.constants.fileSystemList.includes(
         this.$scope.constants.warningEXT4,
       )
     ) {
@@ -1234,10 +1215,8 @@ export default class ServerInstallationOvhCtrl {
 
   // Get index in partitionSchemeModels table where partition is located
   getIndexOfPartition(partition) {
-    return findLastIndex(
-      this.$scope.installation.partitionSchemeModels,
-      (partitionSchemeModel) =>
-        get(partitionSchemeModel, 'order') === partition.order,
+    return this.$scope.installation.partitionSchemeModels.findLastIndex(
+      (partitionSchemeModel) => partitionSchemeModel?.order === partition.order,
     );
   }
 
@@ -1473,7 +1452,7 @@ export default class ServerInstallationOvhCtrl {
   validationVolumeNameByType(partition) {
     this.$scope.errorInst.volumeNameEmpty =
       partition.typePartition === this.$scope.constants.warningLV &&
-      (!partition.volumeName || partition.volumeName === '');
+      partition.volumeName === '';
   }
 
   hasErrorType() {
@@ -1642,50 +1621,34 @@ export default class ServerInstallationOvhCtrl {
   }
 
   // boot size < 50Mo = error
-  validationSizeBoot(partition) {
+  validationSizeBoot(partition, realDisplaySize) {
     this.$scope.errorInst.partitionSizeBoot =
       partition.mountPoint === this.$scope.constants.warningBoot &&
-      this.getRealDisplaySize({
-        partition,
-        notDisplay: true,
-        noRaid: true,
-      }) < this.$scope.constants.minSizeBoot;
+      realDisplaySize < this.$scope.constants.minSizeBoot;
     return this.$scope.errorInst.partitionSizeBoot;
   }
 
   // reiserfs size < 32Mo = error
-  validationSizeReiserfs(partition) {
+  validationSizeReiserfs(partition, realDisplaySize) {
     this.$scope.errorInst.partitionSizeReiserfs =
       partition.fileSystem === this.$scope.constants.warningReiserfs &&
-      this.getRealDisplaySize({
-        partition,
-        notDisplay: true,
-        noRaid: true,
-      }) < this.$scope.constants.minSizeReiserfs;
+      realDisplaySize < this.$scope.constants.minSizeReiserfs;
     return this.$scope.errorInst.partitionSizeReiserfs;
   }
 
   // windows size < 20Go = error
-  validationSizeWindowsMin(partition) {
+  validationSizeWindowsMin(partition, realDisplaySize) {
     this.$scope.errorInst.partitionSizeWindows =
       this.$scope.informations.softRaidOnlyMirroring &&
       partition.mountPoint === this.$scope.constants.warningCwin &&
-      this.getRealDisplaySize({
-        partition,
-        notDisplay: true,
-        noRaid: true,
-      }) < this.$scope.constants.minSizeWindows;
+      realDisplaySize < this.$scope.constants.minSizeWindows;
     return this.$scope.errorInst.partitionSizeWindows;
   }
 
   // partition size < 10Mo = error
-  validationSizeMin(partition) {
+  validationSizeMin(partition, realDisplaySize) {
     this.$scope.errorInst.partitionSizeMin =
-      this.getRealDisplaySize({
-        partition,
-        notDisplay: true,
-        noRaid: true,
-      }) < this.$scope.constants.minSizePartition;
+      realDisplaySize < this.$scope.constants.minSizePartition;
     return this.$scope.errorInst.partitionSizeMin;
   }
 
@@ -1702,12 +1665,19 @@ export default class ServerInstallationOvhCtrl {
     );
 
     this.getRemainingSize();
+
+    const realDisplaySize = this.getRealDisplaySize({
+      partition,
+      notDisplay: true,
+      noRaid: true,
+    });
+
     return (
       this.$scope.errorInst.partitionSizeOver ||
-      this.validationSizeBoot(partition) ||
-      this.validationSizeReiserfs(partition) ||
-      this.validationSizeWindowsMin(partition) ||
-      this.validationSizeMin(partition)
+      this.validationSizeBoot(partition, realDisplaySize) ||
+      this.validationSizeReiserfs(partition, realDisplaySize) ||
+      this.validationSizeWindowsMin(partition, realDisplaySize) ||
+      this.validationSizeMin(partition, realDisplaySize)
     );
   }
 
@@ -2197,9 +2167,8 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.installation.hardwareRaid.disks /
       this.$scope.installation.hardwareRaid.arrays;
     if (this.$scope.installation.hardwareRaid.arrays === 1) {
-      return take(
-        this.$scope.installation.hardwareRaid.controller.disks[0].names,
-        this.$scope.installation.hardwareRaid.disks,
+      return this.$scope.installation.hardwareRaid.controller.disks[0].names.slice(
+        this.$scope.installation.hardwareRaid.disks - 1,
       );
     }
 
@@ -2210,16 +2179,12 @@ export default class ServerInstallationOvhCtrl {
     //    "[c0:d6, c0:d7, c0:d8]",
     //    "[c0:d9, c0:d10, c0:d11]"
     // ]
-    return map(
-      chunk(
-        take(
-          this.$scope.installation.hardwareRaid.controller.disks[0].names,
-          this.$scope.installation.hardwareRaid.disks,
-        ),
-        disksPerArray,
+    return chunk(
+      this.$scope.installation.hardwareRaid.controller.disks[0].names.slice(
+        this.$scope.installation.hardwareRaid.disks - 1,
       ),
-      (elem) => `[${elem.toString()}]`,
-    );
+      disksPerArray,
+    ).map((elem) => `[${elem.toString()}]`);
   }
 
   // ------CUSTOME STEP MODAL------
@@ -2459,10 +2424,7 @@ export default class ServerInstallationOvhCtrl {
         noRaid:
           this.$scope.installation.nbDiskUse === 1 &&
           !this.$scope.informations.raidController,
-        diskGroupId:
-          this.$scope.informations.diskGroups.length > 1
-            ? this.$scope.installation.diskGroup.diskGroupId
-            : null,
+        diskGroupId: this.$scope.installation.diskGroup.diskGroupId || null,
       },
     ).then(
       (task) => {
@@ -2591,10 +2553,8 @@ export default class ServerInstallationOvhCtrl {
   raidIsPersonnalizable() {
     return (
       this.$scope.constants.server.raidController &&
-      get(
-        this.$scope.installation,
-        'selectDistribution.hardRaidConfiguration',
-      ) !== false &&
+      this.$scope.installation.selectDistribution?.hardRaidConfiguration !==
+        false &&
       !this.$scope.informations.hardwareRaid.error.wrongLocation &&
       !this.$scope.informations.hardwareRaid.error.notAvailable
     );
@@ -2608,15 +2568,11 @@ export default class ServerInstallationOvhCtrl {
   }
 
   hasVirtualDesktop() {
-    return !includes(
-      get(this.$scope.installation, 'selectDistribution.id'),
-      'hyperv',
-    );
+    return !this.$scope.installation.selectDistribution?.id?.includes('hyperv');
   }
 
   hasLicencedOs() {
-    return find(
-      this.$scope.installation.distributionList,
+    return this.$scope.installation.distributionList?.find(
       (distribution) => distribution.family === 'WINDOWS',
     );
   }
