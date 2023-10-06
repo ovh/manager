@@ -1,65 +1,35 @@
 export default class DedicatedServerRebootCtrl {
   /* @ngInject */
-  constructor($q, $scope, $stateParams, $state, $translate, Alerter, Server) {
-    this.$q = $q;
-    this.$scope = $scope;
-    this.$stateParams = $stateParams;
-    this.$state = $state;
+  constructor($translate, serverRebootService) {
     this.$translate = $translate;
-    this.Alerter = Alerter;
-    this.Server = Server;
-  }
+    this.serverRebootService = serverRebootService;
 
-  $onInit() {
-    this.server = null;
-    this.isLoading = false;
     this.isRebooting = false;
-
-    this.isLoading = true;
-    return this.Server.getSelected(this.$stateParams.productId)
-      .then((server) => {
-        this.server = server;
-      })
-      .catch((err) => {
-        this.$q.reject(err);
-        return this.cancel(err);
-      })
-      .finally(() => {
-        this.isLoading = false;
-      });
   }
 
-  /**
-   * Reboot the server.
-   * @return {Promise}
-   */
   reboot() {
     this.isRebooting = true;
 
-    return this.Server.reboot(this.$stateParams.productId)
+    return this.serverRebootService
+      .reboot(this.server.name)
       .then(() => {
-        this.Alerter.success(
+        return this.goBack(
           this.$translate.instant('server_reboot_success', {
             t0: this.server.name,
           }),
-          'server_dashboard_alert',
+          'success',
+          true,
         );
-        return this.close();
       })
-      .catch((err) => {
-        this.Alerter.error(
+      .catch(() => {
+        return this.goBack(
           this.$translate.instant('server_reboot_fail'),
-          'server_dashboard_alert',
+          'danger',
+          false,
         );
-        this.$q.reject(err);
-        return this.cancel(err);
       })
       .finally(() => {
         this.isRebooting = false;
       });
-  }
-
-  close() {
-    return this.$state.go('^');
   }
 }

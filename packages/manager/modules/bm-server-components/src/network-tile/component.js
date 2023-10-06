@@ -13,7 +13,7 @@ export default {
     orderPrivateBandwidthLink: '<',
     orderPublicBandwidthLink: '<',
     serviceInfos: '<',
-    trafficInformations: '<?',
+    trafficInformation: '<?',
     dedicatedServerFeatureAvailability: '<?',
     ola: '<?',
     goToUpdateReverseDns: '<?',

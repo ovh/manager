@@ -119,7 +119,7 @@
                 data-service-infos="$ctrl.serviceInfos"
                 data-order-private-bandwidth-link="$ctrl.orderPrivateBandwidthLink"
                 data-order-public-bandwidth-link="$ctrl.orderPublicBandwidthLink"
-                data-traffic-informations="$ctrl.trafficInformations"
+                data-traffic-information="$ctrl.trafficInformation"
                 data-dedicated-server-feature-availability="$ctrl.DedicatedServerFeatureAvailability"
                 data-dedicated-server="$ctrl.dedicatedServer"
                 data-ola="$ctrl.ola"
@@ -205,11 +205,11 @@
         <!-- QUOTA -->
         <div
             class="col-md-12 mb-3"
-            data-ng-if="$ctrl.trafficInformations.traffic.data.hasQuota"
+            data-ng-if="$ctrl.trafficInformation.traffic.data.hasQuota"
         >
             <server-consumption-tile
                 data-server="$ctrl.server"
-                data-traffic-informations="$ctrl.trafficInformations"
+                data-traffic-information="$ctrl.trafficInformation"
                 data-dedicated-server="$ctrl.dedicatedServer"
             >
             </server-consumption-tile>
