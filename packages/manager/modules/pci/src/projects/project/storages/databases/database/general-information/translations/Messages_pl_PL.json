@@ -88,5 +88,11 @@
   "pci_databases_general_information_storage_type_high-speed": "Dysk zdalny pierwszej generacji",
   "pci_databases_general_information_storage_type_high-speed-gen2": "Dysk zdalny drugiej generacji",
   "pci_databases_general_information_storage_upgrade_link": "Zmień rozmiar dodatkowej przestrzeni dyskowej",
-  "pci_databases_general_information_fork": "Duplikuj (Fork)"
+  "pci_databases_general_information_fork": "Duplikuj (Fork)",
+  "pci_databases_general_information_kafka_schema_registry_label": "Schema Registry",
+  "pci_databases_general_information_kafka_schema_registry_content": "Interfejs usługi HTTP REST do przechowywania schematów Apache Kafka (oparty na projekcie {{projectLink}}).",
+  "pci_databases_general_information_kafka_schema_registry_enable": "Włącz",
+  "pci_databases_general_information_kafka_schema_registry_disable": "Wyłącz",
+  "pci_databases_general_information_kafka_schema_registry_service_uri_label": "Identyfikator URI usługi Schema Registry",
+  "pci_databases_general_information_kafka_schema_registry_enable_disable_error": "Wystąpił błąd podczas włączania/wyłączania usługi Schema Registry."
 }
