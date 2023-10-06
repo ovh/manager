@@ -10,9 +10,9 @@ const LoadingFilterItem: React.FC<LoadingFilterItemProps> = ({
 }) => (
   <>
     {Array.from({ length: lineNumber }, (_, index) => (
-      <div key={index} className="break-inside-avoid">
+      <span key={index} className="break-inside-avoid">
         <OsdsSkeleton />
-      </div>
+      </span>
     ))}
   </>
 );

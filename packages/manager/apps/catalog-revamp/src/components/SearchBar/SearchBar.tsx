@@ -41,39 +41,41 @@ const SearchBar: React.FC<SearchbarProps> = ({
   };
 
   return (
-    <form className="grid pb-3">
-      <span className="md:justify-self-end md:pt-3">
-        <OsdsSearchBar
-          placeholder={t('manager_catalog_search_placeholder')}
-          onOdsSearchSubmit={onSearchSubmit}
-          onOdsValueChange={onSearchChanged}
-          className="w-full md:w-80 pt-2 md:pt-0 cinline-flex justify-end"
-        />
-        <OsdsButton
-          className="w-full pt-2 m-0 md:pt-0 md:w-auto float-right md:pl-4"
-          size={ODS_BUTTON_SIZE.sm}
-          type={ODS_BUTTON_TYPE.button}
-          variant={ODS_BUTTON_VARIANT.stroked}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => setShowFilters((filterState) => !filterState)}
-        >
-          <OsdsIcon
-            name={ODS_ICON_NAME.FILTER}
-            size={ODS_ICON_SIZE.xs}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            className="mr-2"
+    <form>
+      <div className="grid gap-4 md:flex md:justify-end md:pt-4">
+        <span className="w-full md:w-[300px]">
+          <OsdsSearchBar
+            placeholder={t('manager_catalog_search_placeholder')}
+            onOdsSearchSubmit={onSearchSubmit}
+            onOdsValueChange={onSearchChanged}
           />
-          {t('manager_catalog_search_button')}
-        </OsdsButton>
-      </span>
-      <span style={{ display: showFilters ? 'block' : 'none' }}>
+        </span>
+        <span>
+          <OsdsButton
+            size={ODS_BUTTON_SIZE.sm}
+            type={ODS_BUTTON_TYPE.button}
+            variant={ODS_BUTTON_VARIANT.stroked}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            onClick={() => setShowFilters((filterState) => !filterState)}
+          >
+            <OsdsIcon
+              name={ODS_ICON_NAME.FILTER}
+              size={ODS_ICON_SIZE.xs}
+              color={ODS_THEME_COLOR_INTENT.primary}
+              className="mr-2"
+            />
+            {t('manager_catalog_search_button')}
+          </OsdsButton>
+        </span>
+      </div>
+      <div style={{ display: showFilters ? 'block' : 'none' }}>
         <Filters
           products={products}
           setSelectedCategories={setSelectedCategories}
           setSelectedUniverses={setSelectedUniverses}
           onApply={() => setShowFilters(false)}
         />
-      </span>
+      </div>
     </form>
   );
 };
