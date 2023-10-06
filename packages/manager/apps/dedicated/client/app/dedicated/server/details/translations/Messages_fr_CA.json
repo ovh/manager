@@ -191,8 +191,6 @@
   "server_configuration_netboot_title_button": "Modifier",
   "server_configuration_resintall_title_button": "Installer une distribution",
   "server_configuration_monitoring": "Monitoring",
-  "server_configuration_monitoring_services": "Services monitorés",
-  "server_configuration_monitoring_services_use": "Monitorer mes services",
   "server_configuration_services_state_links": "Liens",
   "server_configuration_services_state_links_weathermap": "Weathermap",
   "server_configuration_services_state_links_vms": "VMS",
