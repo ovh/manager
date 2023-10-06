@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.11.0...@ovh-ux/manager-cloud-connect@1.11.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* **dedicated:** update india order link for ldp ([#10009](https://github.com/ovh/manager/issues/10009)) ([2757431](https://github.com/ovh/manager/commit/275743124f50d075e2e2ada630530358b5f457a7))
+
+
+
+
+
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.10.0...@ovh-ux/manager-cloud-connect@1.11.0) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
 # [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.9.2...@ovh-ux/manager-cloud-connect@1.10.0) (2023-09-12)
 
 

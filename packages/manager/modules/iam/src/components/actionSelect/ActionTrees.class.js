@@ -1,7 +1,9 @@
 /**
  * @typedef {{
+ *   description: string
  *   resourceType: string
- *   selected: boolean
+ *   selected: boolean,
+ *   embedded: boolean,
  *   value: string
  * }} Action
  *
@@ -44,7 +46,12 @@
  * }} RawAction
  */
 
-import { CUSTOM_RESOURCE_TYPE } from '../../iam.constants';
+import {
+  CUSTOM_ACTION_WILDCARD_PATTERN,
+  CUSTOM_RESOURCE_TYPE,
+  WILDCARD,
+  ACTION_DESCRIPTION_UNDEFINED,
+} from '../../iam.constants';
 
 export default class ActionTrees extends Array {
   /**
@@ -96,11 +103,58 @@ export default class ActionTrees extends Array {
   }
 
   /**
+   * Check all actions matching to a regex action
+   * If some actions exist, they're tagged as embedded
+   * @param {string} action
+   * @returns {Action[]}
+   */
+  tagAllEmbeddedActions(action) {
+    const { selected } = action;
+    const actions = this.findAllActions(action.value);
+    for (let i = 0; i < actions.length; i += 1) {
+      actions[i].embedded = selected;
+      actions[i].selected = selected;
+    }
+  }
+
+  /**
+   * init and tag all embedded actions based on previous selection
+   * @param {Action[]} selectedActions
+   */
+  initAllSelectedEmbeddedActions(selectedActions) {
+    const selected = true;
+    selectedActions.forEach(({ action }) => {
+      const { value } =
+        action !== WILDCARD ? this.findAction(action) : { value: action };
+      this.tagAllEmbeddedActions({ value, selected });
+    });
+  }
+
+  /**
    * Find an action given its value
    * @param {string} value
+   * @returns {Action}
    */
   findAction(value) {
     return this.actions.find((action) => action.value === value);
+  }
+
+  /**
+   * Find all action provided by the wildcard action value
+   * @param {string} value
+   * @returns {Action[]}
+   */
+  findAllActions(value) {
+    if (!value || !CUSTOM_ACTION_WILDCARD_PATTERN.test(value)) {
+      return [];
+    }
+    return value !== WILDCARD
+      ? this.actions.filter(
+          (action) =>
+            action.value !== value &&
+            action.value.startsWith(value.replace(WILDCARD, '')),
+        )
+      : this.actions;
   }
 
   /**
@@ -181,16 +235,18 @@ export default class ActionTrees extends Array {
     const { actions } = input;
     this.buffer.actions = [...actions]
       .sort(({ action: a }, { action: b }) => (a > b ? 1 : -1))
-      .map((action) => {
-        const value = action.action;
+      .map(({ resourceType, description, action }) => {
         return {
-          resourceType: action.resourceType,
+          description:
+            description !== ACTION_DESCRIPTION_UNDEFINED ? description : null,
+          resourceType,
+          embedded: false,
           selected: Boolean(
             input.selectedActions?.find(
-              (rawAction) => rawAction.action === value,
+              (rawAction) => rawAction.action === action,
             ),
           ),
-          value,
+          value: action,
         };
       });
   }
@@ -206,7 +262,7 @@ export default class ActionTrees extends Array {
     const unknownActions = selectedActions
       ? selectedActions.filter(
           ({ action: selectedAction }) =>
-            selectedAction !== '*' &&
+            selectedAction !== WILDCARD &&
             !actions.find(({ action }) => action === selectedAction),
         )
       : [];
@@ -315,7 +371,7 @@ export default class ActionTrees extends Array {
             .toLocaleLowerCase(),
         })),
         get selection() {
-          return actions.filter(({ selected }) => selected);
+          return this.actions.filter(({ selected }) => selected);
         },
       });
     });

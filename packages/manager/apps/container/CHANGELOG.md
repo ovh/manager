@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.30.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.30.3...@ovh-ux/manager-container-app@0.30.4) (2023-10-05)
+
+
+### Bug Fixes
+
+* **iam:** display account navbar when iam loads ([e152333](https://github.com/ovh/manager/commit/e1523335f7f6be91fb3495b05c3b8f7b4e0a3abe))
+* **web.sharepoint:** remove order button ([#9923](https://github.com/ovh/manager/issues/9923)) ([519ebb0](https://github.com/ovh/manager/commit/519ebb0ba48e0d52fdcaecc3687af24d32c9eece))
+
+
+
+
+
+## [0.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.30.2...@ovh-ux/manager-container-app@0.30.3) (2023-10-02)
+
+
+### Bug Fixes
+
+* india release ([#10042](https://github.com/ovh/manager/issues/10042)) ([953d1fd](https://github.com/ovh/manager/commit/953d1fdd754c475a4c435d1061dfd16d137335d9))
+
+
+
+
+
+## [0.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.30.1...@ovh-ux/manager-container-app@0.30.2) (2023-09-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.30.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.30.0...@ovh-ux/manager-container-app@0.30.1) (2023-09-25)
+
+
+### Bug Fixes
+
+* **container.level:** fix bug for supportlevel ([d52bec7](https://github.com/ovh/manager/commit/d52bec73ac07ff6f42f550ba78b56b6097fbadc8))
+
+
+
+
+
+# [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.29.0...@ovh-ux/manager-container-app@0.30.0) (2023-09-18)
+
+
+### Bug Fixes
+
+* **container.livechat:** add level of customer support ([#9581](https://github.com/ovh/manager/issues/9581)) ([28a520a](https://github.com/ovh/manager/commit/28a520a9c8412548afae9c264ebbca1106a5be44))
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
 # [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.28.1...@ovh-ux/manager-container-app@0.29.0) (2023-09-12)
 
 

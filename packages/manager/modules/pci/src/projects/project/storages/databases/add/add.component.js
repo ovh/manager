@@ -5,7 +5,7 @@ import './add.scss';
 export default {
   bindings: {
     addPrivateNetworksLink: '<',
-    engines: '<',
+    availableEngines: '<',
     guideUrl: '<',
     guideTrackingSectionTags: '<',
     trackClick: '<',

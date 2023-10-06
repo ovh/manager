@@ -30,5 +30,7 @@
   "pci_notebook_permission_RWD": "Read &amp; Write &amp; Delete",
   "pci_notebook_data_cache": "Cache",
   "pci_notebook_list_status_DELETING": "Deleting",
-  "pci_notebook_list_status_SYNC_FAILED": "Synchronization failed"
+  "pci_notebook_list_status_SYNC_FAILED": "Synchronization failed",
+  "pci_ai_dashboard_banner_user_and_roles_info": "To use AI Tools, please ensure that you are using a configured AI user or a token.",
+  "pci_ai_dashboard_banner_user_and_roles_info_link": "Manage my AI users and tokens"
 }

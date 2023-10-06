@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.9.0...@ovh-ux/manager-bm-server-components@1.10.0) (2023-10-05)
+
+
+### Features
+
+* **dedicated:** update label payment button for KVM order ([#10020](https://github.com/ovh/manager/issues/10020)) ([fe99382](https://github.com/ovh/manager/commit/fe9938266fe8366f0674d88a87089c6bcf09c15d))
+
+
+
+
+
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.8.2...@ovh-ux/manager-bm-server-components@1.9.0) (2023-09-19)
+
+
+### Features
+
+* **dedicated:** update kvm order workflow ([6a6882b](https://github.com/ovh/manager/commit/6a6882bdc36706371f026c0cfb5040a1a7c974de))
+
+
+
+
+
 ## [1.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.8.1...@ovh-ux/manager-bm-server-components@1.8.2) (2023-08-31)
 
 

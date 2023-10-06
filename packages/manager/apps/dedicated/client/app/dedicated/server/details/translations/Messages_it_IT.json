@@ -97,7 +97,7 @@
   "server_tab_cloud_backup": "Backup Storage",
   "server_tab_ftp_backup": "Backup Storage",
   "server_tab_task": "Operazioni",
-  "server_tab_ipmi": "IPMI",
+  "server_tab_ipmi": "IPMI/KVM",
   "server_tab_dashboard": "Stato del server ",
   "server_tab_dashboard_install_progress": "Attivazione del sistema operativo in corso... Questa operazione può richiedere una decina di minuti. Al termine dell'installazione, il server si riavvierà sui dischi selezionati.",
   "server_tab_dashboard_install_progress_link": "Clicca qui per visualizzare lo stato di avanzamento.",

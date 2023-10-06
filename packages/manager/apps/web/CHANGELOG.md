@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.2.3...@ovh-ux/manager-web@18.3.0) (2023-10-05)
+
+
+### Bug Fixes
+
+* **web:** fix hosting order whitout any contract to agree ([f45b63d](https://github.com/ovh/manager/commit/f45b63d7ead3d619b4aa0a3ad8b8bfa3fcdbe93e))
+
+
+### Features
+
+* **web:** add new hosting offer sticker info ([62606fa](https://github.com/ovh/manager/commit/62606fa6022b98fa6bbf8ba24d931e8ad20704f8))
+
+
+
+
+
+## [18.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.2.2...@ovh-ux/manager-web@18.2.3) (2023-10-02)
+
+
+### Bug Fixes
+
+* india release ([#10042](https://github.com/ovh/manager/issues/10042)) ([953d1fd](https://github.com/ovh/manager/commit/953d1fdd754c475a4c435d1061dfd16d137335d9))
+* **web:** fix domain hosting order without payment method ([#10040](https://github.com/ovh/manager/issues/10040)) ([1d91924](https://github.com/ovh/manager/commit/1d91924a82d281edcabfae6071d95128a3de170b))
+
+
+
+
+
+## [18.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.2.1...@ovh-ux/manager-web@18.2.2) (2023-09-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [18.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.2.0...@ovh-ux/manager-web@18.2.1) (2023-09-25)
+
+
+### Bug Fixes
+
+* **domain:** fix issue on general information with alldom ([10b8472](https://github.com/ovh/manager/commit/10b84722c17c8c0c201a2d0e996564a6079f7d13))
+
+
+
+
+
+# [18.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.1.0...@ovh-ux/manager-web@18.2.0) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
 # [18.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.0.1...@ovh-ux/manager-web@18.1.0) (2023-09-12)
 
 

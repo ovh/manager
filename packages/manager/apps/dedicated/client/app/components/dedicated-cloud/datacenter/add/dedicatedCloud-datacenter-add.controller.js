@@ -1,4 +1,5 @@
 import set from 'lodash/set';
+import { LANGUAGE_OVERRIDE } from '../dedicatedCloud-datacenter.constants';
 
 export default class {
   /* @ngInject */
@@ -96,7 +97,9 @@ export default class {
 
   convertPriceValueToDisplay(value) {
     const priceAsString = new Intl.NumberFormat(
-      this.ovhSubsidiary.toLowerCase(),
+      LANGUAGE_OVERRIDE[this.ovhSubsidiary]
+        ? LANGUAGE_OVERRIDE[this.ovhSubsidiary]
+        : this.ovhSubsidiary.toLowerCase(),
       {
         style: 'currency',
         currency: this.currency,

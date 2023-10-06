@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.0.4...@ovh-ux/sign-up-app@3.1.0) (2023-10-02)
+
+
+### Features
+
+* **sign-up:** redirect user to kyc upload page ([#10045](https://github.com/ovh/manager/issues/10045)) ([e7484e6](https://github.com/ovh/manager/commit/e7484e6b471fc0a4305bbc1c234b4a94168d6096))
+
+
+
+
+
+## [3.0.4](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.0.3...@ovh-ux/sign-up-app@3.0.4) (2023-09-27)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [3.0.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.0.2...@ovh-ux/sign-up-app@3.0.3) (2023-09-25)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [3.0.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.0.1...@ovh-ux/sign-up-app@3.0.2) (2023-09-18)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
 ## [3.0.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.0.0...@ovh-ux/sign-up-app@3.0.1) (2023-09-12)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app

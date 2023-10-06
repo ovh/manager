@@ -38,6 +38,7 @@ export const GUIDES = [
       WE: 'https://docs.ovh.com/us/en/storage/ceph/use-ceph-with-proxmox/',
       WS: 'https://docs.ovh.com/us/en/storage/ceph/use-ceph-with-proxmox/',
       US: 'https://docs.ovh.com/us/en/storage/ceph/use-ceph-with-proxmox/',
+      IN: 'https://docs.ovh.com/asia/en/storage/ceph/use-ceph-with-proxmox/',
     },
   },
 ];

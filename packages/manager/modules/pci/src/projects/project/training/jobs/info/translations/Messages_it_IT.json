@@ -31,5 +31,6 @@
   "pci_projects_project_training_jobs_ssh_url": "Accesso SSH",
   "pci_projects_project_training_jobs_privacy": "Privacy",
   "pci_projects_project_training_jobs_privacy_public": "Accesso pubblico",
-  "pci_projects_project_training_jobs_privacy_restricted": "Accesso limitato"
+  "pci_projects_project_training_jobs_privacy_restricted": "Accesso limitato",
+  "pci_projects_project_training_jobs_delete": "Eliminare"
 }

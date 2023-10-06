@@ -768,5 +768,18 @@
   "inputs_autoscaled_notification_detail": "Avisarme por correo electrónico cuando se realice un escalado automático.",
   "inputs_logs_edit_min_instance_field": "Número mínimo de instancias",
   "inputs_logs_edit_max_instance_field": "Número máximo de instancias",
-  "inputs_info_ca_certificate": "Certificado de la autoridad de certificación"
+  "inputs_info_ca_certificate": "Certificado de la autoridad de certificación",
+  "logs_streams_subscriptions": "Suscripciones",
+  "logs_streams_col_subscriptions": "Suscripciones",
+  "streams_subscriptions_current_title": "Gestión de sus suscripciones para el flujo «{{ name }}»",
+  "streams_subscriptions_intro_text": "Estas suscripciones le permiten recuperar los logs de sus productos OVHcloud en sus propios flujos de datos.",
+  "streams_subscriptions_resource_type_label": "Servicio",
+  "streams_subscriptions_resource_name_label": "Nombre del servicio",
+  "streams_subscriptions_delete_modal_title": "Eliminar la suscripción",
+  "streams_subscriptions_delete_modal_content": "¿Seguro/a que quiere eliminar la suscripción al recurso «{{resourceName}}»?",
+  "streams_subscriptions_delete_success": "La suscripción al recurso «{{resourceName}}» se ha eliminado correctamente.",
+  "streams_subscriptions_delete_error": "Se ha producido un error al eliminar la suscripción al recurso «{{resourceName}}»: {{message}}",
+  "streams_subscriptions_resource_products_ldp": "Logs Data Platform",
+  "streams_subscriptions_resource_products_webhosting": "Web hosting",
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes"
 }

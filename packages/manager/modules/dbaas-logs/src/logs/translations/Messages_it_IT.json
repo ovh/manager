@@ -768,5 +768,18 @@
   "inputs_autoscaled_notification_detail": "Ricevere una notifica via email quando viene effettuato uno scaling automatico.",
   "inputs_logs_edit_min_instance_field": "Numero minimo di istanze",
   "inputs_logs_edit_max_instance_field": "Numero massimo di istanze",
-  "inputs_info_ca_certificate": "Certificato dell'autorità di certificazione"
+  "inputs_info_ca_certificate": "Certificato dell'autorità di certificazione",
+  "logs_streams_subscriptions": "Abbonamenti",
+  "logs_streams_col_subscriptions": "Abbonamenti",
+  "streams_subscriptions_current_title": "Gestione degli abbonamenti per il flusso '{{ name }}'",
+  "streams_subscriptions_intro_text": "Questi abbonamenti permettono di recuperare i log dei tuoi prodotti OVHcloud nei flussi di dati.",
+  "streams_subscriptions_resource_type_label": "Servizio",
+  "streams_subscriptions_resource_name_label": "Nome del servizio",
+  "streams_subscriptions_delete_modal_title": "Elimina l'abbonamento",
+  "streams_subscriptions_delete_modal_content": "Vuoi davvero eliminare l'abbonamento alla risorsa {{resourceName}} ?",
+  "streams_subscriptions_delete_success": "L'abbonamento alla risorsa '{{resourceName}}' è stato eliminato correttamente.",
+  "streams_subscriptions_delete_error": "Si è verificato un errore durante l'eliminazione dell'abbonamento alla risorsa '{{resourceName}}': {{message}}",
+  "streams_subscriptions_resource_products_ldp": "Logs Data Platform",
+  "streams_subscriptions_resource_products_webhosting": "Hosting Web",
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes"
 }

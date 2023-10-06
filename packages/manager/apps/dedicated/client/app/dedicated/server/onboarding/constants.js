@@ -17,6 +17,10 @@ export const GUIDES = [
         'https://docs.ovh.com/pl/dedicated/pierwsze-kroki-z-serwerem-dedykowanym/',
       US:
         'https://docs.ovh.com/us/en/dedicated/getting-started-dedicated-server/',
+      ASIA:
+        'https://help.ovhcloud.com/csm/asia-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043472',
+      IN:
+        'https://help.ovhcloud.com/csm/asia-dedicated-servers-getting-started-dedicated-server?id=kb_article_view&sysparm_article=KB0043472',
       DEFAULT:
         'https://docs.ovh.com/ie/en/dedicated/getting-started-dedicated-server/',
     },
@@ -34,6 +38,10 @@ export const GUIDES = [
       PT: 'https://docs.ovh.com/pt/dedicated/servicos-backup-storage/',
       PL: 'https://docs.ovh.com/pl/dedicated/usluga-backup-storage/',
       US: 'https://docs.ovh.com/us/en/dedicated/using-backup-storage/',
+      ASIA:
+        'https://help.ovhcloud.com/csm/asia-dedicated-servers-services-backup-storage?id=kb_article_view&sysparm_article=KB0044299',
+      IN:
+        'https://help.ovhcloud.com/csm/asia-dedicated-servers-services-backup-storage?id=kb_article_view&sysparm_article=KB0044299',
       DEFAULT: 'https://docs.ovh.com/ie/en/dedicated/services-backup-storage/',
     },
   },
@@ -50,6 +58,10 @@ export const GUIDES = [
       PT: 'https://docs.ovh.com/pt/dedicated/firewall-network/',
       PL: 'https://docs.ovh.com/pl/dedicated/network-firewall/',
       US: 'https://docs.ovh.com/us/en/dedicated/firewall-network/',
+      ASIA:
+        'https://help.ovhcloud.com/csm/asia-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043444',
+      IN:
+        'https://help.ovhcloud.com/csm/asia-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043444',
       DEFAULT: 'https://docs.ovh.com/ie/en/dedicated/firewall-network/',
     },
   },
@@ -58,6 +70,7 @@ export const GUIDES = [
 export const CTAS = {
   DEFAULT: 'https://www.ovhcloud.com/en/bare-metal/prices/',
   ASIA: 'https://www.ovhcloud.com/asia/bare-metal/prices/',
+  IN: 'https://www.ovhcloud.com/en-in/bare-metal/prices/',
   DE: 'https://www.ovhcloud.com/de/bare-metal/prices/',
   ES: 'https://www.ovhcloud.com/es-es/bare-metal/prices/',
   IE: 'https://www.ovhcloud.com/en-ie/bare-metal/prices/',

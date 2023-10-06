@@ -85,7 +85,7 @@ export default class SignUpFormAppCtrl {
     }
 
     this.atInternet.trackPage(tracking);
-
+    if (this.needkyc) this.goToKycDocumentUploadPage();
     // call to finishSignUp binding
     if (isFunction(this.finishSignUp)) {
       return this.finishSignUp(this.smsConsent)

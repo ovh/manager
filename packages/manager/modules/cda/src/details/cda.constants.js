@@ -23,6 +23,7 @@ export const GUIDE_URLS = {
     SG: 'https://docs.ovh.com/ca/en/',
     WE: 'https://docs.ovh.com/ca/en/',
     WS: 'https://docs.ovh.com/ca/en/',
+    IN: 'https://docs.ovh.com/ca/en/',
   },
   cda: 'storage/',
 };

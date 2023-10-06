@@ -12,5 +12,7 @@ export default {
     onStepFocus: '<',
     finishSignUp: '<',
     isSmsConsentAvailable: '<',
+    needkyc: '<',
+    goToKycDocumentUploadPage: '<',
   },
 };

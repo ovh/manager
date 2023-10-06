@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.8.1...@ovh-ux/sign-up@2.9.0) (2023-09-25)
+
+
+### Features
+
+* **signup:** update VAT number to ICE number for Morocco customers ([#9981](https://github.com/ovh/manager/issues/9981)) ([958872a](https://github.com/ovh/manager/commit/958872ab3dca7b006b768be2574f4012c7837f18))
+
+
+
+
+
 ## [2.8.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.8.0...@ovh-ux/sign-up@2.8.1) (2023-09-07)
 
 **Note:** Version bump only for package @ovh-ux/sign-up

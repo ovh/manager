@@ -768,5 +768,18 @@
   "inputs_autoscaled_notification_detail": "Notify me via email when an automatic scaling occurs.",
   "inputs_logs_edit_min_instance_field": "Minimum number of instances",
   "inputs_logs_edit_max_instance_field": "Maximum number of instances",
-  "inputs_info_ca_certificate": "Certificate authority certificate"
+  "inputs_info_ca_certificate": "Certificate authority certificate",
+  "logs_streams_subscriptions": "Subscriptions",
+  "logs_streams_col_subscriptions": "Subscriptions",
+  "streams_subscriptions_current_title": "Manage your subscriptions for the ‘{{ name }}’ data stream",
+  "streams_subscriptions_intro_text": "These subscriptions allow you to retrieve logs of your OVHcloud products from your own data streams.",
+  "streams_subscriptions_resource_type_label": "Service",
+  "streams_subscriptions_resource_name_label": "Service name",
+  "streams_subscriptions_delete_modal_title": "Remove the subscription",
+  "streams_subscriptions_delete_modal_content": "Are you sure you want to delete the resource subscription ‘{{resourceName}}’?",
+  "streams_subscriptions_delete_success": "The subscription to the resource ‘{{resourceName}}’ has been deleted.",
+  "streams_subscriptions_delete_error": "An error occurred while deleting the subscription to the resource ‘{{resourceName}}’: {{message}}",
+  "streams_subscriptions_resource_products_ldp": "Logs Data Platform",
+  "streams_subscriptions_resource_products_webhosting": "Web Hosting",
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service"
 }

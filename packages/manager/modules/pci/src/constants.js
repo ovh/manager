@@ -397,6 +397,13 @@ export const PCI_URLS = {
           fedora: 'https://www.ovh.com/ca/en/g2045.ip_fail_over_fedora',
           windows: 'https://www.ovh.com/ca/en/g2046.ip_fail_over_windows',
         },
+        IN: {
+          debian: 'https://help.ovhcloud.com/csm/en-in-home?id=csm_index',
+          ubuntu: 'https://help.ovhcloud.com/csm/en-in-home?id=csm_index',
+          centos: 'https://help.ovhcloud.com/csm/en-in-home?id=csm_index',
+          fedora: 'https://help.ovhcloud.com/csm/en-in-home?id=csm_index',
+          windows: 'https://help.ovhcloud.com/csm/en-in-home?id=csm_index',
+        },
         AU: {
           debian: 'https://www.ovh.com/ca/en/g2042.ip_fail_over_debian',
           ubuntu: 'https://www.ovh.com/ca/en/g2043.ip_fail_over_ubuntu',
@@ -464,6 +471,8 @@ export const PCI_URLS = {
     vrack: {
       ASIA:
         "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      IN:
+        "https://ca.ovh.com/in/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
       AU:
         "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
       CA:
@@ -481,6 +490,8 @@ export const PCI_URLS = {
       vrack: {
         ASIA:
           "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+        IN:
+          "https://ca.ovh.com/in/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
         AU:
           "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
         CA:

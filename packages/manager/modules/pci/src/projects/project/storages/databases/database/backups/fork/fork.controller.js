@@ -40,7 +40,7 @@ export default class {
       PRIVATE_NETWORK_GUIDE.DEFAULT;
 
     // Retrieve data from db object
-    const engine = this.database.getEngineFromList(this.engines);
+    const engine = this.database.getEngineFromList(this.availableEngines);
     const version = engine.getVersion(this.database.version);
     engine.selectedVersion = version;
     this.originalPlan = version.getPlan(this.database.plan);

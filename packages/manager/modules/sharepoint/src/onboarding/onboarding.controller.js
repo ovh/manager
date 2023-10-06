@@ -15,6 +15,5 @@ export default class SharepointOnboardingController {
       description: this.$translate.instant(guide.description),
       title: this.$translate.instant(guide.title),
     }));
-    this.cta = this.ctaURL;
   }
 }

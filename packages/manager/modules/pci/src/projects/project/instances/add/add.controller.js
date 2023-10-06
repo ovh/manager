@@ -1,11 +1,9 @@
 import find from 'lodash/find';
 import filter from 'lodash/filter';
-import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
-import partition from 'lodash/partition';
 import has from 'lodash/has';
 import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
@@ -92,6 +90,7 @@ export default class PciInstancesAddController {
       sshKey: null,
       isInstanceFlex: false,
     };
+    this.osTypes = [];
     this.selectedCategory = null;
 
     this.instanceNamePattern = PATTERN;
@@ -169,20 +168,33 @@ export default class PciInstancesAddController {
       this.projectId,
       planCode,
       this.coreConfig.getUser().ovhSubsidiary,
-    ).then((productAvailability) => {
-      const productRegionsAvailables = productAvailability?.plans[0]?.regions;
+    ).then((productCapability) => {
+      const productRegionsAllowed = productCapability?.plans[0]?.regions;
 
-      forEach(this.regions, (locationsMap, continent) => {
+      Object.entries(this.regions).forEach(([continent, locationsMap]) => {
+        // Create datacenters continent groups
         this.availableRegions[continent] = {};
         this.unavailableRegions[continent] = {};
-        forEach(locationsMap, (datacenters, location) => {
-          [
-            this.availableRegions[continent][location],
-            this.unavailableRegions[continent][location],
-          ] = partition(datacenters, (datacenter) => {
-            return productRegionsAvailables.find(
-              (productRegion) => productRegion.name === datacenter.name,
+        Object.entries(locationsMap).forEach(([location, datacenters]) => {
+          // Create datacenters location sub groups
+          this.availableRegions[continent][location] = [];
+          this.unavailableRegions[continent][location] = [];
+          // Fill datacenters groups: a datacenter is considered available if
+          // it is in a region where we have the capability to add an instance
+          // and the selected flavor is available for the datacenter region
+          datacenters.forEach((datacenter) => {
+            const isDatacenterAvailable = !!productRegionsAllowed.find(
+              (productRegion) =>
+                productRegion.name === datacenter.name &&
+                this.model.flavorGroup.availableRegions.includes(
+                  productRegion.name,
+                ),
             );
+            if (isDatacenterAvailable) {
+              this.availableRegions[continent][location].push(datacenter);
+            } else {
+              this.unavailableRegions[continent][location].push(datacenter);
+            }
           });
         });
       });
@@ -234,6 +246,10 @@ export default class PciInstancesAddController {
   onRegionChange() {
     this.displaySelectedRegion = true;
     this.instance.region = this.model.datacenter.name;
+    // Retrieve list of os types availables for the selected region
+    this.osTypes = this.model.flavorGroup.getOsTypesByRegion(
+      this.model.datacenter.name,
+    );
     this.availablePrivateNetworks = [
       this.defaultPrivateNetwork,
       ...sortBy(

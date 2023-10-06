@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.3.0...@ovh-ux/manager-iam@1.4.0) (2023-10-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2535] ([#10056](https://github.com/ovh/manager/issues/10056)) ([4971b0d](https://github.com/ovh/manager/commit/4971b0d7da1a775ceb95ecc3530573a843f9afb2))
+
+
+### Features
+
+* **iam:** add action description below the label ([#10046](https://github.com/ovh/manager/issues/10046)) ([9b81aaa](https://github.com/ovh/manager/commit/9b81aaae316c4af0f2518da537099a0a67921a91))
+* **iam:** add description when creating new policy ([#9938](https://github.com/ovh/manager/issues/9938)) ([1824bd4](https://github.com/ovh/manager/commit/1824bd474dae0145dc8d89a4825daf3976bcbcf7))
+* **iam:** improve policies display for selected actions ([bbad568](https://github.com/ovh/manager/commit/bbad568928d805ccbe9d5507de2056590e5b05a1))
+
+
+
+
+
+# [1.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.2.1...@ovh-ux/manager-iam@1.3.0) (2023-09-18)
+
+
+### Features
+
+* **iam:** add placeholder for custom actions ([#9933](https://github.com/ovh/manager/issues/9933)) ([8abd94d](https://github.com/ovh/manager/commit/8abd94dc739d5d17c992a5361d452b5b59a890a1))
+
+
+
+
+
 ## [1.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.2.0...@ovh-ux/manager-iam@1.2.1) (2023-09-12)
 
 

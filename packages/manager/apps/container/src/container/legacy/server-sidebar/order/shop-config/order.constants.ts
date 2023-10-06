@@ -377,9 +377,11 @@ export const ORDER_URLS: Record<
       SG: 'https://ca.ovh.com/manager/dedicated/',
       WE: 'https://ca.ovh.com/manager/dedicated/',
       WS: 'https://ca.ovh.com/manager/dedicated/',
+      IN: 'https://ca.ovh.com/manager/dedicated/',
     },
     orderDomain: {
       ASIA: 'https://ca.ovh.com/asia/order/webcloud',
+      IN: 'https://ca.ovh.com/in/order/webcloud',
       AU: 'https://ca.ovh.com/au/order/webcloud',
       CA: 'https://ca.ovh.com/en/order/webcloud',
       QC: 'https://ca.ovh.com/fr/order/webcloud',
@@ -389,6 +391,7 @@ export const ORDER_URLS: Record<
     },
     orderHosting: {
       ASIA: 'https://www.ovh.com/asia/web-hosting/',
+      IN: 'https://www.ovhcloud.com/en-in/web-hosting/',
       AU: 'https://www.ovh.com.au/web-hosting/',
       CA: 'https://www.ovh.com/ca/en/web-hosting/',
       QC: 'https://www.ovh.com/ca/fr/hebergement-web/',
@@ -399,6 +402,7 @@ export const ORDER_URLS: Record<
     dedicated_cloud: {
       ASIA:
         'https://www.ovhcloud.com/asia/hosted-private-cloud/vmware/prices/',
+      IN: 'https://www.ovhcloud.com/en-in/hosted-private-cloud/vmware/prices/',
       AU:
         'https://www.ovhcloud.com/en-au/hosted-private-cloud/vmware/prices/',
       CA:
@@ -414,6 +418,7 @@ export const ORDER_URLS: Record<
     },
     managed_bare_metal: {
       ASIA: 'https://www.ovhcloud.com/asia/managed-bare-metal/',
+      IN: 'https://www.ovhcloud.com/en-in/managed-bare-metal/',
       AU: 'https://www.ovhcloud.com/en-au/managed-bare-metal/',
       CA: 'https://www.ovhcloud.com/en-ca/managed-bare-metal/',
       QC: 'https://www.ovhcloud.com/fr-ca/managed-bare-metal/',
@@ -429,7 +434,7 @@ export const ORDER_URLS: Record<
       CA: 'https://www.ovhcloud.com/en-ca/hosted-private-cloud/sap-hana/',
       AU: 'https://www.ovhcloud.com/en-au/hosted-private-cloud/sap-hana/',
       ASIA: 'https://www.ovhcloud.com/asia/hosted-private-cloud/sap-hana/',
-      IN: 'https://www.ovhcloud.com/asia/hosted-private-cloud/sap-hana/',
+      IN: 'https://www.ovhcloud.com/en-in/hosted-private-cloud/sap-hana/',
     },
     cloud_disk_array: {},
     dbaas_logs: {
@@ -439,10 +444,13 @@ export const ORDER_URLS: Record<
     veeam_enterprise: {
       CA: 'https://www.ovh.com/ca/en/storage-solutions/veeam-enterprise.xml',
       QC: 'https://www.ovh.com/ca/fr/storage-solutions/veeam-enterprise.xml',
+      IN: 'https://www.ovhcloud.com/en-in/storage-solutions/veeam-enterprise'
     },
     vrack: {
       ASIA:
         "https://ca.ovh.com/asia/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
+      IN:
+        "https://ca.ovh.com/in/order/express/#/express/review?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
       AU:
         "https://ca.ovh.com/au/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
       CA:
@@ -458,6 +466,7 @@ export const ORDER_URLS: Record<
     },
     load_balancer: {
       ASIA: 'https://www.ovh.com/asia/solutions/ip-load-balancing/',
+      IN: 'https://www.ovhcloud.com/en-in/network/load-balancer/',
       AU: 'https://www.ovh.com.au/solutions/ip-load-balancing/',
       CA: 'https://www.ovh.com/ca/en/solutions/ip-load-balancing/',
       QC: 'https://www.ovh.com/ca/fr/solutions/ip-load-balancing/',
@@ -467,6 +476,7 @@ export const ORDER_URLS: Record<
     },
     dedicatedOrder: {
       ASIA: 'https://www.ovhcloud.com/asia/bare-metal/prices/',
+      IN: 'https://www.ovhcloud.com/en-in/bare-metal/prices/',
       AU: 'https://www.ovhcloud.com/en-au/bare-metal/prices/',
       CA: 'https://www.ovhcloud.com/en-ca/bare-metal/prices/',
       QC: 'https://www.ovhcloud.com/fr-ca/bare-metal/prices/',
@@ -476,6 +486,7 @@ export const ORDER_URLS: Record<
     },
     dedicatedEcoRangeOrder: {
       ASIA: 'https://eco.ovhcloud.com/asia/',
+      IN: 'https://eco.ovhcloud.com/en-in/',
       AU: 'https://eco.ovhcloud.com/en-au/',
       CA: 'https://eco.ovhcloud.com/en-ca/',
       QC: 'https://eco.ovhcloud.com/fr-ca/',
@@ -485,6 +496,7 @@ export const ORDER_URLS: Record<
     },
     cloudProjectOrder: {
       ASIA: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+      IN: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
       AU: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
       CA: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
       QC: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
@@ -500,6 +512,7 @@ export const ORDER_URLS: Record<
       SG: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
       WE: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
       WS: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
+      IN: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
     },
     publicCloudKubernetes: {
       CA:
@@ -507,6 +520,7 @@ export const ORDER_URLS: Record<
     },
     express_review_base: {
       ASIA: 'https://ca.ovh.com/asia/order/express/#/express/review',
+      IN: 'https://ca.ovh.com/in/order/express/#/express/review',
       AU: 'https://ca.ovh.com/au/order/express/#/express/review',
       CA: 'https://ca.ovh.com/en/order/express/#/express/review',
       QC: 'https://ca.ovh.com/fr/order/express/#/express/review',
@@ -516,6 +530,7 @@ export const ORDER_URLS: Record<
     },
     vps: {
       ASIA: 'https://www.ovh.com/asia/vps/',
+      IN: 'https://www.ovhcloud.com/en-in/vps/',
       AU: 'https://www.ovh.com.au/vps/',
       CA: 'https://www.ovh.com/ca/en/vps/',
       QC: 'https://www.ovh.com/ca/fr/vps/',
@@ -525,6 +540,7 @@ export const ORDER_URLS: Record<
     },
     dedicatedNutanixOrder: {
       ASIA: 'https://www.ovhcloud.com/asia/hosted-private-cloud/nutanix/',
+      IN: 'https://www.ovhcloud.com/en-in/hosted-private-cloud/nutanix/',
       AU: 'https://www.ovhcloud.com/en-au/hosted-private-cloud/nutanix/',
       CA: 'https://www.ovhcloud.com/en-ca/hosted-private-cloud/nutanix/',
       QC: 'https://www.ovhcloud.com/fr-ca/hosted-private-cloud/nutanix/',
@@ -535,6 +551,7 @@ export const ORDER_URLS: Record<
     ovh_cloud_connect: {
       CA: 'https://www.ovhcloud.com/en-ca/network/ovhcloud-connect/',
       QC: 'https://www.ovhcloud.com/fr-ca/network/ovhcloud-connect/',
+      IN: 'https://www.ovhcloud.com/en-in/network/ovhcloud-connect/',
     },
   },
   US: {

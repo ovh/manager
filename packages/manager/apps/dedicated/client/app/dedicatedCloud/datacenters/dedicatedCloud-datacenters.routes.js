@@ -8,6 +8,18 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       addDatacenter: /* @ngInject */ ($state) => () =>
         $state.go('app.dedicatedCloud.details.datacenter.add-datacenter'),
+      migrationBannerAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
+        const firstBannerFeature = 'dedicated-cloud:migrationBannerFirst';
+        const secondBannerFeature = 'dedicated-cloud:migrationBannerSecond';
+        return ovhFeatureFlipping
+          .checkFeatureAvailability([firstBannerFeature, secondBannerFeature])
+          .then((result) => {
+            return {
+              firstBanner: result.isFeatureAvailable(firstBannerFeature),
+              secondBanner: result.isFeatureAvailable(secondBannerFeature),
+            };
+          });
+      },
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_cloud_datacenters'),
       trackClick: /* @ngInject */ (atInternet, trackingPrefix) => (click) => {

@@ -33,6 +33,8 @@ export const GUIDES = [
         'https://docs.ovh.com/us/en/hosting/get_started_with_a_web_hosting_package/',
       US:
         'https://docs.ovh.com/us/en/hosting/get_started_with_a_web_hosting_package/',
+      IN:
+        'https://docs.ovh.com/asia/en/hosting/get_started_with_a_web_hosting_package/',
     },
   },
   {
@@ -72,6 +74,8 @@ export const GUIDES = [
         'https://docs.ovh.com/us/en/hosting/multisites-configuring-multiple-websites/',
       US:
         'https://docs.ovh.com/us/en/hosting/multisites-configuring-multiple-websites/',
+      IN:
+        'https://docs.ovh.com/asia/en/hosting/multisites-configuring-multiple-websites/',
     },
   },
   {
@@ -95,6 +99,7 @@ export const GUIDES = [
 export const CTAS = {
   DEFAULT: 'https://ovhcloud.com/en/web-hosting/',
   ASIA: 'https://ovhcloud.com/asia/web-hosting/',
+  IN: 'https://www.ovhcloud.com/en-in/web-hosting/',
   DE: 'https://ovhcloud.com/de/web-hosting/',
   ES: 'https://ovhcloud.com/es-es/web-hosting/',
   IE: 'https://ovhcloud.com/en-ie/web-hosting/',

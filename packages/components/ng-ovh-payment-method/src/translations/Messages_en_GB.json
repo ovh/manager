@@ -28,5 +28,7 @@
   "ovh_payment_status_null": "Information not available ",
   "ovh_payment_type_sepa_direct_debit": "Direct debit",
   "ovh_payment_status_validating": "Validation in progress",
-  "ovh_payment_status_rejected": "Denied"
+  "ovh_payment_status_rejected": "Denied",
+  "ovh_payment_type_rupay": "RuPay",
+  "ovh_payment_method_registration_failure": "Your payment method could not be registered. You haven't been charged. Please try again or contact your bank if the problem persists. You can also change your payment method."
 }

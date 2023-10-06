@@ -8,6 +8,8 @@ import {
   PAYMENT_METHOD_AUTHORIZED_ENUM,
   PREFERRED_PAYMENT_METHOD_ORDER,
   PCI_FEATURES,
+  CONFIRM_CREDIT_CARD_TEST_AMOUNT,
+  LANGUAGE_OVERRIDE,
 } from './constants';
 
 export default class PciProjectNewPaymentMethodAddCtrl {
@@ -23,11 +25,20 @@ export default class PciProjectNewPaymentMethodAddCtrl {
     this.$location = $location;
     this.coreConfig = coreConfig;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
+    const { currency, ovhSubsidiary } = this.coreConfig.getUser();
+    this.registrationCharges = new Intl.NumberFormat(
+      LANGUAGE_OVERRIDE[ovhSubsidiary]
+        ? LANGUAGE_OVERRIDE[ovhSubsidiary]
+        : ovhSubsidiary.toLowerCase(),
+      {
+        style: 'currency',
+        currency: currency.code,
+      },
+    ).format(CONFIRM_CREDIT_CARD_TEST_AMOUNT);
 
     this.PCI_FEATURES = PCI_FEATURES;
 
     // other attributes
-    this.customerCurrency = coreConfig.getUser().currency.symbol;
 
     this.authorizedPaymentMethods = null;
 
@@ -89,6 +100,7 @@ export default class PciProjectNewPaymentMethodAddCtrl {
   onPaymentTypeRadioChange() {
     this.model.credit = null;
     this.model.defaultPaymentMethod = null;
+    this.model.reloadHandleByComponent = null;
   }
 
   /* -----  End of Events  ------ */
@@ -98,6 +110,8 @@ export default class PciProjectNewPaymentMethodAddCtrl {
   ============================= */
 
   $onInit() {
+    this.user = this.coreConfig.getUser();
+    this.customerCurrency = this.user.currency.symbol;
     const paymentMethodsAuthorized = map(
       this.eligibility.paymentMethodsAuthorized,
       (method) => snakeCase(method).toUpperCase(),

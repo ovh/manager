@@ -186,14 +186,28 @@ export default class LogsStreamsHomeCtrl {
   }
 
   /**
-   * navigates to the alerts page
+   * navigates to the archives page
    *
-   * @param {any} stream, stream for which alerts should be managed
+   * @param {any} stream, stream for which archives should be managed
    * @memberof LogsStreamsHomeCtrl
    */
-  gotoArchives(stream) {
+  goToArchives(stream) {
     this.CucCloudMessage.flushChildMessage();
     this.$state.go('dbaas-logs.detail.streams.stream.archives', {
+      serviceName: this.serviceName,
+      streamId: stream.streamId,
+    });
+  }
+
+  /**
+   * navigates to the subscriptions page
+   *
+   * @param {object} stream, stream for which subscriptions should be managed
+   * @memberof LogsStreamsHomeCtrl
+   */
+  goToSubscriptions(stream) {
+    this.CucCloudMessage.flushChildMessage();
+    this.$state.go('dbaas-logs.detail.streams.stream.subscriptions', {
       serviceName: this.serviceName,
       streamId: stream.streamId,
     });

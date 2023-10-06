@@ -3,6 +3,6 @@
   "pci_ai_apps_delete_error": "Ocorreu um erro durante a eliminação da app: {{ message }}",
   "pci_ai_apps_delete": "Eliminação da app",
   "pci_ai_apps_delete_warning": "Quer mesmo eliminar a app {{ appId }}?",
-  "pci_ai_apps_delete_common_delete": "Eliminar",
+  "pci_ai_apps_delete_common_delete": "Confirmar",
   "pci_ai_apps_delete_common_cancel": "Anular"
 }

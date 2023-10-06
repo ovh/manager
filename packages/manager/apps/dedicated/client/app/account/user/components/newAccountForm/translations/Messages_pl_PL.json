@@ -764,5 +764,7 @@
   "signup_enum_phoneType_mobile": "Telefon komórkowy",
   "signup_field_smsConsent": "Wyrażam zgodę na otrzymywanie wiadomości SMS dotyczących nowości i ofert handlowych OVHcloud.",
   "signup_information_banner_for_indian_subsidiary": "Aby zmienić dane przypisane do konta klienta, skontaktuj się z naszym działem wsparcia, ",
-  "signup_information_banner_link_for_indian_subsidiary": "klikając tutaj."
+  "signup_information_banner_link_for_indian_subsidiary": "klikając tutaj.",
+  "signup_field_iceNumber": "Numer ICE",
+  "signup_field_purposeOfPurchase": "Przyczyna zakupu"
 }

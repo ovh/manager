@@ -4,7 +4,7 @@ import './fork.scss';
 
 const component = {
   bindings: {
-    engines: '<',
+    availableEngines: '<',
     backupList: '<',
     restoreMode: '<',
     backupId: '<',
