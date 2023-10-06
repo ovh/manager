@@ -38,7 +38,7 @@
     <oui-message
         class="text-justify"
         data-type="info"
-        data-ng-if="$ctrl.model.paymentMethod.type.isCreditCard()"
+        data-ng-if="$ctrl.model.paymentMethod.type.isCreditCard() && !$ctrl.isDisplayableRupayCreditCardInfoBanner"
     >
         <span
             class="font-weight-bold"
@@ -46,6 +46,18 @@
         ></span>
         <span
             data-translate="pci_project_new_payment_method_add_credit_card_info_part_2"
+        ></span>
+    </oui-message>
+
+    <!--Credit card / RuPay info banner for Indian customer-->
+    <oui-message
+        class="text-justify"
+        data-type="info"
+        data-ng-if="($ctrl.model.paymentMethod.type.isCreditCard() || $ctrl.model.paymentMethod.type.isRupayCard()) && $ctrl.isDisplayableRupayCreditCardInfoBanner"
+    >
+        <span
+            data-translate="pci_project_new_payment_method_add_credit_card_registration_charges_info"
+            data-translate-values="{ 'registrationCharges' : $ctrl.registrationCharges }"
         ></span>
     </oui-message>
 
@@ -74,7 +86,7 @@
 
         <p>
             <small
-                data-ng-if="$ctrl.model.paymentMethod && !$ctrl.model.paymentMethod.type.isCreditCard()"
+                data-ng-if="$ctrl.model.paymentMethod && !$ctrl.model.paymentMethod.type.isCreditCard() && !$ctrl.model.paymentMethod.type.isRupayCard()"
                 data-translate="{{ 'pci_project_new_payment_method_add_info_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
                 data-translate-values="{ paymentMethodSection: $ctrl.paymentSectionHref }"
             >

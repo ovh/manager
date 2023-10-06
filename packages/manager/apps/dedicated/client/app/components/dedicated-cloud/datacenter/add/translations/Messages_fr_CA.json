@@ -1,6 +1,6 @@
 {
   "dedicatedCloud_configuration_add_datacenter_title": "Ajout d'un datacentre",
-  "dedicatedCloud_configuration_add_datacenter_description": "Les managements fees représentent le coût des VMs de management (par exemple votre vCenter, vROps ou les Edges NSX) qui sont hébergées en dehors de vos hosts dédiés, ce qui vous permet de disposer de 100% de leurs capacités (CPU, RAM).",
+  "dedicatedCloud_configuration_add_datacenter_description": "Les managements fees représentent le coût des VMs de management (par exemple votre vCenter, vROps) qui sont hébergées en dehors de vos hosts dédiés, ce qui vous permet de disposer de 100% de leurs capacités (CPU, RAM).",
   "dedicatedCloud_configuration_add_datacenter_cta_submit": "Ajouter un datacentre",
   "dedicatedCloud_configuration_add_datacenter_cta_cancel": "Annuler",
   "dedicatedCloud_configuration_add_datacenter_card_vsphere_label": "vSphere",

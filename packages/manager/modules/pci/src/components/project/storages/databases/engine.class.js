@@ -35,6 +35,7 @@ export default class Engine {
           flavors,
         );
       })
+      .filter((version) => version.plans.length !== 0)
       .sort((a, b) => b.compare(a));
 
     this.selectedVersion = find(this.versions, {

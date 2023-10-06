@@ -153,4 +153,28 @@ export default class AiDashboardService {
       )
       .then(({ data }) => data);
   }
+
+  getRegistry(projectId, registryId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/ai/registry/${registryId}`)
+      .then(({ data }) => data);
+  }
+
+  getAllRegistry(projectId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/ai/registry`)
+      .then(({ data }) => data);
+  }
+
+  deleteRegistry(projectId, registryId) {
+    return this.$http
+      .delete(`/cloud/project/${projectId}/ai/registry/${registryId}`)
+      .then(({ data }) => data);
+  }
+
+  addRegistry(projectId, registry) {
+    return this.$http
+      .post(`/cloud/project/${projectId}/ai/registry`, registry)
+      .then(({ data }) => data);
+  }
 }

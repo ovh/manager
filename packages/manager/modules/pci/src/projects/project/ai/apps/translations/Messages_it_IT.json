@@ -4,13 +4,8 @@
   "pci_ai_tokens_title": "Token",
   "pci_ai_app_list_title": "Le mie App",
   "pci_ai_app_list_name": "Nome",
-  "pci_ai_app_list_image": "Immagine",
-  "pci_ai_app_list_image_provided_by": "Immagine fornita da {{partnerName}}",
   "pci_ai_app_list_region": "Region",
   "pci_ai_app_list_environment": "Ambiente",
-  "pci_ai_app_list_resources": "Risorse implementate",
-  "pci_ai_app_list_resources_cpu": "{{cpu}} CPU / {{replicas}} repliche",
-  "pci_ai_app_list_resources_gpu": "{{gpu}} GPU / {{replicas}} repliche",
   "pci_ai_app_list_status": "Stato",
   "pci_ai_app_list_status_QUEUED": "In attesa",
   "pci_ai_app_list_status_INITIALIZING": "Avvio",
@@ -36,5 +31,12 @@
   "pci_ai_app_beta_warning_special_conditions": "AI Apps cambia nome e diventa AI Deploy. AI Deploy è soggetto alle ",
   "pci_ai_app_beta_warning_special_conditions_link": "Condizioni Speciali dei Servizi Public Cloud di OVHcloud",
   "pci_ai_app_list_creation_date": "Data di creazione",
-  "pci_ai_app_list_last_update_date": "Data di aggiornamento"
+  "pci_ai_app_list_last_update_date": "Data di aggiornamento",
+  "pci_ai_app_list_image": "Immagine",
+  "pci_ai_app_list_image_provided_by": "Immagine fornita da {{partnerName}}",
+  "pci_ai_app_list_resources": "Risorse implementate",
+  "pci_ai_app_list_resources_cpu": "{{cpu}} CPU / {{replicas}} repliche",
+  "pci_ai_app_list_resources_gpu": "{{gpu}} GPU / {{replicas}} repliche",
+  "pci_ai_app_banner_user_and_roles_info": "Per utilizzare gli AI Tools, assicurati di autenticarti con un utente AI configurato o un token.",
+  "pci_ai_app_banner_user_and_roles_info_link": "Gestire gli utenti AI e token"
 }

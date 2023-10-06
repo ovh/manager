@@ -2,18 +2,18 @@
 # yarn lockfile v1
 
 
-"@adyen/adyen-web@5.31.2":
-  version "5.31.2"
-  resolved "https://registry.yarnpkg.com/@adyen/adyen-web/-/adyen-web-5.31.2.tgz#fc3d22c8ceff8033932ce094a85d85a5deee4055"
-  integrity sha512-jkVesf8tgPFo9fQE9fK3Y8kr3+RI+LmrI/AqYhOWASLodUI+1aFTfMDKQs+/DxW3vx/7uaeLnBhvid7Fw0ty5A==
+"@adyen/adyen-web@5.51.0":
+  version "5.51.0"
+  resolved "https://registry.yarnpkg.com/@adyen/adyen-web/-/adyen-web-5.51.0.tgz#ae63ddc425380d89c3b1d1422fdc2918230d2d40"
+  integrity sha512-jH3Us9k57AhdOrwBL444EQdQ+xTgg4BTD/9/RSOmldw9EM1LzX1+6AKkX/7QioJoYO6L7gI5DUu5iq915ju0IA==
   dependencies:
     "@babel/runtime" "^7.15.4"
     "@babel/runtime-corejs3" "^7.20.1"
     "@types/applepayjs" "^3.0.4"
-    "@types/googlepay" "^0.6.2"
+    "@types/googlepay" "^0.7.0"
     classnames "^2.3.1"
     core-js-pure "^3.25.3"
-    preact "10.11.3"
+    preact "10.13.2"
 
 "@ampproject/remapping@^2.0.0":
   version "2.1.1"
@@ -7028,12 +7028,12 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^6.6.2":
-  version "6.6.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.6.2.tgz#93835665465ac246ec10cec1dda6b8b3fc5e0543"
-  integrity sha512-7XFGcUOig2+W+QCgKmcgzlY/S97i8+R2BawFywKckpx1bqLfDbinIz/7yCBVcReBvFFolKS+rRoxM8ZgmLvQXw==
+"@ovh-ux/ui-kit@^6.3.0":
+  version "6.6.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.6.3.tgz#f666a3192d6ed1f220608a689cd0ce5dedb3c99d"
+  integrity sha512-zFHSuUvt2IgLAauCXpbzUun72o4AD7z8fQ4UW92hbv/+SifzFz5azfv4eeRoWvHwzccsnNNP/I5dbAjHa2An9Q==
 
-"@ovh-ux/ui-kit@^6.6.1":
+"@ovh-ux/ui-kit@^6.6.2":
   version "6.6.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.6.2.tgz#93835665465ac246ec10cec1dda6b8b3fc5e0543"
   integrity sha512-7XFGcUOig2+W+QCgKmcgzlY/S97i8+R2BawFywKckpx1bqLfDbinIz/7yCBVcReBvFFolKS+rRoxM8ZgmLvQXw==
@@ -8473,10 +8473,10 @@
     "@types/minimatch" "^5.1.2"
     "@types/node" "*"
 
-"@types/googlepay@^0.6.2":
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/@types/googlepay/-/googlepay-0.6.3.tgz#4e716556b904c9af5263255bf872b81ee4073d4d"
-  integrity sha512-mA9d9UoSAKbfcP3xYvTtpyBTxFytu1bwjquy8oZdZPG8z0xnfQwtmTI4F44ptyz8OBWiCmvBj8QR0Rb2D/hQXg==
+"@types/googlepay@^0.7.0":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@types/googlepay/-/googlepay-0.7.1.tgz#a41fafb5f2dc0bc0eb9a4af92e03ef21781d0a36"
+  integrity sha512-sI06n1sEU7QREs5m4GzgwtQxTNmkNE29xFsPwGdnef0QS8nJmVpf0o6oMUMp4lGSsSQ90ihGtWOPCodYseacng==
 
 "@types/graceful-fs@^4.1.2":
   version "4.1.5"
@@ -16005,7 +16005,7 @@ find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
-find-up@^4.1.0:
+find-up@^4.0.0, find-up@^4.1.0:
   version "4.1.0"
   resolved "https://registry.npmjs.org/find-up/-/find-up-4.1.0.tgz#97afe7d6cdc0bc5928584b7c8d7b16e8a9aa5d19"
   integrity sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw==
@@ -23130,19 +23130,10 @@ postcss@^8.1.10, postcss@^8.4.18, postcss@^8.4.7:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-postcss@^8.2.7:
-  version "8.4.29"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.29.tgz#33bc121cf3b3688d4ddef50be869b2a54185a1dd"
-  integrity sha512-cbI+jaqIeu/VGqXEarWkRCCffhjgXc0qjBtXpqJhTBohMUjUQnbBr0xqX3vEKudc4iviTewcJo5ajcec5+wdJw==
-  dependencies:
-    nanoid "^3.3.6"
-    picocolors "^1.0.0"
-    source-map-js "^1.0.2"
-
-postcss@^8.4.19, postcss@^8.4.23:
-  version "8.4.24"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.24.tgz#f714dba9b2284be3cc07dbd2fc57ee4dc972d2df"
-  integrity sha512-M0RzbcI0sO/XJNucsGjvWU9ERWxb/ytp1w6dKtxTKgixdtQDq4rmx/g8W1hnaheq9jgwL/oyEdH5Bc4WwJKMqg==
+postcss@^8.2.7, postcss@^8.4.19, postcss@^8.4.23:
+  version "8.4.31"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.31.tgz#92b451050a9f914da6755af352bdc0192508656d"
+  integrity sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==
   dependencies:
     nanoid "^3.3.6"
     picocolors "^1.0.0"
@@ -23157,10 +23148,10 @@ postcss@~8.3.8:
     picocolors "^1.0.0"
     source-map-js "^0.6.2"
 
-preact@10.11.3:
-  version "10.11.3"
-  resolved "https://registry.yarnpkg.com/preact/-/preact-10.11.3.tgz#8a7e4ba19d3992c488b0785afcc0f8aa13c78d19"
-  integrity sha512-eY93IVpod/zG3uMF22Unl8h9KkrcKIRs2EGar8hwLZZDU1lkjph303V9HZBwufh2s736U6VXuhD109LYqPoffg==
+preact@10.13.2:
+  version "10.13.2"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.13.2.tgz#2c40c73d57248b57234c4ae6cd9ab9d8186ebc0a"
+  integrity sha512-q44QFLhOhty2Bd0Y46fnYW0gD/cbVM9dUVtNTDKPcdXSMA7jfY+Jpd6rk3GB0lcQss0z5s/6CmVP0Z/hV+g6pw==
 
 prelude-ls@~1.1.2:
   version "1.1.2"

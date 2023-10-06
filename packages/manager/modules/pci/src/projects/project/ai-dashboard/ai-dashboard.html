@@ -42,6 +42,13 @@
         </oui-header-tabs-item>
 
         <oui-header-tabs-item
+            data-href="{{:: $ctrl.registriesLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.registriesLink"
+        >
+            <span data-translate="pci_ai_dashboard_tab_registries"></span>
+        </oui-header-tabs-item>
+
+        <oui-header-tabs-item
             data-href="{{:: $ctrl.cliLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.cliLink"
         >

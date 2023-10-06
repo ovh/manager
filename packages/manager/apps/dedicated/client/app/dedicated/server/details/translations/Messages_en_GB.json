@@ -97,7 +97,7 @@
   "server_tab_cloud_backup": "Backup storage",
   "server_tab_ftp_backup": "Backup storage",
   "server_tab_task": "Tasks",
-  "server_tab_ipmi": "IPMI",
+  "server_tab_ipmi": "IPMI/KVM",
   "server_tab_dashboard": "Server status",
   "server_tab_dashboard_install_progress": "Your operating system is being deployed. This operation may take up to 10 minutes. Once the installation is complete, your server will reboot on the selected disks.",
   "server_tab_dashboard_install_progress_link": "Click here to view its progress.",

@@ -1,5 +1,6 @@
 export const ADDITIONAL_IP_URL = {
   ASIA: 'https://www.ovhcloud.com/asia/network/additional-ip/',
+  IN: 'https://www.ovhcloud.com/en-in/network/additional-ip/',
   AU: 'https://www.ovhcloud.com/en-au/network/additional-ip/',
   CA: 'https://www.ovhcloud.com/en-ca/network/additional-ip/',
   DE: 'https://www.ovhcloud.com/de/network/additional-ip/',
@@ -26,6 +27,7 @@ export const GUIDES = [
     id: 'order',
     link: {
       ASIA: 'https://www.ovhcloud.com/asia/',
+      IN: 'https://www.ovhcloud.com/en-in/',
       AU: 'https://www.ovhcloud.com/en-au/',
       CA: 'https://docs.ovh.com/ca/en/',
       DE: 'https://docs.ovh.com/de/dedicated/ip-fo-move/',
@@ -51,6 +53,7 @@ export const GUIDES = [
     id: 'vrack',
     link: {
       ASIA: 'https://www.ovhcloud.com/asia/',
+      IN: 'https://www.ovhcloud.com/en-in/',
       AU: 'https://www.ovhcloud.com/en-au/',
       CA: 'https://docs.ovh.com/ca/en/',
       DE:
@@ -80,6 +83,7 @@ export const GUIDES = [
     id: 'add',
     link: {
       ASIA: 'https://www.ovhcloud.com/asia/',
+      IN: 'https://www.ovhcloud.com/en-in/',
       AU: 'https://www.ovhcloud.com/en-au/',
       CA: 'https://docs.ovh.com/ca/en/',
       DE: 'https://docs.ovh.com/de/private-cloud/ip-block-hinzufuegen/',

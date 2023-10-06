@@ -12,5 +12,6 @@
   "pci_ai_dashboard_cli_auth_steps_step_3": "Die Verbindungsdaten des gewünschten Nutzers oder das zugehörige Token eingeben",
   "pci_ai_dashboard_cli_auth_steps_step_4": "Dieser Vorgang ist nun abgeschlossen",
   "pci_ai_dashboard_cli_commands_title": "Befehle",
-  "pci_ai_dashboard_cli_commands_desc": "Mit {{command}} erhalten Sie eine Liste der verfügbaren Aktionen."
+  "pci_ai_dashboard_cli_commands_desc": "Mit {{command}} erhalten Sie eine Liste der verfügbaren Aktionen.",
+  "pci_ai_dashboard_cli_select_region": "Wählen Sie die Region aus, die Sie verwenden möchten:"
 }

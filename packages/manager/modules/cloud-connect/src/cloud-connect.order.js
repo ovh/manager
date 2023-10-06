@@ -1,6 +1,7 @@
 export const CLOUD_CONNECT_ORDER_URLS = {
   DEFAULT: 'https://ovhcloud.com/en/network-security/ovhcloud-connect/',
   ASIA: 'https://ovhcloud.com/asia/network-security/ovhcloud-connect/',
+  IN: 'https://www.ovhcloud.com/en-in/network-security/ovhcloud-connect/',
   DE: 'https://ovhcloud.com/de/network-security/ovhcloud-connect/',
   ES: 'https://ovhcloud.com/es-es/network-security/ovhcloud-connect/',
   IE: 'https://ovhcloud.com/en-ie/network-security/ovhcloud-connect/',

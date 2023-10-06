@@ -768,5 +768,18 @@
   "inputs_autoscaled_notification_detail": "Powiadom mnie w wiadomości e-mail, jeśli nastąpi automatyczne skalowanie.",
   "inputs_logs_edit_min_instance_field": "Minimalna liczba instancji",
   "inputs_logs_edit_max_instance_field": "Maksymalna liczba instancji",
-  "inputs_info_ca_certificate": "Certyfikat urzędu certyfikacji"
+  "inputs_info_ca_certificate": "Certyfikat urzędu certyfikacji",
+  "logs_streams_subscriptions": "Subskrypcje",
+  "logs_streams_col_subscriptions": "Subskrypcje",
+  "streams_subscriptions_current_title": "Zarządzanie subskrypcjami dla strumienia '{{name}}'",
+  "streams_subscriptions_intro_text": "Subskrypcje te pozwalają na pobieranie logów produktów OVHcloud z Twoich własnych strumieni danych.",
+  "streams_subscriptions_resource_type_label": "Usługa",
+  "streams_subscriptions_resource_name_label": "Nazwa usługi",
+  "streams_subscriptions_delete_modal_title": "Usuń subskrypcję",
+  "streams_subscriptions_delete_modal_content": "Czy na pewno chcesz usunąć subskrypcję zasobu {{resourceName}}?",
+  "streams_subscriptions_delete_success": "Subskrypcja zasobu '{{resourceName}}' została usunięta.",
+  "streams_subscriptions_delete_error": "Wystąpił błąd podczas usuwania subskrypcji zasobu '{{resourceName}}': {{message}}",
+  "streams_subscriptions_resource_products_ldp": "Logs Data Platform",
+  "streams_subscriptions_resource_products_webhosting": "Hosting",
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service"
 }

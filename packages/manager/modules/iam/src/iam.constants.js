@@ -14,9 +14,17 @@ const API_ERROR = {
 
 const CUSTOM_ACTION_PATTERN = /(^\*)|(\*$)/;
 
+const CUSTOM_ACTION_SAMPLE = 'vps:apiovh:automatedBackup/*';
+
+const CUSTOM_ACTION_WILDCARD_PATTERN = /^[^\d]*\*$/;
+
 const CUSTOM_RESOURCE_TYPE = 'custom';
 
+const WILDCARD = '*';
+
 const DELETE_STATEMENT = 'Terminate';
+
+const ACTION_DESCRIPTION_UNDEFINED = 'missing description';
 
 const FEATURE = {
   MAIN: 'iam',
@@ -30,6 +38,7 @@ const ENTITY = {
 };
 
 const ENTITY_NAME_PATTERN = /^[a-zA-Z0-9-/_+]*$/;
+const ENTITY_DESCRIPTION_PATTERN = /^[a-zA-Z0-9-/_+ ]*$/;
 
 const GUIDE = {
   IAM: {
@@ -274,9 +283,12 @@ export {
   ALERT_ID,
   API_ERROR,
   CUSTOM_ACTION_PATTERN,
+  CUSTOM_ACTION_SAMPLE,
+  CUSTOM_ACTION_WILDCARD_PATTERN,
   CUSTOM_RESOURCE_TYPE,
   DELETE_STATEMENT,
   ENTITY,
+  ENTITY_DESCRIPTION_PATTERN,
   ENTITY_NAME_PATTERN,
   FEATURE,
   GUIDE,
@@ -285,4 +297,6 @@ export {
   TAG,
   UNAVAILABLE_STATE_NAME,
   URN_VERSION,
+  WILDCARD,
+  ACTION_DESCRIPTION_UNDEFINED,
 };

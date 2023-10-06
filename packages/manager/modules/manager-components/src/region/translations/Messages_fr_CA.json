@@ -26,6 +26,7 @@
   "manager_components_region_SYD_micro": "Sydney ({{ micro }})",
   "manager_components_region_US": "États-Unis",
   "manager_components_region_US_micro": "États-Unis ({{ micro }})",
+  "manager_components_region_SHA_micro": "Gravelines (SHADOW-EU-1)",
   "manager_components_region_localize": "Localiser",
   "manager_components_region_location_SBG": "Europe centrale (France)",
   "manager_components_region_location_WAW": "Europe centrale (Pologne)",
@@ -48,5 +49,6 @@
   "manager_components_region_continent_UK": "Europe de l'Ouest",
   "manager_components_region_continent_SGP": "Asie du Sud-Est",
   "manager_components_region_continent_SYD": "Océanie",
-  "manager_components_region_continent_US": "États-Unis"
+  "manager_components_region_continent_US": "États-Unis",
+  "manager_components_region_continent_SHA": "Europe de l'Ouest"
 }

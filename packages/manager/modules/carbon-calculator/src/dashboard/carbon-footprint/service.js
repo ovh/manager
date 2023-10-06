@@ -1,4 +1,4 @@
-import { API_PATH } from './constants';
+import { INVOICE_API_PATH, TASK_API_PATH } from './constants';
 
 export default class CarbonFootprintService {
   /* @ngInject */
@@ -23,7 +23,9 @@ export default class CarbonFootprintService {
   }
 
   getTask(taskID) {
-    return this.$http.get(`${API_PATH}/${taskID}`).then(({ data }) => data);
+    return this.$http
+      .get(`${TASK_API_PATH}/${taskID}`)
+      .then(({ data }) => data);
   }
 
   computeBilling() {
@@ -31,10 +33,17 @@ export default class CarbonFootprintService {
     const now = new Date();
     now.setUTCDate(0); // sets the date to the last date of the previous month
     const date = now.toISOString().substring(0, 10);
-    return this.$http.post(API_PATH, { date }).then(({ data }) => data);
+    return this.$http.post(TASK_API_PATH, { date }).then(({ data }) => data);
   }
 
   downloadBilling(url) {
     this.$window.location = url;
+  }
+
+  hasInvoice() {
+    return this.$http
+      .get(INVOICE_API_PATH)
+      .then(({ data }) => data.hasInvoice)
+      .catch(() => false);
   }
 }

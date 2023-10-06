@@ -12,5 +12,6 @@
   "pci_ai_dashboard_cli_auth_steps_step_3": "introduzir as informações de ligação do utilizador pretendido ou o token associado",
   "pci_ai_dashboard_cli_auth_steps_step_4": "este processo está agora concluído",
   "pci_ai_dashboard_cli_commands_title": "Commands",
-  "pci_ai_dashboard_cli_commands_desc": "Execute {{command}} para obter uma lista das ações disponíveis."
+  "pci_ai_dashboard_cli_commands_desc": "Execute {{command}} para obter uma lista das ações disponíveis.",
+  "pci_ai_dashboard_cli_select_region": "Selecione a região que deseja utilizar:"
 }

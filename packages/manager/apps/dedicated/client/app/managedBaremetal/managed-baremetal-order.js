@@ -22,6 +22,7 @@ export const MANAGED_BARE_METAL_ORDER_URLS = {
   LT: 'https://ovhcloud.com/lt/managed-bare-metal/',
   WE: 'https://ovhcloud.com/us-en/managed-bare-metal/',
   WS: 'https://ovhcloud.com/us-en/managed-bare-metal/',
+  IN: 'https://ovhcloud.com/en-in/managed-bare-metal/',
 };
 
 export function getManagedBareMetalOrderUrl(subsidiary) {

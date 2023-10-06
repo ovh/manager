@@ -28,9 +28,12 @@ export const TRACKING_NEW_PRODUCT_BANNER = {
     'dedicated::dedicatedCloud::details::datacenter::link-to-vmware-products',
 };
 
+export const LANGUAGE_OVERRIDE = { IN: `en-IN` };
+
 export default {
   DEDICATED_CLOUD_DATACENTER,
   COMMERCIAL_RANGE_NAME_EOL,
   VDC_MIRGRATION_GUIDE_LINK,
   TRACKING_NEW_PRODUCT_BANNER,
+  LANGUAGE_OVERRIDE,
 };

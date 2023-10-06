@@ -9,6 +9,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href($state.current.name, $transition$.params()),
       dashboardLink: /* @ngInject */ ($state) => $state.href('app.dashboard'),
       breadcrumb: () => null,
+      hasInvoice: /* @ngInject */ (carbonFootprintService) =>
+        carbonFootprintService.hasInvoice(),
     },
     atInternet: {
       rename: TRACKING_NAME,

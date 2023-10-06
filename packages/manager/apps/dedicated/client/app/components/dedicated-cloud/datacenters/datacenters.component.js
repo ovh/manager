@@ -11,6 +11,7 @@ export default {
     orderHost: '<',
     setMessage: '<',
     usesLegacyOrder: '<',
+    migrationBannerAvailable: '<',
   },
   controller,
   template,

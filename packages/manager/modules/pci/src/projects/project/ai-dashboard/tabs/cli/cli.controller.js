@@ -1,7 +1,10 @@
-import { CLI_INSTALL_CODE } from './cli.constants';
-
 export default class AiDashboardCliCtrl {
   $onInit() {
-    this.CLI_INSTALL_CODE = CLI_INSTALL_CODE;
+    [this.currentRegion] = this.regions;
+    this.cliBashCmd = `curl -s https://cli.${this.currentRegion.id}.training.ai.cloud.ovh.net/install.sh | bash`;
+  }
+
+  onRegionChange() {
+    this.cliBashCmd = `curl -s https://cli.${this.currentRegion.id}.training.ai.cloud.ovh.net/install.sh | bash`;
   }
 }

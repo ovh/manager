@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.5.1...@ovh-ux/manager-dedicated@19.5.2) (2023-10-05)
+
+
+### Bug Fixes
+
+* **dedicated-cloud:** add migration banner ([#9932](https://github.com/ovh/manager/issues/9932)) ([4745e78](https://github.com/ovh/manager/commit/4745e78b60d6d5a870e1adcb324c0d63020395c9))
+
+
+
+
+
+## [19.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.5.0...@ovh-ux/manager-dedicated@19.5.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* **dedicated:** add purchase of purpose trans ([#10043](https://github.com/ovh/manager/issues/10043)) ([a6fc1d3](https://github.com/ovh/manager/commit/a6fc1d3b93249f7c54c9b4c3f19214d18eb0700e))
+* india release ([#10042](https://github.com/ovh/manager/issues/10042)) ([953d1fd](https://github.com/ovh/manager/commit/953d1fdd754c475a4c435d1061dfd16d137335d9))
+
+
+
+
+
+# [19.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.4.0...@ovh-ux/manager-dedicated@19.5.0) (2023-09-27)
+
+
+### Bug Fixes
+
+* **dedicated:** update india order link for ldp ([#10009](https://github.com/ovh/manager/issues/10009)) ([2757431](https://github.com/ovh/manager/commit/275743124f50d075e2e2ada630530358b5f457a7))
+
+
+### Features
+
+* **dedicated:** use agora to order license ([#10002](https://github.com/ovh/manager/issues/10002)) ([8336364](https://github.com/ovh/manager/commit/8336364993227bf63b5dcc629eb01aa95613ac3d))
+
+
+
+
+
+# [19.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.3.0...@ovh-ux/manager-dedicated@19.4.0) (2023-09-25)
+
+
+### Bug Fixes
+
+* **dedicated-cloud:** fix description text in add vdc section ([#9956](https://github.com/ovh/manager/issues/9956)) ([d1a51cd](https://github.com/ovh/manager/commit/d1a51cda0867e37d04263731cab034b38e88153e))
+
+
+### Features
+
+* **signup:** update VAT number to ICE number for Morocco customers ([#9981](https://github.com/ovh/manager/issues/9981)) ([958872a](https://github.com/ovh/manager/commit/958872ab3dca7b006b768be2574f4012c7837f18))
+
+
+
+
+
+# [19.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.2.0...@ovh-ux/manager-dedicated@19.3.0) (2023-09-19)
+
+
+### Features
+
+* **dedicated:** update kvm order workflow ([6a6882b](https://github.com/ovh/manager/commit/6a6882bdc36706371f026c0cfb5040a1a7c974de))
+
+
+
+
+
+# [19.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.1.0...@ovh-ux/manager-dedicated@19.2.0) (2023-09-18)
+
+
+### Bug Fixes
+
+* **dedicated.ip:** fix export IPs in CSV ([#9975](https://github.com/ovh/manager/issues/9975)) ([d1caaa0](https://github.com/ovh/manager/commit/d1caaa07e3f2733accf5545fc17ca96c33419d79))
+
+
+### Features
+
+* **dedicated:** remove service monitoring ([#9942](https://github.com/ovh/manager/issues/9942)) ([3c8eac8](https://github.com/ovh/manager/commit/3c8eac8234286edcac368c1c8409a795135851f5))
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
 # [19.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.0.1...@ovh-ux/manager-dedicated@19.1.0) (2023-09-12)
 
 

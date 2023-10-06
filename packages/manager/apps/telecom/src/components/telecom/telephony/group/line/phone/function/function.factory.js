@@ -64,7 +64,7 @@ export default /* @ngInject */ ($q, OvhApiTelephony) => {
     angular.forEach(keys(phoneFunctionOptions), (phoneFunctionOptionsKey) => {
       if (phoneFunctionOptionsKey.indexOf('$') !== 0) {
         self[phoneFunctionOptionsKey] =
-          phoneFunctionOptions[phoneFunctionOptionsKey];
+          phoneFunctionOptions[phoneFunctionOptionsKey] || '';
       }
     });
 

@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.3.1...@ovh-ux/manager-pci@6.3.2) (2023-10-05)
+
+
+### Bug Fixes
+
+* **pci.instances:** disable unavailable regions and images ([534cade](https://github.com/ovh/manager/commit/534cade932fb22d62c3645c068271863b352bdcb))
+* **pci:** display currency symbol ([198307e](https://github.com/ovh/manager/commit/198307eca9a84f5939122d4e0e19b1f8ae9349a0))
+
+
+
+
+
+## [6.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.3.0...@ovh-ux/manager-pci@6.3.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* india release ([#10042](https://github.com/ovh/manager/issues/10042)) ([953d1fd](https://github.com/ovh/manager/commit/953d1fdd754c475a4c435d1061dfd16d137335d9))
+
+
+
+
+
+# [6.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.2.0...@ovh-ux/manager-pci@6.3.0) (2023-09-27)
+
+
+### Features
+
+* india payment method management ([#9809](https://github.com/ovh/manager/issues/9809)) ([#9833](https://github.com/ovh/manager/issues/9833)) ([474db9f](https://github.com/ovh/manager/commit/474db9f32384704329b5edb5ab9d0b2e8a7f97b0))
+
+
+
+
+
+# [6.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.1.0...@ovh-ux/manager-pci@6.2.0) (2023-09-25)
+
+
+### Features
+
+* filter deprecated availabilites ([8965a78](https://github.com/ovh/manager/commit/8965a7826e836a87c17ce24b58ebbeb29a79a688))
+
+
+
+
+
+# [6.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.0.0...@ovh-ux/manager-pci@6.1.0) (2023-09-18)
+
+
+### Bug Fixes
+
+* **pci:** expects the credentials data to be an array ([#9984](https://github.com/ovh/manager/issues/9984)) ([fcbe46f](https://github.com/ovh/manager/commit/fcbe46fe4ba83f4f11eefeb8290013a6bfde7073))
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+* **pci.ai:** ai-dashboard 1.1  ([#9507](https://github.com/ovh/manager/issues/9507)) ([1d7146c](https://github.com/ovh/manager/commit/1d7146c341ace23d736adcffa5dbf1870483463d))
+
+
+
+
+
 # [6.0.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@5.138.0...@ovh-ux/manager-pci@6.0.0) (2023-09-07)
 
 

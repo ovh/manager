@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.9.0...@ovh-ux/manager-nutanix@1.10.0) (2023-09-18)
+
+
+### Features
+
+* manager integration to india subsidiary ([#9193](https://github.com/ovh/manager/issues/9193)) ([6e715f6](https://github.com/ovh/manager/commit/6e715f6ff53aa609bb0e97bf4c388409f2263a44))
+
+
+
+
+
 # [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.8.2...@ovh-ux/manager-nutanix@1.9.0) (2023-09-08)
 
 

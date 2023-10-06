@@ -18,7 +18,7 @@ export const NEW_PRODUCT_LINK = {
   AU: 'https://www.ovhcloud.com/en-au/hosted-private-cloud/vmware/',
   DE: 'https://www.ovhcloud.com/de/hosted-private-cloud/vmware/',
   ASIA: 'https://www.ovhcloud.com/asia/hosted-private-cloud/vmware/',
-  IN: 'https://www.ovhcloud.com/asia/hosted-private-cloud/vmware/',
+  IN: 'https://www.ovhcloud.com/en-in/hosted-private-cloud/vmware/',
   US: 'https://us.ovhcloud.com/hosted-private-cloud/vmware/',
 };
 

@@ -658,6 +658,38 @@ const constants = {
               'https://help.ovhcloud.com/csm/es-es-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043701',
           },
           {
+            title: 'core_sd_top_guide_1_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-1',
+            url:
+              'https://docs.ovh.com/ca/en/dedicated/getting-started-dedicated-server/',
+          },
+          {
+            title: 'core_sd_top_guide_2_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-2',
+            url: 'https://docs.ovh.com/ca/en/dedicated/',
+          },
+          {
+            title: 'core_sd_top_guide_3_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-3',
+            url:
+              'https://docs.ovh.com/ca/en/public-cloud/configure-reverse-dns-instance/',
+          },
+          {
+            title: 'core_sd_top_guide_firewall_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-Firewall',
+            url: 'https://docs.ovh.com/ca/en/dedicated/firewall-network/',
+          },
+          {
+            title: 'core_sd_top_guide_5_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-5',
+            url: 'https://docs.ovh.com/ca/en/dedicated/network-virtual-mac/',
+          },
+          {
+            title: 'core_sd_top_guide_6_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-6',
+            url: 'https://docs.ovh.com/ca/en/dedicated/network-ipaliasing/',
+          },
+          {
             title: 'core_sd_top_guide_7_title',
             atInternetClickTag: 'configure-new-window-server-installation',
             url:
@@ -1015,6 +1047,12 @@ const constants = {
             url:
               'https://help.ovhcloud.com/csm/en-sg-dedicated-servers-windows-first-config-dedicated?id=kb_article_view&sysparm_article=KB0044079',
           },
+          {
+            title: 'core_sd_top_guide_8_title',
+            atInternetClickTag: 'TopGuide-DedicatedServers-8',
+            url:
+              'https://docs.ovh.com/ca/en/dedicated/find-disk-serial-number/',
+          },
         ],
       },
       pcc: {
@@ -1300,6 +1338,42 @@ const constants = {
         faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
         dedicatedOrder: 'https://www.ovhcloud.com/asia/bare-metal/prices/',
         dedicatedEcoRangeOrder: 'https://eco.ovhcloud.com/asia/',
+        cloudProjectOrder:
+          'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
+        iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',
+      },
+      IN: {
+        express_order: 'https://ca.ovh.com/in/order/express/#/express/',
+        express_order_resume:
+          'https://ca.ovh.com/in/order/express/#/new/express/resume',
+        support: 'http://www.ovh.co.uk/support/',
+        support_contact: 'https://www.ovh.com/ca/en/support/',
+        guides: {
+          home: 'https://docs.ovh.com/ca/en/',
+          privateCloudHome: 'https://docs.ovh.com/ca/en/private-cloud/',
+          reinitPassword:
+            'http://docs.ovh.ca/en/faqs-server-issues.html#server-password-lost-forgotten',
+          ipv6Vps: 'https://www.ovh.com/us/g2365.vps-ipv6',
+        },
+        presentations: {
+          home: 'https://www.ovh.com/asia/private-cloud/',
+          nsx: 'https://www.ovh.com/asia/private-cloud/options/nsx.xml',
+          veeam: 'https://www.ovh.com/asia/private-cloud/options/veeam.xml',
+          vrops: 'https://www.ovh.com/asia/private-cloud/options/vrops.xml',
+        },
+        vpsCloud: 'https://www.ovh.com/ca/en/vps/vps-cloud.xml',
+        dedicatedIpmi:
+          'https://docs.ovh.com/gb/en/dedicated/use-ipmi-dedicated-servers/',
+        changeOwner:
+          'https://www.ovh.co.uk/cgi-bin/procedure/procedureChangeOwner.cgi',
+        domainOrderTrade:
+          "https://www.ovh.co.uk/order/domain/#/legacy/domain/trade/informations?options=~~(domain~~'{domain})",
+        RealTimeMonitoring: 'https://docs.ovh.com/gb/en/dedicated/install-rtm/',
+        exchangeOrder: 'https://www.ovh.com/us/emails/hosted-exchange/',
+        faq: 'https://www.ovh.com/ca/en/dedicated-servers/faq.xml',
+        faqVps: 'https://www.ovh.com/us/vps/faq-help.xml',
+        dedicatedOrder: 'https://www.ovhcloud.com/en-in/bare-metal/prices/',
+        dedicatedEcoRangeOrder: 'https://eco.static.ovh.net/en-in/',
         cloudProjectOrder:
           'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
         iplbOrder: 'https://www.ovh.com/world/solutions/load-balancer/',

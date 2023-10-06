@@ -165,17 +165,17 @@
                         </oui-spinner>
                     </div>
 
-                    <!--Continue project btn for CB (CREDIT_CARD)-->
+                    <!--Continue project btn for CB (CREDIT_CARD) or for RuPay-->
                     <div
                         class="d-flex"
-                        data-ng-if="$ctrl.model.paymentMethod.type.isCreditCard()"
+                        data-ng-if="$ctrl.model.paymentMethod.type.isCreditCard() || $ctrl.model.paymentMethod.type.isRupayCard()"
                     >
                         <oui-button
                             variant="primary"
                             type="button"
                             on-click="$ctrl.initComponentInitialParams()"
-                            data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.componentInitialParams && !$ctrl.isCheckingPaymentMethod"
-                            disabled="$ctrl.globalLoading.finalize"
+                            data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.isCheckingPaymentMethod"
+                            disabled="$ctrl.globalLoading.finalize  || $ctrl.model.reloadHandleByComponent"
                         >
                             <span
                                 data-translate="pci_project_new_payment_btn_continue_add_credit_card"
@@ -246,12 +246,12 @@
 
         <h2
             class="oui-heading_underline"
-            data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && $ctrl.componentInitialParams"
+            data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && $ctrl.componentInitialParams && $ctrl.model.reloadHandleByComponent"
             data-translate="pci_project_new_payment_information"
         ></h2>
 
         <ovh-payment-method-integration
-            data-ng-if="($ctrl.model.paymentMethod.isHandleByComponent() && $ctrl.componentInitialParams) || $ctrl.hasComponentRedirectCallback"
+            data-ng-if="(($ctrl.model.reloadHandleByComponent && $ctrl.model.paymentMethod.isHandleByComponent() && $ctrl.componentInitialParams) || $ctrl.hasComponentRedirectCallback)"
             data-payment-method-type="$ctrl.model.paymentMethod"
             data-callback-status-param-url-name="paymentStatus"
             data-callback="$ctrl.callback"

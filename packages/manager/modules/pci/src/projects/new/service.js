@@ -241,7 +241,7 @@ export default class PciProjectNewService {
         return this.orderCart
           .addProductOptionToCart(cartId, PCI_PROJECT_ORDER_CART.productName, {
             planCode: PCI_PROJECT_ORDER_CART.creditPlanCode,
-            quantity: amount / price.value,
+            quantity: Math.floor(amount / price.value),
             duration,
             pricingMode,
             itemId,

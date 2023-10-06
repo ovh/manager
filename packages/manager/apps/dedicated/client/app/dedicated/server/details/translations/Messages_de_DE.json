@@ -97,7 +97,7 @@
   "server_tab_cloud_backup": "Storage-Backup",
   "server_tab_ftp_backup": "Storage-Backup",
   "server_tab_task": "Tasks",
-  "server_tab_ipmi": "IPMI",
+  "server_tab_ipmi": "IPMI / KVM",
   "server_tab_dashboard": "Serverstatus",
   "server_tab_dashboard_install_progress": "Ihr Betriebssystem wird in Betrieb genommen. Dieser Vorgang nimmt etwa zehn Minuten in Anspruch. Nach Abschluss der Installation startet Ihr Server auf den ausgewählten Festplatten neu.",
   "server_tab_dashboard_install_progress_link": "Klicken Sie hier, um den Fortschritt anzuzeigen.",

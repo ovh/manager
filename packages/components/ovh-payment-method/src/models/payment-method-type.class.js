@@ -48,6 +48,15 @@ export class PaymentMethodType {
   }
 
   /**
+   * Determine if payment method type is a RuPay card.
+   *
+   * @return {Boolean}
+   */
+  isRupayCard() {
+    return this.paymentType === AVAILABLE_PAYMENT_METHOD_TYPE_ENUM.RUPAY;
+  }
+
+  /**
    * Determine if payment method type is a Deferred Payment Account.
    *
    * @return {Boolean}

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.8.1...@ovh-ux/manager-components@1.9.0) (2023-09-25)
+
+
+### Features
+
+* **pci:** add translation for new sha s3 region ([#9742](https://github.com/ovh/manager/issues/9742)) ([0b0f4b4](https://github.com/ovh/manager/commit/0b0f4b435086b894f6e497e47231af8927508e69))
+
+
+
+
+
 ## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.8.0...@ovh-ux/manager-components@1.8.1) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-components

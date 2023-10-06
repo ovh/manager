@@ -12,7 +12,6 @@ export const ADYEN_CONFIG = {
     paymentMethodsResponse: {
       paymentMethods: [
         {
-          brands: ['cartebancaire', 'mc', 'visa'],
           details: [
             {
               key: 'encryptedCardNumber',
@@ -60,6 +59,11 @@ export const ADYEN_CONFIG = {
   },
 };
 
+export const PAYMENT_METHOD_BRANDS = {
+  RUPAY: ['rupay'],
+  CREDIT_CARD: ['cartebancaire', 'mc', 'visa'],
+};
+
 export const ADYEN_RESULT_CODE = {
   AUTHORIZED: 'Authorised',
   ERROR: 'Error',
@@ -70,4 +74,5 @@ export const ADYEN_RESULT_CODE = {
 export default {
   ADYEN_CONFIG,
   ADYEN_RESULT_CODE,
+  PAYMENT_METHOD_BRANDS,
 };

@@ -25,7 +25,7 @@ export default function Container(): JSX.Element {
     .getPlugin('environment')
     .getEnvironment();
   const language = environment.getUserLanguage();
-  const { ovhSubsidiary } = environment.getUser();
+  const { ovhSubsidiary, supportLevel } = environment.getUser();
 
   const isNavReshuffle = betaVersion && useBeta;
 
@@ -70,6 +70,7 @@ export default function Container(): JSX.Element {
           </>
         )}
         <LiveChat
+          supportLevel={supportLevel?.level}
           language={language}
           subsidiary={ovhSubsidiary}
           open={chatbotOpen}
