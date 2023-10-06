@@ -80,7 +80,7 @@ export default /* @ngInject */ ($stateProvider) => {
             data?.baremetalServers?.storage ? data?.baremetalServers : null,
           )
           .catch(() => null),
-      trafficInformations: /* @ngInject */ (
+      trafficInformation: /* @ngInject */ (
         $q,
         $stateParams,
         ServerOrderTrafficService,

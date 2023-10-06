@@ -6,7 +6,6 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import component from './terminate.component';
 import routing from './terminate.routing';
 
 const moduleName = 'ovhManagerDedicatedServerDashboardTerminate';
@@ -18,10 +17,6 @@ angular
     'pascalprecht.translate',
     'ui.router',
   ])
-  .component('dedicatedServerDashboardTerminate', component)
-  .config(routing)
-  // TODO: inject own translations
-  .run(/* @ngTranslationsInject:json ../server/translations */)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(routing);
 
 export default moduleName;

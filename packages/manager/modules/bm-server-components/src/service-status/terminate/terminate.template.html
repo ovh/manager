@@ -1,42 +1,42 @@
 <oui-modal
-    data-on-dismiss="ctrl.goBack()"
-    data-primary-action="ctrl.submitCancelSubscription()"
-    data-primary-disabled="!ctrl.cancelSubscriptionForm.cancelMethod || ctrl.terminationUnavailable"
-    data-primary-label="{{ !(ctrl.loading || ctrl.terminationUnavailable) ? ('dedicated_server_terminate_confirm' | translate) : '' }}"
-    data-secondary-action="ctrl.goBack()"
-    data-secondary-disabled="ctrl.loading"
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-action="$ctrl.submitCancelSubscription()"
+    data-primary-disabled="!$ctrl.cancelSubscriptionForm.cancelMethod || $ctrl.terminationUnavailable"
+    data-primary-label="{{ !($ctrl.loading || $ctrl.terminationUnavailable) ? ('dedicated_server_terminate_confirm' | translate) : '' }}"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-disabled="$ctrl.loading"
     data-secondary-label="{{:: 'dedicated_server_terminate_cancel' | translate }}"
-    data-loading="ctrl.cancelSubscriptionForm.isSubmiting || ctrl.loading"
+    data-loading="$ctrl.cancelSubscriptionForm.isSubmiting || $ctrl.loading"
     data-heading="{{:: 'server_close_service' | translate }}"
 >
     <oui-message
         class="mb-3"
-        data-ng-if="ctrl.terminationUnavailable"
+        data-ng-if="$ctrl.terminationUnavailable"
         data-type="error"
     >
         <span data-translate="server_close_service_enterprise"></span>
-        <span data-ng-if="ctrl.region !== 'US'">(Account Manager).</span>
+        <span data-ng-if="$ctrl.region !== 'US'">(Account Manager).</span>
     </oui-message>
 
     <p
-        data-ng-if="ctrl.server.engagement && !ctrl.terminationUnavailable"
+        data-ng-if="$ctrl.server.engagement && !$ctrl.terminationUnavailable"
         data-translate="common_resiliate_contact_support"
     ></p>
 
     <div
-        data-ng-if="!ctrl.cancelSubscriptionForm.isSubmiting && !ctrl.server.engagement && !ctrl.terminationUnavailable"
+        data-ng-if="!$ctrl.cancelSubscriptionForm.isSubmiting && !$ctrl.server.engagement && !$ctrl.terminationUnavailable"
     >
         <oui-message type="warning">
             <span
                 data-translate="server_close_service_warning_data_deletion"
             ></span>
             <span
-                data-ng-if="!ctrl.manualRefund"
+                data-ng-if="!$ctrl.manualRefund"
                 data-translate="server_close_service_warning_no_refund"
             >
             </span>
             <span
-                data-ng-if="ctrl.manualRefund"
+                data-ng-if="$ctrl.manualRefund"
                 data-translate="server_close_service_warning_manual_refund"
             >
             </span>
@@ -53,7 +53,7 @@
                 id="cancelMethod"
                 name="cancelMethod"
                 required
-                data-ng-model="ctrl.cancelSubscriptionForm.cancelMethod"
+                data-ng-model="$ctrl.cancelSubscriptionForm.cancelMethod"
             >
                 <option
                     value="terminate"
@@ -63,19 +63,19 @@
                 <option
                     value="deleteAtExpiration"
                     data-translate="server_close_service_form_option_delete_at_expiration"
-                    data-ng-if="!ctrl.serviceInfos.renew.deleteAtExpiration"
+                    data-ng-if="!$ctrl.serviceInfos.renew.deleteAtExpiration"
                 >
                 </option>
                 <option
                     value="cancel"
-                    data-ng-if="ctrl.serviceInfos.renew.deleteAtExpiration"
+                    data-ng-if="$ctrl.serviceInfos.renew.deleteAtExpiration"
                     data-translate="server_close_service_form_option_cancel"
                 >
                 </option>
             </select>
         </form>
         <div
-            data-ng-if="ctrl.cancelSubscriptionForm.cancelMethod === 'terminate'"
+            data-ng-if="$ctrl.cancelSubscriptionForm.cancelMethod === 'terminate'"
         >
             <p
                 class="text-danger"

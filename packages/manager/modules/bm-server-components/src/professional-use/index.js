@@ -16,7 +16,6 @@ angular
     'pascalprecht.translate',
     'ui.router',
   ])
-  .component('dedicatedServerDashboardProfessionalUse', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('dedicatedServerDashboardProfessionalUse', component);
 
 export default moduleName;

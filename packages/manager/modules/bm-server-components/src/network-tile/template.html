@@ -115,13 +115,13 @@
         >
             <oui-tile-description>
                 <span
-                    data-ng-if="$ctrl.trafficInformations.traffic.data.usage.outputQuotaSize.text"
+                    data-ng-if="$ctrl.trafficInformation.traffic.data.usage.outputQuotaSize.text"
                     data-translate="server_network_traffic_text"
-                    data-translate-values="{ t0: $ctrl.trafficInformations.traffic.data.usage.outputQuotaSize.text }"
+                    data-translate-values="{ t0: $ctrl.trafficInformation.traffic.data.usage.outputQuotaSize.text }"
                 >
                 </span>
                 <span
-                    data-ng-if="!$ctrl.trafficInformations.traffic.data.usage.outputQuotaSize.text"
+                    data-ng-if="!$ctrl.trafficInformation.traffic.data.usage.outputQuotaSize.text"
                     data-translate="server_network_traffic_unlimited_text"
                     data-translate-values="{ t0: ($ctrl.bandwidthInformations.bandwidth.OvhToInternet) }"
                 >
@@ -135,14 +135,14 @@
             </oui-tile-description>
             <oui-action-menu
                 aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_network_traffic' | translate) } }}"
-                data-ng-if="($ctrl.trafficInformations.traffic.data.hasQuota && $ctrl.canOrderTraffic() && $ctrl.canOrderMoreTraffic()) || (!$ctrl.server.isExpired && trafficOption === 'subscribed')"
+                data-ng-if="($ctrl.trafficInformation.traffic.data.hasQuota && $ctrl.canOrderTraffic() && $ctrl.canOrderMoreTraffic()) || (!$ctrl.server.isExpired && trafficOption === 'subscribed')"
                 data-compact
                 data-placement="end"
             >
                 <oui-action-menu-item
                     data-on-click="$ctrl.dedicatedServer.$scope.setAction('traffic/order/dedicated-server-traffic-order', $ctrl.server.name)"
                     data-disabled="$ctrl.server.state === 'HACKED' || $ctrl.server.state === 'HACKED_BLOCKED'"
-                    data-ng-if="$ctrl.trafficInformations.traffic.data.hasQuota && $ctrl.canOrderTraffic() && $ctrl.canOrderMoreTraffic()"
+                    data-ng-if="$ctrl.trafficInformation.traffic.data.hasQuota && $ctrl.canOrderTraffic() && $ctrl.canOrderMoreTraffic()"
                 >
                     <span
                         data-ng-bind="(trafficOption !== 'subscribed' ? 'server_network_traffic_order_button' : 'server_network_traffic_change_button') | translate"

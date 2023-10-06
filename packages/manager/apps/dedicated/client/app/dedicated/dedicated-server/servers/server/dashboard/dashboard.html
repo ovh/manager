@@ -33,15 +33,15 @@
     <!-- QUOTA -->
     <div
         class="mb-5"
-        data-ng-if="$ctrl.trafficInformations.traffic.data.hasQuota"
+        data-ng-if="$ctrl.trafficInformation.traffic.data.hasQuota"
     >
-        <consumption-tile
+        <server-consumption-tile
             data-server="$ctrl.server"
-            data-traffic-informations="$ctrl.trafficInformations"
+            data-traffic-information="$ctrl.trafficInformation"
             data-dedicated-server="$ctrl.dedicatedServer"
             data-current-active-link="$ctrl.currentActiveLink"
         >
-        </consumption-tile>
+        </server-consumption-tile>
     </div>
 
     <div class="row d-md-flex">
@@ -133,7 +133,7 @@
                 data-service-infos="$ctrl.serviceInfos"
                 data-order-private-bandwidth-link="$ctrl.orderPrivateBandwidthLink"
                 data-order-public-bandwidth-link="$ctrl.orderPublicBandwidthLink"
-                data-traffic-informations="$ctrl.trafficInformations"
+                data-traffic-information="$ctrl.trafficInformation"
                 data-dedicated-server-feature-availability="$ctrl.DedicatedServerFeatureAvailability"
                 data-dedicated-server="$ctrl.dedicatedServer"
                 data-ola="$ctrl.ola"

@@ -80,7 +80,7 @@ export default class BmServerComponentsNetworkTileController {
     return (
       !this.server.isExpired &&
       this.server.canOrderQuota &&
-      this.trafficInformations?.trafficOrderables.data.length
+      this.trafficInformation?.trafficOrderables.data.length
     );
   }
 

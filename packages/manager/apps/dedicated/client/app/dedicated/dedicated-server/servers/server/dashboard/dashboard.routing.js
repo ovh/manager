@@ -257,7 +257,7 @@ export default /* @ngInject */ ($stateProvider) => {
           productId: serverName,
         }),
       trackingPrefix: () => 'dedicated::server::dashboard',
-      trafficInformations: /* @ngInject */ (
+      trafficInformation: /* @ngInject */ (
         $q,
         $stateParams,
         ServerOrderTrafficService,

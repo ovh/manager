@@ -1,5 +1,3 @@
-import head from 'lodash/head';
-
 import {
   BYOI_STATUS_ENUM,
   BYOI_STARTING_MESSAGE,
@@ -45,22 +43,22 @@ export default class ServerInstallationProgressCtrl {
   }
 
   load() {
-    this.Server.getTaskInProgress(
+    return this.Server.getTaskInProgress(
       this.$stateParams.productId,
       'reinstallServer',
     ).then(
       (taskTab) => {
         if (taskTab.length > 0) {
-          this.$scope.progress.task = head(taskTab);
+          [this.$scope.progress.task] = taskTab || [];
           this.$rootScope.$broadcast(
             'dedicated.informations.reinstall',
             taskTab[0],
           );
         }
-        this.checkInstallationProgress();
+        return this.checkInstallationProgress();
       },
       () => {
-        this.goBack();
+        return this.goBack();
       },
     );
   }

@@ -29,7 +29,7 @@ export default {
     specifications: '<',
     technicalDetails: '<',
     trackingPrefix: '<',
-    trafficInformations: '<',
+    trafficInformation: '<',
     user: '<',
     vrackInfos: '<',
     worldPart: '<',

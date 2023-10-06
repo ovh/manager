@@ -2,10 +2,9 @@ import angular from 'angular';
 
 import '@ovh-ux/ui-kit';
 import 'angular-translate';
-import '@ovh-ux/ng-translate-async-loader';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
-import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
+import terminate from './terminate';
 import component from './service-status.component';
 
 const moduleName = 'ovhManagerBmServerComponentsDashboardServiceStatus';
@@ -15,8 +14,7 @@ angular
     ngAtInternet,
     'oui',
     'pascalprecht.translate',
-    'ngTranslateAsyncLoader',
-    ngOvhFeatureFlipping,
+    terminate,
   ])
   .component('serverServiceStatus', component)
   .run(/* @ngTranslationsInject:json ./translations */);

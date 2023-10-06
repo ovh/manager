@@ -2,7 +2,6 @@ import angular from 'angular';
 
 import '@ovh-ux/ui-kit';
 import 'angular-translate';
-import '@ovh-ux/ng-translate-async-loader';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 
@@ -21,7 +20,6 @@ angular
     ngAtInternet,
     'oui',
     'pascalprecht.translate',
-    'ngTranslateAsyncLoader',
     ngOvhFeatureFlipping,
     choice,
     gabarit,

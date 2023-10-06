@@ -23,3 +23,4 @@ export { default as serverBandwidthDashboard } from './bandwidth-dashboard';
 export { default as serverBandwidthTile } from './bandwidth-tile';
 export { default as serverOla } from './ola';
 export { default as serverNetworkInterfaces } from './network-interfaces';
+export { default as serverProfessionalUse } from './professional-use';

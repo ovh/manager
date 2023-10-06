@@ -38,7 +38,6 @@ import './dedicated-server/servers/ovh-tasks/dedicated-server-ovh-tasks.routes';
 import './dedicated-server/servers/pro-use/order/dedicated-server-pro-use-order.controller';
 import './dedicated-server/servers/rendezvous/dedicated-server-rendezvous.controller';
 import './dedicated-server/servers/rendezvous/dedicated-server-rendezvous.routes';
-import './dedicated-server/servers/terminate/dedicated-server-terminate.controller';
 import './dedicated-server/servers/traffic/cancel/dedicated-server-traffic-cancel.controller';
 import './dedicated-server/servers/traffic/dedicated-server-traffic.service';
 import './dedicated-server/servers/traffic/order/dedicated-server-traffic-order.controller';
