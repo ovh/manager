@@ -81,15 +81,14 @@ export default [
             '',
           );
         })
-        .catch((err) => {
-          let key = null;
-          if (err.response.errorCode === 3 || err.response.errorCode === 4) {
-            key = `user_account_security_double_auth_type_u2f_add_error_code_${err.response.errorCode}`;
-          } else {
-            key = 'user_account_security_double_auth_type_u2f_add_error';
-          }
+        .catch(() => {
           $scope.u2f.hasError = true;
-          Alerter.error($translate.instant(key), 'doubleAuthAlertU2fAdd');
+          Alerter.error(
+            $translate.instant(
+              'user_account_security_double_auth_type_u2f_add_error',
+            ),
+            'doubleAuthAlertU2fAdd',
+          );
         })
         .finally(() => {
           $scope.u2f.isAdding = false;
