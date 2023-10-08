@@ -1,66 +1,56 @@
 import get from 'lodash/get';
+import { map } from 'lodash';
+import { WEBAUTHN_URL } from './user-security-u2f.constants';
 
 export default /* @ngInject */ function UserAccountDoubleAuthU2fService(
-  $q,
-  $window,
   OvhHttp,
+  $q,
+  coreConfig,
 ) {
-  const TIMEOUT_SECONDS = 15;
-
   /**
    * Register helper.
    * @param  {Object} data
    * @return {Promise}
    */
   const register = (data) => {
-    const registerDefer = $q.defer();
-    $window.u2f.register(
-      data.applicationId,
-      [
-        {
-          challenge: data.request.challenge,
-          version: data.request.version,
-        },
-      ],
-      [],
-      (response) => {
-        if (response.errorCode) {
-          registerDefer.reject({ response });
-        } else {
-          registerDefer.resolve(response);
-        }
-      },
-      TIMEOUT_SECONDS,
+    const url = new URL(
+      WEBAUTHN_URL[coreConfig.getRegion()] || WEBAUTHN_URL.EU,
     );
-    return registerDefer.promise;
-  };
+    map(data, (value, key) => {
+      url.searchParams.set(key, value);
+    });
 
-  /**
-   * Sign helper.
-   * @param  {Object} data
-   * @return {Promise}
-   */
-  const sign = (data) => {
-    const signDefer = $q.defer();
-    $window.u2f.sign(
-      data.applicationId,
-      data.request.challenge,
-      [
-        {
-          version: data.request.version,
-          keyHandle: data.request.keyHandle,
-        },
-      ],
-      (request) => {
-        if (request.errorCode) {
-          signDefer.reject({ request });
-        } else {
-          signDefer.resolve(request);
-        }
-      },
-      TIMEOUT_SECONDS,
+    const registerDefer = $q.defer();
+    const onMessage = (event) => {
+      if (event.origin !== url.origin) return;
+
+      if (event.data.error) {
+        registerDefer.reject({ error: event.data.error });
+      } else {
+        registerDefer.resolve({
+          rawId: Buffer.from(event.data.id).toString('base64'),
+          clientDataJSON: Buffer.from(event.data.clientDataJSON).toString(
+            'base64',
+          ),
+          attestationObject: Buffer.from(event.data.attestationObject).toString(
+            'base64',
+          ),
+        });
+      }
+      window.removeEventListener('message', onMessage);
+    };
+
+    // Install listener
+    window.addEventListener('message', onMessage);
+
+    // Open popup
+    window.open(
+      url.toString(),
+      'WebAuthn',
+      `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=600,height=600`,
     );
-    return signDefer.promise;
+
+    return registerDefer.promise;
   };
 
   /**
@@ -98,8 +88,9 @@ export default /* @ngInject */ function UserAccountDoubleAuthU2fService(
         const u2fId = get(registerChallenge, 'id');
         return this.validate(
           u2fId,
-          response.clientData,
-          response.registrationData,
+          response.attestationObject,
+          response.clientDataJSON,
+          response.rawId,
         )
           .then(() => this.get(u2fId))
           .then((key) => ({
@@ -141,81 +132,49 @@ export default /* @ngInject */ function UserAccountDoubleAuthU2fService(
     });
 
   /**
-   * Challenge.
-   * - We use the `sign` helper and then we disable/enable the U2F account.
-   * @param  {Integer} id
-   * @param  {String} action
-   * @return {Promise}
-   */
-  this.challenge = (id, action) =>
-    OvhHttp.post('/me/accessRestriction/u2f/{id}/challenge', {
-      rootPath: 'apiv6',
-      urlParams: {
-        id,
-      },
-    }).then((signChallenge) =>
-      sign(signChallenge).then((request) => {
-        if (action === 'enabled') {
-          return this.disable(id, request.clientData, request.signatureData);
-        }
-        return this.enable(id, request.clientData, request.signatureData);
-      }),
-    );
-
-  /**
    * Disable a given U2F account.
    * @param  {Integer} id
-   * @param  {String} clientData
-   * @param  {String} signatureData
    * @return {Promise}
    */
-  this.disable = (id, clientData, signatureData) =>
+  this.disable = (id) =>
     OvhHttp.post('/me/accessRestriction/u2f/{id}/disable', {
       rootPath: 'apiv6',
       urlParams: {
         id,
-      },
-      data: {
-        clientData,
-        signatureData,
       },
     });
 
   /**
    * Enable a given U2F account.
    * @param  {Integer} id
-   * @param  {String} clientData
-   * @param  {String} signatureData
    * @return {Promise}
    */
-  this.enable = (id, clientData, signatureData) =>
+  this.enable = (id) =>
     OvhHttp.post('/me/accessRestriction/u2f/{id}/enable', {
       rootPath: 'apiv6',
       urlParams: {
         id,
-      },
-      data: {
-        clientData,
-        signatureData,
       },
     });
 
   /**
    * Validate a given U2F account.
    * @param  {Integer} id
-   * @param  {String} clientData
-   * @param  {String} registrationData
+   * @param  {String} attestationObject
+   * @param  {String} clientDataJSON
+   * @param  {String} rawId
    * @return {Promise}
    */
-  this.validate = (id, clientData, registrationData) =>
+  this.validate = (id, attestationObject, clientDataJSON, rawId) =>
     OvhHttp.post('/me/accessRestriction/u2f/{id}/validate', {
       rootPath: 'apiv6',
       urlParams: {
         id,
       },
       data: {
-        clientData,
-        registrationData,
+        attestationObject,
+        clientDataJSON,
+        rawId,
       },
     });
 }
