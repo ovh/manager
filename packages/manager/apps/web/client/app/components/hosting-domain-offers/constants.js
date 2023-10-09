@@ -111,6 +111,8 @@ export const NEW_OFFERS_PLAN_CODES = {
   PERFORMANCE_4: 'hosting-performance-4',
 };
 
+export const WEB_CLOUD_DB_VALUES = '512MB RAM - 8GB';
+
 export default {
   UCENTS_FACTOR,
   NEW_OFFERS_START_DATE,
@@ -122,4 +124,5 @@ export default {
   VERSION_MAP,
   CLOUDWEB_OFFER,
   CLOUDWEB_VERSION_MAP,
+  WEB_CLOUD_DB_VALUES,
 };
