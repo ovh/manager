@@ -16,5 +16,7 @@
   "netapp_order_commitment_duration": "Duración del compromiso",
   "netapp_order_commitment_duration_description": "Disfrute de un descuento al contratar el servicio con compromiso de permanencia.",
   "netapp_order_commitment_payment": "Modalidades de pago",
-  "netapp_order_confirm": "Aceptar"
+  "netapp_order_confirm": "Aceptar",
+  "netapp_order_performance_level_type_Premium_additionnal_description": "64 MB/s y 4000 IOPS por TB de capacidad aprovisionada.",
+  "netapp_order_performance_customization": "Asimismo, al aprovisionar su capacidad, deberá establecer el nivel de prestaciones de su servicio. Le recordamos que dispone de 64 MB/s y 4000 IOPS por TB de capacidad aprovisionada."
 }

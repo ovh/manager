@@ -8,6 +8,8 @@ import '@ovh-ux/manager-billing-components';
 import '@ovh-ux/ng-ovh-feature-flipping';
 import '@ovh-ux/ng-at-internet';
 
+import './index.scss';
+
 import component from './component';
 import routing from './routing';
 
