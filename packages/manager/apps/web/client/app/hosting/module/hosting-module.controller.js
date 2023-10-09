@@ -1,6 +1,8 @@
 import clone from 'lodash/clone';
 import get from 'lodash/get';
 
+import { OFFERS_UNELIGIBLE_FOR_MODULE } from '../hosting.constants';
+
 angular.module('App').controller(
   'HostingTabModulesController',
   class HostingTabModulesController {
@@ -55,6 +57,7 @@ angular.module('App').controller(
         }
       });
 
+      // No need to be done if offer is uneligible
       this.getModules();
     }
 
@@ -100,6 +103,10 @@ angular.module('App').controller(
 
     goToHref(href, target = '_blank') {
       this.$window.open(href, target);
+    }
+
+    static isOfferUneligible(offer) {
+      return OFFERS_UNELIGIBLE_FOR_MODULE.includes(offer);
     }
   },
 );
