@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.3.0...@ovh-ux/manager-web@18.3.1) (2023-10-09)
+
+
+### Bug Fixes
+
+* **web:** fix performance offer database text ([#10057](https://github.com/ovh/manager/issues/10057)) ([470bd4a](https://github.com/ovh/manager/commit/470bd4aae480541d55aaa5ec2e8c7bf701b5fa27))
+
+
+
+
+
 # [18.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.2.3...@ovh-ux/manager-web@18.3.0) (2023-10-05)
 
 
