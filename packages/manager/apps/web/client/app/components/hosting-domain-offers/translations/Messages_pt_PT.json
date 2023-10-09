@@ -22,7 +22,7 @@
   "web_components_hosting_domain_offers_offer_performance_technicals_ftp_ssh": "Acesso FTP/SSH ilimitado",
   "web_components_hosting_domain_offers_offer_performance_technicals_resource": "Recursos de alta performance",
   "web_components_hosting_domain_offers_offer_performance_technicals_dbs": "{{value1}} × base de dados MySQL {{value2}}",
-  "web_components_hosting_domain_offers_offer_performance_technicals_services": "{{value1}} × serviço SQL/No SQL - DB ilimitado",
+  "web_components_hosting_domain_offers_offer_performance_technicals_services": "{{value1}} × Web Cloud Database {{value2}}",
   "web_components_hosting_domain_offers_offer_performance_technicals_cdn": "CDN basic",
   "web_components_hosting_domain_offers_offer_badge_new": "Novo",
   "web_components_hosting_domain_offers_offer_badge_upgrade": "Upgrade",

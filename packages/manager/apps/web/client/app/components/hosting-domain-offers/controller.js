@@ -11,6 +11,7 @@ import {
   VERSION_MAP,
   CLOUDWEB_OFFER,
   CLOUDWEB_VERSION_MAP,
+  WEB_CLOUD_DB_VALUES,
 } from './constants';
 
 export default class WebComponentsHostingDomainOffersController {
@@ -218,9 +219,12 @@ export default class WebComponentsHostingDomainOffersController {
   getOfferTechnicalsInfo(offerCategory) {
     return this.getNewOffer(offerCategory).TECHNICALS.map(
       ({ prefix, values }) => {
+        let serviceDatas = values[1];
+        if (prefix === 'services' && !serviceDatas)
+          serviceDatas = WEB_CLOUD_DB_VALUES;
         return this.$translate.instant(
           `web_components_hosting_domain_offers_offer_${offerCategory}_technicals_${prefix}`,
-          { value1: values[0], value2: values[1] },
+          { value1: values[0], value2: serviceDatas },
         );
       },
     );
