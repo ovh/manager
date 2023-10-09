@@ -16,6 +16,7 @@ import interfaces from '../interfaces/interfaces.module';
 import monitoring from './monitoring';
 import reverseDnsUpdate from './reverse-dns/update';
 import reverseDnsDelete from './reverse-dns/delete';
+import ftpBackupStorage from '../ftp-backup';
 import tasks from '../tasks';
 import interventions from '../intervention';
 import ipmi from '../ipmi';
@@ -39,6 +40,7 @@ angular
     dashboard,
     secondaryDns,
     interfaces,
+    ftpBackupStorage,
     'oui',
     ngOvhFeatureFlipping,
     'pascalprecht.translate',
