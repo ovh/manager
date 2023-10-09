@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.3.1...@ovh-ux/manager-web@18.3.2) (2023-10-09)
+
+
+### Reverts
+
+* Revert "fix(web): fix performance offer database text (#10057)" ([8e811ed](https://github.com/ovh/manager/commit/8e811ed08d281e31c34ad93d143268dfc861a4f2)), closes [#10057](https://github.com/ovh/manager/issues/10057)
+
+
+
+
+
 ## [18.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.3.0...@ovh-ux/manager-web@18.3.1) (2023-10-09)
 
 
