@@ -62,8 +62,6 @@ export const UPGRADE_TYPE = {
   STORAGE: 'storage',
 };
 
-export const HIDE_MRTG_FOR_SERVER_RANGES = ['scale', 'hgr'];
-
 export const VMS_URL_OTHERS = 'OTHERS';
 
 export default {

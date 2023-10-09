@@ -76,8 +76,8 @@
   "server_tab_STATS_legend_no_data": "Brak danych",
   "server_tab_stats_no_chart": "Nie można wyświetlić danych",
   "server_tab_stats_title": "Wykresy sieci - MRTG",
-  "server_tab_stats_title_info": "Multi Router Traffic Grapher - program do tworzenia wykresów ruchu sieciowego",
-  "server_tab_stats_legend_mrtg": "MRTG",
+  "server_tab_stats_title_info": "Multi Router Traffic Grapher (MRTG) to program do tworzenia wykresów ruchu sieciowego",
+  "server_tab_stats_legend_mrtg": "Monitoring Sieci",
   "server_tab_stats_legend_rtm": "Real Time Monitoring",
   "server_tab_stats_legend_location": "Gniazdo",
   "server_tab_stats_rtm_label_info": "Informacja",
@@ -1129,5 +1129,6 @@
   "server_configuration_installation_NONE": "Brak",
   "server_configuration_installation_ovh_desktop_BACKUP": "Kopia zapasowa",
   "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Nawet jeśli wybrana macierz dyskowa zawiera {{t0}} dysków, wybrany system operacyjny można zainstalować na maksymalnie 2 dyskach",
-  "server_configuration_installation_ovh_step3_scheme": "Schemat partycji:"
+  "server_configuration_installation_ovh_step3_scheme": "Schemat partycji:",
+  "server_consumption_explanation_link": "Więcej informacji"
 }

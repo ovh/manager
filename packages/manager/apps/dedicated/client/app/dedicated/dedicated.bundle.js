@@ -17,7 +17,7 @@ import './server/bandwidth-legacy/order-private/dedicated-server-bandwidth-vrack
 import './server/bandwidth-legacy/order-private/order-private.routing';
 import './server/bandwidth-legacy/order-public/dedicated-server-bandwidth-order.controller';
 import './server/bandwidth-legacy/order-public/order-public.routing';
-import './server/consumption/ServerConsumptionController';
+import './server/consumption/consumption.controller';
 import './server/display-name/display-name.controller';
 import './server/display-name/display-name.routes';
 import './server/dns/add/dedicated-server-dns-add.controller';
@@ -46,6 +46,7 @@ import './server/monitoring/update/dedicated-server-monitoring-update.controller
 import './server/monitoring/legacy-update/dedicated-server-monitoring-update.controller';
 import './server/monitoring/update/dedicated-server-monitoring-update.routes';
 import './server/monitoring/legacy-update/dedicated-server-monitoring-update.routes';
+import './server/mrtg/mrtg.controller';
 import './server/ovh-tasks/dedicated-server-ovh-tasks.routes';
 import './server/pro-use/order/dedicated-server-pro-use-order.controller';
 import './server/reboot/dedicated-server-reboot.controller';

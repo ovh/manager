@@ -3,7 +3,7 @@
   "dedicated_server_interfaces_introduction": "In questa sezione sono disponibili tutte le informazioni relative alle interfacce di rete del tuo server.",
   "dedicated_server_interfaces_vrack_information": "Ti ricordiamo che, di default, sulla rete privata (vRack) non sono presenti IP. Per configurarne uno è infatti necessario creare una rete privata e aggiungervi un server.",
   "dedicated_server_interfaces_vrack_information_link_label": "Scopri di più sulla vRack",
-  "dedicated_server_interfaces_step_checker_title": "OLA: OVHcloud Link Aggregation",
+  "dedicated_server_interfaces_step_checker_title": "OVHcloud Link Aggregation (OLA)",
   "dedicated_server_interfaces_step_checker_activate": "Attiva e configura OLA in aggregazione privata",
   "dedicated_server_interfaces_step_checker_guides_text": "Per maggiori informazioni,",
   "dedicated_server_interfaces_step_checker_guides_link": "consulta le nostre guide.",

@@ -76,8 +76,8 @@
   "server_tab_STATS_legend_no_data": "No hay datos.",
   "server_tab_stats_no_chart": "No se han podido mostrar los datos.",
   "server_tab_stats_title": "Gráficas de uso de las redes - MRTG",
-  "server_tab_stats_title_info": "Multi Router Traffic Grapher: aplicación que permite crear gráficas sobre el tráfico de red",
-  "server_tab_stats_legend_mrtg": "MRTG",
+  "server_tab_stats_title_info": "El software Multi Router Traffic Grapher (MRTG) permite crear gráficos sobre el tráfico de red",
+  "server_tab_stats_legend_mrtg": "Monitorización de red",
   "server_tab_stats_legend_rtm": "Real Time Monitoring",
   "server_tab_stats_legend_location": "Localización",
   "server_tab_stats_rtm_label_info": "Información",
@@ -933,7 +933,7 @@
   "server_traffic_cancel_button": "Dar de baja",
   "server_traffic_loading_error": "Se ha producido un error al cargar la información.",
   "server_traffic_option_released": "(no renovado)",
-  "server_consumption_label": "Consumo",
+  "server_consumption_label": "Consumo de ancho de banda",
   "server_consumption_explanation": "El consumo del ancho de banda del servidor es limitado. Una vez superado el límite, el ancho de banda saliente del servidor se ralentizará. Para evitarlo, puede aumentar su límite del ancho de banda saliente.",
   "server_consumption_summary_days": "Quedan {{t0}} de {{t1}} días.",
   "server_consumption_summary_hours": "Quedan {{t0}} de {{t1}} horas.",
@@ -1129,5 +1129,6 @@
   "server_configuration_installation_NONE": "Ninguno",
   "server_configuration_installation_ovh_desktop_BACKUP": "Copia de seguridad",
   "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Aunque el conjunto de discos seleccionado contenga {{t0}} discos, el sistema operativo elegido solo puede instalarse en 2 discos como máximo.",
-  "server_configuration_installation_ovh_step3_scheme": "Esquema de partición:"
+  "server_configuration_installation_ovh_step3_scheme": "Esquema de partición:",
+  "server_consumption_explanation_link": "Más información"
 }

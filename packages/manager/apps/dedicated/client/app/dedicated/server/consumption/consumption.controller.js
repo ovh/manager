@@ -4,6 +4,7 @@ class ServerConsumptionCtrl {
   constructor(
     $q,
     $scope,
+    $state,
     $stateParams,
     $filter,
     Alerter,
@@ -13,6 +14,7 @@ class ServerConsumptionCtrl {
   ) {
     this.$q = $q;
     this.$scope = $scope;
+    this.$state = $state;
     this.$stateParams = $stateParams;
     this.$filter = $filter;
     this.Alerter = Alerter;
@@ -134,24 +136,9 @@ class ServerConsumptionCtrl {
     );
   }
 
-  // function quotaStatus () {
-  //   $scope.state.throttled = $scope.consumptionData.throttled.status;
-  //   if ($scope.state.overQuota) {
-  //     Alerter.alertFromSWS([
-  //       $translate.instant("server_consumption_warning_overquota", {
-  //         t0: $scope.consumptionData.throttled.speed
-  //       }),
-  //       //$translate.instant("server_consumption_warning_overquota_increase")
-  //     ].join(" "), null, $scope.alert);
-  //   } else if ($scope.state.nearQuota) {
-  //     Alerter.alertFromSWS([
-  //       $translate.instant("server_consumption_warning_nearquota", {
-  //         t0: $scope.consumption.total.text
-  //       }),
-  //       //$translate.instant("server_consumption_warning_nearquota_increase")
-  //     ].join(" "), null, $scope.alert);
-  //   }
-  // }
+  getTabItemUrl(tabItemName) {
+    return this.$state.href(`app.dedicated-server.server.${tabItemName}`);
+  }
 }
 
 angular
