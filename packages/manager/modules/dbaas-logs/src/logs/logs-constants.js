@@ -179,18 +179,10 @@ export default {
     },
   },
   DATA_STORAGE: {
-    TIME_PERIOD_MONTHS: 10,
-    MS_FOR_A_SEC: 1000,
     METRICS: {
-      STREAM_SIZE: 'ldp.service.stream.total',
-      INDEX_SIZE: 'ldp.service.indice.total',
-      COLD_STORAGE_TOTAL: 'ldp.service.coldstorage.total',
-    },
-    AGGREGATORS: {
-      ZIMSUM: 'zimsum',
-    },
-    DOWNSAMPLING_MODE: {
-      '24H_MAX': '24h-max-none',
+      STREAM_SIZE: 'ldp_service_stream_total',
+      INDEX_SIZE: 'ldp_service_indice_total',
+      COLD_STORAGE_TOTAL: 'ldp_service_coldstorage_total',
     },
   },
   RETENTION: {

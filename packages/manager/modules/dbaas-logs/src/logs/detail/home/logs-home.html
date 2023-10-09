@@ -183,7 +183,7 @@
                             <canvas
                                 id="stream"
                                 class="chart chart-line"
-                                data-ng-if="ctrl.streamData.timestamps.length>0"
+                                data-ng-if="ctrl.streamUsageGraphData.data.length>0"
                                 chart-data="ctrl.streamUsageGraphData.data"
                                 chart-labels="ctrl.streamUsageGraphData.labels"
                                 chart-series="ctrl.streamUsageGraphData.series"
@@ -193,7 +193,7 @@
                             >
                             </canvas>
                             <span
-                                data-ng-if="ctrl.streamData.timestamps.length===0"
+                                data-ng-if="ctrl.streamUsageGraphData.data.length===0"
                                 data-translate="logs_home_no_usage_known"
                             ></span>
                         </oui-tabs-item>
@@ -203,7 +203,7 @@
                             <canvas
                                 id="archive"
                                 class="chart chart-line"
-                                data-ng-if="ctrl.archiveData.timestamps.length>0"
+                                data-ng-if="ctrl.archiveUsageGraphData.data.length>0"
                                 chart-data="ctrl.archiveUsageGraphData.data"
                                 chart-labels="ctrl.archiveUsageGraphData.labels"
                                 chart-series="ctrl.archiveUsageGraphData.series"
@@ -213,7 +213,7 @@
                             >
                             </canvas>
                             <span
-                                data-ng-if="ctrl.archiveData.timestamps.length===0"
+                                data-ng-if="ctrl.archiveUsageGraphData.data.length===0"
                                 data-translate="logs_home_no_usage_known"
                             ></span>
                         </oui-tabs-item>
@@ -223,7 +223,7 @@
                             <canvas
                                 id="indice"
                                 class="chart chart-line"
-                                data-ng-if="ctrl.indiceData.timestamps.length>0"
+                                data-ng-if="ctrl.indiceUsageGraphData.data.length>0"
                                 chart-data="ctrl.indiceUsageGraphData.data"
                                 chart-labels="ctrl.indiceUsageGraphData.labels"
                                 chart-series="ctrl.indiceUsageGraphData.series"
@@ -233,7 +233,7 @@
                             >
                             </canvas>
                             <span
-                                data-ng-if="ctrl.indiceData.timestamps.length===0"
+                                data-ng-if="ctrl.indiceUsageGraphData.data.length===0"
                                 data-translate="logs_home_no_usage_known"
                             ></span>
                         </oui-tabs-item>
