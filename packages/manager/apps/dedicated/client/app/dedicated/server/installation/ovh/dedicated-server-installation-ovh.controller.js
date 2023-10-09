@@ -2438,9 +2438,7 @@ angular
             noRaid:
               $scope.installation.nbDiskUse === 1 &&
               !$scope.informations.raidController,
-            diskGroupId: !isDefaultDiskGroup($scope.installation.diskGroup)
-              ? $scope.installation.diskGroup.diskGroupId
-              : null,
+            diskGroupId: $scope.installation.diskGroup.diskGroupId || null,
           },
         ).then(
           (task) => {
