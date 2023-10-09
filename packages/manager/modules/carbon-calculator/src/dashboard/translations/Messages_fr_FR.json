@@ -6,6 +6,6 @@
   "carbon_calculator_dashboard_carbon_balance_operations": "Opérations",
   "carbon_calculator_dashboard_carbon_balance_greenhouse_gas": "Émissions de gaz à effet de serre",
   "carbon_calculator_dashboard_carbon_balance_explanation": "OVHcloud inclut l'ensemble des sources émettrices de CO2eq, données fournies par la formule :",
-  "carbon_calculator_dashboard_billing_explanation": "Ce document comprend les émissions de gaz à effet de serre du mois précédent :<ul><li>de vos services <strong>infrastructures Baremetal</strong></ul></li>dont vous êtes le <strong>contact facturation</strong>.",
+  "carbon_calculator_dashboard_billing_explanation": "Ce document comprend les émissions de gaz à effet de serre du mois précédent :<ul><li>de vos services <strong>infrastructures Baremetal</strong></li><li>de vos services <strong>Hosted Privated Cloud</strong></li></ul>dont vous êtes le <strong>contact facturation</strong>.",
   "carbon_calculator_dashboard_billing_download": "Télécharger mon empreinte de {{month}}"
 }
