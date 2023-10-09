@@ -76,8 +76,8 @@
   "server_tab_STATS_legend_no_data": "Keine Daten vorhanden",
   "server_tab_stats_no_chart": "Die Daten können nicht angezeigt werden",
   "server_tab_stats_title": "Graphen zur Netzwerk-Nutzung - MRTG",
-  "server_tab_stats_title_info": "Multi Router Traffic Grapher - Programm zur Erstellung von Graphen zum Netzwerk-Traffic",
-  "server_tab_stats_legend_mrtg": "MRTG",
+  "server_tab_stats_title_info": "Multi Router Traffic Grapher (MRTG) ist eine Software zur Erstellung von Graphen zum Netzwerkverkehr.",
+  "server_tab_stats_legend_mrtg": "Netzwerk-Monitoring",
   "server_tab_stats_legend_rtm": "Real Time Monitoring",
   "server_tab_stats_legend_location": "Ordner",
   "server_tab_stats_rtm_label_info": "Information",
@@ -933,7 +933,7 @@
   "server_traffic_cancel_button": "Kündigen",
   "server_traffic_loading_error": "Beim Laden der Informationen ist ein Fehler aufgetreten.",
   "server_traffic_option_released": "(nicht verlängert)",
-  "server_consumption_label": "Verbrauch",
+  "server_consumption_label": "Bandbreitennutzung",
   "server_consumption_explanation": "Der Bandbreitenverbrauch für diesen Server ist begrenzt. Wenn das Limit überschritten wird, wird die ausgehende Bandbreite des Servers gedrosselt. Um dieses Problem zu beheben, erhöhen Sie das Quota für die ausgehende Bandbreite.",
   "server_consumption_summary_days": "{{t0}} von {{t1}} Tagen verbleibend",
   "server_consumption_summary_hours": "{{t0}} von {{t1}} Stunden verbleibend",
@@ -1129,5 +1129,6 @@
   "server_configuration_installation_NONE": "Keine",
   "server_configuration_installation_ovh_desktop_BACKUP": "Backup",
   "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Auch wenn das ausgewählte Disk-Array {{t0}} Festplatten enthält, kann das gewählte Betriebssystem nur auf maximal 2 Festplatten installiert werden.",
-  "server_configuration_installation_ovh_step3_scheme": "Partitionierungsschema:"
+  "server_configuration_installation_ovh_step3_scheme": "Partitionierungsschema:",
+  "server_consumption_explanation_link": "Mehr erfahren"
 }

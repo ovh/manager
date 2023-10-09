@@ -76,8 +76,8 @@
   "server_tab_STATS_legend_no_data": "No data",
   "server_tab_stats_no_chart": "The data cannot be displayed",
   "server_tab_stats_title": "Network usage graphics - MRTG",
-  "server_tab_stats_title_info": "Multi Router Traffic Grapher - software that enables network traffic graphs to be created",
-  "server_tab_stats_legend_mrtg": "MRTG",
+  "server_tab_stats_title_info": "Multi Router Traffic Grapher (MRTG) is a software program that allows you to create graphs on network traffic",
+  "server_tab_stats_legend_mrtg": "Network Monitoring",
   "server_tab_stats_legend_rtm": "Real Time Monitoring",
   "server_tab_stats_legend_location": "Slot",
   "server_tab_stats_rtm_label_info": "Information",
@@ -933,7 +933,7 @@
   "server_traffic_cancel_button": "Cancel ",
   "server_traffic_loading_error": "An error has occurred retrieving the information.",
   "server_traffic_option_released": "(not renewed)",
-  "server_consumption_label": "Usage",
+  "server_consumption_label": "Bandwidth consumption",
   "server_consumption_explanation": "The bandwidth usage for this server is limited. Once the limit has been exceeded, the server’s outgoing bandwidth will be slowed down. To resolve this issue, increase your outgoing bandwidth quota.",
   "server_consumption_summary_days": "{{t0}} of {{t1}} days remaining",
   "server_consumption_summary_hours": "{{t0}} of {{t1}} hours remaining",
@@ -1129,5 +1129,6 @@
   "server_configuration_installation_NONE": "None",
   "server_configuration_installation_ovh_desktop_BACKUP": "Backup",
   "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Even if the selected disk group contains {{t0}} disks, the chosen operating system can only be installed on up to 2 disks",
-  "server_configuration_installation_ovh_step3_scheme": "Partitioning scheme:"
+  "server_configuration_installation_ovh_step3_scheme": "Partitioning scheme:",
+  "server_consumption_explanation_link": "More details"
 }
