@@ -22,7 +22,7 @@
   "web_components_hosting_domain_offers_offer_performance_technicals_ftp_ssh": "Unbegrenzter FTP-/SSH-Zugang",
   "web_components_hosting_domain_offers_offer_performance_technicals_resource": "Leistungsstarke Ressourcen",
   "web_components_hosting_domain_offers_offer_performance_technicals_dbs": "{{value1}} × MySQL-Datenbank mit {{value2}}",
-  "web_components_hosting_domain_offers_offer_performance_technicals_services": "{{value1}} × Web Cloud Database {{value2}}",
+  "web_components_hosting_domain_offers_offer_performance_technicals_services": "{{value1}} × SQL-/NoSQL-Dienst – unbegrenzte DB",
   "web_components_hosting_domain_offers_offer_performance_technicals_cdn": "CDN Basic",
   "web_components_hosting_domain_offers_offer_badge_new": "Neu",
   "web_components_hosting_domain_offers_offer_badge_upgrade": "Upgrade",
