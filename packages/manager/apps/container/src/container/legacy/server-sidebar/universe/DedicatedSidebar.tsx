@@ -48,6 +48,7 @@ export const features = [
   'dedicated-server:ecoRangeOrder',
   'dedicated-server:nutanixOrder',
   'carbon-calculator',
+  'network-security',
 ];
 
 export default function DedicatedSidebar() {
@@ -284,6 +285,13 @@ export default function DedicatedSidebar() {
                 ];
               },
             },
+          feature['network-security'] && {
+            id: 'dedicated-network-security',
+            label: t('sidebar_network_security'),
+            icon: getIcon('oui-icon oui-icon-shield_concept'),
+            href: navigation.getURL('dedicated', '#/networkSecurity'),
+            routeMatcher: new RegExp('^/networkSecurity'),
+          },
           feature['vrack:bare-metal-cloud'] && {
             id: 'dedicated-vrack',
             label: t('sidebar_vrack'),
