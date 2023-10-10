@@ -1,26 +1,26 @@
-<div data-ng-controller="FtpBackupOrdercontroller">
+<div>
     <div
         data-wizard
-        data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="orderCapacity"
+        data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+        data-wizard-on-finish="$ctrl.orderCapacity.bind($ctrl)"
         data-wizard-title=":: 'server_configuration_ftpbackup_order_title' | translate"
     >
         <div
             data-wizard-step
-            data-wizard-step-valid="!loading && order.choiceIndex != null"
-            data-wizard-step-on-load="load"
+            data-wizard-step-valid="!$ctrl.loading && $ctrl.order.choiceIndex != null"
+            data-wizard-step-on-load="$ctrl.load.bind($ctrl)"
         >
-            <div class="text-center" data-ng-if="loading">
+            <div class="text-center" data-ng-if="$ctrl.loading">
                 <oui-spinner></oui-spinner>
             </div>
 
-            <div data-ng-if="!loading">
+            <div data-ng-if="!$ctrl.loading">
                 <p
                     data-translate="server_configuration_ftpbackup_order_info"
                 ></p>
                 <table
                     class="table table-hover"
-                    data-ng-if="order.model.length"
+                    data-ng-if="$ctrl.order.model.length"
                 >
                     <thead>
                         <tr>
@@ -36,15 +36,15 @@
                     </thead>
                     <tbody>
                         <tr
-                            data-ng-repeat="orderType in order.model track by $index"
+                            data-ng-repeat="orderType in $ctrl.order.model track by $index"
                         >
                             <td class="text-center">
                                 <input
                                     type="radio"
                                     name="capacityChoice"
                                     id="capacityChoice-{{ $index }}"
-                                    data-ng-click="order.choiceIndex = $index"
-                                    data-ng-model="order.choiceIndex"
+                                    data-ng-click="$ctrl.order.choiceIndex = $index"
+                                    data-ng-model="$ctrl.order.choiceIndex"
                                     data-ng-value="$index"
                                 />
                             </td>
@@ -67,7 +67,7 @@
                 </table>
                 <strong
                     class="text-danger"
-                    data-ng-if="!order.model.length"
+                    data-ng-if="!$ctrl.order.model.length"
                     data-translate="server_configuration_ftpbackup_order_empty_choice"
                 >
                 </strong>
@@ -76,19 +76,19 @@
 
         <div
             data-wizard-step
-            data-wizard-step-on-load="getDetail"
-            data-wizard-step-valid="!loading && (order.bc.contracts.length == 0 || order.agreeContract)"
+            data-wizard-step-on-load="$ctrl.getDetail.bind($ctrl)"
+            data-wizard-step-valid="!$ctrl.loading && ($ctrl.order.bc.contracts.length == 0 || $ctrl.order.agreeContract)"
         >
-            <div class="text-center" data-ng-if="loading">
+            <div class="text-center" data-ng-if="$ctrl.loading">
                 <oui-spinner></oui-spinner>
             </div>
 
-            <div data-ng-if="!loading">
+            <div data-ng-if="!$ctrl.loading">
                 <p
                     data-translate="server_configuration_ftpbackup_order_resume"
                 ></p>
                 <div
-                    data-ng-repeat="detail in order.bc.details track by $index"
+                    data-ng-repeat="detail in $ctrl.order.bc.details track by $index"
                 >
                     <p>
                         <span data-ng-bind="detail.description"></span> :
@@ -111,7 +111,7 @@
                     ></span>
                     <strong
                         class="text-danger"
-                        data-ng-bind="order.bc.prices.withoutTax.text"
+                        data-ng-bind="$ctrl.order.bc.prices.withoutTax.text"
                     >
                     </strong>
                     <br />
@@ -120,18 +120,18 @@
                     ></span>
                     <strong
                         class="text-danger"
-                        data-ng-bind="order.bc.prices.withTax.text"
+                        data-ng-bind="$ctrl.order.bc.prices.withTax.text"
                     >
                     </strong>
                 </p>
                 <div
                     class="checkbox"
-                    data-ng-if="order.bc.contracts.length > 0"
+                    data-ng-if="$ctrl.order.bc.contracts.length > 0"
                 >
                     <label>
                         <input
                             type="checkbox"
-                            data-ng-model="order.agreeContract"
+                            data-ng-model="$ctrl.order.agreeContract"
                         />
                         <span
                             data-translate="server_configuration_ftpbackup_order_contracts"
@@ -139,7 +139,7 @@
                     </label>
                     <ul>
                         <li
-                            data-ng-repeat="contract in order.bc.contracts track by $index"
+                            data-ng-repeat="contract in $ctrl.order.bc.contracts track by $index"
                         >
                             <a
                                 target="_blank"
