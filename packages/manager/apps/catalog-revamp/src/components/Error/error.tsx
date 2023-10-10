@@ -1,14 +1,12 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OsdsMessage } from '@ovhcloud/ods-components/message/react/';
 import { OsdsText } from '@ovhcloud/ods-components/text/react/';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react/';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message/';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text/';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components/button/';
-
+import ErrorButtons from './ErrorButtons';
+import ErrorMessage from './ErrorMessage';
 import OOPS from '../../assets/error-banner-oops.png';
 import './error.scss';
 
@@ -35,8 +33,6 @@ interface ErrorObject {
 
 const ErrorBanner: React.FC<ErrorObject> = ({ error }) => {
   const { t } = useTranslation('catalog-revamp/error');
-  const navigate = useNavigate();
-  const location = useLocation();
   return (
     <div className="manager-error-page p-5">
       <div className="manager-error-page-image">
@@ -54,35 +50,11 @@ const ErrorBanner: React.FC<ErrorObject> = ({ error }) => {
           color={ODS_THEME_COLOR_INTENT.error}
           type={ODS_MESSAGE_TYPE.error}
         >
-          <div>
-            {t('manager_error_page_default')} <br />
-            {error?.data?.message && <strong>{error.data.message}</strong>}
-            {error?.headers['x-ovh-queryid'] && (
-              <p>
-                {t('manager_error_page_detail_code')}
-                {error.headers['x-ovh-queryid']}
-              </p>
-            )}
-          </div>
+          <ErrorMessage error={error} />
         </OsdsMessage>
       </div>
 
-      <div className="manager-error-page-footer py-2">
-        <OsdsButton
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          onClick={() => navigate('/', { replace: true })}
-        >
-          {t('manager_error_page_action_home_label')}
-        </OsdsButton>
-        <OsdsButton
-          color={ODS_THEME_COLOR_INTENT.primary}
-          variant={ODS_BUTTON_VARIANT.flat}
-          onClick={() => navigate(location.pathname, { replace: true })}
-        >
-          {t('manager_error_page_action_reload_label')}
-        </OsdsButton>
-      </div>
+      <ErrorButtons />
     </div>
   );
 };

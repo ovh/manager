@@ -23,19 +23,17 @@ interface FiltersProps {
 
 const Filters: React.FC<FiltersProps> = ({
   products,
-  setSelectedCategories,
-  setSelectedUniverses,
+  setSelectedCategories: setParentSelectedCategories,
+  setSelectedUniverses: setParentSelectedUniverses,
   onApply,
 }) => {
-  const [selectedCategories, setSelectedCategoriesLocal] = useState<string[]>(
-    [],
-  );
-  const [selectedUniverses, setSelectedUniversesLocal] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedUniverses, setSelectedUniverses] = useState<string[]>([]);
   const [hasInteracted, setHasInteracted] = useState<boolean>(false);
 
   const setFilters = () => {
-    setSelectedCategories(selectedCategories);
-    setSelectedUniverses(selectedUniverses);
+    setParentSelectedCategories(selectedCategories);
+    setParentSelectedUniverses(selectedUniverses);
     onApply();
   };
 
@@ -47,10 +45,10 @@ const Filters: React.FC<FiltersProps> = ({
   );
 
   const resetFilters = () => {
-    setSelectedCategoriesLocal([]);
-    setSelectedUniversesLocal([]);
     setSelectedCategories([]);
     setSelectedUniverses([]);
+    setParentSelectedCategories([]);
+    setParentSelectedUniverses([]);
   };
 
   const { t } = useTranslation('catalog-revamp/filters');
@@ -68,9 +66,9 @@ const Filters: React.FC<FiltersProps> = ({
         : prevState.filter((item) => item !== label);
 
     if (type === 'category') {
-      setSelectedCategoriesLocal(updateState);
+      setSelectedCategories(updateState);
     } else {
-      setSelectedUniversesLocal(updateState);
+      setSelectedUniverses(updateState);
     }
   };
 
