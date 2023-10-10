@@ -6,6 +6,7 @@ import {
   ACTIONS,
   LEGACY_PLAN_CODES,
   DOCUMENTATION_LINKS,
+  DISCOVERY_PROJECT_PLANCODE,
 } from './project.constants';
 import { PCI_FEATURES } from '../projects.constant';
 
@@ -78,6 +79,10 @@ export default /* @ngInject */ ($stateProvider) => {
 
       getQuotaUrl: /* @ngInject */ ($state) => () =>
         $state.href('pci.projects.project.quota'),
+
+      isDiscoveryProject: /* @ngInject */ (project) => {
+        return project.planCode === DISCOVERY_PROJECT_PLANCODE;
+      },
 
       guideUrl: /* @ngInject */ (user) => {
         Object.keys(GUIDES_LIST).forEach((key) => {
