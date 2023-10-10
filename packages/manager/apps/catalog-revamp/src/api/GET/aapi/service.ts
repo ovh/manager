@@ -1,15 +1,13 @@
-import { queryClient, useShell } from '@ovh-ux/manager-react-core-application';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { apiClient } from '@ovh-ux/manager-core-api';
 import i18next from 'i18next';
-
-type Item = unknown;
 
 export const getManagerHubCatalogListQueryKey = ['/hub/catalog'];
 
 /**
  * Manager-catalog endpoints : Get manager-catalog
  */
-export const getManagerHubCatalogList = async (): Promise<Item[]> => {
+export const getManagerHubCatalogList = async (): Promise<unknown[]> => {
   const fetchData = async () => {
     const config = {
       headers: {

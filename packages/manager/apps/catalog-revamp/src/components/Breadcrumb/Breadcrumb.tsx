@@ -1,8 +1,3 @@
-/**
- *  TODO - Move in the future
- *  Super components manager library
- */
-
 import React, { useEffect, useState } from 'react';
 import { Params, useMatches } from 'react-router-dom';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/breadcrumb/react';
@@ -18,7 +13,7 @@ type BreadcrumbItem = {
 };
 
 type MatchHandle = {
-  breadcrumb?: ({ data, params }: BreadcrumbHandleParams) => string;
+  breadcrumb?: ({ data, params }: BreadcrumbHandleParams) => Promise<string>;
 };
 
 type Match = {
@@ -33,9 +28,17 @@ function Breadcrumb(): JSX.Element {
   const [matchCrumbs, setMatchCrumbs] = useState<BreadcrumbItem[]>([]);
 
   useEffect(() => {
+    const categoryItem = {
+      label: 'Dashboard',
+      href: 'hub',
+    };
+    setCategoryCrumbs(() => [categoryItem]);
+  }, []);
+
+  useEffect(() => {
     const items = matches.map(async (match) => {
       const { handle, data, params }: Match = match;
-      const breadcrumb = await handle?.breadcrumb;
+      const breadcrumb = await Promise.resolve(handle?.breadcrumb);
       const crumb = {
         label: await breadcrumb?.({ data, params }),
         href: match.pathname,
@@ -55,13 +58,13 @@ function Breadcrumb(): JSX.Element {
       });
   }, [matches]);
 
-  const rootName = `${window.location.origin}/#/catalog-revamp`;
+  const rootName = `${window.location.origin}/#/`;
   const crumbs = [...categoryCrumbs, ...matchCrumbs];
-  const dato = crumbs.map((crumb, index) => ({
+  const data = crumbs.map((crumb, index) => ({
     label: crumb.label,
     href: `${rootName}${crumb.href}`,
   }));
-  return <OsdsBreadcrumb items={dato} />;
+  return <OsdsBreadcrumb items={data} />;
 }
 
 export default Breadcrumb;
