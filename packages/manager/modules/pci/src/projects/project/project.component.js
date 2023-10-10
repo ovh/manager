@@ -27,6 +27,7 @@ export default {
     guideTrackingSectionTags: '<',
     trackClick: '<',
     isMenuSidebarVisible: '<',
+    isDiscoveryProject: '<',
   },
   controller,
   template,

@@ -234,6 +234,7 @@ export const URL_INFO = {
   LOCAL_ZONE: LOCAL_ZONE_INFO_URL,
 };
 
+export const DISCOVERY_PROJECT_PLANCODE = 'project.discovery';
 export default {
   PRODUCT_IMAGES,
   ACTIONS,
@@ -247,4 +248,5 @@ export default {
   PCI_FEATURES,
   LOCAL_ZONE_REGION,
   URL_INFO,
+  DISCOVERY_PROJECT_PLANCODE,
 };
