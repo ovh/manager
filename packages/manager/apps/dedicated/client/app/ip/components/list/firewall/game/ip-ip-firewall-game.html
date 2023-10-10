@@ -118,6 +118,7 @@
                             class="form-control"
                             data-ng-model="IpGameFirewallCtrl.rule.protocol"
                             data-ng-options="IpGameFirewallCtrl.getProtocoleText(protocol) for protocol in IpGameFirewallCtrl.enums.protocols"
+                            data-ng-change="IpGameFirewallCtrl.selectProtocolDefaultPort()"
                         >
                         </select>
                     </td>
