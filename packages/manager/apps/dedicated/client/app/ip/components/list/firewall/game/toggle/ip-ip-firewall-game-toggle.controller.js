@@ -12,6 +12,11 @@ export default /* @ngInject */ function EnableDisableGameFirewallRuleCtrl(
   self.datas = $scope.currentActionData;
   self.loading = false;
 
+  $scope.cancelAction = () => {
+    $rootScope.$broadcast('ips.gameFirewall.cancelToggle');
+    $scope.resetAction();
+  };
+
   $scope.enableDisableGameFirewallRule = function enableDisableGameFirewallRule() {
     self.loading = true;
 
