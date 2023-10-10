@@ -8,10 +8,7 @@ import {
   DEFAULT_GET_AVAILABLE_OPTIONS,
 } from './constants';
 
-export const useOvhPaymentMethod = ({ reketInstance, region }) => {
-  const usedReketInstance = reketInstance;
-  const usedRegion = region;
-
+export const useOvhPaymentMethod = ({ axiosInstance, region }) => {
   const {
     addPaymentMean,
     challengePaymentMean,
@@ -19,7 +16,7 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
     editPaymentMean,
     getPaymentMeans,
     setDefaultPaymentMean,
-  } = usePaymentMean({ reketInstance, region });
+  } = usePaymentMean({ axiosInstance, region });
 
   /*= ================================================
   =            Available Payment Methods            =
@@ -28,8 +25,9 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
   const getAvailablePaymentMethods = (
     onlyRegisterable = DEFAULT_GET_AVAILABLE_OPTIONS.onlyRegisterable,
   ) => {
-    return usedReketInstance
+    return axiosInstance
       .get('/me/payment/availableMethods')
+      .then(({ data }) => data)
       .then((availableMethods) => {
         const availablePaymentMethods = onlyRegisterable
           ? availableMethods.filter(({ registerable }) => registerable)
@@ -67,18 +65,21 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
       return addPaymentMean(availablePaymentMethod.original, params);
     }
 
-    return usedReketInstance
+    return axiosInstance
       .post('/me/payment/method', {
         ...params,
         paymentType: availablePaymentMethod.paymentType,
       })
+      .then(({ data }) => data)
       .then((response) => {
         if (params.orderId && response.paymentMethodId) {
-          return usedReketInstance.post(`/me/order/${params.orderId}/pay`, {
-            paymentMethod: {
-              id: response.paymentMethodId,
-            },
-          });
+          return axiosInstance
+            .post(`/me/order/${params.orderId}/pay`, {
+              paymentMethod: {
+                id: response.paymentMethodId,
+              },
+            })
+            .then(({ data }) => data);
         }
 
         return response;
@@ -98,10 +99,9 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
       return editPaymentMean(paymentMethod.original, params);
     }
 
-    return usedReketInstance.put(
-      `/me/payment/method/${paymentMethod.paymentMethodId}`,
-      params,
-    );
+    return axiosInstance
+      .put(`/me/payment/method/${paymentMethod.paymentMethodId}`, params)
+      .then(({ data }) => data);
   };
 
   /**
@@ -134,10 +134,11 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
       return challengePaymentMean(paymentMethod.original, challenge);
     }
 
-    return usedReketInstance.post(
-      `/me/payment/method/${paymentMethod.paymentMethodId}/challenge`,
-      { challenge },
-    );
+    return axiosInstance
+      .post(`/me/payment/method/${paymentMethod.paymentMethodId}/challenge`, {
+        challenge,
+      })
+      .then(({ data }) => data);
   };
 
   /**
@@ -148,10 +149,9 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
    * @return {Promise}  Which returns an object representing a payment method valdiation.
    */
   const addPaymentMethodDetails = (paymentMethodId, details) => {
-    return usedReketInstance.post(
-      `/me/payment/method/${paymentMethodId}/details`,
-      details,
-    );
+    return axiosInstance
+      .post(`/me/payment/method/${paymentMethodId}/details`, details)
+      .then(({ data }) => data);
   };
 
   /**
@@ -165,11 +165,12 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
     paymentMethodValidation,
     finalizeData = {},
   ) => {
-    return usedReketInstance
+    return axiosInstance
       .post(
         `/me/payment/method/${paymentMethodValidation.paymentMethodId}/finalize`,
         finalizeData,
       )
+      .then(({ data }) => data)
       .then((paymentMethodOptions) => new PaymentMethod(paymentMethodOptions));
   };
 
@@ -185,9 +186,9 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
       return deletePaymentMean(paymentMethod.original);
     }
 
-    return usedReketInstance.delete(
-      `/me/payment/method/${paymentMethod.paymentMethodId}`,
-    );
+    return axiosInstance
+      .delete(`/me/payment/method/${paymentMethod.paymentMethodId}`)
+      .then(({ data }) => data);
   };
 
   /* -----  End of Actions on payment methods  ------*/
@@ -200,8 +201,9 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
    * @return {PaymentMethod}          The details of the desired payment method
    */
   const getPaymentMethod = (paymentMethodId) => {
-    return usedReketInstance
+    return axiosInstance
       .get(`/me/payment/method/${paymentMethodId}`)
+      .then(({ data }) => data)
       .then((paymentMethodOptions) => new PaymentMethod(paymentMethodOptions));
   };
 
@@ -218,10 +220,11 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
         }
       : {};
 
-    return usedReketInstance
+    return axiosInstance
       .get('/me/payment/method', {
         params,
       })
+      .then(({ data }) => data)
       .then((paymentMethodIds) =>
         Promise.all(
           paymentMethodIds.map((paymentMethodId) =>
@@ -245,7 +248,7 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
    */
   const getAllPaymentMethods = (options = DEFAULT_GET_OPTIONS) => {
     const paymentMeansPromise =
-      usedRegion !== 'US' ? getPaymentMeans(options) : Promise.resolve([]);
+      region !== 'US' ? getPaymentMeans(options) : Promise.resolve([]);
 
     return Promise.all([paymentMeansPromise, getPaymentMethods(options)]).then(
       ([paymentMeans, paymentMethods]) => {

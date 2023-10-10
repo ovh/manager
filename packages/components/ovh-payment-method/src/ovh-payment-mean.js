@@ -8,10 +8,7 @@ import { AVAILABLE_PAYMENT_MEAN_TYPES, DEFAULT_GET_OPTIONS } from './constants';
 
 import { PAYMENT_MEAN_TYPE_ENUM } from './enums/payment-mean.enum';
 
-export const usePaymentMean = ({ reketInstance, region }) => {
-  const usedReketInstance = reketInstance;
-  const usedRegion = region;
-
+export const usePaymentMean = ({ axiosInstance, region }) => {
   const buildRejectError = (errorObject) => {
     const paymentMeanError = new Error(errorObject.data.message);
     paymentMeanError.status = errorObject.status;
@@ -24,7 +21,7 @@ export const usePaymentMean = ({ reketInstance, region }) => {
   ================================================ */
 
   const addPaymentMean = (availablePaymentMean, params = {}) => {
-    if (usedRegion === 'US') {
+    if (region === 'US') {
       return Promise.reject(
         buildRejectError({
           status: 403,
@@ -42,8 +39,9 @@ export const usePaymentMean = ({ reketInstance, region }) => {
       delete addParams.default;
     }
 
-    return usedReketInstance
+    return axiosInstance
       .post(`/me/paymentMean/${availablePaymentMean.meanType}`, addParams)
+      .then(({ data }) => data)
       .then((result) => {
         if (
           result.url &&
@@ -67,7 +65,7 @@ export const usePaymentMean = ({ reketInstance, region }) => {
    *  @return {Promise}
    */
   const editPaymentMean = (paymentMean, params) => {
-    if (usedRegion === 'US') {
+    if (region === 'US') {
       return Promise.reject(
         buildRejectError({
           status: 403,
@@ -78,10 +76,9 @@ export const usePaymentMean = ({ reketInstance, region }) => {
       );
     }
 
-    return usedReketInstance.put(
-      `/me/paymentMean/${paymentMean.meanType}/${paymentMean.id}`,
-      params,
-    );
+    return axiosInstance
+      .put(`/me/paymentMean/${paymentMean.meanType}/${paymentMean.id}`, params)
+      .then(({ data }) => data);
   };
 
   /**
@@ -91,9 +88,11 @@ export const usePaymentMean = ({ reketInstance, region }) => {
    *  @return {Promise}
    */
   const setDefaultPaymentMean = (paymentMean) => {
-    return usedReketInstance.post(
-      `/me/paymentMean/${paymentMean.meanType}/${paymentMean.id}/chooseAsDefaultPaymentMean`,
-    );
+    return axiosInstance
+      .post(
+        `/me/paymentMean/${paymentMean.meanType}/${paymentMean.id}/chooseAsDefaultPaymentMean`,
+      )
+      .then(({ data }) => data);
   };
 
   /**
@@ -103,9 +102,9 @@ export const usePaymentMean = ({ reketInstance, region }) => {
    *  @return {Promise}
    */
   const deletePaymentMean = (paymentMean) => {
-    return usedReketInstance.delete(
-      `/me/paymentMean/${paymentMean.meanType}/${paymentMean.id}`,
-    );
+    return axiosInstance
+      .delete(`/me/paymentMean/${paymentMean.meanType}/${paymentMean.id}`)
+      .then(({ data }) => data);
   };
 
   /* -----  End of Actions on payment means  ------*/
@@ -119,7 +118,7 @@ export const usePaymentMean = ({ reketInstance, region }) => {
    * @return {Promise}              Which returns an instance of PaymentMean.
    */
   const getPaymentMeanOfType = (paymentMeanId, paymentMeanType, transform) => {
-    if (usedRegion === 'US') {
+    if (region === 'US') {
       return Promise.reject(
         buildRejectError({
           status: 403,
@@ -130,8 +129,9 @@ export const usePaymentMean = ({ reketInstance, region }) => {
       );
     }
 
-    return usedReketInstance
+    return axiosInstance
       .get(`/me/paymentMean/${paymentMeanType}/${paymentMeanId}`)
+      .then(({ data }) => data)
       .then((meanOptions) => {
         let paymentMean;
         switch (paymentMeanType) {
@@ -167,7 +167,7 @@ export const usePaymentMean = ({ reketInstance, region }) => {
     paymentMeanType,
     options = DEFAULT_GET_OPTIONS,
   ) => {
-    if (usedRegion === 'US') {
+    if (region === 'US') {
       return Promise.reject(
         buildRejectError({
           status: 403,
@@ -187,10 +187,11 @@ export const usePaymentMean = ({ reketInstance, region }) => {
           }
         : {};
 
-    return usedReketInstance
+    return axiosInstance
       .get(paymentMeanUrl, {
         params,
       })
+      .then(({ data }) => data)
       .then((paymentMeanIds) =>
         Promise.all(
           paymentMeanIds.map((paymentMeanId) =>
@@ -212,7 +213,7 @@ export const usePaymentMean = ({ reketInstance, region }) => {
    *  @return {Promise}        That returns an array of payment means.
    */
   const getPaymentMeans = (options = DEFAULT_GET_OPTIONS) => {
-    if (usedRegion === 'US') {
+    if (region === 'US') {
       return Promise.reject(
         buildRejectError({
           status: 403,
@@ -224,7 +225,7 @@ export const usePaymentMean = ({ reketInstance, region }) => {
     }
 
     const availablePaymentMeanTypes =
-      AVAILABLE_PAYMENT_MEAN_TYPES[usedRegion] || [];
+      AVAILABLE_PAYMENT_MEAN_TYPES[region] || [];
 
     return Promise.all(
       availablePaymentMeanTypes.map(({ value }) =>

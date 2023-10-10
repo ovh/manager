@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useReket } from '@ovh-ux/ovh-reket';
+import { aapi } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
 import Sidebar from '../Sidebar';
-import useServiceLoader from "./useServiceLoader";
+import useServiceLoader from './useServiceLoader';
 import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
@@ -52,7 +52,6 @@ export default function DedicatedSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
   const [shopItems, setShopItems] = useState<ShopItem[]>([]);
   const shell = useShell();
-  const reketInstance = useReket();
   const { loadServices } = useServiceLoader('dedicated');
   const { t, i18n } = useTranslation('sidebar');
   const navigation = shell.getPlugin('navigation');
@@ -401,9 +400,9 @@ export default function DedicatedSidebar() {
   };
 
   const getFeatures = (): Promise<Record<string, string>> =>
-    reketInstance.get(`/feature/${features.join(',')}/availability`, {
-      requestType: 'aapi',
-    });
+    aapi
+      .get(`/feature/${features.join(',')}/availability`)
+      .then(({ data }) => data);
 
   const { data: availability } = useQuery({
     queryKey: ['sidebar-dedicated-availability'],

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useReket } from '@ovh-ux/ovh-reket';
+import { v6 } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 
 export interface PciProject {
@@ -12,10 +12,9 @@ export interface PciProject {
 
 export function useProjects() {
   const location = useLocation();
-  const reketInstance = useReket();
 
   const getProjects = (): Promise<PciProject[]> =>
-    reketInstance.get('/cloud/project', {
+    v6.get('/cloud/project', {
       headers: {
         'X-Pagination-Filter': 'status:in=creating,ok,suspended',
         'X-Pagination-Mode': 'CachedObjectList-Cursor',
@@ -23,7 +22,7 @@ export function useProjects() {
         'X-Pagination-Sort-Order': 'ASC',
         'Pragma': 'no-cache',
       },
-    });
+    }).then(({ data }) => data);
 
   const { data: projects, isError, isLoading } = useQuery({
     queryKey: [`pci-projects`],

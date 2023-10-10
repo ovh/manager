@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useReket } from '@ovh-ux/ovh-reket';
+import { aapi } from '@ovh-ux/manager-core-api';
 import { useURL } from '@/container/common/urls-constants';
 import ApplicationContext from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
@@ -30,7 +30,6 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
     .getEnvironment();
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
-  const reketInstance = useReket();
   const [selectedItem, setSelectedItem] = useState<string>(null);
 
   const hasAdvancedSupport = ['EU', 'CA'].includes(environment.getRegion());
@@ -40,12 +39,9 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
 
   useEffect(() => {
     const initLiveChat = async () => {
-      const results: Record<string, boolean> = await reketInstance.get(
+      const results: Record<string, boolean> = await aapi.get(
         `/feature/livechat/availability`,
-        {
-          requestType: 'aapi',
-        },
-      );
+      ).then(({ data }) => data)
       setHashLiveChat(results.livechat);
     };
     initLiveChat();
@@ -104,9 +100,8 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
             />
           </li>
           <li
-            className={`${
-              selectedItem === 'tickets' ? style.sidebar_selected : ''
-            }`}
+            className={`${selectedItem === 'tickets' ? style.sidebar_selected : ''
+              }`}
           >
             <SidebarLink
               node={{
@@ -136,9 +131,8 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
           </li>
           {hasAdvancedSupport && (
             <li
-              className={`${
-                selectedItem === 'support_level' ? style.sidebar_selected : ''
-              }`}
+              className={`${selectedItem === 'support_level' ? style.sidebar_selected : ''
+                }`}
             >
               <SidebarLink
                 node={{

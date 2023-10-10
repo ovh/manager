@@ -1,4 +1,4 @@
-import { useReket } from '@ovh-ux/ovh-reket';
+import { aapi } from '@ovh-ux/manager-core-api';
 import { getHeaders } from '@ovh-ux/request-tagger';
 import Environment, { User } from './environment';
 import { Region } from './environment/region.enum';
@@ -28,13 +28,11 @@ export const fetchConfiguration = async (
 ): Promise<Environment> => {
   const environment = new Environment();
   const configRequestOptions = {
-    requestType: 'aapi',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
       Accept: 'application/json',
       ...getHeaders('/engine/2api/configuration'),
     },
-    credentials: 'same-origin',
   };
 
   let configurationURL = '/configuration';
@@ -44,9 +42,10 @@ export const fetchConfiguration = async (
       applicationName,
     )}`;
   }
-  const Reket = useReket(true);
 
-  return Reket.get(configurationURL, configRequestOptions)
+  return aapi
+    .get(configurationURL, configRequestOptions)
+    .then(({ data }) => data)
     .then((config: Environment) => {
       environment.setRegion(config.region);
       environment.setUser(config.user);

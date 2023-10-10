@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useReket } from '@ovh-ux/ovh-reket';
+import { aapi } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
@@ -37,7 +37,6 @@ export default function WebSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
   const [shopItems, setShopItems] = useState<ShopItem[]>([]);
   const shell = useShell();
-  const reketInstance = useReket();
   const { loadServices } = useServiceLoader('web');
   const { t, i18n } = useTranslation('sidebar');
   const navigation = shell.getPlugin('navigation');
@@ -309,9 +308,7 @@ export default function WebSidebar() {
   };
 
   const getFeatures = (): Promise<Record<string, string>> =>
-    reketInstance.get(`/feature/${webFeatures.join(',')}/availability`, {
-      requestType: 'aapi',
-    });
+    aapi.get(`/feature/${webFeatures.join(',')}/availability`).then(({ data }) => data);
 
   const { data: availability } = useQuery({
     queryKey: ['sidebar-web-availability'],

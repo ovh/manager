@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useReket } from '@ovh-ux/ovh-reket';
+import { aapi } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
-import { useLegacyContainer } from '@/container/legacy/context';
 import { useShell } from '@/context';
+import { useLegacyContainer } from '@/container/legacy/context';
 import useProjects from './useProjects';
 import { features, getPciProjectMenu } from './pci-menu';
 import style from './pci-sidebar.module.scss';
@@ -16,7 +16,6 @@ export default function PublicCloudSidebar() {
   const location = useLocation();
   const shell = useShell();
   const navigation = shell.getPlugin('navigation');
-  const reketInstance = useReket();
   const { t } = useTranslation('pci-sidebar');
   const { setIsResponsiveSidebarMenuOpen } = useLegacyContainer();
   const { currentProject, projects } = useProjects();
@@ -29,9 +28,7 @@ export default function PublicCloudSidebar() {
   const projectId = currentProject?.project_id;
 
   const getFeatures = (): Promise<Record<string, string>> =>
-    reketInstance.get(`/feature/${features.join(',')}/availability`, {
-      requestType: 'aapi',
-    });
+    aapi.get(`/feature/${features.join(',')}/availability`).then(({ data }) => data);
 
   const { data: availability } = useQuery({
     queryKey: ['sidebar-public-cloud-availability'],
@@ -40,7 +37,7 @@ export default function PublicCloudSidebar() {
 
   const menu = useMemo(() => {
     if (!availability) return [];
-    const menuItems = getPciProjectMenu(projectId, region, (...args):string =>
+    const menuItems = getPciProjectMenu(projectId, region, (...args): string =>
       navigation.getURL(...args),
     );
     const filterItemByRegion = (item: any) => {
@@ -106,9 +103,8 @@ export default function PublicCloudSidebar() {
   return (
     <>
       <div
-        className={`${style.menuDrawer} ${
-          showAllProjects ? style.menuDrawerOpen : ''
-        }`}
+        className={`${style.menuDrawer} ${showAllProjects ? style.menuDrawerOpen : ''
+          }`}
       >
         <div className="d-flex m-2">
           <button
@@ -218,15 +214,14 @@ export default function PublicCloudSidebar() {
                 {item.subItems.map((subItem) => (
                   <li key={`${item.id}-${subItem.id}`}>
                     <a
-                      className={`${style.menuLink} ${
-                        subItem.selected ? style.menuLinkSelected : ''
-                      }`}
+                      className={`${style.menuLink} ${subItem.selected ? style.menuLinkSelected : ''
+                        }`}
                       href={subItem.href}
                       onClick={onMenuItemClick(subItem.id)}
                       {...(subItem.external
                         ? {
-                            target: '_blank',
-                          }
+                          target: '_blank',
+                        }
                         : {})}
                     >
                       <span>

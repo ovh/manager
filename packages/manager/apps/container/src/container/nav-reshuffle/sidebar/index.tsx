@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Suspense } from 'react';
 
 import { useLocation, Location } from 'react-router-dom';
-import { useReket } from '@ovh-ux/ovh-reket';
+import { aapi, v6 } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import useContainer from '@/core/container';
@@ -48,7 +48,6 @@ const Sidebar = (): JSX.Element => {
   const navigationPlugin = shell.getPlugin('navigation');
   const environmentPlugin = shell.getPlugin('environment');
   const routingPlugin = shell.getPlugin('routing');
-  const reketInstance = useReket();
   const { betaVersion } = useContainer();
 
   const [containerURL, setContainerURL] = useState(parseContainerURL(location));
@@ -134,12 +133,9 @@ const Sidebar = (): JSX.Element => {
       if (!abort) {
         const features = initFeatureNames(navigationRoot);
 
-        const results: Record<string, boolean> = await reketInstance.get(
+        const results: Record<string, boolean> = await aapi.get(
           `/feature/${features.join(',')}/availability`,
-          {
-            requestType: 'aapi',
-          },
-        );
+        ).then(({ data }) => data);
 
         const region = environmentPlugin.getEnvironment().getRegion();
         const [tree] = initTree([navigationRoot], results, region);
@@ -155,8 +151,8 @@ const Sidebar = (): JSX.Element => {
          */
         let isIdentityDocumentsVisible;
         if (results['identity-documents']) {
-          const { status } = await reketInstance.get(`/me/procedure/identity`);
-          if (!['required','open'].includes(status)) {
+          const { status } = await v6.get(`/me/procedure/identity`).then(({ data }) => data);
+          if (!['required', 'open'].includes(status)) {
             isIdentityDocumentsVisible = false;
           }
         } else {
@@ -205,15 +201,14 @@ const Sidebar = (): JSX.Element => {
    * Initialize service count
    */
   useEffect(() => {
-    reketInstance
-      .get('/services/count', {
-        requestType: 'aapi',
-      })
+    aapi
+      .get('/services/count')
+      .then(({ data }) => data)
       .then((result: ServicesCount) => setServicesCount(result));
   }, []);
 
   const fetchPciProjects = () => {
-    reketInstance
+    v6
       .get('/cloud/project', {
         headers: {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
@@ -221,6 +216,7 @@ const Sidebar = (): JSX.Element => {
           'X-Pagination-Sort': 'description',
         },
       })
+      .then(({ data }) => data)
       .then((result: Array<PciProject>) => {
         setPciError(false);
         if (result && result.length) {
@@ -326,8 +322,9 @@ const Sidebar = (): JSX.Element => {
       if (project) {
         setSelectedPciProject(project);
       } else if (currentNavigationNode.id === 'pci' && !selectedPciProject) {
-        reketInstance
+        v6
           .get('/me/preferences/manager/PUBLIC_CLOUD_DEFAULT_PROJECT')
+          .then(({ data }) => data)
           .then(
             (result: { key: string; value: string }) =>
               JSON.parse(result.value).projectId,
@@ -355,10 +352,9 @@ const Sidebar = (): JSX.Element => {
     let abort = false;
     setPciProjectServiceCount(null);
     if (selectedPciProject) {
-      reketInstance
-        .get(`/services/count?pciProjectId=${selectedPciProject.project_id}`, {
-          requestType: 'aapi',
-        })
+      aapi
+        .get(`/services/count?pciProjectId=${selectedPciProject.project_id}`)
+        .then(({ data }) => data)
         .then((result: ServicesCount) => {
           if (abort) return;
           setPciProjectServiceCount(result);

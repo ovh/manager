@@ -1,9 +1,8 @@
-import { useReket } from '@ovh-ux/ovh-reket';
+import { aapi } from '@ovh-ux/manager-core-api';
 import { useShell } from '@/context';
 import { SidebarMenuItem } from '../sidebarMenu';
 
 export default function useServiceLoader(appId: string) {
-  const reketInstance = useReket();
   const shell = useShell();
   const navigation = shell.getPlugin('navigation');
 
@@ -13,14 +12,15 @@ export default function useServiceLoader(appId: string) {
       subType?: string,
       applicationId = appId
     ): Promise<SidebarMenuItem[]> {
-      const services = await reketInstance.get('/service', {
-        requestType: 'aapi',
-        params: {
-          type: path,
-          subType,
-          external: false,
-        },
-      });
+      const services = await aapi
+        .get('/service', {
+          params: {
+            type: path,
+            subType,
+            external: false,
+          },
+        })
+        .then(({ data }) => data);
       return services
         .map((service: any) => ({
           id: `service-${path}-${service.serviceName}`,

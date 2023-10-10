@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useReket } from '@ovh-ux/ovh-reket';
+import { aapi, v6 } from '@ovh-ux/manager-core-api';
 import { Application } from '@ovh-ux/manager-config';
 import {
   getBetaAvailabilityFromLocalStorage,
@@ -14,7 +14,6 @@ export const BETA_V1 = 1;
 export const BETA_V2 = 2;
 
 export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
-  const reketInstance = useReket();
   const shell = useShell();
   const uxPlugin = shell.getPlugin('ux');
   const preferenceKey = 'NAV_RESHUFFLE_BETA_ACCESS';
@@ -54,16 +53,16 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       return null;
     };
 
-    return reketInstance
-      .get(`/feature/livechat,pnr:betaV1,pnr:betaV2/availability`, {
-        requestType: 'aapi',
-      })
+    return aapi
+      .get(`/feature/livechat,pnr:betaV1,pnr:betaV2/availability`)
+      .then(({ data }) => data)
       .then((value: CurrentContextAvailability) => ({
         version: getBetaVersion(value),
         livechat: !!value.livechat,
       }))
       .catch(() => ({
-        version: '',
+        version: null,
+        livechat: null,
       }));
   };
 
@@ -71,9 +70,9 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
     const betaValue = getBetaAvailabilityFromLocalStorage();
     const fetchPromise = betaValue
       ? Promise.resolve({ value: betaValue })
-      : (reketInstance.get(
-          `/me/preferences/manager/${preferenceKey}`,
-        ) as Promise<{ value: string }>);
+      : (v6.get(
+        `/me/preferences/manager/${preferenceKey}`,
+      ).then(({ data }) => ({ value: data })) as Promise<{ value: string }>);
 
     return fetchPromise
       .then(({ value }) => {
@@ -91,10 +90,10 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const updateBetaChoice = async (accept = false) => {
     const updatePromise = isBetaForced()
       ? Promise.resolve(setBetaAvailabilityToLocalStorage(accept))
-      : reketInstance.put(`/me/preferences/manager/${preferenceKey}`, {
-          key: preferenceKey,
-          value: accept.toString(),
-        });
+      : v6.put(`/me/preferences/manager/${preferenceKey}`, {
+        key: preferenceKey,
+        value: accept.toString(),
+      }).then(({ data }) => data);
 
     return updatePromise.then(() => {
       if (!accept) {
@@ -107,10 +106,10 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const createBetaChoice = async (accept = false) => {
     const createPromise = isBetaForced()
       ? Promise.resolve(setBetaAvailabilityToLocalStorage(accept))
-      : reketInstance.post(`/me/preferences/manager`, {
-          key: preferenceKey,
-          value: accept.toString(),
-        });
+      : v6.post(`/me/preferences/manager`, {
+        key: preferenceKey,
+        value: accept.toString(),
+      }).then(({ data }) => data);
 
     return createPromise.then(() => {
       window.location.reload();

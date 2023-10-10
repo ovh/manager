@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 
 import { useOvhPaymentMethod } from '@ovh-ux/ovh-payment-method';
-import { useReket } from '@ovh-ux/ovh-reket';
+import { v6 } from '@ovh-ux/manager-core-api';
 import useClickAway from 'react-use/lib/useClickAway';
 
 import UserAccountMenuButton from './Button';
@@ -37,7 +37,7 @@ export const UserAccountMenu = ({ onToggle }: Props): JSX.Element => {
   const onboardingHelper = useOnboarding();
 
   const ovhPaymentMethod = useOvhPaymentMethod({
-    reketInstance: useReket(),
+    axiosInstance: v6,
     region,
   });
 

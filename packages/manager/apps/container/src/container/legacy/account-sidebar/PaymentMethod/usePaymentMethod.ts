@@ -1,6 +1,6 @@
 import { Environment } from '@ovh-ux/manager-config';
 import { PaymentMethod, useOvhPaymentMethod } from '@ovh-ux/ovh-payment-method';
-import { useReket } from '@ovh-ux/ovh-reket';
+import { v6 } from '@ovh-ux/manager-core-api';
 
 export type PaymentMethodType = typeof PaymentMethod;
 
@@ -14,7 +14,7 @@ const usePaymentMethod = (environment: Environment): UsePaymentMethod => {
   const user = environment.getUser();
 
   const ovhPaymentMethod = useOvhPaymentMethod({
-    reketInstance: useReket(),
+    axiosInstance: v6,
     region,
   });
 

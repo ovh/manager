@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
 
-import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation, Trans } from 'react-i18next';
 
 import { User } from '@ovh-ux/manager-config';
@@ -45,7 +44,6 @@ const ModalContent = ({ children }: { children: React.ReactNode }) => (
 const SSOAuthModal = (): JSX.Element => {
   const [mode, setMode] = useState('');
   const shell = useShell();
-  const reketInstance = useReket();
   const { t } = useTranslation('sso-auth-modal');
   const show = useMemo(() => !!mode, [mode]);
   const authPlugin = shell.getPlugin('auth');
@@ -63,14 +61,15 @@ const SSOAuthModal = (): JSX.Element => {
 
   useEffect(() => {
     if (mode === disconnectedToConnected || mode === connectedToOther) {
-      reketInstance
+      v6
         .get('/me', {
           requestType: 'apiv6',
         })
+        .then(({ data }) => data)
         .then((currentUser: User) => {
           setConnectedUser(currentUser);
         })
-        .catch(() => {});
+        .catch(() => { });
     }
   }, [mode]);
 
