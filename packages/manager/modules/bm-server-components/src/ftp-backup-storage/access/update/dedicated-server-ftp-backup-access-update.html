@@ -1,12 +1,10 @@
-<div
-    data-ng-controller="DedicatedServerFtpBackupAccessUpdateController as $ctrl"
->
+<div>
     <oui-modal
         data-primary-action="$ctrl.updateFtpBackupAccess()"
         data-primary-label="{{:: 'wizard_confirm' | translate }}"
-        data-secondary-action="resetAction()"
+        data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{:: 'wizard_cancel' | translate }}"
-        data-on-dismiss="resetAction()"
+        data-on-dismiss="$ctrl.goBack()"
         data-loading="$ctrl.isUpdating"
         data-heading="{{:: 'server_configuration_ftpbackup_access_edit' | translate }}"
     >
