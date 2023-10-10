@@ -407,7 +407,7 @@ export default class NewAccountFormController {
           this.originalManagerLanguage !== this.model.managerLanguage
         ) {
           this.coreConfig.setUserLocale(this.model.managerLanguage);
-          window.location.reload();
+          window.parent.location.reload();
         } else if (this.onSubmit) {
           this.$location.search('isUpdated', true);
           this.onSubmit();
