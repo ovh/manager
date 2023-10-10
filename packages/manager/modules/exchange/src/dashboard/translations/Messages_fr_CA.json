@@ -109,7 +109,6 @@
   "exchange_tab_INFORMATIONS_webmail": "Webmail",
   "exchange_tab_INFORMATIONS_messaging": "Client de messagerie",
   "exchange_tab_INFORMATIONS_order_office": "Commander Office 365",
-  "exchange_tab_INFORMATIONS_order_sharepoint": "Commander SharePoint",
   "exchange_server_commercial_version_2010": "2010",
   "exchange_server_commercial_version_2013": "2013",
   "exchange_server_commercial_version_2016": "2016",
@@ -1313,7 +1312,6 @@
   "exchange_ACTION_configure_services_help_passwordHistoryCount": "Détermine le nombre de nouveaux mots de passe uniques qui doivent être associés à un compte d'utilisateur avant qu'un ancien mot de passe puisse être réutilisé.",
   "exchange_ACTION_configure_services_help_minPasswordLength": "Si vous entrez \"0\", aucun mot de passe n'est pas requis",
   "exchange_tab_TASKS_SET_SERVICE": "Politique de sécurité des comptes",
-
   "exchange_ACTION_loading": "Chargement en cours…",
   "exchange_ACTION_sending": "Envoi en cours…",
   "exchange_ACTION_configure_help_title": "Configuration service Exchange",
