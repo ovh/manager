@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.3.2...@ovh-ux/manager-web@18.3.3) (2023-10-10)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix restriction to module and cron ([#10068](https://github.com/ovh/manager/issues/10068)) ([768ff76](https://github.com/ovh/manager/commit/768ff76fad71fc2f3df1aa38312ecf615e13520e))
+* **web:** fix isTerminated value for anycast option ([#10026](https://github.com/ovh/manager/issues/10026)) ([0920060](https://github.com/ovh/manager/commit/09200608b33ea2f41674ff66b0902269f52b1087))
+* **web:** fix performance offer database text ([#10057](https://github.com/ovh/manager/issues/10057)) ([#10091](https://github.com/ovh/manager/issues/10091)) ([fda800b](https://github.com/ovh/manager/commit/fda800b55a7e59ec54c69cf50632d89b71962a4e))
+
+
+
+
+
 ## [18.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.3.1...@ovh-ux/manager-web@18.3.2) (2023-10-09)
 
 

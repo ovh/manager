@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.11.1...@ovh-ux/manager-cloud-connect@1.11.2) (2023-10-10)
+
+
+### Bug Fixes
+
+* **dedicated:** update cloud connect order links for us ([d09db47](https://github.com/ovh/manager/commit/d09db471b28684d910f72c6b78fd4464ffd5d03d))
+
+
+
+
+
 ## [1.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.11.0...@ovh-ux/manager-cloud-connect@1.11.1) (2023-09-27)
 
 

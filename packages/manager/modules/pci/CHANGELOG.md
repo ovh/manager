@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.3.2...@ovh-ux/manager-pci@6.3.3) (2023-10-10)
+
+
+### Bug Fixes
+
+* **public-cloud:** correct success banner info ([#10038](https://github.com/ovh/manager/issues/10038)) ([fa71c95](https://github.com/ovh/manager/commit/fa71c95a6d70cdc80e61363a655c809813415397))
+
+
+
+
+
 ## [6.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.3.1...@ovh-ux/manager-pci@6.3.2) (2023-10-05)
 
 

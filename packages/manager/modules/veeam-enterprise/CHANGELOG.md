@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.7.0...@ovh-ux/manager-veeam-enterprise@1.8.0) (2023-10-10)
+
+
+### Features
+
+* **dedicated:** remove port veam entreprise license in activation ([#10061](https://github.com/ovh/manager/issues/10061)) ([4d52df6](https://github.com/ovh/manager/commit/4d52df6506ee0189ed4742f06e379c447f0b2e6f))
+
+
+
+
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-veeam-enterprise@1.6.3...@ovh-ux/manager-veeam-enterprise@1.7.0) (2023-09-18)
 
 

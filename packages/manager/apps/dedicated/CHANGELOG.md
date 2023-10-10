@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.5.2...@ovh-ux/manager-dedicated@19.6.0) (2023-10-10)
+
+
+### Bug Fixes
+
+* **dedicated:** diskgroupid null issue ([#10069](https://github.com/ovh/manager/issues/10069)) ([edbb7e7](https://github.com/ovh/manager/commit/edbb7e7d9464a393540778763c995c52bcb3230c))
+
+
+### Features
+
+* **dedicated:** server network interfaces page improvements ([#9963](https://github.com/ovh/manager/issues/9963)) ([cb71a62](https://github.com/ovh/manager/commit/cb71a6263e56125336005058d5adbe79b492b104))
+
+
+
+
+
 ## [19.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.5.1...@ovh-ux/manager-dedicated@19.5.2) (2023-10-05)
 
 
