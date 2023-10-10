@@ -101,7 +101,18 @@
                 data-model="IpFirewallCtrl.firewallToggle.status"
                 data-name="firewallStatus"
                 data-on-change="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', {ipBlock: IpFirewallCtrl.ipBlock, ip: IpFirewallCtrl.firewallToggle, tracking: IpFirewallCtrl.tracking['update-firewall-status']})"
-            ></oui-switch>
+                data-ng-if="!IpFirewallCtrl.disabledToggle"
+            >
+            </oui-switch>
+            <oui-switch
+                data-model="IpFirewallCtrl.firewallToggle.status"
+                data-name="firewallStatus"
+                data-ng-if="IpFirewallCtrl.disabledToggle"
+                data-oui-tooltip-placement="left"
+                data-oui-tooltip="{{:: 'ip_table_manage_firewall_disable_tooltip' | translate }}"
+                disabled
+            >
+            </oui-switch>
         </div>
     </div>
     <div
