@@ -1,19 +1,19 @@
-<div data-ng-controller="DeleteFtpBackupCtrl">
+<div>
     <div
         data-wizard
-        data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="deleteFtpBackup"
+        data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+        data-wizard-on-finish="$ctrl.deleteFtpBackup.bind($ctrl)"
         data-wizard-title=":: 'server_configuration_ftpbackup_delete' | translate"
     >
-        <div data-wizard-step data-wizard-step-valid="!loading">
-            <div class="text-center" data-ng-if="loading">
+        <div data-wizard-step data-wizard-step-valid="!$ctrl.loading">
+            <div class="text-center" data-ng-if="$ctrl.loading">
                 <oui-spinner></oui-spinner>
             </div>
 
-            <div data-ng-if="!loading">
+            <div data-ng-if="!$ctrl.loading">
                 <p
                     data-translate="server_configuration_ftpbackup_delete_question"
-                    data-translate-values="{ t0: ftpBackup.ftpBackupName }"
+                    data-translate-values="{ t0: $ctrl.ftpBackup.ftpBackupName }"
                 ></p>
                 <p
                     class="font-weight-bold text-center text-danger"
