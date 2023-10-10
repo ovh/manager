@@ -31,6 +31,16 @@ export default {
       features: ['ip'],
     },
     {
+      id: 'dedicated-network-security',
+      translation: 'sidebar_network_security',
+      serviceType: 'NETWORK_SECURITY',
+      routing: {
+        application: 'dedicated',
+        hash: '#/network-security',
+      },
+      features: ['network-security'],
+    },
+    {
       id: 'ovhcloud-connect',
       translation: 'sidebar_cloud_connect',
       serviceType: 'OVHCLOUDCONNECT',
@@ -59,16 +69,6 @@ export default {
         hash: '#/configuration/cdn',
       },
       features: ['dedicated-cdn'],
-    },
-    {
-      id: 'dedicated-network-security',
-      translation: 'sidebar_network_security',
-      serviceType: 'NETWORK_SECURITY',
-      routing: {
-        application: 'dedicated',
-        hash: '#/networkSecurity',
-      },
-      features: ['network-security'],
     },
   ],
 };
