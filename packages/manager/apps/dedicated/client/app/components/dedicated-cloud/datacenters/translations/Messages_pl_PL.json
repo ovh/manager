@@ -8,7 +8,6 @@
   "dedicatedCloud_datacenters_order_host": "Zamów Hosta",
   "dedicatedCloud_datacenters_order_datastore": "Zamów Datastore",
   "dedicatedCloud_datacenters_loading_error": "Wystąpił błąd podczas pobierania informacji z centrów danych.",
-  "dedicatedCloud_datacenters_add_not_available": "Dodanie nowego centrum danych nie jest aktualnie dostępne. Pracujemy nad udostępnieniem tej funkcji w najbliższym czasie.",
   "dedicatedCloud_datacenters_commercial_name_DC": "Dedicated Cloud",
   "dedicatedCloud_datacenters_commercial_name_DC-HDS": "Dedicated Cloud HDS",
   "dedicatedCloud_datacenters_commercial_name_DC-HIPAA": "Dedicated Cloud HIPAA",

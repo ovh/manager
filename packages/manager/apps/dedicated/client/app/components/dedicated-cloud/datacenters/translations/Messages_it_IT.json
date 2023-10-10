@@ -8,7 +8,6 @@
   "dedicatedCloud_datacenters_order_host": "Ordina un host",
   "dedicatedCloud_datacenters_order_datastore": "Ordina un datastore",
   "dedicatedCloud_datacenters_loading_error": "Si è verificato un errore durante il caricamento delle informazioni dei datacenter.",
-  "dedicatedCloud_datacenters_add_not_available": "Al momento non è possibile aggiungere nuovi datacenter. Stiamo lavorando per rendere disponibile presto questa funzionalità.",
   "dedicatedCloud_datacenters_commercial_name_DC": "Dedicated Cloud",
   "dedicatedCloud_datacenters_commercial_name_DC-HDS": "Dedicated Cloud HDS",
   "dedicatedCloud_datacenters_commercial_name_DC-HIPAA": "Dedicated Cloud HIPAA",
