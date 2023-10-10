@@ -8,6 +8,7 @@ import {
 import { OsdsText } from '@ovhcloud/ods-components/text/react/';
 import { OsdsDivider } from '@ovhcloud/ods-components/divider/react/';
 import { MscTile } from '@ovhcloud/msc-react-tile';
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { useCatalog } from '@/hooks/useCatalog';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import { Product } from '@/utils/utils';
@@ -16,7 +17,7 @@ import Error from '@/components/Error/Error';
 
 export default function CatalogRevamp() {
   const { t } = useTranslation('catalog-revamp');
-  const [searchText, setSearchValue] = React.useState('');
+  const [searchText, setSearchText] = React.useState('');
   const [categories, setCategories] = React.useState<string[]>([]);
   const [universes, setUniverses] = React.useState<string[]>([]);
 
@@ -35,6 +36,8 @@ export default function CatalogRevamp() {
 
   return (
     <div className="m-10">
+      <Breadcrumb />
+      <br />
       <OsdsText
         level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
         size={ODS_THEME_SIZE._600}
@@ -47,7 +50,7 @@ export default function CatalogRevamp() {
         products={products}
         setSelectedCategories={setCategories}
         setSelectedUniverses={setUniverses}
-        setSearchValue={setSearchValue}
+        setSearchValue={setSearchText}
       />
       <OsdsDivider separator />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-5 pt-3">
@@ -67,10 +70,9 @@ export default function CatalogRevamp() {
           </>
         )}
       </div>
-
       {!isLoading && results.length === 0 && (
         <OsdsText className="text-center grid w-full">
-          {t('no_results')}
+          {t('no_result')}
         </OsdsText>
       )}
     </div>
