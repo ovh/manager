@@ -305,6 +305,6 @@ export default class FtpBackupStorageController {
   }
 
   goToAdd() {
-    this.$state.go('app.dedicated-server.server.ftpBackup.add');
+    return this.$state.go('app.dedicated-server.server.ftpBackup.add');
   }
 }
