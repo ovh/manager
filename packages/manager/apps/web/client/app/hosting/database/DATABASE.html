@@ -205,6 +205,11 @@
                             <th
                                 class="text-center"
                                 scope="col"
+                                data-translate="hosting_tab_DATABASES_table_header_status"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
                                 data-translate="hosting_tab_DATABASES_table_header_state"
                             ></th>
                             <th
@@ -308,6 +313,11 @@
                                 <span
                                     data-ng-bind="'v' + $ctrl.constructor.formatVersion(element.version)"
                                     data-ng-if="element.version"
+                                ></span>
+                            </td>
+                            <td>
+                                <span
+                                    data-ng-bind="$ctrl.constructor.formatStatus(element.databaseType, element.databaseServiceDeprecated) | translate"
                                 ></span>
                             </td>
                             <td
