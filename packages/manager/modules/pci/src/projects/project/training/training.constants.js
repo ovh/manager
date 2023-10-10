@@ -13,10 +13,13 @@ export const PRIVACY_SETTINGS = {
   PUBLIC: 'public',
 };
 
+export const NUMBER_OF_MINUTES_IN_ONE_HOUR = 60;
+
 export default {
   GUIDE_URL,
   DISCORD_URL,
   DOC_DOCKER_BUILD_URL,
   JOB_SSH_KEYS,
   PRIVACY_SETTINGS,
+  NUMBER_OF_MINUTES_IN_ONE_HOUR,
 };
