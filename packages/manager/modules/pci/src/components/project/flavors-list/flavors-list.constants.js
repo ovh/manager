@@ -22,11 +22,6 @@ export const CATEGORIES = [
     pattern: /gpu|nvme/,
   },
   {
-    category: 'vps',
-    title: 'Sandbox',
-    pattern: /vps/,
-  },
-  {
     category: 'discovery',
     title: 'Discovery',
     pattern: /d2/,
