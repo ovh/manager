@@ -7,6 +7,7 @@ export default {
     'veeam-cloud-connect',
     'ip-load-balancer',
     'dedicated-cdn',
+    'network-security',
   ],
   children: [
     {
@@ -58,6 +59,16 @@ export default {
         hash: '#/configuration/cdn',
       },
       features: ['dedicated-cdn'],
+    },
+    {
+      id: 'dedicated-network-security',
+      translation: 'sidebar_network_security',
+      serviceType: 'NETWORK_SECURITY',
+      routing: {
+        application: 'dedicated',
+        hash: '#/networkSecurity',
+      },
+      features: ['network-security'],
     },
   ],
 };
