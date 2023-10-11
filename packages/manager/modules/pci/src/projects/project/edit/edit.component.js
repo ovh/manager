@@ -17,6 +17,7 @@ export default {
     hdsProjectOption: '<',
     service: '<',
     iamLink: '<',
+    isDiscoveryProject: '<',
   },
   controller,
   template,
