@@ -36,6 +36,7 @@ export const PRIVATE_NETWORK_GUIDE = {
   QC: 'https://docs.ovh.com/ca/fr/public-cloud/public-cloud-vrack/',
   SG: 'https://docs.ovh.com/sg/en/public-cloud/public-cloud-vrack/',
 };
+export const PROJECT_DISCOVERY_PLANCODE = 'project.discovery';
 
 export default {
   NAME_PATTERN,
@@ -44,4 +45,5 @@ export default {
   ORDER_KEYS,
   ORDER_KEYS_TERRAFORM,
   PRIVATE_NETWORK_GUIDE,
+  PROJECT_DISCOVERY_PLANCODE,
 };
