@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.9.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.8.0...@ovh-ux/ng-ovh-payment-method@9.9.0) (2023-10-11)
+
+
+### Features
+
+* **ng-ovh-payment-method:** show accepted card brands in adyen form ([bc3610c](https://github.com/ovh/manager/commit/bc3610c61f8127100c655b9e270cd6374c437758))
+
+
+
+
+
 # [9.8.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.7.1...@ovh-ux/ng-ovh-payment-method@9.8.0) (2023-09-27)
 
 

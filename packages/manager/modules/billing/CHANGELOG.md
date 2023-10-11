@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.21...@ovh-ux/manager-billing@0.20.0-alpha.22) (2023-10-11)
+
+
+### Bug Fixes
+
+* **billing.services:** change tooltip content for some subs ([#9898](https://github.com/ovh/manager/issues/9898)) ([0890ad6](https://github.com/ovh/manager/commit/0890ad6769e6e38a6647751482a2ae5c461d7a7f))
+
+
+
+
+
 # [0.20.0-alpha.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.20...@ovh-ux/manager-billing@0.20.0-alpha.21) (2023-09-27)
 
 

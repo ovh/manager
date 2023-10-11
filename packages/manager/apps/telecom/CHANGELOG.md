@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.4...@ovh-ux/manager-telecom@15.0.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **telecom.xdsl:** change the check for modem page available ([13032a3](https://github.com/ovh/manager/commit/13032a33dbb15c9b876241d634b147df43e595be))
+
+
+
+
+
 ## [15.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.3...@ovh-ux/manager-telecom@15.0.4) (2023-10-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

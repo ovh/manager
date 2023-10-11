@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.3.3...@ovh-ux/manager-pci@6.4.0) (2023-10-11)
+
+
+### Bug Fixes
+
+* **ai.training:** datatr-364 - training flavor binding and price ([#10025](https://github.com/ovh/manager/issues/10025)) ([11deedc](https://github.com/ovh/manager/commit/11deedc6bc3bab995473b7538c39514d7699d144))
+
+
+### Features
+
+* **storage.instance-backup:** add public network to backup creation req ([0b7b60e](https://github.com/ovh/manager/commit/0b7b60e84ac5771c4e5465fd416b4f2c0f10e7e1))
+
+
+
+
+
 ## [6.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.3.2...@ovh-ux/manager-pci@6.3.3) (2023-10-10)
 
 

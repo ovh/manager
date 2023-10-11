@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.6.0...@ovh-ux/manager-dedicated@19.6.1) (2023-10-11)
+
+
+### Bug Fixes
+
+* **webauthn:** delete doesn't require challenge and use enroll wrapper ([52e63ed](https://github.com/ovh/manager/commit/52e63ed36a4400675069fa1f41e4adb5cf821468))
+
+
+
+
+
 # [19.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.5.2...@ovh-ux/manager-dedicated@19.6.0) (2023-10-10)
 
 
