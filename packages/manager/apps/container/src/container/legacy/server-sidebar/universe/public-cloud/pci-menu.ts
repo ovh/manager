@@ -285,7 +285,7 @@ export function getPciProjectMenu(
           feature: 'databases',
           href: getURL(
             'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases-analytics/datastreaming`,
+            `#/pci/projects/${projectId}/storages/databases-analytics/data-streaming`,
           ),
         },
         {
@@ -314,7 +314,7 @@ export function getPciProjectMenu(
           feature: 'databases',
           href: getURL(
             'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases-analytics/dataanalysis`,
+            `#/pci/projects/${projectId}/storages/databases-analytics/data-analysis`,
           ),
         },
         {

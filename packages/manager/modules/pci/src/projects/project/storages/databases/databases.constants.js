@@ -151,16 +151,16 @@ export const ENGINES_TYPES = {
       DATABASE_TYPES.M3AGGEGATOR,
     ],
   },
-  datastreaming: {
-    label: 'datastreaming',
+  'data-streaming': {
+    label: 'data-streaming',
     engines: [
       DATABASE_TYPES.KAFKA,
       DATABASE_TYPES.KAFKA_CONNECT,
       DATABASE_TYPES.KAFKA_MIRROR_MAKER,
     ],
   },
-  dataanalysis: {
-    label: 'dataanalysis',
+  'data-analysis': {
+    label: 'data-analysis',
     engines: [DATABASE_TYPES.OPEN_SEARCH, DATABASE_TYPES.GRAFANA],
   },
   all: {

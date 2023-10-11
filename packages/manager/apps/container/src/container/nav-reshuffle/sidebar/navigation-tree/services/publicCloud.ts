@@ -281,12 +281,12 @@ const pciNode: Node = {
           forceVisibility: true,
         },
         {
-          id: 'pci-analytics-datastreaming',
-          translation: 'sidebar_pci_analytics_datastreaming',
+          id: 'pci-analytics-data-streaming',
+          translation: 'sidebar_pci_analytics_data_streaming',
           serviceType: 'CLOUD_PROJECT_DATABASE',
           routing: {
             application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/storages/databases-analytics/datastreaming',
+            hash: '#/pci/projects/{projectId}/storages/databases-analytics/data-streaming',
           },
           features: ['databases'],
           forceVisibility: true,
@@ -316,12 +316,12 @@ const pciNode: Node = {
           tag: NodeTag.NEW,
         },
         {
-          id: 'pci-analytics-dataanalysis',
-          translation: 'sidebar_pci_analytics_dataanalysis',
+          id: 'pci-analytics-data-analysis',
+          translation: 'sidebar_pci_analytics_data_analysis',
           serviceType: 'CLOUD_PROJECT_DATABASE',
           routing: {
             application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/storages/databases-analytics/dataanalysis',
+            hash: '#/pci/projects/{projectId}/storages/databases-analytics/data-analysis',
           },
           features: ['databases'],
           forceVisibility: true,
