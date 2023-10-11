@@ -36,10 +36,7 @@
             data-searchable
             data-filterable
         >
-            <span>
-                {{ ::'streams_subscriptions_resource_products_' +
-                $row.resource.type | translate }}
-            </span>
+            <span data-ng-bind=":: $ctrl.getResourceName($row)"> </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title="::'logs_col_last_modified' | translate"
