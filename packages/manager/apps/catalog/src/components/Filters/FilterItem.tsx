@@ -36,6 +36,7 @@ const FilterItem: React.FC<FilterItemProps> = ({
         onOdsCheckedChange={(event: CustomEvent) =>
           onCheckboxChange(type, label, event)
         }
+        data-tracking={`filter::${type}::${label}`}
       >
         <OsdsCheckboxButton
           size={ODS_CHECKBOX_BUTTON_SIZE.sm}

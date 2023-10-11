@@ -135,6 +135,7 @@ const Filters: React.FC<FiltersProps> = ({
           <OsdsLink
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => resetFilters()}
+            data-tracking="filter::reset"
           >
             {t('manager_catalog_filters_reset')}
           </OsdsLink>
@@ -143,6 +144,7 @@ const Filters: React.FC<FiltersProps> = ({
             disabled={!hasInteracted || undefined}
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => setFilters()}
+            data-tracking="filter::apply"
           >
             {t('manager_catalog_filters_button_apply')}
           </OsdsButton>
