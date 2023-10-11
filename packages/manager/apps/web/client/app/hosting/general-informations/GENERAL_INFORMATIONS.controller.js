@@ -292,15 +292,6 @@ export default class HostingGeneralInformationsCtrl {
     });
   }
 
-  goToOrderOrUpgrade() {
-    this.sendTrackClick('web::hosting::alert::order-cdn');
-    return this.$state.go(
-      this.$scope.hosting.hasCdn
-        ? 'app.hosting.dashboard.cdn.upgrade'
-        : 'app.hosting.dashboard.cdn.order',
-    );
-  }
-
   goToMultisite() {
     this.sendTrackClick('web::hosting::configure-cdn');
   }
