@@ -65,6 +65,7 @@ export default function CatalogRevamp() {
                 category={item.category}
                 tileDescription={item.description}
                 href={item.order}
+                data-tracking={`manager_product_cards::more_info::${item.productName}`}
               />
             ))}
           </>

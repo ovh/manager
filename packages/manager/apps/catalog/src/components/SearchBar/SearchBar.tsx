@@ -29,6 +29,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
   const { t } = useTranslation('catalog/search');
 
   const [showFilters, setShowFilters] = useState(false);
+  const [localSearchValue, setLocalSearchValue] = useState('');
 
   const onSearchSubmit = (
     event: CustomEvent<{ optionValue: string; inputValue: string }>,
@@ -37,7 +38,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
   };
 
   const onSearchChanged = (event: CustomEvent<{ value: string }>) => {
-    setSearchValue(event.detail.value);
+    setLocalSearchValue(event.detail.value);
   };
 
   return (
@@ -48,6 +49,13 @@ const SearchBar: React.FC<SearchbarProps> = ({
             placeholder={t('manager_catalog_search_placeholder')}
             onOdsSearchSubmit={onSearchSubmit}
             onOdsValueChange={onSearchChanged}
+            data-tracking={`searchbar::${localSearchValue}`}
+            onKeyDown={(event: KeyboardEvent) =>
+              event.key === 'Enter' &&
+              onSearchSubmit({
+                detail: { inputValue: localSearchValue },
+              } as CustomEvent)
+            }
           />
         </span>
         <span>
@@ -58,6 +66,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
             variant={ODS_BUTTON_VARIANT.stroked}
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => setShowFilters((filterState) => !filterState)}
+            data-tracking={`filter::${showFilters ? 'show' : 'hide'}`}
           >
             <OsdsIcon
               name={ODS_ICON_NAME.FILTER}
