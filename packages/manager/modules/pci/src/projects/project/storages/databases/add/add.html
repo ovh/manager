@@ -30,6 +30,20 @@
     ></a>
     <span data-translate="pci_database_add_description3"></span>
 </p>
+
+<oui-message data-type="warning" data-ng-if="$ctrl.isDiscoveryProject">
+    <span
+        data-translate="pci_database_add_discovery_project_banner_message"
+    ></span>
+    <!-- The href link will be added when the discovery project activation page is implemented  -->
+    <a href="#">
+        <span
+            data-translate="pci_database_add_discovery_project_banner_cta"
+        ></span>
+        <span class="oui-icon oui-icon-external-link"></span>
+    </a>
+</oui-message>
+
 <div class="row">
     <div class="col-lg-9">
         <form novalidate>
@@ -529,7 +543,7 @@
                     variant="primary"
                     block
                     on-click="$ctrl.createDatabase()"
-                    disabled="!$ctrl.isNetworkSelected() || $ctrl.processingOrder"
+                    disabled="!$ctrl.isNetworkSelected() || $ctrl.processingOrder || $ctrl.isDiscoveryProject"
                 >
                     <span
                         data-ng-if="!$ctrl.processingOrder"
