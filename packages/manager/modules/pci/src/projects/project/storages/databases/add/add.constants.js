@@ -38,6 +38,7 @@ export const PRIVATE_NETWORK_GUIDE = {
   US:
     'https://support.us.ovhcloud.com/hc/en-us/articles/360002093130-Configuring-vRack-for-Public-Cloud',
 };
+export const PROJECT_DISCOVERY_PLANCODE = 'project.discovery';
 
 export default {
   NAME_PATTERN,
@@ -46,4 +47,5 @@ export default {
   ORDER_KEYS,
   ORDER_KEYS_TERRAFORM,
   PRIVATE_NETWORK_GUIDE,
+  PROJECT_DISCOVERY_PLANCODE,
 };
