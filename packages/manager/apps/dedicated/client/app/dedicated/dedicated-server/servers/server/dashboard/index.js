@@ -17,12 +17,12 @@ import {
   serverConsumptionTile,
   serverMrtgTile,
   serverAdvancedFeatures,
+  serverProfessionalUse,
 } from '@ovh-ux/manager-bm-server-components';
 import commitment from './commitment';
 import cancelCommitment from './cancel-commitment';
 import cancelResiliation from './cancel-resiliation';
 import resiliation from './resiliation';
-import professionalUse from './professional-use';
 import terminate from '../../terminate/terminate.module';
 import upgrade from './upgrade';
 
@@ -45,7 +45,6 @@ angular
     atInternet,
     'oui',
     'pascalprecht.translate',
-    professionalUse,
     upgrade,
     'ui.router',
     ovhManagerBillingComponents,
@@ -60,6 +59,7 @@ angular
     serverConsumptionTile,
     serverMrtgTile,
     serverAdvancedFeatures,
+    serverProfessionalUse,
     installationChoice,
     installationGabarit,
     installationOvh,

@@ -8,9 +8,6 @@ import routing from './upgrade.routing';
 
 const moduleName = 'ovhManagerDedicatedServerDashboardUpgrade';
 
-angular
-  .module(moduleName, ['ui.router', serverUpgrade])
-  .config(routing)
-  .run(/* @ngTranslationsInject ./translations */);
+angular.module(moduleName, ['ui.router', serverUpgrade]).config(routing);
 
 export default moduleName;

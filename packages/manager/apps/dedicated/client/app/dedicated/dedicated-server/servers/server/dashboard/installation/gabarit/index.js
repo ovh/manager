@@ -7,29 +7,22 @@ import 'angular-translate';
 const moduleName =
   'ovhManagerDedicatedServerDashboardServerInstallationGabarit';
 
-angular
-  .module(moduleName, [
-    'ui.router',
-    'oc.lazyLoad',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-  ])
-  .config(
-    /* @ngInject */ ($stateProvider) => {
-      $stateProvider.state(
-        'app.dedicated-server.server.dashboard.installation-gabarit.**',
-        {
-          url: '/installation/gabarit',
-          lazyLoad: ($transition$) => {
-            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+  /* @ngInject */ ($stateProvider) => {
+    $stateProvider.state(
+      'app.dedicated-server.server.dashboard.installation-gabarit.**',
+      {
+        url: '/installation/gabarit',
+        lazyLoad: ($transition$) => {
+          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-            return import('./gabarit.module').then((mod) =>
-              $ocLazyLoad.inject(mod.default || mod),
-            );
-          },
+          return import('./gabarit.module').then((mod) =>
+            $ocLazyLoad.inject(mod.default || mod),
+          );
         },
-      );
-    },
-  );
+      },
+    );
+  },
+);
 
 export default moduleName;
