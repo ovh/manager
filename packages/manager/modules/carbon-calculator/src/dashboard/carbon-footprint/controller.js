@@ -2,13 +2,21 @@ import {
   API_FETCH_INTERVAL,
   TASK_STATUS_ENUM,
   TRACKING_NAME,
+  SERVICES_AVAILABLE,
 } from './constants';
 
 export default class CarbonFootprintCtrl {
   /* @ngInject */
-  constructor($interval, $state, atInternet, carbonFootprintService) {
+  constructor(
+    $interval,
+    $state,
+    $translate,
+    atInternet,
+    carbonFootprintService,
+  ) {
     this.$interval = $interval;
     this.$state = $state;
+    this.$translate = $translate;
     this.atInternet = atInternet;
     this.carbonFootprintService = carbonFootprintService;
   }
@@ -55,6 +63,11 @@ export default class CarbonFootprintCtrl {
   $onInit() {
     this.$asyncFetching = null;
     this.previousMonth = this.carbonFootprintService.computePreviousMonth();
+    this.availableServices = SERVICES_AVAILABLE.map((u) =>
+      this.$translate.instant(
+        `carbon_calculator_dashboard_billing_explanation_${u}`,
+      ),
+    );
   }
 
   $onDestroy() {
