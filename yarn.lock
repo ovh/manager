@@ -6061,12 +6061,12 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^6.6.2":
-  version "6.6.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.6.2.tgz#93835665465ac246ec10cec1dda6b8b3fc5e0543"
-  integrity sha512-7XFGcUOig2+W+QCgKmcgzlY/S97i8+R2BawFywKckpx1bqLfDbinIz/7yCBVcReBvFFolKS+rRoxM8ZgmLvQXw==
+"@ovh-ux/ui-kit@^6.3.0":
+  version "6.7.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.7.0.tgz#f21c3a7e3e4fb8cf41df7de4fa9f9b0ba61b026b"
+  integrity sha512-NeqVvZCpMVrQ0urYJc6QFCFqeu21MwiywlRoQH3e2bPjXReqAm8edJLPOhpFGAdxBF+sPl4bZ4P77IjA80tiZQ==
 
-"@ovh-ux/ui-kit@^6.6.1":
+"@ovh-ux/ui-kit@^6.6.2":
   version "6.6.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.6.2.tgz#93835665465ac246ec10cec1dda6b8b3fc5e0543"
   integrity sha512-7XFGcUOig2+W+QCgKmcgzlY/S97i8+R2BawFywKckpx1bqLfDbinIz/7yCBVcReBvFFolKS+rRoxM8ZgmLvQXw==
@@ -19927,10 +19927,10 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
-piano-analytics-js@^6.7.0:
-  version "6.8.2"
-  resolved "https://registry.yarnpkg.com/piano-analytics-js/-/piano-analytics-js-6.8.2.tgz#664a59ca3c17abff9bedf94c03935e5e9f9747f0"
-  integrity sha512-P4xwnlWXGLO7dr5/lt8ECo29wwwqg+z0uq176ah9MjnB6JlkTMlu38WUVv/OgPv74bIDAj7+x/83WbeX0SmRyQ==
+piano-analytics-js@^6.12.0:
+  version "6.12.0"
+  resolved "https://registry.yarnpkg.com/piano-analytics-js/-/piano-analytics-js-6.12.0.tgz#56c9b0a921092ccb0d11d06d196eff0c6180db26"
+  integrity sha512-E0J0aoF1mpKVE/q1vFFei85jC5oRywGMqvPtVmhhTKi+oAR4M6PGRaVhbAbzuInGUW1PY6UcV6G1CaTwA/rxcQ==
 
 picocolors@^1.0.0:
   version "1.0.0"
