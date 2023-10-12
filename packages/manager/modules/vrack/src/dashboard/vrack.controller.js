@@ -191,64 +191,128 @@ export default class VrackMoveDialogCtrl {
   }
 
   getAllowedServices() {
-    return this.OvhApiVrack.Aapi()
-      .allowedServices({ serviceName: this.serviceName })
-      .$promise.then((allServicesParam) => {
-        let allServices = {
-          ...allServicesParam,
-          dedicatedCloud: allServicesParam.dedicatedCloud.filter((service) => {
-            return (
-              VrackMoveDialogCtrl.isServiceAllowed(service) &&
-              service.productReference === 'EPCC'
-            );
-          }),
-          managedBareMetal: allServicesParam.dedicatedCloud.filter(
-            (service) => {
-              return (
-                VrackMoveDialogCtrl.isServiceAllowed(service) &&
-                service.productReference === 'MBM'
-              );
-            },
-          ),
-          dedicatedServer: allServicesParam.dedicatedServer.filter(
-            VrackMoveDialogCtrl.isServiceAllowed,
-          ),
-          dedicatedServerInterface: allServicesParam.dedicatedServerInterface.filter(
-            ({ dedicatedServer }) =>
-              VrackMoveDialogCtrl.isServiceAllowed(dedicatedServer),
-          ),
-        };
-        allServices = mapValues(allServices, (services, serviceType) => {
-          if (isArray(services)) {
-            return map(services, (service) =>
-              this.constructor.fillServiceData(serviceType, service),
-            );
-          }
-          return services;
-        });
+    console.log('#### get allowed services by Aapi');
+    if (this.getAllowedServicesIsPending) {
+      console.log('#### this getting is already pending, come on.');
+      return;
+    }
+    this.getAllowedServicesIsPending = true;
+    this.getAllowedServicesCounter = 0;
 
-        // We need to append dedicatedServerInterfaces list to dedicatedServers list.
-        if (
-          has(allServices, 'dedicatedServerInterface') &&
-          allServices.dedicatedServerInterface.length > 0
-        ) {
-          // If dedicatedServers list doesn't exist, we create it first.
-          if (!has(allServices, 'dedicatedServer')) {
-            allServices.dedicatedServer = [];
-          }
+    const servicesFamiliesList = [
+      'dedicatedCloud',
+      'dedicatedCloudDatacenter',
+      'dedicatedConnect',
+      'dedicatedServer',
+      'dedicatedServerInterface',
+      'ip',
+      'ipLoadbalancing',
+      'legacyVrack',
+      'ovhCloudConnect',
+    ];
+    const allServices = {};
 
-          angular.forEach(
-            allServices.dedicatedServerInterface,
-            (serverInterface) => {
-              allServices.dedicatedServer.push(serverInterface);
-            },
+    console.log(allServices);
+
+    // for each service, make a call and append the result to a literal object
+    servicesFamiliesList.forEach((serviceFamily) => {
+      console.log('#### serviceFamily call ', serviceFamily);
+
+      this.OvhApiVrack.Aapi()
+        .allowedServices({
+          serviceName: this.serviceName,
+          serviceFamily,
+        })
+        .$promise.then((serviceFetchedResponse) => {
+          console.log(
+            '#### serviceFamily returned',
+            serviceFamily,
+            serviceFetchedResponse,
           );
+          allServices[serviceFamily] = serviceFetchedResponse;
+          // each time a family is returned, we filter all the services and enrich the services list
+          this.postMappingServices(allServices);
+          this.getAllowedServicesCounter += 1;
+          if (this.getAllowedServicesCounter === this.servicesFamilies.length) {
+            this.getAllowedServicesCounter = false;
+          }
+        });
+    });
 
-          allServices.dedicatedServerInterface = [];
-        }
+    console.log('#### allServices before filter', allServices);
+    const self = this;
+    const allServicesAllowed = VrackMoveDialogCtrl.filterAllowedServicesOnly(
+      allServices,
+    );
 
-        return this.getAvailableServices(allServices);
-      });
+    const allServicesMapped = self.postMappingServices(allServicesAllowed);
+
+    console.log('#### allServices after filter', allServicesMapped);
+  }
+
+  /**
+   * @name filterAllowedServicesOnly
+   * @description takes the object describing the services,
+   * and returns the object after filtering each of them only for available services.
+   * @param allServicesParam
+   * @returns {*&{dedicatedCloud: *, dedicatedServer: T[], dedicatedServerInterface: {readonly dedicatedServer?: *}[], managedBareMetal: *}}
+   */
+  static filterAllowedServicesOnly(allServicesParam) {
+    return {
+      ...allServicesParam,
+      dedicatedCloud: allServicesParam.dedicatedCloud.filter((service) => {
+        return (
+          VrackMoveDialogCtrl.isServiceAllowed(service) &&
+          service.productReference === 'EPCC'
+        );
+      }),
+      managedBareMetal: allServicesParam.dedicatedCloud.filter((service) => {
+        return (
+          VrackMoveDialogCtrl.isServiceAllowed(service) &&
+          service.productReference === 'MBM'
+        );
+      }),
+      dedicatedServer: allServicesParam.dedicatedServer.filter(
+        VrackMoveDialogCtrl.isServiceAllowed,
+      ),
+      dedicatedServerInterface: allServicesParam.dedicatedServerInterface.filter(
+        ({ dedicatedServer }) =>
+          VrackMoveDialogCtrl.isServiceAllowed(dedicatedServer),
+      ),
+    };
+  }
+
+  postMappingServices(allServices) {
+    const mappedServices = mapValues(allServices, (services, serviceType) => {
+      if (isArray(services)) {
+        return map(services, (service) =>
+          this.constructor.fillServiceData(serviceType, service),
+        );
+      }
+      return services;
+    });
+
+    // We need to append dedicatedServerInterfaces list to dedicatedServers list.
+    if (
+      has(mappedServices, 'dedicatedServerInterface') &&
+      mappedServices.dedicatedServerInterface.length > 0
+    ) {
+      // If dedicatedServers list doesn't exist, we create it first.
+      if (!has(mappedServices, 'dedicatedServer')) {
+        mappedServices.dedicatedServer = [];
+      }
+
+      angular.forEach(
+        mappedServices.dedicatedServerInterface,
+        (serverInterface) => {
+          mappedServices.dedicatedServer.push(serverInterface);
+        },
+      );
+
+      mappedServices.dedicatedServerInterface = [];
+    }
+
+    return this.getAvailableServices(mappedServices);
   }
 
   static isServiceAllowed(service) {
