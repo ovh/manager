@@ -17,18 +17,14 @@ export default class WebHostingDatabaseOrderComponentsDbCategoriesOffersControll
   }
 
   getDbEngines() {
-    const engines = this.model.dbCategory?.selectVersion?.engines;
-    if (engines && engines.length) {
-      angular.forEach(engines, (engine) => {
-        engine.versions.sort((a, b) => {
-          // Order versions in descending order
-          return b.dbVersion.localeCompare(a.dbVersion, undefined, {
-            numeric: true,
-          });
+    return this.model.dbCategory?.selectVersion?.engines?.map((engine) => {
+      engine.versions.sort((a, b) => {
+        // Order versions in descending order
+        return b.dbVersion.localeCompare(a.dbVersion, undefined, {
+          numeric: true,
         });
       });
-    }
-    return engines || [];
+    });
   }
 
   getDbVersionPrice(dbCategoryVersion) {
