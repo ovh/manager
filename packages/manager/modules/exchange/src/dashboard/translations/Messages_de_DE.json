@@ -1653,5 +1653,11 @@
   "exchange_tab_domain_diagnostic_dkim_activation_no_ovhcloud": "Da Ihre Domain nicht bei OVHcloud gehostet wird, können wir sie nicht automatisch konfigurieren. Sie können DKIM mithilfe dieser <a href=\"{{url}}\" target=\"_blank\">Anleitung</a> konfigurieren.",
   "exchange_tab_domain_diagnostic_dkim_activation_ovhcloud": "Wir richten DKIM für Sie ein. Die vollständige Aktivierung kann 24 Stunden dauern.",
   "exchange_tab_domain_diagnostic_dkim_activation_success": "Die DKIM-Konfiguration wird ausgeführt. Beachten Sie, dass es bis zu 24 Stunden dauern kann, bis die Änderung übernommen wird.",
-  "exchange_tab_domain_diagnostic_dkim_activation_error": "Bei der DKIM-Konfiguration ist ein Fehler aufgetreten."
+  "exchange_tab_domain_diagnostic_dkim_activation_error": "Bei der DKIM-Konfiguration ist ein Fehler aufgetreten.",
+  "exchange_ACTION_add_outlook_type_MAC_X86_2019": "macOS 32 Bit (2019)",
+  "exchange_ACTION_add_outlook_type_MAC_X86_2021": "macOS 32 Bit (2021)",
+  "exchange_ACTION_add_outlook_type_WINDOWS_X86_2019": "Windows 32 Bit (2019)",
+  "exchange_ACTION_add_outlook_type_WINDOWS_X86_2021": "Windows 32 Bit (2021)",
+  "exchange_ACTION_add_outlook_type_WINDOWS_X64_2019": "Windows 64 Bit (2019)",
+  "exchange_ACTION_add_outlook_type_WINDOWS_X64_2021": "Windows 64 Bit (2021)"
 }
