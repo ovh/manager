@@ -139,7 +139,7 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
 
   leaveDkimConfigurator() {
     this.services.navigation.resetAction();
-    this.initializeDkimConfiguratorNoOvh();
+   return  this.initializeDkimConfiguratorNoOvh();
   }
 
   stepConfigureDkim() {
