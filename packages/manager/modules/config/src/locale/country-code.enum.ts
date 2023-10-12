@@ -1,4 +1,5 @@
 export enum CountryCode {
+  ASIA = 'ASIA',
   US = 'US',
   CA = 'CA',
   FR = 'FR',
@@ -12,6 +13,8 @@ export enum CountryCode {
   QC = 'QC',
   WE = 'WE',
   WS = 'WS',
+  IN = 'IN',
+  SG = 'SG',
 }
 
 export default CountryCode;
