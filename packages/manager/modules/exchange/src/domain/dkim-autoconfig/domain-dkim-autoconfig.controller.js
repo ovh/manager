@@ -171,7 +171,7 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
 
   initSpfContext() {
     this.showSpfDiagnosticTitle = true;
-    this.getSelectorNameForNoOvhCloud();
+    return this.getSelectorNameForNoOvhCloud();
   }
 
   getTitleDependingOnStep() {
