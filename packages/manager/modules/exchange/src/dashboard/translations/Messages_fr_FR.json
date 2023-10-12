@@ -420,7 +420,8 @@
   "exchange_tab_domain_diagnostic_dkim_id_generation_no_ovhcloud": "La génération de vos identifiants sont en cours, veuillez patienter...",
   "exchange_tab_domain_diagnostic_dkim_configurate_no_ovhcloud_failed": "La configuration de votre DKIM n'a pas aboutit. Veuillez réessayer.",
   "exchange_tab_domain_diagnostic_dkim_configurate_dns_records_info": "Pour configurer votre DKIM vous devez ajouter ces deux entrées à vos DNS",
-  "exchange_tab_domain_diagnostic_dkim_configurate_activation_time_and_guide": "Référez-vous à la documentation de votre fournisseur de domaine. Retrouvez de l'aide sur notre <a href=\"{{url}}\" target=\"_blank\">guide</a>.\nL'activation de DKIM peut prendre 48 heures.",
+  "exchange_tab_domain_diagnostic_dkim_configurate_activation_guide": "Référez-vous à la documentation de votre fournisseur de domaine. Retrouvez de l'aide sur notre <a href=\"{{url}}\" target=\"_blank\">guide</a>."
+   "exchange_tab_domain_diagnostic_dkim_configurate_activation_time": "L'activation de DKIM peut prendre 48 heures.",
   "exchange_tab_domain_diagnostic_dkim_activation_ovhcloud": "Nous allons configurer DKIM pour vous, l'activation complète peut prendre 24 heures.",
   "exchange_tab_domain_diagnostic_dkim_activation_success": "Configuration DKIM en cours, veuillez noter que la mise à jour peut prendre jusqu'à 24 heures pour se propager.",
   "exchange_tab_domain_diagnostic_dkim_activation_error": "Une erreur est survenue pendant la configuration DKIM.",
