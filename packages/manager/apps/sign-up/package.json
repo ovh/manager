@@ -44,7 +44,7 @@
     "clipboard": "^2.0.4",
     "flatpickr": "^4.6.3",
     "lodash": "^4.17.15",
-    "piano-analytics-js": "^6.7.0",
+    "piano-analytics-js": "^6.12.0",
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.7",
     "ui-select": "^0.19.8"
