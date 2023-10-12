@@ -194,4 +194,14 @@ export default /* @ngInject */ function EmailProDomains(
       .post(`/email/pro/${serviceName}/domain/${domain}/dkim`, params)
       .then(({ data }) => data);
   };
+
+  this.getDkimSelectorName = function getDkimSelectorName(
+    serviceName,
+    domain,
+    selectorName,
+  ) {
+    return this.services.$http
+      .get(`/email/pro/${serviceName}/domain/${domain}/dkim/${selectorName}`)
+      .then(({ data }) => data);
+  };
 }
