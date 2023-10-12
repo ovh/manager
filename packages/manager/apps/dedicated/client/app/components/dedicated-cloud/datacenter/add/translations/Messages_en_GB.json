@@ -1,6 +1,6 @@
 {
   "dedicatedCloud_configuration_add_datacenter_title": "Add a datacenter",
-  "dedicatedCloud_configuration_add_datacenter_description": "Management fees refer to the cost of management VMs (e.g. your vCenter or vROps) that are hosted outside of your dedicated hosts, that allow you to have 100% of their capacity (CPU, RAM).",
+  "dedicatedCloud_configuration_add_datacenter_description": "Management fees refer to the cost of management VMs (e.g. your vCenter, vROps) hosted outside of your dedicated hosts, allowing you to benefit from their full capacity (CPU, RAM).",
   "dedicatedCloud_configuration_add_datacenter_cta_submit": "Add a datacentre",
   "dedicatedCloud_configuration_add_datacenter_cta_cancel": "Exit",
   "dedicatedCloud_configuration_add_datacenter_card_vsphere_label": "vSphere",
