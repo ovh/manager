@@ -1,5 +1,6 @@
 <div data-ng-controller="ExchangeDomainDkimAutoconfigCtrl as ctrl">
     <div
+        ng-if="ctrl.dkimForNoOvhCloud"
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="configDkim"
@@ -19,17 +20,56 @@
                     data-translate-values="{ url: ctrl.dkimGuideLink }"
                 ></p>
 
-                <!-- if unconfigured without OVHcloud domain -->
-                <p
-                    data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOT_CONFIGURED && !ctrl.domainDiag.isOvhDomain"
-                    data-translate="exchange_tab_domain_diagnostic_dkim_activation_no_ovhcloud"
-                    data-translate-values="{ url: ctrl.dkimGuideLink }"
-                ></p>
-
                 <!-- if unconfigured with OVHcloud domain -->
                 <p
                     data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOT_CONFIGURED && ctrl.domainDiag.isOvhDomain"
                     data-translate="exchange_tab_domain_diagnostic_dkim_activation_ovhcloud"
+                ></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- if unconfigured without OVHcloud domain -->
+    <div ng-if="!ctrl.dkimForNoOvhCloud">
+        <div
+            data-wizard
+            data-wizard-on-finish="leaveDkimConfigurator"
+            data-wizard-on-cancel="leaveDkimConfigurator"
+            data-wizard-hide-previous-button="true"
+            data-wizard-confirm-button-text=":: 'exchange_tab_domain_diagnostic_dkim_confirm_no_ovhcloud' | translate"
+            data-wizard-next-button-text="getNextButtonDependingOnStep() | translate"
+            data-wizard-title="getTitleDependingOnStep() | translate"
+        >
+            <div
+                data-wizard-step
+                data-wizard-step-on-load="initSpfContext()"
+                data-wizard-step-on-next="leaveDkimConfigurator"
+            >
+                <p
+                    data-translate="exchange_tab_domain_diagnostic_dkim_configurate_dns_records_info"
+                ></p>
+
+                <dl class="dl-horizontal dl-lg">
+                    <dt
+                        data-translate="exchange_tab_domain_diagnostic_dkim_text_field"
+                    ></dt>
+                    <dd>
+                        <span>{{ctrl.selector1NameInfos}}</span>
+                    </dd>
+                    <dd>
+                        <span>{{ctrl.selector1RecordInfos}}</span>
+                    </dd>
+                    <dd>
+                        <span>{{ctrl.selector2NameInfos}}</span>
+                    </dd>
+                    <dd>
+                        <span>{{ctrl.selector2RecordInfos}}</span>
+                    </dd>
+                </dl>
+
+                <p
+                    data-translate="exchange_tab_domain_diagnostic_dkim_configurate_activation_time_and_guide"
+                    data-translate-values="{ url: ctrl.dkimGuideLink }"
                 ></p>
             </div>
         </div>
