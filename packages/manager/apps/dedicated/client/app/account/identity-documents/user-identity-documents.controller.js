@@ -32,6 +32,7 @@ export default class AccountUserIdentityDocumentsController {
     this.loading = false;
     this.showUploadOption = true;
     this.displayError = false;
+    this.isOpenModal = false;
     this.dashboardRedirectURL = this.coreURLBuilder.buildURL('hub', '');
     this.user_type = USER_TYPE[this.currentUser]
       ? USER_TYPE[this.currentUser]
@@ -39,6 +40,7 @@ export default class AccountUserIdentityDocumentsController {
   }
 
   uploadIdentityDocuments() {
+    this.handleUploadConfirmModal(false);
     this.loading = true;
     this.displayError = false;
     this.trackClick(TRACKING_TASK_TAG.upload);
@@ -56,6 +58,10 @@ export default class AccountUserIdentityDocumentsController {
       this.files = null;
       this.displayErrorBanner();
     }
+  }
+
+  handleUploadConfirmModal(open) {
+    this.isOpenModal = open;
   }
 
   getUploadDocumentsLinks(count) {
