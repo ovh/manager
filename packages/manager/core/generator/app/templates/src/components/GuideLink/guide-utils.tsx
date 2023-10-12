@@ -22,8 +22,11 @@ const baseUrlPrefix: BaseUrlProps = {
     GB: `${docUrl}gb/en`,
   },
   CA: {
+    ASIA: `${docUrl}/asia`,
     CA: `${docUrl}ca/en`,
     QC: `${docUrl}ca/fr`,
+    IN: `${docUrl}/asia`,
+    SG: `${docUrl}/sg/en/`,
     WE: `${docUrl}us/en`,
     WS: `${docUrl}us/en`,
   },
@@ -78,13 +81,13 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     WS: '/update-path',
     US: '/update-path',
   },
-  /* 
+  /*
   addNewGuideLink : {
     DEFAULT: '/guide-link-3-path',
     DE: '/guide-link-3-path',
     ES: '/guide-link-3-path',
     ...
-  }    
+  }
   */
 };
 
