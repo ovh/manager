@@ -1,6 +1,6 @@
 <div data-ng-controller="ExchangeDomainDkimAutoconfigCtrl as ctrl">
     <div
-        ng-if="ctrl.dkimForNoOvhCloud"
+        ng-if="!ctrl.dkimForNoOvhCloud"
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="configDkim"
@@ -30,7 +30,7 @@
     </div>
 
     <!-- if unconfigured without OVHcloud domain -->
-    <div ng-if="!ctrl.dkimForNoOvhCloud">
+    <div ng-if="ctrl.dkimForNoOvhCloud">
         <div
             data-wizard
             data-wizard-on-finish="leaveDkimConfigurator"
@@ -40,9 +40,34 @@
             data-wizard-next-button-text="getNextButtonDependingOnStep() | translate"
             data-wizard-title="getTitleDependingOnStep() | translate"
         >
+            <div data-wizard-step data-wizard-step-on-load="getDkimSelector">
+                <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
+
+                <div data-ng-if="!ctrl.loading">
+                    <p
+                        data-translate="exchange_tab_domain_diagnostic_dkim_activation_no_ovhcloud"
+                    ></p>
+                </div>
+            </div>
+
             <div
                 data-wizard-step
-                data-wizard-step-on-load="initSpfContext()"
+                data-wizard-step-on-load="loadDataForDkim"
+                data-wizard-step-on-next="getDkimSelector"
+                data-wizard-step-valid="ctrl.isStepConfigureValid"
+            >
+                <div class="col-md-12" data-ng-if="ctrl.loading">
+                    <oui-spinner></oui-spinner>
+                </div>
+
+                <p
+                    data-translate="exchange_tab_domain_diagnostic_dkim_id_generation_no_ovhcloud"
+                ></p>
+            </div>
+
+            <div
+                data-wizard-step
+                data-wizard-step-on-load="setSpfTitleAndGetSelectorInfos()"
                 data-wizard-step-on-next="leaveDkimConfigurator"
             >
                 <p

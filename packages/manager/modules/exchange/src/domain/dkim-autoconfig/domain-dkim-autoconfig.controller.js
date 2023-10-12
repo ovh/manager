@@ -170,10 +170,6 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
   }
 
   initSpfContext() {
-    this.dkimSelectorsNoDomain = [
-      'ovhex137857-selector1',
-      'ovhex137857-selector2',
-    ];
     this.showSpfDiagnosticTitle = true;
     this.getSelectorNameForNoOvhCloud();
   }
