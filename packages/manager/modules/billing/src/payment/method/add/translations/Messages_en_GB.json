@@ -37,5 +37,5 @@
   "billing_payment_method_add_sepa_direct_debit_data_processing_info": "The data collected is processed by OVHcloud as a data controller in order to set up your SEPA direct debit.",
   "billing_payment_method_add_sepa_direct_debit_digital_signature_info": "To set up a SEPA direct debit, you will need to sign a mandate electronically using a solution provided by Worldline, a service provider authorised to deliver the trusted services defined by the “eDIAS” Regulation No. 910/2014 of 23 July 2014. In this context, the data is sent to Worldline.",
   "billing_payment_method_add_credit_card_selected_explain_ovh_transaction": "The transaction to register your card will be processed by OVH S.A.S.",
-  "billing_payment_method_add_credit_card_registration_charges_info": "A maximum of {{ registrationCharges }} will be paid to confirm that your card is working properly. It will be fully refunded within 48 hours."
+  "billing_payment_method_add_credit_card_registration_charges_info": "A maximum of {{ registrationCharges }} will be charged to your card to confirm that it’s active. This charge will be fully refunded within 48 hours."
 }

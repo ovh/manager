@@ -15,5 +15,5 @@
   "pci_project_new_payment_method_add_info_sepa_direct_debit": "By clicking \"Add\", you will be redirected to the <a href=\"{{ paymentMethodSection }}\">‘My payment methods’</a> section of the OVHcloud Control Panel.",
   "pci_project_new_payment_method_add_warning_sepa_direct_debit": "Your payment card will be validated between 24 and 48 hours after we have received your direct debit authorisation, which needs to be sent by post. After it has been validated, you can create a Public Cloud project.",
   "pci_project_new_payment_method_add_credit_card_explain_ovh_transaction": "The transaction to register your card will be processed by OVH S.A.S.",
-  "pci_project_new_payment_method_add_credit_card_registration_charges_info": "A maximum of {{ registrationCharges }} will be paid to confirm that your card is working properly. It will be fully refunded within 48 hours."
+  "pci_project_new_payment_method_add_credit_card_registration_charges_info": "A maximum of {{ registrationCharges }} will be charged to your card to confirm that it’s active. This charge will be fully refunded within 48 hours."
 }
