@@ -79,6 +79,7 @@ export default class LogsHomeService {
                 downsample: this.LogsConstants.DATA_STORAGE.DOWNSAMPLING_MODE[
                   '24H_MAX'
                 ],
+                tags: { ovh_region: null },
               },
             ],
           };
