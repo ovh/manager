@@ -29,6 +29,6 @@
   "iam_create_policy_submit_edit": "Modify policy",
   "iam_create_policy_success_create": "The policy {{ name }} has been created",
   "iam_create_policy_success_edit": "The policy {{ name }} has been modified",
-  "iam_create_policy_form_description_error_pattern": "The policy name can only contain alphanumeric characters, spaces and \"-\", \"/\", \"_\", \"+\"",
-  "iam_create_policy_form_description_heading": "Policy description"
+  "iam_create_policy_form_description_error_pattern": "The policy name may only contain alphanumeric characters, spaces and \"-\", \"/\", \"_\", \"+\"",
+  "iam_create_policy_form_description_heading": "Policy"
 }
