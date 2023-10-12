@@ -6,7 +6,7 @@ import isEmpty from 'lodash/isEmpty';
 import {
   FETCH_PRICE_MAX_TRIES,
   PRODUCT_TYPES,
-  IP_FAILOVER_RIPE_PLANCODE,
+  IP_FAILOVER_PLANCODE,
 } from './ip-ip-agoraOrder.constant';
 
 export default class IpAgoraOrder {
@@ -100,12 +100,12 @@ export default class IpAgoraOrder {
       .catch(() => false);
   }
 
-  getIpFailoverRIPEPrice(ovhSubsidiary = 'FR') {
+  getIpFailoverPrice(region = 'EU') {
     return this.$http
-      .get(`/order/catalog/formatted/ip?ovhSubsidiary=${ovhSubsidiary}`)
+      .get(`/order/catalog/formatted/ip?ovhSubsidiary=${region}`)
       .then(({ data: { plans } }) => {
         const ipFailoverRIPEPlan = plans.find(
-          ({ planCode }) => planCode === IP_FAILOVER_RIPE_PLANCODE,
+          ({ planCode }) => planCode === IP_FAILOVER_PLANCODE[region],
         );
         if (!ipFailoverRIPEPlan) {
           return null;
