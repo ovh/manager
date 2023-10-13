@@ -127,12 +127,16 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
     this.loading = false;
   }
 
-  getDkimSelector() {
+  getDkimSelectorForCurrentState() {
     return this.services.ExchangeDomains.getDkimSelector(
       this.$routerParams.organization,
       this.$routerParams.productId,
       this.domain.name,
-    ).then((dkimSelectors) => {
+    );
+  }
+
+  getDkimSelector() {
+    return this.getDkimSelectorForCurrentState().then((dkimSelectors) => {
       this.dkimSelectorsNoDomain = dkimSelectors;
     });
   }
@@ -142,7 +146,7 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
     return this.initializeDkimConfiguratorNoOvh();
   }
 
-  getPromisesForDkim(selectors) {
+  postDkimFor(selectors) {
     return selectors.map((dkimSelector, index) => {
       return this.services.ExchangeDomains.postDkim(
         this.$routerParams.organization,
@@ -158,7 +162,7 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
   }
 
   stepConfigureDkim() {
-    const promises = this.getPromisesForDkim(this.dkimSelectorsNoDomain);
+    const promises = this.postDkimFor(this.dkimSelectorsNoDomain);
     return this.services.$q
       .all(promises)
       .then(() => {
@@ -216,13 +220,10 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
   }
 
   configDkim() {
-    this.services.ExchangeDomains.getDkimSelector(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.domain.name,
-    )
+    this.this
+      .getDkimSelectorForCurrentState()
       .then((dkimSelectors) => {
-        const promises = this.getPromisesForDkim(dkimSelectors);
+        const promises = this.postDkimFor(dkimSelectors);
         return this.services.$q.all(promises);
       })
       .then(() => {
