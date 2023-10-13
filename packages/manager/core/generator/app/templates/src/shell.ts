@@ -2,7 +2,7 @@ type ShellClient = any;
 
 let shellClient: ShellClient;
 
-export const setShellClient = (client: ShellClient) => {
+export const setShellClient = (client: any) => {
   shellClient = client;
 
   // set callbacks on locale change

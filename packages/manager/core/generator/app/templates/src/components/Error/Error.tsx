@@ -18,7 +18,7 @@ export const TRACKING_LABELS = {
   PAGE_LOAD: 'error_during_page_loading',
 };
 
-interface errorMessage {
+interface ErrorMessage {
   message: string;
   status: number;
   detail: any;
@@ -28,7 +28,7 @@ interface ErrorObject {
   [key: string]: any;
 }
 
-function getTrackingTypology(error: errorMessage) {
+function getTrackingTypology(error: ErrorMessage) {
   if (error?.detail?.status && Math.floor(error.detail.status / 100) === 4) {
     return [401, 403].includes(error.detail.status)
       ? TRACKING_LABELS.UNAUTHORIZED

@@ -17,7 +17,7 @@ import {
   Translations,
   ServiceDetails,
 } from './msc-billing.types';
-import { getChangeOfferUrl } from './urls';
+import { BillingTileURLs } from './urls';
 
 export interface IMscBillingOffer {
   serviceType: string;
@@ -26,6 +26,7 @@ export interface IMscBillingOffer {
   serviceDetails?: ServiceDetails;
   changeOfferDataTracking?: string;
   localeStrings: Translations;
+  urls?: BillingTileURLs;
 }
 
 @Component({
@@ -48,6 +49,8 @@ export class MscBillingOffer implements IMscBillingOffer {
 
   @Prop() localeStrings: Translations;
 
+  @Prop() urls?: BillingTileURLs;
+
   @State() serviceProperties: ServiceProperties;
 
   async componentWillLoad() {
@@ -69,7 +72,7 @@ export class MscBillingOffer implements IMscBillingOffer {
       <menu-custom>
         <osds-link
           data-tracking={this.changeOfferDataTracking}
-          href={getChangeOfferUrl(this.serviceType)}
+          href={this.urls?.changeOfferUrl}
           color={ODS_THEME_COLOR_INTENT.primary}
         >
           {this.localeStrings.billing_services_actions_menu_change_offer}

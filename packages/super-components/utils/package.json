@@ -27,6 +27,7 @@
   ],
   "scripts": {
     "msc:build": "tsc",
+    "msc:test": "jest",
     "prepare": "yarn msc:build"
   },
   "dependencies": {
