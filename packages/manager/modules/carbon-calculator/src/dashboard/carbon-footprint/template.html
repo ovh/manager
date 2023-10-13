@@ -4,15 +4,16 @@
             class="mb-2"
             data-translate="carbon_calculator_dashboard_billing_explanation"
         ></p>
-        <ul
-            data-ng-repeat="serviceName in $ctrl.availableServices track by $index"
-        >
-            <li
-                data-translate="carbon_calculator_dashboard_billing_explanation_service"
-                data-translate-values="{ serviceName: serviceName }"
-            ></li>
-        </ul>
-        <br />
+        <div class="carbon-balance-spacings">
+            <ul
+                data-ng-repeat="serviceName in $ctrl.availableServices track by $index"
+            >
+                <li
+                    data-translate="carbon_calculator_dashboard_billing_explanation_service"
+                    data-translate-values="{ serviceName: serviceName }"
+                ></li>
+            </ul>
+        </div>
         <span
             data-translate="carbon_calculator_dashboard_billing_explanation_contact"
         ></span>

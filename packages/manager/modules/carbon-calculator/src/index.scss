@@ -4,9 +4,14 @@
 @import 'bootstrap4/scss/_utilities.scss';
 @import 'bootstrap4/scss/_grid.scss';
 
+.carbon-balance-spacings {
+  *:not(:last-child) {
+    margin-bottom: 0px;
+  }
+}
 .carbon-balance {
   ul {
-    margin-bottom: 0px;
+    margin-bottom: 5px;
     list-style-type: '- ';
   }
 }
