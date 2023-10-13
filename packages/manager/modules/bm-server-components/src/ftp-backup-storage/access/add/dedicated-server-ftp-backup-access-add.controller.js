@@ -11,6 +11,7 @@ export default class AddAccessFtpBackupCtrl {
     this.Alerter = Alerter;
     this.Server = Server;
     this.ipBlocksLimit = DEDICATED_SERVER_FTP_BACKUP_IP_BLOCKS_LIMIT;
+    this.addFtpBackup = this.addFtpBackup.bind(this);
   }
 
   $onInit() {
@@ -33,7 +34,6 @@ export default class AddAccessFtpBackupCtrl {
           this.access.listIp = list;
         })
         .catch(({ data }) => {
-          this.goBack();
           this.Alerter.alertFromSWS(
             this.$translate.instant(
               'server_configuration_ftpbackup_access_add_ip_failure',
@@ -41,6 +41,7 @@ export default class AddAccessFtpBackupCtrl {
             data,
             FTP_BACKUP_STORAGE_ALERT,
           );
+          this.goBack();
         })
         .finally(() => {
           this.loading = false;
@@ -49,54 +50,49 @@ export default class AddAccessFtpBackupCtrl {
   }
 
   addFtpBackup() {
-    return () => {
-      const resultMessages = {
-        OK: this.$translate.instant(
-          'server_configuration_ftpbackup_access_add_success',
-        ),
-        PARTIAL: this.$translate.instant(
-          'server_configuration_ftpbackup_access_add_partial',
-        ),
-        ERROR: this.$translate.instant(
-          'server_configuration_ftpbackup_access_add_failure',
-        ),
-      };
-
-      this.loading = true;
-
-      return this.Server.postFtpBackupIp(
-        this.$stateParams.productId,
-        this.access.ip,
-        this.access.ftp,
-        this.access.nfs,
-        this.access.cifs,
-      )
-        .then((data) => {
-          data.results.forEach((task) => {
-            this.$rootScope.$broadcast(
-              'dedicated.ftpbackup.task.refresh',
-              task,
-            );
-          });
-          this.$rootScope.$broadcast('server.ftpBackup.access.load');
-          this.Alerter.alertFromSWSBatchResult(
-            resultMessages,
-            data,
-            FTP_BACKUP_STORAGE_ALERT,
-          );
-        })
-        .catch((data) => {
-          this.Alerter.alertFromSWSBatchResult(
-            resultMessages,
-            data,
-            FTP_BACKUP_STORAGE_ALERT,
-          );
-        })
-        .finally(() => {
-          this.goBack();
-          this.loading = false;
-        });
+    const resultMessages = {
+      OK: this.$translate.instant(
+        'server_configuration_ftpbackup_access_add_success',
+      ),
+      PARTIAL: this.$translate.instant(
+        'server_configuration_ftpbackup_access_add_partial',
+      ),
+      ERROR: this.$translate.instant(
+        'server_configuration_ftpbackup_access_add_failure',
+      ),
     };
+
+    this.loading = true;
+
+    this.Server.postFtpBackupIp(
+      this.$stateParams.productId,
+      this.access.ip,
+      this.access.ftp,
+      this.access.nfs,
+      this.access.cifs,
+    )
+      .then((data) => {
+        data.results.forEach((task) => {
+          this.$rootScope.$broadcast('dedicated.ftpbackup.task.refresh', task);
+        });
+        this.$rootScope.$broadcast('server.ftpBackup.access.load');
+        this.Alerter.alertFromSWSBatchResult(
+          resultMessages,
+          data,
+          FTP_BACKUP_STORAGE_ALERT,
+        );
+      })
+      .catch((data) => {
+        this.Alerter.alertFromSWSBatchResult(
+          resultMessages,
+          data,
+          FTP_BACKUP_STORAGE_ALERT,
+        );
+      })
+      .finally(() => {
+        this.goBack();
+        this.loading = false;
+      });
   }
 
   isIpBlocksLengthValid() {
