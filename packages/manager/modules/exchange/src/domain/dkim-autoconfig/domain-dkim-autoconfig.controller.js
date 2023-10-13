@@ -158,7 +158,7 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
 
     return this.services.$q
       .all(promises)
-      .then((res) => res)
+      
       .catch(() => {
         this.leaveDkimConfigurator();
         this.services.messaging.writeError(
