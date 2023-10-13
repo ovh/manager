@@ -436,7 +436,7 @@
                             data-ng-click="$ctrl.trackKarapace($event)"
                             data-translate="pci_databases_general_information_kafka_rest_api_content"
                             data-translate-values="{
-                                projectLink: '<a href=&quot' + $ctrl.KARAPACE_URL + '&quot>Karapace</a>'
+                                projectLink: '<a href=&quot' + $ctrl.KARAPACE_URL + '&quot rel=&quotnoopener noreferrer&quot target=&quot_blank&quot>Karapace</a>'
                             }"
                         ></p>
                         <div class="mb-3">
@@ -465,6 +465,48 @@
                                 data-id="rest-api-service-uri"
                                 data-name="rest-api-service-uri"
                                 data-ng-click="$ctrl.onRestApiServiceUriCopy($event)"
+                            ></oui-clipboard>
+                        </oui-field>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{:: 'pci_databases_general_information_kafka_schema_registry_label' | translate }}"
+                    data-ng-if="$ctrl.isFeatureActivated('schemaRegistry')"
+                >
+                    <oui-tile-description>
+                        <p
+                            data-ng-click="$ctrl.trackKarapace($event)"
+                            data-translate="pci_databases_general_information_kafka_schema_registry_content"
+                            data-translate-values="{
+                                projectLink: '<a href=&quot' + $ctrl.KARAPACE_URL + '&quot rel=&quotnoopener noreferrer&quot target=&quot_blank&quot>Karapace</a>'
+                            }"
+                        ></p>
+                        <div class="mb-3">
+                            <oui-switch
+                                class="d-inline-block"
+                                name="schema-registry-switch"
+                                data-model="$ctrl.enableSchemaRegistry"
+                                data-on-change="$ctrl.onSchemaRegistryStatusChange(modelValue)"
+                                data-disabled="$ctrl.loading.schemaRegistry || !$ctrl.database.isActive()"
+                            >
+                            </oui-switch>
+                            <span
+                                class="d-inline-block mx-2"
+                                data-ng-bind="($ctrl.enableSchemaRegistry ? 'pci_databases_general_information_kafka_schema_registry_enable' : 'pci_databases_general_information_kafka_schema_registry_disable') | translate"
+                            >
+                            </span>
+                        </div>
+                        <oui-field
+                            data-ng-if="$ctrl.enableSchemaRegistry && $ctrl.schemaRegistryServiceUri"
+                        >
+                            <label
+                                data-translate="pci_databases_general_information_kafka_schema_registry_service_uri_label"
+                            ></label>
+                            <oui-clipboard
+                                data-model="$ctrl.schemaRegistryServiceUri"
+                                data-id="schema-registry-service-uri"
+                                data-name="schema-registry-service-uri"
+                                data-ng-click="$ctrl.onSchemaRegistryServiceUriCopy($event)"
                             ></oui-clipboard>
                         </oui-field>
                     </oui-tile-description>
