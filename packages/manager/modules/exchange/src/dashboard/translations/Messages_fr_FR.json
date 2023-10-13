@@ -407,7 +407,7 @@
   "exchange_tab_domain_diagnostic_spf_recap": "Un champ SPF va être ajouté dans la zone DNS de votre domaine.",
   "exchange_tab_domain_diagnostic_spf": "SPF",
   "exchange_tab_domain_diagnostic_spf_title": "Diagnostic SPF",
-  "exchange_tab_domain_diagnostic_spf_toolbox_ok": "Configuration automatique effectuée",
+  "exchange_tab_domain_diagnostic_spf_toolbox_ok": "Configuration OK",
   "exchange_tab_domain_diagnostic_dkim": "DKIM",
   "exchange_tab_domain_diagnostic_dkim_title_error": "Diagnostic DKIM",
   "exchange_tab_domain_diagnostic_dkim_title_activation": "Activer DKIM",
