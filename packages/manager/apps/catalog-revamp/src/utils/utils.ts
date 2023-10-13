@@ -51,6 +51,7 @@ export const matchSearchText = (product: Product, searchText: string) => {
     !search ||
     product.category.toLowerCase().includes(search) ||
     product.universe.toLowerCase().includes(search) ||
+    product.description.toLowerCase().includes(search) ||
     product.name.toLowerCase().includes(search)
   );
 };
