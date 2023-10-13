@@ -9,7 +9,6 @@ export default class DeleteFtpBackupCtrl {
   }
 
   $onInit() {
-    this.ftpBackup = this.ipbackup;
     this.loading = false;
   }
 
