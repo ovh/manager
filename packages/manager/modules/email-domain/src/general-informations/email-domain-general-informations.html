@@ -60,6 +60,40 @@
                         >
                     </oui-tile-description>
                 </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ ::'email_tab_domain_diagnostic' | translate }}"
+                >
+                    <oui-tile-description>
+                        <div>
+                            <span>{{domain.isSPFValid}}</span>
+                            <button
+                                data-ng-if="domain.isSPFValid == 'valid'"
+                                class="oui-badge oui-badge_success"
+                                type="button"
+                                data-translate="email_tab_domain_diagnostic_spf"
+                                data-simplepopover="{{ 'email_tab_domain_diagnostic_spf_toolbox_ok' | translate }}"
+                                data-simplepopover-title="{{ 'email_tab_domain_diagnostic_spf_title' | translate }}"
+                                data-simplepopover-placement="top"
+                                data-simplepopover-single="true"
+                            ></button>
+                            <button
+                                data-ng-if="domain.isSPFValid === 'unknown' || domain.isSPFValid === 'checkFail'"
+                                class="oui-badge oui-background-g-100"
+                                type="button"
+                                data-translate="email_tab_domain_diagnostic_spf"
+                                data-simplepopover="{{ 'email_tab_domain_diagnostic_spf_toolbox_fail' | translate }}"
+                                data-simplepopover-title="{{ 'email_tab_domain_diagnostic_spf_title' | translate }}"
+                                data-simplepopover-placement="top"
+                                data-simplepopover-single="true"
+                            ></button>
+                            <span
+                                data-ng-if="domain.isSPFValid === 'invalid' || domain.isSPFValid === 'none'"
+                                class="oui-badge oui-background-g-100"
+                                data-translate="email_tab_domain_diagnostic_spf"
+                            ></span>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
             </oui-tile>
         </div>
         <div class="col-sm-4 mb-5">
