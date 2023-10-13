@@ -10,7 +10,6 @@ export default class RequestFtpBackupPasswordCtrl {
   }
 
   $onInit() {
-    this.ftpBackup = this.requestData;
     this.loading = false;
   }
 

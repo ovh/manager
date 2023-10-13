@@ -1,8 +1,16 @@
 export const DEDICATED_SERVER_FTP_BACKUP_IP_BLOCKS_LIMIT = 50;
 
-export const FTP_BACKUP_STORAGE_ALERT = 'server_dashboard_alert';
+export const FTP_BACKUP_STORAGE_ALERT = 'server_tab_ftpbackup_alert';
+
+export const FTP_BACK_UP_USAGE_LIMIT = {
+  50: 50,
+  51: 51,
+  80: 80,
+  81: 81,
+};
 
 export default {
   DEDICATED_SERVER_FTP_BACKUP_IP_BLOCKS_LIMIT,
   FTP_BACKUP_STORAGE_ALERT,
+  FTP_BACK_UP_USAGE_LIMIT,
 };

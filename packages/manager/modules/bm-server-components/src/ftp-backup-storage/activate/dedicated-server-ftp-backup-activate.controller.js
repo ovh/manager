@@ -8,7 +8,7 @@ export default class ActivateFtpBackupCtrl {
     this.Alerter = Alerter;
   }
 
-  $ngOnInit() {
+  $onInit() {
     this.loading = false;
   }
 
