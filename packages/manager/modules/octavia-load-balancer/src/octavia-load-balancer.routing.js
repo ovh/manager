@@ -3,14 +3,14 @@ import template from './octavia-load-balancer.html';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('octavia-load-balancer', {
     url: '/pci/projects/{projectId:[0-9a-zA-Z]{32}}/octavia-load-balancer',
+    redirectTo: () => 'octavia-load-balancer.loadbalancers',
     template,
-    redirectTo: 'octavia-load-balancer.onboarding',
     resolve: {
       projectId: /* @ngInject */ ($transition$) =>
         $transition$.params().projectId,
       project: /* @ngInject */ ($http, projectId) =>
         $http.get(`/cloud/project/${projectId}`).then(({ data }) => data),
-      breadcrumb: ($translate) => $translate.instant('octavia_load_balancer'),
+      breadcrumb: ($translate) => $translate.instant('octavia_load_balancers'),
       breadcrumbPrefix: /* @ngInject */ (
         $injector,
         $q,
@@ -44,10 +44,6 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         ]);
       },
-      goToListingPage: /* @ngInject */ ($state) => () =>
-        $state.go('octavia-load-balancer', {
-          displayCreationBanner: true,
-        }),
     },
   });
 };

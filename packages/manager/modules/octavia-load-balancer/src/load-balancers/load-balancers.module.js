@@ -7,17 +7,12 @@ import 'angular-translate';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import uiKit from '@ovh-ux/ui-kit';
 
-import dashboard from './dashboard';
-import onboarding from './onboarding';
-import routing from './octavia-load-balancer.routing';
-import create from './create';
-import deleteComponent from './delete';
-import loadBalancers from './load-balancers';
-import service from './octavia-load-balancer.service';
+import component from './load-balancers.component';
+import routing from './load-balancers.routing';
 
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
-const moduleName = 'ovhManagerOctaviaLoadBalancer';
+const moduleName = 'ovhManagerOctaviaLoadBalancers';
 
 angular
   .module(moduleName, [
@@ -28,14 +23,9 @@ angular
     ngOvhUtils,
     uiKit,
     'oui',
-    onboarding,
-    dashboard,
-    create,
-    deleteComponent,
-    loadBalancers,
   ])
   .config(routing)
-  .service('OctaviaLoadBalanderService', service)
+  .component('octaviaLoadBalancerListing', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
