@@ -11,5 +11,6 @@ export default {
     onChange: '&?',
     displaySelectedRegion: '<',
     quotaUrl: '<?',
+    currentRegion: '<?',
   },
 };

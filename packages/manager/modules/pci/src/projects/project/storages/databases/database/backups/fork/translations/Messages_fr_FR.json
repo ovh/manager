@@ -2,6 +2,7 @@
   "pci_databases_backups_fork_title": "Dupliquer votre service de base de données (fork)",
   "pci_databases_backups_fork_description": "Le fork de votre sauvegarde s'effectuera sur un nouveau cluster.",
   "pci_databases_backups_fork_plan_label": "Sélectionnez une offre",
+  "pci_databases_backups_fork_region_label": "Sélectionnez une localisation",
   "pci_databases_backups_fork_flavor_label": "Type de noeud",
   "pci_databases_backups_fork_cluster_label": "Dimensionnement du cluster",
   "pci_databases_backups_fork_options_label": "Configurez vos options",
