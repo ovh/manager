@@ -1,4 +1,0 @@
-{
-  "iam_cursor_datagrid_error_cursor": "Cette page n'existe pas",
-  "iam_cursor_datagrid_error_data": "Une erreur est survenue lors de la récupération de vos données : {{ error }}"
-}

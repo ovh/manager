@@ -1,7 +1,5 @@
 import angular from 'angular';
 
-import cursorDatagrid from '../../components/cursorDatagrid';
-
 import deleteModule from './delete';
 
 import component from './resourceGroups.component';
@@ -10,7 +8,7 @@ import routing from './resourceGroups.routing';
 const moduleName = 'ovhManagerIAMDashboardResourceGroups';
 
 angular
-  .module(moduleName, [cursorDatagrid, deleteModule])
+  .module(moduleName, [deleteModule])
   .component('iamResourceGroups', component)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

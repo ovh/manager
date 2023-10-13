@@ -6061,12 +6061,12 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^6.6.2":
-  version "6.6.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.6.2.tgz#93835665465ac246ec10cec1dda6b8b3fc5e0543"
-  integrity sha512-7XFGcUOig2+W+QCgKmcgzlY/S97i8+R2BawFywKckpx1bqLfDbinIz/7yCBVcReBvFFolKS+rRoxM8ZgmLvQXw==
+"@ovh-ux/ui-kit@^6.3.0":
+  version "6.7.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.7.0.tgz#f21c3a7e3e4fb8cf41df7de4fa9f9b0ba61b026b"
+  integrity sha512-NeqVvZCpMVrQ0urYJc6QFCFqeu21MwiywlRoQH3e2bPjXReqAm8edJLPOhpFGAdxBF+sPl4bZ4P77IjA80tiZQ==
 
-"@ovh-ux/ui-kit@^6.6.1":
+"@ovh-ux/ui-kit@^6.6.2":
   version "6.6.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.6.2.tgz#93835665465ac246ec10cec1dda6b8b3fc5e0543"
   integrity sha512-7XFGcUOig2+W+QCgKmcgzlY/S97i8+R2BawFywKckpx1bqLfDbinIz/7yCBVcReBvFFolKS+rRoxM8ZgmLvQXw==

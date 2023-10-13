@@ -1,4 +1,0 @@
-{
-  "iam_cursor_datagrid_error_cursor": "Pagina inesistente",
-  "iam_cursor_datagrid_error_data": "Si è verificato un errore durante il recupero dei dati: {{ error }}"
-}
