@@ -38,7 +38,6 @@ export default class PrivateDatabase {
     };
 
     this.swsProxypassPath = 'apiv6/hosting/privateDatabase';
-    this.swsProxypassOrderPath = 'apiv6/order/hosting/privateDatabase';
     this.swsProxypassUpgradePath = 'apiv6/order/upgrade/cloudDB';
 
     this.rootPath = 'apiv6';
@@ -485,62 +484,24 @@ export default class PrivateDatabase {
     });
   }
 
-  listAvailableRamDurations(serviceName, opts) {
-    return this.canOrderRam(serviceName).then((canOrderRam) => {
-      let rtn;
-
-      if (canOrderRam) {
-        rtn = this.$http
-          .get(`${this.swsProxypassOrderPath}/${serviceName}/ram`, {
-            params: { ram: opts.ram },
-          })
-          .then((response) => response.data || [])
-          .catch(() => []);
-      }
-
-      return rtn;
-    });
-  }
-
-  getRamPrices(serviceName, opts) {
-    const durationsTab = [];
-    const defer = this.$q.defer();
-
-    this.listAvailableRamDurations(serviceName, opts)
-      .then((durations) => {
-        defer.notify(durations);
-
-        return this.$q.all(
-          map(durations, (duration) =>
-            this.$http
-              .get(
-                `${this.swsProxypassOrderPath}/${serviceName}/ram/${duration}`,
-                {
-                  params: {
-                    ram: opts.ram,
-                  },
-                },
-              )
-              .then((durationDetails) => {
-                const details = angular.copy(durationDetails.data);
-                details.duration = duration;
-                durationsTab.push(details);
-                defer.notify(durationsTab);
-              }),
-          ),
-        );
-      })
-      .then(() => defer.resolve(durationsTab))
-      .catch(() => defer.resolve(durationsTab));
-    return defer.promise;
-  }
-
-  orderRam(serviceName, ram, duration) {
+  getRamPlan(serviceName, planCode) {
     return this.$http
-      .post(`${this.swsProxypassOrderPath}/${serviceName}/ram/${duration}`, {
-        ram,
+      .get(`${this.swsProxypassUpgradePath}/${serviceName}/${planCode}`, {
+        params: {
+          quantity: 1,
+        },
       })
-      .then((response) => response.data);
+      .then((response) => response.data.order);
+  }
+
+  orderRam(serviceName, planCode) {
+    return this.$http
+      .post(`${this.swsProxypassUpgradePath}/${serviceName}/${planCode}`, {
+        params: {
+          quantity: 1,
+        },
+      })
+      .then((response) => response.data.order);
   }
 
   /*
