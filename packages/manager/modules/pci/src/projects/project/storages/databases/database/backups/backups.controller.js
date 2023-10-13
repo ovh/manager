@@ -22,7 +22,7 @@ export default class PciProjectStorageDatabaseBackupsCtrl {
     this.backupTime = this.database.backupTime;
     const flavor = this.getCurrentFlavor();
     this.backupRetentionTime = moment.duration(
-      `P${flavor.availability[0].backupRetentionDays}D`,
+      `P${flavor.availabilities[0].backups.retentionDays}D`,
     );
 
     this.isEngineVersionDeprecated = flavor.isDeprecated;

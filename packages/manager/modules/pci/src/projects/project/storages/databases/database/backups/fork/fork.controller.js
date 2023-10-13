@@ -119,7 +119,7 @@ export default class {
     this.updateFlavor(this.originalFlavor);
 
     const minDateRetentionDays = moment().subtract(
-      this.originalFlavor.availability[0].backupRetentionDays,
+      this.originalFlavor.availabilities[0].backups.retentionDays,
       'days',
     );
     const clusterCreationDate = moment(this.database.createdAt);
@@ -350,7 +350,7 @@ export default class {
 
   get clusterDiskMinAdditionalStorage() {
     // user can not select less than the size of his cluster
-    const minDiskSize = this.database.disk.size;
+    const minDiskSize = this.database.storage.size.value;
     const selectedFlavorMinDisk = this.model.flavor.minDiskSize;
     const minAdditionalStorage = minDiskSize - selectedFlavorMinDisk;
     return Math.max(0, minAdditionalStorage);
@@ -389,11 +389,13 @@ export default class {
         region: this.model.region.name,
       },
       plan: this.model.plan.name,
-      disk: {
-        size: this.model.flavor.minDiskSize + this.model.additionalDiskSize,
-      },
       version: this.model.engine.selectedVersion.version,
     };
+    if (this.model.flavor.availabilities[0].stepDiskSize > 0) {
+      this.orderData.disk = {
+        size: this.model.flavor.minDiskSize + this.model.additionalDiskSize,
+      };
+    }
     if (this.model.usePrivateNetwork && this.model.subnet?.id?.length > 0) {
       this.orderData.networkId = this.model.privateNetwork.regions?.find(
         (region) => region.region === this.model.subnet?.ipPools[0].region,

@@ -26,7 +26,7 @@ export default class {
       ? this.currentFlavor.nodeMonthlyPrice
       : this.currentFlavor.nodeHourlyPrice;
     let addedStorageByNode =
-      this.database.disk.size - this.currentFlavor.minDiskSize;
+      this.database.storage.size.value - this.currentFlavor.minDiskSize;
     // if engine is distributed, the stockage is distributed between the nodes, so to get the
     // size of for one node, we need to divide by the number of nodes
     if (this.dbEngine.isDistributedStorage) {

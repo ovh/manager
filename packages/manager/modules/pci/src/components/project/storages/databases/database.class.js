@@ -3,6 +3,7 @@ import find from 'lodash/find';
 import Base from './base.class';
 
 import { ENGINES_NAMES } from './engines.constants';
+import Node from './node.class';
 
 export default class Database extends Base {
   constructor({
@@ -30,6 +31,7 @@ export default class Database extends Base {
     maintenanceTime,
     backupTime,
     disk,
+    storage,
   }) {
     super();
     this.updateData({
@@ -46,7 +48,7 @@ export default class Database extends Base {
       networkId,
       subnetId,
       engine,
-      nodes,
+      nodes: nodes.map((node) => new Node(node)),
       flavor,
       sslMode,
       host,
@@ -57,6 +59,7 @@ export default class Database extends Base {
       maintenanceTime,
       backupTime,
       disk,
+      storage,
     });
   }
 
@@ -104,5 +107,10 @@ export default class Database extends Base {
 
   updateData(data) {
     Object.assign(this, data);
+    this.nodes = data.nodes.map((node) => new Node(node));
+    this.storage.size.sizeInMB = this.storage.size.value;
+    if (this.storage.size.unit === 'GB') {
+      this.storage.size.sizeInMB *= 1000;
+    }
   }
 }

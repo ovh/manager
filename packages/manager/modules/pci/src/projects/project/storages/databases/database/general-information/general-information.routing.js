@@ -1,6 +1,5 @@
 import find from 'lodash/find';
 import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
-import { NODES_PER_ROW } from '../../databases.constants';
 import { NEW_SUPPORT_TICKET_PARAMS } from './general-information.constants';
 import isFeatureActivated from '../../features.constants';
 import { RESTORE_MODES } from '../backups/fork/fork.constants';
@@ -193,8 +192,6 @@ export default /* @ngInject */ ($stateProvider) => {
         CucCloudMessage,
         DatabaseService,
         database,
-        getNodes,
-        pollNodesStatus,
         projectId,
       ) => () => {
         if (database.isProcessing()) {
@@ -202,66 +199,19 @@ export default /* @ngInject */ ($stateProvider) => {
             projectId,
             database.engine,
             database.id,
-          ).then(
-            (databaseInfo) => {
-              CucCloudMessage.flushMessages(`${stateName}-${databaseInfo.id}`);
-              CucCloudMessage.success(
-                $translate.instant(
-                  'pci_databases_general_information_database_ready',
-                ),
-                `${stateName}-${databaseInfo.id}`,
-              );
-              database.updateData(databaseInfo);
-              return getNodes(database).then((nodes) =>
-                database.setNodes(nodes),
-              );
-            },
-            null,
-            () => {
-              getNodes(database).then((nodes) => {
-                database.setNodes(nodes);
-              });
-            },
-          );
+          ).then((databaseInfo) => {
+            CucCloudMessage.flushMessages(`${stateName}-${databaseInfo.id}`);
+            CucCloudMessage.success(
+              $translate.instant(
+                'pci_databases_general_information_database_ready',
+              ),
+              `${stateName}-${databaseInfo.id}`,
+            );
+            database.updateData(databaseInfo);
+          });
         }
-        getNodes(database).then((nodes) => {
-          database.setNodes(nodes);
-          pollNodesStatus();
-        });
       },
-      pollNodesStatus: /* @ngInject */ (
-        $translate,
-        CucCloudMessage,
-        DatabaseService,
-        database,
-        projectId,
-      ) => () => {
-        database.nodes.forEach((node) => {
-          if (node.isProcessing()) {
-            const successMessage =
-              node.status === STATUS.DELETING
-                ? 'pci_databases_general_information_delete_node_success'
-                : 'pci_databases_general_information_node_ready';
-            DatabaseService.pollNodeStatus(
-              projectId,
-              database.engine,
-              database.id,
-              node.id,
-            ).then((nodeInfo) => {
-              CucCloudMessage.success(
-                $translate.instant(successMessage, { nodeName: node.name }),
-                `${stateName}-${database.id}`,
-              );
-              if (node.status === STATUS.DELETING) {
-                CucCloudMessage.flushMessages(+'-' + database.id);
-                database.deleteNode(node.id);
-              } else {
-                node.updateData(nodeInfo);
-              }
-            });
-          }
-        });
-      },
+
       serviceIntegration: /* @ngInject */ (
         DatabaseService,
         database,
@@ -283,14 +233,6 @@ export default /* @ngInject */ ($stateProvider) => {
         DatabaseService,
         databaseId,
       ) => () => DatabaseService.stopPollingDatabaseStatus(databaseId),
-      stopPollingNodesStatus: /* @ngInject */ (
-        DatabaseService,
-        database,
-      ) => () =>
-        database.nodes.forEach((node) =>
-          DatabaseService.stopPollingNodeStatus(database.id, node.id),
-        ),
-      nodesPerRow: () => NODES_PER_ROW,
       isFeatureActivated: /* @ngInject */ (engine) => (feature) =>
         isFeatureActivated(feature, engine.name),
       maintenances: /* @ngInject */ (DatabaseService, database, projectId) =>

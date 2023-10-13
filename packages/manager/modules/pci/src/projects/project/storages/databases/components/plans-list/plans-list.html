@@ -1,7 +1,7 @@
 <div class="row">
     <oui-select-picker
         class="d-inline-block col-md-6 col-xl-4 my-3"
-        data-ng-repeat="plan in $ctrl.plans track by plan.id"
+        data-ng-repeat="plan in $ctrl.getSortedPlans() track by plan.id"
         data-disabled="!$ctrl.allowLowerSelection && $ctrl.currentPlan && $ctrl.currentPlan.compare(plan) < 0"
         data-name="{{:: plan.name }}"
         data-model="$ctrl.selectedPlan"
@@ -29,7 +29,7 @@
             ></p>
             <p
                 class="mb-0"
-                data-ng-if="plan.minMemory === plan.maxMemory"
+                data-ng-if="plan.minMemory === plan.maxMemory && plan.minMemory > 0"
                 data-translate="pci_database_plans_list_spec_ram_unique"
                 data-translate-values="{
                     ram: (plan.minMemory | bytes:0:false:'GB')
@@ -46,7 +46,7 @@
             ></p>
             <p
                 class="mb-0"
-                data-ng-if="plan.minCores === plan.maxCores"
+                data-ng-if="plan.minCores === plan.maxCores && plan.minCores > 0"
                 data-translate="pci_database_plans_list_spec_core_unique"
                 data-translate-values="{
                     core: plan.minCores
