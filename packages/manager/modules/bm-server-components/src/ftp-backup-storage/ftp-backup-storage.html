@@ -5,7 +5,7 @@
 
     <div class="row" data-ng-if="!$ctrl.loading">
         <div class="col-md-9">
-            <div data-ovh-alert="FTP_BACKUP_STORAGE_ALERT"></div>
+            <div data-ovh-alert="server_tab_ftpbackup_alert"></div>
 
             <p
                 data-ng-if="!$ctrl.featureAvailable || $ctrl.isNotAvailable"
@@ -42,9 +42,9 @@
                                     aria-valuemin="0"
                                     aria-valuemax="100"
                                     data-ng-class="{
-                                        'progress-bar-success': $ctrl.ftpBackup.model.usage === null || $ctrl.ftpBackup.model.usage.value < 51,
-                                        'progress-bar-warning' : $ctrl.ftpBackup.model.usage.value > 50 && $ctrl.ftpBackup.model.usage.value < 81,
-                                        'progress-bar-danger' : $ctrl.ftpBackup.model.usage.value > 80
+                                        'progress-bar-success': $ctrl.ftpBackup.model.usage === null || $ctrl.ftpBackup.model.usage.value < $ctrl.FTP_BACK_UP_USAGE_LIMIT[51],
+                                        'progress-bar-warning' : $ctrl.ftpBackup.model.usage.value > $ctrl.FTP_BACK_UP_USAGE_LIMIT[50] && $ctrl.ftpBackup.model.usage.value < $ctrl.FTP_BACK_UP_USAGE_LIMIT[81],
+                                        'progress-bar-danger' : $ctrl.ftpBackup.model.usage.value > $ctrl.FTP_BACK_UP_USAGE_LIMIT[80]
                                     }"
                                     data-ng-style="{ 'width': $ctrl.ftpBackup.model.usage.value + '%' }"
                                 >

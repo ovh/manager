@@ -1,5 +1,8 @@
 import head from 'lodash/head';
-import { FTP_BACKUP_STORAGE_ALERT } from './ftp-backup.constants';
+import {
+  FTP_BACKUP_STORAGE_ALERT,
+  FTP_BACK_UP_USAGE_LIMIT,
+} from './ftp-backup.constants';
 
 export default class FtpBackupStorageController {
   constructor(
@@ -23,6 +26,7 @@ export default class FtpBackupStorageController {
     this.Polling = Polling;
     this.Server = Server;
     this.FTP_BACKUP_STORAGE_ALERT = FTP_BACKUP_STORAGE_ALERT;
+    this.FTP_BACK_UP_USAGE_LIMIT = FTP_BACK_UP_USAGE_LIMIT;
   }
 
   $onInit() {
@@ -302,9 +306,5 @@ export default class FtpBackupStorageController {
           FTP_BACKUP_STORAGE_ALERT,
         );
       });
-  }
-
-  goToAdd() {
-    return this.$state.go('app.dedicated-server.server.ftpBackup.add');
   }
 }
