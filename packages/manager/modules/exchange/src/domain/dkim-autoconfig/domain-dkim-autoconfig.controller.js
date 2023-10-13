@@ -157,11 +157,17 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
     });
   }
 
-  async stepConfigureDkim() {
+  stepConfigureDkim() {
     const promises = this.getPromisesForDkim(this.dkimSelectorsNoDomain);
     return this.services.$q
       .all(promises)
-      .then((res) => res)
+      .then(() => {
+        this.services.messaging.writeSuccess(
+          this.services.$translate.instant(
+            'exchange_tab_domain_diagnostic_dkim_activation_success',
+          ),
+        );
+      })
       .catch(() => {
         this.leaveDkimConfigurator();
         this.services.messaging.writeError(
