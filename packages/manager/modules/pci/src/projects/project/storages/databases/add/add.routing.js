@@ -12,10 +12,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_database_add_title'),
-
-      lab: /* @ngInject */ (PciProjectLabsService, projectId) =>
-        PciProjectLabsService.getLabByName(projectId, 'databases'),
-
       onDatabaseAdd: /* @ngInject */ (
         databases,
         getDatabaseObject,
