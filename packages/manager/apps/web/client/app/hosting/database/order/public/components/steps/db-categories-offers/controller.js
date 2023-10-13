@@ -17,7 +17,14 @@ export default class WebHostingDatabaseOrderComponentsDbCategoriesOffersControll
   }
 
   getDbEngines() {
-    return this.model.dbCategory?.selectVersion?.engines || [];
+    return this.model.dbCategory?.selectVersion?.engines?.map((engine) => {
+      engine.versions.sort((a, b) => {
+        // Order versions in descending order
+        return b.dbVersion.localeCompare(a.dbVersion, undefined, {
+          numeric: true,
+        });
+      });
+    });
   }
 
   getDbVersionPrice(dbCategoryVersion) {
