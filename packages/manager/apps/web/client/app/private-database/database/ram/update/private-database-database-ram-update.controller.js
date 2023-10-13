@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import remove from 'lodash/remove';
 
 angular.module('App').controller(
   'PrivateDatabaseChangeRamCtrl',
@@ -40,38 +39,41 @@ angular.module('App').controller(
       };
 
       this.model = {
-        capacity: null,
+        ram: null,
         duration: null,
         contract: false,
       };
 
       this.database = this.$scope.currentActionData;
 
-      this.$scope.sortRam = (ram) => +ram;
+      this.$scope.sortRam = (element) => +element.capacity;
 
       this.userService.getUser().then((user) => {
         this.data.ovhSubsidiary = user.ovhSubsidiary;
       });
 
       /*= =============================
-             =            STEP 1            =
-             ============================== */
+       =            STEP 1            =
+       ============================== */
       this.loading.availableRam = true;
 
       this.privateDatabaseService
         .getUpgradePlans(this.productId)
-        .then((result) => {
-          this.data.availableRam = result.map(
-            (e) => e.planCode.match(/[0-9]+/)?.[0],
-          );
-          if (this.database.infrastructure === 'legacy') {
-            remove(this.data.availableRam, (ram) => ram === '2048');
-          }
+        .then((results) => {
+          results.forEach((plan) => {
+            const capacity = parseInt(plan.planCode.match(/\d+/)?.[0], 10);
 
-          remove(
-            this.data.availableRam,
-            (ram) => +ram === +this.database.ram.value,
-          );
+            if (
+              this.database.infrastructure !== 'legacy' ||
+              capacity !== 2048 ||
+              +capacity !== +this.database.ram.value
+            ) {
+              this.data.availableRam.push({
+                capacity,
+                planCode: plan.planCode,
+              });
+            }
+          });
         })
         .catch((err) => {
           this.alerter.alertFromSWS(
@@ -87,20 +89,20 @@ angular.module('App').controller(
         });
 
       /*= =============================
-             =            STEP 2            =
-             ============================== */
+       =            STEP 2            =
+       ============================== */
       this.$scope.getDurations = () => this.getDurations();
 
       /*= =============================
-             =            STEP 3            =
-             ============================== */
+       =            STEP 3            =
+       ============================== */
       this.$scope.loadContracts = () => this.loadContracts();
 
       this.$scope.backToContracts = () => this.backToContracts();
 
       /*= =============================
-             =            STEP 4            =
-             ============================== */
+       =            STEP 4            =
+       ============================== */
 
       this.$scope.orderRam = () => this.orderRam();
     }
@@ -115,19 +117,23 @@ angular.module('App').controller(
       this.loading.durations = true;
 
       this.privateDatabaseService
-        .getRamPrices(this.productId, {
-          ram: this.model.capacity,
-        })
-        .then(
-          (durations) => {
-            this.loading.durations = false;
-            this.data.durations.available = durations;
-          },
-          angular.noop,
-          (duration) => {
-            this.data.durations.available = duration;
-          },
-        );
+        .getRamPlan(this.productId, this.model.ram.planCode)
+        .then((order) => {
+          this.loading.durations = false;
+
+          const { description } = order.details.find(({ detailType }) => {
+            return detailType === 'DURATION';
+          });
+
+          this.data.durations.available = [
+            {
+              prices: order.prices,
+              description,
+              details: order.details,
+              contracts: order.contracts,
+            },
+          ];
+        });
     }
 
     loadContracts() {
@@ -155,11 +161,7 @@ angular.module('App').controller(
       this.$scope.resetAction();
 
       this.privateDatabaseService
-        .orderRam(
-          this.productId,
-          this.model.capacity,
-          this.model.duration.duration,
-        )
+        .orderRam(this.productId, this.model.ram.planCode)
         .then((order) => {
           this.alerter.success(
             this.$translate.instant(
