@@ -13,7 +13,7 @@ import Version from './version.class';
 export default class Engine {
   constructor(
     { name, versions, defaultVersion, description, storage },
-    availability,
+    availabilities,
     plans,
     flavors,
   ) {
@@ -28,7 +28,7 @@ export default class Engine {
       .map((version) => {
         return new Version(
           version,
-          availability.filter(
+          availabilities.filter(
             (plan) => plan.engine === this.name && plan.version === version,
           ),
           plans,
@@ -42,11 +42,16 @@ export default class Engine {
       version: this.defaultVersion,
     });
 
-    this.isDefault = some(availability, (x) => x.default && x.engine === name);
+    this.isDefault = some(
+      availabilities,
+      (availability) => availability.default && availability.engine === name,
+    );
 
     this.isBeta = some(
-      availability,
-      (x) => x.status === ENGINES_STATUS.BETA && x.engine === name,
+      availabilities,
+      (availability) =>
+        availability.lifecycle.status === ENGINES_STATUS.BETA &&
+        availability.engine === name,
     );
 
     this.isDistributedStorage =

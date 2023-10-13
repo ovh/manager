@@ -2,6 +2,8 @@ export const ENGINES_STATUS = {
   BETA: 'BETA',
   STABLE: 'STABLE',
   DEPRECATED: 'DEPRECATED',
+  END_OF_SALE: 'END_OF_SALE',
+  END_OF_LIFE: 'END_OF_LIFE',
 };
 
 export const ENGINES_PRICE_SUFFIX = {

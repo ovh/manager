@@ -40,7 +40,6 @@ export default {
     subnet: '<',
     trackDatabases: '<',
     trackDashboard: '<',
-    nodesPerRow: '<',
     isFeatureActivated: '<',
     serviceIntegration: '<',
     goBacktoGeneralInformation: '<',

@@ -112,12 +112,14 @@
             data-filterable
         >
             <span
+                data-ng-if="$ctrl.getCurrentFlavor($row).core > 0"
                 data-translate="pci_database_node_type_cpu"
                 data-translate-values="{
                     coreNumber: $ctrl.getCurrentFlavor($row).core
                 }"
             ></span>
             <span
+                data-ng-if="$ctrl.getCurrentFlavor($row).memory > 0"
                 data-ng-bind="' / ' + ( 'pci_database_node_type_memory' | translate:{
                     memorySize: ($ctrl.getCurrentFlavor($row).memory | bytes:2:false:'GB')
                 })"
@@ -125,14 +127,14 @@
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_storage_label' | translate"
-            data-property="disk.size"
+            data-property="storage.size.sizeInMB"
             data-type="number"
             data-sortable
             data-filterable
         >
             <span
-                data-ng-if="$row.disk.size > 0"
-                data-ng-bind="$row.disk.size | bytes:2:false:'GB'"
+                data-ng-if="$row.storage.size.value > 0"
+                data-ng-bind="$row.storage.size.value | bytes:2:false:$row.storage.size.unit"
             ></span>
         </oui-datagrid-column>
         <oui-datagrid-column

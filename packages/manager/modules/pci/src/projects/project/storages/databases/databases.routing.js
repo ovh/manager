@@ -1,14 +1,8 @@
-import map from 'lodash/map';
-
-import {
-  ENGINES_TYPES,
-  NODES_PER_ROW,
-  SHELL_NAMES,
-} from './databases.constants';
+import { ENGINES_TYPES, SHELL_NAMES } from './databases.constants';
 import { WARNING_DATE } from '../../../../components/project/warning-message/warning.constants';
 import Database from '../../../../components/project/storages/databases/database.class';
-import Node from '../../../../components/project/storages/databases/node.class';
 import Engine from '../../../../components/project/storages/databases/engine.class';
+import { ENGINES_STATUS } from '../../../../components/project/storages/databases/engines.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.databases', {
@@ -37,14 +31,9 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().type
           ? $transition$.params().type
           : ENGINES_TYPES.full.label,
-      allDatabases: /* @ngInject */ (
-        $q,
-        DatabaseService,
-        getDatabaseObject,
-        projectId,
-      ) =>
+      allDatabases: /* @ngInject */ (DatabaseService, projectId) =>
         DatabaseService.getAllDatabases(projectId).then((databases) =>
-          $q.all(map(databases, (database) => getDatabaseObject(database))),
+          databases.map((database) => new Database(database)),
         ),
       databases: /* @ngInject */ (allDatabases, type) =>
         allDatabases.filter((d) =>
@@ -78,26 +67,6 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
 
-      getDatabaseObject: /* @ngInject */ (getNodes) => (database) =>
-        getNodes(database).then(
-          (nodes) =>
-            new Database({
-              ...database,
-              nodes,
-            }),
-        ),
-
-      getNodes: /* @ngInject */ (DatabaseService, getNodeObject, projectId) => (
-        database,
-      ) =>
-        DatabaseService.getNodes(
-          projectId,
-          database.engine,
-          database.id,
-        ).then((nodes) => map(nodes, (node) => getNodeObject(node))),
-
-      getNodeObject: () => (node) => new Node(node),
-
       mappedAvailabilites: /* @ngInject */ (DatabaseService, projectId) =>
         DatabaseService.getMappedAvailabilites(projectId),
       engines: /* @ngInject */ (mappedAvailabilites) => {
@@ -115,8 +84,17 @@ export default /* @ngInject */ ($stateProvider) => {
       availableEngines: /* @ngInject */ (mappedAvailabilites, type) => {
         const { availabilities, capabilities } = mappedAvailabilites;
         const filteredAvailabilities = availabilities
-          .filter((a) => a.status !== 'DEPRECATED')
-          .filter((a) => ENGINES_TYPES[type].engines.includes(a.engine));
+          .filter(
+            (availability) =>
+              ![
+                ENGINES_STATUS.DEPRECATED,
+                ENGINES_STATUS.END_OF_SALE,
+                ENGINES_STATUS.END_OF_LIFE,
+              ].includes(availability.lifecycle.status),
+          )
+          .filter((availability) =>
+            ENGINES_TYPES[type].engines.includes(availability.engine),
+          );
         return capabilities.engines
           .map(
             (engine) =>
@@ -274,8 +252,6 @@ export default /* @ngInject */ ($stateProvider) => {
           name: hit,
         });
       },
-
-      nodesPerRow: () => NODES_PER_ROW,
     },
   });
 };

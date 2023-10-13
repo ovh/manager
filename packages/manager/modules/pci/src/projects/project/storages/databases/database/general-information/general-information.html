@@ -181,28 +181,41 @@
                     <oui-tile-description>
                         <oui-tile-description>
                             <span
+                                data-ng-if="$ctrl.getCurrentFlavor().core > 0"
                                 data-translate="pci_databases_general_information_node_type_cpu"
                                 data-translate-values="{
                                 coreNumber: $ctrl.getCurrentFlavor().core
                             }"
                             ></span>
                             <span
-                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_memory' | translate:{
+                                data-ng-if="$ctrl.getCurrentFlavor().core > 0 && $ctrl.getCurrentFlavor().memory > 0"
+                                >/</span
+                            >
+                            <span
+                                data-ng-if="$ctrl.getCurrentFlavor().memory > 0"
+                                data-translate="pci_databases_general_information_node_type_memory"
+                                data-translate-values="{
                                     memorySize: ($ctrl.getCurrentFlavor().memory | bytes:2:false:'GB')
-                                })"
+                                }"
                             ></span>
                             <span
+                                data-ng-if="($ctrl.getCurrentFlavor().core > 0 || $ctrl.getCurrentFlavor().memory > 0) && $ctrl.getCurrentFlavor().hasStorage"
+                                >/</span
+                            >
+                            <span
                                 data-ng-if="$ctrl.getCurrentFlavor().hasStorage && !$ctrl.getCurrentFlavor().isStorageRange"
-                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_storage' | translate:{
+                                data-translate="pci_databases_general_information_node_type_storage"
+                                data-translate-values="{
                                     storage: ($ctrl.getCurrentFlavor().minDiskSize | bytes:2:false:'GB')
-                                })"
+                                }"
                             ></span>
                             <span
                                 data-ng-if="$ctrl.getCurrentFlavor().hasStorage && $ctrl.getCurrentFlavor().isStorageRange"
-                                data-ng-bind="' / ' + ( 'pci_databases_general_information_node_type_storage_range' | translate:{
+                                data-translate="pci_databases_general_information_node_type_storage_range"
+                                data-translate-values="{
                                     minStorage: ($ctrl.getCurrentFlavor().minDiskSize | bytes:2:false:'GB'),
                                     maxStorage: ($ctrl.getCurrentFlavor().maxDiskSize | bytes:2:false:'GB'),
-                                })"
+                                }"
                             ></span>
                             <button
                                 class="oui-tile__button oui-button oui-button_ghost oui-button_block"
@@ -223,15 +236,15 @@
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{:: 'pci_databases_general_information_storage_label' | translate }}"
-                    data-ng-if="$ctrl.database.disk.size > 0"
+                    data-ng-if="$ctrl.database.storage.size.value > 0"
                 >
                     <oui-tile-description>
                         <span
                             class="mb-1"
-                            data-ng-bind="($ctrl.database.disk.size | bytes:2:false:'GB')"
+                            data-ng-bind="($ctrl.database.storage.size.value | bytes:2:false:$ctrl.database.storage.size.unit)"
                         ></span>
                         <span
-                            data-ng-if="$ctrl.getCurrentFlavor().isStorageRange && $ctrl.database.disk.size > $ctrl.getCurrentFlavor().minDiskSize"
+                            data-ng-if="$ctrl.getCurrentFlavor().isStorageRange && $ctrl.database.storage.size.value > $ctrl.getCurrentFlavor().minDiskSize"
                             data-translate="pci_databases_general_information_storage_range_included"
                             data-translate-values="{ includedStorage: ($ctrl.getCurrentFlavor().minDiskSize | bytes:2:false:'GB')}"
                         ></span>

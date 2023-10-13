@@ -15,7 +15,7 @@ export default class UpgradeStorageCtrl {
     this.showMonthlyPrices = false;
 
     this.originallyAddedDiskSize =
-      this.database.disk.size - this.flavor.minDiskSize;
+      this.database.storage.size.value - this.flavor.minDiskSize;
     this.additionalDiskSize = this.originallyAddedDiskSize;
 
     const engine = this.engines.find(

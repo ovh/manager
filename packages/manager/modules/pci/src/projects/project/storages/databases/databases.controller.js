@@ -1,6 +1,10 @@
 import capitalize from 'lodash/capitalize';
 import { getCriteria } from '../../project.utils';
-import { ENGINE_LOGOS, DATABASE_TYPES } from './databases.constants';
+import {
+  ENGINE_LOGOS,
+  DATABASE_TYPES,
+  NODES_PER_ROW,
+} from './databases.constants';
 import isFeatureActivated from './features.constants';
 
 const optionsMenuTrackPrefix = 'table::options_menu::';
@@ -18,6 +22,7 @@ export default class {
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.ENGINE_LOGOS = ENGINE_LOGOS;
+    this.NODES_PER_ROW = NODES_PER_ROW;
     this.DatabaseService = DatabaseService;
   }
 

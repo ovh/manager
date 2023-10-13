@@ -37,7 +37,7 @@ export default class {
       minuteIncrement: 1,
       maxDate: moment().toISOString(),
       minDate: moment()
-        .subtract(originalFlavor.availability[0].backupRetentionDays, 'days')
+        .subtract(originalFlavor.availabilities[0].backupRetentionDays, 'days')
         .toISOString(),
     };
   }
