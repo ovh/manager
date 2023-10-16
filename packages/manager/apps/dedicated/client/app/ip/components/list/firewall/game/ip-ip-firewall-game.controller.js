@@ -2,6 +2,8 @@ import findIndex from 'lodash/findIndex';
 import remove from 'lodash/remove';
 import startCase from 'lodash/startCase';
 
+import { IP_MITIGATION_RULE_PROTOCOL_PORT } from './ip-ip-firewall-game.constants';
+
 export default /* @ngInject */ function IpGameFirewallCtrl(
   $location,
   $scope,
@@ -337,12 +339,11 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
     }
 
     // Check if ports are valid
-    if (
-      self.rule.ports.from === undefined ||
-      self.rule.ports.to === undefined
-    ) {
+    if (!self.rule.ports.from || !self.rule.ports.to) {
       Alerter.error(
-        $translate.instant('ip_game_mitigation_rule_add_invalid_parameters'),
+        $translate.instant(
+          'ip_game_mitigation_firewall_rule_add_invalid_parameters',
+        ),
         alert,
       );
       self.loading = false;
@@ -373,5 +374,19 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
 
   self.cancel = function cancel() {
     self.displayAddRuleLine = false;
+  };
+
+  self.selectProtocolDefaultPort = function selectProtocolDefaultPort() {
+    // reset ports from and to
+    self.rule.ports.from = '';
+    self.rule.ports.to = '';
+
+    const defaultPort = IP_MITIGATION_RULE_PROTOCOL_PORT[self.rule.protocol];
+    if (defaultPort) {
+      self.rule.ports.from = defaultPort.from;
+      if (defaultPort.to) {
+        self.rule.ports.to = defaultPort.to;
+      }
+    }
   };
 }
