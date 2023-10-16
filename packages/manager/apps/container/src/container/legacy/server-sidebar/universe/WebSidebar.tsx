@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
 import Sidebar from '../Sidebar';
-import { useServiceLoader } from './useServiceLoader';
+import useServiceLoader from "./useServiceLoader";
 import OrderTrigger from '../order/OrderTrigger';
 import webShopConfig from '../order/shop-config/web';
 import { ShopItem } from '../order/OrderPopupContent';

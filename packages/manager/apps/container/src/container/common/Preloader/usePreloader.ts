@@ -29,6 +29,7 @@ const usePreloader = (shell: Shell, iframe: HTMLIFrameElement) => {
       iframe.addEventListener('load', showPreloader);
       return () => iframe?.removeEventListener('load', showPreloader);
     }
+    return () => {};
   }, [iframe]);
 
   return visible;

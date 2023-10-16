@@ -8,7 +8,7 @@ export type Universe = {
   external?: boolean;
 };
 
-//const SECONDARY_UNIVERSES: string[] = [];
+// const SECONDARY_UNIVERSES: string[] = [];
 
 export async function fetchUniverses(): Promise<Universe[]> {
   return fetch('/engine/2api/universes?version=beta', {
@@ -21,7 +21,7 @@ export async function fetchUniverses(): Promise<Universe[]> {
     .then((response) => response.json())
     .then((universes) =>
       universes.map((universe: Universe) => ({
-        isPrimary: true, //!SECONDARY_UNIVERSES.includes(universe.universe),
+        isPrimary: true, //! SECONDARY_UNIVERSES.includes(universe.universe),
         universe: universe.universe,
         url: universe.url,
       })),
