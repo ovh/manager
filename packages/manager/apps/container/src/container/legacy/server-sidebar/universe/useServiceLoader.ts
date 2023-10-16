@@ -1,8 +1,8 @@
+import { useReket } from '@ovh-ux/ovh-reket';
 import { useShell } from '@/context';
 import { SidebarMenuItem } from '../sidebarMenu';
-import { useReket } from '@ovh-ux/ovh-reket';
 
-export function useServiceLoader(appId: string) {
+export default function useServiceLoader(appId: string) {
   const reketInstance = useReket();
   const shell = useShell();
   const navigation = shell.getPlugin('navigation');

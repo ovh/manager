@@ -13,5 +13,7 @@ module.exports = {
   },
   rules: {
     'import/extensions': 'off',
+    "no-param-reassign": 'off',
+    "@typescript-eslint/no-shadow": 'off'
   },
 };

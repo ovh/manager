@@ -31,7 +31,7 @@ const Anchor = ({
     <a
       className="d-flex"
       target={link.external ? '_blank' : '_self'}
-      rel={link.external ? 'noopener' : ''}
+      rel={link.external ? 'noreferrer' : ''}
       href={link.href}
       onClick={() => handleLinkClick(link)}
     >

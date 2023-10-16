@@ -32,6 +32,18 @@ const useUserInfos = (user: User): UseUserInfos => {
     return `${user.firstname[0]}${user.name[0]}`.toUpperCase();
   };
 
+  const getUserRole = (): string => {
+    return user?.auth?.method || '';
+  };
+
+  /**
+   * Check if the user is a sub-user.
+   * @return {Boolean}
+   */
+  const isSubUser = (): boolean => {
+    return ['provider', 'user'].includes(getUserRole());
+  };
+
   const getUserDisplayName = (): string => {
     return isSubUser() ? user.auth.user : `${user.firstname} ${user.name}`;
   };
@@ -52,17 +64,7 @@ const useUserInfos = (user: User): UseUserInfos => {
     return user.isTrusted;
   };
 
-  /**
-   * Check if the user is a sub-user.
-   * @return {Boolean}
-   */
-  const isSubUser = (): boolean => {
-    return ['provider', 'user'].includes(getUserRole());
-  };
 
-  const getUserRole = (): string => {
-    return user?.auth?.method || '';
-  };
 
   return {
     getUser,

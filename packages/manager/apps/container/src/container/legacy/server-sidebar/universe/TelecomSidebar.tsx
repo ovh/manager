@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
-import { useShell } from '@/context';
 import { capitalize } from 'lodash-es';
+import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
 import Sidebar from '../Sidebar';
 import style from '../index.module.scss';
-import { useServiceLoader } from './useServiceLoader';
+import useServiceLoader from "./useServiceLoader";
 import telecomShopConfig from '../order/shop-config/telecom';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
@@ -37,6 +37,32 @@ export default function TelecomSidebar() {
   const environment = shell.getPlugin('environment').getEnvironment();
   const { ovhSubsidiary, isTrusted } = environment.getUser();
   const region = environment.getRegion();
+
+  const getBetaPreference = () =>
+    new Promise((resolve, reject) => {
+      const key = 'ACCOUNT_BETA_FEATURES';
+      if (window.localStorage && window.localStorage.getItem(key) !== null) {
+        resolve(['1', 'true'].includes(window.localStorage.getItem(key)));
+      } else {
+        reketInstance
+          .get(`/me/preferences/manager/${key}`)
+          .then((result: any) => {
+            resolve(result?.value || false);
+          })
+          .catch((error: any) => {
+            if (error.status === 404) {
+              resolve(false);
+            } else {
+              reject(error);
+            }
+          });
+      }
+    });
+
+  const { data: isBeta, isLoading: betaPreferenceLoading } = useQuery(
+    ['sidebar-telecom-beta'],
+    getBetaPreference,
+  );
 
   const getTelecomMenu = (feature: Record<string, string>) => {
     const menu = [];
@@ -246,35 +272,9 @@ export default function TelecomSidebar() {
       requestType: 'aapi',
     });
 
-  const getBetaPreference = () =>
-    new Promise((resolve, reject) => {
-      const key = 'ACCOUNT_BETA_FEATURES';
-      if (window.localStorage && window.localStorage.getItem(key) !== null) {
-        resolve(['1', 'true'].includes(window.localStorage.getItem(key)));
-      } else {
-        reketInstance
-          .get(`/me/preferences/manager/${key}`)
-          .then((result: any) => {
-            resolve(result?.value || false);
-          })
-          .catch((error: any) => {
-            if (error.status === 404) {
-              resolve(false);
-            } else {
-              reject(error);
-            }
-          });
-      }
-    });
-
   const { data: availability } = useQuery(
     ['sidebar-telecom-availability'],
     getFeatures,
-  );
-
-  const { data: isBeta, isLoading: betaPreferenceLoading } = useQuery(
-    ['sidebar-telecom-beta'],
-    getBetaPreference,
   );
 
   useEffect(() => {
