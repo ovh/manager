@@ -7,8 +7,8 @@ import 'angular-translate';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import uiKit from '@ovh-ux/ui-kit';
 
-import dashboard from './dashboard';
 import onboarding from './onboarding';
+import loadbalancer from './load-balancers/load-balancer';
 import routing from './octavia-load-balancer.routing';
 import create from './create';
 import deleteComponent from './delete';
@@ -29,7 +29,7 @@ angular
     uiKit,
     'oui',
     onboarding,
-    dashboard,
+    loadbalancer,
     create,
     deleteComponent,
     loadBalancers,

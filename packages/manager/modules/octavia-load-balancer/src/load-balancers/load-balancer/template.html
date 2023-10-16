@@ -1,0 +1,41 @@
+<oui-header data-heading="{{ $ctrl.loadbalancer.name }}">
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            data-href="{{:: $ctrl.generalInformationLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.generalInformationLink"
+        >
+            <span data-translate="load_balancer_info_tab_title"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-href="{{:: $ctrl.listenersLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.listenersLink"
+        >
+            <span data-translate="load_balancer_listeners_tab_title"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-href="{{:: $ctrl.poolsLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.poolsLink"
+        >
+            <span data-translate="load_balancer_pools_tab_title"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-href="{{:: $ctrl.statisticsLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.statisticsLink"
+            data-disabled="true"
+        >
+            <span data-translate="load_balancer_statistics_tab_title"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-href="{{:: $ctrl.certificatesLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.certificatesLink"
+            data-disabled="true"
+        >
+            <span data-translate="load_balancer_certificates_tab_title"></span>
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+</oui-header>
+
+<!--Banner section messages-->
+<section></section>
+
+<div class="container-fluid" data-ui-view="loadbalancerView"></div>
