@@ -248,9 +248,13 @@
                                 <!-- dkim -->
                                 <button
                                     class="oui-badge oui-badge_success"
+                                    data-ng-click="setAction('exchange/domain/dkim-autoconfig/domain-dkim-autoconfig', {
+                                        domain: domain,
+                                        constant: { GLOBAL_DKIM_STATUS: ctrl.GLOBAL_DKIM_STATUS },
+                                        dkimStatus: ctrl.GLOBAL_DKIM_STATUS.OK,
+                                    })"
                                     data-translate="exchange_tab_domain_diagnostic_dkim"
                                     data-ng-if=":: ctrl.dkimGlobalStatus(domain) === ctrl.GLOBAL_DKIM_STATUS.OK"
-                                    disabled
                                 ></button>
                                 <button
                                     class="oui-badge oui-background-g-100"
