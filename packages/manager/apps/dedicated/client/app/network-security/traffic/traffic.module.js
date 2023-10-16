@@ -1,15 +1,15 @@
 import angular from 'angular';
 
-import component from './scrubbing-center.component';
-import routing from './scrubbing-center.routing';
+import component from './traffic.component';
+import routing from './traffic.routing';
 import service from '../network-security.service';
 
-const moduleName = 'ovhNetworkSecurityScrubbingCenter';
+const moduleName = 'ovhNetworkSecurityTraffic';
 
 angular
   .module(moduleName, [])
   .config(routing)
   .service('networkSecurityService', service)
-  .component('scrubbingCenter', component);
+  .component('traffic', component);
 
 export default moduleName;

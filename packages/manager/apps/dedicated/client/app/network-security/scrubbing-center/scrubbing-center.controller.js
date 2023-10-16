@@ -2,11 +2,10 @@ import { PERIODS, PERIOD_LIST } from './scrubbing-center.constant';
 
 export default class ScrubbingCenterController {
   /* @ngInject */
-  constructor($http, $translate, Alerter, scrubbingCenterService) {
-    this.$http = $http;
+  constructor($translate, Alerter, networkSecurityService) {
     this.$translate = $translate;
     this.Alerter = Alerter;
-    this.scrubbingCenterService = scrubbingCenterService;
+    this.networkSecurityService = networkSecurityService;
     this.PERIODS = PERIODS;
     this.PERIOD_LIST = PERIOD_LIST;
   }
@@ -14,29 +13,14 @@ export default class ScrubbingCenterController {
   $onInit() {
     this.errorMessage = '';
     this.pageSize = 10;
-    this.initPeriods();
-    this.initService();
-    this.getAllEvents();
-  }
-
-  initPeriods() {
-    this.periods = this.PERIODS.map((period) => ({
-      name: period.key,
-      label: this.$translate.instant(period.value),
-    }));
+    this.periods = this.networkSecurityService.initPeriods(this.PERIODS);
     [this.period] = this.periods;
-  }
+    this.networkSecurityService.initService().then((data) => {
+      this.services = data;
+      return data;
+    });
 
-  initService() {
-    return this.$http
-      .get('/sws/products/services', {
-        serviceType: 'aapi',
-      })
-      .then(({ data }) => {
-        this.services = data.sort(({ serviceName: a }, { serviceName: b }) =>
-          a > b ? 1 : -1,
-        );
-      });
+    this.getAllEvents();
   }
 
   getAllEvents(service) {
@@ -76,7 +60,7 @@ export default class ScrubbingCenterController {
     if (!service && this.selectedIp) {
       params.subnets = this.selectedIp.ipBlock;
     }
-    return this.scrubbingCenterService.getEvents(params).then(({ data }) => {
+    return this.networkSecurityService.getEvents(params).then(({ data }) => {
       if (data.events) {
         this.events = data.events;
       } else {
@@ -92,39 +76,29 @@ export default class ScrubbingCenterController {
 
   selectService() {
     if (this.service) {
-      this.isLoading = true;
       this.pageSize = 10;
       this.page = 1;
       this.autocomplete = [];
       this.selectedIp = '';
       this.results = null;
-      this.getIpsFromService();
+      this.networkSecurityService
+        .getIpsFromService(
+          this.page,
+          this.pageSize,
+          this.service.serviceName,
+          this.autocomplete,
+        )
+        .then((data) => {
+          this.autocomplete = data;
+          this.getAllEvents();
+        });
     }
   }
 
-  getIpsFromService() {
-    const params = {
-      pageNumber: this.page,
-      pageSize: this.pageSize,
-      serviceName: this.service.serviceName,
-    };
-    this.$http
-      .get('/ips', {
-        params,
-        serviceType: 'aapi',
-      })
-      .then(({ data }) => {
-        this.autocomplete = this.autocomplete.concat(data.data);
-        if (this.autocomplete.length < data.count) {
-          this.page += 1;
-          this.getIpsFromService();
-        } else {
-          this.getAllEvents();
-        }
-      });
-  }
-
   getIps(partial) {
+    if (!this.autocomplete) {
+      return null;
+    }
     let ips = [];
     if (partial.length > 2) {
       this.loaderIp = true;
