@@ -139,6 +139,20 @@ export default class EmailTabGeneralInformationsCtrl {
       });
   }
 
+  getSpfConfig() {
+    const spfValid = this.domain.isSPFValid;
+
+    if (spfValid === 'valid') {
+      return 'ok';
+    }
+
+    if (spfValid === 'unknown' || spfValid === 'checkFail') {
+      return 'fail';
+    }
+
+    return spfValid;
+  }
+
   loadQuotas() {
     this.loading.quotas = true;
     return this.$q
