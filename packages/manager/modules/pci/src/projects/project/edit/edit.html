@@ -14,7 +14,7 @@
     ></cui-message-container>
     <oui-field
         label="{{ ::'pci_projects_project_edit_project_name' | translate }}"
-        data-ng-if="!$ctrl.isDiscoveryProject"
+        data-ng-if=":: !$ctrl.isDiscoveryProject"
         size="xl"
     >
         <input
@@ -30,7 +30,7 @@
     <oui-field
         label="{{ ::'pci_projects_project_edit_project_name' | translate }}"
         label-popover="{{ ::'pci_projects_project_edit_discovery_disable_tooltip' | translate }}"
-        data-ng-if="$ctrl.isDiscoveryProject"
+        data-ng-if=":: $ctrl.isDiscoveryProject"
         size="xl"
     >
         <input
@@ -38,7 +38,7 @@
             type="text"
             id="description"
             name="description"
-            data-ng-disabled="$ctrl.isDiscoveryProject"
+            readonly
             ng-model="$ctrl.project.description"
             ng-pattern="/^[^<>]+$/"
             required
@@ -47,7 +47,7 @@
     <oui-field>
         <oui-checkbox
             name="isDefault"
-            disabled="$ctrl.isDiscoveryProject"
+            disabled=":: $ctrl.isDiscoveryProject"
             description="{{ ::'pci_projects_project_edit_default_project_description' | translate }}"
             model="$ctrl.isDefault"
             ><span
