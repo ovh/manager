@@ -139,6 +139,18 @@ export default class EmailTabGeneralInformationsCtrl {
       });
   }
 
+  hasSpfConfig() {
+    if (this.domain.isSPFValid === 'none') {
+      return false;
+    }
+
+    return true;
+  }
+
+  isSpfInvalid() {
+    return this.domain.isSPFValid === 'invalid';
+  }
+
   getSpfConfig() {
     const spfValid = this.domain.isSPFValid;
 
