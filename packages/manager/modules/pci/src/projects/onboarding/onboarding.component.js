@@ -13,6 +13,7 @@ export default {
     summary: '<',
     getSummary: '<',
     setCartProjectItem: '<',
+    onCartFinalized: '<',
   },
   controller,
   template,

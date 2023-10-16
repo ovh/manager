@@ -10,7 +10,22 @@ export default class {
   }
 
   onCreateProjectClick() {
-    return this.goToCreateNewProject();
+    this.isLoading = true;
+    return this.pciProjectNew
+      .finalizeCart(this.cart)
+      .then((order) => {
+        if (order?.orderId) {
+          return this.onCartFinalized(order, true);
+        }
+        return null;
+      })
+      .catch(() => {
+        this.componentInitialParams = null;
+        this.hasComponentRedirectCallback = false;
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
   }
 
   // Waiting for specification to clarify the behaviour of the HDS component

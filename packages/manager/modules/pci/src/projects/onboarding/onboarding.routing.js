@@ -1,4 +1,6 @@
-import { PCI_PROJECT_ORDER_CART } from '../new/constants';
+import moment from 'moment';
+
+import { PCI_PROJECT_DISCOVERY_ORDER_CART } from '../new/constants';
 import { PCI_HDS_ADDON } from '../project/project.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -28,22 +30,40 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('pci.projects.discovery'),
 
       model: /* @ngInject */ (pciProjectNew, me) =>
-        pciProjectNew.createOrderCart(me.ovhSubsidiary).then((cart) => ({
-          agreements: false,
-          description: 'discoveryProject',
-          cart,
-          hds: cart?.hdsItem !== undefined,
-        })),
+        pciProjectNew.createOrderCart(me.ovhSubsidiary).then((cart) => {
+          const currentDate = moment().format('YYYY-MM-DD');
+          return {
+            agreements: false,
+            description: `Project ${currentDate}`,
+            cart,
+            hds: cart?.hdsItem !== undefined,
+          };
+        }),
 
       cart: /* @ngInject */ (me, pciProjectNew) =>
         pciProjectNew
           .createOrderCart(me.ovhSubsidiary)
           .then((newOrderCart) =>
-            pciProjectNew.getOrderCart(me.ovhSubsidiary, newOrderCart.cartId),
+            pciProjectNew.getOrderCart(
+              me.ovhSubsidiary,
+              newOrderCart.cartId,
+              true,
+            ),
           ),
 
       setCartProjectItem: /* @ngInject */ (model, cart, pciProjectNew) => () =>
         pciProjectNew.setCartProjectItemDescription(cart, model.description),
+
+      onCartFinalized: /* @ngInject */ ($state, cart) => (
+        { orderId },
+        isDiscoveryProject,
+      ) => {
+        return $state.go('pci.projects.creating', {
+          orderId,
+          voucherCode: cart?.projectItem?.voucherConfiguration?.value || '',
+          isDiscoveryProject,
+        });
+      },
 
       summary: /* @ngInject */ (getSummary) => getSummary(),
 
@@ -66,8 +86,8 @@ export default /* @ngInject */ ($stateProvider) => {
       hdsAddonOption: /* @ngInject */ (orderCart, model) =>
         orderCart.getHdsAddon(
           model?.cart?.cartId,
-          PCI_PROJECT_ORDER_CART.productName,
-          PCI_PROJECT_ORDER_CART.planCode,
+          PCI_PROJECT_DISCOVERY_ORDER_CART.productName,
+          PCI_PROJECT_DISCOVERY_ORDER_CART.planCode,
           PCI_HDS_ADDON.planCode,
         ),
     },

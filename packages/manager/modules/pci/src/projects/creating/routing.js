@@ -6,7 +6,7 @@ import { GUIDE_URLS } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.creating', {
-    url: '/creating/:orderId/:voucherCode',
+    url: '/creating/:orderId/:voucherCode/:isDiscoveryProject',
     views: {
       '@pci': component.name,
     },
@@ -81,6 +81,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
       voucherCode: /* @ngInject */ ($transition$) =>
         $transition$.params().voucherCode,
+
+      isDiscoveryProject: /* @ngInject */ ($transition$) =>
+        $transition$.params().isDiscoveryProject === 'true',
     },
   });
 };
