@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash-es';
+import { cloneDeep, findIndex } from 'lodash-es';
 
 import {
   CUSTOM_ACTION_PATTERN,
@@ -400,17 +400,54 @@ export default class ActionSelectController {
    * @param {Category} category
    * @returns {string}
    */
-  getCategoryLabel({ actions }) {
+  getCategoryLabel({ actions }, searchQuery) {
     const selectionCount = this.constructor.countSelectedActions(actions);
+    const searchCount = this.constructor.countActionsMatchingSearch(
+      actions,
+      searchQuery,
+    );
     const prefix = 'iam_action_select_category_count';
+    if (selectionCount && searchQuery) {
+      if (searchCount <= 1) {
+        return selectionCount === 1
+          ? `${prefix}_selection_one_result_one`
+          : `${prefix}_selection_many_result_one`;
+      }
+      return selectionCount === 1
+        ? `${prefix}_selection_one_result_many`
+        : `${prefix}_selection_many_result_many`;
+    }
     if (selectionCount) {
       return selectionCount === 1
         ? `${prefix}_selection_one`
         : `${prefix}_selection_many`;
     }
+    if (searchQuery) {
+      return searchCount <= 1
+        ? `${prefix}_result_one`
+        : `${prefix}_result_many`;
+    }
     return actions.length === 1
       ? `${prefix}_no_selection_one`
       : `${prefix}_no_selection_many`;
+  }
+
+  filterActions(actionTree) {
+    angular.forEach(actionTree.categories, (category) => {
+      // eslint-disable-next-line no-param-reassign
+      category.filteredActions = category?.actions?.filter(
+        (action) =>
+          action?.value
+            .toLowerCase()
+            .indexOf(actionTree.searchQuery.toLowerCase()) > -1,
+      );
+    });
+    this.actionTrees[
+      findIndex(
+        this.actionTrees,
+        (currentActionTree) => currentActionTree.value === actionTree.value,
+      )
+    ] = actionTree;
   }
 
   /**
@@ -420,5 +457,21 @@ export default class ActionSelectController {
    */
   static countSelectedActions(actions) {
     return actions?.filter(({ selected }) => selected).length;
+  }
+
+  /**
+   * count the number of actions matching searchQuery
+   * @param {Action[]} actions
+   * @param {string} searchQuery
+   * @returns {Number}
+   */
+  static countActionsMatchingSearch(actions, searchQuery) {
+    if (!actions || !searchQuery) {
+      return 0;
+    }
+    return actions.filter(
+      (action) =>
+        action?.value.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1,
+    ).length;
   }
 }

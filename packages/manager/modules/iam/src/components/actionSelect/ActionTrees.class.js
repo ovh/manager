@@ -280,6 +280,7 @@ export default class ActionTrees extends Array {
           expanded: true,
           value: CUSTOM_RESOURCE_TYPE,
         };
+    this.buffer.customActionTree.filteredActions = this.buffer.customActionTree.actions;
   }
 
   /**
@@ -363,13 +364,15 @@ export default class ActionTrees extends Array {
           this.buffer.actions.find(({ value }) => value === action),
         )
         .filter(Boolean);
+      const currentActions = actions.map((action) => ({
+        ...action,
+        id: `${actionTree.value}_${category.value}_${action.value}`
+          .replace(/[^\w]/g, '-')
+          .toLocaleLowerCase(),
+      }));
       Object.assign(category, {
-        actions: actions.map((action) => ({
-          ...action,
-          id: `${actionTree.value}_${category.value}_${action.value}`
-            .replace(/[^\w]/g, '-')
-            .toLocaleLowerCase(),
-        })),
+        actions: currentActions,
+        filteredActions: currentActions,
         get selection() {
           return this.actions.filter(({ selected }) => selected);
         },
