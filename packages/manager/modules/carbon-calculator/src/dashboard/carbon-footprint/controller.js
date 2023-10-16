@@ -63,9 +63,9 @@ export default class CarbonFootprintCtrl {
   $onInit() {
     this.$asyncFetching = null;
     this.previousMonth = this.carbonFootprintService.computePreviousMonth();
-    this.availableServices = SERVICES_AVAILABLE.map((u) =>
+    this.availableServices = SERVICES_AVAILABLE.map((service) =>
       this.$translate.instant(
-        `carbon_calculator_dashboard_billing_explanation_${u}`,
+        `carbon_calculator_dashboard_billing_explanation_${service}`,
       ),
     );
   }
