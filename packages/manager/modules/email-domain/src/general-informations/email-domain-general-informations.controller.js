@@ -140,29 +140,11 @@ export default class EmailTabGeneralInformationsCtrl {
   }
 
   hasSpfConfig() {
-    if (this.domain.isSPFValid === 'none') {
-      return false;
-    }
-
-    return true;
+    return !['invalid', 'none'].includes(this.domain.isSPFValid);
   }
 
-  isSpfInvalid() {
-    return this.domain.isSPFValid === 'invalid';
-  }
-
-  getSpfConfig() {
-    const spfValid = this.domain.isSPFValid;
-
-    if (spfValid === 'valid') {
-      return 'ok';
-    }
-
-    if (spfValid === 'unknown' || spfValid === 'checkFail') {
-      return 'fail';
-    }
-
-    return spfValid;
+  isValidSpfConfig() {
+    return this.domain.isSPFValid === 'valid';
   }
 
   loadQuotas() {

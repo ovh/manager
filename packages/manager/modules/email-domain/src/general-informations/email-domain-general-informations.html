@@ -67,18 +67,18 @@
                         <div>
                             <button
                                 type="button"
-                                data-ng-if="::(ctrlTabGeneralInformations.hasSpfConfig() && !ctrlTabGeneralInformations.isSpfInvalid())"
+                                data-ng-if="::(ctrlTabGeneralInformations.hasSpfConfig())"
                                 class="oui-badge"
-                                data-ng-class="::{'oui-badge_success': ctrlTabGeneralInformations.getSpfConfig() === 'ok', 'oui-background-g-100': ctrlTabGeneralInformations.getSpfConfig() == 'fail'}"
+                                data-ng-class="::{'oui-badge_success': ctrlTabGeneralInformations.isValidSpfConfig(), 'oui-background-g-100': !ctrlTabGeneralInformations.isValidSpfConfig()}"
                                 data-translate="email_tab_domain_diagnostic_spf"
-                                data-simplepopover="{{ ::'email_tab_domain_diagnostic_spf_toolbox_' + ctrlTabGeneralInformations.getSpfConfig() | translate }}"
+                                data-simplepopover="{{ ::'email_tab_domain_diagnostic_spf_toolbox_valid_config_' + ctrlTabGeneralInformations.isValidSpfConfig() | translate }}"
                                 data-simplepopover-title="{{ ::'email_tab_domain_diagnostic_spf_title' | translate }}"
                                 data-simplepopover-placement="top"
                                 data-simplepopover-single="true"
                             ></button>
 
                             <span
-                                data-ng-if="::(!ctrlTabGeneralInformations.hasSpfConfig() || ctrlTabGeneralInformations.isSpfInvalid())"
+                                data-ng-if="::(!ctrlTabGeneralInformations.hasSpfConfig())"
                                 class="oui-badge oui-background-g-100"
                                 data-translate="email_tab_domain_diagnostic_spf"
                             ></span>
