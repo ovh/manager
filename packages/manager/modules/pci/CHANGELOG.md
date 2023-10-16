@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.4.0...@ovh-ux/manager-pci@6.5.0) (2023-10-16)
+
+
+### Bug Fixes
+
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+
+
+### Features
+
+* **pci.data-processing.jobs:** display badges for eol items ([#9973](https://github.com/ovh/manager/issues/9973)) ([cc3c6dd](https://github.com/ovh/manager/commit/cc3c6ddf3ab1645f40dd0864327d9839927e9f41))
+* **pci.storages.databases:** add kafka schema registry ([#10123](https://github.com/ovh/manager/issues/10123)) ([ab885cc](https://github.com/ovh/manager/commit/ab885cc4bc9374d5e5f8d8a017427846e16711e6))
+* **pci.storages.databases:** add region option to fork ([#10123](https://github.com/ovh/manager/issues/10123)) ([6e50b75](https://github.com/ovh/manager/commit/6e50b7506cd75a75e0e6d6f172c7e96a9ba42e6f))
+* remove lab check for databases ([#9951](https://github.com/ovh/manager/issues/9951)) ([35ed740](https://github.com/ovh/manager/commit/35ed740e47ac756bcea1c8f23d226a31f9b6c586))
+
+
+
+
+
 # [6.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.3.3...@ovh-ux/manager-pci@6.4.0) (2023-10-11)
 
 

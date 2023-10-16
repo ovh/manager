@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.14.0...@ovh-ux/manager-billing-components@3.14.1) (2023-10-16)
+
+
+### Bug Fixes
+
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+* fix missing action 'cancel subscription' on services for CA NIC ([#10070](https://github.com/ovh/manager/issues/10070)) ([01b916e](https://github.com/ovh/manager/commit/01b916ed1ce026364f15a110e87ba4ddd15ee4ad))
+
+
+
+
+
 # [3.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@3.13.1...@ovh-ux/manager-billing-components@3.14.0) (2023-09-12)
 
 

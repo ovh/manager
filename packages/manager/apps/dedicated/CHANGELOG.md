@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.6.1...@ovh-ux/manager-dedicated@19.7.0) (2023-10-16)
+
+
+### Bug Fixes
+
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+
+
+### Features
+
+* **dedicated.account:** add popup confirmation for 'IN' upload id docs ([#10065](https://github.com/ovh/manager/issues/10065)) ([f909cc4](https://github.com/ovh/manager/commit/f909cc4574317acfba9a286b51b415d687c2c478))
+
+
+
+
+
 ## [19.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.6.0...@ovh-ux/manager-dedicated@19.6.1) (2023-10-11)
 
 

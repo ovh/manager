@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.3.4...@ovh-ux/manager-web@18.4.0) (2023-10-16)
+
+
+### Bug Fixes
+
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+
+
+### Features
+
+* **hosting.database:** replace deprecated routes for ram upgrade ([#10055](https://github.com/ovh/manager/issues/10055)) ([c1ca761](https://github.com/ovh/manager/commit/c1ca7613711a787abf5313de49cbb39234f2585c))
+
+
+
+
+
 ## [18.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.3.3...@ovh-ux/manager-web@18.3.4) (2023-10-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
