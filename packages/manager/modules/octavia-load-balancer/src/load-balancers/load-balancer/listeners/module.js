@@ -6,8 +6,9 @@ import 'angular-translate';
 
 import component from './component';
 import routing from './routing';
+import service from './service';
 
-const moduleName = 'ovhManagerOctaviaLoadBalancerDashboard';
+const moduleName = 'ovhManagerOctaviaLoadBalancerListeners';
 
 angular
   .module(moduleName, [
@@ -17,7 +18,8 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('octaviaLoadBalancer', component)
+  .component('octaviaLoadBalancerListeners', component)
+  .service('OctaviaLoadBalancerListenersService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

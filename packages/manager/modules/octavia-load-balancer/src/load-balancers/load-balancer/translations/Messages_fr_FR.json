@@ -1,0 +1,8 @@
+{
+  "load_balancer_info_tab_title": "Aperçu",
+  "load_balancer_listeners_tab_title": "Listeners",
+  "load_balancer_pools_tab_title": "Pools",
+  "load_balancer_statistics_tab_title": "Statistiques",
+  "load_balancer_certificates_tab_title": "Certificats",
+  "load_balancer_guides_header": "Guides"
+}
