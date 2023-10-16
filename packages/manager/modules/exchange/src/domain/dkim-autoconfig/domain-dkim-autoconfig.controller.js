@@ -98,6 +98,9 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
   }
 
   async getSelectorNameForNoOvhCloud() {
+    if (!this.dkimSelectorsNoDomain) {
+      return;
+    }
     const promises = this.dkimSelectorsNoDomain.map((dkimSelector) => {
       return this.services.ExchangeDomains.getDkimSelectorName(
         this.$routerParams.organization,
