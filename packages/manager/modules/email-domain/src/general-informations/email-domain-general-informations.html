@@ -67,7 +67,7 @@
                         <div>
                             <button
                                 type="button"
-                                data-ng-if="::(ctrlTabGeneralInformations.hasSpfConfig())"
+                                data-ng-if="::ctrlTabGeneralInformations.hasSpfConfig()"
                                 class="oui-badge"
                                 data-ng-class="::{'oui-badge_success': ctrlTabGeneralInformations.isValidSpfConfig(), 'oui-background-g-100': !ctrlTabGeneralInformations.isValidSpfConfig()}"
                                 data-translate="email_tab_domain_diagnostic_spf"
@@ -78,7 +78,7 @@
                             ></button>
 
                             <span
-                                data-ng-if="::(!ctrlTabGeneralInformations.hasSpfConfig())"
+                                data-ng-if="::!ctrlTabGeneralInformations.hasSpfConfig()"
                                 class="oui-badge oui-background-g-100"
                                 data-translate="email_tab_domain_diagnostic_spf"
                             ></span>
