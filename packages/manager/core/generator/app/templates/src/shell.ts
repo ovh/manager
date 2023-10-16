@@ -1,6 +1,4 @@
-type ShellClient = any;
-
-let shellClient: ShellClient;
+let shellClient: any;
 
 export const setShellClient = (client: any) => {
   shellClient = client;
