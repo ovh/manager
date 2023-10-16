@@ -58,14 +58,63 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
         );
       });
 
-    $scope.configDkim = () => this.configDkim();
+    $scope.onFinishDkim = () => this.onFinishDkim();
   }
 
   hideConfirmButton() {
     return (
-      this.dkimStatus === this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED &&
-      this.domainDiag.isOvhDomain
+      this.domainDiag.isOvhDomain &&
+      (this.dkimStatus === this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED ||
+        this.dkimStatus === this.GLOBAL_DKIM_STATUS.OK)
     );
+  }
+
+  onFinishDkim() {
+    if (this.dkimStatus === this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED) {
+      this.configDkim();
+    } else if (this.dkimStatus === this.GLOBAL_DKIM_STATUS.OK) {
+      this.deactivateDkim();
+    }
+  }
+
+  deactivateDkim() {
+    this.services.ExchangeDomains.getDkimSelector(
+      this.$routerParams.organization,
+      this.$routerParams.productId,
+      this.domain.name,
+    )
+      .then((dkimSelectors) => {
+        if (!dkimSelectors || dkimSelectors.length < 2) {
+          throw new Error('Expected at least two dkimSelectors.');
+        }
+
+        Promise.all([
+          this.services.ExchangeDomains.getDkimSelectorName(
+            this.$routerParams.organization,
+            this.$routerParams.productId,
+            this.domain.name,
+            dkimSelectors[0],
+          ),
+          this.services.ExchangeDomains.getDkimSelectorName(
+            this.$routerParams.organization,
+            this.$routerParams.productId,
+            this.domain.name,
+            dkimSelectors[1],
+          ),
+        ]).then((selectors) => {
+          return this.services.ExchangeDomains.disableDkim(
+            this.$routerParams.organization,
+            this.$routerParams.productId,
+            this.domain.name,
+            selectors[0].status === 'inProduction'
+              ? dkimSelectors[0]
+              : dkimSelectors[1],
+          );
+        });
+      })
+      .finally(() => {
+        this.services.navigation.resetAction();
+      });
   }
 
   configDkim() {
