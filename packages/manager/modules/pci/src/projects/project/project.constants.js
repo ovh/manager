@@ -168,6 +168,15 @@ export const PCI_HDS_ADDON = {
   planCode: 'certification.hds.2018',
 };
 
+export const PCI_HDS_DISCOVERY_ADDON = {
+  productName: 'cloud',
+  family: 'certification-hds',
+  parentPlanCode: 'project.discovery',
+  planCodeScope: 'certification.hds',
+  certifiedProject: 'publiccloud-certification-hds',
+  planCode: 'certification.hds.2018',
+};
+
 export const LEGACY_PLAN_CODES = ['project.legacy', 'project.2018'];
 
 export const LOCAL_ZONE_REGION = 'localzone';
