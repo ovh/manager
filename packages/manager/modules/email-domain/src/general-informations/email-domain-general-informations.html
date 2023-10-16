@@ -65,7 +65,7 @@
                 >
                     <oui-tile-description>
                         <div>
-                            <span>{{domain.isSPFValid}}</span>
+                            <span data-ng-bind="domain.isSPFValid"></span>
                             <button
                                 data-ng-if="domain.isSPFValid === 'valid'"
                                 class="oui-badge oui-badge_success"
