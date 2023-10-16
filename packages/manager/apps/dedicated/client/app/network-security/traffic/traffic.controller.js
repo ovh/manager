@@ -1,0 +1,272 @@
+import {
+  TRAFFIC_PERIODS,
+  TRAFFIC_PERIOD_LIST,
+  CHART,
+} from './traffic.constant';
+
+export default class TrafficController {
+  /* @ngInject */
+  constructor($translate, Alerter, networkSecurityService) {
+    this.$translate = $translate;
+    this.Alerter = Alerter;
+    this.networkSecurityService = networkSecurityService;
+    this.TRAFFIC_PERIODS = TRAFFIC_PERIODS;
+    this.TRAFFIC_PERIOD_LIST = TRAFFIC_PERIOD_LIST;
+    this.CHART = CHART;
+  }
+
+  $onInit() {
+    this.errorMessage = '';
+    this.pageSize = 10;
+    this.isStackable = true;
+    this.isPPs = false;
+    this.subnet = '';
+    if (this.getSubnet()) {
+      this.subnet = this.getSubnet();
+      this.selectedIp = this.subnet;
+    }
+    this.periods = this.networkSecurityService.initPeriods(
+      this.TRAFFIC_PERIODS,
+    );
+    [this.period] = this.periods;
+    this.networkSecurityService.initService().then((data) => {
+      this.services = data;
+      return data;
+    });
+
+    this.units = this.CHART.units;
+    this.colors = this.CHART.colors;
+    this.options = {
+      ...this.CHART.options,
+    };
+  }
+
+  selectService() {
+    if (this.service) {
+      this.pageSize = 10;
+      this.page = 1;
+      this.autocomplete = [];
+      this.selectedIp = '';
+      this.results = null;
+      this.networkSecurityService
+        .getIpsFromService(
+          this.page,
+          this.pageSize,
+          this.service.serviceName,
+          this.autocomplete,
+        )
+        .then((data) => {
+          this.autocomplete = data;
+        });
+    }
+  }
+
+  getIps(partial) {
+    if (!this.autocomplete) {
+      return null;
+    }
+    let ips = [];
+    if (partial.length > 2) {
+      this.loaderIp = true;
+
+      // Filter loaded ips list with partial ip
+      ips = this.autocomplete.filter((service) =>
+        service.ipBlock.includes(partial),
+      );
+      delete this.loaderIp;
+    }
+    return ips;
+  }
+
+  checkSelectedSubnet(value) {
+    if (!value) {
+      return;
+    }
+    this.subnet = value.ipBlock ? value.ipBlock : value;
+    this.getTraffic();
+  }
+
+  getTraffic() {
+    if (!this.subnet) {
+      return;
+    }
+    this.isLoading = true;
+    this.results = null;
+    const currentDate = new Date();
+    const after = new Date();
+    const before = currentDate.toISOString();
+    switch (this.period.name) {
+      case this.TRAFFIC_PERIOD_LIST.lastWeek:
+        after.setDate(after.getDate() - 7);
+        break;
+      case this.TRAFFIC_PERIOD_LIST.last2weeks:
+        after.setDate(after.getDate() - 14);
+        break;
+      default:
+        after.setDate(after.getDate() - 1);
+    }
+    const params = {
+      after: after.toISOString(),
+      before,
+      subnet: this.subnet,
+    };
+    this.networkSecurityService.getTraffic(params).then(({ data }) => {
+      if (data.message) {
+        this.Alerter.error(
+          this.$translate.instant('network_security_dashboard_events_error'),
+          'network_security_error',
+        );
+        return data;
+      }
+      this.results = data;
+      this.resume(after.toISOString(), before, this.subnet);
+      this.loadGraph();
+      return data;
+    });
+  }
+
+  resume(after, before, subnet) {
+    // Set number of events
+    this.numberOfEvents = 0;
+    this.networkSecurityService
+      .getEvents({
+        after,
+        before,
+        subnets: subnet,
+      })
+      .then(({ data }) => {
+        if (data.events) {
+          this.numberOfEvents = data.events.length;
+        }
+      });
+
+    // Set packets dropped
+    let packetsDropped = 0;
+    this.results.pps.dropped.forEach((packet) => {
+      packetsDropped += parseInt(packet, 10);
+    });
+    let unit = TrafficController.getUnitIndex(packetsDropped);
+    let label = '';
+    if (unit > 0) {
+      label = this.units[unit][0].toUpperCase();
+    }
+    this.packetsDropped = `${TrafficController.formatBits(
+      packetsDropped,
+      unit,
+    )} ${label}`;
+
+    // Set bandwith cleaned
+    let bandwithCleaned = 0;
+    this.results.bps.dropped.forEach((packet) => {
+      bandwithCleaned += parseInt(packet, 10);
+    });
+    unit = TrafficController.getUnitIndex(bandwithCleaned);
+    this.bandwithCleaned = `${TrafficController.formatBits(
+      bandwithCleaned,
+      unit,
+    )} ${this.units[unit].toUpperCase()}`;
+
+    // Set attacks detected
+    this.attacksDetected = 0;
+    this.networkSecurityService
+      .getEvents({
+        after,
+        before,
+        subnets: subnet,
+      })
+      .then(({ data }) => {
+        if (data.events) {
+          data.events.forEach((ev) => {
+            this.attacksDetected += ev.vectors.length;
+          });
+        }
+      });
+  }
+
+  updateStackable(value) {
+    this.isStackable = value;
+    this.loadGraph();
+  }
+
+  loadGraph(isPPs) {
+    if (isPPs !== undefined) {
+      this.isPPs = isPPs;
+    }
+    this.series = [];
+    this.data = [];
+
+    if (this.isStackable) {
+      this.options.scales.yAxes[0].stacked = true;
+    } else {
+      delete this.options.scales.yAxes[0].stacked;
+    }
+
+    this.labels = this.results?.timestamps?.map((value) => value);
+
+    this.series.push(
+      this.$translate.instant('network_security_dashboard_legend_green'),
+    );
+    this.series.push(
+      this.$translate.instant('network_security_dashboard_legend_red'),
+    );
+    if (!this.isPPs) {
+      // Get unit from max value from table
+      let maxPassedValue = 0;
+      let maxDroppedValue = 0;
+      let unitIndex = 0;
+      this.results.bps.passed.forEach((val) => {
+        if (parseInt(val, 10) > maxPassedValue) {
+          maxPassedValue = parseInt(val, 10);
+        }
+      });
+      this.results.bps.passed.forEach((val) => {
+        if (parseInt(val, 10) > maxDroppedValue) {
+          maxDroppedValue = parseInt(val, 10);
+        }
+      });
+      if (maxPassedValue > maxDroppedValue) {
+        unitIndex = TrafficController.getUnitIndex(maxPassedValue);
+      } else {
+        unitIndex = TrafficController.getUnitIndex(maxDroppedValue);
+      }
+
+      // Display unit label
+      this.options.scales.yAxes[0].scaleLabel.labelString = this.$translate.instant(
+        `network_security_dashboard_unit_${this.units[unitIndex]}_ps`,
+      );
+
+      this.data.push(
+        this.results?.bps.passed?.map((value) =>
+          TrafficController.formatBits(parseInt(value, 10), unitIndex),
+        ),
+      );
+      this.data.push(
+        this.results?.bps.dropped?.map((value) =>
+          TrafficController.formatBits(parseInt(value, 10), unitIndex),
+        ),
+      );
+    } else {
+      this.options.scales.yAxes[0].scaleLabel.labelString = this.$translate.instant(
+        'network_security_dashboard_pps',
+      );
+
+      this.data.push(this.results?.pps.passed?.map((value) => value));
+      this.data.push(this.results?.pps.dropped?.map((value) => value));
+    }
+  }
+
+  static getUnitIndex(value) {
+    if (value === 0) {
+      return 0;
+    }
+    return Math.floor(Math.log(value) / Math.log(1000));
+  }
+
+  static formatBits(value, i) {
+    if (value === 0) {
+      return 0;
+    }
+    const result = parseFloat((value / 1000 ** i).toFixed(2));
+    return result;
+  }
+}

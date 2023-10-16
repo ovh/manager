@@ -10,6 +10,7 @@ import component from './network-security.component';
 import routing from './network-security.routing';
 
 import scrubbingCenter from './scrubbing-center';
+import traffic from './traffic';
 
 const moduleName = 'ovhNetworkSecurity';
 
@@ -20,6 +21,7 @@ angular
     'ngUiRouterBreadcrumb',
     'oui',
     scrubbingCenter,
+    traffic,
     ApiV2ListHelper.moduleName,
   ])
   .config(routing)
