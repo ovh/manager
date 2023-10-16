@@ -191,7 +191,7 @@ describe('Item asynchronous loading', () => {
       id: 'item',
       loader: () =>
         new Promise((_, reject) => {
-          reject('fail');
+          reject(new Error('fail'));
         }),
     };
     expect(item.loadingError).not.toBeDefined();

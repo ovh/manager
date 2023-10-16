@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
 import { useShell } from '@/context';
 import ServerSidebarVirtual from './SidebarVirtual';
 import {
@@ -10,7 +11,6 @@ import {
   updateSearchFields,
   updateSidebarItemLabel,
 } from './sidebarMenu';
-import { useLocation } from 'react-router-dom';
 
 export default function ServerSidebar({ menu }: { menu: SidebarMenuItem }) {
   const [items, setItems] = useState<SidebarMenuItem[]>([]);

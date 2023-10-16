@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import useContainer from '@/core/container';
 import { useLegacyContainer } from '@/container/legacy/context';
-import { useLocation } from 'react-router-dom';
 import style from './index.module.scss';
 
 const AccountSidebar = React.lazy(() => import('./universe/AccountSidebar'));
@@ -43,9 +43,11 @@ export default function ServerSidebarIndex() {
       .find(([path]) => path === application?.container?.path);
     if (accountMenuPathEntry) {
       const [path, routes] = accountMenuPathEntry;
-      routes === '*'
-        ? setIsAccountMenu(true)
-        : setIsAccountMenu(routes.some((route) => location.pathname.startsWith(`/${path}${route}`)))
+      if (routes === '*') {
+        setIsAccountMenu(true);
+      } else {
+        setIsAccountMenu(routes.some((route) => location.pathname.startsWith(`/${path}${route}`)));
+      }
     } else {
       setIsAccountMenu(false);
     }
