@@ -6,12 +6,12 @@
 
 .carbon-balance-spacings {
   *:not(:last-child) {
-    margin-bottom: 0px;
+    @extend .mb-0;
   }
 }
 .carbon-balance {
   ul {
-    margin-bottom: 5px;
+    @extend .mb-1;
     list-style-type: '- ';
   }
 }
