@@ -8,7 +8,7 @@ import {
 import { HTMLStencilElement } from '@stencil/core/internal';
 
 /**
- * TODO: To replace with osds-menu when available
+ * To replace with osds-menu when available
  */
 @Component({
   tag: 'menu-custom',
