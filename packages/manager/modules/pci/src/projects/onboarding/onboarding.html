@@ -37,7 +37,7 @@
                 variant="primary"
                 data-ng-if="!$ctrl.isTrustedZone"
                 data-on-click="$ctrl.onCreateProjectClick()"
-                disabled="!$ctrl.model.agreements"
+                disabled="!$ctrl.model.agreements || $ctrl.isLoading"
             >
                 <span
                     data-translate="pci_projects_onboarding_create_project"
