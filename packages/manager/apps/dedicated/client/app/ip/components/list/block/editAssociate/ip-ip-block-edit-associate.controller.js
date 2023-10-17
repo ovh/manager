@@ -11,7 +11,7 @@ export default /* @ngInject */ (
   $scope.ipBlock = $scope.data.ipBlock;
   $scope.model = {
     blockIpdetails: { description: null, netname: null },
-    organisationDetails: $scope.ipBlock.organisationId,
+    organisationDetails: { organisationId: $scope.ipBlock.organisationId },
   };
   IpOrganisation.getBlockIpDetails($scope.ipBlock).then((data) => {
     $scope.model.blockIpdetails.netname = data.netname;
@@ -26,9 +26,12 @@ export default /* @ngInject */ (
     if (newValue !== oldValue) $scope.disableSubmit = false;
   });
 
-  $scope.$watch('model.organisationDetails', (newValue, oldValue) => {
-    if (newValue !== oldValue) $scope.disableSubmit = false;
-  });
+  $scope.$watch(
+    'model.organisationDetails.organisationId',
+    (newValue, oldValue) => {
+      if (newValue !== oldValue) $scope.disableSubmit = false;
+    },
+  );
 
   $scope.getEditTabDetails = function getEditTabDetails() {
     $scope.editTabActive = true;
@@ -50,11 +53,14 @@ export default /* @ngInject */ (
 
   $scope.onSubmit = function onSubmit(model) {
     $scope.loading = true;
-    if ($scope.model.organisationDetails) {
+    const {
+      organisationDetails: { organisationId },
+    } = model;
+    if (organisationId && organisationId !== $scope.ipBlock.organisationId) {
       // Case Submit: IP and Organization association
       IpOrganisation.changeOrganisation({
         ipBlock: $scope.ipBlock.ipBlock,
-        organisationId: model.organisationDetails.organisationId,
+        organisationId,
       })
         .then(
           () => {
