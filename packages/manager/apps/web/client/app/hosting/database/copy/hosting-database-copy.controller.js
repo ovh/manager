@@ -91,12 +91,15 @@ angular.module('App').controller(
       this.HostingDatabase.copyDatabase(
         this.$scope.currentActionData.serviceName,
         this.currentDatabase.name,
-        this.selectedType === COPY_TYPE_WEBCLOUD_DATABASE,
       )
         .then(({ data }) => {
           this.HostingDatabase.copyRestoreDatabase(
-            this.selectedMain,
-            this.selectedDatabase,
+            this.selectedType === COPY_TYPE_WEBCLOUD_DATABASE
+              ? this.selectedWebCloud
+              : this.selectedMain,
+            this.selectedType === COPY_TYPE_WEBCLOUD_DATABASE
+              ? this.selectedWebCloudDatabase
+              : this.selectedDatabase,
             this.selectedType === COPY_TYPE_WEBCLOUD_DATABASE,
             data?.id,
           )
