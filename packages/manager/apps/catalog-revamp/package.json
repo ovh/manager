@@ -11,6 +11,7 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
+    "prebuild": "yarn workspace @ovhcloud/msc-lib build",
     "build": "tsc && vite build",
     "dev": "tsc && vite",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-catalog-app' --include-dependencies -- npm run build --if-present",
