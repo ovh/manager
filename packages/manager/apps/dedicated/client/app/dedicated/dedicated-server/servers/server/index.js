@@ -9,6 +9,7 @@ import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import cpanelEolBanner from '../../../../components/cpanel-eol-banner';
 import bandwidth from '../bandwidth/bandwidth.module';
 import dashboard from './dashboard';
+import secondaryDns from './secondary-dns';
 import displayName from './display-name';
 import reboot from './reboot';
 import interfaces from '../interfaces/interfaces.module';
@@ -36,6 +37,7 @@ angular
     bandwidth,
     cpanelEolBanner,
     dashboard,
+    secondaryDns,
     interfaces,
     'oui',
     ngOvhFeatureFlipping,

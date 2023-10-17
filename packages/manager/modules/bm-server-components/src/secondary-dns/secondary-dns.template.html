@@ -1,0 +1,48 @@
+<div>
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <oui-button
+        class="mb-4"
+        variant="secondary"
+        data-on-click="$ctrl.goToAddSecondaryDns()"
+    >
+        <span data-translate="server_add_secondary_dns_title"></span>
+    </oui-button>
+
+    <oui-datagrid
+        data-ng-if="!$ctrl.reload"
+        rows-loader="$ctrl.loadSecondaryDns($config)"
+    >
+        <oui-datagrid-column
+            data-title=":: 'server_secondarydns_domain_header' | translate"
+            data-property="domain"
+            data-type="text"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'server_secondarydns_dns' | translate"
+            data-property="dns"
+            data-type="text"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'server_secondarydns_ip' | translate"
+            data-property="ip"
+            data-type="text"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'server_secondarydns_creationdate' | translate"
+        >
+            <span data-ng-bind="$row.creationDate | date:'longDate'"></span>
+        </oui-datagrid-column>
+        <oui-action-menu compact data-placement="end">
+            <oui-action-menu-item
+                data-on-click="$ctrl.goToDeleteSecondaryDns($row)"
+                ><span data-translate="common_delete"></span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</div>
