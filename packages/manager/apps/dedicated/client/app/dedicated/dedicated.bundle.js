@@ -17,10 +17,6 @@ import './dedicated-server/servers/bandwidth-legacy/order-private/dedicated-serv
 import './dedicated-server/servers/bandwidth-legacy/order-private/order-private.routing';
 import './dedicated-server/servers/bandwidth-legacy/order-public/dedicated-server-bandwidth-order.controller';
 import './dedicated-server/servers/bandwidth-legacy/order-public/order-public.routing';
-import './dedicated-server/servers/dns/add/dedicated-server-dns-add.controller';
-import './dedicated-server/servers/dns/dedicated-server-dns.controller';
-import './dedicated-server/servers/dns/dedicated-server-dns.routes';
-import './dedicated-server/servers/dns/delete/dedicated-server-dns-delete.controller';
 import './dedicated-server/servers/ftp-backup/access/add/dedicated-server-ftp-backup-access-add.controller';
 import './dedicated-server/servers/ftp-backup/access/delete/dedicated-server-ftp-backup-access-delete.controller';
 import './dedicated-server/servers/ftp-backup/access/update/dedicated-server-ftp-backup-access-update.controller';
