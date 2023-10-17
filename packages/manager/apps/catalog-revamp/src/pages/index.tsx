@@ -13,7 +13,7 @@ import { useCatalog } from '@/hooks/useCatalog';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import { Product } from '@/utils/utils';
 import Loading from '../components/Loading/Loading';
-import Error from '@/components/Error/Error';
+import Errors from '@/components/Error/Errors';
 
 export default function CatalogRevamp() {
   const { t } = useTranslation('catalog-revamp');
@@ -32,7 +32,7 @@ export default function CatalogRevamp() {
     return `(${results.length})`;
   };
 
-  if (!isLoading && error) return <Error error={error} />;
+  if (!isLoading && error) return <Errors error={error} />;
 
   return (
     <div className="m-10">

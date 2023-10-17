@@ -8,24 +8,7 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text/';
 import ErrorButtons from './ErrorButtons';
 import ErrorMessage from './ErrorMessage';
 import OOPS from '../../assets/error-banner-oops.png';
-import './Error.scss';
-
-export const TRACKING_LABELS = {
-  SERVICE_NOT_FOUND: 'service_not_found',
-  UNAUTHORIZED: 'unauthorized',
-  PAGE_LOAD: 'error_during_page_loading',
-};
-
-function getTrackingTypology() {
-  const { error } = this.state;
-
-  if (error?.detail?.status && Math.floor(error.detail.status / 100) === 4) {
-    return [401, 403].includes(error.detail.status)
-      ? TRACKING_LABELS.UNAUTHORIZED
-      : TRACKING_LABELS.SERVICE_NOT_FOUND;
-  }
-  return TRACKING_LABELS.PAGE_LOAD;
-}
+import './Errors.scss';
 
 interface ErrorObject {
   [key: string]: any;
