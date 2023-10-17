@@ -62,7 +62,7 @@ export default function TelecomSidebar() {
           : {
               async loader() {
                 const xdslPack = await loadServices('/pack/xdsl');
-                const xdslStandalone = await loadServices('/xdsl/standalone');
+                const xdslStandalone = await loadServices('/xdsl');
                 return [
                   ...xdslPack.map((xdsl) => ({
                     ...xdsl,
