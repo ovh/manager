@@ -55,9 +55,9 @@
             ><span data-translate="server_tab_interfaces"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item
-            data-href="{{:: $ctrl.getTabItemUrl('dns') }}"
+            data-href="{{:: $ctrl.getTabItemUrl('secondary-dns') }}"
             data-ng-if="$ctrl.features.isFeatureAvailable('dedicated-server:dns')"
-            active="$ctrl.getTabItemUrl('dns') === $ctrl.currentActiveLink()"
+            active="$ctrl.getTabItemUrl('secondary-dns') === $ctrl.currentActiveLink()"
             data-disabled="server.isExpired"
             ><span data-translate="server_tab_dns"></span
         ></oui-header-tabs-item>

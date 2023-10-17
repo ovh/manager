@@ -1,0 +1,89 @@
+<div>
+    <div
+        data-wizard
+        data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+        data-wizard-on-finish="$ctrl.addSecondaryDns.bind($ctrl)"
+        data-wizard-title=":: 'server_add_secondary_dns_title' | translate"
+        data-wizard-bread-crumb
+        data-wizard-confirm-button-text=":: 'server_secondarydns_confirm_button_text' | translate"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="$ctrl.loadIpList.bind($ctrl)"
+            data-wizard-step-valid="$ctrl.entry.ip && $ctrl.entry.domain && $ctrl.ipdata.length >= 1 && !$ctrl.loading"
+        >
+            <div class="text-center" data-ng-if="$ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!$ctrl.loading">
+                <p data-translate="server_secondarydns_add_step1"></p>
+                <form name="addForm">
+                    <div class="form-group">
+                        <label
+                            class="control-label"
+                            for="ip"
+                            data-translate="server_secondarydns_ip"
+                        >
+                        </label>
+                        <oui-select
+                            id="ip"
+                            items="$ctrl.ipdata"
+                            model="$ctrl.entry.ip"
+                            searchable
+                        >
+                        </oui-select>
+                    </div>
+                    <div class="form-group">
+                        <label
+                            for="domain"
+                            class="control-label"
+                            data-translate="server_secondarydns_domain"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="domain"
+                            name="domain"
+                            data-ng-model="$ctrl.entry.domain"
+                            data-ng-pattern="/^[^<>]+\.[^<>]+$/"
+                        />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div
+            data-wizard-step
+            data-wizard-step-on-load="$ctrl.loadToken.bind($ctrl)"
+        >
+            <div class="text-center" data-ng-if="$ctrl.loadTokenLoading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div
+                data-ng-if="!$ctrl.loadTokenLoading"
+                data-ng-bind-html="'server_secondarydns_add_step2' | translate: { t0: $ctrl.token.fieldType, t1: $ctrl.entry.domain, t2: $ctrl.token.subDomain, t3: $ctrl.token.fieldValue }"
+            ></div>
+
+            <div data-ovh-alert="$ctrl.addTokenAlert"></div>
+        </div>
+
+        <div data-wizard-step data-wizard-step-valid="!$ctrl.loading">
+            <div class="text-center" data-ng-if="$ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!$ctrl.loading">
+                <p data-translate="server_secondarydns_add_step3"></p>
+                <dl>
+                    <dt data-translate="server_secondarydns_ip"></dt>
+                    <dd data-ng-bind="$ctrl.entry.ip"></dd>
+                    <dt data-translate="server_secondarydns_domain"></dt>
+                    <dd data-ng-bind-html="$ctrl.entry.domain"></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
