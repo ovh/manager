@@ -11,7 +11,6 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "scripts": {
-    "prebuild": "yarn workspace @ovhcloud/msc-lib build",
     "build": "tsc && vite build",
     "dev": "tsc && vite",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-catalog-app' --include-dependencies -- npm run build --if-present",
@@ -28,12 +27,15 @@
     "@ovh-ux/manager-react-core-application": "*",
     "@ovh-ux/shell": "^3.0.0",
     "@ovhcloud/msc-react-tile": "*",
+    "@ovhcloud/msc-utils": "*",
     "@ovhcloud/ods-common-theming": "16.0.1",
     "@ovhcloud/ods-components": "16.0.1",
     "@ovhcloud/ods-theme-blue-jeans": "16.0.1",
     "@tanstack/react-query": "^4.29.3",
     "@tanstack/react-query-devtools": "^4.9.0",
+    "autoprefixer": "^10.4.16",
     "clsx": "^1.2.1",
+    "i18next": "^20.4.0",
     "react": "^18.2.0",
     "react-i18next": "^11.18.1",
     "react-router-dom": "^6.3.0",
@@ -46,10 +48,6 @@
     "ts-jest": "^29.1.1",
     "typescript": "^4.3.2",
     "vite": "^3.0.2"
-  },
-  "peerDependencies": {
-    "@ovhcloud/msc-utils": "*",
-    "i18next": "^20.4.0"
   },
   "regions": [
     "CA",
