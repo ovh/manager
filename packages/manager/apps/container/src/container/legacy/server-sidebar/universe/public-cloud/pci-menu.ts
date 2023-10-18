@@ -222,12 +222,6 @@ export function getPciProjectMenu(
             `#/pci/projects/${projectId}/private-registry`,
           ),
         },
-        {
-          id: 'workflow-management',
-          title: 'Workflow Management',
-          feature: 'workflow-management',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/workflow`),
-        },
       ],
     },
     {
