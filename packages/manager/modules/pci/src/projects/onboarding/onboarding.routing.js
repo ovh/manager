@@ -61,7 +61,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => {
         return $state.go('pci.projects.creating', {
           orderId,
-          voucherCode: get(cart, 'projectItem.voucherConfiguration.value', ''),
+          voucherCode: cart.?projectItem.?voucherConfiguration.?value || ''),
           isDiscoveryProject,
         });
       },
