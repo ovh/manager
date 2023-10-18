@@ -22,7 +22,7 @@ export default class PciCartProject {
       this.items,
       (cartItem) =>
         cartItem.settings.planCode === PCI_PROJECT_ORDER_CART.planCode ||
-        PCI_PROJECT_DISCOVERY_ORDER_CART.planCode,
+        cartItem.settings.planCode === PCI_PROJECT_DISCOVERY_ORDER_CART.planCode,
     );
   }
 
@@ -31,7 +31,7 @@ export default class PciCartProject {
       this.items,
       (cartItem) =>
         cartItem.settings.planCode === PCI_HDS_ADDON.planCode ||
-        PCI_HDS_DISCOVERY_ADDON.planCode,
+        cartItem.settings.planCode === PCI_HDS_DISCOVERY_ADDON.planCode,
     );
   }
 
@@ -40,7 +40,7 @@ export default class PciCartProject {
       this.items,
       (cartItem) =>
         cartItem.settings.planCode === PCI_PROJECT_ORDER_CART.creditPlanCode ||
-        PCI_PROJECT_DISCOVERY_ORDER_CART.creditPlanCode,
+        cartItem.settings.planCode === PCI_PROJECT_DISCOVERY_ORDER_CART.creditPlanCode,
     );
   }
 
