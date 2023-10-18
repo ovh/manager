@@ -1,4 +1,3 @@
-import get from 'lodash/get';
 import moment from 'moment';
 
 import { PCI_PROJECT_DISCOVERY_ORDER_CART } from '../new/constants';
@@ -61,7 +60,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => {
         return $state.go('pci.projects.creating', {
           orderId,
-          voucherCode: cart.?projectItem.?voucherConfiguration.?value || ''),
+          voucherCode: cart?.projectItem?.voucherConfiguration?.value || '',
           isDiscoveryProject,
         });
       },
