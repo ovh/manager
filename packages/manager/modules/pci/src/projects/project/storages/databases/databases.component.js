@@ -27,6 +27,7 @@ export default {
     steins: '<',
     customerRegions: '<',
     databasesRegions: '<',
+    isDiscoveryProject: '<',
   },
   controller,
   template,
