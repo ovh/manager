@@ -19,6 +19,7 @@ export default {
     availableEngines: '<',
     databaseId: '<',
     databases: '<',
+    allDatabases: '<',
     onListParamChange: '<',
     projectId: '<',
     trackDatabases: '<',
