@@ -170,16 +170,16 @@ export default /* @ngInject */ ($stateProvider) => {
         const stateName =
           'pci.projects.project.storages.databases.dashboard.general-information';
 
-        const promise = $state.go(
-          stateName,
-          {
-            projectId,
-            databaseId: database.id,
-          },
-          {
-            reload,
-          },
-        );
+        const databaseParameters = {
+          projectId,
+          databaseId: database.id,
+        };
+        if (database.type) {
+          databaseParameters.type = database.type;
+        }
+        const promise = $state.go(stateName, databaseParameters, {
+          reload,
+        });
         return message
           ? promise.then(() => {
               CucCloudMessage.flushMessages(`${stateName}-${database.id}`);
