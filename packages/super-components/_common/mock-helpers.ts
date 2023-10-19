@@ -4,8 +4,14 @@ import { Handler } from './msw-helpers';
 
 const createUrlRe = (url: string) => url.replace('*', '.*').replace(':id', '*');
 
-export const mockRequests = (handlers: Handler[]) => {
-  const mock = new MockAdapter(apiClient.v6);
+export type ApiVersion = 'v2' | 'v6' | 'aapi' | 'ws';
+
+function getApiClient(apiVersion: ApiVersion) {
+  return apiClient[apiVersion] || apiClient.v6;
+}
+
+export const mockRequests = (handlers: Handler[], apiVersion: ApiVersion) => {
+  const mock = new MockAdapter(getApiClient(apiVersion));
   handlers.forEach(({ url, method = 'get', status = 200, response }) => {
     const mockMethod = `on${method[0].toUpperCase()}${method?.substring(1)}`;
     const mockUrl =
@@ -22,9 +28,11 @@ export const mockRequests = (handlers: Handler[]) => {
 export const e2eMockResponseHandler = ({
   page,
   handlers,
+  apiVersion,
 }: {
   page: any;
   handlers: Handler[];
+  apiVersion: ApiVersion;
 }) => (res: any) => {
   if (res.url().includes('localhost')) {
     page.removeAllListeners('request');
@@ -32,11 +40,13 @@ export const e2eMockResponseHandler = ({
       const response = handlers.find(({ url }) => {
         const urlToMatch = url.includes('*')
           ? new RegExp(
-              `^${page.url()}${apiClient.v6
+              `^${page.url()}${getApiClient(apiVersion)
                 .getUri()
                 .substring(1)}/${createUrlRe(url)}$`,
             )
-          : `^${page.url()}${apiClient.v6.getUri().substring(1)}/${url}$`;
+          : `^${page.url()}${getApiClient(apiVersion)
+              .getUri()
+              .substring(1)}/${url}$`;
 
         return request.url().match(urlToMatch);
       });
