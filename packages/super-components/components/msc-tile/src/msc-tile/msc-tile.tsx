@@ -118,6 +118,7 @@ export class MscTile implements IMscTile {
         class="msc-ods-tile"
         color={ODS_THEME_COLOR_INTENT.primary}
         rounded
+        inline
       >
         <div class="tile-content">
           {this.imgSrc && (

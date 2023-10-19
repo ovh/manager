@@ -17,7 +17,7 @@ const defaultAttributes = {
 };
 
 export const setupSpecTest = async (attributes: Partial<IMscTailLogs> = {}) => {
-  const mock = mockRequests(config);
+  const mock = mockRequests(config, 'v6');
   const stringAttributes = { ...defaultAttributes, ...attributes };
   const page = await newSpecPage({
     components: [MscTailLogs, MscTailLogsCode],
@@ -43,7 +43,10 @@ export const setupE2eTest = async (attributes: Partial<IMscTailLogs> = {}) => {
 
   await page.setRequestInterception(true);
 
-  page.on('response', e2eMockResponseHandler({ page, handlers: config }));
+  page.on(
+    'response',
+    e2eMockResponseHandler({ page, handlers: config, apiVersion: 'v6' }),
+  );
 
   await page.setContent(
     `<msc-tail-logs ${OdsStringAttributes2Str(
