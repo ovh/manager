@@ -1,5 +1,6 @@
 import { isEqual } from 'lodash';
 import { STRING_PARAMETER_OPTIONS } from './add.constants';
+import { ENGINES_TYPES } from '../../../databases.constants';
 
 export default class {
   /* @ngInject */
@@ -143,6 +144,24 @@ export default class {
       this.sourceServiceList.length === 0
         ? this.integrationCapability.sourceEngines
         : this.integrationCapability.destinationEngines;
+  }
+
+  getExpectedServiceType() {
+    if (!this.expectedEngines) {
+      return ENGINES_TYPES.all.label;
+    }
+    const engineTypesKeys = Object.keys(ENGINES_TYPES);
+    const foundType = engineTypesKeys.find((type) =>
+      this.expectedEngines.every((engine) =>
+        ENGINES_TYPES[type].engines.includes(engine),
+      ),
+    );
+    return foundType ? ENGINES_TYPES[foundType].label : ENGINES_TYPES.all.label;
+  }
+
+  goToAddDatabaseWithType() {
+    const type = this.getExpectedServiceType();
+    return this.goToAddDatabase(type);
   }
 
   formatParameters() {

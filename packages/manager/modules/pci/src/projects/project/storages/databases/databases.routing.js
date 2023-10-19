@@ -30,8 +30,13 @@ export default /* @ngInject */ ($stateProvider) => {
             : false,
         ),
     resolve: {
-      goToAddDatabase: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.storages.databases.add', { projectId }),
+      goToAddDatabase: /* @ngInject */ ($state, projectId, type) => (
+        servicesType = type,
+      ) =>
+        $state.go('pci.projects.project.storages.databases.add', {
+          projectId,
+          type: servicesType,
+        }),
       databaseId: /* @ngInject */ ($transition$) => $transition$.params().id,
       type: /* @ngInject */ ($transition$) =>
         $transition$.params().type
