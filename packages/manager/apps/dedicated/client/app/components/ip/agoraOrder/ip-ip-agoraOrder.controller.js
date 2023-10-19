@@ -78,7 +78,10 @@ export default class AgoraIpOrderCtrl {
       .all({
         user: this.User.getUser(),
         services: this.IpAgoraOrder.getServices(),
-        ipFailoverPrice: this.IpAgoraOrder.getIpFailoverPrice(this.region),
+        ipFailoverPrice: this.IpAgoraOrder.getIpFailoverPrice(
+          this.ovhSubsidiary,
+          this.region,
+        ),
       })
       .then((results) => {
         this.user = results.user;

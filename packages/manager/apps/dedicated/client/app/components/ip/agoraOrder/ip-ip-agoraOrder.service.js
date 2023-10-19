@@ -100,9 +100,9 @@ export default class IpAgoraOrder {
       .catch(() => false);
   }
 
-  getIpFailoverPrice(region = 'EU') {
+  getIpFailoverPrice(ovhSubsidiary = 'FR', region = 'EU') {
     return this.$http
-      .get(`/order/catalog/formatted/ip?ovhSubsidiary=${region}`)
+      .get(`/order/catalog/formatted/ip?ovhSubsidiary=${ovhSubsidiary}`)
       .then(({ data: { plans } }) => {
         const ipFailoverRIPEPlan = plans.find(
           ({ planCode }) => planCode === IP_FAILOVER_PLANCODE[region],
