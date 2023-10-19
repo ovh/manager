@@ -32,6 +32,7 @@ export default {
     namespacesLink: '<',
     connectorsLink: '<',
     advancedConfigurationLink: '<',
+    type: '<',
   },
   template,
 };
