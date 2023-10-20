@@ -30,7 +30,7 @@
 
     <!-- <MANAGED PERMISSIONS> -->
     <oui-collapsible
-        data-heading="{{ ::'iam_managed_permissions_heading'  | translate }}"
+        data-heading="{{ :: 'iam_managed_permissions_heading' | translate }}"
         data-expanded="true"
     >
         <div
@@ -39,13 +39,13 @@
         >
             <input
                 class="oui-checkbox__input"
-                id="{{ group.id }}"
+                id="{{ ::group.id }}"
                 type="checkbox"
-                name="{{ group.id }}"
+                name="{{ ::group.id }}"
                 data-ng-model="group.selected"
                 data-ng-change="$ctrl.onPermissionsGroupsChanged(group.urn)"
             />
-            <label class="oui-checkbox__label-container" for="{{ group.id }}">
+            <label class="oui-checkbox__label-container" for="{{ ::group.id }}">
                 <span class="oui-checkbox__label">
                     <span class="oui-checkbox__icon"></span>
                     <span class="oui-checkbox__text">
