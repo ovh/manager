@@ -15,7 +15,7 @@ interface ErrorObject {
 }
 
 const ErrorBanner: React.FC<ErrorObject> = ({ error }) => {
-  const { t } = useTranslation('catalog-revamp/error');
+  const { t } = useTranslation('catalog/error');
   return (
     <div className="manager-error-page p-5">
       <div className="manager-error-page-image">

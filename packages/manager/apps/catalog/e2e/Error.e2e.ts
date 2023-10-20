@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import '@playwright-helpers/login';
-import * as translationsError from '../src/public/translations/catalog-revamp/error/Messages_fr_FR.json';
+import * as translationsError from '../src/public/translations/catalog/error/Messages_fr_FR.json';
 
 test('should display Error component if fetch fails', async ({ page }) => {
   await page.route('*/**/2api/hub/catalog', (route, request) => {

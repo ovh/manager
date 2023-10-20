@@ -26,7 +26,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
   setSelectedUniverses,
   setSearchValue,
 }) => {
-  const { t } = useTranslation('catalog-revamp/search');
+  const { t } = useTranslation('catalog/search');
 
   const [showFilters, setShowFilters] = useState(false);
 

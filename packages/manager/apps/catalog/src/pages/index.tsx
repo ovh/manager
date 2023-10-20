@@ -16,7 +16,7 @@ import Loading from '../components/Loading/Loading';
 import Errors from '@/components/Error/Errors';
 
 export default function CatalogRevamp() {
-  const { t } = useTranslation('catalog-revamp');
+  const { t } = useTranslation('catalog');
   const [searchText, setSearchText] = React.useState('');
   const [categories, setCategories] = React.useState<string[]>([]);
   const [universes, setUniverses] = React.useState<string[]>([]);

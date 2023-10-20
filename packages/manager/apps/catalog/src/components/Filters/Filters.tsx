@@ -51,7 +51,7 @@ const Filters: React.FC<FiltersProps> = ({
     setParentSelectedUniverses([]);
   };
 
-  const { t } = useTranslation('catalog-revamp/filters');
+  const { t } = useTranslation('catalog/filters');
 
   const handleCheckboxChange = (
     type: 'category' | 'universe',
