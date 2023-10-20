@@ -123,7 +123,6 @@ export default class OctaviaLoadBalancerCreateService {
     });
 
     return this.getFlavorId(projectId, regionName, size).then((flavorId) => {
-      // TODO: Add listeners when ticket 10670 is done
       return this.$http
         .post(
           `/cloud/project/${projectId}/region/${regionName}/loadbalancing/loadbalancer`,

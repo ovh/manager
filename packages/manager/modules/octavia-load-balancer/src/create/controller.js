@@ -1,6 +1,8 @@
 import {
   GETTING_STARTED_LINK,
   LOAD_BALANCER_NAME_REGEX,
+  MAX_INSTANCES_BY_LISTENER,
+  MAX_LISTENER,
   PRODUCT_LINK,
   REGION_AVAILABILITY_LINK,
   TRACKING_INSTANCE_DOCUMENTATION,
@@ -26,6 +28,8 @@ export default class OctaviaLoadBalancerCreateCtrl {
     this.atInternet = atInternet;
     this.user = coreConfig.getUser();
     this.OctaviaLoadBalancerCreateService = OctaviaLoadBalancerCreateService;
+    this.maxListener = MAX_LISTENER;
+    this.maxInstancesByListener = MAX_INSTANCES_BY_LISTENER;
   }
 
   $onInit() {

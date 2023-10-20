@@ -1,7 +1,5 @@
 import {
   LISTENER_PROTOCOL_LIST,
-  MAX_INSTANCES_BY_LISTENER,
-  MAX_LISTENER,
   PROTOCOLS,
   TRACKING_ADD_LISTENER,
 } from './instances-table.constants';
@@ -19,9 +17,6 @@ export default class RegionsListController {
     this.listenerProtocols = LISTENER_PROTOCOL_LIST;
     this.atInternet = atInternet;
     this.OctaviaLoadBalancerInstanceService = OctaviaLoadBalancerInstanceService;
-
-    this.maxListener = MAX_LISTENER;
-    this.maxInstancesByListener = MAX_INSTANCES_BY_LISTENER;
   }
 
   $onInit() {
@@ -55,7 +50,7 @@ export default class RegionsListController {
 
   addListener() {
     if (!this.listeners) this.listeners = [];
-    if (this.listeners.length < MAX_LISTENER) {
+    if (this.listeners.length < this.maxListener) {
       this.atInternet.trackClick({
         name: TRACKING_ADD_LISTENER,
         type: 'action',
@@ -66,8 +61,8 @@ export default class RegionsListController {
     }
   }
 
-  static addInstance(listener) {
-    if (listener.instances.length < MAX_INSTANCES_BY_LISTENER) {
+  addInstance(listener) {
+    if (listener.instances.length < this.maxInstancesByListener) {
       listener.instances.push({});
     }
   }

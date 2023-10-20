@@ -8,5 +8,7 @@ export default {
     projectId: '<',
     region: '<',
     listeners: '=',
+    maxListener: '<',
+    maxInstancesByListener: '<',
   },
 };

@@ -68,9 +68,6 @@ export const LISTENER_PROTOCOL_LIST = [
   },
 ];
 
-export const MAX_LISTENER = 5;
-export const MAX_INSTANCES_BY_LISTENER = 5;
-
 export const TRACKING_ADD_LISTENER =
   'pci::projects::project::octavia-loadbalancer::add::add-listener';
 
@@ -78,6 +75,4 @@ export default {
   PROTOCOLS,
   LISTENER_PROTOCOL_LIST,
   TRACKING_ADD_LISTENER,
-  MAX_LISTENER,
-  MAX_INSTANCES_BY_LISTENER,
 };

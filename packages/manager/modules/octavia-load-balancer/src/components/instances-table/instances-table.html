@@ -173,7 +173,7 @@
                                         data-aria-label="{{:: 'octavia_load_balancer_instances_table_instance_add' | translate}}"
                                         oui-tooltip="{{:: 'octavia_load_balancer_instances_table_instance_add' | translate }}"
                                         data-disabled="$ctrl.constructor.isPoolSectionDisabled(listener) || listener.instances.length >= $ctrl.maxInstancesByListener"
-                                        data-on-click="$ctrl.constructor.addInstance(listener)"
+                                        data-on-click="$ctrl.addInstance(listener)"
                                     >
                                         <span
                                             class="oui-icon oui-icon-add"

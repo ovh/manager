@@ -213,6 +213,7 @@
             <oui-message data-type="info">
                 <p
                     data-translate="octavia_load_balancer_create_instance_banner_text"
+                    data-translate-values="{maxListeners: $ctrl.maxListener, maxInstances: $ctrl.maxInstancesByListener}"
                 ></p>
                 <p>
                     <b
@@ -224,6 +225,8 @@
                 data-project-id="$ctrl.projectId"
                 data-region="$ctrl.model.region"
                 data-listeners="$ctrl.model.listeners"
+                data-max-listener="$ctrl.maxListener"
+                data-max-instances-by-listener="$ctrl.maxInstancesByListener"
             >
             </octavia-load-balancer-instances-table>
         </oui-step-form>
