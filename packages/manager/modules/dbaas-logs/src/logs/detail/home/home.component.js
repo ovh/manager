@@ -9,9 +9,7 @@ export default {
     isAccountDisabled: '<',
     tokenIds: '<',
     defaultCluster: '<',
-    streamData: '<',
-    archiveData: '<',
-    indiceData: '<',
+    dataUsage: '<',
     indexIds: '<',
     aliasIds: '<',
     encryptionKeysIds: '<',
@@ -20,3 +18,4 @@ export default {
   controllerAs: 'ctrl',
   template,
 };
+

@@ -27,45 +27,15 @@ export default /* @ngInject */ ($stateProvider) => {
         isAccountDisabled
           ? $q.when({})
           : LogsTokensService.getDefaultCluster(serviceName),
-      streamData: /* @ngInject */ (
+      dataUsage: /* @ngInject */ (
         $q,
         isAccountDisabled,
-        LogsConstants,
         LogsHomeService,
         serviceName,
       ) =>
         isAccountDisabled
           ? $q.when(null)
-          : LogsHomeService.getDataUsage(
-              serviceName,
-              LogsConstants.DATA_STORAGE.METRICS.STREAM_SIZE,
-            ),
-      archiveData: /* @ngInject */ (
-        $q,
-        isAccountDisabled,
-        LogsConstants,
-        LogsHomeService,
-        serviceName,
-      ) =>
-        isAccountDisabled
-          ? $q.when(null)
-          : LogsHomeService.getDataUsage(
-              serviceName,
-              LogsConstants.DATA_STORAGE.METRICS.COLD_STORAGE_TOTAL,
-            ),
-      indiceData: /* @ngInject */ (
-        $q,
-        isAccountDisabled,
-        LogsConstants,
-        LogsHomeService,
-        serviceName,
-      ) =>
-        isAccountDisabled
-          ? $q.when(null)
-          : LogsHomeService.getDataUsage(
-              serviceName,
-              LogsConstants.DATA_STORAGE.METRICS.INDEX_SIZE,
-            ),
+          : LogsHomeService.getDataUsage(serviceName),
       indexIds: /* @ngInject */ (
         $q,
         isAccountDisabled,
@@ -97,3 +67,4 @@ export default /* @ngInject */ ($stateProvider) => {
     },
   });
 };
+
