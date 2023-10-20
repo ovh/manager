@@ -3,6 +3,7 @@ export const ADYEN_CONFIG = {
   ENV_ENUM: {
     TEST: 'test',
     LIVE: 'live',
+    LIVE_IN: 'live-in', // for India Only
   },
   DEFAULT: {
     showPayButton: false,
@@ -71,8 +72,11 @@ export const ADYEN_RESULT_CODE = {
   REFUSED: 'Refused',
 };
 
+export const PAYMENT_ADYEN_LIVE_IN_CONFIG_FEATURE_ID = 'payments:adyen-live-in';
+
 export default {
   ADYEN_CONFIG,
   ADYEN_RESULT_CODE,
   PAYMENT_METHOD_BRANDS,
+  PAYMENT_ADYEN_LIVE_IN_CONFIG_FEATURE_ID,
 };
