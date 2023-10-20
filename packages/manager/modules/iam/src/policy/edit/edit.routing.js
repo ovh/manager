@@ -16,6 +16,14 @@ export default /* @ngInject */ ($stateProvider) => {
         const { policy: uuid } = $transition$.params();
         return uuid ? IAMService.getDetailedPolicy(uuid) : null;
       },
+
+      /**
+       * Retrieve the list of permissionsGroups
+       * @returns {Object|null}
+       */
+      permissionsGroups: /* @ngInject */ (IAMService) => {
+        return IAMService.getPermissionsGroups();
+      },
     },
     atInternet: {
       rename: TAG.EDIT_POLICY,
