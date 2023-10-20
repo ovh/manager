@@ -2,8 +2,9 @@ import PciEligibility from '../../classes/eligibility.class';
 
 export default class PciProjectNewVoucherCtrl {
   /* @ngInject */
-  constructor($q, pciProjectNew) {
+  constructor($q, $timeout, pciProjectNew) {
     this.$q = $q;
+    this.$timeout = $timeout;
     this.pciProjectNew = pciProjectNew;
 
     // other attributes
@@ -163,12 +164,11 @@ export default class PciProjectNewVoucherCtrl {
   }
 
   getVoucherError() {
-    const { statusText } = this.model.voucher?.error;
-    const ERROR_LABEL =
-      statusText
-        .substring(statusText.indexOf(':') + 1, statusText.lastIndexOf(')'))
-        .trim() || 'invalid';
-    return `pci_projects_new_voucher_form_field_error_${ERROR_LABEL.toLowerCase()}`;
+    const errorCode = this.model.voucher.error?.statusText
+      ?.match(/(VOUCHER_\w+)/)?.[1]
+      .toLowerCase();
+    return `pci_projects_new_voucher_form_field_error_${errorCode ||
+      'invalid'}`;
   }
 
   /* -----  End of Helpers  ------ */
@@ -215,12 +215,10 @@ export default class PciProjectNewVoucherCtrl {
     if (value) {
       if (valid) {
         this.voucherEligibility = this.eligibility;
-      } else {
-        this.model.voucher.setValue('');
       }
 
       this.formVisible = true;
-      this.setVoucherFormState();
+      this.$timeout(() => this.setVoucherFormState());
     }
   }
 
