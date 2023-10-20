@@ -6,6 +6,7 @@ import {
   ADYEN_CONFIG,
   ADYEN_RESULT_CODE,
   PAYMENT_METHOD_BRANDS,
+  PAYMENT_ADYEN_LIVE_IN_CONFIG_FEATURE_ID,
 } from './constants';
 import { AVAILABLE_CALLBACK_STATUS_ENUM } from '../../constants';
 
@@ -81,7 +82,7 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
         this.initialParams.paymentMethod.merchantId,
       )
         ? ADYEN_CONFIG.ENV_ENUM.TEST
-        : ADYEN_CONFIG.ENV_ENUM.LIVE,
+        : this.getEnvironment(),
       redirectFromTopWhenInIframe: true,
     };
 
@@ -252,5 +253,17 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
       callbackFnName,
       callbackParamObject,
     );
+  }
+
+  getEnvironment() {
+    return this.ovhFeatureFlipping
+      .checkFeatureAvailability(PAYMENT_ADYEN_LIVE_IN_CONFIG_FEATURE_ID)
+      .then((featureAvailability) =>
+        featureAvailability.isFeatureAvailable(
+          PAYMENT_ADYEN_LIVE_IN_CONFIG_FEATURE_ID,
+        ),
+      )
+      ? ADYEN_CONFIG.ENV_ENUM.LIVE_IN
+      : ADYEN_CONFIG.ENV_ENUM.LIVE;
   }
 }
