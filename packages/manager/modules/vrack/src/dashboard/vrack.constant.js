@@ -49,6 +49,18 @@ export const STATUS = {
 export const VRACK_DASHBOARD_TRACKING_PREFIX = 'vrack::dashboard';
 export const VRACK_ACTIONS_SUFFIX = 'action';
 
+export const serviceFamilies = [
+  // 'dedicatedCloud',
+  // 'dedicatedCloudDatacenter',
+  // 'dedicatedConnect',
+  'dedicatedServer',
+  // 'dedicatedServerInterface',
+  'ip',
+  // 'ipLoadbalancing',
+  // 'legacyVrack',
+  // 'ovhCloudConnect',
+];
+
 export default {
   FEATURE_NAMES,
   POLLING_INTERVAL,
@@ -56,4 +68,5 @@ export default {
   VRACK_URLS,
   VRACK_DASHBOARD_TRACKING_PREFIX,
   VRACK_ACTIONS_SUFFIX,
+  serviceFamilies,
 };

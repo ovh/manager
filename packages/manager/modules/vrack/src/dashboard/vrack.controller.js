@@ -29,6 +29,7 @@ import angular from 'angular';
 import {
   FEATURE_NAMES,
   POLLING_INTERVAL,
+  serviceFamilies,
   STATUS,
   VRACK_DASHBOARD_TRACKING_PREFIX,
   VRACK_ACTIONS_SUFFIX,
@@ -39,6 +40,7 @@ import arrowIcon from '../../assets/icon_vrack-mapper-arrows.svg';
 export default class VrackMoveDialogCtrl {
   /* @ngInject */
   constructor(
+    $http,
     $scope,
     $q,
     $stateParams,
@@ -52,6 +54,7 @@ export default class VrackMoveDialogCtrl {
     CucVrackService,
     atInternet,
   ) {
+    this.$http = $http;
     this.$scope = $scope;
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -65,6 +68,176 @@ export default class VrackMoveDialogCtrl {
     this.vrackService = CucVrackService;
     this.atInternet = atInternet;
     this.changeOwnerTrackLabel = `${VRACK_DASHBOARD_TRACKING_PREFIX}::change-owner`;
+    this.servicesFamilies = serviceFamilies;
+  }
+
+  /**
+   * @name filterAllowedServicesOnly
+   * @description takes the object describing the services,
+   * and returns the object after filtering each of them only for available services.
+   * @param allServicesParam
+   * @returns {*&{dedicatedCloud: *, dedicatedServer: T[], dedicatedServerInterface: {readonly dedicatedServer?: *}[], managedBareMetal: *}}
+   */
+  static filterAllowedServicesOnly(allServicesParam) {
+    return {
+      ...allServicesParam,
+      dedicatedCloud: allServicesParam.dedicatedCloud.filter((service) => {
+        return (
+          VrackMoveDialogCtrl.isServiceAllowed(service) &&
+          service.productReference === 'EPCC'
+        );
+      }),
+      managedBareMetal: allServicesParam.dedicatedCloud.filter((service) => {
+        return (
+          VrackMoveDialogCtrl.isServiceAllowed(service) &&
+          service.productReference === 'MBM'
+        );
+      }),
+      dedicatedServer: allServicesParam.dedicatedServer.filter(
+        VrackMoveDialogCtrl.isServiceAllowed,
+      ),
+      dedicatedServerInterface: allServicesParam.dedicatedServerInterface.filter(
+        ({ dedicatedServer }) =>
+          VrackMoveDialogCtrl.isServiceAllowed(dedicatedServer),
+      ),
+    };
+  }
+
+  static isServiceAllowed(service) {
+    return (
+      !service.expired &&
+      [STATUS.ok, STATUS.delivered].includes(service.state) &&
+      service.status === STATUS.ok
+    );
+  }
+
+  static hasServices(services) {
+    return keys(services).length > 0;
+  }
+
+  static getDedicatedServerNiceName(service) {
+    const formattedService = {};
+    angular.copy(service, formattedService);
+    formattedService.id = service.name;
+    // by default the reverse seem to be equal to the name,
+    // so do not display redondant information.
+    if (service.reverse && service.reverse !== service.name) {
+      formattedService.niceName = `${service.name} (${service.reverse})`;
+    } else {
+      formattedService.niceName = service.name;
+    }
+    formattedService.trueServiceType = 'dedicatedServer';
+    return formattedService;
+  }
+
+  static getDedicatedServerInterfaceNiceName(service) {
+    const formattedService = VrackMoveDialogCtrl.getDedicatedServerNiceName(
+      service.dedicatedServer,
+    );
+    formattedService.id = service.dedicatedServerInterface;
+    formattedService.niceName = `${formattedService.niceName} - ${service.name}`;
+    formattedService.trueServiceType = 'dedicatedServerInterface';
+    return formattedService;
+  }
+
+  static getDedicatedCloudNiceName(service) {
+    const formattedService = {};
+    angular.copy(service, formattedService);
+    formattedService.id = service.serviceName;
+    if (service.description) {
+      formattedService.niceName = `${service.serviceName} (${service.description})`;
+    } else {
+      formattedService.niceName = service.serviceName;
+    }
+    formattedService.trueServiceType = 'dedicatedCloud';
+    return formattedService;
+  }
+
+  static getCloudProjectNiceName(service) {
+    const formattedService = {};
+    angular.copy(service, formattedService);
+    formattedService.id = service.project_id;
+    if (service.description) {
+      formattedService.niceName = service.description;
+    } else {
+      formattedService.niceName = service.project_id;
+    }
+    formattedService.trueServiceType = 'cloudProject';
+    return formattedService;
+  }
+
+  static getIpLoadbalancingNiceName(service) {
+    const formattedService = {};
+    angular.copy(service, formattedService);
+    formattedService.id = service.serviceName;
+    if (service.displayName) {
+      formattedService.niceName = service.displayName;
+    } else {
+      formattedService.niceName = service.serviceName;
+    }
+    formattedService.trueServiceType = 'ipLoadbalancing';
+    return formattedService;
+  }
+
+  static fillServiceData(serviceType, service) {
+    let formattedService = null;
+    switch (serviceType) {
+      case 'dedicatedServer':
+        formattedService = VrackMoveDialogCtrl.getDedicatedServerNiceName(
+          service,
+        );
+        break;
+      case 'dedicatedServerInterface':
+        formattedService = VrackMoveDialogCtrl.getDedicatedServerInterfaceNiceName(
+          service,
+        );
+        break;
+      case 'dedicatedCloud':
+      case 'managedBareMetal':
+        formattedService = VrackMoveDialogCtrl.getDedicatedCloudNiceName(
+          service,
+        );
+        break;
+      case 'dedicatedCloudDatacenter':
+        formattedService = cloneDeep(service);
+        formattedService.id = service.datacenter;
+        formattedService.niceName = last(service.datacenter.split('_'));
+        if (isObject(service.dedicatedCloud)) {
+          formattedService.dedicatedCloud.niceName = `${service.dedicatedCloud.serviceName} (${service.dedicatedCloud.description})`;
+        } else {
+          formattedService.dedicatedCloud = {
+            niceName: service.dedicatedCloud,
+          };
+        }
+        formattedService.trueServiceType = 'dedicatedCloudDatacenter';
+        break;
+      case 'legacyVrack':
+        formattedService = {
+          id: service,
+          niceName: service,
+          trueServiceType: 'legacyVrack',
+        };
+        break;
+      case 'ip':
+        formattedService = {
+          id: service,
+          niceName: service,
+          trueServiceType: 'ip',
+        };
+        break;
+      case 'cloudProject':
+        formattedService = VrackMoveDialogCtrl.getCloudProjectNiceName(service);
+        break;
+      case 'ipLoadbalancing':
+        formattedService = VrackMoveDialogCtrl.getIpLoadbalancingNiceName(
+          service,
+        );
+        break;
+      default:
+        formattedService = cloneDeep(service);
+        break;
+    }
+    return formattedService;
   }
 
   $onInit() {
@@ -88,9 +261,21 @@ export default class VrackMoveDialogCtrl {
 
     this.loaders = {
       init: false,
+      fetching: false,
       adding: false,
       deleting: false,
       moving: false,
+      services: {
+        dedicatedCloud: 'not_fetched',
+        dedicatedCloudDatacenter: 'not_fetched',
+        dedicatedConnect: 'not_fetched',
+        dedicatedServer: 'not_fetched',
+        dedicatedServerInterface: 'not_fetched',
+        ip: 'not_fetched',
+        ipLoadbalancing: 'not_fetched',
+        legacyVrack: 'not_fetched',
+        ovhCloudConnect: 'not_fetched',
+      },
     };
 
     this.data = {
@@ -199,87 +384,52 @@ export default class VrackMoveDialogCtrl {
     this.getAllowedServicesIsPending = true;
     this.getAllowedServicesCounter = 0;
 
-    const servicesFamiliesList = [
-      'dedicatedCloud',
-      'dedicatedCloudDatacenter',
-      'dedicatedConnect',
-      'dedicatedServer',
-      'dedicatedServerInterface',
-      'ip',
-      'ipLoadbalancing',
-      'legacyVrack',
-      'ovhCloudConnect',
-    ];
-    const allServices = {};
-
-    console.log(allServices);
+    const allServices = {
+      dedicatedServer: [],
+      dedicatedServerInterface: [],
+      dedicatedCloud: [],
+      ip: [],
+      legacyVrack: [],
+      cloudProject: [],
+      ipLoadBalancing: [],
+    };
 
     // for each service, make a call and append the result to a literal object
-    servicesFamiliesList.forEach((serviceFamily) => {
+    this.servicesFamilies.forEach((serviceFamily) => {
       console.log('#### serviceFamily call ', serviceFamily);
 
-      this.OvhApiVrack.Aapi()
-        .allowedServices({
-          serviceName: this.serviceName,
-          serviceFamily,
-        })
-        .$promise.then((serviceFetchedResponse) => {
+      console.log('#### call serviceFamily', serviceFamily);
+      this.loaders.services[serviceFamily] = 'fetching';
+
+      console.log('#### allServices before filter', allServices);
+      this.$http
+        .get(
+          `/vrack/${this.serviceName}/allowedServices?serviceFamily=${serviceFamily}`,
+          {
+            serviceType: 'aapi',
+          },
+        )
+        .then((serviceFetchedResponse) => {
           console.log(
             '#### serviceFamily returned',
             serviceFamily,
             serviceFetchedResponse,
           );
-          allServices[serviceFamily] = serviceFetchedResponse;
-          // each time a family is returned, we filter all the services and enrich the services list
-          this.postMappingServices(allServices);
           this.getAllowedServicesCounter += 1;
-          if (this.getAllowedServicesCounter === this.servicesFamilies.length) {
-            this.getAllowedServicesCounter = false;
-          }
-        });
+          const OneServiceData = serviceFetchedResponse.data[serviceFamily];
+          this.loaders.services[serviceFamily] = 'fetched';
+          // each time a family is returned, we filter all the services and enrich the services list
+          // let mappedServices = this.postMappingServices(OneServiceData);
+          // console.log('###### mappedServices ', mappedServices);
+          allServices[serviceFamily] = OneServiceData;
+          const allServicesAllowed = VrackMoveDialogCtrl.filterAllowedServicesOnly(
+            allServices,
+          );
+          this.data.allowedServices = allServicesAllowed;
+          console.log('#### allServices after filter', allServicesAllowed);
+        })
+        .catch((error) => console.error(error));
     });
-
-    console.log('#### allServices before filter', allServices);
-    const self = this;
-    const allServicesAllowed = VrackMoveDialogCtrl.filterAllowedServicesOnly(
-      allServices,
-    );
-
-    const allServicesMapped = self.postMappingServices(allServicesAllowed);
-
-    console.log('#### allServices after filter', allServicesMapped);
-  }
-
-  /**
-   * @name filterAllowedServicesOnly
-   * @description takes the object describing the services,
-   * and returns the object after filtering each of them only for available services.
-   * @param allServicesParam
-   * @returns {*&{dedicatedCloud: *, dedicatedServer: T[], dedicatedServerInterface: {readonly dedicatedServer?: *}[], managedBareMetal: *}}
-   */
-  static filterAllowedServicesOnly(allServicesParam) {
-    return {
-      ...allServicesParam,
-      dedicatedCloud: allServicesParam.dedicatedCloud.filter((service) => {
-        return (
-          VrackMoveDialogCtrl.isServiceAllowed(service) &&
-          service.productReference === 'EPCC'
-        );
-      }),
-      managedBareMetal: allServicesParam.dedicatedCloud.filter((service) => {
-        return (
-          VrackMoveDialogCtrl.isServiceAllowed(service) &&
-          service.productReference === 'MBM'
-        );
-      }),
-      dedicatedServer: allServicesParam.dedicatedServer.filter(
-        VrackMoveDialogCtrl.isServiceAllowed,
-      ),
-      dedicatedServerInterface: allServicesParam.dedicatedServerInterface.filter(
-        ({ dedicatedServer }) =>
-          VrackMoveDialogCtrl.isServiceAllowed(dedicatedServer),
-      ),
-    };
   }
 
   postMappingServices(allServices) {
@@ -313,14 +463,6 @@ export default class VrackMoveDialogCtrl {
     }
 
     return this.getAvailableServices(mappedServices);
-  }
-
-  static isServiceAllowed(service) {
-    return (
-      !service.expired &&
-      [STATUS.ok, STATUS.delivered].includes(service.state) &&
-      service.status === STATUS.ok
-    );
   }
 
   getAvailableServices(allServices) {
@@ -971,135 +1113,6 @@ export default class VrackMoveDialogCtrl {
 
   isMoving() {
     return this.form.serviceToMove !== null && !this.loaders.moving;
-  }
-
-  static hasServices(services) {
-    return keys(services).length > 0;
-  }
-
-  static getDedicatedServerNiceName(service) {
-    const formattedService = {};
-    angular.copy(service, formattedService);
-    formattedService.id = service.name;
-    // by default the reverse seem to be equal to the name,
-    // so do not display redondant information.
-    if (service.reverse && service.reverse !== service.name) {
-      formattedService.niceName = `${service.name} (${service.reverse})`;
-    } else {
-      formattedService.niceName = service.name;
-    }
-    formattedService.trueServiceType = 'dedicatedServer';
-    return formattedService;
-  }
-
-  static getDedicatedServerInterfaceNiceName(service) {
-    const formattedService = VrackMoveDialogCtrl.getDedicatedServerNiceName(
-      service.dedicatedServer,
-    );
-    formattedService.id = service.dedicatedServerInterface;
-    formattedService.niceName = `${formattedService.niceName} - ${service.name}`;
-    formattedService.trueServiceType = 'dedicatedServerInterface';
-    return formattedService;
-  }
-
-  static getDedicatedCloudNiceName(service) {
-    const formattedService = {};
-    angular.copy(service, formattedService);
-    formattedService.id = service.serviceName;
-    if (service.description) {
-      formattedService.niceName = `${service.serviceName} (${service.description})`;
-    } else {
-      formattedService.niceName = service.serviceName;
-    }
-    formattedService.trueServiceType = 'dedicatedCloud';
-    return formattedService;
-  }
-
-  static getCloudProjectNiceName(service) {
-    const formattedService = {};
-    angular.copy(service, formattedService);
-    formattedService.id = service.project_id;
-    if (service.description) {
-      formattedService.niceName = service.description;
-    } else {
-      formattedService.niceName = service.project_id;
-    }
-    formattedService.trueServiceType = 'cloudProject';
-    return formattedService;
-  }
-
-  static getIpLoadbalancingNiceName(service) {
-    const formattedService = {};
-    angular.copy(service, formattedService);
-    formattedService.id = service.serviceName;
-    if (service.displayName) {
-      formattedService.niceName = service.displayName;
-    } else {
-      formattedService.niceName = service.serviceName;
-    }
-    formattedService.trueServiceType = 'ipLoadbalancing';
-    return formattedService;
-  }
-
-  static fillServiceData(serviceType, service) {
-    let formattedService = null;
-    switch (serviceType) {
-      case 'dedicatedServer':
-        formattedService = VrackMoveDialogCtrl.getDedicatedServerNiceName(
-          service,
-        );
-        break;
-      case 'dedicatedServerInterface':
-        formattedService = VrackMoveDialogCtrl.getDedicatedServerInterfaceNiceName(
-          service,
-        );
-        break;
-      case 'dedicatedCloud':
-      case 'managedBareMetal':
-        formattedService = VrackMoveDialogCtrl.getDedicatedCloudNiceName(
-          service,
-        );
-        break;
-      case 'dedicatedCloudDatacenter':
-        formattedService = cloneDeep(service);
-        formattedService.id = service.datacenter;
-        formattedService.niceName = last(service.datacenter.split('_'));
-        if (isObject(service.dedicatedCloud)) {
-          formattedService.dedicatedCloud.niceName = `${service.dedicatedCloud.serviceName} (${service.dedicatedCloud.description})`;
-        } else {
-          formattedService.dedicatedCloud = {
-            niceName: service.dedicatedCloud,
-          };
-        }
-        formattedService.trueServiceType = 'dedicatedCloudDatacenter';
-        break;
-      case 'legacyVrack':
-        formattedService = {
-          id: service,
-          niceName: service,
-          trueServiceType: 'legacyVrack',
-        };
-        break;
-      case 'ip':
-        formattedService = {
-          id: service,
-          niceName: service,
-          trueServiceType: 'ip',
-        };
-        break;
-      case 'cloudProject':
-        formattedService = VrackMoveDialogCtrl.getCloudProjectNiceName(service);
-        break;
-      case 'ipLoadbalancing':
-        formattedService = VrackMoveDialogCtrl.getIpLoadbalancingNiceName(
-          service,
-        );
-        break;
-      default:
-        formattedService = cloneDeep(service);
-        break;
-    }
-    return formattedService;
   }
 
   setUserRelatedContent() {

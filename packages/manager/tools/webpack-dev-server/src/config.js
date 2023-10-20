@@ -18,10 +18,19 @@ module.exports = (env) => {
   const isContainer = env.container || process.env.CONTAINER;
 
   const sso = new Sso(region, envConfig);
-
-  if (yn(env.local2API) || yn(process.env.npm_package_config_local2API)) {
-    proxy.unshift(serverProxy.aapi);
-  }
+  proxy.unshift({
+    target: 'http://localhost:8080',
+    context: (url) => url.includes('/engine/2api/vrack'),
+    changeOrigin: true,
+    logLevel: 'debug',
+    secure: false,
+    headers: {
+      'X-Ovh-Nic': 'ls148374-ovh',
+    },
+    pathRewrite: {
+      '^/engine/2api/': '/',
+    },
+  });
   if (env.dev) {
     proxy.unshift(...env.dev.map((config) => serverProxy.dev(config)));
   }
