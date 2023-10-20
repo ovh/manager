@@ -66,6 +66,6 @@ export default class ProjectController {
   }
 
   onActivateProjectClick() {
-    this.goToDiscoveryProjectActivationPage();
+    return this.goToDiscoveryProjectActivationPage();
   }
 }
