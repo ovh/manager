@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export const ErrorButtons = () => {
-  const { t } = useTranslation('catalog-revamp/error');
+  const { t } = useTranslation('catalog/error');
   const location = useLocation();
   const navigate = useNavigate();
   return (

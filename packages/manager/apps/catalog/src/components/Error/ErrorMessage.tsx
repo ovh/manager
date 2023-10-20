@@ -10,7 +10,7 @@ interface ErrorObject {
 }
 
 export const ErrorMessage: FC<ErrorMessageProps> = ({ error }) => {
-  const { t } = useTranslation('catalog-revamp/error');
+  const { t } = useTranslation('catalog/error');
   return (
     <div>
       {t('manager_error_page_default')} <br />

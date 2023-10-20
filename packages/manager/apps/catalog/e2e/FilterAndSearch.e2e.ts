@@ -1,6 +1,6 @@
 import { test, expect, Page, ElementHandle } from '@playwright/test';
 import '@playwright-helpers/login';
-import * as translation from '../src/public/translations/catalog-revamp/Messages_en_GB.json';
+import * as translation from '../src/public/translations/catalog/Messages_en_GB.json';
 
 const clickButtonByName = async (page: Page, name: string): Promise<void> => {
   const buttons = await page.$$('osds-button');

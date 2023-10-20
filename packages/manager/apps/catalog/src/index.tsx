@@ -4,10 +4,10 @@ import { setShellClient } from './shell';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
 import './global.scss';
 
-initShellClient('catalog-revamp')
+initShellClient('catalog')
   .then((client) => {
     return setShellClient(client);
   })
   .then(() => {
-    startApplication('catalog-revamp');
+    startApplication('catalog');
   });
