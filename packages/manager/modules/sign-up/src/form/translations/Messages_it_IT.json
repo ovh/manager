@@ -675,5 +675,7 @@
   "sign_up_form_enum_IN_area_IN-JK": "Jammu e Kashmir",
   "sign_up_form_enum_IN_area_IN-LA": "Ladakh",
   "sign_up_form_enum_IN_area_IN-LD": "Laccadive",
-  "sign_up_form_enum_IN_area_IN-PY": "Pondicherry"
+  "sign_up_form_enum_IN_area_IN-PY": "Pondicherry",
+  "sign_up_form_enum_sex_female": "F",
+  "sign_up_form_enum_sex_male": "M"
 }
