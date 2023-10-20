@@ -1,5 +1,8 @@
 {
   "dedicatedCloud_USER_rights_management_by_datacenter": "Gestion des droits de <b>{{t0}}</b> par datacentre",
+  "dedicatedCloud_USER_rights_management_by_datacenter_user": "Gestion des droits de l'utilisateur {{t0}} par datacentre",
+  "dedicatedCloud_USER_rights_management_by_datacenter_group": "Gestion des droits du groupe {{t0}} par datacentre",
+  "dedicatedCloud_USER_rights_management_by_datacenter_role": "Gestion des droits du rôle {{t0}} par datacentre",
   "dedicatedCloud_USER_warning_line": "Valider ou annuler la modification que vous avez effectuée sur les droits de l'utilisateur",
   "dedicatedCloud_datacenter_count": "Datacentre",
   "dedicatedCloud_USER_access_vsphere": "Accès vSphere",

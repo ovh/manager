@@ -27,5 +27,12 @@
   "dedicatedCloud_USER_edit_load_error": "Beim Laden des Nutzers ist ein Fehler aufgetreten.",
   "dedicatedCloud_USER_cancel": "Abbrechen",
   "dedicatedCloud_USER_yes": "Ja",
-  "dedicatedCloud_USER_no": "Nein"
+  "dedicatedCloud_USER_no": "Nein",
+  "dedicatedCloud_USER_create_iam": "IAM-Rolle erstellen",
+  "dedicatedCloud_USER_type": "Typ",
+  "dedicatedCloud_USER_type_user": "Nutzer",
+  "dedicatedCloud_USER_type_group": "Gruppe",
+  "dedicatedCloud_USER_type_role": "Rolle",
+  "dedicatedCloud_USER_type_ovhcloud_iam": "OVHcloud IAM",
+  "dedicatedCloud_USER_role_delete": "Diese Rolle löschen"
 }

@@ -1,0 +1,11 @@
+{
+  "dedicatedCloud_USER_iam_role_title": "Creare un nuovo ruolo IAM OVHcloud",
+  "dedicatedCloud_USER_iam_role_content": "Completa i seguenti campi per aggiungere un ruolo IAM OVHcloud alla tua infrastruttura.",
+  "dedicatedCloud_USER_iam_role_content_bottom": "La gestione dei permessi di questo ruolo in vSphere sarà identica agli utenti della tua infrastruttura. La gestione delle politiche e l'accesso a questo ruolo sarà possibile da IAM OVHcloud.",
+  "dedicatedCloud_USER_iam_role_name_example": "utente",
+  "dedicatedCloud_USER_iam_role_name_wrong_pattern": "Il nome del ruolo non deve contenere caratteri speciali.",
+  "dedicatedCloud_USER_iam_role_name_already_exist": "Questo ruolo esiste già.",
+  "dedicatedCloud_USER_iam_role_role_example": "Ruolo",
+  "dedicatedCloud_USER_iam_role_field_label_name": "Nome del ruolo",
+  "dedicatedCloud_USER_iam_role_error": "Non è stato possibile aggiungere il nuovo ruolo IAM OVHcloud."
+}
