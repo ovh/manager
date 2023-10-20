@@ -28,6 +28,7 @@ export default {
     trackClick: '<',
     isMenuSidebarVisible: '<',
     isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '<',
   },
   controller,
   template,

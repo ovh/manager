@@ -14,6 +14,8 @@ import contacts from './contacts';
 import creating from './creating';
 import dataProcessing from './data-processing';
 import edit from './edit';
+import activate from './activate';
+import failoverIps from './failover-ips';
 import additionalIps from './additional-ips';
 import inactive from './inactive';
 import instances from './instances';
@@ -53,6 +55,8 @@ angular
     creating,
     dataProcessing,
     edit,
+    activate,
+    failoverIps,
     additionalIps,
     inactive,
     instances,
