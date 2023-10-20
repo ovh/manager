@@ -79,10 +79,18 @@
 
 <!-- Document upload option -->
 <div class="mt-2" data-ng-if="!$ctrl.loading && $ctrl.showUploadOption">
-    <div data-ng-if="$ctrl.displayError">
+    <div data-ng-if="$ctrl.displayError && $ctrl.fileExtensionsValid">
         <oui-message data-type="error">
             <span
                 data-translate="user_account_identity_documents_submit_error_message_description"
+            ></span>
+        </oui-message>
+    </div>
+    <!-- error banner if the users uploads invalid files-->
+    <div data-ng-if="!$ctrl.fileExtensionsValid">
+        <oui-message class="my-1" data-type="error">
+            <span
+                data-translate="user_account_identity_documents_selection_file_format_invalid"
             ></span>
         </oui-message>
     </div>
