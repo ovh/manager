@@ -1,0 +1,59 @@
+<div class="pci-project-activate w-100 h-100">
+    <!--Trusted zone badge-->
+    <div class="text-center mt-3">
+        <ovh-manager-trusted-nic-label
+            data-ng-if="$ctrl.isTrustedZone"
+        ></ovh-manager-trusted-nic-label>
+    </div>
+    <div class="d-flex flex-md-row-reverse flex-sm-column">
+        <div class="p-4 oui-background-p-050">
+            <div>
+                <h1
+                    data-translate="pci_projects_project_pci_banner_promotion_title"
+                ></h1>
+                <p
+                    data-translate="pci_projects_project_pci_banner_promotion_description_1"
+                ></p>
+                <p
+                    data-translate="pci_projects_project_pci_banner_promotion_description_2"
+                ></p>
+            </div>
+
+            <div class="d-none d-md-block">
+                <h4
+                    data-translate="pci_projects_project_pci_banner_section_1_title"
+                ></h4>
+                <p
+                    data-translate="pci_projects_project_pci_banner_section_1_description"
+                ></p>
+
+                <h4
+                    data-translate="pci_projects_project_pci_banner_section_2_title"
+                ></h4>
+                <p
+                    data-translate="pci_projects_project_pci_banner_section_2_description"
+                ></p>
+                <img
+                    class="img-fluid float-right w-100"
+                    data-ng-src="{{:: $ctrl.illustration }}"
+                    alt="{{ 'pci_projects_project_pci_banner_img_alt' | translate }}"
+                    aria-hidden="true"
+                />
+            </div>
+        </div>
+        <div>
+            <h4 data-translate="pci_projects_project_activate_title"></h4>
+            <p data-translate="pci_projects_project_activate_description"></p>
+            <div>
+                <!-- Will contain the payment component -->
+            </div>
+            <oui-button
+                variant="primary"
+                data-ng-if="!$ctrl.isTrustedZone"
+                data-on-click="$ctrl.onActivateProjectClick()"
+            >
+                <span data-translate="pci_projects_project_activate_cta"></span>
+            </oui-button>
+        </div>
+    </div>
+</div>
