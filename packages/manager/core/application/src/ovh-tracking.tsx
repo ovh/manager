@@ -83,16 +83,32 @@ export default function OvhTracking() {
     });
   };
 
+  const ovhTrackShadowElement = (element) => {
+    const elementInShadowRoot = element.shadowRoot.querySelector(
+      `[${'data-tracking'}]`,
+    );
+    if (
+      elementInShadowRoot &&
+      OSDS_COMPONENT.includes(elementInShadowRoot?.tagName?.toUpperCase())
+    ) {
+      const trackingValueInShadowRoot = elementInShadowRoot.getAttribute(
+        'data-tracking',
+      );
+      ovhTrackingSenClick(trackingValueInShadowRoot);
+    }
+  };
+
   const ovhTrackingAction = (event) => {
     const element = event.target as HTMLElement;
     const closestWithTracking = element.closest(`[${'data-tracking'}]`);
     if (closestWithTracking) {
       const trackingValue = closestWithTracking.getAttribute('data-tracking');
-      if (
-        trackingValue &&
-        OSDS_COMPONENT.includes(closestWithTracking.tagName.toUpperCase())
-      ) {
+      if (OSDS_COMPONENT.includes(closestWithTracking.tagName.toUpperCase())) {
         ovhTrackingSenClick(trackingValue);
+        return;
+      }
+      if (element?.shadowRoot) {
+        ovhTrackShadowElement(element);
       }
     }
   };
