@@ -32,12 +32,10 @@ angular
             const ignore = options && options.ignore;
             const trackPage = {};
             if (atInternetUiRouterPlugin.isStateTrackEnabled() && !ignore) {
-              trackPage.pageUrl = encodeURIComponent(
-                transition.router.stateService.href(
-                  state.name,
-                  transition.params(),
-                  { absolute: true },
-                ),
+              trackPage.pageUrl = transition.router.stateService.href(
+                state.name,
+                transition.params(),
+                { absolute: true },
               );
               trackPage.name = state.name;
               if (options) {
