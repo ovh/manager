@@ -1,4 +1,4 @@
-import { cloneDeep, findIndex } from 'lodash-es';
+import { cloneDeep } from 'lodash-es';
 
 import {
   CUSTOM_ACTION_PATTERN,
@@ -407,33 +407,22 @@ export default class ActionSelectController {
       searchQuery,
     );
     const prefix = 'iam_action_select_category_count';
+    const totalSearchMatch = searchCount <= 1 ? 'one' : 'many';
+    const totalSelected = selectionCount === 1 ? 'one' : 'many';
     if (selectionCount && searchQuery) {
-      if (searchCount <= 1) {
-        return selectionCount === 1
-          ? `${prefix}_selection_one_result_one`
-          : `${prefix}_selection_many_result_one`;
-      }
-      return selectionCount === 1
-        ? `${prefix}_selection_one_result_many`
-        : `${prefix}_selection_many_result_many`;
+      return `${prefix}_selection_${totalSelected}_result_${totalSearchMatch}`;
     }
     if (selectionCount) {
-      return selectionCount === 1
-        ? `${prefix}_selection_one`
-        : `${prefix}_selection_many`;
+      return `${prefix}_selection_${totalSelected}`;
     }
     if (searchQuery) {
-      return searchCount <= 1
-        ? `${prefix}_result_one`
-        : `${prefix}_result_many`;
+      return `${prefix}_result_${totalSearchMatch}`;
     }
-    return actions.length === 1
-      ? `${prefix}_no_selection_one`
-      : `${prefix}_no_selection_many`;
+    return `${prefix}_no_selection_${actions.length === 1 ? 'one' : 'many'}`;
   }
 
   filterActions(actionTree) {
-    angular.forEach(actionTree.categories, (category) => {
+    actionTree.categories.forEach((category) => {
       // eslint-disable-next-line no-param-reassign
       category.filteredActions = category?.actions?.filter(
         (action) =>
@@ -443,8 +432,7 @@ export default class ActionSelectController {
       );
     });
     this.actionTrees[
-      findIndex(
-        this.actionTrees,
+      this.actionTrees.findIndex(
         (currentActionTree) => currentActionTree.value === actionTree.value,
       )
     ] = actionTree;
@@ -469,9 +457,10 @@ export default class ActionSelectController {
     if (!actions || !searchQuery) {
       return 0;
     }
+    const searchQueryLowerCase = searchQuery.toLowerCase();
     return actions.filter(
       (action) =>
-        action?.value.toLowerCase().indexOf(searchQuery.toLowerCase()) > -1,
+        action?.value.toLowerCase().indexOf(searchQueryLowerCase) > -1,
     ).length;
   }
 }
