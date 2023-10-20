@@ -64,4 +64,8 @@ export default class ProjectController {
       return [...features, item.feature].filter((feature) => !!feature);
     }, []);
   }
+
+  onActivateProjectClick() {
+    this.goToDiscoveryProjectActivationPage();
+  }
 }
