@@ -21,9 +21,8 @@ export default /* @ngInject */ ($stateProvider) => {
        * Retrieve the list of permissionsGroups
        * @returns {Object|null}
        */
-      permissionsGroups: /* @ngInject */ (IAMService) => {
-        return IAMService.getPermissionsGroups();
-      },
+      permissionsGroups: /* @ngInject */ (IAMService) =>
+        IAMService.getPermissionsGroups(),
     },
     atInternet: {
       rename: TAG.EDIT_POLICY,

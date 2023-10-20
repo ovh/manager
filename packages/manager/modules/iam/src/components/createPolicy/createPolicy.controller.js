@@ -212,9 +212,7 @@ export default class CreatePolicyController {
           Boolean(resourceType) && list.indexOf(resourceType) === index,
       );
       this.model.permissionsGroups = this.policy.permissionsGroups.map(
-        ({ urn }) => {
-          return { urn };
-        },
+        ({ urn }) => ({ urn }),
       );
     }
   }
