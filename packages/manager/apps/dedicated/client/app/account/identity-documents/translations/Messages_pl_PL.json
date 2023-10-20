@@ -22,5 +22,6 @@
   "user_account_identity_documents_legal_info2": "Aby dowiedzieć się więcej o przetwarzaniu Twoich danych osobowych i przysługujących Ci prawach, zapoznaj się z naszą <a href=\"{{ link }}\" target=\"_blank\">Polityką ochrony danych osobowych.</a>",
   "user_account_identity_documents_legal_info3": "Aby dowiedzieć się więcej o przetwarzaniu Twoich danych osobowych i przysługujących Ci prawach, zapoznaj się z naszą <a href=\"{{ link }}\" target=\"_blank\">Polityką ochrony danych osobowych.</a>",
   "user_account_identity_documents_verification_in_progress_info": "Twoje dokumenty są obecnie przetwarzane przez nasz zespół.",
-  "user_account_identity_documents_verification_waiting_info": "Twój wniosek został przeanalizowany, ale wymaga dodatkowych dokumentów. Sprawdź Twoje zgłoszenie pomocy."
+  "user_account_identity_documents_verification_waiting_info": "Twój wniosek został przeanalizowany, ale wymaga dodatkowych dokumentów. Sprawdź Twoje zgłoszenie pomocy.",
+  "user_account_identity_documents_selection_file_format_invalid": "Nieobsługiwany format pliku. Użyj jednego z akceptowanych formatów: jpg, jpeg, pdf i png"
 }
