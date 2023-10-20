@@ -9,6 +9,7 @@ export const URL = {
   RESOURCE: '/engine/api/v2/iam/resource',
   RESOURCE_GROUP: '/engine/api/v2/iam/resourceGroup',
   RESOURCE_TYPE: '/engine/api/v2/iam/reference/resource/type',
+  PERMISSIONS_GROUPS: '/engine/api/v2/iam/permissionsGroup',
 };
 
 export default class IAMService {
@@ -442,6 +443,17 @@ export default class IAMService {
    */
   getResourceGroups({ cursor }) {
     return this.httpApiv2List({ url: URL.RESOURCE_GROUP }, { cursor });
+  }
+
+  /**
+   * Get the list of permissionsGroups
+   * @returns {Promise}
+   */
+  getPermissionsGroups() {
+    return this.httpApiv2({
+      method: 'get',
+      url: URL.PERMISSIONS_GROUPS,
+    }).then(({ data }) => data);
   }
 
   /**
