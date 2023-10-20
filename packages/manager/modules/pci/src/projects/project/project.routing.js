@@ -85,14 +85,6 @@ export default /* @ngInject */ ($stateProvider) => {
         return project.planCode === DISCOVERY_PROJECT_PLANCODE;
       },
 
-      goToDiscoveryProjectActivationPage: /* @ngInject */ (
-        $state,
-        projectId,
-      ) => () =>
-        $state.go('pci.projects.project.activate', {
-          projectId,
-        }),
-
       guideUrl: /* @ngInject */ (user) => {
         Object.keys(GUIDES_LIST).forEach((key) => {
           Object.entries(GUIDES_LIST[key]).forEach(([subKey, value]) => {
@@ -189,6 +181,15 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToRegion: /* @ngInject */ ($state, projectId) => () => {
         return $state.go('pci.projects.project.regions', {
+          projectId,
+        });
+      },
+
+      goToDiscoveryProjectActivationPage: /* @ngInject */ (
+        $state,
+        projectId,
+      ) => () => {
+        return $state.go('pci.projects.project.activate', {
           projectId,
         });
       },
