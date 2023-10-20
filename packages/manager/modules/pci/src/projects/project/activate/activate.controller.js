@@ -1,6 +1,6 @@
 import illustration from './assets/activate-bg.png';
 
-export default class {
+export default class ProjectActivateController {
   /* @ngInject */
   constructor($q, orderCart, pciProjectNew) {
     this.$q = $q;
@@ -10,6 +10,6 @@ export default class {
   }
 
   onActivateProjectClick() {
-    this.goToProjectDashboard();
+    return this.goToProjectDashboard();
   }
 }
