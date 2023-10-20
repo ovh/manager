@@ -179,18 +179,10 @@ export default {
     },
   },
   DATA_STORAGE: {
-    TIME_PERIOD_MONTHS: 10,
-    MS_FOR_A_SEC: 1000,
     METRICS: {
-      STREAM_SIZE: 'ldp.service.stream.total',
-      INDEX_SIZE: 'ldp.service.indice.total',
-      COLD_STORAGE_TOTAL: 'ldp.service.coldstorage.total',
-    },
-    AGGREGATORS: {
-      ZIMSUM: 'zimsum',
-    },
-    DOWNSAMPLING_MODE: {
-      '24H_MAX': '24h-max-none',
+      STREAM_SIZE: 'ldp_service_stream_total',
+      INDEX_SIZE: 'ldp_service_indice_total',
+      COLD_STORAGE_TOTAL: 'ldp_service_coldstorage_total',
     },
   },
   RETENTION: {
@@ -284,3 +276,4 @@ export default {
     '-----BEGIN PGP PUBLIC KEY BLOCK-----\n\nmDMEYxiLtxYJKwYBBAHaRw8BAQdAy4ggQveZ1367awSh4HdpeYokD4Rs16hfqUTU\nK+NZYYW0H1JvYmVydG8gQ2FybG9zIDxyb2JlcnRAY2FybC5vcz6IkAQTFggAOBYh\nBEbafoALfZz4oKGtFVc1M2Vpnd85BQJjGIu3AhsDBQsJCAcCBhUKCQgLAgQWAgMB\nAh4BAheAAAoJEFc1M2Vpnd85CV4BAMclcRA6QfiHrtgGRiOgx1XuqSfV3245VtDl\nhqkiuyJWAP0XBTkgqUmQ3QSoE+fYOpnWpHt6n1m7FikkadOrrOmaCLg4BGMYi7cS\nCisGAQQBl1UBBQEBB0Ct7vcRp8DniPIvkMREAikuZBlWnJv8TyzSK4JtIcCXIwMB\nCAeIeAQYFggAIBYhBEbafoALfZz4oKGtFVc1M2Vpnd85BQJjGIu3AhsMAAoJEFc1\nM2Vpnd85ZnYA/jQ9zyXG2WYT6OoaDdk2/g4uIA5qaF0VZM207GFpCFuQAQDrJFhQ\ngzZPPx4UmQYPpVJO+uH1ZxKWIzZfVZAFZJw+Bg==\n=Q81L\n\n-----END PGP PUBLIC KEY BLOCK-----',
   MAX_ENCRYPTION_KEY_PER_STREAM: 5,
 };
+
