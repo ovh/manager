@@ -14,6 +14,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import './index.scss';
 
 let auth: Auth = {};
+let ovhSubsidiary: string;
 const url = new URL(window.top.location.href);
 const region = url.searchParams.get('region') || 'EU';
 const locale = url.searchParams.get('locale') || 'en_GB';
@@ -29,6 +30,15 @@ const fetchAuth = async () => {
   }
 };
 
+const fetchMe = async () => {
+  try {
+    const request = await fetch('/engine/apiv6/me');
+    ovhSubsidiary = (await request.json())?.ovhSubsidiary;
+  } catch (error) {
+    ovhSubsidiary = null;
+  }
+};
+
 defineApplicationVersion(__VERSION__);
 
 const App = () => {
@@ -40,6 +50,7 @@ const App = () => {
         auth,
         isSidebarVisible,
         locale: appLocale,
+        ovhSubsidiary,
         region,
         setIsSidebarVisible,
         setLocale,
@@ -50,7 +61,7 @@ const App = () => {
   );
 };
 
-Promise.all([importConfig(), fetchAuth()]).then(() => {
+Promise.all([importConfig(), fetchAuth(), fetchMe()]).then(() => {
   i18n
     .use(initReactI18next)
     .use(Backend)

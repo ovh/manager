@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import jumbotron from './error-jumbotron.png';
 import './error-jumbotron.styles.scss';
+import Context from '@/context';
 
 const ErrorJumbotron = (): JSX.Element => {
   const { t } = useTranslation('restricted');
+  const { ovhSubsidiary } = useContext(Context);
+  const isNotUsSubsidiary = ovhSubsidiary !== 'US';
   return (
     <div className="my-5 error-jumbotron d-flex flex-column">
       <div className="d-flex justify-content-center">
@@ -17,7 +20,18 @@ const ErrorJumbotron = (): JSX.Element => {
           className="oui-message__icon oui-icon oui-icon-error-circle"
           aria-hidden="true"
         ></span>
-        <p className="oui-message__body">{t('restricted_error_default')}</p>
+        <p className="oui-message__body">
+          {t(`restricted_error_default_start`, {
+            count: isNotUsSubsidiary ? 4 : 3,
+          })}
+        </p>
+        <ul>
+          <li>account:apiovh:me/get</li>
+          {isNotUsSubsidiary && <li>account:apiovh:me/supportLevel/get</li>}
+          <li>account:apiovh:me/certificates/get</li>
+          <li>account:apiovh:me/tag/get</li>
+        </ul>
+        <p className="oui-message__body">{t('restricted_error_default_end')}</p>
       </div>
     </div>
   );
