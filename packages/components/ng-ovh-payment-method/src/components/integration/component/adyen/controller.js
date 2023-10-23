@@ -16,19 +16,33 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
     $location,
     $timeout,
     $translate,
+    ovhFeatureFlipping,
     ovhPaymentMethod,
     OVH_PAYMENT_METHOD_INTEGRATION_TYPE,
   ) {
     this.$location = $location;
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.TYPE_INTEGRATION_ENUM = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
   }
 
   $onInit() {
     if (this.initialParams) {
-      this.initializeComponent();
+      this.ovhFeatureFlipping
+        .checkFeatureAvailability(PAYMENT_ADYEN_LIVE_IN_CONFIG_FEATURE_ID)
+        .then((featureAvailability) =>
+          featureAvailability.isFeatureAvailable(
+            PAYMENT_ADYEN_LIVE_IN_CONFIG_FEATURE_ID,
+          ),
+        )
+        .then((adyenLiveInAvailability) => {
+          this.adyenEnvironment = adyenLiveInAvailability
+            ? ADYEN_CONFIG.ENV_ENUM.LIVE_IN
+            : ADYEN_CONFIG.ENV_ENUM.LIVE;
+          this.initializeComponent();
+        });
     }
 
     // manage status from callback url
@@ -82,7 +96,7 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
         this.initialParams.paymentMethod.merchantId,
       )
         ? ADYEN_CONFIG.ENV_ENUM.TEST
-        : this.getEnvironment(),
+        : this.adyenEnvironment,
       redirectFromTopWhenInIframe: true,
     };
 
@@ -253,17 +267,5 @@ export default class OvhPaymentMethodIntegrationComponentAdyenCtrl {
       callbackFnName,
       callbackParamObject,
     );
-  }
-
-  getEnvironment() {
-    return this.ovhFeatureFlipping
-      .checkFeatureAvailability(PAYMENT_ADYEN_LIVE_IN_CONFIG_FEATURE_ID)
-      .then((featureAvailability) =>
-        featureAvailability.isFeatureAvailable(
-          PAYMENT_ADYEN_LIVE_IN_CONFIG_FEATURE_ID,
-        ),
-      )
-      ? ADYEN_CONFIG.ENV_ENUM.LIVE_IN
-      : ADYEN_CONFIG.ENV_ENUM.LIVE;
   }
 }
