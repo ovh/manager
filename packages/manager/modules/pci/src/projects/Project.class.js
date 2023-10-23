@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-
 import { CLOUD_PROJECT_STATE, CLOUD_PROJECT_BILLING_STATE } from '../constants';
 
 export default class Project {
@@ -20,9 +18,16 @@ export default class Project {
     return this.status === CLOUD_PROJECT_STATE.suspended;
   }
 
+  isTerminated() {
+    return (
+      this?.service?.billing.lifecycle.current.state ===
+      CLOUD_PROJECT_BILLING_STATE.TERMINATED
+    );
+  }
+
   hasPendingDebt() {
     return (
-      get(this, 'service.billing.lifecycle.current.state') ===
+      this?.service?.billing.lifecycle.current.state ===
       CLOUD_PROJECT_BILLING_STATE.UNPAID
     );
   }

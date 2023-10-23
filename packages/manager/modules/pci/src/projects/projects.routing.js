@@ -133,16 +133,18 @@ export default /* @ngInject */ ($stateProvider) => {
 
       projects: /* @ngInject */ (PciProjectsService) =>
         PciProjectsService.getProjects().then((projects) =>
-          projects.sort((project1, project2) => {
-            const project1SuspendedOrDebt =
-              project1.isSuspended() || project1.hasPendingDebt();
-            const project2SuspendedOrDebt =
-              project2.isSuspended() || project2.hasPendingDebt();
-            if (project1SuspendedOrDebt === project2SuspendedOrDebt) {
-              return 0;
-            }
-            return project1SuspendedOrDebt ? -1 : 1;
-          }),
+          projects
+            .filter((project) => !project.isTerminated())
+            .sort((project1, project2) => {
+              const project1SuspendedOrDebt =
+                project1.isSuspended() || project1.hasPendingDebt();
+              const project2SuspendedOrDebt =
+                project2.isSuspended() || project2.hasPendingDebt();
+              if (project1SuspendedOrDebt === project2SuspendedOrDebt) {
+                return 0;
+              }
+              return project1SuspendedOrDebt ? -1 : 1;
+            }),
         ),
 
       activeProjects: /* @ngInject */ (projects) => {
