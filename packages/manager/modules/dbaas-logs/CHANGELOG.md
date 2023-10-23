@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.16.1...@ovh-ux/manager-dbaas-logs@1.17.0) (2023-10-23)
+
+
+### Features
+
+* **dedicated:** moving to new metrics backend ([#10152](https://github.com/ovh/manager/issues/10152)) ([6dbb434](https://github.com/ovh/manager/commit/6dbb434d722da319fc6a9ed14fa89b1ee0e13ec5))
+
+
+
+
+
 ## [1.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.16.0...@ovh-ux/manager-dbaas-logs@1.16.1) (2023-10-16)
 
 

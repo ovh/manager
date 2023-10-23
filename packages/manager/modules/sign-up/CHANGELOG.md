@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.9.0...@ovh-ux/sign-up@2.10.0) (2023-10-23)
+
+
+### Features
+
+* **sign-up:** adding gender and birthday on details step ([#10041](https://github.com/ovh/manager/issues/10041)) ([6b9dcce](https://github.com/ovh/manager/commit/6b9dcce937e4d3ea24887543f553116c05957836))
+
+
+
+
+
 # [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.8.1...@ovh-ux/sign-up@2.9.0) (2023-09-25)
 
 

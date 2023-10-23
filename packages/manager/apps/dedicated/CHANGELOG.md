@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.7.0...@ovh-ux/manager-dedicated@19.7.1) (2023-10-23)
+
+
+### Bug Fixes
+
+* **dedicated:** fix change organisation IPs ([#10136](https://github.com/ovh/manager/issues/10136)) ([401a92c](https://github.com/ovh/manager/commit/401a92c8b162a4eecbac7458855e30869d1be572))
+* **dedicated:** show error for invalid file type ([#10109](https://github.com/ovh/manager/issues/10109)) ([7ad1da6](https://github.com/ovh/manager/commit/7ad1da64fc10e527b37394ca4d97ee6f0187066a))
+
+
+
+
+
 # [19.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.6.1...@ovh-ux/manager-dedicated@19.7.0) (2023-10-16)
 
 

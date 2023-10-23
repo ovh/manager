@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-at-internet-ui-router-plugin",
-  "version": "3.2.4",
+  "version": "3.3.0",
   "description": "Plugin for at-internet when using UI-Router",
   "keywords": [
     "angularjs",

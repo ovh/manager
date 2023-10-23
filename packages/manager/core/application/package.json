@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-core-application",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^7.1.1",
-    "@ovh-ux/shell": "^3.0.1",
+    "@ovh-ux/shell": "^3.0.2",
     "@tanstack/react-query": "^4.29.3",
     "@tanstack/react-query-devtools": "^4.29.3",
     "generouted": "1.6.4",
