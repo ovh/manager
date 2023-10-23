@@ -67,6 +67,17 @@ export default class PciProjectNewPaymentMethodAddCtrl {
     );
   }
 
+  static getPaymentMethodIcon(paymentMethodType) {
+    return paymentMethodType?.icon.data;
+  }
+
+  static isPaymentMethodePaypal(paymentMethodType) {
+    return (
+      paymentMethodType.type.paymentType.toLowerCase() ===
+      PAYMENT_METHOD_AUTHORIZED_ENUM.PAYPAL
+    );
+  }
+
   getPayPalChargeAmount() {
     const uCent = 1000000; // micro cent factor -> 10^-6
     const priceInCent =

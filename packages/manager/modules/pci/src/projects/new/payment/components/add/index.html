@@ -14,7 +14,7 @@
     <!--Payment methods-->
     <div class="row">
         <oui-select-picker
-            class="col-md-6 m-0 mb-3"
+            class="col-md-4 m-0 mb-3"
             data-ng-repeat="authorizedPaymentMethod in $ctrl.authorizedPaymentMethods track by $index"
             data-ng-if="$ctrl.isAuthorizedToUseSepaDirectDebit(authorizedPaymentMethod)"
             data-disabled="$ctrl.globalLoading.finalize"
@@ -23,10 +23,20 @@
             data-values="[authorizedPaymentMethod]"
             data-on-change="$ctrl.onPaymentTypeRadioChange()"
         >
-            <oui-select-picker-label class="w-100 text-center">
-                <span
+            <oui-select-picker-label
+                class="w-100 d-flex flex-column align-items-center"
+            >
+                <img
+                    ng-class="{'payment-method-type-icon-svg': !$ctrl.constructor.isPaymentMethodePaypal(authorizedPaymentMethod)}"
+                    data-ng-if="$ctrl.constructor.getPaymentMethodIcon(authorizedPaymentMethod)"
+                    data-ng-src="{{ $ctrl.constructor.getPaymentMethodIcon(authorizedPaymentMethod) }}"
+                    data-ng-attr-alt="{{:: $ctrl.getPaymentMethodTypeText(authorizedPaymentMethod) }}"
+                    alt
+                />
+                <h6
+                    class="text-center mb-0 mt-2"
                     data-ng-bind=":: $ctrl.getPaymentMethodTypeText(authorizedPaymentMethod)"
-                ></span>
+                ></h6>
             </oui-select-picker-label>
         </oui-select-picker>
     </div>
