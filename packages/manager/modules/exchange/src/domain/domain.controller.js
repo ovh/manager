@@ -5,7 +5,6 @@ import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 import {
   GLOBAL_DKIM_STATUS,
-  DKIM_STATUS,
   DKIM_MATCHING_SCHEMA_STATUS,
 } from './domain.constants';
 
@@ -103,18 +102,33 @@ export default class ExchangeTabDomainsCtrl {
       });
   }
 
-  dkimGlobalStatus({ dkim }) {
-    if (dkim.length === 0) {
+  dkimGlobalStatus({ dkim: dkimSelectors }) {
+    if (dkimSelectors.length === 0) {
       return this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED;
     }
 
     if (
-      dkim.find(({ status }) =>
+      dkimSelectors.find(({ status }) =>
         DKIM_MATCHING_SCHEMA_STATUS.OK.includes(status),
-      ) &&
-      dkim.find(({ status }) => status === DKIM_STATUS.READY)
+      )
     ) {
       return this.GLOBAL_DKIM_STATUS.OK;
+    }
+
+    if (
+      DKIM_MATCHING_SCHEMA_STATUS.DISABLED.includes(dkimSelectors[0].status) &&
+      (!dkimSelectors[1] ||
+        DKIM_MATCHING_SCHEMA_STATUS.DISABLED.includes(dkimSelectors[1].status))
+    ) {
+      return this.GLOBAL_DKIM_STATUS.DISABLED;
+    }
+
+    if (
+      dkimSelectors.find(({ status }) =>
+        DKIM_MATCHING_SCHEMA_STATUS.IN_PROGRESS.includes(status),
+      )
+    ) {
+      return this.GLOBAL_DKIM_STATUS.IN_PROGRESS;
     }
 
     return this.GLOBAL_DKIM_STATUS.NOK;
@@ -129,6 +143,23 @@ export default class ExchangeTabDomainsCtrl {
           this.setSpfTooltip(domain);
         }
       });
+    }
+  }
+
+  setDkimColorClass(status) {
+    switch (status) {
+      case this.GLOBAL_DKIM_STATUS.OK:
+        return 'oui-badge_success';
+      case this.GLOBAL_DKIM_STATUS.DISABLED:
+        return 'oui-badge_warning';
+      case this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED:
+        return 'oui-background-g-100';
+      case this.GLOBAL_DKIM_STATUS.IN_PROGRESS:
+        return 'oui-badge_info';
+      case this.GLOBAL_DKIM_STATUS.NOK:
+        return 'oui-badge_error';
+      default:
+        return '';
     }
   }
 
