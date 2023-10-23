@@ -3,7 +3,8 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="onFinishDkim"
-        data-wizard-confirm-button-text="'exchange_tab_domain_diagnostic_dkim_deactivate' | translate"
+        data-wizard-confirm-button-text="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.OK ?
+        'exchange_tab_domain_diagnostic_dkim_deactivate' : 'exchange_tab_domain_diagnostic_dkim_activate' | translate"
         data-wizard-hide-confirm-button="ctrl.hideConfirmButton"
         data-wizard-title="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOK ||
                            ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.OK ?

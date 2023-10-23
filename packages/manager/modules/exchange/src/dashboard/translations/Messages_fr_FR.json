@@ -411,6 +411,7 @@
   "exchange_tab_domain_diagnostic_dkim": "DKIM",
   "exchange_tab_domain_diagnostic_dkim_title_error": "Diagnostic DKIM",
   "exchange_tab_domain_diagnostic_dkim_title_activation": "Activer DKIM",
+  "exchange_tab_domain_diagnostic_dkim_activate": "Activer",
   "exchange_tab_domain_diagnostic_dkim_deactivate": "Désactiver",
   "exchange_tab_domain_diagnostic_dkim_configuration_nok": "Votre configuration est incorrecte, veuillez suivre les indications du <a href=\"{{url}}\" target=\"_blank\">guide</a>.",
   "exchange_tab_domain_diagnostic_dkim_activation_no_ovhcloud": "Votre domaine n'étant pas hébergé chez OVHCloud nous ne pouvons pas le configurer automatiquement. Vous pouvez configurer DKIM en suivant ce <a href=\"{{url}}\" target=\"_blank\">guide</a>.",

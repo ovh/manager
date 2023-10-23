@@ -5,6 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
 import {
   GLOBAL_DKIM_STATUS,
+  DKIM_STATUS,
   DKIM_MATCHING_SCHEMA_STATUS,
 } from './domain.constants';
 
@@ -63,6 +64,7 @@ export default class ExchangeTabDomainsCtrl {
     $scope.getLoading = () => this.loading;
 
     this.GLOBAL_DKIM_STATUS = GLOBAL_DKIM_STATUS;
+    this.DKIM_STATUS = DKIM_STATUS;
   }
 
   goSearch() {
