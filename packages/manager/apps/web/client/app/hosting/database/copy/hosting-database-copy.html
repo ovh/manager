@@ -17,10 +17,23 @@
                 name="hostingCopyDatabaseForm"
                 data-ng-if="$ctrl.mainDatabases"
             >
-                <p
-                    data-translate="hosting_tab_DATABASES_configuration_copy_step1_question"
-                    data-translate-values="{ databaseName: $ctrl.currentDatabase.name }"
-                ></p>
+                <p>
+                    <span
+                        >{{::
+                        'hosting_tab_DATABASES_configuration_copy_step1_question_part1'
+                        | translate}}</span
+                    >
+                    <a href="{{ :: $ctrl.createDatabaseUrl }}" rel="noopener">
+                        {{::
+                        'hosting_tab_DATABASES_configuration_copy_step1_question_link'
+                        | translate}}
+                    </a>
+                    <span
+                        >{{::
+                        'hosting_tab_DATABASES_configuration_copy_step1_question_part2'
+                        | translate}}</span
+                    >
+                </p>
 
                 <oui-radio
                     data-model="$ctrl.selectedType"

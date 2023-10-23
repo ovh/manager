@@ -38,6 +38,10 @@ angular.module('App').controller(
 
     $onInit() {
       this.currentDatabase = this.$scope.currentActionData.currentDatabase;
+      this.createDatabaseUrl = this.coreURLBuilder.buildURL(
+        'web',
+        `#/hosting/${this.$scope.currentActionData.serviceName}/database/order-public`,
+      );
     }
 
     load() {
