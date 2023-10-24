@@ -288,7 +288,7 @@ angular.module('App').controller(
 
     onCopyDatabaseClick(element) {
       this.$scope.setAction('database/copy/hosting-database-copy', {
-        currentDatabase: element,
+        currentDatabaseName: element.name,
         serviceName: this.hosting.serviceName,
       });
     }

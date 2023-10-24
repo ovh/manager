@@ -37,7 +37,6 @@ angular.module('App').controller(
     }
 
     $onInit() {
-      this.currentDatabase = this.$scope.currentActionData.currentDatabase;
       this.createDatabaseUrl = this.coreURLBuilder.buildURL(
         'web',
         `#/hosting/${this.$scope.currentActionData.serviceName}/database/order-public`,
@@ -62,7 +61,7 @@ angular.module('App').controller(
       this.HostingDatabase.databaseList(this.selectedMain).then((data) => {
         this.targetDatabases = data?.filter(
           (entry) =>
-            entry !== this.$scope.currentActionData.currentDatabase.name,
+            entry !== this.$scope.currentActionData.currentDatabaseName,
         );
       });
     }
@@ -94,7 +93,8 @@ angular.module('App').controller(
     copyDatabase() {
       this.HostingDatabase.copyDatabase(
         this.$scope.currentActionData.serviceName,
-        this.currentDatabase.name,
+        this.$scope.currentActionData.currentDatabaseName,
+        this.$scope.currentActionData.isPrivateDatabase,
       )
         .then(({ data }) => {
           this.HostingDatabase.copyRestoreDatabase(

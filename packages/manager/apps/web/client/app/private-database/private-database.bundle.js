@@ -4,6 +4,7 @@ import './database/archive/dump/private-database-database-archive-dump.controlle
 import './database/archive/list/private-database-database-archive-list.controller';
 import './database/certificate/private-database-database-certificate.controller';
 import './database/delete/private-database-database-delete.controller';
+import '../hosting/database/copy/hosting-database-copy.controller';
 import './database/dump/delete/private-database-database-dump-delete.controller';
 import './database/dump/private-database-database-dump.controller';
 import './database/extension/private-database-database-extension.controller';
