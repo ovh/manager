@@ -1,3 +1,5 @@
+import punycode from 'punycode';
+
 export default class DnsZoneCtrl {
   /**
    * Constructor
@@ -100,5 +102,9 @@ export default class DnsZoneCtrl {
       .finally(() => {
         this.loading.domainsInfos = false;
       });
+  }
+
+  static convertDomainToPunycode(domain) {
+    return punycode.toUnicode(domain);
   }
 }

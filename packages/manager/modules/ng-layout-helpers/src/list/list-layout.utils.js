@@ -4,6 +4,7 @@ import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
 import pickBy from 'lodash/pickBy';
 import startCase from 'lodash/startCase';
+import punycode from 'punycode';
 
 import { DEFAULT_NUMBER_OF_COLUMNS, STRING_COLUMN_OPTIONS } from './constants';
 
@@ -36,7 +37,7 @@ export const mapFilterForIceberg = (comparator, reference) =>
 export const getLink = (column, tracker) => `
   <a
     data-ng-href="{{ $ctrl.getServiceNameLink($row) }}"
-    data-ng-bind="$row.${column.property}"
+    data-ng-bind="{{ $ctrl.convertDomainToPunycode($row.${column.property}) }}"
     ${tracker ? `data-track-on="click" data-track-name="${tracker}"` : ''}
   ></a>
 `;
@@ -328,6 +329,9 @@ export const stateResolves = {
       serviceNameTracker,
       customizeColumnsMap,
     );
+  },
+  convertDomainToPunycode: /* @ngInject */ (domain) => {
+    return punycode.toUnicode(domain);
   },
   formatters: /* @ngInject */ (configuration) => {
     return configuration.data.reduce(
