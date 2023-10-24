@@ -20061,6 +20061,11 @@ piano-analytics-js@^6.12.0:
   resolved "https://registry.yarnpkg.com/piano-analytics-js/-/piano-analytics-js-6.12.0.tgz#56c9b0a921092ccb0d11d06d196eff0c6180db26"
   integrity sha512-E0J0aoF1mpKVE/q1vFFei85jC5oRywGMqvPtVmhhTKi+oAR4M6PGRaVhbAbzuInGUW1PY6UcV6G1CaTwA/rxcQ==
 
+picocolors@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-0.2.1.tgz#570670f793646851d1ba135996962abad587859f"
+  integrity sha512-cMlDqaLEqfSaW8Z7N5Jw+lyIW869EzT73/F5lhtY9cLGoVxSXznfgfXMO0Z5K0o0Q2TkTXq+0KFsdnSe3jDViA==
+
 picocolors@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"
