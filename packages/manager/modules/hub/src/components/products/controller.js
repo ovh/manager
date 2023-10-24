@@ -55,7 +55,6 @@ export default class ProductsController {
       this.$window.open(
         this.coreURLBuilder.buildURL(application, hash),
         '_top',
-        '_top',
       );
     }
   }
