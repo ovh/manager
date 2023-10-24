@@ -43,39 +43,39 @@ const ENTITY_DESCRIPTION_PATTERN = /^[a-zA-Z0-9-/_+ ]*$/;
 const GUIDE = {
   IAM: {
     DEFAULT:
-      'https://help.ovhcloud.com/csm/en-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056805',
+      'https://help.ovhcloud.com/csm/en-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058729',
     ASIA:
-      'https://help.ovhcloud.com/csm/asia-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056797',
+      'https://help.ovhcloud.com/csm/asia-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058720',
     AU:
-      'https://help.ovhcloud.com/csm/en-au-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056803',
+      'https://help.ovhcloud.com/csm/en-au-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058722',
     CA:
-      'https://help.ovhcloud.com/csm/en-ca-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056802',
+      'https://help.ovhcloud.com/csm/en-ca-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058724',
     DE:
-      'https://help.ovhcloud.com/csm/de-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056810',
+      'https://help.ovhcloud.com/csm/de-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058723',
     ES:
-      'https://help.ovhcloud.com/csm/es-es-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056800',
+      'https://help.ovhcloud.com/csm/es-es-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058728',
     FR:
-      'https://help.ovhcloud.com/csm/fr-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056808',
+      'https://help.ovhcloud.com/csm/fr-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058730',
     GB:
-      'https://help.ovhcloud.com/csm/en-gb-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056801',
+      'https://help.ovhcloud.com/csm/en-gb-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058725',
     IN:
-      'https://help.ovhcloud.com/csm/asia-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056797',
+      'https://help.ovhcloud.com/csm/en-ie-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058732',
     IT:
-      'https://help.ovhcloud.com/csm/it-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056796',
+      'https://help.ovhcloud.com/csm/it-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058734',
     PL:
-      'https://help.ovhcloud.com/csm/pl-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056807',
+      'https://help.ovhcloud.com/csm/pl-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058733',
     PT:
-      'https://help.ovhcloud.com/csm/pt-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056798',
+      'https://help.ovhcloud.com/csm/pt-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058731',
     QC:
-      'https://help.ovhcloud.com/csm/fr-ca-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056804',
+      'https://help.ovhcloud.com/csm/fr-ca-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058735',
     SG:
-      'https://help.ovhcloud.com/csm/en-sg-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056799',
+      'https://help.ovhcloud.com/csm/en-sg-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058726',
     US:
-      'https://support.us.ovhcloud.com/hc/en-us/articles/16583913962771-How-to-Use-IAM-Policies-with-OVHcloud-API',
+      'https://help.ovhcloud.com/csm/en-gb-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058725',
     WE:
-      'https://help.ovhcloud.com/csm/en-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056805',
+      'https://help.ovhcloud.com/csm/en-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058729',
     WS:
-      'https://help.ovhcloud.com/csm/es-customer-iam-policies-api?id=kb_article_view&sysparm_article=KB0056809',
+      'https://help.ovhcloud.com/csm/es-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058727',
   },
   USERS: {
     DEFAULT:
