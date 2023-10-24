@@ -59,6 +59,8 @@ const GUIDE = {
     GB:
       'https://help.ovhcloud.com/csm/en-gb-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058725',
     IN:
+      'https://help.ovhcloud.com/csm/asia-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058720',
+    IE:
       'https://help.ovhcloud.com/csm/en-ie-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058732',
     IT:
       'https://help.ovhcloud.com/csm/it-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058734',
