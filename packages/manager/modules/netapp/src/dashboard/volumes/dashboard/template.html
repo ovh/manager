@@ -1,28 +1,28 @@
 <div>
     <oui-header
-        heading="{{:: $ctrl.volume.name || $ctrl.volume.id }}"
-        description="{{:: $ctrl.volume.description }}"
+        data-heading="{{:: $ctrl.volume.name || $ctrl.volume.id }}"
+        data-description="{{:: $ctrl.volume.description }}"
     >
         <oui-header-tabs>
             <oui-header-tabs-item
-                href="{{:: $ctrl.volumeDashboardLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.volumeDashboardLink"
+                data-href="{{:: $ctrl.volumeDashboardLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.volumeDashboardLink"
             >
                 <span
                     data-translate="netapp_volumes_dashboard_general_information"
                 ></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                href="{{:: $ctrl.volumeDashboardSnapshotsLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.volumeDashboardSnapshotsLink"
+                data-href="{{:: $ctrl.volumeDashboardSnapshotsLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.volumeDashboardSnapshotsLink"
             >
                 <span
                     data-translate="netapp_volumes_dashboard_snapshots"
                 ></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                href="{{:: $ctrl.volumeDashboardAclLink }}"
-                active="$ctrl.currentActiveLink() === $ctrl.volumeDashboardAclLink"
+                data-href="{{:: $ctrl.volumeDashboardAclLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.volumeDashboardAclLink"
             >
                 <span data-translate="netapp_volumes_dashboard_acl"></span>
             </oui-header-tabs-item>
@@ -33,63 +33,68 @@
         <div class="row">
             <oui-tile
                 class="col-md-3 mr-2"
-                heading="{{:: 'netapp_volumes_dashboard_information' | translate}}"
+                data-heading="{{:: 'netapp_volumes_dashboard_information' | translate}}"
             >
                 <oui-tile-definition
-                    term="{{:: 'netapp_volumes_dashboard_information_name' | translate }}"
-                    term-popover="{{:: 'netapp_volumes_dashboard_volume_pattern' | translate}}"
+                    data-term="{{:: 'netapp_volumes_dashboard_information_name' | translate }}"
+                    data-term-popover="{{:: 'netapp_volumes_dashboard_volume_pattern' | translate}}"
                 >
                     <oui-tile-description>
                         <ovh-manager-inline-property-editor
-                            property="name"
-                            model="$ctrl.volume.name"
-                            on-submit="$ctrl.update('name')"
-                            pattern="$ctrl.PATTERN"
+                            data-property="name"
+                            data-model="$ctrl.volume.name"
+                            data-on-submit="$ctrl.update('name')"
+                            data-pattern="$ctrl.PATTERN"
                         ></ovh-manager-inline-property-editor>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
-                    term="{{:: 'netapp_volumes_dashboard_information_description' | translate }}"
+                    data-term="{{:: 'netapp_volumes_dashboard_information_description' | translate }}"
                 >
                     <oui-tile-description>
                         <ovh-manager-inline-property-editor
-                            property="description"
-                            model="$ctrl.volume.description"
-                            on-submit="$ctrl.update('description')"
+                            data-property="description"
+                            data-model="$ctrl.volume.description"
+                            data-on-submit="$ctrl.update('description')"
                         ></ovh-manager-inline-property-editor>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
-                    term="{{:: 'netapp_volumes_dashboard_information_protocol' | translate }}"
-                    description="{{ $ctrl.volume.protocol }}"
+                    data-term="{{:: 'netapp_volumes_dashboard_information_protocol' | translate }}"
+                    data-description="{{ $ctrl.volume.protocol }}"
                 >
                 </oui-tile-definition>
                 <oui-tile-definition
-                    term="{{:: 'netapp_volumes_dashboard_information_size' | translate }}"
-                    description="{{:: 'netapp_volumes_dashboard_information_size_unit' | translate:{ size: $ctrl.volume.size } }}"
+                    data-term="{{:: 'netapp_volumes_dashboard_information_size' | translate }}"
+                    data-description="{{:: 'netapp_volumes_dashboard_information_size_unit' | translate:{ size: $ctrl.volume.size } }}"
                 >
                 </oui-tile-definition>
             </oui-tile>
             <oui-tile
                 class="col-md-8"
-                ng-if="$ctrl.accessPath"
-                heading="{{:: 'netapp_volumes_dashboard_connection' | translate}}"
+                data-heading="{{:: 'netapp_volumes_dashboard_connection' | translate}}"
             >
                 <oui-tile-definition
-                    term="{{:: 'netapp_volumes_dashboard_connection_mount_path' | translate }}"
+                    data-term="{{:: 'netapp_volumes_dashboard_connection_mount_path' | translate }}"
                 >
                     <oui-tile-description>
                         <oui-clipboard
-                            model="$ctrl.accessPath.path"
+                            data-ng-if="$ctrl.accessPath"
+                            data-model="$ctrl.accessPath.path"
                         ></oui-clipboard>
+                        <em
+                            data-ng-if="!$ctrl.accessPath"
+                            data-translate="netapp_volumes_dashboard_mount_path_not_configurated"
+                        >
+                        </em>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
-                    term="{{:: 'netapp_volumes_dashboard_connection_how_to' | translate }}"
+                    data-term="{{:: 'netapp_volumes_dashboard_connection_how_to' | translate }}"
                 >
                     <oui-tile-description>
                         <oui-collapsible
-                            heading="{{:: 'netapp_volumes_dashboard_connection_setting_up' | translate }}"
+                            data-heading="{{:: 'netapp_volumes_dashboard_connection_setting_up' | translate }}"
                         >
                             <ol>
                                 <li
@@ -113,7 +118,7 @@
                             </ol>
                         </oui-collapsible>
                         <oui-collapsible
-                            heading="{{:: 'netapp_volumes_dashboard_connection_install_nfs' | translate }}"
+                            data-heading="{{:: 'netapp_volumes_dashboard_connection_install_nfs' | translate }}"
                         >
                             <ol>
                                 <li
@@ -130,7 +135,7 @@
                                         ></dt>
                                         <dd>
                                             <oui-clipboard
-                                                model="$ctrl.REDHAT"
+                                                data-model="$ctrl.REDHAT"
                                             ></oui-clipboard>
                                         </dd>
                                         <dt
@@ -139,7 +144,7 @@
                                         ></dt>
                                         <dd>
                                             <oui-clipboard
-                                                model="$ctrl.UBUNTU"
+                                                data-model="$ctrl.UBUNTU"
                                             ></oui-clipboard>
                                         </dd>
                                     </dl>
@@ -147,18 +152,25 @@
                             </ol>
                         </oui-collapsible>
                         <oui-collapsible
-                            heading="{{:: 'netapp_volumes_dashboard_mount_file_system' | translate }}"
+                            data-heading="{{:: 'netapp_volumes_dashboard_mount_file_system' | translate }}"
                         >
                             <ol>
-                                <li
-                                    data-translate="netapp_volumes_dashboard_connection_install_nfs_open"
-                                ></li>
+                                <li>
+                                    <span
+                                        data-translate="netapp_volumes_dashboard_connection_install_nfs_open"
+                                    ></span>
+                                    <p
+                                        data-ng-if="!$ctrl.accessPath"
+                                        data-translate="netapp_volumes_dashboard_mount_path_not_configurated"
+                                        class="font-italic"
+                                    ></p>
+                                </li>
                                 <li>
                                     <span
                                         data-translate="netapp_volumes_dashboard_mount_file_system_new_folder"
                                     ></span>
                                     <oui-clipboard
-                                        model="$ctrl.FOLDER_CREATION"
+                                        data-model="$ctrl.FOLDER_CREATION"
                                     ></oui-clipboard>
                                 </li>
                                 <li>
@@ -166,16 +178,28 @@
                                         data-translate="netapp_volumes_dashboard_mount_file_system_mount"
                                     ></span>
                                     <oui-clipboard
-                                        model="$ctrl.mountPath"
+                                        data-ng-if="$ctrl.accessPath"
+                                        data-model="$ctrl.mountPath"
                                     ></oui-clipboard>
+                                    <p
+                                        data-ng-if="!$ctrl.accessPath"
+                                        data-translate="netapp_volumes_dashboard_mount_path_not_configurated"
+                                        class="font-italic"
+                                    ></p>
                                 </li>
                                 <li>
                                     <span
                                         data-translate="netapp_volumes_dashboard_mount_file_system_save"
                                     ></span>
                                     <oui-clipboard
-                                        model="$ctrl.saveMountPath"
+                                        data-ng-if="$ctrl.accessPath"
+                                        data-model="$ctrl.saveMountPath"
                                     ></oui-clipboard>
+                                    <p
+                                        data-ng-if="!$ctrl.accessPath"
+                                        data-translate="netapp_volumes_dashboard_mount_path_not_configurated"
+                                        class="font-italic"
+                                    ></p>
                                 </li>
                             </ol>
                         </oui-collapsible>

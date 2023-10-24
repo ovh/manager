@@ -63,7 +63,9 @@ export default /* @ngInject */ ($stateProvider) => {
           .get(`/storage/netapp/${serviceName}/share/${volumeId}/accessPath`)
           .then(({ data }) => data)
           .then((accessPaths) =>
-            accessPaths.find(({ preferred }) => !!preferred),
+            accessPaths.length > 0
+              ? accessPaths.find(({ preferred }) => !!preferred)
+              : null,
           )
           .catch(() => null),
       updateVolume: /* @ngInject */ ($http, $translate, serviceName) => ({
