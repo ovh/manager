@@ -3,7 +3,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/add-datacenter',
     views: {
       'pccView@app.dedicatedCloud.details':
-        'ovhManagerDedicatedCloudDatacenterAdd',
+        'ovhManagerDedicatedCloudVmwareVdcAdd',
     },
     resolve: {
       goBack: /* @ngInject */ ($state, $timeout, productId, setMessage) => (
@@ -26,20 +26,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      goUpgradeRange: /* @ngInject */ ($state, productId) => (
-        range,
-        upgradeCode,
-      ) => {
-        return $state.go(
-          'app.dedicatedCloud.details.datacenter.add-datacenter.upgrade-range',
-          { productId, range, upgradeCode },
-        );
-      },
-      onBasicOptionsUpgrade: /* @ngInject */ ($state) => (stateParams) =>
-        $state.go(
-          'app.dedicatedCloud.details.servicePackUpgrade.basicOptions',
-          stateParams,
-        ),
       breadcrumb: () => null,
     },
   });
