@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { OsdsButton } from '@ovhcloud/ods-components/button/react';
 import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import { OsdsLink } from '@ovhcloud/ods-components/link/react';
+import { useLocation } from 'react-router-dom';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
@@ -35,11 +36,41 @@ const Filters: React.FC<FiltersProps> = ({
   const [selectedUniverses, setSelectedUniverses] = useState<string[]>([]);
   const [hasInteracted, setHasInteracted] = useState<boolean>(false);
 
+  const location = useLocation();
+
   const setFilters = () => {
     setParentSelectedCategories(selectedCategories);
     setParentSelectedUniverses(selectedUniverses);
     onApply();
   };
+
+  const getFilterParamsFromUrl = (
+    search: string,
+  ): { universes: string[]; categories: string[] } => {
+    const params = new URLSearchParams(search);
+    const universesURL = params.get('universes');
+    const categoriesURL = params.get('categories');
+
+    const universes = universesURL ? universesURL.split(',') : [];
+    const categories = categoriesURL ? categoriesURL.split(',') : [];
+
+    return { universes, categories };
+  };
+
+  useEffect(() => {
+    if (products.length > 0) {
+      const { universes, categories } = getFilterParamsFromUrl(location.search);
+
+      if (categories.length > 0) {
+        setSelectedCategories(categories);
+        setParentSelectedCategories(categories);
+      }
+      if (universes.length > 0) {
+        setSelectedUniverses(universes);
+        setParentSelectedUniverses(universes);
+      }
+    }
+  }, [location.search, products]);
 
   // we get the list of available categories and universes from product list
   const universes = getUniverses(products, true);

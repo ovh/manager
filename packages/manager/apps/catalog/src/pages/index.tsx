@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_SIZE,
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
+import { useNavigate } from 'react-router-dom';
 import { OsdsText } from '@ovhcloud/ods-components/text/react/';
 import { OsdsDivider } from '@ovhcloud/ods-components/divider/react/';
 import { MscTile } from '@ovhcloud/msc-react-tile';
@@ -15,8 +16,10 @@ import { Product } from '@/utils/utils';
 import Loading from '../components/Loading/Loading';
 import Errors from '@/components/Error/Errors';
 
-export default function CatalogRevamp() {
+export default function Catalog() {
   const { t } = useTranslation('catalog');
+  const navigate = useNavigate();
+
   const [searchText, setSearchText] = React.useState('');
   const [categories, setCategories] = React.useState<string[]>([]);
   const [universes, setUniverses] = React.useState<string[]>([]);
@@ -26,6 +29,23 @@ export default function CatalogRevamp() {
     universes,
     searchText,
   });
+
+  const getSearchUrlFromFilterParams = (): string => {
+    const params = new URLSearchParams();
+    if (searchText) params.append('q', searchText);
+    if (categories.length > 0)
+      params.append('categories', categories.join(','));
+    if (universes.length > 0) params.append('universes', universes.join(','));
+
+    return params.toString();
+  };
+
+  useEffect(() => {
+    if (products.length > 0) {
+      const searchParams = getSearchUrlFromFilterParams();
+      navigate({ search: searchParams });
+    }
+  }, [searchText, categories, universes, products]);
 
   const getResultsNumber = () => {
     if (isLoading) return '';

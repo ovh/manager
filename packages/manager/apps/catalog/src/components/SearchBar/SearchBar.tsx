@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { OsdsSearchBar } from '@ovhcloud/ods-components/search-bar/react';
 import { OsdsButton } from '@ovhcloud/ods-components/button/react';
 import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
@@ -31,6 +32,17 @@ const SearchBar: React.FC<SearchbarProps> = ({
   const [showFilters, setShowFilters] = useState(false);
   const [localSearchValue, setLocalSearchValue] = useState('');
 
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const searchURL = params.get('q');
+    if (searchURL) {
+      setSearchValue(searchURL);
+      setLocalSearchValue(searchURL);
+    }
+  }, [location.search]);
+
   const onSearchSubmit = (
     event: CustomEvent<{ optionValue: string; inputValue: string }>,
   ) => {
@@ -46,6 +58,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
       <div className="grid gap-4 md:flex md:justify-end md:pt-4">
         <span className="w-full md:w-[300px]">
           <OsdsSearchBar
+            value={localSearchValue}
             placeholder={t('manager_catalog_search_placeholder')}
             onOdsSearchSubmit={onSearchSubmit}
             onOdsValueChange={onSearchChanged}
