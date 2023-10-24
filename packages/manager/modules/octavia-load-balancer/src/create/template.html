@@ -14,6 +14,7 @@
             data-header="{{:: 'octavia_load_balancer_create_size_title' | translate }}"
             data-prevent-next="true"
             data-valid="$ctrl.model.size"
+            data-on-focus="$ctrl.resetCurrentStep()"
         >
             <div class="mb-4">
                 <p>
@@ -64,6 +65,7 @@
             data-name="{{:: stepRegion.name}}"
             data-header="{{:: 'octavia_load_balancer_create_region_title' | translate }}"
             data-prevent-next="true"
+            data-on-focus="$ctrl.regionStepFocus()"
         >
             <div class="mb-4">
                 <p>
@@ -95,6 +97,7 @@
             data-header="{{:: 'octavia_load_balancer_create_private_network_title' | translate }}"
             data-prevent-next="true"
             data-valid="!$ctrl.gatewayLoading && !$ctrl.subnetLoading && !$ctrl.privateNetworkLoading"
+            data-on-focus="$ctrl.privateNetworkStepFocus()"
         >
             <div class="mb-4">
                 <p
@@ -197,6 +200,7 @@
             data-header="{{:: 'octavia_load_balancer_create_instance_title' | translate }}"
             data-prevent-next="true"
             data-skippable="true"
+            data-on-skip="$ctrl.skipListeners()"
         >
             <p
                 data-translate="octavia_load_balancer_create_instance_intro"
@@ -209,6 +213,7 @@
             <oui-message data-type="info">
                 <p
                     data-translate="octavia_load_balancer_create_instance_banner_text"
+                    data-translate-values="{maxListeners: $ctrl.maxListener, maxInstances: $ctrl.maxInstancesByListener}"
                 ></p>
                 <p>
                     <b
@@ -216,7 +221,14 @@
                     ></b>
                 </p>
             </oui-message>
-            <instances-table></instances-table>
+            <octavia-load-balancer-instances-table
+                data-project-id="$ctrl.projectId"
+                data-region="$ctrl.model.region"
+                data-listeners="$ctrl.model.listeners"
+                data-max-listener="$ctrl.maxListener"
+                data-max-instances-by-listener="$ctrl.maxInstancesByListener"
+            >
+            </octavia-load-balancer-instances-table>
         </oui-step-form>
 
         <!-- NAME -->
