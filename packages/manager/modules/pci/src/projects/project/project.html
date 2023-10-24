@@ -59,7 +59,7 @@
 
                             <oui-message
                                 data-type="warning"
-                                data-ng-if="$ctrl.projectQuotaAboveThreshold"
+                                data-ng-if="$ctrl.projectQuotaAboveThreshold && !$ctrl.isDiscoveryProject"
                             >
                                 <p
                                     data-translate="pci_projects_project_quota_threshold_warning_message"
