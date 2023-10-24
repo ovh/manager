@@ -1,6 +1,8 @@
 import {
   GETTING_STARTED_LINK,
   LOAD_BALANCER_NAME_REGEX,
+  MAX_INSTANCES_BY_LISTENER,
+  MAX_LISTENER,
   PRODUCT_LINK,
   REGION_AVAILABILITY_LINK,
   TRACKING_INSTANCE_DOCUMENTATION,
@@ -26,6 +28,8 @@ export default class OctaviaLoadBalancerCreateCtrl {
     this.atInternet = atInternet;
     this.user = coreConfig.getUser();
     this.OctaviaLoadBalancerCreateService = OctaviaLoadBalancerCreateService;
+    this.maxListener = MAX_LISTENER;
+    this.maxInstancesByListener = MAX_INSTANCES_BY_LISTENER;
   }
 
   $onInit() {
@@ -64,6 +68,17 @@ export default class OctaviaLoadBalancerCreateCtrl {
   resetCurrentStep() {
     this.currentStep = 0;
     this.model = {};
+  }
+
+  regionStepFocus() {
+    delete this.model.region;
+    delete this.model.privateNetwork;
+    delete this.model.subnet;
+    delete this.model.listeners;
+  }
+
+  privateNetworkStepFocus() {
+    delete this.model.listeners;
   }
 
   onSizeChange(newSize) {
@@ -132,6 +147,11 @@ export default class OctaviaLoadBalancerCreateCtrl {
       });
   }
 
+  skipListeners() {
+    this.model.listeners = [];
+    this.currentStep += 1;
+  }
+
   onCancel() {
     this.resetCurrentStep();
     this.atInternet.trackClick({
@@ -158,7 +178,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
       this.model.privateNetwork,
       this.model.subnet,
       this.gateways,
-      // null, // TODO: AFTER LISTENERS DEVELOPEMENT
+      this.model.listeners,
       this.model.loadBalancerName,
     )
       .then(() => {

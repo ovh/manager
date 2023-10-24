@@ -4,6 +4,9 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
 import component from './instances-table.component';
+import service from './instances-table.service';
+
+import './instances-table.less';
 
 const moduleName = 'ovhManagerInstancesTable';
 
@@ -13,7 +16,8 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .component('instancesTable', component)
+  .component('octaviaLoadBalancerInstancesTable', component)
+  .service('OctaviaLoadBalancerInstanceService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
