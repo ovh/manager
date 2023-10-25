@@ -1,7 +1,8 @@
 export default class Apiv2Service {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, $q) {
     this.$http = $http;
+    this.$q = $q;
   }
 
   /**
@@ -13,7 +14,7 @@ export default class Apiv2Service {
     return this.$http({
       ...options,
       serviceType: 'apiv2',
-    }).catch((error) => error);
+    });
   }
 
   /**
@@ -24,7 +25,8 @@ export default class Apiv2Service {
    * @returns {Promise}
    */
   httpApiv2List(options, { cursor, size = 25 }) {
-    return this.httpApiv2({
+    const deferred = this.$q.defer();
+    this.httpApiv2({
       ...options,
       method: 'get',
       headers: {
@@ -33,18 +35,22 @@ export default class Apiv2Service {
         'X-Pagination-size': size,
       },
     })
-      .then(({ data, headers }) => ({
-        data,
-        cursor: {
-          next: headers('X-Pagination-Cursor-Next'),
-          prev: headers('X-Pagination-Cursor-Prev'), // not available ATM
-        },
-      }))
-      .catch((error) => {
-        if (error.status === 400 && error.data?.message === 'invalid cursor') {
-          return { cursor: { error: true } };
-        }
-        throw error;
-      });
+      .then(({ data, headers }) =>
+        deferred.resolve({
+          data,
+          cursor: {
+            next: headers('X-Pagination-Cursor-Next'),
+            prev: headers('X-Pagination-Cursor-Prev'), // not available ATM
+          },
+        }),
+      )
+      .catch((error) =>
+        deferred.reject(
+          error.status === 400 && error.data?.message === 'invalid cursor'
+            ? { cursor: { error: true } }
+            : error,
+        ),
+      );
+    return deferred.promise;
   }
 }

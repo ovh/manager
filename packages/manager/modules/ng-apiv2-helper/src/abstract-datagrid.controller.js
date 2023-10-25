@@ -77,10 +77,7 @@ export default class AbstractCursorDatagridController {
       .then(({ data, cursor: { next, prev, error } }) => {
         if (error) {
           this.cursors = null;
-          this.alert.error('cursor_datagrid_error_cursor');
-          return this.changeParams().then(() =>
-            this.getItems({ offset: 1, pageSize }),
-          );
+          return this.reloadItems(pageSize);
         }
 
         if (!this.cursors) this.cursors = {};
@@ -96,10 +93,20 @@ export default class AbstractCursorDatagridController {
         }));
       })
       .catch((error) => {
-        const { message } = error.data ?? {};
+        if (error.cursor?.error) {
+          // if error occurs on cursor, first page is reloaded
+          return this.reloadItems(pageSize);
+        }
+        const message = error.data?.message;
         this.alert.error('cursor_datagrid_error_data', { message });
         return { data: [], meta: { totalCount: 0 } };
       });
+  }
+
+  reloadItems(pageSize) {
+    return this.changeParams().then(() =>
+      this.getItems({ offset: 1, pageSize }),
+    );
   }
 
   /**
@@ -107,7 +114,9 @@ export default class AbstractCursorDatagridController {
    * @abstract
    * @returns {Promise}
    */
-  createItemsPromise() { // eslint-disable-line
+  // eslint-disable-next-line class-methods-use-this
+  createItemsPromise() {
+    // eslint-disable-line
     throw new Error(
       'CursorDatagridController#createItemsPromise must be overriden',
     );

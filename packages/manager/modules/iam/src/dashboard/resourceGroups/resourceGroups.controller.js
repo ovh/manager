@@ -1,11 +1,12 @@
-import { TAG } from '../../iam.constants';
-import AbstractCursorDatagridController from '../../components/cursorDatagrid/cursorDatagrid.controller';
+import { AbstractCursorDatagridController } from '@ovh-ux/manager-ng-apiv2-helper';
+import { PAGE_SIZE, TAG } from '../../iam.constants';
 
 export default class ResourceGroupsController extends AbstractCursorDatagridController {
   /* @ngInject */
   constructor(IAMService) {
     super();
     this.IAMService = IAMService;
+    this.pageSize = PAGE_SIZE;
   }
 
   /**
