@@ -1,0 +1,68 @@
+<div
+    data-wizard
+    data-wizard-on-finish=":: $ctrl.boundOnCloseClick"
+    data-wizard-on-cancel=":: $ctrl.boundOnCloseClick"
+    data-wizard-hide-cancel-button="currentStep !== 1"
+    data-wizard-hide-close-button="currentStep !== 1"
+    data-wizard-next-button-text=":: 'ua_wizard_confirm' | translate"
+    data-wizard-confirm-button-text=":: 'ua_wizard_close' | translate"
+    data-wizard-title=":: 'dedicatedCloud_USER_iam_' + $ctrl.iamToggleState + '_title' | translate"
+    data-wizard-hide-previous-button="true"
+    data-wizard-keydown-disabled
+    data-wizard-bread-crumb
+>
+    <div
+        data-wizard-step
+        data-wizard-step-valid="!$ctrl.loaders.init && $ctrl.iamTogglable"
+    >
+        <div class="text-center" data-ng-if="$ctrl.loaders.init">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <form name="toggleIamForm" data-ng-if="!$ctrl.loaders.init" novalidate>
+            <oui-message
+                data-type="warning"
+                class="mb-3"
+                data-ng-if="$ctrl.iamToggleState == 'enable'"
+            >
+                <small
+                    data-translate="{{ 'dedicatedCloud_USER_iam_' + $ctrl.iamToggleState + '_usage_warning' }}"
+                ></small>
+            </oui-message>
+            <p
+                data-ng-if="$ctrl.iamTogglable"
+                data-translate="{{ 'dedicatedCloud_USER_iam_' + $ctrl.iamToggleState + '_available' }}"
+            ></p>
+            <oui-message data-type="error" data-ng-if="!$ctrl.iamTogglable">
+                <span
+                    data-translate="{{ 'dedicatedCloud_USER_iam_' + $ctrl.iamToggleState + '_unavailable' }}"
+                ></span
+                ><br />
+                <small
+                    data-translate="dedicatedCloud_USER_iam_toggle_unavailable_reason"
+                    data-translate-values="{ message: $ctrl.iamTogglableError }"
+                ></small>
+            </oui-message>
+        </form>
+    </div>
+
+    <div
+        data-wizard-step
+        data-wizard-step-on-load="$ctrl.toggleIam.bind($ctrl)"
+        data-wizard-step-valid="!$ctrl.loaders.action"
+    >
+        <div class="text-center" data-ng-if="!$ctrl.task">
+            <oui-spinner></oui-spinner>
+        </div>
+        <dedicated-cloud-task-poll-progress
+            data-ng-if="$ctrl.task"
+            data-dedicated-cloud="$ctrl.dedicatedCloud"
+            data-loaders="$ctrl.loaders"
+            data-product-id="$ctrl.productId"
+            data-task="$ctrl.task"
+            data-tracking-task-tag="$ctrl.TRACKING_TASK_TAG"
+            data-track-page="$ctrl.trackPage"
+        >
+        </dedicated-cloud-task-poll-progress>
+    </div>
+</div>

@@ -27,5 +27,12 @@
   "dedicatedCloud_USER_edit_load_error": "Si è verificato un errore durante il caricamento dell'utente.",
   "dedicatedCloud_USER_cancel": "Annullare",
   "dedicatedCloud_USER_yes": "Sì",
-  "dedicatedCloud_USER_no": "No"
+  "dedicatedCloud_USER_no": "No",
+  "dedicatedCloud_USER_create_iam": "Creare un ruolo IAM",
+  "dedicatedCloud_USER_type": "Tipo",
+  "dedicatedCloud_USER_type_user": "Utente",
+  "dedicatedCloud_USER_type_group": "Gruppo",
+  "dedicatedCloud_USER_type_role": "Ruolo",
+  "dedicatedCloud_USER_type_ovhcloud_iam": "IAM OVHcloud",
+  "dedicatedCloud_USER_role_delete": "Eliminare questo ruolo"
 }

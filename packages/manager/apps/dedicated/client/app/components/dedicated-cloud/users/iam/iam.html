@@ -1,0 +1,58 @@
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div class="row" data-ng-if="!$ctrl.loading">
+    <div class="col-sm-9">
+        <div data-translate="dedicatedCloud_USER_iam_description"></div>
+        <div>
+            <small
+                data-translate="dedicatedCloud_USER_iam_usage_warning"
+            ></small>
+        </div>
+        <dl>
+            <dt data-translate="dedicatedCloud_USER_iam_status"></dt>
+            <dd>
+                <ovh-manager-pcc-dashboard-component-activation-status
+                    class="d-block mt-1"
+                    data-status-name=":: $ctrl.iamStatus.state"
+                ></ovh-manager-pcc-dashboard-component-activation-status>
+            </dd>
+        </dl>
+    </div>
+    <div class="col-sm-3">
+        <button
+            type="button"
+            class="mb-3 btn btn-block btn-default"
+            data-ng-if="$ctrl.iamEnabled || $ctrl.iamDisabled"
+            data-ng-click="$ctrl.onGoToToggleIamClick($ctrl.iamEnabled ? 'disable' : 'enable')"
+            data-ng-disabled="!$ctrl.iamTogglable"
+            data-oui-tooltip="{{ $ctrl.iamTogglableError && ('dedicatedCloud_USER_iam_api_error_returned' | translate:{ message: $ctrl.iamTogglableError }) }}"
+            data-oui-tooltip-placement="bottom"
+        >
+            <span
+                data-ng-if="$ctrl.iamEnabled"
+                data-translate="dedicatedCloud_USER_iam_disable"
+            ></span>
+            <span
+                data-ng-if="$ctrl.iamDisabled"
+                data-translate="dedicatedCloud_USER_iam_enable"
+            ></span>
+        </button>
+        <a
+            type="button"
+            class="mb-3 btn btn-block btn-default"
+            data-ng-if="$ctrl.iamFeatureAvailability"
+            data-ng-href="{{ $ctrl.getIamDashboardUrl() }}"
+            target="_blank"
+            rel="noopener"
+        >
+            <span data-translate="dedicatedCloud_USER_iam_manage_iam"></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+            <span class="sr-only" data-translate="common_newtab"></span>
+        </a>
+    </div>
+</div>

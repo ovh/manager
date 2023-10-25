@@ -8,5 +8,6 @@
   "ovhManagerPccDashboardComponentActivationStatus_needsConfiguration": "Trwa konfiguracja",
   "ovhManagerPccDashboardComponentActivationStatus_awaitingValidation": "Trwa zatwierdzanie",
   "ovhManagerPccDashboardComponentActivationStatus_unknown": "Nieznany status",
-  "ovhManagerPccDashboardComponentActivationStatus_hosted_on": "Hostowany w {{datacenter}}"
+  "ovhManagerPccDashboardComponentActivationStatus_hosted_on": "Hostowany w {{datacenter}}",
+  "ovhManagerPccDashboardComponentActivationStatus_migrating": "W trakcie migracji"
 }

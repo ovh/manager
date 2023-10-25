@@ -11,6 +11,10 @@ export const ACTIVATION_STATUS = {
     name: 'beingDeactivated',
     type: 'info',
   },
+  migrating: {
+    name: 'migrating',
+    type: 'info',
+  },
   cancelling: {
     name: 'cancelling',
     type: 'info',
@@ -36,6 +40,9 @@ export const ACTIVATION_STATUS = {
     type: 'info',
   },
 };
+
+ACTIVATION_STATUS.enabling = ACTIVATION_STATUS.beingActivated;
+ACTIVATION_STATUS.disabling = ACTIVATION_STATUS.beingDeactivated;
 
 export default {
   ACTIVATION_STATUS,

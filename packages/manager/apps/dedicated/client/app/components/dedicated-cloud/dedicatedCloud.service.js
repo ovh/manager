@@ -542,6 +542,42 @@ class DedicatedCloudService {
     });
   }
 
+  /* ------- IAM -------*/
+
+  getIamStatus(serviceName) {
+    return this.$http
+      .get(`/dedicatedCloud/${serviceName}/iam`)
+      .then(({ data }) => data);
+  }
+
+  isIamTogglable(serviceName, state) {
+    const endpoint = `canBe${state === 'enabled' ? 'Disabled' : 'Enabled'}`;
+
+    return this.$http
+      .get(`/dedicatedCloud/${serviceName}/iam/${endpoint}`)
+      .then(() => true);
+  }
+
+  enableIam(serviceName, params) {
+    return this.$http
+      .post(`/dedicatedCloud/${serviceName}/iam/enable`, params)
+      .then(({ data }) => data);
+  }
+
+  disableIam(serviceName, params) {
+    return this.$http
+      .post(`/dedicatedCloud/${serviceName}/iam/disable`, params)
+      .then(({ data }) => data);
+  }
+
+  addIamRole(serviceName, name) {
+    return this.$http
+      .post(`/dedicatedCloud/${serviceName}/iam/addRole`, {
+        name,
+      })
+      .then(({ data }) => data);
+  }
+
   /* ------- FEDERATION -------*/
 
   getFederationStatus(serviceName) {
