@@ -11,7 +11,6 @@ const moduleName =
 
 angular
   .module(moduleName, [ngAtInternet, 'oui', 'pascalprecht.translate'])
-  .component('serverInstallationChoice', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('serverInstallationChoice', component);
 
 export default moduleName;

@@ -11,7 +11,6 @@ const moduleName =
 
 angular
   .module(moduleName, [ngAtInternet, 'oui', 'pascalprecht.translate'])
-  .component('serverInstallationGabarit', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('serverInstallationGabarit', component);
 
 export default moduleName;

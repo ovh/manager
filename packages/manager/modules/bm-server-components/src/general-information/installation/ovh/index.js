@@ -10,7 +10,6 @@ const moduleName = 'ovhManagerBmServerComponentsDashboardServerInstallationOvh';
 
 angular
   .module(moduleName, [ngAtInternet, 'oui', 'pascalprecht.translate'])
-  .component('serverInstallationOvh', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('serverInstallationOvh', component);
 
 export default moduleName;

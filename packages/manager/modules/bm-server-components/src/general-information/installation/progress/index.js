@@ -11,7 +11,6 @@ const moduleName =
 
 angular
   .module(moduleName, [ngAtInternet, 'oui', 'pascalprecht.translate'])
-  .component('serverInstallationProgress', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('serverInstallationProgress', component);
 
 export default moduleName;
