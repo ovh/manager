@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_DEFAULT": "Copia fronte e retro di un documento di riconoscimento in corso di validità (passaporto, carta d'identità nazionale, patente di guida).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_DEFAULT": "Documento che dimostri le informazioni di fatturazione (nome e indirizzo) datato meno di 3 mesi (per es. estratto conto o fattura di un servizio di pubblica utilità come bolletta della luce, gas, etc.)",
+  "documents_dashboard_document_CORPORATE_ID_DEFAULT": "Estratto del registro di commercio, delle imprese o delle imposte o qualsiasi documento ufficiale che dimostri l'esistenza dell'entità organizzativa datato meno di 3 mesi.",
+  "documents_dashboard_document_ADMINISTRATION_ID_DEFAULT": "Estratto del registro di commercio, delle imprese o delle imposte o qualsiasi documento ufficiale che dimostri l'esistenza dell'entità organizzativa datato meno di 3 mesi.",
+  "documents_dashboard_document_ASSOCIATION_ID_DEFAULT": "Estratto del registro di commercio, delle imprese o delle imposte o qualsiasi documento ufficiale che dimostri l'esistenza dell'entità organizzativa datato meno di 3 mesi.",
+  "documents_dashboard_document_individual_OTHER_DEFAULT": "Qualsiasi documento utile a comprendere la tua situazione attuale (domicilio, trasferimento, etc.)",
+  "documents_dashboard_document_corporation_OTHER_DEFAULT": "Se il tuo nome non compare nel registro dell'azienda, dell'associazione o dell'amministrazione, è possibile allegare una copia del documento d'identità di una persona presente nella documentazione ufficiale.",
+  "documents_dashboard_document_association_OTHER_DEFAULT": "Se il tuo nome non compare nel registro dell'azienda, dell'associazione o dell'amministrazione, è possibile allegare una copia del documento d'identità di una persona presente nella documentazione ufficiale.",
+  "documents_dashboard_document_administration_OTHER_DEFAULT": "Se il tuo nome non compare nel registro dell'azienda, dell'associazione o dell'amministrazione, è possibile allegare una copia del documento d'identità di una persona presente nella documentazione ufficiale.",
+  "documents_dashboard_document_other_OTHER_DEFAULT": "Qualsiasi documento utile a comprendere la tua situazione attuale (domicilio, trasferimento, etc.)"
+}

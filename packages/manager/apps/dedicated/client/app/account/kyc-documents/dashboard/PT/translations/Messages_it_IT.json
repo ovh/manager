@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_PT": "Copia fronte e retro di un documento di riconoscimento in corso di validità (passaporto, carta d'identità nazionale, carta cittadino)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_PT": "Giustificativo di domicilio datato meno di 3 mesi, a te intestato e in cui compaia l’indirizzo indicato nel tuo profilo",
+  "documents_dashboard_document_CORPORATE_ID_PT": "Numero di Identificazione di Persona Collettiva (NIPC) o documento corrispondente.",
+  "documents_dashboard_document_ADMINISTRATION_ID_PT": "Documento di registrazione al Ministero della Solidarietà e della Sicurezza sociale (MSSS)",
+  "documents_dashboard_document_ASSOCIATION_ID_PT": "Estratto della pubblicazione nella Gazzetta Ufficiale e ultimo verbale dell'assemblea o altro documento corrispondente.",
+  "documents_dashboard_document_individual_OTHER_PT": "Qualsiasi documento utile a comprendere la tua situazione attuale (domicilio, trasferimento, etc.)",
+  "documents_dashboard_document_corporation_OTHER_PT": "Se il tuo nome non compare nel registro dell'Autorità fiscale e doganale portoghese (AT) o nello Statuto dell'associazione, è possibile allegare una copia del documento di identità di una persona presente nella documentazione ufficiale.",
+  "documents_dashboard_document_association_OTHER_PT": "Se il tuo nome non compare nel NIPC dell’azienda o nello Statuto dell'associazione, è possibile allegare una copia del documento di identità di una persona presente nella documentazione ufficiale.",
+  "documents_dashboard_document_administration_OTHER_PT": "Se il tuo nome non compare nel registro dell'Autorità fiscale e doganale portoghese (AT) o nello Statuto dell'associazione, è possibile allegare una copia del documento di identità di una persona presente nella documentazione ufficiale.",
+  "documents_dashboard_document_other_OTHER_PT": "Qualsiasi documento utile a comprendere la tua situazione attuale (domicilio, trasferimento, etc.)"
+}

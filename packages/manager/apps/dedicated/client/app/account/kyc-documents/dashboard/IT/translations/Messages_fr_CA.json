@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_IT": "Copie recto-verso d'un document d'identification en cours de validité (passeport, carte nationale d'identité).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_IT": "Justificatif de domicile daté de moins de 3 mois où figurent votre nom ainsi que l'adresse que vous nous avez fournie (ex. facture d'électricité, gaz, etc.).",
+  "documents_dashboard_document_CORPORATE_ID_IT": "Certificat d'enregistrement de l'entreprise à la Chambre de commerce daté de moins de 3 mois ou tout document correspondant.",
+  "documents_dashboard_document_ADMINISTRATION_ID_IT": "Certificat d'enregistrement de l'entreprise à la Chambre de commerce daté de moins de 3 mois ou tout document correspondant.",
+  "documents_dashboard_document_ASSOCIATION_ID_IT": "Une copie des statuts de l'association ou d'un document similaire.",
+  "documents_dashboard_document_individual_OTHER_IT": "Tout document utile pour comprendre votre situation actuelle (domicile, déménagement, etc.).",
+  "documents_dashboard_document_corporation_OTHER_IT": "Si votre nom n'apparaît pas dans le certificat d'enregistrement de l'entreprise à la Chambre de commerce ou dans les statuts de l'association, vous pouvez joindre une copie de la pièce d'identité d'une personne figurant dans la documentation officielle.",
+  "documents_dashboard_document_association_OTHER_IT": "Si votre nom n'apparaît pas dans le certificat d'enregistrement de l'entreprise à la Chambre de commerce ou dans les statuts de l'association, vous pouvez joindre une copie de la pièce d'identité d'une personne figurant dans la documentation officielle.",
+  "documents_dashboard_document_administration_OTHER_IT": "Si votre nom n'apparaît pas dans le certificat d'enregistrement de l'entreprise à la Chambre de commerce ou dans les statuts de l'association, vous pouvez joindre une copie de la pièce d'identité d'une personne figurant dans la documentation officielle.",
+  "documents_dashboard_document_other_OTHER_IT": "Tout document utile pour comprendre votre situation (hébergement, déménagement,...)"
+}
