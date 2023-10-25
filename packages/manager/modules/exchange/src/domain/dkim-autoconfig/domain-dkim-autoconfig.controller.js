@@ -29,7 +29,7 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
     this.dkimStatus = navigation.currentActionData.dkimStatus;
     this.GLOBAL_DKIM_STATUS =
       navigation.currentActionData.constant.GLOBAL_DKIM_STATUS;
-
+    this.DKIM_STATUS = navigation.currentActionData.constant.DKIM_STATUS;
     this.dkimGuideLink =
       DKIM_CONFIGURATION_GUIDE[coreConfig.getUser().ovhSubsidiary] ||
       DKIM_CONFIGURATION_GUIDE.DEFAULT;
@@ -58,14 +58,59 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
         );
       });
 
-    $scope.configDkim = () => this.configDkim();
+    $scope.onFinishDkim = () => this.onFinishDkim();
   }
 
   hideConfirmButton() {
-    return (
-      this.dkimStatus === this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED &&
-      this.domainDiag.isOvhDomain
-    );
+    const showWhen = [
+      this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED,
+      this.GLOBAL_DKIM_STATUS.OK,
+      this.GLOBAL_DKIM_STATUS.DISABLED,
+    ];
+
+    return this.domainDiag.isOvhDomain && showWhen.includes(this.dkimStatus);
+  }
+
+  onFinishDkim() {
+    switch (this.dkimStatus) {
+      case this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED:
+        return this.configDkim();
+      case this.GLOBAL_DKIM_STATUS.OK:
+        return this.deactivateDkim();
+      case this.GLOBAL_DKIM_STATUS.DISABLED:
+        return this.activateDkim();
+      default:
+        console.error('Invalid DKIM status:', this.dkimStatus);
+        return null;
+    }
+  }
+
+  activateDkim() {
+    const dkimSelectors = this.domain.dkim;
+
+    this.services.ExchangeDomains.enableDkim(
+      this.$routerParams.organization,
+      this.$routerParams.productId,
+      this.domain.name,
+      dkimSelectors[0].selectorName,
+    ).finally(() => {
+      this.services.navigation.resetAction();
+    });
+  }
+
+  deactivateDkim() {
+    const dkimSelectors = this.domain.dkim;
+
+    this.services.ExchangeDomains.disableDkim(
+      this.$routerParams.organization,
+      this.$routerParams.productId,
+      this.domain.name,
+      dkimSelectors[0].status === this.DKIM_STATUS.IN_PRODUCTION
+        ? dkimSelectors[0].selectorName
+        : dkimSelectors[1].selectorName,
+    ).finally(() => {
+      this.services.navigation.resetAction();
+    });
   }
 
   configDkim() {

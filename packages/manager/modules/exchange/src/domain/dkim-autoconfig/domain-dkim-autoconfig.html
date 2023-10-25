@@ -2,9 +2,12 @@
     <div
         data-wizard
         data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="configDkim"
+        data-wizard-on-finish="onFinishDkim"
+        data-wizard-confirm-button-text="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.OK ?
+        'exchange_tab_domain_diagnostic_dkim_deactivate' : 'exchange_tab_domain_diagnostic_dkim_activate' | translate"
         data-wizard-hide-confirm-button="ctrl.hideConfirmButton"
-        data-wizard-title="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOK ?
+        data-wizard-title="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOK ||
+                           ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.OK ?
             'exchange_tab_domain_diagnostic_dkim_title_error' :
             'exchange_tab_domain_diagnostic_dkim_title_activation' | translate"
     >
@@ -30,6 +33,12 @@
                 <p
                     data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOT_CONFIGURED && ctrl.domainDiag.isOvhDomain"
                     data-translate="exchange_tab_domain_diagnostic_dkim_activation_ovhcloud"
+                ></p>
+
+                <!-- if configuration OK (activated) -->
+                <p
+                    data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.OK"
+                    data-translate="exchange_tab_domain_diagnostic_dkim_deactivation"
                 ></p>
             </div>
         </div>
