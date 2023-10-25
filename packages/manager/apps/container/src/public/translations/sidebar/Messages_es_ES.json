@@ -160,5 +160,6 @@
   "sidebar_account_iam": "Identidades y acceso (IAM)",
   "sidebar_carbon_footprint": "Mi huella de carbono",
   "sidebar_account_identity_documents": "Mis documentos de identidad",
-  "sidebar_pci_octavia_load_balancer": "Load Balancer"
+  "sidebar_pci_octavia_load_balancer": "Load Balancer",
+  "sidebar_account_kyc_documents": "Mis documentos"
 }
