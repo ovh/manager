@@ -133,7 +133,6 @@ export default function AccountSidebar() {
       menu.push({
         id: 'iam',
         label: t('sidebar_account_iam'),
-        badge: t('sidebar_tag_beta'),
         href: navigation.getURL('iam', '/'),
         pathMatcher: new RegExp('^/iam'),
       });
