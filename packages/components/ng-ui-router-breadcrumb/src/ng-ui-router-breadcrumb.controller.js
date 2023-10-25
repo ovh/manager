@@ -15,7 +15,7 @@ export default class BreadcrumbController {
     this.breadcrumb = this.uiRouterBreadcrumbService.getBreadcrumb();
   }
 
-  static convertDomainToPunycode(domain) {
+  static convertToPunycode(domain) {
     return punycode.toUnicode(domain);
   }
 }

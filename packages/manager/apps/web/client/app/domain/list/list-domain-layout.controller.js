@@ -101,7 +101,7 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     );
   }
 
-  convertDomainToPunycode(domain) {
+  convertToPunycode(domain) {
     return this.punycode.toUnicode(domain);
   }
 

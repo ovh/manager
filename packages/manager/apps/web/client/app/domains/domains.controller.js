@@ -218,7 +218,7 @@ angular.module('App').controller(
       }
     }
 
-    static convertDomainToPunycode(domain) {
+    static convertToPunycode(domain) {
       return punycode.toUnicode(domain);
     }
   },

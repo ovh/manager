@@ -37,7 +37,7 @@ export const mapFilterForIceberg = (comparator, reference) =>
 export const getLink = (column, tracker) => `
   <a
     data-ng-href="{{ $ctrl.getServiceNameLink($row) }}"
-    data-ng-bind="$ctrl.convertDomainToPunycode($row.${column.property})"
+    data-ng-bind="$ctrl.convertToPunycode($row.${column.property})"
     ${tracker ? `data-track-on="click" data-track-name="${tracker}"` : ''}
   ></a>
 `;
@@ -178,7 +178,7 @@ export const getDefaultConfiguration = (
  * @resources: list of elements
  *  In order to be resolved properly, requires to add an `apiPath` resolve property
  *  corresponding to the api used
- * @convertDomainToPunycode: convert domain string to unicode
+ * @convertToPunycode: convert domain string to unicode
  * @paginationNumber: page number
  * @paginationSize: page size
  * @paginationTotalCount: total number of elements
@@ -192,7 +192,7 @@ export const getDefaultConfiguration = (
  *     - `schema` resolve property corresponding to the schema used for models
  */
 export const stateResolves = {
-  convertDomainToPunycode: /* @ngInject */ () => (domain) => {
+  convertToPunycode: /* @ngInject */ () => (domain) => {
     return punycode.toUnicode(domain);
   },
   staticResources: () => false,

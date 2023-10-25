@@ -155,7 +155,7 @@
                                 </td>
                                 <td class="word-break">
                                     <a
-                                        data-ng-bind="{{::$ctrl.convertDomainToPunycode(domain.displayName)}}"
+                                        data-ng-bind="{{::$ctrl.constructor.convertToPunycode(domain.displayName)}}"
                                         data-ng-href="{{'#/domain/' + domain.name}}"
                                         target="_top"
                                     ></a>

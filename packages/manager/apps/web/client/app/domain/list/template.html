@@ -33,13 +33,13 @@
     >
         <a
             data-ng-href="{{:: $ctrl.getServiceNameLink($row) }}"
-            data-ng-bind="{{::$ctrl.convertDomainToPunycode($value)}}"
+            data-ng-bind="{{::$ctrl.constructor.convertToPunycode($value)}}"
         ></a>
         <button
             data-ng-if="$ctrl.isIdn($value)"
             type="button"
             class="oui-popover-button"
-            data-oui-popover="{{::$ctrl.convertDomainToPunycode($value)}}"
+            data-oui-popover="{{::$ctrl.constructor.convertToPunycode($value)}}"
             data-oui-popover-placement="right"
         ></button>
     </oui-datagrid-column>

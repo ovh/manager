@@ -104,7 +104,7 @@ export default class DnsZoneCtrl {
       });
   }
 
-  static convertDomainToPunycode(domain) {
+  static convertToPunycode(domain) {
     return punycode.toUnicode(domain);
   }
 }

@@ -59,7 +59,7 @@ export default class ProductsController {
     }
   }
 
-  static convertDomainToPunycode(domain) {
+  static convertToPunycode(domain) {
     return punycode.toUnicode(domain);
   }
 }
