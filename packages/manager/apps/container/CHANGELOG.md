@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.30.6...@ovh-ux/manager-container-app@0.31.0) (2023-10-25)
+
+
+### Features
+
+* **iam:** remove beta flag ([#10030](https://github.com/ovh/manager/issues/10030)) ([5a6572d](https://github.com/ovh/manager/commit/5a6572d64f2617220e41f93cb8b5923274558a7c))
+
+
+
+
+
 ## [0.30.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.30.5...@ovh-ux/manager-container-app@0.30.6) (2023-10-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

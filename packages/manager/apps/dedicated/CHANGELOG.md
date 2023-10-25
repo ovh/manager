@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.7.2...@ovh-ux/manager-dedicated@19.8.0) (2023-10-25)
+
+
+### Features
+
+* **dedicated:** adding iam management in users page ([#9649](https://github.com/ovh/manager/issues/9649)) ([42250ed](https://github.com/ovh/manager/commit/42250ed85a28b1061c6ce689d214d22e12cfb0e4))
+
+
+
+
+
 ## [19.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.7.1...@ovh-ux/manager-dedicated@19.7.2) (2023-10-25)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
