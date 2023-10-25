@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_PL": "Photocopy of the front and back of your proof of identity (passport, national ID card).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_PL": "Proof of address with your full name and address, as indicated in your profile, dated within the last 3 months (bank statement, utility bill, etc.)",
+  "documents_dashboard_document_CORPORATE_ID_PL": "A copy of the company’s certificate of incorporation or tax clearance certificate of any company linked to the address indicated on your profile, dated within the last 3 months.",
+  "documents_dashboard_document_ADMINISTRATION_ID_PL": "certificate of incorporation corresponding to the company’s activity.",
+  "documents_dashboard_document_ASSOCIATION_ID_PL": "Certificate of incorporation corresponding to the company’s activity.",
+  "documents_dashboard_document_individual_OTHER_PL": "Useful documents containing information about your circumstances (e.g., residential address, change of address)",
+  "documents_dashboard_document_corporation_OTHER_PL": "To facilitate the validation process, please attach high quality scanned documents (black and white photocopies and files from external sharing services are not accepted).",
+  "documents_dashboard_document_association_OTHER_PL": "To facilitate the validation process, please attach high quality scanned documents (black and white photocopies and files from external sharing services are not accepted).",
+  "documents_dashboard_document_administration_OTHER_PL": "To facilitate the validation process, please attach high quality scanned documents (black and white photocopies and files from external sharing services are not accepted).",
+  "documents_dashboard_document_other_OTHER_PL": "Useful documents containing information about your circumstances (residential address, change of address)"
+}

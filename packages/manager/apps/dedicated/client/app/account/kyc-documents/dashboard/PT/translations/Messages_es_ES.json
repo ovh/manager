@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_PT": "Una copia por ambas caras de su documento de identidad (DNI, pasaporte, tarjeta de ciudadano).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_PT": "Un justificante de domicilio con una antigüedad inferior a tres meses, con su nombre y la dirección indicada en su perfil.",
+  "documents_dashboard_document_CORPORATE_ID_PT": "Número de identificación individual (NIPC) o un documento correspondiente.",
+  "documents_dashboard_document_ADMINISTRATION_ID_PT": "Documento de registro en el Ministerio de Solidaridad y Seguridad Social, MSSS.",
+  "documents_dashboard_document_ASSOCIATION_ID_PT": "El extracto de la publicación en el Diario Oficial y el último informe de la asamblea o un documento correspondiente.",
+  "documents_dashboard_document_individual_OTHER_PT": "Cualquier documento útil para entender su situación (domicilio, traslado, etc.).",
+  "documents_dashboard_document_corporation_OTHER_PT": "Si usted no figura en el registro de la Autoridad Tributaria y Aduanera de Portugal (AT) ni en los estatutos de la asociación, puede adjuntar una copia del documento de identidad de la persona que figura en la documentación oficial.",
+  "documents_dashboard_document_association_OTHER_PT": "Si en este documento no se incluye ninguna copia del documento de identificación de una persona que figure en el NIPC de su empresa o los estatus de la asociación.",
+  "documents_dashboard_document_administration_OTHER_PT": "Si usted no figura en el registro de la Autoridad Tributaria y Aduanera de Portugal (AT) ni en los estatutos de la asociación, puede adjuntar una copia del documento de identidad de la persona que figura en la documentación oficial.",
+  "documents_dashboard_document_other_OTHER_PT": "Cualquier documento útil para comprender su situación (domicilio, traslado, etc.)."
+}

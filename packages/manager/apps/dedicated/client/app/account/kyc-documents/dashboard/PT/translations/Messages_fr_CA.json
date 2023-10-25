@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_PT": "Une copie recto-verso de votre pièce d'identité (passeport, carte nationale d'identité, carte de citoyen).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_PT": "Un justificatif de domicile de moins de 3 mois, à votre nom et à l'adresse indiquée dans votre profil.",
+  "documents_dashboard_document_CORPORATE_ID_PT": "Numéro d'identification individuel (NIPC) ou autre document correspondant.",
+  "documents_dashboard_document_ADMINISTRATION_ID_PT": "Document d'inscription au Ministère de la Solidarité et de la Sécurité sociale, MSSS.",
+  "documents_dashboard_document_ASSOCIATION_ID_PT": "L'extrait de la publication au Journal officiel et le dernier compte-rendu de l'assemblée ou autre document correspondant.",
+  "documents_dashboard_document_individual_OTHER_PT": "Tout document utile pour comprendre votre situation (ex. hébergement, déménagement).",
+  "documents_dashboard_document_corporation_OTHER_PT": "Si vous ne figurez pas dans le registre de l'autorité fiscale et douanière du Portugal (AT) ou dans les statuts de l'association, vous pouvez joindre une copie du document d'identité de la personne figurant dans la documentation officielle.",
+  "documents_dashboard_document_association_OTHER_PT": "Si vous ne figurez pas dans le registre de l'autorité fiscale et douanière du Portugal (AT) ou dans les statuts de l'association, vous pouvez joindre une copie du document d'identité de la personne figurant dans la documentation officielle.",
+  "documents_dashboard_document_administration_OTHER_PT": "Si vous ne figurez pas dans le registre de l'autorité fiscale et douanière du Portugal (AT) ou dans les statuts de l'association, vous pouvez joindre une copie du document d'identité de la personne figurant dans la documentation officielle.",
+  "documents_dashboard_document_other_OTHER_PT": "Tout document utile pour comprendre votre situation (hébergement, déménagement,...)"
+}

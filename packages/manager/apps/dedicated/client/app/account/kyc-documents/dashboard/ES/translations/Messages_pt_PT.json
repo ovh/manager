@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_ES": "Uma cópia frente e verso do seu documento de identificação (passaporte, cartão de cidadão).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_ES": "Um comprovativo de morada com menos de 3 meses, em seu nome e com o endereço indicado no seu perfil (extrato bancário, fatura de serviço perfil, etc.)",
+  "documents_dashboard_document_CORPORATE_ID_ES": "Cartão NIF da empresa atualizado ou documento de acreditação correspondente.",
+  "documents_dashboard_document_ADMINISTRATION_ID_ES": "Documento de registo da empresa junto da Segurança Social ou de um organismo semelhante.",
+  "documents_dashboard_document_ASSOCIATION_ID_ES": "O extrato de publicação no Boletim Oficial do Estado (BOE) ou o documento justificativo correspondente.",
+  "documents_dashboard_document_individual_OTHER_ES": "Qualquer documento útil para compreender a sua situação atual (alojamento, mudança, etc.)",
+  "documents_dashboard_document_corporation_OTHER_ES": "Se não estiver no registo comercial ou nos estatutos da associação, pode anexar uma cópia do documento de identidade da pessoa que está na documentação oficial.",
+  "documents_dashboard_document_association_OTHER_ES": "Se não estiver no extrato do registo comercial ou nos estatutos da sua associação, deverá anexar uma cópia do documento de identidade de uma pessoa que tenha sido indicada no mesmo.",
+  "documents_dashboard_document_administration_OTHER_ES": "Se não estiver no registo comercial ou nos estatutos da associação, pode anexar uma cópia do documento de identidade da pessoa que está na documentação oficial.",
+  "documents_dashboard_document_other_OTHER_ES": "Qualquer documento útil para compreender a sua situação (alojamento, mudança, etc.)"
+}

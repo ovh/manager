@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_DEFAULT": "Kopia obud stron dokumentu tożsamości wystawionego przez odpowiednią instytucję (np. paszportu, dowodu osobistego lub prawa jazdy).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_DEFAULT": "Dokument potwierdzający dane do faktury (imię, nazwisko i adres) nie starszy niż 3 miesiące - np. wyciąg z rachunku bankowego lub rachunek za media (prąd, gaz, etc.)",
+  "documents_dashboard_document_CORPORATE_ID_DEFAULT": "Odpis z rejestru przedsiębiorców, potwierdzenie nadania numeru identyfikacji podatkowej lub inny dokument urzędowy potwierdzający istnienie podmiotu, nie starszy niż 3 miesiące.",
+  "documents_dashboard_document_ADMINISTRATION_ID_DEFAULT": "Odpis z rejestru przedsiębiorców, potwierdzenie nadania numeru identyfikacji podatkowej lub inny dokument urzędowy potwierdzający istnienie podmiotu, nie starszy niż 3 miesiące.",
+  "documents_dashboard_document_ASSOCIATION_ID_DEFAULT": "Odpis z rejestru przedsiębiorców, potwierdzenie nadania numeru identyfikacji podatkowej lub inny dokument urzędowy potwierdzający istnienie podmiotu, nie starszy niż 3 miesiące.",
+  "documents_dashboard_document_individual_OTHER_DEFAULT": "Wszelkie dokumenty przydatne do zrozumienia Twojej sytuacji (zakwaterowanie, przeprowadzka,...).",
+  "documents_dashboard_document_corporation_OTHER_DEFAULT": "Jeśli Twoje imię i nazwisko nie figurują w rejestrze przedsiębiorców, stowarzyszeń lub organów administracyjnych, prosimy o dołączenie kopii dokumentu tożsamości osoby, która figuruje w oficjalnej dokumentacji.",
+  "documents_dashboard_document_association_OTHER_DEFAULT": "Jeśli Twoje imię i nazwisko nie figurują w rejestrze przedsiębiorców, stowarzyszeń lub organów administracyjnych, prosimy o dołączenie kopii dokumentu tożsamości osoby, która figuruje w oficjalnej dokumentacji.",
+  "documents_dashboard_document_administration_OTHER_DEFAULT": "Jeśli Twoje imię i nazwisko nie figurują w rejestrze przedsiębiorców, stowarzyszeń lub organów administracyjnych, prosimy o dołączenie kopii dokumentu tożsamości osoby, która figuruje w oficjalnej dokumentacji.",
+  "documents_dashboard_document_other_OTHER_DEFAULT": "Wszelkie dokumenty przydatne do zrozumienia Twojej sytuacje (zakwaterowanie, przeprowadzka, etc.)"
+}

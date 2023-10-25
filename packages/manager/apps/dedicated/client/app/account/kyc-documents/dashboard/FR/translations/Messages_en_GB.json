@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_FR": "A photocopy of the front and back of your proof of identity (passport, national ID card)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_FR": "Proof of address with your full name and the address indicated in your profile (dated within the last 3 months)",
+  "documents_dashboard_document_CORPORATE_ID_FR": "Certificate of incorporation dated within the last 3 months",
+  "documents_dashboard_document_ADMINISTRATION_ID_FR": "A national survey of registered businesses datasheet",
+  "documents_dashboard_document_ASSOCIATION_ID_FR": "A copy of the public notice of meeting and minutes of the most recent meeting held",
+  "documents_dashboard_document_individual_OTHER_FR": "Any useful documents containing information about your circumstances (residential address, change of address, etc.)",
+  "documents_dashboard_document_corporation_OTHER_FR": "If you are not listed in your company’s certificate of incorporation, please provide a photocopy of the proof of identity of any person specified therein.",
+  "documents_dashboard_document_association_OTHER_FR": "If you are not listed in your company’s certificate of incorporation or articles of association, please provide a photocopy of the proof of identity of any person specified therein.",
+  "documents_dashboard_document_administration_OTHER_FR": "If you are not listed in your company’s certificate of incorporation or articles of association, please provide a photocopy of the proof of identity of any person specified therein.",
+  "documents_dashboard_document_other_OTHER_FR": "Any useful documents containing information about your circumstances (residential address, change of address, etc.)"
+}

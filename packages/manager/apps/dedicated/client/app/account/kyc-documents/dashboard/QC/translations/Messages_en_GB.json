@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_QC": "A photocopy of the front and back of your proof of identity (passport, national ID card)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_QC": "Proof of address with your full name and the address indicated in your profile (dated within the last 3 months)",
+  "documents_dashboard_document_CORPORATE_ID_QC": "A copy of your certificate of incorporation, tax registration certificate or any official document serving as proof that your company exists",
+  "documents_dashboard_document_ADMINISTRATION_ID_QC": "A copy of your certificate of incorporation, tax registration certificate or any official document serving as proof that your company exists",
+  "documents_dashboard_document_ASSOCIATION_ID_QC": "A copy of your certificate of incorporation, tax registration certificate or any official document serving as proof that your company exists",
+  "documents_dashboard_document_individual_OTHER_QC": "Any useful documents containing information about your circumstances (residential address, change of address, etc.)",
+  "documents_dashboard_document_corporation_OTHER_QC": "If you are not listed in any company documents or articles of association, please provide a photocopy of the proof of identity of any person specified therein.",
+  "documents_dashboard_document_association_OTHER_QC": "If you are not listed in any company documents or articles of association, please provide a photocopy of the proof of identity of any person specified therein.",
+  "documents_dashboard_document_administration_OTHER_QC": "If you are not listed in any company documents or articles of association, please provide a photocopy of the proof of identity of any person specified therein.",
+  "documents_dashboard_document_other_OTHER_QC": "Any useful documents containing information about your circumstances (residential address, change of address, etc.)"
+}
