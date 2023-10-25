@@ -1,4 +1,4 @@
-import { Node, NodeTag } from './node';
+import { Node } from './node';
 import bareMetalCloud from './services/bareMetalCloud';
 import hostedPrivateCloud from './services/hostedPrivateCloud';
 import network from './services/network';
@@ -72,7 +72,6 @@ const root: Node = {
             application: 'iam',
             hash: '#/',
           },
-          tag: NodeTag.BETA,
           count: false,
           features: ['iam'],
         }, {
