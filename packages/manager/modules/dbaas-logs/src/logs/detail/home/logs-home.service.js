@@ -307,4 +307,3 @@ export default class LogsHomeService {
     }
   }
 }
-
