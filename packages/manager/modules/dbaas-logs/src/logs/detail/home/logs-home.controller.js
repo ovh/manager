@@ -232,4 +232,3 @@ export default class LogsHomeCtrl {
     });
   }
 }
-
