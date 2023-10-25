@@ -6,8 +6,19 @@
     <div data-ng-if="!$ctrl.loading.init">
         <oui-back-button data-on-click="$ctrl.goBack()">
             <span
-                data-translate="dedicatedCloud_USER_rights_management_by_datacenter"
-                data-translate-values="{ t0: $ctrl.selectedUser.login }"
+                data-ng-if="!$ctrl.selectedUser.loginDomain"
+                data-translate="{{ :: 'dedicatedCloud_USER_rights_management_by_datacenter_' + $ctrl.selectedUser.userType }}"
+                data-translate-values="{ t0: '<b>' + $ctrl.selectedUser.login + '</b>' }"
+            ></span>
+            <span
+                data-ng-if="$ctrl.selectedUser.loginDomain && $ctrl.selectedUser.userType === 'user'"
+                data-translate="{{ :: 'dedicatedCloud_USER_rights_management_by_datacenter_' + $ctrl.selectedUser.userType }}"
+                data-translate-values="{ t0: '<b>' + $ctrl.selectedUser.loginUsername + '</b><span class=\'text-muted\'>@' + $ctrl.selectedUser.loginDomain + '</span>' }"
+            ></span>
+            <span
+                data-ng-if="$ctrl.selectedUser.loginDomain && $ctrl.selectedUser.userType !== 'user'"
+                data-translate="{{ :: 'dedicatedCloud_USER_rights_management_by_datacenter_' + $ctrl.selectedUser.userType }}"
+                data-translate-values="{ t0: '<b>' + $ctrl.selectedUser.loginUsername + '</b> <span class=\'text-muted\'>(' + $ctrl.selectedUser.loginDomain + ')</span>' }"
             ></span>
         </oui-back-button>
 

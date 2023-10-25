@@ -15,6 +15,7 @@ export default {
     passwordReset: '<',
     productId: '<',
     setMessage: '<',
+    goToUserIamRole: '<',
     goToImportUser: '<',
     trackClick: '<',
     trackPage: '<',
