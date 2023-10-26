@@ -70,7 +70,60 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
         );
       });
 
+    $scope.onFinishDkim = () => this.onFinishDkim();
     $scope.configDkim = () => this.configDkim();
+  }
+
+  hideConfirmButton() {
+    const showWhen = [
+      this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED,
+      this.GLOBAL_DKIM_STATUS.OK,
+      this.GLOBAL_DKIM_STATUS.DISABLED,
+    ];
+
+    return this.domainDiag.isOvhDomain && showWhen.includes(this.dkimStatus);
+  }
+
+  onFinishDkim() {
+    switch (this.dkimStatus) {
+      case this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED:
+        return this.configDkim();
+      case this.GLOBAL_DKIM_STATUS.OK:
+        return this.deactivateDkim();
+      case this.GLOBAL_DKIM_STATUS.DISABLED:
+        return this.activateDkim();
+      default:
+        console.error('Invalid DKIM status:', this.dkimStatus);
+        return null;
+    }
+  }
+
+  activateDkim() {
+    const dkimSelectors = this.domain.dkim;
+
+    this.services.ExchangeDomains.enableDkim(
+      this.$routerParams.organization,
+      this.$routerParams.productId,
+      this.domain.name,
+      dkimSelectors[0].selectorName,
+    ).finally(() => {
+      this.services.navigation.resetAction();
+    });
+  }
+
+  deactivateDkim() {
+    const dkimSelectors = this.domain.dkim;
+
+    this.services.ExchangeDomains.disableDkim(
+      this.$routerParams.organization,
+      this.$routerParams.productId,
+      this.domain.name,
+      dkimSelectors[0].status === this.DKIM_STATUS.IN_PRODUCTION
+        ? dkimSelectors[0].selectorName
+        : dkimSelectors[1].selectorName,
+    ).finally(() => {
+      this.services.navigation.resetAction();
+    });
   }
 
   getDkimSelectorForCurrentState() {
