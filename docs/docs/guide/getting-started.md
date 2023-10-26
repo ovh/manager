@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - [Git](https://git-scm.com)
-- [Node.js](https://nodejs.org/en/) ^16
+- [Node.js](https://nodejs.org/en/) ^18
 - [Yarn](https://yarnpkg.com/lang/en/) >= 1.21.1
 - Supported OS: GNU/Linux, macOS and Windows
 
@@ -36,11 +36,11 @@ To do so connect to the customer interface of the region in which your account h
 
 Once in there please check the box "I want to enable developer mode on this account"
 
-![](/manager/assets/img/enabling-developer-mode.jpg)
+![](/assets/img/enabling-developer-mode.jpg)
 
 Once clicked, the checkbox will look like this.
 
-![](/manager/assets/img/developer-mode-enabled.jpg)
+![](/assets/img/developer-mode-enabled.jpg)
 
 You can now follow the [Applications](/guide/applications.html) section of this documentation to try and boot your dev manager.
 You will be able to connect with your customer account to this dev version of the manager.

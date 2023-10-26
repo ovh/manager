@@ -19,3 +19,7 @@ All modules are located in the `packages/manager/modules/*` workspace.
 ## All modules
 
 <ListPackages type="modules"/>
+
+<script setup>
+import ListPackages from '../components/ListPackages.vue'
+</script>

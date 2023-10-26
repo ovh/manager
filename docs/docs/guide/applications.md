@@ -30,7 +30,7 @@ Depending on the requested region, the URL to access the API will be different
 
 ## Container
 
-![Container app screenshot](/manager/assets/img/container.png)
+![Container app screenshot](/assets/img/container.png)
 
 ### How to start the application?
 
@@ -41,7 +41,7 @@ Running this command at the root folder, will launch a CLI that will prompt you 
 $ yarn start
 ```
 
-After it's finished, the app within the container will be available at <http://localhost:9000>
+After it's finished, the app within the container will be available at `<http://localhost:9000>`
 
 The application can also be run from its own folder with the following command:
 
@@ -57,7 +57,7 @@ $ yarn run build -p @ovh-ux/manager-container-app
 
 ## Dashboard
 
-![Screenshot of the control panel](/manager/assets/img/control-panel.jpg)
+![Screenshot of the control panel](/assets/img/control-panel.jpg)
 
 ### How to start the application?
 
@@ -65,7 +65,7 @@ $ yarn run build -p @ovh-ux/manager-container-app
 $ yarn workspace @ovh-ux/manager-hub-app run start:dev
 ```
 
-Go to <http://localhost:9000>
+Go to `<http://localhost:9000>`
 
 ### How to build the application?
 
@@ -75,7 +75,7 @@ $ yarn run build -p @ovh-ux/manager-hub-app
 
 ## Web Cloud
 
-![Web cloud screenshot](/manager/assets/img/control-panel-web.jpg)
+![Web cloud screenshot](/assets/img/control-panel-web.jpg)
 
 ### How to start the application?
 
@@ -83,7 +83,7 @@ $ yarn run build -p @ovh-ux/manager-hub-app
 $ yarn workspace @ovh-ux/manager-web run start:dev
 ```
 
-Go to <http://localhost:9000>
+Go to `<http://localhost:9000>`
 
 ### How to build the application?
 
@@ -93,7 +93,7 @@ $ yarn run build -p @ovh-ux/manager-web
 
 ## Bare Metal Cloud
 
-![Bare metal cloud screenshot](/manager/assets/img/control-panel-bare-metal-cloud.jpg)
+![Bare metal cloud screenshot](/assets/img/control-panel-bare-metal-cloud.jpg)
 
 ::: tip Information
 Both applications **Bare Metal Cloud** and **Hosted Private Cloud** are grouped under the following location: `packages/manager/apps/dedicated`.
@@ -109,7 +109,7 @@ $ export REGION=EU
 $ yarn workspace @ovh-ux/manager-dedicated run start:dev
 ```
 
-Go to <http://localhost:9000>
+Go to `<http://localhost:9000>`
 
 ### How to build the application?
 
@@ -119,7 +119,7 @@ $ yarn run build -p @ovh-ux/manager-dedicated
 
 ## Public Cloud
 
-![Public cloud screenshot](/manager/assets/img/control-panel-public-cloud.jpg)
+![Public cloud screenshot](/assets/img/control-panel-public-cloud.jpg)
 
 ::: tip Information
 Application can be started in different region with a given environment variable.
@@ -132,7 +132,7 @@ $ export REGION=EU
 $ yarn workspace @ovh-ux/manager-public-cloud run start:dev
 ```
 
-Go to <http://localhost:9000>
+Go to `<http://localhost:9000>`
 
 ### How to build the application?
 
@@ -142,7 +142,7 @@ $ yarn run build -p @ovh-ux/manager-public-cloud
 
 ## Telecom
 
-![Telecom screenshot](/manager/assets/img/control-panel-telecom.jpg)
+![Telecom screenshot](/assets/img/control-panel-telecom.jpg)
 
 ### How to start the application?
 
@@ -150,7 +150,7 @@ $ yarn run build -p @ovh-ux/manager-public-cloud
 $ yarn workspace @ovh-ux/manager-telecom run start:dev
 ```
 
-Go to <http://localhost:9000>
+Go to `<http://localhost:9000>`
 
 ### How to build the application?
 
@@ -165,3 +165,7 @@ $ yarn run build -p @ovh-ux/manager-telecom
 ## All applications
 
 <ListPackages type="apps"/>
+
+<script setup>
+import ListPackages from '../components/ListPackages.vue'
+</script>

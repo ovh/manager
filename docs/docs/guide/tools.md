@@ -21,3 +21,7 @@ TODO: Describe translation plugin.
 ## All tools
 
 <ListPackages type="tools"/>
+
+<script setup>
+import ListPackages from '../components/ListPackages.vue'
+</script>
