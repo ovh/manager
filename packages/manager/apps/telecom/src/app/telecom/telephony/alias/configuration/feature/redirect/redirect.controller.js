@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import isEqual from 'lodash/isEqual';
+import { FEATURE_TYPES, REDIRECT_TYPES } from '../feature.constants';
 
 export default class TelecomTelephonyAliasConfigurationRedirectCtrl {
   /* @ngInject */
@@ -27,6 +28,8 @@ export default class TelecomTelephonyAliasConfigurationRedirectCtrl {
     this.tucVoipServiceAlias = tucVoipServiceAlias;
     this.tucVoipServiceLine = tucVoipServiceLine;
     this.TelephonyMediator = TelephonyMediator;
+    this.FEATURE_TYPES = FEATURE_TYPES;
+    this.REDIRECT_TYPES = REDIRECT_TYPES;
   }
 
   $onInit() {
@@ -115,11 +118,14 @@ export default class TelecomTelephonyAliasConfigurationRedirectCtrl {
           serviceName: service.serviceName,
         })
         .then(() => {
-          this.featureTypeToUse = 'redirect';
+          this.featureTypeToUse = this.REDIRECT_TYPES.REDIRECT;
         })
         .catch((error) => {
           if (error.status === 404) {
-            this.featureTypeToUse = 'ddi';
+            this.featureTypeToUse =
+              service.featureType === this.FEATURE_TYPES.CARRIER_SIP
+                ? this.REDIRECT_TYPES.REDIRECT
+                : this.REDIRECT_TYPES.DDI;
           } else {
             this.TucToast.error(
               `${this.$translate.instant(
@@ -135,8 +141,8 @@ export default class TelecomTelephonyAliasConfigurationRedirectCtrl {
   }
 
   canDestinationBeUsedForPresentation() {
-    const trunkOffer = 'trunk';
-    const faxFeatureType = 'fax';
+    const trunkOffer = this.FEATURE_TYPES.TRUNK;
+    const faxFeatureType = this.FEATURE_TYPES.FAX;
     const regExp = new RegExp(trunkOffer);
     if (this.newDestination) {
       return (
