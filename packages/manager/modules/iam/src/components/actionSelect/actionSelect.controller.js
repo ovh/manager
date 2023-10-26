@@ -422,20 +422,26 @@ export default class ActionSelectController {
   }
 
   filterActions(actionTree) {
-    actionTree.categories.forEach((category) => {
-      // eslint-disable-next-line no-param-reassign
-      category.filteredActions = category?.actions?.filter(
+    const shadowActionTree = cloneDeep(actionTree);
+    shadowActionTree.categories.forEach((category) => {
+      const shadowCategory = cloneDeep(category);
+      shadowCategory.filteredActions = category?.actions?.filter(
         (action) =>
           action?.value
             .toLowerCase()
             .indexOf(actionTree.searchQuery.toLowerCase()) > -1,
       );
+      shadowActionTree.categories[
+        shadowActionTree.categories.findIndex(
+          (currentCategory) => currentCategory.value === category.value,
+        )
+      ] = shadowCategory;
     });
     this.actionTrees[
       this.actionTrees.findIndex(
         (currentActionTree) => currentActionTree.value === actionTree.value,
       )
-    ] = actionTree;
+    ] = shadowActionTree;
   }
 
   /**
