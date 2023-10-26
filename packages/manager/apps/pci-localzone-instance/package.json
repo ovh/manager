@@ -1,0 +1,36 @@
+{
+  "name": "@ovh-ux/manager-pci-localzone-instance-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite",
+    "lint": "eslint ./src",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-localzone-instance-app' --include-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-localzone-instance-app' --include-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-localzone-instance-app' --include-dependencies -- npm run dev:watch --if-present"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-react-shell-client": "^0.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.17.0"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-vite-config": "^0.2.1",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.45.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
+  },
+  "regions": [
+    "CA",
+    "EU",
+    "US"
+  ]
+}

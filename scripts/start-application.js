@@ -62,6 +62,10 @@ const questions = [
       const { regions } = getApplications().find(
         ({ value }) => value === packageName,
       );
+
+      if (!regions) {
+        throw new Error(`No regions found on ${packageName} package.json`);
+      }
       return regions;
     },
   },
