@@ -21,7 +21,6 @@ export const features = [
   'volume-backup',
   'instance-backup',
   'private-network',
-  'failover-ip',
   'additional-ips',
   'public-gateways',
   'octavia-load-balancer',
@@ -162,19 +161,9 @@ export function getPciProjectMenu(
           id: 'octavia-load-balancer',
           title: 'Load Balancer',
           feature: 'octavia-load-balancer',
-          regions: ['EU', 'CA'],
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/octavia-load-balancer`,
-          ),
-        },
-        {
-          id: 'failover-ip',
-          title: 'Failover IP',
-          feature: 'failover-ip',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/failover-ips`,
           ),
         },
         {
@@ -197,7 +186,6 @@ export function getPciProjectMenu(
     {
       id: 'containers',
       title: 'Containers & Orchestration',
-      regions: ['EU', 'CA'],
       subItems: [
         {
           id: 'kubernetes',
@@ -215,46 +203,6 @@ export function getPciProjectMenu(
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/load-balancer`,
-          ),
-        },
-        {
-          id: 'private-registry',
-          title: 'Managed Private Registry',
-          feature: 'private-registry',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/private-registry`,
-          ),
-        },
-        {
-          id: 'workflow-management',
-          title: 'Workflow Management',
-          feature: 'workflow-management',
-          href: getURL('public-cloud', `#/pci/projects/${projectId}/workflow`),
-        },
-      ],
-    },
-    {
-      id: 'containers',
-      title: 'Containers & Orchestration',
-      regions: ['US'],
-      subItems: [
-        {
-          id: 'load-balancer',
-          title: 'Load Balancer',
-          feature: 'load-balancer',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/load-balancer`,
-          ),
-        },
-        {
-          id: 'kubernetes',
-          title: 'Managed Kubernetes Service',
-          feature: 'kubernetes',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/kubernetes`,
           ),
         },
         {
