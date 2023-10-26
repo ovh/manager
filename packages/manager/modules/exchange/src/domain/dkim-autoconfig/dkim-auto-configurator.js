@@ -40,7 +40,8 @@ export default class DkimAutoConfigurator {
     this.showConfiguratingBtn = false;
     this.showSpfDiagnosticTitle = false;
     this.loading = true;
-    await this.stepConfigureDkim();
+    this.dkimSelectorsNoDomain = await this.getDkimSelectorForCurrentState();
+    await this.stepConfigureDkimFor('exchange');
     this.isStepConfigureValid = true;
     this.loading = false;
   }
