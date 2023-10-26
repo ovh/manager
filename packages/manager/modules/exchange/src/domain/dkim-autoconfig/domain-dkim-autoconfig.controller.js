@@ -39,8 +39,6 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
 
     this.loading = true;
 
-    this.initializeScope($scope);
-
     // Vars for DKIM configuration inside modal stepper
     this.initializeDkimConfiguratorNoOvh();
 
@@ -69,9 +67,6 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
           failure,
         );
       });
-
-    $scope.onFinishDkim = () => this.onFinishDkim();
-    $scope.configDkim = () => this.configDkim();
   }
 
   hideConfirmButton() {

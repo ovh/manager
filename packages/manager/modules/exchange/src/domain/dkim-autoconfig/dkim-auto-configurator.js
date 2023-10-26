@@ -1,14 +1,4 @@
 export default class DkimAutoConfigurator {
-  initializeScope($scope) {
-    $scope.loadDataForDkim = () => this.loadDataForDkim();
-    $scope.getDkimSelector = () => this.getDkimSelector();
-    $scope.leaveDkimConfigurator = () => this.leaveDkimConfigurator();
-    $scope.getNextButtonDependingOnStep = () =>
-      this.getNextButtonDependingOnStep();
-    $scope.getTitleDependingOnStep = () => this.getTitleDependingOnStep();
-    $scope.initSpfContext = () => this.initSpfContext();
-  }
-
   initializeDkimConfiguratorNoOvh() {
     this.selector1NameInfos = '';
     this.selector1RecordInfos = '';
