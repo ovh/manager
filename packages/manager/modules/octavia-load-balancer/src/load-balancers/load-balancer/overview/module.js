@@ -12,7 +12,7 @@ angular
   .module(moduleName, [editName])
   .config(routing)
   .component('octaviaLoadBalancerOverview', component)
-  .service('OctaviaLoadBalancerOverviewService', service)
+  .service('OctaviaLoadBalancerService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

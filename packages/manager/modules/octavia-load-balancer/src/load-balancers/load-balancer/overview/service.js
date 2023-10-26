@@ -1,4 +1,4 @@
-export default class OctaviaLoadBalancerOverviewService {
+export default class OctaviaLoadBalancerService {
   /* @ngInject */
   constructor($http) {
     this.$http = $http;
@@ -8,6 +8,14 @@ export default class OctaviaLoadBalancerOverviewService {
     return this.$http
       .get(
         `/cloud/project/${projectId}/region/${region}/loadbalancing/flavor/${flavorId}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getLoadbalancer(projectId, region, loadbalancerId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/region/${region}/loadbalancing/loadbalancer/${loadbalancerId}`,
       )
       .then(({ data }) => data);
   }
@@ -24,5 +32,14 @@ export default class OctaviaLoadBalancerOverviewService {
         `/cloud/project/${projectId}/region/${region}/network/${networkId}/subnet/${subnetId}`,
       )
       .then(({ data }) => data);
+  }
+
+  updateName(projectId, region, loadbalancerId, name) {
+    return this.$http.put(
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/loadbalancer/${loadbalancerId}`,
+      {
+        name,
+      },
+    );
   }
 }

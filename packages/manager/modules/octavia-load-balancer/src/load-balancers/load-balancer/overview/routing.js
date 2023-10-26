@@ -11,34 +11,34 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: () => null,
         flavor: /* @ngInject */ (
-          OctaviaLoadBalancerOverviewService,
+          OctaviaLoadBalancerService,
           projectId,
           region,
           loadbalancer,
         ) =>
-          OctaviaLoadBalancerOverviewService.getFlavor(
+          OctaviaLoadBalancerService.getFlavor(
             projectId,
             region,
             loadbalancer.flavorId,
           ),
         network: /* @ngInject */ (
-          OctaviaLoadBalancerOverviewService,
+          OctaviaLoadBalancerService,
           projectId,
           region,
           loadbalancer,
         ) =>
-          OctaviaLoadBalancerOverviewService.getPrivateNetwork(
+          OctaviaLoadBalancerService.getPrivateNetwork(
             projectId,
             region,
             loadbalancer.vipNetworkId,
           ),
         subnet: /* @ngInject */ (
-          OctaviaLoadBalancerOverviewService,
+          OctaviaLoadBalancerService,
           projectId,
           region,
           loadbalancer,
         ) =>
-          OctaviaLoadBalancerOverviewService.getSubnet(
+          OctaviaLoadBalancerService.getSubnet(
             projectId,
             region,
             loadbalancer.vipNetworkId,

@@ -1,8 +1,8 @@
 export default class OctaviaLoadBalancerEditNameCtrl {
   /* @ngInject */
-  constructor($http, Alerter, $translate) {
+  constructor(OctaviaLoadBalancerService, Alerter, $translate) {
     this.isLoading = false;
-    this.$http = $http;
+    this.OctaviaLoadBalancerService = OctaviaLoadBalancerService;
     this.Alerter = Alerter;
     this.$translate = $translate;
   }
@@ -19,13 +19,12 @@ export default class OctaviaLoadBalancerEditNameCtrl {
   update() {
     this.trackConfirm();
     this.isLoading = true;
-    this.$http
-      .put(
-        `/cloud/project/${this.projectId}/region/${this.region}/loadbalancing/loadbalancer/${this.loadbalancer.id}`,
-        {
-          name: this.name,
-        },
-      )
+    this.OctaviaLoadBalancerService.updateName(
+      this.projectId,
+      this.region,
+      this.loadbalancer.id,
+      this.name,
+    )
       .then(() => {
         this.trackSuccess();
         this.Alerter.set(

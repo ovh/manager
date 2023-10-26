@@ -9,16 +9,16 @@ export default /* @ngInject */ ($stateProvider) => {
       loadbalancerId: /* @ngInject */ ($transition$) =>
         $transition$.params().loadbalancerId,
       loadbalancer: /* @ngInject */ (
-        $http,
+        OctaviaLoadBalancerService,
         projectId,
         region,
         loadbalancerId,
       ) =>
-        $http
-          .get(
-            `/cloud/project/${projectId}/region/${region}/loadbalancing/loadbalancer/${loadbalancerId}`,
-          )
-          .then(({ data }) => data),
+        OctaviaLoadBalancerService.getLoadbalancer(
+          projectId,
+          region,
+          loadbalancerId,
+        ),
       breadcrumb: /* @ngInject */ (loadbalancerId) => loadbalancerId,
       generalInformationLink: /* @ngInject */ (
         $state,
