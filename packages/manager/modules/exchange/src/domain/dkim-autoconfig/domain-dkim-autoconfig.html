@@ -2,8 +2,8 @@
     <div
         data-ng-if="!ctrl.dkimForNoOvhCloud"
         data-wizard
-        data-wizard-on-cancel="ctrl.resetAction"
-        data-wizard-on-finish="ctrl.onFinishDkim"
+        data-wizard-on-cancel="ctrl.resetAction.bind(ctrl)"
+        data-wizard-on-finish="ctrl.onFinishDkim.bind(ctrl)"
         data-wizard-confirm-button-text="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.OK ?
         'exchange_tab_domain_diagnostic_dkim_deactivate' : 'exchange_tab_domain_diagnostic_dkim_activate' | translate"
         data-wizard-hide-confirm-button="ctrl.hideConfirmButton"
@@ -24,11 +24,6 @@
                 ></p>
 
                 <!-- if unconfigured without OVHcloud domain -->
-                <span
-                    >pouet : {{ctrl.dkimStatus ===
-                    ctrl.GLOBAL_DKIM_STATUS.NOT_CONFIGURED &&
-                    !ctrl.domainDiag.isOvhDomain}}</span
-                >
                 <p
                     data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOT_CONFIGURED && !ctrl.domainDiag.isOvhDomain"
                     data-translate="exchange_tab_domain_diagnostic_dkim_activation_no_ovhcloud"
@@ -54,14 +49,17 @@
     <div data-ng-if="ctrl.dkimForNoOvhCloud">
         <div
             data-wizard
-            data-wizard-on-finish="ctrl.leaveDkimConfigurator"
-            data-wizard-on-cancel="ctrl.leaveDkimConfigurator"
+            data-wizard-on-finish="ctrl.leaveDkimConfigurator.bind(ctrl)"
+            data-wizard-on-cancel="ctrl.leaveDkimConfigurator.bind(ctrl)"
             data-wizard-hide-previous-button="true"
             data-wizard-confirm-button-text=":: 'exchange_tab_domain_diagnostic_dkim_confirm_no_ovhcloud' | translate"
             data-wizard-next-button-text="ctrl.getNextButtonDependingOnStep() | translate"
             data-wizard-title="ctrl.getTitleDependingOnStep() | translate"
         >
-            <div data-wizard-step data-wizard-step-on-load="getDkimSelector">
+            <div
+                data-wizard-step
+                data-wizard-step-on-load="ctrl.getDkimSelector"
+            >
                 <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
 
                 <div data-ng-if="!ctrl.loading">
@@ -73,9 +71,9 @@
 
             <div
                 data-wizard-step
-                data-wizard-step-on-load="ctrl.loadDataForDkim"
-                data-wizard-step-on-next="ctrl.getDkimSelector"
-                data-wizard-step-valid="ctrl.isStepConfigureValid"
+                data-wizard-step-on-load="ctrl.loadDataForDkim.bind(ctrl)"
+                data-wizard-step-on-next="ctrl.getDkimSelector.bind(ctrl)"
+                data-wizard-step-valid="ctrl.isStepConfigureValid.bind(ctrl)"
             >
                 <div class="col-md-12" data-ng-if="ctrl.loading">
                     <oui-spinner></oui-spinner>
@@ -88,8 +86,8 @@
 
             <div
                 data-wizard-step
-                data-wizard-step-on-load="ctrl.initSpfContext"
-                data-wizard-step-on-next="ctrl.leaveDkimConfigurator"
+                data-wizard-step-on-load="ctrl.initSpfContext.bind(ctrl)"
+                data-wizard-step-on-next="ctrl.leaveDkimConfigurator.bind(ctrl)"
             >
                 <p
                     data-translate="exchange_tab_domain_diagnostic_dkim_configurate_dns_records_info"
