@@ -1,0 +1,78 @@
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div data-ng-if="!$ctrl.loading">
+    <form name="createlistener" novalidate>
+        <oui-field
+            size="m"
+            class="mb-4 mb-md-0"
+            data-label="{{:: 'octavia_load_balancer_listeners_create_name' | translate }}"
+        >
+            <div class="oui-input-overlay">
+                <input
+                    type="text"
+                    class="oui-input"
+                    name="name"
+                    data-required
+                    data-ng-model="$ctrl.model.name"
+                />
+            </div>
+        </oui-field>
+        <oui-field
+            size="m"
+            class="mb-4 mb-md-0"
+            data-label="{{:: 'octavia_load_balancer_listeners_create_protocol' | translate }}"
+            data-label-popover="{{:: 'octavia_load_balancer_listeners_create_protocol_tooltip' | translate }}"
+        >
+            <oui-select
+                name="protocol"
+                data-required
+                data-model="$ctrl.model.protocol"
+                data-items="$ctrl.PROTOCOLS"
+                data-on-change="$ctrl.onProtocolChange()"
+                data-placeholder="{{:: 'octavia_load_balancer_listeners_create_protocol_default' | translate }}"
+            >
+            </oui-select>
+        </oui-field>
+        <oui-field
+            size="m"
+            class="mb-4 mb-md-0"
+            data-label="{{:: 'octavia_load_balancer_listeners_create_port' | translate }}"
+        >
+            <div class="oui-input-overlay">
+                <input
+                    type="number"
+                    class="oui-input"
+                    name="port"
+                    data-required
+                    data-ng-model="$ctrl.model.port"
+                    data-min="1"
+                    data-max="65535"
+                />
+            </div>
+        </oui-field>
+        <oui-field
+            size="m"
+            class="mb-4 mb-md-0"
+            data-label="{{:: 'octavia_load_balancer_listeners_create_pool' | translate }}"
+        >
+            <oui-select
+                name="pool"
+                data-model="$ctrl.model.defaultPoolId"
+                data-match="name"
+                data-items="$ctrl.filteredPools"
+                data-disabled="$ctrl.model.protocol === 'prometheus'"
+                data-placeholder="{{:: 'octavia_load_balancer_listeners_create_pool_default' | translate }}"
+            >
+            </oui-select>
+        </oui-field>
+        <oui-form-actions
+            data-disabled="!createlistener.$valid"
+            data-submit-text="{{:: 'octavia_load_balancer_listeners_create_submit' | translate }}"
+            data-cancel-text="{{:: 'octavia_load_balancer_listeners_create_cancel' | translate }}"
+            data-on-submit="$ctrl.submit()"
+            data-on-cancel="$ctrl.cancel()"
+        ></oui-form-actions>
+    </form>
+</div>
