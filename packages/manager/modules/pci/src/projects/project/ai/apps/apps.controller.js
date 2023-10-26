@@ -47,6 +47,11 @@ export default class {
     this.goToAddApp();
   }
 
+  goToUserToken() {
+    this.trackApps('banner-manage-users-tokens');
+    this.goToUsersAndTokens();
+  }
+
   goToAppDetails(app) {
     this.trackApps('table::options_menu::details');
     this.goToApp(app);

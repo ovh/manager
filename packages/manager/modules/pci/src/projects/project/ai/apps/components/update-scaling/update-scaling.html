@@ -29,7 +29,11 @@
     <oui-field
         label="{{:: 'pci_app_update_app_scaling_switch_label' | translate}}"
     >
-        <oui-switch model="$ctrl.autoscaling"> </oui-switch>
+        <oui-switch
+            model="$ctrl.autoscaling"
+            on-change="$ctrl.trackAutoscaling()"
+        >
+        </oui-switch>
         <strong
             class="d-inline-block mx-2"
             data-ng-bind="($ctrl.autoscaling ? 'pci_app_update_app_scaling_switch_label_enabled':'pci_app_update_app_scaling_switch_label_disabled') | translate"
