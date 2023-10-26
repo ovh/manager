@@ -13,13 +13,7 @@ angular
         url: '/new',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-          const promise =
-            $transition$
-              .injector()
-              .get('coreConfig')
-              .getRegion() !== 'US'
-              ? import('./add.module')
-              : import('./legacy/add.module');
+          const promise = import('./add.module');
           return promise.then((mod) => $ocLazyLoad.inject(mod.default || mod));
         },
       });
