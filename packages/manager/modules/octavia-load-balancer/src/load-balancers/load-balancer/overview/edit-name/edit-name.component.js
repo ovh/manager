@@ -1,0 +1,17 @@
+import controller from './edit-name.controller';
+import template from './edit-name.html';
+
+export default {
+  bindings: {
+    projectId: '<',
+    loadbalancer: '<',
+    region: '<',
+    goBack: '<',
+    trackCancel: '<',
+    trackConfirm: '<',
+    trackSuccess: '<',
+    trackFailure: '<',
+  },
+  controller,
+  template,
+};

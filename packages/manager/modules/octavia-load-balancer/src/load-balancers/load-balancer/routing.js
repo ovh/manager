@@ -8,8 +8,17 @@ export default /* @ngInject */ ($stateProvider) => {
       region: /* @ngInject */ ($transition$) => $transition$.params().region,
       loadbalancerId: /* @ngInject */ ($transition$) =>
         $transition$.params().loadbalancerId,
-      // TODO: retrieve loadbalancer info (or do like databases)
-      loadbalancer: () => ({ name: 'test' }),
+      loadbalancer: /* @ngInject */ (
+        $http,
+        projectId,
+        region,
+        loadbalancerId,
+      ) =>
+        $http
+          .get(
+            `/cloud/project/${projectId}/region/${region}/loadbalancing/loadbalancer/${loadbalancerId}`,
+          )
+          .then(({ data }) => data),
       breadcrumb: /* @ngInject */ (loadbalancerId) => loadbalancerId,
       generalInformationLink: /* @ngInject */ (
         $state,
@@ -65,6 +74,6 @@ export default /* @ngInject */ ($stateProvider) => {
     atInternet: {
       ignore: true,
     },
-    redirectTo: 'octavia-load-balancer.loadbalancer.listeners',
+    redirectTo: 'octavia-load-balancer.loadbalancer.general-information',
   });
 };
