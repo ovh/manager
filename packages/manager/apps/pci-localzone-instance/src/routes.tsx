@@ -10,10 +10,6 @@ export default [
         lazy: () => import('@/pages/ListingPage'),
         children: [
           {
-            path: 'backup',
-            element: 'Create a backup',
-          },
-          {
             path: 'boot',
             lazy: () => import('@/pages/BootPage'),
           },
@@ -54,7 +50,7 @@ export default [
         children: [
           {
             path: 'backup',
-            element: 'Create a backup',
+            lazy: () => import('@/pages/BackupPage'),
           },
           {
             path: 'boot',
