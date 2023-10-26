@@ -29,8 +29,6 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
       $scope.currentActionData.constant.GLOBAL_DKIM_STATUS;
     this.services.$scope.configDkim = () => this.configDkim();
 
-    this.initializeScope($scope);
-
     this.dkimGuideLink =
       DKIM_CONFIGURATION_GUIDE[coreConfig.getUser().ovhSubsidiary] ||
       DKIM_CONFIGURATION_GUIDE.DEFAULT;
