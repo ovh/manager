@@ -2,8 +2,8 @@
     <div
         data-ng-if="!ctrl.dkimForNoOvhCloud"
         data-wizard
-        data-wizard-on-cancel="ctrl.resetAction"
-        data-wizard-on-finish="ctrl.configDkim"
+        data-wizard-on-cancel="ctrl.resetAction.bind(ctrl)"
+        data-wizard-on-finish="ctrl.configDkim.bind(ctrl)"
         data-wizard-hide-confirm-button="ctrl.hideConfirmButton"
         data-wizard-title="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOK ?
             'emailpro_tab_domain_diagnostic_dkim_title_error' :
@@ -40,14 +40,17 @@
     <div data-ng-if="ctrl.dkimForNoOvhCloud">
         <div
             data-wizard
-            data-wizard-on-finish="ctrl.leaveDkimConfigurator"
-            data-wizard-on-cancel="ctrl.leaveDkimConfigurator"
+            data-wizard-on-finish="ctrl.leaveDkimConfigurator.bind(ctrl)"
+            data-wizard-on-cancel="ctrl.leaveDkimConfigurator.bind(ctrl)"
             data-wizard-hide-previous-button="true"
             data-wizard-confirm-button-text=":: 'emailpro_tab_domain_diagnostic_dkim_confirm_no_ovhcloud' | translate"
             data-wizard-next-button-text="ctrl.getNextButtonDependingOnStep() | translate"
             data-wizard-title="ctrl.getTitleDependingOnStep() | translate"
         >
-            <div data-wizard-step data-wizard-step-on-load="getDkimSelector">
+            <div
+                data-wizard-step
+                data-wizard-step-on-load="ctrl.getDkimSelector"
+            >
                 <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
 
                 <div data-ng-if="!ctrl.loading">
@@ -59,8 +62,8 @@
 
             <div
                 data-wizard-step
-                data-wizard-step-on-load="ctrl.loadDataForDkim"
-                data-wizard-step-on-next="ctrl.getDkimSelector"
+                data-wizard-step-on-load="ctrl.loadDataForDkim.bind(ctrl)"
+                data-wizard-step-on-next="ctrl.getDkimSelector.bind(ctrl)"
                 data-wizard-step-valid="ctrl.isStepConfigureValid"
             >
                 <div class="col-md-12" data-ng-if="ctrl.loading">
@@ -74,8 +77,8 @@
 
             <div
                 data-wizard-step
-                data-wizard-step-on-load="ctrl.initSpfContext"
-                data-wizard-step-on-next="ctrl.leaveDkimConfigurator"
+                data-wizard-step-on-load="ctrl.initSpfContext.bind(ctrl)"
+                data-wizard-step-on-next="ctrl.leaveDkimConfigurator.bind(ctrl)"
             >
                 <p
                     data-translate="emailpro_tab_domain_diagnostic_dkim_configurate_dns_records_info"
