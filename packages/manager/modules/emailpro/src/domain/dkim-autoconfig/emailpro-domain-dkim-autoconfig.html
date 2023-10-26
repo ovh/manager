@@ -49,7 +49,7 @@
         >
             <div
                 data-wizard-step
-                data-wizard-step-on-load="ctrl.getDkimSelector"
+                data-wizard-step-on-load="ctrl.getDkimSelector.bind(ctrl)"
             >
                 <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
 
