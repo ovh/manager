@@ -1,3 +1,6 @@
+/**
+ * DkimAutoConfigurator is the core logic used for modals stepper (no ovh cloud domain)
+ */
 export default class DkimAutoConfigurator {
   initializeDkimConfiguratorNoOvh() {
     this.selector1NameInfos = '';
