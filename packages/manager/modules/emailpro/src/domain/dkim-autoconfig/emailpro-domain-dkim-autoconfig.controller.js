@@ -1,23 +1,26 @@
 import { DKIM_CONFIGURATION_GUIDE } from './emailpro-domain-dkim-autoconfig.constants';
 
-export default class EmailProDomainDkimAutoconfigCtrl {
+import DkimAutoConfigurator from './dkim-auto-configurator';
+
+export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurator {
   /* @ngInject */
   constructor(
     $q,
     $scope,
-    $stateParams,
-    $translate,
-    coreConfig,
-    EmailPro,
     EmailProDomains,
+    navigation,
+    $translate,
+    $stateParams,
+    coreConfig,
   ) {
+    super();
     this.services = {
       $q,
       $scope,
-      $stateParams,
-      $translate,
-      EmailPro,
       EmailProDomains,
+      navigation,
+      $translate,
+      $stateParams,
     };
 
     this.domain = $scope.currentActionData.domain;
@@ -35,6 +38,10 @@ export default class EmailProDomainDkimAutoconfigCtrl {
 
   init() {
     this.loading = true;
+
+    // Vars for DKIM configuration inside modal stepper
+    this.initializeDkimConfiguratorNoOvh();
+
     this.services.EmailProDomains.getDnsSettings(
       this.services.$stateParams.productId,
       this.domain.name,
@@ -43,6 +50,9 @@ export default class EmailProDomainDkimAutoconfigCtrl {
         (data) => {
           this.domainDiag = data;
           this.hideConfirmButton = this.hideConfirmButton();
+          this.dkimForNoOvhCloud =
+            this.dkimStatus === this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED &&
+            !this.domainDiag.isOvhDomain;
           this.loading = false;
         },
         (failure) => {
@@ -60,30 +70,51 @@ export default class EmailProDomainDkimAutoconfigCtrl {
       });
   }
 
-  hideConfirmButton() {
-    return (
-      this.dkimStatus === this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED &&
-      this.domainDiag.isOvhDomain
+  getDkimSelectorForCurrentState() {
+    return this.services.EmailProDomains.getDkimSelector(
+      this.services.$stateParams.productId,
+      this.domain.name,
     );
   }
 
+  postDkimFor(selectors) {
+    return selectors.map((dkimSelector, index) => {
+      return this.services.EmailProDomains.postDkim(
+        this.services.$stateParams.productId,
+        this.domain.name,
+        {
+          selectorName: dkimSelector,
+          autoEnableDKIM: index === 0,
+          configureDkim: true,
+        },
+      );
+    });
+  }
+
+  stepConfigureDkim() {
+    this.stepConfigureDkim('emailpro');
+  }
+
+  getTitleDependingOnStep() {
+    return this.getTitleDependingOnStep('emailpro');
+  }
+
+  getNextButtonDependingOnStep() {
+    return this.getNextButtonDependingOnStep('emailpro');
+  }
+
+  getDkimName(index) {
+    return this.getDkimNameFor('emailpro', index);
+  }
+
+  getDkimRecord(index) {
+    return this.getDkimRecordFor('emailpro', index);
+  }
+
   configDkim() {
-    this.services.EmailProDomains.getDkimSelector(
-      this.services.$stateParams.productId,
-      this.domain.name,
-    )
+    this.getDkimSelectorForCurrentState()
       .then((dkimSelectors) => {
-        const promises = dkimSelectors.map((dkimSelector, index) => {
-          return this.services.EmailProDomains.postDkim(
-            this.services.$stateParams.productId,
-            this.domain.name,
-            {
-              selectorName: dkimSelector,
-              autoEnableDKIM: index === 0,
-              configureDkim: true,
-            },
-          );
-        });
+        const promises = this.postDkimFor(dkimSelectors);
         return this.services.$q.all(promises);
       })
       .then(() => {

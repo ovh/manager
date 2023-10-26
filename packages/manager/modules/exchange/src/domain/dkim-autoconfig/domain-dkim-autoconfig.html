@@ -1,8 +1,9 @@
 <div data-ng-controller="ExchangeDomainDkimAutoconfigCtrl as ctrl">
     <div
+        data-ng-if="!ctrl.dkimForNoOvhCloud"
         data-wizard
-        data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="onFinishDkim"
+        data-wizard-on-cancel="ctrl.resetAction.bind(ctrl)"
+        data-wizard-on-finish="ctrl.onFinishDkim.bind(ctrl)"
         data-wizard-confirm-button-text="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.OK ?
         'exchange_tab_domain_diagnostic_dkim_deactivate' : 'exchange_tab_domain_diagnostic_dkim_activate' | translate"
         data-wizard-hide-confirm-button="ctrl.hideConfirmButton"
@@ -40,6 +41,83 @@
                     data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.OK"
                     data-translate="exchange_tab_domain_diagnostic_dkim_deactivation"
                 ></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- if unconfigured without OVHcloud domain -->
+    <div data-ng-if="ctrl.dkimForNoOvhCloud">
+        <div
+            data-wizard
+            data-wizard-on-finish="ctrl.leaveDkimConfigurator.bind(ctrl)"
+            data-wizard-on-cancel="ctrl.leaveDkimConfigurator.bind(ctrl)"
+            data-wizard-hide-previous-button="true"
+            data-wizard-confirm-button-text=":: 'exchange_tab_domain_diagnostic_dkim_confirm_no_ovhcloud' | translate"
+            data-wizard-next-button-text="ctrl.getNextButtonDependingOnStep() | translate"
+            data-wizard-title="ctrl.getTitleDependingOnStep() | translate"
+        >
+            <div
+                data-wizard-step
+                data-wizard-step-on-load="ctrl.getDkimSelector.bind(ctrl)"
+            >
+                <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
+
+                <div data-ng-if="!ctrl.loading">
+                    <p
+                        data-translate="exchange_tab_domain_diagnostic_dkim_activation_no_ovhcloud_with_auto_configure"
+                    ></p>
+                </div>
+            </div>
+
+            <div
+                data-wizard-step
+                data-wizard-step-on-load="ctrl.loadDataForDkim.bind(ctrl)"
+                data-wizard-step-on-next="ctrl.getDkimSelector.bind(ctrl)"
+                data-wizard-step-valid="ctrl.isStepConfigureValid.bind(ctrl)"
+            >
+                <div class="col-md-12" data-ng-if="ctrl.loading">
+                    <oui-spinner></oui-spinner>
+                </div>
+
+                <p
+                    data-translate="exchange_tab_domain_diagnostic_dkim_id_generation_no_ovhcloud"
+                ></p>
+            </div>
+
+            <div
+                data-wizard-step
+                data-wizard-step-on-load="ctrl.initSpfContext.bind(ctrl)"
+                data-wizard-step-on-next="ctrl.leaveDkimConfigurator.bind(ctrl)"
+            >
+                <p
+                    data-translate="exchange_tab_domain_diagnostic_dkim_configurate_dns_records_info"
+                ></p>
+
+                <dl class="oui-description oui-description_horizontal">
+                    <dt
+                        data-translate="exchange_tab_domain_diagnostic_dkim_text_field"
+                    ></dt>
+                    <dd>
+                        <span data-ng-bind="ctrl.selector1NameInfos"></span>
+                    </dd>
+                    <dd>
+                        <span data-ng-bind="ctrl.selector1RecordInfos"></span>
+                    </dd>
+                    <dd>
+                        <span data-ng-bind="ctrl.selector2NameInfos"></span>
+                    </dd>
+                    <dd>
+                        <span data-ng-bind="ctrl.selector2RecordInfos"></span>
+                    </dd>
+                </dl>
+
+                <span
+                    data-translate="exchange_tab_domain_diagnostic_dkim_configurate_activation_guide"
+                    data-translate-values="{ url: ctrl.dkimGuideLink }"
+                ></span>
+                <span
+                    data-translate="exchange_tab_domain_diagnostic_dkim_configurate_activation_time"
+                ></span>
             </div>
         </div>
     </div>

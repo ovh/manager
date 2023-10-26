@@ -1,6 +1,8 @@
 import { DKIM_CONFIGURATION_GUIDE } from './domain-dkim-autoconfig.constants';
 
-export default class ExchangeDomainDkimAutoconfigCtrl {
+import DkimAutoConfigurator from './dkim-auto-configurator';
+
+export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurator {
   /* @ngInject */
   constructor(
     $q,
@@ -13,6 +15,7 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
     exchangeStates,
     coreConfig,
   ) {
+    super();
     this.services = {
       $q,
       $scope,
@@ -36,6 +39,9 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
 
     this.loading = true;
 
+    // Vars for DKIM configuration inside modal stepper
+    this.initializeDkimConfiguratorNoOvh();
+
     this.services.ExchangeDomains.gettingDNSSettings(
       this.$routerParams.organization,
       this.$routerParams.productId,
@@ -45,6 +51,10 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
         this.domainDiag = data;
 
         this.hideConfirmButton = this.hideConfirmButton();
+
+        this.dkimForNoOvhCloud =
+          this.dkimStatus === this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED &&
+          !this.domainDiag.isOvhDomain;
 
         this.loading = false;
       })
@@ -57,8 +67,6 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
           failure,
         );
       });
-
-    $scope.onFinishDkim = () => this.onFinishDkim();
   }
 
   hideConfirmButton() {
@@ -113,25 +121,54 @@ export default class ExchangeDomainDkimAutoconfigCtrl {
     });
   }
 
-  configDkim() {
-    this.services.ExchangeDomains.getDkimSelector(
+  getDkimSelectorForCurrentState() {
+    return this.services.ExchangeDomains.getDkimSelector(
       this.$routerParams.organization,
       this.$routerParams.productId,
       this.domain.name,
-    )
+    );
+  }
+
+  postDkimFor(selectors) {
+    return selectors.map((dkimSelector, index) => {
+      return this.services.ExchangeDomains.postDkim(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.domain.name,
+        {
+          selectorName: dkimSelector,
+          autoEnableDKIM: index === 0,
+          configureDkim: true,
+        },
+      );
+    });
+  }
+
+  stepConfigureDkim() {
+    this.stepConfigureDkimFor('exchange');
+  }
+
+  getTitleDependingOnStep() {
+    return this.getTitleDependingOnStepFor('exchange');
+  }
+
+  getNextButtonDependingOnStep() {
+    return this.getNextButtonDependingOnStepFor('exchange');
+  }
+
+  getDkimName(index) {
+    return this.getDkimNameFor('exchange', index);
+  }
+
+  getDkimRecord(index) {
+    return this.getDkimRecordFor('exchange', index);
+  }
+
+  configDkim() {
+    this.this
+      .getDkimSelectorForCurrentState()
       .then((dkimSelectors) => {
-        const promises = dkimSelectors.map((dkimSelector, index) => {
-          return this.services.ExchangeDomains.postDkim(
-            this.$routerParams.organization,
-            this.$routerParams.productId,
-            this.domain.name,
-            {
-              selectorName: dkimSelector,
-              autoEnableDKIM: index === 0,
-              configureDkim: true,
-            },
-          );
-        });
+        const promises = this.postDkimFor(dkimSelectors);
         return this.services.$q.all(promises);
       })
       .then(() => {
