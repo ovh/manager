@@ -32,7 +32,6 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     super.$onInit();
     this.datagridId = 'datagridDomain';
     this.defaultFilterColumn = 'domain';
-    this.punycode = punycode;
 
     this.columnsConfig = [
       { name: 'domain', sortable: this.getSorting('domain') },
@@ -101,8 +100,8 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     );
   }
 
-  convertDomainToPunycode(domain) {
-    return this.punycode.toUnicode(domain);
+  static convertToPunycode(domain) {
+    return punycode.toUnicode(domain);
   }
 
   isIdn(domain) {
