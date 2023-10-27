@@ -1,28 +1,20 @@
-import { LoaderFunction, useLoaderData, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import Boot from '@/components/instance/Boot';
-
-export type LoaderData = {
-  instance: { id: string };
-};
-
-export const loader: LoaderFunction = async ({ request }) => {
-  const url = new URL(request.url);
-  const instanceId = url.searchParams.get('instanceId');
-
-  return {
-    instance: { id: instanceId },
-  };
-};
+import { useInstance } from '@/hooks/useInstance';
 
 export default function BootPage() {
-  const { instance } = useLoaderData() as LoaderData;
+  const { projectId } = useParams();
+  const [urlSearchParams] = useSearchParams();
+  const { data: instance } = useInstance(
+    projectId || '',
+    urlSearchParams.get('instanceId')?.toString() || '',
+  );
+
   const navigate = useNavigate();
   const onClose = () => {
     navigate('..');
   };
   return (
-    <>
-      <Boot instance={instance} onClose={() => onClose()} />
-    </>
+    <>{instance && <Boot instance={instance} onClose={() => onClose()} />}</>
   );
 }

@@ -1,3 +1,6 @@
+import { useParams } from 'react-router-dom';
+import { useInstance } from '@/hooks/useInstance';
+
 export const handle = {
   crumb: () => {
     return 'Edit';
@@ -5,5 +8,8 @@ export const handle = {
 };
 
 export default function EditPage() {
-  return <>Edit an instance</>;
+  const { projectId, instanceId } = useParams();
+  const { data: instance } = useInstance(projectId || '', instanceId || '');
+
+  return <>{instance && <p>Edit instance {instance.name}</p>}</>;
 }
