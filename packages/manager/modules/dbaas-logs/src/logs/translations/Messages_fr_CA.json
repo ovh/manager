@@ -781,5 +781,7 @@
   "streams_subscriptions_delete_error": "Une erreur est survenue lors de la suppression de l'abonnement à la ressource '{{resourceName}}': {{message}}",
   "streams_subscriptions_resource_products_ldp": "Logs Data Platform",
   "streams_subscriptions_resource_products_webhosting": "Web Hosting",
+  "streams_subscriptions_resource_products_account-api": "Espace client OVHcloud & OVHcloud API",
+  "streams_subscriptions_resource_products_account-audit": "Audit Logs OVHcloud",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service"
 }
