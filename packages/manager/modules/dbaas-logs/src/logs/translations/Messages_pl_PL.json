@@ -781,5 +781,7 @@
   "streams_subscriptions_delete_error": "Wystąpił błąd podczas usuwania subskrypcji zasobu '{{resourceName}}': {{message}}",
   "streams_subscriptions_resource_products_ldp": "Logs Data Platform",
   "streams_subscriptions_resource_products_webhosting": "Hosting",
-  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service"
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
+  "streams_subscriptions_resource_products_account-api": "Panel klienta OVHcloud &amp; OVHcloud API",
+  "streams_subscriptions_resource_products_account-audit": "Audyt logów OVHcloud"
 }
