@@ -4,6 +4,7 @@ import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
 import pickBy from 'lodash/pickBy';
 import startCase from 'lodash/startCase';
+import punycode from 'punycode';
 
 import { DEFAULT_NUMBER_OF_COLUMNS, STRING_COLUMN_OPTIONS } from './constants';
 
@@ -36,7 +37,7 @@ export const mapFilterForIceberg = (comparator, reference) =>
 export const getLink = (column, tracker) => `
   <a
     data-ng-href="{{ $ctrl.getServiceNameLink($row) }}"
-    data-ng-bind="$row.${column.property}"
+    data-ng-bind="$ctrl.convertToPunycode($row.${column.property})"
     ${tracker ? `data-track-on="click" data-track-name="${tracker}"` : ''}
   ></a>
 `;
@@ -177,6 +178,7 @@ export const getDefaultConfiguration = (
  * @resources: list of elements
  *  In order to be resolved properly, requires to add an `apiPath` resolve property
  *  corresponding to the api used
+ * @convertToPunycode: convert domain string to unicode
  * @paginationNumber: page number
  * @paginationSize: page size
  * @paginationTotalCount: total number of elements
@@ -190,6 +192,9 @@ export const getDefaultConfiguration = (
  *     - `schema` resolve property corresponding to the schema used for models
  */
 export const stateResolves = {
+  convertToPunycode: /* @ngInject */ () => (domain) => {
+    return punycode.toUnicode(domain);
+  },
   staticResources: () => false,
   resources: /* @ngInject */ (
     $q,

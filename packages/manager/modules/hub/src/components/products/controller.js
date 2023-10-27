@@ -1,8 +1,8 @@
+import punycode from 'punycode';
 import {
   DEFAULT_DISPLAYED_TILES,
   DISPLAYED_PRODUCTS_NUMBER,
 } from './constants';
-
 import { getProductListingRoute } from './listing-pages.constants';
 
 export default class ProductsController {
@@ -57,5 +57,9 @@ export default class ProductsController {
         '_top',
       );
     }
+  }
+
+  static convertToPunycode(domain) {
+    return punycode.toUnicode(domain);
   }
 }

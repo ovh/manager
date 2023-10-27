@@ -6,6 +6,7 @@ import map from 'lodash/map';
 import set from 'lodash/set';
 import some from 'lodash/some';
 import xor from 'lodash/xor';
+import punycode from 'punycode';
 
 angular.module('App').controller(
   'DomainsCtrl',
@@ -215,6 +216,10 @@ angular.module('App').controller(
           this.stepPath = '';
         }, 300);
       }
+    }
+
+    static convertToPunycode(domain) {
+      return punycode.toUnicode(domain);
     }
   },
 );
