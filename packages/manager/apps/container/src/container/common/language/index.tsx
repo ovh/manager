@@ -8,6 +8,7 @@ import LanguageList from './List';
 
 import { useShell } from '@/context';
 import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
   onChange(show: boolean): void;
@@ -20,6 +21,7 @@ function LanguageMenu({
   setUserLocale,
   userLocale = '',
 }: Props): JSX.Element {
+  const { i18n } = useTranslation();
   const ref = useRef();
   const shell = useShell();
   const [show, setShow] = useState(false);
@@ -41,6 +43,7 @@ function LanguageMenu({
     shell.getPlugin('i18n').setLocale(locale);
     setShow(false);
     setUserLocale(locale);
+    i18n.changeLanguage(locale);
   };
 
   useEffect(() => {
