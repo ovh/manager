@@ -637,6 +637,7 @@ export default async (containerEl, shellClient) => {
         });
       },
     )
+    .run(($trace) => $trace.enable())
     .provider(
       'DOMAIN_ORDER_URL',
       /* @ngInject */ (coreConfigProvider) => ({

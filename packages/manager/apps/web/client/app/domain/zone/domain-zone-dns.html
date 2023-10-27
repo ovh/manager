@@ -121,7 +121,6 @@
                     data-translate="domain_tab_ZONE_title"
                 ></p>
                 <p data-translate="domain_tab_ZONE_info"></p>
-
                 <div
                     class="alert alert-info mt-5"
                     role="alert"
@@ -132,6 +131,14 @@
                 <oui-spinner
                     data-ng-if="ctrlDomainTabZoneDns.loading.table && !ctrlDomainTabZoneDns.hasResult"
                 ></oui-spinner>
+
+                <button
+                    class="btn btn-default mt-4"
+                    type="button"
+                    data-translate="see_dns_history"
+                    data-ng-click="ctrlDomainTabZoneDns.navigateToZoneHistory()"
+                    data-ng-if="!ctrlDomainTabZoneDns.loading.table && ctrlDomainTabZoneDns.hasResult"
+                ></button>
 
                 <div data-ng-if="ctrlDomainTabZoneDns.hasResult">
                     <div class="row mt-5">

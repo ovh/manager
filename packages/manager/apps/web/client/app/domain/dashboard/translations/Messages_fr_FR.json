@@ -214,6 +214,7 @@
   "domain_tab_ZONE_no_defaut_dns_used": "Vous utilisez actuellement les serveurs DNS suivants :",
   "domain_tab_ZONE_set_defaut_dns": "Pour que votre zone DNS ci-dessous soit prise en compte, veuillez utiliser les serveurs DNS suivants :",
   "domain_tab_ZONE_title": "Vous pouvez voir ici la configuration des diverses entrées de votre domaine.",
+  "see_dns_history": "Voir l'historique de ma zone DNS",
   "domain_tab_ZONE_info": "Vous avez également la possibilité de configurer ces entrées pour relier votre domaine à vos différents services (bouton « ajouter une entrée »).",
   "domain_tab_ZONE_status_error": "Nos systèmes ont détecté des erreurs pendant la vérification de votre zone. <strong>Vos dernières modifications n'ont donc pas été prises en compte</strong>. Afin d'y remédier, veuillez corriger les problèmes suivants :",
   "domain_tab_ZONE_status_warning": "Le déploiement de votre zone est effectué. Cependant les anomalies suivantes ont été détectées :",
