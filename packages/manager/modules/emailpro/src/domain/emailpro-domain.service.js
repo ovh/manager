@@ -199,6 +199,22 @@ export default /* @ngInject */ function EmailProDomains(
       .then(({ data }) => data);
   };
 
+  this.disableDkim = function disableDkim(serviceName, domain, selector) {
+    return $http
+      .post(
+        `/email/pro/${serviceName}/domain/${domain}/dkim/${selector}/disable`,
+      )
+      .then(({ data }) => data);
+  };
+
+  this.enableDkim = function enableDkim(serviceName, domain, selector) {
+    return $http
+      .post(
+        `/email/pro/${serviceName}/domain/${domain}/dkim/${selector}/enable`,
+      )
+      .then(({ data }) => data);
+  };
+
   this.getDkimSelectorName = function getDkimSelectorName(
     serviceName,
     domain,
