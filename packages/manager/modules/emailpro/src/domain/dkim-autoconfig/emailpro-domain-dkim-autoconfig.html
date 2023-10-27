@@ -3,34 +3,18 @@
         data-ng-if="!ctrl.dkimForNoOvhCloud"
         data-wizard
         data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="ctrl.configDkim.bind(ctrl)"
+        data-wizard-on-finish="ctrl.onFinishDkim.bind(ctrl)"
+        data-wizard-confirm-button-text="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.OK ?
+        'emailpro_tab_domain_diagnostic_dkim_deactivate' : 'emailpro_tab_domain_diagnostic_dkim_activate' | translate"
         data-wizard-hide-confirm-button="ctrl.hideConfirmButton"
-        data-wizard-title="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOK ?
-            'emailpro_tab_domain_diagnostic_dkim_title_error' :
-            'emailpro_tab_domain_diagnostic_dkim_title_activation' | translate"
+        data-wizard-title="ctrl.getTitleForWizard()"
     >
         <div data-wizard-step>
             <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
-
             <div data-ng-if="!ctrl.loading">
-                <!-- if configuration nok -->
                 <p
-                    data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOK"
-                    data-translate="emailpro_tab_domain_diagnostic_dkim_configuration_nok"
+                    data-translate="{{ctrl.getBodyText(ctrl.dkimStatus)}}"
                     data-translate-values="{ url: ctrl.dkimGuideLink }"
-                ></p>
-
-                <!-- if unconfigured without OVHcloud domain -->
-                <p
-                    data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOT_CONFIGURED && !ctrl.domainDiag.isOvhDomain"
-                    data-translate="emailpro_tab_domain_diagnostic_dkim_activation_no_ovhcloud"
-                    data-translate-values="{ url: ctrl.dkimGuideLink }"
-                ></p>
-
-                <!-- if unconfigured with OVHcloud domain -->
-                <p
-                    data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOT_CONFIGURED && ctrl.domainDiag.isOvhDomain"
-                    data-translate="emailpro_tab_domain_diagnostic_dkim_activation_ovhcloud"
                 ></p>
             </div>
         </div>

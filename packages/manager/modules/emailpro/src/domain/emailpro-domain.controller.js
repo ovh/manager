@@ -5,6 +5,7 @@ import {
   GLOBAL_DKIM_STATUS,
   DKIM_STATUS,
   DKIM_MATCHING_SCHEMA_STATUS,
+  DKIM_STATUS_TO_CLASS_MAP,
 } from './emailpro-domain.constants';
 
 export default /* @ngInject */ (
@@ -22,6 +23,7 @@ export default /* @ngInject */ (
   $scope.stateOk = EmailPro.stateOk;
   $scope.GLOBAL_DKIM_STATUS = GLOBAL_DKIM_STATUS;
   $scope.DKIM_STATUS = DKIM_STATUS;
+  $scope.DKIM_STATUS_TO_CLASS_MAP = DKIM_STATUS_TO_CLASS_MAP;
 
   const init = function init() {
     $scope.loading = false;
@@ -163,23 +165,6 @@ export default /* @ngInject */ (
       );
     }
   }
-
-  $scope.setDkimColorClass = function setDkimColorClass(status) {
-    switch (status) {
-      case this.GLOBAL_DKIM_STATUS.OK:
-        return 'oui-badge_success';
-      case this.GLOBAL_DKIM_STATUS.DISABLED:
-        return 'oui-badge_warning';
-      case this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED:
-        return 'oui-background-g-100';
-      case this.GLOBAL_DKIM_STATUS.IN_PROGRESS:
-        return 'oui-badge_info';
-      case this.GLOBAL_DKIM_STATUS.NOK:
-        return 'oui-badge_error';
-      default:
-        return '';
-    }
-  };
 
   function setTooltips(paginated) {
     if (paginated && paginated.domains && paginated.domains.length) {
