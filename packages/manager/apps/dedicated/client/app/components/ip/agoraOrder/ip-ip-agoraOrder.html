@@ -98,9 +98,9 @@
                                 ></strong>
                             </h4>
                             <ovh-manager-catalog-price
-                                data-ng-if="$ctrl.ipFailoverRIPEPrice"
-                                data-price="$ctrl.ipFailoverRIPEPrice.priceInUcents"
-                                data-interval-unit="{{ $ctrl.ipFailoverRIPEPrice.intervalUnit }}"
+                                data-ng-if="$ctrl.ipFailoverPrice"
+                                data-price="$ctrl.ipFailoverPrice.priceInUcents"
+                                data-interval-unit="{{ $ctrl.ipFailoverPrice.intervalUnit }}"
                             ></ovh-manager-catalog-price>
                         </oui-select-picker-description>
                     </oui-select-picker>
@@ -128,12 +128,12 @@
                                 ></strong>
                             </h4>
                             <p
-                                data-ng-if="$ctrl.ipFailoverRIPEPrice"
+                                data-ng-if="$ctrl.ipFailoverPrice"
                                 class="text-center"
                             >
                                 <ovh-manager-catalog-price
-                                    data-price="$ctrl.ipFailoverRIPEPrice.priceInUcents"
-                                    data-interval-unit="{{ $ctrl.ipFailoverRIPEPrice.intervalUnit }}"
+                                    data-price="$ctrl.ipFailoverPrice.priceInUcents"
+                                    data-interval-unit="{{ $ctrl.ipFailoverPrice.intervalUnit }}"
                                 ></ovh-manager-catalog-price>
                                 <strong
                                     data-translate="ipv4Block_price_per_ip"
@@ -182,8 +182,8 @@
                                 >
                                 </oui-numeric>
                                 <ovh-manager-catalog-price
-                                    data-price="$ctrl.ipFailoverRIPEPrice.priceInUcents * $ctrl.model.params.selectedQuantity"
-                                    data-interval-unit="{{ $ctrl.ipFailoverRIPEPrice.intervalUnit }}"
+                                    data-price="$ctrl.ipFailoverPrice.priceInUcents * $ctrl.model.params.selectedQuantity"
+                                    data-interval-unit="{{ $ctrl.ipFailoverPrice.intervalUnit }}"
                                     data-show-zero-price="true"
                                 ></ovh-manager-catalog-price>
                             </oui-field>
