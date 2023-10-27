@@ -70,6 +70,13 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
       });
   }
 
+  hideConfirmButton() {
+    return (
+      this.dkimStatus === this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED &&
+      this.domainDiag.isOvhDomain
+    );
+  }
+
   getDkimSelectorForCurrentState() {
     return this.services.EmailProDomains.getDkimSelector(
       this.services.$stateParams.productId,
