@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       nodeId: /* @ngInject */ ($transition$) => $transition$.params().nodeId,
-      getOrderPrivateBandwidthLink: /* @ngInject */ ($state, nodeId) => () =>
+      orderPrivateBandwidthLink: /* @ngInject */ ($state, nodeId) =>
         $state.href(
           'nutanix.dashboard.nodes.node.general-info.bandwidth-private-order',
           {

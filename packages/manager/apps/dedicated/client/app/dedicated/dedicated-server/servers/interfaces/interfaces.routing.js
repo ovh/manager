@@ -10,6 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     redirectTo,
     resolve: {
+      serverService: /* @ngInject */ (Server) => Server,
       alertError: /* @ngInject */ ($timeout, $translate, Alerter) => (
         translateId,
         error,
@@ -79,7 +80,7 @@ export default /* @ngInject */ ($stateProvider) => {
             data?.baremetalServers?.storage ? data?.baremetalServers : null,
           )
           .catch(() => null),
-      trafficInformations: /* @ngInject */ (
+      trafficInformation: /* @ngInject */ (
         $q,
         $stateParams,
         ServerOrderTrafficService,
