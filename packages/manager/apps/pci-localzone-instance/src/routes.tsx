@@ -1,17 +1,29 @@
-import Layout from '@/pages/Layout';
+const lazyRouteConfig = (importFn: CallableFunction) => {
+  return {
+    lazy: async () => {
+      const { default: moduleDefault, ...moduleExports } = await importFn();
+
+      return {
+        Component: moduleDefault,
+        ...moduleExports,
+      };
+    },
+  };
+};
 
 export default [
   {
     path: '/pci/projects/:projectId/local-zones/instances',
-    element: <Layout />,
+    ...lazyRouteConfig(() => import('@/pages/Layout')),
     children: [
       {
         path: '',
-        lazy: () => import('@/pages/ListingPage'),
+        ...lazyRouteConfig(() => import('@/pages/ListingPage')),
+
         children: [
           {
             path: 'boot',
-            lazy: () => import('@/pages/BootPage'),
+            ...lazyRouteConfig(() => import('@/pages/BootPage')),
           },
           {
             path: 'stop',
@@ -37,50 +49,58 @@ export default [
       },
       {
         path: 'onboarding',
-        lazy: () => import('@/pages/OnboardingPage'),
+        ...lazyRouteConfig(() => import('@/pages/OnboardingPage')),
       },
       {
         path: 'new',
-        lazy: () => import('@/pages/NewPage'),
+        ...lazyRouteConfig(() => import('@/pages/NewPage')),
       },
       {
         path: ':instanceId',
-        id: 'instances.dashboard',
-        lazy: () => import('@/pages/instance/DashboardPage'),
+        handle: {
+          crumb: () => 'Instance Dashboard',
+        },
         children: [
           {
-            path: 'backup',
-            lazy: () => import('@/pages/BackupPage'),
+            path: '',
+            id: 'instances.dashboard',
+            ...lazyRouteConfig(() => import('@/pages/instance/DashboardPage')),
+            children: [
+              {
+                path: 'backup',
+                ...lazyRouteConfig(() => import('@/pages/BackupPage')),
+              },
+              {
+                path: 'boot',
+                ...lazyRouteConfig(() => import('@/pages/instance/BootPage')),
+              },
+              {
+                path: 'stop',
+                element: 'Stop',
+              },
+              {
+                path: 'soft-reboot',
+                element: 'Hot reboot',
+              },
+              {
+                path: 'hard-reboot',
+                element: 'Cold reboot',
+              },
+              {
+                path: 'delete',
+                element: 'Delete',
+              },
+              {
+                path: 'attach-volume',
+                element: 'Attach a volume',
+              },
+            ],
           },
           {
-            path: 'boot',
-            lazy: () => import('@/pages/instance/BootPage'),
-          },
-          {
-            path: 'stop',
-            element: 'Stop',
-          },
-          {
-            path: 'soft-reboot',
-            element: 'Hot reboot',
-          },
-          {
-            path: 'hard-reboot',
-            element: 'Cold reboot',
-          },
-          {
-            path: 'delete',
-            element: 'Delete',
-          },
-          {
-            path: 'attach-volume',
-            element: 'Attach a volume',
+            path: 'edit',
+            ...lazyRouteConfig(() => import('@/pages/instance/EditPage')),
           },
         ],
-      },
-      {
-        path: ':instanceId/edit',
-        lazy: () => import('@/pages/instance/EditPage'),
       },
     ],
   },

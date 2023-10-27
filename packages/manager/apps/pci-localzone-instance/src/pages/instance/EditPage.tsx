@@ -1,11 +1,9 @@
 export const handle = {
   crumb: () => {
-    return "Edit";
+    return 'Edit';
   },
 };
 
-export function Component() {
-  return <>Edit an instance</>
+export default function EditPage() {
+  return <>Edit an instance</>;
 }
-
-Component.displayName = "EditPage";

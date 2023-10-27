@@ -1,5 +1,3 @@
-export function Component() {
-  return <>Onboarding page</>
+export default function OnboardingPage() {
+  return <>Onboarding page</>;
 }
-
-Component.displayName = 'OnboardingPage';
