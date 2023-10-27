@@ -44,11 +44,10 @@ export default /* @ngInject */ ($stateProvider) => {
             loadbalancer.vipNetworkId,
             loadbalancer.vipSubnetId,
           ),
-        openEditNameModal: /* @ngInject */ ($state) => () => {
+        goToEditName: /* @ngInject */ ($state) => () =>
           $state.go(
             'octavia-load-balancer.loadbalancer.general-information.edit-name',
-          );
-        },
+          ),
       },
       atInternet: {
         rename: `${TRACKING_NAME}`,

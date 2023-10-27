@@ -7,7 +7,7 @@ export default {
     flavor: '<',
     network: '<',
     subnet: '<',
-    openEditNameModal: '<',
+    goToEditName: '<',
   },
   controller,
   template,

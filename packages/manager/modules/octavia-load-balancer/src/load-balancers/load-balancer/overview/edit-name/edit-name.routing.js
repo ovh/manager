@@ -19,31 +19,11 @@ export default /* @ngInject */ ($stateProvider) => {
             {},
             reload ? { reload: 'octavia-load-balancer.loadbalancer' } : null,
           ),
-        trackingSuffix: () => `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::rename`,
-        trackCancel: /* @ngInject */ (atInternet, trackingSuffix) => () => {
+        trackAction: /* @ngInject */ (atInternet) => (hit) =>
           atInternet.trackClick({
-            name: `${trackingSuffix}::cancel`,
+            name: `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::rename${hit}`,
             type: 'action',
-          });
-        },
-        trackConfirm: /* @ngInject */ (atInternet, trackingSuffix) => () => {
-          atInternet.trackClick({
-            name: `${trackingSuffix}::confirm`,
-            type: 'action',
-          });
-        },
-        trackSuccess: /* @ngInject */ (atInternet, trackingSuffix) => () => {
-          atInternet.trackClick({
-            name: `${trackingSuffix}-success`,
-            type: 'action',
-          });
-        },
-        trackFailure: /* @ngInject */ (atInternet, trackingSuffix) => () => {
-          atInternet.trackClick({
-            name: `${trackingSuffix}-error`,
-            type: 'action',
-          });
-        },
+          }),
       },
       atInternet: {
         rename: `${TRACKING_NAME}::rename`,
