@@ -255,7 +255,7 @@
                                     <!-- dkim -->
                                     <button
                                         class="oui-badge"
-                                        data-ng-class="setDkimColorClass(dkimGlobalStatus(domain))"
+                                        data-ng-class="DKIM_STATUS_TO_CLASS_MAP[(dkimGlobalStatus(domain))]"
                                         data-ng-click="setAction('emailpro/domain/dkim-autoconfig/emailpro-domain-dkim-autoconfig', {
                                             domain,
                                             constant: { GLOBAL_DKIM_STATUS, DKIM_STATUS },
