@@ -1,19 +1,17 @@
-import { useNavigate, useRouteLoaderData } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Boot from '@/components/instance/Boot';
-import { LoaderData as DashboardLoaderData } from './DashboardPage';
+import { useInstance } from '@/hooks/useInstance';
 
 export default function BootPage() {
-  const { instance } = useRouteLoaderData(
-    'instances.dashboard',
-  ) as DashboardLoaderData;
+  const { projectId, instanceId } = useParams();
+  const { data: instance } = useInstance(projectId || '', instanceId || '');
+
   const navigate = useNavigate();
 
   const onClose = () => {
     navigate('..');
   };
   return (
-    <>
-      <Boot instance={instance} onClose={() => onClose()} />
-    </>
+    <>{instance && <Boot instance={instance} onClose={() => onClose()} />}</>
   );
 }

@@ -1,15 +1,7 @@
-import { Outlet, LoaderFunction } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import BreadCrumbs from '@/components/BreadCrumbs';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 import HidePreloader from '@/core/HidePreloader';
-
-export const loader: LoaderFunction = async ({ params }) => {
-  const { projectId } = params;
-
-  return {
-    project: { id: projectId },
-  };
-};
 
 export default function Layout() {
   return (
@@ -23,5 +15,11 @@ export default function Layout() {
 }
 
 export const ErrorBoundary = () => {
-  return <h1>Error</h1>;
+  return (
+    <>
+      <h1>Error</h1>
+      <ShellRoutingSync />
+      <HidePreloader />
+    </>
+  );
 };

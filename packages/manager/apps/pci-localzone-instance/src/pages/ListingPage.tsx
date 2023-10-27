@@ -1,10 +1,16 @@
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import Listing from '@/components/Listing';
+import useProject from '@/hooks/useProject';
+import useInstances from '@/hooks/useInstance';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
+
+  const { projectId } = useParams();
+  const { data: project } = useProject(projectId || '');
+  const { data: instances } = useInstances(projectId || '');
 
   const headers = [
     {
@@ -12,35 +18,39 @@ export default function ListingPage() {
       property: 'id',
     },
     {
-      title: 'Localisation',
-      property: 'localization',
-    },
-  ];
-
-  const items = [
-    {
-      id: '1234',
-      localization: 'GRA11',
+      title: 'Name',
+      property: 'name',
     },
     {
-      id: '2345',
-      localization: 'DE1',
+      title: 'Region',
+      property: 'region',
+    },
+    {
+      title: 'Status',
+      property: 'status',
     },
   ];
 
   return (
     <>
       Listing page {t('hello')}
+      {project && <p>Project {project.description}</p>}
       <Link to="./new">Create an instance</Link>
-      <Listing headers={headers} items={items} />
-      <ul>
-        <li>
-          <Link to="./1234">Instance Dashboard</Link>
-        </li>
-        <li>
-          <Link to="./boot?instanceId=1234">Boot an instance</Link>
-        </li>
-      </ul>
+      {instances && (
+        <>
+          <Listing headers={headers} items={instances} />
+          <ul>
+            <li>
+              <Link to={`./${instances[0].id}`}>Instance Dashboard</Link>
+            </li>
+            <li>
+              <Link to={`./boot?instanceId=${instances[0].id}`}>
+                Boot an instance
+              </Link>
+            </li>
+          </ul>
+        </>
+      )}
       <Outlet />
     </>
   );
