@@ -1,3 +1,4 @@
+import startCase from 'lodash/startCase';
 import datagridToIcebergFilter from '../../logs-iceberg.utils';
 
 export default class LogsStreamsSubscriptionsCtrl {
@@ -31,6 +32,17 @@ export default class LogsStreamsSubscriptionsCtrl {
         this.LogsStreamsService.getStream(this.serviceName, this.streamId),
     });
     this.stream.load();
+  }
+
+  getResourceName(subscription) {
+    const key = `streams_subscriptions_resource_products_${subscription.resource.type}`;
+    const translated = this.$translate.instant(key);
+    if (translated === key) {
+      return startCase(
+        subscription.resource.type.replace('-', ' ').toLowerCase(),
+      );
+    }
+    return translated;
   }
 
   /**
