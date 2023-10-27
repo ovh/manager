@@ -12,9 +12,7 @@ function handleAuthenticationError(error: AxiosError) {
   const hasCustomCredentials = !!response.config.headers?.Authorization;
 
   if (status === 403) {
-    const message = (response.data as {
-      message: string;
-    })?.message;
+    const message = (response.data as { message: string })?.message;
     if (
       message === 'This session is forbidden' ||
       message === 'This session is invalid'
@@ -37,7 +35,7 @@ function handleAuthenticationError(error: AxiosError) {
     return new Promise(() => {});
   }
 
-  return error;
+  return Promise.reject(error);
 }
 
 export const v6 = axios.create({
