@@ -237,20 +237,12 @@ export default class NewAccountFormController {
         }
 
         if (this.siretFieldIsAvailable()) {
-          rules.push(
-            {
-              fieldName: FIELD_NAME_LIST.corporationType,
-              fieldType: 'select',
-              mandatory: true,
-              initialValue: this.model.corporationType,
-            },
-            {
-              fieldName: FIELD_NAME_LIST.companyNationalIdentificationNumber,
-              fieldType: 'text',
-              mandatory: false,
-              initialValue: this.model.companyNationalIdentificationNumber,
-            },
-          );
+          rules.push({
+            fieldName: FIELD_NAME_LIST.corporationType,
+            fieldType: 'select',
+            mandatory: true,
+            initialValue: this.model.corporationType,
+          });
           this.formatSiretRules(rules);
         }
 
@@ -481,7 +473,6 @@ export default class NewAccountFormController {
           regularExpression: rule.regularExpression,
         };
       });
-
     return this.siretModuleRules;
   }
 
