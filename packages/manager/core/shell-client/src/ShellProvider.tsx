@@ -1,25 +1,31 @@
-import { initShellClient } from "@ovh-ux/shell";
-import { ReactNode, useEffect, useState } from "react";
-import { ShellContext } from "./ShellContext";
+import { initShellClient } from '@ovh-ux/shell';
+import { ReactNode } from 'react';
+import { Environment } from '@ovh-ux/manager-config';
+import { ShellContext } from './ShellContext';
 
-export const ShellProvider = ({ appName, children }: { appName: string, children: ReactNode }) => {
-  const [shellContextValue, setShellContextValue] = useState(null);
+export const initShellContext = async (appName: string) => {
+  const shell = await initShellClient(appName);
+  const environment = await shell.environment.getEnvironment();
+  return { shell, environment };
+};
 
-  useEffect(() => {
-    const init = async () => {
-      const shell = await initShellClient(appName);
-      const environment = await shell.environment.getEnvironment();
-      setShellContextValue({ shell, environment });
-    };
-    init();
-  }, []);
+export const ShellProvider = ({
+  client,
+  children,
+}: {
+  client: {
+    shell: unknown;
+    environment: typeof Environment;
+  };
+  children: ReactNode;
+}) => {
+  return (
+    <>
+      {client && (
+        <ShellContext.Provider value={client}>{children}</ShellContext.Provider>
+      )}
+    </>
+  );
+};
 
-  return <>
-    {shellContextValue &&
-      <ShellContext.Provider value={shellContextValue}>
-        {children}
-      </ShellContext.Provider>}
-  </>
-}
-
-export default ShellProvider;
+export default initShellContext;

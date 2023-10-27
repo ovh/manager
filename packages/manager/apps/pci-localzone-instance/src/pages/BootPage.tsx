@@ -1,5 +1,5 @@
-import Boot from "@/components/instance/Boot";
-import { LoaderFunction, useLoaderData, useNavigate } from "react-router-dom";
+import { LoaderFunction, useLoaderData, useNavigate } from 'react-router-dom';
+import Boot from '@/components/instance/Boot';
 
 export type LoaderData = {
   instance: { id: string };
@@ -7,22 +7,22 @@ export type LoaderData = {
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
-  const instanceId = url.searchParams.get("instanceId");
+  const instanceId = url.searchParams.get('instanceId');
 
   return {
-    instance: { id: instanceId }
-  }
-}
+    instance: { id: instanceId },
+  };
+};
 
-export function Component() {
+export default function BootPage() {
   const { instance } = useLoaderData() as LoaderData;
   const navigate = useNavigate();
   const onClose = () => {
     navigate('..');
-  }
-  return <>
-    <Boot instance={instance} onClose={() => onClose()}/>
-  </>
+  };
+  return (
+    <>
+      <Boot instance={instance} onClose={() => onClose()} />
+    </>
+  );
 }
-
-Component.displayName = 'BootPage';
