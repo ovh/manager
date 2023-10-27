@@ -37,7 +37,7 @@ export class MscTailLogs implements IMscTailLogs {
 
   @Prop() public limit = DEFAULT_LOGS_LIMIT;
 
-  @Prop() public apiVersion = 'v6' as ApiVersion;
+  @Prop() public apiVersion: ApiVersion = 'v6' as ApiVersion;
 
   @Prop() public refreshInterval = DEFAULT_LOGS_REFRESH_INTERVAL;
 
