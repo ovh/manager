@@ -165,8 +165,7 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
   }
 
   configDkim() {
-    this.this
-      .getDkimSelectorForCurrentState()
+    this.getDkimSelectorForCurrentState()
       .then((dkimSelectors) => {
         const promises = this.postDkimFor(dkimSelectors);
         return this.services.$q.all(promises);
