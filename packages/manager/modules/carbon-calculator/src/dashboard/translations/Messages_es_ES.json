@@ -6,6 +6,10 @@
   "carbon_calculator_dashboard_carbon_balance_operations": "Operaciones",
   "carbon_calculator_dashboard_carbon_balance_greenhouse_gas": "Emisión de gases de efecto invernadero",
   "carbon_calculator_dashboard_carbon_balance_explanation": "OVHcloud incluye todas las fuentes emisoras de CO2 equivalente, con datos proporcionados por la fórmula:",
-  "carbon_calculator_dashboard_billing_explanation": "El informe incluye las emisiones de gases de efecto invernadero del mes anterior:<ul><li>de los servicios de las <strong>infraestructuras Baremetal</strong></ul></li>de los que usted es el <strong>contacto de facturación</strong>.",
-  "carbon_calculator_dashboard_billing_download": "Descargar mi huella digital de {{month}}"
+  "carbon_calculator_dashboard_billing_explanation": "El informe incluye las emisiones de gases de efecto invernadero del mes anterior:",
+  "carbon_calculator_dashboard_billing_download": "Descargar mi huella de {{month}}",
+  "carbon_calculator_dashboard_billing_explanation_hpc": "Hosted Private Cloud",
+  "carbon_calculator_dashboard_billing_explanation_baremetal": "infraestructura Bare Metal",
+  "carbon_calculator_dashboard_billing_explanation_service": "de sus servicios <strong>{{serviceName}}</strong>",
+  "carbon_calculator_dashboard_billing_explanation_contact": "de los que usted es el <strong>contacto de facturación</strong>"
 }
