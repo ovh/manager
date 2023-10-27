@@ -781,5 +781,7 @@
   "streams_subscriptions_delete_error": "Ocorreu um erro aquando da eliminação da subscrição do recurso '{{resourceName}}': {{message}}",
   "streams_subscriptions_resource_products_ldp": "Logs Data Platform",
   "streams_subscriptions_resource_products_webhosting": "Alojamento web",
-  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes"
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes",
+  "streams_subscriptions_resource_products_account-api": "Área de Cliente OVHcloud &amp; OVHcloud API",
+  "streams_subscriptions_resource_products_account-audit": "Auditoria Logs OVHcloud"
 }
