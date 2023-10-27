@@ -1,6 +1,3 @@
-export function Component() {
-  return <>New page
-  </>
+export default function NewPage() {
+  return <>New page</>;
 }
-
-Component.displayName = 'NewPage';

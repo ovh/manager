@@ -1,7 +1,11 @@
 import { Outlet, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import Listing from '@/components/Listing';
 
-export function Component() {
+export default function ListingPage() {
+  const { t } = useTranslation('common');
+
   const headers = [
     {
       title: 'ID',
@@ -26,7 +30,7 @@ export function Component() {
 
   return (
     <>
-      Listing page
+      Listing page {t('hello')}
       <Link to="./new">Create an instance</Link>
       <Listing headers={headers} items={items} />
       <ul>
@@ -41,7 +45,3 @@ export function Component() {
     </>
   );
 }
-
-Component.displayName = 'ListingPage';
-
-export default Component;
