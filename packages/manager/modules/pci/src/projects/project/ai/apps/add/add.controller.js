@@ -373,4 +373,9 @@ export default class AppAddController {
         this.isAdding = false;
       });
   }
+
+  goToUserTokens() {
+    this.trackApps(`banner-manage-users-tokens`);
+    this.goToUsersAndTokens();
+  }
 }
