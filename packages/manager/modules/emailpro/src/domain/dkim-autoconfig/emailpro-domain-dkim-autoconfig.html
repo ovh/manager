@@ -2,7 +2,7 @@
     <div
         data-ng-if="!ctrl.dkimForNoOvhCloud"
         data-wizard
-        data-wizard-on-cancel="ctrl.resetAction.bind(ctrl)"
+        data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="ctrl.configDkim.bind(ctrl)"
         data-wizard-hide-confirm-button="ctrl.hideConfirmButton"
         data-wizard-title="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOK ?
@@ -64,7 +64,7 @@
                 data-wizard-step
                 data-wizard-step-on-load="ctrl.loadDataForDkim.bind(ctrl)"
                 data-wizard-step-on-next="ctrl.getDkimSelector.bind(ctrl)"
-                data-wizard-step-valid="ctrl.isStepConfigureValid.bind(ctrl)"
+                data-wizard-step-valid="ctrl.isStepConfigureValid"
             >
                 <div class="col-md-12" data-ng-if="ctrl.loading">
                     <oui-spinner></oui-spinner>
@@ -84,7 +84,7 @@
                     data-translate="emailpro_tab_domain_diagnostic_dkim_configurate_dns_records_info"
                 ></p>
 
-                <dl class="oui-description oui-description_horizontal">
+                <dl class="dl-horizontal dl-md">
                     <dt
                         data-translate="emailpro_tab_domain_diagnostic_dkim_text_field"
                     ></dt>
