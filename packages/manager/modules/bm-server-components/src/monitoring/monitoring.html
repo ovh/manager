@@ -1,0 +1,29 @@
+<oui-modal
+    data-heading="{{:: 'server_monitoring_modal_title' | translate }}"
+    data-primary-label="{{:: 'wizard_confirm' | translate }}"
+    data-secondary-label="{{:: 'wizard_cancel' | translate }}"
+    data-primary-action="$ctrl.update()"
+    data-secondary-action="$ctrl.onCloseClick()"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading || $ctrl.isUpdating"
+>
+    <p data-translate="server_monitoring_modal_intro"></p>
+
+    <oui-radio
+        data-name="monitoring-status"
+        data-model="$ctrl.selectedOption"
+        data-value="option"
+        data-ng-repeat="option in $ctrl.monitoringOptions track by $index"
+    >
+        <oui-radio-label>
+            <span
+                data-translate="server_monitoring_modal_status_{{option.status}}"
+            ></span>
+        </oui-radio-label>
+        <oui-radio-description>
+            <span
+                data-translate="server_monitoring_modal_description_status_{{option.status}}"
+            ></span>
+        </oui-radio-description>
+    </oui-radio>
+</oui-modal>
