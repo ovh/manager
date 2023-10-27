@@ -64,7 +64,7 @@
                 data-wizard-step
                 data-wizard-step-on-load="ctrl.loadDataForDkim.bind(ctrl)"
                 data-wizard-step-on-next="ctrl.getDkimSelector.bind(ctrl)"
-                data-wizard-step-valid="ctrl.isStepConfigureValid"
+                data-wizard-step-valid="ctrl.isStepConfigureValid.bind(ctrl)"
             >
                 <div class="col-md-12" data-ng-if="ctrl.loading">
                     <oui-spinner></oui-spinner>
