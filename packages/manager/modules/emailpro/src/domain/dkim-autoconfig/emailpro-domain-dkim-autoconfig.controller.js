@@ -92,7 +92,7 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
         {
           selectorName: dkimSelector,
           autoEnableDKIM: index === 0,
-          configureDkim: true,
+          configureDkim: !this.dkimForNoOvhCloud,
         },
       );
     });
