@@ -19,9 +19,10 @@ export default {
     specifications: '<',
     resiliatePublicBandwidthLink: '<',
     resiliatePrivateBandwidthLink: '<',
-    trafficInformations: '<',
+    trafficInformation: '<',
     technicalDetails: '<',
     urls: '<',
     user: '<',
+    serverService: '<',
   },
 };

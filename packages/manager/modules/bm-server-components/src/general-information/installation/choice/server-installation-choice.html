@@ -1,0 +1,55 @@
+<oui-modal
+    data-heading="{{ :: 'server_configuration_installation_title' | translate }}"
+    data-loading="$ctrl.loading"
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-action="$ctrl.goInstall()"
+    data-primary-label="{{ 'common_next' | translate }}"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{ 'common_cancel' | translate }}"
+>
+    <p
+        data-ng-bind-html="'server_configuration_installation_info' | translate:{ t0: $ctrl.server.name }"
+    ></p>
+    <div
+        class="alert alert-warning"
+        role="alert"
+        data-translate="server_configuration_installation_warning"
+    ></div>
+
+    <oui-radio
+        name="choiceInstall"
+        data-model="$ctrl.choice.value"
+        data-value="$ctrl.choice.ovh"
+    >
+        <oui-radio-label>
+            <span
+                data-translate="server_configuration_installation_ovhinstall"
+            ></span
+        ></oui-radio-label>
+    </oui-radio>
+
+    <oui-radio
+        name="choiceInstall"
+        data-model="$ctrl.choice.value"
+        data-value="$ctrl.choice.gabarit"
+    >
+        <oui-radio-label>
+            <span
+                data-translate="server_configuration_installation_gabarit"
+            ></span
+        ></oui-radio-label>
+    </oui-radio>
+
+    <oui-radio
+        data-ng-if="$ctrl.isByoiAvailable"
+        name="choiceInstall"
+        data-model="$ctrl.choice.value"
+        data-value="$ctrl.choice.image"
+    >
+        <oui-radio-label>
+            <span
+                data-translate="server_configuration_installation_image"
+            ></span
+        ></oui-radio-label>
+    </oui-radio>
+</oui-modal>

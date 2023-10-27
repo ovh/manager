@@ -3,7 +3,7 @@ import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
 
-import { MONITORING_STATUSES, DC_2_ISO } from './dashboard/dashboard.constants';
+import { DC_2_ISO, MONITORING_STATUSES } from './servers.constants';
 
 export default class ServersCtrl {
   /* @ngInject */

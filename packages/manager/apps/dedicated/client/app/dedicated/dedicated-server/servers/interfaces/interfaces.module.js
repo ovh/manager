@@ -2,6 +2,8 @@ import {
   serverBandwidthTile,
   serverOla,
   serverNetworkInterfaces,
+  serverConsumptionTile,
+  serverMrtgTile,
 } from '@ovh-ux/manager-bm-server-components';
 
 import component from './interfaces.component';
@@ -22,6 +24,8 @@ angular
     serverBandwidthTile,
     serverOla,
     serverNetworkInterfaces,
+    serverConsumptionTile,
+    serverMrtgTile,
   ])
   .component('dedicatedServerInterfaces', component)
   .config(routing)
