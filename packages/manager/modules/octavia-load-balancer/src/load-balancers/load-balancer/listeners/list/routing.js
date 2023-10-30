@@ -27,6 +27,18 @@ export default /* @ngInject */ ($stateProvider) => {
         });
         $state.go('octavia-load-balancer.loadbalancer.listeners.create');
       },
+      goToListenerDeletion: /* @ngInject */ ($state, atInternet) => (
+        listener,
+      ) => {
+        atInternet.trackClick({
+          name: `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::delete`,
+          type: 'action',
+        });
+        $state.go('octavia-load-balancer.loadbalancer.listeners.list.delete', {
+          listenerId: listener.id,
+          listenerName: listener.name,
+        });
+      },
     },
     atInternet: {
       rename: `${TRACKING_NAME}::${TRACKING_SUFFIX}`,

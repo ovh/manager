@@ -78,13 +78,12 @@
         ></span>
     </oui-datagrid-column>
     <oui-action-menu compact data-placement="end">
-        <oui-action-menu-item
-            data-on-click="$ctrl.goToListenerFromElipsis($row)"
+        <oui-action-menu-item data-on-click="$ctrl.goToListener($row)"
             ><span
                 data-translate="octavia_load_balancer_listeners_actions_detail"
             ></span>
         </oui-action-menu-item>
-        <oui-action-menu-item data-on-click="$ctrl.deleteListener($row)"
+        <oui-action-menu-item data-on-click="$ctrl.goToListenerDeletion($row)"
             ><span
                 data-translate="octavia_load_balancer_listeners_actions_delete"
             ></span>
