@@ -25,6 +25,12 @@ export default class OctaviaLoadBalancerListenersService {
     );
   }
 
+  deleteListener(projectId, region, listenerId) {
+    return this.$http.delete(
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/listener/${listenerId}`,
+    );
+  }
+
   getListeners(projectId, region, loadbalancerId) {
     return this.$http
       .get(
