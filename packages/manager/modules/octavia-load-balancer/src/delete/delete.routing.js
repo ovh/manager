@@ -11,8 +11,6 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       breadcrumb: () => null,
-      projectId: /* @ngInject */ ($transition$) =>
-        $transition$.params().projectId,
       loadBalancerId: /* @ngInject */ ($transition$) =>
         $transition$.params().loadBalancerId,
       loadBalancerRegion: /* @ngInject */ ($transition$) =>
@@ -23,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go(
           'octavia-load-balancer.loadbalancers',
           {},
-          reload ? { reload } : null,
+          reload ? { reload: 'octavia-load-balancer.loadbalancers' } : null,
         ),
     },
     atInternet: {
