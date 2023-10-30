@@ -1,7 +1,7 @@
 {
   "octavia_load_balancer_listeners_create_name": "Nom",
   "octavia_load_balancer_listeners_create_protocol": "Protocole",
-  "octavia_load_balancer_listeners_create_protocol_tooltip": "Protocole pour lequel le front end écoute les connexions.",
+  "octavia_load_balancer_listeners_create_protocol_tooltip": "Protocole pour lequel le front-end écoute les connexions.",
   "octavia_load_balancer_listeners_create_protocol_default": "Sélectionner un protocole",
   "octavia_load_balancer_listeners_create_port": "Port",
   "octavia_load_balancer_listeners_create_pool": "Pool par défaut (facultatif)",

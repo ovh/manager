@@ -44,17 +44,6 @@
         data-helper=":: 'octavia_load_balancer_listeners_protocol_helper' | translate"
     >
     </oui-datagrid-column>
-    <!--
-    <oui-datagrid-column
-        data-title=":: 'octavia_load_balancer_listeners_certificate' | translate"
-        data-property="createdAt"
-        data-sortable
-        data-searchable
-        data-filterable
-        data-type="date"
-    >
-    </oui-datagrid-column>
-    -->
     <oui-datagrid-column
         data-title=":: 'octavia_load_balancer_listeners_port' | translate"
         data-property="port"
@@ -73,11 +62,7 @@
     >
         <span
             class="oui-badge"
-            data-ng-class="{
-                'oui-badge_success': $value === 'active' || $value === 'deleted',
-                'oui-badge_warning': $value === 'creating' || $value === 'deleting' || $value === 'updating',
-                'oui-badge_error': $value === 'error'
-                }"
+            data-ng-class="$ctrl.PROVISIONING_STATUS_BADGES[$value]"
             data-translate="{{:: 'octavia_load_balancer_listeners_provisioning_status_' + $value }}"
         ></span>
     </oui-datagrid-column>
@@ -88,11 +73,7 @@
     >
         <span
             class="oui-badge"
-            data-ng-class="{
-                'oui-badge_success': $value === 'online',
-                'oui-badge_warning': $value === 'offline' || $value === 'degraded' || $value === 'draining' || $value === 'noMonitor',
-                'oui-badge_error': $value === 'error'
-                }"
+            data-ng-class="$ctrl.OPERATING_STATUS_BADGES[$value]"
             data-translate="{{:: 'octavia_load_balancer_listeners_operating_status_' + $value }}"
         ></span>
     </oui-datagrid-column>

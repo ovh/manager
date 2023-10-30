@@ -1,4 +1,8 @@
-import { PROTOCOLS, LISTENER_POOL_PROTOCOL_COMBINATION } from './constants';
+import {
+  PROTOCOLS,
+  PROTOCOLS_PORT,
+  LISTENER_POOL_PROTOCOL_COMBINATION,
+} from './constants';
 
 export default class OctaviaLoadBalancerListenersCtrl {
   /* @ngInject */
@@ -7,10 +11,10 @@ export default class OctaviaLoadBalancerListenersCtrl {
     this.Alerter = Alerter;
     this.$translate = $translate;
     this.PROTOCOLS = PROTOCOLS;
-    this.loading = false;
   }
 
   $onInit() {
+    this.loading = false;
     this.model = {
       loadbalancerId: this.loadbalancerId,
       name: '',
@@ -19,19 +23,16 @@ export default class OctaviaLoadBalancerListenersCtrl {
       pool: null,
     };
     this.filteredPools = this.filterPools();
+    this.protocols = Object.values(PROTOCOLS);
   }
 
   onProtocolChange() {
-    if (this.model.protocol === 'http') {
-      this.model.port = 80;
-    } else if (this.model.protocol === 'https') {
-      this.model.port = 443;
-    }
+    this.model.port = PROTOCOLS_PORT[this.model.protocol];
     this.filteredPools = this.filterPools();
     if (
       (this.model.pool &&
         !this.filteredPools.find((pool) => pool.id === this.model.pool.id)) ||
-      this.model.protocol === 'prometheus'
+      this.model.protocol === this.PROTOCOLS.PROMETHEUS
     ) {
       this.model.defaultPoolId = null;
     }

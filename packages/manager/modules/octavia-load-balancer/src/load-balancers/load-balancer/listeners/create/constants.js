@@ -1,6 +1,14 @@
 export const TRACKING_SUFFIX = 'listeners';
 
-export const PROTOCOLS = ['http', 'https', 'tcp', 'udp', 'prometheus'];
+export const PROTOCOLS = {
+  HTTP: 'http',
+  HTTPS: 'https',
+  TCP: 'tcp',
+  UDP: 'udp',
+  PROMETHEUS: 'prometheus',
+};
+
+export const PROTOCOLS_PORT = { http: 80, https: 443 };
 
 export const LISTENER_POOL_PROTOCOL_COMBINATION = {
   http: ['http', 'proxy', 'proxyv2'],
