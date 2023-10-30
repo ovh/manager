@@ -53,8 +53,12 @@
                     >
                     </span>
                     <span
-                        data-ng-if=":: !$ctrl.isDiscoveryProject"
-                        data-translate="pci_projects_creating_long_time_wait"
+                        data-ng-if="$ctrl.isDiscoveryProject"
+                        data-translate="pci_projects_creating_long_time_wait_1"
+                    ></span>
+                    <span
+                        data-ng-if="!$ctrl.isDiscoveryProject"
+                        data-translate="pci_projects_creating_long_time_wait_2"
                     ></span>
                 </p>
 
