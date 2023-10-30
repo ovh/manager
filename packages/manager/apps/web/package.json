@@ -94,6 +94,7 @@
     "clipboard": "^2.0.4",
     "core-js": "^3.6.5",
     "df-tab-menu": "^0.3.0",
+    "diff2html": "3.4.45",
     "filesize": "^3.5.10",
     "flatpickr": "^4.6.3",
     "font-awesome": "^4.5.0",
