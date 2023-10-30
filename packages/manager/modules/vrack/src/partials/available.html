@@ -1,40 +1,43 @@
-<div id="vrack__available_part">
-    <h2 class="vrack__section-title">
-        <span data-translate="vrack_your_services"></span>
+<h2 class="vrack__section-title">
+    <span data-translate="vrack_your_services"></span>
+</h2>
+
+<ul class="vrack__service-type-list">
+    <li
+        class="vrack__service-fetching"
+        data-ng-if="$ctrl.getAllowedServicesCounter < $ctrl.servicesFamilies.length"
+    >
+        <oui-spinner data-size="s"></oui-spinner>
+        <span class="oui-badge oui-badge_info"
+            >{{$ctrl.getAllowedServicesCounter }}/{{
+            $ctrl.servicesFamilies.length}}</span
+        >
+    </li>
+    <li class="vrack__section-type">
         <span
-            class="vrack__service-fetching"
-            data-ng-if="$ctrl.getAllowedServicesCounter < $ctrl.servicesFamilies.length"
+            class="loading"
+            data-ng-if="$ctrl.loaders.services[serviceType] == 'fetching'"
         >
             <oui-spinner data-size="s"></oui-spinner>
         </span>
-    </h2>
-
-    <ul class="vrack__service-type-list">
-        <li class="vrack__section-type">
-            <span
-                class="loading"
-                data-ng-if="$ctrl.loaders.services[serviceType] == 'fetching'"
-            >
-                <oui-spinner data-size="s"></oui-spinner>
-            </span>
-            <div class="text-center" data-ng-if="$ctrl.loaders.deleting">
-                <oui-spinner data-size="s"></oui-spinner>
-            </div>
-        </li>
-        <li
-            class="vrack__service-type"
-            data-ng-init="$ctrl.setAccordionState('available', 'types', $index, true)"
-            data-ng-repeat="serviceType in $ctrl.data.families track by serviceType"
-            data-ng-if=" !$ctrl.loaders.deleting || serviceType !== 'dedicatedServerInterface'"
-            data-ng-class="{ 'vrack__service-type_expanded': $ctrl.getAccordionState('available', 'types', $index) }"
+        <div class="text-center" data-ng-if="$ctrl.loaders.deleting">
+            <oui-spinner data-size="s"></oui-spinner>
+        </div>
+    </li>
+    <li
+        class="vrack__service-type"
+        data-ng-init="$ctrl.setAccordionState('available', 'types', $index, true)"
+        data-ng-repeat="(serviceType, services) in $ctrl.data.allowedServices track by $index"
+        data-ng-if="$ctrl.loaders.services[serviceType] == 'fetching' ||  !$ctrl.loaders.deleting"
+        data-ng-class="{ 'vrack__service-type_expanded': $ctrl.getAccordionState('available', 'types', $index) }"
+    >
+        <span
+            class="vrack__service-type-name"
+            data-ng-click="$ctrl.toggleAccordion('available', 'types', $index)"
         >
-            <span
-                class="vrack__service-type-name"
-                data-ng-click="$ctrl.toggleAccordion('available', 'types', $index)"
-            >
-                <i
-                    class="vrack__service-type-icon"
-                    data-ng-class="{
+            <i
+                class="vrack__service-type-icon"
+                data-ng-class="{
                 'ovh-font ovh-font-dedicatedCloud': serviceType === 'dedicatedCloud',
                 'oui-icon oui-icon-cloud-essential_concept': serviceType === 'managedBareMetal',
                 'ovh-font ovh-font-public-cloud': serviceType === 'cloudProject',
@@ -43,51 +46,76 @@
                 'ovh-font ovh-font-server': serviceType === 'dedicatedServer' || serviceType === 'dedicatedServerInterface',
                 'ovh-font ovh-font-network': serviceType === 'dedicatedConnect',
                 'ovh-font ovh-font-vRack': serviceType === 'legacyVrack'}"
-                >
-                </i>
-                <span data-ng-bind="::$ctrl.getDisplayName(serviceType)"></span>
-                <span
-                    class="loading"
-                    data-ng-if="$ctrl.loaders.services[serviceType] == 'fetching'"
-                >
-                    <oui-spinner data-size="s"></oui-spinner>
-                </span>
-            </span>
-            <!--            grouped list of services, in the case of the family has subsets of services-->
-            <ul
-                class="vrack__service-list"
-                data-ng-if="!$ctrl.vrackService.isGroupedServiceType(serviceType)"
             >
-                <li
-                    class="vrack__service d-flex"
-                    data-ng-repeat="service in $ctrl.data.allowedServices[serviceType] | orderBy: service.niceName track by $index"
-                    data-ng-click="$ctrl.toggleAddService(service.trueServiceType, service.id)"
-                    data-ng-class="{ vrack__service_selected: $ctrl.isSelected(service.trueServiceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
+            </i>
+            <span data-ng-bind="::$ctrl.getDisplayName(serviceType)"></span>
+            <span
+                class="loading"
+                data-ng-if="$ctrl.loaders.services[serviceType] == 'fetching'"
+            >
+                <oui-spinner data-size="s"></oui-spinner>
+            </span>
+            <span
+                class="error"
+                data-ng-if="$ctrl.loaders.services[serviceType] == 'error'"
+            >
+                error
+            </span>
+        </span>
+
+        <ul
+            class="vrack__service-list"
+            data-ng-if="!$ctrl.vrackService.isGroupedServiceType(serviceType)"
+        >
+            <li
+                class="vrack__service d-flex"
+                data-ng-if="serviceType === 'ip'"
+                data-ng-repeat="service in services | orderBy: service track by $index"
+                data-ng-click="$ctrl.toggleAddService('ip', service)"
+                data-ng-class="{
+                 vrack__service_selected: $ctrl.isSelected('ip', service),
+                vrack__service_pending: $ctrl.isPending(service) || $ctrl.loaders.adding || $ctrl.loaders.deleting
+                 }"
+            >
+                <span data-ng-bind="::service"></span>
+                <oui-spinner
+                    data-ng-if="$ctrl.isPending(service)"
+                    data-size="s"
+                >
+                </oui-spinner>
+            </li>
+            <li
+                class="vrack__service d-flex"
+                data-ng-if="serviceType !== 'ip'"
+                data-ng-repeat="service in services | orderBy: service.niceName track by $index"
+                data-ng-click="$ctrl.toggleAddService(service.trueServiceType, service.id)"
+                data-ng-class="{ vrack__service_selected: $ctrl.isSelected(service.trueServiceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
+            >
+                id:<span data-ng-bind="::service.id"></span> nicename:
+                <span data-ng-bind="::service.niceName"></span>
+                <oui-spinner
+                    data-ng-if="$ctrl.isPending(service.id)"
+                    data-size="s"
+                >
+                </oui-spinner>
+            </li>
+        </ul>
+        <ul
+            class="vrack__service-group-list"
+            data-ng-if="serviceType === 'dedicatedCloud' || serviceType === 'managedBareMetal'"
+        >
+            <li
+                class="vrack__service-group"
+                data-ng-class="{ 'vrack__service-group_expanded': $ctrl.getAccordionState('available', 'dedicatedCloudNetworks', $index) }"
+                data-ng-init="$ctrl.setAccordionState('available', 'dedicatedCloudNetworks', $index, true)"
+                data-ng-repeat="service in services | orderBy: service.niceName track by $index"
+            >
+                <span
+                    class="vrack__service-group-name"
+                    data-ng-click="$ctrl.toggleAccordion('available', 'dedicatedCloudNetworks', $index)"
                 >
                     <span data-ng-bind="::service.niceName"></span>
-                    <oui-spinner
-                        data-size="s"
-                        data-ng-if="$ctrl.isPending(service.id)"
-                    >
-                    </oui-spinner>
-                </li>
-            </ul>
-            <ul
-                class="vrack__service-group-list"
-                data-ng-if="serviceType === 'dedicatedCloud' || serviceType === 'managedBareMetal'"
-            >
-                <li
-                    class="vrack__service-group"
-                    data-ng-init="$ctrl.setAccordionState('available', 'dedicatedCloudNetworks', $index, true)"
-                    data-ng-class="{ 'vrack__service-group_expanded': $ctrl.getAccordionState('available', 'dedicatedCloudNetworks', $index) }"
-                    data-ng-repeat="service in $ctrl.data.allowedServices[serviceType] | orderBy: service.niceName track by $index"
-                >
-                    <span
-                        class="vrack__service-group-name"
-                        data-ng-click="$ctrl.toggleAccordion('available', 'dedicatedCloudNetworks', $index)"
-                    >
-                        <span data-ng-bind="::service.niceName"></span>
-                    </span>
+                </span>
 
                     <ul class="vrack__service-list vrack__service-list_group">
                         <li
@@ -108,5 +136,5 @@
                 </li>
             </ul>
         </li>
-    </ul>
+</ul>
 </div>
