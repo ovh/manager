@@ -1,5 +1,5 @@
 <section>
-    <oui-back-button
+    <oui-back-button data-on-click="$ctrl.goBack()"
         ><span
             data-ng-bind="::($ctrl.editing() ? 'iplb_vrack_private_network_edit_title' : 'iplb_vrack_private_network_add_title') | translate"
         ></span>
@@ -145,7 +145,7 @@
         <oui-spinner data-ng-if="$ctrl.saving"></oui-spinner>
         <oui-form-actions
             on-submit="$ctrl.submit()"
-            on-cancel="$ctrl.previousState.go()"
+            on-cancel="$ctrl.goBack()"
             submit-text="{{:: (!$ctrl.editing() ? 'iplb_add' : 'iplb_modify') | translate }}"
             cancel-text="{{:: 'iplb_cancel' | translate }}"
             data-disabled="$ctrl.privateNetworkFarms.loading || $ctrl.farms.loading || $ctrl.saving"
