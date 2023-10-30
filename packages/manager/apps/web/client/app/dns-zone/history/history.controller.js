@@ -9,6 +9,9 @@ export default class DomainDnsZoneHistoryController {
     this.$translate = $translate;
     this.$stateParams = $stateParams;
     this.$state = $state;
+
+    this.base_dns_zone_mocks = ['26 juillet 2022', '13 décembre 2022'];
+    this.modified_dns_zone_mocks = ['26 août 2023', '26 décembre 2023'];
   }
 
   goBack() {
