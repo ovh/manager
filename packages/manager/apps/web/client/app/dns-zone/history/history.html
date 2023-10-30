@@ -1,4 +1,28 @@
 <oui-back-button
     data-on-click="ctrlDomainHistoryOfZoneDns.goBack()"
 ></oui-back-button>
-<div id="destination-elem-id"></div>
+
+<div class="row">
+    <div class="col-md-6">
+        <oui-select
+            name="base"
+            model="ctrlDomainHistoryOfZoneDns.base_dns_chosen"
+            items="ctrlDomainHistoryOfZoneDns.base_dns_zone_mocks"
+            on-change=""
+            data-placeholder="{{:: 'base_dns_zone' | translate }}"
+        >
+        </oui-select>
+    </div>
+    <div class="col-md-6">
+        <oui-select
+            name="modified"
+            model="ctrlDomainHistoryOfZoneDns.modified_dns_chosen"
+            items="ctrlDomainHistoryOfZoneDns.modified_dns_zone_mocks"
+            on-change=""
+            data-placeholder="{{:: 'modified_dns_zone' | translate }}"
+        >
+        </oui-select>
+    </div>
+</div>
+
+<div class="row" id="destination-elem-id"></div>
