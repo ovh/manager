@@ -49,24 +49,50 @@ export const STATUS = {
 export const VRACK_DASHBOARD_TRACKING_PREFIX = 'vrack::dashboard';
 export const VRACK_ACTIONS_SUFFIX = 'action';
 
-export const serviceFamilies = [
-  // 'dedicatedCloud',
-  // 'dedicatedCloudDatacenter',
-  // 'dedicatedConnect',
-  'dedicatedServer',
-  // 'dedicatedServerInterface',
-  'ip',
-  // 'ipLoadbalancing',
-  // 'legacyVrack',
-  // 'ovhCloudConnect',
+/**
+ * groupes of services are used to display a sub list in the vrack available template
+ * @type {string[]}
+ */
+export const GROUPED_SERVICES_TYPES = [
+  'dedicatedCloudDatacenter',
+  'managedBareMetalDatacenter',
+  'dedicatedCloud',
+  'managedBareMetal',
+  'dedicatedServerInterface',
 ];
 
+/**
+ * the services families are referenced in the vrack allowed services API
+ * this map is the base object to gather the data from the backend in each family
+ * https://api.ovh.com/console/#/vrack/%7BserviceName%7D/allowedServices~GET
+ * @type {{legacyVrack: null, dedicatedCloudDatacenter: null, ovhCloudConnect: null, dedicatedCloud: null, dedicatedServer: null, ip: null, dedicatedConnect: null, dedicatedServerInterface: null, ipLoadbalancing: null}}
+ */
+export const SERVICE_FAMILIES_MAP = {
+  // cloudProject: null,
+
+  dedicatedCloud: null,
+  dedicatedCloudDatacenter: null,
+  dedicatedConnect: null,
+  dedicatedServer: null,
+  dedicatedServerInterface: null,
+  ip: null,
+  ipLoadbalancing: null,
+  legacyVrack: null,
+  ovhCloudConnect: null,
+};
+/**
+ * only the keys of the service families map object
+ * @type {string[]}
+ */
+export const SERVICE_FAMILIES_LIST = Object.keys(SERVICE_FAMILIES_MAP);
 export default {
   FEATURE_NAMES,
   POLLING_INTERVAL,
   STATUS,
   VRACK_URLS,
+  SERVICE_FAMILIES_LIST,
+  SERVICE_FAMILIES_MAP,
+  GROUPED_SERVICES_TYPES,
   VRACK_DASHBOARD_TRACKING_PREFIX,
   VRACK_ACTIONS_SUFFIX,
-  serviceFamilies,
 };

@@ -29,7 +29,8 @@ import angular from 'angular';
 import {
   FEATURE_NAMES,
   POLLING_INTERVAL,
-  serviceFamilies,
+  SERVICE_FAMILIES_LIST,
+  SERVICE_FAMILIES_MAP,
   STATUS,
   VRACK_DASHBOARD_TRACKING_PREFIX,
   VRACK_ACTIONS_SUFFIX,
@@ -68,7 +69,7 @@ export default class VrackMoveDialogCtrl {
     this.vrackService = CucVrackService;
     this.atInternet = atInternet;
     this.changeOwnerTrackLabel = `${VRACK_DASHBOARD_TRACKING_PREFIX}::change-owner`;
-    this.servicesFamilies = serviceFamilies;
+    this.servicesFamilies = SERVICE_FAMILIES_LIST;
   }
 
   /**
@@ -266,6 +267,7 @@ export default class VrackMoveDialogCtrl {
       deleting: false,
       moving: false,
       services: {
+        // cloudProject: 'not_fetched',
         dedicatedCloud: 'not_fetched',
         dedicatedCloudDatacenter: 'not_fetched',
         dedicatedConnect: 'not_fetched',
@@ -280,7 +282,7 @@ export default class VrackMoveDialogCtrl {
 
     this.data = {
       cloudProjects: [],
-      allowedServices: {},
+      allowedServices: Object.create(SERVICE_FAMILIES_MAP),
       vrackServices: {},
       pendingTasks: [],
     };
@@ -356,6 +358,8 @@ export default class VrackMoveDialogCtrl {
         this.$timeout.cancel(this.poller);
       }
     });
+
+    // this.testingland()
   }
 
   refreshMessage() {
@@ -375,33 +379,29 @@ export default class VrackMoveDialogCtrl {
     );
   }
 
+  /**
+   * get all families of services available to be added to a vrack
+   * @returns {any}
+   */
   getAllowedServices() {
-    console.log('#### get allowed services by Aapi');
+    /**
+     * avoid to relaunch many fetchs when they are going on
+     */
     if (this.getAllowedServicesIsPending) {
-      console.log('#### this getting is already pending, come on.');
-      return;
+      return this.data.allowedServices;
     }
     this.getAllowedServicesIsPending = true;
     this.getAllowedServicesCounter = 0;
 
-    const allServices = {
-      dedicatedServer: [],
-      dedicatedServerInterface: [],
-      dedicatedCloud: [],
-      ip: [],
-      legacyVrack: [],
-      cloudProject: [],
-      ipLoadBalancing: [],
-    };
-
-    // for each service, make a call and append the result to a literal object
+    /**
+     * for each service, make a call and append the result to a literal object
+     * this allows to see progressively the services for each families in the picker
+     * and get rid of the timeout if there are too many services fetched at once
+     */
     this.servicesFamilies.forEach((serviceFamily) => {
-      console.log('#### serviceFamily call ', serviceFamily);
-
-      console.log('#### call serviceFamily', serviceFamily);
       this.loaders.services[serviceFamily] = 'fetching';
 
-      console.log('#### allServices before filter', allServices);
+      const self = this;
       this.$http
         .get(
           `/vrack/${this.serviceName}/allowedServices?serviceFamily=${serviceFamily}`,
@@ -409,27 +409,16 @@ export default class VrackMoveDialogCtrl {
             serviceType: 'aapi',
           },
         )
-        .then((serviceFetchedResponse) => {
-          console.log(
-            '#### serviceFamily returned',
-            serviceFamily,
-            serviceFetchedResponse,
-          );
-          this.getAllowedServicesCounter += 1;
-          const OneServiceData = serviceFetchedResponse.data[serviceFamily];
-          this.loaders.services[serviceFamily] = 'fetched';
-          // each time a family is returned, we filter all the services and enrich the services list
-          // let mappedServices = this.postMappingServices(OneServiceData);
-          // console.log('###### mappedServices ', mappedServices);
-          allServices[serviceFamily] = OneServiceData;
-          const allServicesAllowed = VrackMoveDialogCtrl.filterAllowedServicesOnly(
-            allServices,
-          );
-          this.data.allowedServices = allServicesAllowed;
-          console.log('#### allServices after filter', allServicesAllowed);
+        .then((resp) => {
+          const { data } = resp;
+          self.handleOneServiceFamily(data, serviceFamily);
         })
-        .catch((error) => console.error(error));
+        .catch(() => {
+          this.loaders.services[serviceFamily] = 'error';
+        });
     });
+
+    return this.data.allowedServices;
   }
 
   postMappingServices(allServices) {
@@ -461,7 +450,6 @@ export default class VrackMoveDialogCtrl {
 
       mappedServices.dedicatedServerInterface = [];
     }
-
     return this.getAvailableServices(mappedServices);
   }
 
@@ -672,17 +660,19 @@ export default class VrackMoveDialogCtrl {
         } else if (tasks.length === 0) {
           poll = false; // no new tasks & no tasks, no need to poll
         }
+
+        this.getAllowedServices();
+        const promise = new Promise();
         /**
          * Secondly, we fetch vrack data ...
          */
         return this.$q
           .all({
-            allowedServices: this.getAllowedServices(),
+            allowedServices: promise.resolve(this.data.allowedServices),
             vrackServices: this.getVrackServices(),
           })
           .then((result) => {
             this.data.pendingTasks = tasks;
-            this.data.allowedServices = result.allowedServices;
             this.data.vrackServices = result.vrackServices;
 
             /**
@@ -1125,5 +1115,50 @@ export default class VrackMoveDialogCtrl {
         }
         this.changeOwnerUrl = VRACK_URLS.changeOwner[user.ovhSubsidiary];
       });
+  }
+
+  /**
+   * set one family data
+   * @param {Array} OneServiceData - the array of services for one family
+   * @param {string} serviceFamily - the name of the service family
+   * */
+  setOneAllowedServiceFamily(OneServiceData, serviceFamily) {
+    this.data.allowedServices[serviceFamily] = OneServiceData;
+    /**
+     *  each time a family is returned, we filter all the services and enrich the services list
+     *  then filter only the allowed ones
+     */
+    // let mappedServices = this.postMappingServices(this.data.allowedServices);
+    const allServicesAllowed = VrackMoveDialogCtrl.filterAllowedServicesOnly(
+      // mappedServices,
+      this.data.allowedServices,
+    );
+    this.data.allowedServices = allServicesAllowed;
+  }
+
+  /**
+   * handleOneServiceFamily
+   * @param serviceFetchedResponse
+   * @param serviceFamily
+   */
+  handleOneServiceFamily(serviceFetchedResponse, serviceFamily) {
+    this.getAllowedServicesCounter += 1;
+    let OneServiceData = serviceFetchedResponse;
+
+    /**
+     * the vrack service will return undefined is there is no services for the given family
+     */
+    if (!OneServiceData) {
+      OneServiceData = [];
+    }
+    this.loaders.services[serviceFamily] = 'fetched';
+    this.setOneAllowedServiceFamily(OneServiceData, serviceFamily);
+
+    /**
+     * when all the families have finished to be fetched, unlock the ability to call again the families
+     */
+    if (this.getAllowedServicesCounter === this.servicesFamilies.length) {
+      this.getAllowedServicesIsPending = false;
+    }
   }
 }
