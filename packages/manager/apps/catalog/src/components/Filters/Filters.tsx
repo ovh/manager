@@ -10,6 +10,7 @@ import FilterItem from './FilterItem';
 import LoadingFilterItem from './LoadingFilterItem';
 import './Filters.scss';
 import {
+  getFilterParamsFromUrl,
   getAvailableCategoriesWithCounter,
   getUniverses,
   Product,
@@ -42,19 +43,6 @@ const Filters: React.FC<FiltersProps> = ({
     setParentSelectedCategories(selectedCategories);
     setParentSelectedUniverses(selectedUniverses);
     onApply();
-  };
-
-  const getFilterParamsFromUrl = (
-    search: string,
-  ): { universes: string[]; categories: string[] } => {
-    const params = new URLSearchParams(search);
-    const universesURL = params.get('universes');
-    const categoriesURL = params.get('categories');
-
-    const universes = universesURL ? universesURL.split(',') : [];
-    const categories = categoriesURL ? categoriesURL.split(',') : [];
-
-    return { universes, categories };
   };
 
   useEffect(() => {

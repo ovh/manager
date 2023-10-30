@@ -12,7 +12,7 @@ import { MscTile } from '@ovhcloud/msc-react-tile';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { useCatalog } from '@/hooks/useCatalog';
 import SearchBar from '@/components/SearchBar/SearchBar';
-import { Product } from '@/utils/utils';
+import { Product, getSearchUrlFromFilterParams } from '@/utils/utils';
 import Loading from '../components/Loading/Loading';
 import Errors from '@/components/Error/Errors';
 
@@ -30,19 +30,13 @@ export default function Catalog() {
     searchText,
   });
 
-  const getSearchUrlFromFilterParams = (): string => {
-    const params = new URLSearchParams();
-    if (searchText) params.append('q', searchText);
-    if (categories.length > 0)
-      params.append('categories', categories.join(','));
-    if (universes.length > 0) params.append('universes', universes.join(','));
-
-    return params.toString();
-  };
-
   useEffect(() => {
     if (products.length > 0) {
-      const searchParams = getSearchUrlFromFilterParams();
+      const searchParams = getSearchUrlFromFilterParams(
+        searchText,
+        categories,
+        universes,
+      );
       navigate({ search: searchParams });
     }
   }, [searchText, categories, universes, products]);

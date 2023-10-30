@@ -8,6 +8,8 @@ import {
   filterByProperty,
   getAvailableCategoriesWithCounter,
   matchSearchText,
+  getFilterParamsFromUrl,
+  getSearchUrlFromFilterParams,
 } from './utils';
 
 describe('groupItemsByUniverse', () => {
@@ -156,6 +158,102 @@ describe('categories and universes with counters', () => {
         { universe: 'Universe1', count: 2 },
         { universe: 'Universe2', count: 2 },
       ]);
+    });
+  });
+});
+
+describe('getFilterParamsFromUrl', () => {
+  describe('get categories from url', () => {
+    it('should return the categories match in params', () => {
+      const result = getFilterParamsFromUrl(
+        'categories=AI+%26+machine+learning%2CContainers+and+orchestration%2CDedicated+Servers',
+      );
+      expect(result?.categories).toEqual([
+        'AI & machine learning',
+        'Containers and orchestration',
+        'Dedicated Servers',
+      ]);
+    });
+  });
+  describe('get universes from url', () => {
+    it('should return the universes match in params', () => {
+      const result = getFilterParamsFromUrl(
+        'universes=Bare+Metal+Cloud%2CHosted+Private+Cloud',
+      );
+      expect(result?.universes).toEqual([
+        'Bare Metal Cloud',
+        'Hosted Private Cloud',
+      ]);
+    });
+  });
+  describe('get categories and universes from url', () => {
+    it('should return the categories match in params', () => {
+      const result = getFilterParamsFromUrl(
+        'categories=AI+%26+machine+learning%2CContainers+and+orchestration%2CDedicated+Servers',
+      );
+      expect(result?.categories).toEqual([
+        'AI & machine learning',
+        'Containers and orchestration',
+        'Dedicated Servers',
+      ]);
+    });
+  });
+  describe('get category and universe from url', () => {
+    it('should return the universe and category match in params', () => {
+      const result = getFilterParamsFromUrl(
+        'categories=Containers+and+orchestration&universes=Bare+Metal+Cloud',
+      );
+      expect(result?.universes).toEqual(['Bare Metal Cloud']);
+      expect(result?.categories).toEqual(['Containers and orchestration']);
+    });
+  });
+});
+
+describe('getSearchUrlFromFilterParams', () => {
+  describe('get params categories from url', () => {
+    it('should return string with only categories ', () => {
+      const result = getSearchUrlFromFilterParams(
+        '',
+        [
+          'AI & machine learning',
+          'Containers and orchestration',
+          'Dedicated Servers',
+        ],
+        [],
+      );
+      expect(result).toEqual(
+        'categories=AI+%26+machine+learning%2CContainers+and+orchestration%2CDedicated+Servers',
+      );
+    });
+  });
+  describe('get params universes from url', () => {
+    it('should return string with only universes ', () => {
+      const result = getSearchUrlFromFilterParams(
+        '',
+        [],
+        ['Bare Metal Cloud', 'Hosted Private Cloud'],
+      );
+      expect(result).toEqual(
+        'universes=Bare+Metal+Cloud%2CHosted+Private+Cloud',
+      );
+    });
+  });
+  describe('get params query from url', () => {
+    it('should return string with only query ', () => {
+      const result = getSearchUrlFromFilterParams('cloud', [], []);
+      expect(result).toEqual('q=cloud');
+    });
+  });
+  describe('get params universes and category from url', () => {
+    it('should return string with only universes ', () => {
+      const result = getSearchUrlFromFilterParams(
+        '',
+        ['Containers and orchestration'],
+        ['Bare Metal Cloud'],
+      );
+      expect(result).toEqual(
+        'categories=Containers+and+orchestration&universes=Bare+Metal+Cloud',
+      );
     });
   });
 });

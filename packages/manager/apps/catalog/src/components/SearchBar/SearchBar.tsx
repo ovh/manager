@@ -69,7 +69,6 @@ const SearchBar: React.FC<SearchbarProps> = ({
                 detail: { inputValue: localSearchValue },
               } as CustomEvent)
             }
-            value={localSearchValue}
           />
         </span>
         <span>

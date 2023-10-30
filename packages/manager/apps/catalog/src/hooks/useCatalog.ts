@@ -64,7 +64,7 @@ export const useCatalog = ({
 
   useEffect(() => {
     setResults(filterProducts(products, categories, universes, searchText));
-  }, [categories, universes, searchText]);
+  }, [products, categories, universes, searchText]);
 
   return {
     products,
