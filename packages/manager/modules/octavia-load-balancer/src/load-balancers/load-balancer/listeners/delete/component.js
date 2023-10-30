@@ -1,11 +1,12 @@
-import controller from './edit-name.controller';
-import template from './edit-name.html';
+import controller from './controller';
+import template from './template.html';
 
 export default {
   bindings: {
     projectId: '<',
-    loadbalancer: '<',
     region: '<',
+    listenerId: '<',
+    listenerName: '<',
     goBack: '<',
     trackAction: '<',
     trackPage: '<',

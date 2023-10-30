@@ -27,5 +27,6 @@
   "octavia_load_balancer_listeners_operating_status_online": "online",
   "octavia_load_balancer_listeners_operating_status_offline": "offline",
   "octavia_load_balancer_listeners_actions_detail": "Editer/Voir",
-  "octavia_load_balancer_listeners_actions_delete": "Supprimer"
+  "octavia_load_balancer_listeners_actions_delete": "Supprimer",
+  "octavia_load_balancer_listener_delete_success": "Votre listener {{ listener }} a été supprimé avec succès."
 }
