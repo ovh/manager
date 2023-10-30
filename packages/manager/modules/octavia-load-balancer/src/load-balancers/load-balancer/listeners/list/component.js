@@ -5,6 +5,7 @@ export default {
   bindings: {
     listeners: '<',
     goToListenerCreation: '<',
+    goToListenerDeletion: '<',
   },
   controller,
   template,
