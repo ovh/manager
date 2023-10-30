@@ -29,31 +29,29 @@ const FilterItem: React.FC<FilterItemProps> = ({
   const resultsNumber = count ? ` (${count})` : '';
 
   return (
-    <span className="break-inside-avoid">
-      <OsdsCheckbox
-        checked={isChecked}
-        name={`checkbox-${type}-${label.replace(/\s+/g, '')}`}
-        onOdsCheckedChange={(event: CustomEvent) =>
-          onCheckboxChange(type, label, event)
-        }
-        data-tracking={`filter::${type}::${label}`}
+    <OsdsCheckbox
+      checked={isChecked}
+      name={`checkbox-${type}-${label.replace(/\s+/g, '')}`}
+      onOdsCheckedChange={(event: CustomEvent) =>
+        onCheckboxChange(type, label, event)
+      }
+      data-tracking={`filter::${type}::${label}`}
+    >
+      <OsdsCheckboxButton
+        size={ODS_CHECKBOX_BUTTON_SIZE.sm}
+        color={ODS_THEME_COLOR_INTENT.primary}
       >
-        <OsdsCheckboxButton
-          size={ODS_CHECKBOX_BUTTON_SIZE.sm}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        >
-          <span slot="end">
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.default}
-              level={ODS_TEXT_LEVEL.button}
-              size={ODS_TEXT_SIZE._600}
-            >
-              {label} {resultsNumber}
-            </OsdsText>
-          </span>
-        </OsdsCheckboxButton>
-      </OsdsCheckbox>
-    </span>
+        <span slot="end">
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.default}
+            level={ODS_TEXT_LEVEL.button}
+            size={ODS_TEXT_SIZE._600}
+          >
+            {label} {resultsNumber}
+          </OsdsText>
+        </span>
+      </OsdsCheckboxButton>
+    </OsdsCheckbox>
   );
 };
 

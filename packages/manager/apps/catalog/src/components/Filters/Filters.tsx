@@ -16,6 +16,8 @@ import {
 
 interface FiltersProps {
   products: Product[];
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+  setLocalSearchValue: React.Dispatch<React.SetStateAction<string>>;
   setSelectedCategories: React.Dispatch<React.SetStateAction<string[]>>;
   setSelectedUniverses: React.Dispatch<React.SetStateAction<string[]>>;
   onApply: () => void;
@@ -23,6 +25,8 @@ interface FiltersProps {
 
 const Filters: React.FC<FiltersProps> = ({
   products,
+  setSearchValue,
+  setLocalSearchValue,
   setSelectedCategories: setParentSelectedCategories,
   setSelectedUniverses: setParentSelectedUniverses,
   onApply,
@@ -45,6 +49,8 @@ const Filters: React.FC<FiltersProps> = ({
   );
 
   const resetFilters = () => {
+    setSearchValue('');
+    setLocalSearchValue('');
     setSelectedCategories([]);
     setSelectedUniverses([]);
     setParentSelectedCategories([]);
@@ -84,22 +90,24 @@ const Filters: React.FC<FiltersProps> = ({
           >
             {t('manager_catalog_filters_universes')}
           </OsdsText>
-          {universes.length ? (
-            universes.map(
-              (item: { universe: string; count: number }, id: number) => (
-                <FilterItem
-                  key={item.universe}
-                  label={item.universe}
-                  count={item.count}
-                  type="universe"
-                  isChecked={selectedUniverses.includes(item.universe)}
-                  onCheckboxChange={handleCheckboxChange}
-                />
-              ),
-            )
-          ) : (
-            <LoadingFilterItem lineNumber={5} />
-          )}
+          <span className="grid grid-cols-1">
+            {universes.length ? (
+              universes.map(
+                (item: { universe: string; count: number }, id: number) => (
+                  <FilterItem
+                    key={item.universe}
+                    label={item.universe}
+                    count={item.count}
+                    type="universe"
+                    isChecked={selectedUniverses.includes(item.universe)}
+                    onCheckboxChange={handleCheckboxChange}
+                  />
+                ),
+              )
+            ) : (
+              <LoadingFilterItem lineNumber={5} />
+            )}
+          </span>
         </span>
         <span className="filters-categories grid flex-[4]">
           <OsdsText
@@ -135,6 +143,7 @@ const Filters: React.FC<FiltersProps> = ({
           <OsdsLink
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => resetFilters()}
+            onKeyDown={(event: any) => event.key === 'Enter' && resetFilters()}
             data-tracking="filter::reset"
           >
             {t('manager_catalog_filters_reset')}
@@ -144,6 +153,7 @@ const Filters: React.FC<FiltersProps> = ({
             disabled={!hasInteracted || undefined}
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => setFilters()}
+            onKeyDown={(event: any) => event.key === 'Enter' && setFilters()}
             data-tracking="filter::apply"
           >
             {t('manager_catalog_filters_button_apply')}

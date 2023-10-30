@@ -56,6 +56,7 @@ const SearchBar: React.FC<SearchbarProps> = ({
                 detail: { inputValue: localSearchValue },
               } as CustomEvent)
             }
+            value={localSearchValue}
           />
         </span>
         <span>
@@ -65,6 +66,10 @@ const SearchBar: React.FC<SearchbarProps> = ({
             type={ODS_BUTTON_TYPE.button}
             variant={ODS_BUTTON_VARIANT.stroked}
             color={ODS_THEME_COLOR_INTENT.primary}
+            onKeyDown={(event: any) =>
+              event.key === 'Enter' &&
+              setShowFilters((filterState) => !filterState)
+            }
             onClick={() => setShowFilters((filterState) => !filterState)}
             data-tracking={`filter::${showFilters ? 'show' : 'hide'}`}
           >
@@ -81,6 +86,8 @@ const SearchBar: React.FC<SearchbarProps> = ({
       <div style={{ display: showFilters ? 'block' : 'none' }}>
         <Filters
           products={products}
+          setSearchValue={setSearchValue}
+          setLocalSearchValue={setLocalSearchValue}
           setSelectedCategories={setSelectedCategories}
           setSelectedUniverses={setSelectedUniverses}
           onApply={() => setShowFilters(false)}
