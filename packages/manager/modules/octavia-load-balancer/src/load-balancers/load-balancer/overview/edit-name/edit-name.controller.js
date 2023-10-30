@@ -12,12 +12,12 @@ export default class OctaviaLoadBalancerEditNameCtrl {
   }
 
   cancel() {
-    this.trackAction('::cancel');
+    this.trackAction('cancel');
     this.goBack();
   }
 
   update() {
-    this.trackAction('::confirm');
+    this.trackAction('confirm');
     this.isLoading = true;
     this.OctaviaLoadBalancerService.updateName(
       this.projectId,
@@ -26,7 +26,7 @@ export default class OctaviaLoadBalancerEditNameCtrl {
       this.name,
     )
       .then(() => {
-        this.trackAction('-success');
+        this.trackPage('success');
         this.Alerter.set(
           'alert-success',
           this.$translate.instant('octavia_load_balancer_edit_name_success'),
@@ -36,7 +36,7 @@ export default class OctaviaLoadBalancerEditNameCtrl {
         this.goBack(true);
       })
       .catch((error) => {
-        this.trackAction('-error');
+        this.trackPage('error');
         this.Alerter.error(
           this.$translate.instant('octavia_load_balancer_global_error', {
             message: error.data?.message,

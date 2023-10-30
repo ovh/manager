@@ -19,10 +19,15 @@ export default /* @ngInject */ ($stateProvider) => {
             {},
             reload ? { reload: 'octavia-load-balancer.loadbalancer' } : null,
           ),
-        trackAction: /* @ngInject */ (atInternet) => (hit) =>
+        trackBase: () => `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::rename`,
+        trackAction: /* @ngInject */ (atInternet, trackBase) => (hit) =>
           atInternet.trackClick({
-            name: `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::rename${hit}`,
+            name: `${trackBase}::${hit}`,
             type: 'action',
+          }),
+        trackPage: /* @ngInject */ (atInternet, trackBase) => (hit) =>
+          atInternet.trackPage({
+            name: `${trackBase}-${hit}`,
           }),
       },
       atInternet: {
