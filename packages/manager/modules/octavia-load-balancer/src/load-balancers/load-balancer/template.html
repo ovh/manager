@@ -2,19 +2,19 @@
     <oui-header-tabs>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.generalInformationLink }}"
-            data-active="$ctrl.currentActiveLink() === $ctrl.generalInformationLink"
+            data-active="$ctrl.currentActiveLink().startsWith($ctrl.generalInformationLink)"
         >
             <span data-translate="load_balancer_info_tab_title"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.listenersLink }}"
-            data-active="$ctrl.currentActiveLink() === $ctrl.listenersLink"
+            data-active="$ctrl.currentActiveLink().startsWith($ctrl.listenersLink)"
         >
             <span data-translate="load_balancer_listeners_tab_title"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-href="{{:: $ctrl.poolsLink }}"
-            data-active="$ctrl.currentActiveLink() === $ctrl.poolsLink"
+            data-active="$ctrl.currentActiveLink().startsWith($ctrl.poolsLink)"
         >
             <span data-translate="load_balancer_pools_tab_title"></span>
         </oui-header-tabs-item>
@@ -34,8 +34,5 @@
         </oui-header-tabs-item>
     </oui-header-tabs>
 </oui-header>
-
-<!--Banner section messages-->
-<section></section>
 
 <div class="container-fluid" data-ui-view="loadbalancerView"></div>
