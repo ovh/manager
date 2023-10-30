@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iam-app",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "private": true,
   "description": "IAM standalone application.",
   "repository": {
@@ -22,8 +22,8 @@
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-config": "^7.1.1",
     "@ovh-ux/manager-core": "^12.13.0",
-    "@ovh-ux/manager-iam": "^1.4.1",
-    "@ovh-ux/manager-ng-layout-helpers": "^2.7.1",
+    "@ovh-ux/manager-iam": "^1.5.0",
+    "@ovh-ux/manager-ng-layout-helpers": "^2.7.2",
     "@ovh-ux/ng-at-internet": "^5.10.7",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.3.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.8",
@@ -32,7 +32,7 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.7.1",
     "@ovh-ux/ng-ovh-utils": "^14.0.21",
     "@ovh-ux/ng-shell-tracking": "^0.3.2",
-    "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.1",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.2",
     "@ovh-ux/request-tagger": "^0.1.1",
     "@ovh-ux/shell": "^3.0.2",
     "@ovh-ux/ui-kit": "^6.6.2",

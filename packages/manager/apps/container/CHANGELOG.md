@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.31.0...@ovh-ux/manager-container-app@0.32.0) (2023-10-30)
+
+
+### Features
+
+* **pci:** update us horizon link for pci ([#10140](https://github.com/ovh/manager/issues/10140)) ([e0ff08d](https://github.com/ovh/manager/commit/e0ff08d44e53bac3a55c7bc8d9fe32541f5567df))
+
+
+
+
+
 # [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.30.6...@ovh-ux/manager-container-app@0.31.0) (2023-10-25)
 
 

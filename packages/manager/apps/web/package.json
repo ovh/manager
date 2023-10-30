@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "18.4.1",
+  "version": "18.4.2",
   "private": true,
   "description": "OVHcloud Web control panel.",
   "repository": {
@@ -31,7 +31,7 @@
     "@ovh-ux/manager-error-page": "^2.3.4",
     "@ovh-ux/manager-exchange": "^4.1.2",
     "@ovh-ux/manager-filters": "^1.1.1",
-    "@ovh-ux/manager-ng-layout-helpers": "^2.7.1",
+    "@ovh-ux/manager-ng-layout-helpers": "^2.7.2",
     "@ovh-ux/manager-office": "^2.10.0",
     "@ovh-ux/manager-phone-prefix": "^1.0.3",
     "@ovh-ux/manager-product-offers": "^5.4.0",
@@ -62,7 +62,7 @@
     "@ovh-ux/ng-shell-tracking": "^0.3.2",
     "@ovh-ux/ng-tail-logs": "^2.0.10",
     "@ovh-ux/ng-translate-async-loader": "^2.1.7",
-    "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.1",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.2",
     "@ovh-ux/ng-ui-router-layout": "^4.1.4",
     "@ovh-ux/request-tagger": "^0.1.1",
     "@ovh-ux/shell": "^3.0.2",

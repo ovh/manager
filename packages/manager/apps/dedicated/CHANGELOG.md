@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.8.0...@ovh-ux/manager-dedicated@19.9.0) (2023-10-30)
+
+
+### Bug Fixes
+
+* **dedicated:** add missing PL translations [CDS 2574] ([#10168](https://github.com/ovh/manager/issues/10168)) ([edc2c68](https://github.com/ovh/manager/commit/edc2c68b0a2059af5ab316ddb9d4ee91768fbf79))
+* **dedicated:** fix tva number field ([#10185](https://github.com/ovh/manager/issues/10185)) ([5b66a79](https://github.com/ovh/manager/commit/5b66a795a6b2119dafb351ce6b4aa256e4db84ac))
+
+
+### Features
+
+* **dedicated:** retrieve price info based on region ([#10116](https://github.com/ovh/manager/issues/10116)) ([febb82c](https://github.com/ovh/manager/commit/febb82c61a30336eff00824ec0000da09f63c7c5))
+
+
+
+
+
 # [19.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.7.2...@ovh-ux/manager-dedicated@19.8.0) (2023-10-25)
 
 

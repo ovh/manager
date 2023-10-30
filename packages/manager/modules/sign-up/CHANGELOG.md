@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.10.0...@ovh-ux/sign-up@2.10.1) (2023-10-30)
+
+
+### Bug Fixes
+
+* **dedicated:** fix tva number field ([#10185](https://github.com/ovh/manager/issues/10185)) ([5b66a79](https://github.com/ovh/manager/commit/5b66a795a6b2119dafb351ce6b4aa256e4db84ac))
+
+
+
+
+
 # [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.9.0...@ovh-ux/sign-up@2.10.0) (2023-10-23)
 
 

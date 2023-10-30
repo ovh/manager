@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-carbon-calculator@0.2.1...@ovh-ux/manager-carbon-calculator@0.3.0) (2023-10-30)
+
+
+### Features
+
+* **dedicated:** carbon calculator add HPC in description ([#10095](https://github.com/ovh/manager/issues/10095)) ([56882ba](https://github.com/ovh/manager/commit/56882bade92c305a45ef3f4da16bf74de2fde2ac))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-carbon-calculator@0.2.0...@ovh-ux/manager-carbon-calculator@0.2.1) (2023-10-16)
 
 
