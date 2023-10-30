@@ -20,6 +20,9 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       ...commonResolve,
+      goToZoneHistory: /* @ngInject */ ($state) => (params) => {
+        $state.go('app.zone.details.history', params);
+      },
       activateZone: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.product.zone.activate'),
       orderZone: /* @ngInject */ ($state) => () =>
@@ -57,6 +60,9 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       ...commonResolve,
+      goToZoneHistory: /* @ngInject */ ($state) => (params) => {
+        $state.go('app.zone.details.history', params);
+      },
       activateZone: /* @ngInject */ ($state) => () =>
         $state.go('app.alldom.domain.zone.activate'),
       orderZone: /* @ngInject */ ($state) => () =>
