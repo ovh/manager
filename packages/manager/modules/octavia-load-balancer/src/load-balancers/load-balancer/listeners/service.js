@@ -4,6 +4,27 @@ export default class OctaviaLoadBalancerListenersService {
     this.$http = $http;
   }
 
+  createListener(
+    projectId,
+    region,
+    loadbalancerId,
+    name,
+    protocol,
+    port,
+    defaultPoolId,
+  ) {
+    return this.$http.post(
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/listener`,
+      {
+        loadbalancerId,
+        name,
+        protocol,
+        port,
+        defaultPoolId,
+      },
+    );
+  }
+
   getListeners(projectId, region, loadbalancerId) {
     return this.$http
       .get(
@@ -14,6 +35,12 @@ export default class OctaviaLoadBalancerListenersService {
           },
         },
       )
+      .then(({ data }) => data);
+  }
+
+  getPools(projectId, region) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/region/${region}/loadbalancing/pool`)
       .then(({ data }) => data);
   }
 }
