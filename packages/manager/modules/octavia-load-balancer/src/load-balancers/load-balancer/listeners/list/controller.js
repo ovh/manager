@@ -1,7 +1,7 @@
 import {
   PROVISIONING_STATUS_BADGES,
   OPERATING_STATUS_BADGES,
-} from '../constants';
+} from '../../constants';
 
 export default class OctaviaLoadBalancerOverviewCtrl {
   constructor() {
