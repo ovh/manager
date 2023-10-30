@@ -3,14 +3,12 @@ import angular from 'angular';
 import component from './component';
 import routing from './routing';
 
-import editName from './edit-name';
-
-const moduleName = 'ovhManagerOctaviaLoadBalancerOverview';
+const moduleName = 'ovhManagerOctaviaLoadBalancerListenersList';
 
 angular
-  .module(moduleName, [editName])
+  .module(moduleName, [])
   .config(routing)
-  .component('octaviaLoadBalancerOverview', component)
+  .component('octaviaLoadBalancerListenersList', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
