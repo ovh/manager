@@ -83,14 +83,14 @@ export default class DkimAutoConfigurator {
 
   getTitleDependingOnStepFor(targetService) {
     return !this.showSpfDiagnosticTitle
-      ? `${targetService}emailpro_tab_domain_diagnostic_dkim_title_configuration`
-      : `${targetService}emailpro_tab_domain_diagnostic_spf_title`;
+      ? `${targetService}_tab_domain_diagnostic_dkim_title_configuration`
+      : `${targetService}_tab_domain_diagnostic_spf_title`;
   }
 
   getNextButtonDependingOnStepFor(targetService) {
     return this.showConfiguratingBtn
-      ? `${targetService}emailpro_tab_domain_diagnostic_dkim_configurate_no_ovhcloud`
-      : `${targetService}emailpro_tab_domain_diagnostic_dkim_next_no_ovhcloud`;
+      ? `${targetService}_tab_domain_diagnostic_dkim_configurate_no_ovhcloud`
+      : `${targetService}_tab_domain_diagnostic_dkim_next_no_ovhcloud`;
   }
 
   initSpfContext() {
