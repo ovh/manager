@@ -11,9 +11,11 @@ export default {
     imageEditMessage: '<',
     imageEditSuccessMessage: '<',
     instance: '<',
+    hasComingSoonFlavorTag: '<',
     instanceId: '<',
     pciFeatures: '<',
     projectId: '<',
     region: '<',
+    catalog: '<',
   },
 };

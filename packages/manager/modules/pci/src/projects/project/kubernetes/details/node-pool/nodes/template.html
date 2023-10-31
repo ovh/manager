@@ -73,7 +73,7 @@
                 data-placement="end"
             >
                 <oui-action-menu-item
-                    data-ng-if="$row.billingType === 'hourly'"
+                    data-ng-if="$ctrl.constructor.displayUpdateToMonthlyAction($row)"
                     data-on-click="$ctrl.switchBillingType($row.id, $row.name, $row.instanceId)"
                     ><span
                         data-translate="kube_nodes_switch_to_monthly_billing_title"

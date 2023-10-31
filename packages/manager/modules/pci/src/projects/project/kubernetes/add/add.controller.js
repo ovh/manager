@@ -4,6 +4,7 @@ import some from 'lodash/some';
 
 import Datacenter from '../../../../components/project/regions-list/datacenter.class';
 import { NAME_INPUT_CONSTRAINTS } from '../kubernetes.constants';
+import { TAGS_BLOB } from '../../../../constants';
 import { KUBE_CONTAINER_MESSAGES } from './add.constants';
 
 export default class {
@@ -65,6 +66,12 @@ export default class {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  IsComingSoonPricingBannerDisplayed() {
+    return this.cluster.nodePool?.flavor?.tagsBlob?.includes(
+      TAGS_BLOB.COMING_SOON,
+    );
   }
 
   create() {

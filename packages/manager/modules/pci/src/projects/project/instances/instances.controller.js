@@ -68,6 +68,14 @@ export default class CloudProjectComputeInfrastructureListCtrl {
     });
   }
 
+  static displayMonthlyBillingUpgradeOption(instance) {
+    return (
+      instance.status === 'ACTIVE' &&
+      !instance.isMonthlyBillingActivated() &&
+      instance.flavor.planCodes.monthly
+    );
+  }
+
   getHelpPreferenceKey() {
     return `${INSTANCE_HELP_REFERENCE_KEY}${this.help.toUpperCase()}`;
   }
