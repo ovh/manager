@@ -43,6 +43,13 @@ export default class DomainDnsZoneHistoryController {
     this.$state.go('app.zone.details.dashboard', this.$stateParams);
   }
 
+  computeGitUnidiff() {
+    return unidiff.diffAsText(this.baseDnsZoneData, this.modifiedDnsZoneData, {
+      aname: 'dns',
+      bname: 'dns',
+    });
+  }
+
   async getBaseDnsZoneForChosenDate() {
     const { zoneFileUrl } = await this.getZoneDataAtDate(
       this.$stateParams.productId,
@@ -51,10 +58,7 @@ export default class DomainDnsZoneHistoryController {
     this.baseDnsZoneData = await this.DNSZoneService.readDnsFileData(
       zoneFileUrl,
     );
-    this.gitDiff = unidiff.diffAsText(
-      this.baseDnsZoneData,
-      this.modifiedDnsZoneData,
-    );
+    this.gitDiff = this.computeGitUnidiff();
     this.updateInnerHtml();
   }
 
@@ -66,32 +70,21 @@ export default class DomainDnsZoneHistoryController {
     this.modifiedDnsZoneData = await this.DNSZoneService.readDnsFileData(
       zoneFileUrl,
     );
-    this.gitDiff = unidiff.diffAsText(
-      this.baseDnsZoneData,
-      this.modifiedDnsZoneData,
-    );
+    this.gitDiff = this.computeGitUnidiff();
     this.updateInnerHtml();
   }
 
   updateInnerHtml() {
-    let innerHTML = Diff2Html.html(this.gitDiff, {
-      drawFileList: true,
+    const innerHTML = Diff2Html.html(this.gitDiff, {
+      drawFileList: false,
       outputFormat: 'side-by-side',
-      matching: 'lines',
+      matching: 'none',
       synchronisedScroll: false,
+      rawTemplates: {
+        'tag-file-changed':
+          '<span class="d2h-tag d2h-changed d2h-changed-tag">Modifé</span>',
+      },
     });
-    innerHTML = innerHTML.replace(
-      /class="d2h-file-name"/,
-      'style="visibility: hidden;"',
-    );
-    innerHTML = innerHTML.replace(
-      /class="d2h-file-list-title"/,
-      'style="visibility: hidden;"',
-    );
-    innerHTML = innerHTML.replace(
-      /class="d2h-icon .*"/,
-      'style="visibility: hidden;"',
-    );
     document.getElementById('destination-elem-id').innerHTML = innerHTML;
   }
 
