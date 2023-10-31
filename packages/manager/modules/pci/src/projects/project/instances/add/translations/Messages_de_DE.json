@@ -93,5 +93,8 @@
   "pci_projects_project_instances_add_attach_floating_ip_availability_flavorType_warning": "Nicht verfügbar für diese Art von Instanz.",
   "pci_projects_project_instances_windows_private_mode_description1": "Bei Windows-Instanzen, die mit dem Modus „privates Netzwerk“ (vRack) erstellt wurden, sind die Windows-Lizenzen nicht automatisch aktiviert. In diesem Fall müssen Sie die Lizenz manuell aktivieren, um auf alle Windows-Dienste zugreifen zu können.",
   "pci_projects_project_instances_windows_private_mode_description2": "Für mehr Informationen ",
-  "pci_projects_project_instances_windows_private_mode_description3": "Sehen Sie sich die Anleitung an"
+  "pci_projects_project_instances_windows_private_mode_description3": "Sehen Sie sich die Anleitung an",
+  "pci_projects_project_instances_add_flavor_selected_title_without_price": "Gewähltes Modell: {{model}}",
+  "pci_projects_project_instances_add_billing_coming_soon_message_title": "Monatliche Preise",
+  "pci_projects_project_instances_add_billing_coming_soon_message_description": "Die monatlichen Preise werden mit der Einführung der Saving Plans in Kürze verfügbar sein."
 }

@@ -19,5 +19,7 @@
   "kubernetes_add_billing_auto_scaling_monthly_warning": "Attenzione: stai attivando simultaneamente l'autoscaling e il forfait mensile per questo nodepool. La creazione di nodi tramite autoscaling comporta la fatturazione immediata di un nodo, calcolata in base al tempo restante per il mese in corso. Consigliamo di evitare questa combinazione se si prevede che la dimensione del nodepool verrà ridotta frequentemente.",
   "kubernetes_add_cluster_name_input_pattern_validation_error": "Il nome deve iniziare con un carattere alfabetico, terminare con un carattere alfanumerico e gli unici caratteri speciali ammessi sono trattini e underscore.",
   "kubernetes_add_billing_type_payment_method": "L’importo verrà addebitato sul metodo di pagamento predefinito.",
-  "kubernetes_add_billing_anti_affinity_title": "Fatturazione e anti-affinità"
+  "kubernetes_add_billing_anti_affinity_title": "Fatturazione e anti-affinità",
+  "kubernetes_add_billing_anti_affinity_coming_soon_message_title": "Prezzi mensili",
+  "kubernetes_add_billing_anti_affinity_coming_soon_message_description": "I prezzi mensili saranno disponibili a breve con l'arrivo dei Saving Plans."
 }

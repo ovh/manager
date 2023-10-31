@@ -12,6 +12,7 @@ import sortBy from 'lodash/sortBy';
 import Quota from '../../../../../components/project/instance/quota/quota.class';
 import { PATTERN } from '../../../../../components/project/instance/name/constants';
 import Instance from '../../../../../components/project/instance/instance.class';
+import { TAGS_BLOB } from '../../../../../constants';
 
 import {
   BANDWIDTH_OUT,
@@ -155,6 +156,37 @@ export default class PciInstancesAddController {
   onFlavorChange() {
     this.displaySelectedFlavor = true;
     this.getFilteredRegions();
+  }
+
+  displayFlavorSelectionHeader() {
+    if (this.currentStep > 0) {
+      // if the flavor doesn't have a monthly plan
+      if (this.model.flavorGroup?.tagsBlob?.includes(TAGS_BLOB.COMING_SOON)) {
+        return this.$translate.instant(
+          'pci_projects_project_instances_add_flavor_selected_title_without_price',
+          {
+            model: this.model?.flavorGroup?.name.toUpperCase(),
+          },
+        );
+      }
+
+      // if the flavor does have a monthly plan
+      return this.$translate.instant(
+        'pci_projects_project_instances_add_flavor_selected_title',
+        {
+          model: this.model?.flavorGroup?.name.toUpperCase(),
+          price: this.model?.flavorGroup?.prices?.monthly?.text,
+        },
+      );
+    }
+    // current step is the flavor selection step
+    return this.$translate.instant(
+      'pci_projects_project_instances_add_flavor_title',
+    );
+  }
+
+  IsComingSoonPricingBannerDisplayed() {
+    return this.model.flavorGroup?.tagsBlob?.includes(TAGS_BLOB.COMING_SOON);
   }
 
   onFlavorCategorySelect(flavor, category) {

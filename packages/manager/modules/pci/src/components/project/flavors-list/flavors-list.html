@@ -97,6 +97,7 @@
                             <strong
                                 class="d-block"
                                 data-translate="pci_project_flavors_price_monthly"
+                                data-ng-if="!$ctrl.constructor.isPricingComingSoon(flavor)"
                                 data-translate-values="{ price: $ctrl.PriceFormatter.format(flavor.prices.monthly.value) }"
                             >
                             </strong>

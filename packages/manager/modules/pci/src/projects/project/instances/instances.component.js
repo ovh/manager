@@ -22,6 +22,7 @@ export default {
     instanceLink: '<',
     instanceId: '<',
     instances: '<',
+    hasComingSoonFlavorTag: '<',
     isAdditionalIpsAvailable: '<',
     projectId: '<',
     onListParamChange: '<',
@@ -45,5 +46,6 @@ export default {
     getStateName: '<',
     goToRegion: '<',
     floatingIpsLink: '<',
+    catalog: '<',
   },
 };
