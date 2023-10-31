@@ -142,15 +142,15 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
   }
 
   stepConfigureDkim() {
-    this.stepConfigureDkim('emailpro');
+    this.stepConfigureDkimFor('emailpro');
   }
 
   getTitleDependingOnStep() {
-    return this.getTitleDependingOnStep('emailpro');
+    return this.getTitleDependingOnStepFor('emailpro');
   }
 
   getNextButtonDependingOnStep() {
-    return this.getNextButtonDependingOnStep('emailpro');
+    return this.getNextButtonDependingOnStepFor('emailpro');
   }
 
   getDkimName(index) {
