@@ -1,4 +1,6 @@
-import { TRACKING_CHAPTER_1, TRACKING_NAME } from '../../constants';
+import { TRACKING_HIT_PREFIX } from './constants';
+import { TRACKING_SUFFIX } from '../constants';
+import { TRACKING_NAME } from '../../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -25,19 +27,13 @@ export default /* @ngInject */ ($stateProvider) => {
               ? { reload: 'octavia-load-balancer.loadbalancer.listeners.list' }
               : null,
           ),
-        trackBase: () => `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::delete`,
-        trackAction: /* @ngInject */ (atInternet, trackBase) => (hit) =>
-          atInternet.trackClick({
-            name: `${trackBase}::${hit}`,
-            type: 'action',
-          }),
-        trackPage: /* @ngInject */ (atInternet, trackBase) => (hit) =>
-          atInternet.trackPage({
-            name: `${trackBase}-${hit}`,
-          }),
+        trackDeleteAction: /* @ngInject */ (trackAction) => (hit) =>
+          trackAction(`${TRACKING_HIT_PREFIX}::${hit}`),
+        trackDeletePage: /* @ngInject */ (trackPage) => (hit) =>
+          trackPage(`${TRACKING_HIT_PREFIX}-${hit}`),
       },
       atInternet: {
-        rename: `${TRACKING_NAME}::delete`,
+        rename: `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}`,
       },
     },
   );

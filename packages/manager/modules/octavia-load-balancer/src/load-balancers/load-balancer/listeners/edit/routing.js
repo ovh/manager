@@ -3,18 +3,31 @@ import { TRACKING_SUFFIX } from '../constants';
 import { TRACKING_NAME } from '../../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('octavia-load-balancer.loadbalancer.listeners.create', {
-    url: '/create',
+  $stateProvider.state('octavia-load-balancer.loadbalancer.listeners.edit', {
+    url: '/edit?listenerId',
     views: {
-      loadbalancerListenersView: 'octaviaLoadBalancerListenersCreate',
+      loadbalancerListenersView: 'octaviaLoadBalancerListenersEdit',
     },
     resolve: {
       breadcrumb: () => null,
+      listenerId: /* @ngInject */ ($transition$) =>
+        $transition$.params().listenerId,
       pools: /* @ngInject */ (
         OctaviaLoadBalancerListenersService,
         projectId,
         region,
       ) => OctaviaLoadBalancerListenersService.getPools(projectId, region),
+      listener: /* @ngInject */ (
+        OctaviaLoadBalancerListenersService,
+        projectId,
+        region,
+        listenerId,
+      ) =>
+        OctaviaLoadBalancerListenersService.getListener(
+          projectId,
+          region,
+          listenerId,
+        ),
       goBack: /* @ngInject */ ($state) => (reload) =>
         $state.go(
           'octavia-load-balancer.loadbalancer.listeners',
@@ -23,9 +36,9 @@ export default /* @ngInject */ ($stateProvider) => {
             ? { reload: 'octavia-load-balancer.loadbalancer.listeners' }
             : null,
         ),
-      trackCreateAction: /* @ngInject */ (trackAction) => (hit) =>
+      trackEditAction: /* @ngInject */ (trackAction) => (hit) =>
         trackAction(`${TRACKING_HIT_PREFIX}::${hit}`),
-      trackCreatePage: /* @ngInject */ (trackPage) => (hit) =>
+      trackEditPage: /* @ngInject */ (trackPage) => (hit) =>
         trackPage(`${TRACKING_HIT_PREFIX}-${hit}`),
     },
     atInternet: {

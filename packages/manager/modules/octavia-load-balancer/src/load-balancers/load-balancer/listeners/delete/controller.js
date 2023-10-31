@@ -8,20 +8,20 @@ export default class OctaviaLoadBalancerDeleteCtrl {
   }
 
   cancel() {
-    this.trackAction(`cancel`);
+    this.trackDeleteAction(`cancel`);
     this.goBack();
   }
 
   delete() {
     this.isLoading = true;
-    this.trackAction(`confirm`);
+    this.trackDeleteAction(`confirm`);
     this.OctaviaLoadBalancerListenersService.deleteListener(
       this.projectId,
       this.region,
       this.listenerId,
     )
       .then(() => {
-        this.trackPage(`success`);
+        this.trackDeletePage(`success`);
         this.Alerter.set(
           'alert-success',
           this.$translate.instant(
@@ -34,7 +34,7 @@ export default class OctaviaLoadBalancerDeleteCtrl {
         this.goBack(true);
       })
       .catch((error) => {
-        this.trackPage(`error`);
+        this.trackDeletePage(`error`);
         this.Alerter.error(
           this.$translate.instant('octavia_load_balancer_global_error', {
             message: error.data.message,
