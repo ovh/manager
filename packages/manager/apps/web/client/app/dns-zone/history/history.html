@@ -3,22 +3,22 @@
 ></oui-back-button>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-sm-6 col-md-6 col-lg-6">
         <oui-select
             name="base"
             model="ctrlDomainHistoryOfZoneDns.base_dns_chosen"
             items="ctrlDomainHistoryOfZoneDns.base_dns_zone_mocks"
-            on-change=""
+            on-change="ctrlDomainHistoryOfZoneDns.getBaseDnsZoneForChosenDate()"
             data-placeholder="{{:: 'base_dns_zone' | translate }}"
         >
         </oui-select>
     </div>
-    <div class="col-md-6">
+    <div class="col-sm-6 col-md-6 col-lg-6">
         <oui-select
             name="modified"
             model="ctrlDomainHistoryOfZoneDns.modified_dns_chosen"
             items="ctrlDomainHistoryOfZoneDns.modified_dns_zone_mocks"
-            on-change=""
+            on-change="ctrlDomainHistoryOfZoneDns.getModifiedDnsZoneForChosenDate()"
             data-placeholder="{{:: 'modified_dns_zone' | translate }}"
         >
         </oui-select>
