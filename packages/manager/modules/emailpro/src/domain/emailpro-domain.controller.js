@@ -5,6 +5,7 @@ import {
   GLOBAL_DKIM_STATUS,
   DKIM_STATUS,
   DKIM_MATCHING_SCHEMA_STATUS,
+  DKIM_STATUS_TO_CLASS_MAP,
 } from './emailpro-domain.constants';
 
 export default /* @ngInject */ (
@@ -21,6 +22,8 @@ export default /* @ngInject */ (
   $scope.stateDeleting = EmailPro.stateDeleting;
   $scope.stateOk = EmailPro.stateOk;
   $scope.GLOBAL_DKIM_STATUS = GLOBAL_DKIM_STATUS;
+  $scope.DKIM_STATUS = DKIM_STATUS;
+  $scope.DKIM_STATUS_TO_CLASS_MAP = DKIM_STATUS_TO_CLASS_MAP;
 
   const init = function init() {
     $scope.loading = false;
@@ -88,6 +91,22 @@ export default /* @ngInject */ (
       dkim.find(({ status }) => status === DKIM_STATUS.READY)
     ) {
       return this.GLOBAL_DKIM_STATUS.OK;
+    }
+
+    if (
+      DKIM_MATCHING_SCHEMA_STATUS.DISABLED.includes(dkim[0].status) &&
+      (!dkim[1] ||
+        DKIM_MATCHING_SCHEMA_STATUS.DISABLED.includes(dkim[1].status))
+    ) {
+      return this.GLOBAL_DKIM_STATUS.DISABLED;
+    }
+
+    if (
+      dkim.find(({ status }) =>
+        DKIM_MATCHING_SCHEMA_STATUS.IN_PROGRESS.includes(status),
+      )
+    ) {
+      return this.GLOBAL_DKIM_STATUS.IN_PROGRESS;
     }
 
     return this.GLOBAL_DKIM_STATUS.NOK;
