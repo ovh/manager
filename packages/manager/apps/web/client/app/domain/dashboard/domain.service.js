@@ -1582,5 +1582,16 @@ angular.module('services').service(
         .get(`/domain/zone/${zoneName}/history`)
         .then(({ data }) => data);
     }
+
+    /**
+     * Get zone data at given date
+     * @param {string} zoneName
+     * @param {Date} creationDate
+     */
+    getZoneDataAtDate(zoneName, creationDate) {
+      return this.$http
+        .get(`/domain/zone/${zoneName}/history/${creationDate}`)
+        .then(({ data }) => data);
+    }
   },
 );
