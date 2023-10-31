@@ -5,6 +5,8 @@ import get from 'lodash/get';
 import forEach from 'lodash/forEach';
 import isEmpty from 'lodash/isEmpty';
 
+import { TAGS_BLOB } from '../constants';
+
 export default class FlavorsListController {
   /* @ngInject */
   constructor($filter, $q, $state, coreConfig, PciProjectFlavors) {
@@ -92,6 +94,10 @@ export default class FlavorsListController {
 
       return flavors;
     });
+  }
+
+  static isPricingComingSoon(flavor) {
+    return flavor?.tagsBlob?.includes(TAGS_BLOB.COMING_SOON);
   }
 
   findFlavor() {
