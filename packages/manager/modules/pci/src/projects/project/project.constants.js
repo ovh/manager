@@ -170,6 +170,12 @@ export const PCI_HDS_ADDON = {
 
 export const LEGACY_PLAN_CODES = ['project.legacy', 'project.2018'];
 
+export const TAGS_BLOB = {
+  ACTIVE: 'active',
+  IS_NEW: 'is_new',
+  COMING_SOON: 'coming_soon',
+};
+
 export default {
   PRODUCT_IMAGES,
   ACTIONS,
@@ -181,4 +187,5 @@ export default {
   TERRAFORM_GUIDES,
   DATABASE_CREATION_GUIDES,
   PCI_FEATURES,
+  TAGS_BLOB,
 };
