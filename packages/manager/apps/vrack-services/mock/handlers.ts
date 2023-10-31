@@ -1,3 +1,5 @@
+import { BrowserContext } from '@playwright/test';
+import { toPlaywrightMockHandler } from '../../../../../playwright-helpers/mock';
 import {
   toMswHandlers,
   Handler,
@@ -42,3 +44,8 @@ export const getConfig = ({ nbVs, nbZone }: ConfigParams): Handler[] => [
 
 export const getHandlers = (params: ConfigParams = {}) =>
   toMswHandlers(getConfig(params));
+
+export const setupPlaywrightHandlers = async (
+  context: BrowserContext,
+  params: ConfigParams = {},
+) => Promise.all(getConfig(params).map(toPlaywrightMockHandler(context)));

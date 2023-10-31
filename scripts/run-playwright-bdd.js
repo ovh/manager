@@ -2,6 +2,8 @@ const { argv } = require('node:process');
 const execa = require('execa');
 const { createServer } = require('vite');
 
+const isCli = argv.includes('--ci');
+
 console.log(
   `\n\nRun e2e tests of ${process
     .cwd()
@@ -29,16 +31,20 @@ const runTests = async () => {
   await server.listen();
 
   try {
-    const result = await execa('npx', ['cucumber-js'], {
-      stdio: 'inherit',
-      detached: true,
-      encoding: 'utf-8',
-      env: {
-        CI: argv.includes('--ci') || undefined,
-        NODE_ENV: 'test',
-        TS_NODE_PROJECT: 'tsconfig.test.json',
+    const result = await execa(
+      'npx',
+      ['cucumber-js', !isCli ? '--fail-fast' : ''],
+      {
+        stdio: 'inherit',
+        detached: true,
+        encoding: 'utf-8',
+        env: {
+          CI: isCli || undefined,
+          NODE_ENV: 'test',
+          TS_NODE_PROJECT: 'tsconfig.test.json',
+        },
       },
-    });
+    );
 
     exitCode = result.exitCode;
   } catch (err) {

@@ -3,7 +3,10 @@ export type ResponseData<T> = {
   data: T;
   code: string;
   // Error response
-  response?: string;
+  response?: {
+    status: number;
+    data: { message: string };
+  };
 };
 
 export type Vrack = {

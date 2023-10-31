@@ -63,29 +63,6 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     WS: '/update-path',
     US: '/update-path',
   },
-  guideLink3: {
-    DE: '/guide-link-3-path',
-    ES: '/guide-link-3-path',
-    IE: '/en/guide-link-3-path',
-    IT: '/guide-link-3-path',
-    PL: '/guide-link-3-path',
-    PT: '/guide-link-3-path',
-    FR: '/guide-link-3-path',
-    GB: '/guide-link-3-path',
-    CA: '/update-path',
-    QC: '/update-path',
-    WE: '/update-path',
-    WS: '/update-path',
-    US: '/update-path',
-  },
-  /* 
-  addNewGuideLink : {
-    DEFAULT: '/guide-link-3-path',
-    DE: '/guide-link-3-path',
-    ES: '/guide-link-3-path',
-    ...
-  }    
-  */
 };
 
 type GetGuideLinkProps = {
@@ -96,22 +73,24 @@ type GetGuideLinkProps = {
 
 function getGuideListLink({ region, subsidiary }: GetGuideLinkProps) {
   const baseUrl = `${baseUrlPrefix?.[region]?.[subsidiary]}`;
-  const list: { [guideName: string]: string } = {};
-  for (const [key, value] of Object.entries(GUIDE_LIST)) {
-    list[key] = `${baseUrl}${value[subsidiary]}`;
-  }
-  return list;
+  return Object.entries(GUIDE_LIST).reduce(
+    (result, [key, value]) => ({
+      [key]: `${baseUrl}${value[subsidiary]}`,
+      ...result,
+    }),
+    {} as { [guideName: string]: string },
+  );
 }
 
-interface GuideLinkProps {
+export type UseGuideLinkProps = {
   [guideName: string]: string;
-}
+};
 
-function useGuideUtils() {
+export function useGuideUtils() {
   const environment = useEnvironment();
   const region = environment.getRegion();
   const { subsidiary } = useAuthentication();
-  const [linkTabs, setLinkTabs] = useState<GuideLinkProps>({});
+  const [linkTabs, setLinkTabs] = useState<UseGuideLinkProps>({});
 
   useEffect(() => {
     setLinkTabs(
@@ -121,5 +100,3 @@ function useGuideUtils() {
 
   return linkTabs;
 }
-
-export default useGuideUtils;

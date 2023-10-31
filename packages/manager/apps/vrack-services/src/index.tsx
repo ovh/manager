@@ -9,7 +9,7 @@ import './index.scss';
 import './global.css';
 
 const mockApiIfDev = async () => {
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development' && !process.env.VITE_TEST_BDD) {
     // @ts-ignore
     await setupWorker(...getHandlers({ nbVs: 2 })).start({
       onUnhandledRequest: 'bypass',

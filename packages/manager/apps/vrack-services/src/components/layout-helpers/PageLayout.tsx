@@ -1,5 +1,5 @@
 import React from 'react';
-import { Breadcrumb } from '../Breadcrumb/Breadcrumb';
+import { Breadcrumb } from '../Breadcrumb';
 
 export type PageLayoutProps = React.PropsWithChildren<unknown>;
 
