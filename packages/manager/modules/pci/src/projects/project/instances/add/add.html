@@ -9,13 +9,7 @@
     <oui-step-form
         id="flavor"
         name="instances_add_flavor"
-        data-header="{{ (($ctrl.currentStep > 0)
-            ? 'pci_projects_project_instances_add_flavor_selected_title'
-            : 'pci_projects_project_instances_add_flavor_title')
-            | translate: {
-                model: ($ctrl.model.flavorGroup.name | uppercase),
-                price: $ctrl.model.flavorGroup.prices.monthly.text
-            } }}"
+        data-header="{{ $ctrl.displayFlavorSelectionHeader() }}"
         data-valid="$ctrl.model.flavorGroup"
         data-editable="!$ctrl.isLoading"
         data-navigation="$ctrl.model.flavorGroup"
@@ -568,7 +562,19 @@
         data-on-submit="$ctrl.onCreateFormStepperSubmit()"
         data-navigation="!$ctrl.isPrivateMode() || (!$ctrl.isLoadBillingStep && $ctrl.isPrivateMode())"
     >
-        <p>
+        <oui-message
+            data-type="info"
+            data-ng-if="$ctrl.IsComingSoonPricingBannerDisplayed()"
+        >
+            <h6
+                data-translate="pci_projects_project_instances_add_billing_coming_soon_message_title"
+            ></h6>
+            <p
+                data-translate="pci_projects_project_instances_add_billing_coming_soon_message_description"
+            ></p>
+        </oui-message>
+
+        <p data-ng-if="!$ctrl.IsComingSoonPricingBannerDisplayed()">
             <span
                 data-translate="pci_projects_project_instances_add_billing_montly_discount_message"
             ></span>
@@ -620,7 +626,7 @@
         ></oui-spinner>
         <pci-project-flavor-billing
             data-ng-if="!$ctrl.isPrivateMode() || (!$ctrl.isLoadBillingStep && $ctrl.isPrivateMode())"
-            data-flavor="$ctrl.flavor"
+            data-flavor="$ctrl.model.flavorGroup"
             data-number="$ctrl.model.number"
             data-monthly-billing="$ctrl.instance.monthlyBilling"
             data-offer="$ctrl.offer"

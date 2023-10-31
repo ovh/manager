@@ -224,6 +224,20 @@
                         data-translate="pci_projects_project_instances_instance_edit_change_instance_modele_message_part_2"
                     ></span>
                 </oui-message>
+                <oui-message
+                    data-type="warning"
+                    data-ng-if="$ctrl.isLoosingMonthlyPlan()"
+                >
+                    <strong
+                        data-translate="pci_projects_project_instances_instance_edit_loosing_monthly_plan_p1"
+                    ></strong>
+                    <span
+                        data-translate="pci_projects_project_instances_instance_edit_loosing_monthly_plan_p2"
+                    ></span>
+                    <span
+                        data-translate="pci_projects_project_instances_instance_edit_loosing_monthly_plan_p3"
+                    ></span>
+                </oui-message>
 
                 <cui-message-container
                     data-messages="$ctrl.messages.flavor"
@@ -255,15 +269,28 @@
                     data-label="{{ :: 'pci_projects_project_instances_instance_edit_billing_label' | translate }}"
                     data-size="auto"
                 >
-                    <p>
-                        <span
+                    <div
+                        data-ng-if="!$ctrl.hasComingSoonFlavorTag($ctrl.instance.flavor)"
+                    >
+                        <p
                             data-translate="pci_projects_project_instances_instance_edit_billing_montly_discount_message"
-                        ></span>
+                        ></p>
                         <span
                             class="d-inline-block"
                             data-translate="pci_projects_project_instances_instance_edit_billing_short_period_message"
                         ></span>
-                    </p>
+                    </div>
+                    <oui-message
+                        data-type="info"
+                        data-ng-if="$ctrl.hasComingSoonFlavorTag($ctrl.instance.flavor)"
+                    >
+                        <h6
+                            data-translate="pci_projects_project_instances_instance_edit_billing_anti_affinity_coming_soon_message_title"
+                        ></h6>
+                        <p
+                            data-translate="pci_projects_project_instances_instance_edit_billing_anti_affinity_coming_soon_message_description"
+                        ></p>
+                    </oui-message>
                     <pci-project-flavor-billing
                         data-flavor="$ctrl.defaultFlavor"
                         data-monthly-billing="$ctrl.editInstance.monthlyBilling"

@@ -8,12 +8,12 @@ export const CATEGORIES = [
   },
   {
     category: 'cpu',
-    title: 'CPU',
+    title: 'Compute Optimized',
     pattern: /cpu|hg/,
   },
   {
     category: 'ram',
-    title: 'RAM',
+    title: 'Memory Optimized',
     pattern: /ram/,
   },
   {
@@ -28,7 +28,7 @@ export const CATEGORIES = [
   },
   {
     category: 'iops',
-    title: 'IOPS',
+    title: 'Storage Optimized',
     pattern: /ovh\.iops/,
   },
   {
