@@ -5,10 +5,10 @@ import { MscTile } from '@ovhcloud/msc-react-tile';
 import { Locale } from '@ovhcloud/msc-utils';
 import { OsdsChip } from '@ovhcloud/ods-components/chip/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import useGuideUtils from '../../components/GuideLink/guide-utils';
-import { OnboardingLayout } from '../../components/layout-helpers';
-import onboardingImgSrc from './onboarding-img.png';
-import { BreadcrumbHandleParams } from '@/components/Breadcrumb/Breadcrumb';
+import { useGuideUtils } from '@/components/GuideLink';
+import { OnboardingLayout } from '@/components/layout-helpers';
+import onboardingImgSrc from '@/assets/onboarding-img.png';
+import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.id;

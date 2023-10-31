@@ -6,9 +6,9 @@ import { OsdsChip } from '@ovhcloud/ods-components/chip/react';
 import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components/text';
 import { OsdsLink } from '@ovhcloud/ods-components/link/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { Locale, formatDate } from '@ovhcloud/msc-utils';
+import { Locale } from '@ovhcloud/msc-utils';
 import { useEnvironment } from '@ovh-ux/manager-react-core-application';
-import { ProductStatus, VrackServicesWithIAM } from '../api/api.type';
+import { ProductStatus, VrackServicesWithIAM } from '@/api';
 
 type Props = {
   data: VrackServicesWithIAM[];

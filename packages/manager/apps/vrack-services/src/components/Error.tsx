@@ -9,7 +9,7 @@ import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components/button';
 import { useShell } from '@ovh-ux/manager-react-core-application';
-import OOPS from '../../assets/error-banner-oops.png';
+import OOPS from '@/assets/error-banner-oops.png';
 
 export const TRACKING_LABELS = {
   SERVICE_NOT_FOUND: 'service_not_found',
@@ -40,7 +40,7 @@ function getTrackingTypology(error: ApiError) {
   return TRACKING_LABELS.PAGE_LOAD;
 }
 
-export const ErrorBanner: React.FC<ErrorBannerProps> = ({ error }) => {
+export const ErrorPage: React.FC<ErrorBannerProps> = ({ error }) => {
   const { t } = useTranslation('vrack-services/error');
   const navigate = useNavigate();
   const location = useLocation();

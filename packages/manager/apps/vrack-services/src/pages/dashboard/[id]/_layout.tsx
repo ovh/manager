@@ -2,13 +2,13 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, useResolvedPath } from 'react-router-dom';
 import { useQueries } from '@tanstack/react-query';
-import { BreadcrumbHandleParams } from '../../../components/Breadcrumb/Breadcrumb';
+import { BreadcrumbHandleParams } from '../../../components/Breadcrumb';
 import {
   getvrackServicesResourceVrackServicesId,
   getvrackServicesResourceVrackServicesIdQueryKey,
 } from '../../../api';
 import { DashboardLayout } from '../../../components/layout-helpers';
-import { ErrorBanner } from '../../../components/Error/Error';
+import { ErrorPage } from '../../../components/Error';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.id;
@@ -58,7 +58,7 @@ export default function DashboardPage() {
   ];
 
   if (results[0].status === 'success' && results[0]?.data?.status !== 200) {
-    return <ErrorBanner error={results[0].data} />;
+    return <ErrorPage error={results[0].data} />;
   }
 
   return <DashboardLayout tabs={tabsList} />;
