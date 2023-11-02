@@ -21,8 +21,7 @@ export default class DkimAutoConfigurator {
     }
     const promises = this.dkimSelectorsNoDomain.map((dkimSelector) => {
       return this.services.EmailProDomains.getDkimSelectorName(
-        this.$routerParams.organization,
-        this.$routerParams.productId,
+        this.services.$stateParams.productId,
         this.domain.name,
         dkimSelector,
       );
