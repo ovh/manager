@@ -21,7 +21,7 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
       $scope,
       EmailProDomains,
       navigation,
-      messaging,
+      messaging, // used in parent class
       $translate,
       $stateParams,
     };
