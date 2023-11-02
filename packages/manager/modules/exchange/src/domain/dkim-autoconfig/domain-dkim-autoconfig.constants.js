@@ -4,7 +4,7 @@ export const DKIM_CONFIGURATION_GUIDE = {
   ES:
     'https://help.ovhcloud.com/csm/es-es-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058253',
   FR:
-    'https://help.ovhcloud.com/csm/fr-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101',
+    'https://help.build-ovhcloud.tools/csm/fr-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#knownErrors',
   IE:
     'https://help.ovhcloud.com/csm/en-ie-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058259',
   IT:
@@ -29,8 +29,7 @@ export const DKIM_CONFIGURATION_GUIDE = {
     'https://help.ovhcloud.com/csm/fr-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101',
   WE:
     'https://help.ovhcloud.com/csm/en-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058258',
-  DEFAULT:
-    'https://help.ovhcloud.com/csm/en-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058258',
+  DEFAULT: 'https://help.ovhcloud.com/csm#knownErrors',
 };
 
 export default {
