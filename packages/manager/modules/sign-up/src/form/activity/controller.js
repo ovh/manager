@@ -7,6 +7,7 @@ export default class OvhSignUpActivityCtrl {
   /* @ngInject */
   constructor($filter) {
     this.$filter = $filter;
+    this.corporationIsCreated = true;
   }
 
   /**
@@ -45,6 +46,13 @@ export default class OvhSignUpActivityCtrl {
     if (field.$invalid) {
       this.onFieldError(startCase(field.$name));
     }
+  }
+
+  resetCorporationData() {
+    this.signUpFormCtrl.model.companyNationalIdentificationNumber = null;
+    this.signUpFormCtrl.model.organisation = null;
+    this.signUpFormCtrl.model.corporationType = null;
+    this.signUpFormCtrl.model.vat = null;
   }
 
   siretFieldIsAvailable() {
