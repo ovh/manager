@@ -17,7 +17,7 @@ import {
   DEFAULT_CATALOG_ENDPOINT,
   LEGACY_FLAVORS,
 } from './flavors-list.constants';
-import { TAGS_BLOB } from '../constants';
+import { TAGS_BLOB } from '../../../constants';
 
 export default class FlavorsList {
   /* @ngInject */
@@ -83,9 +83,9 @@ export default class FlavorsList {
               'blobs.technical',
             ),
             tagsBlob: get(
-              find(catalog.addons, {
-                invoiceName: resource.name,
-              }),
+              catalog.addons.find(
+                (addon) => addon.invoiceName === resource.name,
+              ),
               'blobs.tags',
             ),
             available: some(groupedFlavors, 'available'),
@@ -125,23 +125,22 @@ export default class FlavorsList {
 
   static groupByCategory(flavors) {
     return CATEGORIES.map(({ category, title, pattern, isNew }) => {
-      const filtredAndRearrengedFlavors = filter(flavors, (flavor) =>
+      const filteredAndRearrangedFlavors = filter(flavors, (flavor) =>
         pattern.test(flavor.type),
-      );
-      // old flavors
-      const oldFlavors = filtredAndRearrengedFlavors.filter((flavor) => {
-        return !flavor?.tagsBlob.includes(TAGS_BLOB.IS_NEW);
-      });
-      // flavors to be displayed first
-      const newFlavors = filtredAndRearrengedFlavors.filter((flavor) =>
-        flavor?.tagsBlob.includes(TAGS_BLOB.IS_NEW),
       );
 
       return {
         category,
         title,
         isNew,
-        flavors: newFlavors.concat(oldFlavors),
+        flavors: [
+          ...filteredAndRearrangedFlavors.filter((flavor) =>
+            flavor?.tagsBlob.includes(TAGS_BLOB.IS_NEW),
+          ),
+          ...filteredAndRearrangedFlavors.filter(
+            (flavor) => !flavor?.tagsBlob.includes(TAGS_BLOB.IS_NEW),
+          ),
+        ],
       };
     });
   }

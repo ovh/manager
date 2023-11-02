@@ -3,7 +3,7 @@
 
   "pci_projects_project_instances_add_flavor_title": "Sélectionnez un modèle",
   "pci_projects_project_instances_add_flavor_selected_title": "Modèle choisi : {{model}} à partir de {{price}}",
-  "pci_projects_project_instances_add_flavor_selected_title_witout_price": "Modèle choisi : {{model}}",
+  "pci_projects_project_instances_add_flavor_selected_title_without_price": "Modèle choisi : {{model}}",
   "pci_projects_project_instances_add_flavor_selected_legacy": "Le modèle sélectionné est déprécié. Sa disponibilité ne peut pas être garantie.",
 
   "pci_projects_project_instances_add_region_title": "Sélectionnez une localisation",
@@ -70,7 +70,7 @@
   "pci_projects_project_instances_add_automated_backup_infos": "Cette fonctionnalité vous permet de sauvegarder votre instance de manière automatique selon l'ordonnancement de votre choix.",
 
   "pci_projects_project_instances_add_billing_title": "Sélectionnez une période de facturation",
-  "pci_projects_project_instances_add_billing_coming_soon_message_title": " Prix mensuels",
+  "pci_projects_project_instances_add_billing_coming_soon_message_title": "Prix mensuels",
   "pci_projects_project_instances_add_billing_coming_soon_message_description": "Les tarifications mensuelles seront prochainement disponibles avec l'arrivée des Saving Plans.",
   "pci_projects_project_instances_add_billing_montly_discount_message": "Le forfait mensuel est facturé dès le démarrage de l'instance et permet d'économiser 50% sur le prix des serveurs.",
   "pci_projects_project_instances_add_billing_short_period_message": "Pour une utilisation sur de courtes périodes, il est recommandé de choisir la facturation à l'heure et de basculer au forfait mensuel par la suite.",

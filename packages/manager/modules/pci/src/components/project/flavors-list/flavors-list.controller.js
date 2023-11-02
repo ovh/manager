@@ -5,7 +5,7 @@ import get from 'lodash/get';
 import forEach from 'lodash/forEach';
 import isEmpty from 'lodash/isEmpty';
 
-import { TAGS_BLOB } from '../constants';
+import { TAGS_BLOB } from '../../../constants';
 
 export default class FlavorsListController {
   /* @ngInject */

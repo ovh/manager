@@ -2,7 +2,7 @@ import get from 'lodash/get';
 
 import { NODE_POOL_NAME_REGEX } from './add.constants';
 import { NAME_INPUT_CONSTRAINTS } from '../../../kubernetes.constants';
-import { TAGS_BLOB } from '../../../../project.constants';
+import { TAGS_BLOB } from '../../../../../../constants';
 
 export default class {
   /* @ngInject */

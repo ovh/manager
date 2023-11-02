@@ -12,7 +12,7 @@ import sortBy from 'lodash/sortBy';
 import Quota from '../../../../../components/project/instance/quota/quota.class';
 import { PATTERN } from '../../../../../components/project/instance/name/constants';
 import Instance from '../../../../../components/project/instance/instance.class';
-import { TAGS_BLOB } from '../../../project.constants';
+import { TAGS_BLOB } from '../../../../../constants';
 
 import {
   BANDWIDTH_OUT,
@@ -163,7 +163,7 @@ export default class PciInstancesAddController {
       // if the flavor doesn't have a monthly plan
       if (this.model.flavorGroup?.tagsBlob?.includes(TAGS_BLOB.COMING_SOON)) {
         return this.$translate.instant(
-          'pci_projects_project_instances_add_flavor_selected_title_witout_price',
+          'pci_projects_project_instances_add_flavor_selected_title_without_price',
           {
             model: this.model?.flavorGroup?.name.toUpperCase(),
           },
@@ -186,7 +186,7 @@ export default class PciInstancesAddController {
   }
 
   IsComingSoonPricingBannerDisplayed() {
-    return !!this.model.flavorGroup?.tagsBlob?.includes(TAGS_BLOB.COMING_SOON);
+    return this.model.flavorGroup?.tagsBlob?.includes(TAGS_BLOB.COMING_SOON);
   }
 
   onFlavorCategorySelect(flavor, category) {
