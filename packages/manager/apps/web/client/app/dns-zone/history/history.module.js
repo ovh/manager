@@ -1,7 +1,8 @@
 import angular from 'angular';
 import 'angular-translate';
 
-import component from './history.component';
+import componentDiff from './diff/history.component';
+import componentDashboard from './dashboard/dashboard.component';
 import routing from './history.routing';
 
 const moduleName = 'ovhManagerWebDomainZoneHistoryModule';
@@ -9,7 +10,8 @@ const moduleName = 'ovhManagerWebDomainZoneHistoryModule';
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate'])
   .config(routing)
-  .component('domainZoneHistory', component)
+  .component('domainZoneDiffHistory', componentDiff)
+  .component('domainZoneDashboardHistory', componentDashboard)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
