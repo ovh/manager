@@ -22,7 +22,7 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
       wucExchange,
       ExchangeDomains,
       navigation,
-      messaging,
+      messaging, // also used in parent class
       $translate,
       exchangeStates,
     };
