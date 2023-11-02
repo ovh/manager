@@ -20,7 +20,7 @@
                 <p
                     data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOK"
                     data-translate="exchange_tab_domain_diagnostic_dkim_configuration_nok"
-                    data-translate-values="{ url: ctrl.dkimGuideLink }"
+                    data-translate-values="{ url: ctrl.dkimGuideLink, errorCode: ctrl.dkimErrorCode }"
                 ></p>
 
                 <!-- if unconfigured without OVHcloud domain -->

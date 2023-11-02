@@ -67,6 +67,16 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
           failure,
         );
       });
+
+    if (this.dkimStatus === this.GLOBAL_DKIM_STATUS.NOK) {
+      this.services.ExchangeDomains.getDomain(
+        this.$routerParams.organization,
+        this.$routerParams.productId,
+        this.domain.name,
+      ).then((domain) => {
+        this.dkimErrorCode = domain.dkimDiagnostics.errorCode;
+      });
+    }
   }
 
   hideConfirmButton() {
