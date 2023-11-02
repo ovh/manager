@@ -10,6 +10,7 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
     $scope,
     EmailProDomains,
     navigation,
+    messaging,
     $translate,
     $stateParams,
     coreConfig,
@@ -20,6 +21,7 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
       $scope,
       EmailProDomains,
       navigation,
+      messaging,
       $translate,
       $stateParams,
     };
