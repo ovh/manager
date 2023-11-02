@@ -62,6 +62,7 @@ export default class AppAddController {
         flavor: null,
         flavorType: APP_TYPES.CPU,
       },
+      command: [],
     };
   }
 
@@ -136,6 +137,7 @@ export default class AppAddController {
       scalingStrategy,
       probe,
       port,
+      command,
     } = appModel;
 
     return {
@@ -155,6 +157,7 @@ export default class AppAddController {
       probe: AppAddController.buildProbe(probe),
       scalingStrategy: AppAddController.buildScalingBody(scalingStrategy),
       defaultHttpPort: port,
+      command,
     };
   }
 
@@ -164,6 +167,7 @@ export default class AppAddController {
     if (this.storages.length === 0) {
       this.appModel.volumes = [];
     }
+    this.commandLine = null;
   }
 
   loadMessages() {
@@ -323,7 +327,22 @@ export default class AppAddController {
     const lastImagePart = splitImage[splitImage.length - 1];
     const [prefix] = lastImagePart.split(':');
     this.appModel.name = `${prefix}-${nameGenerator()}`;
+    this.appModel.command = this.commandLine
+      ? this.splitIntoArray(this.commandLine)
+      : [];
     return false;
+  }
+
+  static splitIntoArray(cmd) {
+    if (cmd) {
+      return cmd.match(/([^\s"])+|"[^"]+"/g).map((elt) => {
+        if (elt.startsWith('"') && elt.endsWith('"')) {
+          return elt.substring(1, elt.length - 1);
+        }
+        return elt;
+      });
+    }
+    return [];
   }
 
   onAppSubmit() {

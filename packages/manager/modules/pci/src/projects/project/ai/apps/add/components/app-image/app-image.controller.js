@@ -21,6 +21,9 @@ export default class AppImageController {
     this.docDockerBuildUrl =
       APP_CUSTOM_DOCKER_IMAGE_DOC[this.user.ovhSubsidiary] ||
       APP_CUSTOM_DOCKER_IMAGE_DOC.DEFAULT;
+    if (this.command) {
+      this.customDockerCmd = true;
+    }
   }
 
   onPresetSelect(preset) {
@@ -31,5 +34,23 @@ export default class AppImageController {
   getToSLink() {
     const { termsOfService } = this.preset.partner.contract;
     return (termsOfService[this.language] || termsOfService.default).url;
+  }
+
+  splitStringCommandIntoArray() {
+    if (this.command) {
+      return this.command.match(/([^\s"])+|"[^"]+"/g).map((elt) => {
+        if (elt.startsWith('"') && elt.endsWith('"')) {
+          return elt.substring(1, elt.length - 1);
+        }
+        return elt;
+      });
+    }
+    return [];
+  }
+
+  onDockerCmdChanged() {
+    if (this.customDockerCmd) {
+      this.command = null;
+    }
   }
 }

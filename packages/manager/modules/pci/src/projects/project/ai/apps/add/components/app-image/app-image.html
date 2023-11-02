@@ -205,4 +205,61 @@
             </a>
         </div>
     </oui-field>
+    <!--Docker Command-->
+    <div class="mb-2">
+        <p class="oui-heading_5 mr-2">
+            <strong data-translate="pci_app_docker_command_title"></strong>
+        </p>
+    </div>
+    <div class="row d-lg-flex">
+        <div class="col-md-8">
+            <oui-field
+                data-size="xl"
+                data-label="{{:: 'pci_app_docker_command_default_select' | translate  }}"
+            >
+                <oui-switch
+                    data-model="$ctrl.customDockerCmd"
+                    name="customDockerCmd"
+                    on-change="$ctrl.onDockerCmdChanged()"
+                >
+                </oui-switch>
+            </oui-field>
+            <oui-field
+                data-size="xl"
+                data-help-text="{{:: 'pci_app_docker_command_tips' | translate  }}"
+                data-ng-if="$ctrl.customDockerCmd"
+            >
+                <input
+                    class="oui-input mb-3"
+                    type="text"
+                    id="command"
+                    name="command"
+                    data-ng-model="$ctrl.command"
+                    data-required
+                />
+            </oui-field>
+        </div>
+        <div class="col-md-4">
+            <oui-tile
+                class="h-600"
+                data-heading="{{:: 'pci_app_docker_command_submit_title' | translate  }}"
+                data-ng-if="$ctrl.customDockerCmd && $ctrl.splitStringCommandIntoArray().length > 0"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'pci_app_docker_command_submit_title_command' | translate  }}"
+                >
+                    <oui-tile-description>
+                        <ul>
+                            <li
+                                ng-repeat="cmd in $ctrl.splitStringCommandIntoArray()"
+                                class="api-list-item"
+                            >
+                                {{ cmd }}
+                            </li>
+                        </ul>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+    </div>
 </div>
