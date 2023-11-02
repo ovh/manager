@@ -61,7 +61,11 @@ export const VPS_MAX_QUANTITY = 16;
 export const ADDITIONAL_IP = 'Additional IP';
 export const BLOCK_ADDITIONAL_IP = 'Block Additional IP';
 
-export const IP_FAILOVER_RIPE_PLANCODE = 'ip-failover-ripe';
+export const IP_FAILOVER_PLANCODE = {
+  EU: 'ip-failover-ripe',
+  CA: 'ip-failover-arin',
+  US: 'ip-failover-arin',
+};
 
 export const ALERT_ID = 'ip.agora-order';
 
@@ -72,6 +76,6 @@ export default {
   VPS_MAX_QUANTITY,
   TRACKING_PREFIX,
   IP_AGORA,
-  IP_FAILOVER_RIPE_PLANCODE,
+  IP_FAILOVER_PLANCODE,
   ALERT_ID,
 };

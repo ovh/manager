@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.17.2...@ovh-ux/manager-dbaas-logs@1.17.3) (2023-10-30)
+
+
+### Bug Fixes
+
+* **dedicated:** ldp handle resource name ([#10197](https://github.com/ovh/manager/issues/10197)) ([cf3355a](https://github.com/ovh/manager/commit/cf3355a01637ad004670aa9a692f9a4ee6ef23e1))
+
+
+
+
+
 ## [1.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.17.1...@ovh-ux/manager-dbaas-logs@1.17.2) (2023-10-25)
 
 **Note:** Version bump only for package @ovh-ux/manager-dbaas-logs

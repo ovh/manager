@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.7.1...@ovh-ux/manager-ng-layout-helpers@2.7.2) (2023-10-30)
+
+
+### Bug Fixes
+
+* **web:** use punycode for domains ([#10173](https://github.com/ovh/manager/issues/10173)) ([bfe5fe6](https://github.com/ovh/manager/commit/bfe5fe6338199696149ba8aac105ccd8806e6967))
+
+
+
+
+
 ## [2.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-layout-helpers@2.7.0...@ovh-ux/manager-ng-layout-helpers@2.7.1) (2023-09-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-ng-layout-helpers

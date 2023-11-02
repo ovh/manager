@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.22...@ovh-ux/manager-billing@0.20.0-alpha.23) (2023-10-30)
+
+
+### Bug Fixes
+
+* **billing:** fix bulk renew service for nic CA ([#10181](https://github.com/ovh/manager/issues/10181)) ([b834712](https://github.com/ovh/manager/commit/b83471281797772490261ca7658856e2531f6d48))
+
+
+
+
+
 # [0.20.0-alpha.22](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.21...@ovh-ux/manager-billing@0.20.0-alpha.22) (2023-10-11)
 
 

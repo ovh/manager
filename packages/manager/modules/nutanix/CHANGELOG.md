@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.10.1...@ovh-ux/manager-nutanix@1.10.2) (2023-10-30)
+
+
+### Bug Fixes
+
+* **dedicated:** node guide link incorrect in nutanix node ([#10175](https://github.com/ovh/manager/issues/10175)) ([4d20ed2](https://github.com/ovh/manager/commit/4d20ed2ba2beda0f23fb8ef8fe8bb02df8c9c339))
+
+
+
+
+
 ## [1.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.10.0...@ovh-ux/manager-nutanix@1.10.1) (2023-10-16)
 
 

@@ -6,7 +6,8 @@ export const DEDICATED_SERVER_GUIDE = {
   IT: 'https://docs.ovh.com/it/dedicated/',
   PL: 'https://docs.ovh.com/pl/dedicated/',
   PT: 'https://docs.ovh.com/pt/dedicated/',
-  US: 'https://docs.ovh.com/us/es/dedicated/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/categories/115000423390-Dedicated-Servers',
   CA: 'https://docs.ovh.com/ca/en/dedicated/',
   QC: 'https://docs.ovh.com/ca/fr/dedicated/',
   AU: 'https://docs.ovh.com/au/en/dedicated/',

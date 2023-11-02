@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.5.0...@ovh-ux/manager-pci@6.6.0) (2023-10-30)
+
+
+### Bug Fixes
+
+* **pci:** handle storage object html files deletion ([#8780](https://github.com/ovh/manager/issues/8780)) ([d6b5ff5](https://github.com/ovh/manager/commit/d6b5ff5481ec72582fcabe7b3b6bee8bc9b1cb42))
+
+
+### Features
+
+* **public-cloud:** remove sandbox category form flavor tab ([#10097](https://github.com/ovh/manager/issues/10097)) ([a171dd4](https://github.com/ovh/manager/commit/a171dd45a50a1f69457177d16f9ad23d10009893))
+
+
+
+
+
 # [6.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.4.0...@ovh-ux/manager-pci@6.5.0) (2023-10-16)
 
 

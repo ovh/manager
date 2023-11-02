@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-paas-app",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "private": true,
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
     "@ovh-ux/manager-billing-components": "^3.14.1",
     "@ovh-ux/manager-config": "^7.1.1",
     "@ovh-ux/manager-core": "^12.13.0",
-    "@ovh-ux/manager-ng-layout-helpers": "^2.7.1",
+    "@ovh-ux/manager-ng-layout-helpers": "^2.7.2",
     "@ovh-ux/manager-product-offers": "^5.4.0",
     "@ovh-ux/manager-web-paas": "^1.8.3",
     "@ovh-ux/manager-webpack-dev-server": "^4.0.0",
@@ -39,7 +39,7 @@
     "@ovh-ux/ng-ovh-user-pref": "^2.0.7",
     "@ovh-ux/ng-ovh-utils": "^14.0.21",
     "@ovh-ux/ng-translate-async-loader": "^2.1.7",
-    "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.1",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.2",
     "@ovh-ux/ng-ui-router-layout": "^4.1.4",
     "@ovh-ux/request-tagger": "^0.1.1",
     "@ovh-ux/ui-kit": "^6.6.2",

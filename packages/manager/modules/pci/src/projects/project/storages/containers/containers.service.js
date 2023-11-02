@@ -584,11 +584,10 @@ export default class PciStoragesContainersService {
     s3StorageType,
   ) {
     const region = containerRegion || OPENIO_DEFAULT_REGION;
+    const key = encodeURIComponent(objectKey).replace(/\./g, '%2E');
     return this.$http
       .delete(
-        `/cloud/project/${projectId}/region/${region}/${s3StorageType}/${containerId}/object/${encodeURIComponent(
-          objectKey,
-        )}`,
+        `/cloud/project/${projectId}/region/${region}/${s3StorageType}/${containerId}/object/${key}`,
       )
       .then(({ data }) => data);
   }

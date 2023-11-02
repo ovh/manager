@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.4.2...@ovh-ux/manager-web@18.4.3) (2023-11-02)
+
+
+### Bug Fixes
+
+* **web:** fix domain name display issue ([#10211](https://github.com/ovh/manager/issues/10211)) ([d784ec4](https://github.com/ovh/manager/commit/d784ec4a3924d0da55c67b6cebae1c21d76b00b6))
+
+
+
+
+
+## [18.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.4.1...@ovh-ux/manager-web@18.4.2) (2023-10-30)
+
+
+### Bug Fixes
+
+* **web:** use punycode for domains ([#10173](https://github.com/ovh/manager/issues/10173)) ([bfe5fe6](https://github.com/ovh/manager/commit/bfe5fe6338199696149ba8aac105ccd8806e6967))
+
+
+
+
+
 ## [18.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.4.0...@ovh-ux/manager-web@18.4.1) (2023-10-23)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
