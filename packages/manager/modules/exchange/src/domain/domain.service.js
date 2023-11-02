@@ -205,6 +205,14 @@ export default class ExchangeDomains {
       .then(({ data }) => data);
   }
 
+  getDomain(organization, serviceName, domain) {
+    return this.services.$http
+      .get(
+        `/email/exchange/${organization}/service/${serviceName}/domain/${domain}`,
+      )
+      .then(({ data }) => data);
+  }
+
   postDkim(organization, serviceName, domain, params) {
     return this.services.$http
       .post(
