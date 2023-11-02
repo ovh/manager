@@ -60,16 +60,14 @@ export const GROUPED_SERVICES_TYPES = [
   'managedBareMetal',
   'dedicatedServerInterface',
 ];
-
 /**
  * the services families are referenced in the vrack allowed services API
  * this map is the base object to gather the data from the backend in each family
  * https://api.ovh.com/console/#/vrack/%7BserviceName%7D/allowedServices~GET
- * @type {{legacyVrack: null, dedicatedCloudDatacenter: null, ovhCloudConnect: null, dedicatedCloud: null, dedicatedServer: null, ip: null, dedicatedConnect: null, dedicatedServerInterface: null, ipLoadbalancing: null}}
+ * @type {{legacyVrack: null, dedicatedCloudDatacenter: null, ovhCloudConnect: null, dedicatedCloud: null, dedicatedServer: null, ip: null, dedicatedConnect: null, dedicatedServerInterface: null, cloudProject: null, ipLoadbalancing: null}}
  */
 export const SERVICE_FAMILIES_MAP = {
-  // cloudProject: null,
-
+  cloudProject: null,
   dedicatedCloud: null,
   dedicatedCloudDatacenter: null,
   dedicatedConnect: null,

@@ -414,6 +414,7 @@ export default class VrackMoveDialogCtrl {
           self.handleOneServiceFamily(data, serviceFamily);
         })
         .catch(() => {
+          this.getAllowedServicesCounter += 1;
           this.loaders.services[serviceFamily] = 'error';
         });
     });
@@ -1128,10 +1129,10 @@ export default class VrackMoveDialogCtrl {
      *  each time a family is returned, we filter all the services and enrich the services list
      *  then filter only the allowed ones
      */
-    // let mappedServices = this.postMappingServices(this.data.allowedServices);
+    const mappedServices = this.postMappingServices(this.data.allowedServices);
     const allServicesAllowed = VrackMoveDialogCtrl.filterAllowedServicesOnly(
-      // mappedServices,
-      this.data.allowedServices,
+      mappedServices,
+      // this.data.allowedServices,
     );
     this.data.allowedServices = allServicesAllowed;
   }

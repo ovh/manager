@@ -28,7 +28,7 @@
         class="vrack__service-type"
         data-ng-init="$ctrl.setAccordionState('available', 'types', $index, true)"
         data-ng-repeat="(serviceType, services) in $ctrl.data.allowedServices track by $index"
-        data-ng-if="$ctrl.loaders.services[serviceType] == 'fetching' ||  !$ctrl.loaders.deleting"
+        data-ng-if="$ctrl.loaders.services[serviceType] == 'fetching' || $ctrl.data.allowedServices[serviceType].length ||  !$ctrl.loaders.deleting"
         data-ng-class="{ 'vrack__service-type_expanded': $ctrl.getAccordionState('available', 'types', $index) }"
     >
         <span
@@ -55,11 +55,10 @@
             >
                 <oui-spinner data-size="s"></oui-spinner>
             </span>
-            <span
-                class="error"
-                data-ng-if="$ctrl.loaders.services[serviceType] == 'error'"
-            >
-                error
+            <span>
+                {{$ctrl.loaders.services[serviceType] == 'fetched'}} _
+                {{$ctrl.data.allowedServices[serviceType].length}} _
+                {{$ctrl.data.allowedServices[serviceType].length > 0}} _
             </span>
         </span>
 
@@ -91,8 +90,12 @@
                 data-ng-click="$ctrl.toggleAddService(service.trueServiceType, service.id)"
                 data-ng-class="{ vrack__service_selected: $ctrl.isSelected(service.trueServiceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
             >
-                id:<span data-ng-bind="::service.id"></span> nicename:
-                <span data-ng-bind="::service.niceName"></span>
+                <span data-ng-if="!service.niceName">
+                    {{ service }}
+                </span>
+                <span data-ng-if="service.niceName">
+                    <span data-ng-bind="::service.niceName"></span>
+                </span>
                 <oui-spinner
                     data-ng-if="$ctrl.isPending(service.id)"
                     data-size="s"
@@ -114,20 +117,33 @@
                     class="vrack__service-group-name"
                     data-ng-click="$ctrl.toggleAccordion('available', 'dedicatedCloudNetworks', $index)"
                 >
-                    <span data-ng-bind="::service.niceName"></span>
+                    <span
+                        data-ng-if="service.niceName"
+                        data-ng-bind="::service.niceName"
+                    ></span>
+                    <span
+                        data-ng-if="service.serviceName"
+                        data-ng-bind="::service.serviceName"
+                    ></span>
+                    <span data-ng-if="service.description">
+                        ({{::service.description}})
+                    </span>
                 </span>
 
                 <ul class="vrack__service-list vrack__service-list_group">
                     <li
                         class="vrack__service vrack__service_selectable d-flex"
-                        data-ng-class="{ vrack__service_selected: $ctrl.isSelected(serviceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
-                        data-ng-click="$ctrl.toggleAddService(serviceType, service.id)"
+                        data-ng-class="{
+                         vrack__service_selected: $ctrl.isSelected(serviceType, service.serviceId),
+                         vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting
+                         }"
+                        data-ng-click="$ctrl.toggleAddService(serviceType, service.serviceId)"
                     >
                         <span
                             data-translate="vrack_private_cloud_vm_network_label"
                         ></span>
                         <oui-spinner
-                            data-ng-if="$ctrl.isPending(service.id)"
+                            data-ng-if="$ctrl.isPending(service.serviceId)"
                             data-size="s"
                         >
                         </oui-spinner>
