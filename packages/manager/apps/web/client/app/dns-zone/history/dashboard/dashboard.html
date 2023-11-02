@@ -1,0 +1,69 @@
+<oui-back-button
+    data-on-click="ctrlDashboardHistoryOfZoneDns.goBack()"
+></oui-back-button>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th
+                    class="text-center"
+                    scope="col"
+                    data-translate="dashboard_history_creation_date"
+                ></th>
+                <th
+                    class="text-center"
+                    scope="col"
+                    data-translate="dashboard_history_view_zone"
+                ></th>
+                <th
+                    class="text-center"
+                    scope="col"
+                    data-translate="dashboard_history_download"
+                ></th>
+                <th
+                    class="text-center"
+                    scope="col"
+                    data-translate="dashboard_history_restore"
+                ></th>
+                <th class="text-center min-width" scope="col"></th>
+            </tr>
+        </thead>
+
+        <tbody data-ng-if="ctrlDashboardHistoryOfZoneDns.loading">
+            <tr>
+                <td class="text-center" colspan="6">
+                    <oui-spinner></oui-spinner>
+                </td>
+            </tr>
+        </tbody>
+
+        <tbody data-ng-if="!ctrlDashboardHistoryOfZoneDns.loading">
+            <tr
+                data-ng-repeat="dnsZone in ctrlDashboardHistoryOfZoneDns.listOfDnsZonesUrls track by $index"
+            >
+                <td class="text-center col-md-3 col-lg-3 col-sm-3">
+                    {{ dnsZone.creationDate }}
+                </td>
+                <td class="text-center col-md-3 col-lg-3 col-sm-3">
+                    <span
+                        class="oui-icon oui-icon-eye-open"
+                        aria-hidden="true"
+                    ></span>
+                </td>
+                <td class="text-center col-md-3 col-lg-3 col-sm-3">
+                    <span
+                        class="oui-icon oui-icon-download_concept font-weight-bold"
+                        aria-hidden="true"
+                    ></span>
+                </td>
+                <td class="text-center col-md-3 col-lg-3 col-sm-3">
+                    <span
+                        class="oui-icon oui-icon-refresh"
+                        aria-hidden="true"
+                    ></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
