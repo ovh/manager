@@ -220,7 +220,7 @@ export default /* @ngInject */ function EmailProDomains(
     domain,
     selectorName,
   ) {
-    return this.services.$http
+    return $http
       .get(`/email/pro/${serviceName}/domain/${domain}/dkim/${selectorName}`)
       .then(({ data }) => data);
   };
