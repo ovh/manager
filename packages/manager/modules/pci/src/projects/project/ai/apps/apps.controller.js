@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import capitalize from 'lodash/capitalize';
 import { PCI_SPECIAL_CONDITIONS } from '../../../../constants';
+import { APP_USERS_TOKENS_BANNER_TRACKING } from './app.constants';
 
 export default class {
   /* @ngInject */
@@ -48,7 +49,7 @@ export default class {
   }
 
   goToUserToken() {
-    this.trackApps('banner-manage-users-tokens');
+    this.trackApps(APP_USERS_TOKENS_BANNER_TRACKING);
     this.goToUsersAndTokens();
   }
 

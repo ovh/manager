@@ -115,16 +115,14 @@ export default class UpdateScalingCtrl {
       );
   }
 
-  trackAutoscaling() {
-    if (!this.autoscaling) {
-      this.trackApps(
-        `${this.trackingPrefix}::general-information::update-scaling::auto-scaling-enable`,
-      );
-    } else {
-      this.trackApps(
-        `${this.trackingPrefix}::general-information::update-scaling::auto-scaling-disable`,
-      );
-    }
+  trackAutoScaling() {
+    this.trackApps(
+      `${
+        this.trackingPrefix
+      }::general-information::update-scaling::auto-scaling-${
+        this.autoscaling ? 'disable' : 'enable'
+      }`,
+    );
   }
 
   cancel() {

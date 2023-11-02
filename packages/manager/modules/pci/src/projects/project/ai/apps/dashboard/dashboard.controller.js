@@ -1,6 +1,8 @@
+import { APP_USERS_TOKENS_BANNER_TRACKING } from '../app.constants';
+
 export default class {
   goToUserToken() {
-    this.trackApps('banner-manage-users-tokens');
+    this.trackApps(APP_USERS_TOKENS_BANNER_TRACKING);
     this.goToUsersAndTokens();
   }
 }
