@@ -63,46 +63,49 @@ export default class {
               datacenterId: this.datacenterId,
             },
           },
-        ).then((profiles) =>
-          this.$http
-            .get('/products/partners/plans', {
-              params: {
-                ovhSubsidiary: this.user.ovhSubsidiary,
-                publicPlanCode: profiles.map((p) => p.name),
-              },
-            })
-            .then((response) => {
-              const plans = response.data;
-
-              const sortedResult = offers
-                .filter((offer) =>
-                  profiles.find((p) => p.name === offer.planCode),
-                )
-                .map((offer) => {
-                  const plan = plans.find(
-                    (p) => p.publicPlanCode === offer.planCode,
-                  )?.partnerPlan;
-                  const { prices } = offer;
-                  // If available replace pricing text and value with partner ones
-                  if (plan) {
-                    prices[0].price.text = plan.pricings[0].formattedPrice;
-                    prices[0].price.value = plan.pricings[0].price / 100000000;
-                  }
-                  return {
-                    ...offer,
-                    profile: profiles.find((p) => p.name === offer.planCode),
-                    prices,
-                  };
+        ).then((profiles) => {
+          const promise =
+            profiles.length > 0
+              ? this.$http.get('/products/partners/plans', {
+                  params: {
+                    ovhSubsidiary: this.user.ovhSubsidiary,
+                    publicPlanCode: profiles.map((p) => p.name),
+                  },
                 })
-                .sort(
-                  (offerA, offerB) =>
-                    offerA.prices[0].price.value - offerB.prices[0].price.value,
-                );
+              : this.$q.resolve({ data: [] });
+          return promise.then((response) => {
+            const plans = response.data;
 
-              [this.selectedOffer] = sortedResult;
-              return sortedResult;
-            }),
-        ),
+            const sortedResult = offers
+              .filter((offer) =>
+                profiles.find((p) => p.name === offer.planCode),
+              )
+              .map((offer) => {
+                const plan = plans.find(
+                  (p) => p.publicPlanCode === offer.planCode,
+                )?.partnerPlan;
+                const { prices } = offer;
+                // If available replace pricing text and value with partner ones
+                if (plan) {
+                  prices[0].price.text = plan.pricings[0].formattedPrice;
+                  prices[0].price.value = plan.pricings[0].price / 100000000;
+                }
+                return {
+                  ...offer,
+                  planCode: plan ? plan.planCode : offer.planCode,
+                  profile: profiles.find((p) => p.name === offer.planCode),
+                  prices,
+                };
+              })
+              .sort(
+                (offerA, offerB) =>
+                  offerA.prices[0].price.value - offerB.prices[0].price.value,
+              );
+
+            [this.selectedOffer] = sortedResult;
+            return sortedResult;
+          });
+        }),
       );
   }
 
