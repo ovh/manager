@@ -675,5 +675,7 @@
   "sign_up_form_enum_IN_area_IN-JK": "Dżammu i Kaszmir",
   "sign_up_form_enum_IN_area_IN-LA": "Ladakh",
   "sign_up_form_enum_IN_area_IN-LD": "Lakszadiwy",
-  "sign_up_form_enum_IN_area_IN-PY": "Puducherry"
+  "sign_up_form_enum_IN_area_IN-PY": "Puducherry",
+  "sign_up_form_enum_sex_female": "Kobieta",
+  "sign_up_form_enum_sex_male": "Mężczyzna"
 }

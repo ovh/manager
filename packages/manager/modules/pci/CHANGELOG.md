@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.5.0...@ovh-ux/manager-pci@6.6.0) (2023-10-30)
+
+
+### Bug Fixes
+
+* **pci:** handle storage object html files deletion ([#8780](https://github.com/ovh/manager/issues/8780)) ([d6b5ff5](https://github.com/ovh/manager/commit/d6b5ff5481ec72582fcabe7b3b6bee8bc9b1cb42))
+
+
+### Features
+
+* **public-cloud:** remove sandbox category form flavor tab ([#10097](https://github.com/ovh/manager/issues/10097)) ([a171dd4](https://github.com/ovh/manager/commit/a171dd45a50a1f69457177d16f9ad23d10009893))
+
+
+
+
+
+# [6.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.4.0...@ovh-ux/manager-pci@6.5.0) (2023-10-16)
+
+
+### Bug Fixes
+
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+
+
+### Features
+
+* **pci.data-processing.jobs:** display badges for eol items ([#9973](https://github.com/ovh/manager/issues/9973)) ([cc3c6dd](https://github.com/ovh/manager/commit/cc3c6ddf3ab1645f40dd0864327d9839927e9f41))
+* **pci.storages.databases:** add kafka schema registry ([#10123](https://github.com/ovh/manager/issues/10123)) ([ab885cc](https://github.com/ovh/manager/commit/ab885cc4bc9374d5e5f8d8a017427846e16711e6))
+* **pci.storages.databases:** add region option to fork ([#10123](https://github.com/ovh/manager/issues/10123)) ([6e50b75](https://github.com/ovh/manager/commit/6e50b7506cd75a75e0e6d6f172c7e96a9ba42e6f))
+* remove lab check for databases ([#9951](https://github.com/ovh/manager/issues/9951)) ([35ed740](https://github.com/ovh/manager/commit/35ed740e47ac756bcea1c8f23d226a31f9b6c586))
+
+
+
+
+
+# [6.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.3.3...@ovh-ux/manager-pci@6.4.0) (2023-10-11)
+
+
+### Bug Fixes
+
+* **ai.training:** datatr-364 - training flavor binding and price ([#10025](https://github.com/ovh/manager/issues/10025)) ([11deedc](https://github.com/ovh/manager/commit/11deedc6bc3bab995473b7538c39514d7699d144))
+
+
+### Features
+
+* **storage.instance-backup:** add public network to backup creation req ([0b7b60e](https://github.com/ovh/manager/commit/0b7b60e84ac5771c4e5465fd416b4f2c0f10e7e1))
+
+
+
+
+
+## [6.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.3.2...@ovh-ux/manager-pci@6.3.3) (2023-10-10)
+
+
+### Bug Fixes
+
+* **public-cloud:** correct success banner info ([#10038](https://github.com/ovh/manager/issues/10038)) ([fa71c95](https://github.com/ovh/manager/commit/fa71c95a6d70cdc80e61363a655c809813415397))
+
+
+
+
+
 ## [6.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.3.1...@ovh-ux/manager-pci@6.3.2) (2023-10-05)
 
 

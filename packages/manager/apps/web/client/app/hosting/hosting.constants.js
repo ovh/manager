@@ -7,6 +7,11 @@ export const NEW_OFFERS_NAME = {
   PERFORMANCE_4: 'performance_4',
 };
 
+export const OFFERS_UNELIGIBLE_FOR_MODULE = [
+  'START_10_M',
+  'HOSTING_FREE_100_M',
+];
+
 export const HOSTING_BASE_TRACKING = 'web::hosting';
 export const HOSTING_TRACKING = {
   GO_TO_ORDER_DATABASE: `${HOSTING_BASE_TRACKING}::go_to_order_a_databases`,
@@ -83,4 +88,5 @@ export const MULTISITES_TRACKING = {
 
 export default {
   NEW_OFFERS_NAME,
+  OFFERS_UNELIGIBLE_FOR_MODULE,
 };

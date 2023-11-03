@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.6.0...@ovh-ux/ovh-at-internet@0.7.0) (2023-10-23)
+
+
+### Features
+
+* **tracking:** remove "Full URL" property encoding ([#10131](https://github.com/ovh/manager/issues/10131)) ([645cd8e](https://github.com/ovh/manager/commit/645cd8ef02aa06901e60321772500ae979646804))
+
+
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.5.1...@ovh-ux/ovh-at-internet@0.6.0) (2023-09-27)
 
 

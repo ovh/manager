@@ -23,6 +23,7 @@ export const CLOUD_CONNECT_ORDER_URLS = {
   LT: 'https://ovhcloud.com/lt/network-security/ovhcloud-connect/',
   WE: 'https://ovhcloud.com/us-en/network-security/ovhcloud-connect/',
   WS: 'https://ovhcloud.com/us-en/network-security/ovhcloud-connect/',
+  US: 'https://us.ovhcloud.com/network/ovhcloud-connect/',
 };
 
 export function getCloudConnectOrderUrl(subsidiary) {

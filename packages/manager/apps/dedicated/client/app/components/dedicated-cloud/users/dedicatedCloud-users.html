@@ -17,10 +17,28 @@
         data-product-id="$ctrl.productId"
         data-set-message="$ctrl.setMessage"
         data-go-to-import-user="$ctrl.goToImportUser"
+        data-go-to-user-iam-role="$ctrl.goToUserIamRole"
         data-track-click="$ctrl.trackClick"
         data-track-page="$ctrl.trackPage"
     >
     </dedicated-cloud-vsphere-users>
+
+    <h2>
+        <span data-translate="dedicatedCloud_user_management_iam"></span>
+        <span
+            class="oui-badge ng-scope oui-badge_info"
+            data-translate="dedicatedCloud_user_management_beta"
+        ></span>
+    </h2>
+
+    <dedicated-cloud-iam
+        data-dedicated-cloud="$ctrl.dedicatedCloud"
+        data-product-id="$ctrl.productId"
+        data-go-to-toggle-iam="$ctrl.goToToggleIam"
+        data-track-click="$ctrl.trackClick"
+        data-track-page="$ctrl.trackPage"
+    >
+    </dedicated-cloud-iam>
 
     <h2 data-translate="dedicatedCloud_user_management_activeDirectories"></h2>
 

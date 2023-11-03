@@ -20,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
           filter(billingServices, (service) =>
             servicesId.includes(service.id.toString()),
           ),
-          currentUser.nichandle,
+          currentUser.auth.account,
         ),
       /* @ngInject */
       updateRenew: (BillingAutoRenew) => (services) =>

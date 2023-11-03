@@ -44,15 +44,19 @@ export default class {
     const version = engine.getVersion(this.database.version);
     engine.selectedVersion = version;
     this.originalPlan = version.getPlan(this.database.plan);
-    const region = this.originalPlan.getRegion(this.database.nodes[0].region);
-    this.originalFlavor = region.getFlavor(this.database.nodes[0].flavor);
+    this.originalRegion = this.originalPlan.getRegion(
+      this.database.nodes[0].region,
+    );
+    this.originalFlavor = this.originalRegion.getFlavor(
+      this.database.nodes[0].flavor,
+    );
 
     this.plans = engine.selectedVersion.plans;
 
     this.model = {
       engine,
       plan: this.originalPlan,
-      region,
+      region: this.originalRegion,
       flavor: this.originalFlavor,
       name: nameGenerator(`${engine.name}-`),
       privateNetwork: null,
@@ -174,26 +178,36 @@ export default class {
   }
 
   onPlanChanged(plan) {
+    this.trackDashboard(`backups::options_menu::fork::plan::${plan.name}`);
     this.updatePlan(plan);
   }
 
+  onRegionChanged(region) {
+    this.trackDashboard(`backups::options_menu::fork::region::${region.name}`);
+    this.updateRegion(region);
+  }
+
   onFlavorChanged(flavor) {
+    this.trackDashboard(`backups::options_menu::fork::flavor::${flavor.name}`);
     this.updateFlavor(flavor);
   }
 
   updatePlan(plan) {
-    // get equivalent or default values for other intuts
+    // assign value to model
+    this.model.plan = plan;
+    // get equivalent or default values for other inputs
     const equivalentRegion =
       plan.regions.find((region) => region.name === this.model.region.name) ||
       plan.getDefaultRegion();
-    const equivalentFlavor =
-      equivalentRegion.flavors.find(
-        (flavor) => flavor.name === this.model.flavor.name,
-      ) || equivalentRegion.getDefaultFlavor();
-    // assign values to model
-    this.model.plan = plan;
-    this.model.region = equivalentRegion;
+    this.updateRegion(equivalentRegion);
+  }
+
+  updateRegion(region) {
+    this.model.region = region;
     // trigger flavors controls and assign to model
+    const equivalentFlavor =
+      region.flavors.find((flavor) => flavor.name === this.model.flavor.name) ||
+      region.getDefaultFlavor();
     this.updateFlavor(equivalentFlavor);
   }
 
@@ -281,10 +295,6 @@ export default class {
         // sort by name
         .sort((a, b) => a.name.localeCompare(b.name)),
     ];
-  }
-
-  get flavors() {
-    return this.model.plan.getRegion(this.database.nodes[0].region).flavors;
   }
 
   get storageNodeFactor() {

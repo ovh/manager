@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-dashboard",
-  "version": "6.4.11",
+  "version": "6.4.12",
   "private": true,
   "description": "Telecom dashboard section.",
   "repository": {
@@ -28,7 +28,7 @@
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
     "angular-ui-validate": "^1.2.3",
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "bootstrap4": "twbs/bootstrap#v4.6.2",
     "lodash": "^4.17.14",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^15.0.0",

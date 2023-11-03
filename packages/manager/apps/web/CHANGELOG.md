@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.4.2...@ovh-ux/manager-web@18.4.3) (2023-11-02)
+
+
+### Bug Fixes
+
+* **web:** fix domain name display issue ([#10211](https://github.com/ovh/manager/issues/10211)) ([d784ec4](https://github.com/ovh/manager/commit/d784ec4a3924d0da55c67b6cebae1c21d76b00b6))
+
+
+
+
+
+## [18.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.4.1...@ovh-ux/manager-web@18.4.2) (2023-10-30)
+
+
+### Bug Fixes
+
+* **web:** use punycode for domains ([#10173](https://github.com/ovh/manager/issues/10173)) ([bfe5fe6](https://github.com/ovh/manager/commit/bfe5fe6338199696149ba8aac105ccd8806e6967))
+
+
+
+
+
+## [18.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.4.0...@ovh-ux/manager-web@18.4.1) (2023-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [18.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.3.4...@ovh-ux/manager-web@18.4.0) (2023-10-16)
+
+
+### Bug Fixes
+
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+
+
+### Features
+
+* **hosting.database:** replace deprecated routes for ram upgrade ([#10055](https://github.com/ovh/manager/issues/10055)) ([c1ca761](https://github.com/ovh/manager/commit/c1ca7613711a787abf5313de49cbb39234f2585c))
+
+
+
+
+
+## [18.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.3.3...@ovh-ux/manager-web@18.3.4) (2023-10-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [18.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.3.2...@ovh-ux/manager-web@18.3.3) (2023-10-10)
+
+
+### Bug Fixes
+
+* **web.hosting:** fix restriction to module and cron ([#10068](https://github.com/ovh/manager/issues/10068)) ([768ff76](https://github.com/ovh/manager/commit/768ff76fad71fc2f3df1aa38312ecf615e13520e))
+* **web:** fix isTerminated value for anycast option ([#10026](https://github.com/ovh/manager/issues/10026)) ([0920060](https://github.com/ovh/manager/commit/09200608b33ea2f41674ff66b0902269f52b1087))
+* **web:** fix performance offer database text ([#10057](https://github.com/ovh/manager/issues/10057)) ([#10091](https://github.com/ovh/manager/issues/10091)) ([fda800b](https://github.com/ovh/manager/commit/fda800b55a7e59ec54c69cf50632d89b71962a4e))
+
+
+
+
+
 ## [18.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.3.1...@ovh-ux/manager-web@18.3.2) (2023-10-09)
 
 

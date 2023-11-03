@@ -1,4 +1,4 @@
-import { API_ERROR, GUIDE, PAGE_SIZE, PREFERENCES_KEY } from './iam.constants';
+import { API_ERROR, GUIDE, PREFERENCES_KEY } from './iam.constants';
 
 export const URL = {
   ACTION: '/engine/api/v2/iam/reference/action',
@@ -13,58 +13,12 @@ export const URL = {
 
 export default class IAMService {
   /* @ngInject */
-  constructor($http, $q, $translate, coreConfig) {
+  constructor($http, $q, $translate, coreConfig, Apiv2Service) {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
-  }
-
-  // **********************************************************************************************
-  // API v2
-
-  /**
-   * Call the given endpoint on the API v2
-   * @param {object} options the $http options
-   * @returns {Promise}
-   */
-  httpApiv2(options) {
-    return this.$http({
-      ...options,
-      serviceType: 'apiv2',
-    }).catch((error) => this.parseError(error));
-  }
-
-  /**
-   * Call the given list endpoint on the API v2 that implements the cursor api
-   * @param {Object} options The $http options
-   * @param {string=} cursor The cursor id
-   * @param {number=} size The page size. Default is 25
-   * @returns {Promise}
-   */
-  httpApiv2List(options, { cursor, size = PAGE_SIZE }) {
-    return this.httpApiv2({
-      ...options,
-      method: 'get',
-      headers: {
-        ...options?.headers,
-        ...(cursor && { 'X-Pagination-Cursor': cursor }),
-        'X-Pagination-size': size,
-      },
-    })
-      .then(({ data, headers }) => ({
-        data,
-        cursor: {
-          next: headers('X-Pagination-Cursor-Next'),
-          prev: headers('X-Pagination-Cursor-Prev'), // not available ATM
-        },
-      }))
-      .catch((error) => {
-        if (error.status === 400 && error.data?.message === 'invalid cursor') {
-          return { cursor: { error: true } };
-        }
-        throw error;
-      });
+    this.Apiv2Service = Apiv2Service;
   }
 
   /**
@@ -173,9 +127,11 @@ export default class IAMService {
    * @returns {Promise}
    */
   createPolicy(data) {
-    return this.httpApiv2({ method: 'post', url: URL.POLICY, data }).then(
-      ({ data: policy }) => policy,
-    );
+    return this.Apiv2Service.httpApiv2({
+      method: 'post',
+      url: URL.POLICY,
+      data,
+    }).then(({ data: policy }) => policy);
   }
 
   /**
@@ -184,7 +140,7 @@ export default class IAMService {
    * @returns {Promise}
    */
   deletePolicy(id) {
-    return this.httpApiv2({
+    return this.Apiv2Service.httpApiv2({
       method: 'delete',
       url: `${URL.POLICY}/${id}`,
     }).then(({ data }) => data);
@@ -199,7 +155,7 @@ export default class IAMService {
     return this.$q
       .all({
         actions: this.getActions(),
-        policy: this.httpApiv2({
+        policy: this.Apiv2Service.httpApiv2({
           method: 'get',
           url: `${URL.POLICY}/${id}`,
           params: { details: true },
@@ -221,12 +177,13 @@ export default class IAMService {
     if (typeof readOnly !== 'undefined') {
       params.readOnly = readOnly;
     }
-    return this.httpApiv2List({ url: URL.POLICY, params }, { cursor }).then(
-      ({ data, ...rest }) => ({
-        ...rest,
-        data: data.map((policy) => IAMService.transformPolicy(policy)),
-      }),
-    );
+    return this.Apiv2Service.httpApiv2List(
+      { url: URL.POLICY, params },
+      { cursor },
+    ).then(({ data, ...rest }) => ({
+      ...rest,
+      data: data.map((policy) => IAMService.transformPolicy(policy)),
+    }));
   }
 
   /**
@@ -235,7 +192,7 @@ export default class IAMService {
    * @returns {Promise}
    */
   getPolicy(id) {
-    return this.httpApiv2({
+    return this.Apiv2Service.httpApiv2({
       method: 'get',
       url: `${URL.POLICY}/${id}`,
     }).then(({ data: policy }) => IAMService.transformPolicy(policy));
@@ -256,7 +213,7 @@ export default class IAMService {
    * @returns {Promise}
    */
   setPolicy(id, data) {
-    return this.httpApiv2({
+    return this.Apiv2Service.httpApiv2({
       method: 'put',
       url: `${URL.POLICY}/${id}`,
       data,
@@ -273,7 +230,7 @@ export default class IAMService {
     return this.getPolicy(id)
       .then((policy) => {
         const { name, resources, permissions } = policy;
-        return this.httpApiv2({
+        return this.Apiv2Service.httpApiv2({
           method: 'put',
           url: `${URL.POLICY}/${id}`,
           data: { name, resources, permissions, identities },
@@ -372,7 +329,7 @@ export default class IAMService {
    * @returns {Promise}
    */
   getActions(types) {
-    return this.httpApiv2({
+    return this.Apiv2Service.httpApiv2({
       method: 'get',
       url: URL.ACTION,
       params: { ...(types && { resourceType: types }) },
@@ -391,7 +348,7 @@ export default class IAMService {
    * @returns {Promise}
    */
   createResourceGroup(data) {
-    return this.httpApiv2({
+    return this.Apiv2Service.httpApiv2({
       method: 'post',
       url: `${URL.RESOURCE_GROUP}`,
       data,
@@ -404,7 +361,7 @@ export default class IAMService {
    * @returns {Promise}
    */
   deleteResourceGroup(id) {
-    return this.httpApiv2({
+    return this.Apiv2Service.httpApiv2({
       method: 'delete',
       url: `${URL.RESOURCE_GROUP}/${id}`,
     });
@@ -416,7 +373,7 @@ export default class IAMService {
    * @returns {Promise}
    */
   getDetailedResourceGroup(id) {
-    return this.httpApiv2({
+    return this.Apiv2Service.httpApiv2({
       method: 'get',
       url: `${URL.RESOURCE_GROUP}/${id}`,
       params: { details: true },
@@ -429,7 +386,7 @@ export default class IAMService {
    * @returns {Promise}
    */
   getResourceGroup(id) {
-    return this.httpApiv2({
+    return this.Apiv2Service.httpApiv2({
       method: 'get',
       url: `${URL.RESOURCE_GROUP}/${id}`,
     }).then(({ data: resourceGroup }) => resourceGroup);
@@ -441,7 +398,10 @@ export default class IAMService {
    * @returns {Promise}
    */
   getResourceGroups({ cursor }) {
-    return this.httpApiv2List({ url: URL.RESOURCE_GROUP }, { cursor });
+    return this.Apiv2Service.httpApiv2List(
+      { url: URL.RESOURCE_GROUP },
+      { cursor },
+    );
   }
 
   /**
@@ -454,7 +414,7 @@ export default class IAMService {
    * @returns {Promise}
    */
   setResourceGroup(id, data) {
-    return this.httpApiv2({
+    return this.Apiv2Service.httpApiv2({
       method: 'put',
       url: `${URL.RESOURCE_GROUP}/${id}`,
       data,

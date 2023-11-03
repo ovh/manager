@@ -270,21 +270,6 @@
                     </oui-field>
                 </div>
             </div>
-
-            <!-- Step 7 -->
-            <div
-                data-ng-if="$ctrl.model.engine.selectedVersion.status === 'BETA'"
-            >
-                <h2 data-translate="pci_database_add_step7_title"></h2>
-                <div class="mb-3">
-                    <pci-project-lab-agreements
-                        data-lab="$ctrl.lab"
-                        data-ng-if="!$ctrl.lab.isActivated()"
-                        data-on-accept="$ctrl.acceptLab(accepted)"
-                        data-on-contract-click="$ctrl.clickOnContract()"
-                    ></pci-project-lab-agreements>
-                </div>
-            </div>
         </form>
     </div>
     <div class="col-lg-3">

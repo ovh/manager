@@ -86,6 +86,8 @@ export default /* @ngInject */ ($stateProvider) => {
           )
           .catch(() => false),
       changeOwnerUrl: /* @ngInject */ (User) => User.getUrlOf('changeOwner'),
+      currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
+        $state.href($state.current.name, $transition$.params()),
       eligibleData: /* @ngInject */ (Server, user) => {
         const isEligible = includes(
           ELIGIBLE_FOR_UPGRADE.SUBSIDIARIES,

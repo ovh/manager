@@ -1,4 +1,3 @@
-import { cursorsType } from '../../iam.paramTypes';
 import { TAG } from '../../iam.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -11,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
         inherit: false,
         squash: true,
-        type: cursorsType,
+        type: 'cursors',
         value: null,
       },
     },

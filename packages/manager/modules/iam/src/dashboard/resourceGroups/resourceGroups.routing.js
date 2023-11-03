@@ -1,5 +1,4 @@
 import { TAG } from '../../iam.constants';
-import { cursorsType } from '../../iam.paramTypes';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('iam.dashboard.resourceGroups', {
@@ -11,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
         dynamic: true,
         inherit: false,
         squash: true,
-        type: cursorsType,
+        type: 'cursors',
         value: null,
       },
     },

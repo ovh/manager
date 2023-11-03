@@ -18,8 +18,16 @@
                         model="$ctrl.selectedLicense"
                         label="{{:: ('netapp_order_performance_level_type_' + license.name) | translate }}"
                         values="[license]"
-                        description="{{:: ('netapp_order_performance_level_type_' + license.name + '_description') | translate }}"
                     >
+                        <oui-select-picker-description>
+                            <span
+                                data-translate="{{:: ('netapp_order_performance_level_type_' + license.name + '_description') }}"
+                            ></span>
+                            <span
+                                data-ng-if="license.name === 'Premium'"
+                                data-translate="{{:: ('netapp_order_performance_level_type_' + license.name + '_additionnal_description') }}"
+                            ></span>
+                        </oui-select-picker-description>
                     </oui-select-picker>
                 </div>
             </div>
@@ -44,6 +52,10 @@
             on-focus="$ctrl.onSizeStepFocus()"
             valid="$ctrl.plan"
         >
+            <p
+                data-ng-if="$ctrl.selectedLicense.name === 'Premium'"
+                data-translate="netapp_order_performance_customization"
+            ></p>
             <div class="row mb-2">
                 <oui-select-picker
                     class="col-md-4 col-lg-3 mb-3"

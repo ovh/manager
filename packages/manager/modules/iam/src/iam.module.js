@@ -3,6 +3,7 @@ import angularTranslate from 'angular-translate';
 import uiRouter from '@uirouter/angularjs';
 
 import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
 
 import managerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
@@ -43,6 +44,7 @@ const registerTypes = /* @ngInject */ ($urlMatcherFactoryProvider) =>
 angular
   .module(moduleName, [
     OnboardingLayoutHelper,
+    ApiV2ListHelper.moduleName,
     angularTranslate,
     uiRouter,
     managerAtInternetConfiguration,

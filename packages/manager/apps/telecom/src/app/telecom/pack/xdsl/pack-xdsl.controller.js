@@ -150,8 +150,8 @@ export default class PackXdslCtrl {
 
   isModemTabAvailable() {
     // Modem tab not available for SDSL access
-    if (this.content.accessType !== PACK_XDSL.sdsl) {
-      return PACK_XDSL.availableModemTabStatus.includes(this.content.status);
+    if (this.access.accessType !== PACK_XDSL.sdsl) {
+      return PACK_XDSL.availableModemTabStatus.includes(this.access.status);
     }
     return false;
   }

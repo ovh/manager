@@ -88,5 +88,11 @@
   "pci_databases_general_information_storage_type_high-speed": "Disco remoto de primera generación",
   "pci_databases_general_information_storage_type_high-speed-gen2": "Disco remoto de segunda generación",
   "pci_databases_general_information_storage_upgrade_link": "Modificar el almacenamiento adicional",
-  "pci_databases_general_information_fork": "Duplicar (fork)"
+  "pci_databases_general_information_fork": "Duplicar (fork)",
+  "pci_databases_general_information_kafka_schema_registry_label": "Schema Registry",
+  "pci_databases_general_information_kafka_schema_registry_content": "Interfaz de servicio HTTP REST para almacenar esquemas Apache Kafka (basado en el proyecto {{ projectLink }}).",
+  "pci_databases_general_information_kafka_schema_registry_enable": "Activar",
+  "pci_databases_general_information_kafka_schema_registry_disable": "Desactivar",
+  "pci_databases_general_information_kafka_schema_registry_service_uri_label": "URI del servicio Schema Registry",
+  "pci_databases_general_information_kafka_schema_registry_enable_disable_error": "Se ha producido un error al activar o desactivar el servicio Schema Registry."
 }

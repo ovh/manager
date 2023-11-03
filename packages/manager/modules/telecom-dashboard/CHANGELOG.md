@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.4.11...@ovh-ux/manager-telecom-dashboard@6.4.12) (2023-10-16)
+
+
+### Bug Fixes
+
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+
+
+
+
+
 ## [6.4.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard@6.4.10...@ovh-ux/manager-telecom-dashboard@6.4.11) (2023-09-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom-dashboard

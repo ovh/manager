@@ -7,7 +7,11 @@ import orderBy from 'lodash/orderBy';
 import set from 'lodash/set';
 import upperFirst from 'lodash/upperFirst';
 
-import { TELEPHONY_LINE_PHONE_CHOICE } from './choice.constant';
+import {
+  TELEPHONY_LINE_PHONE_CHOICE,
+  TELEPHONY_LINE_PHONE_CHOICE_FOR_MGCP_PHONE,
+  PHONE_PROTOCOL,
+} from './choice.constant';
 import initializeBrandList from './choice.service';
 
 export default class TelephonyLinePhoneOrderChoiceCtrl {
@@ -39,12 +43,16 @@ export default class TelephonyLinePhoneOrderChoiceCtrl {
 
     this.isStepLoading = true;
     if (this.phone) {
+      this.isMgcpPhone = this.phone.protocol === PHONE_PROTOCOL.MGCP;
+
       return this.fetchMerchandiseAvailable()
         .then((result) => {
           map(result, (phone) => {
             this.phoneListMap(phone);
           });
-          this.merchandise = result;
+          this.merchandise = this.isMgcpPhone
+            ? this.filterPhoneForMgcp(result)
+            : result;
         })
         .catch((err) => new this.TucToastError(err))
         .finally(() => {
@@ -62,6 +70,14 @@ export default class TelephonyLinePhoneOrderChoiceCtrl {
       .finally(() => {
         this.isStepLoading = false;
       });
+  }
+
+  filterPhoneForMgcp(phones) {
+    return phones.filter((phone) =>
+      TELEPHONY_LINE_PHONE_CHOICE_FOR_MGCP_PHONE.includes(
+        this.hasSuffixVersion(phone) ? phone.nameWithoutSuffix : phone.brand,
+      ),
+    );
   }
 
   hasSuffixVersion = function hasSuffixVersion(phone) {

@@ -3,6 +3,97 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.8.0...@ovh-ux/manager-dedicated@19.9.0) (2023-10-30)
+
+
+### Bug Fixes
+
+* **dedicated:** add missing PL translations [CDS 2574] ([#10168](https://github.com/ovh/manager/issues/10168)) ([edc2c68](https://github.com/ovh/manager/commit/edc2c68b0a2059af5ab316ddb9d4ee91768fbf79))
+* **dedicated:** fix tva number field ([#10185](https://github.com/ovh/manager/issues/10185)) ([5b66a79](https://github.com/ovh/manager/commit/5b66a795a6b2119dafb351ce6b4aa256e4db84ac))
+
+
+### Features
+
+* **dedicated:** retrieve price info based on region ([#10116](https://github.com/ovh/manager/issues/10116)) ([febb82c](https://github.com/ovh/manager/commit/febb82c61a30336eff00824ec0000da09f63c7c5))
+
+
+
+
+
+# [19.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.7.2...@ovh-ux/manager-dedicated@19.8.0) (2023-10-25)
+
+
+### Features
+
+* **dedicated:** adding iam management in users page ([#9649](https://github.com/ovh/manager/issues/9649)) ([42250ed](https://github.com/ovh/manager/commit/42250ed85a28b1061c6ce689d214d22e12cfb0e4))
+
+
+
+
+
+## [19.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.7.1...@ovh-ux/manager-dedicated@19.7.2) (2023-10-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [19.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.7.0...@ovh-ux/manager-dedicated@19.7.1) (2023-10-23)
+
+
+### Bug Fixes
+
+* **dedicated:** fix change organisation IPs ([#10136](https://github.com/ovh/manager/issues/10136)) ([401a92c](https://github.com/ovh/manager/commit/401a92c8b162a4eecbac7458855e30869d1be572))
+* **dedicated:** show error for invalid file type ([#10109](https://github.com/ovh/manager/issues/10109)) ([7ad1da6](https://github.com/ovh/manager/commit/7ad1da64fc10e527b37394ca4d97ee6f0187066a))
+
+
+
+
+
+# [19.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.6.1...@ovh-ux/manager-dedicated@19.7.0) (2023-10-16)
+
+
+### Bug Fixes
+
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+
+
+### Features
+
+* **dedicated.account:** add popup confirmation for 'IN' upload id docs ([#10065](https://github.com/ovh/manager/issues/10065)) ([f909cc4](https://github.com/ovh/manager/commit/f909cc4574317acfba9a286b51b415d687c2c478))
+
+
+
+
+
+## [19.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.6.0...@ovh-ux/manager-dedicated@19.6.1) (2023-10-11)
+
+
+### Bug Fixes
+
+* **webauthn:** delete doesn't require challenge and use enroll wrapper ([52e63ed](https://github.com/ovh/manager/commit/52e63ed36a4400675069fa1f41e4adb5cf821468))
+
+
+
+
+
+# [19.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.5.2...@ovh-ux/manager-dedicated@19.6.0) (2023-10-10)
+
+
+### Bug Fixes
+
+* **dedicated:** diskgroupid null issue ([#10069](https://github.com/ovh/manager/issues/10069)) ([edbb7e7](https://github.com/ovh/manager/commit/edbb7e7d9464a393540778763c995c52bcb3230c))
+
+
+### Features
+
+* **dedicated:** server network interfaces page improvements ([#9963](https://github.com/ovh/manager/issues/9963)) ([cb71a62](https://github.com/ovh/manager/commit/cb71a6263e56125336005058d5adbe79b492b104))
+
+
+
+
+
 ## [19.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.5.1...@ovh-ux/manager-dedicated@19.5.2) (2023-10-05)
 
 

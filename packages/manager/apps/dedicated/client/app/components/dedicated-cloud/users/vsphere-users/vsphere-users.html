@@ -26,6 +26,15 @@
             <span data-translate="dedicatedCloud_USER_import_user"></span>
         </oui-button>
 
+        <oui-button
+            data-ng-click="$ctrl.onGoToUserIamRoleClick()"
+            data-ng-if="$ctrl.iamEnabled"
+            type="button"
+            variant="secondary"
+        >
+            <span data-translate="dedicatedCloud_USER_create_iam"></span>
+        </oui-button>
+
         <button
             type="button"
             class="oui-button oui-button_secondary float-right"
@@ -43,10 +52,13 @@
         data-filterable
         data-prevent-customization
     >
-        <span data-ng-if="!$row.activeDirectoryId" data-ng-bind="$row.login">
+        <span data-ng-if="!$row.identityProviderId" data-ng-bind="$row.login">
         </span>
-        <span data-ng-if="$row.activeDirectoryId">
-            <span data-ng-if="$row.activeDirectoryType === 'group'">
+        <span
+            data-ng-if="$row.identityProviderId"
+            data-ng-switch="$row.userType"
+        >
+            <span data-ng-switch-when="group">
                 <span class="fa fa-users" aria-hidden="true"></span>
                 <span data-ng-bind="$row.loginUsername"> </span>
                 <span
@@ -55,13 +67,35 @@
                 >
                 </span>
             </span>
-            <span data-ng-if="$row.activeDirectoryType !== 'group'">
+            <span data-ng-switch-when="role">
+                <span class="fa fa-id-card" aria-hidden="true"></span>
+                <span data-ng-bind="$row.loginUsername"> </span>
+                <span class="font-italic text-muted">
+                    (<span
+                        data-translate="dedicatedCloud_USER_type_ovhcloud_iam"
+                    ></span
+                    >)
+                </span>
+            </span>
+            <span data-ng-switch-default>
                 <span data-ng-bind="$row.loginUsername"> </span
                 ><span
                     class="font-italic text-muted"
                     data-ng-bind="'@'+$row.loginDomain"
                 ></span>
             </span>
+        </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'dedicatedCloud_USER_type' | translate"
+        data-property="userType"
+        data-filterable
+        data-sortable
+        data-hidden
+    >
+        <span
+            data-translate="{{ 'dedicatedCloud_USER_type_' + $row.userType }}"
+        >
         </span>
     </oui-datagrid-column>
     <oui-datagrid-column
@@ -155,10 +189,7 @@
         data-type-options="$ctrl.getUsersStateEnumFilter()"
         data-filterable
     >
-        <span
-            data-ng-if="$ctrl.dedicatedCloud.solution !== 'SYSTEMCENTER' || $row.name !== 'infraadmin'"
-            data-ng-switch="$row.state"
-        >
+        <span data-ng-switch="$row.state">
             <span
                 data-ng-switch-when="creating"
                 data-translate="dedicatedCloud_USER_state_creating"
@@ -184,26 +215,6 @@
             >
             </span>
         </span>
-        <span
-            data-ng-if="$ctrl.dedicatedCloud.solution === 'SYSTEMCENTER' && $row.name === 'infraadmin'"
-            data-ng-switch="$row.activationState"
-        >
-            <span
-                data-ng-switch-when="enabled"
-                data-translate="dedicatedCloud_USER_state_delivered"
-            >
-            </span>
-            <span
-                data-ng-switch-when="disabled"
-                data-translate="dedicatedCloud_USER_state_disabled"
-            >
-            </span>
-            <span
-                data-ng-switch-default
-                data-translate="{{ 'dedicatedCloud_USER_state_' + $row.state }}"
-            >
-            </span>
-        </span>
     </oui-datagrid-column>
     <oui-action-menu
         data-compact
@@ -220,26 +231,14 @@
             ></span>
         </oui-action-menu-item>
         <oui-action-menu-item
-            data-ng-if="!$row.activeDirectoryId"
+            data-ng-if="!$row.identityProviderId"
             data-on-click="$ctrl.passwordReset($row, $ctrl.passwordPolicy)"
             ><span data-translate="dedicatedCloud_USER_change_password"></span>
         </oui-action-menu-item>
-        <oui-action-menu-item
-            data-ng-if="$ctrl.canDeleteUserOrGroup($row)"
-            data-on-click="$ctrl.deleteUser($row)"
+        <oui-action-menu-item data-on-click="$ctrl.deleteUser($row)"
             ><span
-                data-translate="{{ :: $row.activeDirectoryType === 'user' ? 'dedicatedCloud_USER_user_delete' : 'dedicatedCloud_USER_group_delete' }}"
+                data-translate="{{ :: 'dedicatedCloud_USER_' + $row.userType + '_delete' }}"
             ></span>
-        </oui-action-menu-item>
-        <oui-action-menu-item
-            data-ng-if="$ctrl.dedicatedCloud.solution === 'SYSTEMCENTER' && $row.name === 'infraadmin' && $row.activationState === 'disabled'"
-            data-on-click="$ctrl.enableUser($row)"
-            ><span data-translate="dedicatedCloud_USER_enable"></span>
-        </oui-action-menu-item>
-        <oui-action-menu-item
-            data-ng-if="$ctrl.dedicatedCloud.solution === 'SYSTEMCENTER' && $row.name === 'infraadmin' && $row.activationState === 'enabled'"
-            data-on-click="$ctrl.disableUser($row)"
-            ><span data-translate="dedicatedCloud_USER_disable"></span>
         </oui-action-menu-item>
     </oui-action-menu>
 </oui-datagrid>

@@ -2,13 +2,14 @@ import get from 'lodash/get';
 import startCase from 'lodash/startCase';
 import startsWith from 'lodash/startsWith';
 
-import { PHONE_PREFIX } from './details.constants';
+import { ALLOWED_COUNTRY_EXTRA_INFO, PHONE_PREFIX } from './details.constants';
 
 export default class SignUpDetailsCtrl {
   /* @ngInject */
   constructor($timeout) {
     // dependencies injections
     this.$timeout = $timeout;
+    this.ALLOWED_COUNTRY_EXTRA_INFO = ALLOWED_COUNTRY_EXTRA_INFO;
   }
 
   /* ==============================

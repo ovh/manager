@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-netapp",
-  "version": "1.7.1",
+  "version": "1.8.1",
   "private": true,
   "description": "NetApp product.",
   "repository": {
@@ -13,7 +13,7 @@
   "main": "./src/index.js",
   "dependencies": {
     "@ovh-ux/manager-config": "^7.1.1",
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "bootstrap4": "twbs/bootstrap#v4.6.2",
     "jsurl": "^0.1.5",
     "lodash-es": "^4.17.21"
   },

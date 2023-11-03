@@ -20,11 +20,12 @@
             <div
                 class="alert alert-info"
                 role="alert"
-                data-ng-if="hosting.offer === 'START_10_M'"
+                data-ng-if="ctrlHostingTabModules.constructor.isOfferUneligible(hosting.offer)"
             >
                 <div>
                     <p
-                        data-translate="hosting_change_offer_for_service_start10m"
+                        data-translate="hosting_change_offer_for_service_offer"
+                        data-translate-values="{ offer: ('hosting_dashboard_service_offer_' + hosting.offer | translate) }"
                     ></p>
                     <button
                         class="btn btn-info"
@@ -36,7 +37,7 @@
             </div>
 
             <div
-                data-ng-if="ctrlHostingTabModules.serviceState === 'ACTIVE' && hosting.offer !== 'START_10_M'"
+                data-ng-if="ctrlHostingTabModules.serviceState === 'ACTIVE' && !ctrlHostingTabModules.constructor.isOfferUneligible(hosting.offer)"
             >
                 <div
                     class="alert alert-info"
@@ -149,7 +150,7 @@
                 class="btn btn-block btn-default"
                 data-translate="hosting_configuration_tab_modules_module_add"
                 data-ng-click="setAction('module/add/hosting-module-add')"
-                data-ng-if="ctrlHostingTabModules.serviceState === 'ACTIVE' && hosting.offer !== 'START_10_M' && displayTabs.modules"
+                data-ng-if="ctrlHostingTabModules.serviceState === 'ACTIVE' && !ctrlHostingTabModules.constructor.isOfferUneligible(hosting.offer) && displayTabs.modules"
             ></button>
         </div>
     </div>

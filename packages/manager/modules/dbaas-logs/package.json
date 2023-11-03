@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dbaas-logs",
-  "version": "1.16.0",
+  "version": "1.17.3",
   "private": true,
   "description": "OVHcloud Logs Data Platform",
   "repository": {
@@ -16,7 +16,7 @@
     "oclazyload": "^1.1.0"
   },
   "devDependencies": {
-    "bootstrap4": "twbs/bootstrap#v4.0.0"
+    "bootstrap4": "twbs/bootstrap#v4.6.2"
   },
   "peerDependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.0.0 || ^2.0.0",

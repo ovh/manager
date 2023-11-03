@@ -148,5 +148,6 @@
   "billing_common_link_new_window": "(New window)",
   "billing_autorenew_renew_action": "Renew",
   "billing_autorenew_service_renew_requires_mean_and_date": "In order to finish enabling automatic renewal, please add a new payment method. You will then be able to select a payment date.",
-  "billing_autorenew_service_activate_alert": "You have at least one service with automatic renewal, but you have not yet authorised this option."
+  "billing_autorenew_service_activate_alert": "You have at least one service with automatic renewal, but you have not yet authorised this option.",
+  "autorenew_service_autorenew_day_tooltip_autorenew_2016": "If you automatically renew any of your services, you can select your renewal day (this option is not compatible with Bare Metal and VPS products, as the renewal date is set for the 1st of the month by default for this product category)."
 }
