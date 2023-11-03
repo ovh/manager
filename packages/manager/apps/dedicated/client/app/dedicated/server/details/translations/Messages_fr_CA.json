@@ -75,7 +75,6 @@
   "server_tab_STATS_legend_y_TRAFFIC": "Niveau de traffic",
   "server_tab_STATS_legend_no_data": "Pas de données",
   "server_tab_stats_no_chart": "Impossible d'afficher les données",
-  "server_tab_stats_title": "Graphiques d'utilisation réseaux - MRTG",
   "server_tab_stats_title_info": "Multi Router Traffic Grapher (MRTG) est un logiciel permettant de créer des graphiques sur le trafic réseau",
   "server_tab_stats_legend_mrtg": "Monitoring Réseau",
   "server_configuration_state_title": "Statut",
