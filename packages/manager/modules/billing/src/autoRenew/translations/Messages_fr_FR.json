@@ -155,5 +155,6 @@
   "billing_common_link_new_window": "(nouvelle fenêtre)",
   "billing_autorenew_renew_action": "Renouveler",
   "billing_autorenew_service_renew_requires_mean_and_date": "Afin de finaliser l'activation du renouvellement automatique, veuillez ajouter un moyen de paiement et ensuite il vous sera possible de sélectionner votre date de prélèvement.",
-  "billing_autorenew_service_activate_alert": "Vous avez au moins un service en renouvellement automatique mais vous n'avez pas encore autorisé cette option."
+  "billing_autorenew_service_activate_alert": "Vous avez au moins un service en renouvellement automatique mais vous n'avez pas encore autorisé cette option.",
+  "billing_autorenew_service_activate_alert_renew2016": "Ce message ne concerne pas les services Bare Metal et VPS."
 }
