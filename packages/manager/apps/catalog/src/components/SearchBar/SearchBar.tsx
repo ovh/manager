@@ -13,9 +13,12 @@ import {
 } from '@ovhcloud/ods-components/button';
 import Filters from '@/components/Filters/Filters';
 import { Product } from '@/api';
+import FilterChip from '../Filters/FilterChip';
 
 interface SearchbarProps {
   products: Product[];
+  universes: string[];
+  categories: string[];
   setSelectedCategories: React.Dispatch<React.SetStateAction<string[]>>;
   setSelectedUniverses: React.Dispatch<React.SetStateAction<string[]>>;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
@@ -23,6 +26,8 @@ interface SearchbarProps {
 
 const SearchBar: React.FC<SearchbarProps> = ({
   products,
+  universes,
+  categories,
   setSelectedCategories,
   setSelectedUniverses,
   setSearchValue,
@@ -52,6 +57,12 @@ const SearchBar: React.FC<SearchbarProps> = ({
   const onSearchChanged = (event: CustomEvent<{ value: string }>) => {
     setLocalSearchValue(event.detail.value);
   };
+
+  const onDeleteCategory = (category: string) =>
+    setSelectedCategories(categories.filter((c) => c !== category));
+
+  const onDeleteUniverse = (universe: string) =>
+    setSelectedUniverses(universes.filter((u) => u !== universe));
 
   return (
     <form>
@@ -97,6 +108,15 @@ const SearchBar: React.FC<SearchbarProps> = ({
           </OsdsButton>
         </span>
       </div>
+      {!showFilters && (
+        <FilterChip
+          universes={universes}
+          categories={categories}
+          onDeleteUniverse={onDeleteUniverse}
+          onDeleteCategory={onDeleteCategory}
+        />
+      )}
+
       <div style={{ display: showFilters ? 'block' : 'none' }}>
         <Filters
           products={products}
