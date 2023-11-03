@@ -8,6 +8,7 @@ import ASSET_OBJECTSTORAGE from './assets/objectstorage.png';
 import ASSET_BLOCKSTORAGE from './assets/blockstorage.png';
 import ASSET_IPFAILOVER from './assets/ipfailover.png';
 import ASSET_PRIVATENETWORK from './assets/privatenetwork.png';
+import { ENGINES_TYPES } from './storages/databases/databases.constants';
 
 export const PCI_FEATURES = IMPORT_PCI_FEATURES;
 
@@ -52,6 +53,7 @@ export const ACTIONS = [
     state: 'pci.projects.project.storages.databases.add',
     feature: PCI_FEATURES.PRODUCTS.DATABASES,
     name: 'databases',
+    stateParams: { type: ENGINES_TYPES.databases.label },
   },
   {
     translation: 'pci_projects_project_create_ai_notebook',

@@ -231,7 +231,7 @@ export default class {
         this.projectId,
         this.database.engine,
         this.database.id,
-        this.databases,
+        this.allDatabases,
       ).then((linkedServices) =>
         linkedServices.length > 0
           ? this.goToConfirmDeleteDatabase(linkedServices)

@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
+import { ENGINES_TYPES } from '../../databases.constants';
 
 export default class ServiceIntegrationCtrl {
   /* @ngInject */
@@ -29,6 +30,22 @@ export default class ServiceIntegrationCtrl {
       find(this.replicationsList, { sourceIntegration: integration.id }) ||
       find(this.replicationsList, { targetIntegration: integration.id })
     );
+  }
+
+  goToDatabaseService(id) {
+    return this.goToDatabase({ id, type: this.getDatabaseType(id) });
+  }
+
+  getDatabaseType(id) {
+    const defaultType = ENGINES_TYPES.all.label;
+    const service = this.allDatabases.find((database) => database.id === id);
+    if (!service) return defaultType;
+
+    const engineType = Object.keys(ENGINES_TYPES).find((type) => {
+      return ENGINES_TYPES[type].engines.includes(service.engine);
+    });
+
+    return engineType ? ENGINES_TYPES[engineType].label : defaultType;
   }
 
   refreshMessages() {
