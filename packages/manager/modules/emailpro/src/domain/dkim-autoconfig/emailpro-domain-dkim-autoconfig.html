@@ -14,7 +14,7 @@
             <div data-ng-if="!ctrl.loading">
                 <p
                     data-translate="{{ctrl.getBodyText(ctrl.dkimStatus)}}"
-                    data-translate-values="{ url: ctrl.dkimGuideLink }"
+                    data-translate-values="{ url: ctrl.dkimGuideLink, errorCode: ctrl.dkimErrorCode }"
                 ></p>
             </div>
         </div>
