@@ -6,5 +6,8 @@
   "dashboard_history_creation_date": "Date de création",
   "dashboard_history_view_zone": "Voir",
   "dashboard_history_download": "Télécharger",
-  "dashboard_history_restore": "Restaurer"
+  "dashboard_history_restore": "Restaurer",
+  "dashboard_history_popup_title": "Données de la zone DNS",
+  "dashboard_history_close_popup": "Fermer",
+  "dashboard_history_compare_button_label": "Comparer les versions"
 }

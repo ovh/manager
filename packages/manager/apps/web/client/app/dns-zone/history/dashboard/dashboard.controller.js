@@ -1,16 +1,63 @@
-/**
- * TODO: make DNS tab selected
- */
+import constants from './dashboard.constants';
+
 export default class DomainDnsZoneHistoryDashboardController {
-  constructor($translate, $stateParams, $state, $q, $document, Domain) {
+  constructor(
+    $translate,
+    $stateParams,
+    $state,
+    $q,
+    $document,
+    Domain,
+    DNSZoneService,
+  ) {
     this.$translate = $translate;
     this.$stateParams = $stateParams;
     this.$state = $state;
     this.Domain = Domain;
+    this.DNSZoneService = DNSZoneService;
     this.$document = $document;
     this.$q = $q;
+
     this.listOfDnsZonesUrls = [];
+    this.dnsZoneData = null;
+    this.loadingDnsZoneData = false;
+    this.zoneName = '';
     this.loading = true;
+    this.vizualizeDnsZoneDataPopup = false;
+  }
+
+  goToDiffViewer() {
+    this.$state.go('app.zone.details.zone-history.diff');
+  }
+
+  closePopup() {
+    this.vizualizeDnsZoneDataPopup = false;
+  }
+
+  visualizeDnsDataInPopup(url) {
+    // TODO: handle error case here too!
+    this.loadingDnsZoneData = true;
+    this.DNSZoneService.readDnsFileData(url).then((res) => {
+      this.dnsZoneData = res;
+      this.loadingDnsZoneData = false;
+    });
+    this.vizualizeDnsZoneDataPopup = true;
+  }
+
+  restoreDnsAtDate(date) {
+    return this.DNSZoneService.restore(this.zoneName, date);
+  }
+
+  downloadDnsZoneFile(url) {
+    const link = this.$document[0].createElement('a');
+    if (link.download !== undefined) {
+      link.setAttribute('href', url);
+      link.setAttribute('download', constants.DNS_FILENAME);
+      link.style = 'visibility:hidden';
+      this.$document[0].body.appendChild(link);
+      link.click();
+      this.$document[0].body.removeChild(link);
+    }
   }
 
   goBack() {
@@ -26,6 +73,7 @@ export default class DomainDnsZoneHistoryDashboardController {
   }
 
   $onInit() {
+    this.zoneName = this.$stateParams.productId;
     // TODO: handle error case with a toast for instance
     this.getZoneHistory(this.$stateParams.productId).then((dates) => {
       this.dates = dates;
