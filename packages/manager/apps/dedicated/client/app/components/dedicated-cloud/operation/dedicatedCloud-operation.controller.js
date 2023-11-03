@@ -165,6 +165,7 @@ export default class {
                   `${this.$translate.instant(
                     'dedicatedCloud_OPERATIONS_error',
                   )} ${err.message || err}`,
+                  'danger',
                 );
               }),
           field,
