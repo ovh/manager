@@ -13,23 +13,6 @@
             ></span>
         </oui-message>
 
-        <oui-message
-            type="info"
-            aria-close-button-label="{{:: 'close' | translate }}"
-            data-ng-if=":: $ctrl.canOrderOrEditCdn() && cdnProperties.type !== $ctrl.CDN_ADVANCED"
-            dismissable
-        >
-            <span
-                data-translate="hosting_dashboard_general_informations_cdn_banner"
-            ></span>
-            <button
-                class="oui-link"
-                type="button"
-                data-translate="hosting_dashboard_general_informations_cdn_banner_cta"
-                data-ng-click="$ctrl.goToOrderOrUpgrade()"
-            ></button>
-        </oui-message>
-
         <div class="row d-md-flex" data-ng-if="!hosting.isExpired">
             <div class="col-md-4 mb-3">
                 <oui-tile
@@ -541,6 +524,15 @@
                                 data-wuc-pbec-force-display-max-elements="true"
                             ></div>
                         </oui-tile-description>
+                        <oui-action-menu data-compact data-placement="end">
+                            <oui-action-menu-item
+                                data-ui-sref="app.hosting.dashboard.database.order-public({preselectDbCategory: 'starter'})"
+                            >
+                                <span
+                                    data-translate="hosting_dashboard_service_privatesql_order"
+                                ></span>
+                            </oui-action-menu-item>
+                        </oui-action-menu>
                     </oui-tile-definition>
                     <oui-tile-definition
                         data-term="{{ ::'hosting_dashboard_local_seo' | translate }}"
