@@ -218,16 +218,16 @@
                 data-label="{{:: 'pci_app_docker_command_default_select' | translate  }}"
             >
                 <oui-switch
-                    data-model="$ctrl.customDockerCmd"
-                    name="customDockerCmd"
-                    on-change="$ctrl.onDockerCmdChanged()"
+                    data-model="$ctrl.customDockerCommand"
+                    name="customDockerCommand"
+                    on-change="$ctrl.onDockerCommandChanged()"
                 >
                 </oui-switch>
             </oui-field>
             <oui-field
                 data-size="xl"
                 data-help-text="{{:: 'pci_app_docker_command_tips' | translate  }}"
-                data-ng-if="$ctrl.customDockerCmd"
+                data-ng-if="$ctrl.customDockerCommand"
             >
                 <input
                     class="oui-input mb-3"
@@ -235,6 +235,7 @@
                     id="command"
                     name="command"
                     data-ng-model="$ctrl.command"
+                    data-ng-change="$ctrl.splitStringCommandIntoArray()"
                     data-required
                 />
             </oui-field>
@@ -243,7 +244,7 @@
             <oui-tile
                 class="h-600"
                 data-heading="{{:: 'pci_app_docker_command_submit_title' | translate  }}"
-                data-ng-if="$ctrl.customDockerCmd && $ctrl.splitStringCommandIntoArray().length > 0"
+                data-ng-if="$ctrl.customDockerCommand && $ctrl.commandInArguments.length > 0"
             >
                 <oui-tile-definition
                     data-term="{{:: 'pci_app_docker_command_submit_title_command' | translate  }}"
@@ -251,10 +252,10 @@
                     <oui-tile-description>
                         <ul>
                             <li
-                                ng-repeat="cmd in $ctrl.splitStringCommandIntoArray()"
+                                ng-repeat="command in $ctrl.commandInArguments"
                                 class="api-list-item"
                             >
-                                {{ cmd }}
+                                {{ command }}
                             </li>
                         </ul>
                     </oui-tile-description>

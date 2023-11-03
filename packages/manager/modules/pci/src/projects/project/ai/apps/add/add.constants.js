@@ -60,6 +60,18 @@ export const APP_IMAGE_DOCKER_ARCHITECTURE = 'linux/AMD64';
 
 export const NUMBER_OF_MINUTES_IN_ONE_HOUR = 60;
 
+export function splitIntoArray(command) {
+  if (command) {
+    return command.match(/([^\s"])+|"[^"]+"/g).map((element) => {
+      if (element.startsWith('"') && element.endsWith('"')) {
+        return element.substring(1, element.length - 1);
+      }
+      return element;
+    });
+  }
+  return [];
+}
+
 export default {
   APP_IMAGE,
   AUTOMATIC_SCALING_RESOURCE_TYPES,
@@ -69,4 +81,5 @@ export default {
   APP_PROBE,
   APP_IMAGE_DOCKER_ARCHITECTURE,
   NUMBER_OF_MINUTES_IN_ONE_HOUR,
+  splitIntoArray,
 };

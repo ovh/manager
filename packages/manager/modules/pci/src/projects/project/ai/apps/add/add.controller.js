@@ -1,7 +1,11 @@
 import get from 'lodash/get';
 import find from 'lodash/find';
 import { merge } from 'lodash';
-import { APP_PRIVACY_SETTINGS, APP_SCALING_SETTINGS } from './add.constants';
+import {
+  APP_PRIVACY_SETTINGS,
+  APP_SCALING_SETTINGS,
+  splitIntoArray,
+} from './add.constants';
 import { nameGenerator } from '../../../../../name-generator.constant';
 import { APP_TYPES } from '../app.constants';
 
@@ -327,22 +331,8 @@ export default class AppAddController {
     const lastImagePart = splitImage[splitImage.length - 1];
     const [prefix] = lastImagePart.split(':');
     this.appModel.name = `${prefix}-${nameGenerator()}`;
-    this.appModel.command = this.commandLine
-      ? this.splitIntoArray(this.commandLine)
-      : [];
+    this.appModel.command = splitIntoArray(this.commandLine);
     return false;
-  }
-
-  static splitIntoArray(cmd) {
-    if (cmd) {
-      return cmd.match(/([^\s"])+|"[^"]+"/g).map((elt) => {
-        if (elt.startsWith('"') && elt.endsWith('"')) {
-          return elt.substring(1, elt.length - 1);
-        }
-        return elt;
-      });
-    }
-    return [];
   }
 
   onAppSubmit() {
