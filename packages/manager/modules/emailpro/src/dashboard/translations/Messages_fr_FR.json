@@ -699,7 +699,7 @@
   "emailpro_tab_domain_diagnostic_dkim_activation": "Votre DKIM est configuré mais n'est pas activé. Souhaitez-vous l'activer ?",
   "emailpro_tab_domain_diagnostic_dkim_deactivation": "DKIM est actuellement actif sur votre domaine. Souhaitez-vous le desactiver ? (non recommandé)",
   "emailpro_tab_domain_diagnostic_dkim_title_configuration": "Configuration DKIM",
-  "emailpro_tab_domain_diagnostic_dkim_configuration_nok": "Votre configuration est incorrecte, veuillez suivre les indications du <a href=\"{{url}}\" target=\"_blank\">guide</a>.",
+  "emailpro_tab_domain_diagnostic_dkim_configuration_nok": "Votre module DKIM n'est pas correctement configuré. Veuillez vous reporter au <a href=\"{{url}}\" target=\"_blank\">guide</a> d'aide à la configuration avec le code d'erreur {{errorCode}}.",
   "emailpro_tab_domain_diagnostic_dkim_activation_no_ovhcloud": "Votre domaine n'étant pas hébergé chez OVHCloud nous ne pouvons pas le configurer automatiquement. Vous pouvez configurer DKIM en suivant ce <a href=\"{{url}}\" target=\"_blank\">guide</a>.",
   "emailpro_tab_domain_diagnostic_dkim_configurate_no_ovhcloud": "Configurer",
   "emailpro_tab_domain_diagnostic_dkim_activation_ovhcloud": "Nous allons configurer DKIM pour vous, l'activation complète peut prendre 24 heures.",
