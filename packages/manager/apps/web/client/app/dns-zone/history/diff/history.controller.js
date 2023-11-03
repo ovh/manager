@@ -1,7 +1,9 @@
 import * as Diff2Html from 'diff2html';
 import 'diff2html/bundles/css/diff2html.min.css';
 import * as unidiff from 'unidiff';
-
+/**
+ * TODO: make DNS tab selected
+ */
 export default class DomainDnsZoneHistoryController {
   /* @ngInject */
   constructor(
