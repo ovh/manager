@@ -45,7 +45,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           CucCloudMessage,
           $translate,
-          databases,
+          allDatabases,
         ) =>
           DatabaseService.getIntegrations(
             projectId,
@@ -54,7 +54,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ).then((integrations) => {
             const serviceIntegrations = map(integrations, (i) => {
               const serviceIntegration = new ServiceIntegration(i);
-              serviceIntegration.setServicesNames(databases);
+              serviceIntegration.setServicesNames(allDatabases);
               return serviceIntegration;
             });
             serviceIntegrations.forEach((i) => {

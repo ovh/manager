@@ -1,6 +1,10 @@
 import map from 'lodash/map';
 
-import { NODES_PER_ROW, SHELL_NAMES } from './databases.constants';
+import {
+  ENGINES_TYPES,
+  NODES_PER_ROW,
+  SHELL_NAMES,
+} from './databases.constants';
 import { WARNING_DATE } from '../../../../components/project/warning-message/warning.constants';
 import Database from '../../../../components/project/storages/databases/database.class';
 import Node from '../../../../components/project/storages/databases/node.class';
@@ -8,7 +12,7 @@ import Engine from '../../../../components/project/storages/databases/engine.cla
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.databases', {
-    url: '/databases?id',
+    url: '/databases-analytics/:type?id',
     component: 'ovhManagerPciProjectDatabases',
     params: {
       id: {
@@ -26,10 +30,19 @@ export default /* @ngInject */ ($stateProvider) => {
             : false,
         ),
     resolve: {
-      goToAddDatabase: /* @ngInject */ ($state, projectId) => () =>
-        $state.go('pci.projects.project.storages.databases.add', { projectId }),
+      goToAddDatabase: /* @ngInject */ ($state, projectId, type) => (
+        servicesType = type,
+      ) =>
+        $state.go('pci.projects.project.storages.databases.add', {
+          projectId,
+          type: servicesType,
+        }),
       databaseId: /* @ngInject */ ($transition$) => $transition$.params().id,
-      databases: /* @ngInject */ (
+      type: /* @ngInject */ ($transition$) =>
+        $transition$.params().type
+          ? $transition$.params().type
+          : ENGINES_TYPES.full.label,
+      allDatabases: /* @ngInject */ (
         $q,
         DatabaseService,
         getDatabaseObject,
@@ -37,6 +50,10 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         DatabaseService.getAllDatabases(projectId).then((databases) =>
           $q.all(map(databases, (database) => getDatabaseObject(database))),
+        ),
+      databases: /* @ngInject */ (allDatabases, type) =>
+        allDatabases.filter((d) =>
+          ENGINES_TYPES[type].engines.includes(d.engine),
         ),
 
       databasesRegions: /* @ngInject */ (databases) => {
@@ -100,11 +117,11 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
         );
       },
-      availableEngines: /* @ngInject */ (mappedAvailabilites) => {
+      availableEngines: /* @ngInject */ (mappedAvailabilites, type) => {
         const { availabilities, capabilities } = mappedAvailabilites;
-        const filteredAvailabilities = availabilities.filter(
-          (a) => a.status !== 'DEPRECATED',
-        );
+        const filteredAvailabilities = availabilities
+          .filter((a) => a.status !== 'DEPRECATED')
+          .filter((a) => ENGINES_TYPES[type].engines.includes(a.engine));
         return capabilities.engines
           .map(
             (engine) =>
@@ -158,16 +175,16 @@ export default /* @ngInject */ ($stateProvider) => {
         const stateName =
           'pci.projects.project.storages.databases.dashboard.general-information';
 
-        const promise = $state.go(
-          stateName,
-          {
-            projectId,
-            databaseId: database.id,
-          },
-          {
-            reload,
-          },
-        );
+        const databaseParameters = {
+          projectId,
+          databaseId: database.id,
+        };
+        if (database.type) {
+          databaseParameters.type = database.type;
+        }
+        const promise = $state.go(stateName, databaseParameters, {
+          reload,
+        });
         return message
           ? promise.then(() => {
               CucCloudMessage.flushMessages(`${stateName}-${database.id}`);

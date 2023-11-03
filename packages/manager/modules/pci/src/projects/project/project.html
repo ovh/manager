@@ -67,7 +67,7 @@
                                         <a
                                             class="text-center w-100 d-block oui-tile py-4"
                                             data-ui-state="action.state"
-                                            data-ui-state-params="{projectId: $ctrl.project.project_id}"
+                                            data-ui-state-params="$ctrl.getStateParams(action)"
                                         >
                                             <img
                                                 data-ng-src="{{:: $ctrl.productImages[action.name] }}"

@@ -6,11 +6,12 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/:databaseId',
     component: 'ovhManagerPciProjectDatabase',
     resolve: {
-      allowedIpsLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      allowedIpsLink: /* @ngInject */ ($state, databaseId, projectId, type) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.allowed-ips',
           {
             projectId,
+            type,
             databaseId,
           },
         ),
@@ -22,24 +23,32 @@ export default /* @ngInject */ ($stateProvider) => {
               database.id,
             )
           : [],
-      backupsLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      backupsLink: /* @ngInject */ ($state, databaseId, projectId, type) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.backups',
           {
             projectId,
+            type,
             databaseId,
           },
         ),
-      poolsLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      poolsLink: /* @ngInject */ ($state, databaseId, projectId, type) =>
         $state.href('pci.projects.project.storages.databases.dashboard.pools', {
           projectId,
+          type,
           databaseId,
         }),
-      queryStatisticsLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      queryStatisticsLink: /* @ngInject */ (
+        $state,
+        databaseId,
+        projectId,
+        type,
+      ) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.query-statistics',
           {
             projectId,
+            type,
             databaseId,
           },
         ),
@@ -84,106 +93,135 @@ export default /* @ngInject */ ($stateProvider) => {
       engine: /* @ngInject */ (database, engines) =>
         find(engines, { name: database.engine }),
       breadcrumb: /* @ngInject */ (database) => database.description,
-      generalInformationLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      generalInformationLink: /* @ngInject */ (
+        $state,
+        databaseId,
+        projectId,
+        type,
+      ) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.general-information',
           {
             projectId,
+            type,
             databaseId,
           },
         ),
-      usersLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      usersLink: /* @ngInject */ ($state, databaseId, projectId, type) =>
         $state.href('pci.projects.project.storages.databases.dashboard.users', {
           projectId,
+          type,
           databaseId,
         }),
-      logsLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      logsLink: /* @ngInject */ ($state, databaseId, projectId, type) =>
         $state.href('pci.projects.project.storages.databases.dashboard.logs', {
           projectId,
+          type,
           databaseId,
         }),
-      metricsLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      metricsLink: /* @ngInject */ ($state, databaseId, projectId, type) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.metrics',
           {
             projectId,
+            type,
             databaseId,
           },
         ),
-      databasesLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      databasesLink: /* @ngInject */ ($state, databaseId, projectId, type) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.databases',
           {
             projectId,
+            type,
             databaseId,
           },
         ),
-      aclLink: ($state, databaseId, projectId) =>
+      aclLink: ($state, databaseId, projectId, type) =>
         $state.href('pci.projects.project.storages.databases.dashboard.acl', {
           projectId,
+          type,
           databaseId,
         }),
-      userAclLink: ($state, databaseId, projectId) =>
+      userAclLink: ($state, databaseId, projectId, type) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.useracl',
           {
             projectId,
+            type,
             databaseId,
           },
         ),
-      topicsLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      topicsLink: /* @ngInject */ ($state, databaseId, projectId, type) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.topics',
           {
             projectId,
+            type,
             databaseId,
           },
         ),
-      indexesLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      indexesLink: /* @ngInject */ ($state, databaseId, projectId, type) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.indexes',
           {
             projectId,
+            type,
             databaseId,
           },
         ),
-      serviceIntegrationLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      serviceIntegrationLink: /* @ngInject */ (
+        $state,
+        databaseId,
+        projectId,
+        type,
+      ) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.service-integration',
           {
             projectId,
+            type,
             databaseId,
           },
         ),
-      replicationsLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      replicationsLink: /* @ngInject */ ($state, databaseId, projectId, type) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.replications',
           {
             projectId,
+            type,
             databaseId,
           },
         ),
-      currentQueriesLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      currentQueriesLink: /* @ngInject */ (
+        $state,
+        databaseId,
+        projectId,
+        type,
+      ) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.current-queries',
           {
             projectId,
+            type,
             databaseId,
           },
         ),
-      namespacesLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      namespacesLink: /* @ngInject */ ($state, databaseId, projectId, type) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.namespaces',
           {
             projectId,
+            type,
             databaseId,
           },
         ),
-      connectorsLink: /* @ngInject */ ($state, databaseId, projectId) =>
+      connectorsLink: /* @ngInject */ ($state, databaseId, projectId, type) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.connectors',
           {
             projectId,
+            type,
             databaseId,
           },
         ),
@@ -191,11 +229,13 @@ export default /* @ngInject */ ($stateProvider) => {
         $state,
         databaseId,
         projectId,
+        type,
       ) =>
         $state.href(
           'pci.projects.project.storages.databases.dashboard.advanced-configuration',
           {
             projectId,
+            type,
             databaseId,
           },
         ),
