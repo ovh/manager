@@ -207,6 +207,12 @@ export default /* @ngInject */ function EmailProDomains(
       .then(({ data }) => data);
   };
 
+  this.getDomain = function getDomain(serviceName, domain) {
+    return $http
+      .get(`/email/pro/${serviceName}/domain/${domain}`)
+      .then(({ data }) => data);
+  };
+
   this.enableDkim = function enableDkim(serviceName, domain, selector) {
     return $http
       .post(
