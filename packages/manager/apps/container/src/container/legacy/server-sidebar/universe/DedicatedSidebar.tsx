@@ -83,7 +83,7 @@ export default function DedicatedSidebar() {
               href: navigation.getURL('dedicated', '#/server'),
               routeMatcher: new RegExp(`/server$`),
               ignoreSearch: true,
-              title: t('sidebar_access_list'),  
+              title: t('sidebar_access_list'),
             },
             ...housing,
             ...servers,
@@ -269,7 +269,7 @@ export default function DedicatedSidebar() {
             href: navigation.getURL('dedicated', '#/ip'),
             routeMatcher: new RegExp('/ip(/|$)'),
           },
-          feature['ip-load-balancer'] && 
+          feature['ip-load-balancer'] &&
             {
               id: 'ip-loadbalancer',
               label: t('sidebar_pci_load_balancer'),
@@ -289,8 +289,8 @@ export default function DedicatedSidebar() {
             id: 'dedicated-network-security',
             label: t('sidebar_network_security'),
             icon: getIcon('oui-icon oui-icon-shield_concept'),
-            href: navigation.getURL('dedicated', '#/networkSecurity'),
-            routeMatcher: new RegExp('^/networkSecurity'),
+            href: navigation.getURL('dedicated', '#/network-security'),
+            routeMatcher: new RegExp('^/network-security'),
           },
           feature['vrack:bare-metal-cloud'] && {
             id: 'dedicated-vrack',
