@@ -125,30 +125,32 @@ export default class PciStoragesContainersController {
 
   setContainerLoadingErrors() {
     const s3RegionsInError = [];
-    this.containersResponseObj.errors.forEach((error) => {
-      if (error.type === 'swift') {
+    if (this.containersResponseObj) {
+      this.containersResponseObj.errors.forEach((error) => {
+        if (error.type === 'swift') {
+          this.CucCloudMessage.error(
+            this.$translate.instant(
+              'pci_projects_project_storages_containers_swift_containers_load_error',
+            ),
+            'pci.projects.project.storages.containers',
+          );
+        }
+        if (
+          error.type === 'storage-s3-high-perf' ||
+          error.type === 'storage-s3-standard'
+        ) {
+          s3RegionsInError.push(error.region);
+        }
+      });
+      if (s3RegionsInError.length > 0) {
         this.CucCloudMessage.error(
           this.$translate.instant(
-            'pci_projects_project_storages_containers_swift_containers_load_error',
+            'pci_projects_project_storages_containers_s3_containers_load_error',
+            { regions: s3RegionsInError.join(',') },
           ),
           'pci.projects.project.storages.containers',
         );
       }
-      if (
-        error.type === 'storage-s3-high-perf' ||
-        error.type === 'storage-s3-standard'
-      ) {
-        s3RegionsInError.push(error.region);
-      }
-    });
-    if (s3RegionsInError.length > 0) {
-      this.CucCloudMessage.error(
-        this.$translate.instant(
-          'pci_projects_project_storages_containers_s3_containers_load_error',
-          { regions: s3RegionsInError.join(',') },
-        ),
-        'pci.projects.project.storages.containers',
-      );
     }
   }
 }
