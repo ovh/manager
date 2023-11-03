@@ -2,7 +2,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerOctaviaLoadBalancerDashboardListenersLazyLoading';
+const moduleName =
+  'ovhManagerOctaviaLoadBalancerDashboardListenersListLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
