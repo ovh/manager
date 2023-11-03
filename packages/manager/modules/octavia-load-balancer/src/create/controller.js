@@ -1,4 +1,5 @@
 import {
+  FLOATING_IP_TYPE,
   GETTING_STARTED_LINK,
   LOAD_BALANCER_NAME_REGEX,
   MAX_INSTANCES_BY_LISTENER,
@@ -23,6 +24,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
     atInternet,
     coreConfig,
     OctaviaLoadBalancerCreateService,
+    $translate,
   ) {
     this.$anchorScroll = $anchorScroll;
     this.atInternet = atInternet;
@@ -30,6 +32,8 @@ export default class OctaviaLoadBalancerCreateCtrl {
     this.OctaviaLoadBalancerCreateService = OctaviaLoadBalancerCreateService;
     this.maxListener = MAX_LISTENER;
     this.maxInstancesByListener = MAX_INSTANCES_BY_LISTENER;
+    this.FLOATING_IP_TYPE = FLOATING_IP_TYPE;
+    this.$translate = $translate;
   }
 
   $onInit() {
@@ -54,6 +58,10 @@ export default class OctaviaLoadBalancerCreateCtrl {
     this.stepper = {
       loadBalancerSize: { name: 'load_balancer_size', display: null },
       loadBalancerRegion: { name: 'load_balancer_region', display: null },
+      loadBalancerFloatingIp: {
+        name: 'load_balancer_floating_ip',
+        display: null,
+      },
       loadBalancerPrivateNetwork: {
         name: 'load_balancer_private_network',
         display: null,
@@ -72,6 +80,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
 
   regionStepFocus() {
     delete this.model.region;
+    delete this.model.floatingIp;
     delete this.model.privateNetwork;
     delete this.model.subnet;
     delete this.model.listeners;
@@ -92,7 +101,55 @@ export default class OctaviaLoadBalancerCreateCtrl {
   onRegionChange(region) {
     this.model.region = region;
     this.model.loadBalancerName = `LB_${this.model.size.label}_${this.model.region.name}`;
+    this.getFloatingIps();
+  }
+
+  getFloatingIps() {
+    this.floatingIpLoading = true;
+    this.OctaviaLoadBalancerCreateService.getFloatingIps(
+      this.projectId,
+      this.model.region.name,
+    )
+      .then((floatingIps) => {
+        floatingIps.unshift({
+          ip: null,
+          type: FLOATING_IP_TYPE.NO_IP,
+          displayName: this.$translate.instant(
+            'octavia_load_balancer_create_floating_ip_field_no_floating_ip',
+          ),
+        });
+
+        floatingIps.unshift({
+          ip: null,
+          type: FLOATING_IP_TYPE.CREATE,
+          displayName: this.$translate.instant(
+            'octavia_load_balancer_create_floating_ip_field_new_floating_ip',
+          ),
+        });
+
+        this.floatingIps = floatingIps;
+        this.model.floatingIp = floatingIps.find(
+          (floatingIp) => floatingIp.type === FLOATING_IP_TYPE.CREATE,
+        );
+      })
+      .finally(() => {
+        this.floatingIpLoading = false;
+      });
+  }
+
+  onFloatingIpChange() {
     this.getPrivateNetworks();
+  }
+
+  isPrivateNetworkStepValid() {
+    return (
+      !this.gatewayLoading &&
+      !this.subnetLoading &&
+      !this.floatingIpLoading &&
+      !this.privateNetworkLoading &&
+      (this.subnets?.length ||
+        this.model.floatingIp?.type === FLOATING_IP_TYPE.NO_IP)
+    );
   }
 
   getPrivateNetworks() {
@@ -119,10 +176,14 @@ export default class OctaviaLoadBalancerCreateCtrl {
       privateNetwork,
     )
       .then((subnets) => {
-        this.subnets = subnets;
-        if (subnets?.length > 0) {
-          [this.model.subnet] = subnets;
-          this.checkGateway(subnets[0]);
+        this.subnets =
+          this.model.floatingIp?.type !== FLOATING_IP_TYPE.NO_IP
+            ? subnets.filter((subnet) => subnet.gatewayIp)
+            : subnets;
+
+        if (this.subnets?.length > 0) {
+          [this.model.subnet] = this.subnets;
+          this.checkGateway(this.subnets[0]);
         } else {
           this.model.subnet = null;
         }
@@ -133,6 +194,8 @@ export default class OctaviaLoadBalancerCreateCtrl {
   }
 
   checkGateway(subnet) {
+    if (this.model.floatingIp.type === FLOATING_IP_TYPE.NO_IP) return;
+
     this.gatewayLoading = true;
     this.OctaviaLoadBalancerCreateService.checkGateway(
       this.projectId,
@@ -175,6 +238,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
       this.projectId,
       this.model.size,
       this.model.region.name,
+      this.model.floatingIp,
       this.model.privateNetwork,
       this.model.subnet,
       this.gateways,

@@ -1,4 +1,8 @@
-import { NETWORK_PRIVATE_VISIBILITY } from './constants';
+import {
+  NETWORK_PRIVATE_VISIBILITY,
+  FLOATING_IP_TYPE,
+  FLOATING_IP_CREATE_DESCRIPTION,
+} from './constants';
 
 export default class OctaviaLoadBalancerCreateService {
   /* @ngInject */
@@ -25,18 +29,32 @@ export default class OctaviaLoadBalancerCreateService {
         `/cloud/project/${projectId}/region/${regionName}/network/${privateNetwork.id}/subnet`,
       )
       .then(({ data }) => {
-        const subnets = data.reduce((filtered, subnet) => {
-          if (subnet.gatewayIp) {
+        const subnets = data.map((subnet) => ({
+          ...subnet,
+          displayName: subnet.name
+            ? `${subnet.name} - ${subnet.cidr}`
+            : subnet.cidr,
+        }));
+        return subnets;
+      });
+  }
+
+  getFloatingIps(projectId, regionName) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/region/${regionName}/floatingip`)
+      .then(({ data }) => {
+        const availableFloatingIPs = data.reduce((filtered, floatingIp) => {
+          if (!floatingIp.associatedEntity) {
             filtered.push({
-              ...subnet,
-              displayName: subnet.name
-                ? `${subnet.name} - ${subnet.cidr}`
-                : subnet.cidr,
+              ...floatingIp,
+              displayName: floatingIp.ip,
+              type: FLOATING_IP_TYPE.IP,
             });
           }
           return filtered;
         }, []);
-        return subnets;
+
+        return availableFloatingIPs;
       });
   }
 
@@ -52,6 +70,7 @@ export default class OctaviaLoadBalancerCreateService {
     projectId,
     size,
     regionName,
+    floatingIp,
     privateNetwork,
     subnet,
     gateway,
@@ -60,9 +79,6 @@ export default class OctaviaLoadBalancerCreateService {
   ) {
     const network = {
       private: {
-        floatingIpCreate: {
-          description: loadBalancerName,
-        },
         network: {
           id: privateNetwork.id,
           subnetId: subnet.id,
@@ -70,15 +86,33 @@ export default class OctaviaLoadBalancerCreateService {
       },
     };
 
-    if (!gateway?.length) {
-      network.private.gatewayCreate = {
-        model: 's',
-        name: `gateway-${regionName}`,
+    if (floatingIp.type === FLOATING_IP_TYPE.CREATE) {
+      network.private.floatingIpCreate = {
+        description: `${FLOATING_IP_CREATE_DESCRIPTION} ${loadBalancerName}`,
       };
-    } else {
-      network.private.gateway = {
-        id: gateway[0].id,
+    }
+
+    if (
+      ![FLOATING_IP_TYPE.CREATE, FLOATING_IP_TYPE.NO_IP].includes(
+        floatingIp.type,
+      )
+    ) {
+      network.private.floatingIp = {
+        id: floatingIp.id,
       };
+    }
+
+    if (network.private.floatingIp || network.private.floatingIpCreate) {
+      if (!gateway?.length) {
+        network.private.gatewayCreate = {
+          model: 's',
+          name: `gateway-${regionName}`,
+        };
+      } else {
+        network.private.gateway = {
+          id: gateway[0].id,
+        };
+      }
     }
 
     const formattedListeners = listeners.map((listener) => {

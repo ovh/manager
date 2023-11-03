@@ -7,6 +7,7 @@ export default {
     serviceName: '<',
     sizeFlavour: '<',
     catalogGateway: '<',
+    catalogFloatingIp: '<',
     regionsPlansGroupBySize: '<',
     privateNetworkCreationLink: '<',
     creationPageLink: '<',

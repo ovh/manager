@@ -13,8 +13,6 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     resolve: {
       breadcrumb: () => null,
-      goToListingPage: /* @ngInject */ ($state) => () =>
-        $state.go('octavia-load-balancer.loadbalancers'),
       goToCreatePage: /* @ngInject */ ($state, atInternet) => () => {
         atInternet.trackClick({
           name: `${TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX}::add`,
