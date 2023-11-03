@@ -454,6 +454,8 @@ export default class IpListController {
         );
     };
 
+    $scope.displayStatistics = self.goToStatistics;
+
     $scope.displayOrganisation = function displayOrganisation() {
       self.trackClick(
         self.trackingData.prefix,
