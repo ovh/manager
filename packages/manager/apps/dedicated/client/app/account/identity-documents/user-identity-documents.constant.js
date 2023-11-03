@@ -37,6 +37,8 @@ export const KYC_STATUS = {
   REQUIRED: 'required',
 };
 
+export const KYC_ALLOWED_FILE_EXTENSIONS = ['jpg', 'jpeg', 'pdf', 'png'];
+
 export default {
   USER_TYPE,
   MAX_SIZE,
@@ -46,4 +48,5 @@ export default {
   LEGAL_LINK2,
   LEGAL_LINK3,
   KYC_STATUS,
+  KYC_ALLOWED_FILE_EXTENSIONS,
 };

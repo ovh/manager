@@ -62,5 +62,6 @@
   "pci_databases_backups_fork_restore_mode_description": "Wybierz punkt przywracania, z którego usługa zostanie zduplikowana.",
   "pci_databases_backups_fork_spec_flavor_CPU_one": "{{cpu}} vCore",
   "pci_databases_backups_fork_spec_flavor_CPU_many": "{{cpu}} vCores",
-  "pci_databases_backups_fork_show_command": "Odpowiednik API"
+  "pci_databases_backups_fork_show_command": "Odpowiednik API",
+  "pci_databases_backups_fork_region_label": "Wybierz lokalizację"
 }

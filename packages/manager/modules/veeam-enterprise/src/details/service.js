@@ -41,14 +41,13 @@ export default class VeeamEnterpriseService {
       );
   }
 
-  postConfiguration(action, serviceName, ip, port, username, password) {
+  postConfiguration(action, serviceName, ip, username, password) {
     if (action === 'register') {
       return this.veeamEnterprise
         .register(
           { serviceName },
           {
             ip,
-            port,
             username,
             password,
           },
@@ -83,7 +82,6 @@ export default class VeeamEnterpriseService {
         { serviceName },
         {
           ip,
-          port,
           username,
           password,
         },

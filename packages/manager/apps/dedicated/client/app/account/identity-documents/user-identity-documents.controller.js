@@ -6,6 +6,7 @@ import {
   LEGAL_LINK2,
   LEGAL_LINK3,
   KYC_STATUS,
+  KYC_ALLOWED_FILE_EXTENSIONS,
 } from './user-identity-documents.constant';
 
 export default class AccountUserIdentityDocumentsController {
@@ -16,6 +17,7 @@ export default class AccountUserIdentityDocumentsController {
     this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
     this.maximum_size = MAX_SIZE;
+    this.fileExtensionsValid = true;
     this.atInternet = atInternet;
     this.LEGAL_LINK1 = LEGAL_LINK1;
     this.LEGAL_LINK2 = LEGAL_LINK2;
@@ -32,6 +34,7 @@ export default class AccountUserIdentityDocumentsController {
     this.loading = false;
     this.showUploadOption = true;
     this.displayError = false;
+    this.isOpenModal = false;
     this.dashboardRedirectURL = this.coreURLBuilder.buildURL('hub', '');
     this.user_type = USER_TYPE[this.currentUser]
       ? USER_TYPE[this.currentUser]
@@ -39,10 +42,11 @@ export default class AccountUserIdentityDocumentsController {
   }
 
   uploadIdentityDocuments() {
+    this.handleUploadConfirmModal(false);
     this.loading = true;
     this.displayError = false;
     this.trackClick(TRACKING_TASK_TAG.upload);
-    if (!this.form.$invalid) {
+    if (!this.form.$invalid && this.isFileExtensionsValid()) {
       this.getUploadDocumentsLinks(this.files.length)
         .then(() => {
           this.loading = false;
@@ -56,6 +60,10 @@ export default class AccountUserIdentityDocumentsController {
       this.files = null;
       this.displayErrorBanner();
     }
+  }
+
+  handleUploadConfirmModal(open) {
+    this.isOpenModal = open;
   }
 
   getUploadDocumentsLinks(count) {
@@ -88,6 +96,14 @@ export default class AccountUserIdentityDocumentsController {
       .catch(() => {
         this.displayErrorBanner();
       });
+  }
+
+  isFileExtensionsValid() {
+    this.fileExtensionsValid = !this.files.find(
+      ({ infos: { extension } }) =>
+        !KYC_ALLOWED_FILE_EXTENSIONS.includes(extension.toLowerCase()),
+    );
+    return this.fileExtensionsValid;
   }
 
   displayErrorBanner() {

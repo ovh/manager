@@ -56,55 +56,21 @@ export default class LogsHomeService {
    * @returns promise which will resolve with the statistics data
    * @memberof LogsHomeService
    */
-  getDataUsage(serviceName, metricName) {
-    return this.getService(serviceName).then((service) => {
-      return this.getMetricAccount(serviceName)
-        .then((metrics) => {
-          const token = btoa(metrics.token);
-          const query = {
-            start: Math.max(
-              moment()
-                .subtract(
-                  this.LogsConstants.DATA_STORAGE.TIME_PERIOD_MONTHS,
-                  'month',
-                )
-                .unix() * this.LogsConstants.DATA_STORAGE.MS_FOR_A_SEC,
-              moment(service.createdAt).unix() *
-                this.LogsConstants.DATA_STORAGE.MS_FOR_A_SEC,
-            ),
-            queries: [
-              {
-                metric: metricName,
-                aggregator: this.LogsConstants.DATA_STORAGE.AGGREGATORS.ZIMSUM,
-                downsample: this.LogsConstants.DATA_STORAGE.DOWNSAMPLING_MODE[
-                  '24H_MAX'
-                ],
-              },
-            ],
-          };
-          return this.$http({
-            method: 'POST',
-            url: `${metrics.host}/api/query`,
-            headers: {
-              Authorization: `Basic ${token}`,
-            },
-            preventLogout: true,
-            data: JSON.stringify(query),
-          });
-        })
-        .then(({ data }) => {
-          const timestamps = data.length > 0 ? Object.keys(data[0].dps) : [];
-          // eslint-disable-next-line no-param-reassign
-          const usageData = data.map((value) =>
-            timestamps.map((timestamp) => value.dps[timestamp]),
-          );
-          return {
-            timestamps: timestamps.map((timestamp) => timestamp * 1000),
-            usageData,
-          };
-        })
-        .catch(this.CucServiceHelper.errorHandler('logs_home_data_get_error'));
-    });
+  getDataUsage(serviceName) {
+    return this.getMetricAccount(serviceName)
+      .then((metrics) => {
+        const token = btoa(metrics.token);
+        return this.$http({
+          method: 'GET',
+          url: `${metrics.host}/search`,
+          headers: {
+            Authorization: `Basic ${token}`,
+          },
+          preventLogout: true,
+        });
+      })
+      .then(({ data }) => data)
+      .catch(this.CucServiceHelper.errorHandler('logs_home_data_get_error'));
   }
 
   /**

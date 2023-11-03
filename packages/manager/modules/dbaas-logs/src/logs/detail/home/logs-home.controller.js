@@ -115,18 +115,18 @@ export default class LogsHomeCtrl {
    */
   prepareDataUsageGraphData() {
     this.prepareUsageGraphData(
+      this.LogsConstants.DATA_STORAGE.METRICS.STREAM_SIZE,
       this.streamUsageGraphData,
-      this.streamData,
       'logs_home_data_stream',
     );
     this.prepareUsageGraphData(
+      this.LogsConstants.DATA_STORAGE.METRICS.COLD_STORAGE_TOTAL,
       this.archiveUsageGraphData,
-      this.archiveData,
       'logs_home_data_archive',
     );
     this.prepareUsageGraphData(
+      this.LogsConstants.DATA_STORAGE.METRICS.INDEX_SIZE,
       this.indiceUsageGraphData,
-      this.indiceData,
       'logs_home_data_index',
     );
   }
@@ -136,12 +136,12 @@ export default class LogsHomeCtrl {
    *
    * @memberof LogsHomeCtrl
    */
-  prepareUsageGraphData(chart, srcData, label) {
+  prepareUsageGraphData(metric, chart, label) {
     const updatedChart = chart;
-    updatedChart.labels = srcData.timestamps.map((timestamp) =>
+    updatedChart.labels = this.dataUsage[metric].timestamps.map((timestamp) =>
       moment(timestamp).format('DD MMM YY'),
     );
-    updatedChart.data = srcData.usageData;
+    updatedChart.data = this.dataUsage[metric].usageData;
     updatedChart.series = [this.$translate.instant(label)];
     updatedChart.options.scales.yAxes[0].ticks = {
       suggestedMin: 0,

@@ -133,7 +133,7 @@
   "ip_table_header_virtual_mac": "Wirtualny MAC",
   "ip_table_header_virtual_mac_help": "Adres MAC używany do kierowania adresu IP do zwirtualizowanego zasobu w trybie bridge dla kompatybilnych produktów.",
   "ip_table_header_antispam": "Antyspam",
-  "ip_table_header_mitigation": "Mitygacja ataków - Filtrowanie ataku DDoS - OVH Anty-DDoS",
+  "ip_table_header_mitigation": "Ochrona anty-DDoS",
   "ip_table_header_mitigation_help": "Status ochrony anty-DDoS.",
   "ip_table_header_security": "Firewall",
   "ip_table_header_security_help": "Status Edge Network Firewall",

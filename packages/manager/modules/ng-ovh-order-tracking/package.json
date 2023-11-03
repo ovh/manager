@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-order-tracking",
-  "version": "2.2.4",
+  "version": "2.2.5",
   "private": true,
   "description": "OVH order tracking",
   "keywords": [
@@ -37,7 +37,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-order-tracking' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "bootstrap4": "twbs/bootstrap#v4.6.2",
     "lodash": "^4.17.15"
   },
   "devDependencies": {

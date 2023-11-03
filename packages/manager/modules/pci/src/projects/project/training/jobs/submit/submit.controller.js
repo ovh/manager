@@ -9,6 +9,7 @@ import {
   DOC_DOCKER_BUILD_URL,
   JOB_SSH_KEYS,
   PRIVACY_SETTINGS,
+  NUMBER_OF_MINUTES_IN_ONE_HOUR,
 } from '../../training.constants';
 
 export default class PciTrainingJobsSubmitController {
@@ -251,11 +252,25 @@ export default class PciTrainingJobsSubmitController {
     this.computePrice(1);
   }
 
+  onFlavorChange() {
+    this.job.resources = {
+      flavor: this.flavorSelected.id,
+    };
+    if (!this.resourceN || this.resourceN > this.flavorSelected.max) {
+      this.resourceN = this.flavorSelected.max;
+    }
+  }
+
   computePrice(modelValue) {
     this.resourceN = modelValue;
     this.flavorPrice =
-      this.resourceN * this.flavorSelected.catalog.priceInUcents * 60;
-    this.flavorPriceTax = this.resourceN * this.flavorSelected.catalog.tax * 60;
+      this.resourceN *
+      this.flavorSelected.catalog.priceInUcents *
+      NUMBER_OF_MINUTES_IN_ONE_HOUR;
+    this.flavorPriceTax =
+      this.resourceN *
+      this.flavorSelected.catalog.tax *
+      NUMBER_OF_MINUTES_IN_ONE_HOUR;
 
     this.job.resources = {
       flavor: this.flavorSelected.id,
@@ -265,7 +280,23 @@ export default class PciTrainingJobsSubmitController {
   }
 
   getFlavorPrice(flavor) {
-    return this.PriceFormatter.format(flavor.catalog.price.value * 60);
+    return this.PriceFormatter.format(
+      flavor.catalog.price.value * NUMBER_OF_MINUTES_IN_ONE_HOUR,
+    );
+  }
+
+  getFlavorPriceWithResources(flavor) {
+    return flavor.catalog
+      ? this.resourceN *
+          flavor.catalog.priceInUcents *
+          NUMBER_OF_MINUTES_IN_ONE_HOUR
+      : 0;
+  }
+
+  getFlavorPriceTaxWithResources(flavor) {
+    return flavor.catalog
+      ? this.resourceN * flavor.catalog.tax * NUMBER_OF_MINUTES_IN_ONE_HOUR
+      : 0;
   }
 
   submitJob() {

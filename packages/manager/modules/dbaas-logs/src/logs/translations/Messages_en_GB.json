@@ -781,5 +781,7 @@
   "streams_subscriptions_delete_error": "An error occurred while deleting the subscription to the resource ‘{{resourceName}}’: {{message}}",
   "streams_subscriptions_resource_products_ldp": "Logs Data Platform",
   "streams_subscriptions_resource_products_webhosting": "Web Hosting",
-  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service"
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
+  "streams_subscriptions_resource_products_account-api": "OVHcloud &amp; OVHcloud API Control Panel",
+  "streams_subscriptions_resource_products_account-audit": "OVHcloud Logs Audit"
 }

@@ -781,5 +781,7 @@
   "streams_subscriptions_delete_error": "Beim Löschen des Abonnements für die Ressource „{{resourceName}}“ ist ein Fehler aufgetreten: {{message}}",
   "streams_subscriptions_resource_products_ldp": "Logs Data Platform",
   "streams_subscriptions_resource_products_webhosting": "Webhosting",
-  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service"
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes Service",
+  "streams_subscriptions_resource_products_account-api": "OVHcloud Kundencenter und OVHcloud API",
+  "streams_subscriptions_resource_products_account-audit": "OVHcloud Audit-Logs"
 }

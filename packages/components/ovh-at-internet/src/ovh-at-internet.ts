@@ -71,7 +71,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
       ...customProps,
       country: params.subsidiary,
       website: AT_INTERNET_WEBSITE[params.subsidiary],
-      full_url: data.pageUrl || encodeURIComponent(window.top.location.href),
+      full_url: data.pageUrl || window.top.location.href,
       site_name_1: params.siteName,
       site_level2: AT_INTERNET_LEVEL2[params.level2] || '',
       user_agent: params.userAgent || window.navigator.userAgent,
@@ -122,10 +122,10 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     );
   }
 
-  initTag(withConsent: boolean) {
+  initTag(withConsent: boolean): Promise<void> {
     // check if the tag is not already initialized
     if (this.tag) {
-      return;
+      return Promise.resolve();
     }
     // if we don't have consent drop previous tracking attemps
     if (!withConsent) {
@@ -182,13 +182,14 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     });
   }
 
-  init(withConsent: boolean) {
+  init(withConsent: boolean): Promise<void> {
     try {
       return this.initTag(withConsent);
     } catch (err) {
       console.error('tracking initialization failed', err);
       this.tag = null;
     }
+    return Promise.resolve();
   }
 
   onConsentModalDisplay() {
@@ -347,7 +348,6 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
           'atinternet.trackImpression missing data attribute: ',
           data,
         );
-        return;
       }
     } else {
       this.trackQueue.push({ type: 'trackImpression', data });
@@ -363,7 +363,6 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
           'atinternet.trackClickImpression missing data attribute: ',
           data,
         );
-        return;
       }
     } else {
       this.trackQueue.push({ type: 'trackClickImpression', data });

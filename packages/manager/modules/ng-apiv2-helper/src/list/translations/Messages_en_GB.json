@@ -1,4 +1,3 @@
 {
-  "cursor_datagrid_error_cursor": "This page does not exist",
   "cursor_datagrid_error_data": "An error occurred while retrieving your data: {{ message }}"
 }

@@ -80,6 +80,7 @@ const features = {
   ],
   replicationsTab: [DATABASE_TYPES.KAFKA_MIRROR_MAKER],
   restApi: [DATABASE_TYPES.KAFKA],
+  schemaRegistry: [DATABASE_TYPES.KAFKA],
   usersGroup: [DATABASE_TYPES.M3DB],
   resetAdminUserFromDashboard: [DATABASE_TYPES.GRAFANA],
   namespacesTab: [DATABASE_TYPES.M3DB],

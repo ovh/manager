@@ -7,6 +7,7 @@ export default {
     biosSettings: '<',
     bringYourOwnImage: '<',
     changeOwnerAvailable: '<',
+    currentActiveLink: '<',
     isMonitoringOptionsAvailable: '<',
     changeOwnerUrl: '<',
     eligibleData: '<',

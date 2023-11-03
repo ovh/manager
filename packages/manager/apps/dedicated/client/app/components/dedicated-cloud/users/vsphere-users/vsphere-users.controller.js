@@ -1,8 +1,13 @@
 import set from 'lodash/set';
+import has from 'lodash/has';
 
 import {
   DEFAULT_FILTER_COLUMN,
   ENUM_USERS_STATUS,
+  IAM_STATUS_ENABLED,
+  USER_IDENTITY_PROVIDER_IAM,
+  USER_TYPE_USER,
+  USER_TYPE_ROLE,
   SORT_ORDER,
 } from './vsphere-users.constant';
 
@@ -21,10 +26,12 @@ export default class DedicatedCloudVsphereUsersCtrl {
         federationStatus: this.DedicatedCloud.getFederationStatus(
           this.productId,
         ),
+        iamStatus: this.DedicatedCloud.getIamStatus(this.productId),
         policy: this.DedicatedCloud.getPasswordPolicy(this.productId),
       })
       .then((response) => {
         this.federationEnabled = response.federationStatus?.state === 'enabled';
+        this.iamEnabled = response.iamStatus?.state === IAM_STATUS_ENABLED;
         this.passwordPolicy = response.policy;
       })
       .catch((err) => {
@@ -59,8 +66,17 @@ export default class DedicatedCloudVsphereUsersCtrl {
     return this.DedicatedCloud.getUserDetails(this.productId, params).then(
       ({ data: users, meta }) => {
         const userFormat = users.map((user) => {
-          set(user, 'loginUsername', user.login.split('@')[0]);
-          set(user, 'loginDomain', user.login.split('@')[1]);
+          const [userName, domain] = user.login.split('@');
+          set(user, 'loginUsername', userName);
+          set(user, 'loginDomain', domain);
+          let userType = user.type || USER_TYPE_USER;
+          if (
+            has(user, 'identityProviderType') &&
+            user.identityProviderType === USER_IDENTITY_PROVIDER_IAM
+          ) {
+            userType = USER_TYPE_ROLE;
+          }
+          set(user, 'userType', userType);
           return user;
         });
         return {
@@ -96,14 +112,6 @@ export default class DedicatedCloudVsphereUsersCtrl {
     return filter;
   }
 
-  canDeleteUserOrGroup(row) {
-    return (
-      this.dedicatedCloud.solution !== 'SYSTEMCENTER' ||
-      (this.dedicatedCloud.solution === 'SYSTEMCENTER' &&
-        row.name !== 'infraadmin')
-    );
-  }
-
   onAddUserClick() {
     this.trackClick('add');
     return this.addUser(this.passwordPolicy);
@@ -112,5 +120,10 @@ export default class DedicatedCloudVsphereUsersCtrl {
   onGoToImportUserClick() {
     this.trackClick('import');
     return this.goToImportUser();
+  }
+
+  onGoToUserIamRoleClick() {
+    this.trackClick('iam');
+    return this.goToUserIamRole();
   }
 }

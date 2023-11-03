@@ -32,6 +32,14 @@
                         data-disabled="$ctrl.disabled || $ctrl.constructor.isRegionDisabled(regions)"
                         data-required
                     >
+                        <oui-select-picker-picture
+                            data-ng-if="$ctrl.currentRegion.name === regions[0].microRegion.code"
+                        >
+                            <span
+                                class="oui-badge oui-badge_s oui-badge_success"
+                                data-translate="pci_project_regions_list_current_offer"
+                            ></span>
+                        </oui-select-picker-picture>
                         <oui-select-picker-section
                             data-ng-if="$ctrl.constructor.isRegionDisabled(regions)"
                         >
@@ -83,7 +91,6 @@
         </div>
     </oui-tabs-item>
 </oui-tabs>
-
 <div data-ng-if="$ctrl.displaySelectedRegion" class="container-fluid px-0">
     <div class="row">
         <oui-select-picker

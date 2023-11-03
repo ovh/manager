@@ -31,6 +31,8 @@ export default /* @ngInject */ ($stateProvider) => {
                 }),
           );
         }),
+      currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
+        $state.href($state.current.name, $transition$.params()),
       failoverIps: /* @ngInject */ (OvhApiIp, serverName) =>
         OvhApiIp.v6().query({
           'routedTo.serviceName': serverName,
@@ -81,6 +83,30 @@ export default /* @ngInject */ ($stateProvider) => {
               'app.dedicated-server.server.interfaces.bandwidth-public-order',
               { productId: serverName },
             ),
+      technicalDetails: /* @ngInject */ ($http, serverName) =>
+        $http
+          .get(`/dedicated/technical-details/${serverName}`, {
+            serviceType: 'aapi',
+          })
+          .then(({ data }) =>
+            data?.baremetalServers?.storage ? data?.baremetalServers : null,
+          )
+          .catch(() => null),
+      trafficInformations: /* @ngInject */ (
+        $q,
+        $stateParams,
+        ServerOrderTrafficService,
+        ServerTrafficService,
+      ) =>
+        $q.all({
+          traffic: ServerTrafficService.getTraffic($stateParams.productId),
+          trafficOption: ServerOrderTrafficService.getOption(
+            $stateParams.productId,
+          ),
+          trafficOrderables: ServerOrderTrafficService.getOrderables(
+            $stateParams.productId,
+          ),
+        }),
       urls: /* @ngInject */ (constants, user) =>
         constants.urls[user.ovhSubsidiary],
       breadcrumb: /* @ngInject */ ($translate) =>

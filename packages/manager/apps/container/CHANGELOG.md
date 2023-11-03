@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.31.0...@ovh-ux/manager-container-app@0.32.0) (2023-10-30)
+
+
+### Features
+
+* **pci:** update us horizon link for pci ([#10140](https://github.com/ovh/manager/issues/10140)) ([e0ff08d](https://github.com/ovh/manager/commit/e0ff08d44e53bac3a55c7bc8d9fe32541f5567df))
+
+
+
+
+
+# [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.30.6...@ovh-ux/manager-container-app@0.31.0) (2023-10-25)
+
+
+### Features
+
+* **iam:** remove beta flag ([#10030](https://github.com/ovh/manager/issues/10030)) ([5a6572d](https://github.com/ovh/manager/commit/5a6572d64f2617220e41f93cb8b5923274558a7c))
+
+
+
+
+
+## [0.30.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.30.5...@ovh-ux/manager-container-app@0.30.6) (2023-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.30.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.30.4...@ovh-ux/manager-container-app@0.30.5) (2023-10-16)
+
+
+### Bug Fixes
+
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+
+
+
+
+
 ## [0.30.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.30.3...@ovh-ux/manager-container-app@0.30.4) (2023-10-05)
 
 

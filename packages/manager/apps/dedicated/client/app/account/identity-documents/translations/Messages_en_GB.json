@@ -21,5 +21,6 @@
   "user_account_identity_documents_legal_info1": "OVH S.A.S is responsible for processing your personal data. The data collected through this form is processed in order to comply with the <a href=\"{{ link1 }}\" target=\"_blank\">Cybersecurity Guidelines of 28.04.2022</a>, published by CERT-In pursuant to the provisions of subsection (6) of <a href=\"{{ link2 }}\" target=\"_blank\">section 70B</a> of the Information Technology (IT) Act, 2000.",
   "user_account_identity_documents_legal_info2": "To find out more about how your data is processed, along with your rights, please refer to our <a href=\"{{ link }}\" target=\"_blank\">Policy on the Use of Personal Data.</a>",
   "user_account_identity_documents_verification_in_progress_info": "Your documents are currently being processed by our team.",
-  "user_account_identity_documents_verification_waiting_info": "Your request has been processed but we require additional documents. Please consult your support ticket."
+  "user_account_identity_documents_verification_waiting_info": "Your request has been processed but we require additional documents. Please consult your support ticket.",
+  "user_account_identity_documents_selection_file_format_invalid": "File format not supported. Please use one of the accepted formats: jpg, jpeg, pdf and png"
 }

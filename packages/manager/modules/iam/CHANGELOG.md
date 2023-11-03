@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.4.1...@ovh-ux/manager-iam@1.5.0) (2023-10-30)
+
+
+### Features
+
+* **iam:** wrong guide link on the manager ([#10164](https://github.com/ovh/manager/issues/10164)) ([70dc68a](https://github.com/ovh/manager/commit/70dc68a2230a9fa1e859e6bd8e98308c0788e550))
+
+
+
+
+
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.4.0...@ovh-ux/manager-iam@1.4.1) (2023-10-25)
+
+
+### Bug Fixes
+
+* **iam:** update error display when datagrid cursor is invalid ([#10127](https://github.com/ovh/manager/issues/10127)) ([6691783](https://github.com/ovh/manager/commit/669178324355bba30cda89be925b87029ae6b4e8))
+
+
+
+
+
 # [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.3.0...@ovh-ux/manager-iam@1.4.0) (2023-10-05)
 
 

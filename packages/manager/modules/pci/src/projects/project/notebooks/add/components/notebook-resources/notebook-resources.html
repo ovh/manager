@@ -125,17 +125,24 @@
                     </div>
                 </oui-select-picker-section>
                 <oui-select-picker-section>
-                    <strong
-                        data-ng-bind="$ctrl.formatPriceForHour(flavor.id)"
-                    ></strong>
                     <span
-                        data-ng-if="$ctrl.notebookModel.nbResources === 1"
-                        data-translate="pci_notebook_add_resources_proposed_resource_price_by_resource"
-                    ></span>
-                    <span
-                        data-ng-if="$ctrl.notebookModel.nbResources > 1"
-                        data-translate="pci_notebook_add_resources_proposed_resource_price_by_resources"
-                    ></span>
+                        data-ng-pluralize
+                        data-count="$ctrl.notebookModel.nbResources"
+                        data-when="{
+                            '1': ('pci_notebook_add_resources_proposed_resource_price_by_resource' | translate),
+                            'other': ('pci_notebook_add_resources_proposed_resource_price_by_resources' | translate),
+                        }"
+                    >
+                    </span>
+                    <ovh-manager-catalog-price
+                        data-price="$ctrl.getFlavorPriceWithResources(flavor)"
+                        data-tax="$ctrl.getFlavorPriceTaxWithResources(flavor)"
+                        data-user="$ctrl.user"
+                        data-perform-rounding="false"
+                        data-maximum-fraction-digits="2"
+                        data-interval="'hour'"
+                    >
+                    </ovh-manager-catalog-price>
                 </oui-select-picker-section>
             </oui-select-picker>
         </div>

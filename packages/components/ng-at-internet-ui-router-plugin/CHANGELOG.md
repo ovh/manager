@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.2.4...@ovh-ux/ng-at-internet-ui-router-plugin@3.3.0) (2023-10-23)
+
+
+### Features
+
+* **tracking:** remove "Full URL" property encoding ([#10131](https://github.com/ovh/manager/issues/10131)) ([645cd8e](https://github.com/ovh/manager/commit/645cd8ef02aa06901e60321772500ae979646804))
+
+
+
+
+
 ## [3.2.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-at-internet-ui-router-plugin@3.2.3...@ovh-ux/ng-at-internet-ui-router-plugin@3.2.4) (2023-09-07)
 
 **Note:** Version bump only for package @ovh-ux/ng-at-internet-ui-router-plugin

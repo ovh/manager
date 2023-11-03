@@ -1,3 +1,5 @@
+import punycode from 'punycode';
+
 export default class BreadcrumbController {
   /* @ngInject */
   constructor(uiRouterBreadcrumbService) {
@@ -11,5 +13,9 @@ export default class BreadcrumbController {
       this.breadcrumb = breadcrumb;
     });
     this.breadcrumb = this.uiRouterBreadcrumbService.getBreadcrumb();
+  }
+
+  static convertToPunycode(domain) {
+    return punycode.toUnicode(domain);
   }
 }

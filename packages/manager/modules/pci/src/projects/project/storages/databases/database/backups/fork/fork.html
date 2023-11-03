@@ -105,10 +105,22 @@
                 data-on-change="$ctrl.onPlanChanged(selectedPlan)"
             ></database-plans-list>
         </section>
+        <section>
+            <h2
+                id="region"
+                data-translate="pci_databases_backups_fork_region_label"
+            ></h2>
+            <pci-project-regions-list
+                data-current-region="$ctrl.originalRegion"
+                data-regions="$ctrl.model.plan.regions"
+                data-selected-region="$ctrl.model.region"
+                data-on-change="$ctrl.onRegionChanged(region)"
+            ></pci-project-regions-list>
+        </section>
         <section id="flavor">
             <h2 data-translate="pci_databases_backups_fork_flavor_label"></h2>
             <pci-projects-project-database-flavors-list
-                data-flavors="$ctrl.flavors"
+                data-flavors="$ctrl.model.region.flavors"
                 data-user="$ctrl.user"
                 data-show-monthly-prices="$ctrl.showMonthlyPrices"
                 data-nodes="$ctrl.model.plan.nodesCount"
@@ -350,11 +362,11 @@
                             ></button>
                         </div>
                         <div>
-                            <a
-                                href=""
+                            <button
+                                class="oui-link"
                                 data-ng-click="$ctrl.scrollTo('restore-mode')"
                                 data-translate="pci_databases_backups_fork_spec_restore_mode"
-                            ></a>
+                            ></button>
                             <span
                                 data-ng-bind="'pci_databases_backups_fork_spec_restore_mode_' + $ctrl.model.restoreMode | translate"
                                 class="ml-2"
@@ -405,20 +417,22 @@
                             </div>
                         </div>
                         <div class="mt-2">
-                            <a
-                                href=""
+                            <button
+                                class="oui-link"
                                 data-ng-click="$ctrl.scrollTo('plan')"
                                 data-translate="pci_databases_backups_fork_spec_plan"
-                            ></a>
+                            ></button>
                             <span
                                 class="text-capitalize"
                                 data-ng-bind="$ctrl.model.plan.name"
                             ></span>
                         </div>
                         <div class="mt-2">
-                            <strong
+                            <button
+                                class="oui-link"
+                                data-ng-click="$ctrl.scrollTo('region')"
                                 data-translate="pci_databases_backups_fork_spec_region"
-                            ></strong>
+                            ></button>
                             <span
                                 data-translate="pci_databases_backups_fork_spec_region_name"
                                 data-translate-values="{
@@ -428,11 +442,11 @@
                             ></span>
                         </div>
                         <div class="mt-2">
-                            <a
-                                href=""
+                            <button
+                                class="oui-link"
                                 data-ng-click="$ctrl.scrollTo('flavor')"
                                 data-translate="pci_databases_backups_fork_spec_flavor"
-                            ></a>
+                            ></button>
                             <span
                                 class="text-capitalize"
                                 data-ng-bind="$ctrl.model.flavor.name"
@@ -516,11 +530,11 @@
                             </div>
                         </div>
                         <div class="mt-2">
-                            <a
-                                href=""
+                            <button
+                                class="oui-link"
                                 data-ng-click="$ctrl.scrollTo('network')"
                                 data-translate="pci_databases_backups_fork_spec_network"
-                            ></a>
+                            ></button>
                             <span
                                 data-ng-if="$ctrl.model.usePrivateNetwork"
                                 data-translate="pci_databases_backups_fork_network_mode_private"

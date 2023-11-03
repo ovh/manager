@@ -1359,5 +1359,6 @@
   "hosting_tab_DOMAINS_configuration_add_step1_only_one_db_and_no_left": "Su solución actual solo le permite instalar un sitio web. Para disfrutar de un sitio web adicional, elija uno de nuestros planes de hosting superiores.",
   "hosting_tab_DOMAINS_configuration_add_buttom_update_offer": "Cambiar de plan",
   "hosting_order_upgrade_modal_header_description": "¿Su proyecto está cambiando? Blog, sitio web profesional, plataforma de e-commerce o aplicación web: elija el producto más adaptado a sus nuevas necesidades.",
-  "hosting_order_upgrade_no_contract": "No hay ningún contrato pendiente de validación."
+  "hosting_order_upgrade_no_contract": "No hay ningún contrato pendiente de validación.",
+  "hosting_change_offer_for_service_offer": "Este servicio no está disponible para la solución {{offer}}."
 }

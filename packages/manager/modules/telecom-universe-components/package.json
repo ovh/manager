@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-telecom-universe-components",
-  "version": "7.21.0",
+  "version": "7.21.1",
   "private": true,
   "description": "Collection of components for the Telecom control panel.",
   "repository": {
@@ -14,7 +14,7 @@
   "dependencies": {
     "@ovh-ux/ui-kit": "^6.6.2",
     "bootstrap": "^3.4.1",
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "bootstrap4": "twbs/bootstrap#v4.6.2",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {

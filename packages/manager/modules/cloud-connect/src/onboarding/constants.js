@@ -68,6 +68,7 @@ export const CTAS = {
   LT: 'https://ovhcloud.com/lt/network-security/ovhcloud-connect/',
   WE: 'https://ovhcloud.com/us-en/network-security/ovhcloud-connect/',
   WS: 'https://ovhcloud.com/us-en/network-security/ovhcloud-connect/',
+  US: 'https://us.ovhcloud.com/network/ovhcloud-connect/',
 };
 
 export default {

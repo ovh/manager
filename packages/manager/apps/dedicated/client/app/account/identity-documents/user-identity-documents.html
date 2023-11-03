@@ -79,10 +79,18 @@
 
 <!-- Document upload option -->
 <div class="mt-2" data-ng-if="!$ctrl.loading && $ctrl.showUploadOption">
-    <div data-ng-if="$ctrl.displayError">
+    <div data-ng-if="$ctrl.displayError && $ctrl.fileExtensionsValid">
         <oui-message data-type="error">
             <span
                 data-translate="user_account_identity_documents_submit_error_message_description"
+            ></span>
+        </oui-message>
+    </div>
+    <!-- error banner if the users uploads invalid files-->
+    <div data-ng-if="!$ctrl.fileExtensionsValid">
+        <oui-message class="my-1" data-type="error">
+            <span
+                data-translate="user_account_identity_documents_selection_file_format_invalid"
             ></span>
         </oui-message>
     </div>
@@ -104,7 +112,7 @@
         <oui-form-actions
             class="mt-5"
             data-disabled="$ctrl.form.$invalid || !$ctrl.files || $ctrl.files.length === 0 || $ctrl.kycStatus.status === $ctrl.KYC_STATUS.OPEN"
-            data-on-submit="$ctrl.uploadIdentityDocuments()"
+            data-on-submit="$ctrl.handleUploadConfirmModal(true)"
             data-submit-text="{{:: 'user_account_identity_documents_submit' | translate}}"
         ></oui-form-actions>
     </form>
@@ -159,3 +167,9 @@
     </small>
 </div>
 <!--end of legal section-->
+<!-- Modal confirmation for uploading documents -->
+<upload-identity-documents-confirm
+    data-is-open-modal="$ctrl.isOpenModal"
+    data-on-confirm="$ctrl.uploadIdentityDocuments()"
+    data-on-cancel="$ctrl.handleUploadConfirmModal(false)"
+></upload-identity-documents-confirm>

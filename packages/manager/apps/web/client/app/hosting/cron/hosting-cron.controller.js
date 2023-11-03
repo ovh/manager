@@ -3,6 +3,8 @@ import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 
+import { OFFERS_UNELIGIBLE_FOR_MODULE } from '../hosting.constants';
+
 export default class HostingCronsCtrl {
   /* @ngInject */
   constructor(
@@ -93,6 +95,10 @@ export default class HostingCronsCtrl {
 
   deleteCron(cron) {
     return this.$scope.setAction('cron/delete/hosting-cron-delete', cron);
+  }
+
+  static isOfferUneligible(offer) {
+    return OFFERS_UNELIGIBLE_FOR_MODULE.includes(offer);
   }
 }
 

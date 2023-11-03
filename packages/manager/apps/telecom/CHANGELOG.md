@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.7...@ovh-ux/manager-telecom@15.0.8) (2023-10-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.6...@ovh-ux/manager-telecom@15.0.7) (2023-10-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.0.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.5...@ovh-ux/manager-telecom@15.0.6) (2023-10-16)
+
+
+### Bug Fixes
+
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+* **telecom.voip:** add filter on list phone if mgcp ([#10077](https://github.com/ovh/manager/issues/10077)) ([27940c9](https://github.com/ovh/manager/commit/27940c903965237e9a1b5c6851060be0803e72cf))
+
+
+
+
+
+## [15.0.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.4...@ovh-ux/manager-telecom@15.0.5) (2023-10-11)
+
+
+### Bug Fixes
+
+* **telecom.xdsl:** change the check for modem page available ([13032a3](https://github.com/ovh/manager/commit/13032a33dbb15c9b876241d634b147df43e595be))
+
+
+
+
+
 ## [15.0.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.3...@ovh-ux/manager-telecom@15.0.4) (2023-10-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

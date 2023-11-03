@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iam",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "private": true,
   "description": "IAM product.",
   "repository": {
@@ -13,6 +13,7 @@
   "main": "src/index.js",
   "peerDependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
+    "@ovh-ux/manager-ng-apiv2-helper": "^0.1.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.2",
     "@ovh-ux/ng-at-internet": "^5.10.2",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.2.3",

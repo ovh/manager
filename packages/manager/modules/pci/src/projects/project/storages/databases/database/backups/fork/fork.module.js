@@ -8,6 +8,7 @@ import forkComponent from './fork.component';
 import routing from './fork.routing';
 import command from './command';
 
+import regionsList from '../../../../../../../components/project/regions-list';
 import databasePlanList from '../../../components/plans-list';
 import databaseFlavorsList from '../../../components/flavors-list';
 import databaseDiskSize from '../../../components/disk-size';
@@ -26,6 +27,7 @@ angular
     databaseDiskSize,
     switchPriceComponent,
     command,
+    regionsList,
   ])
   .config(routing)
   .component('ovhManagerPciStoragesDatabaseBackupsForkComponent', forkComponent)

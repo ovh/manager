@@ -221,6 +221,17 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
                 nicBilling,
               ),
 
+            choiceRenewDayTooltipAvailable: /* @ngInject */ (
+              ovhFeatureFlipping,
+            ) =>
+              ovhFeatureFlipping
+                .checkFeatureAvailability(['billing:choiceRenewDayTooltip'])
+                .then((commitmentAvailability) =>
+                  commitmentAvailability.isFeatureAvailable(
+                    'billing:choiceRenewDayTooltip',
+                  ),
+                ),
+
             serviceTypes: /* @ngInject */ (BillingAutoRenew, services) =>
               BillingAutoRenew.getServicesTypes(services),
 

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.8.0...@ovh-ux/manager-netapp@1.8.1) (2023-10-16)
+
+
+### Bug Fixes
+
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+
+
+
+
+
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.7.1...@ovh-ux/manager-netapp@1.8.0) (2023-10-10)
+
+
+### Features
+
+* **netapp:** add information on onboarding and order views ([#10036](https://github.com/ovh/manager/issues/10036)) ([6c513e2](https://github.com/ovh/manager/commit/6c513e2acd582e0c4773810c123029b85aa4a30a))
+
+
+
+
+
 ## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@1.7.0...@ovh-ux/manager-netapp@1.7.1) (2023-10-05)
 
 

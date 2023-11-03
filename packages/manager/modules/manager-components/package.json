@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-components",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "private": true,
   "description": "A set of reusable UI components, to be used across the OVH Manager",
   "repository": {
@@ -13,7 +13,7 @@
   "sideEffects": false,
   "main": "./src/index.js",
   "dependencies": {
-    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "bootstrap4": "twbs/bootstrap#v4.6.2",
     "chart.js": "^2.8.0",
     "lodash": "^4.17.15"
   },

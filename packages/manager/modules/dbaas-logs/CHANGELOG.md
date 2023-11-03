@@ -3,6 +3,56 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.17.2...@ovh-ux/manager-dbaas-logs@1.17.3) (2023-10-30)
+
+
+### Bug Fixes
+
+* **dedicated:** ldp handle resource name ([#10197](https://github.com/ovh/manager/issues/10197)) ([cf3355a](https://github.com/ovh/manager/commit/cf3355a01637ad004670aa9a692f9a4ee6ef23e1))
+
+
+
+
+
+## [1.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.17.1...@ovh-ux/manager-dbaas-logs@1.17.2) (2023-10-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-dbaas-logs
+
+
+
+
+
+## [1.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.17.0...@ovh-ux/manager-dbaas-logs@1.17.1) (2023-10-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-dbaas-logs
+
+
+
+
+
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.16.1...@ovh-ux/manager-dbaas-logs@1.17.0) (2023-10-23)
+
+
+### Features
+
+* **dedicated:** moving to new metrics backend ([#10152](https://github.com/ovh/manager/issues/10152)) ([6dbb434](https://github.com/ovh/manager/commit/6dbb434d722da319fc6a9ed14fa89b1ee0e13ec5))
+
+
+
+
+
+## [1.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.16.0...@ovh-ux/manager-dbaas-logs@1.16.1) (2023-10-16)
+
+
+### Bug Fixes
+
+* **container:** fix bootstrap version 6.4.2 ([#9966](https://github.com/ovh/manager/issues/9966)) ([a415c8f](https://github.com/ovh/manager/commit/a415c8f4952c8ab6daaefecf6f32409cd7b6b312))
+* **ldp:** consumption metrics ([#10053](https://github.com/ovh/manager/issues/10053)) ([837a688](https://github.com/ovh/manager/commit/837a688be9998f99485a897ebc0a891e605911b8))
+
+
+
+
+
 # [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.15.0...@ovh-ux/manager-dbaas-logs@1.16.0) (2023-10-05)
 
 

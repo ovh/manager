@@ -46,14 +46,22 @@ export default class {
     this.warningMessages = WARNING_MESSAGES;
     this.loading = {
       restApi: false,
+      schemaRegistry: false,
     };
     if (this.isFeatureActivated('restApi')) {
       this.enableRestApi = this.database.restApi ?? false;
       this.restApiServiceUri = this.database.endpoints?.find(
         (endPoint) => endPoint.component === `${this.database.engine}RestApi`,
       )?.uri;
-      this.KARAPACE_URL = KARAPACE_URL;
     }
+    if (this.isFeatureActivated('schemaRegistry')) {
+      this.enableSchemaRegistry = this.database.schemaRegistry ?? false;
+      this.schemaRegistryServiceUri = this.database.endpoints?.find(
+        (endPoint) =>
+          endPoint.component === `${this.database.engine}SchemaRegistry`,
+      )?.uri;
+    }
+    this.KARAPACE_URL = KARAPACE_URL;
     [this.endpoint] = this.database.endpoints;
 
     this.maintenanceTime = this.database.maintenanceTime;
@@ -326,6 +334,40 @@ export default class {
       });
   }
 
+  onSchemaRegistryStatusChange(enableSchemaRegistry) {
+    this.trackDashboard(
+      enableSchemaRegistry
+        ? 'general-information::kafka_schema_registry_enable'
+        : 'general-information::kafka_schema_registry_disable',
+      'click',
+    );
+    this.loading.schemaRegistry = true;
+    return this.DatabaseService.updateDatabaseEngineProperties(
+      this.projectId,
+      this.database.engine,
+      this.database.id,
+      { schemaRegistry: enableSchemaRegistry },
+    )
+      .then((databaseInfos) => {
+        this.schemaRegistryServiceUri = databaseInfos.endpoints?.find(
+          (endPoint) =>
+            endPoint.component === `${this.database.engine}SchemaRegistry`,
+        )?.uri;
+      })
+      .catch(() => {
+        this.enableSchemaRegistry = !enableSchemaRegistry;
+        return this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_databases_general_information_kafka_rest_api_enable_disable_error',
+          ),
+          this.messageContainer,
+        );
+      })
+      .finally(() => {
+        this.loading.schemaRegistry = false;
+      });
+  }
+
   getSSLKeyTranslation() {
     let sslTranslationKey = this.endpoint.sslMode;
     // if key exists in translation, return translation key.
@@ -346,6 +388,18 @@ export default class {
     if (event.target.tagName === 'INPUT') {
       this.trackDashboard(
         'general-information::kafka_rest_uri_copy_paste',
+        'click',
+      );
+    }
+  }
+
+  onSchemaRegistryServiceUriCopy(event) {
+    // Clipboard has 2 elements input & button. Input event handler triggers click on button.
+    // So click event-handler on oui-clipboard will be triggered twice.
+    // For the expected behavior, considering only the click event on input element.
+    if (event.target.tagName === 'INPUT') {
+      this.trackDashboard(
+        'general-information::kafka_schema_registry_copy_paste',
         'click',
       );
     }

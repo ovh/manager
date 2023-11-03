@@ -25,12 +25,13 @@
             <div
                 class="alert alert-info"
                 role="alert"
-                data-ng-if="displayTabs.cron && hosting.offer === 'START_10_M'"
+                data-ng-if="displayTabs.cron && $ctrl.constructor.isOfferUneligible(hosting.offer)"
             >
                 <div>
                     <p
                         class="mb-3"
-                        data-translate="hosting_change_offer_for_service_start10m"
+                        data-translate="hosting_change_offer_for_service_offer"
+                        data-translate-values="{ offer: ('hosting_dashboard_service_offer_' + hosting.offer | translate) }"
                     ></p>
                     <button
                         class="btn btn-info"
@@ -42,7 +43,7 @@
             </div>
 
             <div
-                data-ng-if="displayTabs.cron && hosting.offer !== 'START_10_M'"
+                data-ng-if="displayTabs.cron && !$ctrl.constructor.isOfferUneligible(hosting.offer)"
             >
                 <h2 data-translate="hosting_tab_menu_crons"></h2>
 
@@ -141,7 +142,7 @@
 
         <div
             class="col-md-3 mt-5 mt-lg-0"
-            data-ng-if="displayTabs.cron && hosting.offer !== 'START_10_M'"
+            data-ng-if="displayTabs.cron && !$ctrl.constructor.isOfferUneligible(hosting.offer)"
         >
             <button
                 class="btn btn-block btn-default"

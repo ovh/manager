@@ -24,6 +24,10 @@ export const ENUM_TRANSLATION_RULES = [
     dependsOfCountry: true,
     sort: true,
   },
+  {
+    fieldName: 'sex',
+    sort: true,
+  },
 ];
 
 export const MODEL_DEBOUNCE_DELAY = 500;

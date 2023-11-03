@@ -1,12 +1,26 @@
 <div data-ng-controller="ServerConsumptionCtrl as ctrl">
-    <div class="oui-tile">
-        <h4 class="oui-tile__title oui-heading_4">
-            <span data-translate="server_consumption_label"></span>
-            <span
-                class="oui-icon oui-tooltip__trigger oui-icon-help-circle"
-                oui-tooltip="{{'server_consumption_explanation' | translate}}"
-            ></span>
-        </h4>
+    <oui-tile
+        class="h-100"
+        data-heading="{{:: 'server_consumption_label' | translate }}"
+    >
+        <div class="oui-tile__item">
+            <span data-translate="server_consumption_explanation"></span>&nbsp;
+            <a
+                class="oui-link_icon"
+                data-ng-href="{{:: ctrl.getTabItemUrl('interfaces') }}"
+                data-ng-hide="ctrl.getTabItemUrl('interfaces') === $ctrl.currentActiveLink()"
+                data-track-on="click"
+                data-track-type="action"
+            >
+                <strong
+                    data-translate="server_consumption_explanation_link"
+                ></strong>
+                <span
+                    class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </div>
         <div
             class="oui-tile__body text-center"
             data-ng-if="ctrl.server.loading || ctrl.traffic.loading"
@@ -96,5 +110,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </oui-tile>
 </div>

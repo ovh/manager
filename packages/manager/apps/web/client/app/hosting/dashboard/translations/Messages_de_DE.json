@@ -1359,5 +1359,6 @@
   "hosting_tab_DOMAINS_configuration_add_step1_only_one_db_and_no_left": "Mit Ihrem aktuellen Angebot können Sie nur eine Website erstellen. Wählen Sie ein höheres Angebot, um eine weitere Website einrichten zu können.",
   "hosting_tab_DOMAINS_configuration_add_buttom_update_offer": "Angebot wechseln",
   "hosting_order_upgrade_modal_header_description": "Ihr Projekt entwickelt sich weiter? Ob Blog, professionelle Website, E-Commerce-Plattform oder Webanwendung: Wählen Sie das Angebot, das Ihren neuen Anforderungen am besten entspricht.",
-  "hosting_order_upgrade_no_contract": "Keine neuen Verträge zur Validierung vorhanden"
+  "hosting_order_upgrade_no_contract": "Keine neuen Verträge zur Validierung vorhanden",
+  "hosting_change_offer_for_service_offer": "Dieser Dienst ist für das {{offer}} Angebot nicht verfügbar."
 }

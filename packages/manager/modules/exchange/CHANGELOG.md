@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.1.1...@ovh-ux/manager-exchange@4.1.2) (2023-10-16)
+
+
+### Bug Fixes
+
+* **dedicated:** add missing translation for outlook license ([#10076](https://github.com/ovh/manager/issues/10076)) ([742dd3b](https://github.com/ovh/manager/commit/742dd3ba5e978eb3396d9f8a7049bfbcaa15b783))
+
+
+
+
+
 ## [4.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.1.0...@ovh-ux/manager-exchange@4.1.1) (2023-10-05)
 
 

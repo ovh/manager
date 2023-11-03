@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-carbon-calculator",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "OVHcloud CarbonCalculator product",
   "repository": {
@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "bootstrap4": "twbs/bootstrap#v4.0.0"
+    "bootstrap4": "twbs/bootstrap#v4.6.2"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",

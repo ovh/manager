@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-apiv2-helper@0.1.0...@ovh-ux/manager-ng-apiv2-helper@0.1.1) (2023-10-25)
+
+
+### Bug Fixes
+
+* **iam:** update error display when datagrid cursor is invalid ([#10127](https://github.com/ovh/manager/issues/10127)) ([6691783](https://github.com/ovh/manager/commit/669178324355bba30cda89be925b87029ae6b4e8))
+
+
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ng-apiv2-helper@0.0.0...@ovh-ux/manager-ng-apiv2-helper@0.1.0) (2023-08-17)
 
 
