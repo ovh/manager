@@ -1,13 +1,20 @@
 import get from 'lodash/get';
 import startCase from 'lodash/startCase';
 
-import { COUNTRIES_VAT_LABEL } from './constants';
+import {
+  COUNTRIES_VAT_LABEL,
+  COMPANY_CREATED_PREFIX,
+  COMPANY_NOT_CREATED_PREFIX,
+} from './constants';
 
 export default class OvhSignUpActivityCtrl {
   /* @ngInject */
-  constructor($filter) {
+  constructor($filter, atInternet) {
+    this.atInternet = atInternet;
     this.$filter = $filter;
     this.corporationIsCreated = true;
+    this.COMPANY_CREATED_PREFIX = COMPANY_CREATED_PREFIX;
+    this.COMPANY_NOT_CREATED_PREFIX = COMPANY_NOT_CREATED_PREFIX;
   }
 
   /**
@@ -60,5 +67,12 @@ export default class OvhSignUpActivityCtrl {
       this.signUpFormCtrl.model.legalform === 'corporation' &&
       this.signUpFormCtrl.model.country === 'FR'
     );
+  }
+
+  trackClick(name) {
+    this.atInternet.trackClick({
+      name,
+      type: 'action',
+    });
   }
 }

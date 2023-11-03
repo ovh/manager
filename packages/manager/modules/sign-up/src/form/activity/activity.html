@@ -143,6 +143,7 @@
             data-required
             data-label="{{:: 'sign_up_activity_corporation_created_title' | translate }}"
             data-values="[true]"
+            data-ng-click="$ctrl.trackClick($ctrl.COMPANY_CREATED_PREFIX)"
         >
             <oui-select-picker-description>
                 <span
@@ -159,6 +160,7 @@
             data-on-change="$ctrl.resetCorporationData()"
             data-label="{{:: 'sign_up_activity_corporation_not_created_title' | translate }}"
             data-values="[false]"
+            data-ng-click="$ctrl.trackClick($ctrl.COMPANY_NOT_CREATED_PREFIX)"
         >
             <oui-select-picker-description>
                 <span
