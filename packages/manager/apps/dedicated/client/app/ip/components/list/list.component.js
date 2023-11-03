@@ -18,6 +18,7 @@ export default {
     trackClick: '<',
     trackPage: '<',
     trackingData: '<',
+    goToStatistics: '<',
   },
   transclude: {
     actions: '?ipListActions',

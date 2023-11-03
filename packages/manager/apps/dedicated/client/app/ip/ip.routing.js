@@ -37,6 +37,9 @@ export const listRouting = {
       trackClick('bring-your-own-ip');
       return $state.go('app.ip.byoip');
     },
+    goToStatistics: /* @ngInject */ ($state) => (ipBlock) => {
+      $state.go('network-security.scrubbing-center', { ip: ipBlock.ipBlock });
+    },
     breadcrumb: () => null,
     hideBreadcrumb: () => true,
     orderIpAvailable: /* @ngInject */ (coreConfig, ovhFeatureFlipping) => {

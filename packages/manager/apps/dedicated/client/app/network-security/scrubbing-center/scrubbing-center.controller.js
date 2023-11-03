@@ -20,7 +20,11 @@ export default class ScrubbingCenterController {
       return data;
     });
 
-    this.getAllEvents();
+    const ip = this.getIp();
+    this.selectedIp = ip;
+    if (!ip) {
+      this.getAllEvents();
+    }
   }
 
   getAllEvents(service) {
@@ -58,7 +62,7 @@ export default class ScrubbingCenterController {
       params.subnets = this.autocomplete.map((el) => el.ipBlock);
     }
     if (!service && this.selectedIp) {
-      params.subnets = this.selectedIp.ipBlock;
+      params.subnets = this.selectedIp;
     }
     return this.networkSecurityService.getEvents(params).then(({ data }) => {
       if (data.events) {
@@ -117,6 +121,7 @@ export default class ScrubbingCenterController {
       return null;
     }
 
-    return this.getAllEvents(value.ipBlock);
+    this.selectedIp = value.ipBlock ? value.ipBlock : value;
+    return this.getAllEvents();
   }
 }

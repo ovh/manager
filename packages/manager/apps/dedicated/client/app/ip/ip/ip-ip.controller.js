@@ -29,6 +29,7 @@ export default /* @ngInject */
   trackPage,
   trackingData,
   ipServiceData,
+  goToStatistics,
 ) => {
   $scope.BRING_YOUR_OWN_IP = BRING_YOUR_OWN_IP;
   $scope.ADDITIONAL_IP = ADDITIONAL_IP;
@@ -51,6 +52,7 @@ export default /* @ngInject */
   // Prevent serviceSelector / serviceTypeSelector elements from creating their own ng-model variables
   // on their own transcluded scope which break scope inheritance
   $scope.ipScope = $scope;
+  $scope.goToStatistics = goToStatistics;
 
   function fetchServiceTypes() {
     return $http
