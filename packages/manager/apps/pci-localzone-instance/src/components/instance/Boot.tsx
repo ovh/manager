@@ -1,5 +1,5 @@
 import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { OsdsModal,  } from '@ovhcloud/ods-components/modal/react';
+import { OsdsModal } from '@ovhcloud/ods-components/modal/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 interface BootProps {
@@ -22,7 +22,6 @@ export default function Boot({ instance, onClose }: BootProps) {
           Submit
         </OsdsButton>
       </OsdsModal>
-
     </>
   );
 }
