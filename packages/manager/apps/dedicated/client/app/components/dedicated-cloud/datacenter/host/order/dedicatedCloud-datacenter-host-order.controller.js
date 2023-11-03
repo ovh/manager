@@ -69,7 +69,7 @@ export default class {
               ? this.$http.get('/products/partners/plans', {
                   params: {
                     ovhSubsidiary: this.user.ovhSubsidiary,
-                    publicPlanCode: profiles.map((p) => p.name),
+                    publicPlanCode: profiles.map((profile) => profile.name),
                   },
                 })
               : this.$q.resolve({ data: [] });
@@ -78,21 +78,22 @@ export default class {
 
             const sortedResult = offers
               .filter((offer) =>
-                profiles.find((p) => p.name === offer.planCode),
+                profiles.find((profile) => profile.name === offer.planCode),
               )
               .map((offer) => {
-                const plan = plans.find(
-                  (p) => p.publicPlanCode === offer.planCode,
+                const privatePlan = plans.find(
+                  (plan) => plan.publicPlanCode === offer.planCode,
                 )?.partnerPlan;
                 const { prices } = offer;
                 // If available replace pricing text and value with partner ones
-                if (plan) {
-                  prices[0].price.text = plan.pricings[0].formattedPrice;
-                  prices[0].price.value = plan.pricings[0].price / 100000000;
+                if (privatePlan) {
+                  prices[0].price.text = privatePlan.pricings[0].formattedPrice;
+                  prices[0].price.value =
+                    privatePlan.pricings[0].price / 100000000;
                 }
                 return {
                   ...offer,
-                  planCode: plan ? plan.planCode : offer.planCode,
+                  planCode: privatePlan ? privatePlan.planCode : offer.planCode,
                   profile: profiles.find((p) => p.name === offer.planCode),
                   prices,
                 };
