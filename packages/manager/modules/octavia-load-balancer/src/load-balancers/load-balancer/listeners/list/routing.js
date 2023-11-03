@@ -1,4 +1,4 @@
-import { TRACKING_CHAPTER_1, TRACKING_NAME } from '../../constants';
+import { TRACKING_NAME } from '../../constants';
 import { TRACKING_SUFFIX } from '../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -20,20 +20,22 @@ export default /* @ngInject */ ($stateProvider) => {
           region,
           loadbalancerId,
         ),
-      goToListenerCreation: /* @ngInject */ ($state, atInternet) => () => {
-        atInternet.trackClick({
-          name: `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::add`,
-          type: 'action',
-        });
+      goToListenerCreation: /* @ngInject */ ($state, trackAction) => () => {
+        trackAction('add');
         $state.go('octavia-load-balancer.loadbalancer.listeners.create');
       },
-      goToListenerDeletion: /* @ngInject */ ($state, atInternet) => (
+      goToListenerEdition: /* @ngInject */ ($state, trackAction) => (
         listener,
       ) => {
-        atInternet.trackClick({
-          name: `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::delete`,
-          type: 'action',
+        trackAction('edit');
+        $state.go('octavia-load-balancer.loadbalancer.listeners.edit', {
+          listenerId: listener.id,
         });
+      },
+      goToListenerDeletion: /* @ngInject */ ($state, trackAction) => (
+        listener,
+      ) => {
+        trackAction('delete');
         $state.go('octavia-load-balancer.loadbalancer.listeners.list.delete', {
           listenerId: listener.id,
           listenerName: listener.name,

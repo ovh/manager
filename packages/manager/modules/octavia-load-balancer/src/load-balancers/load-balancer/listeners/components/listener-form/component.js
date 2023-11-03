@@ -3,10 +3,11 @@ import template from './template.html';
 
 export default {
   bindings: {
-    listeners: '<',
-    goToListenerCreation: '<',
-    goToListenerEdition: '<',
-    goToListenerDeletion: '<',
+    model: '=',
+    pools: '<',
+    isEditing: '<?',
+    onSubmit: '&',
+    onCancel: '&',
   },
   controller,
   template,
