@@ -8,12 +8,9 @@ const commonResolves = {
     $translate.instant('zone_history'),
 };
 
-/**
- * TODO: change here resolved url
- * @param $stateProvider
- */
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.zone.details.diff', {
+  $stateProvider.state('app.zone.details.zone-history.diff', {
+    url: '/diff',
     views: {
       'dnsZoneView@app.zone.details': {
         controller: controllerDiff,
@@ -26,7 +23,8 @@ export default /* @ngInject */ ($stateProvider) => {
       productId: null,
     },
   });
-  $stateProvider.state('app.zone.details.history', {
+  $stateProvider.state('app.zone.details.zone-history', {
+    url: '/zone-history',
     views: {
       'dnsZoneView@app.zone.details': {
         controller: controllerDashboard,

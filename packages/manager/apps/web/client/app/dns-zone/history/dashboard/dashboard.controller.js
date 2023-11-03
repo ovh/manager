@@ -1,3 +1,6 @@
+/**
+ * TODO: make DNS tab selected
+ */
 export default class DomainDnsZoneHistoryDashboardController {
   constructor($translate, $stateParams, $state, $q, $document, Domain) {
     this.$translate = $translate;
