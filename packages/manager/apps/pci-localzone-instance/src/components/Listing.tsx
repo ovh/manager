@@ -3,17 +3,21 @@ interface Header {
   title: string;
 }
 
-interface Item {
+interface ListItem {
   id: string;
-  [key: string]: string | number;
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  [key: string]: any;
 }
 
-interface ListingProps {
+interface ListingProps<T> {
   headers: Header[];
-  items: Item[];
+  items: T[];
 }
 
-export default function Listing({ headers, items }: ListingProps) {
+export default function Listing<T extends ListItem>({
+  headers,
+  items,
+}: ListingProps<T>) {
   return (
     <>
       <table>
@@ -29,7 +33,9 @@ export default function Listing({ headers, items }: ListingProps) {
             <tr key={item.id}>
               <td></td>
               {headers.map(({ property }) => (
-                <td key={`${item.id}-${property}`}>{item[property]}</td>
+                <td key={`${item.id}-${property}`}>
+                  {item[property]?.toString()}
+                </td>
               ))}
             </tr>
           ))}
