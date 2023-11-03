@@ -1345,6 +1345,7 @@
   "exchange_ACTION_configure_services_help_passwordHistoryCount": "Détermine le nombre de nouveaux mots de passe uniques qui doivent être associés à un compte d'utilisateur avant qu'un ancien mot de passe puisse être réutilisé.",
   "exchange_ACTION_configure_services_help_minPasswordLength": "Si vous entrez \"0\", aucun mot de passe n'est pas requis",
   "exchange_tab_TASKS_SET_SERVICE": "Politique de sécurité des comptes",
+
   "exchange_ACTION_loading": "Chargement en cours…",
   "exchange_ACTION_sending": "Envoi en cours…",
   "exchange_ACTION_configure_help_title": "Configuration service Exchange",
