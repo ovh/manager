@@ -20,7 +20,7 @@
         data-type="string"
         data-prevent-customization
     >
-        <a data-ng-click="$ctrl.goToListener($row)">
+        <a data-ng-click="$ctrl.goToListenerEdition($row)">
             {{ ::$value }}
         </a>
     </oui-datagrid-column>
@@ -78,7 +78,7 @@
         ></span>
     </oui-datagrid-column>
     <oui-action-menu compact data-placement="end">
-        <oui-action-menu-item data-on-click="$ctrl.goToListener($row)"
+        <oui-action-menu-item data-on-click="$ctrl.goToListenerEdition($row)"
             ><span
                 data-translate="octavia_load_balancer_listeners_actions_detail"
             ></span>

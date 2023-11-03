@@ -3,14 +3,14 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 
 const moduleName =
-  'ovhManagerOctaviaLoadBalancerDashboardListenersListLazyLoading';
+  'ovhManagerOctaviaLoadBalancerDashboardListenersEditLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'octavia-load-balancer.loadbalancer.listeners.list.**',
+      'octavia-load-balancer.loadbalancer.listeners.edit.**',
       {
-        url: '',
+        url: '/edit',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
