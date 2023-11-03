@@ -1,4 +1,4 @@
-import { initShellClient } from '@ovh-ux/shell';
+import { initShellClient, ShellClientApi } from '@ovh-ux/shell';
 import { ReactNode } from 'react';
 import { Environment } from '@ovh-ux/manager-config';
 import { ShellContext } from './ShellContext';
@@ -14,8 +14,8 @@ export const ShellProvider = ({
   children,
 }: {
   client: {
-    shell: unknown;
-    environment: typeof Environment;
+    shell: ShellClientApi;
+    environment: Environment;
   };
   children: ReactNode;
 }) => {
