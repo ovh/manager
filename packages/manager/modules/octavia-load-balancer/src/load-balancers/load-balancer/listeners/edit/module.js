@@ -5,11 +5,11 @@ import routing from './routing';
 
 import listenerComponents from '../components';
 
-const moduleName = 'ovhManagerOctaviaLoadBalancerListenersCreate';
+const moduleName = 'ovhManagerOctaviaLoadBalancerListenersEdit';
 
 angular
   .module(moduleName, [listenerComponents])
   .config(routing)
-  .component('octaviaLoadBalancerListenersCreate', component);
+  .component('octaviaLoadBalancerListenersEdit', component);
 
 export default moduleName;
