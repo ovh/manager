@@ -82,6 +82,7 @@ export default /* @ngInject */ ($stateProvider) => {
                     $transition$.params().drpInformations.primaryPcc.location,
               ),
             ),
+          breadcrumb: () => null,
         },
       },
     )
@@ -93,6 +94,9 @@ export default /* @ngInject */ ($stateProvider) => {
         template,
         layout: 'modal',
         translations: { value: ['.'], format: 'json' },
+        resolve: {
+          breadcrumb: () => null,
+        },
       },
     )
     .state(
@@ -103,6 +107,9 @@ export default /* @ngInject */ ($stateProvider) => {
         template: legacyTemplate,
         layout: 'modal',
         translations: { value: ['.'], format: 'json' },
+        resolve: {
+          breadcrumb: () => null,
+        },
       },
     );
 };
