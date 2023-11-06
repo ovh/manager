@@ -30,7 +30,7 @@
   "sidebar_pci_network": "Network",
   "sidebar_pci_containers": "Container &amp; Orchestrierung",
   "sidebar_pci_ai": "KI &amp; Machine Learning",
-  "sidebar_pci_analytics": "Data &amp; Analytics",
+  "sidebar_pci_analytics": "Datenbanken und Analysen",
   "sidebar_pci_management": "Verwaltungsinterfaces",
   "sidebar_pci_settings": "Settings",
   "sidebar_pci_object_storage": "Object Storage",
@@ -43,7 +43,7 @@
   "sidebar_pci_private_network": "Private Network",
   "sidebar_pci_failover_ip": "Failover-IP",
   "sidebar_pci_kubernetes": "Managed Kubernetes Service",
-  "sidebar_pci_kubernetes_load_balancer": "Kubernetes Load Balancer",
+  "sidebar_pci_kubernetes_load_balancer": "Load Balancer für MKS",
   "sidebar_pci_private_registry": "Managed Private Registry",
   "sidebar_pci_workflow": "Workflow Management",
   "sidebar_pci_ai_notebooks": "AI Notebooks",
@@ -160,5 +160,9 @@
   "sidebar_account_iam": "Identity and Access (IAM)",
   "sidebar_carbon_footprint": "Mein CO2-Fußabdruck",
   "sidebar_account_identity_documents": "Meine Ausweisdokumente",
-  "sidebar_pci_octavia_load_balancer": "Load Balancer"
+  "sidebar_pci_octavia_load_balancer": "Load Balancer",
+  "sidebar_pci_data_integration": "Datenintegration",
+  "sidebar_pci_analytics_databases": "Datenbanken",
+  "sidebar_pci_analytics_data_streaming": "Datenstreaming",
+  "sidebar_pci_analytics_data_analysis": "Datenanalysen"
 }

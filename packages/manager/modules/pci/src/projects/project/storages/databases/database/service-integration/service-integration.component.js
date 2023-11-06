@@ -5,6 +5,7 @@ export default {
   bindings: {
     projectId: '<',
     databases: '<',
+    allDatabases: '<',
     database: '<',
     trackDashboard: '<',
     goToAddServiceIntegration: '<',

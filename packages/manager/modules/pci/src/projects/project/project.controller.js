@@ -55,6 +55,13 @@ export default class ProjectController {
     return !isTrustedZone || (isTrustedZone && availableForTrustedZone);
   }
 
+  getStateParams(action) {
+    return {
+      ...action.stateParams,
+      projectId: this.project.project_id,
+    };
+  }
+
   /**
    * finds and returns array of features
    * @param {Array} items

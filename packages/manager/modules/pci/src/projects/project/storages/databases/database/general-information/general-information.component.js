@@ -7,6 +7,7 @@ export default {
     billingLink: '<',
     database: '<',
     databases: '<',
+    allDatabases: '<',
     getCurrentPlan: '<',
     getCurrentFlavor: '<',
     users: '<',
