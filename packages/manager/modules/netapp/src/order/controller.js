@@ -171,6 +171,7 @@ export default class OvhManagerNetAppOrderCtrl {
     const expressOrderUrl = this.RedirectionService.getURL('expressOrder');
     const queryParams = `?products=${JSURL.stringify([order])}`;
 
+    this.goBack();
     return this.$window.open(`${expressOrderUrl}${queryParams}`, '_blank');
   }
 }

@@ -106,6 +106,7 @@ export default class NashaOrderController {
       }`,
     );
 
+    this.goToNasha();
     return this.$window.open(
       `${this.expressOrderUrl}?products=${JSURL.stringify(products)}`,
       '_blank',
