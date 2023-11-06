@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.6.0...@ovh-ux/manager-pci@6.7.0) (2023-11-06)
+
+
+### Features
+
+* **pci:** split databases by type ([#10083](https://github.com/ovh/manager/issues/10083)) ([807d33e](https://github.com/ovh/manager/commit/807d33ea9efdc016635bf193c7de631c2d1c3179))
+
+
+
+
+
 # [6.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.5.0...@ovh-ux/manager-pci@6.6.0) (2023-10-30)
 
 
