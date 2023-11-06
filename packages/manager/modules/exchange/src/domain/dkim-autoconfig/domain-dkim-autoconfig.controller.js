@@ -1,5 +1,5 @@
 import { DKIM_CONFIGURATION_GUIDE } from './domain-dkim-autoconfig.constants';
-
+import { STATUS_TO_TEXT_MAP } from '../domain.constants';
 import DkimAutoConfigurator from './dkim-auto-configurator';
 
 export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurator {
@@ -197,5 +197,17 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
       .finally(() => {
         this.services.navigation.resetAction();
       });
+  }
+
+  getBodyText() {
+    let translationKey;
+    if (this.dkimStatus === this.DKIM_STATUS.NOT_CONFIGURED) {
+      translationKey = this.domainDiag.isOvhDomain
+        ? 'exchange_tab_domain_diagnostic_dkim_activation_ovhcloud'
+        : 'exchange_tab_domain_diagnostic_dkim_activation_no_ovhcloud';
+    } else {
+      translationKey = STATUS_TO_TEXT_MAP[this.dkimStatus];
+    }
+    return translationKey;
   }
 }
