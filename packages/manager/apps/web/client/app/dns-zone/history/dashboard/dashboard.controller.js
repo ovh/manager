@@ -8,12 +8,14 @@ export default class DomainDnsZoneHistoryDashboardController {
     $q,
     $document,
     Domain,
+    Alerter,
     DNSZoneService,
   ) {
     this.$translate = $translate;
     this.$stateParams = $stateParams;
     this.$state = $state;
     this.Domain = Domain;
+    this.Alerter = Alerter;
     this.DNSZoneService = DNSZoneService;
     this.$document = $document;
     this.$q = $q;
@@ -84,22 +86,31 @@ export default class DomainDnsZoneHistoryDashboardController {
 
   $onInit() {
     this.zoneName = this.$stateParams.productId;
-    // TODO: handle error case with a toast for instance ? => See with PO
-    this.getZoneHistory(this.$stateParams.productId).then((dates) => {
-      this.dates = dates;
-      this.dates.map((u, idx) =>
-        this.dnsEntriesForComparison.push({ id: idx, active: false, date: u }),
-      );
-      this.$q
-        .all(
-          dates.map((date) =>
-            this.getZoneDataAtDate(this.$stateParams.productId, date),
-          ),
-        )
-        .then((zoneUrls) => {
-          this.listOfDnsZonesUrls = [...zoneUrls];
-          this.loading = false;
-        });
-    });
+    this.getZoneHistory(this.$stateParams.productId)
+      .then((dates) => {
+        this.dates = dates;
+        this.dates.map((u, idx) =>
+          this.dnsEntriesForComparison.push({
+            id: idx,
+            active: false,
+            date: u,
+          }),
+        );
+        return this.$q
+          .all(
+            dates.map((date) =>
+              this.getZoneDataAtDate(this.$stateParams.productId, date),
+            ),
+          )
+          .then((zoneUrls) => {
+            this.listOfDnsZonesUrls = [...zoneUrls];
+            this.loading = false;
+          });
+      })
+      .catch(({ message }) => {
+        this.Alerter.error(
+          this.$translate.instant('dashboard_history_error', { message }),
+        );
+      });
   }
 }

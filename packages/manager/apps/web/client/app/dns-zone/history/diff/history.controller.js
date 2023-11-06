@@ -2,9 +2,6 @@ import * as Diff2Html from 'diff2html';
 import 'diff2html/bundles/css/diff2html.min.css';
 import * as unidiff from 'unidiff';
 
-/**
- * TODO: make DNS tab selected
- */
 export default class DomainDnsZoneHistoryController {
   /* @ngInject */
   constructor(
@@ -16,6 +13,7 @@ export default class DomainDnsZoneHistoryController {
     $state,
     DNSZoneService,
     Domain,
+    Alerter,
   ) {
     this.$filter = $filter;
     this.$timeout = $timeout;
@@ -24,6 +22,7 @@ export default class DomainDnsZoneHistoryController {
     this.$state = $state;
     this.DNSZoneService = DNSZoneService;
     this.Domain = Domain;
+    this.Alerter = Alerter;
 
     this.base_dns_zone_mocks = [];
     this.modified_dns_zone_mocks = [];
@@ -62,7 +61,7 @@ export default class DomainDnsZoneHistoryController {
       zoneFileUrl,
     );
     this.gitDiff = this.computeGitUnidiff();
-    this.updateInnerHtml();
+    return this.updateInnerHtml();
   }
 
   async getModifiedDnsZoneForChosenDate() {
@@ -74,7 +73,7 @@ export default class DomainDnsZoneHistoryController {
       zoneFileUrl,
     );
     this.gitDiff = this.computeGitUnidiff();
-    this.updateInnerHtml();
+    return this.updateInnerHtml();
   }
 
   updateInnerHtml() {
@@ -91,17 +90,26 @@ export default class DomainDnsZoneHistoryController {
     document.getElementById('destination-elem-id').innerHTML = innerHTML;
   }
 
-  $onInit() {
-    const { selectedDates, productId } = this.$stateParams;
+  async $onInit() {
+    this.isLoading = true;
 
+    const { selectedDates, productId } = this.$stateParams;
     [this.base_dns_chosen, this.modified_dns_chosen] = selectedDates;
 
-    this.getBaseDnsZoneForChosenDate();
-    this.getModifiedDnsZoneForChosenDate();
+    try {
+      this.getBaseDnsZoneForChosenDate();
+      this.getModifiedDnsZoneForChosenDate();
 
-    this.getZoneHistory(productId).then((allDates) => {
+      const allDates = await this.getZoneHistory(productId);
+
       this.base_dns_zone_mocks = [...allDates];
       this.modified_dns_zone_mocks = [...allDates];
-    });
+    } catch ({ message }) {
+      this.Alerter.error(
+        this.$translate.instant('dashboard_history_error', { message }),
+      );
+    } finally {
+      this.isLoading = false;
+    }
   }
 }
