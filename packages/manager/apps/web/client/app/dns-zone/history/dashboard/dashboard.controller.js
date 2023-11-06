@@ -88,7 +88,7 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.zoneName = this.$stateParams.productId;
     this.getZoneHistory(this.$stateParams.productId)
       .then((dates) => {
-        this.dates = dates;
+        this.dates = dates.slice(0, 30);
         this.dates.map((u, idx) =>
           this.dnsEntriesForComparison.push({
             id: idx,

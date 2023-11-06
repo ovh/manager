@@ -1586,19 +1586,6 @@ angular.module('services').service(
     }
 
     /**
-     * Get DNS Zone history with iceberg
-     * @param {string} zoneName
-     * @param {number} pageSize
-     */
-    getZoneHistoryIceberg(zoneName, pageSize) {
-      const request = this.iceberg(`/domain/zone/${zoneName}/history`)
-        .query()
-        .limit(pageSize);
-
-      return request.execute(null, true).$promise.then(({ data }) => data);
-    }
-
-    /**
      * Get zone data at given date
      * @param {string} zoneName
      * @param {Date} creationDate
