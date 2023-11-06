@@ -66,6 +66,7 @@
                     <button
                         class="oui-button"
                         type="button"
+                        data-oui-tooltip="{{:: 'dashboard_history_view_zone' | translate }}"
                         aria-label="{{:: 'dashboard_history_view_zone' | translate }}"
                         data-ng-click="ctrlDashboardHistoryOfZoneDns.visualizeDnsDataInPopup(dnsZone.zoneFileUrl)"
                     >
@@ -81,6 +82,7 @@
                         class="oui-button"
                         type="button"
                         aria-label="{{:: 'dashboard_history_download' | translate }}"
+                        data-oui-tooltip="{{:: 'dashboard_history_download' | translate }}"
                         data-ng-click="ctrlDashboardHistoryOfZoneDns.downloadDnsZoneFile(dnsZone.zoneFileUrl)"
                     >
                         <span
@@ -95,6 +97,7 @@
                         class="oui-button"
                         type="button"
                         aria-label="{{:: 'dashboard_history_restore' | translate }}"
+                        data-oui-tooltip="{{:: 'dashboard_history_restore' | translate }}"
                         data-ng-click="ctrlDashboardHistoryOfZoneDns.restore(dnsZone.creationDate)"
                     >
                         <span
