@@ -6,6 +6,7 @@
     <oui-button
         class="col-lg-6 col-md6 col-sm-6 mb-4 mt-4"
         data-on-click="ctrlDashboardHistoryOfZoneDns.goToDiffViewer()"
+        data-disabled="!ctrlDashboardHistoryOfZoneDns.checkTwoElementsAreSelected($index)"
     >
         <span data-translate="dashboard_history_compare_button_label"></span>
     </oui-button>
@@ -15,6 +16,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
+                <th></th>
                 <th
                     class="text-center"
                     scope="col"
@@ -51,6 +53,12 @@
             <tr
                 data-ng-repeat="dnsZone in ctrlDashboardHistoryOfZoneDns.listOfDnsZonesUrls track by $index"
             >
+                <td>
+                    <oui-checkbox
+                        data-model="ctrlDashboardHistoryOfZoneDns.dnsEntriesForComparison[$index].active"
+                    >
+                    </oui-checkbox>
+                </td>
                 <td class="text-center col-md-3 col-lg-3 col-sm-3">
                     {{ dnsZone.creationDate | date: 'dd/MM/yyyy HH:mm:ss' }}
                 </td>

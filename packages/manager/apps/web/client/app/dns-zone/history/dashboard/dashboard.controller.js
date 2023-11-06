@@ -19,6 +19,7 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.$q = $q;
 
     this.listOfDnsZonesUrls = [];
+    this.dnsEntriesForComparison = [];
     this.dnsZoneData = null;
     this.loadingDnsZoneData = false;
     this.zoneName = '';
@@ -27,11 +28,20 @@ export default class DomainDnsZoneHistoryDashboardController {
   }
 
   goToDiffViewer() {
-    this.$state.go('app.zone.details.zone-history.diff');
+    this.$state.go('app.zone.details.zone-history.diff', {
+      selectedDates: this.dnsEntriesForComparison
+        .filter((u) => u.active)
+        .map((u) => u.date),
+      productId: this.zoneName,
+    });
   }
 
   closePopup() {
     this.vizualizeDnsZoneDataPopup = false;
+  }
+
+  checkTwoElementsAreSelected() {
+    return this.dnsEntriesForComparison.filter((u) => u.active).length === 2;
   }
 
   visualizeDnsDataInPopup(url) {
@@ -74,9 +84,12 @@ export default class DomainDnsZoneHistoryDashboardController {
 
   $onInit() {
     this.zoneName = this.$stateParams.productId;
-    // TODO: handle error case with a toast for instance
+    // TODO: handle error case with a toast for instance ? => See with PO
     this.getZoneHistory(this.$stateParams.productId).then((dates) => {
       this.dates = dates;
+      this.dates.map((u, idx) =>
+        this.dnsEntriesForComparison.push({ id: idx, active: false, date: u }),
+      );
       this.$q
         .all(
           dates.map((date) =>

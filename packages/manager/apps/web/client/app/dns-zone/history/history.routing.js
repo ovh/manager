@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: commonResolves,
     params: {
+      selectedDates: null,
       productId: null,
     },
   });
