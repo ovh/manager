@@ -1,4 +1,3 @@
-import find from 'lodash/find';
 import flatten from 'lodash/flatten';
 import get from 'lodash/get';
 import map from 'lodash/map';
@@ -13,6 +12,7 @@ export default class BillingMainPayAsYouGoCtrl {
     OvhApiMe,
     OvhApiServices,
     ServicesHelper,
+    iceberg,
   ) {
     // injections
     this.$q = $q;
@@ -21,6 +21,7 @@ export default class BillingMainPayAsYouGoCtrl {
     this.OvhApiMe = OvhApiMe;
     this.OvhApiServices = OvhApiServices;
     this.ServicesHelper = ServicesHelper;
+    this.iceberg = iceberg;
 
     // other attributes
     this.loading = {
@@ -56,17 +57,21 @@ export default class BillingMainPayAsYouGoCtrl {
     return this.$q
       .all({
         consumptions: this.OvhApiMe.v6().consumption().$promise,
-        services: this.OvhApiServices.v6().query().$promise,
+        services: this.iceberg('/services')
+          .query()
+          .expand('CachedObjectList-Pages')
+          .execute().$promise,
       })
       .then(({ consumptions, services }) => {
         const projectPromises = map(consumptions, (consumption) => {
           const associatedService =
-            find(services, {
-              serviceId: consumption.serviceId,
-            }) || {};
-
+            services.data.find(
+              (service) => service.serviceId === consumption.serviceId,
+            ) || {};
+          // TODO: Check if this call is mandatory or if we can remove it since we use iceberg
           return this.ServicesHelper.getServiceDetails(associatedService).then(
             (details) => {
+              // console.log("QPA", {associatedService, details, consumption});
               associatedService.details = details;
               set(consumption, 'service', associatedService);
             },
