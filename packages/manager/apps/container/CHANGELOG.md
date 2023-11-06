@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.32.0...@ovh-ux/manager-container-app@0.33.0) (2023-11-06)
+
+
+### Features
+
+* **pci:** split databases by type ([#10083](https://github.com/ovh/manager/issues/10083)) ([807d33e](https://github.com/ovh/manager/commit/807d33ea9efdc016635bf193c7de631c2d1c3179))
+
+
+
+
+
 # [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.31.0...@ovh-ux/manager-container-app@0.32.0) (2023-10-30)
 
 

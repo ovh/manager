@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.23...@ovh-ux/manager-billing@0.20.0-alpha.24) (2023-11-06)
+
+
+### Bug Fixes
+
+* **billing:** change content for auto renew alert banner ([#10153](https://github.com/ovh/manager/issues/10153)) ([c62a05e](https://github.com/ovh/manager/commit/c62a05eb8d6c5369a63c2d67d679544e80e66a32))
+
+
+
+
+
 # [0.20.0-alpha.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.22...@ovh-ux/manager-billing@0.20.0-alpha.23) (2023-10-30)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.9.0...@ovh-ux/manager-dedicated@19.9.1) (2023-11-06)
+
+
+### Bug Fixes
+
+* **pcc:** add breadcrumb ([#10214](https://github.com/ovh/manager/issues/10214)) ([0e7df83](https://github.com/ovh/manager/commit/0e7df8367ca57e74f79edff16167dfd5746c9ad7))
+* **pcc:** error message display issue ([#10213](https://github.com/ovh/manager/issues/10213)) ([ba161f7](https://github.com/ovh/manager/commit/ba161f7034a4de3199bc9074faed72d692cbd931))
+
+
+
+
+
 # [19.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.8.0...@ovh-ux/manager-dedicated@19.9.0) (2023-10-30)
 
 

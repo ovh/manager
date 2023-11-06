@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.4.3...@ovh-ux/manager-web@18.5.0) (2023-11-06)
+
+
+### Features
+
+* **web:** new web hosting - Lot 2 ([#10171](https://github.com/ovh/manager/issues/10171)) ([926c3cf](https://github.com/ovh/manager/commit/926c3cf304e2710f809a82486b26e366c524bf69))
+
+
+
+
+
 ## [18.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.4.2...@ovh-ux/manager-web@18.4.3) (2023-11-02)
 
 
