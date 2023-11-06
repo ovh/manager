@@ -5,6 +5,7 @@ import {
   CUSTOM_ACTION_SAMPLE,
   CUSTOM_ACTION_WILDCARD_PATTERN,
   CUSTOM_RESOURCE_TYPE,
+  OVH_MANAGED_PERMISSIONS_GROUP,
   TAG,
   WILDCARD,
 } from '../../iam.constants';
@@ -140,15 +141,17 @@ export default class ActionSelectController {
 
   $onInit() {
     this.isLoading = true;
-    this.permissionsGroupsList = this.permissionsGroups.map((permission) => {
-      return {
-        ...permission,
-        selected:
-          this.ngModel?.permissionsGroups?.findIndex(
-            (subPermission) => subPermission.urn === permission.urn,
-          ) > -1,
-      };
-    });
+    this.permissionsGroupsList = this.permissionsGroups
+      .filter(({ urn }) => urn.indexOf(OVH_MANAGED_PERMISSIONS_GROUP) > -1)
+      .map((permission) => {
+        return {
+          ...permission,
+          selected:
+            this.ngModel?.permissionsGroups?.findIndex(
+              (subPermission) => subPermission.urn === permission.urn,
+            ) > -1,
+        };
+      });
     return this.IAMService.getActions()
       .then((actions) => {
         this.actions = cloneDeep(actions);
