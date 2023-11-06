@@ -1,6 +1,7 @@
 import * as Diff2Html from 'diff2html';
 import 'diff2html/bundles/css/diff2html.min.css';
 import * as unidiff from 'unidiff';
+
 /**
  * TODO: make DNS tab selected
  */
@@ -42,7 +43,7 @@ export default class DomainDnsZoneHistoryController {
   }
 
   goBack() {
-    this.$state.go('app.zone.details.dashboard', this.$stateParams);
+    this.$state.go('app.zone.details.zone-history', this.$stateParams);
   }
 
   computeGitUnidiff() {
@@ -91,9 +92,16 @@ export default class DomainDnsZoneHistoryController {
   }
 
   $onInit() {
-    this.getZoneHistory(this.$stateParams.productId).then((dates) => {
-      this.base_dns_zone_mocks = [...dates];
-      this.modified_dns_zone_mocks = [...dates];
+    const { selectedDates, productId } = this.$stateParams;
+
+    [this.base_dns_chosen, this.modified_dns_chosen] = selectedDates;
+
+    this.getBaseDnsZoneForChosenDate();
+    this.getModifiedDnsZoneForChosenDate();
+
+    this.getZoneHistory(productId).then((allDates) => {
+      this.base_dns_zone_mocks = [...allDates];
+      this.modified_dns_zone_mocks = [...allDates];
     });
   }
 }
