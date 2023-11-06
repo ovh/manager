@@ -38,6 +38,7 @@ angular.module('services').service(
       OvhHttp,
       Poll,
       Poller,
+      iceberg,
     ) {
       this.$http = $http;
       this.$rootScope = $rootScope;
@@ -49,6 +50,7 @@ angular.module('services').service(
       this.OvhHttp = OvhHttp;
       this.Poll = Poll;
       this.Poller = Poller;
+      this.iceberg = iceberg;
 
       this.cache = {
         domainCache: 'UNIVERS_WEB_DOMAIN',
@@ -1581,6 +1583,19 @@ angular.module('services').service(
       return this.$http
         .get(`/domain/zone/${zoneName}/history`)
         .then(({ data }) => data);
+    }
+
+    /**
+     * Get DNS Zone history with iceberg
+     * @param {string} zoneName
+     * @param {number} pageSize
+     */
+    getZoneHistoryIceberg(zoneName, pageSize) {
+      const request = this.iceberg(`/domain/zone/${zoneName}/history`)
+        .query()
+        .limit(pageSize);
+
+      return request.execute(null, true).$promise.then(({ data }) => data);
     }
 
     /**
