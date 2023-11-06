@@ -1,4 +1,3 @@
-import { find, get } from 'lodash';
 import { ENGINES_PRICE_SUFFIX, ENGINES_STATUS } from './engines.constants';
 
 const STORAGE_UNITS = {
@@ -28,6 +27,8 @@ export default class Availability {
       specifications,
       version,
     });
+
+    this.defaultPrice = { priceInUcents: 0, tax: 0 };
     this.hasStorage = !!this.specifications.storage;
     this.minDiskSize = Availability.convertToGB(
       this.specifications.storage?.minimum,
@@ -51,38 +52,37 @@ export default class Availability {
         prefix = `${prefix}-${ENGINES_PRICE_SUFFIX.BETA}`;
       }
     }
-    const defaultPrice = { priceInUcents: 0, tax: 0 };
-    this.nodeHourlyPrice = get(
-      prices,
-      `${prefix}.hour.consumption`,
-      defaultPrice,
+    this.nodeHourlyPrice = this.setPriceOrDefault(
+      prices?.[`${prefix}.hour.consumption`],
     );
-    this.nodeMonthlyPrice = get(
-      prices,
-      `${prefix}.month.consumption`,
-      defaultPrice,
+    this.nodeMonthlyPrice = this.setPriceOrDefault(
+      prices?.[`${prefix}.month.consumption`],
     );
-    this.hourlyPricePerGB = get(
-      prices,
-      `databases.${this.engine.toLowerCase()}-${
-        this.plan
-      }-additionnal-storage-gb.hour.consumption`,
-      defaultPrice,
+    this.hourlyPricePerGB = this.setPriceOrDefault(
+      prices?.[
+        `databases.${this.engine.toLowerCase()}-${
+          this.plan
+        }-additionnal-storage-gb.hour.consumption`
+      ],
     );
-    this.monthlyPricePerGB = get(
-      prices,
-      `databases.${this.engine.toLowerCase()}-${
-        this.plan
-      }-additionnal-storage-gb.month.consumption`,
-      defaultPrice,
+    this.monthlyPricePerGB = this.setPriceOrDefault(
+      prices?.[
+        `databases.${this.engine.toLowerCase()}-${
+          this.plan
+        }-additionnal-storage-gb.month.consumption`
+      ],
     );
   }
 
+  setPriceOrDefault(priceValue) {
+    return priceValue || this.defaultPrice;
+  }
+
   setCapabilities(capabilities) {
-    this.flavor = find(capabilities.flavors, {
-      name: this.specifications.flavor,
-    });
-    this.plan = find(capabilities.plans, { name: this.plan });
+    this.flavor = capabilities.flavors.find(
+      (flavor) => flavor.name === this.specifications.flavor,
+    );
+    this.plan = capabilities.plans.find((plan) => plan.name === this.plan);
   }
 
   static convertToGB(storage) {
