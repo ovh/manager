@@ -37,10 +37,6 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
       { name: 'domain', sortable: this.getSorting('domain') },
       { name: 'state', sortable: this.getSorting('state') },
       { name: 'suspensionState', sortable: this.getSorting('suspensionState') },
-      {
-        name: 'transferLockStatus',
-        sortable: this.getSorting('transferLockStatus'),
-      },
       { name: 'whoisOwner', sortable: this.getSorting('whoisOwner') },
       { name: 'nameServerType', sortable: this.getSorting('nameServerType') },
     ];
@@ -69,18 +65,6 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
       ),
     };
 
-    this.domainTransfertLockStatusColumnOptions = {
-      hideOperators: true,
-      values: this.domainLockStatusEnum.reduce(
-        (options, status) => ({
-          ...options,
-          [status]: this.$translate.instant(
-            `domains_transfert_lock_status_${status}`,
-          ),
-        }),
-        {},
-      ),
-    };
     this.domainNameServerTypeColumnOptions = {
       hideOperators: true,
       values: this.domainNsTypeEnum.reduce(
@@ -91,6 +75,15 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
         {},
       ),
     };
+  }
+
+  loadPage() {
+    return this.$q.resolve({
+      data: this.resources?.data,
+      meta: {
+        totalCount: this.paginationTotalCount,
+      },
+    });
   }
 
   linkContactBuilder({ domain, whoisOwner }) {
