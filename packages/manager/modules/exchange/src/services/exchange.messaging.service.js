@@ -6,6 +6,13 @@ const isEmptyObj = (passedObj) =>
     passedObj === Object(passedObj) &&
     Object.keys(passedObj).length !== 0
   );
+/**
+ * find uniq values by predicate (fn)
+ * @param arr
+ * @param fn
+ * @param set
+ * @returns {*}
+ */
 const uniqBy = (arr, fn, set = new Set()) =>
   arr.filter((el) => ((v) => !set.has(v) && set.add(v))(fn(el)));
 
