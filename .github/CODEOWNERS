@@ -5,19 +5,18 @@
 /packages/components/ @ovh/team-manager-dev
 
 # Applications
-/packages/manager/apps/ @ovh/team-manager-dev
+/packages/manager/ @ovh/team-manager-dev
 
-# Core
-/packages/manager/core/ @ovh/team-manager-dev
+# Super-components
+/packages/super-components @ovh/team-manager-transfo @ovh/su-digital-tools-core-stack
 
-# Modules
-/packages/manager/modules/ @ovh/team-manager-dev
-
-# Build / Tooling
-/packages/manager/tools/ @ovh/team-manager-dev
+# React Stack
+*.jsx @ovh/team-manager-transfo @ovh/su-digital-tools-core-stack
+*.tsx @ovh/team-manager-transfo @ovh/su-digital-tools-core-stack
 
 # Continuous Integration and scripts
 .github @ovh/su-digital-tools-core-service-delivery
 .nvmrc @ovh/su-digital-tools-core-service-delivery
 /scripts/ @ovh/su-digital-tools-core-service-delivery
 /scripts/start-application.js @ovh/team-manager-dev
+/scripts/run-playwright.js @ovh/team-manager-transfo
