@@ -7,11 +7,7 @@ const isEmptyObj = (passedObj) =>
     Object.keys(passedObj).length !== 0
   );
 const uniqBy = (arr, fn, set = new Set()) =>
-  arr.filter((el) =>
-    ((v) => !set.has(v) && set.add(v))(
-      typeof fn === 'function' ? fn(el) : el[fn],
-    ),
-  );
+  arr.filter((el) => ((v) => !set.has(v) && set.add(v))(fn(el)));
 
 export default class Messaging {
   resetMessages() {
