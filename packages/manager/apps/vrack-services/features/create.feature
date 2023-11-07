@@ -6,17 +6,16 @@ Feature: Configuration page
     Given The order service for vRack is <orderVrackOk>
     When User fill the form and click the submit button
     Then A modal appear to ask if the user wants to create a new vRack
-    When User <acceptOrDeny>
+    When User <acceptOrDenyOrCancel>
     Then User "<returnListing>" on the Listing page
-    Then User sees "<successOrErrorVs>" message for vRack Services
-    Then User sees "<successOrErrorVrack>" message for vRack
-    Then User sees <newLine> new line in the list of vRack Services
+    Then User sees <anyErrorMessage> error message
 
     Examples:
-      | name | zone | orderVsOk | orderVrackOk | acceptOrDeny | returnListing  | successOrErrorVs | successOrErrorVrack | newLine |
-      | vs-1 | RBX  | OK        | OK           | accepts      | returns        | a success        | a success           | a       |
-      | vs-2 | BHS  | KO        | OK           | accepts      | doesn't return | an error         | no                  | no      |
-      | vs-3 | LIM  | OK        | KO           | accepts      | returns        | a success        | an error            | a       |
-      |      | RBX  | KO        | KO           | accepts      | doesn't return | an error         | an error            | no      |
-      |      | RBX  | OK        | KO           | denies       | returns        | a success        | no                  | a       |
-      |      | RBX  | OK        | OK           | denies       | returns        | a success        | no                  | a       |
+      | name | zone | orderVsOk | orderVrackOk | acceptOrDenyOrCancel | returnListing  | anyErrorMessage |
+      | vs-1 | RBX  | OK        | OK           | accepts              | returns        | no              |
+      | vs-2 | BHS  | KO        | OK           | accepts              | doesn't return | an              |
+      | vs-3 | LIM  | OK        | KO           | accepts              | returns        | no              |
+      |      | RBX  | KO        | KO           | accepts              | doesn't return | an              |
+      |      | RBX  | OK        | KO           | denies               | returns        | no              |
+      |      | RBX  | OK        | OK           | denies               | returns        | no              |
+      |      | RBX  | OK        | OK           | cancel               | doesn't return | no              |

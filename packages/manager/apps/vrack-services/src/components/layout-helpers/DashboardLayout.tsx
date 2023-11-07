@@ -21,7 +21,7 @@ export type DashboardLayoutProps = {
 };
 
 export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
-  const [panel, setActivePanel] = useState('');
+  const [activePanel, setActivePanel] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -46,7 +46,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
           {location.pathname.split('/')[2]}
         </OsdsText>
       </div>
-      <OsdsTabs panel={panel}>
+      <OsdsTabs panel={activePanel}>
         <OsdsTabBar slot="top">
           {tabs.map((tab: DashboardTabItemProps, key: number) => (
             <OsdsTabBarItem key={`osds-tab-bar-item-${key}`} panel={tab.name}>

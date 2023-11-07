@@ -6,8 +6,14 @@ export function breadcrumb() {
   return i18next.t('vrack-services:crumb');
 }
 
-export default function App({ children }: { children: React.ReactNode }) {
+const App: React.FC<React.PropsWithChildren<unknown>> = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   useTranslation('vrack-services');
 
   return <>{children}</>;
-}
+};
+
+export default App;

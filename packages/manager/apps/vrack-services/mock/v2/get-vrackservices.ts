@@ -2,7 +2,7 @@ import {
   VrackServices,
   ProductStatus,
   ResoureceStatus,
-} from '../../src/api/api.type';
+} from '../../src/api/vrack-services/vrack-services.type';
 
 export const firstVs: VrackServices = {
   checksum: 'd41d8cd98f00b204e9800998ecf8427e',

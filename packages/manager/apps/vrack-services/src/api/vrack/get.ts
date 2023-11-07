@@ -1,15 +1,15 @@
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { fetchIceberg } from '@ovh-ux/manager-core-api';
 import {
-  VrackWithIAM,
-  AllowedServices,
-  AllowedServiceEnum,
+  AllowedServicesResponse,
+  AllowedService,
   EligibleServicesResponse,
   NonExpiringService,
   Task,
-  VrackServices,
-} from '../../api.type';
-import { createFetchDataFn } from '../../common';
+} from '../api.type';
+import { VrackWithIAM } from './vrack.type';
+import { VrackServices } from '../vrack-services';
+import { createFetchDataFn } from '../common';
 
 export const getVrackListQueryKey = ['get/vrack'];
 
@@ -50,7 +50,7 @@ export const getVrackService = async ({ serviceName }: GetVrackServiceParams) =>
 
 export type GetVrackServiceAllowedServicesParams = {
   /** Filter on a specific service family */
-  serviceFamily: AllowedServiceEnum;
+  serviceFamily: AllowedService;
   /** The internal name of your vrack */
   serviceName: string;
 };
@@ -71,7 +71,7 @@ export const getVrackServiceAllowedServices = async ({
 }: GetVrackServiceAllowedServicesParams) =>
   queryClient.fetchQuery(
     getVrackServiceAllowedServicesQueryKey({ serviceFamily, serviceName }),
-    createFetchDataFn<AllowedServices>({
+    createFetchDataFn<AllowedServicesResponse>({
       url: `/vrack/${serviceName}/allowedServices${
         serviceFamily ? `?serviceFamily=${serviceFamily}` : ''
       }`,

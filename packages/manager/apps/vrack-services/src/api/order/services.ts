@@ -1,40 +1,6 @@
-import apiClient from '@ovh-ux/manager-core-api';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import {
-  Cart,
-  Creation,
-  Item,
-  Order,
-  OrderStatus,
-  ResponseData,
-} from './order.type';
-
-export const createFetchDataFn = <T>({
-  params,
-  apiVersion,
-  method,
-  url,
-}: {
-  url: string;
-  method: 'get' | 'post' | 'put' | 'delete';
-  apiVersion: keyof typeof apiClient;
-  params?: unknown;
-}) => async () => {
-  const response: ResponseData<T> = await apiClient[apiVersion][method](
-    url,
-    params,
-  );
-
-  if (response?.code?.startsWith('ERR')) {
-    const error = new Error(response.response.data.message);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    error.stack = response.response;
-    throw error;
-  }
-
-  return response;
-};
+import { Cart, Creation, Item, Order, OrderStatus } from './order.type';
+import { createFetchDataFn } from '../common';
 
 export const postOrderCartQueryKey = ['post/order/cart'];
 
@@ -42,15 +8,12 @@ export const postOrderCartQueryKey = ['post/order/cart'];
  * Create a new OVH order cart
  */
 export const postOrderCart = async (params: Creation) =>
-  queryClient.fetchQuery(
-    postOrderCartQueryKey,
-    createFetchDataFn<Cart>({
-      url: '/order/cart',
-      params,
-      apiVersion: 'v6',
-      method: 'post',
-    }),
-  );
+  createFetchDataFn<Cart>({
+    url: '/order/cart',
+    params,
+    apiVersion: 'v6',
+    method: 'post',
+  })();
 
 export type PostOrderCartCartIdAssignParams = {
   cartId?: string;
@@ -66,15 +29,12 @@ export const postOrderCartCartIdAssignQueryKey = (
 export const postOrderCartCartIdAssign = async (
   params: PostOrderCartCartIdAssignParams,
 ) =>
-  queryClient.fetchQuery(
-    postOrderCartCartIdAssignQueryKey(params),
-    createFetchDataFn<undefined>({
-      url: `/order/cart/${params.cartId}/assign`,
-      params,
-      apiVersion: 'v6',
-      method: 'post',
-    }),
-  );
+  createFetchDataFn<undefined>({
+    url: `/order/cart/${params.cartId}/assign`,
+    params,
+    apiVersion: 'v6',
+    method: 'post',
+  })();
 
 export type PostOrderCartCartIdVrackParams = {
   duration: string;
@@ -94,15 +54,12 @@ export const postOrderCartCartIdVrackQueryKey = (
 export const postOrderCartCartIdVrack = async (
   params: PostOrderCartCartIdVrackParams,
 ) =>
-  queryClient.fetchQuery(
-    postOrderCartCartIdVrackQueryKey(params),
-    createFetchDataFn<Item>({
-      url: `/order/cart/${params.cartId}/vrack`,
-      params,
-      apiVersion: 'v6',
-      method: 'post',
-    }),
-  );
+  createFetchDataFn<Item>({
+    url: `/order/cart/${params.cartId}/vrack`,
+    params,
+    apiVersion: 'v6',
+    method: 'post',
+  })();
 
 export type PostOrderCartCartIdVrackServicesParams = {
   duration: string;
@@ -124,15 +81,12 @@ export const postOrderCartCartIdVrackServicesQueryKey = (
 export const postOrderCartCartIdVrackServices = async (
   params: PostOrderCartCartIdVrackServicesParams,
 ) =>
-  queryClient.fetchQuery(
-    postOrderCartCartIdVrackServicesQueryKey(params),
-    createFetchDataFn<Item>({
-      url: `/order/cart/${params.cartId}/vrackServices`,
-      params,
-      apiVersion: 'v6',
-      method: 'post',
-    }),
-  );
+  createFetchDataFn<Item>({
+    url: `/order/cart/${params.cartId}/vrackServices`,
+    params,
+    apiVersion: 'v6',
+    method: 'post',
+  })();
 
 export type PostOrderCartCartIdCheckoutParams = {
   cartId: string;
@@ -156,15 +110,12 @@ export const postOrderCartCartIdCheckoutQueryKey = (
 export const postOrderCartCartIdCheckout = async (
   params: PostOrderCartCartIdCheckoutParams,
 ) =>
-  queryClient.fetchQuery(
-    postOrderCartCartIdCheckoutQueryKey(params),
-    createFetchDataFn<Order>({
-      url: `/order/cart/${params.cartId}/checkout`,
-      params: { data: params },
-      apiVersion: 'v6',
-      method: 'post',
-    }),
-  );
+  createFetchDataFn<Order>({
+    url: `/order/cart/${params.cartId}/checkout`,
+    params: { data: params },
+    apiVersion: 'v6',
+    method: 'post',
+  })();
 
 export const getOrderStatusQueryKey = (orderId: string) => [
   `get/me/order/${orderId}/status`,

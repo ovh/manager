@@ -10,19 +10,12 @@ import {
 } from '@ovhcloud/ods-components/input';
 import { OsdsInput } from '@ovhcloud/ods-components/input/react';
 import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { OsdsModal } from '@ovhcloud/ods-components/modal/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useAuthentication } from '@ovh-ux/manager-react-core-application';
 import { CountryCode } from '@ovh-ux/manager-config/dist/types';
 import {
-  ODS_BUTTON_TYPE,
-  ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import {
   getvrackServicesReferenceZoneList,
-  getListingIcebergQueryKey,
   getvrackServicesReferenceZoneListQueryKey,
   orderVrackServices,
   orderVrackServicesQueryKey,
@@ -34,6 +27,7 @@ import { ApiError, ErrorPage } from '@/components/Error';
 import { ZoneFormField } from './ZoneFormField';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import { displayNameInputName } from './constants';
+import { VrackConfirmModal } from './VrackConfirmModal';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.id;
@@ -43,6 +37,7 @@ const CreationPage: React.FC = () => {
   const [selectedZone, setSelectedZone] = React.useState('');
   const [displayName, setDisplayName] = React.useState('');
   const [isModalVisible, setIsModalVisible] = React.useState(false);
+  const [shouldOrderVrack, setShouldOrderVrack] = React.useState(false);
   const { subsidiary } = useAuthentication();
   const { t } = useTranslation('vrack-services/create');
   const navigate = useNavigate();
@@ -62,7 +57,6 @@ const CreationPage: React.FC = () => {
     mutate: orderNewVrackServices,
     isLoading: isCreationPending,
     isError: isCreationError,
-    isSuccess: isCreationSuccess,
   } = useMutation({
     mutationFn: () =>
       orderVrackServices({
@@ -71,26 +65,22 @@ const CreationPage: React.FC = () => {
         ovhSubsidiary: subsidiary as CountryCode,
       }),
     mutationKey: orderVrackServicesQueryKey,
+    onSuccess: () => {
+      if (shouldOrderVrack) {
+        orderVrack({ ovhSubsidiary: subsidiary as CountryCode });
+      }
+      navigate('/', { replace: true });
+    },
   });
 
-  const { mutate: orderNewVrack } = useMutation({
-    mutationFn: () =>
-      orderVrack({
-        ovhSubsidiary: subsidiary as CountryCode,
-      }),
-    mutationKey: orderVrackQueryKey,
-  });
+  React.useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: orderVrackQueryKey });
+    queryClient.invalidateQueries({ queryKey: orderVrackServicesQueryKey });
+  }, []);
 
   if (isZoneFetched && zoneData?.status !== 200) {
     return <ErrorPage error={(zoneData as unknown) as ApiError} />;
   }
-
-  React.useEffect(() => {
-    if (isCreationSuccess) {
-      queryClient.invalidateQueries({ queryKey: getListingIcebergQueryKey });
-      navigate('/', { replace: true });
-    }
-  });
 
   return (
     <>
@@ -134,49 +124,20 @@ const CreationPage: React.FC = () => {
           isReadOnly={isCreationPending}
         />
       </CreatePageLayout>
-      <OsdsModal
-        dismissible={undefined}
-        headline="Voulez vous un vrack ?"
-        masked={!isModalVisible || undefined}
-      >
-        test
-        <OsdsButton
-          slot="actions"
-          type={ODS_BUTTON_TYPE.button}
-          variant={ODS_BUTTON_VARIANT.ghost}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => {
-            setIsModalVisible(false);
-          }}
-        >
-          annuler
-        </OsdsButton>
-        <OsdsButton
-          slot="actions"
-          type={ODS_BUTTON_TYPE.button}
-          variant={ODS_BUTTON_VARIANT.stroked}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => {
-            orderNewVrackServices();
-            setIsModalVisible(false);
-          }}
-        >
-          non merci
-        </OsdsButton>
-        <OsdsButton
-          slot="actions"
-          type={ODS_BUTTON_TYPE.button}
-          variant={ODS_BUTTON_VARIANT.flat}
-          color={ODS_THEME_COLOR_INTENT.primary}
-          onClick={() => {
-            orderNewVrack();
-            orderNewVrackServices();
-            setIsModalVisible(false);
-          }}
-        >
-          accepter
-        </OsdsButton>
-      </OsdsModal>
+      <VrackConfirmModal
+        onCancel={() => setIsModalVisible(false)}
+        onDeny={() => {
+          setShouldOrderVrack(false);
+          orderNewVrackServices();
+          setIsModalVisible(false);
+        }}
+        onConfirm={() => {
+          setShouldOrderVrack(true);
+          orderNewVrackServices();
+          setIsModalVisible(false);
+        }}
+        isModalVisible={isModalVisible}
+      />
     </>
   );
 };

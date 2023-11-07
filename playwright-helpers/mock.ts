@@ -7,21 +7,32 @@ export const toPlaywrightMockHandler = (context: BrowserContext) => ({
   api = 'v6',
   baseUrl,
   method = 'get',
-  response = {},
+  response,
   status = 200,
+  error,
+  responseText,
+  once,
 }: Handler) => {
   const fullUrl = new RegExp(
     `${baseUrl ?? apiClient[api].getUri()}${
       url.startsWith('/') ? '' : '/'
     }${url}$`.replace(':id', '.*'),
   );
-  return context.route(fullUrl, (route, request) => {
-    if (request.method().toLowerCase() === method) {
-      return route.fulfill({
-        status,
-        json: response,
-      });
-    }
-    return route.continue();
-  });
+  return context.route(
+    fullUrl,
+    (route, request) => {
+      if (error) {
+        return route.abort();
+      }
+      if (request.method().toLowerCase() === method) {
+        return route.fulfill({
+          status,
+          json: typeof response === 'function' ? response(request) : response,
+          body: responseText,
+        });
+      }
+      return route.continue();
+    },
+    { times: once ? 1 : undefined },
+  );
 };
