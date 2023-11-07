@@ -46,7 +46,7 @@ export default /* @ngInject */ function($stateProvider) {
         ).then((data) => [
           ...data.map((option) => ({
             ...option,
-            ...catalog.products.find(({ name }) => name === option.planCode),
+            ...catalog.products.find(({ name }) => name === option.productName),
           })),
           {
             ...current,
