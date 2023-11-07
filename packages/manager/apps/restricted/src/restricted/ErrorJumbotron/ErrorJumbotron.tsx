@@ -7,8 +7,8 @@ import Context from '@/context';
 
 const ErrorJumbotron = (): JSX.Element => {
   const { t } = useTranslation('restricted');
-  const { ovhSubsidiary } = useContext(Context);
-  const isNotUsSubsidiary = ovhSubsidiary !== 'US';
+  const { region } = useContext(Context);
+  const isUsRegion = region === 'US';
   return (
     <div className="my-5 error-jumbotron d-flex flex-column">
       <div className="d-flex justify-content-center">
@@ -22,12 +22,12 @@ const ErrorJumbotron = (): JSX.Element => {
         ></span>
         <p className="oui-message__body">
           {t(`restricted_error_default_start`, {
-            count: isNotUsSubsidiary ? 4 : 3,
+            count: isUsRegion ? 3 : 4,
           })}
         </p>
         <ul>
           <li>account:apiovh:me/get</li>
-          {isNotUsSubsidiary && <li>account:apiovh:me/supportLevel/get</li>}
+          {!isUsRegion && <li>account:apiovh:me/supportLevel/get</li>}
           <li>account:apiovh:me/certificates/get</li>
           <li>account:apiovh:me/tag/get</li>
         </ul>
