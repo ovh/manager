@@ -73,7 +73,7 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
 
     if (this.dkimStatus === this.GLOBAL_DKIM_STATUS.NOK) {
       this.services.EmailProDomains.getDomain(
-        this.$routerParams.productId,
+        this.services.$stateParams.productId,
         this.domain.name,
       ).then((domain) => {
         this.dkimErrorCode = domain.dkimDiagnostics.errorCode;
