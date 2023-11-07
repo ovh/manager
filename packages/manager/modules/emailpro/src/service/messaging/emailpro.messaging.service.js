@@ -1,3 +1,5 @@
+import { CSS_BOOTSTRAP_CLASSES } from './emailpro.messaging.constants';
+
 const isEmptyObj = (passedObj) =>
   !(
     passedObj &&
@@ -53,19 +55,19 @@ export default class Messaging {
   }
 
   writeInfo(message, details = null) {
-    this.write(message, 'alert-info', details);
+    this.write(message, CSS_BOOTSTRAP_CLASSES.INFO, details);
   }
 
   writeSuccess(message, details = null) {
-    this.write(message, 'alert-success', details);
+    this.write(message, CSS_BOOTSTRAP_CLASSES.SUCCESS, details);
   }
 
   writeWarning(message, details = null) {
-    this.write(message, 'alert-warning', details);
+    this.write(message, CSS_BOOTSTRAP_CLASSES.WARNING, details);
   }
 
   writeError(message, details = null) {
-    this.write(message, 'alert-danger', details);
+    this.write(message, CSS_BOOTSTRAP_CLASSES.DANGER, details);
   }
 
   /**
@@ -80,31 +82,31 @@ export default class Messaging {
   setMessage(message, failure) {
     let messageToSend = message;
     let messageDetails = [];
-    let alertType = 'alert alert-success';
+    let alertSubType = CSS_BOOTSTRAP_CLASSES.SUCCESS;
 
     if (failure != null) {
       if (failure.message != null) {
         messageDetails.push({ id: failure.id, message: failure.message });
-        alertType = 'alert alert-warning';
+        alertSubType = 'alert alert-warning';
 
         if (typeof failure.type === 'string') {
           switch (failure.type.toUpperCase()) {
             case 'ERROR':
-              alertType += ' alert-danger';
+              alertSubType = CSS_BOOTSTRAP_CLASSES.DANGER;
 
               if (message.ERROR != null || message != null) {
                 messageToSend = message.ERROR || message;
               }
               break;
             case 'PARTIAL':
-              alertType += ' alert-danger';
+              alertSubType = CSS_BOOTSTRAP_CLASSES.DANGER;
 
               if (message.PARTIAL != null || message != null) {
                 messageToSend = message.PARTIAL || message;
               }
               break;
             case 'INFO':
-              alertType += ' alert-success';
+              alertSubType = CSS_BOOTSTRAP_CLASSES.SUCCESS;
 
               if (message.INFO != null || message != null) {
                 messageToSend = message.INFO || message;
@@ -116,23 +118,21 @@ export default class Messaging {
         }
       } else if (failure.messages != null) {
         if (!isEmptyObj(failure.messages)) {
-          alertType = 'alert';
-
           switch (failure.state.toUpperCase()) {
             case 'ERROR':
-              alertType += ' alert-danger';
+              alertSubType = CSS_BOOTSTRAP_CLASSES.DANGER;
               messageToSend = message.ERROR || message;
               break;
             case 'PARTIAL':
-              alertType += ' alert-warning';
+              alertSubType = CSS_BOOTSTRAP_CLASSES.WARNING;
               messageToSend = message.PARTIAL || message;
               break;
             case 'OK':
-              alertType += ' alert-success';
+              alertSubType = CSS_BOOTSTRAP_CLASSES.SUCCESS;
               messageToSend = message.OK || message;
               break;
             default:
-              alertType += ' alert-warning';
+              alertSubType = CSS_BOOTSTRAP_CLASSES.WARNING;
               messageToSend = message;
               break;
           }
@@ -149,29 +149,29 @@ export default class Messaging {
             }));
         }
       } else if (failure.status != null) {
-        alertType = 'alert alert-warning';
+        alertSubType = CSS_BOOTSTRAP_CLASSES.WARNING;
 
         switch (failure.status.toUpperCase()) {
           case 'BLOCKED':
           case 'CANCELLED':
           case 'PAUSED':
           case 'ERROR':
-            alertType += ' alert-danger';
+            alertSubType = CSS_BOOTSTRAP_CLASSES.DANGER;
             break;
           case 'TODO':
           case 'DONE':
-            alertType += ' alert-success';
+            alertSubType = CSS_BOOTSTRAP_CLASSES.SUCCESS;
             break;
           default:
         }
       } else if (failure === 'true') {
-        alertType = 'alert alert-success';
+        alertSubType = CSS_BOOTSTRAP_CLASSES.SUCCESS;
         messageDetails = null;
       }
     }
 
     this.message = messageToSend;
     this.messageDetails = messageDetails;
-    this.alertType = alertType;
+    this.alertType = `alert ${alertSubType}`;
   }
 }
