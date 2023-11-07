@@ -5,7 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/show-secret',
       params: {
         user: null,
-        type: null,
+        secretType: null,
       },
       views: {
         modal: {
@@ -15,7 +15,8 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         user: /* @ngInject */ ($transition$) => $transition$.params().user,
-        type: /* @ngInject */ ($transition$) => $transition$.params().type,
+        type: /* @ngInject */ ($transition$) =>
+          $transition$.params().secretType,
         secretKeyAndAccess: /* @ngInject */ (
           DatabaseService,
           projectId,

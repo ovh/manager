@@ -68,7 +68,7 @@ export default /* @ngInject */ ($stateProvider) => {
               projectId,
               databaseId: database.id,
               user,
-              type: SECRET_TYPE.key,
+              secretType: SECRET_TYPE.key,
             },
           ),
         goToUserInformations: /* @ngInject */ ($state, database, projectId) => (
@@ -89,7 +89,7 @@ export default /* @ngInject */ ($stateProvider) => {
               projectId,
               databaseId: database.id,
               user,
-              type: SECRET_TYPE.cert,
+              secretType: SECRET_TYPE.cert,
             },
           ),
         goToUsers: /* @ngInject */ ($state, CucCloudMessage) => (
