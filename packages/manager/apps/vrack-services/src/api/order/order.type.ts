@@ -1,15 +1,5 @@
 import { CountryCode } from '@ovh-ux/manager-config';
 
-export type ResponseData<T> = {
-  status: number;
-  data: T;
-  code: string;
-  // Error response
-  response?: {
-    data: { message: string };
-  };
-};
-
 export type Cart = {
   cartId: string;
   description: string;
@@ -44,25 +34,24 @@ export type Price = {
     | 'XOF'
     | 'points';
   text: string;
+  priceInUcents: number;
   value: number;
 };
 
-export type Item = {
+export type Item<T = unknown> = {
   cartId: string;
   configurations: number[];
   duration: string | null;
   itemId: number;
   offerId: string;
   options: number[];
-  parentItemId: number | null;
+  parentItemId?: number | null;
   prices: {
     label: 'DISCOUNT' | 'FEE' | 'PRICE' | 'RENEW' | 'TOTAL';
-    price: Price[];
-  };
+    price: Price;
+  }[];
   productId: string;
-  settings: {
-    domain: string;
-  };
+  settings: T;
 };
 
 export type Order = {

@@ -2,12 +2,11 @@ import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { fetchIceberg } from '@ovh-ux/manager-core-api';
 import {
   EligibleManagedService,
-  Event,
-  Task,
   VrackServicesWithIAM,
   Zone,
-} from '../../api.type';
-import { createFetchDataFn } from '../../common';
+} from './vrack-services.type';
+import { Task, Event } from '../api.type';
+import { createFetchDataFn } from '../common';
 
 export const getvrackServicesReferenceCompatibleProductListQueryKey = [
   'get/vrackServices/reference/compatibleProduct',

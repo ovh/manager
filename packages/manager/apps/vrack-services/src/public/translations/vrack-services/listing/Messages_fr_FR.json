@@ -13,5 +13,8 @@
   "LIM": "Allemagne, Limbourg (LIM)",
   "GRA": "France, Gravelines (GRA)",
   "RBX": "France, Roubaix (RBX)",
-  "BHS": "Canada, Beauharnois (BHS)"
+  "BHS": "Canada, Beauharnois (BHS)",
+  "vrackServicesCreateSucessMessage": "vRack Services creation success",
+  "vrackCreateSucessMessage": "vRack creation success",
+  "vrackCreateErrorMessage": "Un problème est survenue lors de la commande de votre vRack. Veuillez réessayer ultérieurement."
 }

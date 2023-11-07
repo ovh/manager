@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { queryClient } from '@ovh-ux/manager-react-core-application';
 import {
   postOrderCart,
   postOrderCartCartIdAssign,
@@ -9,6 +10,8 @@ import {
   getOrderStatus,
 } from './services';
 import { Creation } from './order.type';
+
+export * from './order.type';
 
 export const useOrderPollingStatus = (
   orderId: string,
@@ -23,48 +26,54 @@ export const useOrderPollingStatus = (
 
 export const orderVrackQueryKey = ['/orderVrack'];
 
-export const orderVrack = async (params: Creation) => {
-  const {
-    data: { cartId },
-  } = await postOrderCart(params);
-  await postOrderCartCartIdAssign({ cartId });
-  const cart = await postOrderCartCartIdVrack({
-    duration: 'P1M',
-    planCode: 'vrack',
-    pricingMode: 'default',
-    quantity: 1,
-    cartId,
-  });
-  const order = await postOrderCartCartIdCheckout({
-    cartId: cart.data.cartId,
-    waiveRetractationPeriod: false,
-  });
+export const orderVrack = (params: Creation) => {
+  const executeOrder = async () => {
+    const {
+      data: { cartId },
+    } = await postOrderCart(params);
+    await postOrderCartCartIdAssign({ cartId });
+    const cart = await postOrderCartCartIdVrack({
+      duration: 'P1M',
+      planCode: 'vrack',
+      pricingMode: 'default',
+      quantity: 1,
+      cartId,
+    });
+    const order = await postOrderCartCartIdCheckout({
+      cartId: cart.data.cartId,
+      waiveRetractationPeriod: false,
+    });
 
-  return order;
+    return order;
+  };
+  return queryClient.fetchQuery(orderVrackQueryKey, executeOrder);
 };
 
 export const orderVrackServicesQueryKey = ['/orderVrackServices'];
 
-export const orderVrackServices = async (
+export const orderVrackServices = (
   params: Creation & { displayName?: string; selectedZone: string },
 ) => {
-  const {
-    data: { cartId },
-  } = await postOrderCart(params);
-  await postOrderCartCartIdAssign({ cartId });
-  const cart = await postOrderCartCartIdVrackServices({
-    duration: 'P1M',
-    planCode: 'vrackServices',
-    pricingMode: 'default',
-    quantity: 1,
-    cartId,
-    name: params.displayName,
-    zone: params.selectedZone,
-  });
-  const order = await postOrderCartCartIdCheckout({
-    cartId: cart.data.cartId,
-    waiveRetractationPeriod: false,
-  });
+  const executeOrder = async () => {
+    const {
+      data: { cartId },
+    } = await postOrderCart(params);
+    await postOrderCartCartIdAssign({ cartId });
+    const cart = await postOrderCartCartIdVrackServices({
+      duration: 'P1M',
+      planCode: 'vrackServices',
+      pricingMode: 'default',
+      quantity: 1,
+      cartId,
+      name: params.displayName,
+      zone: params.selectedZone,
+    });
+    const order = await postOrderCartCartIdCheckout({
+      cartId: cart.data.cartId,
+      waiveRetractationPeriod: false,
+    });
 
-  return order;
+    return order;
+  };
+  return queryClient.fetchQuery(orderVrackServicesQueryKey, executeOrder);
 };
