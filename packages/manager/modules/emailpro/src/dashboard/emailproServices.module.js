@@ -1,6 +1,7 @@
 import angular from 'angular';
 import ovhManagerCore from '@ovh-ux/manager-core';
 
+import messaging from '../service/messaging/emailpro.messaging.service';
 import emailproService from './emailpro.service';
 import ApiEmailPro from '../api/emailpro-api.service';
 import EmailProDomains from '../domain/emailpro-domain.service';
@@ -12,6 +13,7 @@ const moduleName = 'Module.emailpro.services';
 
 angular
   .module(moduleName, [ovhManagerCore])
+  .service('messaging', messaging)
   .service('EmailPro', emailproService)
   .service('APIEmailPro', ApiEmailPro)
   .service('EmailProDomains', EmailProDomains)

@@ -1,4 +1,4 @@
-import { CSS_BOOTSTRAP_CLASSES } from './exchange.messaging.constants';
+import { CSS_BOOTSTRAP_CLASSES } from './emailpro.messaging.constants';
 
 const isEmptyObj = (passedObj) =>
   !(
