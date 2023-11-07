@@ -1,7 +1,4 @@
-import forEach from 'lodash/forEach';
-import isEmpty from 'lodash/isEmpty';
-import isString from 'lodash/isString';
-import uniqBy from 'lodash/uniqBy';
+import { forEach, isEmpty, isString, uniqBy } from 'lodash-es';
 
 export default class Messaging {
   resetMessages() {
