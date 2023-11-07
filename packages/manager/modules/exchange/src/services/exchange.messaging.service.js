@@ -1,7 +1,15 @@
-import forEach from 'lodash/forEach';
-import isEmpty from 'lodash/isEmpty';
-import isString from 'lodash/isString';
-import uniqBy from 'lodash/uniqBy';
+const isEmptyObj = (passedObj) =>
+  !(
+    passedObj &&
+    passedObj === Object(passedObj) &&
+    Object.keys(passedObj).length !== 0
+  );
+const uniqBy = (arr, fn, set = new Set()) =>
+  arr.filter((el) =>
+    ((v) => !set.has(v) && set.add(v))(
+      typeof fn === 'function' ? fn(el) : el[fn],
+    ),
+  );
 
 export default class Messaging {
   resetMessages() {
@@ -17,11 +25,11 @@ export default class Messaging {
     if (failure != null) {
       const value = [failure, failure.data];
 
-      forEach(value, (currentValue) => {
-        if (!isEmpty(currentValue)) {
-          if (isString(currentValue)) {
+      value.forEach((currentValue) => {
+        if (!isEmptyObj(currentValue)) {
+          if (typeof currentValue === 'string') {
             this.messageDetails.push({ id: null, message: currentValue });
-          } else if (isString(currentValue.message)) {
+          } else if (typeof currentValue.message === 'string') {
             this.messageDetails.push({
               id: currentValue.id,
               message: currentValue.message,
@@ -79,7 +87,7 @@ export default class Messaging {
         messageDetails.push({ id: failure.id, message: failure.message });
         alertType = 'alert alert-warning';
 
-        if (isString(failure.type)) {
+        if (typeof failure.type === 'string') {
           switch (failure.type.toUpperCase()) {
             case 'ERROR':
               alertType += ' alert-danger';
@@ -107,7 +115,7 @@ export default class Messaging {
           }
         }
       } else if (failure.messages != null) {
-        if (!isEmpty(failure.messages)) {
+        if (!isEmptyObj(failure.messages)) {
           alertType = 'alert';
 
           switch (failure.state.toUpperCase()) {
@@ -132,7 +140,7 @@ export default class Messaging {
           messageDetails = failure.messages
             .filter(
               (currentMessage) =>
-                isString(currentMessage.type) &&
+                typeof currentMessage.type === 'string' &&
                 currentMessage.type.toUpperCase() !== 'INFO',
             )
             .map((currentMessage) => ({
