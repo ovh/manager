@@ -100,9 +100,9 @@ type GetGuideLinkProps = {
 function getGuideListLink({ region, subsidiary }: GetGuideLinkProps) {
   const baseUrl = `${baseUrlPrefix?.[region]?.[subsidiary]}`;
   const list: { [guideName: string]: string } = {};
-  for (const [key, value] of Object.entries(GUIDE_LIST)) {
+  Object.entries(GUIDE_LIST).forEach(([key, value]) => {
     list[key] = `${baseUrl}${value[subsidiary]}`;
-  }
+  });
   return list;
 }
 
