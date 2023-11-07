@@ -1,6 +1,5 @@
 {
   "hosting_change_offer_for_service": "Ta usługa nie jest dostępna dla tej oferty.",
-  "hosting_change_offer_for_service_start10m": "Ta usługa nie jest dostępna dla oferty Start10m.",
   "hosting_common_password_conditions": "Uwaga: hasło musi spełniać następujące warunki: <br/>- Minimalna liczba znaków: {{t0}}<br/>- Maksymalna liczba znaków: {{t1}} <br/>- Przynajmniej jedna wielka litera<br/>- Przynajmniej jedna mała litera<br/>- Przynajmniej jedna cyfra<br/>- Może zawierać wyłącznie cyfry i litery",
   "hosting_common_path_help_inline": "Dozwolonymi znakami w przypadku katalogów są litery, cyfry oraz znaki -_./ Nie ma dostępu do katalogów macierzystych przy użyciu ..",
   "hosting_common_target_new_window": "(Nowe okno)",

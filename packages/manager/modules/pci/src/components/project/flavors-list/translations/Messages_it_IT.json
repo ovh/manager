@@ -4,7 +4,6 @@
   "pci_project_flavors_category_definition_cpu": "Le istanze di calcolo ottimizzato sono ideali per le applicazioni che richiedono frequenze di calcolo elevate o la parallelizzazione dei task.",
   "pci_project_flavors_category_definition_ram": "Le istanze con memoria ottimizzata sono consigliate per database, analisi, calcoli in memoria e altre applicazioni che richiedono grandi quantità di RAM.",
   "pci_project_flavors_category_definition_accelerated": "Le istanze con calcolo accelerato (GPU, FPGA) hanno una velocità fino a 1.000 volte superiore rispetto a una CPU su alcune applicazioni (rendering, transcoding video, bioinformatica, Big Data, Deep Learning, ecc...)",
-  "pci_project_flavors_category_definition_vps": "Le istanze con risorse condivise (Sandbox) sono adatte per test, verifiche e ambienti di sviluppo. Le loro prestazioni possono variare leggermente nel tempo.",
   "pci_project_flavors_category_definition_iops": "Le istanze IOPS garantiscono le transazioni disco più veloci di tutta la gamma Public Cloud.",
   "pci_project_flavors_category_definition_none": "Nessun modello disponibile per questa categoria",
   "pci_project_flavors_disk_size": "Lo spazio disco è inferiore a quello disponibile sul modello corrente",

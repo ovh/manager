@@ -1,6 +1,5 @@
 {
   "hosting_change_offer_for_service": "El servicio no está disponible para este producto.",
-  "hosting_change_offer_for_service_start10m": "Este servicio no está disponible para el plan Start10M.",
   "hosting_common_password_conditions": "Atención: La contraseña debe cumplir los siguientes criterios: <br/>- mínimo {{t0}} caracteres<br/>- máximo {{t1}} caracteres<br/>- al menos una letra mayúscula<br/>- al menos una letra minúscula<br/>- al menos una cifra<br/>- debe estar compuesto únicamente por cifras y letras",
   "hosting_common_path_help_inline": "Los caracteres que se aceptan en los directorios son las letras, las cifras y los caracteres «_./ Se prohíbe acceder al directorio principal utilizando ..",
   "hosting_common_target_new_window": "(Nueva ventana)",

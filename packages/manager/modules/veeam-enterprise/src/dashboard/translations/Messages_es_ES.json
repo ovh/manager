@@ -11,7 +11,6 @@
   "veeam_enterprise_configuration_label_name": "Nombre",
   "veeam_enterprise_configuration_label_source_ip": "IP de origen",
   "veeam_enterprise_configuration_label_ip": "IP",
-  "veeam_enterprise_configuration_label_port": "Puerto",
   "veeam_enterprise_configuration_label_username": "Nombre de usuario",
   "veeam_enterprise_configuration_label_password": "Contraseña",
   "veeam_enterprise_subscription_title": "Suscripción"

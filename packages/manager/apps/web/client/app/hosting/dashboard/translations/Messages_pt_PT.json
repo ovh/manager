@@ -1,6 +1,5 @@
 {
   "hosting_change_offer_for_service": "Este serviço não está disponível para esta oferta.",
-  "hosting_change_offer_for_service_start10m": "Este serviço não está disponível para a oferta Start10M.",
   "hosting_common_password_conditions": "Tenha em conta que a palavra-passe deve respeitar as seguintes condições: <br/>- Mínimo de {{t0}} caracteres<br/>- Máximo de {{t1}} caracteres<br/>- Pelo menos uma letra maiúscula<br/>- Pelo menos uma letra minúscula<br/>- Pelo menos um número<br/>- Deve ser composto unicamente por números e letras.",
   "hosting_common_path_help_inline": "Os caracteres aceites para pastas: letras, números e os caracteres -_./ Além disso, não é possível aceder à pasta principal utilizando ..",
   "hosting_common_target_new_window": "(Nova janela)",

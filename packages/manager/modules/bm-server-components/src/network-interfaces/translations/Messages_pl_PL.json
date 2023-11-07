@@ -24,6 +24,7 @@
   "dedicated_server_interfaces_step_checker_list_reversible": "Odwracalność",
   "dedicated_server_interfaces_step_checker_list_free": "Darmowy",
   "dedicated_server_interfaces_step_checker_text3": "W tej chwili opcja dostępna tylko dla sieci prywatnej vRack.",
+  "dedicated_server_interfaces_step_checker_text4": "Skorzystaj z oferty specjalnej przygotowanej w związku z wprowadzeniem oferty na rynek: {{discountPrice}} zamiast {{price}} PLN / m-c przez pierwsze 3 miesiące.",
   "dedicated_server_interfaces_step_checker_step1": "Usuwanie konfiguracji interfejsów sieciowych",
   "dedicated_server_interfaces_step_checker_step1_text1": "Usługa OLA jest teraz włączona.",
   "dedicated_server_interfaces_step_checker_step2": "Konfiguracja",

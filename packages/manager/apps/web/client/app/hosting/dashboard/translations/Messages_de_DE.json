@@ -1,6 +1,5 @@
 {
   "hosting_change_offer_for_service": "Der Dienst ist für dieses Angebot nicht verfügbar.",
-  "hosting_change_offer_for_service_start10m": "Der Dienst ist für das Start 10M Angebot nicht verfügbar.",
   "hosting_common_password_conditions": "Bitte beachten Sie, dass das Passwort nach folgenden Regeln vergeben werden muss: <br/>- mindestens {{t0}} Zeichen<br/>- höchstens {{t1}} Zeichen<br/>- mindestens ein Großbuchstabe<br/>- mindestens ein Kleinbuchstabe<br/>- mindestens eine Zahl<br/>- ausschließlich Zahlen und Buchstaben",
   "hosting_common_path_help_inline": "Für Ordner erlaubte Zeichen sind Buchstaben, Ziffern sowie die Zeichen -_./ Der Zugriff auf übergeordnete Ordner ist nicht möglich (Verwendung von ..)",
   "hosting_common_target_new_window": "(Neues Fenster)",

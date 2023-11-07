@@ -1,6 +1,5 @@
 {
   "hosting_change_offer_for_service": "This service is not available for this solution.",
-  "hosting_change_offer_for_service_start10m": "This service is not available for the Start10M solution.",
   "hosting_common_password_conditions": "Please note that the password must meet the following criteria: <br/>- Minimum {{t0}} characters<br/>- Maximum {{t1}} characters<br/>- At least one capital letter<br/>- At least one lower-case letter<br/>- At least one number<br/>- Must only contain letters and numbers",
   "hosting_common_path_help_inline": "The characters accepted for files are letters, numbers and the following characters -_./ However, you cannot access parent files using ..",
   "hosting_common_target_new_window": "(New window)",
