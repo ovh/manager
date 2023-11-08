@@ -1,10 +1,5 @@
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { fetchIceberg, apiClient } from '@ovh-ux/manager-core-api';
-{{#if this.pimID}}
-{{#ifEq arg1=apiVersion arg2='v6'}}
-import i18next from 'i18next';
-{{/ifEq}}
-{{/if}}
 
 {{#if unknownTypeList}}
 {{#each unknownTypeList}}
@@ -32,14 +27,13 @@ export const {{this.functionName}}QueryKey = {{#if this.urlParams}}(params: {{pa
 export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalCase this.functionName}}Params{{/if}}): Promise<{{this.responseType}}> => {
   const fetchData = async () => {
     const response: any = await apiClient.{{this.apiVersion}}.{{this.httpMethod}}({{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}});
-    if (response?.code?.startsWith('ERR')) {
-      const errorResponse = response.response;
-      return errorResponse;
-    }
-    return { ...response.data, status: response.status };
+    return response;
   };
-
-  return queryClient.fetchQuery({{this.functionName}}QueryKey{{#if this.urlParams}}(params){{/if}}, fetchData);
+  try {
+    return queryClient.fetchQuery({{this.functionName}}QueryKey{{#if this.urlParams}}(params){{/if}}, fetchData);
+  } catch(error) {
+    return Promise.reject(error);
+  }
 };
 {{/each}}
 {{#ifEq arg1=apiVersion arg2=mainApiPathApiVersion}}
@@ -54,41 +48,7 @@ export const getListingIceberg = async () => {
     );
     return List;
   } catch (error) {
-    return null;
+    return Promise.reject(error);
   }
 }
 {{/ifEq}}
-{{#if this.pimID}}
-{{#ifEq arg1=apiVersion arg2='v6'}}
-
-export interface PIMElement {
-  id: number;
-  name: string;
-  description: string;
-  lang: string;
-  categories: string[];
-  regionTags: string[];
-}
-
-export const getPIMServiceQueryKey = [`getpim/products/list`];
-
-/**
- * Using the PIM ID `{{this.pimID}}` to search in PIM data model
- */
-export const getPIMService = async (): Promise<string[]> => {
-  const fetchData = async () => {
-    const response = await apiClient.{{this.apiVersion}}.get('/products/list');
-    const currentLang = i18next.language
-      ? i18next.language.replace('-', '_')
-      : 'fr_FR';
-    const pimElement = response.data.filter(
-      (element: PIMElement) =>
-        element.id === {{this.pimID}} && element.lang === currentLang,
-    )[0];
-    return ({...pimElement, status: response.status} || {});
-  };
-
-  return queryClient.fetchQuery(getPIMServiceQueryKey, fetchData);
-};
-{{/ifEq}}
-{{/if}}
