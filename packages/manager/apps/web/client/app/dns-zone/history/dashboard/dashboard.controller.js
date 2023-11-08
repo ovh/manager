@@ -123,7 +123,6 @@ export default class DomainDnsZoneHistoryDashboardController {
           )
           .then((zoneUrls) => {
             this.listOfDnsZonesUrls = [...zoneUrls];
-            this.loading = false;
           });
       })
       .catch(({ data: { message } }) => {
@@ -131,6 +130,7 @@ export default class DomainDnsZoneHistoryDashboardController {
           this.$translate.instant('dashboard_history_error', { message }),
           'dnsZoneAlert',
         );
-      });
+      })
+      .finally((this.loading = false));
   }
 }
