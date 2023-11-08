@@ -51,7 +51,7 @@
 
         <tbody data-ng-if="!ctrlDashboardHistoryOfZoneDns.loading">
             <tr
-                data-ng-repeat="dnsZone in ctrlDashboardHistoryOfZoneDns.listOfDnsZonesUrls track by $index"
+                data-ng-repeat="dnsZone in ctrlDashboardHistoryOfZoneDns.sortedByDate() track by $index"
             >
                 <td>
                     <oui-checkbox
@@ -94,12 +94,12 @@
                 </td>
                 <td class="text-center col-md-3 col-lg-3 col-sm-3">
                     <button
-                        data-ng-if="ctrlDashboardHistoryOfZoneDns.currentDnsDate === dnsZone.creationDate"
+                        data-ng-if="$index!==0"
                         class="oui-button"
                         type="button"
                         aria-label="{{:: 'dashboard_history_restore' | translate }}"
                         data-oui-tooltip="{{:: 'dashboard_history_restore' | translate }}"
-                        data-ng-click="ctrlDashboardHistoryOfZoneDns.restore(dnsZone.creationDate)"
+                        data-ng-click="ctrlDashboardHistoryOfZoneDns.openModalDnsRestore(dnsZone.creationDate)"
                     >
                         <span
                             style="font-size: 24px;"
@@ -119,10 +119,10 @@
             <div class="modal-content">
                 <oui-modal
                     data-heading="{{:: 'dashboard_history_popup_title' | translate }}"
-                    data-primary-action="ctrlDashboardHistoryOfZoneDns.closePopup()"
+                    data-primary-action="ctrlDashboardHistoryOfZoneDns.closeVisualizeDnsPopup()"
                     data-primary-label="{{:: 'dashboard_history_close_popup' | translate }}"
                     data-secondary-disabled="true"
-                    data-on-dismiss="ctrlDashboardHistoryOfZoneDns.closePopup()"
+                    data-on-dismiss="ctrlDashboardHistoryOfZoneDns.closeVisualizeDnsPopup()"
                 >
                     <oui-spinner
                         ng-if="ctrlDashboardHistoryOfZoneDns.loadingDnsZoneData"
@@ -134,6 +134,38 @@
                     >
                         {{ ctrlDashboardHistoryOfZoneDns.dnsZoneData }}
                     </div>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>
+
+<div data-ng-if="ctrlDashboardHistoryOfZoneDns.vizualizeDnsRestorePopup">
+    <div class="modal d-block" role="dialog" id="modal-dns-zone-data">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <oui-modal
+                    heading="{{:: 'dashboard_history_title_restore_modal' | translate }}"
+                    primary-action="ctrlDashboardHistoryOfZoneDns.confirmRestoreDnsAtDate(ctrlDashboardHistoryOfZoneDns.chosenDateForRestoreDns)"
+                    primary-label="{{ :: 'dashboard_history_content_restore_modal_primary_label' | translate }}"
+                    secondary-action="ctrlDashboardHistoryOfZoneDns.closeDnsRestorePopup()"
+                    secondary-label="{{ :: 'dashboard_history_content_restore_modal_secondary_label' | translate }}"
+                    on-dismiss="ctrlDashboardHistoryOfZoneDns.closeDnsRestorePopup()"
+                >
+                    <p
+                        data-ng-bind-html="'dashboard_history_content_restore_modal' | translate: { date: ctrlDashboardHistoryOfZoneDns.chosenDateForRestoreDns }"
+                    ></p>
+                    <div
+                        class="alert alert-warning"
+                        role="alert"
+                        data-ng-bind-html="'dashboard_history_warning_message_restore_modal' | translate"
+                    ></div>
+                    <div
+                        class="alert alert-info"
+                        role="alert"
+                        data-ng-bind-html="'dashboard_history_info_message_restore_modal' | translate"
+                    ></div>
                 </oui-modal>
             </div>
         </div>
