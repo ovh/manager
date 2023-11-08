@@ -4,9 +4,13 @@ export const DOMAIN_STATUS = {
   RESTORABLE: 'restorable',
   DELETED: 'deleted',
   PENDING_DELETE: 'pending_delete',
-  OUTGOING_TRANSFER: 'outgoing_transfer',
+  PENDING_OUTGOING_TRANSFER: 'pending_outgoing_transfer',
   DISPUTE: 'dispute',
+  PENDING_CREATE: 'pending_create',
   PENDING_INSTALLATION: 'pending_installation',
+  PENDING_INCOMING_TRANSFER: 'pending_incoming_transfer',
+  TECHNICAL_SUSPENDED: 'technical_suspended',
+  REGISTRY_SUSPENDED: 'registry_suspended',
 };
 
 export const DOMAIN_SUSPENSION_STATE = {
@@ -33,9 +37,13 @@ export const DOMAINS_BADGES_STATUS = {
   [DOMAIN_STATUS.RESTORABLE]: 'oui-badge_warning',
   [DOMAIN_STATUS.DELETED]: 'oui-badge_error',
   [DOMAIN_STATUS.PENDING_DELETE]: 'oui-badge_error',
-  [DOMAIN_STATUS.OUTGOING_TRANSFER]: 'oui-badge_warning',
+  [DOMAIN_STATUS.PENDING_OUTGOING_TRANSFER]: 'oui-badge_warning',
   [DOMAIN_STATUS.DISPUTE]: 'oui-badge_limited-edition',
-  [DOMAIN_STATUS.PENDING_INSTALLATION]: 'oui-badge_warning',
+  [DOMAIN_STATUS.PENDING_INSTALLATION]: 'oui-badge_info',
+  [DOMAIN_STATUS.PENDING_CREATE]: 'oui-badge_info',
+  [DOMAIN_STATUS.PENDING_INCOMING_TRANSFER]: 'oui-badge_info',
+  [DOMAIN_STATUS.TECHNICAL_SUSPENDED]: 'oui-badge_limited-edition',
+  [DOMAIN_STATUS.REGISTRY_SUSPENDED]: 'oui-badge_limited-edition',
 };
 
 export const DOMAINS_BADGES_SUSPENSION_STATE = {
