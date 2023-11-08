@@ -156,6 +156,8 @@ export const TERRAFORM_GUIDES = {
   SG: 'https://docs.ovh.com/sg/en/publiccloud/databases/order-terraform/',
 };
 
+export const DISCOVERY_PROMOTION_VOUCHER = 'FREETRIAL';
+
 export const DATABASE_CREATION_GUIDES =
   'https://github.com/ovh/public-cloud-databases-examples';
 
@@ -249,4 +251,5 @@ export default {
   LOCAL_ZONE_REGION,
   URL_INFO,
   DISCOVERY_PROJECT_PLANCODE,
+  DISCOVERY_PROMOTION_VOUCHER,
 };

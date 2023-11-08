@@ -29,6 +29,7 @@ export default {
     isMenuSidebarVisible: '<',
     isDiscoveryProject: '<',
     goToDiscoveryProjectActivationPage: '<',
+    discoveryPromotionVoucherAmount: '<',
   },
   controller,
   template,

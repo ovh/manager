@@ -1,12 +1,13 @@
 {
-  "pci_projects_project_breadcrumb": "Activation projet",
   "pci_projects_project_activate_title": "Activer votre projet",
   "pci_projects_project_activate_description": "La validation d'un moyen de paiement est obligatoire pour activer votre projet. Si vous choisissez de ne consommer aucune ressource Public Cloud, vous ne serez pas débité.",
   "pci_projects_project_activate_cta": "Activer votre projet",
 
-  "pci_projects_project_pci_banner_promotion_title": "200€ offerts",
+  "pci_projects_project_pci_banner_promotion_title": "Profitez de {{ amount }} offerts",
+  "pci_projects_project_pci_banner_no_promotion_title": "Bienvenue dans l’écosystème Public Cloud",
   "pci_projects_project_pci_banner_promotion_description_1": "Valable 1 mois pour tester nos services après l'ouverture de votre projet.",
   "pci_projects_project_pci_banner_promotion_description_2": "Vous serez débité uniquement si vous poursuivez l'utilisation de nos produits au delà de cette somme ou cette date. De quoi démarrer sereinement.",
+  "pci_projects_project_pci_banner_no_promotion_description": "Nos services sont consommables à la demande. Vous pouvez facilement démarrer un service pour le tester quelques heures et l’éteindre dès que vous n’en avez plus besoin.",
   "pci_projects_project_pci_banner_section_1_title": "Facturation granulaire",
   "pci_projects_project_pci_banner_section_1_description": "La facturation des ressources se fait en fonction de votre utilisation. Si vous utilisez un produit une heure, vous ne serez facturé que de cette heure là.",
   "pci_projects_project_pci_banner_section_2_title": "Facturation simple",
