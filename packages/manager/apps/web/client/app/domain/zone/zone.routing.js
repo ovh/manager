@@ -60,9 +60,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       ...commonResolve,
-      goToZoneHistory: /* @ngInject */ ($state) => (params) => {
-        $state.go('app.zone.details.zone-history', params);
-      },
+      goToZoneHistory: /* @ngInject */ ($state) => (params) => 
+        $state.go('app.zone.details.zone-history', params),
       activateZone: /* @ngInject */ ($state) => () =>
         $state.go('app.alldom.domain.zone.activate'),
       orderZone: /* @ngInject */ ($state) => () =>
