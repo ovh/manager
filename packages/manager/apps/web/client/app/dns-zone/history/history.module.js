@@ -9,7 +9,7 @@ const moduleName = 'ovhManagerWebDomainZoneHistoryModule';
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate'])
   .component('domainZoneDashboardHistory', componentDashboard)
-  .component('domainZoneDiffHistory', componentDiff)
+  .component('domainZoneDiffToolViewerHistory', componentDiff)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

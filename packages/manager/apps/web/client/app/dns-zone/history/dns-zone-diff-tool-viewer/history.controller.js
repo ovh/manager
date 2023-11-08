@@ -14,7 +14,6 @@ export default class DomainDnsZoneHistoryController {
     DNSZoneService,
     Domain,
     Alerter,
-    goBack,
   ) {
     this.$filter = $filter;
     this.$timeout = $timeout;
@@ -24,7 +23,6 @@ export default class DomainDnsZoneHistoryController {
     this.DNSZoneService = DNSZoneService;
     this.Domain = Domain;
     this.Alerter = Alerter;
-    this.goBack = goBack;
   }
 
   getZoneHistory(zoneId) {
