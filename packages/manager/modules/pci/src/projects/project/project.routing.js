@@ -93,8 +93,8 @@ export default /* @ngInject */ ($stateProvider) => {
           ? pciProjectNew
               .checkEligibility(DISCOVERY_PROMOTION_VOUCHER)
               .then((response) => response.voucher?.credit?.text)
-              .catch(() => false)
-          : null,
+              .catch(() => '')
+          : '',
 
       guideUrl: /* @ngInject */ (user) => {
         Object.keys(GUIDES_LIST).forEach((key) => {
