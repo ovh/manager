@@ -27,6 +27,7 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.zoneName = '';
     this.loading = true;
     this.vizualizeDnsZoneDataPopup = false;
+    this.vizualizeDnsRestorePopup = false;
   }
 
   goToDiffViewer() {
@@ -38,7 +39,7 @@ export default class DomainDnsZoneHistoryDashboardController {
     });
   }
 
-  closePopup() {
+  closeVisualizeDnsPopup() {
     this.vizualizeDnsZoneDataPopup = false;
   }
 
@@ -47,17 +48,43 @@ export default class DomainDnsZoneHistoryDashboardController {
   }
 
   visualizeDnsDataInPopup(url) {
-    // TODO: handle error case here too!
     this.loadingDnsZoneData = true;
-    this.DNSZoneService.readDnsFileData(url).then((res) => {
-      this.dnsZoneData = res;
-      this.loadingDnsZoneData = false;
-    });
+    this.DNSZoneService.readDnsFileData(url)
+      .then((res) => {
+        this.dnsZoneData = res;
+        this.loadingDnsZoneData = false;
+      })
+      .catch(({ message }) => {
+        this.Alerter.error(
+          this.$translate.instant('dashboard_history_error', { message }),
+        );
+      });
     this.vizualizeDnsZoneDataPopup = true;
   }
 
-  restoreDnsAtDate(date) {
-    return this.DNSZoneService.restore(this.zoneName, date);
+  sortedByDate() {
+    return this.listOfDnsZonesUrls.sort((a, b) => {
+      return new Date(b.creationDate) - new Date(a.creationDate);
+    });
+  }
+
+  closeDnsRestorePopup() {
+    this.vizualizeDnsRestorePopup = false;
+  }
+
+  openModalDnsRestore(date) {
+    this.chosenDateForRestoreDns = date;
+    this.vizualizeDnsRestorePopup = true;
+  }
+
+  confirmRestoreDnsAtDate(date) {
+    this.DNSZoneService.restore(this.zoneName, date)
+      .catch(({ message }) => {
+        this.Alerter.error(
+          this.$translate.instant('dashboard_history_error', { message }),
+        );
+      })
+      .finally((this.vizualizeDnsRestorePopup = false));
   }
 
   downloadDnsZoneFile(url) {

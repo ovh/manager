@@ -6,9 +6,15 @@
   "dashboard_history_creation_date": "Date de création",
   "dashboard_history_view_zone": "Voir",
   "dashboard_history_download": "Télécharger",
-  "dashboard_history_error": "Erreur de chargement des données: {{message}}.",
+  "dashboard_history_error": "Erreur de traitement des données: {{message}}.",
   "dashboard_history_restore": "Restaurer",
   "dashboard_history_popup_title": "Données de la zone DNS",
   "dashboard_history_close_popup": "Fermer",
-  "dashboard_history_compare_button_label": "Comparer les versions"
+  "dashboard_history_compare_button_label": "Comparer les versions",
+  "dashboard_history_title_restore_modal": "Restaurer ma zone DNS",
+  "dashboard_history_content_restore_modal": "Souhaitez-vous restaurer la sauvegarde du {{date}} ?",
+  "dashboard_history_content_restore_modal_primary_label": "Restaurer",
+  "dashboard_history_content_restore_modal_secondary_label": "Annuler",
+  "dashboard_history_warning_message_restore_modal": "Attention! La zone actuelle sera supprimée. La nouvelle zone selectionnée sera restaurée",
+  "dashboard_history_info_message_restore_modal": "La réinitialisation sera immmédiate dans la zone DNS, mais veuillez prendre en compte le temps de propagation (maximum 24h)."
 }
