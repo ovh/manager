@@ -9,5 +9,9 @@
   "octavia_load_balancer_onboarding_guide2_title": "Déployer un Load Balancer",
   "octavia_load_balancer_onboarding_guide2_description": "Découvrez comment configurer un Load Balancer Public Cloud",
   "octavia_load_balancer_onboarding_guide3_title": "Configurer un Load Balancer sécurisé avec Let's Encrypt",
-  "octavia_load_balancer_onboarding_guide3_description": "Découvrez comment configurer un Load Balancer Public Cloud sécurisé avec Let’s Encrypt"
+  "octavia_load_balancer_onboarding_guide3_description": "Découvrez comment configurer un Load Balancer Public Cloud sécurisé avec Let’s Encrypt",
+  "octavia_load_balancer_onboarding_private_network_modal_title": "Créer un réseau privé",
+  "octavia_load_balancer_onboarding_private_network_modal_description": "Par sa conception, notre Load Balancer vous est entièrement dédié et doit être lancé dans un réseau privé quelque soit l'architecture cible (Pub-to-Priv, Pub-to-Pub ou Priv-to-Priv).",
+  "octavia_load_balancer_onboarding_private_network_modal_more_link": "En savoir plus",
+  "octavia_load_balancer_onboarding_private_network_modal_message": "Un réseau privé est nécessaire pour utiliser un Load Balancer. Vous devez donc en créer un avant la création de votre Load Balancer."
 }
