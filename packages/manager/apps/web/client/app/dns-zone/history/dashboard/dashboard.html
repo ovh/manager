@@ -1,0 +1,173 @@
+<oui-back-button data-on-click="$ctrl.goBack()"></oui-back-button>
+
+<div class="row">
+    <oui-button
+        class="col-lg-6 col-md6 col-sm-6 mb-4 mt-4"
+        data-on-click="$ctrl.goToDiffViewer($ctrl.dnsEntriesForComparison, $ctrl.zoneId)"
+        data-disabled="!$ctrl.checkTwoElementsAreSelected($index)"
+    >
+        <span data-translate="dashboard_history_compare_button_label"></span>
+    </oui-button>
+</div>
+
+<div data-ovh-alert="dnsZoneAlert"></div>
+
+<div class="row table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th
+                    class="text-center"
+                    scope="col"
+                    data-translate="dashboard_history_creation_date"
+                ></th>
+                <th
+                    class="text-center"
+                    scope="col"
+                    data-translate="dashboard_history_view_zone"
+                ></th>
+                <th
+                    class="text-center"
+                    scope="col"
+                    data-translate="dashboard_history_download"
+                ></th>
+                <th
+                    class="text-center"
+                    scope="col"
+                    data-translate="dashboard_history_restore"
+                ></th>
+                <th class="text-center min-width" scope="col"></th>
+            </tr>
+        </thead>
+
+        <tbody data-ng-if="$ctrl.loading">
+            <tr>
+                <td class="text-center" colspan="6">
+                    <oui-spinner></oui-spinner>
+                </td>
+            </tr>
+        </tbody>
+
+        <tbody data-ng-if="!$ctrl.loading">
+            <tr
+                data-ng-repeat="dnsZone in $ctrl.listOfDnsZonesUrls track by $index"
+            >
+                <td>
+                    <oui-checkbox
+                        data-model="$ctrl.dnsEntriesForComparison[$index].active"
+                    >
+                    </oui-checkbox>
+                </td>
+                <td
+                    class="text-center col-md-3 col-lg-3 col-sm-3"
+                    data-ng-bind="::dnsZone.creationDate | date: $ctrl.DATE_FORMAT"
+                ></td>
+                <td class="text-center col-md-3 col-lg-3 col-sm-3">
+                    <button
+                        class="oui-button"
+                        type="button"
+                        data-oui-tooltip="{{:: 'dashboard_history_view_zone' | translate }}"
+                        aria-label="{{:: 'dashboard_history_view_zone' | translate }}"
+                        data-ng-click="$ctrl.visualizeDnsDataInPopup(dnsZone.zoneFileUrl)"
+                    >
+                        <span
+                            style="font-size: 24px;"
+                            class="oui-icon oui-icon-eye-open"
+                            aria-hidden="true"
+                        ></span>
+                    </button>
+                </td>
+                <td class="text-center col-md-3 col-lg-3 col-sm-3">
+                    <button
+                        class="oui-button"
+                        type="button"
+                        aria-label="{{:: 'dashboard_history_download' | translate }}"
+                        data-oui-tooltip="{{:: 'dashboard_history_download' | translate }}"
+                        data-ng-click="$ctrl.downloadDnsZoneFile(dnsZone.zoneFileUrl)"
+                    >
+                        <span
+                            style="font-size: 24px;"
+                            class="oui-icon oui-icon-download_concept"
+                            aria-hidden="true"
+                        ></span>
+                    </button>
+                </td>
+                <td class="text-center col-md-3 col-lg-3 col-sm-3">
+                    <button
+                        data-ng-if="$index!==0"
+                        class="oui-button"
+                        type="button"
+                        aria-label="{{:: 'dashboard_history_restore' | translate }}"
+                        data-oui-tooltip="{{:: 'dashboard_history_restore' | translate }}"
+                        data-ng-click="$ctrl.openModalDnsRestore(dnsZone.creationDate)"
+                    >
+                        <span
+                            style="font-size: 24px;"
+                            class="oui-icon oui-icon-refresh"
+                            aria-hidden="true"
+                        ></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div data-ng-if="$ctrl.vizualizeDnsZoneDataPopup">
+    <div class="modal d-block" role="dialog" id="modal-dns-zone-data">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <oui-modal
+                    data-heading="{{:: 'dashboard_history_popup_title' | translate }}"
+                    data-primary-action="$ctrl.closeVisualizeDnsPopup()"
+                    data-primary-label="{{:: 'dashboard_history_close_popup' | translate }}"
+                    data-secondary-disabled="true"
+                    data-on-dismiss="$ctrl.closeVisualizeDnsPopup()"
+                >
+                    <oui-spinner ng-if="$ctrl.loadingDnsZoneData"></oui-spinner>
+                    <div
+                        style="white-space: pre-wrap;"
+                        ng-if="!$ctrl.loadingDnsZoneData"
+                        class="mb-0"
+                    >
+                        {{ $ctrl.dnsZoneData }}
+                    </div>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>
+
+<div data-ng-if="$ctrl.vizualizeDnsRestorePopup">
+    <div class="modal d-block" role="dialog" id="modal-dns-zone-data">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <oui-modal
+                    heading="{{:: 'dashboard_history_restore_modal_title' | translate }}"
+                    primary-action="$ctrl.confirmRestoreDnsAtDate($ctrl.chosenDateForRestoreDns)"
+                    primary-label="{{ :: 'dashboard_history_restore_modal_primary_label' | translate }}"
+                    secondary-action="$ctrl.closeDnsRestorePopup()"
+                    secondary-label="{{ :: 'dashboard_history_restore_modal_secondary_label' | translate }}"
+                    on-dismiss="$ctrl.closeDnsRestorePopup()"
+                >
+                    <p
+                        data-ng-bind-html="'dashboard_history_restore_modal_content' | translate: { date: $ctrl.chosenDateForRestoreDns }"
+                    ></p>
+                    <div
+                        class="alert alert-warning"
+                        role="alert"
+                        data-ng-bind-html="'dashboard_history_restore_modal_warning_message' | translate"
+                    ></div>
+                    <div
+                        class="alert alert-info"
+                        role="alert"
+                        data-ng-bind-html="'dashboard_history_restore_modal_info_message' | translate"
+                    ></div>
+                </oui-modal>
+            </div>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>

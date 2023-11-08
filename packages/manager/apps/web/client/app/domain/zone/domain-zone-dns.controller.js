@@ -11,9 +11,11 @@ export default class DomainTabZoneDnsCtrl {
   /* @ngInject */
   constructor(
     $scope,
+    $stateParams,
     $q,
     $translate,
     activateZone,
+    goToZoneHistory,
     coreConfig,
     orderZone,
     Alerter,
@@ -21,6 +23,7 @@ export default class DomainTabZoneDnsCtrl {
     WucUser,
   ) {
     this.$scope = $scope;
+    this.productId = $stateParams.productId;
     this.$q = $q;
     this.$translate = $translate;
     this.Alerter = Alerter;
@@ -28,6 +31,7 @@ export default class DomainTabZoneDnsCtrl {
     this.WucUser = WucUser;
 
     this.activateZone = activateZone;
+    this.goToZoneHistory = goToZoneHistory;
     this.orderZone = orderZone;
     this.region = coreConfig.getRegion();
   }
@@ -65,6 +69,10 @@ export default class DomainTabZoneDnsCtrl {
     if (!this.domain.isExpired) {
       this.displayPropagationInfo(this.domain.name);
     }
+  }
+
+  navigateToZoneHistory() {
+    this.goToZoneHistory({ productId: this.productId });
   }
 
   // Searching --------------------------------------------------------------

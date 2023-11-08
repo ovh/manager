@@ -1,4 +1,20 @@
 {
   "zones_title": "Zones DNS",
-  "zones_order": "Commander"
+  "zones_order": "Commander",
+  "base_dns_zone": "Zone DNS de base",
+  "modified_dns_zone": "Zone DNS de modifiée",
+  "dashboard_history_creation_date": "Date de création",
+  "dashboard_history_view_zone": "Voir",
+  "dashboard_history_download": "Télécharger",
+  "dashboard_history_error": "Erreur de traitement des données: {{message}}.",
+  "dashboard_history_restore": "Restaurer",
+  "dashboard_history_popup_title": "Données de la zone DNS",
+  "dashboard_history_close_popup": "Fermer",
+  "dashboard_history_compare_button_label": "Comparer les versions",
+  "dashboard_history_restore_modal_title": "Restaurer ma zone DNS",
+  "dashboard_history_restore_modal_content": "Souhaitez-vous restaurer la sauvegarde du {{date}} ?",
+  "dashboard_history_restore_modal_primary_label": "Restaurer",
+  "dashboard_history_restore_modal_secondary_label": "Annuler",
+  "dashboard_history_restore_modal_warning_message": "Attention! La zone actuelle sera supprimée. La nouvelle zone selectionnée sera restaurée",
+  "dashboard_history_restore_modal_info_message": "La réinitialisation sera immmédiate dans la zone DNS, mais veuillez prendre en compte le temps de propagation (maximum 24h)."
 }
