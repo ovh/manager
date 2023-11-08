@@ -1,4 +1,4 @@
-import constants from './dashboard.constants';
+import {DNS_FILENAME} from './dashboard.constants';
 
 export default class DomainDnsZoneHistoryDashboardController {
   constructor(
