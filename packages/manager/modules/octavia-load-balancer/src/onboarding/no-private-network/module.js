@@ -1,28 +1,25 @@
 import angular from 'angular';
 import '@ovh-ux/manager-core';
-import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@uirouter/angularjs';
 import 'angular-translate';
-
-import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import '@ovh-ux/ng-ui-router-layout';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
 
 import component from './component';
 import routing from './routing';
-import noPrivateNetwork from './no-private-network';
 
-const moduleName = 'ovhManagerOctaviaLoadBalancerOnboarding';
+const moduleName = 'ovhManagerOctaviaLoadBalancerOnboardingNoPrivateNetwork';
 
 angular
   .module(moduleName, [
-    'ngUiRouterBreadcrumb',
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
-    noPrivateNetwork,
-    OnboardingLayoutHelper,
+    'ngUiRouterLayout',
+    ngAtInternet,
   ])
   .config(routing)
-  .component('octaviaLoadBalancerOnboarding', component)
+  .component('octaviaLoadBalancerOnboardingNoPrivateNetwork', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
