@@ -103,7 +103,7 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.$state.go('app.zone.details.dashboard', this.$stateParams);
   }
 
-  getZoneHistory(zoneName) {
+  getZoneHistory(zoneId) {
     return this.Domain.getZoneHistory(zoneName, 30);
   }
 
