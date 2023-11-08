@@ -1,6 +1,6 @@
 import angular from 'angular';
 import 'angular-translate';
-import componentDiff from './diff/history.component';
+import componentDiff from './dns-zone-diff-tool-viewer/history.component';
 import componentDashboard from './dashboard/dashboard.component';
 import routing from './history.routing';
 
