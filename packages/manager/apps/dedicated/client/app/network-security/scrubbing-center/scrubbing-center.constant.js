@@ -12,6 +12,4 @@ export const PERIOD_LIST = {
   lastYear: 'lastYear',
 };
 
-export const API_PATH = '/networkDefense/vac';
-
-export default { PERIODS, PERIOD_LIST, API_PATH };
+export default { PERIODS, PERIOD_LIST };

@@ -8,6 +8,7 @@ export default {
     goToTraffic: '<',
     isScrubbingCenterActive: '<',
     isTrafficActive: '<',
+    goTo: '<',
   },
   template,
 };

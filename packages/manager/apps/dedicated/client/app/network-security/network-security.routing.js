@@ -7,6 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('network_security_title'),
+      goTo: /* @ngInject */ ($state) => ({ name, params }) =>
+        $state.go(name, params),
       goToScrubbingCenter: /* @ngInject */ ($state) => () =>
         $state.go('network-security.scrubbing-center'),
       goToTraffic: /* @ngInject */ ($state) => () =>

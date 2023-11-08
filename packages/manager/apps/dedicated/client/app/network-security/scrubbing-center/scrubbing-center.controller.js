@@ -1,4 +1,5 @@
 import { PERIODS, PERIOD_LIST } from './scrubbing-center.constant';
+import { PAGE_SIZE } from '../network-security.constant';
 
 export default class ScrubbingCenterController {
   /* @ngInject */
@@ -6,13 +7,14 @@ export default class ScrubbingCenterController {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.networkSecurityService = networkSecurityService;
+
     this.PERIODS = PERIODS;
     this.PERIOD_LIST = PERIOD_LIST;
+    this.PAGE_SIZE = PAGE_SIZE;
   }
 
   $onInit() {
     this.errorMessage = '';
-    this.pageSize = 10;
     this.periods = this.networkSecurityService.initPeriods(this.PERIODS);
     [this.period] = this.periods;
     this.networkSecurityService.initService().then((data) => {
@@ -25,9 +27,35 @@ export default class ScrubbingCenterController {
     if (!ip) {
       this.getAllEvents();
     }
+    this.isLoading = false;
   }
 
-  getAllEvents(service) {
+  getEventsList(cursor, after, subnets, pageSize) {
+    this.isLoading = true;
+    const params = {
+      after,
+      subnets,
+    };
+    return this.networkSecurityService
+      .getEventsList({
+        cursor,
+        params,
+        pageSize,
+      })
+      .then((response) => {
+        if (response.data) {
+          this.events = this.events.concat(response.data);
+        }
+        if (response.cursor.next) {
+          this.getEventsList(response.cursor.next, after, subnets, pageSize);
+        }
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
+  }
+
+  getAllEvents() {
     this.isLoading = true;
     this.events = [];
     let after = '';
@@ -52,30 +80,7 @@ export default class ScrubbingCenterController {
           .subtract(1, 'days')
           .toISOString();
     }
-    const params = {
-      after,
-    };
-    if (service) {
-      params.subnets = service;
-    }
-    if (!service && this.service && !this.selectedIp) {
-      params.subnets = this.autocomplete.map((el) => el.ipBlock);
-    }
-    if (!service && this.selectedIp) {
-      params.subnets = this.selectedIp;
-    }
-    return this.networkSecurityService.getEvents(params).then(({ data }) => {
-      if (data.events) {
-        this.events = data.events;
-      } else {
-        this.Alerter.error(
-          this.$translate.instant('network_security_dashboard_events_error'),
-          'network_security_error',
-        );
-      }
-      this.isLoading = false;
-      return data;
-    });
+    this.getEventsList(null, after, this.selectedIp, this.PAGE_SIZE);
   }
 
   selectService() {
@@ -94,7 +99,7 @@ export default class ScrubbingCenterController {
         )
         .then((data) => {
           this.autocomplete = data;
-          this.getAllEvents();
+          this.getAllEvents('selectService');
         });
     }
   }
@@ -122,6 +127,6 @@ export default class ScrubbingCenterController {
     }
 
     this.selectedIp = value.ipBlock ? value.ipBlock : value;
-    return this.getAllEvents();
+    return this.getAllEvents('selectIp');
   }
 }

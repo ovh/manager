@@ -1,15 +1,27 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('network-security.scrubbing-center', {
-    url: '/scrubbing-center',
+    url: '/scrubbing-center?cursors',
     component: 'scrubbingCenter',
     params: {
       ip: null,
+      cursors: {
+        array: false,
+        dynamic: true,
+        inherit: false,
+        squash: true,
+        type: 'cursors',
+        value: null,
+      },
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('network_security_dashboard_title'),
-      showStats: /* @ngInject */ ($state) => (row) =>
-        $state.go('network-security.traffic', { subnet: row.subnet }),
+      cursors: /* @ngInject */ ($transition$) => $transition$.params().cursors,
+      showStats: /* @ngInject */ (goTo) => (row) =>
+        goTo({
+          name: 'network-security.traffic',
+          params: { subnet: row.subnet },
+        }),
       getIp: /* @ngInject */ ($state) => () => $state.params.ip,
     },
   });

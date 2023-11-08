@@ -1,3 +1,5 @@
+export const PAGE_SIZE = 300;
+
 export const TRAFFIC_PERIODS = [
   { key: 'last24h', value: 'network_security_dashboard_filter_last_24h' },
   { key: 'lastWeek', value: 'network_security_dashboard_filter_last_week' },
@@ -79,4 +81,4 @@ export const CHART = {
   units: ['b', 'kb', 'mb', 'gb', 'tb', 'pb'],
 };
 
-export default { TRAFFIC_PERIODS, TRAFFIC_PERIOD_LIST, CHART };
+export default { PAGE_SIZE, TRAFFIC_PERIODS, TRAFFIC_PERIOD_LIST, CHART };

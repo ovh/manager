@@ -1,4 +1,4 @@
-import { API_PATH } from './network-security.constant';
+import { API_PATH, PAGE_SIZE } from './network-security.constant';
 
 export default class NetworkSecurityService {
   /* @ngInject */
@@ -7,6 +7,7 @@ export default class NetworkSecurityService {
     this.$translate = $translate;
     this.Apiv2Service = Apiv2Service;
     this.API_PATH = API_PATH;
+    this.PAGE_SIZE = PAGE_SIZE;
   }
 
   getTraffic(params) {
@@ -17,11 +18,15 @@ export default class NetworkSecurityService {
     });
   }
 
-  getEvents(params) {
-    return this.Apiv2Service.httpApiv2({
-      method: 'get',
-      url: `/engine/api/v2${this.API_PATH}/event`,
-      params,
+  getEventsList({ cursor, params, pageSize }) {
+    return this.Apiv2Service.httpApiv2List(
+      {
+        url: `/engine/api/v2${this.API_PATH}/event`,
+        params,
+      },
+      { cursor, size: pageSize },
+    ).then((response) => {
+      return { ...response, data: response.data.events };
     });
   }
 

@@ -155,6 +155,9 @@
     "webpack": "^5.76.2",
     "webpack-merge": "^5.0.2"
   },
+  "peerDependencies": {
+    "@ovh-ux/manager-ng-apiv2-helper": "^0.1.0"
+  },
   "regions": [
     "CA",
     "EU",

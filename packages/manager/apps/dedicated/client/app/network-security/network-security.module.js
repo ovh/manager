@@ -4,7 +4,7 @@ import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@ovh-ux/ui-kit';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import { ApiV2ListHelper } from '../../../../../modules/ng-apiv2-helper';
+import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
 
 import component from './network-security.component';
 import routing from './network-security.routing';
