@@ -91,7 +91,7 @@ export default class DomainDnsZoneHistoryDashboardController {
     const link = this.$document[0].createElement('a');
     if (link.download !== undefined) {
       link.setAttribute('href', url);
-      link.setAttribute('download', constants.DNS_FILENAME);
+      link.setAttribute('download', DNS_FILENAME);
       link.style = 'visibility:hidden';
       this.$document[0].body.appendChild(link);
       link.click();
