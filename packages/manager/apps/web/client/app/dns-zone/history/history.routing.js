@@ -14,7 +14,6 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       'dnsZoneView@app.zone.details': {
         controller: controllerDiff,
-        controllerAs: 'ctrlDomainHistoryOfZoneDns',
         template: templateDiff,
       },
     },
@@ -29,7 +28,6 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       'dnsZoneView@app.zone.details': {
         controller: controllerDashboard,
-        controllerAs: 'ctrlDashboardHistoryOfZoneDns',
         template: templateDashboard,
       },
     },

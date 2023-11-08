@@ -1,12 +1,10 @@
-<oui-back-button
-    data-on-click="ctrlDashboardHistoryOfZoneDns.goBack()"
-></oui-back-button>
+<oui-back-button data-on-click="$ctrl.goBack()"></oui-back-button>
 
 <div class="row">
     <oui-button
         class="col-lg-6 col-md6 col-sm-6 mb-4 mt-4"
-        data-on-click="ctrlDashboardHistoryOfZoneDns.goToDiffViewer()"
-        data-disabled="!ctrlDashboardHistoryOfZoneDns.checkTwoElementsAreSelected($index)"
+        data-on-click="$ctrl.goToDiffViewer()"
+        data-disabled="!$ctrl.checkTwoElementsAreSelected($index)"
     >
         <span data-translate="dashboard_history_compare_button_label"></span>
     </oui-button>
@@ -41,7 +39,7 @@
             </tr>
         </thead>
 
-        <tbody data-ng-if="ctrlDashboardHistoryOfZoneDns.loading">
+        <tbody data-ng-if="$ctrl.loading">
             <tr>
                 <td class="text-center" colspan="6">
                     <oui-spinner></oui-spinner>
@@ -49,13 +47,13 @@
             </tr>
         </tbody>
 
-        <tbody data-ng-if="!ctrlDashboardHistoryOfZoneDns.loading">
+        <tbody data-ng-if="!$ctrl.loading">
             <tr
-                data-ng-repeat="dnsZone in ctrlDashboardHistoryOfZoneDns.sortedByDate() track by $index"
+                data-ng-repeat="dnsZone in $ctrl.sortedByDate() track by $index"
             >
                 <td>
                     <oui-checkbox
-                        data-model="ctrlDashboardHistoryOfZoneDns.dnsEntriesForComparison[$index].active"
+                        data-model="$ctrl.dnsEntriesForComparison[$index].active"
                     >
                     </oui-checkbox>
                 </td>
@@ -68,7 +66,7 @@
                         type="button"
                         data-oui-tooltip="{{:: 'dashboard_history_view_zone' | translate }}"
                         aria-label="{{:: 'dashboard_history_view_zone' | translate }}"
-                        data-ng-click="ctrlDashboardHistoryOfZoneDns.visualizeDnsDataInPopup(dnsZone.zoneFileUrl)"
+                        data-ng-click="$ctrl.visualizeDnsDataInPopup(dnsZone.zoneFileUrl)"
                     >
                         <span
                             style="font-size: 24px;"
@@ -83,7 +81,7 @@
                         type="button"
                         aria-label="{{:: 'dashboard_history_download' | translate }}"
                         data-oui-tooltip="{{:: 'dashboard_history_download' | translate }}"
-                        data-ng-click="ctrlDashboardHistoryOfZoneDns.downloadDnsZoneFile(dnsZone.zoneFileUrl)"
+                        data-ng-click="$ctrl.downloadDnsZoneFile(dnsZone.zoneFileUrl)"
                     >
                         <span
                             style="font-size: 24px;"
@@ -99,7 +97,7 @@
                         type="button"
                         aria-label="{{:: 'dashboard_history_restore' | translate }}"
                         data-oui-tooltip="{{:: 'dashboard_history_restore' | translate }}"
-                        data-ng-click="ctrlDashboardHistoryOfZoneDns.openModalDnsRestore(dnsZone.creationDate)"
+                        data-ng-click="$ctrl.openModalDnsRestore(dnsZone.creationDate)"
                     >
                         <span
                             style="font-size: 24px;"
@@ -113,26 +111,24 @@
     </table>
 </div>
 
-<div data-ng-if="ctrlDashboardHistoryOfZoneDns.vizualizeDnsZoneDataPopup">
+<div data-ng-if="$ctrl.vizualizeDnsZoneDataPopup">
     <div class="modal d-block" role="dialog" id="modal-dns-zone-data">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <oui-modal
                     data-heading="{{:: 'dashboard_history_popup_title' | translate }}"
-                    data-primary-action="ctrlDashboardHistoryOfZoneDns.closeVisualizeDnsPopup()"
+                    data-primary-action="$ctrl.closeVisualizeDnsPopup()"
                     data-primary-label="{{:: 'dashboard_history_close_popup' | translate }}"
                     data-secondary-disabled="true"
-                    data-on-dismiss="ctrlDashboardHistoryOfZoneDns.closeVisualizeDnsPopup()"
+                    data-on-dismiss="$ctrl.closeVisualizeDnsPopup()"
                 >
-                    <oui-spinner
-                        ng-if="ctrlDashboardHistoryOfZoneDns.loadingDnsZoneData"
-                    ></oui-spinner>
+                    <oui-spinner ng-if="$ctrl.loadingDnsZoneData"></oui-spinner>
                     <div
                         style="white-space: pre-wrap;"
-                        ng-if="!ctrlDashboardHistoryOfZoneDns.loadingDnsZoneData"
+                        ng-if="!$ctrl.loadingDnsZoneData"
                         class="mb-0"
                     >
-                        {{ ctrlDashboardHistoryOfZoneDns.dnsZoneData }}
+                        {{ $ctrl.dnsZoneData }}
                     </div>
                 </oui-modal>
             </div>
@@ -141,20 +137,20 @@
     <div class="oui-modal-backdrop"></div>
 </div>
 
-<div data-ng-if="ctrlDashboardHistoryOfZoneDns.vizualizeDnsRestorePopup">
+<div data-ng-if="$ctrl.vizualizeDnsRestorePopup">
     <div class="modal d-block" role="dialog" id="modal-dns-zone-data">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <oui-modal
                     heading="{{:: 'dashboard_history_title_restore_modal' | translate }}"
-                    primary-action="ctrlDashboardHistoryOfZoneDns.confirmRestoreDnsAtDate(ctrlDashboardHistoryOfZoneDns.chosenDateForRestoreDns)"
+                    primary-action="$ctrl.confirmRestoreDnsAtDate($ctrl.chosenDateForRestoreDns)"
                     primary-label="{{ :: 'dashboard_history_content_restore_modal_primary_label' | translate }}"
-                    secondary-action="ctrlDashboardHistoryOfZoneDns.closeDnsRestorePopup()"
+                    secondary-action="$ctrl.closeDnsRestorePopup()"
                     secondary-label="{{ :: 'dashboard_history_content_restore_modal_secondary_label' | translate }}"
-                    on-dismiss="ctrlDashboardHistoryOfZoneDns.closeDnsRestorePopup()"
+                    on-dismiss="$ctrl.closeDnsRestorePopup()"
                 >
                     <p
-                        data-ng-bind-html="'dashboard_history_content_restore_modal' | translate: { date: ctrlDashboardHistoryOfZoneDns.chosenDateForRestoreDns }"
+                        data-ng-bind-html="'dashboard_history_content_restore_modal' | translate: { date: $ctrl.chosenDateForRestoreDns }"
                     ></p>
                     <div
                         class="alert alert-warning"
