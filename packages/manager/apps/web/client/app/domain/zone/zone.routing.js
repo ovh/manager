@@ -3,6 +3,8 @@ import template from './domain-zone-dns.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   const commonResolve = {
+    goToZoneHistory: /* @ngInject */ ($state) => (params) =>
+      $state.go('app.zone.details.zone-history', params),
     breadcrumb: /* @ngInject */ ($translate) =>
       $translate.instant('domain_zone'),
   };
@@ -20,8 +22,6 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       ...commonResolve,
-      goToZoneHistory: /* @ngInject */ ($state) => (params) =>
-        $state.go('app.zone.details.zone-history', params),
       activateZone: /* @ngInject */ ($state) => () =>
         $state.go('app.domain.product.zone.activate'),
       orderZone: /* @ngInject */ ($state) => () =>
@@ -59,8 +59,6 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       ...commonResolve,
-      goToZoneHistory: /* @ngInject */ ($state) => (params) =>
-        $state.go('app.zone.details.zone-history', params),
       activateZone: /* @ngInject */ ($state) => () =>
         $state.go('app.alldom.domain.zone.activate'),
       orderZone: /* @ngInject */ ($state) => () =>

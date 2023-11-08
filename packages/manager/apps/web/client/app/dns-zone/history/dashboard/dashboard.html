@@ -59,9 +59,10 @@
                     >
                     </oui-checkbox>
                 </td>
-                <td class="text-center col-md-3 col-lg-3 col-sm-3">
-                    {{ dnsZone.creationDate | date: $ctrl.DATE_FORMAT }}
-                </td>
+                <td
+                    class="text-center col-md-3 col-lg-3 col-sm-3"
+                    data-ng-bind="::dnsZone.creationDate | date: $ctrl.DATE_FORMAT"
+                ></td>
                 <td class="text-center col-md-3 col-lg-3 col-sm-3">
                     <button
                         class="oui-button"
