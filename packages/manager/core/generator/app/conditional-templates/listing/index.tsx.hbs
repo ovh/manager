@@ -3,6 +3,8 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { useQueries } from '@tanstack/react-query';
 import { getListingIceberg{{#if this.pimID}}, getPIMService{{/if}} } from '@/api';
 import Datagrid from '@/components/layout-helpers/Listing/dataGrid';
+import Loading from '@/components/Loading/Loading';
+import ErrorBanner from '@/components/Error/Error';
 import appConfig from '@/{{this.appName}}.config';
 import Breadcrumb, {
   BreadcrumbHandleParams,
@@ -49,15 +51,14 @@ export default function Listing() {
   const servicesListingIcebergResult = results[0];
   {{#if this.pimID}}const pimServiceResult = results[1];{{/if}}
 
-  const isError = servicesListingIcebergResult.error{{#if this.pimID}} || pimServiceResult.error{{/if}};
-  const isLoading = servicesListingIcebergResult.isLoading{{#if this.pimID}} || pimServiceResult.isLoading{{/if}};
+  const { error, isLoading, } = results[0];
 
-  if (isLoading) {
-    return <p>Loading...</p>;
+  if (error) {
+    return <ErrorBanner error={error.response} />;
   }
 
-  if (isError || results[0].data.status !== 200) {
-    return <Navigate to="onboarding" />;
+  if (isLoading) {
+    return (<div><Loading/></div>)
   }
 
   return (
