@@ -72,7 +72,7 @@ export default class DomainDnsZoneHistoryDashboardController {
           'dnsZoneAlert',
         );
       })
-      .finally(this.closeDnsRestorePopup());
+      .finally(this.closeDnsRestorePopup);
   }
 
   downloadDnsZoneFile(url) {
