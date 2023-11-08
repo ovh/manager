@@ -10,7 +10,7 @@ export default class DNSZoneService {
       .then(({ data }) => data);
   }
 
-  readDnsFileData(url) {
+  getDnsFile(url) {
     return this.$http.get(url).then(({ data }) => data);
   }
 
