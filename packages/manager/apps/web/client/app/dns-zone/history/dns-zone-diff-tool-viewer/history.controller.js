@@ -34,6 +34,9 @@ export default class DomainDnsZoneHistoryController {
   }
 
   computeGitUnidiff() {
+    if (!this.baseDnsZoneData || !this.modifiedDnsZoneData) {
+      return '';
+    }
     return unidiff.diffAsText(this.baseDnsZoneData, this.modifiedDnsZoneData, {
       aname: 'dns',
       bname: 'dns',

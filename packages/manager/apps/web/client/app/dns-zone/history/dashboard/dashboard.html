@@ -51,7 +51,7 @@
 
         <tbody data-ng-if="!$ctrl.loading">
             <tr
-                data-ng-repeat="dnsZone in $ctrl.sortedByDate() track by $index"
+                data-ng-repeat="dnsZone in $ctrl.listOfDnsZonesUrls track by $index"
             >
                 <td>
                     <oui-checkbox

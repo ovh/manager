@@ -45,12 +45,6 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.vizualizeDnsZoneDataPopup = true;
   }
 
-  sortedByDate() {
-    return this.listOfDnsZonesUrls.sort((a, b) => {
-      return new Date(b.creationDate) - new Date(a.creationDate);
-    });
-  }
-
   closeDnsRestorePopup() {
     this.vizualizeDnsRestorePopup = false;
   }
@@ -68,7 +62,7 @@ export default class DomainDnsZoneHistoryDashboardController {
           'dnsZoneAlert',
         );
       })
-      .finally(this.closeDnsRestorePopup);
+      .finally(() => this.closeDnsRestorePopup());
   }
 
   downloadDnsZoneFile(url) {
@@ -104,7 +98,9 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.zoneId = this.$stateParams.productId;
     this.getZoneHistory(this.$stateParams.productId)
       .then((dates) => {
-        this.dates = dates.slice(0, 30);
+        this.dates = dates.slice(0, 30).sort((a, b) => {
+          return new Date(b) - new Date(a);
+        });
         this.dates.map((u, idx) =>
           this.dnsEntriesForComparison.push({
             id: idx,
@@ -119,7 +115,9 @@ export default class DomainDnsZoneHistoryDashboardController {
             ),
           )
           .then((zoneUrls) => {
-            this.listOfDnsZonesUrls = [...zoneUrls];
+            this.listOfDnsZonesUrls = [...zoneUrls].sort((a, b) => {
+              return new Date(b.creationDate) - new Date(a.creationDate);
+            });
           });
       })
       .catch(({ data: { message } }) => {
