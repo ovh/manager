@@ -17,6 +17,14 @@ export default /* @ngInject */ ($stateProvider) => {
         $http
           .get(`/cloud/project/${projectId}/aggregated/loadbalancer`)
           .then(({ data }) => data.resources),
+      hasPrivateNetwork: /* @ngInject */ ($http, projectId) =>
+        $http
+          .get(`/cloud/project/${projectId}/network/private`)
+          .then(({ data }) => data && data.length > 0),
+      goToLoadBalancerCreation: /* @ngInject */ ($state) => () =>
+        $state.go('octavia-load-balancer.create'),
+      goToNoPrivateNetwork: /* @ngInject */ ($state) => () =>
+        $state.go('octavia-load-balancer.onboarding.no-private-network'),
     },
     atInternet: {
       rename: TRACKING_NAME,
