@@ -40,6 +40,9 @@ import pciMaintenanceBanner from '../../components/pci-maintenance-banner';
 import aiDashboard from './ai-dashboard';
 import projectComponent from './project.component';
 import service from './project.service';
+import pciProjectNew from '../new/service';
+import orderCart from '../order-cart.service';
+import dataIntegration from './data-integration';
 import gateways from './gateways';
 
 import './project.less';
@@ -88,6 +91,8 @@ angular
   .config(routing)
   .component('pciProject', projectComponent)
   .run(/* @ngTranslationsInject:json ./translations */)
+  .service('orderCart', orderCart)
+  .service('pciProjectNew', pciProjectNew)
   .service('PciProject', service);
 
 export default moduleName;
