@@ -1,4 +1,4 @@
-import {DNS_FILENAME} from './dashboard.constants';
+import { DNS_FILENAME } from './dashboard.constants';
 
 export default class DomainDnsZoneHistoryDashboardController {
   constructor(
@@ -10,6 +10,8 @@ export default class DomainDnsZoneHistoryDashboardController {
     Domain,
     Alerter,
     DNSZoneService,
+    goBack,
+    goToDiffViewer,
   ) {
     this.$translate = $translate;
     this.$stateParams = $stateParams;
@@ -19,24 +21,8 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.DNSZoneService = DNSZoneService;
     this.$document = $document;
     this.$q = $q;
-
-    this.listOfDnsZonesUrls = [];
-    this.dnsEntriesForComparison = [];
-    this.dnsZoneData = null;
-    this.loadingDnsZoneData = false;
-    this.zoneName = '';
-    this.loading = true;
-    this.vizualizeDnsZoneDataPopup = false;
-    this.vizualizeDnsRestorePopup = false;
-  }
-
-  goToDiffViewer() {
-    this.$state.go('app.zone.details.zone-history.diff', {
-      selectedDates: this.dnsEntriesForComparison
-        .filter((u) => u.active)
-        .map((u) => u.date),
-      productId: this.zoneName,
-    });
+    this.goBack = goBack;
+    this.goToDiffViewer = goToDiffViewer;
   }
 
   closeVisualizeDnsPopup() {
@@ -49,7 +35,7 @@ export default class DomainDnsZoneHistoryDashboardController {
 
   visualizeDnsDataInPopup(url) {
     this.loadingDnsZoneData = true;
-    this.DNSZoneService.readDnsFileData(url)
+    this.DNSZoneService.getDnsFile(url)
       .then((res) => {
         this.dnsZoneData = res;
         this.loadingDnsZoneData = false;
@@ -72,19 +58,20 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.vizualizeDnsRestorePopup = false;
   }
 
-  openModalDnsRestore(date) {
-    this.chosenDateForRestoreDns = date;
+  openModalDnsRestore(creationDate) {
+    this.chosenDateForRestoreDns = creationDate;
     this.vizualizeDnsRestorePopup = true;
   }
 
-  confirmRestoreDnsAtDate(date) {
-    this.DNSZoneService.restore(this.zoneName, date)
-      .catch(({ message }) => {
+  confirmRestoreDnsAtDate(creationDate) {
+    this.DNSZoneService.restore(this.zoneId, creationDate)
+      .catch(({ data: { message } }) => {
         this.Alerter.error(
           this.$translate.instant('dashboard_history_error', { message }),
+          'dnsZoneAlert',
         );
       })
-      .finally(this.closeDnsRestorePopup);
+      .finally(this.closeDnsRestorePopup());
   }
 
   downloadDnsZoneFile(url) {
@@ -99,20 +86,25 @@ export default class DomainDnsZoneHistoryDashboardController {
     }
   }
 
-  goBack() {
-    this.$state.go('app.zone.details.dashboard', this.$stateParams);
-  }
-
   getZoneHistory(zoneId) {
-    return this.Domain.getZoneHistory(zoneId, 30);
+    return this.Domain.getZoneHistory(zoneId);
   }
 
-  getZoneDataAtDate(zoneName, date) {
-    return this.Domain.getZoneDataAtDate(zoneName, date);
+  getZoneDataByDate(zoneId, creationDate) {
+    return this.Domain.getZoneDataByDate(zoneId, creationDate);
   }
 
   $onInit() {
-    this.zoneName = this.$stateParams.productId;
+    this.listOfDnsZonesUrls = [];
+    this.dnsEntriesForComparison = [];
+    this.dnsZoneData = null;
+    this.loadingDnsZoneData = false;
+    this.zoneId = '';
+    this.loading = true;
+    this.vizualizeDnsZoneDataPopup = false;
+    this.vizualizeDnsRestorePopup = false;
+
+    this.zoneId = this.$stateParams.productId;
     this.getZoneHistory(this.$stateParams.productId)
       .then((dates) => {
         this.dates = dates.slice(0, 30);
@@ -126,7 +118,7 @@ export default class DomainDnsZoneHistoryDashboardController {
         return this.$q
           .all(
             dates.map((date) =>
-              this.getZoneDataAtDate(this.$stateParams.productId, date),
+              this.getZoneDataByDate(this.$stateParams.productId, date),
             ),
           )
           .then((zoneUrls) => {
@@ -134,9 +126,10 @@ export default class DomainDnsZoneHistoryDashboardController {
             this.loading = false;
           });
       })
-      .catch(({ message }) => {
+      .catch(({ data: { message } }) => {
         this.Alerter.error(
           this.$translate.instant('dashboard_history_error', { message }),
+          'dnsZoneAlert',
         );
       });
   }

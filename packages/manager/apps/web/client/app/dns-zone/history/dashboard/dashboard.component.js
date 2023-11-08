@@ -4,4 +4,8 @@ import template from './dashboard.html';
 export default {
   controller,
   template,
+  bindings: {
+    goBack: '<',
+    goToDiffViewer: '<',
+  },
 };

@@ -3,12 +3,14 @@
 <div class="row">
     <oui-button
         class="col-lg-6 col-md6 col-sm-6 mb-4 mt-4"
-        data-on-click="$ctrl.goToDiffViewer()"
+        data-on-click="$ctrl.goToDiffViewer($ctrl.dnsEntriesForComparison, $ctrl.zoneId)"
         data-disabled="!$ctrl.checkTwoElementsAreSelected($index)"
     >
         <span data-translate="dashboard_history_compare_button_label"></span>
     </oui-button>
 </div>
+
+<div data-ovh-alert="dnsZoneAlert"></div>
 
 <div class="row table-responsive">
     <table class="table table-hover">
@@ -142,25 +144,25 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <oui-modal
-                    heading="{{:: 'dashboard_history_title_restore_modal' | translate }}"
+                    heading="{{:: 'dashboard_history_restore_modal_title' | translate }}"
                     primary-action="$ctrl.confirmRestoreDnsAtDate($ctrl.chosenDateForRestoreDns)"
-                    primary-label="{{ :: 'dashboard_history_content_restore_modal_primary_label' | translate }}"
+                    primary-label="{{ :: 'dashboard_history_restore_modal_primary_label' | translate }}"
                     secondary-action="$ctrl.closeDnsRestorePopup()"
-                    secondary-label="{{ :: 'dashboard_history_content_restore_modal_secondary_label' | translate }}"
+                    secondary-label="{{ :: 'dashboard_history_restore_modal_secondary_label' | translate }}"
                     on-dismiss="$ctrl.closeDnsRestorePopup()"
                 >
                     <p
-                        data-ng-bind-html="'dashboard_history_content_restore_modal' | translate: { date: $ctrl.chosenDateForRestoreDns }"
+                        data-ng-bind-html="'dashboard_history_restore_modal_content' | translate: { date: $ctrl.chosenDateForRestoreDns }"
                     ></p>
                     <div
                         class="alert alert-warning"
                         role="alert"
-                        data-ng-bind-html="'dashboard_history_warning_message_restore_modal' | translate"
+                        data-ng-bind-html="'dashboard_history_restore_modal_warning_message' | translate"
                     ></div>
                     <div
                         class="alert alert-info"
                         role="alert"
-                        data-ng-bind-html="'dashboard_history_info_message_restore_modal' | translate"
+                        data-ng-bind-html="'dashboard_history_restore_modal_info_message' | translate"
                     ></div>
                 </oui-modal>
             </div>

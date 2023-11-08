@@ -14,6 +14,7 @@ export default class DomainDnsZoneHistoryController {
     DNSZoneService,
     Domain,
     Alerter,
+    goBack,
   ) {
     this.$filter = $filter;
     this.$timeout = $timeout;
@@ -23,26 +24,15 @@ export default class DomainDnsZoneHistoryController {
     this.DNSZoneService = DNSZoneService;
     this.Domain = Domain;
     this.Alerter = Alerter;
-
-    this.base_dns_zone_mocks = [];
-    this.modified_dns_zone_mocks = [];
-    this.base_dns_chosen = null;
-    this.modified_dns_chosen = null;
-    this.baseDnsZoneData = null;
-    this.modifiedDnsZoneData = null;
-    this.gitDiff = '';
+    this.goBack = goBack;
   }
 
-  getZoneHistory(zoneName) {
-    return this.Domain.getZoneHistory(zoneName);
+  getZoneHistory(zoneId) {
+    return this.Domain.getZoneHistory(zoneId);
   }
 
-  getZoneDataAtDate(zoneName, date) {
-    return this.Domain.getZoneDataAtDate(zoneName, date);
-  }
-
-  goBack() {
-    this.$state.go('app.zone.details.zone-history', this.$stateParams);
+  getZoneDataByDate(zoneId, creationDate) {
+    return this.Domain.getZoneDataByDate(zoneId, creationDate);
   }
 
   computeGitUnidiff() {
@@ -53,23 +43,21 @@ export default class DomainDnsZoneHistoryController {
   }
 
   async getBaseDnsZoneForChosenDate() {
-    const { zoneFileUrl } = await this.getZoneDataAtDate(
+    const { zoneFileUrl } = await this.getZoneDataByDate(
       this.$stateParams.productId,
       this.base_dns_chosen,
     );
-    this.baseDnsZoneData = await this.DNSZoneService.readDnsFileData(
-      zoneFileUrl,
-    );
+    this.baseDnsZoneData = await this.DNSZoneService.getDnsFile(zoneFileUrl);
     this.gitDiff = this.computeGitUnidiff();
     return this.updateInnerHtml();
   }
 
   async getModifiedDnsZoneForChosenDate() {
-    const { zoneFileUrl } = await this.getZoneDataAtDate(
+    const { zoneFileUrl } = await this.getZoneDataByDate(
       this.$stateParams.productId,
       this.modified_dns_chosen,
     );
-    this.modifiedDnsZoneData = await this.DNSZoneService.readDnsFileData(
+    this.modifiedDnsZoneData = await this.DNSZoneService.getDnsFile(
       zoneFileUrl,
     );
     this.gitDiff = this.computeGitUnidiff();
@@ -91,6 +79,14 @@ export default class DomainDnsZoneHistoryController {
   }
 
   async $onInit() {
+    this.base_dns_zone_mocks = [];
+    this.modified_dns_zone_mocks = [];
+    this.base_dns_chosen = null;
+    this.modified_dns_chosen = null;
+    this.baseDnsZoneData = null;
+    this.modifiedDnsZoneData = null;
+    this.gitDiff = '';
+
     this.isLoading = true;
 
     const { selectedDates, productId } = this.$stateParams;
@@ -104,9 +100,10 @@ export default class DomainDnsZoneHistoryController {
 
       this.base_dns_zone_mocks = [...allDates];
       this.modified_dns_zone_mocks = [...allDates];
-    } catch ({ message }) {
+    } catch ({ date: { message } }) {
       this.Alerter.error(
         this.$translate.instant('dashboard_history_error', { message }),
+        'dnsHistoryDiffToolViewerAlert',
       );
     } finally {
       this.isLoading = false;
