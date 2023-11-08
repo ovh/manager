@@ -702,6 +702,8 @@
   "emailpro_tab_domain_diagnostic_dkim_configuration_nok": "Votre module DKIM n'est pas correctement configuré. Veuillez vous reporter au <a href=\"{{url}}\" target=\"_blank\">guide</a> d'aide à la configuration avec le code d'erreur {{errorCode}}.",
   "emailpro_tab_domain_diagnostic_dkim_activation_no_ovhcloud": "Votre domaine n'étant pas hébergé chez OVHCloud nous ne pouvons pas le configurer automatiquement. Vous pouvez configurer DKIM en suivant ce <a href=\"{{url}}\" target=\"_blank\">guide</a>.",
   "emailpro_tab_domain_diagnostic_dkim_configurate_no_ovhcloud": "Configurer",
+  "emailpro_tab_domain_diagnostic_dkim_name": "Name",
+  "emailpro_tab_domain_diagnostic_dkim_record": "Record",
   "emailpro_tab_domain_diagnostic_dkim_activation_ovhcloud": "Nous allons configurer DKIM pour vous, l'activation complète peut prendre 24 heures.",
   "emailpro_tab_domain_diagnostic_dkim_activation_success": "Configuration DKIM en cours, veuillez noter que la mise à jour peut prendre jusqu'à 24 heures pour se propager.",
   "emailpro_tab_domain_diagnostic_dkim_activation_error": "Une erreur est survenue pendant la configuration DKIM.",
