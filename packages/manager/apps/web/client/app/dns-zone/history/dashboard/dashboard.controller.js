@@ -1,4 +1,4 @@
-import { DNS_FILENAME } from './dashboard.constants';
+import { DNS_FILENAME, DATE_FORMAT } from './dashboard.constants';
 
 export default class DomainDnsZoneHistoryDashboardController {
   constructor(
@@ -23,6 +23,7 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.$q = $q;
     this.goBack = goBack;
     this.goToDiffViewer = goToDiffViewer;
+    this.DATE_FORMAT = DATE_FORMAT;
   }
 
   closeVisualizeDnsPopup() {
