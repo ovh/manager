@@ -84,7 +84,7 @@ export default class DomainDnsZoneHistoryDashboardController {
           this.$translate.instant('dashboard_history_error', { message }),
         );
       })
-      .finally(() => this.closeDnsRestorePopup());
+      .finally(this.closeDnsRestorePopup);
   }
 
   downloadDnsZoneFile(url) {
