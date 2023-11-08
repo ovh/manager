@@ -1,7 +1,7 @@
-import controllerDiff from './dns-zone-diff-tool-viewer/history.controller';
-import templateDiff from './dns-zone-diff-tool-viewer/history.html';
-import controllerDashboard from './dashboard/dashboard.controller';
-import templateDashboard from './dashboard/dashboard.html';
+import zoneDiffToolViewerController from './dns-zone-diff-tool-viewer/history.controller';
+import zoneDiffToolViewerTemplate from './dns-zone-diff-tool-viewer/history.html';
+import dashboardController from './dashboard/dashboard.controller';
+import dashboardTemplate from './dashboard/dashboard.html';
 
 const commonResolves = {
   breadcrumb: /* @ngInject */ ($translate) =>
@@ -13,9 +13,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/diff-tool-viewer',
     views: {
       'dnsZoneView@app.zone.details': {
-        controller: controllerDiff,
+        controller: zoneDiffToolViewerController,
         controllerAs: '$ctrl',
-        template: templateDiff,
+        template: zoneDiffToolViewerTemplate,
       },
     },
     resolve: {
@@ -32,9 +32,9 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/zone-history',
     views: {
       'dnsZoneView@app.zone.details': {
-        controller: controllerDashboard,
+        controller: dashboardController,
         controllerAs: '$ctrl',
-        template: templateDashboard,
+        template: dashboardTemplate,
       },
     },
     resolve: {
