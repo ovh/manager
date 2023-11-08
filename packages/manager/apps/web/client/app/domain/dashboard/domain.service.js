@@ -38,7 +38,6 @@ angular.module('services').service(
       OvhHttp,
       Poll,
       Poller,
-      iceberg,
     ) {
       this.$http = $http;
       this.$rootScope = $rootScope;
@@ -50,7 +49,6 @@ angular.module('services').service(
       this.OvhHttp = OvhHttp;
       this.Poll = Poll;
       this.Poller = Poller;
-      this.iceberg = iceberg;
 
       this.cache = {
         domainCache: 'UNIVERS_WEB_DOMAIN',
