@@ -15,6 +15,7 @@ export default {
     domainSuspensionStateEnum: '<',
     domainLockStatusEnum: '<',
     domainNsTypeEnum: '<',
+    domainRenewalModeEnum: '<',
     updateFilterParam: '<',
     displayedColumns: '<',
     goToRestoreRenew: '<',
