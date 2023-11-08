@@ -1,10 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEnvironment } from '@ovh-ux/manager-react-core-application';
-{{#if this.pimID}}
-import { useQueries, UseQueryResult } from '@tanstack/react-query';
-import { getPIMService } from '@/api';
-{{/if}}
 import { MscTile } from '@ovhcloud/msc-react-tile';
 import { Locale } from '@ovhcloud/msc-utils';
 import useGuideUtils from '@/components/GuideLink/guide-utils';
@@ -13,13 +9,6 @@ import onboardingImgSrc from './onboarding-img.png';
 
 export default function Onboarding() {
   const { t } = useTranslation('{{appName}}/onboarding');
-  {{#if this.pimID}}
-  const pimService: UseQueryResult<any> = useQueries({
-    queries: [
-      { queryKey: ['pimService'], queryFn: getPIMService, staleTime: Infinity },
-    ],
-  })[0] as UseQueryResult<any>;
-  {{/if}}
   const environment = useEnvironment();
   const locale = environment.getUserLocale() as Locale;
   const link = useGuideUtils();
@@ -42,8 +31,8 @@ export default function Onboarding() {
     },
   ];
 
-  const title: string = {{#if this.pimID}}pimService.data?.name?pimService.data?.name:t('title'){{else}}t('title'){{/if}};
-  const description: string = {{#if this.pimID}}pimService.data?.description?pimService.data?.description:t('title'){{else}}t('description'){{/if}};
+  const title: string = t('title');
+  const description: string = t('description');
 
   return (
     <OnboardingLayout

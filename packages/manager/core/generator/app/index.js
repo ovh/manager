@@ -97,16 +97,6 @@ export default (plop) => {
       },
       {
         type: 'input',
-        name: 'pimID',
-        message: 'What is the PIM ID? (leave empty for no PIM ID)',
-        when: (data) => data.apiPathsByApiVersion.v6.length > 0,
-        validate: (input) => {
-          const number = Number(input);
-          return !isNaN(number) && typeof number === 'number';
-        },
-      },
-      {
-        type: 'input',
         name: 'serviceKey',
         message: 'What is the service key ?',
         when: (data) => {
