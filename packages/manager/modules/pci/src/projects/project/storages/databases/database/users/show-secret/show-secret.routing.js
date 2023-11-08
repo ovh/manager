@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         user: /* @ngInject */ ($transition$) => $transition$.params().user,
-        type: /* @ngInject */ ($transition$) =>
+        secretType: /* @ngInject */ ($transition$) =>
           $transition$.params().secretType,
         secretKeyAndAccess: /* @ngInject */ (
           DatabaseService,
