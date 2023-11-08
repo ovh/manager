@@ -95,7 +95,16 @@
 
     <oui-datagrid-column
         data-title="::'domains_column_domains_renewal_mode' | translate"
-    ></oui-datagrid-column>
+        data-type-options="$ctrl.domainRenewalModeColumnOptions"
+        data-property="renewalState"
+        data-type="options"
+        data-sortable
+    >
+        <span
+            class="{{:: 'oui-badge ' + $ctrl.DOMAINS_BADGES_RENEWAL_MODE[$value] }}"
+            data-translate=" {{:: 'domains_renewal_mode_' + $value }}"
+        ></span>
+    </oui-datagrid-column>
 
     <oui-datagrid-column
         data-title="::'domains_column_domains_renewal_date' | translate"
