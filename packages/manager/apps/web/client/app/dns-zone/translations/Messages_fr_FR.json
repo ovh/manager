@@ -11,10 +11,10 @@
   "dashboard_history_popup_title": "Données de la zone DNS",
   "dashboard_history_close_popup": "Fermer",
   "dashboard_history_compare_button_label": "Comparer les versions",
-  "dashboard_history_title_restore_modal": "Restaurer ma zone DNS",
-  "dashboard_history_content_restore_modal": "Souhaitez-vous restaurer la sauvegarde du {{date}} ?",
-  "dashboard_history_content_restore_modal_primary_label": "Restaurer",
-  "dashboard_history_content_restore_modal_secondary_label": "Annuler",
-  "dashboard_history_warning_message_restore_modal": "Attention! La zone actuelle sera supprimée. La nouvelle zone selectionnée sera restaurée",
-  "dashboard_history_info_message_restore_modal": "La réinitialisation sera immmédiate dans la zone DNS, mais veuillez prendre en compte le temps de propagation (maximum 24h)."
+  "dashboard_history_restore_modal_title": "Restaurer ma zone DNS",
+  "dashboard_history_restore_modal_content": "Souhaitez-vous restaurer la sauvegarde du {{date}} ?",
+  "dashboard_history_restore_modal_primary_label": "Restaurer",
+  "dashboard_history_restore_modal_secondary_label": "Annuler",
+  "dashboard_history_restore_modal_warning_message": "Attention! La zone actuelle sera supprimée. La nouvelle zone selectionnée sera restaurée",
+  "dashboard_history_restore_modal_warning_message": "La réinitialisation sera immmédiate dans la zone DNS, mais veuillez prendre en compte le temps de propagation (maximum 24h)."
 }
