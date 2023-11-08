@@ -104,7 +104,7 @@ export default class DomainDnsZoneHistoryDashboardController {
   }
 
   getZoneHistory(zoneId) {
-    return this.Domain.getZoneHistory(zoneName, 30);
+    return this.Domain.getZoneHistory(zoneId, 30);
   }
 
   getZoneDataAtDate(zoneName, date) {
