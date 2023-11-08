@@ -1,80 +1,66 @@
-import React, { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  Await,
-  defer,
-  Link,
-  Navigate,
-  Outlet,
-  useLoaderData,
-} from 'react-router-dom';
+import React from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { getListingIceberg } from '@/api';
+import Datagrid from '@/components/layout-helpers/Listing/dataGrid';
+import Loading from '@/components/Loading/Loading';
+import ErrorBanner from '@/components/Error/Error';
+import appConfig from '@/{{this.appName}}.config';
+import Breadcrumb, {
+  BreadcrumbHandleParams,
+} from '@/components/Breadcrumb/Breadcrumb';
 
-import { {{listingEndpoint}} } from '@/api';
+export function breadcrumb({ params }: BreadcrumbHandleParams) {
+  return params.serviceName;
+}
 
-export function loader() {
-  return defer({
-    services: {{listingEndpoint}}(),
-  });
+type ServiceData = {
+  serviceName: string;
+};
+
+const ServiceList: React.FC<{ data: ServiceData[] }> = ({ data }) => {
+  const count = data?.length;
+
+  if (count === 0) return <Navigate to="onboarding" />;
+
+  return (count === 1)
+    ? (
+      <>
+        <Outlet />
+        <Navigate to={data[0].serviceName} />
+      </>
+    )
+    : (
+      <>
+        <h2>{{appName}}</h2>
+        <Datagrid
+          data={data}
+          serviceKey={appConfig.listing.datagrid.serviceKey as string} />
+      </>
+    );
 }
 
 export default function Listing() {
-  const results: any = useQueries({
-    queries: [
+  const { data, isError, error, isLoading }: any = useQuery(
       { queryKey: ['servicesListingIceberg'], queryFn: getListingIceberg, staleTime: Infinity, },
-      {{#if this.pimID}}{ queryKey: ['pimService'], queryFn: getPIMService, staleTime: Infinity },{{/if}}
-    ],
-  });
+  );
 
-  const servicesListingIcebergResult = results[0];
-  {{#if this.pimID}}const pimServiceResult = results[1];{{/if}}
 
-  const isError = servicesListingIcebergResult.error{{#if this.pimID}} || pimServiceResult.error{{/if}};
-  const isLoading = servicesListingIcebergResult.isLoading{{#if this.pimID}} || pimServiceResult.isLoading{{/if}};
+  if (isError) {
+    return <ErrorBanner error={error.response} />;
+  }
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (<div><Loading/></div>)
   }
 
-  if (isError || results[0].data.status !== 200) {
-    return <Navigate to="onboarding" />;
-  }
 
   return (
-    <div>
-      <h1>{t('title')}</h1>
-      <Suspense fallback="">
-        <Await resolve={data.services}>
-          {(services) => {
-            const count = services.length;
-            if (count === 0) {
-              return <Navigate to="onboarding" />;
-            }
-            if (count === 1) {
-              return (
-                <>
-                  <Outlet />
-                  <Navigate to={services[0]} />
-                </>
-              );
-            }
-            return (
-              <>
-                <h2>
-                  Services list
-                </h2>
-                <ul>
-                  {services.map((serviceName: string) => (
-                    <li key={serviceName}>
-                      <Link to={`/dashboard/${serviceName}`}>{serviceName}</Link>
-                    </li>
-                  ))}
-
-                </ul>
-              </>
-            );
-          }}
-        </Await>
-      </Suspense>
-    </div>
+    <>
+      <Breadcrumb />
+      <ServiceList
+        data={data.data}
+      />
+    </>
   );
 }

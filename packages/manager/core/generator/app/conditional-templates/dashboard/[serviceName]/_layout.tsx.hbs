@@ -37,8 +37,14 @@ export default function DashboardPage() {
     },
   ];
 
-  if (results[0].status === 'success' && results[0]?.data?.status !== 200) {
-    return <ErrorBanner error={results[0].data} />;
+  const { error, isLoading, } = results[0];
+
+  if (error) {
+    return <ErrorBanner error={error.response} />;
+  }
+
+  if (isLoading) {
+    return (<div><Loading /></div>)
   }
 
   return (
