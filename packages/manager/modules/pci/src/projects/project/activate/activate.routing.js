@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'pciProjectActivate',
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('pci_projects_project_breadcrumb'),
+        $translate.instant('pci_projects_project_activate_title'),
 
       projectId: /* @ngInject */ ($transition$) =>
         $transition$.params().projectId || null,
