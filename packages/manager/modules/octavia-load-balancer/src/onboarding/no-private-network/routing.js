@@ -5,8 +5,6 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/no-private-network',
     resolve: {
       breadcrumb: () => null,
-      projectId: /* @ngInject */ ($transition$) =>
-        $transition$.params().projectId,
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
     },
     views: {

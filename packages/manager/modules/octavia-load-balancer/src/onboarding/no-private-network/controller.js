@@ -20,7 +20,7 @@ export default class OctaviaLoadBalancerOnboardingCtrl {
     });
     this.$window.location.href = this.coreURLBuilder.buildURL(
       'public-cloud',
-      `#/public-cloud/pci/projects/${this.projectId}/private-networks/new`,
+      `#/pci/projects/${this.projectId}/private-networks/new`,
     );
   }
 

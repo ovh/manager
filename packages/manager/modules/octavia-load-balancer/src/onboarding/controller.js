@@ -9,7 +9,7 @@ import illustration from './assets/public-cloud-network_load-balancer-v2.png';
 
 export default class OctaviaLoadBalancerOnboardingCtrl {
   /* @ngInject */
-  constructor($translate, coreConfig, atInternet, coreURLBuilder) {
+  constructor($translate, coreConfig, atInternet) {
     const { ovhSubsidiary } = coreConfig.getUser();
     this.GUIDES = GUIDES.map((guide) => ({
       ...guide,
@@ -23,7 +23,6 @@ export default class OctaviaLoadBalancerOnboardingCtrl {
       PRIVATE_NETWORK_HELP[ovhSubsidiary] || PRIVATE_NETWORK_HELP.DEFAULT;
     this.atInternet = atInternet;
     this.ctaTrackName = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::add`;
-    this.coreURLBuilder = coreURLBuilder;
   }
 
   onGuideClick(guide) {
