@@ -27,14 +27,12 @@ export const {{this.functionName}}QueryKey = {{#if this.urlParams}}(params: {{pa
 export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalCase this.functionName}}Params{{/if}}): Promise<{{this.responseType}}> => {
   const fetchData = async () => {
     const response: any = await apiClient.{{this.apiVersion}}.{{this.httpMethod}}({{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}});
-    if (response?.code?.startsWith('ERR')) {
-      // Error in the request
-      const errorResponse = response.response;
-      return errorResponse;
-    }
     return { ...response.data, status: response?.status };
   };
-
-  return queryClient.fetchQuery({{this.functionName}}QueryKey{{#if this.urlParams}}(params){{/if}}, fetchData);
+  try {
+    return queryClient.fetchQuery({{this.functionName}}QueryKey{{#if this.urlParams}}(params){{/if}}, fetchData);
+  } catch(error) {
+    return Promise.reject(error);
+  }  
 };
 {{/each}}
