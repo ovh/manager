@@ -10,8 +10,6 @@ export default class DomainDnsZoneHistoryDashboardController {
     Domain,
     Alerter,
     DNSZoneService,
-    goBack,
-    goToDiffViewer,
   ) {
     this.$translate = $translate;
     this.$stateParams = $stateParams;
@@ -21,8 +19,6 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.DNSZoneService = DNSZoneService;
     this.$document = $document;
     this.$q = $q;
-    this.goBack = goBack;
-    this.goToDiffViewer = goToDiffViewer;
     this.DATE_FORMAT = DATE_FORMAT;
   }
 
