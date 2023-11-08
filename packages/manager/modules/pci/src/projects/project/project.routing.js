@@ -7,6 +7,7 @@ import {
   LEGACY_PLAN_CODES,
   DOCUMENTATION_LINKS,
   DISCOVERY_PROJECT_PLANCODE,
+  DISCOVERY_PROMOTION_VOUCHER,
 } from './project.constants';
 import { PCI_FEATURES } from '../projects.constant';
 
@@ -83,6 +84,17 @@ export default /* @ngInject */ ($stateProvider) => {
       isDiscoveryProject: /* @ngInject */ (project) => {
         return project.planCode === DISCOVERY_PROJECT_PLANCODE;
       },
+
+      discoveryPromotionVoucherAmount: /* @ngInject */ (
+        pciProjectNew,
+        project,
+      ) =>
+        project.planCode === DISCOVERY_PROJECT_PLANCODE
+          ? pciProjectNew
+              .checkEligibility(DISCOVERY_PROMOTION_VOUCHER)
+              .then((response) => response.voucher?.credit?.text)
+              .catch(() => false)
+          : null,
 
       guideUrl: /* @ngInject */ (user) => {
         Object.keys(GUIDES_LIST).forEach((key) => {
