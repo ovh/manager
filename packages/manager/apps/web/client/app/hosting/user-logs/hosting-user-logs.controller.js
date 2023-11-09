@@ -47,11 +47,25 @@ export default class HostingTabUserLogsCtrl {
   refreshTableUserLogs() {
     this.userLogs = null;
 
-    return this.Hosting.getUserLogs(this.$stateParams.productId)
-      .then((data) => data.sort())
+    return this.Hosting.getOwnLogs(this.$stateParams.productId)
       .then((ids) => {
-        this.userLogs = ids.map((id) => ({ id }));
-        return this.userLogs;
+        const userLogs = [];
+        ids.sort();
+        ids.forEach((id) => {
+          this.Hosting.getUserLogs(this.$stateParams.productId, id).then(
+            (logins) => {
+              logins.sort();
+              logins.forEach((login) => {
+                const userLog = { id, login };
+                userLogs.push(userLog);
+              });
+            },
+          );
+        });
+        return userLogs;
+      })
+      .then((userLogs) => {
+        this.userLogs = userLogs;
       })
       .catch((err) => {
         this.Alerter.alertFromSWS(err);
@@ -62,7 +76,11 @@ export default class HostingTabUserLogsCtrl {
     if (item.transformed) {
       return this.$q((resolve) => resolve(item));
     }
-    return this.Hosting.getUserLogsEntry(this.$stateParams.productId, item.id)
+    return this.Hosting.getUserLogsEntry(
+      this.$stateParams.productId,
+      item.id,
+      item.login,
+    )
       .then((originalLogEntry) => {
         const logEntry = clone(originalLogEntry);
         logEntry.id = item.id;
@@ -72,7 +90,7 @@ export default class HostingTabUserLogsCtrl {
       })
       .catch(() => ({
         id: item.id,
-        login: item.id,
+        login: item.login,
         transformed: true,
       }));
   }

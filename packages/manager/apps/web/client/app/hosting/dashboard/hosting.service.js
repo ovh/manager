@@ -528,23 +528,41 @@ import union from 'lodash/union';
       }
 
       /**
+       * Get list of own logs linked to a hosting
+       * @param {string} serviceName
+       * @param {string|null} fqdn
+       */
+      getOwnLogs(serviceName, fqdn) {
+        return this.OvhHttp.get(`/hosting/web/${serviceName}/ownLogs`, {
+          rootPath: 'apiv6',
+          params: {
+            fqdn,
+          },
+        });
+      }
+
+      /**
        * Get list of user accounts that have access to webserver logs
        * @param {string} serviceName
        */
-      getUserLogs(serviceName) {
-        return this.OvhHttp.get(`/hosting/web/${serviceName}/userLogs`, {
-          rootPath: 'apiv6',
-        });
+      getUserLogs(serviceName, id) {
+        return this.OvhHttp.get(
+          `/hosting/web/${serviceName}/ownLogs/${id}/userLogs`,
+          {
+            rootPath: 'apiv6',
+          },
+        );
       }
 
       /**
        * Get user account
        * @param {string} serviceName
+       * @param {number} id
        * @param {string} login
        */
-      getUserLogsEntry(serviceName, login) {
+      getUserLogsEntry(serviceName, id, login) {
         return this.OvhHttp.get(
-          `/hosting/web/${serviceName}/userLogs/${login}`,
+          `/hosting/web/${serviceName}/ownLogs/${id}/userLogs/${login}`,
           {
             rootPath: 'apiv6',
           },
@@ -566,11 +584,12 @@ import union from 'lodash/union';
       /**
        * Delete a user
        * @param {string} serviceName
+       * @param {number} id
        * @param {string} login
        */
-      deleteUserLogs(serviceName, login) {
+      deleteUserLogs(serviceName, id, login) {
         return this.OvhHttp.delete(
-          `/hosting/web/${serviceName}/userLogs/${login}`,
+          `/hosting/web/${serviceName}/ownLogs/${id}/userLogs/${login}`,
           {
             rootPath: 'apiv6',
             broadcast: 'hosting.userLogs.refresh',
@@ -581,12 +600,13 @@ import union from 'lodash/union';
       /**
        * Change password of a user
        * @param {string} serviceName
+       * @param {number} id
        * @param {string} login
        * @param {string} newPassword
        */
-      userLogsChangePassword(serviceName, login, newPassword) {
+      userLogsChangePassword(serviceName, id, login, newPassword) {
         return this.OvhHttp.post(
-          `/hosting/web/${serviceName}/userLogs/${login}/changePassword`,
+          `/hosting/web/${serviceName}/ownLogs/${id}/userLogs/${login}/changePassword`,
           {
             rootPath: 'apiv6',
             data: {
@@ -599,31 +619,36 @@ import union from 'lodash/union';
       /**
        * Create a user
        * @param {string} serviceName
+       * @param {number} id
        * @param {string} description
        * @param {string} login
        * @param {string} password
        */
-      userLogsCreate(serviceName, description, login, password) {
-        return this.OvhHttp.post(`/hosting/web/${serviceName}/userLogs`, {
-          rootPath: 'apiv6',
-          data: {
-            description,
-            login,
-            password,
+      userLogsCreate(serviceName, id, description, login, password) {
+        return this.OvhHttp.post(
+          `/hosting/web/${serviceName}/ownLogs/${id}/userLogs`,
+          {
+            rootPath: 'apiv6',
+            data: {
+              description,
+              login,
+              password,
+            },
+            broadcast: 'hosting.userLogs.refresh',
           },
-          broadcast: 'hosting.userLogs.refresh',
-        });
+        );
       }
 
       /**
        * Update a user
        * @param {string} serviceName
+       * @param {number} id
        * @param {string} login
        * @param {string} description
        */
-      modifyUserLogs(serviceName, login, description) {
+      modifyUserLogs(serviceName, id, login, description) {
         return this.OvhHttp.put(
-          `/hosting/web/${serviceName}/userLogs/${login}`,
+          `/hosting/web/${serviceName}/ownLogs/${id}/userLogs/${login}`,
           {
             rootPath: 'apiv6',
             data: {
