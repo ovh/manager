@@ -115,46 +115,47 @@ export default class OctaviaLoadBalancerCreateService {
       }
     }
 
-    const formattedListeners = listeners.map((listener) => {
-      const pool = {
-        algorithm: 'roundRobin',
-        protocol: listener.protocol.value,
-      };
-
-      const instances = listener.instances?.reduce((filtered, instance) => {
-        if (Object.keys(instance).length > 0) {
-          filtered.push({
-            address: instance.instance.ipAddress.ip,
-            protocolPort: instance.port,
-          });
-        }
-        return filtered;
-      }, []);
-
-      if (listener.healthMonitor?.value) {
-        pool.healthMonitor = {
-          name: `health-monitor-${listener.healthMonitor.value}`,
-          monitorType: listener.healthMonitor.value,
-          maxRetries: 4,
-          periodicity: 'PT5S',
-          timeout: 4,
-          httpConfiguration: {
-            httpMethod: 'GET',
-            urlPath: '/',
-          },
+    const formattedListeners =
+      listeners?.map((listener) => {
+        const pool = {
+          algorithm: 'roundRobin',
+          protocol: listener.protocol.value,
         };
-      }
 
-      if (instances.length) {
-        pool.members = instances;
-      }
+        const instances = listener.instances?.reduce((filtered, instance) => {
+          if (Object.keys(instance).length > 0) {
+            filtered.push({
+              address: instance.instance.ipAddress.ip,
+              protocolPort: instance.port,
+            });
+          }
+          return filtered;
+        }, []);
 
-      return {
-        port: listener.port,
-        protocol: listener.protocol.value,
-        pool,
-      };
-    });
+        if (listener.healthMonitor?.value) {
+          pool.healthMonitor = {
+            name: `health-monitor-${listener.healthMonitor.value}`,
+            monitorType: listener.healthMonitor.value,
+            maxRetries: 4,
+            periodicity: 'PT5S',
+            timeout: 4,
+            httpConfiguration: {
+              httpMethod: 'GET',
+              urlPath: '/',
+            },
+          };
+        }
+
+        if (instances.length) {
+          pool.members = instances;
+        }
+
+        return {
+          port: listener.port,
+          protocol: listener.protocol.value,
+          pool,
+        };
+      }) || [];
 
     return this.getFlavorId(projectId, regionName, size).then((flavorId) => {
       return this.$http
