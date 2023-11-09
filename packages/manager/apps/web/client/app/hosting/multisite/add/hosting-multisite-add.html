@@ -9,6 +9,7 @@
     >
         <div
             data-wizard-step
+            data-wizard-step-on-next="upgradeProductOnNextButtonClicked"
             data-wizard-step-on-load="loadHosting"
             data-wizard-step-valid="isStep1Valid()"
         >
@@ -19,18 +20,24 @@
                 <oui-spinner></oui-spinner>
             </div>
 
-            <div
-                class="alert alert-danger"
-                role="alert"
-                data-translate="hosting_tab_DOMAINS_configuration_add_step1_no_db_left"
-                data-ng-if="model.hosting && model.options && model.domainsCount >= model.capabilities.attachedDomains && !model.needChangeOffer"
-            ></div>
+            <div data-ng-if="showMessagesNoDomainLeft()">
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    data-translate="hosting_tab_DOMAINS_configuration_add_step1_no_db_left"
+                ></div>
+                <div
+                    class="alert alert-info"
+                    role="alert"
+                    data-translate="hosting_tab_DOMAINS_configuration_add_step1_order_upgrade"
+                ></div>
+            </div>
 
             <div
                 class="alert alert-warning"
                 role="alert"
                 data-translate="hosting_tab_DOMAINS_configuration_add_step1_only_one_db_and_no_left"
-                data-ng-if="model.hosting && model.options && model.needChangeOffer"
+                data-ng-if="model.hosting && model.options && model.moreThanOneDomainCountWithOneAttached"
             ></div>
 
             <div

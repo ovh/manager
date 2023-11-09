@@ -42,23 +42,29 @@ angular
       $scope.MAX_DOMAIN_LENGTH = WucValidator.MAX_DOMAIN_LENGTH;
 
       $scope.isStep1Valid = () => {
-        if (!$scope.model.options && !$scope.model.needChangeOffer) {
+        if (
+          !$scope.model.options &&
+          !$scope.model.moreThanOneDomainCountWithOneAttached
+        ) {
           return false;
         }
         if (
           $scope.model.capabilities &&
           $scope.model.domainsCount >=
             $scope.model.capabilities.attachedDomains &&
-          !$scope.model.needChangeOffer
+          !$scope.model.moreThanOneDomainCountWithOneAttached
         ) {
-          return false;
+          return true;
         }
-        if (!$scope.selected.mode && !$scope.model.needChangeOffer) {
+        if (
+          !$scope.selected.mode &&
+          !$scope.model.moreThanOneDomainCountWithOneAttached
+        ) {
           return false;
         }
         if (
           $scope.selected.mode === $scope.model.mode.OVH &&
-          !$scope.model.needChangeOffer
+          !$scope.model.moreThanOneDomainCountWithOneAttached
         ) {
           return $scope.selected.baseDomain !== null;
         }
@@ -148,6 +154,24 @@ angular
           }
         }
       });
+
+      $scope.upgradeProductOnNextButtonClicked = () => {
+        if ($scope.showMessagesNoDomainLeft()) {
+          $state.go('app.hosting.dashboard.upgrade', {
+            productId: $stateParams.productId,
+          });
+        }
+      };
+
+      $scope.showMessagesNoDomainLeft = () => {
+        return (
+          $scope.model.hosting &&
+          $scope.model.options &&
+          $scope.model.domainsCount >=
+            $scope.model.capabilities.attachedDomains &&
+          !$scope.model.moreThanOneDomainCountWithOneAttached
+        );
+      };
 
       $scope.loadHosting = () => {
         let futuresOptions;
@@ -241,11 +265,11 @@ angular
               $scope.model.domainsCount = resp[1].length;
             }
 
-            $scope.model.needChangeOffer =
+            $scope.model.moreThanOneDomainCountWithOneAttached =
               $scope.model.domainsCount >= 1 &&
               $scope.model.capabilities.attachedDomains === 1;
 
-            if ($scope.model.needChangeOffer) {
+            if ($scope.model.moreThanOneDomainCountWithOneAttached) {
               $scope.wizardConfirmButtonText = $translate.instant(
                 'hosting_tab_DOMAINS_configuration_add_buttom_update_offer',
               );
