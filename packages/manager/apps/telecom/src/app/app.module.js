@@ -100,6 +100,7 @@ import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 import ngOvhTimeline from '@ovh-ux/ng-ovh-timeline';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
+import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 
@@ -182,6 +183,7 @@ export default async (containerEl, shellClient) => {
         ngOvhUiRouterLayout,
         ngOvhUiRouterTitle,
         ngOvhContact,
+        ngOvhUtils,
         ngOvhLineDiagnostics,
         ngQAllSettled,
         ngOvhSimpleCountryList,

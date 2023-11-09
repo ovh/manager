@@ -105,6 +105,12 @@
             >
                 <span data-translate="sms_batches_download"></span>
             </oui-action-menu-item>
+            <oui-action-menu-item
+                on-click="$ctrl.deleteLogs($row)"
+                disabled="$ctrl.isDownloading"
+            >
+                <span data-translate="sms_batches_delete"></span>
+            </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>
 </section>
