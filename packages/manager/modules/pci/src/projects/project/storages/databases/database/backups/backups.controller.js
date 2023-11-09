@@ -25,7 +25,8 @@ export default class PciProjectStorageDatabaseBackupsCtrl {
       `P${flavor.availabilities[0].backups.retentionDays}D`,
     );
 
-    this.isEngineVersionDeprecated = flavor.isDeprecated;
+    this.isEngineVersionDeprecated =
+      flavor.isDeprecated || this.database.isOldMongoPlan;
     this.isPITRActivated = this.isFeatureActivated(
       'forkPIT',
       this.database.engine,

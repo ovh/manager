@@ -40,7 +40,7 @@
 
     <oui-datagrid
         id="publicCloudStorageDatabasesDatagrid"
-        data-rows="$ctrl.databases"
+        data-rows="$ctrl.databasesList"
         criteria="$ctrl.criteria"
         on-criteria-change="$ctrl.onListParamChange($criteria)"
     >
@@ -112,16 +112,16 @@
             data-filterable
         >
             <span
-                data-ng-if="$ctrl.getCurrentFlavor($row).core > 0"
+                data-ng-if="$row.currentFlavor.core > 0"
                 data-translate="pci_database_node_type_cpu"
                 data-translate-values="{
-                    coreNumber: $ctrl.getCurrentFlavor($row).core
+                    coreNumber: $row.currentFlavor.core
                 }"
             ></span>
             <span
-                data-ng-if="$ctrl.getCurrentFlavor($row).memory > 0"
+                data-ng-if="$row.currentFlavor.memory > 0"
                 data-ng-bind="' / ' + ( 'pci_database_node_type_memory' | translate:{
-                    memorySize: ($ctrl.getCurrentFlavor($row).memory | bytes:2:false:'GB')
+                    memorySize: ($row.currentFlavor.memory | bytes:2:false:'GB')
                 })"
             ></span>
         </oui-datagrid-column>
@@ -139,15 +139,12 @@
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_list_region' | translate"
-            data-property="region"
+            data-property="translatedRegion"
             data-type="string"
             data-searchable
             data-filterable
             data-sortable
         >
-            <span
-                data-ng-bind=":: $ctrl.ovhManagerRegionService.getTranslatedMacroRegion($row.region)"
-            ></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'pci_database_list_nodes' | translate"
@@ -204,7 +201,7 @@
                 <span data-translate="pci_database_list_rename_database"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-ng-if="$ctrl.getLatestVersion($row) !== $row.version && $row.isActive()"
+                data-ng-if="$row.latestVersion !== $row.version && $row.isActive() && !$row.isOldMongoPlan"
                 data-on-click="$ctrl.upgradeVersion($row)"
             >
                 <span
@@ -212,7 +209,7 @@
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-ng-if="$ctrl.getHighestFlavorRange($row) !== $row.flavor && $row.isActive()"
+                data-ng-if="$row.highestFlavorRange !== $row.flavor && $row.isActive() && !$row.isOldMongoPlan"
                 data-on-click="$ctrl.upgradeNode($row)"
             >
                 <span
@@ -220,7 +217,7 @@
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-ng-if="$ctrl.getLatestPlan($row) !== $row.plan && $row.isActive()"
+                data-ng-if="$row.latestPlan !== $row.plan && $row.isActive()"
                 data-on-click="$ctrl.upgradePlan($row)"
             >
                 <span

@@ -96,7 +96,7 @@
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                             data-ng-if="$ctrl.database.version !== $ctrl.latestVersion"
                             data-ng-click="$ctrl.upgradeVersion()"
-                            data-ng-disabled="!$ctrl.database.isActive()"
+                            data-ng-disabled="!$ctrl.database.isActive() || $ctrl.database.isOldMongoPlan"
                         >
                             <span
                                 data-translate="pci_databases_general_information_upgrade_version"
@@ -158,7 +158,7 @@
                         <oui-action-menu-item
                             data-on-click="$ctrl.addNode()"
                             data-ng-if="$ctrl.database.nodes.length < $ctrl.getCurrentPlan().maxNodes"
-                            data-disabled="!$ctrl.database.isActive()"
+                            data-disabled="!$ctrl.database.isActive() || $ctrl.database.isOldMongoPlan"
                         >
                             <span
                                 data-translate="pci_databases_general_information_add_nodes"
@@ -167,7 +167,7 @@
                         <oui-action-menu-item
                             data-on-click="$ctrl.deleteNode()"
                             data-ng-if="$ctrl.database.nodes.length > $ctrl.getCurrentPlan().minNodes"
-                            data-disabled="!$ctrl.database.isActive()"
+                            data-disabled="!$ctrl.database.isActive() || $ctrl.database.isOldMongoPlan"
                         >
                             <span
                                 data-translate="pci_databases_general_information_delete_nodes"
@@ -221,7 +221,7 @@
                                 class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                                 data-ng-if="$ctrl.database.flavor !== $ctrl.highestFlavor"
                                 data-ng-click="$ctrl.upgradeNode()"
-                                data-ng-disabled="!$ctrl.database.isActive()"
+                                data-ng-disabled="!$ctrl.database.isActive() || $ctrl.database.isOldMongoPlan"
                             >
                                 <span
                                     data-translate="pci_databases_general_information_upgrade_node"
@@ -257,7 +257,7 @@
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
                             data-ng-if="$ctrl.database.disk.type !== $ctrl.DISK_TYPE.LOCAL_SSD"
                             data-ng-click="$ctrl.upgradeStorage()"
-                            data-ng-disabled="!$ctrl.database.isActive()"
+                            data-ng-disabled="!$ctrl.database.isActive() || $ctrl.database.isOldMongoPlan"
                         >
                             <span
                                 data-translate="pci_databases_general_information_storage_upgrade_link"

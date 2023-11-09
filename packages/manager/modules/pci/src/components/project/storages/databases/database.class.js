@@ -3,6 +3,8 @@ import find from 'lodash/find';
 import Base from './base.class';
 
 import { ENGINES_NAMES } from './engines.constants';
+import { DATABASE_TYPES } from '../../../../projects/project/storages/databases/databases.constants';
+import { OLD_MONGODB_PLANS } from './databases.constants';
 import Node from './node.class';
 
 export default class Database extends Base {
@@ -103,6 +105,13 @@ export default class Database extends Base {
       );
     }
     return this.currentEngine;
+  }
+
+  get isOldMongoPlan() {
+    return (
+      this.engine === DATABASE_TYPES.MONGO_DB &&
+      OLD_MONGODB_PLANS.includes(this.plan)
+    );
   }
 
   updateData(data) {

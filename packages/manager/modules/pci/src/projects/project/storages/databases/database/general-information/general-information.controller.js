@@ -80,6 +80,7 @@ export default class {
       this.database.engine === DATABASE_TYPES.MONGO_DB &&
       this.database.plan === 'enterprise';
     this.isForkButtonEnabled =
+      !this.database.isOldMongoPlan &&
       !isEngineVersionDeprecated &&
       (isPITRActivated || isMongoEnterprise || this.backups.length > 0);
   }
