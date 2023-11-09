@@ -6,13 +6,13 @@ export const PAYPAL_BUTTON_OPTIONS = {
     color: 'blue',
     label: 'paypal',
     shape: 'rect',
-    size: 'medium',
     tagline: false,
   },
 };
 
 export const PAYPAL_SCRIPT = {
-  src: 'https://www.paypalobjects.com/api/checkout.js',
+  src:
+    'https://www.paypal.com/sdk/js?client-id=test&components=buttons,funding-eligibility',
   id: 'paypal_checkout_script',
 };
 
