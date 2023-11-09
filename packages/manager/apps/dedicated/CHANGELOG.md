@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.9.1...@ovh-ux/manager-dedicated@19.10.0) (2023-11-09)
+
+
+### Features
+
+* **pcc.vmware:** display partner prices if applicable ([#10031](https://github.com/ovh/manager/issues/10031)) ([52f48d6](https://github.com/ovh/manager/commit/52f48d6a36e01ce446460a960e89421b59d02359))
+
+
+
+
+
 ## [19.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.9.0...@ovh-ux/manager-dedicated@19.9.1) (2023-11-06)
 
 
