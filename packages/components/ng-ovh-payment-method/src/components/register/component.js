@@ -14,11 +14,18 @@ export default {
     paymentMethodTypesPerLine: '<?',
     registeredPaymentMethods: '<?',
     showSetAsDefaultChoice: '<?',
+    forceSetAsDefaultChoice: '<?',
     onInitializationError: '&?',
     onInitialized: '&?',
+    showDefaultExplanationTexts: '<?',
   },
   transclude: {
     introductionText: '?ovhPaymentMethodRegisterIntroductionText',
     explanationText: '?ovhPaymentMethodRegisterExplanationText',
+    creditCardExplanationText:
+      '?ovhPaymentMethodRegisterCreditCardExplanationText',
+    sepaExplanationText: '?ovhPaymentMethodRegisterSepaExplanationText',
+    paypalExplanationText: '?ovhPaymentMethodRegisterPaypalExplanationText',
+    rupayExplanationText: '?ovhPaymentMethodRegisterRupayExplanationText',
   },
 };
