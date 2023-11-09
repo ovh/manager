@@ -17,6 +17,7 @@ export default {
     domainNsTypeEnum: '<',
     updateFilterParam: '<',
     displayedColumns: '<',
+    goToRestoreRenew: '<',
   },
   controller,
   template,
