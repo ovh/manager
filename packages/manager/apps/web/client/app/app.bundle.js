@@ -8,6 +8,7 @@ import './components/services.module';
 import './controller.module';
 import './domain/general-informations/activateZone/activate.module';
 import './domain/zone/activate/activate.module';
+import './domain/zone/history/history.module';
 import './domain/zone/zone.module';
 import './error-page/error-page.module';
 import './hosting/cdn/order/hosting-cdn-order.module';

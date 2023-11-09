@@ -4,30 +4,22 @@ const commonResolves = {
 };
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.zone.details.zone-history.diff-tool-viewer', {
-    url: '/diff-tool-viewer',
-    views: {
-      'dnsZoneView@app.zone.details': {
-        component: 'domainZoneDiffToolViewerHistory',
-      },
-    },
+  $stateProvider.state('app.domain.diff-zone-tool-viewer', {
+    url: '/:productId/diff-zone-tool-viewer',
+    component: 'domainZoneDiffToolViewerHistory',
     resolve: {
       ...commonResolves,
       goBack: /* @ngInject */ ($state, $stateParams) => () =>
-        $state.go('app.zone.details.zone-history', $stateParams),
+        $state.go('app.domain.zone-history', $stateParams),
     },
     params: {
       selectedDates: null,
       productId: null,
     },
   });
-  $stateProvider.state('app.zone.details.zone-history', {
-    url: '/zone-history',
-    views: {
-      'dnsZoneView@app.zone.details': {
-        component: 'domainZoneDashboardHistory',
-      },
-    },
+  $stateProvider.state('app.domain.zone-history', {
+    component: 'domainZoneDashboardHistory',
+    url: '/:productId/zone-history',
     resolve: {
       ...commonResolves,
       goBack: /* @ngInject */ ($state, $stateParams) => () =>
@@ -36,7 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
         dnsEntriesForComparison,
         zoneName,
       ) =>
-        $state.go('app.zone.details.zone-history.diff-tool-viewer', {
+        $state.go('app.domain.diff-zone-tool-viewer', {
           selectedDates: dnsEntriesForComparison
             .filter((u) => u.active)
             .map((u) => u.date),

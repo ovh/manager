@@ -71,6 +71,10 @@ export default class DomainTabZoneDnsCtrl {
     }
   }
 
+  allowZoneHistory() {
+    return !this.loading.table && this.hasResult;
+  }
+
   navigateToZoneHistory() {
     this.goToZoneHistory({ productId: this.productId });
   }

@@ -1,22 +1,21 @@
 import { DNS_FILENAME, DATE_FORMAT } from './dashboard.constants';
 
 export default class DomainDnsZoneHistoryDashboardController {
+  /* @ngInject */
   constructor(
     $translate,
     $stateParams,
     $state,
     $q,
     $document,
-    Domain,
     Alerter,
-    DNSZoneService,
+    ZoneService,
   ) {
     this.$translate = $translate;
     this.$stateParams = $stateParams;
     this.$state = $state;
-    this.Domain = Domain;
     this.Alerter = Alerter;
-    this.DNSZoneService = DNSZoneService;
+    this.ZoneService = ZoneService;
     this.$document = $document;
     this.$q = $q;
     this.DATE_FORMAT = DATE_FORMAT;
@@ -32,7 +31,7 @@ export default class DomainDnsZoneHistoryDashboardController {
 
   visualizeDnsDataInPopup(url) {
     this.loadingDnsZoneData = true;
-    this.DNSZoneService.getDnsFile(url)
+    this.ZoneService.getDnsFile(url)
       .then((res) => {
         this.dnsZoneData = res;
         this.loadingDnsZoneData = false;
@@ -55,7 +54,7 @@ export default class DomainDnsZoneHistoryDashboardController {
   }
 
   confirmRestoreDnsAtDate(creationDate) {
-    this.DNSZoneService.restore(this.zoneId, creationDate)
+    this.ZoneService.restore(this.zoneId, creationDate)
       .catch(({ data: { message } }) => {
         this.Alerter.error(
           this.$translate.instant('dashboard_history_error', { message }),
@@ -78,11 +77,11 @@ export default class DomainDnsZoneHistoryDashboardController {
   }
 
   getZoneHistory(zoneId) {
-    return this.Domain.getZoneHistory(zoneId);
+    return this.ZoneService.getZoneHistory(zoneId);
   }
 
   getZoneDataByDate(zoneId, creationDate) {
-    return this.Domain.getZoneDataByDate(zoneId, creationDate);
+    return this.ZoneService.getZoneDataByDate(zoneId, creationDate);
   }
 
   $onInit() {

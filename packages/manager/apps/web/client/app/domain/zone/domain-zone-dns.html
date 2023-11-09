@@ -428,7 +428,7 @@
                         type="button"
                         data-translate="domain_configuration_dns_entry_see_dns_history_button"
                         data-ng-click="ctrlDomainTabZoneDns.navigateToZoneHistory()"
-                        data-ng-if="!ctrlDomainTabZoneDns.loading.table && ctrlDomainTabZoneDns.hasResult"
+                        data-ng-if="ctrlDomainTabZoneDns.allowZoneHistory()"
                     ></button>
                     <button
                         class="btn btn-block btn-default"

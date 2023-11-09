@@ -11,8 +11,7 @@ export default class DomainDnsZoneHistoryController {
     $window,
     $stateParams,
     $state,
-    DNSZoneService,
-    Domain,
+    ZoneService,
     Alerter,
   ) {
     this.$filter = $filter;
@@ -20,17 +19,16 @@ export default class DomainDnsZoneHistoryController {
     this.$translate = $translate;
     this.$stateParams = $stateParams;
     this.$state = $state;
-    this.DNSZoneService = DNSZoneService;
-    this.Domain = Domain;
+    this.ZoneService = ZoneService;
     this.Alerter = Alerter;
   }
 
   getZoneHistory(zoneId) {
-    return this.Domain.getZoneHistory(zoneId);
+    return this.ZoneService.getZoneHistory(zoneId);
   }
 
   getZoneDataByDate(zoneId, creationDate) {
-    return this.Domain.getZoneDataByDate(zoneId, creationDate);
+    return this.ZoneService.getZoneDataByDate(zoneId, creationDate);
   }
 
   computeGitUnidiff() {
@@ -48,7 +46,7 @@ export default class DomainDnsZoneHistoryController {
       this.$stateParams.productId,
       this.base_dns_chosen,
     );
-    this.baseDnsZoneData = await this.DNSZoneService.getDnsFile(zoneFileUrl);
+    this.baseDnsZoneData = await this.ZoneService.getDnsFile(zoneFileUrl);
     this.gitDiff = this.computeGitUnidiff();
     return this.updateInnerHtml();
   }
@@ -58,9 +56,7 @@ export default class DomainDnsZoneHistoryController {
       this.$stateParams.productId,
       this.modified_dns_chosen,
     );
-    this.modifiedDnsZoneData = await this.DNSZoneService.getDnsFile(
-      zoneFileUrl,
-    );
+    this.modifiedDnsZoneData = await this.ZoneService.getDnsFile(zoneFileUrl);
     this.gitDiff = this.computeGitUnidiff();
     return this.updateInnerHtml();
   }
@@ -76,7 +72,11 @@ export default class DomainDnsZoneHistoryController {
           '<span class="d2h-tag d2h-changed d2h-changed-tag">Modifé</span>',
       },
     });
-    document.getElementById('destination-elem-id').innerHTML = innerHTML;
+    const elt = document.getElementById('destination-elem-id');
+    if (!elt) {
+      return;
+    }
+    elt.innerHTML = innerHTML;
   }
 
   async $onInit() {
