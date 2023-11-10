@@ -12,5 +12,6 @@
   "manager_hub_dashboard_kyc_banner_description": "Vous souhaitez commander un produit OVHcloud : la réglementation en vigueur nécessite une vérification de votre identité. Veuillez ajouter vos documents d'identité.",
   "manager_hub_dashboard_kyc_banner_link": "Mes documents",
   "manager_hub_dashboard_iam_banner_description": "Nouveau! La fonctionnalité de Gestion des Identités et Accès (IAM) est désormais disponible pour gérer de manière sécurisé vos accès via une interface unique pour tous vos services.",
+  "manager_hub_dashboard_iam_ga_banner_description": "Nouveau! La Gestion des Identités et Accès (IAM) est désormais disponible pour tous. Sécurisez l'accès à tous vos services depuis une seule interface.",
   "manager_hub_dashboard_iam_banner_link": "En savoir plus"
 }
