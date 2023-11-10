@@ -145,13 +145,19 @@
 
     <oui-action-menu text="Actions" compact>
         <oui-action-menu-item
+            data-href="{{:: $ctrl.getServiceNameLink($row)}}"
+            aria-label="{{:: 'domains_action_per_line_detail' | translate }}"
+            data-ng-if="![$ctrl.DOMAIN_STATUS.PENDING_INCOMING_TRANSFER, $ctrl.DOMAIN_STATUS.PENDING_CREATE].includes($row.state)"
+        >
+            <span data-translate="domains_action_per_line_detail"></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item
             on-click="$ctrl.goToRestoreRenew($row)"
-            aria-label="{{:: 'domains_action_per_line_renew' | translate }}"
+            aria-label="{{:: $row.state === $ctrl.DOMAIN_STATUS.RESTORABLE ? 'domains_action_per_line_restore' : 'domains_action_per_line_renew' | translate }}"
             data-ng-if="$ctrl.constructor.isDomainRenewableOrRestorable($row)"
         >
             <span
-                data-ng-if="$row.state === $ctrl.DOMAIN_STATUS.RESTORABLE"
-                data-translate="{{ 'domains_action_per_line_' + $row.state === $ctrl.DOMAIN_STATUS.RESTORABLE ? 'restore' : 'renew'}}"
+                data-translate="{{ $row.state === $ctrl.DOMAIN_STATUS.RESTORABLE ? 'domains_action_per_line_restore' : 'domains_action_per_line_renew' }}"
             ></span>
         </oui-action-menu-item>
     </oui-action-menu>
