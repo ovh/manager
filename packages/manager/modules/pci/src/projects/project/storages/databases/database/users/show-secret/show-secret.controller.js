@@ -12,10 +12,12 @@ export default class {
   }
 
   downloadSecret() {
-    this.trackDashboard(`users::show_secret::download_${this.type.label}`);
+    this.trackDashboard(
+      `users::show_secret::download_${this.secretType.label}`,
+    );
     this.CucControllerHelper.constructor.downloadContent({
-      fileContent: this.secretKeyAndAccess[this.type.label],
-      fileName: this.type.filename,
+      fileContent: this.secretKeyAndAccess[this.secretType.label],
+      fileName: this.secretType.filename,
     });
   }
 }
