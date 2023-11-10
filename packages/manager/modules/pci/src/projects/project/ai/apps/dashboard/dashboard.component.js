@@ -1,6 +1,8 @@
 import template from './dashboard.html';
+import controller from './dashboard.controller';
 
 export default {
+  controller,
   bindings: {
     app: '<',
     guideUrl: '<',
