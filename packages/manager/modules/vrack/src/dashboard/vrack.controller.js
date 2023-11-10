@@ -181,6 +181,8 @@ export default class VrackMoveDialogCtrl {
   }
 
   static fillServiceData(serviceType, service) {
+    console.log('###### fillServiceData ', serviceType, service);
+
     let formattedService = null;
     switch (serviceType) {
       case 'dedicatedServer':
@@ -238,6 +240,7 @@ export default class VrackMoveDialogCtrl {
         formattedService = cloneDeep(service);
         break;
     }
+    console.log('###### formattedService ', formattedService);
     return formattedService;
   }
 
@@ -358,8 +361,6 @@ export default class VrackMoveDialogCtrl {
         this.$timeout.cancel(this.poller);
       }
     });
-
-    // this.testingland()
   }
 
   refreshMessage() {
@@ -392,6 +393,7 @@ export default class VrackMoveDialogCtrl {
     }
     this.getAllowedServicesIsPending = true;
     this.getAllowedServicesCounter = 0;
+    this.getAllowedServicesExpectedCounter = 0;
 
     /**
      * for each service, make a call and append the result to a literal object
@@ -399,6 +401,7 @@ export default class VrackMoveDialogCtrl {
      * and get rid of the timeout if there are too many services fetched at once
      */
     this.servicesFamilies.forEach((serviceFamily) => {
+      this.getAllowedServicesExpectedCounter += 1;
       this.loaders.services[serviceFamily] = 'fetching';
 
       const self = this;
@@ -423,14 +426,32 @@ export default class VrackMoveDialogCtrl {
   }
 
   postMappingServices(allServices) {
-    const mappedServices = mapValues(allServices, (services, serviceType) => {
-      if (isArray(services)) {
-        return map(services, (service) =>
-          this.constructor.fillServiceData(serviceType, service),
+    console.log('###### postMappingServices allServices ', allServices);
+    console.log('###### allServices.ip ', allServices.ip);
+
+    const mappedServices = mapValues(
+      allServices,
+      (serviceList, serviceType) => {
+        console.log(
+          '###### ça mappe ',
+          serviceList,
+          serviceType,
+          isArray(serviceList),
         );
-      }
-      return services;
-    });
+        // if (isArray(serviceList)) {
+        const mappedstuff = this.constructor.fillServiceData(
+          serviceType,
+          serviceList,
+        );
+        console.log('###### mappedstuff ', mappedstuff);
+        return mappedstuff;
+        // }
+        // console.log('###### services ', serviceList)
+        //
+        // return serviceList;
+      },
+    );
+    console.log('###### mappedServices after map', mappedServices);
 
     // We need to append dedicatedServerInterfaces list to dedicatedServers list.
     if (
@@ -443,14 +464,16 @@ export default class VrackMoveDialogCtrl {
       }
 
       angular.forEach(
-        mappedServices.dedicatedServerInterface,
+        allServices.dedicatedServerInterface,
         (serverInterface) => {
-          mappedServices.dedicatedServer.push(serverInterface);
+          allServices.dedicatedServer.push(serverInterface);
         },
       );
 
       mappedServices.dedicatedServerInterface = [];
     }
+    console.log('###### mappedServices in the end', mappedServices);
+
     return this.getAvailableServices(mappedServices);
   }
 
@@ -661,19 +684,17 @@ export default class VrackMoveDialogCtrl {
         } else if (tasks.length === 0) {
           poll = false; // no new tasks & no tasks, no need to poll
         }
-
-        this.getAllowedServices();
-        const promise = new Promise();
         /**
          * Secondly, we fetch vrack data ...
          */
         return this.$q
           .all({
-            allowedServices: promise.resolve(this.data.allowedServices),
+            allowedServices: this.getAllowedServices(),
             vrackServices: this.getVrackServices(),
           })
           .then((result) => {
             this.data.pendingTasks = tasks;
+            this.data.allowedServices = result.allowedServices;
             this.data.vrackServices = result.vrackServices;
 
             /**
@@ -1130,10 +1151,15 @@ export default class VrackMoveDialogCtrl {
      *  then filter only the allowed ones
      */
     const mappedServices = this.postMappingServices(this.data.allowedServices);
+    console.log(
+      '###### setOneAllowedServiceFamily mappedServices ',
+      mappedServices,
+    );
     const allServicesAllowed = VrackMoveDialogCtrl.filterAllowedServicesOnly(
       mappedServices,
-      // this.data.allowedServices,
     );
+    console.log('###### allServicesAllowed ', allServicesAllowed);
+
     this.data.allowedServices = allServicesAllowed;
   }
 
@@ -1143,7 +1169,6 @@ export default class VrackMoveDialogCtrl {
    * @param serviceFamily
    */
   handleOneServiceFamily(serviceFetchedResponse, serviceFamily) {
-    this.getAllowedServicesCounter += 1;
     let OneServiceData = serviceFetchedResponse;
 
     /**
