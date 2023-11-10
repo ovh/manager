@@ -3,7 +3,7 @@ import find from 'lodash/find';
 import { merge } from 'lodash';
 import { APP_PRIVACY_SETTINGS, APP_SCALING_SETTINGS } from './add.constants';
 import { nameGenerator } from '../../../../../name-generator.constant';
-import { APP_TYPES } from '../app.constants';
+import { APP_TYPES, APP_USERS_TOKENS_BANNER_TRACKING } from '../app.constants';
 
 export default class AppAddController {
   /* @ngInject */
@@ -372,5 +372,10 @@ export default class AppAddController {
       .finally(() => {
         this.isAdding = false;
       });
+  }
+
+  goToUserTokens() {
+    this.trackApps(APP_USERS_TOKENS_BANNER_TRACKING);
+    this.goToUsersAndTokens();
   }
 }
