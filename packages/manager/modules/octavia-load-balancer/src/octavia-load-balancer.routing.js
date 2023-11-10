@@ -10,6 +10,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().projectId,
       project: /* @ngInject */ ($http, projectId) =>
         $http.get(`/cloud/project/${projectId}`).then(({ data }) => data),
+      goToListingPage: /* @ngInject */ ($state) => () =>
+        $state.go('octavia-load-balancer.loadbalancers'),
       breadcrumb: ($translate) => $translate.instant('octavia_load_balancers'),
       breadcrumbPrefix: /* @ngInject */ (
         $injector,
