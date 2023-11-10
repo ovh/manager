@@ -90,13 +90,84 @@
             </div>
         </oui-step-form>
 
+        <!-- FLOATING IP -->
+        <oui-step-form
+            data-ng-init="stepFloatingIp = $ctrl.stepper.loadBalancerFloatingIp"
+            data-name="{{:: stepFloatingIp.name}}"
+            data-header="{{:: 'octavia_load_balancer_create_floating_ip_title' | translate }}"
+            data-prevent-next="true"
+        >
+            <p
+                class="mb-4"
+                data-translate="octavia_load_balancer_create_floating_ip_intro"
+            ></p>
+            <oui-spinner data-ng-if="$ctrl.floatingIpLoading"></oui-spinner>
+            <div
+                class="container-fluid row"
+                data-ng-if="!$ctrl.floatingIpLoading"
+            >
+                <oui-field
+                    data-label="{{:: 'octavia_load_balancer_create_floating_ip_field' | translate }}"
+                    class="col-lg-4 col-md-6 col-sm-12"
+                >
+                    <oui-select
+                        data-disabled="!$ctrl.floatingIps.length"
+                        data-items="$ctrl.floatingIps"
+                        data-match="displayName"
+                        data-model="$ctrl.model.floatingIp"
+                        data-title="{{:: 'octavia_load_balancer_create_floating_ip_field' | translate }}"
+                        data-placeholder="{{:: 'octavia_load_balancer_create_floating_ip_field' | translate }}"
+                        data-name="{{:: stepPrivateNetwork.name + '_select_floatingip'}}"
+                        on-change="$ctrl.onFloatingIpChange()"
+                        searchable
+                    >
+                    </oui-select>
+                </oui-field>
+            </div>
+
+            <!-- Display message for floating ip creation -->
+            <oui-message
+                data-type="info"
+                data-ng-if="$ctrl.model.floatingIp.type === $ctrl.FLOATING_IP_TYPE.CREATE"
+            >
+                <p
+                    data-translate="octavia_load_balancer_create_floating_ip_new_information"
+                ></p>
+                <p>
+                    <span
+                        data-translate="octavia_load_balancer_create_floating_ip_new_price"
+                    ></span>
+                    <ovh-manager-catalog-price
+                        data-price="$ctrl.catalogFloatingIp.pricings[0].price"
+                        data-user="$ctrl.user"
+                        data-minimum-fraction-digits="5"
+                        data-perform-rounding="false"
+                    >
+                    </ovh-manager-catalog-price>
+                    <span
+                        data-translate="octavia_load_balancer_create_floating_ip_new_price_interval"
+                    ></span>
+                </p>
+            </oui-message>
+
+            <!-- Display message for no floating ip selection -->
+            <oui-message
+                data-type="warning"
+                data-ng-if="$ctrl.model.floatingIp.type === $ctrl.FLOATING_IP_TYPE.NO_IP"
+            >
+                <p
+                    data-translate="octavia_load_balancer_create_floating_ip_no_floating_ip_information"
+                ></p>
+            </oui-message>
+        </oui-step-form>
+
         <!-- PRIVATE NETWORK SELECTION -->
         <oui-step-form
             data-ng-init="stepPrivateNetwork = $ctrl.stepper.loadBalancerPrivateNetwork"
             data-name="{{:: stepPrivateNetwork.name}}"
             data-header="{{:: 'octavia_load_balancer_create_private_network_title' | translate }}"
             data-prevent-next="true"
-            data-valid="!$ctrl.gatewayLoading && !$ctrl.subnetLoading && !$ctrl.privateNetworkLoading"
+            data-valid="$ctrl.isPrivateNetworkStepValid()"
             data-on-focus="$ctrl.privateNetworkStepFocus()"
         >
             <div class="mb-4">
@@ -106,7 +177,7 @@
             </div>
             <!-- PRIVATE NETWORKS -->
             <oui-spinner data-ng-if="$ctrl.privateNetworkLoading"></oui-spinner>
-            <div class="container-fluid">
+            <div class="container-fluid row">
                 <oui-field
                     class="col-lg-4 col-md-6 col-sm-12"
                     data-label="{{:: 'octavia_load_balancer_create_private_network_field' | translate }}"
@@ -129,24 +200,7 @@
             <!-- SUBNETS -->
             <oui-spinner data-ng-if="$ctrl.subnetLoading"></oui-spinner>
             <div data-ng-if="!$ctrl.subnetLoading">
-                <!-- Display message if private network have no subnet -->
-                <oui-message
-                    data-type="error"
-                    data-ng-if="$ctrl.subnets && !$ctrl.subnets.length"
-                >
-                    <p>
-                        <span
-                            data-translate="octavia_load_balancer_create_private_network_no_subnet_text"
-                            data-translate-values="{
-                                createPrivateNetworkLink: $ctrl.privateNetworkCreationLink,
-                                trackLabel: $ctrl.trackingPrivateNetworkCreation
-                            }"
-                            data-translate-compile
-                        ></span>
-                    </p>
-                </oui-message>
-
-                <div class="container-fluid">
+                <div class="container-fluid row">
                     <oui-field
                         data-label="{{:: 'octavia_load_balancer_create_private_network_field_subnet' | translate }}"
                         class="col-lg-4 col-md-6 col-sm-12"
@@ -165,11 +219,29 @@
                         </oui-select>
                     </oui-field>
                 </div>
+
+                <!-- Display message if private network have no subnet -->
+                <oui-message
+                    data-type="error"
+                    data-ng-if="$ctrl.subnets && !$ctrl.subnets.length && $ctrl.model.floatingIp.type !== $ctrl.FLOATING_IP_TYPE.NO_IP"
+                >
+                    <p>
+                        <span
+                            data-translate="octavia_load_balancer_create_private_network_no_subnet_text"
+                            data-translate-values="{
+                                createPrivateNetworkLink: $ctrl.privateNetworkCreationLink,
+                                trackLabel: $ctrl.trackingPrivateNetworkCreation
+                            }"
+                            data-translate-compile
+                        ></span>
+                    </p>
+                </oui-message>
+
                 <!-- Display message if subnet have no gateway-->
                 <oui-spinner data-ng-if="$ctrl.gatewayLoading"></oui-spinner>
                 <oui-message
                     data-type="info"
-                    data-ng-if="!$ctrl.gatewayLoading && $ctrl.model.subnet && !$ctrl.gateways.length"
+                    data-ng-if="!$ctrl.gatewayLoading && $ctrl.model.subnet && !$ctrl.gateways.length && $ctrl.model.floatingIp.type !== $ctrl.FLOATING_IP_TYPE.NO_IP"
                 >
                     <p
                         data-translate="octavia_load_balancer_create_private_network_no_gateway_text"
@@ -240,7 +312,7 @@
             data-on-cancel="$ctrl.onCancel()"
             data-submit-text="{{:: 'octavia_load_balancer_create_submit' | translate }}"
         >
-            <div class="container-fluid">
+            <div class="container-fluid row">
                 <oui-field
                     data-label="{{:: 'octavia_load_balancer_create_name_field_label' | translate }}"
                     class="col-lg-4 col-md-6 col-sm-12"
