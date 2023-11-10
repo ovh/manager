@@ -151,11 +151,7 @@
         >
             <span
                 data-ng-if="$row.state === $ctrl.DOMAIN_STATUS.RESTORABLE"
-                data-translate="domains_action_per_line_restore"
-            ></span>
-            <span
-                data-ng-if="$row.state !== $ctrl.DOMAIN_STATUS.RESTORABLE"
-                data-translate="domains_action_per_line_renew"
+                data-translate="{{ 'domains_action_per_line_' + $row.state === $ctrl.DOMAIN_STATUS.RESTORABLE ? 'restore' : 'renew'}}"
             ></span>
         </oui-action-menu-item>
     </oui-action-menu>
