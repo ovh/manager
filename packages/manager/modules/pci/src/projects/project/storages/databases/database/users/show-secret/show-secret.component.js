@@ -7,7 +7,7 @@ const component = {
     goBack: '<',
     projectId: '<',
     user: '<',
-    type: '<',
+    secretType: '<',
     trackDashboard: '<',
     secretKeyAndAccess: '<',
   },
