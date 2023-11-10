@@ -6,6 +6,7 @@ import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import routing from './domains.routing';
 import component from './list/list-domain-layout.component';
+import restoreRenew from './list/restore-renew';
 
 const moduleName = 'ovhManagerDomains';
 
@@ -15,6 +16,7 @@ angular
     'oui',
     'pascalprecht.translate',
     ListLayoutHelper.moduleName,
+    restoreRenew,
   ])
   .config(routing)
   .component('managerListDomainLayout', component)

@@ -18,7 +18,9 @@
     data-columns="$ctrl.columnsConfig"
     data-on-columns-parameters-change="$ctrl.onColumnChange(id, columns)"
     data-page="{{ $ctrl.paginationNumber }}"
-    customizable
+    data-on-row-select="$ctrl.onRowSelect($row, $rows)"
+    data-selectable-rows
+    data-customizable
 >
     <oui-datagrid-topbar data-ng-if="$ctrl.topbarOptions">
         <topbar-cta data-options="$ctrl.topbarOptions"></topbar-cta>
@@ -141,3 +143,13 @@
         data-title="::'domains_column_domains_name_server' | translate"
     ></oui-datagrid-column>
 </oui-datagrid>
+
+<div class="mt-5" data-ng-if="$ctrl.resources.data.length">
+    <oui-button
+        data-variant="secondary"
+        data-disabled="!$ctrl.selectedRows.length"
+        data-ng-click="$ctrl.goToRestoreRenew($ctrl.selectedRows)"
+    >
+        <span data-translate="domains_action_restore_renew"></span>
+    </oui-button>
+</div>
