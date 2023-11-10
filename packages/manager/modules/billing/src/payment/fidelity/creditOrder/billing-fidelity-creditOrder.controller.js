@@ -6,6 +6,7 @@ export default /* @ngInject */ (
   $translate,
   atInternet,
   BillingFidelity,
+  Alerter,
 ) => {
   $scope.creditOrder = {
     amount: 1000,
@@ -61,13 +62,20 @@ export default /* @ngInject */ (
           $scope.$emit(CREDIT);
           $scope.creditOrder.BC = data;
           $scope.creditOrder.loading = false;
+          Alerter.success(
+            $translate.instant('fidelity_creditOrder_submit_success', {
+              t0: amount,
+            }),
+            'billingPaymentFidelityAlert',
+          );
         },
-        (data) => {
+        () => {
           $scope.creditOrder.loading = false;
           $scope.resetAction();
-          $scope.setMessage(
-            $translate.instant('fidelity_creditOrder_step2_error'),
-            data.data,
+          Alerter.alertFromSWS(
+            $translate.instant('fidelity_creditOrder_submit_error'),
+            'error',
+            'billingPaymentFidelityAlert',
           );
         },
       );
@@ -76,12 +84,6 @@ export default /* @ngInject */ (
 
   $scope.displayBC = function displayBC() {
     $scope.resetAction();
-    $scope.setMessage(
-      $translate.instant('fidelity_creditOrder_step2_success', {
-        t0: $scope.creditOrder.BC.url,
-        t1: $scope.creditOrder.BC.orderId,
-      }),
-    );
     window.open($scope.creditOrder.BC.url, '_blank');
 
     atInternet.trackClick({
