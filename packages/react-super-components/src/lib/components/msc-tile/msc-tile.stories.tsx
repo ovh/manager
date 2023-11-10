@@ -1,13 +1,16 @@
 import React from 'react'
-import { localeList, defaultLocale } from '@ovhcloud/msc-utils';
-import { MscTile, MscTileProps } from '.'
+import ScTile, { MscTileProps } from './index'
 import { Meta } from '@storybook/react'
 import { StoryFn } from '@storybook/react'
 
+const locale = {}
+const defaultLocale = {}
+const localeList = {}
+
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-const meta: Meta<typeof MscTile> = {
+const meta: Meta<typeof ScTile> = {
   title: 'Atoms/MscTile',
-  component: MscTile,
+  component: ScTile,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     category: {
@@ -22,8 +25,7 @@ const meta: Meta<typeof MscTile> = {
     href: { control: 'text', description: 'URL of the tile and link' },
     isExternalHref: {
       control: 'boolean',
-      description:
-        'Change the icon of the link to indicate if the link is internal or external',
+      description: 'Change the icon of the link to indicate if the link is internal or external',
       table: {
         defaultValue: { summary: false },
       },
@@ -35,8 +37,7 @@ const meta: Meta<typeof MscTile> = {
     imgAlt: { control: 'text', description: 'Alternative label of the image' },
     hasBadges: {
       control: 'boolean',
-      description:
-        'Display examples of badges in the story (in the actual code there is a badge slot)',
+      description: 'Display examples of badges in the story (in the actual code there is a badge slot)',
     },
     hasFooter: {
       control: 'boolean',
@@ -66,7 +67,7 @@ const meta: Meta<typeof MscTile> = {
 export default meta
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: StoryFn<typeof MscTile> = (args: MscTileProps) => <MscTile {...args} />
+const Template: StoryFn<typeof ScTile> = (args: MscTileProps) => <ScTile {...args} />
 
 export const Primary = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
@@ -80,13 +81,8 @@ Primary.args = {
     'https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png',
   imgAlt: 'offer',
   dataTracking: 'home::dashboard::test',
-};
-
-export const Secondary = Template.bind({})
-Secondary.args = {
-  category: 'Button',
-  variant: 'SECONDARY',
 }
+
 
 export const Tertiary = Template.bind({})
 Tertiary.args = {

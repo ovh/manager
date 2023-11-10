@@ -3,21 +3,11 @@
   "private": false,
   "version": "2.0.4",
   "packageManager": "pnpm@8.4.0",
-  "main": "./dist/react-super-components.umd.js",
-  "module": "./dist/react-super-components.es.js",
-  "types": "./dist/index.d.ts",
+  "main": "./lib/index.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
     "directory": "packages/react-super-components"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/react-super-components.es.js",
-      "require": "./dist/react-super-components.umd.js"
-    },
-    "./dist/style.css": "./dist/style.css"
   },
   "scripts": {
     "dev": "storybook dev -p 6006",
