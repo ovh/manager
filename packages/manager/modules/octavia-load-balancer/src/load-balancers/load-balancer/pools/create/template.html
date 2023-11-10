@@ -1,0 +1,14 @@
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div data-ng-if="!$ctrl.loading">
+    <octavia-load-balancer-pool-form
+        data-algorithms="$ctrl.algorithms"
+        data-protocols="$ctrl.poolProtocols"
+        data-session-persistence-types="$ctrl.sessionPersistenceTypes"
+        data-model="$ctrl.model"
+        data-on-submit="$ctrl.submit()"
+        data-on-cancel="$ctrl.cancel()"
+    ></octavia-load-balancer-pool-form>
+</div>

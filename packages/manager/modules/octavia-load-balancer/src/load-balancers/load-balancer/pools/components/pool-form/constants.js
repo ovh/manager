@@ -1,0 +1,11 @@
+export const DEFAULT_ALGORITHM = 'roundRobin';
+
+export const DEFAULT_SESSION_PERSISTENCE_TYPE = 'sourceIP';
+
+export const APP_COOKIE_SESSION_PERSISTENCE = 'appCookie';
+
+export default {
+  DEFAULT_ALGORITHM,
+  DEFAULT_SESSION_PERSISTENCE_TYPE,
+  APP_COOKIE_SESSION_PERSISTENCE,
+};
