@@ -13,6 +13,15 @@ export const DOMAIN_STATUS = {
   REGISTRY_SUSPENDED: 'registry_suspended',
 };
 
+export const DOMAIN_RENEWABLE_STATE = {
+  MANUAL_RENEW: 'manual_renew',
+  AUTOMATIC_RENEW: 'automatic_renew',
+  CANCELLATION_REQUESTED: 'cancellation_requested',
+  CANCELLATION_COMPLETE: 'cancellation_complete',
+  UNPAID: 'unpaid',
+  EXPIRED: 'expired',
+};
+
 export const DOMAIN_SUSPENSION_STATE = {
   NOT_SUSPENDED: 'not_suspended',
   SUSPENDED: 'suspended',
@@ -63,6 +72,7 @@ export const IDN_PREFIX = 'xn--';
 
 export default {
   DOMAIN_STATUS,
+  DOMAIN_RENEWABLE_STATE,
   DOMAIN_SUSPENSION_STATE,
   DOMAIN_TRANSFERT_LOCK_STATE,
   DOMAIN_NAME_SERVER_TYPE,
