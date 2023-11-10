@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.10.1...@ovh-ux/sign-up@2.10.2) (2023-11-10)
+
+
+### Bug Fixes
+
+* display VAT field error on page load ([33b9223](https://github.com/ovh/manager/commit/33b9223a3e0abf329af0b27d6c9b6cb92666bb7f))
+
+
+
+
+
 ## [2.10.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.10.0...@ovh-ux/sign-up@2.10.1) (2023-10-30)
 
 

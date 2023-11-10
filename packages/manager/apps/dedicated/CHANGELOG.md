@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.10.0...@ovh-ux/manager-dedicated@19.10.1) (2023-11-10)
+
+
+### Bug Fixes
+
+* display VAT field error on page load ([33b9223](https://github.com/ovh/manager/commit/33b9223a3e0abf329af0b27d6c9b6cb92666bb7f))
+
+
+
+
+
 # [19.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.9.1...@ovh-ux/manager-dedicated@19.10.0) (2023-11-09)
 
 
