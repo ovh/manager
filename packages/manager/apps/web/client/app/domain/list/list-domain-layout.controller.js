@@ -93,6 +93,10 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     );
   }
 
+  onRowSelect(row, rows) {
+    this.selectedRows = rows;
+  }
+
   static convertToPunycode(domain) {
     return punycode.toUnicode(domain);
   }

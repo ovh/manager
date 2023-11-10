@@ -51,5 +51,6 @@
   "domains_transfert_lock__status_tooltip_unlocked": "Le domaine n'est pas protégé contre le transfert",
   "domains_transfert_lock__status_tooltip_locking": "Le domaine est en cours de protection contre le transfert",
   "domains_transfert_lock__status_tooltip_unlocking": "Le domaine est en cours de déprotection contre le transfert",
-  "domains_status_tooltip_dispute": "Le nom de domaine fait l'objet d'une procédure administrative ou judiciaire"
+  "domains_status_tooltip_dispute": "Le nom de domaine fait l'objet d'une procédure administrative ou judiciaire",
+  "domains_action_restore_renew": "Renouveler / Restaurer"
 }
