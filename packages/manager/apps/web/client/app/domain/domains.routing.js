@@ -75,7 +75,8 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         },
       }),
-
+      goToRestoreRenew: /* @ngInject */ ($state) => (domains) =>
+        $state.go('app.domain.index.restore-renew', { domains }),
       hideBreadcrumb: () => true,
     },
   });
