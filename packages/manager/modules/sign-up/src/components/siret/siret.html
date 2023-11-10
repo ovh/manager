@@ -160,6 +160,7 @@
             <oui-field
                 class="col-lg-6"
                 data-label="{{ 'siret_manual_company_name' | translate }}"
+                data-force-error-display="$ctrl.mode === 'modification'"
             >
                 <input
                     class="oui-input"
@@ -176,6 +177,7 @@
             <oui-field
                 class="col-lg-6"
                 data-label="{{ 'siret_manual_company_legal_form' | translate }}"
+                data-force-error-display="$ctrl.mode === 'modification'"
             >
                 <oui-select
                     data-items="$ctrl.legalFormList"
@@ -193,6 +195,7 @@
             <oui-field
                 class="col-lg-6"
                 data-label="{{ 'siret_siret' | translate }} ({{ 'siret_optional' | translate }})"
+                data-force-error-display="$ctrl.mode === 'modification'"
             >
                 <input
                     class="oui-input"
@@ -210,6 +213,7 @@
                 <oui-field
                     data-label="{{ 'siret_vat' | translate }} ({{ 'siret_optional' | translate }})"
                     data-label-popover="{{ 'siret_vat_helper' | translate }}"
+                    data-force-error-display="$ctrl.mode === 'modification'"
                 >
                     <input
                         class="oui-input"
@@ -219,15 +223,9 @@
                         data-ng-pattern="$ctrl.rules.vat.regularExpression"
                         type="text"
                         data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.vat)"
-                        data-ng-focus="$ctrl.vatFieldTouched = true;"
                         data-ng-disabled="$ctrl.disableField"
                     />
                 </oui-field>
-                <p
-                    class="mb-0 text-danger siret-vat-field-error"
-                    data-ng-if="$ctrl.displayVatError($ctrl.vatFieldTouched)"
-                    data-translate="common_field_error_pattern"
-                ></p>
             </div>
         </div>
     </div>
