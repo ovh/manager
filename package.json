@@ -11,11 +11,7 @@
     "packages/manager/core/*",
     "packages/manager/modules/*",
     "packages/manager/tools/*",
-    "packages/super-components",
-    "packages/super-components/components/*",
-    "packages/super-components/*",
-    "packages/super-components/components/*/react",
-    "packages/super-components/components/*/vue"
+    "packages/manager-components"
   ],
   "scripts": {
     "build": "yarn run build:turbo",
@@ -27,7 +23,7 @@
     "format:css": "yarn run lint:css --fix",
     "format:html": "yarn run lint:html && prettier --parser=html --write \"packages/**/*.html\"",
     "format:js": "yarn run lint:js --fix",
-    "format:tsx": "yarn run lint:tsx --fix && prettier --write \"packages/{manager/apps,super-components}/**/*.{tsx,ts}\"",
+    "format:tsx": "yarn run lint:tsx --fix && prettier --write \"packages/{manager/apps,manager-components}/**/*.{tsx,ts}\"",
     "format:md": "yarn run lint:md --fix",
     "generate:app": "sao ./packages/manager/tools/sao-ovh-manager-app",
     "generate:uapp": "yarn workspace @ovh-ux/manager-generator run start",
@@ -35,7 +31,7 @@
     "lint": "run-p lint:*",
     "lint:css": "stylelint \"packages/**/*.{css,less,scss}\"",
     "lint:html": "htmlhint --ignore \"**/dist/**,**/www/**,**/screenshot/**,**/docs-api/**\" \"packages/**/*.html\"",
-    "lint:tsx": "eslint --quiet \"packages/{manager/apps,super-components}/**/*.{tsx,ts}\"",
+    "lint:tsx": "eslint --quiet \"packages/{manager/apps,manager-components}/**/*.{tsx,ts}\"",
     "lint:js": "eslint --cache --quiet --format=pretty \"packages\" \"scripts\"",
     "lint:md": "remark -qf . && eslint --quiet --format=pretty --ext .md \"docs\" \"packages\"",
     "list-dependents": "node scripts/list-dependents.js",

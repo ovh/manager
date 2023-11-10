@@ -45,9 +45,9 @@ const waitForProducts = async (
   await page.waitForFunction(
     ({ selector, expectedCount }) =>
       document.querySelectorAll(selector).length === expectedCount,
-    { selector: 'msc-tile', expectedCount: expectedProductCount },
+    { selector: 'card', expectedCount: expectedProductCount },
   );
-  return page.$$('msc-tile');
+  return page.$$('');
 };
 
 const validateProductCategories = async (

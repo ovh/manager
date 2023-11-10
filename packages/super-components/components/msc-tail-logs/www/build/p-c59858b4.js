@@ -1,0 +1,1 @@
+import{O as l}from"./p-0cc556ba.js";new l("toggle.global").log("init"),new l("icon.global").log("init"),new l("button.global").log("init"),new l("code.global").log("init"),new l("skeleton.global").log("init"),new l("text.global").log("init"),new l("msc-tail-logs.global").log("init");

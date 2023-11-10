@@ -1,0 +1,1 @@
+const e="Unsere Tipps",n="Unsere Anleitungen",r="Mehr erfahren";export default{advices_heading:"Unsere Tipps",advices_retention_heading:"Unsere Anleitungen",advices_recommender_system_know_more:"Mehr erfahren"};export{e as advices_heading,r as advices_recommender_system_know_more,n as advices_retention_heading}
