@@ -12,6 +12,7 @@
     "packages/manager/modules/*",
     "packages/manager/tools/*",
     "packages/super-components",
+    "packages/react-super-components",
     "packages/super-components/components/*",
     "packages/super-components/*",
     "packages/super-components/components/*/react",

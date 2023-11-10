@@ -37,25 +37,23 @@ export const createTile = ({
       data-tracking="${dataTracking}"
       locale="${locale}"
     >
-      ${
-        hasBadges
-          ? `
+      ${hasBadges
+    ? `
         <span slot="badges">
           <osds-chip color="primary" size="sm" inline>OVHcloud</osds-chip>
           <osds-chip color="success" size="sm" inline>Beta</osds-chip>
         </span>
       `
-          : ''
-      }
-      ${
-        hasFooter
-          ? `
+    : ''
+  }
+      ${hasFooter
+    ? `
         <div slot="footer">
           <osds-button color="primary" style="margin-top: 1.5rem">Commander</osds-button>
         </div>
       `
-          : ''
-      }
+    : ''
+  }
     </msc-tile>
   `;
 
