@@ -77,6 +77,13 @@
 
     <!-- FOOTER BUTTONS -->
     <div class="mb-5">
+        <oui-message
+            class="mb-2"
+            type="warning"
+            data-ng-if="ovhSignupForm.$invalid && $ctrl.user.ovhSubsidiary === 'FR'"
+        >
+            <span data-translate="new_account_content_check_validation"></span>
+        </oui-message>
         <button
             class="oui-button oui-button_primary"
             data-ng-disabled="ovhSignupForm.$invalid ||

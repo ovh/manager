@@ -766,5 +766,6 @@
   "signup_information_banner_for_indian_subsidiary": "To modify your account information, please contact our customer support team by ",
   "signup_information_banner_link_for_indian_subsidiary": "clicking here.",
   "signup_field_iceNumber": "ICE number",
-  "signup_field_purposeOfPurchase": "Reason for purchase"
+  "signup_field_purposeOfPurchase": "Reason for purchase",
+  "new_account_content_check_validation": "Please check the information you have entered (VAT, telephone number, date of birth, etc.) before validating the form."
 }
