@@ -5,10 +5,6 @@ export default class webDomainRestoreRenewCtrl {
     this.constants = constants;
   }
 
-  $onInit() {
-    console.log('MODAL INIT', { domains: this.domains, title: this.title });
-  }
-
   redirectToRenew() {
     this.$window.open(
       URI.expand(this.constants.renew, {
