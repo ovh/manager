@@ -97,13 +97,15 @@
             data-header="{{:: 'octavia_load_balancer_create_floating_ip_title' | translate }}"
             data-prevent-next="true"
         >
-            <div class="mb-4">
-                <p
-                    data-translate="octavia_load_balancer_create_floating_ip_intro"
-                ></p>
-            </div>
+            <p
+                class="mb-4"
+                data-translate="octavia_load_balancer_create_floating_ip_intro"
+            ></p>
             <oui-spinner data-ng-if="$ctrl.floatingIpLoading"></oui-spinner>
-            <div class="container-fluid" data-ng-if="!$ctrl.floatingIpLoading">
+            <div
+                class="container-fluid row"
+                data-ng-if="!$ctrl.floatingIpLoading"
+            >
                 <oui-field
                     data-label="{{:: 'octavia_load_balancer_create_floating_ip_field' | translate }}"
                     class="col-lg-4 col-md-6 col-sm-12"
@@ -175,7 +177,7 @@
             </div>
             <!-- PRIVATE NETWORKS -->
             <oui-spinner data-ng-if="$ctrl.privateNetworkLoading"></oui-spinner>
-            <div class="container-fluid">
+            <div class="container-fluid row">
                 <oui-field
                     class="col-lg-4 col-md-6 col-sm-12"
                     data-label="{{:: 'octavia_load_balancer_create_private_network_field' | translate }}"
@@ -198,7 +200,7 @@
             <!-- SUBNETS -->
             <oui-spinner data-ng-if="$ctrl.subnetLoading"></oui-spinner>
             <div data-ng-if="!$ctrl.subnetLoading">
-                <div class="container-fluid">
+                <div class="container-fluid row">
                     <oui-field
                         data-label="{{:: 'octavia_load_balancer_create_private_network_field_subnet' | translate }}"
                         class="col-lg-4 col-md-6 col-sm-12"
@@ -310,7 +312,7 @@
             data-on-cancel="$ctrl.onCancel()"
             data-submit-text="{{:: 'octavia_load_balancer_create_submit' | translate }}"
         >
-            <div class="container-fluid">
+            <div class="container-fluid row">
                 <oui-field
                     data-label="{{:: 'octavia_load_balancer_create_name_field_label' | translate }}"
                     class="col-lg-4 col-md-6 col-sm-12"

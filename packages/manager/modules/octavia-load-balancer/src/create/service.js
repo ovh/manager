@@ -6,11 +6,10 @@ import {
 
 export default class OctaviaLoadBalancerCreateService {
   /* @ngInject */
-  constructor($http, $q, $translate, Alerter) {
+  constructor($http, $q, $translate) {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
-    this.Alerter = Alerter;
   }
 
   getPrivateNetworks(projectId, regionName) {
@@ -158,35 +157,15 @@ export default class OctaviaLoadBalancerCreateService {
       }) || [];
 
     return this.getFlavorId(projectId, regionName, size).then((flavorId) => {
-      return this.$http
-        .post(
-          `/cloud/project/${projectId}/region/${regionName}/loadbalancing/loadbalancer`,
-          {
-            flavorId,
-            network,
-            name: loadBalancerName,
-            listeners: formattedListeners,
-          },
-        )
-        .then(({ data }) => {
-          this.Alerter.set(
-            'alert-info',
-            this.$translate.instant('octavia_load_balancer_create_banner'),
-            null,
-            'octavia.alerts.global',
-          );
-          return data;
-        })
-        .catch((error) => {
-          this.Alerter.error(
-            this.$translate.instant('octavia_load_balancer_global_error', {
-              message: error.data.message,
-              requestId: error.headers('X-Ovh-Queryid'),
-            }),
-            'octavia.alerts.global',
-          );
-          throw error;
-        });
+      return this.$http.post(
+        `/cloud/project/${projectId}/region/${regionName}/loadbalancing/loadbalancer`,
+        {
+          flavorId,
+          network,
+          name: loadBalancerName,
+          listeners: formattedListeners,
+        },
+      );
     });
   }
 

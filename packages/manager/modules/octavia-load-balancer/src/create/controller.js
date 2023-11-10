@@ -25,6 +25,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
     coreConfig,
     OctaviaLoadBalancerCreateService,
     $translate,
+    Alerter,
   ) {
     this.$anchorScroll = $anchorScroll;
     this.atInternet = atInternet;
@@ -34,6 +35,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
     this.maxInstancesByListener = MAX_INSTANCES_BY_LISTENER;
     this.FLOATING_IP_TYPE = FLOATING_IP_TYPE;
     this.$translate = $translate;
+    this.Alerter = Alerter;
   }
 
   $onInit() {
@@ -246,14 +248,30 @@ export default class OctaviaLoadBalancerCreateCtrl {
       this.model.loadBalancerName,
     )
       .then(() => {
+        this.Alerter.set(
+          'alert-info',
+          this.$translate.instant('octavia_load_balancer_create_banner'),
+          null,
+          'octavia.alerts.global',
+        );
+
         this.atInternet.trackPage({
           name: TRACKING_LOAD_BALANCER_CREATION_SUBMIT_SUCCESS,
         });
 
         this.goToListingPage();
       })
-      .catch(() => {
+      .catch((error) => {
+        this.Alerter.error(
+          this.$translate.instant('octavia_load_balancer_global_error', {
+            message: error.data.message,
+            requestId: error.headers('X-Ovh-Queryid'),
+          }),
+          'octavia.alerts.global',
+        );
+
         this.$anchorScroll();
+
         this.atInternet.trackPage({
           name: TRACKING_LOAD_BALANCER_CREATION_SUBMIT_ERROR,
         });
