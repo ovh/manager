@@ -1,6 +1,6 @@
-import apiClient from '@ovh-ux/manager-core-api';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { Vrack, ResponseData } from '../../api.type';
+import { Vrack } from '../../api.type';
+import { createFetchDataFn } from '../../common';
 
 export type PutVrackServiceParams = {
   /** New object properties */
@@ -9,28 +9,20 @@ export type PutVrackServiceParams = {
   serviceName?: string;
 };
 
-export const putVrackServiceQueryKey = (params: PutVrackServiceParams) => [
-  `put/vrack/${params.serviceName}`,
-];
+export const putVrackServiceQueryKey = ({
+  serviceName,
+}: PutVrackServiceParams) => [`put/vrack/${serviceName}`];
 
 /**
  * vrack : Alter this object properties
  */
-export const putVrackService = async (
-  params: PutVrackServiceParams,
-): Promise<{ status: number }> => {
-  const fetchData = async () => {
-    const response: ResponseData<undefined> = await apiClient.v6.put(
-      `/vrack/${params.serviceName}`,
-      { data: params },
-    );
-    if (response?.code?.startsWith('ERR')) {
-      // Error in the request
-      const errorResponse = response.response;
-      return errorResponse;
-    }
-    return { status: response?.status };
-  };
-
-  return queryClient.fetchQuery(putVrackServiceQueryKey(params), fetchData);
-};
+export const putVrackService = async (data: PutVrackServiceParams) =>
+  queryClient.fetchQuery(
+    putVrackServiceQueryKey(data),
+    createFetchDataFn<undefined>({
+      url: `/vrack/${data.serviceName}`,
+      method: 'put',
+      params: { data },
+      apiVersion: 'v6',
+    }),
+  );

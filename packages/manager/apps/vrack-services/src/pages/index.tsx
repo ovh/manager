@@ -13,14 +13,12 @@ import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
-import {
-  ODS_SPINNER_MODE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components/spinner';
-import { getListingIceberg } from '../api';
-import { Datagrid } from '../components/DataGrid';
-import { BreadcrumbHandleParams } from '../components/Breadcrumb/Breadcrumb';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
+import { getListingIceberg, getListingIcebergQueryKey } from '@/api';
+import { Datagrid } from '@/components/DataGrid';
+import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
 import { PageLayout } from '@/components/layout-helpers';
+import { ApiError, ErrorPage } from '@/components/Error';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.id;
@@ -30,7 +28,7 @@ export default function ListingPage() {
   const { t } = useTranslation('vrack-services/listing');
   const navigate = useNavigate();
   const { data, isLoading, error } = useQuery({
-    queryKey: ['servicesListingIceberg'],
+    queryKey: getListingIcebergQueryKey,
     queryFn: getListingIceberg,
     staleTime: Infinity,
   });
@@ -47,8 +45,12 @@ export default function ListingPage() {
     );
   }
 
-  if (error || data?.status !== 200) {
+  if (data?.data.length === 0) {
     return <Navigate to="onboarding" />;
+  }
+
+  if (error || data?.status !== 200) {
+    return <ErrorPage error={error as ApiError} />;
   }
 
   return (

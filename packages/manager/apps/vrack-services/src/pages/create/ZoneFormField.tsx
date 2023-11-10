@@ -17,13 +17,13 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   getvrackServicesReferenceZoneListQueryKey,
   getvrackServicesReferenceZoneList,
-} from '../../api';
+} from '@/api';
+import { zoneInputName } from './constants';
 
 export type Props = {
   isReadOnly?: boolean;
   selectedZone: string;
   setSelectedZone: React.Dispatch<React.SetStateAction<string>>;
-  inputName: string;
 };
 
 const zoneNameToIsoCode: { [prop: string]: ODS_COUNTRY_ISO_CODE } = {
@@ -34,7 +34,6 @@ const zoneNameToIsoCode: { [prop: string]: ODS_COUNTRY_ISO_CODE } = {
 
 export const ZoneFormField: React.FC<Props> = ({
   isReadOnly,
-  inputName,
   selectedZone,
   setSelectedZone,
 }) => {
@@ -72,7 +71,7 @@ export const ZoneFormField: React.FC<Props> = ({
         <OsdsFormField className="mb-5">
           <OsdsRadioGroup
             className="flex overflow-x-auto"
-            name={inputName}
+            name={zoneInputName}
             value={selectedZone}
             required
           >
@@ -84,18 +83,18 @@ export const ZoneFormField: React.FC<Props> = ({
                   id={zone.name}
                   key={zone.name}
                   value={zone.name}
-                  name={inputName}
-                  checked={selectedZone === zone.name}
-                  {...(isReadOnly ? { disabled: true } : {})}
+                  name={zoneInputName}
+                  checked={selectedZone === zone.name || undefined}
+                  disabled={isReadOnly || undefined}
                 >
                   <OsdsTile
                     className="flex flex-col h-full w-[165px]"
                     hoverable
-                    checked={selectedZone === zone.name}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    checked={selectedZone === zone.name || undefined}
                     onClick={() => {
                       setSelectedZone(zone.name);
                     }}
-                    color={ODS_THEME_COLOR_INTENT.primary}
                   >
                     <div slot="start" className="w-full">
                       <OsdsFlag

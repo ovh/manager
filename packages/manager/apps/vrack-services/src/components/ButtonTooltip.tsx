@@ -8,16 +8,15 @@ import {
 } from '@ovhcloud/ods-components/button';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
-interface TooltipItem {
+export type TooltipItem = {
   label: string;
-}
+};
 
-interface ButtonTooltipProps {
+export type ButtonTooltipProps = {
   tooltipContent: TooltipItem[];
-}
+};
 
-const ButtonTooltip: React.FC<ButtonTooltipProps> = (props) => {
-  const { tooltipContent } = props;
+const ButtonTooltip: React.FC<ButtonTooltipProps> = ({ tooltipContent }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const tooltipRef = useRef<HTMLDivElement>(null);
 

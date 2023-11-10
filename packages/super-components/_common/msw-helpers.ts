@@ -1,6 +1,8 @@
 import { rest, RequestHandler } from 'msw';
 import { apiClient } from '@ovh-ux/manager-core-api';
 
+const isTest = process.env.NODE_ENV === 'test';
+
 export type Handler = {
   url: string;
   response?: any;
@@ -24,7 +26,7 @@ export const toMswHandlers = (handlers: Handler[]): RequestHandler[] =>
     ({
       url,
       method = 'get',
-      delay = 5000,
+      delay = isTest ? 0 : 5000,
       status = 200,
       response = {},
       api = 'v6',
