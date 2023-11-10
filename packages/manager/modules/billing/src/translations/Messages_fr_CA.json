@@ -789,6 +789,8 @@
   "fidelity_creditOrder_step2_credit": "Montant qui sera crédité:",
   "fidelity_creditOrder_step2_error": "Une erreur est survenue pendant le chargement des informations",
   "fidelity_creditOrder_step2_success": "Votre crédit (commande N° <a href='{{t0}}' target='_blank'>{{t1}}</a>) sera effectif sur votre compte prépayé à réception de votre paiement.",
+  "fidelity_creditOrder_submit_error": "Une erreur est survenue lors du crédit de vos points.",
+  "fidelity_creditOrder_submit_success": "Votre crédit de <strong> {{t0}} points</strong> a bien été généré, vous pouvez procéder à votre commande dans l'onglet <a href=\"#/billing/orders\">Mes commandes</a>",
   "fidelity_no_item": "Aucun élément à afficher.",
   "fidelity_balance_info": "Situation au {{t0}} : {{t1}} point(s)",
   "fidelity_no_account": "Vous ne disposez pas de compte fidélité",
