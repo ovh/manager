@@ -10,6 +10,7 @@ import {
   DOMAINS_BADGES_SUSPENSION_STATE,
   DOMAINS_BADGES_TRANSFERT_LOCK_STATE,
   IDN_PREFIX,
+  DOMAIN_RENEWABLE_STATE,
 } from './list-domain-layout.constants';
 
 export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtrl {
@@ -90,6 +91,17 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     return this.coreURLBuilder.buildURL(
       'dedicated',
       `#/contact/${domain}/${whoisOwner}`,
+    );
+  }
+
+  static isDomainRenewableOrRestorable(domain) {
+    return (
+      ![
+        DOMAIN_STATUS.PENDING_INCOMING_TRANSFER,
+        DOMAIN_STATUS.DELETED,
+        DOMAIN_STATUS.PENDING_CREATE,
+      ].includes(domain.state) &&
+      domain.renewalState !== DOMAIN_RENEWABLE_STATE.CANCELLATION_REQUESTED
     );
   }
 
