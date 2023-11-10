@@ -121,3 +121,34 @@ export type OrderStatus =
   | 'documentsRequested'
   | 'notPaid'
   | 'unknown';
+
+export type OrderDetail = {
+  cancelled: boolean;
+  description: string;
+  detailType:
+    | 'ACCESSORY'
+    | 'CAUTION'
+    | 'CHOOSED'
+    | 'CONSUMPTION'
+    | 'CREATION'
+    | 'DELIVERY'
+    | 'DURATION'
+    | 'GIFT'
+    | 'INSTALLATION'
+    | 'LICENSE'
+    | 'MUTE'
+    | 'OTHER'
+    | 'OUTPLAN'
+    | 'QUANTITY'
+    | 'REFUND'
+    | 'RENEW'
+    | 'SPECIAL'
+    | 'SWITCH'
+    | 'TRANSFER'
+    | 'VOUCHER';
+  domain: string;
+  orderDetailId: number;
+  quantity: string;
+  totalPrice: Price;
+  unitPrice: Price;
+};

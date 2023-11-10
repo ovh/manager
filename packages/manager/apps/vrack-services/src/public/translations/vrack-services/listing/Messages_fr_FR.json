@@ -7,6 +7,7 @@
   "zone": "Régionalisation",
   "vrackId": "vRack",
   "createdAt": "Date de création",
+  "actions": "Actions",
   "ACTIVE": "Actif",
   "DISABLED": "Inactif",
   "DRAFT": "A configurer",

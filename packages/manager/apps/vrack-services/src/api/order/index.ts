@@ -1,4 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import {
   postOrderCart,
@@ -6,23 +5,12 @@ import {
   postOrderCartCartIdVrack,
   postOrderCartCartIdVrackServices,
   postOrderCartCartIdCheckout,
-  getOrderStatusQueryKey,
-  getOrderStatus,
 } from './services';
 import { Creation } from './order.type';
 
 export * from './order.type';
 
-export const useOrderPollingStatus = (
-  orderId: string,
-  pollingInterval = 5000,
-) => {
-  return useQuery({
-    queryKey: getOrderStatusQueryKey(orderId),
-    queryFn: getOrderStatus(orderId),
-    refetchInterval: pollingInterval,
-  });
-};
+export * from './hook';
 
 export const orderVrackQueryKey = ['/orderVrack'];
 

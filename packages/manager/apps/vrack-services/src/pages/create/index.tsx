@@ -21,6 +21,7 @@ import {
   orderVrackServicesQueryKey,
   orderVrack,
   orderVrackQueryKey,
+  getPollingOderStatusQueryKey,
 } from '@/api';
 import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
 import { ApiError, ErrorPage } from '@/components/Error';
@@ -130,11 +131,17 @@ const CreationPage: React.FC = () => {
           setShouldOrderVrack(false);
           orderNewVrackServices();
           setIsModalVisible(false);
+          queryClient.invalidateQueries({
+            queryKey: getPollingOderStatusQueryKey('vRack Services'),
+          });
         }}
         onConfirm={() => {
           setShouldOrderVrack(true);
           orderNewVrackServices();
           setIsModalVisible(false);
+          queryClient.invalidateQueries({
+            queryKey: getPollingOderStatusQueryKey('vRack Services'),
+          });
         }}
         isModalVisible={isModalVisible}
       />
