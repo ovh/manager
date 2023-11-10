@@ -1,27 +1,35 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Given, When, Then, Before } from '@cucumber/cucumber';
+import { expect } from '@playwright/test';
 import { ICustomWorld } from '../../../../../../../playwright-helpers/custom-world';
 import { config } from '../../../../../../../playwright-helpers/config';
 import { setupPlaywrightHandlers } from '../../../mock/handlers';
 import { displayNameInputName } from './constants';
-// import { expect } from '@playwright/test';
+import {
+  modalCancelButtonLabel,
+  modalConfirmVrackButtonLabel,
+  modalDescriptionLine1,
+  modalNoVrackButtonLabel,
+  creationServiceError,
+} from '../../public/translations/vrack-services/create/Messages_fr_FR.json';
+
+const createPageUrl = `${config.appUrl}#/create`;
+const listingPageUrl = `${config.appUrl}#/`;
 
 let displayName: string;
 let selectedZone: string;
-let vrackOrder: boolean;
-let vrackServicesOrder: boolean;
+let vrackServicesOrderKo: boolean;
 
 Before(function(this: ICustomWorld) {
   displayName = '';
   selectedZone = '';
-  vrackOrder = false;
-  vrackServicesOrder = false;
+  vrackServicesOrderKo = false;
 });
 
 Given(
   'User wants to create a vRack Services with name {string} and zone {word}',
   async function(this: ICustomWorld, name: string, zone: string) {
-    await this.page?.goto(new URL('/#/create', config.appUrl).href);
+    await this.page?.goto(createPageUrl, { waitUntil: 'load' });
     displayName = name;
     selectedZone = zone;
   },
@@ -31,15 +39,18 @@ Given('The order service for vRack Services is {word}', function(
   this: ICustomWorld,
   okOrKo: string,
 ) {
-  vrackServicesOrder = okOrKo === 'OK';
+  vrackServicesOrderKo = okOrKo === 'KO';
 });
 
 Given('The order service for vRack is {word}', async function(
   this: ICustomWorld,
   okOrKo: string,
 ) {
-  vrackOrder = okOrKo === 'OK';
-  await setupPlaywrightHandlers(this.context, { nbVs: 2 });
+  await setupPlaywrightHandlers(this.context, {
+    nbVs: 2,
+    vrackOrderKo: okOrKo === 'KO',
+    vrackServicesOrderKo,
+  });
 });
 
 When('User fill the form and click the submit button', async function(
@@ -54,50 +65,49 @@ When('User fill the form and click the submit button', async function(
 
 Then(
   'A modal appear to ask if the user wants to create a new vRack',
-  function() {
-    console.log('test modal appearance');
+  async function(this: ICustomWorld) {
+    const modalDescriptionLine = await this.page?.locator('osds-text', {
+      hasText: modalDescriptionLine1,
+    });
+    expect(modalDescriptionLine).toBeVisible();
   },
 );
 
-When('User {word}', function(this: ICustomWorld, acceptOrDeny: string) {
-  console.log({ acceptOrDeny });
+When('User {word}', async function(
+  this: ICustomWorld,
+  acceptOrDenyOrCancel: 'accepts' | 'denies' | 'cancel',
+) {
+  const labelToButton = {
+    accepts: modalConfirmVrackButtonLabel,
+    denies: modalNoVrackButtonLabel,
+    cancel: modalCancelButtonLabel,
+  };
+  const buttonLabel = labelToButton[acceptOrDenyOrCancel];
+  const button = await this.page.locator('osds-button', {
+    hasText: buttonLabel,
+  });
+  await button.click();
 });
 
-Then('User {string} on the Listing page', function(
+Then('User {string} on the Listing page', async function(
   this: ICustomWorld,
-  returnsListing: string,
+  returnsListing: 'returns' | "doesn't return",
 ) {
-  console.log({ returnsListing });
+  if (returnsListing === 'returns') {
+    await this.page.waitForURL(listingPageUrl, { waitUntil: 'load' });
+  } else {
+    expect(this.page.url()).toBe(createPageUrl);
+  }
 });
 
-Then('User sees {string} message for vRack Services', function(
+Then('User sees {word} error message', async function(
   this: ICustomWorld,
-  successOrError: string,
+  anyErrorMessage: 'an' | 'no',
 ) {
-  //   const plusButton = await page.locator('[data-testid="increase"]');
-  //   await expect(plusButton).toBeVisible();
-  //   const counterText = await page.locator('[data-testid="counter-text"]');
-  //   await expect(counterText).toHaveText('Count: 1');
-  console.log({ successOrError });
-});
-
-Then('User sees {string} message for vRack', function(
-  this: ICustomWorld,
-  successOrErrorOrNo: string,
-) {
-  //   const plusButton = await page.locator('[data-testid="increase"]');
-  //   await expect(plusButton).toBeVisible();
-  //   const counterText = await page.locator('[data-testid="counter-text"]');
-  //   await expect(counterText).toHaveText('Count: 1');
-  console.log({ successOrErrorOrNo });
-});
-
-Then('User sees {word} new line in the list of vRack Services', function(
-  this: ICustomWorld,
-  addedLine: string,
-) {
-  //   const plusButton = await page.locator('[data-testid="increase"]');
-  //   await expect(plusButton).toBeVisible();
-  //   await plusButton.click();
-  console.log({ addedLine });
+  const error = await this.page.locator('osds-message', {
+    hasText: creationServiceError,
+  });
+  if (anyErrorMessage === 'an') {
+    await expect(error).toBeVisible();
+  }
 });

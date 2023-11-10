@@ -10,8 +10,14 @@ import './global.css';
 
 const mockApiIfDev = async () => {
   if (process.env.NODE_ENV === 'development' && !process.env.VITE_TEST_BDD) {
-    // @ts-ignore
-    await setupWorker(...getHandlers({ nbVs: 2 })).start({
+    await setupWorker(
+      // @ts-ignore
+      ...getHandlers({
+        nbVs: 2,
+        vrackServicesOrderKo: false,
+        vrackOrderKo: false,
+      }),
+    ).start({
       onUnhandledRequest: 'bypass',
     });
   }

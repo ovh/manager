@@ -1,6 +1,6 @@
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { Task } from '../../api.type';
-import { createFetchDataFn } from '../../common';
+import { Task } from '../api.type';
+import { createFetchDataFn } from '../common';
 
 export type DeletevrackServiceVrackServicesVrackServicesParams = {
   /** The internal name of your vrack */

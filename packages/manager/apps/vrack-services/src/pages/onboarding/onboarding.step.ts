@@ -6,6 +6,9 @@ import { config } from '../../../../../../../playwright-helpers/config';
 import { setupPlaywrightHandlers } from '../../../mock/handlers';
 import { orderButtonLabel } from '../../public/translations/vrack-services/onboarding/Messages_fr_FR.json';
 
+const onboardingPageUrl = `${config.appUrl}#/onboarding`;
+const createPageUrl = `${config.appUrl}#/create`;
+
 Given('User does not have any vRack Services', async function(
   this: ICustomWorld,
 ) {
@@ -21,9 +24,7 @@ When('User navigates to vRack Services Listing page', async function(
 Then('User gets redirected to Onboarding page', async function(
   this: ICustomWorld,
 ) {
-  await this.page.waitForURL(`${config.appUrl}#/onboarding`, {
-    waitUntil: 'load',
-  });
+  await this.page.waitForURL(onboardingPageUrl, { waitUntil: 'load' });
 });
 Then('User sees {int} guides on vRack Services', async function(
   this: ICustomWorld,
@@ -35,7 +36,7 @@ Then('User sees {int} guides on vRack Services', async function(
 
 Given('User is on the Onboarding page', async function(this: ICustomWorld) {
   await setupPlaywrightHandlers(this.context, { nbVs: 1 });
-  await this.page.goto(`${config.appUrl}#/onboarding`);
+  await this.page.goto(onboardingPageUrl, { waitUntil: 'load' });
 });
 
 When('User clicks on the vRack Services configuration button', async function(
@@ -47,7 +48,5 @@ When('User clicks on the vRack Services configuration button', async function(
 Then('User navigates to Configuration page', async function(
   this: ICustomWorld,
 ) {
-  await this.page.waitForURL(`${config.appUrl}#/create`, {
-    waitUntil: 'load',
-  });
+  await this.page.waitForURL(createPageUrl, { waitUntil: 'load' });
 });

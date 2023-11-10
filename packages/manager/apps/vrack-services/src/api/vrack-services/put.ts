@@ -1,6 +1,6 @@
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { VrackServices } from '../../api.type';
-import { createFetchDataFn } from '../../common';
+import { VrackServices } from './vrack-services.type';
+import { createFetchDataFn } from '../common';
 
 export type PutVrackServicesResourceVrackServicesIdParams = {
   /** Request Body */
