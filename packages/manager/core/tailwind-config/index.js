@@ -1,23 +1,14 @@
-import path from 'path';
-
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    './src/**/*.{js,jsx,ts,tsx}',
-    path.join(
-      path.dirname(require.resolve('@ovhcloud/manager-components')),
-      '**/*.{js,jsx,ts,tsx}',
-    ),
-  ],
+const config = {
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {},
     screens: {
-      xs: '0',
-      sm: '36em',
-      md: '48em',
-      lg: '62em',
-      xl: '75em',
-      xxl: '87.5em',
+      xs: '48em',
+      sm: '62em',
+      md: '72em',
+      lg: '102em',
+      xl: '125em',
+      xxl: '187em',
       // not work with ods var in media queries
       // 'xs': 'var(--ods-breakpoint-xs)',
     },
@@ -46,3 +37,5 @@ module.exports = {
   },
   plugins: [],
 };
+
+export default config;
