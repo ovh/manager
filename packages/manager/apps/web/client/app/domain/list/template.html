@@ -142,6 +142,19 @@
     <oui-datagrid-column
         data-title="::'domains_column_domains_name_server' | translate"
     ></oui-datagrid-column>
+
+    <oui-action-menu text="Actions" compact>
+        <oui-action-menu-item
+            on-click="$ctrl.goToRestoreRenew($row)"
+            aria-label="{{:: 'domains_action_per_line_renew' | translate }}"
+            data-ng-if="$ctrl.constructor.isDomainRenewableOrRestorable($row)"
+        >
+            <span
+                data-ng-if="$row.state === $ctrl.DOMAIN_STATUS.RESTORABLE"
+                data-translate="{{ 'domains_action_per_line_' + $row.state === $ctrl.DOMAIN_STATUS.RESTORABLE ? 'restore' : 'renew'}}"
+            ></span>
+        </oui-action-menu-item>
+    </oui-action-menu>
 </oui-datagrid>
 
 <div class="mt-5" data-ng-if="$ctrl.resources.data.length">
