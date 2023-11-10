@@ -3,6 +3,7 @@ import {
   SIZE_FLAVOUR_REGEX,
   AGORA_ADDON_FAMILY,
   AGORA_GATEWAY_REGEX,
+  AGORA_FLOATING_IP_REGEX,
 } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -41,6 +42,10 @@ export default /* @ngInject */ ($stateProvider) => {
       catalogGateway: /* @ngInject */ (catalog) =>
         catalog.addons.filter((addon) =>
           addon.planCode.match(AGORA_GATEWAY_REGEX),
+        )[0],
+      catalogFloatingIp: /* @ngInject */ (catalog) =>
+        catalog.addons.filter((addon) =>
+          addon.planCode.match(AGORA_FLOATING_IP_REGEX),
         )[0],
       regionsPlansGroupBySize: /* @ngInject */ (
         $http,

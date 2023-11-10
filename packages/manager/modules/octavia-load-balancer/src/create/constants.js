@@ -107,9 +107,20 @@ export const AGORA_ADDON_FAMILY = 'octavia-loadbalancer';
 
 export const SIZE_FLAVOUR_REGEX = /octavia-loadbalancer.loadbalancer-([sml]).hour.consumption/;
 export const AGORA_GATEWAY_REGEX = /gateway.s.hour.consumption/;
+export const AGORA_FLOATING_IP_REGEX = /floatingip.floatingip.hour.consumption/;
+
 export const LOAD_BALANCER_NAME_REGEX = /^[A-Za-z0-9_.-]+$/;
 
 export const NETWORK_PRIVATE_VISIBILITY = 'private';
+
+export const FLOATING_IP_TYPE = {
+  NO_IP: 'none',
+  CREATE: 'create',
+  IP: 'ip',
+};
+
+export const FLOATING_IP_CREATE_DESCRIPTION =
+  'FIP created by OVHCloud Control Panel (Manager) for Load Balancer';
 
 export const MAX_LISTENER = 5;
 export const MAX_INSTANCES_BY_LISTENER = 5;
@@ -132,7 +143,10 @@ export default {
   TRACKING_NAME,
   SIZE_FLAVOUR_REGEX,
   AGORA_GATEWAY_REGEX,
+  AGORA_FLOATING_IP_REGEX,
   NETWORK_PRIVATE_VISIBILITY,
+  FLOATING_IP_TYPE,
+  FLOATING_IP_CREATE_DESCRIPTION,
   LOAD_BALANCER_NAME_REGEX,
   MAX_LISTENER,
   MAX_INSTANCES_BY_LISTENER,

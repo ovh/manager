@@ -1,12 +1,15 @@
-import { NETWORK_PRIVATE_VISIBILITY } from './constants';
+import {
+  NETWORK_PRIVATE_VISIBILITY,
+  FLOATING_IP_TYPE,
+  FLOATING_IP_CREATE_DESCRIPTION,
+} from './constants';
 
 export default class OctaviaLoadBalancerCreateService {
   /* @ngInject */
-  constructor($http, $q, $translate, Alerter) {
+  constructor($http, $q, $translate) {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
-    this.Alerter = Alerter;
   }
 
   getPrivateNetworks(projectId, regionName) {
@@ -25,18 +28,32 @@ export default class OctaviaLoadBalancerCreateService {
         `/cloud/project/${projectId}/region/${regionName}/network/${privateNetwork.id}/subnet`,
       )
       .then(({ data }) => {
-        const subnets = data.reduce((filtered, subnet) => {
-          if (subnet.gatewayIp) {
+        const subnets = data.map((subnet) => ({
+          ...subnet,
+          displayName: subnet.name
+            ? `${subnet.name} - ${subnet.cidr}`
+            : subnet.cidr,
+        }));
+        return subnets;
+      });
+  }
+
+  getFloatingIps(projectId, regionName) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/region/${regionName}/floatingip`)
+      .then(({ data }) => {
+        const availableFloatingIPs = data.reduce((filtered, floatingIp) => {
+          if (!floatingIp.associatedEntity) {
             filtered.push({
-              ...subnet,
-              displayName: subnet.name
-                ? `${subnet.name} - ${subnet.cidr}`
-                : subnet.cidr,
+              ...floatingIp,
+              displayName: floatingIp.ip,
+              type: FLOATING_IP_TYPE.IP,
             });
           }
           return filtered;
         }, []);
-        return subnets;
+
+        return availableFloatingIPs;
       });
   }
 
@@ -52,6 +69,7 @@ export default class OctaviaLoadBalancerCreateService {
     projectId,
     size,
     regionName,
+    floatingIp,
     privateNetwork,
     subnet,
     gateway,
@@ -60,9 +78,6 @@ export default class OctaviaLoadBalancerCreateService {
   ) {
     const network = {
       private: {
-        floatingIpCreate: {
-          description: loadBalancerName,
-        },
         network: {
           id: privateNetwork.id,
           subnetId: subnet.id,
@@ -70,88 +85,87 @@ export default class OctaviaLoadBalancerCreateService {
       },
     };
 
-    if (!gateway?.length) {
-      network.private.gatewayCreate = {
-        model: 's',
-        name: `gateway-${regionName}`,
-      };
-    } else {
-      network.private.gateway = {
-        id: gateway[0].id,
+    if (floatingIp.type === FLOATING_IP_TYPE.CREATE) {
+      network.private.floatingIpCreate = {
+        description: `${FLOATING_IP_CREATE_DESCRIPTION} ${loadBalancerName}`,
       };
     }
 
-    const formattedListeners = listeners.map((listener) => {
-      const pool = {
-        algorithm: 'roundRobin',
-        protocol: listener.protocol.value,
+    if (
+      ![FLOATING_IP_TYPE.CREATE, FLOATING_IP_TYPE.NO_IP].includes(
+        floatingIp.type,
+      )
+    ) {
+      network.private.floatingIp = {
+        id: floatingIp.id,
       };
+    }
 
-      const instances = listener.instances?.reduce((filtered, instance) => {
-        if (Object.keys(instance).length > 0) {
-          filtered.push({
-            address: instance.instance.ipAddress.ip,
-            protocolPort: instance.port,
-          });
-        }
-        return filtered;
-      }, []);
-
-      if (listener.healthMonitor?.value) {
-        pool.healthMonitor = {
-          name: `health-monitor-${listener.healthMonitor.value}`,
-          monitorType: listener.healthMonitor.value,
-          maxRetries: 4,
-          periodicity: 'PT5S',
-          timeout: 4,
-          httpConfiguration: {
-            httpMethod: 'GET',
-            urlPath: '/',
-          },
+    if (network.private.floatingIp || network.private.floatingIpCreate) {
+      if (!gateway?.length) {
+        network.private.gatewayCreate = {
+          model: 's',
+          name: `gateway-${regionName}`,
+        };
+      } else {
+        network.private.gateway = {
+          id: gateway[0].id,
         };
       }
+    }
 
-      if (instances.length) {
-        pool.members = instances;
-      }
+    const formattedListeners =
+      listeners?.map((listener) => {
+        const pool = {
+          algorithm: 'roundRobin',
+          protocol: listener.protocol.value,
+        };
 
-      return {
-        port: listener.port,
-        protocol: listener.protocol.value,
-        pool,
-      };
-    });
+        const instances = listener.instances?.reduce((filtered, instance) => {
+          if (Object.keys(instance).length > 0) {
+            filtered.push({
+              address: instance.instance.ipAddress.ip,
+              protocolPort: instance.port,
+            });
+          }
+          return filtered;
+        }, []);
+
+        if (listener.healthMonitor?.value) {
+          pool.healthMonitor = {
+            name: `health-monitor-${listener.healthMonitor.value}`,
+            monitorType: listener.healthMonitor.value,
+            maxRetries: 4,
+            periodicity: 'PT5S',
+            timeout: 4,
+            httpConfiguration: {
+              httpMethod: 'GET',
+              urlPath: '/',
+            },
+          };
+        }
+
+        if (instances.length) {
+          pool.members = instances;
+        }
+
+        return {
+          port: listener.port,
+          protocol: listener.protocol.value,
+          pool,
+        };
+      }) || [];
 
     return this.getFlavorId(projectId, regionName, size).then((flavorId) => {
-      return this.$http
-        .post(
-          `/cloud/project/${projectId}/region/${regionName}/loadbalancing/loadbalancer`,
-          {
-            flavorId,
-            network,
-            name: loadBalancerName,
-            listeners: formattedListeners,
-          },
-        )
-        .then(({ data }) => {
-          this.Alerter.set(
-            'alert-info',
-            this.$translate.instant('octavia_load_balancer_create_banner'),
-            null,
-            'octavia.alerts.global',
-          );
-          return data;
-        })
-        .catch((error) => {
-          this.Alerter.error(
-            this.$translate.instant('octavia_load_balancer_global_error', {
-              message: error.data.message,
-              requestId: error.headers('X-Ovh-Queryid'),
-            }),
-            'octavia.alerts.global',
-          );
-          throw error;
-        });
+      return this.$http.post(
+        `/cloud/project/${projectId}/region/${regionName}/loadbalancing/loadbalancer`,
+        {
+          flavorId,
+          network,
+          name: loadBalancerName,
+          listeners: formattedListeners,
+        },
+      );
     });
   }
 
