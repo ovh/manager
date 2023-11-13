@@ -5,6 +5,7 @@
   "modified_dns_zone": "Zone DNS de modifiée",
   "dashboard_history_creation_date": "Date de création",
   "dashboard_history_view_zone": "Voir",
+  "dashboard_history_current_zone_date": "{{creationDate}} (actuelle)",
   "dashboard_history_download": "Télécharger",
   "dashboard_history_error": "Erreur de traitement des données: {{message}}.",
   "dashboard_history_restore": "Restaurer",
