@@ -9,4 +9,10 @@ export default class OctaviaLoadBalancerPoolsService {
       .get(`/cloud/project/${projectId}/region/${region}/loadbalancing/pool`)
       .then(({ data }) => data);
   }
+
+  deletePool(projectId, region, poolId) {
+    return this.$http.delete(
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}`,
+    );
+  }
 }
