@@ -1,0 +1,157 @@
+<div class="mt-2">
+    <div class="row mt-3">
+        <div class="col-md-8">
+            <cui-message-container
+                data-messages="$ctrl.messages"
+            ></cui-message-container>
+            <!--Title & desc-->
+            <h3 data-translate="pci_ai_dashboard_datastore_title"></h3>
+            <p
+                data-translate="pci_ai_dashboard_datastore_title_description"
+            ></p>
+            <!--S3 Users Banners-->
+            <oui-message data-type="info" dismissable>
+                <span
+                    data-translate="pci_ai_dashboard_datastore_banner_user_description"
+                ></span>
+                <p class="m-0">
+                    <a
+                        rel="noopener"
+                        data-translate="pci_ai_dashboard_datastore_banner_user_description_link"
+                        data-ng-click="$ctrl.goToObjectStorageUsers()"
+                    ></a>
+                </p>
+            </oui-message>
+            <!-- Datastore section -->
+            <section>
+                <h4
+                    data-translate="pci_ai_dashboard_datastore_manage_datastore"
+                ></h4>
+                <div class="mb-3">
+                    <p
+                        class="mb-0"
+                        data-translate="pci_ai_dashboard_datastore_manage_datastore_description_1"
+                    ></p>
+                    <p
+                        class="mb-0"
+                        data-translate="pci_ai_dashboard_datastore_manage_datastore_description_2"
+                    ></p>
+                </div>
+                <!-- Region selector-->
+                <div class="mb-1">
+                    <span
+                        data-translate="pci_ai_dashboard_datastore_select_region"
+                    ></span>
+                    <label class="oui-select oui-select_inline" for="region">
+                        <select
+                            class="oui-select__input"
+                            data-ng-model="$ctrl.currentRegion"
+                            id="region"
+                            data-ng-change="$ctrl.onRegionChange()"
+                        >
+                            <option
+                                ng-repeat="region in $ctrl.regions"
+                                ng-value="region"
+                                >{{region.id}}</option
+                            >
+                        </select>
+                        <span
+                            class="oui-icon oui-icon-chevron-down"
+                            aria-hidden="true"
+                        ></span>
+                    </label>
+                </div>
+                <!-- Datastore table -->
+                <oui-datagrid
+                    data-page-size="10"
+                    data-rows="$ctrl.aiDatastores"
+                >
+                    <oui-datagrid-column
+                        data-title=":: 'pci_ai_dashboard_datastore_manage_datastore_table_alias' | translate"
+                        data-property="alias"
+                        data-type="string"
+                        data-searchable
+                        data-filterable
+                        data-sortable="asc"
+                    ></oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title=":: 'pci_ai_dashboard_datastore_manage_datastore_table_store_type' | translate"
+                        property="type"
+                        data-type="string"
+                        data-sortable="asc"
+                        data-searchable
+                        data-filterable
+                    ></oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title=":: 'pci_ai_dashboard_datastore_manage_datastore_table_owner' | translate"
+                        data-property="owner"
+                        data-type="string"
+                        data-searchable
+                        data-filterable
+                        data-sortable="asc"
+                    ></oui-datagrid-column>
+                    <oui-action-menu data-compact data-placement="end">
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToDeleteDatastore($row, $ctrl.currentRegion)"
+                        >
+                            <span
+                                data-translate="pci_ai_dashboard_datastore_manage_datastore_table_delete"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                    <oui-datagrid-topbar>
+                        <oui-button
+                            data-variant="primary"
+                            data-on-click="$ctrl.goToCreateDatastore()"
+                        >
+                            <i
+                                class="oui-icon oui-icon-add pr-1"
+                                aria-hidden="true"
+                            ></i>
+                            <span
+                                data-translate="pci_ai_dashboard_datastore_manage_datastore_table_create"
+                            ></span>
+                        </oui-button>
+                        <button
+                            data-ng-if="$ctrl.databasesList.length > 0"
+                            class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_s"
+                            type="button"
+                            data-title="{{:: 'pci_databases_common_refresh' | translate }}"
+                            data-ng-click="$ctrl.refreshDatabases()"
+                            data-ng-disabled="$ctrl.refreshing"
+                        >
+                            <span
+                                class="sr-only"
+                                data-translate="pci_databases_common_refresh"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-refresh"
+                                aria-hidden="true"
+                            ></span>
+                        </button>
+                    </oui-datagrid-topbar>
+                </oui-datagrid>
+            </section>
+        </div>
+        <div class="col-md-4">
+            <!--Documentation-->
+            <div class="oui-box-block">
+                <div class="oui-box-block__heading">
+                    <span
+                        data-translate="pci_ai_dashboard_datastore_documentation_title"
+                    ></span>
+                </div>
+                <div class="oui-box-block__body">
+                    <div
+                        class="oui-box-block__body__content"
+                        data-ng-repeat="s3Guide in $ctrl.s3Guides"
+                    >
+                        <pci-ai-dashboard-ai-guide
+                            guide="s3Guide"
+                        ></pci-ai-dashboard-ai-guide>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import { AI_ROLES_NAMES } from './ai-dashboard.constants';
+import { AI_ROLES_NAMES, AI_DATASTORE_OWNER } from './ai-dashboard.constants';
 
 export default class AiDashboardService {
   /* @ngInject */
@@ -119,6 +119,33 @@ export default class AiDashboardService {
   renewToken(projectId, tokenId) {
     return this.$http
       .post(`/cloud/project/${projectId}/ai/token/${tokenId}/renew`)
+      .then(({ data }) => data);
+  }
+
+  // Datastore
+  getAIDatastores(projectId, region) {
+    const regionId = region || 'BHS';
+    return this.$http
+      .get(`/cloud/project/${projectId}/ai/data/region/${regionId}/alias`)
+      .then(({ data }) =>
+        data.filter((datastore) => datastore.owner === AI_DATASTORE_OWNER),
+      );
+  }
+
+  createDatastore(projectId, regionId, datastore) {
+    return this.$http
+      .post(
+        `/cloud/project/${projectId}/ai/data/region/${regionId}/alias`,
+        datastore,
+      )
+      .then(({ data }) => data);
+  }
+
+  deleteDatastore(projectId, regionId, alias) {
+    return this.$http
+      .delete(
+        `/cloud/project/${projectId}/ai/data/region/${regionId}/alias/${alias}`,
+      )
       .then(({ data }) => data);
   }
 

@@ -1,0 +1,8 @@
+{
+  "pci_ai_dashboard_delete_datastore_confirm": "Confirmer",
+  "pci_ai_dashboard_delete_datastore_cancel": "Annuler",
+  "pci_ai_dashboard_delete_datastore": "Supprimer un datastore",
+  "pci_ai_dashboard_delete_datastore_description": "Êtes-vous sûr de vouloir supprimer ce datastore ?",
+  "pci_ai_dashboard_delete_datastore_success_message": "Le datastore a bien été supprimé.",
+  "pci_ai_dashboard_delete_datastore_error_message": "Une erreur est survenue lors de la suppression de votre datastore : {{message}}"
+}

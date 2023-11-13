@@ -15,6 +15,7 @@ export default {
     usersTokensLink: '<',
     cliLink: '<',
     registriesLink: '<',
+    datastoreLink: '<',
   },
   controller,
   template,

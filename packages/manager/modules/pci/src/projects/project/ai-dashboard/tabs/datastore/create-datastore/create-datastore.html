@@ -1,0 +1,239 @@
+<oui-modal
+    data-heading="{{:: 'pci_ai_dashboard_create_datastore_header' | translate}}"
+    data-ng-form="createDatastore"
+    data-on-dismiss="$ctrl.closeModal()"
+    data-primary-label="{{:: 'pci_ai_dashboard_create_datastore_add' | translate}}"
+    data-primary-disabled="createDatastore.$invalid"
+    data-primary-action="$ctrl.createDatastore()"
+    data-secondary-label="{{:: 'pci_ai_dashboard_create_datastore_cancel' | translate}}"
+    data-secondary-action="$ctrl.closeModal()"
+    data-loading="$ctrl.processing"
+>
+    <!-- Datastore Type-->
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <oui-field
+                data-label="{{:: 'pci_ai_dashboard_create_datastore_type' | translate  }}"
+                data-label-popover="{{:: 'pci_ai_dashboard_create_datastore_type_help' | translate }}"
+                data-size="auto"
+            >
+                <label class="oui-select oui-select_inline" for="type">
+                    <select
+                        class="oui-select__input"
+                        data-ng-model="$ctrl.currentType"
+                        id="type"
+                        name="type"
+                        data-ng-change="$ctrl.onDatastoreTypeChange()"
+                    >
+                        <option
+                            ng-repeat="type in $ctrl.datastoreType"
+                            ng-value="type"
+                            >{{type.name}}</option
+                        >
+                    </select>
+                    <span
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></span>
+                </label>
+            </oui-field>
+        </div>
+        <!-- Region -->
+        <div class="col-md-6">
+            <oui-field
+                data-label="{{:: 'pci_ai_dashboard_create_datastore_region' | translate  }}"
+                data-label-popover="{{:: 'pci_ai_dashboard_create_datastore_region_help' | translate }}"
+            >
+                <label class="oui-select oui-select_inline" for="region">
+                    <select
+                        class="oui-select__input"
+                        data-ng-model="$ctrl.currentRegion"
+                        id="region"
+                        name="region"
+                    >
+                        <option
+                            ng-repeat="region in $ctrl.regions"
+                            ng-value="region"
+                            >{{region.id}}</option
+                        >
+                    </select>
+                    <span
+                        class="oui-icon oui-icon-chevron-down"
+                        aria-hidden="true"
+                    ></span>
+                </label>
+            </oui-field>
+        </div>
+    </div>
+    <oui-field
+        data-label="{{:: 'pci_ai_dashboard_create_datastore_alias' | translate }}"
+        data-size="auto"
+    >
+        <input
+            class="oui-input"
+            type="text"
+            id="alias"
+            name="alias"
+            required
+            maxlength="100"
+            data-ng-model="$ctrl.model.alias"
+            data-ng-pattern="/^[\w]+/"
+        />
+    </oui-field>
+    <oui-field
+        data-label="{{:: 'pci_ai_dashboard_create_datastore_endpoint' | translate }}"
+        data-label-popover="{{:: 'pci_ai_dashboard_create_datastore_endpoint_help' | translate }}"
+        data-size="auto"
+    >
+        <input
+            class="oui-input"
+            type="text"
+            id="endpoint"
+            name="endpoint"
+            required
+            maxlength="100"
+            data-ng-model="$ctrl.model.endpoint"
+        />
+    </oui-field>
+    <!-- S3 configuration -->
+    <div data-ng-if="$ctrl.isS3selected">
+        <oui-field
+            data-label="{{:: 'pci_ai_dashboard_create_datastore_s3_access_key' | translate }}"
+            data-label-popover="{{:: 'pci_ai_dashboard_create_datastore_s3_access_key_help' | translate }}"
+            data-size="auto"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="accessKey"
+                name="accessKey"
+                required
+                maxlength="100"
+                data-ng-model="$ctrl.model.credentials.s3.accessKey"
+                data-ng-pattern="/^[\w]+/"
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{:: 'pci_ai_dashboard_create_datastore_s3_secret_key' | translate }}"
+            data-label-popover="{{:: 'pci_ai_dashboard_create_datastore_s3_secret_key_help' | translate }}"
+            data-size="auto"
+        >
+            <input
+                class="oui-input"
+                type="password"
+                id="secretKey"
+                name="secretKey"
+                required
+                maxlength="100"
+                data-ng-model="$ctrl.model.credentials.s3.secretKey"
+                data-ng-pattern="/^[\w]+/"
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{:: 'pci_ai_dashboard_create_datastore_s3_region' | translate }}"
+            data-label-popover="{{:: 'pci_ai_dashboard_create_datastore_s3_region_help' | translate }}"
+            data-size="auto"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                id="s3region"
+                name="s3region"
+                required
+                maxlength="100"
+                data-ng-model="$ctrl.model.credentials.s3.region"
+                data-ng-pattern="/^[\w]+/"
+            />
+        </oui-field>
+    </div>
+    <!-- Git configuration -->
+    <div data-ng-if="!$ctrl.isS3selected">
+        <oui-field
+            data-label="{{:: 'pci_ai_dashboard_create_datastore_git_authent' | translate  }}"
+            data-label-popover="{{:: 'pci_ai_dashboard_create_datastore_git_authent' | translate }}"
+            data-size="auto"
+        >
+            <label class="oui-select oui-select_inline" for="gitAuth">
+                <select
+                    class="oui-select__input"
+                    data-ng-model="$ctrl.currentGitAuthent"
+                    id="gitAuth"
+                    name="gitAuth"
+                    data-ng-change="$ctrl.sshSelected = !$ctrl.sshSelected"
+                >
+                    <option
+                        ng-repeat="authType in $ctrl.gitAuthentType"
+                        ng-value="authType"
+                        >{{authType.name}}</option
+                    >
+                </select>
+                <span
+                    class="oui-icon oui-icon-chevron-down"
+                    aria-hidden="true"
+                ></span>
+            </label>
+        </oui-field>
+        <div data-ng-if="$ctrl.sshSelected">
+            <oui-field
+                data-label="{{:: 'pci_ai_dashboard_create_datastore_git_ssh_private_key' | translate }}"
+                data-size="auto"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    id="sshPrivateKey"
+                    name="sshPrivateKey"
+                    required
+                    maxlength="100"
+                    data-ng-model="$ctrl.model.credentials.git.ssh_keypair.privateKey"
+                    data-ng-pattern="/^[\w]+/"
+                />
+            </oui-field>
+            <oui-field
+                data-label="{{:: 'pci_ai_dashboard_create_datastore_git_ssh_public_key' | translate }}"
+                data-size="auto"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    id="sshPrivateKey"
+                    name="sshPrivateKey"
+                    maxlength="100"
+                    data-ng-model="$ctrl.model.credentials.git.ssh_keypair.publicKey"
+                    data-ng-pattern="/^[\w]+/"
+                />
+            </oui-field>
+        </div>
+        <div data-ng-if="!$ctrl.sshSelected">
+            <oui-field
+                data-label="{{:: 'pci_ai_dashboard_create_datastore_git_basic_auth_username' | translate }}"
+                data-size="auto"
+            >
+                <input
+                    class="oui-input"
+                    type="text"
+                    id="basicAuthUsername"
+                    name="basicAuthUsername"
+                    required
+                    maxlength="100"
+                    data-ng-model="$ctrl.model.credentials.git.basic_auth.username"
+                    data-ng-pattern="/^[\w]+/"
+                />
+            </oui-field>
+            <oui-field
+                data-label="{{:: 'pci_ai_dashboard_create_datastore_git_basic_auth_password' | translate }}"
+                data-size="auto"
+            >
+                <input
+                    class="oui-input"
+                    type="password"
+                    id="basicAuthPassword"
+                    name="basicAuthPassword"
+                    maxlength="100"
+                    data-ng-model="$ctrl.model.credentials.git.basic_auth.password"
+                    data-ng-pattern="/^[\w]+/"
+                />
+            </oui-field>
+        </div>
+    </div>
+</oui-modal>
