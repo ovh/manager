@@ -121,6 +121,23 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     );
   }
 
+  static isDomainCancellable(domain) {
+    return ![
+      DOMAIN_STATUS.PENDING_INCOMING_TRANSFER,
+      DOMAIN_STATUS.DELETED,
+      DOMAIN_STATUS.PENDING_CREATE,
+      DOMAIN_STATUS.DISPUTE,
+      DOMAIN_STATUS.RESTORABLE,
+    ].includes(domain.state);
+  }
+
+  cancellationLink(domain) {
+    return this.coreURLBuilder.buildURL(
+      'dedicated',
+      `#/billing/autorenew/delete?serviceId=${domain.domain}`,
+    );
+  }
+
   onRowSelect(row, rows) {
     this.selectedRows = rows;
   }
