@@ -3,9 +3,13 @@ import template from './template.html';
 
 export default {
   bindings: {
-    pools: '<',
-    goToPoolCreation: '<',
-    goToPoolDeletion: '<',
+    projectId: '<',
+    region: '<',
+    poolId: '<',
+    poolName: '<',
+    goBack: '<',
+    trackDeleteAction: '<',
+    trackDeletePage: '<',
   },
   controller,
   template,
