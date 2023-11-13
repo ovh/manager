@@ -28,6 +28,16 @@ export default /* @ngInject */ ($stateProvider) => {
         $http.get('/domain.json').then(({ data: schema }) => schema),
       domainStateEnum: /* @ngInject */ (schema) =>
         schema.models['domain.DomainStateEnum'].enum,
+      domainRenewalModeEnum: () =>
+        // @TODO get enum from schema.models when API is available
+        [
+          'automatic_renew',
+          'manual_renew',
+          'cancellation_requested',
+          'cancellation_complete',
+          'unpaid',
+          'expired',
+        ],
       domainSuspensionStateEnum: /* @ngInject */ (schema) =>
         schema.models['domain.DomainSuspensionStateEnum'].enum,
       domainLockStatusEnum: /* @ngInject */ (schema) =>

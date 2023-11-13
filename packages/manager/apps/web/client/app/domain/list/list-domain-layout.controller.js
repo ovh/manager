@@ -9,6 +9,8 @@ import {
   DOMAINS_BADGES_STATUS,
   DOMAINS_BADGES_SUSPENSION_STATE,
   DOMAINS_BADGES_TRANSFERT_LOCK_STATE,
+  DOMAIN_RENEWAL_MODE,
+  DOMAINS_BADGES_RENEWAL_MODE,
   IDN_PREFIX,
   DOMAIN_RENEWABLE_STATE,
 } from './list-domain-layout.constants';
@@ -23,6 +25,8 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     this.DOMAIN_NAME_SERVER_TYPE = DOMAIN_NAME_SERVER_TYPE;
     this.DOMAIN_TRANSFERT_LOCK_STATE = DOMAIN_TRANSFERT_LOCK_STATE;
     this.DOMAINS_BADGES_STATUS = DOMAINS_BADGES_STATUS;
+    this.DOMAIN_RENEWAL_MODE = DOMAIN_RENEWAL_MODE;
+    this.DOMAINS_BADGES_RENEWAL_MODE = DOMAINS_BADGES_RENEWAL_MODE;
     this.DOMAINS_BADGES_SUSPENSION_STATE = DOMAINS_BADGES_SUSPENSION_STATE;
     this.DOMAINS_BADGES_TRANSFERT_LOCK_STATE = DOMAINS_BADGES_TRANSFERT_LOCK_STATE;
     this.IDN_PREFIX = IDN_PREFIX;
@@ -38,6 +42,7 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
       { name: 'domain', sortable: this.getSorting('domain') },
       { name: 'state', sortable: this.getSorting('state') },
       { name: 'suspensionState', sortable: this.getSorting('suspensionState') },
+      { name: 'renewalState', sortable: this.getSorting('renewalState') },
       { name: 'whoisOwner', sortable: this.getSorting('whoisOwner') },
       { name: 'nameServerType', sortable: this.getSorting('nameServerType') },
     ];
@@ -48,6 +53,17 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
         (options, status) => ({
           ...options,
           [status]: this.$translate.instant(`domains_status_${status}`),
+        }),
+        {},
+      ),
+    };
+
+    this.domainRenewalModeColumnOptions = {
+      hideOperators: true,
+      values: this.domainRenewalModeEnum.reduce(
+        (options, status) => ({
+          ...options,
+          [status]: this.$translate.instant(`domains_renewal_mode_${status}`),
         }),
         {},
       ),

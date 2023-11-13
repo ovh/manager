@@ -22,6 +22,15 @@ export const DOMAIN_RENEWABLE_STATE = {
   EXPIRED: 'expired',
 };
 
+export const DOMAIN_RENEWAL_MODE = {
+  AUTOMATIC_RENEW: 'automatic_renew',
+  MANUAL_RENEW: 'manual_renew',
+  CANCELLATION_REQUESTED: 'cancellation_requested',
+  CANCELLATION_COMPLETE: 'cancellation_complete',
+  UNPAID: 'unpaid',
+  EXPIRED: 'expired',
+};
+
 export const DOMAIN_SUSPENSION_STATE = {
   NOT_SUSPENDED: 'not_suspended',
   SUSPENDED: 'suspended',
@@ -38,6 +47,15 @@ export const DOMAIN_TRANSFERT_LOCK_STATE = {
 export const DOMAIN_NAME_SERVER_TYPE = {
   HOSTED_BY: 'hosted by',
   EXTERNAL: 'external',
+};
+
+export const DOMAINS_BADGES_RENEWAL_MODE = {
+  [DOMAIN_RENEWAL_MODE.AUTOMATIC_RENEW]: 'oui-badge_success',
+  [DOMAIN_RENEWAL_MODE.MANUAL_RENEW]: 'oui-badge_warning',
+  [DOMAIN_RENEWAL_MODE.CANCELLATION_REQUESTED]: 'oui-badge_error',
+  [DOMAIN_RENEWAL_MODE.CANCELLATION_COMPLETE]: 'oui-badge_error',
+  [DOMAIN_RENEWAL_MODE.UNPAID]: 'oui-badge_error',
+  [DOMAIN_RENEWAL_MODE.EXPIRED]: 'oui-badge_error',
 };
 
 export const DOMAINS_BADGES_STATUS = {
@@ -79,5 +97,6 @@ export default {
   DOMAINS_BADGES_STATUS,
   DOMAINS_BADGES_SUSPENSION_STATE,
   DOMAINS_BADGES_TRANSFERT_LOCK_STATE,
+  DOMAINS_BADGES_RENEWAL_MODE,
   IDN_PREFIX,
 };
