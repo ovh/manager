@@ -1,6 +1,7 @@
 import { DNS_FILENAME, DATE_FORMAT } from './dashboard.constants';
 
 export default class DomainDnsZoneHistoryDashboardController {
+  /* @ngInject */
   constructor(
     $translate,
     $stateParams,
