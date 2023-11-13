@@ -63,6 +63,11 @@ export const VrackConfirmModal: React.FC<Props> = ({
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={onCancel}
+        onKeyDown={(event: React.KeyboardEvent) => {
+          if ([' ', 'Enter'].includes(event.key)) {
+            onCancel();
+          }
+        }}
       >
         {t('modalCancelButtonLabel')}
       </OsdsButton>
@@ -72,6 +77,11 @@ export const VrackConfirmModal: React.FC<Props> = ({
         variant={ODS_BUTTON_VARIANT.stroked}
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={onDeny}
+        onKeyDown={(event: React.KeyboardEvent) => {
+          if ([' ', 'Enter'].includes(event.key)) {
+            onDeny();
+          }
+        }}
       >
         {t('modalNoVrackButtonLabel')}
       </OsdsButton>
@@ -81,6 +91,11 @@ export const VrackConfirmModal: React.FC<Props> = ({
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={onConfirm}
+        onKeyDown={(event: React.KeyboardEvent) => {
+          if ([' ', 'Enter'].includes(event.key)) {
+            onConfirm();
+          }
+        }}
       >
         {t('modalConfirmVrackButtonLabel')}
       </OsdsButton>
