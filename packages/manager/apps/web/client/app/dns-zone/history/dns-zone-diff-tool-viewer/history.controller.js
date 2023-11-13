@@ -97,7 +97,11 @@ export default class DomainDnsZoneHistoryController {
       this.getBaseDnsZoneForChosenDate();
       this.getModifiedDnsZoneForChosenDate();
 
-      const allDates = (await this.getZoneHistory(productId)).slice(0, 30);
+      const allDates = (await this.getZoneHistory(productId))
+        .sort((a, b) => {
+          return new Date(b) - new Date(a);
+        })
+        .slice(0, 30);
 
       this.base_dns_zone_mocks = [...allDates];
       this.modified_dns_zone_mocks = [...allDates];
