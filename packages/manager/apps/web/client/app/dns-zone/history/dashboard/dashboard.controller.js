@@ -7,6 +7,7 @@ export default class DomainDnsZoneHistoryDashboardController {
     $stateParams,
     $state,
     $q,
+    $filter,
     $document,
     Domain,
     Alerter,
@@ -20,6 +21,7 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.DNSZoneService = DNSZoneService;
     this.$document = $document;
     this.$q = $q;
+    this.$filter = $filter;
     this.DATE_FORMAT = DATE_FORMAT;
   }
 
@@ -84,6 +86,15 @@ export default class DomainDnsZoneHistoryDashboardController {
 
   getZoneDataByDate(zoneId, creationDate) {
     return this.Domain.getZoneDataByDate(zoneId, creationDate);
+  }
+
+  getCurrentDateText(creationDate, index) {
+    const formattedDate = this.$filter('date')(creationDate, this.DATE_FORMAT);
+    return index === 0
+      ? this.$translate.instant('dashboard_history_current_zone_date', {
+          creationDate: formattedDate,
+        })
+      : formattedDate;
   }
 
   $onInit() {
