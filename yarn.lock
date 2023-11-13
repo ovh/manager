@@ -20493,6 +20493,13 @@ outvariant@^1.2.1:
   resolved "https://registry.yarnpkg.com/outvariant/-/outvariant-1.4.0.tgz#e742e4bda77692da3eca698ef5bfac62d9fba06e"
   integrity sha512-AlWY719RF02ujitly7Kk/0QlV+pXGFDHrHf9O2OKqyqgBieaPOIeuSkL8sRK6j2WK+/ZAURq2kZsY0d8JapUiw==
 
+ovh-api-services@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-15.0.0.tgz#37079b051a3120dcacb396b5f57692868aa7c3e8"
+  integrity sha512-77jJFnd1X2lAQmNrZ0OQUpSjRBPY41LM9qqQkPBxMOCDR3PROnpheLWR0oPeNDMNOpJvGqdhAKarfnrbMnd+KA==
+  dependencies:
+    lodash "^4.17.21"
+
 ovh-api-services@^16.0.0:
   version "16.0.0"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-16.0.0.tgz#5d3f8ef29bbdae90b2982c3e06b8f77438029413"
