@@ -128,9 +128,11 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.zoneId = this.$stateParams.productId;
     this.getZoneHistory(this.$stateParams.productId)
       .then((dates) => {
-        this.dates = dates.slice(0, 30).sort((a, b) => {
-          return new Date(b) - new Date(a);
-        });
+        this.dates = dates
+          .sort((a, b) => {
+            return new Date(b) - new Date(a);
+          })
+          .slice(0, 30);
         this.dates.map((u, idx) =>
           this.dnsEntriesForComparison.push({
             id: idx,
@@ -140,16 +142,16 @@ export default class DomainDnsZoneHistoryDashboardController {
         );
         return this.$q
           .all(
-            dates
-              .slice(0, 30)
-              .map((date) =>
-                this.getZoneDataByDate(this.$stateParams.productId, date),
-              ),
+            this.dates.map((date) =>
+              this.getZoneDataByDate(this.$stateParams.productId, date),
+            ),
           )
           .then((zoneUrls) => {
-            this.listOfDnsZonesUrls = [...zoneUrls].sort((a, b) => {
-              return new Date(b.creationDate) - new Date(a.creationDate);
-            });
+            this.listOfDnsZonesUrls = [...zoneUrls]
+              .sort((a, b) => {
+                return new Date(b.creationDate) - new Date(a.creationDate);
+              })
+              .slice(0, 30);
           });
       })
       .catch(({ data: { message } }) => {
