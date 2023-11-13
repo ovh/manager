@@ -1,6 +1,7 @@
 import has from 'lodash/has';
 
 export default class Datacenter {
+  /* @ngInject */
   constructor(region) {
     Object.assign(this, region);
   }
