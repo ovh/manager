@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.8.0...@ovh-ux/manager-iplb@1.8.1) (2023-11-13)
+
+
+### Bug Fixes
+
+* **dedicated:** fix cancel redirection on 'add private network' ([#10210](https://github.com/ovh/manager/issues/10210)) ([05f27d9](https://github.com/ovh/manager/commit/05f27d962be6942fa33063e611407be2cd5e7023))
+
+
+
+
+
 # [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.7.4...@ovh-ux/manager-iplb@1.8.0) (2023-09-18)
 
 

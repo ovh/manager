@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.8...@ovh-ux/manager-telecom@15.0.9) (2023-11-13)
+
+
+### Bug Fixes
+
+* **telecom.voip:** fix the service type available for voicemail search ([#10184](https://github.com/ovh/manager/issues/10184)) ([3c12931](https://github.com/ovh/manager/commit/3c129312428e53bfc2d7384ee0a15ab44751f348))
+
+
+
+
+
 ## [15.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.7...@ovh-ux/manager-telecom@15.0.8) (2023-10-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

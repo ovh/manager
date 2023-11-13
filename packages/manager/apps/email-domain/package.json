@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-emaildomain-app",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "private": true,
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^7.1.1",
     "@ovh-ux/manager-core": "^12.13.0",
-    "@ovh-ux/manager-email-domain": "^1.4.2",
+    "@ovh-ux/manager-email-domain": "^1.5.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.7.2",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.0.7",
@@ -32,7 +32,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.8",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.7",
     "@ovh-ux/ng-ovh-utils": "^14.0.21",
-    "@ovh-ux/ng-ovh-web-universe-components": "^9.11.4",
+    "@ovh-ux/ng-ovh-web-universe-components": "^9.11.5",
     "@ovh-ux/ng-pagination-front": "^10.1.4",
     "@ovh-ux/ng-translate-async-loader": "^2.1.7",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.2.2",

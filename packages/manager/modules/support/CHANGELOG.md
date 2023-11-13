@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.19.1...@ovh-ux/manager-support@1.20.0) (2023-11-13)
+
+
+### Features
+
+* **dedicated:** fix the link to help center, from beta to prod url ([#10180](https://github.com/ovh/manager/issues/10180)) ([728794c](https://github.com/ovh/manager/commit/728794c449cb964d54cee118d9f182abcdf7a2b8))
+
+
+
+
+
 ## [1.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.19.0...@ovh-ux/manager-support@1.19.1) (2023-09-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-support

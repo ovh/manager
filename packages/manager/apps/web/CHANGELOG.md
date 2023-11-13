@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.5.0...@ovh-ux/manager-web@18.5.1) (2023-11-13)
+
+
+### Bug Fixes
+
+* **web:** fix 404 office 365 help link ([#10246](https://github.com/ovh/manager/issues/10246)) ([6d16045](https://github.com/ovh/manager/commit/6d1604561ab6f6f6c5d5b1a2f46ff7ab90c3c028))
+
+
+
+
+
 # [18.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.4.3...@ovh-ux/manager-web@18.5.0) (2023-11-06)
 
 

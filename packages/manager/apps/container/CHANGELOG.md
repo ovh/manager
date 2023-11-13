@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.33.0...@ovh-ux/manager-container-app@0.34.0) (2023-11-13)
+
+
+### Bug Fixes
+
+* **pci:** when creating a project, the sidebar is not displayed ([#10215](https://github.com/ovh/manager/issues/10215)) ([815e0a9](https://github.com/ovh/manager/commit/815e0a949410c8f47836ef16ca61060ba3a72a35))
+
+
+### Features
+
+* **dedicated:** fix the link to help center, from beta to prod url ([#10180](https://github.com/ovh/manager/issues/10180)) ([728794c](https://github.com/ovh/manager/commit/728794c449cb964d54cee118d9f182abcdf7a2b8))
+
+
+
+
+
 # [0.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.32.0...@ovh-ux/manager-container-app@0.33.0) (2023-11-06)
 
 
