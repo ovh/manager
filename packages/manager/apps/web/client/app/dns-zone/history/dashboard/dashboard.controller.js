@@ -1,4 +1,4 @@
-import { DNS_FILENAME, DATE_FORMAT } from './dashboard.constants';
+import { DNS_FILENAME } from './dashboard.constants';
 
 export default class DomainDnsZoneHistoryDashboardController {
   /* @ngInject */
@@ -8,6 +8,7 @@ export default class DomainDnsZoneHistoryDashboardController {
     $state,
     $q,
     $document,
+    coreConfig,
     Domain,
     Alerter,
     DNSZoneService,
@@ -20,7 +21,7 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.DNSZoneService = DNSZoneService;
     this.$document = $document;
     this.$q = $q;
-    this.DATE_FORMAT = DATE_FORMAT;
+    this.coreConfig = coreConfig;
   }
 
   closeVisualizeDnsPopup() {
@@ -67,15 +68,23 @@ export default class DomainDnsZoneHistoryDashboardController {
   }
 
   downloadDnsZoneFile(url) {
-    const link = this.$document[0].createElement('a');
-    if (link.download !== undefined) {
-      link.setAttribute('href', url);
-      link.setAttribute('download', DNS_FILENAME);
-      link.style = 'visibility:hidden';
-      this.$document[0].body.appendChild(link);
-      link.click();
-      this.$document[0].body.removeChild(link);
-    }
+    this.DNSZoneService.getDnsFile(url)
+      .then((res) => {
+        this.dnsZoneData = res;
+        const myBlob = new Blob([res], { type: 'text/plain' });
+        const blobURL = (window.URL || window.webkitURL).createObjectURL(
+          myBlob,
+        );
+        const anchor = document.createElement('a');
+        anchor.download = `${this.zoneId}_${DNS_FILENAME}`;
+        anchor.href = blobURL;
+        anchor.click();
+      })
+      .catch(({ message }) => {
+        this.Alerter.error(
+          this.$translate.instant('dashboard_history_error', { message }),
+        );
+      });
   }
 
   getZoneHistory(zoneId) {
@@ -84,6 +93,26 @@ export default class DomainDnsZoneHistoryDashboardController {
 
   getZoneDataByDate(zoneId, creationDate) {
     return this.Domain.getZoneDataByDate(zoneId, creationDate);
+  }
+
+  getCurrentDateText(creationDate, index) {
+    const dateTimeFormat = new Intl.DateTimeFormat(
+      this.coreConfig.getUserLocale().replace('_', '-'),
+      {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+      },
+    );
+    const formattedDate = dateTimeFormat.format(new Date(creationDate));
+    return index === 0
+      ? this.$translate.instant('dashboard_history_current_zone_date', {
+          creationDate: formattedDate,
+        })
+      : formattedDate;
   }
 
   $onInit() {
@@ -99,9 +128,11 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.zoneId = this.$stateParams.productId;
     this.getZoneHistory(this.$stateParams.productId)
       .then((dates) => {
-        this.dates = dates.slice(0, 30).sort((a, b) => {
-          return new Date(b) - new Date(a);
-        });
+        this.dates = dates
+          .sort((a, b) => {
+            return new Date(b) - new Date(a);
+          })
+          .slice(0, 30);
         this.dates.map((u, idx) =>
           this.dnsEntriesForComparison.push({
             id: idx,
@@ -111,14 +142,16 @@ export default class DomainDnsZoneHistoryDashboardController {
         );
         return this.$q
           .all(
-            dates.map((date) =>
+            this.dates.map((date) =>
               this.getZoneDataByDate(this.$stateParams.productId, date),
             ),
           )
           .then((zoneUrls) => {
-            this.listOfDnsZonesUrls = [...zoneUrls].sort((a, b) => {
-              return new Date(b.creationDate) - new Date(a.creationDate);
-            });
+            this.listOfDnsZonesUrls = [...zoneUrls]
+              .sort((a, b) => {
+                return new Date(b.creationDate) - new Date(a.creationDate);
+              })
+              .slice(0, 30);
           });
       })
       .catch(({ data: { message } }) => {
