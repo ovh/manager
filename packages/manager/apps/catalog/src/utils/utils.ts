@@ -1,16 +1,4 @@
-export type Product = {
-  id: number;
-  name: string;
-  description: string;
-  lang: string;
-  categories: string[];
-  url: string;
-  regionTags: string[];
-  productName: string;
-  order: string;
-  universe: string;
-  category: string;
-};
+import { Product } from '@/api';
 
 type ProductKey = 'universe' | 'category' | 'name';
 

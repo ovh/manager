@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { OsdsButton } from '@ovhcloud/ods-components/button/react';
 import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import { OsdsLink } from '@ovhcloud/ods-components/link/react';
 import { useLocation } from 'react-router-dom';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
+
 import FilterItem from './FilterItem';
 import LoadingFilterItem from './LoadingFilterItem';
 import './Filters.scss';
+
 import {
   getFilterParamsFromUrl,
   getAvailableCategoriesWithCounter,
   getUniverses,
-  Product,
   toFilterValue,
 } from '@/utils/utils';
+import { Product } from '@/api';
 
 interface FiltersProps {
   products: Product[];
@@ -91,6 +94,9 @@ const Filters: React.FC<FiltersProps> = ({
         ? [...prevState, toFilterValue(label)]
         : prevState.filter((item) => item !== toFilterValue(label));
 
+    console.info('handleCheckboxChange : ');
+    console.info('label : ', label);
+    console.info('updateState :', updateState);
     if (type === 'category') {
       setSelectedCategories(updateState);
     } else {

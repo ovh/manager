@@ -2,13 +2,13 @@ import { products as productsData } from './mocks/test-products.mock.json';
 import {
   getUniverses,
   filterProducts,
-  Product,
   filterByProperty,
   getAvailableCategoriesWithCounter,
   matchSearchText,
   getFilterParamsFromUrl,
   getSearchUrlFromFilterParams,
 } from './utils';
+import { Product } from '@/api';
 
 describe('filterProducts', () => {
   it('should filter products based on selected categories, universes, and search text', () => {

@@ -12,7 +12,7 @@ import {
   ODS_BUTTON_TYPE,
 } from '@ovhcloud/ods-components/button';
 import Filters from '@/components/Filters/Filters';
-import { Product } from '@/utils/utils';
+import { Product } from '@/api';
 
 interface SearchbarProps {
   products: Product[];

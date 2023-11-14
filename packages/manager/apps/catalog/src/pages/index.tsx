@@ -14,7 +14,8 @@ import { Locale } from '@ovhcloud/msc-utils';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { useCatalog } from '@/hooks/useCatalog';
 import SearchBar from '@/components/SearchBar/SearchBar';
-import { Product, getSearchUrlFromFilterParams } from '@/utils/utils';
+import { getSearchUrlFromFilterParams } from '@/utils/utils';
+import { Product } from '@/api';
 import Loading from '../components/Loading/Loading';
 import Errors from '@/components/Error/Errors';
 
