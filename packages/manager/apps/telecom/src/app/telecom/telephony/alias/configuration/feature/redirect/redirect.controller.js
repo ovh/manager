@@ -28,8 +28,6 @@ export default class TelecomTelephonyAliasConfigurationRedirectCtrl {
     this.tucVoipServiceAlias = tucVoipServiceAlias;
     this.tucVoipServiceLine = tucVoipServiceLine;
     this.TelephonyMediator = TelephonyMediator;
-    this.FEATURE_TYPES = FEATURE_TYPES;
-    this.REDIRECT_TYPES = REDIRECT_TYPES;
   }
 
   $onInit() {
@@ -118,14 +116,14 @@ export default class TelecomTelephonyAliasConfigurationRedirectCtrl {
           serviceName: service.serviceName,
         })
         .then(() => {
-          this.featureTypeToUse = this.REDIRECT_TYPES.REDIRECT;
+          this.featureTypeToUse = REDIRECT_TYPES.REDIRECT;
         })
         .catch((error) => {
           if (error.status === 404) {
             this.featureTypeToUse =
-              service.featureType === this.FEATURE_TYPES.CARRIER_SIP
-                ? this.REDIRECT_TYPES.REDIRECT
-                : this.REDIRECT_TYPES.DDI;
+              service.featureType === FEATURE_TYPES.CARRIER_SIP
+                ? REDIRECT_TYPES.REDIRECT
+                : REDIRECT_TYPES.DDI;
           } else {
             this.TucToast.error(
               `${this.$translate.instant(
@@ -141,20 +139,13 @@ export default class TelecomTelephonyAliasConfigurationRedirectCtrl {
   }
 
   canDestinationBeUsedForPresentation() {
-    const trunkOffer = this.FEATURE_TYPES.TRUNK;
-    const faxFeatureType = this.FEATURE_TYPES.FAX;
-    const regExp = new RegExp(trunkOffer);
-    if (this.newDestination) {
-      return (
-        !regExp.test(
-          get(this.newDestination, 'getPublicOffer.name', trunkOffer),
-        ) && this.newDestination.featureType !== faxFeatureType
-      );
-    }
+    const destination = this.newDestination || this.destination;
 
     return (
-      !regExp.test(get(this.destination, 'getPublicOffer.name', trunkOffer)) &&
-      this.destination.featureType !== faxFeatureType
+      !destination?.getPublicOffer?.name.includes(FEATURE_TYPES.TRUNK) &&
+      ![FEATURE_TYPES.FAX, FEATURE_TYPES.CARRIER_SIP].includes(
+        destination.featureType,
+      )
     );
   }
 
