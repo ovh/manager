@@ -59,7 +59,28 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       chosenDate: /* @ngInject */ ($stateParams) => $stateParams.chosenDate,
       zoneId: /* @ngInject */ ($stateParams) => $stateParams.productId,
-      goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+      goBack: /* @ngInject */ ($state, $timeout, Alerter) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const reload = message && type === 'success';
+        const promise = $state.go('^', {
+          reload,
+        });
+        if (message) {
+          promise.then(() =>
+            $timeout(() =>
+              Alerter.set(
+                `alert-${type}`,
+                message,
+                null,
+                'history.dashboard.alerts.global',
+              ),
+            ),
+          );
+        }
+        return promise;
+      },
     },
   });
   $stateProvider.state('app.zone.details.zone-history', {
