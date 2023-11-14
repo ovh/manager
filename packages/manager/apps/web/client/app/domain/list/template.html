@@ -170,7 +170,7 @@
             ></span>
         </oui-action-menu-item>
         <oui-action-menu-item
-            data-href="{{:: $ctrl.cancellationLink($row)}}"
+            data-href="{{:: $ctrl.CANCEL_LINK + $row.domain }}"
             aria-label="{{:: 'domains_action_per_line_cancellation' | translate }}"
             data-ng-if="$ctrl.constructor.isDomainCancellable($row)"
         >

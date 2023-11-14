@@ -92,6 +92,11 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
         {},
       ),
     };
+
+    this.CANCEL_LINK = this.coreURLBuilder.buildURL(
+      'dedicated',
+      `#/billing/autorenew/delete?serviceId=`,
+    );
   }
 
   loadPage() {
@@ -129,13 +134,6 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
       DOMAIN_STATUS.DISPUTE,
       DOMAIN_STATUS.RESTORABLE,
     ].includes(domain.state);
-  }
-
-  cancellationLink(domain) {
-    return this.coreURLBuilder.buildURL(
-      'dedicated',
-      `#/billing/autorenew/delete?serviceId=${domain.domain}`,
-    );
   }
 
   onRowSelect(row, rows) {
