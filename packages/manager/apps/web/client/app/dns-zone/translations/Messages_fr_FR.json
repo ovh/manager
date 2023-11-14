@@ -16,6 +16,6 @@
   "dashboard_history_restore_modal_content": "Souhaitez-vous restaurer la sauvegarde du {{date}} ?",
   "dashboard_history_restore_modal_primary_label": "Restaurer",
   "dashboard_history_restore_modal_secondary_label": "Annuler",
-  "dashboard_history_restore_modal_warning_message": "Attention! La zone actuelle sera supprimée. La nouvelle zone selectionnée sera restaurée",
-  "dashboard_history_restore_modal_info_message": "La réinitialisation sera immmédiate dans la zone DNS, mais veuillez prendre en compte le temps de propagation (maximum 24h)."
+  "dashboard_history_restore_modal_warning_message": "Attention! La zone actuelle sera supprimée. La nouvelle zone sélectionnée sera restaurée",
+  "dashboard_history_restore_modal_info_message": "La réinitialisation sera immédiate dans la zone DNS, mais veuillez prendre en compte le temps de propagation (maximum 24h)."
 }
