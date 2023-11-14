@@ -48,5 +48,7 @@
   "network_security_dashboard_unit_mb_ps": "Mbps",
   "network_security_dashboard_unit_gb_ps": "Gbps",
   "network_security_dashboard_unit_tb_ps": "Tbps",
-  "network_security_dashboard_unit_pb_ps": "Pbps"
+  "network_security_dashboard_unit_pb_ps": "Pbps",
+  "network_security_dashboard_none": "Aucun",
+  "network_security_dashboard_select_ip": "Saisissez une adresse IP..."
 }

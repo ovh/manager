@@ -21,16 +21,20 @@
                 </select>
             </span>
             <span class="ml-2">
-                <input
-                    class="oui-input form-control"
-                    type="text"
-                    id="selectSubnet"
-                    name="ip"
-                    data-ui-validate="'$ctrl.checkSelectedSubnet($value)'"
-                    data-uib-typeahead="ip as ip.ipBlock for ip in $ctrl.getIps($viewValue)"
-                    data-uib-typeahead-loading="$ctrl.loaderIp"
-                    data-ng-model="$ctrl.selectedIp"
-                />
+                <oui-select
+                    data-items="$ctrl.ipsList"
+                    data-model="$ctrl.subnetSelected"
+                    data-on-change="$ctrl.onSelectSubnet()"
+                    data-placeholder="{{:: 'network_security_dashboard_select_ip' | translate}}"
+                    data-ng-if="$ctrl.isServiceSelected"
+                ></oui-select>
+                <oui-search
+                    data-model="$ctrl.model"
+                    data-on-submit="$ctrl.checkSelectedSubnet(modelValue)"
+                    data-on-reset="$ctrl.onReset()"
+                    data-placeholder="{{:: 'network_security_dashboard_select_ip' | translate}}"
+                    data-ng-if="!$ctrl.isServiceSelected"
+                ></oui-search>
             </span>
         </div>
         <div class="d-flex">
@@ -66,6 +70,12 @@
                 <p
                     class="oui-heading_5 text-center oui-color-p-500"
                     data-ng-bind="$ctrl.numberOfEvents"
+                    data-ng-if="$ctrl.numberOfEvents > 0"
+                ></p>
+                <p
+                    class="oui-heading_5 text-center oui-color-p-500"
+                    data-translate="network_security_dashboard_none"
+                    data-ng-if="$ctrl.numberOfEvents === 0"
                 ></p>
             </div>
             <div class="oui-box oui-box_light mr-4">
@@ -76,6 +86,12 @@
                 <p
                     class="oui-heading_5 text-center oui-color-p-500"
                     data-ng-bind="$ctrl.packetsDropped"
+                    data-ng-if="$ctrl.packetsDropped"
+                ></p>
+                <p
+                    class="oui-heading_5 text-center oui-color-p-500"
+                    data-translate="network_security_dashboard_none"
+                    data-ng-if="!$ctrl.packetsDropped"
                 ></p>
             </div>
             <div class="oui-box oui-box_light mr-4">
@@ -86,6 +102,12 @@
                 <p
                     class="oui-heading_5 text-center oui-color-p-500"
                     data-ng-bind="$ctrl.bandwithCleaned"
+                    data-ng-if="$ctrl.bandwithCleaned"
+                ></p>
+                <p
+                    class="oui-heading_5 text-center oui-color-p-500"
+                    data-translate="network_security_dashboard_none"
+                    data-ng-if="!$ctrl.bandwithCleaned"
                 ></p>
             </div>
             <div class="oui-box oui-box_light mr-4">
@@ -96,6 +118,12 @@
                 <p
                     class="oui-heading_5 text-center oui-color-p-500"
                     data-ng-bind="$ctrl.attacksDetected"
+                    data-ng-if="$ctrl.attacksDetected > 0"
+                ></p>
+                <p
+                    class="oui-heading_5 text-center oui-color-p-500"
+                    data-translate="network_security_dashboard_none"
+                    data-ng-if="$ctrl.attacksDetected === 0"
                 ></p>
             </div>
         </div>

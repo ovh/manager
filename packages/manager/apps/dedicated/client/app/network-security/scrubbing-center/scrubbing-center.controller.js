@@ -16,7 +16,9 @@ export default class ScrubbingCenterController {
   $onInit() {
     this.errorMessage = '';
     this.periods = this.networkSecurityService.initPeriods(this.PERIODS);
-    [this.period] = this.periods;
+
+    // Set default period to "Last year"
+    this.period = this.periods[this.periods.length - 1];
     this.networkSecurityService.initService().then((data) => {
       this.services = data;
       return data;
@@ -27,6 +29,7 @@ export default class ScrubbingCenterController {
     if (!ip) {
       this.getAllEvents();
     }
+    this.isServiceSelected = false;
     this.isLoading = false;
   }
 
@@ -88,8 +91,10 @@ export default class ScrubbingCenterController {
       this.pageSize = 10;
       this.page = 1;
       this.autocomplete = [];
+      this.ipsList = [];
       this.selectedIp = '';
       this.results = null;
+      this.isServiceSelected = true;
       this.networkSecurityService
         .getIpsFromService(
           this.page,
@@ -98,27 +103,13 @@ export default class ScrubbingCenterController {
           this.autocomplete,
         )
         .then((data) => {
-          this.autocomplete = data;
-          this.getAllEvents('selectService');
+          this.ipsList = data.map(({ ipBlock }) => ipBlock);
+          this.selectedIp = this.ipsList;
+          this.getAllEvents();
         });
+    } else {
+      this.isServiceSelected = false;
     }
-  }
-
-  getIps(partial) {
-    if (!this.autocomplete) {
-      return null;
-    }
-    let ips = [];
-    if (partial.length > 2) {
-      this.loaderIp = true;
-
-      // Filter loaded ips list with partial ip
-      ips = this.autocomplete.filter((service) =>
-        service.ipBlock.includes(partial),
-      );
-      delete this.loaderIp;
-    }
-    return ips;
   }
 
   checkSelectedIp(value) {
@@ -126,7 +117,27 @@ export default class ScrubbingCenterController {
       return null;
     }
 
-    this.selectedIp = value.ipBlock ? value.ipBlock : value;
-    return this.getAllEvents('selectIp');
+    this.selectedIp = value;
+    return this.getAllEvents();
+  }
+
+  static displayAction(row) {
+    const twoWeeksDate = new Date();
+    twoWeeksDate.setDate(twoWeeksDate.getDate() - 14);
+    let result = false;
+    if (row.endedAt > twoWeeksDate.toISOString()) {
+      result = true;
+    }
+    return result;
+  }
+
+  onSelectIp() {
+    this.selectedIp = this.ipSelected;
+    this.getAllEvents();
+  }
+
+  onReset() {
+    this.selectedIp = null;
+    this.getAllEvents();
   }
 }
