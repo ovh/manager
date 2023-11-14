@@ -82,7 +82,7 @@ export default class RegionsListController {
 
   static selectListenerProtocol(protocol, listener) {
     const listenerModel = listener;
-    if (!listenerModel.port) listenerModel.port = protocol.defaultPort;
+    if (protocol.defaultPort) listenerModel.port = protocol.defaultPort;
   }
 
   static initInstancePort(listener) {
