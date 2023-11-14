@@ -1,6 +1,4 @@
 import { TRACKING_HIT_PREFIX } from './constants';
-import { TRACKING_SUFFIX } from '../constants';
-import { TRACKING_NAME } from '../../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('octavia-load-balancer.loadbalancer.pools.detail', {
@@ -77,9 +75,6 @@ export default /* @ngInject */ ($stateProvider) => {
         trackAction(`${TRACKING_HIT_PREFIX}::${hit}`),
       trackDetailPage: /* @ngInject */ (trackPage) => (hit) =>
         trackPage(`${TRACKING_HIT_PREFIX}-${hit}`),
-    },
-    atInternet: {
-      rename: `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}`,
     },
     redirectTo:
       'octavia-load-balancer.loadbalancer.pools.detail.general-information',
