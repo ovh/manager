@@ -9,6 +9,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('cloud-connect.details.overview.associate-vrack'),
       goToRemoveVrackPage: /* @ngInject */ ($state) => (vRackId) =>
         $state.go('cloud-connect.details.overview.remove-vrack', { vRackId }),
+      goToChangeBandwidthPage: /* @ngInject */ ($state) => (serviceId) =>
+        $state.go('cloud-connect.details.overview.change-bandwidth', {
+          serviceId,
+        }),
       goToUpdateDescriptionPage: /* @ngInject */ ($state) => (description) =>
         $state.go('cloud-connect.details.overview.edit-description', {
           description,
@@ -113,7 +117,7 @@ export default /* @ngInject */ ($stateProvider) => {
           )
           .then(() => {
             if (message) {
-              CucCloudMessage[type](message, state);
+              CucCloudMessage[type]({ textHtml: message }, state);
               CucControllerHelper.scrollPageToTop();
             }
             if (vrackId) {
