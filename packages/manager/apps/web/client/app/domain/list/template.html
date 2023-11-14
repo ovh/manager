@@ -169,6 +169,13 @@
                 data-translate="{{ $row.state === $ctrl.DOMAIN_STATUS.RESTORABLE ? 'domains_action_per_line_restore' : 'domains_action_per_line_renew' }}"
             ></span>
         </oui-action-menu-item>
+        <oui-action-menu-item
+            data-href="{{:: $ctrl.CANCEL_LINK + $row.domain }}"
+            aria-label="{{:: 'domains_action_per_line_cancellation' | translate }}"
+            data-ng-if="$ctrl.constructor.isDomainCancellable($row)"
+        >
+            <span data-translate="domains_action_per_line_cancellation"></span>
+        </oui-action-menu-item>
     </oui-action-menu>
 </oui-datagrid>
 

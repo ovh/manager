@@ -61,5 +61,6 @@
   "domains_action_restore_renew": "Renouveler / Restaurer",
   "domains_action_per_line_renew": "Renouveler",
   "domains_action_per_line_restore": "Restaurer",
-  "domains_action_per_line_detail": "Détails du Domaine"
+  "domains_action_per_line_detail": "Détails du Domaine",
+  "domains_action_per_line_cancellation": "Résilier"
 }
