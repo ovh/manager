@@ -1,8 +1,7 @@
 {
   "name": "@ovhcloud/react-super-components",
   "private": false,
-  "version": "2.0.4",
-  "packageManager": "pnpm@8.4.0",
+  "version": "1.0.0",
   "main": "./lib/index.ts",
   "repository": {
     "type": "git",
