@@ -21,6 +21,7 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     super($q, ouiDatagridService);
     this.$translate = $translate;
     this.DOMAIN_STATUS = DOMAIN_STATUS;
+    this.DOMAIN_RENEWABLE_STATE = DOMAIN_RENEWABLE_STATE;
     this.DOMAIN_SUSPENSION_STATE = DOMAIN_SUSPENSION_STATE;
     this.DOMAIN_NAME_SERVER_TYPE = DOMAIN_NAME_SERVER_TYPE;
     this.DOMAIN_TRANSFERT_LOCK_STATE = DOMAIN_TRANSFERT_LOCK_STATE;
@@ -96,6 +97,11 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     this.CANCEL_LINK = this.coreURLBuilder.buildURL(
       'dedicated',
       `#/billing/autorenew/delete?serviceId=`,
+    );
+
+    this.ENABLE_AUTO_RENEW_LINK = this.coreURLBuilder.buildURL(
+      'dedicated',
+      `#/billing/autorenew/enable?selectedType=DOMAIN&services=`,
     );
   }
 
