@@ -1,5 +1,5 @@
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming'
-// import { Locale, defaultLocale } from '@ovhcloud/msc-utils';
+import { Locale, defaultLocale } from '@ovhcloud/msc-utils'
 import { OsdsText } from '@ovhcloud/ods-components/text/react'
 import { OsdsChip } from '@ovhcloud/ods-components/chip/react'
 import { OsdsTile } from '@ovhcloud/ods-components/tile/react'
@@ -43,22 +43,28 @@ const ScTile = ({
   const localeStrings = { see_more_label: 'See more' }
   const hasFooterContent = 0
   return (
-    <div>
+    <div className="tile-container">
       <OsdsTile className="msc-ods-tile" color={ODS_THEME_COLOR_INTENT.primary} rounded inline>
         <div className="flex flex-col">
-          {imgSrc && <img className="max-w-full m-3 w-32 h-32" src={imgSrc} alt={imgAlt} />}
+          {imgSrc && <img className="max-w-full my-3 mx-auto" src={imgSrc} alt={imgAlt} />}
           <OsdsText
-            className="tile-type"
+            className="block"
             level={ODS_TEXT_LEVEL.heading}
             size={ODS_TEXT_SIZE._200}
             color={ODS_THEME_COLOR_INTENT.primary}
           >
             {category}
-            <span className="tile-badge-list">{badges?.map((b) => <OsdsChip key={b.text}>{b.text}</OsdsChip>)}</span>
+            <span className="inline-flex ml-3">
+              {badges?.map((b) => (
+                <OsdsChip key={b.text} color={b.color}>
+                  {b.text}
+                </OsdsChip>
+              ))}
+            </span>
           </OsdsText>
 
           <OsdsText
-            className="tile-title"
+            className="block mb-5"
             level={ODS_TEXT_LEVEL.heading}
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
@@ -66,7 +72,7 @@ const ScTile = ({
             {tileTitle}
           </OsdsText>
           <OsdsText
-            className="tile-description"
+            className="block mb-4"
             level={ODS_TEXT_LEVEL.body}
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.default}
@@ -82,7 +88,7 @@ const ScTile = ({
             {localeStrings?.see_more_label}
             <OsdsIcon
               slot="end"
-              className="link-icon"
+              className="ml-4"
               aria-hidden="true"
               size={ODS_ICON_SIZE.xxs}
               name={isExternalHref ? ODS_ICON_NAME.EXTERNAL_LINK : ODS_ICON_NAME.ARROW_RIGHT}

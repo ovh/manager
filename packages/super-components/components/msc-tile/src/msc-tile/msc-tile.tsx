@@ -123,7 +123,6 @@ export class MscTile implements IMscTile {
         rounded
         inline
       >
-
         <div class="tile-content">
           {this.imgSrc && (
             <img class="tile-img" src={this.imgSrc} alt={this.imgAlt} />
@@ -182,9 +181,8 @@ export class MscTile implements IMscTile {
       </osds-tile>
     );
 
-
     return (
-      <div>
+      <Host tabIndex={this.tabIndex}>
         {this.hasFooterContent ? (
           <div class="msc-tile-wrapper">{content}</div>
         ) : (
@@ -203,7 +201,7 @@ export class MscTile implements IMscTile {
             {content}
           </a>
         )}
-      </div>
+      </Host>
     );
   }
 }
