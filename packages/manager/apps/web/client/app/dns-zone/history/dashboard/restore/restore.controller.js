@@ -10,7 +10,11 @@ export default class RestoreDnsZoneController {
 
   confirmRestoreDnsAtDate() {
     return this.DNSZoneService.restore(this.zoneId, this.chosenDate)
-      .then(() => this.goBack())
+      .then(() =>
+        this.goBack(
+          this.$translate.instant('dashboard_history_restoration_successful'),
+        ),
+      )
       .catch(({ data: { message } }) =>
         this.Alerter.error(
           this.$translate.instant('dashboard_history_error', { message }),
