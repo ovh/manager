@@ -1,27 +1,14 @@
 import { products as productsData } from './mocks/test-products.mock.json';
 import {
-  groupItemsByUniverse,
   getUniverses,
   filterProducts,
   Product,
-  getAvailableCategories,
   filterByProperty,
   getAvailableCategoriesWithCounter,
   matchSearchText,
   getFilterParamsFromUrl,
   getSearchUrlFromFilterParams,
 } from './utils';
-
-describe('groupItemsByUniverse', () => {
-  it('should group products by universe property', () => {
-    const products: Product[] = productsData;
-
-    const result = groupItemsByUniverse(products);
-
-    const simplifiedResult = JSON.parse(JSON.stringify(result)); // avoid CI issues with snapshot
-    expect(simplifiedResult).toMatchSnapshot();
-  });
-});
 
 describe('filterProducts', () => {
   it('should filter products based on selected categories, universes, and search text', () => {
@@ -63,16 +50,6 @@ describe('getUniverses', () => {
     const universes = getUniverses(products, false);
 
     expect(universes).toEqual(['Universe1', 'Universe2']);
-  });
-});
-
-describe('getAvailableCategories', () => {
-  it('should return unique categories based on selected universes', () => {
-    const products: Product[] = productsData;
-    const selectedUniverses = ['Universe1'];
-    const categories = getAvailableCategories(products, selectedUniverses);
-
-    expect(categories).toEqual(['Category1', 'Category2']);
   });
 });
 

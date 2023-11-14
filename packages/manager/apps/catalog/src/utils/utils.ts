@@ -14,13 +14,11 @@ export type Product = {
 
 type ProductKey = 'universe' | 'category' | 'name';
 
-export const groupItemsByUniverse = (itemsToGroup: Product[]) => {
-  return itemsToGroup.reduce<Record<string, Product[]>>((acc, item) => {
-    if (!acc[item.universe]) acc[item.universe] = [];
-    acc[item.universe].push(item);
-    return acc;
-  }, {});
-};
+export const toFilterValue = (label: string) =>
+  label.replace(/,/gm, '{coma}').replace(/\s/gm, '_');
+
+export const toFilterLabel = (value: string) =>
+  value.replace(/_/gm, ' ').replace(/\{coma\}/gm, ',');
 
 export const filterByProperty = (
   product: Product,
@@ -28,21 +26,6 @@ export const filterByProperty = (
   property: ProductKey,
 ) => {
   return query.length === 0 || query.includes(product[property]);
-};
-
-export const getAvailableCategories = (
-  products: Product[],
-  selectedUniverses: string[],
-) => {
-  const itemsFiltered = products.filter((product) =>
-    filterByProperty(product, selectedUniverses, 'universe'),
-  );
-  const uniqueCategories = [
-    ...new Set(itemsFiltered.map((item) => item.category)),
-  ];
-  return uniqueCategories.sort((a, b) =>
-    a.localeCompare(b, undefined, { sensitivity: 'base' }),
-  );
 };
 
 export const matchSearchText = (product: Product, searchText: string) => {
@@ -61,14 +44,21 @@ export const filterProducts = (
   selectedCategories: string[],
   selectedUniverses: string[],
   searchText: string,
-) => {
-  return products.filter(
+) =>
+  products.filter(
     (product) =>
-      filterByProperty(product, selectedCategories, 'category') &&
-      filterByProperty(product, selectedUniverses, 'universe') &&
+      filterByProperty(
+        product,
+        selectedCategories.map(toFilterLabel),
+        'category',
+      ) &&
+      filterByProperty(
+        product,
+        selectedUniverses.map(toFilterLabel),
+        'universe',
+      ) &&
       matchSearchText(product, searchText),
   );
-};
 
 const countAndFormat = (objectList: any[], property: string) => {
   const countByProperty = objectList.reduce((acc, obj) => {
@@ -113,9 +103,11 @@ export const getAvailableCategoriesWithCounter = (
   products: Product[],
   selectedUniverses: string[],
 ) => {
-  const productsInSelectedUniverses = products.filter((product) =>
-    filterByProperty(product, selectedUniverses, 'universe'),
-  );
+  const productsInSelectedUniverses = products
+    .filter((product) =>
+      filterByProperty(product, selectedUniverses, 'universe'),
+    )
+    .filter((product) => !!product.category);
 
   return countAndFormat(productsInSelectedUniverses, 'category');
 };

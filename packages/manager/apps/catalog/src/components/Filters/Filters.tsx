@@ -14,6 +14,7 @@ import {
   getAvailableCategoriesWithCounter,
   getUniverses,
   Product,
+  toFilterValue,
 } from '@/utils/utils';
 
 interface FiltersProps {
@@ -87,8 +88,8 @@ const Filters: React.FC<FiltersProps> = ({
     const { checked } = event.detail;
     const updateState = (prevState: string[]) =>
       checked
-        ? [...prevState, label]
-        : prevState.filter((item) => item !== label);
+        ? [...prevState, toFilterValue(label)]
+        : prevState.filter((item) => item !== toFilterValue(label));
 
     if (type === 'category') {
       setSelectedCategories(updateState);
@@ -111,18 +112,18 @@ const Filters: React.FC<FiltersProps> = ({
           </OsdsText>
           <span className="grid grid-cols-1">
             {universes.length ? (
-              universes.map(
-                (item: { universe: string; count: number }, id: number) => (
-                  <FilterItem
-                    key={item.universe}
-                    label={item.universe}
-                    count={item.count}
-                    type="universe"
-                    isChecked={selectedUniverses.includes(item.universe)}
-                    onCheckboxChange={handleCheckboxChange}
-                  />
-                ),
-              )
+              universes.map((item: { universe: string; count: number }) => (
+                <FilterItem
+                  key={item.universe}
+                  label={item.universe}
+                  count={item.count}
+                  type="universe"
+                  isChecked={selectedUniverses.includes(
+                    toFilterValue(item.universe),
+                  )}
+                  onCheckboxChange={handleCheckboxChange}
+                />
+              ))
             ) : (
               <LoadingFilterItem lineNumber={5} />
             )}
@@ -139,18 +140,18 @@ const Filters: React.FC<FiltersProps> = ({
           </OsdsText>
           <span className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {categories.length ? (
-              categories.map(
-                (item: { category: string; count: number }, id: number) => (
-                  <FilterItem
-                    key={item.category}
-                    label={item.category}
-                    count={item.count}
-                    type="category"
-                    isChecked={selectedCategories.includes(item.category)}
-                    onCheckboxChange={handleCheckboxChange}
-                  />
-                ),
-              )
+              categories.map((item: { category: string; count: number }) => (
+                <FilterItem
+                  key={item.category}
+                  label={item.category}
+                  count={item.count}
+                  type="category"
+                  isChecked={selectedCategories.includes(
+                    toFilterValue(item.category),
+                  )}
+                  onCheckboxChange={handleCheckboxChange}
+                />
+              ))
             ) : (
               <LoadingFilterItem lineNumber={15} />
             )}
@@ -162,7 +163,9 @@ const Filters: React.FC<FiltersProps> = ({
           <OsdsLink
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => resetFilters()}
-            onKeyDown={(event: any) => event.key === 'Enter' && resetFilters()}
+            onKeyDown={(event: React.KeyboardEvent) =>
+              event.key === 'Enter' && resetFilters()
+            }
             data-tracking="filter::reset"
           >
             {t('manager_catalog_filters_reset')}
@@ -172,7 +175,9 @@ const Filters: React.FC<FiltersProps> = ({
             disabled={!hasInteracted || undefined}
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => setFilters()}
-            onKeyDown={(event: any) => event.key === 'Enter' && setFilters()}
+            onKeyDown={(event: React.KeyboardEvent) =>
+              event.key === 'Enter' && setFilters()
+            }
             data-tracking="filter::apply"
           >
             {t('manager_catalog_filters_button_apply')}

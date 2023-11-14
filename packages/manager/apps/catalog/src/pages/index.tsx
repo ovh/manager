@@ -82,7 +82,7 @@ export default function Catalog() {
                 category={item.category}
                 tileDescription={item.description}
                 href={item.order}
-                hoverable={true}
+                hoverable
                 data-tracking={`manager_product_cards::more_info::${item.productName}`}
                 locale={lang}
               />
