@@ -185,6 +185,15 @@
                 data-translate="domains_action_per_line_autorenew_activate"
             ></span>
         </oui-action-menu-item>
+        <oui-action-menu-item
+            data-href="{{:: $ctrl.DISABLE_AUTO_RENEW_LINK + $row.legacyServiceId }}"
+            aria-label="{{:: 'domains_action_per_line_autorenew_deactivate' | translate }}"
+            data-ng-if="$row.renewalState === $ctrl.DOMAIN_RENEWABLE_STATE.AUTOMATIC_RENEW"
+        >
+            <span
+                data-translate="domains_action_per_line_autorenew_deactivate"
+            ></span>
+        </oui-action-menu-item>
     </oui-action-menu>
 </oui-datagrid>
 
