@@ -107,6 +107,17 @@ export default async (containerEl, shellClient) => {
       },
     )
     .run(
+      /* @ngInject */ ($urlRouterProvider) => {
+        $urlRouterProvider.rule(($injector, $location) => {
+          const path = $location.path();
+          if (path === '/hub/catalog') {
+            return '/catalog';
+          }
+          return undefined;
+        });
+      },
+    )
+    .run(
       /* @ngInject */ ($transitions) => {
         if (!isTopLevelApplication()) {
           $transitions.onBefore({}, (transition) => {
