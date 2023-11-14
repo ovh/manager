@@ -13,8 +13,6 @@ export default class OvhSignUpActivityCtrl {
     this.atInternet = atInternet;
     this.$filter = $filter;
     this.corporationIsCreated = true;
-    this.COMPANY_CREATED_PREFIX = COMPANY_CREATED_PREFIX;
-    this.COMPANY_NOT_CREATED_PREFIX = COMPANY_NOT_CREATED_PREFIX;
   }
 
   /**
@@ -69,9 +67,15 @@ export default class OvhSignUpActivityCtrl {
     );
   }
 
-  trackClick(name) {
+  onCorporationCreationStatusChange(corporationIsCreated) {
+    if (!corporationIsCreated) {
+      this.resetCorporationData();
+    }
+
     this.atInternet.trackClick({
-      name,
+      name: corporationIsCreated
+        ? COMPANY_CREATED_PREFIX
+        : COMPANY_NOT_CREATED_PREFIX,
       type: 'action',
     });
   }
