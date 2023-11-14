@@ -129,10 +129,9 @@
                     <div
                         style="white-space: pre-wrap;"
                         ng-if="!$ctrl.loadingDnsZoneData"
-                        class="mb-0"
-                    >
-                        {{ $ctrl.dnsZoneData }}
-                    </div>
+                        class="modal-scroll-auto"
+                        ng-bind-html="$ctrl.dnsZoneData"
+                    ></div>
                 </oui-modal>
             </div>
         </div>
