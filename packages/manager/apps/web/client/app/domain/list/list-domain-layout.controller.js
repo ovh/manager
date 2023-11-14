@@ -92,6 +92,11 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
         {},
       ),
     };
+
+    this.CANCEL_LINK = this.coreURLBuilder.buildURL(
+      'dedicated',
+      `#/billing/autorenew/delete?serviceId=`,
+    );
   }
 
   loadPage() {
@@ -119,6 +124,16 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
       ].includes(domain.state) &&
       domain.renewalState !== DOMAIN_RENEWABLE_STATE.CANCELLATION_REQUESTED
     );
+  }
+
+  static isDomainCancellable(domain) {
+    return ![
+      DOMAIN_STATUS.PENDING_INCOMING_TRANSFER,
+      DOMAIN_STATUS.DELETED,
+      DOMAIN_STATUS.PENDING_CREATE,
+      DOMAIN_STATUS.DISPUTE,
+      DOMAIN_STATUS.RESTORABLE,
+    ].includes(domain.state);
   }
 
   onRowSelect(row, rows) {
