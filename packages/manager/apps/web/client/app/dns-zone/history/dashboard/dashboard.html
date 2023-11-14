@@ -126,13 +126,13 @@
                     data-on-dismiss="$ctrl.closeVisualizeDnsPopup()"
                 >
                     <oui-spinner ng-if="$ctrl.loadingDnsZoneData"></oui-spinner>
-                    <div
-                        style="white-space: pre-wrap;"
+                    <p
+                        style="white-space: pre-wrap;overflow: auto;max-height: 50vh"
                         ng-if="!$ctrl.loadingDnsZoneData"
                         class="mb-0"
                     >
                         {{ $ctrl.dnsZoneData }}
-                    </div>
+                    </p>
                 </oui-modal>
             </div>
         </div>
