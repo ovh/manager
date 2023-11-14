@@ -103,6 +103,11 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
       'dedicated',
       `#/billing/autorenew/enable?selectedType=DOMAIN&services=`,
     );
+
+    this.DISABLE_AUTO_RENEW_LINK = this.coreURLBuilder.buildURL(
+      'dedicated',
+      `#/billing/autorenew/disable?selectedType=DOMAIN&services=`,
+    );
   }
 
   loadPage() {
