@@ -16,6 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "src/components/msc-tile/msc-tile.spec.tsx"],
   "exclude": ["./src/**/*.stories.*"]
 }

@@ -38,7 +38,7 @@ const ScTile = ({
   tileTitle,
   dataTracking,
   badges,
-  footer
+  footer,
 }: MscTileProps) => {
   const localeStrings = { see_more_label: 'See more' }
   const hasFooterContent = 0
@@ -54,7 +54,7 @@ const ScTile = ({
             color={ODS_THEME_COLOR_INTENT.primary}
           >
             {category}
-            <span className="tile-badge-list">{badges?.map((b) => <OsdsChip>{b.text}</OsdsChip>)}</span>
+            <span className="tile-badge-list">{badges?.map((b) => <OsdsChip key={b.text}>{b.text}</OsdsChip>)}</span>
           </OsdsText>
 
           <OsdsText

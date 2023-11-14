@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react'
-import '../src/lib/tailwind/theme.css'
-import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
+import '../src/tailwind/theme.css'
+import '@ovhcloud/ods-theme-blue-jeans/dist/index.css'
 
 const preview: Preview = {
   parameters: {

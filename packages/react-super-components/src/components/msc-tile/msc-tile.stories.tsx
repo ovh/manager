@@ -1,5 +1,5 @@
 import React from 'react'
-import ScTile, { MscTileProps } from './index'
+import ScTile, { MscTileProps } from './msc-tile'
 import { Meta } from '@storybook/react'
 import { StoryFn } from '@storybook/react'
 
@@ -7,11 +7,28 @@ const locale = {}
 const defaultLocale = {}
 const localeList = {}
 
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
+export const defaultProps = {
+  category: 'NAS',
+  tileTitle: 'Titre du produit',
+  tileDescription:
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  href: 'https://ovh.com',
+  imgSrc:
+    'https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png',
+  imgAlt: 'offer',
+  dataTracking: 'home::dashboard::test',
+}
+
 const meta: Meta<typeof ScTile> = {
   title: 'Atoms/MscTile',
+  decorators: [
+    (Story) => (
+      <div className="columns-3">
+        <Story />
+      </div>
+    ),
+  ],
   component: ScTile,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     category: {
       description: 'Top label of the tile',
@@ -35,12 +52,10 @@ const meta: Meta<typeof ScTile> = {
       description: 'URL of the image to display in the header of the tile',
     },
     imgAlt: { control: 'text', description: 'Alternative label of the image' },
-    hasBadges: {
-      control: 'boolean',
+    badges: {
       description: 'Display examples of badges in the story (in the actual code there is a badge slot)',
     },
-    hasFooter: {
-      control: 'boolean',
+    footer: {
       description:
         'Display an example of footer containing a button in the tile (in the actual code there is a footer slot)',
     },
@@ -56,13 +71,7 @@ const meta: Meta<typeof ScTile> = {
       description: 'Tracking label sent when the tile or the link is clicked',
     },
   },
-  args: {
-    category: 'Tutoriel',
-    hasBadges: true,
-    hasFooter: true,
-    isExternalHref: false,
-    locale: defaultLocale,
-  },
+  args: defaultProps,
 }
 export default meta
 
@@ -72,26 +81,26 @@ const Template: StoryFn<typeof ScTile> = (args: MscTileProps) => <ScTile {...arg
 export const Primary = Template.bind({})
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {
-  category: 'NAS',
-  tileTitle: 'Titre du produit',
-  tileDescription:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  href: 'https://ovh.com',
-  imgSrc:
-    'https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png',
-  imgAlt: 'offer',
-  dataTracking: 'home::dashboard::test',
+  ...defaultProps,
 }
 
-
-export const Tertiary = Template.bind({})
-Tertiary.args = {
-  category: 'Button',
-  variant: 'TERTIARY',
+export const WithFooter = Template.bind({})
+WithFooter.args = {
+  ...defaultProps,
+  footer: (
+    <button color="primary" className="mb-1">
+      Commander
+    </button>
+  ),
 }
 
-export const Disabled = Template.bind({})
-Disabled.args = {
-  category: 'Button',
-  isDisabled: true,
+export const WithBadges = Template.bind({})
+WithBadges.args = {
+  ...defaultProps,
+  badges: [
+    {
+      text: 'Cloud computing',
+      color: 'primary',
+    },
+  ],
 }
