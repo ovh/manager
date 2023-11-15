@@ -274,7 +274,7 @@ export default class ActionTrees extends Array {
             .map((action) => ({
               resourceType: CUSTOM_RESOURCE_TYPE,
               selected: true,
-              searchable: false,
+              searchable: true,
               value: action.action,
             })),
           expanded: true,
@@ -312,7 +312,7 @@ export default class ActionTrees extends Array {
         .sort()
         .map((value) => ({
           expanded: false,
-          searchable: false,
+          searchable: true,
           searchQuery: input.actionTrees?.find(
             (actionTree) => actionTree.value === value,
           )?.searchQuery,
