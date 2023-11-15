@@ -15,7 +15,15 @@ import {
 
 export default class CloudConnectService {
   /* @ngInject */
-  constructor($cacheFactory, $q, $http, atInternet, Poller, OvhApiVrack) {
+  constructor(
+    $cacheFactory,
+    $q,
+    $http,
+    atInternet,
+    Poller,
+    OvhApiVrack,
+    iceberg,
+  ) {
     this.$cacheFactory = $cacheFactory;
     this.$q = $q;
     this.$http = $http;
@@ -23,6 +31,7 @@ export default class CloudConnectService {
     this.Poller = Poller;
     this.OvhApiVrack = OvhApiVrack;
     this.POP_TYPES = POP_TYPES;
+    this.iceberg = iceberg;
     this.cache = {
       cloudConnect: $cacheFactory('CLOUD_CONNECT'),
       serviceInfo: $cacheFactory('CLOUD_CONNECT_SERVICE_INFOS'),
@@ -524,5 +533,13 @@ export default class CloudConnectService {
         return stats.map(({ timestamp, value }) => [timestamp * 1000, value]);
       })
       .catch(() => []);
+  }
+
+  getOrderFollowUp() {
+    return this.iceberg('/ovhCloudConnect/order')
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute(null, true)
+      .$promise.then(({ data: result }) => result);
   }
 }
