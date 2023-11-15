@@ -1,17 +1,10 @@
 <div>
-    <button
-        type="button"
-        class="btn btn-default"
-        data-ng-click="IpGameFirewallCtrl.goToDashboard()"
+    <oui-back-button
+        data-on-click="IpGameFirewallCtrl.goToDashboard()"
+        data-previous-page="{{:: 'ip_game_mitigation_back_link_title' | translate }}"
     >
-        <i class="fa fa-chevron-left" aria-hidden="true"> </i>
-        <span data-translate="common_back"></span>
-    </button>
-
-    <h4
-        data-translate="ip_game_mitigation_title"
-        data-translate-values="{ t0: IpGameFirewallCtrl.datas.selectedIp }"
-    ></h4>
+        <span data-translate="ip_game_mitigation_title"></span>
+    </oui-back-button>
 
     <p data-translate="ip_game_mitigation_description"></p>
     <p data-translate="ip_game_mitigation_description_tip"></p>
@@ -152,6 +145,19 @@
                         <button
                             type="button"
                             class="btn btn-link"
+                            title="{{:: 'ip_game_mitigation_rule_cancel' | translate }}"
+                            data-ng-click="IpGameFirewallCtrl.cancel()"
+                        >
+                            <span
+                                class="oui-icon oui-icon-close"
+                                aria-hidden="true"
+                                title="{{:: 'ip_game_mitigation_rule_cancel' | translate }}"
+                            >
+                            </span>
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-link"
                             title="{{:: 'ip_game_mitigation_rule_apply' | translate }}"
                             data-ng-click="IpGameFirewallCtrl.addGameFirewallRule()"
                             data-ng-disabled="!IpGameFirewallCtrl.rule.protocol && !IpGameFirewallCtrl.rule.ports.from"
@@ -160,19 +166,6 @@
                                 class="oui-icon oui-icon-check"
                                 aria-hidden="true"
                                 title="{{:: 'ip_game_mitigation_rule_apply' | translate }}"
-                            >
-                            </span>
-                        </button>
-                        <button
-                            type="button"
-                            class="btn btn-link"
-                            title="{{:: 'ip_game_mitigation_rule_cancel' | translate }}"
-                            data-ng-click="IpGameFirewallCtrl.cancel()"
-                        >
-                            <span
-                                class="oui-icon oui-icon-close"
-                                aria-hidden="true"
-                                title="{{:: 'ip_game_mitigation_rule_cancel' | translate }}"
                             >
                             </span>
                         </button>
