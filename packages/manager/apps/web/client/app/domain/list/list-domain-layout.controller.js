@@ -16,6 +16,7 @@ import {
   DOMAIN_RENEWABLE_STATE,
   MONTH_DATE_FORMAT,
   DATE_FORMAT,
+  LANGUAGE_OVERRIDE,
 } from './list-domain-layout.constants';
 
 export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtrl {
@@ -116,8 +117,15 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
   }
 
   getDate(domain, key) {
+    if (!domain[key]) {
+      return '';
+    }
+
     const date = new Date(domain[key]);
-    const locale = this.coreConfig.getUserLocale().replace('_', '-');
+    const { ovhSubsidiary } = this.coreConfig.getUser();
+    const locale = LANGUAGE_OVERRIDE[ovhSubsidiary]
+      ? LANGUAGE_OVERRIDE[ovhSubsidiary]
+      : ovhSubsidiary.toLowerCase();
 
     if (
       key === this.DOMAIN_OBJECT_KEYS.RENEWAL_DATE &&
@@ -134,9 +142,7 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
       });
     }
 
-    return domain[key]
-      ? new Intl.DateTimeFormat(locale, DATE_FORMAT).format(date)
-      : '';
+    return new Intl.DateTimeFormat(locale, DATE_FORMAT).format(date);
   }
 
   loadPage() {
