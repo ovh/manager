@@ -2,6 +2,7 @@ import punycode from 'punycode';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import {
+  DOMAIN_OBJECT_KEYS,
   DOMAIN_STATUS,
   DOMAIN_SUSPENSION_STATE,
   DOMAIN_NAME_SERVER_TYPE,
@@ -13,11 +14,13 @@ import {
   DOMAINS_BADGES_RENEWAL_MODE,
   IDN_PREFIX,
   DOMAIN_RENEWABLE_STATE,
+  MONTH_DATE_FORMAT,
+  DATE_FORMAT,
 } from './list-domain-layout.constants';
 
 export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
-  constructor($q, $translate, ouiDatagridService, coreURLBuilder) {
+  constructor($q, $translate, ouiDatagridService, coreURLBuilder, coreConfig) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
     this.DOMAIN_STATUS = DOMAIN_STATUS;
@@ -31,7 +34,9 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     this.DOMAINS_BADGES_SUSPENSION_STATE = DOMAINS_BADGES_SUSPENSION_STATE;
     this.DOMAINS_BADGES_TRANSFERT_LOCK_STATE = DOMAINS_BADGES_TRANSFERT_LOCK_STATE;
     this.IDN_PREFIX = IDN_PREFIX;
+    this.DOMAIN_OBJECT_KEYS = DOMAIN_OBJECT_KEYS;
     this.coreURLBuilder = coreURLBuilder;
+    this.coreConfig = coreConfig;
   }
 
   $onInit() {
@@ -108,6 +113,30 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
       'dedicated',
       `#/billing/autorenew/disable?selectedType=DOMAIN&services=`,
     );
+  }
+
+  getDate(domain, key) {
+    const date = new Date(domain[key]);
+    const locale = this.coreConfig.getUserLocale().replace('_', '-');
+
+    if (
+      key === this.DOMAIN_OBJECT_KEYS.RENEWAL_DATE &&
+      domain[this.DOMAIN_OBJECT_KEYS.RENEWAL_STATE] ===
+        this.DOMAIN_RENEWAL_MODE.AUTOMATIC_RENEW
+    ) {
+      const formattedDate = new Intl.DateTimeFormat(
+        locale,
+        MONTH_DATE_FORMAT,
+      ).format(date);
+
+      return this.$translate.instant('domains_renewal_date_before', {
+        date: formattedDate,
+      });
+    }
+
+    return domain[key]
+      ? new Intl.DateTimeFormat(locale, DATE_FORMAT).format(date)
+      : '';
   }
 
   loadPage() {
