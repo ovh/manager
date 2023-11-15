@@ -20,6 +20,8 @@
         data-ng-bind="IpFirewallCtrl.rulesLoadingError"
     ></div>
 
+    <div data-ovh-alert="check_validity_error"></div>
+
     <oui-message
         type="success"
         data-ng-if="IpFirewallCtrl.successMessage"
@@ -34,9 +36,6 @@
     <oui-message
         type="warning"
         data-ng-if="IpFirewallCtrl.denyMessage"
-        aria-close-button-label="'ip_firewall_close_message' | translate"
-        on-dismiss="IpFirewallCtrl.onDismissDeny()"
-        dismissable
         class="mt-2 mb-2"
     >
         <span data-translate="ip_firewall_deny_part_1"></span>
@@ -125,16 +124,13 @@
             >
                 <tr data-ng-if="IpFirewallCtrl.isAddingRule">
                     <td>
-                        <span class="oui-select">
-                            <select
-                                class="form-control oui-select__input"
-                                id="sequenceSelect"
-                                name="sequenceSelect"
-                                data-ng-model="IpFirewallCtrl.rule.sequence"
-                                data-ng-options="value as value.name for value in (IpFirewallCtrl.constants.sequences | orderBy:'name')"
-                                data-ng-change="IpFirewallCtrl.isFirewallRuleFormValid()"
-                            ></select>
-                        </span>
+                        <oui-select
+                            data-disable-items="IpFirewallCtrl.disableItems($item)"
+                            data-items="IpFirewallCtrl.constants.sequences"
+                            data-match="name"
+                            data-model="IpFirewallCtrl.rule.sequence"
+                            data-on-change="IpFirewallCtrl.isFirewallRuleFormValid()"
+                        ></oui-select>
                     </td>
                     <td>
                         <span class="oui-select">
@@ -185,9 +181,9 @@
                     </td>
                     <td>
                         <div
-                            data-ng-show="IpFirewallCtrl.rule.protocol === 'tcp' || IpFirewallCtrl.rule.protocol === 'udp'"
+                            data-ng-show="['tcp', 'udp'].includes(IpFirewallCtrl.rule.protocol)"
                             data-ng-class="{
-                                'has-error' : !IpFirewallCtrl.validator.sourcePort
+                                'has-error' : !IpFirewallCtrl.validator.sourcePort || !IpFirewallCtrl.validator.sourcePortNotEmpty
                             }"
                         >
                             <input
@@ -202,8 +198,16 @@
                             />
                             <span
                                 class="fa fa-info-circle"
-                                data-ng-show="IpFirewallCtrl.validator.sourcePort === false"
+                                data-ng-show="!IpFirewallCtrl.validator.sourcePort"
                                 data-oui-tooltip="{{:: 'ip_firewall_source_port_tooltip' | translate }}"
+                                data-oui-tooltip-placement="left"
+                                aria-hidden="true"
+                            >
+                            </span>
+                            <span
+                                class="fa fa-info-circle"
+                                data-ng-if="!IpFirewallCtrl.validator.sourcePortNotEmpty"
+                                data-oui-tooltip="{{:: 'ip_firewall_source_port_not_empty_tooltip' | translate }}"
                                 data-oui-tooltip-placement="left"
                                 aria-hidden="true"
                             >
@@ -212,9 +216,9 @@
                     </td>
                     <td>
                         <div
-                            data-ng-show="IpFirewallCtrl.rule.protocol === 'tcp' || IpFirewallCtrl.rule.protocol === 'udp'"
+                            data-ng-show="['tcp', 'udp'].includes(IpFirewallCtrl.rule.protocol)"
                             data-ng-class="{
-                                'has-error' : !IpFirewallCtrl.validator.destinationPort
+                                'has-error' : !IpFirewallCtrl.validator.destinationPort || !IpFirewallCtrl.validator.destinationPortNotEmpty
                             }"
                         >
                             <input
@@ -228,9 +232,17 @@
                                 max="IpFirewallCtrl.constants.PORT_MAX"
                             />
                             <span
-                                data-ng-show="IpFirewallCtrl.validator.destinationPort === false"
+                                data-ng-show="!IpFirewallCtrl.validator.destinationPort"
                                 class="fa fa-info-circle"
                                 data-oui-tooltip="{{:: 'ip_firewall_destination_port_tooltip' | translate }}"
+                                data-oui-tooltip-placement="left"
+                                aria-hidden="true"
+                            >
+                            </span>
+                            <span
+                                class="fa fa-info-circle"
+                                data-ng-if="!IpFirewallCtrl.validator.destinationPortNotEmpty"
+                                data-oui-tooltip="{{:: 'ip_firewall_destination_port_not_empty_tooltip' | translate }}"
                                 data-oui-tooltip-placement="left"
                                 aria-hidden="true"
                             >
@@ -257,12 +269,13 @@
                                 <input
                                     type="checkbox"
                                     data-ng-model="IpFirewallCtrl.rule.tcpOptions.fragments"
+                                    data-ng-change="IpFirewallCtrl.selectFragments()"
                                 />
                                 <span
                                     data-ng-bind=":: 'ip_firewall_rule_fragments' | translate"
                                 ></span>
                                 <span
-                                    data-ng-show="IpFirewallCtrl.validator.fragment === false"
+                                    data-ng-show="!IpFirewallCtrl.validator.fragment"
                                     class="fa fa-info-circle"
                                     data-oui-tooltip="{{:: 'ip_firewall_rule_fragments_tooltip' | translate }}"
                                     data-oui-tooltip-placement="left"
@@ -277,6 +290,19 @@
                         <button
                             type="button"
                             class="btn btn-link"
+                            title="{{:: 'ip_firewall_rule_cancel' | translate }}"
+                            data-ng-click="IpFirewallCtrl.cancel()"
+                        >
+                            <span
+                                class="oui-icon oui-icon-close"
+                                aria-hidden="true"
+                                title="{{:: 'ip_firewall_rule_cancel' | translate }}"
+                            >
+                            </span>
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-link"
                             title="{{:: 'ip_firewall_rule_apply' | translate }}"
                             data-ng-click="IpFirewallCtrl.addFirewallRule()"
                             data-ng-disabled="!IpFirewallCtrl.validator.required"
@@ -285,19 +311,6 @@
                                 class="oui-icon oui-icon-check"
                                 aria-hidden="true"
                                 title="{{:: 'ip_firewall_rule_apply' | translate }}"
-                            >
-                            </span>
-                        </button>
-                        <button
-                            type="button"
-                            class="btn btn-link"
-                            title="{{:: 'ip_firewall_rule_cancel' | translate }}"
-                            data-ng-click="IpFirewallCtrl.cancel()"
-                        >
-                            <span
-                                class="oui-icon oui-icon-close"
-                                aria-hidden="true"
-                                title="{{:: 'ip_firewall_rule_cancel' | translate }}"
                             >
                             </span>
                         </button>
