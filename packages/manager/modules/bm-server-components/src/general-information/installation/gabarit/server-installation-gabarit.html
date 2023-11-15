@@ -24,6 +24,7 @@
                 ></p>
                 <div class="mb-4">
                     <oui-collapsible
+                        class="overflow-auto"
                         data-heading="{{ itemFamily + ' (' + countFilter[itemFamily] + ')' }}"
                         group="familyType"
                         data-on-toggle="installation.selectFamily = itemFamily"
@@ -73,8 +74,8 @@
                                         class="pl-2 fa"
                                         aria-hidden="true"
                                         data-ng-class="{
-                                                    'fa-warning' : $ctrl.showEndOfLifeMessage(gabarit.endOfInstall,true),
-                                                    'fa-info-circle' : $ctrl.showEndOfLifeMessage(gabarit.endOfInstall,false),
+                                                    'fa-warning' : $ctrl.constructor.showEndOfLifeMessage(gabarit.endOfInstall,true),
+                                                    'fa-info-circle' : $ctrl.constructor.showEndOfLifeMessage(gabarit.endOfInstall,false),
                                                 }"
                                         data-oui-tooltip="{{ $ctrl.getEndOfLifeMessage(gabarit) }}"
                                         data-oui-tooltip-placement="bottom"
@@ -82,13 +83,13 @@
                                     </i>
                                     <span
                                         class="text-danger"
-                                        data-ng-if="$ctrl.showEndOfLifeMessage(gabarit.endOfInstall,true)"
+                                        data-ng-if="$ctrl.constructor.showEndOfLifeMessage(gabarit.endOfInstall,true)"
                                         data-ng-bind="gabarit.endOfInstall | date:'mediumDate'"
                                     >
                                     </span>
                                     <span
                                         class="text-muted"
-                                        data-ng-if="$ctrl.showEndOfLifeMessage(gabarit.endOfInstall,false)"
+                                        data-ng-if="$ctrl.constructor.showEndOfLifeMessage(gabarit.endOfInstall,false)"
                                         data-ng-bind="gabarit.endOfInstall | date:'mediumDate'"
                                     >
                                     </span>
