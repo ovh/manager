@@ -3,6 +3,8 @@ import head from 'lodash/head';
 import map from 'lodash/map';
 import snakeCase from 'lodash/snakeCase';
 
+import { AvailablePaymentMethod } from '@ovh-ux/ovh-payment-method';
+
 import {
   CREDIT_PROVISIONING,
   PAYMENT_METHOD_AUTHORIZED_ENUM,
@@ -45,6 +47,7 @@ export default class PciProjectNewPaymentMethodAddCtrl {
 
     this.authorizedPaymentMethods = null;
     this.excludedPaymentMethods = [];
+    this.unregisteredPaymentMethods = [];
 
     this.paymentSectionHref = coreURLBuilder.buildURL(
       'dedicated',
@@ -135,14 +138,17 @@ export default class PciProjectNewPaymentMethodAddCtrl {
         PAYMENT_METHOD_AUTHORIZED_ENUM.CREDIT.toUpperCase(),
       )
     ) {
-      const PaymentMethodType = head(this.registerablePaymentMethods)
-        .constructor;
-      registerablePaymentMethods.push(
-        new PaymentMethodType({
-          paymentType: PAYMENT_METHOD_AUTHORIZED_ENUM.CREDIT.toUpperCase(),
-          integration: 'NONE',
-        }),
-      );
+      const creditAvailablePaymentMethod = new AvailablePaymentMethod({
+        paymentType: PAYMENT_METHOD_AUTHORIZED_ENUM.CREDIT.toUpperCase(),
+        integration: 'NONE',
+        registerable: false,
+        icon: { className: 'oui-icon oui-icon-add' },
+        humanReadableName: this.$translate.instant(
+          'pci_project_new_payment_method_add_credit',
+        ),
+      });
+      registerablePaymentMethods.push(creditAvailablePaymentMethod);
+      this.unregisteredPaymentMethods.push(creditAvailablePaymentMethod);
     }
 
     const mappedPreferredMethodOrder = map(
