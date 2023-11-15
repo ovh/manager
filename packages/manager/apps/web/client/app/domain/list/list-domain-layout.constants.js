@@ -93,6 +93,8 @@ export const DOMAINS_BADGES_TRANSFERT_LOCK_STATE = {
 };
 
 export const IDN_PREFIX = 'xn--';
+export const LANGUAGE_OVERRIDE = { IN: `en-IN` };
+
 export const MONTH_DATE_FORMAT = {
   month: '2-digit',
   year: 'numeric',
@@ -116,6 +118,7 @@ export default {
   DOMAINS_BADGES_TRANSFERT_LOCK_STATE,
   DOMAINS_BADGES_RENEWAL_MODE,
   IDN_PREFIX,
+  LANGUAGE_OVERRIDE,
   DATE_FORMAT,
   MONTH_DATE_FORMAT,
 };
