@@ -122,7 +122,7 @@
         </div>
 
         <oui-field
-            data-ng-if="$ctrl.suggest.type === 'siret' && $ctrl.mode !== 'modification'"
+            data-ng-if="$ctrl.suggest.type === 'siret' && $ctrl.mode !== $ctrl.COMPONENT_MODES.MODIFICATION"
             data-label="{{ 'siret_vat' | translate }} ({{ 'siret_optional' | translate }})"
             data-label-popover="{{ 'siret_vat_helper' | translate }}"
         >
@@ -143,15 +143,15 @@
     <div data-ng-if="$ctrl.displayManualForm">
         <oui-button
             variant="link"
-            icon-left="{{ $ctrl.mode === 'modification' ? 'oui-icon-search' : 'oui-icon-arrow-left' }}"
+            icon-left="{{ $ctrl.mode === $ctrl.COMPONENT_MODES.MODIFICATION ? 'oui-icon-search' : 'oui-icon-arrow-left' }}"
             data-on-click="$ctrl.goToSearchMode()"
         >
             <span
-                data-translate="{{ $ctrl.mode === 'modification' ? 'siret_update_search_assistant' : 'siret_search_assistant' }}"
+                data-translate="{{ $ctrl.mode === $ctrl.COMPONENT_MODES.MODIFICATION ? 'siret_update_search_assistant' : 'siret_search_assistant' }}"
             ></span>
         </oui-button>
         <p
-            data-ng-if="$ctrl.mode !== 'modification'"
+            data-ng-if="$ctrl.mode !== $ctrl.COMPONENT_MODES.MODIFICATION"
             class="mt-2"
             data-translate="siret_manual_title"
         ></p>
@@ -160,7 +160,7 @@
             <oui-field
                 class="col-lg-6"
                 data-label="{{ 'siret_manual_company_name' | translate }}"
-                data-force-error-display="$ctrl.mode === 'modification'"
+                data-force-error-display="$ctrl.mode === $ctrl.COMPONENT_MODES.MODIFICATION"
             >
                 <input
                     class="oui-input"
@@ -177,7 +177,7 @@
             <oui-field
                 class="col-lg-6"
                 data-label="{{ 'siret_manual_company_legal_form' | translate }}"
-                data-force-error-display="$ctrl.mode === 'modification'"
+                data-force-error-display="$ctrl.mode === $ctrl.COMPONENT_MODES.MODIFICATION"
             >
                 <oui-select
                     data-items="$ctrl.legalFormList"
@@ -195,7 +195,7 @@
             <oui-field
                 class="col-lg-6"
                 data-label="{{ 'siret_siret' | translate }} ({{ 'siret_optional' | translate }})"
-                data-force-error-display="$ctrl.mode === 'modification'"
+                data-force-error-display="$ctrl.mode === $ctrl.COMPONENT_MODES.MODIFICATION"
             >
                 <input
                     class="oui-input"
@@ -213,7 +213,7 @@
                 <oui-field
                     data-label="{{ 'siret_vat' | translate }} ({{ 'siret_optional' | translate }})"
                     data-label-popover="{{ 'siret_vat_helper' | translate }}"
-                    data-force-error-display="$ctrl.mode === 'modification'"
+                    data-force-error-display="$ctrl.mode === $ctrl.COMPONENT_MODES.MODIFICATION"
                 >
                     <input
                         class="oui-input"

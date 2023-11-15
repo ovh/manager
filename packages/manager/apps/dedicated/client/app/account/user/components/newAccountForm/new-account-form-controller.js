@@ -36,6 +36,7 @@ export default class NewAccountFormController {
     $scope,
     ovhFeatureFlipping,
     coreURLBuilder,
+    SIRET_COMPONENT_MODES,
   ) {
     this.$q = $q;
     this.$http = $http;
@@ -59,6 +60,7 @@ export default class NewAccountFormController {
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.SECTIONS = SECTIONS;
     this.coreURLBuilder = coreURLBuilder;
+    this.SIRET_COMPONENT_MODES = SIRET_COMPONENT_MODES;
   }
 
   $onInit() {

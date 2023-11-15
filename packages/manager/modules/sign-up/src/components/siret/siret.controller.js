@@ -5,6 +5,7 @@ import {
   PREFIX_TRANSLATION_LEGAL_FORM,
   TRACKING_PREFIX,
   LEGAL_FORM_ENTERPRISE,
+  COMPONENT_MODES,
 } from './siret.constants';
 
 export default class SiretCtrl {
@@ -18,13 +19,14 @@ export default class SiretCtrl {
     this.displayManualForm = false;
     this.activeSelectSuggest = null;
     this.user = coreConfig.getUser();
+    this.COMPONENT_MODES = COMPONENT_MODES;
   }
 
   $onInit() {
     // disable if its from IN subsidiray and user is enterprise
     this.disableField =
       this.isIndianSubsidiary && this.user.legalform === LEGAL_FORM_ENTERPRISE;
-    if (this.mode === 'modification') {
+    if (this.mode === this.COMPONENT_MODES.MODIFICATION) {
       this.isFirstSearch = false;
       this.displayManualForm = true;
     }
@@ -82,7 +84,7 @@ export default class SiretCtrl {
       suggestSelected.secondaryCNIN;
     this.model.organisation = suggestSelected.name;
     this.suggest = { ...this.suggest, entryList: [suggestSelected] };
-    if (this.mode === 'modification') {
+    if (this.mode === this.COMPONENT_MODES.MODIFICATION) {
       this.isFirstSearch = false;
       this.displayManualForm = true;
     }

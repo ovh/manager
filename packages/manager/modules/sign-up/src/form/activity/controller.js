@@ -5,8 +5,9 @@ import { COUNTRIES_VAT_LABEL } from './constants';
 
 export default class OvhSignUpActivityCtrl {
   /* @ngInject */
-  constructor($filter) {
+  constructor($filter, SIRET_COMPONENT_MODES) {
     this.$filter = $filter;
+    this.SIRET_COMPONENT_MODES = SIRET_COMPONENT_MODES;
   }
 
   /**

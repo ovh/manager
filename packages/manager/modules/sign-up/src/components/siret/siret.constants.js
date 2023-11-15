@@ -20,9 +20,15 @@ export const TRACKING_PREFIX = {
 
 export const LEGAL_FORM_ENTERPRISE = 'corporation';
 
+export const COMPONENT_MODES = {
+  CREATION: 'creation',
+  MODIFICATION: 'modification',
+};
+
 export default {
   LEGAL_FORM,
   PREFIX_TRANSLATION_LEGAL_FORM,
   TRACKING_PREFIX,
   LEGAL_FORM_ENTERPRISE,
+  COMPONENT_MODES,
 };
