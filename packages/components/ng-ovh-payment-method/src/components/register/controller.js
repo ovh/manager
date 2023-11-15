@@ -1,13 +1,4 @@
-import {
-  chunk,
-  find,
-  get,
-  has,
-  isFunction,
-  isNil,
-  isObject,
-  some,
-} from 'lodash-es';
+import { chunk, find, get, has, isFunction, isNil, isObject } from 'lodash-es';
 
 import {
   DEFAULT_DISPLAY_PER_LINE,
@@ -70,7 +61,7 @@ export default class OvhPaymentMethodRegisterCtrl {
     }
 
     if (this.modelName && this.modelName !== 'selectedPaymentMethodType') {
-      const { [this.modelName]: currentModel } = this.model;
+      const { [this.modelName]: model } = this.model;
       delete this.model[this.modelName];
       Object.defineProperty(this.model, this.modelName, {
         get() {
@@ -80,7 +71,7 @@ export default class OvhPaymentMethodRegisterCtrl {
           this.selectedPaymentMethodType = value;
         },
       });
-      this.selectedPaymentMethodType = currentModel;
+      this.model[this.modelName] = model;
     }
 
     if (this.required) {
@@ -164,6 +155,14 @@ export default class OvhPaymentMethodRegisterCtrl {
             paymentType.icon.data || FALLBACK_IMAGES[paymentType.paymentType];
         });
 
+        // Push unregistered payment methods
+        if (this.unregisteredPaymentMethods) {
+          this.availablePaymentMethodTypes.list = [
+            ...this.availablePaymentMethodTypes.list,
+            ...this.unregisteredPaymentMethods,
+          ];
+        }
+
         // split available payment method types list by chunk of paymentMethodTypesPerLine number
         this.availablePaymentMethodTypes.chunks = chunk(
           this.availablePaymentMethodTypes.list,
@@ -190,19 +189,15 @@ export default class OvhPaymentMethodRegisterCtrl {
           } else if (this.model.selectedPaymentMethodType) {
             // if the selected payment method type does not exist
             // set the default one
-            const isModelTypeExists = some(
-              this.availablePaymentMethodTypes.list,
-              {
-                paymentType: get(
-                  this.model.selectedPaymentMethodType,
-                  'paymentType',
-                ),
-              },
-            );
+            const foundModel = find(this.availablePaymentMethodTypes.list, {
+              paymentType: get(
+                this.model.selectedPaymentMethodType,
+                'paymentType',
+              ),
+            });
 
-            if (!isModelTypeExists) {
-              this.model.selectedPaymentMethodType = defaultPaymentMethodType;
-            }
+            this.model.selectedPaymentMethodType =
+              foundModel ?? defaultPaymentMethodType;
           }
         }
 
