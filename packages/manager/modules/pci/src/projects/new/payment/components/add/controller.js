@@ -20,11 +20,14 @@ export default class PciProjectNewPaymentMethodAddCtrl {
     coreConfig,
     coreURLBuilder,
     ovhPaymentMethodHelper,
+    OVH_PAYMENT_METHOD_TYPE,
   ) {
     this.$translate = $translate;
     this.$location = $location;
     this.coreConfig = coreConfig;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
+    this.OVH_PAYMENT_METHOD_TYPE = OVH_PAYMENT_METHOD_TYPE;
+
     const { currency, ovhSubsidiary } = this.coreConfig.getUser();
     this.registrationCharges = new Intl.NumberFormat(
       LANGUAGE_OVERRIDE[ovhSubsidiary]
@@ -41,6 +44,7 @@ export default class PciProjectNewPaymentMethodAddCtrl {
     // other attributes
 
     this.authorizedPaymentMethods = null;
+    this.excludedPaymentMethods = [];
 
     this.paymentSectionHref = coreURLBuilder.buildURL(
       'dedicated',
@@ -120,6 +124,11 @@ export default class PciProjectNewPaymentMethodAddCtrl {
       this.registerablePaymentMethods,
       (methodType) => paymentMethodsAuthorized.includes(methodType.paymentType),
     );
+    this.excludedPaymentMethods = filter(
+      this.registerablePaymentMethods,
+      (methodType) =>
+        !paymentMethodsAuthorized.includes(methodType.paymentType),
+    ).map((methodType) => methodType.paymentType);
 
     if (
       paymentMethodsAuthorized.includes(
@@ -155,6 +164,16 @@ export default class PciProjectNewPaymentMethodAddCtrl {
 
     // set payment method model
     this.preselectPaymentMethod();
+
+    if (
+      !this.pciFeatures.isFeatureAvailable(
+        PCI_FEATURES.PROJECT.PAYEMENT_SEPA_DIRECT_DEBIT,
+      )
+    ) {
+      this.excludedPaymentMethods.push(
+        this.OVH_PAYMENT_METHOD_TYPE.SEPA_DIRECT_DEBIT,
+      );
+    }
 
     return this.ovhPaymentMethodHelper
       .hasSpecificCrossBorderSentenceForCardPayment()

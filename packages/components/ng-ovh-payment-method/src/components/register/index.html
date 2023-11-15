@@ -16,7 +16,7 @@
             <div
                 class="mb-3"
                 data-ng-class="'col-md-6 col-lg-' + (12 / $ctrl.paymentMethodTypesPerLine)"
-                data-ng-repeat="paymentMethodType in paymentTypeChunk track by $index"
+                data-ng-repeat="paymentMethodType in paymentTypeChunk | filter: $ctrl.filterPaymentMethod track by $index"
             >
                 <oui-radio
                     class="h-100"
@@ -24,6 +24,7 @@
                     data-value="paymentMethodType"
                     data-model="$ctrl.model.selectedPaymentMethodType"
                     data-on-change="$ctrl.resetForm()"
+                    data-required="$ctrl.required"
                 >
                     <div
                         data-ng-bind="$ctrl.ovhPaymentMethodHelper.getPaymentMethodTypeText(paymentMethodType)"
@@ -41,94 +42,28 @@
 
         <!-- Default payment method type choice explanations -->
         <div
-            data-ng-if="$ctrl.showDefaultExplanationTexts"
-            data-ng-switch="$ctrl.model.selectedPaymentMethodType.paymentType"
+            data-ng-if="
+                $ctrl.showDefaultExplanationTexts &&
+                paymentType === $ctrl.model.selectedPaymentMethodType.paymentType
+            "
+            data-ng-repeat="(paymentType, paymentName) in {
+                CREDIT_CARD: 'creditCard',
+                SEPA_DIRECT_DEBIT: 'sepa',
+                PAYPAL: 'paypal',
+                RUPAY: 'rupay',
+            }"
         >
-            <!-- CREDIT_CARD -->
-            <div data-ng-switch-when="CREDIT_CARD">
-                <div data-ng-transclude="creditCardExplanationText">
-                    <div data-ng-if="!$ctrl.showRupayMessage">
-                        <p
-                            data-translate="ovh_payment_method_register_explanation_credit_card_selected_explain_generic"
-                        ></p>
-                        <p>
-                            <span
-                                data-translate="ovh_payment_method_register_explanation_credit_card_selected"
-                            ></span>
-                            <span
-                                data-ng-if="$ctrl.showSpecificCrossBorderSentenceForCardPayment"
-                                data-translate="ovh_payment_method_register_explanation_credit_card_selected_explain_ovh_transaction"
-                            ></span>
-                        </p>
-                        <p
-                            data-ng-if="$ctrl.model.selectedPaymentMethodType.isLegacy() && $ctrl.model.selectedPaymentMethodType.integration !== $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IFRAME_VANTIV"
-                            data-translate="ovh_payment_method_register_explanation_selected_common_redirect"
-                        ></p>
-                    </div>
-                    <div data-ng-if="$ctrl.showRupayMessage">
-                        <p
-                            data-translate="ovh_payment_method_register_explanation_credit_card_registration_charges_info"
-                            data-translate-values="{
-                                registrationCharges: $ctrl.registrationCharges
-                            }"
-                        ></p>
-                    </div>
-                </div>
+            <div data-ng-transclude="{{ paymentName }}ExplanationText">
+                <ng-include
+                    data-src="paymentName + 'ExplanationTextContainer.html'"
+                />
             </div>
-            <!-- SEPA_DIRECT_DEBIT -->
-            <div data-ng-switch-when="SEPA_DIRECT_DEBIT">
-                <div data-ng-transclude="sepaExplanationText">
-                    <div class="text-justify">
-                        <p
-                            class="mb-0"
-                            data-translate="ovh_payment_method_register_explanation_sepa_direct_debit_warning_redirection"
-                        ></p>
-                        <p
-                            class="mb-0"
-                            data-translate="ovh_payment_method_register_explanation_sepa_direct_debit_warning_order"
-                        ></p>
-                        <p
-                            class="mb-0"
-                            data-translate="ovh_payment_method_register_explanation_sepa_direct_debit_warning_owner_identity"
-                        ></p>
-                    </div>
-                    <oui-message type="info" class="mt-2 text-justify">
-                        <p
-                            class="mb-0"
-                            data-translate="ovh_payment_method_register_explanation_sepa_direct_debit_data_processing_info"
-                        ></p>
-                        <p
-                            class="mb-0"
-                            data-translate="ovh_payment_method_register_explanation_sepa_direct_debit_digital_signature_info"
-                        ></p>
-                    </oui-message>
-                </div>
-            </div>
-            <!-- PAYPAL -->
-            <div data-ng-switch-when="PAYPAL">
-                <div data-ng-transclude="paypalExplanationText">
-                    <span
-                        data-ng-if="$ctrl.coreConfig.isRegion('US')"
-                        data-translate="ovh_payment_method_register_explanation_selected_paypal_redirect_US"
-                    ></span>
-                    <span
-                        data-ng-if="!$ctrl.coreConfig.isRegion('US')"
-                        data-translate="ovh_payment_method_register_explanation_selected_paypal_redirect"
-                    ></span>
-                </div>
-            </div>
-            <!-- RUPAY -->
-            <div data-ng-switch-when="RUPAY">
-                <div data-ng-transclude="rupayExplanationText">
-                    <p
-                        data-translate="ovh_payment_method_register_explanation_credit_card_registration_charges_info"
-                        data-translate-values="{
-                            registrationCharges: $ctrl.registrationCharges
-                        }"
-                    ></p>
-                </div>
-            </div>
+            <ng-include
+                data-ng-if="$ctrl.$transclude.isSlotFilled(paymentName + 'ExplanationText')"
+                data-src="paymentName + 'ExplanationTextContainer.html'"
+            />
         </div>
+
         <!-- Slot for custom method type choice explanation -->
         <div
             data-ng-if="!$ctrl.showDefaultExplanationTexts"
@@ -138,7 +73,11 @@
         <!-- set as default -->
         <div
             class="mt-3"
-            data-ng-if="$ctrl.showSetAsDefaultChoice && !$ctrl.coreConfig.isRegion('US')"
+            data-ng-if="
+                $ctrl.model.selectedPaymentMethodType &&
+                $ctrl.showSetAsDefaultChoice &&
+                !$ctrl.coreConfig.isRegion('US')
+            "
         >
             <p
                 data-ng-if="$ctrl.registeredPaymentMethods.length === 0 && $ctrl.automaticDefault"
@@ -153,7 +92,7 @@
                     name="setAsDefault"
                     data-model="$ctrl.model.setAsDefault"
                     data-ng-if="$ctrl.registeredPaymentMethods.length > 0 || !$ctrl.automaticDefault"
-                    data-required="$ctrl.forceSetAsDefaultChoice"
+                    data-required="$ctrl.model.selectedPaymentMethodType && $ctrl.forceSetAsDefaultChoice"
                 >
                     <span
                         data-translate="ovh_payment_method_register_set_as_default_choice"
@@ -171,7 +110,11 @@
             </oui-message>
         </div>
         <div
-            data-ng-if="$ctrl.showSetAsDefaultChoice && $ctrl.coreConfig.isRegion('US')"
+            data-ng-if="
+                $ctrl.model.selectedPaymentMethodType &&
+                $ctrl.showSetAsDefaultChoice &&
+                $ctrl.coreConfig.isRegion('US')
+            "
         >
             <p
                 data-ng-if="$ctrl.registeredPaymentMethods.length === 0 && $ctrl.automaticDefault"
@@ -196,7 +139,7 @@
                     class="mb-3"
                     data-model="$ctrl.model.setAsDefault"
                     data-ng-if="$ctrl.registeredPaymentMethods.length > 0 || !$ctrl.automaticDefault"
-                    data-required="$ctrl.forceSetAsDefaultChoice"
+                    data-required="$ctrl.model.selectedPaymentMethodType && $ctrl.forceSetAsDefaultChoice"
                 >
                     <span
                         data-translate="ovh_payment_method_register_set_as_default_choice"
@@ -216,3 +159,131 @@
         </div>
     </div>
 </ng-form>
+<!-- creditCardExplanationText -->
+<script type="text/ng-template" id="creditCardExplanationTextContainer.html">
+    <ng-include
+        data-ng-if="!$ctrl.defaultExplanationTextsOptions.creditCard"
+        data-src="'creditCardExplanationText.html'"
+    />
+    <oui-message
+        data-ng-if="$ctrl.defaultExplanationTextsOptions.creditCard"
+        data-type="{{ $ctrl.defaultExplanationTextsOptions.creditCard }}"
+    >
+        <ng-include data-src="'creditCardExplanationText.html'" />
+    </oui-message>
+</script>
+<script type="text/ng-template" id="creditCardExplanationText.html">
+    <div data-ng-if="!$ctrl.showRupayMessage">
+        <p
+            data-translate="ovh_payment_method_register_explanation_credit_card_selected_explain_generic"
+        ></p>
+        <p>
+            <span
+                data-translate="ovh_payment_method_register_explanation_credit_card_selected"
+            ></span>
+            <span
+                data-ng-if="$ctrl.showSpecificCrossBorderSentenceForCardPayment"
+                data-translate="ovh_payment_method_register_explanation_credit_card_selected_explain_ovh_transaction"
+            ></span>
+        </p>
+        <p
+            data-ng-if="$ctrl.model.selectedPaymentMethodType.isLegacy() && $ctrl.model.selectedPaymentMethodType.integration !== $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IFRAME_VANTIV"
+            data-translate="ovh_payment_method_register_explanation_selected_common_redirect"
+        ></p>
+    </div>
+    <div data-ng-if="$ctrl.showRupayMessage">
+        <ng-include data-src="'creditCardChargesExplanationText.html'" />
+    </div>
+</script>
+
+<!-- sepaExplanationText -->
+<script type="text/ng-template" id="sepaExplanationTextContainer.html">
+    <ng-include
+        data-ng-if="!$ctrl.defaultExplanationTextsOptions.sepa.intro"
+        data-src="'sepaExplanationTextIntro.html'"
+    />
+    <oui-message
+        data-ng-if="$ctrl.defaultExplanationTextsOptions.sepa.intro"
+        data-type="{{ $ctrl.defaultExplanationTextsOptions.sepa.intro }}"
+    >
+        <ng-include data-src="'sepaExplanationTextIntro.html'" />
+    </oui-message>
+    <ng-include data-src="'sepaExplanationTextBanner.html'" />
+</script>
+<script type="text/ng-template" id="sepaExplanationTextIntro.html">
+    <div class="text-justify">
+        <p
+            class="mb-0"
+            data-translate="ovh_payment_method_register_explanation_sepa_direct_debit_warning_redirection"
+        ></p>
+        <p
+            class="mb-0"
+            data-translate="ovh_payment_method_register_explanation_sepa_direct_debit_warning_order"
+        ></p>
+        <p
+            class="mb-0"
+            data-translate="ovh_payment_method_register_explanation_sepa_direct_debit_warning_owner_identity"
+        ></p>
+    </div>
+</script>
+<script type="text/ng-template" id="sepaExplanationTextBanner.html">
+    <oui-message
+        data-type="{{ $ctrl.defaultExplanationTextsOptions.sepa.banner || 'info' }}"
+        class="mt-2 text-justify"
+    >
+        <p
+            class="mb-0"
+            data-translate="ovh_payment_method_register_explanation_sepa_direct_debit_data_processing_info"
+        ></p>
+        <p
+            class="mb-0"
+            data-translate="ovh_payment_method_register_explanation_sepa_direct_debit_digital_signature_info"
+        ></p>
+    </oui-message>
+</script>
+
+<!-- paypalExplanationText -->
+<script type="text/ng-template" id="paypalExplanationTextContainer.html">
+    <ng-include
+        data-ng-if="!$ctrl.defaultExplanationTextsOptions.paypal"
+        data-src="'paypalExplanationText.html'"
+    />
+    <oui-message
+        data-ng-if="$ctrl.defaultExplanationTextsOptions.paypal"
+        data-type="{{ $ctrl.defaultExplanationTextsOptions.paypal }}"
+    >
+        <ng-include data-src="'paypalExplanationText.html'" />
+    </oui-message>
+</script>
+<script type="text/ng-template" id="paypalExplanationText.html">
+    <span
+        data-ng-if="$ctrl.coreConfig.isRegion('US')"
+        data-translate="ovh_payment_method_register_explanation_selected_paypal_redirect_US"
+    ></span>
+    <span
+        data-ng-if="!$ctrl.coreConfig.isRegion('US')"
+        data-translate="ovh_payment_method_register_explanation_selected_paypal_redirect"
+    ></span>
+</script>
+
+<!-- rupayExplanationText -->
+<script type="text/ng-template" id="rupayExplanationTextContainer.html">
+    <ng-include
+        data-ng-if="!$ctrl.defaultExplanationTextsOptions.rupay"
+        data-src="'creditCardChargesExplanationText.html'"
+    />
+    <oui-message
+        data-ng-if="$ctrl.defaultExplanationTextsOptions.rupay"
+        data-type="{{ $ctrl.defaultExplanationTextsOptions.rupay }}"
+    >
+        <ng-include data-src="'creditCardChargesExplanationText.html'" />
+    </oui-message>
+</script>
+<script type="text/ng-template" id="creditCardChargesExplanationText.html">
+    <p
+        data-translate="ovh_payment_method_register_explanation_credit_card_registration_charges_info"
+        data-translate-values="{
+            registrationCharges: $ctrl.registrationCharges
+        }"
+    ></p>
+</script>
