@@ -23,6 +23,7 @@ export default class OvhPaymentMethodRegisterCtrl {
   /* @ngInject */
   constructor(
     $q,
+    $transclude,
     ovhPaymentMethod,
     ovhPaymentMethodHelper,
     ovhFeatureFlipping,
@@ -30,6 +31,7 @@ export default class OvhPaymentMethodRegisterCtrl {
     OVH_PAYMENT_METHOD_INTEGRATION_TYPE,
   ) {
     this.$q = $q;
+    this.$transclude = $transclude;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
@@ -50,6 +52,8 @@ export default class OvhPaymentMethodRegisterCtrl {
     }`;
 
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
+
+    this.filterPaymentMethod = this.filterPaymentMethod.bind(this);
   }
 
   /* =====================================
@@ -63,6 +67,26 @@ export default class OvhPaymentMethodRegisterCtrl {
 
     if (isNil(this.model) || !isObject(this.model)) {
       this.model = {};
+    }
+
+    if (this.modelName && this.modelName !== 'selectedPaymentMethodType') {
+      const { [this.modelName]: currentModel } = this.model;
+      delete this.model[this.modelName];
+      Object.defineProperty(this.model, this.modelName, {
+        get() {
+          return this.selectedPaymentMethodType;
+        },
+        set(value) {
+          this.selectedPaymentMethodType = value;
+        },
+      });
+      this.selectedPaymentMethodType = currentModel;
+    }
+
+    if (this.required) {
+      Object.defineProperty(this.model, 'valid', {
+        get: () => this.form.$valid,
+      });
     }
 
     // set an empty list of registered payment methods if not provided
@@ -126,7 +150,7 @@ export default class OvhPaymentMethodRegisterCtrl {
             const typeBIndex = this.paymentMethodTypesOrder.indexOf(
               typeB.paymentType,
             );
-            return typeAIndex > typeBIndex;
+            return typeAIndex - typeBIndex;
           },
         );
 
@@ -157,26 +181,28 @@ export default class OvhPaymentMethodRegisterCtrl {
         );
 
         // set selected payment method type model
-        if (
-          !has(this.model, 'selectedPaymentMethodType') ||
-          isNil(this.model.selectedPaymentMethodType)
-        ) {
-          this.model.selectedPaymentMethodType = defaultPaymentMethodType;
-        } else if (this.model.selectedPaymentMethodType) {
-          // if the selected payment method type does not exist
-          // set the default one
-          const isModelTypeExists = some(
-            this.availablePaymentMethodTypes.list,
-            {
-              paymentType: get(
-                this.model.selectedPaymentMethodType,
-                'paymentType',
-              ),
-            },
-          );
-
-          if (!isModelTypeExists) {
+        if (this.automaticSelect || this.automaticSelect === undefined) {
+          if (
+            !has(this.model, 'selectedPaymentMethodType') ||
+            isNil(this.model.selectedPaymentMethodType)
+          ) {
             this.model.selectedPaymentMethodType = defaultPaymentMethodType;
+          } else if (this.model.selectedPaymentMethodType) {
+            // if the selected payment method type does not exist
+            // set the default one
+            const isModelTypeExists = some(
+              this.availablePaymentMethodTypes.list,
+              {
+                paymentType: get(
+                  this.model.selectedPaymentMethodType,
+                  'paymentType',
+                ),
+              },
+            );
+
+            if (!isModelTypeExists) {
+              this.model.selectedPaymentMethodType = defaultPaymentMethodType;
+            }
           }
         }
 
@@ -245,10 +271,16 @@ export default class OvhPaymentMethodRegisterCtrl {
   }
 
   /* =====================================
-  =            Listeners                 =
+  =            Methods                   =
   ====================================== */
 
   resetForm() {
     this.model.setAsDefault = false;
+  }
+
+  filterPaymentMethod(paymentMethodType) {
+    return !this.excludedPaymentMethods?.includes?.(
+      paymentMethodType.paymentType,
+    );
   }
 }
