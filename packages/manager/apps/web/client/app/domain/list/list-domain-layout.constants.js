@@ -1,3 +1,9 @@
+export const DOMAIN_OBJECT_KEYS = {
+  RENEWAL_DATE: 'renewalDate',
+  EXPIRATION_DATE: 'expirationDate',
+  RENEWAL_STATE: 'renewalState',
+};
+
 export const DOMAIN_STATUS = {
   OK: 'ok',
   EXPIRED: 'expired',
@@ -87,8 +93,19 @@ export const DOMAINS_BADGES_TRANSFERT_LOCK_STATE = {
 };
 
 export const IDN_PREFIX = 'xn--';
+export const MONTH_DATE_FORMAT = {
+  month: '2-digit',
+  year: 'numeric',
+};
+
+export const DATE_FORMAT = {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+};
 
 export default {
+  DOMAIN_OBJECT_KEYS,
   DOMAIN_STATUS,
   DOMAIN_RENEWABLE_STATE,
   DOMAIN_SUSPENSION_STATE,
@@ -99,4 +116,6 @@ export default {
   DOMAINS_BADGES_TRANSFERT_LOCK_STATE,
   DOMAINS_BADGES_RENEWAL_MODE,
   IDN_PREFIX,
+  DATE_FORMAT,
+  MONTH_DATE_FORMAT,
 };
