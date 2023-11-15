@@ -15,6 +15,7 @@ export default {
     paymentMethodTypesOrder: '<?',
     paymentMethodTypesPerLine: '<?',
     registeredPaymentMethods: '<?',
+    unregisteredPaymentMethods: '<?',
     excludedPaymentMethods: '<?',
     showSetAsDefaultChoice: '<?',
     forceSetAsDefaultChoice: '<?',
