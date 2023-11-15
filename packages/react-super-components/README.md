@@ -11,6 +11,18 @@ Keep it as simple as possible
 2. Add your `stories.tsx` file
 3. Add your e2e test
 
+## Import component to another project
+
+The react super component is not builded so you can import directly selected components
+Just update your `tsconfig.json` :
+`         "@react-sc/*": [
+        "../../../react-super-components/src/components/"
+      ]
+    `
+
+And import like this :
+`import ScTile from '@react-sc/msc-tile'`
+
 ## Main Scripts
 
 Always prepending yarn:

@@ -3,7 +3,6 @@ import ScTile, { MscTileProps } from './msc-tile'
 import { Meta } from '@storybook/react'
 import { StoryFn } from '@storybook/react'
 
-const locale = {}
 const defaultLocale = {}
 const localeList = {}
 
@@ -101,6 +100,10 @@ WithBadges.args = {
     {
       text: 'Cloud computing',
       color: 'primary',
+    },
+    {
+      text: 'Beta',
+      color: 'success',
     },
   ],
 }

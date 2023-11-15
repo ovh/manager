@@ -1,3 +1,4 @@
+import React from 'react'
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming'
 import { Locale, defaultLocale } from '@ovhcloud/msc-utils'
 import { OsdsText } from '@ovhcloud/ods-components/text/react'
@@ -44,7 +45,7 @@ const ScTile = ({
   const hasFooterContent = 0
   return (
     <div className="tile-container">
-      <OsdsTile className="msc-ods-tile" color={ODS_THEME_COLOR_INTENT.primary} rounded inline>
+      <OsdsTile className="msc-ods-tile" color={ODS_THEME_COLOR_INTENT.primary} rounded inline variant="stroked">
         <div className="flex flex-col">
           {imgSrc && <img className="max-w-full my-3 mx-auto" src={imgSrc} alt={imgAlt} />}
           <OsdsText
@@ -56,7 +57,7 @@ const ScTile = ({
             {category}
             <span className="inline-flex ml-3">
               {badges?.map((b) => (
-                <OsdsChip key={b.text} color={b.color}>
+                <OsdsChip className="mr-1" key={b.text} color={b.color} size="sm">
                   {b.text}
                 </OsdsChip>
               ))}
