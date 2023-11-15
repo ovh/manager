@@ -1,4 +1,5 @@
 export default class ReverseDNSDeleteCtrl {
+  /* @ngInject */
   constructor(
     $scope,
     $state,
