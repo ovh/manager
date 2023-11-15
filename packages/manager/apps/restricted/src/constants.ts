@@ -31,6 +31,9 @@ export const GUIDES: Guide[] = [
 
 export const SMALL_DEVICE_MAX_SIZE = '30em';
 
+export const US_GUIDE =
+  'https://support.us.ovhcloud.com/hc/en-us/articles/19185780752019-Using-IAM-Policies-with-the-OVHcloud-Control-Panel';
+
 export default {
   GUIDES,
   SMALL_DEVICE_MAX_SIZE,
