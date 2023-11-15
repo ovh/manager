@@ -1,4 +1,5 @@
 export default class ReverseDNSUpdateCtrl {
+  /* @ngInject */
   constructor(
     $scope,
     $state,
