@@ -92,8 +92,8 @@
                                         class="pl-2 fa"
                                         aria-hidden="true"
                                         data-ng-class="{
-                            'fa-warning' : $ctrl.showEndOfLifeMessage(distribution.endOfInstall,true),
-                            'fa-info-circle' : $ctrl.showEndOfLifeMessage(distribution.endOfInstall,false),
+                            'fa-warning' : $ctrl.constructor.showEndOfLifeMessage(distribution.endOfInstall,true),
+                            'fa-info-circle' : $ctrl.constructor.showEndOfLifeMessage(distribution.endOfInstall,false),
                         }"
                                         data-oui-tooltip="{{ $ctrl.getEndOfLifeMessage(distribution)}}"
                                         data-oui-tooltip-placement="bottom"
@@ -101,13 +101,13 @@
                                     </i>
                                     <span
                                         class="text-danger"
-                                        data-ng-if="$ctrl.showEndOfLifeMessage(distribution.endOfInstall,true)"
+                                        data-ng-if="$ctrl.constructor.showEndOfLifeMessage(distribution.endOfInstall,true)"
                                         data-ng-bind="distribution.endOfInstall | date:'mediumDate'"
                                     >
                                     </span>
                                     <span
                                         class="text-muted"
-                                        data-ng-if="$ctrl.showEndOfLifeMessage(distribution.endOfInstall,false)"
+                                        data-ng-if="$ctrl.constructor.showEndOfLifeMessage(distribution.endOfInstall,false)"
                                         data-ng-bind="distribution.endOfInstall | date:'mediumDate'"
                                     >
                                     </span>
