@@ -9,7 +9,9 @@
 <ovh-payment-method-register
     data-model="$ctrl.model"
     data-model-name="paymentMethod"
+    data-default-payment-method-type="{{ $ctrl.model.paymentMethod.paymentType }}"
     data-registered-payment-methods="$ctrl.authorizedPaymentMethods"
+    data-unregistered-payment-methods="$ctrl.unregisteredPaymentMethods"
     data-force-set-as-default-choice="true"
     data-show-default-explanation-texts="true"
     data-default-explanation-texts-options="{
@@ -18,7 +20,7 @@
         sepa: { intro: 'warning', banner: 'info' },
     }"
     data-payment-method-types-per-line="2"
-    data-automatic-select="false"
+    data-automatic-select="!!$ctrl.model.paymentMethod"
     data-required="true"
 >
     <ovh-payment-method-register-paypal-explanation-text>
