@@ -20,16 +20,22 @@ export default /* @ngInject */ ($stateProvider) => {
         });
         $state.go('octavia-load-balancer.create');
       },
-      goToDashboardPage: /* @ngInject */ ($state, atInternet) => (
-        { id, region },
-        useTracking,
-      ) => {
-        if (useTracking) {
-          atInternet.trackClick({
-            name: `${TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX}::add`,
-            type: 'action',
-          });
-        }
+      dashboardPageLink: /* @ngInject */ ($state) => ({ id, region }) =>
+        $state.href('octavia-load-balancer.loadbalancer', {
+          region,
+          loadbalancerId: id,
+        }),
+      dashboardPageTracking: () =>
+        `${TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX}::detail`,
+      goToDashboardPage: /* @ngInject */ (
+        $state,
+        atInternet,
+        dashboardPageTracking,
+      ) => ({ id, region }) => {
+        atInternet.trackClick({
+          name: dashboardPageTracking,
+          type: 'action',
+        });
         $state.go('octavia-load-balancer.loadbalancer', {
           region,
           loadbalancerId: id,

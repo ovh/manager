@@ -6,6 +6,8 @@ export default {
     goToCreatePage: '<',
     goToDashboardPage: '<',
     goToDeleteLoadBalancer: '<',
+    dashboardPageLink: '<',
+    dashboardPageTracking: '<',
   },
   template,
 };
