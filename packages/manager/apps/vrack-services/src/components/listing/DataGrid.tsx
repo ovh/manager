@@ -30,12 +30,16 @@ import {
   updateVrackServicesQueryKey,
 } from '@/api';
 import { EditableText } from '@/components/EditableText';
+import { VrackAssociationModal } from './VrackAssociationModal';
 
 export type DatagridProps = {
   data: VrackServices[];
 };
 
 export const Datagrid: React.FC<DatagridProps> = ({ data }) => {
+  const [associateModalVisible, setAssociateModalVisible] = React.useState<
+    string | undefined
+  >(undefined);
   const navigate = useNavigate();
   const { t } = useTranslation('vrack-services/listing');
   const environment = useEnvironment();
@@ -112,7 +116,7 @@ export const Datagrid: React.FC<DatagridProps> = ({ data }) => {
               key={`tr-${currentVs.id}`}
               className="bg-white border-2 border-solid border-ods-primary-100 background-ods-primary-000"
             >
-              <td className="p-6 text-center">
+              <td className="p-6 text-right">
                 <EditableText
                   disabled={currentVs.resourceStatus !== ResoureceStatus.READY}
                   defaultValue={currentVs.currentState.displayName}
@@ -156,7 +160,24 @@ export const Datagrid: React.FC<DatagridProps> = ({ data }) => {
                 {t(currentVs.currentState.zone)}
               </td>
               <td className="p-6 text-center">
-                {currentVs.currentState.vrackId}
+                {currentVs.currentState.vrackId ?? (
+                  <OsdsButton
+                    inline
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    variant={ODS_BUTTON_VARIANT.flat}
+                    type={ODS_BUTTON_TYPE.button}
+                    size={ODS_BUTTON_SIZE.sm}
+                    disabled={isUpdateLoading || undefined}
+                    onClick={() => setAssociateModalVisible(currentVs.id)}
+                    onKeyDown={(event: React.KeyboardEvent) => {
+                      if ([' ', 'Enter'].includes(event.key)) {
+                        setAssociateModalVisible(currentVs.id);
+                      }
+                    }}
+                  >
+                    {t('associateVrackButtonLabel')}
+                  </OsdsButton>
+                )}
               </td>
               <td className="p-6 text-center">
                 {currentVs.createdAt
@@ -191,6 +212,10 @@ export const Datagrid: React.FC<DatagridProps> = ({ data }) => {
           ))}
         </tbody>
       </table>
+      <VrackAssociationModal
+        vrackServicesId={associateModalVisible}
+        closeModal={() => setAssociateModalVisible(undefined)}
+      />
     </>
   );
 };

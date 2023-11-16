@@ -1,32 +1,27 @@
-import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { Task } from '../api.type';
 import { createFetchDataFn } from '../common';
 
-export type PostvrackServiceVrackServicesParams = {
+export type AssociateVrackServicesParams = {
   /** The internal name of your vrack */
-  serviceName?: string;
+  vrack: string;
   /** vrackServices service name */
-  vrackServices?: string;
+  vrackServices: string;
 };
 
-export const postvrackServiceVrackServicesQueryKey = ({
-  serviceName,
-}: PostvrackServiceVrackServicesParams) => [
-  `post/vrack/${serviceName}/vrackServices`,
+export const associateVrackServicesQueryKey = (vrackServicesId: string) => [
+  `associateVrackServices-${vrackServicesId}`,
 ];
 
 /**
- * List the vrack.vrackServices objects : Add a vrackServices to the vrack
+ * Add a vrackServices to the vrack
  */
-export const postvrackServiceVrackServices = async (
-  data: PostvrackServiceVrackServicesParams,
-) =>
-  queryClient.fetchQuery(
-    postvrackServiceVrackServicesQueryKey(data),
-    createFetchDataFn<Task>({
-      url: `/vrack/${data.serviceName}/vrackServices`,
-      method: 'post',
-      apiVersion: 'v6',
-      params: { data },
-    }),
-  );
+export const associateVrackServices = async ({
+  vrack,
+  vrackServices,
+}: AssociateVrackServicesParams) =>
+  createFetchDataFn<Task>({
+    url: `/vrack/${vrack}/vrackServices`,
+    method: 'post',
+    apiVersion: 'v6',
+    params: { vrackServices },
+  })();

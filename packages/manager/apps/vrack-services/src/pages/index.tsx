@@ -13,28 +13,24 @@ import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
 import {
   getListingIceberg,
   getListingIcebergQueryKey,
-  orderVrackQueryKey,
-  orderVrackServicesQueryKey,
   useOrderPollingStatus,
   getDeliveringOrderList,
+  OrderDescription,
+  getDeliveringOrderQueryKey,
 } from '@/api';
-import { Datagrid } from '@/components/DataGrid';
+import { Datagrid } from '@/components/listing/DataGrid';
 import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
 import { PageLayout } from '@/components/layout-helpers';
 import { ApiError, ErrorPage } from '@/components/Error';
+import { DeliveringMessages } from '@/components/listing/DeliveringMessages';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.id;
 }
-
-export const vrackServicesOrdersQueryKey = ['vrackServicesListingOrders'];
-export const pollingKey = 'vRack Services';
 
 export default function ListingPage() {
   const { t } = useTranslation('vrack-services/listing');
@@ -44,12 +40,12 @@ export default function ListingPage() {
     data: vrackServicesDeliveringOrders,
     isLoading: areOrdersLoading,
   } = useQuery({
-    queryKey: vrackServicesOrdersQueryKey,
-    queryFn: getDeliveringOrderList('vRack Services'),
+    queryKey: getDeliveringOrderQueryKey(OrderDescription.vrackServices),
+    queryFn: getDeliveringOrderList(OrderDescription.vrackServices),
   });
 
   useOrderPollingStatus({
-    pollingKey,
+    pollingKey: OrderDescription.vrackServices,
     orderList: vrackServicesDeliveringOrders,
     queryToInvalidateOnDelivered: getListingIcebergQueryKey,
   });
@@ -59,30 +55,16 @@ export default function ListingPage() {
     queryFn: getListingIceberg,
   });
 
-  const {
-    isError: hasVrackOrderError,
-    isSuccess: isVrackOrderSuccessful,
-    error: vrackOrderError,
-  } = useQuery({ queryKey: orderVrackQueryKey, enabled: false });
-
-  const { isSuccess: isVrackServicesOrderSuccessful } = useQuery({
-    queryKey: orderVrackServicesQueryKey,
-    enabled: false,
-  });
-
-  if (isLoading || areOrdersLoading) {
-    return (
-      <PageLayout>
-        <OsdsSpinner inline size={ODS_SPINNER_SIZE.lg} />
-      </PageLayout>
-    );
-  }
-
   if (error) {
     return <ErrorPage error={error as ApiError} />;
   }
 
-  if (data?.data.length === 0 && vrackServicesDeliveringOrders?.length === 0) {
+  if (
+    !isLoading &&
+    !areOrdersLoading &&
+    data?.data.length === 0 &&
+    vrackServicesDeliveringOrders?.length === 0
+  ) {
     return <Navigate to="onboarding" />;
   }
 
@@ -126,29 +108,27 @@ export default function ListingPage() {
       </OsdsButton>
 
       {vrackServicesDeliveringOrders?.length > 0 && (
-        <OsdsMessage className="my-5" type={ODS_MESSAGE_TYPE.success}>
-          {'Vrack Services en cours de livraison'}
-        </OsdsMessage>
+        <DeliveringMessages
+          message={t('deliveringVrackServicesMessage')}
+          orders={vrackServicesDeliveringOrders}
+        />
       )}
-      {isVrackServicesOrderSuccessful && (
-        <OsdsMessage className="my-5" type={ODS_MESSAGE_TYPE.success}>
-          {'Vrack Services en cours de création'}
-        </OsdsMessage>
+      {(isLoading || areOrdersLoading) && (
+        <div>
+          <OsdsSpinner inline size={ODS_SPINNER_SIZE.lg} />
+        </div>
       )}
-      {isVrackOrderSuccessful && (
-        <OsdsMessage className="my-5" type={ODS_MESSAGE_TYPE.success}>
-          {'Vrack en cours de création'}
-        </OsdsMessage>
-      )}
-      {hasVrackOrderError && (
-        <OsdsMessage className="my-5" type={ODS_MESSAGE_TYPE.error}>
-          {`Vrack order error: ${vrackOrderError}`}
-        </OsdsMessage>
-      )}
-      {data.data.length > 0 ? (
+      {!isLoading && !areOrdersLoading && data.data.length > 0 && (
         <Datagrid data={data.data} />
-      ) : (
-        <OsdsText>{t('emptyDataGrid')}</OsdsText>
+      )}
+      {!isLoading && !areOrdersLoading && data.data.length === 0 && (
+        <OsdsText
+          className="block"
+          color={ODS_THEME_COLOR_INTENT.text}
+          level={ODS_TEXT_LEVEL.subheading}
+        >
+          {t('emptyDataGrid')}
+        </OsdsText>
       )}
     </PageLayout>
   );

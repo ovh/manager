@@ -4,20 +4,50 @@ import {
   getOrderDetails,
   getOrderDetailsList,
   getOrderList,
+  getOrderData,
 } from './services';
+import { OrderDetail, OrderStatus, OrderData } from './order.type';
 
-export const toDetailedOrder = async (orderId: number) => {
+export type DetailedOrder = OrderData & {
+  status: OrderStatus;
+  details: OrderDetail[];
+};
+
+const toDetailedOrder = async (orderId: number): Promise<DetailedOrder> => {
+  const orderData = await getOrderData(orderId);
   const orderProductList = await getOrderDetailsList(orderId);
   const detailsResponse = await Promise.all(
     orderProductList.data.map((detailId) =>
       getOrderDetails({ orderId, detailId }),
     ),
   );
+  const statusResponse = await getOrderStatus(orderId);
   return {
     orderId,
+    ...orderData.data,
+    status: statusResponse.data,
     details: detailsResponse.map((detail) => detail.data),
   };
 };
+
+const getOrderIdListWithDescription = (
+  detailedOrderList: DetailedOrder[] = [],
+  orderDetailDescription: string,
+) =>
+  detailedOrderList.filter(({ details }) =>
+    details.some(({ description }) =>
+      description.includes(orderDetailDescription),
+    ),
+  );
+
+export enum OrderDescription {
+  vrack = 'vRack',
+  vrackServices = 'vRack Services',
+}
+
+export const getDeliveringOrderQueryKey = (description: OrderDescription) => [
+  `deliveringOrders-${description}`,
+];
 
 export const getDeliveringOrderList = (
   orderDetailDescription: string,
@@ -39,18 +69,14 @@ export const getDeliveringOrderList = (
   const detailedOrderList = await Promise.all(
     deliveringOrderList.map(toDetailedOrder),
   );
-  return (
-    detailedOrderList
-      .filter(({ details }) =>
-        details.some(({ description }) =>
-          description.includes(orderDetailDescription),
-        ),
-      )
-      .map(({ orderId }) => orderId) || []
+
+  return getOrderIdListWithDescription(
+    detailedOrderList,
+    orderDetailDescription,
   );
 };
 
-export const getPollingOderStatusQueryKey = (pollingKey: string) => [
+export const getPollingOderStatusQueryKey = (pollingKey: OrderDescription) => [
   `/pollOrderStatus-${pollingKey}`,
 ];
 
@@ -63,8 +89,8 @@ export const useOrderPollingStatus = ({
   queryToInvalidateOnDelivered,
   pollingInterval = 120000,
 }: {
-  pollingKey: string;
-  orderList: number[];
+  pollingKey: OrderDescription;
+  orderList: DetailedOrder[];
   queryToInvalidateOnDelivered: string[];
   pollingInterval?: number;
 }) => {
@@ -72,24 +98,18 @@ export const useOrderPollingStatus = ({
   return useQuery({
     queryKey: getPollingOderStatusQueryKey(pollingKey),
     queryFn: async () => {
-      const statusList = await Promise.all(orderList.map(getOrderStatus));
-      if (
-        statusList.every(
-          (statusResponse) => statusResponse.data === 'delivered',
-        )
-      ) {
+      if (orderList.every(({ status }) => status === 'delivered')) {
         queryClient.invalidateQueries({
           queryKey: queryToInvalidateOnDelivered,
         });
       }
-      return statusList;
+      return orderList.map(({ status }) => status);
     },
-    refetchInterval: (data, query) => {
-      console.log({ data, query });
+    refetchInterval: (data) => {
       if (!data || data.length === 0) {
         return 0;
       }
-      return data.every((statusResponse) => statusResponse.data === 'delivered')
+      return data.every((status) => status === 'delivered')
         ? pollingInterval
         : 0;
     },

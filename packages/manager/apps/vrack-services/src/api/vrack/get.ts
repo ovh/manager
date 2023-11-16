@@ -16,9 +16,9 @@ export const getVrackListQueryKey = ['get/vrack'];
 /**
  * List available vrack
  */
-export const getVrackList = async (): Promise<string[]> => {
+export const getVrackList = async () => {
   const fetchData = async () =>
-    fetchIceberg<VrackWithIAM[]>({
+    fetchIceberg<string>({
       route: '/vrack',
       apiVersion: 'v6',
     });
