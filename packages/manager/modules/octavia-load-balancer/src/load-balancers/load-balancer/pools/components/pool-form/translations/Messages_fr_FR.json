@@ -1,5 +1,6 @@
 {
   "octavia_load_balancer_pools_create_name": "Nom du pool",
+  "octavia_load_balancer_pools_create_options": "Options du pool",
   "octavia_load_balancer_pools_create_algorithm": "Algorithme",
   "octavia_load_balancer_pools_create_algorithm_tooltip": "L’algorithme du Load Balancer qui répartit le trafic entre les membres du pool.",
   "octavia_load_balancer_pools_create_algorithm_roundRobin": "Fait pivoter les requêtes uniformément entre plusieurs instances.",
