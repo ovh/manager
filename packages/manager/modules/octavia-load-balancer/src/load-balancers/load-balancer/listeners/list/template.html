@@ -26,7 +26,7 @@
             data-track-name="{{:: $ctrl.listenerEditionTrackingHit}}"
             data-track-type="action"
         >
-            {{ ::$value }}
+            <span data-ng-bind="::$value"></span>
         </a>
     </oui-datagrid-column>
     <oui-datagrid-column
@@ -45,7 +45,7 @@
             data-track-name="{{:: $ctrl.poolDetailTrackingHit}}"
             data-track-type="action"
         >
-            {{ ::$value }}
+            <span data-ng-bind="::$value"></span>
         </a>
     </oui-datagrid-column>
     <oui-datagrid-column
