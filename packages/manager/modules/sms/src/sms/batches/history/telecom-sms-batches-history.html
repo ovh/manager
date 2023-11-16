@@ -106,7 +106,7 @@
                 <span data-translate="sms_batches_download"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                on-click="$ctrl.goToDeleteBatch($row.id, $row.name)"
+                data-on-click="$ctrl.goToDeleteBatch($row.id, $row.name)"
                 disabled="$ctrl.isDownloading"
             >
                 <span data-translate="sms_batches_delete"></span>
