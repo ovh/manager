@@ -1,4 +1,4 @@
-export default class {
+export default class TextAccordionController {
   /* @ngInject */
   constructor($timeout, $element, $window) {
     this.$timeout = $timeout;
