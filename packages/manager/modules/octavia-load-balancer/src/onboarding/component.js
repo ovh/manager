@@ -6,6 +6,7 @@ export default {
     discover: '<',
     goToLoadBalancerCreation: '<',
     goToNoPrivateNetwork: '<',
+    hasPrivateNetwork: '<',
   },
   controller,
   template,
