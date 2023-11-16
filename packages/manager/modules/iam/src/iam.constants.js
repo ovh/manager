@@ -279,7 +279,7 @@ const UNAVAILABLE_STATE_NAME = 'app.account.user';
 
 const URN_VERSION = 1;
 
-const OVH_MANAGED_PERMISSIONS_GROUP = 'urn:v1:eu:permissionsGroup:ovh';
+const OVH_MANAGED_PERMISSIONS_GROUP = 'permissionsGroup:ovh';
 
 export {
   ALERT_ID,
