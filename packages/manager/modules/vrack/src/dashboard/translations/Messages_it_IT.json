@@ -1,7 +1,7 @@
 {
   "vrack_introduction_title": "Costruisci la tua vRack",
   "vrack_introduction_description": "Gestisci l'interconnessione privata di tutti i componenti della tua infrastruttura IT, in tutto il mondo. <br/> La tecnologia vRack permette di connettere, isolare o ripartire i tuoi servizi all'interno di una o più reti private e sicure.",
-  "vrack_introduction_change_owner": "È possibile anche<a href=\"{{ uri }}\" target=\"_blank\">modificare il proprietario</a>.",
+  "vrack_introduction_change_owner": "È possibile anche<a href=\"{{ uri }}\" target=\"_blank\" data-track-on=\"click\" data-track-type=\"action\" data-track-name=\"{{ trackLabel }}\">modificare il proprietario</a>.",
   "vrack_description_title": "Descrizione della tua vRack",
   "vrack_guide_link_text": "Scopri di più Consulta la nostra guida",
   "vrack_change_owner_link_text": "modifica del proprietario",

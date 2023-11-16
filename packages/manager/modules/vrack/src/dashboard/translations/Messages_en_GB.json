@@ -1,7 +1,7 @@
 {
   "vrack_introduction_title": "Manage your vRack",
   "vrack_introduction_description": "Manage the private connection for all components of your IT infrastructure, anywhere in the world. <br/> With vRack (virtual rack) technology, you can connect, isolate and distribute your services within one or more private, secure networks.",
-  "vrack_introduction_change_owner": "You can also <a href=\"{{ uri }}\" target=\"_blank\">change owner</a> if you wish to do so.",
+  "vrack_introduction_change_owner": "You can also <a href=\"{{ uri }}\" target=\"_blank\" data-track-on=\"click\" data-track-type=\"action\" data-track-name=\"{{ trackLabel }}\">change owner</a> if you wish to do so.",
   "vrack_description_title": "Description of your vRack",
   "vrack_guide_link_text": "Want to know more? Follow our guide.",
   "vrack_change_owner_link_text": "Change the owner",
