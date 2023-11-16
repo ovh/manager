@@ -168,6 +168,7 @@ angular.module('App').controller(
 
     fetchingMetrics() {
       this.isFetchingMetrics = true;
+      this.migration = false;
 
       return this.PrivateDatabase.getGraphData({
         graphEndpoint: this.$scope.database.graphEndpoint,
@@ -237,6 +238,10 @@ angular.module('App').controller(
           );
         })
         .catch((err) => {
+          if(err.status >= 500){
+            this.migration = true;
+            return;
+          }
           set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
             this.$translate.instant('privateDatabase_dashboard_loading_error'),

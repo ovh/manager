@@ -214,10 +214,18 @@ angular
           );
         }
 
+        $scope.migration = false;
+
         $q.all(getStatsPromises).then((results) => {
           $scope.model.datas = results;
           refreshChart();
+        }).catch((error)=> {
+            if(error.status >= 500){
+              $scope.migration = true;
+              return;
+            }
         });
+
       };
 
       function removeSqlStatistics() {
