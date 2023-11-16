@@ -34,12 +34,11 @@ export default class OctaviaLoadBalancerOnboardingCtrl {
     });
   }
 
-  createLoadBalancer($event) {
+  createLoadBalancer() {
     if (this.hasPrivateNetwork) {
       this.goToLoadBalancerCreation();
     } else {
       this.goToNoPrivateNetwork();
-      $event.preventDefault();
     }
   }
 }
