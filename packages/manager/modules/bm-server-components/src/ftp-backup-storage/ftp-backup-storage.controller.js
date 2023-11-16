@@ -5,6 +5,7 @@ import {
 } from './ftp-backup.constants';
 
 export default class FtpBackupStorageController {
+  /* @ngInject */
   constructor(
     $q,
     $scope,
