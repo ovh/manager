@@ -49,7 +49,6 @@
                 </p>
                 <div class="mb-4">
                     <oui-collapsible
-                        class="overflow-auto"
                         data-heading="{{ itemFamily + ' (' + countFilter[itemFamily] + ')' }}"
                         group="familyType"
                         data-on-toggle="installation.selectFamily = itemFamily"
@@ -62,6 +61,7 @@
                                 on-change="$ctrl.setSelectDistribution(distribution)"
                                 model="installation.selectDistribution"
                                 value="distribution"
+                                class="position-static"
                             >
                                 <oui-radio-label
                                     ><span
@@ -97,7 +97,7 @@
                             'fa-info-circle' : $ctrl.constructor.showEndOfLifeMessage(distribution.endOfInstall,false),
                         }"
                                         data-oui-tooltip="{{ $ctrl.getEndOfLifeMessage(distribution)}}"
-                                        data-oui-tooltip-placement="bottom"
+                                        data-oui-tooltip-placement="right"
                                     >
                                     </i>
                                     <span
