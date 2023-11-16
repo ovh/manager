@@ -1,6 +1,7 @@
 import { FTP_BACKUP_STORAGE_ALERT } from '../../ftp-backup.constants';
 
 export default class DedicatedServerFtpBackupAccessUpdateController {
+  /* @ngInject */
   constructor($rootScope, $stateParams, $translate, Alerter, Server) {
     this.$rootScope = $rootScope;
     this.$stateParams = $stateParams;

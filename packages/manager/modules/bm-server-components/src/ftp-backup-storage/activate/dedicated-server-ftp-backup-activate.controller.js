@@ -1,6 +1,7 @@
 import { FTP_BACKUP_STORAGE_ALERT } from '../ftp-backup.constants';
 
 export default class ActivateFtpBackupCtrl {
+  /* @ngInject */
   constructor($stateParams, $translate, Server, Alerter) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
