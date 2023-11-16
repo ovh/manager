@@ -10,7 +10,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
     $stateProvider.state(
       'octavia-load-balancer.loadbalancer.listeners.edit.**',
       {
-        url: '/edit',
+        url: '/edit?:listenerId',
         lazyLoad: ($transition$) => {
           const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 

@@ -1,3 +1,5 @@
+import { TRACKING_CHAPTER_1, TRACKING_NAME } from './constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('octavia-load-balancer.loadbalancer', {
     url: '/:region/:loadbalancerId',
@@ -72,6 +74,7 @@ export default /* @ngInject */ ($stateProvider) => {
           region,
           loadbalancerId,
         }),
+      trackRoot: () => `${TRACKING_CHAPTER_1}::${TRACKING_NAME}`,
     },
     atInternet: {
       ignore: true,

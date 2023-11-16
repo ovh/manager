@@ -24,6 +24,12 @@ export default /* @ngInject */ ($stateProvider) => {
         trackAction('add');
         $state.go('octavia-load-balancer.loadbalancer.listeners.create');
       },
+      getListenerEditionLink: /* @ngInject */ ($state) => (listener) =>
+        $state.href('octavia-load-balancer.loadbalancer.listeners.edit', {
+          listenerId: listener.id,
+        }),
+      listenerEditionTrackingHit: /* @ngInject */ (trackBase) =>
+        `${trackBase}::edit`,
       goToListenerEdition: /* @ngInject */ ($state, trackAction) => (
         listener,
       ) => {
@@ -41,6 +47,12 @@ export default /* @ngInject */ ($stateProvider) => {
           listenerName: listener.name,
         });
       },
+      getPoolDetailLink: /* @ngInject */ ($state) => (pool) =>
+        $state.href('octavia-load-balancer.loadbalancer.pools.detail', {
+          poolId: pool.id,
+        }),
+      poolDetailTrackingHit: /* @ngInject */ (trackRoot) =>
+        `${trackRoot}::pool::detail`,
     },
     atInternet: {
       rename: `${TRACKING_NAME}::${TRACKING_SUFFIX}`,
