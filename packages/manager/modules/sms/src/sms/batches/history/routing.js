@@ -39,8 +39,7 @@ export default /* @ngInject */ ($stateProvider) => {
           previousState: 'sms.service.batches.history',
         });
       },
-      goToDeleteBatch: /* @ngInject */ ($state) => (
-        serviceName,
+      goToDeleteBatch: /* @ngInject */ ($state, serviceName) => (
         batchId,
         batchName,
       ) =>

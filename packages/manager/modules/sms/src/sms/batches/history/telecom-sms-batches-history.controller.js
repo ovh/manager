@@ -27,10 +27,6 @@ export default class SmsBatchesHistoryController {
       });
   }
 
-  deleteLogs({ id, name }) {
-    this.goToDeleteBatch(this.serviceName, id, name);
-  }
-
   refreshBatches() {
     return this.getBatches().then((batches) => {
       this.batches = batches.filter(
