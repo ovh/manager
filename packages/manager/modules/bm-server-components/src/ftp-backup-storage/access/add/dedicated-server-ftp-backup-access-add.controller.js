@@ -4,6 +4,7 @@ import {
 } from '../../ftp-backup.constants';
 
 export default class AddAccessFtpBackupCtrl {
+  /* @ngInject */
   constructor($rootScope, $stateParams, $translate, Alerter, Server) {
     this.$rootScope = $rootScope;
     this.$stateParams = $stateParams;
