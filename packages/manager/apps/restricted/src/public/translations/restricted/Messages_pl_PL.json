@@ -12,5 +12,7 @@
   "restricted_guide_card_more": "Dowiedz się więcej",
   "restricted_guide_card_title": "Tutoriale",
   "restricted_language_change": "Zmień język interfejsu",
-  "restricted_navbar_account": "Moje konto"
+  "restricted_navbar_account": "Moje konto",
+  "restricted_error_default_start": "Dostęp do Panelu klienta OVHcloud wymaga {{count}} praw niezbędnych do utworzenia konta, zgodnie z opisem w przewodniku:",
+  "restricted_error_default_end": "Skontaktuj się z administratorem, aby dodać te uprawnienia."
 }

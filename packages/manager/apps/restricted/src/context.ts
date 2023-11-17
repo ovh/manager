@@ -11,6 +11,7 @@ export type Context = {
   auth?: Auth;
   isSidebarVisible?: boolean;
   locale?: string;
+  ovhSubsidiary?: string;
   region?: string;
   setLocale?: React.Dispatch<React.SetStateAction<string>>;
   setIsSidebarVisible?: React.Dispatch<React.SetStateAction<boolean>>;
