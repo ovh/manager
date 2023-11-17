@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import { PHONE_PROTOCOL } from './phone/order/choice/choice.constant';
 
 export default /* @ngInject */ function TelecomTelephonyLineCtrl(
   $q,
@@ -13,6 +14,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
   faxLink,
   lineLink,
   phoneLink,
+  orderPhoneLink,
   shellClient,
   TelephonyMediator,
   tonesLink,
@@ -28,6 +30,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
   self.line = null;
   self.fax = null;
   self.links = null;
+  self.displayMgcpBanner = false;
 
   self.lineLink = lineLink;
   self.currentActiveLink = currentActiveLink;
@@ -36,6 +39,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
   self.tonesLink = tonesLink;
   self.answerLink = answerLink;
   self.phoneLink = phoneLink;
+  self.orderPhoneLink = orderPhoneLink;
   self.assistLink = assistLink;
   self.contactLink = contactLink;
   self.faxLink = faxLink;
@@ -94,6 +98,13 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
         promises.push(
           self.line.getConvertionTask().then((task) => {
             self.converting = task;
+          }),
+        );
+
+        promises.push(
+          self.line.getPhone().then(() => {
+            self.displayMgcpBanner =
+              self.line.phone.protocol === PHONE_PROTOCOL.MGCP;
           }),
         );
 
