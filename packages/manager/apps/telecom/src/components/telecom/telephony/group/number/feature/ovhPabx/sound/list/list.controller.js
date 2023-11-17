@@ -5,6 +5,7 @@ export default /* @ngInject */ function telephonyNumberOvhPabxSoundListCtrl(
   $timeout,
   $translate,
   $translatePartialLoader,
+  TucToastError,
 ) {
   const self = this;
 
@@ -34,6 +35,7 @@ export default /* @ngInject */ function telephonyNumberOvhPabxSoundListCtrl(
       .then(() => {
         self.ovhPabx.removeSound(sound);
       })
+      .catch((err) => new TucToastError(err?.data?.message || ''))
       .finally(() => {
         self.loading.deleting = false;
       });
