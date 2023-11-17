@@ -21,5 +21,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_server_dns'),
     },
+    atInternet: {
+      rename: 'dedicated::dedicated-server::server::dns',
+    },
   });
 };
