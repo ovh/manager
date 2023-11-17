@@ -21,7 +21,14 @@ import {
 
 export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
-  constructor($q, $translate, ouiDatagridService, coreURLBuilder, coreConfig) {
+  constructor(
+    $q,
+    $translate,
+    ouiDatagridService,
+    coreURLBuilder,
+    coreConfig,
+    Domain,
+  ) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
     this.DOMAIN_STATUS = DOMAIN_STATUS;
@@ -37,13 +44,18 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     this.IDN_PREFIX = IDN_PREFIX;
     this.DOMAIN_OBJECT_KEYS = DOMAIN_OBJECT_KEYS;
     this.coreURLBuilder = coreURLBuilder;
-    this.coreConfig = coreConfig;
+    this.user = coreConfig.getUser();
+    this.Domain = Domain;
   }
 
   $onInit() {
     super.$onInit();
     this.datagridId = 'datagridDomain';
     this.defaultFilterColumn = 'domain';
+    this.contactPopover = {
+      rowIndex: -1,
+      data: null,
+    };
 
     this.columnsConfig = [
       { name: 'domain', sortable: this.getSorting('domain') },
@@ -122,7 +134,7 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     }
 
     const date = new Date(domain[key]);
-    const { ovhSubsidiary } = this.coreConfig.getUser();
+    const { ovhSubsidiary } = this.user;
     const locale = LANGUAGE_OVERRIDE[ovhSubsidiary]
       ? LANGUAGE_OVERRIDE[ovhSubsidiary]
       : ovhSubsidiary.toLowerCase();
@@ -154,10 +166,17 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     });
   }
 
-  linkContactBuilder({ domain, whoisOwner }) {
+  getContactDetails(contactId, index) {
+    this.Domain.getContactInfo(contactId).then((contact) => {
+      this.contactPopover.data = contact;
+      this.contactPopover.rowIndex = index;
+    });
+  }
+
+  linkUserAccountBuilder(contactId) {
     return this.coreURLBuilder.buildURL(
       'dedicated',
-      `#/contact/${domain}/${whoisOwner}`,
+      `#/useraccount/infos/${contactId}`,
     );
   }
 
