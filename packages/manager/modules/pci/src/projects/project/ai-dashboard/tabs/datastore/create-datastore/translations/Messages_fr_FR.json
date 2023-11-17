@@ -21,6 +21,6 @@
   "pci_ai_dashboard_create_datastore_git_ssh_public_key": "Clé public SSH (Optionnel)",
   "pci_ai_dashboard_create_datastore_git_basic_auth_username": "Utilisateur",
   "pci_ai_dashboard_create_datastore_git_basic_auth_password": "Mot de passe",
-  "pci_ai_dashboard_create_datastore_success_message": "Le datastore a été créé.",
-  "pci_ai_dashboard_create_datastore_error_message": "Une erreur est survenue lors de la création du datastore : {{message}}"
+  "pci_ai_dashboard_create_datastore_success_msg": "Le datastore a été créé.",
+  "pci_ai_dashboard_create_datastore_error_msg": "Une erreur est survenue lors de la création du datastore : {{message}}"
 }

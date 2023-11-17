@@ -45,14 +45,14 @@ export default class AIDashboadCreateDatastoreCtrl {
       .then(() =>
         this.goBack({
           textHtml: this.$translate.instant(
-            'pci_ai_dashboard_create_datastore_success_message',
+            'pci_ai_dashboard_create_datastore_success_msg',
           ),
         }),
       )
       .catch((err) =>
         this.goBack(
           this.$translate.instant(
-            'pci_ai_dashboard_create_datastore_error_message',
+            'pci_ai_dashboard_create_datastore_error_msg',
             {
               message: err.data?.message || null,
             },
