@@ -13,6 +13,7 @@
     "directory": "packages/manager/modules/cloud-styles"
   },
   "license": "BSD-3-Clause",
+  "type": "module",
   "main": "./dist/esm/index.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",

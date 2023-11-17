@@ -16,3 +16,7 @@ It contains all our published packages on the [npm registry](https://docs.npmjs.
 ## All components
 
 <ListPackages type="components"/>
+
+<script setup>
+import ListPackages from '../components/ListPackages.vue'
+</script>
