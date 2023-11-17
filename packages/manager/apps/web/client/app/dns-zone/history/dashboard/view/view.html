@@ -1,0 +1,10 @@
+<oui-modal
+    data-heading="{{:: 'dashboard_history_popup_title' | translate }}"
+    data-primary-action="$ctrl.goBack()"
+    data-primary-label="{{:: 'dashboard_history_close_popup' | translate }}"
+    data-secondary-disabled="true"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.loadingDnsZoneData"
+>
+    <pre data-ng-bind="$ctrl.dnsZoneData"></pre>
+</oui-modal>
