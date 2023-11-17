@@ -76,7 +76,7 @@ Each app has to instantiate a `ShellClient` through the `initShellClient` method
 
 Once the shell is instantiated, it will enable communication between the `container` and the app through a message bus.
 
-![Container and shell communication and interaction diagramm](/manager/assets/img/container-shell-comm.png)
+![Container and shell communication and interaction diagramm](/assets/img/container-shell-comm.png)
 
 ### Routing
 
