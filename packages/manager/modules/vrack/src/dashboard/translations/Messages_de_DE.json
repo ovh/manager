@@ -1,7 +1,7 @@
 {
   "vrack_introduction_title": "vRack zusammenstellen",
   "vrack_introduction_description": "Verwalten Sie die private Verbindung aller Komponenten Ihrer IT-Infrastruktur weltweit. <br/> Mit der Technologie vRack (Virtual Rack) können Sie Ihre Dienste innerhalb eines oder mehrerer gesicherter privater Netzwerke verbinden, isolieren oder aufteilen.",
-  "vrack_introduction_change_owner": "Sie können auch <a href=\"{{ uri }}\" target=\"_blank\">den Inhaber wechseln</a>, wenn Sie dies möchten.",
+  "vrack_introduction_change_owner": "Sie können auch <a href=\"{{ uri }}\" target=\"_blank\" data-track-on=\"click\" data-track-type=\"action\" data-track-name=\"{{ trackLabel }}\">den Inhaber wechseln</a>, wenn Sie dies möchten.",
   "vrack_description_title": "Beschreibung Ihres vRack",
   "vrack_guide_link_text": "Möchten Sie mehr erfahren? Nutzen Sie unsere Anleitung.",
   "vrack_change_owner_link_text": "Inhaber wechseln",

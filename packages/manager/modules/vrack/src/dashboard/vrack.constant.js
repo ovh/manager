@@ -46,9 +46,14 @@ export const STATUS = {
   delivered: 'delivered',
 };
 
+export const VRACK_DASHBOARD_TRACKING_PREFIX = 'vrack::dashboard';
+export const VRACK_ACTIONS_SUFFIX = 'action';
+
 export default {
   FEATURE_NAMES,
   POLLING_INTERVAL,
   STATUS,
   VRACK_URLS,
+  VRACK_DASHBOARD_TRACKING_PREFIX,
+  VRACK_ACTIONS_SUFFIX,
 };

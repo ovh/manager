@@ -1,7 +1,7 @@
 {
   "vrack_introduction_title": "Composer votre vRack",
   "vrack_introduction_description": "Gérez l'interconnexion privée de tous les composants de votre infrastructure informatique, partout dans le monde. <br/> La technologie vRack (baie virtuelle) permet de connecter, isoler ou répartir vos services au sein d'un ou plusieurs réseau privés et sécurisés.",
-  "vrack_introduction_change_owner": "Vous avez aussi la possibilité de <a href=\"{{ uri }}\" target=\"_blank\">changer de propriétaire</a> si vous le désirez.",
+  "vrack_introduction_change_owner": "Vous avez aussi la possibilité de <a href=\"{{ uri }}\" target=\"_blank\" data-track-on=\"click\" data-track-type=\"action\" data-track-name=\"{{ trackLabel }}\">changer de propriétaire</a> si vous le désirez.",
   "vrack_description_title": "Description de votre vRack",
   "vrack_guide_link_text": "Vous voulez en savoir plus ? Suivez notre guide.",
   "vrack_change_owner_link_text": "changer de propriétaire",

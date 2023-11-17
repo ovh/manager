@@ -1,7 +1,7 @@
 {
   "vrack_introduction_title": "Diseñar el vRack",
   "vrack_introduction_description": "Gestione la interconexión privada de todos los componentes de su infraestructura informática, en todo el mundo. <br/> El vRack es un rack virtual que permite conectar, aislar o repartir los servicios dentro de una o más redes privadas.",
-  "vrack_introduction_change_owner": "También puede <a href=\"{{ uri }}\" target=\"_blank\">cambiar de propietario</a> si así lo desea.",
+  "vrack_introduction_change_owner": "También puede <a href=\"{{ uri }}\" target=\"_blank\" data-track-on=\"click\" data-track-type=\"action\" data-track-name=\"{{ trackLabel }}\">cambiar de propietario</a> si así lo desea.",
   "vrack_description_title": "Descripción del vRack",
   "vrack_guide_link_text": "¿Quiere más información? Consulte nuestra guía.",
   "vrack_change_owner_link_text": "cambiar de propietario",
