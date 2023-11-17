@@ -4,6 +4,7 @@
   'msc-tail-logs',
   'msc-tile',
   'msc-advices',
+  'msc-network-tile',
 ].forEach((component) =>
   import(
     `../../components/${component}/loader/index.js`

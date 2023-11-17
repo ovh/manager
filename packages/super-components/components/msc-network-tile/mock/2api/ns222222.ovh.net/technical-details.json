@@ -1,0 +1,157 @@
+{
+  "baremetalServers": {
+    "bandwidth": {
+      "aggregation": null,
+      "burst": 0,
+      "guaranteed": false,
+      "level": 1000,
+      "limit": 25,
+      "upgradable": [
+        {
+          "planCode": "traffic-unlimited-1000-mum",
+          "productName": "traffic-unlimited-1000-apac",
+          "productType": "cloud_service",
+          "prices": [
+            {
+              "capacities": ["installation"],
+              "description": "rental (only applicable for 1 time)",
+              "interval": 0,
+              "duration": "P1M",
+              "maximumQuantity": null,
+              "maximumRepeat": 1,
+              "minimumQuantity": 1,
+              "minimumRepeat": 1,
+              "price": {
+                "currencyCode": "EUR",
+                "text": "0.00 €",
+                "value": 0
+              },
+              "priceInUcents": 0,
+              "pricingMode": "degressivity12",
+              "pricingType": "rental"
+            },
+            {
+              "capacities": ["upgrade"],
+              "description": "rental (only applicable for 1 time)",
+              "interval": 0,
+              "duration": "P1M",
+              "maximumQuantity": null,
+              "maximumRepeat": 1,
+              "minimumQuantity": 1,
+              "minimumRepeat": 1,
+              "price": {
+                "currencyCode": "EUR",
+                "text": "0.00 €",
+                "value": 0
+              },
+              "priceInUcents": 0,
+              "pricingMode": "degressivity12",
+              "pricingType": "rental"
+            },
+            {
+              "capacities": ["renew"],
+              "description": "rental for 1 month",
+              "interval": 1,
+              "duration": "P1M",
+              "maximumQuantity": null,
+              "maximumRepeat": null,
+              "minimumQuantity": 1,
+              "minimumRepeat": 1,
+              "price": {
+                "currencyCode": "EUR",
+                "text": "400.00 €",
+                "value": 400
+              },
+              "priceInUcents": 40000000000,
+              "pricingMode": "degressivity12",
+              "pricingType": "rental"
+            }
+          ],
+          "serviceId": 119808601
+        }
+      ],
+      "serviceId": 119808601
+    },
+    "gpu": null,
+    "memory": {
+      "ecc": true,
+      "frequency": 3200,
+      "ramType": "DDR4",
+      "size": 32,
+      "upgradable": [],
+      "serviceId": 119811261
+    },
+    "server": {
+      "cpu": {
+        "boost": 4.7,
+        "brand": "Intel",
+        "cores": 6,
+        "frequency": 3.5,
+        "model": "Xeon-E 2386G",
+        "number": 1,
+        "score": 13976,
+        "threads": 12
+      },
+      "extensionCard": null,
+      "frame": {
+        "dualPowerSupply": false,
+        "maxNbDisks": null,
+        "model": "OVH",
+        "size": "0.5U"
+      },
+      "network": null,
+      "range": "advance",
+      "services": {
+        "antiddos": "standard",
+        "includedBackup": 500,
+        "sla": 99.95,
+        "ipmiAvailable": false,
+        "ipv4RangeIncluded": null,
+        "ipv6RangeIncluded": null,
+        "kvmipAvailable": false,
+        "olaAvailable": false,
+        "secureComputingTechnology": null,
+        "supportLevel": null
+      },
+      "useCase": null,
+      "upgradable": [],
+      "serviceId": 119811259
+    },
+    "storage": {
+      "disks": [
+        {
+          "capacity": 512,
+          "dwpd": null,
+          "interface": "NVMe",
+          "latency": null,
+          "number": 2,
+          "read": null,
+          "specs": "2.5in 7mm",
+          "technology": "SSD",
+          "write": null,
+          "usage": "data",
+          "raid": "Soft RAID"
+        }
+      ],
+      "hotSwap": false,
+      "raid": "Soft RAID",
+      "raidDetails": {
+        "cardModel": null,
+        "cardSize": null,
+        "type": "Soft RAID"
+      },
+      "upgradable": [],
+      "serviceId": 119811262
+    },
+    "vrack": {
+      "aggregation": null,
+      "burst": 0,
+      "guaranteed": true,
+      "level": 1000,
+      "limit": 0,
+      "upgradable": [],
+      "serviceId": 12345678
+    }
+  },
+  "nutanixCluster": null
+}

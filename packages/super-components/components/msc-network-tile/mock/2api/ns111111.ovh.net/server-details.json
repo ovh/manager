@@ -1,0 +1,76 @@
+{
+  "expiration": "2024-03-20T00:00:00.000Z",
+  "netbootLabel": "rescue64-pro - [DEPRECATED, REMOVAL ON 2023-10-03] Customer rescue system (Debian-8-based)",
+  "order": [
+    "failoverIP",
+    "kvm",
+    "ip",
+    "traffic",
+    "backupStorage",
+    "ipMigration",
+    "supportLevel"
+  ],
+  "canOrder": true,
+  "canOrderBandwith": false,
+  "canOrderVrackBandwith": true,
+  "canOrderUsbDisk": false,
+  "canOrderQuota": true,
+  "canResiliateBandwidth": true,
+  "canResiliateVrackBandwidth": true,
+  "engagement": {
+    "endDate": "2024-03-20",
+    "endRule": {
+      "possibleStrategies": [
+        "CANCEL_SERVICE",
+        "STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE"
+      ],
+      "strategy": "REACTIVATE_ENGAGEMENT"
+    }
+  },
+  "availableProfessionalUse": false,
+  "hasProfessionalUse": false,
+  "commercialRange": "Advance-1 Gen 2",
+  "isExpired": false,
+  "isCachecade": false,
+  "raidController": false,
+  "typeDisk": "NVME",
+  "nbPhysicalDisk": 2,
+  "diskSize": 549756,
+  "nbDisk": 2,
+  "totalSize": 1099512,
+  "otherDisk": [],
+  "ipv6": "2402:1f00:8300:1e1::/64",
+  "description": "Advance-1 Gen 2",
+  "state": "OK",
+  "diskGroups": [
+    {
+      "defaultHardwareRaidSize": null,
+      "description": "2 X Disk NVME 512 GB, JBOD",
+      "diskType": "NVME",
+      "diskGroupId": 1,
+      "raidController": null,
+      "numberOfDisks": 2,
+      "defaultHardwareRaidType": null,
+      "diskSize": {
+        "value": 512,
+        "unit": "GB"
+      }
+    }
+  ],
+  "ip": "321.456.1.789",
+  "os": "none_64",
+  "reverse": "ns111111testdureverse.ovh.net",
+  "datacenter": "YNM_1",
+  "rack": "YNM0101A02B",
+  "bootId": 1122,
+  "serverId": 987654,
+  "monitored": true,
+  "rootDevice": null,
+  "name": "ns111111.ovh.net",
+  "displayName": "ns111111.ovh.net",
+  "serviceId": 5544332211,
+  "canTakeRendezVous": false,
+  "shouldReengage": false,
+  "noIntervention": false,
+  "newUpgradeSystem": true
+}

@@ -1,0 +1,10 @@
+{
+  "status": "active",
+  "description": "Configuration deployed",
+  "interfaces": [
+    {
+      "type": "vrack",
+      "macs": ["a0:12:3b:56:78:cd", "a0:21:3f:57:28:bb"]
+    }
+  ]
+}

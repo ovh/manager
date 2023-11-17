@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+        />
+        <title>Dev msc-msc-network-tile</title>
+        <link rel="stylesheet" href="/build/msc-network-tile.css" />
+    </head>
+    <body>
+        <section
+            style="
+                display: grid;
+                grid-gap: 30px;
+                grid-template-columns: repeat(3, 1fr);
+            "
+        >
+            <msc-network-tile
+                locale="fr-FR"
+                service-name="ns111111.ovh.net"
+            ></msc-network-tile>
+            <msc-network-tile
+                locale="en-GB"
+                service-name="ns222222.ovh.net"
+            ></msc-network-tile>
+        </section>
+        <script type="module">
+            !window.ods &&
+                (window.ods = { config: { logging: { active: true } } });
+            !window.process &&
+                (window.process = { env: { NODE_ENV: 'development' } });
+        </script>
+
+        <script type="module" src="/build/msc-network-tile.esm.js"></script>
+        <script nomodule src="/build/msc-network-tile.js"></script>
+    </body>
+</html>

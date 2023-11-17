@@ -1,0 +1,24 @@
+.msc-network-tile-wrapper {
+  display: block;
+  text-decoration: none;
+  padding: var(--ods-size-01);
+
+  .network-tile-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: var(--ods-size-01);
+
+    .tooltiplinks {
+      display: inline-grid;
+    }
+
+    .link-icon {
+      margin-left: var(--ods-size-03);
+    }
+  }
+
+  .block {
+    position: relative;
+  }
+}

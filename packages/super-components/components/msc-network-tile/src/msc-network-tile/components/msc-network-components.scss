@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.iploadbalancerBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.contentClipboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.clipboard {
+  flex-grow: 1;
+}
+.button-clipboard {
+  padding-left: var(--ods-size-04);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  width: 50%;
+  box-sizing: border-box;
+}

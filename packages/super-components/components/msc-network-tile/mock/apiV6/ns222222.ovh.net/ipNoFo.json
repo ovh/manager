@@ -1,0 +1,17 @@
+{
+  "organisationId": null,
+  "canBeTerminated": true,
+  "rir": null,
+  "campus": "GRA",
+  "version": 4,
+  "bringYourOwnIp": false,
+  "routedTo": {
+    "serviceName": "ns111111.ovh.net"
+  },
+  "isAdditionalIp": false,
+  "ip": "51.38.62.212/32",
+  "description": null,
+  "type": "dedicated",
+  "regions": ["eu-west-gra"],
+  "country": "fr"
+}

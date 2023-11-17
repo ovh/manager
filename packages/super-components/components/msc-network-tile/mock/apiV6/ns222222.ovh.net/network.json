@@ -1,0 +1,54 @@
+{
+  "switching": { "name": "bom1-ynm1-sdtor29a-n93" },
+  "routing": {
+    "ipv4": {
+      "network": "123.456.0.0/24",
+      "gateway": "148.113.0.254",
+      "ip": "123.456.0.3"
+    },
+    "ipv6": {
+      "gateway": "2402:1f00:1234:00ff:00ff:00ff:00ff:00ff",
+      "ip": "4321:1f00:9876:1234:0000:0000:0000:0000/64",
+      "network": "2402:1f00:1234::0000/56"
+    }
+  },
+  "bandwidth": {
+    "OvhToOvh": { "unit": "Mbps", "value": 1000 },
+    "OvhToInternet": { "unit": "Mbps", "value": 1000 },
+    "InternetToOvh": { "unit": "Mbps", "value": 1000 },
+    "type": "standard"
+  },
+  "ola": {
+    "available": true,
+    "supportedModes": ["vrack_aggregation"],
+    "availableModes": [
+      {
+        "default": true,
+        "name": "public(1)+private(1)",
+        "interfaces": [
+          { "type": "public", "aggregation": false, "count": 1 },
+          { "count": 1, "aggregation": false, "type": "vrack" }
+        ]
+      },
+      {
+        "default": false,
+        "interfaces": [{ "count": 2, "type": "vrack", "aggregation": true }],
+        "name": "private(2)"
+      }
+    ]
+  },
+  "connection": { "value": 10000, "unit": "Mbps" },
+  "traffic": {
+    "outputQuotaUsed": { "value": 38654700, "unit": "B" },
+    "inputQuotaUsed": { "unit": "B", "value": 105575700 },
+    "outputQuotaSize": { "value": 27487790694400, "unit": "B" },
+    "inputQuotaSize": { "value": 27487790694400, "unit": "B" },
+    "resetQuotaDate": "2023-11-19",
+    "isThrottled": false
+  },
+  "vmac": { "supported": true },
+  "vrack": {
+    "type": "standard",
+    "bandwidth": { "unit": "Mbps", "value": 2000 }
+  }
+}

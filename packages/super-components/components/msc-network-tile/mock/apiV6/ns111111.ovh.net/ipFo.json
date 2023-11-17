@@ -1,0 +1,17 @@
+{
+  "organisationId": null,
+  "canBeTerminated": true,
+  "rir": "RIPE",
+  "campus": "GRA",
+  "version": 4,
+  "bringYourOwnIp": false,
+  "routedTo": {
+    "serviceName": "ns111111.ovh.net"
+  },
+  "isAdditionalIp": true,
+  "ip": "178.33.105.54/32",
+  "description": null,
+  "type": "failover",
+  "regions": ["eu-west-gra"],
+  "country": "fr"
+}
