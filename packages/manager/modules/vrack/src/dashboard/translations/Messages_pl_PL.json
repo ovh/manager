@@ -1,7 +1,7 @@
 {
   "vrack_introduction_title": "Zbuduj infrastrukturę vRack",
   "vrack_introduction_description": "Zarządzaj prywatnym połączeniem wszystkich komponentów Twojej infrastruktury IT na całym świecie. <br/> Technologia vRack (wirtualna szafa) umożliwia podłączenie, odizolowanie i rozdzielenie usług w ramach jednej lub kilku prywatnych, bezpiecznych sieci.",
-  "vrack_introduction_change_owner": "Możesz również <a href=\"{{ uri }}\" target=\"_blank\">zmienić właściciela</a>.",
+  "vrack_introduction_change_owner": "Możesz również <a href=\"{{ uri }}\" target=\"_blank\" data-track-on=\"click\" data-track-type=\"action\" data-track-name=\"{{ trackLabel }}\">zmienić właściciela</a>.",
   "vrack_description_title": "Opis Twojej usługi vRack",
   "vrack_guide_link_text": "Chcesz dowiedzieć się więcej? Zapoznaj się z naszym przewodnikiem.",
   "vrack_change_owner_link_text": "zmiana właściciela",

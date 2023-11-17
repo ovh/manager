@@ -1,7 +1,7 @@
 {
   "vrack_introduction_title": "Criar um vRack",
   "vrack_introduction_description": "Faça a gestão da interligação privada de todos os componentes da sua infraestrutura informática por todo o mundo. <br/> A tecnologia vRack (rack virtual) permite ligar, isolar ou repartir os seus serviços no seio de uma ou várias redes privadas e seguras.",
-  "vrack_introduction_change_owner": "Também pode <a href=\"{{ uri }}\" target=\"_blank\">mudar de proprietário</a>, se desejar.",
+  "vrack_introduction_change_owner": "Também pode <a href=\"{{ uri }}\" target=\"_blank\" data-track-on=\"click\" data-track-type=\"action\" data-track-name=\"{{ trackLabel }}\">mudar de proprietário</a>, se desejar.",
   "vrack_description_title": "Descrição do seu vRack",
   "vrack_guide_link_text": "Deseja saber mais? Consulte o nosso manual.",
   "vrack_change_owner_link_text": "mudar de proprietário",

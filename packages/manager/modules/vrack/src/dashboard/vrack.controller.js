@@ -30,6 +30,8 @@ import {
   FEATURE_NAMES,
   POLLING_INTERVAL,
   STATUS,
+  VRACK_DASHBOARD_TRACKING_PREFIX,
+  VRACK_ACTIONS_SUFFIX,
   VRACK_URLS,
 } from './vrack.constant';
 import arrowIcon from '../../assets/icon_vrack-mapper-arrows.svg';
@@ -48,6 +50,7 @@ export default class VrackMoveDialogCtrl {
     OvhApiVrack,
     OvhApiMe,
     CucVrackService,
+    atInternet,
   ) {
     this.$scope = $scope;
     this.$q = $q;
@@ -60,6 +63,8 @@ export default class VrackMoveDialogCtrl {
     this.OvhApiVrack = OvhApiVrack;
     this.OvhApiMe = OvhApiMe;
     this.vrackService = CucVrackService;
+    this.atInternet = atInternet;
+    this.changeOwnerTrackLabel = `${VRACK_DASHBOARD_TRACKING_PREFIX}::change-owner`;
   }
 
   $onInit() {
@@ -659,6 +664,7 @@ export default class VrackMoveDialogCtrl {
   }
 
   addSelectedServices() {
+    this.trackClick('add');
     this.loaders.adding = true;
     return this.$q
       .all(
@@ -772,6 +778,7 @@ export default class VrackMoveDialogCtrl {
   }
 
   deleteSelectedServices() {
+    this.trackClick('remove');
     this.loaders.deleting = true;
     return this.$q
       .all(
@@ -856,7 +863,17 @@ export default class VrackMoveDialogCtrl {
       });
   }
 
+  trackClick(hit, action = true) {
+    this.atInternet.trackClick({
+      name: `${VRACK_DASHBOARD_TRACKING_PREFIX}${
+        action ? `::${VRACK_ACTIONS_SUFFIX}` : ''
+      }::${hit}`,
+      type: 'action',
+    });
+  }
+
   moveSelectedService() {
+    this.trackClick('move');
     this.goToMoveDialog(
       merge(this.form.serviceToMove, { vrack: this.serviceName }),
     );
