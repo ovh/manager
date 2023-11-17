@@ -1,7 +1,7 @@
-export default class OctaviaLoadBalancerListenerEditionCtrl {
+export default class OctaviaLoadBalancerPoolsCreateCtrl {
   /* @ngInject */
-  constructor(OctaviaLoadBalancerListenersService, Alerter, $translate) {
-    this.OctaviaLoadBalancerListenersService = OctaviaLoadBalancerListenersService;
+  constructor(OctaviaLoadBalancerPoolsService, Alerter, $translate) {
+    this.OctaviaLoadBalancerPoolsService = OctaviaLoadBalancerPoolsService;
     this.Alerter = Alerter;
     this.$translate = $translate;
   }
@@ -9,30 +9,37 @@ export default class OctaviaLoadBalancerListenerEditionCtrl {
   $onInit() {
     this.loading = false;
     this.model = {
-      name: this.listener.name,
-      port: this.listener.port,
-      protocol: this.listener.protocol,
-      pool: this.pools.find((pool) => pool.id === this.listener.defaultPoolId),
+      name: '',
+      algorithm: null,
+      protocol: null,
+      persistentSession: null,
+      cookieName: '',
+      hasSession: false,
     };
   }
 
   submit() {
     this.loading = true;
-    this.trackEditAction('confirm');
-    this.OctaviaLoadBalancerListenersService.editListener(
+    this.trackCreateAction('confirm');
+    this.OctaviaLoadBalancerPoolsService.createPool(
       this.projectId,
       this.region,
-      this.listener.id,
+      this.loadbalancerId,
       this.model.name,
-      this.model.pool?.id,
+      this.model.algorithm.value,
+      this.model.protocol,
+      this.model.persistentSession?.value,
+      this.model.cookieName,
     )
       .then(async () => {
-        this.trackEditPage('success');
+        this.trackCreatePage('success');
         this.Alerter.set(
           'alert-success',
           this.$translate.instant(
-            'octavia_load_balancer_listeners_create_success',
-            { listener: this.model.name },
+            'octavia_load_balancer_pools_create_success',
+            {
+              pool: this.model.name,
+            },
           ),
           null,
           'octavia.alerts.global',
@@ -40,7 +47,7 @@ export default class OctaviaLoadBalancerListenerEditionCtrl {
         await this.goBack(true);
       })
       .catch((error) => {
-        this.trackEditPage('error');
+        this.trackCreatePage('error');
         this.Alerter.error(
           this.$translate.instant('octavia_load_balancer_global_error', {
             message: error.data?.message,
@@ -55,7 +62,7 @@ export default class OctaviaLoadBalancerListenerEditionCtrl {
   }
 
   cancel() {
-    this.trackEditAction('cancel');
+    this.trackCreateAction('cancel');
     this.goBack();
   }
 }

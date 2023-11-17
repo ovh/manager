@@ -46,7 +46,7 @@ export default class OctaviaLoadBalancerListenersCtrl {
         this.Alerter.error(
           this.$translate.instant('octavia_load_balancer_global_error', {
             message: error.data?.message,
-            requestId: error.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
+            requestId: error.headers('X-Ovh-Queryid'),
           }),
           'octavia.alerts.global',
         );
