@@ -23,7 +23,7 @@
         <a
             data-ng-href="{{:: $ctrl.getListenerEditionLink($row)}}"
             data-track-on="click"
-            data-track-name="{{:: $ctrl.trackRoot + '::edit'}}"
+            data-track-name="{{:: $ctrl.trackRoot + $ctrl.LISTENER_EDITION_TRACKING_SUFFIX}}"
             data-track-type="action"
         >
             <span data-ng-bind="::$value"></span>
@@ -42,7 +42,7 @@
         <a
             data-ng-href="{{:: $ctrl.getPoolDetailLink($row)}}"
             data-track-on="click"
-            data-track-name="{{:: $ctrl.trackRoot + '::pool::detail'}}"
+            data-track-name="{{:: $ctrl.trackRoot + $ctrl.POOL_DETAIL_TRACKING_SUFFIX}}"
             data-track-type="action"
         >
             <span data-ng-bind="::$value"></span>
