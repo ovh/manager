@@ -11,7 +11,7 @@ export default {
   },
   US: {
     config: {
-      level2: '67',
+      level2: '88',
     },
   },
 };
