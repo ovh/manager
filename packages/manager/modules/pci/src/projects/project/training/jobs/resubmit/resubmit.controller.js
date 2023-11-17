@@ -53,6 +53,6 @@ export default class PciTrainingJobsResubmitController {
   }
 
   getResubmitCliCommand() {
-    return `job run --from ${this.job.id}`;
+    return `job rerun ${this.job.id}`;
   }
 }
