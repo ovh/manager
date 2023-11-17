@@ -3,6 +3,10 @@ import flatten from 'lodash/flatten';
 import camelCase from 'lodash/camelCase';
 import range from 'lodash/range';
 import set from 'lodash/set';
+import Inputs from '../../inputs/inputs.class';
+import {
+  INPUTS_RULES
+} from '../../inputs/constants';
 
 export default class ServerInstallationGabaritCtrl {
   /* @ngInject */
@@ -31,6 +35,8 @@ export default class ServerInstallationGabaritCtrl {
   }
 
   $onInit() {
+    this.$scope.inputRules = INPUTS_RULES;
+
     this.$scope.installation = {
       server: { ...this.server },
       familyType: [],
@@ -134,6 +140,24 @@ export default class ServerInstallationGabaritCtrl {
     });
   }
 
+  static setSizeModalDialog(bigSize) {
+    document
+      .querySelector('[class*="modal-dialog"]')
+      .setAttribute(
+        'class',
+        bigSize ? 'modal-dialog dedicated-server-large-modal' : 'modal-dialog',
+      );
+  }
+
+  // ------CUSTOME STEP MODAL------
+  static reduceModal() {
+    ServerInstallationGabaritCtrl.setSizeModalDialog(false);
+  }
+
+  static extendModal() {
+    ServerInstallationGabaritCtrl.setSizeModalDialog(true);
+  }
+
   load() {
     this.Server.getPersonalTemplates(this.$stateParams.productId)
       .then((templateList) => {
@@ -183,10 +207,14 @@ export default class ServerInstallationGabaritCtrl {
     this.$scope.installation.selectGabarit = gabarit;
     this.$scope.installation.selectLanguage = this.$scope.installation.selectGabarit.defaultLanguage;
     this.$scope.installation.selectSoftRaidOnlyMirroring = this.$scope.installation.selectGabarit.softRaidOnlyMirroring;
+
+    this.$scope.installation.inputs =
+      this.$scope.installation.selectGabarit.inputs || [];
   }
 
   clearErrorPersonalTemplate() {
     this.$scope.errorGab.ws = null;
+    ServerInstallationGabaritCtrl.reduceModal();
   }
 
   static getDisks(disks) {
@@ -219,6 +247,10 @@ export default class ServerInstallationGabaritCtrl {
       useSpla: false,
       validForm: true,
     };
+
+    if (this.$scope.installation.inputs.length > 0) {
+      ServerInstallationGabaritCtrl.extendModal();
+    }
 
     this.Server.getPartitionSchemesByPriority(
       this.$stateParams.productId,
@@ -342,6 +374,7 @@ export default class ServerInstallationGabaritCtrl {
     });
 
     this.$scope.loader.loading = true;
+    const inputs = new Inputs(this.$scope.installation.inputs);
     this.Server.startInstallation(
       this.$stateParams.productId,
       this.$scope.installation.selectGabarit.id,
@@ -364,6 +397,7 @@ export default class ServerInstallationGabaritCtrl {
           this.$scope.installation.nbDiskUse === 1 &&
           !this.$scope.informations.raidController,
       },
+      inputs.answersHash2userMetadata(this.$scope.installation.input),
     )
       .then(
         (task) => {
