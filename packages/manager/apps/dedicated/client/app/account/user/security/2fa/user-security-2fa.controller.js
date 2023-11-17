@@ -8,6 +8,7 @@ export default [
   '$rootScope',
   '$scope',
   '$state',
+  '$stateParams',
   '$translate',
   'Alerter',
   'atInternet',
@@ -22,6 +23,7 @@ export default [
     $rootScope,
     $scope,
     $state,
+    $stateParams,
     $translate,
     Alerter,
     atInternet,
@@ -398,7 +400,7 @@ export default [
         chapter3: 'authentication',
       });
 
-      $state.go('^');
+      $scope.goBack();
     };
 
     /**
@@ -410,6 +412,15 @@ export default [
       $rootScope.$broadcast('doubleAuthU2F.reload');
       $rootScope.$broadcast('doubleAuthBackupCode.reload');
       if (!$scope.forced) {
+        $scope.goBack();
+      }
+    };
+
+    $scope.goBack = () => {
+      const { redirect_url: redirectUrl } = $stateParams;
+      if (redirectUrl) {
+        window.top.location.href = redirectUrl;
+      } else {
         $state.go('^');
       }
     };

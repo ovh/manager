@@ -3,7 +3,7 @@ import template from './user-security-2fa.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.user.security.mfa', {
-    url: '/mfa',
+    url: '/mfa?redirect_url',
     template,
     controller,
     translations: { value: ['../..'], format: 'json' },
