@@ -42,6 +42,15 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
     // Vars for DKIM configuration inside modal stepper
     this.initializeDkimConfiguratorNoOvh();
 
+    this.services.ExchangeDomains.getDomain(
+      this.$routerParams.organization,
+      this.$routerParams.productId,
+      this.domain.name,
+    ).then((domain) => {
+      console.log("domain.dkimDiagnostics.state = ", domain.dkimDiagnostics.state)
+      this.dkimErrorCode = domain.dkimDiagnostics.errorCode;
+    });
+
     this.services.ExchangeDomains.gettingDNSSettings(
       this.$routerParams.organization,
       this.$routerParams.productId,
