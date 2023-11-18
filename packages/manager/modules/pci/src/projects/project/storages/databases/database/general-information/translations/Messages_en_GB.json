@@ -90,7 +90,7 @@
   "pci_databases_general_information_storage_upgrade_link": "Edit additional storage",
   "pci_databases_general_information_fork": "Duplicate (Fork)",
   "pci_databases_general_information_kafka_schema_registry_label": "Schema Registry",
-  "pci_databases_general_information_kafka_schema_registry_content": "HTTP REST service interface for storing Apache Kafka schemas (based on project {{ projectLink }}).",
+  "pci_databases_general_information_kafka_schema_registry_content": "HTTP REST service interface for storing Apache Kafka schemas (based on {{ projectLink }}) project.",
   "pci_databases_general_information_kafka_schema_registry_enable": "Activate",
   "pci_databases_general_information_kafka_schema_registry_disable": "Disable",
   "pci_databases_general_information_kafka_schema_registry_service_uri_label": "Schema Registry Service URI",

@@ -15,9 +15,9 @@
   "netapp_onboarding_storage_title": "Storage and backups",
   "netapp_onboarding_volume_acl_title": "ACL management",
   "netapp_onboarding_volume_snapshots_title": "Snapshot management",
-  "netapp_onboarding_bullet_point_1": "A high-performance, high-availability file storage service fully managed by OVHcloud, based on the NetApp ONTAP file system.",
+  "netapp_onboarding_bullet_point_1": "A high performance, high availability file storage service, fully managed by OVHcloud and based on the NetApp ONTAP file system.",
   "netapp_onboarding_bullet_point_2": "Storage capacity from 1 TB to 58 TB per service and guaranteed performance provisioning per terabyte.",
   "netapp_onboarding_bullet_point_2_emphasis": "64 MB/s and 4000 IOPS per TB of provisioned capacity.",
-  "netapp_onboarding_bullet_point_3": "Available for different Linux workloads, virtualized environments via the NFS protocol.",
-  "netapp_onboarding_bullet_point_4": "Provides a set of features: creation and management of your snapshots, management of ACLs, volume management..."
+  "netapp_onboarding_bullet_point_3": "Available for different Linux workloads and virtualised environments, via the NFS protocol.",
+  "netapp_onboarding_bullet_point_4": "Provides a set of features: snapshots creation and management, ACLs and volume management, etc.)"
 }
