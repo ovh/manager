@@ -1654,10 +1654,10 @@
   "exchange_tab_domain_diagnostic_dkim_activation_ovhcloud": "We will configure DKIM for you. It may take 24 hours to fully activate.",
   "exchange_tab_domain_diagnostic_dkim_activation_success": "DKIM configuration in progress. Please note that the update may take up to 24 hours to propagate.",
   "exchange_tab_domain_diagnostic_dkim_activation_error": "An error occurred while configuring the DKIM.",
-  "exchange_ACTION_add_outlook_type_MAC_X86_2019": "MAC OS 32bits (2019)",
-  "exchange_ACTION_add_outlook_type_MAC_X86_2021": "MAC OS 32bits (2021)",
-  "exchange_ACTION_add_outlook_type_WINDOWS_X86_2019": "Windows 32bits (2019)",
-  "exchange_ACTION_add_outlook_type_WINDOWS_X86_2021": "Windows 32bits (2021)",
-  "exchange_ACTION_add_outlook_type_WINDOWS_X64_2019": "Windows 64bits (2019)",
-  "exchange_ACTION_add_outlook_type_WINDOWS_X64_2021": "Windows 64bits (2021)"
+  "exchange_ACTION_add_outlook_type_MAC_X86_2019": "32-bit MAC OS (2019)",
+  "exchange_ACTION_add_outlook_type_MAC_X86_2021": "32-bit MAC OS (2021)",
+  "exchange_ACTION_add_outlook_type_WINDOWS_X86_2019": "32-bit Windows (2019)",
+  "exchange_ACTION_add_outlook_type_WINDOWS_X86_2021": "32-bit Windows (2021)",
+  "exchange_ACTION_add_outlook_type_WINDOWS_X64_2019": "64-bit Windows (2019)",
+  "exchange_ACTION_add_outlook_type_WINDOWS_X64_2021": "64-bit Windows (2021)"
 }
