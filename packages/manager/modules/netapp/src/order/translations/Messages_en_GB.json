@@ -18,5 +18,5 @@
   "netapp_order_commitment_payment": "Payment methods",
   "netapp_order_confirm": "Confirm",
   "netapp_order_performance_level_type_Premium_additionnal_description": "64 MB/s and 4,000 IOPS per TB provisioned.",
-  "netapp_order_performance_customization": "When you provision your capacity, you will also define the performance level of your service. As a reminder, 64 MB/s and 4000 IOPS per TB provisioned."
+  "netapp_order_performance_customization": "When you provision your capacity, you can also define the performance level of your service. As a reminder, 64 MB/s and 4000 IOPS per TB provisioned."
 }
