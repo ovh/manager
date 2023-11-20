@@ -1,0 +1,97 @@
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Navigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import {
+  ODS_SELECT_SIZE,
+  OdsSelectValueChangeEvent,
+} from '@ovhcloud/ods-components/select';
+import { OsdsSelect, OsdsSelectOption, } from '@ovhcloud/ods-components/select/react';
+import { OsdsText } from '@ovhcloud/ods-components/text/react';
+import { OsdsPagination } from '@ovhcloud/ods-components/pagination/react';
+import { getListingIcebergV6 } from '@/api';
+
+import Datagrid from '@/components/layout-helpers/Listing/dataGrid';
+import Loading from '@/components/Loading/Loading';
+import ErrorBanner from '@/components/Error/Error';
+import appConfig from '@/{{this.appName}}.config';
+import Breadcrumb, {
+  BreadcrumbHandleParams,
+} from '@/components/Breadcrumb/Breadcrumb';
+
+export function breadcrumb({ params }: BreadcrumbHandleParams) {
+  return params.serviceName;
+}
+
+const PAGE_SIZE_CHOICES = [10, 25, 50, 100, 300];
+const INITAL_PAGE = 1;
+
+export default function Listing() {
+  const [res, setRes] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const { t } = useTranslation('{{appName}}/listing');
+
+  const { data, isError, error, isLoading, status }: any = useQuery({
+    queryKey: [`servicesListingIceberg-${page}-${pageSize}`],
+    queryFn: () => getListingIcebergV6({ pageSize, page }),
+    staleTime: Infinity,
+    enabled: true,
+  });
+
+  useEffect(() => {
+    if (status === 'success' && data?.data) {
+      if (totalPages === 0) {
+        setTotalPages(Math.ceil(data.totalCount / pageSize));
+      }
+      setTotalCount(data.totalCount)
+      setRes(data?.data);
+    }
+  }, [data?.data]);
+
+  if (isError) {
+    return <ErrorBanner error={error.response} />;
+  }
+
+  if (isLoading && page === 1) {
+    return (<div><Loading/></div>)
+  }
+
+  if (data?.length === 0) return <Navigate to="onboarding" />;
+
+  const onOdsPageSizeChange = (event: OdsSelectValueChangeEvent) => {
+    const newPageSize = Number(event.detail.value);
+    setPageSize(newPageSize);
+    setTotalPages(Math.ceil(data.totalCount / newPageSize));
+    setPage(INITAL_PAGE)
+  };
+
+  return (
+    <>
+      <Breadcrumb />
+      <h2>{{appName}}</h2>
+      {res.length && <Datagrid
+        data={res}
+        serviceKey={appConfig.listing.datagrid.serviceKey as string} />}
+      <div className="flex justify-end items-center mt-4">
+        <OsdsSelect
+            inline
+            size={ODS_SELECT_SIZE.md}
+            onOdsValueChange={onOdsPageSizeChange}
+          >
+            <span slot="placeholder">{pageSize}</span>
+            {PAGE_SIZE_CHOICES.map((choice) => <OsdsSelectOption key={choice} value={choice}>{choice}</OsdsSelectOption>)}
+          </OsdsSelect>
+        <OsdsText color="text" className="ml-3">{totalCount} {t('listing_resultats')}</OsdsText>
+        {totalPages > 1 && <OsdsPagination
+            current={page}
+            id="main-pagination"
+            totalPages={totalPages}
+            onClick={(event: any) => setPage(event.target.current)}
+          />}
+      </div> 
+    </>
+  );
+}

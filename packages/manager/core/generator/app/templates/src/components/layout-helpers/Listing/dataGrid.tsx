@@ -18,7 +18,9 @@ type Props = {
 
 export const Datagrid: React.FC<Props> = ({ serviceKey, data }) => {
   const navigate = useNavigate();
-  const tableHeaders = Object.keys(data[0]);
+  const tableHeaders = Object.keys(data[0]).filter(
+    (header) => header !== 'iam',
+  );
   const { t } = useTranslation('{{appName}}/listing');
 
   return (
@@ -48,10 +50,10 @@ export const Datagrid: React.FC<Props> = ({ serviceKey, data }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((service: any, index: number) => (
+        {data.map((service) => (
           <tr
             className="bg-white border-2 border-solid border-ods-primary-100 background-ods-primary-000"
-            key={`datagrid-tr-${tableHeaders[index]}`}
+            key={`datagrid-tr-${crypto.randomUUID()}`}
           >
             {tableHeaders.map((header) => (
               <td

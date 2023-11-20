@@ -20,13 +20,13 @@ const getApiV2AndV6GetEndpointsChoices = ({
   apiV6Endpoints,
   apiV2Endpoints,
 }) => [
-  { type: 'separator', line: 'V2 endpoints' },
-  ...(apiV2Endpoints?.get?.operationList?.map(toChoice) || []),
-  { type: 'separator' },
-  { type: 'separator', line: 'V6 endpoints' },
-  ...(apiV6Endpoints?.get?.operationList?.map(toChoice) || []),
-  { type: 'separator' },
-];
+    { type: 'separator', line: 'V2 endpoints' },
+    ...(apiV2Endpoints?.get?.operationList?.map(toChoice) || []),
+    { type: 'separator' },
+    { type: 'separator', line: 'V6 endpoints' },
+    ...(apiV6Endpoints?.get?.operationList?.map(toChoice) || []),
+    { type: 'separator' },
+  ];
 
 export default (plop) => {
   plop.setGenerator('app', {
@@ -105,6 +105,8 @@ export default (plop) => {
           data.hasDashboard = data.templates.includes('dashboard');
           data.hasOnboarding = data.templates.includes('onboarding');
 
+          data.isApiV6 = data.apiV6Endpoints.get?.operationList.length
+
           if (data.hasListing) {
             const [listingPath, listingFn] =
               data.listingEndpoint?.split('-') || [];
@@ -123,30 +125,29 @@ export default (plop) => {
             data.dashboardEndpointPath = dashboardPath;
             data.dashboardEndpointFn = dashboardFn;
           }
-
           return data.hasListing;
         },
         validate: (input) => input.length > 0,
       },
     ],
-    actions: ({ apiV6Endpoints, apiV2Endpoints, templates, appName }) => {
+    actions: ({ apiV6Endpoints, apiV2Endpoints, templates, appName, isApiV6 }) => {
       const apiV2Files =
         Object.keys(apiV2Endpoints).length > 0
           ? createApiQueryFilesActions({
-              endpoints: apiV2Endpoints,
-              apiVersion: 'v2',
-              appDirectory,
-            })
+            endpoints: apiV2Endpoints,
+            apiVersion: 'v2',
+            appDirectory,
+          })
           : [];
       const apiV6Files =
         Object.keys(apiV6Endpoints).length > 0
           ? createApiQueryFilesActions({
-              endpoints: apiV6Endpoints,
-              apiVersion: 'v6',
-              appDirectory,
-            })
+            endpoints: apiV6Endpoints,
+            apiVersion: 'v6',
+            appDirectory,
+          })
           : [];
-      const pages = createPages(templates, appDirectory);
+      const pages = createPages(templates, appDirectory, isApiV6);
       const translations = createTranslations(templates, appName, appDirectory);
       return [
         {
