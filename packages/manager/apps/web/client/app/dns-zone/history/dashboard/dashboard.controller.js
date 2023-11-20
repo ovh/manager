@@ -24,47 +24,8 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.coreConfig = coreConfig;
   }
 
-  closeVisualizeDnsPopup() {
-    this.vizualizeDnsZoneDataPopup = false;
-  }
-
   checkTwoElementsAreSelected() {
     return this.dnsEntriesForComparison.filter((u) => u.active).length === 2;
-  }
-
-  visualizeDnsDataInPopup(url) {
-    this.loadingDnsZoneData = true;
-    this.DNSZoneService.getDnsFile(url)
-      .then((res) => {
-        this.dnsZoneData = res;
-        this.loadingDnsZoneData = false;
-      })
-      .catch(({ message }) => {
-        this.Alerter.error(
-          this.$translate.instant('dashboard_history_error', { message }),
-        );
-      });
-    this.vizualizeDnsZoneDataPopup = true;
-  }
-
-  closeDnsRestorePopup() {
-    this.vizualizeDnsRestorePopup = false;
-  }
-
-  openModalDnsRestore(creationDate) {
-    this.chosenDateForRestoreDns = creationDate;
-    this.vizualizeDnsRestorePopup = true;
-  }
-
-  confirmRestoreDnsAtDate(creationDate) {
-    this.DNSZoneService.restore(this.zoneId, creationDate)
-      .catch(({ data: { message } }) => {
-        this.Alerter.error(
-          this.$translate.instant('dashboard_history_error', { message }),
-          'dnsZoneAlert',
-        );
-      })
-      .finally(() => this.closeDnsRestorePopup());
   }
 
   downloadDnsZoneFile(url) {
@@ -122,8 +83,6 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.loadingDnsZoneData = false;
     this.zoneId = '';
     this.loading = true;
-    this.vizualizeDnsZoneDataPopup = false;
-    this.vizualizeDnsRestorePopup = false;
 
     this.zoneId = this.$stateParams.productId;
     this.getZoneHistory(this.$stateParams.productId)

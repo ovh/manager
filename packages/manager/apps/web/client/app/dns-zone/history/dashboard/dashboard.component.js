@@ -7,5 +7,7 @@ export default {
   bindings: {
     goBack: '<',
     goToDiffViewer: '<',
+    goToDnsRestore: '<',
+    goToDnsData: '<',
   },
 };

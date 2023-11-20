@@ -10,8 +10,6 @@
     </oui-button>
 </div>
 
-<div data-ovh-alert="dnsZoneAlert"></div>
-
 <div class="row table-responsive">
     <table class="table table-hover">
         <thead>
@@ -69,7 +67,7 @@
                         type="button"
                         data-oui-tooltip="{{:: 'dashboard_history_view_zone' | translate }}"
                         aria-label="{{:: 'dashboard_history_view_zone' | translate }}"
-                        data-ng-click="$ctrl.visualizeDnsDataInPopup(dnsZone.zoneFileUrl)"
+                        data-ng-click="$ctrl.goToDnsData(dnsZone.zoneFileUrl)"
                     >
                         <span
                             style="font-size: 24px;"
@@ -100,7 +98,7 @@
                         type="button"
                         aria-label="{{:: 'dashboard_history_restore' | translate }}"
                         data-oui-tooltip="{{:: 'dashboard_history_restore' | translate }}"
-                        data-ng-click="$ctrl.openModalDnsRestore(dnsZone.creationDate)"
+                        data-ng-click="$ctrl.goToDnsRestore(dnsZone.zoneFileUrl, dnsZone.creationDate)"
                     >
                         <span
                             style="font-size: 24px;"
@@ -112,61 +110,4 @@
             </tr>
         </tbody>
     </table>
-</div>
-
-<div data-ng-if="$ctrl.vizualizeDnsZoneDataPopup">
-    <div class="modal d-block" role="dialog" id="modal-dns-zone-data">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <oui-modal
-                    data-heading="{{:: 'dashboard_history_popup_title' | translate }}"
-                    data-primary-action="$ctrl.closeVisualizeDnsPopup()"
-                    data-primary-label="{{:: 'dashboard_history_close_popup' | translate }}"
-                    data-secondary-disabled="true"
-                    data-on-dismiss="$ctrl.closeVisualizeDnsPopup()"
-                >
-                    <oui-spinner ng-if="$ctrl.loadingDnsZoneData"></oui-spinner>
-                    <div
-                        style="white-space: pre-wrap;"
-                        ng-if="!$ctrl.loadingDnsZoneData"
-                        class="modal-scroll-auto"
-                        ng-bind-html="$ctrl.dnsZoneData"
-                    ></div>
-                </oui-modal>
-            </div>
-        </div>
-    </div>
-    <div class="oui-modal-backdrop"></div>
-</div>
-
-<div data-ng-if="$ctrl.vizualizeDnsRestorePopup">
-    <div class="modal d-block" role="dialog" id="modal-dns-zone-data">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <oui-modal
-                    heading="{{:: 'dashboard_history_restore_modal_title' | translate }}"
-                    primary-action="$ctrl.confirmRestoreDnsAtDate($ctrl.chosenDateForRestoreDns)"
-                    primary-label="{{ :: 'dashboard_history_restore_modal_primary_label' | translate }}"
-                    secondary-action="$ctrl.closeDnsRestorePopup()"
-                    secondary-label="{{ :: 'dashboard_history_restore_modal_secondary_label' | translate }}"
-                    on-dismiss="$ctrl.closeDnsRestorePopup()"
-                >
-                    <p
-                        data-ng-bind-html="'dashboard_history_restore_modal_content' | translate: { date: $ctrl.chosenDateForRestoreDns }"
-                    ></p>
-                    <div
-                        class="alert alert-warning"
-                        role="alert"
-                        data-ng-bind-html="'dashboard_history_restore_modal_warning_message' | translate"
-                    ></div>
-                    <div
-                        class="alert alert-info"
-                        role="alert"
-                        data-ng-bind-html="'dashboard_history_restore_modal_info_message' | translate"
-                    ></div>
-                </oui-modal>
-            </div>
-        </div>
-    </div>
-    <div class="oui-modal-backdrop"></div>
 </div>
