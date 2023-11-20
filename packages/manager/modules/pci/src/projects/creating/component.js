@@ -18,5 +18,6 @@ export default {
     goToState: '<',
     onProjectCreated: '<',
     isDiscoveryProject: '<',
+    isCreatingDiscoveryProject: '<',
   },
 };
