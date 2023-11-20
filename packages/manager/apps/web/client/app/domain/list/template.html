@@ -135,26 +135,101 @@
 
     <oui-datagrid-column
         data-title="::'domains_column_domains_contact_owner' | translate"
-        data-property="whoisOwner"
+        data-property="contactOwner"
         data-type="string"
         data-searchable
         data-sortable
     >
-        <a
-            class="oui-link_icon"
-            data-ng-href="{{::$ctrl.linkContactBuilder($row)}}"
-        >
-            <span data-ng-bind=":: $value"></span>
-            <span
-                class="oui-icon oui-icon-external-link"
-                aria-hidden="true"
-            ></span
-        ></a>
+        <div class="position-relative">
+            <span data-ng-bind=":: $value.id"></span>
+            <button
+                type="button"
+                class="oui-popover-button"
+                data-oui-popover
+                data-oui-popover-scope="$ctrl"
+                data-oui-popover-placement="top"
+                data-oui-popover-template="contactDetails.html"
+                data-oui-popover-open="$rowIndex === $ctrl.contactPopover.rowIndex"
+                data-ng-click="$ctrl.getContactDetails($value.id, $rowIndex)"
+            ></button>
+            <script type="text/ng-template" id="contactDetails.html">
+                <span data-ng-bind=":: $ctrl.contactPopover.data.firstName + ' ' + $ctrl.contactPopover.data.lastName">
+                </span>
+                <br />
+                <span data-ng-bind=":: $ctrl.contactPopover.data.organisationName">
+                </span>
+            </script>
+        </div>
     </oui-datagrid-column>
 
     <oui-datagrid-column
         data-title="::'domains_column_domains_admin_contact' | translate"
-    ></oui-datagrid-column>
+        data-property="contactAdmin"
+        data-sortable
+    >
+        <a
+            class="oui-link_icon"
+            data-ng-if="$value.id === $ctrl.user.auth.account"
+            data-ng-href="{{:: $ctrl.linkUserAccountBuilder($value.id)}}"
+        >
+            <span data-ng-bind=":: $value.id"></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+        </a>
+        <span
+            data-ng-if="$value.id !== $ctrl.user.auth.account"
+            data-ng-bind=":: $value.id"
+        >
+        </span>
+    </oui-datagrid-column>
+
+    <oui-datagrid-column
+        data-title="::'domains_column_domains_billing_contact' | translate"
+        data-property="contactBilling"
+        data-sortable
+    >
+        <a
+            class="oui-link_icon"
+            data-ng-if="$value.id === $ctrl.user.auth.account"
+            data-ng-href="{{:: $ctrl.linkUserAccountBuilder($value.id)}}"
+        >
+            <span data-ng-bind=":: $value.id"></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+        </a>
+        <span
+            data-ng-if="$value.id !== $ctrl.user.auth.account"
+            data-ng-bind=":: $value.id"
+        >
+        </span>
+    </oui-datagrid-column>
+
+    <oui-datagrid-column
+        data-title="::'domains_column_domains_technical_contact' | translate"
+        data-property="contactTech"
+        data-sortable
+    >
+        <a
+            class="oui-link_icon"
+            data-ng-if="$value.id === $ctrl.user.auth.account"
+            data-ng-href="{{:: $ctrl.linkUserAccountBuilder($value.id)}}"
+        >
+            <span data-ng-bind=":: $value.id"></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+        </a>
+        <span
+            data-ng-if="$value.id !== $ctrl.user.auth.account"
+            data-ng-bind=":: $value.id"
+        >
+        </span>
+    </oui-datagrid-column>
 
     <oui-datagrid-column
         data-title="::'domains_column_domains_name_server_type' | translate"
