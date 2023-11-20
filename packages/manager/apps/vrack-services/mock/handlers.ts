@@ -8,7 +8,7 @@ import { getVs, firstVs, secondVs } from './v2/get-vrackservices';
 import vrackList from './v6/get-vrack.json';
 import vrackDetails from './v6/get-vrack-details.json';
 import { getZoneList } from './v2/get-zone-list';
-import { getCart, getVrackItem, getVrackServicesItem } from './v6/orders';
+import { getCart, getVrackItem, getVrackServicesItem } from './order/cart';
 import { Task, OrderStatus, ResponseData } from '../src/api';
 import {
   emptyResponse,
@@ -159,7 +159,6 @@ export const setupPlaywrightHandlers = async (
 ) =>
   Promise.all(
     getConfig(params)
-      .filter(({ disabled }) => !disabled)
       .reverse()
       .map(toPlaywrightMockHandler(context)),
   );

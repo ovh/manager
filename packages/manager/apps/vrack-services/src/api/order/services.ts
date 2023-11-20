@@ -1,5 +1,11 @@
-import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { Cart, Creation, Item, Order, OrderStatus } from './order.type';
+import {
+  Cart,
+  Creation,
+  Item,
+  Order,
+  OrderDetail,
+  OrderStatus,
+} from './order.type';
 import { createFetchDataFn } from '../common';
 
 export const postOrderCartQueryKey = ['post/order/cart'];
@@ -117,21 +123,59 @@ export const postOrderCartCartIdCheckout = async (
     method: 'post',
   })();
 
-export const getOrderStatusQueryKey = (orderId: string) => [
-  `get/me/order/${orderId}/status`,
-];
+export const getOrderList = ({
+  dateFrom,
+  dateTo,
+}: {
+  dateFrom?: Date;
+  dateTo?: Date;
+} = {}) => {
+  const params = new URLSearchParams();
+  if (dateFrom) {
+    params.append('date.from', dateFrom.toISOString());
+  }
+  if (dateTo) {
+    params.append('date.to', dateTo.toISOString());
+  }
+  return createFetchDataFn<number[]>({
+    url: `/me/order${params.size > 0 ? `?${params.toString()}` : ''}`,
+    method: 'get',
+    apiVersion: 'v6',
+  })();
+};
 
 /**
  * Get current status of order
  */
-export const getOrderStatus = (orderId: string) => async (): Promise<
-  OrderStatus
-> =>
-  queryClient.fetchQuery(
-    getOrderStatusQueryKey(orderId),
-    createFetchDataFn<OrderStatus>({
-      url: `/me/order/${orderId}/status`,
-      apiVersion: 'v6',
-      method: 'get',
-    }),
-  );
+export const getOrderStatus = (orderId: number) =>
+  createFetchDataFn<OrderStatus>({
+    url: `/me/order/${orderId}/status`,
+    apiVersion: 'v6',
+    method: 'get',
+  })();
+
+/**
+ * Get product list of order
+ */
+export const getOrderDetailsList = (orderId: number) =>
+  createFetchDataFn<number[]>({
+    url: `/me/order/${orderId}/details`,
+    apiVersion: 'v6',
+    method: 'get',
+  })();
+
+/**
+ * Get details of order details
+ */
+export const getOrderDetails = ({
+  orderId,
+  detailId,
+}: {
+  orderId: number;
+  detailId: number;
+}) =>
+  createFetchDataFn<OrderDetail>({
+    url: `/me/order/${orderId}/details/${detailId}`,
+    apiVersion: 'v6',
+    method: 'get',
+  })();
