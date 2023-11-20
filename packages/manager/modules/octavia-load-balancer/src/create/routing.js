@@ -9,7 +9,9 @@ import {
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('octavia-load-balancer.create', {
     url: '/create',
-    component: 'octaviaLoadBalancerCreate',
+    views: {
+      octaviaLoadBalancerView: 'octaviaLoadBalancerCreate',
+    },
     atInternet: {
       rename: TRACKING_NAME,
     },

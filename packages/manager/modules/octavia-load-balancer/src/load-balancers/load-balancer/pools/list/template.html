@@ -20,7 +20,7 @@
         data-type="string"
         data-prevent-customization
     >
-        <a data-ng-click="$ctrl.goToPool($row)">
+        <a data-ng-href="{{:: $ctrl.getPoolEditionLink($row) }}">
             {{ ::$value }}
         </a>
     </oui-datagrid-column>

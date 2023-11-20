@@ -2,14 +2,14 @@ import angular from 'angular';
 
 import component from './component';
 import routing from './routing';
-import deletion from './delete';
+import editName from './edit-name';
 
-const moduleName = 'ovhManagerOctaviaLoadBalancerPoolsList';
+const moduleName = 'ovhManagerOctaviaLoadBalancerPoolsDetailOverview';
 
 angular
-  .module(moduleName, [deletion])
+  .module(moduleName, [editName])
   .config(routing)
-  .component('octaviaLoadBalancerPoolsList', component)
+  .component('octaviaLoadBalancerPoolsDetailOverview', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,15 +1,11 @@
-export default class OctaviaLoadBalancerPoolDeleteCtrl {
+export default class OctaviaLoadBalancerPoolsDeleteCtrl {
   /* @ngInject */
-  constructor(Alerter, $translate, OctaviaLoadBalancerPoolsService) {
+  constructor($state, Alerter, $translate, OctaviaLoadBalancerPoolsService) {
+    this.$state = $state;
     this.isLoading = false;
     this.Alerter = Alerter;
     this.$translate = $translate;
     this.OctaviaLoadBalancerPoolsService = OctaviaLoadBalancerPoolsService;
-  }
-
-  cancel() {
-    this.trackDeleteAction(`cancel`);
-    this.goBack();
   }
 
   delete() {
@@ -24,9 +20,12 @@ export default class OctaviaLoadBalancerPoolDeleteCtrl {
         this.trackDeletePage(`success`);
         this.Alerter.set(
           'alert-success',
-          this.$translate.instant('octavia_load_balancer_pool_delete_success', {
-            pool: this.poolName,
-          }),
+          this.$translate.instant(
+            'octavia_load_balancer_pools_components_delete_success',
+            {
+              pool: this.poolName,
+            },
+          ),
           null,
           'octavia.alerts.global',
         );
@@ -37,7 +36,7 @@ export default class OctaviaLoadBalancerPoolDeleteCtrl {
         this.Alerter.error(
           this.$translate.instant('octavia_load_balancer_global_error', {
             message: error.data.message,
-            requestId: error.config.headers['X-OVH-MANAGER-REQUEST-ID'],
+            requestId: error.headers('x-ovh-queryId'),
           }),
           'octavia.alerts.global',
         );
