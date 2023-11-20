@@ -82,7 +82,7 @@ export default /* @ngInject */ ($stateProvider) => {
       voucherCode: /* @ngInject */ ($transition$) =>
         $transition$.params().voucherCode,
 
-      isDiscoveryProject: /* @ngInject */ ($transition$) =>
+      isCreatingDiscoveryProject: /* @ngInject */ ($transition$) =>
         $transition$.params().isDiscoveryProject === 'true',
     },
   });
