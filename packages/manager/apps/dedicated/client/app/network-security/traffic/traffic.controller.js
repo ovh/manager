@@ -1,4 +1,5 @@
 import {
+  PAGE_SIZE,
   TRAFFIC_PERIODS,
   TRAFFIC_PERIOD_LIST,
   CHART,
@@ -13,6 +14,7 @@ export default class TrafficController {
     this.TRAFFIC_PERIODS = TRAFFIC_PERIODS;
     this.TRAFFIC_PERIOD_LIST = TRAFFIC_PERIOD_LIST;
     this.CHART = CHART;
+    this.PAGE_SIZE = PAGE_SIZE;
   }
 
   $onInit() {
@@ -110,35 +112,59 @@ export default class TrafficController {
       before,
       subnet: this.subnet,
     };
-    this.networkSecurityService.getTraffic(params).then(({ data }) => {
-      if (data.message) {
-        this.Alerter.error(
-          this.$translate.instant('network_security_dashboard_events_error'),
-          'network_security_error',
-        );
+    this.networkSecurityService
+      .getTraffic(params)
+      .then(({ data }) => {
+        if (data.message) {
+          this.Alerter.error(
+            this.$translate.instant('network_security_dashboard_events_error'),
+            'network_security_error',
+          );
+          return data;
+        }
+        this.results = data;
+        this.resume(after.toISOString(), before, this.subnet);
+        this.loadGraph();
         return data;
-      }
-      this.results = data;
-      this.resume(after.toISOString(), before, this.subnet);
-      this.loadGraph();
-      return data;
-    });
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
+  }
+
+  getAllEvents(cursor, after, before, subnet) {
+    const params = {
+      after,
+      before,
+      subnets: subnet,
+    };
+
+    this.networkSecurityService
+      .getEventsList({
+        cursor,
+        params,
+        pageSize: this.PAGE_SIZE,
+      })
+      .then((response) => {
+        const events = response.data;
+        this.numberOfEvents += events.length;
+        events.forEach((ev) => {
+          this.attacksDetected += ev.vectors.length;
+        });
+        if (response.cursor.next) {
+          this.getAllEvents(response.cursor.next, after, before, subnet);
+        }
+      });
   }
 
   resume(after, before, subnet) {
     // Set number of events
     this.numberOfEvents = 0;
-    this.networkSecurityService
-      .getEvents({
-        after,
-        before,
-        subnets: subnet,
-      })
-      .then(({ data }) => {
-        if (data.events) {
-          this.numberOfEvents = data.events.length;
-        }
-      });
+    // Set attacks detected
+    this.attacksDetected = 0;
+
+    // Get all events to count number of events and detected attacks
+    this.getAllEvents(null, after, before, subnet);
 
     // Set packets dropped
     let packetsDropped = 0;
@@ -165,22 +191,6 @@ export default class TrafficController {
       bandwithCleaned,
       unit,
     )} ${this.units[unit].toUpperCase()}`;
-
-    // Set attacks detected
-    this.attacksDetected = 0;
-    this.networkSecurityService
-      .getEvents({
-        after,
-        before,
-        subnets: subnet,
-      })
-      .then(({ data }) => {
-        if (data.events) {
-          data.events.forEach((ev) => {
-            this.attacksDetected += ev.vectors.length;
-          });
-        }
-      });
   }
 
   updateStackable(value) {

@@ -49,10 +49,13 @@
         </div>
     </div>
     <div
-        data-ng-if="!$ctrl.results"
+        data-ng-if="!$ctrl.results && !$ctrl.isLoading"
         class="text-center m-3"
         data-translate="network_security_dashboard_empty_result"
     ></div>
+    <div class="text-center" data-ng-if="$ctrl.isLoading">
+        <oui-spinner></oui-spinner>
+    </div>
     <div data-ng-if="$ctrl.results">
         <div class="d-flex justify-content-start">
             <div class="oui-box oui-box_light mr-4">
