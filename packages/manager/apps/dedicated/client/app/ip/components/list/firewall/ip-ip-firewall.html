@@ -1,13 +1,10 @@
 <div>
-    <button
-        class="btn btn-default"
-        data-ng-click="IpFirewallCtrl.hideFirewall()"
+    <oui-back-button
+        data-on-click="IpFirewallCtrl.hideFirewall()"
+        data-previous-page="{{:: 'ip_firewall_back_link_title' | translate }}"
     >
-        <em class="fa fa-chevron-left"></em>
-        <span data-translate="common_back"></span>
-    </button>
-
-    <h4 data-translate="ip_firewall_title"></h4>
+        <span data-translate="ip_firewall_title"></span>
+    </oui-back-button>
 
     <p data-translate="ip_firewall_description_1"></p>
     <p class="mt-2" data-translate="ip_firewall_description_2"></p>
