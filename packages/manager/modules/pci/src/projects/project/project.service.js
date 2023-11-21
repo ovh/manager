@@ -25,6 +25,7 @@ export default class {
     const requestHeader = withPaginationMode
       ? {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
+          'X-Pagination-Size': 5000,
         }
       : null;
     return this.$http

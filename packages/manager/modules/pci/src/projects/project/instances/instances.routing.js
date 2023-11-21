@@ -57,13 +57,51 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectsProjectInstanceService,
         projectId,
         getFloatingIps,
+        customerRegions,
       ) =>
         $q
           .all({
-            instances: PciProjectsProjectInstanceService.getAll(projectId),
+            instances: PciProjectsProjectInstanceService.getAll(
+              projectId,
+              customerRegions,
+            ),
             floatingIps: getFloatingIps(),
           })
           .then(({ instances, floatingIps }) => {
+            // @TODO: GS Mock to remove
+            instances.push({
+              id: '7f024a68-2d13-4996-a2d2-60cbfa600e0e',
+              name: 'lz-2-mad1',
+              ipAddresses: [
+                {
+                  ip: '51.79.102.250',
+                  type: 'public',
+                  version: 4,
+                  networkId:
+                    'bc63b98d13fbba642b2653711cc9d156ca7b404d2df009f7227172d37b5280a6',
+                  gatewayIp: '51.79.100.1',
+                },
+                {
+                  ip: '2607:5300:205:300::1fd1',
+                  type: 'public',
+                  version: 6,
+                  networkId:
+                    'bc63b98d13fbba642b2653711cc9d156ca7b404d2df009f7227172d37b5280a6',
+                  gatewayIp: '2607:5300:205:300::1',
+                },
+              ],
+              flavorId: 'f484f66c-2158-47bd-b402-a8a34a492590',
+              imageId: '596b02ad-8c4c-4435-b1f6-626e4fa45fbd',
+              sshKeyId: '6332687063486c68636d5174656a4d3d',
+              created: '2023-10-26T14:02:34Z',
+              region: 'MAD1',
+              monthlyBilling: null,
+              status: 'ACTIVE',
+              planCode: 'b2-7.consumption',
+              operationIds: [],
+              currentMonthOutgoingTraffic: null,
+              isLZ: true,
+            });
             const updatedInstances = map(instances, (instance) => ({
               ...instance,
               floatingIp: floatingIps.find(

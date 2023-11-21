@@ -13,6 +13,24 @@ export default class Instance {
     Object.assign(this, resource);
   }
 
+  /**
+   * check if current instance is local zone
+   * @returns {boolean}: true if local, otherwise false
+   */
+  isLocal() {
+    // @TODO: GS mock return region.type === 'localzone'; use type which will be provided by API
+    return this.region.includes('MAD');
+  }
+
+  /**
+   * check if current instance is global region
+   * @returns {boolean}: true if global, otherwise false
+   */
+  isGlobal() {
+    // @TODO: GS mock region.type === 'globalzone'; use type which will be provided by API
+    return !this.region.includes('MAD');
+  }
+
   canAddSnapshot() {
     return this.isCapabilityEnabled(CAPABILITIES.SNAPSHOT);
   }
