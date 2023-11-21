@@ -14,6 +14,7 @@ export default {
     domainStateEnum: '<',
     domainSuspensionStateEnum: '<',
     domainLockStatusEnum: '<',
+    domainDnssecStateEnum: '<',
     domainNsTypeEnum: '<',
     domainRenewalModeEnum: '<',
     updateFilterParam: '<',
