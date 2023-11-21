@@ -125,7 +125,17 @@ export default class PciInstancesAddController {
         description2: this.$translate.instant(
           `pci_projects_project_instances_add_privateNetwork_${mode}_description2`,
         ),
+        disabled: mode === 'private_mode',
       };
+    });
+
+    // @TODO: GS Mock to remove
+    this.modes.push({
+      name: 'Local private network',
+      label: 'Local private network',
+      description1: 'Oles ipsum...',
+      description2: 'Oles ipsum...',
+      disabled: false,
     });
     this.selectedFloatingIP = null;
     this.loadMessages();
@@ -163,7 +173,11 @@ export default class PciInstancesAddController {
     this.availableRegions = {};
     this.unavailableRegions = {};
 
-    const planCode = `${this.model.flavorGroup.name}.consumption`;
+    const planCode = `${
+      this.model.flavorGroup.name === 'lz2-7'
+        ? 'b2-7'
+        : this.model.flavorGroup.name
+    }.consumption`;
 
     return this.PciProjectsProjectInstanceService.getProductAvailability(
       this.projectId,
@@ -171,7 +185,6 @@ export default class PciInstancesAddController {
       this.coreConfig.getUser().ovhSubsidiary,
     ).then((productCapability) => {
       const productRegionsAllowed = productCapability?.plans[0]?.regions;
-
       Object.entries(this.regions).forEach(([continent, locationsMap]) => {
         // Create datacenters continent groups
         this.availableRegions[continent] = {};
@@ -199,6 +212,126 @@ export default class PciInstancesAddController {
           });
         });
       });
+
+      // @TODO: GS mock to remove
+      this.availableRegions['All locations'].Madrid = [
+        {
+          name: 'GRA11',
+          continentCode: 'EU',
+          datacenterLocation: 'FR',
+          status: 'UP',
+          isLZ: true,
+          services: [
+            {
+              name: 'network',
+              status: 'UP',
+              endpoint: 'https://network.compute.de1.cloud.ovh.net/',
+            },
+            {
+              name: 'volume',
+              status: 'UP',
+              endpoint:
+                'https://volume.compute.de1.cloud.ovh.net/v2/5a6980507c0a40dca362eb9b22d79044',
+            },
+            {
+              name: 'instance',
+              status: 'UP',
+              endpoint:
+                'https://compute.de1.cloud.ovh.net/v2.1/5a6980507c0a40dca362eb9b22d79044',
+            },
+            {
+              name: 'key-manager',
+              status: 'UP',
+              endpoint: 'https://key-manager.de.cloud.ovh.net',
+            },
+            {
+              name: 'octavialoadbalancer',
+              status: 'UP',
+              endpoint: 'https://load-balancer.de1.cloud.ovh.net',
+            },
+            {
+              name: 'workflow',
+              status: 'UP',
+              endpoint: 'https://workflow.de1.cloud.ovh.net/v2',
+            },
+            {
+              name: 'image',
+              status: 'UP',
+              endpoint: 'https://image.compute.de1.cloud.ovh.net/',
+            },
+          ],
+          ipCountries: [
+            'be',
+            'cz',
+            'de',
+            'es',
+            'fi',
+            'fr',
+            'ie',
+            'it',
+            'lt',
+            'nl',
+            'pl',
+            'pt',
+            'uk',
+          ],
+          quota: {
+            region: 'ES1',
+            instance: {
+              maxCores: 2048,
+              maxInstances: 800,
+              maxRam: 16252928,
+              usedCores: 2,
+              usedInstances: 1,
+              usedRAM: 7000,
+            },
+            keypair: {
+              maxCount: 4000,
+            },
+            volume: {
+              maxGigabytes: 320000,
+              usedGigabytes: 0,
+              volumeCount: 0,
+              maxVolumeCount: 8000,
+              maxBackupGigabytes: 4800000,
+              usedBackupGigabytes: 0,
+              volumeBackupCount: 0,
+              maxVolumeBackupCount: 48000,
+            },
+            network: {
+              maxNetworks: 4000,
+              usedNetworks: 3,
+              maxSubnets: 4000,
+              usedSubnets: 3,
+              maxFloatingIPs: 50,
+              usedFloatingIPs: 8,
+              maxGateways: 50,
+              usedGateways: 1,
+            },
+            loadbalancer: {
+              maxLoadbalancers: 100,
+              usedLoadbalancers: 4,
+            },
+            keymanager: {
+              maxSecrets: 400,
+              usedSecrets: 0,
+            },
+          },
+          macroRegion: {
+            code: 'ES',
+            text: 'Madrid',
+          },
+          microRegion: {
+            code: 'ES1',
+            text: 'Madrid (ES1)',
+          },
+          location: "Europe de l'ouest (Espagne)",
+          continent: "Europe de l'ouest",
+          icon: 'oui-flag oui-flag_es',
+          country: 'Espagne',
+          available: true,
+        },
+      ];
     });
   }
 
@@ -435,6 +568,7 @@ export default class PciInstancesAddController {
   }
 
   isRegionAvailable(datacenter) {
+    return true; //@TODO: GS Mock to remove
     return (
       datacenter.isAvailable() &&
       datacenter.hasEnoughQuotaForFlavors(this.model.flavorGroup)
@@ -772,6 +906,8 @@ export default class PciInstancesAddController {
       };
     }
 
+    // @TODO: GS Use post /cloud/project/{serviceName}/region/{regionName}/instance
+    // for local zone instance creation
     return this.PciProjectsProjectInstanceService.save(
       this.projectId,
       this.instance,

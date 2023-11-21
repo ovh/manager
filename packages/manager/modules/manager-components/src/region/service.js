@@ -27,6 +27,7 @@ export default class ovhManagerRegionService {
       SBG: this.$translate.instant('manager_components_region_SBG'),
       BHS: this.$translate.instant('manager_components_region_BHS'),
       GRA: this.$translate.instant('manager_components_region_GRA'),
+      MAD: this.$translate.instant('manager_components_region_MAD'),
       WAW: this.$translate.instant('manager_components_region_WAW'),
       DE: this.$translate.instant('manager_components_region_DE'),
       UK: this.$translate.instant('manager_components_region_UK'),

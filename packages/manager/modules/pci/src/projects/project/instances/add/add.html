@@ -54,11 +54,30 @@
                     data-heading="{{:: continent }}"
                 >
                     <div class="container-fluid px-0">
+                        <p>Global regions ... Oles ipsum...</p>
                         <div class="row">
                             <oui-select-picker
                                 class="d-inline-block col-md-6 col-xl-3 my-3"
                                 data-ng-repeat="(location, datacenters) in datacentersLocation track by location"
-                                data-ng-if="datacenters.length"
+                                data-ng-if="datacenters.length && location !== 'Madrid'"
+                                data-label="{{ location }}"
+                                data-variant="light"
+                                data-picture="{{ ::datacenters[0].icon }}"
+                                data-model="$ctrl.model.datacenter"
+                                data-on-change="$ctrl.model.location = location"
+                                data-match="name"
+                                data-values="datacenters"
+                            >
+                            </oui-select-picker>
+                        </div>
+                        <hr />
+                        <!-- @TODO: GS -->
+                        <p>Local regions ... Oles ipsum</p>
+                        <div class="row">
+                            <oui-select-picker
+                                class="d-inline-block col-md-6 col-xl-3 my-3"
+                                data-ng-repeat="(location, datacenters) in datacentersLocation track by location"
+                                data-ng-if="datacenters.length && location === 'Madrid'"
                                 data-label="{{ location }}"
                                 data-variant="light"
                                 data-picture="{{ ::datacenters[0].icon }}"
@@ -305,6 +324,7 @@
         </div>
 
         <div
+            data-ng-show="false"
             data-ng-if="$ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($ctrl.flavor.type)"
         >
             <oui-checkbox
@@ -381,6 +401,7 @@
                 data-variant="light"
                 data-on-change="$ctrl.onSelectedModeChange(mode)"
                 data-required
+                data-disabled="mode.disabled"
             >
                 <oui-select-picker-section>
                     <p data-translate="{{:: mode.description1}}"></p>
@@ -388,7 +409,7 @@
                 </oui-select-picker-section>
             </oui-select-picker>
         </div>
-        <div>
+        <div data-ng-show="false">
             <oui-field
                 data-size="xl"
                 class="oui-input-group"
@@ -631,6 +652,7 @@
             data-monthly-billing="$ctrl.instance.monthlyBilling"
             data-offer="$ctrl.offer"
             data-addons="$ctrl.addons"
+            data-disabled="true"
         >
         </pci-project-flavor-billing>
 
