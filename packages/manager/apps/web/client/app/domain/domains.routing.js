@@ -38,6 +38,9 @@ export default /* @ngInject */ ($stateProvider) => {
           'unpaid',
           'expired',
         ],
+      domainDnssecStateEnum: () =>
+        // @TODO get enum from schema.models when API is available
+        ['enabled', 'disabled', 'not_supported'],
       domainSuspensionStateEnum: /* @ngInject */ (schema) =>
         schema.models['domain.DomainSuspensionStateEnum'].enum,
       domainLockStatusEnum: /* @ngInject */ (schema) =>

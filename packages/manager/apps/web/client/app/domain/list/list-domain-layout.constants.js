@@ -19,6 +19,12 @@ export const DOMAIN_STATUS = {
   REGISTRY_SUSPENDED: 'registry_suspended',
 };
 
+export const DOMAIN_DNSSEC_STATE = {
+  ENABLED: 'enabled',
+  DISABLED: 'disabled',
+  NOT_SUPPORTED: 'not_supported',
+};
+
 export const DOMAIN_RENEWABLE_STATE = {
   MANUAL_RENEW: 'manual_renew',
   AUTOMATIC_RENEW: 'automatic_renew',
@@ -42,7 +48,7 @@ export const DOMAIN_SUSPENSION_STATE = {
   SUSPENDED: 'suspended',
 };
 
-export const DOMAIN_TRANSFERT_LOCK_STATE = {
+export const DOMAIN_TRANSFER_LOCK_STATE = {
   LOCKED: 'locked',
   LOCKING: 'locking',
   UNAVAILABLE: 'unavailable',
@@ -79,18 +85,13 @@ export const DOMAINS_BADGES_STATUS = {
   [DOMAIN_STATUS.REGISTRY_SUSPENDED]: 'oui-badge_limited-edition',
 };
 
-export const DOMAINS_BADGES_SUSPENSION_STATE = {
-  [DOMAIN_SUSPENSION_STATE.NOT_SUSPENDED]: 'oui-badge_success',
-  [DOMAIN_SUSPENSION_STATE.SUSPENDED]: 'oui-badge_warning',
+export const DOMAINS_BADGES_DNSSEC_STATE = {
+  [DOMAIN_DNSSEC_STATE.ENABLED]: 'oui-badge_success',
+  [DOMAIN_DNSSEC_STATE.DISABLED]: 'oui-badge_error',
+  [DOMAIN_DNSSEC_STATE.NOT_SUPPORTED]: 'oui-badge_success',
 };
 
-export const DOMAINS_BADGES_TRANSFERT_LOCK_STATE = {
-  [DOMAIN_TRANSFERT_LOCK_STATE.LOCKED]: 'oui-badge_success',
-  [DOMAIN_TRANSFERT_LOCK_STATE.LOCKING]: 'oui-badge_warning',
-  [DOMAIN_TRANSFERT_LOCK_STATE.UNAVAILABLE]: 'oui-badge_sold-out',
-  [DOMAIN_TRANSFERT_LOCK_STATE.UNLOCKED]: 'oui-badge_warning',
-  [DOMAIN_TRANSFERT_LOCK_STATE.UNLOCKING]: 'oui-badge_warning',
-};
+export const DOMAIN_COLUMN_DNSSEC = 'DNSSEC';
 
 export const IDN_PREFIX = 'xn--';
 export const LANGUAGE_OVERRIDE = { IN: `en-IN` };
@@ -107,15 +108,16 @@ export const DATE_FORMAT = {
 };
 
 export default {
+  DOMAIN_COLUMN_DNSSEC,
   DOMAIN_OBJECT_KEYS,
   DOMAIN_STATUS,
   DOMAIN_RENEWABLE_STATE,
   DOMAIN_SUSPENSION_STATE,
-  DOMAIN_TRANSFERT_LOCK_STATE,
+  DOMAIN_TRANSFER_LOCK_STATE,
+  DOMAIN_DNSSEC_STATE,
+  DOMAINS_BADGES_DNSSEC_STATE,
   DOMAIN_NAME_SERVER_TYPE,
   DOMAINS_BADGES_STATUS,
-  DOMAINS_BADGES_SUSPENSION_STATE,
-  DOMAINS_BADGES_TRANSFERT_LOCK_STATE,
   DOMAINS_BADGES_RENEWAL_MODE,
   IDN_PREFIX,
   LANGUAGE_OVERRIDE,
