@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('ip_game_mitigation_title'),
+      getIp: /* @ngInject */ ($state) => () => $state.params.ip,
     },
   });
 };
