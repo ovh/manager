@@ -23,6 +23,7 @@ import {
   FLAVORS_WITHOUT_ADDITIONAL_IPS,
 } from './instances.constants';
 
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["getBaseApiRoute"] }] */
 export default class PciProjectInstanceService {
   /* @ngInject */
   constructor(
@@ -65,10 +66,39 @@ export default class PciProjectInstanceService {
     this.FLAVORS_WITHOUT_ADDITIONAL_IPS = FLAVORS_WITHOUT_ADDITIONAL_IPS;
   }
 
-  getAll(projectId) {
-    return this.$http
-      .get(`/cloud/project/${projectId}/instance`)
-      .then(({ data }) => data.map((instance) => new Instance(instance)));
+  getBaseApiRoute(projectId, instance) {
+    const isLocal = instance.isLocal
+      ? instance.isLocal()
+      : new Instance(instance).isLocal();
+    if (isLocal) {
+      return `/cloud/project/${projectId}`; // To replace when api is OK
+      // return `/cloud/project/${projectId}/region/${instance.region}`;
+    }
+    return `/cloud/project/${projectId}`;
+  }
+
+  getAll(projectId, customerRegions) {
+    const localInstances = Promise.all(
+      customerRegions
+        .filter(({ name }) => name.includes('MAD')) // @TODO: replace by region type local
+        .map((region) =>
+          this.$http.get(
+            `/cloud/project/${projectId}/region/${region.name}/instance`,
+          ),
+        ),
+    );
+
+    return this.$q
+      .all({
+        globalInstances: this.$http.get(`/cloud/project/${projectId}/instance`),
+        lzInstances: localInstances,
+      })
+      .then(({ globalInstances, lzInstances }) =>
+        [
+          ...globalInstances.data,
+          ...lzInstances.flatMap(({ data }) => data),
+        ].flatMap((instance) => new Instance(instance)),
+      );
   }
 
   getAllInstanceDetails(projectId) {
@@ -82,10 +112,11 @@ export default class PciProjectInstanceService {
   }
 
   getInstanceFlavor(projectId, instance) {
-    return this.OvhApiCloudProjectFlavor.v6().get({
-      serviceName: projectId,
-      flavorId: instance.flavorId,
-    }).$promise;
+    return this.$http.get(
+      `${this.getBaseApiRoute(projectId, new Instance(instance))}/flavor/${
+        instance.flavorId
+      }`,
+    );
   }
 
   getInstanceDetails(projectId, instance) {
@@ -184,59 +215,62 @@ export default class PciProjectInstanceService {
     );
   }
 
-  delete(projectId, { id: instanceId }) {
-    return this.OvhApiCloudProjectInstance.v6().delete({
-      serviceName: projectId,
-      instanceId,
-    }).$promise;
-  }
-
-  reinstall(projectId, { id: instanceId, image, imageId }) {
-    return this.OvhApiCloudProjectInstance.v6().reinstall(
-      {
-        serviceName: projectId,
-        instanceId,
-      },
-      {
-        imageId: imageId || image.id,
-      },
-    ).$promise;
-  }
-
-  start(projectId, { id: instanceId }) {
-    return this.$http.post(
-      `/cloud/project/${projectId}/instance/${instanceId}/start`,
+  delete(projectId, instance) {
+    return this.$http.delete(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${instance.id}`,
     );
   }
 
-  stop(projectId, { id: instanceId }) {
+  reinstall(projectId, instance) {
     return this.$http.post(
-      `/cloud/project/${projectId}/instance/${instanceId}/stop`,
-    );
-  }
-
-  shelve(projectId, { id: instanceId }) {
-    return this.$http.post(
-      `/cloud/project/${projectId}/instance/${instanceId}/shelve`,
-    );
-  }
-
-  unshelve(projectId, { id: instanceId }) {
-    return this.$http.post(
-      `/cloud/project/${projectId}/instance/${instanceId}/unshelve`,
-    );
-  }
-
-  reboot(projectId, { id: instanceId }, type) {
-    return this.OvhApiCloudProjectInstance.v6().reboot(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${
+        instance.id
+      }/reinstall`,
       {
-        serviceName: projectId,
-        instanceId,
+        imageId: instance.imageId || instance.image.id,
       },
-      {
-        type,
-      },
-    ).$promise;
+    );
+  }
+
+  start(projectId, instance) {
+    return this.$http.post(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${
+        instance.id
+      }/start`,
+    );
+  }
+
+  stop(projectId, instance) {
+    return this.$http.post(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${
+        instance.id
+      }/stop`,
+    );
+  }
+
+  shelve(projectId, instance) {
+    return this.$http.post(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${
+        instance.id
+      }/shelve`,
+    );
+  }
+
+  unshelve(projectId, instance) {
+    return this.$http.post(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${
+        instance.id
+      }/unshelve`,
+    );
+  }
+
+  reboot(projectId, instance, type) {
+    return this.$http.post(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${
+        instance.id
+      }/reboot`,
+      { type },
+    );
   }
 
   getCompatibleRescueImages(projectId, { flavor, image, region }) {
@@ -254,28 +288,30 @@ export default class PciProjectInstanceService {
       );
   }
 
-  rescue(projectId, { id: instanceId }, { id: imageId }) {
-    return this.OvhApiCloudProjectInstance.v6().rescueMode({
-      serviceName: projectId,
-      instanceId,
-      imageId,
-      rescue: true,
-    }).$promise;
+  rescue(projectId, instance, { id: imageId }) {
+    return this.$http.post(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${
+        instance.id
+      }/rescueMode`,
+      { imageId, rescue: true },
+    );
   }
 
-  unrescue(projectId, { id: instanceId }) {
-    return this.OvhApiCloudProjectInstance.v6().rescueMode({
-      serviceName: projectId,
-      instanceId,
-      rescue: false,
-    }).$promise;
+  unrescue(projectId, instance) {
+    return this.$http.post(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${
+        instance.id
+      }/rescueMode`,
+      { rescue: false },
+    );
   }
 
-  activeMonthlyBilling(projectId, { id: instanceId }) {
-    return this.OvhApiCloudProjectInstance.v6().activeMonthlyBilling({
-      serviceName: projectId,
-      instanceId,
-    }).$promise;
+  activeMonthlyBilling(projectId, instance) {
+    return this.$http.post(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${
+        instance.id
+      }/activeMonthlyBilling`,
+    );
   }
 
   getSnapshotMonthlyPrice(projectId, instance, catalogEndpoint) {
@@ -294,23 +330,21 @@ export default class PciProjectInstanceService {
     );
   }
 
-  createBackup(projectId, { id: instanceId }, { name: snapshotName }) {
-    return this.OvhApiCloudProjectInstance.v6().backup(
-      {
-        serviceName: projectId,
-        instanceId,
-      },
-      {
-        snapshotName,
-      },
-    ).$promise;
+  createBackup(projectId, instance, { name: snapshotName }) {
+    return this.$http.post(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${
+        instance.id
+      }/snapshot`,
+      { snapshotName },
+    );
   }
 
-  resume(projectId, { id: instanceId }) {
-    return this.OvhApiCloudProjectInstance.v6().resume({
-      serviceName: projectId,
-      instanceId,
-    }).$promise;
+  resume(projectId, instance) {
+    return this.$http.post(
+      `${this.getBaseApiRoute(projectId, instance)}/instance/${
+        instance.id
+      }/resume`,
+    );
   }
 
   getPrivateNetworks(projectId) {
@@ -460,7 +494,55 @@ export default class PciProjectInstanceService {
       .then(({ data }) => data);
   }
 
-  save(
+  save(serviceName, instance, number = 1, isPrivateMode) {
+    if (instance.isLocal()) {
+      return this.saveLocalZone(serviceName, instance, number, isPrivateMode);
+    }
+
+    return this.saveGlobalZone(serviceName, instance, number, isPrivateMode);
+  }
+
+  saveLocalZone(serviceName, instance, bulk, isPrivateMode) {
+    const saveInstanceNamespace = 'instance-creation';
+    const status = 'completed';
+    return this.$http
+      .post(`${this.getBaseApiRoute(serviceName, instance)}/instance`, {
+        autobackup: instance.autobackup,
+        billingPeriod: instance.monthlyBilling ? 'monthly' : 'hourly',
+        bootFrom: {
+          imageId: instance.imageId,
+          volumeId: instance.volumeId,
+        },
+        bulk,
+        flavor: {
+          id: instance.flavorId,
+        },
+        name: instance.name,
+        network: {
+          public: isPrivateMode === false,
+        },
+        sshKey: {
+          name: instance.sshKeyId,
+        },
+        userData: instance.userData,
+      })
+      .then(({ data }) => {
+        if (isPrivateMode) {
+          const url = `/cloud/project/${serviceName}/operation/${data.id}`;
+          return this.checkOperationStatus(
+            url,
+            saveInstanceNamespace,
+            status,
+          ).then((res) => {
+            this.Poller.kill({ namespace: saveInstanceNamespace });
+            return res;
+          });
+        }
+        return data;
+      });
+  }
+
+  saveGlobalZone(
     serviceName,
     {
       autobackup,

@@ -66,14 +66,52 @@ export default class FlavorsList {
         ),
       })
       .then(({ flavors, prices, catalog }) => {
+        // @TODO: GS Mock to remove
+        flavors.push({
+          id: '0ff9e048-50af-4b2e-bc61-72611d23fca7',
+          name: 'lz2-7',
+          region: 'MAD',
+          ram: 7000,
+          disk: 50,
+          vcpus: 2,
+          type: 'ovh.ssd.lz',
+          osType: 'linux',
+          inboundBandwidth: 250,
+          outboundBandwidth: 250,
+          available: true,
+          planCodes: {
+            monthly: 'b2-7.monthly.postpaid',
+            hourly: 'b2-7.consumption',
+          },
+          capabilities: [
+            {
+              name: 'snapshot',
+              enabled: true,
+            },
+            {
+              name: 'volume',
+              enabled: true,
+            },
+            {
+              name: 'failoverip',
+              enabled: true,
+            },
+            {
+              name: 'resize',
+              enabled: true,
+            },
+          ],
+          quota: 800,
+          typeGeneric: 'ovh_ssd_eg',
+          groupName: 'lz2-7',
+        });
+
         const hourlyPlanCodes = flavors.filter(
           ({ planCodes }) => !isNil(planCodes.hourly),
         );
         const groupedPlanCodesByName = groupBy(hourlyPlanCodes, 'name');
-
         return map(groupedPlanCodesByName, (groupedFlavors) => {
           const resource = groupedFlavors[0];
-
           return new Flavor({
             ...omit(resource, ['available', 'region']),
             technicalBlob: get(

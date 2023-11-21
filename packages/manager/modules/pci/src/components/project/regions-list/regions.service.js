@@ -1,65 +1,52 @@
-import compact from 'lodash/compact';
-import map from 'lodash/map';
 import groupBy from 'lodash/groupBy';
 import reduce from 'lodash/reduce';
 
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["getAvailableRegions"] }] */
 export default class Regions {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    OvhApiCloudProjectQuota,
-    OvhApiCloudProjectRegion,
-  ) {
+  constructor($q, $translate) {
     this.$q = $q;
     this.$translate = $translate;
-    this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
-    this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
   }
 
-  getAvailableRegions(projectId) {
-    return this.OvhApiCloudProjectRegion.v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise.then((regions) =>
-        Promise.all(
-          map(regions, (id) =>
-            this.OvhApiCloudProjectRegion.v6()
-              .get({
-                serviceName: projectId,
-                id,
-              })
-              .$promise.catch(() => null),
-          ),
-        ).then((regionsDetail) => compact(regionsDetail)),
-      );
+  async getAvailableRegions(serviceName) {
+    const response = await fetch(
+      `/engine/api/cloud/project/${serviceName}/region`,
+      {
+        method: 'GET',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Accept: 'application/json',
+          'X-Pagination-Mode': 'CachedObjectList-Pages',
+          'X-Pagination-Size': 5000,
+        },
+      },
+    );
+
+    return response.json();
   }
 
-  getRegions(serviceName) {
-    return this.OvhApiCloudProjectRegion.v6()
-      .query({ serviceName })
-      .$promise.then((regions) =>
-        this.$q.all({
-          quotas: this.OvhApiCloudProjectQuota.v6().query({ serviceName })
-            .$promise,
-          regions: this.$q.all(
-            regions.map(
-              (region) =>
-                this.OvhApiCloudProjectRegion.v6().get({
-                  serviceName,
-                  id: region,
-                }).$promise,
-            ),
-          ),
+  async getRegions(serviceName) {
+    return this.$q
+      .all({
+        regions: this.getAvailableRegions(serviceName),
+        quotas: fetch(`/engine/api/cloud/project/${serviceName}/quota`, {
+          method: 'GET',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            Accept: 'application/json',
+          },
         }),
-      )
-      .then(({ quotas, regions }) =>
-        regions.map((region) => ({
+      })
+      .then(async ({ quotas, regions }) => {
+        const quotaData = await quotas.json();
+        return regions.map((region) => ({
           ...region,
-          quota: quotas.find((quota) => quota.region === region.name),
-        })),
-      );
+          quota: quotaData.find((quota) => quota.region === region.name),
+        }));
+      });
   }
 
   groupByContinentAndDatacenterLocation(regions) {

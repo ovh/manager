@@ -4,6 +4,7 @@ export const COUNTRIES = {
   BHS: 'CA',
   SBG: 'FR',
   GRA: 'FR',
+  MAD: 'ES', //@TODO: GS mock
   WAW: 'PL',
   ERI: 'GB',
   SYD: 'AU',

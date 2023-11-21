@@ -191,11 +191,14 @@ export default class ImagesListController {
     }
   }
 
-  isCompatible(image) {
-    return (
+  isCompatible(/* image */) {
+    // @TODO: GS mock to remove
+    console.log(this);
+    return true;
+    /* return (
       image.isAvailableInRegion(this.region) &&
       image.isCompatibleWithFlavor(this.flavorType) &&
       image.isCompatibleWithOsTypes(this.osTypes)
-    );
+    ); */
   }
 }

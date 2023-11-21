@@ -16,6 +16,37 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       regions: /* @ngInject */ (PciProjectRegions, projectId) =>
         PciProjectRegions.getAvailableRegions(projectId).then((regions) => {
+          // @TODO: GS remove Mock
+          regions.push({
+            name: 'MAD',
+            continentCode: 'EU',
+            datacenterLocation: 'MAD',
+            status: 'UP',
+            services: [
+              {
+                name: 'key-manager',
+                status: 'UP',
+                endpoint: 'https://key-manager.gra.cloud.ovh.net',
+              },
+              {
+                name: 'storage-s3-high-perf',
+                status: 'UP',
+                endpoint: 'https://s3.gra.perf.cloud.ovh.net/',
+              },
+              {
+                name: 'storage-s3-standard',
+                status: 'UP',
+                endpoint: 'https://s3.gra.io.cloud.ovh.net/',
+              },
+              {
+                name: 'storage',
+                status: 'UP',
+                endpoint:
+                  'https://storage.gra.cloud.ovh.net/v1/AUTH_5a6980507c0a40dca362eb9b22d79044',
+              },
+            ],
+            ipCountries: [],
+          });
           return OBJECT_CONTAINER_OFFERS.reduce(
             (regionsConfiguration, offerName) => ({
               ...regionsConfiguration,
