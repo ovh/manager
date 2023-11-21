@@ -26,10 +26,6 @@ angular
         '#rdm/47144/grp/{billingAccount}/num/false/menu/group/grp/all/page/group_billing_bill',
       group_call_list_summary:
         '#rdm/68384/grp/{billingAccount}/num/false/menu/group/grp/all/page/group_call_list_summary',
-      group_repayments:
-        '#rdm/81896/grp/{billingAccount}/num/false/menu/group/grp/all/page/group_repayments',
-      group_reversments_history:
-        '#rdm/11880/grp/{billingAccount}/num/false/menu/group/grp/all/page/group_reversments_history',
       group_group_called_fees:
         '#rdm/23657/grp/{billingAccount}/num/false/menu/group/grp/all/page/group_group_called_fees',
       group_called_fees_history:
