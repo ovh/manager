@@ -54,33 +54,51 @@ export default function OvhTracking() {
 
   const OvhTrackPage = (loc: any) => {
     const path = loc?.pathname.split('/')[1];
-    const partsReplace = loc.pathname.substring(1).replaceAll('/', '::');
     env.then((response) => {
       const { applicationName, universe } = response;
-      const name = `${universe}::${applicationName}::${partsReplace ||
-        'homepage'}`;
+      const page = `${applicationName}::${path || 'homepage'}`;
+      const name = `${universe}::app::${applicationName}`;
       tracking.trackPage({
         name,
         level2: trackLevel2(universe),
+        complete_page_name: page,
         page_category: path || 'homepage',
+        page_theme: applicationName,
       });
     });
   };
 
-  const ovhTrackingSenClick = (value: string) => {
+  const ovhTrackingSendClick = (value: string) => {
     env.then((response) => {
       const { applicationName, universe } = response;
       const path = myStateRef.current.pathname.split('/')[1];
       const name = `${applicationName}::${path || 'homepage'}::${value}`;
-      const page = `${universe}::${applicationName}::${path || 'homepage'}`;
+      const page = `${universe}::app::${applicationName}`;
       tracking.trackClick({
         name,
         page: { name: page },
-        complete_page_name: page,
+        page_category: path || 'homepage',
+        complete_page_name: `${applicationName}::${path || 'homepage'}`,
         level2: trackLevel2(universe),
         type: 'action',
+        page_theme: applicationName,
       });
     });
+  };
+
+  const ovhTrackShadowElement = (element) => {
+    const elementInShadowRoot = element.shadowRoot.querySelector(
+      `[${'data-tracking'}]`,
+    );
+    if (
+      elementInShadowRoot &&
+      OSDS_COMPONENT.includes(elementInShadowRoot?.tagName?.toUpperCase())
+    ) {
+      const trackingValueInShadowRoot = elementInShadowRoot.getAttribute(
+        'data-tracking',
+      );
+      ovhTrackingSendClick(trackingValueInShadowRoot);
+    }
   };
 
   const ovhTrackingAction = (event) => {
@@ -88,11 +106,12 @@ export default function OvhTracking() {
     const closestWithTracking = element.closest(`[${'data-tracking'}]`);
     if (closestWithTracking) {
       const trackingValue = closestWithTracking.getAttribute('data-tracking');
-      if (
-        trackingValue &&
-        OSDS_COMPONENT.includes(closestWithTracking.tagName.toUpperCase())
-      ) {
-        ovhTrackingSenClick(trackingValue);
+      if (OSDS_COMPONENT.includes(closestWithTracking.tagName.toUpperCase())) {
+        ovhTrackingSendClick(trackingValue);
+        return;
+      }
+      if (element?.shadowRoot) {
+        ovhTrackShadowElement(element);
       }
     }
   };
@@ -102,7 +121,7 @@ export default function OvhTracking() {
     const closestWithTracking = element.closest(`[${'data-tracking'}]`);
     const trackingValue = closestWithTracking.getAttribute('data-tracking');
     if (trackingValue) {
-      ovhTrackingSenClick(trackingValue);
+      ovhTrackingSendClick(trackingValue);
     }
   };
 

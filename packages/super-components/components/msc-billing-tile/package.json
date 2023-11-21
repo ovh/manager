@@ -23,6 +23,8 @@
   "module": "dist/index.js",
   "types": "dist/types/components.d.ts",
   "scripts": {
+    "build": "yarn msc:build",
+    "dev": "yarn msc:build",
     "msc:build": "yarn msc:build:stencil && yarn msc:build:react && yarn msc:build:vue",
     "msc:build:react": "yarn --cwd react msc:build",
     "msc:build:stencil": "stencil build --docs --prod --config stencil.config.ts",
@@ -40,6 +42,9 @@
     "msc:watch": "stencil build --docs --watch",
     "prepare": "yarn msc:build"
   },
+  "dependencies": {
+    "@ovhcloud/msc-utils": "*"
+  },
   "devDependencies": {
     "@ovhcloud/ods-common-testing": "^16.0.1",
     "@stencil/postcss": "^2.1.0",
@@ -56,7 +61,6 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core-api": "*",
-    "@ovhcloud/msc-utils": "*",
     "@ovhcloud/ods-common-core": "^16.0.1",
     "@ovhcloud/ods-common-theming": "^16.0.1",
     "@ovhcloud/ods-components": "^16.0.1",

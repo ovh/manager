@@ -85,6 +85,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
       user_category: capitalize(params.legalform),
       page_category: params.page_category,
       complete_page_name: params.complete_page_name,
+      page_theme: params.page_theme,
     };
   }
 
@@ -316,17 +317,8 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         click_chapter1: pageTrackingData.page_chapter1,
         click_chapter2: pageTrackingData.page_chapter2,
         click_chapter3: pageTrackingData.page_chapter3,
+        ...getPageTrackingData(data.page),
       };
-      if (data?.page) {
-        tracking = {
-          ...tracking,
-          page: pageTrackingData.page,
-          page_chapter1: pageTrackingData.page_chapter1,
-          page_chapter2: pageTrackingData.page_chapter2,
-          page_chapter3: pageTrackingData.page_chapter3,
-          page_complete: data?.page?.name,
-        };
-      }
 
       if (['action', 'navigation', 'download', 'exit'].includes(data.type)) {
         this.sendEvent('click.action', filterTrackingData(tracking));

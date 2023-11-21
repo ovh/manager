@@ -9,6 +9,7 @@
     "build": "lerna run msc:build",
     "prebuild:storybook": "yarn build",
     "build:storybook": "yarn workspace @ovhcloud/msc-storybook build:storybook",
+    "dev": "yarn build",
     "generate:msc": "yarn workspace @ovhcloud/msc-generator start",
     "prestorybook": "yarn build",
     "storybook": "yarn workspace @ovhcloud/msc-storybook start",

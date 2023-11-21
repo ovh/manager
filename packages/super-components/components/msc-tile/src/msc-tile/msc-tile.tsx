@@ -66,6 +66,8 @@ export class MscTile implements IMscTile {
   /** Label sent to the tracking service */
   @Prop() public dataTracking?: string = '';
 
+  @Prop() public hoverable? = false;
+
   @Prop() public locale = defaultLocale;
 
   @State() private localeStrings?: Translations;
@@ -117,6 +119,7 @@ export class MscTile implements IMscTile {
       <osds-tile
         class="msc-ods-tile"
         color={ODS_THEME_COLOR_INTENT.primary}
+        hoverable
         rounded
         inline
       >
