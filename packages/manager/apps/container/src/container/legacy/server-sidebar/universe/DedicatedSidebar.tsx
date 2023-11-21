@@ -82,7 +82,7 @@ export default function DedicatedSidebar() {
               href: navigation.getURL('dedicated', '#/server'),
               routeMatcher: new RegExp(`/server$`),
               ignoreSearch: true,
-              title: t('sidebar_access_list'),  
+              title: t('sidebar_access_list'),
             },
             ...housing,
             ...servers,
@@ -268,7 +268,7 @@ export default function DedicatedSidebar() {
             href: navigation.getURL('dedicated', '#/ip'),
             routeMatcher: new RegExp('/ip(/|$)'),
           },
-          feature['ip-load-balancer'] && 
+          feature['ip-load-balancer'] &&
             {
               id: 'ip-loadbalancer',
               label: t('sidebar_pci_load_balancer'),
@@ -377,9 +377,11 @@ export default function DedicatedSidebar() {
       requestType: 'aapi',
     });
 
-  const { data: availability } = useQuery(
-    ['sidebar-dedicated-availability'],
-    getFeatures,
+  const { data: availability } = useQuery({
+    queryKey:['sidebar-dedicated-availability'],
+    queryFn:getFeatures,
+  }
+
   );
 
   useEffect(() => {

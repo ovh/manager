@@ -42,15 +42,16 @@ const useNotifications = () => {
   };
 
   const { data: notifications, isLoading: isNotificationsLoading } = useQuery(
-    ['notifications'],
+   { queryKey:[ 'notifications',
     () => getNotifications(),
     {
       refetchInterval: 60 * 60 * 1000,
-    },
+    },]
+   }
   );
 
   const getNotificationById = (notificationId: string): Notification => {
-    return notifications.find(({ id }) => id === notificationId);
+    return (notifications as Notification[]).find(({ id }) => id === notificationId);
   };
 
   // UPDATE NOTIFICATIONS
@@ -70,7 +71,7 @@ const useNotifications = () => {
     })
       .then(() => {
         notification.setStatus(status);
-        queryClient.invalidateQueries(['notifications']);
+        queryClient.invalidateQueries({queryKey: ['notifications']});
       })
       .finally(() => {
         notification.setUpdating(false);
@@ -79,11 +80,11 @@ const useNotifications = () => {
 
   const readAllNotifications = async () => {
     await updateNotications({
-      [NOTIFICATION_STATUS_ENUM.ACKNOWLEDGED]: notifications
+      [NOTIFICATION_STATUS_ENUM.ACKNOWLEDGED]: (notifications as Notification[])
         .filter(({ updating, isActive }) => !updating && isActive())
         .map(({ id }) => id),
     });
-    queryClient.invalidateQueries(['notifications']);
+    queryClient.invalidateQueries({ queryKey: ['notifications'] });
   };
 
   const toggleNotificationReadStatus = (

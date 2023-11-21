@@ -154,7 +154,7 @@ export default function HostedPrivateCloudSidebar() {
             href: navigation.getURL('dedicated', '#/ip'),
             routeMatcher: new RegExp('/ip(/|$)'),
           },
-          feature['ip-load-balancer'] && 
+          feature['ip-load-balancer'] &&
             {
               id: 'ip-loadbalancer',
               label: t('sidebar_pci_load_balancer'),
@@ -215,9 +215,10 @@ export default function HostedPrivateCloudSidebar() {
       requestType: 'aapi',
     });
 
-  const { data: availability } = useQuery(
-    ['sidebar-hpc-availability'],
-    getFeatures,
+  const { data: availability } = useQuery({
+    queryKey:['sidebar-hpc-availability'],
+  queryFn:getFeatures,}
+
   );
 
   useEffect(() => {

@@ -316,8 +316,8 @@ export default function WebSidebar() {
     });
 
   const { data: availability } = useQuery(
-    ['sidebar-web-availability'],
-    getFeatures,
+    {queryKey:['sidebar-web-availability'],
+    queryFn:getFeatures,}
   );
 
   useEffect(() => {

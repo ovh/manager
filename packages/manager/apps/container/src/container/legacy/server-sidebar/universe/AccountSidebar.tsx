@@ -147,8 +147,8 @@ export default function AccountSidebar() {
     });
 
   const { data: availability } = useQuery(
-    ['sidebar-dedicated-availability'],
-    getFeatures,
+    {queryKey:['sidebar-dedicated-availability'],
+    queryFn:getFeatures,}
   );
 
   const buildMenu = async () =>

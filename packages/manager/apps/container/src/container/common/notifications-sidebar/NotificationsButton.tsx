@@ -1,10 +1,7 @@
 import React from 'react';
-
 import { useTranslation } from 'react-i18next';
-
 import style from './notifications-sidebar.module.scss';
-
-import useNotifications from '@/core/notifications';
+import useNotifications, { Notification } from '@/core/notifications';
 import { useHeader } from '@/context/header';
 import { useShell } from '@/context';
 
@@ -19,16 +16,20 @@ function NavbarNotifications(): JSX.Element {
     setIsNotificationsSidebarVisible,
   } = useHeader();
 
-  const notificationsCount = (notifications || []).filter(({ isActive }) =>
-    isActive(),
-  ).length;
+  const notificationsList: Notification[] = notifications
+    ? (notifications as Notification[])
+    : [];
+
+  const notificationsCount: number = notificationsList
+    .filter(({ isActive }: { isActive: () => boolean }) => isActive())
+    .length;
 
   function onClick(): void {
     trackingPlugin.trackClick({
       name: 'topnav::notifications',
       type: 'action',
     });
-    const initialVisibilityState = isNotificationsSidebarVisible;
+    const initialVisibilityState: boolean = isNotificationsSidebarVisible;
     setIsNotificationsSidebarVisible(!isNotificationsSidebarVisible);
     if (initialVisibilityState) {
       readAllNotifications();

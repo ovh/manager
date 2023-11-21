@@ -28,31 +28,30 @@ const NotificationsSidebar = () => {
 
   const getGroupedNotifications = async (): Promise<NotificationByDate> => {
     if (!notifications) {
-      return groupBy([] as NotificationType[]);
+      return {};
     }
 
-    const allDates = [...new Set(notifications.map(({ date }) => date))];
+    const allDates = [...new Set((notifications as NotificationType[])?.map(({ date }) => date) || [])];
 
     const groups: NotificationGroup[] = await Promise.all(
-      allDates.map(async (date) => {
+      allDates.map(async (date: string) => {
         const dateFromNow = await fromNow(date, locale);
         return { date, fromNow: dateFromNow };
       }),
     );
-    const dateGroups = groups.reduce(
-      (
-        all: Record<string, NotificationGroup>,
-        { date, fromNow: dateFromNow },
-      ) => {
+
+    const dateGroups: NotificationByDate = groups.reduce(
+      (all: NotificationByDate, { date }: NotificationGroup) => {
+        const group = (notifications as NotificationType[]).filter((notification) => notification.date === date);
         return {
           ...all,
-          [date]: dateFromNow,
+          [date]: group,
         };
       },
       {},
     );
 
-    return groupBy(notifications, ({ date }) => dateGroups[date]);
+    return dateGroups;
   };
 
   useEffect(() => {
@@ -64,27 +63,25 @@ const NotificationsSidebar = () => {
 
   return (
     <div
-      className={`${
-        style.notificationsSidebar
-      } ${isNotificationsSidebarVisible && style.notificationsSidebar_toggle}`}
+      className={`${style.notificationsSidebar
+        } ${isNotificationsSidebarVisible && style.notificationsSidebar_toggle}`}
     >
       <Notifications>
         <>
           {isNotificationsLoading && <Notifications.Loading />}
           {!isNotificationsLoading && (
             <>
-              {!notifications.length ? (
+              {!Array.isArray(notifications) || !notifications.length ? (
                 <Notifications.Empty />
               ) : (
                 <>
-                  {Object.keys(groupedNotifications).map(
-                    (groupTime: string, index) => (
-                      <Notifications.Group
-                        notifications={groupedNotifications[groupTime]}
-                        title={groupTime}
-                        key={index}
-                      />
-                    ),
+                  {Object.keys(groupedNotifications).map((groupTime: string, index) => (
+                    <Notifications.Group
+                      notifications={groupedNotifications[groupTime]}
+                      title={groupTime}
+                      key={index}
+                    />
+                  ),
                   )}
                 </>
               )}
