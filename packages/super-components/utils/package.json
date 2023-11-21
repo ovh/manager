@@ -26,6 +26,8 @@
     "dist"
   ],
   "scripts": {
+    "build": "yarn msc:build",
+    "dev": "yarn msc:build",
     "msc:build": "tsc",
     "msc:test": "jest",
     "prepare": "yarn msc:build"
