@@ -26,6 +26,9 @@ export default /* @ngInject */ ($stateProvider) => {
         trackClick('create-volume');
         return $state.go('netapp.dashboard.volumes.create');
       },
+      goToNetworkConfiguration: /* @ngInject */ ($state) => () => {
+        return $state.go('netapp.dashboard.network');
+      },
       volumes: /* @ngInject */ ($http, serviceName) =>
         $http
           .get(`/storage/netapp/${serviceName}/share?detail=true`)
@@ -82,6 +85,32 @@ export default /* @ngInject */ ($stateProvider) => {
                 ),
               ),
           ),
+      networkInformations: /* @ngInject */ (/* iceberg, serviceName */) =>
+        // TODO: add iceberg call when API is ready (STORAGE-8593)
+        /* iceberg(
+          `/storage/netapp/${serviceName}/network`,
+        )
+        .query()
+        .expand('CachedObjectList-Pages')
+        .execute().$promise */
+
+        // MOCK:
+        /*
+          [
+            {
+              id: "id",
+              status: "to_configure", //to_configure, associating, associated, dissociating
+              vrackServicesURN: "urn"
+            }
+          ]
+        */
+        [
+          {
+            id: 'id',
+            status: 'to_configure', // to_configure, associating, associated, dissociating
+            vrackServicesURN: 'urn',
+          },
+        ],
     },
   });
 };
