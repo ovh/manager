@@ -21,6 +21,7 @@
     "dist/"
   ],
   "scripts": {
+    "build": "yarn msc:build",
     "clean": "rimraf dist",
     "compile": "yarn compile:esm && yarn compile:cjs",
     "compile:cjs": "tsc -p tsconfig.cjs.json",
