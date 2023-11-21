@@ -17,6 +17,16 @@
         <span data-translate="netapp_volumes_create_volume"></span>
     </oui-button>
 
+    <oui-button
+        data-ng-if="$ctrl.networkInformations.length"
+        aria-label="{{:: 'netapp_volumes_manage_network' | translate }}"
+        data-on-click="$ctrl.goToNetworkConfiguration()"
+        data-variant="link"
+        data-icon-left="oui-icon-gear"
+    >
+        <span data-translate="netapp_volumes_manage_network"></span>
+    </oui-button>
+
     <oui-datagrid
         class="mt-2"
         data-rows="$ctrl.volumes"
