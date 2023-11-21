@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.5.1...@ovh-ux/manager-web@18.6.0) (2023-11-21)
+
+
+### Features
+
+* **web:** adding copy database capability on web databases ([#10103](https://github.com/ovh/manager/issues/10103)) ([716ec2b](https://github.com/ovh/manager/commit/716ec2b5366ca26b163ebf655f87ad9e80c46882))
+
+
+
+
+
 ## [18.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.5.0...@ovh-ux/manager-web@18.5.1) (2023-11-13)
 
 

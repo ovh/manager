@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-jquery-ui-draggable",
-  "version": "2.0.7",
+  "version": "2.1.0",
   "description": "Make elements draggable",
   "keywords": [
     "angularjs",

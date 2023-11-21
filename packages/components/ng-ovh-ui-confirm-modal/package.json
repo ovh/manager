@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-ui-confirm-modal",
-  "version": "2.0.7",
+  "version": "2.1.0",
   "description": "Simple confirmation modal",
   "keywords": [
     "angular",

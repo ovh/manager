@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.1.0...@ovh-ux/manager-hub-app@5.1.1) (2023-11-21)
+
+
+### Bug Fixes
+
+* **hub:** update US default level2 value for tracking ([#10285](https://github.com/ovh/manager/issues/10285)) ([6351e58](https://github.com/ovh/manager/commit/6351e587433047084b9c4d0aef7e2c64cb17f37b))
+
+
+
+
+
 # [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.0.7...@ovh-ux/manager-hub-app@5.1.0) (2023-11-13)
 
 

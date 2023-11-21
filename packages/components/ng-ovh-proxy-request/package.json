@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-proxy-request",
-  "version": "2.0.7",
+  "version": "2.1.0",
   "description": "Simple configurable request handler to use in service for any manager",
   "keywords": [
     "angularjs",

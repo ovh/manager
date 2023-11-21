@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.11.0...@ovh-ux/manager-dedicated@19.12.0) (2023-11-21)
+
+
+### Features
+
+* **account:** add 2FA redirection ([#10138](https://github.com/ovh/manager/issues/10138)) ([d094f3c](https://github.com/ovh/manager/commit/d094f3ce1147e8168303ae027fffa8f9e2fa5267))
+* **dedicated:** reload properly manager after language change ([#10104](https://github.com/ovh/manager/issues/10104)) ([9a1996d](https://github.com/ovh/manager/commit/9a1996df507082af97cea11b4643d51018b2cd24))
+
+
+
+
+
 # [19.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.10.1...@ovh-ux/manager-dedicated@19.11.0) (2023-11-13)
 
 

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.8.0...@ovh-ux/manager-pci@6.9.0) (2023-11-21)
+
+
+### Bug Fixes
+
+* **pci:** job replication command is wrong on ai training ([#10224](https://github.com/ovh/manager/issues/10224)) ([518e164](https://github.com/ovh/manager/commit/518e16419f4076638708568e9f8bcfb2dd20c39e))
+* **pci:** remove required on label selector input and translation ([af778fb](https://github.com/ovh/manager/commit/af778fbf651cead949424b986a2c12fd30ffb456))
+
+
+### Features
+
+* migrate from vuepress to vitepress ([6968c85](https://github.com/ovh/manager/commit/6968c85f00e19c41bc240abb37a50e9dacf9c5e5))
+
+
+
+
+
 # [6.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.7.0...@ovh-ux/manager-pci@6.8.0) (2023-11-13)
 
 

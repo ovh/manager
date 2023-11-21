@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.7.1...@ovh-ux/manager-vrack@1.8.0) (2023-11-21)
+
+
+### Features
+
+* **dedicated.vrack:** add trackCLick for move add del ([#10297](https://github.com/ovh/manager/issues/10297)) ([8bea295](https://github.com/ovh/manager/commit/8bea2951236a0d4cf739ace8d23b50627b135529))
+* migrate from vuepress to vitepress ([6968c85](https://github.com/ovh/manager/commit/6968c85f00e19c41bc240abb37a50e9dacf9c5e5))
+
+
+
+
+
 ## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.7.0...@ovh-ux/manager-vrack@1.7.1) (2023-10-02)
 
 

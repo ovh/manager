@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.10.2...@ovh-ux/sign-up@2.11.0) (2023-11-21)
+
+
+### Features
+
+* migrate from vuepress to vitepress ([6968c85](https://github.com/ovh/manager/commit/6968c85f00e19c41bc240abb37a50e9dacf9c5e5))
+
+
+
+
+
 ## [2.10.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.10.1...@ovh-ux/sign-up@2.10.2) (2023-11-10)
 
 

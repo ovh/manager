@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/order-tracking-app",
-  "version": "2.7.21",
+  "version": "2.7.22",
   "private": true,
   "description": "Order tracking standalone application.",
   "repository": {
@@ -17,15 +17,15 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/order-tracking-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^7.1.1",
-    "@ovh-ux/manager-core": "^12.13.0",
-    "@ovh-ux/ng-at-internet": "^5.10.7",
-    "@ovh-ux/ng-ovh-http": "^5.0.7",
-    "@ovh-ux/ng-ovh-order-tracking": "^2.2.5",
-    "@ovh-ux/ng-ovh-request-tagger": "^1.1.9",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.7.1",
-    "@ovh-ux/ng-ovh-swimming-poll": "^5.0.8",
-    "@ovh-ux/ng-translate-async-loader": "^2.1.7",
+    "@ovh-ux/manager-config": "^7.1.2",
+    "@ovh-ux/manager-core": "^12.14.0",
+    "@ovh-ux/ng-at-internet": "^5.11.0",
+    "@ovh-ux/ng-ovh-http": "^5.1.0",
+    "@ovh-ux/ng-ovh-order-tracking": "^2.3.0",
+    "@ovh-ux/ng-ovh-request-tagger": "^1.2.0",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.8.0",
+    "@ovh-ux/ng-ovh-swimming-poll": "^5.1.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.2.0",
     "@ovh-ux/request-tagger": "^0.1.1",
     "@ovh-ux/ui-kit": "^6.7.1",
     "@uirouter/angularjs": "^1.0.22",

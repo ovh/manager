@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-q-allsettled",
-  "version": "2.0.7",
+  "version": "2.1.0",
   "description": "Copy of kriskowal/q for ovh control panels",
   "keywords": [
     "angularjs",
