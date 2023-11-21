@@ -85,6 +85,7 @@ export default class DomainDnsZoneHistoryDashboardController {
     this.loading = true;
 
     this.zoneId = this.$stateParams.productId;
+
     this.getZoneHistory(this.$stateParams.productId)
       .then((dates) => {
         this.dates = dates
