@@ -56,6 +56,7 @@ export default /* @ngInject */ function IpFirewallCtrl(
 
   self.successMessage = null;
   self.denyMessage = null;
+  self.firewallStatus = null;
 
   function paginate(pageSize, offset) {
     self.rulesTable = self.rules.list.results.slice(
@@ -80,24 +81,30 @@ export default /* @ngInject */ function IpFirewallCtrl(
     }
   }
 
+  function sortList(listToSort) {
+    return listToSort.sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
   function loadConstants() {
     IpFirewall.getFirewallRuleConstants().then((constants) => {
-      const sequences = transform(constants.sequences, (result, name, key) => {
-        const newResult = result;
-        const map = {
-          key: name,
-          name: parseInt(name.replace('_', ''), 10),
-        };
-        newResult[key] = map;
-      }).sort((a, b) => {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-        return 0;
-      });
+      const sequences = sortList(
+        transform(constants.sequences, (result, name, key) => {
+          const newResult = result;
+          const map = {
+            key: name,
+            name: parseInt(name.replace('_', ''), 10),
+          };
+          newResult[key] = map;
+        }),
+      );
       set(constants, 'sequences', sequences);
       set(constants, 'tcpOptions', union(['NONE'], constants.tcpOptions));
       self.constants = {
@@ -153,6 +160,8 @@ export default /* @ngInject */ function IpFirewallCtrl(
           ip: self.selectedIp,
           firewall: firewallDetails.enabled ? 'ACTIVATED' : 'DEACTIVATED',
         };
+        self.firewallStatus = firewallDetails.enabled;
+        paginate(self.pageSize, self.offset);
       },
     );
   }
@@ -222,15 +231,7 @@ export default /* @ngInject */ function IpFirewallCtrl(
       .finally(() => {
         // Sort list to display deny action first
         if (self.rules.list.results) {
-          self.rules.list.results = self.rules.list.results.sort((a, b) => {
-            if (a.action < b.action) {
-              return -1;
-            }
-            if (a.action > b.action) {
-              return 1;
-            }
-            return 0;
-          });
+          self.rules.list.results = sortList(self.rules.list.results);
         }
         self.rulesLoading = false;
 
@@ -256,6 +257,10 @@ export default /* @ngInject */ function IpFirewallCtrl(
   });
 
   $scope.$on('ips.firewall.cancelToggle', () => {
+    getFirewallDetail();
+  });
+
+  $scope.$on('ips.table.refreshBlock', () => {
     getFirewallDetail();
   });
 
@@ -417,6 +422,22 @@ export default /* @ngInject */ function IpFirewallCtrl(
       self.validator.destinationPort &&
       self.validator.fragment
     );
+  };
+
+  self.handleKey = ($event) => {
+    switch ($event.keyCode) {
+      case 13:
+        // Enter key
+        self.addFirewallRule();
+        break;
+      case 27:
+        // Escape key
+        self.cancel();
+        break;
+      default:
+        // Nothing to do
+        break;
+    }
   };
 
   self.addFirewallRule = () => {

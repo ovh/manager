@@ -167,6 +167,7 @@
                                 name="source"
                                 class="form-control"
                                 data-ng-model="IpFirewallCtrl.rule.source"
+                                data-ng-keydown="IpFirewallCtrl.handleKey($event)"
                             />
                         </div>
                         <div
@@ -192,6 +193,7 @@
                                 data-ng-model="IpFirewallCtrl.rule.sourcePort"
                                 min="IpFirewallCtrl.constants.PORT_MIN"
                                 max="IpFirewallCtrl.constants.PORT_MAX"
+                                data-ng-keydown="IpFirewallCtrl.handleKey($event)"
                             />
                             <span
                                 class="fa fa-info-circle"
@@ -227,6 +229,7 @@
                                 data-ng-model="IpFirewallCtrl.rule.destinationPort"
                                 min="IpFirewallCtrl.constants.PORT_MIN"
                                 max="IpFirewallCtrl.constants.PORT_MAX"
+                                data-ng-keydown="IpFirewallCtrl.handleKey($event)"
                             />
                             <span
                                 data-ng-show="!IpFirewallCtrl.validator.destinationPort"
@@ -267,6 +270,7 @@
                                     type="checkbox"
                                     data-ng-model="IpFirewallCtrl.rule.tcpOptions.fragments"
                                     data-ng-change="IpFirewallCtrl.selectFragments()"
+                                    data-ng-keydown="IpFirewallCtrl.handleKey($event)"
                                 />
                                 <span
                                     data-ng-bind=":: 'ip_firewall_rule_fragments' | translate"
@@ -351,12 +355,22 @@
                     <td data-ng-bind-html="rule.options"></td>
                     <td>
                         <span
-                            class="label"
-                            data-ng-class="{
-                                'label-success': rule.state === 'ok',
-                                'label-info': rule.state !== 'ok',
-                            }"
+                            class="label label-info"
                             data-translate="{{ 'ip_firewall_rule_status_' + rule.state }}"
+                            data-ng-if="rule.state !== 'ok'"
+                        >
+                        </span>
+                        <span
+                            class="label label-success"
+                            data-translate="{{ 'ip_firewall_rule_status_' + rule.state }}"
+                            data-ng-if="rule.state === 'ok' && IpFirewallCtrl.firewallStatus"
+                        >
+                        </span>
+                        <span
+                            class="label oui-background-g-300 oui-color-p-050"
+                            data-translate="ip_firewall_rule_status_inactif"
+                            data-ng-if="rule.state === 'ok' && !IpFirewallCtrl.firewallStatus"
+                            disabled
                         >
                         </span>
                     </td>

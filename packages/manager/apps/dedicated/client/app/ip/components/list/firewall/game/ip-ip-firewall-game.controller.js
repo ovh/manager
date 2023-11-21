@@ -389,4 +389,15 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
       }
     }
   };
+
+  self.handleKey = function($event) {
+    if ($event.keyCode === 13) {
+      // Enter key
+      self.addGameFirewallRule();
+    }
+    if ($event.keyCode === 27) {
+      // Escape key
+      self.cancel();
+    }
+  };
 }
