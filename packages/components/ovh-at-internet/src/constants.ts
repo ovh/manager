@@ -1,16 +1,16 @@
 export const AT_INTERNET_LEVEL2: Record<string, string> = {
   0: '',
-  56: 'Manager-Cloud',
-  57: 'Manager-Dedicated',
+  56: 'Cloud',
+  57: 'Dedicated',
   67: 'Focus',
   81: 'Manager',
-  84: 'Manager-Web',
-  85: 'Manager-Server',
-  86: 'Manager-PublicCloud',
-  87: 'Manager-Telecom',
-  88: 'Manager-Hub',
+  84: 'Web',
+  85: 'Server',
+  86: 'PublicCloud',
+  87: 'Telecom',
+  88: 'Hub',
   95: 'account-creation',
-  98: 'Manager-HostedPrivateCloud',
+  98: 'HostedPrivateCloud',
 };
 
 export const AT_INTERNET_WEBSITE: Record<string, string> = {
