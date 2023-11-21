@@ -15,6 +15,7 @@ import inputRule from '../components/input-rule';
 import diskSizeComponent from '../components/disk-size';
 import switchPriceComponent from '../components/switch-price';
 import routing from './add.routing';
+import activateProjectBanner from '../../../components/activate-project-banner';
 
 import command from './command';
 
@@ -36,6 +37,7 @@ angular
     command,
     diskSizeComponent,
     switchPriceComponent,
+    activateProjectBanner,
   ])
   .config(routing)
   .component('pciProjectStoragesDatabasesAdd', component)

@@ -1,7 +1,5 @@
 {
   "pci_database_add_title": "Créer un service de base de données",
-  "pci_database_add_discovery_project_banner_message": "Votre projet est actuellement en Découverte. Pour finaliser la configuration de votre base de données, vous devez enregistrer un moyen de paiement afin d'activer votre projet.",
-  "pci_database_add_discovery_project_banner_cta": "Ajouter un moyen de paiement",
   "pci_database_add_description1": "Créer un service de base de données disponible dans votre projet Public Cloud. Si vous souhaitez utiliser un réseau privé et que celui-ci n’existe pas encore, merci de créer",
   "pci_database_add_description2": "un réseau privé ou un sous-réseau",
   "pci_database_add_description3": "d’abord.",
