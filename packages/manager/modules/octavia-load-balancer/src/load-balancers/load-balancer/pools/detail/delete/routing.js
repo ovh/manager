@@ -16,10 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         ...deletePoolResolve,
-        goBack: /* @ngInject */ ($state, trackAction) => (confirm) => {
-          if (!confirm) {
-            trackAction(`${TRACKING_HIT_PREFIX}::cancel`);
-          }
+        goBack: /* @ngInject */ ($state) => (confirm) => {
           $state.go(
             confirm
               ? 'octavia-load-balancer.loadbalancer.pools'

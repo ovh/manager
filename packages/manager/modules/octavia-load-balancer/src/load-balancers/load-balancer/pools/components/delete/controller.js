@@ -45,4 +45,9 @@ export default class OctaviaLoadBalancerPoolsDeleteCtrl {
         this.isLoading = false;
       });
   }
+
+  cancel() {
+    this.trackDeleteAction(`cancel`);
+    this.goBack();
+  }
 }
