@@ -18,5 +18,6 @@
   "octavia_load_balancer_pools_create_persistent_session_appCookie": "Persistance de session basée sur le cookie d'application.",
   "octavia_load_balancer_pools_create_persistent_session_cookie_name": "Nom du cookie",
   "octavia_load_balancer_pools_create_cancel": "Annuler",
-  "octavia_load_balancer_pools_create_submit": "Ajouter"
+  "octavia_load_balancer_pools_create_submit": "Ajouter",
+  "octavia_load_balancer_pools_create_submit_edition": "Editer"
 }

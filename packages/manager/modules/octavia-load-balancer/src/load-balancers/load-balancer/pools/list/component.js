@@ -3,11 +3,10 @@ import template from './template.html';
 
 export default {
   bindings: {
-    projectId: '<',
-    region: '<',
     pools: '<',
     goToPoolCreation: '<',
     getPoolDetailLink: '<',
+    goToPoolEdition: '<',
     goToPoolDeletion: '<',
   },
   controller,

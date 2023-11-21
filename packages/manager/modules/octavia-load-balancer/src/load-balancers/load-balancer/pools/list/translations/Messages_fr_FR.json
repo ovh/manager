@@ -11,7 +11,7 @@
   "octavia_load_balancer_pools_provisioning_status_deleting": "en cours de suppression",
   "octavia_load_balancer_pools_provisioning_status_error": "erreur",
   "octavia_load_balancer_pools_provisioning_status_updating": "en cours de mise à jour",
-  "octavia_load_balancer_pools_actions_detail": "Editer/Voir",
+  "octavia_load_balancer_pools_actions_edit": "Editer",
   "octavia_load_balancer_pools_actions_manage_members": "Gérer les membres",
   "octavia_load_balancer_pools_actions_delete": "Supprimer"
 }
