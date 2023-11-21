@@ -26,11 +26,6 @@ export default /* @ngInject */ ($stateProvider) => {
         AiDashboardService.getAIUsers(projectId),
       aiTokens: /* @ngInject */ (AiDashboardService, projectId, isAuthorized) =>
         isAuthorized ? AiDashboardService.getAITokens(projectId) : [],
-      aiDatastores: /* @ngInject */ (
-        AiDashboardService,
-        projectId,
-        isAuthorized,
-      ) => (isAuthorized ? AiDashboardService.getAIDatastores(projectId) : []),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_ai_dashboard_title'),
       trackingPrefix: /* @ngInject */ () =>

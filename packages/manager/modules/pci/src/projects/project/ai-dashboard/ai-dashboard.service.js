@@ -123,13 +123,26 @@ export default class AiDashboardService {
   }
 
   // Datastore
-  getAIDatastores(projectId, region) {
-    const regionId = region || 'BHS';
-    return this.$http
-      .get(`/cloud/project/${projectId}/ai/data/region/${regionId}/alias`)
-      .then(({ data }) =>
-        data.filter((datastore) => datastore.owner === AI_DATASTORE_OWNER),
-      );
+  getDatastores(projectId, regions) {
+    return this.$q
+      .all(
+        regions.map((region) =>
+          this.$http
+            .get(
+              `/cloud/project/${projectId}/ai/data/region/${region.id}/alias`,
+            )
+            .then(({ data }) => {
+              const customDatastore = data.filter(
+                (datastore) => datastore.owner === AI_DATASTORE_OWNER,
+              );
+              return customDatastore.map((datastore) => ({
+                region: region.id,
+                ...datastore,
+              }));
+            }),
+        ),
+      )
+      .then((result) => result.flat(1));
   }
 
   createDatastore(projectId, regionId, datastore) {

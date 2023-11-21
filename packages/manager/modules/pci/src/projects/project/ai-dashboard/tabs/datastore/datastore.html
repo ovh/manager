@@ -37,35 +37,8 @@
                         data-translate="pci_ai_dashboard_datastore_manage_datastore_description_2"
                     ></p>
                 </div>
-                <!-- Region selector-->
-                <div class="mb-1">
-                    <span
-                        data-translate="pci_ai_dashboard_datastore_select_region"
-                    ></span>
-                    <label class="oui-select oui-select_inline" for="region">
-                        <select
-                            class="oui-select__input"
-                            data-ng-model="$ctrl.currentRegion"
-                            id="region"
-                            data-ng-change="$ctrl.onRegionChange()"
-                        >
-                            <option
-                                ng-repeat="region in $ctrl.regions"
-                                ng-value="region"
-                                >{{region.id}}</option
-                            >
-                        </select>
-                        <span
-                            class="oui-icon oui-icon-chevron-down"
-                            aria-hidden="true"
-                        ></span>
-                    </label>
-                </div>
                 <!-- Datastore table -->
-                <oui-datagrid
-                    data-page-size="10"
-                    data-rows="$ctrl.aiDatastores"
-                >
+                <oui-datagrid data-page-size="10" data-rows="$ctrl.datastores">
                     <oui-datagrid-column
                         data-title=":: 'pci_ai_dashboard_datastore_manage_datastore_table_alias' | translate"
                         data-property="alias"
@@ -85,6 +58,14 @@
                     <oui-datagrid-column
                         data-title=":: 'pci_ai_dashboard_datastore_manage_datastore_table_owner' | translate"
                         data-property="owner"
+                        data-type="string"
+                        data-searchable
+                        data-filterable
+                        data-sortable="asc"
+                    ></oui-datagrid-column>
+                    <oui-datagrid-column
+                        data-title=":: 'pci_ai_dashboard_datastore_manage_datastore_table_region' | translate"
+                        data-property="region"
                         data-type="string"
                         data-searchable
                         data-filterable

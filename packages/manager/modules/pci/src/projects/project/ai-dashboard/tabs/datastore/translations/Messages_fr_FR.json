@@ -1,6 +1,6 @@
 {
-  "pci_ai_dashboard_datastore_title": "Datastore S3",
-  "pci_ai_dashboard_datastore_title_description": "Configurez ici votre container S3 afin de pouvoir les utiliser dans vos produits IA.",
+  "pci_ai_dashboard_datastore_title": "Datastore",
+  "pci_ai_dashboard_datastore_title_description": "Configurez ici votre container S3 et GIT afin de pouvoir les utiliser dans vos produits IA.",
   "pci_ai_dashboard_datastore_user_title": "Utilisateurs et roles",
   "pci_ai_dashboard_datastore_banner_user_description": "Un utilisateur S3 est nécessaire pour utiliser les containeurs S3. Pour créer votre datastore S3 ou Git, vous devez être en mesure de renseigner votre acces_key et secret_key pour S3 et une basic authentification ou un certificat SSL pour Git.",
   "pci_ai_dashboard_datastore_banner_user_description_link": "Gérer mes utilisateurs S3",
@@ -11,8 +11,8 @@
   "pci_ai_dashboard_datastore_manage_datastore_table_store_type": "Type de container",
   "pci_ai_dashboard_datastore_manage_datastore_table_owner": "Propriétaire",
   "pci_ai_dashboard_datastore_manage_datastore_table_endpoint": "Endpoint",
+  "pci_ai_dashboard_datastore_manage_datastore_table_region": "Region",
   "pci_ai_dashboard_datastore_manage_datastore_table_delete": "Supprimer",
   "pci_ai_dashboard_datastore_manage_datastore_table_create": "Créer un datastore",
-  "pci_ai_dashboard_datastore_select_region": "Sélectionnez la région que vous souhaitez utiliser :",
   "pci_ai_dashboard_datastore_documentation_title": "Documentation"
 }

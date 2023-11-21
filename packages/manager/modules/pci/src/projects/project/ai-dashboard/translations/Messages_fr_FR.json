@@ -8,5 +8,5 @@
   "pci_ai_dashboard_tab_users_tokens": "Utilisateurs & tokens",
   "pci_ai_dashboard_tab_cli": "Command Line Interface",
   "pci_ai_dashboard_tab_registries": "Registres Docker",
-  "pci_ai_dashboard_tab_datastore": "Datastore S3"
+  "pci_ai_dashboard_tab_datastore": "Datastore"
 }

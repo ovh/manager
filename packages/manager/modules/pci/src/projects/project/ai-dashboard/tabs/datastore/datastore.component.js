@@ -11,7 +11,7 @@ export default {
     goToObjectStorageUsers: '<',
     regions: '<',
     currentRegion: '<',
-    aiDatastores: '<',
+    datastores: '<',
     s3Guides: '<',
     goToCreateDatastore: '<',
     goToDeleteDatastore: '<',

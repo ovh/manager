@@ -13,15 +13,6 @@ export default class AiDashboardDatastoreCtrl {
     this.loadMessages();
   }
 
-  onRegionChange() {
-    this.AiDashboardService.getAIDatastores(
-      this.projectId,
-      this.currentRegion.id,
-    ).then((data) => {
-      this.aiDatastores = data;
-    });
-  }
-
   loadMessages() {
     this.CucCloudMessage.unSubscribe(this.messageContainer);
     this.messageHandler = this.CucCloudMessage.subscribe(

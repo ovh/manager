@@ -10,6 +10,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null, // Hide breadcrumb,
       regions: /* @ngInject */ (AiDashboardService, projectId) =>
         AiDashboardService.getRegions(projectId),
+      datastores: /* @ngInject */ (AiDashboardService, projectId, regions) =>
+        AiDashboardService.getDatastores(projectId, regions),
       goToObjectStorageUsers: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.storages.object-storage.users', {
           projectId,
@@ -45,16 +47,13 @@ export default /* @ngInject */ ($stateProvider) => {
         return promise;
       },
 
-      goToDeleteDatastore: /* @ngInject */ ($state, projectId) => (
-        datastore,
-        region,
-      ) =>
+      goToDeleteDatastore: /* @ngInject */ ($state, projectId) => (datastore) =>
         $state.go(
           'pci.projects.project.ai-dashboard.datastore.delete-datastore',
           {
             projectId,
             datastoreId: datastore.alias,
-            regionId: region.id,
+            regionId: datastore.region,
           },
         ),
     },
