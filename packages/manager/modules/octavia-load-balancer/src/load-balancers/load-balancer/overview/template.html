@@ -67,13 +67,13 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
-                    data-term="{{ :: 'octavia_load_balancer_overview_config_operating_status' | translate }}"
+                    data-term="{{ :: 'octavia_load_balancer_operating_status' | translate }}"
                 >
                     <oui-tile-description>
                         <span
                             class="oui-badge"
                             data-ng-class="$ctrl.OPERATING_STATUS_BADGES[$ctrl.loadbalancer.operatingStatus]"
-                            data-ng-bind=":: 'octavia_load_balancer_overview_config_operating_status_' + $ctrl.loadbalancer.operatingStatus | translate"
+                            data-ng-bind=":: 'octavia_load_balancer_operating_status_' + $ctrl.loadbalancer.operatingStatus | translate"
                         ></span>
                     </oui-tile-description>
                 </oui-tile-definition>

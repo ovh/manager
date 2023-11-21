@@ -1,8 +1,15 @@
 {
-  "load_balancer_info_tab_title": "Aperçu",
-  "load_balancer_listeners_tab_title": "Listeners",
-  "load_balancer_pools_tab_title": "Pools",
-  "load_balancer_statistics_tab_title": "Statistiques",
-  "load_balancer_certificates_tab_title": "Certificats",
-  "load_balancer_guides_header": "Guides"
+  "octavia_load_balancer_info_tab_title": "Aperçu",
+  "octavia_load_balancer_listeners_tab_title": "Listeners",
+  "octavia_load_balancer_pools_tab_title": "Pools",
+  "octavia_load_balancer_statistics_tab_title": "Statistiques",
+  "octavia_load_balancer_certificates_tab_title": "Certificats",
+  "octavia_load_balancer_guides_header": "Guides",
+  "octavia_load_balancer_operating_status": "Statut d'opération",
+  "octavia_load_balancer_operating_status_degraded": "dégradé",
+  "octavia_load_balancer_operating_status_draining": "dégradé",
+  "octavia_load_balancer_operating_status_error": "erreur",
+  "octavia_load_balancer_operating_status_noMonitor": "pas de Health Monitor",
+  "octavia_load_balancer_operating_status_online": "online",
+  "octavia_load_balancer_operating_status_offline": "offline"
 }

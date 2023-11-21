@@ -84,13 +84,13 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
-                    data-term="{{ :: 'octavia_load_balancer_pools_detail_overview_info_operating_status' | translate }}"
+                    data-term="{{ :: 'octavia_load_balancer_operating_status' | translate }}"
                 >
                     <oui-tile-description>
                         <span
                             class="oui-badge"
                             data-ng-class="$ctrl.OPERATING_STATUS_BADGES[$ctrl.pool.operatingStatus]"
-                            data-ng-bind=":: 'octavia_load_balancer_pools_detail_overview_info_operating_status_' + $ctrl.pool.operatingStatus | translate"
+                            data-ng-bind=":: 'octavia_load_balancer_operating_status_' + $ctrl.pool.operatingStatus | translate"
                         ></span>
                     </oui-tile-description>
                 </oui-tile-definition>
@@ -107,7 +107,7 @@
                     <oui-tile-description>
                         <div class="d-flex align-items-center">
                             <span
-                                data-ng-bind=":: 'octavia_load_balancer_pools_detail_overview_algorithm_' + $ctrl.pool.algorithm | translate"
+                                data-ng-bind=":: 'octavia_load_balancer_pools_enum_algorithm_' + $ctrl.pool.algorithm | translate"
                             ></span>
                         </div>
                     </oui-tile-description>

@@ -7,7 +7,7 @@ import component from './component';
 const moduleName = 'ovhManagerPoolsComponentsDelete';
 
 angular
-  .module(moduleName, ['oui'])
+  .module(moduleName, [])
   .component('octaviaLoadBalancerPoolsDelete', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

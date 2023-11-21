@@ -11,18 +11,7 @@
   "octavia_load_balancer_pools_provisioning_status_deleting": "en cours de suppression",
   "octavia_load_balancer_pools_provisioning_status_error": "erreur",
   "octavia_load_balancer_pools_provisioning_status_updating": "en cours de mise à jour",
-  "octavia_load_balancer_pools_operating_status": "Statut d'opération",
-  "octavia_load_balancer_pools_operating_status_degraded": "dégradé",
-  "octavia_load_balancer_pools_operating_status_draining": "dégradé",
-  "octavia_load_balancer_pools_operating_status_error": "erreur",
-  "octavia_load_balancer_pools_operating_status_noMonitor": "pas de Health Monitor",
-  "octavia_load_balancer_pools_operating_status_online": "online",
-  "octavia_load_balancer_pools_operating_status_offline": "offline",
   "octavia_load_balancer_pools_actions_detail": "Editer/Voir",
   "octavia_load_balancer_pools_actions_manage_members": "Gérer les membres",
-  "octavia_load_balancer_pools_actions_delete": "Supprimer",
-  "octavia_load_balancer_pools_algorithm_roundRobin": "Round Robin",
-  "octavia_load_balancer_pools_algorithm_leastConnections": "Least Connections",
-  "octavia_load_balancer_pools_algorithm_sourceIP": "Source IP",
-  "octavia_load_balancer_pools_algorithm_sourceIPPort": "Source IP Port"
+  "octavia_load_balancer_pools_actions_delete": "Supprimer"
 }

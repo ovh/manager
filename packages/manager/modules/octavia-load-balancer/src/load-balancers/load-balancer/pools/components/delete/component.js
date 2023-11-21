@@ -7,8 +7,6 @@ export default {
     region: '<',
     poolName: '<',
     poolId: '<',
-    cancel: '&',
-    comeFrom: '<',
     goBack: '<',
     trackDeleteAction: '<',
     trackDeletePage: '<',

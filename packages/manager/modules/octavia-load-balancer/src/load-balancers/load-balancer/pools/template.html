@@ -8,7 +8,14 @@
         <span
             data-translate="octavia_load_balancer_pools_description_part_2"
         ></span>
-        <a href="" data-ng-click="$ctrl.goToDiscoverOptions()">
+        <a
+            data-ng-href="{{:: $ctrl.discoverOptionsLink }}"
+            data-track-on="click"
+            data-track-name="{{:: $ctrl.trackBase + '::goto-discover-options' }}"
+            data-track-type="action"
+            target="_blank"
+            rel="noopener"
+        >
             <span
                 data-translate="octavia_load_balancer_pools_description_part_2_link"
             ></span>

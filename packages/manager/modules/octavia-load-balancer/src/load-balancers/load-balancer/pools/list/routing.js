@@ -25,7 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
           poolName: pool.name,
         });
       },
-      getPoolEditionLink: /* @ngInject */ ($state) => (pool) =>
+      getPoolDetailLink: /* @ngInject */ ($state) => (pool) =>
         $state.href('octavia-load-balancer.loadbalancer.pools.detail', {
           poolId: pool.id,
         }),

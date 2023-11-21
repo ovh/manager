@@ -7,7 +7,7 @@ export default {
     region: '<',
     pools: '<',
     goToPoolCreation: '<',
-    getPoolEditionLink: '<',
+    getPoolDetailLink: '<',
     goToPoolDeletion: '<',
   },
   controller,
