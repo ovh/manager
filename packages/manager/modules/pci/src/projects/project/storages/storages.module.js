@@ -11,6 +11,7 @@ import coldArchive from './cold-archive';
 import snapshots from './snapshots';
 import storagesComponents from './components';
 import volumeBackup from './volume-backup';
+import activateProjectBanner from '../components/activate-project-banner';
 
 import routing from './storages.routing';
 import storageUsersService from './storage-users.service';
@@ -31,6 +32,7 @@ angular
     coldArchive,
     snapshots,
     volumeBackup,
+    activateProjectBanner,
   ])
   .service('PciStoragesUsersService', storageUsersService)
   .config(routing);
