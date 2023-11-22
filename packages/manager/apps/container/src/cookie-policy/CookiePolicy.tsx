@@ -78,7 +78,7 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
       animation={false}
     >
       <Modal.Body>
-        <div className="cookie-policy-modal-description p-1">
+        <div className="p-1">
           <div className="img-wrapper w-100 d-flex justify-content-center align-items-center">
             <img src={ovhCloudLogo} alt="ovh-cloud-logo" />
           </div>
