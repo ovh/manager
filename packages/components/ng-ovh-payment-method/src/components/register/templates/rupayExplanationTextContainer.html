@@ -1,0 +1,12 @@
+<div
+    data-ng-if="!$ctrl.defaultExplanationTextsOptions.rupay"
+    data-ng-include="'ng-ovh-payment-method/creditCardChargesExplanationText.html'"
+></div>
+<oui-message
+    data-ng-if="$ctrl.defaultExplanationTextsOptions.rupay"
+    data-type="{{ $ctrl.defaultExplanationTextsOptions.rupay }}"
+>
+    <div
+        data-ng-include="'ng-ovh-payment-method/creditCardChargesExplanationText.html'"
+    ></div>
+</oui-message>
