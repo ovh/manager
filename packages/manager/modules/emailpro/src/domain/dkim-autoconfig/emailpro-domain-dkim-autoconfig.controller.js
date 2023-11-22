@@ -44,13 +44,6 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
     // Vars for DKIM configuration inside modal stepper
     this.initializeDkimConfiguratorNoOvh();
 
-    this.services.EmailProDomains.getDomain(
-      this.services.$stateParams.productId,
-      this.domain.name,
-    ).then((domain) => {
-      console.log("domain.dkimDiag.state = ", domain)
-    });
-
     this.services.EmailProDomains.getDnsSettings(
       this.services.$stateParams.productId,
       this.domain.name,

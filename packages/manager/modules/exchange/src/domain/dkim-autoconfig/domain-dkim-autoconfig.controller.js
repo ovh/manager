@@ -1,11 +1,12 @@
 import { DKIM_CONFIGURATION_GUIDE } from './domain-dkim-autoconfig.constants';
-import { STATUS_TO_TEXT_MAP } from '../domain.constants';
+import { DKIM_STATUS, DKIM_STATUS_TEXT } from '../domain.constants';
 import DkimAutoConfigurator from './dkim-auto-configurator';
 
 export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurator {
   /* @ngInject */
   constructor(
     $q,
+    $state,
     $scope,
     wucExchange,
     ExchangeDomains,
@@ -18,6 +19,7 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
     super();
     this.services = {
       $q,
+      $state,
       $scope,
       wucExchange,
       ExchangeDomains,
@@ -29,10 +31,15 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
 
     this.$routerParams = wucExchange.getParams();
     this.domain = navigation.currentActionData.domain;
-    this.dkimStatus = navigation.currentActionData.dkimStatus;
-    this.GLOBAL_DKIM_STATUS =
-      navigation.currentActionData.constant.GLOBAL_DKIM_STATUS;
-    this.DKIM_STATUS = navigation.currentActionData.constant.DKIM_STATUS;
+    const {
+      dkimDiagnostics: { state, errorCode, message },
+    } = this.domain;
+    this.dkimStatus = state;
+    if (state === DKIM_STATUS.ERROR) {
+      this.dkimErrorMessage = message;
+      this.dkimErrorCode = errorCode;
+    }
+    this.DKIM_STATUS = DKIM_STATUS;
     this.dkimGuideLink =
       DKIM_CONFIGURATION_GUIDE[coreConfig.getUser().ovhSubsidiary] ||
       DKIM_CONFIGURATION_GUIDE.DEFAULT;
@@ -41,15 +48,6 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
 
     // Vars for DKIM configuration inside modal stepper
     this.initializeDkimConfiguratorNoOvh();
-
-    this.services.ExchangeDomains.getDomain(
-      this.$routerParams.organization,
-      this.$routerParams.productId,
-      this.domain.name,
-    ).then((domain) => {
-      console.log("domain.dkimDiagnostics.state = ", domain.dkimDiagnostics.state)
-      this.dkimErrorCode = domain.dkimDiagnostics.errorCode;
-    });
 
     this.services.ExchangeDomains.gettingDNSSettings(
       this.$routerParams.organization,
@@ -62,13 +60,13 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
         this.hideConfirmButton = this.hideConfirmButton();
 
         this.dkimForNoOvhCloud =
-          this.dkimStatus === this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED &&
+          this.dkimStatus === this.DKIM_STATUS.TO_CONFIGURE &&
           !this.domainDiag.isOvhDomain;
 
         this.loading = false;
       })
       .catch((failure) => {
-        this.navigation.resetAction();
+        this.services.navigation.resetAction();
         this.messaging.writeError(
           this.$translate.instant(
             'exchange_tab_domain_diagnostic_add_field_failure',
@@ -76,35 +74,26 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
           failure,
         );
       });
-
-    if (this.dkimStatus === this.GLOBAL_DKIM_STATUS.NOK) {
-      this.services.ExchangeDomains.getDomain(
-        this.$routerParams.organization,
-        this.$routerParams.productId,
-        this.domain.name,
-      ).then((domain) => {
-        this.dkimErrorCode = domain.dkimDiagnostics.errorCode;
-      });
-    }
   }
 
   hideConfirmButton() {
-    const showWhen = [
-      this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED,
-      this.GLOBAL_DKIM_STATUS.OK,
-      this.GLOBAL_DKIM_STATUS.DISABLED,
-    ];
-
-    return this.domainDiag.isOvhDomain && showWhen.includes(this.dkimStatus);
+    return (
+      this.domainDiag.isOvhDomain &&
+      [
+        DKIM_STATUS.TO_CONFIGURE,
+        DKIM_STATUS.ACTIVE,
+        DKIM_STATUS.DISABLED,
+      ].includes(this.dkimStatus)
+    );
   }
 
   onFinishDkim() {
     switch (this.dkimStatus) {
-      case this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED:
+      case DKIM_STATUS.TO_CONFIGURE:
         return this.configDkim();
-      case this.GLOBAL_DKIM_STATUS.OK:
+      case DKIM_STATUS.ACTIVE:
         return this.deactivateDkim();
-      case this.GLOBAL_DKIM_STATUS.DISABLED:
+      case DKIM_STATUS.DISABLED:
         return this.activateDkim();
       default:
         console.error('Invalid DKIM status:', this.dkimStatus);
@@ -115,29 +104,36 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
   activateDkim() {
     const dkimSelectors = this.domain.dkim;
 
-    this.services.ExchangeDomains.enableDkim(
+    const promise = this.services.ExchangeDomains.enableDkim(
       this.$routerParams.organization,
       this.$routerParams.productId,
       this.domain.name,
       dkimSelectors[0].selectorName,
-    ).finally(() => {
-      this.services.navigation.resetAction();
-    });
+    );
+    this.handleDkimOperationResponse(promise);
   }
 
   deactivateDkim() {
     const dkimSelectors = this.domain.dkim;
 
-    this.services.ExchangeDomains.disableDkim(
+    const promise = this.services.ExchangeDomains.disableDkim(
       this.$routerParams.organization,
       this.$routerParams.productId,
       this.domain.name,
       dkimSelectors[0].status === this.DKIM_STATUS.IN_PRODUCTION
         ? dkimSelectors[0].selectorName
         : dkimSelectors[1].selectorName,
-    ).finally(() => {
-      this.services.navigation.resetAction();
-    });
+    );
+    this.handleDkimOperationResponse(promise);
+  }
+
+  resetAction(reload = false) {
+    this.services.navigation.resetAction();
+    if (reload) {
+      this.services.$state.go('exchange.dashboard.domain').then(() => {
+        this.services.$state.reload();
+      });
+    }
   }
 
   getDkimSelectorForCurrentState() {
@@ -184,12 +180,20 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
   }
 
   configDkim() {
-    this.getDkimSelectorForCurrentState()
-      .then((dkimSelectors) => {
+    const promise = this.getDkimSelectorForCurrentState().then(
+      (dkimSelectors) => {
         const promises = this.postDkimFor(dkimSelectors);
         return this.services.$q.all(promises);
-      })
+      },
+    );
+    this.handleDkimOperationResponse(promise);
+  }
+
+  handleDkimOperationResponse(promise) {
+    let reload = false;
+    promise
       .then(() => {
+        reload = true;
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(
             'exchange_tab_domain_diagnostic_dkim_activation_success',
@@ -204,18 +208,18 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
         );
       })
       .finally(() => {
-        this.services.navigation.resetAction();
+        this.resetAction(reload);
       });
   }
 
   getBodyText() {
     let translationKey;
-    if (this.dkimStatus === this.DKIM_STATUS.NOT_CONFIGURED) {
+    if (this.dkimStatus === this.DKIM_STATUS.TO_CONFIGURE) {
       translationKey = this.domainDiag.isOvhDomain
         ? 'exchange_tab_domain_diagnostic_dkim_activation_ovhcloud'
         : 'exchange_tab_domain_diagnostic_dkim_activation_no_ovhcloud';
     } else {
-      translationKey = STATUS_TO_TEXT_MAP[this.dkimStatus];
+      translationKey = DKIM_STATUS_TEXT[this.dkimStatus];
     }
     return translationKey;
   }
