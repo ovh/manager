@@ -6,12 +6,13 @@ import service from './service';
 
 import list from './list';
 import create from './create';
-import deletion from './delete';
+import deletion from './detail/delete';
+import detail from './detail';
 
 const moduleName = 'ovhManagerOctaviaLoadBalancerPools';
 
 angular
-  .module(moduleName, [list, create, deletion])
+  .module(moduleName, [list, create, detail, deletion])
   .config(routing)
   .component('octaviaLoadBalancerPools', component)
   .service('OctaviaLoadBalancerPoolsService', service)

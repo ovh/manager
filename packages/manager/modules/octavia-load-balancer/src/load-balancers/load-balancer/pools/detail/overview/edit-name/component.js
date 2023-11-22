@@ -4,12 +4,10 @@ import template from './template.html';
 export default {
   bindings: {
     projectId: '<',
+    loadbalancer: '<',
     region: '<',
-    poolId: '<',
-    poolName: '<',
+    pool: '<',
     goBack: '<',
-    trackDeleteAction: '<',
-    trackDeletePage: '<',
   },
   controller,
   template,
