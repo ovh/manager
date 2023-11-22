@@ -13,6 +13,7 @@
         <oui-datagrid-column
             data-title="'database_tabs_dumps_creation_date' | translate"
             data-property="creationDate"
+            data-sortable
         >
             <span data-ng-bind="::$row.creationDate | date:'medium'"></span>
             <oui-spinner
@@ -32,7 +33,6 @@
         <oui-datagrid-column
             data-title="'database_tabs_dumps_deletion_date' | translate"
             data-property="deletionDate"
-            data-sortable
         >
             <span data-ng-bind="$row.deletionDate | date:'medium'"></span>
         </oui-datagrid-column>
