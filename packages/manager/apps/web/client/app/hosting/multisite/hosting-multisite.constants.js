@@ -1,3 +1,5 @@
+export const HOSTING_START_OFFER = 'HOSTING_STARTER';
+
 export const CDN_STATUS = {
   ACTIVE: 'ACTIVE',
 };
@@ -16,4 +18,5 @@ export default {
   CDN_STATUS,
   CDN_VERSION,
   CDN_TYPE,
+  HOSTING_START_OFFER,
 };
