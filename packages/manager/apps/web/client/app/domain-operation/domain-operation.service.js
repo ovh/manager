@@ -10,10 +10,21 @@ angular.module('services').service(
     }
 
     /**
+     * Get DNS operations (new)
+     * @param {object} params
+     */
+    getDnsOperations(params) {
+      return this.OvhHttp.get('/me/task/dns', {
+        rootPath: 'apiv6',
+        params,
+      });
+    }
+
+    /**
      * Get operations
      * @param {object} params
      */
-    getOperations(params) {
+    getDomainOperations(params) {
       return this.OvhHttp.get('/me/task/domain', {
         rootPath: 'apiv6',
         params,
@@ -21,10 +32,20 @@ angular.module('services').service(
     }
 
     /**
+     * Get DNS operation by id
+     * @param {string} id
+     */
+    getDnsOperation(id) {
+      return this.OvhHttp.get(`/me/task/dns/${id}`, {
+        rootPath: 'apiv6',
+      });
+    }
+
+    /**
      * Get operation by id
      * @param {string} id
      */
-    getOperation(id) {
+    getDomainOperation(id) {
       return this.OvhHttp.get(`/me/task/domain/${id}`, {
         rootPath: 'apiv6',
       });
@@ -34,7 +55,7 @@ angular.module('services').service(
      * Get operation arguments
      * @param {string} id
      */
-    getOperationArguments(id) {
+    getDomainOperationArguments(id) {
       return this.OvhHttp.get(`/me/task/domain/${id}/argument`, {
         rootPath: 'apiv6',
       });
@@ -45,7 +66,7 @@ angular.module('services').service(
      * @param {string} id
      * @param {string} key
      */
-    getOperationArgument(id, key) {
+    getDomainOperationArgument(id, key) {
       return this.OvhHttp.get(`/me/task/domain/${id}/argument/${key}`, {
         rootPath: 'apiv6',
       });
@@ -66,10 +87,10 @@ angular.module('services').service(
     }
 
     /**
-     * Relaunch an operation
+     * Relaunch a domain operation
      * @param {string} id
      */
-    relaunchOperation(id) {
+    relaunchDomainOperation(id) {
       return this.OvhHttp.post(`/me/task/domain/${id}/relaunch`, {
         rootPath: 'apiv6',
         broadcast: 'domains.operations.relaunched',
@@ -77,10 +98,32 @@ angular.module('services').service(
     }
 
     /**
+     * Relaunch a dns operation
+     * @param {string} id
+     */
+    relaunchDnsOperation(id) {
+      return this.OvhHttp.post(`/me/task/dns/${id}/relaunch`, {
+        rootPath: 'apiv6',
+        broadcast: 'domains.operations.relaunched',
+      });
+    }
+
+    /**
+     * Cancel DNS an operation (new)
+     * @param {string} id
+     */
+    cancelDnsOperation(id) {
+      return this.OvhHttp.post(`/me/task/dns/${id}/cancel`, {
+        rootPath: 'apiv6',
+        broadcast: 'domains.operations.cancelled',
+      });
+    }
+
+    /**
      * Cancel an operation
      * @param {string} id
      */
-    cancelOperation(id) {
+    cancelDomainOperation(id) {
       return this.OvhHttp.post(`/me/task/domain/${id}/cancel`, {
         rootPath: 'apiv6',
         broadcast: 'domains.operations.cancelled',
@@ -88,10 +131,21 @@ angular.module('services').service(
     }
 
     /**
+     * Accelerate a DNS operation (new)
+     * @param {string} id
+     */
+    accelerateDnsOperation(id) {
+      return this.OvhHttp.post(`/me/task/dns/${id}/accelerate`, {
+        rootPath: 'apiv6',
+        broadcast: 'domains.operations.accelerated',
+      });
+    }
+
+    /**
      * Accelerate an operation
      * @param {string} id
      */
-    accelerateOperation(id) {
+    accelerateDomainOperation(id) {
       return this.OvhHttp.post(`/me/task/domain/${id}/accelerate`, {
         rootPath: 'apiv6',
         broadcast: 'domains.operations.accelerated',
@@ -101,7 +155,7 @@ angular.module('services').service(
     /**
      * Get operation models
      */
-    getOperationModels() {
+    getDomainOperationModels() {
       return this.OvhHttp.get('/me.json', {
         rootPath: 'apiv6',
       });

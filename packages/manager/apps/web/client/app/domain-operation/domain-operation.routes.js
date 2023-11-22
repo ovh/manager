@@ -1,9 +1,15 @@
+import controller from './domain-operation.controller';
+import template from './domain-operation.html';
+
 angular.module('App').config(($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.domain.operation', {
-    url: '/operation',
-    templateUrl: 'domain-operation/domain-operation.html',
-    controller: 'DomainOperationCtrl',
-    controllerAs: 'ctrlOperations',
+    url: '/operation?tab',
+    controller,
+    template,
+    controllerAs: '$ctrl',
+    params: {
+      tab: 'domain',
+    },
     resolve: {
       navigationInformations: [
         'Navigator',
@@ -18,11 +24,14 @@ angular.module('App').config(($stateProvider, $urlRouterProvider) => {
         },
       ],
       hideBreadcrumb: () => true,
+      currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
+        $state.href($state.current.name, $transition$.params()),
+      domainOperationLink: /* @ngInject */ ($state) =>
+        $state.href('app.domain.operation', { tab: 'domain' }),
+      dnsOperationLink: /* @ngInject */ ($state) =>
+        $state.href('app.domain.operation', { tab: 'dns' }),
     },
-    translations: {
-      value: ['../domain', '../domain-operation'],
-      format: 'json',
-    },
+    translations: { value: ['../domain', '.'], format: 'json' },
   });
 
   $stateProvider.state('app.domain.operation.progress', {

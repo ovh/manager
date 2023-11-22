@@ -26,6 +26,7 @@ angular.module('App').controller(
 
     $onInit() {
       this.operation = angular.copy(this.$scope.currentActionData);
+      this.type = !this.operation.domain ? 'dns' : 'domain';
 
       this.baseArgs = [];
       this.canContinue =
@@ -55,6 +56,10 @@ angular.module('App').controller(
       this.$scope.updateOperation = () => this.updateOperation();
 
       this.loadOperationsArguments(this.operation.id);
+    }
+
+    static capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     loadOperationsArguments(operationId) {
@@ -216,8 +221,11 @@ angular.module('App').controller(
         .then(() => {
           switch (this.todoOperation) {
             case 'relaunch':
-              return this.domainOperationService
-                .relaunchOperation(this.operation.id)
+              return this.domainOperationService[
+                `relaunch${this.constructor.capitalizeFirstLetter(
+                  this.type,
+                )}Operation`
+              ](this.operation.id)
                 .then(() =>
                   this.Alerter.success(
                     this.$translate.instant(
@@ -236,8 +244,11 @@ angular.module('App').controller(
                   ),
                 );
             case 'cancel':
-              return this.domainOperationService
-                .cancelOperation(this.operation.id)
+              return this.domainOperationService[
+                `cancel${this.constructor.capitalizeFirstLetter(
+                  this.type,
+                )}Operation`
+              ](this.operation.id)
                 .then(() =>
                   this.Alerter.success(
                     this.$translate.instant(
@@ -254,8 +265,11 @@ angular.module('App').controller(
                   ),
                 );
             case 'accelerate':
-              return this.domainOperationService
-                .accelerateOperation(this.operation.id)
+              return this.domainOperationService[
+                `accelerate${this.constructor.capitalizeFirstLetter(
+                  this.type,
+                )}Operation`
+              ](this.operation.id)
                 .then(() =>
                   this.Alerter.success(
                     this.$translate.instant(
