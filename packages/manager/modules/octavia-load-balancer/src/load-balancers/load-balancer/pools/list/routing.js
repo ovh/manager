@@ -20,11 +20,15 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       goToPoolDeletion: /* @ngInject */ ($state, trackAction) => (pool) => {
         trackAction('delete');
-        $state.go('octavia-load-balancer.loadbalancer.pools.delete', {
+        $state.go('octavia-load-balancer.loadbalancer.pools.list.delete', {
           poolId: pool.id,
           poolName: pool.name,
         });
       },
+      getPoolDetailLink: /* @ngInject */ ($state) => (pool) =>
+        $state.href('octavia-load-balancer.loadbalancer.pools.detail', {
+          poolId: pool.id,
+        }),
     },
     atInternet: {
       rename: `${TRACKING_NAME}::${TRACKING_SUFFIX}`,

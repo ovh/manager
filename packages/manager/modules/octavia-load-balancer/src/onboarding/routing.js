@@ -3,7 +3,9 @@ import { TRACKING_NAME } from './constants';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('octavia-load-balancer.onboarding', {
     url: '/onboarding',
-    component: 'octaviaLoadBalancerOnboarding',
+    views: {
+      octaviaLoadBalancerView: 'octaviaLoadBalancerOnboarding',
+    },
     redirectTo: (transition) =>
       transition
         .injector()

@@ -40,6 +40,23 @@ export default class OctaviaLoadBalancerPoolsService {
     );
   }
 
+  getPool(projectId, region, poolId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  updateName(projectId, region, poolId, name) {
+    return this.$http.put(
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}`,
+      {
+        name,
+      },
+    );
+  }
+
   getAPISpecifications() {
     return this.$http.get(`/cloud.json`).then(({ data }) => data);
   }

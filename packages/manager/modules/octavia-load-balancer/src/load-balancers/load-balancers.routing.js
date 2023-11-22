@@ -3,7 +3,9 @@ import { TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX } from '../octavia-load-balancer
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('octavia-load-balancer.loadbalancers', {
     url: '/load-balancers',
-    component: 'octaviaLoadBalancerListing',
+    views: {
+      octaviaLoadBalancerView: 'octaviaLoadBalancerListing',
+    },
     redirectTo: (transition) =>
       transition
         .injector()
