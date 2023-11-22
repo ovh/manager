@@ -68,12 +68,21 @@ export const CHART = {
       ],
       xAxes: [
         {
-          type: 'time',
-          position: 'bottom',
+          display: true,
           gridLines: {
-            drawBorder: true,
+            offsetGridLines: true,
             display: false,
           },
+          position: 'bottom',
+          ticks: {
+            display: true,
+          },
+          time: {
+            displayFormats: {
+              hour: 'YYYY-MM-DD HH:MM',
+            },
+          },
+          type: 'time',
         },
       ],
     },

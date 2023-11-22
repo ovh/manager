@@ -22,15 +22,17 @@ export default class TrafficController {
     this.pageSize = 10;
     this.isStackable = true;
     this.isPPs = false;
+    this.isServiceSelected = false;
     this.subnet = '';
     if (this.getSubnet()) {
       this.subnet = this.getSubnet();
       this.selectedIp = this.subnet;
+      this.model = this.selectedIp;
     }
     this.periods = this.networkSecurityService.initPeriods(
       this.TRAFFIC_PERIODS,
     );
-    [this.period] = this.periods;
+    this.period = this.periods[this.periods.length - 1];
     this.networkSecurityService.initService().then((data) => {
       this.services = data;
       return data;
@@ -49,6 +51,7 @@ export default class TrafficController {
       this.page = 1;
       this.autocomplete = [];
       this.selectedIp = '';
+      this.isServiceSelected = true;
       this.results = null;
       this.networkSecurityService
         .getIpsFromService(
@@ -58,34 +61,29 @@ export default class TrafficController {
           this.autocomplete,
         )
         .then((data) => {
-          this.autocomplete = data;
+          this.ipsList = data.map(({ ipBlock }) => ipBlock);
         });
+    } else {
+      this.isServiceSelected = false;
+      this.results = null;
     }
-  }
-
-  getIps(partial) {
-    if (!this.autocomplete) {
-      return null;
-    }
-    let ips = [];
-    if (partial.length > 2) {
-      this.loaderIp = true;
-
-      // Filter loaded ips list with partial ip
-      ips = this.autocomplete.filter((service) =>
-        service.ipBlock.includes(partial),
-      );
-      delete this.loaderIp;
-    }
-    return ips;
   }
 
   checkSelectedSubnet(value) {
     if (!value) {
       return;
     }
-    this.subnet = value.ipBlock ? value.ipBlock : value;
+    this.subnet = value;
     this.getTraffic();
+  }
+
+  onSelectSubnet() {
+    this.subnet = this.subnetSelected;
+    this.getTraffic();
+  }
+
+  onReset() {
+    this.results = null;
   }
 
   getTraffic() {
@@ -176,10 +174,14 @@ export default class TrafficController {
     if (unit > 0) {
       label = this.units[unit][0].toUpperCase();
     }
-    this.packetsDropped = `${TrafficController.formatBits(
-      packetsDropped,
-      unit,
-    )} ${label}`;
+    if (packetsDropped > 0) {
+      this.packetsDropped = `${TrafficController.formatBits(
+        packetsDropped,
+        unit,
+      )} ${label}`;
+    } else {
+      this.packetsDropped = null;
+    }
 
     // Set bandwith cleaned
     let bandwithCleaned = 0;
@@ -187,10 +189,14 @@ export default class TrafficController {
       bandwithCleaned += parseInt(packet, 10);
     });
     unit = TrafficController.getUnitIndex(bandwithCleaned);
-    this.bandwithCleaned = `${TrafficController.formatBits(
-      bandwithCleaned,
-      unit,
-    )} ${this.units[unit].toUpperCase()}`;
+    if (bandwithCleaned > 0) {
+      this.bandwithCleaned = `${TrafficController.formatBits(
+        bandwithCleaned,
+        unit,
+      )} ${this.units[unit].toUpperCase()}`;
+    } else {
+      this.bandwithCleaned = null;
+    }
   }
 
   updateStackable(value) {
