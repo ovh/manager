@@ -1,7 +1,9 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('octavia-load-balancer.loadbalancer', {
     url: '/:region/:loadbalancerId',
-    component: 'octaviaLoadBalancer',
+    views: {
+      octaviaLoadBalancerView: 'octaviaLoadBalancer',
+    },
     resolve: {
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
