@@ -2,14 +2,15 @@ import punycode from 'punycode';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import {
+  DOMAIN_COLUMN_DNSSEC,
   DOMAIN_OBJECT_KEYS,
   DOMAIN_STATUS,
   DOMAIN_SUSPENSION_STATE,
   DOMAIN_NAME_SERVER_TYPE,
-  DOMAIN_TRANSFERT_LOCK_STATE,
+  DOMAIN_TRANSFER_LOCK_STATE,
+  DOMAIN_DNSSEC_STATE,
+  DOMAINS_BADGES_DNSSEC_STATE,
   DOMAINS_BADGES_STATUS,
-  DOMAINS_BADGES_SUSPENSION_STATE,
-  DOMAINS_BADGES_TRANSFERT_LOCK_STATE,
   DOMAIN_RENEWAL_MODE,
   DOMAINS_BADGES_RENEWAL_MODE,
   IDN_PREFIX,
@@ -31,16 +32,17 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
   ) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
+    this.DOMAIN_COLUMN_DNSSEC = DOMAIN_COLUMN_DNSSEC;
     this.DOMAIN_STATUS = DOMAIN_STATUS;
     this.DOMAIN_RENEWABLE_STATE = DOMAIN_RENEWABLE_STATE;
     this.DOMAIN_SUSPENSION_STATE = DOMAIN_SUSPENSION_STATE;
     this.DOMAIN_NAME_SERVER_TYPE = DOMAIN_NAME_SERVER_TYPE;
-    this.DOMAIN_TRANSFERT_LOCK_STATE = DOMAIN_TRANSFERT_LOCK_STATE;
+    this.DOMAIN_TRANSFER_LOCK_STATE = DOMAIN_TRANSFER_LOCK_STATE;
+    this.DOMAIN_DNSSEC_STATE = DOMAIN_DNSSEC_STATE;
+    this.DOMAINS_BADGES_DNSSEC_STATE = DOMAINS_BADGES_DNSSEC_STATE;
     this.DOMAINS_BADGES_STATUS = DOMAINS_BADGES_STATUS;
     this.DOMAIN_RENEWAL_MODE = DOMAIN_RENEWAL_MODE;
     this.DOMAINS_BADGES_RENEWAL_MODE = DOMAINS_BADGES_RENEWAL_MODE;
-    this.DOMAINS_BADGES_SUSPENSION_STATE = DOMAINS_BADGES_SUSPENSION_STATE;
-    this.DOMAINS_BADGES_TRANSFERT_LOCK_STATE = DOMAINS_BADGES_TRANSFERT_LOCK_STATE;
     this.IDN_PREFIX = IDN_PREFIX;
     this.DOMAIN_OBJECT_KEYS = DOMAIN_OBJECT_KEYS;
     this.coreURLBuilder = coreURLBuilder;
@@ -61,6 +63,11 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
       { name: 'domain', sortable: this.getSorting('domain') },
       { name: 'state', sortable: this.getSorting('state') },
       { name: 'suspensionState', sortable: this.getSorting('suspensionState') },
+      {
+        name: 'transferLockStatus',
+        sortable: this.getSorting('transferLockStatus'),
+      },
+      { name: 'dnssecState', sortable: this.getSorting('dnssecState') },
       { name: 'renewalState', sortable: this.getSorting('renewalState') },
       { name: 'whoisOwner', sortable: this.getSorting('whoisOwner') },
       { name: 'nameServerType', sortable: this.getSorting('nameServerType') },
@@ -99,6 +106,22 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
         }),
         {},
       ),
+    };
+
+    this.domainTransferLockStateColumnOptions = {
+      hideOperators: true,
+      values: this.domainLockStatusEnum.map((status) => ({
+        status: this.$translate.instant(
+          `domains_transfer_lock_status_${status}`,
+        ),
+      })),
+    };
+
+    this.domainDnssecStateColumnOptions = {
+      hideOperators: true,
+      values: this.domainDnssecStateEnum.map((status) => ({
+        status: this.$translate.instant(`domains_dnssec_state_${status}`),
+      })),
     };
 
     this.domainNameServerTypeColumnOptions = {
