@@ -14,15 +14,12 @@
         <div data-wizard-step>
             <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
             <div data-ng-if="!ctrl.loading">
-                <p
-                    data-translate="{{ ctrl.getBodyText() }}"
-                    data-translate-values="{ url: ctrl.dkimGuideLink, errorCode: ctrl.dkimErrorCode}"
-                ></p>
+                <p data-ng-bind-html="::ctrl.bodyText"></p>
                 <oui-message
                     data-type="warning"
                     data-ng-if="ctrl.dkimErrorMessage"
                 >
-                    <span data-ng-bind-html="ctrl.dkimErrorMessage"></span>
+                    <span data-ng-bind-html="::ctrl.dkimErrorMessage"></span>
                 </oui-message>
             </div>
         </div>

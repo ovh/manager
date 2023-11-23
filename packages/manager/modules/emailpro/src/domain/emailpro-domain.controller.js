@@ -1,16 +1,10 @@
 import angular from 'angular';
 import set from 'lodash/set';
 
-import {
-  GLOBAL_DKIM_STATUS,
-  DKIM_STATUS,
-  DKIM_MATCHING_SCHEMA_STATUS,
-  DKIM_STATUS_TO_CLASS_MAP,
-} from './emailpro-domain.constants';
+import { DKIM_STATUS, DKIM_STATUS_CLASS } from './emailpro-domain.constants';
 
 export default /* @ngInject */ (
   $scope,
-  $http,
   $stateParams,
   $translate,
   EmailPro,
@@ -21,9 +15,8 @@ export default /* @ngInject */ (
   $scope.stateCreating = EmailPro.stateCreating;
   $scope.stateDeleting = EmailPro.stateDeleting;
   $scope.stateOk = EmailPro.stateOk;
-  $scope.GLOBAL_DKIM_STATUS = GLOBAL_DKIM_STATUS;
   $scope.DKIM_STATUS = DKIM_STATUS;
-  $scope.DKIM_STATUS_TO_CLASS_MAP = DKIM_STATUS_TO_CLASS_MAP;
+  $scope.DKIM_STATUS_CLASS = DKIM_STATUS_CLASS;
 
   const init = function init() {
     $scope.loading = false;
@@ -77,39 +70,6 @@ export default /* @ngInject */ (
     if (domain.state === $scope.stateOk && domain.accountsCount === 0) {
       $scope.setAction('emailpro/domain/remove/emailpro-domain-remove', domain);
     }
-  };
-
-  $scope.dkimGlobalStatus = function dkimGlobalStatus({ dkim }) {
-    if (dkim.length === 0) {
-      return this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED;
-    }
-
-    if (
-      dkim.find(({ status }) =>
-        DKIM_MATCHING_SCHEMA_STATUS.OK.includes(status),
-      ) &&
-      dkim.find(({ status }) => status === DKIM_STATUS.READY)
-    ) {
-      return this.GLOBAL_DKIM_STATUS.OK;
-    }
-
-    if (
-      DKIM_MATCHING_SCHEMA_STATUS.DISABLED.includes(dkim[0].status) &&
-      (!dkim[1] ||
-        DKIM_MATCHING_SCHEMA_STATUS.DISABLED.includes(dkim[1].status))
-    ) {
-      return this.GLOBAL_DKIM_STATUS.DISABLED;
-    }
-
-    if (
-      dkim.find(({ status }) =>
-        DKIM_MATCHING_SCHEMA_STATUS.IN_PROGRESS.includes(status),
-      )
-    ) {
-      return this.GLOBAL_DKIM_STATUS.IN_PROGRESS;
-    }
-
-    return this.GLOBAL_DKIM_STATUS.NOK;
   };
 
   function setMxTooltip(domain) {
