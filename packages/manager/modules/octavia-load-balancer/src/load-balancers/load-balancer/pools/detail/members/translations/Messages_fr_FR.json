@@ -1,0 +1,5 @@
+{
+  "octavia_load_balancer_pools_detail_members_go_back": "Précédent",
+  "octavia_load_balancer_pools_detail_members_info_title": "Membres",
+  "octavia_load_balancer_pools_detail_members_description_part_1": "Les membres sont les adresses IP backend réelles qui recevront le trafic du Load Balancer."
+}
