@@ -63,6 +63,20 @@
                             data-ng-bind="$ctrl.app.spec.defaultHttpPort"
                         ></code>
                     </oui-tile-description>
+                    <oui-tile-description>
+                        <oui-button
+                            data-ng-if="!$ctrl.app.partner"
+                            data-size="m"
+                            data-variant="link"
+                            data-icon-right="oui-icon-pen"
+                            data-on-click="$ctrl.onUpdateAppPortClick()"
+                            data-disabled="false"
+                        >
+                            <span
+                                data-translate="pci_apps_general_information_info_app_port_action_update"
+                            ></span>
+                        </oui-button>
+                    </oui-tile-description>
                 </oui-tile-definition>
 
                 <!--Container-->

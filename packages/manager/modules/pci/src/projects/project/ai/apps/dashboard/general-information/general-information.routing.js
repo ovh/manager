@@ -73,6 +73,14 @@ export default /* @ngInject */ ($stateProvider) => {
             app,
           },
         ),
+      goToUpdateAppPort: /* @ngInject */ ($state, projectId, app) => () =>
+        $state.go(
+          'pci.projects.project.ai.apps.dashboard.general-information.update-port',
+          {
+            projectId,
+            app,
+          },
+        ),
     },
   });
 };
