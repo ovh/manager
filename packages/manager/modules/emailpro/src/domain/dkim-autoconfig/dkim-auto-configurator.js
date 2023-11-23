@@ -54,9 +54,14 @@ export default class DkimAutoConfigurator {
     });
   }
 
-  leaveDkimConfigurator() {
+  leaveDkimConfigurator(reload = false) {
     this.services.navigation.resetAction();
-    return this.initializeDkimConfiguratorNoOvh();
+    this.initializeDkimConfiguratorNoOvh();
+    this.services.$state.go(
+      'email-pro.dashboard.domain',
+      {},
+      reload ? { reload: 'email-pro.dashboard.domain' } : null,
+    );
   }
 
   stepConfigureDkimFor(targetService) {
@@ -64,19 +69,13 @@ export default class DkimAutoConfigurator {
     return this.services.$q
       .all(promises)
       .then(() => {
-        this.services.messaging.writeSuccess(
-          this.services.$translate.instant(
-            `${targetService}_tab_domain_diagnostic_dkim_activation_success`,
-          ),
+        this.writeSuccess(
+          `${targetService}_tab_domain_diagnostic_dkim_activation_success`,
         );
       })
       .catch(() => {
         this.leaveDkimConfigurator();
-        this.services.messaging.writeError(
-          this.services.$translate.instant(
-            `${targetService}_tab_domain_diagnostic_dkim_configurate_no_ovhcloud_failed`,
-          ),
-        );
+        this.writeError(`${targetService}_tab_domain_diagnostic_dkim_error`);
       });
   }
 
@@ -119,8 +118,23 @@ export default class DkimAutoConfigurator {
 
   hideConfirmButton() {
     return (
-      this.dkimStatus === this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED &&
+      this.dkimStatus === this.DKIM_STATUS.TO_CONFIGURE &&
       this.domainDiag.isOvhDomain
     );
+  }
+
+  writeError(msg, args) {
+    this.writeMessage(msg, 'error', args);
+  }
+
+  writeSuccess(msg, args) {
+    this.writeMessage(msg, 'success', args);
+  }
+
+  writeMessage(msg, type, args) {
+    const message = this.services.$translate.instant(msg, args);
+    this.services.$scope.setMessage(message, {
+      type,
+    });
   }
 }
