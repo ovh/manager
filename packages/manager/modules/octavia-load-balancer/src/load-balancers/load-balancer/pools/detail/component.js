@@ -10,6 +10,7 @@ export default {
     healthMonitorPoolsDetailLink: '<',
     membersPoolsDetailLink: '<',
     pool: '<',
+    members: '<',
     trackDetailAction: '<',
     trackDetailPage: '<',
     goBack: '<',
