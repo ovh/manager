@@ -45,10 +45,22 @@ export default /* @ngInject */ ($stateProvider) => {
           listenerName: listener.name,
         });
       },
-      getPoolDetailLink: /* @ngInject */ ($state) => (pool) =>
-        $state.href('octavia-load-balancer.loadbalancer.pools.detail', {
-          poolId: pool.id,
-        }),
+      getPoolDetailLink: /* @ngInject */ (
+        coreURLBuilder,
+        projectId,
+        region,
+        loadbalancerId,
+      ) => (listener) =>
+        coreURLBuilder.buildURL(
+          'public-cloud',
+          '#/pci/projects/:serviceName/octavia-load-balancer/:region/:loadbalancerId/pools/:poolId',
+          {
+            serviceName: projectId,
+            region,
+            loadbalancerId,
+            poolId: listener.defaultPoolId,
+          },
+        ),
     },
     atInternet: {
       rename: `${TRACKING_NAME}::${TRACKING_SUFFIX}`,
