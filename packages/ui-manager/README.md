@@ -16,7 +16,7 @@ Keep it as simple as possible
 The react super component is not builded so you can import directly selected components
 Just update your `tsconfig.json` :
 `         "@ui-manager/*": [
-        "../../../ui-manager/src/components/"
+        "../../../ui-manager/src/components/*"
       ]
     `
 
