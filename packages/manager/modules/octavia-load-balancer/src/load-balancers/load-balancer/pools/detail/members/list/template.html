@@ -1,0 +1,49 @@
+<oui-datagrid class="table-striped" data-rows="$ctrl.members">
+    <oui-datagrid-topbar>
+        <oui-button
+            data-ng-click="$ctrl.goToMemberCreation()"
+            variant="secondary"
+        >
+            <span
+                data-translate="octavia_load_balancer_pools_detail_members_add_manually"
+            ></span>
+        </oui-button>
+        <oui-button
+            data-ng-click="$ctrl.goToIpInstanceCreation()"
+            variant="secondary"
+        >
+            <span
+                data-translate="octavia_load_balancer_pools_detail_members_add_ip_instances"
+            ></span>
+        </oui-button>
+    </oui-datagrid-topbar>
+
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_pools_detail_members_name' | translate"
+        data-property="name"
+        data-sortable
+        data-searchable
+        data-filterable
+        data-type="string"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_pools_detail_members_address' | translate"
+        data-property="address"
+        data-sortable
+        data-searchable
+        data-filterable
+        data-type="string"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_pools_detail_members_protocol_port' | translate"
+        data-property="protocolPort"
+        data-sortable
+        data-searchable
+        data-filterable
+        data-type="number"
+        data-helper=":: 'octavia_load_balancer_pools_detail_members_protocol_port_helper' | translate"
+    >
+    </oui-datagrid-column>
+</oui-datagrid>
