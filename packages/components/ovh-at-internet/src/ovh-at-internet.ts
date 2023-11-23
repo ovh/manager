@@ -18,8 +18,8 @@ import { debug } from './utils';
 function getPageTrackingData(
   page: LegacyTrackingData,
 ): Partial<PageTrackingData> {
-  const parts = (page.name || '').split('::');
-  const len = parts.length;
+  const parts = (page?.name || '').split('::');
+  const len = parts?.length;
   return {
     page: len >= 1 ? parts.slice(Math.min(len - 1, 3)).join('::') : '',
     page_chapter1: len >= 2 ? parts[0] : '',
@@ -317,7 +317,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
         click_chapter1: pageTrackingData.page_chapter1,
         click_chapter2: pageTrackingData.page_chapter2,
         click_chapter3: pageTrackingData.page_chapter3,
-        ...getPageTrackingData(data.page),
+        ...getPageTrackingData(data?.page),
       };
 
       if (['action', 'navigation', 'download', 'exit'].includes(data.type)) {
