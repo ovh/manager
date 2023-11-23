@@ -248,11 +248,9 @@
                                 <!-- dkim -->
                                 <button
                                     class="oui-badge"
-                                    data-ng-class="ctrl.setDkimColorClass(ctrl.dkimGlobalStatus(domain))"
+                                    data-ng-class="ctrl.constructor.getDkimColorClass(domain)"
                                     data-ng-click="setAction('exchange/domain/dkim-autoconfig/domain-dkim-autoconfig', {
                                         domain: domain,
-                                        constant: { GLOBAL_DKIM_STATUS: ctrl.GLOBAL_DKIM_STATUS, DKIM_STATUS: ctrl.DKIM_STATUS },
-                                        dkimStatus: ctrl.dkimGlobalStatus(domain),
                                     })"
                                     data-translate="exchange_tab_domain_diagnostic_dkim"
                                 ></button>

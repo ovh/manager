@@ -3,11 +3,7 @@ import forEach from 'lodash/forEach';
 import has from 'lodash/has';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
-import {
-  GLOBAL_DKIM_STATUS,
-  DKIM_STATUS,
-  DKIM_MATCHING_SCHEMA_STATUS,
-} from './domain.constants';
+import { DKIM_STATUS, DKIM_STATUS_CLASS } from './domain.constants';
 
 export default class ExchangeTabDomainsCtrl {
   /* @ngInject */
@@ -63,7 +59,6 @@ export default class ExchangeTabDomainsCtrl {
     $scope.getPaginated = () => this.paginated;
     $scope.getLoading = () => this.loading;
 
-    this.GLOBAL_DKIM_STATUS = GLOBAL_DKIM_STATUS;
     this.DKIM_STATUS = DKIM_STATUS;
   }
 
@@ -104,38 +99,6 @@ export default class ExchangeTabDomainsCtrl {
       });
   }
 
-  dkimGlobalStatus({ dkim: dkimSelectors }) {
-    if (dkimSelectors.length === 0) {
-      return this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED;
-    }
-
-    if (
-      dkimSelectors.find(({ status }) =>
-        DKIM_MATCHING_SCHEMA_STATUS.OK.includes(status),
-      )
-    ) {
-      return this.GLOBAL_DKIM_STATUS.OK;
-    }
-
-    if (
-      DKIM_MATCHING_SCHEMA_STATUS.DISABLED.includes(dkimSelectors[0].status) &&
-      (!dkimSelectors[1] ||
-        DKIM_MATCHING_SCHEMA_STATUS.DISABLED.includes(dkimSelectors[1].status))
-    ) {
-      return this.GLOBAL_DKIM_STATUS.DISABLED;
-    }
-
-    if (
-      dkimSelectors.find(({ status }) =>
-        DKIM_MATCHING_SCHEMA_STATUS.IN_PROGRESS.includes(status),
-      )
-    ) {
-      return this.GLOBAL_DKIM_STATUS.IN_PROGRESS;
-    }
-
-    return this.GLOBAL_DKIM_STATUS.NOK;
-  }
-
   setTooltips() {
     if (has(this.paginated, 'domains') && !isEmpty(this.paginated.domains)) {
       forEach(this.paginated.domains, (domain) => {
@@ -148,21 +111,8 @@ export default class ExchangeTabDomainsCtrl {
     }
   }
 
-  setDkimColorClass(status) {
-    switch (status) {
-      case this.GLOBAL_DKIM_STATUS.OK:
-        return 'oui-badge_success';
-      case this.GLOBAL_DKIM_STATUS.DISABLED:
-        return 'oui-badge_warning';
-      case this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED:
-        return 'oui-background-g-100';
-      case this.GLOBAL_DKIM_STATUS.IN_PROGRESS:
-        return 'oui-badge_info';
-      case this.GLOBAL_DKIM_STATUS.NOK:
-        return 'oui-badge_error';
-      default:
-        return '';
-    }
+  static getDkimColorClass({ dkimDiagnostics: { state } }) {
+    return DKIM_STATUS_CLASS[state] || '';
   }
 
   setMxTooltip(domain) {
