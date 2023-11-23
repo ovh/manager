@@ -106,14 +106,12 @@ export default async (containerEl, shellClient) => {
         });
       },
     )
-    .run(
+    .config(
       /* @ngInject */ ($urlRouterProvider) => {
-        $urlRouterProvider.rule(($injector, $location) => {
-          const path = $location.path();
-          if (path === '/hub/catalog') {
-            return '/catalog';
-          }
-          return undefined;
+        $urlRouterProvider.when('/catalog', () => {
+          shellClient.navigation.getURL('catalog', '/').then((url) => {
+            window.top.location.href = url;
+          });
         });
       },
     )

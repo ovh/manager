@@ -34,6 +34,12 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
             serviceType: 'aapi',
           })
           .then((data) => data.data.data.services),
+      catalog: /* @ngInject */ ($http) =>
+        $http
+          .get('/hub/catalog', {
+            serviceType: 'aapi',
+          })
+          .then((data) => data.data.data.catalog),
       products: /* @ngInject */ ($http, order, services, catalog) =>
         getProducts(services, order, catalog),
       trackingPrefix: () => 'hub::dashboard',
