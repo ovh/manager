@@ -1,8 +1,10 @@
+/* eslint-disable no-return-await */
 import React from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ScTile, ScTileProps } from './tile';
-import { defaultProps } from './tile.stories';
 import { render, waitFor } from '../../utils/test.provider';
+
+import { ScTile, ScTileProps } from './tile.component';
+import { defaultProps } from './tile.stories';
 
 const setupSpecTest = async (customProps?: Partial<ScTileProps>) =>
   await waitFor(() => render(<ScTile {...defaultProps} {...customProps} />));

@@ -1,1 +1,2 @@
-export * from './tile/tile';
+export * from './tile/tile.component';
+export * from './error/error.component';

@@ -17,8 +17,10 @@
     "jsx": "react-jsx"
   },
   "include": [
+    "src",
     "./src/**/*.ts",
     "./src/**/*.tsx",
+    "./src/index.d.ts",
     "src/components/tile/tile.spec.tsx"
   ],
   "exclude": ["./src/**/*.stories.*"]

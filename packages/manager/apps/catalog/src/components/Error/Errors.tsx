@@ -1,44 +1,61 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react/';
-import { OsdsText } from '@ovhcloud/ods-components/text/react/';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message/';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text/';
-import ErrorButtons from './ErrorButtons';
-import ErrorMessage from './ErrorMessage';
-import OOPS from '../../assets/error-banner-oops.png';
+/* eslint-disable import/no-extraneous-dependencies */
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useShell } from '@ovh-ux/manager-react-core-application';
+import { ErrorBanner } from '@ovhcloud/react-super-components';
 
 interface ErrorObject {
   [key: string]: any;
 }
 
-const ErrorBanner: React.FC<ErrorObject> = ({ error }) => {
-  const { t } = useTranslation('catalog/error');
+export interface ErrorMessage {
+  message: string;
+  status: number;
+  detail: any;
+}
+export const TRACKING_LABELS = {
+  SERVICE_NOT_FOUND: 'service_not_found',
+  UNAUTHORIZED: 'unauthorized',
+  PAGE_LOAD: 'error_during_page_loading',
+};
+
+export function getTrackingTypology(error: ErrorMessage) {
+  if (error?.detail?.status && Math.floor(error.detail.status / 100) === 4) {
+    return [401, 403].includes(error.detail.status)
+      ? TRACKING_LABELS.UNAUTHORIZED
+      : TRACKING_LABELS.SERVICE_NOT_FOUND;
+  }
+  return TRACKING_LABELS.PAGE_LOAD;
+}
+
+const Errors: React.FC<ErrorObject> = ({ error }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const shell = useShell();
+  const { tracking, environment } = shell;
+  const env = environment.getEnvironment();
+
+  useEffect(() => {
+    tracking.init(false);
+    env.then((response) => {
+      const { applicationName } = response;
+      const name = `errors::${getTrackingTypology(error)}::${applicationName}`;
+      console.info('tracking page error is online');
+      tracking.trackPage({
+        name,
+        level2: '81',
+        type: 'navigation',
+        page_category: location.pathname,
+      });
+    });
+  }, []);
   return (
-    <div className="w-full max-w-screen-sm h-full overflow-hidden mx-autogrid p-5">
-      <div>
-        <img className="w-full" src={OOPS} alt="OOPS" />
-      </div>
-
-      <div className="py-2">
-        <OsdsText size={ODS_TEXT_SIZE._600} level={ODS_TEXT_LEVEL.heading}>
-          {t('manager_error_page_title')}
-        </OsdsText>
-      </div>
-
-      <div>
-        <OsdsMessage
-          color={ODS_THEME_COLOR_INTENT.error}
-          type={ODS_MESSAGE_TYPE.error}
-        >
-          <ErrorMessage error={error} />
-        </OsdsMessage>
-      </div>
-
-      <ErrorButtons />
-    </div>
+    <ErrorBanner
+      error={error}
+      onReloadPage={() => navigate(location.pathname, { replace: true })}
+      onRedirectHome={() => navigate('/', { replace: true })}
+    />
   );
 };
 
-export default ErrorBanner;
+export default Errors;

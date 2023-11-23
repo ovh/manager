@@ -2,29 +2,28 @@
   "name": "@ovhcloud/react-super-components",
   "private": false,
   "version": "1.0.0",
-  "main": "./lib/index.ts",
+  "main": "src/components/index.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh/manager.git",
-    "directory": "packages/react-super-components"
+    "directory": "packages/ui-manager"
   },
   "scripts": {
     "start": "storybook dev -p 6006",
     "dev": "tsc",
-    "build": "storybook build",
-    "build:lib": "tsc && vite build",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "test": "jest --coverage -u",
     "test:cov": "vitest run --coverage",
     "test:e2e": "tsc && npx playwright test --ui --debug"
   },
   "dependencies": {
+    "babel-preset-react-app": "^10.0.1",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@babel/core": "7.22.10",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@ovhcloud/ods-common-stencil": "^16.0.1",
     "@ovhcloud/ods-common-testing": "^16.0.1",
     "@ovhcloud/ods-common-theming": "^16.0.1",
@@ -54,6 +53,7 @@
     "eslint-plugin-promise": "6.1.1",
     "eslint-plugin-react": "7.33.1",
     "eslint-plugin-storybook": "0.6.13",
+    "file-loader": "^6.2.0",
     "husky": "8.0.3",
     "i18next": "^20.4.0",
     "jsdom": "22.1.0",

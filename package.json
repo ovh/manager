@@ -15,7 +15,8 @@
     "packages/super-components/components/*",
     "packages/super-components/*",
     "packages/super-components/components/*/react",
-    "packages/super-components/components/*/vue"
+    "packages/super-components/components/*/vue",
+    "packages/ui-manager"
   ],
   "scripts": {
     "build": "yarn run build:turbo",
