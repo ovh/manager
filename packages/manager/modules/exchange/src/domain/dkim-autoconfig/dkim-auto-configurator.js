@@ -120,7 +120,7 @@ export default class DkimAutoConfigurator {
 
   hideConfirmButton() {
     return (
-      this.dkimStatus === this.GLOBAL_DKIM_STATUS.NOT_CONFIGURED &&
+      this.dkimStatus === this.DKIM_STATUS.TO_CONFIGURE &&
       this.domainDiag.isOvhDomain
     );
   }

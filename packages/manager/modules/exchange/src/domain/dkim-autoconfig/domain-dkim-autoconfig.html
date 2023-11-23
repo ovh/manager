@@ -4,21 +4,26 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="ctrl.onFinishDkim.bind(ctrl)"
-        data-wizard-confirm-button-text="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.OK ?
+        data-wizard-confirm-button-text="ctrl.dkimStatus === ctrl.DKIM_STATUS.ACTIVE ?
         'exchange_tab_domain_diagnostic_dkim_deactivate' : 'exchange_tab_domain_diagnostic_dkim_activate' | translate"
         data-wizard-hide-confirm-button="ctrl.hideConfirmButton"
-        data-wizard-title="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOK ||
-                           ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.OK ?
-            'exchange_tab_domain_diagnostic_dkim_title_error' :
-            'exchange_tab_domain_diagnostic_dkim_title_activation' | translate"
+        data-wizard-title="ctrl.dkimStatus === ctrl.DKIM_STATUS.DISABLED ?
+            'exchange_tab_domain_diagnostic_dkim_title_activation' :
+            'exchange_tab_domain_diagnostic_dkim_title_error' | translate"
     >
         <div data-wizard-step>
             <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
             <div data-ng-if="!ctrl.loading">
                 <p
                     data-translate="{{ ctrl.getBodyText() }}"
-                    data-translate-values="{ url: ctrl.dkimGuideLink, errorCode: ctrl.dkimErrorCode }"
+                    data-translate-values="{ url: ctrl.dkimGuideLink, errorCode: ctrl.dkimErrorCode}"
                 ></p>
+                <oui-message
+                    data-type="warning"
+                    data-ng-if="ctrl.dkimErrorMessage"
+                >
+                    <span data-ng-bind-html="ctrl.dkimErrorMessage"></span>
+                </oui-message>
             </div>
         </div>
     </div>
