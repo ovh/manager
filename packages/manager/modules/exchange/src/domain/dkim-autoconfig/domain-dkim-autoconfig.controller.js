@@ -29,6 +29,7 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
       exchangeStates,
     };
 
+    this.loading = true;
     this.$routerParams = wucExchange.getParams();
     this.domain = navigation.currentActionData.domain;
     const {
@@ -37,14 +38,11 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
     this.dkimStatus = state;
     if (state === DKIM_STATUS.ERROR) {
       this.dkimErrorMessage = message;
-      this.dkimErrorCode = errorCode;
     }
     this.DKIM_STATUS = DKIM_STATUS;
     this.dkimGuideLink =
       DKIM_CONFIGURATION_GUIDE[coreConfig.getUser().ovhSubsidiary] ||
       DKIM_CONFIGURATION_GUIDE.DEFAULT;
-
-    this.loading = true;
 
     // Vars for DKIM configuration inside modal stepper
     this.initializeDkimConfiguratorNoOvh();
@@ -62,6 +60,8 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
         this.dkimForNoOvhCloud =
           this.dkimStatus === this.DKIM_STATUS.TO_CONFIGURE &&
           !this.domainDiag.isOvhDomain;
+
+        this.bodyText = this.getBodyText(state, this.dkimGuideLink, errorCode);
 
         this.loading = false;
       })
@@ -120,7 +120,7 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
       this.$routerParams.organization,
       this.$routerParams.productId,
       this.domain.name,
-      dkimSelectors[0].status === this.DKIM_STATUS.IN_PRODUCTION
+      dkimSelectors[0].status === 'inProduction'
         ? dkimSelectors[0].selectorName
         : dkimSelectors[1].selectorName,
     );
@@ -129,11 +129,11 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
 
   resetAction(reload = false) {
     this.services.navigation.resetAction();
-    if (reload) {
-      this.services.$state.go('exchange.dashboard.domain').then(() => {
-        this.services.$state.reload();
-      });
-    }
+    this.services.$state.go(
+      'exchange.dashboard.domain',
+      {},
+      reload ? { reload: 'exchange.dashboard.domain' } : null,
+    );
   }
 
   getDkimSelectorForCurrentState() {
@@ -212,15 +212,20 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
       });
   }
 
-  getBodyText() {
+  getBodyText(state, url, errorCode) {
     let translationKey;
-    if (this.dkimStatus === this.DKIM_STATUS.TO_CONFIGURE) {
+    if (state === this.DKIM_STATUS.TO_CONFIGURE) {
       translationKey = this.domainDiag.isOvhDomain
         ? 'exchange_tab_domain_diagnostic_dkim_activation_ovhcloud'
         : 'exchange_tab_domain_diagnostic_dkim_activation_no_ovhcloud';
     } else {
-      translationKey = DKIM_STATUS_TEXT[this.dkimStatus];
+      translationKey = DKIM_STATUS_TEXT[state];
     }
-    return translationKey;
+    return translationKey
+      ? this.services.$translate.instant(translationKey, {
+          url,
+          errorCode,
+        })
+      : '';
   }
 }

@@ -4,7 +4,7 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="ctrl.onFinishDkim.bind(ctrl)"
-        data-wizard-confirm-button-text="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.OK ?
+        data-wizard-confirm-button-text="ctrl.dkimStatus === ctrl.DKIM_STATUS.ACTIVE ?
         'emailpro_tab_domain_diagnostic_dkim_deactivate' : 'emailpro_tab_domain_diagnostic_dkim_activate' | translate"
         data-wizard-hide-confirm-button="ctrl.hideConfirmButton"
         data-wizard-title="ctrl.getTitleForWizard()"
@@ -12,10 +12,13 @@
         <div data-wizard-step>
             <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
             <div data-ng-if="!ctrl.loading">
-                <p
-                    data-translate="{{ctrl.getBodyText(ctrl.dkimStatus)}}"
-                    data-translate-values="{ url: ctrl.dkimGuideLink, errorCode: ctrl.dkimErrorCode }"
-                ></p>
+                <p data-ng-bind-html="::ctrl.bodyText"></p>
+                <oui-message
+                    data-type="warning"
+                    data-ng-if="ctrl.dkimErrorMessage"
+                >
+                    <span data-ng-bind-html="::ctrl.dkimErrorMessage"></span>
+                </oui-message>
             </div>
         </div>
     </div>
@@ -40,6 +43,7 @@
                 <div data-ng-if="!ctrl.loading">
                     <p
                         data-translate="emailpro_tab_domain_diagnostic_dkim_activation_no_ovhcloud"
+                        data-translate-values="{url: ctrl.dkimGuideLink}"
                     ></p>
                 </div>
             </div>

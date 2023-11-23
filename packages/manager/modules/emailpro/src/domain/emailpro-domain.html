@@ -255,11 +255,9 @@
                                     <!-- dkim -->
                                     <button
                                         class="oui-badge"
-                                        data-ng-class="DKIM_STATUS_TO_CLASS_MAP[(dkimGlobalStatus(domain))]"
+                                        data-ng-class="DKIM_STATUS_CLASS[domain.dkimDiag.state]"
                                         data-ng-click="setAction('emailpro/domain/dkim-autoconfig/emailpro-domain-dkim-autoconfig', {
                                             domain,
-                                            constant: { GLOBAL_DKIM_STATUS, DKIM_STATUS },
-                                            dkimStatus: dkimGlobalStatus(domain),
                                         })"
                                         data-ng-if="!exchange.isMXPlan"
                                         data-translate="emailpro_tab_domain_diagnostic_dkim"
