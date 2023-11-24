@@ -26,6 +26,10 @@ export default /* @ngInject */ ($stateProvider) => {
         trackClick('create-volume');
         return $state.go('netapp.dashboard.volumes.create');
       },
+      goToNetworkConfiguration: /* @ngInject */ ($state, trackClick) => () => {
+        trackClick('configure-network');
+        return $state.go('netapp.dashboard.network');
+      },
       volumes: /* @ngInject */ ($http, serviceName) =>
         $http
           .get(`/storage/netapp/${serviceName}/share?detail=true`)
@@ -82,6 +86,12 @@ export default /* @ngInject */ ($stateProvider) => {
                 ),
               ),
           ),
+      networkInformations: /* @ngInject */ (iceberg, serviceName) =>
+        // TODO: To mock until API is ready (STORAGE-8593)
+        iceberg(`/storage/netapp/${serviceName}/network`)
+          .query()
+          .expand('CachedObjectList-Pages')
+          .execute().$promise,
     },
   });
 };
