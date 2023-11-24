@@ -26,7 +26,8 @@ export default /* @ngInject */ ($stateProvider) => {
         trackClick('create-volume');
         return $state.go('netapp.dashboard.volumes.create');
       },
-      goToNetworkConfiguration: /* @ngInject */ ($state) => () => {
+      goToNetworkConfiguration: /* @ngInject */ ($state, trackClick) => () => {
+        trackClick('configure-network');
         return $state.go('netapp.dashboard.network');
       },
       volumes: /* @ngInject */ ($http, serviceName) =>
