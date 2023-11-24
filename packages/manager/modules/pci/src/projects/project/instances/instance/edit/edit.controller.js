@@ -259,4 +259,13 @@ export default class PciInstanceEditController {
         this.isLoading = false;
       });
   }
+
+  isLoosingMonthlyPlan() {
+    return (
+      Boolean(this.instance.monthlyBilling) &&
+      this.model.flavorGroup?.flavors.find(
+        ({ id }) => id === this.editInstance.flavorId,
+      )?.planCodes.monthly === null
+    );
+  }
 }
