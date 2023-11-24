@@ -22,5 +22,7 @@
   "pci_projects_project_instances_backup_add_error_save": "Wystąpił błąd podczas dodawania instancji {{instance}}: {{message}}.",
   "pci_projects_project_instances_backup_add_error_multiple_save": "Wystąpił błąd podczas dodawania instancji: {{message}}.",
   "pci_projects_project_instances_backup_add_flex": "Elastyczna instancja",
-  "pci_projects_project_instances_backup_add_flex_help": "Zaznaczenie tej opcji wymusza przestrzeń dyskową 50 GB oferującą szybsze snapshoty i możliwość późniejszej zmiany na niższą ofertę."
+  "pci_projects_project_instances_backup_add_flex_help": "Zaznaczenie tej opcji wymusza przestrzeń dyskową 50 GB oferującą szybsze snapshoty i możliwość późniejszej zmiany na niższą ofertę.",
+  "pci_projects_project_instances_backup_add_coming_soon_message_title": "Ceny miesięczne",
+  "pci_projects_project_instances_backup_add_coming_soon_message_description": "Ceny miesięczne będą dostępne wkrótce, wraz z uruchomieniem Saving Plans."
 }
