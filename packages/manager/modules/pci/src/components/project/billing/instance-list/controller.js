@@ -1,8 +1,10 @@
 import find from 'lodash/find';
 import map from 'lodash/map';
+import { DEFAULT_CATALOG_ENDPOINT } from '../../flavors-list/flavors-list.constants';
 
 export default /* @ngInject */ function BillingInstanceListComponentCtrl(
   $q,
+  flavorsListService,
   $stateParams,
   $translate,
   coreConfig,
@@ -57,12 +59,29 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
     });
   }
 
+  function initCatalog() {
+    return flavorsListService
+      .getCatalog(DEFAULT_CATALOG_ENDPOINT, coreConfig.getUser().ovhSubsidiary)
+      .then((catalog) => {
+        self.catalog = catalog;
+      });
+  }
+
   function getImageTypeFromReference(reference) {
     if (reference) {
       return /^win/.test(reference) ? 'windows' : 'linux';
     }
     return '';
   }
+
+  self.displayUpdateToMonthlyBillingButton = (instanceConsumption) => {
+    return (
+      self.switchToMonthlyBilling &&
+      instanceConsumption.monthlyBilling === null &&
+      !instanceConsumption.isDeleted &&
+      instanceConsumption.monthlyPlan
+    );
+  };
 
   function getInstanceConsumptionDetails(billingDetail) {
     const instanceConsumptionDetail = {};
@@ -107,14 +126,22 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
     );
 
     $q.allSettled(self.instanceConsumptionDetailsInit).then((instances) => {
-      self.instanceConsumptionDetails = instances;
+      self.instanceConsumptionDetails = instances.map((instance) => {
+        const monthlyPlan = self.catalog?.addons.find((addon) =>
+          addon.planCode.match(`${instance.reference}.monthly`),
+        )?.blobs?.tags;
+        return {
+          ...instance,
+          monthlyPlan,
+        };
+      });
     });
   }
 
   self.$onInit = () => {
     self.loaders.instanceList = true;
 
-    $q.all([initInstances(), initImages(), initUserCurrency()])
+    $q.all([initInstances(), initImages(), initUserCurrency(), initCatalog()])
       .then(() => {
         loadConsumptionDetails();
       })

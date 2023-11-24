@@ -283,7 +283,7 @@
 
                     <oui-action-menu
                         data-compact
-                        data-ng-if="!$ctrl.instance.isMonthlyBillingActivated()"
+                        data-ng-if="$ctrl.displayBillingActionButton()"
                         data-placement="end"
                     >
                         <oui-action-menu-item

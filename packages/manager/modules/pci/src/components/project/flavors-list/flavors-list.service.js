@@ -78,13 +78,13 @@ export default class FlavorsList {
             ...omit(resource, ['available', 'region']),
             technicalBlob: get(
               find(catalog.addons, {
-                invoiceName: resource.name,
+                planCode: resource.planCodes.hourly,
               }),
               'blobs.technical',
             ),
             tagsBlob: get(
               catalog.addons.find(
-                (addon) => addon.invoiceName === resource.name,
+                (addon) => addon.planCode === resource.planCodes.hourly,
               ),
               'blobs.tags',
             ),

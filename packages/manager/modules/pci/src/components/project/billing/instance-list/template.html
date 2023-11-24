@@ -89,7 +89,7 @@
                         <!-- CONFIRM MONTHLY PAYMENT BUTTON -->
                         <button
                             type="button"
-                            data-ng-if="$ctrl.switchToMonthlyBilling && instanceConsumption.monthlyBilling === null && !instanceConsumption.isDeleted"
+                            data-ng-if="$ctrl.displayUpdateToMonthlyBillingButton(instanceConsumption)"
                             class="oui-button oui-button_secondary"
                             data-ng-click="$ctrl.switchToMonthlyBilling({ instance: instanceConsumption })"
                             data-write-right-required
