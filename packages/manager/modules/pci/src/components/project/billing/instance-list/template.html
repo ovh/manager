@@ -67,7 +67,7 @@
                         class="oui-table__cell text-right no-space vertical-middle right-space-p4"
                     >
                         <span
-                            data-ng-if="instanceConsumption.monthlyBilling && instanceConsumption.monthlyBilling.status === 'ok'"
+                            data-ng-if="instanceConsumption.monthlyBilling && (instanceConsumption.monthlyBilling.status === 'ok' || instanceConsumption.monthlyBilling.status === 'resized')"
                             data-translate="cpbc_hourly_instance_monthly_billing_since"
                             data-translate-values="{ since : (instanceConsumption.monthlyBilling.since | date:'shortDate') }"
                         >

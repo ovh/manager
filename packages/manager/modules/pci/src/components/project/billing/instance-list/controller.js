@@ -108,6 +108,18 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
       instanceConsumptionDetail.isDeleted = false;
       instanceConsumptionDetail.instanceName = instance.name;
       instanceConsumptionDetail.monthlyBilling = instance.monthlyBilling;
+
+      // Handle gen3 resized message
+      if (
+        !instanceConsumptionDetail.monthlyBilling &&
+        billingDetail.activation
+      ) {
+        instanceConsumptionDetail.monthlyBilling = {
+          since: billingDetail.activation,
+          status: 'resized',
+        };
+      }
+
       instanceConsumptionDetail.planCode = instance.planCode;
       const imageData = find(self.data.images, { id: instance.imageId });
       if (imageData) {
