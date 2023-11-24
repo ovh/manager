@@ -86,32 +86,12 @@ export default /* @ngInject */ ($stateProvider) => {
                 ),
               ),
           ),
-      networkInformations: /* @ngInject */ (/* iceberg, serviceName */) =>
-        // TODO: add iceberg call when API is ready (STORAGE-8593)
-        /* iceberg(
-          `/storage/netapp/${serviceName}/network`,
-        )
-        .query()
-        .expand('CachedObjectList-Pages')
-        .execute().$promise */
-
-        // MOCK:
-        /*
-          [
-            {
-              id: "id",
-              status: "to_configure", //to_configure, associating, associated, dissociating
-              vrackServicesURN: "urn"
-            }
-          ]
-        */
-        [
-          {
-            id: 'id',
-            status: 'to_configure', // to_configure, associating, associated, dissociating
-            vrackServicesURN: 'urn',
-          },
-        ],
+      networkInformations: /* @ngInject */ (iceberg, serviceName) =>
+        // TODO: To mock until API is ready (STORAGE-8593)
+        iceberg(`/storage/netapp/${serviceName}/network`)
+          .query()
+          .expand('CachedObjectList-Pages')
+          .execute().$promise,
     },
   });
 };
