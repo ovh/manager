@@ -456,6 +456,7 @@
   "ip_firewall_rule_status_removalPending": "En suppression",
   "ip_firewall_rule_status_OK": "Actif",
   "ip_firewall_rule_status_ok": "Actif",
+  "ip_firewall_rule_status_inactif": "Inactif",
   "ip_firewall_rule_fragments": "Fragments",
   "ip_firewall_rule_fragments_tooltip": "Vous ne pouvez choisir l'option fragment en ayant défini un port source et/ou un port destinataire.",
   "ip_firewall_rule_flags": "Drapeaux",
