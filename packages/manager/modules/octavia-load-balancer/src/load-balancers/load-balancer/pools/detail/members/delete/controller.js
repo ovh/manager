@@ -1,7 +1,6 @@
 export default class OctaviaLoadBalancerPoolMemberDeleteCtrl {
   /* @ngInject */
   constructor(Alerter, $translate, OctaviaLoadBalancerMembersService) {
-    console.log('OctaviaLoadBalancerPoolMemberDeleteCtrl');
     this.isLoading = false;
     this.Alerter = Alerter;
     this.$translate = $translate;
