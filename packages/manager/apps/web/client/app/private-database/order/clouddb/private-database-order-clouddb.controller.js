@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 import orderBy from 'lodash/orderBy';
-import sortBy from 'lodash/sortBy';
 
 import { PRODUCT_NAME } from './private-database-order-clouddb.constants';
 
@@ -45,16 +44,6 @@ export default class PrivateDatabaseOrderCloudDbCtrl {
       }),
       ['engineLabel', 'engineVersion'],
       ['asc', 'desc'],
-    );
-
-    this.ramSizeList = sortBy(
-      this.ramSizes
-        .map((ram) => parseInt(ram, 10))
-        .map((ram) => ({
-          label: this.$filter('bytes')(ram, undefined, false, 'MB'),
-          value: ram,
-        })),
-      'value',
     );
   }
 
