@@ -61,40 +61,57 @@ export default /* @ngInject */ ($stateProvider) => {
         trackClick('create-volume');
         return $state.go('netapp.dashboard.volumes.create');
       },
-      getVolumeDetailsHref: /* @ngInject */ ($state, $transition$) => (
+      goToVolumeDetails: /* @ngInject */ ($state, serviceName, trackClick) => (
         volume,
-      ) =>
-        $state.href('netapp.dashboard.volumes.dashboard', {
-          serviceName: $transition$.params().serviceName,
-          volumeId: volume.id,
-        }),
-      goToCreateSnapshot: /* @ngInject */ ($state, serviceName) => (volume) =>
-        $state.go('netapp.dashboard.volumes.dashboard.snapshots.add', {
+      ) => {
+        trackClick('update-volume');
+        return $state.go('netapp.dashboard.volumes.dashboard', {
           serviceName,
           volumeId: volume.id,
-        }),
-      goToSnapshots: /* @ngInject */ ($state, serviceName) => (volume) =>
-        $state.go('netapp.dashboard.volumes.dashboard.snapshots', {
+        });
+      },
+      goToCreateSnapshot: /* @ngInject */ ($state, serviceName, trackClick) => (
+        volume,
+      ) => {
+        trackClick('create-snapshot');
+        return $state.go('netapp.dashboard.volumes.dashboard.snapshots.add', {
           serviceName,
           volumeId: volume.id,
-        }),
-      goToAcls: /* @ngInject */ ($state, serviceName) => (volume) =>
-        $state.go('netapp.dashboard.volumes.dashboard.acl', {
+        });
+      },
+      goToSnapshots: /* @ngInject */ ($state, serviceName, trackClick) => (
+        volume,
+      ) => {
+        trackClick('manage-snapshots');
+        return $state.go('netapp.dashboard.volumes.dashboard.snapshots', {
           serviceName,
           volumeId: volume.id,
-        }),
-      getVolumeDeleteHref: /* @ngInject */ ($state, $transition$) => (volume) =>
-        $state.href('netapp.dashboard.volumes.delete', {
-          serviceName: $transition$.params().serviceName,
+        });
+      },
+      goToAcls: /* @ngInject */ ($state, serviceName, trackClick) => (
+        volume,
+      ) => {
+        trackClick('manage-acl');
+        return $state.go('netapp.dashboard.volumes.dashboard.acl', {
+          serviceName,
           volumeId: volume.id,
-        }),
+        });
+      },
+      goToDeleteVolume: /* @ngInject */ ($state, serviceName, trackClick) => (
+        volume,
+      ) => {
+        trackClick('delete-volume');
+        return $state.go('netapp.dashboard.volumes.delete', {
+          serviceName,
+          volumeId: volume.id,
+        });
+      },
       canEditVolumes: /* @ngInject */ (features) =>
         features.isFeatureAvailable('netapp:volumes:actions'),
       isDashboardAvailable: /* @ngInject */ (features) =>
         features.isFeatureAvailable('netapp:volumes:dashboard'),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('netapp_volumes_breadcrumb'),
-
       totalVolumesStorage: /* @ngInject */ (volumes) =>
         volumes.reduce((sum, { size }) => sum + size, 0),
     },
