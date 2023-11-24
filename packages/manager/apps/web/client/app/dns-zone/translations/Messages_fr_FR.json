@@ -12,7 +12,7 @@
   "dashboard_history_popup_title": "Données de la zone DNS",
   "dashboard_history_close_popup": "Fermer",
   "dashboard_history_compare_button_label": "Comparer les versions",
-  "dashboard_history_restoration_successful": "La restauration de votre zone DNS est en cours. La propagation sera effective selon la durée du TTL (maximum 24h). Vous pourrez suivre sa progression dans l'onglet \"Tâches récentes\".",
+  "dashboard_history_restoration_successful": "La restauration de votre zone DNS est en cours. Vous pourrez suivre sa progression dans l'onglet \"Tâches récentes\". La propagation sera effective selon la durée du TTL (maximum 24h).",
   "dashboard_history_restore_modal_title": "Restaurer ma zone DNS",
   "dashboard_history_restore_modal_content": "Souhaitez-vous restaurer la sauvegarde du {{date}} ?",
   "dashboard_history_restore_modal_primary_label": "Restaurer",
