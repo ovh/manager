@@ -9,6 +9,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   $scope,
   $rootScope,
   $translate,
+  getIp,
   goToDashboard,
   Ip,
   IpGameFirewall,
@@ -19,6 +20,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   const alert = 'ip_game_firewall_alert';
 
   self.goToDashboard = goToDashboard;
+  self.getIp = getIp;
 
   self.constantes = {
     DELETE_RULE_PENDING: 'deleteRulePending',
@@ -131,7 +133,13 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
             // eslint-disable-next-line no-use-before-define
             getRule(ruleId).then(
               (rule) => {
-                self.table.rules.push(rule);
+                if (self.table.rules.length > 0) {
+                  if (findIndex(self.table.rules, { id: ruleId }) === -1) {
+                    self.table.rules.push(rule);
+                  }
+                } else {
+                  self.table.rules.push(rule);
+                }
               },
               (error) => {
                 self.table.rules.push({
@@ -174,9 +182,22 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
     );
   }
 
-  function init() {
-    getFirewall();
-    getRules();
+  function init(params) {
+    if (params) {
+      self.datas.selectedBlock = params.ipBlock.ipBlock;
+      self.datas.selectedIp = params.ip.ip;
+      getFirewall();
+      getRules();
+    } else {
+      self.datas.selectedIp = self.getIp();
+      IpGameFirewall.getIpdBlock(self.datas.selectedIp).then((data) => {
+        if (data.length) {
+          [self.datas.selectedBlock] = data;
+          getFirewall();
+          getRules();
+        }
+      });
+    }
 
     // pagination
     self.pageNumber = 1;
@@ -261,11 +282,10 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   });
 
   $scope.$on('ips.gameFirewall.display', (event, params) => {
-    self.datas.selectedBlock = params.ipBlock.ipBlock;
-    self.datas.selectedIp = params.ip.ip;
-    self.datas.firewall = params.firewall;
-    init();
+    init(params);
   });
+
+  init();
 
   $scope.$on('$destroy', () => {
     IpGameFirewall.killPollRuleState();
