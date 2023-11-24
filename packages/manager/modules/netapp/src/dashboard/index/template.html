@@ -34,10 +34,10 @@
     <div class="col-md-4">
         <oui-tile
             class="mb-3"
-            heading="{{:: 'netapp_dashboard_configuration' | translate }}"
+            heading="{{:: 'netapp_dashboard_service_configuration' | translate }}"
         >
             <oui-tile-definition
-                term="{{:: 'netapp_dashboard_configuration_status' | translate }}"
+                term="{{:: 'netapp_dashboard_service_configuration_status' | translate }}"
             >
                 <oui-tile-description>
                     <span
@@ -47,7 +47,7 @@
                     'oui-badge_error': $ctrl.storage.isInactive(),
                     'oui-badge_warning': $ctrl.storage.isPending()
                 }"
-                        data-translate="{{:: 'netapp_dashboard_configuration_status_' + $ctrl.storage.status }}"
+                        data-translate="{{:: 'netapp_dashboard_service_configuration_status_' + $ctrl.storage.status }}"
                     ></span>
                 </oui-tile-description>
             </oui-tile-definition>
@@ -57,7 +57,7 @@
                 on-click="$ctrl.goToCreateVolume()"
             >
                 <span
-                    data-translate="netapp_dashboard_configuration_create_volume"
+                    data-translate="netapp_dashboard_service_configuration_create_volume"
                 ></span>
             </oui-tile-button>
         </oui-tile>
