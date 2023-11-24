@@ -18,6 +18,13 @@ export default class PciInstanceController {
     this.loadMessages();
   }
 
+  displayBillingActionButton() {
+    return (
+      !this.instance.isMonthlyBillingActivated() &&
+      this.instance.flavor.planCodes.monthly
+    );
+  }
+
   loadMessages() {
     this.messageHandler = this.CucCloudMessage.subscribe(
       'pci.projects.project.instances.instance',

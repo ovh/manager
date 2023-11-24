@@ -45,6 +45,13 @@ export default class PciInstanceEditController {
       'pci_projects_project_instances_instance_edit_image_success_message';
 
     this.loadMessages();
+    this.updateInstanceFlavor();
+  }
+
+  updateInstanceFlavor() {
+    this.instance.flavor.tags = this.catalog.addons.find(
+      (addon) => addon.planCode === this.instance.flavor.planCodes.hourly,
+    )?.blobs?.tags;
   }
 
   loadMessages() {

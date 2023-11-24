@@ -151,6 +151,18 @@
         <oui-field
             data-label="{{ :: 'pci_projects_project_instances_backup_add_billing_label' | translate }}"
         >
+            <oui-message
+                data-type="info"
+                data-ng-if="$ctrl.IsComingSoonPricingBannerDisplayed()"
+            >
+                <h6
+                    data-translate="pci_projects_project_instances_backup_add_coming_soon_message_title"
+                ></h6>
+                <p
+                    data-translate="pci_projects_project_instances_backup_add_coming_soon_message_description"
+                ></p>
+            </oui-message>
+
             <pci-project-flavor-billing
                 data-flavor="$ctrl.flavor"
                 data-number="$ctrl.model.number"
