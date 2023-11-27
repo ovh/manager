@@ -10,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '',
     views: {
       'tabView@app.dedicated-server.server': {
-        component: 'dedicatedServerDashboard',
+        component: 'serverDashboard',
       },
     },
     resolve: {

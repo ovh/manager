@@ -2,8 +2,7 @@ import {
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
 } from './dashboard.constants';
-import { NEW_RANGE } from '../server.constants';
-import { DC_2_ISO } from '../../servers.constants';
+import { NEW_RANGE, DC_2_ISO } from '../server/server.constants';
 
 export default class DedicatedServerDashboard {
   /* @ngInject */

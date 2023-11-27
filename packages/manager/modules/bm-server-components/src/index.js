@@ -26,3 +26,5 @@ export { default as serverOla } from './ola';
 export { default as serverNetworkInterfaces } from './network-interfaces';
 export { default as serverProfessionalUse } from './professional-use';
 export { default as serverSecondaryDns } from './secondary-dns';
+export { default as serverMainPage } from './server';
+export { default as serverDashboard } from './server-dashboard';

@@ -4,7 +4,7 @@ import { SERVICE_TYPE } from './server.constants';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-server.server', {
     url: '/server/:productId',
-    component: 'dedicatedServer',
+    component: 'serverMainPage',
     reloadOnSearch: false,
     redirectTo: 'app.dedicated-server.server.dashboard',
     resolve: {
