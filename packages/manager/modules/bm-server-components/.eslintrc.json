@@ -1,0 +1,7 @@
+{
+  "globals": {
+    "moment": true,
+    "punycode": true,
+    "URI": true
+  }
+}
