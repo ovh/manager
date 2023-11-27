@@ -17,4 +17,19 @@ export default class OctaviaLoadBalancerMembersService {
       )
       .then(({ data }) => data);
   }
+
+  createPoolMember(projectId, region, poolId, address, name, protocolPort) {
+    return this.$http.post(
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}/member`,
+      {
+        members: [
+          {
+            address,
+            name,
+            protocolPort,
+          },
+        ],
+      },
+    );
+  }
 }
