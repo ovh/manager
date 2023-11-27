@@ -10,4 +10,26 @@ export default class NetAppNetworkConfigurationService {
       url: '/engine/api/v2/vrack-services/resource',
     });
   }
+
+  linkVrackServiceToEfs(vrackService, subnet, efs) {
+    const vs = vrackService;
+    // create deep copy of currentState
+    vs.targetSpec = JSON.parse(JSON.stringify(vs.currentState));
+
+    // Search the subnet to modify within the vrackServices subnets array
+    const subnetToModify = vs.targetSpec.subnets.find(
+      (vrSubnet) => vrSubnet.cidr === subnet.cidr,
+    );
+
+    // Add the EFS urn as a service endpoint of the selected subnet
+    subnetToModify.serviceEndpoints.push({
+      managedServiceUrn: efs.iam.urn,
+    });
+
+    return this.Apiv2Service.httpApiv2({
+      method: 'put',
+      url: `/engine/api/v2/vrack-services/resource/${vs.id}`,
+      data: vs,
+    });
+  }
 }
