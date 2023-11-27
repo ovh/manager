@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'octavia-load-balancer.loadbalancer.pools.detail.members.list',
     {
-      url: '',
+      url: '/list',
       views: {
         loadbalancerPoolsDetailMembersView:
           'octaviaLoadBalancerPoolsDetailMembersList',
@@ -14,15 +14,23 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: () => null,
         members: /* ngInject */ (
-          OctaviaLoadBalancerPoolsService,
+          OctaviaLoadBalancerMembersService,
           projectId,
           region,
           poolId,
         ) =>
-          OctaviaLoadBalancerPoolsService.getPoolMembers(
+          OctaviaLoadBalancerMembersService.getMembers(
             projectId,
             region,
             poolId,
+          ),
+        goToMemberDeletion: /* @ngInject */ ($state) => (member) =>
+          $state.go(
+            'octavia-load-balancer.loadbalancer.pools.detail.members.list.delete',
+            {
+              memberId: member.id,
+              memberName: member.name,
+            },
           ),
       },
       atInternet: {
