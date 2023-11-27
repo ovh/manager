@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.9.0...@ovh-ux/manager-pci@6.10.0) (2023-11-27)
+
+
+### Features
+
+* **pci.new:** handle voucher error from url param ([b4e10f8](https://github.com/ovh/manager/commit/b4e10f8bbbc5cafd4aeed12a31579fa7f63eeea0))
+
+
+
+
+
 # [6.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.8.0...@ovh-ux/manager-pci@6.9.0) (2023-11-21)
 
 
