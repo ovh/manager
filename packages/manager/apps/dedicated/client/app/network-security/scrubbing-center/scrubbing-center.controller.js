@@ -1,12 +1,15 @@
+import { AbstractCursorDatagridController } from '@ovh-ux/manager-ng-apiv2-helper';
 import { PERIODS, PERIOD_LIST } from './scrubbing-center.constant';
 import { PAGE_SIZE } from '../network-security.constant';
 
-export default class ScrubbingCenterController {
+export default class ScrubbingCenterController extends AbstractCursorDatagridController {
   /* @ngInject */
-  constructor($translate, Alerter, networkSecurityService) {
+  constructor($translate, Alerter, networkSecurityService, ouiDatagridService) {
+    super();
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.networkSecurityService = networkSecurityService;
+    this.ouiDatagridService = ouiDatagridService;
 
     this.PERIODS = PERIODS;
     this.PERIOD_LIST = PERIOD_LIST;
@@ -14,6 +17,7 @@ export default class ScrubbingCenterController {
   }
 
   $onInit() {
+    this.datagridId = 'ScrubbingCenterController-Datagrid';
     this.errorMessage = '';
     this.periods = this.networkSecurityService.initPeriods(this.PERIODS);
 
@@ -33,57 +37,45 @@ export default class ScrubbingCenterController {
     this.isLoading = false;
   }
 
-  getEventsList(cursor, after, subnets, pageSize) {
-    this.isLoading = true;
+  createItemsPromise({ cursor }) {
     const params = {
-      after,
-      subnets,
+      after: this.after,
+      subnets: this.selectedIp,
     };
-    return this.networkSecurityService
-      .getEventsList({
-        cursor,
-        params,
-        pageSize,
-      })
-      .then((response) => {
-        if (response.data) {
-          this.events = this.events.concat(response.data);
-        }
-        if (response.cursor.next) {
-          this.getEventsList(response.cursor.next, after, subnets, pageSize);
-        }
-      })
-      .finally(() => {
-        this.isLoading = false;
-      });
+    const pageSize = this.PAGE_SIZE;
+    return this.networkSecurityService.getEventsList({
+      cursor,
+      params,
+      pageSize,
+    });
   }
 
   getAllEvents() {
-    this.isLoading = true;
-    this.events = [];
-    let after = '';
+    this.after = '';
     switch (this.period.name) {
       case this.PERIOD_LIST.lastMonth:
-        after = moment()
+        this.after = moment()
           .subtract(1, 'months')
           .toISOString();
         break;
       case this.PERIOD_LIST.lastWeek:
-        after = moment()
+        this.after = moment()
           .subtract(7, 'days')
           .toISOString();
         break;
       case this.PERIOD_LIST.lastYear:
-        after = moment()
+        this.after = moment()
           .subtract(1, 'years')
           .toISOString();
         break;
       default:
-        after = moment()
+        this.after = moment()
           .subtract(1, 'days')
           .toISOString();
     }
-    this.getEventsList(null, after, this.selectedIp, this.PAGE_SIZE);
+    this.reloadItems(this.PAGE_SIZE).then(() => {
+      this.ouiDatagridService.refresh(this.datagridId, true);
+    });
   }
 
   selectService() {
