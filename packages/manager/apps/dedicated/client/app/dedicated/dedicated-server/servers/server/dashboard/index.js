@@ -9,6 +9,7 @@ import ovhManagerAdvices from '@ovh-ux/manager-advices';
 
 import ovhManagerBillingComponents from '@ovh-ux/manager-billing-components';
 import {
+  serverDashboard,
   serverTechnicalDetails,
   serverGeneralInformation,
   serverServiceStatus,
@@ -30,7 +31,6 @@ import installationGabarit from './installation/gabarit';
 import installationOvh from './installation/ovh';
 import installationProgress from './installation/progress';
 
-import component from './dashboard.component';
 import routing from './dashboard.routing';
 
 const moduleName = 'ovhManagerDedicatedServerDashboard';
@@ -61,8 +61,8 @@ angular
     installationGabarit,
     installationOvh,
     installationProgress,
+    serverDashboard,
   ])
-  .component('dedicatedServerDashboard', component)
   .config(routing)
   .run(/* @ngTranslationsInject:json ../translations */);
 
