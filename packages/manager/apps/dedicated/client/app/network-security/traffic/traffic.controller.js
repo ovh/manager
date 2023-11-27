@@ -24,11 +24,6 @@ export default class TrafficController {
     this.isPPs = false;
     this.isServiceSelected = false;
     this.subnet = '';
-    if (this.getSubnet()) {
-      this.subnet = this.getSubnet();
-      this.selectedIp = this.subnet;
-      this.model = this.selectedIp;
-    }
     this.periods = this.networkSecurityService.initPeriods(
       this.TRAFFIC_PERIODS,
     );
@@ -37,6 +32,12 @@ export default class TrafficController {
       this.services = data;
       return data;
     });
+    if (this.getSubnet()) {
+      this.subnet = this.getSubnet();
+      this.selectedIp = this.subnet;
+      this.model = this.selectedIp;
+      this.getTraffic();
+    }
 
     this.units = this.CHART.units;
     this.colors = this.CHART.colors;
@@ -51,6 +52,8 @@ export default class TrafficController {
       this.page = 1;
       this.autocomplete = [];
       this.selectedIp = '';
+      this.ipsList = null;
+      this.subnetSelected = null;
       this.isServiceSelected = true;
       this.results = null;
       this.networkSecurityService

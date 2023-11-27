@@ -93,6 +93,8 @@ export default class ScrubbingCenterController {
       this.autocomplete = [];
       this.ipsList = [];
       this.selectedIp = '';
+      this.ipsList = null;
+      this.ipSelected = null;
       this.results = null;
       this.isServiceSelected = true;
       this.networkSecurityService
