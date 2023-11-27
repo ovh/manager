@@ -3,7 +3,7 @@ import { TRACKING_SUFFIX } from '../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('octavia-load-balancer.loadbalancer.listeners.list', {
-    url: '',
+    url: '/list',
     views: {
       loadbalancerListenersView: 'octaviaLoadBalancerListenersList',
     },
