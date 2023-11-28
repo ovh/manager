@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.9.0...@ovh-ux/manager-pci@6.10.0) (2023-11-27)
+
+
+### Features
+
+* **pci.new:** handle voucher error from url param ([b4e10f8](https://github.com/ovh/manager/commit/b4e10f8bbbc5cafd4aeed12a31579fa7f63eeea0))
+
+
+
+
+
+# [6.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.8.0...@ovh-ux/manager-pci@6.9.0) (2023-11-21)
+
+
+### Bug Fixes
+
+* **pci:** job replication command is wrong on ai training ([#10224](https://github.com/ovh/manager/issues/10224)) ([518e164](https://github.com/ovh/manager/commit/518e16419f4076638708568e9f8bcfb2dd20c39e))
+* **pci:** remove required on label selector input and translation ([af778fb](https://github.com/ovh/manager/commit/af778fbf651cead949424b986a2c12fd30ffb456))
+
+
+### Features
+
+* migrate from vuepress to vitepress ([6968c85](https://github.com/ovh/manager/commit/6968c85f00e19c41bc240abb37a50e9dacf9c5e5))
+
+
+
+
+
+# [6.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.7.0...@ovh-ux/manager-pci@6.8.0) (2023-11-13)
+
+
+### Bug Fixes
+
+* **pci:** display error message only for object-storage ([#10232](https://github.com/ovh/manager/issues/10232)) ([a9144c6](https://github.com/ovh/manager/commit/a9144c6e5a2aa2bbee0af683413d45a0175f6451))
+* **pci:** user certificate ([#10254](https://github.com/ovh/manager/issues/10254)) ([c77b3c3](https://github.com/ovh/manager/commit/c77b3c3a7a96f3583b9fc6c242bf2e2bc96e7c07))
+
+
+### Features
+
+* **pci:** add tracking on ai deploy ([#10194](https://github.com/ovh/manager/issues/10194)) ([8f31119](https://github.com/ovh/manager/commit/8f3111993e08177aea04f1d9902b61317d18ed58))
+
+
+
+
+
 # [6.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.6.0...@ovh-ux/manager-pci@6.7.0) (2023-11-06)
 
 

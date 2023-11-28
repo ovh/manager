@@ -42,6 +42,20 @@ angular.module('services').service(
     }
 
     /**
+     * Get Web services
+     */
+    getWebServices() {
+      return this.$http.get(`/hosting/web`);
+    }
+
+    /**
+     * Get Private database services
+     */
+    getPrivateServices() {
+      return this.$http.get(`/hosting/privateDatabase`);
+    }
+
+    /**
      * Delete a database
      * @param {string} serviceName
      * @param {string} name
@@ -408,6 +422,14 @@ angular.module('services').service(
       });
     }
 
+    /**
+     * @param {string} serviceName
+     * @return {object[]} List of private databases linked to this service
+     */
+    getPrivateDatabases(serviceName) {
+      return this.$http.get(`/hosting/privateDatabase/${serviceName}/database`);
+    }
+
     getHasPrivateSqlToActivate(serviceName) {
       return this.OvhHttp.get(
         `/order/cartServiceOption/webHosting/${serviceName}`,
@@ -535,6 +557,40 @@ angular.module('services').service(
         },
         (task) => {
           this.$rootScope.$broadcast(`${opts.namespace}.doing`, task);
+        },
+      );
+    }
+
+    /**
+     * Copy database
+     * @param {string} serviceName
+     * @param {string} databaseName
+     * @param {boolean} isPrivateDatabase
+     * @returns
+     */
+    copyDatabase(serviceName, databaseName, isPrivateDatabase) {
+      return this.$http.post(
+        `/hosting/${
+          isPrivateDatabase ? 'privateDatabase' : 'web'
+        }/${serviceName}/database/${databaseName}/copy`,
+      );
+    }
+
+    /**
+     * CopyRestore database
+     * @param {string} serviceName
+     * @param {string} databaseName
+     * @param {boolean} isPrivateDatabase
+     * @param {number} copyId
+     * @returns
+     */
+    copyRestoreDatabase(serviceName, databaseName, isPrivateDatabase, copyId) {
+      return this.$http.post(
+        `/hosting/${
+          isPrivateDatabase ? 'privateDatabase' : 'web'
+        }/${serviceName}/database/${databaseName}/copyRestore`,
+        {
+          copyId,
         },
       );
     }

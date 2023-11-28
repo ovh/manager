@@ -70,13 +70,14 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-  ul
-    padding-left inherit
-
-    > li
-      list-style-type none
-
-      > span
-        font-size smaller
+<style scoped>
+  ul {
+    padding-left: inherit
+  }
+  ul > li {
+    list-style-type: none
+  }
+  ul > li > span {
+    font-size: smaller
+  }
 </style>

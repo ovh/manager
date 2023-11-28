@@ -12,5 +12,7 @@
   "restricted_guide_card_more": "Scopri di più",
   "restricted_guide_card_title": "Tutorial",
   "restricted_language_change": "Modifica la lingua dell’interfaccia",
-  "restricted_navbar_account": "Il mio account"
+  "restricted_navbar_account": "Il mio account",
+  "restricted_error_default_start": "Per accedere allo Spazio Cliente di OVHcloud è necessario disporre di {{count}} permessi sul tuo account, come descritto nella seguente guida:",
+  "restricted_error_default_end": "Contatta l'amministratore per aggiungere questi permessi."
 }

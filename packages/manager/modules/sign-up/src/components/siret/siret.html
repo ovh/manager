@@ -206,22 +206,29 @@
                 />
             </oui-field>
 
-            <oui-field
-                class="col-lg-6"
-                data-label="{{ 'siret_vat' | translate }} ({{ 'siret_optional' | translate }})"
-                data-label-popover="{{ 'siret_vat_helper' | translate }}"
-            >
-                <input
-                    class="oui-input"
-                    name="vat"
-                    data-ng-model="$ctrl.model.vat"
-                    data-ng-required="$ctrl.rules.vat.mandatory"
-                    data-ng-pattern="$ctrl.rules.vat.regularExpression"
-                    type="text"
-                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.vat)"
-                    data-ng-disabled="$ctrl.disableField"
-                />
-            </oui-field>
+            <div class="col-lg-6 d-flex flex-column">
+                <oui-field
+                    data-label="{{ 'siret_vat' | translate }} ({{ 'siret_optional' | translate }})"
+                    data-label-popover="{{ 'siret_vat_helper' | translate }}"
+                >
+                    <input
+                        class="oui-input"
+                        name="vat"
+                        data-ng-model="$ctrl.model.vat"
+                        data-ng-required="$ctrl.rules.vat.mandatory"
+                        data-ng-pattern="$ctrl.rules.vat.regularExpression"
+                        type="text"
+                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.vat)"
+                        data-ng-focus="$ctrl.vatFieldTouched = true;"
+                        data-ng-disabled="$ctrl.disableField"
+                    />
+                </oui-field>
+                <p
+                    class="mb-0 text-danger siret-vat-field-error"
+                    data-ng-if="$ctrl.displayVatError($ctrl.vatFieldTouched)"
+                    data-translate="common_field_error_pattern"
+                ></p>
+            </div>
         </div>
     </div>
     <!-- end manual form -->

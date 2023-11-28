@@ -162,6 +162,7 @@ export default /* @ngInject */ ($stateProvider) => {
         voucher,
         getSummary,
         pciProjectNew,
+        eligibility,
       ) => {
         return $q
           .resolve()
@@ -183,14 +184,14 @@ export default /* @ngInject */ ($stateProvider) => {
                   .then(() => voucherInfo)
               : voucherInfo;
           })
-          .then((voucherInfo) =>
-            getSummary().then((summary) => ({
+          .then((voucherInfo) => {
+            return getSummary().then((summary) => ({
               summary,
               voucherInfo,
-            })),
-          )
+            }));
+          })
           .then(({ voucherInfo, summary }) => {
-            return voucherInfo.value
+            return voucherInfo.value && !eligibility.voucher.error
               ? pciProjectNew
                   .setCartProjectItemVoucher(cart, voucherInfo.value)
                   .then(() => summary)
@@ -205,10 +206,25 @@ export default /* @ngInject */ ($stateProvider) => {
         return $transition$.params().voucher;
       },
 
-      eligibility: /* @ngInject */ ($transition$, pciProjectNew) =>
+      eligibility: /* @ngInject */ (pciProjectNew, voucher) =>
         pciProjectNew
-          .checkEligibility(get($transition$.params(), 'voucher'))
-          .then((eligibility) => new PciEligibility(eligibility)),
+          .checkEligibility(voucher)
+          .then((eligibility) => new PciEligibility(eligibility))
+          .catch((error) => {
+            if (error.data?.message?.match(/VOUCHER_\w+/)) {
+              return pciProjectNew.checkEligibility().then((eligibility) => {
+                return new PciEligibility({
+                  ...eligibility,
+                  voucher: new PciVoucher({
+                    value: voucher,
+                    error: error.status,
+                    message: error.data.message,
+                  }),
+                });
+              });
+            }
+            throw error;
+          }),
 
       checkVoucherValidity: /* @ngInject */ (pciProjectNew) => (voucher) =>
         pciProjectNew.checkEligibility(voucher).catch((error) => ({

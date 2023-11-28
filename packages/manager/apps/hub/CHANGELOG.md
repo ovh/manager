@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.1.0...@ovh-ux/manager-hub-app@5.1.1) (2023-11-21)
+
+
+### Bug Fixes
+
+* **hub:** update US default level2 value for tracking ([#10285](https://github.com/ovh/manager/issues/10285)) ([6351e58](https://github.com/ovh/manager/commit/6351e587433047084b9c4d0aef7e2c64cb17f37b))
+
+
+
+
+
+# [5.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.0.7...@ovh-ux/manager-hub-app@5.1.0) (2023-11-13)
+
+
+### Features
+
+* **hub:** adding global availability iam invite banner ([#10190](https://github.com/ovh/manager/issues/10190)) ([30fcd31](https://github.com/ovh/manager/commit/30fcd31bdcaaef47c9d62afe641f33455b69a2c2))
+
+
+
+
+
 ## [5.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.0.6...@ovh-ux/manager-hub-app@5.0.7) (2023-10-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

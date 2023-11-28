@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-actions-menu",
-  "version": "5.0.17",
+  "version": "5.1.0",
   "description": "An actions menu gives the opportunity to group a set of actions available for a specific context under a single menu",
   "keywords": [
     "actions-menu",
@@ -19,6 +19,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ovh-actions-menu.js",

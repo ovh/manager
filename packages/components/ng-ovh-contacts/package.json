@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-contacts",
-  "version": "5.1.5",
+  "version": "5.2.0",
   "description": "Helpers for managing OVH Contacts",
   "keywords": [
     "contacts",
@@ -19,6 +19,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ovh-contacts.js",

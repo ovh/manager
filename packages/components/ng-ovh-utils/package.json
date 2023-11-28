@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-utils",
-  "version": "14.0.21",
+  "version": "14.1.0",
   "description": "[DEPRECATED] A collection of directives for AngularJS.",
   "keywords": [
     "angularjs",
@@ -19,6 +19,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ovh-utils.js",

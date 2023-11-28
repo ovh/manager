@@ -308,5 +308,13 @@ angular.module('App').controller(
         );
       });
     }
+
+    onCopyDatabaseClick(element) {
+      this.$scope.setAction('../hosting/database/copy/hosting-database-copy', {
+        currentDatabaseName: element.databaseName,
+        serviceName: this.productId,
+        isPrivateDatabase: true,
+      });
+    }
   },
 );

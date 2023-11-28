@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-advices",
-  "version": "1.6.4",
+  "version": "1.7.0",
   "private": true,
   "description": "OVHcloud advices",
   "repository": {
@@ -10,6 +10,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "./dist/esm/index.js",
   "files": [
     "dist"

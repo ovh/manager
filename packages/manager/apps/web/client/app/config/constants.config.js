@@ -300,7 +300,7 @@ module.exports = {
           emailsCreateMailingListGuide:
             'https://www.ovh.com/fr/g1596.mail_mutualise_guide_dutilisation_mailing-list',
           office365:
-            'https://docs.ovh.com/fr/fr/web/microsoft-collaborative-solutions/commander-et-gerer-un-groupe-de-licences-office-365-ovh',
+            'https://help.ovhcloud.com/csm/fr-microsoft-office365-csp1?id=kb_article_view&sysparm_article=KB0053507',
           hostingHackState:
             'https://www.ovh.com/fr/g1392.procedure-fermeture-hack-ovh#reouverture_de_lhebergement_reouverture_suite_passage_en_etat_hack',
           hostingDisabledState:

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-checkbox-table",
-  "version": "2.0.7",
+  "version": "2.1.0",
   "description": "Multi checkbox management for table",
   "keywords": [
     "angularjs",
@@ -20,6 +20,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ovh-checkbox-table.js",

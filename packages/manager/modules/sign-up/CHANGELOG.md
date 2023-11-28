@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.10.2...@ovh-ux/sign-up@2.11.0) (2023-11-21)
+
+
+### Features
+
+* migrate from vuepress to vitepress ([6968c85](https://github.com/ovh/manager/commit/6968c85f00e19c41bc240abb37a50e9dacf9c5e5))
+
+
+
+
+
+## [2.10.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.10.1...@ovh-ux/sign-up@2.10.2) (2023-11-10)
+
+
+### Bug Fixes
+
+* display VAT field error on page load ([33b9223](https://github.com/ovh/manager/commit/33b9223a3e0abf329af0b27d6c9b6cb92666bb7f))
+
+
+
+
+
 ## [2.10.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.10.0...@ovh-ux/sign-up@2.10.1) (2023-10-30)
 
 

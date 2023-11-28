@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-ng-layout-helpers",
-  "version": "2.7.2",
+  "version": "2.8.0",
   "private": true,
   "description": "Set of utilities and components for layouts",
   "repository": {
@@ -10,6 +10,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "./dist/esm/index.js",
   "files": [
     "dist"

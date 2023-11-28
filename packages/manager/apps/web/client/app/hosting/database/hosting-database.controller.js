@@ -124,6 +124,10 @@ angular.module('App').controller(
       return (version || '').replace(/_/gi, '.');
     }
 
+    static formatStatus(type, isDeprecated) {
+      return `hosting_tab_DATABASES_table_header_status_${type}_${isDeprecated}`;
+    }
+
     checkQuota(database) {
       const deferred = this.$q.defer();
       this.$scope.setAction('database/quota/hosting-database-quota', {
@@ -280,6 +284,13 @@ angular.module('App').controller(
       this.trackClick(DATABASES_TRACKING.SELECT_LIST_ACTION_CREATE_DB);
 
       this.$scope.setAction('database/add/hosting-database-add');
+    }
+
+    onCopyDatabaseClick(element) {
+      this.$scope.setAction('database/copy/hosting-database-copy', {
+        currentDatabaseName: element.name,
+        serviceName: this.hosting.serviceName,
+      });
     }
 
     onOrderDatabaseClick() {

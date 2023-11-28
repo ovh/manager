@@ -23,6 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
           )
           .then(({ data }) => data),
       goBackLink: /* @ngInject */ ($state) => $state.href('netapp'),
+      goBack: /* @ngInject */ ($state) => () => $state.go('^'),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('netapp_order'),
     },

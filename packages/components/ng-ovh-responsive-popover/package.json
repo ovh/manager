@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-responsive-popover",
-  "version": "6.0.3",
+  "version": "6.1.0",
   "description": "Module is used to display a popover and adapt it to the screen dimension.",
   "keywords": [
     "angularjs",
@@ -19,6 +19,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ovh-responsive-popover.js",

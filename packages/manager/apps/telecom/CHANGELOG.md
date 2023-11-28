@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.9...@ovh-ux/manager-telecom@15.1.0) (2023-11-21)
+
+
+### Features
+
+* **telecom.voip:** add banner to customers with a mgcp phone ([#10205](https://github.com/ovh/manager/issues/10205)) ([a828e7a](https://github.com/ovh/manager/commit/a828e7a9a3812a4c6a2b8e26f73227263bcdb57a))
+
+
+
+
+
+## [15.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.8...@ovh-ux/manager-telecom@15.0.9) (2023-11-13)
+
+
+### Bug Fixes
+
+* **telecom.voip:** fix the service type available for voicemail search ([#10184](https://github.com/ovh/manager/issues/10184)) ([3c12931](https://github.com/ovh/manager/commit/3c129312428e53bfc2d7384ee0a15ab44751f348))
+
+
+
+
+
 ## [15.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.7...@ovh-ux/manager-telecom@15.0.8) (2023-10-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

@@ -205,6 +205,11 @@
                             <th
                                 class="text-center"
                                 scope="col"
+                                data-translate="hosting_tab_DATABASES_table_header_status"
+                            ></th>
+                            <th
+                                class="text-center"
+                                scope="col"
                                 data-translate="hosting_tab_DATABASES_table_header_state"
                             ></th>
                             <th
@@ -311,6 +316,11 @@
                                     data-ng-if="element.version"
                                 ></span>
                             </td>
+                            <td>
+                                <span
+                                    data-ng-bind="$ctrl.constructor.formatStatus(element.databaseType, element.databaseServiceDeprecated) | translate"
+                                ></span>
+                            </td>
                             <td
                                 class="text-center"
                                 data-ng-bind="element.state"
@@ -405,6 +415,13 @@
                                     >
                                         <span
                                             data-translate="hosting_tab_DATABASES_table_popover_phpmyadmin"
+                                        ></span>
+                                    </oui-action-menu-item>
+                                    <oui-action-menu-item
+                                        data-on-click="$ctrl.onCopyDatabaseClick(element)"
+                                    >
+                                        <span
+                                            data-translate="hosting_tab_DATABASES_configuration_copy_action_button"
                                         ></span>
                                     </oui-action-menu-item>
                                 </oui-action-menu>

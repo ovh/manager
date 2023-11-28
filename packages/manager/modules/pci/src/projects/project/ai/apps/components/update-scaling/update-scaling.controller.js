@@ -115,6 +115,16 @@ export default class UpdateScalingCtrl {
       );
   }
 
+  trackAutoScaling() {
+    this.trackApps(
+      `${
+        this.trackingPrefix
+      }::general-information::update-scaling::auto-scaling-${
+        this.autoscaling ? 'disable' : 'enable'
+      }`,
+    );
+  }
+
   cancel() {
     this.trackApps(`${this.trackingPrefix}::update_app_scaling_cancel`);
     this.goBack();

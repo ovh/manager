@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.4.2...@ovh-ux/manager-email-domain@1.5.0) (2023-11-13)
+
+
+### Features
+
+* **web:** sort email redirections alphabetically ([#10240](https://github.com/ovh/manager/issues/10240)) ([22786d2](https://github.com/ovh/manager/commit/22786d2cb227c06356dc3558a739470193e1cd71))
+
+
+
+
+
 ## [1.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.4.1...@ovh-ux/manager-email-domain@1.4.2) (2023-10-16)
 
 

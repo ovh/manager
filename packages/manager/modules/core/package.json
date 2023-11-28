@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core",
-  "version": "12.13.0",
+  "version": "12.14.0",
   "private": true,
   "description": "Core functionalities shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/core#readme",
@@ -13,6 +13,7 @@
     "directory": "packages/manager/modules/core"
   },
   "license": "BSD-3-Clause",
+  "type": "module",
   "main": "./dist/esm/index.js",
   "files": [
     "dist"
@@ -27,13 +28,13 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-core' --include-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/ng-translate-async-loader": "^2.1.7",
+    "@ovh-ux/ng-translate-async-loader": "^2.2.0",
     "@ovh-ux/url-builder": "^1.1.1",
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.0.0",
-    "@ovh-ux/manager-models": "^1.14.8"
+    "@ovh-ux/manager-models": "^1.14.9"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",
