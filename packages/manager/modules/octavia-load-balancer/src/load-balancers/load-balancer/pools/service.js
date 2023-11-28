@@ -48,14 +48,6 @@ export default class OctaviaLoadBalancerPoolsService {
       .then(({ data }) => data);
   }
 
-  getPoolMembers(projectId, region, poolId) {
-    return this.$http
-      .get(
-        `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}/member`,
-      )
-      .then(({ data }) => data);
-  }
-
   updateName(projectId, region, poolId, name) {
     return this.$http.put(
       `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}`,

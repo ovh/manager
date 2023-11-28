@@ -4,6 +4,8 @@ export default {
   bindings: {
     members: '<',
     goToMemberDeletion: '<',
+    memberCreationLink: '<',
+    membersPageTracking: '<',
   },
   template,
 };
