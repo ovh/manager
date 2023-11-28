@@ -18,6 +18,7 @@ import './cron/hosting-cron.constants';
 import './cron/hosting-cron.controller';
 import './cron/hosting-cron.service';
 import './database/add/hosting-database-add.controller';
+import './database/copy/hosting-database-copy.controller';
 import './database/delete/hosting-database-delete.controller';
 import './database/dump/add/hosting-database-dump-add.controller';
 import './database/dump/delete/hosting-database-dump-delete.controller';

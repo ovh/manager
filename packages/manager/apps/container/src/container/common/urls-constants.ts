@@ -1,6 +1,6 @@
 import { Environment, Region } from '@ovh-ux/manager-config';
 
-const helpRoot = 'https://help-beta.ovhcloud.com/csm';
+const helpRoot = 'https://help.ovhcloud.com/csm';
 const homeIndex = '-home?id=csm_index';
 
 interface ContentURLS {

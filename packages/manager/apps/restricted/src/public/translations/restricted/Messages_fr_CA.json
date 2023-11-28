@@ -1,7 +1,8 @@
 {
   "restricted_account_logout": "Me déconnecter",
   "restricted_account_method_user": "Connecté en tant que sous-utilisateur",
-  "restricted_error_default": "L'accès à l'espace client OVHcloud nécessite un minimum de droits nécessaires. Veuillez contacter votre administrateur.",
+  "restricted_error_default_start": "L'accès à l'espace client OVHcloud nécessite {{count}} droits nécessaires sur votre compte, comme décrit dans le guide ci-dessous :",
+  "restricted_error_default_end": "Veuillez contacter votre administrateur pour ajouter ces permissions.",
   "restricted_error_title": "Accès restreint",
   "restricted_guide_card_control-panel-access_description": "Découvrez comment octroyer les droits minimums nécessaires pour vous connecter à votre espace client",
   "restricted_guide_card_control-panel-access_title": "Se connecter à l'espace client OVHcloud avec l'IAM",

@@ -33,6 +33,7 @@ export default class DashboardController {
     this.availableSiretPopup = false;
     this.showKycBanner = false;
     this.showIamBanner = false;
+    this.showGAIamBanner = false;
     this.$http
       .get(`/feature/identity-documents/availability`, {
         serviceType: 'aapi',
@@ -88,6 +89,9 @@ export default class DashboardController {
             type: 'navigation',
           });
         }
+        this.showGAIamBanner = data?.isFeatureAvailable(
+          'hub:banner-iam-ga-availability',
+        );
       });
 
     this.ACCOUNT_DASHBOARD_URL = this.coreURLBuilder.buildURL(

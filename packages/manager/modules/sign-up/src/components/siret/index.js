@@ -6,6 +6,8 @@ import '@ovh-ux/ng-at-internet';
 import component from './siret.component';
 import service from './siret.service';
 
+import './siret.scss';
+
 const moduleName = 'siretModule';
 
 angular

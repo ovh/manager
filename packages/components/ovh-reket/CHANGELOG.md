@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-reket@2.0.1...@ovh-ux/ovh-reket@2.1.0) (2023-11-21)
+
+
+### Features
+
+* migrate from vuepress to vitepress ([6968c85](https://github.com/ovh/manager/commit/6968c85f00e19c41bc240abb37a50e9dacf9c5e5))
+
+
+
+
+
 ## [2.0.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-reket@2.0.0...@ovh-ux/ovh-reket@2.0.1) (2023-09-07)
 
 **Note:** Version bump only for package @ovh-ux/ovh-reket

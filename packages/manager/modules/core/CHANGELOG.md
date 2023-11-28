@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.13.0...@ovh-ux/manager-core@12.14.0) (2023-11-21)
+
+
+### Features
+
+* migrate from vuepress to vitepress ([6968c85](https://github.com/ovh/manager/commit/6968c85f00e19c41bc240abb37a50e9dacf9c5e5))
+
+
+
+
+
 # [12.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.12.15...@ovh-ux/manager-core@12.13.0) (2023-09-18)
 
 

@@ -1,17 +1,20 @@
 {
   "name": "@ovh-ux/manager-documentation",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "private": true,
   "description": "Manager documentation deployed with GitHub Pages",
   "scripts": {
-    "build": "vuepress build docs",
-    "deploy": "yarn run build && gh-pages -d docs/.vuepress/dist -m \"docs: update documentation [skip ci]\"",
-    "dev": "vuepress dev docs"
+    "docs:build": "node cli/prebuild.js && vitepress build --base /manager/",
+    "docs:deploy": "yarn run docs:build && gh-pages -d .vitepress/dist -m \"docs: update documentation [skip ci]\"",
+    "docs:dev": "node cli/prebuild.js && vitepress dev",
+    "docs:preview": "vitepress preview"
   },
   "devDependencies": {
-    "@vuepress/plugin-search": "^2.0.0-beta.53",
     "get-monorepo-packages": "^1.2.0",
     "gh-pages": "^2.2.0",
-    "vuepress-webpack": "^2.0.0-beta.53"
+    "lodash": "^4.17.15",
+    "markdown-it": "^13.0.2",
+    "vitepress": "^1.0.0-rc.20",
+    "vue": "^3.2.47"
   }
 }

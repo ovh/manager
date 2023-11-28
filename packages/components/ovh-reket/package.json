@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-reket",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Expose a way to get a predefined Reket instance",
   "repository": {
     "type": "git",
@@ -9,6 +9,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ovh-reket.js",

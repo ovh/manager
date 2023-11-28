@@ -12,5 +12,7 @@
   "restricted_guide_card_more": "Saber mais",
   "restricted_guide_card_title": "Tutorial",
   "restricted_language_change": "Alterar o idioma da interface",
-  "restricted_navbar_account": "A minha conta"
+  "restricted_navbar_account": "A minha conta",
+  "restricted_error_default_start": "O acesso à Área de Cliente OVHcloud requer {{count}} direitos necessários na sua conta, como descrito no guia abaixo:",
+  "restricted_error_default_end": "Contacte o administrador para adicionar estas permissões."
 }

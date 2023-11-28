@@ -12,5 +12,7 @@
   "restricted_guide_card_more": "Find out more",
   "restricted_guide_card_title": "Tutorial",
   "restricted_language_change": "Select interface language",
-  "restricted_navbar_account": "My account"
+  "restricted_navbar_account": "My account",
+  "restricted_error_default_start": "To access the OVHcloud Control Panel, your account must have the required {{count}} permissions, as described in the guide below:",
+  "restricted_error_default_end": "Please contact your administrator to add these permissions."
 }

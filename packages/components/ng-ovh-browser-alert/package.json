@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-browser-alert",
-  "version": "2.0.7",
+  "version": "2.1.0",
   "description": "Display an alert when your browser isn't supported",
   "keywords": [
     "angularjs",
@@ -19,6 +19,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ovh-browser-alert.js",

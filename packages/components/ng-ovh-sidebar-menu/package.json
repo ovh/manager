@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-sidebar-menu",
-  "version": "10.3.4",
+  "version": "10.4.0",
   "description": "Manage and display a left menu tree",
   "keywords": [
     "angularjs",
@@ -20,6 +20,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ovh-sidebar-menu.js",

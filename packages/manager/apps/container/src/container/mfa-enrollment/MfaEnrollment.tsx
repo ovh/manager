@@ -15,10 +15,11 @@ type MfaEnrollmentProps = {
 
 export default function MfaEnrollment({ forced, onHide }: MfaEnrollmentProps) {
   const { t } = useTranslation('mfa-enrollment');
+  const redirectUrl = encodeURIComponent(window.top.location.href);
   const shell = useShell();
   const mfaURL = shell
     .getPlugin('navigation')
-    .getURL('dedicated', '#/useraccount/security/mfa');
+    .getURL('dedicated', `#/useraccount/security/mfa?redirect_url=${redirectUrl}`);
 
   const gotoMfa = () => {
     shell.getPlugin('tracking').trackClick({

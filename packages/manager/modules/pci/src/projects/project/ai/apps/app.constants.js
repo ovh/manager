@@ -109,6 +109,8 @@ export const APP_PARTNER_VOXIST_DETAILS = {
   },
 };
 
+export const APP_USERS_TOKENS_BANNER_TRACKING = 'banner-manage-users-tokens';
+
 export default {
   IS_BETA,
   APP_TAGS,
@@ -127,4 +129,5 @@ export default {
   APP_MULTIPLY_SIGN,
   APP_PARTNER_PRESET_LICENSING,
   APP_PARTNER_VOXIST_DETAILS,
+  APP_USERS_TOKENS_BANNER_TRACKING,
 };

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ui-router-layout",
-  "version": "4.1.4",
+  "version": "4.2.0",
   "description": "Enhance UI-Router by adding a layout decorator to deal with an UI Bootstrap modal instance.",
   "keywords": [
     "angularjs",
@@ -21,6 +21,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ui-router-layout.js",

@@ -9,7 +9,7 @@ Our [`package.json`](package.json) houses a collection of [run-scripts](https://
 
 ### Generate a module (or an Application)
 
-![generate module](/manager/assets/img/generate-module-app.gif)
+![generate module](/assets/img/generate-module-app.gif)
 
 ```sh
 # `foo` is the name of your module.

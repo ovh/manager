@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.11.0...@ovh-ux/manager-dedicated@19.12.0) (2023-11-21)
+
+
+### Features
+
+* **account:** add 2FA redirection ([#10138](https://github.com/ovh/manager/issues/10138)) ([d094f3c](https://github.com/ovh/manager/commit/d094f3ce1147e8168303ae027fffa8f9e2fa5267))
+* **dedicated:** reload properly manager after language change ([#10104](https://github.com/ovh/manager/issues/10104)) ([9a1996d](https://github.com/ovh/manager/commit/9a1996df507082af97cea11b4643d51018b2cd24))
+
+
+
+
+
+# [19.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.10.1...@ovh-ux/manager-dedicated@19.11.0) (2023-11-13)
+
+
+### Features
+
+* **dedicated:** go back to listing page after order ([#10241](https://github.com/ovh/manager/issues/10241)) ([da3a17e](https://github.com/ovh/manager/commit/da3a17eaa2ef5d3f1b11d4329a301b6556742467))
+
+
+
+
+
+## [19.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.10.0...@ovh-ux/manager-dedicated@19.10.1) (2023-11-10)
+
+
+### Bug Fixes
+
+* display VAT field error on page load ([33b9223](https://github.com/ovh/manager/commit/33b9223a3e0abf329af0b27d6c9b6cb92666bb7f))
+
+
+
+
+
 # [19.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.9.1...@ovh-ux/manager-dedicated@19.10.0) (2023-11-09)
 
 

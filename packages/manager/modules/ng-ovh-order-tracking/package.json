@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-order-tracking",
-  "version": "2.2.5",
+  "version": "2.3.0",
   "private": true,
   "description": "OVH order tracking",
   "keywords": [
@@ -21,6 +21,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ovh-order-tracking.js",

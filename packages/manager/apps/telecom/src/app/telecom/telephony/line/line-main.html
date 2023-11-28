@@ -19,6 +19,21 @@
             </div>
         </header>
 
+        <oui-message
+            data-type="warning"
+            data-ng-if="LineCtrl.displayMgcpBanner"
+        >
+            <span
+                data-translate="telephony_line_mgcp_banner_description"
+            ></span>
+            <a
+                class="oui-link_icon"
+                data-ng-href="{{:: LineCtrl.orderPhoneLink}}"
+            >
+                <span data-translate="telephony_line_mgcp_banner_link"> </span>
+            </a>
+        </oui-message>
+
         <!-- LINE ACTIONS -->
         <oui-header-tabs>
             <oui-header-tabs-item

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.24...@ovh-ux/manager-billing@0.20.0-alpha.25) (2023-11-13)
+
+
+### Features
+
+* **dedicated.billing:** add information banner for credit points ([#10221](https://github.com/ovh/manager/issues/10221)) ([0b2473b](https://github.com/ovh/manager/commit/0b2473bdfe439cd1e4a2a81ded3583fd02a52253))
+
+
+
+
+
 # [0.20.0-alpha.24](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.23...@ovh-ux/manager-billing@0.20.0-alpha.24) (2023-11-06)
 
 

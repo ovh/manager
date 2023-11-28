@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.8.0...@ovh-ux/manager-nasha@2.9.0) (2023-11-21)
+
+
+### Features
+
+* migrate from vuepress to vitepress ([6968c85](https://github.com/ovh/manager/commit/6968c85f00e19c41bc240abb37a50e9dacf9c5e5))
+
+
+
+
+
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.7.2...@ovh-ux/manager-nasha@2.8.0) (2023-11-13)
+
+
+### Features
+
+* **dedicated:** go back to listing page after order ([#10241](https://github.com/ovh/manager/issues/10241)) ([da3a17e](https://github.com/ovh/manager/commit/da3a17eaa2ef5d3f1b11d4329a301b6556742467))
+
+
+
+
+
 ## [2.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.7.1...@ovh-ux/manager-nasha@2.7.2) (2023-07-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-nasha

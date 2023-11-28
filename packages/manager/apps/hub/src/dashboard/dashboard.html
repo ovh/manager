@@ -80,7 +80,26 @@
                 ></span>
             </a>
         </oui-message>
-
+        <!-- GA IAM Banner-->
+        <oui-message
+            data-type="info"
+            data-dismissable
+            data-ng-if="$ctrl.showGAIamBanner"
+        >
+            <span
+                data-translate="manager_hub_dashboard_iam_ga_banner_description"
+            ></span>
+            <a
+                class="oui-link_icon"
+                data-ng-href="{{:: $ctrl.iamBannerLink }}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="manager_hub_dashboard_iam_banner_link"
+                ></span>
+            </a>
+        </oui-message>
         <div data-ng-if="$ctrl.availableSiretPopup">
             <div class="modal d-block" role="dialog" id="modal-siret">
                 <div

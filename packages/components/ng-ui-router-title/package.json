@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ui-router-title",
-  "version": "3.0.7",
+  "version": "3.1.0",
   "description": "AngularJS module for updating browser title/history based on the current ui-router state.",
   "keywords": [
     "angularjs",
@@ -19,6 +19,7 @@
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ui-router-title.js",
