@@ -108,6 +108,7 @@ export const ScTile = ({
             {description}
           </OsdsText>
           <OsdsLink
+            tabindex="-1"
             data-tracking={dataTracking}
             color={ODS_THEME_COLOR_INTENT.primary}
             href={href}
