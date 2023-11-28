@@ -54,15 +54,18 @@
         </div>
     </div>
 
-    <div class="text-center" data-ng-if="$ctrl.isLoading">
-        <oui-spinner></oui-spinner>
-    </div>
+    <div
+        data-ng-if="$ctrl.isEmpty"
+        class="text-center m-3"
+        data-translate="network_security_dashboard_empty_table"
+    ></div>
 
     <oui-datagrid
+        data-ng-if="!$ctrl.isEmpty"
         id="{{ $ctrl.datagridId }}"
         data-rows-loader="$ctrl.getItems($config)"
         data-page="{{ $ctrl.cursors.index || 1 }}"
-        data-page-size="{{ $ctrl.pageSize }}"
+        data-page-size="{{ $ctrl.PAGE_SIZE }}"
         data-pagination-mode="arrows"
     >
         <oui-datagrid-column

@@ -34,14 +34,16 @@ export default class ScrubbingCenterController extends AbstractCursorDatagridCon
       this.getAllEvents();
     }
     this.isServiceSelected = false;
-    this.isLoading = false;
+    this.emptyList = false;
   }
 
   createItemsPromise({ cursor }) {
     const params = {
       after: this.after,
-      subnets: this.selectedIp,
     };
+    if (this.selectedIp) {
+      params.subnets = this.selectedIp;
+    }
     const pageSize = this.PAGE_SIZE;
     return this.networkSecurityService.getEventsList({
       cursor,
@@ -79,12 +81,14 @@ export default class ScrubbingCenterController extends AbstractCursorDatagridCon
   }
 
   selectService() {
+    this.selectedIp = null;
+    this.isEmpty = false;
+    this.model = null;
     if (this.service) {
       this.pageSize = 10;
       this.page = 1;
       this.autocomplete = [];
       this.ipsList = [];
-      this.selectedIp = '';
       this.ipsList = null;
       this.ipSelected = null;
       this.results = null;
@@ -98,20 +102,30 @@ export default class ScrubbingCenterController extends AbstractCursorDatagridCon
         )
         .then((data) => {
           this.ipsList = data.map(({ ipBlock }) => ipBlock);
+          this.isEmpty = !this.ipsList.length;
           this.selectedIp = this.ipsList;
           this.getAllEvents();
         });
     } else {
       this.isServiceSelected = false;
+      this.getAllEvents();
     }
   }
 
   checkSelectedIp(value) {
-    if (!value) {
+    if (!value || !ipaddr.isValid(value)) {
       return null;
     }
 
     this.selectedIp = value;
+    if (value.indexOf('.') > -1 && value.indexOf('/') === -1) {
+      this.selectedIp = `${value}/32`;
+      this.model = this.selectedIp;
+    }
+    if (value.indexOf(':') > -1 && value.indexOf('/') === -1) {
+      this.selectedIp = `${value}/128`;
+      this.model = this.selectedIp;
+    }
     return this.getAllEvents();
   }
 

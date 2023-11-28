@@ -69,6 +69,7 @@ export default class TrafficController {
     } else {
       this.isServiceSelected = false;
       this.results = null;
+      this.model = '';
     }
   }
 
