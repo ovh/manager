@@ -47,6 +47,10 @@ export default class TrafficController {
   }
 
   selectService() {
+    this.isServiceSelected = false;
+    this.results = null;
+    this.model = '';
+
     if (this.service) {
       this.pageSize = 10;
       this.page = 1;
@@ -55,7 +59,6 @@ export default class TrafficController {
       this.ipsList = null;
       this.subnetSelected = null;
       this.isServiceSelected = true;
-      this.results = null;
       this.networkSecurityService
         .getIpsFromService(
           this.page,
@@ -66,9 +69,6 @@ export default class TrafficController {
         .then((data) => {
           this.ipsList = data.map(({ ipBlock }) => ipBlock);
         });
-    } else {
-      this.isServiceSelected = false;
-      this.results = null;
     }
   }
 

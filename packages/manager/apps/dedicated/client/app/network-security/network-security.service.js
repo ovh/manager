@@ -56,6 +56,7 @@ export default class NetworkSecurityService {
       pageNumber: page,
       pageSize,
       serviceName,
+      version: 4,
     };
     return this.$http
       .get('/ips', {
