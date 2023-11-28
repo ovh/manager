@@ -86,12 +86,31 @@ export default /* @ngInject */ ($stateProvider) => {
                 ),
               ),
           ),
-      networkInformations: /* @ngInject */ (iceberg, serviceName) =>
+      getVrackServices: /* @ngInject */ (Apiv2Service) => (vrackServicesId) =>
+        Apiv2Service.httpApiv2({
+          method: 'get',
+          url: `/engine/api/v2/vrack-services/resource/${vrackServicesId}`,
+        }),
+      networkInformations: /* @ngInject */ (
+        iceberg,
+        serviceName,
+        getVrackServices,
+      ) =>
         // TODO: To mock until API is ready (STORAGE-8593)
         iceberg(`/storage/netapp/${serviceName}/network`)
           .query()
           .expand('CachedObjectList-Pages')
-          .execute().$promise,
+          .execute()
+          .$promise.then(({ data: networkData }) => {
+            if (networkData.length === 0) return [];
+            const network = networkData[0];
+            return getVrackServices(network.vrackServicesURN).then(
+              ({ data }) => {
+                network.vrackServices = data;
+                return network;
+              },
+            );
+          }),
     },
   });
 };
