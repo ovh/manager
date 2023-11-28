@@ -51,5 +51,6 @@
   "network_security_dashboard_unit_pb_ps": "Pbps",
   "network_security_dashboard_none": "Aucun",
   "network_security_dashboard_select_ip": "Saisissez une adresse IP...",
+  "network_security_dashboard_empty_datagrid": "Nous n'avons constaté aucune activité suspecte pendant la période sélectionnée.",
   "network_security_dashboard_empty_table": "Le service sélectionné n'a pas d'adresse IP associée, veuillez en sélectionner un autre."
 }
