@@ -28,6 +28,10 @@ export const OPERATING_STATUS_BADGES = {
   error: ERROR_BADGE_CLASS,
 };
 
+export const REGEX = {
+  ip: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
+};
+
 export default {
   DISCOVER_LINK,
   TRACKING_NAME,

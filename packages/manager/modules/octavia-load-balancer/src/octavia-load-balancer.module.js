@@ -11,6 +11,12 @@ import onboarding from './onboarding';
 import loadbalancer from './load-balancers/load-balancer';
 import routing from './octavia-load-balancer.routing';
 import create from './create';
+
+import pools from './load-balancers/load-balancer/pools';
+import poolsDetail from './load-balancers/load-balancer/pools/detail';
+import poolsDetailMembers from './load-balancers/load-balancer/pools/detail/members';
+import poolsDetailMembersCreate from './load-balancers/load-balancer/pools/detail/members/create';
+
 import deleteComponent from './delete';
 import loadBalancers from './load-balancers';
 import service from './octavia-load-balancer.service';
@@ -31,6 +37,10 @@ angular
     onboarding,
     loadbalancer,
     create,
+    pools,
+    poolsDetail,
+    poolsDetailMembers,
+    poolsDetailMembersCreate,
     deleteComponent,
     loadBalancers,
   ])

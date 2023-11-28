@@ -1,0 +1,55 @@
+<form
+    id="addMemberManuallyForm"
+    name="addMemberManuallyForm"
+    data-ng-submit="addMemberManuallyForm.$valid && $ctrl.addMember()"
+>
+    <oui-modal
+        data-on-dismiss="$ctrl.cancel()"
+        data-secondary-action="$ctrl.cancel()"
+        data-loading="$ctrl.isLoading"
+        data-primary-label="{{:: 'octavia_load_balancer_pools_detail_members_create_confirm' | translate }}"
+        data-secondary-label="{{:: 'octavia_load_balancer_pools_detail_members_create_cancel' | translate }}"
+        data-heading="{{:: 'octavia_load_balancer_pools_detail_members_create_title' | translate }}"
+    >
+        <p>
+            {{:: 'octavia_load_balancer_pools_detail_members_create_description'
+            | translate }}
+        </p>
+        <oui-field
+            data-label="{{:: 'octavia_load_balancer_pools_detail_members_create_name_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                name="name"
+                data-ng-model="$ctrl.name"
+                maxlength="255"
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{:: 'octavia_load_balancer_pools_detail_members_create_address_ip_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="text"
+                name="addressIp"
+                data-ng-model="$ctrl.addressIp"
+                data-ng-pattern="$ctrl.REGEX.ip"
+                required
+            />
+        </oui-field>
+        <oui-field
+            data-label="{{:: 'octavia_load_balancer_pools_detail_members_create_port_label' | translate }}"
+        >
+            <input
+                class="oui-input"
+                type="number"
+                name="port"
+                data-ng-model="$ctrl.port"
+                data-min="1"
+                data-max="65535"
+                required
+            />
+        </oui-field>
+    </oui-modal>
+</form>
