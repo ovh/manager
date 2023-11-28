@@ -117,6 +117,9 @@ export default class ScrubbingCenterController extends AbstractCursorDatagridCon
       return null;
     }
 
+    if (!ipaddr.isValid(value)) {
+      return null;
+    }
     this.selectedIp = value;
     if (value.indexOf('.') > -1 && value.indexOf('/') === -1) {
       this.selectedIp = `${value}/32`;
