@@ -67,13 +67,13 @@ export const GROUPED_SERVICES_TYPES = [
  * @type {{legacyVrack: null, dedicatedCloudDatacenter: null, ovhCloudConnect: null, dedicatedCloud: null, dedicatedServer: null, ip: null, dedicatedConnect: null, dedicatedServerInterface: null, cloudProject: null, ipLoadbalancing: null}}
  */
 export const SERVICE_FAMILIES_MAP = {
+  dedicatedServer: null,
+  ip: null,
   cloudProject: null,
   dedicatedCloud: null,
   dedicatedCloudDatacenter: null,
   dedicatedConnect: null,
-  dedicatedServer: null,
   dedicatedServerInterface: null,
-  ip: null,
   ipLoadbalancing: null,
   legacyVrack: null,
   ovhCloudConnect: null,
