@@ -24,6 +24,12 @@ export default /* @ngInject */ ($stateProvider) => {
             region,
             poolId,
           ),
+        memberCreationLink: /* @ngInject */ ($state) => () =>
+          $state.href(
+            'octavia-load-balancer.loadbalancer.pools.detail.members.list.create',
+          ),
+        membersPageTracking: () =>
+          `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}::add`,
         goToMemberDeletion: /* @ngInject */ ($state) => (member) =>
           $state.go(
             'octavia-load-balancer.loadbalancer.pools.detail.members.list.delete',
