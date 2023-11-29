@@ -1,3 +1,5 @@
+import { TAGS_BLOB } from '../../../constants';
+
 export default class FlavorBillingController {
   /* @ngInject */
   constructor(coreConfig) {
@@ -14,12 +16,15 @@ export default class FlavorBillingController {
 
   set flavor(flavor) {
     if (flavor) {
+      this.tagsBlob = flavor?.tagsBlob;
       this.prices = flavor.prices;
       this.PriceFormatter = new Intl.NumberFormat(
         this.coreConfig.getUserLocale().replace('_', '-'),
         {
           style: 'currency',
-          currency: flavor.prices.hourly.currencyCode,
+          ...(flavor.prices?.hourly?.currencyCode && {
+            currency: flavor.prices.hourly.currencyCode,
+          }),
           maximumFractionDigits: 5, // default is 2. But this rounds off the price
         },
       );
@@ -30,8 +35,12 @@ export default class FlavorBillingController {
     this.monthlyBilling = monthlyBilling;
   }
 
+  isPricingComingSoon() {
+    return this.tagsBlob?.includes(TAGS_BLOB.COMING_SOON);
+  }
+
   getPrice(price) {
-    return this.number * (price.value || price);
+    return this.number * (price?.value || price);
   }
 
   formatPrice(price) {
@@ -43,7 +52,7 @@ export default class FlavorBillingController {
   getAddOnPriceMonthly() {
     if (this.addons) {
       return (
-        this.prices.monthly.value +
+        (this.prices?.monthly?.value || 0) +
         this.formatAddonsPrice(this.defaultGateway?.gateway.pricePerMonth) +
         this.formatAddonsPrice(this.defaultFloatingIP?.floatingIp.pricePerMonth)
       );
@@ -54,7 +63,7 @@ export default class FlavorBillingController {
   getAddOnPriceHourly() {
     if (this.addons) {
       return (
-        this.prices.hourly.value +
+        (this.prices?.hourly?.value || 0) +
         this.formatAddonsPrice(this.defaultGateway?.gateway.pricePerHour) +
         this.formatAddonsPrice(this.defaultFloatingIP?.floatingIp.pricePerHour)
       );

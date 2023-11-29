@@ -3,6 +3,7 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import map from 'lodash/map';
 
+import { TAGS_BLOB } from '../../../constants';
 import {
   POLLER_INSTANCE_NAMESPACE,
   TYPES_TO_EXCLUDE,
@@ -40,7 +41,18 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_instances_title'),
       help: /* @ngInject */ ($transition$) => $transition$.params().help,
+      catalog: /* @ngInject */ ($http, coreConfig) => {
+        return $http
+          .get('/order/catalog/public/cloud', {
+            params: {
+              productName: 'cloud',
+              ovhSubsidiary: coreConfig.getUser().ovhSubsidiary,
+            },
+          })
+          .then(({ data: catalog }) => catalog);
+      },
       instances: /* @ngInject */ (
+        catalog,
         $q,
         PciProjectsProjectInstanceService,
         projectId,
@@ -65,13 +77,12 @@ export default /* @ngInject */ ($stateProvider) => {
                   return PciProjectsProjectInstanceService.getInstanceFlavor(
                     projectId,
                     instance,
-                  ).then(
-                    (flavor) =>
-                      new Instance({
-                        ...instance,
-                        flavor,
-                      }),
-                  );
+                  ).then((flavor) => {
+                    return new Instance({
+                      ...instance,
+                      flavor,
+                    });
+                  });
                 }),
               )
               .then((data) =>
@@ -182,6 +193,10 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         );
       },
+
+      hasComingSoonFlavorTag: /* @ngInject */ () => (flavor) =>
+        flavor?.tags?.includes(TAGS_BLOB.COMING_SOON),
+
       createBackupInstance: /* @ngInject */ (
         $state,
         projectId,

@@ -59,4 +59,8 @@ export default class KubernetesNodesCtrl {
         );
       });
   }
+
+  static displayUpdateToMonthlyAction(node) {
+    return node.billingType === 'hourly' && node?.planCodes?.monthly;
+  }
 }

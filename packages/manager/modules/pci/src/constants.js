@@ -10,6 +10,12 @@ export const CLOUD_INSTANCE_DEFAULT_FALLBACK = {
   flavor: 's1-2',
 };
 
+export const TAGS_BLOB = {
+  ACTIVE: 'active',
+  IS_NEW: 'is_new',
+  COMING_SOON: 'coming_soon',
+};
+
 export const CLOUD_FLAVOR_SPECIFIC_IMAGE = ['g1', 'g2', 'g3', 't1'];
 
 export const CLOUD_INSTANCE_HAS_GUARANTEED_RESSOURCES = [
@@ -621,4 +627,5 @@ export default {
   PCI_URLS,
   PCI_SPECIAL_CONDITIONS,
   TRACKING_CLOUD,
+  TAGS_BLOB,
 };

@@ -5,6 +5,7 @@ import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-
 import 'angular-translate';
 import 'ovh-api-services';
 import 'angular-ui-bootstrap';
+import flavorsListService from '../../flavors-list/flavors-list.service';
 
 import detailsPopover from '../details-popover';
 
@@ -22,6 +23,7 @@ angular
     'ui.bootstrap',
   ])
   .component('instanceList', component)
+  .service('flavorsListService', flavorsListService)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

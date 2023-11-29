@@ -9,13 +9,7 @@
     <oui-step-form
         id="flavor"
         name="instances_add_flavor"
-        data-header="{{ (($ctrl.currentStep > 0)
-            ? 'pci_projects_project_instances_add_flavor_selected_title'
-            : 'pci_projects_project_instances_add_flavor_title')
-            | translate: {
-                model: ($ctrl.model.flavorGroup.name | uppercase),
-                price: $ctrl.model.flavorGroup.prices.monthly.text
-            } }}"
+        data-header="{{ $ctrl.displayFlavorSelectionHeader() }}"
         data-valid="$ctrl.model.flavorGroup"
         data-editable="!$ctrl.isLoading"
         data-navigation="$ctrl.model.flavorGroup"
