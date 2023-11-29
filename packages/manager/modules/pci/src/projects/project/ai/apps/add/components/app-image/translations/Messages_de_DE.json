@@ -20,5 +20,10 @@
   "pci_app_submit_select_image_preset_price_info_message": "Der oben angezeigte Preis gilt nur für die Lizenz für das Partnermodell pro Ressource. Je nach Art und Anzahl der ausgewählten Ressourcen und Replikate fallen zusätzliche Kosten an.",
   "pci_app_submit_select_image_preset_conditions_checkbox": "Ich habe die Partner-Nutzungsbedingungen für die Bereitstellung dieses Modells gelesen und akzeptiere sie.",
   "pci_app_submit_select_image_preset_conditions_checkbox_read": "Ich habe die Partner-Nutzungsbedingungen für die Bereitstellung dieses Modells am {{date}} gelesen und akzeptiere sie.",
-  "pci_app_submit_select_image_preset_conditions_link": "Partner-Nutzungsbedingungen lesen"
+  "pci_app_submit_select_image_preset_conditions_link": "Partner-Nutzungsbedingungen lesen",
+  "pci_app_docker_command_title": "Den Docker-Befehl angeben, der im Container ausgeführt werden soll",
+  "pci_app_docker_command_default_select": "Den Befehl angeben, der ausgeführt werden soll (optional)",
+  "pci_app_docker_command_tips": "Geben Sie die Argumente durch Leerzeichen getrennt ein, die der Bestellung von Docker hinzugefügt werden. Das Apostroph (`) wird nicht unterstützt. Bitte ersetzen Sie es durch Anführungszeichen.",
+  "pci_app_docker_command_submit_title": "Exakter Befehl",
+  "pci_app_docker_command_submit_title_command": "Argumente"
 }
