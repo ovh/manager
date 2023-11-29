@@ -1,0 +1,105 @@
+<div>
+    <oui-button
+        aria-label="{{:: 'netapp_network_configuration_previous_link' | translate }}"
+        data-on-click="$ctrl.goBack()"
+        data-variant="link"
+        data-icon-left="oui-icon-arrow-left"
+    >
+        <span
+            data-translate="netapp_network_configuration_previous_link"
+        ></span>
+    </oui-button>
+    <p
+        class="oui-heading_3"
+        data-translate="netapp_network_configuration_title"
+    ></p>
+    <div data-ovh-alert="netapp.alerts.network"></div>
+    <p data-translate="netapp_network_configuration_description"></p>
+
+    <form novalidate name="$ctrl.networkConfigurationForm">
+        <oui-field label="{{:: $ctrl.LABELS.VRACK_SERVICE }}" size="xl">
+            <oui-select
+                data-items="$ctrl.vrackServices"
+                data-match="display.nameWithVrackId"
+                data-model="$ctrl.selectedVrackService"
+                data-placeholder="{{:: 'netapp_network_configuration_vrack_service_field_placeholder' | translate }}"
+                data-disabled="$ctrl.disableVrackServicesField"
+                data-on-change="$ctrl.onVrackServiceSelected(modelValue)"
+                name="vrackService"
+            >
+                <div class="d-flex justify-content-between">
+                    <span
+                        data-ng-bind="$item.currentState.displayName || $item.id"
+                    ></span>
+                    <span data-ng-bind="$item.currentState.vrackId"></span>
+                </div>
+            </oui-select>
+            <div class="mt-2">
+                <small class="d-flex flex-row align-items-center">
+                    <span
+                        data-translate="netapp_network_configuration_create_vrack_service_text"
+                    ></span>
+                    <a
+                        class="oui-button oui-button_secondary ml-2"
+                        data-ng-href="{{:: $ctrl.createVrackServiceLink}}"
+                        data-track-on="click"
+                        data-track-name="{{:: $ctrl.TRACKING_BASE + '::add-vrack-services'}}"
+                        data-track-type="action"
+                    >
+                        <span
+                            data-translate="netapp_network_configuration_create_button"
+                        ></span>
+                    </a>
+                </small>
+            </div>
+        </oui-field>
+
+        <oui-field label="{{:: $ctrl.LABELS.SUBNET }}" size="xl">
+            <oui-select
+                data-items="$ctrl.subnets"
+                data-match="displayName"
+                data-model="$ctrl.selectedSubnet"
+                data-placeholder="{{:: 'netapp_network_configuration_subnet_field_placeholder' | translate }}"
+                data-disabled="$ctrl.disableSubnetField"
+                name="subnet"
+            >
+            </oui-select>
+            <div class="mt-2">
+                <small class="d-flex flex-row align-items-center">
+                    <span
+                        data-translate="netapp_network_configuration_no_subnet_text"
+                    ></span>
+                    <a
+                        class="oui-button oui-button_secondary ml-2"
+                        data-ng-href="{{:: $ctrl.createSubnetLink}}"
+                        data-track-on="click"
+                        data-track-name="{{:: $ctrl.TRACKING_BASE + '::add-subnet'}}"
+                        data-track-type="action"
+                    >
+                        <span
+                            data-translate="netapp_network_configuration_create_button"
+                        ></span>
+                    </a>
+                </small>
+            </div>
+        </oui-field>
+        <oui-button
+            data-variant="link"
+            class="mr-2"
+            data-on-click="$ctrl.goBack('cancel')"
+        >
+            <span
+                data-translate="netapp_network_configuration_cancel_button"
+            ></span>
+        </oui-button>
+        <oui-button
+            data-variant="primary"
+            data-on-click="$ctrl.configureNetwork()"
+            data-disabled="!$ctrl.selectedVrackService || $ctrl.disableVrackServicesField || !$ctrl.selectedSubnet || $ctrl.disableSubnetField"
+        >
+            <span
+                data-translate="netapp_network_configuration_configure_button"
+            ></span>
+        </oui-button>
+    </form>
+</div>
