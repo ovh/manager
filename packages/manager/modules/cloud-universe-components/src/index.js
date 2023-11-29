@@ -5,6 +5,7 @@ import cucAutofocus from './autofocus';
 import cucConfig from './config';
 import cucFeatureAvailability from './featureAvailability';
 import cucHelper from './helper';
+import cucGuidesHeader from './guides-header';
 import cucMessage from './message';
 import cucMomentFormat from './moment';
 import cucNavigation from './navigation';
@@ -22,6 +23,7 @@ angular.module(moduleName, [
   cucAutofocus,
   cucConfig,
   cucFeatureAvailability,
+  cucGuidesHeader,
   cucHelper,
   cucMessage,
   cucMomentFormat,
