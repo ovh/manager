@@ -64,6 +64,7 @@ const Sidebar = (): JSX.Element => {
     Array<{ node: Node; count: number | boolean }>
   >([]);
   const [pciProjects, setPciProjects] = useState<PciProject[]>([]);
+  const [shouldSeeAllPciProjects, setShouldSeeAllPciProjects] = useState<boolean>(false);
   const [pciError, setPciError] = useState<boolean>(false);
   const [selectedPciProject, setSelectedPciProject] = useState<PciProject>(
     null,
@@ -225,6 +226,9 @@ const Sidebar = (): JSX.Element => {
         setPciError(false);
         if (result && result.length) {
           setPciProjects(result);
+          setShouldSeeAllPciProjects(
+            !result.find(({ planCode }) => planCode === 'project.discovery')
+          )
         }
       })
       .catch(() => {
@@ -462,7 +466,7 @@ const Sidebar = (): JSX.Element => {
               <li>
                 <ProjectSelector
                   isLoading={!pciProjects}
-                  projects={pciProjects}
+                  projects={shouldSeeAllPciProjects ? pciProjects : []}
                   selectedProject={selectedPciProject}
                   onProjectChange={(option: typeof selectedPciProject) => {
                     if (selectedPciProject !== option) {
@@ -486,6 +490,7 @@ const Sidebar = (): JSX.Element => {
                   }}
                   onMenuOpen={() => setIsAssistanceOpen(false)}
                   createLabel={t('sidebar_pci_new')}
+                  seeAllButton={shouldSeeAllPciProjects}
                   seeAllLabel={t('sidebar_pci_all')}
                 />
                 {pciError && (

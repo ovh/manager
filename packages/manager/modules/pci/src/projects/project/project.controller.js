@@ -75,4 +75,13 @@ export default class ProjectController {
   onActivateProjectClick() {
     return this.goToDiscoveryProjectActivationPage();
   }
+
+  onActivateDiscoveryModalSuccess() {
+    this.activateDiscovery = false;
+    this.goToDiscoveryProjectActivationPage();
+  }
+
+  onActivateDiscoveryModalClose() {
+    this.activateDiscovery = false;
+  }
 }

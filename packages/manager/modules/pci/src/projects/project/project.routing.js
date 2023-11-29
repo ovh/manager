@@ -16,7 +16,14 @@ const isLegacy = (planCode) => LEGACY_PLAN_CODES.includes(planCode);
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project', {
-    url: '/{projectId:[0-9a-zA-Z]{32}}',
+    url: '/{projectId:[0-9a-zA-Z]{32}}?activateDiscovery',
+    params: {
+      activateDiscovery: {
+        type: 'bool',
+        value: false,
+        squash: true,
+      },
+    },
     views: {
       '@pci': 'pciProject',
     },
@@ -45,6 +52,9 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       projectId: /* @ngInject */ ($transition$) =>
         $transition$.params().projectId,
+
+      activateDiscovery: /* @ngInject */ ($transition$, isDiscoveryProject) =>
+        isDiscoveryProject && $transition$.params().activateDiscovery,
 
       project: /* @ngInject */ (OvhApiCloudProject, projectId) =>
         OvhApiCloudProject.v6().get({
