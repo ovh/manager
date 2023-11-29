@@ -136,8 +136,8 @@ export const getOrderDetailsMocks = ({
   },
   {
     url: '/me/order/:id',
-    response: ({ params: { id } }: { params: { id: number } }) =>
-      orderDataById[id] || orderDataById[1],
+    response: ({ params }: { params?: { id: number } }) =>
+      orderDataById[params?.id] || orderDataById[1],
     api: 'v6',
   },
   {

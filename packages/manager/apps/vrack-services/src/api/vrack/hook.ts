@@ -3,11 +3,14 @@ import { useQueries, useQuery } from '@tanstack/react-query';
 import {
   getVrackList,
   getVrackListQueryKey,
-  getVrackServiceAllowedServices,
-  getVrackServiceAllowedServicesQueryKey,
+  getVrackAllowedServices,
+  getVrackAllowedServicesQueryKey,
 } from './get';
 
-export const useVrackServicesAllowedVrack = (vrackServicesId?: string) => {
+/**
+ * @returns List of allowed vRack to be associated to a vRack Services
+ */
+export const useAllowedVrackList = (vrackServicesId?: string) => {
   const serviceFamily = 'vrackServices';
   const {
     data: vrackListResponse,
@@ -22,14 +25,14 @@ export const useVrackServicesAllowedVrack = (vrackServicesId?: string) => {
   const result = useQueries({
     queries:
       isFetched && vrackListResponse?.data.length > 0
-        ? vrackListResponse.data.map((serviceName) => ({
-            queryKey: getVrackServiceAllowedServicesQueryKey({
-              serviceName,
+        ? vrackListResponse.data.map((vrack) => ({
+            queryKey: getVrackAllowedServicesQueryKey({
+              vrack,
               serviceFamily,
             }),
             queryFn: () =>
-              getVrackServiceAllowedServices({
-                serviceName,
+              getVrackAllowedServices({
+                vrack,
                 serviceFamily,
               }),
           }))
@@ -45,7 +48,7 @@ export const useVrackServicesAllowedVrack = (vrackServicesId?: string) => {
     allowedVrackList:
       vrackServicesId && !resultStatus.isLoading && !resultStatus.isError
         ? result.reduce((allowedVrackList, { data }, index) => {
-            if (data.data.vrackServices.includes(vrackServicesId)) {
+            if (data.data.vrackServices?.includes(vrackServicesId)) {
               return allowedVrackList.concat(vrackListResponse.data[index]);
             }
             return allowedVrackList;

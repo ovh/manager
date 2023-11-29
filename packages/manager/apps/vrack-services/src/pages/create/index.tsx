@@ -23,16 +23,15 @@ import {
   orderVrackServicesQueryKey,
   orderVrack,
   orderVrackQueryKey,
-  getPollingOderStatusQueryKey,
   getDeliveringOrderQueryKey,
   OrderDescription,
 } from '@/api';
 import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
 import { ApiError, ErrorPage } from '@/components/Error';
-import { ZoneFormField } from './ZoneFormField';
+import { ZoneFormField } from './components/ZoneFormField';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import { displayNameInputName } from './constants';
-import { VrackConfirmModal } from './VrackConfirmModal';
+import { VrackConfirmModal } from './components/VrackConfirmModal';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.id;
@@ -147,7 +146,7 @@ const CreationPage: React.FC = () => {
           orderNewVrackServices();
           setIsModalVisible(false);
           queryClient.invalidateQueries({
-            queryKey: getPollingOderStatusQueryKey(
+            queryKey: getDeliveringOrderQueryKey(
               OrderDescription.vrackServices,
             ),
           });
@@ -157,7 +156,7 @@ const CreationPage: React.FC = () => {
           orderNewVrackServices();
           setIsModalVisible(false);
           queryClient.invalidateQueries({
-            queryKey: getPollingOderStatusQueryKey(
+            queryKey: getDeliveringOrderQueryKey(
               OrderDescription.vrackServices,
             ),
           });

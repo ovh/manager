@@ -1,14 +1,12 @@
-import { queryClient } from '@ovh-ux/manager-react-core-application';
 import {
   UpdateVrackServicesParams,
   VrackServices,
 } from './vrack-services.type';
 import { createFetchDataFn } from '../common';
 
-export const updateVrackServicesQueryKey = ({
+export const updateVrackServicesQueryKey = (vrackServicesId: string) => [
+  'put/vrackServices/resource',
   vrackServicesId,
-}: UpdateVrackServicesParams) => [
-  `put/vrackServices/resource/${vrackServicesId}`,
 ];
 
 /**
@@ -19,12 +17,9 @@ export const updateVrackServices = async ({
   checksum,
   targetSpec,
 }: UpdateVrackServicesParams) =>
-  queryClient.fetchQuery(
-    updateVrackServicesQueryKey({ checksum, targetSpec, vrackServicesId }),
-    createFetchDataFn<VrackServices>({
-      url: `/vrackServices/resource/${vrackServicesId}`,
-      method: 'put',
-      apiVersion: 'v2',
-      params: { checksum, targetSpec },
-    }),
-  );
+  createFetchDataFn<VrackServices>({
+    url: `/vrackServices/resource/${vrackServicesId}`,
+    method: 'put',
+    apiVersion: 'v2',
+    params: { checksum, targetSpec },
+  })();

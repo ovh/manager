@@ -23,10 +23,14 @@ BeforeAll(async function beforeAll() {
 });
 
 Before({ timeout: 60 * 1000 }, async function before(this: ICustomWorld) {
+  this.handlersConfig = {};
+  this.testContext = { inputTexts: {} };
   this.context = await browser.newContext();
   this.page = await this.context.newPage();
   await login(this.page);
-  await this.page.waitForURL(config.appUrl, { waitUntil: 'load' });
+  await this.page.waitForURL(this.testContext.initialUrl || config.appUrl, {
+    waitUntil: 'load',
+  });
 });
 
 After(async function after(this: ICustomWorld) {

@@ -24,8 +24,9 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import {
   associateVrackServicesQueryKey,
   associateVrackServices,
-  getListingIcebergQueryKey,
+  getVrackServicesResourceListQueryKey,
 } from '@/api';
+import { handleClick } from '@/utils/ods-utils';
 
 export type AssociateVrackProps = {
   vrackServicesId: string;
@@ -50,7 +51,9 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
       }),
     mutationKey: associateVrackServicesQueryKey(vrackServicesId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: getListingIcebergQueryKey });
+      queryClient.invalidateQueries({
+        queryKey: getVrackServicesResourceListQueryKey,
+      });
       closeModal();
     },
   });
@@ -91,12 +94,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={closeModal}
-        onKeyDown={(event: React.KeyboardEvent) => {
-          if ([' ', 'Enter'].includes(event.key)) {
-            closeModal();
-          }
-        }}
+        {...handleClick(closeModal)}
       >
         {t('modalCancelVrackAssociationButtonLabel')}
       </OsdsButton>
@@ -106,12 +104,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.primary}
         disabled={isLoading || !selectedVrack || undefined}
-        onClick={associateVs}
-        onKeyDown={(event: React.KeyboardEvent) => {
-          if ([' ', 'Enter'].includes(event.key)) {
-            associateVs();
-          }
-        }}
+        {...handleClick(() => associateVs())}
       >
         {t('modalConfirmVrackAssociationButtonLabel')}
       </OsdsButton>

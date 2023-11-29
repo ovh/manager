@@ -17,7 +17,7 @@ export type Endpoint = {
 
 export type Subnet = {
   cidr: string;
-  displayName: string | null;
+  displayName?: string | null;
   serviceEndpoints: Endpoint[];
   serviceRange: {
     cidr: string;
@@ -34,7 +34,7 @@ export enum ProductStatus {
   DRAFT = 'DRAFT',
 }
 
-export enum ResoureceStatus {
+export enum ResourceStatus {
   CREATING = 'CREATING',
   DELETING = 'DELETING',
   ERROR = 'ERROR',
@@ -65,7 +65,7 @@ export type VrackServices = {
   };
   currentTasks: Task[];
   id: string;
-  resourceStatus: ResoureceStatus;
+  resourceStatus: ResourceStatus;
   targetSpec: TargetSpec;
   // yyyy-mm-ddTZ
   updatedAt: string;

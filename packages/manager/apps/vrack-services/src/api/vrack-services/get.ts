@@ -76,30 +76,27 @@ export const getvrackServicesReferenceZoneList = async () =>
     }),
   );
 
-export type GetvrackServicesResourceListParams = {
+export type GetVrackServicesResourceListParams = {
   /** Pagination cursor */
-  'X-Pagination-Cursor': string;
+  cursor?: 'next' | 'prev';
 };
 
-export const getvrackServicesResourceListQueryKey = [
+export const getVrackServicesResourceListQueryKey = [
   'get/vrackServices/resource',
 ];
 
 /**
  * Operations on vRack Services : List all vRack Services
  */
-export const getvrackServicesResourceList = async (
-  params: GetvrackServicesResourceListParams,
-) =>
-  queryClient.fetchQuery(
-    getvrackServicesResourceListQueryKey,
-    createFetchDataFn<VrackServicesWithIAM[]>({
-      url: '/vrackServices/resource',
-      method: 'get',
-      apiVersion: 'v2',
-      params,
-    }),
-  );
+export const getVrackServicesResourceList = async ({
+  cursor,
+}: GetVrackServicesResourceListParams = {}) =>
+  createFetchDataFn<VrackServicesWithIAM[]>({
+    url: '/vrackServices/resource',
+    method: 'get',
+    apiVersion: 'v2',
+    params: { headers: { 'X-Pagination-Cursor': cursor } },
+  })();
 
 export const getListingIcebergQueryKey = ['servicesListingIceberg'];
 
@@ -198,34 +195,30 @@ export const getvrackServicesResourceVrackServicesIdEventList = async ({
     }),
   );
 
-export type GetvrackServicesResourceVrackServicesIdTaskListParams = {
+export type GetTaskListParams = {
   /** Pagination cursor */
-  'X-Pagination-Cursor': string;
+  cursor?: string;
   /** Vrack services ID */
   vrackServicesId: string;
 };
 
-export const getvrackServicesResourceVrackServicesIdTaskListQueryKey = ({
-  vrackServicesId,
-}: GetvrackServicesResourceVrackServicesIdTaskListParams) => [
-  `get/vrackServices/resource/${vrackServicesId}/task`,
-];
+export const getvrackServicesResourceVrackServicesIdTaskListQueryKey = (
+  vrackServicesId: string,
+) => [`get/vrackServices/resource/${vrackServicesId}/task`];
 
 /**
  * vRack Services tasks : List all asynchronous operations related to the vRack Services
  */
-export const getvrackServicesResourceVrackServicesIdTaskList = async (
-  data: GetvrackServicesResourceVrackServicesIdTaskListParams,
-) =>
-  queryClient.fetchQuery(
-    getvrackServicesResourceVrackServicesIdTaskListQueryKey(data),
-    createFetchDataFn<Task[]>({
-      url: `/vrackServices/resource/${data.vrackServicesId}/task`,
-      method: 'get',
-      apiVersion: 'v2',
-      params: { data },
-    }),
-  );
+export const getTaskList = async ({
+  vrackServicesId,
+  cursor,
+}: GetTaskListParams) =>
+  createFetchDataFn<Task[]>({
+    url: `/vrackServices/resource/${vrackServicesId}/task`,
+    method: 'get',
+    apiVersion: 'v2',
+    params: { headers: { 'X-Pagination-Cursor': cursor } },
+  })();
 
 export type GetvrackServicesResourceVrackServicesIdTaskTaskIdParams = {
   /** Task ID */
