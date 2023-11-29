@@ -2,9 +2,10 @@
 const MAXIMUM_VOLUME_LIMIT = 50;
 
 export default class NetApp {
-  constructor({ id, name, performanceLevel, quota, region, status }) {
+  constructor({ id, name, performanceLevel, quota, region, status, iam }) {
     Object.assign(this, {
       id,
+      iam,
       name,
       performanceLevel,
       quota,
