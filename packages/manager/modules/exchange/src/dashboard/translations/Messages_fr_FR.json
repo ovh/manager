@@ -429,6 +429,8 @@
   "exchange_tab_domain_diagnostic_dkim_activation_ovhcloud": "Nous allons configurer DKIM pour vous, l'activation complète peut prendre 24 heures.",
   "exchange_tab_domain_diagnostic_dkim_activation_success": "Configuration DKIM en cours, veuillez noter que la mise à jour peut prendre jusqu'à 24 heures pour se propager.",
   "exchange_tab_domain_diagnostic_dkim_activation_error": "Une erreur est survenue pendant la configuration DKIM.",
+  "exchange_tab_domain_diagnostic_dkim_close": "Fermer",
+  "exchange_tab_domain_diagnostic_dkim_cancel": "Annuler",
   "exchange_tab_domain_diagnostic_dkim_text_field": "Champ Texte",
   "exchange_tab_domain_diagnostic_dkim_name": "Name",
   "exchange_tab_domain_diagnostic_dkim_record": "Record",
