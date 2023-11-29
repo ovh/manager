@@ -38,6 +38,7 @@ export default /* @ngInject */ ($q, OvhApiTelephony) => {
     // from API
     this.serviceType = options.serviceType;
     this.description = options.description;
+    this.featureType = options.featureType;
     this.offers = options.offers;
 
     // managing notifications object

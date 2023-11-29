@@ -42,6 +42,7 @@ export default /* @ngInject */ (
     this.serviceType = options.serviceType;
     this.description = options.description;
     this.partOfPool = options.partOfPool;
+    this.featureType = options.featureType;
 
     // custom attributes
     this.inEdition = false;
