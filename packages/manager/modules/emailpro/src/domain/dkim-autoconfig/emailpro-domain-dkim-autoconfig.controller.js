@@ -26,6 +26,7 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
       $state,
     };
 
+    this.serviceType = 'emailpro';
     this.domain = $scope.currentActionData.domain;
     this.DKIM_STATUS = DKIM_STATUS;
     this.dkimGuideLink =
@@ -142,7 +143,7 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
     });
   }
 
-  postDkimFor(selectors) {
+  postDkim(selectors) {
     return selectors.map((dkimSelector, index) => {
       return this.services.EmailProDomains.postDkim(
         this.services.$stateParams.productId,
@@ -156,30 +157,10 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
     });
   }
 
-  stepConfigureDkim() {
-    this.stepConfigureDkimFor('emailpro');
-  }
-
-  getTitleDependingOnStep() {
-    return this.getTitleDependingOnStepFor('emailpro');
-  }
-
-  getNextButtonDependingOnStep() {
-    return this.getNextButtonDependingOnStepFor('emailpro');
-  }
-
-  getDkimName(index) {
-    return this.getDkimNameFor('emailpro', index);
-  }
-
-  getDkimRecord(index) {
-    return this.getDkimRecordFor('emailpro', index);
-  }
-
   configDkim() {
     const promise = this.getDkimSelectorForCurrentState();
     promise.then((dkimSelectors) => {
-      const promises = this.postDkimFor(dkimSelectors);
+      const promises = this.postDkim(dkimSelectors);
       return this.services.$q.all(promises);
     });
     this.handleDkimOperationResponse(promise);

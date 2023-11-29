@@ -44,7 +44,7 @@ export default class DkimAutoConfigurator {
     this.showSpfDiagnosticTitle = false;
     this.loading = true;
     this.dkimSelectorsNoDomain = await this.getDkimSelectorForCurrentState();
-    await this.stepConfigureDkimFor('exchange');
+    await this.configureDkim();
     this.isStepConfigureValid = true;
     this.loading = false;
   }
@@ -60,14 +60,14 @@ export default class DkimAutoConfigurator {
     return this.initializeDkimConfiguratorNoOvh();
   }
 
-  stepConfigureDkimFor(targetService) {
-    const promises = this.postDkimFor(this.dkimSelectorsNoDomain);
+  configureDkim() {
+    const promises = this.postDkim(this.dkimSelectorsNoDomain);
     return this.services.$q
       .all(promises)
       .then(() => {
         this.services.messaging.writeSuccess(
           this.services.$translate.instant(
-            `${targetService}_tab_domain_diagnostic_dkim_activation_success`,
+            `${this.serviceType}_tab_domain_diagnostic_dkim_activation_success`,
           ),
         );
       })
@@ -75,22 +75,22 @@ export default class DkimAutoConfigurator {
         this.leaveDkimConfigurator();
         this.services.messaging.writeError(
           this.services.$translate.instant(
-            `${targetService}_tab_domain_diagnostic_dkim_configurate_no_ovhcloud_failed`,
+            `${this.serviceType}_tab_domain_diagnostic_dkim_configurate_no_ovhcloud_failed`,
           ),
         );
       });
   }
 
-  getTitleDependingOnStepFor(targetService) {
+  getTitleDependingOnStep() {
     return !this.showSpfDiagnosticTitle
-      ? `${targetService}_tab_domain_diagnostic_dkim_title_configuration`
-      : `${targetService}_tab_domain_diagnostic_spf_title`;
+      ? `${this.serviceType}_tab_domain_diagnostic_dkim_title_configuration`
+      : `${this.serviceType}_tab_domain_diagnostic_spf_title`;
   }
 
-  getNextButtonDependingOnStepFor(targetService) {
+  getNextButtonDependingOnStep() {
     return this.showConfiguratingBtn
-      ? `${targetService}_tab_domain_diagnostic_dkim_configurate_no_ovhcloud`
-      : `${targetService}_tab_domain_diagnostic_dkim_next_no_ovhcloud`;
+      ? `${this.serviceType}_tab_domain_diagnostic_dkim_configurate_no_ovhcloud`
+      : `${this.serviceType}_tab_domain_diagnostic_dkim_next_no_ovhcloud`;
   }
 
   initSpfContext() {
@@ -98,20 +98,20 @@ export default class DkimAutoConfigurator {
     return this.getSelectorNameForNoOvhCloud();
   }
 
-  getDkimNameFor(targetService, index) {
+  getDkimName(index) {
     return [
       this.services.$translate.instant(
-        `${targetService}_tab_domain_diagnostic_dkim_name`,
+        `${this.serviceType}_tab_domain_diagnostic_dkim_name`,
       ),
       `${index}: `,
       this[`selector${index}NoDomain`].customerRecord,
     ].join('');
   }
 
-  getDkimRecordFor(targetService, index) {
+  getDkimRecord(index) {
     return [
       this.services.$translate.instant(
-        `${targetService}_tab_domain_diagnostic_dkim_record`,
+        `${this.serviceType}_tab_domain_diagnostic_dkim_record`,
       ),
       `${index}: `,
       this[`selector${index}NoDomain`].targetRecord,
