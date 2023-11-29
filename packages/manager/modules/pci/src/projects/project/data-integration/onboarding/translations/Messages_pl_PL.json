@@ -1,6 +1,0 @@
-{
-  "pci_data_integration_onboarding_title": "Data Integration",
-  "pci_data_integration_onboarding_subtitle": "Uproszczony obieg danych",
-  "pci_data_integration_onboarding_description": "Chcesz w prosty sposób pobierać dane i tworzyć potoki danych? Zautomatyzuj obieg danych dzięki naszemu rozwiązaniu Data Integration. Pozwala on korzystać z katalogu źródeł i miejsc docelowych do konfiguracji przesyłu danych w formie pliku (Object Storage, HTTP files, SFTP, FTP), bazy danych (PostgreSQL, MySQL, MongoDB, Oracle, SQL Server) lub za pośrednictwem wyszukiwarki (Elasticsearch, OpenSearch). Dołącz do naszej darmowej wersji beta klikając poniższy przycisk.",
-  "pci_data_integration_onboarding_button": "Sprawdź integracje danych"
-}

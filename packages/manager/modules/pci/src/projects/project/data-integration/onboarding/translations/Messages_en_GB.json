@@ -1,6 +1,0 @@
-{
-  "pci_data_integration_onboarding_title": "Data Integration",
-  "pci_data_integration_onboarding_subtitle": "Streamlined data flow",
-  "pci_data_integration_onboarding_description": "Want to integrate data and build data pipelines easily? Automate the flow of your data with our Data Integration solution. You can use a catalogue of sources and destinations to configure the transport of your data, either as a file (Object Storage, HTTP files, SFTP, FTP), a database (PostgreSQL, MySQL, MongoDB, Oracle, SQL Server), or a search engine (Elasticsearch, OpenSearch). Join our free beta by clicking on the button below.",
-  "pci_data_integration_onboarding_button": "Explore your data integrations"
-}

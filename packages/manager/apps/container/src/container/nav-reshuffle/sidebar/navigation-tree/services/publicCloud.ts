@@ -266,7 +266,7 @@ const pciNode: Node = {
     {
       id: 'pci-analytics',
       translation: 'sidebar_pci_analytics',
-      features: ['data-integration', 'data-processing', 'logs-data-platform', 'databases'],
+      features: ['data-processing', 'logs-data-platform', 'databases'],
       forceVisibility: true,
       children: [
         {
@@ -290,18 +290,6 @@ const pciNode: Node = {
           },
           features: ['databases'],
           forceVisibility: true,
-        },
-        {
-          id: 'pci-data-integration',
-          translation: 'sidebar_pci_data_integration',
-          serviceType: 'CLOUD_PROJECT_DATA_INTEGRATION_WORKFLOWS',
-          routing: {
-            application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/data-integration',
-          },
-          features: ['data-integration'],
-          forceVisibility: true,
-          tag: NodeTag.BETA,
         },
         {
           id: 'pci-data-processing',

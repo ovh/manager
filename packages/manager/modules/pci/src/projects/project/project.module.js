@@ -39,8 +39,6 @@ import pciMaintenanceBanner from '../../components/pci-maintenance-banner';
 import aiDashboard from './ai-dashboard';
 import projectComponent from './project.component';
 import service from './project.service';
-import dataIntegration from './data-integration';
-
 import gateways from './gateways';
 
 import './project.less';
@@ -84,7 +82,6 @@ angular
     pciMaintenanceBanner,
     gateways,
     aiDashboard,
-    dataIntegration,
   ])
   .config(routing)
   .component('pciProject', projectComponent)
