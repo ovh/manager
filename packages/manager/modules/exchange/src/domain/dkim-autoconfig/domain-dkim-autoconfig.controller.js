@@ -29,6 +29,7 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
       exchangeStates,
     };
 
+    this.serviceType = 'exchange';
     this.loading = true;
     this.$routerParams = wucExchange.getParams();
     this.domain = navigation.currentActionData.domain;
@@ -144,7 +145,7 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
     );
   }
 
-  postDkimFor(selectors) {
+  postDkim(selectors) {
     return selectors.map((dkimSelector, index) => {
       return this.services.ExchangeDomains.postDkim(
         this.$routerParams.organization,
@@ -159,30 +160,10 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
     });
   }
 
-  stepConfigureDkim() {
-    this.stepConfigureDkimFor('exchange');
-  }
-
-  getTitleDependingOnStep() {
-    return this.getTitleDependingOnStepFor('exchange');
-  }
-
-  getNextButtonDependingOnStep() {
-    return this.getNextButtonDependingOnStepFor('exchange');
-  }
-
-  getDkimName(index) {
-    return this.getDkimNameFor('exchange', index);
-  }
-
-  getDkimRecord(index) {
-    return this.getDkimRecordFor('exchange', index);
-  }
-
   configDkim() {
     const promise = this.getDkimSelectorForCurrentState().then(
       (dkimSelectors) => {
-        const promises = this.postDkimFor(dkimSelectors);
+        const promises = this.postDkim(dkimSelectors);
         return this.services.$q.all(promises);
       },
     );

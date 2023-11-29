@@ -43,7 +43,7 @@ export default class DkimAutoConfigurator {
     this.showSpfDiagnosticTitle = false;
     this.loading = true;
     this.dkimSelectorsNoDomain = await this.getDkimSelectorForCurrentState();
-    await this.stepConfigureDkimFor('emailpro');
+    await this.configureDkim();
     this.isStepConfigureValid = true;
     this.loading = false;
   }
@@ -64,31 +64,31 @@ export default class DkimAutoConfigurator {
     );
   }
 
-  stepConfigureDkimFor(targetService) {
-    const promises = this.postDkimFor(this.dkimSelectorsNoDomain);
+  configureDkim() {
+    const promises = this.postDkim(this.dkimSelectorsNoDomain);
     return this.services.$q
       .all(promises)
       .then(() => {
         this.writeSuccess(
-          `${targetService}_tab_domain_diagnostic_dkim_activation_success`,
+          `${this.serviceType}_tab_domain_diagnostic_dkim_activation_success`,
         );
       })
       .catch(() => {
         this.leaveDkimConfigurator();
-        this.writeError(`${targetService}_tab_domain_diagnostic_dkim_error`);
+        this.writeError(`${this.serviceType}_tab_domain_diagnostic_dkim_error`);
       });
   }
 
-  getTitleDependingOnStepFor(targetService) {
+  getTitleDependingOnStep() {
     return !this.showSpfDiagnosticTitle
-      ? `${targetService}_tab_domain_diagnostic_dkim_title_configuration`
-      : `${targetService}_tab_domain_diagnostic_spf_title`;
+      ? `${this.serviceType}_tab_domain_diagnostic_dkim_title_configuration`
+      : `${this.serviceType}_tab_domain_diagnostic_spf_title`;
   }
 
-  getNextButtonDependingOnStepFor(targetService) {
+  getNextButtonDependingOnStep() {
     return this.showConfiguratingBtn
-      ? `${targetService}_tab_domain_diagnostic_dkim_configurate_no_ovhcloud`
-      : `${targetService}_tab_domain_diagnostic_dkim_next_no_ovhcloud`;
+      ? `${this.serviceType}_tab_domain_diagnostic_dkim_configurate_no_ovhcloud`
+      : `${this.serviceType}_tab_domain_diagnostic_dkim_next_no_ovhcloud`;
   }
 
   initSpfContext() {
@@ -96,20 +96,20 @@ export default class DkimAutoConfigurator {
     return this.getSelectorNameForNoOvhCloud();
   }
 
-  getDkimNameFor(targetService, index) {
+  getDkimName(index) {
     return [
       this.services.$translate.instant(
-        `${targetService}_tab_domain_diagnostic_dkim_name`,
+        `${this.serviceType}_tab_domain_diagnostic_dkim_name`,
       ),
       `${index}: `,
       this[`selector${index}NoDomain`].customerRecord,
     ].join('');
   }
 
-  getDkimRecordFor(targetService, index) {
+  getDkimRecord(index) {
     return [
       this.services.$translate.instant(
-        `${targetService}_tab_domain_diagnostic_dkim_record`,
+        `${this.serviceType}_tab_domain_diagnostic_dkim_record`,
       ),
       `${index}: `,
       this[`selector${index}NoDomain`].targetRecord,
@@ -123,17 +123,17 @@ export default class DkimAutoConfigurator {
     );
   }
 
-  writeError(msg, args) {
-    this.writeMessage(msg, 'error', args);
+  writeError(message, params) {
+    this.writeMessage(message, 'error', params);
   }
 
-  writeSuccess(msg, args) {
-    this.writeMessage(msg, 'success', args);
+  writeSuccess(message, params) {
+    this.writeMessage(message, 'success', params);
   }
 
-  writeMessage(msg, type, args) {
-    const message = this.services.$translate.instant(msg, args);
-    this.services.$scope.setMessage(message, {
+  writeMessage(message, type, params) {
+    const translation = this.services.$translate.instant(message, params);
+    this.services.$scope.setMessage(translation, {
       type,
     });
   }
