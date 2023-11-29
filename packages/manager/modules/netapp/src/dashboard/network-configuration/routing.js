@@ -6,7 +6,6 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       'netappContainer@netapp': 'ovhManagerNetAppNetworkConfiguration',
     },
-    // component: 'ovhManagerNetAppNetworkConfiguration',
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('netapp_network_configuration_title'),

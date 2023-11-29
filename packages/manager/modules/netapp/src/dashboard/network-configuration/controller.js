@@ -30,11 +30,9 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
 
   onVrackServiceSelected(vrackService) {
     this.selectedSubnet = null;
-    this.subnets = JSON.parse(
-      JSON.stringify(vrackService.currentState.subnets),
-    );
+    this.subnets = angular.copy(vrackService.currentState.subnets);
 
-    if (!this.subnets.length) {
+    if (!this.subnets?.length) {
       const noSubnet = {
         displayName: this.$translate.instant(
           'netapp_network_configuration_no_subnet_field',

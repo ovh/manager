@@ -14,7 +14,7 @@ export default class NetAppNetworkConfigurationService {
   linkVrackServiceToEfs(vrackService, subnet, efs) {
     const vs = vrackService;
     // create deep copy of currentState
-    vs.targetSpec = JSON.parse(JSON.stringify(vs.currentState));
+    vs.targetSpec = angular.copy(vs.currentState);
 
     // Search the subnet to modify within the vrackServices subnets array
     const subnetToModify = vs.targetSpec.subnets.find(
