@@ -20,5 +20,10 @@
   "pci_app_submit_select_image_preset_price_info_message": "O preço indicado acima é apenas para a licença do modelo de parceiro por recurso. Serão aplicadas taxas adicionais em função do tipo e do número de recursos e réplicas escolhidos.",
   "pci_app_submit_select_image_preset_conditions_checkbox": "Tomei conhecimento e aceito as condições de utilização dos parceiros para a implementação deste modelo.",
   "pci_app_submit_select_image_preset_conditions_checkbox_read": "Li e aceitei as condições de utilização dos parceiros {{date}} para a implementação deste modelo.",
-  "pci_app_submit_select_image_preset_conditions_link": "Ler as condições de utilização dos parceiros"
+  "pci_app_submit_select_image_preset_conditions_link": "Ler as condições de utilização dos parceiros",
+  "pci_app_docker_command_title": "Introduza o comando Docker a executar no container",
+  "pci_app_docker_command_default_select": "Especificar a encomenda a executar (facultativo)",
+  "pci_app_docker_command_tips": "Introduza os argumentos (separados por espaços) que passarão ao comando Docker. As aspas simples (`) não são suportadas e devem ser substituídas por aspas.",
+  "pci_app_docker_command_submit_title": "Comando específico",
+  "pci_app_docker_command_submit_title_command": "Argumentos"
 }

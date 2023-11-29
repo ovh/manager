@@ -20,5 +20,10 @@
   "pci_app_submit_select_image_preset_price_info_message": "The price displayed above applies only to the licence for the partner model per resource. Additional fees will apply depending on the type and number of resources and replica nodes you have selected.",
   "pci_app_submit_select_image_preset_conditions_checkbox": "I have read and accept the partner terms of use for the deployment of this model.",
   "pci_app_submit_select_image_preset_conditions_checkbox_read": "I have read and accepted the partner terms of use dated {{date}} for the deployment of this model.",
-  "pci_app_submit_select_image_preset_conditions_link": "Read Partner Terms of Use"
+  "pci_app_submit_select_image_preset_conditions_link": "Read Partner Terms of Use",
+  "pci_app_docker_command_title": "Enter the Docker command to launch in the container",
+  "pci_app_docker_command_default_select": "Specify the command to run (optional)",
+  "pci_app_docker_command_tips": "Enter the arguments (separated by spaces) that will be passed to the Docker command. Apostrophes (`) are not supported and should be replaced with quotation marks.",
+  "pci_app_docker_command_submit_title": "Specific command",
+  "pci_app_docker_command_submit_title_command": "Arguments"
 }
