@@ -1,17 +1,17 @@
 const DATAGRID_MAX_ITEMS_PER_PAGE = 10;
 
-export default class {
+export default class AiAppDashboardAttachDataCtrl {
   /* @ngInject */
-  constructor(coreConfig, CucCloudMessage) {
+  constructor($translate, CucCloudMessage) {
+    this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-
     this.DATAGRID_MAX_ITEMS_PER_PAGE = DATAGRID_MAX_ITEMS_PER_PAGE;
   }
 
   $onInit() {
     this.trackApps('attached_data', 'page');
-
-    this.messageContainer = 'pci.projects.project.apps.dashboard.attach-data';
+    this.messageContainer =
+      'pci.projects.project.ai.apps.dashboard.attach-data';
     this.loadMessages();
     this.dataStoreVolumes = this.app.spec.volumes.filter(
       ({ dataStore }) => dataStore !== undefined,
@@ -33,5 +33,20 @@ export default class {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  manualDataSync(volume) {
+    if (volume) {
+      const selectedVolume = this.app.status.volumes.find(
+        (vol) => vol.mountPath === volume.mountPath,
+      );
+      this.goToManualDataSync(
+        this.app.id,
+        selectedVolume.id,
+        selectedVolume.mountPath,
+      );
+    } else {
+      this.goToManualDataSync(this.app.id);
+    }
   }
 }

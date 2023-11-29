@@ -33,4 +33,19 @@ export default class {
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
   }
+
+  manualDataSync(volume) {
+    if (volume) {
+      const selectedVolume = this.notebook.status.volumes.find(
+        (vol) => vol.mountPath === volume.mountPath,
+      );
+      this.goToManualDataSync(
+        this.notebook.id,
+        selectedVolume.id,
+        selectedVolume.mountPath,
+      );
+    } else {
+      this.goToManualDataSync(this.notebook.id);
+    }
+  }
 }

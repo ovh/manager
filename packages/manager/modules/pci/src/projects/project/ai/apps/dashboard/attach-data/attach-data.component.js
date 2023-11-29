@@ -6,6 +6,7 @@ export default {
     app: '<',
     projectId: '<',
     trackApps: '<',
+    goToManualDataSync: '<',
   },
   controller,
   template,
