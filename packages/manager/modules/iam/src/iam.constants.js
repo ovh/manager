@@ -73,7 +73,7 @@ const GUIDE = {
     SG:
       'https://help.ovhcloud.com/csm/en-sg-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058726',
     US:
-      'https://help.ovhcloud.com/csm/en-gb-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058725',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/19185780752019-Using-IAM-Policies-with-the-OVHcloud-Control-Panel',
     WE:
       'https://help.ovhcloud.com/csm/en-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058729',
     WS:
