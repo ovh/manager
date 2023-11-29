@@ -30,6 +30,7 @@ export default {
     isDiscoveryProject: '<',
     goToDiscoveryProjectActivationPage: '<',
     discoveryPromotionVoucherAmount: '<',
+    activateDiscovery: '<',
   },
   controller,
   template,
