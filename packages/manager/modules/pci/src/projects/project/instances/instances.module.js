@@ -61,6 +61,12 @@ angular
   .config(routing)
   .component('pciProjectsProjectInstances', component)
   .service('PciProjectsProjectInstanceService', service)
+  .run(($injector) => {
+    const $ocLazyLoad = $injector.get('$ocLazyLoad');
+    return import('../private-networks/private-networks.module').then((mod) =>
+      $ocLazyLoad.inject(mod.default || mod),
+    );
+  })
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
