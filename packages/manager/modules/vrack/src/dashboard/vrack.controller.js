@@ -116,6 +116,18 @@ export default class VrackMoveDialogCtrl {
     return keys(services).length > 0;
   }
 
+  /**
+   * make a niceName with the product description
+   * @param service
+   */
+  static getOvhCloudConnectNiceName(service) {
+    return {
+      id: service.uuid,
+      niceName: service.product,
+      trueServiceType: 'ovhCloudConnect',
+    };
+  }
+
   static getDedicatedServerNiceName(service) {
     const formattedService = {};
     angular.copy(service, formattedService);
@@ -229,6 +241,11 @@ export default class VrackMoveDialogCtrl {
         break;
       case 'cloudProject':
         formattedService = VrackMoveDialogCtrl.getCloudProjectNiceName(service);
+        break;
+      case 'ovhCloudConnect':
+        formattedService = VrackMoveDialogCtrl.getOvhCloudConnectNiceName(
+          service,
+        );
         break;
       case 'ipLoadbalancing':
         formattedService = VrackMoveDialogCtrl.getIpLoadbalancingNiceName(
