@@ -95,6 +95,7 @@ export default class TrafficController {
     }
     this.isLoading = true;
     this.results = null;
+    this.displayGraph = false;
     const currentDate = new Date();
     const after = new Date();
     const before = currentDate.toISOString();
@@ -108,14 +109,23 @@ export default class TrafficController {
       default:
         after.setDate(after.getDate() - 1);
     }
+    this.getAllTraffic(null, after.toISOString(), before, this.subnet);
+  }
+
+  getAllTraffic(cursor, after, before, subnet) {
     const params = {
-      after: after.toISOString(),
+      after,
       before,
-      subnet: this.subnet,
+      subnet,
     };
     this.networkSecurityService
-      .getTraffic(params)
-      .then(({ data }) => {
+      .getAllTraffic({
+        cursor,
+        params,
+        pageSize: this.PAGE_SIZE,
+      })
+      .then((response) => {
+        const { data } = response;
         if (data.message) {
           this.Alerter.error(
             this.$translate.instant('network_security_dashboard_events_error'),
@@ -123,13 +133,36 @@ export default class TrafficController {
           );
           return data;
         }
-        this.results = data;
-        this.resume(after.toISOString(), before, this.subnet);
-        this.loadGraph();
-        return data;
-      })
-      .finally(() => {
-        this.isLoading = false;
+        if (data) {
+          if (!this.results) {
+            this.results = data;
+          } else {
+            this.results.timestamps = this.results.timestamps.concat(
+              data.timestamps,
+            );
+            this.results.bps.dropped = this.results.bps.dropped.concat(
+              data.bps.dropped,
+            );
+            this.results.bps.passed = this.results.bps.passed.concat(
+              data.bps.passed,
+            );
+            this.results.pps.dropped = this.results.pps.dropped.concat(
+              data.pps.dropped,
+            );
+            this.results.pps.passed = this.results.pps.passed.concat(
+              data.pps.passed,
+            );
+          }
+        }
+        if (response.cursor.next) {
+          this.getAllTraffic(response.cursor.next, after, before, subnet);
+        } else {
+          this.isLoading = false;
+          this.displayGraph = true;
+          this.resume(after, before, subnet);
+          this.loadGraph();
+        }
+        return this.results;
       });
   }
 

@@ -10,11 +10,15 @@ export default class NetworkSecurityService {
     this.PAGE_SIZE = PAGE_SIZE;
   }
 
-  getTraffic(params) {
-    return this.Apiv2Service.httpApiv2({
-      method: 'get',
-      url: `/engine/api/v2${this.API_PATH}/traffic`,
-      params,
+  getAllTraffic({ cursor, params, pageSize }) {
+    return this.Apiv2Service.httpApiv2List(
+      {
+        url: `/engine/api/v2${this.API_PATH}/traffic`,
+        params,
+      },
+      { cursor, size: pageSize },
+    ).then((response) => {
+      return { ...response, data: response.data };
     });
   }
 

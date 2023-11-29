@@ -19,11 +19,11 @@ export const CHART = {
   colors: [
     {
       borderColor: '#D2F2C2',
-      backgroundColor: 'rgba(210, 242, 194, 0.4)',
+      backgroundColor: '#D2F2C2',
     },
     {
       borderColor: '#FFCCD9',
-      backgroundColor: 'rgba(255, 204, 217, 0.4)',
+      backgroundColor: '#FFCCD9',
     },
   ],
   options: {
@@ -42,6 +42,11 @@ export const CHART = {
       point: {
         radius: 0,
       },
+    },
+    interaction: {
+      intersect: false,
+      mode: 'nearest',
+      axis: 'x',
     },
     tooltips: {
       mode: 'label',
@@ -76,6 +81,8 @@ export const CHART = {
           position: 'bottom',
           ticks: {
             display: true,
+            source: 'auto',
+            autoSkip: true,
           },
           time: {
             displayFormats: {
