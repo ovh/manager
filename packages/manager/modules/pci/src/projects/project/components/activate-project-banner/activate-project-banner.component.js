@@ -4,7 +4,7 @@ import './index.scss';
 
 export default {
   bindings: {
-    callback: '&',
+    onClick: '&',
   },
   template,
   controller,
