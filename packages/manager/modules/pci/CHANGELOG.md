@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.10.0...@ovh-ux/manager-pci@6.11.0) (2023-11-29)
+
+
+### Features
+
+* **pci:** add new compute ([864cd3c](https://github.com/ovh/manager/commit/864cd3ccfda57a596eb7cb2b22f74c242612c3f2))
+
+
+
+
+
 # [6.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.9.0...@ovh-ux/manager-pci@6.10.0) (2023-11-27)
 
 
