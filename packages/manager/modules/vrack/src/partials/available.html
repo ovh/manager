@@ -6,10 +6,6 @@
             data-ng-if="$ctrl.getAllowedServicesCounter < $ctrl.servicesFamilies.length"
         >
             <oui-spinner data-size="s"></oui-spinner>
-            <span class="oui-badge oui-badge_info"
-                >{{ $ctrl.getAllowedServicesCounter }}/{{
-                $ctrl.servicesFamilies.length }}</span
-            >
         </span>
     </h2>
 
@@ -29,7 +25,7 @@
             class="vrack__service-type"
             data-ng-init="$ctrl.setAccordionState('available', 'types', $index, true)"
             data-ng-repeat="serviceType in $ctrl.data.families track by serviceType"
-            data-ng-if="$ctrl.data.allowedServices[serviceType].length && !$ctrl.loaders.deleting"
+            data-ng-if=" !$ctrl.loaders.deleting || serviceType !== 'dedicatedServerInterface'"
             data-ng-class="{ 'vrack__service-type_expanded': $ctrl.getAccordionState('available', 'types', $index) }"
         >
             <span
@@ -57,7 +53,7 @@
                     <oui-spinner data-size="s"></oui-spinner>
                 </span>
             </span>
-
+            <!--            grouped list of services, in the case of the family has subsets of services-->
             <ul
                 class="vrack__service-list"
                 data-ng-if="!$ctrl.vrackService.isGroupedServiceType(serviceType)"

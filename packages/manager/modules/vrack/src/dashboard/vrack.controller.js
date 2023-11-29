@@ -285,7 +285,7 @@ export default class VrackMoveDialogCtrl {
       deleting: false,
       moving: false,
       services: {
-        // cloudProject: 'not_fetched',
+        cloudProject: 'not_fetched',
         dedicatedCloud: 'not_fetched',
         dedicatedCloudDatacenter: 'not_fetched',
         dedicatedConnect: 'not_fetched',
@@ -300,7 +300,7 @@ export default class VrackMoveDialogCtrl {
 
     this.data = {
       cloudProjects: [],
-      families: SERVICE_FAMILIES_LIST,
+      families: Object.create(SERVICE_FAMILIES_LIST),
       allowedServices: Object.create(SERVICE_FAMILIES_MAP),
       vrackServices: {},
       pendingTasks: [],
@@ -401,15 +401,7 @@ export default class VrackMoveDialogCtrl {
    * @returns {any}
    */
   getAllowedServices() {
-    /**
-     * avoid to relaunch many fetchs when they are going on
-     */
-    if (this.getAllowedServicesIsPending) {
-      return this.data.allowedServices;
-    }
-    this.getAllowedServicesIsPending = true;
     this.getAllowedServicesCounter = 0;
-    this.getAllowedServicesExpectedCounter = 0;
 
     /**
      * for each service, make a call and append the result to a literal object
@@ -417,7 +409,6 @@ export default class VrackMoveDialogCtrl {
      * and get rid of the timeout if there are too many services fetched at once
      */
     this.servicesFamilies.forEach((serviceFamily) => {
-      this.getAllowedServicesExpectedCounter += 1;
       this.loaders.services[serviceFamily] = 'fetching';
 
       const self = this;
@@ -1154,16 +1145,13 @@ export default class VrackMoveDialogCtrl {
    * @param serviceFamily
    */
   handleOneServiceFamily(serviceFetchedResponse, serviceFamily) {
-    const OneServiceData = serviceFetchedResponse;
-    /**
-     * when all the families have finished to be fetched, unlock the ability to call again the families
-     */
-    if (this.getAllowedServicesCounter === this.servicesFamilies.length) {
-      this.getAllowedServicesIsPending = false;
-    }
+    const OneServiceData = serviceFetchedResponse[serviceFamily];
+
     this.loaders.services[serviceFamily] = 'fetched';
     /**
-     * the vrack service will return undefined is there is no services for the given family
+     * the vrack service will return undefined is there is no services for the given family.
+     * each time a family is returned, we filter all the services and enrich the services list
+     *  then filter only the allowed ones
      */
     if (!OneServiceData) {
       this.data.allowedServices[serviceFamily] = [];
@@ -1180,13 +1168,11 @@ export default class VrackMoveDialogCtrl {
       this.data.allowedServices[serviceFamily] = OneServiceData;
     }
 
-    /**
-     *  each time a family is returned, we filter all the services and enrich the services list
-     *  then filter only the allowed ones
-     */
-    const mappedServices = this.postMappingServices(this.data.allowedServices);
+    this.data.allowedServices = this.postMappingServices(
+      this.data.allowedServices,
+    );
     this.data.allowedServices = VrackMoveDialogCtrl.filterAllowedServicesOnly(
-      mappedServices,
+      this.data.allowedServices,
     );
   }
 }
