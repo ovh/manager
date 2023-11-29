@@ -19,7 +19,7 @@
   "server_network_traffic_cancel_button": "Resilier",
   "server_network_traffic_loading_error": "Une erreur est survenue lors des chargements des informations.",
   "server_network_traffic_option_released": "(non renouvelé)",
-  "server_network_ola": "OVH Link Aggregation",
+  "server_network_ola": "OVHcloud Link Aggregation",
   "server_network_ola_mode": "Mode",
   "server_network_ola_active": "Disponible",
   "server_network_ola_inactive": "Indisponible",
