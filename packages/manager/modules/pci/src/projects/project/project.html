@@ -275,3 +275,29 @@
         </div>
     </div>
 </div>
+<div
+    class="modal d-block"
+    tabindex="-1"
+    data-ng-if="$ctrl.activateDiscovery"
+    data-ng-mouseup="$ctrl.onActivateDiscoveryModalClose()"
+>
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <oui-modal
+                data-primary-label="{{:: 'pci_projects_project_activateDiscovery_activate' | translate }}"
+                data-primary-action="$ctrl.onActivateDiscoveryModalSuccess()"
+                data-secondary-label="{{:: 'pci_projects_project_activateDiscovery_close' | translate }}"
+                data-secondary-action="$ctrl.onActivateDiscoveryModalClose()"
+                data-on-dismiss="$ctrl.onActivateDiscoveryModalClose()"
+                data-heading="{{:: 'pci_projects_project_activateDiscovery_heading' | translate }}"
+                data-type="info"
+                data-ng-mouseup="$event.stopPropagation()"
+            >
+                <p
+                    data-translate="pci_projects_project_activateDiscovery_info"
+                ></p>
+            </oui-modal>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>
