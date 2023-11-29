@@ -1,4 +1,7 @@
-import { DKIM_CONFIGURATION_GUIDE } from './domain-dkim-autoconfig.constants';
+import {
+  DKIM_CONFIGURATION_GUIDE,
+  DKIM_CONFIGURATION_GUIDE_NO_OVH,
+} from './domain-dkim-autoconfig.constants';
 import { DKIM_STATUS, DKIM_STATUS_TEXT } from '../domain.constants';
 import DkimAutoConfigurator from './dkim-auto-configurator';
 
@@ -44,6 +47,9 @@ export default class ExchangeDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
     this.dkimGuideLink =
       DKIM_CONFIGURATION_GUIDE[coreConfig.getUser().ovhSubsidiary] ||
       DKIM_CONFIGURATION_GUIDE.DEFAULT;
+    this.dkimGuideLinkNoOvh =
+      DKIM_CONFIGURATION_GUIDE_NO_OVH[coreConfig.getUser().ovhSubsidiary] ||
+      DKIM_CONFIGURATION_GUIDE_NO_OVH.DEFAULT;
 
     // Vars for DKIM configuration inside modal stepper
     this.initializeDkimConfiguratorNoOvh();

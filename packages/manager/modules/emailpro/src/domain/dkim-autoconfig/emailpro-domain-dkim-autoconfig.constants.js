@@ -32,6 +32,40 @@ export const DKIM_CONFIGURATION_GUIDE = {
   DEFAULT: 'https://help.ovhcloud.com/csm#knownErrors',
 };
 
+export const DKIM_CONFIGURATION_GUIDE_NO_OVH = {
+  DE:
+    'https://help.ovhcloud.tools/csm/de-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#configurer-le-dkim-pour-une-offre-e-mail-hors-de-votre-compte-ovhcloud',
+  ES:
+    'https://help.ovhcloud.tools/csm/es-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#configurer-le-dkim-pour-une-offre-e-mail-hors-de-votre-compte-ovhcloud',
+  FR:
+    'https://help.ovhcloud.tools/csm/fr-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#configurer-le-dkim-pour-une-offre-e-mail-hors-de-votre-compte-ovhcloud',
+  IE:
+    'https://help.ovhcloud.tools/csm/ie-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#configurer-le-dkim-pour-une-offre-e-mail-hors-de-votre-compte-ovhcloud',
+  IT:
+    'https://help.ovhcloud.tools/csm/it-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#configurer-le-dkim-pour-une-offre-e-mail-hors-de-votre-compte-ovhcloud',
+  NL:
+    'https://help.ovhcloud.tools/csm/nl-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#configurer-le-dkim-pour-une-offre-e-mail-hors-de-votre-compte-ovhcloud',
+  PL:
+    'https://help.ovhcloud.tools/csm/pl-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#configurer-le-dkim-pour-une-offre-e-mail-hors-de-votre-compte-ovhcloud',
+  PT:
+    'https://help.ovhcloud.tools/csm/pt-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#configurer-le-dkim-pour-une-offre-e-mail-hors-de-votre-compte-ovhcloud',
+  GB:
+    'https://help.ovhcloud.tools/csm/gb-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#configurer-le-dkim-pour-une-offre-e-mail-hors-de-votre-compte-ovhcloud',
+  CA:
+    'https://help.ovhcloud.tools/csm/ca-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#configurer-le-dkim-pour-une-offre-e-mail-hors-de-votre-compte-ovhcloud',
+  QC:
+    'https://help.ovhcloud.tools/csm/qc-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#configurer-le-dkim-pour-une-offre-e-mail-hors-de-votre-compte-ovhcloud',
+  MA:
+    'https://help.ovhcloud.tools/csm/ma-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#configurer-le-dkim-pour-une-offre-e-mail-hors-de-votre-compte-ovhcloud',
+  SN:
+    'https://help.ovhcloud.tools/csm/sn-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#configurer-le-dkim-pour-une-offre-e-mail-hors-de-votre-compte-ovhcloud',
+  TN:
+    'https://help.ovhcloud.tools/csm/tn-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#configurer-le-dkim-pour-une-offre-e-mail-hors-de-votre-compte-ovhcloud',
+  WE:
+    'https://help.ovhcloud.tools/csm/we-dns-zone-dkim?id=kb_article_view&sysparm_article=KB0058101#configurer-le-dkim-pour-une-offre-e-mail-hors-de-votre-compte-ovhcloud',
+  DEFAULT: 'https://help.ovhcloud.com/csm#knownErrors',
+};
+
 export default {
   DKIM_CONFIGURATION_GUIDE,
 };
