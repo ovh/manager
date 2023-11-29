@@ -1,6 +1,8 @@
 import map from 'lodash/map';
 
 import { DEFAULT_PROJECT_KEY } from './projects.constant';
+import { DISCOVERY_PROJECT_PLANCODE } from './project/project.constants';
+import { CLOUD_PROJECT_STATE } from '../constants';
 import Project from './Project.class';
 import Quota from './quota.class';
 
@@ -69,5 +71,22 @@ export default class {
   getOrderFollowUp(orderId) {
     const endPoint = `/me/order/${orderId}/followUp`;
     return this.$http.get(endPoint).then(({ data }) => data);
+  }
+
+  getDiscoveryProject() {
+    return this.getProjects([
+      {
+        field: 'planCode',
+        comparator: 'eq',
+        reference: DISCOVERY_PROJECT_PLANCODE,
+      },
+      {
+        field: 'status',
+        comparator: 'eq',
+        reference: CLOUD_PROJECT_STATE.ok,
+      },
+    ])
+      .then((projects) => projects[0] ?? null)
+      .catch(() => null);
   }
 }
