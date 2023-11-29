@@ -10,6 +10,7 @@ export default {
     policy: '<',
     trackClick: '<',
     trackPage: '<',
+    permissionsGroups: '<',
   },
   controller,
   template,
