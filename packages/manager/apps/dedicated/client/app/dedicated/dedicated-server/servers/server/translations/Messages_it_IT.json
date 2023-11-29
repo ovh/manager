@@ -138,7 +138,7 @@
   "server_configuration_state_OK": "Normale",
   "server_configuration_state_ERROR": "In errore",
   "server_configuration_state_HACKED": "Hack",
-  "server_configuration_state_HACKED_BLOCKED": "Hackerato e bloccato",
+  "server_configuration_state_HACKED_BLOCKED": "Compromesso e bloccato",
   "server_configuration_state_info_HACKED": "Il tuo server ha subito un attacco e impostato quindi in modalità Rescue FTP. Verifica la configurazione prima di migrare i dati del server su disco.",
   "server_configuration_state_info_HACKED_BLOCKED": "Il tuo server ha subito un attacco. Contatta il supporto per effettuare gli interventi necessari. ",
   "server_remove_hack_button": "Sblocca",

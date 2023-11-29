@@ -1,0 +1,14 @@
+{
+  "dedicated_server_interfaces_step_checker_text1": "Con OLA podrá utilizar conjuntamente las conexiones de red de un servidor de OVHcloud.",
+  "dedicated_server_interfaces_step_checker_text2": "De este modo, podrá asociar sus interfaces de red (tarjetas de redes físicas) del servidor para crear una única interfaz de red virtual. Si lo necesita, podrá ampliar el ancho de banda adicional (solo para la agregación en la red privada vRack).",
+  "dedicated_server_interfaces_step_checker_text4": "Aproveche la oferta de lanzamiento por {{ discountPrice }} en lugar de {{ price }}/mes + IVA durante los tres primeros meses.",
+  "dedicated_server_interfaces_step_checker_step1_text2": "Antes de configurar esta opción, elimine cualquier red privada o IP failover que puedan estar conectadas a sus interfaces de red.",
+  "dedicated_server_interfaces_step_checker_step1_button": "Ya lo he hecho y quiero continuar.",
+  "dedicated_server_interfaces_step_checker_step3_text2": "Para que su red esté operativa, ahora deberá seguir el procedimiento manual a través del KVM/IPMI que se explica en la guía (esa operación es necesaria para completar la configuración).",
+  "dedicated_server_interfaces_step_checker_step3_button": "Ya lo he hecho y quiero continuar.",
+  "dedicated_server_interfaces_step_checker_step4_text2": "Si desea restablecer la configuración inicial, seleccione «Modificar». Si en algún momento desea dar de baja esta opción, no olvide restablecer la configuración predeterminada para evitar que la red quede inhabilitada.",
+  "dedicated_server_interfaces_step_checker_step4_button": "Ya he terminado.",
+  "dedicated_server_interfaces_ola_alert_configuration_needed": "Para que su red esté operativa, ahora deberá seguir el procedimiento a través del KVM/IPMI que se explica en la siguiente guía (esa operación es necesaria para completar la configuración).",
+  "dedicated_server_interfaces_rename_title": "Renombrar la interfaz",
+  "dedicated_server_interfaces_vrack_operation_attach": "Asociando..."
+}

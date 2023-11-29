@@ -1,0 +1,6 @@
+{
+  "server_reboot_title": "Reboot server",
+  "server_reboot_question": "Are you sure you want to reboot your {{t0}} server?",
+  "server_reboot_success": "Your {{t0}} server is about to be rebooted.",
+  "server_reboot_fail": "An error has occurred processing the reboot request."
+}

@@ -1,0 +1,14 @@
+{
+  "dedicated_server_interfaces_step_checker_text1": "With OLA, you can now use your OVHcloud server’s network connections.",
+  "dedicated_server_interfaces_step_checker_text2": "You can then attach your server’s network interfaces (physical network cards) to create a single virtual network interface. You can also get additional bandwidth (only for aggregation on the vRack private network)",
+  "dedicated_server_interfaces_step_checker_text4": "Get the launch offer for {{ discountPrice }} instead of {{ price }} ex. VAT/month for the first three months.",
+  "dedicated_server_interfaces_step_checker_step1_text2": "Before you configure your option, please ensure that you have deleted any private networks connected to your network interfaces, as well as any failover IPs.",
+  "dedicated_server_interfaces_step_checker_step1_button": "If you have done this, go to the next step",
+  "dedicated_server_interfaces_step_checker_step3_text2": "You can now manually monitor the procedure via the IPMI KVM, detailed in the guide, in order for your network to start working. Without this step, the configuration will be incomplete.",
+  "dedicated_server_interfaces_step_checker_step3_button": "If you have done this, go to the next step",
+  "dedicated_server_interfaces_step_checker_step4_text2": "If you would like to reset them to your original configuration, please select “Reset”. You can also cancel your option, but please remember to reset your configuration to default, otherwise your network will be inactive.",
+  "dedicated_server_interfaces_step_checker_step4_button": "Done",
+  "dedicated_server_interfaces_ola_alert_configuration_needed": "You need to monitor the procedure via the IPMI KVM, detailed in the guide, in order for your network to start working. Without this step, the configuration will be incomplete.",
+  "dedicated_server_interfaces_rename_title": "Rename the interface",
+  "dedicated_server_interfaces_vrack_operation_attach": "Attaching..."
+}

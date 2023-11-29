@@ -1,0 +1,19 @@
+{
+  "dedicated_server_dashboard_informations_general": "Información general",
+  "dedicated_server_dashboard_displayname": "Nombre",
+  "dedicated_server_dashboard_edit_button": "Editar",
+  "dedicated_server_dashboard_commercial_name": "Nombre comercial",
+  "dedicated_server_dashboard_upgrade_title": "Refuerce su infraestructura",
+  "dedicated_server_dashboard_upgrade_badge": "Novedad",
+  "dedicated_server_dashboard_distribution": "Sistema operativo (SO)",
+  "dedicated_server_dashboard_distribution_none": "No hay ningún sistema operativo instalado en su servidor.",
+  "dedicated_server_dashboard_distribution_byoi": "BringYourOwnImage",
+  "dedicated_server_dashboard_installation_no_public_network": "No es posible instalar o reinstalar un SO en el servidor, ya que la configuración de red seleccionada no tiene acceso a la red pública. Para desbloquear esta acción, modifique su configuración de red en la pestaña «Interfaces de red».",
+  "dedicated_server_dashboard_reinstallation_button": "Reinstalar",
+  "dedicated_server_dashboard_installation_button": "Instalar",
+  "dedicated_server_dashboard_boot": "Boot",
+  "dedicated_server_dashboard_datacenter": "Datacenter",
+  "dedicated_server_dashboard_netboot_unavailable": "Información no disponible",
+  "dedicated_server_dashboard_rack": "Rack",
+  "dedicated_server_dashboard_server_id": "ID del servidor"
+}

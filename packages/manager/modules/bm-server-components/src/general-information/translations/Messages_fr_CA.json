@@ -1,0 +1,19 @@
+{
+  "dedicated_server_dashboard_informations_general": "Informations générales",
+  "dedicated_server_dashboard_displayname": "Nom",
+  "dedicated_server_dashboard_edit_button": "Modifier",
+  "dedicated_server_dashboard_commercial_name": "Nom commercial",
+  "dedicated_server_dashboard_upgrade_title": "Renforcez votre infrastructure",
+  "dedicated_server_dashboard_upgrade_badge": "Nouveau",
+  "dedicated_server_dashboard_distribution": "Système d'exploitation (OS)",
+  "dedicated_server_dashboard_distribution_none": "Aucun système d'exploitation n'est installé sur votre serveur",
+  "dedicated_server_dashboard_distribution_byoi": "BringYourOwnImage",
+  "dedicated_server_dashboard_installation_no_public_network": "La configuration réseau appliquée sur votre serveur ne donnant pas accès au réseau public, il est impossible d’installer/réinstaller un OS sur celui-ci. Pour débloquer cette action, merci de modifier votre configuration réseau dans l’onglet « interfaces réseaux »",
+  "dedicated_server_dashboard_reinstallation_button": "Réinstaller",
+  "dedicated_server_dashboard_installation_button": "Installer",
+  "dedicated_server_dashboard_boot": "Boot",
+  "dedicated_server_dashboard_datacenter": "Datacentre",
+  "dedicated_server_dashboard_netboot_unavailable": "Information non disponible",
+  "dedicated_server_dashboard_rack": "Baie",
+  "dedicated_server_dashboard_server_id": "Serveur ID"
+}

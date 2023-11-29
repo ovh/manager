@@ -1,0 +1,5 @@
+{
+  "dedicated_server_interfaces_bandwidth_title": "Largura de banda",
+  "dedicated_server_interfaces_bandwidth_description": "A largura de banda pública de entrada (desde e para a Internet) não tem limitações. Pode aumentar a largura de banda pública e privada ativando a opção correspondente.",
+  "dedicated_server_interfaces_bandwidth_ola_warning": "No âmbito de uma configuração de agregação privada completa, a sua opção de largura de banda de saída pública não será utilizada, porque a interface dedicada à rede pública será utilizada para a rede privada."
+}

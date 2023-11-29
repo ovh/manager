@@ -1,0 +1,12 @@
+{
+  "server_consumption_label": "Bandbreitennutzung",
+  "server_consumption_order_button": "Vergrößern",
+  "server_consumption_change_button": "Bearbeiten",
+  "server_consumption_explanation": "Der Bandbreitenverbrauch für diesen Server ist begrenzt. Wenn das Limit überschritten wird, wird die ausgehende Bandbreite des Servers gedrosselt. Um dieses Problem zu beheben, erhöhen Sie das Quota für die ausgehende Bandbreite.",
+  "server_consumption_summary_days": "{{t0}} von {{t1}} Tagen verbleibend",
+  "server_consumption_summary_hours": "{{t0}} von {{t1}} Stunden verbleibend",
+  "server_consumption_throttled": "Dienst gedrosselt",
+  "server_consumption_current_period_label": "Verbrauch für den aktuellen Zeitraum (insgesamt verfügbar {{t0}})",
+  "server_consumption_current_period_remaining": "{{t0}} verbleibend",
+  "server_consumption_explanation_link": "Mehr erfahren"
+}

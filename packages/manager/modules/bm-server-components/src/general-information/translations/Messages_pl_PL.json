@@ -1,0 +1,19 @@
+{
+  "dedicated_server_dashboard_informations_general": "Informacje ogólne",
+  "dedicated_server_dashboard_displayname": "Nazwa",
+  "dedicated_server_dashboard_edit_button": "Zmień",
+  "dedicated_server_dashboard_commercial_name": "Nazwa oferty",
+  "dedicated_server_dashboard_upgrade_title": "Wzmocnij Twoją infrastrukturę",
+  "dedicated_server_dashboard_upgrade_badge": "Nowość",
+  "dedicated_server_dashboard_distribution": "System operacyjny (OS)",
+  "dedicated_server_dashboard_distribution_none": "Na Twoim serwerze nie jest zainstalowany żaden system operacyjny",
+  "dedicated_server_dashboard_distribution_byoi": "BringYourOwnImage",
+  "dedicated_server_dashboard_installation_no_public_network": "Ponieważ konfiguracja sieci zastosowana na Twoim serwerze nie umożliwia dostępu do sieci publicznej, nie można na nim zainstalować ani ponownie zainstalować systemu operacyjnego. Aby odblokować tę operację, zmień konfigurację sieci w zakładce „interfejsy sieciowe”.",
+  "dedicated_server_dashboard_reinstallation_button": "Reinstaluj",
+  "dedicated_server_dashboard_installation_button": "Instaluj",
+  "dedicated_server_dashboard_boot": "Boot",
+  "dedicated_server_dashboard_datacenter": "Centrum danych",
+  "dedicated_server_dashboard_netboot_unavailable": "Informacja niedostępna",
+  "dedicated_server_dashboard_rack": "Szafa",
+  "dedicated_server_dashboard_server_id": "ID serwera"
+}

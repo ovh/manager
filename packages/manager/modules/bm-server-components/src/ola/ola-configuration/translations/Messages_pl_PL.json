@@ -1,7 +1,7 @@
 {
   "dedicated_server_interfaces_ola_alert_obsolete_option": "W związku z konfiguracją Agregacji prywatnej opcja przepustowości do sieci publicznej nie będzie już używana.",
   "dedicated_server_interfaces_ola_title": "Konfiguracja OVHcloud Link Aggregation",
-  "dedicated_server_interfaces_ola_description": "OLA umożliwia skonfigurowanie interfejsu sieciowego i zmianę jego działania. Wykorzystaj na przykład interfejs dedykowany sieci publicznej, aby uzyskać podwójną łączność z prywatną siecią OVHcloud (vRack).",
+  "dedicated_server_interfaces_ola_description": "OLA umożliwia skonfigurowanie interfejsu sieciowego i modyfikację jego działania. Wykorzystaj na przykład interfejs dedykowany sieci publicznej, aby uzyskać podwójną łączność z prywatną siecią OVHcloud (vRack).",
   "dedicated_server_interfaces_ola_alert_configuration_reset": "Interfejsy zostaną przekonfigurowane. Podczas konfiguracji stracisz połączenie z serwerem.",
   "dedicated_server_interfaces_ola_alert_not_allowed": "Poniższe interfejsy nie mogą zostać wybrane do Twojej konfiguracji. Aby je skonfigurować, najpierw usuń z nich sieci vRack i IP Failover.",
   "dedicated_server_interfaces_ola_column_mode": "Tryb",

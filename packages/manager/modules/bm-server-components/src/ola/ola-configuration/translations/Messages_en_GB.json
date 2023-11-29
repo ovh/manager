@@ -1,6 +1,6 @@
 {
   "dedicated_server_interfaces_ola_title": "Configure OVHcloud Link Aggregation",
-  "dedicated_server_interfaces_ola_description": "You can use OLA to configure a network interface, and modify the way it works. For example, you can use the interface dedicated to the public network in order to get double connectivity to the OVHcloud private network (vRack).",
+  "dedicated_server_interfaces_ola_description": "You can use OLA to configure a network interface, and change how it works. For example, you can use the public network dedicated interface to get double connectivity to the OVHcloud private network (vRack).",
   "dedicated_server_interfaces_ola_alert_configuration_reset": "The interfaces will be de-configured. Connectivity to your server will be lost while the interface is being configured.",
   "dedicated_server_interfaces_ola_alert_obsolete_option": "As part of the OVHcloud Link Aggregation private configuration, your outgoing public bandwidth option will not be used.",
   "dedicated_server_interfaces_ola_alert_not_allowed": "The following interfaces cannot be selected for your configuration. To configure them, please remove their vRacks and failover IPs.",

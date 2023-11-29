@@ -1,0 +1,5 @@
+{
+  "dedicated_server_interfaces_bandwidth_title": "Bandwidth",
+  "dedicated_server_interfaces_bandwidth_description": "Inbound public throughput (to and from the internet) is unlimited. You can increase your public and private bandwidth by signing up to the following options:",
+  "dedicated_server_interfaces_bandwidth_ola_warning": "To ensure that the aggregation configuration is completely private, your outbound public throughput option will not be used, because the public network dedicated interface will be used for the private network."
+}
