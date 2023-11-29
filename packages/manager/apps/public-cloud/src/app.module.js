@@ -180,6 +180,7 @@ export default async (containerEl, shellClient) => {
 
           $transitions.onSuccess({}, () => {
             shellClient.ux.stopProgress();
+            shellClient.ux.hidePreloader();
           });
 
           $transitions.onError({}, (transition) => {

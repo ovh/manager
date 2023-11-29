@@ -50,6 +50,7 @@ type Props = {
   onSeeAllProjects: CallableFunction;
   onMenuOpen?: CallableFunction;
   createLabel: string;
+  seeAllButton: boolean;
   seeAllLabel: string;
 };
 const ProjectSelector: React.FC<ComponentProps<Props>> = ({
@@ -61,6 +62,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   onSeeAllProjects,
   onMenuOpen,
   createLabel,
+  seeAllButton,
   seeAllLabel,
 }: Props): JSX.Element => {
   // Important note :
@@ -99,11 +101,15 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
   }, [createLabel]);
 
   useEffect(() => {
-    setSeeAllProjectsOption({
-      seeAll: true,
-      label: seeAllLabel,
-    });
-  }, [seeAllLabel]);
+    setSeeAllProjectsOption(
+      seeAllButton
+        ? {
+            seeAll: true,
+            label: seeAllLabel,
+          }
+        : null
+    );
+  }, [seeAllButton, seeAllLabel]);
 
   useEffect(() => {
     setOptions([
