@@ -9,12 +9,15 @@ import '@ovh-ux/ng-at-internet';
 
 import '@ovh-ux/manager-advices';
 import '@ovh-ux/manager-billing-components';
+import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
+
 import component from './component';
 import routing from './routing';
 
 import index from './index/module';
 import snapshotPolicies from './snapshot-policies';
 import volumes from './volumes';
+import networkConfiguration from './network-configuration';
 
 const moduleName = 'ovhManagerNetAppDashboard';
 
@@ -29,8 +32,10 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ngOvhUtils',
+    ApiV2ListHelper.moduleName,
     snapshotPolicies,
     volumes,
+    networkConfiguration,
     index,
   ])
   .config(routing)
