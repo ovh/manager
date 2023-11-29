@@ -1,4 +1,7 @@
-import { DKIM_CONFIGURATION_GUIDE } from './emailpro-domain-dkim-autoconfig.constants';
+import {
+  DKIM_CONFIGURATION_GUIDE,
+  DKIM_CONFIGURATION_GUIDE_NO_OVH,
+} from './emailpro-domain-dkim-autoconfig.constants';
 import { DKIM_STATUS, DKIM_STATUS_TEXT } from '../emailpro-domain.constants';
 
 import DkimAutoConfigurator from './dkim-auto-configurator';
@@ -32,6 +35,9 @@ export default class EmailProDomainDkimAutoconfigCtrl extends DkimAutoConfigurat
     this.dkimGuideLink =
       DKIM_CONFIGURATION_GUIDE[coreConfig.getUser().ovhSubsidiary] ||
       DKIM_CONFIGURATION_GUIDE.DEFAULT;
+    this.dkimGuideLinkNoOvh =
+      DKIM_CONFIGURATION_GUIDE_NO_OVH[coreConfig.getUser().ovhSubsidiary] ||
+      DKIM_CONFIGURATION_GUIDE_NO_OVH.DEFAULT;
 
     this.init();
   }

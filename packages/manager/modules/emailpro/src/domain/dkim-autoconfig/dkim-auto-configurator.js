@@ -12,7 +12,6 @@ export default class DkimAutoConfigurator {
     this.selector2NoDomain = null;
     this.isStepConfigureValid = false;
     this.showConfiguratingBtn = true;
-    this.showSpfDiagnosticTitle = false;
   }
 
   async getSelectorNameForNoOvhCloud() {
@@ -40,7 +39,6 @@ export default class DkimAutoConfigurator {
 
   async loadDataForDkim() {
     this.showConfiguratingBtn = false;
-    this.showSpfDiagnosticTitle = false;
     this.loading = true;
     this.dkimSelectorsNoDomain = await this.getDkimSelectorForCurrentState();
     await this.configureDkim();
@@ -79,10 +77,8 @@ export default class DkimAutoConfigurator {
       });
   }
 
-  getTitleDependingOnStep() {
-    return !this.showSpfDiagnosticTitle
-      ? `${this.serviceType}_tab_domain_diagnostic_dkim_title_configuration`
-      : `${this.serviceType}_tab_domain_diagnostic_spf_title`;
+  getTitleDkimConfigurator() {
+    return `${this.serviceType}_tab_domain_diagnostic_dkim_title_configuration`;
   }
 
   getNextButtonDependingOnStep() {
@@ -91,27 +87,26 @@ export default class DkimAutoConfigurator {
       : `${this.serviceType}_tab_domain_diagnostic_dkim_next_no_ovhcloud`;
   }
 
-  initSpfContext() {
-    this.showSpfDiagnosticTitle = true;
+  initContext() {
     return this.getSelectorNameForNoOvhCloud();
   }
 
   getDkimName(index) {
     return [
-      this.services.$translate.instant(
+      `<b>${this.services.$translate.instant(
         `${this.serviceType}_tab_domain_diagnostic_dkim_name`,
-      ),
-      `${index}: `,
+      )}`,
+      `${index}</b>: `,
       this[`selector${index}NoDomain`].customerRecord,
     ].join('');
   }
 
   getDkimRecord(index) {
     return [
-      this.services.$translate.instant(
-        `${this.serviceType}_tab_domain_diagnostic_dkim_record`,
-      ),
-      `${index}: `,
+      `<b>${this.services.$translate.instant(
+        `${this.serviceType}_tab_domain_diagnostic_dkim_target`,
+      )}`,
+      `${index}</b>: `,
       this[`selector${index}NoDomain`].targetRecord,
     ].join('');
   }

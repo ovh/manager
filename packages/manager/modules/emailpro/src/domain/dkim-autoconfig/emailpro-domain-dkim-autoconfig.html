@@ -32,7 +32,7 @@
             data-wizard-hide-previous-button="true"
             data-wizard-confirm-button-text=":: 'emailpro_tab_domain_diagnostic_dkim_confirm_no_ovhcloud' | translate"
             data-wizard-next-button-text="ctrl.getNextButtonDependingOnStep() | translate"
-            data-wizard-title="ctrl.getTitleDependingOnStep() | translate"
+            data-wizard-title="ctrl.getTitleDkimConfigurator() | translate"
         >
             <div
                 data-wizard-step
@@ -65,7 +65,7 @@
 
             <div
                 data-wizard-step
-                data-wizard-step-on-load="ctrl.initSpfContext.bind(ctrl)"
+                data-wizard-step-on-load="ctrl.initContext.bind(ctrl)"
                 data-wizard-step-on-next="ctrl.leaveDkimConfigurator.bind(ctrl)"
             >
                 <p
@@ -77,22 +77,30 @@
                         data-translate="emailpro_tab_domain_diagnostic_dkim_text_field"
                     ></dt>
                     <dd>
-                        <span data-ng-bind="ctrl.selector1NameInfos"></span>
+                        <span
+                            data-ng-bind-html="ctrl.selector1NameInfos"
+                        ></span>
                     </dd>
                     <dd>
-                        <span data-ng-bind="ctrl.selector1RecordInfos"></span>
+                        <span
+                            data-ng-bind-html="ctrl.selector1RecordInfos"
+                        ></span>
                     </dd>
                     <dd>
-                        <span data-ng-bind="ctrl.selector2NameInfos"></span>
+                        <span
+                            data-ng-bind-html="ctrl.selector2NameInfos"
+                        ></span>
                     </dd>
                     <dd>
-                        <span data-ng-bind="ctrl.selector2RecordInfos"></span>
+                        <span
+                            data-ng-bind-html="ctrl.selector2RecordInfos"
+                        ></span>
                     </dd>
                 </dl>
 
                 <span
                     data-translate="emailpro_tab_domain_diagnostic_dkim_configurate_activation_guide"
-                    data-translate-values="{ url: ctrl.dkimGuideLink }"
+                    data-translate-values="{ url: ctrl.dkimGuideLinkNoOvh }"
                 ></span>
                 <span
                     data-translate="emailpro_tab_domain_diagnostic_dkim_configurate_activation_time"
