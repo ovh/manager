@@ -11,7 +11,7 @@
   "dedicated_server_interfaces_step_checker_list_security": "Sécurisation des machines",
   "dedicated_server_interfaces_step_checker_list_reversible": "Réversible à volonté",
   "dedicated_server_interfaces_step_checker_list_free": "Gratuit",
-  "dedicated_server_interfaces_step_checker_text1": "Grâce à OLA, il vous est maintenant possible d'utiliser conjointement les connections réseau d'un serveur OVH.",
+  "dedicated_server_interfaces_step_checker_text1": "Grâce à OLA, il vous est maintenant possible d'utiliser conjointement les connections réseau d'un serveur OVHcloud.",
   "dedicated_server_interfaces_step_checker_text2": "Vous pouvez ainsi associer vos interfaces réseau (carte réseaux physiques) du serveur, pour créer une seule interface réseau virtuelle. Tout en ayant la possibilité d'y adjoindre de la bande passante supplémentaire. (uniquement pour de l'agrégation sur le réseau privé vRack)",
   "dedicated_server_interfaces_step_checker_text3": "Pour le moment uniquement disponible pour le réseau privé vRack",
   "dedicated_server_interfaces_step_checker_text4": "Profitez de l'offre de lancement à {{ discountPrice }} au lieu de {{ price }} HT/mois pendant les 3 premiers mois.",
