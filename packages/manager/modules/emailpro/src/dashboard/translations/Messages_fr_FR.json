@@ -697,6 +697,8 @@
   "emailpro_tab_domain_diagnostic_dkim_next_no_ovhcloud": "Suivant",
   "emailpro_tab_domain_diagnostic_dkim_confirm_no_ovhcloud": "Fermer",
   "emailpro_tab_domain_diagnostic_dkim_title_activation": "Activer DKIM",
+  "emailpro_tab_domain_diagnostic_dkim_cancel": "Fermer",
+  "emailpro_tab_domain_diagnostic_dkim_close": "Annuler",
   "emailpro_tab_domain_diagnostic_dkim_activate": "Activer",
   "emailpro_tab_domain_diagnostic_dkim_deactivate": "Désactiver",
   "emailpro_tab_domain_diagnostic_dkim_activation": "Votre DKIM est configuré mais n'est pas activé. Souhaitez-vous l'activer ?",
