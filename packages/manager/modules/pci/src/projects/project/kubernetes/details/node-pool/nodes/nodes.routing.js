@@ -60,14 +60,19 @@ export default /* @ngInject */ ($stateProvider) => {
         nodes: /* @ngInject */ (
           formattedFlavor,
           Kubernetes,
+          flavors,
           kubeId,
           projectId,
           nodePoolId,
         ) =>
           Kubernetes.getNodes(projectId, kubeId, nodePoolId).then((nodes) =>
             map(nodes, (node) => {
+              const catalogFlavor = flavors.find(
+                (flavor) => flavor.name === node.flavor,
+              );
               return {
                 ...node,
+                planCodes: catalogFlavor?.planCodes,
                 formattedFlavor,
               };
             }),
