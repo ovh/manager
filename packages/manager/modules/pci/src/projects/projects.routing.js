@@ -179,6 +179,12 @@ export default /* @ngInject */ ($stateProvider) => {
         return pciFeatures.isFeatureAvailable(PCI_FEATURES.OTHERS.TRUSTED_ZONE);
       },
 
+      isGridscaleLocalzoneAvailable: /* @ngInject */ (pciFeatures) => {
+        return pciFeatures.isFeatureAvailable(
+          PCI_FEATURES.INSTANCE_FLAVORS_CATEGORY.GRIDSCALE_LOCALZONE,
+        );
+      },
+
       /**
        * This function can be used to know if feature is accessible or not
        * @param pciFeatures { ovhFeatureFlipping }: feature flipping instance
