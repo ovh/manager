@@ -34,6 +34,39 @@
     <div class="col-md-4">
         <oui-tile
             class="mb-3"
+            heading="{{:: 'netapp_dashboard_network_configuration' | translate }}"
+        >
+            <oui-tile-definition
+                term="{{:: 'netapp_dashboard_network_configuration_status' | translate }}"
+            >
+                <oui-tile-description>
+                    <span
+                        class="oui-badge"
+                        data-ng-class="{
+                    'oui-badge_success': $ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.ASSOCIATED,
+                    'oui-badge_info': $ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.TO_CONFIGURE,
+                    'oui-badge_warning': [$ctrl.NETWORK_STATUS.DISSOCIATING, $ctrl.NETWORK_STATUS.ASSOCIATING].includes($ctrl.networkInformations.status)
+                }"
+                        data-translate="{{:: 'netapp_dashboard_network_configuration_status_' + $ctrl.networkInformations.status }}"
+                    ></span>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-button data-on-click="$ctrl.goToNetworkConfiguration()">
+                <span
+                    data-translate="netapp_dashboard_network_configuration_manage_button"
+                ></span>
+            </oui-tile-button>
+            <oui-tile-button
+                data-ng-if="$ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.ASSOCIATED"
+                data-on-click="$ctrl.goToDeleteNetworkConfiguration()"
+            >
+                <span
+                    data-translate="netapp_dashboard_network_configuration_delete_button"
+                ></span>
+            </oui-tile-button>
+        </oui-tile>
+        <oui-tile
+            class="mb-3"
             heading="{{:: 'netapp_dashboard_service_configuration' | translate }}"
         >
             <oui-tile-definition

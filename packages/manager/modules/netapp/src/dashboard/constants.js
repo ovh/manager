@@ -19,8 +19,16 @@ export const RECOMMIT_IMPRESSION_TRACKING_DATA = {
   variant: '[recommit]',
 };
 
+export const NETWORK_STATUS = {
+  TO_CONFIGURE: 'to_configure',
+  ASSOCIATING: 'associating',
+  ASSOCIATED: 'associated',
+  DISSOCIATING: 'dissociating',
+};
+
 export default {
   MINIMUM_VOLUME_SIZE,
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
+  NETWORK_STATUS,
 };
