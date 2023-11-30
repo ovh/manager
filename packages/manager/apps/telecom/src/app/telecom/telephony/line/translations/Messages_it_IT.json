@@ -17,6 +17,6 @@
   "telephony_line_convert_date": "Questa linea sarà convertita in numero il {{ date }}.",
   "telephony_line_convert_link": "Vous pourrez annuler dans la section suivante.",
   "telephony_line_breacrumb": "Linee",
-  "telephony_line_mgcp_banner_link": "Cliccare qui.",
-  "telephony_line_mgcp_banner_description": "Il terminale MGCP utilizzato è obsoleto: effettuare una sostituzione del terminale."
+  "telephony_line_mgcp_banner_link": "Clicca qui.",
+  "telephony_line_mgcp_banner_description": "Il terminale MGCP utilizzato è obsoleto, ti chiediamo di sostituirlo."
 }
