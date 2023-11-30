@@ -281,8 +281,6 @@ const UNAVAILABLE_STATE_NAME = 'app.account.user';
 
 const URN_VERSION = 1;
 
-const OVH_MANAGED_PERMISSIONS_GROUP = 'permissionsGroup:ovh';
-
 export {
   ALERT_ID,
   API_ERROR,
@@ -296,7 +294,6 @@ export {
   ENTITY_NAME_PATTERN,
   FEATURE,
   GUIDE,
-  OVH_MANAGED_PERMISSIONS_GROUP,
   PAGE_SIZE,
   PREFERENCES_KEY,
   TAG,

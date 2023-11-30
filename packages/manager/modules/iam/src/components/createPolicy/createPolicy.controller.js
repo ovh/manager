@@ -211,9 +211,6 @@ export default class CreatePolicyController {
         (resourceType, index, list) =>
           Boolean(resourceType) && list.indexOf(resourceType) === index,
       );
-      this.model.permissionsGroups = this.policy.permissionsGroups.map(
-        ({ urn }) => ({ urn }),
-      );
     }
   }
 
@@ -412,7 +409,6 @@ export default class CreatePolicyController {
                   list.findIndex(({ action }) => item.action === action) === i,
               ),
       },
-      permissionsGroups: this.model.permissionsGroups,
       resources: [
         ...new Map(
           [

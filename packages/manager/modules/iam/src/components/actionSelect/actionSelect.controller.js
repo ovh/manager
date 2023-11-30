@@ -5,7 +5,6 @@ import {
   CUSTOM_ACTION_SAMPLE,
   CUSTOM_ACTION_WILDCARD_PATTERN,
   CUSTOM_RESOURCE_TYPE,
-  OVH_MANAGED_PERMISSIONS_GROUP,
   TAG,
   WILDCARD,
 } from '../../iam.constants';
@@ -55,12 +54,6 @@ export default class ActionSelectController {
      * @type {NgFormController}
      */
     this.form = null;
-
-    /**
-     * The NgFormController created by the template by using name="$ctrl.formManaged"
-     * @type {NgFormController}
-     */
-    this.formManaged = null;
 
     /**
      * Whether the controller is loading
@@ -141,17 +134,6 @@ export default class ActionSelectController {
 
   $onInit() {
     this.isLoading = true;
-    this.permissionsGroupsList = this.permissionsGroups
-      .filter(({ urn }) => urn.indexOf(OVH_MANAGED_PERMISSIONS_GROUP) > -1)
-      .map((permission) => {
-        return {
-          ...permission,
-          selected:
-            this.ngModel?.permissionsGroups?.findIndex(
-              (subPermission) => subPermission.urn === permission.urn,
-            ) > -1,
-        };
-      });
     return this.IAMService.getActions()
       .then((actions) => {
         this.actions = cloneDeep(actions);
@@ -210,7 +192,7 @@ export default class ActionSelectController {
       return;
     }
 
-    const selectedActions = this.ngModel?.actions?.selection || [];
+    const selectedActions = this.ngModel?.selection || [];
 
     this.actionTrees = ActionTrees.create({
       $scope: this.$scope,
@@ -233,8 +215,7 @@ export default class ActionSelectController {
       // Custom required validator for the whole component
       name.$validators.required = () =>
         this.required
-          ? this.ngModel?.actions?.selection.length > 0 ||
-            this.ngModel?.actions?.isWildcardActive
+          ? this.ngModel?.selection.length > 0 || this.ngModel?.isWildcardActive
           : true;
 
       // Custom "requirements" validator to know if a custom action meets all the requirements
@@ -304,10 +285,10 @@ export default class ActionSelectController {
           embedded,
         }),
       );
-      this.ngModel.actions = {
+      this.requiredNgModel.$setViewValue({
         isWildcardActive: this.isWildcardActive,
         selection: mappedSelection,
-      };
+      });
       // if a custom action with wilcard exits(ie. resource:urn/*)
       // all embedded actions have to be updated
       if (
@@ -324,20 +305,6 @@ export default class ActionSelectController {
         control.$validate();
       });
     });
-  }
-
-  onPermissionsGroupsChanged(permissionGroupId) {
-    if (!this.ngModel.permissionsGroups) {
-      this.ngModel.permissionsGroups = [];
-    }
-    const permissionsGroupsIndex = this.ngModel?.permissionsGroups?.findIndex(
-      (permission) => permission.urn === permissionGroupId,
-    );
-    if (permissionsGroupsIndex === -1) {
-      this.ngModel.permissionsGroups.push({ urn: permissionGroupId });
-    } else {
-      this.ngModel.permissionsGroups.splice(permissionsGroupsIndex, 1);
-    }
   }
 
   /**
