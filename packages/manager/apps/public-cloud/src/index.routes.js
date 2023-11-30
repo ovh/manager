@@ -1,10 +1,8 @@
-import isEmpty from 'lodash/isEmpty';
-
 import { DEFAULT_PROJECT_KEY } from './index.constants';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app', {
-    url: '/?onboarding',
+    url: '/',
     redirectTo: 'app.redirect',
     resolve: {
       rootState: () => 'app',
@@ -24,50 +22,8 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.redirect', {
     url: '?onboarding',
     resolve: {
-      defaultProjectId: /* @ngInject */ (publicCloud) =>
-        publicCloud.getDefaultProject(),
-      unPaidProjects: /* @ngInject */ (publicCloud) =>
-        publicCloud.getServices([
-          {
-            field: 'route.path',
-            comparator: 'eq',
-            reference: '/cloud/project/{serviceName}',
-          },
-          {
-            field: 'billing.lifecycle.current.state',
-            comparator: 'eq',
-            reference: 'unpaid',
-          },
-        ]),
-      suspendedProjects: /* @ngInject */ (publicCloud) =>
-        publicCloud.getProjects([
-          {
-            field: 'status',
-            comparator: 'like',
-            reference: 'suspended',
-          },
-        ]),
-      redirect: /* @ngInject */ (
-        $state,
-        $transition$,
-        defaultProjectId,
-        unPaidProjects,
-        suspendedProjects,
-      ) => {
-        if (!isEmpty(suspendedProjects) || !isEmpty(unPaidProjects)) {
-          return $state.go('pci.projects');
-        }
-        if (defaultProjectId) {
-          return $state.go('pci.projects.project', {
-            projectId: defaultProjectId,
-          });
-        }
-        return $state.go(
-          $transition$.params().onboarding
-            ? 'pci.projects.onboarding'
-            : 'pci.projects.new',
-        );
-      },
+      redirect: /* @ngInject */ ($state) =>
+        $state.go('pci.projects.onboarding'),
     },
   });
 
