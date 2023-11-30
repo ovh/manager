@@ -3,6 +3,7 @@ import {
   SERVICE_TYPE,
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
+  NETWORK_STATUS,
 } from '../constants';
 
 export default class OvhManagerNetAppDashboardIndexCtrl {
@@ -12,6 +13,7 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
     this.Alerter = Alerter;
 
     this.SERVICE_TYPE = SERVICE_TYPE;
+    this.NETWORK_STATUS = NETWORK_STATUS;
   }
 
   $onInit() {
