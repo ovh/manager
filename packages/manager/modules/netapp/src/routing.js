@@ -9,7 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: 'netapp.index',
     resolve: {
       features: /* @ngInject */ (ovhFeatureFlipping) => {
-        const features = FEATURES.map((feature) => `netapp:${feature}`);
+        const features = `${FEATURES.map(
+          (feature) => `netapp:${feature}`,
+        )},vrack-services`;
         return ovhFeatureFlipping.checkFeatureAvailability(features);
       },
       breadcrumb: /* @ngInject */ ($translate) =>
