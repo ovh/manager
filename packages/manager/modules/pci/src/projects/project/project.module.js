@@ -7,6 +7,7 @@ import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 import ovhManagerAdvices from '@ovh-ux/manager-advices';
 import trustedNic from '@ovh-ux/manager-trusted-nic';
+import vouchers from '@ovh-ux/manager-pci-vouchers';
 
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import billing from './billing';
@@ -28,7 +29,6 @@ import quotaExceedError from './quota-exceed-error';
 import privateRegistry from './private-registry';
 import storages from './storages';
 import users from './users';
-import vouchers from './vouchers';
 import regions from './regions';
 import routing from './project.routing';
 import training from './training';
