@@ -102,7 +102,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .expand('CachedObjectList-Pages')
           .execute()
           .$promise.then(({ data: networkData }) => {
-            if (networkData.length === 0) return [];
+            if (networkData.length === 0) return null;
             const network = networkData[0];
             return getVrackServices(network.vrackServicesURN).then(
               ({ data }) => {
@@ -111,6 +111,8 @@ export default /* @ngInject */ ($stateProvider) => {
               },
             );
           }),
+      isNetworkAvailable: /* @ngInject */ (features, networkInformations) =>
+        features.isFeatureAvailable('vrack-services') && networkInformations,
     },
   });
 };
