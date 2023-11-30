@@ -28,36 +28,6 @@
         <span data-ng-bind-html="$ctrl.customActionSuccessMessage"></span>
     </oui-message>
 
-    <!-- <MANAGED PERMISSIONS> -->
-    <oui-collapsible
-        data-heading="{{ :: 'iam_managed_permissions_heading' | translate }}"
-        data-expanded="true"
-    >
-        <div
-            class="oui-checkbox ml-4"
-            data-ng-repeat="group in $ctrl.permissionsGroupsList track by group.id"
-        >
-            <input
-                class="oui-checkbox__input"
-                id="{{ ::group.id }}"
-                type="checkbox"
-                name="{{ ::group.id }}"
-                data-ng-model="group.selected"
-                data-ng-change="$ctrl.onPermissionsGroupsChanged(group.urn)"
-            />
-            <label class="oui-checkbox__label-container" for="{{ ::group.id }}">
-                <span class="oui-checkbox__label">
-                    <span class="oui-checkbox__icon"></span>
-                    <span class="oui-checkbox__text">
-                        <span data-ng-bind="group.name"></span>
-                    </span>
-                </span>
-                <div class="ml-4" data-ng-bind-html="::group.description"></div>
-            </label>
-        </div>
-    </oui-collapsible>
-    <!-- </MANAGED PERMISSIONS> -->
-
     <!-- <Actions> -->
     <oui-collapsible
         data-ng-repeat="actionTree in $ctrl.actionTrees track by actionTree.value"
@@ -72,7 +42,7 @@
             <input
                 type="hidden"
                 name="{{ $ctrl.name }}"
-                data-ng-model="$ctrl.ngModel.actions"
+                data-ng-model="$ctrl.ngModel"
                 data-disabled="$ctrl.readOnly"
             />
 
