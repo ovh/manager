@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('network_security_dashboard_title'),
+        $translate.instant('network_security_dashboard_breadcrumb'),
       cursors: /* @ngInject */ ($transition$) => $transition$.params().cursors,
       showStats: /* @ngInject */ (goTo) => (row) =>
         goTo({
