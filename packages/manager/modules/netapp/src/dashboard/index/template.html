@@ -33,6 +33,7 @@
     </div>
     <div class="col-md-4">
         <oui-tile
+            data-ng-if="$ctrl.isNetworkAvailable"
             class="mb-3"
             heading="{{:: 'netapp_dashboard_network_configuration' | translate }}"
         >
