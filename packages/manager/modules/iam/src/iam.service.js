@@ -410,7 +410,7 @@ export default class IAMService {
    * @returns {Promise}
    */
   getPermissionsGroups() {
-    return this.httpApiv2({
+    return this.Apiv2Service.httpApiv2({
       method: 'get',
       url: URL.PERMISSIONS_GROUPS,
     }).then(({ data }) => data);
