@@ -52,6 +52,13 @@ export default /* @ngInject */ ($stateProvider) => {
       canManageSubscription: /* @ngInject */ (features) =>
         features.isFeatureAvailable('netapp:dashboard:subscription-tile'),
       breadcrumb: /* @ngInject */ () => null,
+      goToDeleteNetworkConfiguration: /* @ngInject */ (
+        $state,
+        trackClick,
+      ) => () => {
+        trackClick('delete-endpoint');
+        return $state.go('netapp.dashboard.index.delete-network');
+      },
     },
   });
 };

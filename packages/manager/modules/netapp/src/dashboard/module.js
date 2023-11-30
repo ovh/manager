@@ -18,6 +18,7 @@ import index from './index/module';
 import snapshotPolicies from './snapshot-policies';
 import volumes from './volumes';
 import networkConfiguration from './network-configuration';
+import deleteNetwork from './delete-network';
 
 const moduleName = 'ovhManagerNetAppDashboard';
 
@@ -36,6 +37,7 @@ angular
     snapshotPolicies,
     volumes,
     networkConfiguration,
+    deleteNetwork,
     index,
   ])
   .config(routing)
