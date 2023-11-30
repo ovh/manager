@@ -247,7 +247,6 @@ export default class ExchangeAddDomainController {
   checkDomain() {
     if (!this.isOvhDomain) {
       this.model.srvParam = false;
-      this.services.$rootScope.$broadcast('wizard-goToStep', 3);
     }
   }
 
