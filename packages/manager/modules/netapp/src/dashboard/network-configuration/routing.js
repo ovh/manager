@@ -6,6 +6,14 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       'netappContainer@netapp': 'ovhManagerNetAppNetworkConfiguration',
     },
+    redirectTo: (transition) => {
+      return transition
+        .injector()
+        .getAsync('isNetworkAvailable')
+        .then((isNetworkAvailable) =>
+          isNetworkAvailable ? null : 'netapp.dashboard',
+        );
+    },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('netapp_network_configuration_title'),
