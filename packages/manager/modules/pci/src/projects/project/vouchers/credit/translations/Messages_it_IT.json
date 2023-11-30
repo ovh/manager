@@ -1,8 +1,0 @@
-{
-  "cpb_vouchers_add_credit_title": "Acquista credito Cloud",
-  "cpb_vouchers_add_credit_info": "Scegli l'importo (IVA esclusa) da assegnare a questo progetto. Una volta saldato l’ordine, il credito verrà utilizzato nei prossimi 12 mesi per il pagamento delle fatture relative ai forfait e ai consumi del progetto.",
-  "cpb_vouchers_add_credit_amount": "Somma da accreditare (+IVA {{ currency }}):",
-  "cpb_vouchers_add_credit_valid": "Genera un ordine",
-  "cpb_vouchers_add_credit_success": "Il buono d'ordine relativo al tuo credito di {{ amount }} è disponibile <a href=\"{{ url }}\" target=\"_blank\">qui</a>.",
-  "cpb_vouchers_add_credit_load_err": "Si è verificato un errore durante il caricamento dell'acquisto di credito Cloud."
-}

@@ -1,8 +1,0 @@
-{
-  "cpb_vouchers_add_credit_title": "Cloud-Guthaben aufladen",
-  "cpb_vouchers_add_credit_info": "Wählen Sie den Betrag (ohne Mehrwertsteuer) aus, mit dem dieses Projekt aufgeladen werden soll. Sobald der Bestellschein beglichen wurde, wird dieses Guthaben für die Abrechnungen für Abos und Verbrauch dieses Projekts in den nächsten 12 Monaten verwendet.",
-  "cpb_vouchers_add_credit_amount": "Betrag der Aufladung ({{ currency }} zzgl. MwSt.)",
-  "cpb_vouchers_add_credit_valid": "Bestellschein erstellen",
-  "cpb_vouchers_add_credit_success": "Der Bestellschein für Ihr Guthaben in Höhe von {{ amount }} ist <a href=\"{{ url }}\" target=\"_blank\">hier</a> verfügbar.",
-  "cpb_vouchers_add_credit_load_err": "Beim Laden des Cloud-Guthabens ist ein Fehler aufgetreten."
-}
