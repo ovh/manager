@@ -3,10 +3,11 @@ import get from 'lodash/get';
 import component from './component';
 
 import { GUIDE_URLS } from './constants';
+import { DISCOVERY_PROJECT_PLANCODE } from '../project/project.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.creating', {
-    url: '/creating/:orderId/:voucherCode/:isDiscoveryProject',
+    url: '/creating/:orderId/:voucherCode',
     views: {
       '@pci': component.name,
     },
@@ -76,14 +77,21 @@ export default /* @ngInject */ ($stateProvider) => {
 
       orderId: /* @ngInject */ ($transition$) => $transition$.params().orderId,
 
+      order: /* @ngInject */ (orderId, pciProjectCreating) =>
+        pciProjectCreating.getOrderDetails(orderId, { extension: true }),
+
       orderStatus: /* @ngInject */ (orderId, pciProjectCreating) =>
         pciProjectCreating.getOrderStatus(orderId),
 
       voucherCode: /* @ngInject */ ($transition$) =>
         $transition$.params().voucherCode,
 
-      isCreatingDiscoveryProject: /* @ngInject */ ($transition$) =>
-        $transition$.params().isDiscoveryProject === 'true',
+      isCreatingDiscoveryProject: /* @ngInject */ (order) =>
+        Boolean(
+          order.find(
+            (item) => item.order?.plan.code === DISCOVERY_PROJECT_PLANCODE,
+          ),
+        ),
     },
   });
 };
