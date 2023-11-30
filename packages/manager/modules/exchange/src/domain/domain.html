@@ -192,7 +192,9 @@
                         </td>
 
                         <td class="text-center" data-ng-if="!domain.partial">
-                            <div data-ng-if="domain.domainValidated">
+                            <div
+                                data-ng-if="domain.domainValidated && ctrl.services.exchangeStates.constructor.isOk(domain)"
+                            >
                                 <button
                                     class="oui-badge oui-badge_error"
                                     type="button"
@@ -294,7 +296,7 @@
                                 <span
                                     class="oui-badge oui-badge_info"
                                     data-translate="exchange_tab_ACCOUNTS_state_CREATING"
-                                    data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(domain) && domain.cname == null"
+                                    data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(domain) && (domain.cname == null || domain.domainValidated)"
                                 ></span>
                                 <span
                                     class="oui-badge oui-badge_error"
