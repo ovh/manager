@@ -4,7 +4,7 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="ctrl.onFinishDkim.bind(ctrl)"
-        data-wizard-cancel-button-text="ctrl.hideConfirmButton ? 'emailpro_tab_domain_diagnostic_dkim_cancel' : 'emailpro_tab_domain_diagnostic_dkim_close' | translate"
+        data-wizard-cancel-button-text="'emailpro_tab_domain_diagnostic_dkim_' + ctrl.hideConfirmButton ? 'cancel' : 'close' | translate"
         data-wizard-confirm-button-text="ctrl.dkimStatus === ctrl.DKIM_STATUS.ACTIVE ?
         'emailpro_tab_domain_diagnostic_dkim_deactivate' : 'emailpro_tab_domain_diagnostic_dkim_activate' | translate"
         data-wizard-hide-confirm-button="ctrl.hideConfirmButton"
