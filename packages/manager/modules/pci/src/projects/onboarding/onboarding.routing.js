@@ -7,21 +7,29 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.onboarding', {
     url: '/onboarding',
     component: 'pciProjectsOnboarding',
-    redirectTo: (transition) =>
-      transition
-        .injector()
-        .get('publicCloud')
-        .getDefaultProject()
-        .then((projectId) =>
-          projectId
-            ? {
-                state: 'pci.projects.project',
-                params: {
-                  projectId,
-                },
-              }
-            : null,
-        ),
+    redirectTo: (transition) => {
+      const [$q, publicCloud] = ['$q', 'publicCloud'].map((token) =>
+        transition.injector().get(token),
+      );
+      return publicCloud
+        .getUnpaidProjects()
+        .then((unPaidProjects) => {
+          if (unPaidProjects.length) {
+            return 'pci.projects';
+          }
+          return $q.all({
+            discoveryProjectId: publicCloud.getDiscoveryProject(),
+            defaultProjectId: publicCloud.getDefaultProject(),
+          });
+        })
+        .then(({ discoveryProjectId, defaultProjectId }) => {
+          const projectId = discoveryProjectId || defaultProjectId;
+          if (projectId) {
+            return { state: 'pci.projects.project', params: { projectId } };
+          }
+          return false;
+        });
+    },
     resolve: {
       goToCreateNewProject: /* @ngInject */ ($state) => () =>
         $state.go('pci.projects.new'),
