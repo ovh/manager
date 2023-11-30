@@ -199,7 +199,9 @@
                                 class="text-center"
                                 data-ng-if="!domain.partial"
                             >
-                                <div data-ng-if="domain.domainValidated">
+                                <div
+                                    data-ng-if="domain.domainValidated && domain.state === stateOk"
+                                >
                                     <button
                                         class="oui-badge oui-badge_error"
                                         type="button"
@@ -301,7 +303,7 @@
                                     ></span>
                                     <span
                                         class="oui-badge oui-badge_info"
-                                        data-ng-if="domain.state === stateCreating && domain.cname == null"
+                                        data-ng-if="domain.state === stateCreating && (domain.cname == null || domain.domainValidated)"
                                         data-translate="emailpro_tab_ACCOUNTS_state_CREATING"
                                     ></span>
                                     <span
