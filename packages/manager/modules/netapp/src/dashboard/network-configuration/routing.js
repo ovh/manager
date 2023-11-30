@@ -7,8 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
       'netappContainer@netapp': 'ovhManagerNetAppNetworkConfiguration',
     },
     redirectTo: (transition) => {
-      const injector = transition.injector();
-      return injector
+      return transition
+        .injector()
         .getAsync('isNetworkAvailable')
         .then((isNetworkAvailable) =>
           isNetworkAvailable ? null : 'netapp.dashboard',
