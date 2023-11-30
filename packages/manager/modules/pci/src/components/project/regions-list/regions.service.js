@@ -4,47 +4,34 @@ import reduce from 'lodash/reduce';
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getAvailableRegions"] }] */
 export default class Regions {
   /* @ngInject */
-  constructor($q, $translate) {
+  constructor($q, $http, iceberg, $translate) {
     this.$q = $q;
+    this.$http = $http;
+    this.iceberg = iceberg;
     this.$translate = $translate;
   }
 
-  async getAvailableRegions(serviceName) {
-    const response = await fetch(
-      `/engine/api/cloud/project/${serviceName}/region`,
-      {
-        method: 'GET',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-          Accept: 'application/json',
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-          'X-Pagination-Size': 5000,
-        },
-      },
-    );
-
-    return response.json();
+  getAvailableRegions(serviceName) {
+    return this.iceberg(`/cloud/project/${serviceName}/region`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) => data)
+      .catch(() => []);
   }
 
-  async getRegions(serviceName) {
+  getRegions(serviceName) {
     return this.$q
       .all({
         regions: this.getAvailableRegions(serviceName),
-        quotas: fetch(`/engine/api/cloud/project/${serviceName}/quota`, {
-          method: 'GET',
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            Accept: 'application/json',
-          },
-        }),
+        quotas: this.$http
+          .get(`/cloud/project/${serviceName}/quota`)
+          .then(({ data }) => data),
       })
-      .then(async ({ quotas, regions }) => {
-        const quotaData = await quotas.json();
+      .then(({ quotas, regions }) => {
         return regions.map((region) => ({
           ...region,
-          quota: quotaData.find((quota) => quota.region === region.name),
+          quota: quotas.find((quota) => quota.region === region.name),
         }));
       });
   }

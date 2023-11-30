@@ -38,8 +38,15 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId,
       ) => PciProjectsProjectInstanceService.getPublicNetwork(projectId),
 
-      regions: /* @ngInject */ (PciProjectsProjectInstanceService, projectId) =>
-        PciProjectsProjectInstanceService.getAvailablesRegions(projectId),
+      regions: /* @ngInject */ (
+        PciProjectsProjectInstanceService,
+        projectId,
+        customerRegions,
+      ) =>
+        PciProjectsProjectInstanceService.getAvailablesRegions(
+          projectId,
+          customerRegions,
+        ),
       quotaLink: /* @ngInject */ ($state, projectId) =>
         $state.href('pci.projects.project.quota', {
           projectId,

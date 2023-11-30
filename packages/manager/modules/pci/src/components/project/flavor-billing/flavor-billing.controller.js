@@ -44,7 +44,7 @@ export default class FlavorBillingController {
   }
 
   formatPrice(price) {
-    return this.PriceFormatter.format(this.getPrice(price));
+    return price ? this.PriceFormatter.format(this.getPrice(price)) : 0;
   }
 
   formatAddonsPrice = (price = 0) => price / 100000000;

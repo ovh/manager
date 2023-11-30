@@ -37,13 +37,6 @@ export const CATEGORIES = [
     pattern: /baremetal/,
     isNew: true,
   },
-  {
-    // @TODO: GS Mock
-    category: 'localzone',
-    title: 'Local Zone',
-    pattern: /lz/,
-    isNew: true,
-  },
 ];
 
 export const FLEX_TYPE = /flex$/;
