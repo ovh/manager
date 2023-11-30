@@ -1,3 +1,20 @@
 {
-  "octavia_load_balancer": "Load Balancer"
+  "octavia_load_balancer": "Load Balancer",
+  "octavia_load_balancers": "Load Balancers",
+  "octavia_load_balancer_global_error": "The following error has occurred: <br> {{message}}<br> request_id: {{requestId}}",
+  "octavia_load_balancers_title": "Load Balancers",
+  "octavia_load_balancers_add_button": "Add a Load Balancer",
+  "octavia_load_balancer_name": "Name",
+  "octavia_load_balancer_region": "Region",
+  "octavia_load_balancer_ip": "Private IP address",
+  "octavia_load_balancer_creation_date": "Creation date",
+  "octavia_load_balancer_status": "Operating status",
+  "octavia_load_balancer_actions_detail": "Load Balancer details",
+  "octavia_load_balancer_actions_delete": "Delete",
+  "octavia_load_balancer_status_online": "Active",
+  "octavia_load_balancer_status_offline": "Offline",
+  "octavia_load_balancer_status_degraded": "Degraded",
+  "octavia_load_balancer_status_draining": "Drained",
+  "octavia_load_balancer_status_error": "Error",
+  "octavia_load_balancer_delete_success": "Your Load Balancer has been deleted"
 }
