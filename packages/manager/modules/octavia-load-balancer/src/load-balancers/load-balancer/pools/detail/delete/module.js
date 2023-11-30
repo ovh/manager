@@ -11,7 +11,6 @@ const moduleName = 'ovhManagerOctaviaLoadbalancerPoolsDetailDeleteModule';
 angular
   .module(moduleName, ['ngUiRouterLayout', deleteComponents])
   .config(routing)
-  .component('octaviaLoadBalancerPoolsDetailDelete', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .component('octaviaLoadBalancerPoolsDetailDelete', component);
 
 export default moduleName;
