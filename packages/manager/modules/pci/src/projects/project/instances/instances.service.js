@@ -80,7 +80,7 @@ export default class PciProjectInstanceService {
   getAll(projectId, customerRegions) {
     const localInstances = Promise.all(
       customerRegions
-        .filter(({ name }) => name.includes('MAD')) // @TODO: replace by region type local
+        .filter(({ type }) => type.includes('localzone')) // @TODO: replace by region type local
         .map((region) =>
           this.$http.get(
             `/cloud/project/${projectId}/region/${region.name}/instance`,
@@ -454,7 +454,7 @@ export default class PciProjectInstanceService {
     );
   }
 
-  getAvailablesRegions(projectId) {
+  getAvailablesRegions(projectId, customerRegions) {
     return this.$q
       .all({
         availableRegions: this.OvhApiCloudProject.Region()
@@ -463,7 +463,7 @@ export default class PciProjectInstanceService {
           .query({
             serviceName: projectId,
           }).$promise,
-        regions: this.PciProjectRegions.getRegions(projectId),
+        regions: this.PciProjectRegions.getRegions(projectId, customerRegions),
       })
       .then(({ availableRegions, regions }) => {
         const supportedRegions = filter(regions, (region) =>
@@ -495,9 +495,10 @@ export default class PciProjectInstanceService {
   }
 
   save(serviceName, instance, number = 1, isPrivateMode) {
-    if (instance.isLocal()) {
-      return this.saveLocalZone(serviceName, instance, number, isPrivateMode);
-    }
+    // TODO
+    // if (instance.isLocal()) {
+    //   return this.saveLocalZone(serviceName, instance, number, isPrivateMode);
+    // }
 
     return this.saveGlobalZone(serviceName, instance, number, isPrivateMode);
   }

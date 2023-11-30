@@ -93,6 +93,25 @@
                                 ></span>
                             </div>
                         </oui-select-picker-section>
+                        <oui-select-picker-section
+                            data-ng-if="flavor.locationCompatibility.isLocalZone || flavor.locationCompatibility.isGlobalZone"
+                        >
+                            <strong
+                                class="d-block"
+                                data-translate="pci_project_flavors_zone_compatible"
+                            >
+                            </strong>
+                            <span
+                                data-ng-if="flavor.locationCompatibility.isLocalZone"
+                                data-translate="pci_project_flavors_zone_localzone"
+                                class="oui-badge oui-badge_promotion"
+                            ></span>
+                            <span
+                                data-ng-if="flavor.locationCompatibility.isGlobalZone"
+                                data-translate="pci_project_flavors_zone_global_region"
+                                class="oui-badge oui-badge_new"
+                            ></span>
+                        </oui-select-picker-section>
                         <oui-select-picker-section>
                             <strong
                                 class="d-block"
