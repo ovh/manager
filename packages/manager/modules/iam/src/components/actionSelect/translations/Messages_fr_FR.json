@@ -15,8 +15,5 @@
   "iam_action_select_custom_action_success_created": "L'action {{ action }} a été ajoutée à {{ resourceType }}",
   "iam_action_select_custom_action_success_selected": "L'action {{ action }} a été sélectionnée dans {{ resourceType }}",
   "iam_action_select_custom_action_success_wildcard": "« Autoriser toutes les actions » a été activé",
-  "iam_action_select_error_required": "Vous devez sélectionner au moins une action, autoriser toutes les actions, ou ajouter une action manuellement",
-  "iam_managed_permissions_heading": "Groupes de permissions managées",
-  "iam_managed_permissions_description": "Ajouter une politique managée par OVHCloud",
-  "iam_managed_permissions_description_sub": "(description complète dans la documentation)"
+  "iam_action_select_error_required": "Vous devez sélectionner au moins une action, autoriser toutes les actions, ou ajouter une action manuellement"
 }
