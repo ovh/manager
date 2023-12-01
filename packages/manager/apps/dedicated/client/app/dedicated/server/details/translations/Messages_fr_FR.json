@@ -635,8 +635,6 @@
   "select_bandwidth_type_label": "Sélectionnez une offre",
   "select_bandwidth_vrack_type_label": "Sélectionnez une offre",
   "select_bandwidth_plan_summary": "Récapitulatif de la commande",
-  "plan_bandwidth": "{{bandwidth}} Gbit/s illimitée et garantie",
-  "plan_vrack-bandwidth": "{{bandwidth}} Gbit/s illimitée et garantie - Option vRack",
   "server_order_bandwidth_empty_plans": "Aucune offre de bande passante disponible pour votre serveur dédié",
   "select_traffic_type_label": "Sélectionnez une offre",
   "toggle_button_label_ultimate": "Ultimate",
