@@ -4,6 +4,10 @@ export default class QuotaTileController {
     this.$state = $state;
   }
 
+  $onInit() {
+    this.statePrefix = this.statePrefix || 'app.dedicated-server.server';
+  }
+
   canOrderMoreTraffic() {
     return (
       !this.server.isExpired &&
@@ -13,6 +17,6 @@ export default class QuotaTileController {
   }
 
   getTabItemUrl(tabItemName) {
-    return this.$state.href(`app.dedicated-server.server.${tabItemName}`);
+    return this.$state.href(`${this.statePrefix}.${tabItemName}`);
   }
 }

@@ -1,0 +1,78 @@
+<div data-ovh-alert></div>
+
+<div class="row">
+    <div
+        class="col-md-8 mb-5"
+        data-ng-if="$ctrl.ola.isAvailable() && !$ctrl.ola.isActivated()"
+    >
+        <ola-step-checker
+            class="h-100"
+            data-price="$ctrl.optionPrice"
+            data-ola="$ctrl.ola"
+            data-guide="$ctrl.guideUrl"
+            data-user="$ctrl.user"
+        >
+        </ola-step-checker>
+    </div>
+    <div
+        class="col-md-4 mb-5"
+        data-ng-if="$ctrl.ola.isAvailable() && $ctrl.ola.isActivated()"
+    >
+        <!-- OLA -->
+        <server-ola
+            data-server="$ctrl.server"
+            data-guide-url="{{::$ctrl.guideUrl}}"
+            data-ola="$ctrl.ola"
+        ></server-ola>
+    </div>
+
+    <div class="col-md-4 mb-5">
+        <server-bandwidth-tile
+            data-bandwidth-option="$ctrl.bandwidthOption"
+            data-bandwidth-vrack-option="$ctrl.bandwidthVrackOptions"
+            data-bandwidth-vrack-order-option="$ctrl.bandwidthVrackOrderOptions"
+            data-order-private-link="$ctrl.orderPrivateBandwidthLink"
+            data-order-public-link="$ctrl.orderPublicBandwidthLink"
+            data-server="$ctrl.server"
+            data-specifications="$ctrl.specifications"
+        >
+        </server-bandwidth-tile>
+    </div>
+</div>
+
+<div class="row d-md-flex mb-5">
+    <div class="col">
+        <server-network-interfaces
+            data-server="$ctrl.server"
+            data-server-name="$ctrl.serverName"
+            data-interfaces="$ctrl.interfaces"
+            data-specifications="$ctrl.specifications"
+            data-urls="$ctrl.urls"
+            data-failover-ips="$ctrl.failoverIps"
+        ></server-network-interfaces>
+    </div>
+</div>
+
+<!-- QUOTA -->
+<div class="mb-5" data-ng-if="$ctrl.trafficInformation.traffic.data.hasQuota">
+    <server-consumption-tile
+        data-server="$ctrl.server"
+        data-traffic-information="$ctrl.trafficInformation"
+        data-dedicated-server="$ctrl.dedicatedServer"
+        data-current-active-link="$ctrl.currentActiveLink"
+        data-state-prefix="$ctrl.statePrefix"
+        data-go-to-traffic-order="$ctrl.goToTrafficOrder"
+        data-go-to-traffic-cancel="$ctrl.goToTrafficCancel"
+    >
+    </server-consumption-tile>
+</div>
+
+<!-- MRTG -->
+<div
+    class="mb-5"
+    data-ng-if="!$ctrl.server.isExpired && !['hgr', 'scale'].includes($ctrl.technicalDetails.server.range)"
+>
+    <server-mrtg-tile
+        data-server-service="$ctrl.serverService"
+    ></server-mrtg-tile>
+</div>
