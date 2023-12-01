@@ -52,20 +52,6 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountBillingCtr
         ),
       },
       {
-        name: 'group_repayments',
-        sref: 'telecom.telephony.billingAccount.billing.groupRepayments',
-        text: $translate.instant(
-          'telephony_group_billing_actions_group_repayments',
-        ),
-      },
-      {
-        name: 'group_reversments_history',
-        sref: 'telecom.telephony.billingAccount.billing.repayment-history',
-        text: $translate.instant(
-          'telephony_group_billing_actions_group_reversments_history',
-        ),
-      },
-      {
         name: 'group_group_called_fees',
         sref: 'telecom.telephony.billingAccount.billing.calledFees',
         text: $translate.instant(
