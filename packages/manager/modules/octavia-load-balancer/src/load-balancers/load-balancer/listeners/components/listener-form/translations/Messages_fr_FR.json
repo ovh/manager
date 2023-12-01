@@ -7,5 +7,6 @@
   "octavia_load_balancer_listeners_create_pool": "Pool par défaut (facultatif)",
   "octavia_load_balancer_listeners_create_pool_default": "Sélectionner un pool",
   "octavia_load_balancer_listeners_create_cancel": "Annuler",
-  "octavia_load_balancer_listeners_create_submit": "Ajouter"
+  "octavia_load_balancer_listeners_create_submit": "Ajouter",
+  "octavia_load_balancer_listeners_create_submit_edition": "Editer"
 }
