@@ -24,12 +24,18 @@ export default /* @ngInject */ ($stateProvider) => {
             region,
             poolId,
           ),
-        memberCreationLink: /* @ngInject */ ($state) => () =>
+        memberAddLink: /* @ngInject */ ($state) => () =>
           $state.href(
             'octavia-load-balancer.loadbalancer.pools.detail.members.list.create',
           ),
-        membersPageTracking: () =>
+        trackMemberAddAction: () =>
           `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}::add`,
+        memberAddInstanceLink: /* @ngInject */ ($state) => () =>
+          $state.href(
+            'octavia-load-balancer.loadbalancer.pools.detail.members.add-ip-instance',
+          ),
+        trackMemberAddInstanceAction: () =>
+          `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}::add-instances`,
         goToMemberDeletion: /* @ngInject */ ($state) => (member) =>
           $state.go(
             'octavia-load-balancer.loadbalancer.pools.detail.members.list.delete',

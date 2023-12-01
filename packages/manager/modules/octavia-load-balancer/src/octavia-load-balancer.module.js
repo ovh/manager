@@ -16,6 +16,7 @@ import pools from './load-balancers/load-balancer/pools';
 import poolsDetail from './load-balancers/load-balancer/pools/detail';
 import poolsDetailMembers from './load-balancers/load-balancer/pools/detail/members';
 import poolsDetailMembersCreate from './load-balancers/load-balancer/pools/detail/members/create';
+import poolsDetailMembersAddIpInstance from './load-balancers/load-balancer/pools/detail/members/add-ip-instance';
 
 import deleteComponent from './delete';
 import loadBalancers from './load-balancers';
@@ -41,6 +42,7 @@ angular
     poolsDetail,
     poolsDetailMembers,
     poolsDetailMembersCreate,
+    poolsDetailMembersAddIpInstance,
     deleteComponent,
     loadBalancers,
   ])
