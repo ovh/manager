@@ -8,14 +8,12 @@ import {
 export default class OctaviaLoadBalancerPoolFormCtrl {
   $onInit() {
     this.APP_COOKIE_SESSION_PERSISTENCE = APP_COOKIE_SESSION_PERSISTENCE;
-    if (!this.model.algorithm.value) {
-      this.model.algorithm = this.algorithms.find((algorithm) =>
-        this.model.algorithm
-          ? algorithm.value === this.model.algorithm
-          : algorithm.value === DEFAULT_ALGORITHM,
+    if (!this.model.algorithm?.value) {
+      this.model.algorithm = this.algorithms.find(
+        ({ value }) => value === (this.model.algorithm || DEFAULT_ALGORITHM),
       );
     }
-    if (this.model.persistentSession && this.model.persistentSession.type) {
+    if (this.model.persistentSession?.type) {
       this.model.persistentSession = this.sessionPersistenceTypes.find(
         (session) => session.value === this.model.persistentSession.type,
       );
