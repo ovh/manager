@@ -1,4 +1,4 @@
-import { Handler } from '../../../../../super-components/_common/msw-helpers';
+import { Handler } from '@super-components/_common/msw-helpers';
 import { AllowedServicesResponse, Status, Task } from '../../src/api/api.type';
 import { vrackServicesList } from '../vrack-services/vrack-services';
 

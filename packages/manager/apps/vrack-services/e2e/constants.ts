@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { config } from '../../../../../playwright-helpers/config';
 
 export const urls = {

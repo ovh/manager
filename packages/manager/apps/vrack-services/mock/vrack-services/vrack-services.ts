@@ -1,5 +1,5 @@
+import { Handler } from '@super-components/_common/msw-helpers';
 import { ResponseData, Status } from '../../src/api/api.type';
-import { Handler } from '../../../../../super-components/_common/msw-helpers';
 import {
   VrackServices,
   ProductStatus,

@@ -1,9 +1,9 @@
-import { BrowserContext } from '@playwright/test';
-import { toPlaywrightMockHandler } from '../../../../../playwright-helpers/mock';
+import { ICustomWorld } from '@playwright-helpers/custom-world';
 import {
   toMswHandlers,
   Handler,
 } from '../../../../super-components/_common/msw-helpers';
+import { toPlaywrightMockHandler } from '../../../../../playwright-helpers/mock';
 import {
   getVrackServicesMocks,
   GetVrackServicesMocksParams,
@@ -40,12 +40,9 @@ export const getConfig = (params: ConfigParams): Handler[] =>
 export const getMswHandlers = (params: ConfigParams = {}) =>
   toMswHandlers(getConfig(params));
 
-export const setupPlaywrightHandlers = async (
-  context: BrowserContext,
-  params: ConfigParams = {},
-) =>
+export const setupPlaywrightHandlers = async (world: ICustomWorld) =>
   Promise.all(
-    getConfig(params)
+    getConfig(world.handlersConfig)
       .reverse()
-      .map(toPlaywrightMockHandler(context)),
+      .map(toPlaywrightMockHandler(world.context)),
   );

@@ -1,10 +1,11 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Given } from '@cucumber/cucumber';
-import { ICustomWorld } from '../../../../../playwright-helpers/custom-world';
+import { ICustomWorld } from '@playwright-helpers/custom-world';
 import { urls } from './constants';
 import { ConfigParams } from '../mock/handlers';
-import { OrderStatus, ProductStatus } from '../src/api';
+import { OrderStatus, ProductStatus } from '@/api';
 import { creationServiceError } from '../src/public/translations/vrack-services/create/Messages_fr_FR.json';
+import { updateError } from '../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
 
 Given(
   'User wants to create a vRack Services with name {string} and zone {word}',
@@ -59,6 +60,7 @@ Given('The service to edit a vRack Services is KO', function(
   this: ICustomWorld<ConfigParams>,
 ) {
   this.handlersConfig.updateKo = true;
+  this.testContext.errorMessage = updateError;
 });
 
 Given('The service to associate a vRack Services is KO', function(
@@ -67,11 +69,13 @@ Given('The service to associate a vRack Services is KO', function(
   this.handlersConfig.associationKo = true;
 });
 
-Given('User has no eligible vRack for this vRack Services', function(
-  this: ICustomWorld<ConfigParams>,
-) {
-  this.handlersConfig.nbEligibleVrackServices = 0;
-});
+Given(
+  'User has {word} eligible vRacks to be associated to his vRack Services',
+  function(this: ICustomWorld<ConfigParams>, anyEligibleVrack: 'an' | 'no') {
+    this.handlersConfig.nbEligibleVrackServices =
+      anyEligibleVrack === 'an' ? 5 : 0;
+  },
+);
 
 Given('User has a vRack order {word}', function(
   this: ICustomWorld<ConfigParams>,

@@ -1,6 +1,6 @@
-import { Handler } from '../../../../../super-components/_common/msw-helpers';
-import { Cart, Item } from '../../src/api/order/order.type';
-import { ResponseData } from '../../src/api/api.type';
+import { Handler } from '@super-components/_common/msw-helpers';
+import { Cart, Item } from '@/api/order/order.type';
+import { ResponseData } from '@/api/api.type';
 
 const getCart = (): Cart => {
   const expire = new Date();

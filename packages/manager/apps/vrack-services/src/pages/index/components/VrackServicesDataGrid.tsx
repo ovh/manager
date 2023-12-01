@@ -102,8 +102,12 @@ export const VrackServicesDatagrid: React.FC = () => {
       title: t('createdAt'),
       field: 'createdAt',
       isSortable: true,
-      formatter: (createdAt: string) =>
-        formatDateString(createdAt, i18n.language),
+      formatter: (createdAt: string) => {
+        const date = new Date(createdAt);
+        return date.toString() !== 'Invalid Date'
+          ? date.toLocaleDateString(i18n.language)
+          : '-';
+      },
     },
     {
       title: t('actions'),

@@ -1,65 +1,55 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, useResolvedPath } from 'react-router-dom';
-import { useQueries } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { BreadcrumbHandleParams } from '../../../components/Breadcrumb';
 import {
-  getvrackServicesResourceVrackServicesId,
-  getvrackServicesResourceVrackServicesIdQueryKey,
-} from '../../../api';
+  getVrackServicesResourceList,
+  getVrackServicesResourceListQueryKey,
+} from '@/api';
 import { DashboardLayout } from '../../../components/layout-helpers';
-import { ErrorPage } from '../../../components/Error';
+import { ApiError, ErrorPage } from '../../../components/Error';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.id;
 }
 
-export default function DashboardPage() {
+const DashboardPage: React.FC = () => {
   const { t } = useTranslation('vrack-services/dashboard');
   const { id } = useParams();
-  const results: any = useQueries({
-    queries: [
-      {
-        queryKey: [
-          getvrackServicesResourceVrackServicesIdQueryKey({
-            vrackServicesId: id,
-          }),
-        ],
-        queryFn: () =>
-          getvrackServicesResourceVrackServicesId({ vrackServicesId: id }),
-        staleTime: Infinity,
-      },
-      // {
-      //   queryKey: [
-      //     getvrackServicesResourceVrackServicesIdServiceInfosQueryKey({
-      //       vrackServicesId,
-      //     }),
-      //   ],
-      //   queryFn: () =>
-      //     getvrackServicesResourceVrackServicesIdServiceInfos({
-      //       vrackServicesId,
-      //     }),
-      //   staleTime: Infinity,
-      // },
-    ],
+
+  const { data, isError, error, isLoading } = useQuery({
+    queryKey: getVrackServicesResourceListQueryKey,
+    queryFn: () => getVrackServicesResourceList(),
   });
 
   const tabsList = [
     {
-      name: 'general_infos',
-      title: t('general_informations'),
+      name: 'overview',
+      title: t('overviewTabLabel'),
       to: useResolvedPath('').pathname,
     },
     {
-      name: 'custom tab',
-      title: 'custom tab',
-      to: useResolvedPath('Tabs2').pathname,
+      name: 'subnets',
+      title: t('subnetsTabLabel'),
+      to: useResolvedPath('Subnets').pathname,
+    },
+    {
+      name: 'endpoints',
+      title: t('endpointsTabLabel'),
+      to: useResolvedPath('Endpoints').pathname,
     },
   ];
 
-  if (results[0].status === 'success' && results[0]?.data?.status !== 200) {
-    return <ErrorPage error={results[0].data} />;
+  if (
+    isError ||
+    (!isLoading &&
+      !data?.data?.find((vrackServices) => vrackServices.id === id))
+  ) {
+    return <ErrorPage error={error as ApiError} />;
   }
 
   return <DashboardLayout tabs={tabsList} />;
-}
+};
+
+export default DashboardPage;

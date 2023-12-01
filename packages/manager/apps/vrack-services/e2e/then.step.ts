@@ -1,11 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
-import { ICustomWorld } from '../../../../../playwright-helpers/custom-world';
-import {
-  modalDescriptionLine1,
-  creationServiceError,
-} from '../src/public/translations/vrack-services/create/Messages_fr_FR.json';
+import { ICustomWorld } from '@playwright-helpers/custom-world';
+import { modalDescriptionLine1 } from '../src/public/translations/vrack-services/create/Messages_fr_FR.json';
 import {
   deliveringVrackServicesMessage,
   emptyDataGridMessage,
@@ -44,7 +41,7 @@ Then('User sees {word} error message', async function(
   anyErrorMessage: 'an' | 'no',
 ) {
   const error = await this.page.locator('osds-message', {
-    hasText: creationServiceError,
+    hasText: this.testContext.errorMessage,
   });
   if (anyErrorMessage === 'an') {
     await expect(error).toBeVisible();

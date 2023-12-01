@@ -50,7 +50,7 @@ export const Breadcrumb: React.FC = () => {
       });
   }, [matches]);
 
-  const rootName = `${window.location.origin}/#/vrack-services`;
+  const rootName = `${window.location.origin}/#`;
   const crumbs = [...categoryCrumbs, ...matchCrumbs];
   const data = crumbs.map((crumb) => ({
     label: crumb.label,
