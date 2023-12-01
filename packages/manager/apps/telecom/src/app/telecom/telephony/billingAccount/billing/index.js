@@ -10,8 +10,6 @@ import calledFees from './calledFees';
 import creditThreshold from './creditThreshold';
 import deposit from './deposit';
 import depositMovement from './depositMovement';
-import groupRepayments from './groupRepayments';
-import repaymentHistory from './repaymentHistory';
 import summary from './summary';
 import tollfreeHistory from './tollfreeHistory';
 
@@ -31,8 +29,6 @@ angular
     creditThreshold,
     deposit,
     depositMovement,
-    groupRepayments,
-    repaymentHistory,
     summary,
     tollfreeHistory,
   ])
