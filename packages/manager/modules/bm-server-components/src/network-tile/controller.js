@@ -10,6 +10,7 @@ export default class BmServerComponentsNetworkTileController {
   }
 
   $onInit() {
+    this.statePrefix = this.statePrefix || 'app.dedicated-server.server';
     this.manageIpUrl = this.coreURLBuilder.buildURL(
       'dedicated',
       '#/ip?serviceName=:serviceName',

@@ -3,6 +3,7 @@ import template from './server.html';
 
 export default {
   bindings: {
+    statePrefix: '<',
     currentActiveLink: '<',
     features: '<',
     ola: '<',
