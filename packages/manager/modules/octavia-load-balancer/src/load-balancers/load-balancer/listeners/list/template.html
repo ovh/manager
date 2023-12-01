@@ -1,4 +1,4 @@
-<oui-datagrid class="table-striped" data-rows="$ctrl.listeners">
+<oui-datagrid data-rows="$ctrl.listeners">
     <oui-datagrid-topbar>
         <oui-button
             data-ng-click="$ctrl.goToListenerCreation()"
@@ -20,8 +20,13 @@
         data-type="string"
         data-prevent-customization
     >
-        <a data-ng-click="$ctrl.goToListenerEdition($row)">
-            {{ ::$value }}
+        <a
+            data-ng-href="{{:: $ctrl.getListenerEditionLink($row)}}"
+            data-track-on="click"
+            data-track-name="{{:: $ctrl.trackRoot + $ctrl.LISTENER_EDITION_TRACKING_SUFFIX}}"
+            data-track-type="action"
+        >
+            <span data-ng-bind="::$value"></span>
         </a>
     </oui-datagrid-column>
     <oui-datagrid-column
@@ -32,7 +37,16 @@
         data-filterable
         data-type="string"
         data-helper=":: 'octavia_load_balancer_listeners_default_pool_helper' | translate"
+        data-prevent-customization
     >
+        <a
+            data-ng-href="{{:: $ctrl.getPoolDetailLink($row)}}"
+            data-track-on="click"
+            data-track-name="{{:: $ctrl.trackRoot + $ctrl.POOL_DETAIL_TRACKING_SUFFIX}}"
+            data-track-type="action"
+        >
+            <span data-ng-bind="::$value"></span>
+        </a>
     </oui-datagrid-column>
     <oui-datagrid-column
         data-title=":: 'octavia_load_balancer_listeners_protocol' | translate"

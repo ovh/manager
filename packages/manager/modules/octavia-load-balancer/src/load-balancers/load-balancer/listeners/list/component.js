@@ -5,8 +5,11 @@ export default {
   bindings: {
     listeners: '<',
     goToListenerCreation: '<',
+    getListenerEditionLink: '<',
     goToListenerEdition: '<',
     goToListenerDeletion: '<',
+    getPoolDetailLink: '<',
+    trackRoot: '<',
   },
   controller,
   template,
