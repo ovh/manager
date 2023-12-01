@@ -2,9 +2,13 @@ export const DEFAULT_ALGORITHM = 'roundRobin';
 
 export const DEFAULT_SESSION_PERSISTENCE_TYPE = 'sourceIP';
 
-const persistenceTypes = ['sourceIP', 'httpCookie', 'appCookie'];
+export const APP_COOKIE_SESSION_PERSISTENCE = 'appCookie';
 
-export const APP_COOKIE_SESSION_PERSISTENCE = persistenceTypes[2];
+const persistenceTypes = [
+  DEFAULT_SESSION_PERSISTENCE_TYPE,
+  'httpCookie',
+  APP_COOKIE_SESSION_PERSISTENCE,
+];
 
 export const PROTOCOL_SESSION_PERSISTENCE_TYPE_COMBINATION = {
   http: persistenceTypes,
@@ -12,8 +16,8 @@ export const PROTOCOL_SESSION_PERSISTENCE_TYPE_COMBINATION = {
   tcp: persistenceTypes,
   proxy: persistenceTypes,
   proxyV2: persistenceTypes,
-  udp: [persistenceTypes[0]],
-  sctp: [persistenceTypes[0]],
+  udp: [DEFAULT_SESSION_PERSISTENCE_TYPE],
+  sctp: [DEFAULT_SESSION_PERSISTENCE_TYPE],
 };
 
 export default {
