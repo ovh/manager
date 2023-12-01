@@ -95,6 +95,14 @@ export default /* @ngInject */ ($stateProvider) => {
             $stateParams.productId,
           ),
         }),
+      goToTrafficOrder: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.interfaces.traffic-order', {
+          productId: serverName,
+        }),
+      goToTrafficCancel: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.interfaces.traffic-cancel', {
+          productId: serverName,
+        }),
       urls: /* @ngInject */ (constants, user) =>
         constants.urls[user.ovhSubsidiary],
       breadcrumb: /* @ngInject */ ($translate) =>

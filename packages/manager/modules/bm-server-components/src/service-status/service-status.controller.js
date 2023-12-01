@@ -4,7 +4,7 @@ import {
   MONITORING_STATUSES,
 } from './service-status.constants';
 
-export default class BmServerComponentsGeneralInformationController {
+export default class BmServerComponentsDashboardServiceStatusController {
   /* @ngInject */
   constructor(
     $state,
@@ -42,7 +42,7 @@ export default class BmServerComponentsGeneralInformationController {
   }
 
   rebootServer() {
-    return this.$state.go('app.dedicated-server.server.dashboard.reboot');
+    return this.$state.go(`.reboot`);
   }
 
   removeHack() {
