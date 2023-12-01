@@ -1,4 +1,5 @@
 {
   "domain_tab_ZONE_detach": "Desvincular",
-  "domain_zone": "Zona DNS"
+  "domain_zone": "Zona DNS",
+  "zone_history": "Historial de zonas"
 }

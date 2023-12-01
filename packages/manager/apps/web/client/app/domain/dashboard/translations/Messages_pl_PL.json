@@ -829,5 +829,6 @@
   "domain_configuration_restorable_title_button": "Przywróć",
   "domain_hosting_price_ht_label": "{{price}} netto",
   "domain_dashboard_obfuscated_email": "Adresy antyspamowe",
-  "domain_dashboard_obfuscated_email_regenerate_button": "Zarządzanie adresami antyspamowymi"
+  "domain_dashboard_obfuscated_email_regenerate_button": "Zarządzanie adresami antyspamowymi",
+  "domain_configuration_dns_entry_see_dns_history_button": "Wyświetl historię strefy DNS"
 }
