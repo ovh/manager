@@ -1,4 +1,3 @@
-import { TRACKING_CHAPTER_1, TRACKING_NAME } from '../constants';
 import { TRACKING_SUFFIX } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -9,8 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: () => 'listeners',
-      trackBase: () =>
-        `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::${TRACKING_SUFFIX}`,
+      trackBase: /* @ngInject */ (trackRoot) =>
+        `${trackRoot}::${TRACKING_SUFFIX}`,
       trackAction: /* @ngInject */ (atInternet, trackBase) => (hit) =>
         atInternet.trackClick({
           name: `${trackBase}::${hit}`,
