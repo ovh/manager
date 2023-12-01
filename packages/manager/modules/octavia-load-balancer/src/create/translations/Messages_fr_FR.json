@@ -20,7 +20,7 @@
   "octavia_load_balancer_create_floating_ip_new_information": "La création de votre Floating IP se fera à la fin du processus de configuration.",
   "octavia_load_balancer_create_floating_ip_new_price": "La nouvelle Floating IP sera facturée {{price}}",
   "octavia_load_balancer_create_floating_ip_new_price_interval": " / heure",
-  "octavia_load_balancer_create_floating_ip_no_floating_ip_information": "En choississant de n'attacher aucune IP Publique, votre Load balancer ne sera accesible que depuis un réseau privé.",
+  "octavia_load_balancer_create_floating_ip_no_floating_ip_information": "En choississant de n'attacher aucune IP Publique, votre Load balancer ne sera accessible que depuis un réseau privé.",
   "octavia_load_balancer_create_private_network_title": "Sélectionnez un réseau privé",
   "octavia_load_balancer_create_private_network_intro": "Configurer le réseau privé dans lequel sera hébergé votre load balancer : si vous souhaitez qu'une floating IP soit associé à votre load balancer, le subnet doit avoir une gateway ip",
   "octavia_load_balancer_create_private_network_field": "Choisissez un réseau privé",
