@@ -4,6 +4,7 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="ctrl.onFinishDkim.bind(ctrl)"
+        data-wizard-cancel-button-text="('exchange_tab_domain_diagnostic_dkim_' + (ctrl.hideConfirmButton ? 'cancel' : 'close')) | translate"
         data-wizard-confirm-button-text="ctrl.dkimStatus === ctrl.DKIM_STATUS.ACTIVE ?
         'exchange_tab_domain_diagnostic_dkim_deactivate' : 'exchange_tab_domain_diagnostic_dkim_activate' | translate"
         data-wizard-hide-confirm-button="ctrl.hideConfirmButton"
