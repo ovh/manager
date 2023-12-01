@@ -24,6 +24,9 @@ import interventions from '../intervention';
 import ipmi from '../ipmi';
 import orderKvm from '../kvm/order';
 import netboot from '../netboot';
+import trafficOrder from './traffic/order';
+import trafficCancel from './traffic/cancel';
+import trafficService from './traffic/traffic.service';
 import routing from './server.routing';
 
 const moduleName = 'ovhManagerDedicatedServerDetail';
@@ -51,8 +54,11 @@ angular
     monitoring,
     reverseDnsUpdate,
     reverseDnsDelete,
+    trafficOrder,
+    trafficCancel,
   ])
   .config(routing)
+  .service('ServerTrafficService', trafficService)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
