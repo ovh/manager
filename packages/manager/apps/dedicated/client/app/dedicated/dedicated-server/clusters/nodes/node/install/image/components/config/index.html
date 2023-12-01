@@ -1,0 +1,173 @@
+<div class="dedicated-server-install-image-config">
+    <h3 data-translate="dedicated_server_install_image_config"></h3>
+
+    <oui-field
+        data-label="{{ :: 'dedicated_server_install_image_config_url' | translate }}"
+        data-size="xl"
+        data-error-messages="{ url: ('dedicated_server_install_image_config_url_invalid' | translate) }"
+    >
+        <input
+            class="oui-input"
+            name="imageUrl"
+            id="imageUrl"
+            type="url"
+            data-ng-model="$ctrl.model.url"
+            data-required
+            data-ng-disabled="$ctrl.loaders.launchInstall"
+        />
+    </oui-field>
+
+    <div class="oui-field oui-field_xl">
+        <div class="oui-field__header">
+            <label
+                class="oui-field__label"
+                data-translate="dedicated_server_install_image_config_http_header"
+            >
+            </label>
+        </div>
+        <div class="oui-field__control">
+            <div class="oui-inline-adder mb-2">
+                <div
+                    class="oui-inline-adder__form"
+                    data-ng-class="{ 'oui-inline-adder__form_added': $ctrl.model.httpHeader[$index].added }"
+                    data-ng-repeat="httpHeader in $ctrl.model.httpHeader track by $index"
+                >
+                    <fieldset class="oui-inline-adder__fieldset">
+                        <div class="oui-inline-adder__row">
+                            <div class="oui-inline-adder__field">
+                                <oui-field
+                                    data-label="{{ :: 'dedicated_server_install_image_config_http_header_key' | translate }}"
+                                >
+                                    <input
+                                        class="oui-input"
+                                        data-ng-attr-name="hearderKey-{{$index}}"
+                                        data-ng-attr-id="hearderKey-{{$index}}"
+                                        type="text"
+                                        data-ng-model="$ctrl.model.httpHeader[$index].model.key"
+                                        data-ng-required="$ctrl.model.httpHeader[$index].model.value"
+                                        data-ng-disabled="$ctrl.model.httpHeader[$index].added || $ctrl.loaders.launchInstall"
+                                    />
+                                </oui-field>
+                            </div>
+                            <div class="oui-inline-adder__field">
+                                <oui-field
+                                    data-label="{{ :: 'dedicated_server_install_image_config_http_header_value' | translate }}"
+                                >
+                                    <input
+                                        class="oui-input"
+                                        data-ng-attr-name="hearderValue-{{$index}}"
+                                        data-ng-attr-id="hearderValue-{{$index}}"
+                                        type="text"
+                                        data-ng-model="$ctrl.model.httpHeader[$index].model.value"
+                                        data-ng-required="$ctrl.model.httpHeader[$index].model.key"
+                                        data-ng-disabled="$ctrl.model.httpHeader[$index].added || $ctrl.loaders.launchInstall"
+                                    />
+                                </oui-field>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <footer class="oui-inline-adder__footer">
+                        <button
+                            type="button"
+                            class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
+                            data-translate-attr="{title: 'dedicated_server_install_image_config_http_header_add'}"
+                            data-ng-click="$ctrl.onHttpHeaderAddBtnClick($index)"
+                            data-ng-if="!$ctrl.model.httpHeader[$index].added"
+                            data-ng-disabled="!$ctrl.model.httpHeader[$index].model.key || !$ctrl.model.httpHeader[$index].model.value || $ctrl.loaders.launchInstall"
+                        >
+                            <span class="oui-icon oui-icon-add"></span>
+                        </button>
+                        <button
+                            type="button"
+                            class="oui-inline-adder__action oui-button oui-button_primary oui-button_s"
+                            data-translate-attr="{title: 'dedicated_server_install_image_config_http_header_delete'}"
+                            data-ng-click="$ctrl.onHttpHeaderDeleteBtnClick($index)"
+                            data-ng-if="$ctrl.model.httpHeader[$index].added"
+                            data-ng-disabled="$ctrl.loaders.launchInstall"
+                        >
+                            <span class="oui-icon oui-icon-trash"></span>
+                        </button>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <div class="oui-field__footer">
+            <div class="oui-field__helper">
+                <span
+                    data-translate="dedicated_server_install_image_config_http_header_explain"
+                ></span>
+            </div>
+        </div>
+    </div>
+
+    <oui-field
+        data-label="{{ :: 'dedicated_server_install_image_config_image_type' | translate }}"
+        data-size="xl"
+    >
+        <label class="oui-select">
+            <select
+                class="oui-select__input"
+                data-ng-options="imageType for imageType in $ctrl.imageTypeEnum"
+                name="imageType"
+                id="imageType"
+                data-ng-model="$ctrl.model.imageType"
+                data-ng-disabled="$ctrl.loaders.launchInstall"
+            >
+            </select>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
+        </label>
+    </oui-field>
+
+    <oui-field
+        data-label="{{ :: 'dedicated_server_install_image_config_checksum_type' | translate }}"
+        data-size="xl"
+    >
+        <label class="oui-select">
+            <select
+                class="oui-select__input"
+                data-ng-options="checksumType for checksumType in $ctrl.checksumTypeEnum"
+                name="checksumType"
+                id="checksumType"
+                data-ng-model="$ctrl.model.checkSumType"
+                data-ng-disabled="$ctrl.loaders.launchInstall"
+            >
+            </select>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
+        </label>
+    </oui-field>
+
+    <oui-field
+        data-label="{{ :: 'dedicated_server_install_image_config_checksum' | translate }}"
+        data-size="xl"
+    >
+        <input
+            class="oui-input"
+            name="checksum"
+            id="imageChecksum"
+            type="text"
+            data-ng-model="$ctrl.model.checkSum"
+            data-required
+            data-ng-disabled="$ctrl.loaders.launchInstall"
+        />
+    </oui-field>
+
+    <oui-field
+        data-label="{{ :: 'dedicated_server_install_image_config_description' | translate }}"
+        data-size="xl"
+    >
+        <input
+            class="oui-input"
+            name="description"
+            id="imageDescription"
+            type="text"
+            data-ng-model="$ctrl.model.description"
+            data-ng-disabled="$ctrl.loaders.launchInstall"
+        />
+    </oui-field>
+</div>

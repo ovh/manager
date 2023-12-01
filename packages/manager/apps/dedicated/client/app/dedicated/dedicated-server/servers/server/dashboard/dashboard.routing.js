@@ -272,6 +272,14 @@ export default /* @ngInject */ ($stateProvider) => {
             $stateParams.productId,
           ),
         }),
+      goToTrafficOrder: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.dashboard.traffic-order', {
+          productId: serverName,
+        }),
+      goToTrafficCancel: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.dashboard.traffic-cancel', {
+          productId: serverName,
+        }),
       vrackInfos: /* @ngInject */ ($stateParams, Server) =>
         Server.getVrackInfos($stateParams.productId),
       breadcrumb: () => null,

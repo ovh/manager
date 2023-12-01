@@ -60,6 +60,8 @@
         data-traffic-information="$ctrl.trafficInformation"
         data-dedicated-server="$ctrl.dedicatedServer"
         data-current-active-link="$ctrl.currentActiveLink"
+        data-go-to-traffic-order="$ctrl.goToTrafficOrder"
+        data-go-to-traffic-cancel="$ctrl.goToTrafficCancel"
     >
     </server-consumption-tile>
 </div>
@@ -69,5 +71,7 @@
     class="mb-5"
     data-ng-if="!$ctrl.server.isExpired && !['hgr', 'scale'].includes($ctrl.technicalDetails.server.range)"
 >
-    <server-mrtg-tile data-server-service="$ctrl.serverService"></server-mrtg-tile>
+    <server-mrtg-tile
+        data-server-service="$ctrl.serverService"
+    ></server-mrtg-tile>
 </div>

@@ -1,0 +1,14 @@
+{
+  "dedicated_server_install_image_config_drive": "Aktivierung von ConfigDrive",
+  "dedicated_server_install_image_config_drive_eplain": "Das ConfigDrive ist eine notwendige Partition, um Cloud-init beim ersten Laden Ihres Servers zu verwenden und die gewünschte Konfiguration festzulegen. Sie können auswählen, ob Sie diese Option aktivieren möchten.",
+  "dedicated_server_install_image_config_drive_activated": "Aktiviert",
+  "dedicated_server_install_image_config_drive_deactivated": "Deaktiviert",
+  "dedicated_server_install_image_config_drive_hostname": "Server-Hostname",
+  "dedicated_server_install_image_config_drive_ssh": "SSH-Schlüssel (optional)",
+  "dedicated_server_install_image_config_drive_ssh_invalid": "Das Format des SSH-Schlüssels ist ungültig. Unterstützte Formate: {{ validFormats }}",
+  "dedicated_server_install_image_config_drive_script": "Konfigurationsskript nach der Installation (optional)",
+  "dedicated_server_install_image_config_drive_meta_data": "Metadaten, die von Nova zum Zeitpunkt des Ladens verwendet werden (optional)",
+  "dedicated_server_install_image_config_drive_meta_data_key": "Schlüssel",
+  "dedicated_server_install_image_config_drive_meta_data_value": "Wert",
+  "dedicated_server_install_image_config_drive_eplain_link_name": "Klicken Sie hier, um die Dokumente dazu zu lesen."
+}

@@ -29,13 +29,10 @@ export default class BmServerComponentsGeneralInformationController {
       this.trackPage(`${this.trackingPrefix}::system-install`);
     }
 
-    return this.$state.go(
-      `app.dedicated-server.server.dashboard.installation-${type}`,
-      {
-        server: this.server,
-        user: this.user,
-      },
-    );
+    return this.$state.go(`.installation-${type}`, {
+      server: this.server,
+      user: this.user,
+    });
   }
 
   canInstallOs() {
