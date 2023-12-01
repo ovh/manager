@@ -3,6 +3,7 @@ import template from './dashboard.html';
 
 export default {
   bindings: {
+    statePrefix: '<',
     bandwidthInformations: '<',
     biosSettings: '<',
     changeOwnerAvailable: '<',
@@ -43,6 +44,8 @@ export default {
     nutanixCluster: '<',
     goToUpdateReverseDns: '<',
     goToDeleteReverseDns: '<',
+    goToTrafficOrder: '<',
+    goToTrafficCancel: '<',
   },
   controller,
   template,

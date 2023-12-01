@@ -17,7 +17,6 @@ import {
   serverNetwork,
   serverConsumptionTile,
   serverAdvancedFeatures,
-  serverProfessionalUse,
 } from '@ovh-ux/manager-bm-server-components';
 import commitment from './commitment';
 import cancelCommitment from './cancel-commitment';
@@ -57,7 +56,6 @@ angular
     serverNetwork,
     serverConsumptionTile,
     serverAdvancedFeatures,
-    serverProfessionalUse,
     installationChoice,
     installationGabarit,
     installationOvh,
