@@ -1,3 +1,5 @@
+import { LOAD_BALANCER_NAME_REGEX } from '../../../../create/constants';
+
 export default class OctaviaLoadBalancerEditNameCtrl {
   /* @ngInject */
   constructor(OctaviaLoadBalancerService, Alerter, $translate) {
@@ -5,6 +7,7 @@ export default class OctaviaLoadBalancerEditNameCtrl {
     this.OctaviaLoadBalancerService = OctaviaLoadBalancerService;
     this.Alerter = Alerter;
     this.$translate = $translate;
+    this.loadBalancerNameRegex = LOAD_BALANCER_NAME_REGEX;
   }
 
   $onInit() {
