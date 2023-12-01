@@ -4,7 +4,7 @@ import { TRACKING_NAME } from '../../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('octavia-load-balancer.loadbalancer.listeners.edit', {
-    url: '/edit?listenerId',
+    url: '/:listenerId/edit',
     views: {
       loadbalancerListenersView: 'octaviaLoadBalancerListenersEdit',
     },
