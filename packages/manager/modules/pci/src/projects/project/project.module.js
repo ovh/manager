@@ -7,7 +7,6 @@ import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 import ovhManagerAdvices from '@ovh-ux/manager-advices';
 import trustedNic from '@ovh-ux/manager-trusted-nic';
-import vouchers from '@ovh-ux/manager-pci-vouchers';
 
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import billing from './billing';
@@ -75,7 +74,6 @@ angular
     sshKeys,
     storages,
     users,
-    vouchers,
     workflow,
     training,
     pciAnnouncementBanner,
