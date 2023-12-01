@@ -7,7 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('network_security_dashboard_title'),
+        $translate.instant('network_security_dashboard_breadcrumb'),
       getSubnet: /* @ngInject */ ($state) => () => $state.params.subnet,
     },
   });

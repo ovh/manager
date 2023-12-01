@@ -1,5 +1,6 @@
 {
-  "network_security_title": "Sécurité réseau",
+  "network_security_title": "Network",
+  "network_security_dashboard_breadcrumb": "Network Security Dashboard",
   "network_security_dashboard_title": "Tableau de bord Anti-DDoS (bêta)",
   "network_security_dashboard_guides": "Guides",
   "network_security_dashboard_header_content_survey": "En surveillant constamment le trafic réseau, nous observons un certain nombre d’activités suspectes. Pour chacune d’entre elles, le trafic réseau entrant est redirigé de manière transparente via nos centres de nettoyage pour une analyse plus approfondie et un éventuel nettoyage des attaquants afin de fournir la meilleure expérience sans interruption.",
