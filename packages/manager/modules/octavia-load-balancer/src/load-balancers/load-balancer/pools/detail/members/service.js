@@ -32,4 +32,10 @@ export default class OctaviaLoadBalancerMembersService {
       },
     );
   }
+
+  getInstances(projectId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/instance/`)
+      .then(({ data }) => data);
+  }
 }
