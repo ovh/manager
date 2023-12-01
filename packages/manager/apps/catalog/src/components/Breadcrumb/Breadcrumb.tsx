@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Params, useMatches } from 'react-router-dom';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/breadcrumb/react';
+import { useShell } from '@ovh-ux/manager-react-core-application';
 
 export type BreadcrumbHandleParams = {
   data: unknown;
@@ -23,14 +24,21 @@ type Match = {
 };
 
 function Breadcrumb(): JSX.Element {
-  const categoryCrumbs = [
-    {
-      label: 'Dashboard',
-      href: 'hub',
-    },
-  ];
   const matches = useMatches();
+  const shell = useShell();
+  const [root, setRoot] = useState([]);
   const [matchCrumbs, setMatchCrumbs] = useState<BreadcrumbItem[]>([]);
+
+  useEffect(() => {
+    shell.navigation.getURL('hub', '#/', {}).then((response: string) =>
+      setRoot([
+        {
+          label: 'Dashboard',
+          href: response,
+        },
+      ]),
+    );
+  }, []);
 
   useEffect(() => {
     const items = matches.map(async (match) => {
@@ -55,11 +63,10 @@ function Breadcrumb(): JSX.Element {
       });
   }, [matches]);
 
-  const rootName = '/#/';
-  const crumbs = [...categoryCrumbs, ...matchCrumbs];
+  const crumbs = [...root, ...matchCrumbs];
   const data = crumbs.map((crumb, index) => ({
     label: crumb.label,
-    href: `${rootName}${crumb.href}`,
+    href: `${crumb.href}`,
   }));
   return <OsdsBreadcrumb items={data} />;
 }
