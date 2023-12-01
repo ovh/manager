@@ -66,7 +66,7 @@
     </oui-field>
     <oui-form-actions
         data-disabled="!listener.$valid"
-        data-submit-text="{{:: 'octavia_load_balancer_listeners_create_submit' | translate }}"
+        data-submit-text="{{:: 'octavia_load_balancer_listeners_create_submit' + ($ctrl.isEditing ? '_edition' : '') | translate }}"
         data-cancel-text="{{:: 'octavia_load_balancer_listeners_create_cancel' | translate }}"
         data-on-submit="$ctrl.onSubmit()"
         data-on-cancel="$ctrl.onCancel()"
