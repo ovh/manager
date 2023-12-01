@@ -27,15 +27,10 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       openBill: /* @ngInject */ ($window) => (billUrl) =>
         $window.open(billUrl, '_blank'),
-      orderApiSchema: /* @ngInject */ (WucOrderCartService) =>
-        WucOrderCartService.getOrderApiSchema(),
       pricings: /* @ngInject */ (catalog, PrivateDatabaseOrderCloudDb) =>
         PrivateDatabaseOrderCloudDb.constructor.getPricings(catalog.plans),
-      ramSizes: /* @ngInject */ (orderApiSchema, PrivateDatabaseOrderCloudDb) =>
-        PrivateDatabaseOrderCloudDb.constructor.getOrderableRamSizes(
-          orderApiSchema,
-        ),
-
+      ramSizes: /* @ngInject */ (catalog, PrivateDatabaseOrderCloudDb) =>
+        PrivateDatabaseOrderCloudDb.getOrderedRamSizes(catalog.plans),
       displayErrorMessage: /* @ngInject */ ($timeout, Alerter) => (
         errorMessage,
       ) =>
