@@ -15,6 +15,8 @@ import {
 import { loadManagerTMS } from './manager-tms';
 import { debug } from './utils';
 
+import initMixCommander from './mix-commander';
+
 function getPageTrackingData(
   page: LegacyTrackingData,
 ): Partial<PageTrackingData> {
@@ -193,6 +195,8 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
           updateVisitorId(this.tag.clientSideUserId.get());
         }
       }
+      // Init mix commander
+      initMixCommander(this.getGenericTrackingData({ name: '', level2: '' }));
     });
   }
 
