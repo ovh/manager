@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.11.0...@ovh-ux/manager-pci@6.12.0) (2023-12-01)
+
+
+### Features
+
+* add docker command into ai deploy order funnel ([#10222](https://github.com/ovh/manager/issues/10222)) ([9aebef1](https://github.com/ovh/manager/commit/9aebef1aea013629e64651ae811c3b5884e4254f))
+* **pci.ai:** stop starting notebook ([5c1f66a](https://github.com/ovh/manager/commit/5c1f66a79b4ab903cdd1ee313ef0bf7c339adeea))
+
+
+
+
+
 # [6.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.10.0...@ovh-ux/manager-pci@6.11.0) (2023-11-29)
 
 

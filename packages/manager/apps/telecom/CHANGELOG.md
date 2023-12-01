@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.1.0...@ovh-ux/manager-telecom@15.2.0) (2023-12-01)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** add catch error on delete sounds ([81238d6](https://github.com/ovh/manager/commit/81238d63a3c41ce78f72ff7297bcce87a553af20))
+
+
+### Features
+
+* **telecom.voip:** permit to make a redirection via the manager ([#10186](https://github.com/ovh/manager/issues/10186)) ([0ebc705](https://github.com/ovh/manager/commit/0ebc70507f00d761f6dd4911c401e014b8d80127))
+
+
+
+
+
 # [15.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.9...@ovh-ux/manager-telecom@15.1.0) (2023-11-21)
 
 

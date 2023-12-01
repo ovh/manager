@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-styles@1.6.0...@ovh-ux/manager-cloud-styles@1.6.1) (2023-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-cloud-styles
+
+
+
+
+
 # [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-styles@1.5.6...@ovh-ux/manager-cloud-styles@1.6.0) (2023-11-21)
 
 

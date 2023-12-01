@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.39.0...@ovh-ux/manager-vps@2.39.1) (2023-12-01)
+
+
+### Bug Fixes
+
+* **dedicated:** resolve vps upgrade issue ([23e824f](https://github.com/ovh/manager/commit/23e824f7a00f8625d72e22af13aa918efb8002d9))
+
+
+
+
+
 # [2.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.38.1...@ovh-ux/manager-vps@2.39.0) (2023-11-21)
 
 

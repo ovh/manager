@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.12.0...@ovh-ux/manager-cloud-connect@1.12.1) (2023-12-01)
+
+
+### Bug Fixes
+
+* **dedicated.cloud-connect:** fix order follow up vs onboarding page ([5082d60](https://github.com/ovh/manager/commit/5082d60da9a6c0820cadbf2d10ba40b1114434ec))
+
+
+
+
+
 # [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.11.3...@ovh-ux/manager-cloud-connect@1.12.0) (2023-11-21)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.35.0...@ovh-ux/manager-container-app@0.35.1) (2023-12-01)
+
+
+### Bug Fixes
+
+* **container:** enable lint for container and fix lint error ([535bfc0](https://github.com/ovh/manager/commit/535bfc080f4c99983d9f848c3c4563e0dacb2388))
+
+
+
+
+
 # [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.34.0...@ovh-ux/manager-container-app@0.35.0) (2023-11-21)
 
 

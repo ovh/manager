@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web",
-  "version": "18.6.0",
+  "version": "18.7.0",
   "private": true,
   "description": "OVHcloud Web control panel.",
   "repository": {
@@ -41,7 +41,7 @@
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.4.0",
     "@ovh-ux/ng-ovh-actions-menu": "^5.1.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.9.0",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.9.1",
     "@ovh-ux/ng-ovh-contracts": "^4.4.0",
     "@ovh-ux/ng-ovh-export-csv": "^2.1.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.0",
@@ -56,7 +56,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.0",
     "@ovh-ux/ng-ovh-user-pref": "^2.1.0",
     "@ovh-ux/ng-ovh-utils": "^14.1.0",
-    "@ovh-ux/ng-ovh-web-universe-components": "^9.11.5",
+    "@ovh-ux/ng-ovh-web-universe-components": "^9.11.6",
     "@ovh-ux/ng-pagination-front": "^10.2.0",
     "@ovh-ux/ng-q-allsettled": "^2.1.0",
     "@ovh-ux/ng-shell-tracking": "^0.4.0",

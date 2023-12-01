@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-connect-app",
-  "version": "1.7.30",
+  "version": "1.7.31",
   "private": true,
   "description": "OVHcloud Connect standalone application.",
   "repository": {
@@ -19,14 +19,14 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-cloud-connect-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-cloud-connect": "^1.12.0",
+    "@ovh-ux/manager-cloud-connect": "^1.12.1",
     "@ovh-ux/manager-config": "^7.1.2",
     "@ovh-ux/manager-core": "^12.14.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.8.0",
     "@ovh-ux/ng-at-internet": "^5.11.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.4.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.9.0",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.9.1",
     "@ovh-ux/ng-ovh-http": "^5.1.0",
     "@ovh-ux/ng-ovh-proxy-request": "^2.1.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.2.0",

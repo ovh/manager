@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iam-app",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "private": true,
   "description": "IAM standalone application.",
   "repository": {

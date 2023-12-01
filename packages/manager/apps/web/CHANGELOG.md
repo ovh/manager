@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.6.0...@ovh-ux/manager-web@18.7.0) (2023-12-01)
+
+
+### Bug Fixes
+
+* **web.hosting:** disable startsql order for free hosting offer ([606013d](https://github.com/ovh/manager/commit/606013d04ea280b7b211c9a7fdffdacdd3b4f4aa))
+
+
+### Features
+
+* **hosting:** remove ownlogs deprecated routes ([c099b24](https://github.com/ovh/manager/commit/c099b246e6d7bc1488f4331fd317820524786cec))
+
+
+
+
+
 # [18.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.5.1...@ovh-ux/manager-web@18.6.0) (2023-11-21)
 
 
