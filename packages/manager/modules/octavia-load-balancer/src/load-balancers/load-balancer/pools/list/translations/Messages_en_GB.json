@@ -11,7 +11,7 @@
   "octavia_load_balancer_pools_provisioning_status_deleting": "deleting",
   "octavia_load_balancer_pools_provisioning_status_error": "error",
   "octavia_load_balancer_pools_provisioning_status_updating": "updating",
-  "octavia_load_balancer_pools_actions_detail": "Edit/See",
+  "octavia_load_balancer_pools_actions_edit": "Edit",
   "octavia_load_balancer_pools_actions_manage_members": "Manage members",
   "octavia_load_balancer_pools_actions_delete": "Delete"
 }
