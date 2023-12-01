@@ -1,5 +1,4 @@
 import flatten from 'lodash/flatten';
-import get from 'lodash/get';
 
 import {
   DATACENTER_CONFIGURATION_KEY,
@@ -10,8 +9,9 @@ import {
 
 export default class PrivateDatabaseOrderCloudDb {
   /* @ngInject */
-  constructor(WucOrderCartService) {
+  constructor(WucOrderCartService, $filter) {
     this.WucOrderCartService = WucOrderCartService;
+    this.$filter = $filter;
   }
 
   getCloudDBCatalog(ovhSubsidiary) {
@@ -116,8 +116,25 @@ export default class PrivateDatabaseOrderCloudDb {
     );
   }
 
-  static getOrderableRamSizes(schema) {
-    return get(schema.models, 'hosting.PrivateDatabase.AvailableRamSizeEnum')
-      .enum;
+  getOrderedRamSizes(plans) {
+    const sizeRegex = /(\d+)\s*(GB|MB)$/;
+
+    return plans
+      .reduce((sizes, plan) => {
+        const matches = plan.invoiceName.match(sizeRegex);
+        if (matches) {
+          const value = parseInt(matches[1], 10);
+          const ram = matches[2] === 'GB' ? value * 1024 : value;
+          sizes.push({
+            label: this.$filter('bytes')(ram, undefined, false, 'MB'),
+            value: ram,
+          });
+        }
+
+        return sizes;
+      }, [])
+      .sort((a, b) => {
+        return a.value > b.value;
+      });
   }
 }
