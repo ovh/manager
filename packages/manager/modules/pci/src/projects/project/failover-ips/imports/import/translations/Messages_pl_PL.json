@@ -1,8 +1,0 @@
-{
- "pci_projects_project_failoverip_imports_import_title": "Potwierdzenie",
- "pci_projects_project_failoverip_imports_import_submit_label": "Importuj",
- "pci_projects_project_failoverip_imports_import_cancel_label": "Anuluj",
- "pci_projects_project_failoverip_imports_import_description": "Czy na pewno chcesz importować ten adres IP Failover?",
- "pci_projects_project_imports_import_success": "Adres IP Failover {{ip}} zostanie zaimportowany do Twojego projektu w ciągu kilku minut.",
- "pci_projects_project_imports_import_error": "Wystąpił błąd podczas importowania adresu IP {{ ip }} ({{ error }}). "
-}

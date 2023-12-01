@@ -10,13 +10,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       url: '/private-networks',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        const promise =
-          $transition$
-            .injector()
-            .get('coreConfig')
-            .getRegion() !== 'US'
-            ? import('./private-networks.module')
-            : import('./legacy/private-networks.module');
+        const promise = import('./private-networks.module');
         return promise.then((mod) => $ocLazyLoad.inject(mod.default || mod));
       },
     });
