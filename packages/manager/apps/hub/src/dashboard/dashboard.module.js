@@ -2,7 +2,6 @@ import angular from 'angular';
 import 'angular-translate';
 
 import ovhManagerHub from '@ovh-ux/manager-hub';
-import catalog from './catalog';
 import orderDashboard from './order-dashboard';
 import welcome from './welcome';
 
@@ -15,7 +14,6 @@ const moduleName = 'ovhManagerHubDashboard';
 
 angular
   .module(moduleName, [
-    catalog,
     orderDashboard,
     ovhManagerHub,
     'ngAtInternet',
