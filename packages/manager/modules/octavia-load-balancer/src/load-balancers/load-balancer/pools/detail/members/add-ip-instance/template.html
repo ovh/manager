@@ -1,0 +1,71 @@
+<oui-stepper
+    data-current-index="$ctrl.currentStep"
+    data-on-finish="$ctrl.addIpInstances()"
+>
+    <!-- IP INSTANCES SELECTION -->
+    <oui-step-form
+        data-header="{{ ::'octavia_load_balancer_pools_detail_members_add_ip_instance_title' | translate }}"
+        data-submit-text="{{ ::'octavia_load_balancer_pools_detail_members_add_ip_instance_action' | translate }}"
+        data-valid="$ctrl.isValid()"
+        data-loading="$ctrl.isLoading"
+        data-description="{{ ::'octavia_load_balancer_pools_detail_members_add_ip_instance_description' | translate }}"
+        data-prevent-next="true"
+        data-on-focus="$ctrl.resetCurrentStep()"
+    >
+        <div class="row mb-2">
+            <div class="col-md-8">
+                <oui-message
+                    type="warning"
+                    aria-close-button-label="{{ ::'octavia_load_balancer_pools_detail_members_add_ip_instance_aria_label_close' | translate}}"
+                    on-dismiss="$ctrl.onDismiss()"
+                    dismissable
+                >
+                    {{
+                    ::'octavia_load_balancer_pools_detail_members_add_ip_instance_banner'
+                    | translate}}
+                </oui-message>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-md-4">
+                <oui-search
+                    model="$ctrl.searchInstance"
+                    on-change="$ctrl.onSearchInstance(modelValue)"
+                    on-reset="$ctrl.onSearchReset()"
+                    placeholder="{{ ::'octavia_load_balancer_pools_detail_members_add_ip_instance_search_placeholder'| translate}}"
+                >
+                </oui-search>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-md-8">
+                <div class="oui-box oui-box_light box-ip-instance">
+                    <span
+                        data-ng-repeat="instance in $ctrl.displayedInstances track by $index"
+                    >
+                        <oui-checkbox
+                            data-name="{{'instance-' + $index}}"
+                            data-model="$ctrl.model.checked[$index]"
+                        >
+                            <span data-ng-bind="instance.label"></span>
+                        </oui-checkbox>
+                    </span>
+                    <span data-ng-if="$ctrl.displayedInstances.length === 0">
+                        {{
+                        ::'octavia_load_balancer_pools_detail_members_add_ip_instance_search_not_found'|
+                        translate}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </oui-step-form>
+
+    <!-- IP INSTANCES PORT SELECTION -->
+    <oui-step-form
+        data-header="{{ 'octavia_load_balancer_pools_detail_members_add_ip_instance_port_title' | translate }}"
+        data-valid="true"
+        data-editable="false"
+        data-on-focus="$ctrl.addPortFocus()"
+    >
+    </oui-step-form>
+</oui-stepper>
