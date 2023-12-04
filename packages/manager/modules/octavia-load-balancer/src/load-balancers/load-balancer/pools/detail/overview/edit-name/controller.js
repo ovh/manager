@@ -17,7 +17,7 @@ export default class OctaviaLoadBalancerEditNameCtrl {
 
   update() {
     this.isLoading = true;
-    this.OctaviaLoadBalancerPoolsService.updateName(
+    this.OctaviaLoadBalancerPoolsService.editPool(
       this.projectId,
       this.region,
       this.pool.id,

@@ -5,6 +5,7 @@ export default {
   bindings: {
     pool: '<',
     listener: '<',
+    goToPoolEdition: '<',
     goToEditName: '<',
     goToDelete: '<',
   },

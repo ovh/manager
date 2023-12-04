@@ -11,5 +11,6 @@
   "octavia_load_balancer_pools_enum_algorithm_sourceIPPort": "Source IP Port",
   "octavia_load_balancer_pools_enum_persistent_session_sourceIP": "Source IP",
   "octavia_load_balancer_pools_enum_persistent_session_httpCookie": "HTTP Cookie",
-  "octavia_load_balancer_pools_enum_persistent_session_appCookie": "App Cookie"
+  "octavia_load_balancer_pools_enum_persistent_session_appCookie": "App Cookie",
+  "octavia_load_balancer_pools_edit_success": "Your {{ pool }} pool has been modified."
 }
