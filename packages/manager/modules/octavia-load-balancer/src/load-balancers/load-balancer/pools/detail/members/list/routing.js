@@ -36,6 +36,18 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
         trackMemberAddInstanceAction: () =>
           `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}::add-instances`,
+        goToMemberEdition: /* @ngInject */ ($state, trackAction) => (
+          member,
+        ) => {
+          trackAction(`${TRACKING_HIT_PREFIX}::edit`);
+          $state.go(
+            'octavia-load-balancer.loadbalancer.pools.detail.members.list.edit-name',
+            {
+              memberId: member.id,
+              memberName: member.name,
+            },
+          );
+        },
         goToMemberDeletion: /* @ngInject */ ($state) => (member) =>
           $state.go(
             'octavia-load-balancer.loadbalancer.pools.detail.members.list.delete',
