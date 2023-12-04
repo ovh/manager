@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.12.1...@ovh-ux/manager-dedicated@19.12.2) (2023-12-04)
+
+
+### Bug Fixes
+
+* **dedicated.server:** display bandwidth plancode ([#9985](https://github.com/ovh/manager/issues/9985)) ([9990dba](https://github.com/ovh/manager/commit/9990dba28e2af0f460be3ad6274ee000c6edc538))
+
+
+
+
+
 ## [19.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.12.0...@ovh-ux/manager-dedicated@19.12.1) (2023-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

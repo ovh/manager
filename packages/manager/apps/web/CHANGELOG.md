@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.7.0...@ovh-ux/manager-web@18.8.0) (2023-12-04)
+
+
+### Features
+
+* **web.hosting:** db order: retrieve ram sizes from new api ([#10387](https://github.com/ovh/manager/issues/10387)) ([b650c24](https://github.com/ovh/manager/commit/b650c24bc0e673fc6b88b6b778e39e0c4e92dea2))
+* **web:** update copy database success message ([#10368](https://github.com/ovh/manager/issues/10368)) ([bc9f0a9](https://github.com/ovh/manager/commit/bc9f0a9b70be0b6cc601a66ed52b453825d3be2b))
+
+
+
+
+
 # [18.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.6.0...@ovh-ux/manager-web@18.7.0) (2023-12-01)
 
 

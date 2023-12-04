@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.12.0...@ovh-ux/manager-pci@6.13.0) (2023-12-04)
+
+
+### Features
+
+* **public-cloud:** add l3 to manager us ([#10179](https://github.com/ovh/manager/issues/10179)) ([dcb2578](https://github.com/ovh/manager/commit/dcb2578a16597723df07a342003d9c993679180c))
+
+
+
+
+
 # [6.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.11.0...@ovh-ux/manager-pci@6.12.0) (2023-12-01)
 
 

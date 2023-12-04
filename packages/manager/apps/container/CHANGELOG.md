@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.35.1...@ovh-ux/manager-container-app@0.36.0) (2023-12-04)
+
+
+### Bug Fixes
+
+* **container:** fix cookie modal when ghostery on ([#10370](https://github.com/ovh/manager/issues/10370)) ([afe4f3d](https://github.com/ovh/manager/commit/afe4f3db2864ebcff306874c03d21c781431f9dd))
+
+
+### Features
+
+* **public-cloud:** add l3 to manager us ([#10179](https://github.com/ovh/manager/issues/10179)) ([dcb2578](https://github.com/ovh/manager/commit/dcb2578a16597723df07a342003d9c993679180c))
+
+
+
+
+
 ## [0.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.35.0...@ovh-ux/manager-container-app@0.35.1) (2023-12-01)
 
 

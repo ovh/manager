@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.5.0...@ovh-ux/manager-iam@1.6.0) (2023-12-04)
+
+
+### Bug Fixes
+
+* **iam:** fix guide url for us ([#10408](https://github.com/ovh/manager/issues/10408)) ([9a3c1cc](https://github.com/ovh/manager/commit/9a3c1ccbd754cfd36c217b98f0b549d08953bb03))
+
+
+### Features
+
+* **iam:** add permissions groups support in iam policy ([#10447](https://github.com/ovh/manager/issues/10447)) ([5b299e5](https://github.com/ovh/manager/commit/5b299e53fef23a4cb38698dd227d7ba799ca56cb))
+
+
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.4.1...@ovh-ux/manager-iam@1.5.0) (2023-10-30)
 
 

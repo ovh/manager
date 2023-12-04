@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.2.0...@ovh-ux/manager-telecom@15.3.0) (2023-12-04)
+
+
+### Features
+
+* **telecom:** remove old reversment pages ([#10354](https://github.com/ovh/manager/issues/10354)) ([309b01a](https://github.com/ovh/manager/commit/309b01ae8e9b2b85a2f165b747b335a6a94df00b))
+
+
+
+
+
 # [15.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.1.0...@ovh-ux/manager-telecom@15.2.0) (2023-12-01)
 
 
