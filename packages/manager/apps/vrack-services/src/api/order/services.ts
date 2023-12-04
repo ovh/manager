@@ -5,6 +5,7 @@ import {
   Order,
   OrderDetail,
   OrderStatus,
+  OrderData,
 } from './order.type';
 import { createFetchDataFn } from '../common';
 
@@ -143,6 +144,13 @@ export const getOrderList = ({
     apiVersion: 'v6',
   })();
 };
+
+export const getOrderData = (orderId: number) =>
+  createFetchDataFn<OrderData>({
+    url: `/me/order/${orderId}`,
+    apiVersion: 'v6',
+    method: 'get',
+  })();
 
 /**
  * Get current status of order

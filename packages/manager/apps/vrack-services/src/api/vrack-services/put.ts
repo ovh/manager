@@ -1,12 +1,9 @@
 import { queryClient } from '@ovh-ux/manager-react-core-application';
-import { TargetSpec, VrackServices } from './vrack-services.type';
+import {
+  UpdateVrackServicesParams,
+  VrackServices,
+} from './vrack-services.type';
 import { createFetchDataFn } from '../common';
-
-export type UpdateVrackServicesParams = {
-  checksum: string;
-  targetSpec: TargetSpec;
-  vrackServicesId: string;
-};
 
 export const updateVrackServicesQueryKey = ({
   vrackServicesId,

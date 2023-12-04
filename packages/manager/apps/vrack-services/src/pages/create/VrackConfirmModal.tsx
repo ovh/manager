@@ -28,11 +28,20 @@ export const VrackConfirmModal: React.FC<Props> = ({
   return (
     // TODO: Put back ODS modal when the buttons work
     // <OsdsModal
-    //   dismissible={undefined}
+    //   dismissible
     //   headline={t('modalHeadline')}
     //   masked={!isModalVisible || undefined}
+    //   onOdsModalClose={onCancel}
     // >
-    <div style={{ display: isModalVisible ? 'flex' : 'none' }}>
+    <div
+      style={{
+        display: isModalVisible ? 'flex' : 'none',
+        flexDirection: 'column',
+        padding: '20px',
+        margin: '20px',
+        border: '3px solid black',
+      }}
+    >
       <OsdsText
         className="block mb-4"
         level={ODS_TEXT_LEVEL.body}

@@ -34,7 +34,7 @@ export type Price = {
     | 'XOF'
     | 'points';
   text: string;
-  priceInUcents: number;
+  priceInUcents?: number;
   value: number;
 };
 
@@ -112,6 +112,19 @@ export type Order = {
   url: string;
 };
 
+export type OrderData = {
+  expirationDate?: string | null;
+  retractionDate?: string | null;
+  priceWithoutTax: Price;
+  date: string;
+  password: string;
+  orderId: number;
+  tax: Price;
+  pdfUrl: string;
+  url: string;
+  priceWithTax: Price;
+};
+
 export type OrderStatus =
   | 'cancelled'
   | 'cancelling'
@@ -146,7 +159,7 @@ export type OrderDetail = {
     | 'SWITCH'
     | 'TRANSFER'
     | 'VOUCHER';
-  domain: string;
+  domain?: string;
   orderDetailId: number;
   quantity: string;
   totalPrice: Price;

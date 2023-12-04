@@ -1,10 +1,17 @@
 Feature: Listing page
 
-  Scenario: User has a vRack Services order
+  Scenario: User is redirected to an empty listing after creating his first vRack Services
     Given User does not have any vRack Services
-    Given User has a vRack Services order
-    When User navigates to vRack Services Listing page
-    Then User sees an empty listing page with an information message about the order status
+    When User creates a vRack Services
+    Then User gets redirected to Listing page
+    Then User sees an information message about the order status of his vrack Services
+    Then User sees an empty listing page
+
+  Scenario: User gets a vRack Services order
+    Given User has a vRack Services
+    When User creates a vRack Services
+    Then User gets redirected to Listing page
+    Then User sees an information message about the order status
 
   Scenario: User has a vRack Services and an order
     Given User has a vRack Services ready

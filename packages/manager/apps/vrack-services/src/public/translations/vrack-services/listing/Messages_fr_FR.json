@@ -2,6 +2,9 @@
   "title": "vRack Services",
   "description": "Les vRack Services vous permettent de bénéficier de services réseau sur le vRack. Le premier service réseau disponible est le Service Endpoint. Ce dernier vous permet d'exposer, via une adresse IP, un service managé par OVHcloud sur votre vRack. D'autres services seront disponibles à l’avenir.",
   "createVrackServicesButtonLabel": "Créer un vRack Services",
+  "emptyDataGrid": "Vous n'avez pas encore de vRack Services prêt",
+  "deliveringVrackServicesMessage": "Une demande de création d'un vRack Services a été effectué le {date} - {time}. Statut de la commande : {status}",
+  "deliveringVrackMessage": "Une demande de création d'un vRack a été effectué le {date} - {time}. Statut de la commande : {status}",
   "displayName": "Nom",
   "productStatus": "Statut",
   "zone": "Régionalisation",
@@ -15,8 +18,14 @@
   "GRA": "France, Gravelines (GRA)",
   "RBX": "France, Roubaix (RBX)",
   "BHS": "Canada, Beauharnois (BHS)",
-  "vrackServicesCreateSucessMessage": "vRack Services creation success",
-  "vrackCreateSucessMessage": "vRack creation success",
-  "vrackCreateErrorMessage": "Un problème est survenue lors de la commande de votre vRack. Veuillez réessayer ultérieurement.",
-  "updateError": "Un problème est survenue lors de la mise-à-jour de votre vRack Services. Veuillez réessayer ultérieurement."
+  "updateError": "Un problème est survenue lors de la mise-à-jour de votre vRack Services. Veuillez réessayer ultérieurement.",
+  "associateVrackButtonLabel": "Associer à un vRack",
+  "modalVrackAssociationTitle": "Associer un vRack existant à votre vRack Services",
+  "modalVrackAssociationDescription": "Pour que votre vRack Services fonctionne, vous devez l'associer à l'un de vos vRack existants.",
+  "modalVrackCreationDescription": "Pour que votre vRack Services fonctionne, vous devez l'associer à l'un de vos vRack existants. Et vous n'en avez aucun de disponible.",
+  "genericApiError": "Un problème est survenue lors de l'opération. Veuillez réessayer ultérieurement.",
+  "modalCancelVrackAssociationButtonLabel": "Annuler",
+  "modalCreateNewVrackButtonLabel": "Commander un vRack",
+  "vrackSelectPlaceholder": "Sélectionner un vRack",
+  "modalConfirmVrackAssociationButtonLabel": "Associer mon vRack"
 }

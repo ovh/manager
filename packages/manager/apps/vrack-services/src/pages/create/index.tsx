@@ -13,7 +13,9 @@ import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useAuthentication } from '@ovh-ux/manager-react-core-application';
-import { CountryCode } from '@ovh-ux/manager-config/dist/types';
+import { CountryCode } from '@ovh-ux/manager-config';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
+import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
 import {
   getvrackServicesReferenceZoneList,
   getvrackServicesReferenceZoneListQueryKey,
@@ -22,6 +24,8 @@ import {
   orderVrack,
   orderVrackQueryKey,
   getPollingOderStatusQueryKey,
+  getDeliveringOrderQueryKey,
+  OrderDescription,
 } from '@/api';
 import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
 import { ApiError, ErrorPage } from '@/components/Error';
@@ -66,10 +70,16 @@ const CreationPage: React.FC = () => {
         ovhSubsidiary: subsidiary as CountryCode,
       }),
     mutationKey: orderVrackServicesQueryKey,
-    onSuccess: () => {
+    onSuccess: async () => {
       if (shouldOrderVrack) {
-        orderVrack({ ovhSubsidiary: subsidiary as CountryCode });
+        await orderVrack({ ovhSubsidiary: subsidiary as CountryCode });
+        queryClient.invalidateQueries({
+          queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
+        });
       }
+      queryClient.invalidateQueries({
+        queryKey: getDeliveringOrderQueryKey(OrderDescription.vrackServices),
+      });
       navigate('/', { replace: true });
     },
   });
@@ -124,6 +134,11 @@ const CreationPage: React.FC = () => {
           setSelectedZone={setSelectedZone}
           isReadOnly={isCreationPending}
         />
+        {isCreationPending && (
+          <div>
+            <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+          </div>
+        )}
       </CreatePageLayout>
       <VrackConfirmModal
         onCancel={() => setIsModalVisible(false)}
@@ -132,7 +147,9 @@ const CreationPage: React.FC = () => {
           orderNewVrackServices();
           setIsModalVisible(false);
           queryClient.invalidateQueries({
-            queryKey: getPollingOderStatusQueryKey('vRack Services'),
+            queryKey: getPollingOderStatusQueryKey(
+              OrderDescription.vrackServices,
+            ),
           });
         }}
         onConfirm={() => {
@@ -140,7 +157,9 @@ const CreationPage: React.FC = () => {
           orderNewVrackServices();
           setIsModalVisible(false);
           queryClient.invalidateQueries({
-            queryKey: getPollingOderStatusQueryKey('vRack Services'),
+            queryKey: getPollingOderStatusQueryKey(
+              OrderDescription.vrackServices,
+            ),
           });
         }}
         isModalVisible={isModalVisible}

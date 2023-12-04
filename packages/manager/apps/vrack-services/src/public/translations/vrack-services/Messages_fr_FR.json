@@ -2,5 +2,13 @@
   "title": "Bienvenue uapp",
   "crumb": "vRack services",
   "tabs_2": "Tabs 2",
-  "onboarding": "Onboarding"
+  "onboarding": "Onboarding",
+  "orderStatus-cancelled": "Annulé",
+  "orderStatus-cancelling": "En cours d'annulation",
+  "orderStatus-checking": "En cours de vérification",
+  "orderStatus-delivered": "Terminé",
+  "orderStatus-delivering": "En cours",
+  "orderStatus-documentsRequested": "Document requis",
+  "orderStatus-notPaid": "Paiement requis",
+  "orderStatus-unknown": "Inconnu"
 }
