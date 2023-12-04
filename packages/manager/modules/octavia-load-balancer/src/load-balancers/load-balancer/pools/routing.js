@@ -32,20 +32,21 @@ export default /* @ngInject */ ($stateProvider) => {
           apiSpecifications.models[
             'cloud.loadbalancing.PoolSessionPersistenceTypeEnum'
           ]?.enum || []
-        ).reduce((acc, value) => {
-          if (value !== 'disabled') {
-            acc.push({
-              label: $translate.instant(
-                `octavia_load_balancer_pools_enum_persistent_session_${value}`,
-              ),
-              value,
-            });
-          }
-          return acc;
-        }, []),
+        ).map((value) => ({
+          label: $translate.instant(
+            `octavia_load_balancer_pools_enum_persistent_session_${value}`,
+          ),
+          value,
+        })),
       trackBase: () =>
         `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::${TRACKING_SUFFIX}`,
       discoverOptionsLink: () => DISCOVER_LINK,
+      goToPoolEdition: /* @ngInject */ ($state, trackAction) => (pool) => {
+        trackAction('edit');
+        $state.go('octavia-load-balancer.loadbalancer.pools.edit', {
+          poolId: pool.id,
+        });
+      },
       trackAction: /* @ngInject */ (atInternet, trackBase) => (hit) =>
         atInternet.trackClick({
           name: `${trackBase}::${hit}`,

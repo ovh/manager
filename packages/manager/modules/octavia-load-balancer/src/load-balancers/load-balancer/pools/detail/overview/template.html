@@ -4,7 +4,9 @@
             <oui-tile
                 data-heading="{{ 'octavia_load_balancer_pools_detail_overview_management_title' | translate }}"
             >
-                <oui-tile-button data-on-click="$ctrl.goToEdit()">
+                <oui-tile-button
+                    data-on-click="$ctrl.goToPoolEdition($ctrl.pool)"
+                >
                     <span
                         data-translate="octavia_load_balancer_pools_detail_overview_management_edit"
                     ></span>

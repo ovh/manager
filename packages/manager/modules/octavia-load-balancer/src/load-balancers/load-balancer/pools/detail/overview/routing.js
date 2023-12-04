@@ -11,7 +11,8 @@ export default /* @ngInject */ ($stateProvider) => {
         loadbalancerPoolsDetailView: 'octaviaLoadBalancerPoolsDetailOverview',
       },
       resolve: {
-        breadcrumb: /* @ngInject */ () => 'General informations',
+        breadcrumb: /* @ngInject */ ($translate) =>
+          $translate.instant('load_balancer_pools_detail_info_tab_title'),
         goToEditName: /* @ngInject */ ($state) => () =>
           $state.go(
             'octavia-load-balancer.loadbalancer.pools.detail.general-information.edit-name',
