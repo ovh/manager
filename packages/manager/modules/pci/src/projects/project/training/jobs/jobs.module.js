@@ -7,14 +7,14 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-api-services';
 
-import info from './info';
 import submit from './submit';
 import resubmit from './resubmit';
 import kill from './kill';
 import component from './jobs.component';
 import routing from './jobs.routing';
-import service from '../job.service';
+import service from './job.service';
 import deleteJob from './delete';
+import dashboard from './dashboard';
 
 const moduleName = 'ovhManagerPciTrainingJobs';
 
@@ -28,11 +28,11 @@ angular
     'ovhManagerFilters',
     'pascalprecht.translate',
     'ui.router',
-    info,
     submit,
     resubmit,
     kill,
     deleteJob,
+    dashboard,
   ])
   .config(routing)
   .component('pciProjectTrainingJobsComponent', component)

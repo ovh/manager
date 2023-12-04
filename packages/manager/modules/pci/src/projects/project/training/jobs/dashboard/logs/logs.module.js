@@ -1,30 +1,27 @@
 import angular from 'angular';
-import '@ovh-ux/manager-core';
-import '@ovh-ux/ng-ovh-cloud-universe-components';
-import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
-import 'ovh-api-services';
+import '@ovh-ux/ng-ovh-cloud-universe-components';
+import '@ovh-ux/ng-translate-async-loader';
+import '@ovh-ux/ui-kit';
 
 import component from './logs.component';
 import routing from './logs.routing';
-import 'angularjs-scroll-glue';
+// import deleteNotebook from './delete-notebook';
+// import stopNotebook from './stop-notebook';
 
-const moduleName = 'ovhManagerPciTrainingJobsInfoLogs';
+const moduleName = 'ovhManagerPciJobGeneralInformation';
 
 angular
   .module(moduleName, [
     'ngOvhCloudUniverseComponents',
     'ngTranslateAsyncLoader',
-    'oui',
-    'ovh-api-services',
-    'ovhManagerCore',
     'pascalprecht.translate',
+    'oui',
     'ui.router',
-    'luegg.directives',
   ])
   .config(routing)
-  .component('pciProjectTrainingJobsInfoLogsComponent', component)
+  .component('ovhManagerPciProjectJobLogs', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

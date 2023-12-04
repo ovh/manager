@@ -1,11 +1,11 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 
-import deleteComponent from '../../components/delete';
+import component from './delete.component';
 import routing from './delete.routing';
 
 const moduleName = 'ovhManagerPciTrainingJobsDelete';
 
-angular.module(moduleName, ['ui.router', deleteComponent]).config(routing);
+angular.module(moduleName, ['ui.router', component]).config(routing);
 
 export default moduleName;

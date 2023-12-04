@@ -1,5 +1,5 @@
-import controller from './info.controller';
-import template from './info.html';
+import controller from './general-information.controller';
+import template from './general-information.html';
 
 export default {
   controller,
@@ -8,8 +8,9 @@ export default {
     job: '<',
     goToJobKill: '<',
     goToJobResubmit: '<',
-    user: '<',
+    // user: '<',
     getCatalogEntryF: '<',
+    goToAttachData: '<',
     refreshState: '<',
     projectId: '<',
     jobId: '<',
@@ -19,7 +20,6 @@ export default {
     guideUrl: '<',
     guideTrackingSectionTags: '<',
     trackClick: '<',
-    goToUsersAndTokens: '<',
     goToJobDelete: '<',
   },
 };

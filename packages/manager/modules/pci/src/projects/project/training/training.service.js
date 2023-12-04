@@ -1,18 +1,9 @@
-import map from 'lodash/map';
-
 export default class PciProjectTrainingService {
   /* @ngInject */
-  constructor(
-    $q,
-    $http,
-    OvhApiCloudProjectAi,
-    OvhApiCloudProjectUser,
-    CucPriceHelper,
-  ) {
+  constructor($q, $http, OvhApiCloudProjectAi, CucPriceHelper) {
     this.$q = $q;
     this.$http = $http;
     this.OvhApiCloudProjectAi = OvhApiCloudProjectAi;
-    this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
     this.CucPriceHelper = CucPriceHelper;
   }
 
@@ -37,24 +28,6 @@ export default class PciProjectTrainingService {
       .$promise.then(() => true);
   }
 
-  getAllUsers(projectId) {
-    this.OvhApiCloudProjectUser.v6().resetQueryCache();
-    return this.OvhApiCloudProjectUser.v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise.then((users) => {
-        return users.filter((user) => {
-          const aiRole = user.roles.find(
-            (role) =>
-              role.name === 'ai_training_operator' ||
-              role.name === 'administrator',
-          );
-          return aiRole !== undefined;
-        });
-      });
-  }
-
   getPresetImages(serviceName) {
     return this.OvhApiCloudProjectAi.Capabilities()
       .Training()
@@ -65,6 +38,7 @@ export default class PciProjectTrainingService {
       }).$promise;
   }
 
+  // validé
   getFeatures(serviceName) {
     return this.OvhApiCloudProjectAi.Capabilities()
       .Training()
@@ -77,60 +51,5 @@ export default class PciProjectTrainingService {
 
   getPricesFromCatalog(serviceName) {
     return this.CucPriceHelper.getPrices(serviceName);
-  }
-
-  getRegions(serviceName) {
-    return this.OvhApiCloudProjectAi.Capabilities()
-      .Training()
-      .Region()
-      .v6()
-      .query({
-        serviceName,
-      })
-      .$promise.then((regions) => {
-        return map(regions, (region) => ({
-          ...region,
-          name: region.id,
-          hasEnoughQuota: () => true,
-        }));
-      });
-  }
-
-  getGpus(serviceName, region) {
-    return this.OvhApiCloudProjectAi.Capabilities()
-      .Training()
-      .Region()
-      .Gpu()
-      .v6()
-      .query({
-        serviceName,
-        region,
-      }).$promise;
-  }
-
-  getResources(serviceName, region) {
-    return this.OvhApiCloudProjectAi.Capabilities()
-      .Training()
-      .Region()
-      .Resource()
-      .v6()
-      .get({
-        serviceName,
-        region,
-      }).$promise;
-  }
-
-  getFlavors(serviceName, region) {
-    return this.$http.get(
-      `/cloud/project/${serviceName}/ai/capabilities/region/${region}/flavor`,
-    );
-  }
-
-  getJobCliCommand(serviceName, job) {
-    return this.$http.post(`/cloud/project/${serviceName}/ai/job/command`, job);
-  }
-
-  getSavedSshKeys(serviceName) {
-    return this.$http.get(`/cloud/project/${serviceName}/sshkey`);
   }
 }

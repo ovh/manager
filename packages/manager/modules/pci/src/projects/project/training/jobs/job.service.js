@@ -110,4 +110,56 @@ export default class PciProjectTrainingJobService {
       .delete(`/cloud/project/${projectId}/ai/job/${jobId}`)
       .then(({ data }) => data);
   }
+
+  getRegions(projectId) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/ai/capabilities/region`)
+      .then(({ data }) => {
+        return data.map((region) => {
+          return {
+            ...region,
+            name: region.id,
+            hasEnoughQuota: () => true,
+          };
+        });
+      });
+  }
+
+  getResources(serviceName, region) {
+    return this.OvhApiCloudProjectAi.Capabilities()
+      .Training()
+      .Region()
+      .Resource()
+      .v6()
+      .get({
+        serviceName,
+        region,
+      }).$promise;
+  }
+
+  getFlavors(serviceName, region) {
+    return this.$http.get(
+      `/cloud/project/${serviceName}/ai/capabilities/region/${region}/flavor`,
+    );
+  }
+
+  getGpus(serviceName, region) {
+    return this.OvhApiCloudProjectAi.Capabilities()
+      .Training()
+      .Region()
+      .Gpu()
+      .v6()
+      .query({
+        serviceName,
+        region,
+      }).$promise;
+  }
+
+  getJobCliCommand(serviceName, job) {
+    return this.$http.post(`/cloud/project/${serviceName}/ai/job/command`, job);
+  }
+
+  getSavedSshKeys(serviceName) {
+    return this.$http.get(`/cloud/project/${serviceName}/sshkey`);
+  }
 }

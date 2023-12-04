@@ -14,7 +14,7 @@ import onboarding from './onboarding';
 import component from './training.component';
 import routing from './training.routing';
 import service from './training.service';
-import jobService from './job.service';
+import jobService from './jobs/job.service';
 
 const moduleName = 'ovhManagerPciTraining';
 

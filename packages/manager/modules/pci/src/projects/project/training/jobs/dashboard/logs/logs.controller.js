@@ -1,4 +1,4 @@
-export default class PciTrainingJobsInfoLogsController {
+export default class JobDashboardLogsCtrl {
   /* @ngInject */
   constructor($interval, PciProjectTrainingJobService) {
     this.$interval = $interval;
