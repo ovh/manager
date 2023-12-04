@@ -1,6 +1,6 @@
-export type ResponseData<T> = {
+export type ResponseData<T = unknown> = {
   status: number;
-  data: T;
+  data?: T;
   code: string;
   // Error response
   response?: {
@@ -40,24 +40,22 @@ export enum Status {
 export type Task = {
   // yyyy-mm-ddTZ
   createdAt: string;
-  errors: { message: string }[];
+  errors?: { message: string }[];
   // yyyy-mm-ddTZ
-  finishedAt: string;
+  finishedAt?: string;
   id: string;
   link: string;
-  message: string;
-  progress: [
-    {
-      name: string;
-      status: Status;
-    },
-  ];
+  message?: string;
+  progress: {
+    name: string;
+    status: Status;
+  }[];
   // yyyy-mm-ddTZ
-  startedAt: string;
+  startedAt?: string;
   status: Status;
-  type: 'string';
+  type: string;
   // yyyy-mm-ddTZ
-  updatedAt: string;
+  updatedAt?: string;
 };
 
 export type AllowedServicesResponse = {

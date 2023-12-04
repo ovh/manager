@@ -8,7 +8,7 @@ import {
 import { OsdsButton } from '@ovhcloud/ods-components/button/react';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
 import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useAuthentication } from '@ovh-ux/manager-react-core-application';
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
@@ -17,7 +17,6 @@ import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import {
   OrderDescription,
-  getDeliveringOrderList,
   getDeliveringOrderQueryKey,
   getVrackListQueryKey,
   orderVrack,
@@ -25,6 +24,7 @@ import {
   useOrderPollingStatus,
 } from '@/api';
 import { DeliveringMessages } from './DeliveringMessages';
+import { handleClick } from '@/utils/ods-utils';
 
 export type CreateVrackProps = {
   closeModal: () => void;
@@ -34,18 +34,13 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
   const { t } = useTranslation('vrack-services/listing');
   const { subsidiary } = useAuthentication();
   const queryClient = useQueryClient();
+
   const {
     data: vrackDeliveringOrders,
     isLoading: areVrackOrdersLoading,
     isError: isVrackOrdersError,
-  } = useQuery({
-    queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
-    queryFn: getDeliveringOrderList(OrderDescription.vrack),
-  });
-
-  useOrderPollingStatus({
+  } = useOrderPollingStatus({
     pollingKey: OrderDescription.vrack,
-    orderList: vrackDeliveringOrders,
     queryToInvalidateOnDelivered: getVrackListQueryKey,
   });
 
@@ -89,12 +84,7 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={closeModal}
-        onKeyDown={(event: React.KeyboardEvent) => {
-          if ([' ', 'Enter'].includes(event.key)) {
-            closeModal();
-          }
-        }}
+        {...handleClick(closeModal)}
       >
         {t('modalCancelVrackAssociationButtonLabel')}
       </OsdsButton>
@@ -111,12 +101,7 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
           isError ||
           undefined
         }
-        onClick={orderNewVrack}
-        onKeyDown={(event: React.KeyboardEvent) => {
-          if ([' ', 'Enter'].includes(event.key)) {
-            orderNewVrack();
-          }
-        }}
+        {...handleClick(() => orderNewVrack())}
       >
         {t('modalCreateNewVrackButtonLabel')}
       </OsdsButton>

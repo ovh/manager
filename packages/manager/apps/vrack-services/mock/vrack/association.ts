@@ -28,14 +28,15 @@ const getAssociationResponse = ({
   body: { vrackServices: string };
 }): Task => {
   const date = new Date();
+  const dateString = date.toISOString();
   return {
-    createdAt: date.toISOString(),
+    createdAt: dateString,
     errors: [
       {
         message: 'string',
       },
     ],
-    finishedAt: date.toISOString(),
+    finishedAt: dateString,
     id: 'string',
     link: 'string',
     message: `vRack: ${vrackId} vRackServices: ${vrackServices}`,
@@ -45,19 +46,21 @@ const getAssociationResponse = ({
         status: Status.PENDING,
       },
     ],
-    startedAt: date.toISOString(),
+    startedAt: dateString,
     status: Status.PENDING,
     type: 'string',
-    updatedAt: date.toISOString(),
+    updatedAt: dateString,
   };
 };
 
 export type GetAssociationMocksParams = {
   nbEligibleVrackServices?: number;
+  associationKo?: boolean;
 };
 
 export const getAssociationMocks = ({
   nbEligibleVrackServices = 1,
+  associationKo,
 }: GetAssociationMocksParams): Handler[] => [
   {
     url: '/vrack/:id/allowedServices',
@@ -68,6 +71,7 @@ export const getAssociationMocks = ({
     url: '/vrack/:id/vrackServices',
     response: getAssociationResponse,
     method: 'post',
+    status: associationKo ? 500 : 200,
     api: 'v6',
   },
 ];

@@ -18,7 +18,7 @@ import {
   getvrackServicesReferenceZoneListQueryKey,
   getvrackServicesReferenceZoneList,
 } from '@/api';
-import { zoneInputName } from './constants';
+import { zoneInputName } from '../constants';
 
 export type Props = {
   isReadOnly?: boolean;

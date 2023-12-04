@@ -3,12 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-// import { OsdsModal } from '@ovhcloud/ods-components/modal/react';
+import { OsdsModal } from '@ovhcloud/ods-components/modal/react';
 import {
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components/button';
 import { OsdsButton } from '@ovhcloud/ods-components/button/react';
+import { handleClick } from '@/utils/ods-utils';
 
 export type Props = {
   isModalVisible?: boolean;
@@ -26,21 +27,11 @@ export const VrackConfirmModal: React.FC<Props> = ({
   const { t } = useTranslation('vrack-services/create');
 
   return (
-    // TODO: Put back ODS modal when the buttons work
-    // <OsdsModal
-    //   dismissible
-    //   headline={t('modalHeadline')}
-    //   masked={!isModalVisible || undefined}
-    //   onOdsModalClose={onCancel}
-    // >
-    <div
-      style={{
-        display: isModalVisible ? 'flex' : 'none',
-        flexDirection: 'column',
-        padding: '20px',
-        margin: '20px',
-        border: '3px solid black',
-      }}
+    <OsdsModal
+      dismissible
+      headline={t('modalHeadline')}
+      masked={!isModalVisible || undefined}
+      onOdsModalClose={onCancel}
     >
       <OsdsText
         className="block mb-4"
@@ -71,12 +62,7 @@ export const VrackConfirmModal: React.FC<Props> = ({
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={onCancel}
-        onKeyDown={(event: React.KeyboardEvent) => {
-          if ([' ', 'Enter'].includes(event.key)) {
-            onCancel();
-          }
-        }}
+        {...handleClick(onCancel)}
       >
         {t('modalCancelButtonLabel')}
       </OsdsButton>
@@ -85,12 +71,7 @@ export const VrackConfirmModal: React.FC<Props> = ({
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.stroked}
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={onDeny}
-        onKeyDown={(event: React.KeyboardEvent) => {
-          if ([' ', 'Enter'].includes(event.key)) {
-            onDeny();
-          }
-        }}
+        {...handleClick(onDeny)}
       >
         {t('modalNoVrackButtonLabel')}
       </OsdsButton>
@@ -99,16 +80,10 @@ export const VrackConfirmModal: React.FC<Props> = ({
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={onConfirm}
-        onKeyDown={(event: React.KeyboardEvent) => {
-          if ([' ', 'Enter'].includes(event.key)) {
-            onConfirm();
-          }
-        }}
+        {...handleClick(onConfirm)}
       >
         {t('modalConfirmVrackButtonLabel')}
       </OsdsButton>
-    </div>
-    // </OsdsModal>
+    </OsdsModal>
   );
 };

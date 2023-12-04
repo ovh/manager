@@ -1,3 +1,4 @@
+import React from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   getOrderStatus,
@@ -46,12 +47,11 @@ export enum OrderDescription {
 }
 
 export const getDeliveringOrderQueryKey = (description: OrderDescription) => [
-  `deliveringOrders-${description}`,
+  'deliveringOrders',
+  description,
 ];
 
-export const getDeliveringOrderList = (
-  orderDetailDescription: string,
-) => async () => {
+const getDeliveringOrderList = async (orderDetailDescription: string) => {
   const todayMinus24Hours = new Date();
   todayMinus24Hours.setTime(Date.now() - 24 * 3600 * 1000);
   const orderList = await getOrderList({ dateFrom: todayMinus24Hours });
@@ -76,42 +76,41 @@ export const getDeliveringOrderList = (
   );
 };
 
-export const getPollingOderStatusQueryKey = (pollingKey: OrderDescription) => [
-  `/pollOrderStatus-${pollingKey}`,
-];
-
 /**
  * Check for orders that contain a certain type of product and refresh the order untill it's delivered
  */
 export const useOrderPollingStatus = ({
   pollingKey,
-  orderList = [],
   queryToInvalidateOnDelivered,
   pollingInterval = 120000,
 }: {
   pollingKey: OrderDescription;
-  orderList: DetailedOrder[];
   queryToInvalidateOnDelivered: string[];
   pollingInterval?: number;
 }) => {
+  const [refetchInterval, setRefetchInterval] = React.useState(0);
   const queryClient = useQueryClient();
-  return useQuery({
-    queryKey: getPollingOderStatusQueryKey(pollingKey),
+
+  const query = useQuery({
+    queryKey: getDeliveringOrderQueryKey(pollingKey),
     queryFn: async () => {
-      if (orderList.every(({ status }) => status === 'delivered')) {
+      const orderList = await getDeliveringOrderList(pollingKey);
+      if (orderList.length === 0) {
+        setRefetchInterval(0);
         queryClient.invalidateQueries({
           queryKey: queryToInvalidateOnDelivered,
         });
       }
-      return orderList.map(({ status }) => status);
+      return orderList;
     },
-    refetchInterval: (data) => {
-      if (!data || data.length === 0) {
-        return 0;
-      }
-      return data.every((status) => status === 'delivered')
-        ? pollingInterval
-        : 0;
-    },
+    refetchInterval,
   });
+
+  React.useEffect(() => {
+    if (query.data?.length > 0) {
+      setRefetchInterval(pollingInterval);
+    }
+  }, [query.data?.length]);
+
+  return query;
 };

@@ -4,7 +4,7 @@ Feature: Configuration page
     Given User wants to create a vRack Services with name "<name>" and zone <zone>
     Given The order service for vRack Services is <orderVsOk>
     Given The order service for vRack is <orderVrackOk>
-    When User fill the form and click the submit button
+    When User fills the configuration form and click the submit button
     Then A modal appear to ask if the user wants to create a new vRack
     When User <acceptOrDenyOrCancel>
     Then User "<returnListing>" on the Listing page
@@ -14,7 +14,7 @@ Feature: Configuration page
       | name | zone | orderVsOk | orderVrackOk | acceptOrDenyOrCancel | returnListing  | anyErrorMessage |
       | vs-1 | RBX  | OK        | OK           | accepts              | returns        | no              |
       | vs-2 | BHS  | KO        | OK           | accepts              | doesn't return | an              |
-      | vs-3 | LIM  | OK        | KO           | accepts              | returns        | no              |
+      | vs-3 | LIM  | OK        | KO           | accepts              | doesn't return | an              |
       |      | RBX  | KO        | KO           | accepts              | doesn't return | an              |
       |      | RBX  | OK        | KO           | denies               | returns        | no              |
       |      | RBX  | OK        | OK           | denies               | returns        | no              |

@@ -15,44 +15,52 @@ import { useTranslation } from 'react-i18next';
 import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
 import {
-  getListingIceberg,
-  getListingIcebergQueryKey,
   useOrderPollingStatus,
-  getDeliveringOrderList,
   OrderDescription,
-  getDeliveringOrderQueryKey,
+  ResourceStatus,
+  getVrackServicesResourceList,
+  getVrackServicesResourceListQueryKey,
 } from '@/api';
-import { Datagrid } from '@/components/listing/DataGrid';
+import { VrackServicesDatagrid } from '@/pages/index/components/VrackServicesDataGrid';
 import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
 import { PageLayout } from '@/components/layout-helpers';
 import { ApiError, ErrorPage } from '@/components/Error';
-import { DeliveringMessages } from '@/components/listing/DeliveringMessages';
+import { DeliveringMessages } from '@/pages/index/components/DeliveringMessages';
+import { handleClick } from '@/utils/ods-utils';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.id;
 }
 
+const pollingInterval = 30000;
+
 export default function ListingPage() {
   const { t } = useTranslation('vrack-services/listing');
+  const [refetchInterval, setRefetchInterval] = React.useState(0);
   const navigate = useNavigate();
 
   const {
     data: vrackServicesDeliveringOrders,
     isLoading: areOrdersLoading,
-  } = useQuery({
-    queryKey: getDeliveringOrderQueryKey(OrderDescription.vrackServices),
-    queryFn: getDeliveringOrderList(OrderDescription.vrackServices),
-  });
-
-  useOrderPollingStatus({
+  } = useOrderPollingStatus({
     pollingKey: OrderDescription.vrackServices,
-    orderList: vrackServicesDeliveringOrders,
-    queryToInvalidateOnDelivered: getListingIcebergQueryKey,
+    queryToInvalidateOnDelivered: getVrackServicesResourceListQueryKey,
   });
 
   const { data, isLoading, error } = useQuery({
-    queryKey: getListingIcebergQueryKey,
-    queryFn: getListingIceberg,
+    queryKey: getVrackServicesResourceListQueryKey,
+    queryFn: async () => {
+      const response = await getVrackServicesResourceList();
+      const interval = response.data.some(
+        ({ resourceStatus }) => resourceStatus !== ResourceStatus.READY,
+      )
+        ? pollingInterval
+        : 0;
+
+      setRefetchInterval(interval);
+      return response;
+    },
+    refetchInterval,
   });
 
   if (error) {
@@ -91,12 +99,7 @@ export default function ListingPage() {
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.stroked}
         size={ODS_BUTTON_SIZE.sm}
-        onClick={() => navigate('create', { replace: true })}
-        onKeyDown={(event: React.KeyboardEvent) => {
-          if ([' ', 'Enter'].includes(event.key)) {
-            navigate('create', { replace: true });
-          }
-        }}
+        {...handleClick(() => navigate('create', { replace: true }))}
       >
         <OsdsIcon
           className="mr-4"
@@ -113,22 +116,12 @@ export default function ListingPage() {
           orders={vrackServicesDeliveringOrders}
         />
       )}
-      {(isLoading || areOrdersLoading) && (
+      {isLoading || areOrdersLoading ? (
         <div>
           <OsdsSpinner inline size={ODS_SPINNER_SIZE.lg} />
         </div>
-      )}
-      {!isLoading && !areOrdersLoading && data.data.length > 0 && (
-        <Datagrid data={data.data} />
-      )}
-      {!isLoading && !areOrdersLoading && data.data.length === 0 && (
-        <OsdsText
-          className="block"
-          color={ODS_THEME_COLOR_INTENT.text}
-          level={ODS_TEXT_LEVEL.subheading}
-        >
-          {t('emptyDataGrid')}
-        </OsdsText>
+      ) : (
+        <VrackServicesDatagrid />
       )}
     </PageLayout>
   );

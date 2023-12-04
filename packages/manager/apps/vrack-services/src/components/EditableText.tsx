@@ -7,6 +7,8 @@ import {
   ODS_INPUT_SIZE,
   ODS_INPUT_TYPE,
   OdsInputValueChangeEvent,
+  OdsInputMethod,
+  OdsInputAttribute,
 } from '@ovhcloud/ods-components/input';
 import {
   ODS_BUTTON_SIZE,
@@ -14,6 +16,7 @@ import {
   ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components/button';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { handleClick } from '@/utils/ods-utils';
 
 export type EditableTextProps = React.PropsWithChildren<{
   type?: ODS_INPUT_TYPE;
@@ -31,10 +34,10 @@ export const EditableText: React.FC<EditableTextProps> = ({
   type = ODS_INPUT_TYPE.text,
   onEditSubmitted,
 }) => {
-  const [editStatus, setEditStatus] = React.useState('display' as EditStatus);
+  const [editStatus, setEditStatus] = React.useState<EditStatus>('display');
   const [value, setValue] = React.useState(defaultValue);
   const submitButton = React.useRef<HTMLButtonElement>();
-  const input = React.useRef<any>();
+  const input = React.useRef<OdsInputMethod & OdsInputAttribute>();
 
   React.useEffect(() => {
     if (editStatus === 'editing') {
@@ -47,12 +50,15 @@ export const EditableText: React.FC<EditableTextProps> = ({
   if (['editing', 'loading'].includes(editStatus)) {
     return (
       <form
-        className="flex justify-center"
+        className="flex justify-end"
         onSubmit={async (event) => {
           event.preventDefault();
           setEditStatus('loading');
-          await onEditSubmitted(value);
-          setEditStatus('display');
+          try {
+            await onEditSubmitted(value);
+          } finally {
+            setEditStatus('display');
+          }
         }}
       >
         <OsdsInput
@@ -102,12 +108,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
         variant={ODS_BUTTON_VARIANT.stroked}
         type={ODS_BUTTON_TYPE.button}
         size={ODS_BUTTON_SIZE.sm}
-        onClick={() => setEditStatus('editing')}
-        onKeyDown={(event: React.KeyboardEvent) => {
-          if ([' ', 'Enter'].includes(event.key)) {
-            setEditStatus('editing');
-          }
-        }}
+        {...handleClick(() => setEditStatus('editing'))}
         disabled={disabled || undefined}
       >
         <OsdsIcon

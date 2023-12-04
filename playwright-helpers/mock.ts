@@ -16,7 +16,7 @@ export const toPlaywrightMockHandler = (context: BrowserContext) => ({
   const fullUrl = new RegExp(
     `${baseUrl ?? apiClient[api].getUri()}${
       url.startsWith('/') ? '' : '/'
-    }${url}$`.replace(/:[a-zA-Z]+/gm, '.*'),
+    }${url}$`.replace(/:[a-zA-Z]+/gm, '[^/]+'),
   );
   return context.route(
     fullUrl,
