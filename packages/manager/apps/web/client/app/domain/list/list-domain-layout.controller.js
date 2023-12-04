@@ -151,6 +151,10 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     );
   }
 
+  static getDNSServers(nameServers) {
+    return nameServers.map((item) => item.name || '').join(', ');
+  }
+
   getDate(domain, key) {
     if (!domain[key]) {
       return '';
