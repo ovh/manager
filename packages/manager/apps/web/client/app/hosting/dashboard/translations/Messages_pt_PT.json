@@ -1386,5 +1386,6 @@
   "hosting_tab_DATABASES_configuration_copy_step1_select_webcloud_placeholder": "Selecionar uma base de dados Web Cloud",
   "hosting_tab_DATABASES_configuration_copy_success": "A sua base de dados foi copiada com sucesso",
   "hosting_tab_DATABASES_configuration_copy_error": "A cópia da base de dados falhou. Erro: {{error}}",
-  "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Se a base de dados de destino não estiver vazia, os dados serão substituídos."
+  "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Se a base de dados de destino não estiver vazia, os dados serão substituídos.",
+  "hosting_tab_DOMAINS_configuration_add_step1_order_upgrade": "Para adicionar um domínio adicional ao seu alojamento, encomende uma oferta superior"
 }

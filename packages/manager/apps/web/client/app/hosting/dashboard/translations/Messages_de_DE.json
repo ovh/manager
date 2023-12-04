@@ -1386,5 +1386,6 @@
   "hosting_tab_DATABASES_configuration_copy_step1_select_webcloud_placeholder": "Web Cloud Datenbank auswählen",
   "hosting_tab_DATABASES_configuration_copy_success": "Ihre Datenbank wurde erfolgreich kopiert.",
   "hosting_tab_DATABASES_configuration_copy_error": "Beim Kopieren Ihrer Datenbank ist ein Fehler aufgetreten. Fehler: {{error}}",
-  "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Wenn die Zieldatenbank nicht leer ist, werden die Daten überschrieben."
+  "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Wenn die Zieldatenbank nicht leer ist, werden die Daten überschrieben.",
+  "hosting_tab_DOMAINS_configuration_add_step1_order_upgrade": "Wählen Sie bitte ein höheres Angebot, wenn Sie Ihrem Hosting eine weitere Domain hinzufügen möchten."
 }
