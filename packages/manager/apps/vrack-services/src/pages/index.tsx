@@ -110,6 +110,11 @@ export default function ListingPage() {
         variant={ODS_BUTTON_VARIANT.stroked}
         size={ODS_BUTTON_SIZE.sm}
         onClick={() => navigate('create', { replace: true })}
+        onKeyDown={(event: React.KeyboardEvent) => {
+          if ([' ', 'Enter'].includes(event.key)) {
+            navigate('create', { replace: true });
+          }
+        }}
       >
         <OsdsIcon
           className="mr-4"

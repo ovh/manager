@@ -47,6 +47,11 @@ export type EligibleManagedService = {
   managedServiceURNs: string[];
 };
 
+export type TargetSpec = {
+  displayName?: string | null;
+  subnets: Subnet[];
+};
+
 export type VrackServices = {
   checksum: string;
   // yyyy-mm-ddTZ
@@ -61,10 +66,7 @@ export type VrackServices = {
   currentTasks: Task[];
   id: string;
   resourceStatus: ResoureceStatus;
-  targetSpec: {
-    displayName: string | null;
-    subnets: Subnet[];
-  };
+  targetSpec: TargetSpec;
   // yyyy-mm-ddTZ
   updatedAt: string;
 };

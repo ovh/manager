@@ -86,6 +86,11 @@ export const ZoneFormField: React.FC<Props> = ({
                   name={zoneInputName}
                   checked={selectedZone === zone.name || undefined}
                   disabled={isReadOnly || undefined}
+                  onKeyDown={(event: React.KeyboardEvent) => {
+                    if ([' ', 'Enter'].includes(event.key)) {
+                      setSelectedZone(zone.name);
+                    }
+                  }}
                 >
                   <OsdsTile
                     className="flex flex-col h-full w-[165px]"

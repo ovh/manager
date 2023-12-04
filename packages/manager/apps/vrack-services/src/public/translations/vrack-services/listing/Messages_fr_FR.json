@@ -17,5 +17,6 @@
   "BHS": "Canada, Beauharnois (BHS)",
   "vrackServicesCreateSucessMessage": "vRack Services creation success",
   "vrackCreateSucessMessage": "vRack creation success",
-  "vrackCreateErrorMessage": "Un problème est survenue lors de la commande de votre vRack. Veuillez réessayer ultérieurement."
+  "vrackCreateErrorMessage": "Un problème est survenue lors de la commande de votre vRack. Veuillez réessayer ultérieurement.",
+  "updateError": "Un problème est survenue lors de la mise-à-jour de votre vRack Services. Veuillez réessayer ultérieurement."
 }
