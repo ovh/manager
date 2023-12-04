@@ -8,7 +8,11 @@ import './index.scss';
 import './global.css';
 
 const mockApiIfDev = async () => {
-  if (process.env.NODE_ENV === 'development' && !process.env.VITE_TEST_BDD) {
+  if (
+    process.env.NODE_ENV === 'development' &&
+    !process.env.VITE_TEST_BDD &&
+    window.location.href.includes('9001')
+  ) {
     await setupWorker(
       ...getMswHandlers({
         nbVs: 4,

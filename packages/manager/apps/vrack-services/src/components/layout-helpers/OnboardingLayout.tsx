@@ -16,11 +16,18 @@ export type OnboardingLayoutProps = React.PropsWithChildren<{
   introTitle?: string;
   intro?: string;
   title: string;
-  orderButtonLabel: string;
-  orderHref: string;
   description?: string;
-  moreInfoHref?: string;
-  moreInfoButtonLabel?: string;
+  primaryButtonLabel?: string;
+  primaryHref?: string;
+  primaryOnClick?: () => void;
+  primaryButtonSize?: ODS_BUTTON_SIZE;
+  secondaryButtonLabel?: string;
+  secondaryHref?: string;
+  secondaryOnClick?: () => void;
+  secondaryButtonIcon?: ODS_ICON_NAME;
+  secondaryButtonSize?: ODS_BUTTON_SIZE;
+  secondaryButtonIconPosition?: 'start' | 'end';
+  noBreadcrumb?: boolean;
 }>;
 
 export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
@@ -29,14 +36,21 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   intro,
   title,
   description,
-  orderHref,
-  orderButtonLabel,
-  moreInfoHref,
-  moreInfoButtonLabel,
+  primaryButtonLabel,
+  primaryHref,
+  primaryOnClick,
+  primaryButtonSize = ODS_BUTTON_SIZE.md,
+  secondaryButtonLabel,
+  secondaryHref,
+  secondaryOnClick,
+  secondaryButtonIcon = ODS_ICON_NAME.EXTERNAL_LINK,
+  secondaryButtonSize = ODS_BUTTON_SIZE.md,
+  secondaryButtonIconPosition = 'end',
+  noBreadcrumb,
   children,
 }) => {
   return (
-    <PageLayout>
+    <PageLayout noBreacrumb={noBreadcrumb}>
       <div className="flex flex-col mx-auto">
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
@@ -73,29 +87,34 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
             {description}
           </OsdsText>
           <div className="flex mb-9 sm:py-8 xs:w-full xs:flex-col xs:space-y-4 sm:items-center sm:w-fit sm:flex-row sm:space-x-4 sm:space-y-0">
-            <OsdsButton
-              inline
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_BUTTON_SIZE.md}
-              href={orderHref}
-            >
-              {orderButtonLabel}
-            </OsdsButton>
-            {moreInfoButtonLabel && moreInfoHref && (
+            {primaryButtonLabel && (primaryHref || primaryOnClick) && (
+              <OsdsButton
+                inline
+                color={ODS_THEME_COLOR_INTENT.primary}
+                size={primaryButtonSize}
+                href={primaryHref}
+                onClick={primaryOnClick}
+              >
+                {primaryButtonLabel}
+              </OsdsButton>
+            )}
+            {secondaryButtonLabel && (secondaryHref || secondaryOnClick) && (
               <OsdsButton
                 inline
                 color={ODS_THEME_COLOR_INTENT.primary}
                 variant={ODS_BUTTON_VARIANT.stroked}
-                size={ODS_BUTTON_SIZE.md}
-                href={moreInfoHref}
+                size={secondaryButtonSize}
+                href={secondaryHref}
+                onClick={secondaryOnClick}
               >
-                {moreInfoButtonLabel}
-                <OsdsIcon
-                  className="ml-4"
-                  name={ODS_ICON_NAME.EXTERNAL_LINK}
-                  size={ODS_ICON_SIZE.xs}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                />
+                {secondaryButtonLabel}
+                <span slot={secondaryButtonIconPosition}>
+                  <OsdsIcon
+                    name={secondaryButtonIcon}
+                    size={ODS_ICON_SIZE.xs}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                  />
+                </span>
               </OsdsButton>
             )}
           </div>

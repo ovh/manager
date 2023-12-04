@@ -1,0 +1,5 @@
+{
+  "onboardingTitle": "Vous n'avez pas encore crée de subnet",
+  "onboardingDescription": "Pour créer un endpoint, vous devez d'abord creér un subnet.",
+  "onboardingButtonLabel": "Créer un subnet"
+}

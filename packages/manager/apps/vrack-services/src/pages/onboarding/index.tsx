@@ -40,10 +40,10 @@ export default function Onboarding() {
       title={t('title')}
       description={t('description')}
       imageSrc={onboardingImgSrc}
-      orderButtonLabel={t('orderButtonLabel')}
-      orderHref="/#/create"
-      moreInfoButtonLabel={t('moreInfoButtonLabel')}
-      moreInfoHref={t('moreInfoButtonLink')}
+      primaryButtonLabel={t('orderButtonLabel')}
+      primaryHref="/#/create"
+      secondaryButtonLabel={t('moreInfoButtonLabel')}
+      secondaryHref={t('moreInfoButtonLink')}
     >
       <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
         {tileList.map((tile) => (

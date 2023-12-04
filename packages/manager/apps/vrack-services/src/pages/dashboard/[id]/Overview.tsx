@@ -1,20 +1,15 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { useEnvironment } from '@ovh-ux/manager-react-core-application';
 import { OsdsTile } from '@ovhcloud/ods-components/tile/react';
 import { useTranslation } from 'react-i18next';
-import { useQuery } from '@tanstack/react-query';
 import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import { OsdsDivider } from '@ovhcloud/ods-components/divider/react';
 import { OsdsLink } from '@ovhcloud/ods-components/link/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ApiError, ErrorPage } from '@/components/Error';
-import {
-  getVrackServicesResourceList,
-  getVrackServicesResourceListQueryKey,
-} from '@/api';
+import { useVrackService } from './utils';
 import { formatDateString } from '@/utils/date';
 import { ProductStatusCell } from '@/pages/index/components/VrackServicesDataGridCells';
 
@@ -50,19 +45,12 @@ const TileBlock: React.FC<React.PropsWithChildren<TileBlockProps>> = ({
 export const OverviewTab: React.FC = () => {
   const { t, i18n } = useTranslation('vrack-services/dashboard');
   const environment = useEnvironment();
-  const { id } = useParams();
   const urls = environment.getApplicationURLs();
-
-  const { data, isLoading, error } = useQuery({
-    queryKey: getVrackServicesResourceListQueryKey,
-    queryFn: () => getVrackServicesResourceList(),
-  });
+  const { data: vrackServices, error, isLoading } = useVrackService();
 
   if (error) {
     return <ErrorPage error={error as ApiError} />;
   }
-
-  const vrackServices = data?.data?.find((vs) => vs.id === id);
 
   return (
     <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-6">
