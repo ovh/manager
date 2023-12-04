@@ -6,5 +6,10 @@
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.loadingDnsZoneData"
 >
-    <pre data-ng-bind="$ctrl.dnsZoneData"></pre>
+    <textarea
+        class="col-md-12 mb-4"
+        rows="20"
+        data-ng-disabled="true"
+        data-ng-model="$ctrl.dnsZoneData"
+    ></textarea>
 </oui-modal>
