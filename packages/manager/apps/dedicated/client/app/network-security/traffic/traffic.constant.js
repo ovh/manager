@@ -87,7 +87,7 @@ export const CHART = {
       ],
     },
   },
-  units: ['b', 'kb', 'mb', 'gb', 'tb', 'pb'],
+  units: ['b', 'Kb', 'Mb', 'Gb', 'Tb', 'Pb'],
 };
 
 export default { PAGE_SIZE, TRAFFIC_PERIODS, TRAFFIC_PERIOD_LIST, CHART };

@@ -196,7 +196,7 @@ export default class TrafficController {
       this.bandwithCleaned = `${TrafficController.formatBits(
         bandwithCleaned,
         unit,
-      )} ${this.units[unit].toUpperCase()}`;
+      )} ${this.units[unit]}`;
     } else {
       this.bandwithCleaned = null;
     }
@@ -251,7 +251,9 @@ export default class TrafficController {
 
       // Display unit label
       this.options.scales.yAxes[0].scaleLabel.labelString = this.$translate.instant(
-        `network_security_dashboard_unit_${this.units[unitIndex]}_ps`,
+        `network_security_dashboard_unit_${this.units[
+          unitIndex
+        ].toLowerCase()}_ps`,
       );
 
       this.data.push(
