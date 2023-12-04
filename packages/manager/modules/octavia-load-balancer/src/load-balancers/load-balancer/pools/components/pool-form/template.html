@@ -28,7 +28,6 @@
             <oui-select
                 name="algorithm"
                 data-required
-                data-disabled="$ctrl.isEditing"
                 data-match="label"
                 data-model="$ctrl.model.algorithm"
                 data-items="$ctrl.algorithms"
@@ -51,6 +50,7 @@
                 data-disabled="$ctrl.isEditing"
                 data-model="$ctrl.model.protocol"
                 data-items="$ctrl.protocols"
+                data-on-change="$ctrl.onProtocolChange(modelValue)"
                 data-placeholder="{{:: 'octavia_load_balancer_pools_create_protocol_default' | translate }}"
             >
             </oui-select>
@@ -79,7 +79,7 @@
                 data-required
                 data-model="$ctrl.model.persistentSession"
                 data-match="label"
-                data-items="$ctrl.sessionPersistenceTypes"
+                data-items="$ctrl.availableSessionPersistenceTypes"
                 data-on-change="$ctrl.onPersistentSessionTypeChange(modelValue)"
             >
             </oui-select>
@@ -108,7 +108,7 @@
     </fieldset>
     <oui-form-actions
         data-disabled="!listener.$valid"
-        data-submit-text="{{:: 'octavia_load_balancer_pools_create_submit' | translate }}"
+        data-submit-text="{{:: 'octavia_load_balancer_pools_create_submit' + ($ctrl.isEditing ? '_edition' : '') | translate }}"
         data-cancel-text="{{:: 'octavia_load_balancer_pools_create_cancel' | translate }}"
         data-on-submit="$ctrl.onSubmit()"
         data-on-cancel="$ctrl.onCancel()"
