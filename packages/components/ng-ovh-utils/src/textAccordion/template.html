@@ -1,0 +1,16 @@
+<div class="text-accordion" data-ng-class="{'text-wrap' : ctrl.expanded }">
+    <span
+        data-ng-if="ctrl.hasLenghtyQuery"
+        class="oui-icon vertical-align-middle"
+        data-ng-class="ctrl.expanded ? 'oui-icon-chevron-down' : 'oui-icon-chevron-right'"
+        data-ng-click="ctrl.expanded = !ctrl.expanded"
+    >
+    </span>
+    <span
+        class="display-inline-block vertical-align-middle"
+        data-ng-class="ctrl.expanded ? 'text-accordion-text-open' : 'text-accordion-closed'"
+        data-ng-bind="ctrl.value"
+        data-ng-if="ctrl.value"
+    ></span>
+    <div data-ng-if="!ctrl.value" data-ng-transclude></div>
+</div>
