@@ -1,16 +1,67 @@
-import set from 'lodash/set';
-import isEmpty from 'lodash/isEmpty';
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import { DEFAULT_FILTER_COLUMN } from './operation-table.constants';
 
-export default class OperationTableController {
+export default class OperationTableController extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
-  constructor($scope, $timeout, Alerter, domainOperationService) {
+  constructor(
+    $q,
+    $translate,
+    $scope,
+    $timeout,
+    wucExchange,
+    ouiDatagridService,
+  ) {
+    super($q, ouiDatagridService);
+    this.$translate = $translate;
     this.$scope = $scope;
+    this.$routerParams = wucExchange.getParams();
     this.$timeout = $timeout;
-    this.Alerter = Alerter;
-    this.Operation = domainOperationService;
   }
 
   $onInit() {
+    this.id = 'datagridOperation';
+    this.defaultFilterColumn = DEFAULT_FILTER_COLUMN[this.type];
+    super.$onInit();
+
+    this.columnsConfig = [
+      {
+        name: this.defaultFilterColumn,
+        sortable: this.getSorting(this.defaultFilterColumn),
+      },
+      { name: 'function', sortable: this.getSorting('function') },
+      { name: 'comment', sortable: this.getSorting('comment') },
+      { name: 'todoDate', sortable: this.getSorting('todoDate') },
+      { name: 'lastUpdate', sortable: this.getSorting('lastUpdate') },
+      { name: 'doneDate', sortable: this.getSorting('doneDate') },
+      { name: 'status', sortable: this.getSorting('status') },
+    ];
+
+    this.operationFunctionColumnOptions = {
+      hideOperators: true,
+      values: this.operationFunctionEnum.reduce(
+        (options, status) => ({
+          ...options,
+          [status]: this.$translate.instant(
+            `domain_operations_nicOperation_${status}`,
+          ),
+        }),
+        {},
+      ),
+    };
+
+    this.operationStatusColumnOptions = {
+      hideOperators: true,
+      values: this.operationStatusEnum.reduce(
+        (options, status) => ({
+          ...options,
+          [status]: this.$translate.instant(
+            `domain_operations_statusOperation_${status}`,
+          ),
+        }),
+        {},
+      ),
+    };
+
     this.stepPath = '';
 
     this.$scope.alerts = { dashboard: 'domains.operations.alerts' };
@@ -34,101 +85,12 @@ export default class OperationTableController {
       }
     };
 
-    this.$scope.$on('domains.operations.relaunched', this.getOperationIds);
     this.$scope.$on('$locationChangeStart', () => {
       this.$scope.resetAction();
     });
-
-    this.getOperationIds();
   }
 
-  transformItem(id) {
-    return this.getOperation(id);
-  }
-
-  static capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  resetSearch() {
-    this.filters[this.constructor.normalizeName(this.type)] = '';
-    this.getOperationIds();
-  }
-
-  getOperation(args) {
-    return this.Operation[
-      `get${this.constructor.capitalizeFirstLetter(this.type)}Operation`
-    ](args);
-  }
-
-  getOperationIds() {
-    return this[
-      `get${this.constructor.capitalizeFirstLetter(this.type)}OperationIds`
-    ]();
-  }
-
-  getDomainOperationIds() {
-    this.loading.init = true;
-    this.operationIds = null;
-
-    return this.Operation.getDomainOperations({
-      function: this.filters.nicOperation || undefined,
-      status: this.filters.operationStatus || undefined,
-      domain: `%${this.filters[this.constructor.normalizeName(this.type)] ||
-        ''}%`,
-    })
-      .then((operationIds) => {
-        this.operationIds = operationIds;
-      })
-      .catch((err) => {
-        set(err, 'type', err.type || 'ERROR');
-        this.Alerter.alertFromSWS(
-          this.$translate.instant('domains_operations_error'),
-          err,
-          this.$scope.alerts.main,
-        );
-      })
-      .finally(() => {
-        if (isEmpty(this.operationIds)) {
-          this.loading.init = false;
-        }
-      });
-  }
-
-  getDnsOperationIds() {
-    this.loading.init = true;
-    this.operationIds = null;
-
-    return this.Operation.getDnsOperations({
-      function: this.filters.nicOperation || undefined,
-      status: this.filters.operationStatus || undefined,
-      // TODO: filter with zone not possible now
-      // TODO: decomment once API enable filtering
-      // zone: `%${this.filters[this.constructor.normalizeName(this.type)] || ''}%`,
-    })
-      .then((operationIds) => {
-        this.operationIds = operationIds;
-      })
-      .catch((err) => {
-        set(err, 'type', err.type || 'ERROR');
-        this.Alerter.alertFromSWS(
-          this.$translate.instant('dnss_operations_error'),
-          err,
-          this.$scope.alerts.main,
-        );
-      })
-      .finally(() => {
-        if (isEmpty(this.operationIds)) {
-          this.loading.init = false;
-        }
-      });
-  }
-
-  onTransformItemDone() {
-    this.loading.init = false;
-  }
-
-  static normalizeName(type) {
-    return type === 'dns' ? 'zone' : type;
+  refreshOperationTable() {
+    return this.ouiDatagridService.refresh(this.id, true);
   }
 }

@@ -1,243 +1,225 @@
-<div>
-    <div class="mb-3">
-        <form
-            class="form-inline d-md-flex justify-content-md-end"
-            name="domainsOperationsForm"
+<oui-header
+    data-ng-if="$ctrl.header"
+    class="mb-2"
+    data-heading="{{:: $ctrl.header }}"
+></oui-header>
+<div data-ng-bind-html="$ctrl.description"></div>
+
+<oui-datagrid
+    data-ng-if="$ctrl.type==='domain'"
+    id="{{ $ctrl.id }}"
+    data-empty-placeholder="{{:: 'domains_empty' | translate }}"
+    data-page-size="{{ $ctrl.paginationSize }}"
+    data-rows-loader="$ctrl.loadPage()"
+    data-row-loader="$ctrl.loadResource($row)"
+    data-criteria="$ctrl.criteria"
+    data-on-page-change="$ctrl.onPageChange($pagination)"
+    data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+    data-on-sort-change="$ctrl.onSortChange($sort)"
+    data-columns="$ctrl.columnsConfig"
+    data-on-columns-parameters-change="$ctrl.onColumnChange(id, columns)"
+    data-page="{{ $ctrl.paginationNumber }}"
+    customizable
+>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_domain' | translate"
+        data-property="domain"
+        data-type="string"
+        data-sortable
+        data-filterable
+        data-searchable
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_function' | translate"
+        data-property="function"
+        data-type="options"
+        data-type-options="$ctrl.operationFunctionColumnOptions"
+        data-filterable
+        data-sortable
+    >
+        <span
+            data-ng-bind="'domain_operations_nicOperation_' +  $row.function | translate"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_comment' | translate"
+        data-property="comment"
+        data-type="string"
+        data-type-options="$ctrl.domainSuspensionStateColumnOptions"
+        data-filterable
+        data-sortable
+    >
+    </oui-datagrid-column>
+
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_todoDate' | translate"
+        data-property="todoDate"
+    >
+        {{ $row.todoDate | date:'short' }}
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_lastUpdate' | translate"
+        data-property="lastUpdate"
+    >
+        {{ $row.lastUpdate | date:'short' }}
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_doneDate' | translate"
+        data-property="doneDate"
+    >
+        {{ $row.doneDate | date:'short' }}
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_status' | translate"
+        data-property="status"
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="{
+                'oui-badge_info': $row.status === 'todo' || $row.status === 'doing' || $row.status === 'cancelled',
+                'oui-badge_error': $row.status === 'error',
+                'oui-badge_success': $row.status === 'done'
+              }"
+            data-ng-bind="'domain_operations_statusOperation_' +  $row.status | translate"
         >
-            <div class="form-group mr-md-5">
-                <label
-                    class="control-label mr-2"
-                    for="'filters-' + {{$ctrl.tab}}"
-                    data-translate="{{'domain_operations_filters_' + $ctrl.type.toLowerCase() }}"
-                ></label>
-                <div class="input-group">
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="'filters-' + {{$ctrl.tab}}"
-                        data-ng-change="$ctrl.getOperationIds()"
-                        data-ng-model="$ctrl.filters[$ctrl.constructor.normalizeName($ctrl.type)]"
-                        data-ng-model-options="{ debounce: 800 }"
-                    />
-                    <div
-                        class="input-group-btn"
-                        data-ng-if="$ctrl.filters[$ctrl.constructor.normalizeName($ctrl.type)]"
-                    >
-                        <button
-                            class="btn btn-default"
-                            type="button"
-                            aria-label="{{ 'common_cancel' | translate }}"
-                            data-ng-click="$ctrl.resetSearch()"
-                            data-ng-disabled="$ctrl.loading.filters"
-                        >
-                            <span class="fa fa-times" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <span
-                        class="input-group-addon"
-                        data-ng-if="!$ctrl.filters[$ctrl.constructor.normalizeName($ctrl.type)]"
-                    >
-                        <span class="fa fa-search" aria-hidden="true"></span>
-                    </span>
-                </div>
-            </div>
-            <div class="form-group mr-md-5">
-                <label
-                    class="control-label mr-2"
-                    for="filters-operation"
-                    data-translate="domain_operations_filters_operation"
-                ></label>
-                <div class="oui-select d-md-inline-block align-middle m-0">
-                    <select
-                        class="oui-select__input"
-                        id="filters-operation"
-                        data-ng-change="$ctrl.getOperationIds()"
-                        data-ng-disabled="$ctrl.loading.filters"
-                        data-ng-model="$ctrl.filters.nicOperation"
-                        data-ng-options="operation as ((('domain_operations_nicOperation_' + operation | translate) == 'domain_operations_nicOperation_' + operation)? operation: ('domain_operations_nicOperation_' + operation | translate)) for operation in ($ctrl.nicOperationEnum | orderBy:'operation') track by operation"
-                    >
-                        <option
-                            data-translate="domain_operations_no_filters"
-                        ></option>
-                    </select>
-                    <span
-                        class="oui-icon oui-icon-chevron-down"
-                        aria-hidden="true"
-                    ></span>
-                </div>
-            </div>
-            <div class="form-group">
-                <label
-                    class="control-label mr-2"
-                    for="filters-status"
-                    data-translate="domain_operations_filters_status"
-                ></label>
-                <div class="oui-select d-md-inline-block align-middle m-0">
-                    <select
-                        class="oui-select__input"
-                        id="filters-status"
-                        data-ng-change="$ctrl.getOperationIds()"
-                        data-ng-disabled="$ctrl.loading.filters"
-                        data-ng-model="$ctrl.filters.operationStatus"
-                        data-ng-options="status as ((('domain_operations_statusOperation_' + status | translate) == 'domain_operations_statusOperation_' + status)? status: ('domain_operations_statusOperation_' + status | translate)) for status in ($ctrl.operationStatusEnum | orderBy:'status') track by status"
-                    >
-                        <option
-                            data-translate="domain_operations_no_filters"
-                        ></option>
-                    </select>
-                    <span
-                        class="oui-icon oui-icon-chevron-down"
-                        aria-hidden="true"
-                    ></span>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th
-                        scope="col"
-                        data-translate="domain_operations_table_header_domain"
-                    ></th>
-                    <th
-                        scope="col"
-                        data-translate="domain_operations_table_header_function"
-                    ></th>
-                    <th
-                        scope="col"
-                        data-translate="domain_operations_table_header_comment"
-                    ></th>
-                    <th
-                        scope="col"
-                        data-translate="domain_operations_table_header_todoDate"
-                    ></th>
-                    <th
-                        scope="col"
-                        data-translate="domain_operations_table_header_lastUpdate"
-                    ></th>
-                    <th
-                        scope="col"
-                        data-translate="domain_operations_table_header_doneDate"
-                    ></th>
-                    <th
-                        scope="col"
-                        data-translate="domain_operations_table_header_status"
-                    ></th>
-                    <th class="min-width text-right" scope="col">
-                        <button
-                            class="btn btn-icon"
-                            type="button"
-                            title="{{ 'operation_tab_table_header_refresh' | translate }}"
-                            data-ng-click="$ctrl.getOperationIds()"
-                        >
-                            <span
-                                class="fa fa-refresh"
-                                aria-hidden="true"
-                            ></span>
-                        </button>
-                    </th>
-                </tr>
-            </thead>
-
-            <!--loader-->
-            <tbody data-ng-if="$ctrl.loading.init">
-                <tr>
-                    <td class="text-center" colspan="8">
-                        <oui-spinner></oui-spinner>
-                    </td>
-                </tr>
-            </tbody>
-
-            <!-- no operation -->
-            <tbody
-                data-ng-if="!$ctrl.loading.init && !$ctrl.operationIds.length"
+        </span>
+        <span
+            data-oui-tooltip="{{:: 'domain_operations_no_action' | translate }}"
+            data-oui-tooltip-enable="{{!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate}}"
+            data-oui-tooltip-placement="left"
+        >
+            <oui-action-menu
+                data-compact
+                data-disabled="!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate && $row.function !== 'DomainIncomingTransfer'"
+                data-placement="end"
             >
-                <tr>
-                    <td
-                        class="text-center"
-                        colspan="8"
-                        data-translate="domain_operations_table_empty"
-                    ></td>
-                </tr>
-            </tbody>
-
-            <!-- Operations -->
-            <tbody
-                data-ng-if="!$ctrl.loading.init && $ctrl.operationIds.length > 0"
-            >
-                <tr
-                    data-ng-repeat="operation in $ctrl.operations track by $index"
+                <oui-action-menu-item
+                    data-on-click="setAction('domain-operation/update/domain-operation-update', $row)"
+                    data-disabled="!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate"
                 >
-                    <td
-                        class="word-break"
-                        data-ng-bind="::operation[$ctrl.constructor.normalizeName($ctrl.type)]"
-                    ></td>
-                    <td
-                        data-ng-bind="(('domain_operations_nicOperation_' + operation.function | translate) == 'domain_operations_nicOperation_' + operation.function)? operation.function: ('domain_operations_nicOperation_' + operation.function | translate)"
-                    ></td>
-                    <td data-ng-bind="::operation.comment"></td>
-                    <td data-ng-bind="::operation.todoDate | date:'short'"></td>
-                    <td
-                        data-ng-bind="::operation.lastUpdate | date:'short'"
-                    ></td>
-                    <td data-ng-bind="::operation.doneDate | date:'short'"></td>
-                    <td
-                        class="text-nowrap"
-                        data-ng-bind="(('domain_operations_statusOperation_' + operation.status | translate) == 'domain_operations_statusOperation_' + operation.status)? operation.status: ('domain_operations_statusOperation_' + operation.status | translate)"
-                        title="{{operation.comment}}"
-                    ></td>
-                    <td class="text-center">
-                        <span
-                            data-oui-tooltip="{{:: 'domain_operations_no_action' | translate }}"
-                            data-oui-tooltip-enable="{{!operation.canCancel && !operation.canRelaunch && !operation.canAccelerate}}"
-                            data-oui-tooltip-placement="left"
-                        >
-                            <oui-action-menu
-                                data-compact
-                                data-disabled="!operation.canCancel && !operation.canRelaunch && !operation.canAccelerate && operation.function !== 'DomainIncomingTransfer'"
-                                data-placement="end"
-                            >
-                                <oui-action-menu-item
-                                    data-on-click="setAction('domain-operation/update/domain-operation-update', operation)"
-                                    data-disabled="!operation.canCancel && !operation.canRelaunch && !operation.canAccelerate"
-                                >
-                                    <span
-                                        data-translate="domain_operations_tab_popover_update"
-                                    ></span>
-                                </oui-action-menu-item>
-                                <oui-action-menu-item
-                                    data-ng-href="#/{{$ctrl.type}}/operation/progress/{{operation.id}}"
-                                    data-ng-if="operation.function === 'DomainIncomingTransfer'"
-                                >
-                                    <span
-                                        data-translate="domain_operations_tab_popover_progress"
-                                    ></span>
-                                </oui-action-menu-item>
-                            </oui-action-menu>
-                        </span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+                    <span
+                        data-translate="domain_operations_tab_popover_update"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-href="#/{{$ctrl.type}}/operation/progress{{$row.id}}"
+                    data-ng-if="$row.function === 'DomainIncomingTransfer'"
+                >
+                    <span
+                        data-translate="domain_operations_tab_popover_progress"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </span>
+    </oui-datagrid-column>
+</oui-datagrid>
+<oui-datagrid
+    data-ng-if="$ctrl.type==='dns'"
+    id="{{ $ctrl.id }}"
+    data-empty-placeholder="{{:: 'domains_empty' | translate }}"
+    data-page-size="{{ $ctrl.paginationSize }}"
+    data-rows-loader="$ctrl.loadPage()"
+    data-row-loader="$ctrl.loadResource($row)"
+    data-criteria="$ctrl.criteria"
+    data-on-page-change="$ctrl.onPageChange($pagination)"
+    data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+    data-on-sort-change="$ctrl.onSortChange($sort)"
+    data-columns="$ctrl.columnsConfig"
+    data-on-columns-parameters-change="$ctrl.onColumnChange(id, columns)"
+    data-page="{{ $ctrl.paginationNumber }}"
+    customizable
+>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_domain' | translate"
+        data-property="zone"
+        data-type="string"
+        data-sortable
+        data-filterable
+        data-searchable
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_function' | translate"
+        data-property="function"
+        data-type="options"
+        data-type-options="$ctrl.operationFunctionColumnOptions"
+        data-filterable
+        data-sortable
+    >
+        <span
+            data-ng-bind="'domain_operations_nicOperation_' +  $row.function | translate"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_comment' | translate"
+        data-property="comment"
+        data-type="string"
+        data-type-options="$ctrl.domainSuspensionStateColumnOptions"
+        data-filterable
+        data-sortable
+    >
+    </oui-datagrid-column>
 
-    <div class="clearfix" data-ng-if="$ctrl.operationIds">
-        <div
-            data-pagination-front
-            data-items="$ctrl.operationIds"
-            data-paginated-items="$ctrl.operations"
-            data-current-page="currentPage"
-            data-items-per-page="itemsPerPage"
-            data-nb-pages="nbPages"
-            data-transform-item="$ctrl.transformItem(item)"
-            data-on-transform-item-done="$ctrl.onTransformItemDone()"
-            data-page-placeholder="{{ 'pagination_page' | translate: { current: currentPage, last: nbPages} }}"
-            data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
-            data-on-page-change="$ctrl.loading.init = true"
-            data-ng-show="!$ctrl.loading.init && $ctrl.operations.length > 0"
-        ></div>
-    </div>
-</div>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_todoDate' | translate"
+        data-property="todoDate"
+    >
+        {{ $row.todoDate | date:'short' }}
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_lastUpdate' | translate"
+        data-property="lastUpdate"
+    >
+        {{ $row.lastUpdate | date:'short' }}
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_doneDate' | translate"
+        data-property="doneDate"
+    >
+        {{ $row.doneDate | date:'short' }}
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_status' | translate"
+        data-property="status"
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="{
+                'oui-badge_info': $row.status === 'todo' || $row.status === 'doing' || $row.status === 'cancelled',
+                'oui-badge_error': $row.status === 'error',
+                'oui-badge_success': $row.status === 'done'
+              }"
+            data-ng-bind="'domain_operations_statusOperation_' +  $row.status | translate"
+        >
+        </span>
+        <span
+            data-oui-tooltip="{{:: 'domain_operations_no_action' | translate }}"
+            data-oui-tooltip-enable="{{!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate}}"
+            data-oui-tooltip-placement="left"
+        >
+            <oui-action-menu
+                data-compact
+                data-disabled="!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate && $row.function !== 'DomainIncomingTransfer'"
+                data-placement="end"
+            >
+                <oui-action-menu-item
+                    data-on-click="setAction('domain-operation/update/domain-operation-update', $row)"
+                    data-disabled="!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate"
+                >
+                    <span
+                        data-translate="domain_operations_tab_popover_update"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-href="#/domain/operation/progress/{{$row.id}}"
+                    data-ng-if="$row.function === 'DomainIncomingTransfer'"
+                >
+                    <span
+                        data-translate="domain_operations_tab_popover_progress"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </span>
+    </oui-datagrid-column>
+</oui-datagrid>
