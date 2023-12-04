@@ -117,24 +117,22 @@
             </div>
         </div>
 
-        <oui-message
-            class="my-5"
-            data-ng-if="migration"
-            type="info">
+        <oui-message class="my-5" data-ng-if="migration" type="info">
             <span
                 data-translate="hosting_offer_changing_datavis_tool"
-                data-translate-values="{ url: 'https://web-cloud.status-ovhcloud.com/incidents/bklsmwkj01y8' }"
-            ></span>
+                data-translate-values="{ url: STATUS_OVHCLOUD_URL }"
+            >
+            </span>
         </oui-message>
         <div data-ng-if="!migration">
             <div
                 class="my-5 text-center"
                 data-ng-if="selected.type === 'IN_HTTP_HITS'"
             >
-            <span
-                class="oui-label d-inline-block mr-2"
-                data-translate="hosting_tab_STATISTICS_aggregate"
-            ></span>
+                <span
+                    class="oui-label d-inline-block mr-2"
+                    data-translate="hosting_tab_STATISTICS_aggregate"
+                ></span>
                 <div
                     class="oui-radio oui-radio_inline"
                     data-ng-repeat="option in model.constants.aggregateModes track by option"
@@ -152,13 +150,13 @@
                         class="oui-radio__label-container"
                         for="aggregateModes-{{$index}}"
                     >
-                    <span class="oui-radio__label">
-                        <span class="oui-radio__icon"></span>
-                        <span
-                            class="oui-radio__text"
-                            data-ng-bind="'hosting_tab_STATISTICS_aggregate_' + option | translate"
-                        ></span>
-                    </span>
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-ng-bind="'hosting_tab_STATISTICS_aggregate_' + option | translate"
+                            ></span>
+                        </span>
                     </label>
                 </div>
             </div>

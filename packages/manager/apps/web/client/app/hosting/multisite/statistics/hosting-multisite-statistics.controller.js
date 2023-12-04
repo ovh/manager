@@ -51,11 +51,12 @@ export default class HostingMultisiteStatistisController {
     return this.getStatistics(domain, period?.value)
       .then((statistics) => {
         this.fillChart(statistics, period?.value);
+        return null;
       })
       .catch(async (error) => {
-        if(error.status >= 500){
+        if (error.status >= 500) {
           this.migration = true;
-          return;
+          return null;
         }
         try {
           const { type: cdnType } = await this.getCdnProperties();
@@ -67,9 +68,11 @@ export default class HostingMultisiteStatistisController {
         } catch (err) {
           this.hasLoadingError = true;
         }
+        return null;
       })
       .finally(() => {
         this.isLoadingStatistics = false;
+        return null;
       });
   }
 

@@ -10,6 +10,7 @@ import keys from 'lodash/keys';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
 import set from 'lodash/set';
+import { STATUS_OVHCLOUD_URL } from '../../constants';
 
 angular.module('App').controller(
   'PrivateDatabaseMetricsCtrl',
@@ -27,7 +28,7 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.WucChartjsFactory = WucChartjsFactory;
       this.PrivateDatabase = PrivateDatabase;
-
+      this.STATUS_OVHCLOUD_URL = STATUS_OVHCLOUD_URL;
       this.PRIVATE_DATABASE_METRICS = {
         settingsForAllCharts: {
           type: 'line',
@@ -236,11 +237,12 @@ angular.module('App').controller(
               }
             },
           );
+          return null;
         })
         .catch((err) => {
-          if(err.status >= 500){
+          if (err.status >= 500) {
             this.migration = true;
-            return;
+            return null;
           }
           set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
@@ -248,9 +250,11 @@ angular.module('App').controller(
             err,
             this.$scope.alerts.main,
           );
+          return null;
         })
         .finally(() => {
           this.isFetchingMetrics = false;
+          return null;
         });
     }
 
