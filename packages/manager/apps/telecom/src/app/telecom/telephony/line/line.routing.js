@@ -139,6 +139,9 @@ export default /* @ngInject */ ($stateProvider) => {
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$.params()),
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+      isMgcpBannerAvailable: /* @ngInject */ (featureAvailability) =>
+        featureAvailability?.isFeatureAvailable('telephony:mgcp-banner') ||
+        false,
     },
   });
 };
