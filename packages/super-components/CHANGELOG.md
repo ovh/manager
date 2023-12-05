@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/ovh/manager/compare/@ovhcloud/msc-lib@0.2.0...@ovhcloud/msc-lib@0.2.1) (2023-12-05)
+
+
+### Bug Fixes
+
+* **msc-utils:** add private attribute to msc utils ([7e51e15](https://github.com/ovh/manager/commit/7e51e156fd8d3c32eb56da9598adfae3fe548a8d))
+
+
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovhcloud/msc-lib@0.1.0...@ovhcloud/msc-lib@0.2.0) (2023-12-05)
 
 

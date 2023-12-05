@@ -1,6 +1,6 @@
 {
   "name": "@ovhcloud/msc-stencil-tile",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "ODS Tile with custom content",
   "keywords": [
     "ovh",
@@ -42,7 +42,7 @@
     "prepare": "yarn msc:build"
   },
   "dependencies": {
-    "@ovhcloud/msc-utils": "^0.2.0"
+    "@ovhcloud/msc-utils": "^0.2.1"
   },
   "devDependencies": {
     "@ovhcloud/ods-common-testing": "^16.0.1",
