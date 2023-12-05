@@ -1,0 +1,33 @@
+const lazyRouteConfig = (importFn: CallableFunction) => {
+  return {
+    lazy: async () => {
+      const { default: moduleDefault, ...moduleExports } = await importFn();
+
+      return {
+        Component: moduleDefault,
+        ...moduleExports,
+      };
+    },
+  };
+};
+
+export default [
+  {
+    path: '/',
+    ...lazyRouteConfig(() => import('@/pages/Home')),
+  },
+  {
+    path: '/pci/projects/:projectId/vouchers',
+    ...lazyRouteConfig(() => import('@/pages/Layout')),
+    children: [
+      {
+        path: '',
+        ...lazyRouteConfig(() => import('@/pages/ListingPage')),
+      },
+    ],
+  },
+  {
+    path: '*',
+    element: <>Not found page</>,
+  },
+];

@@ -1,0 +1,52 @@
+{
+  "name": "@ovh-ux/manager-pci-vouchers-app",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite",
+    "lint": "eslint ./src",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-vouchers-app' --include-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-vouchers-app' --include-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-vouchers-app' --include-dependencies -- npm run dev:watch --if-present",
+    "te": "tsc --version"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-core-api": "^0.2.0",
+    "@ovh-ux/manager-react-shell-client": "^0.0.0",
+    "@ovhcloud/ods-common-core": "^16.6.0",
+    "@ovhcloud/ods-common-stencil": "^16.6.0",
+    "@ovhcloud/ods-common-theming": "^16.6.0",
+    "@ovhcloud/ods-components": "^16.6.0",
+    "@ovhcloud/ods-theme-blue-jeans": "^16.6.0",
+    "@tanstack/react-query": "^5.14.2",
+    "@tanstack/react-query-devtools": "^5.14.2",
+    "date-fns": "^3.0.4",
+    "i18next": "^23.7.11",
+    "i18next-http-backend": "^2.4.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^13.5.0",
+    "react-router-dom": "^6.21.0"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-vite-config": "^0.2.1",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.56.0",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.3.3",
+    "vite": "^4.5.1"
+  },
+  "regions": [
+    "CA",
+    "EU",
+    "US"
+  ]
+}
