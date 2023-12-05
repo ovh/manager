@@ -1,6 +1,7 @@
 {
   "name": "@ovhcloud/msc-react-tile",
   "version": "1.1.1",
+  "private": true,
   "description": "React specific wrapper for Manager Tile super component",
   "keywords": [],
   "homepage": "https://github.com/ovh/manager/tree/master/packages/super-components/components/msc-tile#readme",
