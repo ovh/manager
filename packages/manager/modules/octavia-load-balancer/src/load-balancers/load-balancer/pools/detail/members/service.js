@@ -38,4 +38,13 @@ export default class OctaviaLoadBalancerMembersService {
       .get(`/cloud/project/${projectId}/instance/`)
       .then(({ data }) => data);
   }
+
+  updateMemberName(projectId, region, poolId, memberId, name) {
+    return this.$http.put(
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}/member/${memberId}`,
+      {
+        name,
+      },
+    );
+  }
 }
