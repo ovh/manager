@@ -24,7 +24,7 @@ angular.module('App').controller(
       this.$state = $state;
       this.$window = $window;
       this.Alerter = Alerter;
-      this.coreConfig = coreConfig;
+      this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
       this.coreURLBuilder = coreURLBuilder;
       this.HostingDatabase = HostingDatabase;
       this.COPY_TYPE_MAIN_DATABASE = COPY_TYPE_MAIN_DATABASE;
@@ -41,9 +41,8 @@ angular.module('App').controller(
 
     $onInit() {
       this.bannerGuideLink =
-        BANNER_HOSTING_GUIDE_HELP_LINKS[
-          this.coreConfig.getUser().ovhSubsidiary
-        ] || BANNER_HOSTING_GUIDE_HELP_LINKS.DEFAULT;
+        BANNER_HOSTING_GUIDE_HELP_LINKS[this.ovhSubsidiary] ||
+        BANNER_HOSTING_GUIDE_HELP_LINKS.DEFAULT;
 
       this.createDatabaseUrl = this.$scope.currentActionData.isPrivateDatabase
         ? this.coreURLBuilder.buildURL('web', `#/order-cloud-db`)
