@@ -55,14 +55,16 @@ angular.module('services').service(
      * @param {string} login
      * @param {string} password
      * @param {string} home
+     * @param {string} sshState
      */
-    addUser(serviceName, login, password, home) {
+    addUser(serviceName, login, password, home, sshState) {
       return this.OvhHttp.post(`/hosting/web/${serviceName}/user`, {
         rootPath: 'apiv6',
         data: {
           login,
           password,
           home,
+          sshState,
         },
       }).then((resp) => {
         this.Hosting.resetUsers();

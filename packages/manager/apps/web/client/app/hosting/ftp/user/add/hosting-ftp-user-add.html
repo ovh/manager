@@ -88,6 +88,85 @@
                         ></small>
                     </div>
                 </div>
+
+                <fieldset class="form-group">
+                    <label
+                        class="control-label col-md-3"
+                        for="hostingUserProtocol"
+                        data-translate="hosting_tab_FTP_configuration_user_create_step1_protocol_label"
+                    ></label>
+                    <div
+                        id="hostingUserProtocol"
+                        class="col-md-9 col-md-offset-3"
+                    >
+                        <div class="oui-radio">
+                            <input
+                                type="radio"
+                                class="oui-radio__input"
+                                id="hostingUserProtocolFtp"
+                                name="hostingUserProtocol"
+                                data-ng-value="ctrl.PROTOCOL_CHOICES.ftp"
+                                data-ng-model="ctrl.model.protocol"
+                            />
+                            <label
+                                class="oui-radio__label-container"
+                                for="hostingUserProtocolFtp"
+                            >
+                                <span class="oui-radio__label">
+                                    <span class="oui-radio__icon"></span>
+                                    <span
+                                        class="oui-radio__text"
+                                        data-translate="hosting_tab_FTP_configuration_user_create_step1_protocol_ftp"
+                                    ></span>
+                                </span>
+                            </label>
+                            <div class="oui-radio">
+                                <input
+                                    type="radio"
+                                    class="oui-radio__input"
+                                    id="hostingUserProtocolBoth"
+                                    name="hostingUserProtocol"
+                                    data-ng-value="ctrl.PROTOCOL_CHOICES.ftpAndSftp"
+                                    data-ng-model="ctrl.model.protocol"
+                                />
+                                <label
+                                    class="oui-radio__label-container"
+                                    for="hostingUserProtocolBoth"
+                                >
+                                    <span class="oui-radio__label">
+                                        <span class="oui-radio__icon"></span>
+                                        <span
+                                            class="oui-radio__text"
+                                            data-translate="hosting_tab_FTP_configuration_user_create_step1_protocol_both"
+                                        ></span>
+                                    </span>
+                                </label>
+                            </div>
+                            <div class="oui-radio">
+                                <input
+                                    type="radio"
+                                    class="oui-radio__input"
+                                    id="hostingUserProtocolAll"
+                                    name="hostingUserProtocol"
+                                    data-ng-value="ctrl.PROTOCOL_CHOICES.all"
+                                    data-ng-model="ctrl.model.protocol"
+                                />
+                                <label
+                                    class="oui-radio__label-container"
+                                    for="hostingUserProtocolAll"
+                                >
+                                    <span class="oui-radio__label">
+                                        <span class="oui-radio__icon"></span>
+                                        <span
+                                            class="oui-radio__text"
+                                            data-translate="hosting_tab_FTP_configuration_user_create_step1_protocol_all"
+                                        ></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
             </form>
         </div>
 
