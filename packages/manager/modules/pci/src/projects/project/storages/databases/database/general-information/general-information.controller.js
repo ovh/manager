@@ -14,7 +14,10 @@ import {
   TRANSLATION_PREFIX,
 } from './general-information.constants';
 import isFeatureActivated from '../../features.constants';
-import { DISK_TYPE } from '../../../../../../components/project/storages/databases/databases.constants';
+import {
+  DISK_TYPE,
+  PLANS_WITHOUT_BACKUP,
+} from '../../../../../../components/project/storages/databases/databases.constants';
 
 export default class {
   /* @ngInject */
@@ -35,6 +38,7 @@ export default class {
     this.DATABASE_TYPES = DATABASE_TYPES;
     this.NODES_PER_ROW = NODES_PER_ROW;
     this.user = coreConfig.getUser();
+    this.PLANS_WITHOUT_BACKUP = PLANS_WITHOUT_BACKUP;
   }
 
   $onInit() {
