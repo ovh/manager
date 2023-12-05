@@ -13,13 +13,15 @@ export default class OctaviaLoadBalancerPoolsDetailMembersCreateCtrl {
   addMember() {
     this.isLoading = true;
     this.trackCreateAction('confirm');
-    this.OctaviaLoadBalancerMembersService.createPoolMember(
+    this.OctaviaLoadBalancerMembersService.createMembers(
       this.projectId,
       this.region,
       this.poolId,
-      this.addressIp,
-      this.name,
-      this.port,
+      {
+        address: this.addressIp,
+        name: this.name,
+        protocolPort: this.port,
+      },
     )
       .then(async () => {
         this.Alerter.set(
