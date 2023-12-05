@@ -19,7 +19,7 @@
   "octavia_load_balancer_listeners_provisioning_status_deleting": "deleting",
   "octavia_load_balancer_listeners_provisioning_status_error": "error",
   "octavia_load_balancer_listeners_provisioning_status_updating": "updating",
-  "octavia_load_balancer_listeners_actions_detail": "Edit/See",
+  "octavia_load_balancer_listeners_actions_detail": "Edit",
   "octavia_load_balancer_listeners_actions_delete": "Delete",
   "octavia_load_balancer_listeners_create_success": "The new {{ listener }} listener has been created!",
   "octavia_load_balancer_listeners_edit_success": "The {{ listener }} listener has been updated!",
