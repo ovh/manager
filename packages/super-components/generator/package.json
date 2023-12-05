@@ -1,6 +1,6 @@
 {
   "name": "@ovhcloud/msc-generator",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Command and script to create new super-components in the library",
   "license": "BSD-3-Clause",

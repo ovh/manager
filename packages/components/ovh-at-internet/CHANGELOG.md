@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.7.1...@ovh-ux/ovh-at-internet@0.8.0) (2023-12-05)
+
+
+### Bug Fixes
+
+* **generator:** fix generator and supercomponents ([dc78ef2](https://github.com/ovh/manager/commit/dc78ef2efaa84d3d6ec69dbfc2af5debb8b35537))
+
+
+### Features
+
+* catalog react uapp ([#10005](https://github.com/ovh/manager/issues/10005)) ([e456451](https://github.com/ovh/manager/commit/e45645174e0a6e0834d06c3c23c535ff374dceba))
+* **tracking:** add tracking on ods components ([eb1b217](https://github.com/ovh/manager/commit/eb1b2172957559e3d788984d15a1b6f466267c4a))
+
+
+
+
+
 ## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.7.0...@ovh-ux/ovh-at-internet@0.7.1) (2023-11-21)
 
 **Note:** Version bump only for package @ovh-ux/ovh-at-internet

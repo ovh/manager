@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-request-tagger",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "description": "Request tagger",
   "keywords": [
@@ -38,7 +38,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.0"
+    "@ovh-ux/component-rollup-config": "^13.0.1"
   },
   "peerDependencies": {
     "@uirouter/angularjs": "^1.0.22",

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-proxy-request",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Simple configurable request handler to use in service for any manager",
   "keywords": [
     "angularjs",
@@ -40,7 +40,7 @@
     "set-value": "^2.0.1"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.0"
+    "@ovh-ux/component-rollup-config": "^13.0.1"
   },
   "peerDependencies": {
     "angular": "^1.6.10"

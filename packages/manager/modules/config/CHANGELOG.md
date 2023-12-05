@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@7.2.0...@ovh-ux/manager-config@7.3.0) (2023-12-05)
+
+
+### Bug Fixes
+
+* **generator:** fix generator and supercomponents ([dc78ef2](https://github.com/ovh/manager/commit/dc78ef2efaa84d3d6ec69dbfc2af5debb8b35537))
+
+
+### Features
+
+* **generator.onboarding:** add guide utils ([9f0ba2a](https://github.com/ovh/manager/commit/9f0ba2a29a6f2852023a0d14b2c6687cfc288a1d))
+
+
+
+
+
 # [7.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@7.0.0...@ovh-ux/manager-config@7.2.0) (2023-08-08)
 
 

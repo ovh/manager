@@ -1,6 +1,6 @@
 {
   "name": "@ovhcloud/msc-stencil-advices",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "The Manager Advices Tile is a generic super component designed to recommend cross-sell offers to the user, aiming to enhance their product experience.",
   "keywords": [
     "ovh",

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-checkbox-table",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Multi checkbox management for table",
   "keywords": [
     "angularjs",
@@ -40,7 +40,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.0"
+    "@ovh-ux/component-rollup-config": "^13.0.1"
   },
   "peerDependencies": {
     "angular": "~1.6"

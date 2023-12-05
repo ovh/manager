@@ -1,6 +1,6 @@
 {
   "name": "@ovhcloud/msc-react-advices",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "React specific wrapper for msc-advices super component",
   "keywords": [],
@@ -29,7 +29,7 @@
     "prepare": "yarn msc:build"
   },
   "dependencies": {
-    "@ovhcloud/msc-stencil-advices": "*",
+    "@ovhcloud/msc-stencil-advices": "^1.1.0",
     "tslib": "*"
   },
   "devDependencies": {

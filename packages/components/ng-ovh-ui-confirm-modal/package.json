@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-ui-confirm-modal",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Simple confirmation modal",
   "keywords": [
     "angular",
@@ -35,7 +35,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-ui-confirm-modal' --include-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.0"
+    "@ovh-ux/component-rollup-config": "^13.0.1"
   },
   "peerDependencies": {
     "angular": "^1.7.5",
