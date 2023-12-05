@@ -1,6 +1,6 @@
 {
   "name": "@ovhcloud/msc-vue-tile",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "private": true,
   "description": "Vue specific wrapper for Manager Tile super component",
   "keywords": [],
@@ -30,7 +30,7 @@
     "prepare": "yarn msc:build"
   },
   "dependencies": {
-    "@ovhcloud/msc-stencil-tile": "^1.1.1"
+    "@ovhcloud/msc-stencil-tile": "^1.1.2"
   },
   "devDependencies": {
     "rimraf": "^3.0.2",

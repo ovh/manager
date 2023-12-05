@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/ovh/manager/compare/@ovhcloud/msc-lib@0.2.1...@ovhcloud/msc-lib@0.2.2) (2023-12-05)
+
+
+### Bug Fixes
+
+* **super-components:** switch all components in private true ([15ce18f](https://github.com/ovh/manager/commit/15ce18faac7e34435f05b9b7d334502607918ed4))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovhcloud/msc-lib@0.2.0...@ovhcloud/msc-lib@0.2.1) (2023-12-05)
 
 

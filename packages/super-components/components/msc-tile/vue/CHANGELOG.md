@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/ovh/manager/compare/@ovhcloud/msc-vue-tile@1.1.1...@ovhcloud/msc-vue-tile@1.1.2) (2023-12-05)
+
+
+### Bug Fixes
+
+* **super-components:** switch all components in private true ([15ce18f](https://github.com/ovh/manager/commit/15ce18faac7e34435f05b9b7d334502607918ed4))
+
+
+
+
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovhcloud/msc-vue-tile@1.1.0...@ovhcloud/msc-vue-tile@1.1.1) (2023-12-05)
 
 **Note:** Version bump only for package @ovhcloud/msc-vue-tile
