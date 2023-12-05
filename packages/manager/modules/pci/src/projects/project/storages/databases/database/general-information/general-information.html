@@ -255,7 +255,7 @@
                         ></p>
                         <button
                             class="oui-tile__button oui-button oui-button_ghost oui-button_block"
-                            data-ng-if="$ctrl.database.disk.type !== $ctrl.DISK_TYPE.LOCAL_SSD"
+                            data-ng-if="$ctrl.database.disk.type !== $ctrl.DISK_TYPE.LOCAL_SSD && $ctrl.getCurrentFlavor().isStorageRange"
                             data-ng-click="$ctrl.upgradeStorage()"
                             data-ng-disabled="!$ctrl.database.isActive() || $ctrl.database.isOldMongoPlan"
                         >
@@ -585,7 +585,7 @@
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
-                    data-ng-if="$ctrl.isFeatureActivated('backupTab')"
+                    data-ng-if="$ctrl.isFeatureActivated('backupTab') && !$ctrl.PLANS_WITHOUT_BACKUP.includes($ctrl.database.plan)"
                     data-term="{{:: 'pci_databases_general_information_backup_time_label' | translate }}"
                 >
                     <oui-tile-description>

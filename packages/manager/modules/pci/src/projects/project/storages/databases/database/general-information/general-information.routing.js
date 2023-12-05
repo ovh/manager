@@ -1,5 +1,8 @@
 import find from 'lodash/find';
-import { STATUS } from '../../../../../../components/project/storages/databases/databases.constants';
+import {
+  PLANS_WITHOUT_BACKUP,
+  STATUS,
+} from '../../../../../../components/project/storages/databases/databases.constants';
 import { NEW_SUPPORT_TICKET_PARAMS } from './general-information.constants';
 import isFeatureActivated from '../../features.constants';
 import { RESTORE_MODES } from '../backups/fork/fork.constants';
@@ -242,7 +245,8 @@ export default /* @ngInject */ ($stateProvider) => {
           database.id,
         ),
       backups: /* @ngInject */ (DatabaseService, database, projectId) =>
-        isFeatureActivated('backupTab', database.engine)
+        isFeatureActivated('backupTab', database.engine) &&
+        !PLANS_WITHOUT_BACKUP.includes(database.plan)
           ? DatabaseService.getBackups(
               projectId,
               database.engine,

@@ -1,10 +1,12 @@
 import capitalize from 'lodash/capitalize';
+import { PLANS_WITHOUT_BACKUP } from '../../../../../../components/project/storages/databases/databases.constants';
 
 export default class {
   /* @ngInject */
   constructor($translate) {
     this.capitalize = capitalize;
     this.$translate = $translate;
+    this.PLANS_WITHOUT_BACKUP = PLANS_WITHOUT_BACKUP;
   }
 
   getSortedPlans() {
@@ -25,5 +27,9 @@ export default class {
         max: plan.maxNodes,
       },
     );
+  }
+
+  hasBackup(plan) {
+    return !this.PLANS_WITHOUT_BACKUP.includes(plan.name);
   }
 }

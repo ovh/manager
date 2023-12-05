@@ -74,6 +74,7 @@
                 data-ng-bind=":: $ctrl.getNodesSpecTranslation(plan)"
             ></p>
             <p
+                data-ng-if="$ctrl.hasBackup(plan)"
                 class="mb-0"
                 data-translate="pci_database_plans_list_spec_backup"
             ></p>
