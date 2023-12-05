@@ -13,6 +13,10 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
 
 export default [
   {
+    path: '/',
+    ...lazyRouteConfig(() => import('@/pages/Home')),
+  },
+  {
     path: '/pci/projects/:projectId/local-zones/instances',
     ...lazyRouteConfig(() => import('@/pages/Layout')),
     children: [

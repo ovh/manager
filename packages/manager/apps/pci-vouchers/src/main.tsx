@@ -46,4 +46,4 @@ const init = async (
   );
 };
 
-init('pci-localzone-instance');
+init('pci-vouchers');
