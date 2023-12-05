@@ -72,10 +72,6 @@ export const SERVICES_TARGET_URLS = {
     universe: 'dedicated',
     url: '#/configuration/license/:serviceName/detail',
   },
-  '/license/windows/{serviceName}': {
-    universe: 'dedicated',
-    url: '#/configuration/license/:serviceName/detail',
-  },
   '/license/sqlserver/{serviceName}': {
     universe: 'dedicated',
     url: '#/configuration/license/:serviceName/detail',
