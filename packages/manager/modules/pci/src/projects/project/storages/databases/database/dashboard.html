@@ -53,7 +53,7 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-ng-if="$ctrl.isFeatureActivated('backupTab')"
+            data-ng-if="$ctrl.isFeatureActivated('backupTab') && !$ctrl.PLANS_WITHOUT_BACKUP.includes($ctrl.database.plan)"
             data-href="{{:: $ctrl.backupsLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.backupsLink"
             data-disabled="!$ctrl.database.isActive()"
