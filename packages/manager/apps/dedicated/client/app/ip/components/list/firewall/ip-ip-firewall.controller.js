@@ -1,9 +1,11 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
+import isObject from 'lodash/isObject';
 import set from 'lodash/set';
 import transform from 'lodash/transform';
 import union from 'lodash/union';
 
+import { ALLOWED_LANGUAGES, BASE_URL_SURVEY } from './firewall.constant';
 import { TRACKING_PREFIX } from '../list.constant';
 
 export default /* @ngInject */ function IpFirewallCtrl(
@@ -21,6 +23,7 @@ export default /* @ngInject */ function IpFirewallCtrl(
   Ip,
   IpFirewall,
   Validator,
+  coreConfig,
 ) {
   const self = this;
 
@@ -57,6 +60,25 @@ export default /* @ngInject */ function IpFirewallCtrl(
   self.successMessage = null;
   self.denyMessage = null;
   self.firewallStatus = null;
+
+  function initializeUrlSurvey() {
+    // Get default language
+    const defaultLanguage = Object.keys(ALLOWED_LANGUAGES).find(
+      (key) => ALLOWED_LANGUAGES[key].isDefault,
+    );
+    const userLanguage = coreConfig.getUserLanguage();
+
+    const languageToUse = isObject(ALLOWED_LANGUAGES[userLanguage])
+      ? userLanguage
+      : defaultLanguage;
+
+    // Get user
+    const user = coreConfig.getUser();
+
+    // Build url for survey link
+    const surveyUrl = `${BASE_URL_SURVEY}${languageToUse}&nic=${user.nichandle}`;
+    return surveyUrl;
+  }
 
   function paginate(pageSize, offset) {
     self.rulesTable = self.rules.list.results.slice(
@@ -117,6 +139,9 @@ export default /* @ngInject */ function IpFirewallCtrl(
   function init(params) {
     self.rulesLoadingError = null;
     self.rules = null;
+
+    self.surveyUrl = initializeUrlSurvey();
+
     if (params) {
       self.selectedBlock = params.ipBlock.ipBlock;
       self.selectedIp = params.ip.ip;

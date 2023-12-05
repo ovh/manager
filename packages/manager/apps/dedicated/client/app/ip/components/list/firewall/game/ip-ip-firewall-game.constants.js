@@ -10,6 +10,19 @@ export const IP_MITIGATION_RULE_PROTOCOL_PORT = {
   trackmaniaShootmania: { from: 2350, to: 2450 },
 };
 
+export const ALLOWED_LANGUAGES = {
+  en: {
+    isDefault: true,
+  },
+  fr: {
+    isDefault: false,
+  },
+};
+
+export const BASE_URL_SURVEY = 'https://survey.ovh.com/index.php/187648?lang=';
+
 export default {
   IP_MITIGATION_RULE_PROTOCOL_PORT,
+  ALLOWED_LANGUAGES,
+  BASE_URL_SURVEY,
 };

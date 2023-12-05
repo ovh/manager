@@ -2,6 +2,7 @@ import angular from 'angular';
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@ovh-ux/ui-kit';
+import ovhManagerCore from '@ovh-ux/manager-core';
 
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
@@ -23,6 +24,7 @@ angular
     scrubbingCenter,
     traffic,
     ApiV2ListHelper.moduleName,
+    ovhManagerCore,
   ])
   .config(routing)
   .component('networkSecurity', component)

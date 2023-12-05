@@ -1,4 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+import controller from './network-security.controller';
 import template from './network-security.html';
 
 export default {
@@ -10,5 +11,6 @@ export default {
     isTrafficActive: '<',
     goTo: '<',
   },
+  controller,
   template,
 };
