@@ -19,7 +19,8 @@ import {
   initFeatureNames,
 } from './utils';
 import { Node } from './navigation-tree/node';
-import ProjectSelector, { PciProject } from './ProjectSelector/ProjectSelector';
+import ProjectSelector from './ProjectSelector/ProjectSelector';
+import { PciProject, getPciProjects } from '@/container/common/utils';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 
 interface ServicesCountError {
@@ -214,20 +215,14 @@ const Sidebar = (): JSX.Element => {
   }, []);
 
   const fetchPciProjects = () => {
-    reketInstance
-      .get('/cloud/project', {
-        headers: {
-          'X-Pagination-Mode': 'CachedObjectList-Pages',
-          'X-Pagination-Size': 5000,
-          'X-Pagination-Sort': 'description',
-        },
-      })
-      .then((result: Array<PciProject>) => {
+    getPciProjects()
+      .then((result) => {
         setPciError(false);
         if (result && result.length) {
           setPciProjects(result);
           setShouldSeeAllPciProjects(
-            !result.find(({ planCode }) => planCode === 'project.discovery')
+            !result.find(({ planCode, status }) =>
+              planCode === 'project.discovery' && status === 'ok')
           )
         }
       })

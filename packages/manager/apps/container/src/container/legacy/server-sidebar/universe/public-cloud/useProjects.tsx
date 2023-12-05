@@ -1,33 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useReket } from '@ovh-ux/ovh-reket';
 import { useQuery } from '@tanstack/react-query';
-
-export interface PciProject {
-  description: string;
-  project_id: string;
-  status: string;
-  planCode: string;
-}
+import { PciProject, getPciProjects } from '@/container/common/utils'
 
 export function useProjects() {
   const location = useLocation();
-  const reketInstance = useReket();
-
-  const getProjects = (): Promise<PciProject[]> =>
-    reketInstance.get('/cloud/project', {
-      headers: {
-        'X-Pagination-Filter': 'status:in=creating,ok,suspended',
-        'X-Pagination-Mode': 'CachedObjectList-Cursor',
-        'X-Pagination-Sort': 'description',
-        'X-Pagination-Sort-Order': 'ASC',
-        'Pragma': 'no-cache',
-      },
-    });
 
   const { data: projects, isError, isLoading } = useQuery({
     queryKey: [`pci-projects`],
-    queryFn: getProjects,
+    queryFn: getPciProjects,
     retry: 3,
   });
   const [currentProject, setCurrentProject] = useState<PciProject>(null);
@@ -40,7 +21,8 @@ export function useProjects() {
       (projects || []).find((project) => project.project_id === projectId),
     );
     setShouldSeeAllProjects(
-      !(projects || []).find(({ planCode }) => planCode === 'project.discovery'),
+      !(projects || []).find(({ planCode, status }) =>
+        planCode === 'project.discovery' && status === 'ok'),
     )
   }, [projects, location]);
 

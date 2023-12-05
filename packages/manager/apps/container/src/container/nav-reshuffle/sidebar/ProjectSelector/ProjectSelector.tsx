@@ -1,19 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 
-export type PciProject = {
-  access: string;
-  creationDate: Date;
-  description: string;
-  expiration: Date;
-  manualQuota: boolean;
-  orderId: unknown;
-  planCode: string;
-  projectName: string;
-  project_id: string;
-  status: string;
-  unleash: boolean;
-};
+import { PciProject } from '@/container/common/utils';
 
 const getProjectOption = (option: Record<string, any>): JSX.Element => {
   return (
