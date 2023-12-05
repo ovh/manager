@@ -1,15 +1,23 @@
-import { APP_DATA_SYNC_TYPES } from '../../../app.constants';
+import { DATA_SYNC_TYPES } from './pci-ai-data-sync.constants';
 
-export default class AIAppsDataSyncCtrl {
+export default class PciAiDataSyncCtrl {
   /* @ngInject */
-  constructor($translate, atInternet, AppService) {
+  constructor(
+    $translate,
+    atInternet,
+    PciProjectAppService,
+    PciProjectNotebookService,
+    PciProjectJobService,
+  ) {
     this.$translate = $translate;
     this.atInternet = atInternet;
-    this.AppService = AppService;
+    this.PciProjectAppService = PciProjectAppService;
+    this.PciProjectNotebookService = PciProjectNotebookService;
+    this.PciProjectJobService = PciProjectJobService;
   }
 
   $onInit() {
-    this.dataSyncType = APP_DATA_SYNC_TYPES;
+    this.dataSyncType = DATA_SYNC_TYPES;
     [this.currentDataSyncType] = this.dataSyncType;
   }
 
@@ -19,7 +27,7 @@ export default class AIAppsDataSyncCtrl {
       direction: this.currentDataSyncType,
       volume: this.volumeId,
     };
-    return this.AppService.dataSync(
+    return this.PciProjectAppService.dataSync(
       this.projectId,
       this.appId,
       dataSyncParameters,

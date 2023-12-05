@@ -7,10 +7,12 @@ export default /* @ngInject */ ($stateProvider) => {
         volumeId: null,
         appId: null,
         directory: null,
+        jobId: null,
+        notebookId: null,
       },
       views: {
         modal: {
-          component: 'ovhManagerPciProjectAppAttachDataDataSyncModal',
+          component: 'ovhManagerPciProjectAIDataSync',
         },
       },
       layout: 'modal',
@@ -23,9 +25,9 @@ export default /* @ngInject */ ($stateProvider) => {
         directory: /* @ngInject */ ($transition$) =>
           $transition$.params().directory,
       },
-      atInternet: {
-        ignore: true,
-      },
+      // atInternet: {
+      //  ignore: true,
+      // },
     },
   );
 };
