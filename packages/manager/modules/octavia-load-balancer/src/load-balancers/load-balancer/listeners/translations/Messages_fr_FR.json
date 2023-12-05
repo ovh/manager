@@ -19,7 +19,7 @@
   "octavia_load_balancer_listeners_provisioning_status_deleting": "en cours de suppression",
   "octavia_load_balancer_listeners_provisioning_status_error": "erreur",
   "octavia_load_balancer_listeners_provisioning_status_updating": "en cours de mise à jour",
-  "octavia_load_balancer_listeners_actions_detail": "Editer/Voir",
+  "octavia_load_balancer_listeners_actions_detail": "Editer",
   "octavia_load_balancer_listeners_actions_delete": "Supprimer",
   "octavia_load_balancer_listeners_create_success": "Le nouveau listener {{ listener }} a été créé avec succès !",
   "octavia_load_balancer_listeners_edit_success": "Le listener {{ listener }} a été mis à jour avec succès !",
