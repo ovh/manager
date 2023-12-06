@@ -1,4 +1,5 @@
 import angular from 'angular';
+import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ui-router-layout';
 import '@ovh-ux/ui-kit';
@@ -24,6 +25,7 @@ const moduleName = 'ovhManagerNetApp';
 angular
   .module(moduleName, [
     components,
+    'ngOvhSwimmingPoll',
     'ngOvhFeatureFlipping',
     'ngTranslateAsyncLoader',
     'ovhManagerCore',
