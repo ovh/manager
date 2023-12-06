@@ -340,5 +340,37 @@
         >
             <span data-translate="domains_action_restore_renew"></span>
         </oui-button>
+
+        <oui-button
+            data-variant="secondary"
+            data-ng-click="$ctrl.setActionMultiple('export-csv/domains-export-to-csv')"
+            data-ng-disabled="$ctrl.loading.domainsExportCsv"
+        >
+            <span
+                data-translate="domains_dashboard_button_export"
+                data-ng-if="!$ctrl.loading.domainsExportCsv"
+            ></span>
+            <span
+                data-translate="domains_dashboard_tooltip_export_csv_creation_doing"
+                data-ng-if="$ctrl.loading.domainsExportCsv"
+            ></span>
+        </oui-button>
+    </div>
+
+    <div
+        id="currentAction"
+        class="modal fade currentAction"
+        tabindex="-1"
+        role="dialog"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <div
+                id="modal-container"
+                class="modal-content"
+                data-ng-include="$ctrl.stepPath"
+            ></div>
+            <div id="modal-help" class="help4wizards"></div>
+        </div>
     </div>
 </div>
