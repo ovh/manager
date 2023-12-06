@@ -12,6 +12,7 @@ import '@ovh-ux/manager-billing-components';
 import { ApiV2ListHelper } from '@ovh-ux/manager-ng-apiv2-helper';
 
 import component from './component';
+import service from './service';
 import routing from './routing';
 
 import index from './index/module';
@@ -42,6 +43,7 @@ angular
   ])
   .config(routing)
   .component('ovhManagerNetAppDashboard', component)
+  .service('NetAppDashboardService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

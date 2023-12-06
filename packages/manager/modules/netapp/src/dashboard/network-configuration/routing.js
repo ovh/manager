@@ -34,8 +34,8 @@ export default /* @ngInject */ ($stateProvider) => {
         trackClick(trackingAction);
         return $state.go('^');
       },
-      vrackServices: /* @ngInject */ (NetappNetworkConfigurationService) =>
-        NetappNetworkConfigurationService.getVrackServices().then(({ data }) =>
+      vrackServices: /* @ngInject */ (NetAppDashboardService) =>
+        NetAppDashboardService.getVrackServices().then(({ data }) =>
           data.map((vs) => {
             const name = vs.currentState.displayName || vs.id;
             return {
