@@ -105,8 +105,10 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
 
         promises.push(
           self.line.getPhone().then(() => {
-            self.displayMgcpBanner =
-              self.line.phone.protocol === PHONE_PROTOCOL.MGCP;
+            if (this.isMgcpBannerAvailable()) {
+              self.displayMgcpBanner =
+                self.line.phone.protocol === PHONE_PROTOCOL.MGCP;
+            }
           }),
         );
 
