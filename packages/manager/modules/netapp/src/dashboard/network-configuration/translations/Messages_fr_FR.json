@@ -11,5 +11,5 @@
   "netapp_network_configuration_create_button": "Créer",
   "netapp_network_configuration_configure_button": "Configurer",
   "netapp_network_configuration_cancel_button": "Annuler",
-  "netapp_network_configuration_success_message": "Vos paramètres réseaux ont bien été créés"
+  "netapp_network_configuration_success_message": "Vos paramètres réseaux sont en cours de création"
 }
