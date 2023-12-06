@@ -16,5 +16,7 @@ export default {
     redirectTarget: '<',
     goBackWithTrackingPage: '<',
     trackPage: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
 };

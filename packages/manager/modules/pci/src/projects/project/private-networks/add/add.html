@@ -8,6 +8,10 @@
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
+    <pci-activate-project-banner
+        data-ng-if="$ctrl.isDiscoveryProject"
+        data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    ></pci-activate-project-banner>
 
     <oui-stepper
         data-current-index="$ctrl.currentIndex"

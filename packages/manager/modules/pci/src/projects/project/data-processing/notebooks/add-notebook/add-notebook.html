@@ -22,6 +22,10 @@
                     </a>
                 </span>
             </oui-message>
+            <pci-activate-project-banner
+                data-ng-if="$ctrl.isDiscoveryProject"
+                data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+            ></pci-activate-project-banner>
             <form novalidate>
                 <!-- step 1 - select notebook type -->
                 <h2

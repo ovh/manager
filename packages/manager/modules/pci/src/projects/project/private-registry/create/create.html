@@ -1,5 +1,11 @@
 <h2 data-translate="private_registry_create"></h2>
 <oui-spinner data-ng-if="$ctrl.loading" data-size="s"></oui-spinner>
+
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+></pci-activate-project-banner>
+
 <oui-stepper data-ng-if="!$ctrl.loading">
     <oui-step-form
         data-header="{{:: 'private_registry_create_region' | translate }}"

@@ -12,6 +12,8 @@ const component = {
     projectId: '<',
     trackClick: '<',
     user: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
 };
 
