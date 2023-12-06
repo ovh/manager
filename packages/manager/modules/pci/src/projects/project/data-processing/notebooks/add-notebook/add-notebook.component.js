@@ -16,5 +16,7 @@ export default {
     goToDashboard: '<',
     goToCommand: '<',
     trackNotebooks: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
 };
