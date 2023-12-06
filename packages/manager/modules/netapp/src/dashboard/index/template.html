@@ -48,11 +48,38 @@
                     'oui-badge_info': $ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.TO_CONFIGURE,
                     'oui-badge_warning': [$ctrl.NETWORK_STATUS.DISSOCIATING, $ctrl.NETWORK_STATUS.ASSOCIATING].includes($ctrl.networkInformations.status)
                 }"
-                        data-translate="{{:: 'netapp_dashboard_network_configuration_status_' + $ctrl.networkInformations.status }}"
+                        data-translate="{{ 'netapp_dashboard_network_configuration_status_' + $ctrl.networkInformations.status }}"
                     ></span>
                 </oui-tile-description>
             </oui-tile-definition>
-            <oui-tile-button data-on-click="$ctrl.goToNetworkConfiguration()">
+            <div
+                data-ng-if="$ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.ASSOCIATED"
+            >
+                <oui-tile-definition
+                    term="{{:: 'netapp_dashboard_network_configuration_vrack_id' | translate }}"
+                    description="{{:: $ctrl.networkInformations.vrackServices.currentState.vrackId }}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    term="{{:: 'netapp_dashboard_network_configuration_vrack_services' | translate }}"
+                    description="{{:: $ctrl.networkInformations.vrackServices.id }}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    term="{{:: 'netapp_dashboard_network_configuration_vrack_subnet' | translate }}"
+                    description="{{:: $ctrl.attachedSubnet.cidr }}"
+                >
+                </oui-tile-definition>
+                <oui-tile-definition
+                    term="{{:: 'netapp_dashboard_network_configuration_vrack_endpoint_ip' | translate }}"
+                    description="{{ $ctrl.serviceEndpoint.endpoints[0].ip }}"
+                >
+                </oui-tile-definition>
+            </div>
+            <oui-tile-button
+                data-ng-if="$ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.TO_CONFIGURE"
+                data-on-click="$ctrl.goToNetworkConfiguration()"
+            >
                 <span
                     data-translate="netapp_dashboard_network_configuration_manage_button"
                 ></span>
