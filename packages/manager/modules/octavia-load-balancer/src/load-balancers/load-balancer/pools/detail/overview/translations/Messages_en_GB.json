@@ -2,7 +2,6 @@
   "octavia_load_balancer_pools_detail_overview_management_title": "Management",
   "octavia_load_balancer_pools_detail_overview_management_edit": "Edit",
   "octavia_load_balancer_pools_detail_overview_management_add_manually": "Manually add a member",
-  "octavia_load_balancer_pools_detail_overview_management_add_ip_instance": "Add instance IPs",
   "octavia_load_balancer_pools_detail_overview_management_delete": "Delete",
   "octavia_load_balancer_pools_detail_overview_info_title": "Information",
   "octavia_load_balancer_pools_detail_overview_info_name": "Name",

@@ -11,14 +11,16 @@
                         data-translate="octavia_load_balancer_pools_detail_overview_management_edit"
                     ></span>
                 </oui-tile-button>
-                <oui-tile-button data-on-click="$ctrl.goToAddManually()">
+                <oui-tile-button data-on-click="$ctrl.goToAddMemberManually()">
                     <span
                         data-translate="octavia_load_balancer_pools_detail_overview_management_add_manually"
                     ></span>
                 </oui-tile-button>
-                <oui-tile-button data-on-click="$ctrl.goToAddIpInstance()">
+                <oui-tile-button
+                    data-on-click="$ctrl.goToAddMemberFromInstances()"
+                >
                     <span
-                        data-translate="octavia_load_balancer_pools_detail_overview_management_add_ip_instance"
+                        data-translate="octavia_load_balancer_pools_detail_add_ips_instances"
                     ></span>
                 </oui-tile-button>
                 <oui-tile-button data-on-click="$ctrl.goToDelete($ctrl.pool)">
