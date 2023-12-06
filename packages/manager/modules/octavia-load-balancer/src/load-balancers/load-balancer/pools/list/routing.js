@@ -13,7 +13,13 @@ export default /* @ngInject */ ($stateProvider) => {
         OctaviaLoadBalancerPoolsService,
         projectId,
         region,
-      ) => OctaviaLoadBalancerPoolsService.getPools(projectId, region),
+        loadbalancerId,
+      ) =>
+        OctaviaLoadBalancerPoolsService.getPools(
+          projectId,
+          region,
+          loadbalancerId,
+        ),
       goToPoolCreation: /* @ngInject */ ($state, trackAction) => () => {
         trackAction('add');
         $state.go('octavia-load-balancer.loadbalancer.pools.create');
