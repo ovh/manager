@@ -27,6 +27,7 @@
     "@ovh-ux/manager-billing": "^0.20.0-alpha.26",
     "@ovh-ux/manager-billing-components": "^3.14.3",
     "@ovh-ux/manager-bm-server-components": "^1.11.0",
+    "@ovh-ux/manager-bm-cluster-components": "^1.0.0",
     "@ovh-ux/manager-catalog-price": "^1.8.0",
     "@ovh-ux/manager-cda": "^1.8.0",
     "@ovh-ux/manager-cloud-connect": "^1.12.1",
