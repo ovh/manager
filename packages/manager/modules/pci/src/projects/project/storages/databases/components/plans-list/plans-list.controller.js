@@ -7,6 +7,10 @@ export default class {
     this.$translate = $translate;
   }
 
+  getSortedPlans() {
+    return this.plans?.sort((a, b) => b.compare(a));
+  }
+
   getNodesSpecTranslation(plan) {
     return this.$translate.instant(
       plan.minNodes === plan.maxNodes

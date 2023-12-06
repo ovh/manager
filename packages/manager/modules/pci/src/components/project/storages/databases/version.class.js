@@ -7,12 +7,18 @@ import 'moment';
 import Plan from './plan.class';
 
 export default class Version {
-  constructor(version, availability, plans, flavors) {
+  constructor(version, availabilities, plans, flavors) {
     Object.assign(this, {
-      endOfLife: moment(get(head(availability), 'endOfLife'), 'YYYY-MM-DD'),
-      startDate: moment(get(head(availability), 'startDate'), 'YYYY-MM-DD'),
-      plans: Version.getPlans(availability, plans, flavors),
-      status: get(head(availability), 'status'),
+      endOfLife: moment(
+        get(head(availabilities), 'lifecycle.endOfLife'),
+        'YYYY-MM-DD',
+      ),
+      startDate: moment(
+        get(head(availabilities), 'lifecycle.startDate'),
+        'YYYY-MM-DD',
+      ),
+      plans: Version.getPlans(availabilities, plans, flavors),
+      status: get(head(availabilities), 'lifecycle.status'),
       version,
     });
   }
@@ -29,12 +35,12 @@ export default class Version {
     return this.version.split('.').map((part) => parseInt(part, 10));
   }
 
-  static getPlans(availability, plans, flavors) {
-    const groupedAvailability = groupBy(availability, 'plan.name');
+  static getPlans(availabilities, plans, flavors) {
+    const groupedAvailabilities = groupBy(availabilities, 'plan.name');
     return plans.reduce((filteredPlans, plan) => {
-      const planAvailability = groupedAvailability[plan.name];
-      if (planAvailability) {
-        filteredPlans.push(new Plan(plan, planAvailability, flavors));
+      const planAvailabilities = groupedAvailabilities[plan.name];
+      if (planAvailabilities) {
+        filteredPlans.push(new Plan(plan, planAvailabilities, flavors));
       }
       return filteredPlans;
     }, []);

@@ -8,8 +8,19 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('pci_databases_general_information_upgrade_plan'),
         currentPlan: /* @ngInject */ (getCurrentPlan) => getCurrentPlan(),
-        plans: /* @ngInject */ (database, engine) =>
-          engine.getAvailablePlans(database.version, database.region),
+        plans: /* @ngInject */ (database, currentPlan, availableEngines) => {
+          const availablePlans = [
+            ...availableEngines
+              .find((engine) => engine.name === database.engine)
+              .versions.find((version) => version.version === database.version)
+              .plans,
+          ];
+          if (!availablePlans.find((p) => p.name === currentPlan.name)) {
+            availablePlans.push(currentPlan);
+          }
+          return availablePlans;
+        },
+
         onPlanUpgrade: /* @ngInject */ (goBackAndPoll) => goBackAndPoll,
       },
       atInternet: {

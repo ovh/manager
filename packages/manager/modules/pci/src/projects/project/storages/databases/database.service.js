@@ -1,15 +1,7 @@
 import filter from 'lodash/filter';
-import find from 'lodash/find';
-import get from 'lodash/get';
 import map from 'lodash/map';
-import set from 'lodash/set';
 import 'moment';
 import isFeatureActivated from './features.constants';
-
-import {
-  ENGINES_STATUS,
-  ENGINES_PRICE_SUFFIX,
-} from '../../../../components/project/storages/databases/engines.constants';
 import { DATABASE_TYPES } from './databases.constants';
 
 import Backup from '../../../../components/project/storages/databases/backup.class';
@@ -24,6 +16,7 @@ import Namespace from '../../../../components/project/storages/databases/namespa
 import AvailableConnector from '../../../../components/project/storages/databases/availableConnector.class';
 import Connector from '../../../../components/project/storages/databases/connector.class';
 import IntegrationCapability from '../../../../components/project/storages/databases/integrationCapability.class';
+import Availability from '../../../../components/project/storages/databases/availability.class';
 
 export default class DatabaseService {
   /* @ngInject */
@@ -231,63 +224,13 @@ export default class DatabaseService {
         prices: this.CucPriceHelper.getPrices(projectId),
       })
       .then(({ availabilities, capabilities, prices }) => {
-        availabilities.forEach((availability) => {
-          let prefix = `databases.${availability.engine.toLowerCase()}-${
-            availability.plan
-          }-${availability.flavor}`;
-          if (availability.status === ENGINES_STATUS.BETA) {
-            if (
-              prices[`${prefix}-${ENGINES_PRICE_SUFFIX.BETA}.hour.consumption`]
-            ) {
-              prefix = `${prefix}-${ENGINES_PRICE_SUFFIX.BETA}`;
-            }
-          }
-          set(
-            availability,
-            'hourlyPrice',
-            get(prices, `${prefix}.hour.consumption`, {}),
-          );
-          set(
-            availability,
-            'monthlyPrice',
-            get(prices, `${prefix}.month.consumption`, {}),
-          );
-          // set storage prices
-          set(
-            availability,
-            'hourlyPricePerGB',
-            get(
-              prices,
-              `databases.${availability.engine.toLowerCase()}-${
-                availability.plan
-              }-additionnal-storage-gb.hour.consumption`,
-              {},
-            ),
-          );
-          set(
-            availability,
-            'monthlyPricePerGB',
-            get(
-              availability,
-              `databases.${availability.engine.toLowerCase()}-${
-                availability.plan
-              }-additionnal-storage-gb.month.consumption`,
-              {},
-            ),
-          );
-          set(
-            availability,
-            'flavor',
-            find(capabilities.flavors, { name: availability.flavor }),
-          );
-          set(
-            availability,
-            'plan',
-            find(capabilities.plans, { name: availability.plan }),
-          );
-        });
         return {
-          availabilities,
+          availabilities: availabilities.map((availability) => {
+            const availabilityObject = new Availability(availability);
+            availabilityObject.setPrices(prices);
+            availabilityObject.setCapabilities(capabilities);
+            return availabilityObject;
+          }),
           capabilities,
         };
       });
