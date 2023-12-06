@@ -1,23 +1,92 @@
 <div data-ui-view>
+    <div class="mt-0">
+        <cui-message-container
+            data-messages="$ctrl.messages"
+        ></cui-message-container>
+    </div>
+
     <div class="row d-lg-flex mb-3">
         <div class="col-md-4">
             <oui-tile
                 class="h-100"
                 data-heading="{{ ::'pci_projects_project_training_jobs_info_title_1' | translate  }}"
             >
+                <!--Name-->
                 <oui-tile-definition
-                    data-term="{{ ::'pci_projects_project_training_jobs_name' | translate  }}"
+                    data-term="{{:: 'pci_projects_project_training_jobs_name' | translate }}"
+                    data-description="{{:: $ctrl.job.spec.name }}"
+                ></oui-tile-definition>
+
+                <!--Docker-->
+                <oui-tile-definition
+                    data-term="{{ 'pci_projects_project_training_jobs_image' | translate  }}"
+                    data-description="{{:: $ctrl.job.spec.image }}"
+                ></oui-tile-definition>
+                <oui-tile-definition
+                    ng-if="$ctrl.job.spec.command && $ctrl.job.spec.command.length > 0"
+                    data-term="{{ 'pci_projects_project_training_jobs_command' | translate }}"
                 >
-                    <oui-tile-description
-                        data-ng-bind="$ctrl.job.spec.name"
-                    ></oui-tile-description>
+                    <oui-tile-description>
+                        <ul>
+                            <li
+                                ng-repeat="cmd in $ctrl.job.spec.command track by $index"
+                                class="api-list-item"
+                            >
+                                {{ cmd }}
+                            </li>
+                        </ul>
+                    </oui-tile-description>
                 </oui-tile-definition>
+
+                <!-- Access -->
                 <oui-tile-definition
-                    data-term="{{ ::'pci_projects_project_training_jobs_region' | translate  }}"
+                    data-term="{{:: 'pci_projects_project_training_jobs_access_url' | translate }}"
+                    data-description="{{:: $ctrl.job.status.url }}"
                 >
-                    <oui-tile-description
-                        data-ng-bind="$ctrl.job.spec.region"
-                    ></oui-tile-description>
+                    <oui-tile-description>
+                        <oui-clipboard
+                            data-ng-if="$ctrl.job.status.url"
+                            data-model="::$ctrl.job.status.url"
+                        ></oui-clipboard>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!-- sshUrl-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_projects_project_training_jobs_ssh_url' | translate }}"
+                    data-description="{{:: $ctrl.job.status.sshUrl }}"
+                >
+                    <oui-tile-description>
+                        <oui-clipboard
+                            data-ng-if="$ctrl.job.status.sshUrl"
+                            data-model="::$ctrl.job.status.sshUrl"
+                        ></oui-clipboard>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!--Container-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_projects_project_training_jobs_container' | translate }}"
+                >
+                    <!--Nb total container-->
+                    <oui-tile-description>
+                        <span
+                            data-translate="pci_projects_project_training_jobs_container_total"
+                            data-translate-values="{ xContainer: $ctrl.job.spec.volumes.length }"
+                        ></span>
+                    </oui-tile-description>
+
+                    <!--Go to attach data-->
+                    <oui-tile-description>
+                        <oui-button
+                            size="m"
+                            variant="link"
+                            icon-right="oui-icon-arrow-right"
+                            data-on-click="$ctrl.goToAttachData()"
+                        >
+                            <span
+                                data-translate="pci_projects_project_training_jobs_container_attach_data"
+                            ></span>
+                        </oui-button>
+                    </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
                     data-term="{{ ::'pci_projects_project_training_jobs_privacy' | translate  }}"
@@ -27,13 +96,105 @@
                     ></oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
+                    data-term="{{ ::'pci_projects_project_training_jobs_region' | translate  }}"
+                >
+                    <oui-tile-description
+                        data-ng-bind="$ctrl.job.spec.region"
+                    ></oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+        <div class="col-md-4">
+            <oui-tile
+                class="h-100"
+                data-heading="{{ ::'pci_projects_project_training_jobs_info_title_2' | translate  }}"
+            >
+                <!--Status-->
+                <oui-tile-definition
+                    data-term="{{ 'pci_projects_project_training_jobs_state' | translate  }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="$ctrl.job.getClassForState()"
+                        >
+                            <span
+                                data-translate="{{ 'pci_projects_project_training_jobs_state_' + $ctrl.job.status.state }}"
+                            ></span>
+                        </span>
+                    </oui-tile-description>
+                    <!-- TO DO -->
+                    <oui-action-menu
+                        aria-label="Actions"
+                        data-compact
+                        data-placement="end"
+                    >
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToJobResubmit()"
+                        >
+                            <span
+                                data-translate="pci_projects_project_training_jobs_resubmit"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToJobKill()"
+                            data-disabled="!$ctrl.job.canBeKilled()"
+                        >
+                            <span
+                                data-translate="pci_projects_project_training_jobs_stop"
+                            ></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-on-click="$ctrl.goToJobDelete()"
+                        >
+                            <span
+                                data-translate="pci_projects_project_training_jobs_delete"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <!-- INFO -->
+                <oui-tile-definition
+                    data-ng-if="$ctrl.job.status.info.message"
+                    data-term="{{ ::'pci_projects_project_training_jobs_info_title_6' | translate  }}"
+                >
+                    <oui-tile-description
+                        data-ng-bind="$ctrl.job.status.info.message"
+                    ></oui-tile-description>
+                </oui-tile-definition>
+                <!--Running duration-->
+                <oui-tile-definition
+                    data-term="{{:: 'pci_projects_project_training_jobs_time' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="block"
+                            data-ng-bind=":: $ctrl.job.formattedRunningDuration"
+                        ></span>
+                        <a
+                            data-ng-href="{{:: $ctrl.billingUrl }}"
+                            class="oui-link_icon"
+                            target="_top"
+                        >
+                            <span
+                                data-translate="pci_projects_project_training_jobs_life_cycle_running_billing"
+                            ></span>
+                            <span
+                                class="oui-icon oui-icon-arrow-right"
+                                aria-hidden="true"
+                            ></span>
+                        </a>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!--Creation Date-->
+                <oui-tile-definition
                     data-term="{{ ::'pci_projects_project_training_jobs_created' | translate  }}"
                 >
                     <oui-tile-description
                         data-ng-bind="$ctrl.job.createdAt | date:'medium'"
                     ></oui-tile-description>
                 </oui-tile-definition>
-
+                <!--Timeline-->
                 <oui-tile-definition
                     data-term="{{ ::'pci_projects_project_training_jobs_info_title_5' | translate  }}"
                     data-ng-if="$ctrl.job.status.history"
@@ -71,150 +232,62 @@
         <div class="col-md-4">
             <oui-tile
                 class="h-100"
-                data-heading="{{ ::'pci_projects_project_training_jobs_info_title_2' | translate  }}"
-            >
-                <oui-tile-definition
-                    data-term="{{ 'pci_projects_project_training_jobs_image' | translate  }}"
-                >
-                    <oui-tile-description
-                        data-ng-bind="$ctrl.job.spec.image"
-                    ></oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    ng-if="$ctrl.job.spec.command && $ctrl.job.spec.command.length > 0"
-                    data-term="{{ 'pci_projects_project_training_jobs_command' | translate }}"
-                >
-                    <oui-tile-description>
-                        <ul>
-                            <li
-                                ng-repeat="cmd in $ctrl.job.spec.command track by $index"
-                                class="api-list-item"
-                            >
-                                {{ cmd }}
-                            </li>
-                        </ul>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    data-term="{{ 'pci_projects_project_training_jobs_state' | translate  }}"
-                >
-                    <oui-tile-description>
-                        <span
-                            class="oui-badge"
-                            data-ng-class="$ctrl.job.getClassForState()"
-                        >
-                            <span
-                                data-translate="{{ 'pci_projects_project_training_jobs_state_' + $ctrl.job.status.state }}"
-                            ></span>
-                        </span>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    data-ng-if="$ctrl.job.status.info.message"
-                    data-term="{{ ::'pci_projects_project_training_jobs_info_title_6' | translate  }}"
-                >
-                    <oui-tile-description
-                        data-ng-bind="$ctrl.job.status.info.message"
-                    ></oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    data-term="{{ 'pci_projects_project_training_jobs_time' | translate  }}"
-                >
-                    <oui-tile-description>
-                        {{ $ctrl.getDuration() }}
-                    </oui-tile-description>
-                </oui-tile-definition>
-
-                <div class="oui-tile__item" ng-if="$ctrl.job.status.url">
-                    <dl class="oui-tile__definition">
-                        <dt class="oui-tile__term">
-                            <span
-                                data-translate="pci_projects_project_training_jobs_access_url"
-                            ></span>
-                            <button
-                                type="button"
-                                class="oui-popover-button"
-                                data-oui-popover="{{ 'pci_projects_project_training_jobs_access_url_help' | translate }}"
-                            ></button>
-                        </dt>
-
-                        <oui-tile-description>
-                            <a
-                                class="oui-link oui-link_icon"
-                                data-ng-href="{{ $ctrl.job.status.url }}"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                <span
-                                    data-translate="pci_projects_project_training_jobs_access_url_link"
-                                ></span>
-                                <i
-                                    class="oui-icon oui-icon-external-link"
-                                    aria-hidden="true"
-                                ></i>
-                            </a>
-                        </oui-tile-description>
-                    </dl>
-                </div>
-
-                <div class="oui-tile__item" ng-if="$ctrl.job.status.sshUrl">
-                    <dl class="oui-tile__definition">
-                        <dt class="oui-tile__term">
-                            <span
-                                data-translate="pci_projects_project_training_jobs_ssh_url"
-                            ></span>
-                            <button
-                                type="button"
-                                class="oui-popover-button"
-                                data-oui-popover="{{ 'pci_projects_project_training_jobs_ssh_url_help' | translate }}"
-                            ></button>
-                        </dt>
-
-                        <oui-tile-description>
-                            <oui-clipboard
-                                data-model="$ctrl.job.status.sshUrl"
-                            ></oui-clipboard>
-                        </oui-tile-description>
-                    </dl>
-                </div>
-            </oui-tile>
-        </div>
-        <div class="col-md-4">
-            <oui-tile
-                class="h-100"
                 data-heading="{{ 'pci_projects_project_training_jobs_info_title_3' | translate  }}"
             >
+                <!--Resource quantity-->
                 <oui-tile-definition
-                    ng-if="$ctrl.job.spec.resources.cpu"
-                    data-term="{{ 'pci_projects_project_training_jobs_cpu' | translate  }}"
-                >
-                    <oui-tile-description
-                        data-ng-bind="$ctrl.job.spec.resources.cpu"
-                    ></oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-definition
-                    ng-if="$ctrl.job.spec.resources.memory"
-                    data-term="{{ 'pci_projects_project_training_jobs_ram' | translate  }}"
+                    data-term="{{:: 'pci_projects_project_training_jobs_info_title_3' | translate }}"
                 >
                     <oui-tile-description>
-                        {{ $ctrl.job.spec.resources.memory | bytes:2:true:'B'}}
+                        <!-- GPU-->
+                        <div data-ng-if="$ctrl.job.spec.resources.gpuBrand">
+                            <p
+                                class="mb-1 font-weight-bold"
+                                data-ng-bind=":: $ctrl.job.spec.resources.gpu + $ctrl.JOB_MULTIPLY_SIGN + ($ctrl.job.spec.resources.flavor | uppercase)"
+                            ></p>
+                            <p
+                                class="mb-1"
+                                data-ng-bind=":: $ctrl.job.spec.resources.gpu + $ctrl.JOB_MULTIPLY_SIGN + $ctrl.job.spec.resources.gpuModel"
+                            ></p>
+                            <p
+                                class="mb-1"
+                                data-translate="pci_projects_project_training_jobs_RAM_per_GPU"
+                                data-translate-values="{ ressources: $ctrl.job.spec.resources.gpu, ram: ($ctrl.job.spec.resources.gpuMemory | bytes:0:true:'B') }"
+                            ></p>
+                        </div>
+                        <!-- CPU-->
+                        <div data-ng-if="!$ctrl.job.spec.resources.gpuBrand">
+                            <p
+                                class="mb-1 font-weight-bold"
+                                data-ng-bind=":: $ctrl.job.spec.resources.cpu + $ctrl.JOB_MULTIPLY_SIGN + ($ctrl.job.spec.resources.flavor | uppercase)"
+                            ></p>
+                        </div>
                     </oui-tile-description>
                 </oui-tile-definition>
+                <!--Other Resources-->
                 <oui-tile-definition
-                    ng-if="$ctrl.job.spec.resources.gpu"
-                    data-term="{{ 'pci_projects_project_training_jobs_gpu' | translate  }}"
+                    data-term="{{:: 'pci_projects_project_training_jobs_other_resources_info' | translate}}"
                 >
                     <oui-tile-description>
-                        <span
-                            data-ng-bind="$ctrl.job.spec.resources.gpu"
-                        ></span>
-                        <span>x</span>
-                        <span
-                            class="oui-badge oui-badge_info"
-                            data-ng-bind="$ctrl.job.spec.resources.gpuModel"
-                        ></span>
+                        <p
+                            class="mb-1"
+                            data-ng-if="$ctrl.job.spec.resources.gpuBrand"
+                            data-translate="pci_projects_project_training_jobs_other_resources_info_CPU"
+                            data-translate-values="{ cpu: $ctrl.job.spec.resources.cpu}"
+                        ></p>
+                        <p
+                            class="mb-1"
+                            data-translate="pci_projects_project_training_jobs_other_resources_info_RAM"
+                            data-translate-values="{ ram: ($ctrl.job.spec.resources.memory | bytes:0:true:'B')}"
+                        ></p>
+                        <p
+                            class="mb-1"
+                            data-translate="pci_projects_project_training_jobs_other_resources_info_bandwidth"
+                            data-translate-values="{ bandwidth: ($ctrl.job.spec.resources.publicNetwork | bytes:2:false:'B')}"
+                        ></p>
                     </oui-tile-description>
                 </oui-tile-definition>
+                <!--Job Price-->
                 <oui-tile-definition
                     data-term="{{ 'pci_projects_project_training_jobs_price' | translate  }}"
                     data-ng-if="$ctrl.job.isTerminal() && $ctrl.job.status.state !== 'ERROR'"
@@ -230,76 +303,26 @@
                         </ovh-manager-catalog-price>
                     </oui-tile-description>
                 </oui-tile-definition>
+
+                <!--Consumption-->
                 <oui-tile-definition
-                    data-term="{{ 'pci_projects_project_training_jobs_resource_usage_url' | translate  }}"
-                    data-ng-if=":: $ctrl.job.status.monitoringUrl"
+                    data-term="{{:: 'pci_projects_project_training_jobs_monitoring' | translate}}"
                 >
                     <oui-tile-description>
                         <a
+                            class="oui-button oui-button_secondary"
+                            data-ng-href="{{:: $ctrl.job.status.monitoringUrl}}"
                             target="_blank"
-                            class="oui-button oui-button_ghost"
                             rel="noopener"
-                            data-ng-href="{{ $ctrl.job.status.monitoringUrl }}"
                         >
                             <span
-                                data-translate="pci_projects_project_training_jobs_resource_usage_url_link"
+                                data-translate="pci_projects_project_training_jobs_monitoring_access_to_graph"
                             ></span>
-                            <i
+                            <span
                                 class="oui-icon oui-icon-external-link"
                                 aria-hidden="true"
-                            ></i>
+                            ></span>
                         </a>
-                    </oui-tile-description>
-                </oui-tile-definition>
-            </oui-tile>
-        </div>
-    </div>
-    <div class="row d-lg-flex mb-3">
-        <div class="col-md-4">
-            <oui-tile
-                class="h-100"
-                data-heading="{{ 'pci_projects_project_training_jobs_info_title_actions' | translate  }}"
-            >
-                <oui-tile-button data-on-click="$ctrl.goToJobResubmit()">
-                    <span
-                        data-translate="pci_projects_project_training_jobs_resubmit"
-                    ></span>
-                </oui-tile-button>
-                <oui-tile-button
-                    data-on-click="$ctrl.goToJobKill()"
-                    data-disabled="!$ctrl.job.canBeKilled()"
-                >
-                    <span
-                        data-translate="pci_projects_project_training_jobs_kill"
-                    ></span>
-                </oui-tile-button>
-                <oui-tile-button data-on-click="$ctrl.goToJobDelete()">
-                    <span
-                        data-translate="pci_projects_project_training_jobs_delete"
-                    ></span>
-                </oui-tile-button>
-            </oui-tile>
-        </div>
-        <div class="col-md-8">
-            <oui-tile
-                class="h-100"
-                data-heading="{{ 'pci_projects_project_training_jobs_info_title_4' | translate  }}"
-                data-ng-if="$ctrl.job.spec.volumes.length > 0"
-            >
-                <oui-tile-definition
-                    data-term="{{ 'pci_projects_project_training_jobs_data' | translate  }}"
-                >
-                    <oui-tile-description>
-                        <ul>
-                            <li
-                                ng-repeat="data in $ctrl.job.spec.volumes track by $index"
-                                class="api-list-item"
-                            >
-                                <span
-                                    data-ng-bind="::$ctrl.constructor.getVolumeRepr(data)"
-                                ></span>
-                            </li>
-                        </ul>
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>

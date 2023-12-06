@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
     params: { jobId: null },
     views: {
       modal: {
-        component: 'ovhManagerPciProjectTrainingDeleteJob',
+        component: 'ovhManagerPciProjectJobsDeleteJob',
       },
     },
     layout: 'modal',

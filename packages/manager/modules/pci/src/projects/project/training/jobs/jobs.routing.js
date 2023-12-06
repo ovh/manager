@@ -54,6 +54,31 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
+      goToJob: /* @ngInject */ ($state, CucCloudMessage, projectId) => (
+        job,
+        message = false,
+        type = 'success',
+      ) => {
+        const reload = message && type === 'success';
+        const stateName =
+          'pci.projects.project.training.jobs.dashboard.general-information';
+        const promise = $state.go(
+          stateName,
+          {
+            projectId,
+            jobId: job.id,
+          },
+          {
+            reload,
+          },
+        );
+        return message
+          ? promise.then(() => {
+              CucCloudMessage.flushMessages(stateName);
+              CucCloudMessage[type](message, stateName);
+            })
+          : promise;
+      },
       jobInfo: /* @ngInject */ ($state, projectId) => (jobId) =>
         $state.go('pci.projects.project.training.jobs.dashboard', {
           projectId,

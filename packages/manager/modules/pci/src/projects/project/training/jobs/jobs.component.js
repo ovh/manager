@@ -25,5 +25,6 @@ export default {
     guideUrl: '<',
     guideTrackingSectionTags: '<',
     trackClick: '<',
+    goToJob: '<',
   },
 };

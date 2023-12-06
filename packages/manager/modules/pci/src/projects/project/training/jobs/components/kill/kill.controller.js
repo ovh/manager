@@ -1,17 +1,16 @@
-import get from 'lodash/get';
-
 export default class PciTrainingJobsKillController {
   /* @ngInject */
-  constructor($translate, atInternet) {
+  constructor($translate, atInternet, PciProjectTrainingJobService) {
     this.$translate = $translate;
     this.atInternet = atInternet;
+    this.PciProjectTrainingJobService = PciProjectTrainingJobService;
   }
 
   $onInit() {
     this.loading = false;
   }
 
-  confirmKillJob() {
+  killJob() {
     this.atInternet.trackClick({
       name:
         'public-cloud::pci::projects::project::training::jobs::kill::confirm',
@@ -19,33 +18,27 @@ export default class PciTrainingJobsKillController {
     });
 
     this.loading = true;
-    return this.killJob()
-      .then(() =>
-        this.goToJobs(
+    return this.PciProjectTrainingJobService.killJob(this.projectId, this.jobId)
+      .then(() => {
+        return this.goBack(
           this.$translate.instant(
             'pci_projects_project_training_job_kill_success',
           ),
-          'success',
-        ),
-      )
-      .catch((error) =>
-        this.goToJobs(
+        );
+      })
+      .catch((error) => {
+        return this.goBack(
           this.$translate.instant(
             'pci_projects_project_training_job_kill_error',
             {
-              message: get(error, 'data.message'),
+              message: error.data.message,
             },
           ),
           'error',
-        ),
-      );
-  }
-
-  goBack() {
-    if (this.previousState && this.previousState === 'info') {
-      this.goToJobInfo();
-    } else {
-      this.goToJobs();
-    }
+        );
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
   }
 }

@@ -8,7 +8,6 @@ export default {
     job: '<',
     goToJobKill: '<',
     goToJobResubmit: '<',
-    // user: '<',
     getCatalogEntryF: '<',
     goToAttachData: '<',
     refreshState: '<',

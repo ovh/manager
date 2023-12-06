@@ -7,8 +7,9 @@ import '@ovh-ux/ui-kit';
 
 import component from './general-information.component';
 import routing from './general-information.routing';
-// import deleteNotebook from './delete-notebook';
-// import stopNotebook from './stop-notebook';
+import deleteModule from './delete';
+import killModule from './kill';
+import resubmitModule from './resubmit';
 
 const moduleName = 'ovhManagerPciJobGeneralInformation';
 
@@ -19,10 +20,9 @@ angular
     'pascalprecht.translate',
     'oui',
     'ui.router',
-    // notebooksConfigurationCommand,
-    // addTag,
-    // deleteNotebook,
-    // stopNotebook,
+    deleteModule,
+    killModule,
+    resubmitModule,
   ])
   .config(routing)
   .component('ovhManagerPciProjectJobGeneralInformation', component)

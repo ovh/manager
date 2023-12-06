@@ -7,10 +7,8 @@ import '@ovh-ux/ui-kit';
 
 import component from './logs.component';
 import routing from './logs.routing';
-// import deleteNotebook from './delete-notebook';
-// import stopNotebook from './stop-notebook';
 
-const moduleName = 'ovhManagerPciJobGeneralInformation';
+const moduleName = 'ovhManagerPciJobLogs';
 
 angular
   .module(moduleName, [

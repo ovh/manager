@@ -79,17 +79,8 @@ export default class PciProjectTrainingJobService {
       );
   }
 
-  kill(projectId, jobId) {
-    return this.OvhApiCloudProjectAi.Training()
-      .Job()
-      .v6()
-      .kill(
-        {
-          serviceName: projectId,
-          jobId,
-        },
-        null,
-      ).$promise;
+  killJob(projectId, jobId) {
+    return this.$http.put(`/cloud/project/${projectId}/ai/job/${jobId}/kill`);
   }
 
   logs(projectId, jobId) {

@@ -9,14 +9,14 @@ export default class PciTrainingDeleteController {
     this.isLoading = false;
   }
 
-  onDeleteJobConfirmClick() {
+  deleteJob() {
     this.isLoading = true;
     return this.PciProjectTrainingJobService.removeJob(
       this.projectId,
       this.jobId,
     )
       .then(() => {
-        return this.goBack(
+        return this.goToJobs(
           this.$translate.instant(
             'pci_projects_project_training_delete_job_action_delete_success',
           ),

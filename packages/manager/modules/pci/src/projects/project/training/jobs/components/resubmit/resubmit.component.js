@@ -6,9 +6,9 @@ export default {
   template,
   bindings: {
     goToJobs: '<',
-    goToJobInfo: '<',
+    goBack: '<',
     job: '<',
-    resubmitJob: '<',
-    previousState: '<',
+    jobId: '<',
+    projectId: '<',
   },
 };

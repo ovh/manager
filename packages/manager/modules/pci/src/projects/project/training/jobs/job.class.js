@@ -84,6 +84,10 @@ export default class Job {
     return this.status.state === STATE_ENUM.RUNNING;
   }
 
+  get formattedRunningDuration() {
+    return moment.duration(this.status.duration, 'seconds').humanize();
+  }
+
   isFailed() {
     return [
       STATE_ENUM.FAILED,

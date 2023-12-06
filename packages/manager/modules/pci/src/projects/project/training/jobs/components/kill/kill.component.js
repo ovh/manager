@@ -5,10 +5,9 @@ export default {
   controller,
   template,
   bindings: {
-    goToJobs: '<',
-    goToJobInfo: '<',
+    goBack: '<',
     job: '<',
-    killJob: '<',
-    previousState: '<',
+    jobId: '<',
+    projectId: '<',
   },
 };
