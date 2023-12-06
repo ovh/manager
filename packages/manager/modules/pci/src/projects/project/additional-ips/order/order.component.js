@@ -14,5 +14,7 @@ export default {
     publicCloudCatalog: '<',
     ipFailoverFormattedCatalog: '<',
     trackClick: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
 };

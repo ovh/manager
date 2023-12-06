@@ -15,5 +15,7 @@ export default {
     containers: '<',
     goToObjectStorage: '<',
     goToDashboard: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
 };
