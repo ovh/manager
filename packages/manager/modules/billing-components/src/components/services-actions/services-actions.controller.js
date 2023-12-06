@@ -18,23 +18,24 @@ export default class ServicesActionsCtrl {
   }
 
   $onInit() {
-    let fetchAutoRenewLink = this.$q.when();
+    const fetchAutoRenewLink = this.$q.defer();
     if (!this.billingManagementAvailability) {
-      this.autorenewLink = null;
+      fetchAutoRenewLink.resolve(null);
     } else if (this.$injector.has('shellClient')) {
-      fetchAutoRenewLink = this.$injector
+      this.$injector
         .get('shellClient')
         .navigation.getURL('dedicated', '#/billing/autorenew')
         .then((url) => {
-          this.autorenewLink = url;
-        });
+          fetchAutoRenewLink.resolve(url);
+        })
+        .catch((error) => fetchAutoRenewLink.reject(error));
     } else {
-      this.autorenewLink = this.coreURLBuilder.buildURL(
-        'dedicated',
-        '#/billing/autorenew',
+      fetchAutoRenewLink.resolve(
+        this.coreURLBuilder.buildURL('dedicated', '#/billing/autorenew'),
       );
     }
-    return fetchAutoRenewLink.finally(() => {
+    return fetchAutoRenewLink.promise.then((link) => {
+      this.autorenewLink = link;
       this.isLoading = false;
       this.initLinks();
     });

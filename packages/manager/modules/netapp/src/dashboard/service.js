@@ -1,4 +1,4 @@
-import { FETCH_INTERVAL, NETWORK_STATUS } from './constants';
+import { FETCH_INTERVAL, NETWORK_STATUS, POLLING_TYPE } from './constants';
 
 export default class NetAppDashboardService {
   /* @ngInject */
@@ -52,20 +52,24 @@ export default class NetAppDashboardService {
     return { attachedSubnet, attachedEndpoint };
   }
 
-  startNetworkPolling(storage) {
+  startNetworkPolling(storage, pollingType) {
     return this.Poller.poll(
       `/storage/netapp/${storage.name}/network`,
       {},
       {
-        namespace: `network_${storage.name}`,
+        namespace: `network_${storage.name}_${pollingType}`,
         interval: FETCH_INTERVAL,
         method: 'get',
-        successRule: (data) => data.status !== NETWORK_STATUS.TO_CONFIGURE,
+        successRule: (data) =>
+          (pollingType === POLLING_TYPE.ASSOCIATING &&
+            data.status !== NETWORK_STATUS.TO_CONFIGURE) ||
+          (pollingType === POLLING_TYPE.DISSOCIATING &&
+            data.status !== NETWORK_STATUS.ASSOCIATED),
       },
     );
   }
 
-  stopNetworkPolling(storage) {
-    this.Poller.kill({ namespace: `network_${storage.name}` });
+  stopNetworkPolling(storage, pollingType) {
+    this.Poller.kill({ namespace: `network_${storage.name}_${pollingType}` });
   }
 }
