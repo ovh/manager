@@ -7,6 +7,8 @@ export default {
     listener: '<',
     goToPoolEdition: '<',
     goToEditName: '<',
+    goToAddMemberManually: '<',
+    goToAddMemberFromInstances: '<',
     goToDelete: '<',
   },
   template,
