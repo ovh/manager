@@ -24,6 +24,8 @@ export default {
     selectedCategory: '@?',
     getProductCatalog: '<',
     trackAddInstance: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
   controller,
   template,
