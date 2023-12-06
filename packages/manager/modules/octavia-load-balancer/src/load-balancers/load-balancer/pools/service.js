@@ -28,9 +28,13 @@ export default class OctaviaLoadBalancerPoolsService {
     );
   }
 
-  getPools(projectId, region) {
+  getPools(projectId, region, loadbalancerId) {
     return this.$http
-      .get(`/cloud/project/${projectId}/region/${region}/loadbalancing/pool`)
+      .get(`/cloud/project/${projectId}/region/${region}/loadbalancing/pool`, {
+        params: {
+          loadbalancerId,
+        },
+      })
       .then(({ data }) => data);
   }
 

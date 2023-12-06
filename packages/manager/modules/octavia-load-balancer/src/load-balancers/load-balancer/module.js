@@ -7,6 +7,7 @@ import overview from './overview';
 import listeners from './listeners';
 import pools from './pools';
 import service from './service';
+import poolsService from './pools/service';
 
 const moduleName = 'ovhManagerOctaviaLoadBalancerDashboard';
 
@@ -15,6 +16,7 @@ angular
   .config(routing)
   .component('octaviaLoadBalancer', component)
   .service('OctaviaLoadBalancerService', service)
+  .service('OctaviaLoadBalancerPoolsService', poolsService)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
