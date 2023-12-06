@@ -2,6 +2,7 @@ angular.module('App').controller(
   'AppCtrl',
   class AppCtrl {
     constructor($scope, $rootScope, $timeout, $translate, coreConfig, WucUser) {
+      // Test case
       this.$scope = $scope;
       this.$rootScope = $rootScope;
       this.$timeout = $timeout;
