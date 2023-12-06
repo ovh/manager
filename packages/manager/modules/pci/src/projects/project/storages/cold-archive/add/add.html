@@ -48,6 +48,10 @@
             data-translate="pci_projects_project_storages_cold_archive_add_step_name_archive_localisation_banner_info"
         ></span>
     </oui-message>
+    <pci-activate-project-banner
+        data-ng-if="$ctrl.isDiscoveryProject"
+        data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    ></pci-activate-project-banner>
 </div>
 
 <!--Cold Archive configuration steps-->

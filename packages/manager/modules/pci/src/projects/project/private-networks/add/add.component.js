@@ -6,6 +6,8 @@ export default {
     goBack: '<',
     projectId: '<',
     trackPrivateNetworks: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
   controller,
   template,
