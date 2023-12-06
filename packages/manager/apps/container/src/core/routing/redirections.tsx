@@ -15,6 +15,7 @@ function Rewrite({ to }: { to: string }): JSX.Element {
 export function Redirections(): JSX.Element {
   return (
     <>
+      <Route path="/catalog" element={<Rewrite to="/hub/catalog" />} />
       <Route
         path="/useraccount/*"
         element={<Rewrite to="/dedicated/useraccount/*" />}
