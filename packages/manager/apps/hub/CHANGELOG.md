@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.2.0...@ovh-ux/manager-hub-app@5.2.1) (2023-12-06)
+
+
+### Reverts
+
+* Revert "feat(hub): cleanup angularjs catalog code (#10261)" ([69186b3](https://github.com/ovh/manager/commit/69186b3aa2696e63c7c07540287d73fcfb6c4d2e)), closes [#10261](https://github.com/ovh/manager/issues/10261)
+
+
+
+
+
 # [5.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.1.2...@ovh-ux/manager-hub-app@5.2.0) (2023-12-05)
 
 
