@@ -14,7 +14,7 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
 export default [
   {
     path: '/',
-    ...lazyRouteConfig(() => import('@/pages/Home')),
+    ...lazyRouteConfig(() => import('@/pages/Layout')),
   },
   {
     path: '/pci/projects/:projectId/vouchers',
@@ -23,6 +23,10 @@ export default [
       {
         path: '',
         ...lazyRouteConfig(() => import('@/pages/ListingPage')),
+      },
+      {
+        path: 'add',
+        ...lazyRouteConfig(() => import('@/pages/AddVoucherPage')),
       },
     ],
   },
