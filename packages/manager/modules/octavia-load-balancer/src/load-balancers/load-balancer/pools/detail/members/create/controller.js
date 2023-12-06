@@ -17,11 +17,13 @@ export default class OctaviaLoadBalancerPoolsDetailMembersCreateCtrl {
       this.projectId,
       this.region,
       this.poolId,
-      {
-        address: this.addressIp,
-        name: this.name,
-        protocolPort: this.port,
-      },
+      [
+        {
+          address: this.addressIp,
+          name: this.name,
+          protocolPort: this.port,
+        },
+      ],
     )
       .then(async () => {
         this.Alerter.set(
