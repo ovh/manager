@@ -1,4 +1,4 @@
-import { NETWORK_STATUS } from './constants';
+import { FETCH_INTERVAL, NETWORK_STATUS } from './constants';
 
 export default class NetAppDashboardService {
   /* @ngInject */
@@ -58,11 +58,9 @@ export default class NetAppDashboardService {
       {},
       {
         namespace: `network_${storage.name}`,
-        interval: 5000,
+        interval: FETCH_INTERVAL,
         method: 'get',
-        successRule: (data) => {
-          return data.status !== NETWORK_STATUS.TO_CONFIGURE;
-        },
+        successRule: (data) => data.status !== NETWORK_STATUS.TO_CONFIGURE,
       },
     );
   }
