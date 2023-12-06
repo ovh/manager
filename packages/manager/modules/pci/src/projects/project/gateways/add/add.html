@@ -1,4 +1,10 @@
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+></pci-activate-project-banner>
+
 <div data-ui-view>
     <oui-back-button data-on-click="$ctrl.onGoBackClick()"> </oui-back-button>
     <oui-header
