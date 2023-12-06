@@ -17,6 +17,14 @@ export default /* @ngInject */ ($stateProvider) => {
           $state.go(
             'octavia-load-balancer.loadbalancer.pools.detail.general-information.edit-name',
           ),
+        goToAddMemberManually: /* @ngInject */ ($state) => () =>
+          $state.go(
+            'octavia-load-balancer.loadbalancer.pools.detail.members.list.create',
+          ),
+        goToAddMemberFromInstances: /* @ngInject */ ($state) => () =>
+          $state.go(
+            'octavia-load-balancer.loadbalancer.pools.detail.members.list.add-ip-instance',
+          ),
         goToDelete: /* @ngInject */ ($state) => (pool) => {
           $state.go(
             'octavia-load-balancer.loadbalancer.pools.detail.general-information.delete',

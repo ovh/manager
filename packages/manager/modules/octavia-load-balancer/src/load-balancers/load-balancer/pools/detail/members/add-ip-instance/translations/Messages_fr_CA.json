@@ -1,6 +1,5 @@
 {
   "octavia_load_balancer_pools_detail_members_add_ip_instance_banner": "Tout changement d'IP d'une instance après la configuration devra être répercuté manuellement dans la configuration du Pool.",
-  "octavia_load_balancer_pools_detail_members_add_ip_instance_title": "Ajouter des IPs d'instance",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_action": "Continuer",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_description": "Cette table contient les instances de votre projet Public Cloud. En les choisissant, leurs IPs seront configurées comme membre.",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_port_title": "Ajouter les ports de vos IPs d'instances",
