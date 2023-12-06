@@ -1,6 +1,5 @@
 {
   "octavia_load_balancer_pools_detail_members_add_manually": "Ajouter manuellement",
-  "octavia_load_balancer_pools_detail_members_add_ip_instances": "Ajouter des IPs d'instance",
   "octavia_load_balancer_pools_detail_members_name": "Nom",
   "octavia_load_balancer_pools_detail_members_address": "Adresse IP",
   "octavia_load_balancer_pools_detail_members_protocol_port": "Port",
