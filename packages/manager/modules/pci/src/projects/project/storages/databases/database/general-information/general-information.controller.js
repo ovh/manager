@@ -6,6 +6,7 @@ import {
   SSL_MODE_REQUIRED,
   SSL_MODE_NA,
   SSL_MODE_SSL_TLS,
+  NODES_PER_ROW,
 } from '../../databases.constants';
 import {
   WARNING_MESSAGES,
@@ -32,6 +33,7 @@ export default class {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.DatabaseService = DatabaseService;
     this.DATABASE_TYPES = DATABASE_TYPES;
+    this.NODES_PER_ROW = NODES_PER_ROW;
     this.user = coreConfig.getUser();
   }
 
@@ -78,6 +80,7 @@ export default class {
       this.database.engine === DATABASE_TYPES.MONGO_DB &&
       this.database.plan === 'enterprise';
     this.isForkButtonEnabled =
+      !this.database.isOldMongoPlan &&
       !isEngineVersionDeprecated &&
       (isPITRActivated || isMongoEnterprise || this.backups.length > 0);
   }
@@ -423,6 +426,5 @@ export default class {
 
   $onDestroy() {
     this.stopPollingDatabaseStatus();
-    this.stopPollingNodesStatus();
   }
 }

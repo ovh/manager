@@ -51,7 +51,7 @@
                     <oui-tile-description>
                         <div class="d-flex flex-column">
                             <span
-                                data-ng-bind="($ctrl.database.disk.size | bytes:2:false:'GB')"
+                                data-ng-bind="($ctrl.database.storage.size.value | bytes:2:false:$ctrl.database.storage.size.unit)"
                             ></span>
                             <span
                                 data-ng-if="$ctrl.additionalDiskSize - $ctrl.originallyAddedDiskSize > 0"
@@ -132,7 +132,7 @@
                     data-variant="primary"
                     block
                     data-on-click="$ctrl.upgradeStorage()"
-                    data-disabled="(($ctrl.flavor.minDiskSize + $ctrl.additionalDiskSize) === $ctrl.database.disk.size) || $ctrl.upgradingStorage"
+                    data-disabled="(($ctrl.flavor.minDiskSize + $ctrl.additionalDiskSize) === $ctrl.database.storage.size.value) || $ctrl.upgradingStorage"
                 >
                     <span
                         data-ng-if="!$ctrl.upgradingStorage"
