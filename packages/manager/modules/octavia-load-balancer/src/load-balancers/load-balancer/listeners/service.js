@@ -61,10 +61,4 @@ export default class OctaviaLoadBalancerListenersService {
       )
       .then(({ data }) => data);
   }
-
-  getPools(projectId, region) {
-    return this.$http
-      .get(`/cloud/project/${projectId}/region/${region}/loadbalancing/pool`)
-      .then(({ data }) => data);
-  }
 }

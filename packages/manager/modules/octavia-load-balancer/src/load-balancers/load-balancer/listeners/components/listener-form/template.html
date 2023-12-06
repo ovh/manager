@@ -59,7 +59,7 @@
             data-model="$ctrl.model.pool"
             data-match="name"
             data-items="$ctrl.filteredPools"
-            data-disabled="$ctrl.model.protocol === $ctrl.PROTOCOLS.PROMETHEUS"
+            data-disabled="!$ctrl.filteredPools.length"
             data-placeholder="{{:: 'octavia_load_balancer_listeners_create_pool_default' | translate }}"
         >
         </oui-select>

@@ -11,10 +11,16 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: () => null,
       pools: /* @ngInject */ (
-        OctaviaLoadBalancerListenersService,
+        OctaviaLoadBalancerPoolsService,
         projectId,
         region,
-      ) => OctaviaLoadBalancerListenersService.getPools(projectId, region),
+        loadbalancerId,
+      ) =>
+        OctaviaLoadBalancerPoolsService.getPools(
+          projectId,
+          region,
+          loadbalancerId,
+        ),
       goBack: /* @ngInject */ ($state) => (reload) =>
         $state.go(
           'octavia-load-balancer.loadbalancer.listeners',
