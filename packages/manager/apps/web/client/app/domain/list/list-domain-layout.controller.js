@@ -29,6 +29,8 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     coreURLBuilder,
     coreConfig,
     Domain,
+    $scope,
+    $timeout,
   ) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
@@ -48,6 +50,8 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     this.coreURLBuilder = coreURLBuilder;
     this.user = coreConfig.getUser();
     this.Domain = Domain;
+    this.$scope = $scope;
+    this.$timeout = $timeout;
   }
 
   $onInit() {
@@ -57,6 +61,13 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     this.contactPopover = {
       rowIndex: -1,
       data: null,
+    };
+
+    this.currentAction = null;
+    this.currentActionData = null;
+    this.stepPath = '';
+    this.loading = {
+      domainsExportCsv: false,
     };
 
     this.columnsConfig = [
@@ -149,6 +160,38 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
       'dedicated',
       `#/billing/autorenew/disable?selectedType=DOMAIN&services=`,
     );
+
+    this.setActionMultiple = (action, data) =>
+      this.setAction(action, 'domain/list/', data);
+    this.$scope.resetAction = () => this.setAction(false);
+    this.$scope.$on('domain.csv.export.cancel', () => {
+      this.loading.domainsExportCsv = false;
+    });
+    this.$scope.$on('domain.csv.export.doing', () => {
+      this.loading.domainsExportCsv = true;
+    });
+    this.$scope.$on('domain.csv.export.done', () => {
+      this.loading.domainsExportCsv = false;
+    });
+    this.$scope.$on('domain.csv.export.error', () => {
+      this.loading.domainsExportCsv = false;
+    });
+  }
+
+  setAction(action, baseStepPath, data) {
+    this.$scope.currentAction = action;
+    this.$scope.currentActionData = data;
+
+    if (action) {
+      this.stepPath = `${baseStepPath}${this.$scope.currentAction}.html`;
+      $('#currentAction').modal({ keyboard: true, backdrop: 'static' });
+    } else {
+      $('#currentAction').modal('hide');
+      this.$scope.currentActionData = null;
+      this.$timeout(() => {
+        this.stepPath = '';
+      }, 300);
+    }
   }
 
   static getDNSServers(nameServers) {
