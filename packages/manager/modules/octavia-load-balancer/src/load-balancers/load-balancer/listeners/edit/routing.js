@@ -13,10 +13,16 @@ export default /* @ngInject */ ($stateProvider) => {
       listenerId: /* @ngInject */ ($transition$) =>
         $transition$.params().listenerId,
       pools: /* @ngInject */ (
-        OctaviaLoadBalancerListenersService,
+        OctaviaLoadBalancerPoolsService,
         projectId,
         region,
-      ) => OctaviaLoadBalancerListenersService.getPools(projectId, region),
+        loadbalancerId,
+      ) =>
+        OctaviaLoadBalancerPoolsService.getPools(
+          projectId,
+          region,
+          loadbalancerId,
+        ),
       listener: /* @ngInject */ (
         OctaviaLoadBalancerListenersService,
         projectId,

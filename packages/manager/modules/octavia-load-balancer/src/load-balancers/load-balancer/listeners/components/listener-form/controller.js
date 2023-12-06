@@ -22,7 +22,7 @@ export default class OctaviaLoadBalancerListenerFormCtrl {
         !this.filteredPools.find((pool) => pool.id === this.model.pool.id)) ||
       this.model.protocol === this.PROTOCOLS.PROMETHEUS
     ) {
-      this.model.defaultPoolId = null;
+      this.model.pool = null;
     }
   }
 
