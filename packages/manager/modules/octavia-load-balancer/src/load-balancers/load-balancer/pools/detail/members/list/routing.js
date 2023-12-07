@@ -32,7 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
           `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}::add`,
         memberAddInstanceLink: /* @ngInject */ ($state) => () =>
           $state.href(
-            'octavia-load-balancer.loadbalancer.pools.detail.members.add-ip-instance',
+            'octavia-load-balancer.loadbalancer.pools.detail.members.list.add-ip-instance',
           ),
         trackMemberAddInstanceAction: () =>
           `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}::add-instances`,
