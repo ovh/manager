@@ -4,5 +4,5 @@
   "netapp_network_delete_terminate": "Veuillez écrire le mot « Terminate » pour supprimer votre endpoint.",
   "netapp_network_delete_cancel": "Annuler",
   "netapp_network_delete_confirm": "Supprimer",
-  "netapp_network_delete_success_message": "Votre Endpoint a bien été supprimé."
+  "netapp_network_delete_success_message": "Votre Endpoint est en cours de suppression."
 }

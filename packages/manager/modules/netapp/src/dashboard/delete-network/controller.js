@@ -14,7 +14,7 @@ export default class OvhManagerNetAppNetworkDeleteCtrl {
 
   cancel() {
     this.trackClick('cancel');
-    this.goBack();
+    this.goBack({ isDissociating: false });
   }
 
   validateField() {
@@ -30,7 +30,7 @@ export default class OvhManagerNetAppNetworkDeleteCtrl {
     )
       .then(() => {
         this.trackPage('success');
-        this.goBack().then(() => {
+        this.goBack({ isDissociating: true }).then(() => {
           this.Alerter.success(
             this.$translate.instant('netapp_network_delete_success_message'),
           );
@@ -38,7 +38,7 @@ export default class OvhManagerNetAppNetworkDeleteCtrl {
       })
       .catch((error) => {
         this.trackPage('error');
-        this.goBack().then(() => {
+        this.goBack({ isDissociating: false }).then(() => {
           this.Alerter.error(
             this.$translate.instant('netapp_dashboard_global_error', {
               message: error?.data?.message || error.message,
