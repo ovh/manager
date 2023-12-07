@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-
 export default class UserAccountUsersEnableCtrl {
   /* @ngInject */
   constructor($scope, UseraccountUsersService, Alerter, $translate) {
@@ -29,12 +27,20 @@ export default class UserAccountUsersEnableCtrl {
         );
       })
       .catch((err) => {
-        this.alerter.error(
-          `${this.$translate.instant('user_users_enable_error_message')} ${get(
-            err,
-            'message',
-            err,
-          )}`,
+        if (err.status === 403) {
+          return this.alerter.warning(
+            `${this.$translate.instant(
+              'user_users_enable_error_message',
+            )} ${this.$translate.instant('user_need_rights_message')} ${
+              err.data.details.unauthorizedActionsByIAM
+            }`,
+            'userUsers',
+          );
+        }
+        return this.alerter.error(
+          `${this.$translate.instant('user_users_enable_error_message')} ${
+            err.data.message
+          }`,
           'userUsers',
         );
       })
