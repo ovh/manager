@@ -3,7 +3,17 @@
         data-on-click="IpFirewallCtrl.hideFirewall()"
         data-previous-page="{{:: 'ip_firewall_back_link_title' | translate }}"
     >
-        <span data-translate="ip_firewall_title"></span>
+        <div class="d-flex justify-content-between">
+            <span data-translate="ip_firewall_title"></span>
+            <oui-guide-menu text="{{:: 'ip_firewall_guide' | translate }}">
+                <oui-guide-menu-item
+                    data-ng-href="{{:: IpFirewallCtrl.firewallGuideLink }}"
+                    data-external="true"
+                >
+                    <span data-translate="ip_firewall_title"></span>
+                </oui-guide-menu-item>
+            </oui-guide-menu>
+        </div>
     </oui-back-button>
 
     <p data-translate="ip_firewall_description_1"></p>

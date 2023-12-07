@@ -1,17 +1,22 @@
 <div>
-    <button
-        type="button"
-        class="btn btn-default"
-        data-ng-click="IpGameFirewallCtrl.goToDashboard()"
+    <oui-back-button
+        data-on-click="IpGameFirewallCtrl.goToDashboard()"
+        data-previous-page="{{:: 'ip_game_mitigation_back_link_title' | translate }}"
     >
-        <i class="fa fa-chevron-left" aria-hidden="true"> </i>
-        <span data-translate="common_back"></span>
-    </button>
-
-    <h4
-        data-translate="ip_game_mitigation_title"
-        data-translate-values="{ t0: IpGameFirewallCtrl.datas.selectedIp }"
-    ></h4>
+        <div class="d-flex justify-content-between">
+            <span data-translate="ip_game_mitigation_title"></span>
+            <oui-guide-menu
+                text="{{:: 'ip_game_mitigation_guide' | translate }}"
+            >
+                <oui-guide-menu-item
+                    data-ng-href="{{:: IpGameFirewallCtrl.gameGuideLink }}"
+                    data-external="true"
+                >
+                    <span data-translate="ip_game_mitigation_title"></span>
+                </oui-guide-menu-item>
+            </oui-guide-menu>
+        </div>
+    </oui-back-button>
 
     <p data-translate="ip_game_mitigation_description"></p>
     <p data-translate="ip_game_mitigation_description_tip"></p>

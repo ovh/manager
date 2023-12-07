@@ -7,6 +7,7 @@ import {
   IP_MITIGATION_RULE_PROTOCOL_PORT,
   ALLOWED_LANGUAGES,
   BASE_URL_SURVEY,
+  GAME_GUIDE_LINKS,
 } from './ip-ip-firewall-game.constants';
 
 export default /* @ngInject */ function IpGameFirewallCtrl(
@@ -61,6 +62,10 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   self.enums = {
     protocols: [],
   };
+
+  self.gameGuideLink =
+    GAME_GUIDE_LINKS[coreConfig.getUser().ovhSubsidiary] ||
+    GAME_GUIDE_LINKS.DEFAULT;
 
   self.rule = {
     protocol: null,

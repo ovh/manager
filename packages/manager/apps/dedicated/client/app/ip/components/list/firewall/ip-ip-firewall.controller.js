@@ -5,7 +5,11 @@ import set from 'lodash/set';
 import transform from 'lodash/transform';
 import union from 'lodash/union';
 
-import { ALLOWED_LANGUAGES, BASE_URL_SURVEY } from './firewall.constant';
+import {
+  ALLOWED_LANGUAGES,
+  BASE_URL_SURVEY,
+  FIREWALL_GUIDE_LINKS,
+} from './firewall.constant';
 import { TRACKING_PREFIX } from '../list.constant';
 
 export default /* @ngInject */ function IpFirewallCtrl(
@@ -60,6 +64,10 @@ export default /* @ngInject */ function IpFirewallCtrl(
   self.successMessage = null;
   self.denyMessage = null;
   self.firewallStatus = null;
+
+  self.firewallGuideLink =
+    FIREWALL_GUIDE_LINKS[coreConfig.getUser().ovhSubsidiary] ||
+    FIREWALL_GUIDE_LINKS.DEFAULT;
 
   function initializeUrlSurvey() {
     // Get default language
