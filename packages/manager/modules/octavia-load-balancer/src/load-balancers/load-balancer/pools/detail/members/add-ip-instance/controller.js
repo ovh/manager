@@ -9,7 +9,7 @@ export default class OctaviaLoadBalancerPoolsDetailMembersAddIpInstanceCtrl {
 
   $onInit() {
     this.model = {
-      checked: [],
+      members: [],
     };
     this.instances = [];
     this.displayedInstances = [];
@@ -23,7 +23,7 @@ export default class OctaviaLoadBalancerPoolsDetailMembersAddIpInstanceCtrl {
       .then((instances) => {
         // For each instance, we create a new instance per ip address
         // We create a new instance only for IPV4 ip address
-        angular.forEach(instances, (instance) => {
+        instances.forEach((instance) => {
           this.computeIpV4Instance(instance);
         });
         this.displayedInstances = [...this.instances];
@@ -48,11 +48,10 @@ export default class OctaviaLoadBalancerPoolsDetailMembersAddIpInstanceCtrl {
         // The label displayed = name of the instance (ip address)
         this.instances.push({
           label: `${instance.name} (${ipAddress.ip}) `,
+          name: instance.name,
+          address: ipAddress.ip,
+          checked: false,
         });
-
-        // Push false in the checked array. It will be used
-        // in the next step to identify which instance have been selected
-        this.model.checked.push(false);
       }
     });
   }
@@ -72,8 +71,84 @@ export default class OctaviaLoadBalancerPoolsDetailMembersAddIpInstanceCtrl {
   }
 
   isValid() {
-    return this.model.checked
-      ? this.model.checked.some((checked) => checked === true)
-      : false;
+    return this.displayedInstances.some((instance) => instance.checked);
+  }
+
+  onStep2Focus() {
+    this.duplicatePort = false;
+    this.model.members = this.displayedInstances.reduce(
+      (instances, instance) => {
+        if (instance.checked) {
+          instances.push({
+            name: instance.name,
+            address: instance.address,
+          });
+        }
+        return instances;
+      },
+      [],
+    );
+  }
+
+  duplicatePortToMembers() {
+    for (let index = 0; index < this.model.members.length; index += 1) {
+      this.model.members[
+        index
+      ].protocolPort = this.model.members[0].protocolPort;
+    }
+  }
+
+  addIpInstances() {
+    this.OctaviaLoadBalancerMembersService.createMembers(
+      this.projectId,
+      this.region,
+      this.poolId,
+      this.model.members,
+    )
+      .then(async () => {
+        this.Alerter.set(
+          'alert-success',
+          this.$translate.instant(
+            'octavia_load_balancer_pools_detail_members_add_ip_instance_create_success',
+          ),
+          null,
+          'octavia.alerts.members',
+        );
+        this.goBack(true);
+      })
+      .catch((error) => {
+        this.Alerter.error(
+          this.$translate.instant('octavia_load_balancer_global_error', {
+            message: error.data?.message,
+            requestId: error.headers('X-Ovh-Queryid'),
+          }),
+          'octavia.alerts.members',
+        );
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
+  }
+
+  onPortChange(memberIndex) {
+    if (this.duplicatePort && memberIndex === 0) {
+      this.duplicatePortToMembers();
+    }
+  }
+
+  onDuplicatePortChange(duplicatePort) {
+    if (duplicatePort) {
+      this.duplicatePortToMembers();
+    }
+  }
+
+  isIpAlreadyAssociatedWithPort(address, value) {
+    return (
+      this.members.find(
+        (existingMember) =>
+          existingMember.address === address &&
+          existingMember.protocolPort === value,
+      ) !== undefined
+    );
   }
 }

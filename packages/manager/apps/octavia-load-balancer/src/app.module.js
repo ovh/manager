@@ -5,6 +5,7 @@ import isString from 'lodash/isString';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import '@ovh-ux/ui-kit';
 import '@ovh-ux/ng-at-internet';
+import 'angular-ui-validate';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
@@ -123,6 +124,7 @@ export default async (containerEl, shellClient) => {
         ngOvhSsoAuth,
         ngUiRouterBreadcrumb,
         'oui',
+        'ui.validate',
         uiRouter,
         errorPage,
         OctaviaLoadBalancer,

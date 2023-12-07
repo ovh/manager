@@ -10,7 +10,7 @@ const moduleName =
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state(
-      'octavia-load-balancer.loadbalancer.pools.detail.members.add-ip-instance.**',
+      'octavia-load-balancer.loadbalancer.pools.detail.members.list.add-ip-instance.**',
       {
         url: '/add-ip-instance',
         lazyLoad: ($transition$) => {
