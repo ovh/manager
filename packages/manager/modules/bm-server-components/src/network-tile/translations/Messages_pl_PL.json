@@ -19,7 +19,7 @@
   "server_network_traffic_cancel_button": "Zrezygnuj",
   "server_network_traffic_loading_error": "Wystąpił błąd podczas pobierania informacji.",
   "server_network_traffic_option_released": "(nieodnowione)",
-  "server_network_ola": "OVH Link Aggregation",
+  "server_network_ola": "OVHcloud Link Aggregation",
   "server_network_ola_mode": "Tryb",
   "server_network_ola_active": "Dostępny",
   "server_network_ola_inactive": "Niedostępny",

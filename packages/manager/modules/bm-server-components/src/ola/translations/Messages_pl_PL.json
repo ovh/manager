@@ -3,7 +3,7 @@
   "server_ola_alert_configuration_needed_small": "Konieczne będzie przeprowadzenie konfiguracji ręcznej przez KVM IPMI.",
   "server_ola_alert_configuration_needed_link": "Dowiedz się więcej",
   "server_ola_new_tab": "Otworzy się w nowej zakładce.",
-  "server_ola": "OVH Link Aggregation",
+  "server_ola": "OVHcloud Link Aggregation",
   "server_ola_mode": "Tryb",
   "server_ola_active": "Dostępny",
   "server_ola_inactive": "Niedostępny",

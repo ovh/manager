@@ -15,7 +15,7 @@
   "dedicated_server_dashboard_monitoring_disabled": "Desativado",
   "dedicated_server_dashboard_monitoring_activate_information": "A intervenção da OVHcloud no datacenter será efetuada em caso de falha de resposta a PING do seu servidor",
   "dedicated_server_dashboard_monitoring_deactivate_title_button": "Desativar",
-  "dedicated_server_dashboard_monitoring_deactivate_information": "A intervenção da OVHcloud no datacenter não será efetuada em caso de falha de resposta a PING do seu servidor",
+  "dedicated_server_dashboard_monitoring_deactivate_information": "Intervenção da OVHcloud no datacenter desativada em caso de falha de resposta a PING",
   "dedicated_server_dashboard_monitoring_activate_title_button": "Ativar",
   "dedicated_server_dashboard_monitoring_status_disabled": "Desativado",
   "dedicated_server_dashboard_monitoring_status_proactive": "Ativado com intervenção proativa",
