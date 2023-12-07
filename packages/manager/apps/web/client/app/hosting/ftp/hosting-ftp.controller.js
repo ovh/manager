@@ -31,6 +31,8 @@ angular.module('App').controller(
       this.Hosting = Hosting;
       this.HostingUser = HostingUser;
       this.WucUser = WucUser;
+      this.SSH_STATE = SSH_STATE;
+      this.USER_STATE = USER_STATE;
     }
 
     $onInit() {
@@ -62,17 +64,11 @@ angular.module('App').controller(
         this.loadFtpInformations(count, offset);
 
       this.$scope.isSftpActive = (element) => {
-        return (
-          element.sshState !== SSH_STATE.NONE &&
-          element.state !== USER_STATE.OFF
-        );
+        return element.sshState !== this.SSH_STATE.NONE;
       };
 
       this.$scope.isSshActive = (element) => {
-        return (
-          element.sshState === SSH_STATE.ACTIVE &&
-          element.state !== USER_STATE.OFF
-        );
+        return element.sshState === this.SSH_STATE.ACTIVE;
       };
 
       this.$scope.$on(this.Hosting.events.tabFtpRefresh, () => {
@@ -189,7 +185,7 @@ angular.module('App').controller(
           this.primaryUserEnabled =
             ftpInformations.list.results.length &&
             ftpInformations.list.results[0].isPrimaryAccount
-              ? ftpInformations.list.results[0].state === 'RW'
+              ? ftpInformations.list.results[0].state === this.USER_STATE.RW
               : null;
           this.ftpInformations = ftpInformations;
         })

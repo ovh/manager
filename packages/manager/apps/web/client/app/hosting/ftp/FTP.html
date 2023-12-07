@@ -227,8 +227,8 @@
                                             id="prevSshState-{{$index}}"
                                             data-ng-change="ctrlHostingTabFTP.updatePrimaryLoginState(element, prevSshState)"
                                             data-ng-model="element.sshState"
-                                            data-ng-true-value="'sftponly'"
-                                            data-ng-false-value="'none'"
+                                            data-ng-true-value="ctrlHostingTabFTP.SSH_STATE.SFTPONLY"
+                                            data-ng-false-value="ctrlHostingTabFTP.SSH_STATE.NONE"
                                             data-ng-init="prevSshState = { sshState : element.sshState }"
                                         />
                                         <label
@@ -244,11 +244,11 @@
                                                 >
                                                     <span
                                                         data-translate="common_activated"
-                                                        data-ng-if="element.sshState === 'sftponly'"
+                                                        data-ng-if="element.sshState !== ctrlHostingTabFTP.SSH_STATE.NONE"
                                                     ></span>
                                                     <span
                                                         data-translate="common_desactivated"
-                                                        data-ng-if="element.sshState === 'none'"
+                                                        data-ng-if="element.sshState === ctrlHostingTabFTP.SSH_STATE.NONE"
                                                     ></span>
                                                 </span>
                                             </span>
@@ -276,8 +276,8 @@
                                             id="prevState-{{$index}}"
                                             data-ng-change="ctrlHostingTabFTP.updatePrimaryLoginState(element, prevState)"
                                             data-ng-model="element.state"
-                                            data-ng-true-value="'rw'"
-                                            data-ng-false-value="'off'"
+                                            data-ng-true-value="ctrlHostingTabFTP.USER_STATE.RW"
+                                            data-ng-false-value="ctrlHostingTabFTP.USER_STATE.OFF"
                                             data-ng-init="prevState = { state : element.state }"
                                         />
                                         <label
@@ -293,11 +293,11 @@
                                                 >
                                                     <span
                                                         data-translate="common_activated"
-                                                        data-ng-if="element.state === 'rw'"
+                                                        data-ng-if="element.state === ctrlHostingTabFTP.USER_STATE.RW"
                                                     ></span>
                                                     <span
                                                         data-translate="common_desactivated"
-                                                        data-ng-if="element.state === 'off'"
+                                                        data-ng-if="element.state ===  ctrlHostingTabFTP.USER_STATE.OFF"
                                                     ></span>
                                                 </span>
                                             </span>
@@ -601,13 +601,13 @@
                                         <span
                                             class="oui-badge oui-badge_error"
                                             data-ng-bind="(('hosting_tab_FTP_multiftp_table_state_' + element.state | translate) == 'hosting_tab_FTP_multiftp_table_state_' + element.state)? element.state: ('hosting_tab_FTP_multiftp_table_state_' + element.state | translate)"
-                                            data-ng-if="element.state === 'off'"
+                                            data-ng-if="element.state === ctrlHostingTabFTP.USER_STATE.OFF"
                                         ></span>
                                         <a
                                             data-ng-href="ftp://{{element.ftp.user}}@{{element.ftp.url}}:{{element.ftp.port}}/"
                                             class="d-block word-break"
                                             target="_blank"
-                                            data-ng-if="element.state === 'rw'"
+                                            data-ng-if="element.state === ctrlHostingTabFTP.USER_STATE.RW"
                                         >
                                             <span
                                                 data-ng-bind="element.ftpUrl"

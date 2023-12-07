@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { CONNECTION_PROTOCOLS } from '../../hosting-ftp-constants';
 
 angular.module('App').controller(
   'HostingFtpUserUpdateCtrl',
@@ -17,6 +18,7 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.Hosting = Hosting;
       this.HostingUser = HostingUser;
+      this.CONNECTION_PROTOCOLS = CONNECTION_PROTOCOLS;
     }
 
     $onInit() {
@@ -35,7 +37,12 @@ angular.module('App').controller(
           .operatingSystem,
       };
 
+      this.connectionProtocol = [
+        this.model.user.state,
+        this.model.user.sshState,
+      ].join('_');
       this.$scope.updateUser = () => this.updateUser();
+      this.$scope.onNextStep = () => this.goToSecondStep();
 
       this.HostingUser.getUserCreationCapabilities()
         .then((capabilities) => {
@@ -74,10 +81,11 @@ angular.module('App').controller(
       return home;
     }
 
-    sshStateChange() {
-      if (this.model.user.state && this.model.user.state === 'off') {
-        this.model.user.sshState = 'none';
-      }
+    goToSecondStep() {
+      [
+        this.model.user.state,
+        this.model.user.sshState,
+      ] = this.connectionProtocol.split('_');
     }
 
     updateUser() {

@@ -5,7 +5,11 @@
         data-wizard-on-finish="updateUser"
         data-wizard-title="'hosting_tab_FTP_configuration_user_modify_title' | translate"
     >
-        <div data-wizard-step data-wizard-step-valid="ctrl.isStep1Valid()">
+        <div
+            data-wizard-step
+            data-wizard-step-on-next="onNextStep"
+            data-wizard-step-valid="ctrl.isStep1Valid()"
+        >
             <p
                 data-translate="hosting_tab_FTP_configuration_user_modify_step1_question"
             ></p>
@@ -65,38 +69,6 @@
                         ></small>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <span
-                        class="control-label col-md-4 oui-label"
-                        data-translate="hosting_tab_FTP_configuration_user_modify_step1_state_label"
-                    ></span>
-                    <div class="col-md-8">
-                        <div class="oui-checkbox mt-3">
-                            <input
-                                type="checkbox"
-                                class="oui-checkbox__input"
-                                id="userState"
-                                data-ng-model="ctrl.model.user.state"
-                                data-ng-true-value="'off'"
-                                data-ng-false-value="'rw'"
-                            />
-                            <label
-                                class="oui-checkbox__label-container"
-                                for="userState"
-                            >
-                                <span class="oui-checkbox__label">
-                                    <span class="oui-checkbox__icon"></span>
-                                    <span
-                                        class="oui-checkbox__text"
-                                        data-translate="hosting_tab_FTP_configuration_user_modify_step1_state_explanations"
-                                    ></span>
-                                </span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
                 <div
                     class="form-group"
                     data-ng-if="ctrl.model.operatingSystem === 'linux'"
@@ -106,74 +78,27 @@
                         data-translate="hosting_tab_FTP_configuration_user_modify_step1_ssh_state_label"
                     ></span>
                     <div class="col-md-8">
-                        <div class="oui-radio">
+                        <div
+                            class="oui-radio"
+                            data-ng-repeat="protocol in ctrl.CONNECTION_PROTOCOLS"
+                        >
                             <input
                                 type="radio"
                                 class="oui-radio__input"
-                                id="sshState-off"
-                                name="sshState"
-                                value="none"
-                                data-ng-change="ctrl.sshStateChange()"
-                                data-ng-disabled="ctrl.model.user.state === 'off'"
-                                data-ng-model="ctrl.model.user.sshState"
+                                id="protocol-{{ protocol }}"
+                                name="connectionProtocol"
+                                data-ng-value="protocol"
+                                data-ng-model="ctrl.connectionProtocol"
                             />
                             <label
                                 class="oui-radio__label-container"
-                                for="sshState-off"
+                                for="protocol-{{protocol}}"
                             >
                                 <span class="oui-radio__label">
                                     <span class="oui-radio__icon"></span>
                                     <span
                                         class="oui-radio__text"
-                                        data-translate="hosting_tab_FTP_multiftp_table_ssh_state_none"
-                                    ></span>
-                                </span>
-                            </label>
-                        </div>
-                        <div class="oui-radio">
-                            <input
-                                type="radio"
-                                class="oui-radio__input"
-                                id="sshState-sftpOnly"
-                                name="sshState"
-                                value="sftponly"
-                                data-ng-change="ctrl.sshStateChange()"
-                                data-ng-disabled="ctrl.model.user.state === 'off'"
-                                data-ng-model="ctrl.model.user.sshState"
-                            />
-                            <label
-                                class="oui-radio__label-container"
-                                for="sshState-sftpOnly"
-                            >
-                                <span class="oui-radio__label">
-                                    <span class="oui-radio__icon"></span>
-                                    <span
-                                        class="oui-radio__text"
-                                        data-translate="hosting_tab_FTP_multiftp_table_ssh_state_sftponly"
-                                    ></span>
-                                </span>
-                            </label>
-                        </div>
-                        <div class="oui-radio">
-                            <input
-                                type="radio"
-                                class="oui-radio__input"
-                                id="sshState-active"
-                                name="sshState"
-                                value="active"
-                                data-ng-change="ctrl.sshStateChange()"
-                                data-ng-disabled="ctrl.model.user.state === 'off'"
-                                data-ng-model="ctrl.model.user.sshState"
-                            />
-                            <label
-                                class="oui-radio__label-container"
-                                for="sshState-active"
-                            >
-                                <span class="oui-radio__label">
-                                    <span class="oui-radio__icon"></span>
-                                    <span
-                                        class="oui-radio__text"
-                                        data-translate="hosting_tab_FTP_multiftp_table_ssh_state_active"
+                                        data-translate="hosting_tab_FTP_multiftp_table_connection_protocol_{{protocol}}"
                                     ></span>
                                 </span>
                             </label>
@@ -208,7 +133,7 @@
                     data-translate="hosting_tab_FTP_configuration_user_modify_step2_protocols_label"
                 ></dt>
                 <dd
-                    data-ng-bind="'hosting_tab_FTP_multiftp_table_ssh_state_' + ctrl.model.user.sshState | translate"
+                    data-ng-bind="'hosting_tab_FTP_multiftp_table_connection_protocol_' + ctrl.connectionProtocol | translate"
                 ></dd>
             </dl>
         </div>
