@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.12.3...@ovh-ux/manager-dedicated@19.13.0) (2023-12-07)
+
+
+### Features
+
+* **account:** restricted redirect url ([#10401](https://github.com/ovh/manager/issues/10401)) ([2a2c6d3](https://github.com/ovh/manager/commit/2a2c6d3996bf5411ea8997e7b28a01f760ff730f))
+
+
+
+
+
 ## [19.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.12.2...@ovh-ux/manager-dedicated@19.12.3) (2023-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
