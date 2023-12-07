@@ -68,6 +68,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       pollDissociatingVrackServices: /* @ngInject */ ($transition$) =>
         !!$transition$.params().isDissociating,
+      getVrackLink: /* @ngInject */ (coreURLBuilder) => (vrackId) =>
+        coreURLBuilder.buildURL('dedicated', `#/vrack/${vrackId}`),
     },
   });
 };

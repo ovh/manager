@@ -57,8 +57,13 @@
             >
                 <oui-tile-definition
                     term="{{:: 'netapp_dashboard_network_configuration_vrack_id' | translate }}"
-                    description="{{:: $ctrl.networkInformations.vrackServices.currentState.vrackId }}"
                 >
+                    <oui-tile-description>
+                        <a
+                            data-ng-href="{{:: $ctrl.getVrackLink($ctrl.networkInformations.vrackServices.currentState.vrackId)}}"
+                            data-ng-bind=":: $ctrl.networkInformations.vrackServices.currentState.vrackId"
+                        ></a>
+                    </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
                     term="{{:: 'netapp_dashboard_network_configuration_vrack_services' | translate }}"
