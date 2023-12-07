@@ -5,6 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('netapp.dashboard.index', {
     url: '',
     component: 'ovhManagerNetAppDashboardIndex',
+    params: {
+      isDissociating: null,
+    },
     resolve: {
       trackClick: /* @ngInject */ (atInternet) => (tracker) =>
         atInternet.trackClick({
@@ -57,8 +60,14 @@ export default /* @ngInject */ ($stateProvider) => {
         trackClick,
       ) => () => {
         trackClick('delete-endpoint');
-        return $state.go('netapp.dashboard.index.delete-network');
+        return $state.go(
+          'netapp.dashboard.index.delete-network',
+          {},
+          { reload: true },
+        );
       },
+      pollDissociatingVrackServices: /* @ngInject */ ($transition$) =>
+        !!$transition$.params().isDissociating,
     },
   });
 };

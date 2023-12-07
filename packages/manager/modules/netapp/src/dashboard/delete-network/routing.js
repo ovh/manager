@@ -20,7 +20,8 @@ export default /* @ngInject */ ($stateProvider) => {
         atInternet.trackPage({
           name: `${TRACKING_BASE}-${tracker}`,
         }),
-      goBack: /* @ngInject */ ($state) => () => $state.go('^'),
+      goBack: /* @ngInject */ ($state) => (params) =>
+        $state.go('^', params, { reload: params.isDissociating }),
     },
     atInternet: {
       rename: TRACKING_BASE,

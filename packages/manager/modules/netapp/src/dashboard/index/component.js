@@ -8,6 +8,7 @@ export default {
     goToNetworkConfiguration: '<',
     goToDeleteNetworkConfiguration: '<',
     networkInformations: '<',
+    pollDissociatingVrackServices: '<',
     goToCreateVolume: '<',
     isCommitmentAvailable: '<',
     isCreateVolumeAvailable: '<',
