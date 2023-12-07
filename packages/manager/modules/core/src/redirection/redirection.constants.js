@@ -1,6 +1,10 @@
 const guidesRoot = 'https://docs.ovh.com';
 const helpRoot = 'https://help.ovhcloud.com';
 
+export const SANITIZATION = {
+  regex: /^\s*(?:https):\/\/(?:(?:[^./?#]+\.)*(?:ovh|(?:ovhcloud(?=\.com))|(?:ovhtelecom(?=\.fr))|(?:ovh-hosting(?=\.fi))|soyoustart|kimsufi)\.(?:com|net|org|ovh|co\.uk|com\.tn|cz|de|es|eu|fi|fr|ie|it|lt|ma|nl|pl|pt|sn|uk|us))(?:\/|$)/i,
+};
+
 export default {
   EU: {
     guides: {
