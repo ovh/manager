@@ -5,27 +5,26 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/data-sync/:volumeId',
       params: {
         volumeId: null,
-        notebookId: null,
         directory: null,
       },
       views: {
         modal: {
-          component: 'ovhManagerPciProjectNotebookAttachDataDataSyncModal',
+          component: 'ovhManagerPciProjectAiDataSync',
         },
       },
       layout: 'modal',
       resolve: {
         breadcrumb: () => null,
-        goBack: /* @ngInject */ (goBackToAttachData) => goBackToAttachData,
+        goBack: /* @ngInject */ (goBackToAttachData) => (message, type) => {
+          return goBackToAttachData(message, type);
+        },
         volumeId: /* @ngInject */ ($transition$) =>
           $transition$.params().volumeId,
-        notebookId: /* @ngInject */ ($transition$) =>
-          $transition$.params().notebookId,
         directory: /* @ngInject */ ($transition$) =>
           $transition$.params().directory,
-      },
-      atInternet: {
-        ignore: true,
+        goToDataSync: /* @ngInject */ (dataSync) => (dataSyncParam) => {
+          return dataSync(dataSyncParam);
+        },
       },
     },
   );

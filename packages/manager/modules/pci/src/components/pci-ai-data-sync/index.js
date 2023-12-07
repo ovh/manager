@@ -9,7 +9,7 @@ import appService from '../../projects/project/ai/ai.service';
 import notebookService from '../../projects/project/notebooks/notebooks.service';
 import jobService from '../../projects/project/training/job.service';
 
-const moduleName = 'ovhManagerPciAIDataSyncComponent';
+const moduleName = 'ovhManagerPciAiDataSyncComponent';
 
 angular
   .module(moduleName, [
@@ -17,7 +17,7 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .component('ovhManagerPciProjectAIDataSync', component)
+  .component('ovhManagerPciProjectAiDataSync', component)
   .service('PciProjectAppService', appService)
   .service('PciProjectNotebookService', notebookService)
   .service('PciProjectJobService', jobService)

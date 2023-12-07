@@ -25,7 +25,6 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       goToManualDataSync: /* @ngInject */ ($state, projectId) => (
-        appId,
         volumeId,
         directory,
       ) =>
@@ -33,11 +32,15 @@ export default /* @ngInject */ ($stateProvider) => {
           'pci.projects.project.ai.apps.dashboard.attach-data.data-sync',
           {
             projectId,
-            appId,
             volumeId,
             directory,
           },
         ),
+      dataSync: /* @ngInject */ (projectId, app, AppService) => (
+        datasyncParam,
+      ) => {
+        return AppService.dataSync(projectId, app.id, datasyncParam);
+      },
     },
   });
 };

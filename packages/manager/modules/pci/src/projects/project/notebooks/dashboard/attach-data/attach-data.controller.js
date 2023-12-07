@@ -2,9 +2,9 @@ const DATAGRID_MAX_ITEMS_PER_PAGE = 10;
 
 export default class {
   /* @ngInject */
-  constructor(coreConfig, CucCloudMessage) {
+  constructor(coreConfig, CucCloudMessage, NotebookService) {
     this.CucCloudMessage = CucCloudMessage;
-
+    this.NotebookService = NotebookService;
     this.DATAGRID_MAX_ITEMS_PER_PAGE = DATAGRID_MAX_ITEMS_PER_PAGE;
   }
 
@@ -35,17 +35,9 @@ export default class {
   }
 
   manualDataSync(volume) {
-    if (volume) {
-      const selectedVolume = this.notebook.status.volumes.find(
-        (vol) => vol.mountPath === volume.mountPath,
-      );
-      this.goToManualDataSync(
-        this.notebook.id,
-        selectedVolume.id,
-        selectedVolume.mountPath,
-      );
-    } else {
-      this.goToManualDataSync(this.notebook.id);
-    }
+    const selectedVolume = this.notebook.status.volumes.find(
+      ({ mountPath }) => mountPath === volume?.mountPath,
+    );
+    this.goToManualDataSync(selectedVolume?.id, selectedVolume?.mountPath);
   }
 }

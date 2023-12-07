@@ -1,23 +1,11 @@
 import angular from 'angular';
-import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
-import uiRouter from '@uirouter/angularjs';
-import angularTranslate from 'angular-translate';
-import '@ovh-ux/ui-kit';
+import '@uirouter/angularjs';
 
-import component from './data-sync.component';
+import dataSyncComponent from '../../../../../../components/pci-ai-data-sync';
 import routing from './data-sync.routing';
 
-const moduleName = 'ovhManagerPciNotebooksAttachDataDataSync';
+const moduleName = 'ovhManagerPciNotebooksDashboardAttachDataDataSync';
 
-angular
-  .module(moduleName, [
-    angularTranslate,
-    ngTranslateAsyncLoader,
-    'oui',
-    uiRouter,
-  ])
-  .config(routing)
-  .component('ovhManagerPciProjectNotebookAttachDataDataSyncModal', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+angular.module(moduleName, ['ui.router', dataSyncComponent]).config(routing);
 
 export default moduleName;

@@ -10,9 +10,7 @@ export default {
     dataSyncType: '<',
     currentDataSyncType: '<',
     volumeId: '<',
-    appId: '<',
-    notebookId: '<',
-    jobId: '<',
     directory: '<',
+    goToDataSync: '<',
   },
 };

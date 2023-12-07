@@ -28,7 +28,6 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       goToManualDataSync: /* @ngInject */ ($state, projectId) => (
-        notebookId,
         volumeId,
         directory,
       ) =>
@@ -36,11 +35,15 @@ export default /* @ngInject */ ($stateProvider) => {
           'pci.projects.project.notebooks.dashboard.attach-data.data-sync',
           {
             projectId,
-            notebookId,
             volumeId,
             directory,
           },
         ),
+      dataSync: /* @ngInject */ (projectId, notebook, NotebookService) => (
+        datasyncParam,
+      ) => {
+        return NotebookService.dataSync(projectId, notebook.id, datasyncParam);
+      },
     },
     atInternet: {
       rename:

@@ -2,10 +2,11 @@ const DATAGRID_MAX_ITEMS_PER_PAGE = 10;
 
 export default class AiAppDashboardAttachDataCtrl {
   /* @ngInject */
-  constructor($translate, CucCloudMessage) {
+  constructor($translate, CucCloudMessage, AppService) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.DATAGRID_MAX_ITEMS_PER_PAGE = DATAGRID_MAX_ITEMS_PER_PAGE;
+    this.AppService = AppService;
   }
 
   $onInit() {
@@ -36,17 +37,9 @@ export default class AiAppDashboardAttachDataCtrl {
   }
 
   manualDataSync(volume) {
-    if (volume) {
-      const selectedVolume = this.app.status.volumes.find(
-        (vol) => vol.mountPath === volume.mountPath,
-      );
-      this.goToManualDataSync(
-        this.app.id,
-        selectedVolume.id,
-        selectedVolume.mountPath,
-      );
-    } else {
-      this.goToManualDataSync(this.app.id);
-    }
+    const selectedVolume = this.app.status.volumes.find(
+      ({ mountPath }) => mountPath === volume?.mountPath,
+    );
+    this.goToManualDataSync(selectedVolume?.id, selectedVolume?.mountPath);
   }
 }

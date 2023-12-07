@@ -7,6 +7,7 @@ export default {
     projectId: '<',
     trackNotebooks: '<',
     goToManualDataSync: '<',
+    dataSync: '<',
   },
   controller,
   template,
