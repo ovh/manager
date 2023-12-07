@@ -60,6 +60,7 @@ export default class NetworkSecurityService {
       pageNumber: page,
       pageSize,
       serviceName,
+      version: 4,
     };
     return this.$http
       .get('/ips', {
@@ -78,5 +79,17 @@ export default class NetworkSecurityService {
         }
         return newList;
       });
+  }
+
+  static getMaskValue(value) {
+    let maskedValue = value;
+    if (value.indexOf('/') === -1) {
+      if (value.indexOf('.') > -1) {
+        maskedValue = `${value}/32`;
+      } else if (value.indexOf(':') > -1) {
+        maskedValue = `${value}/128`;
+      }
+    }
+    return maskedValue;
   }
 }

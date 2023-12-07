@@ -1,3 +1,4 @@
+import NetworkSecurityService from '../network-security.service';
 import {
   PAGE_SIZE,
   TRAFFIC_PERIODS,
@@ -44,9 +45,11 @@ export default class TrafficController {
     this.options = {
       ...this.CHART.options,
     };
+    this.isSubnetValid = true;
   }
 
   selectService() {
+    this.isSubnetValid = true;
     if (this.service) {
       this.pageSize = 10;
       this.page = 1;
@@ -73,11 +76,24 @@ export default class TrafficController {
   }
 
   checkSelectedSubnet(value) {
-    if (!value) {
-      return;
+    let isSubnetValid = true;
+    console.log('value', value);
+
+    if (!value || (value.indexOf('/') === -1 && !ipaddr.isValid(value))) {
+      isSubnetValid = false;
+    } else if (value.indexOf('/') > -1) {
+      const ip = value.split('/');
+      if (!ipaddr.isValid(ip[0]) || Number.isNaN(ip[1])) {
+        isSubnetValid = false;
+      }
     }
-    this.subnet = value;
-    this.getTraffic();
+
+    this.isSubnetValid = isSubnetValid;
+    if (isSubnetValid) {
+      this.subnet = NetworkSecurityService.getMaskValue(value);
+      this.model = this.subnet;
+      this.getTraffic();
+    }
   }
 
   onSelectSubnet() {
@@ -87,6 +103,7 @@ export default class TrafficController {
 
   onReset() {
     this.results = null;
+    this.isSubnetValid = true;
   }
 
   getTraffic() {
@@ -163,6 +180,13 @@ export default class TrafficController {
           this.loadGraph();
         }
         return this.results;
+      })
+      .catch(() => {
+        this.isLoading = false;
+        this.Alerter.error(
+          this.$translate.instant('network_security_dashboard_events_error'),
+          'network_security_error',
+        );
       });
   }
 
@@ -208,13 +232,13 @@ export default class TrafficController {
     let unit = TrafficController.getUnitIndex(packetsDropped);
     let label = '';
     if (unit > 0) {
-      label = this.units[unit];
+      label = this.units[unit].split('b');
     }
     if (packetsDropped > 0) {
       this.packetsDropped = `${TrafficController.formatBits(
         packetsDropped,
         unit,
-      )} ${label}`;
+      )} ${label[0] ? label[0] : ''}`;
     } else {
       this.packetsDropped = null;
     }
