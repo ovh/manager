@@ -4,6 +4,7 @@ import {
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
   NETWORK_STATUS,
+  POLLING_TYPE,
 } from '../constants';
 
 export default class OvhManagerNetAppDashboardIndexCtrl {
@@ -28,16 +29,29 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
       if (
         this.networkInformations.status === this.NETWORK_STATUS.TO_CONFIGURE
       ) {
-        this.NetAppDashboardService.startNetworkPolling(this.storage).then(
-          ([data]) => {
-            this.NetAppDashboardService.populateStorageNetwork(data).then(
-              (network) => {
-                this.networkInformations = network;
-                this.populateAttachedSubnetAndEndpoint();
-              },
-            );
-          },
-        );
+        this.NetAppDashboardService.startNetworkPolling(
+          this.storage,
+          POLLING_TYPE.ASSOCIATING,
+        ).then(([data]) => {
+          this.NetAppDashboardService.populateStorageNetwork(data).then(
+            (network) => {
+              this.networkInformations = network;
+              this.populateAttachedSubnetAndEndpoint();
+            },
+          );
+        });
+      }
+
+      if (
+        this.networkInformations.status === this.NETWORK_STATUS.ASSOCIATED &&
+        this.pollDissociatingVrackServices
+      ) {
+        this.NetAppDashboardService.startNetworkPolling(
+          this.storage,
+          POLLING_TYPE.DISSOCIATING,
+        ).then(([data]) => {
+          this.networkInformations = data;
+        });
       }
     }
   }
@@ -53,7 +67,12 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
   }
 
   $onDestroy() {
-    this.NetAppDashboardService.stopNetworkPolling(this.storage);
+    [
+      POLLING_TYPE.ASSOCIATING,
+      POLLING_TYPE.DISSOCIATING,
+    ].forEach((pollingType) =>
+      this.NetAppDashboardService.stopNetworkPolling(this.storage, pollingType),
+    );
   }
 
   shouldReengage() {

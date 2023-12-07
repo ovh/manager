@@ -26,6 +26,11 @@ export const NETWORK_STATUS = {
   DISSOCIATING: 'dissociating',
 };
 
+export const POLLING_TYPE = {
+  ASSOCIATING: 'associating',
+  DISSOCIATING: 'dissociating',
+};
+
 export const FETCH_INTERVAL = 5000;
 
 export default {
@@ -34,4 +39,5 @@ export default {
   RECOMMIT_IMPRESSION_TRACKING_DATA,
   NETWORK_STATUS,
   FETCH_INTERVAL,
+  POLLING_TYPE,
 };
