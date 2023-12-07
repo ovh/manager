@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.13.0...@ovh-ux/manager-pci@6.14.0) (2023-12-07)
+
+
+### Features
+
+* **pci.storages.databases:** datatr-377 - rework availabilities ([#10142](https://github.com/ovh/manager/issues/10142)) ([5ff10a7](https://github.com/ovh/manager/commit/5ff10a7e6cba2c9d4c9c5c5f6cce8c808389e06a))
+
+
+
+
+
 # [6.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.12.0...@ovh-ux/manager-pci@6.13.0) (2023-12-04)
 
 
