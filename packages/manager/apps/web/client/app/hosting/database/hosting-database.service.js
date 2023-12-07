@@ -591,6 +591,7 @@ angular.module('services').service(
         }/${serviceName}/database/${databaseName}/copyRestore`,
         {
           copyId,
+          flushDatabase: true,
         },
       );
     }
