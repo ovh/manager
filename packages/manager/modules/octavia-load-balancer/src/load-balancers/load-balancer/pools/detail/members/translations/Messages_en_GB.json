@@ -3,5 +3,6 @@
   "octavia_load_balancer_pools_detail_members_info_title": "Members",
   "octavia_load_balancer_pools_detail_members_description_part_1": "Members are the actual back-end IP addresses that will receive Load Balancer traffic.",
   "octavia_load_balancer_pools_detail_members_delete_success": "Your {{ membre }} member has been deleted!",
-  "octavia_load_balancer_pools_detail_members_edit_name_success": "Your {{ membre }} member has been modified!"
+  "octavia_load_balancer_pools_detail_members_edit_name_success": "Your {{ membre }} member has been modified!",
+  "octavia_load_balancer_pools_detail_members_protocol_port_tooltip": "The port on which traffic is sent to the member"
 }

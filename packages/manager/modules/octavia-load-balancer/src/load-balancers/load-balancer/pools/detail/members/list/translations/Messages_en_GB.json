@@ -3,7 +3,6 @@
   "octavia_load_balancer_pools_detail_members_name": "Name",
   "octavia_load_balancer_pools_detail_members_address": "IP address",
   "octavia_load_balancer_pools_detail_members_protocol_port": "Port",
-  "octavia_load_balancer_pools_detail_members_protocol_port_helper": "The port on which traffic is sent to the member",
   "octavia_load_balancer_pools_detail_members_edit": "Edit",
   "octavia_load_balancer_pools_detail_members_delete": "Delete"
 }
