@@ -229,7 +229,11 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
           ),
         ),
       )
-      .catch((error) => (error.status === 404 ? [] : Promise.reject(error)));
+      .catch((error) =>
+        error.status === 404 || error.status === 403
+          ? []
+          : Promise.reject(error),
+      );
   };
 
   /**
@@ -249,11 +253,13 @@ export const useOvhPaymentMethod = ({ reketInstance, region }) => {
 
     return Promise.all([paymentMeansPromise, getPaymentMethods(options)]).then(
       ([paymentMeans, paymentMethods]) => {
-        remove(paymentMeans, ({ paymentMethodId }) =>
-          some(paymentMethods, {
-            paymentMeanId: paymentMethodId,
-          }),
-        );
+        remove(paymentMeans, (paymentMean) => {
+          return paymentMean
+            ? some(paymentMethods, {
+                paymentMeanId: paymentMean.paymentMethodId,
+              })
+            : [];
+        });
 
         const methods = [...paymentMeans, ...paymentMethods];
 

@@ -91,7 +91,7 @@ export default class ServicesActionsCtrl {
             canBeEngaged: this.withEngagement
               ? availableEngagements.length > 0 && serviceInfos.canCommit()
               : false,
-            engagementDetails: service.billing.engagement,
+            engagementDetails: service?.billing?.engagement,
             hasPendingEngagement,
           });
           this.commitmentLink =
@@ -107,7 +107,7 @@ export default class ServicesActionsCtrl {
             this.withEngagement &&
             ServicesActionsCtrl.showCommit(
               this.serviceInfos,
-              this.service.isEngaged(),
+              this.service?.isEngaged(),
               this.highlightEngagement,
             )
           ) {

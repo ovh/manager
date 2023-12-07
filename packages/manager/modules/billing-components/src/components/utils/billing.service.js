@@ -22,7 +22,8 @@ export default class BillingService {
   getService(serviceId) {
     return this.$http
       .get(`/services/${serviceId}`)
-      .then(({ data }) => new Service(data, this.coreConfig.getUserLocale()));
+      .then(({ data }) => new Service(data, this.coreConfig.getUserLocale()))
+      .catch((error) => (error.status === 403 ? null : Promise.reject(error)));
   }
 
   getOptions(serviceId) {

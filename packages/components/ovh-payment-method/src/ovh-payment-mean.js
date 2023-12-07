@@ -201,7 +201,8 @@ export const usePaymentMean = ({ reketInstance, region }) => {
             ),
           ),
         ),
-      );
+      )
+      .catch((error) => (error.status === 403 ? [] : Promise.reject(error)));
   };
 
   /**
