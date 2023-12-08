@@ -22,16 +22,17 @@ export default class OctaviaLoadBalancerDeleteCtrl {
     )
       .then(() => {
         this.trackDeletePage(`success`);
-        this.Alerter.set(
-          'alert-success',
-          this.$translate.instant(
-            'octavia_load_balancer_listener_delete_success',
-            { listener: this.listenerName },
+        return this.goBack(true).then(() =>
+          this.Alerter.set(
+            'alert-success',
+            this.$translate.instant(
+              'octavia_load_balancer_listener_delete_success',
+              { listener: this.listenerName },
+            ),
+            null,
+            'octavia.alerts.listeners',
           ),
-          null,
-          'octavia.alerts.global',
         );
-        this.goBack(true);
       })
       .catch((error) => {
         this.trackDeletePage(`error`);
@@ -40,7 +41,7 @@ export default class OctaviaLoadBalancerDeleteCtrl {
             message: error.data.message,
             requestId: error.config.headers['X-OVH-MANAGER-REQUEST-ID'],
           }),
-          'octavia.alerts.global',
+          'octavia.alerts.listeners',
         );
         this.goBack();
       })
