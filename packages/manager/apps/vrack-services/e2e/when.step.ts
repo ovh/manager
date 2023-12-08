@@ -1,5 +1,5 @@
 import { When } from '@cucumber/cucumber';
-import { ICustomWorld } from '../../../../../playwright-helpers/custom-world';
+import { ICustomWorld } from '@playwright-helpers/custom-world';
 import { vrackList } from '../mock/vrack/vrack';
 import { ConfigParams, setupPlaywrightHandlers } from '../mock/handlers';
 import { associateVrackButtonLabel } from '../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
@@ -18,7 +18,7 @@ When('User navigates to vRack Services Listing page', async function(
   this.handlersConfig.nbVs = this.handlersConfig.nbVs ?? 5;
   this.testContext.initialUrl = urls.listing;
   await setupPlaywrightHandlers(this);
-  await this.page.waitForURL(urls.listing, { waitUntil: 'load' });
+  await this.page.goto(urls.listing, { waitUntil: 'load' });
 });
 
 When('User clicks on the vRack Services configuration button', async function(

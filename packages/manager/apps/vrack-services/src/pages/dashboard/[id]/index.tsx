@@ -1,6 +1,3 @@
-import React from 'react';
-import Tabs1 from './Tabs1';
+import { OverviewTab } from './Overview';
 
-export default function DashboardIndex() {
-  return <Tabs1 />;
-}
+export default OverviewTab;

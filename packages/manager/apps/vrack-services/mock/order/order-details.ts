@@ -1,5 +1,5 @@
-import { OrderData, OrderDetail } from '../../src/api/order';
-import { Handler } from '../../../../../super-components/_common/msw-helpers';
+import { Handler } from '@super-components/_common/msw-helpers';
+import { OrderData, OrderDetail } from '@/api/order';
 
 const orderList = [1, 2, 3];
 
@@ -130,14 +130,16 @@ export const getOrderDetailsMocks = ({
   deliveringVrackServicesOrders,
 }: GetOrderDetailsMocksParams): Handler[] => [
   {
-    url: '/me/order',
-    response: orderList,
-    api: 'v6',
-  },
-  {
-    url: '/me/order/:id',
-    response: ({ params }: { params?: { id: number } }) =>
-      orderDataById[params?.id] || orderDataById[1],
+    url: '/me/order/:id/details/:detailid',
+    response: (data: { url: () => string; params: { detailid: string } }) => {
+      const detailid =
+        data.params?.detailid ||
+        data
+          .url()
+          .split('/')
+          .pop();
+      return orderDetailsById[Number(detailid)] || orderDetailsById[930000003];
+    },
     api: 'v6',
   },
   {
@@ -171,12 +173,14 @@ export const getOrderDetailsMocks = ({
     api: 'v6',
   },
   {
-    url: `/me/order/:id/details/:detailid`,
-    response: ({
-      params: { detailid },
-    }: {
-      params: { id: string; detailid: number };
-    }) => orderDetailsById[detailid] || orderDetailsById[930000003],
+    url: '/me/order/:id',
+    response: ({ params }: { params?: { id: number } }) =>
+      orderDataById[params?.id] || orderDataById[1],
+    api: 'v6',
+  },
+  {
+    url: '/me/order',
+    response: orderList,
     api: 'v6',
   },
 ];

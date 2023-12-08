@@ -8,6 +8,7 @@ import {
 } from '@ovhcloud/ods-components/tabs/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useTranslation } from 'react-i18next';
 import { PageLayout } from './PageLayout';
 
 export type DashboardTabItemProps = {
@@ -21,6 +22,7 @@ export type DashboardLayoutProps = {
 };
 
 export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
+  const { t } = useTranslation('vrack-services/dashboard');
   const [activePanel, setActivePanel] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
@@ -39,11 +41,20 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
     <PageLayout>
       <div className="py-4">
         <OsdsText
+          className="block mb-5"
           level={ODS_TEXT_LEVEL.heading}
           color={ODS_THEME_COLOR_INTENT.text}
           size={ODS_TEXT_SIZE._600}
         >
-          {location.pathname.split('/')[2]}
+          {t('title')}
+        </OsdsText>
+        <OsdsText
+          className="block mb-8"
+          level={ODS_TEXT_LEVEL.body}
+          color={ODS_THEME_COLOR_INTENT.default}
+          size={ODS_TEXT_SIZE._400}
+        >
+          {t('description')}
         </OsdsText>
       </div>
       <OsdsTabs panel={activePanel}>
