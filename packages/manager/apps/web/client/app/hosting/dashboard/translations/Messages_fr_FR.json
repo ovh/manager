@@ -561,6 +561,8 @@
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name": "Domaine",
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_placeholder": "sousdomaine",
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_www_question": "Créer également le sous domaine {{t0}}",
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer": "Vous ne pouvez pas décocher la case ci-dessous avec votre offre STARTER.",
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Passez à une offre d'hébergement supérieure ici.",
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_information": "Configuration à appliquer sur la zone DNS",
   "hosting_tab_DOMAINS_configuration_add_step3_summary": "Souhaitez-vous réellement ajouter ce(s) domaine(s) à votre Hébergement mutualisé ?",
   "hosting_tab_DOMAINS_configuration_add_step3_mode_OVH_autoconfigure": "Configuration automatique (recommandé)",

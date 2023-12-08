@@ -1387,5 +1387,7 @@
   "hosting_tab_DATABASES_configuration_copy_success": "Trwa tworzenie kopii bazy danych. Może to potrwać około 10 minut. Możesz śledzić postęp w zakładce „Zadania w toku”",
   "hosting_tab_DATABASES_configuration_copy_error": "Kopiowanie bazy danych nie powiodło się. Błąd: {{error}}",
   "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Jeśli baza docelowa nie jest pusta, dane zostaną nadpisane.",
-  "hosting_tab_DOMAINS_configuration_add_step1_order_upgrade": "Aby dodać jeszcze jedną domenę do hostingu, zamów wyższą ofertę"
+  "hosting_tab_DOMAINS_configuration_add_step1_order_upgrade": "Aby dodać jeszcze jedną domenę do hostingu, zamów wyższą ofertę",
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer": "Nie możesz usunąć zaznaczenia z poniższego pola w ofercie STARTER.",
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Zmień ofertę na wyższą tutaj."
 }
