@@ -35,7 +35,7 @@ import {
   defaultCidr,
   defaultServiceRange,
 } from './constants';
-import { useVrackService } from './utils';
+import { useVrackService } from '@/utils/vs-utils';
 import { ApiError, ErrorPage } from '@/components/Error';
 import { FormField } from '@/components/FormField';
 

@@ -25,7 +25,7 @@ import { VrackServicesDatagrid } from '@/pages/index/components/VrackServicesDat
 import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
 import { PageLayout } from '@/components/layout-helpers';
 import { ApiError, ErrorPage } from '@/components/Error';
-import { DeliveringMessages } from '@/pages/index/components/DeliveringMessages';
+import { DeliveringMessages } from '@/components/DeliveringMessages';
 import { handleClick } from '@/utils/ods-utils';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {

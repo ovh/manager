@@ -13,32 +13,18 @@ import {
 import { OsdsButton } from '@ovhcloud/ods-components/button/react';
 import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
+import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
 import { EditableText } from '@/components/EditableText';
 import {
   ProductStatus,
-  ResourceStatus,
   ResponseData,
   UpdateVrackServicesParams,
   VrackServices,
 } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { ApiError } from '@/components/Error';
-
-const colorByProductStatus = {
-  [ProductStatus.ACTIVE]: ODS_THEME_COLOR_INTENT.primary,
-  [ProductStatus.DISABLED]: ODS_THEME_COLOR_INTENT.error,
-  [ProductStatus.DRAFT]: ODS_THEME_COLOR_INTENT.info,
-};
-
-const isEditable = ({
-  resourceStatus,
-  productStatus,
-}: {
-  resourceStatus: ResourceStatus;
-  productStatus: ProductStatus;
-}) =>
-  resourceStatus === ResourceStatus.READY &&
-  [ProductStatus.ACTIVE, ProductStatus.DRAFT].includes(productStatus);
+import { isEditable } from '@/utils/vs-utils';
 
 export const DisplayNameCell: React.FC<DataGridCellProps<
   string | undefined,
@@ -49,44 +35,56 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
     ResponseData<ApiError>,
     UpdateVrackServicesParams
   >;
-  navigate: NavigateFunction;
-}> = ({ cellData, rowData, updateVS, navigate }) => (
-  <EditableText
-    disabled={
-      !isEditable({
-        productStatus: rowData?.currentState?.productStatus,
-        resourceStatus: rowData?.resourceStatus,
-      })
-    }
-    defaultValue={cellData}
-    onEditSubmitted={async (value) => {
-      await updateVS({
-        vrackServicesId: rowData.id,
-        checksum: rowData.checksum,
-        targetSpec: {
-          displayName: value || null,
-          subnets: rowData.currentState.subnets || [],
-        },
-      });
-    }}
-  >
-    <OsdsLink
-      color={ODS_THEME_COLOR_INTENT.primary}
-      onClick={() => navigate(`/${rowData.id}`)}
+  navigate?: NavigateFunction;
+}> = ({ cellData, rowData, updateVS, navigate }) => {
+  const displayName = cellData || rowData?.id;
+  return (
+    <EditableText
+      disabled={!isEditable(rowData)}
+      defaultValue={cellData}
+      onEditSubmitted={async (value) => {
+        await updateVS({
+          vrackServicesId: rowData.id,
+          checksum: rowData.checksum,
+          targetSpec: {
+            displayName: value || null,
+            subnets: rowData.currentState.subnets || [],
+          },
+        });
+      }}
     >
-      {cellData || rowData?.id}
-    </OsdsLink>
-  </EditableText>
-);
+      {navigate ? (
+        <OsdsLink
+          color={ODS_THEME_COLOR_INTENT.primary}
+          onClick={() => navigate(`/${rowData.id}`)}
+        >
+          {displayName}
+        </OsdsLink>
+      ) : (
+        displayName
+      )}
+    </EditableText>
+  );
+};
 
 export const ProductStatusCell: React.FC<DataGridCellProps<
   ProductStatus,
   VrackServices
-> & { t: TFunction }> = ({ cellData, t }) => (
-  <OsdsChip inline color={colorByProductStatus[cellData]}>
-    {t(cellData)}
-  </OsdsChip>
-);
+> & { t: TFunction }> = ({ cellData, t }) => {
+  const colorByProductStatus = {
+    [ProductStatus.ACTIVE]: ODS_THEME_COLOR_INTENT.primary,
+    [ProductStatus.DISABLED]: ODS_THEME_COLOR_INTENT.error,
+    [ProductStatus.DRAFT]: ODS_THEME_COLOR_INTENT.info,
+  };
+
+  return cellData ? (
+    <OsdsChip inline color={colorByProductStatus[cellData]}>
+      {t(cellData)}
+    </OsdsChip>
+  ) : (
+    <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />
+  );
+};
 
 export const VrackIdCell: React.FC<DataGridCellProps<
   string | null,
@@ -95,19 +93,19 @@ export const VrackIdCell: React.FC<DataGridCellProps<
   isLoading?: boolean;
   openAssociationModal: (id: string) => void;
   label: string;
-}> = ({ cellData, rowData, isLoading, openAssociationModal, label }) => {
-  const editable = isEditable({
-    productStatus: rowData?.currentState?.productStatus,
-    resourceStatus: rowData?.resourceStatus,
-  });
+  href?: string;
+}> = ({ cellData, rowData, isLoading, openAssociationModal, label, href }) => {
+  const editable = isEditable(rowData);
 
-  return cellData ? (
-    <>{cellData}</>
-  ) : (
+  if (cellData) {
+    return href ? <OsdsLink href={href}>{cellData}</OsdsLink> : <>{cellData}</>;
+  }
+
+  return (
     <OsdsButton
       inline
       color={ODS_THEME_COLOR_INTENT.primary}
-      variant={ODS_BUTTON_VARIANT.flat}
+      variant={ODS_BUTTON_VARIANT.stroked}
       type={ODS_BUTTON_TYPE.button}
       size={ODS_BUTTON_SIZE.sm}
       disabled={isLoading || !editable || undefined}
@@ -124,10 +122,7 @@ export const ActionsCell: React.FC<DataGridCellProps<
 > & {
   isLoading?: boolean;
 }> = ({ rowData, isLoading }) => {
-  const editable = isEditable({
-    productStatus: rowData?.currentState?.productStatus,
-    resourceStatus: rowData?.resourceStatus,
-  });
+  const editable = isEditable(rowData);
 
   /* TODO: Maybe switch to "reactivate button" if the vRack Services is disabled */
   return (
