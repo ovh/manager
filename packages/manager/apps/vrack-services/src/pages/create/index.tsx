@@ -23,9 +23,11 @@ import {
   orderVrackQueryKey,
   getDeliveringOrderQueryKey,
   OrderDescription,
+  ResponseData,
+  Zone,
 } from '@/api';
 import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
-import { ApiError, ErrorPage } from '@/components/Error';
+import { ErrorPage } from '@/components/Error';
 import { ZoneFormField } from './components/ZoneFormField';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import { displayNameInputName } from './constants';
@@ -45,11 +47,10 @@ const CreationPage: React.FC = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const {
-    data: zoneData,
-    isLoading: isZoneLoading,
-    isSuccess: isZoneFetched,
-  } = useQuery({
+  const { isLoading: isZoneLoading, isError: hasZoneError, error } = useQuery<
+    ResponseData<Zone[]>,
+    ResponseData<Error>
+  >({
     queryKey: getvrackServicesReferenceZoneListQueryKey,
     queryFn: getvrackServicesReferenceZoneList,
     staleTime: Infinity,
@@ -59,6 +60,7 @@ const CreationPage: React.FC = () => {
     mutate: orderNewVrackServices,
     isPending: isCreationPending,
     isError: isCreationError,
+    error: vsCreationError,
   } = useMutation({
     mutationFn: () =>
       orderVrackServices({
@@ -86,15 +88,15 @@ const CreationPage: React.FC = () => {
     queryClient.invalidateQueries({ queryKey: orderVrackServicesQueryKey });
   }, []);
 
-  if (isZoneFetched && zoneData?.status !== 200) {
-    return <ErrorPage error={(zoneData as unknown) as ApiError} />;
+  if (hasZoneError) {
+    return <ErrorPage error={error} />;
   }
 
   return (
     <>
       <CreatePageLayout
         createButtonLabel={t('createButtonLabel')}
-        formErrorMessage={t('creationServiceError')}
+        formErrorMessage={t('creationServiceError', { error: vsCreationError })}
         hasFormError={isCreationError}
         goBackLinkLabel={t('goBackLinkLabel')}
         goBackUrl="/"

@@ -12,28 +12,33 @@ import {
   updateVrackServicesQueryKey,
   updateVrackServices,
   ProductStatus,
+  VrackServicesWithIAM,
+  getVrackServicesResourceList,
 } from '@/api';
-import { ApiError } from '@/components/Error';
+
+export const useVrackServicesList = (refetchInterval = 30000) =>
+  useQuery<ResponseData<VrackServicesWithIAM[]>, ResponseData>({
+    queryKey: getVrackServicesResourceListQueryKey,
+    queryFn: () => getVrackServicesResourceList(),
+    refetchInterval,
+  });
 
 /**
  * Query the current vRack Services and poll it if it is not ready
  */
-export const useVrackService = (pollingInterval = 30000) => {
-  const [refetchInterval, setRefetchInterval] = React.useState(0);
+export const useVrackService = (refetchInterval = 30000) => {
   const { id } = useParams();
   const queryClient = useQueryClient();
 
-  return useQuery({
+  return useQuery<
+    VrackServicesWithIAM,
+    ResponseData<Error>,
+    VrackServicesWithIAM,
+    string[]
+  >({
     queryKey: getVrackServicesResourceQueryKey(id),
     queryFn: async () => {
       const response = await getVrackServicesResource(id);
-      const interval =
-        response.data.resourceStatus !== ResourceStatus.READY
-          ? pollingInterval
-          : 0;
-
-      setRefetchInterval(interval);
-
       queryClient.setQueryData(
         getVrackServicesResourceListQueryKey,
         ({ data: listingData, ...rest }: ResponseData<VrackServices[]>) => ({
@@ -61,13 +66,24 @@ export const isEditable = (vs?: VrackServices) =>
 /**
  * Get the function to mutate a vRack Services
  */
-export const useUpdateVrackServices = (key: string) => {
+export const useUpdateVrackServices = ({
+  key,
+  onSuccess,
+}: {
+  key: string;
+  onSuccess?: (result: ResponseData<VrackServices>) => void;
+}) => {
   const [isErrorVisible, setErrorVisible] = React.useState(false);
   const queryClient = useQueryClient();
 
-  const { mutateAsync: updateVS, isPending, isError } = useMutation<
+  const {
+    mutateAsync: updateVS,
+    isPending,
+    isError,
+    error: updateError,
+  } = useMutation<
     ResponseData<VrackServices>,
-    ResponseData<ApiError>,
+    ResponseData<Error>,
     UpdateVrackServicesParams
   >({
     mutationKey: updateVrackServicesQueryKey(key),
@@ -82,6 +98,14 @@ export const useUpdateVrackServices = (key: string) => {
           ...rest,
         }),
       );
+      queryClient.setQueryData(
+        getVrackServicesResourceQueryKey(key),
+        (response: ResponseData<VrackServices>) => ({
+          ...response,
+          data: result.data,
+        }),
+      );
+      onSuccess?.(result);
     },
   });
 
@@ -96,5 +120,6 @@ export const useUpdateVrackServices = (key: string) => {
     isPending,
     isErrorVisible,
     hideError: () => setErrorVisible(false),
+    updateError,
   };
 };

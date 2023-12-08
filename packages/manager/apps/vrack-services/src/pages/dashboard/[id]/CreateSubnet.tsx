@@ -19,7 +19,10 @@ import { OdsRadioGroupValueChangeEvent } from '@ovhcloud/ods-components/radio';
 import { OsdsRadioButton } from '@ovhcloud/ods-components/radio-button/react';
 import { ODS_RADIO_BUTTON_SIZE } from '@ovhcloud/ods-components/radio-button';
 import {
+  ResponseData,
+  VrackServices,
   getListingIcebergQueryKey,
+  getVrackServicesResourceQueryKey,
   updateVrackServices,
   updateVrackServicesQueryKey,
 } from '@/api';
@@ -36,10 +39,12 @@ import {
   defaultServiceRange,
 } from './constants';
 import { useVrackService } from '@/utils/vs-utils';
-import { ApiError, ErrorPage } from '@/components/Error';
+import { ErrorPage } from '@/components/Error';
 import { FormField } from '@/components/FormField';
 
 export const isValidVlanNumber = (vlan: number) => vlan >= 2 && vlan <= 4094;
+
+export const getSubnetCreationMutationKey = (id: string) => `create-${id}`;
 
 export function breadcrumb() {
   return i18next.t('vrack-services/subnets:createPageTitle');
@@ -61,8 +66,11 @@ const SubnetCreationPage: React.FC = () => {
   const navigate = useNavigate();
   const vrackServices = useVrackService();
 
-  const { mutate: createSubnet, isPending, isError, error } = useMutation({
-    mutationKey: updateVrackServicesQueryKey(id),
+  const { mutate: createSubnet, isPending, isError, error } = useMutation<
+    ResponseData<VrackServices>,
+    ResponseData<Error>
+  >({
+    mutationKey: updateVrackServicesQueryKey(getSubnetCreationMutationKey(id)),
     mutationFn: () =>
       updateVrackServices({
         vrackServicesId: id,
@@ -87,29 +95,30 @@ const SubnetCreationPage: React.FC = () => {
       queryClient.invalidateQueries({
         queryKey: getListingIcebergQueryKey,
       });
+      queryClient.invalidateQueries({
+        queryKey: getVrackServicesResourceQueryKey(id),
+      });
       navigate(`/${id}/Subnets`, { replace: true });
     },
   });
 
   React.useEffect(() => {
     queryClient.invalidateQueries({
-      queryKey: updateVrackServicesQueryKey(id),
+      queryKey: updateVrackServicesQueryKey(getSubnetCreationMutationKey(id)),
     });
   }, []);
 
   if (vrackServices.error || error) {
-    return (
-      <ErrorPage
-        error={((vrackServices.error || error) as unknown) as ApiError}
-      />
-    );
+    return <ErrorPage error={vrackServices.error || error} />;
   }
 
   return (
     <CreatePageLayout
       title={t('createPageTitle')}
       createButtonLabel={t('createSubnetButtonLabel')}
-      formErrorMessage={t('subnetCreationError')}
+      formErrorMessage={t('subnetCreationError', {
+        error: error?.response.data.message,
+      })}
       hasFormError={isError}
       goBackLinkLabel={t('goBackLinkLabel')}
       goBackUrl={`/${id}/Subnets`}

@@ -72,7 +72,7 @@ Then(
   async function(this: ICustomWorld<ConfigParams>) {
     const message = await this.page.locator('osds-message', {
       hasText: new RegExp(
-        deliveringVrackServicesMessage.replace(/{date}.*/, '.*'),
+        deliveringVrackServicesMessage.replace(/{{date}}.*/, '.*'),
       ),
     });
     await expect(message).toBeVisible();

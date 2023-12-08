@@ -1,4 +1,3 @@
-import React from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import {
   getOrderStatus,
@@ -82,13 +81,12 @@ const getDeliveringOrderList = async (orderDetailDescription: string) => {
 export const useOrderPollingStatus = ({
   pollingKey,
   queryToInvalidateOnDelivered,
-  pollingInterval = 120000,
+  refetchInterval = 120000,
 }: {
   pollingKey: OrderDescription;
   queryToInvalidateOnDelivered: string[];
-  pollingInterval?: number;
+  refetchInterval?: number;
 }) => {
-  const [refetchInterval, setRefetchInterval] = React.useState(0);
   const queryClient = useQueryClient();
 
   const query = useQuery({
@@ -96,7 +94,6 @@ export const useOrderPollingStatus = ({
     queryFn: async () => {
       const orderList = await getDeliveringOrderList(pollingKey);
       if (orderList.length === 0) {
-        setRefetchInterval(0);
         queryClient.invalidateQueries({
           queryKey: queryToInvalidateOnDelivered,
         });
@@ -105,12 +102,6 @@ export const useOrderPollingStatus = ({
     },
     refetchInterval,
   });
-
-  React.useEffect(() => {
-    if (query.data?.length > 0) {
-      setRefetchInterval(pollingInterval);
-    }
-  }, [query.data?.length]);
 
   return query;
 };

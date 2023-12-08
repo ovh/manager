@@ -27,9 +27,9 @@ export const DeliveringMessages: React.FC<DeliveringMessagesProps> = ({
             type={ODS_MESSAGE_TYPE.info}
           >
             {message
-              .replace('{date}', date.toLocaleDateString(i18n.language))
-              .replace('{time}', `${date.getHours()}:${date.getMinutes()}`)
-              .replace('{status}', t(`orderStatus-${order.status}`))}
+              .replace('{{date}}', date.toLocaleDateString(i18n.language))
+              .replace('{{time}}', `${date.getHours()}:${date.getMinutes()}`)
+              .replace('{{status}}', t(`orderStatus-${order.status}`))}
           </OsdsMessage>
         );
       })}

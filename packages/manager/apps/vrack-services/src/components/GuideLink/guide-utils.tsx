@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
 import { Region, CountryCode } from '@ovh-ux/manager-config';
 import {
   useAuthentication,
@@ -90,9 +90,9 @@ export function useGuideUtils() {
   const environment = useEnvironment();
   const region = environment.getRegion();
   const { subsidiary } = useAuthentication();
-  const [linkTabs, setLinkTabs] = useState<UseGuideLinkProps>({});
+  const [linkTabs, setLinkTabs] = React.useState<UseGuideLinkProps>({});
 
-  useEffect(() => {
+  React.useEffect(() => {
     setLinkTabs(
       getGuideListLink({ region, subsidiary: subsidiary as CountryCode }),
     );

@@ -102,10 +102,11 @@ export const EditableText: React.FC<EditableTextProps> = ({
     <>
       {children}
       <OsdsButton
-        className="ml-2"
+        style={{ marginLeft: '4px' }}
         inline
+        circle
         color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.stroked}
+        variant={ODS_BUTTON_VARIANT.ghost}
         type={ODS_BUTTON_TYPE.button}
         size={ODS_BUTTON_SIZE.sm}
         {...handleClick(() => setEditStatus('editing'))}

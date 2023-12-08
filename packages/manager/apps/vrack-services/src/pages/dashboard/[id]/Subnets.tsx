@@ -14,10 +14,10 @@ import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OnboardingLayout } from '@/components/layout-helpers/OnboardingLayout';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
-import { useVrackService } from '@/utils/vs-utils';
-import { ApiError, ErrorPage } from '@/components/Error';
+import { isEditable, useVrackService } from '@/utils/vs-utils';
+import { ErrorPage } from '@/components/Error';
 import { PageLayout } from '@/components/layout-helpers';
-import { ResourceStatus } from '@/api';
+import { SubnetDatagrid } from './components/SubnetDataGrid';
 
 export function breadcrumb() {
   return i18next.t('vrack-services/dashboard:subnetsTabLabel');
@@ -33,7 +33,7 @@ const Subnets: React.FC = () => {
     navigate(`/${id}/createsubnet`, { replace: true });
 
   if (error) {
-    return <ErrorPage error={(error as unknown) as ApiError} />;
+    return <ErrorPage error={error} />;
   }
 
   if (isLoading) {
@@ -55,9 +55,7 @@ const Subnets: React.FC = () => {
         secondaryButtonIcon={ODS_ICON_NAME.ADD}
         secondaryButtonSize={ODS_BUTTON_SIZE.sm}
         secondaryButtonIconPosition="start"
-        secondaryButtonDisabled={
-          vrackServices?.resourceStatus !== ResourceStatus.READY || undefined
-        }
+        secondaryButtonDisabled={!isEditable(vrackServices) || undefined}
         title={t('onboardingTitle')}
         description={t('onboardingDescription')}
         imageSrc={onboardingImgSrc}
@@ -69,9 +67,7 @@ const Subnets: React.FC = () => {
   return (
     <PageLayout noBreacrumb>
       <OsdsButton
-        disabled={
-          vrackServices?.resourceStatus !== ResourceStatus.READY || undefined
-        }
+        disabled={!isEditable(vrackServices) || undefined}
         className="my-4"
         inline
         size={ODS_BUTTON_SIZE.sm}
@@ -89,7 +85,9 @@ const Subnets: React.FC = () => {
         </span>
       </OsdsButton>
 
-      <section>datagrid</section>
+      <section>
+        <SubnetDatagrid />
+      </section>
     </PageLayout>
   );
 };

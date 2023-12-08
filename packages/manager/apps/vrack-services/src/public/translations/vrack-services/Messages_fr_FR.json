@@ -10,5 +10,8 @@
   "orderStatus-delivering": "En cours",
   "orderStatus-documentsRequested": "Document requis",
   "orderStatus-notPaid": "Paiement requis",
-  "orderStatus-unknown": "Inconnu"
+  "orderStatus-unknown": "Inconnu",
+  "genericApiError": "L'erreur suivante est survenue : {{error}}.",
+  "modalCancelButton": "Annuler",
+  "modalDeleteButton": "Supprimer"
 }

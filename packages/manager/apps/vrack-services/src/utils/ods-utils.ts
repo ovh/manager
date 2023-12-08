@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot, Root } from 'react-dom/client';
 
 export type DataGridCellProps<Cell = string, Row = any> = {
   cellData?: Cell;
@@ -13,16 +13,24 @@ export const reactFormatter = (jsx: any) => (
   cell: any,
   onRendered: any,
 ): string => {
+  let isFirstRender = true;
+  let root: Root = null;
+
   const renderFn = () => {
     const cellEl = cell.getElement();
     if (cellEl) {
       const formatterCell = cellEl.querySelector('.formatterCell');
+
       if (formatterCell) {
+        if (isFirstRender) {
+          root = createRoot(formatterCell);
+          isFirstRender = false;
+        }
         const CompWithMoreProps = React.cloneElement(jsx, {
           cellData,
           rowData,
         });
-        render(CompWithMoreProps, cellEl.querySelector('.formatterCell'));
+        root.render(CompWithMoreProps);
       }
     }
   };

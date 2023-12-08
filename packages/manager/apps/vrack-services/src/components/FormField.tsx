@@ -8,8 +8,12 @@ import React from 'react';
 export const FormField: React.FC<React.PropsWithChildren<{
   className?: string;
   label: string;
-}>> = ({ children, label, className = '' }) => (
-  <OsdsFormField inline className={`mb-5 ${className}`}>
+  fullWidth?: boolean;
+}>> = ({ children, label, className = '', fullWidth }) => (
+  <OsdsFormField
+    inline={!fullWidth || undefined}
+    className={`mb-5 ${className}`}
+  >
     <div slot="label">
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}

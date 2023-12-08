@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Params, useMatches } from 'react-router-dom';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/breadcrumb/react';
 
@@ -24,10 +24,12 @@ type Match = {
 
 export const Breadcrumb: React.FC = () => {
   const matches = useMatches();
-  const [categoryCrumbs, setCategoryCrumbs] = useState<BreadcrumbItem[]>([]);
-  const [matchCrumbs, setMatchCrumbs] = useState<BreadcrumbItem[]>([]);
+  const [categoryCrumbs, setCategoryCrumbs] = React.useState<BreadcrumbItem[]>(
+    [],
+  );
+  const [matchCrumbs, setMatchCrumbs] = React.useState<BreadcrumbItem[]>([]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const items = matches.map(async (match) => {
       const { handle, data, params }: Match = match;
       const breadcrumb = await handle?.breadcrumb;
