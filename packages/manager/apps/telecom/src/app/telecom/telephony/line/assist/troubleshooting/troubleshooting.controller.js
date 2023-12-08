@@ -6,6 +6,8 @@ import last from 'lodash/last';
 import now from 'lodash/now';
 import random from 'lodash/random';
 
+import { TROUBLESHOOTING_GUIDE_LINK } from './troubleshooting.constants';
+
 import { TELEPHONY_LINE_PHONE_ADDITIONAL_INFOS } from '../../phone/phone.constant';
 
 export default /* @ngInject */ function TelecomTelephonyLineAssistTroubleshootingCtrl(
@@ -464,6 +466,8 @@ export default /* @ngInject */ function TelecomTelephonyLineAssistTroubleshootin
 
   function init() {
     self.loading.init = true;
+
+    self.guideLink = TROUBLESHOOTING_GUIDE_LINK;
 
     return TelephonyMediator.getGroup($stateParams.billingAccount)
       .then((group) => {
