@@ -2,6 +2,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import './style.scss';
+
 const moduleName = 'ovhManagerOctaviaLoadBalancerCreateLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
