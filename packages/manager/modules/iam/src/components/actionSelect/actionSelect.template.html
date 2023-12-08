@@ -124,6 +124,7 @@
                 name="actionTree_{{ actionTree.value }}"
                 type="text"
                 data-ng-model="actionTree.searchQuery"
+                data-ng-change="$ctrl.filterActions(actionTree)"
                 data-ng-disabled="$ctrl.isWildcardActive"
             />
         </oui-field>
@@ -132,7 +133,7 @@
         <!-- <NoCategoryActions> -->
         <oui-checkbox
             class="ml-4"
-            data-ng-repeat="action in actionTree.actions track by action.value"
+            data-ng-repeat="action in actionTree.filteredActions track by action.value"
             data-model="action.selected"
             data-on-change="$ctrl.onModelChanged(action)"
             data-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
@@ -162,9 +163,10 @@
                     <oui-checkbox-label>
                         <strong data-ng-bind="category.value"></strong>
                         <span
-                            data-translate="{{ $ctrl.getCategoryLabel(category) }}"
+                            data-translate="{{ $ctrl.getCategoryLabel(category, actionTree.searchQuery) }}"
                             data-translate-values="{
                                 selected: $ctrl.constructor.countSelectedActions(category.actions),
+                                result: $ctrl.constructor.countActionsMatchingSearch(category.actions, actionTree.searchQuery),
                                 total: category.actions.length,
                             }"
                         ></span>
@@ -188,7 +190,7 @@
                 <!-- <CategoryActions> -->
                 <div
                     class="oui-checkbox ml-4"
-                    data-ng-repeat="action in category.actions track by action.value"
+                    data-ng-repeat="action in category.filteredActions track by action.value"
                 >
                     <input
                         class="oui-checkbox__input"

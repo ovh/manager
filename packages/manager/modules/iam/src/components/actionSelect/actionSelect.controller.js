@@ -400,17 +400,48 @@ export default class ActionSelectController {
    * @param {Category} category
    * @returns {string}
    */
-  getCategoryLabel({ actions }) {
+  getCategoryLabel({ actions }, searchQuery) {
     const selectionCount = this.constructor.countSelectedActions(actions);
+    const searchCount = this.constructor.countActionsMatchingSearch(
+      actions,
+      searchQuery,
+    );
     const prefix = 'iam_action_select_category_count';
-    if (selectionCount) {
-      return selectionCount === 1
-        ? `${prefix}_selection_one`
-        : `${prefix}_selection_many`;
+    const totalSearchMatch = searchCount <= 1 ? 'one' : 'many';
+    const totalSelected = selectionCount === 1 ? 'one' : 'many';
+    if (selectionCount && searchQuery) {
+      return `${prefix}_selection_${totalSelected}_result_${totalSearchMatch}`;
     }
-    return actions.length === 1
-      ? `${prefix}_no_selection_one`
-      : `${prefix}_no_selection_many`;
+    if (selectionCount) {
+      return `${prefix}_selection_${totalSelected}`;
+    }
+    if (searchQuery) {
+      return `${prefix}_result_${totalSearchMatch}`;
+    }
+    return `${prefix}_no_selection_${actions.length === 1 ? 'one' : 'many'}`;
+  }
+
+  filterActions(actionTree) {
+    const shadowActionTree = cloneDeep(actionTree);
+    shadowActionTree.categories.forEach((category) => {
+      const shadowCategory = cloneDeep(category);
+      shadowCategory.filteredActions = category?.actions?.filter(
+        (action) =>
+          action?.value
+            .toLowerCase()
+            .indexOf(actionTree.searchQuery.toLowerCase()) > -1,
+      );
+      shadowActionTree.categories[
+        shadowActionTree.categories.findIndex(
+          (currentCategory) => currentCategory.value === category.value,
+        )
+      ] = shadowCategory;
+    });
+    this.actionTrees[
+      this.actionTrees.findIndex(
+        (currentActionTree) => currentActionTree.value === actionTree.value,
+      )
+    ] = shadowActionTree;
   }
 
   /**
@@ -420,5 +451,22 @@ export default class ActionSelectController {
    */
   static countSelectedActions(actions) {
     return actions?.filter(({ selected }) => selected).length;
+  }
+
+  /**
+   * count the number of actions matching searchQuery
+   * @param {Action[]} actions
+   * @param {string} searchQuery
+   * @returns {Number}
+   */
+  static countActionsMatchingSearch(actions, searchQuery) {
+    if (!actions || !searchQuery) {
+      return 0;
+    }
+    const searchQueryLowerCase = searchQuery.toLowerCase();
+    return actions.filter(
+      (action) =>
+        action?.value.toLowerCase().indexOf(searchQueryLowerCase) > -1,
+    ).length;
   }
 }

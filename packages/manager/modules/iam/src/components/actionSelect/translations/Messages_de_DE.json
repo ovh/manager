@@ -18,5 +18,11 @@
   "iam_action_select_custom_action_placeholder": "Beispiel: {{ sample }}",
   "iam_managed_permissions_heading": "Gruppen verwalteter Berechtigungen",
   "iam_managed_permissions_description": "Eine von OVHcloud verwaltete Richtlinie hinzufügen",
-  "iam_managed_permissions_description_sub": "(vollständige Beschreibung in der Dokumentation)"
+  "iam_managed_permissions_description_sub": "(vollständige Beschreibung in der Dokumentation)",
+  "iam_action_select_category_count_selection_many_result_one": "({{ selected }} ausgewählte Aktionen | {{ result }} Ergebnis / {{ total }})",
+  "iam_action_select_category_count_selection_many_result_many": "({{ selected }} ausgewählte Aktionen | {{ result }} Ergebnisse / {{ total }})",
+  "iam_action_select_category_count_selection_one_result_one": "({{ selected }} ausgewählte Aktion | {{ result }} Ergebnis / {{ total }})",
+  "iam_action_select_category_count_selection_one_result_many": "({{ selected }} ausgewählte Aktion | {{ result }} Ergebnisse / {{ total }})",
+  "iam_action_select_category_count_result_many": "({{ result }} Ergebnisse / {{ total }})",
+  "iam_action_select_category_count_result_one": "({{ result }} Ergebnis / {{ total }})"
 }
