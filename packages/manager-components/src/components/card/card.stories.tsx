@@ -1,4 +1,6 @@
+/* eslint-disable import/order */
 import React from 'react';
+import { Card, CardProps } from './card.component';
 import { Meta, StoryFn } from '@storybook/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Card, CardProps } from './card';

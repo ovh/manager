@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, useResolvedPath } from 'react-router-dom';
@@ -8,7 +9,7 @@ import Breadcrumb, {
 import { {{dashboardEndpointFn}}, {{dashboardEndpointFn}}ServiceInfos, {{dashboardEndpointFn}}QueryKey, {{dashboardEndpointFn}}ServiceInfosQueryKey } from '@/api';
 import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
 import Loading from '@/components/Loading/Loading';
-import ErrorBanner from '@/components/Error/Error';
+import Errors from '@/components/Error/Error';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.serviceName;
@@ -40,7 +41,9 @@ export default function DashboardPage() {
   const { error, isLoading, } = results[0];
 
   if (error) {
-    return <ErrorBanner error={error.response} />;
+    return <Errors
+        error={error.response}
+      />;
   }
 
   if (isLoading) {

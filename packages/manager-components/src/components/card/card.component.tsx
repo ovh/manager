@@ -2,9 +2,9 @@ import React from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import { OsdsChip } from '@ovhcloud/ods-components/chip/react';
-import { OsdsTile } from '@ovhcloud/ods-components/Tile/react';
 import { OsdsLink } from '@ovhcloud/ods-components/link/react';
 import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
+import { OsdsTile } from '@ovhcloud/ods-components/tile/react';
 import {
   OdsHTMLAnchorElementTarget,
   OdsHTMLAnchorElementRel,
@@ -57,7 +57,7 @@ export const Card = ({
       href={href}
     >
       <OsdsTile
-        className="w-full h-full"
+        className="w-full"
         color={ODS_THEME_COLOR_INTENT.primary}
         rounded
         inline
@@ -65,7 +65,7 @@ export const Card = ({
         dataTracking={dataTracking}
         hoverable={hoverable}
       >
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
           {img?.src && (
             <img
               className="max-w-full my-3 mx-auto"
