@@ -195,13 +195,13 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
           updateVisitorId(this.tag.clientSideUserId.get());
         }
       }
-      // Init mix commander
-      initMixCommander(this.getGenericTrackingData({ name: '', level2: '' }));
     });
   }
 
   init(withConsent: boolean): Promise<void> {
     try {
+      // Init mix commander
+      initMixCommander(this.getGenericTrackingData({ name: '', level2: '' }));
       return this.initTag(withConsent);
     } catch (err) {
       console.error('tracking initialization failed', err);
