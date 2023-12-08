@@ -17,5 +17,9 @@
   "sign_up_activity_field_companyNationalIdentificationNumber": "Krajowy numer identyfikacyjny",
   "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Numer NIP",
   "sign_up_activity_field_italian_sdi": "Kod nabywcy na fakturze elektronicznej (SDI)",
-  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "Numer NIP jest niezbędny do wystawienia faktury elektronicznej"
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "Numer NIP jest niezbędny do wystawienia faktury elektronicznej",
+  "sign_up_activity_corporation_created_title": "Moja firma została założona",
+  "sign_up_activity_corporation_not_created_title": "Trwa zakładanie firmy",
+  "sign_up_activity_corporation_not_created_description": "Wypełnię te informacje w momencie zakładania firmy",
+  "sign_up_activity_corporation_created_description": "Mam numer NIP/REGON"
 }

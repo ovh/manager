@@ -67,6 +67,12 @@ export const COUNTRIES_VAT_LABEL = {
   MA: 'ICE',
 };
 
+const SIRET_TRACKING_PREFIX = 'accountcreation::company-search';
+export const COMPANY_CREATED_PREFIX = `${SIRET_TRACKING_PREFIX}::company-created`;
+export const COMPANY_NOT_CREATED_PREFIX = `${SIRET_TRACKING_PREFIX}::company-not-created`;
+
 export default {
+  COMPANY_CREATED_PREFIX,
+  COMPANY_NOT_CREATED_PREFIX,
   COUNTRIES_VAT_LABEL,
 };

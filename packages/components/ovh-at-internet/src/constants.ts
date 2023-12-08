@@ -49,6 +49,7 @@ export const AT_INTERNET_CUSTOM_PROPS: Record<string, string> = {
   accountEmailConsent: 'account_email_consent',
   accountSmsConsent: 'account_sms_consent',
   accountPhoneType: 'account_phone_type',
+  accountcreationSiretProvided: 'accountcreation_siret_provided',
 };
 
 export const TMS_SCRIPT_URL = 'https://analytics.ovh.com/ovh/ovh_manager.js';

@@ -137,7 +137,39 @@
     </div>
 
     <div data-ng-if="$ctrl.siretFieldIsAvailable()">
+        <oui-select-picker
+            name="ouiSelectPickerCompany"
+            data-model="$ctrl.corporationIsCreated"
+            data-required
+            data-label="{{:: 'sign_up_activity_corporation_created_title' | translate }}"
+            data-values="[true]"
+            data-on-change="$ctrl.onCorporationCreationStatusChange(modelValue)"
+        >
+            <oui-select-picker-description>
+                <span
+                    data-translate="sign_up_activity_corporation_created_description"
+                ></span>
+            </oui-select-picker-description>
+        </oui-select-picker>
+
+        <oui-select-picker
+            class="mb-4"
+            name="ouiSelectPickerCompany"
+            data-model="$ctrl.corporationIsCreated"
+            data-required
+            data-label="{{:: 'sign_up_activity_corporation_not_created_title' | translate }}"
+            data-values="[false]"
+            data-on-change="$ctrl.onCorporationCreationStatusChange(modelValue)"
+        >
+            <oui-select-picker-description>
+                <span
+                    data-translate="sign_up_activity_corporation_not_created_description"
+                ></span>
+            </oui-select-picker-description>
+        </oui-select-picker>
+
         <siret-component
+            data-ng-if="$ctrl.corporationIsCreated"
             data-country="$ctrl.signUpFormCtrl.model.country"
             data-model="$ctrl.signUpFormCtrl.model"
             data-rules="$ctrl.signUpFormCtrl.rules"
