@@ -766,5 +766,6 @@
   "signup_information_banner_for_indian_subsidiary": "Wenden Sie sich an unseren Kundensupport, um Ihre Kontoinformationen zu ändern. ",
   "signup_information_banner_link_for_indian_subsidiary": "Klicken Sie einfach hier.",
   "signup_field_iceNumber": "ICE-Nummer",
-  "signup_field_purposeOfPurchase": "Grund für den Kauf"
+  "signup_field_purposeOfPurchase": "Grund für den Kauf",
+  "new_account_content_check_validation": "Bitte überprüfen Sie die eingegebenen Informationen (MwSt., Telefonnummer, Geburtsdatum usw.), um das Formular zu validieren."
 }
