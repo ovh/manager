@@ -915,6 +915,6 @@
   "billing_guides_header_purchase_order_guides": "Begriff der Bestellnummer oder „Purchase Order“ (PO)",
   "billing_guides_header_managing_bills_guides": "Meine Rechnungen von OVHcloud verwalten",
   "billing_guides_header_automatic_renewal_guides": "Die Verlängerung meiner Dienste verwalten",
-  "fidelity_creditOrder_submit_error": "Bei der Gutschrift Ihrer Punkte ist ein Fehler aufgetreten.",
-  "fidelity_creditOrder_submit_success": "Ihr Guthaben in Höhe von <strong> {{t0}} Punkten</strong> wurde erstellt. Sie können Ihre Bestellung im Tab <a href=\"#/billing/orders\">Meine Bestellungen durchführen</a>"
+  "fidelity_creditOrder_submit_error": "Beim Gutschreiben Ihrer Punkte ist ein Fehler aufgetreten.",
+  "fidelity_creditOrder_submit_success": "Ihr Guthaben in Höhe von <strong>{{t0}} Punkten</strong> wurde generiert. Sie können im Tab <a href=\"#/billing/orders\">Meine Bestellungen</a> mit Ihrer Bestellung fortfahren."
 }
