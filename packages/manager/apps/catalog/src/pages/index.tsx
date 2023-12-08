@@ -75,8 +75,8 @@ export default function Catalog() {
         {isLoading && <Loading />}
         {!isLoading && results.length > 0 && (
           <>
-            {results.map((item: Product, index: number) => (
-              <Card
+            {results.map((item: Product) => (
+              <MscTile
                 key={`${item.productName
                   .replace(' ', '')
                   .trim()}-${item.universe.replace(' ', '').trim()}`}
