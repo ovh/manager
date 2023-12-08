@@ -11694,6 +11694,21 @@ diff-sequences@^29.6.3:
   resolved "https://registry.yarnpkg.com/diff-sequences/-/diff-sequences-29.6.3.tgz#4deaf894d11407c51efc8418012f9e70b84ea921"
   integrity sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==
 
+diff2html@3.4.45:
+  version "3.4.45"
+  resolved "https://registry.yarnpkg.com/diff2html/-/diff2html-3.4.45.tgz#6b8cc7af9bb18359635527e5128f40cf3d34ef94"
+  integrity sha512-1SxsjYZYbxX0GGMYJJM7gM0SpMSHqzvvG0UJVROCDpz4tylH2T+EGiinm2boDmTrMlLueVxGfKNxGNLZ9zDlkQ==
+  dependencies:
+    diff "5.1.0"
+    hogan.js "3.0.2"
+  optionalDependencies:
+    highlight.js "11.8.0"
+
+diff@5.1.0, diff@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/diff/-/diff-5.1.0.tgz#bc52d298c5ea8df9194800224445ed43ffc87e40"
+  integrity sha512-D+mk+qE8VC/PAUrlAU34N+VfXev0ghe5ywmpqrawphmVZc1bEfn56uo9qpyGp1p4xpzOHkSW4ztBd6L7Xx4ACw==
+
 diff@^4.0.1:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.2.tgz#60f3aecb89d5fae520c11aa19efc2bb982aade7d"
@@ -14591,6 +14606,11 @@ hey-listen@^1.0.8:
   resolved "https://registry.yarnpkg.com/hey-listen/-/hey-listen-1.0.8.tgz#8e59561ff724908de1aa924ed6ecc84a56a9aa68"
   integrity sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==
 
+highlight.js@11.8.0:
+  version "11.8.0"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-11.8.0.tgz#966518ea83257bae2e7c9a48596231856555bb65"
+  integrity sha512-MedQhoqVdr0U6SSnWPzfiadUcDHfN/Wzq25AkXiQv9oiOO/sG0S7XkvpFIqWBl9Yq1UYyYOOVORs5UW2XlPyzg==
+
 highlight.js@^11.6.0:
   version "11.8.0"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-11.8.0.tgz#966518ea83257bae2e7c9a48596231856555bb65"
@@ -14604,6 +14624,14 @@ hmac-drbg@^1.0.1:
     hash.js "^1.0.3"
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
+
+hogan.js@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/hogan.js/-/hogan.js-3.0.2.tgz#4cd9e1abd4294146e7679e41d7898732b02c7bfd"
+  integrity sha512-RqGs4wavGYJWE07t35JQccByczmNUXQT0E12ZYV1VKYu5UiAU9lsos/yBAcf840+zrUQQxgVduCR5/B8nNtibg==
+  dependencies:
+    mkdirp "0.3.0"
+    nopt "1.0.10"
 
 hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.1, hoist-non-react-statics@^3.3.2:
   version "3.3.2"
@@ -18547,6 +18575,11 @@ mkdirp-infer-owner@^2.0.0:
     infer-owner "^1.0.4"
     mkdirp "^1.0.3"
 
+mkdirp@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.3.0.tgz#1bbf5ab1ba827af23575143490426455f481fe1e"
+  integrity sha512-OHsdUcVAQ6pOtg5JYWpCBo9W/GySVuwvP9hueRMW7UqshC0tbfzLv8wjySTPm3tfUZ/21CE9E1pJagOA91Pxew==
+
 mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@^0.5.4:
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.6.tgz#7def03d2432dcae4ba1d611445c48396062255f6"
@@ -18963,6 +18996,13 @@ node-sass-package-importer@^5.3.2:
   integrity sha512-alXHd4/QzsUH6Aao8Wg5zm1uhz4Ujt9AgRG3LLjPYBlbW8lg7TtMsbCz2G+QgtdSba0A0wmZ3+8FAD+QjP5kHw==
   dependencies:
     node-sass-magic-importer "^5.3.3"
+
+nopt@1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/nopt/-/nopt-1.0.10.tgz#6ddd21bd2a31417b92727dd585f8a6f37608ebee"
+  integrity sha512-NWmpvLSqUrgrAC9HCuxEvb+PSloHpqVu+FqcO4eeF2h5qYRhA7ev6KvelyQAKtegUbC6RypJnlEOhd8vloNKYg==
+  dependencies:
+    abbrev "1"
 
 nopt@^5.0.0:
   version "5.0.0"
@@ -24503,6 +24543,13 @@ unicode-property-aliases-ecmascript@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/unicode-property-aliases-ecmascript/-/unicode-property-aliases-ecmascript-2.1.0.tgz#43d41e3be698bd493ef911077c9b131f827e8ccd"
   integrity sha512-6t3foTQI9qne+OZoVQB/8x8rk2k1eVy1gRXhV3oFQ5T6R1dqQ1xtin3XqSlx3+ATBkliTaR/hHyJBm+LVPNM8w==
+
+unidiff@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/unidiff/-/unidiff-1.0.4.tgz#45096a898285821c51e22e84be4215c05d6511cd"
+  integrity sha512-ynU0vsAXw0ir8roa+xPCUHmnJ5goc5BTM2Kuc3IJd8UwgaeRs7VSD5+eeaQL+xp1JtB92hu/Zy/Lgy7RZcr1pQ==
+  dependencies:
+    diff "^5.1.0"
 
 unified-args@^8.0.0:
   version "8.1.0"
