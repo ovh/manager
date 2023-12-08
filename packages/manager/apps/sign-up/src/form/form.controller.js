@@ -77,6 +77,10 @@ export default class SignUpFormAppCtrl {
 
     const tracking = {
       name: `accountcreation-ok-${this.me.model.legalform}`,
+      accountcreationSiretProvided: this.me.model
+        .companyNationalIdentificationNumber
+        ? 'Provided'
+        : '',
     };
 
     if (this.isSmsConsentAvailable) {

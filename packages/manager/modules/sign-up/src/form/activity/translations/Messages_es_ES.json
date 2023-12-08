@@ -17,5 +17,9 @@
   "sign_up_activity_field_companyNationalIdentificationNumber": "NIF",
   "sign_up_activity_field_companyNationalIdentificationNumber_fr": "NIF",
   "sign_up_activity_field_italian_sdi": "Código del destinatario para la factura electrónica (SDI)",
-  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "El NIF es necesario para mejorar el proceso de facturación electrónica."
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "El NIF es necesario para mejorar el proceso de facturación electrónica.",
+  "sign_up_activity_corporation_created_title": "Mi empresa ya está creada",
+  "sign_up_activity_corporation_not_created_title": "Mi empresa está en fase de creación",
+  "sign_up_activity_corporation_not_created_description": "Rellenaré los datos cuando cree mi empresa",
+  "sign_up_activity_corporation_created_description": "Tengo mi número SIRET/SIREN"
 }
