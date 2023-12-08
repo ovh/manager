@@ -1,0 +1,1 @@
+const e="Keine Nachrichten",t="Auto-Refresh",r="Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal.",s={empty_logs:"Keine Nachrichten",refresh_button_label:"Auto-Refresh",service_error_message:r};export default s;export{e as empty_logs,t as refresh_button_label,r as service_error_message}

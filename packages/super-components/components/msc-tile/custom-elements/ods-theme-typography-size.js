@@ -1,0 +1,71 @@
+var ODS_THEME_COLOR_HUE;
+(function (ODS_THEME_COLOR_HUE) {
+    ODS_THEME_COLOR_HUE["_000"] = "000";
+    ODS_THEME_COLOR_HUE["_050"] = "050";
+    ODS_THEME_COLOR_HUE["_075"] = "075";
+    ODS_THEME_COLOR_HUE["_100"] = "100";
+    ODS_THEME_COLOR_HUE["_200"] = "200";
+    ODS_THEME_COLOR_HUE["_300"] = "300";
+    ODS_THEME_COLOR_HUE["_400"] = "400";
+    ODS_THEME_COLOR_HUE["_500"] = "500";
+    ODS_THEME_COLOR_HUE["_600"] = "600";
+    ODS_THEME_COLOR_HUE["_700"] = "700";
+    ODS_THEME_COLOR_HUE["_800"] = "800";
+    ODS_THEME_COLOR_HUE["_900"] = "900";
+    ODS_THEME_COLOR_HUE["_1000"] = "1000";
+})(ODS_THEME_COLOR_HUE || (ODS_THEME_COLOR_HUE = {}));
+Object.freeze(Object.values(ODS_THEME_COLOR_HUE));
+
+var ODS_THEME_COLOR_INTENT;
+(function (ODS_THEME_COLOR_INTENT) {
+    ODS_THEME_COLOR_INTENT["accent"] = "accent";
+    ODS_THEME_COLOR_INTENT["default"] = "default";
+    ODS_THEME_COLOR_INTENT["error"] = "error";
+    ODS_THEME_COLOR_INTENT["info"] = "info";
+    ODS_THEME_COLOR_INTENT["primary"] = "primary";
+    ODS_THEME_COLOR_INTENT["promotion"] = "promotion";
+    ODS_THEME_COLOR_INTENT["success"] = "success";
+    ODS_THEME_COLOR_INTENT["text"] = "text";
+    ODS_THEME_COLOR_INTENT["warning"] = "warning";
+})(ODS_THEME_COLOR_INTENT || (ODS_THEME_COLOR_INTENT = {}));
+Object.freeze(Object.values(ODS_THEME_COLOR_INTENT));
+
+// TODO not used, remove?
+var ODS_THEME_SIZE;
+(function (ODS_THEME_SIZE) {
+    ODS_THEME_SIZE["_100"] = "100";
+    ODS_THEME_SIZE["_200"] = "200";
+    ODS_THEME_SIZE["_300"] = "300";
+    ODS_THEME_SIZE["_400"] = "400";
+    ODS_THEME_SIZE["_500"] = "500";
+    ODS_THEME_SIZE["_600"] = "600";
+    ODS_THEME_SIZE["_700"] = "700";
+    ODS_THEME_SIZE["_800"] = "800";
+    ODS_THEME_SIZE["_900"] = "900";
+})(ODS_THEME_SIZE || (ODS_THEME_SIZE = {}));
+Object.freeze(Object.values(ODS_THEME_SIZE));
+
+var ODS_THEME_TYPOGRAPHY_LEVEL;
+(function (ODS_THEME_TYPOGRAPHY_LEVEL) {
+    ODS_THEME_TYPOGRAPHY_LEVEL["body"] = "body";
+    ODS_THEME_TYPOGRAPHY_LEVEL["button"] = "button";
+    ODS_THEME_TYPOGRAPHY_LEVEL["caption"] = "caption";
+    ODS_THEME_TYPOGRAPHY_LEVEL["heading"] = "heading";
+    ODS_THEME_TYPOGRAPHY_LEVEL["subheading"] = "subheading";
+})(ODS_THEME_TYPOGRAPHY_LEVEL || (ODS_THEME_TYPOGRAPHY_LEVEL = {}));
+Object.freeze(Object.values(ODS_THEME_TYPOGRAPHY_LEVEL));
+
+var ODS_THEME_TYPOGRAPHY_SIZE;
+(function (ODS_THEME_TYPOGRAPHY_SIZE) {
+    ODS_THEME_TYPOGRAPHY_SIZE["_100"] = "100";
+    ODS_THEME_TYPOGRAPHY_SIZE["_200"] = "200";
+    ODS_THEME_TYPOGRAPHY_SIZE["_300"] = "300";
+    ODS_THEME_TYPOGRAPHY_SIZE["_400"] = "400";
+    ODS_THEME_TYPOGRAPHY_SIZE["_500"] = "500";
+    ODS_THEME_TYPOGRAPHY_SIZE["_600"] = "600";
+    ODS_THEME_TYPOGRAPHY_SIZE["_700"] = "700";
+    ODS_THEME_TYPOGRAPHY_SIZE["_800"] = "800";
+})(ODS_THEME_TYPOGRAPHY_SIZE || (ODS_THEME_TYPOGRAPHY_SIZE = {}));
+Object.freeze(Object.values(ODS_THEME_TYPOGRAPHY_SIZE));
+
+export { ODS_THEME_TYPOGRAPHY_LEVEL as O, ODS_THEME_TYPOGRAPHY_SIZE as a, ODS_THEME_COLOR_INTENT as b, ODS_THEME_COLOR_HUE as c };

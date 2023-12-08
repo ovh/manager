@@ -1,0 +1,1 @@
+const e="Brak wiadomości",o="Automatyczne Odświeżanie",i="Wystąpił błąd Spróbuj ponownie później.";export default{empty_logs:"Brak wiadomości",refresh_button_label:"Automatyczne Odświeżanie",service_error_message:"Wystąpił błąd Spróbuj ponownie później."};export{e as empty_logs,o as refresh_button_label,i as service_error_message}

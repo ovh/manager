@@ -1,0 +1,1 @@
+const e="No message",r="Auto-Refresh",o="An error occurred. Please try again later.";export default{empty_logs:"No message",refresh_button_label:"Auto-Refresh",service_error_message:"An error occurred. Please try again later."};export{e as empty_logs,r as refresh_button_label,o as service_error_message}

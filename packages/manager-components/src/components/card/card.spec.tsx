@@ -1,6 +1,7 @@
+/* eslint-disable no-return-await */
 import React from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { Card, CardProps } from './card';
+import { Card, CardProps } from './card.component';
 import { defaultProps } from './card.stories';
 import { render, waitFor } from '../../utils/test.provider';
 

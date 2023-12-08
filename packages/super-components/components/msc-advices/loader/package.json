@@ -1,0 +1,11 @@
+{
+  "name": "msc-advices-loader",
+  "private": true,
+  "main": "./index.cjs.js",
+  "unpkg": "./cdn.js",
+  "module": "./index.js",
+  "jsnext:main": "./index.es2017.js",
+  "typings": "./index.d.ts",
+  "es2015": "./index.es2017.js",
+  "es2017": "./index.es2017.js"
+}

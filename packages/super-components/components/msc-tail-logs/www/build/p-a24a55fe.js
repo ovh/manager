@@ -1,0 +1,1 @@
+const e="Nenhuma mensagem",r="Autorrefresh",t="Ocorreu um erro. Volte a tentar mais tarde";export default{empty_logs:"Nenhuma mensagem",refresh_button_label:"Autorrefresh",service_error_message:"Ocorreu um erro. Volte a tentar mais tarde"};export{e as empty_logs,r as refresh_button_label,t as service_error_message}

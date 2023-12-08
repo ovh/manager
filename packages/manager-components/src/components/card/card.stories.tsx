@@ -1,7 +1,7 @@
-import React from 'react';
+/* eslint-disable im port/order */
+import { Card, CardProps } from './card.component';
 import { Meta, StoryFn } from '@storybook/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { Card, CardProps } from './card';
 
 export const defaultProps: CardProps = {
   texts: {

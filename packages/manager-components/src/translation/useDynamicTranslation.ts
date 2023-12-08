@@ -1,6 +1,7 @@
+/* eslint-disable import/prefer-default-export */
 import { useEffect } from 'react';
-import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 import getTranslations from './translations';
 import { Locale } from '../utils/translation';
 

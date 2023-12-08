@@ -1,0 +1,1 @@
+import{O as i,a as l}from"./p-47e80c2e.js";new i("skeleton.global").log("init"),new i("divider.global").log("init"),new i("chip.global").log("init"),new i("text.global").log("init"),new i("icon.global").log("init"),new i("link.global").log("init"),new i("button.global").log("init"),new i("tile.global").log("init"),new l("msc-billing-tile.global").log("init");

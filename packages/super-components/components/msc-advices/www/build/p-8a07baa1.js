@@ -1,0 +1,1 @@
+const s="Os nossos conselhos",e="Os nossos manuais",o="Saber mais";export default{advices_heading:"Os nossos conselhos",advices_retention_heading:"Os nossos manuais",advices_recommender_system_know_more:"Saber mais"};export{s as advices_heading,o as advices_recommender_system_know_more,e as advices_retention_heading}

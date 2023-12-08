@@ -1,0 +1,1 @@
+const e="Mehr dazu";export default{see_more_label:"Mehr dazu"};export{e as see_more_label}
