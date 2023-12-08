@@ -45,7 +45,11 @@
                     data-term="{{ :: 'octavia_load_balancer_overview_info_id' | translate }}"
                 >
                     <oui-tile-description>
-                        <span data-ng-bind=":: $ctrl.loadbalancer.id"></span>
+                        <oui-clipboard
+                            data-model="$ctrl.loadbalancer.id"
+                            data-id="loadbalancerId"
+                            data-name="loadbalancerId"
+                        ></oui-clipboard>
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>
