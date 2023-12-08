@@ -2,7 +2,7 @@
   "domain_configuration_enable_web_hosting": "Ihr Webhosting aktivieren",
   "domain_configuration_enable_web_hosting_offer": "Ihr Angebot",
   "domain_configuration_enable_web_hosting_offer_START_hosting-start10m": "Start 10M",
-  "domain_configuration_web_hosting_offer_START_explain": "Das Start 10M Angebot bietet grundlegende Hosting-Funktionen und ist bei Ihrem Angebot inklusive.",
+  "domain_configuration_web_hosting_offer_START_explain": "Das Free Hosting 100M Angebot ist in Ihrem Angebot enthalten, bietet aber nur grundlegende Funktionen.",
   "domain_configuration_web_hosting_choose_offer_explain": "Wenn Sie mehr über unsere Angebote, technische Details sowie verfügbare Optionen erfahren möchten, besuchen Sie <a href=\"{{url}}\" target=\"_blank\">unsere Webseite</a>.",
   "domain_configuration_enable_web_hosting_dns_configuration": "Konfiguration Ihrer DNS",
   "domain_configuration_web_hosting_dns_info_NO_CHANGE": "Wenn Sie keine Konfiguration auswählen, obwohl Ihr neues Webhosting eingerichtet ist, wird Ihr Domainname weiterhin auf die aktuellen Einträge verweisen. Wenn Ihre neue Website fertig ist, müssen Sie die Änderungen selbst in Ihrer DNS Zone vornehmen.  Es ist die ideale Wahl, wenn Sie die Erstellung einer Webseite nicht unterbrechen wollen.",

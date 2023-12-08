@@ -2,7 +2,7 @@
   "domain_configuration_enable_web_hosting": "Order your web hosting plan",
   "domain_configuration_enable_web_hosting_offer": "Your plan -",
   "domain_configuration_enable_web_hosting_offer_START_hosting-start10m": "Start 10M",
-  "domain_configuration_web_hosting_offer_START_explain": "The Start 10M plan is included with your solution, but it only comes with basic features.",
+  "domain_configuration_web_hosting_offer_START_explain": "The Free Hosting 100 MB offer is included with your solution, but it only comes with basic features.",
   "domain_configuration_web_hosting_choose_offer_explain": "To learn more about our solutions, their technical specifications and the available options, visit <a href=\"{{url}}\" target=\"_blank\">our website</a>.",
   "domain_configuration_enable_web_hosting_dns_configuration": "Configuration of your DNS",
   "domain_configuration_web_hosting_dns_info_NO_CHANGE": "If you do not select any configurations, your domain name will continue to point to the current records, regardless of where your new hosting plan is set up. You will need to make the changes in your DNS zone when your new website is ready.  This is an ideal choice if you do not want your current website to go down.",
