@@ -144,7 +144,7 @@ export default class PciProjectInstanceService {
       );
   }
 
-  get(projectId, instanceId) {
+  get(projectId, instanceId, customerRegions) {
     return this.OvhApiCloudProjectInstance.v6()
       .get({
         serviceName: projectId,
@@ -162,31 +162,37 @@ export default class PciProjectInstanceService {
           ipReverse: this.getReverseIp(instance),
         }),
       )
-      .then(
-        ({ instance, ipReverse, volumes, privateNetworks }) =>
-          new Instance({
-            ...instance,
-            flavor: {
-              ...instance.flavor,
-              capabilities: this.constructor.transformCapabilities(
-                get(instance.flavor, 'capabilities', []),
-              ),
-            },
-            volumes: filter(volumes, (volume) =>
-              includes(volume.attachedTo, instance.id),
+      .then(({ instance, ipReverse, volumes, privateNetworks }) => {
+        const localZones = customerRegions?.filter(({ type }) =>
+          type.includes('localzone'),
+        );
+        const isLocalZone = localZones?.some(
+          (region) => region.name === instance.region,
+        );
+        return new Instance({
+          ...instance,
+          flavor: {
+            ...instance.flavor,
+            capabilities: this.constructor.transformCapabilities(
+              get(instance.flavor, 'capabilities', []),
             ),
-            privateNetworks: filter(privateNetworks, (privateNetwork) =>
-              includes(
-                map(
-                  filter(instance.ipAddresses, { type: 'private' }),
-                  'networkId',
-                ),
-                privateNetwork.id,
+          },
+          volumes: filter(volumes, (volume) =>
+            includes(volume.attachedTo, instance.id),
+          ),
+          privateNetworks: filter(privateNetworks, (privateNetwork) =>
+            includes(
+              map(
+                filter(instance.ipAddresses, { type: 'private' }),
+                'networkId',
               ),
+              privateNetwork.id,
             ),
-            ipReverse,
-          }),
-      );
+          ),
+          ipReverse,
+          isLocalZone,
+        });
+      });
   }
 
   static transformCapabilities(capabilities) {

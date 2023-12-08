@@ -11,5 +11,6 @@ export default {
     disabled: '<?',
     offer: '<?',
     addons: '<?',
+    isLocalZone: '<',
   },
 };
