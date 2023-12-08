@@ -44,7 +44,7 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
     queryToInvalidateOnDelivered: getVrackListQueryKey,
   });
 
-  const { mutate: orderNewVrack, isLoading, isError } = useMutation({
+  const { mutate: orderNewVrack, isPending, isError } = useMutation({
     mutationFn: () => orderVrack({ ovhSubsidiary: subsidiary as CountryCode }),
     mutationKey: orderVrackQueryKey,
     onSuccess: () => {
@@ -65,7 +65,7 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
       >
         {t('modalVrackCreationDescription')}
       </OsdsText>
-      {(areVrackOrdersLoading || isLoading) && (
+      {(areVrackOrdersLoading || isPending) && (
         <OsdsSpinner inline type={ODS_SPINNER_SIZE.md} />
       )}
       {!areVrackOrdersLoading && vrackDeliveringOrders.length > 0 && (
@@ -95,7 +95,7 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
         color={ODS_THEME_COLOR_INTENT.primary}
         disabled={
           areVrackOrdersLoading ||
-          isLoading ||
+          isPending ||
           vrackDeliveringOrders.length > 0 ||
           isVrackOrdersError ||
           isError ||

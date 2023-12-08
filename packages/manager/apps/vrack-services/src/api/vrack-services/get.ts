@@ -15,15 +15,13 @@ export const getvrackServicesReferenceCompatibleProductListQueryKey = [
 /**
  * List all products that are compatible with vRack Services
  */
-export const getvrackServicesReferenceCompatibleProductList = async () =>
-  queryClient.fetchQuery(
-    getvrackServicesReferenceCompatibleProductListQueryKey,
-    createFetchDataFn<string[]>({
-      url: '/vrackServices/reference/compatibleProduct',
-      method: 'get',
-      apiVersion: 'v2',
-    }),
-  );
+export const getvrackServicesReferenceCompatibleProductList = createFetchDataFn<
+  string[]
+>({
+  url: '/vrackServices/reference/compatibleProduct',
+  method: 'get',
+  apiVersion: 'v2',
+});
 
 export const getvrackServicesReferenceEventKindListQueryKey = [
   'get/vrackServices/reference/event/kind',
@@ -32,15 +30,13 @@ export const getvrackServicesReferenceEventKindListQueryKey = [
 /**
  * List all kind of event
  */
-export const getvrackServicesReferenceEventKindList = async () =>
-  queryClient.fetchQuery(
-    getvrackServicesReferenceEventKindListQueryKey,
-    createFetchDataFn<string[]>({
-      url: '/vrackServices/reference/event/kind',
-      method: 'get',
-      apiVersion: 'v2',
-    }),
-  );
+export const getvrackServicesReferenceEventKindList = createFetchDataFn<
+  string[]
+>({
+  url: '/vrackServices/reference/event/kind',
+  method: 'get',
+  apiVersion: 'v2',
+});
 
 export const getvrackServicesReferenceEventTypeListQueryKey = [
   'get/vrackServices/reference/event/type',
@@ -49,15 +45,13 @@ export const getvrackServicesReferenceEventTypeListQueryKey = [
 /**
  * List all type of event
  */
-export const getvrackServicesReferenceEventTypeList = async () =>
-  queryClient.fetchQuery(
-    getvrackServicesReferenceEventTypeListQueryKey,
-    createFetchDataFn<string[]>({
-      url: '/vrackServices/reference/event/type',
-      method: 'get',
-      apiVersion: 'v2',
-    }),
-  );
+export const getvrackServicesReferenceEventTypeList = createFetchDataFn<
+  string[]
+>({
+  url: '/vrackServices/reference/event/type',
+  method: 'get',
+  apiVersion: 'v2',
+});
 
 export const getvrackServicesReferenceZoneListQueryKey = [
   'get/vrackServices/reference/zone',
@@ -66,15 +60,11 @@ export const getvrackServicesReferenceZoneListQueryKey = [
 /**
  * List all vRack Services zones
  */
-export const getvrackServicesReferenceZoneList = async () =>
-  queryClient.fetchQuery(
-    getvrackServicesReferenceZoneListQueryKey,
-    createFetchDataFn<Zone[]>({
-      url: '/vrackServices/reference/zone',
-      method: 'get',
-      apiVersion: 'v2',
-    }),
-  );
+export const getvrackServicesReferenceZoneList = createFetchDataFn<Zone[]>({
+  url: '/vrackServices/reference/zone',
+  method: 'get',
+  apiVersion: 'v2',
+});
 
 export type GetVrackServicesResourceListParams = {
   /** Pagination cursor */
@@ -110,34 +100,25 @@ export const getListingIceberg = async () => {
       apiVersion: 'v2',
     });
 
-  return queryClient.fetchQuery(getListingIcebergQueryKey, fetchData);
+  return queryClient.fetchQuery({
+    queryKey: getListingIcebergQueryKey,
+    queryFn: fetchData,
+  });
 };
 
-export type GetvrackServicesResourceVrackServicesIdParams = {
-  /** Vrack services ID */
-  vrackServicesId: string;
-};
-
-export const getvrackServicesResourceVrackServicesIdQueryKey = ({
-  vrackServicesId,
-}: GetvrackServicesResourceVrackServicesIdParams) => [
+export const getVrackServicesResourceQueryKey = (vrackServicesId: string) => [
   `get/vrackServices/resource/${vrackServicesId}`,
 ];
 
 /**
  * Get the vRack Services
  */
-export const getvrackServicesResourceVrackServicesId = async ({
-  vrackServicesId,
-}: GetvrackServicesResourceVrackServicesIdParams) =>
-  queryClient.fetchQuery(
-    getvrackServicesResourceVrackServicesIdQueryKey({ vrackServicesId }),
-    createFetchDataFn<VrackServicesWithIAM>({
-      url: `/vrackServices/resource/${vrackServicesId}`,
-      method: 'get',
-      apiVersion: 'v2',
-    }),
-  );
+export const getVrackServicesResource = async (vrackServicesId: string) =>
+  createFetchDataFn<VrackServicesWithIAM>({
+    url: `/vrackServices/resource/${vrackServicesId}`,
+    method: 'get',
+    apiVersion: 'v2',
+  })();
 
 export type GetvrackServicesResourceVrackServicesIdEligibleManagedServiceListParams = {
   /** Vrack services ID */
@@ -156,16 +137,11 @@ export const getvrackServicesResourceVrackServicesIdEligibleManagedServiceListQu
 export const getvrackServicesResourceVrackServicesIdEligibleManagedServiceList = async ({
   vrackServicesId,
 }: GetvrackServicesResourceVrackServicesIdEligibleManagedServiceListParams) =>
-  queryClient.fetchQuery(
-    getvrackServicesResourceVrackServicesIdEligibleManagedServiceListQueryKey({
-      vrackServicesId,
-    }),
-    createFetchDataFn<EligibleManagedService[]>({
-      url: `/vrackServices/resource/${vrackServicesId}/eligibleManagedService`,
-      method: 'get',
-      apiVersion: 'v2',
-    }),
-  );
+  createFetchDataFn<EligibleManagedService[]>({
+    url: `/vrackServices/resource/${vrackServicesId}/eligibleManagedService`,
+    method: 'get',
+    apiVersion: 'v2',
+  })();
 
 export type GetvrackServicesResourceVrackServicesIdEventListParams = {
   /** Vrack services ID */
@@ -184,16 +160,11 @@ export const getvrackServicesResourceVrackServicesIdEventListQueryKey = ({
 export const getvrackServicesResourceVrackServicesIdEventList = async ({
   vrackServicesId,
 }: GetvrackServicesResourceVrackServicesIdEventListParams) =>
-  queryClient.fetchQuery(
-    getvrackServicesResourceVrackServicesIdEventListQueryKey({
-      vrackServicesId,
-    }),
-    createFetchDataFn<Event[]>({
-      url: `/vrackServices/resource/${vrackServicesId}/event`,
-      method: 'get',
-      apiVersion: 'v2',
-    }),
-  );
+  createFetchDataFn<Event[]>({
+    url: `/vrackServices/resource/${vrackServicesId}/event`,
+    method: 'get',
+    apiVersion: 'v2',
+  })();
 
 export type GetTaskListParams = {
   /** Pagination cursor */
@@ -241,14 +212,8 @@ export const getvrackServicesResourceVrackServicesIdTaskTaskId = async ({
   taskId,
   vrackServicesId,
 }: GetvrackServicesResourceVrackServicesIdTaskTaskIdParams) =>
-  queryClient.fetchQuery(
-    getvrackServicesResourceVrackServicesIdTaskTaskIdQueryKey({
-      taskId,
-      vrackServicesId,
-    }),
-    createFetchDataFn<Task>({
-      url: `/vrackServices/resource/${vrackServicesId}/task/${taskId}`,
-      method: 'get',
-      apiVersion: 'v2',
-    }),
-  );
+  createFetchDataFn<Task>({
+    url: `/vrackServices/resource/${vrackServicesId}/task/${taskId}`,
+    method: 'get',
+    apiVersion: 'v2',
+  })();

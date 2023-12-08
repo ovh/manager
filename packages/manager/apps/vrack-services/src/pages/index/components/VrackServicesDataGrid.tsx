@@ -24,7 +24,6 @@ import {
   ProductStatusCell,
   VrackIdCell,
 } from './VrackServicesDataGridCells';
-import { formatDateString } from '@/utils/date';
 import { ApiError } from '@/components/Error';
 
 export const VrackServicesDatagrid: React.FC = () => {
@@ -40,13 +39,13 @@ export const VrackServicesDatagrid: React.FC = () => {
     queryKey: getVrackServicesResourceListQueryKey,
   });
 
-  const { mutateAsync: updateVS, isLoading, isError } = useMutation<
+  const { mutateAsync: updateVS, isPending, isError } = useMutation<
     ResponseData<VrackServices>,
     ResponseData<ApiError>,
     UpdateVrackServicesParams
   >({
-    mutationFn: updateVrackServices,
     mutationKey: updateVrackServicesQueryKey('listing'),
+    mutationFn: updateVrackServices,
     onSuccess: (result: ResponseData<VrackServices>) => {
       queryClient.setQueryData(
         getVrackServicesResourceListQueryKey,
@@ -93,7 +92,7 @@ export const VrackServicesDatagrid: React.FC = () => {
       formatter: reactFormatter(
         <VrackIdCell
           label={t('associateVrackButtonLabel')}
-          isLoading={isLoading}
+          isLoading={isPending}
           openAssociationModal={setAssociateModalVisible}
         />,
       ),
@@ -112,7 +111,7 @@ export const VrackServicesDatagrid: React.FC = () => {
     {
       title: t('actions'),
       field: '',
-      formatter: reactFormatter(<ActionsCell isLoading={isLoading} />),
+      formatter: reactFormatter(<ActionsCell isLoading={isPending} />),
     },
   ];
 
@@ -129,10 +128,10 @@ export const VrackServicesDatagrid: React.FC = () => {
       )}
       <OsdsDatagrid
         hasHideableColumns={undefined}
-        height={(data.data.length + 1) * 150}
-        rowHeight={80}
+        height={(data?.data.length + 1) * 150}
+        rowHeight={60}
         columns={columns}
-        rows={data.data}
+        rows={data?.data}
         noResultLabel={t('emptyDataGridMessage')}
       />
       <VrackAssociationModal

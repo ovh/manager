@@ -1,14 +1,19 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useResolvedPath } from 'react-router-dom';
+import {
+  Outlet,
+  useLocation,
+  useParams,
+  useResolvedPath,
+} from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { BreadcrumbHandleParams } from '../../../components/Breadcrumb';
+import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
 import {
   getVrackServicesResourceList,
   getVrackServicesResourceListQueryKey,
 } from '@/api';
-import { DashboardLayout } from '../../../components/layout-helpers';
-import { ApiError, ErrorPage } from '../../../components/Error';
+import { DashboardLayout } from '@/components/layout-helpers';
+import { ApiError, ErrorPage } from '@/components/Error';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.id;
@@ -17,6 +22,7 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 const DashboardPage: React.FC = () => {
   const { t } = useTranslation('vrack-services/dashboard');
   const { id } = useParams();
+  const location = useLocation();
 
   const { data, isError, error, isLoading } = useQuery({
     queryKey: getVrackServicesResourceListQueryKey,
@@ -46,10 +52,14 @@ const DashboardPage: React.FC = () => {
     (!isLoading &&
       !data?.data?.find((vrackServices) => vrackServices.id === id))
   ) {
-    return <ErrorPage error={error as ApiError} />;
+    return <ErrorPage error={(error as unknown) as ApiError} />;
   }
 
-  return <DashboardLayout tabs={tabsList} />;
+  return location.pathname.includes('create') ? (
+    <Outlet />
+  ) : (
+    <DashboardLayout tabs={tabsList} />
+  );
 };
 
 export default DashboardPage;

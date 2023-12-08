@@ -10,6 +10,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { PageLayout } from './PageLayout';
+import { handleClick } from '@/utils/ods-utils';
 
 export type OnboardingLayoutProps = React.PropsWithChildren<{
   imageSrc?: string;
@@ -21,12 +22,14 @@ export type OnboardingLayoutProps = React.PropsWithChildren<{
   primaryHref?: string;
   primaryOnClick?: () => void;
   primaryButtonSize?: ODS_BUTTON_SIZE;
+  primaryButtonDisabled?: boolean;
   secondaryButtonLabel?: string;
   secondaryHref?: string;
   secondaryOnClick?: () => void;
   secondaryButtonIcon?: ODS_ICON_NAME;
   secondaryButtonSize?: ODS_BUTTON_SIZE;
   secondaryButtonIconPosition?: 'start' | 'end';
+  secondaryButtonDisabled?: boolean;
   noBreadcrumb?: boolean;
 }>;
 
@@ -40,12 +43,14 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   primaryHref,
   primaryOnClick,
   primaryButtonSize = ODS_BUTTON_SIZE.md,
+  primaryButtonDisabled,
   secondaryButtonLabel,
   secondaryHref,
   secondaryOnClick,
   secondaryButtonIcon = ODS_ICON_NAME.EXTERNAL_LINK,
   secondaryButtonSize = ODS_BUTTON_SIZE.md,
   secondaryButtonIconPosition = 'end',
+  secondaryButtonDisabled,
   noBreadcrumb,
   children,
 }) => {
@@ -90,10 +95,11 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
             {primaryButtonLabel && (primaryHref || primaryOnClick) && (
               <OsdsButton
                 inline
+                disabled={primaryButtonDisabled}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 size={primaryButtonSize}
                 href={primaryHref}
-                onClick={primaryOnClick}
+                {...(primaryOnClick ? handleClick(primaryOnClick) : {})}
               >
                 {primaryButtonLabel}
               </OsdsButton>
@@ -101,11 +107,12 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
             {secondaryButtonLabel && (secondaryHref || secondaryOnClick) && (
               <OsdsButton
                 inline
+                disabled={secondaryButtonDisabled}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 variant={ODS_BUTTON_VARIANT.stroked}
                 size={secondaryButtonSize}
                 href={secondaryHref}
-                onClick={secondaryOnClick}
+                {...(secondaryOnClick ? handleClick(secondaryOnClick) : {})}
               >
                 {secondaryButtonLabel}
                 <span slot={secondaryButtonIconPosition}>

@@ -1,5 +1,20 @@
 {
   "onboardingTitle": "Vous n'avez pas encore crée de subnet",
   "onboardingDescription": "Pour créer un endpoint, vous devez d'abord creér un subnet.",
-  "onboardingButtonLabel": "Créer un subnet"
+  "createSubnetButtonLabel": "Créer un subnet",
+  "createPageTitle": "Créer un subnet",
+  "goBackLinkLabel": "Retour à la page précédente",
+  "subnetCreationError": "Votre Subnet n'a pas été configuré correctement ! Vous pouvez recommencer la configuration.",
+  "subnetNameLabel": "Nom du subnet (facultatif)",
+  "subnetNamePlaceholder": "Mon subnet",
+  "cidrLabel": "Plage d'adresses du subnet (CIDR)",
+  "cidrPlaceholder": "192.168.0.0/24",
+  "serviceRangeLabel": "Plage d'adresses de service (CIDR)",
+  "serviceRangePlaceholder": "Sélectionnez une plage d'adresses",
+  "serviceRangeAdditionalText": "La plage d'adresses de service sera utilisée par les services du vRack Services. Par conséquent, les adresses de cette plage ne doivent pas être utilisées par d'autres nœuds connectés au vRack. La plage d'adresse de service doit être un sous-ensemble de la plage d'addresses du subnet, et sa taille doit être comprise entre /27 et /29.",
+  "vlanLabel": "VLAN",
+  "vlanAdditionalText": "Vous pouvez exposer ce sous-réseau sur un VLAN spécifique.",
+  "vlanNoVlanOptionLabel": "Pas de VLAN",
+  "vlanSelectVlanOptionLabel": "Sélectionnez un VLAN",
+  "vlanNumberLabel": "Numéro de VLAN (2 à 4094)"
 }

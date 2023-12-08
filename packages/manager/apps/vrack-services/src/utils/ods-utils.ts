@@ -36,7 +36,7 @@ export const reactFormatter = (jsx: any) => (
 };
 
 export const handleClick = (
-  fn: React.KeyboardEventHandler | React.MouseEventHandler,
+  fn: React.KeyboardEventHandler & React.MouseEventHandler,
 ) => ({
   onClick: fn,
   onKeyDown: (event: React.KeyboardEvent) => {
