@@ -80,15 +80,6 @@ export default class VrackMoveDialogCtrl {
    * @returns {*&{dedicatedCloud: *, dedicatedServer: T[], dedicatedServerInterface: {readonly dedicatedServer?: *}[], managedBareMetal: *}}
    */
   static filterAllowedServicesOnly(allServicesParam) {
-    // if (!allServicesParam.dedicatedCloud) {
-    //   allServicesParam.dedicatedCloud = [];
-    // }
-    // if (!allServicesParam.dedicatedServer) {
-    //   allServicesParam.dedicatedServer = [];
-    // }
-    // if (!allServicesParam.dedicatedServerInterface) {
-    //   allServicesParam.dedicatedServerInterface = [];
-    // }
     return {
       ...allServicesParam,
       dedicatedCloud: allServicesParam.dedicatedCloud.filter((service) => {
@@ -123,6 +114,18 @@ export default class VrackMoveDialogCtrl {
 
   static hasServices(services) {
     return keys(services).length > 0;
+  }
+
+  /**
+   * make a niceName with the product description
+   * @param service
+   */
+  static getOvhCloudConnectNiceName(service) {
+    return {
+      id: service.uuid,
+      niceName: service.product,
+      trueServiceType: 'ovhCloudConnect',
+    };
   }
 
   static getDedicatedServerNiceName(service) {
@@ -164,6 +167,8 @@ export default class VrackMoveDialogCtrl {
   }
 
   static getCloudProjectNiceName(service) {
+    console.log('###### getCloudProjectNiceName ');
+    console.log('###### service ', service);
     const formattedService = {};
     angular.copy(service, formattedService);
     formattedService.id = service.project_id;
@@ -177,6 +182,7 @@ export default class VrackMoveDialogCtrl {
   }
 
   static getIpLoadbalancingNiceName(service) {
+    console.log('###### getIpLoadbalancingNiceName ', service);
     const formattedService = {};
     angular.copy(service, formattedService);
     formattedService.id = service.serviceName;
@@ -191,6 +197,8 @@ export default class VrackMoveDialogCtrl {
 
   static fillServiceData(serviceType, service) {
     let formattedService = null;
+
+    console.log('###### fillServiceData service ', service, serviceType);
     switch (serviceType) {
       case 'dedicatedServer':
         formattedService = VrackMoveDialogCtrl.getDedicatedServerNiceName(
@@ -198,6 +206,7 @@ export default class VrackMoveDialogCtrl {
         );
         break;
       case 'dedicatedServerInterface':
+        console.log('###### dedicatedServerInterface ');
         formattedService = VrackMoveDialogCtrl.getDedicatedServerInterfaceNiceName(
           service,
         );
@@ -238,6 +247,11 @@ export default class VrackMoveDialogCtrl {
       case 'cloudProject':
         formattedService = VrackMoveDialogCtrl.getCloudProjectNiceName(service);
         break;
+      case 'ovhCloudConnect':
+        formattedService = VrackMoveDialogCtrl.getOvhCloudConnectNiceName(
+          service,
+        );
+        break;
       case 'ipLoadbalancing':
         formattedService = VrackMoveDialogCtrl.getIpLoadbalancingNiceName(
           service,
@@ -251,6 +265,7 @@ export default class VrackMoveDialogCtrl {
   }
 
   $onInit() {
+    console.log('###### init ', this);
     this.poller = null;
     this.serviceName = null;
     this.name = null;
@@ -276,7 +291,7 @@ export default class VrackMoveDialogCtrl {
       deleting: false,
       moving: false,
       services: {
-        // cloudProject: 'not_fetched',
+        cloudProject: 'not_fetched',
         dedicatedCloud: 'not_fetched',
         dedicatedCloudDatacenter: 'not_fetched',
         dedicatedConnect: 'not_fetched',
@@ -291,6 +306,7 @@ export default class VrackMoveDialogCtrl {
 
     this.data = {
       cloudProjects: [],
+      families: Object.create(SERVICE_FAMILIES_LIST),
       allowedServices: Object.create(SERVICE_FAMILIES_MAP),
       vrackServices: {},
       pendingTasks: [],
@@ -327,6 +343,7 @@ export default class VrackMoveDialogCtrl {
     this.loaders.init = true;
     this.loadMessage();
     if (isEmpty(this.$stateParams.vrackId)) {
+      console.log('###### A1 ');
       this.OvhApiVrack.v6()
         .query()
         .$promise.then((vracks) => {
@@ -341,6 +358,7 @@ export default class VrackMoveDialogCtrl {
         });
     } else {
       // check if the serviceName is valid before loading the services
+      console.log('###### A2 ');
       this.OvhApiVrack.v6()
         .get({
           serviceName: this.$stateParams.vrackId,
@@ -367,8 +385,6 @@ export default class VrackMoveDialogCtrl {
         this.$timeout.cancel(this.poller);
       }
     });
-
-    // this.testingland()
   }
 
   refreshMessage() {
@@ -388,87 +404,18 @@ export default class VrackMoveDialogCtrl {
     );
   }
 
-  /**
-   * get all families of services available to be added to a vrack
-   * @returns {any}
-   */
-  getAllowedServices() {
-    /**
-     * avoid to relaunch many fetchs when they are going on
-     */
-    if (this.getAllowedServicesIsPending) {
-      return this.data.allowedServices;
-    }
-    this.getAllowedServicesIsPending = true;
-    this.getAllowedServicesCounter = 0;
-
-    /**
-     * for each service, make a call and append the result to a literal object
-     * this allows to see progressively the services for each families in the picker
-     * and get rid of the timeout if there are too many services fetched at once
-     */
-    this.servicesFamilies.forEach((serviceFamily) => {
-      this.loaders.services[serviceFamily] = 'fetching';
-
-      const self = this;
-      this.$http
-        .get(
-          `/vrack/${this.serviceName}/allowedServices?serviceFamily=${serviceFamily}`,
-          {
-            serviceType: 'aapi',
-          },
-        )
-        .then((resp) => {
-          const { data } = resp;
-          self.handleOneServiceFamily(data, serviceFamily);
-        })
-        .catch(() => {
-          this.loaders.services[serviceFamily] = 'error';
-        });
-    });
-
-    return this.data.allowedServices;
-  }
-
-  postMappingServices(allServices) {
-    const mappedServices = mapValues(allServices, (services, serviceType) => {
-      if (isArray(services)) {
-        return map(services, (service) =>
-          this.constructor.fillServiceData(serviceType, service),
-        );
-      }
-      return services;
-    });
-
-    // We need to append dedicatedServerInterfaces list to dedicatedServers list.
-    if (
-      has(mappedServices, 'dedicatedServerInterface') &&
-      mappedServices.dedicatedServerInterface.length > 0
-    ) {
-      // If dedicatedServers list doesn't exist, we create it first.
-      if (!has(mappedServices, 'dedicatedServer')) {
-        mappedServices.dedicatedServer = [];
-      }
-
-      angular.forEach(
-        mappedServices.dedicatedServerInterface,
-        (serverInterface) => {
-          mappedServices.dedicatedServer.push(serverInterface);
-        },
-      );
-
-      mappedServices.dedicatedServerInterface = [];
-    }
-    return this.getAvailableServices(mappedServices);
-  }
-
   getAvailableServices(allServices) {
     return pickBy(allServices, (_, serviceType) => {
       return this.features.isFeatureAvailable(FEATURE_NAMES[serviceType]);
     });
   }
 
+  /**
+   * get the services already present in the selected vrack
+   * @returns {*}
+   */
   getVrackServices() {
+    console.log('###### getVrackServices ', this.serviceName);
     return this.OvhApiVrack.Aapi()
       .services({ serviceName: this.serviceName })
       .$promise.then((allServicesParam) => {
@@ -476,9 +423,9 @@ export default class VrackMoveDialogCtrl {
         allServices = mapValues(allServices, (servicesParams, serviceType) => {
           let services = servicesParams;
           if (isArray(services)) {
-            services = map(services, (service) =>
-              this.constructor.fillServiceData(serviceType, service),
-            );
+            services = map(services, (service) => {
+              this.constructor.fillServiceData(serviceType, service);
+            });
           }
           return services;
         });
@@ -553,6 +500,7 @@ export default class VrackMoveDialogCtrl {
   }
 
   getPendingTasks() {
+    console.log('###### getPendingTasks ');
     return this.OvhApiVrack.v6()
       .tasks({
         serviceName: this.serviceName,
@@ -653,9 +601,11 @@ export default class VrackMoveDialogCtrl {
   }
 
   refreshData() {
+    console.log('###### refreshData ');
     let poll = true;
     return this.getPendingTasks()
       .then((tasks) => {
+        console.log('###### tasks ', tasks);
         /**
          * First, we check if there is any new pending tasks ...
          */
@@ -669,19 +619,17 @@ export default class VrackMoveDialogCtrl {
         } else if (tasks.length === 0) {
           poll = false; // no new tasks & no tasks, no need to poll
         }
-
-        this.getAllowedServices();
-        const promise = new Promise();
         /**
          * Secondly, we fetch vrack data ...
          */
         return this.$q
           .all({
-            allowedServices: promise.resolve(this.data.allowedServices),
+            allowedServices: this.getAllowedServices(),
             vrackServices: this.getVrackServices(),
           })
           .then((result) => {
             this.data.pendingTasks = tasks;
+            this.data.allowedServices = result.allowedServices;
             this.data.vrackServices = result.vrackServices;
 
             /**
@@ -1127,22 +1075,90 @@ export default class VrackMoveDialogCtrl {
   }
 
   /**
-   * set one family data
-   * @param {Array} OneServiceData - the array of services for one family
-   * @param {string} serviceFamily - the name of the service family
-   * */
-  setOneAllowedServiceFamily(OneServiceData, serviceFamily) {
-    this.data.allowedServices[serviceFamily] = OneServiceData;
+   * get all families of services available to be added to a vrack
+   * @returns {any}
+   */
+  getAllowedServices() {
+    this.getAllowedServicesCounter = 0;
+
     /**
-     *  each time a family is returned, we filter all the services and enrich the services list
-     *  then filter only the allowed ones
+     * for each service, make a call and append the result to a literal object
+     * this allows to see progressively the services for each families in the picker
+     * and get rid of the timeout if there are too many services fetched at once
      */
-    // let mappedServices = this.postMappingServices(this.data.allowedServices);
-    const allServicesAllowed = VrackMoveDialogCtrl.filterAllowedServicesOnly(
-      // mappedServices,
-      this.data.allowedServices,
+    this.servicesFamilies.forEach((serviceFamily) => {
+      this.loaders.services[serviceFamily] = 'fetching';
+
+      const self = this;
+      this.$http
+        .get(
+          `/vrack/${this.serviceName}/allowedServices?serviceFamily=${serviceFamily}`,
+          {
+            serviceType: 'aapi',
+          },
+        )
+        .then((resp) => {
+          const { data } = resp;
+          self.handleOneServiceFamily(data, serviceFamily);
+          console.log(
+            '###### this.data.allowedServices after handle',
+            this.data.allowedServices,
+          );
+          this.getAllowedServicesCounter += 1;
+          this.loaders.services[serviceFamily] = 'loaded';
+        })
+        .catch((err) => {
+          console.log('###### err ', err);
+          this.getAllowedServicesCounter += 1;
+          this.loaders.services[serviceFamily] = 'error';
+        });
+    });
+
+    return this.data.allowedServices;
+  }
+
+  /**
+   * postmapping adds data in each family of service to have a consistent display in the template
+   * @param allServices
+   * @returns {*}
+   */
+  postMappingServices(allServices) {
+    console.log('###### postMappingServices allservices ', allServices);
+    const mappedServices = mapValues(
+      allServices,
+      (serviceList, serviceType) => {
+        const mappedstuff = this.constructor.fillServiceData(
+          serviceType,
+          serviceList,
+        );
+        return mappedstuff;
+      },
     );
-    this.data.allowedServices = allServicesAllowed;
+
+    // We need to append dedicatedServerInterfaces list to dedicatedServers list.
+    if (
+      has(mappedServices, 'dedicatedServerInterface') &&
+      mappedServices.dedicatedServerInterface.length > 0
+    ) {
+      console.log('###### mappedServices ', mappedServices);
+
+      if (!mappedServices.dedicatedServer) {
+        mappedServices.dedicatedServer = [];
+      }
+      angular.forEach(
+        allServices.dedicatedServerInterface,
+        (serverInterface) => {
+          allServices.dedicatedServer.push(serverInterface);
+        },
+      );
+
+      mappedServices.dedicatedServerInterface = [];
+      console.log(
+        '###### allServices.dedicatedServer ',
+        allServices.dedicatedServer,
+      );
+    }
+    return this.getAvailableServices(mappedServices);
   }
 
   /**
@@ -1151,23 +1167,42 @@ export default class VrackMoveDialogCtrl {
    * @param serviceFamily
    */
   handleOneServiceFamily(serviceFetchedResponse, serviceFamily) {
-    this.getAllowedServicesCounter += 1;
-    let OneServiceData = serviceFetchedResponse;
+    console.log('###### handleOneServiceFamily serviceFamily ', serviceFamily);
+    const OneServiceData = serviceFetchedResponse[serviceFamily];
 
+    this.loaders.services[serviceFamily] = 'fetched';
     /**
-     * the vrack service will return undefined is there is no services for the given family
+     * the vrack service will return undefined is there is no services for the given family.
+     * each time a family is returned, we filter all the services and enrich the services list
+     *  then filter only the allowed ones
      */
     if (!OneServiceData) {
-      OneServiceData = [];
+      console.log('###### ! OneServiceData ', OneServiceData);
+      this.data.allowedServices[serviceFamily] = [];
+      return;
     }
-    this.loaders.services[serviceFamily] = 'fetched';
-    this.setOneAllowedServiceFamily(OneServiceData, serviceFamily);
 
-    /**
-     * when all the families have finished to be fetched, unlock the ability to call again the families
-     */
-    if (this.getAllowedServicesCounter === this.servicesFamilies.length) {
-      this.getAllowedServicesIsPending = false;
+    if (isArray(OneServiceData)) {
+      console.log('###### array OneServiceData ', OneServiceData);
+      this.data.allowedServices[serviceFamily] = OneServiceData.map(
+        (oneService) => {
+          return VrackMoveDialogCtrl.fillServiceData(serviceFamily, oneService);
+        },
+      );
+    } else {
+      this.data.allowedServices[serviceFamily] = OneServiceData;
     }
+
+    this.data.allowedServices = this.postMappingServices(
+      this.data.allowedServices,
+    );
+    this.data.allowedServices = VrackMoveDialogCtrl.filterAllowedServicesOnly(
+      this.data.allowedServices,
+    );
+
+    console.log(
+      '###### this.data.allowedServices 2',
+      this.data.allowedServices,
+    );
   }
 }
