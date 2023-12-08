@@ -30,13 +30,14 @@ export default class OctaviaLoadBalancerEditNameCtrl {
     )
       .then(() => {
         this.trackPage('success');
-        this.Alerter.set(
-          'alert-success',
-          this.$translate.instant('octavia_load_balancer_edit_name_success'),
-          null,
-          'octavia.alerts.global',
+        return this.goBack(true).then(() =>
+          this.Alerter.set(
+            'alert-success',
+            this.$translate.instant('octavia_load_balancer_edit_name_success'),
+            null,
+            'octavia.alerts.loadbalancer',
+          ),
         );
-        this.goBack(true);
       })
       .catch((error) => {
         this.trackPage('error');
@@ -45,9 +46,9 @@ export default class OctaviaLoadBalancerEditNameCtrl {
             message: error.data?.message,
             requestId: error.headers('X-Ovh-Queryid'),
           }),
-          'octavia.alerts.global',
+          'octavia.alerts.loadbalancer',
         );
-        this.goBack();
+        return this.goBack();
       })
       .finally(() => {
         this.isLoading = false;

@@ -16,13 +16,13 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         ...deletePoolResolve,
-        goBack: /* @ngInject */ ($state) => (confirm) => {
+        goBack: /* @ngInject */ ($state) => (confirm) =>
           $state.go(
             confirm
               ? 'octavia-load-balancer.loadbalancer.pools'
               : 'octavia-load-balancer.loadbalancer.pools.detail.general-information',
-          );
-        },
+          ),
+        alertContainer: () => 'octavia.alerts.pool',
       },
       atInternet: {
         rename: `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}`,
