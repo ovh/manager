@@ -1370,7 +1370,7 @@
   "hosting_order_upgrade_modal_header_description": "Is your project growing? From blogs and business websites to online shops and web applications, you can choose the best plan for your new needs.",
   "hosting_order_upgrade_no_contract": "No new contracts to validate",
   "hosting_change_offer_for_service_offer": "This service is not accessible for the {{offer}} solution.",
-  "hosting_tab_DATABASES_table_header_status": "Status",
+  "hosting_tab_DATABASES_table_header_status": "Type",
   "hosting_tab_DATABASES_table_header_status_included_false": "Included",
   "hosting_tab_DATABASES_table_header_status_included_true": "Included – Discontinued",
   "hosting_tab_DATABASES_table_header_status_optional_false": "Optional",
