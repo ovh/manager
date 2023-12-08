@@ -7,6 +7,7 @@ export default {
     region: '<',
     poolName: '<',
     poolId: '<',
+    alertContainer: '<?',
     goBack: '<',
     trackDeleteAction: '<',
     trackDeletePage: '<',

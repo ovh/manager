@@ -37,15 +37,19 @@ export default class OctaviaLoadBalancerPoolsEditCtrl {
     )
       .then(async () => {
         this.trackEditPage('success');
-        this.Alerter.set(
-          'alert-success',
-          this.$translate.instant('octavia_load_balancer_pools_edit_success', {
-            pool: this.model.name,
-          }),
-          null,
-          'octavia.alerts.global',
+        return this.goBack(true).then(() =>
+          this.Alerter.set(
+            'alert-success',
+            this.$translate.instant(
+              'octavia_load_balancer_pools_edit_success',
+              {
+                pool: this.model.name,
+              },
+            ),
+            null,
+            'octavia.alerts.pool',
+          ),
         );
-        await this.goBack(true);
       })
       .catch((error) => {
         this.trackEditPage('error');
@@ -54,7 +58,7 @@ export default class OctaviaLoadBalancerPoolsEditCtrl {
             message: error.data?.message,
             requestId: error.headers('X-Ovh-Queryid'),
           }),
-          'octavia.alerts.global',
+          'octavia.alerts.pools',
         );
       })
       .finally(() => {

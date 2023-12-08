@@ -24,15 +24,16 @@ export default class OctaviaLoadBalancerEditNameCtrl {
       this.name,
     )
       .then(() => {
-        this.Alerter.set(
-          'alert-success',
-          this.$translate.instant(
-            'octavia_load_balancer_pools_detail_overview_edit_name_success',
+        return this.goBack(true).then(() =>
+          this.Alerter.set(
+            'alert-success',
+            this.$translate.instant(
+              'octavia_load_balancer_pools_detail_overview_edit_name_success',
+            ),
+            null,
+            'octavia.alerts.pool',
           ),
-          null,
-          'octavia.alerts.global',
         );
-        this.goBack(true);
       })
       .catch((error) => {
         this.Alerter.error(
@@ -40,7 +41,7 @@ export default class OctaviaLoadBalancerEditNameCtrl {
             message: error.data?.message,
             requestId: error.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
           }),
-          'octavia.alerts.global',
+          'octavia.alerts.pool',
         );
         this.goBack();
       })
