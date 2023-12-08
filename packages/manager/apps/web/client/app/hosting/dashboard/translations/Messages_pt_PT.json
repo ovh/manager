@@ -1370,7 +1370,7 @@
   "hosting_order_upgrade_modal_header_description": "O seu projeto precisa de evoluir? Blogue, site profissional, plataforma de e-commerce ou aplicação web: escolha a oferta mais adaptada às suas novas necessidades.",
   "hosting_order_upgrade_no_contract": "Não há novos contratos a validar",
   "hosting_change_offer_for_service_offer": "Este serviço não está disponível para a oferta {{offer}}.",
-  "hosting_tab_DATABASES_table_header_status": "Estado",
+  "hosting_tab_DATABASES_table_header_status": "Status",
   "hosting_tab_DATABASES_table_header_status_included_false": "Incluída",
   "hosting_tab_DATABASES_table_header_status_included_true": "Incluída - retirada da venda",
   "hosting_tab_DATABASES_table_header_status_optional_false": "Opcional",

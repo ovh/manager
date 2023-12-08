@@ -1370,7 +1370,7 @@
   "hosting_order_upgrade_modal_header_description": "Ihr Projekt entwickelt sich weiter? Ob Blog, professionelle Website, E-Commerce-Plattform oder Webanwendung: Wählen Sie das Angebot, das Ihren neuen Anforderungen am besten entspricht.",
   "hosting_order_upgrade_no_contract": "Keine neuen Verträge zur Validierung vorhanden",
   "hosting_change_offer_for_service_offer": "Dieser Dienst ist für das {{offer}} Angebot nicht verfügbar.",
-  "hosting_tab_DATABASES_table_header_status": "Status",
+  "hosting_tab_DATABASES_table_header_status": "Subscription-type",
   "hosting_tab_DATABASES_table_header_status_included_false": "Inklusive",
   "hosting_tab_DATABASES_table_header_status_included_true": "Inklusive – aus dem Verkauf genommen",
   "hosting_tab_DATABASES_table_header_status_optional_false": "Optional",
