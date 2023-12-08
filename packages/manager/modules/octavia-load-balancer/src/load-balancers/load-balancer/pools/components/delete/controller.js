@@ -17,18 +17,19 @@ export default class OctaviaLoadBalancerPoolsDeleteCtrl {
     )
       .then(() => {
         this.trackDeletePage(`success`);
-        this.Alerter.set(
-          'alert-success',
-          this.$translate.instant(
-            'octavia_load_balancer_pools_components_delete_success',
-            {
-              pool: this.poolName,
-            },
+        return this.goBack(true).then(() =>
+          this.Alerter.set(
+            'alert-success',
+            this.$translate.instant(
+              'octavia_load_balancer_pools_components_delete_success',
+              {
+                pool: this.poolName,
+              },
+            ),
+            null,
+            'octavia.alerts.pools',
           ),
-          null,
-          'octavia.alerts.global',
         );
-        this.goBack(true);
       })
       .catch((error) => {
         this.trackDeletePage(`error`);
@@ -37,7 +38,7 @@ export default class OctaviaLoadBalancerPoolsDeleteCtrl {
             message: error.data.message,
             requestId: error.headers('x-ovh-queryId'),
           }),
-          'octavia.alerts.global',
+          this.alertContainer || 'octavia.alerts.pools',
         );
         this.goBack();
       })
