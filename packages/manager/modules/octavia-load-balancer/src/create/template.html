@@ -31,9 +31,9 @@
                         </span>
                     </a>
                 </p>
-                <div class="container-fluid">
+                <div class="container-fluid d-flex flex-wrap">
                     <oui-select-picker
-                        class="d-inline-block col-md-6 col-xl-3 my-3"
+                        class="d-flex col-sm-12 col-md-6 col-xl-3 my-3"
                         data-ng-repeat="size in $ctrl.sizeFlavour | orderBy:'price' track by $index"
                         data-label="{{:: 'octavia_load_balancer_create_size_flavour_title' | translate:{sizeCode: size.label} }}"
                         data-description="{{:: 'octavia_load_balancer_create_size_flavour_description_' + size.code | translate}}"
