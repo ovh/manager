@@ -95,12 +95,12 @@ export default class RegionsListController {
     }
   }
 
-  static isRegionDisabled(region) {
-    return region.length === 1 && !region[0].hasEnoughQuota;
+  static isRegionDisabled(regions) {
+    return !regions.some((region) => region.hasEnoughQuota);
   }
 
   onMacroChange(macro, regions) {
-    [this.region] = regions;
+    this.region = regions.find((region) => region.hasEnoughQuota);
     this.onRegionChange(this.region);
   }
 
