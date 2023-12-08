@@ -80,6 +80,8 @@ export default class VrackMoveDialogCtrl {
    * @returns {*&{dedicatedCloud: *, dedicatedServer: T[], dedicatedServerInterface: {readonly dedicatedServer?: *}[], managedBareMetal: *}}
    */
   static filterAllowedServicesOnly(allServicesParam) {
+
+    console.log('###### allServicesParam ', allServicesParam)
     return {
       ...allServicesParam,
       dedicatedCloud: allServicesParam.dedicatedCloud.filter((service) => {
@@ -144,12 +146,14 @@ export default class VrackMoveDialogCtrl {
   }
 
   static getDedicatedServerInterfaceNiceName(service) {
+    console.log('###### getDedicatedServerInterfaceNiceName ',service)
     const formattedService = VrackMoveDialogCtrl.getDedicatedServerNiceName(
       service.dedicatedServer,
     );
     formattedService.id = service.dedicatedServerInterface;
     formattedService.niceName = `${formattedService.niceName} - ${service.name}`;
     formattedService.trueServiceType = 'dedicatedServerInterface';
+    console.log('###### formattedService ', formattedService)
     return formattedService;
   }
 
@@ -1088,6 +1092,7 @@ export default class VrackMoveDialogCtrl {
      */
     this.servicesFamilies.forEach((serviceFamily) => {
       this.loaders.services[serviceFamily] = 'fetching';
+      console.log('###### `/vrack/${this.serviceName}/allowedServices?serviceFamily=${serviceFamily}` ', `/vrack/${this.serviceName}/allowedServices?serviceFamily=${serviceFamily}`)
 
       const self = this;
       this.$http

@@ -46,8 +46,8 @@ export const STATUS = {
   delivered: 'delivered',
 };
 
-export const VRACK_DASHBOARD_TRACKING_PREFIX = 'vrack::dashboard';
-export const VRACK_ACTIONS_SUFFIX = 'action';
+const VRACK_DASHBOARD_TRACKING_PREFIX = 'vrack::dashboard';
+const VRACK_ACTIONS_SUFFIX = 'action';
 
 /**
  * groupes of services are used to display a sub list in the vrack available template
