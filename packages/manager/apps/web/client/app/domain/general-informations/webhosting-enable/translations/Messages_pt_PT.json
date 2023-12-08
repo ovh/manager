@@ -2,7 +2,7 @@
   "domain_configuration_enable_web_hosting": "Ativar o seu alojamento web",
   "domain_configuration_enable_web_hosting_offer": "A sua oferta",
   "domain_configuration_enable_web_hosting_offer_START_hosting-start10m": "Start 10M",
-  "domain_configuration_web_hosting_offer_START_explain": "A oferta Start10M está incluída no serviço, mas só inclui funcionalidades básicas.",
+  "domain_configuration_web_hosting_offer_START_explain": "A oferta Free Hosting 100M está incluída na sua oferta, mas inclui funcionalidades básicas.",
   "domain_configuration_web_hosting_choose_offer_explain": "Para saber mais sobre as nossas ofertas e conhecer as suas especificações técnicas bem como as suas diferentes opções, aceda ao <a href=\"{{url}}\" target=\"_blank\">nosso site</a>.",
   "domain_configuration_enable_web_hosting_dns_configuration": "Configuração das DNS",
   "domain_configuration_web_hosting_dns_info_NO_CHANGE": "Se não selecionar qualquer configuração, apesar de o seu alojamento estar configurado, o domínio irá continuar a apontar para as registos DNS atuais. Cabe ao utilizador efetuar as alterações na zona DNS quando o novo site estiver pronto. Esta é a opção ideal para quem não pretende interromper o acesso a um site em construção.",
