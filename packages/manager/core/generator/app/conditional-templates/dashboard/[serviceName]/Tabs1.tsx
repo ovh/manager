@@ -1,5 +1,5 @@
 import React from 'react';
-import { OsdsTile } from '@ovhcloud/ods-components/Tile/react';
+import { OsdsTile } from '@ovhcloud/ods-components/tile/react';
 
 function Tabs1() {
   return (

@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect } from 'react';
 import { I18nextProvider } from 'react-i18next';
 
-import type { Preview } from '@storybook/react';
+import { Preview } from '@storybook/react';
 import '../src/tailwind/theme.css';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
 import i18n from './i18n';

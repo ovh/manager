@@ -1,25 +1,20 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": ["dom", "es2020"],
+    "target": "ES2020",
+    "types": ["vite/client", "node", "jest"],
+    "module": "ESNext",
+    "outDir": "dist",
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
     "moduleResolution": "Node",
-    "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "declaration": true,
+    "declarationDir": "./dist/types",
     "jsx": "react-jsx"
   },
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
-    "src/components/card/card.spec.tsx"
-  ],
+  "include": ["src", "./src/**/*.ts", "./src/**/*.tsx", "*.spec.tsx"],
   "exclude": ["./src/**/*.stories.*"]
 }

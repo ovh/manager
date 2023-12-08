@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { OsdsText } from '@ovhcloud/ods-components/text/react/';
 import { OsdsDivider } from '@ovhcloud/ods-components/divider/react/';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Card } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -77,7 +76,7 @@ export default function Catalog() {
         {isLoading && <Loading />}
         {!isLoading && results.length > 0 && (
           <>
-            {results.map((item: Product, index: number) => (
+            {results.map((item: Product) => (
               <Card
                 key={`${item.productName
                   .replace(' ', '')
@@ -89,7 +88,7 @@ export default function Catalog() {
                 }}
                 href={item.order}
                 hoverable
-                dataTracking={`manager_product_cards::more_info::${item.productName}`}
+                trackingLabel={`manager_product_cards::more_info::${item.productName}`}
               />
             ))}
           </>

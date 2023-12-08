@@ -5,7 +5,9 @@
   ],
   "*.{tsx,ts}": [
     "eslint --fix \"packages/manager/apps/**/*.{tsx,ts,md}\"",
-    "prettier --write \"packages/manager/apps/**/*.{tsx,ts}\""
+    "eslint --fix \"packages/manager-components/**/*.{tsx,ts}\"",
+    "prettier --write \"packages/manager/apps/**/*.{tsx,ts}\"",
+    "prettier --write \"packages/manager-components/**/*.{tsx,ts}\""
   ],
   "*.js": ["eslint --fix"],
   "*.{css,less,scss}": ["stylelint --fix"],

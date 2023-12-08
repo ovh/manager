@@ -1,7 +1,6 @@
-import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { Card, CardProps } from './card';
+import { Card, CardProps } from './card.component';
 
 export const defaultProps: CardProps = {
   texts: {
@@ -35,6 +34,10 @@ const meta: Meta<typeof Card> = {
         description: 'Category of the Card',
         control: 'text',
       },
+      Description: {
+        description: 'description of the Card',
+        control: 'text',
+      },
     },
     href: { control: 'text', description: 'URL of the Card and link' },
     isExternalHref: {
@@ -58,6 +61,10 @@ const meta: Meta<typeof Card> = {
     badges: {
       description:
         'Display examples of badges in the story (in the actual code there is a badge slot)',
+    },
+    trackingLabel: {
+      control: 'text',
+      description: 'Tracking label when use click on card',
     },
   },
   args: defaultProps,

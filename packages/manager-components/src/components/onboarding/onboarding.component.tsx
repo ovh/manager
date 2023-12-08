@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { OsdsButton } from '@ovhcloud/ods-components/button/react';
 import {
   ODS_BUTTON_SIZE,
@@ -7,9 +7,10 @@ import {
 import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import placeholderSrc from './placeholder.png';
 
-export type OnboardingLayoutProps = {
+import placeholderSrc from './assets/placeholder.png';
+
+export type OnboardingLayoutProps = PropsWithChildren<{
   hideHeadingSection?: boolean;
   imageSrc?: string;
   title: string;
@@ -18,8 +19,7 @@ export type OnboardingLayoutProps = {
   description?: string;
   moreInfoHref?: string;
   moreInfoButtonLabel?: string;
-  children: React.ReactNode;
-};
+}>;
 
 export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   hideHeadingSection,
@@ -39,7 +39,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
           <div className="flex justify-center py-3 max-h-28">
             <img
               className="max-h-150px"
-              src={imageSrc || placeholderSrc}
+              src={imageSrc ?? placeholderSrc}
               alt=""
             />
           </div>

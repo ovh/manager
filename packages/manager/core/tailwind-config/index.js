@@ -3,12 +3,12 @@ const config = {
   theme: {
     extend: {},
     screens: {
-      xs: '48em',
-      sm: '62em',
-      md: '72em',
-      lg: '102em',
-      xl: '125em',
-      xxl: '187em',
+      xs: '0',
+      sm: '36em',
+      md: '48em',
+      lg: '62em',
+      xl: '75em',
+      xxl: '87.5em',
       // not work with ods var in media queries
       // 'xs': 'var(--ods-breakpoint-xs)',
     },
