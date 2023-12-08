@@ -20,6 +20,10 @@ export const SERVICES_TARGET_URLS = {
     universe: 'web',
     url: '#/configuration/domain/:serviceName',
   },
+  '/domain/zone/{zoneName}/history': {
+    universe: 'web',
+    url: '#/configuration/domain/:serviceName/history',
+  },
   '/hosting/web/{serviceName}': {
     universe: 'web',
     url: '#/configuration/hosting/:serviceName',
