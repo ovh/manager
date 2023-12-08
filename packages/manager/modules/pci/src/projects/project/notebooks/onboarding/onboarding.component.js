@@ -9,5 +9,7 @@ export default {
     isAuthorized: '<',
     goToAddNotebook: '<',
     trackNotebooks: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
 };
