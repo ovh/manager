@@ -10,5 +10,7 @@ export default {
     isAuthorized: '<',
     lab: '<',
     projectId: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
 };
