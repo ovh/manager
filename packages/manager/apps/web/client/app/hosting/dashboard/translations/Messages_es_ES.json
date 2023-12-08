@@ -1386,5 +1386,6 @@
   "hosting_tab_DATABASES_configuration_copy_step1_select_webcloud_placeholder": "Seleccionar un servicio Web Cloud Databases",
   "hosting_tab_DATABASES_configuration_copy_success": "La copia de la base de datos ya está en progreso y puede tardar aproximadamente unos diez minutos. Puede seguir el progreso en la pestaña «Tareas en curso».",
   "hosting_tab_DATABASES_configuration_copy_error": "Se ha producido un error al copiar la base de datos. Error: {{error}}",
-  "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Si la base de datos de destino no está vacía, los datos se sobrescribirán."
+  "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Si la base de datos de destino no está vacía, los datos se sobrescribirán.",
+  "hosting_tab_DOMAINS_configuration_add_step1_order_upgrade": "Para añadir un dominio adicional en su alojamiento, debe contratar un plan superior."
 }
