@@ -18,5 +18,11 @@
   "iam_action_select_custom_action_placeholder": "Exemplo: {{ sample }}",
   "iam_managed_permissions_heading": "Grupos de permissões administradas",
   "iam_managed_permissions_description": "Adicionar uma política gerida pela OVHcloud",
-  "iam_managed_permissions_description_sub": "(descrição completa na documentação)"
+  "iam_managed_permissions_description_sub": "(descrição completa na documentação)",
+  "iam_action_select_category_count_selection_many_result_one": "({{ selected }} ações selecionadas | {{ result }} resultado / {{ total }})",
+  "iam_action_select_category_count_selection_many_result_many": "({{ selected }} ações selecionadas | {{ result }} resultados / {{ total }})",
+  "iam_action_select_category_count_selection_one_result_one": "({{ selected }} ação selecionada | {{ result }} resultado / {{ total }})",
+  "iam_action_select_category_count_selection_one_result_many": "({{ selected }} ação selecionada | {{ result }} resultados / {{ total }})",
+  "iam_action_select_category_count_result_many": "({{ result }} resultados / {{ total }})",
+  "iam_action_select_category_count_result_one": "({{ result }} resultado / {{ total }})"
 }
