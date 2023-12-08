@@ -9,5 +9,7 @@ export default {
     isAuthorized: '<',
     goToAddApp: '<',
     trackApps: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
 };

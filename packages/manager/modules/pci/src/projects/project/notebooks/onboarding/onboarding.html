@@ -1,3 +1,8 @@
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+></pci-activate-project-banner>
+
 <manager-on-boarding-layout
     data-guides="$ctrl.guides"
     data-image-source="$ctrl.illustration"
@@ -16,6 +21,7 @@
         data-ng-if="!$ctrl.loading"
         data-variant="primary"
         data-on-click="$ctrl.onAddNotebookClick()"
+        data-disabled="$ctrl.isDiscoveryProject"
     >
         <span data-translate="pci_notebook_onboarding_action_label"></span>
         <oui-spinner data-ng-if="$ctrl.loading" data-size="s"></oui-spinner>
