@@ -7,7 +7,8 @@ import {
 import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import placeholderSrc from './placeholder.png';
+
+import placeholderSrc from './assets/placeholder.png';
 
 export type OnboardingLayoutProps = {
   hideHeadingSection?: boolean;
@@ -18,10 +19,10 @@ export type OnboardingLayoutProps = {
   description?: string;
   moreInfoHref?: string;
   moreInfoButtonLabel?: string;
-  children: React.ReactNode;
+  children: any;
 };
 
-export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
+export const OnboardingLayout = ({
   hideHeadingSection,
   imageSrc,
   title,
@@ -31,7 +32,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   moreInfoHref,
   moreInfoButtonLabel,
   children,
-}) => {
+}: OnboardingLayoutProps) => {
   return (
     <div className="flex flex-col mx-auto px-3">
       {!hideHeadingSection && (
@@ -39,7 +40,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
           <div className="flex justify-center py-3 max-h-28">
             <img
               className="max-h-150px"
-              src={imageSrc || placeholderSrc}
+              src={imageSrc ?? placeholderSrc}
               alt=""
             />
           </div>

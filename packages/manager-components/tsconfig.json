@@ -17,6 +17,7 @@
     "jsx": "react-jsx"
   },
   "include": [
+    "src",
     "./src/**/*.ts",
     "./src/**/*.tsx",
     "src/components/card/card.spec.tsx"
