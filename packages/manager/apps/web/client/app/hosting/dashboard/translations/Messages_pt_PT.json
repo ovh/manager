@@ -1387,5 +1387,7 @@
   "hosting_tab_DATABASES_configuration_copy_success": "A cópia da base de dados está em curso e pode demorar cerca de dez minutos. Pode seguir o progresso no separador “Operações em curso”",
   "hosting_tab_DATABASES_configuration_copy_error": "A cópia da base de dados falhou. Erro: {{error}}",
   "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Se a base de dados de destino não estiver vazia, os dados serão substituídos.",
-  "hosting_tab_DOMAINS_configuration_add_step1_order_upgrade": "Para adicionar um domínio adicional ao seu alojamento, encomende uma oferta superior"
+  "hosting_tab_DOMAINS_configuration_add_step1_order_upgrade": "Para adicionar um domínio adicional ao seu alojamento, encomende uma oferta superior",
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer": "Não pode desselecionar a caixa abaixo com a sua oferta STARTER.",
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Passe para uma oferta de alojamento superior aqui."
 }
