@@ -158,7 +158,7 @@
   "ip_table_manage_mac": "Modifier votre adresse MAC virtuelle",
   "ip_table_manage_mitigation_DEFAULT_to_PERMANENT": "Centre de Scrubbing: mode permanent",
   "ip_table_manage_mitigation_PERMANENT_to_AUTO": "Centre de scrubbing: mode automatique",
-  "ip_table_manage_mitigation_stats": "Tableau de bord Anti-DDoS",
+  "ip_table_manage_mitigation_stats": "Network Security Dashboard",
   "ip_table_manage_firewall_enable": "Activer le Edge Network Firewall",
   "ip_table_manage_firewall_disable": "Désactiver le Edge Network Firewall",
   "ip_table_manage_firewall_disable_tooltip": "La mitigation est actuellement activée, le firewall ne peut être désactivé.",

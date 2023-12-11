@@ -131,7 +131,16 @@
                 ></p>
             </div>
         </div>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end mt-2">
+            <oui-button
+                variant="secondary"
+                icon-left="oui-icon-refresh"
+                data-on-click="$ctrl.getTraffic()"
+                data-oui-tooltip="{{:: 'network_security_dashboard_refresh' | translate }}"
+                data-oui-tooltip-placement="top"
+                class="mr-4"
+            >
+            </oui-button>
             <oui-checkbox
                 data-model="$ctrl.isStackable"
                 data-on-change="$ctrl.updateStackable(modelValue)"

@@ -100,6 +100,9 @@ export default class TrafficController {
     const after = new Date();
     const before = currentDate.toISOString();
     switch (this.period.name) {
+      case this.TRAFFIC_PERIOD_LIST.last6h:
+        after.setTime(after.getTime() - 6 * 60 * 60 * 1000);
+        break;
       case this.TRAFFIC_PERIOD_LIST.lastWeek:
         after.setDate(after.getDate() - 7);
         break;
