@@ -53,7 +53,7 @@ export const Datagrid: React.FC<Props> = ({ serviceKey, data }) => {
         {data.map((service) => (
           <tr
             className="bg-white border-2 border-solid border-ods-primary-100 background-ods-primary-000"
-            key={`datagrid-tr-${crypto.randomUUID()}`}
+            key={`datagrid-tr-${service.serviceName}`}
           >
             {tableHeaders.map((header) => (
               <td
