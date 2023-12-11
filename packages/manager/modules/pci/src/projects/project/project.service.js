@@ -1,4 +1,7 @@
-import { URL_INFO } from './project.constants';
+import {
+  URL_INFO,
+  DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
+} from './project.constants';
 
 export default class {
   /* @ngInject */
@@ -69,5 +72,16 @@ export default class {
       .execute(null, true)
       .$promise.then(({ data }) => data)
       .catch(() => []);
+  }
+
+  activateDiscoveryProject(serviceId) {
+    return this.$http.post(
+      `/services/${serviceId}/upgrade/project.2018/execute`,
+      DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
+    );
+  }
+
+  claimVoucher(projectId, data) {
+    return this.$http.post(`/cloud/project/${projectId}/credit`, data);
   }
 }
