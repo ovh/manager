@@ -14,6 +14,20 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().batchName,
       goBack: /* @ngInject */ ($state) => (reload) =>
         $state.go('^', {}, { reload }),
+      onSuccess: /* @ngInject */ ($translate, goBack, TucToast) => () =>
+        goBack(true).then(() => {
+          TucToast.success(
+            $translate.instant(
+              'sms_batches_history_delete_confirmation_message',
+            ),
+          );
+        }),
+      onFailure: /* @ngInject */ ($translate, goBack, TucToast) => () =>
+        goBack(true).then(() => {
+          TucToast.success(
+            $translate.instant('sms_batches_history_delete_error_message'),
+          );
+        }),
     },
   });
 };

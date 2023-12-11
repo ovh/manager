@@ -33,7 +33,6 @@
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.5",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^6.0.0 || ^7.0.0",
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.0.4",
-    "@ovh-ux/ng-ovh-utils": "^14.0.21",
     "@ovh-ux/ng-pagination-front": "^10.1.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.7",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",

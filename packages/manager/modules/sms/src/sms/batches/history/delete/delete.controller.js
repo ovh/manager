@@ -1,11 +1,11 @@
 export default class TelecomSmsBatchesHistoryDeleteCtrl {
   /* @ngInject */
-  constructor($http, Alerter, $translate, SmsService) {
+  constructor($http, $translate, SmsService, TucToast) {
     this.isLoading = false;
     this.$http = $http;
-    this.Alerter = Alerter;
     this.$translate = $translate;
     this.SmsService = SmsService;
+    this.TucToast = TucToast;
   }
 
   delete() {
@@ -13,20 +13,10 @@ export default class TelecomSmsBatchesHistoryDeleteCtrl {
 
     return this.SmsService.deleteBatchHistory(this.serviceName, this.batchId)
       .then(() => {
-        this.Alerter.success(
-          this.$translate.instant(
-            'sms_batches_history_delete_confirmation_message',
-          ),
-          'telecom.main.alerter',
-        );
-        this.goBack(true);
+        this.onSuccess();
       })
       .catch(() => {
-        this.Alerter.error(
-          this.$translate.instant('sms_batches_history_delete_error_message'),
-          'telecom.main.alerter',
-        );
-        this.goBack();
+        this.onFailure();
       })
       .finally(() => {
         this.isLoading = false;

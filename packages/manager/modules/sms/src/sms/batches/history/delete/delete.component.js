@@ -7,6 +7,8 @@ export default {
     batchName: '<',
     serviceName: '<',
     goBack: '<',
+    onFailure: '<',
+    onSuccess: '<',
   },
   controller,
   template,
