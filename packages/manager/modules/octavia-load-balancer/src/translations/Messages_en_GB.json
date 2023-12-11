@@ -16,5 +16,19 @@
   "octavia_load_balancer_status_degraded": "Degraded",
   "octavia_load_balancer_status_draining": "Drained",
   "octavia_load_balancer_status_error": "Error",
-  "octavia_load_balancer_delete_success": "Your Load Balancer has been deleted"
+  "octavia_load_balancer_delete_success": "Your Load Balancer has been deleted",
+  "octavia_load_balancer_operating_status": "Operation status",
+  "octavia_load_balancer_operating_status_online": "online",
+  "octavia_load_balancer_operating_status_offline": "offline",
+  "octavia_load_balancer_operating_status_degraded": "gradient",
+  "octavia_load_balancer_operating_status_draining": "gradient",
+  "octavia_load_balancer_operating_status_error": "error",
+  "octavia_load_balancer_operating_status_noMonitor": "no Health Monitor",
+  "octavia_load_balancer_provisioning_status": "Provisioning status",
+  "octavia_load_balancer_provisioning_status_active": "Active",
+  "octavia_load_balancer_provisioning_status_creating": "creating",
+  "octavia_load_balancer_provisioning_status_deleted": "deleted",
+  "octavia_load_balancer_provisioning_status_deleting": "deleting",
+  "octavia_load_balancer_provisioning_status_updating": "updating",
+  "octavia_load_balancer_provisioning_status_error": "error"
 }
