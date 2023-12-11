@@ -5,8 +5,9 @@ export default {
   bindings: {
     isTrustedZone: '<',
     projectId: '<',
-    discoveryPromotionVoucherAmount: '<',
-    goToProjectDashboard: '<',
+    serviceId: '<',
+    discoveryPromotionVoucherAmount: '@',
+    activateProject: '<',
   },
   controller,
   template,

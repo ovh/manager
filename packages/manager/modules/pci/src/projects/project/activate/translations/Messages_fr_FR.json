@@ -1,16 +1,22 @@
 {
   "pci_projects_project_activate_title": "Activer votre projet",
-  "pci_projects_project_activate_description": "La validation d'un moyen de paiement est obligatoire pour activer votre projet. Si vous choisissez de ne consommer aucune ressource Public Cloud, vous ne serez pas débité.",
+  "pci_projects_project_activate_description_1": "Vous vous apprêtez à passer de la phase de découverte au mode complet, vous permettant ainsi un accès complet aux fonctionnalités des produits PCI Cloud.",
+  "pci_projects_project_activate_description_2": "La validation d'un moyen de paiement est obligatoire pour activer votre projet. Si vous choisissez de ne consommer aucune ressource Public Cloud, vous ne serez pas débité.",
   "pci_projects_project_activate_cta": "Activer votre projet",
 
-  "pci_projects_project_pci_banner_promotion_title": "Profitez de {{ amount }} offerts",
-  "pci_projects_project_pci_banner_no_promotion_title": "Bienvenue dans l’écosystème Public Cloud",
-  "pci_projects_project_pci_banner_promotion_description_1": "Valable 1 mois pour tester nos services après l'ouverture de votre projet.",
-  "pci_projects_project_pci_banner_promotion_description_2": "Vous serez débité uniquement si vous poursuivez l'utilisation de nos produits au delà de cette somme ou cette date. De quoi démarrer sereinement.",
-  "pci_projects_project_pci_banner_no_promotion_description": "Nos services sont consommables à la demande. Vous pouvez facilement démarrer un service pour le tester quelques heures et l’éteindre dès que vous n’en avez plus besoin.",
-  "pci_projects_project_pci_banner_section_1_title": "Facturation granulaire",
-  "pci_projects_project_pci_banner_section_1_description": "La facturation des ressources se fait en fonction de votre utilisation. Si vous utilisez un produit une heure, vous ne serez facturé que de cette heure là.",
-  "pci_projects_project_pci_banner_section_2_title": "Facturation simple",
-  "pci_projects_project_pci_banner_section_2_description": "Pas de coût caché et de surprise en fin de mois. Notre grille tarifaire est construite pour être compréhensible.",
-  "pci_projects_project_pci_banner_img_alt": "Discovery Project activation page background image."
+  "pci_projects_project_activate_banner_promotion_title": "Profitez de </br> {{ amount }} offerts",
+  "pci_projects_project_activate_banner_no_promotion_title": "Bienvenue dans l’écosystème Public Cloud",
+  "pci_projects_project_activate_banner_promotion_description_1": "Valable 1 mois pour tester nos services après l'ouverture de votre projet.",
+  "pci_projects_project_activate_banner_promotion_description_2": "Vous serez débité uniquement si vous poursuivez l'utilisation de nos produits au delà de cette somme ou cette date. De quoi démarrer sereinement.",
+  "pci_projects_project_activate_banner_no_promotion_description": "Nos services sont consommables à la demande. Vous pouvez facilement démarrer un service pour le tester quelques heures et l’éteindre dès que vous n’en avez plus besoin.",
+  "pci_projects_project_activate_banner_section_1_title": "Facturation granulaire",
+  "pci_projects_project_activate_banner_section_1_description": "La facturation des ressources se fait en fonction de votre utilisation. Si vous utilisez un produit une heure, vous ne serez facturé que de cette heure là.",
+  "pci_projects_project_activate_banner_section_2_title": "Facturation simple",
+  "pci_projects_project_activate_banner_section_2_description": "Pas de coût caché et de surprise en fin de mois. Notre grille tarifaire est construite pour être compréhensible.",
+  "pci_projects_project_activate_banner_img_alt": "Discovery Project activation page background image.",
+
+  "pci_projects_project_activate_message_with_promotion_success": "Votre projet a bien été activé. Vous bénéficiez de {{ amount }} de crédit offert, valable dans l'univers Public Cloud.",
+  "pci_projects_project_activate_message_without_promotion_success": "Votre projet a bien été activé. Vous pouvez dès à présent démarrer le déploiement de vos ressources Cloud.",
+
+  "pci_projects_project_activate_message_fail": "Une erreur est survenue lors de l'activation de votre projet: {{ message }}."
 }

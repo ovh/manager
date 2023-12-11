@@ -4,6 +4,7 @@ import template from './project.html';
 export default {
   bindings: {
     projectId: '<',
+    serviceId: '<',
     quotas: '<',
     project: '<',
     projects: '<',
