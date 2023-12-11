@@ -69,15 +69,15 @@
     >
     </oui-datagrid-column>
     <oui-datagrid-column
-        data-title=":: 'octavia_load_balancer_listeners_provisioning_status' | translate"
+        data-title=":: 'octavia_load_balancer_provisioning_status' | translate"
         data-property="provisioningStatus"
         data-sortable
         data-type="options"
     >
         <span
             class="oui-badge"
-            data-ng-class="$ctrl.PROVISIONING_STATUS_BADGES[$value]"
-            data-translate="{{:: 'octavia_load_balancer_listeners_provisioning_status_' + $value }}"
+            data-ng-class="$ctrl.provisioningStatusBadges[$value]"
+            data-translate="{{:: 'octavia_load_balancer_provisioning_status_' + $value }}"
         ></span>
     </oui-datagrid-column>
     <oui-datagrid-column
@@ -87,7 +87,7 @@
     >
         <span
             class="oui-badge"
-            data-ng-class="$ctrl.OPERATING_STATUS_BADGES[$value]"
+            data-ng-class="$ctrl.operatingStatusBadges[$value]"
             data-translate="{{:: 'octavia_load_balancer_operating_status_' + $value }}"
         ></span>
     </oui-datagrid-column>

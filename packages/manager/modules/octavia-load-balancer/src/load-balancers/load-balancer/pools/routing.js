@@ -1,4 +1,4 @@
-import { DISCOVER_LINK, TRACKING_CHAPTER_1, TRACKING_NAME } from '../constants';
+import { TRACKING_CHAPTER_1, TRACKING_NAME } from '../constants';
 import { TRACKING_SUFFIX } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -40,7 +40,6 @@ export default /* @ngInject */ ($stateProvider) => {
         })),
       trackBase: () =>
         `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::${TRACKING_SUFFIX}`,
-      discoverOptionsLink: () => DISCOVER_LINK,
       goToPoolEdition: /* @ngInject */ ($state, trackAction) => (pool) => {
         trackAction('edit');
         $state.go('octavia-load-balancer.loadbalancer.pools.edit', {
