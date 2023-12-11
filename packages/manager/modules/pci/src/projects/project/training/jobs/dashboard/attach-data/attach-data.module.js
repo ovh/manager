@@ -17,10 +17,6 @@ angular
     'pascalprecht.translate',
     'oui',
     'ui.router',
-    // notebooksConfigurationCommand,
-    // addTag,
-    // deleteNotebook,
-    // stopNotebook,
   ])
   .config(routing)
   .component('ovhManagerPciProjectJobAttachData', component)

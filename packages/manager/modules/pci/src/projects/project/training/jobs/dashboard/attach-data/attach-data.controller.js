@@ -6,7 +6,6 @@ export default class JobDashboardAttachDataCtrl {
 
   $onInit() {
     this.messageContainer = 'pci.projects.project.jobs.dashboard.attach-data';
-    console.log(this.job);
     this.loadMessages();
     this.dataStoreVolumes = this.job.spec.volumes.filter(
       ({ dataStore }) => dataStore !== undefined,
