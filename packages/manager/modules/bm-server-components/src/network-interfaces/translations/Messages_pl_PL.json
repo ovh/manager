@@ -1,0 +1,14 @@
+{
+  "dedicated_server_interfaces_step_checker_text1": "Dzięki OLA możesz teraz używać obu połączeń sieciowych serwera OVHcloud.",
+  "dedicated_server_interfaces_step_checker_text2": "Powiąż interfejsy sieciowe (fizyczne karty sieciowe) z serwerem i utwórz jeden wirtualny interfejs sieciowy. Będziesz mógł następnie dodać przepustowość (wyłącznie w przypadku agregacji w ramach prywatnej sieci vRack).",
+  "dedicated_server_interfaces_step_checker_text4": "Skorzystaj z oferty specjalnej przygotowanej w związku z wprowadzeniem oferty na rynek: {{discountPrice}} zamiast {{price}} PLN / m-c przez pierwsze 3 miesiące.",
+  "dedicated_server_interfaces_step_checker_step1_text2": "Zanim skonfigurujesz opcję, upewnij się, że wszystkie sieci prywatne podłączone do interfejsów sieciowych oraz ewentualne IP Failover zostały usunięte.",
+  "dedicated_server_interfaces_step_checker_step1_button": "Wykonałem to, przechodzę dalej.",
+  "dedicated_server_interfaces_step_checker_step3_text2": "Aby sieć działała, przeprowadź ręcznie operację za pośrednictwem KVM IPMI szczegółowo opisaną w przewodniku. Bez tej czynności konfiguracja nie jest ukończona.",
+  "dedicated_server_interfaces_step_checker_step3_button": "Wykonałem to, przechodzę dalej.",
+  "dedicated_server_interfaces_step_checker_step4_text2": "Jeśli chcesz przywrócić pierwotną konfigurację, wybierz „Zmień”. Możesz również zrezygnować z opcji, ale pamiętaj, żeby przywrócić domyślną konfigurację. W przeciwnym razie Twoja sieć będzie nieaktywna.",
+  "dedicated_server_interfaces_step_checker_step4_button": "Zakończyłem",
+  "dedicated_server_interfaces_ola_alert_configuration_needed": "Aby sieć działała, przeprowadź operację za pośrednictwem KVM IPMI szczegółowo opisaną w przewodniku. Bez tej czynności konfiguracja nie jest ukończona.",
+  "dedicated_server_interfaces_rename_title": "Zmień nazwę interfejsu",
+  "dedicated_server_interfaces_vrack_operation_attach": "Dodawanie w trakcie"
+}

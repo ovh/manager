@@ -1,0 +1,186 @@
+<div>
+    <div
+        data-wizard
+        data-wizard-on-cancel="$ctrl.goBack.bind($ctrl)"
+        data-wizard-on-finish="$ctrl.addFtpBackup"
+        data-wizard-title=":: 'server_configuration_ftpbackup_add' | translate"
+        data-wizard-confirm-button-text=":: 'common_terminate' | translate"
+        data-wizard-hide-cancel-button="true"
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="!$ctrl.loading && $ctrl.access.ip && ($ctrl.access.cifs || $ctrl.access.ftp || $ctrl.access.nfs) && $ctrl.isIpBlocksLengthValid()"
+            data-wizard-step-on-load="$ctrl.load()"
+        >
+            <div class="text-center" data-ng-if="$ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!$ctrl.loading">
+                <p
+                    data-ng-bind=":: 'server_configuration_ftpbackup_add_info' | translate"
+                ></p>
+                <p
+                    data-ng-bind=":: 'server_configuration_ftpbackup_add_info3' | translate"
+                ></p>
+                <label
+                    for="ip"
+                    class="control-label"
+                    data-translate="server_configuration_ftpbackup_add_ip"
+                >
+                </label>
+                <div
+                    class="oui-field"
+                    data-ng-class="{ 'oui-field_error': !$ctrl.isIpBlocksLengthValid() }"
+                >
+                    <select
+                        class="oui-select mb-1"
+                        id="ip"
+                        name="ip"
+                        multiple
+                        data-ng-model="$ctrl.access.ip"
+                        data-ng-options="ip for ip in ::$ctrl.access.listIp"
+                    >
+                    </select>
+                    <div
+                        class="oui-field__error"
+                        data-ng-if="!$ctrl.isIpBlocksLengthValid()"
+                    >
+                        <span role="alert">
+                            <span
+                                class="oui-icon oui-icon-error"
+                                aria-hidden="true"
+                            ></span>
+                            <span
+                                data-translate="server_configuration_ftpbackup_add_ip_length_error"
+                                data-translate-values="{ 'limitCount': $ctrl.ipBlocksLimit }"
+                            ></span>
+                        </span>
+                    </div>
+                </div>
+
+                <form class="form form-inline">
+                    <div class="form-group">
+                        <p
+                            class="form-control-static"
+                            data-translate="server_configuration_ftpbackup_add_authorization"
+                        ></p>
+                    </div>
+                    <div class="checkbox px-4">
+                        <label>
+                            <input
+                                type="checkbox"
+                                data-ng-model="$ctrl.access.cifs"
+                            />
+                            <span
+                                data-translate="server_configuration_ftpbackup_table_cifs"
+                            ></span>
+                        </label>
+                    </div>
+                    <div class="checkbox px-4">
+                        <label>
+                            <input
+                                type="checkbox"
+                                data-ng-model="$ctrl.access.ftp"
+                            />
+                            <span
+                                data-translate="server_configuration_ftpbackup_table_ftp"
+                            ></span>
+                        </label>
+                    </div>
+                    <div class="checkbox px-4">
+                        <label>
+                            <input
+                                type="checkbox"
+                                data-ng-model="$ctrl.access.nfs"
+                            />
+                            <span
+                                data-translate="server_configuration_ftpbackup_table_nfs"
+                            ></span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div data-wizard-step data-wizard-step-valid="!$ctrl.loading">
+            <div class="text-center" data-ng-if="$ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!$ctrl.loading">
+                <p
+                    data-ng-bind-html="'server_configuration_ftpbackup_add_info2' | translate "
+                ></p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p
+                            data-ng-bind=":: 'server_configuration_ftpbackup_add_info1' | translate"
+                        ></p>
+                        <ul>
+                            <li
+                                data-ng-repeat="block in $ctrl.access.ip track by $index"
+                                data-ng-bind="block"
+                            ></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <p
+                            data-ng-bind-html="'server_configuration_ftpbackup_add_info4' | translate "
+                        ></p>
+                        <ul>
+                            <li>
+                                <span
+                                    data-translate="server_configuration_ftpbackup_table_cifs"
+                                ></span>
+                                :
+                                <strong
+                                    data-ng-if="$ctrl.access.cifs"
+                                    data-translate="server_configuration_ftpbackup_add_allow"
+                                >
+                                </strong>
+                                <strong
+                                    data-ng-if="!$ctrl.access.cifs"
+                                    data-translate="server_configuration_ftpbackup_add_deny"
+                                >
+                                </strong>
+                            </li>
+                            <li>
+                                <span
+                                    data-translate="server_configuration_ftpbackup_table_ftp"
+                                ></span>
+                                :
+                                <strong
+                                    data-ng-if="$ctrl.access.ftp"
+                                    data-translate="server_configuration_ftpbackup_add_allow"
+                                >
+                                </strong>
+                                <strong
+                                    data-ng-if="!$ctrl.access.ftp"
+                                    data-translate="server_configuration_ftpbackup_add_deny"
+                                >
+                                </strong>
+                            </li>
+                            <li>
+                                <span
+                                    data-translate="server_configuration_ftpbackup_table_nfs"
+                                ></span>
+                                :
+                                <strong
+                                    data-ng-if="$ctrl.access.nfs"
+                                    data-translate="server_configuration_ftpbackup_add_allow"
+                                >
+                                </strong>
+                                <strong
+                                    data-ng-if="!$ctrl.access.nfs"
+                                    data-translate="server_configuration_ftpbackup_add_deny"
+                                >
+                                </strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

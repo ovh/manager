@@ -1,0 +1,6 @@
+{
+  "server_reboot_title": "Wykonaj restart serwera",
+  "server_reboot_question": "Czy na pewno chcesz zrestartować serwer {{t0}}?",
+  "server_reboot_success": "Serwer {{t0}} zostanie zrestartowany.",
+  "server_reboot_fail": "Wystąpił błąd podczas restartu serwera."
+}
