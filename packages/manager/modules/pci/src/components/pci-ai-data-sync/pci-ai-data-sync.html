@@ -19,9 +19,12 @@
                 data-ng-model="$ctrl.currentDataSyncType"
                 required
             >
-                <option ng-repeat="type in $ctrl.dataSyncType" ng-value="type"
-                    >{{type}}</option
+                <option
+                    data-ng-repeat="type in $ctrl.dataSyncType"
+                    data-ng-value="type"
+                    data-ng-bind="type"
                 >
+                </option>
             </select>
             <span
                 class="oui-icon oui-icon-chevron-down"
