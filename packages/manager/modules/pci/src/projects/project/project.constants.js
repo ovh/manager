@@ -180,7 +180,16 @@ export const PCI_HDS_DISCOVERY_ADDON = {
 };
 
 export const LEGACY_PLAN_CODES = ['project.legacy', 'project.2018'];
+
 export const DISCOVERY_PROJECT_PLANCODE = 'project.discovery';
+
+export const DISCOVERY_PROJECT_ACTIVATION_PAYLOAD = {
+  autoPayWithPreferredPaymentMethod: true,
+  duration: 'P1M',
+  pricingMode: 'default',
+  quantity: 1,
+};
+
 export default {
   PRODUCT_IMAGES,
   ACTIONS,
@@ -194,4 +203,5 @@ export default {
   PCI_FEATURES,
   DISCOVERY_PROJECT_PLANCODE,
   DISCOVERY_PROMOTION_VOUCHER,
+  DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
 };
