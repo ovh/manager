@@ -21,5 +21,12 @@
   "cpb_vouchers_add_explain_bis": "A chaque émission de facture, le montant dû est débité de votre crédit Cloud (ci-dessous), puis successivement de votre votre compte Digital LaunchPad puis de votre compte fidélité. Le solde débiteur éventuel est enfin réglé à l'aide de votre moyen paiement enregistré (le détail concernant ces trois derniers modes de paiement est disponible dans la section \"Facturation\" de votre espace client).",
 
   "cpb_vouchers_add_success": "Le voucher a été ajouté avec succès.",
-  "cpb_vouchers_add_error": "Oups, nous n'arrivons pas a ajouter ce voucher. Veuillez réessayer."
+  "cpb_vouchers_add_error": "Oups, nous n'arrivons pas a ajouter ce voucher. Veuillez réessayer.",
+
+  "cpb_vouchers_add_credit_title": "Acheter du crédit cloud",
+  "cpb_vouchers_add_credit_info": "Choisissez la somme (hors taxes) à créditer sur ce projet. Une fois le bon de commande réglé, ce crédit sera utilisé pour les forfaits et consommations de ce projet pour les factures éditées au cours des 12 prochains mois.",
+  "cpb_vouchers_add_credit_amount": "Somme à créditer (HT {{ currency }})",
+  "cpb_vouchers_add_credit_valid": "Générer un bon de commande",
+  "cpb_vouchers_add_credit_success": "Le bon de commande pour votre crédit de {{ amount }} est disponible <a href=\"{{ url }}\" target=\"_blank\">ici</a>.",
+  "cpb_vouchers_add_credit_load_err": "Oups, une erreur est survenue lors du chargement de l’achat de crédit cloud."
 }
