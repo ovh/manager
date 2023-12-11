@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.8.0...@ovh-ux/ovh-at-internet@0.9.0) (2023-12-11)
+
+
+### Bug Fixes
+
+* **ovh-at-internet:** revert constants with prefix manager ([c972499](https://github.com/ovh/manager/commit/c972499d559be236422e74bf7ef2ddcc98926994))
+
+
+### Features
+
+* **sign-up:** siret create a corporation not created yet path  ([#10394](https://github.com/ovh/manager/issues/10394)) ([818f752](https://github.com/ovh/manager/commit/818f75212aeed0dcf2d5a3df3cadc835711d83aa))
+
+
+
+
+
 # [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.7.1...@ovh-ux/ovh-at-internet@0.8.0) (2023-12-05)
 
 

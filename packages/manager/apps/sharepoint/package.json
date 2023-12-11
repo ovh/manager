@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sharepoint-app",
-  "version": "0.8.13",
+  "version": "0.8.14",
   "private": true,
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
     "@ovh-ux/manager-core": "^12.15.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.8.1",
     "@ovh-ux/manager-sharepoint": "^2.9.3",
-    "@ovh-ux/ng-at-internet": "^5.11.1",
+    "@ovh-ux/ng-at-internet": "^5.11.2",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
     "@ovh-ux/ng-ovh-payment-method": "^9.11.1",

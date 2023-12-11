@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.13.0...@ovh-ux/manager-dedicated@19.14.0) (2023-12-11)
+
+
+### Features
+
+* **web:** dns history ([#10386](https://github.com/ovh/manager/issues/10386)) ([fde3865](https://github.com/ovh/manager/commit/fde386576225e29f1f6d9b84cf256d03c0af7cfc))
+
+
+
+
+
 # [19.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.12.3...@ovh-ux/manager-dedicated@19.13.0) (2023-12-07)
 
 
