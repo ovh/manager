@@ -18,7 +18,7 @@
   "octavia_load_balancer_operating_status_error": "erreur",
   "octavia_load_balancer_operating_status_noMonitor": "pas de Health Monitor",
   "octavia_load_balancer_provisioning_status": "Statut d'approvisionnement",
-  "octavia_load_balancer_provisioning_status_active": "Actif",
+  "octavia_load_balancer_provisioning_status_active": "actif",
   "octavia_load_balancer_provisioning_status_creating": "en cours de création",
   "octavia_load_balancer_provisioning_status_deleted": "supprimé",
   "octavia_load_balancer_provisioning_status_deleting": "en cours de suppression",
