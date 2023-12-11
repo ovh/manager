@@ -28,6 +28,10 @@ export default [
         path: 'add',
         ...lazyRouteConfig(() => import('@/pages/AddVoucherPage')),
       },
+      {
+        path: 'buy',
+        ...lazyRouteConfig(() => import('@/pages/BuyCreditPage')),
+      },
     ],
   },
   {
