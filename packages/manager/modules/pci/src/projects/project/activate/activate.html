@@ -9,55 +9,59 @@
         <div class="p-4 oui-background-p-050">
             <div>
                 <div data-ng-if="!$ctrl.discoveryPromotionVoucherAmount">
-                    <h2
+                    <h1
                         class="font-weight-bolder"
-                        data-translate="pci_projects_project_pci_banner_no_promotion_title"
-                    ></h2>
+                        data-translate="pci_projects_project_activate_banner_no_promotion_title"
+                    ></h1>
                     <p
-                        data-translate="pci_projects_project_pci_banner_no_promotion_description"
+                        data-translate="pci_projects_project_activate_banner_no_promotion_description"
                     ></p>
                 </div>
                 <div data-ng-if="$ctrl.discoveryPromotionVoucherAmount">
-                    <h2
+                    <h1
                         class="font-weight-bolder"
-                        data-translate="pci_projects_project_pci_banner_promotion_title"
+                        data-translate="pci_projects_project_activate_banner_promotion_title"
                         data-translate-values="{ amount: $ctrl.discoveryPromotionVoucherAmount }"
-                    ></h2>
+                    ></h1>
 
                     <p
-                        data-translate="pci_projects_project_pci_banner_promotion_description_1"
+                        data-translate="pci_projects_project_activate_banner_promotion_description_1"
                     ></p>
                     <p
-                        data-translate="pci_projects_project_pci_banner_promotion_description_2"
+                        data-translate="pci_projects_project_activate_banner_promotion_description_2"
                     ></p>
                 </div>
             </div>
 
             <div class="d-none d-md-block">
                 <h4
-                    data-translate="pci_projects_project_pci_banner_section_1_title"
+                    data-translate="pci_projects_project_activate_banner_section_1_title"
                 ></h4>
                 <p
-                    data-translate="pci_projects_project_pci_banner_section_1_description"
+                    data-translate="pci_projects_project_activate_banner_section_1_description"
                 ></p>
 
                 <h4
-                    data-translate="pci_projects_project_pci_banner_section_2_title"
+                    data-translate="pci_projects_project_activate_banner_section_2_title"
                 ></h4>
                 <p
-                    data-translate="pci_projects_project_pci_banner_section_2_description"
+                    data-translate="pci_projects_project_activate_banner_section_2_description"
                 ></p>
                 <img
                     class="img-fluid float-right w-100"
                     data-ng-src="{{:: $ctrl.illustration }}"
-                    alt="{{ 'pci_projects_project_pci_banner_img_alt' | translate }}"
+                    alt="{{ 'pci_projects_project_activate_banner_img_alt' | translate }}"
                     aria-hidden="true"
                 />
             </div>
         </div>
         <div class="m-4">
+            <cui-message-container
+                data-messages="$ctrl.messages"
+            ></cui-message-container>
             <h4 data-translate="pci_projects_project_activate_title"></h4>
-            <p data-translate="pci_projects_project_activate_description"></p>
+            <p data-translate="pci_projects_project_activate_description_1"></p>
+            <p data-translate="pci_projects_project_activate_description_2"></p>
             <div
                 class="h-50 w-100 d-flex align-items-center justify-content-center"
             >

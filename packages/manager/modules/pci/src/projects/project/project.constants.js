@@ -237,6 +237,14 @@ export const URL_INFO = {
 };
 
 export const DISCOVERY_PROJECT_PLANCODE = 'project.discovery';
+
+export const DISCOVERY_PROJECT_ACTIVATION_PAYLOAD = {
+  autoPayWithPreferredPaymentMethod: true,
+  duration: 'P1M',
+  pricingMode: 'default',
+  quantity: 1,
+};
+
 export default {
   PRODUCT_IMAGES,
   ACTIONS,
@@ -252,4 +260,5 @@ export default {
   URL_INFO,
   DISCOVERY_PROJECT_PLANCODE,
   DISCOVERY_PROMOTION_VOUCHER,
+  DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
 };
