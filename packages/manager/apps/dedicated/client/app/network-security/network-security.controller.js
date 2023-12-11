@@ -2,6 +2,7 @@ import isObject from 'lodash/isObject';
 import {
   ALLOWED_LANGUAGES,
   BASE_URL_SURVEY,
+  GUIDE_LINKS,
 } from './network-security.constant';
 
 export default class NetworkSecurityController {
@@ -11,6 +12,8 @@ export default class NetworkSecurityController {
     this.networkSecurityService = networkSecurityService;
     this.ALLOWED_LANGUAGES = ALLOWED_LANGUAGES;
     this.BASE_URL_SURVEY = BASE_URL_SURVEY;
+    this.guideLink =
+      GUIDE_LINKS[coreConfig.getUser().ovhSubsidiary] || GUIDE_LINKS.DEFAULT;
   }
 
   $onInit() {

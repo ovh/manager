@@ -6,8 +6,11 @@
         <oui-guide-menu
             text="{{:: 'network_security_dashboard_guides' | translate }}"
         >
-            <oui-guide-menu-item href="#" external>
-                <!-- TODO: use the correct label -->
+            <oui-guide-menu-item
+                data-ng-href="{{:: $ctrl.guideLink }}"
+                data-external="true"
+            >
+                <span data-translate="network_security_dashboard_title"></span>
             </oui-guide-menu-item>
         </oui-guide-menu>
     </oui-header>
