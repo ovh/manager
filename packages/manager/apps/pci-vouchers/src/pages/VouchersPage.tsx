@@ -9,6 +9,7 @@ export default function VouchersPage() {
     <>
       <h1>{t('cpb_project_management_credit_vouchers')}</h1>
       <Link to="./add">Add</Link>
+      <Link to="./buy">Buy</Link>
       <Notifications />
       <Outlet />
     </>
