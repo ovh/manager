@@ -61,6 +61,8 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName: projectId,
         }).$promise,
 
+      serviceId: /* @ngInject */ (service) => service?.serviceId,
+
       quotas: /* @ngInject */ (loadQuotas) => loadQuotas(),
 
       loadQuotas: /* @ngInject */ (PciProjectsService, projectId) => () =>
