@@ -178,13 +178,9 @@ export default /* @ngInject */ function EmailProDomains(
     serviceName,
     domain,
   ) {
-    return OvhHttp.get('/email/pro/{service}/domain/{domain}', {
-      rootPath: 'apiv6',
-      urlParams: {
-        service: serviceName,
-        domain,
-      },
-    });
+    return EmailPro.gettingBaseAPIPath().then((baseAPIPath) =>
+      $http.get(`/${baseAPIPath}/${serviceName}/domain/${domain}`),
+    );
   };
 
   this.getDkimSelector = function getDkimSelector(serviceName, domain) {

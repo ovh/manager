@@ -34,7 +34,7 @@ export default /* @ngInject */ (
       $stateParams.productId,
       $scope.domain.name,
     ).then(
-      (data) => {
+      ({ data }) => {
         const re = /^IN ([A-Z]*) (\d+) ([^ ]*)$/i;
         data.expectedMX.forEach((mx) => {
           const extract = mx.match(re);

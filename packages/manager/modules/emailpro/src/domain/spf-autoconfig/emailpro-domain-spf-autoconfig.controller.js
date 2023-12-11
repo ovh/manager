@@ -51,7 +51,7 @@ export default class EmailProDomainSpfAutoconfigCtrl {
       this.domain.name,
     )
       .then(
-        (data) => {
+        ({ data }) => {
           const re = /^IN ([A-Z]*) (v=spf.*all)/i;
           const extract = data.expectedSPF.match(re);
 
