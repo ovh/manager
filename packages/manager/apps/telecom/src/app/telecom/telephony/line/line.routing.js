@@ -139,6 +139,8 @@ export default /* @ngInject */ ($stateProvider) => {
       currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
         $state.href($state.current.name, $transition$.params()),
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+      featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping.checkFeatureAvailability(['telephony:mgcp-banner']),
       isMgcpBannerAvailable: /* @ngInject */ (featureAvailability) =>
         featureAvailability?.isFeatureAvailable('telephony:mgcp-banner') ||
         false,
