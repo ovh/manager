@@ -17,7 +17,7 @@ export default {
     goToNutanixNode: '<',
     goToReboot: '<',
     isOldCluster: '<',
-    getOrderPrivateBandwidthLink: '<',
+    orderPrivateBandwidthLink: '<',
   },
   controller,
   template,

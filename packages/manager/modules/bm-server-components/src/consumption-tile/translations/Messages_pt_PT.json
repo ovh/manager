@@ -1,0 +1,12 @@
+{
+  "server_consumption_label": "Consumo de largura de banda",
+  "server_consumption_order_button": "Aumentar",
+  "server_consumption_change_button": "Alterar",
+  "server_consumption_explanation": "O consumo da largura de banda do servidor é limitado. Uma vez o limite ultrapassado, a largura de banda de saída do servidor será abrandada. Para resolver esse problema, aumente o seu quota de largura de banda de saída.",
+  "server_consumption_summary_days": "{{t0}} de {{t1}} dias restantes",
+  "server_consumption_summary_hours": "{{t0}} de {{t1}} horas restantes",
+  "server_consumption_throttled": "Serviço limitado",
+  "server_consumption_current_period_label": "Utilização do período corrente (total disponível {{t0}})",
+  "server_consumption_current_period_remaining": "{{t0}} restantes",
+  "server_consumption_explanation_link": "Mais informações"
+}

@@ -1,0 +1,6 @@
+{
+  "server_reboot_title": "Redémarrer le serveur",
+  "server_reboot_question": "Êtes-vous sûr de vouloir redémarrer votre serveur {{t0}} ?",
+  "server_reboot_success": "Votre serveur {{t0}} va redémarrer.",
+  "server_reboot_fail": "Une erreur est survenue lors de la demande de redémarrage."
+}

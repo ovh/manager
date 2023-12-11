@@ -1,0 +1,12 @@
+{
+  "server_consumption_label": "Wykorzystanie przepustowości",
+  "server_consumption_order_button": "Zwiększ",
+  "server_consumption_change_button": "Zmień",
+  "server_consumption_explanation": "Zużycie przepustowości jest ograniczone. Po przekroczeniu limitu przepustowość wychodząca serwera zostanie spowolniona. Aby uniknąć tej sytuacji, zwiększ limit przepustowości wychodzącej.",
+  "server_consumption_summary_days": "Zostaje {{t0}} na {{t1}} dni",
+  "server_consumption_summary_hours": "Zostaje {{t0}} na {{t1}} godzin",
+  "server_consumption_throttled": "Ograniczona przepustowość",
+  "server_consumption_current_period_label": "Zużycie za bieżący okres (całkowita dostępność {{t0}})",
+  "server_consumption_current_period_remaining": "Pozostało {{t0}}",
+  "server_consumption_explanation_link": "Więcej informacji"
+}

@@ -1,0 +1,14 @@
+{
+  "dedicated_server_interfaces_step_checker_text1": "Il servizio OLA permette di utilizzare congiuntamente le connessioni di rete di un server OVHcloud.",
+  "dedicated_server_interfaces_step_checker_text2": "Grazie a questa tecnologia le interfacce di rete (schede di rete fisiche) del server possono essere associate per creare un’unica interfaccia di rete virtuale. Se necessario, è inoltre possibile usufruire di una banda passante aggiuntiva (solo per l’aggregazione sulla rete privata vRack).",
+  "dedicated_server_interfaces_step_checker_text4": "Approfitta dell’offerta lancio a {{ discountPrice }} invece di {{ price }} +IVA/mese per i primi tre mesi.",
+  "dedicated_server_interfaces_step_checker_step1_text2": "Prima di configurare l’opzione, assicurati di aver eliminato tutte le reti private connesse alle interfacce di rete e gli eventuali IP Failover.",
+  "dedicated_server_interfaces_step_checker_step1_button": "Già fatto, passo allo step successivo.",
+  "dedicated_server_interfaces_step_checker_step3_text2": "Per il corretto funzionamento della rete è necessario effettuare manualmente via KVM IMPMI la procedura descritta nella guida (questa operazione è necessaria per completare la configurazione).",
+  "dedicated_server_interfaces_step_checker_step3_button": "Già fatto, passo allo step successivo.",
+  "dedicated_server_interfaces_step_checker_step4_text2": "Per ritornare alle impostazioni iniziali, seleziona “Modifica”. L’opzione può essere disattivata. In questo caso, ricordati di riportare le impostazioni alla configurazione predefinita per evitare che la rete resti disabilitata.",
+  "dedicated_server_interfaces_step_checker_step4_button": "Ho finito",
+  "dedicated_server_interfaces_ola_alert_configuration_needed": "Per il corretto funzionamento della rete è necessario seguire via KVM IPMI  la procedura descritta nella guida. (questa operazione è necessaria per completare la configurazione).",
+  "dedicated_server_interfaces_rename_title": "Rinominare l’interfaccia",
+  "dedicated_server_interfaces_vrack_operation_attach": "In corso di associazione"
+}

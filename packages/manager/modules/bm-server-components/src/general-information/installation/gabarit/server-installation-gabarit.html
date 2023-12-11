@@ -1,0 +1,461 @@
+<div>
+    <div
+        data-wizard
+        data-wizard-on-cancel="$ctrl.goBack"
+        data-wizard-on-finish="$ctrl.install.bind($ctrl)"
+        data-wizard-title=":: 'server_configuration_installation_gabarit_title' | translate"
+        data-wizard-hide-cancel-button="loader.loading"
+        data-wizard-bread-crumb
+        data-wizard-keydown-disabled
+    >
+        <div
+            data-wizard-step
+            data-wizard-step-valid="!loader.loading && installation.selectGabarit && installation.selectLanguage"
+            data-wizard-step-on-load="$ctrl.load.bind($ctrl)"
+        >
+            <div class="text-center" data-ng-if="loader.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!loader.loading">
+                <p
+                    data-translate="server_configuration_installation_gabarit_step1_info"
+                    data-translate-values="{ t0: installation.server.name }"
+                ></p>
+                <div class="mb-4">
+                    <oui-collapsible
+                        data-heading="{{ itemFamily + ' (' + countFilter[itemFamily] + ')' }}"
+                        group="familyType"
+                        data-on-toggle="installation.selectFamily = itemFamily"
+                        data-ng-repeat="itemFamily in installation.familyType track by $index"
+                        data-ng-show="countFilter[itemFamily] > 0"
+                        ><div class="pt-2">
+                            <oui-radio
+                                data-ng-repeat="gabarit in $ctrl.getCountFilter(itemFamily) | orderBy:'displayName'"
+                                on-change="$ctrl.setSelectGabarit(gabarit)"
+                                model="installation.selectDistribution"
+                                value="gabarit"
+                                class="position-static"
+                            >
+                                <oui-radio-label
+                                    ><span
+                                        class="d-block"
+                                        data-ng-class="{ 'text-danger': gabarit.isDeprecated }"
+                                        data-ng-bind="gabarit.displayName"
+                                    >
+                                    </span
+                                ></oui-radio-label>
+                                <oui-radio-description>
+                                    <span
+                                        class="text-muted"
+                                        data-translate="{{ 'server_configuration_installation' + gabarit.bitFormat }}"
+                                    >
+                                    </span>
+                                    <span
+                                        class="text-warning"
+                                        data-ng-show="gabarit.isDeprecated"
+                                        data-translate="server_configuration_installation_deprecated"
+                                    >
+                                    </span>
+                                    <span
+                                        class="text-warning"
+                                        data-ng-show="constants.server.raidController && distribution.hardRaidConfiguration === false"
+                                        data-translate="server_configuration_installation_ovh_step1_hardwareRaid_os_not_supported_short"
+                                    >
+                                    </span>
+                                    <button
+                                        type="button"
+                                        class="btn btn-link ml-2"
+                                        data-ng-if="installation.deleteGabarit !== gabarit"
+                                        data-ng-click="installation.deleteGabarit = gabarit"
+                                        data-translate="common_delete"
+                                    ></button>
+                                    <i
+                                        class="pl-2 fa"
+                                        aria-hidden="true"
+                                        data-ng-class="{
+                                                    'fa-warning' : $ctrl.constructor.showEndOfLifeMessage(gabarit.endOfInstall,true),
+                                                    'fa-info-circle' : $ctrl.constructor.showEndOfLifeMessage(gabarit.endOfInstall,false),
+                                                }"
+                                        data-oui-tooltip="{{ $ctrl.getEndOfLifeMessage(gabarit) }}"
+                                        data-oui-tooltip-placement="right"
+                                    >
+                                    </i>
+                                    <span
+                                        class="text-danger"
+                                        data-ng-if="$ctrl.constructor.showEndOfLifeMessage(gabarit.endOfInstall,true)"
+                                        data-ng-bind="gabarit.endOfInstall | date:'mediumDate'"
+                                    >
+                                    </span>
+                                    <span
+                                        class="text-muted"
+                                        data-ng-if="$ctrl.constructor.showEndOfLifeMessage(gabarit.endOfInstall,false)"
+                                        data-ng-bind="gabarit.endOfInstall | date:'mediumDate'"
+                                    >
+                                    </span>
+                                </oui-radio-description>
+                            </oui-radio>
+                        </div>
+                    </oui-collapsible>
+                </div>
+
+                <oui-field
+                    data-ng-if="installation.selectGabarit && !installation.deleteGabarit"
+                    data-label="{{ 'server_configuration_installation_step1_language' | translate }}"
+                >
+                    <oui-select
+                        data-items="installation.selectGabarit.availableLanguages"
+                        data-model="installation.selectLanguage"
+                        name="selectLanguage"
+                        data-match="language"
+                    >
+                    </oui-select>
+                </oui-field>
+
+                <div data-ng-if="installation.deleteGabarit">
+                    <p
+                        class="text-danger"
+                        data-ng-bind-html="'server_configuration_installation_gabarit_step1_delete' | translate:{ t0: installation.deleteGabarit.displayName }"
+                    ></p>
+                    <div class="text-center">
+                        <button
+                            type="button"
+                            class="btn btn-default"
+                            data-ng-click="installation.deleteGabarit = null"
+                            data-translate="server_configuration_installation_gabarit_step1_delete_button_cancel"
+                        ></button>
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            data-ng-click="$ctrl.deleteGabarit()"
+                            data-translate="server_configuration_installation_gabarit_step1_delete_button_valid"
+                        ></button>
+                    </div>
+                </div>
+
+                <p
+                    class="text-danger"
+                    data-ng-if="errorGab.ws"
+                    data-ng-bind-html="errorGab.ws"
+                ></p>
+            </div>
+        </div>
+
+        <div
+            data-wizard-step
+            data-wizard-step-valid="installation.options.validForm && informations.hardwareRaidCompatible && !loader.loading && !loader.loadingForm"
+            data-wizard-step-on-load="$ctrl.loadStep2.bind($ctrl)"
+            data-wizard-step-on-previous="$ctrl.clearErrorPersonalTemplate.bind($ctrl)"
+        >
+            <div
+                class="text-center"
+                data-ng-if="loader.loading || loader.loadingForm"
+            >
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-hide="loader.loading || loader.loadingForm">
+                <p
+                    data-translate="server_configuration_installation_gabarit_step2_info"
+                ></p>
+                <ul>
+                    <li>
+                        <span
+                            data-translate="server_configuration_installation_gabarit_step2_server"
+                        ></span>
+                        <strong
+                            data-ng-bind="installation.server.name"
+                        ></strong>
+                    </li>
+                    <li>
+                        <span
+                            data-translate="server_configuration_installation_gabarit_step2_os"
+                        ></span>
+                        <strong
+                            data-ng-bind="installation.selectGabarit.displayName"
+                        ></strong>
+                    </li>
+                    <li>
+                        <span
+                            data-translate="server_configuration_installation_gabarit_step2_lang"
+                        ></span>
+                        <strong
+                            data-ng-bind="installation.selectLanguage"
+                        ></strong>
+                    </li>
+                    <li data-ng-if="informations.hardwareRaid">
+                        <span
+                            data-translate="server_configuration_installation_resume_hardwareRaid"
+                        ></span>
+                        <strong
+                            data-ng-if="informations.hardwareRaid.mode"
+                            data-ng-bind-html="'server_configuration_installation_gabarit_step2_hardwareRaid' | translate:{ t0: informations.hardwareRaid.mode, t1: informations.hardwareRaid.disks.length }"
+                        >
+                        </strong>
+                        <strong
+                            data-ng-if="informations.hardwareRaid && !informations.hardwareRaid.mode"
+                            data-translate="customized"
+                        >
+                        </strong>
+                    </li>
+                </ul>
+                <strong
+                    data-translate="server_configuration_installation_form_option"
+                ></strong>
+                <form id="optionForm" role="form" name="optionForm">
+                    <!-- saveGabarit -->
+                    <oui-checkbox
+                        data-on-change="$ctrl.nameGabaritValidator()"
+                        data-model="installation.options.saveGabarit"
+                    >
+                        <oui-checkbox-label
+                            ><span
+                                data-translate="server_configuration_installation_gabarit_step2_saveGabarit"
+                            ></span
+                        ></oui-checkbox-label>
+                    </oui-checkbox>
+
+                    <!-- gabaritNameSave -->
+                    <div
+                        class="form-group"
+                        data-ng-if="installation.options.saveGabarit"
+                        data-ng-class="{
+                             'has-error': optionForm.gabaritNameSave.$touched && optionForm.gabaritNameSave.$invalid
+                         }"
+                    >
+                        <label
+                            for="gabaritNameSave"
+                            class="control-label"
+                            data-translate="server_configuration_installation_form_gabaritNameSave"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="gabaritNameSave"
+                            name="gabaritNameSave"
+                            data-ng-model="installation.options.gabaritNameSave"
+                            data-ng-change="$ctrl.nameGabaritValidator()"
+                            data-ng-required="installation.options.saveGabarit"
+                            data-ng-trim="true"
+                        />
+                        <span
+                            class="help-block errorFormLabel"
+                            role="alert"
+                            data-ng-if="optionForm.gabaritNameSave.$invalid && optionForm.$dirty"
+                            data-translate="server_configuration_installation_form_gabaritNameSave_pattern"
+                        >
+                        </span>
+                    </div>
+
+                    <!-- customHostname -->
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                             'has-error': optionForm.customHostname.$touched && optionForm.customHostname.$invalid
+                         }"
+                    >
+                        <label
+                            for="customHostname"
+                            class="control-label"
+                            data-translate="server_configuration_installation_form_customHostname"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            name="customHostname"
+                            id="customHostname"
+                            class="form-control"
+                            data-ng-model="installation.options.customHostname"
+                            data-ng-pattern="/^[a-zA-Z0-9._-]{1,50}$/"
+                            data-ng-trim="true"
+                        />
+                        <span
+                            class="help-block errorFormLabel"
+                            role="alert"
+                            data-ng-if="optionForm.customHostname.$invalid && optionForm.$dirty"
+                            data-translate="server_configuration_installation_form_customHostname_pattern"
+                        >
+                        </span>
+                    </div>
+
+                    <!-- postInstallationScriptLink -->
+                    <div
+                        class="form-group"
+                        data-ng-class="{
+                             'has-error': optionForm.postInstallationScriptLink.$touched && optionForm.postInstallationScriptLink.$invalid
+                        }"
+                    >
+                        <label
+                            for="postInstallationScriptLink"
+                            class="control-label"
+                            data-translate="server_configuration_installation_form_postInstallationScriptLink"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            id="postInstallationScriptLink"
+                            class="form-control"
+                            name="postInstallationScriptLink"
+                            data-ng-model="installation.options.postInstallationScriptLink"
+                            data-ng-change="$ctrl.postInstallationScriptLinkValidator()"
+                            data-ng-trim="true"
+                        />
+                        <span
+                            class="icon-question-sign"
+                            data-oui-tooltip="{{:: 'server_configuration_installation_form_postInstallationScriptLink_help' | translate }}"
+                            data-oui-tooltip-placement="left"
+                        >
+                        </span>
+                        <div
+                            class="errorFormLabel"
+                            data-ng-if="optionForm.postInstallationScriptLink.$invalid && optionForm.$dirty"
+                        >
+                            <span
+                                data-ng-if="value"
+                                data-ng-repeat="(error, value) in optionForm.postInstallationScriptLink.$error"
+                            >
+                                {{
+                                ('server_configuration_installation_form_postInstallationScriptLink_'
+                                + error) | ducTranslateAlt: error }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- postInstallationScriptReturn -->
+                    <div
+                        class="form-group"
+                        data-ng-if="installation.options.postInstallationScriptLink != null && installation.options.postInstallationScriptLink != ''"
+                    >
+                        <label
+                            for="postInstallationScriptReturn"
+                            class="control-label"
+                            data-translate="server_configuration_installation_form_postInstallationScriptLinkReturn"
+                        >
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="postInstallationScriptReturn"
+                            name="postInstallationScriptReturn"
+                            data-ng-model="installation.options.postInstallationScriptReturn"
+                            data-ng-trim="true"
+                        />
+                        <span
+                            class="icon-question-sign"
+                            data-oui-tooltip="{{:: 'server_configuration_installation_form_postInstallationScriptLinkReturn_help' | translate }}"
+                            data-oui-tooltip-placement="left"
+                        >
+                        </span>
+                    </div>
+
+                    <!-- useSpla -->
+                    <oui-checkbox
+                        data-ng-if="installation.selectGabarit.family === 'WINDOWS'"
+                        data-model="installation.options.useSpla"
+                    >
+                        <oui-checkbox-label
+                            ><span
+                                data-translate="server_configuration_installation_form_useSpla"
+                            ></span
+                        ></oui-checkbox-label>
+                    </oui-checkbox>
+
+                    <!-- sshKeyName -->
+                    <div
+                        class="form-group"
+                        data-ng-if="installation.selectGabarit.family !== 'WINDOWS'"
+                    >
+                        <label
+                            for="sshKeyName"
+                            class="control-label"
+                            data-translate="server_configuration_installation_form_ssh"
+                        >
+                        </label>
+                        <div data-ng-if="!sshList.error">
+                            <select
+                                class="form-control"
+                                id="sshKeyName"
+                                name="sshKeyName"
+                                data-ng-options="sskkey for sskkey in sshList.model"
+                                data-ng-model="installation.options.sshKeyName"
+                            >
+                                <option
+                                    value=""
+                                    data-translate="server_configuration_installation_form_ssh_no"
+                                ></option>
+                            </select>
+                            <span
+                                class="icon-question-sign"
+                                data-oui-tooltip="{{:: 'server_configuration_installation_form_ssh_help' | translate }}"
+                                data-oui-tooltip-placement="left"
+                            >
+                            </span>
+                        </div>
+                        <div
+                            class="mt-1 text-danger"
+                            data-ng-if="sshList.error"
+                            data-translate="server_configuration_installation_form_ssh_fail"
+                        ></div>
+                    </div>
+
+                    <!-- nbDisk -->
+                    <p class="form-inline" data-ng-if="informations.nbDisk > 1">
+                        <label
+                            for="nbDiskUse"
+                            class="control-label"
+                            data-translate="server_configuration_installation_form_nbdisk"
+                        >
+                        </label>
+                        <span
+                            data-ng-if="installation.selectSoftRaidOnlyMirroring && installation.server.nbDisk > 2"
+                        >
+                            <i
+                                class="fa fa-info-circle"
+                                data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_type_disk_warning_windows' | translate:{ t0: installation.server.nbDisk } }}"
+                                data-oui-tooltip-placement="bottom"
+                                aria-hidden="true"
+                            >
+                            </i>
+                        </span>
+                        <select
+                            class="form-control"
+                            id="nbDiskUse"
+                            name="nbDiskUse"
+                            data-ng-options="nbdisk as nbdisk for nbdisk in $ctrl.getNbDisqueList(informations.nbDisk)"
+                            data-ng-model="installation.nbDiskUse"
+                        >
+                        </select>
+                    </p>
+
+                    <!-- selectPartitionScheme -->
+                    <p
+                        class="form-inline"
+                        data-ng-show="installation.partitionSchemesList.length > 1"
+                    >
+                        <label
+                            for="selectPartitionScheme"
+                            class="control-label"
+                            data-translate="server_configuration_installation_ovh_step3_scheme"
+                        >
+                        </label>
+                        <select
+                            class="form-control"
+                            id="selectPartitionScheme"
+                            name="selectPartitionScheme"
+                            data-ng-options="partitionScheme as partitionScheme for partitionScheme in installation.partitionSchemesList"
+                            data-ng-model="installation.selectPartitionScheme"
+                        >
+                        </select>
+                    </p>
+                </form>
+
+                <p
+                    class="text-danger"
+                    data-ng-if="errorGab.ws"
+                    data-ng-bind-html="errorGab.ws"
+                ></p>
+            </div>
+        </div>
+    </div>
+</div>

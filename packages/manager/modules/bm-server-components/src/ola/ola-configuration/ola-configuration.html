@@ -1,0 +1,215 @@
+<oui-back-button data-on-click="$ctrl.goBack()">
+    <span data-translate="dedicated_server_interfaces_ola_title"></span>
+</oui-back-button>
+
+<div data-ovh-alert></div>
+
+<p data-translate="dedicated_server_interfaces_ola_description"></p>
+
+<oui-message class="mb-3" data-type="info">
+    <p class="mb-0">
+        <span
+            data-translate="dedicated_server_interfaces_ola_alert_configuration_needed"
+        ></span>
+        <a
+            class="oui-link_icon"
+            target="_blank"
+            rel="noopener"
+            data-ng-href="{{::$ctrl.guideUrl}}"
+        >
+            <span
+                data-translate="server_ola_alert_configuration_needed_link"
+            ></span>
+            <span
+                class="oui-icon oui-icon-external-link"
+                aria-hidden="true"
+            ></span>
+            <span
+                class="sr-only"
+                data-translate="dedicated_server_interface_ola_new_tab"
+            ></span>
+        </a>
+    </p>
+</oui-message>
+
+<oui-message class="mb-3" data-type="warning">
+    <p
+        class="mb-0"
+        data-translate="dedicated_server_interfaces_ola_alert_configuration_reset"
+    ></p>
+</oui-message>
+
+<form
+    novalidate
+    name="olaConfigurationForm"
+    data-ng-if="!$ctrl.isLoading"
+    data-ng-submit="$ctrl.onFinish()"
+>
+    <oui-field
+        data-label="{{:: 'dedicated_server_interfaces_ola_field_name_label' | translate}}"
+        data-size="xl"
+    >
+        <input
+            class="oui-input"
+            name="name"
+            type="text"
+            autocomplete="off"
+            placeholder="{{:: 'dedicated_server_interfaces_ola_field_name_placeholder' | translate }}"
+            data-ng-model="$ctrl.configuration.name"
+            data-required
+        />
+    </oui-field>
+
+    <strong
+        data-translate="dedicated_server_interfaces_ola_network_interfaces"
+    ></strong>
+    <!-- Obsolete bandwidth option -->
+    <oui-message
+        class="mb-3"
+        data-ng-if="$ctrl.hasObsoleteBandwithOption()"
+        data-type="warning"
+    >
+        <p
+            class="mb-0"
+            data-translate="dedicated_server_interfaces_ola_alert_obsolete_option"
+        ></p>
+    </oui-message>
+
+    <!-- Forbidden interface -->
+    <oui-message
+        class="mb-3"
+        data-ng-if="$ctrl.notAllowedInterfaces.length"
+        data-type="warning"
+    >
+        <p
+            data-translate="dedicated_server_interfaces_ola_alert_not_allowed"
+        ></p>
+        <ul class="mb-0">
+            <li
+                data-ng-repeat="interface in $ctrl.notAllowedInterfaces track by $index"
+                data-ng-bind="interface.name"
+            ></li>
+        </ul>
+    </oui-message>
+    <oui-datagrid
+        id="olaConfigDatagrid"
+        data-ng-init="$ctrl.selectAllRows()"
+        data-rows="$ctrl.allowedInterfaces"
+        data-on-row-select="$ctrl.onRowSelect($rows)"
+        data-selectable-rows
+    >
+        <oui-datagrid-column
+            data-title=":: 'dedicated_server_interfaces_ola_column_name' | translate"
+            data-property="mac"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicated_server_interfaces_ola_column_current_type' | translate"
+            data-property="type"
+        >
+            <span
+                data-translate="{{ 'dedicated_server_interfaces_type_' + $value + '_label' }}"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicated_server_interfaces_ola_column_bandwidth_outgoing' | translate"
+        >
+            <span class="oui-icon oui-icon-arrow-up font-inherit"></span>
+            <span
+                data-ng-if="$row.isPublic()"
+                data-ng-bind="$ctrl.specifications.bandwidth.OvhToInternet | serverBandwidth"
+            >
+            </span>
+            <span
+                data-ng-if="$row.isPrivate()"
+                data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
+            >
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'dedicated_server_interfaces_ola_column_bandwidth_incoming' | translate"
+        >
+            <span class="oui-icon oui-icon-arrow-down font-inherit"></span>
+            <span
+                data-ng-if="$row.isPublic()"
+                data-ng-bind="$ctrl.specifications.connection | serverBandwidth"
+            >
+            </span>
+            <span
+                data-ng-if="$row.isPrivate()"
+                data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
+            >
+            </span>
+        </oui-datagrid-column>
+    </oui-datagrid>
+
+    <strong
+        data-translate="dedicated_server_interfaces_ola_network_interfaces_after"
+    ></strong>
+    <table data-ng-if="$ctrl.isInterfaceSelectionValid()" class="oui-table">
+        <thead class="oui-table__headers">
+            <tr>
+                <th
+                    class="oui-table__header"
+                    data-translate="dedicated_server_interfaces_ola_column_mode"
+                ></th>
+                <th
+                    class="oui-table__header"
+                    data-translate="dedicated_server_interfaces_ola_column_name"
+                ></th>
+                <th
+                    class="oui-table__header"
+                    data-translate="dedicated_server_interfaces_ola_column_bandwidth_outgoing"
+                ></th>
+                <th
+                    class="oui-table__header"
+                    data-translate="dedicated_server_interfaces_ola_column_bandwidth_incoming"
+                ></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr
+                class="oui-table__row"
+                data-ng-repeat="interface in $ctrl.selectedInterfaces track by interface.name"
+            >
+                <td
+                    class="oui-table__cell"
+                    data-ng-if="!$index"
+                    data-ng-bind="'dedicated_server_interfaces_ola_field_mode_choice_' + $ctrl.configuration.mode | translate"
+                    rowspan="{{ $ctrl.selectedInterfaces.length }}"
+                ></td>
+                <td class="oui-table__cell" data-ng-bind="interface.mac"></td>
+                <td class="oui-table__cell">
+                    <span
+                        class="oui-icon oui-icon-arrow-up font-inherit"
+                    ></span>
+                    <span
+                        data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
+                    ></span>
+                </td>
+                <td class="oui-table__cell">
+                    <span
+                        class="oui-icon oui-icon-arrow-down font-inherit"
+                    ></span>
+                    <span
+                        data-ng-bind="$ctrl.specifications.vrack.bandwidth | serverBandwidth"
+                    ></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <oui-button data-size="l" data-on-click="$ctrl.cancel()">
+        <span data-translate="common_cancel"></span>
+    </oui-button>
+    <oui-button
+        data-type="submit"
+        data-variant="primary"
+        data-disabled="olaConfigurationForm.$invalid || !$ctrl.isInterfaceSelectionValid()"
+        data-size="l"
+    >
+        <span data-translate="common_confirm"></span>
+    </oui-button>
+</form>
+<div class="text-center" data-ng-if="$ctrl.isLoading">
+    <oui-spinner data-size="l"> </oui-spinner>
+</div>
