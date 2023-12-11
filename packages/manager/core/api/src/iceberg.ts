@@ -1,24 +1,33 @@
 import { Filter, FilterComparator } from './filters';
 import apiClient from './client';
 
-export type IcebergOptions = {
-  page?: number;
+export type IcebergCommonOptions = {
+  route: string;
   pageSize?: number;
   search?: {
     key: string;
     value: string;
   };
+};
+
+export type IcebergFetchParamsV6 = {
+  page?: number;
   filters?: Filter[];
   sortBy?: string;
   sortReverse?: boolean;
-  apiVersion?: keyof typeof apiClient;
-};
+} & IcebergCommonOptions;
 
-export type IcebergFetchParams = { route: string } & IcebergOptions;
+export type IcebergFetchParamsV2 = { cursor?: string } & IcebergCommonOptions;
 
-export type IcebergFetchResult<T> = {
+export type IcebergFetchResultV6<T> = {
   data: T[];
   totalCount: number;
+  status: number;
+};
+
+export type IcebergFetchResultV2<T> = {
+  data: T[];
+  cursorNext: string;
   status: number;
 };
 
@@ -55,20 +64,37 @@ function icebergFilter(comparator: FilterComparator, value: string | string[]) {
   }
 }
 
-export async function fetchIceberg<T>({
+export async function fetchIcebergV2<T>({
+  route,
+  pageSize,
+  cursor,
+}: IcebergFetchParamsV2): Promise<IcebergFetchResultV2<T>> {
+  const requestHeaders: Record<string, string> = {
+    'X-Pagination-Size': `${encodeURIComponent(pageSize || 5000)}`,
+    ...(cursor ? { 'X-Pagination-Cursor': `${cursor}` } : {}),
+  };
+
+  const { data, headers, status } = await apiClient.v2.get(route, {
+    headers: requestHeaders,
+  });
+
+  return { data, cursorNext: headers['x-pagination-cursor-next'], status };
+}
+
+export async function fetchIcebergV6<T>({
   route,
   page,
   pageSize,
   filters,
   sortBy,
   sortReverse,
-  apiVersion = 'v6',
-}: IcebergFetchParams): Promise<IcebergFetchResult<T>> {
+}: IcebergFetchParamsV6): Promise<IcebergFetchResultV6<T>> {
   const requestHeaders: Record<string, string> = {
     'x-pagination-mode': 'CachedObjectList-Pages',
     'x-pagination-number': `${encodeURIComponent(page || 1)}`,
     'x-pagination-size': `${encodeURIComponent(pageSize || 5000)}`,
   };
+
   if (sortBy) {
     requestHeaders['x-pagination-sort'] = encodeURIComponent(sortBy);
     requestHeaders['x-pagination-sort-order'] = sortReverse ? 'DESC' : 'ASC';
@@ -81,11 +107,10 @@ export async function fetchIceberg<T>({
       )
       .join('&');
   }
-  const { data, headers, status } = await apiClient[apiVersion].get(route, {
+  const { data, headers, status } = await apiClient.v6.get(route, {
     headers: requestHeaders,
   });
   const totalCount = parseInt(headers['x-pagination-elements'], 10) || 0;
+
   return { data, totalCount, status };
 }
-
-export default fetchIceberg;
