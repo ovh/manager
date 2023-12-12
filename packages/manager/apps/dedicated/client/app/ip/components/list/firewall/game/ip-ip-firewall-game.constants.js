@@ -66,9 +66,12 @@ export const GAME_GUIDE_LINKS = {
     'https://help.ovhcloud.com/csm/en-dedicated-servers-game-ddos-firewall?id=kb_article_view&sysparm_article=KB0060680',
 };
 
+export const GAME_TRACKING_PREFIX = 'dedicated::ip::game-firewall';
+
 export default {
   IP_MITIGATION_RULE_PROTOCOL_PORT,
   ALLOWED_LANGUAGES,
   BASE_URL_SURVEY,
   GAME_GUIDE_LINKS,
+  GAME_TRACKING_PREFIX,
 };

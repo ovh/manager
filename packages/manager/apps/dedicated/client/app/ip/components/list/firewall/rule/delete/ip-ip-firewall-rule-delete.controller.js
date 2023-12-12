@@ -9,12 +9,12 @@ export default /* @ngInject */ (
 ) => {
   $scope.data = $scope.currentActionData;
   atInternet.trackClick({
-    name: $scope.data?.tracking,
+    name: $scope.data?.tracking ? $scope.data?.tracking : null,
     type: 'action',
   });
   $scope.removeRule = function removeRule() {
     atInternet.trackClick({
-      name: `${$scope.data?.tracking}::confirm`,
+      name: $scope.data?.tracking ? `${$scope.data?.tracking}-confirm` : null,
       type: 'action',
     });
     $scope.loading = true;
@@ -40,7 +40,7 @@ export default /* @ngInject */ (
   };
   $scope.cancelAction = function cancelAction() {
     atInternet.trackClick({
-      name: `${$scope.data?.tracking}::cancel`,
+      name: $scope.data?.tracking ? `${$scope.data?.tracking}-cancel` : null,
       type: 'action',
     });
     $scope.resetAction();

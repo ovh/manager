@@ -9,6 +9,7 @@ import {
   ALLOWED_LANGUAGES,
   BASE_URL_SURVEY,
   FIREWALL_GUIDE_LINKS,
+  EDGE_TRACKING_PREFIX,
 } from './firewall.constant';
 import { TRACKING_PREFIX } from '../list.constant';
 
@@ -158,9 +159,13 @@ export default /* @ngInject */ function IpFirewallCtrl(
       $scope.$broadcast('paginationServerSide.loadPage', 1, 'rulesTable');
     }, 99);
     self.tracking = {
-      'ip-firewall-add-rule': `${TRACKING_PREFIX}::ip::firewall::add-rule`,
-      'ip-firewall-delete-rule': `${TRACKING_PREFIX}::ip::firewall::delete-rule`,
-      'update-firewall-status': `${TRACKING_PREFIX}::ip::firewall::update-firewall-status`,
+      'ip-firewall-add-deny-rule': `${EDGE_TRACKING_PREFIX}::add-deny-rule`,
+      'ip-firewall-add-rule': `${EDGE_TRACKING_PREFIX}::add-rule`,
+      'ip-firewall-add-rule-confirm': `${EDGE_TRACKING_PREFIX}::add-rule-confirm`,
+      'ip-firewall-add-rule-cancel': `${EDGE_TRACKING_PREFIX}::add-rule-cancel`,
+      'ip-firewall-delete-rule': `${EDGE_TRACKING_PREFIX}::delete-rule`,
+      'ip-firewall-enable': `${EDGE_TRACKING_PREFIX}::enable`,
+      'ip-firewall-disable': `${EDGE_TRACKING_PREFIX}::disable`,
     };
     loadConstants();
     loadRules(self.FIREWALL_MAX_RULES, 0);
@@ -376,6 +381,11 @@ export default /* @ngInject */ function IpFirewallCtrl(
   }
 
   self.addRuleClick = () => {
+    atInternet.trackClick({
+      name: self.tracking['ip-firewall-add-rule'],
+      type: 'action',
+    });
+
     self.isAddingRule = true;
 
     // Initialize first available sequence value
@@ -397,6 +407,11 @@ export default /* @ngInject */ function IpFirewallCtrl(
   };
 
   self.cancel = () => {
+    atInternet.trackClick({
+      name: self.tracking['ip-firewall-add-rule-cancel'],
+      type: 'action',
+    });
+
     self.isAddingRule = false;
     resetFields();
   };
@@ -484,7 +499,7 @@ export default /* @ngInject */ function IpFirewallCtrl(
     }
 
     atInternet.trackClick({
-      name: self.tracking['ip-firewall-add-rule'],
+      name: self.tracking['ip-firewall-add-rule-confirm'],
       type: 'action',
     });
 
@@ -520,6 +535,11 @@ export default /* @ngInject */ function IpFirewallCtrl(
   };
 
   self.createDenyRule = () => {
+    atInternet.trackClick({
+      name: self.tracking['ip-firewall-add-deny-rule'],
+      type: 'action',
+    });
+
     self.rulesLoading = true;
 
     // Initialize action value

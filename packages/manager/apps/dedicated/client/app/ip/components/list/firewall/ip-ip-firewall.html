@@ -100,7 +100,7 @@
             <oui-switch
                 data-model="IpFirewallCtrl.firewallToggle.status"
                 data-name="firewallStatus"
-                data-on-change="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', {ipBlock: IpFirewallCtrl.ipBlock, ip: IpFirewallCtrl.firewallToggle, tracking: IpFirewallCtrl.tracking['update-firewall-status']})"
+                data-on-change="setAction('ip/firewall/toggle/ip-ip-firewall-toggle', {ipBlock: IpFirewallCtrl.ipBlock, ip: IpFirewallCtrl.firewallToggle, tracking: IpFirewallCtrl.firewallToggle === 'ACTIVATED' ? IpFirewallCtrl.tracking['ip-firewall-disable'] : ip-firewall-enable})"
             ></oui-switch>
         </div>
     </div>

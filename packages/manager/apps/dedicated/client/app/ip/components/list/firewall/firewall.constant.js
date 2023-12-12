@@ -54,4 +54,11 @@ export const FIREWALL_GUIDE_LINKS = {
     'https://help.ovhcloud.com/csm/en-dedicated-servers-firewall-network?id=kb_article_view&sysparm_article=KB0043448',
 };
 
-export default { ALLOWED_LANGUAGES, BASE_URL_SURVEY, FIREWALL_GUIDE_LINKS };
+export const EDGE_TRACKING_PREFIX = 'dedicated::ip::firewall';
+
+export default {
+  ALLOWED_LANGUAGES,
+  BASE_URL_SURVEY,
+  FIREWALL_GUIDE_LINKS,
+  EDGE_TRACKING_PREFIX,
+};

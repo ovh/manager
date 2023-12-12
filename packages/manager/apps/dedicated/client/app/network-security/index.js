@@ -2,10 +2,11 @@ import angular from 'angular';
 
 import 'oclazyload';
 import '@uirouter/angularjs';
+import ngAtInternet from '@ovh-ux/ng-at-internet';
 
 const moduleName = 'ovhNetworkSecurityLazyLoading';
 
-angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
+angular.module(moduleName, ['ui.router', 'oc.lazyLoad', ngAtInternet]).config(
   /* @ngInject */ ($stateProvider) => {
     $stateProvider.state('network-security.**', {
       url: '/network-security',

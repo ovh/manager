@@ -8,6 +8,7 @@ import {
   ALLOWED_LANGUAGES,
   BASE_URL_SURVEY,
   GAME_GUIDE_LINKS,
+  GAME_TRACKING_PREFIX,
 } from './ip-ip-firewall-game.constants';
 
 export default /* @ngInject */ function IpGameFirewallCtrl(
@@ -22,6 +23,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   Alerter,
   $q,
   coreConfig,
+  atInternet,
 ) {
   const self = this;
   const alert = 'ip_game_firewall_alert';
@@ -215,6 +217,14 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   function init(params) {
     self.surveyUrl = initializeUrlSurvey();
 
+    self.tracking = {
+      'game-firewall-add-rule': `${GAME_TRACKING_PREFIX}::add-rule`,
+      'game-firewall-add-rule-confirm': `${GAME_TRACKING_PREFIX}::add-rule-confirm`,
+      'game-firewall-add-rule-cancel': `${GAME_TRACKING_PREFIX}::add-rule-cancel`,
+      'game-firewall-delete-rule': `${GAME_TRACKING_PREFIX}::delete-rule`,
+      'apply-default-policy': `${GAME_TRACKING_PREFIX}::default-policy-drop`,
+    };
+
     if (params) {
       self.datas.selectedBlock = params.ipBlock.ipBlock;
       self.datas.selectedIp = params.ip.ip;
@@ -337,6 +347,11 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   };
 
   self.addRuleClick = () => {
+    atInternet.trackClick({
+      name: self.tracking['game-firewall-add-rule'],
+      type: 'action',
+    });
+
     self.loading = true;
 
     // Reset fields
@@ -376,6 +391,11 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   };
 
   self.addGameFirewallRule = function addGameFirewallRule() {
+    atInternet.trackClick({
+      name: self.tracking['game-firewall-add-rule-confirm'],
+      type: 'action',
+    });
+
     self.loading = true;
 
     if (!self.rule.ports.to) {
@@ -425,6 +445,11 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   };
 
   self.cancel = function cancel() {
+    atInternet.trackClick({
+      name: self.tracking['game-firewall-add-rule-cancel'],
+      type: 'action',
+    });
+
     self.displayAddRuleLine = false;
   };
 

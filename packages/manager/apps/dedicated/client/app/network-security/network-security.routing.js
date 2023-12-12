@@ -9,10 +9,18 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('network_security_title'),
       goTo: /* @ngInject */ ($state) => ({ name, params }) =>
         $state.go(name, params),
-      goToScrubbingCenter: /* @ngInject */ ($state) => () =>
-        $state.go('network-security.scrubbing-center'),
-      goToTraffic: /* @ngInject */ ($state) => () =>
-        $state.go('network-security.traffic'),
+      goToScrubbingCenter: /* @ngInject */ ($state, atInternet) => () => {
+        atInternet.trackPage({
+          name: 'network-security::scrubbing-center',
+        });
+        return $state.go('network-security.scrubbing-center');
+      },
+      goToTraffic: /* @ngInject */ ($state, atInternet) => () => {
+        atInternet.trackPage({
+          name: 'network-security::traffic',
+        });
+        return $state.go('network-security.traffic');
+      },
       isScrubbingCenterActive: /* @ngInject */ ($state) => () =>
         $state.includes('network-security.scrubbing-center'),
       isTrafficActive: /* @ngInject */ ($state) => () =>
