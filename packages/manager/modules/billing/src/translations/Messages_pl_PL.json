@@ -915,6 +915,6 @@
   "billing_guides_header_purchase_order_guides": "Pojęcie numeru zamówienia lub „purchase order” (PO)",
   "billing_guides_header_managing_bills_guides": "Zarządzaj fakturami OVHcloud",
   "billing_guides_header_automatic_renewal_guides": "Zarządzaj odnowieniami usług",
-  "fidelity_creditOrder_submit_error": "Wystąpił błąd podczas przyznawania punktów.",
+  "fidelity_creditOrder_submit_error": "Wystąpił błąd podczas naliczania punktów.",
   "fidelity_creditOrder_submit_success": "Zasilenie w kwocie <strong> {{t0}} punktów</strong> zostało wygenerowane. Możesz złożyć zamówienie w zakładce <a href=\"#/billing/orders\">Moje zamówienia</a>"
 }
