@@ -766,5 +766,6 @@
   "signup_information_banner_for_indian_subsidiary": "Aby zmienić dane przypisane do konta klienta, skontaktuj się z naszym działem wsparcia, ",
   "signup_information_banner_link_for_indian_subsidiary": "klikając tutaj.",
   "signup_field_iceNumber": "Numer ICE",
-  "signup_field_purposeOfPurchase": "Przyczyna zakupu"
+  "signup_field_purposeOfPurchase": "Przyczyna zakupu",
+  "new_account_content_check_validation": "Prosimy o sprawdzenie podanych informacji (numer VAT, numer telefonu, data urodzenia, etc.) w celu zatwierdzenia formularza."
 }
