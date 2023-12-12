@@ -626,7 +626,6 @@ export default async (containerEl, shellClient) => {
         }
       },
     )
-    .run(($trace) => $trace.enable())
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, () => {
