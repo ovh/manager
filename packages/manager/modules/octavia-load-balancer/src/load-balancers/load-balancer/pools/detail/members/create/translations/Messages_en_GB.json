@@ -1,5 +1,5 @@
 {
-  "octavia_load_balancer_pools_detail_members_create_title": "Manually add",
+  "octavia_load_balancer_pools_detail_members_create_title": "Add Manually",
   "octavia_load_balancer_pools_detail_members_create_description": "Manually add a member if it is not found in the table of available instances.",
   "octavia_load_balancer_pools_detail_members_create_cancel": "Cancel",
   "octavia_load_balancer_pools_detail_members_create_confirm": "Add",
