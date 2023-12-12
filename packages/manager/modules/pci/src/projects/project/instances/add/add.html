@@ -25,6 +25,8 @@
             data-exclude-categories="$ctrl.excludeCategories"
             data-on-change="$ctrl.onFlavorCategorySelect(flavor, category)"
             data-catalog-endpoint="$ctrl.catalogEndpoint"
+            data-has-gridscale-localzone-region="$ctrl.hasGridscaleLocalzoneRegion"
+            data-customer-regions="$ctrl.customerRegions"
         >
         </pci-project-flavors-list>
     </oui-step-form>
@@ -54,12 +56,11 @@
                     data-heading="{{:: continent }}"
                 >
                     <div class="container-fluid px-0">
-                        <p>Global regions ... Oles ipsum...</p>
                         <div class="row">
                             <oui-select-picker
                                 class="d-inline-block col-md-6 col-xl-3 my-3"
                                 data-ng-repeat="(location, datacenters) in datacentersLocation track by location"
-                                data-ng-if="datacenters.length && location !== 'Madrid'"
+                                data-ng-if="datacenters.length"
                                 data-label="{{ location }}"
                                 data-variant="light"
                                 data-picture="{{ ::datacenters[0].icon }}"
@@ -68,24 +69,19 @@
                                 data-match="name"
                                 data-values="datacenters"
                             >
-                            </oui-select-picker>
-                        </div>
-                        <hr />
-                        <!-- @TODO: GS -->
-                        <p>Local regions ... Oles ipsum</p>
-                        <div class="row">
-                            <oui-select-picker
-                                class="d-inline-block col-md-6 col-xl-3 my-3"
-                                data-ng-repeat="(location, datacenters) in datacentersLocation track by location"
-                                data-ng-if="datacenters.length && location === 'Madrid'"
-                                data-label="{{ location }}"
-                                data-variant="light"
-                                data-picture="{{ ::datacenters[0].icon }}"
-                                data-model="$ctrl.model.datacenter"
-                                data-on-change="$ctrl.model.location = location"
-                                data-match="name"
-                                data-values="datacenters"
-                            >
+                                <oui-select-picker-section>
+                                    <span
+                                        data-ng-if="datacenters[0].type === $ctrl.LOCAL_ZONE_REGION"
+                                        data-translate="pci_project_flavors_zone_localzone"
+                                        class="oui-badge oui-badge_promotion"
+                                    ></span>
+
+                                    <span
+                                        data-ng-if="datacenters[0].type !== $ctrl.LOCAL_ZONE_REGION"
+                                        data-translate="pci_project_flavors_zone_global_region"
+                                        class="oui-badge oui-badge_new"
+                                    ></span>
+                                </oui-select-picker-section>
                             </oui-select-picker>
                         </div>
                         <oui-checkbox
@@ -110,6 +106,19 @@
                                     data-match="name"
                                     data-values="datacenters"
                                 >
+                                    <oui-select-picker-section>
+                                        <span
+                                            data-ng-if="datacenters[0].type === $ctrl.LOCAL_ZONE_REGION"
+                                            data-translate="pci_project_flavors_zone_localzone"
+                                            class="oui-badge oui-badge_promotion"
+                                        ></span>
+
+                                        <span
+                                            data-ng-if="datacenters[0].type !== $ctrl.LOCAL_ZONE_REGION"
+                                            data-translate="pci_project_flavors_zone_global_region"
+                                            class="oui-badge oui-badge_new"
+                                        ></span>
+                                    </oui-select-picker-section>
                                 </oui-select-picker>
                             </div>
                             <div
@@ -217,6 +226,7 @@
     <oui-step-form
         data-header="{{ :: 'pci_projects_project_instances_add_instance_title' | translate }}"
         data-on-focus="$ctrl.onInstanceFocus()"
+        data-on-submit="$ctrl.loadPrivateNetwork()"
         data-editable="!$ctrl.isLoading"
         data-valid="$ctrl.automatedBackup.selected ? $ctrl.automatedBackup.schedule : true"
         name="instances_add_configuration"
@@ -324,7 +334,6 @@
         </div>
 
         <div
-            data-ng-show="false"
             data-ng-if="$ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($ctrl.flavor.type)"
         >
             <oui-checkbox
@@ -391,7 +400,7 @@
         ></p>
         <div class="row mb-3">
             <oui-select-picker
-                data-ng-if="!$ctrl.loading"
+                data-ng-if="!$ctrl.loading && $ctrl.displayNetwork(mode.name, $ctrl.model.datacenter.type)"
                 class="col-md-6 col-xl-4 my-3"
                 data-ng-repeat="mode in $ctrl.modes track by $index"
                 data-name="{{:: mode.name }}"
@@ -401,7 +410,7 @@
                 data-variant="light"
                 data-on-change="$ctrl.onSelectedModeChange(mode)"
                 data-required
-                data-disabled="mode.disabled"
+                data-disabled="$ctrl.disableNetwork && (mode.name === 'private_mode' || mode.name === 'public_mode')"
             >
                 <oui-select-picker-section>
                     <p data-translate="{{:: mode.description1}}"></p>
@@ -409,30 +418,56 @@
                 </oui-select-picker-section>
             </oui-select-picker>
         </div>
-        <div data-ng-show="false">
+        <div>
             <oui-field
                 data-size="xl"
                 class="oui-input-group"
                 data-label="{{ :: 'pci_projects_project_instances_add_privateNetwork_label' | translate }}"
             >
-                <oui-select
-                    data-name="privateNetwork"
-                    data-model="$ctrl.selectedPrivateNetwork"
-                    data-items="$ctrl.availablePrivateNetworks"
-                    data-match="name"
-                    data-on-change="$ctrl.onPrivateNetworkChange(modelValue)"
+                <div
+                    data-ng-if="$ctrl.model.datacenter.type !== $ctrl.LOCAL_ZONE_REGION"
                 >
-                </oui-select>
-                <p data-ng-if="$ctrl.currentStep < 5">
-                    <span
-                        data-translate="pci_projects_project_instances_add_privateNetwork_description"
-                    ></span>
-                    <a
-                        data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
-                        data-translate="pci_projects_project_instances_add_privateNetwork_add"
-                        target="_top"
-                    ></a>
-                </p>
+                    <oui-select
+                        data-name="privateNetwork"
+                        data-model="$ctrl.selectedPrivateNetwork"
+                        data-items="$ctrl.availablePrivateNetworks"
+                        data-match="name"
+                        data-on-change="$ctrl.onPrivateNetworkChange(modelValue)"
+                    >
+                    </oui-select>
+                    <p data-ng-if="$ctrl.currentStep < 5">
+                        <span
+                            data-translate="pci_projects_project_instances_add_privateNetwork_description"
+                        ></span>
+                        <a
+                            data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
+                            data-translate="pci_projects_project_instances_add_privateNetwork_add"
+                            target="_top"
+                        ></a>
+                    </p>
+                </div>
+                <div
+                    data-ng-if="$ctrl.model.datacenter.type === $ctrl.LOCAL_ZONE_REGION"
+                >
+                    <oui-select
+                        data-name="localPrivateNetwork"
+                        data-model="$ctrl.selectedLocalPrivateNetwork"
+                        data-items="$ctrl.availableLocalPrivateNetworks"
+                        data-match="name"
+                        data-on-change="$ctrl.onPrivateNetworkChange(modelValue)"
+                    >
+                    </oui-select>
+                    <p data-ng-if="$ctrl.currentStep < 5">
+                        <span
+                            data-translate="pci_projects_project_instances_add_localPrivateNetwork_description"
+                        ></span>
+                        <a
+                            data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
+                            data-translate="pci_projects_project_instances_add_localPrivateNetwork_add"
+                            target="_top"
+                        ></a>
+                    </p>
+                </div>
             </oui-field>
         </div>
         <oui-spinner

@@ -13,7 +13,13 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectsProjectInstanceService,
         projectId,
         instanceId,
-      ) => PciProjectsProjectInstanceService.get(projectId, instanceId),
+        customerRegions,
+      ) =>
+        PciProjectsProjectInstanceService.get(
+          projectId,
+          instanceId,
+          customerRegions,
+        ),
 
       instancePrice: /* @ngInject */ (
         PciProjectsProjectInstanceService,

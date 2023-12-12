@@ -26,6 +26,7 @@ import {
   FLAVORS_BAREMETAL,
   PUBLIC_NETWORK,
   PUBLIC_NETWORK_BAREMETAL,
+  LOCAL_ZONE_REGION,
 } from './add.constants';
 
 export default class PciInstancesAddController {
@@ -63,6 +64,7 @@ export default class PciInstancesAddController {
     this.currency = coreConfig.getUser().currency.symbol;
     this.PciProjectAdditionalIpService = PciProjectAdditionalIpService;
     this.FLOATING_IP_AVAILABILITY_INFO_LINK = FLOATING_IP_AVAILABILITY_INFO_LINK;
+    this.LOCAL_ZONE_REGION = LOCAL_ZONE_REGION;
   }
 
   $onInit() {
@@ -78,6 +80,7 @@ export default class PciInstancesAddController {
 
     this.quota = null;
     this.flavor = null;
+    this.disableNetwork = false;
 
     this.loadMessages();
 
@@ -113,6 +116,7 @@ export default class PciInstancesAddController {
       this.addInstancesSuccessMessage ||
       'pci_projects_project_instances_add_success_multiple_message';
 
+    this.availableLocalPrivateNetworks = [this.defaultPrivateNetwork];
     this.modes = this.instanceModeEnum.map(({ mode }) => {
       return {
         name: mode,
@@ -125,18 +129,9 @@ export default class PciInstancesAddController {
         description2: this.$translate.instant(
           `pci_projects_project_instances_add_privateNetwork_${mode}_description2`,
         ),
-        disabled: mode === 'private_mode',
       };
     });
 
-    // @TODO: GS Mock to remove
-    this.modes.push({
-      name: 'Local private network',
-      label: 'Local private network',
-      description1: 'Oles ipsum...',
-      description2: 'Oles ipsum...',
-      disabled: false,
-    });
     this.selectedFloatingIP = null;
     this.loadMessages();
     [this.selectedMode] = this.modes;
@@ -173,11 +168,7 @@ export default class PciInstancesAddController {
     this.availableRegions = {};
     this.unavailableRegions = {};
 
-    const planCode = `${
-      this.model.flavorGroup.name === 'lz2-7'
-        ? 'b2-7'
-        : this.model.flavorGroup.name
-    }.consumption`;
+    const planCode = `${this.model.flavorGroup.name}.consumption`;
 
     return this.PciProjectsProjectInstanceService.getProductAvailability(
       this.projectId,
@@ -212,126 +203,6 @@ export default class PciInstancesAddController {
           });
         });
       });
-
-      // @TODO: GS mock to remove
-      this.availableRegions['All locations'].Madrid = [
-        {
-          name: 'GRA11',
-          continentCode: 'EU',
-          datacenterLocation: 'FR',
-          status: 'UP',
-          isLZ: true,
-          services: [
-            {
-              name: 'network',
-              status: 'UP',
-              endpoint: 'https://network.compute.de1.cloud.ovh.net/',
-            },
-            {
-              name: 'volume',
-              status: 'UP',
-              endpoint:
-                'https://volume.compute.de1.cloud.ovh.net/v2/5a6980507c0a40dca362eb9b22d79044',
-            },
-            {
-              name: 'instance',
-              status: 'UP',
-              endpoint:
-                'https://compute.de1.cloud.ovh.net/v2.1/5a6980507c0a40dca362eb9b22d79044',
-            },
-            {
-              name: 'key-manager',
-              status: 'UP',
-              endpoint: 'https://key-manager.de.cloud.ovh.net',
-            },
-            {
-              name: 'octavialoadbalancer',
-              status: 'UP',
-              endpoint: 'https://load-balancer.de1.cloud.ovh.net',
-            },
-            {
-              name: 'workflow',
-              status: 'UP',
-              endpoint: 'https://workflow.de1.cloud.ovh.net/v2',
-            },
-            {
-              name: 'image',
-              status: 'UP',
-              endpoint: 'https://image.compute.de1.cloud.ovh.net/',
-            },
-          ],
-          ipCountries: [
-            'be',
-            'cz',
-            'de',
-            'es',
-            'fi',
-            'fr',
-            'ie',
-            'it',
-            'lt',
-            'nl',
-            'pl',
-            'pt',
-            'uk',
-          ],
-          quota: {
-            region: 'ES1',
-            instance: {
-              maxCores: 2048,
-              maxInstances: 800,
-              maxRam: 16252928,
-              usedCores: 2,
-              usedInstances: 1,
-              usedRAM: 7000,
-            },
-            keypair: {
-              maxCount: 4000,
-            },
-            volume: {
-              maxGigabytes: 320000,
-              usedGigabytes: 0,
-              volumeCount: 0,
-              maxVolumeCount: 8000,
-              maxBackupGigabytes: 4800000,
-              usedBackupGigabytes: 0,
-              volumeBackupCount: 0,
-              maxVolumeBackupCount: 48000,
-            },
-            network: {
-              maxNetworks: 4000,
-              usedNetworks: 3,
-              maxSubnets: 4000,
-              usedSubnets: 3,
-              maxFloatingIPs: 50,
-              usedFloatingIPs: 8,
-              maxGateways: 50,
-              usedGateways: 1,
-            },
-            loadbalancer: {
-              maxLoadbalancers: 100,
-              usedLoadbalancers: 4,
-            },
-            keymanager: {
-              maxSecrets: 400,
-              usedSecrets: 0,
-            },
-          },
-          macroRegion: {
-            code: 'ES',
-            text: 'Madrid',
-          },
-          microRegion: {
-            code: 'ES1',
-            text: 'Madrid (ES1)',
-          },
-          location: "Europe de l'ouest (Espagne)",
-          continent: "Europe de l'ouest",
-          icon: 'oui-flag oui-flag_es',
-          country: 'Espagne',
-          available: true,
-        },
-      ];
     });
   }
 
@@ -526,6 +397,8 @@ export default class PciInstancesAddController {
 
   onInstanceFocus() {
     if (!isEmpty(this.model.datacenter)) {
+      this.disableNetwork =
+        this.model.datacenter.type === this.LOCAL_ZONE_REGION;
       this.quota = new Quota(this.model.datacenter.quota.instance);
       this.generateInstanceName();
       if (
@@ -541,6 +414,21 @@ export default class PciInstancesAddController {
       }
     }
     return this.$q.when();
+  }
+
+  loadPrivateNetwork() {
+    if (this.model.datacenter.type === this.LOCAL_ZONE_REGION) {
+      this.PciProjectsProjectInstanceService.getLocalPrivateNetworks(
+        this.projectId,
+        this.model.datacenter.name,
+      )
+        .then((network) => {
+          this.localPrivateNetworks = network;
+        })
+        .catch((error) =>
+          this.CucCloudMessage.error(get(error, 'data.message')),
+        );
+    }
   }
 
   generateInstanceName() {
@@ -568,7 +456,6 @@ export default class PciInstancesAddController {
   }
 
   isRegionAvailable(datacenter) {
-    return true; //@TODO: GS Mock to remove
     return (
       datacenter.isAvailable() &&
       datacenter.hasEnoughQuotaForFlavors(this.model.flavorGroup)
@@ -687,6 +574,10 @@ export default class PciInstancesAddController {
 
   isPrivateMode() {
     return this.selectedMode.name === this.instanceModeEnum[1].mode;
+  }
+
+  isLocalPrivateMode() {
+    return this.selectedMode.name === this.instanceModeEnum[2].mode;
   }
 
   onFloatingIpChange(value) {
@@ -1081,5 +972,11 @@ export default class PciInstancesAddController {
     return this.cucUcentsToCurrencyFilter(
       get(this.prices, `${BANDWIDTH_OUT}.${region.name}`).price,
     );
+  }
+
+  displayNetwork(mode, type) {
+    if (type === this.LOCAL_ZONE_REGION) return mode !== 'public_mode';
+    if (type !== this.LOCAL_ZONE_REGION) return mode !== 'local_private_mode';
+    return true;
   }
 }

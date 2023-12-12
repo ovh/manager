@@ -52,6 +52,8 @@ export default class FlavorsList {
     serviceName,
     currentRegion,
     catalogEndpoint = DEFAULT_CATALOG_ENDPOINT,
+    customerRegions,
+    hasGridscaleLocalzoneRegion,
   ) {
     return this.$q
       .all({
@@ -64,48 +66,14 @@ export default class FlavorsList {
           catalogEndpoint,
           this.coreConfig.getUser().ovhSubsidiary,
         ),
+        productAvailability: hasGridscaleLocalzoneRegion
+          ? this.getProductAvailability(
+              serviceName,
+              this.coreConfig.getUser().ovhSubsidiary,
+            )
+          : '',
       })
-      .then(({ flavors, prices, catalog }) => {
-        // @TODO: GS Mock to remove
-        flavors.push({
-          id: '0ff9e048-50af-4b2e-bc61-72611d23fca7',
-          name: 'lz2-7',
-          region: 'MAD',
-          ram: 7000,
-          disk: 50,
-          vcpus: 2,
-          type: 'ovh.ssd.lz',
-          osType: 'linux',
-          inboundBandwidth: 250,
-          outboundBandwidth: 250,
-          available: true,
-          planCodes: {
-            monthly: 'b2-7.monthly.postpaid',
-            hourly: 'b2-7.consumption',
-          },
-          capabilities: [
-            {
-              name: 'snapshot',
-              enabled: true,
-            },
-            {
-              name: 'volume',
-              enabled: true,
-            },
-            {
-              name: 'failoverip',
-              enabled: true,
-            },
-            {
-              name: 'resize',
-              enabled: true,
-            },
-          ],
-          quota: 800,
-          typeGeneric: 'ovh_ssd_eg',
-          groupName: 'lz2-7',
-        });
-
+      .then(({ flavors, prices, catalog, productAvailability }) => {
         const hourlyPlanCodes = flavors.filter(
           ({ planCodes }) => !isNil(planCodes.hourly),
         );
@@ -145,9 +113,51 @@ export default class FlavorsList {
               ),
               'legacy',
             ),
+            locationCompatibility: hasGridscaleLocalzoneRegion
+              ? this.getlocationCompatibility(
+                  productAvailability.plans.find(
+                    (plan) => plan.code === resource.planCodes.hourly,
+                  ),
+                  customerRegions,
+                )
+              : {
+                  isLocalZone: false,
+                  isGlobalZone: true,
+                },
           });
         });
       });
+  }
+
+  getlocationCompatibility(productAvailibility, customerRegionList) {
+    this.locationCompatibility = {
+      isLocalZone: false,
+      isGlobalZone: true,
+    };
+
+    if (!productAvailibility) return this.locationCompatibility;
+
+    const locationCompatibilityList = productAvailibility?.regions.map(
+      (region) =>
+        customerRegionList.find(
+          (regionList) => regionList.datacenterLocation === region.datacenter,
+        ).type === 'region',
+    );
+    this.locationCompatibility.isLocalZone = locationCompatibilityList?.includes(
+      false,
+    );
+    this.locationCompatibility.isGlobalZone = locationCompatibilityList?.includes(
+      true,
+    );
+    return this.locationCompatibility;
+  }
+
+  getProductAvailability(projectId, ovhSubsidiary) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
+        params: { ovhSubsidiary },
+      })
+      .then(({ data }) => data);
   }
 
   static mapByFlavorType(flavors, image) {

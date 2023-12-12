@@ -170,7 +170,7 @@ export const PCI_HDS_ADDON = {
 
 export const LEGACY_PLAN_CODES = ['project.legacy', 'project.2018'];
 
-export const LOCAL_ZONE = 'localzone';
+export const LOCAL_ZONE_REGION = 'localzone';
 
 export default {
   PRODUCT_IMAGES,
@@ -183,5 +183,5 @@ export default {
   TERRAFORM_GUIDES,
   DATABASE_CREATION_GUIDES,
   PCI_FEATURES,
-  LOCAL_ZONE,
+  LOCAL_ZONE_REGION,
 };

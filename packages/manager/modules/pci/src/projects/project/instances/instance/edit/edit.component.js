@@ -17,5 +17,7 @@ export default {
     projectId: '<',
     region: '<',
     catalog: '<',
+    customerRegions: '<',
+    imageInformation: '<',
   },
 };
