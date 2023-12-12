@@ -20,12 +20,12 @@ const getApiV2AndV6GetEndpointsChoices = ({
   apiV6Endpoints,
   apiV2Endpoints,
 }) => [
-  { type: 'separator', line: 'V2 endpoints' },
-  ...(apiV2Endpoints?.get?.operationList?.map(toChoice) || []),
-  { type: 'separator' },
-  { type: 'separator', line: 'V6 endpoints' },
-  ...(apiV6Endpoints?.get?.operationList?.map(toChoice) || []),
-  { type: 'separator' },
+    { type: 'separator', line: 'V2 endpoints' },
+    ...(apiV2Endpoints?.get?.operationList?.map(toChoice) || []),
+    { type: 'separator' },
+    { type: 'separator', line: 'V6 endpoints' },
+    ...(apiV6Endpoints?.get?.operationList?.map(toChoice) || []),
+    { type: 'separator' },
   ];
 
 export default (plop) => {
@@ -138,14 +138,14 @@ export default (plop) => {
       const apiV2Computed = isGenerateAllApi ? apiV2Endpoints : {
         get: {
           ...apiV2Endpoints.get,
-          operationList: apiV2Endpoints.get?.operationList?.filter(({ apiPath }) => apiPath === listingEndpointPath || apiPath === dashboardEndpointPath)
+          operationList: apiV2Endpoints.get?.operationList?.filter(({ apiPath }) => [listingEndpointPath, dashboardEndpointPath].includes(apiPath))
         }
       }
 
       const apiV6Computed = isGenerateAllApi ? apiV6Endpoints : {
         get: {
           ...apiV6Endpoints.get,
-          operationList: apiV6Endpoints.get?.operationList?.filter(({ apiPath }) => apiPath === listingEndpointPath || apiPath === dashboardEndpointPath || apiPath.includes('/serviceInfos'))
+          operationList: apiV6Endpoints.get?.operationList?.filter(({ apiPath }) => [listingEndpointPath, dashboardEndpointPath].includes(apiPath) || apiPath.includes('/serviceInfos'))
         }
       }
 
