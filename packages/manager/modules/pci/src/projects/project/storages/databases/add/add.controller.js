@@ -189,7 +189,7 @@ export default class {
   }
 
   updateRegion(region) {
-    if (this.model.region !== region) {
+    if (this.model.region.name !== region.name) {
       this.model.region = region;
       this.model.privateNetwork = null;
     }
