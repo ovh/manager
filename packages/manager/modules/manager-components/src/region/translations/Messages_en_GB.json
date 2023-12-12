@@ -26,8 +26,6 @@
   "manager_components_region_SYD_micro": "Sydney ({{ micro }})",
   "manager_components_region_US": "United States of America",
   "manager_components_region_US_micro": "United States ({{ micro }})",
-  "manager_components_region_MAD": "Madrid",
-  "manager_components_region_MAD_micro": "Madrid ({{ micro }})",
   "manager_components_region_localize": "Locate",
   "manager_components_region_location_SBG": "Central Europe (France)",
   "manager_components_region_location_WAW": "Central Europe (Poland)",

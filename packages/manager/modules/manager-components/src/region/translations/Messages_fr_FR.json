@@ -26,6 +26,8 @@
   "manager_components_region_SYD_micro": "Sydney ({{ micro }})",
   "manager_components_region_US": "États-Unis",
   "manager_components_region_US_micro": "États-Unis ({{ micro }})",
+  "manager_components_region_GS": "GS",
+  "manager_components_region_GS_micro": "GS ({{ micro }})",
   "manager_components_region_SHA_micro": "Gravelines (SHADOW-EU-1)",
   "manager_components_region_localize": "Localiser",
   "manager_components_region_location_SBG": "Europe centrale (France)",
