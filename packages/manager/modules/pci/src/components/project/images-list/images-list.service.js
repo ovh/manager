@@ -66,7 +66,7 @@ export default class ImagesList {
     return this.$http
       .get(`/cloud/project/${serviceName}/image`, {
         params: {
-          region: 'GRA7', //@TODO remove Mock
+          region,
         },
       })
       .then(({ data: images }) =>

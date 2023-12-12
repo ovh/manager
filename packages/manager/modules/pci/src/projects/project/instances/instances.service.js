@@ -21,6 +21,7 @@ import {
   FLAVORS_WITHOUT_SUSPEND,
   FLAVORS_WITHOUT_VNC,
   FLAVORS_WITHOUT_ADDITIONAL_IPS,
+  LOCAL_ZONE_REGION,
 } from './instances.constants';
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getBaseApiRoute"] }] */
@@ -75,8 +76,8 @@ export default class PciProjectInstanceService {
       .get(`/cloud/project/${projectId}/instance`)
       .then(({ data }) => {
         const localZones = customerRegions.filter(({ type }) =>
-          type.includes('localzone'),
-        ); // TODO localzone
+          type.includes(LOCAL_ZONE_REGION),
+        );
         return data.map((instance) => {
           const isLocalZone = localZones.some(
             (region) => region.name === instance.region,
@@ -164,7 +165,7 @@ export default class PciProjectInstanceService {
       )
       .then(({ instance, ipReverse, volumes, privateNetworks }) => {
         const localZones = customerRegions?.filter(({ type }) =>
-          type.includes('localzone'),
+          type.includes(LOCAL_ZONE_REGION),
         );
         const isLocalZone = localZones?.some(
           (region) => region.name === instance.region,
@@ -177,10 +178,10 @@ export default class PciProjectInstanceService {
               get(instance.flavor, 'capabilities', []),
             ),
           },
-          volumes: filter(volumes, (volume) =>
-            includes(volume.attachedTo, instance.id),
+          volumes: volumes.filter((volume) =>
+            volume.attachedTo?.includes(instance.id),
           ),
-          privateNetworks: filter(privateNetworks, (privateNetwork) =>
+          privateNetworks: privateNetworks.filter((privateNetwork) =>
             includes(
               map(
                 filter(instance.ipAddresses, { type: 'private' }),
@@ -344,13 +345,14 @@ export default class PciProjectInstanceService {
       .then(({ data }) => data);
   }
 
-  // getLocalPrivateNetworks(projectId, regionName) {//TODO API is not clear
-  //   return this.$http
-  //     .get(`/cloud/project/${projectId}/region/${regionName}/network`)
-  //     .then(({ data }) =>
-  //       data.filter((network) => network.visibility === 'private'),
-  //     );
-  // }
+  getLocalPrivateNetworks(projectId, regionName) {
+    // @TODO API is not clear
+    return this.$http
+      .get(`/cloud/project/${projectId}/region/${regionName}/network`)
+      .then(({ data }) =>
+        data.filter((network) => network.visibility === 'private'),
+      );
+  }
 
   getSubnets(projectId, networkId) {
     return this.$http

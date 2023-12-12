@@ -44,7 +44,7 @@
                             <div class="d-flex">
                                 <span
                                     data-translate="pci_project_flavors_spec_ram"
-                                    data-translate-values="{ ram: (flavor.ram | bytes:0:false:'MB') }"
+                                    data-translate-values="{ ram: (flavor.technicalBlob.memory.size | bytes:0:false:'MB') }"
                                 ></span>
                             </div>
                             <div
@@ -74,11 +74,11 @@
                             </div>
                             <div
                                 class="d-flex"
-                                data-ng-if="flavor.outboundBandwidth"
+                                data-ng-if="flavor.technicalBlob.bandwidth.level"
                             >
                                 <span
                                     data-translate="pci_project_flavors_spec_bandwidth_detail"
-                                    data-translate-values="{ bandwidth : (flavor.outboundBandwidth | number) }"
+                                    data-translate-values="{ bandwidth : (flavor.technicalBlob.bandwidth.level | number) }"
                                 ></span>
                             </div>
                             <div class="d-flex" data-ng-if="flavor.getGpu()">
