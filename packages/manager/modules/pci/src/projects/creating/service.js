@@ -18,8 +18,10 @@ export default class ProjectCreation {
         orderId,
       })
       .$promise.then((detailIds) => {
-        const detailPromises = map(detailIds, (detailId) =>
-          this.OvhApiMeOrder.v6()
+        const detailPromises = map(detailIds, (detailId) => {
+          this.OvhApiMeOrder.v6().resetQueryCache();
+
+          return this.OvhApiMeOrder.v6()
             .getDetail({
               orderId,
               detailId,
@@ -33,8 +35,8 @@ export default class ProjectCreation {
                     },
                   )
                 : details,
-            ),
-        );
+            );
+        });
 
         return Promise.all(detailPromises);
       });
