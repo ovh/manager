@@ -134,8 +134,8 @@
         data-editable="!$ctrl.isLoading"
         data-submit-text="{{:: 'pci_projects_project_public_gateways_add_submit_label' | translate }}"
         name="public_gateways_add_private_network"
-        data-valid="$ctrl.selectedPrivateNetwork.id || $ctrl.selectedPrivateNetwork.isCustom"
-        data-prevent-next="true"
+        data-valid="($ctrl.selectedPrivateNetwork.id || $ctrl.selectedPrivateNetwork.isCustom) && !$ctrl.isDiscoveryProject"
+        data-prevent-next
     >
         <p
             data-translate="pci_projects_project_public_gateways_add_attach_private_network_to_public_gateway_intro1"

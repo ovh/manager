@@ -194,10 +194,11 @@
         <oui-step-form
             data-header="{{:: 'kubernetes_add_name_title' | translate }}"
             data-editable="!$ctrl.isAdding"
-            data-valid="$ctrl.cluster.name"
+            data-valid="$ctrl.cluster.name && !$ctrl.isDiscoveryProject"
             data-navigation="$ctrl.cluster.name"
             data-on-submit="$ctrl.create()"
             name="kubernetes_add_name"
+            data-prevent-next
         >
             <oui-field
                 data-size="m"
