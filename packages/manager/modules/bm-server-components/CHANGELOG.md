@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.10.2...@ovh-ux/manager-bm-server-components@1.11.0) (2023-12-12)
+
+
+### Features
+
+* **dedicated.server:** refactor dedicated server for multi az ([#10058](https://github.com/ovh/manager/issues/10058)) ([0cc3523](https://github.com/ovh/manager/commit/0cc35235150a19f9b959ccdd1394f5469662ec87))
+
+
+
+
+
 ## [1.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.10.1...@ovh-ux/manager-bm-server-components@1.10.2) (2023-12-04)
 
 
