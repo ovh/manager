@@ -5,6 +5,5 @@
   "octavia_load_balancer_pools_detail_members_create_confirm": "Ajouter",
   "octavia_load_balancer_pools_detail_members_create_name_label": "Nom (optionnel)",
   "octavia_load_balancer_pools_detail_members_create_address_ip_label": "Adresse IP",
-  "octavia_load_balancer_pools_detail_members_create_port_label": "Port",
-  "octavia_load_balancer_pools_detail_members_create_success": "Votre membre a été créé avec succès."
+  "octavia_load_balancer_pools_detail_members_create_port_label": "Port"
 }
