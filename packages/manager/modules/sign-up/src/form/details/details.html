@@ -329,7 +329,10 @@
         </div>
     </div>
 
-    <div class="row">
+    <div
+        class="row"
+        data-ng-if="$ctrl.signUpFormCtrl.rules.purposeOfPurchase"
+    >
         <div class="col-lg">
             <!-- purchase purpose -->
             <oui-field
@@ -343,6 +346,7 @@
                     data-ng-model="$ctrl.signUpFormCtrl.model.purposeOfPurchase"
                     data-ng-required="$ctrl.signUpFormCtrl.rules.purposeOfPurchase.mandatory"
                     data-ng-pattern="$ctrl.signUpFormCtrl.rules.purposeOfPurchase.regularExpression"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.purposeOfPurchase)"
                 />
             </oui-field>
             <!-- /input[name="purposeOfPurchase"] -->
