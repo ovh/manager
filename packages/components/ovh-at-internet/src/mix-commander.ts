@@ -270,44 +270,42 @@ tC.detectDevice = tC.detectDevice || function() {
 if (typeof tC.msr !== "object") {
     tC.msr = [];
 }
-tC.onDomReady(function() {
-    tC.msr.dns = tC.getClientCollectDns() || tC.getClientCampaignDns();
-    tC.msr.id_site = "3810";
-    tC.msr.page_name = "";
-    tC.msr.page_type = "Manager";
-    tC.msr.sbrand = [];
-    tC.msr.sbrand[0] = "";
-    tC.msr.sbrand[1] = "";
-    tC.msr.sbrand[2] = "";
-    tC.msr.sbrand[3] = "";
-    tC.msr.user_id = "${clientId}";
-    tC.msr.provided_excluded_referrer = "ovh.com,eu.ovh.com,ca.ovh.com,us.ovh.com,www.ovh.com,ovhcloud.com,www.ovhcloud.com,ovh.co.uk,www.ovh.co.uk,www.ovh.com.au,www.ovh.cz,ovh.de,www.ovh.de,ovh.es,www.ovh.es,ovh.ie,www.ovh.ie,ovh.it,www.ovh.it,ovh.nl,www.ovh.nl,www.ovh.lt,ovh.pl,www.ovh.pl,www.ovh.pt,ovh.sn,www.ovh.sn,www.ovh-hosting.fi,help.ovhcloud.com,partner.ovhcloud.com,opentrustedcloud.ovhcloud.com,ovh.slgnt.eu,news.ovhcloud.com,ovhh.pl,open-solidarity.com".split(','); // has to be a string of referrers (domains or subdomains) with a "," as a separator
-    var tc_search_engine = "ecosia|q,com.google.android.gm|q,com.google.android.googlequicksearchbox|q,qwant|q"; // has to be a string: search_engine|key in query string, search_engine|key (google|q,qwant|q)
-    if (tc_search_engine !== '') {
-        var tc_search_engine_fs = tc_search_engine.split(",")
-        tC.msr.provided_search_engines = (function() {
-            var pl = [];
-            for (var i = 0; i < tc_search_engine_fs.length; ++i) {
-                pl.push(tc_search_engine_fs[i].split('|'));
-            }
-            return pl;
-        })()
-    }
-    tC.msr.provided_social_networks = "".split(',');
-    tC.msr.provided_brand_urls = "".split(',');
-    tC.msr.internal_subdmomains = "ovhtelecom.fr,www.ovhtelecom.fr,www.kimsufi.com,hubic.com,api.hubic.com,us.ovhcloud.com,docs.ovh.com,ca.soyoustart.com,eu.soyoustart.com,www.soyoustart.com,community.ovh.com,blog.ovh.com,labs.ovh.com,omm.ovh.net,forum.ovh.com,weathermap.ovh.net,www.nic.ovh".split(',') // has to be a string separated by , - can be domains only or domains and subdomains or everything between protocal and ? or "
-    tC.msr.additional_params = "&user_id=" + "${clientId}";
-    tC.msr.additional_params += "&dev=" + tC.detectDevice();
-    tC.msr.additional_params += "&cty=" + "${region}";
-    tC.msr.additional_params += "&site_domain=www.ovh.com/manager/";
-    tC.msr.scriptElt1 = document.createElement("script");
-    tC.msr.scriptElt1.id = "tc_script_msr_1";
-    tC.msr.scriptElt1.src = "//analytics.ovh.com/measure/measure.js";
-    tC.msr.scriptElt1.async = true;
-    tC.msr.scriptElt1.defer = 'defer';
-    tC.msr.tmp = tC.getParamURL("tmp");
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] || document.getElementsByTagName('script')[0].parentNode).insertBefore(tC.msr.scriptElt1, null);
-});
+tC.msr.dns = tC.getClientCollectDns() || tC.getClientCampaignDns();
+tC.msr.id_site = "3810";
+tC.msr.page_name = "";
+tC.msr.page_type = "Manager";
+tC.msr.sbrand = [];
+tC.msr.sbrand[0] = "";
+tC.msr.sbrand[1] = "";
+tC.msr.sbrand[2] = "";
+tC.msr.sbrand[3] = "";
+tC.msr.user_id = "${clientId}";
+tC.msr.provided_excluded_referrer = "ovh.com,eu.ovh.com,ca.ovh.com,us.ovh.com,www.ovh.com,ovhcloud.com,www.ovhcloud.com,ovh.co.uk,www.ovh.co.uk,www.ovh.com.au,www.ovh.cz,ovh.de,www.ovh.de,ovh.es,www.ovh.es,ovh.ie,www.ovh.ie,ovh.it,www.ovh.it,ovh.nl,www.ovh.nl,www.ovh.lt,ovh.pl,www.ovh.pl,www.ovh.pt,ovh.sn,www.ovh.sn,www.ovh-hosting.fi,help.ovhcloud.com,partner.ovhcloud.com,opentrustedcloud.ovhcloud.com,ovh.slgnt.eu,news.ovhcloud.com,ovhh.pl,open-solidarity.com".split(','); // has to be a string of referrers (domains or subdomains) with a "," as a separator
+var tc_search_engine = "ecosia|q,com.google.android.gm|q,com.google.android.googlequicksearchbox|q,qwant|q"; // has to be a string: search_engine|key in query string, search_engine|key (google|q,qwant|q)
+if (tc_search_engine !== '') {
+    var tc_search_engine_fs = tc_search_engine.split(",")
+    tC.msr.provided_search_engines = (function() {
+        var pl = [];
+        for (var i = 0; i < tc_search_engine_fs.length; ++i) {
+            pl.push(tc_search_engine_fs[i].split('|'));
+        }
+        return pl;
+    })()
+}
+tC.msr.provided_social_networks = "".split(',');
+tC.msr.provided_brand_urls = "".split(',');
+tC.msr.internal_subdmomains = "ovhtelecom.fr,www.ovhtelecom.fr,www.kimsufi.com,hubic.com,api.hubic.com,us.ovhcloud.com,docs.ovh.com,ca.soyoustart.com,eu.soyoustart.com,www.soyoustart.com,community.ovh.com,blog.ovh.com,labs.ovh.com,omm.ovh.net,forum.ovh.com,weathermap.ovh.net,www.nic.ovh".split(',') // has to be a string separated by , - can be domains only or domains and subdomains or everything between protocal and ? or "
+tC.msr.additional_params = "&user_id=" + "${clientId}";
+tC.msr.additional_params += "&dev=" + tC.detectDevice();
+tC.msr.additional_params += "&cty=" + "${region}";
+tC.msr.additional_params += "&site_domain=www.ovh.com/manager/";
+tC.msr.scriptElt1 = document.createElement("script");
+tC.msr.scriptElt1.id = "tc_script_msr_1";
+tC.msr.scriptElt1.src = "//analytics.ovh.com/measure/measure.js";
+tC.msr.scriptElt1.async = true;
+tC.msr.scriptElt1.defer = 'defer';
+tC.msr.tmp = tC.getParamURL("tmp");
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] || document.getElementsByTagName('script')[0].parentNode).insertBefore(tC.msr.scriptElt1, null);
 `;
 
 const initMixCommander = ({
