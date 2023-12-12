@@ -587,6 +587,13 @@ class DedicatedCloudService {
   }
 
   getActiveDirectories(serviceName, params = {}) {
+    return this.icebergQuery(
+      `/dedicatedCloud/${serviceName}/federation/activeDirectory`,
+      params,
+    );
+  }
+
+  icebergQuery(url, params) {
     const {
       filters,
       pageSize,
@@ -596,9 +603,7 @@ class DedicatedCloudService {
       defaultFilterColumn,
     } = params;
 
-    let request = this.iceberg(
-      `/dedicatedCloud/${serviceName}/federation/activeDirectory`,
-    )
+    let request = this.iceberg(url)
       .query()
       .expand('CachedObjectList-Pages')
       .limit(pageSize)
@@ -669,37 +674,7 @@ class DedicatedCloudService {
   /* ------- USER -------*/
 
   getUserDetails(serviceName, params = {}) {
-    const {
-      filters,
-      pageSize,
-      offset,
-      sort,
-      sortOrder,
-      defaultFilterColumn,
-    } = params;
-
-    let request = this.iceberg(`/dedicatedCloud/${serviceName}/user`)
-      .query()
-      .expand('CachedObjectList-Pages')
-      .limit(pageSize)
-      .offset(Math.ceil(offset / (pageSize || 1)))
-      .sort(sort || defaultFilterColumn, sortOrder);
-
-    if (filters?.length > 0) {
-      request = this.filterIceberg(request, filters);
-    }
-
-    return this.$q
-      .resolve(request.execute(null, true).$promise)
-      .then(({ data, headers }) => ({
-        data,
-        meta: {
-          totalCount: headers['x-pagination-elements'],
-          currentOffset: headers['x-pagination-number'],
-          pageCount: headers['x-pagination-total'],
-          pageSize: headers['x-pagination-size'],
-        },
-      }));
+    return this.icebergQuery(`/dedicatedCloud/${serviceName}/user`, params);
   }
 
   getUsers(serviceName, name) {
@@ -1569,14 +1544,9 @@ class DedicatedCloudService {
   }
 
   /* ------- Operations -------*/
-  getOperations(serviceName, opts) {
-    return this.OvhHttp.get('/dedicatedCloud/{serviceName}/task', {
-      rootPath: 'apiv6',
-      urlParams: {
-        serviceName,
-      },
-      params: opts.params,
-    });
+
+  getOperations(serviceName, params) {
+    return this.icebergQuery(`/dedicatedCloud/${serviceName}/task`, params);
   }
 
   getOperation(serviceName, opts) {
