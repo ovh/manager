@@ -79,9 +79,7 @@ export default function ServerSidebarIndex() {
     );
   }
   if (universe === 'public-cloud') {
-    const isPciSidebarHidden = !/\/pci\/projects\/\w{32,}/.test(
-      location?.pathname,
-    );
+    const isPciSidebarHidden = !/\/pci(?:-[^\/]+)?\/projects\/\w{32,}/.test(location?.pathname);
     if (isPciSidebarHidden) {
       return <></>;
     }

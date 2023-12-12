@@ -1,0 +1,3 @@
+/src/components/ui/*
+../catalog/*
+/src/router/index.tsx

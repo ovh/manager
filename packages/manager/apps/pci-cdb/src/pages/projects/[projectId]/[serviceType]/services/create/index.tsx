@@ -1,0 +1,82 @@
+import { useQuery } from '@tanstack/react-query';
+import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { H2 } from '@/components/typography';
+import { cdbApi } from '@/data/cdbapi';
+import { database } from '@/models/database';
+import { getServiceType } from '@/utils/databaseUtils';
+import AvailabilityTable from './_components/availabilities-table';
+import { DataTable } from '@/components/ui/data-table';
+import OrderFunnel from './_components/order-funnel';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import { useRequiredParams } from '@/hooks/useRequiredParams';
+
+export const Handle = {
+  breadcrumb: () => 'pci_cdb_breadcrumb_create',
+};
+
+const getAvailabilitiesListQueryKey = ['/availability'];
+
+export type AvailabilityWithType = database.Availability & {
+  serviceType: database.ServiceTypeEnum;
+};
+
+const CreateServicePage = () => {
+  const { t } = useTranslation('order_funnel');
+  const [showTable, setShowTable] = useState(false);
+  const { projectId, serviceType } = useRequiredParams<{
+    projectId: string;
+    serviceType: database.ServiceTypeEnum;
+  }>();
+
+  const availabilitiesQuery = useQuery({
+    queryKey: getAvailabilitiesListQueryKey,
+    queryFn: () => cdbApi.getAvailabilities(projectId),
+  });
+
+  if (availabilitiesQuery.error)
+    return <pre>{JSON.stringify(availabilitiesQuery.error)}</pre>;
+
+  const availabilities: AvailabilityWithType[] | undefined = useMemo(() => {
+    if (!availabilitiesQuery.data) return undefined;
+    return availabilitiesQuery.data
+      .map((availability) => ({
+        ...availability,
+        serviceType: getServiceType(availability.engine),
+      }))
+      .filter(
+        (a) =>
+          serviceType === database.ServiceTypeEnum.all ||
+          a.serviceType === serviceType,
+      );
+  }, [availabilitiesQuery.data, serviceType]);
+
+  return (
+    <>
+      <H2>{t('pci_cdb_order_funnel_title')}</H2>
+
+      {availabilitiesQuery.isLoading && <DataTable.Skeleton />}
+      {availabilities && (
+        <>
+          <div className="flex items-center space-x-2 mb-2">
+            <Switch
+              className="rounded-xl"
+              id="availabilities-table"
+              checked={showTable}
+              onCheckedChange={(checked) => setShowTable(checked)}
+            />
+            <Label htmlFor="availabilities-table">Table view</Label>
+          </div>
+          {showTable ? (
+            <AvailabilityTable availabilities={availabilities} />
+          ) : (
+            <OrderFunnel availabilities={availabilities} />
+          )}
+        </>
+      )}
+    </>
+  );
+};
+
+export default CreateServicePage;
