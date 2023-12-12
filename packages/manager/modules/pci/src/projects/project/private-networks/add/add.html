@@ -35,14 +35,14 @@
         </oui-step-form>
         <oui-step-form
             name="private_network_add_select_configuration"
-            data-valid="$ctrl.privateNetworkName"
-            data-prevent-next="true"
+            data-valid="$ctrl.privateNetworkName && !$ctrl.isDiscoveryProject"
             data-header="{{:: 'pci_projects_project_network_private_create_configure' | translate }}"
             data-loading="$ctrl.loaders.configStep"
             data-on-focus="$ctrl.onConfigurePrivateNetworkInit()"
             data-submit-text="{{ ( $ctrl.configuration.createGateway ? 'pci_projects_project_network_private_create_next' : 'pci_projects_project_network_private_create_submit' )| translate }}"
             data-position="1"
             data-editable="!$ctrl.loaders.isSubmitting"
+            data-prevent-next
         >
             <oui-field
                 data-label="{{:: ('pci_projects_project_network_private_create_name' | translate)}}"
