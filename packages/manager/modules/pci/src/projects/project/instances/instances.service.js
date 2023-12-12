@@ -66,39 +66,24 @@ export default class PciProjectInstanceService {
     this.FLAVORS_WITHOUT_ADDITIONAL_IPS = FLAVORS_WITHOUT_ADDITIONAL_IPS;
   }
 
-  getBaseApiRoute(projectId, instance) {
-    const isLocal = instance.isLocal
-      ? instance.isLocal()
-      : new Instance(instance).isLocal();
-    if (isLocal) {
-      return `/cloud/project/${projectId}`; // To replace when api is OK
-      // return `/cloud/project/${projectId}/region/${instance.region}`;
-    }
+  getBaseApiRoute(projectId) {
     return `/cloud/project/${projectId}`;
   }
 
   getAll(projectId, customerRegions) {
-    const localInstances = Promise.all(
-      customerRegions
-        .filter(({ type }) => type.includes('localzone')) // @TODO: replace by region type local
-        .map((region) =>
-          this.$http.get(
-            `/cloud/project/${projectId}/region/${region.name}/instance`,
-          ),
-        ),
-    );
-
-    return this.$q
-      .all({
-        globalInstances: this.$http.get(`/cloud/project/${projectId}/instance`),
-        lzInstances: localInstances,
-      })
-      .then(({ globalInstances, lzInstances }) =>
-        [
-          ...globalInstances.data,
-          ...lzInstances.flatMap(({ data }) => data),
-        ].flatMap((instance) => new Instance(instance)),
-      );
+    return this.$http
+      .get(`/cloud/project/${projectId}/instance`)
+      .then(({ data }) => {
+        const localZones = customerRegions.filter(({ type }) =>
+          type.includes('localzone'),
+        ); // TODO localzone
+        return data.map((instance) => {
+          const isLocalZone = localZones.some(
+            (region) => region.name === instance.region,
+          );
+          return new Instance({ ...instance, isLocalZone });
+        });
+      });
   }
 
   getAllInstanceDetails(projectId) {
@@ -352,6 +337,14 @@ export default class PciProjectInstanceService {
       .get(`/cloud/project/${projectId}/network/private`)
       .then(({ data }) => data);
   }
+
+  // getLocalPrivateNetworks(projectId, regionName) {//TODO API is not clear
+  //   return this.$http
+  //     .get(`/cloud/project/${projectId}/region/${regionName}/network`)
+  //     .then(({ data }) =>
+  //       data.filter((network) => network.visibility === 'private'),
+  //     );
+  // }
 
   getSubnets(projectId, networkId) {
     return this.$http
