@@ -216,6 +216,22 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
     url: URL_ACCESSORIES,
     img: `${PATH_URL_IMG}yealink/accessory-yealink-wh62-90-90.png`,
   },
+  'yealink.wh62.mono.90': {
+    url: URL_ACCESSORIES,
+    img: `${PATH_URL_IMG}yealink/accessory-yealink-wh62-mono-90-90.png`,
+  },
+  'yealink.wh62.mono.500': {
+    url: URL_ACCESSORIES,
+    img: `${PATH_URL_IMG}yealink/accessory-yealink-wh62-mono-500-500.png`,
+  },
+  'yealink.wh66.mono.90': {
+    url: URL_ACCESSORIES,
+    img: `${PATH_URL_IMG}yealink/accessory-yealink-wh66-mono-90-90.png`,
+  },
+  'yealink.wh66.mono.500': {
+    url: URL_ACCESSORIES,
+    img: `${PATH_URL_IMG}yealink/accessory-yealink-wh66-mono-500-500.png`,
+  },
   'orosound.tildeproplus': {
     url: URL_ACCESSORIES,
     img: `${PATH_URL_IMG}orosound/accessory-orosound-tildepro-plus-90-90.png`,
