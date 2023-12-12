@@ -47,14 +47,14 @@ export default class FtpBackupOrdercontroller {
       this.$stateParams.productId,
       this.order.model[this.order.choiceIndex].capacity,
     )
-      .then(
-        (data) => {
-          this.order.bc = data;
-          this.order.bc.details[0].explanation = {
-            price: this.order.model[this.order.choiceIndex].price,
-          };
-        },
-        (reason) => {
+      .then((data) => {
+        this.order.bc = data;
+        this.order.bc.details[0].explanation = {
+          price: this.order.model[this.order.choiceIndex].price,
+        };
+      })
+      .catch((reason) => {
+        this.goBack().then(() =>
           this.Alerter.alertFromSWS(
             this.$translate.instant(
               'server_configuration_ftpbackup_order_load_detail_failure',
@@ -62,11 +62,10 @@ export default class FtpBackupOrdercontroller {
             ),
             reason,
             FTP_BACKUP_STORAGE_ALERT,
-          );
-        },
-      )
+          ),
+        );
+      })
       .finally(() => {
-        this.goBack();
         this.loading = false;
       });
   }
