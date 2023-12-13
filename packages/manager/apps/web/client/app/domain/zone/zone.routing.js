@@ -106,8 +106,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       ...commonResolveForZoneHistory,
-      chosenDate: /* @ngInject */ ($transition$) =>
-        $transition$.params().chosenDate,
+      chosenDate: /* @ngInject */ ($transition$) => $transition$.params().chosenDate,
       zoneId: /* @ngInject */ ($transition$) => $transition$.params().productId,
       goBack: /* @ngInject */ ($state, $timeout, Alerter) => (
         message = false,
