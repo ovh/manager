@@ -1,5 +1,3 @@
-import map from 'lodash/map';
-
 export default class ProjectCreation {
   /* @ngInject */
   constructor($http, OvhApiMeOrder) {
@@ -18,7 +16,7 @@ export default class ProjectCreation {
         orderId,
       })
       .$promise.then((detailIds) => {
-        const detailPromises = map(detailIds, (detailId) => {
+        const detailPromises = detailIds.map((detailId) => {
           this.OvhApiMeOrder.v6().resetQueryCache();
 
           return this.OvhApiMeOrder.v6()
