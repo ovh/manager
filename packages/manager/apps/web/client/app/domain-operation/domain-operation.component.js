@@ -4,7 +4,8 @@ export default {
   bindings: {
     domainOperationLink: '<',
     dnsOperationLink: '<',
-    isDns: '<',
+    getTabItemUrl: '<',
+    currentActiveLink: '<',
   },
   template,
 };

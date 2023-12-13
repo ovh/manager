@@ -9,8 +9,10 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         $state.href('app.domain.operation.domain'),
       dnsOperationLink: /* @ngInject */ ($state) =>
         $state.href('app.domain.operation.dns'),
-      isDns: /* @ngInject */ ($state) => () =>
-        $state.current.name.includes('dns'),
+      getTabItemUrl: /* @ngInject */ ($state) => (tabItemName) =>
+        $state.href(`app.domain.operation.${tabItemName}`),
+      currentActiveLink: /* @ngInject */ ($state, $transition$) => () =>
+        $state.href($state.current.name, $transition$.params()),
     },
     redirectTo: 'app.domain.operation.domain',
   });

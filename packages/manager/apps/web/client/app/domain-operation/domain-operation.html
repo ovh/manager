@@ -5,13 +5,13 @@
     <oui-header-tabs>
         <oui-header-tabs-item
             href="{{ $ctrl.domainOperationLink }}"
-            active="!$ctrl.isDns()"
+            active="$ctrl.getTabItemUrl('domain') === $ctrl.currentActiveLink()"
         >
             <span data-translate="operation_tab_DOMAIN"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
             href="{{ $ctrl.dnsOperationLink }}"
-            active="$ctrl.isDns()"
+            active="$ctrl.getTabItemUrl('dns') === $ctrl.currentActiveLink()"
         >
             <span data-translate="operation_tab_DNS"></span>
         </oui-header-tabs-item>
