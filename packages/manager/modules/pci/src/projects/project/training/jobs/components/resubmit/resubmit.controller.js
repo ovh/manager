@@ -41,7 +41,7 @@ export default class PciTrainingJobsResubmitController {
         );
       })
       .finally(() => {
-        this.isLoading = false;
+        this.loading = false;
       });
   }
 

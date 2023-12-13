@@ -38,7 +38,6 @@ export default class PciProjectTrainingService {
       }).$promise;
   }
 
-  // validé
   getFeatures(serviceName) {
     return this.OvhApiCloudProjectAi.Capabilities()
       .Training()

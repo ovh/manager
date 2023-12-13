@@ -6,9 +6,6 @@ export default {
   template,
   bindings: {
     job: '<',
-    projectId: '<',
-    jobId: '<',
-    currentActiveLink: '<',
     trackClick: '<',
   },
 };

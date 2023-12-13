@@ -34,8 +34,8 @@
 
         <!--Table-->
         <oui-datagrid
-            rows="$ctrl.dataStoreVolumes"
-            page-size="::$ctrl.DATAGRID_MAX_ITEMS_PER_PAGE"
+            data-rows="$ctrl.dataStoreVolumes"
+            data-page-size="::$ctrl.DATAGRID_MAX_ITEMS_PER_PAGE"
         >
             <oui-datagrid-column
                 title=":: 'pci_jobs_tab_attach_data_page_volumes_column_type_swift' | translate"
@@ -84,9 +84,9 @@
         ></h4>
         <!--Table-->
         <oui-datagrid
-            rows="$ctrl.publicGitVolumes"
-            empty-placeholder="{{:: 'pci_jobs_tab_attach_data_page_volumes_git_none' | translate }}"
-            page-size="::$ctrl.DATAGRID_MAX_ITEMS_PER_PAGE"
+            data-rows="$ctrl.publicGitVolumes"
+            data-empty-placeholder="{{:: 'pci_jobs_tab_attach_data_page_volumes_git_none' | translate }}"
+            data-page-size="::$ctrl.DATAGRID_MAX_ITEMS_PER_PAGE"
         >
             <oui-datagrid-column
                 title=":: 'pci_jobs_tab_attach_data_page_volumes_column_git_url' | translate"
