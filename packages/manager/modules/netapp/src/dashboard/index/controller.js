@@ -18,6 +18,7 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
     this.SERVICE_TYPE = SERVICE_TYPE;
     this.NETWORK_STATUS = NETWORK_STATUS;
     this.VRACK_SERVICES_STATUS = VRACK_SERVICES_STATUS;
+    this.isEditingName = false;
   }
 
   $onInit() {
@@ -80,6 +81,14 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
       this.serviceInfos.engagedUpTo &&
       moment(this.serviceInfos.engagedUpTo).diff(moment(), 'month') < 3
     );
+  }
+
+  toggleNameEdition() {
+    this.isEditingName = !this.isEditingName;
+  }
+
+  editName() {
+    this.isEditingName = false;
   }
 
   onBillingInformationError(error) {
