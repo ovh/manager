@@ -76,7 +76,12 @@
                 data-on-click="$ctrl.onMonitoringUpdateClick()"
             >
                 <span
-                    data-translate="dedicated_server_dashboard_monitoring_cta_setting"
+                    data-translate="dedicated_server_dashboard_monitoring_enable_interventions"
+                    data-ng-if="!$ctrl.server.monitored || $ctrl.server.noIntervention"
+                ></span>
+                <span
+                    data-translate="dedicated_server_dashboard_monitoring_disable_interventions"
+                    data-ng-if="$ctrl.server.monitored && !$ctrl.server.noIntervention"
                 ></span>
             </oui-button>
         </oui-tile-description>
