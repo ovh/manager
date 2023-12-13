@@ -6,11 +6,10 @@
         </div>
     </li>
     <li
-        class="vrack__service-type"
+        class="vrack__service-type vrack__service_type_{{serviceType}}"
+        data-ng-class="{ 'vrack__service-type_expanded': $ctrl.getAccordionState('mapped', 'types', $index) }"
         data-ng-init="$ctrl.setAccordionState('mapped', 'types', $index, true)"
         data-ng-repeat="(serviceType, services) in $ctrl.data.vrackServices track by serviceType"
-        data-ng-if="$ctrl.constructor.hasServices(services) && !$ctrl.loaders.adding"
-        data-ng-class="{ 'vrack__service-type_expanded': $ctrl.getAccordionState('mapped', 'types', $index) }"
     >
         <span
             class="vrack__service-type-name"
@@ -38,14 +37,14 @@
         >
             <li
                 class="vrack__service vrack__service_selectable d-flex"
-                data-ng-repeat="service in services | orderBy: service.niceName track by service.id"
-                data-ng-click="$ctrl.toggleDeleteService(service.trueServiceType, service.id)"
                 data-ng-class="{ vrack__service_selected: $ctrl.isSelected(service.trueServiceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
+                data-ng-click="$ctrl.toggleDeleteService(service.trueServiceType, service.id)"
+                data-ng-repeat="service in services | orderBy: service.niceName track by service.id"
             >
                 <span data-ng-bind="::service.niceName"></span>
                 <oui-spinner
-                    data-size="s"
                     data-ng-if="$ctrl.isPending(service.id)"
+                    data-size="s"
                 >
                 </oui-spinner>
             </li>
@@ -57,8 +56,8 @@
         >
             <li
                 class="vrack__service-group"
-                data-ng-init="$ctrl.setAccordionState('mapped', 'dedicatedCloudNetworks', $index, true)"
                 data-ng-class="{ 'vrack__service-group_expanded': $ctrl.getAccordionState('mapped', 'dedicatedCloudNetworks', $index) }"
+                data-ng-init="$ctrl.setAccordionState('mapped', 'dedicatedCloudNetworks', $index, true)"
                 data-ng-repeat="service in services | orderBy: service.niceName track by service.id"
             >
                 <span
@@ -71,15 +70,15 @@
                 <ul class="vrack__service-list vrack__service-list_group">
                     <li
                         class="vrack__service vrack__service_selectable d-flex"
-                        data-ng-click="$ctrl.toggleDeleteService(serviceType, service.id)"
                         data-ng-class="{ vrack__service_selected: $ctrl.isSelected(serviceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.adding || $ctrl.loaders.deleting }"
+                        data-ng-click="$ctrl.toggleDeleteService(serviceType, service.id)"
                     >
                         <span
-                            data-translate="vrack_private_cloud_vm_network_label"
+                            data-translate="'vrack_private_cloud_vm_network_label'"
                         ></span>
                         <oui-spinner
-                            data-size="s"
                             data-ng-if="$ctrl.isPending(service.id)"
+                            data-size="s"
                         >
                         </oui-spinner>
                     </li>
@@ -93,8 +92,8 @@
         >
             <li
                 class="vrack__service-group"
-                data-ng-init="$ctrl.setAccordionState('mapped', 'dedicatedCloudDatacenters', $index, true)"
                 data-ng-class="{ 'vrack__service-group_expanded': $ctrl.getAccordionState('mapped', 'dedicatedCloudDatacenters', $index) }"
+                data-ng-init="$ctrl.setAccordionState('mapped', 'dedicatedCloudDatacenters', $index, true)"
                 data-ng-repeat="(dedicatedCloud, datacenters) in services track by dedicatedCloud"
             >
                 <span
@@ -107,14 +106,14 @@
                 <ul class="vrack__service-list vrack__service-list_group">
                     <li
                         class="vrack__service vrack__service_selectable d-flex"
-                        data-ng-click="$ctrl.toggleMoveService(serviceType, service.id)"
                         data-ng-class="{ vrack__service_selected: $ctrl.isSelected(serviceType, service.id), vrack__service_pending: $ctrl.isPending(service.id) || $ctrl.loaders.moving }"
+                        data-ng-click="$ctrl.toggleMoveService(serviceType, service.id)"
                         data-ng-repeat="service in datacenters track by service.datacenter"
                     >
                         <span data-ng-bind="::service.niceName"></span>
                         <oui-spinner
-                            data-size="s"
                             data-ng-if="$ctrl.isPending(service.id)"
+                            data-size="s"
                         >
                         </oui-spinner>
                     </li>

@@ -43,5 +43,7 @@
   "vrack_service_type_managedbaremetaldatacenter": "Managed Bare Metal",
   "vrack_service_type_ip": "IP",
   "vrack_service_type_cloudproject": "Projet Cloud",
+  "vrack_service_type_ovhcloudconnect": "OVH Cloud Connect",
+  "vrack_service_type_dedicatedserverinterface": "Interface de serveur dédié",
   "vrack_service_type_iploadbalancing": "Load Balancer"
 }

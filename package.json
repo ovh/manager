@@ -64,6 +64,7 @@
     "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "@typescript-eslint/parser": "^4.27.0",
+    "angular-mocks": "*",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^27.5.1",
     "babel-preset-react-app": "^10.0.0",

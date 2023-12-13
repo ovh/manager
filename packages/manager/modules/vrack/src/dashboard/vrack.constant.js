@@ -49,11 +49,61 @@ export const STATUS = {
 export const VRACK_DASHBOARD_TRACKING_PREFIX = 'vrack::dashboard';
 export const VRACK_ACTIONS_SUFFIX = 'action';
 
+/**
+ * groupes of services are used to display a sub list in the vrack available template
+ * @type {string[]}
+ */
+export const GROUPED_SERVICES_TYPES = [
+  'dedicatedCloudDatacenter',
+  'managedBareMetalDatacenter',
+  'dedicatedCloud',
+  'managedBareMetal',
+  'dedicatedServerInterface',
+];
+/**
+ * the services families are referenced in the vrack allowed services API
+ * this map is the base object to gather the data from the backend in each family
+ * https://api.ovh.com/console/#/vrack/%7BserviceName%7D/allowedServices~GET
+ * @type {{legacyVrack: null, dedicatedCloudDatacenter: null, ovhCloudConnect: null, dedicatedCloud: null, dedicatedServer: null, ip: null, dedicatedConnect: null, dedicatedServerInterface: null, cloudProject: null, ipLoadbalancing: null}}
+ */
+export const SERVICE_FAMILIES_MAP_FETCH = {
+  cloudProject: 'not_fetched',
+  dedicatedCloud: 'not_fetched',
+  dedicatedCloudDatacenter: 'not_fetched',
+  dedicatedConnect: 'not_fetched',
+  dedicatedServer: 'not_fetched',
+  dedicatedServerInterface: 'not_fetched',
+  ip: 'not_fetched',
+  ipLoadbalancing: 'not_fetched',
+  legacyVrack: 'not_fetched',
+  ovhCloudConnect: 'not_fetched',
+};
+export const SERVICE_FAMILIES_MAP = {
+  cloudProject: null,
+  dedicatedCloud: null,
+  dedicatedCloudDatacenter: null,
+  dedicatedConnect: null,
+  dedicatedServer: null,
+  dedicatedServerInterface: null,
+  ip: null,
+  ipLoadbalancing: null,
+  legacyVrack: null,
+  ovhCloudConnect: null,
+};
+/**
+ * only the keys of the service families map object
+ * @type {string[]}
+ */
+export const SERVICE_FAMILIES_LIST = Object.keys(SERVICE_FAMILIES_MAP);
 export default {
   FEATURE_NAMES,
   POLLING_INTERVAL,
   STATUS,
   VRACK_URLS,
+  SERVICE_FAMILIES_LIST,
+  SERVICE_FAMILIES_MAP,
+  SERVICE_FAMILIES_MAP_FETCH,
+  GROUPED_SERVICES_TYPES,
   VRACK_DASHBOARD_TRACKING_PREFIX,
   VRACK_ACTIONS_SUFFIX,
 };
