@@ -1367,7 +1367,7 @@
   "hosting_tab_DATABASES_table_header_status_optional_true": "Opcional - retirada da venda",
   "hosting_tab_DATABASES_configuration_copy_title": "Selecione a base de dados de destino",
   "hosting_tab_DATABASES_configuration_copy_action_button": "Copiar a base de dados",
-  "hosting_tab_DATABASES_configuration_copy_step1_question_part1": "A sua base de dados vai ser copiada para um novo destino. Se não houver banco de dados de destino disponível, você pode adquirir um",
+  "hosting_tab_DATABASES_configuration_copy_step1_question_part1": "A sua base de dados vai ser copiada para um novo destino. Se não existir base de dados de destino disponível, pode adquirir uma",
   "hosting_tab_DATABASES_configuration_copy_step1_question_part2": "e ativá-la.",
   "hosting_tab_DATABASES_configuration_copy_step1_question_link": "aqui",
   "hosting_tab_DATABASES_configuration_copy_step1_select_database": "Copiar para uma base de dados:",
