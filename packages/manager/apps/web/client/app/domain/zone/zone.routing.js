@@ -38,8 +38,8 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         $state.go('app.domain.product.diff-tool-viewer', {
           selectedDates: dnsEntriesForComparison
-            .filter((u) => u.active)
-            .map((u) => u.date),
+            .filter(({ active }) => active)
+            .map(({ date }) => date),
           productId: zoneName,
         }),
     },
