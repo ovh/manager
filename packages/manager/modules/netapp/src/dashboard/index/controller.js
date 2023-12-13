@@ -12,6 +12,7 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
     this.Alerter = Alerter;
 
     this.SERVICE_TYPE = SERVICE_TYPE;
+    this.isEditingName = false;
   }
 
   $onInit() {
@@ -25,6 +26,14 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
       this.serviceInfos.engagedUpTo &&
       moment(this.serviceInfos.engagedUpTo).diff(moment(), 'month') < 3
     );
+  }
+
+  toggleNameEdition() {
+    this.isEditingName = !this.isEditingName;
+  }
+
+  editName() {
+    this.isEditingName = false;
   }
 
   onBillingInformationError(error) {
