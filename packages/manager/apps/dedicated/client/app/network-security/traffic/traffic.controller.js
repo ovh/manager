@@ -11,6 +11,7 @@ export default class TrafficController {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.networkSecurityService = networkSecurityService;
+
     this.TRAFFIC_PERIODS = TRAFFIC_PERIODS;
     this.TRAFFIC_PERIOD_LIST = TRAFFIC_PERIOD_LIST;
     this.CHART = CHART;

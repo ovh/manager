@@ -65,6 +65,7 @@ export default /* @ngInject */ function IpFirewallCtrl(
   self.successMessage = null;
   self.denyMessage = null;
   self.firewallStatus = null;
+  self.disabledToggle = false;
 
   self.firewallGuideLink =
     FIREWALL_GUIDE_LINKS[coreConfig.getUser().ovhSubsidiary] ||
@@ -112,21 +113,9 @@ export default /* @ngInject */ function IpFirewallCtrl(
     }
   }
 
-  function sortList(listToSort) {
-    return listToSort.sort((a, b) => {
-      if (a.name < b.name) {
-        return -1;
-      }
-      if (a.name > b.name) {
-        return 1;
-      }
-      return 0;
-    });
-  }
-
   function loadConstants() {
     IpFirewall.getFirewallRuleConstants().then((constants) => {
-      const sequences = sortList(
+      const sequences = IpFirewall.sortList(
         transform(constants.sequences, (result, name, key) => {
           const newResult = result;
           const map = {
@@ -187,6 +176,14 @@ export default /* @ngInject */ function IpFirewallCtrl(
     loadRules(self.FIREWALL_MAX_RULES, 0);
   }
 
+  function getMitigationDetail() {
+    IpFirewall.getMitigation(self.selectedBlock, self.selectedIp).then(
+      (mitigation) => {
+        self.disabledToggle = mitigation;
+      },
+    );
+  }
+
   function getFirewallDetail() {
     IpFirewall.getFirewallDetails(self.selectedBlock, self.selectedIp).then(
       (firewallDetails) => {
@@ -199,6 +196,8 @@ export default /* @ngInject */ function IpFirewallCtrl(
           firewall: firewallDetails.enabled ? 'ACTIVATED' : 'DEACTIVATED',
         };
         self.firewallStatus = firewallDetails.enabled;
+
+        getMitigationDetail();
         paginate(self.pageSize, self.offset);
       },
     );
@@ -242,17 +241,15 @@ export default /* @ngInject */ function IpFirewallCtrl(
                   self.selectedIp,
                   result.sequence,
                 ).then(() => {
+                  self.successMessage = $translate.instant(
+                    'ip_firewall_delete_success',
+                  );
                   if (result.state === self.constants.CREATION_PENDING) {
                     self.successMessage = $translate.instant(
                       'ip_firewall_add_success',
                     );
-                    reloadRules();
-                  } else {
-                    self.successMessage = $translate.instant(
-                      'ip_firewall_delete_success',
-                    );
-                    reloadRules();
                   }
+                  reloadRules();
                 });
               }
             });
@@ -269,7 +266,9 @@ export default /* @ngInject */ function IpFirewallCtrl(
       .finally(() => {
         // Sort list to display deny action first
         if (self.rules.list.results) {
-          self.rules.list.results = sortList(self.rules.list.results);
+          self.rules.list.results = IpFirewall.sortList(
+            self.rules.list.results,
+          );
         }
         self.rulesLoading = false;
 
