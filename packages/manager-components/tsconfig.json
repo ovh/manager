@@ -19,7 +19,7 @@
   "include": [
     "./src/**/*.ts",
     "./src/**/*.tsx",
-    "src/components/tile/tile.spec.tsx"
+    "src/components/card/card.spec.tsx"
   ],
   "exclude": ["./src/**/*.stories.*"]
 }

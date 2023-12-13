@@ -1,1 +1,1 @@
-export * from './tile/tile';
+export * from './card/card';

@@ -1,9 +1,9 @@
 import React from 'react';
-import { ScTile, ScTileProps } from './tile';
+import { Card, CardProps } from './card';
 import { Meta, StoryFn } from '@storybook/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
-export const defaultProps: ScTileProps = {
+export const defaultProps: CardProps = {
   texts: {
     title: 'Titre du produit',
     description:
@@ -15,11 +15,10 @@ export const defaultProps: ScTileProps = {
     alt: 'offer',
     src: 'https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png',
   },
-  dataTracking: 'home::dashboard::test',
 };
 
-const meta: Meta<typeof ScTile> = {
-  title: 'Atoms/Tile',
+const meta: Meta<typeof Card> = {
+  title: 'Atoms/Card',
   decorators: [
     (Story) => (
       <div className="columns-3">
@@ -27,16 +26,16 @@ const meta: Meta<typeof ScTile> = {
       </div>
     ),
   ],
-  component: ScTile,
+  component: Card,
   argTypes: {
     texts: {
-      title: { control: 'text', description: 'Title of the tile' },
+      title: { control: 'text', description: 'Title of the Card' },
       category: {
-        description: 'Category of the tile',
+        description: 'Category of the Card',
         control: 'text',
       },
     },
-    href: { control: 'text', description: 'URL of the tile and link' },
+    href: { control: 'text', description: 'URL of the Card and link' },
     isExternalHref: {
       control: 'boolean',
       description:
@@ -48,7 +47,7 @@ const meta: Meta<typeof ScTile> = {
     img: {
       imgSrc: {
         control: 'text',
-        description: 'URL of the image to display in the header of the tile',
+        description: 'URL of the image to display in the header of the Card',
       },
       imgAlt: {
         control: 'text',
@@ -59,17 +58,12 @@ const meta: Meta<typeof ScTile> = {
       description:
         'Display examples of badges in the story (in the actual code there is a badge slot)',
     },
-    dataTracking: {
-      description: 'Tracking label sent when the tile or the link is clicked',
-    },
   },
   args: defaultProps,
 };
 export default meta;
 
-const Template: StoryFn<typeof ScTile> = (args: ScTileProps) => (
-  <ScTile {...args} />
-);
+const Template: StoryFn<typeof Card> = (args: CardProps) => <Card {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

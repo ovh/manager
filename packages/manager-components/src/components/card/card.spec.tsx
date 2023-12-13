@@ -1,13 +1,13 @@
 import React from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ScTile, ScTileProps } from './tile';
-import { defaultProps } from './tile.stories';
+import { Card, CardProps } from './card';
+import { defaultProps } from './card.stories';
 import { render, waitFor } from '../../utils/test.provider';
 
-const setupSpecTest = async (customProps?: Partial<ScTileProps>) =>
-  await waitFor(() => render(<ScTile {...defaultProps} {...customProps} />));
+const setupSpecTest = async (customProps?: Partial<CardProps>) =>
+  await waitFor(() => render(<Card {...defaultProps} {...customProps} />));
 
-describe('specs:msc-tile', () => {
+describe('specs:Card', () => {
   it('renders without error', async () => {
     const screen = await setupSpecTest();
 

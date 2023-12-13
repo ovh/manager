@@ -2,7 +2,7 @@
 
 ## Features
 
-Handle all React component use in manager
+Hosts the components used in manager
 Keep it as simple as possible
 
 ## Add new component
@@ -13,8 +13,8 @@ Keep it as simple as possible
 
 ## Import component to another project
 
-The react super component is not builded so you can import directly from the workspace like this :
-`import Tile from '@ovhcloud/manager-components'`
+The component is not builded so you can import directly from the workspace like this :
+`import Card from '@ovhcloud/manager-components'`
 
 ## Main Scripts
 

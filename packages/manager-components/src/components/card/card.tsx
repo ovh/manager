@@ -2,7 +2,7 @@ import React from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import { OsdsChip } from '@ovhcloud/ods-components/chip/react';
-import { OsdsTile } from '@ovhcloud/ods-components/tile/react';
+import { OsdsTile } from '@ovhcloud/ods-components/Tile/react';
 import { OsdsLink } from '@ovhcloud/ods-components/link/react';
 import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
 import {
@@ -24,7 +24,7 @@ export interface ImageDetails {
   alt?: string;
 }
 
-export interface ScTileProps {
+export interface CardProps {
   href: string;
   isExternalHref?: boolean;
   img?: ImageDetails;
@@ -33,30 +33,26 @@ export interface ScTileProps {
     description: string;
     category: string;
   };
-  dataTracking?: string;
   badges?: Badge[];
 }
 
-export const ScTile = ({
+export const Card = ({
   href,
   isExternalHref,
   img,
-  dataTracking,
   badges,
   texts,
-}: ScTileProps) => {
+}: CardProps) => {
   const { title, description, category } = texts;
-  const { t } = useDynamicTranslation('tile');
+  const { t } = useDynamicTranslation('Card');
 
   return (
     <a
-      className="msc-tile-wrapper"
       target={OdsHTMLAnchorElementTarget._blank}
       rel={OdsHTMLAnchorElementRel.noopener}
       href={href}
     >
       <OsdsTile
-        className="msc-ods-tile"
         color={ODS_THEME_COLOR_INTENT.primary}
         rounded
         inline
@@ -109,7 +105,6 @@ export const ScTile = ({
           </OsdsText>
           <OsdsLink
             tabindex="-1"
-            data-tracking={dataTracking}
             color={ODS_THEME_COLOR_INTENT.primary}
             href={href}
           >
