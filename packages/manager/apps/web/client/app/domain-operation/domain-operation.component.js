@@ -1,5 +1,4 @@
 import template from './domain-operation.html';
-import controller from './domain-operation.controller';
 
 export default {
   bindings: {
@@ -8,5 +7,4 @@ export default {
     isDns: '<',
   },
   template,
-  controller,
 };
