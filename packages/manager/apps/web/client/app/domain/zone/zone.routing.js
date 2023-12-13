@@ -30,8 +30,8 @@ export default /* @ngInject */ ($stateProvider) => {
           url,
           chosenDate,
         }),
-      goBack: /* @ngInject */ ($state, $stateParams) => () =>
-        $state.go('app.domain.product.zone', $stateParams),
+      goBack: /* @ngInject */ ($state) => () =>
+        $state.go('app.domain.product.zone'),
       goToDiffViewer: /* @ngInject */ ($state) => (
         dnsEntriesForComparison,
         zoneName,
@@ -78,11 +78,12 @@ export default /* @ngInject */ ($stateProvider) => {
       url: {
         type: 'string',
         value: null,
+        description: 'url used to retrieve the zone data file',
       },
     },
     resolve: {
       ...commonResolveForZoneHistory,
-      url: /* @ngInject */ ($stateParams) => $stateParams.url,
+      url: /* @ngInject */ ($transition$) => $transition$.params().url,
       goBack: /* @ngInject */ ($state) => () => $state.go('^'),
       getDnsZoneData: /* @ngInject */ (DNSZoneService) => (url) =>
         DNSZoneService.getDnsFile(url),
@@ -105,8 +106,9 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       ...commonResolveForZoneHistory,
-      chosenDate: /* @ngInject */ ($stateParams) => $stateParams.chosenDate,
-      zoneId: /* @ngInject */ ($stateParams) => $stateParams.productId,
+      chosenDate: /* @ngInject */ ($transition$) =>
+        $transition$.params().chosenDate,
+      zoneId: /* @ngInject */ ($transition$) => $transition$.params().productId,
       goBack: /* @ngInject */ ($state, $timeout, Alerter) => (
         message = false,
         type = 'success',
