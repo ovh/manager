@@ -13,8 +13,10 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       ...commonResolves,
-      goBack: /* @ngInject */ ($state, $stateParams) => () =>
-        $state.go('app.zone.details.zone-history', $stateParams),
+      goBack: /* @ngInject */ ($state, $transition$) => () =>
+        $state.go('app.zone.details.zone-history', {
+          productId: $transition$.params().productId,
+        }),
     },
     params: {
       selectedDates: null,

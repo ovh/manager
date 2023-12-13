@@ -57,8 +57,10 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       ...commonResolveForZoneHistory,
-      goBack: /* @ngInject */ ($state, $stateParams) => () =>
-        $state.go('app.domain.product.zone-history', $stateParams),
+      goBack: /* @ngInject */ ($state, $transition$) => () =>
+        $state.go('app.domain.product.zone-history', {
+          productId: $transition$.params().productId,
+        }),
     },
     params: {
       selectedDates: null,
