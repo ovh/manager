@@ -12,6 +12,7 @@ const component = {
     onCreateUserClick: '&',
     onUserSelected: '&',
     onUserCreated: '&',
+    isDiscoveryProject: '<',
   },
   controller,
   template,
