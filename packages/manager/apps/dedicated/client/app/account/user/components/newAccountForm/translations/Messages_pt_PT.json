@@ -766,5 +766,6 @@
   "signup_information_banner_for_indian_subsidiary": "Para alterar os dados da sua conta, contacte o Serviço de Apoio ao Cliente ",
   "signup_information_banner_link_for_indian_subsidiary": "clicar aqui.",
   "signup_field_iceNumber": "Número ICE",
-  "signup_field_purposeOfPurchase": "Razão da compra"
+  "signup_field_purposeOfPurchase": "Razão da compra",
+  "new_account_content_check_validation": "Verifique as informações introduzidas (IVA, número de telefone, data de nascimento, etc.) para proceder à validação do formulário."
 }
