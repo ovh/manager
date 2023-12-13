@@ -13,7 +13,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
       activateProject: /* @ngInject */ (
         serviceId,
-        projectId,
         projectService,
         claimDiscoveryVoucher,
         goToProjectDashboard,
@@ -27,21 +26,17 @@ export default /* @ngInject */ ($stateProvider) => {
         return claimDiscoveryVoucher(voucherPayload)
           .then(() => projectService.activateDiscoveryProject(serviceId))
           .then(() => goToProjectDashboard(discoveryPromotionVoucherAmount))
-          .catch((err) => {
-            return displayErrorMessage(err.data.message);
-          });
+          .catch((err) => displayErrorMessage(err?.data?.message || err));
       },
 
       claimDiscoveryVoucher: /* @ngInject */ (projectService, projectId) => (
         data,
-      ) => {
-        return projectService.claimVoucher(projectId, data);
-      },
+      ) => projectService.claimVoucher(projectId, data),
 
       displayErrorMessage: /* @ngInject */ (CucCloudMessage, $translate) => (
         message,
-      ) => {
-        return CucCloudMessage.error(
+      ) =>
+        CucCloudMessage.error(
           {
             textHtml: $translate.instant(
               'pci_projects_project_activate_message_fail',
@@ -51,8 +46,7 @@ export default /* @ngInject */ ($stateProvider) => {
             ),
           },
           'pci.projects.project.activate',
-        );
-      },
+        ),
 
       goToProjectDashboard: /* @ngInject */ (
         $state,
