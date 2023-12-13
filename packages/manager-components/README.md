@@ -1,4 +1,4 @@
-# ⚛️⚡ Ui Manager Library
+# ⚛️⚡ Manager Components Library
 
 ## Features
 
@@ -13,15 +13,8 @@ Keep it as simple as possible
 
 ## Import component to another project
 
-The react super component is not builded so you can import directly selected components
-Just update your `tsconfig.json` :
-`         "@ui-manager/*": [
-        "../../../ui-manager/src/components/*"
-      ]
-    `
-
-And import like this :
-`import Tile from '@ui-manager/tile'`
+The react super component is not builded so you can import directly from the workspace like this :
+`import Tile from '@ovhcloud/manager-components'`
 
 ## Main Scripts
 
