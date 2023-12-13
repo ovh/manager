@@ -4,12 +4,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.domain.operation', {
     url: '/operation',
     component: 'domainOperation',
-    params: {
-      domainOperationLink: null,
-      dnsOperationLink: null,
-      isDns: null,
-      type: null,
-    },
     resolve: {
       domainOperationLink: /* @ngInject */ ($state) =>
         $state.href('app.domain.operation.domain'),
@@ -27,9 +21,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     translations: { value: ['.'], format: 'json' },
     params: {
       ...ListLayoutHelper.stateParams,
-      type: null,
-      OperationFunctionEnum: null,
-      OperationStatusEnum: null,
     },
     resolve: {
       ...ListLayoutHelper.stateResolves,
@@ -57,9 +48,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     },
     params: {
       ...ListLayoutHelper.stateParams,
-      type: null,
-      OperationFunctionEnum: null,
-      OperationStatusEnum: null,
     },
     resolve: {
       ...ListLayoutHelper.stateResolves,
