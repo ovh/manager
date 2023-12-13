@@ -18,7 +18,6 @@ export default class SiretCtrl {
     this.displayManualForm = false;
     this.activeSelectSuggest = null;
     this.user = coreConfig.getUser();
-    this.vatFieldTouched = false;
   }
 
   $onInit() {
@@ -123,13 +122,5 @@ export default class SiretCtrl {
       name: `${this.trackingPrefix}${hit}`,
       type: 'navigation',
     });
-  }
-
-  displayVatError() {
-    if (!this.vatFieldTouched) {
-      const regex = new RegExp(this.rules?.vat?.regularExpression);
-      return !regex.test(this.model.vat);
-    }
-    return false;
   }
 }
