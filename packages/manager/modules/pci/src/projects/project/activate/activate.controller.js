@@ -2,12 +2,11 @@ import illustration from './assets/activate-bg.png';
 
 export default class ProjectActivateController {
   /* @ngInject */
-  constructor($q, orderCart, pciProjectNew, CucCloudMessage, $translate) {
+  constructor($q, orderCart, pciProjectNew, CucCloudMessage) {
     this.$q = $q;
     this.orderCart = orderCart;
     this.pciProjectNew = pciProjectNew;
     this.CucCloudMessage = CucCloudMessage;
-    this.$translate = $translate;
     this.illustration = illustration;
   }
 
