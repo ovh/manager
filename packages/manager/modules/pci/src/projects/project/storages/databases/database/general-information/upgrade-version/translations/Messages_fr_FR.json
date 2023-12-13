@@ -6,5 +6,5 @@
   "pci_databases_general_information_upgrade_version_label": "Version",
   "pci_databases_general_information_upgrade_version_placeholder": "Sélectionner une version",
   "pci_databases_general_information_upgrade_version_success": "Votre demande de mise à jour a bien été prise en compte et sera effective dans quelques minutes.",
-  "pci_databases_general_information_upgrade_version_error": "Votre mise à jour n’a pas pu être correctement effectuée : {{ message }}"
+  "pci_databases_general_information_upgrade_version_error": "Votre mise à jour n'a pas pu être correctement effectuée : {{ message }}"
 }

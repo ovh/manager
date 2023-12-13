@@ -25,7 +25,7 @@
   "telephony_order_address_street_number": "Numéro",
   "telephony_order_address_street_name": "Rue",
   "telephony_order_address_street_type": "Type de Voie",
-  "telephony_order_address_addressextra": "Complément d’adresse",
+  "telephony_order_address_addressextra": "Complément d'adresse",
   "telephony_order_contact_universal_directory_publish": "Publication dans l'annuaire",
   "telephony_order_confirm": "Commandez ({{total}} TTC)",
   "telephony_order_identity_first_name": "Prénom",

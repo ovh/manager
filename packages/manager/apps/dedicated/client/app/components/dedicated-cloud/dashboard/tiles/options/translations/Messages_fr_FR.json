@@ -11,7 +11,7 @@
   "ovhManagerPccDashboardOptions_basicOptions_actionMenu_payCheckout": "Valider l'activation",
   "ovhManagerPccDashboardOptions_basicOptions_actionMenu_switch": "Modifier les options",
 
-  "ovhManagerPccDashboardOptions_certification_term": "Conformité spécifique par secteur d’activité",
+  "ovhManagerPccDashboardOptions_certification_term": "Conformité spécifique par secteur d'activité",
 
   "ovhManagerPccDashboardOptions_certification_description_name_none": "Aucune",
 
@@ -23,9 +23,9 @@
 
   "ovhManagerPccDashboardOptions_security_term": "Options de conformité sectorielle",
 
-  "ovhManagerPccDashboardOptions_security_drp": "Plans de reprise et de continuité d’activité",
+  "ovhManagerPccDashboardOptions_security_drp": "Plans de reprise et de continuité d'activité",
   "ovhManagerPccDashboardOptions_security_drp_status_delivered": "Activé",
-  "ovhManagerPccDashboardOptions_security_drp_status_delivering": "En cours d’installation",
+  "ovhManagerPccDashboardOptions_security_drp_status_delivering": "En cours d'installation",
   "ovhManagerPccDashboardOptions_security_drp_status_disabling": "En cours de suppression",
   "ovhManagerPccDashboardOptions_security_drp_status_disabled": "Aucun",
   "ovhManagerPccDashboardOptions_security_drp_status_error": "En erreur",

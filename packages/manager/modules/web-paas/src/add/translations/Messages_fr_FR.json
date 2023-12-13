@@ -16,7 +16,7 @@
   "web_paas_add_project_template": "Sélectionnez votre template",
   "web_paas_add_project_template_create_description": "Utilisez votre code ou migrez un projet existant vers Web PaaS",
   "web_paas_add_project_template_create_title": "Créez votre template",
-  "web_paas_add_project_template_existing_description": "Utilisez l’un des templates existants pour démarrer votre projet",
+  "web_paas_add_project_template_existing_description": "Utilisez l'un des templates existants pour démarrer votre projet",
   "web_paas_add_project_template_existing_title": "Sélectionnez un template existant",
   "web_paas_add_project_options": "Choisissez vos options",
   "web_paas_add_project_options_description": "Ajoutez des options de stockage, d'environnement et de licence utilisateur.",

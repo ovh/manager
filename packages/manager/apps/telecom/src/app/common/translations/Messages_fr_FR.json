@@ -39,7 +39,7 @@
   "common_between_and": "Entre {{between}} et {{and}}",
   "common_search": "Rechercher",
   "common_error_title": "Erreur",
-  "common_delete_selected_one_item": "Supprimer l’élément sélectionné",
+  "common_delete_selected_one_item": "Supprimer l'élément sélectionné",
   "common_delete_selected_items": "Supprimer les éléments sélectionnés",
   "common_delete_selected_items_count": "{{count}} élément(s) sélectionné(s)",
   "common_two_of_them": "Les deux",

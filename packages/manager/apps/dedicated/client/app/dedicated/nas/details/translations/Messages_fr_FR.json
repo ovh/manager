@@ -65,7 +65,7 @@
   "nas_partitions_minimum_size": "(10 Go min)",
   "nas_partitions_loading_error": "Une erreur est survenue lors du chargement des partitions",
   "nas_partitions_name": "Nom",
-  "nas_partitions_name_fail": "Le nom n’est pas valide.",
+  "nas_partitions_name_fail": "Le nom n'est pas valide.",
   "nas_partitions_name_error_required": "Veuillez renseigner un nom.",
   "nas_partitions_protocol": "Protocole",
   "nas_partitions_protocol_CIFS": "CIFS",

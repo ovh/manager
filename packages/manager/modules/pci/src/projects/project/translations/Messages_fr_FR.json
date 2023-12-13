@@ -17,7 +17,7 @@
   "pci_projects_project_billing_voucher_credit": "Code promotion : {{ voucher }}",
   "pci_projects_project_billing_active_credit_balance": "Valide jusqu'au {{ expirationDate }}",
   "pci_projects_project_documentation_getting_started_term": "Getting Started",
-  "pci_projects_project_documentation_getting_started_description": "L’essentiel pour commencer",
+  "pci_projects_project_documentation_getting_started_description": "L'essentiel pour commencer",
   "pci_projects_project_documentation_interface_term": "Public Cloud",
   "pci_projects_project_documentation_interface_description": "Se familiariser",
   "pci_projects_project_documentation_instances_term": "Instances",

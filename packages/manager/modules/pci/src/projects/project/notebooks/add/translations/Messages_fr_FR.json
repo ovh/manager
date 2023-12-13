@@ -1,8 +1,8 @@
 {
   "pci_notebook_add_title": "Créer un notebook",
   "pci_notebook_add_description": "Démarrez vos notebooks Jupyter ou VS Code dans le cloud, rapidement et simplement.",
-  "pci_notebook_add_banner_object_storage_description": "Veuillez noter que si vous souhaitez associer un conteneur à votre notebook, nous vous recommandons de le créer au préalable dans l’interface Object Storage.",
-  "pci_notebook_add_banner_object_storage_description_link": "Créer un conteneur d’objets",
+  "pci_notebook_add_banner_object_storage_description": "Veuillez noter que si vous souhaitez associer un conteneur à votre notebook, nous vous recommandons de le créer au préalable dans l'interface Object Storage.",
+  "pci_notebook_add_banner_object_storage_description_link": "Créer un conteneur d'objets",
   "pci_notebook_add_configuration_title": "Configurez votre notebook",
   "pci_notebook_add_configuration_title_selected": "Nom du notebook : {{ notebook }} ({{ labelsLength }} label·s)  ",
   "pci_notebook_add_framework_title": "Frameworks proposés",

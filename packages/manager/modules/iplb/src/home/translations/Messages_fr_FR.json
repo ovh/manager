@@ -20,7 +20,7 @@
   "iplb_home_tile_configuration_private_network": "Réseaux privés",
   "iplb_home_tile_configuration_billing_evolution_message_info": "La tarification de votre Load Balancer évolue et revoit ses tarifs à la baisse.",
   "iplb_home_tile_configuration_billing_issues_message_warn_1": "Notre offre OVHcloud Load Balancer a connu ces derniers mois des dysfonctionnements techniques affectant sa facturation. Veuillez nous excuser pour ce désagrément.",
-  "iplb_home_tile_configuration_billing_issues_message_warn_2": "En conséquence, nous vous informons que le trafic excédentaire, qui n’a pas été facturé jusqu’au 1er mai, ne vous sera pas réclamé. À compter du 1er mai, la facturation reprend conformément aux Conditions particulières de service et aux nouveaux tarifs en vigueur détaillés",
+  "iplb_home_tile_configuration_billing_issues_message_warn_2": "En conséquence, nous vous informons que le trafic excédentaire, qui n'a pas été facturé jusqu'au 1er mai, ne vous sera pas réclamé. À compter du 1er mai, la facturation reprend conformément aux Conditions particulières de service et aux nouveaux tarifs en vigueur détaillés",
   "iplb_home_tile_configuration_billing_more_information_label": "Plus d'informations",
   "iplb_home_tile_configuration_billing_here_label": "ici"
 }

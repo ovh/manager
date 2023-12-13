@@ -2,7 +2,7 @@
   "pci_projects_project_storages_volume_backup_create_breadcrumb": "Créer une sauvegarde de volume",
   "pci_projects_project_storages_volume_backup_create_guides_header": "Guides",
   "pci_projects_project_storages_volume_backup_create_header": "Créer une sauvegarde de volume",
-  "pci_projects_project_storages_volume_backup_create_description": "Pour garantir une meilleure continuité d’activité de vos applications, il est nécessaire d’effectuer des copies régulières de vos données pour pouvoir les restaurer en cas de besoin.",
+  "pci_projects_project_storages_volume_backup_create_description": "Pour garantir une meilleure continuité d'activité de vos applications, il est nécessaire d'effectuer des copies régulières de vos données pour pouvoir les restaurer en cas de besoin.",
   "pci_projects_project_storages_volume_backup_create_banner_no_volumes_description": "Vous n'avez créé aucun volume pour le moment. Pour toute sauvegarde, merci de créer au moins un volume dans Block Storage.",
   "pci_projects_project_storages_volume_backup_create_banner_no_volumes_link": "Créer un volume Block Storage.",
   "pci_projects_project_storages_volume_backup_create_step_1_title": "Choisissez un volume à sauvegarder",

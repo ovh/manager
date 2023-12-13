@@ -10,7 +10,7 @@
   "select_bandwidth_plan_summary": "Récapitulatif de la commande",
   "cluster_order_bandwidth_declaration": "La date de renouvellement de votre option sera alignée avec celle de votre serveur. Le montant affiché correspond au premier mois de facturation de votre option, calculé au prorata temporis du mois en cours.",
   "cluster_order_bandwidth_info": "Le montant indiqué correspond au montant facturé au prochain renouvellement de votre option.",
-  "cluster_order_bandwidth_warning": "La modification de votre bande passante sera appliquée quelques minutes après l’activation de l’option.",
+  "cluster_order_bandwidth_warning": "La modification de votre bande passante sera appliquée quelques minutes après l'activation de l'option.",
   "cluster_order_bandwidth_auto_pay": "Payer avec le moyen de paiement par défaut",
   "plan_price_per_month": "HT/mois",
   "wizard_pay": "Régler",

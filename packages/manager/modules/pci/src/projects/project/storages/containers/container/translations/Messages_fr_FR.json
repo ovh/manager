@@ -33,9 +33,9 @@
   "pci_projects_project_storages_containers_container_archive_success_unseal": "Le dégel de l'archive {{archive}} est en cours.",
   "pci_projects_project_storages_containers_container_add_user_label": "Ajouter un utilisateur à mon objet",
   "pci_projects_project_storages_containers_container_documentation_title_rclone": "L'Object Storage avec rclone",
-  "pci_projects_project_storages_containers_container_documentation_description_rclone": "Découvrez comment l’Object Storage d’OVH peut être synchronisé via rclone.",
+  "pci_projects_project_storages_containers_container_documentation_description_rclone": "Découvrez comment l'Object Storage d'OVH peut être synchronisé via rclone.",
   "pci_projects_project_storages_containers_container_documentation_title_veeam": "L'Object Storage S3 avec Veeam",
   "pci_projects_project_storages_containers_container_documentation_description_veeam": "Configurez Veeam pour utiliser votre espace de stockage S3 Object Storage.",
   "pci_projects_project_storages_containers_container_documentation_title_s3-limitation": "Les limites techniques de l'Object Storage S3",
-  "pci_projects_project_storages_containers_container_documentation_description_s3-limitation": "Retrouvez ici les limites techniques relatives à l’offre S3 Object Storage"
+  "pci_projects_project_storages_containers_container_documentation_description_s3-limitation": "Retrouvez ici les limites techniques relatives à l'offre S3 Object Storage"
 }

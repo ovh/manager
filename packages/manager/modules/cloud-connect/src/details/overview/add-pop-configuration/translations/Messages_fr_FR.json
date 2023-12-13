@@ -1,6 +1,6 @@
 {
-  "cloud_connect_pop_configure_title": "Ajout d’une configuration PoP",
-  "cloud_connect_pop_configure_description": "Pour configurer votre PoP vous devez sélectionner votre modèle d’interconnexion réseau L2 ou L3",
+  "cloud_connect_pop_configure_title": "Ajout d'une configuration PoP",
+  "cloud_connect_pop_configure_description": "Pour configurer votre PoP vous devez sélectionner votre modèle d'interconnexion réseau L2 ou L3",
   "cloud_connect_pop_configure_pop_select_type": "Sélectionnez votre configuration",
   "cloud_connect_pop_add_configuration_error": "Échec de l'ajout de la configuration PoP: {{message}}",
   "cloud_connect_pop_add_configuration_success": "Ajout de la configuration PoP. <a href=\"{{ tasksUrl }}\">Cliquez ici pour voir le statut.</a>",

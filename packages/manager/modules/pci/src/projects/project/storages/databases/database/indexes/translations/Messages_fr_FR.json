@@ -2,7 +2,7 @@
   "pci_databases_pattern_tab_title": "Modèles",
   "pci_databases_indexes_tab_title": "Indexes",
   "pci_databases_indexes_pattern_model": "Modèle",
-  "pci_databases_indexes_pattern_max_index": "Nombre maximal d’index",
+  "pci_databases_indexes_pattern_max_index": "Nombre maximal d'index",
   "pci_databases_indexes_pattern_add": "Ajouter un modèle",
 
   "pci_databases_indexes_index_name": "Index",

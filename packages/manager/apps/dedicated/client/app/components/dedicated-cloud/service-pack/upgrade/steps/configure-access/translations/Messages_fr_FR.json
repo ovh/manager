@@ -7,7 +7,7 @@
   "dedicatedCloud_servicePack_requiredConfiguration_criterias_accessPolicy_value_OPEN": "ouvert",
   "dedicatedCloud_servicePack_requiredConfiguration_criterias_accessPolicy_value_FILTERED": "restreint",
 
-  "dedicatedCloud_servicePack_requiredConfiguration_criterias_numberOfAllowedIPAndBlocks_definition": "Nombre d’adresses IP et blocs autorisés à se connecter : {{numberOfAllowedIPsAndBlocks}}.",
+  "dedicatedCloud_servicePack_requiredConfiguration_criterias_numberOfAllowedIPAndBlocks_definition": "Nombre d'adresses IP et blocs autorisés à se connecter : {{numberOfAllowedIPsAndBlocks}}.",
 
   "dedicatedCloud_servicePack_requiredConfiguration_ipTable_ipColumn": "Adresse IP",
   "dedicatedCloud_servicePack_requiredConfiguration_descriptionTable_descriptionColumn": "Description",

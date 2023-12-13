@@ -81,7 +81,7 @@
   "microsoft_office_license_add_user_license_none": "Sélectionnez une licence",
   "microsoft_office_license_detail_user_add_error": "Une erreur est survenue lors de l'ajout de l'utilisateur",
   "microsoft_office_license_add_user_login_conditions": "Votre login doit contenir entre 3 et 20 caractères maximum. Il peut inclure des chiffres, des lettres et les caractères suivants : - _ ! # $ % &amp; ' ^ ` { }",
-  "microsoft_office_license_add_user_login_condition_exception": "Il peut également contenir des points, à condition qu’ils soient précédés d'un caractère autorisé et qu'ils ne soient pas suivis d’un autre point.",
+  "microsoft_office_license_add_user_login_condition_exception": "Il peut également contenir des points, à condition qu'ils soient précédés d'un caractère autorisé et qu'ils ne soient pas suivis d'un autre point.",
   "microsoft_office_license_add_user_login_invalid_pattern": "Le nom d'utilisateur contient des caractères non autorisés",
   "microsoft_office_license_add_user_login_minlength": "Le nom d'utilisateur doit contenir au minimum {{t0}} caractères",
   "microsoft_office_license_add_user_login_maxlength": "Le nom d'utilisateur est limité à {{t0}} caractères maximum",

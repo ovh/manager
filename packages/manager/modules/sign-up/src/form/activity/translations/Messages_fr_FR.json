@@ -20,6 +20,6 @@
   "sign_up_activity_field_nationalIdentificationNumber": "Numéro d'identification national",
   "sign_up_activity_field_companyNationalIdentificationNumber": "Numéro d'identification national",
   "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Numéro d'identification national (SIRET)",
-  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "Le numéro SIRET est nécessaire afin d’améliorer le processus de facturation électronique mise en place par l’état (Chorus)",
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "Le numéro SIRET est nécessaire afin d'améliorer le processus de facturation électronique mise en place par l'état (Chorus)",
   "sign_up_activity_field_italian_sdi": "Code du destinataire pour la facturation électronique (SDI)"
 }

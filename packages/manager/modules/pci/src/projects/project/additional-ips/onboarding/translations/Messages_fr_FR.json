@@ -5,7 +5,7 @@
   "pci_additional_ips_onboarding_content4_heading": "Additional IP OVHcloud :",
   "pci_additional_ips_onboarding_content4_description": "convient le mieux aux opérations de basculement inter-produits d'OVHcloud, tout en ayant besoin d'une configuration système manuelle aux points de terminaison.",
   "pci_additional_ips_onboarding_content5_heading": "Floating IP du Public Cloud :",
-  "pci_additional_ips_onboarding_content5_description": "convient le mieux aux cas d’usage Public Cloud, à l’automatisation du cloud (Terraform) ou aux réseaux privés régionalisés. La configuration du système de endpoint est automatique.",
+  "pci_additional_ips_onboarding_content5_description": "convient le mieux aux cas d'usage Public Cloud, à l'automatisation du cloud (Terraform) ou aux réseaux privés régionalisés. La configuration du système de endpoint est automatique.",
   "pci_additional_ips_onboarding_action_buy": "Créer une IP publique",
   "pci_additional_ips_onboarding_guides_additional_public_ips_title": "IP publiques chez OVHcloud",
   "pci_additional_ips_onboarding_guides_additional_public_ips_description": "Choisissez celles qui vous conviennent le mieux : Additional IP vs Floating IP",

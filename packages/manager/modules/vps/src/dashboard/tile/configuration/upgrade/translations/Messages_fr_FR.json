@@ -11,7 +11,7 @@
   "vps_dashboard_tile_configuration_upgrade_action_validate_and_pay": "Valider et payer",
   "vps_dashboard_tile_configuration_upgrade_action_cancel": "Annuler",
   "vps_dashboard_tile_configuration_upgrade_success_title": "Votre modification a bien été prise en compte",
-  "vps_dashboard_tile_configuration_upgrade_success_explain": "Une fois l’évolution de votre VPS effectuée dans un délai maximum de 2 heures, vous recevrez un e-mail de confirmation. Le redémarrage de votre VPS sera nécessaire pour profiter de votre nouvelle configuration.",
+  "vps_dashboard_tile_configuration_upgrade_success_explain": "Une fois l'évolution de votre VPS effectuée dans un délai maximum de 2 heures, vous recevrez un e-mail de confirmation. Le redémarrage de votre VPS sera nécessaire pour profiter de votre nouvelle configuration.",
   "vps_dashboard_tile_configuration_upgrade_success_follow_order": "Suivre ma commande",
   "vps_dashboard_tile_configuration_upgrade_no_payment_method_success": "Votre demande a bien été prise en compte. L'upgrade démarrera une fois le paiement du bon de commande suivant <a target=\"_blank\" rel=\"noopener\" href=\"{{ href }}\">{{ orderId }}</a> reçu.",
   "vps_dashboard_tile_configuration_upgrade_error": "Une erreur est survenue lors de l'amélioration de votre VPS.",

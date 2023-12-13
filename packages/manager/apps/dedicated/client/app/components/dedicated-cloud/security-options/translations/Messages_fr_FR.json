@@ -1,7 +1,7 @@
 {
   "dedicatedCloud_options_security_modal_title_enabling_pcidss": "Activation de l'option PCI DSS",
   "dedicatedCloud_options_security_modal_title_enabling_hipaa": "Activation de l'option HIPAA",
-  "dedicatedCloud_options_security_modal_title_enabling_hds": "Activation de l’hébergement de données de santé et certification HDS",
+  "dedicatedCloud_options_security_modal_title_enabling_hds": "Activation de l'hébergement de données de santé et certification HDS",
   "dedicatedCloud_options_security_step1_info": "Les options NSX et vROps doivent être activées sur votre infrastructure :",
   "dedicatedCloud_options_nsx_checklist": "Option VMware Network Virtualization (NSX) :",
   "dedicatedCloud_options_vrops_checklist": "Option VMware vRealize Operations (vROps) :",

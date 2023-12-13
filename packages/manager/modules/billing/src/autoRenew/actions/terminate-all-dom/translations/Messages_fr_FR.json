@@ -8,7 +8,7 @@
   "autorenew_all_dom_terminate_confirm": "Confirmer",
   "autorenew_all_dom_terminate_cancel": "Annuler",
   "autorenew_all_dom_terminate_success": "Votre demande de résiliation a bien été prise en compte",
-  "autorenew_all_dom_terminate_error": "Votre demande de résiliation n'a pas pu être prise en compte pour un ou plusieurs domaines. Merci d’essayer ultérieurement.",
+  "autorenew_all_dom_terminate_error": "Votre demande de résiliation n'a pas pu être prise en compte pour un ou plusieurs domaines. Merci d'essayer ultérieurement.",
   "autorenew_all_dom_domain_free_if_renewed": "Renouvellement gratuit uniquement si le pack Allldom {{ allDom }} est renouvelé avant le {{ allDomExpiration }}",
   "autorenew_all_dom_domain_free": "Renouvellement gratuit car inclus dans le pack Alldom"
 }

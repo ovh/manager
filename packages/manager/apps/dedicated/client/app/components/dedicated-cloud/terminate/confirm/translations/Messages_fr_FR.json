@@ -1,6 +1,6 @@
 {
     "dedicatedCloud_confirm_close_confirm": "Je confirme vouloir fermer ce service",
-    "dedicatedCloud_confirm_close_cancel": "J’ai changé d’avis",
+    "dedicatedCloud_confirm_close_cancel": "J'ai changé d'avis",
     "dedicatedCloud_confirm_close_service": "Confirmation de la fermeture du service",
     "dedicatedCloud_confirm_close_question": "Pourrions-nous savoir quelle est la principale raison qui vous amène à fermer ce service ?",
     "dedicatedCloud_confirm_close_reason_not_needed_anymore": "Je n'utilise plus le service",

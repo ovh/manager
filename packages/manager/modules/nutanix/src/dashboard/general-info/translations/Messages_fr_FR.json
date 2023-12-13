@@ -4,7 +4,7 @@
   "nutanix_dashboard_cluster_edit_button": "Modifier",
   "nutanix_dashboard_cluster_commercial_name": "Nom commercial",
   "nutanix_dashboard_cluster_commercial_name_housing": "Housing",
-  "nutanix_dashboard_cluster_admin_interface": "Interface d’administration",
+  "nutanix_dashboard_cluster_admin_interface": "Interface d'administration",
   "nutanix_dashboard_cluster_admin_interface_info": "Veuillez vous connecter via Prism Central pour gérer votre cluster Nutanix",
   "nutanix_dashboard_cluster_access_admin_interface": "Accéder à Prism Central",
   "nutanix_dashboard_cluster_type_of_pack": "Type de pack",

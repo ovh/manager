@@ -1,6 +1,6 @@
 {
   "iplb_ssl_certificate_title": "Certificats SSL",
-  "iplb_ssl_certificate_intro_text": "Les certificats configurés sont automatiquement disponible pour l’ensemble des frontends sur lesquels l’options SSL est activée.",
+  "iplb_ssl_certificate_intro_text": "Les certificats configurés sont automatiquement disponible pour l'ensemble des frontends sur lesquels l'options SSL est activée.",
   "iplb_ssl_certificate_add": "Ajouter un certificat SSL",
   "iplb_ssl_certificate": "Certificat",
   "iplb_ssl_subject": "Sujet",

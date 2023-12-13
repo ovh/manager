@@ -1,6 +1,6 @@
 {
   "xdsl_modem_lan_title": "IP LAN",
-  "xdsl_modem_lan_description": "Une adresse IP est attribuée à chaque élément connecté au réseau LAN (Local Area Network). Les IP cohabitant dans ce réseau local, non accessibles depuis l'extérieur car non routées sur Internet par nature, forment des IP dites locales aussi appelées IP LAN. Si vous modifiez l’adresse IP LAN statique du routeur, la configuration du DHCP, des redirections de port et des baux vous sera proposée. Si vous configurez l'adressage IP du modem en DHCP, la configuration des redirection de ports vous sera proposée.",
+  "xdsl_modem_lan_description": "Une adresse IP est attribuée à chaque élément connecté au réseau LAN (Local Area Network). Les IP cohabitant dans ce réseau local, non accessibles depuis l'extérieur car non routées sur Internet par nature, forment des IP dites locales aussi appelées IP LAN. Si vous modifiez l'adresse IP LAN statique du routeur, la configuration du DHCP, des redirections de port et des baux vous sera proposée. Si vous configurez l'adressage IP du modem en DHCP, la configuration des redirection de ports vous sera proposée.",
   "xdsl_modem_lan_addressingType": "Méthode de récupération d'adresse IP",
   "xdsl_modem_lan_ip": "Adresse IP LAN",
   "xdsl_modem_lan_subnetMask": "Masque de sous-réseau",

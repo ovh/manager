@@ -34,8 +34,8 @@
   "vps_configuration_upgradevps_success": "Le bon de commande numéro {{ orderId }} a bien été créé. Afin de finaliser votre commande, veuillez suivre les instructions de paiement dans le nouvel onglet qui s'est ouvert. Si aucun nouvel onglet ne s'est ouvert, veuillez cliquer sur <a href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">ce lien</a>.",
   "vps_upgrade_title": "Évoluer vers la nouvelle gamme",
   "vps_upgrade_choice_model": "Choix du modèle",
-  "vps_upgrade_choice_model_details": "Choisissez un VPS de la gamme supérieure pour bénéficier de plus de ressources et de performance. La configuration de la gamme Élite est définie lors de l’étape suivante.",
-  "vps_upgrade_choice_model_details_new_range": "Notre nouvelle gamme de VPS évolue avec vos besoins. Ajoutez des ressources en quelques clics ou basculez vers un modèle supérieur pour profiter d’une meilleure configuration.",
+  "vps_upgrade_choice_model_details": "Choisissez un VPS de la gamme supérieure pour bénéficier de plus de ressources et de performance. La configuration de la gamme Élite est définie lors de l'étape suivante.",
+  "vps_upgrade_choice_model_details_new_range": "Notre nouvelle gamme de VPS évolue avec vos besoins. Ajoutez des ressources en quelques clics ou basculez vers un modèle supérieur pour profiter d'une meilleure configuration.",
   "vps_upgrade_choice_configuration": "Choix de la configuration",
   "vps_upgrade_choice_configuration_cpu": "CPU",
   "vps_upgrade_choice_configuration_cpu_vcores": "{{ vcores }} vCores",
@@ -57,7 +57,7 @@
   "vps_upgrade_summary_price_monthly_engaged_without_payment_method_one_month": "En validant ce choix, vous serez redirigé(e) vers un bon de commande pour régler la somme supplémentaire de {{ price }} pour le mois restant de votre engagement.",
   "vps_upgrade_summary_price_monthly_engaged_without_payment_method_many_month": "En validant ce choix, vous serez redirigé(e) vers un bon de commande pour régler la somme supplémentaire de {{ price }} pour les {{ monthCount }} mois restants de votre engagement.",
   "vps_upgrade_summary_price_upfront": "En validant ce choix, vous serez redirigé(e) vers un bon de commande pour régler la somme de {{ price }} due du prorata temporis.",
-  "vps_upgrade_new_configuration_refresh_time": "Dès acceptation de votre paiement, un délai d’environ deux heures est nécessaire pour que la nouvelle configuration soit active. Un redémarrage de votre VPS sera requis pour en bénéficier.",
+  "vps_upgrade_new_configuration_refresh_time": "Dès acceptation de votre paiement, un délai d'environ deux heures est nécessaire pour que la nouvelle configuration soit active. Un redémarrage de votre VPS sera requis pour en bénéficier.",
   "vps_upgrade_fail_vps_in_rescue_info": "Vous ne pouvez pas faire évoluer votre VPS vers une offre supérieure car celui-ci est actuellement en mode rescue.",
   "vps_upgrade_fail_vps_in_rescue_action": "Merci de bien vouloir redémarrer votre VPS au préalable en désactivant le mode rescue."
 }

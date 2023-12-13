@@ -6,6 +6,6 @@
   "pci_projects_project_storages_snapshots_onboarding_content5": "Pour créer un snapshot de volume vous avez forcément besoin d'avoir créer au moins un volume.",
   "pci_projects_project_storages_snapshots_onboarding_action_label": "Créer un snapshot de volume",
 
-  "pci_projects_project_storages_snapshots_onboarding_guides_transfer-volume-backup_title": "Transférer la sauvegarde d’un volume d’un datacenter à l’autre",
+  "pci_projects_project_storages_snapshots_onboarding_guides_transfer-volume-backup_title": "Transférer la sauvegarde d'un volume d'un datacenter à l'autre",
   "pci_projects_project_storages_snapshots_onboarding_guides_transfer-volume-backup_description": "Apprenez à déplacer une sauvegarde de volume entre différents centres de données"
 }

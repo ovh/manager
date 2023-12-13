@@ -1,6 +1,6 @@
 {
   "xdsl_modem_dhcp_title": "DHCP",
-  "xdsl_modem_dhcp_description": "Un serveur DHCP ( Dynamic Host Configuration Protocol) a pour rôle d'attribuer une adresse IP et un masque de sous-réseau, pour une durée déterminée (via les baux DHCP), à un élément connecté. DHCP peut aussi configurer d'autres paramètres comme l’adresse de la passerelle (gateway) par défaut, ou des serveurs de DNS par exemple.",
+  "xdsl_modem_dhcp_description": "Un serveur DHCP ( Dynamic Host Configuration Protocol) a pour rôle d'attribuer une adresse IP et un masque de sous-réseau, pour une durée déterminée (via les baux DHCP), à un élément connecté. DHCP peut aussi configurer d'autres paramètres comme l'adresse de la passerelle (gateway) par défaut, ou des serveurs de DNS par exemple.",
   "xdsl_modem_dhcp_server_dhcp": "Serveur DHCP",
   "xdsl_modem_dhcp_gateway": "Passerelle",
   "xdsl_modem_dhcp_primary_dns": "DNS Primaire",

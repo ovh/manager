@@ -5,7 +5,7 @@
     "dedicatedCloud_options_zerto_status_vpn_configuring": "VPN en cours de configuration",
     "dedicatedCloud_options_zerto_status_vpn_error": "Configuration du VPN en erreur",
     "dedicatedCloud_options_zerto_status_delivered": "Activé",
-    "dedicatedCloud_options_zerto_status_delivering": "En cours d’installation",
+    "dedicatedCloud_options_zerto_status_delivering": "En cours d'installation",
     "dedicatedCloud_options_zerto_status_disabling": "En cours de suppression",
     "dedicatedCloud_options_zerto_status_disabled": "Aucun",
     "dedicatedCloud_options_zerto_status_error": "En erreur",

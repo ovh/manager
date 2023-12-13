@@ -57,7 +57,7 @@
   "telephony_alias_portability_order_redirect_line_choose": "Choisir une ligne",
   "telephony_alias_portability_order_redirect_line_info": "Si vous ne sélectionnez aucune ligne, vous pourrez effectuer la redirection plus tard.",
   "telephony_alias_portability_order_sda_info": "Vous souhaitez :",
-  "telephony_alias_portability_order_sda_all": "Porter votre numéro principal et l’ensemble des numéros Sélection Directe à l'Arrivée (SDA) rattachés. (Dans ce cas, la liste des SDA vous sera transmise par mail dans les prochains jours.)",
+  "telephony_alias_portability_order_sda_all": "Porter votre numéro principal et l'ensemble des numéros Sélection Directe à l'Arrivée (SDA) rattachés. (Dans ce cas, la liste des SDA vous sera transmise par mail dans les prochains jours.)",
   "telephony_alias_portability_order_sda_select": "Porter votre numéro principal et une partie des numéros Sélection Directe à l'Arrivée (SDA).",
   "telephony_alias_portability_order_sda_add": "Numéro SDA à ajouter :",
   "telephony_alias_portability_order_sda_add_list": "Les numéros suivants seront également portés :",
@@ -80,7 +80,7 @@
   "telephony_alias_portability_order_step_4": "Finalisation",
   "telephony_alias_portability_order_number_category": "Catégorie du numéro spécial",
   "telephony_order_specific_typology_error": "Une erreur est survenue lors de la récupération des informations",
-  "telephony_order_specific_typology_access_label": "Services délivrant des codes d’accès",
+  "telephony_order_specific_typology_access_label": "Services délivrant des codes d'accès",
   "telephony_order_specific_typology_adults_label": "Contenu pour adultes",
   "telephony_order_specific_typology_announced_label": "Petites annonces",
   "telephony_order_specific_typology_conferencing_label": "Services de téléphonie/téléconférence",
@@ -93,6 +93,6 @@
   "telephony_order_specific_typology_content_label": "Sonneries, logos",
   "telephony_order_specific_typology_general_label": "Général",
   "telephony_order_specific_typology_relaxing_label": "Services de détente",
-  "telephony_alias_portability_order_sda_sva_warning": "Pour toute portabilité de numéro spécial, vous devez remplir le formulaire de validation d’identité.",
+  "telephony_alias_portability_order_sda_sva_warning": "Pour toute portabilité de numéro spécial, vous devez remplir le formulaire de validation d'identité.",
   "telephony_alias_portability_order_sda_sva_go_to_kyc": "Vérifier l'identité"
 }

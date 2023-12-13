@@ -27,8 +27,8 @@
   "billing_autorenew_criterion_expiration": "Date d'effet",
   "billing_autorenew_nic_all": "Tous",
 
-  "autorenew_service_deleteAtExpiration_banner": "La résiliation à l’expiration du service « {{ serviceName }} » a bien été prise en compte. Vous pouvez annuler cette opération jusqu’à 24 heures avant expiration du service.",
-  "autorenew_service_deleteAtExpiration_banner_cancel": "Annuler la resiliation à l’expiration",
+  "autorenew_service_deleteAtExpiration_banner": "La résiliation à l'expiration du service « {{ serviceName }} » a bien été prise en compte. Vous pouvez annuler cette opération jusqu'à 24 heures avant expiration du service.",
+  "autorenew_service_deleteAtExpiration_banner_cancel": "Annuler la resiliation à l'expiration",
 
   "billing_autorenew_service": "Service",
   "billing_autorenew_service_name": "Nom du service",
