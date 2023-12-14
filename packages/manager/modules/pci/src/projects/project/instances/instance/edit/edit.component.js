@@ -19,5 +19,6 @@ export default {
     catalog: '<',
     customerRegions: '<',
     imageInformation: '<',
+    hourlyPriceInformation: '<',
   },
 };
