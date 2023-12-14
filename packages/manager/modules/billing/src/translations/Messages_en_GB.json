@@ -915,6 +915,6 @@
   "billing_guides_header_purchase_order_guides": "Concept of Order Number or Purchase Order (PO)",
   "billing_guides_header_managing_bills_guides": "Managing OVHcloud bills",
   "billing_guides_header_automatic_renewal_guides": "Managing renewal for your services",
-  "fidelity_creditOrder_submit_error": "An error has occurred crediting your points.",
-  "fidelity_creditOrder_submit_success": "Your credit of <strong> {{t0}} points</strong> has been generated. You can proceed with your order in the <a href=\"#/billing/orders\">My orders tab</a>"
+  "fidelity_creditOrder_submit_error": "An error has occurred generating your credit.",
+  "fidelity_creditOrder_submit_success": "Your credit <strong> {{t0}} points</strong> has been generated. You can proceed with your order in the <a href=\"#/billing/orders\">My orders tab</a>"
 }
