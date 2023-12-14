@@ -5,8 +5,11 @@ export default {
   controller,
   template,
   bindings: {
+    isCurrentDnsZone: '<',
+    creationDate: '<',
     url: '<',
     goBack: '<',
     getDnsZoneData: '<',
+    goToDnsRestore: '<',
   },
 };

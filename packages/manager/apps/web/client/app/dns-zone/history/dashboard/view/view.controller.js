@@ -14,4 +14,8 @@ export default class ViewDnsZoneController {
         this.loadingDnsZoneData = false;
       });
   }
+
+  openDnsRestoreModal() {
+    this.goToDnsRestore(this.url, this.creationDate);
+  }
 }

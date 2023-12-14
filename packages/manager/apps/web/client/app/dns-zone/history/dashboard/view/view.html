@@ -2,7 +2,9 @@
     data-heading="{{:: 'dashboard_history_popup_title' | translate }}"
     data-primary-action="$ctrl.goBack()"
     data-primary-label="{{:: 'dashboard_history_close_popup' | translate }}"
-    data-secondary-disabled="true"
+    data-secondary-disabled="$ctrl.isCurrentDnsZone"
+    data-secondary-label="{{:: 'dashboard_history_restore' | translate }}"
+    data-secondary-action="$ctrl.openDnsRestoreModal()"
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.loadingDnsZoneData"
 >
