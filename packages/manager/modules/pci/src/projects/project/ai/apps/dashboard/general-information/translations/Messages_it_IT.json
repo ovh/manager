@@ -56,5 +56,6 @@
   "pci_apps_general_information_max_replicas": "Numero massimo di repliche:",
   "pci_apps_general_information_trigger_resource": "Metrica monitorata:",
   "pci_apps_general_information_trigger_resource_threshold": "Soglia di attivazione:",
-  "pci_apps_general_information_info_app_port": "Porta"
+  "pci_apps_general_information_info_app_port": "Porta",
+  "pci_apps_general_information_info_app_port_action_update": "Aggiornare la porta HTTP"
 }
