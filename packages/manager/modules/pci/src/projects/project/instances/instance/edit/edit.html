@@ -18,9 +18,8 @@
                     class="oui-field__label oui-label"
                     data-translate="pci_projects_project_instances_instance_edit_region_label"
                 ></label>
-                <div class="row m-0 p-0">
+                <div class="oui-field__control">
                     <span
-                        class="oui-field__control"
                         data-ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.instance.region)"
                     ></span>
                     <span
@@ -377,6 +376,7 @@
                         data-monthly-billing="$ctrl.editInstance.monthlyBilling"
                         data-disabled="$ctrl.instance.isMonthlyBillingActivated()"
                         data-is-local-zone="$ctrl.instance.isLocalZone"
+                        data-hourly-price-information="$ctrl.hourlyPriceInformation"
                     >
                     </pci-project-flavor-billing>
                 </oui-field>
