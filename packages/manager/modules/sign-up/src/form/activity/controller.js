@@ -1,12 +1,18 @@
 import get from 'lodash/get';
 import startCase from 'lodash/startCase';
 
-import { COUNTRIES_VAT_LABEL } from './constants';
+import {
+  COUNTRIES_VAT_LABEL,
+  COMPANY_CREATED_PREFIX,
+  COMPANY_NOT_CREATED_PREFIX,
+} from './constants';
 
 export default class OvhSignUpActivityCtrl {
   /* @ngInject */
-  constructor($filter) {
+  constructor($filter, atInternet) {
+    this.atInternet = atInternet;
     this.$filter = $filter;
+    this.corporationIsCreated = true;
   }
 
   /**
@@ -47,10 +53,30 @@ export default class OvhSignUpActivityCtrl {
     }
   }
 
+  resetCorporationData() {
+    this.signUpFormCtrl.model.companyNationalIdentificationNumber = null;
+    this.signUpFormCtrl.model.organisation = null;
+    this.signUpFormCtrl.model.corporationType = null;
+    this.signUpFormCtrl.model.vat = null;
+  }
+
   siretFieldIsAvailable() {
     return (
       this.signUpFormCtrl.model.legalform === 'corporation' &&
       this.signUpFormCtrl.model.country === 'FR'
     );
+  }
+
+  onCorporationCreationStatusChange(corporationIsCreated) {
+    if (!corporationIsCreated) {
+      this.resetCorporationData();
+    }
+
+    this.atInternet.trackClick({
+      name: corporationIsCreated
+        ? COMPANY_CREATED_PREFIX
+        : COMPANY_NOT_CREATED_PREFIX,
+      type: 'action',
+    });
   }
 }

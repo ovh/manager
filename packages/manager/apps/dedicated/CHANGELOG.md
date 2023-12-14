@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.14.0...@ovh-ux/manager-dedicated@19.15.0) (2023-12-12)
+
+
+### Features
+
+* **dedicated.server:** refactor dedicated server for multi az ([#10058](https://github.com/ovh/manager/issues/10058)) ([0cc3523](https://github.com/ovh/manager/commit/0cc35235150a19f9b959ccdd1394f5469662ec87))
+
+
+
+
+
+# [19.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.13.0...@ovh-ux/manager-dedicated@19.14.0) (2023-12-11)
+
+
+### Features
+
+* **web:** dns history ([#10386](https://github.com/ovh/manager/issues/10386)) ([fde3865](https://github.com/ovh/manager/commit/fde386576225e29f1f6d9b84cf256d03c0af7cfc))
+
+
+
+
+
+# [19.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.12.3...@ovh-ux/manager-dedicated@19.13.0) (2023-12-07)
+
+
+### Features
+
+* **account:** restricted redirect url ([#10401](https://github.com/ovh/manager/issues/10401)) ([2a2c6d3](https://github.com/ovh/manager/commit/2a2c6d3996bf5411ea8997e7b28a01f760ff730f))
+
+
+
+
+
+## [19.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.12.2...@ovh-ux/manager-dedicated@19.12.3) (2023-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 ## [19.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.12.1...@ovh-ux/manager-dedicated@19.12.2) (2023-12-04)
 
 

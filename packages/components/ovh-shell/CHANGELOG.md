@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.5](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.0.4...@ovh-ux/shell@3.0.5) (2023-12-11)
+
+**Note:** Version bump only for package @ovh-ux/shell
+
+
+
+
+
+## [3.0.4](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.0.3...@ovh-ux/shell@3.0.4) (2023-12-05)
+
+
+### Bug Fixes
+
+* add super-component workspaces ([a1c35e6](https://github.com/ovh/manager/commit/a1c35e6817d3f41925954c16b381ebeaea440bd7))
+* merge develop changes ([899ce10](https://github.com/ovh/manager/commit/899ce10676ccccdf4fa6da656b4d2890b2a61ecb))
+
+
+
+
+
 ## [3.0.3](https://github.com/ovh/manager/compare/@ovh-ux/shell@3.0.2...@ovh-ux/shell@3.0.3) (2023-11-21)
 
 **Note:** Version bump only for package @ovh-ux/shell

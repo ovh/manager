@@ -1370,7 +1370,7 @@
   "hosting_order_upgrade_modal_header_description": "Is your project growing? From blogs and business websites to online shops and web applications, you can choose the best plan for your new needs.",
   "hosting_order_upgrade_no_contract": "No new contracts to validate",
   "hosting_change_offer_for_service_offer": "This service is not accessible for the {{offer}} solution.",
-  "hosting_tab_DATABASES_table_header_status": "Status",
+  "hosting_tab_DATABASES_table_header_status": "Type",
   "hosting_tab_DATABASES_table_header_status_included_false": "Included",
   "hosting_tab_DATABASES_table_header_status_included_true": "Included – Discontinued",
   "hosting_tab_DATABASES_table_header_status_optional_false": "Optional",
@@ -1388,5 +1388,8 @@
   "hosting_tab_DATABASES_configuration_copy_error": "Your database could not be copied. Error: {{error}}",
   "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "If your destination database is not empty, the data will be overwritten.",
   "hosting_tab_DATABASES_configuration_information_message": "What if there is no destination database displayed?",
-  "hosting_tab_DATABASES_configuration_copy_step1_select_hosting_placeholder": "Select a hosting plan"
+  "hosting_tab_DATABASES_configuration_copy_step1_select_hosting_placeholder": "Select a hosting plan",
+  "hosting_tab_DOMAINS_configuration_add_step1_order_upgrade": "To get an additional domain name for your hosting plan, please upgrade to a higher plan",
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer": "You cannot untick the box below with a STARTER solution.",
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Click here to upgrade to a higher hosting plan."
 }

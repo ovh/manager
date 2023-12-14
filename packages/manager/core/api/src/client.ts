@@ -58,7 +58,7 @@ ws.interceptors.response.use(null, handleAuthenticationError);
 
 export const v2 = axios.create({
   ...defaultAxiosConfig,
-  baseURL: '/engine/2.0',
+  baseURL: '/engine/api/v2',
 });
 v2.interceptors.response.use(null, handleAuthenticationError);
 

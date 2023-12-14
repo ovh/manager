@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.4.1...@ovh-ux/manager-telecom@15.4.2) (2023-12-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.4.0...@ovh-ux/manager-telecom@15.4.1) (2023-12-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+# [15.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.3.2...@ovh-ux/manager-telecom@15.4.0) (2023-12-11)
+
+
+### Features
+
+* **telecom:** add troubleshooting guide button ([#10474](https://github.com/ovh/manager/issues/10474)) ([ddadb48](https://github.com/ovh/manager/commit/ddadb480f1b95aff28dc4de76e104dc905ad5375))
+
+
+
+
+
+## [15.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.3.1...@ovh-ux/manager-telecom@15.3.2) (2023-12-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.3.0...@ovh-ux/manager-telecom@15.3.1) (2023-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
 # [15.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.2.0...@ovh-ux/manager-telecom@15.3.0) (2023-12-04)
 
 

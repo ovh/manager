@@ -1,0 +1,13 @@
+{
+  "server_monitoring_modal_title": "Monitorização",
+  "server_monitoring_modal_intro": "A monitorização do servidor dedicado corresponde a um ping ICMP realizado no seu servidor para testar o estado da conectividade.",
+  "server_monitoring_modal_status_disabled": "Desativado",
+  "server_monitoring_modal_status_proactive": "Ativado com intervenção proativa",
+  "server_monitoring_modal_status_no-proactive": "Ativado sem intervenção proativa",
+  "server_monitoring_modal_description_status_disabled": "O seu servidor não é monitorizado e não receberá nenhum alerta da OVHcloud em caso de incidente.",
+  "server_monitoring_modal_description_status_proactive": "Com a monitorização do seu servidor, receberá os alertas por e-mail, no endereço associado ao identificador do seu contacto técnico. Autoriza que a OVHcloud intervenha diretamente na sua máquina em caso de alertas. Um ticket de suporte é automaticamente criado para que possa fazer o acompanhamento desta intervenção.",
+  "server_monitoring_modal_description_status_no-proactive": "Com a monitorização do seu servidor, receberá os alertas por e-mail, no endereço associado ao identificador do seu contacto técnico. A OVHcloud não intervirá na sua máquina sem um pedido direto da sua parte.",
+  "server_monitoring_modal_update_proactive_request_success": "As intervenções no servidor {{serverName}} estão ativas.",
+  "server_monitoring_modal_update_no-proactive_request_success": "As intervenções estão desativadas no servidor {{serverName}}.",
+  "server_monitoring_modal_update_request_failed": "Ocorreu um erro aquando da alteração da opção de monitorização."
+}

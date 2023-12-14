@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.14.0...@ovh-ux/manager-pci@6.14.1) (2023-12-11)
+
+
+### Bug Fixes
+
+* mongodb fixes ([dd3a26e](https://github.com/ovh/manager/commit/dd3a26e611e3202edfec815dc7ab5155d01ab462))
+* redirect-target-add-params ([12bbb0a](https://github.com/ovh/manager/commit/12bbb0ac8b00a218b6b575e67bd6271dd12755c0))
+
+
+
+
+
+# [6.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.13.0...@ovh-ux/manager-pci@6.14.0) (2023-12-07)
+
+
+### Features
+
+* **pci.storages.databases:** datatr-377 - rework availabilities ([#10142](https://github.com/ovh/manager/issues/10142)) ([5ff10a7](https://github.com/ovh/manager/commit/5ff10a7e6cba2c9d4c9c5c5f6cce8c808389e06a))
+
+
+
+
+
 # [6.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.12.0...@ovh-ux/manager-pci@6.13.0) (2023-12-04)
 
 

@@ -10,12 +10,14 @@ export function getOrderDataFromModel(model) {
     },
     plan: model.plan.name,
     version: model.engine.selectedVersion.version,
-    disk: {
-      size: model.disk.additionalDiskSize
-        ? model.disk.initialSize + model.disk.additionalDiskSize
-        : model.disk.initialSize,
-    },
   };
+
+  if (model.flavor.availabilities[0].stepDiskSize > 0) {
+    const { initialSize, additionalDiskSize } = model.disk;
+    orderData.disk = {
+      size: initialSize + additionalDiskSize,
+    };
+  }
 
   if (model.restoreMode) {
     switch (model.restoreMode) {

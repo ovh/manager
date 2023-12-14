@@ -1,0 +1,13 @@
+{
+  "server_monitoring_modal_title": "Monitoring",
+  "server_monitoring_modal_intro": "Das Monitoring Ihres Dedicated Servers entspricht einem ICMP Echo-Request (Ping) auf Ihrem Server, um dessen Konnektivität zu testen.",
+  "server_monitoring_modal_status_disabled": "Deaktiviert",
+  "server_monitoring_modal_status_proactive": "Aktiviert mit proaktivem Eingriff",
+  "server_monitoring_modal_status_no-proactive": "Aktiviert ohne proaktiven Eingriff",
+  "server_monitoring_modal_description_status_disabled": "Ihr Server wird nicht überwacht und im Falle einer Störung erhalten Sie keinerlei Benachrichtigungen von OVHcloud.",
+  "server_monitoring_modal_description_status_proactive": "Ihr Server wird überwacht. Sie erhalten per E-Mail Benachrichtigungen an die Adresse, die der Kennung Ihres technischen Ansprechpartners zugeordnet ist. Sie erteilen Ihre Zustimmung dazu, dass OVHcloud im Falle einer Fehlermeldung direkt auf Ihrer Maschine eingreift. Ein Support-Ticket wird automatisch erstellt, damit Sie diesen Eingriff nachverfolgen können.",
+  "server_monitoring_modal_description_status_no-proactive": "Ihr Server wird überwacht. Sie erhalten per E-Mail Benachrichtigungen an die Adresse, die der Kennung Ihres technischen Ansprechpartners zugeordnet ist. OVHcloud greift nur auf Ihrer Maschine ein, wenn Sie dies veranlassen.",
+  "server_monitoring_modal_update_proactive_request_success": "Die Eingriffe auf dem Server {{serverName}} sind aktiviert.",
+  "server_monitoring_modal_update_no-proactive_request_success": "Die Eingriffe auf dem Server {{serverName}} sind deaktiviert.",
+  "server_monitoring_modal_update_request_failed": "Beim Wechsel der Monitoring-Option ist ein Fehler aufgetreten."
+}

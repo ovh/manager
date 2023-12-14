@@ -3,11 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [7.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@7.1.1...@ovh-ux/manager-config@7.1.2) (2023-11-21)
-
-**Note:** Version bump only for package @ovh-ux/manager-config
+# [7.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@7.2.0...@ovh-ux/manager-config@7.3.0) (2023-12-05)
 
 
+### Bug Fixes
+
+* **generator:** fix generator and supercomponents ([dc78ef2](https://github.com/ovh/manager/commit/dc78ef2efaa84d3d6ec69dbfc2af5debb8b35537))
+
+
+### Features
+
+* **generator.onboarding:** add guide utils ([9f0ba2a](https://github.com/ovh/manager/commit/9f0ba2a29a6f2852023a0d14b2c6687cfc288a1d))
+
+
+
+
+
+# [7.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@7.0.0...@ovh-ux/manager-config@7.2.0) (2023-08-08)
+
+
+### Features
+
+* **config:** add more country code enum ([f928cc6](https://github.com/ovh/manager/commit/f928cc6b28b94fbf9c0c99f460f217f08ede283d))
 
 
 
@@ -17,15 +34,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-
-
 # [7.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@7.0.0...@ovh-ux/manager-config@7.1.0) (2023-07-24)
 
 
 ### Features
 
 * **iam:** add IAM & Restricted applications ([f928cc6](https://github.com/ovh/manager/commit/f928cc6b28b94fbf9c0c99f460f217f08ede283d))
-
 
 
 

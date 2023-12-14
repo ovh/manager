@@ -1370,7 +1370,7 @@
   "hosting_order_upgrade_modal_header_description": "Il tuo progetto si evolve? Blog, sito professionale, piattaforma e-commerce o applicazione Web: scegli la soluzione più adatta alle tue nuove esigenze.",
   "hosting_order_upgrade_no_contract": "Nessun nuovo contratto da convalidare",
   "hosting_change_offer_for_service_offer": "Questo servizio non è disponibile per la soluzione {{offer}}.",
-  "hosting_tab_DATABASES_table_header_status": "Stato",
+  "hosting_tab_DATABASES_table_header_status": "Tipo",
   "hosting_tab_DATABASES_table_header_status_included_false": "Inclusa",
   "hosting_tab_DATABASES_table_header_status_included_true": "Incluso - ritirata dalla vendita",
   "hosting_tab_DATABASES_table_header_status_optional_false": "Opzionale",
@@ -1388,5 +1388,8 @@
   "hosting_tab_DATABASES_configuration_copy_error": "La copia del database non è andata a buon fine. Errore: {{error}}",
   "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Se il database di destinazione non è vuoto, i dati verranno sovrascritti.",
   "hosting_tab_DATABASES_configuration_information_message": "Cosa fare se non compare nessun database di destinazione?",
-  "hosting_tab_DATABASES_configuration_copy_step1_select_hosting_placeholder": "Selezionare un hosting"
+  "hosting_tab_DATABASES_configuration_copy_step1_select_hosting_placeholder": "Selezionare un hosting",
+  "hosting_tab_DOMAINS_configuration_add_step1_order_upgrade": "Per aggiungere un dominio supplementare al tuo hosting, ordina una soluzione superiore.",
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer": "Il servizio STARTER non permette di deselezionare la casella qui sotto.",
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Per passare a una soluzione di hosting superiore, clicca qui."
 }

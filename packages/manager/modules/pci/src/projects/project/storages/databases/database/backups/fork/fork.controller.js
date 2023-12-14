@@ -39,11 +39,27 @@ export default class {
       PRIVATE_NETWORK_GUIDE[this.user.ovhSubsidiary] ||
       PRIVATE_NETWORK_GUIDE.DEFAULT;
 
+    const availablePlans = [
+      ...this.availableEngines
+        .find((e) => e.name === this.database.engine)
+        .versions.find((v) => v.version === this.database.version).plans,
+    ];
+    if (!availablePlans.find((p) => p.name === this.database.plan)) {
+      const allPlans = this.engine.getAvailablePlans(
+        this.database.version,
+        this.database.region,
+      );
+      const currPlan = allPlans.find((p) => p.name === this.database.plan);
+      availablePlans.push(currPlan);
+    }
+
     // Retrieve data from db object
     const engine = this.database.getEngineFromList(this.availableEngines);
     const version = engine.getVersion(this.database.version);
     engine.selectedVersion = version;
-    this.originalPlan = version.getPlan(this.database.plan);
+    this.originalPlan = availablePlans.find(
+      (p) => p.name === this.database.plan,
+    );
     this.originalRegion = this.originalPlan.getRegion(
       this.database.nodes[0].region,
     );
@@ -51,7 +67,7 @@ export default class {
       this.database.nodes[0].flavor,
     );
 
-    this.plans = engine.selectedVersion.plans;
+    this.plans = availablePlans;
 
     this.model = {
       engine,
@@ -119,7 +135,7 @@ export default class {
     this.updateFlavor(this.originalFlavor);
 
     const minDateRetentionDays = moment().subtract(
-      this.originalFlavor.availability[0].backupRetentionDays,
+      this.originalFlavor.availabilities[0].backups.retentionDays,
       'days',
     );
     const clusterCreationDate = moment(this.database.createdAt);
@@ -350,7 +366,7 @@ export default class {
 
   get clusterDiskMinAdditionalStorage() {
     // user can not select less than the size of his cluster
-    const minDiskSize = this.database.disk.size;
+    const minDiskSize = this.database.storage.size.value;
     const selectedFlavorMinDisk = this.model.flavor.minDiskSize;
     const minAdditionalStorage = minDiskSize - selectedFlavorMinDisk;
     return Math.max(0, minAdditionalStorage);
@@ -389,11 +405,13 @@ export default class {
         region: this.model.region.name,
       },
       plan: this.model.plan.name,
-      disk: {
-        size: this.model.flavor.minDiskSize + this.model.additionalDiskSize,
-      },
       version: this.model.engine.selectedVersion.version,
     };
+    if (this.model.flavor.availabilities[0].stepDiskSize > 0) {
+      this.orderData.disk = {
+        size: this.model.flavor.minDiskSize + this.model.additionalDiskSize,
+      };
+    }
     if (this.model.usePrivateNetwork && this.model.subnet?.id?.length > 0) {
       this.orderData.networkId = this.model.privateNetwork.regions?.find(
         (region) => region.region === this.model.subnet?.ipPools[0].region,

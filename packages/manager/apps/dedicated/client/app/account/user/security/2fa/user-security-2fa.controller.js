@@ -18,6 +18,7 @@ export default [
   'UserAccount.services.doubleAuth.u2f',
   'userAccountServiceInfos',
   'OvhApiAuth',
+  'RedirectionService',
   function AccountUserSecurity2fa(
     $q,
     $rootScope,
@@ -33,6 +34,7 @@ export default [
     DoubleAuthU2fService,
     UserAccountServiceInfos,
     OvhApiAuth,
+    RedirectionService,
   ) {
     $scope.step1 = {
       doubleAuthType: null,
@@ -418,7 +420,10 @@ export default [
 
     $scope.goBack = () => {
       const { redirect_url: redirectUrl } = $stateParams;
-      if (redirectUrl) {
+      if (
+        redirectUrl &&
+        RedirectionService.constructor.isUrlSafeForRedirection(redirectUrl)
+      ) {
         window.top.location.href = redirectUrl;
       } else {
         $state.go('^');

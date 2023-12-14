@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ovh-reket",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Expose a way to get a predefined Reket instance",
   "repository": {
     "type": "git",
@@ -31,6 +31,6 @@
     "@ovhcloud/reket-core": "^0.2.1"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.0"
+    "@ovh-ux/component-rollup-config": "^13.0.1"
   }
 }

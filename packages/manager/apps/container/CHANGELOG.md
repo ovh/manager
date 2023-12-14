@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.37.2...@ovh-ux/manager-container-app@0.37.3) (2023-12-13)
+
+
+### Bug Fixes
+
+* **container:** delete redirection hub catalog ([#10528](https://github.com/ovh/manager/issues/10528)) ([d1b16b0](https://github.com/ovh/manager/commit/d1b16b04a14bf4ed17577c108a4eb3330733b87c))
+
+
+
+
+
+## [0.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.37.1...@ovh-ux/manager-container-app@0.37.2) (2023-12-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.37.0...@ovh-ux/manager-container-app@0.37.1) (2023-12-06)
+
+
+### Bug Fixes
+
+* **container:** redirect catalog to hub/catalog ([fdc17ba](https://github.com/ovh/manager/commit/fdc17badb5f199b47aa868882e0c95ec917f12e8))
+
+
+
+
+
+# [0.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.36.0...@ovh-ux/manager-container-app@0.37.0) (2023-12-05)
+
+
+### Bug Fixes
+
+* merge develop changes ([899ce10](https://github.com/ovh/manager/commit/899ce10676ccccdf4fa6da656b4d2890b2a61ecb))
+
+
+### Features
+
+* catalog react uapp ([#10005](https://github.com/ovh/manager/issues/10005)) ([e456451](https://github.com/ovh/manager/commit/e45645174e0a6e0834d06c3c23c535ff374dceba))
+
+
+
+
+
 # [0.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.35.1...@ovh-ux/manager-container-app@0.36.0) (2023-12-04)
 
 

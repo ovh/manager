@@ -1,0 +1,6 @@
+{
+  "server_reboot_title": "Reiniciar el servidor",
+  "server_reboot_question": "¿Seguro/a que quiere reiniciar el servidor {{t0}}?",
+  "server_reboot_success": "El servidor {{t0}} va a reiniciarse.",
+  "server_reboot_fail": "Se ha producido un error al solicitar el reinicio."
+}

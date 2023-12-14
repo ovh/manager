@@ -1,0 +1,14 @@
+{
+  "dedicated_server_interfaces_step_checker_text1": "Mit OLA können Sie beide Netzwerkverbindungen eines OVHcloud Servers zusammen verwenden.",
+  "dedicated_server_interfaces_step_checker_text2": "Sie können so die Netzwerkinterfaces (physischen Netzwerkkarten) des Servers verbinden, um ein einziges virtuelles Netzwerkinterface zu erstellen. Dabei besteht die Möglichkeit, zusätzliche Bandbreite hinzuzufügen (nur für Aggregation im privaten vRack Netzwerk).",
+  "dedicated_server_interfaces_step_checker_text4": "Sichern Sie sich das Startangebot für {{ discountPrice }} statt {{ price }} im Monat (zzgl. MwSt.) für die ersten 3 Monate.",
+  "dedicated_server_interfaces_step_checker_step1_text2": "Vergewissern Sie sich vor der Konfiguration Ihrer Option, dass alle mit Ihren Netzwerkinterfaces verbundenen privaten Netzwerke und Failover-IPs entfernt wurden.",
+  "dedicated_server_interfaces_step_checker_step1_button": "Erledigt, weiter zum nächsten Schritt",
+  "dedicated_server_interfaces_step_checker_step3_text2": "Führen Sie den in unserer Anleitung beschriebenen Vorgang manuell via IPMI-KVM aus, damit Ihr Netzwerk korrekt funktioniert. Andernfalls ist die Konfiguration nicht abgeschlossen.",
+  "dedicated_server_interfaces_step_checker_step3_button": "Erledigt, weiter zum nächsten Schritt",
+  "dedicated_server_interfaces_step_checker_step4_text2": "Wenn Sie zu Ihrer ursprünglichen Konfiguration zurückkehren möchten, klicken Sie auf „Bearbeiten“. Sie können die Option auch kündigen. Denken Sie nur daran, Ihre Konfiguration zurückzusetzen, damit Ihr Netzwerk nicht deaktiviert wird.",
+  "dedicated_server_interfaces_step_checker_step4_button": "Fertig",
+  "dedicated_server_interfaces_ola_alert_configuration_needed": "Führen Sie den in der Anleitung beschriebenen Vorgang per KVM IPMI aus, damit Ihr Netzwerk korrekt funktioniert. Andernfalls ist die Konfiguration nicht abgeschlossen.",
+  "dedicated_server_interfaces_rename_title": "Interface umbenennen",
+  "dedicated_server_interfaces_vrack_operation_attach": "Wird verbunden"
+}

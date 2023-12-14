@@ -12,12 +12,12 @@ type {{this}} = unknown;
 export type {{pascalCase this.functionName}}Params = {
   {{#each this.params}}
   /** {{this.description}} */
-  {{this.name}}{{#if this.required}}?{{/if}}: {{this.type}};
+  '{{this.name}}'{{#if this.required}}?{{/if}}: {{this.type}};
   {{/each}}
 };
 
 {{/if}}
-export const {{this.functionName}}QueryKey = {{#if this.urlParams}}(params: {{pascalCase this.functionName}}Params) => [`{{this.url}}`]{{else}}['{{this.url}}']{{/if}};
+export const {{this.functionName}}QueryKey = {{#if this.urlParams}}(params: {{pascalCase this.functionName}}Params) => [`{{this.httpMethod}}{{this.url}}`]{{else}}['{{this.httpMethod}}{{this.url}}']{{/if}};
 
 {{#if this.description}}
 /**
@@ -26,10 +26,13 @@ export const {{this.functionName}}QueryKey = {{#if this.urlParams}}(params: {{pa
 {{/if}}
 export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalCase this.functionName}}Params{{/if}}): Promise<{{this.responseType}}> => {
   const fetchData = async () => {
-    const response = await apiClient.v6.{{this.httpMethod}}({{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}});
-    return response.data;
+    const response: any = await apiClient.{{this.apiVersion}}.{{this.httpMethod}}({{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}});
+    return response;
   };
-
-  return queryClient.fetchQuery({{this.functionName}}QueryKey{{#if this.urlParams}}(params){{/if}}, fetchData);
+  try {
+    return queryClient.fetchQuery({{this.functionName}}QueryKey{{#if this.urlParams}}(params){{/if}}, fetchData);
+  } catch(error) {
+    return Promise.reject(error);
+  }  
 };
 {{/each}}

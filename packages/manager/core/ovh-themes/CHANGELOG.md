@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-themes@0.4.0...@ovh-ux/manager-themes@0.4.1) (2023-12-05)
+
+
+### Bug Fixes
+
+* add super-component workspaces ([a1c35e6](https://github.com/ovh/manager/commit/a1c35e6817d3f41925954c16b381ebeaea440bd7))
+* merge develop changes ([899ce10](https://github.com/ovh/manager/commit/899ce10676ccccdf4fa6da656b4d2890b2a61ecb))
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-themes@0.3.0...@ovh-ux/manager-themes@0.4.0) (2023-09-07)
 
 

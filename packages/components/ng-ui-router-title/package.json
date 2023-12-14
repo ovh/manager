@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ui-router-title",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "AngularJS module for updating browser title/history based on the current ui-router state.",
   "keywords": [
     "angularjs",
@@ -39,7 +39,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.0"
+    "@ovh-ux/component-rollup-config": "^13.0.1"
   },
   "peerDependencies": {
     "@uirouter/angularjs": "^1.0.0",

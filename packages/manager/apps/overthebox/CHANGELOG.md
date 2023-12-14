@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@6.0.10...@ovh-ux/manager-overthebox-app@6.0.11) (2023-12-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-overthebox-app
+
+
+
+
+
+## [6.0.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@6.0.9...@ovh-ux/manager-overthebox-app@6.0.10) (2023-12-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-overthebox-app
+
+
+
+
+
+## [6.0.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@6.0.8...@ovh-ux/manager-overthebox-app@6.0.9) (2023-12-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-overthebox-app
+
+
+
+
+
+## [6.0.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@6.0.7...@ovh-ux/manager-overthebox-app@6.0.8) (2023-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-overthebox-app
+
+
+
+
+
 ## [6.0.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@6.0.6...@ovh-ux/manager-overthebox-app@6.0.7) (2023-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-overthebox-app

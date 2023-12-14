@@ -28,7 +28,7 @@ export const cleanUpType = (originalType) => {
 export const transformTypeToTypescript = (originalType) => {
   const typeWithoutBracket = removeTypeBrackets(originalType);
 
-  if (['string', 'boolean', 'number'].includes(typeWithoutBracket)) {
+  if (['string', 'boolean', 'number', 'unknown'].includes(typeWithoutBracket)) {
     return originalType;
   }
   if (['long', 'double'].includes(typeWithoutBracket)) {
@@ -45,12 +45,19 @@ export const transformTypeToTypescript = (originalType) => {
  * @returns the last part of a Java type
  */
 export const getTypeFromString = (typeStr) =>
-  transformTypeToTypescript(typeStr.split('.').slice(-1)[0]);
+  typeStr
+    ? transformTypeToTypescript(typeStr.split('.').slice(-1)[0])
+    : 'unknown';
 
 /**
  * @returns true if the string is not a valid Typescript type
  */
 export const isUnknownTypescriptType = (typeStr) =>
-  ['string', 'number', 'boolean', 'undefined', 'null'].every(
+  ['string', 'number', 'boolean', 'undefined', 'null', 'unknown'].every(
     (type) => !typeStr.includes(type),
   );
+
+/**
+ * @returns a valid string clean
+ */
+export const cleanTypeSyntax = (typeStr) => typeStr.replaceAll('>', '');

@@ -8,14 +8,14 @@ import some from 'lodash/some';
 import Region from './region.class';
 
 export default class Plan {
-  constructor({ name, description }, availability, flavors) {
+  constructor({ name, description }, availabilities, flavors) {
     Object.assign(this, {
-      availability,
+      availabilities,
       description,
       name,
     });
     this.regions = reduce(
-      groupBy(this.availability, 'region'),
+      groupBy(this.availabilities, 'region'),
       (regions, regionPlans, regionName) => [
         ...regions,
         new Region(
@@ -28,62 +28,64 @@ export default class Plan {
       ],
       [],
     );
-    this.isDefault = some(availability, 'default');
+    this.isDefault = some(availabilities, 'default');
     this.nodesCount = this.minNodes;
   }
 
   get minHourlyPrice() {
-    const { hourlyPrice } = minBy(
-      this.availability,
-      'hourlyPrice.priceInUcents',
+    const { nodeHourlyPrice } = minBy(
+      this.availabilities,
+      'nodeHourlyPrice.priceInUcents',
     );
     return {
-      priceInUcents: hourlyPrice.priceInUcents * this.minNodes,
-      tax: hourlyPrice.tax * this.minNodes,
+      priceInUcents: nodeHourlyPrice.priceInUcents * this.minNodes,
+      tax: nodeHourlyPrice.tax * this.minNodes,
     };
   }
 
   get minMonthlyPrice() {
-    const { monthlyPrice } = minBy(
-      this.availability,
-      'monthlyPrice.priceInUcents',
+    const { nodeMonthlyPrice } = minBy(
+      this.availabilities,
+      'nodeMonthlyPrice.priceInUcents',
     );
     return {
-      priceInUcents: monthlyPrice.priceInUcents * this.minNodes,
-      tax: monthlyPrice.tax * this.minNodes,
+      priceInUcents: nodeMonthlyPrice.priceInUcents * this.minNodes,
+      tax: nodeMonthlyPrice.tax * this.minNodes,
     };
   }
 
   get minCores() {
-    return minBy(this.availability, 'flavor.core').flavor.core;
+    return minBy(this.availabilities, 'flavor.specifications.core').flavor.core;
   }
 
   get maxCores() {
-    return maxBy(this.availability, 'flavor.core').flavor.core;
+    return maxBy(this.availabilities, 'flavor.specifications.core').flavor.core;
   }
 
   get minMemory() {
-    return minBy(this.availability, 'flavor.memory').flavor.memory;
+    return minBy(this.availabilities, 'flavor.memory').flavor.memory;
   }
 
   get maxMemory() {
-    return maxBy(this.availability, 'flavor.memory').flavor.memory;
+    return maxBy(this.availabilities, 'flavor.memory').flavor.memory;
   }
 
   get minNodes() {
-    return minBy(this.availability, 'minNodeNumber').minNodeNumber;
+    return minBy(this.availabilities, 'specifications.nodes.minimum')
+      .specifications.nodes.minimum;
   }
 
   get maxNodes() {
-    return maxBy(this.availability, 'maxNodeNumber').maxNodeNumber;
+    return maxBy(this.availabilities, 'specifications.nodes.maximum')
+      .specifications.nodes.maximum;
   }
 
   get minStorage() {
-    return minBy(this.availability, 'minDiskSize').minDiskSize;
+    return minBy(this.availabilities, 'minDiskSize').minDiskSize;
   }
 
   get maxStorage() {
-    return maxBy(this.availability, 'maxDiskSize').maxDiskSize;
+    return maxBy(this.availabilities, 'maxDiskSize').maxDiskSize;
   }
 
   get specsScore() {
@@ -100,7 +102,7 @@ export default class Plan {
   }
 
   get id() {
-    return `${this.availability[0].engine}-${this.name}`;
+    return `${this.availabilities[0].engine}-${this.name}`;
   }
 
   compare(plan) {
@@ -126,7 +128,10 @@ export default class Plan {
   }
 
   isNetworkSupported(networkName) {
-    return some(this.availability, { network: networkName });
+    return some(
+      this.availabilities,
+      (availability) => availability.specifications.network === networkName,
+    );
   }
 
   get supportsPrivateNetwork() {
