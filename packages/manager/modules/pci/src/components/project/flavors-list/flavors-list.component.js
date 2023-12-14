@@ -20,6 +20,5 @@ export default {
     singleFlavorWarning: '@?',
     flavorCount: '<?',
     hasGridscaleLocalzoneRegion: '<',
-    customerRegions: '<',
   },
 };

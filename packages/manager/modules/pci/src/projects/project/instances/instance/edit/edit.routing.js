@@ -59,6 +59,7 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
       imageInformation: /* @ngInject */ ($http, projectId, instance) => {
+        if (!instance.image) return null;
         return $http
           .get(`/cloud/project/${projectId}/image/${instance.image.id}`)
           .then(({ data }) => `${data.name} - ${data.status}`)
