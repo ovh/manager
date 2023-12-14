@@ -16,7 +16,7 @@ export default class {
     this.isDeleting = true;
     return this.AppService.deleteApp(this.projectId, this.app.id)
       .then(() =>
-        this.goBack(this.$translate.instant('pci_ai_apps_delete_success')),
+        this.goToApps(this.$translate.instant('pci_ai_apps_delete_success')),
       )
       .catch((error) =>
         this.goBack(

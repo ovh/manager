@@ -8,6 +8,7 @@ const component = {
     projectId: '<',
     aiRoles: '<',
     regions: '<',
+    labelSelector: '<',
   },
   template,
   controller,
