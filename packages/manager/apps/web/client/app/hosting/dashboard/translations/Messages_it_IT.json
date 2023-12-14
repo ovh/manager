@@ -1386,5 +1386,7 @@
   "hosting_tab_DATABASES_configuration_copy_step1_select_webcloud_placeholder": "Selezionare un database Web Cloud",
   "hosting_tab_DATABASES_configuration_copy_success": "La copia del database è in corso e potrebbe richiedere una decina di minuti. È possibile seguire lo stato di avanzamento dell’operazione nella scheda \"Task in corso\"",
   "hosting_tab_DATABASES_configuration_copy_error": "La copia del database non è andata a buon fine. Errore: {{error}}",
-  "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Se il database di destinazione non è vuoto, i dati verranno sovrascritti."
+  "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Se il database di destinazione non è vuoto, i dati verranno sovrascritti.",
+  "hosting_tab_DATABASES_configuration_information_message": "Cosa fare se non compare nessun database di destinazione?",
+  "hosting_tab_DATABASES_configuration_copy_step1_select_hosting_placeholder": "Selezionare un hosting"
 }

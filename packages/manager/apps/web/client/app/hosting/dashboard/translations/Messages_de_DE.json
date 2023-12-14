@@ -1386,5 +1386,7 @@
   "hosting_tab_DATABASES_configuration_copy_step1_select_webcloud_placeholder": "Web Cloud Datenbank auswählen",
   "hosting_tab_DATABASES_configuration_copy_success": "Ihre Datenbank wird gerade kopiert. Dieser Vorgang kann bis zu 10 Minuten dauern. Den Fortschritt können Sie im Tab „Aktuelle Tasks“ verfolgen.",
   "hosting_tab_DATABASES_configuration_copy_error": "Beim Kopieren Ihrer Datenbank ist ein Fehler aufgetreten. Fehler: {{error}}",
-  "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Wenn die Zieldatenbank nicht leer ist, werden die Daten überschrieben."
+  "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Wenn die Zieldatenbank nicht leer ist, werden die Daten überschrieben.",
+  "hosting_tab_DATABASES_configuration_information_message": "Was ist zu tun, wenn keine Zieldatenbank angezeigt wird?",
+  "hosting_tab_DATABASES_configuration_copy_step1_select_hosting_placeholder": "Ein Hosting auswählen"
 }
