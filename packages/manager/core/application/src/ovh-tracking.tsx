@@ -126,10 +126,6 @@ export default function OvhTracking() {
   };
 
   useEffect(() => {
-    tracking.init(false);
-  }, []);
-
-  useEffect(() => {
     OvhTrackPage(location);
     myStateRef.current = location;
     setLocationPath(location);
