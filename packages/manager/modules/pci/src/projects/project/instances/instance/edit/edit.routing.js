@@ -60,7 +60,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       imageInformation: /* @ngInject */ ($http, projectId, instance) => {
         return $http
-          .get(`/cloud/project/${projectId}/image/${instance.image.id}`)
+          .get(`/cloud/project/${projectId}/image/${instance.image?.id}`)
           .then(({ data }) => `${data.name} - ${data.status}`)
           .catch(() => null);
       },

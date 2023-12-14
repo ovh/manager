@@ -12,5 +12,6 @@ export default {
     offer: '<?',
     addons: '<?',
     isLocalZone: '<',
+    hourlyPriceInformation: '<',
   },
 };

@@ -44,7 +44,17 @@ export default class FlavorBillingController {
   }
 
   formatPrice(price) {
-    return price ? this.PriceFormatter.format(this.getPrice(price)) : 0;
+    if (!this.PriceFormatter && this.hourlyPriceInformation) {
+      this.PriceFormatter = new Intl.NumberFormat(
+        this.coreConfig.getUserLocale().replace('_', '-'),
+        {
+          style: 'currency',
+          currency: this.hourlyPriceInformation.currencyCode,
+          maximumFractionDigits: 5, // default is 2. But this rounds off the price
+        },
+      );
+    }
+    return this.PriceFormatter.format(this.getPrice(price));
   }
 
   formatAddonsPrice = (price = 0) => price / 100000000;
