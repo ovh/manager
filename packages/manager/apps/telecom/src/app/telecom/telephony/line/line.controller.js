@@ -10,6 +10,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
   callsLink,
   contactLink,
   currentActiveLink,
+  isMgcpBannerAvailable,
   consumptionLink,
   faxLink,
   lineLink,
@@ -34,6 +35,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
 
   self.lineLink = lineLink;
   self.currentActiveLink = currentActiveLink;
+  self.isMgcpBannerAvailable = isMgcpBannerAvailable;
   self.consumptionLink = consumptionLink;
   self.callsLink = callsLink;
   self.tonesLink = tonesLink;
@@ -103,8 +105,7 @@ export default /* @ngInject */ function TelecomTelephonyLineCtrl(
 
         promises.push(
           self.line.getPhone().then(() => {
-            self.displayMgcpBanner =
-              self.line.phone.protocol === PHONE_PROTOCOL.MGCP;
+              self.displayMgcpBanner = this.isMgcpBannerAvailable() && self.line.phone.protocol === PHONE_PROTOCOL.MGCP;
           }),
         );
 
