@@ -15,6 +15,7 @@ export default {
     goToGenerateToken: '<',
     goToUpdateAppImage: '<',
     goToUpdateScaling: '<',
+    goToUpdateAppPort: '<',
     preset: '<',
   },
   controller,

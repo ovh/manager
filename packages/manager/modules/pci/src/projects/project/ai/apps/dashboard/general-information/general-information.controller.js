@@ -74,6 +74,11 @@ export default class {
     return this.goToUpdateAppImage();
   }
 
+  onUpdateAppPortClick() {
+    this.trackApps('dashboard::update_app_port');
+    return this.goToUpdateAppPort();
+  }
+
   onUpdateScalingClick() {
     this.trackApps('dashboard::update_app_scaling');
     return this.goToUpdateScaling();
