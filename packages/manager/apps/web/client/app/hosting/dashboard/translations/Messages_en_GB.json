@@ -1389,5 +1389,9 @@
   "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "If your destination database is not empty, the data will be overwritten.",
   "hosting_tab_DOMAINS_configuration_add_step1_order_upgrade": "To get an additional domain name for your hosting plan, please upgrade to a higher plan",
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer": "You cannot untick the box below with a STARTER solution.",
-  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Click here to upgrade to a higher hosting plan."
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Click here to upgrade to a higher hosting plan.",
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_label": "Connection protocol",
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_ftp": "FTP",
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_both": "FTP and SFTP",
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_all": "FTP, SFTP and SSH"
 }

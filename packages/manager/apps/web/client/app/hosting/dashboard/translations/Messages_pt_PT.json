@@ -1389,5 +1389,9 @@
   "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Se a base de dados de destino não estiver vazia, os dados serão substituídos.",
   "hosting_tab_DOMAINS_configuration_add_step1_order_upgrade": "Para adicionar um domínio adicional ao seu alojamento, encomende uma oferta superior",
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer": "Não pode desselecionar a caixa abaixo com a sua oferta STARTER.",
-  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Passe para uma oferta de alojamento superior aqui."
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Passe para uma oferta de alojamento superior aqui.",
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_label": "Protocolo de ligação",
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_ftp": "FTP",
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_both": "FTP e SFTP",
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_all": "FTP, SFTP e SSH"
 }

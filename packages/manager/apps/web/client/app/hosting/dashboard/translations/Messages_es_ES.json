@@ -1389,5 +1389,9 @@
   "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Si la base de datos de destino no está vacía, los datos se sobrescribirán.",
   "hosting_tab_DOMAINS_configuration_add_step1_order_upgrade": "Para añadir un dominio adicional en su alojamiento, debe contratar un plan superior.",
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer": "No es posible desmarcar la casilla siguiente con el plan Starter.",
-  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Puede pasar a un plan de hosting superior aquí."
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Puede pasar a un plan de hosting superior aquí.",
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_label": "Protocolo de conexión",
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_ftp": "FTP",
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_both": "FTP y SFTP",
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_all": "FTP, SFTP y SSH"
 }
