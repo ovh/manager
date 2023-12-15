@@ -115,5 +115,9 @@
   "xdsl_modem_comfort_exchange_description_part3": "Das neue Modem wird automatisch an die Anschlussadresse versandt.",
   "xdsl_modem_comfort_exchange_already_opened_rma": "Es wird bereits eine Anfrage zum Austausch von Hardware gestellt.",
   "xdsl_modem_comfort_exchange_already_last_model": "Sie haben bereits das letzte Modem-Modell.",
-  "xdsl_modem_comfort_exchange_not_replace_modem_sdsl": "Es ist nicht möglich, dieses Modem für einen SDSL Zugang zu ersetzen."
+  "xdsl_modem_comfort_exchange_not_replace_modem_sdsl": "Es ist nicht möglich, dieses Modem für einen SDSL Zugang zu ersetzen.",
+  "xdsl_details_modem_profile": "Modemprofil",
+  "xdsl_details_modem_profile_orange": "Orangefarbenes Profil",
+  "xdsl_details_modem_profile_bouygues": "Bouygues Profil",
+  "xdsl_details_modem_profile_standard": "Standardprofil"
 }
