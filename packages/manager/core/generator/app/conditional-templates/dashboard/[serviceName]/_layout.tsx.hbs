@@ -17,12 +17,14 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 export default function DashboardPage() {
   const { t } = useTranslation('{{appName}}/dashboard');
   const { serviceName } = useParams();
+  {{#if this.isApiV6}}
   const results: any = useQueries({
     queries: [
-      { queryKey: [{{dashboardEndpointFn}}QueryKey({ serviceName })], queryFn: () => {{dashboardEndpointFn}}({ serviceName }), staleTime: Infinity, },{{#if this.isApiV6}}
-      { queryKey: [{{dashboardEndpointFn}}ServiceInfosQueryKey({ serviceName })], queryFn: () => {{dashboardEndpointFn}}ServiceInfos({ serviceName }), staleTime: Infinity, },{{/if}}
+      { queryKey: [{{dashboardEndpointFn}}QueryKey({ serviceName })], queryFn: () => {{dashboardEndpointFn}}({ serviceName }), staleTime: Infinity, },
+      { queryKey: [{{dashboardEndpointFn}}ServiceInfosQueryKey({ serviceName })], queryFn: () => {{dashboardEndpointFn}}ServiceInfos({ serviceName }), staleTime: Infinity, },
     ],
   });
+  {{/if}}
 
   const tabsList = [
     {
@@ -37,6 +39,7 @@ export default function DashboardPage() {
     },
   ];
 
+  {{#if this.isApiV6}}
   const { error, isLoading, } = results[0];
 
   if (error) {
@@ -46,6 +49,7 @@ export default function DashboardPage() {
   if (isLoading) {
     return (<div><Loading /></div>)
   }
+  {{/if}}
 
   return (
     <div>

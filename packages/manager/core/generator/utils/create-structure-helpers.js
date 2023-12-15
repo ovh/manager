@@ -19,7 +19,8 @@ export const createApiQueryFilesActions = ({
     ),
     templateFile: join(
       appDirectory,
-      `./conditional-templates/api/services-template${method.toUpperCase() === 'GET' ? '-get' : ''
+      `./conditional-templates/api/services-template${
+        method.toUpperCase() === 'GET' ? '-get' : ''
       }.ts.hbs`,
     ),
     data: { ...data, apiVersion },
@@ -35,29 +36,33 @@ export const createPages = (templates, appDirectory, isApiV6) =>
   templates.map((template) =>
     template === 'listing'
       ? {
-        type: 'add',
-        path: join(
-          appDirectory,
-          `../../../apps/{{dashCase appName}}/src/pages/index.tsx`,
-        ),
-        force: true,
-        templateFile: join(
-          appDirectory,
-          `./conditional-templates/${template}/${isApiV6 ? 'index-api-v6-pagination-step' : 'index-api-v2-pagination-cursor'}.tsx.hbs`,
-        ),
-      }
+          type: 'add',
+          path: join(
+            appDirectory,
+            `../../../apps/{{dashCase appName}}/src/pages/index.tsx`,
+          ),
+          force: true,
+          templateFile: join(
+            appDirectory,
+            `./conditional-templates/${template}/${
+              isApiV6
+                ? 'index-api-v6-pagination-step'
+                : 'index-api-v2-pagination-cursor'
+            }.tsx.hbs`,
+          ),
+        }
       : {
-        type: 'addMany',
-        destination: join(
-          appDirectory,
-          `../../../apps/{{dashCase appName}}/src/pages/${template}/`,
-        ),
-        templateFiles: join(
-          appDirectory,
-          `./conditional-templates/${template}`,
-        ),
-        base: join(appDirectory, `./conditional-templates/${template}`),
-      },
+          type: 'addMany',
+          destination: join(
+            appDirectory,
+            `../../../apps/{{dashCase appName}}/src/pages/${template}/`,
+          ),
+          templateFiles: join(
+            appDirectory,
+            `./conditional-templates/${template}`,
+          ),
+          base: join(appDirectory, `./conditional-templates/${template}`),
+        },
   );
 
 /**

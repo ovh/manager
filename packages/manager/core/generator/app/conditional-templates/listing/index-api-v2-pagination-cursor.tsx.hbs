@@ -6,10 +6,9 @@ import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components/button';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { getListingIcebergV2 } from '@/api';
 
-import Datagrid from '@/components/layout-helpers/Listing/dataGrid';
+import DatagridWrapper from '@/components/layout-helpers/Listing/DatagridWrapper';
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
-import appConfig from '@/{{this.appName}}.config';
 import Breadcrumb, {
   BreadcrumbHandleParams,
 } from '@/components/Breadcrumb/Breadcrumb';
@@ -17,7 +16,6 @@ import Breadcrumb, {
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.serviceName;
 }
-
 
 export default function Listing() {
   const [pageSize] = useState(10);
@@ -49,11 +47,8 @@ export default function Listing() {
   return (
     <>
       <Breadcrumb />
-      <h2>a-test</h2>
-      {flattenData?.length ? <Datagrid
-        data={flattenData}
-        serviceKey={appConfig.listing.datagrid.serviceKey as string}
-      /> : null}
+      <h2>{{appName}}</h2>
+      <div>{flattenData?.length && <DatagridWrapper data={flattenData} />}</div>
       <div className="grid justify-items-center my-5">
         {hasNextPage && <div>
           <OsdsButton
