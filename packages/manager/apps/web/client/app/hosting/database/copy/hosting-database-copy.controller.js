@@ -1,6 +1,7 @@
 import {
   COPY_TYPE_MAIN_DATABASE,
   COPY_TYPE_WEBCLOUD_DATABASE,
+  BANNER_HOSTING_GUIDE_HELP_LINKS,
 } from './hosting-database-copy.constants';
 
 angular.module('App').controller(
@@ -13,6 +14,7 @@ angular.module('App').controller(
       $state,
       $window,
       Alerter,
+      coreConfig,
       coreURLBuilder,
       HostingDatabase,
     ) {
@@ -22,6 +24,7 @@ angular.module('App').controller(
       this.$state = $state;
       this.$window = $window;
       this.Alerter = Alerter;
+      this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
       this.coreURLBuilder = coreURLBuilder;
       this.HostingDatabase = HostingDatabase;
       this.COPY_TYPE_MAIN_DATABASE = COPY_TYPE_MAIN_DATABASE;
@@ -37,6 +40,10 @@ angular.module('App').controller(
     }
 
     $onInit() {
+      this.bannerGuideLink =
+        BANNER_HOSTING_GUIDE_HELP_LINKS[this.ovhSubsidiary] ||
+        BANNER_HOSTING_GUIDE_HELP_LINKS.DEFAULT;
+
       this.createDatabaseUrl = this.$scope.currentActionData.isPrivateDatabase
         ? this.coreURLBuilder.buildURL('web', `#/order-cloud-db`)
         : this.coreURLBuilder.buildURL(
