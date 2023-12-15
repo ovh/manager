@@ -532,6 +532,8 @@
   "hosting_tab_DOMAINS_configuration_modify_success_finish": "La modification du ou des domaines associé(s) à votre hébergement mutualisé a été effectuée avec succès.",
   "hosting_tab_DOMAINS_configuration_modify_partial": "La modification du ou des domaines associé(s) à votre hébergement mutualisé a été prise en compte pour certains domaines, mais des erreurs sont survenues pour d'autres.",
   "hosting_tab_DOMAINS_configuration_modify_failure": "Une erreur est survenue lors de la modification du ou des domaines de votre hébergement mutualisé.",
+  "hosting_tab_DOMAINS_configuration_modify_failure_hosting_starter": "Vous ne pouvez pas détacher votre domaine avec cette offre d'hébergement. Si vous souhaitez modifier votre domaine, veuillez commander une offre supérieure.",
+  "hosting_tab_DOMAINS_configuration_modify_change_offer_link": "Cliquez ici pour commander.",
   "hosting_tab_DOMAINS_configuration_add_title": "Ajouter un domaine ou un sous-domaine",
   "hosting_tab_DOMAINS_configuration_add_loading_error": "Une erreur est survenue lors du chargement des informations.",
   "hosting_tab_DOMAINS_configuration_add_loading_error_configuration": "Une erreur est survenue lors du chargement des informations (l'état de votre configuration est en erreur).",
