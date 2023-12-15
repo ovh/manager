@@ -17,6 +17,17 @@
                 name="hostingCopyDatabaseForm"
                 data-ng-if="$ctrl.mainDatabases"
             >
+                <oui-message type="info">
+                    <span
+                        data-translate="hosting_tab_DATABASES_configuration_information_message"
+                    ></span>
+                    <a
+                        data-ng-href="{{ :: $ctrl.bannerGuideLink}}"
+                        target="_blank"
+                        rel="noopener"
+                        data-ng-bind-html="'hosting_guide_help' | translate"
+                    ></a>
+                </oui-message>
                 <p>
                     <span
                         >{{::
@@ -50,7 +61,7 @@
                         <oui-select
                             class="oui-select__input w-100"
                             data-disabled="$ctrl.selectedType !== $ctrl.COPY_TYPE_MAIN_DATABASE"
-                            data-placeholder="{{::'hosting_tab_DATABASES_configuration_copy_step1_select_database_placeholder' | translate}}"
+                            data-placeholder="{{::'hosting_tab_DATABASES_configuration_copy_step1_select_hosting_placeholder' | translate}}"
                             data-model="$ctrl.selectedMain"
                             data-on-change="$ctrl.loadAvailableDatabase()"
                             data-items="$ctrl.mainDatabases"
