@@ -1389,5 +1389,7 @@
   "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Se il database di destinazione non è vuoto, i dati verranno sovrascritti.",
   "hosting_tab_DOMAINS_configuration_add_step1_order_upgrade": "Per aggiungere un dominio supplementare al tuo hosting, ordina una soluzione superiore.",
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer": "Il servizio STARTER non permette di deselezionare la casella qui sotto.",
-  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Per passare a una soluzione di hosting superiore, clicca qui."
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Per passare a una soluzione di hosting superiore, clicca qui.",
+  "hosting_tab_DOMAINS_configuration_modify_failure_hosting_starter": "Non è possibile dissociare il dominio con questo piano di hosting. Per modificare il dominio, ordina una soluzione superiore.",
+  "hosting_tab_DOMAINS_configuration_modify_change_offer_link": "Clicca qui per effettuare l’ordine."
 }

@@ -9,7 +9,11 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import union from 'lodash/union';
 
-import { CDN_STATUS, CDN_VERSION } from './hosting-multisite.constants';
+import {
+  CDN_STATUS,
+  CDN_VERSION,
+  HOSTING_OFFER,
+} from './hosting-multisite.constants';
 
 const CDN_STATISTICS_PERIOD = {
   DAY: 'day',
@@ -43,6 +47,8 @@ angular
       WucChartjsFactory,
     ) => {
       atInternet.trackPage({ name: 'web::hosting::multisites' });
+
+      $scope.HOSTING_OFFER = HOSTING_OFFER;
 
       $scope.goToCdnConfiguration = function goToCdnConfiguration(domain) {
         $state.go('app.hosting.dashboard.multisite.cdnConfiguration', {

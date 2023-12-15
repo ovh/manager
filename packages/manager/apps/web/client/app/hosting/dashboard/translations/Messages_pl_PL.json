@@ -1389,5 +1389,7 @@
   "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Jeśli baza docelowa nie jest pusta, dane zostaną nadpisane.",
   "hosting_tab_DOMAINS_configuration_add_step1_order_upgrade": "Aby dodać jeszcze jedną domenę do hostingu, zamów wyższą ofertę",
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer": "Nie możesz usunąć zaznaczenia z poniższego pola w ofercie STARTER.",
-  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Zmień ofertę na wyższą tutaj."
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Zmień ofertę na wyższą tutaj.",
+  "hosting_tab_DOMAINS_configuration_modify_failure_hosting_starter": "W przypadku tego pakietu hostingowego nie możesz odłączyć domeny. Jeśli chcesz zmienić domenę, zamów wyższą ofertę.",
+  "hosting_tab_DOMAINS_configuration_modify_change_offer_link": "Kliknij tutaj, aby złożyć zamówienie."
 }
