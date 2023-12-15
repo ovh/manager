@@ -1389,5 +1389,7 @@
   "hosting_tab_DATABASES_configuration_copy_step2_confirmation_description": "Wenn die Zieldatenbank nicht leer ist, werden die Daten überschrieben.",
   "hosting_tab_DOMAINS_configuration_add_step1_order_upgrade": "Wählen Sie bitte ein höheres Angebot, wenn Sie Ihrem Hosting eine weitere Domain hinzufügen möchten.",
   "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer": "Sie können das Kontrollkästchen unten bei Ihrem STARTER Angebot nicht deaktivieren.",
-  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Wechseln Sie hier zu einem höheren Hosting-Angebot."
+  "hosting_tab_DOMAINS_configuration_add_step2_mode_OVH_domain_name_starter_offer_link": "Wechseln Sie hier zu einem höheren Hosting-Angebot.",
+  "hosting_tab_DOMAINS_configuration_modify_failure_hosting_starter": "Sie können Ihre Domain mit diesem Webhosting-Angebot nicht trennen. Wenn Sie Ihre Domain ändern möchten, wählen Sie bitte ein höheres Angebot.",
+  "hosting_tab_DOMAINS_configuration_modify_change_offer_link": "Klicken Sie hier, um zu bestellen."
 }

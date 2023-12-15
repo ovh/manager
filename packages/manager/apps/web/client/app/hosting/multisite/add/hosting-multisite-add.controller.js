@@ -1,7 +1,7 @@
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
-import { HOSTING_START_OFFER } from '../hosting-multisite.constants';
+import { HOSTING_OFFER } from '../hosting-multisite.constants';
 
 angular
   .module('App')
@@ -463,7 +463,7 @@ angular
       };
 
       $scope.isStartingOffer = () => {
-        return $scope.model.hosting.offer === HOSTING_START_OFFER;
+        return $scope.model.hosting.offer === HOSTING_OFFER.STARTER_OVH;
       };
 
       $scope.domainsAlreadyExists = (wwwNeeded) => {

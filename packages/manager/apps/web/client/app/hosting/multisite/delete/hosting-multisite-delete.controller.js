@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import indexOf from 'lodash/indexOf';
+import { HOSTING_OFFER } from '../hosting-multisite.constants';
 
 angular.module('App').controller(
   'HostingRemoveDomainCtrl',
@@ -11,6 +12,9 @@ angular.module('App').controller(
       atInternet,
       Alerter,
       HostingDomain,
+      coreURLBuilder,
+      Domain,
+      $q,
     ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -18,6 +22,10 @@ angular.module('App').controller(
       this.atInternet = atInternet;
       this.Alerter = Alerter;
       this.HostingDomain = HostingDomain;
+      this.coreURLBuilder = coreURLBuilder;
+      this.Domain = Domain;
+      this.$q = $q;
+      this.HOSTING_OFFER = HOSTING_OFFER;
     }
 
     $onInit() {
@@ -84,6 +92,16 @@ angular.module('App').controller(
             this.$scope.alerts.main,
           );
         });
+
+      this.changeOfferLink = this.coreURLBuilder.buildURL(
+        'web',
+        '#/hosting/:serviceName/change-offer',
+        { serviceName: this.$stateParams.productId },
+      );
+    }
+
+    isHostingOvhStartOffer() {
+      return this.$scope.hosting.offer === HOSTING_OFFER.STARTER_OVH;
     }
 
     domainsWwwExists() {
