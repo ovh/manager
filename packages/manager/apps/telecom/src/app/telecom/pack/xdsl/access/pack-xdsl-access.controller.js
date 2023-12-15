@@ -11,6 +11,10 @@ import {
   XDSL_NO_INCIDENT_CODE,
   XDSL_EXCHANGE_MODEM,
   VDSL_PROFILE,
+  MODEM_PROFILE,
+  PROVIDER,
+  PROVIDER_INFRA,
+  ACCESS_TYPE,
 } from './pack-xdsl-access.constants';
 
 export default class XdslAccessCtrl {
@@ -392,6 +396,33 @@ export default class XdslAccessCtrl {
               if (!this.$scope.access.xdsl.isFiber) {
                 this.getAvailableProfiles();
               }
+
+              // Set modem profile
+              this.modemProfile = this.$translate.instant(
+                `xdsl_details_modem_profile_${MODEM_PROFILE.standard}`,
+              );
+              if (
+                access.provider === PROVIDER.bouygues &&
+                access.accessType === ACCESS_TYPE.ftth
+              ) {
+                this.modemProfile = this.$translate.instant(
+                  `xdsl_details_modem_profile_${MODEM_PROFILE.bouygues}`,
+                );
+              }
+              if (
+                access.provider === PROVIDER.kosc &&
+                [ACCESS_TYPE.ftth, ACCESS_TYPE.vdsl].includes(
+                  access.accessType,
+                ) &&
+                [PROVIDER_INFRA.or, PROVIDER_INFRA.orange].includes(
+                  access.providerInfra,
+                )
+              ) {
+                this.modemProfile = this.$translate.instant(
+                  `xdsl_details_modem_profile_${MODEM_PROFILE.orange}`,
+                );
+              }
+
               return this.$scope.access.xdsl;
             },
             (err) => {
