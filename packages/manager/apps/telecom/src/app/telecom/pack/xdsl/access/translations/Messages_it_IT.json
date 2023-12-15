@@ -115,5 +115,9 @@
   "xdsl_modem_exchange_title": "Sostituisci",
   "xdsl_modem_comfort_exchange_already_opened_rma": "È già in corso una richiesta di sostituzione dell’hardware.",
   "xdsl_modem_comfort_exchange_already_last_model": "Disponi già dell’ultimo modello di modem.",
-  "xdsl_modem_comfort_exchange_not_replace_modem_sdsl": "Non è possibile sostituire questo modem per un accesso SDSL."
+  "xdsl_modem_comfort_exchange_not_replace_modem_sdsl": "Non è possibile sostituire questo modem per un accesso SDSL.",
+  "xdsl_details_modem_profile": "Profilo modem",
+  "xdsl_details_modem_profile_orange": "Profilo Orange",
+  "xdsl_details_modem_profile_bouygues": "Profilo Bouygues",
+  "xdsl_details_modem_profile_standard": "Profilo Standard"
 }
