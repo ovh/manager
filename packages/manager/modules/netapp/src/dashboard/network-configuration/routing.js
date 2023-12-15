@@ -34,6 +34,15 @@ export default /* @ngInject */ ($stateProvider) => {
         trackClick(trackingAction);
         return $state.go('^');
       },
+      vracks: /* @ngInject */ (NetAppDashboardService) =>
+        NetAppDashboardService.getVracks().then(({ data }) =>
+          data.map((vrack) => {
+            return {
+              ...vrack,
+              internalName: vrack.iam.urn.split(':').pop(),
+            };
+          }),
+        ),
       vrackServices: /* @ngInject */ (NetAppDashboardService) =>
         NetAppDashboardService.getVrackServices().then(({ data }) =>
           data.map((vs) => {
@@ -51,6 +60,21 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       createVrackServiceLink: /* @ngInject */ () => 'TODO',
       createSubnetLink: /* @ngInject */ () => 'TODO',
+      goToVrackOrder: /* @ngInject */ (
+        $window,
+        coreConfig,
+        NetappNetworkConfigurationService,
+        trackClick,
+      ) => (event) => {
+        event.preventDefault();
+        trackClick('add-vrack');
+        $window.open(
+          NetappNetworkConfigurationService.getVrackOrderUrl(
+            coreConfig.getUser().ovhSubsidiary,
+          ),
+          '_blank',
+        );
+      },
     },
     atInternet: {
       rename: 'netapp::dashboard::configure-network',
