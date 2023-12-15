@@ -1393,5 +1393,7 @@
   "hosting_tab_FTP_configuration_user_create_step1_protocol_label": "Protocollo di connessione",
   "hosting_tab_FTP_configuration_user_create_step1_protocol_ftp": "FTP",
   "hosting_tab_FTP_configuration_user_create_step1_protocol_both": "FTP e SFTP",
-  "hosting_tab_FTP_configuration_user_create_step1_protocol_all": "FTP, SFTP e SSH"
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_all": "FTP, SFTP e SSH",
+  "hosting_tab_DOMAINS_configuration_modify_failure_hosting_starter": "Non è possibile dissociare il dominio con questo piano di hosting. Per modificare il dominio, ordina una soluzione superiore.",
+  "hosting_tab_DOMAINS_configuration_modify_change_offer_link": "Clicca qui per effettuare l’ordine."
 }

@@ -1393,5 +1393,7 @@
   "hosting_tab_FTP_configuration_user_create_step1_protocol_label": "Verbindungsprotokoll",
   "hosting_tab_FTP_configuration_user_create_step1_protocol_ftp": "FTP",
   "hosting_tab_FTP_configuration_user_create_step1_protocol_both": "FTP und SFTP",
-  "hosting_tab_FTP_configuration_user_create_step1_protocol_all": "FTP, SFTP und SSH"
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_all": "FTP, SFTP und SSH",
+  "hosting_tab_DOMAINS_configuration_modify_failure_hosting_starter": "Sie können Ihre Domain mit diesem Webhosting-Angebot nicht trennen. Wenn Sie Ihre Domain ändern möchten, wählen Sie bitte ein höheres Angebot.",
+  "hosting_tab_DOMAINS_configuration_modify_change_offer_link": "Klicken Sie hier, um zu bestellen."
 }

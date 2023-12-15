@@ -1393,5 +1393,7 @@
   "hosting_tab_FTP_configuration_user_create_step1_protocol_label": "Protokół logowania",
   "hosting_tab_FTP_configuration_user_create_step1_protocol_ftp": "FTP",
   "hosting_tab_FTP_configuration_user_create_step1_protocol_both": "FTP i SFTP",
-  "hosting_tab_FTP_configuration_user_create_step1_protocol_all": "FTP, SFTP i SSH"
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_all": "FTP, SFTP i SSH",
+  "hosting_tab_DOMAINS_configuration_modify_failure_hosting_starter": "W przypadku tego pakietu hostingowego nie możesz odłączyć domeny. Jeśli chcesz zmienić domenę, zamów wyższą ofertę.",
+  "hosting_tab_DOMAINS_configuration_modify_change_offer_link": "Kliknij tutaj, aby złożyć zamówienie."
 }

@@ -1393,5 +1393,7 @@
   "hosting_tab_FTP_configuration_user_create_step1_protocol_label": "Connection protocol",
   "hosting_tab_FTP_configuration_user_create_step1_protocol_ftp": "FTP",
   "hosting_tab_FTP_configuration_user_create_step1_protocol_both": "FTP and SFTP",
-  "hosting_tab_FTP_configuration_user_create_step1_protocol_all": "FTP, SFTP and SSH"
+  "hosting_tab_FTP_configuration_user_create_step1_protocol_all": "FTP, SFTP and SSH",
+  "hosting_tab_DOMAINS_configuration_modify_failure_hosting_starter": "You cannot detach your domain with this web hosting plan. If you wish to change your domain, please upgrade to a higher plan.",
+  "hosting_tab_DOMAINS_configuration_modify_change_offer_link": "Click here to order."
 }
