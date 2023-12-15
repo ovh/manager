@@ -115,5 +115,9 @@
   "xdsl_modem_comfort_exchange_not_replace_modem_sdsl": "This modem cannot be upgraded for SDSL access.",
   "xdsl_details_diagnostic_known_incident": "We have detected an incident on your line, and we are working to re-establish your connection. We apologise for any inconvenience this may cause you.",
   "xdsl_details_diagnostic_known_incident_details": "You can read more information on this incident by clicking the following link:",
-  "xdsl_details_diagnostic_get_incident_error": "An error occurred while retrieving information on the incidents."
+  "xdsl_details_diagnostic_get_incident_error": "An error occurred while retrieving information on the incidents.",
+  "xdsl_details_modem_profile": "Modem profile",
+  "xdsl_details_modem_profile_orange": "Orange Profile",
+  "xdsl_details_modem_profile_bouygues": "Bouygues Profile",
+  "xdsl_details_modem_profile_standard": "Standard Profile"
 }
