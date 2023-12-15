@@ -13,6 +13,7 @@ export default class BmServerComponentsGeneralInformationController {
     atInternet,
     constants,
     coreConfig,
+    Server,
   ) {
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -20,6 +21,7 @@ export default class BmServerComponentsGeneralInformationController {
     this.atInternet = atInternet;
     this.constants = constants;
     this.coreConfig = coreConfig;
+    this.Server = Server;
   }
 
   $onInit() {
@@ -46,14 +48,14 @@ export default class BmServerComponentsGeneralInformationController {
   removeHack() {
     return this.Server.removeHack(this.$stateParams.productId)
       .then(() => {
-        this.dedicatedServer.setMessage(
+        this.dedicatedServer.$scope.setMessage(
           this.$translate.instant(
             'dedicated_server_dashboard_remove_hack_success',
           ),
         );
       })
       .catch((data) => {
-        this.dedicatedServer.setMessage(
+        this.dedicatedServer.$scope.setMessage(
           this.$translate.instant(
             'dedicated_server_dashboard_remove_hack_fail',
           ),
