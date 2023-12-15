@@ -1,0 +1,66 @@
+{
+  "name": "@ovh-ux/manager-pci-rancher-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "pci-rancher",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/manager/apps/pci-rancher"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "tsc && vite",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-rancher-app' --include-dependencies -- npm run build --if-present",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-rancher-app' --include-dependencies -- npm run dev --if-present",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-rancher-app' --include-dependencies -- npm run dev:watch --if-present",
+    "test": "jest --coverage -u"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-config": "^7.2.0",
+    "@ovh-ux/manager-core-api": "*",
+    "@ovh-ux/manager-react-core-application": "*",
+    "@ovh-ux/manager-react-shell-client": "^0.0.0",
+    "@ovh-ux/manager-vite-config": "^0.2.1",
+    "@ovh-ux/shell": "^3.0.0",
+    "@ovhcloud/ods-common-core": "^16.6.0",
+    "@ovhcloud/ods-common-theming": "^16.6.0",
+    "@ovhcloud/ods-components": "^16.6.0",
+    "@ovhcloud/ods-theme-blue-jeans": "^16.6.0",
+    "@tanstack/react-query": "^5.8.3",
+    "@tanstack/react-query-devtools": "^5.8.3",
+    "@testing-library/react": "^14.1.2",
+    "clsx": "^1.2.1",
+    "i18next": "^20.4.0",
+    "i18next-http-backend": "^2.4.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^11.18.1",
+    "react-router-dom": "^6.3.0",
+    "tailwindcss": "^3.3.3"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@ovh-ux/manager-vite-config": "*",
+    "@testing-library/jest-dom": "^6.2.0",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.6",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
+    "babel-plugin-transform-import-meta": "^2.2.1",
+    "knip": "^3.10.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "vite": "4.3.1"
+  },
+  "peerDependencies": {
+    "@ovhcloud/msc-utils": "*"
+  },
+  "regions": [
+    "CA",
+    "EU",
+    "US"
+  ]
+}
