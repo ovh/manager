@@ -20,13 +20,13 @@ const getApiV2AndV6GetEndpointsChoices = ({
   apiV6Endpoints,
   apiV2Endpoints,
 }) => [
-  { type: 'separator', line: 'V2 endpoints' },
-  ...(apiV2Endpoints?.get?.operationList?.map(toChoice) || []),
-  { type: 'separator' },
-  { type: 'separator', line: 'V6 endpoints' },
-  ...(apiV6Endpoints?.get?.operationList?.map(toChoice) || []),
-  { type: 'separator' },
-];
+    { type: 'separator', line: 'V2 endpoints' },
+    ...(apiV2Endpoints?.get?.operationList?.map(toChoice) || []),
+    { type: 'separator' },
+    { type: 'separator', line: 'V6 endpoints' },
+    ...(apiV6Endpoints?.get?.operationList?.map(toChoice) || []),
+    { type: 'separator' },
+  ];
 
 export default (plop) => {
   plop.setGenerator('app', {
@@ -96,6 +96,11 @@ export default (plop) => {
         choices: getApiV2AndV6GetEndpointsChoices,
       },
       {
+        type: 'confirm',
+        name: 'isGenerateAllApi',
+        message: 'Would you like to generate all api related to your API base?',
+      },
+      {
         type: 'input',
         name: 'serviceKey',
         message: 'What is the service key ?',
@@ -129,22 +134,36 @@ export default (plop) => {
         validate: (input) => input.length > 0,
       },
     ],
-    actions: ({ apiV6Endpoints, apiV2Endpoints, templates, appName }) => {
+    actions: ({ apiV6Endpoints, apiV2Endpoints, templates, appName, listingEndpointPath, dashboardEndpointPath, isGenerateAllApi }) => {
+      const apiV2Computed = isGenerateAllApi ? apiV2Endpoints : {
+        get: {
+          ...apiV2Endpoints.get,
+          operationList: apiV2Endpoints.get?.operationList?.filter(({ apiPath }) => [listingEndpointPath, dashboardEndpointPath].includes(apiPath))
+        }
+      }
+
+      const apiV6Computed = isGenerateAllApi ? apiV6Endpoints : {
+        get: {
+          ...apiV6Endpoints.get,
+          operationList: apiV6Endpoints.get?.operationList?.filter(({ apiPath }) => [listingEndpointPath, dashboardEndpointPath].includes(apiPath) || apiPath.includes('/serviceInfos'))
+        }
+      }
+
       const apiV2Files =
         Object.keys(apiV2Endpoints).length > 0
           ? createApiQueryFilesActions({
-              endpoints: apiV2Endpoints,
-              apiVersion: 'v2',
-              appDirectory,
-            })
+            endpoints: apiV2Computed,
+            apiVersion: 'v2',
+            appDirectory,
+          })
           : [];
       const apiV6Files =
         Object.keys(apiV6Endpoints).length > 0
           ? createApiQueryFilesActions({
-              endpoints: apiV6Endpoints,
-              apiVersion: 'v6',
-              appDirectory,
-            })
+            endpoints: apiV6Computed,
+            apiVersion: 'v6',
+            appDirectory,
+          })
           : [];
       const pages = createPages(templates, appDirectory);
       const translations = createTranslations(templates, appName, appDirectory);
