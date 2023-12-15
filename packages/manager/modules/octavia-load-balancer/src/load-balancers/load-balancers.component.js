@@ -8,6 +8,7 @@ export default {
     goToDeleteLoadBalancer: '<',
     dashboardPageLink: '<',
     dashboardPageTracking: '<',
+    provisioningStatusBadges: '<',
     operatingStatusBadges: '<',
   },
   template,
