@@ -9,6 +9,8 @@ export default {
     trackMemberAddInstanceAction: '<',
     goToMemberDeletion: '<',
     goToMemberEdition: '<',
+    operatingStatusBadges: '<',
+    provisioningStatusBadges: '<',
   },
   template,
 };
