@@ -1,4 +1,8 @@
 import get from 'lodash/get';
+import {
+  SSH_MODEL_PROTOCOL,
+  PROTOCOL_CHOICES,
+} from './hosting-ftp-user-add.constants';
 
 angular.module('App').controller(
   'HostingFtpUserCreateCtrl',
@@ -20,8 +24,10 @@ angular.module('App').controller(
     }
 
     $onInit() {
+      this.PROTOCOL_CHOICES = PROTOCOL_CHOICES;
       this.condition = this.Hosting.constructor.getPasswordConditions();
       this.model = {
+        protocol: PROTOCOL_CHOICES.ftpAndSftp,
         os: {
           LINUX: 'linux',
           WINDOWS: 'windows',
@@ -101,6 +107,12 @@ angular.module('App').controller(
       return this.isUserValid() && this.isPathValid();
     }
 
+    getSshState() {
+      return (
+        SSH_MODEL_PROTOCOL[this.model.protocol] || SSH_MODEL_PROTOCOL.DEFAULT
+      );
+    }
+
     getSelectedHome() {
       const home = '/';
       if (this.model.selected.home !== null) {
@@ -122,6 +134,7 @@ angular.module('App').controller(
         `${this.model.primaryLogin}-${this.model.selected.login}`,
         this.model.selected.password.value || '',
         this.getSelectedHome(),
+        this.getSshState(),
       )
         .then(() => {
           this.Alerter.success(
