@@ -74,7 +74,7 @@
                 data-disabled="IpGameFirewallCtrl.datas.firewall.state !== IpGameFirewallCtrl.constantes.OK"
                 data-model="IpGameFirewallCtrl.firewallModeEnabled"
                 data-name="policy"
-                data-on-change="setAction('ip/firewall/game/toggle/ip-ip-firewall-game-toggle', {ipblock : IpGameFirewallCtrl.datas.selectedBlock, ip : IpGameFirewallCtrl.datas.selectedIp, firewall : IpGameFirewallCtrl.datas.firewall})"
+                data-on-change="setAction('ip/firewall/game/toggle/ip-ip-firewall-game-toggle', {ipblock : IpGameFirewallCtrl.datas.selectedBlock, ip : IpGameFirewallCtrl.datas.selectedIp, firewall : IpGameFirewallCtrl.datas.firewall, tracking: IpGameFirewallCtrl.tracking['apply-default-policy']})"
             >
             </oui-switch>
         </div>
@@ -241,7 +241,7 @@
                             class="btn btn-link"
                             title="{{:: 'ip_game_mitigation_rule_delete' | translate }}"
                             data-ng-disabled="rule.state !== IpGameFirewallCtrl.constantes.OK"
-                            data-ng-click="setAction('ip/firewall/game/rule/delete/ip-ip-firewall-game-rule-delete', {ipblock : IpGameFirewallCtrl.datas.selectedBlock, ip : IpGameFirewallCtrl.datas.selectedIp, rule : rule})"
+                            data-ng-click="setAction('ip/firewall/game/rule/delete/ip-ip-firewall-game-rule-delete', {ipblock : IpGameFirewallCtrl.datas.selectedBlock, ip : IpGameFirewallCtrl.datas.selectedIp, rule : rule, tracking : IpGameFirewallCtrl.tracking['game-firewall-delete-rule']})"
                         >
                             <i
                                 class="fa fa-trash"

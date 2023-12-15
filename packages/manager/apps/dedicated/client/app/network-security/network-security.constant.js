@@ -62,6 +62,8 @@ export const GUIDE_LINKS = {
     'https://help.ovhcloud.com/csm/en-network-security-dashboard?id=kb_article_view&sysparm_article=KB0060700',
 };
 
+export const TRACKING_PREFIX = 'network-security::anti-ddos-dashboard';
+
 export default {
   API_PATH,
   PAGE_SIZE,
@@ -69,4 +71,5 @@ export default {
   ALLOWED_LANGUAGES,
   BASE_URL_SURVEY,
   GUIDE_LINKS,
+  TRACKING_PREFIX,
 };
