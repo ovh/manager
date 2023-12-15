@@ -65,7 +65,7 @@
                     <oui-tile-description>
                         <span
                             class="oui-badge"
-                            data-ng-class="$ctrl.PROVISIONING_STATUS_BADGES[$ctrl.loadbalancer.provisioningStatus]"
+                            data-ng-class="$ctrl.provisioningStatusBadges[$ctrl.loadbalancer.provisioningStatus]"
                             data-ng-bind=":: 'octavia_load_balancer_overview_config_provisioning_status_' + $ctrl.loadbalancer.provisioningStatus | translate"
                         ></span>
                     </oui-tile-description>
@@ -76,7 +76,7 @@
                     <oui-tile-description>
                         <span
                             class="oui-badge"
-                            data-ng-class="$ctrl.OPERATING_STATUS_BADGES[$ctrl.loadbalancer.operatingStatus]"
+                            data-ng-class="$ctrl.operatingStatusBadges[$ctrl.loadbalancer.operatingStatus]"
                             data-ng-bind=":: 'octavia_load_balancer_operating_status_' + $ctrl.loadbalancer.operatingStatus | translate"
                         ></span>
                     </oui-tile-description>

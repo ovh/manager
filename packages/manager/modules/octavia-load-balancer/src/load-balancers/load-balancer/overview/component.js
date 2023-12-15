@@ -1,4 +1,3 @@
-import controller from './controller';
 import template from './template.html';
 
 export default {
@@ -8,7 +7,8 @@ export default {
     network: '<',
     subnet: '<',
     goToEditName: '<',
+    operatingStatusBadges: '<',
+    provisioningStatusBadges: '<',
   },
-  controller,
   template,
 };

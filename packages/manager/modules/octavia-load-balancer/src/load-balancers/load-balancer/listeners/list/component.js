@@ -10,6 +10,8 @@ export default {
     goToListenerDeletion: '<',
     getPoolDetailLink: '<',
     trackRoot: '<',
+    operatingStatusBadges: '<',
+    provisioningStatusBadges: '<',
   },
   controller,
   template,
