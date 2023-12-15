@@ -4,13 +4,6 @@
   "octavia_load_balancer_pools_protocol_helper": "Le protocole pour lequel ce pool et ses membres écoutent.",
   "octavia_load_balancer_pools_algorithm": "Algorithme du Load Balancer",
   "octavia_load_balancer_pools_algorithm_helper": "L’algorithme du Load Balancer qui répartit le trafic entre les membres du pool.",
-  "octavia_load_balancer_pools_provisioning_status": "Statut d'approvisionnement",
-  "octavia_load_balancer_pools_provisioning_status_active": "actif",
-  "octavia_load_balancer_pools_provisioning_status_creating": "en cours de création",
-  "octavia_load_balancer_pools_provisioning_status_deleted": "supprimé",
-  "octavia_load_balancer_pools_provisioning_status_deleting": "en cours de suppression",
-  "octavia_load_balancer_pools_provisioning_status_error": "erreur",
-  "octavia_load_balancer_pools_provisioning_status_updating": "en cours de mise à jour",
   "octavia_load_balancer_pools_actions_edit": "Editer",
   "octavia_load_balancer_pools_actions_manage_members": "Gérer les membres",
   "octavia_load_balancer_pools_actions_delete": "Supprimer"

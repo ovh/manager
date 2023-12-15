@@ -1,4 +1,8 @@
 import template from './octavia-load-balancer.html';
+import {
+  OPERATING_STATUS_BADGES,
+  PROVISIONING_STATUS_BADGES,
+} from './octavia-load-balancer.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('octavia-load-balancer', {
@@ -46,6 +50,8 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         ]);
       },
+      operatingStatusBadges: () => OPERATING_STATUS_BADGES,
+      provisioningStatusBadges: () => PROVISIONING_STATUS_BADGES,
     },
   });
 };

@@ -65,7 +65,7 @@
                 ></span>
             </oui-datagrid-column>
             <oui-datagrid-column
-                data-title=":: 'octavia_load_balancer_status' | translate"
+                data-title=":: 'octavia_load_balancer_operating_status' | translate"
                 data-property="operatingStatus"
                 data-sortable
                 data-type="options"
@@ -73,12 +73,8 @@
             >
                 <span
                     class="oui-badge"
-                    data-ng-class="{
-                        'oui-badge_success': $value === 'online',
-                        'oui-badge_warning': $value === 'offline' || $value === 'degraded' || $value === 'draining',
-                        'oui-badge_error': $value === 'error'
-                        }"
-                    data-translate="{{:: 'octavia_load_balancer_status_' + $value }}"
+                    data-ng-class="$ctrl.operatingStatusBadges[$value]"
+                    data-translate="{{:: 'octavia_load_balancer_operating_status_' + $value }}"
                 ></span>
             </oui-datagrid-column>
             <oui-action-menu compact data-placement="end">
