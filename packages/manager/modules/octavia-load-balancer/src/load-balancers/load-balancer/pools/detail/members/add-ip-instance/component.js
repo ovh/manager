@@ -8,6 +8,8 @@ export default {
     poolId: '<',
     members: '<',
     goBack: '<',
+    trackAddInstancesAction: '<',
+    trackAddInstancesPage: '<',
   },
   controller,
   template,

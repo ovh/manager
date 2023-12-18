@@ -14,18 +14,14 @@ export default /* @ngInject */ ($stateProvider) => {
     layout: 'modal',
     resolve: {
       ...deletePoolResolve,
-      goBack: /* @ngInject */ ($state, trackAction) => (reload) => {
-        if (!reload) {
-          trackAction(`${TRACKING_HIT_PREFIX}::cancel`);
-        }
+      goBack: /* @ngInject */ ($state) => (reload) =>
         $state.go(
           'octavia-load-balancer.loadbalancer.pools.list',
           {},
           reload
             ? { reload: 'octavia-load-balancer.loadbalancer.pools.list' }
             : null,
-        );
-      },
+        ),
     },
     atInternet: {
       rename: `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}`,

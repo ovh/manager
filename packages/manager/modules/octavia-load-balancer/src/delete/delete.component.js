@@ -8,6 +8,8 @@ export default {
     loadBalancerRegion: '<',
     projectId: '<',
     goBack: '<',
+    trackDeletionAction: '<',
+    trackDeletionPage: '<',
   },
   controller,
   template,

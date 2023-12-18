@@ -8,6 +8,7 @@ export default {
     region: '<',
     pool: '<',
     goBack: '<',
+    trackNameEditionAction: '<',
   },
   controller,
   template,
