@@ -21,8 +21,7 @@
     >
         <!-- VRACK STEP -->
         <oui-step-form
-            data-ng-init="stepVrack = $ctrl.stepper.vrackSelection"
-            data-name="{{:: stepVrack.name}}"
+            data-name="{{:: $ctrl.stepper.vrackSelection.name }}"
             data-header="{{:: 'netapp_network_configuration_vrack_step_title' | translate }}"
             data-prevent-next="true"
             data-valid="!$ctrl.disableVrackField && $ctrl.selectedVrack"
@@ -60,8 +59,7 @@
 
         <!-- VRACK SERVICES & SUBNET STEP-->
         <oui-step-form
-            data-ng-init="stepVrackServices = $ctrl.stepper.vrackServicesSelection"
-            data-name="{{:: stepVrackServices.name}}"
+            data-name="{{:: $ctrl.stepper.vrackServicesSelection.name }}"
             data-header="{{:: 'netapp_network_configuration_vrack_services_step_title' | translate }}"
             data-prevent-next="true"
             data-valid="$ctrl.selectedVrackService && !$ctrl.disableVrackServicesField && $ctrl.selectedSubnet && !$ctrl.disableSubnetField"

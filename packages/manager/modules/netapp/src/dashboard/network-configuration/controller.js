@@ -104,10 +104,7 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
             ),
           );
 
-          if (
-            data.vrackAssociationStatus &&
-            !data.vrackAssociationStatus.success
-          ) {
+          if (!data.vrackAssociationStatus?.success) {
             this.Alerter.set(
               'alert-warning',
               this.$translate.instant(
