@@ -17,7 +17,7 @@ import {
 } from '@/api';
 
 export const useVrackServicesList = (refetchInterval = 30000) =>
-  useQuery<ResponseData<VrackServicesWithIAM[]>, ResponseData>({
+  useQuery<ResponseData<VrackServicesWithIAM[]>, ResponseData<Error>>({
     queryKey: getVrackServicesResourceListQueryKey,
     queryFn: () => getVrackServicesResourceList(),
     refetchInterval,
@@ -62,6 +62,9 @@ export const isEditable = (vs?: VrackServices) =>
   [ProductStatus.ACTIVE, ProductStatus.DRAFT].includes(
     vs?.currentState.productStatus,
   );
+
+export const hasSubnet = (vs?: VrackServices) =>
+  vs?.currentState.subnets.length > 0;
 
 /**
  * Get the function to mutate a vRack Services

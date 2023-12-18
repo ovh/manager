@@ -23,7 +23,7 @@
   "serviceRange": "Plage d'adresses du service",
   "vlan": "VLAN",
   "actions": "",
-  "modalDeleteInputLabel": "Veuillez entrer le mot « Terminate » pour confirmer la suppression de votre sous-réseau.",
+  "modalDeleteInputLabel": "Veuillez entrer le mot « TERMINATE » pour confirmer la suppression de votre sous-réseau.",
   "modalDeleteHeadline": "Supprimer le sous-réseau",
   "modalDeleteDescription": "Pour être supprimé, un sous-réseau ne doit pas contenir de Service Endpoint associé."
 }

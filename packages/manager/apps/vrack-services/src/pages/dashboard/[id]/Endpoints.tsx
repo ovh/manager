@@ -15,7 +15,7 @@ import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { OnboardingLayout, PageLayout } from '@/components/layout-helpers';
 import { ErrorPage } from '@/components/Error';
-import { isEditable, useVrackService } from '@/utils/vs-utils';
+import { hasSubnet, isEditable, useVrackService } from '@/utils/vs-utils';
 
 export function breadcrumb() {
   return i18next.t('vrack-services/dashboard:endpointsTabLabel');
@@ -71,7 +71,7 @@ const Endpoints: React.FC = () => {
           </span>
         </OsdsButton>
 
-        <section>endpoints data-grid</section>
+        <section>service endpoints data-grid</section>
       </PageLayout>
     );
   }
@@ -83,7 +83,9 @@ const Endpoints: React.FC = () => {
       secondaryButtonIcon={ODS_ICON_NAME.ADD}
       secondaryButtonSize={ODS_BUTTON_SIZE.sm}
       secondaryButtonIconPosition="start"
-      secondaryButtonDisabled={!isEditable(vrackServices) || undefined}
+      secondaryButtonDisabled={
+        !isEditable(vrackServices) || !hasSubnet(vrackServices) || undefined
+      }
       title={t('onboardingTitle')}
       description={t('onboardingDescription')}
       imageSrc={onboardingImgSrc}

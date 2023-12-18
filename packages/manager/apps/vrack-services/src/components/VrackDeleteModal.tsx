@@ -32,7 +32,7 @@ export type VrackDeleteModalProps = {
   error?: string;
 };
 
-const terminateValue = 'Terminate';
+const terminateValue = 'TERMINATE';
 
 export const VrackDeleteModal: React.FC<VrackDeleteModalProps> = ({
   headline,

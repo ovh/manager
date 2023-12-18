@@ -23,6 +23,7 @@ export type CreatePageLayoutProps = React.PropsWithChildren<{
   goBackUrl: string;
   goBackLinkLabel: string;
   title: string;
+  description?: string;
   onSubmit: React.FormEventHandler;
   isFormSubmittable?: boolean;
   isSubmitPending?: boolean;
@@ -35,6 +36,7 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
   goBackUrl,
   goBackLinkLabel,
   title,
+  description,
   onSubmit,
   isFormSubmittable,
   isSubmitPending,
@@ -69,6 +71,16 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
       >
         {title}
       </OsdsText>
+      {description && (
+        <OsdsText
+          className="block mb-8"
+          level={ODS_TEXT_LEVEL.body}
+          color={ODS_THEME_COLOR_INTENT.default}
+          size={ODS_TEXT_SIZE._400}
+        >
+          {description}
+        </OsdsText>
+      )}
       <form
         onSubmit={(event) => {
           event.preventDefault();

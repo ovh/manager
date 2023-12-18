@@ -175,13 +175,31 @@ export const vrackServicesList: VrackServices[] = [
   },
 ];
 
+export const eligibleManagedServiceResponse = [
+  {
+    managedServiceType: 'storageNetApp',
+    managedServiceURNs: [
+      'urn:v1:eu:resource:storageNetApp:examples-00e1-4a3d-ae89-ac145675c8bb',
+      'urn:v1:eu:resource:storageNetApp:examples-a77c-478e-93ce-06aa94cbd9d1',
+    ],
+  },
+  {
+    managedServiceType: 'anotherManagedService',
+    managedServiceURNs: [
+      'urn:v1:eu:resource:anotherManagedService:examples-4011-496d-881a-bea1867b5626',
+    ],
+  },
+];
+
 export type GetVrackServicesMocksParams = {
   nbVs?: number;
   updateKo?: boolean;
+  nbEligibleService?: number;
 };
 
 export const getVrackServicesMocks = ({
   nbVs = 0,
+  nbEligibleService = 2,
   updateKo,
 }: GetVrackServicesMocksParams): Handler[] => [
   {
@@ -223,6 +241,11 @@ export const getVrackServicesMocks = ({
     },
     status: updateKo ? 500 : 200,
     method: 'put',
+    api: 'v2',
+  },
+  {
+    url: '/vrackServices/resource/:id/eligibleManagedService',
+    response: eligibleManagedServiceResponse.slice(0, nbEligibleService),
     api: 'v2',
   },
 ];

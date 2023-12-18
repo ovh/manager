@@ -10,10 +10,14 @@ import { updateError } from '../src/public/translations/vrack-services/listing/M
 Given(
   'User wants to create a vRack Services with name {string} and zone {word}',
   function(this: ICustomWorld<ConfigParams>, name: string, zone: string) {
+    this.handlersConfig.nbVs = 5;
     this.testContext.inputTexts.displayName = name;
     this.testContext.inputTexts.selectedZone = zone;
     this.testContext.initialUrl = urls.create;
-    this.testContext.errorMessage = creationServiceError;
+    this.testContext.errorMessage = creationServiceError.replace(
+      '{{error}}',
+      '.*',
+    );
   },
 );
 

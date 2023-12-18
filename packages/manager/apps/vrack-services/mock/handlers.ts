@@ -19,13 +19,15 @@ import {
   GetOrderDetailsMocksParams,
   getOrderDetailsMocks,
 } from './order/order-details';
+import { GetIamMocksParams, getIamMocks } from './iam/iam';
 
 export type ConfigParams = GetVrackServicesMocksParams &
   GetOrderDetailsMocksParams &
   GetCartMocksParams &
   GetZoneMocksParams &
   GetVrackMocksParams &
-  GetAssociationMocksParams;
+  GetAssociationMocksParams &
+  GetIamMocksParams;
 
 export const getConfig = (params: ConfigParams): Handler[] =>
   [
@@ -35,6 +37,7 @@ export const getConfig = (params: ConfigParams): Handler[] =>
     getAssociationMocks,
     getCartMocks,
     getOrderDetailsMocks,
+    getIamMocks,
   ].flatMap((getMocks) => getMocks(params));
 
 export const getMswHandlers = (params: ConfigParams = {}) =>

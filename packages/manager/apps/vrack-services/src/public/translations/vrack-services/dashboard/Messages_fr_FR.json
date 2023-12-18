@@ -3,7 +3,7 @@
   "description": "Les vRack Services vous permettent de bénéficier de services réseau sur le vRack. Le premier service réseau disponible est le Service Endpoint. Ce dernier vous permet d'exposer, via une adresse IP, un service managé par OVHcloud sur votre vRack. D'autres services seront disponibles à l'avenir.",
   "overviewTabLabel": "Général",
   "subnetsTabLabel": "Sous-réseau",
-  "endpointsTabLabel": "Endpoints",
+  "endpointsTabLabel": "Service Endpoints",
   "tileTitle": "Informations",
   "displayName": "Nom",
   "productStatus": "Statut",
