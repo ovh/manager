@@ -11,21 +11,61 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
   }
 
   $onInit() {
+    this.vrackServicesLoader = false;
     this.disableVrackServicesField = false;
     this.disableSubnetField = true;
 
-    if (!this.vrackServices?.length) {
-      const noVrackServices = {
-        display: {
-          nameWithVrackId: this.$translate.instant(
-            'netapp_network_configuration_no_vrack_service_field',
-          ),
-        },
+    this.stepper = {
+      vrackSelection: { name: 'vrack_selection', display: null },
+      vrackServicesSelection: {
+        name: 'vrack_services_selection',
+        display: null,
+      },
+    };
+
+    this.currentStep = 0;
+
+    if (!this.vracks?.length) {
+      const noVrack = {
+        internalName: this.$translate.instant(
+          'netapp_network_configuration_no_vrack_field',
+        ),
       };
-      this.vrackServices.push(noVrackServices);
-      this.selectedVrackService = noVrackServices;
-      this.disableVrackServicesField = true;
+      this.vracks.push(noVrack);
+      this.selectedVrack = noVrack;
+      this.disableVrackField = true;
     }
+  }
+
+  onVrackSelected() {
+    this.vrackServicesLoader = true;
+    this.NetappNetworkConfigurationService.getAllowedVrackServices(
+      this.selectedVrack.internalName,
+    )
+      .then((services) => {
+        this.vrackServices = this.vrackServices.filter((vrs) =>
+          services.vrackServices.includes(vrs.id),
+        );
+      })
+      .catch(() => {
+        this.vrackServices = [];
+      })
+      .finally(() => {
+        this.vrackServicesLoader = false;
+        if (!this.vrackServices?.length) {
+          const noVrackServices = {
+            display: {
+              nameWithVrackId: this.$translate.instant(
+                'netapp_network_configuration_no_vrack_services_field',
+                { vrack: this.selectedVrack?.internalName },
+              ),
+            },
+          };
+          this.vrackServices.push(noVrackServices);
+          this.selectedVrackService = noVrackServices;
+          this.disableVrackServicesField = true;
+        }
+      });
   }
 
   onVrackServiceSelected(vrackService) {
@@ -50,11 +90,12 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
     this.trackClick('confirm');
 
     this.NetappNetworkConfigurationService.linkVrackServiceToEfs(
+      this.selectedVrack.internalName,
       this.selectedVrackService,
       this.selectedSubnet,
       this.storage,
     )
-      .then(() => {
+      .then((data) => {
         this.trackSuccess();
         this.goBack().then(() => {
           this.Alerter.success(
@@ -62,6 +103,21 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
               'netapp_network_configuration_success_message',
             ),
           );
+
+          if (!data.vrackAssociationStatus?.success) {
+            this.Alerter.set(
+              'alert-warning',
+              this.$translate.instant(
+                'netapp_network_configuration_vrack_association_warning',
+                {
+                  message: data.vrackAssociationStatus.message,
+                  requestId: data.vrackAssociationStatus.requestId,
+                },
+              ),
+              null,
+              'netapp.alerts.warning',
+            );
+          }
         });
       })
       .catch((error) => {
