@@ -8,7 +8,6 @@ export default class OctaviaLoadBalancerOnboardingCtrl {
     this.privateNetworkHelpUrl =
       PRIVATE_NETWORK_HELP[ovhSubsidiary] || PRIVATE_NETWORK_HELP.DEFAULT;
     this.atInternet = atInternet;
-    this.ctaTrackName = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::add`;
     this.$window = $window;
     this.coreURLBuilder = coreURLBuilder;
   }
