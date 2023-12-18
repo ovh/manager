@@ -12,6 +12,7 @@ import '@ovh-ux/manager-billing-components';
 import component from './component';
 import routing from './routing';
 
+import './style.scss';
 const moduleName = 'ovhManagerNetAppDashboardIndex';
 
 angular

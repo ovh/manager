@@ -7,12 +7,14 @@ import {
 
 export default class OvhManagerNetAppDashboardIndexCtrl {
   /* @ngInject */
-  constructor($translate, Alerter) {
+  constructor($http, $translate, Alerter) {
     this.$translate = $translate;
     this.Alerter = Alerter;
+    this.$http = $http;
 
     this.SERVICE_TYPE = SERVICE_TYPE;
     this.isEditingName = false;
+    this.editNameValue = '';
   }
 
   $onInit() {
@@ -33,7 +35,17 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
   }
 
   editName() {
-    this.isEditingName = false;
+    return this.$http
+      .put(`/storage/netapp/${this.storage.id}`, {
+        name: this.editNameValue,
+      })
+      .then((data) => {
+        console.log(data);
+        this.storage.update(data.data);
+      })
+      .finally(() => {
+        this.isEditingName = false;
+      });
   }
 
   onBillingInformationError(error) {
