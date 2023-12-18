@@ -2,7 +2,6 @@ import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 import legacy from '@vitejs/plugin-legacy';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 import IframeHmrPlugin from './plugin/iframe-hmr.js';
 import viteOvhDevServerPlugin from './plugin/dev-server.js';
@@ -32,7 +31,6 @@ const getBaseConfig = (config) => {
       }),
       viteOvhDevServerPlugin({ isContainerApp, config: envConfig }),
       IframeHmrPlugin(),
-      tsconfigPaths({ ignoreConfigErrors: true }),
     ],
     css: {
       preprocessorOptions: {

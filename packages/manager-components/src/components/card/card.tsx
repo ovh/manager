@@ -44,7 +44,7 @@ export const Card = ({
   texts,
 }: CardProps) => {
   const { title, description, category } = texts;
-  const { t } = useDynamicTranslation('Card');
+  const { t } = useDynamicTranslation('card');
 
   return (
     <a
@@ -53,6 +53,7 @@ export const Card = ({
       href={href}
     >
       <OsdsTile
+        className="w-full h-full"
         color={ODS_THEME_COLOR_INTENT.primary}
         rounded
         inline
