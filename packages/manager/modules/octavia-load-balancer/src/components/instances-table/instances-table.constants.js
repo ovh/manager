@@ -68,11 +68,19 @@ export const LISTENER_PROTOCOL_LIST = [
   },
 ];
 
-export const TRACKING_ADD_LISTENER =
-  'pci::projects::project::octavia-loadbalancer::add::add-listener';
+export const TRACKING_ADD_LISTENER = 'add-listener';
+
+export const TRACKING_DELETE_LISTENER = 'delete-listener';
+
+export const TRACKING_ADD_INSTANCE = 'add-instance';
+
+export const TRACKING_DELETE_INSTANCE = 'delete-instance';
 
 export default {
   PROTOCOLS,
   LISTENER_PROTOCOL_LIST,
   TRACKING_ADD_LISTENER,
+  TRACKING_DELETE_LISTENER,
+  TRACKING_ADD_INSTANCE,
+  TRACKING_DELETE_INSTANCE,
 };

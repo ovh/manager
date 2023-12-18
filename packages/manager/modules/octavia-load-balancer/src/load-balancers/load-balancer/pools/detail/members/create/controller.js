@@ -26,17 +26,20 @@ export default class OctaviaLoadBalancerPoolsDetailMembersCreateCtrl {
       ],
     )
       .then(async () => {
-        this.Alerter.set(
-          'alert-success',
-          this.$translate.instant(
-            'octavia_load_balancer_pools_detail_members_create_success',
+        this.trackCreatePage('success');
+        this.goBack(true).then(() =>
+          this.Alerter.set(
+            'alert-success',
+            this.$translate.instant(
+              'octavia_load_balancer_pools_detail_members_create_success',
+            ),
+            null,
+            'octavia.alerts.members',
           ),
-          null,
-          'octavia.alerts.members',
         );
-        this.goBack(true);
       })
       .catch((error) => {
+        this.trackCreatePage('error');
         this.Alerter.error(
           this.$translate.instant('octavia_load_balancer_global_error', {
             message: error.data?.message,

@@ -1,3 +1,8 @@
+import { TRACKING_NAME } from '../../../../constants';
+import { TRACKING_SUFFIX } from '../../../constants';
+import { TRACKING_HIT_PREFIX } from '../constants';
+import { TRACKING_SUFFIX as ADD_INSTANCES_TRACKING_SUFFIX } from './constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'octavia-load-balancer.loadbalancer.pools.detail.members.list.add-ip-instance',
@@ -11,9 +16,17 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: () => null,
         goBack: /* @ngInject */ ($state) => (reload) =>
           $state.go('^', {}, reload ? { reload: '^' } : null),
+        trackAddInstancesAction: /* @ngInject */ (trackAction) => (hit) =>
+          trackAction(
+            `${TRACKING_HIT_PREFIX}::${ADD_INSTANCES_TRACKING_SUFFIX}::${hit}`,
+          ),
+        trackAddInstancesPage: /* @ngInject */ (trackAction) => (hit) =>
+          trackAction(
+            `${TRACKING_HIT_PREFIX}::${ADD_INSTANCES_TRACKING_SUFFIX}-${hit}`,
+          ),
       },
       atInternet: {
-        ignore: true,
+        rename: `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}::${ADD_INSTANCES_TRACKING_SUFFIX}`,
       },
     },
   );

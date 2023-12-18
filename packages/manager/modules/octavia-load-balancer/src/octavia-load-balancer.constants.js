@@ -1,5 +1,7 @@
+export const TRACKING_CHAPTER_1 = 'PublicCloud';
+
 export const TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX =
-  'PublicCloud::pci::projects::project::octavia-loadbalancer';
+  'pci::projects::project::octavia-loadbalancer';
 
 const SUCCESS_BADGE_CLASS = 'oui-badge_success';
 const WARNING_BADGE_CLASS = 'oui-badge_warning';
@@ -24,6 +26,7 @@ export const OPERATING_STATUS_BADGES = {
 };
 
 export default {
+  TRACKING_CHAPTER_1,
   TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX,
   PROVISIONING_STATUS_BADGES,
   OPERATING_STATUS_BADGES,

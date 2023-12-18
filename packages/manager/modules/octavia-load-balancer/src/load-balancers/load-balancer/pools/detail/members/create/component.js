@@ -8,6 +8,7 @@ export default {
     poolId: '<',
     goBack: '<',
     trackCreateAction: '<',
+    trackCreatePage: '<',
   },
   controller,
   template,

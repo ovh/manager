@@ -10,5 +10,6 @@ export default {
     listeners: '=',
     maxListener: '<',
     maxInstancesByListener: '<',
+    trackingPrefix: '<',
   },
 };
