@@ -26,8 +26,8 @@
   "cloud_connect_common_create": "Erstellen",
   "cloud_connect_common_error": "Fehler",
   "cloud_connect_status_init": "Aktivieren",
-  "cloud_connect_common_m": "MB",
-  "cloud_connect_common_g": "GB",
+  "cloud_connect_common_m": "Mbit/s",
+  "cloud_connect_common_g": "Gbit/s",
   "cloud_connect_type": "Typ",
   "cloud_connect_asn_type": "ASN Client",
   "cloud_connect_asn_type_placeholder": "Geben Sie den ASN-Client ein",
@@ -77,5 +77,6 @@
   "cloud_connect_extra_title": "Routing-Konfiguration",
   "cloud_connect_vrack_associate_cloud_connect": "Eine Option OVHcloud Connect ist bereits mit diesem vRACK verbunden. Bitte beachten Sie, dass Ihre Rechenzentrumskonfigurationen miteinander verbunden sind: Jede Veränderung hat Auswirkungen auf die verbundenen Optionen.",
   "cloud_connect_date_expiration": "Verlängerung am",
-  "cloud_connect_product_name": "Kommerzieller Name"
+  "cloud_connect_product_name": "Kommerzieller Name",
+  "cloud_connect_change_bandwidth": "Bandbreite ändern"
 }
