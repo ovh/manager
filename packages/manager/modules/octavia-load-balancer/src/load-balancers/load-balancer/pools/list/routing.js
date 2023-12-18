@@ -35,6 +35,15 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('octavia-load-balancer.loadbalancer.pools.detail', {
           poolId: pool.id,
         }),
+      goToPoolMembers: /* @ngInject */ ($state, trackAction) => (pool) => {
+        trackAction('members');
+        $state.go(
+          'octavia-load-balancer.loadbalancer.pools.detail.members.list',
+          {
+            poolId: pool.id,
+          },
+        );
+      },
     },
     atInternet: {
       rename: `${TRACKING_NAME}::${TRACKING_SUFFIX}`,
