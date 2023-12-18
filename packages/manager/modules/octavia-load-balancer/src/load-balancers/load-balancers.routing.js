@@ -1,4 +1,7 @@
-import { TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX } from '../octavia-load-balancer.constants';
+import {
+  TRACKING_CHAPTER_1,
+  TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX,
+} from '../octavia-load-balancer.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('octavia-load-balancer.loadbalancers', {
@@ -17,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
       goToCreatePage: /* @ngInject */ ($state, atInternet) => () => {
         atInternet.trackClick({
-          name: `${TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX}::add`,
+          name: `${TRACKING_CHAPTER_1}::${TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX}::add`,
           type: 'action',
         });
         $state.go('octavia-load-balancer.create');
@@ -28,7 +31,7 @@ export default /* @ngInject */ ($stateProvider) => {
           loadbalancerId: id,
         }),
       dashboardPageTracking: () =>
-        `${TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX}::detail`,
+        `${TRACKING_CHAPTER_1}::${TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX}::detail`,
       goToDashboardPage: /* @ngInject */ (
         $state,
         atInternet,
@@ -49,7 +52,7 @@ export default /* @ngInject */ ($stateProvider) => {
         region,
       }) => {
         atInternet.trackClick({
-          name: `${TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX}::delete`,
+          name: `${TRACKING_CHAPTER_1}::${TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX}::delete`,
           type: 'action',
         });
         $state.go('octavia-load-balancer.loadbalancers.delete', {

@@ -6,6 +6,8 @@ import {
   MAX_LISTENER,
   PRODUCT_LINK,
   REGION_AVAILABILITY_LINK,
+  TRACKING_CHAPTER_1,
+  TRACKING_NAME,
   TRACKING_INSTANCE_DOCUMENTATION,
   TRACKING_LOAD_BALANCER_CREATION_CANCEL,
   TRACKING_LOAD_BALANCER_CREATION_SUBMIT,
@@ -45,6 +47,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
     this.trackingRegionAvailability = TRACKING_REGION_AVAILABILITY;
     this.trackingPrivateNetworkCreation = TRACKING_PRIVATE_NETWORK_CREATION;
     this.trackingInstanceDocumentation = TRACKING_INSTANCE_DOCUMENTATION;
+    this.trackingInstanceTablePrefix = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}`;
 
     this.productPageLink =
       PRODUCT_LINK[this.user.ovhSubsidiary] || PRODUCT_LINK.DEFAULT;

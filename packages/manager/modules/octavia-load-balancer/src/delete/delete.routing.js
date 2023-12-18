@@ -1,4 +1,8 @@
-import { TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX } from '../octavia-load-balancer.constants';
+import {
+  TRACKING_CHAPTER_1,
+  TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX,
+} from '../octavia-load-balancer.constants';
+import { TRACKING_SUFFIX } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('octavia-load-balancer.loadbalancers.delete', {
@@ -17,6 +21,22 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().loadBalancerRegion,
       loadBalancerName: /* @ngInject */ ($transition$) =>
         $transition$.params().loadBalancerName,
+      trackingDeletionBase: () =>
+        `${TRACKING_CHAPTER_1}::${TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX}::${TRACKING_SUFFIX}`,
+      trackDeletionAction: /* @ngInject */ (
+        atInternet,
+        trackingDeletionBase,
+      ) => (hit) =>
+        atInternet.trackClick({
+          name: `${trackingDeletionBase}::${hit}`,
+          type: 'action',
+        }),
+      trackDeletionPage: /* @ngInject */ (atInternet, trackingDeletionBase) => (
+        hit,
+      ) =>
+        atInternet.trackPage({
+          name: `${trackingDeletionBase}-${hit}`,
+        }),
       goBack: /* @ngInject */ ($state) => (reload) =>
         $state.go(
           'octavia-load-balancer.loadbalancers',

@@ -1,5 +1,3 @@
-import { TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX } from '../octavia-load-balancer.constants';
-
 export default class OctaviaLoadBalancerDeleteCtrl {
   /* @ngInject */
   constructor(
@@ -17,18 +15,21 @@ export default class OctaviaLoadBalancerDeleteCtrl {
     this.OctaviaLoadBalanderService = OctaviaLoadBalanderService;
   }
 
+  cancel() {
+    this.trackDeletionAction('cancel');
+    this.goBack();
+  }
+
   delete() {
     this.isLoading = true;
+    this.trackDeletionAction('confirm');
     this.OctaviaLoadBalanderService.deleteLoadBalancer(
       this.projectId,
       this.loadBalancerRegion,
       this.loadBalancerId,
     )
       .then(() => {
-        this.atInternet.trackPage({
-          name: `${TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX}::delete-success`,
-          type: 'navigation',
-        });
+        this.trackDeletionPage('success');
         this.Alerter.set(
           'alert-info',
           this.$translate.instant('octavia_load_balancer_delete_success'),
@@ -38,10 +39,7 @@ export default class OctaviaLoadBalancerDeleteCtrl {
         this.goBack(true);
       })
       .catch((error) => {
-        this.atInternet.trackPage({
-          name: `${TRACKING_OCTAVIA_LOAD_BALANCERS_PREFIX}::delete-error`,
-          type: 'navigation',
-        });
+        this.trackDeletionPage('error');
         this.Alerter.error(
           this.$translate.instant('octavia_load_balancer_global_error', {
             message: error.data.message,

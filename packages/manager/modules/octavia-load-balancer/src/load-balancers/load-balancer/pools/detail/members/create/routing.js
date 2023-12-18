@@ -1,4 +1,7 @@
+import { TRACKING_NAME } from '../../../../constants';
+import { TRACKING_SUFFIX } from '../../../constants';
 import { TRACKING_HIT_PREFIX } from '../constants';
+import { TRACKING_SUFFIX as ADD_MANUALLY_TRACKING_SUFFIX } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -25,10 +28,16 @@ export default /* @ngInject */ ($stateProvider) => {
               : null,
           ),
         trackCreateAction: /* @ngInject */ (trackAction) => (hit) =>
-          trackAction(`${TRACKING_HIT_PREFIX}::add-${hit}`),
+          trackAction(
+            `${TRACKING_HIT_PREFIX}::${ADD_MANUALLY_TRACKING_SUFFIX}::${hit}`,
+          ),
+        trackCreatePage: /* @ngInject */ (trackAction) => (hit) =>
+          trackAction(
+            `${TRACKING_HIT_PREFIX}::${ADD_MANUALLY_TRACKING_SUFFIX}-${hit}`,
+          ),
       },
       atInternet: {
-        ignore: true,
+        rename: `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}::${ADD_MANUALLY_TRACKING_SUFFIX}`,
       },
     },
   );

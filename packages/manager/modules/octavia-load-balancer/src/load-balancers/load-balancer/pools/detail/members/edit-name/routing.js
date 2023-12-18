@@ -41,7 +41,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       },
       atInternet: {
-        rename: `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}`,
+        rename: `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}::${MEMBER_EDIT_NAME_TRACKING_HIT_SUFFIX}`,
       },
     },
   );
