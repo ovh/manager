@@ -31,5 +31,6 @@
   "DRAFT": "A configurer",
   "associateVrackModal": "Associer à un vRack",
   "vrackServicesNotReadyInfoMessage": "Votre vRack Services a une opération en cours",
-  "subnetCreationSuccess": "Votre sous-réseau {{cidr}} a bien été créé"
+  "subnetCreationSuccess": "Votre sous-réseau {{cidr}} a bien été créé",
+  "endpointCreationSuccess": "Votre endpoint {{name_or_id}} a bien été créé"
 }
