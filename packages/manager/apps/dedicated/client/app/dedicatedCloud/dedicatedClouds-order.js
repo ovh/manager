@@ -47,6 +47,7 @@ export const DEDICATED_CLOUD_ORDER_URLS = {
     'https://ovhcloud.com/us-en/enterprise/products/hosted-private-cloud/prices/',
   WS:
     'https://ovhcloud.com/us-en/enterprise/products/hosted-private-cloud/prices/',
+  US: 'https://us.ovhcloud.com/hosted-private-cloud/vmware/prices/',
 };
 
 export function getDedicatedCloudOrderUrl(subsidiary) {
