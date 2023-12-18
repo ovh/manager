@@ -2,11 +2,19 @@ import { FETCH_INTERVAL, NETWORK_STATUS, POLLING_TYPE } from './constants';
 
 export default class NetAppDashboardService {
   /* @ngInject */
-  constructor($http, $q, Apiv2Service, Poller) {
+  constructor($http, $q, Apiv2Service, Poller, iceberg) {
     this.Apiv2Service = Apiv2Service;
     this.$http = $http;
     this.$q = $q;
     this.Poller = Poller;
+    this.iceberg = iceberg;
+  }
+
+  getVracks(id) {
+    return this.iceberg(`/vrack${id ? `/${id}` : ''}`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute().$promise;
   }
 
   getVrackServices(id) {
@@ -54,10 +62,10 @@ export default class NetAppDashboardService {
 
   startNetworkPolling(storage, pollingType) {
     return this.Poller.poll(
-      `/storage/netapp/${storage.name}/network`,
+      `/storage/netapp/${storage.id}/network`,
       {},
       {
-        namespace: `network_${storage.name}_${pollingType}`,
+        namespace: `network_${storage.id}_${pollingType}`,
         interval: FETCH_INTERVAL,
         method: 'get',
         successRule: (data) =>
@@ -70,6 +78,6 @@ export default class NetAppDashboardService {
   }
 
   stopNetworkPolling(storage, pollingType) {
-    this.Poller.kill({ namespace: `network_${storage.name}_${pollingType}` });
+    this.Poller.kill({ namespace: `network_${storage.id}_${pollingType}` });
   }
 }
