@@ -9,7 +9,7 @@ import some from 'lodash/some';
 
 import Instance from '../../../components/project/instance/instance.class';
 import InstanceQuota from '../../../components/project/instance/quota/quota.class';
-import BlockStorage from '../storages/blocks/block.class';
+import BlockStorage from '../storages/block.class';
 import Datacenter from '../../../components/project/regions-list/datacenter.class';
 
 import {

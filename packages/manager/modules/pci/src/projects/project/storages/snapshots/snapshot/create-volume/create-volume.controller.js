@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import pick from 'lodash/pick';
 
-import BlockStorage from '../../../blocks/block.class';
+import BlockStorage from '../../../block.class';
 
 export default class PciBlockStorageSnapshotsCreateVolumeController {
   /* @ngInject */

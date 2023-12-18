@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@ovh-ux/ui-kit';
 import '@ovh-ux/manager-filters';
 
-import blocks from '../blocks';
+import pciBlockStorage from '@ovh-ux/manager-pci-block-storage';
 import cloudArchive from '../cloud-archives';
 import coldArchive from '../cold-archive';
 import databases from '../databases';
@@ -17,7 +17,7 @@ const moduleName = 'ovhManagerPciStorages';
 
 angular
   .module(moduleName, [
-    blocks,
+    pciBlockStorage,
     cloudArchive,
     coldArchive,
     databases,

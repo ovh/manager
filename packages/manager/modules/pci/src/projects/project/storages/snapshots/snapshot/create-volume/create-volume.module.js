@@ -4,9 +4,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import 'ovh-api-services';
-
-import blockStorages from '../../../blocks';
-import volumeEdit from '../../../blocks/block/edit/volume-edit';
+import pciBlockStorage from '@ovh-ux/manager-pci-block-storage';
 import component from './create-volume.component';
 import routing from './create-volume.routing';
 
@@ -19,8 +17,7 @@ angular
     'ovh-api-services',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
-    blockStorages,
-    volumeEdit,
+    pciBlockStorage,
   ])
   .config(routing)
   .component('pciProjectStoragesSnapshotsCreateVolume', component)
