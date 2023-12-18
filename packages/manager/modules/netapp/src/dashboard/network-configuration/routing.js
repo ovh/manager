@@ -36,12 +36,10 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       vracks: /* @ngInject */ (NetAppDashboardService) =>
         NetAppDashboardService.getVracks().then(({ data }) =>
-          data.map((vrack) => {
-            return {
-              ...vrack,
-              internalName: vrack.iam.urn.split(':').pop(),
-            };
-          }),
+          data.map((vrack) => ({
+            ...vrack,
+            internalName: vrack.iam.urn.split(':').pop(),
+          })),
         ),
       vrackServices: /* @ngInject */ (NetAppDashboardService) =>
         NetAppDashboardService.getVrackServices().then(({ data }) =>

@@ -64,12 +64,10 @@ export default class NetAppNetworkConfigurationService {
           method: 'put',
           url: `/engine/api/v2/vrack-services/resource/${vs.id}`,
           data: vs,
-        }).then(({ data }) => {
-          return {
-            ...vrackAssociationStatus,
-            data,
-          };
-        }),
+        }).then(({ data }) => ({
+          ...vrackAssociationStatus,
+          data,
+        })),
       );
   }
 }
