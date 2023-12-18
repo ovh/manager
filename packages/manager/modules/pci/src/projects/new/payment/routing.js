@@ -167,8 +167,13 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
 
-      defaultPaymentMethod: /* @ngInject */ (paymentMethods) =>
-        find(paymentMethods, { default: true }),
+      defaultPaymentMethod: /* @ngInject */ (paymentMethods, model) => {
+        const defaultPaymentMethod = find(paymentMethods, { default: true });
+        if (defaultPaymentMethod) {
+          Object.assign(model, { valid: true });
+        }
+        return defaultPaymentMethod;
+      },
 
       registerablePaymentMethods: /* @ngInject */ (ovhPaymentMethod) =>
         ovhPaymentMethod.getAllAvailablePaymentMethodTypes(),
