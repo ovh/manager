@@ -1,6 +1,7 @@
 import { TRACKING_NAME } from '../../../../constants';
 import { TRACKING_SUFFIX } from '../../../constants';
 import { TRACKING_HIT_PREFIX } from '../constants';
+import { TRACKING_CHAPTER_1 } from '../../../../../../octavia-load-balancer.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -29,13 +30,13 @@ export default /* @ngInject */ ($stateProvider) => {
             'octavia-load-balancer.loadbalancer.pools.detail.members.list.create',
           ),
         trackMemberAddAction: () =>
-          `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}::add`,
+          `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}::add-manually`,
         memberAddInstanceLink: /* @ngInject */ ($state) => () =>
           $state.href(
             'octavia-load-balancer.loadbalancer.pools.detail.members.list.add-ip-instance',
           ),
         trackMemberAddInstanceAction: () =>
-          `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}::add-instances`,
+          `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}::add-instances`,
         goToMemberEdition: /* @ngInject */ ($state, trackAction) => (
           member,
         ) => {
@@ -48,14 +49,18 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           );
         },
-        goToMemberDeletion: /* @ngInject */ ($state) => (member) =>
+        goToMemberDeletion: /* @ngInject */ ($state, trackAction) => (
+          member,
+        ) => {
+          trackAction(`${TRACKING_HIT_PREFIX}::delete`);
           $state.go(
             'octavia-load-balancer.loadbalancer.pools.detail.members.list.delete',
             {
               memberId: member.id,
               memberName: member.name,
             },
-          ),
+          );
+        },
       },
       atInternet: {
         rename: `${TRACKING_NAME}::${TRACKING_SUFFIX}::${TRACKING_HIT_PREFIX}`,

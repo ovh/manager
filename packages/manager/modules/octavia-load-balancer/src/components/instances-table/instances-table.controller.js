@@ -2,6 +2,9 @@ import {
   LISTENER_PROTOCOL_LIST,
   PROTOCOLS,
   TRACKING_ADD_LISTENER,
+  TRACKING_DELETE_LISTENER,
+  TRACKING_ADD_INSTANCE,
+  TRACKING_DELETE_INSTANCE,
 } from './instances-table.constants';
 
 export default class RegionsListController {
@@ -52,7 +55,7 @@ export default class RegionsListController {
     if (!this.listeners) this.listeners = [];
     if (this.listeners.length < this.maxListener) {
       this.atInternet.trackClick({
-        name: TRACKING_ADD_LISTENER,
+        name: `${this.trackingPrefix}::${TRACKING_ADD_LISTENER}`,
         type: 'action',
       });
       this.listeners.push({
@@ -63,6 +66,10 @@ export default class RegionsListController {
 
   addInstance(listener) {
     if (listener.instances.length < this.maxInstancesByListener) {
+      this.atInternet.trackClick({
+        name: `${this.trackingPrefix}::${TRACKING_ADD_INSTANCE}`,
+        type: 'action',
+      });
       listener.instances.push({});
     }
   }
@@ -73,10 +80,18 @@ export default class RegionsListController {
   }
 
   deleteListener(index) {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}::${TRACKING_DELETE_LISTENER}`,
+      type: 'action',
+    });
     this.listeners.splice(index, 1);
   }
 
-  static deleteInstance(instances, index) {
+  deleteInstance(instances, index) {
+    this.atInternet.trackClick({
+      name: `${this.trackingPrefix}::${TRACKING_DELETE_INSTANCE}`,
+      type: 'action',
+    });
     instances.splice(index, 1);
   }
 

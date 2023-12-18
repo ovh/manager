@@ -99,6 +99,7 @@ export default class OctaviaLoadBalancerPoolsDetailMembersAddIpInstanceCtrl {
   }
 
   addIpInstances() {
+    this.trackAddInstancesAction('confirm');
     this.OctaviaLoadBalancerMembersService.createMembers(
       this.projectId,
       this.region,
@@ -106,17 +107,20 @@ export default class OctaviaLoadBalancerPoolsDetailMembersAddIpInstanceCtrl {
       this.model.members,
     )
       .then(async () => {
-        this.Alerter.set(
-          'alert-success',
-          this.$translate.instant(
-            'octavia_load_balancer_pools_detail_members_add_ip_instance_create_success',
+        this.trackAddInstancesPage('success');
+        this.goBack(true).then(() =>
+          this.Alerter.set(
+            'alert-success',
+            this.$translate.instant(
+              'octavia_load_balancer_pools_detail_members_add_ip_instance_create_success',
+            ),
+            null,
+            'octavia.alerts.members',
           ),
-          null,
-          'octavia.alerts.members',
         );
-        this.goBack(true);
       })
       .catch((error) => {
+        this.trackAddInstancesPage('error');
         this.Alerter.error(
           this.$translate.instant('octavia_load_balancer_global_error', {
             message: error.data?.message,
@@ -128,6 +132,11 @@ export default class OctaviaLoadBalancerPoolsDetailMembersAddIpInstanceCtrl {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  cancel() {
+    this.trackAddInstancesAction('cancel');
+    this.goBack();
   }
 
   onPortChange(memberIndex) {

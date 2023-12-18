@@ -1,4 +1,4 @@
-import { TRACKING_CHAPTER_1, TRACKING_NAME } from '../constants';
+import { TRACKING_NAME } from '../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('octavia-load-balancer.onboarding.no-private-network', {
@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     layout: 'modal',
     atInternet: {
-      rename: `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::create-private-network`,
+      rename: `${TRACKING_NAME}::create-private-network`,
     },
   });
 };

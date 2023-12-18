@@ -12,11 +12,13 @@ export default class OctaviaLoadBalancerEditNameCtrl {
   }
 
   cancel() {
+    this.trackNameEditionAction('cancel');
     this.goBack();
   }
 
   update() {
     this.isLoading = true;
+    this.trackNameEditionAction('confirm');
     this.OctaviaLoadBalancerPoolsService.editPool(
       this.projectId,
       this.region,
