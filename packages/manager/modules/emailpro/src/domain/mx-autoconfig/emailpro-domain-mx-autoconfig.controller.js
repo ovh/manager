@@ -16,7 +16,7 @@ export default /* @ngInject */ (
       $scope.domain.name,
     ).then(
       (data) => {
-        $scope.domainDiag.mx.isOvhDomain = data.isOvhDomain;
+        $scope.domainDiag.isOvhDomain = data.isOvhDomain;
         $scope.domainDiag.mx.noSpam = data.mx.noSpam;
       },
       (failure) => {
