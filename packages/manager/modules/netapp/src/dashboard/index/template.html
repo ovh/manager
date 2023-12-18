@@ -5,29 +5,57 @@
             heading="{{:: 'netapp_dashboard_information' | translate }}"
         >
             <oui-tile-definition
-                term="{{:: 'netapp_dashboard_information_name' | translate }}">
+                term="{{:: 'netapp_dashboard_information_name' | translate }}"
+            >
                 <oui-tile-description data-ng-if="!$ctrl.isEditingName">
                     {{ $ctrl.storage.name }}
                 </oui-tile-description>
                 <oui-tile-actions data-ng-if="!$ctrl.isEditingName">
-                    <button type="button" class="oui-button oui-button_ghost"
-                            data-ng-click="$ctrl.toggleNameEdition()">
+                    <button
+                        type="button"
+                        class="oui-button oui-button_ghost"
+                        data-ng-click="$ctrl.toggleNameEdition()"
+                    >
                         <span class="oui-icon oui-icon-pen"></span>
                     </button>
                 </oui-tile-actions>
                 <oui-tile-description data-ng-if="$ctrl.isEditingName">
-                    <div class="oui-input-group oui-input-group_inline" >
-                        <input class="oui-input"
-                               placeholder="Please insert your text..."
-                               type="text">
-                        <button class="oui-button oui-button_secondary" type="button"
-                                data-ng-click="$ctrl.editName()">
-                            <span class="oui-icon oui-icon-check"></span>
-                        </button>
-                        <button class="oui-button oui-button_secondary" type="button"
-                                data-ng-click="$ctrl.toggleNameEdition()">
-                            <span class="oui-icon oui-icon-close"></span>
-                        </button>
+                    <div class="oui-input-group oui-input-group_default ">
+                        <div class="oui-input-overlay">
+                            <input
+                                class="oui-input"
+                                placeholder="{{ 'netapp_dashboard_information_name' | translate }}"
+                                type="text"
+                                ng-model="$ctrl.editNameValue"
+                            />
+                            <button
+                                class="oui-button oui-button_primary"
+                                type="button"
+                                title="{{ 'netapp_dashboard_configuration_restrictions_info' | translate }}"
+                                oui-popover
+                                oui-popover-placement="left-start"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-help-circle"
+                                ></span>
+                            </button>
+                        </div>
+                        <div class="validate-buttons">
+                            <button
+                                class="oui-button oui-button_secondary"
+                                type="button"
+                                data-ng-click="$ctrl.editName()"
+                            >
+                                <span class="oui-icon oui-icon-check"></span>
+                            </button>
+                            <button
+                                class="oui-button oui-button_secondary"
+                                type="button"
+                                data-ng-click="$ctrl.toggleNameEdition()"
+                            >
+                                <span class="oui-icon oui-icon-close"></span>
+                            </button>
+                        </div>
                     </div>
                 </oui-tile-description>
             </oui-tile-definition>

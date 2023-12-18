@@ -10,15 +10,17 @@ import {
 
 export default class OvhManagerNetAppDashboardIndexCtrl {
   /* @ngInject */
-  constructor($translate, Alerter, NetAppDashboardService) {
+  constructor($http, $translate, Alerter, NetAppDashboardService) {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.NetAppDashboardService = NetAppDashboardService;
+    this.$http = $http;
 
     this.SERVICE_TYPE = SERVICE_TYPE;
     this.NETWORK_STATUS = NETWORK_STATUS;
     this.VRACK_SERVICES_STATUS = VRACK_SERVICES_STATUS;
     this.isEditingName = false;
+    this.editNameValue = '';
   }
 
   $onInit() {
@@ -88,7 +90,17 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
   }
 
   editName() {
-    this.isEditingName = false;
+    return this.$http
+      .put(`/storage/netapp/${this.storage.id}`, {
+        name: this.editNameValue,
+      })
+      .then((data) => {
+        console.log(data);
+        this.storage.update(data.data);
+      })
+      .finally(() => {
+        this.isEditingName = false;
+      });
   }
 
   onBillingInformationError(error) {
