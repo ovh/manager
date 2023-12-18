@@ -29,6 +29,7 @@
   "ACTIVE": "Actif",
   "DISABLED": "Inactif",
   "DRAFT": "A configurer",
+  "associateVrackModal": "Associer à un vRack",
   "vrackServicesNotReadyInfoMessage": "Votre vRack Services a une opération en cours",
   "subnetCreationSuccess": "Votre {cidr} a bien été créé"
 }

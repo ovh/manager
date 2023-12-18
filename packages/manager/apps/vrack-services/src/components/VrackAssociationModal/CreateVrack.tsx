@@ -23,7 +23,7 @@ import {
   orderVrackQueryKey,
   useOrderPollingStatus,
 } from '@/api';
-import { DeliveringMessages } from './DeliveringMessages';
+import { DeliveringMessages } from '../DeliveringMessages';
 import { handleClick } from '@/utils/ods-utils';
 
 export type CreateVrackProps = {

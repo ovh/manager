@@ -1,21 +1,17 @@
-/* eslint-disable import/prefer-default-export, @typescript-eslint/ban-ts-comment */
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { OsdsDatagrid } from '@ovhcloud/ods-components/datagrid/react';
 import { OdsDatagridColumn } from '@ovhcloud/ods-components/datagrid';
 import { useNavigate } from 'react-router-dom';
 import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
-import { VrackAssociationModal } from './VrackAssociationModal';
+import { VrackAssociationModal } from '@/components/VrackAssociationModal';
 import {
   ResponseData,
-  VrackServices,
   VrackServicesWithIAM,
   getVrackServicesResourceListQueryKey,
-  updateVrackServicesQueryKey,
-  updateVrackServices,
-  UpdateVrackServicesParams,
 } from '@/api';
 import { reactFormatter } from '@/utils/ods-utils';
 import {
@@ -23,47 +19,25 @@ import {
   ActionsCell,
   ProductStatusCell,
   VrackIdCell,
-} from './VrackServicesDataGridCells';
-import { ApiError } from '@/components/Error';
+} from '@/components/VrackServicesDataGridCells';
+import { useUpdateVrackServices } from '@/utils/vs-utils';
 
 export const VrackServicesDatagrid: React.FC = () => {
-  const [isErrorVisible, setErrorVisible] = React.useState(false);
   const [associateModalVisible, setAssociateModalVisible] = React.useState<
     string | undefined
   >(undefined);
   const { t, i18n } = useTranslation('vrack-services/listing');
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const {
+    updateVS,
+    isPending,
+    isErrorVisible,
+    hideError,
+  } = useUpdateVrackServices('listing');
 
   const { data } = useQuery<ResponseData<VrackServicesWithIAM[]>>({
     queryKey: getVrackServicesResourceListQueryKey,
   });
-
-  const { mutateAsync: updateVS, isPending, isError } = useMutation<
-    ResponseData<VrackServices>,
-    ResponseData<ApiError>,
-    UpdateVrackServicesParams
-  >({
-    mutationKey: updateVrackServicesQueryKey('listing'),
-    mutationFn: updateVrackServices,
-    onSuccess: (result: ResponseData<VrackServices>) => {
-      queryClient.setQueryData(
-        getVrackServicesResourceListQueryKey,
-        ({ data: listingData, ...rest }: ResponseData<VrackServices[]>) => ({
-          data: listingData.map((vrackServices) =>
-            vrackServices.id === result.data.id ? result.data : vrackServices,
-          ),
-          ...rest,
-        }),
-      );
-    },
-  });
-
-  React.useEffect(() => {
-    if (isError) {
-      setErrorVisible(true);
-    }
-  }, [isError]);
 
   const columns: OdsDatagridColumn[] = [
     {
@@ -117,11 +91,11 @@ export const VrackServicesDatagrid: React.FC = () => {
 
   return (
     <>
-      {isError && isErrorVisible && (
+      {isErrorVisible && (
         <OsdsMessage
           type={ODS_MESSAGE_TYPE.error}
           removable
-          onOdsRemoveClick={() => setErrorVisible(false)}
+          onOdsRemoveClick={hideError}
         >
           {t('updateError')}
         </OsdsMessage>

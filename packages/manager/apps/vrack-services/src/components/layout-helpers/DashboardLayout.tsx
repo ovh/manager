@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
 import { PageLayout } from './PageLayout';
-import { useVrackService } from '@/pages/dashboard/[id]/utils';
+import { useVrackService } from '@/utils/vs-utils';
 import { ResourceStatus, updateVrackServicesQueryKey } from '@/api';
 import { CreationSuccessMessage } from '@/components/CreationSuccessMessage';
 

@@ -50,7 +50,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
   if (['editing', 'loading'].includes(editStatus)) {
     return (
       <form
-        className="flex justify-end"
+        className="flex"
         onSubmit={async (event) => {
           event.preventDefault();
           setEditStatus('loading');
