@@ -40,6 +40,11 @@
                     data-placeholder="{{:: 'network_security_dashboard_select_search_ip' | translate}}"
                     data-ng-if="!$ctrl.isServiceSelected"
                 ></oui-search>
+                <p
+                    class="oui-color-ae-500"
+                    data-ng-if="!$ctrl.isValid"
+                    data-translate="network_security_dashboard_invalid_ip"
+                ></p>
             </span>
         </div>
         <div class="d-flex">
@@ -58,15 +63,19 @@
         </div>
     </div>
 
-    <div class="text-center" data-ng-if="$ctrl.isLoading">
-        <oui-spinner></oui-spinner>
-    </div>
+    <p
+        data-ng-if="$ctrl.isEmpty"
+        class="text-center m-3"
+        data-translate="network_security_dashboard_empty_table"
+    ></p>
 
     <oui-datagrid
+        data-ng-if="!$ctrl.isEmpty"
         id="{{ $ctrl.datagridId }}"
+        data-empty-placeholder="{{:: 'network_security_dashboard_empty_datagrid' | translate }}"
         data-rows-loader="$ctrl.getItems($config)"
         data-page="{{ $ctrl.cursors.index || 1 }}"
-        data-page-size="{{ $ctrl.pageSize }}"
+        data-page-size="{{ $ctrl.PAGE_SIZE }}"
         data-pagination-mode="arrows"
     >
         <oui-datagrid-column

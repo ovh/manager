@@ -39,6 +39,11 @@
                     data-placeholder="{{:: 'network_security_dashboard_select_search_ip' | translate}}"
                     data-ng-if="!$ctrl.isServiceSelected"
                 ></oui-search>
+                <p
+                    class="oui-color-ae-500"
+                    data-ng-if="!$ctrl.isSubnetValid"
+                    data-translate="network_security_dashboard_invalid_ip"
+                ></p>
             </span>
         </div>
         <div class="d-flex">

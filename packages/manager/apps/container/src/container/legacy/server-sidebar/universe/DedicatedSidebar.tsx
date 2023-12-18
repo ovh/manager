@@ -271,6 +271,7 @@ export default function DedicatedSidebar() {
           },
           feature['network-security'] && {
             id: 'dedicated-network-security',
+            badge: 'beta',
             label: t('sidebar_network_security'),
             icon: getIcon('oui-icon oui-icon-shield_concept'),
             href: navigation.getURL('dedicated', '#/network-security'),

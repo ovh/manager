@@ -1,6 +1,7 @@
 import { AbstractCursorDatagridController } from '@ovh-ux/manager-ng-apiv2-helper';
 import { PERIODS, PERIOD_LIST } from './scrubbing-center.constant';
 import { PAGE_SIZE } from '../network-security.constant';
+import NetworkSecurityService from '../network-security.service';
 
 export default class ScrubbingCenterController extends AbstractCursorDatagridController {
   /* @ngInject */
@@ -30,11 +31,12 @@ export default class ScrubbingCenterController extends AbstractCursorDatagridCon
 
     const ip = this.getIp();
     this.selectedIp = ip;
+    this.model = ip;
     if (!ip) {
       this.getAllEvents();
     }
     this.isServiceSelected = false;
-    this.isLoading = false;
+    this.isValid = true;
   }
 
   createItemsPromise({ cursor }) {
@@ -43,11 +45,18 @@ export default class ScrubbingCenterController extends AbstractCursorDatagridCon
       subnets: this.selectedIp,
     };
     const pageSize = this.PAGE_SIZE;
-    return this.networkSecurityService.getEventsList({
-      cursor,
-      params,
-      pageSize,
-    });
+    return this.networkSecurityService
+      .getEventsList({
+        cursor,
+        params,
+        pageSize,
+      })
+      .catch(() => {
+        this.Alerter.error(
+          this.$translate.instant('network_security_dashboard_events_error'),
+          'network_security_error',
+        );
+      });
   }
 
   getAllEvents() {
@@ -79,12 +88,16 @@ export default class ScrubbingCenterController extends AbstractCursorDatagridCon
   }
 
   selectService() {
+    this.isValid = true;
+    this.isServiceSelected = false;
+    this.selectedIp = null;
+    this.model = null;
+    this.isEmpty = false;
     if (this.service) {
       this.pageSize = 10;
       this.page = 1;
       this.autocomplete = [];
       this.ipsList = [];
-      this.selectedIp = '';
       this.ipsList = null;
       this.ipSelected = null;
       this.results = null;
@@ -99,27 +112,39 @@ export default class ScrubbingCenterController extends AbstractCursorDatagridCon
         .then((data) => {
           this.ipsList = data.map(({ ipBlock }) => ipBlock);
           this.selectedIp = this.ipsList;
-          this.getAllEvents();
+          this.isEmpty = !this.ipsList.length;
+          if (!this.isEmpty) {
+            this.getAllEvents();
+          }
         });
     } else {
-      this.isServiceSelected = false;
+      this.getAllEvents();
     }
   }
 
   checkSelectedIp(value) {
-    if (!value) {
-      return null;
+    let isValid = true;
+    if (!value || (value.indexOf('/') === -1 && !ipaddr.isValid(value))) {
+      isValid = false;
+    } else if (value.indexOf('/') > -1) {
+      const ip = value.split('/');
+      if (!ipaddr.isValid(ip[0]) || Number.isNaN(ip[1])) {
+        isValid = false;
+      }
     }
-
-    this.selectedIp = value;
-    return this.getAllEvents();
+    this.isValid = isValid;
+    if (isValid) {
+      this.selectedIp = NetworkSecurityService.getMaskValue(value);
+      this.model = this.selectedIp;
+    }
+    return isValid ? this.getAllEvents() : null;
   }
 
   static displayAction(row) {
     const twoWeeksDate = new Date();
     twoWeeksDate.setDate(twoWeeksDate.getDate() - 14);
     let result = false;
-    if (row.endedAt > twoWeeksDate.toISOString()) {
+    if (!row.endedAt || row.endedAt > twoWeeksDate.toISOString()) {
       result = true;
     }
     return result;
@@ -132,6 +157,7 @@ export default class ScrubbingCenterController extends AbstractCursorDatagridCon
 
   onReset() {
     this.selectedIp = null;
+    this.isValid = true;
     this.getAllEvents();
   }
 }
