@@ -1,4 +1,4 @@
-import { Locale } from '@ovhcloud/msc-utils';
+import { Locale } from '../utils/translation';
 
 export type Translations = {
   see_more_label: string;
