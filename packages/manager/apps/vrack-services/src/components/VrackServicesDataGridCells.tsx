@@ -23,7 +23,6 @@ import {
   VrackServices,
 } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
-import { ApiError } from '@/components/Error';
 import { isEditable } from '@/utils/vs-utils';
 
 export const DisplayNameCell: React.FC<DataGridCellProps<
@@ -32,7 +31,7 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
 > & {
   updateVS: UseMutateAsyncFunction<
     ResponseData<VrackServices>,
-    ResponseData<ApiError>,
+    ResponseData<Error>,
     UpdateVrackServicesParams
   >;
   navigate?: NavigateFunction;
@@ -121,19 +120,21 @@ export const ActionsCell: React.FC<DataGridCellProps<
   VrackServices
 > & {
   isLoading?: boolean;
-}> = ({ rowData, isLoading }) => {
+  openModal: (id: string) => void;
+}> = ({ rowData, isLoading, openModal }) => {
   const editable = isEditable(rowData);
 
   /* TODO: Maybe switch to "reactivate button" if the vRack Services is disabled */
   return (
     <OsdsButton
       inline
+      circle
       color={ODS_THEME_COLOR_INTENT.error}
-      variant={ODS_BUTTON_VARIANT.stroked}
+      variant={ODS_BUTTON_VARIANT.ghost}
       type={ODS_BUTTON_TYPE.button}
       size={ODS_BUTTON_SIZE.sm}
       disabled={isLoading || !editable || undefined}
-      {...handleClick(() => console.log('delete ', rowData.id))}
+      {...handleClick(() => openModal(rowData.id))}
     >
       <OsdsIcon
         color={ODS_THEME_COLOR_INTENT.error}

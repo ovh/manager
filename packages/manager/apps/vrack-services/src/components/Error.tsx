@@ -10,6 +10,7 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components/button';
 import { useShell } from '@ovh-ux/manager-react-core-application';
 import OOPS from '@/assets/error-banner-oops.png';
+import { ResponseData } from '@/api';
 
 export const TRACKING_LABELS = {
   SERVICE_NOT_FOUND: 'service_not_found',
@@ -17,21 +18,11 @@ export const TRACKING_LABELS = {
   PAGE_LOAD: 'error_during_page_loading',
 };
 
-export type ApiError = {
-  headers: Record<string, string>;
-  data: {
-    message: string;
-  };
-  status: number;
-  statusText: string;
-  detail?: any;
-};
-
 export type ErrorBannerProps = {
-  error: ApiError;
+  error: ResponseData<Error>;
 };
 
-function getTrackingTypology(error: ApiError) {
+function getTrackingTypology(error: ResponseData) {
   if (error?.detail?.status && Math.floor(error.detail.status / 100) === 4) {
     return [401, 403].includes(error.detail.status)
       ? TRACKING_LABELS.UNAUTHORIZED

@@ -32,7 +32,7 @@ export const toMswHandlers = (handlers: Handler[]): RequestHandler[] =>
       ({
         url,
         method = 'get',
-        delay = isTest ? 0 : 5000,
+        delay = isTest ? 0 : 1000,
         status = 200,
         response,
         responseText,

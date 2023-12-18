@@ -17,26 +17,22 @@ import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
 import {
   useOrderPollingStatus,
   OrderDescription,
-  ResourceStatus,
-  getVrackServicesResourceList,
   getVrackServicesResourceListQueryKey,
 } from '@/api';
 import { VrackServicesDatagrid } from '@/pages/index/components/VrackServicesDataGrid';
 import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
 import { PageLayout } from '@/components/layout-helpers';
-import { ApiError, ErrorPage } from '@/components/Error';
+import { ErrorPage } from '@/components/Error';
 import { DeliveringMessages } from '@/components/DeliveringMessages';
 import { handleClick } from '@/utils/ods-utils';
+import { useVrackServicesList } from '@/utils/vs-utils';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.id;
 }
 
-const pollingInterval = 30000;
-
 export default function ListingPage() {
   const { t } = useTranslation('vrack-services/listing');
-  const [refetchInterval, setRefetchInterval] = React.useState(0);
   const navigate = useNavigate();
 
   const {
@@ -47,24 +43,10 @@ export default function ListingPage() {
     queryToInvalidateOnDelivered: getVrackServicesResourceListQueryKey,
   });
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: getVrackServicesResourceListQueryKey,
-    queryFn: async () => {
-      const response = await getVrackServicesResourceList();
-      const interval = response.data.some(
-        ({ resourceStatus }) => resourceStatus !== ResourceStatus.READY,
-      )
-        ? pollingInterval
-        : 0;
-
-      setRefetchInterval(interval);
-      return response;
-    },
-    refetchInterval,
-  });
+  const { data, isLoading, error } = useVrackServicesList();
 
   if (error) {
-    return <ErrorPage error={(error as unknown) as ApiError} />;
+    return <ErrorPage error={error} />;
   }
 
   if (

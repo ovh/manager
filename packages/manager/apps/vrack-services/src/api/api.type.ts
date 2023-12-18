@@ -1,4 +1,5 @@
 export type ResponseData<T = unknown> = {
+  headers: Record<string, string>;
   status: number;
   data?: T;
   code: string;
@@ -6,6 +7,9 @@ export type ResponseData<T = unknown> = {
   response?: {
     status: number;
     data: { message: string };
+  };
+  detail?: {
+    status: number;
   };
 };
 

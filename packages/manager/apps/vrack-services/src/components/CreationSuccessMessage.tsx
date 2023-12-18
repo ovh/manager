@@ -2,7 +2,7 @@ import React from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
 import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { useMutation, useMutationState } from '@tanstack/react-query';
+import { useMutationState } from '@tanstack/react-query';
 
 export type Props = {
   mutationKey: string[];
@@ -14,15 +14,13 @@ export const CreationSuccessMessage: React.FC<Props> = ({
   mutationKey,
 }) => {
   const [isMessageVisible, setIsMessageVisible] = React.useState(false);
-  const { reset } = useMutation({ mutationKey });
-  const mutation = useMutationState({ filters: { mutationKey, exact: true } });
+  const mutations = useMutationState({ filters: { mutationKey, exact: true } });
 
   React.useEffect(() => {
-    if (mutation[0]?.status === 'success') {
+    if (mutations[0]?.status === 'success') {
       setIsMessageVisible(true);
-      reset();
     }
-  }, [mutation[0]?.status]);
+  }, [mutations.length]);
 
   return isMessageVisible ? (
     <OsdsMessage

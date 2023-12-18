@@ -11,7 +11,7 @@ import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
 import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
-import { ApiError, ErrorPage } from '@/components/Error';
+import { ErrorPage } from '@/components/Error';
 import {
   useUpdateVrackServices,
   useVrackService,
@@ -38,10 +38,10 @@ export const OverviewTab: React.FC = () => {
     isErrorVisible,
     hideError,
     isPending,
-  } = useUpdateVrackServices('overview');
+  } = useUpdateVrackServices({ key: 'overview' });
 
   if (error) {
-    return <ErrorPage error={(error as unknown) as ApiError} />;
+    return <ErrorPage error={error} />;
   }
 
   return (

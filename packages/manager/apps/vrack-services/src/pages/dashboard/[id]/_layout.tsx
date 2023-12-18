@@ -6,14 +6,10 @@ import {
   useParams,
   useResolvedPath,
 } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
-import {
-  getVrackServicesResourceList,
-  getVrackServicesResourceListQueryKey,
-} from '@/api';
 import { DashboardLayout } from '@/components/layout-helpers';
-import { ApiError, ErrorPage } from '@/components/Error';
+import { ErrorPage } from '@/components/Error';
+import { useVrackServicesList } from '@/utils/vs-utils';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.id;
@@ -24,10 +20,7 @@ const DashboardPage: React.FC = () => {
   const { id } = useParams();
   const location = useLocation();
 
-  const { data, isError, error, isLoading } = useQuery({
-    queryKey: getVrackServicesResourceListQueryKey,
-    queryFn: () => getVrackServicesResourceList(),
-  });
+  const { data, isError, error, isLoading } = useVrackServicesList();
 
   const tabsList = [
     {
@@ -52,7 +45,7 @@ const DashboardPage: React.FC = () => {
     (!isLoading &&
       !data?.data?.find((vrackServices) => vrackServices.id === id))
   ) {
-    return <ErrorPage error={(error as unknown) as ApiError} />;
+    return <ErrorPage error={error} />;
   }
 
   return location.pathname.includes('create') ? (

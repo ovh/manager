@@ -28,7 +28,7 @@ Feature: Subnet page
       | doesn't have | ERROR          | disabled    |
       | doesn't have | READY          | enabled     |
 
-  Scenario: User wants to creates a new subnet for his vRack Services
+  Scenario Outline: User wants to creates a new subnet for his vRack Services
     Given User wants to create a subnet with name <name> and CIDR <cidr> and service range <serviceRange> and vlan <vlan>
     Given The API endpoint to update vRack Services is <apiOk>
     When User navigate to subnet creation page, fills the form and clicks the submit button
@@ -44,3 +44,27 @@ Feature: Subnet page
       |       |                |              | 2    | OK    | returns        | no              |
       | sub-2 | 10.0.0.0/24    | 10.0.0.0/27  | 40   | OK    | returns        | no              |
       |       |                |              |      | KO    | doesn't return | an              |
+
+  Scenario Outline: User wants to edit an existing subnet
+    Given User wants to edit an existing subnet
+    Given The API endpoint to update vRack Services is <apiOk>
+    When User navigate to subnet Listing page and updates the display name of a subnet
+    Then User sees <anyErrorMessage> error message
+
+    Examples:
+      | apiOk | anyErrorMessage |
+      | OK    | no              |
+      | KO    | an              |
+
+  Scenario Outline: User wants to delete an existing subnet
+    Given User wants to delete a subnet
+    Given The API endpoint to update vRack Services is <apiOk>
+    When User navigate to subnet Listing page and delete a subnet
+    Then User sees a modal to confirm deletion
+    When User fills the delete form
+    Then User sees <anyErrorMessage> error message
+
+    Examples:
+      | apiOk | anyErrorMessage |
+      | OK    | no              |
+      | KO    | an              |

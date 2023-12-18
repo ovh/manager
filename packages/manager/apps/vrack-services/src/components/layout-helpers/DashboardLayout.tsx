@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Outlet,
   NavLink,
@@ -21,6 +21,7 @@ import { PageLayout } from './PageLayout';
 import { useVrackService } from '@/utils/vs-utils';
 import { ResourceStatus, updateVrackServicesQueryKey } from '@/api';
 import { CreationSuccessMessage } from '@/components/CreationSuccessMessage';
+import { getSubnetCreationMutationKey } from '@/pages/dashboard/[id]/CreateSubnet';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -35,12 +36,12 @@ export type DashboardLayoutProps = {
 export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
   const { t } = useTranslation('vrack-services/dashboard');
   const { id } = useParams();
-  const [activePanel, setActivePanel] = useState('');
+  const [activePanel, setActivePanel] = React.useState('');
   const vrackServices = useVrackService();
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
+  React.useEffect(() => {
     const activeTab = tabs.find((tab) => tab.to === location.pathname);
     if (activeTab) {
       setActivePanel(activeTab.name);
@@ -80,11 +81,16 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
           </OsdsMessage>
         )}
         <CreationSuccessMessage
-          message={t('subnetCreationSuccess').replace(
-            '{cidr}',
-            vrackServices.data?.targetSpec?.subnets?.[0]?.cidr,
+          message={t('subnetCreationSuccess', {
+            cidr:
+              vrackServices.data?.targetSpec?.subnets?.[
+                vrackServices.data?.targetSpec.subnets.length - 1
+              ]?.cidr,
+            interpolation: { escapeValue: false },
+          })}
+          mutationKey={updateVrackServicesQueryKey(
+            getSubnetCreationMutationKey(id),
           )}
-          mutationKey={updateVrackServicesQueryKey(id)}
         />
       </div>
       <OsdsTabs panel={activePanel}>

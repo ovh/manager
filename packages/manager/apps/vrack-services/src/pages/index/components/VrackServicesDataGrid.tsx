@@ -21,9 +21,13 @@ import {
   VrackIdCell,
 } from '@/components/VrackServicesDataGridCells';
 import { useUpdateVrackServices } from '@/utils/vs-utils';
+import { VrackDeleteModal } from '@/components/VrackDeleteModal';
 
 export const VrackServicesDatagrid: React.FC = () => {
   const [associateModalVisible, setAssociateModalVisible] = React.useState<
+    string | undefined
+  >(undefined);
+  const [openedDeleteModal, setOpenedDeleteModal] = React.useState<
     string | undefined
   >(undefined);
   const { t, i18n } = useTranslation('vrack-services/listing');
@@ -33,7 +37,7 @@ export const VrackServicesDatagrid: React.FC = () => {
     isPending,
     isErrorVisible,
     hideError,
-  } = useUpdateVrackServices('listing');
+  } = useUpdateVrackServices({ key: 'listing' });
 
   const { data } = useQuery<ResponseData<VrackServicesWithIAM[]>>({
     queryKey: getVrackServicesResourceListQueryKey,
@@ -85,7 +89,9 @@ export const VrackServicesDatagrid: React.FC = () => {
     {
       title: t('actions'),
       field: '',
-      formatter: reactFormatter(<ActionsCell isLoading={isPending} />),
+      formatter: reactFormatter(
+        <ActionsCell openModal={setOpenedDeleteModal} isLoading={isPending} />,
+      ),
     },
   ];
 
@@ -111,6 +117,13 @@ export const VrackServicesDatagrid: React.FC = () => {
       <VrackAssociationModal
         vrackServicesId={associateModalVisible}
         closeModal={() => setAssociateModalVisible(undefined)}
+      />
+      <VrackDeleteModal
+        closeModal={() => setOpenedDeleteModal(undefined)}
+        deleteInputLabel={t('modalDeleteInputLabel')}
+        headline={t('modalDeleteHeadline')}
+        onConfirmDelete={() => console.log(`delete ${openedDeleteModal}`)}
+        isModalOpen={!!openedDeleteModal}
       />
     </>
   );
