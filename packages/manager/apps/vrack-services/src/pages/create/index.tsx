@@ -14,8 +14,6 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useAuthentication } from '@ovh-ux/manager-react-core-application';
 import { CountryCode } from '@ovh-ux/manager-config';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
-import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
 import {
   getvrackServicesReferenceZoneList,
   getvrackServicesReferenceZoneListQueryKey,
@@ -59,7 +57,7 @@ const CreationPage: React.FC = () => {
 
   const {
     mutate: orderNewVrackServices,
-    isLoading: isCreationPending,
+    isPending: isCreationPending,
     isError: isCreationError,
   } = useMutation({
     mutationFn: () =>
@@ -102,9 +100,8 @@ const CreationPage: React.FC = () => {
         goBackUrl="/"
         onSubmit={() => setIsModalVisible(true)}
         title={t('title')}
-        isFormSubmittable={
-          !isZoneLoading && !isCreationPending && !!selectedZone
-        }
+        isSubmitPending={isCreationPending}
+        isFormSubmittable={!isZoneLoading && !!selectedZone}
       >
         <OsdsFormField inline>
           <div slot="label">
@@ -133,11 +130,6 @@ const CreationPage: React.FC = () => {
           setSelectedZone={setSelectedZone}
           isReadOnly={isCreationPending}
         />
-        {isCreationPending && (
-          <div>
-            <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
-          </div>
-        )}
       </CreatePageLayout>
       <VrackConfirmModal
         onCancel={() => setIsModalVisible(false)}

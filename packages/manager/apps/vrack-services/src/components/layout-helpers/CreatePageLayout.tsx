@@ -14,7 +14,10 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
+import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
 import { PageLayout } from '@/components/layout-helpers/PageLayout';
+import { handleClick } from '@/utils/ods-utils';
 
 export type CreatePageLayoutProps = React.PropsWithChildren<{
   goBackUrl: string;
@@ -22,6 +25,7 @@ export type CreatePageLayoutProps = React.PropsWithChildren<{
   title: string;
   onSubmit: React.FormEventHandler;
   isFormSubmittable?: boolean;
+  isSubmitPending?: boolean;
   hasFormError?: boolean;
   formErrorMessage: string;
   createButtonLabel: string;
@@ -33,6 +37,7 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
   title,
   onSubmit,
   isFormSubmittable,
+  isSubmitPending,
   hasFormError,
   formErrorMessage,
   createButtonLabel,
@@ -44,7 +49,7 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
       <OsdsLink
         className="block mt-4 mb-5"
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={() => navigate(goBackUrl, { replace: true })}
+        {...handleClick(() => navigate(goBackUrl, { replace: true }))}
       >
         <span slot="start">
           <OsdsIcon
@@ -72,7 +77,7 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
       >
         {children}
         <OsdsButton
-          {...(isFormSubmittable ? {} : { disabled: true })}
+          disabled={!isFormSubmittable || isSubmitPending || undefined}
           inline
           type={ODS_BUTTON_TYPE.submit}
           color={ODS_THEME_COLOR_INTENT.primary}
@@ -82,6 +87,11 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
           {createButtonLabel}
         </OsdsButton>
       </form>
+      {isSubmitPending && (
+        <div className="mt-4">
+          <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+        </div>
+      )}
       {hasFormError && (
         <OsdsMessage className="mt-5" type={ODS_MESSAGE_TYPE.error}>
           {formErrorMessage}

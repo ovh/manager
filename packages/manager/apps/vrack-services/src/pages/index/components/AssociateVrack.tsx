@@ -43,7 +43,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
   const [selectedVrack, setSelectedVrack] = React.useState('');
   const queryClient = useQueryClient();
 
-  const { mutate: associateVs, isLoading, isError } = useMutation({
+  const { mutate: associateVs, isPending, isError } = useMutation({
     mutationFn: () =>
       associateVrackServices({
         vrack: selectedVrack,
@@ -76,7 +76,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
       <OsdsSelect
         inline
         size={ODS_SELECT_SIZE.md}
-        disabled={isLoading || undefined}
+        disabled={isPending || undefined}
         onOdsValueChange={(event: OdsSelectValueChangeEvent) =>
           setSelectedVrack(event.detail.value as string)
         }
@@ -88,7 +88,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
           </OsdsSelectOption>
         ))}
       </OsdsSelect>
-      {isLoading && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
+      {isPending && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
       <OsdsButton
         slot="actions"
         type={ODS_BUTTON_TYPE.button}
@@ -103,7 +103,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.primary}
-        disabled={isLoading || !selectedVrack || undefined}
+        disabled={isPending || !selectedVrack || undefined}
         {...handleClick(() => associateVs())}
       >
         {t('modalConfirmVrackAssociationButtonLabel')}

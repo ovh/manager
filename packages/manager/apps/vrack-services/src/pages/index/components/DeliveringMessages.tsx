@@ -6,15 +6,17 @@ import { DetailedOrder } from '@/api';
 
 export type DeliveringMessagesProps = {
   message: string;
-  orders: DetailedOrder[];
+  orders?: DetailedOrder[];
 };
 
 export const DeliveringMessages: React.FC<DeliveringMessagesProps> = ({
   message,
-  orders,
+  orders = [],
 }) => {
   const { t, i18n } = useTranslation('vrack-services');
-  return (
+  return orders.length === 0 ? (
+    <></>
+  ) : (
     <>
       {orders.map((order) => {
         const date = new Date(order.date);

@@ -64,7 +64,7 @@ export default function ListingPage() {
   });
 
   if (error) {
-    return <ErrorPage error={error as ApiError} />;
+    return <ErrorPage error={(error as unknown) as ApiError} />;
   }
 
   if (
@@ -110,12 +110,10 @@ export default function ListingPage() {
         {t('createVrackServicesButtonLabel')}
       </OsdsButton>
 
-      {vrackServicesDeliveringOrders?.length > 0 && (
-        <DeliveringMessages
-          message={t('deliveringVrackServicesMessage')}
-          orders={vrackServicesDeliveringOrders}
-        />
-      )}
+      <DeliveringMessages
+        message={t('deliveringVrackServicesMessage')}
+        orders={vrackServicesDeliveringOrders}
+      />
       {isLoading || areOrdersLoading ? (
         <div>
           <OsdsSpinner inline size={ODS_SPINNER_SIZE.lg} />

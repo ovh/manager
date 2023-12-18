@@ -33,10 +33,10 @@ export default function PublicCloudSidebar() {
       requestType: 'aapi',
     });
 
-  const { data: availability } = useQuery(
-    ['sidebar-public-cloud-availability'],
-    getFeatures,
-  );
+  const { data: availability } = useQuery({
+    queryKey: ['sidebar-public-cloud-availability'],
+    queryFn: getFeatures,
+  });
 
   const menu = useMemo(() => {
     if (!availability) return [];

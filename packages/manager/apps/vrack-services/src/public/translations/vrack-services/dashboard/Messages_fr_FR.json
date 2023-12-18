@@ -28,5 +28,7 @@
   "YNM": "Mumbai (YNM)",
   "ACTIVE": "Actif",
   "DISABLED": "Inactif",
-  "DRAFT": "A configurer"
+  "DRAFT": "A configurer",
+  "vrackServicesNotReadyInfoMessage": "Votre vRack Services a une opération en cours",
+  "subnetCreationSuccess": "Votre {cidr} a bien été créé"
 }

@@ -34,7 +34,10 @@ export const orderVrack = (params: Creation) => {
 
     return order;
   };
-  return queryClient.fetchQuery(orderVrackQueryKey, executeOrder);
+  return queryClient.fetchQuery({
+    queryKey: orderVrackQueryKey,
+    queryFn: executeOrder,
+  });
 };
 
 export const orderVrackServicesQueryKey = ['/orderVrackServices'];
@@ -63,5 +66,8 @@ export const orderVrackServices = (
 
     return order;
   };
-  return queryClient.fetchQuery(orderVrackServicesQueryKey, executeOrder);
+  return queryClient.fetchQuery({
+    queryKey: orderVrackServicesQueryKey,
+    queryFn: executeOrder,
+  });
 };
