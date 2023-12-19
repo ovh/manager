@@ -7,10 +7,11 @@ import {
   POLLING_TYPE,
   VRACK_SERVICES_STATUS,
 } from '../constants';
+import { PATTERN } from './constants';
 
 export default class OvhManagerNetAppDashboardIndexCtrl {
   /* @ngInject */
-  constructor($http, $translate, Alerter, NetAppDashboardService) {
+  constructor($http, $translate, Alerter, NetAppDashboardService, OvhManagerNetAppDashboardIndex) {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.NetAppDashboardService = NetAppDashboardService;
@@ -21,12 +22,17 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
     this.VRACK_SERVICES_STATUS = VRACK_SERVICES_STATUS;
     this.isEditingName = false;
     this.editNameValue = '';
+    this.OvhManagerNetAppDashboardIndex = OvhManagerNetAppDashboardIndex;
+    this.SERVICE_TYPE = SERVICE_TYPE;
+    this.PATTERN = PATTERN;
   }
 
   $onInit() {
     this.commitImpressionData = this.shouldReengage()
       ? RECOMMIT_IMPRESSION_TRACKING_DATA
       : COMMIT_IMPRESSION_TRACKING_DATA;
+
+    this.editNameValue = this.storage.name;
 
     if (this.isNetworkAvailable) {
       this.populateAttachedSubnetAndEndpoint();
@@ -85,22 +91,13 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
     );
   }
 
-  toggleNameEdition() {
-    this.isEditingName = !this.isEditingName;
-  }
-
   editName() {
-    return this.$http
-      .put(`/storage/netapp/${this.storage.id}`, {
-        name: this.editNameValue,
-      })
-      .then((data) => {
-        console.log(data);
-        this.storage.update(data.data);
-      })
-      .finally(() => {
-        this.isEditingName = false;
-      });
+    this.OvhManagerNetAppDashboardIndex.updateStorage(
+      this.storage.id,
+      this.storage.name,
+    ).then(() => {
+      window.location.reload();
+    });
   }
 
   onBillingInformationError(error) {
