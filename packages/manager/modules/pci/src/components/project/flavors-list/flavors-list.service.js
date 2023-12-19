@@ -16,6 +16,7 @@ import {
   CATEGORIES,
   DEFAULT_CATALOG_ENDPOINT,
   LEGACY_FLAVORS,
+  LOCAL_ZONE,
 } from './flavors-list.constants';
 import { TAGS_BLOB } from '../../../constants';
 
@@ -35,6 +36,7 @@ export default class FlavorsList {
     this.CucPriceHelper = CucPriceHelper;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
+    this.LOCAL_ZONE = LOCAL_ZONE;
   }
 
   getCatalog(endpoint, ovhSubsidiary) {
@@ -52,7 +54,6 @@ export default class FlavorsList {
     serviceName,
     currentRegion,
     catalogEndpoint = DEFAULT_CATALOG_ENDPOINT,
-    customerRegions,
     hasGridscaleLocalzoneRegion,
   ) {
     return this.$q
@@ -118,7 +119,6 @@ export default class FlavorsList {
                   productAvailability.plans.find(
                     (plan) => plan.code === resource.planCodes.hourly,
                   ),
-                  customerRegions,
                 )
               : {
                   isLocalZone: false,
@@ -129,27 +129,15 @@ export default class FlavorsList {
       });
   }
 
-  getlocationCompatibility(productAvailibility, customerRegionList) {
-    this.locationCompatibility = {
-      isLocalZone: false,
-      isGlobalZone: true,
+  getlocationCompatibility(productAvailability) {
+    return {
+      isLocalZone: productAvailability?.regions.some(
+        (region) => region.type === this.LOCAL_ZONE,
+      ),
+      isGlobalZone: productAvailability?.regions.some(
+        (region) => region.type !== this.LOCAL_ZONE,
+      ),
     };
-
-    if (!productAvailibility) return this.locationCompatibility;
-
-    const locationCompatibilityList = productAvailibility?.regions.map(
-      (region) =>
-        customerRegionList.find(
-          (regionList) => regionList.datacenterLocation === region.datacenter,
-        ).type === 'region',
-    );
-    this.locationCompatibility.isLocalZone = locationCompatibilityList?.includes(
-      false,
-    );
-    this.locationCompatibility.isGlobalZone = locationCompatibilityList?.includes(
-      true,
-    );
-    return this.locationCompatibility;
   }
 
   getProductAvailability(projectId, ovhSubsidiary) {
