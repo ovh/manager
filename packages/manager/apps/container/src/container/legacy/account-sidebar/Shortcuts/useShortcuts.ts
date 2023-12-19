@@ -56,7 +56,7 @@ const useShortcuts = (): UseShortcuts => {
               id: 'products',
               icon: 'oui-icon-book-open_concept',
               tracking: 'hub::sidebar::shortcuts::go-to-catalog',
-              url: navigation.getURL('hub', '#/catalog'),
+              url: '#/catalog',
             },
           ]),
       ...(['EU', 'CA'].includes(region)
