@@ -14,5 +14,6 @@ export default {
     globalLoading: '<',
     model: '<',
     isDisplayableRupayCreditCardInfoBanner: '<',
+    viewOptions: '<',
   },
 };
