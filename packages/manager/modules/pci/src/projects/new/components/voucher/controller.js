@@ -43,7 +43,10 @@ export default class PciProjectNewVoucherCtrl {
   }
 
   getStepTrackingCode() {
-    const step = this.steps.find(({ active }) => active);
+    const step = this.steps?.find(({ active }) => active);
+    if (!step) {
+      return '';
+    }
     return step.name === 'configuration' ? 'config' : step.name;
   }
 
@@ -210,6 +213,8 @@ export default class PciProjectNewVoucherCtrl {
   ============================= */
 
   $onInit() {
+    this.formVisible = !this.viewOptions.foldVoucher;
+
     const { value, valid } = this.model.voucher;
 
     if (value) {
