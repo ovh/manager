@@ -7,6 +7,7 @@ export default {
     getPoolDetailLink: '<',
     goToPoolEdition: '<',
     goToPoolDeletion: '<',
+    goToPoolMembers: '<',
     operatingStatusBadges: '<',
     provisioningStatusBadges: '<',
   },
