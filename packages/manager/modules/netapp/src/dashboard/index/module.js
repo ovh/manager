@@ -11,8 +11,9 @@ import '@ovh-ux/manager-advices';
 import '@ovh-ux/manager-billing-components';
 import component from './component';
 import routing from './routing';
+import { inlinePropertyEditor } from '@ovh-ux/manager-components';
 
-import './style.scss';
+import OvhManagerNetAppDashboardIndex from './service';
 const moduleName = 'ovhManagerNetAppDashboardIndex';
 
 angular
@@ -26,7 +27,9 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ngOvhUtils',
+    inlinePropertyEditor,
   ])
+  .service('OvhManagerNetAppDashboardIndex', OvhManagerNetAppDashboardIndex)
   .config(routing)
   .component('ovhManagerNetAppDashboardIndex', component)
   .run(/* @ngTranslationsInject:json ./translations */);

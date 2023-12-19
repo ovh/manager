@@ -4,23 +4,23 @@ import {
   COMMIT_IMPRESSION_TRACKING_DATA,
   RECOMMIT_IMPRESSION_TRACKING_DATA,
 } from '../constants';
+import { PATTERN } from './constants';
 
 export default class OvhManagerNetAppDashboardIndexCtrl {
   /* @ngInject */
-  constructor($http, $translate, Alerter) {
-    this.$translate = $translate;
+  constructor(Alerter, OvhManagerNetAppDashboardIndex) {
     this.Alerter = Alerter;
-    this.$http = $http;
+    this.OvhManagerNetAppDashboardIndex = OvhManagerNetAppDashboardIndex;
 
     this.SERVICE_TYPE = SERVICE_TYPE;
-    this.isEditingName = false;
-    this.editNameValue = '';
+    this.PATTERN = PATTERN;
   }
 
   $onInit() {
     this.commitImpressionData = this.shouldReengage()
       ? RECOMMIT_IMPRESSION_TRACKING_DATA
       : COMMIT_IMPRESSION_TRACKING_DATA;
+    this.editNameValue = this.storage.name;
   }
 
   shouldReengage() {
@@ -30,22 +30,13 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
     );
   }
 
-  toggleNameEdition() {
-    this.isEditingName = !this.isEditingName;
-  }
-
   editName() {
-    return this.$http
-      .put(`/storage/netapp/${this.storage.id}`, {
-        name: this.editNameValue,
-      })
-      .then((data) => {
-        console.log(data);
-        this.storage.update(data.data);
-      })
-      .finally(() => {
-        this.isEditingName = false;
-      });
+    this.OvhManagerNetAppDashboardIndex.updateStorage(
+      this.storage.id,
+      this.storage.name,
+    ).then(() => {
+      window.location.reload();
+    });
   }
 
   onBillingInformationError(error) {
