@@ -205,6 +205,17 @@ const pciNode: Node = {
       forceVisibility: true,
       children: [
         {
+          id: 'pci-rancher',
+          translation: 'sidebar_pci_rancher',
+          serviceType: 'CLOUD_PROJECT_KUBE',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/rancher',
+          },
+          features: ['rancher'],
+          forceVisibility: true,
+        },
+        {
           id: 'pci-kubernetes',
           translation: 'sidebar_pci_kubernetes',
           serviceType: 'CLOUD_PROJECT_KUBE',

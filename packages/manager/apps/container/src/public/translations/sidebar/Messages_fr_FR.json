@@ -60,6 +60,7 @@
   "sidebar_pci_failover_ip": "IP Failover",
   "sidebar_pci_additional_ips": "IP Publiques",
   "sidebar_pci_public_gateways": "Gateway",
+  "sidebar_pci_rancher": "Managed Rancher Service",
   "sidebar_pci_kubernetes": "Managed Kubernetes Service",
   "sidebar_pci_kubernetes_load_balancer": "Load Balancer for MKS",
   "sidebar_pci_private_registry": "Managed Private Registry",
