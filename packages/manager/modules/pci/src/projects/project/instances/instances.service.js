@@ -360,6 +360,15 @@ export default class PciProjectInstanceService {
       .then(({ data }) => data);
   }
 
+  getLocalPrivateNetworkSubnets(projectId, region, networkId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/region/${region}/network/${networkId}/subnet`,
+      )
+      .then(({ data }) => data[0])
+      .catch(() => {});
+  }
+
   getPublicNetwork(projectId) {
     return this.$http
       .get(`/cloud/project/${projectId}/network/public`)
@@ -495,56 +504,7 @@ export default class PciProjectInstanceService {
       .then(({ data }) => data);
   }
 
-  save(serviceName, instance, number = 1, isPrivateMode) {
-    // TODO
-    // if (instance.isLocal()) {
-    //   return this.saveLocalZone(serviceName, instance, number, isPrivateMode);
-    // }
-
-    return this.saveGlobalZone(serviceName, instance, number, isPrivateMode);
-  }
-
-  saveLocalZone(serviceName, instance, bulk, isPrivateMode) {
-    const saveInstanceNamespace = 'instance-creation';
-    const status = 'completed';
-    return this.$http
-      .post(`${this.getBaseApiRoute(serviceName, instance)}/instance`, {
-        autobackup: instance.autobackup,
-        billingPeriod: instance.monthlyBilling ? 'monthly' : 'hourly',
-        bootFrom: {
-          imageId: instance.imageId,
-          volumeId: instance.volumeId,
-        },
-        bulk,
-        flavor: {
-          id: instance.flavorId,
-        },
-        name: instance.name,
-        network: {
-          public: isPrivateMode === false,
-        },
-        sshKey: {
-          name: instance.sshKeyId,
-        },
-        userData: instance.userData,
-      })
-      .then(({ data }) => {
-        if (isPrivateMode) {
-          const url = `/cloud/project/${serviceName}/operation/${data.id}`;
-          return this.checkOperationStatus(
-            url,
-            saveInstanceNamespace,
-            status,
-          ).then((res) => {
-            this.Poller.kill({ namespace: saveInstanceNamespace });
-            return res;
-          });
-        }
-        return data;
-      });
-  }
-
-  saveGlobalZone(
+  save(
     serviceName,
     {
       autobackup,

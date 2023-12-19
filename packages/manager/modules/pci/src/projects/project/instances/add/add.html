@@ -26,7 +26,6 @@
             data-on-change="$ctrl.onFlavorCategorySelect(flavor, category)"
             data-catalog-endpoint="$ctrl.catalogEndpoint"
             data-has-gridscale-localzone-region="$ctrl.hasGridscaleLocalzoneRegion"
-            data-customer-regions="$ctrl.customerRegions"
         >
         </pci-project-flavors-list>
     </oui-step-form>
@@ -226,12 +225,12 @@
     <oui-step-form
         data-header="{{ :: 'pci_projects_project_instances_add_instance_title' | translate }}"
         data-on-focus="$ctrl.onInstanceFocus()"
-        data-on-submit="$ctrl.loadPrivateNetwork()"
         data-editable="!$ctrl.isLoading"
         data-valid="$ctrl.automatedBackup.selected ? $ctrl.automatedBackup.schedule : true"
         name="instances_add_configuration"
     >
         <oui-field
+            data-ng-if="!$ctrl.isLocalZone()"
             data-label="{{ 'pci_projects_project_instances_add_numInstances_label' | translate }}"
             data-label-popover="{{ 'pci_projects_project_instances_add_same_numInstances_configuration' | translate }}"
         >
@@ -265,7 +264,7 @@
             class="mb-4"
             model="$ctrl.model.isInstanceFlex"
             name="instance-flex"
-            data-ng-if="$ctrl.model.flavorGroup.hasFlexOption()"
+            data-ng-if="$ctrl.model.flavorGroup.hasFlexOption() && !$ctrl.isLocalZone()"
             data-on-change="$ctrl.onFlexChange(modelValue)"
         >
             <oui-checkbox-label>
@@ -334,7 +333,7 @@
         </div>
 
         <div
-            data-ng-if="$ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($ctrl.flavor.type)"
+            data-ng-if="$ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($ctrl.flavor.type) && !$ctrl.isLocalZone()"
         >
             <oui-checkbox
                 class="mb-4"
@@ -392,11 +391,17 @@
         data-navigation="$ctrl.showNetworkNavigation()"
     >
         <p
+            data-ng-if="!$ctrl.isLocalZone()"
             class="font-weight-bold"
             data-translate="pci_projects_project_instances_add_privateNetwork_sub_title"
         ></p>
         <p
+            data-ng-if="!$ctrl.isLocalZone()"
             data-translate="pci_projects_project_instances_add_privateNetwork_info1"
+        ></p>
+        <p
+            data-ng-if="$ctrl.isLocalZone()"
+            data-translate="pci_projects_project_instances_add_localPrivateNetwork_sub_title"
         ></p>
         <div class="row mb-3">
             <oui-select-picker
@@ -422,52 +427,52 @@
             <oui-field
                 data-size="xl"
                 class="oui-input-group"
+                data-ng-if="!$ctrl.isLocalZone()"
                 data-label="{{ :: 'pci_projects_project_instances_add_privateNetwork_label' | translate }}"
             >
-                <div
-                    data-ng-if="$ctrl.model.datacenter.type !== $ctrl.LOCAL_ZONE_REGION"
+                <oui-select
+                    data-name="privateNetwork"
+                    data-model="$ctrl.selectedPrivateNetwork"
+                    data-items="$ctrl.availablePrivateNetworks"
+                    data-match="name"
+                    data-on-change="$ctrl.onPrivateNetworkChange(modelValue)"
                 >
-                    <oui-select
-                        data-name="privateNetwork"
-                        data-model="$ctrl.selectedPrivateNetwork"
-                        data-items="$ctrl.availablePrivateNetworks"
-                        data-match="name"
-                        data-on-change="$ctrl.onPrivateNetworkChange(modelValue)"
-                    >
-                    </oui-select>
-                    <p data-ng-if="$ctrl.currentStep < 5">
-                        <span
-                            data-translate="pci_projects_project_instances_add_privateNetwork_description"
-                        ></span>
-                        <a
-                            data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
-                            data-translate="pci_projects_project_instances_add_privateNetwork_add"
-                            target="_top"
-                        ></a>
-                    </p>
-                </div>
-                <div
-                    data-ng-if="$ctrl.model.datacenter.type === $ctrl.LOCAL_ZONE_REGION"
+                </oui-select>
+                <p data-ng-if="$ctrl.currentStep < 5">
+                    <span
+                        data-translate="pci_projects_project_instances_add_privateNetwork_description"
+                    ></span>
+                    <a
+                        data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
+                        data-translate="pci_projects_project_instances_add_privateNetwork_add"
+                        target="_top"
+                    ></a>
+                </p>
+            </oui-field>
+            <oui-field
+                data-size="xl"
+                class="oui-input-group"
+                data-ng-if="$ctrl.isLocalZone()"
+                data-label="{{ :: 'pci_projects_project_instances_add_localPrivateNetwork_label' | translate }}"
+            >
+                <oui-select
+                    data-name="localPrivateNetwork"
+                    data-model="$ctrl.selectedPrivateNetwork"
+                    data-items="$ctrl.availableLocalPrivateNetworks"
+                    data-match="name"
+                    data-on-change="$ctrl.onPrivateNetworkChange(modelValue)"
                 >
-                    <oui-select
-                        data-name="localPrivateNetwork"
-                        data-model="$ctrl.selectedLocalPrivateNetwork"
-                        data-items="$ctrl.availableLocalPrivateNetworks"
-                        data-match="name"
-                        data-on-change="$ctrl.onPrivateNetworkChange(modelValue)"
-                    >
-                    </oui-select>
-                    <p data-ng-if="$ctrl.currentStep < 5">
-                        <span
-                            data-translate="pci_projects_project_instances_add_localPrivateNetwork_description"
-                        ></span>
-                        <a
-                            data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
-                            data-translate="pci_projects_project_instances_add_localPrivateNetwork_add"
-                            target="_top"
-                        ></a>
-                    </p>
-                </div>
+                </oui-select>
+                <p data-ng-if="$ctrl.currentStep < 5">
+                    <span
+                        data-translate="pci_projects_project_instances_add_localPrivateNetwork_description"
+                    ></span>
+                    <a
+                        data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
+                        data-translate="pci_projects_project_instances_add_localPrivateNetwork_add"
+                        target="_top"
+                    ></a>
+                </p>
             </oui-field>
         </div>
         <oui-spinner
@@ -578,6 +583,20 @@
                     </a>
                 </p>
             </oui-message>
+        </div>
+        <div data-ng-if="$ctrl.isLocalPrivateMode()">
+            <oui-checkbox class="mb-3" data-model="$ctrl.isAttachPublicNetwork">
+                <oui-checkbox-label>
+                    <span
+                        data-translate="pci_projects_project_instances_add_localPrivateNetwork_add_public_network_checkbox_label"
+                    ></span>
+                </oui-checkbox-label>
+                <oui-checkbox-description>
+                    <span
+                        data-translate="pci_projects_project_instances_add_localPrivateNetwork_add_public_network_info"
+                    ></span>
+                </oui-checkbox-description>
+            </oui-checkbox>
         </div>
         <div data-ng-if="$ctrl.isAttachFloatingIP && $ctrl.isPrivateMode()">
             <oui-spinner

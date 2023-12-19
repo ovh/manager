@@ -137,6 +137,7 @@ export default class PciInstancesAddController {
     [this.selectedMode] = this.modes;
     this.showAddPrivateNetworkModalForm = false;
     this.isAttachFloatingIP = false;
+    this.isAttachPublicNetwork = false;
     this.isCreateFloatingIPClicked = false;
     this.subnetGateways = [];
     this.isCustomNetwork = false;
@@ -317,6 +318,19 @@ export default class PciInstancesAddController {
       this.selectedPrivateNetwork = this.defaultPrivateNetwork;
     }
     this.getPrivateNetworkSubnet();
+    if (this.isLocalZone()) {
+      this.PciProjectsProjectInstanceService.getLocalPrivateNetworks(
+        this.projectId,
+        this.model.datacenter.name,
+      )
+        .then((network) => {
+          this.availableLocalPrivateNetworks = network;
+          this.getLocalPrivateNetworkSubnet();
+        })
+        .catch((error) =>
+          this.CucCloudMessage.error(get(error, 'data.message')),
+        );
+    }
   }
 
   getPrivateNetworkSubnet() {
@@ -397,8 +411,7 @@ export default class PciInstancesAddController {
 
   onInstanceFocus() {
     if (!isEmpty(this.model.datacenter)) {
-      this.disableNetwork =
-        this.model.datacenter.type === this.LOCAL_ZONE_REGION;
+      this.disableNetwork = this.isLocalZone();
       this.quota = new Quota(this.model.datacenter.quota.instance);
       this.generateInstanceName();
       if (
@@ -416,19 +429,36 @@ export default class PciInstancesAddController {
     return this.$q.when();
   }
 
-  loadPrivateNetwork() {
-    if (this.model.datacenter.type === this.LOCAL_ZONE_REGION) {
-      this.PciProjectsProjectInstanceService.getLocalPrivateNetworks(
-        this.projectId,
-        this.model.datacenter.name,
+  getLocalPrivateNetworkSubnet() {
+    return this.$q
+      .all(
+        this.availableLocalPrivateNetworks.map((privateNetwork) => {
+          if (privateNetwork.id) {
+            return this.PciProjectsProjectInstanceService.getLocalPrivateNetworkSubnets(
+              this.projectId,
+              this.model.datacenter.name,
+              privateNetwork.id,
+            ).then((data) => {
+              return {
+                ...privateNetwork,
+                subnet: [
+                  {
+                    ...data,
+                    ipPools: data.allocationPools,
+                  },
+                ],
+              };
+            });
+          }
+          return privateNetwork;
+        }),
       )
-        .then((network) => {
-          this.localPrivateNetworks = network;
-        })
-        .catch((error) =>
-          this.CucCloudMessage.error(get(error, 'data.message')),
-        );
-    }
+      .then((data) => {
+        this.availableLocalPrivateNetworks = [
+          this.defaultPrivateNetwork,
+          ...data.filter(({ subnet }) => subnet?.length > 0),
+        ];
+      });
   }
 
   generateInstanceName() {
@@ -570,6 +600,15 @@ export default class PciInstancesAddController {
         ),
       };
     }
+    if (this.isLocalPrivateMode()) {
+      this.isAttachPublicNetwork = false;
+      this.selectedPrivateNetwork = {
+        id: '',
+        name: this.$translate.instant(
+          'pci_projects_project_instances_add_localPrivateNetwork_placeholder',
+        ),
+      };
+    }
   }
 
   isPrivateMode() {
@@ -578,6 +617,10 @@ export default class PciInstancesAddController {
 
   isLocalPrivateMode() {
     return this.selectedMode.name === this.instanceModeEnum[2].mode;
+  }
+
+  isLocalZone() {
+    return this.model?.datacenter?.type === this.LOCAL_ZONE_REGION;
   }
 
   onFloatingIpChange(value) {
@@ -597,7 +640,7 @@ export default class PciInstancesAddController {
           networkId: get(this.selectedPrivateNetwork, 'id'),
         },
       ];
-      if (!this.isPrivateMode()) {
+      if (!this.isPrivateMode() && !this.isLocalPrivateMode()) {
         this.instance.networks = [
           ...this.instance.networks,
           {
@@ -620,7 +663,8 @@ export default class PciInstancesAddController {
     if (
       modelValue &&
       modelValue.subnet &&
-      this.selectedMode.name !== this.instanceModeEnum[1].mode
+      this.selectedMode.name !== this.instanceModeEnum[1].mode &&
+      !this.isLocalPrivateMode()
     ) {
       this.getSubnetGateways(modelValue.subnet[0].id)
         .then((data) => {
@@ -703,16 +747,28 @@ export default class PciInstancesAddController {
   }
 
   showNetworkNavigation() {
-    if (!this.isPrivateMode()) {
+    if (this.isPrivateMode()) {
       return (
-        !this.isGatewayLoading &&
-        this.subnetGateways &&
-        this.subnetGateways.length === 0
+        this.selectedPrivateNetwork.id !== '' &&
+        (!this.isAttachFloatingIP || this.selectedFloatingIP)
       );
     }
+
+    if (this.isLocalPrivateMode()) {
+      return this.selectedPrivateNetwork.id !== '';
+    }
+
+    if (
+      this.isLocalZone() &&
+      !(this.isPrivateMode() || this.isLocalPrivateMode())
+    ) {
+      return false;
+    }
+
     return (
-      this.selectedPrivateNetwork.id !== '' &&
-      (!this.isAttachFloatingIP || this.selectedFloatingIP)
+      !this.isGatewayLoading &&
+      this.subnetGateways &&
+      this.subnetGateways.length === 0
     );
   }
 
@@ -782,6 +838,17 @@ export default class PciInstancesAddController {
 
     if (!this.isLinuxImageType()) {
       this.instance.userData = null;
+    }
+
+    if (this.isLocalPrivateMode() && this.isAttachPublicNetwork) {
+      this.instance.networks = [
+        ...this.instance.networks,
+        {
+          networkId: this.publicNetwork?.find(
+            (network) => network.name === PUBLIC_NETWORK,
+          )?.id,
+        },
+      ];
     }
 
     if (
