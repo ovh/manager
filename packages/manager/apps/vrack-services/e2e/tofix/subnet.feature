@@ -22,7 +22,7 @@ Feature: Subnet page
       | has          | UPDATING       | disabled    |
       | has          | DELETING       | disabled    |
       | has          | ERROR          | disabled    |
-      | has          | READY          | enabled     |
+      | has          | READY          | disabled    |
       | doesn't have | UPDATING       | disabled    |
       | doesn't have | DELETING       | disabled    |
       | doesn't have | ERROR          | disabled    |

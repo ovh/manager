@@ -1,6 +1,7 @@
 {
   "onboardingTitle": "Vous n'avez pas encore crée de sous-réseau",
   "onboardingDescription": "Pour créer un endpoint, vous devez d'abord creér un sous-réseau.",
+  "betaSubnetLimitMessage": "Vous ne pouvez créer qu'un sous-réseau par vRack Services pour le moment.",
   "createSubnetButtonLabel": "Créer un sous-réseau",
   "createPageTitle": "Créer un sous-réseau",
   "goBackLinkLabel": "Retour à la page précédente",

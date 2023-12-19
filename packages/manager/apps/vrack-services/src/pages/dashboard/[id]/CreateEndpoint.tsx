@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
 import i18next from 'i18next';
 import {
   OsdsSelect,
@@ -12,17 +12,12 @@ import {
   OdsSelectValueChangeEvent,
 } from '@ovhcloud/ods-components/select';
 import {
-  EligibleManagedService,
   ResponseData,
   VrackServices,
-  getEligibleManagedServiceList,
-  getEligibleManagedServiceListQueryKey,
   getListingIcebergQueryKey,
   getVrackServicesResourceQueryKey,
   updateVrackServices,
   updateVrackServicesQueryKey,
-  IAMResource,
-  getIamResource,
 } from '@/api';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import {
@@ -30,7 +25,7 @@ import {
   serviceTypeSelectName,
   serviceNameSelectName,
 } from './constants';
-import { useVrackService } from '@/utils/vs-utils';
+import { useServiceList, useVrackService } from '@/utils/vs-utils';
 import { ErrorPage } from '@/components/Error';
 import { FormField } from '@/components/FormField';
 
@@ -53,28 +48,19 @@ const EndpointCreationPage: React.FC = () => {
   const [managedServiceURN, setManagedServiceURN] = React.useState<
     string | undefined
   >(undefined);
-  const [iamResources, setIamResources] = React.useState<IAMResource[]>([]);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const vrackServices = useVrackService();
   const dashboardUrl = `/${id}/Endpoints`;
 
   const {
-    data: serviceListResponse,
-    isLoading: isServiceListLoading,
-    error: serviceListError,
-  } = useQuery<ResponseData<EligibleManagedService[]>, ResponseData<Error>>({
-    queryKey: getEligibleManagedServiceListQueryKey(id),
-    queryFn: async () => {
-      const response = await getEligibleManagedServiceList(id);
-      const urnList = Array.from(
-        new Set(response.data.flatMap((service) => service.managedServiceURNs)),
-      );
-      const iamResult = await getIamResource(urnList);
-      setIamResources(iamResult.data);
-      return response;
-    },
-  });
+    iamResources,
+    isIamResourcesLoading,
+    iamResourcesError,
+    serviceListResponse,
+    isServiceListLoading,
+    serviceListError,
+  } = useServiceList(id);
 
   const { mutate: createEndpoint, isPending, isError, error } = useMutation<
     ResponseData<VrackServices>,
@@ -118,7 +104,7 @@ const EndpointCreationPage: React.FC = () => {
     });
   }, []);
 
-  if (vrackServices.error || error || serviceListError) {
+  if (vrackServices.error || error || serviceListError || iamResourcesError) {
     return (
       <ErrorPage error={vrackServices.error || error || serviceListError} />
     );
@@ -163,11 +149,18 @@ const EndpointCreationPage: React.FC = () => {
         </OsdsSelect>
       </FormField>
 
-      <FormField label={t('serviceNameLabel')}>
+      <FormField
+        label={t('serviceNameLabel')}
+        isLoading={isIamResourcesLoading}
+      >
         <OsdsSelect
           inline
           disabled={
-            isPending || isServiceListLoading || !serviceType || undefined
+            isPending ||
+            isServiceListLoading ||
+            isIamResourcesLoading ||
+            !serviceType ||
+            undefined
           }
           name={serviceNameSelectName}
           onOdsValueChange={(e: OdsSelectValueChangeEvent) =>
@@ -179,11 +172,11 @@ const EndpointCreationPage: React.FC = () => {
           {serviceListResponse?.data
             ?.find((service) => service.managedServiceType === serviceType)
             ?.managedServiceURNs.map((serviceURN) => {
-              const resource = iamResources.find(
+              const resource = iamResources?.data?.find(
                 ({ urn }) => urn === serviceURN,
               );
               const label =
-                resource.displayName || resource.name || resource.id;
+                resource?.displayName || resource?.name || resource?.id;
               return (
                 <OsdsSelectOption key={serviceURN} value={serviceURN}>
                   {label}

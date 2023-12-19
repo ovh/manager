@@ -1,6 +1,5 @@
 import React from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import { OsdsButton } from '@ovhcloud/ods-components/button/react';
 import {
@@ -14,6 +13,8 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
+import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
+import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
 import {
   useOrderPollingStatus,
   OrderDescription,
@@ -27,6 +28,8 @@ import { DeliveringMessages } from '@/components/DeliveringMessages';
 import { handleClick } from '@/utils/ods-utils';
 import { useVrackServicesList } from '@/utils/vs-utils';
 
+const betaVrackServicesLimit = 20;
+
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.id;
 }
@@ -34,6 +37,7 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 export default function ListingPage() {
   const { t } = useTranslation('vrack-services/listing');
   const navigate = useNavigate();
+  const [reachedBetaLimit, setReachedBetaLimit] = React.useState(false);
 
   const {
     data: vrackServicesDeliveringOrders,
@@ -44,6 +48,10 @@ export default function ListingPage() {
   });
 
   const { data, isLoading, error } = useVrackServicesList();
+
+  React.useEffect(() => {
+    setReachedBetaLimit(data?.data?.length >= betaVrackServicesLimit);
+  }, [data?.data]);
 
   if (error) {
     return <ErrorPage error={error} />;
@@ -75,9 +83,15 @@ export default function ListingPage() {
       >
         {t('description')}
       </OsdsText>
+      {reachedBetaLimit && (
+        <OsdsMessage className="my-4" type={ODS_MESSAGE_TYPE.info}>
+          {t('betaVrackServicesLimitMessage')}
+        </OsdsMessage>
+      )}
       <OsdsButton
         className="mb-8"
         inline
+        disabled={reachedBetaLimit || undefined}
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.stroked}
         size={ODS_BUTTON_SIZE.sm}

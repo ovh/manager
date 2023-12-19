@@ -77,66 +77,54 @@ export const getCartMocks = ({
   vrackServicesOrderKo,
 }: GetCartMocksParams): Handler[] => [
   {
-    url: '/order/cart',
-    method: 'post',
-    response: getCart,
-    api: 'v6',
-  },
-  {
     url: '/order/cart/:id/assign',
     method: 'post',
     api: 'v6',
   },
   {
-    url: '/order/cart/:id/vrack',
-    method: 'post',
-    response: getVrackItem,
-    api: 'v6',
-  },
-  {
     url: '/order/cart/:id/vrackServices',
     method: 'post',
-    response: getVrackServicesItem,
-    api: 'v6',
-  },
-  {
-    url: '/order/cart/:id/checkout',
-    method: 'post',
-    response: vrackServicesOrderKo
-      ? ({
-          status: 403,
-          code: 'ERR_VRACK_SERVICES',
-          data: null,
-          response: {
-            data: { message: 'Error Vrack Services' },
-          },
-        } as ResponseData<unknown>)
-      : { orderId: 1 },
+    response: (data: any) =>
+      vrackServicesOrderKo
+        ? ({
+            status: 403,
+            code: 'ERR_VRACK_SERVICES',
+            data: null,
+            response: {
+              data: { message: 'Error Vrack Services' },
+            },
+          } as ResponseData<unknown>)
+        : getVrackServicesItem(data),
     status: vrackServicesOrderKo ? 403 : 200,
     api: 'v6',
-    once: true,
   },
   {
-    url: '/order/cart/:id/checkout',
+    url: '/order/cart/:id/vrack',
     method: 'post',
-    response: vrackOrderKo
-      ? ({
-          status: 403,
-          code: 'ERR_MAX_VRACKS',
-          data: null,
-          response: {
-            data: { message: 'You already own 60 vRacks, maximum is 60' },
-          },
-        } as ResponseData<unknown>)
-      : { orderId: 2 },
+    response: (data: any) =>
+      vrackOrderKo
+        ? ({
+            status: 403,
+            code: 'ERR_MAX_VRACKS',
+            data: null,
+            response: {
+              data: { message: 'You already own 60 vRacks, maximum is 60' },
+            },
+          } as ResponseData<unknown>)
+        : getVrackItem(data),
     status: vrackOrderKo ? 403 : 200,
     api: 'v6',
-    once: true,
   },
   {
     url: '/order/cart/:id/checkout',
     method: 'post',
     response: { orderId: 1 },
+    api: 'v6',
+  },
+  {
+    url: '/order/cart',
+    method: 'post',
+    response: getCart,
     api: 'v6',
   },
 ];

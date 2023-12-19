@@ -12,6 +12,8 @@ import { useTranslation } from 'react-i18next';
 import { OsdsButton } from '@ovhcloud/ods-components/button/react';
 import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
+import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
 import { OnboardingLayout } from '@/components/layout-helpers/OnboardingLayout';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { isEditable, useVrackService } from '@/utils/vs-utils';
@@ -66,8 +68,14 @@ const Subnets: React.FC = () => {
 
   return (
     <PageLayout noBreacrumb>
+      <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.info}>
+        {t('betaSubnetLimitMessage')}
+      </OsdsMessage>
       <OsdsButton
-        disabled={!isEditable(vrackServices) || undefined}
+        // Disabled because for the beta user can only have 1 subnet per vRack Services
+        disabled
+        // TODO: Uncomment after the beta
+        // disabled={!isEditable(vrackServices) || undefined}
         className="my-4"
         inline
         size={ODS_BUTTON_SIZE.sm}

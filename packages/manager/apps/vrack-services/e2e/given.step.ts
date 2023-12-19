@@ -7,6 +7,13 @@ import { OrderStatus, ProductStatus } from '@/api';
 import { creationServiceError } from '../src/public/translations/vrack-services/create/Messages_fr_FR.json';
 import { updateError } from '../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
 
+Given('User has {word} vRack Services', function(
+  this: ICustomWorld<ConfigParams>,
+  nbVsStr: string,
+) {
+  this.handlersConfig.nbVs = Number(nbVsStr);
+});
+
 Given(
   'User wants to create a vRack Services with name {string} and zone {word}',
   function(this: ICustomWorld<ConfigParams>, name: string, zone: string) {

@@ -1,6 +1,6 @@
 import { Handler } from '@super-components/_common/msw-helpers';
 import { AllowedServicesResponse, Status, Task } from '../../src/api/api.type';
-import { vrackServicesList } from '../vrack-services/vrack-services';
+import vrackServicesList from '../vrack-services/get-vrack-services.json';
 
 const getAllowedServicesResponse = (
   nbEligibleVrackServices: number,
