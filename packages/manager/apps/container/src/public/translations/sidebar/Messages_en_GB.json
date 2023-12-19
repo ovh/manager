@@ -42,6 +42,7 @@
   "sidebar_pci_load_balancer": "Load Balancer",
   "sidebar_pci_private_network": "Private network (vRack)",
   "sidebar_pci_failover_ip": "Failover IP",
+  "sidebar_pci_rancher": "Managed Rancher Service",
   "sidebar_pci_kubernetes": "Managed Kubernetes Service",
   "sidebar_pci_kubernetes_load_balancer": "Load Balancer for MKS",
   "sidebar_pci_private_registry": "Managed Private Registry",
