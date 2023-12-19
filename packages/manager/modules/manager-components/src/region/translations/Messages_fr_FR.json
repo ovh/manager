@@ -28,7 +28,7 @@
   "manager_components_region_US_micro": "États-Unis ({{ micro }})",
   "manager_components_region_GS": "GS",
   "manager_components_region_SHA_micro": "Gravelines (SHADOW-EU-1)",
-  "manager_components_region_GS_micro": "Madrid ({{ micro }}) GS1",
+  "manager_components_region_GS_micro": "Madrid ({{ micro }})",
   "manager_components_region_localize": "Localiser",
   "manager_components_region_location_SBG": "Europe centrale (France)",
   "manager_components_region_location_WAW": "Europe centrale (Pologne)",
