@@ -3,7 +3,10 @@
     <div data-ui-view="progress"></div>
 
     <!-- title -->
-    <h1 data-translate="pci_project_new_payment_title"></h1>
+    <h1
+        data-translate="pci_project_new_payment_title"
+        data-ng-if="$ctrl.viewOptions.title"
+    ></h1>
 
     <!-- error -->
     <cui-message-container
@@ -230,7 +233,7 @@
                 </div>
 
                 <a
-                    data-ng-if="!$ctrl.model.paymentMethod.isHandleByComponent() || !$ctrl.componentInitialParams"
+                    data-ng-if="$ctrl.step1Link() && (!$ctrl.model.paymentMethod.isHandleByComponent() || !$ctrl.componentInitialParams)"
                     data-ng-href="{{ $ctrl.step1Link() }}"
                     data-ng-click="$ctrl.sendTrack('new_project_payment_cancel')"
                 >
@@ -244,6 +247,7 @@
                 class="oui-heading_underline"
                 data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && $ctrl.componentInitialParams && $ctrl.model.reloadHandleByComponent"
                 data-translate="pci_project_new_payment_information"
+                data-ng-class="'h' + $ctrl.viewOptions.subtitlesSize"
             ></h2>
 
             <ovh-payment-method-integration

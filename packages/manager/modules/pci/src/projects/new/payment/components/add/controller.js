@@ -1,3 +1,5 @@
+import angular from 'angular';
+
 import filter from 'lodash/filter';
 import head from 'lodash/head';
 import map from 'lodash/map';
@@ -12,6 +14,7 @@ import {
   PCI_FEATURES,
   CONFIRM_CREDIT_CARD_TEST_AMOUNT,
   LANGUAGE_OVERRIDE,
+  PAYMENTS_PER_LINE,
 } from './constants';
 
 export default class PciProjectNewPaymentMethodAddCtrl {
@@ -48,6 +51,7 @@ export default class PciProjectNewPaymentMethodAddCtrl {
     this.authorizedPaymentMethods = null;
     this.excludedPaymentMethods = [];
     this.unregisteredPaymentMethods = [];
+    this.paymentsPerLine = PAYMENTS_PER_LINE;
 
     this.paymentSectionHref = coreURLBuilder.buildURL(
       'dedicated',
@@ -167,6 +171,14 @@ export default class PciProjectNewPaymentMethodAddCtrl {
         return methodAIndex - methodBIndex;
       },
     );
+
+    const { paymentsPerLine: paymentsPerLineViewOption } =
+      this.viewOptions || {};
+    if (paymentsPerLineViewOption) {
+      this.paymentsPerLine = angular.isFunction(paymentsPerLineViewOption)
+        ? paymentsPerLineViewOption(this.authorizedPaymentMethods)
+        : paymentsPerLineViewOption;
+    }
 
     // set payment method model
     this.preselectPaymentMethod();

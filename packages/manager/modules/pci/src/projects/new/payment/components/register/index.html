@@ -2,6 +2,7 @@
     <h2
         class="oui-heading_underline"
         data-translate="pci_project_new_payment_register_title"
+        data-ng-class="'h' + $ctrl.viewOptions.subtitlesSize"
     ></h2>
 
     <pci-project-new-payment-method-add
@@ -13,6 +14,7 @@
         data-is-displayable-paypal-charge-banner="$ctrl.isDisplayablePaypalChargeBanner"
         data-pci-features="$ctrl.pciFeatures"
         data-is-displayable-rupay-credit-card-info-banner="$ctrl.isDisplayableRupayCreditCardInfoBanner"
+        data-view-options="$ctrl.viewOptions"
     >
     </pci-project-new-payment-method-add>
 </div>
