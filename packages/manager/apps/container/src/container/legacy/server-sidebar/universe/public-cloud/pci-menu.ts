@@ -183,6 +183,16 @@ export function getPciProjectMenu(
       title: 'Containers & Orchestration',
       subItems: [
         {
+          id: 'rancher',
+          title: 'Managed Rancher Service',
+          feature: 'rancher',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/rancher`,
+          ),
+          badge: 'beta',
+        },
+        {
           id: 'kubernetes',
           title: 'Managed Kubernetes Service',
           feature: 'kubernetes',
