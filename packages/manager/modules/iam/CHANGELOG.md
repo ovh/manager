@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.7.0...@ovh-ux/manager-iam@1.7.1) (2023-12-19)
+
+
+### Bug Fixes
+
+* **iam:** add identity to policy was removing managed permissions ([78dca28](https://github.com/ovh/manager/commit/78dca288e1b056507a14e1ba27aff4c89d8ed83f))
+
+
+
+
+
 # [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.6.0...@ovh-ux/manager-iam@1.7.0) (2023-12-11)
 
 

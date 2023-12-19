@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.11.0...@ovh-ux/manager-bm-server-components@1.11.1) (2023-12-19)
+
+
+### Bug Fixes
+
+* **dedicated:** fix backup storage order modal closing ([#10534](https://github.com/ovh/manager/issues/10534)) ([49637b0](https://github.com/ovh/manager/commit/49637b0c03f913ca58e87f7751bb41bca6e0507f))
+* **dedicated:** fixed server unblocking ([#10543](https://github.com/ovh/manager/issues/10543)) ([dfc537e](https://github.com/ovh/manager/commit/dfc537e2696b2b5e5b25c8b8f3c8a2e02e776e65))
+
+
+
+
+
 # [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.10.2...@ovh-ux/manager-bm-server-components@1.11.0) (2023-12-12)
 
 

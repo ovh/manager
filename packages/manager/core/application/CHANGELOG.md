@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.2.1...@ovh-ux/manager-react-core-application@0.2.2) (2023-12-19)
+
+
+### Bug Fixes
+
+* **core:** tracking app delete init at launch ([#10541](https://github.com/ovh/manager/issues/10541)) ([ec85786](https://github.com/ovh/manager/commit/ec85786590e59ff526f87a3d25849701dbc6e07c))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.2.0...@ovh-ux/manager-react-core-application@0.2.1) (2023-12-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-react-core-application

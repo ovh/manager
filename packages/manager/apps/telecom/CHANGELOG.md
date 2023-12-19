@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.4.2...@ovh-ux/manager-telecom@15.5.0) (2023-12-19)
+
+
+### Bug Fixes
+
+* **telecom.voip:** fix the class of button delete external number ([#10294](https://github.com/ovh/manager/issues/10294)) ([f842ea2](https://github.com/ovh/manager/commit/f842ea29a558fd2c564b84db018b2db99705a594))
+
+
+### Features
+
+* **telecom.xdsl.access:** add modem profile ([#10376](https://github.com/ovh/manager/issues/10376)) ([5da37f9](https://github.com/ovh/manager/commit/5da37f9e8bf62f53470ca0edac299e5a70608bb2))
+* **telephony:** remove the mgcp banner ([#10464](https://github.com/ovh/manager/issues/10464)) ([09d4889](https://github.com/ovh/manager/commit/09d48896cb7d974f57a470ab844376c39d2474dd))
+
+
+
+
+
 ## [15.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.4.1...@ovh-ux/manager-telecom@15.4.2) (2023-12-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

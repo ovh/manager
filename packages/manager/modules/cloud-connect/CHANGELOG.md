@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.12.1...@ovh-ux/manager-cloud-connect@1.12.2) (2023-12-19)
+
+
+### Bug Fixes
+
+* **ovhcloud-connect:** fix label color status on pop config ([#10414](https://github.com/ovh/manager/issues/10414)) ([223b09e](https://github.com/ovh/manager/commit/223b09eeb5fa433cfd528afb6ef8a63ccdafef2d))
+
+
+
+
+
 ## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.12.0...@ovh-ux/manager-cloud-connect@1.12.1) (2023-12-01)
 
 

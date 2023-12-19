@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.9.0...@ovh-ux/manager-web@18.10.0) (2023-12-19)
+
+
+### Features
+
+* **web-cloud:** multisite - detach a domain ([#10397](https://github.com/ovh/manager/issues/10397)) ([fa98c62](https://github.com/ovh/manager/commit/fa98c6280167935a2f30af470b313cd063b565a3))
+* **web:** add banneer and change placeholder ([#10461](https://github.com/ovh/manager/issues/10461)) ([43b3bf2](https://github.com/ovh/manager/commit/43b3bf265f50457049665454141396fe8cdb27cd))
+* **web:** add radio btns ([#10469](https://github.com/ovh/manager/issues/10469)) ([9b11bcc](https://github.com/ovh/manager/commit/9b11bcc3aa99b1c735bb883c8c907d157e813de6))
+* **web:** add restore btn over view modal dns ([#10513](https://github.com/ovh/manager/issues/10513)) ([52d11dd](https://github.com/ovh/manager/commit/52d11ddd3bef0f40110c97cf50548c75d06f3492))
+
+
+
+
+
 # [18.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.8.2...@ovh-ux/manager-web@18.9.0) (2023-12-11)
 
 

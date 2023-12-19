@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.14.1...@ovh-ux/manager-pci@6.15.0) (2023-12-19)
+
+
+### Bug Fixes
+
+* **pci.ai:** delete error goes to error and generate token not working ([#10498](https://github.com/ovh/manager/issues/10498)) ([f24a1c3](https://github.com/ovh/manager/commit/f24a1c3e0a2998c089a7c6ce89de86ad672e5209))
+* **pci:** add trans for voucher error key ([#9688](https://github.com/ovh/manager/issues/9688)) ([eea042a](https://github.com/ovh/manager/commit/eea042ad49ffd8d5b149197a11be3329d72cae5a))
+
+
+### Features
+
+* **pci.ai:** modify http port in app ([#10383](https://github.com/ovh/manager/issues/10383)) ([5d0d457](https://github.com/ovh/manager/commit/5d0d457b1c997d26107433227b58ef0d786f7568))
+
+
+
+
+
 ## [6.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.14.0...@ovh-ux/manager-pci@6.14.1) (2023-12-11)
 
 

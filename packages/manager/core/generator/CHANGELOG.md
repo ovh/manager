@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.3.0...@ovh-ux/manager-generator@0.4.0) (2023-12-19)
+
+
+### Features
+
+* **generator:** load only dashboard and listing api if requested ([#10438](https://github.com/ovh/manager/issues/10438)) ([fff96bf](https://github.com/ovh/manager/commit/fff96bfd30f243268a65c6908d75064785304991))
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.2.0...@ovh-ux/manager-generator@0.3.0) (2023-12-05)
 
 
