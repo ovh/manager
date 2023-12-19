@@ -201,7 +201,9 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   init(withConsent: boolean): Promise<void> {
     try {
       // Init mix commander
-      initMixCommander(this.getGenericTrackingData({ name: '', level2: '' }));
+      if (withConsent) {
+        initMixCommander(this.getGenericTrackingData({ name: '', level2: '' }));
+      }
       return this.initTag(withConsent);
     } catch (err) {
       console.error('tracking initialization failed', err);
