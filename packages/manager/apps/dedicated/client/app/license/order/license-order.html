@@ -90,8 +90,9 @@
                     name="targetIp"
                     data-ng-show="!oneIp"
                     data-ng-model="selected.ip"
-                    data-ng-change="ipIsValid();"
+                    data-ng-change="getOrderableVersion()"
                     data-ng-disabled="selected.ipBlock === null"
+                    data-ui-validate="{ valid: 'ipIsValid($value)' }"
                 />
                 <p
                     class="form-control-static"
@@ -101,25 +102,17 @@
             </div>
 
             <div data-ng-switch="orderType">
-                <div data-ng-switch-when="LEGACY">
-                    <div
-                        data-ng-include="'license/order/license-order-legacy.html'"
-                    ></div>
-                </div>
-                <div data-ng-switch-when="DEDICATED">
-                    <div
-                        data-ng-include="'license/order/license-order-dedicated.html'"
-                    ></div>
-                </div>
                 <div data-ng-switch-when="VPS">
                     <div
                         data-ng-include="'license/order/license-order-vps.html'"
                     ></div>
                 </div>
                 <div data-ng-switch-default>
-                    <div
-                        data-ng-include="'license/order/license-order-legacy.html'"
-                    ></div>
+                    <ovh-manager-license-order-legacy
+                        data-ip="selected.ip"
+                        data-user="user"
+                        data-set-action="setAction(action, data)"
+                    ></ovh-manager-license-order-legacy>
                 </div>
             </div>
         </div>
