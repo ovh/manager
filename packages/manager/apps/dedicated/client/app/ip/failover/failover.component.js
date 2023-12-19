@@ -15,6 +15,7 @@ export default {
     trackPage: '<',
     trackingData: '<',
     unusedFilter: '<',
+    goToStatistics: '<',
   },
   controller,
   template,

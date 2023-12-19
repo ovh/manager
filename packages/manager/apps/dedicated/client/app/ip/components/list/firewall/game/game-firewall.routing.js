@@ -1,4 +1,4 @@
-import controller from './ip-ip-firewall-game.controler';
+import controller from './ip-ip-firewall-game.controller';
 import template from './ip-ip-firewall-game.html';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -14,7 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
     reloadOnSearch: false,
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
-        $translate.instant('ip_firewall_game'),
+        $translate.instant('ip_game_mitigation_title'),
+      getIp: /* @ngInject */ ($state) => () => $state.params.ip,
     },
   });
 };

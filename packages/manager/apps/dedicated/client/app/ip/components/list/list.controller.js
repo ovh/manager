@@ -441,7 +441,9 @@ export default class IpListController {
     $scope.displayFirewall = function displayFirewall(ipBlock, ip) {
       self
         .goToFirewall(ip)
-        .then(() => $scope.$broadcast('ips.firewall.display', { ipBlock, ip }));
+        .then(() =>
+          $rootScope.$broadcast('ips.firewall.display', { ipBlock, ip }),
+        );
     };
 
     $scope.displayGameFirewall = function displayGameFirewall(ipBlock, ip) {
@@ -451,6 +453,8 @@ export default class IpListController {
           $rootScope.$broadcast('ips.gameFirewall.display', { ipBlock, ip }),
         );
     };
+
+    $scope.displayStatistics = self.goToStatistics;
 
     $scope.displayOrganisation = function displayOrganisation() {
       self.trackClick(
