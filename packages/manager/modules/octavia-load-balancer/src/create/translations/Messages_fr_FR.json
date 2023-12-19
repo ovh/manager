@@ -33,6 +33,7 @@
   "octavia_load_balancer_create_instance_intro": "Pour configurer votre Load Balancer, définissez vos listeners (front ends) avec un port et un protocole. Attribuez-le ensuite à un pool d'instances (back ends) joignables sur un port et un protocole spécifiques. Si vous disposez de plusieurs protocoles et/ou ports par instance, vous pouvez configurer plusieurs pools par listener <a href=\"{{ linkUrl }}\" target=\"_blank\" data-track-name=\"{{ trackLabel }}\" data-track-on=\"click\" data-track-type=\"action\">en consultant la documentation</a>",
   "octavia_load_balancer_create_instance_banner_text": "Vous pouvez ajouter jusqu'à {{maxListeners}} listeners avec {{maxInstances}} instances au maximum dans cet assistant. Pour plus d'options ou pour éditer des fonctionnalités plus avancées (comme les protocoles proxy, le health check ou les politiques L7), passez en mode édition.",
   "octavia_load_balancer_create_instance_banner_text_bold": "Vous pourrez saisir des membres via IP après la création de votre Load Balancer dans la section membres de la vue Pool",
+  "octavia_load_balancer_create_instance_banner_health_monitor_text": "Dans cette première intégration du Load Balancer dans votre espace client, les Health Monitors ne sont configurables qu'à la création du LoadBalancer.",
   "octavia_load_balancer_create_name_title": "Informations",
   "octavia_load_balancer_create_name_field_label": "Nom du Load Balancer",
   "octavia_load_balancer_create_submit": "Créer un Load Balancer",
