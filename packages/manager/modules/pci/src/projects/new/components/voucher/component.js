@@ -16,5 +16,6 @@ export default {
     steps: '<',
     defaultPaymentMethod: '<',
     trackClick: '<',
+    viewOptions: '<',
   },
 };

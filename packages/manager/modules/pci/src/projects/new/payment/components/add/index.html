@@ -14,12 +14,12 @@
     data-unregistered-payment-methods="$ctrl.unregisteredPaymentMethods"
     data-force-set-as-default-choice="$ctrl.eligibility.isAddPaymentMethodRequired()"
     data-show-default-explanation-texts="true"
-    data-default-explanation-texts-options="{
+    data-default-explanation-texts-options="$ctrl.viewOptions.registerExplanationTexts || {
         creditCard: 'info',
         rupay: 'info',
         sepa: { intro: 'warning', banner: 'info' },
     }"
-    data-payment-method-types-per-line="2"
+    data-payment-method-types-per-line="$ctrl.paymentsPerLine"
     data-automatic-select="!!$ctrl.model.paymentMethod"
     data-required="$ctrl.eligibility.isAddPaymentMethodRequired()"
 >

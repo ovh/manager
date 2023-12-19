@@ -1,8 +1,12 @@
-<div class="pci-project-new-voucher">
+<div
+    class="pci-project-new-voucher"
+    data-ng-class="{ 'dense': $ctrl.viewOptions.denseVoucher }"
+>
     <!--Voucher title-->
     <h2
         class="oui-heading_underline"
         data-translate="pci_projects_new_voucher_title"
+        data-ng-class="'h' + $ctrl.viewOptions.subtitlesSize"
     ></h2>
 
     <button

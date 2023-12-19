@@ -251,13 +251,17 @@ export default /* @ngInject */ ($stateProvider) => {
       trackProjectCreationError: /* @ngInject */ (atInternet, numProjects) => (
         step,
         errorMessage,
-      ) =>
-        atInternet.trackPage({
+      ) => {
+        if (!step) {
+          return null;
+        }
+        return atInternet.trackPage({
           name: 'PublicCloud_project_creation_error_message',
           pciCreationStep: step,
           pciCreationErrorMessage: errorMessage,
           pciCreationNumProjects3: numProjects,
-        }),
+        });
+      },
     },
   });
 };

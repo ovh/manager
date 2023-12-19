@@ -6,7 +6,7 @@
         ></ovh-manager-trusted-nic-label>
     </div>
     <div class="d-flex flex-md-row-reverse flex-column">
-        <div class="p-4 oui-background-p-050">
+        <div class="p-4 oui-background-p-050 w-100">
             <div>
                 <div data-ng-if="!$ctrl.discoveryPromotionVoucherAmount">
                     <h1
@@ -55,27 +55,17 @@
                 />
             </div>
         </div>
-        <div class="m-4">
+        <div class="p-4 pr-md-5 w-100">
             <cui-message-container
                 data-messages="$ctrl.messages"
             ></cui-message-container>
-            <h4 data-translate="pci_projects_project_activate_title"></h4>
+            <h3 data-translate="pci_projects_project_activate_title"></h3>
             <p data-translate="pci_projects_project_activate_description_1"></p>
             <p data-translate="pci_projects_project_activate_description_2"></p>
             <div
-                class="h-50 w-100 d-flex align-items-center justify-content-center"
-            >
-                <!-- Will contain the payment component instead of the button below-->
-                <oui-button
-                    variant="primary"
-                    data-ng-if="!$ctrl.isTrustedZone"
-                    data-on-click="$ctrl.onActivateProjectClick()"
-                >
-                    <span
-                        data-translate="pci_projects_project_activate_cta"
-                    ></span>
-                </oui-button>
-            </div>
+                class="h-50 w-100 d-flex flex-column"
+                data-ui-view="payment"
+            ></div>
         </div>
     </div>
 </div>

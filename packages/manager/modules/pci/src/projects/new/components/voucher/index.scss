@@ -4,6 +4,14 @@ pci-project-new-voucher {
   @import 'bootstrap4/scss/mixins/_breakpoints';
 
   .pci-project-new-voucher {
+    &.dense {
+      max-width: 30rem;
+      .oui-box {
+        padding: 0.1rem 1rem 1rem;
+        min-height: auto;
+      }
+    }
+
     .btn-voucher,
     .oui-box {
       background-color: rgb(230, 245, 252);

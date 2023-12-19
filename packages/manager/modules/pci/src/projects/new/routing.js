@@ -16,9 +16,30 @@ import {
   PCI_PROJECT_STEPS,
 } from './constants';
 
-export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.new', {
-    url: '/new?cartId&voucher',
+export const PCI_NEW_STATE_NAME = 'pci.projects.new';
+export const PCI_NEW_PAYMENT_STATE_NAME = `${PCI_NEW_STATE_NAME}.payment`;
+
+export const registerPCINewState = (
+  $stateProvider,
+  {
+    stateName = PCI_NEW_STATE_NAME,
+    paymentStateName = PCI_NEW_PAYMENT_STATE_NAME,
+    redirectIfDiscovery = true,
+    url = '/new',
+    component: stateComponent,
+    resolve,
+    configStep = true,
+    viewOptions = {
+      standalone: true,
+    },
+    views = {
+      default: '',
+      new: '@pci',
+    },
+  } = {},
+) => {
+  $stateProvider.state(stateName, {
+    url: `${url}?cartId&voucher`,
     onEnter: /* @ngInject */ ($injector, pciFeatureRedirect) => {
       if ($injector.has('ovhShell')) {
         const ovhShell = $injector.get('ovhShell');
@@ -49,7 +70,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
       return pciProjectsServicePromise.then((PciProjectsService) =>
         PciProjectsService.getDiscoveryProject().then((discoveryProject) => {
-          if (discoveryProject) {
+          if (discoveryProject && redirectIfDiscovery) {
             return transition.router.stateService.target(
               'pci.projects.project',
               {
@@ -80,7 +101,9 @@ export default /* @ngInject */ ($stateProvider) => {
               newSupportTicketLink,
               trackProjectCreationError,
             ]) => {
-              let redirectState = 'pci.projects.new.config';
+              let redirectState = configStep
+                ? `${stateName}.config`
+                : paymentStateName;
               let redirectParams = transition.params();
               const redirectOptions = {
                 location: false,
@@ -131,7 +154,7 @@ export default /* @ngInject */ ($stateProvider) => {
                 trackErrorMessage = 'pci_project_new_error_verify_paypal';
               } else if (cart.cartId !== transition.params().cartId) {
                 $window.location.replace(
-                  transition.router.stateService.href('pci.projects.new', {
+                  transition.router.stateService.href(stateName, {
                     cartId: cart.cartId,
                     voucher: redirectParams.voucher,
                     context: redirectParams.context,
@@ -156,7 +179,14 @@ export default /* @ngInject */ ($stateProvider) => {
       );
     },
     views: {
-      '@pci': component.name,
+      ...(stateComponent && {
+        [views.default]: {
+          component: stateComponent,
+        },
+      }),
+      [views.new]: {
+        component: component.name,
+      },
     },
     resolve: {
       breadcrumb: () => null,
@@ -255,14 +285,11 @@ export default /* @ngInject */ ($stateProvider) => {
           },
         })),
 
-      /* ----------  Shared model definition  ---------- */
-
       model: /* @ngInject */ (
         cart,
         checkVoucherValidity,
         voucher,
         eligibility,
-        pciProjectNew,
         ovhPaymentMethodHelper,
       ) => {
         const modelDef = {
@@ -310,31 +337,56 @@ export default /* @ngInject */ ($stateProvider) => {
         isVoucherValidating: false,
       }),
 
-      /* ----------  Order steps management  ---------- */
+      ...(configStep && {
+        getStep: /* @ngInject */ (steps) => (name) => find(steps, { name }),
 
-      getStep: /* @ngInject */ (steps) => (name) => find(steps, { name }),
+        activeStep: /* @ngInject */ (getStep, steps) => (name) => {
+          steps.forEach((step) => {
+            set(step, 'active', false);
+          });
 
-      activeStep: /* @ngInject */ (getStep, steps) => (name) => {
-        // desactive all steps
-        steps.forEach((step) => {
-          set(step, 'active', false);
-        });
-
-        // active the step with given name
-        const activeStep = getStep(name);
-        set(activeStep, 'active', true);
-      },
-
-      steps: () => [
-        {
-          name: PCI_PROJECT_STEPS.CONFIGURATION,
-          active: false,
+          const activeStep = getStep(name);
+          set(activeStep, 'active', true);
         },
-        {
-          name: PCI_PROJECT_STEPS.PAYMENT,
-          active: false,
+
+        steps: () => [
+          {
+            name: PCI_PROJECT_STEPS.CONFIGURATION,
+            active: false,
+          },
+          {
+            name: PCI_PROJECT_STEPS.PAYMENT,
+            active: false,
+          },
+        ],
+      }),
+
+      ...(!configStep && {
+        description: /* @ngInject */ (model, $transition$) =>
+          $transition$
+            .injector()
+            .getAsync('project')
+            .catch(() => null)
+            .then((project) => project?.description || model.description || ''),
+
+        setDescription: /* @ngInject */ (description, cart, pciProjectNew) => {
+          if (description && !cart.projectItem.descriptionConfiguration) {
+            return pciProjectNew.setCartProjectItemDescription(
+              cart,
+              description,
+            );
+          }
+          return null;
         },
-      ],
+      }),
+
+      viewOptions: () => viewOptions,
+
+      ...resolve,
     },
   });
+};
+
+export default /* @ngInject */ ($stateProvider) => {
+  registerPCINewState($stateProvider);
 };

@@ -1,9 +1,26 @@
 import { DISCOVERY_PROMOTION_VOUCHER } from '../project.constants';
 
+import { registerPCINewState } from '../../new/routing';
+import { registerPCINewPaymentState } from '../../new/payment/routing';
+
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.activate', {
+  const stateName = 'pci.projects.project.activate';
+  const paymentStateName = `${stateName}.payment`;
+
+  registerPCINewState($stateProvider, {
+    redirectIfDiscovery: false,
+    configStep: false,
+    stateName,
+    paymentStateName,
     url: '/activate',
     component: 'pciProjectActivate',
+    views: {
+      default: '@pci.projects.project',
+      new: `payment@${stateName}`,
+    },
+    viewOptions: {
+      standalone: false,
+    },
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_activate_title'),
@@ -79,6 +96,30 @@ export default /* @ngInject */ ($stateProvider) => {
           },
           'pci.projects.project.activate',
         ),
+    },
+  });
+  registerPCINewPaymentState($stateProvider, {
+    stateName: paymentStateName,
+    configStep: false,
+    views: {
+      default: `@${paymentStateName}`,
+      progress: `progress@${paymentStateName}`,
+      payment: `payment@${paymentStateName}`,
+      credits: `credits@${paymentStateName}`,
+      challenge: `challenge@${paymentStateName}`,
+      voucher: `voucher@${paymentStateName}`,
+      dlp: `dlp@${paymentStateName}`,
+    },
+    viewOptions: {
+      title: false,
+      subtitlesSize: 4,
+      foldVoucher: false,
+      denseVoucher: true,
+      paymentsPerLine: (paymentMethods) => paymentMethods.length,
+      registerExplanationTexts: { sepa: { banner: 'warning' } },
+    },
+    resolve: {
+      breadcrumb: () => null,
     },
   });
 };
