@@ -5,6 +5,7 @@ export default /* @ngInject */ function RemoveGameFirewallRuleCtrl(
   $rootScope,
   Alerter,
   IpGameFirewall,
+  atInternet,
 ) {
   const self = this;
   const alert = 'ip_game_firewall_alert';
@@ -12,8 +13,18 @@ export default /* @ngInject */ function RemoveGameFirewallRuleCtrl(
   self.datas = $scope.currentActionData;
   self.loading = false;
 
+  atInternet.trackClick({
+    name: self.datas.tracking,
+    type: 'action',
+  });
+
   $scope.removeGameFirewallRule = function removeGameFirewallRule() {
     self.loading = true;
+
+    atInternet.trackClick({
+      name: `${self.datas.tracking}-confirm`,
+      type: 'action',
+    });
 
     IpGameFirewall.deleteRule(
       self.datas.ipblock,
@@ -42,5 +53,13 @@ export default /* @ngInject */ function RemoveGameFirewallRuleCtrl(
       .finally(() => {
         $scope.resetAction();
       });
+  };
+
+  $scope.cancelDelete = function cancelDelete() {
+    atInternet.trackClick({
+      name: `${self.datas.tracking}-cancel`,
+      type: 'action',
+    });
+    $scope.resetAction();
   };
 }

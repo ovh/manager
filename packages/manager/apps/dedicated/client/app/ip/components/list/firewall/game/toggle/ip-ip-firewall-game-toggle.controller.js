@@ -5,6 +5,7 @@ export default /* @ngInject */ function EnableDisableGameFirewallRuleCtrl(
   IpGameFirewall,
   $rootScope,
   Alerter,
+  atInternet,
 ) {
   const self = this;
   const alert = 'ip_game_firewall_alert';
@@ -12,7 +13,18 @@ export default /* @ngInject */ function EnableDisableGameFirewallRuleCtrl(
   self.datas = $scope.currentActionData;
   self.loading = false;
 
+  $scope.cancelAction = () => {
+    $rootScope.$broadcast('ips.gameFirewall.cancelToggle');
+    $scope.resetAction();
+  };
+
   $scope.enableDisableGameFirewallRule = function enableDisableGameFirewallRule() {
+    atInternet.trackClick({
+      name: `${self.datas.tracking}-${
+        self.datas.firewall.firewallModeEnabled ? 'off' : 'on'
+      }`,
+      type: 'action',
+    });
     self.loading = true;
 
     IpGameFirewall.putFirewall(

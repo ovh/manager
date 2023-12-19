@@ -159,4 +159,11 @@ export default /* @ngInject */ function IpGameFirewallService(
         (http) => $q.reject(http.data),
       );
   };
+
+  this.getIpdBlock = function getIpdBlock(ip) {
+    return $http.get(`/ip?ip=${window.encodeURIComponent(ip)}`).then(
+      (result) => result.data,
+      (http) => $q.reject(http.data),
+    );
+  };
 }
