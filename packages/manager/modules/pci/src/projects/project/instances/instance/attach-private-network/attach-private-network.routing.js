@@ -20,6 +20,15 @@ export default /* @ngInject */ ($stateProvider) => {
             projectId,
             instance,
           ),
+        localPrivateNetworks: /* @ngInject */ (
+          PciProjectsProjectInstanceService,
+          instance,
+          projectId,
+        ) =>
+          PciProjectsProjectInstanceService.getLocalPrivateNetworks(
+            projectId,
+            instance.region,
+          ),
         breadcrumb: () => null,
       },
     },

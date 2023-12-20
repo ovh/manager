@@ -9,5 +9,6 @@ export default {
     instance: '<',
     privateNetworks: '<',
     goBack: '<',
+    localPrivateNetworks: '<',
   },
 };
