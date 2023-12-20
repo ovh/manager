@@ -24,7 +24,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       onFailure: /* @ngInject */ ($translate, goBack, TucToast) => () =>
         goBack(true).then(() => {
-          TucToast.success(
+          TucToast.error(
             $translate.instant('sms_batches_history_delete_error_message'),
           );
         }),
