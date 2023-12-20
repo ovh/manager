@@ -5,7 +5,7 @@ import { defaultProps } from './card.stories';
 import { render, waitFor } from '../../utils/test.provider';
 
 const setupSpecTest = async (customProps?: Partial<CardProps>) =>
-  await waitFor(() => render(<Card {...defaultProps} {...customProps} />));
+  waitFor(() => render(<Card {...defaultProps} {...customProps} />));
 
 describe('specs:Card', () => {
   it('renders without error', async () => {

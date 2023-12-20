@@ -12,7 +12,7 @@ import {
 
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
-import { useDynamicTranslation } from '../../translation/useDynamicTranslation';
+import useDynamicTranslation from '../../translation/useDynamicTranslation';
 
 export interface Badge {
   text: string;
@@ -34,6 +34,8 @@ export interface CardProps {
     category: string;
   };
   badges?: Badge[];
+  dataTracking?: string;
+  hoverable?: boolean;
 }
 
 export const Card = ({
@@ -42,6 +44,8 @@ export const Card = ({
   img,
   badges,
   texts,
+  dataTracking,
+  hoverable,
 }: CardProps) => {
   const { title, description, category } = texts;
   const { t } = useDynamicTranslation('card');
@@ -58,6 +62,8 @@ export const Card = ({
         rounded
         inline
         variant="stroked"
+        dataTracking={dataTracking}
+        hoverable={hoverable}
       >
         <div className="flex flex-col">
           {img?.src && (
