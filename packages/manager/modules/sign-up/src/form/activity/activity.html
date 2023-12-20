@@ -168,6 +168,40 @@
             </oui-select-picker-description>
         </oui-select-picker>
 
+        <div data-ng-if="!$ctrl.corporationIsCreated">
+            <form id="companyForm" name="companyForm">
+                <div class="row">
+                    <oui-field
+                        class="col-lg-6"
+                        data-label="{{ 'siret_manual_company_name' | translate }}"
+                    >
+                        <input
+                            class="oui-input"
+                            name="companyName"
+                            placeholder="{{ 'siret_manual_company_name' | translate }}"
+                            type="text"
+                            data-ng-model="$ctrl.signUpFormCtrl.model.organisation"
+                            data-ng-required="$ctrl.signUpFormCtrl.rules.organisation.mandatory"
+                            data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.companyName)"
+                            data-required
+                        />
+                    </oui-field>
+                    <oui-field
+                        class="col-lg-6"
+                        data-label="{{ 'siret_manual_company_legal_form' | translate }}"
+                    >
+                        <oui-select
+                            data-items="$ctrl.legalFormList"
+                            data-name="corporationType"
+                            data-model="$ctrl.signUpFormCtrl.model.corporationType"
+                            data-on-blur="$ctrl.onFieldBlur($ctrl.formCtrl.corporationType)"
+                            data-required
+                        >
+                        </oui-select>
+                    </oui-field>
+                </div>
+            </form>
+        </div>
         <siret-component
             data-ng-if="$ctrl.corporationIsCreated"
             data-country="$ctrl.signUpFormCtrl.model.country"
