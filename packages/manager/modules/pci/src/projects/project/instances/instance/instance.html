@@ -8,7 +8,7 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-ng-if="!$ctrl.vncDisabled && $ctrl.PciProjectsProjectInstanceService.vncConsoleIsAvailable($ctrl.instance.flavor.type)"
+            data-ng-if="!$ctrl.vncDisabled && $ctrl.PciProjectsProjectInstanceService.vncConsoleIsAvailable($ctrl.instance.flavor.type) && !$ctrl.instance.isLocalZone"
             data-href="{{ $ctrl.consoleLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.consoleLink"
             ><span
@@ -61,7 +61,7 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.createBackupInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && !$ctrl.instance.isLocalZone"
                     data-disabled="!$ctrl.instance.canCreateOrScheduleBackup()"
                 >
                     <span
@@ -70,7 +70,7 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.scheduleAutoBackup($ctrl.instance)"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && $ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($ctrl.instance.flavor.type)"
+                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && $ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($ctrl.instance.flavor.type) && !$ctrl.instance.isLocalZone"
                     data-disabled="!$ctrl.instance.canCreateOrScheduleBackup()"
                 >
                     <span
@@ -95,7 +95,7 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.startRescueInstance()"
-                    data-ng-if="$ctrl.instance.canBeHardRebooted()"
+                    data-ng-if="$ctrl.instance.canBeHardRebooted() && !$ctrl.instance.isLocalZone"
                 >
                     <span
                         data-translate="pci_projects_project_instances_instance_action_rescue_label"
@@ -103,7 +103,7 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.endRescueInstance()"
-                    data-ng-if="$ctrl.instance.status === 'RESCUE'"
+                    data-ng-if="$ctrl.instance.status === 'RESCUE' && !$ctrl.instance.isLocalZone"
                 >
                     <span
                         data-translate="pci_projects_project_instances_instance_action_rescueEnd_label"
@@ -128,6 +128,7 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.shelveInstance()"
+                    data-ng-if="!$ctrl.instance.isLocalZone"
                     data-disabled="!$ctrl.instance.canBeShelved() || !$ctrl.PciProjectsProjectInstanceService.suspendIsAvailable($ctrl.instance.flavor.type)"
                 >
                     <span
@@ -136,6 +137,7 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.unshelveInstance()"
+                    data-ng-if="!$ctrl.instance.isLocalZone"
                     data-disabled="!$ctrl.instance.canBeUnshelved()"
                 >
                     <span
@@ -144,7 +146,7 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.reinstallInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
+                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && !$ctrl.instance.isLocalZone"
                 >
                     <span
                         data-translate="pci_projects_project_instances_instance_action_reinstall_label"
@@ -152,7 +154,7 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.resumeInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'SUSPENDED'"
+                    data-ng-if="$ctrl.instance.statusGroup === 'SUSPENDED' && !$ctrl.instance.isLocalZone"
                 >
                     <span
                         data-translate="pci_projects_project_instances_instance_action_resume_label"
@@ -208,6 +210,16 @@
                     <oui-tile-description>
                         <span
                             data-ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.instance.region)"
+                        ></span>
+                        <span
+                            data-ng-if="$ctrl.instance.isLocalZone"
+                            data-translate="pci_project_flavors_zone_localzone"
+                            class="oui-badge oui-badge_promotion"
+                        ></span>
+                        <span
+                            data-ng-if="!$ctrl.instance.isLocalZone"
+                            data-translate="pci_project_flavors_zone_global_region"
+                            class="oui-badge oui-badge_new"
                         ></span>
                     </oui-tile-description>
                 </oui-tile-definition>
@@ -313,7 +325,11 @@
                         <span>-</span>
                     </oui-tile-description>
 
-                    <oui-action-menu data-compact data-placement="end">
+                    <oui-action-menu
+                        data-compact
+                        data-placement="end"
+                        data-ng-if="!$ctrl.instance.isLocalZone"
+                    >
                         <oui-action-menu-item
                             data-on-click="$ctrl.goToBlockStorages()"
                             ><span
