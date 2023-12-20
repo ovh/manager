@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import i18next from 'i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { OsdsText } from '@ovhcloud/ods-components/text/react/';
@@ -87,7 +86,8 @@ export default function Catalog() {
                   description: item.description,
                 }}
                 href={item.order}
-                data-tracking={`manager_product_cards::more_info::${item.productName}`}
+                hoverable
+                dataTracking={`manager_product_cards::more_info::${item.productName}`}
               />
             ))}
           </>
