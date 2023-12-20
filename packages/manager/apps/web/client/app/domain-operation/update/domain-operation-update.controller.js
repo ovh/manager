@@ -66,11 +66,11 @@ angular.module('App').controller(
       this.loading = true;
 
       return this.domainOperationService
-        .getOperationArguments(operationId)
+        .getDomainOperationArguments(operationId)
         .then((argumentIds) => {
           const promises = map(argumentIds, (key) =>
             this.domainOperationService
-              .getOperationArgument(operationId, key)
+              .getDomainOperationArgument(operationId, key)
               .then((originalArgument) => {
                 const argument = clone(originalArgument);
 
