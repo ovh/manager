@@ -9,6 +9,7 @@ export default {
     goToDeleteNetworkConfiguration: '<',
     networkInformations: '<',
     getVrackLink: '<',
+    vrackServicesLink: '<',
     pollDissociatingVrackServices: '<',
     goToCreateVolume: '<',
     isCommitmentAvailable: '<',

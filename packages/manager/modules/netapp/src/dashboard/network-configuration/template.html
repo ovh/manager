@@ -72,7 +72,7 @@
             <div data-ng-if="!$ctrl.vrackServicesLoader">
                 <oui-field label="{{:: $ctrl.LABELS.VRACK_SERVICE }}" size="xl">
                     <oui-select
-                        data-items="$ctrl.vrackServices"
+                        data-items="$ctrl.filteredVrackServices"
                         data-match="display.nameWithVrackId"
                         data-model="$ctrl.selectedVrackService"
                         data-placeholder="{{:: 'netapp_network_configuration_vrack_services_field_placeholder' | translate }}"

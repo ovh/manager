@@ -8,4 +8,8 @@
   .w-auto {
     width: auto;
   }
+
+  .keep-break .oui-tile__description {
+    word-break: keep-all !important;
+  }
 }

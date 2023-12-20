@@ -27,7 +27,8 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
       this.populateAttachedSubnetAndEndpoint();
 
       if (
-        this.networkInformations.status === this.NETWORK_STATUS.TO_CONFIGURE
+        this.networkInformations.status === this.NETWORK_STATUS.TO_CONFIGURE &&
+        !this.pollDissociatingVrackServices
       ) {
         this.NetAppDashboardService.startNetworkPolling(
           this.storage,
@@ -42,10 +43,7 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
         });
       }
 
-      if (
-        this.networkInformations.status === this.NETWORK_STATUS.ASSOCIATED &&
-        this.pollDissociatingVrackServices
-      ) {
+      if (this.pollDissociatingVrackServices) {
         this.NetAppDashboardService.startNetworkPolling(
           this.storage,
           POLLING_TYPE.DISSOCIATING,

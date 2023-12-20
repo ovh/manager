@@ -18,8 +18,7 @@ export default class OvhManagerNetAppNetworkDeleteCtrl {
   }
 
   validateField() {
-    this.isTerminateFieldValid =
-      this.terminateField?.toLowerCase() === TERMINATE_TEXT;
+    this.isTerminateFieldValid = this.terminateField === TERMINATE_TEXT;
   }
 
   delete() {
