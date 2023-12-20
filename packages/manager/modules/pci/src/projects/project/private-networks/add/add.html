@@ -53,7 +53,7 @@
                     data-required
                 />
             </oui-field>
-            <section>
+            <section data-ng-if="!$ctrl.configuration.region.isLocalZone">
                 <oui-checkbox
                     data-model="$ctrl.configuration.createGateway"
                     name="create-public-gateway"
@@ -89,7 +89,7 @@
                     ></p>
                 </div>
             </section>
-            <section>
+            <section data-ng-if="!$ctrl.configuration.region.isLocalZone">
                 <h6
                     data-translate="pci_projects_project_network_private_create_layer_2_options"
                 ></h6>
