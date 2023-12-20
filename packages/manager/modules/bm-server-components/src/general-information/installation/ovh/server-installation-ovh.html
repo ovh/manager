@@ -443,10 +443,9 @@
                                         && ( !installation.hardwareRaid.raid
                                             || !installation.hardwareRaid.disks
                                             || !installation.hardwareRaid.arrays)"
-                        data-ng-bind="informations.nbPhysicalDisk"
-                    ></strong
-                    >&nbsp;
-                    <strong data-ng-bind="informations.typeDisk"></strong>&nbsp;
+                        data-ng-bind="installation.hardwareRaid.disks ? installation.hardwareRaid.disks : 1"
+                    ></strong>
+                    <strong data-ng-bind="informations.typeDisk"></strong>
                     <strong
                         data-ng-show="informations.raidController"
                         data-translate="server_configuration_installation_ovh_step2_raid_hard"
