@@ -66,6 +66,8 @@ export const GUIDE_LINKS = {
 
 export const TRACKING_PREFIX = 'PublicCloud::add-private-network';
 
+export const LOCAL_ZONE = 'localzone';
+
 export default {
   DEFAULT_CIDR,
   DEFAULT_IP,
@@ -73,4 +75,5 @@ export default {
   VLAN_ID,
   GUIDE_LINKS,
   TRACKING_PREFIX,
+  LOCAL_ZONE,
 };

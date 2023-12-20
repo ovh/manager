@@ -19,6 +19,5 @@ export default {
     serviceName: '@',
     singleFlavorWarning: '@?',
     flavorCount: '<?',
-    hasGridscaleLocalzoneRegion: '<',
   },
 };

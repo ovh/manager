@@ -52,6 +52,7 @@ export default class RegionsListController {
       name: region.name,
       continentCode: region.continentCode,
       hasEnoughQuota: region.hasEnoughQuota(),
+      isLocalZone: region.isLocalZone,
     }));
 
     const allContinents = this.$translate.instant(

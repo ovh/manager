@@ -54,7 +54,6 @@ export default class FlavorsList {
     serviceName,
     currentRegion,
     catalogEndpoint = DEFAULT_CATALOG_ENDPOINT,
-    hasGridscaleLocalzoneRegion,
   ) {
     return this.$q
       .all({
@@ -67,12 +66,10 @@ export default class FlavorsList {
           catalogEndpoint,
           this.coreConfig.getUser().ovhSubsidiary,
         ),
-        productAvailability: hasGridscaleLocalzoneRegion
-          ? this.getProductAvailability(
-              serviceName,
-              this.coreConfig.getUser().ovhSubsidiary,
-            )
-          : '',
+        productAvailability: this.getProductAvailability(
+          serviceName,
+          this.coreConfig.getUser().ovhSubsidiary,
+        ),
       })
       .then(({ flavors, prices, catalog, productAvailability }) => {
         const hourlyPlanCodes = flavors.filter(
@@ -114,16 +111,11 @@ export default class FlavorsList {
               ),
               'legacy',
             ),
-            locationCompatibility: hasGridscaleLocalzoneRegion
-              ? this.getlocationCompatibility(
-                  productAvailability.plans.find(
-                    (plan) => plan.code === resource.planCodes.hourly,
-                  ),
-                )
-              : {
-                  isLocalZone: false,
-                  isGlobalZone: true,
-                },
+            locationCompatibility: this.getlocationCompatibility(
+              productAvailability.plans.find(
+                (plan) => plan.code === resource.planCodes.hourly,
+              ),
+            ),
           });
         });
       });

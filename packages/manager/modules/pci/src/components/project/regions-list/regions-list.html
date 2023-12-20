@@ -51,6 +51,21 @@
                             >
                             </a>
                         </oui-select-picker-section>
+                        <oui-select-picker-section
+                            data-ng-if="regions[0].isLocalZone !== undefined"
+                        >
+                            <span
+                                data-ng-if="regions[0].isLocalZone"
+                                data-translate="pci_project_flavors_zone_localzone"
+                                class="oui-badge oui-badge_promotion"
+                            ></span>
+
+                            <span
+                                data-ng-if="!regions[0].isLocalZone"
+                                data-translate="pci_project_flavors_zone_global_region"
+                                class="oui-badge oui-badge_new"
+                            ></span>
+                        </oui-select-picker-section>
                     </oui-select-picker>
                 </div>
             </div>

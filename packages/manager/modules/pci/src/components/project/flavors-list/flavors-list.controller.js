@@ -71,7 +71,6 @@ export default class FlavorsListController {
         this.serviceName,
         get(this.region, 'name'),
         this.catalogEndpoint,
-        this.hasGridscaleLocalzoneRegion,
       );
     }
     return flavorsPromise.then((flavors) => {
