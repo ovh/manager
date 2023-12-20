@@ -11,6 +11,7 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
   }
 
   $onInit() {
+    this.filteredVrackServices = [];
     this.vrackServicesLoader = false;
     this.disableVrackServicesField = false;
     this.disableSubnetField = true;
@@ -38,21 +39,23 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
   }
 
   onVrackSelected() {
+    this.disableVrackServicesField = false;
+    this.selectedVrackService = null;
     this.vrackServicesLoader = true;
     this.NetappNetworkConfigurationService.getAllowedVrackServices(
       this.selectedVrack.internalName,
     )
       .then((services) => {
-        this.vrackServices = this.vrackServices.filter((vrs) =>
+        this.filteredVrackServices = this.vrackServices.filter((vrs) =>
           services.vrackServices.includes(vrs.id),
         );
       })
       .catch(() => {
-        this.vrackServices = [];
+        this.filteredVrackServices = [];
       })
       .finally(() => {
         this.vrackServicesLoader = false;
-        if (!this.vrackServices?.length) {
+        if (!this.filteredVrackServices?.length) {
           const noVrackServices = {
             display: {
               nameWithVrackId: this.$translate.instant(
@@ -61,7 +64,7 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
               ),
             },
           };
-          this.vrackServices.push(noVrackServices);
+          this.filteredVrackServices.push(noVrackServices);
           this.selectedVrackService = noVrackServices;
           this.disableVrackServicesField = true;
         }
