@@ -183,10 +183,10 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
-      "productStatus": "DRAFT",
+      "displayName": "MyActiveVrackServices",
+      "productStatus": "ACTIVE",
       "subnets": [],
-      "vrackId": null,
+      "vrackId": "pn-00001",
       "zone": "RBX"
     },
     "currentTasks": [],
@@ -202,8 +202,8 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
-      "productStatus": "DRAFT",
+      "displayName": "MyDisabledVrackServices",
+      "productStatus": "DISABLED",
       "subnets": [],
       "vrackId": null,
       "zone": "RBX"

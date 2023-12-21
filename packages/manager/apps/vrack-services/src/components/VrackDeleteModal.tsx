@@ -20,6 +20,7 @@ import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import { ODS_TEXT_LEVEL } from '@ovhcloud/ods-components/text';
 import { handleClick } from '@/utils/ods-utils';
 import { FormField } from './FormField';
+import { ResponseData } from '@/api';
 
 export type VrackDeleteModalProps = {
   headline: string;
@@ -29,7 +30,7 @@ export type VrackDeleteModalProps = {
   closeModal: () => void;
   isLoading?: boolean;
   onConfirmDelete: () => void;
-  error?: string;
+  error?: ResponseData<Error>;
 };
 
 const terminateValue = 'TERMINATE';

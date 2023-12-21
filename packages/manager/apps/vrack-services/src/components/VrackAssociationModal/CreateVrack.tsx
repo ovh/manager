@@ -68,12 +68,10 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
       {(areVrackOrdersLoading || isPending) && (
         <OsdsSpinner inline type={ODS_SPINNER_SIZE.md} />
       )}
-      {!areVrackOrdersLoading && vrackDeliveringOrders.length > 0 && (
-        <DeliveringMessages
-          message={t('deliveringVrackMessage')}
-          orders={vrackDeliveringOrders}
-        />
-      )}
+      <DeliveringMessages
+        messageKey="deliveringVrackMessage"
+        orders={vrackDeliveringOrders}
+      />
       {(isError || isVrackOrdersError) && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
           {t('genericApiError')}

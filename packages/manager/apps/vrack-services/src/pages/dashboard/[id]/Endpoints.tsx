@@ -16,6 +16,7 @@ import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { OnboardingLayout, PageLayout } from '@/components/layout-helpers';
 import { ErrorPage } from '@/components/Error';
 import { hasSubnet, isEditable, useVrackService } from '@/utils/vs-utils';
+import { EndpointDatagrid } from './components/EndpointDataGrid';
 
 export function breadcrumb() {
   return i18next.t('vrack-services/dashboard:endpointsTabLabel');
@@ -71,7 +72,9 @@ const Endpoints: React.FC = () => {
           </span>
         </OsdsButton>
 
-        <section>service endpoints data-grid</section>
+        <section>
+          <EndpointDatagrid />
+        </section>
       </PageLayout>
     );
   }
