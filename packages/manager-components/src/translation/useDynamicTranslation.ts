@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import getTranslations from './translations';
-import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
+import { useTranslation } from 'react-i18next';
+import getTranslations from './translations';
 import { Locale } from '../utils/translation';
 
-export const useDynamicTranslation = (namespace: string) => {
+const useDynamicTranslation = (namespace: string) => {
   const { t, i18n } = useTranslation(namespace);
 
   useEffect(() => {
@@ -21,3 +21,5 @@ export const useDynamicTranslation = (namespace: string) => {
 
   return { t };
 };
+
+export default useDynamicTranslation;

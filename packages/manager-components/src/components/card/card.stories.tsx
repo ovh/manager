@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, CardProps } from './card';
 import { Meta, StoryFn } from '@storybook/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { Card, CardProps } from './card';
 
 export const defaultProps: CardProps = {
   texts: {
@@ -20,6 +20,7 @@ export const defaultProps: CardProps = {
 const meta: Meta<typeof Card> = {
   title: 'Atoms/Card',
   decorators: [
+    // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle
     (Story) => (
       <div className="columns-3">
         <Story />
