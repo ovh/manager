@@ -12,7 +12,7 @@ import {
 
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
-import { useDynamicTranslation } from '../../translation/useDynamicTranslation';
+import useDynamicTranslation from '../../translation/useDynamicTranslation';
 
 export interface Badge {
   text: string;
