@@ -102,6 +102,7 @@ export default class IpListController {
     $scope.advancedModeFilter = true;
     $scope.version = null;
     $scope.selected_option = FILTER_OPTIONS.ALL_IPS;
+    $scope.PAGE_SIZE_MAX = PAGE_SIZE_MAX;
 
     this.securityUrl =
       SECURITY_URL[coreConfig.getUser().ovhSubsidiary] || SECURITY_URL.DEFAULT;
