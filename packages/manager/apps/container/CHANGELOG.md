@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.37.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.37.4...@ovh-ux/manager-container-app@0.37.5) (2023-12-21)
+
+
+### Bug Fixes
+
+* **container:** catalog app link to /catalog ([37df53c](https://github.com/ovh/manager/commit/37df53c8c938e034a5b248fda02361f9057a5d0a))
+
+
+
+
+
 ## [0.37.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.37.3...@ovh-ux/manager-container-app@0.37.4) (2023-12-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app
