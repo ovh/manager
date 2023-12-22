@@ -449,15 +449,11 @@ export default class ActionSelectController {
     ] = shadowActionTree;
 
     // Check if any action of this category contains the searchQuery string
-    this.showSearchNotFoundError = !actionTree.categories
-      .reduce(
-        (result, category) => [
-          ...result,
-          ...category.actions.map(({ value }) => value),
-        ],
-        [],
-      )
-      .some((action) => action.indexOf(actionTree.searchQuery) > -1);
+    this.showSearchNotFoundError = !actionTree.categories.some((category) =>
+      category.actions.some(
+        ({ value }) => value.indexOf(actionTree.searchQuery) > -1,
+      ),
+    );
   }
 
   /**
