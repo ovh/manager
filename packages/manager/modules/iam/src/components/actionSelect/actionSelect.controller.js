@@ -295,28 +295,6 @@ export default class ActionSelectController {
   }
 
   /**
-   * Called back when the search query changes
-   * @param {string} actionTree
-   * @param {object} event
-   */
-  onSearchQueryChanged(actionTree) {
-    if (actionTree.searchQuery?.length <= 2) {
-      this.showSearchNotFoundError = false;
-      return;
-    }
-    // Check if any action of this category contains the searchQuery string
-    this.showSearchNotFoundError = !actionTree.categories
-      .reduce(
-        (result, category) => [
-          ...result,
-          ...category.actions.map(({ value }) => value),
-        ],
-        [],
-      )
-      .some((action) => action.indexOf(actionTree.searchQuery) > -1);
-  }
-
-  /**
    * Set the required ngModel instance's value each time the model has changed
    * The ngModel is of type { action: string, resourceType?: string }[]
    */
@@ -469,6 +447,17 @@ export default class ActionSelectController {
         (currentActionTree) => currentActionTree.value === actionTree.value,
       )
     ] = shadowActionTree;
+
+    // Check if any action of this category contains the searchQuery string
+    this.showSearchNotFoundError = !actionTree.categories
+      .reduce(
+        (result, category) => [
+          ...result,
+          ...category.actions.map(({ value }) => value),
+        ],
+        [],
+      )
+      .some((action) => action.indexOf(actionTree.searchQuery) > -1);
   }
 
   /**

@@ -123,11 +123,10 @@
                 class="oui-input mr-3"
                 name="actionTree_{{ actionTree.value }}"
                 type="text"
-                ng-keyup="event = $event"
+                data-ng-keyup="event = $event"
                 data-ng-model="actionTree.searchQuery"
                 data-ng-change="$ctrl.filterActions(actionTree)"
                 data-ng-disabled="$ctrl.isWildcardActive"
-                data-ng-change="$ctrl.onSearchQueryChanged(actionTree)"
             />
             <div
                 data-ng-if="$ctrl.showSearchNotFoundError"
