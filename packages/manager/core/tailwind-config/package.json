@@ -11,5 +11,10 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "type": "module",
-  "main": "./index.js"
+  "main": "./index.js",
+  "scripts": {
+    "build": "echo tailwind",
+    "dev": "echo tailwind",
+    "dev:watch": "echo tailwind"
+  }
 }
