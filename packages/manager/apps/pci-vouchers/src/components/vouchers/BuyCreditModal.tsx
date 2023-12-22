@@ -4,7 +4,10 @@ import { OsdsInput } from '@ovhcloud/ods-components/input/react';
 import { OsdsModal } from '@ovhcloud/ods-components/modal/react';
 import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
 import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+} from '@ovhcloud/ods-common-theming';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
@@ -61,7 +64,11 @@ export default function BuyCreditModal({
           {!isPending && (
             <>
               <OsdsFormField>
-                <OsdsText slot="label" level="heading" color="default">
+                <OsdsText
+                  slot="label"
+                  level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+                  color={ODS_THEME_COLOR_INTENT.default}
+                >
                   {t('cpb_vouchers_add_credit_amount', {
                     currency: env.user?.currency?.symbol,
                   })}

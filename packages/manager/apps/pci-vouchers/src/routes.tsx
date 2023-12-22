@@ -23,14 +23,16 @@ export default [
       {
         path: '',
         ...lazyRouteConfig(() => import('@/pages/ListingPage')),
-      },
-      {
-        path: 'add',
-        ...lazyRouteConfig(() => import('@/pages/AddVoucherPage')),
-      },
-      {
-        path: 'buy',
-        ...lazyRouteConfig(() => import('@/pages/BuyCreditPage')),
+        children: [
+          {
+            path: 'add',
+            ...lazyRouteConfig(() => import('@/pages/AddVoucherPage')),
+          },
+          {
+            path: 'buy',
+            ...lazyRouteConfig(() => import('@/pages/BuyCreditPage')),
+          },
+        ],
       },
     ],
   },
