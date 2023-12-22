@@ -19,6 +19,7 @@ export default class {
   canOrderDatacenter() {
     return this.dedicatedCloud.canOrderDatacenter && this.addVdcAvailable;
   }
+
   getRight(order) {
     return this.dedicatedCloud
       ? !includes(this.dedicatedCloud.orderRight, order)
