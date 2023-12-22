@@ -1,26 +1,17 @@
-import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import { cdbApi } from '@/data/cdbapi';
 import ServicesList from './_components/serviceListTable';
 import { database } from '@/models/database';
 import { getServiceType } from '@/utils/databaseUtils';
 import Onboarding from './_components/onboarding';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
+import { useGetServices } from '@/hooks/api/useGetServices';
 
 export default function ServicePage() {
-  // const [services, setServices] = useState<database.Service[]>([]);
   const { projectId, serviceType } = useRequiredParams<{
     projectId: string;
     serviceType: database.ServiceTypeEnum;
   }>();
-
-  const getDatabaseListQueryKey = ['/services', projectId];
-
-  const servicesQuery = useQuery({
-    queryKey: getDatabaseListQueryKey,
-    queryFn: () => cdbApi.getServices(projectId),
-    refetchInterval: 30_000, // poll services every 30 sec
-  });
+  const servicesQuery = useGetServices(projectId, { refetchInterval: 30_000 });
 
   const filteredServices = useMemo(() => {
     if (!servicesQuery.data) return [];
@@ -30,10 +21,6 @@ export default function ServicePage() {
         getServiceType(service.engine) === serviceType,
     );
   }, [servicesQuery.data, serviceType]);
-
-  const refetch = () => {
-    servicesQuery.refetch();
-  };
 
   if (servicesQuery.isLoading) return <ServicesList.Skeleton />;
 
@@ -46,7 +33,7 @@ export default function ServicePage() {
         <ServicesList
           services={filteredServices}
           projectId={projectId}
-          refetchFn={refetch}
+          refetchFn={servicesQuery.refetch}
         />
       ) : (
         <Onboarding serviceType={serviceType} />

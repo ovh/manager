@@ -1,8 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { H2 } from '@/components/typography';
-import { cdbApi } from '@/data/cdbapi';
 import { database } from '@/models/database';
 import { getServiceType } from '@/utils/databaseUtils';
 import AvailabilityTable from './_components/availabilities-table';
@@ -11,12 +9,11 @@ import OrderFunnel from './_components/order-funnel';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
+import { useGetAvailabilities } from '@/hooks/api/useGetAvailabilities';
 
 export const Handle = {
   breadcrumb: () => 'pci_cdb_breadcrumb_create',
 };
-
-const getAvailabilitiesListQueryKey = ['/availability'];
 
 export type AvailabilityWithType = database.Availability & {
   serviceType: database.ServiceTypeEnum;
@@ -30,10 +27,7 @@ const CreateServicePage = () => {
     serviceType: database.ServiceTypeEnum;
   }>();
 
-  const availabilitiesQuery = useQuery({
-    queryKey: getAvailabilitiesListQueryKey,
-    queryFn: () => cdbApi.getAvailabilities(projectId),
-  });
+  const availabilitiesQuery = useGetAvailabilities(projectId);
 
   const availabilities: AvailabilityWithType[] | undefined = useMemo(() => {
     if (!availabilitiesQuery.data) return undefined;

@@ -1,7 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
-import { cdbApi } from '@/data/cdbapi';
 import { database } from '@/models/database';
 import { Progress } from '@/components/ui/progress';
+import { useGetMetric } from '@/hooks/api/useGetMetric';
 
 interface MeterProps {
   projectId: string;
@@ -10,18 +9,14 @@ interface MeterProps {
 }
 
 const ServiceMeter = ({ service, projectId, metric }: MeterProps) => {
-  const metricQuery = useQuery({
-    queryKey: ['/metric', projectId, metric, service.engine, service.id],
-    queryFn: () =>
-      cdbApi.getMetric(
-        projectId,
-        service.engine,
-        service.id,
-        metric,
-        database.service.MetricPeriodEnum.lastHour,
-      ),
-    refetchInterval: 30_000, // poll service every 30 sec
-  });
+  const metricQuery = useGetMetric(
+    projectId,
+    service.engine,
+    service.id,
+    metric,
+    database.service.MetricPeriodEnum.lastHour,
+    { refetchInterval: 30_000 },
+  );
   return (
     <>
       <b>{metric}</b>
