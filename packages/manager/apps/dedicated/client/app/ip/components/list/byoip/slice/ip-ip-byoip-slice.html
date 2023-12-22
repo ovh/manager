@@ -1,0 +1,36 @@
+<div data-ng-controller="IpSliceByoipCtrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="cancelSlice"
+        data-wizard-on-finish="slice"
+        data-wizard-title="('ip_byoip_slice_block_title' | translate) + ' ' + ip.ipBlock"
+    >
+        <div data-wizard-step data-wizard-step-valid="isLoaded">
+            <div data-ng-show="isLoaded">
+                <oui-message data-type="error" data-ng-show="errorMessage" >
+                    <span data-ng-bind="errorMessage"></span>
+                </oui-message>
+                <p data-translate="ip_byoip_slice_set_children_size"></p>
+                <label class="oui-select">
+                    <select data-ng-model="selectedSize" class="oui-select__input" >
+                        <option data-ng-repeat="size in ipSizes track by $index" data-ng-value="size">
+                            <span>/{{size.slicingSize}}</span>
+                        </option>
+                    </select>
+                    <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                </label>
+                <div class="bg-light p-3 rounded">
+                    <p data-translate="ip_byoip_slice_configuration"></p>
+                    <ul>
+                        <li data-ng-repeat="selectedSizeUnit in selectedSize.childrenIps track by $index">
+                            {{selectedSizeUnit}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center" data-ng-show="!isLoaded">
+                <oui-spinner></oui-spinner>
+            </div>
+        </div>
+    </div>
+</div>
