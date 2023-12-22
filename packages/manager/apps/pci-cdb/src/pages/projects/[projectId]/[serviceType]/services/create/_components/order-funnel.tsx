@@ -84,7 +84,7 @@ const OrderFunnel = ({
               <Skeleton className="h-10 w-32" />
             </div>
           )}
-          {!vrack.networkQuery.isLoading &&
+          {!vrack.networkQuery.isFetched &&
             (vrack.networks.length > 0 ? (
               <div className="flex items-center mb-2">
                 <label className="mr-2">Network:</label>

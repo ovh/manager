@@ -35,15 +35,12 @@ const CreateServicePage = () => {
     queryFn: () => cdbApi.getAvailabilities(projectId),
   });
 
-  if (availabilitiesQuery.error)
-    return <pre>{JSON.stringify(availabilitiesQuery.error)}</pre>;
-
   const availabilities: AvailabilityWithType[] | undefined = useMemo(() => {
     if (!availabilitiesQuery.data) return undefined;
     return availabilitiesQuery.data
       .map((availability) => ({
         ...availability,
-        serviceType: getServiceType(availability.engine),
+        serviceType: getServiceType(availability.engine as database.EngineEnum),
       }))
       .filter(
         (a) =>
@@ -51,6 +48,9 @@ const CreateServicePage = () => {
           a.serviceType === serviceType,
       );
   }, [availabilitiesQuery.data, serviceType]);
+
+  if (availabilitiesQuery.error)
+    return <pre>{JSON.stringify(availabilitiesQuery.error)}</pre>;
 
   return (
     <>

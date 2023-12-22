@@ -67,7 +67,7 @@ module.exports = {
           '900': 'var(--ods-color-gray-900)',
           '900-contrasted': 'var(--ods-color-gray-900-contrasted)',
         },
-        'blue': {
+        blue: {
           '000': 'var(--ods-color-blue-000)',
           '000-contrasted': 'var(--ods-color-blue-000-contrasted)',
           '050': 'var(--ods-color-blue-050)',
@@ -92,7 +92,7 @@ module.exports = {
           '800-contrasted': 'var(--ods-color-blue-800-contrasted)',
           '900': 'var(--ods-color-blue-900)',
           '900-contrasted': 'var(--ods-color-blue-900-contrasted)',
-        },      
+        },
         'gray-blue': {
           '000': 'var(--ods-color-gray-blue-000)',
           '000-contrasted': 'var(--ods-color-gray-blue-000-contrasted)',
@@ -103,7 +103,7 @@ module.exports = {
           '900': 'var(--ods-color-gray-blue-900)',
           '900-contrasted': 'var(--ods-color-gray-blue-900-contrasted)',
         },
-        'red': {
+        red: {
           '000': 'var(--ods-color-red-000)',
           '000-contrasted': 'var(--ods-color-red-000-contrasted)',
           '050': 'var(--ods-color-red-050)',
@@ -127,7 +127,7 @@ module.exports = {
           '900': 'var(--ods-color-red-900)',
           '900-contrasted': 'var(--ods-color-red-900-contrasted)',
         },
-        'orange': {
+        orange: {
           '000': 'var(--ods-color-orange-000)',
           '000-contrasted': 'var(--ods-color-orange-000-contrasted)',
           '050': 'var(--ods-color-orange-050)',
@@ -151,7 +151,7 @@ module.exports = {
           '900': 'var(--ods-color-orange-900)',
           '900-contrasted': 'var(--ods-color-orange-900-contrasted)',
         },
-        'green': {
+        green: {
           '000': 'var(--ods-color-green-000)',
           '000-contrasted': 'var(--ods-color-green-000-contrasted)',
           '050': 'var(--ods-color-green-050)',
@@ -175,7 +175,7 @@ module.exports = {
           '900': 'var(--ods-color-green-900)',
           '900-contrasted': 'var(--ods-color-green-900-contrasted)',
         },
-        'pink': {
+        pink: {
           '000': 'var(--ods-color-pink-000)',
           '000-contrasted': 'var(--ods-color-pink-000-contrasted)',
           '050': 'var(--ods-color-pink-050)',

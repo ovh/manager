@@ -1,3 +1,3 @@
-/src/components/ui/*
-../catalog/*
+/src/components/ui/
 /src/router/index.tsx
+/src/router.ts

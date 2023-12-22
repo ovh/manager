@@ -22,9 +22,6 @@ export default function ServicePage() {
     refetchInterval: 30_000, // poll services every 30 sec
   });
 
-  if (servicesQuery.error)
-    return <pre>{JSON.stringify(servicesQuery.error)}</pre>;
-
   const filteredServices = useMemo(() => {
     if (!servicesQuery.data) return [];
     return servicesQuery.data.filter(
@@ -34,11 +31,14 @@ export default function ServicePage() {
     );
   }, [servicesQuery.data, serviceType]);
 
-  if (servicesQuery.isLoading) return <ServicesList.Skeleton />;
-
   const refetch = () => {
     servicesQuery.refetch();
   };
+
+  if (servicesQuery.isLoading) return <ServicesList.Skeleton />;
+
+  if (servicesQuery.error)
+    return <pre>{JSON.stringify(servicesQuery.error)}</pre>;
 
   return (
     <>
