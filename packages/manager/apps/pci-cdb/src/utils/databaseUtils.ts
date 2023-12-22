@@ -1,24 +1,24 @@
 import { database } from '@/models/database';
 
-export const getServiceType = (engine: string) => {
+export const getServiceType = (engine: database.EngineEnum) => {
   let type = database.ServiceTypeEnum.databases;
   switch (engine) {
-    case 'mongodb':
-    case 'postgresql':
-    case 'mysql':
-    case 'redis':
-    case 'cassandra':
-    case 'm3db':
-    case 'm3aggregator':
+    case database.EngineEnum.mongodb:
+    case database.EngineEnum.postgresql:
+    case database.EngineEnum.mysql:
+    case database.EngineEnum.redis:
+    case database.EngineEnum.cassandra:
+    case database.EngineEnum.m3db:
+    case database.EngineEnum.m3aggregator:
       type = database.ServiceTypeEnum.databases;
       break;
-    case 'opensearch':
-    case 'grafana':
+    case database.EngineEnum.opensearch:
+    case database.EngineEnum.grafana:
       type = database.ServiceTypeEnum['data-analysis'];
       break;
-    case 'kafkaMirrorMaker':
-    case 'kafkaConnect':
-    case 'kafka':
+    case database.EngineEnum.kafkaMirrorMaker:
+    case database.EngineEnum.kafkaConnect:
+    case database.EngineEnum.kafka:
       type = database.ServiceTypeEnum['data-streaming'];
       break;
     default:
