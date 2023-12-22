@@ -189,12 +189,15 @@ export default class PciInstancesAddController {
           // it is in a region where we have the capability to add an instance
           // and the selected flavor is available for the datacenter region
           datacenters.forEach((datacenter) => {
+            // If productAvailibility of the Product is not enabled it means Product is not activated in that region
+            // in this case Enabled = false and we need to skip checking available regions from flavorGroup
             const isDatacenterAvailable = !!productRegionsAllowed.find(
               (productRegion) =>
                 productRegion.name === datacenter.name &&
-                this.model.flavorGroup.availableRegions.includes(
+                (this.model.flavorGroup.availableRegions.includes(
                   productRegion.name,
-                ),
+                ) ||
+                  !productRegion.enabled),
             );
             if (isDatacenterAvailable) {
               this.availableRegions[continent][location].push(datacenter);
