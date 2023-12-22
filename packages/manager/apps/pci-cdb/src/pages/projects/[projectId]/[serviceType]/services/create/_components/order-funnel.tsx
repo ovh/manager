@@ -84,7 +84,7 @@ const OrderFunnel = ({
               <Skeleton className="h-10 w-32" />
             </div>
           )}
-          {!vrack.networkQuery.isFetched &&
+          {vrack.networkQuery.isSuccess &&
             (vrack.networks.length > 0 ? (
               <div className="flex items-center mb-2">
                 <label className="mr-2">Network:</label>
@@ -113,7 +113,7 @@ const OrderFunnel = ({
               <Skeleton className="h-10 w-32" />
             </div>
           )}
-          {vrack.subnetQuery.isFetched &&
+          {vrack.subnetQuery.isSuccess &&
             (vrack.subnets.length > 0 ? (
               <div className="flex items-center mb-2">
                 <label className="mr-2">Subnet:</label>

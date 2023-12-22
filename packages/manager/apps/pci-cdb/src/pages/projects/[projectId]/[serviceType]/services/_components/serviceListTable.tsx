@@ -32,7 +32,6 @@ export default function ServicesList({
   const [editingService, setEditingService] = useState<database.Service>();
 
   // define api links
-
   const updateServiceNameMutation = useMutation({
     mutationFn: (mutationData: UpdateServiceProps) =>
       cdbApi.updateService(mutationData),

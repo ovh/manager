@@ -1,7 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo, useState } from 'react';
-import { networkApi } from '@/data/networkapi';
 import { NetworkTypeEnum } from '@/models/vrack';
+import { useGetNetwork } from './api/useGetNetwork';
+import { useGetSubnet } from './api/useGetSubnet';
 
 /**
  * Fetch networks and only return the ones that
@@ -14,13 +14,8 @@ export function useVrack(projectId: string, region: string) {
   const [selectedNetwork, setSelectedNetwork] = useState<string>('');
   const [selectedSubnet, setSelectedSubnet] = useState<string>('');
   // define queries
-  const networkQuery = useQuery({
-    queryKey: [projectId, '/network/private'],
-    queryFn: () => networkApi.getPrivateNetworks(projectId),
-  });
-  const subnetQuery = useQuery({
-    queryKey: [projectId, '/network/private', selectedNetwork, '/subnet'],
-    queryFn: () => networkApi.getSubnets(projectId, selectedNetwork),
+  const networkQuery = useGetNetwork(projectId);
+  const subnetQuery = useGetSubnet(projectId, selectedNetwork, {
     enabled: false,
   });
   // create lists based on queries responses
