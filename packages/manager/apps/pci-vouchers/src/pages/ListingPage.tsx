@@ -22,13 +22,14 @@ import {
 } from '@ovhcloud/ods-components/button';
 import Listing from '@/components/Listing';
 import useProject from '@/hooks/useProject';
-import useVouchers from '@/hooks/useVouchers';
+import { useVouchers } from '@/hooks/useVouchers';
 import Product from '@/components/Product';
 import ValidityTo from '@/components/ValidityTo';
 import ValidityFrom from '@/components/ValidityFrom';
 import AvailableCredit from '@/components/AvailableCredit';
 import TotalCredit from '@/components/TotalCredit';
 import GuidesHeader from '@/components/GuidesHeader';
+import { Notifications } from '@/components/Notifications';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -116,7 +117,7 @@ export default function ListingPage() {
   });
 
   const hrefAdd = useHref('./add');
-  const hrefCredit = useHref('./credit/buy');
+  const hrefCredit = useHref('./buy');
   console.log(OsdsLink);
   return (
     <>
@@ -144,6 +145,7 @@ export default function ListingPage() {
         <GuidesHeader></GuidesHeader>
       </div>
       <OsdsDivider></OsdsDivider>
+      <Notifications />
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         size={ODS_THEME_TYPOGRAPHY_SIZE._400}
