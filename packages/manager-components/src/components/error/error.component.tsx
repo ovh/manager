@@ -9,7 +9,7 @@ import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components/button';
 import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
 
-import { useDynamicTranslation } from '../../translation/useDynamicTranslation';
+import useDynamicTranslation from '../../translation/useDynamicTranslation';
 import OOPS from './assets/error-banner-oops.png';
 
 import { ErrorBannerProps } from './error.types';
