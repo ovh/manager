@@ -2,8 +2,8 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
-import { Locale } from '@ovhcloud/msc-utils';
 import getTranslations from './translations';
+import { Locale } from '../utils/translation';
 
 const useDynamicTranslation = (namespace: string) => {
   const { t, i18n } = useTranslation(namespace);
