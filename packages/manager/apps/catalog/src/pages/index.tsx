@@ -11,9 +11,9 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { Product } from '@/api';
 import { getSearchUrlFromFilterParams } from '@/utils/utils';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { useCatalog } from '@/hooks/useCatalog';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import Loading from '../components/Loading/Loading';

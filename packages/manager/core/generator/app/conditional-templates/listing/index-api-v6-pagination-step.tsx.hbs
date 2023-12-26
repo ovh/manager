@@ -12,13 +12,9 @@ import { getListingIcebergV6 } from '@/api';
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import Breadcrumb, {
-  BreadcrumbHandleParams,
 } from '@/components/Breadcrumb/Breadcrumb';
 import DatagridWrapper from '@/components/layout-helpers/Listing/DatagridWrapper';
 
-export function breadcrumb({ params }: BreadcrumbHandleParams) {
-  return params.serviceName;
-}
 
 const PAGE_SIZE_CHOICES = [10, 25, 50, 100, 300];
 const INITAL_PAGE = 1;
