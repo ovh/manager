@@ -1,3 +1,5 @@
+import { PCI_FEATURES } from '../../projects.constant';
+
 export default class CloudProjectBillingConsumptionCurrentCtrl {
   /* @ngInject */
   constructor($filter, $translate, CucCloudMessage) {
@@ -12,6 +14,7 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
   }
 
   $onInit() {
+    this.PCI_FEATURES = PCI_FEATURES;
     this.isExpanded = Object.keys(this.consumptionDetails).reduce(
       (acc, planFamily) => ({
         ...acc,
