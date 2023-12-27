@@ -7,12 +7,24 @@ import {
   COMPANY_NOT_CREATED_PREFIX,
 } from './constants';
 
+import {
+  LEGAL_FORM,
+  PREFIX_TRANSLATION_LEGAL_FORM,
+} from '../../components/siret/siret.constants';
+
 export default class OvhSignUpActivityCtrl {
   /* @ngInject */
-  constructor($filter, atInternet) {
+  constructor($filter, atInternet, $translate) {
     this.atInternet = atInternet;
     this.$filter = $filter;
     this.corporationIsCreated = true;
+    this.$translate = $translate;
+  }
+
+  $onInit() {
+    this.legalFormList = LEGAL_FORM.map((value) =>
+      this.$translate.instant(PREFIX_TRANSLATION_LEGAL_FORM + value),
+    );
   }
 
   /**
@@ -55,8 +67,6 @@ export default class OvhSignUpActivityCtrl {
 
   resetCorporationData() {
     this.signUpFormCtrl.model.companyNationalIdentificationNumber = null;
-    this.signUpFormCtrl.model.organisation = null;
-    this.signUpFormCtrl.model.corporationType = null;
     this.signUpFormCtrl.model.vat = null;
   }
 
