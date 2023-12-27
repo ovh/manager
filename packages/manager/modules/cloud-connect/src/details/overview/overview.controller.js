@@ -134,11 +134,7 @@ export default class CloudConnectOverviewCtrl {
   }
 
   getBandwidth(bandwidth) {
-    const array = bandwidth.split('');
-    const bandwidthNumber = parseInt(bandwidth, 10);
-    return `${bandwidthNumber} ${this.$translate.instant(
-      `cloud_connect_common_${array[array.length - 1]}`,
-    )}`;
+    return this.cloudConnectService.translateBandwidth(bandwidth);
   }
 
   getPopTypeName(typeId) {

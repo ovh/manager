@@ -26,8 +26,8 @@
   "cloud_connect_common_create": "Utwórz",
   "cloud_connect_common_error": "Błąd",
   "cloud_connect_status_init": "Uruchom",
-  "cloud_connect_common_m": "MB",
-  "cloud_connect_common_g": "GB",
+  "cloud_connect_common_m": "Mbps",
+  "cloud_connect_common_g": "Gbps",
   "cloud_connect_type": "Typ",
   "cloud_connect_asn_type": "Klient ASN",
   "cloud_connect_asn_type_placeholder": "Wprowadź ",
@@ -77,5 +77,6 @@
   "cloud_connect_extra_title": "Konfiguracja routingu",
   "cloud_connect_vrack_associate_cloud_connect": "Korzystasz już z opcji OVHcloud Connect przypisanej do tej sieci vRack Pamiętaj, że konfiguracje DC będą połączone i każda zmiana będzie miała wpływ na pozostałe opcje.",
   "cloud_connect_date_expiration": "Odnowienie przewidziane na",
-  "cloud_connect_product_name": "Nazwa oferty"
+  "cloud_connect_product_name": "Nazwa oferty",
+  "cloud_connect_change_bandwidth": "Zmień przepustowość"
 }

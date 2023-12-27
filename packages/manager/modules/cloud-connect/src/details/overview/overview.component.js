@@ -20,6 +20,7 @@ export default {
     goToRegenerateServiceKeyPage: '<',
     goToSendServiceKeyPage: '<',
     goToManageServiceKeysPage: '<',
+    goToChangeBandwidthPage: '<',
     user: '<',
   },
   controller,
