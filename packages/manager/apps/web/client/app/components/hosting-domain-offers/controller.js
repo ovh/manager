@@ -4,7 +4,6 @@ import groupBy from 'lodash/groupBy';
 import {
   UCENTS_FACTOR,
   NEW_OFFERS_END_DATE,
-  CURRENT_OFFERS,
   BADGES,
   NEW_OFFERS_PLAN_CODES,
   CATEGORIES_MAP,
@@ -90,13 +89,7 @@ export default class WebComponentsHostingDomainOffersController {
   }
 
   $onInit() {
-    // build offers group
     this.groupedOffers = this.buildOffersGroup();
-
-    // preselect equal offer (if exist)
-    this.model = {
-      offer: this.getEqualOffer(),
-    };
   }
 
   static buildBadgeModel(type, className) {
@@ -116,7 +109,9 @@ export default class WebComponentsHostingDomainOffersController {
     return this.offers.flatMap((offer) => {
       if (!CLOUDWEB_OFFER.includes(offer.planCode)) {
         try {
-          const category = this.constructor.getOfferCategory(offer);
+          const category = WebComponentsHostingDomainOffersController.getOfferCategory(
+            offer,
+          );
           const offerVersion = VERSION_MAP[offer.planCode] || offer.planCode;
           const technicalsOffer = this.getOfferSelector(category, offerVersion);
           const { planCode } = technicalsOffer;
@@ -124,7 +119,7 @@ export default class WebComponentsHostingDomainOffersController {
 
           return {
             ...offer,
-            badge: this.getOfferBadge(offer),
+            badge: WebComponentsHostingDomainOffersController.getOfferBadge(),
             planCode,
             category,
             selector: this.$translate.instant(
@@ -158,10 +153,7 @@ export default class WebComponentsHostingDomainOffersController {
 
     return Object.keys(groupedOffers).map((category) => {
       const versions = groupedOffers[category];
-      const equalOffer = versions.find(
-        ({ badge }) => badge?.type === BADGES.EQUAL,
-      );
-      const selectedVersion = equalOffer || versions[0];
+      const selectedVersion = versions[0];
 
       return {
         category,
@@ -172,20 +164,8 @@ export default class WebComponentsHostingDomainOffersController {
     });
   }
 
-  getEqualOffer() {
-    return this.groupedOffers.find(
-      ({ selectedVersion }) => selectedVersion?.badge?.type === BADGES.EQUAL,
-    );
-  }
-
-  getOfferBadge(offer) {
+  static getOfferBadge() {
     const Ctrl = WebComponentsHostingDomainOffersController;
-    const CURRENT_OFFER = CURRENT_OFFERS[this.currentOffer];
-
-    // equal case
-    if (CURRENT_OFFER?.equal?.includes(offer.planCode)) {
-      return Ctrl.buildBadgeModel(BADGES.EQUAL, 'success');
-    }
 
     // case new
     if (moment().isBefore(NEW_OFFERS_END_DATE)) {
