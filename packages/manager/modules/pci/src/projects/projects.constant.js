@@ -72,6 +72,8 @@ export const PCI_FEATURES = {
     DEPLOY_INSTANCE: 'public-cloud:link-deploy-instance',
   },
   BANNERS: {
+    BILLING_CHANGE_MEDIATION_BANNER:
+      'public-cloud:project:billing-change-mediation-banner',
     REPRICING_BANNER: 'public-cloud:project:repricing-banner',
   },
   OTHERS: {
