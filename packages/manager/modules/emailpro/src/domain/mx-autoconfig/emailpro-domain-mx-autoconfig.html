@@ -40,22 +40,10 @@
             <dl class="dl-horizontal">
                 <dt data-translate="emailpro_tab_domain_domain"></dt>
                 <dd data-ng-bind="domain.displayName"></dd>
-
                 <dt
-                    data-ng-if="!model.antiSpam"
                     data-translate="emailpro_tab_domain_diagnostic_mx_label_champs"
                 ></dt>
                 <dd
-                    data-ng-if="!model.antiSpam"
-                    data-ng-bind-html="'emailpro_tab_domain_diagnostic_mx_no_antispam_config' | translate: { t0: domainDiag.mx.noSpam[0].priority, t1: domainDiag.mx.noSpam[0].target }"
-                ></dd>
-
-                <dt
-                    data-ng-if="model.antiSpam"
-                    data-translate="emailpro_tab_domain_diagnostic_mx_label_champs"
-                ></dt>
-                <dd
-                    data-ng-if="model.antiSpam"
                     data-ng-bind-html="'emailpro_tab_domain_diagnostic_mx_antispam_config' | translate: { t0: domainDiag.mx.spam[0].priority, t1: domainDiag.mx.spam[0].target, t2: domainDiag.mx.spam[1].priority, t3: domainDiag.mx.spam[1].target, t4: domainDiag.mx.spam[2].priority, t5: domainDiag.mx.spam[2].target, t6: domainDiag.mx.spam[3].priority, t7: domainDiag.mx.spam[3].target }"
                 ></dd>
             </dl>
