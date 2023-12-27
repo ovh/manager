@@ -56,26 +56,24 @@ export default class {
     this.ouiDatagridService.refresh('operationsDatagrid', true);
   }
 
-  loadOperations({ offset, pageSize }) {
-    const opts = {};
-    if (this.progressionFilter) {
-      opts.params = {
-        state: this.progressionFilter,
-      };
-    }
-    return this.DedicatedCloud.getOperations(this.productId, opts).then(
-      (result) => {
-        result.reverse();
-        return {
-          data: result
-            .slice(offset - 1, offset - 1 + pageSize)
-            .map((id) => ({ id })),
-          meta: {
-            totalCount: result.length,
-          },
-        };
-      },
-    );
+  loadOperations({ offset, pageSize, sort }) {
+    const params = {
+      offset,
+      pageSize,
+      sort: sort.property,
+      sortOrder: sort.dir === 1 ? 'ASC' : 'DESC',
+      defaultFilterColumn: 'executionDate',
+      filters: this.progressionFilter
+        ? [
+            {
+              field: 'state',
+              comparator: 'is',
+              reference: [this.progressionFilter],
+            },
+          ]
+        : [],
+    };
+    return this.DedicatedCloud.getOperations(this.productId, params);
   }
 
   setRelatedServices(operation) {
@@ -190,45 +188,41 @@ export default class {
     return this.$q.when(operation);
   }
 
-  loadOperation(item) {
-    return this.DedicatedCloud.getOperation(this.productId, {
-      taskId: item.id,
-    })
-      .then((op) => {
-        const friendlyNameBy = op.createdBy
-          ? this.$translate.instant(
-              `dedicatedCloud_OPERATIONS_createdby_${op.createdBy.replace(
-                /-/g,
-                '_',
-              )}`,
-            )
-          : this.$translate.instant('common_unavailable_information');
-        const friendlyNameFrom = op.createdFrom
-          ? this.$translate.instant(
-              `dedicatedCloud_OPERATIONS_createdfrom_${op.createdFrom.replace(
-                /-/g,
-                '_',
-              )}`,
-            )
-          : this.$translate.instant('common_unavailable_information');
-        set(
-          op,
-          'createdBy',
-          friendlyNameBy.startsWith('dedicatedCloud_OPERATIONS_createdby_')
-            ? op.createdBy
-            : friendlyNameBy,
-        );
-        set(
-          op,
-          'createdFrom',
-          friendlyNameFrom.startsWith('dedicatedCloud_OPERATIONS_createdfrom_')
-            ? op.createdFrom
-            : friendlyNameFrom,
-        );
-        set(op, 'isDone', includes(['canceled', 'done'], op.state));
-        return op;
-      })
-      .then((operation) => this.setOperationDescription(operation))
-      .then((operation) => this.setRelatedServices(operation));
+  loadOperationAdditionalData(op) {
+    const friendlyNameBy = op.createdBy
+      ? this.$translate.instant(
+          `dedicatedCloud_OPERATIONS_createdby_${op.createdBy.replace(
+            /-/g,
+            '_',
+          )}`,
+        )
+      : this.$translate.instant('common_unavailable_information');
+    const friendlyNameFrom = op.createdFrom
+      ? this.$translate.instant(
+          `dedicatedCloud_OPERATIONS_createdfrom_${op.createdFrom.replace(
+            /-/g,
+            '_',
+          )}`,
+        )
+      : this.$translate.instant('common_unavailable_information');
+    set(
+      op,
+      'createdBy',
+      friendlyNameBy.startsWith('dedicatedCloud_OPERATIONS_createdby_')
+        ? op.createdBy
+        : friendlyNameBy,
+    );
+    set(
+      op,
+      'createdFrom',
+      friendlyNameFrom.startsWith('dedicatedCloud_OPERATIONS_createdfrom_')
+        ? op.createdFrom
+        : friendlyNameFrom,
+    );
+    set(op, 'isDone', includes(['canceled', 'done'], op.state));
+
+    return this.setOperationDescription(op).then((operation) =>
+      this.setRelatedServices(operation),
+    );
   }
 }
