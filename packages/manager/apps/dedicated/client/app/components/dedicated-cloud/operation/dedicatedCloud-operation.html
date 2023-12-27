@@ -9,20 +9,24 @@
         id="operationsDatagrid"
         data-ng-if="!$ctrl.loading"
         data-rows-loader="$ctrl.loadOperations($config)"
-        data-row-loader="$ctrl.loadOperation($row)"
+        data-row-loader="$ctrl.loadOperationAdditionalData($row)"
     >
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_OPERATIONS_taskId' | translate"
             data-property="taskId"
+            data-sortable
         >
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_OPERATIONS_name' | translate"
             data-property="name"
+            data-sortable
         >
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_OPERATIONS_type' | translate"
+            data-property="type"
+            data-sortable
         >
             <span
                 data-ng-if="$row.type"
@@ -31,25 +35,16 @@
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_OPERATIONS_progression' | translate"
+            data-property="state"
+            data-sortable
         >
-            <span data-ng-switch="$row.state">
-                <span
-                    data-ng-switch-when="done"
-                    data-translate="dedicatedCloud_OPERATIONS_state_done"
-                >
-                </span>
-                <span
-                    data-ng-switch-when="canceled"
-                    data-translate="dedicatedCloud_OPERATIONS_state_canceled"
-                >
-                </span>
-                <span data-ng-switch-default>
-                    <span
-                        data-ng-if="$row.progress"
-                        data-ng-bind="('dedicatedCloud_OPERATIONS_state_' + $row.state | translate) + ' (' + $row.progress + '%)'"
-                    >
-                    </span>
-                </span>
+            <span
+                data-translate="{{'dedicatedCloud_OPERATIONS_state_' + $row.state}}"
+            ></span>
+            <span
+                data-ng-if="$row.progress && !['done', 'canceled'].includes($row.state)"
+                data-ng-bind="' (' + $row.progress + '%)'"
+            >
             </span>
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -78,25 +73,33 @@
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_OPERATIONS_created_from' | translate"
             data-property="createdFrom"
+            data-sortable
         >
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_OPERATIONS_created_by' | translate"
             data-property="createdBy"
+            data-sortable
         >
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_OPERATIONS_date_treatment' | translate"
+            data-property="executionDate"
+            data-sortable
         >
             <span data-ng-bind="$row.executionDate | date:'medium'"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_OPERATIONS_date_end' | translate"
+            data-property="endDate"
+            data-sortable
         >
             <span data-ng-bind="$row.endDate | date:'medium'"></span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicatedCloud_OPERATIONS_date_update' | translate"
+            data-property="lastModificationDate"
+            data-sortable
         >
             <span
                 data-ng-bind="$row.lastModificationDate | date:'medium'"
