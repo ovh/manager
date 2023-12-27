@@ -102,6 +102,7 @@ export default class IpListController {
     $scope.advancedModeFilter = true;
     $scope.version = null;
     $scope.selected_option = FILTER_OPTIONS.ALL_IPS;
+    $scope.PAGE_SIZE_MAX = PAGE_SIZE_MAX;
 
     this.securityUrl =
       SECURITY_URL[coreConfig.getUser().ovhSubsidiary] || SECURITY_URL.DEFAULT;
@@ -262,6 +263,7 @@ export default class IpListController {
         pageSize: $scope.pageSize,
         version: $scope.version,
         isAdditionalIp: $scope.isAdditionalIp,
+        simpleMode: true,
       });
       cancelFetch = cancel;
       request
@@ -271,10 +273,20 @@ export default class IpListController {
             return {
               ...ip,
               collapsed: !ip.isUniq,
+              fetchingData: true,
             };
           });
           $scope.loading.table = false;
-          $scope.ipsList.forEach(checkIps);
+          $scope.ipsList.forEach((ip) => {
+            refreshIp(ip.ipBlock)
+              .then((refreshedIp) => {
+                Object.assign(ip, refreshedIp);
+                checkIps(ip);
+              })
+              .finally(() => {
+                set(ip, 'fetchingData', false);
+              });
+          });
         })
         .catch((error) => {
           if (error?.xhrStatus === 'abort') {

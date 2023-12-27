@@ -365,30 +365,38 @@
 
                 <!-- Reverse -->
                 <td>
-                    <span
-                        class="label label-info"
-                        title="{{ 'ip_table_manage_delegation_ipv6block_delegation_reverse_dns' | translate }}"
-                        data-ng-if="ipBlock.delegation && ipBlock.delegation.length > 0"
-                        >NS</span
-                    >
-                    <ul class="list-unstyled" data-ng-show="ipBlock.delegation">
-                        <li data-ng-repeat="reverse in ipBlock.delegation">
-                            <span data-ng-bind="reverse"></span>
-                            <button
-                                class="btn btn-link"
-                                type="button"
-                                data-ng-click="setAction('ip/reverse/delete/ip-ip-reverse-delete', {ipBlock: ipBlock, reverse:reverse})"
-                                title="{{:: 'common_delete' | translate }}"
-                            >
-                                <span
-                                    class="fa fa-trash"
-                                    aria-label="{{:: 'common_delete' | translate }}"
-                                    aria-hidden="true"
+                    <div data-ng-if="ipBlock.fetchingData" class="text-center">
+                        <oui-skeleton size="m"></oui-skeleton>
+                    </div>
+                    <div data-ng-if="!ipBlock.fetchingData">
+                        <span
+                            class="label label-info"
+                            title="{{ 'ip_table_manage_delegation_ipv6block_delegation_reverse_dns' | translate }}"
+                            data-ng-if="ipBlock.delegation && ipBlock.delegation.length > 0"
+                            >NS</span
+                        >
+                        <ul
+                            class="list-unstyled"
+                            data-ng-show="ipBlock.delegation"
+                        >
+                            <li data-ng-repeat="reverse in ipBlock.delegation">
+                                <span data-ng-bind="reverse"></span>
+                                <button
+                                    class="btn btn-link"
+                                    type="button"
+                                    data-ng-click="setAction('ip/reverse/delete/ip-ip-reverse-delete', {ipBlock: ipBlock, reverse:reverse})"
+                                    title="{{:: 'common_delete' | translate }}"
                                 >
-                                </span>
-                            </button>
-                        </li>
-                    </ul>
+                                    <span
+                                        class="fa fa-trash"
+                                        aria-label="{{:: 'common_delete' | translate }}"
+                                        aria-hidden="true"
+                                    >
+                                    </span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
                 </td>
 
                 <!-- Virtual MAC -->
@@ -492,58 +500,63 @@
 
                 <!-- Reverse -->
                 <td>
-                    <span
-                        data-ng-if="!ip.reverseEdit"
-                        data-ng-bind="ip.reverse ? (ip.reverse | ipPunycode:true) : '-'"
-                    >
-                    </span>
-                    <button
-                        type="button"
-                        class="btn btn-link"
-                        title="{{:: 'common_change' | translate }}"
-                        data-ng-if="!ip.reverseEdit"
-                        data-ng-click="editReverseInline(ipBlock, ip)"
-                    >
+                    <div data-ng-if="ipBlock.fetchingData" class="text-center">
+                        <oui-skeleton size="m"></oui-skeleton>
+                    </div>
+                    <div data-ng-if="!ipBlock.fetchingData">
                         <span
-                            class="fa fa-edit"
-                            aria-hidden="true"
-                            aria-label="{{:: 'common_change' | translate }}"
+                            data-ng-if="!ip.reverseEdit"
+                            data-ng-bind="ip.reverse ? (ip.reverse | ipPunycode:true) : '-'"
                         >
                         </span>
-                    </button>
-                    <div class="input-group" data-ng-if="ip.reverseEdit">
-                        <input
-                            type="text"
-                            class="form-control"
-                            data-ng-model="ip.reverseEditValue"
-                        />
-                        <span class="input-group-btn">
-                            <button
-                                class="btn btn-primary"
-                                data-ng-click="editReverseInlineApply(ipBlock, ip, $event)"
-                                data-ng-disabled="!reverseIsValid(ip.reverseEditValue)"
-                                title="{{:: 'common_confirm' | translate }}"
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            title="{{:: 'common_change' | translate }}"
+                            data-ng-if="!ip.reverseEdit"
+                            data-ng-click="editReverseInline(ipBlock, ip)"
+                        >
+                            <span
+                                class="fa fa-edit"
+                                aria-hidden="true"
+                                aria-label="{{:: 'common_change' | translate }}"
                             >
-                                <span
-                                    class="fa fa-check"
-                                    aria-label="{{:: 'common_confirm' | translate }}"
-                                    aria-hidden="true"
+                            </span>
+                        </button>
+                        <div class="input-group" data-ng-if="ip.reverseEdit">
+                            <input
+                                type="text"
+                                class="form-control"
+                                data-ng-model="ip.reverseEditValue"
+                            />
+                            <span class="input-group-btn">
+                                <button
+                                    class="btn btn-primary"
+                                    data-ng-click="editReverseInlineApply(ipBlock, ip, $event)"
+                                    data-ng-disabled="!reverseIsValid(ip.reverseEditValue)"
+                                    title="{{:: 'common_confirm' | translate }}"
                                 >
-                                </span>
-                            </button>
-                            <button
-                                class="btn btn-default"
-                                data-ng-click="editReverseInlineCancel(ipBlock, ip, $event)"
-                                title="{{:: 'common_cancel' | translate }}"
-                            >
-                                <span
-                                    class="fa fa-times"
-                                    aria-label="{{:: 'common_confirm' | translate }}"
-                                    aria-hidden="true"
+                                    <span
+                                        class="fa fa-check"
+                                        aria-label="{{:: 'common_confirm' | translate }}"
+                                        aria-hidden="true"
+                                    >
+                                    </span>
+                                </button>
+                                <button
+                                    class="btn btn-default"
+                                    data-ng-click="editReverseInlineCancel(ipBlock, ip, $event)"
+                                    title="{{:: 'common_cancel' | translate }}"
                                 >
-                                </span>
-                            </button>
-                        </span>
+                                    <span
+                                        class="fa fa-times"
+                                        aria-label="{{:: 'common_confirm' | translate }}"
+                                        aria-hidden="true"
+                                    >
+                                    </span>
+                                </button>
+                            </span>
+                        </div>
                     </div>
                 </td>
                 <!-- VMAC -->
@@ -685,6 +698,7 @@
         data-ng-if="!loading.table && ipsCount > 0"
         data-current-offset="paginationOffset"
         data-page-size="pageSize"
+        data-page-size-max="PAGE_SIZE_MAX"
         data-total-items="ipsCount"
         data-on-change="onPaginationChange($event)"
     >
