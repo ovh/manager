@@ -11,7 +11,11 @@ import {
 } from 'lodash';
 import CloudConnectPop from './cloud-connect-pop.class';
 
-import { POP_TYPE_CONSTANT, STATUS } from './cloud-connect.constants';
+import {
+  POP_TYPE_CONSTANT,
+  STATUS,
+  CHANGE_BANDWIDTH_ALLOWED_OFFERS_REGEX,
+} from './cloud-connect.constants';
 
 export default class CloudConnect {
   constructor({
@@ -68,6 +72,10 @@ export default class CloudConnect {
 
   setProductName(name) {
     this.productName = name;
+  }
+
+  setPlanCode(code) {
+    this.planCode = code;
   }
 
   getAllowedPopType() {
@@ -223,6 +231,10 @@ export default class CloudConnect {
       this.datacenterConfigurations,
       (dc) => dc.status === STATUS.INIT,
     );
+  }
+
+  canChangeBandwidth() {
+    return CHANGE_BANDWIDTH_ALLOWED_OFFERS_REGEX.test(this.planCode);
   }
 
   isPopDeleting() {

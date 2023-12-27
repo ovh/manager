@@ -1,0 +1,29 @@
+<form
+    id="changeBandwidth"
+    name="changeBandwidth"
+    data-ng-submit="changeBandwidth.$valid && $ctrl.changeBandwidth()"
+    novalidate
+>
+    <oui-modal
+        data-heading="{{:: 'cloud_connect_change_bandwidth' | translate }}"
+        data-primary-label="{{:: 'cloud_connect_change_bandwidth_confirm' | translate }}"
+        data-primary-disabled="$ctrl.isLoading || changeBandwidth.$invalid"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'cloud_connect_change_bandwidth_cancel' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+        data-type="warning"
+    >
+        <oui-field
+            data-label="{{:: 'cloud_connect_change_bandwidth_select' | translate }}"
+        >
+            <oui-select
+                name="selectOffer"
+                data-model="$ctrl.offer"
+                data-items="$ctrl.upgradeOffers"
+                data-match="bandwidthLabel"
+                data-required
+            ></oui-select>
+        </oui-field>
+    </oui-modal>
+</form>

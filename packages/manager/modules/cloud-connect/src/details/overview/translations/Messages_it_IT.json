@@ -26,8 +26,8 @@
   "cloud_connect_common_create": "Crea",
   "cloud_connect_common_error": "Errore",
   "cloud_connect_status_init": "Attivazione",
-  "cloud_connect_common_m": "MB",
-  "cloud_connect_common_g": "GB",
+  "cloud_connect_common_m": "Mbps",
+  "cloud_connect_common_g": "Gbps",
   "cloud_connect_type": "Tipo",
   "cloud_connect_asn_type": "ASN del cliente",
   "cloud_connect_asn_type_placeholder": "Inserisci l’ASN del cliente",
@@ -77,5 +77,6 @@
   "cloud_connect_extra_title": "Configurazione di routing",
   "cloud_connect_vrack_associate_cloud_connect": "Su questa vRack risulta già associata un’opzione OVHcloud Connect. Ti ricordiamo che le configurazioni DC saranno associate e qualsiasi modifica avrà impatto sulle relative opzioni.",
   "cloud_connect_date_expiration": "Rinnovo previsto il",
-  "cloud_connect_product_name": "Nome commerciale"
+  "cloud_connect_product_name": "Nome commerciale",
+  "cloud_connect_change_bandwidth": "Modificare la banda passante"
 }
