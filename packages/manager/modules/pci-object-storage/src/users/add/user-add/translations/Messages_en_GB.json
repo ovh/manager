@@ -1,0 +1,17 @@
+{
+  "pci_projects_project_users_add_title": "Add S3 user",
+  "pci_projects_project_users_add_short_description": "To access object storage, please add a user to your container. You can select an existing user or create a new user. Each user (OpenStack) will be linked to one or more S3 key pairs (S3 credentials), each consisting of an 'Access Key' and a 'Secret Key'.",
+  "pci_projects_project_users_add_submit_label": "Create",
+  "pci_projects_project_users_add_cancel_label": "Cancel",
+  "pci_projects_project_users_add_description_label": "User description",
+  "pci_projects_project_users_add_existing_user": "Select an existing user",
+  "pci_projects_project_users_add_create_user": "Create a new user",
+  "pci_projects_project_users_add_success_message": "S3 credentials for user {{user}} have been generated",
+  "pci_projects_project_users_add_error_message": "S3 credentials for user {{user}} could not be generated.",
+  "pci_projects_project_users_add_username": "Your OpenStack username:",
+  "pci_projects_project_users_add_description": "Your description:",
+  "pci_projects_project_users_add_accesskey": "Your S3 access key:",
+  "pci_projects_project_users_add_secretkey": "Your S3 secret key:",
+  "pci_projects_project_users_add_as_no_credentials": "No credentials",
+  "pci_projects_project_users_add_as_credentials": "Credentials generated"
+}
