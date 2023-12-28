@@ -29,7 +29,7 @@ export default [
             ...lazyRouteConfig(() => import('@/pages/AddVoucherPage')),
           },
           {
-            path: 'buy',
+            path: 'credit/buy',
             ...lazyRouteConfig(() => import('@/pages/BuyCreditPage')),
           },
         ],
