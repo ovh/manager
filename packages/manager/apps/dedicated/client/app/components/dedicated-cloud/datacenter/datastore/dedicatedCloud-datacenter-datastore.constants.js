@@ -1,3 +1,10 @@
+export const US_DEDICATED_CLOUD_DATASTORE_GUIDES = {
+  billing:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/360002306224-Overview-of-Billing-with-OVHcloud-US',
+  vMotion:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/7885349436563-How-to-Use-VMware-Storage-vMotion',
+};
+
 export const DEDICATED_CLOUD_DATASTORE_GUIDES = {
   fr_FR: {
     billing: 'https://docs.ovh.com/fr/private-cloud/facturation-private-cloud',
@@ -18,4 +25,5 @@ export const DEDICATED_CLOUD_DATASTORE_GUIDES = {
 
 export default {
   DEDICATED_CLOUD_DATASTORE_GUIDES,
+  US_DEDICATED_CLOUD_DATASTORE_GUIDES,
 };
