@@ -1,0 +1,59 @@
+<oui-message type="success" dismissable>
+    <!--Description-->
+    <p
+        ng-if="!$ctrl.containerName"
+        data-translate="{{:: $ctrl.isNewUser ? 'pci_projects_project_storages_containers_add_create_user_success_message' : 'pci_projects_project_storages_containers_add_linked_user_success_message'}}"
+        data-translate-values="{ username: '<strong>'+$ctrl.user.username+'</strong>' }"
+    ></p>
+    <p
+        ng-if="$ctrl.containerName"
+        data-translate="pci_projects_project_storages_containers_add_container_success"
+        data-translate-values="{
+            'containerName': '<strong>'+$ctrl.containerName+'</strong>',
+            'username': '<strong>'+$ctrl.user.description+'</strong>',
+            'role': '<strong>'+$ctrl.role+'</strong>'
+        }"
+    ></p>
+
+    <!--Fields-->
+    <div class="row">
+        <div class="col-md-6 col-lg-5">
+            <!--User username info-->
+            <pci-project-storages-components-field-clipboard
+                data-is-displayable-show-hide-password-btn="false"
+                data-field-id=":: $ctrl.fields.USERNAME.id"
+                data-field-key-label=":: 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_username_label' | translate"
+                data-field-key-value="$ctrl.user.username"
+                data-on-copy-click="$ctrl.onCopyFieldClick({data: {tracking: $ctrl.fields.USERNAME.tracking}})"
+            ></pci-project-storages-components-field-clipboard>
+
+            <!--User description info-->
+            <pci-project-storages-components-field-clipboard
+                data-is-displayable-show-hide-password-btn="false"
+                data-field-id=":: $ctrl.fields.DESCRIPTION.id"
+                data-field-key-label=":: 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_description_label' | translate"
+                data-field-key-value="$ctrl.user.description"
+                data-on-copy-click="$ctrl.onCopyFieldClick({data: {tracking: $ctrl.fields.DESCRIPTION.tracking}})"
+            ></pci-project-storages-components-field-clipboard>
+        </div>
+        <div class="col-md-6 col-lg-5">
+            <!--User S3 credential access key-->
+            <pci-project-storages-components-field-clipboard
+                data-is-displayable-show-hide-password-btn="false"
+                data-field-id=":: $ctrl.fields.ACCESS_KEY.id"
+                data-field-key-label=":: 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_access-key_label' | translate"
+                data-field-key-value="$ctrl.credential.access"
+                data-on-copy-click="$ctrl.onCopyFieldClick({data: {tracking: $ctrl.fields.ACCESS_KEY.tracking}})"
+            ></pci-project-storages-components-field-clipboard>
+
+            <!--User S3 credential secret key-->
+            <pci-project-storages-components-field-clipboard
+                data-is-displayable-show-hide-password-btn="true"
+                data-field-id=":: $ctrl.fields.SECRET_KEY.id"
+                data-field-key-label=":: 'pci_projects_project_storages_containers_add_create_or_linked_user_create_user_success_secret-key_label' | translate"
+                data-field-key-value="$ctrl.credential.secret"
+                data-on-copy-click="$ctrl.onCopyFieldClick({data: {tracking: $ctrl.fields.SECRET_KEY.tracking}})"
+            ></pci-project-storages-components-field-clipboard>
+        </div>
+    </div>
+</oui-message>

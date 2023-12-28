@@ -36,6 +36,7 @@
   "dependencies": {
     "@ovh-ux/ui-kit": "^6.7.4",
     "bootstrap": "~3.3.0",
+    "file-saver": "^2.0.5",
     "jsurl": "^0.1.5",
     "lodash": "^4.17.15",
     "moment": "^2.24.0"
@@ -45,6 +46,8 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
+    "@ovh-ux/ng-at-internet": "^5.11.2",
+    "@ovh-ux/ng-ovh-feature-flipping": "^1.1.1",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.4",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
     "@ovh-ux/ui-kit": "^6.5.3",

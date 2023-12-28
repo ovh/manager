@@ -6,6 +6,7 @@ import cucConfig from './config';
 import cucFeatureAvailability from './featureAvailability';
 import cucHelper from './helper';
 import cucGuidesHeader from './guides-header';
+import cucPciProjectRegionsList from './regions-list';
 import cucMessage from './message';
 import cucMomentFormat from './moment';
 import cucNavigation from './navigation';
@@ -24,6 +25,7 @@ angular.module(moduleName, [
   cucConfig,
   cucFeatureAvailability,
   cucGuidesHeader,
+  cucPciProjectRegionsList,
   cucHelper,
   cucMessage,
   cucMomentFormat,
