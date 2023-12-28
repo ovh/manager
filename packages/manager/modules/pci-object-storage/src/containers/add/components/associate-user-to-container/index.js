@@ -2,14 +2,12 @@ import angular from 'angular';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import credentialBanner from '../../../../components/user-credential-banner';
-
 import component from './component';
 
 const moduleName = 'ovhManagerPciStoragesContainersAddCreateLinkedUser';
 
 angular
-  .module(moduleName, ['pascalprecht.translate', 'oui', credentialBanner])
+  .module(moduleName, ['pascalprecht.translate', 'oui'])
   .component('pciProjectStoragesCreateLinkedUser', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

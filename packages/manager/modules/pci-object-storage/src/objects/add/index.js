@@ -8,7 +8,7 @@ import '@ovh-ux/ui-kit';
 import 'ovh-api-services';
 import 'angular-ui-bootstrap';
 
-import containersAdd from '../../../containers/add';
+import containersAdd from '../../containers/add';
 import routing from './add.routing';
 
 const moduleName = 'ovhManagerPciStoragesObjectStorageAdd';

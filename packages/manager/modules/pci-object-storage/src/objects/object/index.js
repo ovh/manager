@@ -6,7 +6,7 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import 'ovh-api-services';
 
-import container from '../../../containers/container';
+import container from '../../containers/container';
 import deleteContainer from './delete';
 import addUser from './addUser';
 import addObject from './object/add';

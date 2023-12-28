@@ -1,25 +1,14 @@
 import angular from 'angular';
-import '@uirouter/angularjs';
-import 'oclazyload';
+import 'angular-translate';
+import '@ovh-ux/ui-kit';
 
-const moduleName = 'ovhManagerPciUsersObjectStorageDownloadRcloneLazyLoading';
+import component from './download-rclone.component';
 
-angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
-  /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state(
-      'pci.projects.project.storages.object-storage.users.download-rclone.**',
-      {
-        url: '/rclone/download',
-        lazyLoad: ($transition$) => {
-          const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+const moduleName = 'ovhManagerPciComponentsUsersDownloadRClone';
 
-          return import('./download-rclone.module').then((mod) =>
-            $ocLazyLoad.inject(mod.default || mod),
-          );
-        },
-      },
-    );
-  },
-);
+angular
+  .module(moduleName, ['pascalprecht.translate', 'oui'])
+  .component('pciProjectUsersDownloadRclone', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

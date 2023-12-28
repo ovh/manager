@@ -1,5 +1,5 @@
 import find from 'lodash/find';
-import { getCriteria } from '../../project.utils';
+import { getCriteria } from './containers.utils';
 
 import { OBJECT_CONTAINER_OFFERS_TYPES } from './containers.constants';
 

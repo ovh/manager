@@ -3,7 +3,7 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import some from 'lodash/some';
 
-import { OBJECT_CONTAINER_OFFERS } from '../../../containers/containers.constants';
+import { OBJECT_CONTAINER_OFFERS } from '../../containers/containers.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.storages.object-storage.add', {

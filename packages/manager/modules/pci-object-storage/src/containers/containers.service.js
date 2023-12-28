@@ -7,7 +7,7 @@ import map from 'lodash/map';
 import pickBy from 'lodash/pickBy';
 import reduce from 'lodash/reduce';
 import startsWith from 'lodash/startsWith';
-import 'moment';
+import moment from 'moment';
 
 import Container from './container.class';
 import ContainerObject from './container-object.class';

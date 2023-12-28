@@ -1,4 +1,4 @@
-import 'moment';
+import moment from 'moment';
 
 export default class ContainerObject {
   constructor(resource) {

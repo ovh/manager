@@ -237,12 +237,12 @@
         data-valid="$ctrl.container.region"
         data-prevent-next
     >
-        <pci-project-regions-list
+        <cuc-pci-project-regions-list
             data-ng-if="$ctrl.archive || $ctrl.currrentStep > 0"
             data-regions="$ctrl.container.offer ? $ctrl.regions[$ctrl.container.offer] : $ctrl.regions"
             data-selected-region="$ctrl.container.region"
             data-display-selected-region="$ctrl.displaySelectedRegion"
-        ></pci-project-regions-list>
+        ></cuc-pci-project-regions-list>
     </oui-step-form>
 
     <oui-step-form

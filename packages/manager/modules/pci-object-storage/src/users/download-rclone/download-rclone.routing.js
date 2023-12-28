@@ -1,11 +1,11 @@
 import get from 'lodash/get';
 import {
-  RCLONE_GUIDE,
   DOWNLOAD_RCLONE_FILENAME,
   DOWNLOAD_RCLONE_FILETYPE,
+  RCLONE_GUIDE,
   REGION_CAPACITY,
   S3_REGION_CAPACITY,
-} from '../../../../../../components/users/download-rclone/download-rclone.constants';
+} from '@ovh-ux/ng-ovh-cloud-universe-components/download-rclone.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
