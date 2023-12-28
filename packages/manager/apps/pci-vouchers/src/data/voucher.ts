@@ -22,10 +22,13 @@ export async function buyCredit(
 ): Promise<BuyCreditResult> {
   return v6
     .post(`/order/cloud/project/${projectId}/credit`, { amount })
-    .then(({ data }) => ({
-      amount,
-      url: data.url,
-    }))
+    .then(
+      ({ data }) =>
+        ({
+          amount,
+          url: data.url,
+        } as BuyCreditResult),
+    )
     .catch(({ response }) =>
       Promise.reject(new Error(response?.data?.message)),
     );

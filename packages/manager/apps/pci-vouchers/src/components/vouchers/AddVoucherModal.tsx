@@ -10,6 +10,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { OdsInputValueChangeEvent } from '@ovhcloud/ods-components/input';
 import { useAddVoucher } from '@/hooks/useVouchers';
 
 interface AddVoucherModalProps {
@@ -18,13 +19,6 @@ interface AddVoucherModalProps {
   onSuccess: () => void;
   onError: (cause: Error) => void;
 }
-
-// @TODO retrieve this type from ODS
-type OdsInputEvent = {
-  detail: {
-    value: string;
-  };
-};
 
 export default function AddVoucherModal({
   projectId,
@@ -41,7 +35,7 @@ export default function AddVoucherModal({
   const [voucherCode, setVoucherCode] = useState('');
 
   const handleInputChange = useCallback(
-    (event: OdsInputEvent) => {
+    (event: OdsInputValueChangeEvent) => {
       setVoucherCode(`${event.detail.value}`);
     },
     [setVoucherCode],
@@ -63,6 +57,7 @@ export default function AddVoucherModal({
                 </OsdsText>
                 <OsdsInput
                   type="text"
+                  className={'border'}
                   onOdsValueChange={handleInputChange}
                   ariaLabel={t('cpb_vouchers_your_voucher')}
                 />

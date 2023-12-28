@@ -11,6 +11,7 @@ import {
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
+import { OdsInputValueChangeEvent } from '@ovhcloud/ods-components/input';
 import { useBuyCredit } from '@/hooks/useVouchers';
 
 interface BuyCreditModalProps {
@@ -19,13 +20,6 @@ interface BuyCreditModalProps {
   onSuccess: (amount: number, url: string) => void;
   onError: (cause: Error) => void;
 }
-
-// @TODO retrieve this type from ODS
-type OdsInputEvent = {
-  detail: {
-    value: string;
-  };
-};
 
 const isValidInputAmount = (amount: number) => {
   if (Number.isNaN(amount)) return false;
@@ -50,7 +44,7 @@ export default function BuyCreditModal({
   });
 
   const handleInputChange = useCallback(
-    (event: OdsInputEvent) => {
+    (event: OdsInputValueChangeEvent) => {
       setAmount(Number(`${event.detail.value}`));
     },
     [setAmount],
@@ -79,6 +73,7 @@ export default function BuyCreditModal({
                   value={amount}
                   onOdsValueChange={handleInputChange}
                   ariaLabel={t('cpb_vouchers_your_voucher')}
+                  className={'border'}
                 />
               </OsdsFormField>
             </>

@@ -8,8 +8,7 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { render } from 'react-dom';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { OsdsDivider } from '@ovhcloud/ods-components/divider/react';
 import { ODS_DIVIDER_SIZE } from '@ovhcloud/ods-components/divider';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
@@ -30,6 +29,7 @@ import AvailableCredit from '@/components/AvailableCredit';
 import TotalCredit from '@/components/TotalCredit';
 import GuidesHeader from '@/components/GuidesHeader';
 import { Notifications } from '@/components/Notifications';
+import reactFormatter from '@/helpers';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -39,31 +39,9 @@ export default function ListingPage() {
   const { data: project } = useProject(projectId || '');
   const { data: vouchers } = useVouchers(projectId || '');
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  function reactFormatter(JSX: JSX.Element) {
-    return function customFormatter(cellData, rowData, cell, onRendered) {
-      const renderFn = () => {
-        const cellEl = cell.getElement();
-        if (cellEl) {
-          const formatterCell = cellEl.querySelector('.formatterCell');
-          if (formatterCell) {
-            const CompWithMoreProps = React.cloneElement(JSX, {
-              cellData,
-              rowData,
-            });
-            render(CompWithMoreProps, cellEl.querySelector('.formatterCell'));
-          }
-        }
-      };
-
-      onRendered(renderFn); // initial render only.
-
-      setTimeout(() => {
-        renderFn(); // render every time cell value changed.
-      }, 0);
-      return '<div class="formatterCell"></div>';
-    };
-  }
+  // const environment = useEnvironment();
+  // console.log(environment);
+  // console.log(environment.getUserLocale());
 
   const headers: OdsDatagridColumn[] = [
     {
@@ -117,8 +95,8 @@ export default function ListingPage() {
   });
 
   const hrefAdd = useHref('./add');
-  const hrefCredit = useHref('./buy');
-  console.log(OsdsLink);
+  const hrefCredit = useHref('./credit/buy');
+  // console.log(OsdsLink);
   return (
     <>
       {project && (
