@@ -1,12 +1,8 @@
 import {
-  GUIDES_LIST,
-  GUIDE_TRACKING_TAG,
-} from '../../components/project/guides-header/guides-header.constants';
-import {
   ACTIONS,
-  LEGACY_PLAN_CODES,
   DOCUMENTATION_LINKS,
   LOCAL_ZONE_REGION,
+  LEGACY_PLAN_CODES,
 } from './project.constants';
 import { PCI_FEATURES } from '../projects.constant';
 
@@ -80,19 +76,11 @@ export default /* @ngInject */ ($stateProvider) => {
       getQuotaUrl: /* @ngInject */ ($state) => () =>
         $state.href('pci.projects.project.quota'),
 
-      guideUrl: /* @ngInject */ (user) => {
-        Object.keys(GUIDES_LIST).forEach((key) => {
-          Object.entries(GUIDES_LIST[key]).forEach(([subKey, value]) => {
-            GUIDES_LIST[key][subKey].url =
-              typeof value.url === 'object'
-                ? value.url[user.ovhSubsidiary] || value.url.DEFAULT
-                : value.url;
-          });
-        });
-        return GUIDES_LIST;
-      },
+      guideUrl: /* @ngInject */ (CucGuidesService) =>
+        CucGuidesService.getGuides(),
 
-      guideTrackingSectionTags: /* @ngInject */ () => GUIDE_TRACKING_TAG,
+      guideTrackingSectionTags: /* @ngInject */ (CucGuidesService) =>
+        CucGuidesService.getTrackingTag(),
 
       onListParamChange: /* @ngInject */ ($state, $transition$) => () => {
         return $state.go(
