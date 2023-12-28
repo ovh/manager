@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.12.2...@ovh-ux/manager-cloud-connect@1.13.0) (2023-12-28)
+
+
+### Features
+
+* **dedicated.cloud-connect:** add change bandwidth order ([#10339](https://github.com/ovh/manager/issues/10339)) ([9568454](https://github.com/ovh/manager/commit/95684541b1b4360365ddff475ac3708d84964c37))
+
+
+
+
+
 ## [1.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-connect@1.12.1...@ovh-ux/manager-cloud-connect@1.12.2) (2023-12-19)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.13.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.12.0...@ovh-ux/sign-up@2.13.0) (2023-12-28)
+
+
+### Features
+
+* **dedicated.sign-up:** companies not created yet cannot create an account ([#10577](https://github.com/ovh/manager/issues/10577)) ([514ae43](https://github.com/ovh/manager/commit/514ae430c2f7dfa5bdbf684cfa369600ba4fa6c2))
+
+
+
+
+
 # [2.12.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@2.11.1...@ovh-ux/sign-up@2.12.0) (2023-12-11)
 
 

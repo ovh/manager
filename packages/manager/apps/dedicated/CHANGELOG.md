@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.15.2...@ovh-ux/manager-dedicated@19.16.0) (2023-12-28)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** us cta for ordering additional pcc environments ([#10558](https://github.com/ovh/manager/issues/10558)) ([11bc4c5](https://github.com/ovh/manager/commit/11bc4c5fb2d1d571c0593481627a47e755614b28))
+
+
+### Features
+
+* **dedicated.ips:** improve IPs grid performance by splitting API calls ([#10454](https://github.com/ovh/manager/issues/10454)) ([a34eebe](https://github.com/ovh/manager/commit/a34eebe6c88fa58cc1ee142ede52326c5a45cfbc))
+* **dedicated.pcc:** add iceberg call for pcc operation datagrid ([#10527](https://github.com/ovh/manager/issues/10527)) ([78ffe1d](https://github.com/ovh/manager/commit/78ffe1de00681631a92e32e1595af89b0183b924))
+
+
+
+
+
 ## [19.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.15.1...@ovh-ux/manager-dedicated@19.15.2) (2023-12-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

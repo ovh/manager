@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.10.0...@ovh-ux/manager-web@18.10.1) (2023-12-28)
+
+
+### Bug Fixes
+
+* **web.hosting:** removing deceptive claims in the hosting change tunnel ([#10571](https://github.com/ovh/manager/issues/10571)) ([98635f6](https://github.com/ovh/manager/commit/98635f614a915758df2c0f2272b44eb66087a6bd))
+
+
+
+
+
 # [18.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.9.0...@ovh-ux/manager-web@18.10.0) (2023-12-19)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.15.0...@ovh-ux/manager-pci@6.16.0) (2023-12-28)
+
+
+### Bug Fixes
+
+* **project.flavors-list:** fix the rounding of a flavor ram ([#10572](https://github.com/ovh/manager/issues/10572)) ([a769393](https://github.com/ovh/manager/commit/a7693935e1e5cf648c137839f9f7af2da391ff47))
+
+
+### Features
+
+* **pci:** display billing change mediation banner ([#10598](https://github.com/ovh/manager/issues/10598)) ([094327b](https://github.com/ovh/manager/commit/094327b923cf3863123b4e7fa227c1738f1bdbdc))
+
+
+
+
+
 # [6.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.14.1...@ovh-ux/manager-pci@6.15.0) (2023-12-19)
 
 
