@@ -63,11 +63,8 @@ export const CTAS = {
   AU: 'https://ovhcloud.com/en-au/network-security/ovhcloud-connect/',
   SG: 'https://ovhcloud.com/en-sg/network-security/ovhcloud-connect/',
   FR: 'https://ovhcloud.com/fr/network-security/ovhcloud-connect/',
-  CZ: 'https://ovhcloud.com/cz-cs/network-security/ovhcloud-connect/',
-  FI: 'https://ovhcloud.com/fi/network-security/ovhcloud-connect/',
-  LT: 'https://ovhcloud.com/lt/network-security/ovhcloud-connect/',
-  WE: 'https://ovhcloud.com/us-en/network-security/ovhcloud-connect/',
-  WS: 'https://ovhcloud.com/us-en/network-security/ovhcloud-connect/',
+  WE: 'https://ovhcloud.com/en/network-security/ovhcloud-connect/',
+  WS: 'https://ovhcloud.com/es/network-security/ovhcloud-connect/',
   US: 'https://us.ovhcloud.com/network/ovhcloud-connect/',
 };
 
