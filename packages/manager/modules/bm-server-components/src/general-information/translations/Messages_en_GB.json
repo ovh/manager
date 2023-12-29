@@ -1,0 +1,19 @@
+{
+  "dedicated_server_dashboard_informations_general": "General information",
+  "dedicated_server_dashboard_displayname": "Name",
+  "dedicated_server_dashboard_edit_button": "Edit",
+  "dedicated_server_dashboard_commercial_name": "Commercial name",
+  "dedicated_server_dashboard_upgrade_title": "Strengthen your infrastructure",
+  "dedicated_server_dashboard_upgrade_badge": "New",
+  "dedicated_server_dashboard_distribution": "Operating system (OS)",
+  "dedicated_server_dashboard_distribution_none": "There is no operating system installed on your server",
+  "dedicated_server_dashboard_distribution_byoi": "BringYourOwnImage",
+  "dedicated_server_dashboard_installation_no_public_network": "Since the network configuration applied on your server does not give access to the public network, you cannot install/reinstall an OS on it. To unblock this action, please modify your network configuration in the “network interfaces” tab",
+  "dedicated_server_dashboard_reinstallation_button": "Reinstall",
+  "dedicated_server_dashboard_installation_button": "Install",
+  "dedicated_server_dashboard_boot": "Boot",
+  "dedicated_server_dashboard_datacenter": "Datacentre",
+  "dedicated_server_dashboard_netboot_unavailable": "Information not available",
+  "dedicated_server_dashboard_rack": "Rack",
+  "dedicated_server_dashboard_server_id": "Server ID"
+}

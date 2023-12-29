@@ -2,7 +2,7 @@
   "domain_configuration_enable_web_hosting": "Włącz hosting WWW",
   "domain_configuration_enable_web_hosting_offer": "Twoja oferta",
   "domain_configuration_enable_web_hosting_offer_START_hosting-start10m": "Start 10M",
-  "domain_configuration_web_hosting_offer_START_explain": "Usługa Start10m jest zawarta w Twojej ofercie, ale dostępne w niej są tylko podstawowe funkcje.",
+  "domain_configuration_web_hosting_offer_START_explain": "Usługa Free Hosting 100M jest zawarta w Twojej ofercie, ale dostępne w niej są tylko podstawowe funkcje.",
   "domain_configuration_web_hosting_choose_offer_explain": "Aby uzyskać więcej informacji na temat naszej oferty, przejdź na <a href=\"{{url}}\" target=\"_blank\">naszą stronę</a>.",
   "domain_configuration_enable_web_hosting_dns_configuration": "Konfiguracja DNS",
   "domain_configuration_web_hosting_dns_info_NO_CHANGE": "Pomimo uruchomienia nowego hostingu, domena nadal wskazuje na aktualne rekordy. Musisz wprowadzić zmiany w strefie DNS, gdy Twoja nowa strona będzie gotowa.  Jest to idealny wybór, jeśli nie chcesz wyłączyć strony, która jest już online.",

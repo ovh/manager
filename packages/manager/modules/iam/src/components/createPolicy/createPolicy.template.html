@@ -160,12 +160,13 @@
         <iam-action-select
             data-error="$ctrl.onError(error)"
             data-name="actions"
-            data-ng-model="$ctrl.model.actions"
+            data-ng-model="$ctrl.model"
             data-resource-types="$ctrl.model.resources.types"
             data-read-only="$ctrl.policy.readOnly"
             data-tag-prefix=":: $ctrl.tag.prefix"
             data-track-click=":: $ctrl.trackClick"
             data-track-page=":: $ctrl.trackPage"
+            data-permissions-groups="$ctrl.permissionsGroups"
         ></iam-action-select>
         <!-- </Actions> -->
 

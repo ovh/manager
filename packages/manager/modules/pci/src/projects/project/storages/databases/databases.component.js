@@ -23,7 +23,6 @@ export default {
     onListParamChange: '<',
     projectId: '<',
     trackDatabases: '<',
-    nodesPerRow: '<',
     showPaymentWarning: '<',
     steins: '<',
     customerRegions: '<',

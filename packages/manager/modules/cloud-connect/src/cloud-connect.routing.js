@@ -44,13 +44,19 @@ export default /* @ngInject */ ($stateProvider) => {
             '_blank',
           );
         },
+        orderFollowUp: /* @ngInject */ (cloudConnectService) =>
+          cloudConnectService.getOrderFollowUp(),
       },
       redirectTo: (transition) =>
         transition
           .injector()
-          .getAsync('resources')
-          .then((resources) =>
-            resources.data.length === 0
+          .get('$q')
+          .all([
+            transition.injector().getAsync('resources'),
+            transition.injector().getAsync('orderFollowUp'),
+          ])
+          .then(([resources, orderFollowUp]) =>
+            resources.data.length === 0 && !orderFollowUp.length
               ? { state: 'cloud-connect.onboarding' }
               : false,
           ),

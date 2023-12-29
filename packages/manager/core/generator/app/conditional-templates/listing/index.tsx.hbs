@@ -1,8 +1,10 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { useQueries } from '@tanstack/react-query';
-import { getListingIceberg{{#if this.pimID}}, getPIMService{{/if}} } from '@/api';
+import { useQuery } from '@tanstack/react-query';
+import { getListingIceberg } from '@/api';
 import Datagrid from '@/components/layout-helpers/Listing/dataGrid';
+import Loading from '@/components/Loading/Loading';
+import ErrorBanner from '@/components/Error/Error';
 import appConfig from '@/{{this.appName}}.config';
 import Breadcrumb, {
   BreadcrumbHandleParams,
@@ -16,7 +18,7 @@ type ServiceData = {
   serviceName: string;
 };
 
-const ServiceList: React.FC<{ data: ServiceData[]{{#if this.pimID}}; pim: string{{/if}} }> = ({ data{{#if this.pimID}}, pim{{/if}} }) => {
+const ServiceList: React.FC<{ data: ServiceData[] }> = ({ data }) => {
   const count = data?.length;
 
   if (count === 0) return <Navigate to="onboarding" />;
@@ -30,7 +32,7 @@ const ServiceList: React.FC<{ data: ServiceData[]{{#if this.pimID}}; pim: string
     )
     : (
       <>
-        <h2>{{#if this.pimID}}{pim?.name?pim?.name:'{{appName}}'}{{else}}{{appName}}{{/if}}</h2>
+        <h2>{{appName}}</h2>
         <Datagrid
           data={data}
           serviceKey={appConfig.listing.datagrid.serviceKey as string} />
@@ -39,35 +41,26 @@ const ServiceList: React.FC<{ data: ServiceData[]{{#if this.pimID}}; pim: string
 }
 
 export default function Listing() {
-  const results: any = useQueries({
-    queries: [
+  const { data, isError, error, isLoading }: any = useQuery(
       { queryKey: ['servicesListingIceberg'], queryFn: getListingIceberg, staleTime: Infinity, },
-      {{#if this.pimID}}{ queryKey: ['pimService'], queryFn: getPIMService, staleTime: Infinity },{{/if}}
-    ],
-  });
+  );
 
-  const servicesListingIcebergResult = results[0];
-  {{#if this.pimID}}const pimServiceResult = results[1];{{/if}}
-
-  const isError = servicesListingIcebergResult.error{{#if this.pimID}} || pimServiceResult.error{{/if}};
-  const isLoading = servicesListingIcebergResult.isLoading{{#if this.pimID}} || pimServiceResult.isLoading{{/if}};
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
 
   if (isError) {
-    return <Navigate to="onboarding" />;
+    return <ErrorBanner error={error.response} />;
   }
+
+  if (isLoading) {
+    return (<div><Loading/></div>)
+  }
+
 
   return (
     <>
       <Breadcrumb />
       <ServiceList
-        data={servicesListingIcebergResult.data}
-        {{#if this.pimID}}pim={pimServiceResult.data}{{/if}}
+        data={data.data}
       />
     </>
   );
 }
-

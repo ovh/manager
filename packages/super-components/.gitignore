@@ -5,3 +5,4 @@ hydrate/
 loader/
 components.d.ts
 www/
+yarn-error.log

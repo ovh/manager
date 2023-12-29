@@ -3,6 +3,99 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.15.2...@ovh-ux/manager-dedicated@19.16.0) (2023-12-28)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** us cta for ordering additional pcc environments ([#10558](https://github.com/ovh/manager/issues/10558)) ([11bc4c5](https://github.com/ovh/manager/commit/11bc4c5fb2d1d571c0593481627a47e755614b28))
+
+
+### Features
+
+* **dedicated.ips:** improve IPs grid performance by splitting API calls ([#10454](https://github.com/ovh/manager/issues/10454)) ([a34eebe](https://github.com/ovh/manager/commit/a34eebe6c88fa58cc1ee142ede52326c5a45cfbc))
+* **dedicated.pcc:** add iceberg call for pcc operation datagrid ([#10527](https://github.com/ovh/manager/issues/10527)) ([78ffe1d](https://github.com/ovh/manager/commit/78ffe1de00681631a92e32e1595af89b0183b924))
+
+
+
+
+
+## [19.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.15.1...@ovh-ux/manager-dedicated@19.15.2) (2023-12-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [19.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.15.0...@ovh-ux/manager-dedicated@19.15.1) (2023-12-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [19.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.14.0...@ovh-ux/manager-dedicated@19.15.0) (2023-12-12)
+
+
+### Features
+
+* **dedicated.server:** refactor dedicated server for multi az ([#10058](https://github.com/ovh/manager/issues/10058)) ([0cc3523](https://github.com/ovh/manager/commit/0cc35235150a19f9b959ccdd1394f5469662ec87))
+
+
+
+
+
+# [19.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.13.0...@ovh-ux/manager-dedicated@19.14.0) (2023-12-11)
+
+
+### Features
+
+* **web:** dns history ([#10386](https://github.com/ovh/manager/issues/10386)) ([fde3865](https://github.com/ovh/manager/commit/fde386576225e29f1f6d9b84cf256d03c0af7cfc))
+
+
+
+
+
+# [19.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.12.3...@ovh-ux/manager-dedicated@19.13.0) (2023-12-07)
+
+
+### Features
+
+* **account:** restricted redirect url ([#10401](https://github.com/ovh/manager/issues/10401)) ([2a2c6d3](https://github.com/ovh/manager/commit/2a2c6d3996bf5411ea8997e7b28a01f760ff730f))
+
+
+
+
+
+## [19.12.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.12.2...@ovh-ux/manager-dedicated@19.12.3) (2023-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [19.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.12.1...@ovh-ux/manager-dedicated@19.12.2) (2023-12-04)
+
+
+### Bug Fixes
+
+* **dedicated.server:** display bandwidth plancode ([#9985](https://github.com/ovh/manager/issues/9985)) ([9990dba](https://github.com/ovh/manager/commit/9990dba28e2af0f460be3ad6274ee000c6edc538))
+
+
+
+
+
+## [19.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.12.0...@ovh-ux/manager-dedicated@19.12.1) (2023-12-01)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 # [19.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.11.0...@ovh-ux/manager-dedicated@19.12.0) (2023-11-21)
 
 

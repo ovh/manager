@@ -1,7 +1,11 @@
 import get from 'lodash/get';
 import find from 'lodash/find';
 import { merge } from 'lodash';
-import { APP_PRIVACY_SETTINGS, APP_SCALING_SETTINGS } from './add.constants';
+import {
+  APP_PRIVACY_SETTINGS,
+  APP_SCALING_SETTINGS,
+  splitIntoArray,
+} from './add.constants';
 import { nameGenerator } from '../../../../../name-generator.constant';
 import { APP_TYPES, APP_USERS_TOKENS_BANNER_TRACKING } from '../app.constants';
 
@@ -62,6 +66,7 @@ export default class AppAddController {
         flavor: null,
         flavorType: APP_TYPES.CPU,
       },
+      command: [],
     };
   }
 
@@ -136,6 +141,7 @@ export default class AppAddController {
       scalingStrategy,
       probe,
       port,
+      command,
     } = appModel;
 
     return {
@@ -155,6 +161,7 @@ export default class AppAddController {
       probe: AppAddController.buildProbe(probe),
       scalingStrategy: AppAddController.buildScalingBody(scalingStrategy),
       defaultHttpPort: port,
+      command,
     };
   }
 
@@ -164,6 +171,7 @@ export default class AppAddController {
     if (this.storages.length === 0) {
       this.appModel.volumes = [];
     }
+    this.commandLine = null;
   }
 
   loadMessages() {
@@ -323,6 +331,7 @@ export default class AppAddController {
     const lastImagePart = splitImage[splitImage.length - 1];
     const [prefix] = lastImagePart.split(':');
     this.appModel.name = `${prefix}-${nameGenerator()}`;
+    this.appModel.command = splitIntoArray(this.commandLine);
     return false;
   }
 

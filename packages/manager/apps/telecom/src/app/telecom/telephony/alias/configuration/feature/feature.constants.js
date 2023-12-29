@@ -8,4 +8,20 @@ export const VALID_SOUND_EXTENSIONS = [
   'wma',
 ];
 
-export default { VALID_SOUND_EXTENSIONS };
+export const FEATURE_TYPES = {
+  TRUNK: 'trunk',
+  FAX: 'fax',
+  CARRIER_SIP: 'carrierSip',
+  SIP: 'sip',
+};
+
+export const REDIRECT_TYPES = {
+  REDIRECT: 'redirect',
+  DDI: 'ddi',
+};
+
+export default {
+  VALID_SOUND_EXTENSIONS,
+  FEATURE_TYPES,
+  REDIRECT_TYPES,
+};

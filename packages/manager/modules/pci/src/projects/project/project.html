@@ -49,6 +49,10 @@
                                 data-track-click="$ctrl.trackClick"
                             ></repricing-banner>
 
+                            <pci-project-billing-change-mediation-banner
+                                data-ng-if="$ctrl.pciFeatures.isFeatureAvailable($ctrl.PCI_FEATURES.BANNERS.BILLING_CHANGE_MEDIATION_BANNER)"
+                            ></pci-project-billing-change-mediation-banner>
+
                             <oui-message
                                 data-type="warning"
                                 data-ng-if="$ctrl.projectQuotaAboveThreshold"

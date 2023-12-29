@@ -17,6 +17,7 @@ angular.module('services').service(
       OvhHttp,
       Poller,
       OvhApiOrderCatalogPublic,
+      iceberg,
     ) {
       this.$http = $http;
       this.$q = $q;
@@ -26,6 +27,7 @@ angular.module('services').service(
       this.OvhHttp = OvhHttp;
       this.Poller = Poller;
       this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
+      this.iceberg = iceberg;
     }
 
     /**
@@ -147,41 +149,12 @@ angular.module('services').service(
       );
     }
 
-    /**
-     * Get dump details
-     * @param {string} serviceName
-     * @param {string} name
-     * @param {string} dumpId
-     */
-    getDump(serviceName, name, dumpId) {
-      return this.OvhHttp.get(
-        `/hosting/web/${serviceName}/database/${name}/dump/${dumpId}`,
-        {
-          rootPath: 'apiv6',
-        },
-      ).then((originalDump) => {
-        const dump = clone(originalDump);
-        dump.snapshotDate = this.constructor.getSnapshotDateOfDump(dump);
-        return dump;
-      });
-    }
-
-    /**
-     * Get snapshot date of database dump
-     * @param {Object} dump
-     */
-    static getSnapshotDateOfDump(dump) {
-      if (!dump.creationDate) {
-        return undefined;
-      }
-
-      const snapshotDate = moment(dump.creationDate);
-      if (dump.type === 'daily.1') {
-        snapshotDate.subtract(1, 'd');
-      } else if (dump.type === 'weekly.1') {
-        snapshotDate.subtract(1, 'w');
-      }
-      return snapshotDate.format();
+    getDumps(serviceName, name) {
+      return this.iceberg(`/hosting/web/${serviceName}/database/${name}/dump`)
+        .query()
+        .expand('CachedObjectList-Pages')
+        .execute(null, true)
+        .$promise.then(({ data }) => data);
     }
 
     /**
@@ -591,6 +564,7 @@ angular.module('services').service(
         }/${serviceName}/database/${databaseName}/copyRestore`,
         {
           copyId,
+          flushDatabase: true,
         },
       );
     }

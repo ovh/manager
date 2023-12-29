@@ -28,7 +28,7 @@ const UserDetails = ({
             <Trans
               t={t}
               i18nKey="user_account_menu_notification_email"
-              values={{ email: email }}
+              values={{ email }}
             ></Trans>
           </span>
         </>

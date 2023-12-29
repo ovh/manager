@@ -1,4 +1,5 @@
 import template from './dashboard.html';
+import controller from './dashboard.controller';
 
 export default {
   bindings: {
@@ -35,4 +36,5 @@ export default {
     type: '<',
   },
   template,
+  controller,
 };

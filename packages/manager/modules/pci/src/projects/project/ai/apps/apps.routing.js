@@ -127,10 +127,13 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       goToCreateToken: /* @ngInject */ ($state, projectId) => (app) => {
-        return $state.go('pci.projects.project.ai.tokens.add', {
-          projectId,
-          labelSelector: `id=${app.id}`,
-        });
+        return $state.go(
+          'pci.projects.project.ai-dashboard.users-tokens.create-token',
+          {
+            projectId,
+            labelSelector: `id=${app.id}`,
+          },
+        );
       },
 
       goToAttachData: /* @ngInject */ ($state, projectId) => () =>

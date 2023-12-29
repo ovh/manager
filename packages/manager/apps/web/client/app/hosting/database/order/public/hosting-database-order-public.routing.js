@@ -10,13 +10,6 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       catalog: /* @ngInject */ (HostingDatabase) =>
         HostingDatabase.getWebhostingCatalog(),
-      characteristicsOfAvailableProducts: /* @ngInject */ (
-        HostingDatabaseOrderPublicService,
-        serviceName,
-      ) =>
-        HostingDatabaseOrderPublicService.getCharacteristicsOfAvailableProducts(
-          serviceName,
-        ),
       goBack: /* @ngInject */ (goToDatabase) => goToDatabase,
       hosting: /* @ngInject */ (Hosting, serviceName) =>
         Hosting.getSelected(serviceName, true),

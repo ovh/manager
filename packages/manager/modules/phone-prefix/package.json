@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-phone-prefix",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "description": "Set of telephone code list",
   "repository": {
@@ -25,6 +25,6 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-phone-prefix' --include-dependencies -- npm run dev:watch --if-present"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.0"
+    "@ovh-ux/component-rollup-config": "^13.0.1"
   }
 }

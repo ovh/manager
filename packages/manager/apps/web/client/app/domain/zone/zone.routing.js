@@ -3,6 +3,8 @@ import template from './domain-zone-dns.html';
 
 export default /* @ngInject */ ($stateProvider) => {
   const commonResolve = {
+    goToZoneHistory: /* @ngInject */ ($state) => (params) =>
+      $state.go('app.zone.details.zone-history', params),
     breadcrumb: /* @ngInject */ ($translate) =>
       $translate.instant('domain_zone'),
   };

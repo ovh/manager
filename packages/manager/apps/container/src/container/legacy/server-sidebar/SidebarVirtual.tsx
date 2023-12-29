@@ -12,9 +12,9 @@ export default function ServerSidebarVirtual({
   items: SidebarMenuItem[];
   onMenuChange: CallableFunction;
 }) {
-    const { t } = useTranslation('sidebar');
-    const parentRef = useRef();
-    const rowVirtualizer = useVirtualizer({
+  const { t } = useTranslation('sidebar');
+  const parentRef = useRef();
+  const rowVirtualizer = useVirtualizer({
     count: items.length,
     getItemKey: (i) => items[i].id,
     getScrollElement: () => parentRef.current,
@@ -48,16 +48,16 @@ export default function ServerSidebarVirtual({
 
   // @TODO this is a hack since row virtualizer doesn't recalculate range when optiosn changes
   // it has to be removed once the issue is resolved in tanstack virtual
-  rowVirtualizer['calculateRange']();
+  rowVirtualizer.calculateRange();
 
   const getRootParent = (item: SidebarMenuItem): SidebarMenuItem => {
     if (!item) {
       return item;
-    } else if (item?.depth === 0) {
-      return item;
-    } else {
-      return getRootParent(item?.parent);
     }
+    if (item?.depth === 0) {
+      return item;
+    }
+    return getRootParent(item?.parent);
   };
   const vItems = rowVirtualizer.getVirtualItems();
   const stickyChild = items[vItems[2]?.index];

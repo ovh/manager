@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-line-diagnostics",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "description": "Module to diagnose OVH telecoms lines.",
   "keywords": [
     "angularjs",
@@ -41,7 +41,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.0"
+    "@ovh-ux/component-rollup-config": "^13.0.1"
   },
   "peerDependencies": {
     "@ovh-ux/ng-at-internet": "^5.9.1",

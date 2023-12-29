@@ -12,6 +12,7 @@ export default {
     flavors: '<',
     type: '<',
     defaultPrice: '<',
+    command: '=',
   },
   controller,
   template,

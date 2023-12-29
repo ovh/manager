@@ -17,5 +17,9 @@
   "sign_up_activity_field_companyNationalIdentificationNumber": "Codice fiscale",
   "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Numero di partita IVA",
   "sign_up_activity_field_italian_sdi": "Codice destinatario per fatturazione elettronica (SDI)",
-  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "Il numero di partita IVA è necessario per migliorare il processo di fatturazione elettronica"
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "Il numero di partita IVA è necessario per migliorare il processo di fatturazione elettronica",
+  "sign_up_activity_corporation_created_title": "La mia azienda è creata",
+  "sign_up_activity_corporation_not_created_title": "La mia azienda è in fase di creazione",
+  "sign_up_activity_corporation_not_created_description": "Inserirò le informazioni alla creazione della mia azienda",
+  "sign_up_activity_corporation_created_description": "Ho il mio numero SIRET/SIREN"
 }

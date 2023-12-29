@@ -1,22 +1,13 @@
-import map from 'lodash/map';
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import { STATUS } from './cloud-connect.constants';
 
 export default class CloudConnectCtrl extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $http,
-    $translate,
-    coreURLBuilder,
-    iceberg,
-    ouiDatagridService,
-  ) {
+  constructor($q, $http, $translate, coreURLBuilder, ouiDatagridService) {
     super($q, ouiDatagridService);
     this.$translate = $translate;
     this.$http = $http;
     this.coreURLBuilder = coreURLBuilder;
-    this.iceberg = iceberg;
   }
 
   $onInit() {
@@ -39,25 +30,11 @@ export default class CloudConnectCtrl extends ListLayoutHelper.ListLayoutCtrl {
       { name: 'status', sortable: this.getSorting('status') },
     ];
 
-    this.orders = [];
-
     // Check if there is order to follow up
-    this.getOrderFollowUp();
-  }
-
-  getOrderFollowUp() {
-    return this.iceberg('/ovhCloudConnect/order')
-      .query()
-      .expand('CachedObjectList-Pages')
-      .execute(null, true)
-      .$promise.then(({ data: result }) => {
-        this.orders = map(result, (res) => {
-          const orderBillingUrl = this.buildOrderBillingUrl(res.orderId);
-          res.orderBillingUrl = orderBillingUrl;
-          return res;
-        });
-        return result;
-      });
+    this.orders = this.orderFollowUp.map((order) => ({
+      ...order,
+      orderBillingUrl: this.buildOrderBillingUrl(order.orderId),
+    }));
   }
 
   static isWarning(value) {

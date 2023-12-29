@@ -10,5 +10,6 @@ types
 .eslintcache
 .turbo
 packages/manager/apps/**/dev.proxy.config.mjs
-playwright-helpers/config.json
-
+playwright-report
+test-results
+e2e-dist

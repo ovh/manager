@@ -28,6 +28,36 @@
         <span data-ng-bind-html="$ctrl.customActionSuccessMessage"></span>
     </oui-message>
 
+    <!-- <MANAGED PERMISSIONS> -->
+    <oui-collapsible
+        data-heading="{{ :: 'iam_managed_permissions_heading' | translate }}"
+        data-expanded="true"
+    >
+        <div
+            class="oui-checkbox ml-4"
+            data-ng-repeat="group in $ctrl.permissionsGroupsList track by group.id"
+        >
+            <input
+                class="oui-checkbox__input"
+                id="{{ ::group.id }}"
+                type="checkbox"
+                name="{{ ::group.id }}"
+                data-ng-model="group.selected"
+                data-ng-change="$ctrl.onPermissionsGroupsChanged(group.urn)"
+            />
+            <label class="oui-checkbox__label-container" for="{{ ::group.id }}">
+                <span class="oui-checkbox__label">
+                    <span class="oui-checkbox__icon"></span>
+                    <span class="oui-checkbox__text">
+                        <span data-ng-bind="group.name"></span>
+                    </span>
+                </span>
+                <div class="ml-4" data-ng-bind-html="::group.description"></div>
+            </label>
+        </div>
+    </oui-collapsible>
+    <!-- </MANAGED PERMISSIONS> -->
+
     <!-- <Actions> -->
     <oui-collapsible
         data-ng-repeat="actionTree in $ctrl.actionTrees track by actionTree.value"
@@ -42,7 +72,7 @@
             <input
                 type="hidden"
                 name="{{ $ctrl.name }}"
-                data-ng-model="$ctrl.ngModel"
+                data-ng-model="$ctrl.ngModel.actions"
                 data-disabled="$ctrl.readOnly"
             />
 
@@ -94,6 +124,7 @@
                 name="actionTree_{{ actionTree.value }}"
                 type="text"
                 data-ng-model="actionTree.searchQuery"
+                data-ng-change="$ctrl.filterActions(actionTree)"
                 data-ng-disabled="$ctrl.isWildcardActive"
             />
         </oui-field>
@@ -102,7 +133,7 @@
         <!-- <NoCategoryActions> -->
         <oui-checkbox
             class="ml-4"
-            data-ng-repeat="action in actionTree.actions track by action.value"
+            data-ng-repeat="action in actionTree.filteredActions track by action.value"
             data-model="action.selected"
             data-on-change="$ctrl.onModelChanged(action)"
             data-disabled="$ctrl.isWildcardActive || $ctrl.readOnly"
@@ -132,9 +163,10 @@
                     <oui-checkbox-label>
                         <strong data-ng-bind="category.value"></strong>
                         <span
-                            data-translate="{{ $ctrl.getCategoryLabel(category) }}"
+                            data-translate="{{ $ctrl.getCategoryLabel(category, actionTree.searchQuery) }}"
                             data-translate-values="{
                                 selected: $ctrl.constructor.countSelectedActions(category.actions),
+                                result: $ctrl.constructor.countActionsMatchingSearch(category.actions, actionTree.searchQuery),
                                 total: category.actions.length,
                             }"
                         ></span>
@@ -158,7 +190,7 @@
                 <!-- <CategoryActions> -->
                 <div
                     class="oui-checkbox ml-4"
-                    data-ng-repeat="action in category.actions track by action.value"
+                    data-ng-repeat="action in category.filteredActions track by action.value"
                 >
                     <input
                         class="oui-checkbox__input"

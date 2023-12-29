@@ -23,6 +23,7 @@ angular.module('App').controller(
       this.$scope.resetAction();
       return this.Hosting.modifyUserLogs(
         this.$stateParams.productId,
+        this.model.user.ownLogsId,
         this.model.user.login,
         this.model.user.description,
       )

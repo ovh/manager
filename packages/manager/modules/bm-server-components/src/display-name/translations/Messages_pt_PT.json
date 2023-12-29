@@ -1,0 +1,7 @@
+{
+  "server_displaname_edit_title": "Alterar o nome",
+  "server_displaname_edit_help": "Altera o nome indicado no cabeçalho.",
+  "server_displaname_edit_displayname_label": "Nome",
+  "server_displaname_edit_success": "O nome foi modificado com êxito.",
+  "server_displaname_edit_failure": "Ocorreu um erro aquando da atualização do nome."
+}

@@ -1,48 +1,48 @@
 type CreateTileArgs = Partial<{
-  tileType: string;
+  category: string;
   tileTitle: string;
   tileDescription: string;
   href: string;
   isExternalHref: boolean;
-  seeMoreLabel: string;
   dataTracking: string;
   imgSrc: string;
   imgAlt: string;
+  locale: string;
   hasBadges: boolean;
   hasFooter: boolean;
 }>;
 
 export const createTile = ({
-  tileType,
+  category,
   tileTitle,
   tileDescription,
   href,
   isExternalHref,
-  seeMoreLabel,
   dataTracking,
   imgSrc,
   imgAlt,
+  locale,
   hasBadges,
   hasFooter,
 }: CreateTileArgs) =>
   `
     <msc-tile
-      tile-type="${tileType}"
+      category="${category}"
       tile-title="${tileTitle}"
       tile-description="${tileDescription}"
       href="${href}"
       ${isExternalHref ? 'is-external-href="true"' : ''}
       img-src="${imgSrc}"
       img-alt="${imgAlt}"
-      see-more-label="${seeMoreLabel}"
       data-tracking="${dataTracking}"
+      locale="${locale}"
     >
       ${
         hasBadges
           ? `
         <span slot="badges">
-          <osds-chip color="primary" size="sm">OVHcloud</osds-chip>
-          <osds-chip color="success" size="sm">Beta</osds-chip>
+          <osds-chip color="primary" size="sm" inline>OVHcloud</osds-chip>
+          <osds-chip color="success" size="sm" inline>Beta</osds-chip>
         </span>
       `
           : ''

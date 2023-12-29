@@ -39,6 +39,10 @@
     </oui-guide-menu>
 </oui-header>
 
+<pci-project-billing-change-mediation-banner
+    data-ng-if="$ctrl.pciFeatures.isFeatureAvailable($ctrl.PCI_FEATURES.BANNERS.BILLING_CHANGE_MEDIATION_BANNER)"
+></pci-project-billing-change-mediation-banner>
+
 <div class="mt-4">
     <cui-message-container
         data-messages="$ctrl.messages"

@@ -57,7 +57,7 @@
   "ovhManagerSupport_new_serviceType_cluster_hadoop": "Data Analytics Platform",
   "ovhManagerSupport_new_serviceType_dedicated_server": "Servidor dedicado (bare metal)",
   "ovhManagerSupport_new_serviceType_dedicated_housing": "Servidor housing",
-  "ovhManagerSupport_new_serviceType_hosting_web": "Alojamento web",
+  "ovhManagerSupport_new_serviceType_hosting_web": "Alojamento web (alojamento, base de dados SQL partilhada, contas de e-mail, certificado SSL Let's Encrypt, Shared CDN)",
   "ovhManagerSupport_new_serviceType_ipLoadbalancing": "IP Load Balancer",
   "ovhManagerSupport_new_serviceType_license_cloud_linux": "Licença CloudLinux",
   "ovhManagerSupport_new_serviceType_license_cpanel": "Licença cPanel",

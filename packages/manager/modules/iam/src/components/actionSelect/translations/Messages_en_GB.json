@@ -15,5 +15,14 @@
   "iam_action_select_custom_action_success_selected": "The action {{ action }} has been selected in {{ resourceType }}",
   "iam_action_select_custom_action_success_wildcard": "“Authorise all actions” has been enabled",
   "iam_action_select_error_required": "You must select at least one action, authorise all actions, or add an action manually",
-  "iam_action_select_custom_action_placeholder": "Example: {{ sample }}"
+  "iam_action_select_custom_action_placeholder": "Example: {{ sample }}",
+  "iam_managed_permissions_heading": "Managed permission groups",
+  "iam_managed_permissions_description": "Add an OVHcloud-managed policy",
+  "iam_managed_permissions_description_sub": "(full description in documentation)",
+  "iam_action_select_category_count_selection_many_result_one": "({{ selected }} actions selected | {{ result }} result/{{ total }})",
+  "iam_action_select_category_count_selection_many_result_many": "({{ selected }} actions selected | {{ result }} results/{{ total }})",
+  "iam_action_select_category_count_selection_one_result_one": "({{ selected }} action selected | {{ result }} result/{{ total }})",
+  "iam_action_select_category_count_selection_one_result_many": "({{ selected }} action selected | {{ result }} results/{{ total }})",
+  "iam_action_select_category_count_result_many": "({{ result }} results/{{ total }})",
+  "iam_action_select_category_count_result_one": "({{ result }} result/{{ total }})"
 }

@@ -16,7 +16,7 @@ export default /* @ngInject */ (
       $scope.domain.name,
     ).then(
       (data) => {
-        $scope.domainDiag.mx.isOvhDomain = data.isOvhDomain;
+        $scope.domainDiag.isOvhDomain = data.isOvhDomain;
         $scope.domainDiag.mx.noSpam = data.mx.noSpam;
       },
       (failure) => {
@@ -34,7 +34,7 @@ export default /* @ngInject */ (
       $stateParams.productId,
       $scope.domain.name,
     ).then(
-      (data) => {
+      ({ data }) => {
         const re = /^IN ([A-Z]*) (\d+) ([^ ]*)$/i;
         data.expectedMX.forEach((mx) => {
           const extract = mx.match(re);

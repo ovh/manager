@@ -3,6 +3,96 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.10.0...@ovh-ux/manager-web@18.10.1) (2023-12-28)
+
+
+### Bug Fixes
+
+* **web.hosting:** removing deceptive claims in the hosting change tunnel ([#10571](https://github.com/ovh/manager/issues/10571)) ([98635f6](https://github.com/ovh/manager/commit/98635f614a915758df2c0f2272b44eb66087a6bd))
+
+
+
+
+
+# [18.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.9.0...@ovh-ux/manager-web@18.10.0) (2023-12-19)
+
+
+### Features
+
+* **web-cloud:** multisite - detach a domain ([#10397](https://github.com/ovh/manager/issues/10397)) ([fa98c62](https://github.com/ovh/manager/commit/fa98c6280167935a2f30af470b313cd063b565a3))
+* **web:** add banneer and change placeholder ([#10461](https://github.com/ovh/manager/issues/10461)) ([43b3bf2](https://github.com/ovh/manager/commit/43b3bf265f50457049665454141396fe8cdb27cd))
+* **web:** add radio btns ([#10469](https://github.com/ovh/manager/issues/10469)) ([9b11bcc](https://github.com/ovh/manager/commit/9b11bcc3aa99b1c735bb883c8c907d157e813de6))
+* **web:** add restore btn over view modal dns ([#10513](https://github.com/ovh/manager/issues/10513)) ([52d11dd](https://github.com/ovh/manager/commit/52d11ddd3bef0f40110c97cf50548c75d06f3492))
+
+
+
+
+
+# [18.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.8.2...@ovh-ux/manager-web@18.9.0) (2023-12-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2650] ([#10462](https://github.com/ovh/manager/issues/10462)) ([c532c3b](https://github.com/ovh/manager/commit/c532c3b65e27edf84a31dd5de02076ecdf64d306))
+* **web.databases:** add missing param for shared SQL database copy ([a4dae26](https://github.com/ovh/manager/commit/a4dae264e16779968c283bf95d6912ead09ff7cb))
+
+
+### Features
+
+* **web-cloud:** starter offer - attach subdomain checkbox disabled ([#10392](https://github.com/ovh/manager/issues/10392)) ([1428576](https://github.com/ovh/manager/commit/1428576db07cde41d4a724ebb229d9ec47e5a682))
+* **web.domain:** modify the information message about free hosting ([#10355](https://github.com/ovh/manager/issues/10355)) ([23bfcc9](https://github.com/ovh/manager/commit/23bfcc9e9f3ed41ae2484fc6caf51646c6c04da5))
+* **web.hosting:** backup dbs - add filters and sort by snapshot date ([8385163](https://github.com/ovh/manager/commit/8385163f06df96901e6116e4959dc7f57162a047))
+* **web:** add additionnal message and redirect ([#10270](https://github.com/ovh/manager/issues/10270)) ([a54a891](https://github.com/ovh/manager/commit/a54a891caaa1c2e4042a48e974f0f0acec7f4f80))
+* **web:** dns history ([#10386](https://github.com/ovh/manager/issues/10386)) ([fde3865](https://github.com/ovh/manager/commit/fde386576225e29f1f6d9b84cf256d03c0af7cfc))
+
+
+
+
+
+## [18.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.8.1...@ovh-ux/manager-web@18.8.2) (2023-12-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [18.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.8.0...@ovh-ux/manager-web@18.8.1) (2023-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [18.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.7.0...@ovh-ux/manager-web@18.8.0) (2023-12-04)
+
+
+### Features
+
+* **web.hosting:** db order: retrieve ram sizes from new api ([#10387](https://github.com/ovh/manager/issues/10387)) ([b650c24](https://github.com/ovh/manager/commit/b650c24bc0e673fc6b88b6b778e39e0c4e92dea2))
+* **web:** update copy database success message ([#10368](https://github.com/ovh/manager/issues/10368)) ([bc9f0a9](https://github.com/ovh/manager/commit/bc9f0a9b70be0b6cc601a66ed52b453825d3be2b))
+
+
+
+
+
+# [18.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.6.0...@ovh-ux/manager-web@18.7.0) (2023-12-01)
+
+
+### Bug Fixes
+
+* **web.hosting:** disable startsql order for free hosting offer ([606013d](https://github.com/ovh/manager/commit/606013d04ea280b7b211c9a7fdffdacdd3b4f4aa))
+
+
+### Features
+
+* **hosting:** remove ownlogs deprecated routes ([c099b24](https://github.com/ovh/manager/commit/c099b246e6d7bc1488f4331fd317820524786cec))
+
+
+
+
+
 # [18.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.5.1...@ovh-ux/manager-web@18.6.0) (2023-11-21)
 
 

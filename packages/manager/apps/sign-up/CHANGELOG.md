@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.2.0...@ovh-ux/sign-up-app@3.2.1) (2023-12-28)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+# [3.2.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.1.9...@ovh-ux/sign-up-app@3.2.0) (2023-12-11)
+
+
+### Features
+
+* **sign-up:** siret create a corporation not created yet path  ([#10394](https://github.com/ovh/manager/issues/10394)) ([818f752](https://github.com/ovh/manager/commit/818f75212aeed0dcf2d5a3df3cadc835711d83aa))
+
+
+
+
+
+## [3.1.9](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.1.8...@ovh-ux/sign-up-app@3.1.9) (2023-12-07)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [3.1.8](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.1.7...@ovh-ux/sign-up-app@3.1.8) (2023-12-05)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [3.1.7](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.1.6...@ovh-ux/sign-up-app@3.1.7) (2023-12-01)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
 ## [3.1.6](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.1.5...@ovh-ux/sign-up-app@3.1.6) (2023-11-21)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app

@@ -121,7 +121,6 @@
                     data-translate="domain_tab_ZONE_title"
                 ></p>
                 <p data-translate="domain_tab_ZONE_info"></p>
-
                 <div
                     class="alert alert-info mt-5"
                     role="alert"
@@ -423,6 +422,13 @@
                         data-translate="domain_configuration_dns_entry_add_title_button"
                         data-ng-click="setAction('zone/record/add/domain-zone-record-add', { domain: ctrlDomainTabZoneDns.domain, fieldTypes: ctrlDomainTabZoneDns.zone.fieldsTypes })"
                         data-ng-if="ctrlDomainTabZoneDns.allowModification"
+                    ></button>
+                    <button
+                        class="btn btn-block btn-default"
+                        type="button"
+                        data-translate="domain_configuration_dns_entry_see_dns_history_button"
+                        data-ng-click="ctrlDomainTabZoneDns.navigateToZoneHistory()"
+                        data-ng-if="!ctrlDomainTabZoneDns.loading.table && ctrlDomainTabZoneDns.hasResult"
                     ></button>
                     <button
                         class="btn btn-block btn-default"

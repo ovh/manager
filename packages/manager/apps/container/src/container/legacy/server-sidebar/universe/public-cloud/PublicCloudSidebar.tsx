@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useShell } from '@/context';
-import { useLegacyContainer } from '@/container/legacy/context';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
+import { useLegacyContainer } from '@/container/legacy/context';
+import { useShell } from '@/context';
 import useProjects from './useProjects';
 import { features, getPciProjectMenu } from './pci-menu';
 import style from './pci-sidebar.module.scss';

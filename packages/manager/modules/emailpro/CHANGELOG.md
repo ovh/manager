@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.9.0...@ovh-ux/manager-emailpro@3.9.1) (2023-12-19)
+
+
+### Bug Fixes
+
+* **web.email:** fix mxplan diagnostic calling wrong api ([#10530](https://github.com/ovh/manager/issues/10530)) ([d0a2cfa](https://github.com/ovh/manager/commit/d0a2cfa1967849b3470a60f7b6ad4103397df46f))
+* **web.mxplan:** fix issue in diagnostic function ([#10556](https://github.com/ovh/manager/issues/10556)) ([1f19b78](https://github.com/ovh/manager/commit/1f19b7885a4901192cd40b8257aecd068680d313))
+
+
+
+
+
 # [3.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.8.0...@ovh-ux/manager-emailpro@3.9.0) (2023-11-13)
 
 

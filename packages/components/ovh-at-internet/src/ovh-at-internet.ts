@@ -18,8 +18,8 @@ import { debug } from './utils';
 function getPageTrackingData(
   page: LegacyTrackingData,
 ): Partial<PageTrackingData> {
-  const parts = (page.name || '').split('::');
-  const len = parts.length;
+  const parts = (page?.name || '').split('::');
+  const len = parts?.length;
   return {
     page: len >= 1 ? parts.slice(Math.min(len - 1, 3)).join('::') : '',
     page_chapter1: len >= 2 ? parts[0] : '',
@@ -36,6 +36,10 @@ function filterTrackingData(data: any) {
     }
     return value;
   });
+}
+
+function isTrackingDebug() {
+  return window.localStorage?.getItem('MANAGER_TRACKING_DEBUG');
 }
 
 export default class OvhAtInternet extends OvhAtInternetConfig {
@@ -79,6 +83,9 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
       residential_country: params.countryCode,
       user_id: params.visitorId,
       user_category: capitalize(params.legalform),
+      page_category: params.page_category,
+      complete_page_name: params.complete_page_name,
+      page_theme: params.page_theme,
     };
   }
 
@@ -115,6 +122,10 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   }
 
   shouldUsePianoAnalytics() {
+    if (isTrackingDebug()) {
+      return true;
+    }
+
     return (
       !!window.pa &&
       ['EU', 'CA'].includes(this.region) &&
@@ -133,9 +144,12 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
     }
     if (this.shouldUsePianoAnalytics()) {
       debug(`tracking init: PianoAnalytics (consent=${withConsent})`);
+      const isLocal = isTrackingDebug();
       window.pa.setConfigurations({
-        site: 563736, // EU & CA
-        collectDomain: 'https://logs1406.xiti.com', // EU & CA
+        site: isLocal ? 605597 : 563736, // EU & CA
+        collectDomain: isLocal
+          ? 'https://logs1409.xiti.com'
+          : 'https://logs1406.xiti.com', // EU & CA
         addEventURL: 'true',
         cookieDomain: (window.location.hostname.match(/\..+/) || [])[0] || '',
         campaignPrefix: ['at_'],
@@ -298,13 +312,15 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   trackClick(data: LegacyTrackingData): void {
     if (this.canTrack()) {
       const pageTrackingData = getPageTrackingData(data);
-      const tracking = {
+      let tracking: any = {
         ...this.getGenericTrackingData(data),
         click: pageTrackingData.page,
         click_chapter1: pageTrackingData.page_chapter1,
         click_chapter2: pageTrackingData.page_chapter2,
         click_chapter3: pageTrackingData.page_chapter3,
+        ...getPageTrackingData(data?.page),
       };
+
       if (['action', 'navigation', 'download', 'exit'].includes(data.type)) {
         this.sendEvent('click.action', filterTrackingData(tracking));
       } else {

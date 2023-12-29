@@ -829,5 +829,6 @@
   "domain_configuration_restorable_title_button": "Restaurar",
   "domain_hosting_price_ht_label": "{{price}} s/IVA",
   "domain_dashboard_obfuscated_email": "Endereços anti-spam",
-  "domain_dashboard_obfuscated_email_regenerate_button": "Gerir os endereços anti-spam"
+  "domain_dashboard_obfuscated_email_regenerate_button": "Gerir os endereços anti-spam",
+  "domain_configuration_dns_entry_see_dns_history_button": "Ver o histórico da minha zona DNS"
 }

@@ -61,6 +61,7 @@ export default /* @ngInject */ (
     this.getPublicOffer = options.getPublicOffer;
     this.simultaneousLines = options.simultaneousLines;
     this.phone = options.phone;
+    this.featureType = options.featureType;
     this.hasPhone = undefined;
     this.hasSupportsPhonebook = undefined;
 

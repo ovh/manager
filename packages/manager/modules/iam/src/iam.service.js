@@ -9,6 +9,7 @@ export const URL = {
   RESOURCE: '/engine/api/v2/iam/resource',
   RESOURCE_GROUP: '/engine/api/v2/iam/resourceGroup',
   RESOURCE_TYPE: '/engine/api/v2/iam/reference/resource/type',
+  PERMISSIONS_GROUPS: '/engine/api/v2/iam/permissionsGroup',
 };
 
 export default class IAMService {
@@ -222,21 +223,33 @@ export default class IAMService {
 
   /**
    * Modify a policie's identities given its id
-   * @param {string} id The policy's id
+   * @param {string} policyId The policy's id
    * @param {string[]} identities The policy's identities
    * @returns {Promise}
    */
-  setPolicyIdentities(id, identities) {
-    return this.getPolicy(id)
-      .then((policy) => {
-        const { name, resources, permissions } = policy;
+  setPolicyIdentities(policyId, identities) {
+    return this.getPolicy(policyId)
+      .then((policyResponse) => {
+        // remove fields from GET response which cannot be used in PUT query.
+        // equivalent to delete policy.createdAt, delete policy.id ...
+        const {
+          createdAt,
+          updatedAt,
+          id,
+          owner,
+          readOnly,
+          ...policy
+        } = policyResponse;
+        policy.identities = identities;
         return this.Apiv2Service.httpApiv2({
           method: 'put',
-          url: `${URL.POLICY}/${id}`,
-          data: { name, resources, permissions, identities },
+          url: `${URL.POLICY}/${policyId}`,
+          data: policy,
         });
       })
-      .then(({ data: policy }) => IAMService.transformPolicy(policy));
+      .then(({ data: policy }) => {
+        IAMService.transformPolicy(policy);
+      });
   }
 
   /**
@@ -402,6 +415,17 @@ export default class IAMService {
       { url: URL.RESOURCE_GROUP },
       { cursor },
     );
+  }
+
+  /**
+   * Get the list of permissionsGroups
+   * @returns {Promise}
+   */
+  getPermissionsGroups() {
+    return this.Apiv2Service.httpApiv2({
+      method: 'get',
+      url: URL.PERMISSIONS_GROUPS,
+    }).then(({ data }) => data);
   }
 
   /**

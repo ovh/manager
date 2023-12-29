@@ -7,28 +7,27 @@ import {
   Listen,
   State,
 } from '@stencil/core';
-import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-  OdsThemeTypographySize,
-} from '@ovhcloud/ods-theming';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OdsHTMLAnchorElementTarget,
-  OdsIconName,
-  OdsIconSize,
-} from '@ovhcloud/ods-core';
-import { HTMLStencilElement } from '@stencil/core/internal';
+  OdsHTMLAnchorElementRel,
+} from '@ovhcloud/ods-common-core';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+import { HTMLStencilElement, Watch } from '@stencil/core/internal';
+import { Locale, defaultLocale } from '@ovhcloud/msc-utils';
+import { getTranslations, Translations } from './translations';
 
 export interface IMscTile {
   href?: string;
   isExternalHref?: boolean;
   imgSrc?: string;
   imgAlt?: string;
-  tileType: string;
+  category: string;
   tileTitle: string;
   tileDescription: string;
-  seeMoreLabel: string;
   dataTracking?: string;
+  locale?: Locale;
 }
 
 /**
@@ -49,17 +48,14 @@ export class MscTile implements IMscTile {
   /** True if the link point to an external ressource */
   @Prop() public isExternalHref?: boolean;
 
-  /** Label of the tile type displayed above the title (usually FAQ, Category...) */
-  @Prop() public tileType = '';
+  /** Label of the tile category */
+  @Prop() public category: string;
 
   /** Tile title */
   @Prop() public tileTitle = '';
 
   /** Tile description */
   @Prop() public tileDescription = '';
-
-  /** See more link label */
-  @Prop() public seeMoreLabel = '';
 
   /** Optional header image URL */
   @Prop() public imgSrc?: string = '';
@@ -70,9 +66,24 @@ export class MscTile implements IMscTile {
   /** Label sent to the tracking service */
   @Prop() public dataTracking?: string = '';
 
+  @Prop() public hoverable? = false;
+
+  @Prop() public locale = defaultLocale;
+
+  @State() private localeStrings?: Translations;
+
   @State() private tabIndex = 0;
 
   @State() private hasFooterContent = false;
+
+  @Watch('locale')
+  async updateTranslations() {
+    this.localeStrings = await getTranslations(this.locale);
+  }
+
+  async componentWillLoad() {
+    this.updateTranslations();
+  }
 
   @Listen('focus')
   onFocus(event: FocusEvent) {
@@ -96,11 +107,21 @@ export class MscTile implements IMscTile {
   };
 
   render() {
+    if (!this.localeStrings) {
+      return (
+        <osds-tile rounded>
+          <osds-skeleton />
+        </osds-tile>
+      );
+    }
+
     const content = (
       <osds-tile
         class="msc-ods-tile"
-        color={OdsThemeColorIntent.primary}
+        color={ODS_THEME_COLOR_INTENT.primary}
+        hoverable
         rounded
+        inline
       >
         <div class="tile-content">
           {this.imgSrc && (
@@ -108,11 +129,11 @@ export class MscTile implements IMscTile {
           )}
           <osds-text
             class="tile-type"
-            level={OdsThemeTypographyLevel.heading}
-            size={OdsThemeTypographySize._200}
-            color={OdsThemeColorIntent.primary}
+            level={ODS_TEXT_LEVEL.heading}
+            size={ODS_TEXT_SIZE._200}
+            color={ODS_THEME_COLOR_INTENT.primary}
           >
-            {this.tileType}
+            {this.category}
             <span class="tile-badge-list">
               <slot name="badges"></slot>
             </span>
@@ -120,39 +141,39 @@ export class MscTile implements IMscTile {
 
           <osds-text
             class="tile-title"
-            level={OdsThemeTypographyLevel.heading}
-            size={OdsThemeTypographySize._400}
-            color={OdsThemeColorIntent.text}
+            level={ODS_TEXT_LEVEL.heading}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
           >
             {this.tileTitle}
           </osds-text>
           <osds-text
             class="tile-description"
-            level={OdsThemeTypographyLevel.body}
-            size={OdsThemeTypographySize._400}
-            color={OdsThemeColorIntent.default}
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.default}
           >
             {this.tileDescription}
           </osds-text>
           <osds-link
             tabIndex={this.hasFooterContent ? 0 : -1}
             data-tracking={this.dataTracking}
-            color={OdsThemeColorIntent.primary}
+            color={ODS_THEME_COLOR_INTENT.primary}
             href={this.href}
             target={OdsHTMLAnchorElementTarget._blank}
           >
-            {this.seeMoreLabel}
+            {this.localeStrings?.see_more_label}
             <osds-icon
               slot="end"
               class="link-icon"
               aria-hidden="true"
-              size={OdsIconSize.xxs}
+              size={ODS_ICON_SIZE.xxs}
               name={
                 this.isExternalHref
-                  ? OdsIconName.EXTERNAL_LINK
-                  : OdsIconName.ARROW_RIGHT
+                  ? ODS_ICON_NAME.EXTERNAL_LINK
+                  : ODS_ICON_NAME.ARROW_RIGHT
               }
-              color={OdsThemeColorIntent.primary}
+              color={ODS_THEME_COLOR_INTENT.primary}
             />
           </osds-link>
           <slot name="footer" onSlotchange={this.handleFooterSlotChange}></slot>
@@ -167,8 +188,8 @@ export class MscTile implements IMscTile {
         ) : (
           <a
             class="msc-tile-wrapper"
-            target="_blank"
-            rel="noopener"
+            target={OdsHTMLAnchorElementTarget._blank}
+            rel={OdsHTMLAnchorElementRel.noopener}
             href={this.href}
             onFocus={() => {
               this.tabIndex = -1;

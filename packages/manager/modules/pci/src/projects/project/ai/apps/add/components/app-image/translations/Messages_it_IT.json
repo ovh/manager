@@ -19,5 +19,10 @@
   "pci_app_submit_select_image_name": "Percorso di accesso dell’immagine Docker",
   "pci_app_submit_select_image_tips_help": "Sono accettate immagini ospitate su registri pubblici o privati (GitHub, GitLab, DockerHub, ecc...)",
   "pci_app_submit_select_image_portfolio": "Scopri il nostro portfolio di applicazioni IA pronte all'uso",
-  "pci_app_submit_select_image_custom_doc": "Crea la tua immagine Docker personalizzata"
+  "pci_app_submit_select_image_custom_doc": "Crea la tua immagine Docker personalizzata",
+  "pci_app_docker_command_title": "Inserisci il comando Docker da eseguire nel container",
+  "pci_app_docker_command_default_select": "Specifica il comando da eseguire (facoltativo)",
+  "pci_app_docker_command_tips": "Inserisci gli argomenti (separati da spazi) che saranno passati al comando Docker. Le virgolette singole (`) non sono supportate e devono essere sostituite da virgolette doppie (“).",
+  "pci_app_docker_command_submit_title": "Comando specifico",
+  "pci_app_docker_command_submit_title_command": "Argomenti"
 }

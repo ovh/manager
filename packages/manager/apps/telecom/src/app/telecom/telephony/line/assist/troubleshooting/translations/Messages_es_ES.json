@@ -34,5 +34,6 @@
   "telephony_line_assist_troubleshooting_support_contact": "Contactar con el soporte",
   "telephony_line_assist_troubleshooting_support_contact_title": "Parece que su problema requiere la intervención de un técnico.",
   "telephony_line_assist_troubleshooting_support_contact_email": "Por correo electrónico, declarando una incidencia a través del menú \"<strong>Asistencia</strong>\" y, seguidamente, \"<strong>Crear una solicitud de asistencia</strong>\".",
-  "telephony_line_assist_troubleshooting_support_contact_phone": "Por teléfono, componiendo el <strong>1007</strong> (de lunes a viernes de 8:00 a 20:00 horas, y los sábados de 9:00 a 17:00 horas)."
+  "telephony_line_assist_troubleshooting_support_contact_phone": "Por teléfono, componiendo el <strong>1007</strong> (de lunes a viernes de 8:00 a 20:00 horas, y los sábados de 9:00 a 17:00 horas).",
+  "telephony_line_assist_troubleshooting_informations_message_guide": "Guía"
 }

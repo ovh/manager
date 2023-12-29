@@ -1,0 +1,17 @@
+<oui-modal
+    data-heading="{{:: 'dashboard_history_popup_title' | translate }}"
+    data-primary-action="$ctrl.goBack()"
+    data-primary-label="{{:: 'dashboard_history_close_popup' | translate }}"
+    data-secondary-disabled="$ctrl.isCurrentDnsZone"
+    data-secondary-label="{{:: 'dashboard_history_restore' | translate }}"
+    data-secondary-action="$ctrl.openDnsRestoreModal()"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.loadingDnsZoneData"
+>
+    <textarea
+        class="col-md-12 col-sm-12 col-xs-12 mb-4"
+        rows="20"
+        data-ng-disabled="true"
+        data-ng-model="$ctrl.dnsZoneData"
+    ></textarea>
+</oui-modal>

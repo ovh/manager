@@ -16,6 +16,7 @@ const config: StorybookConfig = {
     name: '@storybook/html-vite',
     options: {},
   },
+  staticDirs: ['../static'],
   docs: {
     autodocs: 'tag',
   },

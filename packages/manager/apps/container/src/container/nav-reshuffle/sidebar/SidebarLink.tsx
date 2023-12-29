@@ -21,7 +21,7 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
   count = 0,
   node = {},
   linkParams = {},
-  onClick = () => {},
+  onClick = () => { },
   id = '',
 }: StaticLinkProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
@@ -65,7 +65,7 @@ const StaticLink: React.FC<ComponentProps<StaticLinkProps>> = ({
         ></span>
       )}
       <SidebarLinkTag node={node} />
-      {count > 0 && (
+      {count as number > 0 && (
         <span
           className={`oui-badge oui-badge_s oui-badge_new ml-1 ${style.sidebar_chip}`}
         >
@@ -88,7 +88,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   count = 0,
   node = {},
   linkParams = {},
-  onClick = () => {},
+  onClick = () => { },
   id = '',
 }: SidebarLinkProps): JSX.Element => {
   const { t } = useTranslation('sidebar');
@@ -113,7 +113,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
         ''
       )}
       <SidebarLinkTag node={node} />
-      {count > 0 && (
+      {count as number > 0 && (
         <span
           className={`oui-badge oui-badge_s oui-badge_new ml-1 ${style.sidebar_chip}`}
         >

@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import {
-  OsdsText,
   OsdsTabs,
   OsdsTabBar,
   OsdsTabBarItem,
-} from '@ovhcloud/ods-stencil/components/react';
-import {
-  OdsThemeColorIntent,
-  OdsThemeTypographyLevel,
-  OdsThemeTypographySize,
-} from '@ovhcloud/ods-theming';
-
-import './Dashboard.scss';
+} from '@ovhcloud/ods-components/tabs/react';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -40,27 +35,32 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
   }, [location.pathname]);
 
   return (
-    <div className="dashboard-layout-helpers">
-      <div className="dashboard-layout-subtitle py-4">
+    <>
+      <div className="py-4">
         <OsdsText
-          level={OdsThemeTypographyLevel.heading}
-          color={OdsThemeColorIntent.text}
-          size={OdsThemeTypographySize._600}
+          level={ODS_TEXT_LEVEL.heading}
+          color={ODS_THEME_COLOR_INTENT.text}
+          size={ODS_TEXT_SIZE._600}
         >
           {location.pathname.split('/')[2]}
         </OsdsText>
       </div>
       <OsdsTabs panel={panel}>
         <OsdsTabBar slot="top">
-          {tabs.map((tab: DashboardTabItemProps, key: number) => (
-            <OsdsTabBarItem key={`osds-tab-bar-item-${key}`} panel={tab.name}>
-              <NavLink to={tab.to}>{tab.title}</NavLink>
+          {tabs.map((tab: DashboardTabItemProps) => (
+            <OsdsTabBarItem
+              key={`osds-tab-bar-item-${tab.name}`}
+              panel={tab.name}
+            >
+              <NavLink to={tab.to} className="no-underline">
+                {tab.title}
+              </NavLink>
             </OsdsTabBarItem>
           ))}
         </OsdsTabBar>
       </OsdsTabs>
       <Outlet />
-    </div>
+    </>
   );
 };
 

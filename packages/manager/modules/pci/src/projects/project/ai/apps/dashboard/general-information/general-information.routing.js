@@ -34,10 +34,13 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
 
       goToGenerateToken: /* @ngInject */ ($state, projectId, app) => () =>
-        $state.go('pci.projects.project.ai.tokens.add', {
-          projectId,
-          labelSelector: `id=${app.id}`,
-        }),
+        $state.go(
+          'pci.projects.project.ai-dashboard.users-tokens.create-token',
+          {
+            projectId,
+            labelSelector: `id=${app.id}`,
+          },
+        ),
 
       goToStartApp: /* @ngInject */ ($state, projectId, app) => () =>
         $state.go(
@@ -68,6 +71,14 @@ export default /* @ngInject */ ($stateProvider) => {
       goToUpdateAppImage: /* @ngInject */ ($state, projectId, app) => () =>
         $state.go(
           'pci.projects.project.ai.apps.dashboard.general-information.update-image',
+          {
+            projectId,
+            app,
+          },
+        ),
+      goToUpdateAppPort: /* @ngInject */ ($state, projectId, app) => () =>
+        $state.go(
+          'pci.projects.project.ai.apps.dashboard.general-information.update-port',
           {
             projectId,
             app,

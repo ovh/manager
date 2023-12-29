@@ -73,7 +73,7 @@ const GUIDE = {
     SG:
       'https://help.ovhcloud.com/csm/en-sg-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058726',
     US:
-      'https://help.ovhcloud.com/csm/en-gb-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058725',
+      'https://support.us.ovhcloud.com/hc/en-us/articles/19185780752019-Using-IAM-Policies-with-the-OVHcloud-Control-Panel',
     WE:
       'https://help.ovhcloud.com/csm/en-customer-iam-policies-ui?id=kb_article_view&sysparm_article=KB0058729',
     WS:
@@ -281,6 +281,8 @@ const UNAVAILABLE_STATE_NAME = 'app.account.user';
 
 const URN_VERSION = 1;
 
+const OVH_MANAGED_PERMISSIONS_GROUP = 'permissionsGroup:ovh';
+
 export {
   ALERT_ID,
   API_ERROR,
@@ -294,6 +296,7 @@ export {
   ENTITY_NAME_PATTERN,
   FEATURE,
   GUIDE,
+  OVH_MANAGED_PERMISSIONS_GROUP,
   PAGE_SIZE,
   PREFERENCES_KEY,
   TAG,

@@ -1,0 +1,7 @@
+{
+  "server_displaname_edit_title": "Zmień nazwę",
+  "server_displaname_edit_help": "Zmień nazwę, która wyświetla się w nagłówku.",
+  "server_displaname_edit_displayname_label": "Nazwa",
+  "server_displaname_edit_success": "Nazwa została zmieniona.",
+  "server_displaname_edit_failure": "Wystąpił błąd podczas aktualizacji nazwy."
+}

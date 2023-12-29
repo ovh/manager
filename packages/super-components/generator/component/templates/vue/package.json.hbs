@@ -2,8 +2,17 @@
   "name": "@ovhcloud/msc-vue-{{ packageName }}",
   "version": "1.0.0",
   "private": true,
-  "description": "Vue specific wrapper for Manager super components",
+  "description": "Vue specific wrapper for {{ name }} super component",
   "keywords": [],
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/super-components/components/{{ componentTag }}#readme",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/super-components/components/{{ componentTag }}/vue"
+  },
   "license": "Apache-2.0",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -12,14 +21,15 @@
     "dist/"
   ],
   "scripts": {
-    "build": "npm run clean && npm run compile",
+    "prepare": "yarn msc:build",
+    "msc:build": "npm run clean && npm run compile",
     "clean": "rimraf dist",
     "compile": "npm run compile:esm && npm run compile:cjs",
     "compile:cjs": "tsc -p tsconfig.cjs.json",
     "compile:esm": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@ovhcloud/msc-stencil-{{ packageName }}": "^1.0.0"
+    "@ovhcloud/msc-stencil-{{ packageName }}": "*"
   },
   "devDependencies": {
     "rimraf": "^3.0.2",
@@ -27,7 +37,6 @@
     "vue": "^3.2.41"
   },
   "peerDependencies": {
-    "@ovhcloud/ods-stencil": "^13.0.1",
     "vue": ">=3"
   }
 }

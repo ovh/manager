@@ -15,6 +15,7 @@ export default {
     tagPrefix: '<',
     trackClick: '<',
     trackPage: '<',
+    permissionsGroups: '<',
   },
   require: {
     requiredNgModel: '^ngModel',

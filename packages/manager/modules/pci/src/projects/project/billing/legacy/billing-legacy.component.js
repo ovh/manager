@@ -11,6 +11,7 @@ export default {
     guideUrl: '<',
     guideTrackingSectionTags: '<',
     trackClick: '<',
+    pciFeatures: '<',
     projectId: '<',
   },
   controllerAs: 'BillingCtrl',

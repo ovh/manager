@@ -363,7 +363,10 @@
                             ></span>
                         </div>
                         <div class="d-flex flex-column mb-2 pl-2">
-                            <div class="d-flex">
+                            <div
+                                class="d-flex"
+                                data-ng-if="$ctrl.model.flavor.core > 0"
+                            >
                                 <span
                                     class="oui-icon oui-icon-component_concept mr-2"
                                 ></span>
@@ -376,7 +379,10 @@
                                     }"
                                 ></span>
                             </div>
-                            <div class="d-flex">
+                            <div
+                                class="d-flex"
+                                data-ng-if="$ctrl.model.flavor.memory > 0"
+                            >
                                 <span
                                     class="oui-icon oui-icon-ram_concept mr-2"
                                 ></span>

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
-import { useShell } from '@/context';
 import { useTranslation } from 'react-i18next';
+import { useShell } from '@/context';
 import style from './pci-sidebar.module.scss';
 
 type Props = {

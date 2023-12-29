@@ -1,10 +1,19 @@
 {
   "name": "@ovhcloud/msc-react-tile",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "private": true,
-  "description": "React specific wrapper for Manager super components",
+  "description": "React specific wrapper for Manager Tile super component",
   "keywords": [],
-  "license": "Apache-2.0",
+  "homepage": "https://github.com/ovh/manager/tree/master/packages/super-components/components/msc-tile#readme",
+  "bugs": {
+    "url": "https://github.com/ovh/manager/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh/manager.git",
+    "directory": "packages/super-components/components/msc-tile/react"
+  },
+  "license": "BSD-3-Clause",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
@@ -12,26 +21,29 @@
     "dist/"
   ],
   "scripts": {
-    "build": "npm run clean && npm run compile",
+    "build": "yarn msc:build",
     "clean": "rimraf dist",
-    "compile": "npm run compile:esm && npm run compile:cjs",
+    "compile": "yarn compile:esm && yarn compile:cjs",
     "compile:cjs": "tsc -p tsconfig.cjs.json",
-    "compile:esm": "tsc -p tsconfig.json"
+    "compile:esm": "tsc -p tsconfig.json",
+    "dev": "yarn msc:build",
+    "msc:build": "yarn clean && yarn compile",
+    "prepare": "yarn msc:build"
   },
   "dependencies": {
-    "@ovhcloud/msc-stencil-tile": "^1.0.0",
+    "@ovhcloud/msc-stencil-tile": "^1.1.2",
     "tslib": "*"
   },
   "devDependencies": {
-    "@types/react": "18.2.8",
-    "@types/react-dom": "18.2.4",
+    "@types/lodash": "4.14.197",
+    "@types/react": "18.2.22",
+    "@types/react-dom": "18.2.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "rimraf": "^3.0.2",
     "typescript": "5.1.3"
   },
   "peerDependencies": {
-    "@ovhcloud/ods-stencil": "^13.0.1",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   }

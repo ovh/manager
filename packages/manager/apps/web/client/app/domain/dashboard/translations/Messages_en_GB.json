@@ -829,5 +829,6 @@
   "domain_hosting_price_ht_label": "{{price}} ex. VAT",
   "domain_tab_options_delete_expiry": "Your cancellation of the option will come into effect on the renewal date, i.e. {{ date }}",
   "domain_dashboard_obfuscated_email": "Anti-spam addresses",
-  "domain_dashboard_obfuscated_email_regenerate_button": "Manage anti-spam addresses"
+  "domain_dashboard_obfuscated_email_regenerate_button": "Manage anti-spam addresses",
+  "domain_configuration_dns_entry_see_dns_history_button": "View your DNS zone history"
 }

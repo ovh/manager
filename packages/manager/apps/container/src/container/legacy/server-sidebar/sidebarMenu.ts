@@ -15,7 +15,7 @@ export type SidebarMenuItem = {
   parentName?: string;
   serviceName?: string;
   extraParams?: Record<string, string>;
-  stateParams?: (number | string)[];
+  stateParams?: (number | string)[];
 
   loader?: () => Promise<SidebarMenuItem[]>;
   isLoading?: boolean;
@@ -128,9 +128,9 @@ export function filterBySearch(
         if (item.subItems?.length) {
           return;
           // if it's a leaf item, reveal all of his parents in the tree
-        } else {
+        } 
           revealParents(item);
-        }
+        
       }
     }
     // perform the search on each subItems
@@ -248,9 +248,9 @@ export async function selectActiveItem(
         (subItem) => subItem !== null,
       );
       return matchingSubItem || item;
-    } else {
+    } 
       return null;
-    }
+    
   };
 
   unselectAll(menu);

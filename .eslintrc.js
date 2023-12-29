@@ -15,10 +15,27 @@ module.exports = {
   },
   rules: {
     'no-bitwise': ['error', { allow: ['~'] }],
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: true, peerDependencies: true },
+    ],
     'import/no-unresolved': 0,
-    'prettier/prettier': 'error',
+    'prettier/prettier': 'warn',
+    'import/extensions': 'off',
+    'import/no-cycle': 'off',
   },
+  ignorePatterns: [
+    '**/vendor/**',
+    '**/node_modules/**',
+    '**/dist/**',
+    '**/www/**',
+    '**/custom-elements/**',
+    '**/custom-elements-bundle/**',
+    '**/react/src/**',
+    '**/vue/src/**',
+    '**/loader/**',
+    '**/templates/**',
+  ],
   overrides: [
     {
       files: ['**/*.md'],
@@ -45,7 +62,7 @@ module.exports = {
         'no-use-before-define': 'off',
         'no-shadow': 'off',
         'no-unused-expressions': 'off',
-        'camelcase': 'off',
+        camelcase: 'off',
         '@typescript-eslint/camelcase': 'off',
         '@typescript-eslint/no-unused-expressions': ['error'],
         '@typescript-eslint/no-use-before-define': ['error'],
@@ -72,6 +89,26 @@ module.exports = {
             format: ['PascalCase'],
           },
         ],
+      },
+    },
+    {
+      files: ['*.spec.js', 'jest.config.js'],
+      env: {
+        mocha: true,
+        node: true,
+        jest: true,
+      },
+    },
+    {
+      files: ['*.test.ts'],
+      extends: [
+        'plugin:@typescript-eslint/eslint-recommended',
+        'plugin:@typescript-eslint/recommended',
+      ],
+      env: {
+        mocha: true,
+        node: true,
+        jest: true,
       },
     },
   ],

@@ -1,0 +1,7 @@
+{
+  "cloud_connect_change_bandwidth_select": "Seleziona la nuova banda passante",
+  "cloud_connect_change_bandwidth_cancel": "Annullare",
+  "cloud_connect_change_bandwidth_confirm": "Confermare",
+  "cloud_connect_change_bandwidth_error": "Si è verificato un errore durante la modifica della banda passante: {{message}}",
+  "cloud_connect_change_bandwidth_warning": "L'ordine <a href='{{url}}' target='_blank'>{{orderId}}</a> è stato emesso correttamente. Accertati che l'hardware del client sia compatibile con la banda passante richiesta."
+}

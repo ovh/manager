@@ -35,7 +35,7 @@
         class="d-block"
         data-on-click="detachDomain(domain)"
         data-disabled="domain.status !== HOSTING_STATUS.CREATED"
-        data-ng-if="excludeAttachedDomains.indexOf(domain.displayName) === -1"
+        data-ng-if="excludeAttachedDomains.indexOf(domain.displayName) === -1 && hosting.offer !== HOSTING_OFFER.FREE_100_M"
     >
         <span data-translate="hosting_tab_DOMAINS_table_popover_delete"></span>
     </oui-button>

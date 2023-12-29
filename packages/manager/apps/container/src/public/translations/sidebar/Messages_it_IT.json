@@ -164,5 +164,6 @@
   "sidebar_pci_data_integration": "Data Integration",
   "sidebar_pci_analytics_databases": "Database",
   "sidebar_pci_analytics_data_streaming": "Data Streaming",
-  "sidebar_pci_analytics_data_analysis": "Data Analysis"
+  "sidebar_pci_analytics_data_analysis": "Data Analysis",
+  "sidebar_network_security": "Network Security Dashboard"
 }
