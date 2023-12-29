@@ -1,0 +1,130 @@
+<pci-project-quota-header
+    data-guide-url="$ctrl.guideUrl"
+></pci-project-quota-header>
+
+<pci-announcement-banner
+    data-get-state-name="$ctrl.getStateName()"
+    data-on-go-to-region="$ctrl.goToRegion()"
+    data-disable-region-link="true"
+></pci-announcement-banner>
+
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+
+<div>
+    <h3 data-translate="pci_projects_project_regions_title"></h3>
+    <p data-translate="pci_projects_project_regions_description"></p>
+
+    <oui-message data-type="info">
+        <span data-translate="pci_projects_project_regions_info_message"></span>
+    </oui-message>
+
+    <!-- regions added -->
+    <h6 data-translate="pci_projects_project_regions_added_title"></h6>
+    <oui-tabs class="mb-5">
+        <oui-tabs-item
+            data-heading="{{ ::'pci_projects_project_regions_all' | translate }}"
+        >
+            <div class="row">
+                <oui-select-picker
+                    class="col-md-6 col-lg-4 mb-1 icon-success-no-opacity"
+                    data-ng-repeat="(region, datacenters) in $ctrl.regionsByDatacenter"
+                    name="region"
+                    data-disabled="true"
+                    data-label="{{ ::region }}"
+                    data-variant="light"
+                    picture="oui-icon oui-icon-success-circle"
+                >
+                    <oui-select-picker-section
+                        data-ng-repeat="datacenter in datacenters track by datacenter.microRegion.code"
+                    >
+                        <span data-ng-bind="datacenter.microRegion.text"></span>
+                    </oui-select-picker-section>
+                </oui-select-picker>
+            </div>
+        </oui-tabs-item>
+        <oui-tabs-item
+            data-ng-repeat="(continent, regions) in $ctrl.regionsByContinent track by $index"
+            data-heading="{{ ::continent }}"
+        >
+            <div class="row">
+                <oui-select-picker
+                    class="col-md-6 col-lg-4 mb-1 icon-success-no-opacity"
+                    data-ng-repeat="(region, datacenters) in regions"
+                    name="region"
+                    data-disabled="true"
+                    data-label="{{ ::region }}"
+                    data-variant="light"
+                    picture="oui-icon oui-icon-success-circle"
+                >
+                    <oui-select-picker-section
+                        data-ng-repeat="datacenter in datacenters track by datacenter.microRegion.code"
+                    >
+                        <span data-ng-bind="datacenter.microRegion.text"></span>
+                    </oui-select-picker-section>
+                </oui-select-picker>
+            </div>
+        </oui-tabs-item>
+    </oui-tabs>
+
+    <!-- available regions to add -->
+    <h6
+        data-translate="pci_projects_project_regions_available_to_add_title"
+    ></h6>
+    <p
+        data-ng-if="$ctrl.allRegionsAdded"
+        data-translate="pci_projects_project_regions_all_added"
+    ></p>
+    <div data-ng-if="!$ctrl.allRegionsAdded">
+        <oui-tabs class="mb-5">
+            <oui-tabs-item
+                data-heading="{{ ::'pci_projects_project_regions_all' | translate }}"
+            >
+                <div class="row">
+                    <oui-select-picker
+                        class="col-md-6 col-lg-4"
+                        data-ng-repeat="(region, datacenters) in $ctrl.availableRegionsByDatacenter"
+                        name="allAvailableRegions"
+                        data-model="$ctrl.regionToAdd"
+                        data-label="{{ ::region}}"
+                        data-variant="light"
+                        data-match="microRegion.text"
+                        data-values="datacenters"
+                    >
+                    </oui-select-picker>
+                </div>
+            </oui-tabs-item>
+            <oui-tabs-item
+                data-ng-repeat="(continent, regions) in $ctrl.availableRegionsByContinent track by $index"
+                data-heading="{{ ::continent }}"
+            >
+                <div class="row">
+                    <oui-select-picker
+                        class="col-md-6 col-lg-4"
+                        data-ng-repeat="(region, datacenters) in regions"
+                        name="availableRegion"
+                        data-model="$ctrl.regionToAdd"
+                        data-label="{{ ::region }}"
+                        data-variant="light"
+                        data-match="microRegion.text"
+                        data-values="datacenters"
+                    >
+                    </oui-select-picker>
+                </div>
+            </oui-tabs-item>
+        </oui-tabs>
+
+        <!-- add regions button -->
+        <oui-button
+            data-variant="primary"
+            data-type="button"
+            data-on-click="$ctrl.addRegions()"
+            data-disabled="$ctrl.regionToAdd === null"
+            data-ng-if="!$ctrl.isLoading"
+        >
+            <span
+                data-translate="pci_projects_project_regions_add_region"
+            ></span>
+        </oui-button>
+        <oui-spinner data-ng-if="$ctrl.isLoading"></oui-spinner>
+    </div>
+</div>
