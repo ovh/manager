@@ -83,6 +83,7 @@ export default /* @ngInject */ ($stateProvider) => {
         return {
           state: PCI_FEATURES_STATES[category][state],
           params: {
+            ...redirectTarget.params,
             projectId: project.project_id,
           },
           options: {

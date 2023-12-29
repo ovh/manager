@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
 import Sidebar from '../Sidebar';
-import { useServiceLoader } from './useServiceLoader';
+import useServiceLoader from "./useServiceLoader";
 import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
@@ -40,6 +40,7 @@ const features = [
   'logs-data-platform',
   'dedicated-server:ecoRangeOrder',
   'dedicated-server:nutanixOrder',
+  'network-security',
 ];
 
 export default function HostedPrivateCloudSidebar() {
@@ -154,7 +155,15 @@ export default function HostedPrivateCloudSidebar() {
             href: navigation.getURL('dedicated', '#/ip'),
             routeMatcher: new RegExp('/ip(/|$)'),
           },
-          feature['ip-load-balancer'] && 
+          feature['network-security'] && {
+            id: 'hpc-network-security',
+            badge: 'beta',
+            label: t('sidebar_network_security'),
+            icon: getIcon('oui-icon oui-icon-shield_concept'),
+            href: navigation.getURL('dedicated', '#/network-security'),
+            routeMatcher: new RegExp('^/network-security'),
+          },
+          feature['ip-load-balancer'] &&
             {
               id: 'ip-loadbalancer',
               label: t('sidebar_pci_load_balancer'),

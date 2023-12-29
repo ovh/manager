@@ -1,4 +1,5 @@
 import { STATUS } from '../../../../../../../components/project/storages/databases/databases.constants';
+import Node from '../../../../../../../components/project/storages/databases/node.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -13,18 +14,14 @@ export default /* @ngInject */ ($stateProvider) => {
       layout: 'modal',
       resolve: {
         breadcrumb: () => null,
-        onNodeAdd: /* @ngInject */ (
-          database,
-          getNodeObject,
-          pollDatabaseStatus,
-          pollNodesStatus,
-          goToDatabase,
-        ) => (nodeInfo, message, type) => {
-          database.addNode(getNodeObject(nodeInfo));
+        onNodeAdd: /* @ngInject */ (database, goBackAndPoll) => (
+          nodeInfo,
+          message,
+          type,
+        ) => {
+          database.addNode(new Node(nodeInfo));
           database.setStatus(STATUS.UPDATING);
-          pollDatabaseStatus();
-          pollNodesStatus();
-          return goToDatabase(database, message, type);
+          return goBackAndPoll(message, type);
         },
       },
       atInternet: {

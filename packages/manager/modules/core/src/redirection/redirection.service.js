@@ -1,6 +1,6 @@
 import { forOwn, get, isString, keys, some, startsWith } from 'lodash-es';
 
-import constants from './redirection.constants';
+import constants, { SANITIZATION } from './redirection.constants';
 
 export default class RedirectionService {
   /* @ngInject */
@@ -31,6 +31,10 @@ export default class RedirectionService {
     }
 
     return url;
+  }
+
+  static isUrlSafeForRedirection(url) {
+    return SANITIZATION.regex.test(url);
   }
 
   validate(url) {

@@ -25,11 +25,11 @@ export default class {
       false,
     );
     // Check if flavor matches. If not, we show possible flavors
-    const possibleFlavors = selectedPlan.availability
+    const possibleFlavors = selectedPlan.availabilities
       .filter(
         (availability) =>
           availability.region === this.database.region &&
-          availability.network === this.database.networkType,
+          availability.specifications.network === this.database.networkType,
       )
       .map(
         (planAvailability) =>

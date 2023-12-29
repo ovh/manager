@@ -6,6 +6,16 @@ export default class AIDashboadCreateTokenCtrl {
     this.AiDashboardService = AiDashboardService;
   }
 
+  $onInit() {
+    this.processing = false;
+    this.model = {
+      name: null,
+      labelSelector: this.labelSelector,
+      role: null,
+      region: null,
+    };
+  }
+
   addToken() {
     this.atInternet.trackClick({
       name: `${this.trackingPrefix}::users-tokens::create-token::validate`,

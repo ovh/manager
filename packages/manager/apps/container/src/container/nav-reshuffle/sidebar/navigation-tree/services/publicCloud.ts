@@ -141,7 +141,6 @@ const pciNode: Node = {
       features: [
         'private-network',
         'octavia-load-balancer',
-        'failover-ip',
         'additional-ips',
         'public-gateways',
       ],
@@ -167,17 +166,6 @@ const pciNode: Node = {
             hash: '#/pci/projects/{projectId}/octavia-load-balancer',
           },
           features: ['octavia-load-balancer'],
-          forceVisibility: true,
-        },
-        {
-          id: 'pci-failover-ip',
-          translation: 'sidebar_pci_failover_ip',
-          serviceType: 'CLOUD_PROJECT_IP_FAILOVER',
-          routing: {
-            application: 'public-cloud',
-            hash: '#/pci/projects/{projectId}/failover-ips',
-          },
-          features: ['failover-ip'],
           forceVisibility: true,
         },
         {

@@ -3,6 +3,7 @@ import '@ovh-ux/ng-ovh-api-wrappers';
 import 'ovh-api-services';
 
 import billing from './billing';
+import billingChangeMediationBanner from './billing-change-mediation-banner';
 import flavorBilling from './flavor-billing';
 import flavorsList from './flavors-list';
 import guidesHeader from './guides-header';
@@ -19,6 +20,7 @@ const moduleName = 'ovhManagerPciComponentsProject';
 
 angular.module(moduleName, [
   billing,
+  billingChangeMediationBanner,
   flavorBilling,
   flavorsList,
   guidesHeader,

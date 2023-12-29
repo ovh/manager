@@ -3,6 +3,93 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.4.2...@ovh-ux/manager-telecom@15.5.0) (2023-12-19)
+
+
+### Bug Fixes
+
+* **telecom.voip:** fix the class of button delete external number ([#10294](https://github.com/ovh/manager/issues/10294)) ([f842ea2](https://github.com/ovh/manager/commit/f842ea29a558fd2c564b84db018b2db99705a594))
+
+
+### Features
+
+* **telecom.xdsl.access:** add modem profile ([#10376](https://github.com/ovh/manager/issues/10376)) ([5da37f9](https://github.com/ovh/manager/commit/5da37f9e8bf62f53470ca0edac299e5a70608bb2))
+* **telephony:** remove the mgcp banner ([#10464](https://github.com/ovh/manager/issues/10464)) ([09d4889](https://github.com/ovh/manager/commit/09d48896cb7d974f57a470ab844376c39d2474dd))
+
+
+
+
+
+## [15.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.4.1...@ovh-ux/manager-telecom@15.4.2) (2023-12-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.4.0...@ovh-ux/manager-telecom@15.4.1) (2023-12-12)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+# [15.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.3.2...@ovh-ux/manager-telecom@15.4.0) (2023-12-11)
+
+
+### Features
+
+* **telecom:** add troubleshooting guide button ([#10474](https://github.com/ovh/manager/issues/10474)) ([ddadb48](https://github.com/ovh/manager/commit/ddadb480f1b95aff28dc4de76e104dc905ad5375))
+
+
+
+
+
+## [15.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.3.1...@ovh-ux/manager-telecom@15.3.2) (2023-12-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.3.0...@ovh-ux/manager-telecom@15.3.1) (2023-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+# [15.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.2.0...@ovh-ux/manager-telecom@15.3.0) (2023-12-04)
+
+
+### Features
+
+* **telecom:** remove old reversment pages ([#10354](https://github.com/ovh/manager/issues/10354)) ([309b01a](https://github.com/ovh/manager/commit/309b01ae8e9b2b85a2f165b747b335a6a94df00b))
+
+
+
+
+
+# [15.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.1.0...@ovh-ux/manager-telecom@15.2.0) (2023-12-01)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** add catch error on delete sounds ([81238d6](https://github.com/ovh/manager/commit/81238d63a3c41ce78f72ff7297bcce87a553af20))
+
+
+### Features
+
+* **telecom.voip:** permit to make a redirection via the manager ([#10186](https://github.com/ovh/manager/issues/10186)) ([0ebc705](https://github.com/ovh/manager/commit/0ebc70507f00d761f6dd4911c401e014b8d80127))
+
+
+
+
+
 # [15.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.0.9...@ovh-ux/manager-telecom@15.1.0) (2023-11-21)
 
 

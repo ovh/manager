@@ -17,5 +17,9 @@
   "sign_up_activity_field_companyNationalIdentificationNumber": "Nationale Identifikationsnummer",
   "sign_up_activity_field_companyNationalIdentificationNumber_fr": "Nationale Identifikationsnummer (SIRET, Système Informatique pour le Répertoire des Entreprises sur le Territoire)",
   "sign_up_activity_field_italian_sdi": "Empfänger-Code für die elektronische Rechnungsstellung (SDI)",
-  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "Die SIRET Nummer ist notwendig, um den vom Staat eingerichteten Prozess der elektronischen Rechnungsstellung (Chorus) zu verbessern."
+  "sign_up_activity_field_companyNationalIdentificationNumber_fr_tooltip": "Die SIRET Nummer ist notwendig, um den vom Staat eingerichteten Prozess der elektronischen Rechnungsstellung (Chorus) zu verbessern.",
+  "sign_up_activity_corporation_created_title": "Mein Unternehmen wurde erstellt.",
+  "sign_up_activity_corporation_not_created_title": "Mein Unternehmen wird gerade erstellt.",
+  "sign_up_activity_corporation_not_created_description": "Ich werde die Informationen bei der Erstellung meines Unternehmens angeben.",
+  "sign_up_activity_corporation_created_description": "Ich habe die Identifikationsnummer für mein Unternehmen."
 }

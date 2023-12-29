@@ -114,11 +114,13 @@ import expiredPage from './expired';
 import ip from './ip';
 import ipComponents from './components/ip/ip-components.module';
 
-import dedicatedServer from './dedicated/server';
+import dedicatedServer from './dedicated/dedicated-server';
 import dedicatedNas from './dedicated/nas';
 import dedicatedHousing from './dedicated/housing';
 import userContracts from './user-contracts';
 import otrs from './otrs';
+
+import networkSecurity from './network-security';
 
 import { TRACKING } from './at-internet.constants';
 
@@ -228,6 +230,7 @@ export default async (containerEl, shellClient) => {
         userContracts,
         'xeditable',
         ovhManagerCda,
+        networkSecurity,
       ].filter(isString),
     )
     .service('Polling', pollingService)
@@ -365,6 +368,7 @@ export default async (containerEl, shellClient) => {
             'cloud-connect',
             'error',
             'iplb',
+            'network-security',
           ];
 
           const stateIncludes = Object.keys(transition.$to().includes);

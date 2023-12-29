@@ -12,6 +12,7 @@ export interface LegacyTrackingData {
   chapter2?: string;
   chapter3?: string;
   level2: string;
+  page?: any;
   [key: string]: any;
 }
 
@@ -28,6 +29,9 @@ export interface GenericTrackingData {
   user_id: string;
   user_category: string;
   site_level2: string;
+  page_category?: string;
+  complete_page_name?: string;
+  page_theme?: string;
 }
 
 export interface PageTrackingData extends GenericTrackingData {

@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.7.0...@ovh-ux/manager-iam@1.7.1) (2023-12-19)
+
+
+### Bug Fixes
+
+* **iam:** add identity to policy was removing managed permissions ([78dca28](https://github.com/ovh/manager/commit/78dca288e1b056507a14e1ba27aff4c89d8ed83f))
+
+
+
+
+
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.6.0...@ovh-ux/manager-iam@1.7.0) (2023-12-11)
+
+
+### Bug Fixes
+
+* **iam:** fix policies display on small resolution ([fe8d3a4](https://github.com/ovh/manager/commit/fe8d3a420803bf821dce9ff4bf0974b200e37341))
+
+
+### Features
+
+* **iam:** enhancing actions filtering ([#10139](https://github.com/ovh/manager/issues/10139)) ([6e0ff92](https://github.com/ovh/manager/commit/6e0ff924a1a223bda0e5c2cdebd4e182ca386d59))
+
+
+
+
+
+# [1.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.5.0...@ovh-ux/manager-iam@1.6.0) (2023-12-04)
+
+
+### Bug Fixes
+
+* **iam:** fix guide url for us ([#10408](https://github.com/ovh/manager/issues/10408)) ([9a3c1cc](https://github.com/ovh/manager/commit/9a3c1ccbd754cfd36c217b98f0b549d08953bb03))
+
+
+### Features
+
+* **iam:** add permissions groups support in iam policy ([#10447](https://github.com/ovh/manager/issues/10447)) ([5b299e5](https://github.com/ovh/manager/commit/5b299e53fef23a4cb38698dd227d7ba799ca56cb))
+
+
+
+
+
 # [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.4.1...@ovh-ux/manager-iam@1.5.0) (2023-10-30)
 
 

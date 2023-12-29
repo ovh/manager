@@ -15,7 +15,7 @@ export const GUIDES = [
       SG:
         'https://docs.ovh.com/sg/en/publiccloud/network-services/creating-private-network-with-gateway/',
       US:
-        'https://docs.ovh.com/us/en/publiccloud/network-services/creating-private-network-with-gateway/',
+        'https://support.us.ovhcloud.com/hc/en-us/articles/18534335915667-How-to-Create-a-Private-Network-with-a-Gateway',
       ES:
         'https://docs.ovh.com/es/publiccloud/network-services/creating-private-network-with-gateway/',
       FR:
@@ -46,7 +46,7 @@ export const GUIDES = [
       SG:
         'https://docs.ovh.com/sg/en/publiccloud/network-services/attaching-pci-floating-ip-to-instance/',
       US:
-        'https://docs.ovh.com/us/en/publiccloud/network-services/attaching-pci-floating-ip-to-instance/',
+        'https://support.us.ovhcloud.com/hc/en-us/articles/18466423089811-How-to-Attach-a-Floating-IP-to-a-Public-Cloud-Instance',
       ES:
         'https://docs.ovh.com/es/publiccloud/network-services/attaching-pci-floating-ip-to-instance/',
       FR:
@@ -77,7 +77,7 @@ export const GUIDES = [
       SG:
         'https://docs.ovh.com/sg/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
       US:
-        'https://docs.ovh.com/us/en/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
+        'https://support.us.ovhcloud.com/hc/en-us/articles/18610207964051-Getting-Started-with-Load-Balancer-on-Public-Cloud',
       ES:
         'https://docs.ovh.com/es/publiccloud/network-services/getting-started-with-load-balancer-public-cloud/',
       FR:

@@ -15,14 +15,25 @@ import {
 
 export default class CloudConnectService {
   /* @ngInject */
-  constructor($cacheFactory, $q, $http, atInternet, Poller, OvhApiVrack) {
+  constructor(
+    $cacheFactory,
+    $q,
+    $http,
+    atInternet,
+    Poller,
+    OvhApiVrack,
+    iceberg,
+    $translate,
+  ) {
     this.$cacheFactory = $cacheFactory;
     this.$q = $q;
     this.$http = $http;
+    this.$translate = $translate;
     this.atInternet = atInternet;
     this.Poller = Poller;
     this.OvhApiVrack = OvhApiVrack;
     this.POP_TYPES = POP_TYPES;
+    this.iceberg = iceberg;
     this.cache = {
       cloudConnect: $cacheFactory('CLOUD_CONNECT'),
       serviceInfo: $cacheFactory('CLOUD_CONNECT_SERVICE_INFOS'),
@@ -68,9 +79,16 @@ export default class CloudConnectService {
       .get(`/services/${serviceId}`, {
         cache: this.cache.serviceDetails,
       })
-      .then(({ data }) => {
-        cloudConnect.setProductName(get(data, 'billing.plan.invoiceName'));
-      });
+      .then(
+        ({
+          data: {
+            billing: { plan },
+          },
+        }) => {
+          cloudConnect.setProductName(plan?.invoiceName);
+          cloudConnect.setPlanCode(plan?.code);
+        },
+      );
   }
 
   getVracks() {
@@ -524,5 +542,21 @@ export default class CloudConnectService {
         return stats.map(({ timestamp, value }) => [timestamp * 1000, value]);
       })
       .catch(() => []);
+  }
+
+  getOrderFollowUp() {
+    return this.iceberg('/ovhCloudConnect/order')
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute(null, true)
+      .$promise.then(({ data: result }) => result);
+  }
+
+  translateBandwidth(bandwidth) {
+    const array = bandwidth.split('');
+    const bandwidthNumber = parseInt(bandwidth, 10);
+    return `${bandwidthNumber} ${this.$translate.instant(
+      `cloud_connect_common_${array[array.length - 1]}`,
+    )}`;
   }
 }

@@ -19,5 +19,10 @@
   "pci_app_submit_select_image_name": "Ścieżka dostępu Twojego obrazu Docker",
   "pci_app_submit_select_image_tips_help": "Obrazy przechowywane w prywatnym lub publicznym rejestrze są akceptowane (GitHub, GitLab, DockerHub, ...)",
   "pci_app_submit_select_image_portfolio": "Poznaj naszą ofertę aplikacji AI gotowych do użycia",
-  "pci_app_submit_select_image_custom_doc": "Stwórz własny spersonalizowany obraz Docker"
+  "pci_app_submit_select_image_custom_doc": "Stwórz własny spersonalizowany obraz Docker",
+  "pci_app_docker_command_title": "Wpisz polecenie Docker, które chcesz uruchomić w kontenerze",
+  "pci_app_docker_command_default_select": "Wskaż polecenie, które ma zostać uruchomione (opcjonalnie)",
+  "pci_app_docker_command_tips": "Wpisz argumenty (oddzielone spacjami), które zostaną przekazane do polecenia Docker. Cudzysłowy pojedyncze (`) nie są wspierane, należy je zastąpić cudzysłowami podwójnymi.",
+  "pci_app_docker_command_submit_title": "Określone polecenie",
+  "pci_app_docker_command_submit_title_command": "Argumenty"
 }

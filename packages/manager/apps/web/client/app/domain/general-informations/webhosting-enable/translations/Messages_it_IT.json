@@ -2,7 +2,7 @@
   "domain_configuration_enable_web_hosting": "Attiva il tuo hosting Web",
   "domain_configuration_enable_web_hosting_offer": "La tua soluzione",
   "domain_configuration_enable_web_hosting_offer_START_hosting-start10m": "Start 10M",
-  "domain_configuration_web_hosting_offer_START_explain": "La versione standard di Start10m è inclusa nella tua offerta.",
+  "domain_configuration_web_hosting_offer_START_explain": "Free Hosting 100M è incluso nella tua soluzione ma dispone di funzionalità di base.",
   "domain_configuration_web_hosting_choose_offer_explain": "Per maggiori informazioni sulle nostre offerte e per conoscere le loro specifiche tecniche e le diverse opzioni disponibili, accedi al <a href=\"{{url}}\" target=\"_blank\">nostro sito</a>.",
   "domain_configuration_enable_web_hosting_dns_configuration": "Configurazione dei DNS",
   "domain_configuration_web_hosting_dns_info_NO_CHANGE": "Se non viene selezionata nessuna configurazione, il nuovo hosting sarà attivo ma il dominio continuerà a puntare verso i record attuali. Una volta che il nuovo sito sarà pronto, dovrai effettuare le modifiche necessarie nella tua zona DNS. È la soluzione ideale per evitare disservizi a un sito in produzione.",

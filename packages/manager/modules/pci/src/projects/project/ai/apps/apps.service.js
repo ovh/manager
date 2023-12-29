@@ -105,6 +105,14 @@ export default class AppService {
       .then(({ data }) => data);
   }
 
+  updateAppHttpPort(serviceName, appId, httpPort) {
+    return this.$http
+      .put(`/cloud/project/${serviceName}/ai/app/${appId}`, {
+        defaultHttpPort: httpPort,
+      })
+      .then(({ data }) => data);
+  }
+
   getAppCommand(serviceName, appSpec) {
     return this.$http
       .post(`/cloud/project/${serviceName}/ai/app/command`, appSpec)

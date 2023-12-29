@@ -150,6 +150,16 @@
                     data-term="{{ ::'cloud_connect_bandwidth' | translate }}"
                     data-description="{{ ::$ctrl.getBandwidth($ctrl.cloudConnect.bandwidth) }}"
                 >
+                    <oui-action-menu data-compact>
+                        <oui-action-menu-item
+                            data-disabled="!$ctrl.cloudConnect.canChangeBandwidth()"
+                            data-on-click="$ctrl.goToChangeBandwidthPage($ctrl.serviceInfos.serviceId)"
+                        >
+                            <span
+                                data-translate="cloud_connect_change_bandwidth"
+                            ></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
                 </oui-tile-definition>
                 <!-- ports -->
                 <oui-tile-definition
@@ -324,8 +334,8 @@
                                 class="oui-badge"
                                 data-ng-class="{
                                     'oui-badge_success': $interface.isIncomingLightStatusUp(),
-                                    'oui-badge_error': !$interface.isIncomingLightStatusDown(),
-                                    'oui-badge_info': !$interface.isIncomingLightStatusUnknown(),
+                                    'oui-badge_error': $interface.isIncomingLightStatusDown(),
+                                    'oui-badge_info': $interface.isIncomingLightStatusUnknown(),
                                 }"
                                 data-ng-bind="'IN'"
                             ></span>
@@ -333,8 +343,8 @@
                                 class="oui-badge"
                                 data-ng-class="{
                                     'oui-badge_success': $interface.isOutgoingLightStatusUp(),
-                                    'oui-badge_error': !$interface.isOutgoingLightStatusDown(),
-                                    'oui-badge_info': !$interface.isOutgoingLightStatusUnknown(),
+                                    'oui-badge_error': $interface.isOutgoingLightStatusDown(),
+                                    'oui-badge_info': $interface.isOutgoingLightStatusUnknown(),
                                 }"
                                 data-ng-bind="'OUT'"
                             ></span>

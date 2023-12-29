@@ -3,6 +3,85 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.15.0...@ovh-ux/manager-pci@6.16.0) (2023-12-28)
+
+
+### Bug Fixes
+
+* **project.flavors-list:** fix the rounding of a flavor ram ([#10572](https://github.com/ovh/manager/issues/10572)) ([a769393](https://github.com/ovh/manager/commit/a7693935e1e5cf648c137839f9f7af2da391ff47))
+
+
+### Features
+
+* **pci:** display billing change mediation banner ([#10598](https://github.com/ovh/manager/issues/10598)) ([094327b](https://github.com/ovh/manager/commit/094327b923cf3863123b4e7fa227c1738f1bdbdc))
+
+
+
+
+
+# [6.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.14.1...@ovh-ux/manager-pci@6.15.0) (2023-12-19)
+
+
+### Bug Fixes
+
+* **pci.ai:** delete error goes to error and generate token not working ([#10498](https://github.com/ovh/manager/issues/10498)) ([f24a1c3](https://github.com/ovh/manager/commit/f24a1c3e0a2998c089a7c6ce89de86ad672e5209))
+* **pci:** add trans for voucher error key ([#9688](https://github.com/ovh/manager/issues/9688)) ([eea042a](https://github.com/ovh/manager/commit/eea042ad49ffd8d5b149197a11be3329d72cae5a))
+
+
+### Features
+
+* **pci.ai:** modify http port in app ([#10383](https://github.com/ovh/manager/issues/10383)) ([5d0d457](https://github.com/ovh/manager/commit/5d0d457b1c997d26107433227b58ef0d786f7568))
+
+
+
+
+
+## [6.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.14.0...@ovh-ux/manager-pci@6.14.1) (2023-12-11)
+
+
+### Bug Fixes
+
+* mongodb fixes ([dd3a26e](https://github.com/ovh/manager/commit/dd3a26e611e3202edfec815dc7ab5155d01ab462))
+* redirect-target-add-params ([12bbb0a](https://github.com/ovh/manager/commit/12bbb0ac8b00a218b6b575e67bd6271dd12755c0))
+
+
+
+
+
+# [6.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.13.0...@ovh-ux/manager-pci@6.14.0) (2023-12-07)
+
+
+### Features
+
+* **pci.storages.databases:** datatr-377 - rework availabilities ([#10142](https://github.com/ovh/manager/issues/10142)) ([5ff10a7](https://github.com/ovh/manager/commit/5ff10a7e6cba2c9d4c9c5c5f6cce8c808389e06a))
+
+
+
+
+
+# [6.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.12.0...@ovh-ux/manager-pci@6.13.0) (2023-12-04)
+
+
+### Features
+
+* **public-cloud:** add l3 to manager us ([#10179](https://github.com/ovh/manager/issues/10179)) ([dcb2578](https://github.com/ovh/manager/commit/dcb2578a16597723df07a342003d9c993679180c))
+
+
+
+
+
+# [6.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.11.0...@ovh-ux/manager-pci@6.12.0) (2023-12-01)
+
+
+### Features
+
+* add docker command into ai deploy order funnel ([#10222](https://github.com/ovh/manager/issues/10222)) ([9aebef1](https://github.com/ovh/manager/commit/9aebef1aea013629e64651ae811c3b5884e4254f))
+* **pci.ai:** stop starting notebook ([5c1f66a](https://github.com/ovh/manager/commit/5c1f66a79b4ab903cdd1ee313ef0bf7c339adeea))
+
+
+
+
+
 # [6.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.10.0...@ovh-ux/manager-pci@6.11.0) (2023-11-29)
 
 

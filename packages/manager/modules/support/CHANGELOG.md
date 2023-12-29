@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.21.0...@ovh-ux/manager-support@1.21.1) (2023-12-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-support
+
+
+
+
+
+# [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.20.1...@ovh-ux/manager-support@1.21.0) (2023-12-04)
+
+
+### Features
+
+* **dedicated.support:** rename "web hosting" item in support ticket ([#10361](https://github.com/ovh/manager/issues/10361)) ([b1c55e4](https://github.com/ovh/manager/commit/b1c55e42eb846bfed69bd21bcac12b56e3abefd9))
+
+
+
+
+
 ## [1.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-support@1.20.0...@ovh-ux/manager-support@1.20.1) (2023-11-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-support

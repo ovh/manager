@@ -117,22 +117,22 @@ export const OnboardingWalkMe = () => {
     },
     ...(!user.enterprise
       ? [
-          {
-            selector: '#sidebar-link-billing',
-            placement: 'right-start',
-            mobilePlacement: 'bottom-end',
-            title: t('onboarding_walkme_popover_step5_title'),
-            content: t('onboarding_walkme_popover_step5_content'),
-            trackingVariant: 'my_billing',
-            onBeforeEnter: async () => {
-              const homeNode = findNodeById(navigationTree, 'home');
-              setCurrentNavigationNode(homeNode);
+        {
+          selector: '#sidebar-link-billing',
+          placement: 'right-start',
+          mobilePlacement: 'bottom-end',
+          title: t('onboarding_walkme_popover_step5_title'),
+          content: t('onboarding_walkme_popover_step5_content'),
+          trackingVariant: 'my_billing',
+          onBeforeEnter: async () => {
+            const homeNode = findNodeById(navigationTree, 'home');
+            setCurrentNavigationNode(homeNode);
 
-              // Waiting for DOM update
-              await delay(100);
-            },
+            // Waiting for DOM update
+            await delay(100);
           },
-        ]
+        },
+      ]
       : []),
   ];
 
@@ -292,7 +292,7 @@ export const OnboardingWalkMe = () => {
       <div
         ref={popoverElement}
         className={`${style['onboarding-walkme_popover']} ${popoverStyle.popover} oui-popover`}
-        x-placement={arrowPlacement}
+        data-x-placement={arrowPlacement}
         style={{ display: isPopoverVisible ? 'block' : 'none' }}
       >
         <div className="oui-popover__content">

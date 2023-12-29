@@ -1,14 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-stencil/components/react/';
+import { OsdsButton } from '@ovhcloud/ods-components/button/react';
+import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import {
-  OdsIconName,
-  OdsIconSize,
-  OdsButtonVariant,
-  OdsButtonType,
-} from '@ovhcloud/ods-core';
-import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
-
-import './ButtonTooltip.scss';
+  ODS_BUTTON_TYPE,
+  ODS_BUTTON_VARIANT,
+} from '@ovhcloud/ods-components/button';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 interface TooltipItem {
   label: string;
@@ -41,7 +39,7 @@ const ButtonTooltip: React.FC<ButtonTooltipProps> = (props) => {
   }, []);
 
   const handleTooltipToggle = (
-    event: React.MouseEvent<HTMLOsdsButtonElement, MouseEvent>,
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     event.stopPropagation();
     setShowTooltip(!showTooltip);
@@ -50,23 +48,25 @@ const ButtonTooltip: React.FC<ButtonTooltipProps> = (props) => {
   return (
     <>
       <OsdsButton
-        type={OdsButtonType.button}
-        variant={OdsButtonVariant.stroked}
-        color={OdsThemeColorIntent.primary}
+        type={ODS_BUTTON_TYPE.button}
+        variant={ODS_BUTTON_VARIANT.stroked}
+        color={ODS_THEME_COLOR_INTENT.primary}
         onClick={handleTooltipToggle}
         circle
       >
         <OsdsIcon
-          name={OdsIconName.ELLIPSIS_VERTICAL}
-          size={OdsIconSize.xxs}
-          color={OdsThemeColorIntent.primary}
+          name={ODS_ICON_NAME.ELLIPSIS_VERTICAL}
+          size={ODS_ICON_SIZE.xxs}
+          color={ODS_THEME_COLOR_INTENT.primary}
         />
       </OsdsButton>
       {showTooltip && (
-        <div ref={tooltipRef} className="tooltip">
-          <div className="tooltip-text">
+        <div ref={tooltipRef} className="relative inline-block left-[-80%]">
+          <div className="absolute bg-white rounded whitespace-nowrap mt-[-4px] right-[-100%] border-2 border-gray-300 text-left z-50">
             {tooltipContent.map((item: TooltipItem) => (
-              <div key={item.label}>{item.label}</div>
+              <div key={item.label} className="px-10 py-20 cursor-pointer">
+                {item.label}
+              </div>
             ))}
           </div>
         </div>

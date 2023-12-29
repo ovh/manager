@@ -1,0 +1,7 @@
+{
+  "cloud_connect_change_bandwidth_select": "Select new bandwidth",
+  "cloud_connect_change_bandwidth_cancel": "Cancel",
+  "cloud_connect_change_bandwidth_confirm": "Confirm",
+  "cloud_connect_change_bandwidth_error": "An error has occurred changing bandwidth: {{message}}",
+  "cloud_connect_change_bandwidth_warning": "Your order <a href='{{url}}' target='_blank'>{{orderId}}</a> has been placed. Please ensure that the client-side equipment can handle the requested bandwidth."
+}

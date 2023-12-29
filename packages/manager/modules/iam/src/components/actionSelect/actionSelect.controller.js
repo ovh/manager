@@ -5,6 +5,7 @@ import {
   CUSTOM_ACTION_SAMPLE,
   CUSTOM_ACTION_WILDCARD_PATTERN,
   CUSTOM_RESOURCE_TYPE,
+  OVH_MANAGED_PERMISSIONS_GROUP,
   TAG,
   WILDCARD,
 } from '../../iam.constants';
@@ -54,6 +55,12 @@ export default class ActionSelectController {
      * @type {NgFormController}
      */
     this.form = null;
+
+    /**
+     * The NgFormController created by the template by using name="$ctrl.formManaged"
+     * @type {NgFormController}
+     */
+    this.formManaged = null;
 
     /**
      * Whether the controller is loading
@@ -134,6 +141,17 @@ export default class ActionSelectController {
 
   $onInit() {
     this.isLoading = true;
+    this.permissionsGroupsList = this.permissionsGroups
+      .filter(({ urn }) => urn.indexOf(OVH_MANAGED_PERMISSIONS_GROUP) > -1)
+      .map((permission) => {
+        return {
+          ...permission,
+          selected:
+            this.ngModel?.permissionsGroups?.findIndex(
+              (subPermission) => subPermission.urn === permission.urn,
+            ) > -1,
+        };
+      });
     return this.IAMService.getActions()
       .then((actions) => {
         this.actions = cloneDeep(actions);
@@ -192,7 +210,7 @@ export default class ActionSelectController {
       return;
     }
 
-    const selectedActions = this.ngModel?.selection || [];
+    const selectedActions = this.ngModel?.actions?.selection || [];
 
     this.actionTrees = ActionTrees.create({
       $scope: this.$scope,
@@ -215,7 +233,8 @@ export default class ActionSelectController {
       // Custom required validator for the whole component
       name.$validators.required = () =>
         this.required
-          ? this.ngModel?.selection.length > 0 || this.ngModel?.isWildcardActive
+          ? this.ngModel?.actions?.selection.length > 0 ||
+            this.ngModel?.actions?.isWildcardActive
           : true;
 
       // Custom "requirements" validator to know if a custom action meets all the requirements
@@ -285,10 +304,10 @@ export default class ActionSelectController {
           embedded,
         }),
       );
-      this.requiredNgModel.$setViewValue({
+      this.ngModel.actions = {
         isWildcardActive: this.isWildcardActive,
         selection: mappedSelection,
-      });
+      };
       // if a custom action with wilcard exits(ie. resource:urn/*)
       // all embedded actions have to be updated
       if (
@@ -305,6 +324,20 @@ export default class ActionSelectController {
         control.$validate();
       });
     });
+  }
+
+  onPermissionsGroupsChanged(permissionGroupId) {
+    if (!this.ngModel.permissionsGroups) {
+      this.ngModel.permissionsGroups = [];
+    }
+    const permissionsGroupsIndex = this.ngModel?.permissionsGroups?.findIndex(
+      (permission) => permission.urn === permissionGroupId,
+    );
+    if (permissionsGroupsIndex === -1) {
+      this.ngModel.permissionsGroups.push({ urn: permissionGroupId });
+    } else {
+      this.ngModel.permissionsGroups.splice(permissionsGroupsIndex, 1);
+    }
   }
 
   /**
@@ -367,17 +400,48 @@ export default class ActionSelectController {
    * @param {Category} category
    * @returns {string}
    */
-  getCategoryLabel({ actions }) {
+  getCategoryLabel({ actions }, searchQuery) {
     const selectionCount = this.constructor.countSelectedActions(actions);
+    const searchCount = this.constructor.countActionsMatchingSearch(
+      actions,
+      searchQuery,
+    );
     const prefix = 'iam_action_select_category_count';
-    if (selectionCount) {
-      return selectionCount === 1
-        ? `${prefix}_selection_one`
-        : `${prefix}_selection_many`;
+    const totalSearchMatch = searchCount <= 1 ? 'one' : 'many';
+    const totalSelected = selectionCount === 1 ? 'one' : 'many';
+    if (selectionCount && searchQuery) {
+      return `${prefix}_selection_${totalSelected}_result_${totalSearchMatch}`;
     }
-    return actions.length === 1
-      ? `${prefix}_no_selection_one`
-      : `${prefix}_no_selection_many`;
+    if (selectionCount) {
+      return `${prefix}_selection_${totalSelected}`;
+    }
+    if (searchQuery) {
+      return `${prefix}_result_${totalSearchMatch}`;
+    }
+    return `${prefix}_no_selection_${actions.length === 1 ? 'one' : 'many'}`;
+  }
+
+  filterActions(actionTree) {
+    const shadowActionTree = cloneDeep(actionTree);
+    shadowActionTree.categories.forEach((category) => {
+      const shadowCategory = cloneDeep(category);
+      shadowCategory.filteredActions = category?.actions?.filter(
+        (action) =>
+          action?.value
+            .toLowerCase()
+            .indexOf(actionTree.searchQuery.toLowerCase()) > -1,
+      );
+      shadowActionTree.categories[
+        shadowActionTree.categories.findIndex(
+          (currentCategory) => currentCategory.value === category.value,
+        )
+      ] = shadowCategory;
+    });
+    this.actionTrees[
+      this.actionTrees.findIndex(
+        (currentActionTree) => currentActionTree.value === actionTree.value,
+      )
+    ] = shadowActionTree;
   }
 
   /**
@@ -387,5 +451,22 @@ export default class ActionSelectController {
    */
   static countSelectedActions(actions) {
     return actions?.filter(({ selected }) => selected).length;
+  }
+
+  /**
+   * count the number of actions matching searchQuery
+   * @param {Action[]} actions
+   * @param {string} searchQuery
+   * @returns {Number}
+   */
+  static countActionsMatchingSearch(actions, searchQuery) {
+    if (!actions || !searchQuery) {
+      return 0;
+    }
+    const searchQueryLowerCase = searchQuery.toLowerCase();
+    return actions.filter(
+      (action) =>
+        action?.value.toLowerCase().indexOf(searchQueryLowerCase) > -1,
+    ).length;
   }
 }

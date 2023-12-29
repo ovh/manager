@@ -1,5 +1,6 @@
 import { set } from 'lodash';
 import { STATUS } from '../../../../../../../components/project/storages/databases/databases.constants';
+import Database from '../../../../../../../components/project/storages/databases/database.class';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -39,15 +40,14 @@ export default /* @ngInject */ ($stateProvider) => {
         },
         onDatabaseAdd: /* @ngInject */ (
           databases,
-          getDatabaseObject,
           goToDatabase,
           newDatabases,
-        ) => (databaseInfo, message, type) =>
-          getDatabaseObject(databaseInfo).then((database) => {
-            databases.push(database);
-            set(newDatabases, database.id, true);
-            return goToDatabase(database, message, type);
-          }),
+        ) => (databaseInfo, message, type) => {
+          const database = new Database(databaseInfo);
+          databases.push(database);
+          set(newDatabases, database.id, true);
+          return goToDatabase(database, message, type);
+        },
       },
       atInternet: {
         ignore: true,

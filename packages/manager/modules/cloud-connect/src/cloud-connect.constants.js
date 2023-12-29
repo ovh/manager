@@ -33,6 +33,8 @@ export const POP_TYPES = [
 
 export const ASN_MIN = 1;
 
+export const CHANGE_BANDWIDTH_ALLOWED_OFFERS_REGEX = /.*-direct-1g-.*$/;
+
 export const IPV4_BLOCK_REGEX = {
   NO_RANGE: new RegExp(
     '^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$',
@@ -75,4 +77,5 @@ export default {
   ASN_MIN,
   IPV4_BLOCK_REGEX,
   STATUS,
+  CHANGE_BANDWIDTH_ALLOWED_OFFERS_REGEX,
 };

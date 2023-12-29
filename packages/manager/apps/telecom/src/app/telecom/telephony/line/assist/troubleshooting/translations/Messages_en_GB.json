@@ -35,5 +35,6 @@
   "telephony_line_assist_troubleshooting_support_contact": "Contact support",
   "telephony_line_assist_troubleshooting_support_contact_title": "Your problem appears to require a technician.",
   "telephony_line_assist_troubleshooting_support_contact_email": "By email: report an incident via the “<strong>Assistance</strong>” menu, then “<strong>Create a support request</strong>”.",
-  "telephony_line_assist_troubleshooting_support_contact_phone": "By telephone: by dialling <strong>1007</strong> (Monday to Friday from 8 am to 8 pm, and Saturday from 9 am to 5 pm)."
+  "telephony_line_assist_troubleshooting_support_contact_phone": "By telephone: by dialling <strong>1007</strong> (Monday to Friday from 8 am to 8 pm, and Saturday from 9 am to 5 pm).",
+  "telephony_line_assist_troubleshooting_informations_message_guide": "Guide"
 }

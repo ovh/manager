@@ -13,8 +13,9 @@ export default /* @ngInject */ (
 
   function init(data) {
     $scope.data = data || $scope.currentActionData;
-    atInternet.trackPage({
-      name: $scope.data?.tracking,
+    atInternet.trackClick({
+      name: `${$scope.data.tracking}`,
+      type: 'action',
     });
     if ($scope.data.ip.firewall === 'ACTIVATED') {
       $scope.translations.wizardTitle = $translate.instant(
@@ -51,7 +52,7 @@ export default /* @ngInject */ (
 
   $scope.toggleFirewall = function toggleFirewall() {
     atInternet.trackClick({
-      name: `${$scope.data?.tracking}::confirm`,
+      name: `${$scope.data.tracking}-confirm`,
       type: 'action',
     });
     $scope.loading = true;
@@ -176,9 +177,10 @@ export default /* @ngInject */ (
 
   $scope.cancelAction = function cancelAction() {
     atInternet.trackClick({
-      name: `${$scope.data?.tracking}::cancel`,
+      name: `${$scope.data.tracking}-cancel`,
       type: 'action',
     });
+    $rootScope.$broadcast('ips.firewall.cancelToggle');
     Ip.cancelActionParam('toggleFirewall');
     $scope.resetAction();
   };

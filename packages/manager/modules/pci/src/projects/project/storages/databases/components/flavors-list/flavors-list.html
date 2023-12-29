@@ -24,8 +24,18 @@
         data-ng-click="$ctrl.handleClick(flavor)"
     >
         <td class="text-capitalize" data-ng-bind="flavor.name"></td>
-        <td data-ng-bind="flavor.core"></td>
-        <td data-ng-bind="flavor.memory | bytes:2:false:'GB'"></td>
+        <td>
+            <span
+                data-ng-bind="flavor.core"
+                data-ng-if="flavor.core > 0"
+            ></span>
+        </td>
+        <td>
+            <span
+                data-ng-bind="flavor.memory | bytes:2:false:'GB'"
+                data-ng-if="flavor.memory > 0"
+            ></span>
+        </td>
         <td>
             <span data-ng-if="!flavor.hasStorage">-</span>
             <span

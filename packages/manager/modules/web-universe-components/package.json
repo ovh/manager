@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-web-universe-components",
-  "version": "9.11.5",
+  "version": "9.11.6",
   "private": true,
   "description": "Collection of components for the Web control panel.",
   "repository": {
@@ -15,7 +15,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/ui-kit": "^6.7.1",
+    "@ovh-ux/ui-kit": "^6.7.4",
     "bootstrap": "^3.3.7"
   },
   "peerDependencies": {

@@ -89,19 +89,30 @@ angular.module('App').controller(
         type: 'action',
       });
       this.$scope.resetAction();
-      return this.Hosting.userLogsCreate(
+
+      this.Hosting.getOwnLogs(
         this.$stateParams.productId,
-        this.model.selected.description,
-        this.model.selected.login,
-        this.model.selected.password.value,
+        this.$stateParams.productId,
       )
-        .then(() => {
-          this.Alerter.success(
-            this.$translate.instant(
-              'hosting_tab_USER_LOGS_configuration_user_create_success',
-            ),
-            this.$scope.alerts.main,
-          );
+        .then((data) => {
+          if (!Array.isArray(data) || data.length !== 1) {
+            throw new Error('unable to get default own log');
+          }
+
+          this.Hosting.userLogsCreate(
+            this.$stateParams.productId,
+            data[0],
+            this.model.selected.description,
+            this.model.selected.login,
+            this.model.selected.password.value,
+          ).then(() => {
+            this.Alerter.success(
+              this.$translate.instant(
+                'hosting_tab_USER_LOGS_configuration_user_create_success',
+              ),
+              this.$scope.alerts.main,
+            );
+          });
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(

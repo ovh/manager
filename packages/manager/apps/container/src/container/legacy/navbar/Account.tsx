@@ -18,7 +18,7 @@ function NavbarAccount({ user }: Props): JSX.Element {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
   const shell = useShell();
   const uxPlugin = shell.getPlugin('ux');
-  const firstName = capitalize(user.firstname).replace(/\-[a-z]/g, match => match.toUpperCase())
+  const firstName = capitalize(user.firstname).replace(/-[a-z]/g, match => match.toUpperCase())
   const lastName = truncate(capitalize(user.name), {
     length: 10,
   });

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.1](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@13.0.0...@ovh-ux/component-rollup-config@13.0.1) (2023-12-05)
+
+
+### Bug Fixes
+
+* add super-component workspaces ([a1c35e6](https://github.com/ovh/manager/commit/a1c35e6817d3f41925954c16b381ebeaea440bd7))
+
+
+
+
+
 # [13.0.0](https://github.com/ovh/manager/compare/@ovh-ux/component-rollup-config@12.0.2...@ovh-ux/component-rollup-config@13.0.0) (2023-09-07)
 
 

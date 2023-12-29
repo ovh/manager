@@ -11,6 +11,7 @@ export type IcebergOptions = {
   filters?: Filter[];
   sortBy?: string;
   sortReverse?: boolean;
+  apiVersion?: keyof typeof apiClient;
 };
 
 export type IcebergFetchParams = { route: string } & IcebergOptions;
@@ -18,6 +19,7 @@ export type IcebergFetchParams = { route: string } & IcebergOptions;
 export type IcebergFetchResult<T> = {
   data: T[];
   totalCount: number;
+  status: number;
 };
 
 function icebergFilter(comparator: FilterComparator, value: string | string[]) {
@@ -60,6 +62,7 @@ export async function fetchIceberg<T>({
   filters,
   sortBy,
   sortReverse,
+  apiVersion = 'v6',
 }: IcebergFetchParams): Promise<IcebergFetchResult<T>> {
   const requestHeaders: Record<string, string> = {
     'x-pagination-mode': 'CachedObjectList-Pages',
@@ -78,11 +81,11 @@ export async function fetchIceberg<T>({
       )
       .join('&');
   }
-  const { data, headers } = await apiClient.v6.get(route, {
+  const { data, headers, status } = await apiClient[apiVersion].get(route, {
     headers: requestHeaders,
   });
   const totalCount = parseInt(headers['x-pagination-elements'], 10) || 0;
-  return { data, totalCount };
+  return { data, totalCount, status };
 }
 
 export default fetchIceberg;

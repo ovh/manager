@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.22.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.22.0...@ovh-ux/ng-ovh-telecom-universe-components@7.22.1) (2023-12-13)
+
+
+### Reverts
+
+* Revert "feat(telecom): add headset pictures choices" ([2de05cc](https://github.com/ovh/manager/commit/2de05cc2e2c3470f2c354ec293ca3989591ee4f4))
+
+
+
+
+
+# [7.22.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.21.3...@ovh-ux/ng-ovh-telecom-universe-components@7.22.0) (2023-12-12)
+
+
+### Features
+
+* **telecom:** add headset pictures choices ([d52402e](https://github.com/ovh/manager/commit/d52402e8a22e1a0febc39bd2c38872e3f8d31486))
+
+
+
+
+
+## [7.21.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.21.2...@ovh-ux/ng-ovh-telecom-universe-components@7.21.3) (2023-12-01)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-telecom-universe-components
+
+
+
+
+
 ## [7.21.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.21.1...@ovh-ux/ng-ovh-telecom-universe-components@7.21.2) (2023-11-13)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-telecom-universe-components

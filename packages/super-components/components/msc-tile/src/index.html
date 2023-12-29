@@ -14,31 +14,34 @@
             style="display: grid; grid-gap: 30px; grid-template-columns: repeat(3, 1fr);"
         >
             <msc-tile
-                tile-type="Tutoriel"
+                tile-type="faq"
                 tile-title="Créer un volume supplémentaire et l'attacher à une instance"
                 tile-description="Documentation pas à pas traitant de la création et de l'attachement d'un disque additionnel à un serveur cloud."
                 href="https://ovh.com"
                 is-external-href
-                see-more-label="En savoir plus"
                 data-tracking="home:dashboard:tuto"
             >
                 <span slot="badges">
-                    <osds-chip color="primary" size="sm">Nouveauté</osds-chip>
+                    <osds-chip color="primary" size="sm" inline
+                        >Nouveauté</osds-chip
+                    >
                 </span>
             </msc-tile>
             <msc-tile
-                tile-type="Catégorie"
+                tile-type="product"
                 tile-title="Titre du produit"
                 tile-description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                 href="https://ovh.com"
                 img-src="https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png"
                 img-alt=""
-                see-more-label="En savoir plus"
                 data-tracking="home:dashboard:product"
+                locale="en-GB"
             >
                 <span slot="badges">
-                    <osds-chip color="primary" size="sm">OVHcloud</osds-chip>
-                    <osds-chip color="success" size="sm">Beta</osds-chip>
+                    <osds-chip color="primary" size="sm" inline
+                        >OVHcloud</osds-chip
+                    >
+                    <osds-chip color="success" size="sm" inline>Beta</osds-chip>
                 </span>
                 <div slot="footer">
                     <osds-button

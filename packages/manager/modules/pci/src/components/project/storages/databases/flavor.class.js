@@ -2,17 +2,17 @@ import some from 'lodash/some';
 import { ENGINES_STATUS } from './engines.constants';
 
 export default class Flavor {
-  constructor({ name, core, memory }, availability) {
+  constructor({ name, core, memory }, availabilities) {
     Object.assign(this, {
       name,
       core,
       memory,
-      availability,
+      availabilities,
     });
-    this.isDefault = some(availability, 'default');
+    this.isDefault = some(availabilities, 'default');
 
-    this.gbHourlyPrice = (this.availability || [])[0]?.hourlyPricePerGB;
-    this.gbMonthlyPrice = (this.availability || [])[0]?.monthlyPricePerGB;
+    this.gbHourlyPrice = (this.availabilities || [])[0]?.hourlyPricePerGB;
+    this.gbMonthlyPrice = (this.availabilities || [])[0]?.monthlyPricePerGB;
 
     this.hourlyPricePerGB = {
       priceInUcents: this.gbHourlyPrice.priceInUcents,
@@ -26,31 +26,34 @@ export default class Flavor {
   }
 
   isNetworkSupported(networkName) {
-    return some(this.availability, { network: networkName });
+    return some(
+      this.availabilities,
+      (availability) => availability.specifications.network === networkName,
+    );
   }
 
   get minDiskSize() {
-    return (this.availability || [])[0]?.minDiskSize;
+    return (this.availabilities || [])[0]?.minDiskSize;
   }
 
   get maxDiskSize() {
-    return (this.availability || [])[0]?.maxDiskSize;
+    return (this.availabilities || [])[0]?.maxDiskSize;
   }
 
   get stepDiskSize() {
-    return (this.availability || [])[0]?.stepDiskSize;
+    return (this.availabilities || [])[0]?.stepDiskSize;
   }
 
   get nodesCount() {
-    return (this.availability || [])[0]?.minNodeNumber;
+    return (this.availabilities || [])[0]?.specifications.nodes.minimum;
   }
 
   get nodeHourlyPrice() {
-    return (this.availability || [])[0]?.hourlyPrice;
+    return (this.availabilities || [])[0]?.nodeHourlyPrice;
   }
 
   get nodeMonthlyPrice() {
-    return (this.availability || [])[0]?.monthlyPrice;
+    return (this.availabilities || [])[0]?.nodeMonthlyPrice;
   }
 
   get hourlyPrice() {
@@ -84,11 +87,13 @@ export default class Flavor {
   }
 
   get id() {
-    return `${this.availability[0].engine}-${this.availability[0].plan.name}-${this.name}`;
+    return `${this.availabilities[0].engine}-${this.availabilities[0].plan.name}-${this.name}`;
   }
 
   get isDeprecated() {
-    return this.availability[0].status === ENGINES_STATUS.DEPRECATED;
+    return (
+      this.availabilities[0].lifecycle.status === ENGINES_STATUS.DEPRECATED
+    );
   }
 
   compare(flavor) {

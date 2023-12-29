@@ -12,6 +12,7 @@ export default {
     guideTrackingSectionTags: '<',
     trackClick: '<',
     historyLink: '<',
+    pciFeatures: '<',
     projectId: '<',
     service: '<',
     iamLink: '<',

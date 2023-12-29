@@ -1,27 +1,38 @@
-import React, { lazy } from 'react';
-import TileCustom from '@/components/layout-helpers/Dashboard/TileCustom';
-
-const TileExemple = lazy(() => import('./Tabs1/TileExemple'));
+import React from 'react';
+import { MscBillingTile } from '@ovhcloud/msc-react-billing-tile';
+import { useParams } from 'react-router-dom';
+import { useEnvironment } from '@ovh-ux/manager-react-core-application';
+import { Locale, Subsidiary } from '@ovhcloud/msc-utils';
 
 function Tabs1() {
+  const environment = useEnvironment();
+  const locale = environment.getUserLocale() as Locale;
+  const { serviceName } = useParams();
+
   return (
-    <div className="dashboard-section pt-4">
-      <div>
-        <TileCustom title="tile-exemple">
-          <TileExemple />
-        </TileCustom>
+    <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-6">
+      <div className="p-3">
+        <MscBillingTile
+          appPublicUrl={environment.getApplication().publicURL}
+          region={environment.getRegion()}
+          subsidiary={environment.getUser().ovhSubsidiary as Subsidiary}
+          servicePath={`{{this.mainApiPath}}/${serviceName}`}
+          locale={locale}
+        />
       </div>
-      <div>
-        <TileCustom title="tile-exemple-2">
-          <div>
-            <TileExemple />
-          </div>
-        </TileCustom>
+      <div className="p-3">
+        <MscBillingTile
+          appPublicUrl={environment.getApplication().publicURL}
+          servicePath={`{{this.mainApiPath}}/${serviceName}`}
+          locale={locale}
+        />
       </div>
-      <div>
-        <TileCustom title="tile-exemple-3">
-          <TileExemple />
-        </TileCustom>
+      <div className="p-3">
+        <MscBillingTile
+          appPublicUrl={environment.getApplication().publicURL}
+          servicePath={`{{this.mainApiPath}}/${serviceName}`}
+          locale={locale}
+        />
       </div>
     </div>
   );

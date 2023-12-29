@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@2.3.1...@ovh-ux/ng-ovh-order-tracking@2.3.2) (2023-12-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 2662] ([#10517](https://github.com/ovh/manager/issues/10517)) ([33bff2b](https://github.com/ovh/manager/commit/33bff2ba6c0d308385b5b1e4fc8df0df42865fa5))
+
+
+
+
+
+## [2.3.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@2.3.0...@ovh-ux/ng-ovh-order-tracking@2.3.1) (2023-12-05)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-order-tracking
+
+
+
+
+
 # [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-order-tracking@2.2.5...@ovh-ux/ng-ovh-order-tracking@2.3.0) (2023-11-21)
 
 

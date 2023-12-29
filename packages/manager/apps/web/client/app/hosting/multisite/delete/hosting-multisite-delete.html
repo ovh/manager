@@ -7,17 +7,13 @@
     >
         <div
             data-wizard-step
-            data-wizard-step-valid="ctrl.model.domains != null"
+            data-wizard-step-valid="ctrl.model.domains != null && !ctrl.isHostingOvhStartOffer()"
         >
             <p
                 data-translate="hosting_tab_DOMAINS_configuration_remove_step1_title"
             ></p>
 
-            <div class="text-center" data-ng-if="!ctrl.model.domains">
-                <oui-spinner></oui-spinner>
-            </div>
-
-            <div data-ng-if="ctrl.model.domains">
+            <div>
                 <dl class="dl-horizontal dl-lg">
                     <dt
                         data-translate="hosting_tab_DOMAINS_configuration_remove_step1_domain_name"
@@ -79,6 +75,29 @@
                         </span>
                     </label>
                 </div>
+
+                <oui-message
+                    class="mt-3"
+                    data-type="warning"
+                    data-ng-if="ctrl.isHostingOvhStartOffer()"
+                >
+                    <span
+                        data-translate="hosting_tab_DOMAINS_configuration_modify_failure_hosting_starter"
+                    ></span>
+                    <a
+                        data-ng-href="{{ ctrl.changeOfferLink }}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <span
+                            data-translate="hosting_tab_DOMAINS_configuration_modify_change_offer_link"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-arrow-right"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
+                </oui-message>
             </div>
         </div>
     </div>

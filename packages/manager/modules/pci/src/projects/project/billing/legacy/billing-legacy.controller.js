@@ -1,3 +1,5 @@
+import { PCI_FEATURES } from '../../../projects.constant';
+
 export default class CloudProjectBillingConsumptionCurrentCtrl {
   /* @ngInject */
   constructor(
@@ -23,6 +25,7 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
   }
 
   $onInit() {
+    this.PCI_FEATURES = PCI_FEATURES;
     return this.OvhApiCloudProjectUsageCurrent.v6()
       .get({ serviceName: this.projectId })
       .$promise.then((billingInfo) =>

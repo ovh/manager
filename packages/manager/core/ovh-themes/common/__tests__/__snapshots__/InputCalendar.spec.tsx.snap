@@ -4,6 +4,7 @@ exports[`Input Calendar displays calendar on input click 1`] = `
 <DocumentFragment>
   <div
     class="chakra-input__group css-bx0blc"
+    data-group="true"
   >
     <input
       aria-readonly="true"
@@ -56,19 +57,19 @@ exports[`Input Calendar displays calendar on input click 1`] = `
       <div
         class="chakra-popover__arrow-positioner css-0"
         data-popper-arrow=""
-        style="position: absolute; left: 0px; transform: translate(8px, 0px); z-index: -1; --popper-arrow-size-half: calc(var(--popper-arrow-size, 8px) / 2); --popper-arrow-offset: calc(var(--popper-arrow-size-half) * -1);"
+        style="position: absolute; left: 0px; transform: translate(8px, 0px); z-index: -1; --popper-arrow-size-half: calc(var(--popper-arrow-size, 8px) / 2 - 1px); --popper-arrow-offset: calc(var(--popper-arrow-size-half) * -1);"
       >
         <div
           class="chakra-popover__arrow css-0"
           data-popper-arrow-inner=""
-          style="--popper-arrow-default-shadow: -1px -1px 1px 0 var(--popper-arrow-shadow-color); transform: rotate(45deg); top: 0px; left: 0px; width: 100%; height: 100%; position: absolute; z-index: inherit; box-shadow: var(--popper-arrow-shadow, var(--popper-arrow-default-shadow));"
+          style="--popper-arrow-default-shadow: -1px -1px 0px 0 var(--popper-arrow-shadow-color); transform: rotate(45deg); top: 0px; left: 0px; width: 100%; height: 100%; position: absolute; z-index: inherit; box-shadow: var(--popper-arrow-shadow, var(--popper-arrow-default-shadow));"
         />
       </div>
       <div
         class="css-0"
       >
         <div
-          class="chakra-stack css-1p1m4ay"
+          class="chakra-stack css-1igwmid"
         >
           <button
             aria-label="previous month"
@@ -128,7 +129,7 @@ exports[`Input Calendar displays calendar on input click 1`] = `
             class="css-jcvgph"
           >
             <div
-              class="chakra-stack css-1th1j6q"
+              class="chakra-stack css-133i3ux"
             >
               <span
                 class="css-1xdhyk6"
@@ -561,6 +562,7 @@ exports[`Input Calendar renders input calendar with passed date and calendar clo
 <DocumentFragment>
   <div
     class="chakra-input__group css-bx0blc"
+    data-group="true"
   >
     <input
       aria-readonly="true"
@@ -621,7 +623,7 @@ exports[`Input Calendar renders input calendar with passed date and calendar clo
         class="css-0"
       >
         <div
-          class="chakra-stack css-1p1m4ay"
+          class="chakra-stack css-1igwmid"
         >
           <button
             aria-label="previous month"
@@ -681,7 +683,7 @@ exports[`Input Calendar renders input calendar with passed date and calendar clo
             class="css-jcvgph"
           >
             <div
-              class="chakra-stack css-1th1j6q"
+              class="chakra-stack css-133i3ux"
             >
               <span
                 class="css-1xdhyk6"

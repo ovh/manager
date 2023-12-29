@@ -10,11 +10,16 @@
             data-translate-values="{ description: TroubleshootingCtrl.process.line.phone.description }"
         ></h1>
 
-        <div
-            class="alert alert-info"
-            role="alert"
-            data-translate="telephony_line_assist_troubleshooting_informations_message"
-        ></div>
+        <div class="alert alert-info" role="alert">
+            <span
+                data-translate="telephony_line_assist_troubleshooting_informations_message"
+            ></span>
+            <a
+                data-ng-href="{{TroubleshootingCtrl.guideLink}}"
+                target="_blank"
+                data-translate="telephony_line_assist_troubleshooting_informations_message_guide"
+            ></a>
+        </div>
     </header>
 
     <div class="text-center" data-ng-if="TroubleshootingCtrl.loading.init">

@@ -1,0 +1,19 @@
+{
+  "dedicated_server_dashboard_informations_general": "Allgemeine Informationen",
+  "dedicated_server_dashboard_displayname": "Name",
+  "dedicated_server_dashboard_edit_button": "Bearbeiten",
+  "dedicated_server_dashboard_commercial_name": "Kommerzieller Name",
+  "dedicated_server_dashboard_upgrade_title": "Optimieren Sie Ihre Infrastruktur",
+  "dedicated_server_dashboard_upgrade_badge": "Neu",
+  "dedicated_server_dashboard_distribution": "Betriebssystem (OS)",
+  "dedicated_server_dashboard_distribution_none": "Auf Ihrem Server ist kein Betriebssystem installiert.",
+  "dedicated_server_dashboard_distribution_byoi": "BringYourOwnImage",
+  "dedicated_server_dashboard_installation_no_public_network": "Die auf Ihrem Server angewandte Netzwerkkonfiguration ermöglicht keinen Zugang zum öffentlichen Netzwerk. Daher kann kein Betriebssystem auf diesem Server (re)installiert werden. Um diese Aktion zu ermöglichen, ändern Sie bitte Ihre Netzwerkkonfiguration im Tab \"Netzwerk-Interfaces\".",
+  "dedicated_server_dashboard_reinstallation_button": "Neu installieren",
+  "dedicated_server_dashboard_installation_button": "Installieren",
+  "dedicated_server_dashboard_boot": "Boot",
+  "dedicated_server_dashboard_datacenter": "Rechenzentrum",
+  "dedicated_server_dashboard_netboot_unavailable": "Information nicht verfügbar",
+  "dedicated_server_dashboard_rack": "Rack",
+  "dedicated_server_dashboard_server_id": "Server-ID"
+}

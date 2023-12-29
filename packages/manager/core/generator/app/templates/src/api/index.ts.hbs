@@ -1,3 +1,6 @@
 {{#each apiV6Endpoints}}
 export * from './{{uppercase @key}}/apiv6/services';
 {{/each}}
+{{#each apiV2Endpoints}}
+export * from './{{uppercase @key}}/apiv2/services';
+{{/each}}

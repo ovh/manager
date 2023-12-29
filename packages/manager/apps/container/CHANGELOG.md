@@ -3,6 +3,98 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.37.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.37.4...@ovh-ux/manager-container-app@0.37.5) (2023-12-21)
+
+
+### Bug Fixes
+
+* **container:** catalog app link to /catalog ([37df53c](https://github.com/ovh/manager/commit/37df53c8c938e034a5b248fda02361f9057a5d0a))
+
+
+
+
+
+## [0.37.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.37.3...@ovh-ux/manager-container-app@0.37.4) (2023-12-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.37.2...@ovh-ux/manager-container-app@0.37.3) (2023-12-13)
+
+
+### Bug Fixes
+
+* **container:** delete redirection hub catalog ([#10528](https://github.com/ovh/manager/issues/10528)) ([d1b16b0](https://github.com/ovh/manager/commit/d1b16b04a14bf4ed17577c108a4eb3330733b87c))
+
+
+
+
+
+## [0.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.37.1...@ovh-ux/manager-container-app@0.37.2) (2023-12-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-container-app
+
+
+
+
+
+## [0.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.37.0...@ovh-ux/manager-container-app@0.37.1) (2023-12-06)
+
+
+### Bug Fixes
+
+* **container:** redirect catalog to hub/catalog ([fdc17ba](https://github.com/ovh/manager/commit/fdc17badb5f199b47aa868882e0c95ec917f12e8))
+
+
+
+
+
+# [0.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.36.0...@ovh-ux/manager-container-app@0.37.0) (2023-12-05)
+
+
+### Bug Fixes
+
+* merge develop changes ([899ce10](https://github.com/ovh/manager/commit/899ce10676ccccdf4fa6da656b4d2890b2a61ecb))
+
+
+### Features
+
+* catalog react uapp ([#10005](https://github.com/ovh/manager/issues/10005)) ([e456451](https://github.com/ovh/manager/commit/e45645174e0a6e0834d06c3c23c535ff374dceba))
+
+
+
+
+
+# [0.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.35.1...@ovh-ux/manager-container-app@0.36.0) (2023-12-04)
+
+
+### Bug Fixes
+
+* **container:** fix cookie modal when ghostery on ([#10370](https://github.com/ovh/manager/issues/10370)) ([afe4f3d](https://github.com/ovh/manager/commit/afe4f3db2864ebcff306874c03d21c781431f9dd))
+
+
+### Features
+
+* **public-cloud:** add l3 to manager us ([#10179](https://github.com/ovh/manager/issues/10179)) ([dcb2578](https://github.com/ovh/manager/commit/dcb2578a16597723df07a342003d9c993679180c))
+
+
+
+
+
+## [0.35.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.35.0...@ovh-ux/manager-container-app@0.35.1) (2023-12-01)
+
+
+### Bug Fixes
+
+* **container:** enable lint for container and fix lint error ([535bfc0](https://github.com/ovh/manager/commit/535bfc080f4c99983d9f848c3c4563e0dacb2388))
+
+
+
+
+
 # [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.34.0...@ovh-ux/manager-container-app@0.35.0) (2023-11-21)
 
 

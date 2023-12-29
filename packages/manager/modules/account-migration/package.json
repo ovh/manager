@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-migration",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "private": true,
   "description": "OVHcloud Migration product",
   "repository": {
@@ -25,7 +25,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-account-migration' --include-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.0.0",
+    "@ovh-ux/component-rollup-config": "^13.0.1",
     "lodash": "^4.17.15"
   },
   "peerDependencies": {

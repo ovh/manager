@@ -1,0 +1,7 @@
+{
+  "server_displaname_edit_title": "Change the name",
+  "server_displaname_edit_help": "Changes the name displayed in the header.",
+  "server_displaname_edit_displayname_label": "Name",
+  "server_displaname_edit_success": "The name has been changed.",
+  "server_displaname_edit_failure": "An error has occurred updating name."
+}

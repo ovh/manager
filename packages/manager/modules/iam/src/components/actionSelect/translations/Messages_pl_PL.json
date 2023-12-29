@@ -15,5 +15,14 @@
   "iam_action_select_custom_action_success_selected": "Operacja {{ action }} została wybrana dla {{ resourceType }}",
   "iam_action_select_custom_action_success_wildcard": "\"Zezwalaj na wszystkie operacje\" zostało włączone.",
   "iam_action_select_error_required": "Wybierz przynajmniej jedną operację, zatwierdź wszystkie operacje, lub dodaj operację ręcznie.",
-  "iam_action_select_custom_action_placeholder": "Przykład: {{sample}}"
+  "iam_action_select_custom_action_placeholder": "Przykład: {{sample}}",
+  "iam_managed_permissions_heading": "Zarządzane grupy uprawnień",
+  "iam_managed_permissions_description": "Dodaj politykę zarządzaną przez OVHcloud",
+  "iam_managed_permissions_description_sub": "(pełny opis w dokumentacji)",
+  "iam_action_select_category_count_selection_many_result_one": "({{selected}} wybranych operacji | {{result}} wynik / {{total}})",
+  "iam_action_select_category_count_selection_many_result_many": "({{selected}} wybranych operacji | {{result}} wyników / {{total}})",
+  "iam_action_select_category_count_selection_one_result_one": "({{selected}} wybrana operacja | {{result}} wynik / {{total}})",
+  "iam_action_select_category_count_selection_one_result_many": "({{selected}} wybrana operacja | {{result}} wyników / {{total}})",
+  "iam_action_select_category_count_result_many": "({{result}} wyników / {{total}})",
+  "iam_action_select_category_count_result_one": "({{result}} wynik / {{total}})"
 }

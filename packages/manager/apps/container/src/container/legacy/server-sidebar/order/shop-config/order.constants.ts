@@ -624,6 +624,7 @@ export function getOrderURL(
     }[region];
     return urls[subsidiary] || urls[fallback];
   }
+  return '';
 }
 
 export default ORDER_URLS;

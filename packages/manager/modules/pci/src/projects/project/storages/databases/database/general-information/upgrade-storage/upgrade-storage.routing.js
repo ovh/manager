@@ -35,7 +35,8 @@ export default /* @ngInject */ ($stateProvider) => {
             );
             let lowValue = 0;
             if (usedDiskPercent > 0) {
-              const usedGb = (database.disk.size * usedDiskPercent) / 100;
+              const usedGb =
+                (database.storage.size.value * usedDiskPercent) / 100;
               const withMargin = usedGb * DISK_USAGE_MARGIN;
               const minAdditionalGb = withMargin - flavor.minDiskSize;
               const nbStep = Math.ceil(minAdditionalGb / flavor.stepDiskSize);

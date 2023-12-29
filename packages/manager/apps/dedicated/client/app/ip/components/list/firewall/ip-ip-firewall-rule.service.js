@@ -124,6 +124,10 @@ export default /* @ngInject */ function IpFirewallService(
       );
   };
 
+  this.sortList = function sortList(listToSort) {
+    return listToSort.sort((a, b) => a.name > b.name);
+  };
+
   this.getFirewallDetails = function getFirewallDetails(ipBlock, ip) {
     const url = [
       '/ip',
@@ -135,6 +139,19 @@ export default /* @ngInject */ function IpFirewallService(
       (result) => result.data,
       (http) => $q.reject(http.data),
     );
+  };
+
+  this.getMitigation = function getMitigation(ipBlock, ip) {
+    const url = [
+      '/ip',
+      window.encodeURIComponent(ipBlock),
+      'mitigation',
+      ip,
+    ].join('/');
+    return $http
+      .get(url, { serviceType: 'apiv6' })
+      .then((result) => result.data.permanent || result.data.auto)
+      .catch((http) => $q.reject(http.data));
   };
 
   this.getFirewallRuleConstants = function getFirewallRuleConstants() {
