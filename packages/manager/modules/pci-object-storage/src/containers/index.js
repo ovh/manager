@@ -10,6 +10,7 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 
 import component from './containers.component';
 import service from './containers.service';
+import runabove from '../runabove';
 
 const moduleName = 'ovhManagerPciStoragesContainers';
 
@@ -22,6 +23,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ui.bootstrap',
+    runabove,
     ngAtInternet,
   ])
   .component('pciProjectStorageContainers', component)

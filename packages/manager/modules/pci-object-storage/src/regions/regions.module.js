@@ -8,7 +8,6 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'ovh-api-services';
 import '@ovh-ux/ui-kit';
 
-import header from '../../../components/project/quota-region-header';
 import component from './regions.component';
 import routing from './regions.routing';
 
@@ -18,7 +17,6 @@ const moduleName = 'ovhManagerPciProjectRegions';
 
 angular
   .module(moduleName, [
-    header,
     'ovhManagerCore',
     'ngOvhCloudUniverseComponents',
     'ngTranslateAsyncLoader',

@@ -8,6 +8,7 @@ import 'ovh-api-services';
 
 import objects from './objects';
 import users from './users';
+import regions from './regions';
 import component from './object-storage.component';
 
 import routing from './object-storage.routing';
@@ -19,6 +20,7 @@ angular
   .module(moduleName, [
     objects,
     users,
+    regions,
     'ngTranslateAsyncLoader',
     'oui',
     'ovh-api-services',
