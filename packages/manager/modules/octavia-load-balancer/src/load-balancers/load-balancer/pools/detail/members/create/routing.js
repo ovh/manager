@@ -31,8 +31,8 @@ export default /* @ngInject */ ($stateProvider) => {
           trackAction(
             `${TRACKING_HIT_PREFIX}::${ADD_MANUALLY_TRACKING_SUFFIX}::${hit}`,
           ),
-        trackCreatePage: /* @ngInject */ (trackAction) => (hit) =>
-          trackAction(
+        trackCreatePage: /* @ngInject */ (trackPage) => (hit) =>
+          trackPage(
             `${TRACKING_HIT_PREFIX}::${ADD_MANUALLY_TRACKING_SUFFIX}-${hit}`,
           ),
       },
