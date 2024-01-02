@@ -6,7 +6,7 @@
   "pci_projects_new_voucher_form_field_amount": "Importe recargado: {{ amount }}",
   "pci_projects_new_voucher_form_field_add_success": "¡Enhorabuena! Recibirá un crédito de {{ credit }}.",
   "pci_projects_new_voucher_form_field_error_voucher_invalid": "El código introducido es incorrecto. Por favor, vuelva a intentarlo.",
-  "pci_projects_new_voucher_form_field_error_voucher_too_many_attempt": "Ha intentado introducir un código demasiadas veces. Por favor, espere una hora antes de volver a introducir un código.",
+  "pci_projects_new_voucher_form_field_error_voucher_too_many_attempts": "Ha intentado añadir un código demasiadas veces. Por favor, espere una hora para volver a intentar añadir el código.",
   "pci_projects_new_voucher_form_field_error_voucher_no_longer_valid": "El código introducido ya no es válido.",
   "pci_projects_new_voucher_form_field_error_voucher_already_used": "El código introducido ya ha sido utilizado.",
   "pci_projects_new_voucher_form_field_error_voucher_already_used_2": "Ya ha utilizado otro código que no es compatible con el que ha introducido.",
@@ -23,6 +23,5 @@
   "pci_projects_new_voucher_form_add_title": "Añadir un voucher",
   "pci_projects_new_voucher_form_remove": "Eliminar",
   "pci_projects_new_voucher_form_remove_title": "Retirar el vale",
-  "pci_projects_new_voucher_form_reset_error": "Se ha producido un error al retirar el vale.",
-  "pci_projects_new_voucher_form_field_error_voucher_too_many_attempts": "Ha intentado añadir un código demasiadas veces. Por favor, espere una hora para volver a intentar añadir el código."
+  "pci_projects_new_voucher_form_reset_error": "Se ha producido un error al retirar el vale."
 }

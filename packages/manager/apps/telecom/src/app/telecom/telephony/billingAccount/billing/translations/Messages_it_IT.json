@@ -1,15 +1,13 @@
 {
   "telephony_group_billing_actions_group_billing_back_link": "Ritorna alla fatturazione",
+  "telephony_group_billing_breadcrumb": "Fatturazione",
   "telephony_group_billing_actions_group_billing_deposit": "Deposito cauzionale",
   "telephony_group_billing_actions_group_billing_deposit_movement": "Trasferimento dei tuoi depositi cauzionali fra gruppi",
   "telephony_group_billing_actions_group_billing_credit_threshold": "Modifica il tuo limite di deposito cauzionale",
   "telephony_group_billing_actions_group_billing_bill": "Dettagli dei tuoi consumi",
   "telephony_group_billing_actions_group_call_list_summary": "Consumo generale",
-  "telephony_group_billing_actions_group_repayments": "Rimborsi VAS del gruppo",
-  "telephony_group_billing_actions_group_reversments_history": "Storico dei rimborsi",
   "telephony_group_billing_actions_group_group_called_fees": "Costi VAS del gruppo",
   "telephony_group_billing_actions_group_called_fees_history": "Storico dei costi VAS",
   "telephony_group_billing_actions_group_banking_management": "Modifica le tue coordinate bancarie",
-  "telephony_group_billing_actions_group_delayed_account_transfert": "Bonifico verso un conto bancario",
-  "telephony_group_billing_breadcrumb": "Fatturazione"
+  "telephony_group_billing_actions_group_delayed_account_transfert": "Bonifico verso un conto bancario"
 }

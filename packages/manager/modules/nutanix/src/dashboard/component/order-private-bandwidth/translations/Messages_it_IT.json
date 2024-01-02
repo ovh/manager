@@ -12,7 +12,6 @@
   "cluster_order_bandwidth_info": "L’importo indicato corrisponde alla somma che sarà fatturata al prossimo rinnovo dell’opzione.",
   "cluster_order_bandwidth_warning": "La modifica della banda passante sarà applicata entro qualche minuto dall’attivazione dell’opzione.",
   "cluster_order_bandwidth_auto_pay": "Paga utilizzando il metodo di pagamento predefinito",
-  "cluster_vrack-bandwidth": "{{bandwidth}} Gbps illimitata e garantita - Opzione vRack",
   "plan_price_per_month": "+IVA/mese",
   "wizard_pay": "Salda",
   "wizard_close": "Chiudi"

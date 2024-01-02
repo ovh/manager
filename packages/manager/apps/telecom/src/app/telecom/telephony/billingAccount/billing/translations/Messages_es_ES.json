@@ -1,15 +1,13 @@
 {
   "telephony_group_billing_actions_group_billing_back_link": "Volver a la facturación",
+  "telephony_group_billing_breadcrumb": "Facturación",
   "telephony_group_billing_actions_group_billing_deposit": "Aumentar el límite de la fianza",
   "telephony_group_billing_actions_group_billing_deposit_movement": "Transferencia de las fianzas entre grupos",
   "telephony_group_billing_actions_group_billing_credit_threshold": "Cambiar el límite de la fianza",
   "telephony_group_billing_actions_group_billing_bill": "Detalle de consumo",
   "telephony_group_billing_actions_group_call_list_summary": "Consumo general",
-  "telephony_group_billing_actions_group_repayments": "Transferencias SVA del grupo",
-  "telephony_group_billing_actions_group_reversments_history": "Historial de transferencias",
   "telephony_group_billing_actions_group_group_called_fees": "Costes SVA del grupo",
   "telephony_group_billing_actions_group_called_fees_history": "Historial de costes SVA",
   "telephony_group_billing_actions_group_banking_management": "Cambiar mis datos bancarios",
-  "telephony_group_billing_actions_group_delayed_account_transfert": "Transferencia a una cuenta bancaria   ",
-  "telephony_group_billing_breadcrumb": "Facturación"
+  "telephony_group_billing_actions_group_delayed_account_transfert": "Transferencia a una cuenta bancaria   "
 }

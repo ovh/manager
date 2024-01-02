@@ -12,7 +12,6 @@
   "cluster_order_bandwidth_info": "El importe mostrado corresponde a la cantidad que será facturada en la próxima renovación de su opción.",
   "cluster_order_bandwidth_warning": "Una vez activada la opción, el cambio del ancho de banda se aplicará en unos minutos.",
   "cluster_order_bandwidth_auto_pay": "Pagar con la forma de pago por defecto",
-  "cluster_vrack-bandwidth": "{{bandwidth}} Gb/s ilimitado y garantizado - Opción vRack",
   "plan_price_per_month": "/mes + IVA",
   "wizard_pay": "Abonar",
   "wizard_close": "Cerrar"

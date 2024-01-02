@@ -12,7 +12,6 @@
   "cluster_order_bandwidth_info": "Le montant indiqué correspond au montant facturé au prochain renouvellement de votre option.",
   "cluster_order_bandwidth_warning": "La modification de votre bande passante sera appliquée quelques minutes après l’activation de l’option.",
   "cluster_order_bandwidth_auto_pay": "Payer avec le moyen de paiement par défaut",
-  "cluster_vrack-bandwidth": "{{bandwidth}} Gbit/s illimitée et garantie - Option vRack",
   "plan_price_per_month": "HT/mois",
   "wizard_pay": "Régler",
   "wizard_close": "Fermer"

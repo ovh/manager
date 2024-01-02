@@ -7,7 +7,6 @@
   "web_components_hosting_domain_offers_offer_perso_technicals_multisite": "Multisites",
   "web_components_hosting_domain_offers_offer_perso_technicals_ftp": "Accès FTP illimité",
   "web_components_hosting_domain_offers_offer_perso_technicals_dbs": "{{value1}} × base de données MySQL {{value2}}",
-
   "web_components_hosting_domain_offers_offer_pro": "Pro",
   "web_components_hosting_domain_offers_offer_pro_technicals_discs": "{{value1}} d'espace disque",
   "web_components_hosting_domain_offers_offer_pro_technicals_emails": "{{value1}} adresses e-mail",
@@ -15,7 +14,6 @@
   "web_components_hosting_domain_offers_offer_pro_technicals_multisite": "Multisites",
   "web_components_hosting_domain_offers_offer_pro_technicals_ssh": "Accès SSH illimité",
   "web_components_hosting_domain_offers_offer_pro_technicals_dbs": "{{value1}} × base de données MySQL {{value2}}",
-
   "web_components_hosting_domain_offers_offer_performance": "Performance",
   "web_components_hosting_domain_offers_offer_performance_technicals_discs": "{{value1}} d'espace disque",
   "web_components_hosting_domain_offers_offer_performance_technicals_emails": "{{value1}} adresses e-mail",
@@ -28,7 +26,6 @@
   "web_components_hosting_domain_offers_offer_performance_technicals_cdn": "CDN basic",
   "web_components_hosting_domain_offers_offer_badge_new": "New",
   "web_components_hosting_domain_offers_offer_badge_upgrade": "Upgrade",
-  "web_components_hosting_domain_offers_offer_badge_equal": "Offre équivalente sans surcoût",
   "web_components_hosting_domain_offers_offer_badge_downgrade": "Downgrade",
   "web_components_hosting_domain_offers_offer_badge_current": "Offre actuelle",
   "web_components_hosting_domain_offers_offer_select_version_placeholder": "Choisir une version",
