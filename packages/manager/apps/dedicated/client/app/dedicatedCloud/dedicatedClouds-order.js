@@ -37,16 +37,10 @@ export const DEDICATED_CLOUD_ORDER_URLS = {
     'https://ovhcloud.com/en-sg/enterprise/products/hosted-private-cloud/prices/',
   FR:
     'https://ovhcloud.com/fr/enterprise/products/hosted-private-cloud/prices/',
-  CZ:
-    'https://ovhcloud.com/cz-cs/enterprise/products/hosted-private-cloud/prices/',
-  FI:
-    'https://ovhcloud.com/fi/enterprise/products/hosted-private-cloud/prices/',
-  LT:
-    'https://ovhcloud.com/lt/enterprise/products/hosted-private-cloud/prices/',
   WE:
-    'https://ovhcloud.com/us-en/enterprise/products/hosted-private-cloud/prices/',
+    'https://ovhcloud.com/en/enterprise/products/hosted-private-cloud/prices/',
   WS:
-    'https://ovhcloud.com/us-en/enterprise/products/hosted-private-cloud/prices/',
+    'https://ovhcloud.com/es/enterprise/products/hosted-private-cloud/prices/',
   US: 'https://us.ovhcloud.com/hosted-private-cloud/vmware/prices/',
 };
 
