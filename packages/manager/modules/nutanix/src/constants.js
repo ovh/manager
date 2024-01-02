@@ -29,7 +29,7 @@ export const NUTANIX_ORDER_URL = {
   SN: 'https://www.ovhcloud.com/fr-sn/hosted-private-cloud/nutanix/',
   TN: 'https://www.ovhcloud.com/fr-tn/hosted-private-cloud/nutanix/',
   WE: 'https://www.ovhcloud.com/en/hosted-private-cloud/nutanix/',
-  WS: 'https://www.ovhcloud.com/en/hosted-private-cloud/nutanix/',
+  WS: 'https://www.ovhcloud.com/es/hosted-private-cloud/nutanix/',
   US: 'https://us.ovhcloud.com/contact-sales/',
   DEFAULT: 'https://www.ovhcloud.com/en/hosted-private-cloud/nutanix/',
 };
