@@ -4,6 +4,7 @@ enum OvhProductName {
   SHAREPOINT = 'Sharepoint',
   EXCHANGE = 'Exchange',
   TELECOMETHERNET = 'TelecomEthernet',
+  HEADSET = 'Headset',
   TELEPHONY = 'Telephony',
   PROJECTCLOUD = 'ProjectCloud',
   SERVER = 'Server',
