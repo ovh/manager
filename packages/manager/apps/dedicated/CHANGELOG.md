@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.16.0...@ovh-ux/manager-dedicated@19.16.1) (2024-01-02)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** fix order links ([#10602](https://github.com/ovh/manager/issues/10602)) ([bdb6750](https://github.com/ovh/manager/commit/bdb6750b1e957e1c0e1033c83565011ed8d0c6e8))
+
+
+
+
+
 # [19.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.15.2...@ovh-ux/manager-dedicated@19.16.0) (2023-12-28)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.9.1...@ovh-ux/manager-emailpro@3.9.2) (2024-01-02)
+
+
+### Bug Fixes
+
+* **web:** mx config step 2 display spam config ([#10600](https://github.com/ovh/manager/issues/10600)) ([84ce1cb](https://github.com/ovh/manager/commit/84ce1cbc1e3e96cb4805a7d2901fb924c3150f92))
+
+
+
+
+
 ## [3.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-emailpro@3.9.0...@ovh-ux/manager-emailpro@3.9.1) (2023-12-19)
 
 
