@@ -18,11 +18,8 @@ export const VEEAM_ORDER_URLS = {
   AU: 'https://ovhcloud.com/en-au/storage-solutions/veeam-cloud-connect',
   SG: 'https://ovhcloud.com/en-sg/storage-solutions/veeam-cloud-connect',
   FR: 'https://ovhcloud.com/fr/storage-solutions/veeam-cloud-connect',
-  CZ: 'https://ovhcloud.com/cz-cs/storage-solutions/veeam-cloud-connect',
-  FI: 'https://ovhcloud.com/fi/storage-solutions/veeam-cloud-connect',
-  LT: 'https://ovhcloud.com/lt/storage-solutions/veeam-cloud-connect',
-  WE: 'https://ovhcloud.com/us-en/storage-solutions/veeam-cloud-connect',
-  WS: 'https://ovhcloud.com/us-en/storage-solutions/veeam-cloud-connect',
+  WE: 'https://ovhcloud.com/en/storage-solutions/veeam-cloud-connect',
+  WS: 'https://ovhcloud.com/es/storage-solutions/veeam-cloud-connect',
 };
 
 export function getVeeamOrderUrl(subsidiary) {
