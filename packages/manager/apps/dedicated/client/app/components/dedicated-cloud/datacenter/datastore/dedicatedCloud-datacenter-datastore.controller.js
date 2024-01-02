@@ -7,10 +7,7 @@ import {
 } from '../../resource/upgrade/upgrade.constants';
 
 import { DEDICATED_CLOUD_DATACENTER } from '../dedicatedCloud-datacenter.constants';
-import {
-  DEDICATED_CLOUD_DATASTORE_GUIDES,
-  US_DEDICATED_CLOUD_DATASTORE_GUIDES,
-} from './dedicatedCloud-datacenter-datastore.constants';
+import { DEDICATED_CLOUD_DATASTORE_GUIDES } from './dedicatedCloud-datacenter-datastore.constants';
 
 export default class {
   /* @ngInject */
@@ -28,13 +25,8 @@ export default class {
     this.ovhManagerPccDatacenterDatastoreService = ovhManagerPccDatacenterDatastoreService;
     this.DEDICATED_CLOUD_DATACENTER = DEDICATED_CLOUD_DATACENTER;
     this.guides =
-      coreConfig.getUser()?.ovhSubsidiary === 'US'
-        ? US_DEDICATED_CLOUD_DATASTORE_GUIDES
-        : get(
-            DEDICATED_CLOUD_DATASTORE_GUIDES,
-            $translate.use(),
-            DEDICATED_CLOUD_DATASTORE_GUIDES.en_GB,
-          );
+      DEDICATED_CLOUD_DATASTORE_GUIDES[coreConfig.getUser()?.ovhSubsidiary] ||
+      DEDICATED_CLOUD_DATASTORE_GUIDES.DEFAULT;
   }
 
   $onInit() {
