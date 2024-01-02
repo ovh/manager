@@ -28,6 +28,18 @@
     <div data-ui-view>
         <!-- voucher -->
         <div class="mb-3" data-ui-view="voucher"></div>
+        <!-- credits -->
+        <div
+            class="mb-3"
+            data-ui-view="credits"
+            data-ng-if="$ctrl.model.paymentMethod.paymentType === 'CREDIT'"
+        ></div>
+
+        <!-- challenge -->
+        <div class="mb-3" data-ui-view="challenge"></div>
+
+        <!-- Digital Launch Pad program (DLP) -->
+        <div data-ui-view="dlp"></div>
 
         <form
             novalidate
@@ -44,19 +56,6 @@
             <div class="text-center" data-ng-if="$ctrl.isCheckingPaymentMethod">
                 <oui-spinner></oui-spinner>
             </div>
-
-            <!-- credits -->
-            <div
-                class="mb-3"
-                data-ui-view="credits"
-                data-ng-if="$ctrl.model.paymentMethod.paymentType === 'CREDIT'"
-            ></div>
-
-            <!-- challenge -->
-            <div class="mb-3" data-ui-view="challenge"></div>
-
-            <!-- Digital Launch Pad program (DLP) -->
-            <div data-ui-view="dlp"></div>
 
             <!-- footer -->
             <div
@@ -127,7 +126,7 @@
                             data-variant="primary"
                             data-type="submit"
                             data-variant-nav="next"
-                            data-disabled="!$ctrl.model.valid || $ctrl.isInvalidPaymentMethod()"
+                            data-disabled="$ctrl.isInvalidPaymentMethod()"
                             data-on-click="$ctrl.sendTrack('new_project_payment_continue')"
                         >
                             <span
