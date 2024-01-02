@@ -192,7 +192,9 @@
                         </td>
 
                         <td class="text-center" data-ng-if="!domain.partial">
-                            <div data-ng-if="domain.domainValidated">
+                            <div
+                                data-ng-if="domain.domainValidated && ctrl.services.exchangeStates.constructor.isOk(domain)"
+                            >
                                 <button
                                     class="oui-badge oui-badge_error"
                                     type="button"
@@ -247,31 +249,12 @@
 
                                 <!-- dkim -->
                                 <button
-                                    class="oui-badge oui-badge_success"
-                                    data-translate="exchange_tab_domain_diagnostic_dkim"
-                                    data-ng-if=":: ctrl.dkimGlobalStatus(domain) === ctrl.GLOBAL_DKIM_STATUS.OK"
-                                    disabled
-                                ></button>
-                                <button
-                                    class="oui-badge oui-background-g-100"
-                                    data-translate="exchange_tab_domain_diagnostic_dkim"
+                                    class="oui-badge"
+                                    data-ng-class="ctrl.constructor.getDkimColorClass(domain)"
                                     data-ng-click="setAction('exchange/domain/dkim-autoconfig/domain-dkim-autoconfig', {
                                         domain: domain,
-                                        constant: { GLOBAL_DKIM_STATUS: ctrl.GLOBAL_DKIM_STATUS },
-                                        dkimStatus: ctrl.GLOBAL_DKIM_STATUS.NOT_CONFIGURED,
                                     })"
-                                    data-ng-if=":: ctrl.dkimGlobalStatus(domain) === ctrl.GLOBAL_DKIM_STATUS.NOT_CONFIGURED"
-                                ></button>
-                                <button
-                                    class="oui-badge oui-badge_error"
-                                    type="button"
                                     data-translate="exchange_tab_domain_diagnostic_dkim"
-                                    data-ng-click="setAction('exchange/domain/dkim-autoconfig/domain-dkim-autoconfig', {
-                                        domain: domain,
-                                        constant: { GLOBAL_DKIM_STATUS: ctrl.GLOBAL_DKIM_STATUS },
-                                        dkimStatus: ctrl.GLOBAL_DKIM_STATUS.NOK,
-                                    })"
-                                    data-ng-if=":: ctrl.dkimGlobalStatus(domain) === ctrl.GLOBAL_DKIM_STATUS.NOK"
                                 ></button>
                                 <!-- end dkim -->
                             </div>
@@ -313,7 +296,7 @@
                                 <span
                                     class="oui-badge oui-badge_info"
                                     data-translate="exchange_tab_ACCOUNTS_state_CREATING"
-                                    data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(domain) && domain.cname == null"
+                                    data-ng-if="ctrl.services.exchangeStates.constructor.isCreating(domain) && (domain.cname == null || domain.domainValidated)"
                                 ></span>
                                 <span
                                     class="oui-badge oui-badge_error"

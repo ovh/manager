@@ -33,7 +33,7 @@
                                 class="oui-radio__input"
                                 id="domainType-ovh"
                                 name="addOption"
-                                data-ng-change="ctrl.resetName()"
+                                data-ng-change="ctrl.onChangeDomainType()"
                                 data-ng-model="ctrl.model.domainType"
                                 data-ng-value="ctrl.ovhDomain"
                             />
@@ -51,9 +51,7 @@
                             </label>
                         </div>
 
-                        <div
-                            data-ng-if="ctrl.model.domainType === ctrl.ovhDomain"
-                        >
+                        <div data-ng-if="ctrl.isOvhDomain">
                             <div class="form-group">
                                 <div class="input-group">
                                     <input
@@ -126,7 +124,7 @@
                                 class="oui-radio__input"
                                 id="domainType-nonovh"
                                 name="addOption"
-                                data-ng-change="ctrl.resetName()"
+                                data-ng-change="ctrl.onChangeDomainType()"
                                 data-ng-model="ctrl.model.domainType"
                                 data-ng-value="ctrl.nonOvhDomain"
                             />
@@ -148,7 +146,7 @@
                         <div
                             class="form-group"
                             data-ng-class="{'has-error': ctrl.exchangeAddDomainStep1Form.nonOvhDomain.$dirty && !ctrl.isNonOvhDomainValid()}"
-                            data-ng-if="ctrl.model.domainType === ctrl.nonOvhDomain"
+                            data-ng-if="!ctrl.isOvhDomain"
                         >
                             <input
                                 type="text"
@@ -346,7 +344,7 @@
             ></p>
 
             <form name="exchangeAddDomainStep3Form">
-                <div data-ng-if="ctrl.model.domainType !== ctrl.nonOvhDomain">
+                <div data-ng-if="ctrl.isOvhDomain">
                     <oui-checkbox
                         id="srvParam"
                         name="srvParam"
@@ -363,12 +361,20 @@
                             data-translate="exchange_tab_domain_add_step2_mx_checkbox"
                         ></span>
                     </oui-checkbox>
+                    <oui-checkbox
+                        id="autoEnableDKIM"
+                        name="autoEnableDKIM"
+                        data-model="ctrl.model.autoEnableDKIM"
+                        ><span
+                            data-translate="exchange_tab_domain_add_step2_dkim_checkbox"
+                        ></span>
+                    </oui-checkbox>
                 </div>
 
                 <div
                     class="alert alert-warning"
                     role="alert"
-                    data-ng-if="ctrl.model.domainType === ctrl.nonOvhDomain"
+                    data-ng-if="!ctrl.isOvhDomain"
                 >
                     <div>
                         <span
@@ -458,21 +464,30 @@
                 ></dd>
 
                 <dt
-                    data-ng-if="ctrl.model.domainType !== ctrl.nonOvhDomain"
+                    data-ng-if="ctrl.isOvhDomain"
                     data-translate="exchange_tab_domain_add_step3_mx_confirmation"
                 ></dt>
                 <dd
-                    data-ng-if="ctrl.model.domainType !== ctrl.nonOvhDomain"
+                    data-ng-if="ctrl.isOvhDomain"
                     data-ng-bind="('exchange_tab_domain_add_step3_configuration_' + ctrl.model.mxParam) | translate"
                 ></dd>
 
                 <dt
-                    data-ng-if="ctrl.model.domainType !== ctrl.nonOvhDomain"
+                    data-ng-if="ctrl.isOvhDomain"
                     data-translate="exchange_tab_domain_add_step3_srv_confirmation"
                 ></dt>
                 <dd
-                    data-ng-if="ctrl.model.domainType !== ctrl.nonOvhDomain"
+                    data-ng-if="ctrl.isOvhDomain"
                     data-ng-bind="('exchange_tab_domain_add_step3_configuration_' + ctrl.model.srvParam) | translate"
+                ></dd>
+
+                <dt
+                    data-ng-if="ctrl.isOvhDomain"
+                    data-translate="exchange_tab_domain_add_step3_dkim_confirmation"
+                ></dt>
+                <dd
+                    data-ng-if="ctrl.isOvhDomain"
+                    data-ng-bind="('exchange_tab_domain_add_step3_configuration_' + ctrl.model.autoEnableDKIM) | translate"
                 ></dd>
 
                 <dt

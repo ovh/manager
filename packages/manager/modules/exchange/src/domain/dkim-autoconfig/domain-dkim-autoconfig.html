@@ -1,36 +1,112 @@
 <div data-ng-controller="ExchangeDomainDkimAutoconfigCtrl as ctrl">
     <div
+        data-ng-if="!ctrl.dkimForNoOvhCloud"
         data-wizard
         data-wizard-on-cancel="resetAction"
-        data-wizard-on-finish="configDkim"
+        data-wizard-on-finish="ctrl.onFinishDkim.bind(ctrl)"
+        data-wizard-cancel-button-text="('exchange_tab_domain_diagnostic_dkim_' + (ctrl.hideConfirmButton ? 'cancel' : 'close')) | translate"
+        data-wizard-confirm-button-text="ctrl.dkimStatus === ctrl.DKIM_STATUS.ACTIVE ?
+        'exchange_tab_domain_diagnostic_dkim_deactivate' : 'exchange_tab_domain_diagnostic_dkim_activate' | translate"
         data-wizard-hide-confirm-button="ctrl.hideConfirmButton"
-        data-wizard-title="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOK ?
-            'exchange_tab_domain_diagnostic_dkim_title_error' :
-            'exchange_tab_domain_diagnostic_dkim_title_activation' | translate"
+        data-wizard-title="ctrl.dkimStatus === ctrl.DKIM_STATUS.DISABLED ?
+            'exchange_tab_domain_diagnostic_dkim_title_activation' :
+            'exchange_tab_domain_diagnostic_dkim_title_error' | translate"
     >
         <div data-wizard-step>
             <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
-
             <div data-ng-if="!ctrl.loading">
-                <!-- if configuration nok -->
+                <p data-ng-bind-html="::ctrl.bodyText"></p>
+                <oui-message
+                    data-type="warning"
+                    data-ng-if="ctrl.dkimErrorMessage"
+                >
+                    <span data-ng-bind-html="::ctrl.dkimErrorMessage"></span>
+                </oui-message>
+            </div>
+        </div>
+    </div>
+
+    <!-- if unconfigured without OVHcloud domain -->
+    <div data-ng-if="ctrl.dkimForNoOvhCloud">
+        <div
+            data-wizard
+            data-wizard-on-finish="ctrl.leaveDkimConfigurator.bind(ctrl)"
+            data-wizard-on-cancel="ctrl.leaveDkimConfigurator.bind(ctrl)"
+            data-wizard-hide-previous-button="true"
+            data-wizard-confirm-button-text=":: 'exchange_tab_domain_diagnostic_dkim_confirm_no_ovhcloud' | translate"
+            data-wizard-next-button-text="ctrl.getNextButtonDependingOnStep() | translate"
+            data-wizard-title="ctrl.getTitleDkimConfigurator() | translate"
+        >
+            <div
+                data-wizard-step
+                data-wizard-step-on-load="ctrl.getDkimSelector.bind(ctrl)"
+            >
+                <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
+
+                <div data-ng-if="!ctrl.loading">
+                    <p
+                        data-translate="exchange_tab_domain_diagnostic_dkim_activation_no_ovhcloud_with_auto_configure"
+                    ></p>
+                </div>
+            </div>
+
+            <div
+                data-wizard-step
+                data-wizard-step-on-load="ctrl.loadDataForDkim.bind(ctrl)"
+                data-wizard-step-on-next="ctrl.getDkimSelector.bind(ctrl)"
+                data-wizard-step-valid="ctrl.isStepConfigureValid"
+            >
+                <div class="col-md-12" data-ng-if="ctrl.loading">
+                    <oui-spinner></oui-spinner>
+                </div>
+
                 <p
-                    data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOK"
-                    data-translate="exchange_tab_domain_diagnostic_dkim_configuration_nok"
-                    data-translate-values="{ url: ctrl.dkimGuideLink }"
+                    data-translate="exchange_tab_domain_diagnostic_dkim_id_generation_no_ovhcloud"
+                ></p>
+            </div>
+
+            <div
+                data-wizard-step
+                data-wizard-step-on-load="ctrl.initContext.bind(ctrl)"
+                data-wizard-step-on-next="ctrl.leaveDkimConfigurator.bind(ctrl)"
+            >
+                <p
+                    data-translate="exchange_tab_domain_diagnostic_dkim_configurate_dns_records_info"
                 ></p>
 
-                <!-- if unconfigured without OVHcloud domain -->
-                <p
-                    data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOT_CONFIGURED && !ctrl.domainDiag.isOvhDomain"
-                    data-translate="exchange_tab_domain_diagnostic_dkim_activation_no_ovhcloud"
-                    data-translate-values="{ url: ctrl.dkimGuideLink }"
-                ></p>
+                <dl class="dl-horizontal dl-md">
+                    <dt
+                        data-translate="exchange_tab_domain_diagnostic_dkim_cname"
+                    ></dt>
+                    <dd>
+                        <span
+                            data-ng-bind-html="ctrl.selector1NameInfos"
+                        ></span>
+                    </dd>
+                    <dd>
+                        <span
+                            data-ng-bind-html="ctrl.selector1RecordInfos"
+                        ></span>
+                    </dd>
+                    <dd>
+                        <span
+                            data-ng-bind-html="ctrl.selector2NameInfos"
+                        ></span>
+                    </dd>
+                    <dd>
+                        <span
+                            data-ng-bind-html="ctrl.selector2RecordInfos"
+                        ></span>
+                    </dd>
+                </dl>
 
-                <!-- if unconfigured with OVHcloud domain -->
-                <p
-                    data-ng-if="ctrl.dkimStatus === ctrl.GLOBAL_DKIM_STATUS.NOT_CONFIGURED && ctrl.domainDiag.isOvhDomain"
-                    data-translate="exchange_tab_domain_diagnostic_dkim_activation_ovhcloud"
-                ></p>
+                <span
+                    data-translate="exchange_tab_domain_diagnostic_dkim_configurate_activation_guide"
+                    data-translate-values="{ url: ctrl.dkimGuideLinkNoOvh }"
+                ></span>
+                <span
+                    data-translate="exchange_tab_domain_diagnostic_dkim_configurate_activation_time"
+                ></span>
             </div>
         </div>
     </div>
