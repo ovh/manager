@@ -6,7 +6,6 @@
   "pci_projects_new_voucher_form_field_amount": "Gutgeschriebener Betrag: {{ amount }}",
   "pci_projects_new_voucher_form_field_add_success": "Herzlichen Glückwunsch! Sie erhalten {{ credit }} Guthaben",
   "pci_projects_new_voucher_form_field_error_voucher_invalid": "Der angegebene Code ist ungültig. Bitte versuchen Sie es erneut.",
-  "pci_projects_new_voucher_form_field_error_voucher_too_many_attempt": "Sie haben zu oft versucht, einen Code hinzuzufügen. Bitte warten Sie 1 Stunde, bevor Sie erneut versuchen, einen Code zu verwenden.",
   "pci_projects_new_voucher_form_field_error_voucher_no_longer_valid": "Der angegebene Code ist nicht mehr gültig.",
   "pci_projects_new_voucher_form_field_error_voucher_already_used": "Der angegebene Code wurde bereits verwendet.",
   "pci_projects_new_voucher_form_field_error_voucher_already_used_2": "Sie haben bereits einen anderen Code verwendet, der nicht mit diesem Code kompatibel ist.",

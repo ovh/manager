@@ -12,7 +12,6 @@
   "cluster_order_bandwidth_info": "The amount displayed is the total that will be billed on your option’s next renewal date.",
   "cluster_order_bandwidth_warning": "Your bandwidth will be modified a few minutes after you have enabled the option.",
   "cluster_order_bandwidth_auto_pay": "Update the default payment method",
-  "cluster_vrack-bandwidth": "{{bandwidth}} Gbit/s unlimited and guaranteed - vRack option",
   "plan_price_per_month": "ex. VAT/month",
   "wizard_pay": "Pay ",
   "wizard_close": "Close"

@@ -12,7 +12,6 @@
   "cluster_order_bandwidth_info": "Podana kwota odpowiada kwocie, która zostanie zafakturowana przy kolejnym odnowieniu Twojej opcji.",
   "cluster_order_bandwidth_warning": "Zmiana przepustowości zostanie wdrożona kilka minut po włączeniu opcji.",
   "cluster_order_bandwidth_auto_pay": "Zapłać przy użyciu domyślnego sposobu płatności",
-  "cluster_vrack-bandwidth": "{{bandwidth}} Gbps bez limitu i z gwarancją przepustowości - opcja vRack",
   "plan_price_per_month": "netto/m-c",
   "wizard_pay": "Zapłać",
   "wizard_close": "Zamknij"
