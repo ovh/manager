@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.16.0...@ovh-ux/manager-pci@6.16.1) (2024-01-02)
+
+
+### Bug Fixes
+
+* **pci:** white-list US VNC URL ([#10605](https://github.com/ovh/manager/issues/10605)) ([939fc53](https://github.com/ovh/manager/commit/939fc5300339a2602f415e07d576492fd480302e))
+
+
+
+
+
 # [6.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.15.0...@ovh-ux/manager-pci@6.16.0) (2023-12-28)
 
 
