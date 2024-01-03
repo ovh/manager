@@ -43,7 +43,8 @@
     "prepare": "husky install",
     "release": "scripts/release/release.sh",
     "start": "node -r esm scripts/start-application.js",
-    "test:jest": "jest --runInBand",
+    "test:jest": "jest --runInBand ",
+    "test:coverage": "lerna run test:coverage --stream --concurrency 1",
     "test": "yarn lint",
     "test:scripts": "make test",
     "test:playwright:run": "lerna run test:e2e:script --concurrency 1"

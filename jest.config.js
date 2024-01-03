@@ -2,7 +2,11 @@ module.exports = {
   roots: ['<rootDir>/packages/components', '<rootDir>/packages/manager'],
   projects: ['<rootDir>/packages/manager/apps/container/jest.config.js'],
   setupFilesAfterEnv: ['<rootDir>/jest/mocks/jest.setup.js'],
-  collectCoverageFrom: ['packages/**/*.{js,jsx,ts,tsx}', '!packages/**/*.d.ts'],
+  collectCoverageFrom: [
+    'packages/**/*.{js,jsx,ts,tsx}',
+    '!packages/**/*.d.ts',
+    '!**/__tests__/**',
+  ],
   testMatch: [
     '<rootDir>/packages/**/__tests__/**/*.{spec,test}.{js,jsx,ts,tsx}',
     '<rootDir>/packages/**/*.{spec,test}.{js,jsx,ts,tsx}',
@@ -33,4 +37,6 @@ module.exports = {
       isolatedModules: true,
     },
   },
+  collectCoverage: true,
+  coverageReporters: ['clover', 'json', 'lcov', 'text'],
 };
