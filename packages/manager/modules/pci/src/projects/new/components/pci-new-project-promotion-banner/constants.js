@@ -1,4 +1,4 @@
-export const ACTIVE_VOUCHERS = ['FREETRIAL'];
+export const ACTIVE_VOUCHERS = [];
 
 export default {
   ACTIVE_VOUCHERS,
