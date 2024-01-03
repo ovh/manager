@@ -64,8 +64,12 @@ export default class VmwareVdcAddCtrl {
     this.hostsLoading = true;
     return this.checkDatastore()
       .then((data) => {
+        const hostType = { ...HOST_TYPE };
+        if (!this.orderSapHana) {
+          delete hostType.SAPHANA;
+        }
         this.model.datastoreRequired = !data;
-        this.hostList = Object.values(HOST_TYPE).map((host) => {
+        this.hostList = Object.values(hostType).map((host) => {
           return {
             name:
               host !== HOST_TYPE.STANDARD
