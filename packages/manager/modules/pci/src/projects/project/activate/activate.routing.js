@@ -101,6 +101,9 @@ export default /* @ngInject */ ($stateProvider) => {
   registerPCINewPaymentState($stateProvider, {
     stateName: paymentStateName,
     configStep: false,
+    bindings: {
+      discoveryPromotionVoucherAmount: '@',
+    },
     views: {
       default: `@${paymentStateName}`,
       progress: `progress@${paymentStateName}`,
