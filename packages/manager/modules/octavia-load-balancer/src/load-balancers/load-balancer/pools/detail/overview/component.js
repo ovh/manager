@@ -4,7 +4,7 @@ export default {
   bindings: {
     pool: '<',
     listener: '<',
-    goToPoolEdition: '<',
+    goToPoolEditionFromOverview: '<',
     goToEditName: '<',
     goToAddMemberManually: '<',
     goToAddMemberFromInstances: '<',

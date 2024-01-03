@@ -24,6 +24,13 @@ export default /* @ngInject */ ($stateProvider) => {
         trackAction('add');
         $state.go('octavia-load-balancer.loadbalancer.pools.create');
       },
+      goToPoolEditionFromList: /* @ngInject */ (
+        goToPoolEdition,
+        trackAction,
+      ) => (pool) => {
+        trackAction('edit');
+        goToPoolEdition(pool);
+      },
       goToPoolDeletion: /* @ngInject */ ($state, trackAction) => (pool) => {
         trackAction('delete');
         $state.go('octavia-load-balancer.loadbalancer.pools.list.delete', {
