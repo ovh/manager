@@ -6,6 +6,12 @@ export default /* @ngInject */ ($stateProvider) => {
         'ovhManagerDedicatedCloudVmwareVdcAdd',
     },
     resolve: {
+      orderSapHana: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(['dedicated-cloud:sapHanaOrder'])
+          .then((feature) =>
+            feature.isFeatureAvailable('dedicated-cloud:sapHanaOrder'),
+          ),
       goBack: /* @ngInject */ ($state, $timeout, productId, setMessage) => (
         message = false,
         type = 'success',

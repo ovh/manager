@@ -3,6 +3,7 @@ import template from './dedicatedCloud-vmware-vdc-add.html';
 
 export default {
   bindings: {
+    orderSapHana: '<',
     goBack: '<',
     serviceName: '<',
     trackClick: '<',
