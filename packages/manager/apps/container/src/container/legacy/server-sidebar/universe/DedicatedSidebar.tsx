@@ -20,7 +20,6 @@ export const features = [
   'managed-bare-metal',
   'dedicated-networks',
   'dedicated-cdn',
-  'dedicated-nas',
   'dedicated-nasha',
   'paas',
   'cloud-disk-array',
@@ -148,16 +147,15 @@ export default function DedicatedSidebar() {
 
     if (feature['dedicated-networks']) {
       menu.push({
-        id: 'dedicated-nas-cdn',
-        label: t('sidebar_nas_cdn'),
+        id: 'dedicated-nasha-cdn',
+        label: t('sidebar_nasha_cdn'),
         icon: getIcon('ovh-font ovh-font-network'),
         routeMatcher: new RegExp(
-          '^(/configuration/cdn|/(paas/)?nas|/(paas/)?nasha)',
+          '^(/configuration/cdn|/(paas/)?nasha)',
         ),
         async loader() {
-          const [cdn, nas, nasha] = await Promise.all([
+          const [cdn, nasha] = await Promise.all([
             feature['dedicated-cdn'] ? loadServices('/cdn/dedicated') : [],
-            feature['dedicated-nas'] ? loadServices('/dedicated/nas') : [],
             feature['dedicated-nasha'] ? loadServices('/dedicated/nasha') : [],
           ]);
           return [
@@ -173,10 +171,6 @@ export default function DedicatedSidebar() {
                   `/cdn/dedicated/${cdnItem.serviceName}/domains`,
                 );
               },
-            })),
-            ...nas.map((n) => ({
-              ...n,
-              keywords: 'nas',
             })),
             ...nasha.map((nashaItem) => ({
               ...nashaItem,

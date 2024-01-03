@@ -8,10 +8,6 @@ export const SERVICES_TARGET_URLS = {
     url: '#/iaas/pci/project/:serviceName/compute/infrastructure/diagram',
     type: 'pci',
   },
-  '/dedicated/nas/{serviceName}': {
-    universe: 'dedicated',
-    url: '#/configuration/nas/nas/nas_:serviceName',
-  },
   '/dedicated/nasha/{serviceName}': {
     universe: 'dedicated',
     url: '#/configuration/nas/nas/nasha_:serviceName',
