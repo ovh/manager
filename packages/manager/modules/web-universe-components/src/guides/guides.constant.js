@@ -295,6 +295,11 @@ export const CA = {
             'https://docs.ovh.com/ca/en/domains/web_hosting_how_to_edit_my_dns_zone/',
           title: 'guide_domain_edit_zone',
         },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ca-dns-zone-history?id=kb_article_view&sysparm_article=KB0061050',
+          title: 'guide_domain_history_zone',
+        },
       ],
     },
   ],
@@ -450,6 +455,11 @@ export const DE = {
         {
           url: 'https://www.ovh.de/g1604.webhosting_bearbeiten_der_dns_zone',
           title: 'guide_domain_edit_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/de-dns-zone-history?id=kb_article_view&sysparm_article=KB0061048',
+          title: 'guide_domain_history_zone',
         },
       ],
     },
@@ -622,6 +632,11 @@ export const ES = {
         {
           url: 'https://www.ovh.es/g1604.web_hosting_como_editar_mi_zona_dns',
           title: 'guide_domain_edit_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/es-es-dns-zone-history?id=kb_article_view&sysparm_article=KB0061051',
+          title: 'guide_domain_history_zone',
         },
       ],
     },
@@ -996,6 +1011,11 @@ export const FR = {
           url: 'https://docs.ovh.com/fr/domains/editer-ma-zone-dns/',
           title: 'guide_domain_edit_zone',
         },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/fr-dns-zone-history?id=kb_article_view&sysparm_article=KB0061056',
+          title: 'guide_domain_history_zone',
+        },
       ],
     },
   ],
@@ -1272,6 +1292,11 @@ export const GB = {
           url: 'https://www.ovh.co.uk/g1604.hosting_how_to_edit_my_dns_zone',
           title: 'guide_domain_edit_zone',
         },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-zone-history?id=kb_article_view&sysparm_article=KB0061045',
+          title: 'guide_domain_history_zone',
+        },
       ],
     },
   ],
@@ -1393,6 +1418,11 @@ export const IT = {
         {
           url: 'https://www.ovh.it/g1604.web_hosting_modifica_la_tua_zona_dns',
           title: 'guide_domain_edit_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/it-dns-zone-history?id=kb_article_view&sysparm_article=KB0061049',
+          title: 'guide_domain_history_zone',
         },
       ],
     },
@@ -1970,6 +2000,11 @@ export const PL = {
           url: 'https://www.ovh.pl/g1604.hosting_www_jak_edytowac_strefe_dns',
           title: 'guide_domain_edit_zone',
         },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/pl-dns-zone-history?id=kb_article_view&sysparm_article=KB0061052',
+          title: 'guide_domain_history_zone',
+        },
       ],
     },
   ],
@@ -2203,6 +2238,11 @@ export const PT = {
           url:
             'https://www.ovh.pt/g1604.alojamento_partilhado_como_editar_a_minha_zona_dns',
           title: 'guide_domain_edit_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/pt-dns-zone-history?id=kb_article_view&sysparm_article=KB0061047',
+          title: 'guide_domain_history_zone',
         },
       ],
     },
