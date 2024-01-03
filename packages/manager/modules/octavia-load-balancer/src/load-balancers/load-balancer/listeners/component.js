@@ -4,6 +4,7 @@ export default {
   bindings: {
     listeners: '<',
     discoverLink: '<',
+    trackBase: '<',
   },
   template,
 };

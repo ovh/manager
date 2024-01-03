@@ -10,6 +10,7 @@ export default {
     goToListenerDeletion: '<',
     getPoolDetailLink: '<',
     trackRoot: '<',
+    trackBase: '<',
     operatingStatusBadges: '<',
     provisioningStatusBadges: '<',
   },
