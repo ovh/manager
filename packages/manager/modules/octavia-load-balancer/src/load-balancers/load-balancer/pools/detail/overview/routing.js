@@ -13,19 +13,37 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('load_balancer_pools_detail_info_tab_title'),
+        goToPoolEditionFromOverview: /* @ngInject */ (
+          goToPoolEdition,
+          trackAction,
+        ) => (pool) => {
+          trackAction(`${TRACKING_HIT_PREFIX}::edit`);
+          goToPoolEdition(pool);
+        },
         goToEditName: /* @ngInject */ ($state) => () =>
           $state.go(
             'octavia-load-balancer.loadbalancer.pools.detail.general-information.edit-name',
           ),
-        goToAddMemberManually: /* @ngInject */ ($state) => () =>
+        goToAddMemberManually: /* @ngInject */ (
+          $state,
+          trackDetailAction,
+        ) => () => {
+          trackDetailAction('add-member');
           $state.go(
             'octavia-load-balancer.loadbalancer.pools.detail.members.list.create',
-          ),
-        goToAddMemberFromInstances: /* @ngInject */ ($state) => () =>
+          );
+        },
+        goToAddMemberFromInstances: /* @ngInject */ (
+          $state,
+          trackDetailAction,
+        ) => () => {
+          trackDetailAction('add-instances');
           $state.go(
             'octavia-load-balancer.loadbalancer.pools.detail.members.list.add-ip-instance',
-          ),
-        goToDelete: /* @ngInject */ ($state) => (pool) => {
+          );
+        },
+        goToDelete: /* @ngInject */ ($state, trackDetailAction) => (pool) => {
+          trackDetailAction('delete');
           $state.go(
             'octavia-load-balancer.loadbalancer.pools.detail.general-information.delete',
             {

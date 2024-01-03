@@ -5,7 +5,7 @@ export default {
     pools: '<',
     goToPoolCreation: '<',
     getPoolDetailLink: '<',
-    goToPoolEdition: '<',
+    goToPoolEditionFromList: '<',
     goToPoolDeletion: '<',
     goToPoolMembers: '<',
     operatingStatusBadges: '<',
