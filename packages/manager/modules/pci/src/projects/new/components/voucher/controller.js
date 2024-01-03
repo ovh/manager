@@ -1,4 +1,5 @@
 import PciEligibility from '../../classes/eligibility.class';
+import { DISCOVERY_PROMOTION_VOUCHER } from '../../../project/project.constants';
 
 export default class PciProjectNewVoucherCtrl {
   /* @ngInject */
@@ -213,8 +214,8 @@ export default class PciProjectNewVoucherCtrl {
   ============================= */
 
   $onInit() {
+    this.initVoucherForProjectActivation();
     this.formVisible = !this.viewOptions.foldVoucher;
-
     const { value, valid } = this.model.voucher;
 
     if (value) {
@@ -224,6 +225,13 @@ export default class PciProjectNewVoucherCtrl {
 
       this.formVisible = true;
       this.$timeout(() => this.setVoucherFormState());
+    }
+  }
+
+  initVoucherForProjectActivation() {
+    if (this.discoveryPromotionVoucherAmount) {
+      this.model.voucher.setValue(DISCOVERY_PROMOTION_VOUCHER);
+      this.setVoucherFormState();
     }
   }
 

@@ -17,5 +17,6 @@ export default {
     defaultPaymentMethod: '<',
     trackClick: '<',
     viewOptions: '<',
+    discoveryPromotionVoucherAmount: '@',
   },
 };
