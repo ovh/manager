@@ -341,7 +341,7 @@
                     <span
                         class="d-block"
                         data-ng-repeat="region in ipBlock.regions track by $index"
-                        data-translate="{{ :: 'ip_region_' + region }}"
+                        data-ng-bind="region"
                     ></span>
                     <span
                         data-ng-if="!ipBlock.regions"
@@ -475,7 +475,7 @@
                     <span
                         class="d-block"
                         data-ng-repeat="region in ipBlock.regions track by $index"
-                        data-translate="{{ :: 'ip_region_' + region }}"
+                        data-ng-bind="region"
                     ></span>
                     <span
                         data-ng-if="!ipBlock.regions"
