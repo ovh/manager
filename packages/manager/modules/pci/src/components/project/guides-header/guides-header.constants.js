@@ -273,6 +273,8 @@ export const FAQ_MANAGED_PRIVATE_REGISTRY = {
   FR: 'https://docs.ovh.com/fr/private-registry/managed-private-registry-faq/',
   GB:
     'https://docs.ovh.com/gb/en/private-registry/managed-private-registry-faq/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/19578611382931-FAQ-Managed-Private-Registry-Harbor-',
   IE:
     'https://docs.ovh.com/ie/en/private-registry/managed-private-registry-faq/',
   DEFAULT:
@@ -294,6 +296,8 @@ export const FAQ_MANAGED_PRIVATE_REGISTRY = {
 export const CREATE_A_MANAGED_PRIVATE_REGISTER = {
   GB:
     'https://docs.ovh.com/gb/en/private-registry/creating-a-private-registry/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/19464979390099-Creating-a-Private-Registry-Harbor-',
   IE:
     'https://docs.ovh.com/ie/en/private-registry/creating-a-private-registry/',
   DEFAULT:
@@ -315,6 +319,8 @@ export const CREATE_A_MANAGED_PRIVATE_REGISTER = {
 export const CREATE_AND_USE_A_PRIVATE_IMAGE = {
   GB:
     'https://docs.ovh.com/gb/en/private-registry/creating-and-using-a-private-image/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/19618059634579-Creating-and-Using-a-Docker-Image-Stored-in-an-OVHcloud-Managed-Private-Registry-Harbor-',
   IE:
     'https://docs.ovh.com/ie/en/private-registry/creating-and-using-a-private-image/',
   DEFAULT:
