@@ -1,3 +1,4 @@
+import { VRACK_SERVICES_STATUS } from '../constants';
 import { TRACKING_BASE } from './constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -43,18 +44,23 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       vrackServices: /* @ngInject */ (NetAppDashboardService) =>
         NetAppDashboardService.getVrackServices().then(({ data }) =>
-          data.map((vs) => {
-            const name = vs.currentState.displayName || vs.id;
-            return {
-              ...vs,
-              display: {
-                name,
-                nameWithVrackId: vs.currentState.vrackId
-                  ? `${name} (${vs.currentState.vrackId})`
-                  : name,
-              },
-            };
-          }),
+          data.reduce((vrackServicesArray, vs) => {
+            if (
+              vs.currentState.productStatus !== VRACK_SERVICES_STATUS.DISABLED
+            ) {
+              const name = vs.currentState.displayName || vs.id;
+              vrackServicesArray.push({
+                ...vs,
+                display: {
+                  name,
+                  nameWithVrackId: vs.currentState.vrackId
+                    ? `${name} (${vs.currentState.vrackId})`
+                    : name,
+                },
+              });
+            }
+            return vrackServicesArray;
+          }, []),
         ),
       createVrackServiceLink: /* @ngInject */ () => 'TODO',
       createSubnetLink: /* @ngInject */ () => 'TODO',
