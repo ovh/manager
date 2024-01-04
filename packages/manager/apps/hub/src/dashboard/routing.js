@@ -58,6 +58,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           'hub:banner-iam-invite',
           'hub:banner-iam-ga-availability',
           'hub:banner-rbx1-eol',
+          'hub:banner-rbx1-imminent-eol',
         ];
         return ovhFeatureFlipping
           .checkFeatureAvailability(featuresName)

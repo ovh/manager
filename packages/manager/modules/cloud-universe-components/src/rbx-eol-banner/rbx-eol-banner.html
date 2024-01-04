@@ -1,8 +1,26 @@
-<oui-message data-type="info" data-dismissable class="mb-2">
+<oui-message
+    data-type="info"
+    data-ng-if="$ctrl.displayEolMessage"
+    data-dismissable
+    class="mb-2"
+>
     <span data-translate="rbx1_eol_banner"></span>
     <a
         ng-href="{{::$ctrl.GUIDE_LINK}}"
         target="_blank"
         data-translate="rbx1_eol_banner_link"
+    ></a>
+</oui-message>
+<oui-message
+    data-type="info"
+    data-ng-if="$ctrl.displayImminentEolMessage"
+    data-dismissable
+    class="mb-2"
+>
+    <span data-translate="rbx1_eol_imminent_banner"></span>
+    <a
+        ng-href="{{::$ctrl.IMMINENT_LINK}}"
+        target="_blank"
+        data-translate="rbx1_eol_imminent_banner_link"
     ></a>
 </oui-message>
