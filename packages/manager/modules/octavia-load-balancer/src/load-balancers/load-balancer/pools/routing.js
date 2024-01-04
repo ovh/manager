@@ -40,12 +40,10 @@ export default /* @ngInject */ ($stateProvider) => {
         })),
       trackBase: () =>
         `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::${TRACKING_SUFFIX}`,
-      goToPoolEdition: /* @ngInject */ ($state, trackAction) => (pool) => {
-        trackAction('edit');
+      goToPoolEdition: /* @ngInject */ ($state) => (pool) =>
         $state.go('octavia-load-balancer.loadbalancer.pools.edit', {
           poolId: pool.id,
-        });
-      },
+        }),
       trackAction: /* @ngInject */ (atInternet, trackBase) => (hit) =>
         atInternet.trackClick({
           name: `${trackBase}::${hit}`,
