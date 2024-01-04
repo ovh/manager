@@ -21,13 +21,14 @@ export default function ProjectIdCopy({ id, projectId, altStyle }: Props) {
 
   return (
     <>
-      <button
+     <button
         id={id}
         type="button"
         className={`d-flex m-2 ${style.projectId} ${
           altStyle ? style.whiteText : ''
         }`}
         onClick={onCopyProjectId}
+        style={{ backgroundColor: 'transparent', border:"none" }}
       >
         <span>{projectId}</span>
         <span className="oui-icon oui-icon-copy px-1 mx-1  ml-auto"></span>
