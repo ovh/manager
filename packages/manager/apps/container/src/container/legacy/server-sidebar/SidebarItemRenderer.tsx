@@ -102,6 +102,7 @@ export default function ServerSidebarItemRenderer({
           name={chevron}
           size={OdsIconSize.xs}
           color={OdsThemeColorIntent.text}
+          className={style.spinnerLoadingItem}
         />
       );
     }
@@ -113,15 +114,13 @@ export default function ServerSidebarItemRenderer({
           {item.icon && (
             <span className={style.iconPadding} aria-hidden="true">
               {item.icon}
-            </span>
-          )}
-          {item.depth === 0 ? (
+              <span className={style.textPadding}>{item.depth === 0 ? (
             <OsdsText
               level={OdsTextLevel.heading}
               color={OdsThemeColorIntent.text}
               size={OdsTextSize._200}
             >
-              <span>{item.label}</span>
+              {item.label}
             </OsdsText>
           ) : (
             <OsdsText
@@ -129,10 +128,12 @@ export default function ServerSidebarItemRenderer({
               color={OdsThemeColorIntent.text}
               size={OdsTextSize._300}
             >
-              <span className={style.subItem}>{item.label}</span>
+              {item.label}
             </OsdsText>
+          )}</span>
+            </span>
           )}
-        </span>
+          </span>
       </button>
     );
   } else {
@@ -166,8 +167,6 @@ export default function ServerSidebarItemRenderer({
         >
           <span>{item.label}</span>
         </OsdsText> : <span className={item.isSelected ? style.linkTextSelected: style.linkText}>{item.label}</span>}
-
-        </OsdsLink>
         {item?.badge && (
           <span
             className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
@@ -175,6 +174,8 @@ export default function ServerSidebarItemRenderer({
             {item.badge}
           </span>
         )}
+        </OsdsLink>
+
       </span>
     );
   }
