@@ -1,4 +1,4 @@
-import { GUIDE_LINK } from './rbx-eol-banner.constants';
+import { GUIDE_LINK, IMMINENT_LINK } from './rbx-eol-banner.constants';
 
 export default class RbxEolBannerController {
   /* @ngInject */
@@ -7,6 +7,7 @@ export default class RbxEolBannerController {
   }
 
   $onInit() {
+    this.IMMINENT_LINK = IMMINENT_LINK;
     this.GUIDE_LINK =
       GUIDE_LINK[this.coreConfig.getUser().ovhSubsidiary] || GUIDE_LINK.DEFAULT;
   }
