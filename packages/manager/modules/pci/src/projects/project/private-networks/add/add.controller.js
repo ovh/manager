@@ -169,7 +169,7 @@ export default class PrivateNetworksAddCtrl {
     return this.$q
       .all([
         this.loadNetworkDetails(),
-        this.loadGatewayDetails(),
+        this.configuration.region.isLocalZone ? [] : this.loadGatewayDetails(),
         this.checkGatewayAvailability(),
       ])
       .finally(() => {
@@ -347,5 +347,9 @@ export default class PrivateNetworksAddCtrl {
       .finally(() => {
         this.loaders.isSubmitting = false;
       });
+  }
+
+  $onDestroy() {
+    this.CucCloudMessage.unSubscribe(CONTAINER_NAME);
   }
 }
