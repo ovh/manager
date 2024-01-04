@@ -70,15 +70,69 @@
                                 <oui-select-picker-section>
                                     <span
                                         data-ng-if="datacenters[0].type === $ctrl.LOCAL_ZONE_REGION"
-                                        data-translate="pci_project_flavors_zone_localzone"
                                         class="oui-badge oui-badge_promotion"
-                                    ></span>
+                                    >
+                                        <span
+                                            data-translate="pci_project_flavors_zone_localzone"
+                                        ></span>
+                                        <button
+                                            type="button"
+                                            class="oui-popover-button"
+                                            data-oui-popover
+                                            data-oui-popover-scope="$ctrl"
+                                            data-oui-popover-template="pci_project_flavors_zone_localzone.html"
+                                        ></button>
+                                        <script
+                                            type="text/ng-template"
+                                            id="pci_project_flavors_zone_localzone.html"
+                                        >
+                                            <span
+                                                class="text-center"
+                                                data-translate="pci_project_flavors_zone_localzone_tooltip"
+                                            ></span>
+                                            <a
+                                                class="fa fa-external-link"
+                                                aria-hidden="true"
+                                                data-ng-href="{{$ctrl.localZoneUrl}}"
+                                                title="{{ 'pci_project_flavors_zone_tooltip_link' | translate }}"
+                                                target="_blank"
+                                                data-translate="pci_project_flavors_zone_tooltip_link"
+                                            ></a>
+                                        </script>
+                                    </span>
 
                                     <span
                                         data-ng-if="datacenters[0].type !== $ctrl.LOCAL_ZONE_REGION"
-                                        data-translate="pci_project_flavors_zone_global_region"
                                         class="oui-badge oui-badge_new"
-                                    ></span>
+                                    >
+                                        <span
+                                            data-translate="pci_project_flavors_zone_global_region"
+                                        ></span>
+                                        <button
+                                            type="button"
+                                            class="oui-popover-button"
+                                            data-oui-popover
+                                            data-oui-popover-scope="$ctrl"
+                                            data-oui-popover-template="pci_project_flavors_zone_globalregions_tooltip.html"
+                                        ></button>
+                                        <script
+                                            type="text/ng-template"
+                                            id="pci_project_flavors_zone_globalregions_tooltip.html"
+                                        >
+                                            <span
+                                                class="text-center"
+                                                data-translate="pci_project_flavors_zone_globalregions_tooltip"
+                                            ></span>
+                                            <a
+                                                class="fa fa-external-link"
+                                                aria-hidden="true"
+                                                data-ng-href="{{$ctrl.globalRegionsUrl}}"
+                                                title="{{ 'pci_project_flavors_zone_tooltip_link' | translate }}"
+                                                target="_blank"
+                                                data-translate="pci_project_flavors_zone_tooltip_link"
+                                            ></a>
+                                        </script>
+                                    </span>
                                 </oui-select-picker-section>
                             </oui-select-picker>
                         </div>
@@ -107,15 +161,33 @@
                                     <oui-select-picker-section>
                                         <span
                                             data-ng-if="datacenters[0].type === $ctrl.LOCAL_ZONE_REGION"
-                                            data-translate="pci_project_flavors_zone_localzone"
                                             class="oui-badge oui-badge_promotion"
-                                        ></span>
+                                        >
+                                            <span
+                                                data-translate="pci_project_flavors_zone_localzone"
+                                            ></span>
+                                            <button
+                                                type="button"
+                                                class="oui-popover-button"
+                                                data-oui-popover
+                                                data-oui-popover-scope="$ctrl"
+                                            ></button>
+                                        </span>
 
                                         <span
                                             data-ng-if="datacenters[0].type !== $ctrl.LOCAL_ZONE_REGION"
-                                            data-translate="pci_project_flavors_zone_global_region"
                                             class="oui-badge oui-badge_new"
-                                        ></span>
+                                        >
+                                            <span
+                                                data-translate="pci_project_flavors_zone_global_region"
+                                            ></span>
+                                            <button
+                                                type="button"
+                                                class="oui-popover-button"
+                                                data-oui-popover
+                                                data-oui-popover-scope="$ctrl"
+                                            ></button>
+                                        </span>
                                     </oui-select-picker-section>
                                 </oui-select-picker>
                             </div>

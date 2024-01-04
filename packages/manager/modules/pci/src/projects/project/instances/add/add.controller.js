@@ -42,6 +42,7 @@ export default class PciInstancesAddController {
     PciPublicGatewaysService,
     PciProjectAdditionalIpService,
     atInternet,
+    PciProject,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -65,6 +66,7 @@ export default class PciInstancesAddController {
     this.PciProjectAdditionalIpService = PciProjectAdditionalIpService;
     this.FLOATING_IP_AVAILABILITY_INFO_LINK = FLOATING_IP_AVAILABILITY_INFO_LINK;
     this.LOCAL_ZONE_REGION = LOCAL_ZONE_REGION;
+    this.PciProject = PciProject;
   }
 
   $onInit() {
@@ -83,6 +85,9 @@ export default class PciInstancesAddController {
     this.disableNetwork = false;
 
     this.loadMessages();
+
+    this.globalRegionsUrl = this.PciProject.getDocumentUrl('GLOBAL_REGIONS');
+    this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
 
     this.model = {
       flavorGroup: null,
