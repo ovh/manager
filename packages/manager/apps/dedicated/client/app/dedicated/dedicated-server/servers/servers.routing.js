@@ -38,6 +38,7 @@ export default /* @ngInject */ ($stateProvider) => {
           'dedicated-server:order',
           'dedicated-server:ecoRangeOrderSectionDedicated',
           'billing:autorenew2016Deployment',
+          'dedicated-server:banner-rbx1-eol',
         ]),
       isOrderAvailable: /* @ngInject */ (featureAvailability) =>
         featureAvailability?.isFeatureAvailable('dedicated-server:order') ||
@@ -129,6 +130,12 @@ export default /* @ngInject */ ($stateProvider) => {
         featureAvailability?.isFeatureAvailable(
           'billing:autorenew2016Deployment',
         ) || false,
+      displayRbx1EolBanner: /* @ngInject */ (featureAvailability) => ({
+        rbx1Eol:
+          featureAvailability?.isFeatureAvailable(
+            'dedicated-server:banner-rbx1-eol',
+          ) || false,
+      }),
     },
     redirectTo: (transition) =>
       transition

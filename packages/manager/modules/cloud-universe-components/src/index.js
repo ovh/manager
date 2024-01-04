@@ -13,6 +13,7 @@ import cucPrice from './price';
 import cucProducts from './products';
 import cucVrack from './vrack';
 import cui from './cui';
+import rbxEolBannerComponent from './rbx-eol-banner';
 
 const moduleName = 'ngOvhCloudUniverseComponents';
 
@@ -31,6 +32,7 @@ angular.module(moduleName, [
   cucProducts,
   cucVrack,
   cui,
+  rbxEolBannerComponent,
 ]);
 
 export default moduleName;

@@ -8,6 +8,7 @@ export default {
     isOrderAvailable: '<',
     isEcoRangeOrderAvailable: '<',
     isAutorenew2016DeploymentBannerAvailable: '<',
+    displayRbx1EolBanner: '<',
     orderUrl: '<',
     orderEcoRangeUrl: '<',
     serverStateEnum: '<',

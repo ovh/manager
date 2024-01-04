@@ -34,6 +34,9 @@ export default class DashboardController {
     this.showKycBanner = false;
     this.showIamBanner = false;
     this.showGAIamBanner = false;
+    this.displayRbx1EolBanner = {
+      rbx1Eol: false,
+    };
     this.$http
       .get(`/feature/identity-documents/availability`, {
         serviceType: 'aapi',
@@ -61,7 +64,7 @@ export default class DashboardController {
           this.getNicInfo.country === 'FR';
       })
       .then(() => {
-        return this.callFeatureAvailabiltySiret;
+        return this.callFeatureAvailabilty;
       })
       .then((data) => {
         this.availableSiretBanner =
@@ -91,6 +94,9 @@ export default class DashboardController {
         }
         this.showGAIamBanner = data?.isFeatureAvailable(
           'hub:banner-iam-ga-availability',
+        );
+        this.displayRbx1EolBanner.rbx1Eol = data?.isFeatureAvailable(
+          'hub:banner-rbx1-eol',
         );
       });
 
