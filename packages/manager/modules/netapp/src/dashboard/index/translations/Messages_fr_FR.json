@@ -12,6 +12,7 @@
   "netapp_dashboard_network_configuration_status_associating": "En cours de déploiement",
   "netapp_dashboard_network_configuration_status_dissociating": "Dissociation en cours",
   "netapp_dashboard_network_configuration_status_associated": "Déployé",
+  "netapp_dashboard_network_configuration_status_disabled": "Désactivé",
   "netapp_dashboard_network_configuration_vrack_id": "Nom ou ID du vRack",
   "netapp_dashboard_network_configuration_vrack_associate": "Associer un vRack",
   "netapp_dashboard_network_configuration_vrack_services": "vRack Services",

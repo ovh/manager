@@ -26,6 +26,12 @@ export const NETWORK_STATUS = {
   DISSOCIATING: 'dissociating',
 };
 
+export const VRACK_SERVICES_STATUS = {
+  ACTIVE: 'ACTIVE',
+  DRAFT: 'DRAFT',
+  DISABLED: 'DISABLED',
+};
+
 export const POLLING_TYPE = {
   ASSOCIATING: 'associating',
   DISSOCIATING: 'dissociating',
@@ -40,4 +46,5 @@ export default {
   NETWORK_STATUS,
   FETCH_INTERVAL,
   POLLING_TYPE,
+  VRACK_SERVICES_STATUS,
 };

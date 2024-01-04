@@ -5,6 +5,7 @@ import {
   RECOMMIT_IMPRESSION_TRACKING_DATA,
   NETWORK_STATUS,
   POLLING_TYPE,
+  VRACK_SERVICES_STATUS,
 } from '../constants';
 
 export default class OvhManagerNetAppDashboardIndexCtrl {
@@ -16,6 +17,7 @@ export default class OvhManagerNetAppDashboardIndexCtrl {
 
     this.SERVICE_TYPE = SERVICE_TYPE;
     this.NETWORK_STATUS = NETWORK_STATUS;
+    this.VRACK_SERVICES_STATUS = VRACK_SERVICES_STATUS;
   }
 
   $onInit() {
