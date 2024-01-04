@@ -1,20 +1,20 @@
-<div data-ng-controller="IpSliceByoipCtrl">
+<div data-ng-controller="IpSliceByoipCtrl as $ctrl">
     <div
         data-wizard
-        data-wizard-on-cancel="cancelSlice"
-        data-wizard-on-finish="slice"
-        data-wizard-title="('ip_byoip_slice_block_title' | translate) + ' ' + ip.ipBlock"
+        data-wizard-on-cancel="$ctrl.cancelSlice.bind($ctrl)"
+        data-wizard-on-finish="$ctrl.slice.bind($ctrl)"
+        data-wizard-title="('ip_byoip_slice_block_title' | translate) + ' ' + $ctrl.ip.ipBlock"
     >
-        <div data-wizard-step data-wizard-step-valid="isLoaded">
-            <div data-ng-show="isLoaded">
-                <oui-message data-type="error" data-ng-show="errorMessage" >
-                    <span data-ng-bind="errorMessage"></span>
+        <div data-wizard-step data-wizard-step-valid="$ctrl.isLoaded">
+            <div data-ng-show="$ctrl.isLoaded">
+                <oui-message data-type="error" data-ng-show="$ctrl.errorMessage" >
+                    <span data-ng-bind="$ctrl.errorMessage"></span>
                 </oui-message>
                 <p data-translate="ip_byoip_slice_set_children_size"></p>
                 <label class="oui-select">
-                    <select data-ng-model="selectedSize" class="oui-select__input" >
-                        <option data-ng-repeat="size in ipSizes track by $index" data-ng-value="size">
-                            <span>/{{size.slicingSize}}</span>
+                    <select data-ng-model="$ctrl.selectedSize" class="oui-select__input" >
+                        <option data-ng-repeat="size in $ctrl.ipSizes track by $index" data-ng-value="size">
+                            <span>{{'/' + size.slicingSize}}</span>
                         </option>
                     </select>
                     <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
@@ -22,13 +22,13 @@
                 <div class="bg-light p-3 rounded">
                     <p data-translate="ip_byoip_slice_configuration"></p>
                     <ul>
-                        <li data-ng-repeat="selectedSizeUnit in selectedSize.childrenIps track by $index">
-                            {{selectedSizeUnit}}
+                        <li data-ng-repeat="selectedSizeUnit in $ctrl.selectedSize.childrenIps track by $index">
+                            <span data-ng-bind="selectedSizeUnit"></span>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="text-center" data-ng-show="!isLoaded">
+            <div class="text-center" data-ng-show="!$ctrl.isLoaded">
                 <oui-spinner></oui-spinner>
             </div>
         </div>

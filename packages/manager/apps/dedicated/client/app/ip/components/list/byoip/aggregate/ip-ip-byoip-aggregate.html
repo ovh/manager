@@ -1,0 +1,37 @@
+<div data-ng-controller="IpAggregateByoipCtrl as $ctrl">
+    <div
+        data-wizard
+        data-wizard-on-cancel="$ctrl.cancelAggregate.bind($ctrl)"
+        data-wizard-on-finish="$ctrl.aggregate.bind($ctrl)"
+        data-wizard-title="('ip_byoip_aggregate_block_title' | translate) + ' ' + $ctrl.ip.ipBlock"
+    >
+        <div data-wizard-step data-wizard-step-valid="$ctrl.isLoaded">
+            <div data-ng-show="$ctrl.isLoaded">
+                <oui-message data-type="error" data-ng-show="$ctrl.errorMessage" >
+                    <span data-ng-bind="$ctrl.errorMessage"></span>
+                </oui-message>
+                <p data-translate="ip_byoip_aggregate_set_parent_size"></p>
+                <label class="oui-select">
+                    <select data-ng-model="$ctrl.selectedAggregationIp" class="oui-select__input" >
+                        <option data-ng-repeat="aggregationIp in $ctrl.aggregationIps track by $index" data-ng-value="aggregationIp">
+                            <span>{{aggregationIp.aggregationIp}}</span>
+                        </option>
+                    </select>
+                    <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                </label>
+                <div class="bg-light p-3 rounded">
+                    <p data-translate="ip_byoip_aggregate_configuration"></p>
+                    <ul>
+                        <li data-ng-repeat="selectedIp in $ctrl.selectedAggregationIp.childrenIps track by $index">
+                            <span data-ng-bind="selectedIp"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center" data-ng-show="!$ctrl.isLoaded">
+                <oui-spinner></oui-spinner>
+            </div>
+        </div>
+    </div>
+</div>

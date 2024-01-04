@@ -4,6 +4,7 @@ export default class IpByoipService {
     this.$http = $http;
   }
 
+  // Slice
   getAvailableSlicingConfigurations(ip) {
     return this.$http.get(`/ip/${encodeURIComponent(ip)}/bringYourOwnIp/slice`);
   }
@@ -12,6 +13,20 @@ export default class IpByoipService {
     return this.$http.post(
       `/ip/${encodeURIComponent(ip)}/bringYourOwnIp/slice`,
       { slicingSize: size },
+    );
+  }
+
+  // Aggregate
+  getAvailableAggregationConfigurations(ip) {
+    return this.$http.get(
+      `/ip/${encodeURIComponent(ip)}/bringYourOwnIp/aggregate`,
+    );
+  }
+
+  postAggregateBOYIP(ip, aggregationIp) {
+    return this.$http.post(
+      `/ip/${encodeURIComponent(ip)}/bringYourOwnIp/aggregate`,
+      { aggregationIp },
     );
   }
 }

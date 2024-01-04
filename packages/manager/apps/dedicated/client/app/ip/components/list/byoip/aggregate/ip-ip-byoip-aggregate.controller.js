@@ -1,23 +1,22 @@
-export default class IpByoipSliceController {
+export default class IpByoipAggregateController {
   /* @ngInject */
   constructor($scope, IpByoipService) {
     this.$scope = $scope;
     this.IpByoipService = IpByoipService;
     this.ip = $scope.currentActionData.ipBlock;
-    this.ipSizes = [];
-    this.selectedSize = {};
+    this.aggregationIps = [];
+    this.selectedAggregationIp = {};
     this.isLoaded = false;
     this.errorMessage = null;
   }
 
   $onInit() {
-    this.IpByoipService.getAvailableSlicingConfigurations(this.ip.ipBlock)
+    this.IpByoipService.getAvailableAggregationConfigurations(this.ip.ipBlock)
       .then(({ data }) => {
-        this.ipSizes = data;
-        if (this.ipSizes.length) {
-          [this.selectedSize] = this.ipSizes;
+        this.aggregationIps = data;
+        if (this.aggregationIps.length) {
+          [this.selectedAggregationIp] = this.aggregationIps;
         }
-        this.isLoaded = true;
       })
       .catch(({ data: { message } }) => {
         this.errorMessage = message;
@@ -27,15 +26,15 @@ export default class IpByoipSliceController {
       });
   }
 
-  cancelSlice() {
+  cancelAggregate() {
     this.$scope.resetAction();
   }
 
-  slice() {
+  aggregate() {
     this.isLoaded = false;
-    this.IpByoipService.postSliceBOYIP(
+    this.IpByoipService.postAggregateBOYIP(
       this.ip.ipBlock,
-      this.selectedSize.slicingSize,
+      this.selectedAggregationIp.aggregationIp,
     )
       .then(() => {
         this.$scope.resetAction();
