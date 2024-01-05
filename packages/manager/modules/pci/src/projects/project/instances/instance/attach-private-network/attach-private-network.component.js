@@ -10,5 +10,6 @@ export default {
     privateNetworks: '<',
     goBack: '<',
     localPrivateNetworks: '<',
+    customerRegions: '<',
   },
 };
