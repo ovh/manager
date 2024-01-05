@@ -2,12 +2,12 @@ export const DEFAULT_CIDR = 16;
 
 export const DEFAULT_IP = '10.{vlanId}.0.0';
 
-export const DEFAULT_VLAN_ID = 0;
+export const DEFAULT_VLAN_ID = 1;
 
 export const NETWORK_ACTIVE_STATUS = 'ACTIVE';
 
 export const VLAN_ID = {
-  MIN: 2,
+  MIN: 0,
   MAX: 4000,
 };
 

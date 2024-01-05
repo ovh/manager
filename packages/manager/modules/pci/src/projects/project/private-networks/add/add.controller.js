@@ -140,7 +140,7 @@ export default class PrivateNetworksAddCtrl {
   onSetVlanIdChange(modelValue) {
     this.trackCheckBoxClick(modelValue, 'set-vlan-id');
     if (modelValue) {
-      this.configuration.vlanId = this.VLAN_ID.MIN;
+      this.configuration.vlanId = DEFAULT_VLAN_ID;
     } else {
       this.configuration.vlanId = this.VLAN_ID.NEXT_AVAILABLE;
     }
@@ -194,7 +194,7 @@ export default class PrivateNetworksAddCtrl {
         vlanId !== DEFAULT_VLAN_ID &&
         !this.networks.some(({ vlanId: nextId }) => nextId === vlanId + 1),
     );
-    return network ? network.vlanId + 1 : VLAN_ID.MIN;
+    return network ? network.vlanId + 1 : DEFAULT_VLAN_ID;
   }
 
   regenerateNetworkAddress(vlanId) {

@@ -6,7 +6,7 @@
   "pci_projects_project_network_private_create_configure_mask": "Máscara",
   "pci_projects_project_network_private_create_configure_choose_vlan": "Definir um ID de VLAN",
   "pci_projects_project_network_private_create_configure_vlan": "ID de VLAN",
-  "pci_projects_project_network_private_create_configure_vlan_limits": "Entre 2 e 4000",
+  "pci_projects_project_network_private_create_configure_vlan_limits": "Entre 0 e 4000",
   "pci_projects_project_network_private_create_configure_vlan_taken": "Esta VLAN já está a ser utilizada.",
   "pci_projects_project_network_private_create_configure_api": "Pode personalizar os seus intervalos através da API.",
   "pci_projects_project_network_private_create_localisation": "Localização",
@@ -35,5 +35,6 @@
   "pci_projects_project_network_private_create_next": "Seguinte",
   "pci_projects_project_network_private_create_loading": "A criação da rede privada está em curso. Esta operação poderá demorar alguns minutos",
   "pci_projects_project_network_private_create_success": "A rede privada foi criada com êxito",
-  "pci_projects_project_network_private_create_error": "Ocorreu um erro ao criar a rede privada: {{ message }}"
+  "pci_projects_project_network_private_create_error": "Ocorreu um erro ao criar a rede privada: {{ message }}",
+  "pci_projects_project_network_private_create_vlan_id_warning": "O VLAN id 0 é utilizado por predefinição noutros produtos, mesmo fora do universo Public Cloud. Os IP privados devem ser geridos com atenção"
 }
