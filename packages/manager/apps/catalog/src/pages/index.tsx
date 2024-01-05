@@ -68,6 +68,8 @@ export default function Catalog() {
       </OsdsText>
       <SearchBar
         products={products}
+        universes={universes}
+        categories={categories}
         setSelectedCategories={setCategories}
         setSelectedUniverses={setUniverses}
         setSearchValue={setSearchText}
