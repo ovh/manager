@@ -11,5 +11,6 @@ types
 .turbo
 packages/manager/apps/**/dev.proxy.config.mjs
 playwright-report
+playwright-helpers/config.ts
 test-results
 e2e-dist

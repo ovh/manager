@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "es2020"],
+    "lib": ["dom", "es2021"],
     "noEmit": true,
-    "target": "es2020",
+    "target": "es2021",
     "types": ["vite/client", "node", "jest"],
     "module": "ES2020",
     "moduleResolution": "node",
