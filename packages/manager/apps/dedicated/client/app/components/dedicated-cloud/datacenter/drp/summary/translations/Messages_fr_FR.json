@@ -2,7 +2,7 @@
   "dedicatedCloud_datacenter_order_ip": "Vous n’avez aucun pool d’adresses IP disponible. Veuillez en <a ui-sref=\"{{sref}}\">commander</a>",
   "dedicatedCloud_datacenter_drp_confirm_create_success_part_one": "Votre PRA Zerto a été créé avec succès !",
   "dedicatedCloud_datacenter_drp_confirm_create_success_part_two": "Vous avez reçu votre mot de passe ZSSP sur l’adresse email {{email}}.",
-  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Votre PRA Zerto est en cours d’activation. L’opération peut prendre jusqu’à une heure de délai.",
+  "dedicatedCloud_datacenter_drp_confirm_creation_pending": "Votre PRA Zerto est en cours d’activation. L’opération peut prendre jusqu’à 4 heures de délai.",
   "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_EPCC": "N’hésitez pas à vérifier la tâche enableDisasterRecovery du PCC principal pour suivre son avancement.",
   "dedicatedCloud_datacenter_drp_confirm_creation_pending_task_MBM": "N’hésitez pas à vérifier la tâche enableDisasterRecovery du Essentials principal pour suivre son avancement.",
   "dedicatedCloud_datacenter_drp_confirm_order": "Votre <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">bon de commande</a> a été généré avec succès. Une fois le paiement de celui-ci effectué, vous pourrez vérifier la tâche enableDisasterRecovery dans l‘onglet Opérations, pour suivre l‘activation de l‘option.",
