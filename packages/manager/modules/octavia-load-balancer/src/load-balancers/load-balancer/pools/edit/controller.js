@@ -26,7 +26,7 @@ export default class OctaviaLoadBalancerPoolsEditCtrl {
           type: this.model.persistentSession.value,
           cookieName: this.model.cookieName,
         }
-      : undefined;
+      : { type: 'disabled' };
     this.OctaviaLoadBalancerPoolsService.editPool(
       this.projectId,
       this.region,
