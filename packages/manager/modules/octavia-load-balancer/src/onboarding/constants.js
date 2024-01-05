@@ -164,7 +164,7 @@ export const CTA = {
   SN: 'https://www.ovhcloud.com/fr-sn/public-cloud/load-balancer/',
   SG: 'https://www.ovhcloud.com/en-sg/public-cloud/load-balancer/',
   TN: 'https://www.ovhcloud.com/fr-tn/public-cloud/load-balancer/',
-  US: 'https://www.ovhcloud.com/en/public-cloud/load-balancer/',
+  US: 'https://us.ovhcloud.com/public-cloud/load-balancer/',
   WE: 'https://www.ovhcloud.com/en/public-cloud/load-balancer/',
   WS: 'https://www.ovhcloud.com/es/public-cloud/load-balancer/',
 };
