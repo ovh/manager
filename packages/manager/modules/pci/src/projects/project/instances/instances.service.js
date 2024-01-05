@@ -65,6 +65,7 @@ export default class PciProjectInstanceService {
     this.FLAVORS_WITHOUT_SUSPEND = FLAVORS_WITHOUT_SUSPEND;
     this.FLAVORS_WITHOUT_VNC = FLAVORS_WITHOUT_VNC;
     this.FLAVORS_WITHOUT_ADDITIONAL_IPS = FLAVORS_WITHOUT_ADDITIONAL_IPS;
+    this.LOCAL_ZONE_REGION = LOCAL_ZONE_REGION;
   }
 
   getBaseApiRoute(projectId) {
@@ -75,9 +76,7 @@ export default class PciProjectInstanceService {
     return this.$http
       .get(`/cloud/project/${projectId}/instance`)
       .then(({ data }) => {
-        const localZones = customerRegions.filter(({ type }) =>
-          type.includes(LOCAL_ZONE_REGION),
-        );
+        const localZones = this.getLocalZones(customerRegions);
         return data.map((instance) => {
           const isLocalZone = localZones.some(
             (region) => region.name === instance.region,
@@ -146,30 +145,31 @@ export default class PciProjectInstanceService {
   }
 
   get(projectId, instanceId, customerRegions) {
+    let isLocalZone;
+    const localZones = this.getLocalZones(customerRegions);
     return this.OvhApiCloudProjectInstance.v6()
       .get({
         serviceName: projectId,
         instanceId,
       })
-      .$promise.then((instance) =>
-        this.$q.all({
+      .$promise.then((instance) => {
+        isLocalZone = localZones?.some(
+          (region) => region.name === instance.region,
+        );
+        return this.$q.all({
           instance,
           volumes: this.OvhApiCloudProjectVolume.v6()
             .query({
               serviceName: projectId,
             })
             .$promise.catch(() => []),
-          privateNetworks: this.getPrivateNetworks(projectId),
+          privateNetworks: isLocalZone
+            ? this.getLocalZonePrivateNetworks(projectId)
+            : this.getPrivateNetworks(projectId),
           ipReverse: this.getReverseIp(instance),
-        }),
-      )
+        });
+      })
       .then(({ instance, ipReverse, volumes, privateNetworks }) => {
-        const localZones = customerRegions?.filter(({ type }) =>
-          type.includes(LOCAL_ZONE_REGION),
-        );
-        const isLocalZone = localZones?.some(
-          (region) => region.name === instance.region,
-        );
         return new Instance({
           ...instance,
           flavor: {
@@ -456,6 +456,41 @@ export default class PciProjectInstanceService {
         }
         return results;
       });
+  }
+
+  getCompatiblesLocalPrivateNetworks(projectId, instance, customerRegions) {
+    return this.getLocalZonePrivateNetworks(projectId, instance.region).then(
+      (networks) => {
+        const localZones = this.getLocalZones(customerRegions);
+        return networks.filter(
+          (network) =>
+            !instance.privateNetworks
+              .map(({ id }) => id)
+              .includes(network.id) &&
+            localZones.some((region) => region.name === network.region),
+        );
+      },
+    );
+  }
+
+  getLocalZonePrivateNetworks(serviceName) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/aggregated/network`)
+      .then(({ data }) => {
+        const privateNetworks = [];
+        data.resources.forEach((network) => {
+          if (network.visibility === 'private') {
+            privateNetworks.push(network);
+          }
+        });
+        return privateNetworks;
+      });
+  }
+
+  getLocalZones(customerRegions) {
+    return customerRegions?.filter(({ type }) =>
+      type.includes(this.LOCAL_ZONE_REGION),
+    );
   }
 
   getInstanceQuota(projectId, region) {

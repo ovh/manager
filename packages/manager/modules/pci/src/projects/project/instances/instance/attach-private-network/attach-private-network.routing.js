@@ -24,10 +24,12 @@ export default /* @ngInject */ ($stateProvider) => {
           PciProjectsProjectInstanceService,
           instance,
           projectId,
+          customerRegions,
         ) =>
-          PciProjectsProjectInstanceService.getLocalPrivateNetworks(
+          PciProjectsProjectInstanceService.getCompatiblesLocalPrivateNetworks(
             projectId,
-            instance.region,
+            instance,
+            customerRegions,
           ),
         breadcrumb: () => null,
       },
