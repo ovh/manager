@@ -32,6 +32,11 @@ export const VIRTUAL_TYPE = {
   publicAggregation: 'public_aggregation',
 };
 
+export const LABELS = {
+  ADDITIONAL_IP: 'Additional IP',
+};
+
 export default {
+  LABELS,
   GUIDES,
 };
