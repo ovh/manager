@@ -106,6 +106,14 @@
                     <p
                         data-translate="pci_projects_project_network_private_create_vlan_tip"
                     ></p>
+                    <oui-message
+                        data-ng-if="$ctrl.configureVlanId && $ctrl.configuration.vlanId === 0"
+                        data-type="warning"
+                    >
+                        <p
+                            data-translate="pci_projects_project_network_private_create_vlan_id_warning"
+                        ></p>
+                    </oui-message>
                     <oui-field
                         data-ng-if="$ctrl.configureVlanId"
                         aria-describedby="vlanTakenError"
