@@ -2,12 +2,13 @@ import 'script-loader!jquery'; // eslint-disable-line
 import 'script-loader!moment'; // eslint-disable-line
 
 import angular from 'angular';
+import uiRouter, { RejectType } from '@uirouter/angularjs';
 import 'ovh-api-services';
 import '@ovh-ux/ng-ui-router-layout';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
-import { get } from 'lodash-es';
+import { get, has } from 'lodash-es';
 
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import pciVouchers from '@ovh-ux/manager-pci-vouchers';
@@ -20,6 +21,7 @@ import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-confi
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 
+import errorPage from './error';
 import routing from './pci-vouchers.routing';
 import { TRACKING } from './pci-vouchers.constants';
 
@@ -33,6 +35,25 @@ const broadcastAppStarted = /* @ngInject */ ($rootScope, $transitions) => {
   const unregisterHook = $transitions.onSuccess({}, () => {
     $rootScope.$broadcast('app:started');
     unregisterHook();
+  });
+};
+
+const defaultErrorHandler = /* @ngInject */ ($state) => {
+  $state.defaultErrorHandler((error) => {
+    if (error.type === RejectType.ERROR) {
+      $state.go(
+        'error',
+        {
+          detail: {
+            message: get(error.detail, 'data.message'),
+            code: has(error.detail, 'headers')
+              ? error.detail.headers('x-ovh-queryId')
+              : null,
+          },
+        },
+        { location: false },
+      );
+    }
   });
 };
 
@@ -50,6 +71,7 @@ export default async (element, shellClient) => {
       'ovh-api-services',
       'ngOvhCloudUniverseComponents',
       'ngUiRouterLayout',
+      errorPage,
       pciVouchers,
       ngOvhFeatureFlipping,
       ngUiRouterBreadcrumb,
@@ -63,6 +85,7 @@ export default async (element, shellClient) => {
           shellClient.i18n.setLocale(lang);
         },
       }),
+      uiRouter,
     ])
     .constant('shellClient', shellClient)
     .config(routing)
@@ -143,6 +166,7 @@ export default async (element, shellClient) => {
         }
       },
     )
+    .run(defaultErrorHandler)
     .run(
       /* @ngInject */ ($rootScope, $transitions) => {
         const unregisterHook = $transitions.onSuccess({}, async () => {
