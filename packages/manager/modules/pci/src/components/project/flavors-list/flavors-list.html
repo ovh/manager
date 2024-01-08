@@ -44,7 +44,7 @@
                             <div class="d-flex">
                                 <span
                                     data-translate="pci_project_flavors_spec_ram"
-                                    data-translate-values="{ ram: (flavor.technicalBlob.memory.size | bytes:0:false:'MB') }"
+                                    data-translate-values="{ ram: (flavor.technicalBlob.memory.size | bytes:0:false:'GB') }"
                                 ></span>
                             </div>
                             <div
@@ -101,70 +101,76 @@
                                 data-translate="pci_project_flavors_zone_compatible"
                             >
                             </strong>
-                            <span
-                                data-ng-if="flavor.locationCompatibility.isLocalZone"
-                                class="oui-badge oui-badge_promotion"
-                            >
-                                <span
-                                    data-translate="pci_project_flavors_zone_localzone"
-                                ></span>
-                                <button
-                                    type="button"
-                                    class="oui-popover-button"
-                                    data-oui-popover
-                                    data-oui-popover-scope="$ctrl"
-                                    data-oui-popover-template="pci_project_flavors_zone_localzone.html"
-                                ></button>
-                                <script
-                                    type="text/ng-template"
-                                    id="pci_project_flavors_zone_localzone.html"
-                                >
+                            <div class="row px-3">
+                                <div class="d-flex">
                                     <span
-                                        class="text-center"
-                                        data-translate="pci_project_flavors_zone_localzone_tooltip"
-                                    ></span>
-                                    <a
-                                        class="fa fa-external-link"
-                                        aria-hidden="true"
-                                        data-ng-href="{{$ctrl.localZoneUrl}}"
-                                        title="{{ 'pci_project_flavors_zone_tooltip_link' | translate }}"
-                                        target="_blank"
-                                        data-translate="pci_project_flavors_zone_tooltip_link"
-                                    ></a>
-                                </script>
-                            </span>
-                            <span
-                                data-ng-if="flavor.locationCompatibility.isGlobalZone"
-                                class="oui-badge oui-badge_new"
-                            >
-                                <span
-                                    data-translate="pci_project_flavors_zone_global_region"
-                                ></span>
-                                <button
-                                    type="button"
-                                    class="oui-popover-button"
-                                    data-oui-popover
-                                    data-oui-popover-scope="$ctrl"
-                                    data-oui-popover-template="pci_project_flavors_zone_globalregions_tooltip.html"
-                                ></button>
-                                <script
-                                    type="text/ng-template"
-                                    id="pci_project_flavors_zone_globalregions_tooltip.html"
-                                >
+                                        data-ng-if="flavor.locationCompatibility.isLocalZone"
+                                        class="oui-badge oui-badge_promotion my-1"
+                                    >
+                                        <span
+                                            data-translate="pci_project_flavors_zone_localzone"
+                                        ></span>
+                                        <button
+                                            type="button"
+                                            class="oui-popover-button"
+                                            data-oui-popover
+                                            data-oui-popover-scope="$ctrl"
+                                            data-oui-popover-template="pci_project_flavors_zone_localzone.html"
+                                        ></button>
+                                        <script
+                                            type="text/ng-template"
+                                            id="pci_project_flavors_zone_localzone.html"
+                                        >
+                                            <span
+                                                class="text-center"
+                                                data-translate="pci_project_flavors_zone_localzone_tooltip"
+                                            ></span>
+                                            <a
+                                                class="fa fa-external-link"
+                                                aria-hidden="true"
+                                                data-ng-href="{{$ctrl.localZoneUrl}}"
+                                                title="{{ 'pci_project_flavors_zone_tooltip_link' | translate }}"
+                                                target="_blank"
+                                                data-translate="pci_project_flavors_zone_tooltip_link"
+                                            ></a>
+                                        </script>
+                                    </span>
+                                </div>
+                                <div class="d-flex">
                                     <span
-                                        class="text-center"
-                                        data-translate="pci_project_flavors_zone_globalregions_tooltip"
-                                    ></span>
-                                    <a
-                                        class="fa fa-external-link"
-                                        aria-hidden="true"
-                                        data-ng-href="{{$ctrl.globalRegionsUrl}}"
-                                        title="{{ 'pci_project_flavors_zone_tooltip_link' | translate }}"
-                                        target="_blank"
-                                        data-translate="pci_project_flavors_zone_tooltip_link"
-                                    ></a>
-                                </script>
-                            </span>
+                                        data-ng-if="flavor.locationCompatibility.isGlobalZone"
+                                        class="oui-badge oui-badge_new my-1"
+                                    >
+                                        <span
+                                            data-translate="pci_project_flavors_zone_global_region"
+                                        ></span>
+                                        <button
+                                            type="button"
+                                            class="oui-popover-button"
+                                            data-oui-popover
+                                            data-oui-popover-scope="$ctrl"
+                                            data-oui-popover-template="pci_project_flavors_zone_globalregions_tooltip.html"
+                                        ></button>
+                                        <script
+                                            type="text/ng-template"
+                                            id="pci_project_flavors_zone_globalregions_tooltip.html"
+                                        >
+                                            <span
+                                                class="text-center"
+                                                data-translate="pci_project_flavors_zone_globalregions_tooltip"
+                                            ></span>
+                                            <a
+                                                class="fa fa-external-link"
+                                                aria-hidden="true"
+                                                data-ng-href="{{$ctrl.globalRegionsUrl}}"
+                                                title="{{ 'pci_project_flavors_zone_tooltip_link' | translate }}"
+                                                target="_blank"
+                                                data-translate="pci_project_flavors_zone_tooltip_link"
+                                            ></a>
+                                        </script>
+                                    </span>
+                                </div>
+                            </div>
                         </oui-select-picker-section>
                         <oui-select-picker-section>
                             <strong
