@@ -6,6 +6,8 @@
   "numberOfCpu": "Number of CPU",
   "actions": "Actions",
   "cancel": "Annulez",
+  "manage": "Gérer",
+  "delete": "Supprimer",
   "rancherTitle": "Managed Rancher Service",
   "createRancher": "Créer un Managed Rancher Service",
   "deleteRancher": "Supprimer mon Rancher",

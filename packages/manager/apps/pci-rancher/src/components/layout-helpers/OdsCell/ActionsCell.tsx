@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { OsdsButton } from '@ovhcloud/ods-components/button/react';
 import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
 import {
@@ -11,7 +12,7 @@ import { OsdsMenu, OsdsMenuItem } from '@ovhcloud/ods-components/menu/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { DataGridCellProps } from './ProductStatusCell';
-import { RancherService } from '@/api/api.type';
+import { RancherService, RessourceStatus } from '@/api/api.type';
 
 const ActionsCell: React.FC<
   DataGridCellProps<undefined, RancherService> & {
@@ -21,6 +22,7 @@ const ActionsCell: React.FC<
   }
 > = ({ isLoading, rowData, openModal, setSelectedRancher }) => {
   const editable = true;
+  const { t } = useTranslation('pci-rancher/listing');
 
   const onDelete = () => {
     setSelectedRancher(rowData);
@@ -46,18 +48,20 @@ const ActionsCell: React.FC<
             size={ODS_ICON_SIZE.xs}
           />
         </OsdsButton>
-        <OsdsMenuItem>
-          <OsdsButton
-            color="primary"
-            size="sm"
-            variant="ghost"
-            text-align="start"
-          >
-            <span slot="start">
-              <span>Gérer</span>
-            </span>
-          </OsdsButton>
-        </OsdsMenuItem>
+        {rowData.resourceStatus !== RessourceStatus.ERROR && (
+          <OsdsMenuItem>
+            <OsdsButton
+              color="primary"
+              size="sm"
+              variant="ghost"
+              text-align="start"
+            >
+              <span slot="start">
+                <span>{t('manage')}</span>
+              </span>
+            </OsdsButton>
+          </OsdsMenuItem>
+        )}
         <OsdsMenuItem>
           <OsdsButton
             type={ODS_BUTTON_TYPE.button}
@@ -70,7 +74,7 @@ const ActionsCell: React.FC<
             onClick={onDelete}
           >
             <span slot="start">
-              <span>Delete</span>
+              <span>{t('delete')}</span>
             </span>
           </OsdsButton>
         </OsdsMenuItem>
