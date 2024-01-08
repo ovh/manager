@@ -25,11 +25,12 @@ export default class {
       .then(({ data }) => {
         const privateNetworks = {};
         data.resources.forEach((network) => {
-          if (network.visibility === 'private') {
+          if (network.visibility === 'private' && network.vlanId) {
             if (!privateNetworks[network.vlanId]) {
               const { id, region, ...rest } = network;
               privateNetworks[network.vlanId] = {
                 ...rest,
+                region,
                 subnets: [{ region, networkId: id }],
               };
             } else {
@@ -42,6 +43,39 @@ export default class {
           }
         });
         return sortBy(Object.values(privateNetworks), 'vlanId');
+      });
+  }
+
+  getLocalPrivateNetworks(serviceName, customerRegions) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/aggregated/network`)
+      .then(({ data }) => {
+        const privateNetworks = [];
+        const localZones = customerRegions.filter(({ type }) =>
+          type.includes('localzone'),
+        );
+        data.resources.forEach((network) => {
+          const isLocalZone = localZones.some(
+            (region) => region.name === network.region,
+          );
+          if (network.visibility === 'private' && isLocalZone) {
+            this.getSubnets(serviceName, network.region, network.id).then(
+              ({ cidr, dhcpEnabled, id, allocationPools }) => {
+                const allocatedIp = allocationPools
+                  .map((ipPool) => `${ipPool.start} - ${ipPool.end}`)
+                  .join(' ,');
+                privateNetworks.push({
+                  cidr,
+                  dhcpEnabled,
+                  id,
+                  allocatedIp,
+                  ...network,
+                });
+              },
+            );
+          }
+        });
+        return privateNetworks;
       });
   }
 

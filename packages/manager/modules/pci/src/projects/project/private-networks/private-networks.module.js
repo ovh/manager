@@ -10,7 +10,6 @@ import routing from './private-networks.routing';
 import service from './private-networks.service';
 
 import add from './add';
-import deletePrivateNetwork from './delete';
 import vrack from './vrack';
 
 import empty from './empty';
@@ -26,7 +25,6 @@ angular
     'ui.router',
     empty,
     add,
-    deletePrivateNetwork,
     vrack,
   ])
   .config(routing)
