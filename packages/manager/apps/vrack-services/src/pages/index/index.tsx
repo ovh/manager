@@ -107,7 +107,7 @@ export default function ListingPage() {
       </OsdsButton>
 
       <DeliveringMessages
-        message={t('deliveringVrackServicesMessage')}
+        messageKey="deliveringVrackServicesMessage"
         orders={vrackServicesDeliveringOrders}
       />
       {isLoading || areOrdersLoading ? (

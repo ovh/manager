@@ -1,8 +1,8 @@
 {
-  "title": "Bienvenue uapp",
   "crumb": "vRack services",
-  "tabs_2": "Tabs 2",
   "onboarding": "Onboarding",
+  "deliveringVrackServicesMessage": "Une demande de création d'un vRack Services a été effectué le {{date}} - {{time}}. Statut de la commande : {{status}}",
+  "deliveringVrackMessage": "Une demande de création d'un vRack a été effectué le {{date}} - {{time}}. Statut de la commande : {{status}}",
   "orderStatus-cancelled": "Annulé",
   "orderStatus-cancelling": "En cours d'annulation",
   "orderStatus-checking": "En cours de vérification",

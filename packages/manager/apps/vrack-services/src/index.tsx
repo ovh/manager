@@ -15,9 +15,8 @@ const mockApiIfDev = async () => {
   ) {
     await setupWorker(
       ...getMswHandlers({
-        nbVs: 4,
+        nbVs: 5,
         deliveringVrackServicesOrders: true,
-        // updateKo: true,
       }),
     ).start({
       onUnhandledRequest: 'bypass',
