@@ -1,1 +1,0 @@
-const e="Nessun messaggio",r="Auto-Refresh",o="Si è verificato un errore. Riprova più tardi.";export default{empty_logs:"Nessun messaggio",refresh_button_label:"Auto-Refresh",service_error_message:"Si è verificato un errore. Riprova più tardi."};export{e as empty_logs,r as refresh_button_label,o as service_error_message}

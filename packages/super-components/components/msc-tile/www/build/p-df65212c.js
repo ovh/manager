@@ -1,1 +1,0 @@
-const e="Dowiedz się więcej";export default{see_more_label:"Dowiedz się więcej"};export{e as see_more_label}

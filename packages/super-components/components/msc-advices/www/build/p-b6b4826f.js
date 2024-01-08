@@ -1,1 +1,0 @@
-const e="I nostri consigli",i="Le nostre guide:",o="Scopri di più";export default{advices_heading:"I nostri consigli",advices_retention_heading:"Le nostre guide:",advices_recommender_system_know_more:"Scopri di più"};export{e as advices_heading,o as advices_recommender_system_know_more,i as advices_retention_heading}

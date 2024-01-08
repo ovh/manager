@@ -158,7 +158,7 @@ export default (plop) => {
         validate: (input) => input.length > 0,
       },
     ],
-    actions: ({ apiV6Endpoints, apiV2Endpoints, templates, appName, apiV6Computed, apiV2Computed, }) => {
+    actions: ({ apiV6Endpoints, apiV2Endpoints, templates, appName, apiV6Computed, apiV2Computed, isApiV6 }) => {
  
       const apiV2Files =
         Object.keys(apiV2Endpoints).length > 0
@@ -178,7 +178,7 @@ export default (plop) => {
           })
           : [];
       
-      const pages = createPages(templates, appDirectory);
+      const pages = createPages(templates, appDirectory, isApiV6);
       const translations = createTranslations(templates, appName, appDirectory);
       return [
         {

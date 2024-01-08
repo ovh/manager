@@ -1,7 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
 import { Meta } from '@storybook/react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import {
   OnboardingLayout,
   OnboardingLayoutProps,
@@ -24,7 +21,7 @@ export const defaultProps: OnboardingLayoutProps = {
           description: 'This is the description 1',
           category: 'WEB',
         }}
-      ></Card>
+      />
       <Card
         href={''}
         texts={{
@@ -32,7 +29,7 @@ export const defaultProps: OnboardingLayoutProps = {
           description: 'This is the description 2',
           category: 'CLOUD',
         }}
-      ></Card>
+      />
       <Card
         href={''}
         texts={{
@@ -40,20 +37,14 @@ export const defaultProps: OnboardingLayoutProps = {
           description: 'This is the description 3',
           category: 'TELECOM',
         }}
-      ></Card>
+      />
     </aside>
   ),
 };
 
 const meta: Meta<typeof OnboardingLayout> = {
   title: 'Components/Onboarding',
-  decorators: [
-    (story) => (
-      <Router>
-        <div>{story()}</div>
-      </Router>
-    ),
-  ],
+  decorators: [(story) => <div>{story()}</div>],
   component: OnboardingLayout,
   argTypes: {},
   args: defaultProps,

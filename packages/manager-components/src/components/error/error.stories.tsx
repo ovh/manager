@@ -1,4 +1,3 @@
-import { BrowserRouter as Router } from 'react-router-dom';
 import { Meta } from '@storybook/react';
 import { ErrorBanner } from './error.component';
 
@@ -14,13 +13,7 @@ export const defaultProps: ErrorBannerProps = {
 
 const meta: Meta<typeof ErrorBanner> = {
   title: 'Atoms/errors',
-  decorators: [
-    (story) => (
-      <Router>
-        <div>{story()}</div>
-      </Router>
-    ),
-  ],
+  decorators: [(story) => <div>{story()}</div>],
   component: ErrorBanner,
   argTypes: {},
   args: defaultProps,

@@ -1,1 +1,0 @@
-import{O as i}from"./p-99c5f10a.js";new i("skeleton.global").log("init"),new i("divider.global").log("init"),new i("chip.global").log("init"),new i("text.global").log("init"),new i("icon.global").log("init"),new i("link.global").log("init"),new i("button.global").log("init"),new i("tile.global").log("init"),new i("msc-billing-tile.global").log("init");
