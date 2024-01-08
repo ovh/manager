@@ -1,6 +1,3 @@
-import find from 'lodash/find';
-import some from 'lodash/some';
-
 import { SLIDE_ANIMATION_INTERVAL, SLIDE_IMAGES } from './constants';
 import {
   ORDER_FOLLOW_UP_POLLING_INTERVAL,
@@ -71,9 +68,10 @@ export default class PciProjectUpdatingCtrl {
     this.orderFollowUpPolling = this.$timeout(() => {
       this.PciProjectsService.getOrderFollowUp(this.orderId)
         .then((followUp) => {
-          const { status } = find(followUp, {
-            step: ORDER_FOLLOW_UP_STEP_ENUM.DELIVERING,
-          });
+          const { status } =
+            followUp.find(
+              (item) => item.step === ORDER_FOLLOW_UP_STEP_ENUM.DELIVERING,
+            ) || {};
 
           if (status === ORDER_FOLLOW_UP_STATUS_ENUM.DONE) {
             return this.getUpdatedProjectId().then((projectId) =>
@@ -81,9 +79,9 @@ export default class PciProjectUpdatingCtrl {
             );
           }
 
-          const hasStepInError = some(followUp, {
-            status: ORDER_FOLLOW_UP_STATUS_ENUM.ERROR,
-          });
+          const hasStepInError = followUp.some(
+            (item) => item.status === ORDER_FOLLOW_UP_STATUS_ENUM.ERROR,
+          );
 
           if (hasStepInError) {
             this.onProjectUpdateFail();
