@@ -3,6 +3,11 @@ import Listing from './index';
 import { render, waitFor } from '../../utils/test.provider';
 import { RancherService } from '@/api/api.type';
 
+jest.mock('@tanstack/react-query', () => ({
+  useQuery: jest.fn(() => ({ isLoading: false, data: [] })),
+  useMutation: jest.fn(() => ({ isLoading: false, data: [] })),
+}));
+
 const setupSpecTest = async () =>
   waitFor(() =>
     render(
