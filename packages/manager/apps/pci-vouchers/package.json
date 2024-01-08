@@ -22,6 +22,7 @@
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-config": "^7.1.2",
     "@ovh-ux/manager-core": "^12.14.0",
+    "@ovh-ux/manager-error-page": "^2.3.6",
     "@ovh-ux/manager-ng-layout-helpers": "^2.8.0",
     "@ovh-ux/manager-pci-vouchers": "^0.0.0",
     "@ovh-ux/ng-at-internet": "^5.11.0",
