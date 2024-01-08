@@ -4,7 +4,6 @@ import {
   IcebergFetchResult,
 } from '@ovh-ux/manager-core-api';
 import { RancherService } from '@/api/api.type';
-import { createFetchDataFn } from '@/api/common';
 
 export const getRancherProjectById = async (
   projectId?: string,

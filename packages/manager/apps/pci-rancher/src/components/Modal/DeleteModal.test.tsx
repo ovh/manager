@@ -1,11 +1,20 @@
 import React from 'react';
 import DeleteModal from './DeleteModal';
 import { render, waitFor } from '../../utils/test.provider';
+import { RancherService } from '@/api/api.type';
 
 const setupSpecTest = async () =>
   waitFor(() =>
     render(
-      <DeleteModal toggleModal={() => true} onDeleteRancher={() => false} />,
+      <DeleteModal
+        selectedRancher={
+          {
+            id: '123',
+          } as RancherService
+        }
+        toggleModal={() => true}
+        onDeleteRancher={() => false}
+      />,
     ),
   );
 
