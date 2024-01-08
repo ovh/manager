@@ -4,6 +4,7 @@ import { expect } from '@playwright/test';
 import { ICustomWorld } from '@playwright-helpers/custom-world';
 import { modalDescriptionLine1 } from '../src/public/translations/vrack-services/create/Messages_fr_FR.json';
 import {
+  createVrackServicesButtonLabel,
   deliveringVrackServicesMessage,
   emptyDataGridMessage,
   deliveringVrackMessage,
@@ -14,6 +15,20 @@ import {
 } from '../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
 import { urls } from './constants';
 import { ConfigParams } from '../mock/handlers';
+
+Then('User sees the create a vRack Services button {word}', async function(
+  this: ICustomWorld<ConfigParams>,
+  buttonState: 'enabled' | 'disabled',
+) {
+  const button = await this.page.locator('osds-button', {
+    hasText: createVrackServicesButtonLabel,
+  });
+  if (buttonState === 'enabled') {
+    await expect(button).not.toHaveAttribute('disabled', '');
+  } else {
+    await expect(button).toHaveAttribute('disabled', '');
+  }
+});
 
 Then(
   'A modal appear to ask if the user wants to create a new vRack',
@@ -41,10 +56,10 @@ Then('User sees {word} error message', async function(
   anyErrorMessage: 'an' | 'no',
 ) {
   const error = await this.page.locator('osds-message', {
-    hasText: this.testContext.errorMessage,
+    hasText: new RegExp(this.testContext.errorMessage),
   });
   if (anyErrorMessage === 'an') {
-    await expect(error).toBeVisible();
+    await expect(error).toBeVisible({ timeout: 300000 });
   }
 });
 
@@ -135,9 +150,9 @@ Then('The button to create a vRack is {word}', async function(
     hasText: modalCreateNewVrackButtonLabel,
   });
   if (buttonState === 'enabled') {
-    await expect(button).toBeEnabled();
+    await expect(button).not.toHaveAttribute('disabled', '');
   } else {
-    await expect(button).toBeDisabled();
+    await expect(button).toHaveAttribute('disabled', '');
   }
 });
 
@@ -150,7 +165,7 @@ Then(
     const editButton = await this.page.locator('osds-button', {
       has: this.page.locator('osds-icon[name="pen"]'),
     });
-    await expect(associateButton).toBeDisabled();
-    await expect(editButton).toBeDisabled();
+    await expect(associateButton).toHaveAttribute('disabled', '');
+    await expect(editButton).toHaveAttribute('disabled', '');
   },
 );

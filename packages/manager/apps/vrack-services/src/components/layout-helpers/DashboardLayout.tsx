@@ -22,6 +22,7 @@ import { useVrackService } from '@/utils/vs-utils';
 import { ResourceStatus, updateVrackServicesQueryKey } from '@/api';
 import { CreationSuccessMessage } from '@/components/CreationSuccessMessage';
 import { getSubnetCreationMutationKey } from '@/pages/dashboard/[id]/CreateSubnet';
+import { getEndpointCreationMutationKey } from '@/pages/dashboard/[id]/CreateEndpoint';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -90,6 +91,12 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
           })}
           mutationKey={updateVrackServicesQueryKey(
             getSubnetCreationMutationKey(id),
+          )}
+        />
+        <CreationSuccessMessage
+          message={t('endpointCreationSuccess')}
+          mutationKey={updateVrackServicesQueryKey(
+            getEndpointCreationMutationKey(id),
           )}
         />
       </div>

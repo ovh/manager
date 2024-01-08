@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { DetailedOrder } from '@/api';
 
 export type DeliveringMessagesProps = {
-  message: string;
+  messageKey: string;
   orders?: DetailedOrder[];
 };
 
 export const DeliveringMessages: React.FC<DeliveringMessagesProps> = ({
-  message,
+  messageKey,
   orders = [],
 }) => {
   const { t, i18n } = useTranslation('vrack-services');
@@ -26,10 +26,12 @@ export const DeliveringMessages: React.FC<DeliveringMessagesProps> = ({
             className="my-5"
             type={ODS_MESSAGE_TYPE.info}
           >
-            {message
-              .replace('{{date}}', date.toLocaleDateString(i18n.language))
-              .replace('{{time}}', `${date.getHours()}:${date.getMinutes()}`)
-              .replace('{{status}}', t(`orderStatus-${order.status}`))}
+            {t(messageKey, {
+              date: date.toLocaleDateString(i18n.language),
+              time: `${date.getHours()}:${date.getMinutes()}`,
+              status: t(`orderStatus-${order.status}`),
+              interpolation: { escapeValue: false },
+            })}
           </OsdsMessage>
         );
       })}

@@ -25,15 +25,6 @@ export type IamMetadata = {
   urn: string;
 };
 
-export type Event = {
-  // yyyy-mm-ddTZ
-  createdAt: string;
-  kind: string;
-  link: string;
-  message: string;
-  type: string;
-};
-
 export enum Status {
   DONE = 'DONE',
   ERROR = 'ERROR',

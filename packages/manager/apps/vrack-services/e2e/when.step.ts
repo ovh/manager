@@ -2,7 +2,10 @@ import { When } from '@cucumber/cucumber';
 import { ICustomWorld } from '@playwright-helpers/custom-world';
 import { vrackList } from '../mock/vrack/vrack';
 import { ConfigParams, setupPlaywrightHandlers } from '../mock/handlers';
-import { associateVrackButtonLabel } from '../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
+import {
+  associateVrackButtonLabel,
+  modalCreateNewVrackButtonLabel,
+} from '../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
 import { orderButtonLabel } from '../src/public/translations/vrack-services/onboarding/Messages_fr_FR.json';
 import {
   modalCancelButtonLabel,
@@ -75,9 +78,9 @@ When('User edits the vRack Services name', async function(
     has: this.page.locator('osds-icon[name="pen"]'),
   });
   await editButton.click();
-  const input = await this.page.locator('input');
-  await input.fill('test');
-  await input.press('Enter');
+  const input = await this.page.locator('input').all();
+  await input[0].fill('test');
+  await input[0].press('Enter');
 });
 
 When('User click on the link to associate a vRack', async function(
@@ -99,7 +102,7 @@ When(
     const select = await this.page.locator('osds-select');
     await select.selectOption(vrackList[0]);
     const submitButton = await this.page.locator('osds-button', {
-      hasText: associateVrackButtonLabel,
+      hasText: modalCreateNewVrackButtonLabel,
     });
     await submitButton.click();
   },

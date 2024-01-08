@@ -14,10 +14,16 @@ import {
   ProductStatus,
   VrackServicesWithIAM,
   getVrackServicesResourceList,
+  getIamResourceQueryKey,
+  getIamResource,
+  IAMResource,
+  getEligibleManagedServiceListQueryKey,
+  getEligibleManagedServiceList,
+  EligibleManagedService,
 } from '@/api';
 
 export const useVrackServicesList = (refetchInterval = 30000) =>
-  useQuery<ResponseData<VrackServicesWithIAM[]>, ResponseData>({
+  useQuery<ResponseData<VrackServicesWithIAM[]>, ResponseData<Error>>({
     queryKey: getVrackServicesResourceListQueryKey,
     queryFn: () => getVrackServicesResourceList(),
     refetchInterval,
@@ -62,6 +68,9 @@ export const isEditable = (vs?: VrackServices) =>
   [ProductStatus.ACTIVE, ProductStatus.DRAFT].includes(
     vs?.currentState.productStatus,
   );
+
+export const hasSubnet = (vs?: VrackServices) =>
+  vs?.currentState.subnets.length > 0;
 
 /**
  * Get the function to mutate a vRack Services
@@ -121,5 +130,50 @@ export const useUpdateVrackServices = ({
     isErrorVisible,
     hideError: () => setErrorVisible(false),
     updateError,
+  };
+};
+
+export const useServiceList = (vrackServicesId: string) => {
+  const [urnList, setUrnList] = React.useState<string[]>([]);
+
+  const {
+    data: serviceListResponse,
+    isLoading: isServiceListLoading,
+    error: serviceListError,
+  } = useQuery<ResponseData<EligibleManagedService[]>, ResponseData<Error>>({
+    queryKey: getEligibleManagedServiceListQueryKey(vrackServicesId),
+    queryFn: () => getEligibleManagedServiceList(vrackServicesId),
+    staleTime: Infinity,
+  });
+
+  const {
+    data: iamResources,
+    isLoading: isIamResourcesLoading,
+    error: iamResourcesError,
+  } = useQuery<ResponseData<IAMResource[]>, ResponseData<Error>>({
+    queryKey: getIamResourceQueryKey(urnList),
+    queryFn: () => getIamResource(urnList),
+    enabled: urnList.length > 0,
+  });
+
+  React.useEffect(() => {
+    setUrnList(
+      Array.from(
+        new Set(
+          serviceListResponse?.data.flatMap(
+            (service) => service.managedServiceURNs,
+          ),
+        ),
+      ),
+    );
+  }, [serviceListResponse?.data]);
+
+  return {
+    serviceListResponse,
+    serviceListError,
+    isServiceListLoading,
+    iamResources,
+    iamResourcesError,
+    isIamResourcesLoading,
   };
 };

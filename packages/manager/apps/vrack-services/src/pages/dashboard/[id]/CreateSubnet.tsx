@@ -44,7 +44,8 @@ import { FormField } from '@/components/FormField';
 
 export const isValidVlanNumber = (vlan: number) => vlan >= 2 && vlan <= 4094;
 
-export const getSubnetCreationMutationKey = (id: string) => `create-${id}`;
+export const getSubnetCreationMutationKey = (id: string) =>
+  `create-subnet-${id}`;
 
 export function breadcrumb() {
   return i18next.t('vrack-services/subnets:createPageTitle');
@@ -65,6 +66,7 @@ const SubnetCreationPage: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const vrackServices = useVrackService();
+  const dashboardUrl = `/${id}/Subnets`;
 
   const { mutate: createSubnet, isPending, isError, error } = useMutation<
     ResponseData<VrackServices>,
@@ -98,7 +100,7 @@ const SubnetCreationPage: React.FC = () => {
       queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceQueryKey(id),
       });
-      navigate(`/${id}/Subnets`, { replace: true });
+      navigate(dashboardUrl, { replace: true });
     },
   });
 
@@ -121,11 +123,13 @@ const SubnetCreationPage: React.FC = () => {
       })}
       hasFormError={isError}
       goBackLinkLabel={t('goBackLinkLabel')}
-      goBackUrl={`/${id}/Subnets`}
+      goBackUrl={dashboardUrl}
       onSubmit={() => createSubnet()}
       isSubmitPending={isPending}
       isFormSubmittable={
-        !vrackServices.isLoading && (!hasVlan || isValidVlanNumber(vlan))
+        !vrackServices.isLoading &&
+        !isPending &&
+        (!hasVlan || isValidVlanNumber(vlan))
       }
     >
       <FormField label={t('subnetNameLabel')}>

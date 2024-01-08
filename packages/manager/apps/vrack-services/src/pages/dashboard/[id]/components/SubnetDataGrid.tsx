@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { OsdsDatagrid } from '@ovhcloud/ods-components/datagrid/react';
 import { OdsDatagridColumn } from '@ovhcloud/ods-components/datagrid';
 import { useParams } from 'react-router-dom';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
 import { reactFormatter } from '@/utils/ods-utils';
 import { DisplayNameCell, ActionsCell, CidrCell } from './SubnetDataGridCells';
 import { ErrorPage } from '@/components/Error';
@@ -20,13 +18,7 @@ export const SubnetDatagrid: React.FC = () => {
   const { id } = useParams();
 
   const { data: vrackServices, isError, error } = useVrackService();
-  const {
-    updateVS,
-    hideError,
-    isErrorVisible,
-    isPending,
-    updateError,
-  } = useUpdateVrackServices({
+  const { updateVS, isPending, updateError } = useUpdateVrackServices({
     key: id,
     onSuccess: () => setOpenedDeleteModal(''),
   });
@@ -75,15 +67,6 @@ export const SubnetDatagrid: React.FC = () => {
 
   return (
     <>
-      {isErrorVisible && (
-        <OsdsMessage
-          type={ODS_MESSAGE_TYPE.error}
-          removable
-          onOdsRemoveClick={hideError}
-        >
-          {t('updateError')}
-        </OsdsMessage>
-      )}
       <OsdsDatagrid
         hasHideableColumns={undefined}
         height={(subnetList.length + 1) * 150}
@@ -109,7 +92,7 @@ export const SubnetDatagrid: React.FC = () => {
             },
           })
         }
-        error={updateError?.response.data.message}
+        error={updateError}
         isLoading={isPending}
         isModalOpen={!!openedDeleteModal}
       />
