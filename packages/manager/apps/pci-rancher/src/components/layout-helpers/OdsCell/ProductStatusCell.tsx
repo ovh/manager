@@ -18,6 +18,9 @@ export const ProductStatusCell: React.FC<
     [RessourceStatus.READY]: ODS_THEME_COLOR_INTENT.success,
     [RessourceStatus.DISABLED]: ODS_THEME_COLOR_INTENT.error,
     [RessourceStatus.UPDATING]: ODS_THEME_COLOR_INTENT.info,
+    [RessourceStatus.ERROR]: ODS_THEME_COLOR_INTENT.error,
+    [RessourceStatus.CREATING]: ODS_THEME_COLOR_INTENT.info,
+    [RessourceStatus.DELETING]: ODS_THEME_COLOR_INTENT.info,
   };
 
   return cellData ? (

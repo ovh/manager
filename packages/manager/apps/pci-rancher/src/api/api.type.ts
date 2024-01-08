@@ -48,4 +48,7 @@ export enum RessourceStatus {
   READY = 'READY',
   DISABLED = 'DISABLED',
   UPDATING = 'UPDATING',
+  CREATING = 'CREATING',
+  DELETING = 'DELETING',
+  ERROR = 'ERROR',
 }
