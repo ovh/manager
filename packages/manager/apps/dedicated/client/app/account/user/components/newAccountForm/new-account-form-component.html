@@ -55,6 +55,7 @@
                 data-ng-if="rule.fieldName !== 'phoneCountry' && !($ctrl.siretFieldIsAvailable() && section === 'activity')"
                 data-fieldset=":: ovhSignupForm['form_part_' + section]"
                 data-is-indian-subsidiary="$ctrl.isIndianSubsidiary"
+                data-is-kyc-validated="$ctrl.isKycValidated"
             >
             </new-account-form-field>
 
@@ -68,6 +69,7 @@
                 data-ng-if="$ctrl.siretFieldIsAvailable() && section === 'activity'"
                 data-rules="$ctrl.siretModuleRules"
                 data-is-indian-subsidiary="$ctrl.isIndianSubsidiary"
+                data-is-kyc-validated="$ctrl.isKycValidated"
             ></siret-component>
         </div>
     </fieldset>
