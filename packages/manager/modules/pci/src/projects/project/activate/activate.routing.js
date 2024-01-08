@@ -11,22 +11,54 @@ export default /* @ngInject */ ($stateProvider) => {
       projectId: /* @ngInject */ ($transition$) =>
         $transition$.params().projectId || null,
 
+      activationVoucherCode: /* @ngInject */ () => DISCOVERY_PROMOTION_VOUCHER,
+
+      voucherAmount: /* @ngInject */ (discoveryPromotionVoucherAmount) =>
+        discoveryPromotionVoucherAmount,
+
       activateProject: /* @ngInject */ (
         serviceId,
         projectService,
         claimDiscoveryVoucher,
-        goToProjectDashboard,
-        discoveryPromotionVoucherAmount,
+        activationVoucherCode,
+        voucherAmount,
+        goToLoadingUpgradePage,
         displayErrorMessage,
       ) => () => {
         const voucherPayload = {
-          code: DISCOVERY_PROMOTION_VOUCHER,
+          code: activationVoucherCode,
         };
 
-        return claimDiscoveryVoucher(voucherPayload)
-          .then(() => projectService.activateDiscoveryProject(serviceId))
-          .then(() => goToProjectDashboard(discoveryPromotionVoucherAmount))
+        if (voucherAmount) {
+          return claimDiscoveryVoucher(voucherPayload)
+            .then(() => projectService.activateDiscoveryProject(serviceId))
+            .then((res) =>
+              goToLoadingUpgradePage(
+                res.data.order.orderId,
+                activationVoucherCode,
+              ),
+            )
+            .catch((err) => displayErrorMessage(err?.data?.message || err));
+        }
+        return projectService
+          .activateDiscoveryProject(serviceId)
+          .then((res) => {
+            return goToLoadingUpgradePage(
+              res?.data?.order?.orderId,
+              activationVoucherCode,
+            );
+          })
           .catch((err) => displayErrorMessage(err?.data?.message || err));
+      },
+
+      goToLoadingUpgradePage: /* @ngInject */ ($state) => (
+        orderId,
+        voucherCode,
+      ) => {
+        return $state.go('pci.projects.updating', {
+          orderId,
+          voucherCode,
+        });
       },
 
       claimDiscoveryVoucher: /* @ngInject */ (projectService, projectId) => (
@@ -47,49 +79,6 @@ export default /* @ngInject */ ($stateProvider) => {
           },
           'pci.projects.project.activate',
         ),
-
-      goToProjectDashboard: /* @ngInject */ (
-        $state,
-        projectId,
-        CucCloudMessage,
-        $translate,
-      ) => (discoveryPromotionVoucherAmount) => {
-        const state = 'pci.projects.project';
-        const promise = $state.go(
-          state,
-          {
-            projectId,
-          },
-          {
-            reload: true,
-          },
-        );
-
-        promise.then(() =>
-          discoveryPromotionVoucherAmount
-            ? CucCloudMessage.success(
-                {
-                  textHtml: $translate.instant(
-                    'pci_projects_project_activate_message_with_promotion_success',
-                    { amount: discoveryPromotionVoucherAmount },
-                  ),
-                },
-
-                state,
-              )
-            : CucCloudMessage.success(
-                {
-                  textHtml: $translate.instant(
-                    'pci_projects_project_activate_message_without_promotion_success',
-                    { amount: discoveryPromotionVoucherAmount },
-                  ),
-                },
-                state,
-              ),
-        );
-
-        return promise;
-      },
     },
   });
 };
