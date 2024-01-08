@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-catalog-app",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "private": true,
   "description": "OVHcloud Catalog application",
   "repository": {
@@ -23,8 +23,8 @@
     "test:e2e:script": "tsc && node ../../../../scripts/run-playwright.js"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-api": "^0.2.0",
-    "@ovh-ux/manager-react-core-application": "^0.2.2",
+    "@ovh-ux/manager-core-api": "^0.3.0",
+    "@ovh-ux/manager-react-core-application": "^0.2.3",
     "@ovh-ux/shell": "^3.0.5",
     "@ovhcloud/msc-react-tile": "^1.1.2",
     "@ovhcloud/msc-utils": "^0.2.1",

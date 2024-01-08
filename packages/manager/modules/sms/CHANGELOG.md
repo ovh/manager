@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.11...@ovh-ux/manager-sms@8.14.0) (2024-01-08)
+
+
+### Features
+
+* **telecom:** delete batch history ([#10314](https://github.com/ovh/manager/issues/10314)) ([1a71933](https://github.com/ovh/manager/commit/1a7193334d2344e4d74c11730c2de17323186b2b))
+
+
+
+
+
 ## [8.13.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.10...@ovh-ux/manager-sms@8.13.11) (2023-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-sms

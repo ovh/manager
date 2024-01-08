@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.16.1...@ovh-ux/manager-pci@6.17.0) (2024-01-08)
+
+
+### Features
+
+* **pci.projects:** add private registry us guides ([#10614](https://github.com/ovh/manager/issues/10614)) ([f71cdb8](https://github.com/ovh/manager/commit/f71cdb89fd60a77c86751313715298b8a29943de))
+* **pci:** allow vlan id 0 when creating private network ([#10473](https://github.com/ovh/manager/issues/10473)) ([5cb8a04](https://github.com/ovh/manager/commit/5cb8a0487c2378a6b512a12d2aa4e0b5eee17193))
+
+
+
+
+
 ## [6.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.16.0...@ovh-ux/manager-pci@6.16.1) (2024-01-02)
 
 
