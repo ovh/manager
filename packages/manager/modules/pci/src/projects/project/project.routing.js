@@ -56,10 +56,12 @@ export default /* @ngInject */ ($stateProvider) => {
       activateDiscovery: /* @ngInject */ ($transition$, isDiscoveryProject) =>
         isDiscoveryProject && $transition$.params().activateDiscovery,
 
-      project: /* @ngInject */ (OvhApiCloudProject, projectId) =>
-        OvhApiCloudProject.v6().get({
+      project: /* @ngInject */ (OvhApiCloudProject, projectId) => {
+        OvhApiCloudProject.v6().resetCache();
+        return OvhApiCloudProject.v6().get({
           serviceName: projectId,
-        }).$promise,
+        }).$promise;
+      },
 
       serviceId: /* @ngInject */ (service) => service?.serviceId,
 
@@ -94,9 +96,8 @@ export default /* @ngInject */ ($stateProvider) => {
       getQuotaUrl: /* @ngInject */ ($state) => () =>
         $state.href('pci.projects.project.quota'),
 
-      isDiscoveryProject: /* @ngInject */ (project) => {
-        return project.planCode === DISCOVERY_PROJECT_PLANCODE;
-      },
+      isDiscoveryProject: /* @ngInject */ (project) =>
+        project.planCode === DISCOVERY_PROJECT_PLANCODE,
 
       discoveryPromotionVoucherAmount: /* @ngInject */ (
         pciProjectNew,
