@@ -11,19 +11,18 @@ export default /* @ngInject */ ($stateProvider) => {
       const [$q, publicCloud] = ['$q', 'publicCloud'].map((token) =>
         transition.injector().get(token),
       );
-      return publicCloud
-        .getUnpaidProjects()
-        .then((unPaidProjects) => {
-          if (unPaidProjects.length) {
-            return 'pci.projects';
-          }
-          return $q.all({
-            discoveryProjectId: publicCloud.getDiscoveryProject(),
-            defaultProjectId: publicCloud.getDefaultProject(),
-          });
+      return $q
+        .all({
+          discoveryProjectId: publicCloud.getDiscoveryProject(),
+          defaultProjectId: publicCloud.getDefaultProject(),
+          unPaidProjects: publicCloud.getUnpaidProjects(),
         })
-        .then(({ discoveryProjectId, defaultProjectId }) => {
+        .then(({ discoveryProjectId, defaultProjectId, unPaidProjects }) => {
           const projectId = discoveryProjectId || defaultProjectId;
+
+          if (unPaidProjects.length) {
+            return { state: 'pci.projects' };
+          }
           if (projectId) {
             return { state: 'pci.projects.project', params: { projectId } };
           }
