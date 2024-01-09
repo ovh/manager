@@ -80,33 +80,13 @@
         >
         </oui-datagrid-column>
         <oui-datagrid-column
-            title=":: 'dedicated_servers_datacenter' | translate"
-            data-property="datacenter"
+            title=":: 'dedicated_servers_region' | translate"
+            data-property="region"
             data-filterable
             data-sortable
             data-type="options"
             data-type-options="$ctrl.datacenterEnumFilter"
         >
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            title=":: 'dedicated_servers_city' | translate"
-            data-property="city"
-            data-type="string"
-        >
-        </oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'dedicated_servers_country' | translate"
-            data-property="country"
-            data-type="string"
-        >
-            <span
-                data-ng-hide="$value === 'none'"
-                data-oui-tooltip="{{:: 'country_' + $value.toUpperCase() | translate }}"
-                data-oui-tooltip-placement="bottom"
-                class="oui-flag {{ 'oui-flag_' + $value }}"
-                aria-hidden="true"
-            >
-            </span>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicated_servers_status' | translate"
