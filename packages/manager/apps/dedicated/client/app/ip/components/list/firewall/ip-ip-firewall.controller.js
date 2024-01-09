@@ -120,7 +120,7 @@ export default /* @ngInject */ function IpFirewallCtrl(
           const newResult = result;
           const map = {
             key: name,
-            name: parseInt(name.replace('_', ''), 10),
+            name: key,
           };
           newResult[key] = map;
         }),
