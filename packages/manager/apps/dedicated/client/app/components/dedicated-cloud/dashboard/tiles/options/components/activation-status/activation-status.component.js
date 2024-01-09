@@ -4,6 +4,7 @@ import template from './activation-status.html';
 export default {
   bindings: {
     statusName: '<',
+    goToDatacenter: '<',
     datacentersState: '<?',
   },
   controller,

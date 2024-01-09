@@ -1,3 +1,9 @@
+export const EDGES_SIZES = {
+  MEDIUM: 'M',
+  LARGE: 'L',
+  XLARGE: 'XL',
+};
+
 export const REGEX_LEGACY_DATACENTER = /^PREMIER|SDDC/;
 
 export const REGEX_EXCLUDE_LEGACY_DATACENTER = /^ESSENTIALS/;
@@ -50,6 +56,7 @@ export const MIGRATION_GUIDE = {
 };
 
 export default {
+  EDGES_SIZES,
   REGEX_LEGACY_DATACENTER,
   REGEX_EXCLUDE_LEGACY_DATACENTER,
   MIGRATION_GUIDE,
