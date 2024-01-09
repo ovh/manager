@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack: /* @ngInject */ (goToDashboard) => goToDashboard,
         serviceId: /* @ngInject */ (serviceInfos) => serviceInfos.serviceId,
         confirmCancelTracking: () =>
-          'dedicated::dedicated::server::dashboard::cancel-commitment::confirm',
+          'dedicated::dedicated::node::dashboard::cancel-commitment::confirm',
         breadcrumb: () => null,
       },
     },

@@ -32,7 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
                 )?.serviceId,
             ),
         trackingPrefix: () =>
-          'dedicated::server::interfaces::bandwidth-public-order::',
+          'dedicated::node::interfaces::bandwidth-public-order::',
       },
     });
   });

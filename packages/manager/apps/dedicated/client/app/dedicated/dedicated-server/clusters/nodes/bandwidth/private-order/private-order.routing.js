@@ -40,7 +40,7 @@ export default /* @ngInject */ ($stateProvider) => {
             chapter1: 'dedicated',
           }),
         trackingPrefix: /* @ngInject */ () =>
-          'dedicated::server::interfaces::bandwidth-private-order::',
+          'dedicated::node::interfaces::bandwidth-private-order::',
       },
     });
   });
