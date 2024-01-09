@@ -1,6 +1,4 @@
-import get from 'lodash/get';
-import capitalize from 'lodash/capitalize';
-import last from 'lodash/last';
+import { get, last, capitalize } from 'lodash';
 
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
@@ -23,22 +21,65 @@ export default class {
 
   $onInit() {
     this.loading = true;
+    this.pollNsxTaskId = null;
     this.$q
-      .all([this.getNsxDetails(), this.checkForZertoOptionOrder()])
+      .all([
+        this.getNsxtDetails(),
+        this.getNsxtEdgePendingTask(),
+        this.checkForZertoOptionOrder(),
+        this.getNsxtOption(),
+      ])
       .finally(() => {
         this.loading = false;
       });
   }
 
-  getNsxDetails() {
+  $onDestroy() {
+    if (this.pollNsxTaskId) {
+      this.DedicatedCloud.stopResizeNsxTaskPoller(this.pollNsxTaskId);
+    }
+  }
+
+  getNsxtOption() {
+    return this.DedicatedCloud.getDatacenterNsxtOptionState(
+      this.serviceName,
+    ).then(({ enabled }) => {
+      this.isNsxtEnabled = enabled;
+    });
+  }
+
+  pollNsxtTask(taskId) {
+    this.pollNsxTaskId = taskId;
+    this.DedicatedCloud.datacenterResizeNsxTaskPoller(this.serviceName, taskId)
+      .then(() => {
+        this.getNsxtDetails();
+      })
+      .finally(() => {
+        this.pollNsxTaskId = null;
+      });
+  }
+
+  getNsxtEdgePendingTask() {
+    return this.DedicatedCloud.getDatacenterPendingResizeNsxTask(
+      this.serviceName,
+      this.datacenter.model.id,
+    ).then((data) => {
+      if (data?.length > 0) {
+        this.pollNsxtTask(data[0].taskId);
+      }
+    });
+  }
+
+  getNsxtDetails() {
     return this.DedicatedCloud.getDatacenterInfoNsxt(
       this.serviceName,
       this.datacenter.model.id,
-    ).then(({ data }) => {
+    ).then((data) => {
       this.datacenter.model.edgesCount = data.length;
-      this.datacenter.model.edgesLevel = data[0]?.size
+      this.datacenter.model.edgesLevel = data[0]
         ? capitalize(data[0].size)
         : '';
+      this.datacenter.model.edgesStatus = data[0] ? data[0].state : '';
     });
   }
 

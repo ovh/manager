@@ -4,6 +4,24 @@ export const EDGES_SIZES = {
   XLARGE: 'XL',
 };
 
+export const NSX_RESOURCES = {
+  MEDIUM: {
+    cpu: 4,
+    storage: 200,
+    ram: 8,
+  },
+  LARGE: {
+    cpu: 8,
+    storage: 200,
+    ram: 32,
+  },
+  XLARGE: {
+    cpu: 16,
+    storage: 200,
+    ram: 32,
+  },
+};
+
 export const REGEX_LEGACY_DATACENTER = /^PREMIER|SDDC/;
 
 export const REGEX_EXCLUDE_LEGACY_DATACENTER = /^ESSENTIALS/;
@@ -57,6 +75,7 @@ export const MIGRATION_GUIDE = {
 
 export default {
   EDGES_SIZES,
+  NSX_RESOURCES,
   REGEX_LEGACY_DATACENTER,
   REGEX_EXCLUDE_LEGACY_DATACENTER,
   MIGRATION_GUIDE,

@@ -36,7 +36,7 @@ export default class {
     return this.DedicatedCloud.getDatacenterInfoNsxt(
       this.dedicatedCloud.serviceName,
       id,
-    ).then(({ data }) => ({
+    ).then((data) => ({
       edgesCount: data.length,
       clusterSize: data[0]?.size ? EDGES_SIZES[data[0].size] : '',
     }));

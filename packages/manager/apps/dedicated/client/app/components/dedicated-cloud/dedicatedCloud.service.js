@@ -1,4 +1,3 @@
-import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 import assign from 'lodash/assign';
 import camelCase from 'lodash/camelCase';
 import flatten from 'lodash/flatten';
@@ -16,11 +15,13 @@ import {
   UNAVAILABLE_PCC_CODE,
   VCD_GUIDE_LINKS,
   VCD_SERVICE_PACK_PRICING_MODE,
+  TASK_STATUS,
 } from './dedicatedCloud.constant';
 
 import { VM_ENCRYPTION_KMS } from './security/dedicatedCloud-security.constants';
 import VCDMigrationState from './vcdMigrationState.class';
 import PCCMigrationState from './pccMigrationState.class';
+import IcebergUtilsService from '../../icebergUtils.services';
 
 const moduleName = 'ovhManagerPccService';
 
@@ -31,7 +32,7 @@ class DedicatedCloudService {
     $q,
     $cacheFactory,
     $rootScope,
-    iceberg,
+    icerbergUtils,
     OvhApiDedicatedCloud,
     OvhHttp,
     Poll,
@@ -39,11 +40,10 @@ class DedicatedCloudService {
     coreConfig,
     ovhFeatureFlipping,
   ) {
-    this.ListLayoutHelper = ListLayoutHelper;
     this.$http = $http;
     this.$q = $q;
     this.$rootScope = $rootScope;
-    this.iceberg = iceberg;
+    this.icerbergUtils = icerbergUtils;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
     this.OvhHttp = OvhHttp;
     this.Poll = Poll;
@@ -339,9 +339,84 @@ class DedicatedCloudService {
   }
 
   getDatacenterInfoNsxt(serviceName, datacenterId, params = {}) {
-    return this.icebergQuery(
-      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge`,
-      params,
+    return this.icerbergUtils
+      .icebergQuery(
+        `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge`,
+        params,
+      )
+      .then(({ data }) => data.filter((item) => item !== null));
+  }
+
+  getDatacenterNsxtOptionState(serviceName) {
+    return this.$http
+      .get('/services', {
+        params: { resourceName: `${serviceName}/option/edgensxt` },
+      })
+      .catch(() => ({ data: [] }))
+      .then(({ data }) => ({ enabled: !!data?.length }));
+  }
+
+  getDatacenterPendingResizeNsxTask(serviceName, datacenterId, params = {}) {
+    return this.icerbergUtils
+      .icebergQuery(
+        `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/task`,
+        params,
+        {
+          name: 'resizeNsxtEdgeCluster',
+        },
+      )
+      .then(({ data }) =>
+        data.filter(
+          (item) =>
+            item.state !== TASK_STATUS.DONE &&
+            item.state !== TASK_STATUS.ERROR &&
+            item.state !== TASK_STATUS.CANCELED,
+        ),
+      );
+  }
+
+  getDatacenterPendingRemoveNsxTask(serviceName, datacenterId, params = {}) {
+    return this.icerbergUtils
+      .icebergQuery(
+        `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/task`,
+        params,
+        {
+          name: 'removeNsxtEdgeOnDc',
+        },
+      )
+      .then(({ data }) =>
+        data.filter((item) => item.state === TASK_STATUS.DOING),
+      );
+  }
+
+  datacenterResizeNsxTaskPoller(serviceName, taskId) {
+    return this.Poller.poll(
+      `/dedicatedCloud/${serviceName}/task/${taskId}`,
+      null,
+      {
+        method: 'get',
+        namespace: taskId,
+        interval: 3000,
+        successRule: (taskResult) => taskResult.state === TASK_STATUS.DONE,
+        errorRule: (taskResult) => taskResult.state === TASK_STATUS.ERROR,
+      },
+    );
+  }
+
+  stopResizeNsxTaskPoller(taskId) {
+    return this.Poller.kill({ namespace: taskId });
+  }
+
+  getDatacenterNsxtEdgesScalingCapabilities(serviceName, datacenterId) {
+    return this.$http.get(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdgesResizingCapabilities`,
+    );
+  }
+
+  resizeNsxtEdgeCluster(serviceName, datacenterId, size) {
+    return this.$http.post(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/resizeNsxtEdgeCluster`,
+      { size },
     );
   }
 
@@ -551,55 +626,13 @@ class DedicatedCloudService {
       .then(({ data }) => data);
   }
 
-  /* ------- ICEBERG -------*/
-
-  icebergQuery(url, paginationParams, urlParams) {
-    const {
-      filters,
-      pageSize,
-      offset,
-      sort,
-      sortOrder,
-      defaultFilterColumn,
-    } = paginationParams;
-
-    let request = this.iceberg(url)
-      .query()
-      .expand('CachedObjectList-Pages')
-      .limit(pageSize)
-      .offset(Math.ceil(offset / (pageSize || 1)))
-      .sort(sort || defaultFilterColumn, sortOrder);
-
-    if (filters?.length > 0) {
-      request = this.filterIceberg(request, filters);
-    }
-
-    return this.$q
-      .resolve(request.execute(urlParams, true).$promise)
-      .then(({ data, headers }) => ({
-        data,
-        meta: {
-          totalCount: headers['x-pagination-elements'],
-        },
-      }));
-  }
-
-  filterIceberg(request, filters) {
-    let filterRequest = request;
-    filters.forEach(({ field, comparator, reference }) => {
-      filterRequest = filterRequest.addFilter(
-        field,
-        this.ListLayoutHelper.FILTER_OPERATORS[comparator],
-        this.ListLayoutHelper.mapFilterForIceberg(comparator, reference),
-      );
-    });
-    return filterRequest;
-  }
-
   /* ------- USER -------*/
 
   getUserDetails(serviceName, params = {}) {
-    return this.icebergQuery(`/dedicatedCloud/${serviceName}/user`, params);
+    return this.icerbergUtils.icebergQuery(
+      `/dedicatedCloud/${serviceName}/user`,
+      params,
+    );
   }
 
   getUsers(serviceName, name) {
@@ -657,8 +690,8 @@ class DedicatedCloudService {
         namespace: 'dedicatedCloud.password.update.poll',
         task,
         user,
-        successSates: ['canceled', 'done'],
-        errorsSates: ['error'],
+        successSates: [TASK_STATUS.CANCELED, TASK_STATUS.DONE],
+        errorsSates: [TASK_STATUS.ERROR],
       });
     });
   }
@@ -943,8 +976,8 @@ class DedicatedCloudService {
         namespace: 'dedicatedCloud.user.update.poll',
         task,
         user,
-        successSates: ['canceled', 'done'],
-        errorsSates: ['error'],
+        successSates: [TASK_STATUS.CANCELED, TASK_STATUS.DONE],
+        errorsSates: [TASK_STATUS.ERROR],
       });
     });
   }
@@ -1380,19 +1413,19 @@ class DedicatedCloudService {
       ['apiv6/dedicatedCloud', opts.serviceName, 'task', taskId].join('/'),
       null,
       {
-        successRule: { state: 'done' },
+        successRule: { state: TASK_STATUS.DONE },
         namespace: 'dedicatedCloud.request',
       },
     ).then(
       (task) => {
         this.$rootScope.$broadcast(
-          ['dedicatedCloud', opts.namespace, 'done'].join('.'),
+          ['dedicatedCloud', opts.namespace, TASK_STATUS.DONE].join('.'),
           task,
         );
       },
       (err) => {
         this.$rootScope.$broadcast(
-          ['dedicatedCloud', opts.namespace, 'error'].join('.'),
+          ['dedicatedCloud', opts.namespace, TASK_STATUS.ERROR].join('.'),
           err,
         );
       },
@@ -1471,7 +1504,7 @@ class DedicatedCloudService {
   /* ------- Operations -------*/
 
   getOperations(serviceName, paginationParams, urlParams) {
-    return this.icebergQuery(
+    return this.icerbergUtils.icebergQuery(
       `/dedicatedCloud/${serviceName}/task`,
       paginationParams,
       urlParams,
@@ -1741,8 +1774,16 @@ class DedicatedCloudService {
           .then(({ data }) => data);
       });
   }
+
+  getDatacenterOptions(serviceId) {
+    return this.$http
+      .get(`/services/${serviceId}/options`)
+      .then(({ data }) => data);
+  }
 }
 
-angular.module(moduleName, []).service('DedicatedCloud', DedicatedCloudService);
+angular
+  .module(moduleName, [IcebergUtilsService])
+  .service('DedicatedCloud', DedicatedCloudService);
 
 export default moduleName;
