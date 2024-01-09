@@ -4,7 +4,7 @@
     </h2>
     <ul class="vrack__service-type-list">
         <li
-            class="vrack__service-fetching"
+            class="vrack__service-fetching pull-right"
             data-ng-if="$ctrl.getAllowedServicesCounter < $ctrl.servicesFamilies.length"
         >
             <oui-spinner data-size="s"></oui-spinner>
@@ -16,7 +16,7 @@
         <li class="vrack__section-type">
             <span
                 class="loading"
-                data-ng-if="$ctrl.loaders.services[serviceType] == 'fetching'"
+                data-ng-if="$ctrl.loaders.services[serviceType] === 'fetching'"
             >
                 <oui-spinner data-size="s"></oui-spinner>
             </span>
@@ -31,9 +31,9 @@
             data-ng-repeat="(serviceType, services) in $ctrl.data.allowedServices track by $index"
             data-ng-if="
                 (
-                  $ctrl.loaders.services[serviceType] == 'fetching'
+                  $ctrl.loaders.services[serviceType] === 'fetching'
                 ||
-                $ctrl.loaders.services[serviceType] == 'loaded'
+                $ctrl.loaders.services[serviceType] === 'loaded'
                 ||
                   !$ctrl.loaders.deleting
                 )
@@ -61,7 +61,7 @@
                 </i>
                 <span
                     class="loading"
-                    data-ng-if="$ctrl.loaders.services[serviceType] == 'fetching'"
+                    data-ng-if="$ctrl.loaders.services[serviceType] === 'fetching'"
                 >
                     <oui-spinner data-size="s"></oui-spinner> ...
                 </span>
