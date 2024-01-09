@@ -216,7 +216,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .then((url) => () => url),
       goToSgxIntroduction: /* @ngInject */ ($state, atInternet) => () => {
         atInternet.trackClick({
-          name: 'dedicated::dedicated::server::dashboard::sgx::manage',
+          name: 'dedicated::dedicated::node::dashboard::sgx::manage',
           type: 'action',
         });
 
@@ -226,7 +226,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       goToSgxManage: /* @ngInject */ ($state, atInternet) => () => {
         atInternet.trackClick({
-          name: 'dedicated::dedicated::server::dashboard::sgx::manage',
+          name: 'dedicated::dedicated::node::dashboard::sgx::manage',
           type: 'action',
         });
 
@@ -278,7 +278,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.dedicated-cluster.cluster.node.dashboard.terminate', {
           productId: serverName,
         }),
-      trackingPrefix: () => 'dedicated::server::dashboard',
+      trackingPrefix: () => 'dedicated::node::dashboard',
       trafficInformation: /* @ngInject */ (
         $q,
         $stateParams,
