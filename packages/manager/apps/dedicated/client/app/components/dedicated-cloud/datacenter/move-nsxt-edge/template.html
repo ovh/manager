@@ -1,0 +1,39 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-action="$ctrl.onSubmit()"
+    data-primary-label="{{:: 'dedicatedCloud_datacenter_edge_relocate_confirm' | translate }}"
+    data-primary-disabled="$ctrl.moveNsxtEdgeForm.$invalid"
+    data-loading="$ctrl.isLoading"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'dedicatedCloud_datacenter_edge_relocate_cancel' | translate }}"
+    data-heading="{{:: 'dedicatedCloud_datacenter_edge_relocate_title' | translate }}"
+>
+    <form class="mt-4" name="$ctrl.moveNsxtEdgeForm" novalidate>
+        <oui-field
+            label="{{:: 'dedicatedCloud_datacenter_edge_relocate_label_select_nsx_edge' | translate }}"
+        >
+            <oui-select
+                data-ng-if="!$ctrl.isLoading"
+                name="nsxtEdgeId"
+                data-model="$ctrl.nsxtEdgeId"
+                data-items=":: $ctrl.nsxtEdgesItems"
+                data-match="name"
+                data-value-property="nsxtEdgeId"
+                data-disabled=":: !!$ctrl.nsxtEdgePreSelected"
+                data-required
+            />
+        </oui-field>
+        <oui-field
+            label="{{:: 'dedicatedCloud_datacenter_edge_relocate_label_select_datastore' | translate }}"
+        >
+            <oui-select
+                name="datastoreId"
+                data-model="$ctrl.datastoreId"
+                data-items=":: $ctrl.datastoreItems"
+                data-match="name"
+                data-value-property="id"
+                data-required
+            />
+        </oui-field>
+    </form>
+</oui-modal>

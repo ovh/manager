@@ -30,6 +30,11 @@
         data-pcc-migration-state="$ctrl.dedicatedCloudPCCMigrationState"
     />
 
+    <div
+        class="alert-server my-3"
+        data-ovh-alert="dedicatedCloud_dashboard_alert"
+    ></div>
+
     <oui-header-tabs>
         <oui-header-tabs-item data-state="{{:: $ctrl.dashboardState }}"
             ><span data-translate="dedicatedCloud_tab_dashboard"></span
@@ -39,6 +44,11 @@
         ></oui-header-tabs-item>
         <oui-header-tabs-item data-state="{{:: $ctrl.datastoresState }}"
             ><span data-translate="dedicatedCloud_tab_datastore"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if=":: $ctrl.isNsxEdgeAvailable && $ctrl.isNsxtCompatible"
+            data-state="{{:: $ctrl.networkState }}"
+            ><span data-ng-bind=":: $ctrl.NETWORK_LABEL"></span
         ></oui-header-tabs-item>
         <oui-header-tabs-item data-state="{{:: $ctrl.backupState }}"
             ><span data-translate="dedicatedCloud_tab_backup"></span
