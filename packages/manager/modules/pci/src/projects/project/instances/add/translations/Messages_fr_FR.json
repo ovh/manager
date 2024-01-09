@@ -35,7 +35,7 @@
   "pci_projects_project_instances_add_script_help": "Saisissez votre script post-installation",
   "pci_projects_project_instances_add_script_add_label": "Ajouter",
 
-  "pci_projects_project_instances_add_localPrivateNetwork_sub_title": "Please configure your network for your new instanes in a local zone. - FR content pending",
+  "pci_projects_project_instances_add_localPrivateNetwork_sub_title": "Sélectionner un réseau privé dans une local Zone",
   "pci_projects_project_instances_add_localPrivateNetwork_label": "Sélectionner un réseau privé dans une Local Zone",
   "pci_projects_project_instances_add_localPrivateNetwork_add": "Créer un nouveau réseau privé dans une Local Zone",
   "pci_projects_project_instances_add_localPrivateNetwork_description": "Avec ce mode, l'instance est rattachée à un de vos réseaux privés dans une Local Zone.",
