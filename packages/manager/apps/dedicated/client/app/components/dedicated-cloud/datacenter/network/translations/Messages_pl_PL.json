@@ -1,0 +1,22 @@
+{
+  "dedicatedCloud_network_description": "Ten interfejs pozwoli Ci zmienić rozmiar lub dodać węzły Edge. Są one fakturowane w cenie {{ price }} za każdy vCPU za miesiąc. W zależności od zobowiązań umownych mogą być stosowane zniżki. Aby dowiedzieć się więcej, odwiedź naszą <a class=\"oui-link_icon\" href=\"{{link}}\" target=\"_blank\" rel=\"noopener noreferrer\">stronę internetową<i class=\"oui-icon oui-icon-external-link\" aria-label=\"External link\" aria-hidden=\"true\" ></i></a>.",
+  "dedicatedCloud_network_nsx_edge_summary_title": "NSX Edges",
+  "dedicatedCloud_network_nsx_edge_size_label": "Rozmiar NSX Edge",
+  "dedicatedCloud_network_facturation_summary_title": "Płatności",
+  "dedicatedCloud_network_option_price_label": "Cena opcji",
+  "dedicatedCloud_network_website_link_label": "Link do strony WWW",
+  "dedicatedCloud_network_website_link": "Strona WWW",
+  "dedicatedCloud_network_id": "ID",
+  "dedicatedCloud_network_name": "Nazwa",
+  "dedicatedCloud_network_vm_list": "Lista VM",
+  "dedicatedCloud_network_sizing": "Rozmiar",
+  "dedicatedCloud_network_relocate_action": "Zmień lokalizację",
+  "dedicatedCloud_network_delete_action": "Usuń",
+  "dedicatedCloud_network_add_edge_cta": "Dodaj NSX Edge",
+  "dedicatedCloud_network_resize_edge_cta": "Skaluj",
+  "dedicatedCloud_datacenter_network_guides": "Przewodniki",
+  "dedicatedCloud_network_site_web_description_link": "Dostęp do strony WWW",
+  "dedicatedCloud_network_unable_have_minimum_nsx": "Nie możesz mieć mniej niż {{minimumNsx}} NSX Edge",
+  "dedicatedCloud_network_included_in_offer": "Zawarte w ofercie standardowej",
+  "dedicatedCloud_network_unable_delete_not_developed_yet": "Funkcja ta nie jest jeszcze dostępna, skontaktuj się z działem wsparcia"
+}
