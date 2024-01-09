@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       atInternet: {
         rename:
-          'dedicated::dedicated-server::server::dashboard::monitoringUpdate',
+          'dedicated::dedicated-server::node::dashboard::monitoringUpdate',
       },
     },
   );

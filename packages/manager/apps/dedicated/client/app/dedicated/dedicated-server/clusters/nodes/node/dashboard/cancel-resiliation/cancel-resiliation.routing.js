@@ -63,7 +63,7 @@ export default /* @ngInject */ ($stateProvider) => {
             name: 'cancel-resiliation',
             type: 'action',
             chapter1: 'dedicated',
-            chapter2: 'server',
+            chapter2: 'node',
             chapter3: 'dashboard',
           }),
         breadcrumb: () => null,
