@@ -16,6 +16,7 @@ import {
   UNAVAILABLE_PCC_CODE,
   VCD_GUIDE_LINKS,
   VCD_SERVICE_PACK_PRICING_MODE,
+  TASK_STATUS,
 } from './dedicatedCloud.constant';
 
 import { VM_ENCRYPTION_KMS } from './security/dedicatedCloud-security.constants';
@@ -340,6 +341,49 @@ class DedicatedCloudService {
     return this.icebergQuery(
       `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge`,
       params,
+    ).then(({ data }) => data.filter((item) => item !== null));
+  }
+
+  getDatacenterPendingResizeNsxTask(serviceName, datacenterId, params = {}) {
+    return this.icebergQuery(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/task`,
+      params,
+      {
+        name: 'resizeNsxtEdgeCluster',
+      },
+    ).then(({ data }) =>
+      data.filter((item) => item.state !== TASK_STATUS.DONE),
+    );
+  }
+
+  datacenterResizeNsxTaskPoller(serviceName, taskId) {
+    return this.Poller.poll(
+      `/dedicatedCloud/${serviceName}/task/${taskId}`,
+      null,
+      {
+        method: 'get',
+        namespace: taskId,
+        interval: 3000,
+        successRule: (taskResult) => taskResult.state === TASK_STATUS.DONE,
+        errorRule: (taskResult) => taskResult.state === TASK_STATUS.ERROR,
+      },
+    );
+  }
+
+  stopResizeNsxTaskPoller(taskId) {
+    return this.Poller.kill({ namespace: taskId });
+  }
+
+  getDatacenterNsxtEdgesScalingCapabilities(serviceName, datacenterId) {
+    return this.$http.get(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdgesResizingCapabilities`,
+    );
+  }
+
+  resizeNsxtEdgeCluster(serviceName, datacenterId, size) {
+    this.$http.post(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/resizeNsxtEdgeCluster`,
+      { size },
     );
   }
 
@@ -561,7 +605,7 @@ class DedicatedCloudService {
       defaultFilterColumn,
     } = paginationParams;
 
-    let request = this.iceberg(url)
+    let request = this.iceberg(url, urlParams)
       .query()
       .expand('CachedObjectList-Pages')
       .limit(pageSize)
@@ -655,8 +699,8 @@ class DedicatedCloudService {
         namespace: 'dedicatedCloud.password.update.poll',
         task,
         user,
-        successSates: ['canceled', 'done'],
-        errorsSates: ['error'],
+        successSates: [TASK_STATUS.CANCELED, TASK_STATUS.DONE],
+        errorsSates: [TASK_STATUS.ERROR],
       });
     });
   }
@@ -941,8 +985,8 @@ class DedicatedCloudService {
         namespace: 'dedicatedCloud.user.update.poll',
         task,
         user,
-        successSates: ['canceled', 'done'],
-        errorsSates: ['error'],
+        successSates: [TASK_STATUS.CANCELED, TASK_STATUS.DONE],
+        errorsSates: [TASK_STATUS.ERROR],
       });
     });
   }
@@ -1378,19 +1422,19 @@ class DedicatedCloudService {
       ['apiv6/dedicatedCloud', opts.serviceName, 'task', taskId].join('/'),
       null,
       {
-        successRule: { state: 'done' },
+        successRule: { state: TASK_STATUS.DONE },
         namespace: 'dedicatedCloud.request',
       },
     ).then(
       (task) => {
         this.$rootScope.$broadcast(
-          ['dedicatedCloud', opts.namespace, 'done'].join('.'),
+          ['dedicatedCloud', opts.namespace, TASK_STATUS.DONE].join('.'),
           task,
         );
       },
       (err) => {
         this.$rootScope.$broadcast(
-          ['dedicatedCloud', opts.namespace, 'error'].join('.'),
+          ['dedicatedCloud', opts.namespace, TASK_STATUS.ERROR].join('.'),
           err,
         );
       },
