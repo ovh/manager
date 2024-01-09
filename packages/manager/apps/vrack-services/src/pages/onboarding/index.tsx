@@ -5,6 +5,7 @@ import { MscTile } from '@ovhcloud/msc-react-tile';
 import { Locale } from '@ovhcloud/msc-utils';
 import { OsdsChip } from '@ovhcloud/ods-components/chip/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useNavigate } from 'react-router-dom';
 import { useGuideUtils } from '@/components/GuideLink';
 import { OnboardingLayout } from '@/components/layout-helpers';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
@@ -19,6 +20,7 @@ export default function Onboarding() {
   const environment = useEnvironment();
   const locale = environment.getUserLocale() as Locale;
   const link = useGuideUtils();
+  const navigate = useNavigate();
 
   const tileList = [
     {
@@ -41,7 +43,7 @@ export default function Onboarding() {
       description={t('description')}
       imageSrc={onboardingImgSrc}
       primaryButtonLabel={t('orderButtonLabel')}
-      primaryHref="/#/create"
+      primaryOnClick={() => navigate('/create')}
       secondaryButtonLabel={t('moreInfoButtonLabel')}
       secondaryHref={t('moreInfoButtonLink')}
     >

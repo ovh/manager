@@ -1,4 +1,3 @@
-import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { fetchIcebergV2 } from '@ovh-ux/manager-core-api';
 import {
   EligibleManagedService,
@@ -44,20 +43,10 @@ export const getVrackServicesResourceList = async ({
 
 export const getListingIcebergQueryKey = ['servicesListingIceberg'];
 
-/**
- * Get listing with iceberg
- */
-export const getListingIceberg = async () => {
-  const fetchData = async () =>
-    fetchIcebergV2<VrackServicesWithIAM>({
-      route: '/vrackServices/resource',
-    });
-
-  return queryClient.fetchQuery({
-    queryKey: getListingIcebergQueryKey,
-    queryFn: fetchData,
+export const getListingIceberg = async () =>
+  fetchIcebergV2<VrackServicesWithIAM>({
+    route: '/vrackServices/resource',
   });
-};
 
 export const getVrackServicesResourceQueryKey = (vrackServicesId: string) => [
   `get/vrackServices/resource/${vrackServicesId}`,

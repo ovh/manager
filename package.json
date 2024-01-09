@@ -63,6 +63,7 @@
   "dependencies": {},
   "devDependencies": {
     "@babel/helper-string-parser": "^7.18.10",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-angular": "^17.1.0",
     "@cucumber/cucumber": "^10.0.1",

@@ -1,7 +1,10 @@
 module.exports = {
   roots: ['<rootDir>/packages/components', '<rootDir>/packages/manager'],
-  projects: ['<rootDir>/packages/manager/apps/container/jest.config.js'],
-  setupFilesAfterEnv: ['<rootDir>/jest/mocks/jest.setup.js'],
+  projects: [
+    '<rootDir>/packages/manager/apps/container/jest.config.js',
+    '<rootDir>/packages/manager/apps/vrack-services/jest.config.js',
+  ],
+  setupFiles: ['<rootDir>/jest/mocks/jest.setup.js'],
   collectCoverageFrom: ['packages/**/*.{js,jsx,ts,tsx}', '!packages/**/*.d.ts'],
   testMatch: [
     '<rootDir>/packages/**/__tests__/**/*.{spec,test}.{js,jsx,ts,tsx}',
@@ -20,7 +23,7 @@ module.exports = {
   ],
   moduleNameMapper: {
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
-    '\\.(png|jpg|svg|ttf|woff|woff2)$': 'identity-obj-proxy',
+    '\\.(png|jpg|svg|ttf|woff|woff2)$': '<rootDir>/jest/mocks/fileMock.js',
     '^lodash-es$': 'lodash',
   },
   watchPlugins: [

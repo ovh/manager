@@ -2,7 +2,7 @@
 import { Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { ICustomWorld } from '@playwright-helpers/custom-world';
-import { modalDescriptionLine1 } from '../src/public/translations/vrack-services/create/Messages_fr_FR.json';
+import { modalDescriptionLine1 } from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
 import {
   createVrackServicesButtonLabel,
   emptyDataGridMessage,
@@ -10,13 +10,14 @@ import {
   modalVrackCreationDescription,
   modalCreateNewVrackButtonLabel,
   associateVrackButtonLabel,
-} from '../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
+} from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
 import {
   deliveringVrackMessage,
   deliveringVrackServicesMessage,
-} from '../src/public/translations/vrack-services/Messages_fr_FR.json';
-import { urls } from './constants';
-import { ConfigParams } from '../mock/handlers';
+} from '../../src/public/translations/vrack-services/Messages_fr_FR.json';
+import { urls } from '../utils';
+import { ConfigParams } from '../../mock/handlers';
+import vsMocks from '../../mock/vrack-services/get-vrack-services.json';
 
 Then('User sees the create a vRack Services button {word}', async function(
   this: ICustomWorld<ConfigParams>,
@@ -107,8 +108,10 @@ Then('User sees an empty listing page', async function(
 Then(
   'User sees a data grid containing his vRack Services information',
   async function(this: ICustomWorld<ConfigParams>) {
-    const datagrid = await this.page.locator('osds-datagrid');
-    await expect(datagrid).toBeVisible();
+    const vsDisplayName = await this.page.locator('osds-datagrid', {
+      hasText: vsMocks[0].currentState.displayName,
+    });
+    await expect(vsDisplayName).toBeVisible();
   },
 );
 

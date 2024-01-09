@@ -1,4 +1,4 @@
-import { config } from '../../../../../playwright-helpers/config';
+import { config } from '../../../../../../playwright-helpers/config';
 
 export const urls = {
   app: config.appUrl,

@@ -45,6 +45,8 @@ export const ZoneFormField: React.FC<Props> = ({
     staleTime: Infinity,
   });
 
+  console.log({ data, isZoneLoading });
+
   return (
     <>
       <OsdsText
@@ -75,7 +77,7 @@ export const ZoneFormField: React.FC<Props> = ({
             value={selectedZone}
             required
           >
-            {data?.data.map((zone) => {
+            {data?.data?.map((zone) => {
               const [country, city] = zone.description.split('-');
               return (
                 <OsdsRadio

@@ -1,4 +1,4 @@
-import { Handler } from '@super-components/_common/msw-helpers';
+import { Handler } from '../../tests/utils/msw-helpers';
 
 export const vrackList = [
   'pn-00001',

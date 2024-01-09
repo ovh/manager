@@ -1,19 +1,20 @@
 import { When } from '@cucumber/cucumber';
 import { ICustomWorld } from '@playwright-helpers/custom-world';
-import { vrackList } from '../mock/vrack/vrack';
-import { ConfigParams, setupPlaywrightHandlers } from '../mock/handlers';
+import { vrackList } from '../../mock/vrack/vrack';
+import { ConfigParams, setupPlaywrightHandlers } from '../../mock/handlers';
 import {
   associateVrackButtonLabel,
   modalCreateNewVrackButtonLabel,
-} from '../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
-import { orderButtonLabel } from '../src/public/translations/vrack-services/onboarding/Messages_fr_FR.json';
+  modalVrackAssociationDescription,
+} from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
+import { orderButtonLabel } from '../../src/public/translations/vrack-services/onboarding/Messages_fr_FR.json';
 import {
   modalCancelButtonLabel,
   modalConfirmVrackButtonLabel,
   modalNoVrackButtonLabel,
-} from '../src/public/translations/vrack-services/create/Messages_fr_FR.json';
-import { urls } from './constants';
-import { displayNameInputName } from '../src/pages/create/constants';
+} from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
+import { urls } from '../utils';
+import { displayNameInputName } from '../../src/pages/create/constants';
 
 When('User navigates to vRack Services Listing page', async function(
   this: ICustomWorld<ConfigParams>,
@@ -90,18 +91,25 @@ When('User click on the link to associate a vRack', async function(
   await this.page.goto(this.testContext.initialUrl || urls.app, {
     waitUntil: 'load',
   });
-  const button = await this.page.locator('osds-button', {
-    hasText: associateVrackButtonLabel,
-  });
+  const buttonList = await this.page
+    .locator('osds-button', {
+      hasText: associateVrackButtonLabel,
+    })
+    .all();
+  console.log({ buttonList });
+  const button = buttonList.length > 1 ? buttonList[1] : buttonList[0];
   await button.click();
 });
 
 When(
   'User selects a vRack in the association list and submits the form',
   async function(this: ICustomWorld<ConfigParams>) {
-    const select = await this.page.locator('osds-select');
+    const associationModal = await this.page.locator('osds-modal', {
+      hasText: modalVrackAssociationDescription,
+    });
+    const select = await associationModal.locator('osds-select');
     await select.selectOption(vrackList[0]);
-    const submitButton = await this.page.locator('osds-button', {
+    const submitButton = await associationModal.locator('osds-button', {
       hasText: modalCreateNewVrackButtonLabel,
     });
     await submitButton.click();

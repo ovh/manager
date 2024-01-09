@@ -1,6 +1,6 @@
 import { startApplication } from '@ovh-ux/manager-react-core-application';
 import { initShellClient } from '@ovh-ux/shell';
-import { setupWorker } from 'msw';
+import { setupWorker } from 'msw/browser';
 import { setShellClient } from './shell';
 import { getMswHandlers } from '../mock/handlers';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';

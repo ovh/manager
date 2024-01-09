@@ -1,11 +1,11 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Given } from '@cucumber/cucumber';
 import { ICustomWorld } from '@playwright-helpers/custom-world';
-import { urls } from './constants';
-import { ConfigParams } from '../mock/handlers';
+import { urls } from '../utils';
+import { ConfigParams } from '../../mock/handlers';
 import { OrderStatus, ProductStatus } from '@/api';
-import { creationServiceError } from '../src/public/translations/vrack-services/create/Messages_fr_FR.json';
-import { updateError } from '../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
+import { creationServiceError } from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
+import { updateError } from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
 
 Given('User has {word} vRack Services', function(
   this: ICustomWorld<ConfigParams>,
