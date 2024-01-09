@@ -346,7 +346,6 @@ export default class PciProjectInstanceService {
   }
 
   getLocalPrivateNetworks(projectId, regionName) {
-    // @TODO API is not clear
     return this.$http
       .get(`/cloud/project/${projectId}/region/${regionName}/network`)
       .then(({ data }) =>
