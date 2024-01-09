@@ -13,9 +13,9 @@ export default /* @ngInject */ ($stateProvider) => {
           $transition$.params().duration,
         serviceId: /* @ngInject */ (serviceInfos) => serviceInfos.serviceId,
         me: /* @ngInject */ (currentUser) => currentUser,
-        trackingPrefix: () => 'dedicated::server::dashboard',
+        trackingPrefix: () => 'dedicated::node::dashboard',
         pageTrackingPrefix: () =>
-          'dedicated::dedicated-server::server::dashboard',
+          'dedicated::dedicated-server::node::dashboard',
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('dedicated_server_dashboard_commit'),
       },

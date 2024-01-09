@@ -45,7 +45,7 @@ export default /* @ngInject */ ($stateProvider) => {
           type,
         ) => {
           trackClick(
-            'dedicated::dedicated::server::dashboard::resiliation::cancel',
+            'dedicated::dedicated::node::dashboard::resiliation::cancel',
           );
           return goToDashboard(message, type);
         },
@@ -57,7 +57,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => (successMessage, endStrategy) => {
           const hitToConcat = endStrategy ? `_${endStrategy}` : '';
           trackClick(
-            `dedicated::dedicated::server::dashboard::resiliation::confirm${hitToConcat}`,
+            `dedicated::dedicated::node::dashboard::resiliation::confirm${hitToConcat}`,
           );
           if (endStrategy === endStrategies.CANCEL_SERVICE) {
             return goToDeleteService();

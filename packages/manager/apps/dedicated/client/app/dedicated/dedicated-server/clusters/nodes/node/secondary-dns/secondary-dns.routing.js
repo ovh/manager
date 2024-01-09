@@ -22,7 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('dedicated_server_dns'),
     },
     atInternet: {
-      rename: 'dedicated::dedicated-server::server::dns',
+      rename: 'dedicated::dedicated-server::node::dns',
     },
   });
 };

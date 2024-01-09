@@ -17,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
             reload: true,
           }),
         trackingPrefix: () =>
-          'dedicated::server::interfaces::ola-configuration::',
+          'dedicated::node::interfaces::ola-configuration::',
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('dedicated_server_interfaces_ola_title'),
       },
