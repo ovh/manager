@@ -3,6 +3,7 @@ import {
   REGEX_LEGACY_DATACENTER,
   REGEX_EXCLUDE_LEGACY_DATACENTER,
   MIGRATION_GUIDE,
+  EDGES_SIZES,
 } from './datacenter.constants';
 
 export default class {
@@ -29,6 +30,16 @@ export default class {
   onAddDatacenterClick() {
     this.trackClick('datacenter::add');
     return this.addDatacenter();
+  }
+
+  loadDataCenterDetails(id) {
+    return this.DedicatedCloud.getDatacenterInfoNsxt(
+      this.dedicatedCloud.serviceName,
+      id,
+    ).then(({ data }) => ({
+      edgesCount: data.length,
+      clusterSize: data[0]?.size ? EDGES_SIZES[data[0].size] : '',
+    }));
   }
 
   loadDatacenters({ offset, pageSize }) {

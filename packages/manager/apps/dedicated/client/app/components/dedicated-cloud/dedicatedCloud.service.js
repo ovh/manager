@@ -331,6 +331,13 @@ class DedicatedCloudService {
     );
   }
 
+  getDatacenterInfoNsxt(serviceName, datacenterId, params = {}) {
+    return this.icebergQuery(
+      `/dedicatedCloud/${serviceName}/datacenter/${datacenterId}/nsxtEdge`,
+      params,
+    );
+  }
+
   getDatacenterInformations(serviceName, datacenterId, forceRefresh) {
     return this.OvhHttp.get(
       '/sws/dedicatedCloud/{serviceName}/datacenters/{datacenterId}',
