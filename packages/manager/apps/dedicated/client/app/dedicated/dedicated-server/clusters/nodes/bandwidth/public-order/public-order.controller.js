@@ -74,7 +74,7 @@ export default class {
 
   initSecondStep() {
     this.atInternet.trackClick({
-      name: `dedicated::server::${this.model.plan}::next`,
+      name: `dedicated::node::${this.model.plan}::next`,
       type: 'action',
     });
     this.steps[1].load();
@@ -82,7 +82,7 @@ export default class {
 
   order() {
     this.atInternet.trackClick({
-      name: `dedicated::server::${this.model.plan}::pay`,
+      name: `dedicated::node::${this.model.plan}::pay`,
       type: 'action',
     });
     if (this.model.plan) {

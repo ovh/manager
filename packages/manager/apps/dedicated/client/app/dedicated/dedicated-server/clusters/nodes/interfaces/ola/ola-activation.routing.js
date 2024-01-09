@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         goBack: /* @ngInject */ ($state) => (params) =>
           $state.go('app.dedicated-cluster.cluster.node.interfaces', params),
-        trackingPrefix: () => 'dedicated::server::interfaces::',
+        trackingPrefix: () => 'dedicated::node::interfaces::',
         breadcrumb: () => null,
       },
     },

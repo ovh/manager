@@ -26,7 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
             {},
             { reload },
           ),
-        trackingPrefix: () => 'dedicated::server::interfaces::ola-reset::',
+        trackingPrefix: () => 'dedicated::node::interfaces::ola-reset::',
       },
     },
   );
