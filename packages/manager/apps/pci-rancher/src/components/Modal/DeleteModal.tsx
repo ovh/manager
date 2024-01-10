@@ -54,12 +54,11 @@ const DeleteModal = ({
       </OsdsText>
       <OsdsInput
         type="text"
-        size="md"
+        className="p-3"
         value={terminateText}
         onOdsValueChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setTerminateText(e.target.value)
         }
-        className="p-3"
         aria-label="delete-input"
       />
       <OsdsButton

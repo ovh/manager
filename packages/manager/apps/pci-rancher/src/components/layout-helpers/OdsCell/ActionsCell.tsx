@@ -14,13 +14,11 @@ import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { DataGridCellProps } from './ProductStatusCell';
 import { RancherService, RessourceStatus } from '@/api/api.type';
 
-const ActionsCell: React.FC<
-  DataGridCellProps<undefined, RancherService> & {
-    isLoading?: boolean;
-    openModal: () => void;
-    setSelectedRancher: (rancher: RancherService) => void;
-  }
-> = ({ isLoading, rowData, openModal, setSelectedRancher }) => {
+const ActionsCell: React.FC<DataGridCellProps<undefined, RancherService> & {
+  isLoading?: boolean;
+  openModal: () => void;
+  setSelectedRancher: (rancher: RancherService) => void;
+}> = ({ isLoading, rowData, openModal, setSelectedRancher }) => {
   const editable = true;
   const { t } = useTranslation('pci-rancher/listing');
 
