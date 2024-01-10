@@ -1,0 +1,33 @@
+<div data-ui-view="dashboard">
+    <div class="row d-md-flex">
+        <!-- GENERAL INFORMATIONS -->
+        <div class="col-md-4 mb-3">
+            <cluster-general-information
+                data-cluster="$ctrl.cluster"
+                data-commercial-name="$ctrl.commercialName"
+                data-display-name="$ctrl.displayName"
+                data-state-prefix="$ctrl.statePrefix"
+            >
+            </cluster-general-information>
+        </div>
+        <!-- Subscription details -->
+        <div class="col-md-6 col-lg-4 mb-3">
+            <billing-subscription-tile
+                data-on-error="$ctrl.onBillingInformationError(error)"
+                data-service-infos="$ctrl.serviceInfos"
+                data-user="$ctrl.user"
+                data-tracking-prefix="$ctrl.trackingPrefix"
+            >
+            </billing-subscription-tile>
+        </div>
+
+        <!-- SUPPORT TICKET -->
+        <div class="col-md-6 col-lg-4 mb-3">
+            <server-support
+                data-service-name="{{$ctrl.displayName}}"
+                data-travaux-url="{{$ctrl.TRAVAUX_LINK}}"
+                data-tracking-prefix="$ctrl.trackingPrefix"
+            ></server-support>
+        </div>
+    </div>
+</div>
