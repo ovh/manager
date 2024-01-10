@@ -39,13 +39,13 @@ const FilterItem: React.FC<FilterItemProps> = ({
     >
       <OsdsCheckboxButton
         size={ODS_CHECKBOX_BUTTON_SIZE.sm}
-        color={ODS_THEME_COLOR_INTENT.primary}
+        color={ODS_THEME_COLOR_INTENT.text}
       >
         <span slot="end">
           <OsdsText
-            color={ODS_THEME_COLOR_INTENT.default}
-            level={ODS_TEXT_LEVEL.button}
-            size={ODS_TEXT_SIZE._600}
+            color={ODS_THEME_COLOR_INTENT.text}
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
           >
             {label} {resultsNumber}
           </OsdsText>
