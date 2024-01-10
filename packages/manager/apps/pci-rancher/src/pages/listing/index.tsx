@@ -1,5 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_THEME_COLOR_INTENT,
+  ODS_THEME_SIZE,
+  ODS_THEME_TYPOGRAPHY_LEVEL,
+} from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -7,6 +11,8 @@ import {
 import { OsdsButton } from '@ovhcloud/ods-components/button/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
+import { OsdsText } from '@ovhcloud/ods-components/text/react';
+
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import Datagrid from '@/components/layout-helpers/Listing/dataGrid';
@@ -20,13 +26,20 @@ const Listing: React.FC<{ data: RancherService[] }> = ({ data }) => {
 
   return (
     <>
-      <h2>{t('rancherTitle')}</h2>
-      <div className="grid gap-4">
+      <OsdsText
+        level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
+        size={ODS_THEME_SIZE._600}
+        color={ODS_THEME_COLOR_INTENT.text}
+      >
+        {t('rancherTitle')}
+      </OsdsText>
+
+      <div className="my-3 mt-5">
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
-          className="md:w-1/5 my-3"
+          inline
         >
           <span slot="start" className="flex justify-center items-center">
             <OsdsIcon
@@ -38,6 +51,7 @@ const Listing: React.FC<{ data: RancherService[] }> = ({ data }) => {
           </span>
         </OsdsButton>
       </div>
+
       <Datagrid data={data} />
     </>
   );
