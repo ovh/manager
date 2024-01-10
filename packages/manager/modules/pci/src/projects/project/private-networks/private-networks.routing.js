@@ -20,7 +20,9 @@ export default /* @ngInject */ ($stateProvider) => {
         .then((operation) => {
           if (isObject(operation)) {
             return VRACK_OPERATION_COMPLETED_STATUS.includes(operation.status)
-              ? false
+              ? {
+                  state: 'pci.projects.project.privateNetwork.globalRegions',
+                }
               : { state: 'pci.projects.project.privateNetwork.vrack' };
           }
           return transition

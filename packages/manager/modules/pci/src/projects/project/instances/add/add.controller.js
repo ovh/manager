@@ -418,6 +418,15 @@ export default class PciInstancesAddController {
   }
 
   onInstanceFocus() {
+    if (this.isLocalZone() && !this.selectedPrivateNetwork.id) {
+      // Display default selection for local private mode
+      this.selectedPrivateNetwork = {
+        id: '',
+        name: this.$translate.instant(
+          'pci_projects_project_instances_add_localPrivateNetwork_placeholder',
+        ),
+      };
+    }
     if (!isEmpty(this.model.datacenter)) {
       this.disableNetwork = this.isLocalZone();
       this.quota = new Quota(this.model.datacenter.quota.instance);
@@ -847,16 +856,35 @@ export default class PciInstancesAddController {
     if (!this.isLinuxImageType()) {
       this.instance.userData = null;
     }
-
-    if (this.isLocalPrivateMode() && this.isAttachPublicNetwork) {
-      this.instance.networks = [
-        ...this.instance.networks,
-        {
-          networkId: this.publicNetwork?.find(
-            (network) => network.name === PUBLIC_NETWORK,
-          )?.id,
+    if (this.isLocalPrivateMode()) {
+      const publicNetworkAlreadyExist = this.instance.networks.some(
+        (instanceNetwork) => {
+          return this.publicNetwork?.find(
+            (network) => network.id === instanceNetwork.networkId,
+          );
         },
-      ];
+      );
+      if (this.isAttachPublicNetwork && !publicNetworkAlreadyExist) {
+        // if attach check box is ticked, add public network if not added one
+        this.instance.networks = [
+          ...this.instance.networks,
+          {
+            networkId: this.publicNetwork?.find(
+              (network) => network.name === PUBLIC_NETWORK,
+            )?.id,
+          },
+        ];
+      }
+      if (!this.isAttachPublicNetwork && publicNetworkAlreadyExist) {
+        // if attach check box is not ticked, remove public network if already added one
+        this.instance.networks = this.instance.networks.filter(
+          (instanceNetwork) => {
+            return !this.publicNetwork?.find(
+              (network) => network.id === instanceNetwork.networkId,
+            );
+          },
+        );
+      }
     }
 
     if (

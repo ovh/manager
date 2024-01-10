@@ -2,8 +2,14 @@ import get from 'lodash/get';
 
 export default class PciInstanceStopController {
   /* @ngInject */
-  constructor($translate, PciProjectsProjectInstanceService, Poller) {
+  constructor(
+    $translate,
+    OvhApiCloudProjectInstance,
+    PciProjectsProjectInstanceService,
+    Poller,
+  ) {
     this.$translate = $translate;
+    this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
     this.Poller = Poller;
   }
@@ -31,6 +37,7 @@ export default class PciInstanceStopController {
       this.instance,
     )
       .then(() => this.waitInstanceStop())
+      .then(() => this.OvhApiCloudProjectInstance.v6().resetQueryCache())
       .then(() => {
         return this.goBack(
           this.$translate.instant(

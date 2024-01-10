@@ -97,11 +97,10 @@ export default class PciProjectInstanceService {
   }
 
   getInstanceFlavor(projectId, instance) {
-    return this.$http.get(
-      `${this.getBaseApiRoute(projectId, new Instance(instance))}/flavor/${
-        instance.flavorId
-      }`,
-    );
+    return this.OvhApiCloudProjectFlavor.v6().get({
+      serviceName: projectId,
+      flavorId: instance.flavorId,
+    }).$promise;
   }
 
   getInstanceDetails(projectId, instance) {
@@ -207,21 +206,23 @@ export default class PciProjectInstanceService {
     );
   }
 
-  delete(projectId, instance) {
-    return this.$http.delete(
-      `${this.getBaseApiRoute(projectId, instance)}/instance/${instance.id}`,
-    );
+  delete(projectId, { id: instanceId }) {
+    return this.OvhApiCloudProjectInstance.v6().delete({
+      serviceName: projectId,
+      instanceId,
+    }).$promise;
   }
 
-  reinstall(projectId, instance) {
-    return this.$http.post(
-      `${this.getBaseApiRoute(projectId, instance)}/instance/${
-        instance.id
-      }/reinstall`,
+  reinstall(projectId, { id: instanceId, image, imageId }) {
+    return this.OvhApiCloudProjectInstance.v6().reinstall(
       {
-        imageId: instance.imageId || instance.image.id,
+        serviceName: projectId,
+        instanceId,
       },
-    );
+      {
+        imageId: imageId || image.id,
+      },
+    ).$promise;
   }
 
   start(projectId, instance) {
@@ -256,13 +257,16 @@ export default class PciProjectInstanceService {
     );
   }
 
-  reboot(projectId, instance, type) {
-    return this.$http.post(
-      `${this.getBaseApiRoute(projectId, instance)}/instance/${
-        instance.id
-      }/reboot`,
-      { type },
-    );
+  reboot(projectId, { id: instanceId }, type) {
+    return this.OvhApiCloudProjectInstance.v6().reboot(
+      {
+        serviceName: projectId,
+        instanceId,
+      },
+      {
+        type,
+      },
+    ).$promise;
   }
 
   getCompatibleRescueImages(projectId, { flavor, image, region }) {
@@ -280,30 +284,28 @@ export default class PciProjectInstanceService {
       );
   }
 
-  rescue(projectId, instance, { id: imageId }) {
-    return this.$http.post(
-      `${this.getBaseApiRoute(projectId, instance)}/instance/${
-        instance.id
-      }/rescueMode`,
-      { imageId, rescue: true },
-    );
+  rescue(projectId, { id: instanceId }, { id: imageId }) {
+    return this.OvhApiCloudProjectInstance.v6().rescueMode({
+      serviceName: projectId,
+      instanceId,
+      imageId,
+      rescue: true,
+    }).$promise;
   }
 
-  unrescue(projectId, instance) {
-    return this.$http.post(
-      `${this.getBaseApiRoute(projectId, instance)}/instance/${
-        instance.id
-      }/rescueMode`,
-      { rescue: false },
-    );
+  unrescue(projectId, { id: instanceId }) {
+    return this.OvhApiCloudProjectInstance.v6().rescueMode({
+      serviceName: projectId,
+      instanceId,
+      rescue: false,
+    }).$promise;
   }
 
-  activeMonthlyBilling(projectId, instance) {
-    return this.$http.post(
-      `${this.getBaseApiRoute(projectId, instance)}/instance/${
-        instance.id
-      }/activeMonthlyBilling`,
-    );
+  activeMonthlyBilling(projectId, { id: instanceId }) {
+    return this.OvhApiCloudProjectInstance.v6().activeMonthlyBilling({
+      serviceName: projectId,
+      instanceId,
+    }).$promise;
   }
 
   getSnapshotMonthlyPrice(projectId, instance, catalogEndpoint) {
@@ -322,21 +324,23 @@ export default class PciProjectInstanceService {
     );
   }
 
-  createBackup(projectId, instance, { name: snapshotName }) {
-    return this.$http.post(
-      `${this.getBaseApiRoute(projectId, instance)}/instance/${
-        instance.id
-      }/snapshot`,
-      { snapshotName },
-    );
+  createBackup(projectId, { id: instanceId }, { name: snapshotName }) {
+    return this.OvhApiCloudProjectInstance.v6().backup(
+      {
+        serviceName: projectId,
+        instanceId,
+      },
+      {
+        snapshotName,
+      },
+    ).$promise;
   }
 
-  resume(projectId, instance) {
-    return this.$http.post(
-      `${this.getBaseApiRoute(projectId, instance)}/instance/${
-        instance.id
-      }/resume`,
-    );
+  resume(projectId, { id: instanceId }) {
+    return this.OvhApiCloudProjectInstance.v6().resume({
+      serviceName: projectId,
+      instanceId,
+    }).$promise;
   }
 
   getPrivateNetworks(projectId) {
@@ -346,7 +350,6 @@ export default class PciProjectInstanceService {
   }
 
   getLocalPrivateNetworks(projectId, regionName) {
-    // @TODO API is not clear
     return this.$http
       .get(`/cloud/project/${projectId}/region/${regionName}/network`)
       .then(({ data }) =>

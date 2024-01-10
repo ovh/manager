@@ -21,6 +21,7 @@ export default {
     quotaLink: '<',
     regionsLink: '<',
     addPrivateNetworksLink: '<',
+    addLocalPrivateNetworksLink: '<',
     selectedCategory: '@?',
     getProductCatalog: '<',
     trackAddInstance: '<',

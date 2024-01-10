@@ -41,6 +41,7 @@ export default {
     firewallLink: '<',
     ipMitigationLink: '<',
     gotToNetworks: '<',
+    gotToLocalPrivateNetworks: '<',
     attachPrivateNetwork: '<',
     scheduleAutoBackup: '<',
     guideUrl: '<',
