@@ -32,8 +32,8 @@ export default [
     children: [
       {
         path: '',
-        ...lazyRouteConfig(
-          () => import('@/pages/dashboard/[serviceName]/_layout'),
+        ...lazyRouteConfig(() =>
+          import('@/pages/dashboard/[serviceName]/_layout'),
         ),
       },
     ],
