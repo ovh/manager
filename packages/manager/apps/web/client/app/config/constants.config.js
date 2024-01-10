@@ -753,8 +753,8 @@ module.exports = {
     },
     COMODO: {
       knowledgebase:
-        'https://support.comodo.com/index.php?/Knowledgebase/Article/View/702/0/ev-certificate-validation-checklist',
-      contactEmail: 'validation@comodo.eu',
+        'https://sectigo.com/knowledge-base/detail/EV-Certificate-Validation-Checklist-1527076098137/kA01N000000zFOr',
+      contactEmail: 'https://sectigo.com/support-ticket',
       phoneNumber: '+31 88 775 7777',
     },
     website_url: {
@@ -1153,8 +1153,8 @@ module.exports = {
     },
     COMODO: {
       knowledgebase:
-        'https://support.comodo.com/index.php?/Knowledgebase/Article/View/702/0/ev-certificate-validation-checklist',
-      contactEmail: 'validation@comodo.eu',
+        'https://sectigo.com/knowledge-base/detail/EV-Certificate-Validation-Checklist-1527076098137/kA01N000000zFOr',
+      contactEmail: 'https://sectigo.com/support-ticket',
       phoneNumber: '+31 88 775 7777',
     },
     website_url: {
