@@ -4,9 +4,8 @@ import { Navigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import {
   OdsSelectValueChangeEvent,
-} from '@ovhcloud/ods-components/select';
-import { OsdsSelect, } from '@ovhcloud/ods-components/select/react';
-import { OsdsPagination } from '@ovhcloud/ods-components/pagination/react';
+} from '@ovhcloud/ods-components';
+import { OsdsPagination } from '@ovhcloud/ods-components/react';
 import { getListingIcebergV6 } from '@/api';
 
 import Loading from '@/components/Loading/Loading';
@@ -16,7 +15,6 @@ import Breadcrumb, {
 import DatagridWrapper from '@/components/layout-helpers/Listing/DatagridWrapper';
 
 
-const PAGE_SIZE_CHOICES = [10, 25, 50, 100, 300];
 const INITAL_PAGE = 1;
 
 export default function Listing() {
@@ -76,8 +74,8 @@ export default function Listing() {
               id="main-pagination"
               totalPages={totalPages}
               totalItems={totalCount}
-              itemPerPage={pageSize}
-              onOdsValueChange={onOdsPageSizeChange}
+              // itemPerPage={pageSize}
+              // onOdsValueChange={onOdsPageSizeChange}
               onClick={(event: any) => setPage(event.target.current)}
             />
           )}

@@ -36,9 +36,13 @@ export default function DashboardPage() {
   const { error, isLoading, } = results[0];
 
   if (error) {
-    return <Errors
-        error={error.response}
-      />;
+    return (
+      <div className="flex justify-center">
+        <div className="w-3/5">
+          <Errors error={error.response} />
+        </div>
+      </div>
+    );
   }
 
   if (isLoading) {
