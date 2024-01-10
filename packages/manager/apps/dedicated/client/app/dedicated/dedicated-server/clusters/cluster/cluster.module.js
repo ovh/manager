@@ -5,6 +5,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
+import { clusterMainPage } from '@ovh-ux/manager-bm-cluster-components';
 import nodes from '../nodes';
 import node from '../nodes/node';
 import routing from './cluster.routing';
