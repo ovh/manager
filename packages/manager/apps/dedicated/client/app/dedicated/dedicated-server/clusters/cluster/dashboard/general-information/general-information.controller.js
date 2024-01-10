@@ -1,4 +1,4 @@
-export default class BmClusterComponentsGeneralInformationController {
+export default class DedicatedClusterGeneralInformationController {
   /* @ngInject */
   constructor($state) {
     this.$state = $state;

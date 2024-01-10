@@ -5,10 +5,11 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
-import { clusterMainPage } from '@ovh-ux/manager-bm-cluster-components';
 import nodes from '../nodes';
 import node from '../nodes/node';
 import routing from './cluster.routing';
+import component from './cluster.component';
+import service from './cluster.service';
 import dashboard from './dashboard';
 import editDisplayName from './edit-display-name';
 
@@ -21,10 +22,11 @@ angular
     'ui.router',
     nodes,
     node,
-    clusterMainPage,
     dashboard,
     editDisplayName,
   ])
+  .component('clusterMainPage', component)
+  .service('Cluster', service)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 
