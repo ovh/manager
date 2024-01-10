@@ -33,11 +33,13 @@ export default function Home() {
   }
 
   return (
-    <>
-      <Breadcrumb />
+    <div className="m-10">
       <Suspense fallback={<Loading />}>
+        <div className="mb-3">
+          <Breadcrumb />
+        </div>
         {data?.data && <Listing data={data?.data} />}
       </Suspense>
-    </>
+    </div>
   );
 }
