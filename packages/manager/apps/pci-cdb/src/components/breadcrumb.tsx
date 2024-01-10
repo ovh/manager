@@ -43,14 +43,14 @@ const Breadcrumb = () => {
             <li key={index} className="flex space-x-1">
               {index > 0 && <span>/</span>}
               {currentUrl === breadcrumb.path ? (
-                <span className="flex items-center gap-2">
+                <span className="flex items-center gap-2 whitespace-nowrap">
                   {index === 0 && <Home className="w-4 h-4" />}{' '}
                   {t(breadcrumb.name)}
                 </span>
               ) : (
                 <Link
                   to={breadcrumb.path}
-                  className="text-blue-500 hover:underline flex items-center gap-2"
+                  className="text-blue-500 hover:underline flex items-center gap-2 whitespace-nowrap"
                 >
                   {index === 0 && <Home className="w-4 h-4" />}{' '}
                   {t(breadcrumb.name)}

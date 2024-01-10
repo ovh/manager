@@ -79,6 +79,10 @@ export const cdbApi = {
       })
       .then((res) => res.data as database.Availability[]);
   },
+  getCapabilities: async (projectId: string) =>
+    apiClient.v6
+      .get(`/cloud/project/${projectId}/database/capabilities`)
+      .then((res) => res.data as database.Capabilities),
   updateService: async ({
     projectId,
     serviceEngine,

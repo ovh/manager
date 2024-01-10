@@ -1,48 +1,38 @@
+import { Engine } from '@/models/dto/OrderFunnel';
+import EngineTile from './engine-tile';
+
 interface EngineSelectProps {
   selectedEngine: string;
-  listEngines: string[];
-  onChangeEngine: (newEngine: string) => void;
   selectedVersion: string;
-  listVersions: string[];
-  onChangeVersion: (newVersion: string) => void;
+  listEngines: Engine[];
+  onChange: ({ engine, version }: { engine: string; version: string }) => void;
 }
 
 const EngineSelect = ({
   selectedEngine,
-  listEngines,
-  onChangeEngine,
   selectedVersion,
-  listVersions,
-  onChangeVersion,
+  listEngines,
+  onChange,
 }: EngineSelectProps) => {
   return (
     <div>
-      <div className="flex items-center mb-2">
-        <label className="mr-2">Engine:</label>
-        <select
-          className="inline-flex items-center whitespace-nowrap rounded-l-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 justify-between border-r-0"
-          value={selectedEngine}
-          onChange={(e) => onChangeEngine(e.target.value)}
-        >
-          {/* Populate options based on available engines */}
-          {listEngines.map((engine, index) => (
-            <option key={index} value={engine}>
-              {engine}
-            </option>
-          ))}
-        </select>
-        <select
-          className="inline-flex items-center whitespace-nowrap rounded-r-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 justify-between"
-          value={selectedVersion}
-          onChange={(e) => onChangeVersion(e.target.value)}
-        >
-          {/* Populate options based on available engines */}
-          {listVersions.map((version, index) => (
-            <option key={index} value={version}>
-              {version}
-            </option>
-          ))}
-        </select>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
+        {listEngines.map((engine) => (
+          <EngineTile
+            key={engine.name}
+            engine={engine}
+            version={
+              engine.name === selectedEngine
+                ? engine.versions.find((v) => v.name === selectedVersion) ??
+                  engine.versions[0]
+                : engine.versions[0]
+            }
+            selected={engine.name === selectedEngine}
+            onChange={(e, v) => {
+              onChange({ engine: e.name, version: v.name });
+            }}
+          />
+        ))}
       </div>
     </div>
   );
