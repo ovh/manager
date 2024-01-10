@@ -10,7 +10,7 @@ export default {
     deleteDrp: '<',
     drpAvailability: '<',
     drpGlobalStatus: '<',
-
+    goToDatacenter: '<',
     goToDrp: '<',
     goToDrpDatacenterSelection: '<',
     goToVpnConfiguration: '<',
