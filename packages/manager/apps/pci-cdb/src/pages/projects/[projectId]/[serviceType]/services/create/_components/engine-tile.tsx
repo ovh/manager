@@ -49,7 +49,7 @@ const EngineTile = ({
         if (e.key === 'Enter') handleEngineClick();
       }}
     >
-      <h3 className="text-[#4d5592]">{engine.name}</h3>
+      <h3 className={`text-[#4d5592] capitalize ${selected ? 'font-bold' : 'font-normal'}`}>{engine.name}</h3>
       <p className="text-sm text-[#4d5592] ">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod libero sit
         possimus.

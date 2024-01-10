@@ -26,8 +26,8 @@ const OrderFunnel = ({
   };
 
   return (
-    <div className="grid grid-cols-1">
-      <form onSubmit={handleSubmit}>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+      <form onSubmit={handleSubmit} className="col-span-1 md:col-span-2">
         <EngineSelect
           selectedEngine={model.engine.engine}
           onChange={(value: { engine: string; version: string }) => {
@@ -147,11 +147,10 @@ const OrderFunnel = ({
         </div>
         <Button>Submit</Button>
       </form>
-      {model.availability && (
+     
         <pre className="rounded-md bg-primary-800 text-primary-100 text-xs max-h-96 overflow-y-auto">
-          {JSON.stringify(model.availability, null, 2)}
+          {model.availability ? JSON.stringify(model.availability, null, 2) : 'loading...'}
         </pre>
-      )}
     </div>
   );
 };
