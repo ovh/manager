@@ -20,5 +20,5 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Build BDD covered packages and dependencies
         run: yarn workspace @ovh-ux/manager-container-app start
-      - name: Run tests
-        run: yarn test:jest
+      - name: Run tests jest and coverage
+        run: yarn test:jest && yarn test:coverage
