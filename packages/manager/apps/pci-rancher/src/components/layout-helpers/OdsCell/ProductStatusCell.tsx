@@ -11,9 +11,10 @@ export type DataGridCellProps<Cell = string, Row = any> = {
   rowData?: Row;
 };
 
-export const ProductStatusCell: React.FC<
-  DataGridCellProps<RessourceStatus, RancherService> & { t: TFunction }
-> = ({ cellData, t }) => {
+export const ProductStatusCell: React.FC<DataGridCellProps<
+  RessourceStatus,
+  RancherService
+> & { t: TFunction }> = ({ cellData, t }) => {
   const colorByProductStatus = {
     [RessourceStatus.READY]: ODS_THEME_COLOR_INTENT.success,
     [RessourceStatus.DISABLED]: ODS_THEME_COLOR_INTENT.error,
