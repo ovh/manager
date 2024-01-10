@@ -1,0 +1,14 @@
+<header class="oui-header" role="banner">
+    <div class="d-flex">
+        <h1 class="oui-header__title" data-ng-bind="$ctrl.displayName"></h1>
+    </div>
+    <oui-header-tabs>
+        <oui-header-tabs-item data-href="{{'link'}}" active="true"
+            ><span data-translate="cluster_general_information"></span
+        ></oui-header-tabs-item>
+    </oui-header-tabs>
+</header>
+<div>
+    <div class="alert-server" data-ovh-alert="cluster_dashboard_alert"></div>
+    <div data-ui-view="tabView"></div>
+</div>
