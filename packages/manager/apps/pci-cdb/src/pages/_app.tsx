@@ -4,7 +4,7 @@ import BreadCrumbs from '@/components/breadcrumb';
 
 const MainLayout = () => {
   return (
-    <main className="container mx-auto py-10 px-0">
+    <main className="container mx-auto pt-14 px-4 md:px-12">
       <BreadCrumbs />
       <ShellRoutingSync />
       <Outlet />

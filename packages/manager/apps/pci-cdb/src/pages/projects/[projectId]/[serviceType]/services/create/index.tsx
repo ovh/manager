@@ -10,6 +10,7 @@ import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { useGetAvailabilities } from '@/hooks/api/useGetAvailabilities';
+import { useGetCapabilities } from '@/hooks/api/useGetCapabilities';
 
 export const Handle = {
   breadcrumb: () => 'pci_cdb_breadcrumb_create',
@@ -28,6 +29,7 @@ const CreateServicePage = () => {
   }>();
 
   const availabilitiesQuery = useGetAvailabilities(projectId);
+  const capabilitiesQuery = useGetCapabilities(projectId);
 
   const availabilities: AvailabilityWithType[] | undefined = useMemo(() => {
     if (!availabilitiesQuery.data) return undefined;
@@ -50,8 +52,10 @@ const CreateServicePage = () => {
     <>
       <H2>{t('pci_cdb_order_funnel_title')}</H2>
 
-      {availabilitiesQuery.isLoading && <DataTable.Skeleton />}
-      {availabilities && (
+      {(availabilitiesQuery.isLoading || capabilitiesQuery.isLoading) && (
+        <DataTable.Skeleton />
+      )}
+      {availabilities && capabilitiesQuery.data && (
         <>
           <div className="flex items-center space-x-2 mb-2">
             <Switch
@@ -65,7 +69,10 @@ const CreateServicePage = () => {
           {showTable ? (
             <AvailabilityTable availabilities={availabilities} />
           ) : (
-            <OrderFunnel availabilities={availabilities} />
+            <OrderFunnel
+              availabilities={availabilities}
+              capabilities={capabilitiesQuery.data}
+            />
           )}
         </>
       )}

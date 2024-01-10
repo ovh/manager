@@ -16,8 +16,13 @@ import { SortableHeader } from '@/components/ui/data-table';
 
 interface ServiceListColumnsProps {
   onRenameClicked: (service: database.Service) => void;
+  lang: string;
 }
-export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
+export const getColumns = ({
+  onRenameClicked,
+  lang,
+}: ServiceListColumnsProps) => {
+  const locale = lang.replace('_', '-');
   const columns: ColumnDef<database.Service>[] = [
     {
       id: 'description/id',
@@ -136,7 +141,9 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
       ),
       cell: ({ row }) => {
         const service = row.original;
-        return Intl.DateTimeFormat().format(new Date(service.createdAt));
+        return new Intl.DateTimeFormat(locale).format(
+          new Date(service.createdAt),
+        );
       },
     },
     {

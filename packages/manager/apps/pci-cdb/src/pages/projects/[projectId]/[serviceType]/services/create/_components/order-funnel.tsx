@@ -7,14 +7,18 @@ import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { useVrack } from '@/hooks/useVrack';
 import { Network } from '@/models/vrack';
 import { Skeleton } from '@/components/ui/skeleton';
+import { database } from '@/models/database';
+import { Flavor, Plan, Region } from '@/models/dto/OrderFunnel';
 
 const OrderFunnel = ({
   availabilities,
+  capabilities,
 }: {
   availabilities: AvailabilityWithType[];
+  capabilities: database.Capabilities;
 }) => {
   const { projectId } = useRequiredParams<{ projectId: string }>();
-  const model = useAvailabilities(availabilities);
+  const model = useAvailabilities(availabilities, capabilities);
   const vrack = useVrack(projectId, model.region);
 
   const handleSubmit = (e: FormEvent) => {
@@ -22,15 +26,18 @@ const OrderFunnel = ({
   };
 
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-1">
       <form onSubmit={handleSubmit}>
         <EngineSelect
-          selectedEngine={model.engine}
-          onChangeEngine={(newEngine) => model.setEngine(newEngine)}
+          selectedEngine={model.engine.engine}
+          onChange={(value: { engine: string; version: string }) => {
+            model.setEngine(() => ({
+              engine: value.engine,
+              version: value.version,
+            }));
+          }}
           listEngines={model.listEngines}
-          selectedVersion={model.version}
-          listVersions={model.listVersions}
-          onChangeVersion={(newVersion) => model.setVersion(newVersion)}
+          selectedVersion={model.engine.version}
         />
 
         <div className="flex items-center mb-2">
@@ -40,11 +47,12 @@ const OrderFunnel = ({
             value={model.plan}
             onChange={(event) => model.setPlan(event.target.value)}
           >
-            {model.listPlans.map((plan: string, index: number) => (
-              <option key={index} value={plan}>
-                {plan}
-              </option>
-            ))}
+            {model.listPlans &&
+              model.listPlans.map((plan: Plan, index: number) => (
+                <option key={index} value={plan.name}>
+                  {plan.name}
+                </option>
+              ))}
           </select>
         </div>
 
@@ -55,11 +63,12 @@ const OrderFunnel = ({
             value={model.region}
             onChange={(event) => model.setRegion(event.target.value)}
           >
-            {model.listRegions.map((region: string, index: number) => (
-              <option key={index} value={region}>
-                {region}
-              </option>
-            ))}
+            {model.listRegions &&
+              model.listRegions.map((region: Region, index: number) => (
+                <option key={index} value={region.name}>
+                  {region.name}
+                </option>
+              ))}
           </select>
         </div>
 
@@ -70,11 +79,12 @@ const OrderFunnel = ({
             value={model.flavor}
             onChange={(event) => model.setFlavor(event.target.value)}
           >
-            {model.listFlavors.map((flavor: string, index: number) => (
-              <option key={index} value={flavor}>
-                {flavor}
-              </option>
-            ))}
+            {model.listFlavors &&
+              model.listFlavors.map((flavor: Flavor, index: number) => (
+                <option key={index} value={flavor.name}>
+                  {flavor.name}
+                </option>
+              ))}
           </select>
         </div>
         <div>
