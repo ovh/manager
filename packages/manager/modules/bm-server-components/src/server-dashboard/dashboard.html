@@ -202,7 +202,7 @@
 
         <!-- Retention Advices -->
         <ovh-advices
-            data-ng-if="!$ctrl.server.isExpired"
+            data-ng-if="!$ctrl.server.isExpired && !$ctrl.serverIsNode"
             class="col-md-4 mb-3"
             url="/retention/dedicated-server/:serviceName"
             url-params="{ serviceName: $ctrl.server.name }"
@@ -211,7 +211,10 @@
         </ovh-advices>
 
         <!-- Advices -->
-        <div class="col-md-4 mb-3" data-ng-if="!$ctrl.server.isExpired">
+        <div
+            class="col-md-4 mb-3"
+            data-ng-if="!$ctrl.server.isExpired && !$ctrl.serverIsNode"
+        >
             <ovh-advices
                 service-type="dedicated-server"
                 recommander-range="baremetal"
