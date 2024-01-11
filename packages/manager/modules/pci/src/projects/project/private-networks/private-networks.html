@@ -18,8 +18,11 @@
             </oui-guide-menu-item>
         </oui-guide-menu>
 
-        <oui-header-tabs data-ng-if="$ctrl.privateNetworks.length !== 0">
+        <oui-header-tabs
+            data-ng-if="$ctrl.privateNetworks.length !== 0 || $ctrl.localPrivateNetworks.length !== 0"
+        >
             <oui-header-tabs-item
+                data-ng-if="$ctrl.privateNetworks.length !== 0"
                 data-href="{{:: $ctrl.globalRegionsLink }}"
                 data-active="$ctrl.currentActiveLink() === $ctrl.globalRegionsLink"
                 ><span
@@ -27,7 +30,7 @@
                 ></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
-                data-ng-if=":: $ctrl.hasGridscaleLocalzoneRegion"
+                data-ng-if="$ctrl.hasGridscaleLocalzoneRegion && $ctrl.localPrivateNetworks.length !== 0"
                 data-href="{{:: $ctrl.localZoneLink }}"
                 data-active="$ctrl.currentActiveLink() === $ctrl.localZoneLink"
                 ><span
@@ -52,8 +55,14 @@
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
+
+    <div
+        class="container-fluid w-100 h-100 pt-4 px-3 px-md-5"
+        data-ui-view="containersView"
+    ></div>
+
     <pci-project-private-networks-empty
-        data-ng-if="$ctrl.privateNetworks.length === 0"
+        data-ng-if="$ctrl.privateNetworks.length === 0 && $ctrl.localPrivateNetworks.length === 0"
     >
         <oui-button
             data-variant="primary"
@@ -64,9 +73,4 @@
             ></span>
         </oui-button>
     </pci-project-private-networks-empty>
-
-    <div
-        class="container-fluid w-100 h-100 pt-4 px-3 px-md-5"
-        data-ui-view="containersView"
-    ></div>
 </div>
