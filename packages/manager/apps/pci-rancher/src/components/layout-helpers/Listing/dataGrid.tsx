@@ -1,13 +1,15 @@
+import { OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OdsDatagridColumn } from '@ovhcloud/ods-components/datagrid/dist/types/components';
-import { OsdsDatagrid } from '@ovhcloud/ods-components/datagrid/react';
-import { OsdsLink } from '@ovhcloud/ods-components/link/react';
+import {
+  OsdsLink,
+  OsdsDatagrid,
+  OsdsMessage,
+} from '@ovhcloud/ods-components/react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
 import { RancherService } from '@/api/api.type';
 import DeleteModal from '@/components/Modal/DeleteModal';
 import ActionsCell from '../OdsCell/ActionsCell';

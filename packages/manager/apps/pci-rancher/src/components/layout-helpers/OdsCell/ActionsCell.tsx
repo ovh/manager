@@ -1,16 +1,19 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsMenu,
+  OsdsMenuItem,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
-import { OsdsMenu, OsdsMenuItem } from '@ovhcloud/ods-components/menu/react';
-
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { DataGridCellProps } from './ProductStatusCell';
 import { RancherService, RessourceStatus } from '@/api/api.type';
 
@@ -28,7 +31,9 @@ const ActionsCell: React.FC<DataGridCellProps<undefined, RancherService> & {
   };
   return (
     <div>
-      <OsdsMenu>
+      <OsdsMenu
+        style={{ position: 'absolute', marginLeft: -10, marginTop: -15 }}
+      >
         <OsdsButton
           slot="menu-title"
           inline
@@ -49,9 +54,9 @@ const ActionsCell: React.FC<DataGridCellProps<undefined, RancherService> & {
         {rowData.resourceStatus !== RessourceStatus.ERROR && (
           <OsdsMenuItem>
             <OsdsButton
-              color="primary"
-              size="sm"
-              variant="ghost"
+              color={ODS_THEME_COLOR_INTENT.primary}
+              size={ODS_BUTTON_SIZE.sm}
+              variant={ODS_BUTTON_VARIANT.ghost}
               text-align="start"
             >
               <span slot="start">
@@ -65,9 +70,8 @@ const ActionsCell: React.FC<DataGridCellProps<undefined, RancherService> & {
             type={ODS_BUTTON_TYPE.button}
             size={ODS_BUTTON_SIZE.sm}
             color={ODS_THEME_COLOR_INTENT.error}
-            variant="ghost"
+            variant={ODS_BUTTON_VARIANT.ghost}
             text-align="start"
-            flex=""
             class="hydrated"
             onClick={onDelete}
           >

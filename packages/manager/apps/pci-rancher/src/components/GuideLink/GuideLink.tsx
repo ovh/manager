@@ -1,8 +1,13 @@
 import React from 'react';
-import { OsdsLink } from '@ovhcloud/ods-components/link/react';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
+import { OsdsLink, OsdsIcon } from '@ovhcloud/ods-components/react';
+import {
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  OdsHTMLAnchorElementTarget,
+} from '@ovhcloud/ods-components';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
+
 import useGuideUtils from './guide-utils';
 
 interface Props {
@@ -19,7 +24,7 @@ const GuideLink: React.FC<React.PropsWithChildren<Props>> = ({
     <OsdsLink
       href={link?.[name]}
       color={ODS_THEME_COLOR_INTENT.primary}
-      target="_blank"
+      target={OdsHTMLAnchorElementTarget._blank}
     >
       {children}
       <span slot="end">
