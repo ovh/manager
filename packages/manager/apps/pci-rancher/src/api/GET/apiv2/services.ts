@@ -2,7 +2,6 @@ import {
   apiClient,
   fetchIceberg,
   IcebergFetchResult,
-  v6,
 } from '@ovh-ux/manager-core-api';
 import { PciProject, RancherService } from '@/api/api.type';
 
@@ -15,7 +14,7 @@ export const getRancherProjectById = async (
   });
 
 export const getProject = async (projectId: string): Promise<PciProject> => {
-  const response = await v6.get(`/cloud/project/${projectId}`);
+  const response = await apiClient.v6.get(`/cloud/project/${projectId}`);
   return response.data as PciProject;
 };
 
