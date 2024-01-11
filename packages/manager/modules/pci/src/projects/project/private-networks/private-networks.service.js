@@ -50,32 +50,28 @@ export default class {
     return this.$http
       .get(`/cloud/project/${serviceName}/aggregated/network`)
       .then(({ data }) => {
-        const privateNetworks = [];
         const localZones = customerRegions.filter(({ type }) =>
           type.includes('localzone'),
         );
-        data.resources.forEach((network) => {
-          const isLocalZone = localZones.some(
-            (region) => region.name === network.region,
+        const localZoneNetworks = data.resources.filter((network) => {
+          return (
+            network.visibility === 'private' &&
+            localZones.some((region) => region.name === network.region)
           );
-          if (network.visibility === 'private' && isLocalZone) {
+        });
+
+        return this.$q.all(
+          localZoneNetworks.map((network) =>
             this.getSubnets(serviceName, network.region, network.id).then(
-              ({ cidr, dhcpEnabled, id, allocationPools }) => {
-                const allocatedIp = allocationPools
+              (subnet) => {
+                const allocatedIp = subnet.allocationPools
                   .map((ipPool) => `${ipPool.start} - ${ipPool.end}`)
                   .join(' ,');
-                privateNetworks.push({
-                  cidr,
-                  dhcpEnabled,
-                  id,
-                  allocatedIp,
-                  ...network,
-                });
+                return { allocatedIp, ...subnet, ...network };
               },
-            );
-          }
-        });
-        return privateNetworks;
+            ),
+          ),
+        );
       });
   }
 
