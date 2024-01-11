@@ -3,8 +3,15 @@
         <h1 class="oui-header__title" data-ng-bind="$ctrl.displayName"></h1>
     </div>
     <oui-header-tabs>
-        <oui-header-tabs-item data-href="{{'link'}}" active="true"
+        <oui-header-tabs-item
+            data-href="{{$ctrl.dashboardLink}}"
+            data-active="$ctrl.dashboardLink === $ctrl.currentActiveLink()"
             ><span data-translate="cluster_general_information"></span
+        ></oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-href="{{$ctrl.nodesLink}}"
+            data-active="$ctrl.nodesLink === $ctrl.currentActiveLink()"
+            ><span data-translate="cluster_nodes"></span
         ></oui-header-tabs-item>
     </oui-header-tabs>
 </header>
