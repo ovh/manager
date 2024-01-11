@@ -11,7 +11,6 @@ export default /* @ngInject */ ($stateProvider) => {
     reloadOnSearch: false,
     redirectTo: 'app.dedicated-cluster.cluster.dashboard',
     resolve: {
-      statePrefix: /* @ngInject */ () => 'app.dedicated-cluster.cluster',
       clusterName: /* @ngInject */ ($transition$) =>
         $transition$.params().clusterId,
       cluster: /* @ngInject */ (Cluster, clusterName) =>
@@ -24,6 +23,18 @@ export default /* @ngInject */ ($stateProvider) => {
       user: /* @ngInject */ (currentUser) => currentUser,
       breadcrumb: /* @ngInject */ (cluster) => cluster.iam.displayName,
       trackingPrefix: () => 'dedicated::dedicated::cluster',
+      currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
+        $state.href($state.current.name, $transition$.params()),
+      dashboardLink: /* @ngInject */ ($transition$, $state) =>
+        $state.href(
+          'app.dedicated-cluster.cluster.dashboard',
+          $transition$.params(),
+        ),
+      nodesLink: /* @ngInject */ ($transition$, $state) =>
+        $state.href(
+          'app.dedicated-cluster.cluster.allnode',
+          $transition$.params(),
+        ),
       goToClusterGeneralInfo: /* @ngInject */ (
         $state,
         Alerter,
