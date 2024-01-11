@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
     })
     .state('app.dedicated-cluster', {
       url: '',
-      template: '<div ui-view></div>',
+      template: '<div ui-view="rootView"></div>',
       redirectTo: 'app.dedicated-cluster.index',
       resolve: {
         breadcrumb: /* @ngInject */ ($translate) =>
