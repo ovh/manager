@@ -1,12 +1,22 @@
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { OsdsInput } from '@ovhcloud/ods-components/input/react';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { OsdsModal } from '@ovhcloud/ods-components/modal/react';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import React, { useState } from 'react';
+import {
+  OsdsButton,
+  OsdsInput,
+  OsdsMessage,
+  OsdsModal,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_INPUT_TYPE,
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+  OsdsInputCustomEvent,
+  OdsInputValueChangeEventDetail,
+} from '@ovhcloud/ods-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+import React, { useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
 import { RancherService } from '@/api/api.type';
 
@@ -32,7 +42,7 @@ const DeleteModal = ({
     toggleModal(false);
   };
   return (
-    <OsdsModal size="sm" color={ODS_THEME_COLOR_INTENT.warning} dismissible>
+    <OsdsModal color={ODS_THEME_COLOR_INTENT.warning} dismissible>
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.primary}
         level={ODS_TEXT_LEVEL.heading}
@@ -41,30 +51,29 @@ const DeleteModal = ({
       >
         {t('deleteModalTitle')}
       </OsdsText>
-      <OsdsText color="text">
+      <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
         {t('deleteModalDescription', {
           rancherName: selectedRancher.currentState?.name,
         })}
       </OsdsText>
-      <OsdsMessage type="warning" className="my-4 p-3">
+      <OsdsMessage type={ODS_MESSAGE_TYPE.warning} className="my-4 p-3">
         {t('deleteModalWarning')}
       </OsdsMessage>
       <OsdsText color={ODS_THEME_COLOR_INTENT.info} className="my-3">
         {t('deleteModalTerminateMessage')}
       </OsdsText>
       <OsdsInput
-        type="text"
+        type={ODS_INPUT_TYPE.text}
         className="p-3"
         value={terminateText}
-        onOdsValueChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setTerminateText(e.target.value)
-        }
+        onOdsValueChange={(
+          e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,
+        ) => setTerminateText(e.target.value as string)}
         aria-label="delete-input"
       />
       <OsdsButton
         slot="actions"
-        color="default"
-        target="_blank"
+        color={ODS_THEME_COLOR_INTENT.default}
         onClick={() => toggleModal(false)}
       >
         {t('cancel')}
@@ -72,8 +81,7 @@ const DeleteModal = ({
       <OsdsButton
         disabled={isButtonDisabled || null}
         slot="actions"
-        color="primary"
-        target="_blank"
+        color={ODS_THEME_COLOR_INTENT.primary}
         onClick={onDelete}
       >
         {t('deleteRancher')}
