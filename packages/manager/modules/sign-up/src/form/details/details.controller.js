@@ -110,8 +110,7 @@ export default class SignUpDetailsCtrl {
   =            Callbacks            =
   ================================= */
 
-  onCountryChange(newCountry) {
-    this.signUpFormCtrl.model.country = newCountry.value;
+  onCountryChange() {
     return this.callFormCtrlGetRules().then(() => {
       if (this.canChangePhoneCountry()) {
         this.signUpFormCtrl.model.phoneCountry = this.signUpFormCtrl.model.country;
@@ -252,10 +251,6 @@ export default class SignUpDetailsCtrl {
     }
 
     this.preselectLanguage();
-    this.selectedCountry =
-      this.signUpFormCtrl.rules.country.in.find(
-        (country) => country.value === this.signUpFormCtrl.model.country,
-      ) || this.signUpFormCtrl.rules.country.in[0];
   }
 
   static setElementFocus(elementName) {
