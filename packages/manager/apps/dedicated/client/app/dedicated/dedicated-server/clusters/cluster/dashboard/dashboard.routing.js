@@ -7,7 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      breadcrumb: () => null,
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('cluster_general_information'),
       isCommitmentAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
           .checkFeatureAvailability(['billing:commitment'])

@@ -5,6 +5,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
 
+import { serverMainPage } from '@ovh-ux/manager-bm-server-components';
 import nodes from '../nodes';
 import node from '../nodes/node';
 import routing from './cluster.routing';
@@ -24,6 +25,7 @@ angular
     node,
     dashboard,
     editDisplayName,
+    serverMainPage,
   ])
   .component('clusterMainPage', component)
   .service('Cluster', service)
