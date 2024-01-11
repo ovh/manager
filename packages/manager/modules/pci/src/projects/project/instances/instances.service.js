@@ -157,6 +157,10 @@ export default class PciProjectInstanceService {
         );
         return this.$q.all({
           instance,
+          catalog: this.getCatalog(
+            '/order/catalog/public/cloud',
+            this.coreConfig.getUser(),
+          ),
           volumes: this.OvhApiCloudProjectVolume.v6()
             .query({
               serviceName: projectId,
@@ -168,13 +172,19 @@ export default class PciProjectInstanceService {
           ipReverse: this.getReverseIp(instance),
         });
       })
-      .then(({ instance, ipReverse, volumes, privateNetworks }) => {
+      .then(({ instance, catalog, ipReverse, volumes, privateNetworks }) => {
         return new Instance({
           ...instance,
           flavor: {
             ...instance.flavor,
             capabilities: this.constructor.transformCapabilities(
               get(instance.flavor, 'capabilities', []),
+            ),
+            technicalBlob: get(
+              catalog.addons.find(
+                ({ planCode }) => planCode === instance.flavor.planCodes.hourly,
+              ),
+              'blobs.technical',
             ),
           },
           volumes: volumes.filter((volume) =>

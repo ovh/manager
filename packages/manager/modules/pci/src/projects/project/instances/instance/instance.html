@@ -300,7 +300,7 @@
                         ></dt>
                         <dd class="oui-tile__description">
                             <span
-                                data-ng-bind="$ctrl.instance.flavor.ram * 1000 * 1000 | bytes"
+                                data-ng-bind="$ctrl.instance.flavor.technicalBlob.memory.size * 1000 * 1000 * 1000 | bytes"
                             ></span>
                         </dd>
                         <dt class="oui-tile__term">
@@ -311,7 +311,7 @@
                         <dd class="oui-tile__description">
                             <span
                                 data-translate="pci_projects_project_instances_instance_cpu_value"
-                                data-translate-values="{ num : $ctrl.instance.flavor.vcpus }"
+                                data-translate-values="{ num : $ctrl.instance.flavor.technicalBlob.cpu.cores }"
                             ></span>
                         </dd>
                         <dt
@@ -320,7 +320,7 @@
                         ></dt>
                         <dd class="oui-tile__description">
                             <span
-                                data-ng-bind="$ctrl.instance.flavor.disk * 1024 * 1024 * 1024 | bytes:2:'true'"
+                                data-ng-bind="$ctrl.instance.flavor.technicalBlob.storage.disks[0].capacity * 1024 * 1024 * 1024 | bytes:2:'true'"
                             ></span>
                         </dd>
                         <dt
@@ -330,7 +330,7 @@
                         <dd class="oui-tile__description">
                             <span
                                 data-translate="pci_projects_project_instances_instance_bandwidth_value"
-                                data-translate-values="{ bandwidth : $ctrl.instance.flavor.outboundBandwidth }"
+                                data-translate-values="{ bandwidth : $ctrl.instance.flavor.technicalBlob.bandwidth.level }"
                             ></span>
                         </dd>
                     </dl>
