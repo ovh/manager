@@ -26,6 +26,7 @@ interface GuideLinks {
 interface Guide {
   key: string;
   url: GuideLinks;
+  tracking?: string;
 }
 
 interface GuideList {
@@ -595,10 +596,12 @@ export const DEFAULT_GUIDES = {
   public_cloud_guides: {
     url: PUBLIC_CLOUD_GUIDES,
     key: 'all_guides',
+    tracking: '::guides::go_to_all_guides',
   },
   first_steps_with_instances: {
     url: FIRST_STEPS_WITH_INSTANCES,
     key: 'first_steps_with_instances',
+    tracking: '::guides::go_to_instances_guide',
   },
 };
 
@@ -607,32 +610,39 @@ export const GUIDES_LIST: GuideList = {
     public_cloud_storage_guides: {
       url: PUBLIC_CLOUD_STORAGE_GUIDES,
       key: 'all_storage_guides',
+      tracking: '::guides::go_to_storage',
     },
     first_steps_with_instances: {
       url: FIRST_STEPS_WITH_INSTANCES,
       key: 'first_steps_with_instances',
+      tracking: '::guides::go_to_instances_guide',
     },
     ip_fail_over: {
       url: IP_FAIL_OVER,
       key: 'ip_fail_over',
+      tracking: '::guides::go_to_configure_a_failover_ip',
     },
     user_root_and_password: {
       url: USER_ROOT_AND_PASSWORD,
       key: 'user_root_and_password',
+      tracking: '::guides::go_to_become_the_root_user_and_select_a_password',
     },
     reverse_dns: {
       url: REVERSE_DNS,
       key: 'reverse_dns',
+      tracking: '::guides::go_to_configure_reverse_dns_instance',
     },
   },
   objectStorage: {
     public_cloud_storage_guides: {
       url: PUBLIC_CLOUD_STORAGE_GUIDES,
       key: 'all_storage_guides',
+      tracking: '::guides::go_to_storage',
     },
     public_cloud_guides: {
       url: PUBLIC_CLOUD_GUIDES,
       key: 'public_cloud_guides',
+      tracking: '::guides::go_to_public_cloud_storage',
     },
   },
   instances: {
@@ -640,14 +650,17 @@ export const GUIDES_LIST: GuideList = {
     ip_fail_over: {
       url: IP_FAIL_OVER,
       key: 'ip_fail_over',
+      tracking: '::guides::go_to_configure_a_failover_ip',
     },
     user_root_and_password: {
       url: USER_ROOT_AND_PASSWORD,
       key: 'user_root_and_password',
+      tracking: '::guides::go_to_become_the_root_user_and_select_a_password',
     },
     reverse_dns: {
       url: REVERSE_DNS,
       key: 'reverse_dns',
+      tracking: '::guides::go_to_configure_reverse_dns_instance',
     },
   },
   databases: {
@@ -655,14 +668,17 @@ export const GUIDES_LIST: GuideList = {
     first_steps_with_databases: {
       url: FIRST_STEPS_WITH_DATABASES,
       key: 'first_steps_with_databases',
+      tracking: '::guides::go_to_getting_started',
     },
     mongo_db_capabilities_and_limitations: {
       url: MONGO_DB_CAPABILITIES_AND_LIMITATIONS,
       key: 'mongo_db_capabilities_and_limitations',
+      tracking: '::guides::go_to_mongodb_capabilities',
     },
     mysql_capabilities_and_limitations: {
       url: MYSQL_CAPABILITIES_AND_LIMITATIONS,
       key: 'mysql_capabilities_and_limitations',
+      tracking: '::guides::go_to_mysql_capabilities',
     },
   },
   kubernetes: {
@@ -670,14 +686,17 @@ export const GUIDES_LIST: GuideList = {
     create_a_cluster: {
       url: CREATE_A_CLUSTER,
       key: 'create_a_cluster',
+      tracking: '::guides::go_to_creating_a_cluster',
     },
     deploy_an_application: {
       url: DEPLOY_AN_APPLICATION,
       key: 'deploy_an_application',
+      tracking: '::guides::go_to_deploying_an_application',
     },
     loadbalancer_kube: {
       url: LOADBALANCER_KUBE,
       key: 'loadbalancer_kube',
+      tracking: '::guides::go_to_using_lb',
     },
   },
   private_registry: {
@@ -685,14 +704,17 @@ export const GUIDES_LIST: GuideList = {
     faq_managed_private_registry: {
       url: FAQ_MANAGED_PRIVATE_REGISTRY,
       key: 'faq_managed_private_registry',
+      tracking: '::guides::go_to_managed_private_registry_faq',
     },
     create_a_managed_private_register: {
       url: CREATE_A_MANAGED_PRIVATE_REGISTER,
       key: 'create_a_managed_private_register',
+      tracking: '::guides::go_to_creating_a_private_registry',
     },
     create_and_use_a_private_image: {
       url: CREATE_AND_USE_A_PRIVATE_IMAGE,
       key: 'create_and_use_a_private_image',
+      tracking: '::guides::go_to_creating_and_using_a_private_image',
     },
   },
   ai_machine_learning: {
@@ -700,14 +722,17 @@ export const GUIDES_LIST: GuideList = {
     differences_between_ai_notebooks_ai_training_ai_apps: {
       url: DIFFERENCES_BETWEEN_AI_NOTEBOOKS_AI_TRAINING_AI_APPS,
       key: 'differences_between_ai_notebooks_ai_training_ai_apps',
+      tracking: '::guides::go_to_ai_comparative_tables',
     },
     ai_apps_capabilities_and_limitations: {
       url: AI_APPS_CAPABILITIES_AND_LIMITATIONS,
       key: 'ai_apps_capabilities_and_limitations',
+      tracking: '::guides::go_to_capabilities',
     },
     accessing_your_ai_apps_with_tokens: {
       url: ACCESSING_YOUR_AI_APPS_WITH_TOKENS,
       key: 'accessing_your_ai_apps_with_tokens',
+      tracking: '::guides::go_to_ai_apps_tokens',
     },
   },
   data_processing: {
@@ -715,14 +740,17 @@ export const GUIDES_LIST: GuideList = {
     presentation_of_data_processing: {
       url: PRESENTATION_OF_DATA_PROCESSING,
       key: 'presentation_of_data_processing',
+      tracking: '::guides::go_to_overview',
     },
     data_processing_capabilities_and_limitations: {
       url: DATA_PROCESSING_CAPABILITIES_AND_LIMITATIONS,
       key: 'data_processing_capabilities_and_limitations',
+      tracking: '::guides::go_to_capabilities',
     },
     submit_a_java_scala_job: {
       url: SUBMIT_A_JAVA_SCALA_JOB,
       key: 'submit_a_java_scala_job',
+      tracking: '::guides::go_to_submit_javascala',
     },
   },
   ai_notenooks: {
@@ -730,14 +758,17 @@ export const GUIDES_LIST: GuideList = {
     ai_notebooks_startup: {
       url: AI_NOTEBOOKS_STARTUP,
       key: 'ai_notebooks_startup',
+      tracking: '::guides::go_to_getting_started_cli',
     },
     ai_notebooks_definition: {
       url: AI_NOTEBOOKS_DEFINITION,
       key: 'ai_notebooks_definition',
+      tracking: '::guides::go_to_definition',
     },
     using_data_form_object_storage: {
       url: USING_DATA_FORM_OBJECT_STORAGE,
       key: 'using_data_form_object_storage',
+      tracking: '::guides::go_to_access_object_storage_data',
     },
   },
   ai_training: {
@@ -745,14 +776,17 @@ export const GUIDES_LIST: GuideList = {
     ai_training_capabilities_and_limitations: {
       url: AI_TRAINING_CAPABILITIES_AND_LIMITATIONS,
       key: 'ai_training_capabilities_and_limitations',
+      tracking: '::guides::go_to_capabilities',
     },
     submit_a_job_via_the_user_interface: {
       url: SUBMIT_A_JOB_VIA_THE_USER_INTERFACE,
       key: 'submit_a_job_via_the_user_interface',
+      tracking: '::guides::go_to_submit_job',
     },
     managing_a_custom_image: {
       url: MANAGING_A_CUSTOM_IMAGE,
       key: 'managing_a_custom_image',
+      tracking: '::guides::go_to_build_use_custom_image',
     },
   },
   ml_serving: {
@@ -760,14 +794,17 @@ export const GUIDES_LIST: GuideList = {
     deploying_a_custom_model: {
       url: DEPLOYING_A_CUSTOM_MODEL,
       key: 'deploying_a_custom_model',
+      tracking: '::guides::go_to_deploy_serialized_models',
     },
     models_definition: {
       url: MODELS_DEFINITION,
       key: 'models_definition',
+      tracking: '::guides::go_to_models',
     },
     exporting_a_tensorflow_model: {
       url: EXPORTING_A_TENSORFLOW_MODEL,
       key: 'exporting_a_tensorflow_model',
+      tracking: '::guides::go_to_export_tensorflow_models',
     },
   },
   private_network: {

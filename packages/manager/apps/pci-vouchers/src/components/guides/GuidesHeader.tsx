@@ -25,6 +25,8 @@ export default function GuidesHeader() {
   const guidesHeadersPci = 'pci_project_guides_header';
   const guidesHeadersCategory = 'storage';
   const { ovhSubsidiary } = useEnvironment().getUser();
+  const guideList = GUIDES_LIST[guidesHeadersCategory];
+
   return (
     <OsdsMenu>
       <OsdsButton
@@ -47,14 +49,14 @@ export default function GuidesHeader() {
         </OsdsText>
       </OsdsButton>
 
-      {Object.keys(GUIDES_LIST[guidesHeadersCategory]).map((guide, index) => (
+      {Object.keys(guideList).map((guide, index) => (
         <GuidesHeaderItem
           key={index}
-          href={`${GUIDES_LIST[guidesHeadersCategory][guide].url[ovhSubsidiary]}`}
-          label={t(
-            `${guidesHeadersPci}_${GUIDES_LIST[guidesHeadersCategory][guide].key}`,
-            { ns: 'guides-header' },
-          )}
+          href={`${guideList[guide].url[ovhSubsidiary]}`}
+          label={t(`${guidesHeadersPci}_${guideList[guide].key}`, {
+            ns: 'guides-header',
+          })}
+          tracking={`public-cloud_credit_and_vouchers${guideList[guide].tracking}`}
         ></GuidesHeaderItem>
       ))}
     </OsdsMenu>
