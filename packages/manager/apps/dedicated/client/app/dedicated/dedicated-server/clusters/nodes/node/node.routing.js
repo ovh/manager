@@ -4,7 +4,11 @@ import { SERVICE_TYPE } from './node.constants';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-cluster.cluster.node', {
     url: '/node/:productId',
-    component: 'serverMainPage',
+    views: {
+      'rootView@app.dedicated-cluster': {
+        component: 'serverMainPage',
+      },
+    },
     redirectTo: 'app.dedicated-cluster.cluster.node.dashboard',
     resolve: {
       statePrefix: /* @ngInject */ () => 'app.dedicated-cluster.cluster.node',
