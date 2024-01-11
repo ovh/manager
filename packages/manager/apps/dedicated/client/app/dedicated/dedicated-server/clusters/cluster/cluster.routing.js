@@ -3,7 +3,11 @@ import { STATUS } from './cluster.constant';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-cluster.cluster', {
     url: '/cluster/:clusterId',
-    component: 'clusterMainPage',
+    views: {
+      'rootView@app.dedicated-cluster': {
+        component: 'clusterMainPage',
+      },
+    },
     reloadOnSearch: false,
     redirectTo: 'app.dedicated-cluster.cluster.dashboard',
     resolve: {
