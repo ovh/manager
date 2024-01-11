@@ -1,14 +1,17 @@
+import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 
-import { FormatterComponentProps } from '@/interface';
+type ProductPropsType = {
+  cellData?: ReactNode;
+};
 
-export default function Product(props: FormatterComponentProps) {
+export default function Product({ cellData }: ProductPropsType) {
   const { t } = useTranslation('common');
   return (
     <OsdsText
@@ -16,7 +19,7 @@ export default function Product(props: FormatterComponentProps) {
       size={ODS_THEME_TYPOGRAPHY_SIZE._400}
       color={ODS_THEME_COLOR_INTENT.text}
     >
-      {props.cellData || t('cpb_vouchers_products_all')}
+      {cellData || t('cpb_vouchers_products_all')}
     </OsdsText>
   );
 }

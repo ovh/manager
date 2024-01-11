@@ -1,9 +1,11 @@
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { OsdsFormField } from '@ovhcloud/ods-components/form-field/react';
-import { OsdsInput } from '@ovhcloud/ods-components/input/react';
-import { OsdsModal } from '@ovhcloud/ods-components/modal/react';
-import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
+import {
+  OsdsButton,
+  OsdsModal,
+  OsdsFormField,
+  OsdsInput,
+  OsdsSpinner,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
