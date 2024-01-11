@@ -1,8 +1,10 @@
 import React from 'react';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components/button';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import placeholderSrc from './placeholder.png';
 
@@ -31,7 +33,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
         <section className="flex flex-col items-center">
           <div className="flex justify-center py-3 max-h-28">
             <img
-              className="max-h-150px"
+              className="max-h-100px"
               src={imageSrc || placeholderSrc}
               alt=""
             />
@@ -46,7 +48,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
           </OsdsText>
           <OsdsText
             level={ODS_TEXT_LEVEL.body}
-            className="block text-center mb-2"
+            className="block text-center mb-2  max-w-5xl"
           >
             {description}
           </OsdsText>

@@ -1,25 +1,28 @@
 import { useTranslation } from 'react-i18next';
 import {
-  ODS_THEME_COLOR_INTENT,
   ODS_THEME_SIZE,
   ODS_THEME_TYPOGRAPHY_LEVEL,
+  ODS_THEME_COLOR_INTENT,
 } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
+import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import Datagrid from '@/components/layout-helpers/Listing/dataGrid';
 import { RancherService } from '@/api/api.type';
 
-const Listing: React.FC<{ data: RancherService[] }> = ({ data }) => {
+export interface ListingProps {
+  data: RancherService[];
+}
+
+const Listing: React.FC<ListingProps> = ({ data }) => {
   const { t } = useTranslation('pci-rancher/listing');
+
   if (data.length === 0) {
     return <Navigate to="/onboarding" />;
   }
@@ -28,7 +31,7 @@ const Listing: React.FC<{ data: RancherService[] }> = ({ data }) => {
     <>
       <OsdsText
         level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-        size={ODS_THEME_SIZE._600}
+        size={ODS_THEME_SIZE._600 as any}
         color={ODS_THEME_COLOR_INTENT.text}
       >
         {t('rancherTitle')}

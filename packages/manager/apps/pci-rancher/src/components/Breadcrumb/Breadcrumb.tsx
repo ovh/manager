@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Params, useParams } from 'react-router-dom';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/breadcrumb/react';
+import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { getProject } from '@/api';
