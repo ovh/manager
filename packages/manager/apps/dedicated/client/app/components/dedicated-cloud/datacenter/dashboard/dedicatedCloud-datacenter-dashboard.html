@@ -36,22 +36,6 @@
                     </oui-action-menu>
                 </oui-tile-definition>
                 <oui-tile-definition
-                    data-term="{{:: 'dedicatedCloud_datacenter_description' | translate }}"
-                    data-description="{{ $ctrl.datacenter.model.description }}"
-                >
-                    <oui-action-menu
-                        aria-label="{{:: 'menu_action_label' | translate:{ t0: ('dedicatedCloud_description' | translate) } }}"
-                        data-compact
-                        data-placement="end"
-                    >
-                        <oui-action-menu-item
-                            aria-label="{{:: 'common_change' | translate }}"
-                            data-ng-click="$ctrl.editDescription($ctrl.datacenter.model.description, 'dedicatedCloud_datacenter_description')"
-                            ><span data-translate="common_change"></span>
-                        </oui-action-menu-item>
-                    </oui-action-menu>
-                </oui-tile-definition>
-                <oui-tile-definition
                     data-term="{{:: 'dedicatedCloud_datacenter_commercial_name' | translate }}"
                     data-description="{{:: ('dedicatedCloud_datacenter_commercial_name_' + $ctrl.datacenter.model.commercialName) | translate }}"
                 ></oui-tile-definition>
@@ -126,6 +110,7 @@
             <oui-tile
                 data-heading="{{:: 'dedicatedCloud_options_title' | translate }}"
                 data-loading="$ctrl.loading"
+                class="mb-3"
             >
                 <oui-tile-definition
                     data-ng-if="$ctrl.drpAvailability"
@@ -180,6 +165,22 @@
                             ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
+                </oui-tile-definition>
+            </oui-tile>
+            <oui-tile
+                data-heading="{{:: 'dedicatedCloud_nsx_edge_title' | translate }}"
+                data-loading="$ctrl.loading"
+            >
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_nsx_edge_level' | translate }}"
+                    data-description="{{:: $ctrl.datacenter.model.edgesLevel }}"
+                >
+                </oui-tile-definition>
+
+                <oui-tile-definition
+                    data-term="{{:: 'dedicatedCloud_nsx_edge_quantity' | translate }}"
+                    data-description="{{:: $ctrl.datacenter.model.edgesCount }}"
+                >
                 </oui-tile-definition>
             </oui-tile>
         </div>
