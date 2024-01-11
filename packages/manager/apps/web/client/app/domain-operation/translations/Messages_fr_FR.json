@@ -28,7 +28,7 @@
   "domain_operations_nicOperation_DomainTrade": "Changement de titulaire",
   "domain_operations_nicOperation_DnssecDisable": "Désactivation du DNSSEC",
   "domain_operations_nicOperation_DnssecEnable": "Activation du DNSSEC",
-  "domains_operations_nicOperation_ZoneCreate": "Création de zone DNS",
+  "domain_operations_nicOperation_ZoneCreate": "Création de zone DNS",
   "domain_operations_nicOperation_ZoneImport": "Importation de la zone DNS",
   "domain_operations_nicOperation_DomainContactControl": "Vérification des contacts",
   "domain_operations_nicOperation_DomainDnsUpdate": "Mise à jour des DNS",
