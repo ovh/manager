@@ -1,17 +1,22 @@
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+
 import { format } from 'date-fns';
 import * as locale from 'date-fns/locale';
-import { FormatterComponentProps } from '@/interface';
+import { Voucher } from '@/interface';
 
-export default function ValidityTo(props: FormatterComponentProps) {
+type ValidityToPropsType = {
+  rowData: Pick<Voucher, 'validity'>;
+};
+
+export default function ValidityTo({ rowData }: ValidityToPropsType) {
   let date = '';
-  if (props.rowData?.validity.to) {
-    date = format(new Date(props.rowData.validity.to), 'd MMM yyyy HH:mm:ss', {
+  if (rowData?.validity.to) {
+    date = format(new Date(rowData.validity.to), 'd MMM yyyy HH:mm:ss', {
       locale: locale.fr,
     });
   }

@@ -1,37 +1,19 @@
-import { LegacyContainerProvider } from '@ovh-ux/manager-container-app/src/container/legacy/context';
 import React from 'react';
-import { act } from '@testing-library/react';
-import { Environment, User } from '@ovh-ux/manager-config';
-import AvailableCredit from '@/components/AvailableCredit';
-import { renderWithShell } from '@/__tests__/__test-utils__/contextRenders';
+import { render, screen, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
-describe('UI Testing AvailableCredit component', () => {
-  it('render completly with shell', async () => {
-    const user: Partial<User> = {
-      firstname: 'Tester',
-      name: 'testee',
-      supportLevel: {
-        level: '1',
-      },
-      country: 'FR',
+import AvailableCredit from '@/components/vouchers/listing/AvailableCredit';
+
+describe('AvailableCredit component display Voucher available Credit', () => {
+  it('render available credit', async () => {
+    const rowData = {
+      available_credit: { text: '9,99€' },
     };
-    const universe = 'web';
 
-    const environment: Partial<Environment> = {
-      getUser: () => user as User,
-      getUniverse: () => universe,
-      getUserLocale: () => 'fr_FR',
-    };
-    let render;
-
-    await act(async () => {
-      render = await renderWithShell(
-        <LegacyContainerProvider>
-          <AvailableCredit></AvailableCredit>
-        </LegacyContainerProvider>,
-        { environment },
-      );
+    render(<AvailableCredit rowData={rowData}></AvailableCredit>);
+    const priceText = await screen.findByText(rowData.available_credit.text);
+    await waitFor(() => {
+      expect(priceText).toBeInTheDocument();
     });
-    expect(render.asFragment()).toMatchSnapshot();
   });
 });

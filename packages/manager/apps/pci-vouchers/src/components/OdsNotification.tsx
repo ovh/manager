@@ -1,5 +1,5 @@
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
+import { OsdsMessage } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { Notification, NotificationType } from '@/hooks/useNotifications';
 
 type OdsNotificationProps = {

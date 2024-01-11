@@ -1,20 +1,24 @@
 import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsText,
+  OsdsMenu,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { OsdsMenu } from '@ovhcloud/ods-components/menu/react';
 import { useTranslation } from 'react-i18next';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
-import { GUIDES_LIST } from '../guides-header.constants';
-import GuidesHeaderItem from '@/components/GuidesHeaderItem';
+
+import { GUIDES_LIST } from '../../guides-header.constants';
+import GuidesHeaderItem from '@/components/guides/GuidesHeaderItem';
 
 export default function GuidesHeader() {
   const { t } = useTranslation();

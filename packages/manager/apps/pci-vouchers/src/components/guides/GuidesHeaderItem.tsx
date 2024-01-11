@@ -1,16 +1,20 @@
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
+import {
+  OsdsButton,
+  OsdsText,
+  OsdsIcon,
+  OsdsMenuItem,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
-import { OsdsMenuItem } from '@ovhcloud/ods-components/menu/react';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 interface GuidesHeaderItemProps {
   href: string;
@@ -27,6 +31,7 @@ export default function GuidesHeaderItem({
         variant={ODS_BUTTON_VARIANT.ghost}
         href={href}
         color={ODS_THEME_COLOR_INTENT.primary}
+        target={OdsHTMLAnchorElementTarget._blank}
       >
         <span slot={'start'}>
           <OsdsText
