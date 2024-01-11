@@ -28,13 +28,42 @@ export default /* @ngInject */ ($stateProvider) => {
           return transition
             .injector()
             .getAsync('vrack')
-            .then((vrack) =>
-              isEmpty(vrack)
-                ? { state: 'pci.projects.project.privateNetwork.vrack' }
-                : {
-                    state: 'pci.projects.project.privateNetwork.globalRegions',
-                  },
-            );
+            .then((vrack) => {
+              if (isEmpty(vrack)) {
+                return { state: 'pci.projects.project.privateNetwork.vrack' };
+              }
+
+              return transition
+                .injector()
+                .getAsync('privateNetworks')
+                .then((privateNetworks) => {
+                  // Navigate by default to globalzone
+                  if (privateNetworks.length > 0) {
+                    return {
+                      state:
+                        'pci.projects.project.privateNetwork.globalRegions',
+                    };
+                  }
+
+                  // if Zero private networks check for local private network
+                  // if Zero local private network display onboarding page
+                  // if not navigate to localzone
+                  return transition
+                    .injector()
+                    .getAsync('localPrivateNetworks')
+                    .then((localPrivateNetworks) => {
+                      return localPrivateNetworks.length > 0
+                        ? {
+                            state:
+                              'pci.projects.project.privateNetwork.localZone',
+                          }
+                        : {
+                            state:
+                              'pci.projects.project.privateNetwork.globalRegions',
+                          };
+                    });
+                });
+            });
         }),
     resolve: {
       createNetwork: /* @ngInject */ ($state, projectId) => () =>
