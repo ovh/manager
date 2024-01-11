@@ -22,6 +22,13 @@ export interface PciProject {
   unleash: boolean;
 }
 
+export enum RancherTaskType {
+  rancherVersionUpdate = 'rancherVersionUpdate'
+}
+export interface RancherTask {
+  id: string;
+  type: RancherTaskType;
+}
 export interface RancherService {
   id: string;
   createdAt: string;
@@ -43,14 +50,14 @@ export interface RancherService {
     plan: string;
     region: string;
     version: string;
-    ipRestrictions: [
+    ipRestrictions?: [
       {
         cidrBlock: string;
         description: string;
       },
     ];
   };
-  currentTasks: [];
+  currentTasks: Array<RancherTask>;
   resourceStatus: RessourceStatus;
 }
 
