@@ -1,7 +1,9 @@
 import { RancherService, RessourceStatus } from '@/api/api.type';
 
-export const rancherMocked = {
+export const rancherMocked: RancherService = {
   id: '123',
+  createdAt: '0',
+  updatedAt: '0',
   targetSpec: {
     name: 'Rancher 1',
     plan: 'string',
@@ -22,9 +24,9 @@ export const rancherMocked = {
   },
   currentTasks: [],
   resourceStatus: RessourceStatus.READY,
-} as RancherService;
+};
 
-export const rancherError = {
+export const rancherError: RancherService = {
   ...rancherMocked,
   resourceStatus: RessourceStatus.ERROR,
-} as RancherService;
+};
