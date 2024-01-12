@@ -68,8 +68,9 @@
     </div>
 
     <oui-action-menu-item
-        ng-if="$ctrl.service.canBeEngaged && !$ctrl.service.hasPendingEngagement && !$ctrl.service.isSuspended()"
-        href="{{:: $ctrl.commitmentLink }}"
+        data-ng-if="$ctrl.service.canBeEngaged && !$ctrl.service.hasPendingEngagement && !$ctrl.service.isSuspended()"
+        data-href="{{:: $ctrl.commitmentLink }}"
+        data-on-click="$ctrl.trackAction('go-to-manage-commitment', false)"
         top
     >
         <span data-translate="billing_services_actions_menu_commit"></span>
