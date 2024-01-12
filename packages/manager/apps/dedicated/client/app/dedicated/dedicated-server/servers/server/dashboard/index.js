@@ -31,6 +31,10 @@ import installationOvh from './installation/ovh';
 import installationProgress from './installation/progress';
 
 import routing from './dashboard.routing';
+import {
+  COMMIT_IMPRESSION_TRACKING_DATA,
+  RECOMMIT_IMPRESSION_TRACKING_DATA,
+} from './dashboard.constants';
 
 const moduleName = 'ovhManagerDedicatedServerDashboard';
 
@@ -62,6 +66,10 @@ angular
     serverDashboard,
   ])
   .config(routing)
+  .constant('IMPRESSION_TRACKING_DATA', {
+    COMMIT_IMPRESSION_TRACKING_DATA,
+    RECOMMIT_IMPRESSION_TRACKING_DATA,
+  })
   .run(/* @ngTranslationsInject:json ../translations */);
 
 export default moduleName;
