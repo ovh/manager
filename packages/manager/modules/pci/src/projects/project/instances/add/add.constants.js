@@ -4,6 +4,7 @@ export const FILTER_PRIVATE_NETWORK_BAREMETAL = 'ovh.baremetal';
 export const INSTANCE_MODES_ENUM = [
   { mode: 'public_mode' },
   { mode: 'private_mode' },
+  { mode: 'local_private_mode' },
 ];
 
 export const AVAILABLE_SUBNET = [
@@ -51,6 +52,7 @@ export const FLAVORS_BAREMETAL = /baremetal/;
 
 export const PUBLIC_NETWORK = 'Ext-Net';
 export const PUBLIC_NETWORK_BAREMETAL = 'Ext-Net-Baremetal';
+export const LOCAL_ZONE_REGION = 'localzone';
 
 export default {
   BANDWIDTH_OUT,
@@ -61,4 +63,5 @@ export default {
   FLAVORS_BAREMETAL,
   PUBLIC_NETWORK,
   PUBLIC_NETWORK_BAREMETAL,
+  LOCAL_ZONE_REGION,
 };

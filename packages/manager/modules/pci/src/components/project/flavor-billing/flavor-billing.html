@@ -69,6 +69,28 @@
                 </p>
             </div>
         </oui-select-picker-section>
+        <oui-select-picker-section
+            data-ng-if="$ctrl.hourlyPriceInformation && $ctrl.isLocalZone"
+        >
+            <p>
+                <strong
+                    data-translate="pci_project_flavors_billing_price_hourly_price_label"
+                ></strong>
+                <span
+                    data-translate="pci_project_flavors_billing_price_hourly"
+                    data-translate-values="{ price: $ctrl.formatPrice($ctrl.hourlyPriceInformation) }"
+                >
+                </span>
+                <strong
+                    class="ml-2"
+                    data-ng-if="$ctrl.offer"
+                    data-ng-bind="$ctrl.offer.value"
+                    data-ng-style="{
+                    'color': $ctrl.offer.highlight.color
+                }"
+                ></strong>
+            </p>
+        </oui-select-picker-section>
     </oui-select-picker>
     <oui-select-picker
         class="d-inline-block col-md-6 col-xl-4 my-3"
@@ -79,7 +101,7 @@
         data-variant="light"
         data-on-change="$ctrl.selectBilling(modelValue)"
         data-disabled="$ctrl.disabled && !$ctrl.monthly"
-        data-ng-if="!$ctrl.isPricingComingSoon()"
+        data-ng-if="!$ctrl.isPricingComingSoon() && !$ctrl.isLocalZone"
     >
         <oui-select-picker-section data-ng-if="$ctrl.prices">
             <p>
