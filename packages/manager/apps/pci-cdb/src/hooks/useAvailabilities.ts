@@ -20,15 +20,15 @@ export function useAvailabilities(
     () =>
       listEngines
         ?.find((e: Engine) => e.name === engine.engine)
-        ?.versions.find((v: Version) => v.name === engine.version)?.plans,
+        ?.versions.find((v: Version) => v.name === engine.version)?.plans || [],
     [listEngines, engine.engine, engine.version],
   );
   const listRegions = useMemo(
-    () => listPlans?.find((p: Plan) => p.name === plan)?.regions,
+    () => listPlans?.find((p: Plan) => p.name === plan)?.regions || [],
     [listPlans, plan],
   );
   const listFlavors = useMemo(
-    () => listRegions?.find((r: Region) => r.name === region)?.flavors,
+    () => listRegions?.find((r: Region) => r.name === region)?.flavors || [],
     [listRegions, region],
   );
 
@@ -55,7 +55,7 @@ export function useAvailabilities(
   }, [listEngines]);
 
   useEffect(() => {
-    if (listPlans) {
+    if (listPlans.length > 0) {
       setPlan(listPlans[0].name || '');
     } else {
       setPlan('');
@@ -63,7 +63,7 @@ export function useAvailabilities(
   }, [listPlans]);
 
   useEffect(() => {
-    if (listRegions) {
+    if (listRegions.length > 0) {
       setRegion(listRegions[0].name || '');
     } else {
       setRegion('');
@@ -71,7 +71,7 @@ export function useAvailabilities(
   }, [listRegions]);
 
   useEffect(() => {
-    if (listFlavors) {
+    if (listFlavors.length > 0) {
       setFlavor(listFlavors[0].name || '');
     } else {
       setFlavor('');
