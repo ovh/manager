@@ -12,6 +12,7 @@ export default {
     regions: '<',
     getStateName: '<',
     goToRegion: '<',
+    isDiscoveryProject: '<',
   },
   controller,
   template,

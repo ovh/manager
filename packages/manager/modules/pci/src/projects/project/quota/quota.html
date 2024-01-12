@@ -15,6 +15,11 @@
     data-guide-tracking-section-tags="$ctrl.guideTrackingSectionTags"
 ></pci-project-quota-header>
 
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+></pci-activate-project-banner>
+
 <pci-announcement-banner
     data-get-state-name="$ctrl.getStateName()"
     data-on-go-to-region="$ctrl.goToRegion()"
@@ -26,10 +31,6 @@
 </div>
 
 <div data-ng-if="!$ctrl.isLoading">
-    <pci-activate-project-banner
-        data-ng-if="$ctrl.isDiscoveryProject"
-        data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
-    ></pci-activate-project-banner>
     <!-- THERE IS NO PAYMENT MEAN - SHOW A MESSAGE TO ADD IT -->
     <div
         class="oui-box"
