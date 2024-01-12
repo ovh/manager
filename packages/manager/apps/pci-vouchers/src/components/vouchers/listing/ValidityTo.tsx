@@ -10,7 +10,7 @@ import * as locale from 'date-fns/locale';
 import { Voucher } from '@/interface';
 
 type ValidityToPropsType = {
-  rowData: Pick<Voucher, 'validity'>;
+  rowData?: Pick<Voucher, 'validity'>;
 };
 
 export default function ValidityTo({ rowData }: ValidityToPropsType) {

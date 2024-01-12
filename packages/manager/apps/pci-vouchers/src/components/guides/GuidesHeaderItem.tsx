@@ -38,7 +38,7 @@ export default function GuidesHeaderItem({
         target={OdsHTMLAnchorElementTarget._blank}
         onClick={() => {
           trackClick({
-            name: tracking,
+            name: `${tracking}`,
             type: 'action',
           });
         }}

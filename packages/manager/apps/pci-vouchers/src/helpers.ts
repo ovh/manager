@@ -2,9 +2,18 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+type CellInterface = {
+  getElement: () => HTMLElement;
+};
+
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export default function reactFormatter(JSX: JSX.Element) {
-  return function customFormatter(cellData, rowData, cell, onRendered) {
+  return function customFormatter(
+    cellData: unknown,
+    rowData: unknown,
+    cell: CellInterface,
+    onRendered: CallableFunction,
+  ) {
     const renderFn = () => {
       const cellEl = cell.getElement();
       if (cellEl) {
