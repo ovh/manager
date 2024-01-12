@@ -1,7 +1,3 @@
-import {
-  COMMIT_IMPRESSION_TRACKING_DATA,
-  RECOMMIT_IMPRESSION_TRACKING_DATA,
-} from './dashboard.constants';
 import { NEW_RANGE, DC_2_ISO } from '../server/server.constants';
 
 export default class DedicatedServerDashboard {
@@ -19,6 +15,7 @@ export default class DedicatedServerDashboard {
     DedicatedServerFeatureAvailability,
     Server,
     coreConfig,
+    IMPRESSION_TRACKING_DATA,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -32,12 +29,14 @@ export default class DedicatedServerDashboard {
     this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
     this.Server = Server;
     this.coreConfig = coreConfig;
+    ({
+      COMMIT_IMPRESSION_TRACKING_DATA: this.COMMIT_IMPRESSION_TRACKING_DATA,
+      RECOMMIT_IMPRESSION_TRACKING_DATA: this.RECOMMIT_IMPRESSION_TRACKING_DATA,
+    } = IMPRESSION_TRACKING_DATA);
   }
 
   $onInit() {
     this.$rootScope.serverCtrl = this.dedicatedServer;
-    this.COMMIT_IMPRESSION_TRACKING_DATA = COMMIT_IMPRESSION_TRACKING_DATA;
-    this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
 
     this.server.iso =
       DC_2_ISO[this.server.datacenter.toUpperCase().split('_')[0]];
