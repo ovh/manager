@@ -6,6 +6,7 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
+import { ODS_INPUT_TYPE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -71,7 +72,7 @@ export default function BuyCreditModal({
                   })}
                 </OsdsText>
                 <OsdsInput
-                  type="number"
+                  type={ODS_INPUT_TYPE.number}
                   min={1}
                   value={amount}
                   onOdsValueChange={handleInputChange}
@@ -81,7 +82,7 @@ export default function BuyCreditModal({
               </OsdsFormField>
             </>
           )}
-          {isPending && <OsdsSpinner inline size="md" />}
+          {isPending && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
         </slot>
         <OsdsButton
           slot="actions"

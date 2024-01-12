@@ -1,4 +1,3 @@
-import React from 'react';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -9,7 +8,7 @@ import {
 import { Voucher } from '@/interface';
 
 type AvailableCreditPropsType = {
-  rowData: Pick<Voucher, 'available_credit'>;
+  rowData?: Pick<Voucher, 'available_credit'>;
 };
 
 export default function AvailableCredit({ rowData }: AvailableCreditPropsType) {

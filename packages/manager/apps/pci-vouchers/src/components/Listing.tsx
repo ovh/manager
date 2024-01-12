@@ -1,6 +1,7 @@
 import { OsdsDatagrid, OsdsPagination } from '@ovhcloud/ods-components/react';
 import {
   OdsDatagridColumn,
+  OdsDatagridRow,
   OdsPaginationCurrentChangeEvent,
   OdsPaginationItemPerPageChangedEvent,
 } from '@ovhcloud/ods-components';
@@ -36,7 +37,7 @@ export default function Listing<T>({ headers, items }: ListingProps<T>) {
     <>
       <OsdsDatagrid
         columns={headers}
-        rows={itemsFiltered}
+        rows={itemsFiltered as OdsDatagridRow[]}
         height={600}
         hasHideableColumns={false}
       ></OsdsDatagrid>

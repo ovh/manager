@@ -8,7 +8,7 @@ import {
 import { Voucher } from '@/interface';
 
 type TotalCreditPropsType = {
-  rowData: Pick<Voucher, 'total_credit'>;
+  rowData?: Pick<Voucher, 'total_credit'>;
 };
 
 export default function TotalCredit({ rowData }: TotalCreditPropsType) {

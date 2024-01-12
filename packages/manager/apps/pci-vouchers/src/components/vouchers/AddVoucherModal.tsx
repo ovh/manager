@@ -6,6 +6,7 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
+import { ODS_INPUT_TYPE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -58,7 +59,7 @@ export default function AddVoucherModal({
                   {t('cpb_vouchers_your_voucher')}
                 </OsdsText>
                 <OsdsInput
-                  type="text"
+                  type={ODS_INPUT_TYPE.text}
                   className={'border'}
                   onOdsValueChange={handleInputChange}
                   ariaLabel={t('cpb_vouchers_your_voucher')}
@@ -66,7 +67,7 @@ export default function AddVoucherModal({
               </OsdsFormField>
             </>
           )}
-          {isPending && <OsdsSpinner inline size="md" />}
+          {isPending && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
         </slot>
         <OsdsButton
           slot="actions"
