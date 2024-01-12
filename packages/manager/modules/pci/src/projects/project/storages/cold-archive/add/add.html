@@ -42,16 +42,17 @@
         data-messages="$ctrl.messages"
     ></cui-message-container>
 
+    <pci-activate-project-banner
+        data-ng-if="$ctrl.isDiscoveryProject"
+        data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    ></pci-activate-project-banner>
+
     <!--Region archive storage info-->
     <oui-message data-type="info">
         <span
             data-translate="pci_projects_project_storages_cold_archive_add_step_name_archive_localisation_banner_info"
         ></span>
     </oui-message>
-    <pci-activate-project-banner
-        data-ng-if="$ctrl.isDiscoveryProject"
-        data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
-    ></pci-activate-project-banner>
 </div>
 
 <!--Cold Archive configuration steps-->

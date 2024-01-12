@@ -22,13 +22,14 @@
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
+
+    <p data-translate="cpb_vouchers_add_explain_bis"></p>
+    <p class="mb-4" data-translate="cpb_vouchers_credit_comment"></p>
+
     <pci-activate-project-banner
         data-ng-if="$ctrl.isDiscoveryProject"
         data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
     ></pci-activate-project-banner>
-
-    <p data-translate="cpb_vouchers_add_explain_bis"></p>
-    <p class="mb-4" data-translate="cpb_vouchers_credit_comment"></p>
 
     <oui-datagrid data-rows="$ctrl.vouchers">
         <oui-datagrid-topbar>
