@@ -1,9 +1,9 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.privateNetwork.delete', {
+  $stateProvider.state('pci.projects.project.privateNetwork.localZone.delete', {
     url: '/delete?networkId&subnetId',
     views: {
       modal: {
-        component: 'pciProjectPrivateNetworksDelete',
+        component: 'pciProjectLocalPrivateNetworksDelete',
       },
     },
     params: {
@@ -11,7 +11,8 @@ export default /* @ngInject */ ($stateProvider) => {
       region: null,
     },
     resolve: {
-      goBack: /* @ngInject */ (goToPrivateNetworks) => goToPrivateNetworks,
+      goBack: /* @ngInject */ (goToLocalPrivateNetworks) =>
+        goToLocalPrivateNetworks,
       onCancelClick: /* @ngInject */ (trackPrivateNetworks, goBack) => () => {
         trackPrivateNetworks('delete::cancel');
         return goBack();
@@ -22,7 +23,7 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: () => null,
     },
     atInternet: {
-      rename: 'pci::projects::project::privateNetwork::delete',
+      rename: 'pci::projects::project::privateNetwork::localZone::delete',
     },
     layout: 'modal',
   });

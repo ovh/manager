@@ -13,7 +13,13 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectsProjectInstanceService,
         projectId,
         instanceId,
-      ) => PciProjectsProjectInstanceService.get(projectId, instanceId),
+        customerRegions,
+      ) =>
+        PciProjectsProjectInstanceService.get(
+          projectId,
+          instanceId,
+          customerRegions,
+        ),
 
       instancePrice: /* @ngInject */ (
         PciProjectsProjectInstanceService,
@@ -72,6 +78,16 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           instanceId: instance.id,
         }),
+      hourlyPriceInformation: /* @ngInject */ (
+        CucPriceHelper,
+        projectId,
+        instance,
+      ) => {
+        const catalogEndpoint = '/order/catalog/public/cloud';
+        return CucPriceHelper.getPrices(projectId, catalogEndpoint).then(
+          (prices) => prices[instance.planCode]?.price,
+        );
+      },
       enableMonthlyBillingInstance: /* @ngInject */ (
         $state,
         instance,
@@ -171,6 +187,10 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
       gotToNetworks: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.privateNetwork', {
+          projectId,
+        }),
+      gotToLocalPrivateNetworks: /* @ngInject */ ($state, projectId) => () =>
+        $state.go('pci.projects.project.privateNetwork.localZone', {
           projectId,
         }),
       attachPrivateNetwork: /* @ngInject */ (

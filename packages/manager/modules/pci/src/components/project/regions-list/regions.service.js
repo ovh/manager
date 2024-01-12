@@ -1,65 +1,39 @@
-import compact from 'lodash/compact';
-import map from 'lodash/map';
 import groupBy from 'lodash/groupBy';
 import reduce from 'lodash/reduce';
 
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["getAvailableRegions"] }] */
 export default class Regions {
   /* @ngInject */
-  constructor(
-    $q,
-    $translate,
-    OvhApiCloudProjectQuota,
-    OvhApiCloudProjectRegion,
-  ) {
+  constructor($q, $http, iceberg, $translate) {
     this.$q = $q;
+    this.$http = $http;
+    this.iceberg = iceberg;
     this.$translate = $translate;
-    this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
-    this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
   }
 
-  getAvailableRegions(projectId) {
-    return this.OvhApiCloudProjectRegion.v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise.then((regions) =>
-        Promise.all(
-          map(regions, (id) =>
-            this.OvhApiCloudProjectRegion.v6()
-              .get({
-                serviceName: projectId,
-                id,
-              })
-              .$promise.catch(() => null),
-          ),
-        ).then((regionsDetail) => compact(regionsDetail)),
-      );
+  getAvailableRegions(serviceName) {
+    return this.iceberg(`/cloud/project/${serviceName}/region`)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) => data)
+      .catch(() => []);
   }
 
   getRegions(serviceName) {
-    return this.OvhApiCloudProjectRegion.v6()
-      .query({ serviceName })
-      .$promise.then((regions) =>
-        this.$q.all({
-          quotas: this.OvhApiCloudProjectQuota.v6().query({ serviceName })
-            .$promise,
-          regions: this.$q.all(
-            regions.map(
-              (region) =>
-                this.OvhApiCloudProjectRegion.v6().get({
-                  serviceName,
-                  id: region,
-                }).$promise,
-            ),
-          ),
-        }),
-      )
-      .then(({ quotas, regions }) =>
-        regions.map((region) => ({
+    return this.$q
+      .all({
+        regions: this.getAvailableRegions(serviceName),
+        quotas: this.$http
+          .get(`/cloud/project/${serviceName}/quota`)
+          .then(({ data }) => data),
+      })
+      .then(({ quotas, regions }) => {
+        return regions.map((region) => ({
           ...region,
           quota: quotas.find((quota) => quota.region === region.name),
-        })),
-      );
+        }));
+      });
   }
 
   groupByContinentAndDatacenterLocation(regions) {

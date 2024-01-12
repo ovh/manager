@@ -47,5 +47,7 @@ export default {
     goToRegion: '<',
     floatingIpsLink: '<',
     catalog: '<',
+    isGridscaleLocalzoneAvailable: '<',
+    hasGridscaleLocalzoneRegion: '<',
   },
 };

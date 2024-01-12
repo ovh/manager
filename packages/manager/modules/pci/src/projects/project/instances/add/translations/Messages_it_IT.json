@@ -96,5 +96,15 @@
   "pci_projects_project_instances_windows_private_mode_description3": "consulta questa guida.",
   "pci_projects_project_instances_add_flavor_selected_title_without_price": "Modello scelto: {{model}}",
   "pci_projects_project_instances_add_billing_coming_soon_message_title": "Prezzi mensili",
-  "pci_projects_project_instances_add_billing_coming_soon_message_description": "I prezzi mensili saranno disponibili a breve con l'arrivo dei Saving Plans."
+  "pci_projects_project_instances_add_billing_coming_soon_message_description": "I prezzi mensili saranno disponibili a breve con l'arrivo dei Saving Plans.",
+  "pci_projects_project_instances_add_localPrivateNetwork_sub_title": "Selezionare una rete privata in una Local Zone",
+  "pci_projects_project_instances_add_localPrivateNetwork_label": "Selezionare una rete privata in una Local Zone",
+  "pci_projects_project_instances_add_localPrivateNetwork_add": "Creare una nuova rete privata in una Local Zone",
+  "pci_projects_project_instances_add_localPrivateNetwork_description": "Con questa modalità, l’istanza viene associata a una delle tue reti private in una Local Zone.",
+  "pci_projects_project_instances_add_localPrivateNetwork_add_public_network_checkbox_label": "Rete pubblica",
+  "pci_projects_project_instances_add_localPrivateNetwork_add_public_network_info": "Da questo momento la tua istanza avrà una porta di rete pubblica associata a un IPv4 e un IPv6.",
+  "pci_projects_project_instances_add_localPrivateNetwork_placeholder": "Selezionare una rete privata in una Local Zone",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode": "Local Private Mode",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode_description1": "Le istanze in “Local Private Mode” non sono connesse globalmente. Solo le istanze della stessa Local Zone possono essere connesse tramite reti private nelle Local Zone. Le Local Zone non sono compatibili con la tua vRack.",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode_description2": "Il “Local Private Mode” utilizza il DHCP per fornire automaticamente un indirizzamento IP alle tue istanze."
 }

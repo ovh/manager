@@ -20,5 +20,12 @@
   "pci_project_flavors_quota_manage": "Manage my quota",
   "pci_project_flavors_category_new": "New",
   "pci_project_flavors_category_definition_discovery": "Instances with shared resources (Discovery) are adapted for tests, recipes and development environments. Their performance may vary slightly over time.",
-  "pci_project_flavors_spec_vCore_details": "{{vcores}} vCores ({{frequency}} GHz)"
+  "pci_project_flavors_spec_vCore_details": "{{vcores}} vCores ({{frequency}} GHz)",
+  "pci_project_flavors_category_definition_localzone": "Local Zone Instances",
+  "pci_project_flavors_zone_compatible": "Compatible with",
+  "pci_project_flavors_zone_localzone": "Local Zones",
+  "pci_project_flavors_zone_global_region": "Global Regions",
+  "pci_project_flavors_zone_localzone_tooltip": "Local Zones are a new type of location, which support part of our Public Cloud product portfolio. We will gradually deploy more Local Zones around the world over the next few years.",
+  "pci_project_flavors_zone_globalregions_tooltip": "Global Regions are supported by one or more datacentres managed by OVHcloud. There are one or more Availability Zones in each Region, with a comprehensive portfolio of OVHcloud services.",
+  "pci_project_flavors_zone_tooltip_link": "Find out more"
 }

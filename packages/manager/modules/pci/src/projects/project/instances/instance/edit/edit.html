@@ -2,7 +2,6 @@
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
-
     <h1>
         {{:: 'pci_projects_project_instances_instance_edit_title' | translate }}
     </h1>
@@ -19,10 +18,81 @@
                     class="oui-field__label oui-label"
                     data-translate="pci_projects_project_instances_instance_edit_region_label"
                 ></label>
-                <div
-                    class="oui-field__control"
-                    data-ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.instance.region)"
-                ></div>
+                <div class="oui-field__control">
+                    <span
+                        data-ng-bind="$ctrl.ovhManagerRegionService.getTranslatedMicroRegion($ctrl.instance.region)"
+                    ></span>
+                    <span
+                        data-ng-if="$ctrl.instance.isLocalZone"
+                        class="oui-badge oui-badge_promotion"
+                    >
+                        <span
+                            data-translate="pci_project_flavors_zone_localzone"
+                        ></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover
+                            data-oui-popover-scope="$ctrl"
+                            data-oui-popover-template="pci_project_flavors_zone_localzone.html"
+                        ></button>
+                        <script
+                            type="text/ng-template"
+                            id="pci_project_flavors_zone_localzone.html"
+                        >
+                            <span
+                                class="text-center"
+                                data-translate="pci_project_flavors_zone_localzone_tooltip"
+                            ></span>
+                            <a
+                                class="oui-link_icon"
+                                aria-hidden="true"
+                                data-ng-href="{{$ctrl.localZoneUrl}}"
+                                target="_blank"
+                            >
+                                <span
+                                    data-translate="pci_project_flavors_zone_tooltip_link"
+                                ></span>
+                                <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                            </a>
+                        </script>
+                    </span>
+                    <span
+                        data-ng-if="!$ctrl.instance.isLocalZone"
+                        class="oui-badge oui-badge_new"
+                    >
+                        <span
+                            data-translate="pci_project_flavors_zone_global_region"
+                        ></span>
+                        <button
+                            type="button"
+                            class="oui-popover-button"
+                            data-oui-popover
+                            data-oui-popover-scope="$ctrl"
+                            data-oui-popover-template="pci_project_flavors_zone_globalregions_tooltip.html"
+                        ></button>
+                        <script
+                            type="text/ng-template"
+                            id="pci_project_flavors_zone_globalregions_tooltip.html"
+                        >
+                            <span
+                                class="text-center"
+                                data-translate="pci_project_flavors_zone_globalregions_tooltip"
+                            ></span>
+                            <a
+                                class="oui-link_icon"
+                                aria-hidden="true"
+                                data-ng-href="{{$ctrl.globalRegionsUrl}}"
+                                target="_blank"
+                            >
+                                <span
+                                    data-translate="pci_project_flavors_zone_tooltip_link"
+                                ></span>
+                                <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                            </a>
+                        </script>
+                    </span>
+                </div>
             </div>
 
             <div class="oui-field">
@@ -100,6 +170,7 @@
     <div
         id="{{::$ctrl.EDIT_PAGE_SECTIONS.IMAGES}}"
         class="mt-4 pt-4 border-top"
+        data-ng-if="!$ctrl.instance.isLocalZone"
     >
         <form
             novalidate
@@ -157,6 +228,18 @@
             </fieldset>
         </form>
     </div>
+    <div
+        id="{{::$ctrl.EDIT_PAGE_SECTIONS.IMAGES}}"
+        class="mt-4 pt-4 border-top"
+        data-ng-if="$ctrl.instance.isLocalZone && $ctrl.imageInformation"
+    >
+        <oui-field
+            data-label="{{ :: 'pci_projects_project_instances_instance_edit_image_label' | translate }}"
+            data-size="auto"
+        >
+            <span data-ng-bind="$ctrl.imageInformation"></span>
+        </oui-field>
+    </div>
 
     <div
         id="{{::$ctrl.EDIT_PAGE_SECTIONS.FLAVORS}}"
@@ -165,6 +248,7 @@
         <form
             novalidate
             name="$ctrl.resizeInstanceForm"
+            data-ng-if="!$ctrl.instance.isLocalZone"
             data-ng-submit="$ctrl.resizeInstanceForm.$valid && $ctrl.resizeInstance()"
         >
             <fieldset data-ng-disabled="$ctrl.isLoading">
@@ -253,6 +337,62 @@
                 ></oui-button>
             </fieldset>
         </form>
+        <div data-ng-if="$ctrl.instance.isLocalZone">
+            <oui-field
+                data-label="{{ :: 'pci_projects_project_instances_instance_edit_flavor_label' | translate }}"
+            >
+                <dl class="oui-tile__definition">
+                    <dt
+                        class="oui-tile__term"
+                        data-translate="pci_projects_project_instances_instance_type_label"
+                    ></dt>
+                    <dd class="oui-tile__description">
+                        <span
+                            data-ng-bind="$ctrl.instance.flavor.name | uppercase"
+                        ></span>
+                    </dd>
+                    <dt
+                        class="oui-tile__term"
+                        data-translate="pci_projects_project_instances_instance_ram_label"
+                    ></dt>
+                    <dd class="oui-tile__description">
+                        <span
+                            data-ng-bind="$ctrl.instance.flavor.ram * 1000 * 1000 | bytes"
+                        ></span>
+                    </dd>
+                    <dt class="oui-tile__term">
+                        <span
+                            data-translate="pci_projects_project_instances_instance_cpu_label"
+                        ></span>
+                    </dt>
+                    <dd class="oui-tile__description">
+                        <span
+                            data-translate="pci_projects_project_instances_instance_cpu_value"
+                            data-translate-values="{ num : $ctrl.instance.flavor.vcpus }"
+                        ></span>
+                    </dd>
+                    <dt
+                        class="oui-tile__term"
+                        data-translate="pci_projects_project_instances_instance_storage_label"
+                    ></dt>
+                    <dd class="oui-tile__description">
+                        <span
+                            data-ng-bind="$ctrl.instance.flavor.disk * 1024 * 1024 * 1024 | bytes:2:'true'"
+                        ></span>
+                    </dd>
+                    <dt
+                        class="oui-tile__term"
+                        data-translate="pci_projects_project_instances_instance_bandwidth_label"
+                    ></dt>
+                    <dd class="oui-tile__description">
+                        <span
+                            data-translate="pci_projects_project_instances_instance_bandwidth_value"
+                            data-translate-values="{ bandwidth : $ctrl.instance.flavor.outboundBandwidth }"
+                        ></span>
+                    </dd>
+                </dl>
+            </oui-field>
+        </div>
     </div>
 
     <div
@@ -295,6 +435,8 @@
                         data-flavor="$ctrl.defaultFlavor"
                         data-monthly-billing="$ctrl.editInstance.monthlyBilling"
                         data-disabled="$ctrl.instance.isMonthlyBillingActivated()"
+                        data-is-local-zone="$ctrl.instance.isLocalZone"
+                        data-hourly-price-information="$ctrl.hourlyPriceInformation"
                     >
                     </pci-project-flavor-billing>
                 </oui-field>
@@ -304,6 +446,7 @@
                 ></cui-message-container>
 
                 <oui-button
+                    data-ng-if="!$ctrl.instance.isLocalZone"
                     data-variant="primary"
                     data-type="submit"
                     data-disabled="$ctrl.editInstance.monthlyBilling === $ctrl.instance.isMonthlyBillingActivated()"
