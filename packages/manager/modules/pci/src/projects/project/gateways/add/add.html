@@ -1,10 +1,4 @@
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
-
-<pci-activate-project-banner
-    data-ng-if="$ctrl.isDiscoveryProject"
-    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
-></pci-activate-project-banner>
-
 <div data-ui-view>
     <oui-back-button data-on-click="$ctrl.onGoBackClick()"> </oui-back-button>
     <oui-header
@@ -26,6 +20,7 @@
             </oui-guide-menu-item>
         </oui-guide-menu>
     </oui-header>
+
     <p
         data-translate="pci_projects_project_public_gateways_add_description1"
     ></p>
@@ -55,6 +50,10 @@
 <div data-ng-if="$ctrl.loadingDefaultValues">
     <oui-spinner size="s"></oui-spinner>
 </div>
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+></pci-activate-project-banner>
 <oui-stepper
     data-on-finish="$ctrl.add()"
     data-ng-if="!$ctrl.loadingDefaultValues"
