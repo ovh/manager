@@ -7,7 +7,9 @@
 
     <!-- error -->
     <cui-message-container
+        class="sticky-top"
         data-messages="$ctrl.message.list"
+        data-dismissable-types="['info', 'success', 'warning', 'error']"
     ></cui-message-container>
 
     <oui-message type="info" data-ng-if="$ctrl.isCheckingPaymentMethod">
