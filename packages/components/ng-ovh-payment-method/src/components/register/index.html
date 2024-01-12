@@ -88,11 +88,7 @@
                 data-ng-if="$ctrl.registeredPaymentMethods.length === 0 && $ctrl.automaticDefault"
                 data-translate="ovh_payment_method_register_force_as_default"
             ></p>
-            <oui-field
-                data-error-messages="{
-                    required: ('ovh_payment_method_register_set_as_default_choice_required' | translate)
-                }"
-            >
+            <oui-field>
                 <oui-checkbox
                     name="setAsDefault"
                     data-model="$ctrl.model.setAsDefault"
@@ -134,11 +130,7 @@
                 ></span>
             </p>
 
-            <oui-field
-                data-error-messages="{
-                    required: ('ovh_payment_method_register_set_as_default_choice_required' | translate)
-                }"
-            >
+            <oui-field>
                 <oui-checkbox
                     name="setAsDefault"
                     class="mb-3"
