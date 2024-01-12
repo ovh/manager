@@ -7,7 +7,7 @@ const COMMIT_RECOMMIT_IMPRESSION_TRACKING_DATA = {
   campaignId: '[commit-recommit]',
   creation: '[batch2]',
   format: '[link]',
-  generalPlacement: '[dedicated-server]',
+  generalPlacement: '[dedicated-server-node]',
   detailedPlacement: '[commitment]',
 };
 

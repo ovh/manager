@@ -14,6 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
+      serverIsNode: () => true,
       bandwidthInformations: /* @ngInject */ (
         $q,
         $stateParams,
