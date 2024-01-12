@@ -15,7 +15,7 @@ function H2({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
 
 function H3({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
   const baseClassName =
-    'mt-8 scroll-m-20 text-2xl font-semibold tracking-tight';
+    'mt-8 scroll-m-20 text-2xl font-semibold tracking-tight mb-2';
   return <h3 className={cn(baseClassName, className)} {...props} />;
 }
 
