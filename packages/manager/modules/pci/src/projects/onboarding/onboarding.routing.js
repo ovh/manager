@@ -11,19 +11,18 @@ export default /* @ngInject */ ($stateProvider) => {
       const [$q, publicCloud] = ['$q', 'publicCloud'].map((token) =>
         transition.injector().get(token),
       );
-      return publicCloud
-        .getUnpaidProjects()
-        .then((unPaidProjects) => {
-          if (unPaidProjects.length) {
-            return 'pci.projects';
-          }
-          return $q.all({
-            discoveryProjectId: publicCloud.getDiscoveryProject(),
-            defaultProjectId: publicCloud.getDefaultProject(),
-          });
+      return $q
+        .all({
+          discoveryProjectId: publicCloud.getDiscoveryProject(),
+          defaultProjectId: publicCloud.getDefaultProject(),
+          unPaidProjects: publicCloud.getUnpaidProjects(),
         })
-        .then(({ discoveryProjectId, defaultProjectId }) => {
+        .then(({ discoveryProjectId, defaultProjectId, unPaidProjects }) => {
           const projectId = discoveryProjectId || defaultProjectId;
+
+          if (unPaidProjects.length) {
+            return { state: 'pci.projects' };
+          }
           if (projectId) {
             return { state: 'pci.projects.project', params: { projectId } };
           }
@@ -31,33 +30,37 @@ export default /* @ngInject */ ($stateProvider) => {
         });
     },
     resolve: {
-      goToCreateNewProject: /* @ngInject */ ($state) => () =>
-        $state.go('pci.projects.new'),
-
       goToCreateDiscoveryProject: /* @ngInject */ ($state) => () =>
         $state.go('pci.projects.discovery'),
 
-      model: /* @ngInject */ (pciProjectNew, me) =>
-        pciProjectNew.createOrderCart(me.ovhSubsidiary).then((cart) => {
-          const currentDate = moment().format('YYYY-MM-DD');
-          return {
-            agreements: false,
-            description: `Project ${currentDate}`,
-            cart,
-            hds: cart?.hdsItem !== undefined,
-          };
-        }),
+      isUsRegion: /* @ngInject */ (coreConfig) =>
+        coreConfig.getRegion() === 'US',
 
-      cart: /* @ngInject */ (me, pciProjectNew) =>
-        pciProjectNew
-          .createOrderCart(me.ovhSubsidiary)
-          .then((newOrderCart) =>
-            pciProjectNew.getOrderCart(
-              me.ovhSubsidiary,
-              newOrderCart.cartId,
-              true,
-            ),
-          ),
+      model: /* @ngInject */ (pciProjectNew, me, isUsRegion) =>
+        !isUsRegion
+          ? pciProjectNew.createOrderCart(me.ovhSubsidiary).then((cart) => {
+              const currentDate = moment().format('YYYY-MM-DD');
+              return {
+                agreements: false,
+                description: `Project ${currentDate}`,
+                cart,
+                hds: cart?.hdsItem !== undefined,
+              };
+            })
+          : null,
+
+      cart: /* @ngInject */ (me, pciProjectNew, isUsRegion) =>
+        !isUsRegion
+          ? pciProjectNew
+              .createOrderCart(me.ovhSubsidiary)
+              .then((newOrderCart) =>
+                pciProjectNew.getOrderCart(
+                  me.ovhSubsidiary,
+                  newOrderCart.cartId,
+                  true,
+                ),
+              )
+          : null,
 
       setCartProjectItem: /* @ngInject */ (model, cart, pciProjectNew) => () =>
         pciProjectNew.setCartProjectItemDescription(cart, model.description),
@@ -73,10 +76,11 @@ export default /* @ngInject */ ($stateProvider) => {
         });
       },
 
-      summary: /* @ngInject */ (getSummary) => getSummary(),
+      summary: /* @ngInject */ (getSummary, isUsRegion) =>
+        !isUsRegion ? getSummary() : null,
 
       getSummary: /* @ngInject */ (cart, orderCart, setCartProjectItem) => () =>
-        setCartProjectItem().then(() => orderCart.getSummary(cart.cartId)),
+        setCartProjectItem().then(() => orderCart.getSummary(cart?.cartId)),
 
       hds: /* @ngInject */ (
         hdsAddonOption,
@@ -91,13 +95,15 @@ export default /* @ngInject */ ($stateProvider) => {
         option: hdsAddonOption,
       }),
 
-      hdsAddonOption: /* @ngInject */ (orderCart, model) =>
-        orderCart.getHdsAddon(
-          model?.cart?.cartId,
-          PCI_PROJECT_DISCOVERY_ORDER_CART.productName,
-          PCI_PROJECT_DISCOVERY_ORDER_CART.planCode,
-          PCI_HDS_ADDON.planCode,
-        ),
+      hdsAddonOption: /* @ngInject */ (orderCart, model, isUsRegion) =>
+        !isUsRegion
+          ? orderCart.getHdsAddon(
+              model?.cart?.cartId,
+              PCI_PROJECT_DISCOVERY_ORDER_CART.productName,
+              PCI_PROJECT_DISCOVERY_ORDER_CART.planCode,
+              PCI_HDS_ADDON.planCode,
+            )
+          : null,
     },
   });
 };
