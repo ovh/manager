@@ -13,6 +13,8 @@
   "octavia_load_balancer_listeners_port": "Port",
   "octavia_load_balancer_listeners_port_helper": "Port sur lequel le front end écoute. Doit être un entier compris entre 1 et 65535.",
   "octavia_load_balancer_listeners_actions_detail": "Editer",
+  "octavia_load_balancer_listeners_actions_policies": "Voir les L7 policies",
+  "octavia_load_balancer_listeners_policies_unavailable": "La gestion des L7 policies n'est disponible que pour les listeners utilisant les protocoles 'HTTP' et 'TERMINATED HTTPS'",
   "octavia_load_balancer_listeners_actions_delete": "Supprimer",
   "octavia_load_balancer_listeners_create_success": "Le nouveau listener {{ listener }} a été créé avec succès !",
   "octavia_load_balancer_listeners_edit_success": "Le listener {{ listener }} a été mis à jour avec succès !",

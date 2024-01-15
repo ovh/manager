@@ -9,8 +9,6 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: () => 'pools',
-      apiSpecifications: /* @ngInject */ (OctaviaLoadBalancerPoolsService) =>
-        OctaviaLoadBalancerPoolsService.getAPISpecifications(),
       algorithms: /* @ngInject */ (apiSpecifications, $translate) =>
         (
           apiSpecifications.models['cloud.loadbalancing.PoolAlgorithmEnum']

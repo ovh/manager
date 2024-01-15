@@ -36,6 +36,17 @@ export default /* @ngInject */ ($stateProvider) => {
           listenerId: listener.id,
         });
       },
+      goToListenerL7Policies: /* @ngInject */ ($state, trackAction) => (
+        listener,
+      ) => {
+        trackAction('policies');
+        $state.go(
+          'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.list',
+          {
+            listenerId: listener.id,
+          },
+        );
+      },
       goToListenerDeletion: /* @ngInject */ ($state, trackAction) => (
         listener,
       ) => {
@@ -45,22 +56,9 @@ export default /* @ngInject */ ($stateProvider) => {
           listenerName: listener.name,
         });
       },
-      getPoolDetailLink: /* @ngInject */ (
-        coreURLBuilder,
-        projectId,
-        region,
-        loadbalancerId,
-      ) => (listener) =>
-        coreURLBuilder.buildURL(
-          'public-cloud',
-          '#/pci/projects/:serviceName/octavia-load-balancer/:region/:loadbalancerId/pools/:poolId',
-          {
-            serviceName: projectId,
-            region,
-            loadbalancerId,
-            poolId: listener.defaultPoolId,
-          },
-        ),
+      getPoolDetailLinkFromListener: /* @ngInject */ (getPoolDetailLink) => (
+        listener,
+      ) => getPoolDetailLink(listener.defaultPoolId),
     },
     atInternet: {
       rename: `${TRACKING_NAME}::${TRACKING_SUFFIX}`,
