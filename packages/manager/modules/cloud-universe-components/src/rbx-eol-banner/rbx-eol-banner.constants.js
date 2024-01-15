@@ -43,6 +43,9 @@ export const GUIDE_LINK = {
     'https://help.ovhcloud.com/csm/es-dedicated-servers-migrate-data-between-servers?id=kb_article_view&sysparm_article=KB0043703',
 };
 
+export const IMMINENT_LINK = 'TODO';
+
 export default {
   GUIDE_LINK,
+  IMMINENT_LINK,
 };

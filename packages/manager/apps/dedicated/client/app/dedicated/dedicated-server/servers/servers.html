@@ -5,7 +5,9 @@
 
     <!-- RBX1 EOL Banner-->
     <ovh-manager-rbx-eol-banner
-        data-ng-if="$ctrl.displayRbx1EolBanner.rbx1Eol"
+        data-ng-if="$ctrl.displayRbx1EolBanner.rbx1Eol || $ctrl.displayRbx1EolBanner.rbx1ImminentEol"
+        data-display-eol-message="$ctrl.displayRbx1EolBanner.rbx1Eol"
+        data-display-imminent-eol-message="$ctrl.displayRbx1EolBanner.rbx1ImminentEol"
     ></ovh-manager-rbx-eol-banner>
 
     <ovh-manager-auto-renew-2016-deployment-banner
