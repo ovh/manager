@@ -1,26 +1,29 @@
 import React from 'react';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
+import { useTranslation } from 'react-i18next';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsMenu,
+  OsdsMenuItem,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
-import { OsdsMenu, OsdsMenuItem } from '@ovhcloud/ods-components/menu/react';
-
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { DataGridCellProps } from './ProductStatusCell';
-import { RancherService } from '@/api/api.type';
+import { RancherService, RessourceStatus } from '@/api/api.type';
 
-const ActionsCell: React.FC<
-  DataGridCellProps<undefined, RancherService> & {
-    isLoading?: boolean;
-    openModal: () => void;
-    setSelectedRancher: (rancher: RancherService) => void;
-  }
-> = ({ isLoading, rowData, openModal, setSelectedRancher }) => {
+const ActionsCell: React.FC<DataGridCellProps<undefined, RancherService> & {
+  isLoading?: boolean;
+  openModal: () => void;
+  setSelectedRancher: (rancher: RancherService) => void;
+}> = ({ isLoading, rowData, openModal, setSelectedRancher }) => {
   const editable = true;
+  const { t } = useTranslation('pci-rancher/listing');
 
   const onDelete = () => {
     setSelectedRancher(rowData);
@@ -28,7 +31,9 @@ const ActionsCell: React.FC<
   };
   return (
     <div>
-      <OsdsMenu>
+      <OsdsMenu
+        style={{ position: 'absolute', marginLeft: -10, marginTop: -15 }}
+      >
         <OsdsButton
           slot="menu-title"
           inline
@@ -46,31 +51,32 @@ const ActionsCell: React.FC<
             size={ODS_ICON_SIZE.xs}
           />
         </OsdsButton>
-        <OsdsMenuItem>
-          <OsdsButton
-            color="primary"
-            size="sm"
-            variant="ghost"
-            text-align="start"
-          >
-            <span slot="start">
-              <span>Gérer</span>
-            </span>
-          </OsdsButton>
-        </OsdsMenuItem>
+        {rowData.resourceStatus !== RessourceStatus.ERROR && (
+          <OsdsMenuItem>
+            <OsdsButton
+              color={ODS_THEME_COLOR_INTENT.primary}
+              size={ODS_BUTTON_SIZE.sm}
+              variant={ODS_BUTTON_VARIANT.ghost}
+              text-align="start"
+            >
+              <span slot="start">
+                <span>{t('manage')}</span>
+              </span>
+            </OsdsButton>
+          </OsdsMenuItem>
+        )}
         <OsdsMenuItem>
           <OsdsButton
             type={ODS_BUTTON_TYPE.button}
             size={ODS_BUTTON_SIZE.sm}
             color={ODS_THEME_COLOR_INTENT.error}
-            variant="ghost"
+            variant={ODS_BUTTON_VARIANT.ghost}
             text-align="start"
-            flex=""
             class="hydrated"
             onClick={onDelete}
           >
             <span slot="start">
-              <span>Delete</span>
+              <span>{t('delete')}</span>
             </span>
           </OsdsButton>
         </OsdsMenuItem>
