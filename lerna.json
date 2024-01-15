@@ -6,12 +6,7 @@
     "packages/manager/apps/*",
     "packages/manager/core/*",
     "packages/manager/modules/*",
-    "packages/manager/tools/*",
-    "packages/super-components",
-    "packages/super-components/components/*",
-    "packages/super-components/*",
-    "packages/super-components/components/*/react",
-    "packages/super-components/components/*/vue"
+    "packages/manager/tools/*"
   ],
   "npmClient": "yarn",
   "useWorkspaces": true,
