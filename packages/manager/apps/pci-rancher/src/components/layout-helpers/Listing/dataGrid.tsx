@@ -7,7 +7,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useHref } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 
 import { RancherService } from '@/api/api.type';
@@ -19,19 +19,16 @@ import { deleteRancherService, deleteRancherServiceQueryKey } from '@/api';
 
 interface LinkServiceInterface {
   cellData?: string;
-  onClick: (cell?: string) => void;
+  href?: string;
 }
 
 interface DatagridWrapperInterface {
   data: RancherService[];
 }
 
-function LinkService({ cellData, onClick }: LinkServiceInterface) {
+function LinkService({ cellData, href }: LinkServiceInterface) {
   return (
-    <OsdsLink
-      color={ODS_THEME_COLOR_INTENT.primary}
-      onClick={() => onClick(cellData)}
-    >
+    <OsdsLink color={ODS_THEME_COLOR_INTENT.primary} href={href}>
       {cellData}
     </OsdsLink>
   );
@@ -56,17 +53,12 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
 
   const onDeleteRancher = () => deleteRancher();
 
+  const hrefDashboard = useHref('./dashboard');
   const columns: OdsDatagridColumn[] = [
     {
       title: t('name'),
       field: 'currentState.name',
-      formatter: ReactFormatter(
-        <LinkService
-          onClick={(cellData?: string) => {
-            navigate(`/${cellData}`);
-          }}
-        />,
-      ),
+      formatter: ReactFormatter(<LinkService href={hrefDashboard} />), // TODO: Find way to useHref cause hook not work in datagrid
     },
     {
       title: t('serviceLevel'),
@@ -75,6 +67,10 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
     {
       title: t('rancherVersion'),
       field: 'targetSpec.version',
+    },
+    {
+      title: t('numberOfCpu'),
+      field: 'targetSpec.v' ?? '-', // TODO: Wait API to return cpu value
     },
     {
       title: t('status'),
