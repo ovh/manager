@@ -33,15 +33,17 @@ export const getColumns = ({
       cell: ({ row }) => {
         const { id, description } = row.original;
         return (
-          <div className="flex flex-col text-left">
+          <div className="flex flex-col flex-nowrap text-left">
             <Button
               asChild
               variant="link"
-              className="justify-normal px-0 h-auto leading-4"
+              className="justify-normal px-0 h-auto leading-4 font-semibold"
             >
               <Link to={id}>{description}</Link>
             </Button>
-            <span className="text-xs text-muted-foreground">{id}</span>
+            <span className="text-sm whitespace-nowrap">
+              {id}
+            </span>
           </div>
         );
       },
@@ -52,6 +54,17 @@ export const getColumns = ({
       header: ({ column }) => (
         <SortableHeader column={column}>Engine</SortableHeader>
       ),
+      cell: ({ row }) => {
+        const { engine } = row.original;
+        return (
+          <div className="flex gap-2 items-center">
+            <div className="w-[50px] h-[33px]">
+              <img src={`./assets/engines/${engine}.png`} />
+            </div>
+            <span className="capitalize whitespace-nowrap">{engine}</span>
+          </div>
+        );
+      },
     },
     {
       id: 'Plan',
@@ -96,7 +109,7 @@ export const getColumns = ({
       cell: ({ row }) => {
         const service = row.original;
         return (
-          <div className="grid grid-cols-3 gap-1 justify-center">
+          <div className="grid grid-cols-3 gap-1 justify-center w-fit">
             {service.nodes.map((node, i) => {
               let color = 'bg-gray-500';
               switch (node.status) {

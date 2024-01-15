@@ -32,7 +32,10 @@ export const EngineTile = ({
         <h3 className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}>
           {engine.name}
         </h3>
-        <div className="block w-16 h-10 bg-gray-100"></div>
+        <img
+          className="block w-[60px] h-[40px]"
+          src={`./assets/engines/${engine.name}.png`}
+        />
       </div>
       <p className="text-sm ">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod libero sit
