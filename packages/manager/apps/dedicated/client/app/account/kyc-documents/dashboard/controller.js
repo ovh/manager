@@ -6,13 +6,14 @@ import {
   LEGAL_FORMS,
   MAXIMUM_DOCUMENTS,
   PRIVACY_LINKS,
+  TRACKING,
 } from './constants';
 
 import illustration from './assets/picto.svg';
 
 export default class KycDocumentsCtrl {
   /* @ngInject */
-  constructor($translate, $q, $http, coreConfig) {
+  constructor($translate, $q, $http, coreConfig, atInternet) {
     this.$http = $http;
     this.$translate = $translate;
     this.$q = $q;
@@ -20,10 +21,12 @@ export default class KycDocumentsCtrl {
     this.DOCUMENT_TYPE = DOCUMENT_TYPE;
     this.maximum_documents = MAXIMUM_DOCUMENTS;
     this.FRAUD_STATUS = FRAUD_STATUS;
+    this.TRACKING = TRACKING;
     this.illustration = illustration;
     this.privacyLink =
       PRIVACY_LINKS[coreConfig.getUser().ovhSubsidiary] ||
       PRIVACY_LINKS.DEFAULT;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -72,14 +75,17 @@ export default class KycDocumentsCtrl {
   }
 
   uploadDocuments() {
+    this.trackClick(TRACKING.CTA_CONFIRM);
     this.loading = true;
     this.showModal = false;
     if (!this.form.$invalid) {
       this.getUploadDocumentsLinks(this.documents.length)
         .then(() => {
+          this.atInternet.trackPage({ name: TRACKING.UPLOAD_SUCCESS });
           this.finalizeSubmit();
         })
         .catch(() => {
+          this.atInternet.trackPage({ name: TRACKING.UPLOAD_ERROR });
           this.displayErrorBanner();
         });
     } else {
@@ -123,6 +129,7 @@ export default class KycDocumentsCtrl {
   }
 
   cancelSubmit() {
+    this.trackClick(TRACKING.CTA_CANCEL);
     this.showModal = false;
     this.loading = false;
   }
@@ -142,5 +149,17 @@ export default class KycDocumentsCtrl {
   displayErrorBanner() {
     this.loading = false;
     this.displayError = true;
+  }
+
+  trackClick(name) {
+    this.atInternet.trackClick({
+      name,
+      type: 'action',
+    });
+  }
+
+  sendDocumentClick() {
+    this.showModal = true;
+    this.trackClick(TRACKING.CTA_SEND_DOCUMENTS);
   }
 }
