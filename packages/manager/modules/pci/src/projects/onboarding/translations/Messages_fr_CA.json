@@ -1,9 +1,0 @@
-{
-  "pci_projects_onboarding_title": "Votre plateforme ouverte et réversible de Public Cloud.",
-  "pci_projects_onboarding_description1": "Adepte de la culture devops et des pratiques « cloud ready », vous exploitez votre infrastructure via des API et outils d’orchestration. Vous recherchez des solutions préinstallées ou « as-a-service », facturées à l’usage et flexibles, afin de vous concentrer sur votre cœur d’activité et ainsi accélérer votre production.",
-  "pci_projects_onboarding_description2": "Dans cet espace, vous profitez d'un large choix de services pour développer votre innovation. Ceux-ci vous permettent de vous concentrer sur vos activités à forte valeur ajoutée, en vous appuyant sur le cloud d'OVH.",
-  "pci_projects_onboarding_description3": "En structurant vos architectures par projets, vous avez la possibilité de segmenter vos déploiements cloud selon les domaines fonctionnels ou opérationnels qui vous correspondent. Vous pouvez par exemple créer un projet pour votre environnement de développement et un autre pour votre environnement de production. Il est également envisageable d’effectuer une segmentation selon le type d'application, avec un projet « back-office » et un projet « e-commerce » notamment.",
-  "pci_projects_onboarding_create_project": "Créez votre premier projet OVH Public Cloud",
-  "pci_projects_onboarding_banner_trusted_customer_info_1": "Vous souhaitez plus d’informations ou passer commande ?",
-  "pci_projects_onboarding_banner_trusted_customer_info_2": "Demandez qu’un conseiller OVHcloud vous rappelle gratuitement"
-}

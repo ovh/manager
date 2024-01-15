@@ -14,6 +14,7 @@ export default {
     getSummary: '<',
     setCartProjectItem: '<',
     onCartFinalized: '<',
+    isUsRegion: '<',
   },
   controller,
   template,
