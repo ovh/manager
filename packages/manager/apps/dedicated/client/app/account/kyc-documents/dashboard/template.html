@@ -113,7 +113,7 @@
                 <oui-form-actions
                     class="mt-5"
                     data-disabled="$ctrl.form.$invalid || !$ctrl.documents || $ctrl.documents.length === 0 || $ctrl.documents.length > $ctrl.maximum_documents || $ctrl.isDisabled "
-                    data-on-submit="$ctrl.showModal = true"
+                    data-on-submit="$ctrl.sendDocumentClick()"
                     data-submit-text="{{:: 'documents_dashboard_cta_send' | translate}}"
                 ></oui-form-actions>
             </form>
@@ -145,6 +145,7 @@
                     class="oui-button oui-button_primary oui-button_l text-light"
                     href="{{:: $ctrl.hubLink }}"
                     rel="noopener"
+                    data-ng-click="$ctrl.trackClick($ctrl.TRACKING.CTA_DASHBOARD)"
                 >
                     <span
                         data-translate="documents_dashboard_submit_success_cta"
