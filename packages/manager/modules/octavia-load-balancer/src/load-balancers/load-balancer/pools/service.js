@@ -62,8 +62,4 @@ export default class OctaviaLoadBalancerPoolsService {
       },
     );
   }
-
-  getAPISpecifications() {
-    return this.$http.get(`/cloud.json`).then(({ data }) => data);
-  }
 }
