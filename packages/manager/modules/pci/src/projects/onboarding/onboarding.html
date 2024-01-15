@@ -1,4 +1,62 @@
-<div class="pci_projects_onboarding w-100 h-100" style="overflow: auto;">
+<div
+    ng-if="$ctrl.isUsRegion"
+    class="pci_projects_onboarding_us w-100 h-100"
+    style="overflow: auto;"
+>
+    <!--Trusted zone badge-->
+    <div class="text-center mt-3">
+        <ovh-manager-trusted-nic-label
+            data-ng-if="$ctrl.isTrustedZone"
+        ></ovh-manager-trusted-nic-label>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 p-5">
+            <account-migration-notification></account-migration-notification>
+            <h1 data-translate="pci_projects_onboarding_us_title"></h1>
+            <p data-translate="pci_projects_onboarding_us_description1"></p>
+            <p data-translate="pci_projects_onboarding_us_description2"></p>
+            <p data-translate="pci_projects_onboarding_us_description3"></p>
+
+            <!--Create a project-->
+            <a
+                data-ng-if="!$ctrl.isTrustedZone"
+                class="oui-button oui-button_primary"
+                data-ui-sref="pci.projects.new"
+                data-track-on="click"
+                data-track-name="PCI_PROJECTS_ONBOARDING_us_NEW_PROJECT"
+                data-track-type="navigation"
+            >
+                <span
+                    data-translate="pci_projects_onboarding_us_create_project"
+                ></span>
+            </a>
+
+            <!--Call customer-->
+            <div data-ng-if="$ctrl.isTrustedZone">
+                <p
+                    class="m-0 font-weight-bold"
+                    data-translate="pci_projects_onboarding_us_banner_trusted_customer_info_1"
+                ></p>
+                <p
+                    class="m-0 font-weight-bold"
+                    data-translate="pci_projects_onboarding_us_banner_trusted_customer_info_2"
+                ></p>
+            </div>
+        </div>
+    </div>
+    <img
+        class="d-none d-lg-block"
+        data-ng-src="{{ $ctrl.illustrationUs }}"
+        alt=""
+    />
+</div>
+
+<div
+    ng-if="!$ctrl.isUsRegion"
+    class="pci_projects_onboarding w-100 h-100"
+    style="overflow: auto;"
+>
     <!--Trusted zone badge-->
     <div class="text-center mt-3">
         <ovh-manager-trusted-nic-label
@@ -36,7 +94,7 @@
             <oui-button
                 variant="primary"
                 data-ng-if="!$ctrl.isTrustedZone"
-                data-on-click="$ctrl.onCreateProjectClick()"
+                data-on-click="$ctrl.onCreateDiscoveryProjectClick()"
                 disabled="!$ctrl.model.agreements || $ctrl.isLoading"
             >
                 <span

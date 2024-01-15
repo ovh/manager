@@ -9,6 +9,7 @@ import routing from './onboarding.routing';
 import orderCart from '../order-cart.service'; // TODO remove it
 import service from '../new/service';
 import component from './onboarding.component';
+import './onboarding.less';
 
 const moduleName = 'ovhManagerPciProjectsOnboarding';
 
