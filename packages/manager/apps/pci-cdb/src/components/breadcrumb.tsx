@@ -18,7 +18,10 @@ const Breadcrumb = () => {
     params: Params<string>;
     data: unknown;
     handle: {
-      breadcrumb?: (params: Params<string>, data: unknown) => string | ReactElement;
+      breadcrumb?: (
+        params: Params<string>,
+        data: unknown,
+      ) => string | ReactElement;
     };
   }[];
 
@@ -36,9 +39,9 @@ const Breadcrumb = () => {
 
   const currentUrl = location.pathname.replace(/\/$/, '');
   const getBreadcrumbElement = (breadcrumb: BreadcrumbItem) => {
-    if (typeof breadcrumb.name === 'string') return (t(breadcrumb.name));
+    if (typeof breadcrumb.name === 'string') return t(breadcrumb.name);
     return breadcrumb.name;
-  } 
+  };
   return (
     <div>
       <nav>

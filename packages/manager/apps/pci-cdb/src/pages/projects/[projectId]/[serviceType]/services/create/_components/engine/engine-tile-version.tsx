@@ -20,17 +20,33 @@ import { Version } from '@/models/dto/OrderFunnel';
 interface VersionSelectorProps {
   versions: Version[];
   selectedVersion: Version;
+  isEngineSelected: boolean;
   onChange: (version: Version) => void;
 }
 const VersionSelector = ({
   versions,
   selectedVersion,
+  isEngineSelected,
   onChange,
 }: VersionSelectorProps) => {
   const [open, setOpen] = useState(false);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
+      <div className="hidden">
+        {versions.map((engineVersion) => (
+          <input
+            type="radio"
+            name="version-select"
+            value={engineVersion.name}
+            key={engineVersion.name}
+            readOnly
+            checked={
+              isEngineSelected && engineVersion.name === selectedVersion.name
+            }
+          />
+        ))}
+      </div>
       <PopoverTrigger asChild>
         <Button
           disabled={versions.length === 1}

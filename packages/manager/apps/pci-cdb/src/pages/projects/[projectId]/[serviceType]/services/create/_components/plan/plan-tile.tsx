@@ -12,6 +12,7 @@ export const PlanTile = ({
 }) => {
   return (
     <RadioTile
+      name="plan-select"
       onChange={() => onChange(plan.name)}
       value={plan.name}
       checked={selected}

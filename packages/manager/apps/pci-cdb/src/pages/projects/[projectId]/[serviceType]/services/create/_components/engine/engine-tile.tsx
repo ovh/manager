@@ -24,6 +24,7 @@ export const EngineTile = ({
 
   return (
     <RadioTile
+      name="engine-select"
       onChange={handleEngineClick}
       value={engine.name}
       checked={selected}
@@ -45,6 +46,7 @@ export const EngineTile = ({
       <VersionSelector
         versions={engine.versions}
         selectedVersion={selectedVersion}
+        isEngineSelected={selected}
         onChange={setSelectedVersion}
       />
     </RadioTile>

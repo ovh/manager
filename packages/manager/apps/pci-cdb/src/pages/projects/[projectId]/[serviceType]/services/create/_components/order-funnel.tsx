@@ -1,12 +1,10 @@
-import { FormEvent } from 'react';
+import { FormEvent, useState } from 'react';
 import { toast } from 'sonner';
 import { AvailabilityWithType } from '..';
 import { Button } from '@/components/ui/button';
 import { useAvailabilities } from '@/hooks/useAvailabilities';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
-import { useVrack } from '@/hooks/useVrack';
-import { Network } from '@/models/vrack';
-import { Skeleton } from '@/components/ui/skeleton';
+import { NetworkTypeEnum } from '@/models/vrack';
 import { database } from '@/models/database';
 import { Engine, Version } from '@/models/dto/OrderFunnel';
 import PlanTile from './plan/plan-tile';
@@ -22,6 +20,9 @@ import {
 } from '@/components/ui/card';
 import RegionsSelect from './region/regions-select';
 import FlavorsSelect from './flavor/flavors-select';
+import NetworkOptions from './cluster-options/network-options';
+import NodesConfig from './cluster-config/nodes-config';
+import StorageConfig from './cluster-config/storage-config';
 
 const OrderFunnel = ({
   availabilities,
@@ -32,10 +33,15 @@ const OrderFunnel = ({
 }) => {
   const { projectId } = useRequiredParams<{ projectId: string }>();
   const model = useAvailabilities(availabilities, capabilities);
-  const vrack = useVrack(projectId, model.region);
+  const [networkType, setNetworkType] = useState<NetworkTypeEnum>(
+    NetworkTypeEnum.public,
+  );
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const formProps = Object.fromEntries(formData);
+    console.log(formProps);
     toast('Deployment in progress', {
       description: <span>{new Date().toDateString()}</span>,
     });
@@ -109,66 +115,21 @@ const OrderFunnel = ({
             selectedFlavor={model.flavor}
             onChange={(newFlavor) => model.setFlavor(newFlavor)}
           />
+          <H3>Cluster config</H3>
+          {model.availability && (
+            <div className="flex flex-col gap-4">
+              <NodesConfig availability={model.availability} />
+              <StorageConfig availability={model.availability} />
+            </div>
+          )}
 
           <H3>Options</H3>
-          <div>
-            {vrack.networkQuery.isLoading && (
-              <div className="flex items-center mb-2">
-                <label className="mr-2">Network:</label>
-                <Skeleton className="h-10 w-32" />
-              </div>
-            )}
-            {vrack.networkQuery.isSuccess &&
-              (vrack.networks.length > 0 ? (
-                <div className="flex items-center mb-2">
-                  <label className="mr-2">Network:</label>
-                  <select
-                    className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 justify-between"
-                    value={vrack.selectedNetwork}
-                    onChange={(event) =>
-                      vrack.setSelectedNetwork(event.target.value)
-                    }
-                  >
-                    {vrack.networks.map((network: Network, index: number) => (
-                      <option key={index} value={network.id}>
-                        {network.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              ) : (
-                <p>You don't have a network for this region</p>
-              ))}
-          </div>
-          <div>
-            {vrack.subnetQuery.isLoading && (
-              <div className="flex items-center mb-2">
-                <label className="mr-2">Subnet:</label>
-                <Skeleton className="h-10 w-32" />
-              </div>
-            )}
-            {vrack.subnetQuery.isSuccess &&
-              (vrack.subnets.length > 0 ? (
-                <div className="flex items-center mb-2">
-                  <label className="mr-2">Subnet:</label>
-                  <select
-                    className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 justify-between"
-                    value={vrack.selectedSubnet}
-                    onChange={(event) =>
-                      vrack.setSelectedSubnet(event.target.value)
-                    }
-                  >
-                    {vrack.subnets.map((subnet, index) => (
-                      <option key={index} value={subnet.id}>
-                        {subnet.cidr}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              ) : (
-                <p>You don't have a subnet for this region</p>
-              ))}
-          </div>
+          <NetworkOptions
+            projectId={projectId}
+            region={model.region}
+            networkType={networkType}
+            onNetworkTypeChange={(newNetwork) => setNetworkType(newNetwork)}
+          />
           <Button>Submit</Button>
         </div>
 

@@ -49,12 +49,19 @@ const RegionsSelect = ({
           )
           .map((region) => (
             <RadioTile
+              name="region-select"
               key={region.name}
               onChange={() => onChange(region.name)}
               value={region.name}
               checked={region.name === selectedRegion}
             >
-              {region.name}
+              <span
+                className={`${
+                  region.name === selectedRegion ? 'font-bold' : ''
+                }`}
+              >
+                {region.name}
+              </span>
             </RadioTile>
           ))}
       </div>
