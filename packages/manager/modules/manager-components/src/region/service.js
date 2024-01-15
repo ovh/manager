@@ -8,7 +8,28 @@ export default class ovhManagerRegionService {
   }
 
   static getMacroRegion(region) {
-    const macro = /[\D]{2,3}/.exec(region);
+    const localZonePattern = /^lz/i;
+    let macro;
+    if (
+      localZonePattern.test(
+        region
+          .split('-')
+          ?.slice(2)
+          ?.join('-'),
+      )
+    ) {
+      // The pattern for local zone is <geo_location>-LZ-<datacenter>-<letter>
+      // geo_location is EU-WEST, EU-SOUTH, maybe ASIA-WEST in the future
+      // datacenter: MAD, BRU
+      macro = /[\D]{2,3}/.exec(
+        region
+          .split('-')
+          ?.slice(3)
+          ?.join('-'),
+      );
+    } else {
+      macro = /[\D]{2,3}/.exec(region);
+    }
     return macro ? macro[0].replace('-', '').toUpperCase() : '';
   }
 
