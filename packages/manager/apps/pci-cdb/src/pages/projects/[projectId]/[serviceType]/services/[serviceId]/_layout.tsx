@@ -4,8 +4,26 @@ import { H2 } from '@/components/typography';
 import { useGetService } from '@/hooks/api/useGetService';
 import TabsMenu from '@/components/tabs-menu';
 
+const ServiceBreadcrumb = ({
+  projectId,
+  serviceId,
+}: {
+  projectId: string;
+  serviceId: string;
+}) => {
+  const serviceQuery = useGetService(projectId, serviceId);
+  return serviceQuery.data?.description ?? serviceId;
+};
+
 export const Handle = {
-  breadcrumb: (params: { serviceId: string }) => params.serviceId,
+  breadcrumb: (params: { projectId: string; serviceId: string }) => {
+    return (
+      <ServiceBreadcrumb
+        projectId={params.projectId}
+        serviceId={params.serviceId}
+      />
+    );
+  },
 };
 
 export default function ServiceLayout() {

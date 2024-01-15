@@ -1,11 +1,11 @@
 import { Home } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, Params, useLocation, useMatches } from 'react-router-dom';
 
 interface BreadcrumbItem {
   path: string;
-  name: string;
+  name: string | ReactElement;
 }
 
 const Breadcrumb = () => {
@@ -18,7 +18,7 @@ const Breadcrumb = () => {
     params: Params<string>;
     data: unknown;
     handle: {
-      breadcrumb?: (params: Params<string>, data: unknown) => string;
+      breadcrumb?: (params: Params<string>, data: unknown) => string | ReactElement;
     };
   }[];
 
@@ -35,6 +35,10 @@ const Breadcrumb = () => {
   }, [location.pathname]);
 
   const currentUrl = location.pathname.replace(/\/$/, '');
+  const getBreadcrumbElement = (breadcrumb: BreadcrumbItem) => {
+    if (typeof breadcrumb.name === 'string') return (t(breadcrumb.name));
+    return breadcrumb.name;
+  } 
   return (
     <div>
       <nav>
@@ -45,7 +49,7 @@ const Breadcrumb = () => {
               {currentUrl === breadcrumb.path ? (
                 <span className="flex items-center gap-2 whitespace-nowrap">
                   {index === 0 && <Home className="w-4 h-4" />}{' '}
-                  {t(breadcrumb.name)}
+                  {getBreadcrumbElement(breadcrumb)}
                 </span>
               ) : (
                 <Link
@@ -53,7 +57,7 @@ const Breadcrumb = () => {
                   className="text-blue-500 hover:underline flex items-center gap-2 whitespace-nowrap"
                 >
                   {index === 0 && <Home className="w-4 h-4" />}{' '}
-                  {t(breadcrumb.name)}
+                  {getBreadcrumbElement(breadcrumb)}
                 </Link>
               )}
             </li>
