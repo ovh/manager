@@ -231,7 +231,7 @@ export default class PciProjectNewVoucherCtrl {
   initVoucherForProjectActivation() {
     if (this.discoveryPromotionVoucherAmount) {
       this.model.voucher.setValue(DISCOVERY_PROMOTION_VOUCHER);
-      this.setVoucherFormState();
+      this.model.voucher.valid = null;
     }
   }
 
