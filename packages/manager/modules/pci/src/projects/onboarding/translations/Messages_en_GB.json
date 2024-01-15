@@ -1,9 +1,0 @@
-{
-  "pci_projects_onboarding_title": "Your open and reversible Public Cloud platform",
-  "pci_projects_onboarding_description1": "Familiar with devops culture and the importance of being “cloud ready”, we let you manage your environment via various standard APIs and orchestration tools. You will find preinstalled or “as-a-service” solutions, with flexible, pay-as-you-go billing, so you can focus on your projects. ",
-  "pci_projects_onboarding_description2": "Here you will find a large range of services to help you innovate. Rely on the OVH cloud and focus on your high-value projects. ",
-  "pci_projects_onboarding_description3": "By separating your work into various projects, you can segment your cloud deployments into the corresponding functional and operational projects. For example, you can create a project for a development environment or another for your production environment. You could also segment according to application type, with a “back-office” and an “ecommerce” project.  ",
-  "pci_projects_onboarding_create_project": "Create your first OVH Public Cloud project",
-  "pci_projects_onboarding_banner_trusted_customer_info_1": "Need more information, or want to place an order?",
-  "pci_projects_onboarding_banner_trusted_customer_info_2": "You can request a free callback from an OVHcloud advisor."
-}
