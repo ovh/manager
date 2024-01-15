@@ -1,5 +1,15 @@
 export const MAXIMUM_SIZE = 10000000;
 export const MAXIMUM_DOCUMENTS = 10;
+const TRACKING_DOCUMENTS = 'dedicated::account::my-documents';
+export const TRACKING = {
+  DOCUMENTS: TRACKING_DOCUMENTS,
+  CTA_SEND_DOCUMENTS: `${TRACKING_DOCUMENTS}::upload`,
+  CTA_CONFIRM: `${TRACKING_DOCUMENTS}::upload-confirm`,
+  CTA_CANCEL: `${TRACKING_DOCUMENTS}::upload-cancel`,
+  UPLOAD_SUCCESS: `${TRACKING_DOCUMENTS}::upload-success`,
+  UPLOAD_ERROR: `${TRACKING_DOCUMENTS}::upload-error`,
+  CTA_DASHBOARD: `${TRACKING_DOCUMENTS}::goto-hub`,
+};
 
 export const DOCUMENT_TYPE = {
   ID: 'ID',
