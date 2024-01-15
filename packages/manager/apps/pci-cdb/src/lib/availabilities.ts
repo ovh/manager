@@ -153,6 +153,8 @@ export function createTree(
       treeFlavor = {
         name: curr.flavor,
         storage: curr.specifications.storage,
+        ram: flavorSpec?.specifications.memory,
+        vcores: flavorSpec?.specifications.core,
       };
       treeRegion.flavors.push(treeFlavor);
     }

@@ -41,9 +41,7 @@ export const getColumns = ({
             >
               <Link to={id}>{description}</Link>
             </Button>
-            <span className="text-sm whitespace-nowrap">
-              {id}
-            </span>
+            <span className="text-sm whitespace-nowrap">{id}</span>
           </div>
         );
       },

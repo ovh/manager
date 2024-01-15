@@ -42,7 +42,7 @@ export interface Region {
 export interface Flavor {
   name: string;
   vcores?: number;
-  ram?: number;
+  ram?: { unit: string; value: number };
   storage?: {
     minimum: { unit: string; value: number };
     maximum: { unit: string; value: number };

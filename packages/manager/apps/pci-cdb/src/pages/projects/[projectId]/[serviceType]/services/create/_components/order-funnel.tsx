@@ -8,7 +8,7 @@ import { useVrack } from '@/hooks/useVrack';
 import { Network } from '@/models/vrack';
 import { Skeleton } from '@/components/ui/skeleton';
 import { database } from '@/models/database';
-import { Engine, Flavor, Region, Version } from '@/models/dto/OrderFunnel';
+import { Engine, Version } from '@/models/dto/OrderFunnel';
 import PlanTile from './plan/plan-tile';
 import EngineTile from './engine/engine-tile';
 import { H3 } from '@/components/typography';
@@ -21,6 +21,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import RegionsSelect from './region/regions-select';
+import FlavorsSelect from './flavor/flavors-select';
 
 const OrderFunnel = ({
   availabilities,
@@ -102,21 +103,14 @@ const OrderFunnel = ({
             onChange={(newRegion) => model.setRegion(newRegion)}
           />
 
-          <div className="flex items-center mb-2">
-            <label className="mr-2">Flavor:</label>
-            <select
-              className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 justify-between"
-              value={model.flavor}
-              onChange={(event) => model.setFlavor(event.target.value)}
-            >
-              {model.listFlavors &&
-                model.listFlavors.map((flavor: Flavor, index: number) => (
-                  <option key={index} value={flavor.name}>
-                    {flavor.name}
-                  </option>
-                ))}
-            </select>
-          </div>
+          <H3>Flavor</H3>
+          <FlavorsSelect
+            listFlavors={model.listFlavors}
+            selectedFlavor={model.flavor}
+            onChange={(newFlavor) => model.setFlavor(newFlavor)}
+          />
+
+          <H3>Options</H3>
           <div>
             {vrack.networkQuery.isLoading && (
               <div className="flex items-center mb-2">
