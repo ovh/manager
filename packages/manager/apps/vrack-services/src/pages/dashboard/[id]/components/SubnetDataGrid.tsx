@@ -1,9 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsDatagrid } from '@ovhcloud/ods-components/datagrid/react';
-import { OdsDatagridColumn } from '@ovhcloud/ods-components/datagrid';
+import { OsdsDatagrid } from '@ovhcloud/ods-components/react';
+import { OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { useParams } from 'react-router-dom';
+import { useShell } from '@ovh-ux/manager-react-core-application';
 import { reactFormatter } from '@/utils/ods-utils';
 import { DisplayNameCell, ActionsCell, CidrCell } from './SubnetDataGridCells';
 import { ErrorPage } from '@/components/Error';
@@ -16,11 +17,14 @@ export const SubnetDatagrid: React.FC = () => {
     string | undefined
   >(undefined);
   const { id } = useParams();
+  const shell = useShell();
 
   const { data: vrackServices, isError, error } = useVrackService();
   const { updateVS, isPending, updateError } = useUpdateVrackServices({
     key: id,
-    onSuccess: () => setOpenedDeleteModal(''),
+    onSuccess: () => {
+      setOpenedDeleteModal('');
+    },
   });
 
   const columns: OdsDatagridColumn[] = [
@@ -29,7 +33,11 @@ export const SubnetDatagrid: React.FC = () => {
       field: 'displayName',
       isSortable: true,
       formatter: reactFormatter(
-        <DisplayNameCell updateVS={updateVS} vrackServices={vrackServices} />,
+        <DisplayNameCell
+          updateVS={updateVS}
+          vrackServices={vrackServices}
+          trackEvent={shell.tracking.trackEvent as any}
+        />,
       ),
     },
     {
@@ -80,17 +88,36 @@ export const SubnetDatagrid: React.FC = () => {
         deleteInputLabel={t('modalDeleteInputLabel')}
         headline={t('modalDeleteHeadline')}
         description={t('modalDeleteDescription')}
+        cancelButtonDataTracking="vrack-services::subnets::delete::cancel"
+        confirmButtonDataTracking="vrack-services::subnets::delete::confirm"
+        onDisplayDataTracking="vrack-services::subnets::delete"
         onConfirmDelete={() =>
-          updateVS({
-            checksum: vrackServices?.checksum,
-            vrackServicesId: vrackServices?.id,
-            targetSpec: {
-              displayName: vrackServices?.currentState.displayName,
-              subnets: vrackServices?.currentState.subnets.filter(
-                (subnet) => subnet.cidr !== openedDeleteModal,
-              ),
+          updateVS(
+            {
+              checksum: vrackServices?.checksum,
+              vrackServicesId: vrackServices?.id,
+              targetSpec: {
+                displayName: vrackServices?.currentState.displayName,
+                subnets: vrackServices?.currentState.subnets.filter(
+                  (subnet) => subnet.cidr !== openedDeleteModal,
+                ),
+              },
             },
-          })
+            {
+              onSuccess: () => {
+                shell.tracking.trackEvent({
+                  name: 'vrack-services::subnets::delete-success',
+                  level2: '',
+                });
+              },
+              onError: () => {
+                shell.tracking.trackEvent({
+                  name: 'vrack-services::subnets::delete-error',
+                  level2: '',
+                });
+              },
+            },
+          )
         }
         error={updateError}
         isLoading={isPending}

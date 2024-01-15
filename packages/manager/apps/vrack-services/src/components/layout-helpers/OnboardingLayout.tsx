@@ -1,14 +1,14 @@
 import React from 'react';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
+import { OsdsIcon, OsdsText, OsdsButton } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { PageLayout } from './PageLayout';
 import { handleClick } from '@/utils/ods-utils';
 
@@ -23,6 +23,7 @@ export type OnboardingLayoutProps = React.PropsWithChildren<{
   primaryOnClick?: () => void;
   primaryButtonSize?: ODS_BUTTON_SIZE;
   primaryButtonDisabled?: boolean;
+  primaryButtonDataTracking?: string;
   secondaryButtonLabel?: string;
   secondaryHref?: string;
   secondaryOnClick?: () => void;
@@ -30,6 +31,7 @@ export type OnboardingLayoutProps = React.PropsWithChildren<{
   secondaryButtonSize?: ODS_BUTTON_SIZE;
   secondaryButtonIconPosition?: 'start' | 'end';
   secondaryButtonDisabled?: boolean;
+  secondaryButtonDataTracking?: string;
   noBreadcrumb?: boolean;
 }>;
 
@@ -44,6 +46,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   primaryOnClick,
   primaryButtonSize = ODS_BUTTON_SIZE.md,
   primaryButtonDisabled,
+  primaryButtonDataTracking,
   secondaryButtonLabel,
   secondaryHref,
   secondaryOnClick,
@@ -51,6 +54,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   secondaryButtonSize = ODS_BUTTON_SIZE.md,
   secondaryButtonIconPosition = 'end',
   secondaryButtonDisabled,
+  secondaryButtonDataTracking,
   noBreadcrumb,
   children,
 }) => {
@@ -99,6 +103,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
                 color={ODS_THEME_COLOR_INTENT.primary}
                 size={primaryButtonSize}
                 href={primaryHref}
+                data-tracking={primaryButtonDataTracking}
                 {...(primaryOnClick ? handleClick(primaryOnClick) : {})}
               >
                 {primaryButtonLabel}
@@ -112,6 +117,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
                 variant={ODS_BUTTON_VARIANT.stroked}
                 size={secondaryButtonSize}
                 href={secondaryHref}
+                data-tracking={secondaryButtonDataTracking}
                 {...(secondaryOnClick ? handleClick(secondaryOnClick) : {})}
               >
                 {secondaryButtonLabel}

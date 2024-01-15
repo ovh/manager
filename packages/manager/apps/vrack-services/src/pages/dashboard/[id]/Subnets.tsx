@@ -1,19 +1,23 @@
 import React from 'react';
 import i18next from 'i18next';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import {
+  ODS_SPINNER_SIZE,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
-import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
+  ODS_MESSAGE_TYPE,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
+import {
+  OsdsMessage,
+  OsdsIcon,
+  OsdsButton,
+  OsdsSpinner,
+} from '@ovhcloud/ods-components/react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
+import { useShell } from '@ovh-ux/manager-react-core-application';
 import { OnboardingLayout } from '@/components/layout-helpers/OnboardingLayout';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { isEditable, useVrackService } from '@/utils/vs-utils';
@@ -30,9 +34,16 @@ const Subnets: React.FC = () => {
   const { data: vrackServices, error, isLoading } = useVrackService();
   const { id } = useParams();
   const navigate = useNavigate();
+  const shell = useShell();
 
   const navigateToCreateSubnetPage = () =>
     navigate(`/${id}/createsubnet`, { replace: true });
+
+  React.useEffect(() => {
+    if (!isLoading) {
+      shell.tracking.trackPage({ name: 'vrack-services::subnets', level2: '' });
+    }
+  }, [isLoading]);
 
   if (error) {
     return <ErrorPage error={error} />;
@@ -58,6 +69,7 @@ const Subnets: React.FC = () => {
         secondaryButtonSize={ODS_BUTTON_SIZE.sm}
         secondaryButtonIconPosition="start"
         secondaryButtonDisabled={!isEditable(vrackServices) || undefined}
+        secondaryButtonDataTracking="vrack-services::subnets::create-subnet"
         title={t('onboardingTitle')}
         description={t('onboardingDescription')}
         imageSrc={onboardingImgSrc}
@@ -82,6 +94,7 @@ const Subnets: React.FC = () => {
         variant={ODS_BUTTON_VARIANT.stroked}
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={navigateToCreateSubnetPage}
+        data-tracking="vrack-services::subnets::create-subnet"
       >
         {t('createSubnetButtonLabel')}
         <span slot="start">

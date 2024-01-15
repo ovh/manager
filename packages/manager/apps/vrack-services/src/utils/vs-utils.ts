@@ -78,9 +78,11 @@ export const hasSubnet = (vs?: VrackServices) =>
 export const useUpdateVrackServices = ({
   key,
   onSuccess,
+  onError,
 }: {
   key: string;
   onSuccess?: (result: ResponseData<VrackServices>) => void;
+  onError?: (result: ResponseData<Error>) => void;
 }) => {
   const [isErrorVisible, setErrorVisible] = React.useState(false);
   const queryClient = useQueryClient();
@@ -116,6 +118,7 @@ export const useUpdateVrackServices = ({
       );
       onSuccess?.(result);
     },
+    onError,
   });
 
   React.useEffect(() => {

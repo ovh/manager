@@ -1,11 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsDatagrid } from '@ovhcloud/ods-components/datagrid/react';
-import { OdsDatagridColumn } from '@ovhcloud/ods-components/datagrid';
+import { OsdsSpinner, OsdsDatagrid } from '@ovhcloud/ods-components/react';
+import { ODS_SPINNER_SIZE, OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { useParams } from 'react-router-dom';
-import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
+import { useShell } from '@ovh-ux/manager-react-core-application';
 import { reactFormatter } from '@/utils/ods-utils';
 import { ActionsCell, ServiceName } from './EndpointDataGridCells';
 import { ErrorPage } from '@/components/Error';
@@ -22,6 +21,7 @@ export const EndpointDatagrid: React.FC = () => {
     string | undefined
   >(undefined);
   const { id } = useParams();
+  const shell = useShell();
 
   const { data: vrackServices, isError, error, isLoading } = useVrackService();
   const { updateVS, isPending, updateError } = useUpdateVrackServices({
@@ -124,21 +124,40 @@ export const EndpointDatagrid: React.FC = () => {
         deleteInputLabel={t('modalDeleteInputLabel')}
         headline={t('modalDeleteHeadline')}
         description={t('modalDeleteDescription')}
+        onDisplayDataTracking="vrack-services::endpoints::delete"
+        confirmButtonDataTracking="vrack-services::endpoints::delete::confirm"
+        cancelButtonDataTracking="vrack-services::endpoints::delete::cancel"
         onConfirmDelete={() =>
-          updateVS({
-            checksum: vrackServices?.checksum,
-            vrackServicesId: vrackServices?.id,
-            targetSpec: {
-              displayName: vrackServices?.currentState.displayName,
-              subnets: vrackServices?.currentState.subnets.map((subnet) => ({
-                ...subnet,
-                serviceEndpoints: subnet.serviceEndpoints.filter(
-                  (endpoint) =>
-                    endpoint.managedServiceURN !== openedDeleteModal,
-                ),
-              })),
+          updateVS(
+            {
+              checksum: vrackServices?.checksum,
+              vrackServicesId: vrackServices?.id,
+              targetSpec: {
+                displayName: vrackServices?.currentState.displayName,
+                subnets: vrackServices?.currentState.subnets.map((subnet) => ({
+                  ...subnet,
+                  serviceEndpoints: subnet.serviceEndpoints.filter(
+                    (endpoint) =>
+                      endpoint.managedServiceURN !== openedDeleteModal,
+                  ),
+                })),
+              },
             },
-          })
+            {
+              onSuccess: async () => {
+                await shell.tracking.trackEvent({
+                  name: 'vrack-services::endpoints::delete-success',
+                  level2: '',
+                });
+              },
+              onError: async () => {
+                await shell.tracking.trackEvent({
+                  name: 'vrack-services::endpoints::delete-error',
+                  level2: '',
+                });
+              },
+            },
+          )
         }
         error={updateError}
         isLoading={isPending}

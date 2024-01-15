@@ -1,5 +1,5 @@
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
+import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { OsdsMessage } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { DetailedOrder } from '@/api';
@@ -7,6 +7,7 @@ import { DetailedOrder } from '@/api';
 export type DeliveringMessagesProps = {
   messageKey: string;
   orders?: DetailedOrder[];
+  dataTracking?: string;
 };
 
 export const DeliveringMessages: React.FC<DeliveringMessagesProps> = ({
@@ -14,6 +15,7 @@ export const DeliveringMessages: React.FC<DeliveringMessagesProps> = ({
   orders = [],
 }) => {
   const { t, i18n } = useTranslation('vrack-services');
+
   return orders.length === 0 ? (
     <></>
   ) : (

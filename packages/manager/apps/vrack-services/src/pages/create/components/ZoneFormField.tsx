@@ -1,18 +1,21 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
-import { OsdsFormField } from '@ovhcloud/ods-components/form-field/react';
-import { OsdsFlag } from '@ovhcloud/ods-components/flag/react';
-import { ODS_COUNTRY_ISO_CODE } from '@ovhcloud/ods-common-core';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
-import { OsdsTile } from '@ovhcloud/ods-components/tile/react';
-import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
 import {
+  OsdsFlag,
+  OsdsFormField,
+  OsdsSpinner,
+  OsdsTile,
   OsdsRadioGroup,
   OsdsRadio,
-} from '@ovhcloud/ods-components/radio/react';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
+import { ODS_COUNTRY_ISO_CODE } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   getvrackServicesReferenceZoneListQueryKey,
@@ -44,8 +47,6 @@ export const ZoneFormField: React.FC<Props> = ({
     queryFn: getvrackServicesReferenceZoneList,
     staleTime: Infinity,
   });
-
-  console.log({ data, isZoneLoading });
 
   return (
     <>

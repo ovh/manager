@@ -1,11 +1,9 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsDatagrid } from '@ovhcloud/ods-components/datagrid/react';
-import { OdsDatagridColumn } from '@ovhcloud/ods-components/datagrid';
+import { OsdsDatagrid, OsdsMessage } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_TYPE, OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
 import { VrackAssociationModal } from '@/components/VrackAssociationModal';
 import { reactFormatter } from '@/utils/ods-utils';
 import {

@@ -4,10 +4,10 @@ import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
+import { OsdsIcon, OsdsButton } from '@ovhcloud/ods-components/react';
 import { Endpoint, VrackServices, IAMResource } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
@@ -34,6 +34,7 @@ export const ActionsCell: React.FC<DataGridCellProps<undefined, Endpoint> & {
     type={ODS_BUTTON_TYPE.button}
     size={ODS_BUTTON_SIZE.sm}
     disabled={isLoading || !isEditable(vrackServices) || undefined}
+    data-tracking="vrack-services::endpoints::delete-endpoint"
     {...handleClick(() => openDeleteModal(rowData.managedServiceURN))}
   >
     <OsdsIcon

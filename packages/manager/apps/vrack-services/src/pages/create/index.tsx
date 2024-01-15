@@ -2,17 +2,23 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
-import { OsdsFormField } from '@ovhcloud/ods-components/form-field/react';
+import {
+  OsdsInput,
+  OsdsText,
+  OsdsFormField,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_INPUT_SIZE,
   ODS_INPUT_TYPE,
   OdsInputValueChangeEvent,
-} from '@ovhcloud/ods-components/input';
-import { OsdsInput } from '@ovhcloud/ods-components/input/react';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useAuthentication } from '@ovh-ux/manager-react-core-application';
+import {
+  useAuthentication,
+  useShell,
+} from '@ovh-ux/manager-react-core-application';
 import { CountryCode } from '@ovh-ux/manager-config';
 import {
   getvrackServicesReferenceZoneList,
@@ -46,6 +52,7 @@ const CreationPage: React.FC = () => {
   const { t } = useTranslation('vrack-services/create');
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const shell = useShell();
 
   const { isLoading: isZoneLoading, isError: hasZoneError, error } = useQuery<
     ResponseData<Zone[]>,
@@ -71,19 +78,44 @@ const CreationPage: React.FC = () => {
     mutationKey: orderVrackServicesQueryKey,
     onSuccess: async () => {
       if (shouldOrderVrack) {
-        await orderVrack({ ovhSubsidiary: subsidiary as CountryCode });
-        queryClient.invalidateQueries({
-          queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
-        });
+        try {
+          await orderVrack({ ovhSubsidiary: subsidiary as CountryCode });
+          shell.tracking.trackEvent({
+            name: 'vrack-services::add::create-vrack-success',
+            level2: '',
+          });
+          queryClient.invalidateQueries({
+            queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
+          });
+        } catch {
+          shell.tracking.trackEvent({
+            name: 'vrack-services::add::create-vrack-error',
+            level2: '',
+          });
+        }
       }
       queryClient.invalidateQueries({
         queryKey: getDeliveringOrderQueryKey(OrderDescription.vrackServices),
       });
+      await shell.tracking.trackEvent({
+        name: 'vrack-services::add-success',
+        level2: '',
+      });
       navigate('/', { replace: true });
+    },
+    onError: async () => {
+      await shell.tracking.trackEvent({
+        name: 'vrack-services::add-error',
+        level2: '',
+      });
     },
   });
 
   React.useEffect(() => {
+    shell.tracking.trackPage({
+      name: 'vrack-services::add',
+      level2: '',
+    });
     queryClient.invalidateQueries({ queryKey: orderVrackQueryKey });
     queryClient.invalidateQueries({ queryKey: orderVrackServicesQueryKey });
   }, []);
@@ -96,10 +128,12 @@ const CreationPage: React.FC = () => {
     <>
       <CreatePageLayout
         createButtonLabel={t('createButtonLabel')}
+        createButtonDataTracking={`vrack-services::add::${selectedZone}::confim`}
         formErrorMessage={t('creationServiceError', { error: vsCreationError })}
         hasFormError={isCreationError}
         goBackLinkLabel={t('goBackLinkLabel')}
         goBackUrl="/"
+        goBackLinkDataTracking="vrack-services::add::back"
         onSubmit={() => setIsModalVisible(true)}
         title={t('title')}
         isSubmitPending={isCreationPending}
@@ -134,6 +168,7 @@ const CreationPage: React.FC = () => {
         />
       </CreatePageLayout>
       <VrackConfirmModal
+        confirmDataTracking="vrack-services::add::create-vrack"
         onCancel={() => setIsModalVisible(false)}
         onDeny={() => {
           setShouldOrderVrack(false);

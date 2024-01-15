@@ -1,15 +1,19 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEnvironment } from '@ovh-ux/manager-react-core-application';
-import { MscTile } from '@ovhcloud/msc-react-tile';
-import { Locale } from '@ovhcloud/msc-utils';
-import { OsdsChip } from '@ovhcloud/ods-components/chip/react';
+import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigate } from 'react-router-dom';
 import { useGuideUtils } from '@/components/GuideLink';
 import { OnboardingLayout } from '@/components/layout-helpers';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
+
+const MscTile = (props: any) => {
+  // TODO: Replace with React Tile
+  console.log(props);
+  return <div>{props.tileTitle}</div>;
+};
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.id;
@@ -18,7 +22,7 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 export default function Onboarding() {
   const { t } = useTranslation('vrack-services/onboarding');
   const environment = useEnvironment();
-  const locale = environment.getUserLocale() as Locale;
+  const locale = environment.getUserLocale();
   const link = useGuideUtils();
   const navigate = useNavigate();
 
@@ -27,11 +31,13 @@ export default function Onboarding() {
       tileTitle: t('guide1Title'),
       tileDescription: t('guide1Description'),
       href: link?.guideLink1,
+      'data-tracking': `vrack-services::onboarding::docs::${t('guide1Title')}`,
     },
     {
       tileTitle: t('guide2Title'),
       tileDescription: t('guide2Description'),
       href: link?.guideLink2,
+      'data-tracking': `vrack-services::onboarding::docs::${t('guide2Title')}`,
     },
   ];
 
@@ -44,8 +50,10 @@ export default function Onboarding() {
       imageSrc={onboardingImgSrc}
       primaryButtonLabel={t('orderButtonLabel')}
       primaryOnClick={() => navigate('/create')}
+      primaryButtonDataTracking="vrack-services::onboarding::add"
       secondaryButtonLabel={t('moreInfoButtonLabel')}
       secondaryHref={t('moreInfoButtonLink')}
+      secondaryButtonDataTracking="vrack-services::onboarding::discover"
     >
       <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
         {tileList.map((tile) => (

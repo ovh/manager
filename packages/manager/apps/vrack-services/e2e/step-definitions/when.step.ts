@@ -13,7 +13,7 @@ import {
   modalConfirmVrackButtonLabel,
   modalNoVrackButtonLabel,
 } from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
-import { urls } from '../utils';
+import { urls, sleep } from '../utils';
 import { displayNameInputName } from '../../src/pages/create/constants';
 
 When('User navigates to vRack Services Listing page', async function(
@@ -96,6 +96,8 @@ When('User click on the link to associate a vRack', async function(
       hasText: associateVrackButtonLabel,
     })
     .all();
+
+  await sleep();
   console.log({ buttonList });
   const button = buttonList.length > 1 ? buttonList[1] : buttonList[0];
   await button.click();

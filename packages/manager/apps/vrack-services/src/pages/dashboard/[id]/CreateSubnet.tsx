@@ -3,21 +3,21 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import {
+  ODS_RADIO_BUTTON_SIZE,
   ODS_INPUT_SIZE,
   ODS_INPUT_TYPE,
   OdsInputValueChangeEvent,
-} from '@ovhcloud/ods-components/input';
-import { OsdsInput } from '@ovhcloud/ods-components/input/react';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import i18next from 'i18next';
+} from '@ovhcloud/ods-components';
 import {
+  OsdsRadioButton,
   OsdsRadio,
   OsdsRadioGroup,
-} from '@ovhcloud/ods-components/radio/react';
-import { OdsRadioGroupValueChangeEvent } from '@ovhcloud/ods-components/radio';
-import { OsdsRadioButton } from '@ovhcloud/ods-components/radio-button/react';
-import { ODS_RADIO_BUTTON_SIZE } from '@ovhcloud/ods-components/radio-button';
+  OsdsText,
+  OsdsInput,
+} from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import i18next from 'i18next';
+import { useShell } from '@ovh-ux/manager-react-core-application';
 import {
   ResponseData,
   VrackServices,
@@ -67,6 +67,7 @@ const SubnetCreationPage: React.FC = () => {
   const navigate = useNavigate();
   const vrackServices = useVrackService();
   const dashboardUrl = `/${id}/Subnets`;
+  const shell = useShell();
 
   const { mutate: createSubnet, isPending, isError, error } = useMutation<
     ResponseData<VrackServices>,
@@ -93,18 +94,32 @@ const SubnetCreationPage: React.FC = () => {
           displayName: vrackServices.data?.currentState.displayName,
         },
       }),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getListingIcebergQueryKey,
       });
-      queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceQueryKey(id),
       });
+      await shell.tracking.trackEvent({
+        name: 'vrack-services::subnets::add-success',
+        level2: '',
+      });
       navigate(dashboardUrl, { replace: true });
+    },
+    onError: async () => {
+      await shell.tracking.trackEvent({
+        name: 'vrack-services::subnets::add-error',
+        level2: '',
+      });
     },
   });
 
   React.useEffect(() => {
+    shell.tracking.trackPage({
+      name: 'vrack-services::subnets::add',
+      level2: '',
+    });
     queryClient.invalidateQueries({
       queryKey: updateVrackServicesQueryKey(getSubnetCreationMutationKey(id)),
     });
@@ -118,12 +133,14 @@ const SubnetCreationPage: React.FC = () => {
     <CreatePageLayout
       title={t('createPageTitle')}
       createButtonLabel={t('createSubnetButtonLabel')}
+      createButtonDataTracking="vrack-services::subnets::add::confirm"
       formErrorMessage={t('subnetCreationError', {
         error: error?.response.data.message,
       })}
       hasFormError={isError}
       goBackLinkLabel={t('goBackLinkLabel')}
       goBackUrl={dashboardUrl}
+      goBackLinkDataTracking="vrack-services::subnets::add::cancel"
       onSubmit={() => createSubnet()}
       isSubmitPending={isPending}
       isFormSubmittable={
@@ -185,7 +202,7 @@ const SubnetCreationPage: React.FC = () => {
           id={vlanInputName}
           name={vlanInputName}
           disabled={isPending || undefined}
-          onOdsValueChange={(event: OdsRadioGroupValueChangeEvent) => {
+          onOdsValueChange={(event) => {
             setHasVlan(event?.detail.newValue === vlanNumberOptionValue);
           }}
         >

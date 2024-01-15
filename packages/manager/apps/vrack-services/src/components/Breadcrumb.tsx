@@ -1,6 +1,6 @@
 import React from 'react';
 import { Params, useMatches } from 'react-router-dom';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/breadcrumb/react';
+import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 
 export type BreadcrumbHandleParams = {
   data: unknown;

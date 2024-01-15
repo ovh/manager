@@ -17,8 +17,10 @@ import {
   getOrderDetailsMocks,
 } from './order/order-details';
 import { GetIamMocksParams, getIamMocks } from './iam/iam';
+import { GetAuthenticationMocks, getAuthenticationMocks } from './auth/auth';
 
 export type ConfigParams = GetVrackServicesMocksParams &
+  GetAuthenticationMocks &
   GetOrderDetailsMocksParams &
   GetCartMocksParams &
   GetZoneMocksParams &
@@ -28,6 +30,7 @@ export type ConfigParams = GetVrackServicesMocksParams &
 
 export const getConfig = (params: ConfigParams): Handler[] =>
   [
+    getAuthenticationMocks,
     getVrackServicesMocks,
     getZoneMocks,
     getVracMocks,
@@ -44,7 +47,10 @@ export const getMswHandlers = (
 
 export const setupPlaywrightHandlers = async (world: ICustomWorld) =>
   Promise.all(
-    getConfig(world.handlersConfig)
+    getConfig({
+      ...((world?.handlersConfig as ConfigParams) || ({} as ConfigParams)),
+      isAuthMocked: true,
+    })
       .reverse()
       .map(toPlaywrightMockHandler(world.context)),
   );

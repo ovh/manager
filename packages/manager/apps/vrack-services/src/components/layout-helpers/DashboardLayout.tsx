@@ -6,17 +6,20 @@ import {
   useNavigate,
   useParams,
 } from 'react-router-dom';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import {
   OsdsTabs,
   OsdsTabBar,
   OsdsTabBarItem,
-} from '@ovhcloud/ods-components/tabs/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+  OsdsMessage,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
 import { PageLayout } from './PageLayout';
 import { useVrackService } from '@/utils/vs-utils';
 import { ResourceStatus, updateVrackServicesQueryKey } from '@/api';

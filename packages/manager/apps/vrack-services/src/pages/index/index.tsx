@@ -1,20 +1,24 @@
 import React from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useTranslation } from 'react-i18next';
+import {
+  OsdsText,
+  OsdsButton,
+  OsdsMessage,
+  OsdsSpinner,
+  OsdsIcon,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
-import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+  ODS_MESSAGE_TYPE,
+  ODS_SPINNER_SIZE,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   useOrderPollingStatus,
   OrderDescription,

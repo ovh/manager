@@ -1,20 +1,19 @@
 import React from 'react';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { OsdsInput } from '@ovhcloud/ods-components/input/react';
+import {
+  OsdsInput,
+  OsdsButton,
+  OsdsIcon,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_INPUT_SIZE,
   ODS_INPUT_TYPE,
   OdsInputValueChangeEvent,
-  OdsInputMethod,
-  OdsInputAttribute,
-} from '@ovhcloud/ods-components/input';
-import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { handleClick } from '@/utils/ods-utils';
 
@@ -23,6 +22,8 @@ export type EditableTextProps = React.PropsWithChildren<{
   disabled?: boolean;
   defaultValue: string;
   onEditSubmitted: (newValue: string) => Promise<void>;
+  dataTracking?: string;
+  confirmDataTracking?: string;
 }>;
 
 export type EditStatus = 'display' | 'editing' | 'loading';
@@ -33,11 +34,13 @@ export const EditableText: React.FC<EditableTextProps> = ({
   disabled,
   type = ODS_INPUT_TYPE.text,
   onEditSubmitted,
+  dataTracking,
+  confirmDataTracking,
 }) => {
   const [editStatus, setEditStatus] = React.useState<EditStatus>('display');
   const [value, setValue] = React.useState(defaultValue);
-  const submitButton = React.useRef<HTMLButtonElement>();
-  const input = React.useRef<OdsInputMethod & OdsInputAttribute>();
+  const submitButton = React.useRef<HTMLOsdsButtonElement>();
+  const input = React.useRef<HTMLOsdsInputElement>();
 
   React.useEffect(() => {
     if (editStatus === 'editing') {
@@ -87,6 +90,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
           type={ODS_BUTTON_TYPE.submit}
           size={ODS_BUTTON_SIZE.sm}
           disabled={editStatus === 'loading' || undefined}
+          data-tracking={confirmDataTracking}
         >
           <OsdsIcon
             color={ODS_THEME_COLOR_INTENT.success}
@@ -111,6 +115,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
         size={ODS_BUTTON_SIZE.sm}
         {...handleClick(() => setEditStatus('editing'))}
         disabled={disabled || undefined}
+        data-tracking={dataTracking}
       >
         <OsdsIcon
           color={ODS_THEME_COLOR_INTENT.primary}

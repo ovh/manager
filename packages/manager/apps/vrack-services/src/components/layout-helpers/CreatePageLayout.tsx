@@ -1,27 +1,32 @@
 import React from 'react';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
-import { OsdsLink } from '@ovhcloud/ods-components/link/react';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { useNavigate } from 'react-router-dom';
+import {
+  OsdsSpinner,
+  OsdsIcon,
+  OsdsText,
+  OsdsButton,
+  OsdsLink,
+  OsdsMessage,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_BUTTON_TYPE,
-} from '@ovhcloud/ods-components/button';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+  ODS_SPINNER_SIZE,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_MESSAGE_TYPE,
+} from '@ovhcloud/ods-components';
+import { useNavigate } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
-import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
 import { PageLayout } from '@/components/layout-helpers/PageLayout';
 import { handleClick } from '@/utils/ods-utils';
 
 export type CreatePageLayoutProps = React.PropsWithChildren<{
   goBackUrl: string;
   goBackLinkLabel: string;
+  goBackLinkDataTracking?: string;
   title: string;
   description?: string;
   onSubmit: React.FormEventHandler;
@@ -30,11 +35,13 @@ export type CreatePageLayoutProps = React.PropsWithChildren<{
   hasFormError?: boolean;
   formErrorMessage: string;
   createButtonLabel: string;
+  createButtonDataTracking?: string;
 }>;
 
 export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
   goBackUrl,
   goBackLinkLabel,
+  goBackLinkDataTracking,
   title,
   description,
   onSubmit,
@@ -43,6 +50,7 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
   hasFormError,
   formErrorMessage,
   createButtonLabel,
+  createButtonDataTracking,
   children,
 }) => {
   const navigate = useNavigate();
@@ -51,6 +59,7 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
       <OsdsLink
         className="block mt-4 mb-5"
         color={ODS_THEME_COLOR_INTENT.primary}
+        data-tracking={goBackLinkDataTracking}
         {...handleClick(() => navigate(goBackUrl, { replace: true }))}
       >
         <span slot="start">
@@ -95,6 +104,7 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
           color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.flat}
           size={ODS_BUTTON_SIZE.sm}
+          data-tracking={createButtonDataTracking}
         >
           {createButtonLabel}
         </OsdsButton>

@@ -5,11 +5,14 @@ import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
-import { OsdsClipboard } from '@ovhcloud/ods-components/clipboard/react';
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
+import {
+  OsdsClipboard,
+  OsdsIcon,
+  OsdsButton,
+} from '@ovhcloud/ods-components/react';
 import { EditableText } from '@/components/EditableText';
 import {
   ResponseData,
@@ -32,26 +35,45 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
 > & {
   vrackServices?: VrackServices;
   updateVS: UpdateVS;
-}> = ({ cellData, rowData, updateVS, vrackServices }) => (
+  trackEvent: (data: any) => Promise<void>;
+}> = ({ cellData, rowData, updateVS, vrackServices, trackEvent }) => (
   <EditableText
     disabled={!isEditable(vrackServices)}
     defaultValue={cellData}
+    dataTracking="vrack-services::subnets::edit-subnet"
+    confirmDataTracking="vrack-services::subnets::update::confirm"
     onEditSubmitted={async (value) => {
-      await updateVS({
-        vrackServicesId: vrackServices.id,
-        checksum: vrackServices.checksum,
-        targetSpec: {
-          displayName: vrackServices.currentState.displayName || null,
-          subnets: vrackServices.currentState.subnets.map((subnet) =>
-            subnet.cidr === rowData.cidr
-              ? {
-                  ...subnet,
-                  displayName: value,
-                }
-              : subnet,
-          ),
+      await updateVS(
+        {
+          vrackServicesId: vrackServices.id,
+          checksum: vrackServices.checksum,
+          targetSpec: {
+            displayName: vrackServices.currentState.displayName || null,
+            subnets: vrackServices.currentState.subnets.map((subnet) =>
+              subnet.cidr === rowData.cidr
+                ? {
+                    ...subnet,
+                    displayName: value,
+                  }
+                : subnet,
+            ),
+          },
         },
-      });
+        {
+          onSuccess: () => {
+            trackEvent({
+              name: 'vrack-services::subnets::update-success',
+              level2: '',
+            });
+          },
+          onError: () => {
+            trackEvent({
+              name: 'vrack-services::subnets::update-error',
+              level2: '',
+            });
+          },
+        },
+      );
     }}
   >
     {cellData}
@@ -76,6 +98,7 @@ export const ActionsCell: React.FC<DataGridCellProps<undefined, Subnet> & {
     type={ODS_BUTTON_TYPE.button}
     size={ODS_BUTTON_SIZE.sm}
     disabled={isLoading || !isEditable(vrackServices) || undefined}
+    data-tracking="vrack-services::subnets::delete-subnet"
     {...handleClick(() => openDeleteModal(rowData.cidr))}
   >
     <OsdsIcon

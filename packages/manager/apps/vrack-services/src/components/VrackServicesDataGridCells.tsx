@@ -1,20 +1,23 @@
 import React from 'react';
 import { TFunction } from 'react-i18next';
 import { UseMutateAsyncFunction } from '@tanstack/react-query';
-import { OsdsLink } from '@ovhcloud/ods-components/link/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { NavigateFunction } from 'react-router-dom';
-import { OsdsChip } from '@ovhcloud/ods-components/chip/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
-import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
+import {
+  OsdsSpinner,
+  OsdsIcon,
+  OsdsLink,
+  OsdsButton,
+  OsdsChip,
+} from '@ovhcloud/ods-components/react';
 import { EditableText } from '@/components/EditableText';
 import {
   ProductStatus,

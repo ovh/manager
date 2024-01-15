@@ -1,21 +1,26 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
-import { useEnvironment } from '@ovh-ux/manager-react-core-application';
-import { OsdsTile } from '@ovhcloud/ods-components/tile/react';
-import { useTranslation } from 'react-i18next';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { OsdsDivider } from '@ovhcloud/ods-components/divider/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
-import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
-import { ErrorPage } from '@/components/Error';
 import {
-  useUpdateVrackServices,
-  useVrackService,
-} from '../../../utils/vs-utils';
+  useEnvironment,
+  useShell,
+} from '@ovh-ux/manager-react-core-application';
+import {
+  OsdsSpinner,
+  OsdsMessage,
+  OsdsDivider,
+  OsdsText,
+  OsdsTile,
+} from '@ovhcloud/ods-components/react';
+import { useTranslation } from 'react-i18next';
+import {
+  ODS_SPINNER_SIZE,
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ErrorPage } from '@/components/Error';
+import { useUpdateVrackServices, useVrackService } from '@/utils/vs-utils';
 import { formatDateString } from '@/utils/date';
 import {
   ProductStatusCell,
@@ -39,10 +44,18 @@ export const OverviewTab: React.FC = () => {
     hideError,
     isPending,
   } = useUpdateVrackServices({ key: 'overview' });
+  const shell = useShell();
 
   if (error) {
     return <ErrorPage error={error} />;
   }
+
+  React.useEffect(() => {
+    shell.tracking.trackPage({
+      name: 'vrack-services::dashboard',
+      level2: '',
+    });
+  }, []);
 
   return (
     <>

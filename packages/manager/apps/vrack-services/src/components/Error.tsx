@@ -1,13 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
+import {
+  OsdsButton,
+  OsdsText,
+  OsdsMessage,
+} from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components/button';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+  ODS_MESSAGE_TYPE,
+} from '@ovhcloud/ods-components';
 import { useShell } from '@ovh-ux/manager-react-core-application';
 import OOPS from '@/assets/error-banner-oops.png';
 import { ResponseData } from '@/api';
@@ -39,7 +44,7 @@ export const ErrorPage: React.FC<ErrorBannerProps> = ({ error }) => {
   const { tracking, environment } = shell;
   const env = environment.getEnvironment();
 
-  useEffect(() => {
+  React.useEffect(() => {
     tracking.init(false);
     env.then((response) => {
       const { applicationName } = response;

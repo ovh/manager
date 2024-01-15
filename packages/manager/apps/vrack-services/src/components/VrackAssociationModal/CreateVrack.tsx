@@ -4,17 +4,20 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
+  ODS_SPINNER_SIZE,
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
+import {
+  OsdsText,
+  OsdsSpinner,
+  OsdsButton,
+  OsdsMessage,
+} from '@ovhcloud/ods-components/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useAuthentication } from '@ovh-ux/manager-react-core-application';
 import { CountryCode } from '@ovh-ux/manager-config';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
-import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import {
   OrderDescription,
   getDeliveringOrderQueryKey,
@@ -66,7 +69,7 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
         {t('modalVrackCreationDescription')}
       </OsdsText>
       {(areVrackOrdersLoading || isPending) && (
-        <OsdsSpinner inline type={ODS_SPINNER_SIZE.md} />
+        <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
       )}
       <DeliveringMessages
         messageKey="deliveringVrackMessage"

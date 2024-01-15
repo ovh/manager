@@ -2,16 +2,20 @@ import React from 'react';
 import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
+import {
+  OsdsIcon,
+  OsdsButton,
+  OsdsSpinner,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
+import { useShell } from '@ovh-ux/manager-react-core-application';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { OnboardingLayout, PageLayout } from '@/components/layout-helpers';
 import { ErrorPage } from '@/components/Error';
@@ -27,9 +31,19 @@ const Endpoints: React.FC = () => {
   const { data: vrackServices, error, isLoading } = useVrackService();
   const { id } = useParams();
   const navigate = useNavigate();
+  const shell = useShell();
 
   const navigateToCreateEndpointPage = () =>
     navigate(`/${id}/createendpoint`, { replace: true });
+
+  React.useEffect(() => {
+    if (!isLoading) {
+      shell.tracking.trackPage({
+        name: 'vrack-services::endpoints',
+        level2: '',
+      });
+    }
+  }, [isLoading]);
 
   if (error) {
     return <ErrorPage error={error} />;
@@ -61,6 +75,7 @@ const Endpoints: React.FC = () => {
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={navigateToCreateEndpointPage}
+          data-tracking="vrack-services::endpoints::create-endpoint"
         >
           {t('createEndpointButtonLabel')}
           <span slot="start">

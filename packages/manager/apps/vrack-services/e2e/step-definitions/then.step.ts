@@ -18,6 +18,10 @@ import {
 import { urls } from '../utils';
 import { ConfigParams } from '../../mock/handlers';
 import vsMocks from '../../mock/vrack-services/get-vrack-services.json';
+import {
+  guide1Title,
+  guide2Title,
+} from '../../src/public/translations/vrack-services/onboarding/Messages_fr_FR.json';
 
 Then('User sees the create a vRack Services button {word}', async function(
   this: ICustomWorld<ConfigParams>,
@@ -75,7 +79,13 @@ Then('User sees {int} guides on vRack Services', async function(
   this: ICustomWorld,
   guideNumber: number,
 ) {
-  const guideList = await this.page.locator('msc-tile').all();
+  const guideList = await Promise.all(
+    [guide1Title, guide2Title].map((guideTitle) =>
+      this.page.locator('div', {
+        hasText: guideTitle,
+      }),
+    ),
+  );
   expect(guideList).toHaveLength(guideNumber);
 });
 

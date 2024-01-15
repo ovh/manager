@@ -3,14 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import i18next from 'i18next';
-import {
-  OsdsSelect,
-  OsdsSelectOption,
-} from '@ovhcloud/ods-components/select/react';
+import { OsdsSelect, OsdsSelectOption } from '@ovhcloud/ods-components/react';
 import {
   ODS_SELECT_SIZE,
   OdsSelectValueChangeEvent,
-} from '@ovhcloud/ods-components/select';
+} from '@ovhcloud/ods-components';
+import { useShell } from '@ovh-ux/manager-react-core-application';
 import {
   ResponseData,
   VrackServices,
@@ -52,6 +50,7 @@ const EndpointCreationPage: React.FC = () => {
   const navigate = useNavigate();
   const vrackServices = useVrackService();
   const dashboardUrl = `/${id}/Endpoints`;
+  const shell = useShell();
 
   const {
     iamResources,
@@ -87,18 +86,32 @@ const EndpointCreationPage: React.FC = () => {
           displayName: vrackServices.data?.currentState.displayName,
         },
       }),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
         queryKey: getListingIcebergQueryKey,
       });
-      queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: getVrackServicesResourceQueryKey(id),
       });
+      await shell.tracking.trackEvent({
+        name: 'vrack-services::endpoints::add-success',
+        level2: '',
+      });
       navigate(dashboardUrl, { replace: true });
+    },
+    onError: async () => {
+      await shell.tracking.trackEvent({
+        name: 'vrack-services::endpoints::add-error',
+        level2: '',
+      });
     },
   });
 
   React.useEffect(() => {
+    shell.tracking.trackPage({
+      name: 'vrack-services::endpoints::add',
+      level2: '',
+    });
     queryClient.invalidateQueries({
       queryKey: updateVrackServicesQueryKey(getEndpointCreationMutationKey(id)),
     });
@@ -115,12 +128,14 @@ const EndpointCreationPage: React.FC = () => {
       title={t('createPageTitle')}
       description={t('createPageDescription')}
       createButtonLabel={t('createEndpointButtonLabel')}
+      createButtonDataTracking="vrack-services::endpoints::add::confirm"
       formErrorMessage={t('endpointCreationError', {
         error: error?.response.data.message,
       })}
       hasFormError={isError}
       goBackLinkLabel={t('goBackLinkLabel')}
       goBackUrl={dashboardUrl}
+      goBackLinkDataTracking="vrack-services::endpoints::add::back"
       onSubmit={() => createEndpoint()}
       isSubmitPending={isPending}
       isFormSubmittable={
@@ -131,7 +146,7 @@ const EndpointCreationPage: React.FC = () => {
         <OsdsSelect
           inline
           disabled={isPending || isServiceListLoading || undefined}
-          name={serviceTypeSelectName}
+          id={serviceTypeSelectName}
           onOdsValueChange={(e: OdsSelectValueChangeEvent) =>
             setServiceType(e?.detail.value as string)
           }
@@ -162,7 +177,7 @@ const EndpointCreationPage: React.FC = () => {
             !serviceType ||
             undefined
           }
-          name={serviceNameSelectName}
+          id={serviceNameSelectName}
           onOdsValueChange={(e: OdsSelectValueChangeEvent) =>
             setManagedServiceURN(e?.detail.value as string)
           }
@@ -190,7 +205,7 @@ const EndpointCreationPage: React.FC = () => {
         <OsdsSelect
           inline
           disabled={isPending || undefined}
-          name={subnetSelectName}
+          id={subnetSelectName}
           onOdsValueChange={(e: OdsSelectValueChangeEvent) =>
             setCidr(e?.detail.value as string)
           }
