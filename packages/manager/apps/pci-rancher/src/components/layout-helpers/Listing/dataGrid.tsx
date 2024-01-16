@@ -4,6 +4,7 @@ import {
   OsdsLink,
   OsdsDatagrid,
   OsdsMessage,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,19 +19,33 @@ import ReactFormatter from './OdsFormatter';
 import { deleteRancherService, deleteRancherServiceQueryKey } from '@/api';
 
 interface LinkServiceInterface {
+  rowData?: RancherService;
   cellData?: string;
   href?: string;
+}
+
+interface CpuDisplayInterface {
+  cellData?: string;
 }
 
 interface DatagridWrapperInterface {
   data: RancherService[];
 }
 
-function LinkService({ cellData, href }: LinkServiceInterface) {
+function LinkService({ cellData, rowData, href }: LinkServiceInterface) {
   return (
-    <OsdsLink color={ODS_THEME_COLOR_INTENT.primary} href={href}>
+    <OsdsLink
+      color={ODS_THEME_COLOR_INTENT.primary}
+      href={`${href}/${rowData.id}`}
+    >
       {cellData}
     </OsdsLink>
+  );
+}
+
+function CpuDisplay({ cellData }: CpuDisplayInterface) {
+  return (
+    <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{cellData ?? '-'}</OsdsText>
   );
 }
 
@@ -53,7 +68,7 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
 
   const onDeleteRancher = () => deleteRancher();
 
-  const hrefDashboard = useHref('./dashboard');
+  const hrefDashboard = useHref('');
   const columns: OdsDatagridColumn[] = [
     {
       title: t('name'),
@@ -70,7 +85,8 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
     },
     {
       title: t('numberOfCpu'),
-      field: 'targetSpec.v' ?? '-', // TODO: Wait API to return cpu value
+      field: 'currentState.usage.orchestratedVcpus' ?? '-',
+      formatter: ReactFormatter(<CpuDisplay />),
     },
     {
       title: t('status'),

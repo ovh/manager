@@ -5,13 +5,21 @@ import {
 } from '@ovh-ux/manager-core-api';
 import { PciProject, RancherService } from '@/api/api.type';
 
+const getByRancherIdProjectIdQueryKey = (
+  projectId: string,
+  rancherId: string,
+) => `/publicCloud/project/${projectId}/rancher/${rancherId}`;
+
 export const getRancherProjectById = async (
   projectId?: string,
 ): Promise<IcebergFetchResult<RancherService>> =>
-  fetchIceberg<RancherService>({
-    route: `/publicCloud/project/${projectId}/rancher`,
-    apiVersion: 'v2',
-  });
+  apiClient.v2.get(`/publicCloud/project/${projectId}/rancher`);
+
+export const getByRancherIdProjectId = async (
+  projectId?: string,
+  rancherId?: string,
+): Promise<{ data: RancherService }> =>
+  apiClient.v2.get(getByRancherIdProjectIdQueryKey(projectId, rancherId));
 
 export const getProject = async (projectId: string): Promise<PciProject> => {
   const response = await apiClient.v6.get(`/cloud/project/${projectId}`);
@@ -31,7 +39,7 @@ export const deleteRancherService = async ({
   projectId: string;
 }) => {
   return apiClient.v2.delete(
-    `/publicCloud/project/${projectId}/rancher/${rancherId}`,
+    getByRancherIdProjectIdQueryKey(projectId, rancherId),
   );
 };
 
