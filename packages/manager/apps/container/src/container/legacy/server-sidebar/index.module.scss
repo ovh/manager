@@ -83,7 +83,7 @@
 .menuItemIcon {
   display: block;
   float: left;
-  padding-left: 19px;
+  padding-left: 15px;
   height: $menu-row-height;
   line-height: $menu-row-height;
   text-align: center;
@@ -92,7 +92,7 @@
 
 .menuItemSelected {
   background-color: #e6f5fc;
-  width: 100%;
+  width: 450px;
 }
 
 .menuItem{
@@ -202,6 +202,7 @@
 
 .noSticky {
   position: relative;
+
 }
 
 .itemLineAlign {
@@ -212,16 +213,22 @@
 
 .spinnerLoading {
   padding-left: 130px;
-
 }
 
 .subItem{
   padding-left: 10px;
+
 }
 
-.iconPadding{
+.iconPadding {
+  padding-left: 4px;
+  vertical-align: middle;
+}
+.textPadding {
   padding-left: 8px;
-  padding-right: 8px;
+}
+.spinnerLoadingItem {
+  vertical-align: middle;
 }
 
 .transparentButton {
@@ -233,5 +240,6 @@
   width: 100%;
   text-align: left;
 }
+
 
 
