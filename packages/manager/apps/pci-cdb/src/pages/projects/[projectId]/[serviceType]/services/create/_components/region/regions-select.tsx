@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import RadioTile from '@/components/radio-tile';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Region } from '@/models/dto/OrderFunnel';
+import { AvailabilitiesHookOutput } from '@/hooks/useAvailabilities';
 
 const REGIONS_PER_CONTINENT = {
   all: [],
@@ -11,16 +11,10 @@ const REGIONS_PER_CONTINENT = {
 };
 
 interface RegionsSelectProps {
-  selectedRegion: string;
-  listRegions: Region[];
-  onChange: (region: string) => void;
+  model: AvailabilitiesHookOutput;
 }
 type Continent = 'all' | 'north-america' | 'central-europe' | 'west-europe';
-const RegionsSelect = ({
-  listRegions,
-  onChange,
-  selectedRegion,
-}: RegionsSelectProps) => {
+const RegionsSelect = ({ model }: RegionsSelectProps) => {
   const [selectedContinent, setSelectectedContinent] = useState<Continent>(
     'all',
   );
@@ -41,7 +35,7 @@ const RegionsSelect = ({
         ))}
       </TabsList>
       <div className="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 bg-primary-50 border border-primary-100 rounded-b-md">
-        {listRegions
+        {model.listRegions
           .filter((r) =>
             selectedContinent === 'all'
               ? true
@@ -51,14 +45,12 @@ const RegionsSelect = ({
             <RadioTile
               name="region-select"
               key={region.name}
-              onChange={() => onChange(region.name)}
+              onChange={() => model.setRegion(region.name)}
               value={region.name}
-              checked={region.name === selectedRegion}
+              checked={region.name === model.region}
             >
               <span
-                className={`${
-                  region.name === selectedRegion ? 'font-bold' : ''
-                }`}
+                className={`${region.name === model.region ? 'font-bold' : ''}`}
               >
                 {region.name}
               </span>

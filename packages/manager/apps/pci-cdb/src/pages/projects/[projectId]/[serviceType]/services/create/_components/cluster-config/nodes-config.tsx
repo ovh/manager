@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { Label } from '@/components/ui/label';
-import { database } from '@/models/database';
 import { Input } from '@/components/ui/input';
 import { H4 } from '@/components/typography';
+import { AvailabilitiesHookOutput } from '@/hooks/useAvailabilities';
 
 interface NodesConfigProps {
-  availability: database.Availability;
+  model: AvailabilitiesHookOutput;
 }
-const NodesConfig = ({ availability }: NodesConfigProps) => {
-  const [nbNodes, setNbNodes] = useState(availability.minNodeNumber);
-  const { minNodeNumber, maxNodeNumber } = availability;
+const NodesConfig = ({ model }: NodesConfigProps) => {
+  if (!model.availability) return <></>;
+  const [nbNodes, setNbNodes] = useState(model.availability.minNodeNumber);
+  const { minNodeNumber, maxNodeNumber } = model.availability;
   if (minNodeNumber === maxNodeNumber) {
     return <></>;
   }

@@ -6,9 +6,6 @@ import { useAvailabilities } from '@/hooks/useAvailabilities';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { NetworkTypeEnum } from '@/models/vrack';
 import { database } from '@/models/database';
-import { Engine, Version } from '@/models/dto/OrderFunnel';
-import PlanTile from './plan/plan-tile';
-import EngineTile from './engine/engine-tile';
 import { H3 } from '@/components/typography';
 import {
   Card,
@@ -23,6 +20,8 @@ import FlavorsSelect from './flavor/flavors-select';
 import NetworkOptions from './cluster-options/network-options';
 import NodesConfig from './cluster-config/nodes-config';
 import StorageConfig from './cluster-config/storage-config';
+import EnginesSelect from './engine/engines-select';
+import PlansSelect from './plan/plans-select';
 
 const OrderFunnel = ({
   availabilities,
@@ -66,62 +65,25 @@ const OrderFunnel = ({
         <div className="col-span-1 md:col-span-3">
           {/* Engines */}
           <H3>Engine</H3>
-          <div className="mb-2 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
-            {model.listEngines.map((engine) => (
-              <EngineTile
-                key={engine.name}
-                engine={engine}
-                version={
-                  engine.name === model.engine.engine
-                    ? engine.versions.find(
-                        (v) => v.name === model.engine.version,
-                      ) ?? engine.versions[0]
-                    : engine.versions[0]
-                }
-                selected={engine.name === model.engine.engine}
-                onChange={(newEngine: Engine, newVersion: Version) => {
-                  model.setEngine(() => ({
-                    engine: newEngine.name,
-                    version: newVersion.name,
-                  }));
-                }}
-              />
-            ))}
-          </div>
+          <EnginesSelect model={model} />
 
           {/* Plans */}
           <H3>Plan</H3>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
-            {model.listPlans.map((plan) => (
-              <PlanTile
-                key={plan.name}
-                plan={plan}
-                selected={model.plan === plan.name}
-                onChange={(value: string) => model.setPlan(value)}
-              />
-            ))}
-          </div>
+          <PlansSelect model={model} />
 
+          {/* Regions */}
           <H3>Region</H3>
-          <RegionsSelect
-            listRegions={model.listRegions}
-            selectedRegion={model.region}
-            onChange={(newRegion) => model.setRegion(newRegion)}
-          />
+          <RegionsSelect model={model} />
 
+          {/* Flavors */}
           <H3>Flavor</H3>
-          <FlavorsSelect
-            listFlavors={model.listFlavors}
-            selectedFlavor={model.flavor}
-            onChange={(newFlavor) => model.setFlavor(newFlavor)}
-          />
+          <FlavorsSelect model={model} />
+
           <H3>Cluster config</H3>
-          {model.availability && (
-            <div className="flex flex-col gap-4">
-              <NodesConfig availability={model.availability} />
-              <StorageConfig availability={model.availability} />
-            </div>
-          )}
+          <div className="flex flex-col gap-4">
+            <NodesConfig model={model} />
+            <StorageConfig model={model} />
+          </div>
 
           <H3>Options</H3>
           <NetworkOptions

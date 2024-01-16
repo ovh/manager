@@ -6,19 +6,14 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { AvailabilitiesHookOutput } from '@/hooks/useAvailabilities';
 import { Flavor } from '@/models/dto/OrderFunnel';
 
 interface FlavorsSelectProps {
-  selectedFlavor: string;
-  listFlavors: Flavor[];
-  onChange: (flavor: string) => void;
+  model: AvailabilitiesHookOutput;
 }
 
-const FlavorsSelect = ({
-  listFlavors,
-  onChange,
-  selectedFlavor,
-}: FlavorsSelectProps) => {
+const FlavorsSelect = ({ model }: FlavorsSelectProps) => {
   const Storage = ({ flavor }: { flavor: Flavor }) => {
     const { storage } = flavor;
     if (!storage) return '-';
@@ -64,25 +59,25 @@ const FlavorsSelect = ({
         </TableRow>
       </TableHeader>
       <TableBody>
-        {listFlavors.map((flavor) => (
+        {model.listFlavors.map((flavor) => (
           <TableRow
             tabIndex={0}
             onClick={() => clickInput(flavor.name)}
             onKeyDown={(e) => handleKeyDown(e, flavor.name)}
             key={flavor.name}
             className={`border border-primary-100 hover:bg-primary-50 cursor-pointer text-[#4d5592] ${
-              selectedFlavor === flavor.name ? 'bg-[#DEF8FF] font-bold' : ''
+              model.flavor === flavor.name ? 'bg-[#DEF8FF] font-bold' : ''
             }`}
           >
             <td className="hidden">
               <input
                 type="radio"
                 name="flavor-select"
-                onChange={(e) => onChange(e.target.value)}
+                onChange={(e) => model.setFlavor(e.target.value)}
                 className="hidden"
                 id={`flavor-${flavor.name}`}
                 value={flavor.name}
-                checked={selectedFlavor === flavor.name}
+                checked={model.flavor === flavor.name}
               />
             </td>
             <TableCell className="text-[#4d5592] border border-primary-100">

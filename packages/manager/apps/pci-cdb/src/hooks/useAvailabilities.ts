@@ -1,12 +1,41 @@
 import { useEffect, useState, useMemo } from 'react';
 import { database } from '@/models/database';
-import { Engine, Plan, Region, Version } from '@/models/dto/OrderFunnel';
+import {
+  Engine,
+  Flavor,
+  Plan,
+  Region,
+  Version,
+} from '@/models/dto/OrderFunnel';
 import { createTree } from '@/lib/availabilities';
+
+export interface AvailabilitiesHookOutput {
+  engine: { engine: string; version: string };
+  setEngine: React.Dispatch<
+    React.SetStateAction<{ engine: string; version: string }>
+  >;
+
+  plan: string;
+  setPlan: React.Dispatch<React.SetStateAction<string>>;
+
+  region: string;
+  setRegion: React.Dispatch<React.SetStateAction<string>>;
+
+  flavor: string;
+  setFlavor: React.Dispatch<React.SetStateAction<string>>;
+
+  availability?: database.Availability;
+
+  listEngines: Engine[];
+  listPlans: Plan[];
+  listRegions: Region[];
+  listFlavors: Flavor[];
+}
 
 export function useAvailabilities(
   availabilities: database.Availability[],
   capabilities: database.Capabilities,
-) {
+): AvailabilitiesHookOutput {
   const [engine, setEngine] = useState({ engine: '', version: '' });
   const [plan, setPlan] = useState('');
   const [region, setRegion] = useState('');

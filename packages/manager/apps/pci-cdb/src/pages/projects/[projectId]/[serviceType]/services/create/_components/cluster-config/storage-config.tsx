@@ -1,21 +1,24 @@
 import { useEffect, useState } from 'react';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
-import { database } from '@/models/database';
 import { H4 } from '@/components/typography';
+import { AvailabilitiesHookOutput } from '@/hooks/useAvailabilities';
 
 interface StorageConfigProps {
-  availability: database.Availability;
+  model: AvailabilitiesHookOutput;
 }
-const StorageConfig = ({ availability }: StorageConfigProps) => {
+const StorageConfig = ({ model }: StorageConfigProps) => {
+  if (!model.availability) return <></>;
   const [nbStorage, setNbStorage] = useState(
-    availability.specifications.storage?.minimum.value || 0,
+    model.availability.specifications.storage?.minimum.value || 0,
   );
   useEffect(() => {
-    setNbStorage(availability.specifications.storage?.minimum.value || 0);
-  }, [availability]);
-  if (!availability.specifications.storage) return <></>;
-  const { storage, flavor } = availability.specifications;
+    setNbStorage(
+      model.availability?.specifications.storage?.minimum.value || 0,
+    );
+  }, [model.availability]);
+  if (!model.availability.specifications.storage) return <></>;
+  const { storage, flavor } = model.availability.specifications;
   const { minimum, maximum, step } = storage;
   if (maximum.value === 0 || minimum.value === maximum.value || !step) {
     return <></>;
