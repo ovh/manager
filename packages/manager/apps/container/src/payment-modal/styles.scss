@@ -1,0 +1,52 @@
+.modal-description {
+  padding: 2rem;
+}
+
+.modal-header {
+  background-color: #bef1ff;
+  color: #00185e;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: .12px;
+  line-height: 1.25;
+
+  .close {
+    padding: 0 !important;
+    margin: -0.5rem 0rem -1rem 0 !important;
+  }
+}
+
+.modal-footer {
+  border-top: none !important;
+}
+
+.modal-body {
+  padding-bottom: 0 !important;
+}
+
+.close {
+  position: absolute;
+  right: 28px;
+  top: 28px;
+  width: 28px;
+  height: 28px;
+  opacity: 0.3;
+  outline: none;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 13px;
+  content: ' ';
+  height: 29px;
+  width: 2px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
