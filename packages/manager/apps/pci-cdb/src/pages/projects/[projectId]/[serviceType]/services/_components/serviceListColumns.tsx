@@ -1,6 +1,7 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 import { database } from '@/models/database';
 import { Button } from '@/components/ui/button';
 import ServiceStatusBadge from './serviceStatusBadge';
@@ -183,7 +184,12 @@ export const getColumns = ({
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(service.id)}
+                onClick={() => {
+                  navigator.clipboard.writeText(service.id);
+                  toast.success('Service id saved in clipboard', {
+                    dismissible: true,
+                  });
+                }}
               >
                 Copy ID
               </DropdownMenuItem>

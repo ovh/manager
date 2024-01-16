@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { ChevronDown, ChevronUp, ChevronsUpDown } from 'lucide-react';
+import { ChevronDown, ChevronUp, ChevronsUpDown, ChevronLeft, ChevronRight, ChevronFirst, ChevronLast } from 'lucide-react';
 import {
   ColumnDef,
   SortingColumn,
   SortingState,
   flexRender,
+  Table as TanStackTable,
   getCoreRowModel,
   getPaginationRowModel,
   getSortedRowModel,
@@ -20,6 +21,7 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from './skeleton';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './select';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -101,7 +103,8 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <DataTablePagination table={table} />
+      {/* <div className="flex items-center justify-end space-x-2 py-4">
         <Button
           variant="outline"
           size="sm"
@@ -119,14 +122,91 @@ export function DataTable<TData, TValue>({
           Next
         </Button>
       </div>
+      {table.getPageCount} */}
     </>
   );
 }
+
+
+interface DataTablePaginationProps<TData> {
+  table: TanStackTable<TData>
+}
+export function DataTablePagination<TData>({
+  table,
+}: DataTablePaginationProps<TData>) {
+  return (
+    <div className="flex justify-end mt-4">
+      <div className="flex items-center">
+        <div className="flex items-center space-x-2">
+          <Select
+            value={`${table.getState().pagination.pageSize}`}
+            onValueChange={(value) => {
+              table.setPageSize(Number(value))
+            }}
+          >
+            <SelectTrigger className="h-8 w-[70px]">
+              <SelectValue placeholder={table.getState().pagination.pageSize} />
+            </SelectTrigger>
+            <SelectContent side="top">
+              {[5, 10, 20, 30, 40, 50].map((pageSize) => (
+                <SelectItem key={pageSize} value={`${pageSize}`}>
+                  {pageSize}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="flex px-4 items-center justify-center text-sm font-medium">
+          Page {table.getState().pagination.pageIndex + 1} of{" "}
+          {table.getPageCount()}
+        </div>
+        <div className="flex items-center space-x-2">
+          <Button
+            variant="outline"
+            className="hidden h-8 w-8 p-0 lg:flex"
+            onClick={() => table.setPageIndex(0)}
+            disabled={!table.getCanPreviousPage()}
+          >
+            <span className="sr-only">Go to first page</span>
+            <ChevronFirst className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="outline"
+            className="h-8 w-8 p-0"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            <span className="sr-only">Go to previous page</span>
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="outline"
+            className="h-8 w-8 p-0"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            <span className="sr-only">Go to next page</span>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="outline"
+            className="hidden h-8 w-8 p-0 lg:flex"
+            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+            disabled={!table.getCanNextPage()}
+          >
+            <span className="sr-only">Go to last page</span>
+            <ChevronLast className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 interface SortableHeaderProps<TData> {
   column: SortingColumn<TData>;
   children: React.ReactNode;
 }
-
 export function SortableHeader<TData>({
   column,
   children,
