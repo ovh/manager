@@ -1,0 +1,11 @@
+{
+  "pci_data_sync_title": "Sincronização manual de dados",
+  "pci_data_sync_confirm": "Sincronizar ",
+  "pci_data_sync_cancel": "Anular",
+  "pci_data_sync_type": "Tipo de sincronização",
+  "pci_data_sync_type_help": "Pode escolher entre uma sincronização de tipo push, para o seu container de dados ou de tipo pull, no outro sentido.",
+  "pci_data_sync_directory": "A sincronização será efetuada no seguinte diretório de montagem: {{ directory }}",
+  "pci_data_sync_all_directory": "A sincronização será efetuada no conjunto dos seus diretórios de montagem",
+  "pci_data_sync_success_message": "Os dados foram sincronizados com sucesso",
+  "pci_data_sync_error_message": "Ocorreu um erro aquando da sincronização dos dados: {{ message }}."
+}
