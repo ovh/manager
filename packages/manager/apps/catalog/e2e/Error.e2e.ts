@@ -1,9 +1,14 @@
 import { test, expect } from '@playwright/test';
 import '@playwright-helpers/mockedLogin';
+import config from '@playwright-helpers/config';
 import * as translationsError from '../src/public/translations/catalog/error/Messages_fr_FR.json';
 
+test.beforeEach(async ({ page }) => {
+  await page.goto(config.appUrl);
+  await page.waitForTimeout(2000);
+});
 test('should display Error component if fetch fails', async ({ page }) => {
-  await page.route('*/**/2api/hub/catalog', (route, request) => {
+  await page.route('*/**/2api/hub/catalog', (route) => {
     route.fulfill({
       status: 500,
       contentType: 'application/json',
