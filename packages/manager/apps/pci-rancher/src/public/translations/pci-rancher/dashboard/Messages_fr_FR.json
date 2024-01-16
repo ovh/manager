@@ -1,5 +1,17 @@
 {
   "title": "Dashboard page",
   "error_service": "No services info",
-  "general_informations": "Informations générales"
+  "general_informations": "Informations générales",
+  "see_all_rancher": "Voir tous les Managed Rancher Service",
+  "allowedIps": "IPs autorisées",
+  "description": "Description",
+  "rancher_version": "Version de Rancher",
+  "consumption": "Consommation",
+  "service_level": "Service",
+  "count_cpu_orchestrated": "Nombre de vCPUs orchestrés",
+  "security_and_access": "Accès et sécurité",
+  "rancher_ui_access": "Accès à l'interface Rancher",
+  "rancher_button_acces": "Accéder à Rancher",
+  "generate_access": "Générer les codes d'accès",
+  "last_update_date": "Dernière mise à jour {{date}} à {{hour}}"
 }
