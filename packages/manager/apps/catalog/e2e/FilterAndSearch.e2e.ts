@@ -1,5 +1,7 @@
 import { test, expect, Page, ElementHandle } from '@playwright/test';
-import '@playwright-helpers/login';
+import '@playwright-helpers/mockedLogin';
+import config from '@playwright-helpers/config';
+import catalog from './mocks/catalog';
 import * as translation from '../src/public/translations/catalog/Messages_en_GB.json';
 
 const clickButtonByName = async (page: Page, name: string): Promise<void> => {
@@ -66,6 +68,17 @@ const validateProductCategories = async (
 
   await Promise.all(checks);
 };
+
+test.beforeEach(async ({ page }) => {
+  await page.route('**/engine/2api/catalog', (route) =>
+    route.fulfill({
+      status: 200,
+      body: JSON.stringify(catalog),
+    }),
+  );
+  await page.goto(config.appUrl);
+  await page.waitForTimeout(2000);
+});
 
 test('should filter results based on Bare Metal Cloud universe', async ({
   page,
