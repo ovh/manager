@@ -24,5 +24,6 @@
   "iam_action_select_category_count_selection_one_result_one": "({{ selected }} action selected | {{ result }} result/{{ total }})",
   "iam_action_select_category_count_selection_one_result_many": "({{ selected }} action selected | {{ result }} results/{{ total }})",
   "iam_action_select_category_count_result_many": "({{ result }} results/{{ total }})",
-  "iam_action_select_category_count_result_one": "({{ result }} result/{{ total }})"
+  "iam_action_select_category_count_result_one": "({{ result }} result/{{ total }})",
+  "iam_action_select_action_search_error_notfound": "No result"
 }
