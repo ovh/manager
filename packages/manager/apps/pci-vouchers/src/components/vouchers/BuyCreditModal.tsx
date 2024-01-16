@@ -78,6 +78,7 @@ export default function BuyCreditModal({
                   onOdsValueChange={handleInputChange}
                   ariaLabel={t('cpb_vouchers_your_voucher')}
                   className={'border'}
+                  data-testid="amountInput"
                 />
               </OsdsFormField>
             </>
@@ -96,6 +97,7 @@ export default function BuyCreditModal({
           color={ODS_THEME_COLOR_INTENT.primary}
           {...(isValidInputAmount(amount) ? {} : { disabled: true })}
           onClick={() => buy(amount)}
+          data-testid="submitButton"
         >
           {t('common_confirm')}
         </OsdsButton>
