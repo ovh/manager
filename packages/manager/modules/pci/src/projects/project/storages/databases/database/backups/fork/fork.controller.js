@@ -219,7 +219,11 @@ export default class {
   }
 
   updateRegion(region) {
-    this.model.region = region;
+    if (this.model.region.name !== region.name) {
+      this.model.region = region;
+      this.model.privateNetwork = null;
+      this.loadAvailableNetworks();
+    }
     // trigger flavors controls and assign to model
     const equivalentFlavor =
       region.flavors.find((flavor) => flavor.name === this.model.flavor.name) ||
@@ -238,7 +242,10 @@ export default class {
       this.model.usePrivateNetwork = false;
       this.model.subnet = null;
       this.model.privateNetwork = null;
-    } else if (!this.model.usePrivateNetwork) {
+    } else if (
+      !this.model.usePrivateNetwork ||
+      this.model.privateNetwork === null
+    ) {
       this.model.privateNetwork = this.defaultPrivateNetwork;
       this.model.subnet = null;
     }
