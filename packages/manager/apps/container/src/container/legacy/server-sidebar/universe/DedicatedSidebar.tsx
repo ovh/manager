@@ -16,6 +16,7 @@ export function getIcon(iconClass: string): JSX.Element {
 
 export const features = [
   'dedicated-server',
+  'dedicated-server:cluster',
   'vps',
   'managed-bare-metal',
   'dedicated-networks',
@@ -73,7 +74,7 @@ export default function DedicatedSidebar() {
         icon: getIcon('ovh-font ovh-font-server'),
         routeMatcher: new RegExp('^/(configuration/)?(server|housing|cluster)'),
         async loader() {
-          const clusters = await loadServices('/dedicated/cluster');
+          const clusters = feature['dedicated-server:cluster'] ? await loadServices('/dedicated/cluster') : [];
           const servers = await loadServices('/dedicated/server');
           const housing = await loadServices('/dedicated/housing');
           return [
