@@ -1,9 +1,6 @@
 module.exports = {
   roots: ['<rootDir>/packages/components', '<rootDir>/packages/manager'],
-  projects: [
-    '<rootDir>/packages/manager/apps/container/jest.config.js',
-    '<rootDir>/packages/manager/apps/pci-vouchers/jest.config.cjs',
-  ],
+  projects: ['<rootDir>/packages/manager/apps/container/jest.config.js'],
   setupFilesAfterEnv: ['<rootDir>/jest/mocks/jest.setup.js'],
   collectCoverageFrom: ['packages/**/*.{js,jsx,ts,tsx}', '!packages/**/*.d.ts'],
   testMatch: [
@@ -11,6 +8,7 @@ module.exports = {
     '<rootDir>/packages/**/*.{spec,test}.{js,jsx,ts,tsx}',
   ],
   testEnvironment: 'jsdom',
+  testPathIgnorePatterns: ['/node_modules/', '/apps/pci-vouchers/'],
   transform: {
     '^.+\\.(js|jsx|mjs|cjs|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
     '^.+\\.scss$': 'jest-scss-transform',

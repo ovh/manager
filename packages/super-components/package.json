@@ -12,8 +12,7 @@
     "dev": "yarn build",
     "generate:msc": "yarn workspace @ovhcloud/msc-generator start",
     "prestorybook": "yarn build",
-    "storybook": "yarn workspace @ovhcloud/msc-storybook start",
-    "test": "lerna run msc:test"
+    "storybook": "yarn workspace @ovhcloud/msc-storybook start"
   },
   "devDependencies": {
     "@babel/core": "^7.22.1",
