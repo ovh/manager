@@ -9,6 +9,7 @@ import { ProductNavReshuffleProvider } from '@/core/product-nav-reshuffle';
 import { ProgressProvider } from '@/context/progress';
 import CookiePolicy from '@/cookie-policy/CookiePolicy';
 import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
+import PaymentModal from '@/payment-modal/PaymentModal';
 import LiveChat from '@/components/LiveChat';
 
 export default function Container(): JSX.Element {
@@ -83,6 +84,9 @@ export default function Container(): JSX.Element {
 
       <Suspense fallback="">
         <SSOAuthModal />
+      </Suspense>
+      <Suspense fallback="">
+        <PaymentModal />
       </Suspense>
       <Suspense fallback="...">
         <CookiePolicy shell={shell} />
