@@ -16,7 +16,8 @@
     "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-rancher-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-rancher-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-rancher-app' --include-dependencies -- npm run dev:watch --if-present",
-    "test": "jest --coverage -u"
+    "test": "jest --coverage -u",
+    "test:e2e": "tsc && npx playwright test --headed"
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^7.2.0",
@@ -33,6 +34,7 @@
     "@tanstack/react-query-devtools": "^5.8.3",
     "@testing-library/react": "^14.1.2",
     "clsx": "^1.2.1",
+    "date-fns": "^3.2.0",
     "i18next": "^20.4.0",
     "i18next-http-backend": "^2.4.2",
     "react": "^18.2.0",
@@ -44,6 +46,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@ovh-ux/manager-vite-config": "*",
+    "@playwright/test": "^1.34.3",
     "@testing-library/jest-dom": "^6.2.0",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.10.6",
