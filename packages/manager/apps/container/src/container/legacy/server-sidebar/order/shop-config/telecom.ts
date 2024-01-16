@@ -182,7 +182,7 @@ const telecomShopConfig = (
       }
     : null,
   {
-    label: 'item_accessories',
+    label: 'item_headset',
     icon: HEADSET_SVG,
     external: true,
     url: getOrderURL('telephony_accessory_order', region, sub),
