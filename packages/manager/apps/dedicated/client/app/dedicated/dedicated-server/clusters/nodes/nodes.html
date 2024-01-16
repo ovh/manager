@@ -1,59 +1,63 @@
-<oui-datagrid
-    class="table-striped"
-    id="dg-cluster-nodes"
-    data-rows="$ctrl.nodes"
-    data-page="1"
-    data-pagination-mode="arrows"
->
-    <oui-datagrid-column
-        data-title=":: 'dedicated_servers_name' | translate"
-        data-property="name"
-        data-type="string"
-        data-prevent-customization
-    >
-        <a data-ng-href="{{ $ctrl.getNodeDashboardLink($row) }}"
-            ><span data-ng-bind="$value"></span
-        ></a>
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        data-title=":: 'dedicated_servers_ip' | translate"
-        data-property="ip"
-        data-type="string"
-    >
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        data-title=":: 'dedicated_servers_reverse' | translate"
-        data-property="reverse"
-        data-type="string"
-    >
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        title=":: 'dedicated_servers_model' | translate"
-        data-property="commercialRange"
-    >
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        title=":: 'dedicated_servers_zone' | translate"
-        data-property="availabilityZone"
-    >
-    </oui-datagrid-column>
-    <oui-datagrid-column
-        data-title=":: 'dedicated_servers_status' | translate"
-        data-property="state"
-    >
-        <span
-            class="oui-badge"
-            data-ng-class="{
-                'oui-badge_success': $value === 'OK',
-                'oui-badge_warning':$value === 'ERROR',
-                'oui-badge_error': $value.startsWith('HACKED')
-                }"
-            data-translate="{{:: 'dedicated_servers_state_' + $value }}"
-        ></span>
-    </oui-datagrid-column>
-    <oui-action-menu compact data-placement="end">
-        <oui-action-menu-item href="{{ $ctrl.getNodeDashboardLink($row) }}"
-            ><span data-translate="dedicated_servers_popover_details"></span>
-        </oui-action-menu-item>
-    </oui-action-menu>
-</oui-datagrid>
+<table class="oui-table table-striped" id="dg-cluster-nodes">
+    <thead>
+        <tr>
+            <th
+                class="oui-table__header"
+                data-translate="dedicated_servers_name"
+            ></th>
+            <th
+                class="oui-table__header"
+                data-translate="dedicated_servers_ip"
+            ></th>
+            <th
+                class="oui-table__header"
+                data-translate="dedicated_servers_reverse"
+            ></th>
+            <th
+                class="oui-table__header"
+                data-translate="dedicated_servers_model"
+            ></th>
+            <th
+                class="oui-table__header"
+                data-translate="dedicated_servers_zone"
+            ></th>
+            <th
+                class="oui-table__header"
+                data-translate="dedicated_servers_status"
+            ></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+            class="oui-table__row"
+            data-ng-repeat="node in $ctrl.nodes track by $index"
+        >
+            <td class="oui-table__cell">
+                <a data-ng-href="{{ $ctrl.getNodeDashboardLink(node) }}"
+                    ><span data-ng-bind="node.name"></span
+                ></a>
+            </td>
+            <td class="oui-table__cell" data-ng-bind="node.ip"></td>
+            <td class="oui-table__cell" data-ng-bind="node.reverse"></td>
+            <td
+                class="oui-table__cell"
+                data-ng-bind="node.commercialRange"
+            ></td>
+            <td
+                class="oui-table__cell"
+                data-ng-bind="node.availabilityZone"
+            ></td>
+            <td class="oui-table__cell">
+                <span
+                    class="oui-badge"
+                    data-ng-class="{
+                    'oui-badge_success': node.state === 'OK',
+                    'oui-badge_warning':node.state === 'ERROR',
+                    'oui-badge_error': node.state.startsWith('HACKED')
+                    }"
+                    data-translate="{{:: 'dedicated_servers_state_' + node.state }}"
+                ></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
