@@ -15,6 +15,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import Datagrid from '@/components/layout-helpers/Listing/dataGrid';
 import { RancherService } from '@/api/api.type';
+import RancherTaskMessage from './RancherTaskMessage';
 
 export interface ListingProps {
   data: RancherService[];
@@ -27,6 +28,8 @@ const Listing: React.FC<ListingProps> = ({ data }) => {
     return <Navigate to="/onboarding" />;
   }
 
+  const tasks = data.map((rancher) => rancher.currentTasks).flat();
+
   return (
     <>
       <OsdsText
@@ -36,7 +39,7 @@ const Listing: React.FC<ListingProps> = ({ data }) => {
       >
         {t('rancherTitle')}
       </OsdsText>
-
+      <RancherTaskMessage tasks={tasks} />
       <div className="my-3 mt-5">
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
