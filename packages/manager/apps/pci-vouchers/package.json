@@ -14,8 +14,9 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.4.0",
-    "@ovh-ux/manager-core-api": "^0.2.0",
+    "@ovh-ux/manager-core-api": "^0.3.0",
     "@ovh-ux/manager-react-shell-client": "^0.0.0",
+    "@ovh-ux/shell": "3.0.5",
     "@ovhcloud/ods-common-core": "^17.0.0",
     "@ovhcloud/ods-common-stencil": "^17.0.0",
     "@ovhcloud/ods-common-theming": "^17.0.0",

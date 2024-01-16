@@ -1,8 +1,8 @@
-import { fetchIceberg } from '@ovh-ux/manager-core-api';
+import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 import { Voucher } from '@/interface';
 
 export const getVouchers = async (projectId: string): Promise<Voucher[]> => {
-  const { data } = await fetchIceberg({
+  const { data } = await fetchIcebergV6({
     route: `/cloud/project/${projectId}/credit`,
   });
 
@@ -21,7 +21,6 @@ export const getVouchers = async (projectId: string): Promise<Voucher[]> => {
     ...data,
     ...data,
   ] as Voucher[]).map((a: Voucher, index: number) => {
-
     return {
       ...a,
       voucher: a.description + index,
