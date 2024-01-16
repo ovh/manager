@@ -158,15 +158,15 @@ export namespace database {
     }
     /** Cloud Database flavor definition */
     export interface Flavor {
-      /** Flavor core number. DEPRECATED: use specifications.core */
+      /** Flavor core number. @deprecated: use specifications.core */
       core: number;
-      /** Flavor ram size in GB. DEPRECATED: use specifications.memory */
+      /** Flavor ram size in GB. @deprecated: use specifications.memory */
       memory: number;
       /** Name of the flavor */
       name: string;
       /** Technical specifications of the flavor */
       specifications: database.capabilities.flavor.Specifications;
-      /** Flavor disk size in GB. DEPRECATED: use specifications.storage */
+      /** Flavor disk size in GB. @deprecated: use specifications.storage */
       storage: number;
     }
     /** Integration capability between database engines */
@@ -208,7 +208,7 @@ export namespace database {
       }
     } /** Cloud databases kafka permissions definition */
     export interface Permissions {
-      /** Names of the topic permissions (DEPRECATED) */
+      /** Names of the topic permissions (@deprecated) */
       names: string[];
       /** Names of the schema registry permissions */
       schemaRegistry: string[];
@@ -234,7 +234,7 @@ export namespace database {
       createdAt: string;
       /** Description of the cluster */
       description: string;
-      /** Disk attributes of the cluster. DEPRECATED: use storage */
+      /** Disk attributes of the cluster. @deprecated: use storage */
       disk: database.service.Disk;
       /** List of all endpoints of the service */
       endpoints: database.service.Endpoint[];
@@ -252,7 +252,7 @@ export namespace database {
       networkId?: string;
       /** Type of network of the cluster */
       networkType: database.NetworkTypeEnum;
-      /** Number of nodes in the cluster. DEPRECATED: useNodes */
+      /** Number of nodes in the cluster. @deprecated: useNodes */
       nodeNumber: number;
       /** Nodes of the cluster */
       nodes: database.service.Node[];
@@ -662,7 +662,7 @@ export namespace database {
     export interface Service {
       /** Defines whether the acls are enabled on the cluster */
       aclsEnabled: boolean;
-      /** Time on which backups start every day. DEPRECATED: use backups.time */
+      /** Time on which backups start every day. @deprecated: use backups.time */
       backupTime: string;
       /** Information related to the backups, null if the engine does not support backups */
       backups?: database.service.Backup;
@@ -670,7 +670,7 @@ export namespace database {
       createdAt: string;
       /** Description of the cluster */
       description: string;
-      /** Disk attributes of the cluster. DEPRECATED: use storage */
+      /** Disk attributes of the cluster. @deprecated: use storage */
       disk: database.service.Disk;
       /** List of all endpoints of the service */
       endpoints: database.service.Endpoint[];
@@ -688,7 +688,7 @@ export namespace database {
       networkId?: string;
       /** Type of network of the cluster */
       networkType: database.NetworkTypeEnum;
-      /** Number of nodes in the cluster. DEPRECATED: use nodes */
+      /** Number of nodes in the cluster. @deprecated: use nodes */
       nodeNumber: number;
       /** Nodes of the cluster */
       nodes: database.service.Node[];
@@ -923,7 +923,7 @@ export namespace database {
   }
   export namespace service {
     export namespace creation {
-      /** Defines the source to fork a cluster from a backup. DEPRECATED: use forkFrom */
+      /** Defines the source to fork a cluster from a backup. @deprecated: use forkFrom */
       export interface BackupFork {
         /** Backup ID (not compatible with pointInTime) */
         id: string;
@@ -1412,31 +1412,31 @@ export namespace database {
     }
   } /** Availability of databases engines on cloud projects */
   export interface Availability {
-    /** Defines the type of backup. DEPRECATED: use backups.enable */
+    /** Defines the type of backup. @@deprecated: use backups.enable */
     backup: database.BackupTypeEnum;
-    /** Backup retention time of the availability in days. DEPRECATED: use backups.retentionDays */
+    /** Backup retention time of the availability in days. @deprecated: use backups.retentionDays */
     backupRetentionDays: number;
     /** Defines backups strategy for the availability */
     backups: database.availability.Backups;
     /** Whether this availability can be used by default */
     default: boolean;
-    /** End of life of the product. DEPRECATED: use lifecycle.endOfLife */
+    /** End of life of the product. @deprecated: use lifecycle.endOfLife */
     endOfLife?: string;
     /** Database engine name */
     engine: string;
-    /** Flavor name. DEPRECATED: use specifications.flavor */
+    /** Flavor name. @deprecated: use specifications.flavor */
     flavor: string;
     /** Defines the lifecycle of the availability */
     lifecycle: database.availability.Lifecycle;
-    /** Maximum possible disk size in GB. DEPRECATED: use specifications.storage.maximum */
+    /** Maximum possible disk size in GB. @deprecated: use specifications.storage.maximum */
     maxDiskSize: number;
-    /** Maximum nodes of the cluster. DEPRECATED: use specifications.nodes.maximum */
+    /** Maximum nodes of the cluster. @deprecated: use specifications.nodes.maximum */
     maxNodeNumber: number;
-    /** Minimum possible disk size in GB. DEPRECATED: use specifications.storage.minimum */
+    /** Minimum possible disk size in GB. @deprecated: use specifications.storage.minimum */
     minDiskSize: number;
-    /** Minimum nodes of the cluster. DEPRECATED: use specifications.nodes.minimum */
+    /** Minimum nodes of the cluster. @deprecated: use specifications.nodes.minimum */
     minNodeNumber: number;
-    /** Type of network. DEPRECATED: use specifications.network */
+    /** Type of network. @deprecated: use specifications.network */
     network: database.NetworkTypeEnum;
     /** Plan name */
     plan: string;
@@ -1444,13 +1444,13 @@ export namespace database {
     region: string;
     /** Defines the technical specifications of the availability */
     specifications: database.availability.Specifications;
-    /** Date of the release of the product. DEPRECATED: use lifecycle.startDate */
+    /** Date of the release of the product. @deprecated: use lifecycle.startDate */
     startDate: string;
-    /** Status of the availability. DEPRECATED: use lifecycle.status */
+    /** Status of the availability. @deprecated: use lifecycle.status */
     status: database.availability.StatusEnum;
-    /** Flex disk size step in GB. DEPRECATED: use specifications.storage.step */
+    /** Flex disk size step in GB. @deprecated: use specifications.storage.step */
     stepDiskSize: number;
-    /** End of life of the upstream product. DEPRECATED: use lifecycle */
+    /** End of life of the upstream product. @deprecated: use lifecycle */
     upstreamEndOfLife?: string;
     /** Version name */
     version: string;
@@ -1463,7 +1463,7 @@ export namespace database {
     description: string;
     /** Backup ID */
     id: string;
-    /** Region where the backup is stored. DEPRECATED: use regions */
+    /** Region where the backup is stored. @deprecated: use regions */
     region: string;
     /** Regions where the backup are stored */
     regions: database.backup.Region[];
@@ -1512,7 +1512,7 @@ export namespace database {
     'postgresql' = 'postgresql',
     'redis' = 'redis',
   }
-  /** Ip Restriction definition for cloud project databases (DEPRECATED) */
+  /** Ip Restriction definition for cloud project databases (@deprecated) */
   export interface IpRestriction {
     /** Description of the ip restriction */
     description: string;
@@ -1521,7 +1521,7 @@ export namespace database {
     /** Current status of the ip restriction */
     status: database.StatusEnum;
   }
-  /** Ip Restriction creation definition for cloud project databases (DEPRECATED) */
+  /** Ip Restriction creation definition for cloud project databases (@deprecated) */
   export interface IpRestrictionCreation {
     /** Description of the ip restriction */
     description: string;
@@ -1535,7 +1535,7 @@ export namespace database {
   }
   /** Cloud database service definition */
   export interface Service {
-    /** Time on which backups start every day. DEPRECATED: use backups.time */
+    /** Time on which backups start every day. @deprecated: use backups.time */
     backupTime: string;
     /** Information related to the backups, null if the engine does not support backups */
     backups?: database.service.Backup;
@@ -1543,7 +1543,7 @@ export namespace database {
     createdAt: string;
     /** Description of the cluster */
     description: string;
-    /** Disk attributes of the cluster. DEPRECATED: use storage */
+    /** Disk attributes of the cluster. @deprecated: use storage */
     disk: database.service.Disk;
     /** List of all endpoints of the service */
     endpoints: database.service.Endpoint[];
@@ -1561,7 +1561,7 @@ export namespace database {
     networkId?: string;
     /** Type of network of the cluster */
     networkType: database.NetworkTypeEnum;
-    /** Number of nodes in the cluster. DEPRECATED: use nodes */
+    /** Number of nodes in the cluster. @deprecated: use nodes */
     nodeNumber: number;
     /** Nodes of the cluster */
     nodes: database.service.Node[];
@@ -1580,9 +1580,9 @@ export namespace database {
   }
   /** Cloud databases cluster definition */
   export interface ServiceCreation {
-    /** Backup from which the new service is created. DEPRECATED: use forkFrom */
+    /** Backup from which the new service is created. @deprecated: use forkFrom */
     backup?: database.service.creation.BackupFork;
-    /** Time on which backups start every day. DEPRECATED: use backups.time */
+    /** Time on which backups start every day. @deprecated: use backups.time */
     backupTime?: string;
     /** Information related to the backups, null if the engine does not support backups */
     backups?: database.service.Backup;

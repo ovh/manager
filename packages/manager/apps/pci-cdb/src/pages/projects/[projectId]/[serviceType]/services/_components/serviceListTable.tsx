@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { Plus, RefreshCcw } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { ColumnDef } from '@tanstack/react-table';
@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/ui/data-table';
 import { database } from '@/models/database';
 import { UpdateServiceProps, cdbApi } from '@/data/cdbapi';
-import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
 
 import UpdateServiceNameModal, {
@@ -80,17 +79,6 @@ export default function ServicesList({
                 <Plus className="w-4 h-4 mr-2" /> Create a new service
               </Link>
             </Button>
-            <div className="flex">
-              <Input
-                type="text"
-                id="search"
-                placeholder="Search a service"
-                className="mr-2"
-              />
-              <Button variant="outline" onClick={() => refetchFn()}>
-                <RefreshCcw className="w-4 h-4" />
-              </Button>
-            </div>
           </div>
           <DataTable columns={columns} data={services} pageSize={5} />
         </div>

@@ -1,4 +1,6 @@
 {
+  "pricing_ht": "{{ price }} {{ unit }} HT",
+  "pricing_ttc": "{{ price }} {{ unit }} TTC",
   "cdb_pci_service_name_min_length_error": "Veuillez entrer un nom de service d'au moins {{ min }} caractères",
   "cdb_pci_service_name_max_length_error": "Veuillez entrer un nom de service de {{ max }} caractères maximum"
 }

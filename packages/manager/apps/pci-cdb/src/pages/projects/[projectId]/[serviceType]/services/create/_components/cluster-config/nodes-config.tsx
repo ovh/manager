@@ -8,9 +8,9 @@ interface NodesConfigProps {
   model: AvailabilitiesHookOutput;
 }
 const NodesConfig = ({ model }: NodesConfigProps) => {
+  const [nbNodes, setNbNodes] = useState(model.availability?.specifications.nodes.minimum);
   if (!model.availability) return <></>;
-  const [nbNodes, setNbNodes] = useState(model.availability.minNodeNumber);
-  const { minNodeNumber, maxNodeNumber } = model.availability;
+  const { minimum: minNodeNumber, maximum: maxNodeNumber } = model.availability.specifications.nodes;
   if (minNodeNumber === maxNodeNumber) {
     return <></>;
   }

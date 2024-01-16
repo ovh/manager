@@ -22,6 +22,12 @@ import NodesConfig from './cluster-config/nodes-config';
 import StorageConfig from './cluster-config/storage-config';
 import EnginesSelect from './engine/engines-select';
 import PlansSelect from './plan/plans-select';
+import { useGetCatalog } from '@/hooks/api/useGetCatalog';
+import { Skeleton } from '@/components/ui/skeleton';
+import { order } from '@/models/catalog';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import Price from '@/components/price';
 
 const OrderFunnel = ({
   availabilities,
@@ -35,6 +41,8 @@ const OrderFunnel = ({
   const [networkType, setNetworkType] = useState<NetworkTypeEnum>(
     NetworkTypeEnum.public,
   );
+  const catalog = useGetCatalog();
+  const [monthlyPrices, setMonthlyPrices] = useState(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -44,6 +52,41 @@ const OrderFunnel = ({
     toast('Deployment in progress', {
       description: <span>{new Date().toDateString()}</span>,
     });
+  };
+
+  const getPrice = (
+    catalogPrices: order.publicOrder.Catalog,
+    availability: database.Availability | undefined,
+    monthly: boolean = false, 
+  ) => {
+    if (!availability) return <Skeleton className="w-full h-4" />;
+    const prefix = `databases.${availability.engine.toLowerCase()}-${
+      availability.plan
+    }-${availability.specifications.flavor}`;
+    const interval = monthly ? 'month' : 'hour';
+    const nodePrice = catalogPrices.addons.find(
+      (a) => a.planCode === `${prefix}.${interval}.consumption`,
+    )?.pricings[0];
+    const pricePerGB = catalogPrices.addons.find(
+      (a) =>
+        a.planCode ===
+        `databases.${availability.engine.toLowerCase()}-${
+          availability.plan
+        }-additionnal-storage-gb.${interval}.consumption`,
+    )?.pricings[0];
+
+    const isDistributedStorage = false; // TODO: get is distributed storage
+    const additionalStorage = 0; // TODO: get additionnal storage
+    const nbNodes = availability.specifications.nodes.minimum; // TODO: get additional nodes
+    const storageNodeFactor = isDistributedStorage ? 1 : nbNodes;
+    const price = nbNodes * (nodePrice?.price || 0) + additionalStorage * storageNodeFactor * (pricePerGB?.price || 0);
+    const tax = nbNodes * (nodePrice?.tax || 0) + additionalStorage * storageNodeFactor * (pricePerGB?.tax || 0);
+    return ( 
+    <div className="flex">
+      <Price decimals={3} priceInUcents={price} taxInUcents={tax} />
+      <span className="font-bold">/{monthly ? 'mois' : 'heure'}</span>
+    </div>
+    )
   };
 
   return (
@@ -106,6 +149,24 @@ const OrderFunnel = ({
                 ? JSON.stringify(model.availability, null, 2)
                 : 'loading...'}
             </pre>
+            <div>
+              {catalog.isSuccess ? (
+                <div className="flex flex-col">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <Switch
+                      className="rounded-xl"
+                      id="price-unit"
+                      checked={monthlyPrices}
+                      onCheckedChange={(checked) => setMonthlyPrices(checked)}
+                    />
+                    <Label htmlFor="availabilities-table">Monthly prices</Label>
+                  </div>
+                  <span>Price: {getPrice(catalog.data, model.availability, monthlyPrices)}</span>
+                </div>
+              ) : (
+                <Skeleton className="w-full h-4" />
+              )}
+            </div>
           </CardContent>
           <CardFooter className="flex justify-between">
             <Button className="w-full">Deploy</Button>

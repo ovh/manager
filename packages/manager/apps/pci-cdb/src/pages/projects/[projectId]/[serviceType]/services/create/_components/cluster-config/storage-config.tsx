@@ -8,16 +8,15 @@ interface StorageConfigProps {
   model: AvailabilitiesHookOutput;
 }
 const StorageConfig = ({ model }: StorageConfigProps) => {
-  if (!model.availability) return <></>;
   const [nbStorage, setNbStorage] = useState(
-    model.availability.specifications.storage?.minimum.value || 0,
+    model.availability?.specifications.storage?.minimum.value || 0,
   );
   useEffect(() => {
     setNbStorage(
       model.availability?.specifications.storage?.minimum.value || 0,
     );
   }, [model.availability]);
-  if (!model.availability.specifications.storage) return <></>;
+  if (!model.availability?.specifications.storage) return <></>;
   const { storage, flavor } = model.availability.specifications;
   const { minimum, maximum, step } = storage;
   if (maximum.value === 0 || minimum.value === maximum.value || !step) {
