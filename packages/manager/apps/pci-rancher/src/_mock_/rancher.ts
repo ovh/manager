@@ -21,6 +21,10 @@ export const rancherMocked: RancherService = {
     plan: 'string',
     region: 'string',
     version: 'string',
+    usage: {
+      datetime: 'string',
+      orchestratedVcpus: 0,
+    },
   },
   currentTasks: [],
   resourceStatus: RessourceStatus.READY,

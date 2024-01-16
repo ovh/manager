@@ -1,14 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { Outlet, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {
-  OsdsTabs,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
+import {
   OsdsTabBar,
   OsdsTabBarItem,
+  OsdsTabs,
   OsdsText,
+  OsdsLink,
+  OsdsIcon,
 } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import React, { useEffect, useState } from 'react';
+import {
+  NavLink,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useHref,
+  useParams,
+} from 'react-router-dom';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useTranslation } from 'react-i18next';
+import { RancherService } from '@/api/api.type';
+import RancherDetail from './RancherDetail';
+import { COMMON_PATH } from '@/routes';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -18,12 +36,16 @@ export type DashboardTabItemProps = {
 
 export type DashboardLayoutProps = {
   tabs: DashboardTabItemProps[];
+  rancher: RancherService;
 };
 
-const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
+const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
+  const { t } = useTranslation('pci-rancher/dashboard');
   const [panel, setActivePanel] = useState('');
   const location = useLocation();
+  const { projectId } = useParams();
   const navigate = useNavigate();
+  const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
 
   useEffect(() => {
     const activeTab = tabs.find((tab) => tab.to === location.pathname);
@@ -37,7 +59,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
 
   return (
     <>
-      <div className="py-4">
+      <div className="py-4 ">
         <OsdsText
           level={ODS_TEXT_LEVEL.heading}
           color={ODS_THEME_COLOR_INTENT.text}
@@ -45,6 +67,17 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
         >
           {location.pathname.split('/')[2]}
         </OsdsText>
+      </div>
+      <div className="flex items-center my-6">
+        <OsdsIcon
+          className="mr-4"
+          name={ODS_ICON_NAME.ARROW_LEFT}
+          size={ODS_ICON_SIZE.xxs}
+          color={ODS_THEME_COLOR_INTENT.primary}
+        />
+        <OsdsLink href={hrefPrevious} color={ODS_THEME_COLOR_INTENT.primary}>
+          {t('see_all_rancher')}
+        </OsdsLink>
       </div>
       <OsdsTabs panel={panel}>
         <OsdsTabBar slot="top">
@@ -60,6 +93,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
           ))}
         </OsdsTabBar>
       </OsdsTabs>
+      <RancherDetail rancher={rancher} />
       <Outlet />
     </>
   );
