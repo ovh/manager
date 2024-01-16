@@ -21,6 +21,7 @@ import '../dynhost/login/add/domain-dynhost-login-add.controller';
 import '../dynhost/login/delete/domain-dynhost-login-delete.controller';
 import '../dynhost/login/domain-dynhost-login.controller';
 import '../dynhost/login/edit/domain-dynhost-login-edit.controller';
+import '../../dns-zone/history/history.module';
 import '../general-informations/domain-general-informations.controller';
 import '../general-informations/domain-general-informations.state';
 import '../general-informations/general-information.constants';
