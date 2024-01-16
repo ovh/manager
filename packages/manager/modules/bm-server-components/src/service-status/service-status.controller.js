@@ -34,6 +34,12 @@ export default class BmServerComponentsDashboardServiceStatusController {
     };
   }
 
+  canBeTerminate() {
+    return (
+      !this.server.isExpired && !this.server.engagement && !this.serverIsNode
+    );
+  }
+
   getVmsLink() {
     return (
       this.constants.vmsUrl[this.coreConfig.getUser().ovhSubsidiary] ||

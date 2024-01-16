@@ -43,7 +43,7 @@
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-ng-href="{{:: $ctrl.terminateLink }}"
-                data-ng-if="(!$ctrl.server.isExpired && !$ctrl.server.engagement)"
+                data-ng-if=":: $ctrl.canBeTerminate()"
             >
                 <span
                     data-translate="dedicated_server_dashboard_close_service"
