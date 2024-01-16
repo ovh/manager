@@ -4718,7 +4718,7 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-16.0.1.tgz#912d83fd6b61b82d79cfe5224485b1d4a8f49ae2"
   integrity sha512-FhTDPYU57rt3jxSNpr7aGSKepXOjKABZxRHmBCKerBBXoJgOO49Lxa5UR62Qu6eWbA1sZ8gOUcmOUeRJGVhbZw==
 
-"@ovhcloud/ods-common-core@17.0.0":
+"@ovhcloud/ods-common-core@17.0.0", "@ovhcloud/ods-common-core@^17.0.0":
   version "17.0.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.0.0.tgz#e0820c213a8c6a0a91ac366cdc0059e600778f42"
   integrity sha512-MvwtyUC9e8T8OZQzI/74zIEF4FBzOAs75CYPU9GmCIqanx/0ajp5hnjl/PNrlG88SWp4EXpjtZEHEevIaozAAA==
@@ -4758,7 +4758,7 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-16.0.1.tgz#fbe515ee5c14153edd7b7cbe19dc3a63e2e14620"
   integrity sha512-s18szlKC6bZwrE/DwGjFA4TaUu68hFGY8UOhkq5OEnKqd/WcEQnxe3/JnMQOm4iCLqXA3bxeo/gCOxU+LKAb/A==
 
-"@ovhcloud/ods-common-theming@17.0.0":
+"@ovhcloud/ods-common-theming@17.0.0", "@ovhcloud/ods-common-theming@^17.0.0":
   version "17.0.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.0.0.tgz#01fbea50e77a2acd7a5b436596fef0902228ac15"
   integrity sha512-/JQkqGgYvXe2A5YNODXPLnjYsXQ0mC89hzYqczv15E4/pOLScrpIBu4PWlH8tscYaKOVEtQUGYyPmvm4yHnwKQ==

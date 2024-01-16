@@ -7,28 +7,33 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams, useHref } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 
+import { createRoot } from 'react-dom/client';
 import { RancherService } from '@/api/api.type';
 import DeleteModal from '@/components/Modal/DeleteModal';
 import ActionsCell from '../OdsCell/ActionsCell';
 import { ProductStatusCell } from '../OdsCell/ProductStatusCell';
-import ReactFormatter from './OdsFormatter';
 import { deleteRancherService, deleteRancherServiceQueryKey } from '@/api';
 
 interface LinkServiceInterface {
   cellData?: string;
-  href?: string;
+  onClick?: any;
 }
 
 interface DatagridWrapperInterface {
   data: RancherService[];
 }
 
-function LinkService({ cellData, href }: LinkServiceInterface) {
+function LinkService({ cellData, onClick }: LinkServiceInterface) {
   return (
-    <OsdsLink color={ODS_THEME_COLOR_INTENT.primary} href={href}>
+    <OsdsLink
+      color={ODS_THEME_COLOR_INTENT.primary}
+      onClick={() => {
+        onClick(cellData);
+      }}
+    >
       {cellData}
     </OsdsLink>
   );
@@ -37,6 +42,7 @@ function LinkService({ cellData, href }: LinkServiceInterface) {
 export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
   const { t } = useTranslation('pci-rancher/listing');
   const { projectId } = useParams();
+  const roots = new Map();
 
   const navigate = useNavigate();
   const [showDeleteModal, toggleDeleteModal] = useState(false);
@@ -51,14 +57,54 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
     mutationKey: deleteRancherServiceQueryKey(selectedRancher?.id),
   });
 
-  const onDeleteRancher = () => deleteRancher();
+  const reactFormatter = (jsx: any) => (
+    cellData: any,
+    rowData: any,
+    cell: any,
+    onRendered: any,
+  ) => {
+    const renderFn = () => {
+      const cellEl = cell.getElement();
+      if (cellEl) {
+        const formatterCell = cellEl.querySelector('.formatterCell');
+        if (formatterCell) {
+          const CompWithMoreProps = React.cloneElement(jsx, {
+            cellData,
+            rowData,
+          });
 
-  const hrefDashboard = useHref('./dashboard');
+          let root = roots.get(formatterCell);
+          if (!root) {
+            root = createRoot(formatterCell);
+            roots.set(formatterCell, root);
+          }
+
+          root.render(CompWithMoreProps);
+        }
+      }
+    };
+
+    onRendered(renderFn);
+
+    setTimeout(() => {
+      renderFn();
+    }, 0);
+    return '<div class="formatterCell"></div>';
+  };
+
+  const onDeleteRancher = () => deleteRancher();
+  const location = useLocation();
   const columns: OdsDatagridColumn[] = [
     {
       title: t('name'),
-      field: 'currentState.name',
-      formatter: ReactFormatter(<LinkService href={hrefDashboard} />), // TODO: Find way to useHref cause hook not work in datagrid
+      field: 'id',
+      formatter: reactFormatter(
+        <LinkService
+          onClick={(cellData: string) => {
+            navigate(`${location.pathname}/${cellData}`);
+          }}
+        />,
+      ), // TODO: Find way to useHref cause hook not work in datagrid
     },
     {
       title: t('serviceLevel'),
@@ -75,12 +121,12 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
     {
       title: t('status'),
       field: 'resourceStatus',
-      formatter: ReactFormatter(<ProductStatusCell t={t} />),
+      formatter: reactFormatter(<ProductStatusCell t={t} />),
     },
     {
       title: t('actions'),
       field: '',
-      formatter: ReactFormatter(
+      formatter: reactFormatter(
         <ActionsCell
           openModal={() => toggleDeleteModal(true)}
           isLoading={false}

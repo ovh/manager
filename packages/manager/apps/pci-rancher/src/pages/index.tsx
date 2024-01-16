@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { Suspense } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { getRancherProjectById } from '@/api';
 import Breadcrumb, {
   BreadcrumbHandleParams,
