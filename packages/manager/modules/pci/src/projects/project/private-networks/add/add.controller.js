@@ -55,7 +55,7 @@ export default class PrivateNetworksAddCtrl {
       vlanId: DEFAULT_VLAN_ID,
       cidr: DEFAULT_CIDR,
       dhcp: true,
-      enableGatewayIp: false,
+      enableGatewayIp: true,
     };
     this.isGatewayAvailableInRegion = false;
     this.getAvailableRegions();
