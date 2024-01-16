@@ -18,5 +18,6 @@
   "dashboard_history_restore_modal_primary_label": "Restaurar",
   "dashboard_history_restore_modal_secondary_label": "Cancelar",
   "dashboard_history_restore_modal_warning_message": "¡Atención! La zona actual se eliminará. La nueva zona seleccionada se restaurará.",
-  "dashboard_history_restore_modal_info_message": "El reinicio en la zona DNS tardará unos segundos, pero deberá tener en cuenta el tiempo de propagación (máximo 24 horas)."
+  "dashboard_history_restore_modal_info_message": "El reinicio en la zona DNS tardará unos segundos, pero deberá tener en cuenta el tiempo de propagación (máximo 24 horas).",
+  "modified": "Modificado"
 }
