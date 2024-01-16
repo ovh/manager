@@ -14,6 +14,8 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
   };
 };
 
+export const COMMON_PATH = '/pci/projects';
+
 export default [
   {
     // http://localhost:9000/#/pci-rancher/
@@ -22,21 +24,18 @@ export default [
   },
   {
     // http://localhost:9000/#/pci-rancher/onboarding
-    path: '/pci/projects/:projectId/rancher/onboarding',
+    path: `${COMMON_PATH}/:projectId/rancher/onboarding`,
     ...lazyRouteConfig(() => import('@/pages/onboarding')),
   },
   {
     // http://localhost:9000/#/pci-rancher/pci/projects/039db9ba696a4072a33074fa63ffa831/rancher
-    path: '/pci/projects/:projectId/rancher',
+    path: `${COMMON_PATH}/:projectId/rancher`,
     ...lazyRouteConfig(() => import('@/pages')),
-    children: [
-      {
-        path: '',
-        ...lazyRouteConfig(() =>
-          import('@/pages/dashboard/[serviceName]/_layout'),
-        ),
-      },
-    ],
+  },
+  {
+    // http://localhost:9000/#/pci-rancher/pci/projects/039db9ba696a4072a33074fa63ffa831/rancher/d6b6579e-8d60-4487-bf08-8b4ddf98f7d3
+    path: `${COMMON_PATH}/:projectId/rancher/:rancherId`,
+    ...lazyRouteConfig(() => import('@/pages/dashboard/_layout')),
   },
   {
     path: '*',

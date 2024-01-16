@@ -23,7 +23,10 @@ export interface PciProject {
 }
 
 export enum RancherTaskType {
-  rancherVersionUpdate = 'rancherVersionUpdate'
+  RANCHER_UPDATE = 'RANCHER_UPDATE',
+  RANCHER_CREATE = 'RANCHER_CREATE',
+  RANCHER_DELETE = 'RANCHER_DELETE',
+  RANCHER_ADMIN_CREDENTIALS_RESET = 'RANCHER_ADMIN_CREDENTIALS_RESET',
 }
 export interface RancherTask {
   id: string;
@@ -50,6 +53,10 @@ export interface RancherService {
     plan: string;
     region: string;
     version: string;
+    usage: {
+      datetime: string;
+      orchestratedVcpus: number;
+    };
     ipRestrictions?: [
       {
         cidrBlock: string;

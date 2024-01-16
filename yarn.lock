@@ -4293,6 +4293,11 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.0.0.tgz#e0820c213a8c6a0a91ac366cdc0059e600778f42"
   integrity sha512-MvwtyUC9e8T8OZQzI/74zIEF4FBzOAs75CYPU9GmCIqanx/0ajp5hnjl/PNrlG88SWp4EXpjtZEHEevIaozAAA==
 
+"@ovhcloud/ods-common-core@^17.0.0":
+  version "17.0.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.0.1.tgz#64b109083b8b0b840201ce292103a256c7ef247d"
+  integrity sha512-SsBwP1FEwZEcomAljgJYgP+RElyQc5MgaBZ0fUczR65rrIgrV6TmUxsJ82d4UUIk7EDw2445zOGWJfQYDaKJNw==
+
 "@ovhcloud/ods-common-stencil@16.0.1", "@ovhcloud/ods-common-stencil@^16.0.1":
   version "16.0.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-16.0.1.tgz#ab43bdbdf0d8e2651660ce20406e3b988acfe681"
@@ -4332,6 +4337,11 @@
   version "17.0.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.0.0.tgz#01fbea50e77a2acd7a5b436596fef0902228ac15"
   integrity sha512-/JQkqGgYvXe2A5YNODXPLnjYsXQ0mC89hzYqczv15E4/pOLScrpIBu4PWlH8tscYaKOVEtQUGYyPmvm4yHnwKQ==
+
+"@ovhcloud/ods-common-theming@^17.0.0":
+  version "17.0.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.0.1.tgz#c6e26fb94105640aeca0a4b08d60075ff29ff690"
+  integrity sha512-pmhy2+CG/hWhwxxysR6v0T+3JQXRJrOT4xKIFXc1t7Hjeg+o28J2EEPjJoWUk3BzDxxx6P4rYpw+8OEDeFjvKA==
 
 "@ovhcloud/ods-component-accordion@16.0.1":
   version "16.0.1"
@@ -11999,6 +12009,11 @@ date-fns@^2.29.1:
   integrity sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==
   dependencies:
     "@babel/runtime" "^7.21.0"
+
+date-fns@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-3.2.0.tgz#c97cf685b62c829aa4ecba554e4a51768cf0bffc"
+  integrity sha512-E4KWKavANzeuusPi0jUjpuI22SURAznGkx7eZV+4i6x2A+IZxAMcajgkvuDAU1bg40+xuhW1zRdVIIM/4khuIg==
 
 dateformat@^3.0.0:
   version "3.0.3"
