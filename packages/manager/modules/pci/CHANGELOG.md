@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.17.0...@ovh-ux/manager-pci@6.18.0) (2024-01-16)
+
+
+### Features
+
+* **public-cloud:** add Local Zone ([#10358](https://github.com/ovh/manager/issues/10358)) ([e8dadae](https://github.com/ovh/manager/commit/e8dadae55b2a6b5971ce8fc0fb7ed0c030868d2b))
+* **public-cloud:** patch localzone name ([#10695](https://github.com/ovh/manager/issues/10695)) ([28efee6](https://github.com/ovh/manager/commit/28efee6d0c6934e0aa5b5ab1787e99f7d396f9f1))
+
+
+
+
+
 # [6.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.16.1...@ovh-ux/manager-pci@6.17.0) (2024-01-08)
 
 
