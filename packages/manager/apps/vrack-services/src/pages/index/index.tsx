@@ -99,7 +99,7 @@ export default function ListingPage() {
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.stroked}
         size={ODS_BUTTON_SIZE.sm}
-        {...handleClick(() => navigate('create', { replace: true }))}
+        {...handleClick(() => navigate('create'))}
       >
         <OsdsIcon
           className="mr-4"

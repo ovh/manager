@@ -1,12 +1,12 @@
 import React from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import { ApiResponse, ApiError } from '@ovh-ux/manager-core-api';
 import {
   getVrackServicesResourceListQueryKey,
   getVrackServicesResource,
   getVrackServicesResourceQueryKey,
   ResourceStatus,
-  ResponseData,
   VrackServices,
   UpdateVrackServicesParams,
   updateVrackServicesQueryKey,
@@ -23,7 +23,7 @@ import {
 } from '@/api';
 
 export const useVrackServicesList = (refetchInterval = 30000) =>
-  useQuery<ResponseData<VrackServicesWithIAM[]>, ResponseData<Error>>({
+  useQuery<ApiResponse<VrackServicesWithIAM[]>, ApiError>({
     queryKey: getVrackServicesResourceListQueryKey,
     queryFn: () => getVrackServicesResourceList(),
     refetchInterval,
@@ -38,7 +38,7 @@ export const useVrackService = (refetchInterval = 30000) => {
 
   return useQuery<
     VrackServicesWithIAM,
-    ResponseData<Error>,
+    ApiError,
     VrackServicesWithIAM,
     string[]
   >({
@@ -47,7 +47,7 @@ export const useVrackService = (refetchInterval = 30000) => {
       const response = await getVrackServicesResource(id);
       queryClient.setQueryData(
         getVrackServicesResourceListQueryKey,
-        ({ data: listingData, ...rest }: ResponseData<VrackServices[]>) => ({
+        ({ data: listingData, ...rest }: ApiResponse<VrackServices[]>) => ({
           data: listingData.map((vrackServices) =>
             vrackServices.id === response.data.id
               ? response.data
@@ -81,8 +81,8 @@ export const useUpdateVrackServices = ({
   onError,
 }: {
   key: string;
-  onSuccess?: (result: ResponseData<VrackServices>) => void;
-  onError?: (result: ResponseData<Error>) => void;
+  onSuccess?: (result: ApiResponse<VrackServices>) => void;
+  onError?: (result: ApiError) => void;
 }) => {
   const [isErrorVisible, setErrorVisible] = React.useState(false);
   const queryClient = useQueryClient();
@@ -93,16 +93,16 @@ export const useUpdateVrackServices = ({
     isError,
     error: updateError,
   } = useMutation<
-    ResponseData<VrackServices>,
-    ResponseData<Error>,
+    ApiResponse<VrackServices>,
+    ApiError,
     UpdateVrackServicesParams
   >({
     mutationKey: updateVrackServicesQueryKey(key),
     mutationFn: updateVrackServices,
-    onSuccess: (result: ResponseData<VrackServices>) => {
+    onSuccess: (result: ApiResponse<VrackServices>) => {
       queryClient.setQueryData(
         getVrackServicesResourceListQueryKey,
-        ({ data: listingData, ...rest }: ResponseData<VrackServices[]>) => ({
+        ({ data: listingData, ...rest }: ApiResponse<VrackServices[]>) => ({
           data: listingData.map((vrackServices) =>
             vrackServices.id === result.data.id ? result.data : vrackServices,
           ),
@@ -111,7 +111,7 @@ export const useUpdateVrackServices = ({
       );
       queryClient.setQueryData(
         getVrackServicesResourceQueryKey(key),
-        (response: ResponseData<VrackServices>) => ({
+        (response: ApiResponse<VrackServices>) => ({
           ...response,
           data: result.data,
         }),
@@ -143,7 +143,7 @@ export const useServiceList = (vrackServicesId: string) => {
     data: serviceListResponse,
     isLoading: isServiceListLoading,
     error: serviceListError,
-  } = useQuery<ResponseData<EligibleManagedService[]>, ResponseData<Error>>({
+  } = useQuery<ApiResponse<EligibleManagedService[]>, ApiError>({
     queryKey: getEligibleManagedServiceListQueryKey(vrackServicesId),
     queryFn: () => getEligibleManagedServiceList(vrackServicesId),
     staleTime: Infinity,
@@ -153,7 +153,7 @@ export const useServiceList = (vrackServicesId: string) => {
     data: iamResources,
     isLoading: isIamResourcesLoading,
     error: iamResourcesError,
-  } = useQuery<ResponseData<IAMResource[]>, ResponseData<Error>>({
+  } = useQuery<ApiResponse<IAMResource[]>, ApiError>({
     queryKey: getIamResourceQueryKey(urnList),
     queryFn: () => getIamResource(urnList),
     enabled: urnList.length > 0,

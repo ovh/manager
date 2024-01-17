@@ -3,7 +3,6 @@ import { PathParams } from 'msw';
 import { Request as PlaywrightRequest } from 'playwright';
 import { Handler } from '../../tests/utils/msw-helpers';
 import { getParamsFromUrl } from '../../e2e/utils/playwright-helpers';
-import { ResponseData } from '../../src/api/api.type';
 import vrackServicesList from './get-vrack-services.json';
 
 export const eligibleManagedServiceResponse = [
@@ -63,7 +62,7 @@ export const getVrackServicesMocks = ({
               message: 'Update error',
             },
           },
-        } as ResponseData;
+        };
       }
       const vs = vrackServicesList.find(
         ({ id }) => id === (params || getParamsFromUrl(request, { id: -1 })).id,

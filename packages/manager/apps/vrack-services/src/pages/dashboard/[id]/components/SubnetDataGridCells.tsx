@@ -13,19 +13,15 @@ import {
   OsdsIcon,
   OsdsButton,
 } from '@ovhcloud/ods-components/react';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { EditableText } from '@/components/EditableText';
-import {
-  ResponseData,
-  Subnet,
-  UpdateVrackServicesParams,
-  VrackServices,
-} from '@/api';
+import { Subnet, UpdateVrackServicesParams, VrackServices } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
 
 type UpdateVS = UseMutateAsyncFunction<
-  ResponseData<VrackServices>,
-  ResponseData<Error>,
+  ApiResponse<VrackServices>,
+  ApiError,
   UpdateVrackServicesParams
 >;
 

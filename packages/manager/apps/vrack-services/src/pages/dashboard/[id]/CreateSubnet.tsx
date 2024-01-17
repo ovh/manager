@@ -18,8 +18,8 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import i18next from 'i18next';
 import { useShell } from '@ovh-ux/manager-react-core-application';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
-  ResponseData,
   VrackServices,
   getListingIcebergQueryKey,
   getVrackServicesResourceQueryKey,
@@ -70,8 +70,8 @@ const SubnetCreationPage: React.FC = () => {
   const shell = useShell();
 
   const { mutate: createSubnet, isPending, isError, error } = useMutation<
-    ResponseData<VrackServices>,
-    ResponseData<Error>
+    ApiResponse<VrackServices>,
+    ApiError
   >({
     mutationKey: updateVrackServicesQueryKey(getSubnetCreationMutationKey(id)),
     mutationFn: () =>
@@ -105,7 +105,7 @@ const SubnetCreationPage: React.FC = () => {
         name: 'vrack-services::subnets::add-success',
         level2: '',
       });
-      navigate(dashboardUrl, { replace: true });
+      navigate(dashboardUrl);
     },
     onError: async () => {
       await shell.tracking.trackEvent({

@@ -14,8 +14,8 @@ import {
   ODS_MESSAGE_TYPE,
 } from '@ovhcloud/ods-components';
 import { useShell } from '@ovh-ux/manager-react-core-application';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import OOPS from '@/assets/error-banner-oops.png';
-import { ResponseData } from '@/api';
 
 export const TRACKING_LABELS = {
   SERVICE_NOT_FOUND: 'service_not_found',
@@ -24,12 +24,12 @@ export const TRACKING_LABELS = {
 };
 
 export type ErrorBannerProps = {
-  error: ResponseData<Error>;
+  error: ApiError;
 };
 
-function getTrackingTypology(error: ResponseData) {
-  if (error?.detail?.status && Math.floor(error.detail.status / 100) === 4) {
-    return [401, 403].includes(error.detail.status)
+function getTrackingTypology(error: ApiError) {
+  if (error?.status && Math.floor(error.status / 100) === 4) {
+    return [401, 403].includes(error.status)
       ? TRACKING_LABELS.UNAUTHORIZED
       : TRACKING_LABELS.SERVICE_NOT_FOUND;
   }
@@ -78,11 +78,13 @@ export const ErrorPage: React.FC<ErrorBannerProps> = ({ error }) => {
         >
           <div>
             {t('manager_error_page_default')} <br />
-            {error?.data?.message && <strong>{error.data.message}</strong>}
-            {error?.headers['x-ovh-queryid'] && (
+            {error?.response?.data?.message && (
+              <strong>{error.response.data.message}</strong>
+            )}
+            {error?.response.headers['x-ovh-queryid'] && (
               <p>
                 {t('manager_error_page_detail_code')}
-                {error.headers['x-ovh-queryid']}
+                {error.response.headers['x-ovh-queryid']}
               </p>
             )}
           </div>

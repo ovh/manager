@@ -20,6 +20,7 @@ import {
   useShell,
 } from '@ovh-ux/manager-react-core-application';
 import { CountryCode } from '@ovh-ux/manager-config';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   getvrackServicesReferenceZoneList,
   getvrackServicesReferenceZoneListQueryKey,
@@ -29,8 +30,8 @@ import {
   orderVrackQueryKey,
   getDeliveringOrderQueryKey,
   OrderDescription,
-  ResponseData,
   Zone,
+  Order,
 } from '@/api';
 import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
 import { ErrorPage } from '@/components/Error';
@@ -55,8 +56,8 @@ const CreationPage: React.FC = () => {
   const shell = useShell();
 
   const { isLoading: isZoneLoading, isError: hasZoneError, error } = useQuery<
-    ResponseData<Zone[]>,
-    ResponseData<Error>
+    ApiResponse<Zone[]>,
+    ApiError
   >({
     queryKey: getvrackServicesReferenceZoneListQueryKey,
     queryFn: getvrackServicesReferenceZoneList,
@@ -68,7 +69,7 @@ const CreationPage: React.FC = () => {
     isPending: isCreationPending,
     isError: isCreationError,
     error: vsCreationError,
-  } = useMutation({
+  } = useMutation<ApiResponse<Order>, ApiError>({
     mutationFn: () =>
       orderVrackServices({
         displayName,
@@ -101,7 +102,7 @@ const CreationPage: React.FC = () => {
         name: 'vrack-services::add-success',
         level2: '',
       });
-      navigate('/', { replace: true });
+      navigate('/');
     },
     onError: async () => {
       await shell.tracking.trackEvent({
@@ -129,7 +130,10 @@ const CreationPage: React.FC = () => {
       <CreatePageLayout
         createButtonLabel={t('createButtonLabel')}
         createButtonDataTracking={`vrack-services::add::${selectedZone}::confim`}
-        formErrorMessage={t('creationServiceError', { error: vsCreationError })}
+        formErrorMessage={t('creationServiceError', {
+          error: vsCreationError?.response?.data.message,
+          interpolation: { escapeValue: false },
+        })}
         hasFormError={isCreationError}
         goBackLinkLabel={t('goBackLinkLabel')}
         goBackUrl="/"

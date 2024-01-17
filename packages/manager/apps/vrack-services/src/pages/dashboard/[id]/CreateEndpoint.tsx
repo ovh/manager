@@ -9,8 +9,8 @@ import {
   OdsSelectValueChangeEvent,
 } from '@ovhcloud/ods-components';
 import { useShell } from '@ovh-ux/manager-react-core-application';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
-  ResponseData,
   VrackServices,
   getListingIcebergQueryKey,
   getVrackServicesResourceQueryKey,
@@ -62,8 +62,8 @@ const EndpointCreationPage: React.FC = () => {
   } = useServiceList(id);
 
   const { mutate: createEndpoint, isPending, isError, error } = useMutation<
-    ResponseData<VrackServices>,
-    ResponseData<Error>
+    ApiResponse<VrackServices>,
+    ApiError
   >({
     mutationKey: updateVrackServicesQueryKey(
       getEndpointCreationMutationKey(id),
@@ -97,7 +97,7 @@ const EndpointCreationPage: React.FC = () => {
         name: 'vrack-services::endpoints::add-success',
         level2: '',
       });
-      navigate(dashboardUrl, { replace: true });
+      navigate(dashboardUrl);
     },
     onError: async () => {
       await shell.tracking.trackEvent({
