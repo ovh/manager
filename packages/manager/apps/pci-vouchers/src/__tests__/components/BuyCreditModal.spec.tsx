@@ -74,4 +74,32 @@ describe('Buy credit modal', () => {
     });
     expect(useBuy.buy).toHaveBeenCalledWith(25);
   });
+
+  it('should disable submit button if no amount is specified', async () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <BuyCreditModal
+          projectId="foo"
+          onClose={() => {}}
+          onError={() => {}}
+          onSuccess={() => {}}
+        ></BuyCreditModal>
+        ,
+      </QueryClientProvider>,
+    );
+    const amountInput = screen.getByTestId('amountInput');
+    const submitButton = screen.getByTestId('submitButton');
+    expect(submitButton).not.toHaveAttribute('disabled');
+    act(() => {
+      fireEvent.change(amountInput, {
+        target: {
+          value: 0,
+        },
+      });
+      // it seems we have to manually trigger the ods event
+      amountInput.odsValueChange.emit({ value: 0 });
+    });
+    expect(amountInput.value).toBe(0);
+    expect(submitButton).toHaveAttribute('disabled');
+  });
 });
