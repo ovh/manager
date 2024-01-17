@@ -38,6 +38,20 @@ vi.mock('@/hooks/useVouchers', () => {
   };
 });
 
+function renderModal() {
+  render(
+    <QueryClientProvider client={queryClient}>
+      <BuyCreditModal
+        projectId="foo"
+        onClose={() => {}}
+        onError={() => {}}
+        onSuccess={() => {}}
+      ></BuyCreditModal>
+      ,
+    </QueryClientProvider>,
+  );
+}
+
 describe('Buy credit modal', () => {
   it('should call the buy function with given amount', async () => {
     const useBuy = useBuyCredit({
@@ -45,17 +59,7 @@ describe('Buy credit modal', () => {
       onSuccess: () => {},
       onError: () => {},
     });
-    render(
-      <QueryClientProvider client={queryClient}>
-        <BuyCreditModal
-          projectId="foo"
-          onClose={() => {}}
-          onError={() => {}}
-          onSuccess={() => {}}
-        ></BuyCreditModal>
-        ,
-      </QueryClientProvider>,
-    );
+    renderModal();
     const amountInput = screen.getByTestId('amountInput');
     const submitButton = screen.getByTestId('submitButton');
     expect(useBuy.buy).not.toHaveBeenCalled();
@@ -76,6 +80,42 @@ describe('Buy credit modal', () => {
   });
 
   it('should disable submit button if no amount is specified', async () => {
+    renderModal();
+    const amountInput = screen.getByTestId('amountInput');
+    const submitButton = screen.getByTestId('submitButton');
+    expect(submitButton).not.toHaveAttribute('disabled');
+    act(() => {
+      fireEvent.change(amountInput, {
+        target: {
+          value: 0,
+        },
+      });
+      // it seems we have to manually trigger the ods event
+      amountInput.odsValueChange.emit({ value: 0 });
+    });
+    expect(amountInput.value).toBe(0);
+    expect(submitButton).toHaveAttribute('disabled');
+  });
+
+  it('should only allows numerical values for amount', async () => {
+    renderModal();
+    const amountInput = screen.getByTestId('amountInput');
+    const submitButton = screen.getByTestId('submitButton');
+    expect(submitButton).not.toHaveAttribute('disabled');
+    act(() => {
+      fireEvent.change(amountInput, {
+        target: {
+          value: 'hello',
+        },
+      });
+      // it seems we have to manually trigger the ods event
+      amountInput.odsValueChange.emit({ value: 'hello' });
+    });
+    expect(amountInput.value).toBe(NaN);
+    expect(submitButton).toHaveAttribute('disabled');
+  });
+
+  it('should only allows up to 8 digits for amount', async () => {
     render(
       <QueryClientProvider client={queryClient}>
         <BuyCreditModal
@@ -93,13 +133,13 @@ describe('Buy credit modal', () => {
     act(() => {
       fireEvent.change(amountInput, {
         target: {
-          value: 0,
+          value: 123456789,
         },
       });
       // it seems we have to manually trigger the ods event
-      amountInput.odsValueChange.emit({ value: 0 });
+      amountInput.odsValueChange.emit({ value: 123456789 });
     });
-    expect(amountInput.value).toBe(0);
+    expect(amountInput.value).toBe(123456789);
     expect(submitButton).toHaveAttribute('disabled');
   });
 });
