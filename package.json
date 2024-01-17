@@ -46,7 +46,8 @@
     "test:jest": "jest --runInBand",
     "test": "yarn lint",
     "test:scripts": "make test",
-    "test:playwright:run": "lerna run test:e2e:script --concurrency 1"
+    "test:playwright:run": "lerna run test:e2e:script --concurrency 1",
+    "test:playwright:ci": "lerna run test:e2e:ci --concurrency 1"
   },
   "resolutions": {
     "@babel/runtime": "7.22.15",
