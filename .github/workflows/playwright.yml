@@ -14,6 +14,8 @@ jobs:
       run: npm install -g yarn
     - name: Install dependencies
       run: yarn install --frozen-lokfile
+    - name: Build dependencies
+      run: yarn build
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright catalog tests
