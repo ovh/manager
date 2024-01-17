@@ -11,6 +11,9 @@ test('should display Error component if fetch fails', async ({ page }) => {
     });
   });
   await page.reload();
+  await page.goto(
+    'http://localhost:9000/#/pci/projects/039db9ba696a4072a33074fa63ffa831/rancher/222ce105-a3f7-44c4-a7d3-dbb5983c045d',
+  );
 
   await page.waitForSelector('.manager-error-page');
 
