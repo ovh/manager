@@ -1,0 +1,26 @@
+name: Playwright Tests
+on:
+    push  
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+    - name: Setup yarn
+      run: npm install -g yarn
+    - name: Install dependencies
+      run: yarn install --frozen-lokfile
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Playwright catalog tests
+      run: yarn --cwd packages/manager/apps/catalog run test:e2e
+    - uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
