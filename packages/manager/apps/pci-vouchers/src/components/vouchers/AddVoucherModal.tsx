@@ -63,6 +63,7 @@ export default function AddVoucherModal({
                   className={'border'}
                   onOdsValueChange={handleInputChange}
                   ariaLabel={t('cpb_vouchers_your_voucher')}
+                  data-testid="voucherId"
                 />
               </OsdsFormField>
             </>
@@ -81,6 +82,7 @@ export default function AddVoucherModal({
           color={ODS_THEME_COLOR_INTENT.primary}
           {...(voucherCode ? {} : { disabled: true })}
           onClick={() => add(voucherCode)}
+          data-testid="submitButton"
         >
           {t('common_confirm')}
         </OsdsButton>
