@@ -14,6 +14,9 @@ vi.mock('@ovh-ux/manager-core-api', () => {
 });
 
 describe('project data', () => {
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
   it('should call cloud project apiv6 with project id', async () => {
     expect(v6.get).not.toHaveBeenCalled();
     getProject('foo');
