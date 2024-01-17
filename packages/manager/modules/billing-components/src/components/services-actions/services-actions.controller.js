@@ -137,12 +137,13 @@ export default class ServicesActionsCtrl {
     return `${this.autorenewLink}/exchange?organization=${this.service.serviceId}&exchangeName=${this.service.serviceId}`;
   }
 
-  trackAction(action) {
+  trackAction(action, hasActionInEvent = true) {
     if (this.trackingPrefix) {
-      this.atInternet.trackClick({
-        name: `${this.trackingPrefix}::action::${action}`,
-        type: 'action',
-      });
+      const name = hasActionInEvent
+        ? `${this.trackingPrefix}::action::${action}`
+        : `${this.trackingPrefix}::${action}`;
+
+      this.atInternet.trackClick({ name, type: 'action' });
     }
   }
 }
