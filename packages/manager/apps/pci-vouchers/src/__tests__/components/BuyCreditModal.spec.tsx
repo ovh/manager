@@ -1,11 +1,11 @@
-import { describe, expect } from 'vitest';
+import { describe, expect, vi } from 'vitest';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import queryClient from '@/queryClient';
 import BuyCreditModal from '@/components/vouchers/BuyCreditModal';
 import { useBuyCredit } from '@/hooks/useVouchers';
+import queryClient from '@/queryClient';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
   useEnvironment: () => ({
@@ -17,7 +17,7 @@ vi.mock('react-i18next', () => ({
   // this mock makes sure any components using the translate hook can use it without a warning being shown
   useTranslation: () => {
     return {
-      t: (str) => str,
+      t: (str: string) => str,
       i18n: {
         changeLanguage: () => new Promise(() => {}),
       },
@@ -40,10 +40,15 @@ vi.mock('@/hooks/useVouchers', () => {
 
 describe('Buy credit modal', () => {
   it('should call the buy function with given amount', async () => {
-    const useBuy = useBuyCredit();
+    const useBuy = useBuyCredit({
+      projectId: 'foo',
+      onSuccess: () => {},
+      onError: () => {},
+    });
     render(
       <QueryClientProvider client={queryClient}>
         <BuyCreditModal
+          projectId="foo"
           onClose={() => {}}
           onError={() => {}}
           onSuccess={() => {}}

@@ -24,9 +24,9 @@
       "@/*": ["./src/*"]
     },
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "types", "src/__tests__"],
+  "exclude": ["node_modules", "dist", "types"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
