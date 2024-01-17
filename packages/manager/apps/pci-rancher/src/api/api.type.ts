@@ -53,7 +53,7 @@ export interface RancherService {
     plan: string;
     region: string;
     version: string;
-    usage: {
+    usage?: {
       datetime: string;
       orchestratedVcpus: number;
     };

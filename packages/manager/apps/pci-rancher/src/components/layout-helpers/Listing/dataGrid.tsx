@@ -85,7 +85,7 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
     },
     {
       title: t('numberOfCpu'),
-      field: 'currentState.usage.orchestratedVcpus' ?? '-',
+      field: 'currentState.usage.orchestratedVcpus',
       formatter: ReactFormatter(<CpuDisplay />),
     },
     {

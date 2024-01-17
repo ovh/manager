@@ -15,6 +15,7 @@ export default defineConfig({
   testMatch: '**/*.e2e.ts',
   webServer: {
     command: 'yarn run dev',
-    url: 'http://localhost:9000/',
+    url:
+      'http://localhost:9000/#/pci/projects/039db9ba696a4072a33074fa63ffa831/rancher',
   },
 });
