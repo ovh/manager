@@ -27,7 +27,7 @@ export default function DashboardPage() {
       name: 'custom tab',
       title: t('allowedIps'),
       to: useResolvedPath('Tabs2').pathname,
-      disabled: true,
+      isDisabled: true,
     },
   ];
 
@@ -47,7 +47,7 @@ export default function DashboardPage() {
 
   return (
     <div className="m-10">
-      <Breadcrumb />
+      <Breadcrumb items={[{ label: data?.data.targetSpec.name }]} />
       <Suspense fallback={<Loading />}>
         {data?.data && <Dashboard tabs={tabsList} rancher={data.data} />}
       </Suspense>
