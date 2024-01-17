@@ -19,7 +19,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright catalog tests
-      run: yarn --cwd packages/manager/apps/catalog run test:e2e
+      run: yarn --cwd packages/manager/apps/catalog run test:e2e:ci
     - uses: actions/upload-artifact@v3
       if: always()
       with:
