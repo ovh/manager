@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.18.0...@ovh-ux/manager-pci@6.18.1) (2024-01-17)
+
+
+### Bug Fixes
+
+* **public-cloud:** enable monthly billing ([5dd4646](https://github.com/ovh/manager/commit/5dd464633d41bad68fa8808d1202869282729b4b))
+
+
+
+
+
 # [6.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.17.0...@ovh-ux/manager-pci@6.18.0) (2024-01-16)
 
 
