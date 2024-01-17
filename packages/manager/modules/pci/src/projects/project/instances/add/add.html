@@ -42,7 +42,7 @@
                 ? 'pci_projects_project_instances_add_region_selected_title'
                 : 'pci_projects_project_instances_add_region_title') | translate: {
                     location: $ctrl.model.location
-                }
+                })
             }}"
         data-valid="$ctrl.model.datacenter && $ctrl.isRegionAvailable($ctrl.model.datacenter)"
         data-prevent-next="true"
@@ -564,7 +564,7 @@
 
         <oui-message
             data-type="warning"
-            data-ng-if="$ctrl.subnetGateways.length > 0 && !$ctrl.isGatewayLoading && $ctrl.selectedMode.name !== MODE_PUBLIC"
+            data-ng-if="$ctrl.subnetGateways.length > 0 && !$ctrl.isGatewayLoading && $ctrl.selectedMode.name !== $ctrl.PUBLIC_MODE"
         >
             <p
                 data-translate="pci_projects_project_instances_add_privateNetwork_gateway_detectected_banner_info1"

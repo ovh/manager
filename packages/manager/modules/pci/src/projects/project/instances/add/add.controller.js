@@ -27,6 +27,9 @@ import {
   PUBLIC_NETWORK,
   PUBLIC_NETWORK_BAREMETAL,
   LOCAL_ZONE_REGION,
+  LOCAL_PRIVATE_MODE,
+  PUBLIC_MODE,
+  PRIVATE_MODE,
 } from './add.constants';
 
 export default class PciInstancesAddController {
@@ -62,6 +65,7 @@ export default class PciInstancesAddController {
       WINDOWS_PRIVATE_MODE_LICENSE_GUIDE[this.user.ovhSubsidiary] ||
       WINDOWS_PRIVATE_MODE_LICENSE_GUIDE.DEFAULT;
     this.instanceModeEnum = INSTANCE_MODES_ENUM;
+    this.PUBLIC_MODE = PUBLIC_MODE;
     this.currency = coreConfig.getUser().currency.symbol;
     this.PciProjectAdditionalIpService = PciProjectAdditionalIpService;
     this.FLOATING_IP_AVAILABILITY_INFO_LINK = FLOATING_IP_AVAILABILITY_INFO_LINK;
@@ -139,7 +143,7 @@ export default class PciInstancesAddController {
 
     this.selectedFloatingIP = null;
     this.loadMessages();
-    [this.selectedMode] = this.modes;
+    [, this.selectedMode] = this.modes;
     this.showAddPrivateNetworkModalForm = false;
     this.isAttachFloatingIP = false;
     this.isAttachPublicNetwork = false;
@@ -629,11 +633,11 @@ export default class PciInstancesAddController {
   }
 
   isPrivateMode() {
-    return this.selectedMode.name === this.instanceModeEnum[1].mode;
+    return this.selectedMode.name === PRIVATE_MODE;
   }
 
   isLocalPrivateMode() {
-    return this.selectedMode.name === this.instanceModeEnum[2].mode;
+    return this.selectedMode.name === LOCAL_PRIVATE_MODE;
   }
 
   isLocalZone() {
@@ -680,7 +684,7 @@ export default class PciInstancesAddController {
     if (
       modelValue &&
       modelValue.subnet &&
-      this.selectedMode.name !== this.instanceModeEnum[1].mode &&
+      !this.isPrivateMode() &&
       !this.isLocalZone()
     ) {
       this.getSubnetGateways(modelValue.subnet[0].id)
@@ -1078,8 +1082,8 @@ export default class PciInstancesAddController {
   }
 
   displayNetwork(mode, type) {
-    if (type === this.LOCAL_ZONE_REGION) return mode !== 'public_mode';
-    if (type !== this.LOCAL_ZONE_REGION) return mode !== 'local_private_mode';
-    return true;
+    return type === this.LOCAL_ZONE_REGION
+      ? mode !== PUBLIC_MODE
+      : !this.isLocalPrivateMode();
   }
 }
