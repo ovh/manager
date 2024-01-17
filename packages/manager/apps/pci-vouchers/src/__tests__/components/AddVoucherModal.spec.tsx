@@ -52,8 +52,8 @@ function renderModal() {
   );
 }
 
-describe('Buy credit modal', () => {
-  it('should call the buy function with given amount', async () => {
+describe('Add voucher modal', () => {
+  it('should call the add function with given voucher id', async () => {
     const useAdd = useAddVoucher({
       projectId: 'foo',
       onSuccess: () => {},
