@@ -1,7 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsMessage } from '@ovhcloud/ods-components/react';
+import { OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { RancherTask, RancherTaskType } from '@/api/api.type';
 
 const RancherTaskMessage = ({ tasks }: { tasks: RancherTask[] }) => {
@@ -23,7 +24,12 @@ const RancherTaskMessage = ({ tasks }: { tasks: RancherTask[] }) => {
     <div>
       {tasksMessage.map((task) => (
         <OsdsMessage id={task.id} type={task.type} className="my-4 p-3">
-          {task.message}
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            className="inline-block"
+          >
+            {task.message}
+          </OsdsText>
         </OsdsMessage>
       ))}
     </div>

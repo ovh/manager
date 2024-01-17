@@ -32,6 +32,7 @@ export type DashboardTabItemProps = {
   name: string;
   title: string;
   to: string;
+  isDisabled?: boolean;
 };
 
 export type DashboardLayoutProps = {
@@ -59,13 +60,13 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
 
   return (
     <>
-      <div className="py-4 ">
+      <div className="py-4">
         <OsdsText
           level={ODS_TEXT_LEVEL.heading}
           color={ODS_THEME_COLOR_INTENT.text}
           size={ODS_TEXT_SIZE._600}
         >
-          {location.pathname.split('/')[2]}
+          {rancher.currentState.name}
         </OsdsText>
       </div>
       <div className="flex items-center my-6">
@@ -85,6 +86,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
             <OsdsTabBarItem
               key={`osds-tab-bar-item-${tab.name}`}
               panel={tab.name}
+              disabled={tab.isDisabled}
             >
               <NavLink to={tab.to} className="no-underline">
                 {tab.title}
