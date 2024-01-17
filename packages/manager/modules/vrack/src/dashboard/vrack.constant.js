@@ -26,6 +26,25 @@ export const VRACK_URLS = {
   },
 };
 
+/**
+ * OVH services names as constants
+ * @type {string}
+ */
+export const SERVICES_NAMES = {
+  CP_SERVICE: 'cloudProject',
+  DCLOUDDC_SERVICE: 'dedicatedCloudDatacenter',
+  DCLOUD_SERVICE: 'dedicatedCloud',
+  DC_SERVICE: 'dedicatedConnect',
+  DEDICATED_SERVICE: 'dedicatedServer',
+  DSI_SERVICE: 'dedicatedServerInterface',
+  IPLB_SERVICE: 'ipLoadbalancing',
+  IP_SERVICE: 'ip',
+  LVRACK_SERVICE: 'legacyVrack',
+  MBMDC_SERVICE: 'managedBareMetalDatacenter',
+  MBM_SERVICE: 'managedBareMetal',
+  OVHCC_SERVICE: 'ovhCloudConnect',
+};
+
 export const FEATURE_NAMES = {
   cloudProject: 'public-cloud',
   dedicatedCloud: 'dedicated-cloud',
@@ -54,11 +73,11 @@ export const VRACK_ACTIONS_SUFFIX = 'action';
  * @type {string[]}
  */
 export const GROUPED_SERVICES_TYPES = [
-  'dedicatedCloudDatacenter',
-  'managedBareMetalDatacenter',
-  'dedicatedCloud',
-  'managedBareMetal',
-  'dedicatedServerInterface',
+  SERVICES_NAMES.DCLOUDDC_SERVICE,
+  SERVICES_NAMES.MBMDC_SERVICE,
+  SERVICES_NAMES.DCLOUD_SERVICE,
+  SERVICES_NAMES.MBM_SERVICE,
+  SERVICES_NAMES.DSI_SERVICE,
 ];
 /**
  * the services families are referenced in the vrack allowed services API
@@ -67,16 +86,16 @@ export const GROUPED_SERVICES_TYPES = [
  * @type {{legacyVrack: null, dedicatedCloudDatacenter: null, ovhCloudConnect: null, dedicatedCloud: null, dedicatedServer: null, ip: null, dedicatedConnect: null, dedicatedServerInterface: null, cloudProject: null, ipLoadbalancing: null}}
  */
 export const SERVICE_FAMILIES_MAP_FETCH = {
-  cloudProject: 'not_fetched',
-  dedicatedCloud: 'not_fetched',
-  dedicatedCloudDatacenter: 'not_fetched',
-  dedicatedConnect: 'not_fetched',
-  dedicatedServer: 'not_fetched',
-  dedicatedServerInterface: 'not_fetched',
-  ip: 'not_fetched',
-  ipLoadbalancing: 'not_fetched',
-  legacyVrack: 'not_fetched',
-  ovhCloudConnect: 'not_fetched',
+  cloudProject: false,
+  dedicatedCloud: false,
+  dedicatedCloudDatacenter: false,
+  dedicatedConnect: false,
+  dedicatedServer: false,
+  dedicatedServerInterface: false,
+  ip: false,
+  ipLoadbalancing: false,
+  legacyVrack: false,
+  ovhCloudConnect: false,
 };
 export const SERVICE_FAMILIES_MAP = {
   cloudProject: null,
@@ -95,6 +114,29 @@ export const SERVICE_FAMILIES_MAP = {
  * @type {string[]}
  */
 export const SERVICE_FAMILIES_LIST = Object.keys(SERVICE_FAMILIES_MAP);
+
+/**
+ * maps a type of serviec to a set of OVH UI icons
+ * @param serviceType
+ * @returns {{"ovh-font ovh-font-ip": boolean, "ovh-font ovh-font-iplb": boolean, "ovh-font ovh-font-server": boolean, "ovh-font ovh-font-vRack": boolean, "ovh-font ovh-font-dedicatedCloud": boolean, "ovh-font ovh-font-network": boolean, "ovh-font ovh-font-public-cloud": boolean, "oui-icon oui-icon-cloud-essential_concept": boolean}}
+ */
+export function serviceIconClassMapper(serviceType) {
+  return {
+    'ovh-font ovh-font-dedicatedCloud':
+      serviceType === SERVICES_NAMES.DCLOUD_SERVICE ||
+      serviceType === SERVICES_NAMES.DCLOUDDC_SERVICE,
+    'oui-icon oui-icon-cloud-essential_concept':
+      serviceType === SERVICES_NAMES.MBM_SERVICE,
+    'ovh-font ovh-font-public-cloud': serviceType === SERVICES_NAMES.CP_SERVICE,
+    'ovh-font ovh-font-iplb': serviceType === SERVICES_NAMES.IPLB_SERVICE,
+    'ovh-font ovh-font-ip': serviceType === SERVICES_NAMES.IP_SERVICE,
+    'ovh-font ovh-font-server':
+      serviceType === 'dedicatedServer' ||
+      serviceType === SERVICES_NAMES.DSI_SERVICE,
+    'ovh-font ovh-font-network': serviceType === SERVICES_NAMES.DC_SERVICE,
+    'ovh-font ovh-font-vRack': serviceType === SERVICES_NAMES.LVRACK_SERVICE,
+  };
+}
 export default {
   FEATURE_NAMES,
   POLLING_INTERVAL,
@@ -106,4 +148,6 @@ export default {
   GROUPED_SERVICES_TYPES,
   VRACK_DASHBOARD_TRACKING_PREFIX,
   VRACK_ACTIONS_SUFFIX,
+  SERVICES_NAMES,
+  serviceIconClassMapper,
 };

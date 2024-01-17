@@ -5,7 +5,7 @@ const config = {
 };
 
 module.exports = {
-  context: ['/engine/2api/vrack'],
+  context: ['/engine/2api'],
   target: config.aapi.url,
   changeOrigin: true,
   pathRewrite: {

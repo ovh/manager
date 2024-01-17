@@ -35,7 +35,9 @@ import {
   VRACK_ACTIONS_SUFFIX,
   VRACK_URLS,
   SERVICE_FAMILIES_MAP_FETCH,
-} from './vrack.constant';
+  serviceIconClassMapper,
+  SERVICES_NAMES,
+} from './vrack.constant.js';
 import arrowIcon from '../../assets/icon_vrack-mapper-arrows.svg';
 
 export default class VrackMoveDialogCtrl {
@@ -54,6 +56,7 @@ export default class VrackMoveDialogCtrl {
     OvhApiMe,
     CucVrackService,
     atInternet,
+    coreConfig,
   ) {
     this.$http = $http;
     this.$scope = $scope;
@@ -69,7 +72,10 @@ export default class VrackMoveDialogCtrl {
     this.vrackService = CucVrackService;
     this.atInternet = atInternet;
     this.changeOwnerTrackLabel = `${VRACK_DASHBOARD_TRACKING_PREFIX}::change-owner`;
-    this.servicesFamilies = SERVICE_FAMILIES_LIST;
+    this.SERVICE_FAMILIES_LIST = SERVICE_FAMILIES_LIST;
+    this.SERVICES_NAMES = SERVICES_NAMES;
+    this.serviceIconClassMapper = serviceIconClassMapper;
+    this.coreConfig = coreConfig;
   }
 
   /**
@@ -126,7 +132,7 @@ export default class VrackMoveDialogCtrl {
     return {
       id: service.uuid,
       niceName: service.product,
-      trueServiceType: 'ovhCloudConnect',
+      trueServiceType: SERVICES_NAMES.OVHCC_SERVICE,
     };
   }
 
@@ -140,7 +146,7 @@ export default class VrackMoveDialogCtrl {
     } else {
       formattedService.niceName = service.name;
     }
-    formattedService.trueServiceType = 'dedicatedServer';
+    formattedService.trueServiceType = SERVICES_NAMES.DEDICATED_SERVICE;
     return formattedService;
   }
 
@@ -148,23 +154,22 @@ export default class VrackMoveDialogCtrl {
     const formattedService = VrackMoveDialogCtrl.getDedicatedServerNiceName(
       service.dedicatedServer,
     );
-    formattedService.id = service.dedicatedServerInterface;
+    formattedService.id = service[SERVICES_NAMES.DSI_SERVICE];
     formattedService.niceName = `${formattedService.niceName} - ${service.name}`;
-    formattedService.trueServiceType = 'dedicatedServerInterface';
+    formattedService.trueServiceType = SERVICES_NAMES.DSI_SERVICE;
 
     return formattedService;
   }
 
   static getDedicatedCloudNiceName(service) {
     const formattedService = Object.create(service);
-    // angular.copy(service, formattedService);
     formattedService.id = service.serviceName;
     if (service.description) {
       formattedService.niceName = `${service.serviceName} (${service.description})`;
     } else {
       formattedService.niceName = service.serviceName;
     }
-    formattedService.trueServiceType = 'dedicatedCloud';
+    formattedService.trueServiceType = SERVICES_NAMES.DCLOUD_SERVICE;
     return formattedService;
   }
 
@@ -176,7 +181,7 @@ export default class VrackMoveDialogCtrl {
     } else {
       formattedService.niceName = service.project_id;
     }
-    formattedService.trueServiceType = 'cloudProject';
+    formattedService.trueServiceType = SERVICES_NAMES.CP_SERVICE;
     return formattedService;
   }
 
@@ -188,8 +193,38 @@ export default class VrackMoveDialogCtrl {
     } else {
       formattedService.niceName = service.serviceName;
     }
-    formattedService.trueServiceType = 'ipLoadbalancing';
+    formattedService.trueServiceType = SERVICES_NAMES.IPLB_SERVICE;
     return formattedService;
+  }
+
+  static makeIpFormattedService(service) {
+    return typeof service === 'string'
+      ? {
+          id: service,
+          niceName: service,
+          trueServiceType: SERVICES_NAMES.IP_SERVICE,
+        }
+      : service;
+  }
+
+  static makeDedicatedCloudDatacenterService(service) {
+    if (!service.datacenter) {
+      // eslint-disable-next-line no-param-reassign
+      service.datacenter = '';
+    }
+    // eslint-disable-next-line no-case-declarations
+    const dedicatedCloudDatacenter = {};
+    dedicatedCloudDatacenter.id = service.datacenter;
+    dedicatedCloudDatacenter.niceName = last(service.datacenter.split('_'));
+    if (isObject(service.dedicatedCloud)) {
+      dedicatedCloudDatacenter.dedicatedCloud.niceName = `${service.dedicatedCloud.serviceName} (${service.dedicatedCloud.description})`;
+    } else {
+      dedicatedCloudDatacenter.dedicatedCloud = {
+        niceName: service.dedicatedCloud,
+      };
+    }
+    dedicatedCloudDatacenter.trueServiceType = SERVICES_NAMES.DCLOUDDC_SERVICE;
+    return dedicatedCloudDatacenter;
   }
 
   /**
@@ -209,8 +244,9 @@ export default class VrackMoveDialogCtrl {
     if (service.niceName) {
       return service;
     }
+
     switch (serviceType) {
-      case 'dedicatedServer':
+      case SERVICES_NAMES.DEDICATED_SERVICE:
         formattedService = VrackMoveDialogCtrl.getDedicatedServerNiceName(
           service,
         );
@@ -221,58 +257,34 @@ export default class VrackMoveDialogCtrl {
         );
 
         break;
-      case 'dedicatedCloud':
-      case 'managedBareMetal':
+      case SERVICES_NAMES.DCLOUD_SERVICE:
+      case SERVICES_NAMES.MBM_SERVICE:
         formattedService = VrackMoveDialogCtrl.getDedicatedCloudNiceName(
           service,
         );
         break;
-      case 'dedicatedCloudDatacenter':
-        if (!service.datacenter) {
-          // eslint-disable-next-line no-param-reassign
-          service.datacenter = '';
-        }
-        // eslint-disable-next-line no-case-declarations
-        const dedicatedCloudDatacenter = {};
-        dedicatedCloudDatacenter.id = service.datacenter;
-        dedicatedCloudDatacenter.niceName = last(service.datacenter.split('_'));
-        if (isObject(service.dedicatedCloud)) {
-          dedicatedCloudDatacenter.dedicatedCloud.niceName = `${service.dedicatedCloud.serviceName} (${service.dedicatedCloud.description})`;
-        } else {
-          dedicatedCloudDatacenter.dedicatedCloud = {
-            niceName: service.dedicatedCloud,
-          };
-        }
-        dedicatedCloudDatacenter.trueServiceType = 'dedicatedCloudDatacenter';
-        formattedService = dedicatedCloudDatacenter;
+      case SERVICES_NAMES.DCLOUDDC_SERVICE:
+        formattedService = this.makeDedicatedCloudDatacenterService(service);
         break;
-      case 'legacyVrack':
+      case SERVICES_NAMES.LVRACK_SERVICE:
         formattedService = {
           id: service.id,
           niceName: service.niceName,
-          trueServiceType: 'legacyVrack',
+          trueServiceType: SERVICES_NAMES.LVRACK_SERVICE,
         };
         break;
-      case 'ip':
-        if (typeof service === 'string') {
-          formattedService = {
-            id: service,
-            niceName: service,
-            trueServiceType: 'ip',
-          };
-        } else {
-          formattedService = service;
-        }
+      case SERVICES_NAMES.IP_SERVICE:
+        formattedService = this.makeIpFormattedService(service);
         break;
-      case 'cloudProject':
+      case SERVICES_NAMES.CP_SERVICE:
         formattedService = VrackMoveDialogCtrl.getCloudProjectNiceName(service);
         break;
-      case 'ovhCloudConnect':
+      case SERVICES_NAMES.OVHCC_SERVICE:
         formattedService = VrackMoveDialogCtrl.getOvhCloudConnectNiceName(
           service,
         );
         break;
-      case 'ipLoadbalancing':
+      case SERVICES_NAMES.IPLB_SERVICE:
         formattedService = VrackMoveDialogCtrl.getIpLoadbalancingNiceName(
           service,
         );
@@ -427,20 +439,20 @@ export default class VrackMoveDialogCtrl {
         allServices = mapValues(allServices, (servicesParams, serviceType) => {
           let services = servicesParams;
           if (Array.isArray(services) && services.length) {
-            services = map(services, (service) => {
-              this.constructor.fillServiceData(serviceType, service);
-            });
+            services = services.map((service) =>
+              this.constructor.fillServiceData(serviceType, service),
+            );
           }
           return services;
         });
 
-        if (has(allServices, 'dedicatedCloud')) {
+        if (has(allServices, SERVICES_NAMES.DCLOUD_SERVICE)) {
           const groupedDedicatedCloud = groupBy(
             allServices.dedicatedCloud,
             (dedicatedCloud) => {
               return dedicatedCloud.productReference === 'MBM'
-                ? 'managedBareMetal'
-                : 'dedicatedCloud';
+                ? SERVICES_NAMES.MBM_SERVICE
+                : SERVICES_NAMES.DCLOUD_SERVICE;
             },
           );
           allServices = assign(
@@ -449,14 +461,16 @@ export default class VrackMoveDialogCtrl {
             groupedDedicatedCloud,
           );
         }
-        if (has(allServices, 'dedicatedCloudDatacenter')) {
+        if (has(allServices, SERVICES_NAMES.DCLOUDDC_SERVICE)) {
           let groupedDatacenters = groupBy(
             allServices.dedicatedCloudDatacenter,
             (datacenter) => {
-              return get(datacenter, 'dedicatedCloud.productReference') ===
-                'MBM'
-                ? 'managedBareMetalDatacenter'
-                : 'dedicatedCloudDatacenter';
+              return get(
+                datacenter,
+                `${SERVICES_NAMES.DCLOUD_SERVICE}.productReference`,
+              ) === 'MBM'
+                ? SERVICES_NAMES.MBM_SERVICE
+                : SERVICES_NAMES.DCLOUDDC_SERVICE;
             },
           );
           groupedDatacenters = mapValues(
@@ -485,7 +499,7 @@ export default class VrackMoveDialogCtrl {
           allServices.dedicatedServerInterface.length > 0
         ) {
           // If dedicatedServers list doesn't exist, we create it first.
-          if (!has(allServices, 'dedicatedServer')) {
+          if (!has(allServices, SERVICES_NAMES.DEDICATED_SERVICE)) {
             allServices.dedicatedServer = [];
           }
 
@@ -825,7 +839,7 @@ export default class VrackMoveDialogCtrl {
         map(this.form.servicesToAdd, (service) => {
           let task = this.$q.reject('Unknown service type');
           switch (service.type) {
-            case 'dedicatedServer':
+            case SERVICES_NAMES.DEDICATED_SERVICE:
               task = this.OvhApiVrack.DedicatedServer()
                 .v6()
                 .create(
@@ -837,7 +851,7 @@ export default class VrackMoveDialogCtrl {
                   },
                 ).$promise;
               break;
-            case 'dedicatedServerInterface':
+            case SERVICES_NAMES.DSI_SERVICE:
               task = this.OvhApiVrack.DedicatedServerInterface()
                 .v6()
                 .post(
@@ -849,8 +863,8 @@ export default class VrackMoveDialogCtrl {
                   },
                 ).$promise;
               break;
-            case 'dedicatedCloud':
-            case 'managedBareMetal':
+            case SERVICES_NAMES.DCLOUD_SERVICE:
+            case SERVICES_NAMES.MBM_SERVICE:
               task = this.OvhApiVrack.DedicatedCloud()
                 .v6()
                 .create(
@@ -862,7 +876,7 @@ export default class VrackMoveDialogCtrl {
                   },
                 ).$promise;
               break;
-            case 'legacyVrack':
+            case SERVICES_NAMES.LVRACK_SERVICE:
               task = this.OvhApiVrack.LegacyVrack()
                 .v6()
                 .create(
@@ -874,7 +888,7 @@ export default class VrackMoveDialogCtrl {
                   },
                 ).$promise;
               break;
-            case 'ip':
+            case SERVICES_NAMES.IP_SERVICE:
               task = this.OvhApiVrack.Ip()
                 .v6()
                 .create(
@@ -886,7 +900,7 @@ export default class VrackMoveDialogCtrl {
                   },
                 ).$promise;
               break;
-            case 'cloudProject':
+            case SERVICES_NAMES.CP_SERVICE:
               task = this.OvhApiVrack.CloudProject()
                 .v6()
                 .create(
@@ -898,7 +912,7 @@ export default class VrackMoveDialogCtrl {
                   },
                 ).$promise;
               break;
-            case 'ipLoadbalancing':
+            case SERVICES_NAMES.IPLB_SERVICE:
               task = this.OvhApiVrack.IpLoadBalancing()
                 .v6()
                 .create(
@@ -939,7 +953,7 @@ export default class VrackMoveDialogCtrl {
         map(this.form.servicesToDelete, (service) => {
           let task = this.$q.reject('Unknown service type');
           switch (service.type) {
-            case 'dedicatedServer':
+            case SERVICES_NAMES.DEDICATED_SERVICE:
               task = this.OvhApiVrack.DedicatedServer()
                 .v6()
                 .delete({
@@ -947,7 +961,7 @@ export default class VrackMoveDialogCtrl {
                   dedicatedServer: service.id,
                 }).$promise;
               break;
-            case 'dedicatedServerInterface':
+            case SERVICES_NAMES.DSI_SERVICE:
               task = this.OvhApiVrack.DedicatedServerInterface()
                 .v6()
                 .delete({
@@ -955,8 +969,8 @@ export default class VrackMoveDialogCtrl {
                   dedicatedServerInterface: service.id,
                 }).$promise;
               break;
-            case 'dedicatedCloud':
-            case 'managedBareMetal':
+            case SERVICES_NAMES.DCLOUD_SERVICE:
+            case SERVICES_NAMES.MBM_SERVICE:
               task = this.OvhApiVrack.DedicatedCloud()
                 .v6()
                 .delete({
@@ -964,7 +978,7 @@ export default class VrackMoveDialogCtrl {
                   dedicatedCloud: service.id,
                 }).$promise;
               break;
-            case 'legacyVrack':
+            case SERVICES_NAMES.LVRACK_SERVICE:
               task = this.OvhApiVrack.LegacyVrack()
                 .v6()
                 .delete({
@@ -972,7 +986,7 @@ export default class VrackMoveDialogCtrl {
                   legacyVrack: service.id,
                 }).$promise;
               break;
-            case 'ip':
+            case SERVICES_NAMES.IP_SERVICE:
               task = this.OvhApiVrack.Ip()
                 .v6()
                 .delete({
@@ -980,7 +994,7 @@ export default class VrackMoveDialogCtrl {
                   ip: service.id,
                 }).$promise;
               break;
-            case 'cloudProject':
+            case SERVICES_NAMES.CP_SERVICE:
               task = this.OvhApiVrack.CloudProject()
                 .v6()
                 .delete({
@@ -988,7 +1002,7 @@ export default class VrackMoveDialogCtrl {
                   project: service.id,
                 }).$promise;
               break;
-            case 'ipLoadbalancing':
+            case SERVICES_NAMES.IPLB_SERVICE:
               task = this.OvhApiVrack.IpLoadBalancing()
                 .v6()
                 .delete({
@@ -1064,15 +1078,12 @@ export default class VrackMoveDialogCtrl {
   }
 
   setUserRelatedContent() {
-    this.OvhApiMe.v6()
-      .get()
-      .$promise.then((user) => {
-        if (user.ovhSubsidiary === 'FR') {
-          // Roadmap is only available in french
-          this.vRackCloudRoadmapGuide = VRACK_URLS.guides.vrack.FR;
-        }
-        this.changeOwnerUrl = VRACK_URLS.changeOwner[user.ovhSubsidiary];
-      });
+    const user = this.coreConfig.getUser();
+    if (user.ovhSubsidiary === 'FR') {
+      // Roadmap is only available in french
+      this.vRackCloudRoadmapGuide = VRACK_URLS.guides.vrack.FR;
+    }
+    this.changeOwnerUrl = VRACK_URLS.changeOwner[user.ovhSubsidiary];
   }
 
   /**
@@ -1087,10 +1098,8 @@ export default class VrackMoveDialogCtrl {
      * this allows to see progressively the services for each families in the picker
      * and get rid of the timeout if there are too many services fetched at once
      */
-    this.servicesFamilies.forEach((serviceFamily) => {
+    this.SERVICE_FAMILIES_LIST.forEach((serviceFamily) => {
       this.loaders.services[serviceFamily] = 'fetching';
-
-      const self = this;
       this.$http
         .get(
           `/vrack/${this.serviceName}/allowedServices?serviceFamily=${serviceFamily}`,
@@ -1100,7 +1109,7 @@ export default class VrackMoveDialogCtrl {
         )
         .then((resp) => {
           const { data } = resp;
-          self.handleOneServiceFamily(data, serviceFamily);
+          this.handleOneServiceFamily(data, serviceFamily);
           this.getAllowedServicesCounter += 1;
           this.loaders.services[serviceFamily] = 'loaded';
         })
@@ -1119,20 +1128,15 @@ export default class VrackMoveDialogCtrl {
    * @returns {*}
    */
   postMappingServices(allServices) {
-    const mappedServices = mapValues(
+    const mappedServices = Object.values(
       allServices,
-      (serviceList, serviceType) => {
-        const mappedstuff = this.constructor.fillServiceData(
-          serviceType,
-          serviceList,
-        );
-        return mappedstuff;
-      },
+    ).map((serviceList, serviceType) =>
+      this.constructor.fillServiceData(serviceType, serviceList),
     );
 
     // We treat dedicatedServerInterfaces as dedicatedServers so we merge the lists as just one family: dedicatedServers.
     if (
-      has(mappedServices, 'dedicatedServerInterface') &&
+      has(mappedServices, SERVICES_NAMES.DSI_SERVICE) &&
       mappedServices.dedicatedServerInterface.length > 0
     ) {
       if (!mappedServices.dedicatedServer) {
@@ -1154,7 +1158,7 @@ export default class VrackMoveDialogCtrl {
    */
   handleOneServiceFamily(serviceFetchedResponse, serviceFamily) {
     const OneServiceData = serviceFetchedResponse[serviceFamily];
-    this.loaders.services[serviceFamily] = 'fetched';
+    this.loaders.services[serviceFamily] = true;
     /**
      * the vrack service will return undefined is there is no services for the given family.
      * each time a family is returned, we filter all the services and enrich the services list
