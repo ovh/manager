@@ -6,7 +6,6 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/ui/data-table';
 import { database } from '@/models/database';
-import { UpdateServiceProps, cdbApi } from '@/data/cdbapi';
 import { Skeleton } from '@/components/ui/skeleton';
 
 import UpdateServiceNameModal, {
@@ -15,6 +14,7 @@ import UpdateServiceNameModal, {
 import { getColumns } from './serviceListColumns';
 import { H2 } from '@/components/typography';
 import { useLocale } from '@/hooks/useLocale';
+import { UpdateServiceProps, updateService } from '@/data/cdb/service';
 
 interface ServicesListProps {
   services: database.Service[];
@@ -35,7 +35,7 @@ export default function ServicesList({
   // define api links
   const updateServiceNameMutation = useMutation({
     mutationFn: (mutationData: UpdateServiceProps) =>
-      cdbApi.updateService(mutationData),
+      updateService(mutationData),
     onSuccess: () => {
       // close modale
       setOpenModal(false);
@@ -80,7 +80,7 @@ export default function ServicesList({
               </Link>
             </Button>
           </div>
-          <DataTable columns={columns} data={services} pageSize={5} />
+          <DataTable columns={columns} data={services} pageSize={25} />
         </div>
         {editingService && (
           <UpdateServiceNameModal

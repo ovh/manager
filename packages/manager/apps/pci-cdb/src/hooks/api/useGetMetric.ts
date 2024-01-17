@@ -3,8 +3,8 @@ import {
   UseQueryResult,
   useQuery,
 } from '@tanstack/react-query';
-import { cdbApi } from '@/data/cdbapi';
 import { database } from '@/models/database';
+import { getMetric } from '@/data/cdb/metrics';
 
 export function useGetMetric(
   projectId: string,
@@ -25,8 +25,7 @@ export function useGetMetric(
   ];
   return useQuery({
     queryKey,
-    queryFn: () =>
-      cdbApi.getMetric(projectId, engine, serviceId, metric, period),
+    queryFn: () => getMetric(projectId, engine, serviceId, metric, period),
     ...options,
   }) as UseQueryResult<database.service.Metric, Error>;
 }

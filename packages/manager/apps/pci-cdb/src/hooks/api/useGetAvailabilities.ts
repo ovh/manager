@@ -3,8 +3,8 @@ import {
   UseQueryResult,
   useQuery,
 } from '@tanstack/react-query';
-import { cdbApi } from '@/data/cdbapi';
 import { database } from '@/models/database';
+import { getAvailabilities } from '@/data/cdb/availabilities';
 
 export function useGetAvailabilities(
   projectId: string,
@@ -13,7 +13,7 @@ export function useGetAvailabilities(
   const queryKey = [projectId, 'database/availability'];
   return useQuery({
     queryKey,
-    queryFn: () => cdbApi.getAvailabilities(projectId),
+    queryFn: () => getAvailabilities(projectId),
     ...options,
   }) as UseQueryResult<database.Availability[], Error>;
 }

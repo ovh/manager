@@ -42,7 +42,7 @@ export default function ServiceLayout() {
     <>
       <H2>{serviceQuery.data?.description ?? 'Dashboard'}</H2>
       <TabsMenu tabs={tabs} />
-      <Outlet context={serviceQuery} />
+      {serviceQuery.isSuccess && <Outlet context={serviceQuery.data} />}
     </>
   );
 }

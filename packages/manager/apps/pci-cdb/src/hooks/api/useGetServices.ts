@@ -3,8 +3,8 @@ import {
   UseQueryResult,
   useQuery,
 } from '@tanstack/react-query';
-import { cdbApi } from '@/data/cdbapi';
 import { database } from '@/models/database';
+import { getServices } from '@/data/cdb/service';
 
 export function useGetServices(
   projectId: string,
@@ -13,7 +13,7 @@ export function useGetServices(
   const queryKey = [projectId, 'database/service'];
   return useQuery({
     queryKey,
-    queryFn: () => cdbApi.getServices(projectId),
+    queryFn: () => getServices(projectId),
     ...options,
   }) as UseQueryResult<database.Service[], Error>;
 }
