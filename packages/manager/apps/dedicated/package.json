@@ -88,7 +88,7 @@
     "@ovh-ux/sign-up": "^2.13.0",
     "@ovh-ux/ui-kit": "^6.7.4",
     "@uirouter/angularjs": "^1.0.23",
-    "angular": "1.7.x",
+    "angular": "1.8.x",
     "angular-aria": "1.7.x",
     "angular-chart.js": "^1.1.1",
     "angular-cookies": "1.7.x",
