@@ -7,6 +7,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
+      trackingPrefix: () => 'dedicated::dedicated-server::cluster::dashboard',
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('cluster_general_information'),
       isCommitmentAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
@@ -16,6 +17,9 @@ export default /* @ngInject */ ($stateProvider) => {
             commitmentAvailability.isFeatureAvailable('billing:commitment'),
           )
           .catch(() => false),
+    },
+    atInternet: {
+      rename: 'dedicated::dedicated-server::cluster::dashboard',
     },
   });
 };
