@@ -63,11 +63,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return request.execute(null, true).$promise;
       },
-      noFiltersServers: /* @ngInject */ (iceberg) =>
-        iceberg('/dedicated/cluster')
-          .query()
-          .expand('CachedObjectList-Pages')
-          .execute(null, true).$promise,
       paginationNumber: /* @ngInject */ (dedicatedClusters) =>
         parseInt(dedicatedClusters.headers['x-pagination-number'], 10),
       paginationSize: /* @ngInject */ (dedicatedClusters) =>
@@ -87,11 +82,9 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: (transition) =>
       transition
         .injector()
-        .getAsync('noFiltersServers')
-        .then((noFiltersServers) =>
-          noFiltersServers.data.length === 0
-            ? 'app.dedicated-server.index'
-            : false,
+        .getAsync('isMultiAZAvailable')
+        .then((isMultiAZAvailable) =>
+          !isMultiAZAvailable ? 'app.dedicated-server.index' : false,
         ),
     atInternet: {
       rename: `dedicated::dedicated-server::index-multiaz`,
