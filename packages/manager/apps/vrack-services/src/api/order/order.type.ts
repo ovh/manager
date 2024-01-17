@@ -165,3 +165,11 @@ export type OrderDetail = {
   totalPrice: Price;
   unitPrice: Price;
 };
+
+export type ConfigurationItem = {
+  description: string;
+  // Configuration ID
+  id: string;
+  label: string;
+  value: string;
+};

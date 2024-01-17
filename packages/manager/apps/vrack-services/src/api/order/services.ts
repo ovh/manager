@@ -1,3 +1,4 @@
+import { apiClient } from '@ovh-ux/manager-core-api';
 import {
   Cart,
   Creation,
@@ -6,8 +7,8 @@ import {
   OrderDetail,
   OrderStatus,
   OrderData,
+  ConfigurationItem,
 } from './order.type';
-import { createFetchDataFn } from '../common';
 
 export const postOrderCartQueryKey = ['post/order/cart'];
 
@@ -15,12 +16,7 @@ export const postOrderCartQueryKey = ['post/order/cart'];
  * Create a new OVH order cart
  */
 export const postOrderCart = async (params: Creation) =>
-  createFetchDataFn<Cart>({
-    url: '/order/cart',
-    params,
-    apiVersion: 'v6',
-    method: 'post',
-  })();
+  apiClient.v6.post<Cart>('/order/cart', params);
 
 export type PostOrderCartCartIdAssignParams = {
   cartId?: string;
@@ -35,13 +31,7 @@ export const postOrderCartCartIdAssignQueryKey = (
  */
 export const postOrderCartCartIdAssign = async (
   params: PostOrderCartCartIdAssignParams,
-) =>
-  createFetchDataFn<undefined>({
-    url: `/order/cart/${params.cartId}/assign`,
-    params,
-    apiVersion: 'v6',
-    method: 'post',
-  })();
+) => apiClient.v6.post<null>(`/order/cart/${params.cartId}/assign`, params);
 
 export type PostOrderCartCartIdVrackParams = {
   duration: string;
@@ -58,15 +48,11 @@ export const postOrderCartCartIdVrackQueryKey = (
 /**
  * Post a new vRack item in your cart
  */
-export const postOrderCartCartIdVrack = async (
-  params: PostOrderCartCartIdVrackParams,
-) =>
-  createFetchDataFn<Item>({
-    url: `/order/cart/${params.cartId}/vrack`,
-    params,
-    apiVersion: 'v6',
-    method: 'post',
-  })();
+export const postOrderCartCartIdVrack = async ({
+  cartId,
+  ...params
+}: PostOrderCartCartIdVrackParams) =>
+  apiClient.v6.post<Item>(`/order/cart/${cartId}/vrack`, params);
 
 export type PostOrderCartCartIdVrackServicesParams = {
   duration: string;
@@ -74,8 +60,6 @@ export type PostOrderCartCartIdVrackServicesParams = {
   pricingMode: string;
   quantity: number;
   cartId: string;
-  zone: string;
-  name?: string;
 };
 
 export const postOrderCartCartIdVrackServicesQueryKey = (
@@ -85,15 +69,11 @@ export const postOrderCartCartIdVrackServicesQueryKey = (
 /**
  * Post a new vRack Services item in your cart
  */
-export const postOrderCartCartIdVrackServices = async (
-  params: PostOrderCartCartIdVrackServicesParams,
-) =>
-  createFetchDataFn<Item>({
-    url: `/order/cart/${params.cartId}/vrackServices`,
-    params,
-    apiVersion: 'v6',
-    method: 'post',
-  })();
+export const postOrderCartCartIdVrackServices = async ({
+  cartId,
+  ...params
+}: PostOrderCartCartIdVrackServicesParams) =>
+  apiClient.v6.post<Item>(`/order/cart/${cartId}/vrackServices`, params);
 
 export type PostOrderCartCartIdCheckoutParams = {
   cartId: string;
@@ -114,15 +94,31 @@ export const postOrderCartCartIdCheckoutQueryKey = (
 /**
  * Validate your shopping and create order
  */
-export const postOrderCartCartIdCheckout = async (
-  params: PostOrderCartCartIdCheckoutParams,
-) =>
-  createFetchDataFn<Order>({
-    url: `/order/cart/${params.cartId}/checkout`,
-    params: { data: params },
-    apiVersion: 'v6',
-    method: 'post',
-  })();
+export const postOrderCartCartIdCheckout = async ({
+  cartId,
+  ...data
+}: PostOrderCartCartIdCheckoutParams) =>
+  apiClient.v6.post<Order>(`/order/cart/${cartId}/checkout`, data);
+
+export const postConfigureCartItem = async ({
+  cartId,
+  itemId,
+  ...data
+}: {
+  cartId: string;
+  itemId: number;
+  label: string;
+  value: string;
+}) =>
+  apiClient.v6.post<ConfigurationItem>(
+    `/order/cart/${cartId}/item/${itemId}/configuration`,
+    data,
+  );
+
+export const postOrderPay = async (orderId: number) =>
+  apiClient.v6.post(`/me/order/${orderId}/pay`, {
+    paymentMethod: { id: '2134' },
+  });
 
 export const getOrderList = ({
   dateFrom,
@@ -138,39 +134,25 @@ export const getOrderList = ({
   if (dateTo) {
     params.append('date.to', dateTo.toISOString());
   }
-  return createFetchDataFn<number[]>({
-    url: `/me/order${params.size > 0 ? `?${params.toString()}` : ''}`,
-    method: 'get',
-    apiVersion: 'v6',
-  })();
+  return apiClient.v6.get<number[]>(
+    `/me/order${params.size > 0 ? `?${params.toString()}` : ''}`,
+  );
 };
 
 export const getOrderData = (orderId: number) =>
-  createFetchDataFn<OrderData>({
-    url: `/me/order/${orderId}`,
-    apiVersion: 'v6',
-    method: 'get',
-  })();
+  apiClient.v6.get<OrderData>(`/me/order/${orderId}`);
 
 /**
  * Get current status of order
  */
 export const getOrderStatus = (orderId: number) =>
-  createFetchDataFn<OrderStatus>({
-    url: `/me/order/${orderId}/status`,
-    apiVersion: 'v6',
-    method: 'get',
-  })();
+  apiClient.v6.get<OrderStatus>(`/me/order/${orderId}/status`);
 
 /**
  * Get product list of order
  */
 export const getOrderDetailsList = (orderId: number) =>
-  createFetchDataFn<number[]>({
-    url: `/me/order/${orderId}/details`,
-    apiVersion: 'v6',
-    method: 'get',
-  })();
+  apiClient.v6.get<number[]>(`/me/order/${orderId}/details`);
 
 /**
  * Get details of order details
@@ -181,9 +163,4 @@ export const getOrderDetails = ({
 }: {
   orderId: number;
   detailId: number;
-}) =>
-  createFetchDataFn<OrderDetail>({
-    url: `/me/order/${orderId}/details/${detailId}`,
-    apiVersion: 'v6',
-    method: 'get',
-  })();
+}) => apiClient.v6.get<OrderDetail>(`/me/order/${orderId}/details/${detailId}`);

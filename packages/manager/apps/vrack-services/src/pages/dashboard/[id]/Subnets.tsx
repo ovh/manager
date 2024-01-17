@@ -36,8 +36,7 @@ const Subnets: React.FC = () => {
   const navigate = useNavigate();
   const shell = useShell();
 
-  const navigateToCreateSubnetPage = () =>
-    navigate(`/${id}/createsubnet`, { replace: true });
+  const navigateToCreateSubnetPage = () => navigate(`/${id}/createsubnet`);
 
   React.useEffect(() => {
     if (!isLoading) {

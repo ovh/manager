@@ -33,8 +33,7 @@ const Endpoints: React.FC = () => {
   const navigate = useNavigate();
   const shell = useShell();
 
-  const navigateToCreateEndpointPage = () =>
-    navigate(`/${id}/createendpoint`, { replace: true });
+  const navigateToCreateEndpointPage = () => navigate(`/${id}/createendpoint`);
 
   React.useEffect(() => {
     if (!isLoading) {

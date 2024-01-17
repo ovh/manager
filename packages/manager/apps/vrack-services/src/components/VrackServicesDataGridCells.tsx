@@ -18,13 +18,9 @@ import {
   OsdsButton,
   OsdsChip,
 } from '@ovhcloud/ods-components/react';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { EditableText } from '@/components/EditableText';
-import {
-  ProductStatus,
-  ResponseData,
-  UpdateVrackServicesParams,
-  VrackServices,
-} from '@/api';
+import { ProductStatus, UpdateVrackServicesParams, VrackServices } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
 
@@ -33,8 +29,8 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
   VrackServices
 > & {
   updateVS: UseMutateAsyncFunction<
-    ResponseData<VrackServices>,
-    ResponseData<Error>,
+    ApiResponse<VrackServices>,
+    ApiError,
     UpdateVrackServicesParams
   >;
   navigate?: NavigateFunction;

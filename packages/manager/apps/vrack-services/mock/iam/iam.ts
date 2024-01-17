@@ -1,5 +1,4 @@
 import { Handler } from '../../tests/utils/msw-helpers';
-import { ResponseData } from '@/api/api.type';
 
 export const iamResources = [
   {
@@ -61,7 +60,7 @@ export const getIamMocks = ({ iamKo }: GetIamMocksParams): Handler[] => [
               message: 'IAM error',
             },
           },
-        } as ResponseData;
+        };
       }
       return iamResources;
     },

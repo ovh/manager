@@ -60,7 +60,7 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
         className="block mt-4 mb-5"
         color={ODS_THEME_COLOR_INTENT.primary}
         data-tracking={goBackLinkDataTracking}
-        {...handleClick(() => navigate(goBackUrl, { replace: true }))}
+        {...handleClick(() => navigate(goBackUrl))}
       >
         <span slot="start">
           <OsdsIcon

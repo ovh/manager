@@ -19,9 +19,9 @@ import {
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
 import { useShell } from '@ovh-ux/manager-react-core-application';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { handleClick } from '@/utils/ods-utils';
 import { FormField } from './FormField';
-import { ResponseData } from '@/api';
 
 export type VrackDeleteModalProps = {
   headline: string;
@@ -31,7 +31,7 @@ export type VrackDeleteModalProps = {
   closeModal: () => void;
   isLoading?: boolean;
   onConfirmDelete: () => void;
-  error?: ResponseData<Error>;
+  error?: ApiError;
   onDisplayDataTracking?: string;
   cancelButtonDataTracking?: string;
   confirmButtonDataTracking?: string;
@@ -79,7 +79,10 @@ export const VrackDeleteModal: React.FC<VrackDeleteModalProps> = ({
     >
       {!!error && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          {t('genericApiError', { error })}
+          {t('genericApiError', {
+            error,
+            interpolation: { escapeValue: false },
+          })}
         </OsdsMessage>
       )}
       <OsdsText

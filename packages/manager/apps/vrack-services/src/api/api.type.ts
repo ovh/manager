@@ -1,18 +1,3 @@
-export type ResponseData<T = unknown> = {
-  headers: Record<string, string>;
-  status: number;
-  data?: T;
-  code: string;
-  // Error response
-  response?: {
-    status: number;
-    data: { message: string };
-  };
-  detail?: {
-    status: number;
-  };
-};
-
 export type Tag = {
   name: string;
   description: string;

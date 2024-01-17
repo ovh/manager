@@ -4,6 +4,8 @@ import {
   postOrderCartCartIdVrack,
   postOrderCartCartIdVrackServices,
   postOrderCartCartIdCheckout,
+  postOrderPay,
+  postConfigureCartItem,
 } from './services';
 import { Creation } from './order.type';
 
@@ -28,7 +30,9 @@ export const orderVrack = async (params: Creation) => {
   const order = await postOrderCartCartIdCheckout({
     cartId: cart.data.cartId,
     waiveRetractationPeriod: false,
+    autoPayWithPreferredPaymentMethod: false,
   });
+  await postOrderPay(order?.data?.orderId);
 
   return order;
 };
@@ -40,21 +44,35 @@ export const orderVrackServices = async (
 ) => {
   const {
     data: { cartId },
-  } = await postOrderCart(params);
+  } = await postOrderCart({ ovhSubsidiary: params.ovhSubsidiary });
   await postOrderCartCartIdAssign({ cartId });
   const cart = await postOrderCartCartIdVrackServices({
     duration: 'P1M',
-    planCode: 'vrackServices',
+    planCode: 'vrack-services',
     pricingMode: 'default',
     quantity: 1,
     cartId,
-    name: params.displayName,
-    zone: params.selectedZone,
   });
+  await postConfigureCartItem({
+    cartId,
+    itemId: cart.data.itemId,
+    label: 'zone',
+    value: params.selectedZone,
+  });
+  if (params.displayName) {
+    await postConfigureCartItem({
+      cartId,
+      itemId: cart.data.itemId,
+      label: 'displayName',
+      value: params.displayName,
+    });
+  }
   const order = await postOrderCartCartIdCheckout({
     cartId: cart.data.cartId,
     waiveRetractationPeriod: false,
+    autoPayWithPreferredPaymentMethod: false,
   });
+  await postOrderPay(order?.data?.orderId);
 
   return order;
 };

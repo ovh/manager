@@ -2,7 +2,6 @@ import { PathParams } from 'msw';
 import { Handler } from '../../tests/utils/msw-helpers';
 import { getParamsFromUrl } from '../../e2e/utils/playwright-helpers';
 import { Cart, Item } from '@/api/order/order.type';
-import { ResponseData } from '@/api/api.type';
 
 const getCart = (): Cart => {
   const expire = new Date();
@@ -94,14 +93,13 @@ export const getCartMocks = ({
     method: 'post',
     response: (request: Request, params: PathParams & { id: string }) =>
       vrackServicesOrderKo
-        ? ({
+        ? {
             status: 403,
             code: 'ERR_VRACK_SERVICES',
-            data: null,
             response: {
               data: { message: 'Error Vrack Services' },
             },
-          } as ResponseData<unknown>)
+          }
         : getVrackServicesItem(request, params),
     status: vrackServicesOrderKo ? 403 : 200,
     api: 'v6',
@@ -111,14 +109,13 @@ export const getCartMocks = ({
     method: 'post',
     response: (request: Request, params: PathParams & { id: string }) =>
       vrackOrderKo
-        ? ({
+        ? {
             status: 403,
             code: 'ERR_MAX_VRACKS',
-            data: null,
             response: {
               data: { message: 'You already own 60 vRacks, maximum is 60' },
             },
-          } as ResponseData<unknown>)
+          }
         : getVrackItem(request, params),
     status: vrackOrderKo ? 403 : 200,
     api: 'v6',
