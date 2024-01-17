@@ -10,7 +10,11 @@ export type BreadcrumbHandleParams = {
   params: Params<string>;
 };
 
-function Breadcrumb(): JSX.Element {
+interface BreadcrumbProps {
+  items?: { label: string }[];
+}
+
+function Breadcrumb({ items = [] }: BreadcrumbProps): JSX.Element {
   const { projectId } = useParams();
   const { t } = useTranslation('pci-rancher/listing');
   const { data: project } = usePciProject();
@@ -36,6 +40,7 @@ function Breadcrumb(): JSX.Element {
         {
           label: t('rancherTitle'),
         },
+        ...items,
       ]}
     ></OsdsBreadcrumb>
   );
