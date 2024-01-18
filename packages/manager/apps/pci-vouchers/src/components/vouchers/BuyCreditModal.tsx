@@ -56,7 +56,10 @@ export default function BuyCreditModal({
 
   return (
     <>
-      <OsdsModal headline={t('cpb_vouchers_add_credit_title')}>
+      <OsdsModal
+        headline={t('cpb_vouchers_add_credit_title')}
+        onOdsModalClose={onClose}
+      >
         <slot name="content">
           <span>{t('cpb_vouchers_add_credit_info')}</span>
           {!isPending && (

@@ -46,7 +46,10 @@ export default function AddVoucherModal({
 
   return (
     <>
-      <OsdsModal headline={t('cpb_vouchers_your_voucher_add')}>
+      <OsdsModal
+        headline={t('cpb_vouchers_your_voucher_add')}
+        onOdsModalClose={onClose}
+      >
         <slot name="content">
           {!isPending && (
             <>
