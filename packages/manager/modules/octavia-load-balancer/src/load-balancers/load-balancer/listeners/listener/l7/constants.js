@@ -1,4 +1,4 @@
-export const TRACKING_SUFFIX = 'l7';
+export const TRACKING_SUFFIX = 'l7-policies';
 
 export const ACTIONS = {
   REDIRECT_TO_URL: 'redirectToURL',
@@ -16,5 +16,6 @@ export const ACTION_LABELS = {
 
 export default {
   TRACKING_SUFFIX,
+  ACTIONS,
   ACTION_LABELS,
 };

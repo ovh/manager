@@ -1,5 +1,6 @@
 import { TRACKING_NAME } from '../../constants';
 import { TRACKING_SUFFIX } from '../constants';
+import { TRACKING_SUFFIX as L7_POLICIES_TRACKING_SUFFIX } from '../listener/l7/constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('octavia-load-balancer.loadbalancer.listeners.list', {
@@ -39,7 +40,7 @@ export default /* @ngInject */ ($stateProvider) => {
       goToListenerL7Policies: /* @ngInject */ ($state, trackAction) => (
         listener,
       ) => {
-        trackAction('policies');
+        trackAction(L7_POLICIES_TRACKING_SUFFIX);
         $state.go(
           'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.list',
           {
