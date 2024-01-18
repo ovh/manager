@@ -87,7 +87,7 @@ export default class PciProjectInstanceService {
   }
 
   getAllInstanceDetails(projectId) {
-    return this.getAll(projectId).then((instances) =>
+    return this.getAll(projectId, []).then((instances) =>
       this.$q.all(
         map(instances, (instance) =>
           this.getInstanceDetails(projectId, instance),
@@ -500,7 +500,7 @@ export default class PciProjectInstanceService {
       });
   }
 
-  getLocalZones(customerRegions) {
+  getLocalZones(customerRegions = []) {
     return customerRegions?.filter(({ type }) =>
       type.includes(this.LOCAL_ZONE_REGION),
     );
