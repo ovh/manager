@@ -23,14 +23,11 @@ jobs:
       run: |
         yarn install --frozen-lockfile
     - name: Build dependencies
-      run: yarn build
+      run: | 
+        yarn build
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      run: | 
+        npx playwright install --with-deps
     - name: Run Playwright catalog tests
-      run: yarn run test:playwright:ci
-    - uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+      run: |
+        yarn run test:playwright:ci
