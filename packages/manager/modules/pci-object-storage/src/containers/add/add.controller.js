@@ -23,7 +23,6 @@ export default class PciStoragesContainersAddController {
     $translate,
     atInternet,
     CucCloudMessage,
-    PciProjectStorageBlockService,
     PciProjectStorageContainersService,
     coreConfig,
   ) {
@@ -32,7 +31,6 @@ export default class PciStoragesContainersAddController {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
-    this.PciProjectStorageBlockService = PciProjectStorageBlockService;
     this.PciProjectStorageContainersService = PciProjectStorageContainersService;
     this.storagePricesLink =
       STORAGE_PRICES_LINK[ovhSubsidiary] || STORAGE_PRICES_LINK.DEFAULT;

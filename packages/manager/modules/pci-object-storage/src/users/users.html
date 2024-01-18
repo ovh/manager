@@ -15,13 +15,13 @@
     data-translate="pci_projects_project_storages_containers_users_user_description"
 ></p>
 <!--User credential overview inform -->
-<pci-projects-project-storages-components-user-credential-banner
+<cuc-pci-projects-project-storages-components-user-credential-banner
     data-ng-if="$ctrl.userDetails"
     data-user="$ctrl.userDetails"
     data-credential="$ctrl.userCredential"
     data-field-secret-key-label="{{:: 'pci_projects_project_storages_containers_users_add_success_field_secret_key' | translate}}"
     data-is-new-user="false"
-></pci-projects-project-storages-components-user-credential-banner>
+></cuc-pci-projects-project-storages-components-user-credential-banner>
 
 <oui-datagrid data-rows="$ctrl.userList">
     <oui-datagrid-column

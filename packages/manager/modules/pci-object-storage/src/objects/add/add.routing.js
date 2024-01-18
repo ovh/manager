@@ -14,8 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      regions: /* @ngInject */ (PciProjectRegions, projectId) =>
-        PciProjectRegions.getAvailableRegions(projectId).then((regions) => {
+      regions: /* @ngInject */ (CucPciProjectRegions, projectId) =>
+        CucPciProjectRegions.getAvailableRegions(projectId).then((regions) => {
           return OBJECT_CONTAINER_OFFERS.reduce(
             (regionsConfiguration, offerName) => ({
               ...regionsConfiguration,
