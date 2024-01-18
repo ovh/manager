@@ -15,7 +15,7 @@ angular
     'pascalprecht.translate',
   ])
   .component('cucPciProjectRegionsList', component)
-  .service('cucPciProjectRegionsList', service)
+  .service('CucPciProjectRegions', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

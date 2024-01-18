@@ -7,6 +7,7 @@ import cucFeatureAvailability from './featureAvailability';
 import cucHelper from './helper';
 import cucGuidesHeader from './guides-header';
 import cucPciProjectRegionsList from './regions-list';
+import cucPciProjectUserCredentialBanner from './user-credential-banner';
 import cucMessage from './message';
 import cucMomentFormat from './moment';
 import cucNavigation from './navigation';
@@ -26,6 +27,7 @@ angular.module(moduleName, [
   cucFeatureAvailability,
   cucGuidesHeader,
   cucPciProjectRegionsList,
+  cucPciProjectUserCredentialBanner,
   cucHelper,
   cucMessage,
   cucMomentFormat,

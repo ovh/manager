@@ -1,0 +1,8 @@
+{
+  "pci_projects_project_storages_components_password_clipboard_label_show_password": "Montrer le mot de passe",
+  "pci_projects_project_storages_components_password_clipboard_label_hide_password": "Cacher le mot de passe",
+  "pci_projects_project_storages_components_password_clipboard_label_copy_to_clipboard": "Copier dans le presse-papier",
+  "pci_projects_project_storages_components_password_clipboard_tooltip_action_copy": "Copier dans le presse-papier",
+  "pci_projects_project_storages_components_password_clipboard_tooltip_action_copied": "Copié",
+  "pci_projects_project_storages_components_password_clipboard_tooltip_action_copy_not_supported": "La copie dans le presse-papiers est non prise en charge. Veuillez copier le texte manuellement."
+}

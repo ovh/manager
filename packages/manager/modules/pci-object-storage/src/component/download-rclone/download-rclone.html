@@ -1,0 +1,85 @@
+<form
+    name="downloadForm"
+    novalidate
+    data-ng-submit="downloadForm.$valid && $ctrl.downloadRclone()"
+>
+    <oui-modal
+        data-heading="{{ 'pci_projects_project_users_download-rclone_title' | translate }}"
+        data-primary-label="{{:: 'pci_projects_project_users_download-rclone_submit_label' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'pci_projects_project_users_download-rclone_cancel_label' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading"
+    >
+        <p>
+            <span
+                data-translate="pci_projects_project_users_download-rclone_content"
+            ></span>
+            <a
+                class="oui-link_icon"
+                data-ng-if="$ctrl.rcloneGuide"
+                data-ng-href="{{$ctrl.rcloneGuide}}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span
+                    data-translate="pci_projects_project_users_download-rclone_more_link"
+                ></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </p>
+        <oui-field
+            data-ng-if="$ctrl.showFileType"
+            label="{{:: 'pci_projects_project_users_download-rclone_file_type_label' | translate }}"
+        >
+            <oui-radio
+                data-model="$ctrl.fileType"
+                data-name="swiftFileType"
+                data-value="$ctrl.downloadFileType.SWIFT"
+                inline
+            >
+                <span data-ng-bind="$ctrl.downloadFileType.SWIFT"></span>
+            </oui-radio>
+            <oui-radio
+                data-model="$ctrl.fileType"
+                data-name="s3FileType"
+                data-on-change="$ctrl.onChange($ctrl.addExistingUser)"
+                data-value="$ctrl.downloadFileType.S3"
+                inline
+            >
+                <span data-ng-bind="$ctrl.downloadFileType.S3"></span>
+            </oui-radio>
+        </oui-field>
+        <oui-field
+            data-label="{{:: (!$ctrl.hasGlobalRegions ? 'pci_projects_project_users_download-rclone_region_label' : 'pci_projects_project_users_download-rclone_region_label_global') | translate }}"
+            data-size="xl"
+        >
+            <oui-select
+                data-ng-if="$ctrl.fileType === $ctrl.downloadFileType.SWIFT"
+                data-name="region"
+                data-model="$ctrl.region"
+                data-items="$ctrl.regions"
+                data-match="label"
+            >
+            </oui-select>
+            <oui-select
+                data-ng-if="$ctrl.fileType === $ctrl.downloadFileType.S3 && $ctrl.showFileType"
+                data-name="storageS3Regions"
+                data-model="$ctrl.storageS3Region"
+                data-items="$ctrl.storageS3Regions"
+                data-match="label"
+            >
+            </oui-select>
+            <small>
+                <span
+                    data-ng-if="$ctrl.fileType === $ctrl.downloadFileType.SWIFT"
+                    data-translate="pci_projects_project_users_download-rclone_region_help"
+                ></span>
+            </small>
+        </oui-field>
+    </oui-modal>
+</form>

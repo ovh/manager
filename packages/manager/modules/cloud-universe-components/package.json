@@ -36,6 +36,7 @@
   "dependencies": {
     "@ovh-ux/ui-kit": "^6.7.4",
     "bootstrap": "~3.3.0",
+    "clipboard": "^2.0.4",
     "file-saver": "^2.0.5",
     "jsurl": "^0.1.5",
     "lodash": "^4.17.15",
