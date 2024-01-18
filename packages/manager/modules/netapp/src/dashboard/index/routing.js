@@ -72,7 +72,7 @@ export default /* @ngInject */ ($stateProvider) => {
         coreURLBuilder.buildURL('dedicated', `#/vrack/${vrackId}`),
       vrackServicesLink: /* @ngInject */ (networkInformations) =>
         // TODO: Get real vrack services URL when vrs uapp is on staging
-        networkInformations.vrackServices?.id,
+        networkInformations?.vrackServices?.id,
     },
   });
 };
