@@ -15,7 +15,7 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 
 export default function DashboardPage() {
   const { t } = useTranslation('pci-rancher/dashboard');
-  const { data } = useRancher();
+  const { data, error, isLoading } = useRancher();
 
   const tabsList = [
     {
@@ -28,13 +28,12 @@ export default function DashboardPage() {
       title: t('allowedIps'),
       to: useResolvedPath('Tabs2').pathname,
       isDisabled: true,
+      isCommingSoon: true,
     },
   ];
 
-  const { error, isLoading } = {} as any;
-
   if (error) {
-    return <ErrorBanner error={error.response} />;
+    return <ErrorBanner error={error} />;
   }
 
   if (isLoading) {
@@ -47,8 +46,8 @@ export default function DashboardPage() {
 
   return (
     <div className="m-10">
-      <Breadcrumb items={[{ label: data?.data.targetSpec.name }]} />
       <Suspense fallback={<Loading />}>
+        <Breadcrumb items={[{ label: data?.data.targetSpec.name }]} />
         {data?.data && <Dashboard tabs={tabsList} rancher={data.data} />}
       </Suspense>
     </div>

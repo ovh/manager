@@ -44,6 +44,7 @@ export const features = [
   'public-cloud:project-settings',
   'ai-dashboard',
   'data-integration',
+  'rancher'
 ];
 
 export function getPciProjectMenu(

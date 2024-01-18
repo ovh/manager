@@ -23,7 +23,12 @@ const RancherTaskMessage = ({ tasks }: { tasks: RancherTask[] }) => {
   return (
     <div>
       {tasksMessage.map((task) => (
-        <OsdsMessage id={task.id} type={task.type} className="my-4 p-3">
+        <OsdsMessage
+          id={task.id}
+          type={task.type}
+          className="my-4 p-3"
+          key={task.id}
+        >
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
             className="inline-block"

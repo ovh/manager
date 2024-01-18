@@ -1,5 +1,5 @@
-import { RancherService } from '@/api/api.type';
-import { TileBlock } from '@/components/TileBlock/TileBlock';
+import { format } from 'date-fns';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -18,9 +18,10 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import { format } from 'date-fns';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { RancherService } from '@/api/api.type';
+import { TileBlock } from '@/components/TileBlock/TileBlock';
 
 interface RancherDetailProps {
   rancher: RancherService;
@@ -48,7 +49,7 @@ const RancherDetail = ({ rancher }: RancherDetailProps) => {
               <OsdsText
                 level={ODS_TEXT_LEVEL.heading}
                 color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_TEXT_SIZE._300}
+                size={ODS_TEXT_SIZE._200}
               >
                 {rancher.currentState.name}
               </OsdsText>
@@ -60,7 +61,9 @@ const RancherDetail = ({ rancher }: RancherDetailProps) => {
               />
             </TileBlock>
             <TileBlock label={t('rancher_version')}>
-              {rancher.currentState.version}
+              <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                {rancher.currentState.version}
+              </OsdsText>
             </TileBlock>
           </div>
         </OsdsTile>
@@ -115,17 +118,23 @@ const RancherDetail = ({ rancher }: RancherDetailProps) => {
             </OsdsText>
             <OsdsDivider separator />
             <TileBlock label={t('service_level')}>
-              {rancher.currentState.plan}
+              <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                {rancher.currentState.plan}
+              </OsdsText>
             </TileBlock>
-            {vCpus && (
+            {!!vCpus && (
               <TileBlock label={t('count_cpu_orchestrated')}>
-                <div>{rancher.currentState.usage?.orchestratedVcpus}</div>
+                <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                  {rancher.currentState.usage?.orchestratedVcpus}
+                </OsdsText>
                 {dateUsage && (
                   <div className="mt-3">
-                    {t('last_update_date', {
-                      date: format(dateUsage, 'yyyy_MM_dd'),
-                      hour: format(dateUsage, 'HH:mm'),
-                    })}
+                    <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                      {t('last_update_date', {
+                        date: format(dateUsage, 'yyyy_MM_dd'),
+                        hour: format(dateUsage, 'HH:mm'),
+                      })}
+                    </OsdsText>
                   </div>
                 )}
               </TileBlock>

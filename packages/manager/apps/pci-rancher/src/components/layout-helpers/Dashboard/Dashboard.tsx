@@ -11,6 +11,7 @@ import {
   OsdsText,
   OsdsLink,
   OsdsIcon,
+  OsdsChip,
 } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
 import {
@@ -33,6 +34,7 @@ export type DashboardTabItemProps = {
   title: string;
   to: string;
   isDisabled?: boolean;
+  isCommingSoon?: boolean;
 };
 
 export type DashboardLayoutProps = {
@@ -87,10 +89,33 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
               key={`osds-tab-bar-item-${tab.name}`}
               panel={tab.name}
               disabled={tab.isDisabled}
+              className="flex items-center justify-center"
             >
-              <NavLink to={tab.to} className="no-underline">
-                {tab.title}
-              </NavLink>
+              {!tab.isDisabled ? (
+                <NavLink to={tab.to} className="no-underline">
+                  <OsdsText
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    level={ODS_TEXT_LEVEL.heading}
+                  >
+                    {tab.title}
+                  </OsdsText>
+                </NavLink>
+              ) : (
+                <OsdsText
+                  level={ODS_TEXT_LEVEL.heading}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                >
+                  {tab.title}
+                </OsdsText>
+              )}
+              {tab.isCommingSoon && (
+                <OsdsChip
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  className="ml-5"
+                >
+                  Comming soon
+                </OsdsChip>
+              )}
             </OsdsTabBarItem>
           ))}
         </OsdsTabBar>

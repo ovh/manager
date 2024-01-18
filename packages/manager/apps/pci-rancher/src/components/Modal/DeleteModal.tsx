@@ -38,8 +38,10 @@ const DeleteModal = ({
   const isButtonDisabled = TERMINATE_TEXT !== terminateText;
 
   const onDelete = () => {
-    onDeleteRancher(selectedRancher.id);
-    toggleModal(false);
+    if (!isButtonDisabled) {
+      onDeleteRancher(selectedRancher.id);
+      toggleModal(false);
+    }
   };
   return (
     <OsdsModal color={ODS_THEME_COLOR_INTENT.warning} dismissible>
