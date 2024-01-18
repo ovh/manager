@@ -1,0 +1,28 @@
+.health-monitor-numeric-fields {
+  width: fit-content;
+  position: relative;
+
+  .oui-field {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'header control'
+      'footer footer';
+
+    &__header {
+      grid-area: header;
+    }
+
+    &__control {
+      grid-area: control;
+      justify-self: end;
+      input {
+        width: 5ch !important;
+      }
+    }
+
+    &__footer {
+      grid-area: footer;
+    }
+  }
+}
