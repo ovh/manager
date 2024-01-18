@@ -7,7 +7,7 @@
   "pci_projects_project_network_private_create_configure_choose_vlan": "Definir um ID de VLAN",
   "pci_projects_project_network_private_create_configure_vlan": "ID de VLAN",
   "pci_projects_project_network_private_create_configure_vlan_limits": "Entre 0 e 4000",
-  "pci_projects_project_network_private_create_configure_vlan_taken": "Esta VLAN já está a ser utilizada.",
+  "pci_projects_project_network_private_create_configure_vlan_taken": "A utilização de uma mesma VLAN id para várias redes privadas implica gerir com atenção os IP privados. A utilização da alocação de pool DHCP sem sobreposição pode ser uma forma de gerir esta problemática.",
   "pci_projects_project_network_private_create_configure_api": "Pode personalizar os seus intervalos através da API.",
   "pci_projects_project_network_private_create_localisation": "Localização",
   "pci_projects_project_network_private_create_name": "Nome da rede privada",

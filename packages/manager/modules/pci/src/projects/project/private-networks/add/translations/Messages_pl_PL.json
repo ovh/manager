@@ -7,7 +7,7 @@
   "pci_projects_project_network_private_create_configure_choose_vlan": "Wybierz ID sieci VLAN",
   "pci_projects_project_network_private_create_configure_vlan": "ID sieci VLAN:",
   "pci_projects_project_network_private_create_configure_vlan_limits": "Wartość między 0 a 4000",
-  "pci_projects_project_network_private_create_configure_vlan_taken": "Ta sieć VLAN jest już zajęta.",
+  "pci_projects_project_network_private_create_configure_vlan_taken": "Użycie tego samego identyfikatora VLAN dla kilku prywatnych sieci wymaga ostrożnego zarządzania prywatnymi adresami IP. Sposobem na rozwiązanie tego problemu może być użycie nienakładającej się puli alokacji DHCP.",
   "pci_projects_project_network_private_create_configure_api": "Możesz dostosować Twoje zakresy adresów za pomocą API.",
   "pci_projects_project_network_private_create_localisation": "Lokalizacja",
   "pci_projects_project_network_private_create_name": "Nazwa sieci prywatnej:",

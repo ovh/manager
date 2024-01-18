@@ -7,7 +7,7 @@
   "pci_projects_project_network_private_create_configure_choose_vlan": "VLAN-ID festlegen",
   "pci_projects_project_network_private_create_configure_vlan": "VLAN-ID",
   "pci_projects_project_network_private_create_configure_vlan_limits": "Zwischen 0 und 4000",
-  "pci_projects_project_network_private_create_configure_vlan_taken": "Dieses VLAN ist bereits vergeben.",
+  "pci_projects_project_network_private_create_configure_vlan_taken": "Die Verwendung einer einzigen VLAN-ID für mehrere private Netzwerke erfordert eine sorgfältige Verwaltung der privaten IP-Adressen. Die Verwendung einer DHCP-Poolzuordnung ohne Überlappung kann eine Möglichkeit sein, dieses Problem zu beheben.",
   "pci_projects_project_network_private_create_configure_api": "Sie können Ihre IP-Bereiche über die API anpassen.",
   "pci_projects_project_network_private_create_localisation": "Standort",
   "pci_projects_project_network_private_create_name": "Name des privaten Netzwerks",
