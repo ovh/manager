@@ -113,6 +113,8 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
         });
       },
+      redirectTarget: /* @ngInject */ ($transition$) =>
+        JSON.parse($transition$.params()?.target || '{}'),
     },
   });
 
