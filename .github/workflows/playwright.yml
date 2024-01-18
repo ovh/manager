@@ -6,14 +6,22 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
+    - name: Checkout Code
+      uses: actions/checkout@v3
+      with:
+          fetch-depth: 0
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v3
       with:
         node-version: 18
-    - name: Setup yarn
-      run: npm install -g yarn
+    - name: Restore/create node_modules cache
+      uses: actions/cache@v3
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
     - name: Install dependencies
-      run: yarn install --frozen-lokfile
+      run: |
+        yarn install --frozen-lockfile
     - name: Build dependencies
       run: yarn build
     - name: Install Playwright Browsers
