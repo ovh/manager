@@ -78,7 +78,7 @@ export default class PciProjectInstanceService {
       .then(({ data }) => {
         const localZones = this.getLocalZones(customerRegions);
         return data.map((instance) => {
-          const isLocalZone = localZones.some(
+          const isLocalZone = localZones?.some(
             (region) => region.name === instance.region,
           );
           return new Instance({ ...instance, isLocalZone });
