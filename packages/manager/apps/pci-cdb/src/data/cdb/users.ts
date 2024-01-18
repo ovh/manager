@@ -17,6 +17,7 @@ export const getUsers = async (
   const headers: Record<string, string> = {
     'X-Pagination-Mode': 'CachedObjectList-Pages',
     'X-Pagination-Size': '50000',
+    Pragma: 'no-cache',
   };
   const response = await apiClient.v6.get(resource, { headers });
   // Returned data type depends of service's engine
@@ -48,6 +49,25 @@ export const getUsers = async (
   }
   return userReturnType;
 };
+
+export type UserCreation =
+  | database.service.UserCreation
+  | database.service.UserWithRolesCreation
+  | database.redis.UserCreation
+  | database.opensearch.UserCreation
+  | database.m3db.UserCreation;
+export const createUser = async (
+  projectId: string,
+  serviceEngine: database.EngineEnum,
+  serviceId: string,
+  user: UserCreation,
+) =>
+  apiClient.v6
+    .post(
+      `/cloud/project/${projectId}/database/${serviceEngine}/${serviceId}/user`,
+      user,
+    )
+    .then((res) => res.data as GenericUser);
 
 export const deleteUser = async (
   projectId: string,

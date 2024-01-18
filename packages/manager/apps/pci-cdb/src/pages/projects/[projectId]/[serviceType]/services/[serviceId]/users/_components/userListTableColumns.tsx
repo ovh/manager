@@ -5,6 +5,7 @@ import { GenericUser } from '@/data/cdb/users';
 import UserStatusBadge from './userStatusBadge';
 
 import UserActions from './userActions';
+import { Badge } from '@/components/ui/badge';
 
 interface UserListColumnsProps {
   displayGroupCol: boolean;
@@ -43,7 +44,7 @@ export const getColumns = ({
       return (
         <div className="flex flex-col">
           {roles.map((role, index) => (
-            <span key={index}>{role}</span>
+            <Badge variant={'outline'} key={index} className="text-xs w-fit" >{role}</Badge>
           ))}
         </div>
       );

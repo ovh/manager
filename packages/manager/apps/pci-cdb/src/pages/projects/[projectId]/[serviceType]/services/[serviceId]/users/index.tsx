@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { toast } from 'sonner';
-import { Link, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMutation } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
@@ -9,6 +10,7 @@ import { database } from '@/models/database';
 import { DataTable } from '@/components/ui/data-table';
 import { GenericUser, deleteUser, resetUserPassword } from '@/data/cdb/users';
 import { getColumns } from './_components/userListTableColumns';
+import AddUserModal from './_components/add/addUserModal';
 
 const UsersPage = () => {
   const { projectId, serviceId } = useRequiredParams<{
@@ -43,6 +45,7 @@ const UsersPage = () => {
       toast.error(`A error occured while deleting your user: ${error.message}`);
     },
   });
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const columns: ColumnDef<GenericUser>[] = getColumns({
     displayGroupCol: service.engine === database.EngineEnum.m3db,
@@ -56,11 +59,30 @@ const UsersPage = () => {
   });
   return (
     <>
-      <Button className="mb-2" variant="outline" size="sm" asChild>
-        <Link to="add">Add a user</Link>
-      </Button>
       {usersQuery.isSuccess ? (
-        <DataTable columns={columns} data={usersQuery.data} pageSize={25} />
+        <>
+          <Button
+            onClick={() => setIsAddModalOpen(true)}
+            className="mb-2"
+            variant="outline"
+            size="sm"
+          >
+            Add a user {isAddModalOpen}
+          </Button>
+          <AddUserModal
+            users={usersQuery.data}
+            projectId={projectId}
+            service={service}
+            open={isAddModalOpen}
+            onClose={() => setIsAddModalOpen(false)}
+            onSuccess={(newUser: GenericUser) => {
+              usersQuery.refetch();
+              setIsAddModalOpen(false);
+              toast.success(`Your user ${newUser.username} has been created`);
+            }}
+          />
+          <DataTable columns={columns} data={usersQuery.data} pageSize={25} />
+        </>
       ) : (
         <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
       )}
