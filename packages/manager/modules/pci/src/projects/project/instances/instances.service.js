@@ -694,7 +694,11 @@ export default class PciProjectInstanceService {
             : null,
         )
         .catch((error) =>
-          error.status === 404 ? null : Promise.reject(error),
+          // If IP isn't known or user has no permission to query it: skip error and do not display the reverse.
+          // we don't want to prevent pci instance edition because IP cannot be displayed
+          error.status === 404 || error.status === 403
+            ? null
+            : Promise.reject(error),
         );
     }
     return null;
