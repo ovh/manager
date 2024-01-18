@@ -13,6 +13,14 @@
         <span data-translate="load_balancer_pools_detail_info_tab_title"></span>
     </oui-header-tabs-item>
     <oui-header-tabs-item
+        data-href="{{:: $ctrl.healthMonitorPoolsDetailLink }}"
+        data-active="$ctrl.currentActiveLink().startsWith($ctrl.healthMonitorPoolsDetailLink)"
+    >
+        <span
+            data-translate="load_balancer_pools_detail_health_monitor_tab_title"
+        ></span>
+    </oui-header-tabs-item>
+    <oui-header-tabs-item
         data-href="{{:: $ctrl.membersPoolsDetailLink }}"
         data-active="$ctrl.currentActiveLink().startsWith($ctrl.membersPoolsDetailLink)"
     >
