@@ -30,13 +30,19 @@ export default function AddVoucherModal({
   onError,
 }: AddVoucherModalProps) {
   const { t } = useTranslation('common');
+  const modal = useRef<HTMLOsdsModalElement>(null);
   const { add, isPending } = useAddVoucher({
     projectId: `${projectId}`,
-    onError,
-    onSuccess,
+    onError: (err) => {
+      modal.current?.close();
+      onError(err);
+    },
+    onSuccess: () => {
+      modal.current?.close();
+      onSuccess();
+    },
   });
   const [voucherCode, setVoucherCode] = useState('');
-  const modal = useRef<HTMLOsdsModalElement>(null);
 
   const handleInputChange = useCallback(
     (event: OdsInputValueChangeEvent) => {

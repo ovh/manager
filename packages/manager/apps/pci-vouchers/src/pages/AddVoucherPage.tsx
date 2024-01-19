@@ -17,11 +17,9 @@ export default function AddVoucherPage() {
         projectId={`${projectId}`}
         onClose={() => onClose()}
         onSuccess={() => {
-          onClose();
           addSuccess(t('cpb_vouchers_add_success'));
         }}
         onError={(error: Error) => {
-          onClose();
           addError(
             <>
               {t('cpb_vouchers_add_error')}

@@ -17,7 +17,6 @@ export default function BuyCreditPage() {
         projectId={`${projectId}`}
         onClose={() => onClose()}
         onSuccess={(amount, url) => {
-          onClose();
           addSuccess(
             <span
               dangerouslySetInnerHTML={{
@@ -31,7 +30,6 @@ export default function BuyCreditPage() {
           );
         }}
         onError={(error: Error) => {
-          onClose();
           addError(
             <>
               {t('cpb_vouchers_add_error')}

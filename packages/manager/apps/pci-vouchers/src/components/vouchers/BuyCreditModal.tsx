@@ -44,8 +44,14 @@ export default function BuyCreditModal({
   const modal = useRef<HTMLOsdsModalElement>(null);
   const { buy, isPending } = useBuyCredit({
     projectId: `${projectId}`,
-    onError,
-    onSuccess: (response) => onSuccess(response.amount, response.url),
+    onError: (err) => {
+      modal.current?.close();
+      onError(err);
+    },
+    onSuccess: (response) => {
+      modal.current?.close();
+      onSuccess(response.amount, response.url);
+    },
   });
 
   const handleInputChange = useCallback(
@@ -88,7 +94,11 @@ export default function BuyCreditModal({
               </OsdsFormField>
             </>
           )}
-          {isPending && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
+          {isPending && (
+            <div>
+              <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
+            </div>
+          )}
         </slot>
         <OsdsButton
           slot="actions"
