@@ -1,5 +1,6 @@
 {
   "user_users_title": "Gestion des utilisateurs",
+  "user_need_rights_message": "Vous n'avez pas le droit d'effectuer cette opération. Veuillez demander à vos administrateurs les droits suivant : ",
   "user_users_info": "Afin de se connecter à l'interface, l'utilisateur devra renseigner votre identifiant <strong>{{customerCode}}</strong> et son nom d'utilisateur séparé par un \"/\" ainsi que son mot de passe.",
   "user_users_info_example": "Exemple: <strong>{{customerCode}}/{{login}}</strong>",
   "user_users_add_user": "Ajouter un utilisateur",
@@ -24,6 +25,7 @@
   "user_roles_none": "Aucun",
   "user_users_group": "Groupe",
   "user_users_disable": "Désactiver l'utilisateur",
+  "user_users_users_section_title": "Utilisateurs",
   "user_users_delete_modal_step1_question": "Êtes-vous sur de vouloir supprimer l'utilisateur <strong>{{login}}</strong> ?",
   "user_users_disable_modal_step1_question": "Êtes-vous sur de vouloir désactiver l'utilisateur <strong>{{login}}</strong> ?",
   "user_users_enable_modal_step1_question": "Êtes-vous sur de vouloir activer l'utilisateur <strong>{{login}}</strong> ?",
@@ -51,6 +53,7 @@
   "user_users_add_error_message": "Une erreur est survenue lors de l'ajout de l'utilisateur",
   "user_users_add_success_message": "L'utilisateur <strong>{{login}}</strong> a été ajouté avec succès.",
   "user_users_sso_add": "Connexion SSO",
+  "user_users_sso_modal_group_local_users_to_enable": "Conserver les utilisateurs OVHcloud actifs",
   "user_users_sso_add_modal_title": "Se connecter en SSO",
   "user_users_sso_add_modal_info": "Afin d'autoriser vos utilisateurs à utiliser votre propre identity provider, nous avons besoin de ses informations afin de configurer votre compte.",
   "user_users_sso_add_modal_warning": "Attention : un identity provider externe désactivera les utilisateurs actuels.",

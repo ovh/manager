@@ -69,6 +69,7 @@ export default class UseraccountUsersService {
     return this.$http
       .put('/me/identity/provider', {
         groupAttributeName: data.groupAttributeName,
+        disableUsers: data.disableUsers,
       })
       .then(() => this.broadcast('useraccount.security.users.refresh', {}));
   }
