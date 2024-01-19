@@ -87,7 +87,7 @@
                             data-ng-if="!$ctrl.needToCheckCustomerInformations || !$ctrl.isCheckingPaymentMethod"
                         >
                             <span
-                                data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
+                                data-ng-bind="$ctrl.viewOptions.submitText || (('pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase()) | translate)"
                             ></span>
                         </oui-button>
                         <oui-spinner
@@ -131,7 +131,7 @@
                             data-disabled="!($ctrl.model.valid && !$ctrl.isInvalidPaymentMethod())"
                         >
                             <span
-                                data-translate="pci_project_new_payment_btn_continue_default"
+                                data-ng-bind="$ctrl.viewOptions.submitText || ('pci_project_new_payment_btn_continue_default' | translate)"
                             ></span>
                         </oui-button>
                         <oui-spinner
@@ -154,7 +154,7 @@
                             data-disabled="!($ctrl.model.valid && $ctrl.model.credit)"
                         >
                             <span
-                                data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
+                                data-ng-bind="$ctrl.viewOptions.submitText || (('pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase()) | translate)"
                             ></span>
                         </oui-button>
                         <oui-spinner

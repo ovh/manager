@@ -36,6 +36,8 @@ export const registerPCINewPaymentState = (
       denseVoucher: false,
       paymentsPerLine: PAYMENTS_PER_LINE,
       registerExplanationTexts: null,
+      submitText: '',
+      onSubmit: null,
     },
     resolve,
   } = {},
