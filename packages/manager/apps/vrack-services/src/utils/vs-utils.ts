@@ -116,6 +116,15 @@ export const useUpdateVrackServices = ({
           data: result.data,
         }),
       );
+      if (['listing'].includes(key)) {
+        queryClient.invalidateQueries({
+          queryKey: getVrackServicesResourceListQueryKey,
+        });
+      } else {
+        queryClient.invalidateQueries({
+          queryKey: getVrackServicesResourceQueryKey(key),
+        });
+      }
       onSuccess?.(result);
     },
     onError,
@@ -138,6 +147,7 @@ export const useUpdateVrackServices = ({
 
 export const useServiceList = (vrackServicesId: string) => {
   const [urnList, setUrnList] = React.useState<string[]>([]);
+  const { data: vrackServices } = useVrackService();
 
   const {
     data: serviceListResponse,
@@ -146,30 +156,50 @@ export const useServiceList = (vrackServicesId: string) => {
   } = useQuery<ApiResponse<EligibleManagedService[]>, ApiError>({
     queryKey: getEligibleManagedServiceListQueryKey(vrackServicesId),
     queryFn: () => getEligibleManagedServiceList(vrackServicesId),
-    staleTime: Infinity,
   });
 
   const {
     data: iamResources,
     isLoading: isIamResourcesLoading,
     error: iamResourcesError,
+    refetch: refetchIamResources,
   } = useQuery<ApiResponse<IAMResource[]>, ApiError>({
     queryKey: getIamResourceQueryKey(urnList),
     queryFn: () => getIamResource(urnList),
-    enabled: urnList.length > 0,
+    enabled: false,
   });
 
   React.useEffect(() => {
-    setUrnList(
+    setUrnList((urns) =>
       Array.from(
         new Set(
-          serviceListResponse?.data.flatMap(
-            (service) => service.managedServiceURNs,
-          ),
+          serviceListResponse?.data
+            .flatMap((service) => service.managedServiceURNs)
+            .concat(urns),
         ),
       ),
     );
   }, [serviceListResponse?.data]);
+
+  React.useEffect(() => {
+    setUrnList((urns) =>
+      Array.from(
+        new Set(
+          vrackServices?.currentState.subnets
+            .flatMap((subnet) =>
+              subnet.serviceEndpoints.map(
+                (endpoint) => endpoint.managedServiceURN,
+              ),
+            )
+            .concat(urns),
+        ),
+      ),
+    );
+  }, [vrackServices?.checksum]);
+
+  React.useEffect(() => {
+    refetchIamResources();
+  }, [urnList]);
 
   return {
     serviceListResponse,

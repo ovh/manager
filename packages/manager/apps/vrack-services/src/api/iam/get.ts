@@ -8,7 +8,11 @@ export const getIamResourceQueryKey = (resourceURNList: string[]) => [
 /**
  * Get the vRack Services
  */
-export const getIamResource = async (resourceURNList: string[]) =>
-  apiClient.v2.get<IAMResource[]>(
-    `/iam/resource?resourceURN=${resourceURNList.join(',')}`,
+export const getIamResource = async (resourceURNList: string[]) => {
+  const params = new URLSearchParams();
+  resourceURNList.forEach((urn) => params.append('resourceURN', urn));
+
+  return apiClient.v2.get<IAMResource[]>(
+    `/iam/resource${params.size > 0 ? '?' : ''}${params.toString()}`,
   );
+};

@@ -5,8 +5,9 @@ import { OsdsSpinner, OsdsDatagrid } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE, OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { useParams } from 'react-router-dom';
 import { useShell } from '@ovh-ux/manager-react-core-application';
+import { useQueryClient } from '@tanstack/react-query';
 import { reactFormatter } from '@/utils/ods-utils';
-import { ActionsCell, ServiceName } from './EndpointDataGridCells';
+import { ActionsCell, ServiceName, ServiceType } from './EndpointDataGridCells';
 import { ErrorPage } from '@/components/Error';
 import {
   useVrackService,
@@ -14,6 +15,7 @@ import {
   useServiceList,
 } from '@/utils/vs-utils';
 import { VrackDeleteModal } from '@/components/VrackDeleteModal';
+import { getEligibleManagedServiceListQueryKey } from '@/api';
 
 export const EndpointDatagrid: React.FC = () => {
   const { t } = useTranslation('vrack-services/endpoints');
@@ -22,18 +24,23 @@ export const EndpointDatagrid: React.FC = () => {
   >(undefined);
   const { id } = useParams();
   const shell = useShell();
+  const queryClient = useQueryClient();
 
   const { data: vrackServices, isError, error, isLoading } = useVrackService();
   const { updateVS, isPending, updateError } = useUpdateVrackServices({
     key: id,
-    onSuccess: () => setOpenedDeleteModal(''),
+    onSuccess: () => {
+      setOpenedDeleteModal('');
+      queryClient.invalidateQueries({
+        queryKey: getEligibleManagedServiceListQueryKey(id),
+      });
+    },
   });
   const {
     iamResources,
     isServiceListLoading,
     isIamResourcesLoading,
     iamResourcesError,
-    serviceListResponse,
     serviceListError,
   } = useServiceList(id);
 
@@ -45,8 +52,11 @@ export const EndpointDatagrid: React.FC = () => {
     },
     {
       title: t('serviceType'),
-      field: 'serviceType',
+      field: '',
       isSortable: true,
+      formatter: reactFormatter(
+        <ServiceType iamResources={iamResources?.data} />,
+      ),
     },
     {
       title: t('managedServiceURN'),
@@ -95,9 +105,6 @@ export const EndpointDatagrid: React.FC = () => {
           ip,
           subnet: endpoint.subnet,
           managedServiceURN: endpoint.managedServiceURN,
-          serviceType: serviceListResponse?.data.find((service) =>
-            service.managedServiceURNs.includes(endpoint.managedServiceURN),
-          )?.managedServiceType,
         })),
       ) || [];
 

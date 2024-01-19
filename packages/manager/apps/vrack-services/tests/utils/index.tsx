@@ -66,9 +66,6 @@ export const renderWithShell = async (options?: TestConfig) => {
     ]),
   );
   server.listen({ onUnhandledRequest: 'warn' });
-  server.events.on('request:start', async ({ request }) => {
-    console.log('MSW intercepted:', request.method, request.url);
-  });
 
   const shell = await initShell();
   const queryClient = new QueryClient();

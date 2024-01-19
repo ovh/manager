@@ -19,6 +19,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useParams } from 'react-router-dom';
 import { ErrorPage } from '@/components/Error';
 import { useUpdateVrackServices, useVrackService } from '@/utils/vs-utils';
 import { formatDateString } from '@/utils/date';
@@ -37,13 +38,14 @@ export const OverviewTab: React.FC = () => {
   >(undefined);
   const environment = useEnvironment();
   const urls = environment.getApplicationURLs();
+  const { id } = useParams();
   const { data: vrackServices, error, isLoading } = useVrackService();
   const {
     updateVS,
     isErrorVisible,
     hideError,
     isPending,
-  } = useUpdateVrackServices({ key: 'overview' });
+  } = useUpdateVrackServices({ key: id });
   const shell = useShell();
 
   if (error) {
@@ -88,7 +90,7 @@ export const OverviewTab: React.FC = () => {
                 <TileBlock label={t('displayName')}>
                   <DisplayNameCell
                     updateVS={updateVS}
-                    cellData={vrackServices?.displayName}
+                    cellData={vrackServices?.currentState.displayName}
                     rowData={vrackServices}
                   />
                 </TileBlock>
