@@ -140,12 +140,7 @@ export default class PciProjectNewVoucherCtrl {
     return this.pciProjectNew
       .removeCartProjectItemVoucher(this.cart)
       .then(() => {
-        this.model.voucher.reset();
-        this.model.voucher.setValue('');
-
-        this.voucherEligibility = null;
-        this.errors.reset = false;
-        this.model.isVoucherRequirePaymentMethod = true;
+        this.clearVoucher();
       })
       .catch(() => {
         this.errors.reset = true;
@@ -158,6 +153,17 @@ export default class PciProjectNewVoucherCtrl {
         this.loading.reset = false;
         this.globalLoading.isVoucherValidating = false;
       });
+  }
+
+  clearVoucher() {
+    this.model.voucher.reset();
+    this.model.voucher.setValue('');
+    this.model.voucher.valid = false;
+    this.voucherEligibility = null;
+    this.errors.reset = false;
+    this.model.isVoucherRequirePaymentMethod = true;
+    this.voucherForm.voucher.$setValidity('voucher', true);
+    this.voucherForm.voucher.$setPristine();
   }
 
   manageResetVoucher() {
@@ -214,7 +220,6 @@ export default class PciProjectNewVoucherCtrl {
   ============================= */
 
   $onInit() {
-    this.initVoucherForProjectActivation();
     this.formVisible = !this.viewOptions.foldVoucher;
     const { value, valid } = this.model.voucher;
 
@@ -222,16 +227,15 @@ export default class PciProjectNewVoucherCtrl {
       if (valid) {
         this.voucherEligibility = this.eligibility;
       }
-
       this.formVisible = true;
       this.$timeout(() => this.setVoucherFormState());
-    }
-  }
-
-  initVoucherForProjectActivation() {
-    if (this.discoveryPromotionVoucherAmount) {
-      this.model.voucher.setValue(DISCOVERY_PROMOTION_VOUCHER);
-      this.setVoucherFormState();
+    } else if (this.isDiscoveryProject) {
+      this.model.voucher.value = DISCOVERY_PROMOTION_VOUCHER;
+      this.submitVoucher().then(() => {
+        if (!this.model.voucher.valid) {
+          this.clearVoucher();
+        }
+      });
     }
   }
 
