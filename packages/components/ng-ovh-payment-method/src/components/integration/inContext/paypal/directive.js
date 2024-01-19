@@ -1,7 +1,6 @@
 import { merge } from 'lodash-es';
 
 import controller from './controller';
-import template from './index.html';
 
 import { PAYPAL_SCRIPT, PAYPAL_BUTTON_OPTIONS } from './constants';
 
@@ -10,7 +9,6 @@ const name = 'ovhPaymentMethodIntegrationInContextPaypal';
 export default {
   name,
   controller,
-  template,
   restrict: 'E',
   bindToController: true,
   controllerAs: '$ctrl',
@@ -24,20 +22,17 @@ export default {
 
     // define render method to paypal controller
     paypalCtrl.render = (renderOptions = {}) => {
-      paypal
-        .Buttons(
-          merge(
-            {
-              fundingSource: paypal.FUNDING.PAYPAL,
-              payment: paypalCtrl.submit.bind(paypalCtrl),
-              onAuthorize: paypalCtrl.onAuthorize.bind(paypalCtrl),
-              onInit: paypalCtrl.onButtonsInit.bind(paypalCtrl),
-            },
-            PAYPAL_BUTTON_OPTIONS,
-            renderOptions,
-          ),
-        )
-        .render(tElement[0].querySelector('.in-context-paypal-container'));
+      paypal.Button.render(
+        merge(
+          {
+            payment: paypalCtrl.submit.bind(paypalCtrl),
+            onAuthorize: paypalCtrl.onAuthorize.bind(paypalCtrl),
+          },
+          PAYPAL_BUTTON_OPTIONS,
+          renderOptions,
+        ),
+        tElement[0],
+      );
     };
 
     // set integrationCtrl to init state

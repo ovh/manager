@@ -1,7 +1,6 @@
 import angular from 'angular';
 
 import directive from './directive';
-import './style.scss';
 
 const moduleName = 'ngOvhPaymentMethodIntegrationInContextPaypal';
 
