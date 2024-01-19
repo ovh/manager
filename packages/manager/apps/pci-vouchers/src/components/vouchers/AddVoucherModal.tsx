@@ -11,7 +11,7 @@ import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { OdsInputValueChangeEvent } from '@ovhcloud/ods-components/input';
 import { useAddVoucher } from '@/hooks/useVouchers';
@@ -36,6 +36,7 @@ export default function AddVoucherModal({
     onSuccess,
   });
   const [voucherCode, setVoucherCode] = useState('');
+  const modal = useRef<HTMLOsdsModalElement>(null);
 
   const handleInputChange = useCallback(
     (event: OdsInputValueChangeEvent) => {
@@ -49,6 +50,7 @@ export default function AddVoucherModal({
       <OsdsModal
         headline={t('cpb_vouchers_your_voucher_add')}
         onOdsModalClose={onClose}
+        ref={modal}
       >
         <slot name="content">
           {!isPending && (
@@ -76,7 +78,9 @@ export default function AddVoucherModal({
         <OsdsButton
           slot="actions"
           color={ODS_THEME_COLOR_INTENT.default}
-          onClick={() => onClose && onClose()}
+          onClick={() => {
+            modal.current?.close();
+          }}
         >
           {t('common_cancel')}
         </OsdsButton>
