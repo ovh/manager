@@ -116,5 +116,8 @@
   "user_users_groups_update": "Modificar el grupo",
   "user_users_groups_table_description": "Grupos del proveedor de identidad",
   "user_roles_none": "Ninguno",
-  "user_users_group": "Grupo"
+  "user_users_group": "Grupo",
+  "user_need_rights_message": "No tiene permiso para realizar esta operación. Por favor, solicite a sus administradores los siguientes permisos: ",
+  "user_users_users_section_title": "Usuarios",
+  "user_users_sso_modal_group_local_users_to_enable": "Mantener los usuarios de OVHcloud activos"
 }

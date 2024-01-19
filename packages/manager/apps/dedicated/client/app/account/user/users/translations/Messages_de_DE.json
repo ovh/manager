@@ -116,5 +116,8 @@
   "user_users_groups_update": "Gruppe bearbeiten",
   "user_users_groups_table_description": "Gruppen des Identity Providers",
   "user_roles_none": "Keine",
-  "user_users_group": "Gruppe"
+  "user_users_group": "Gruppe",
+  "user_need_rights_message": "Sie sind nicht berechtigt, diesen Vorgang auszuführen. Bitten Sie Ihre Administratoren um die folgenden Rechte: ",
+  "user_users_users_section_title": "User",
+  "user_users_sso_modal_group_local_users_to_enable": "Aktive OVHcloud User beibehalten"
 }
