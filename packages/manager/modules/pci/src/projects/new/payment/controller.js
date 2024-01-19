@@ -94,7 +94,9 @@ export default class PciProjectNewPaymentCtrl {
     this.isCheckingPaymentMethod = true;
     return this.pollCheckDefaultPaymentMethod(paymentMethodId)
       .then(() => {
-        this.manageProjectCreation();
+        const projectCreationFn =
+          this.viewOptions.onSubmit || this.manageProjectCreation;
+        projectCreationFn();
       })
       .catch((error) => {
         if (error?.status === ORDER_CHECK_PAYMENT_TIMEOUT_OVER) {
@@ -360,11 +362,11 @@ export default class PciProjectNewPaymentCtrl {
   }
 
   onPaymentFormSubmit() {
+    this.globalLoading.finalize = true;
+
     let challengePromise = Promise.resolve(true);
     let defaultPaymentMethodPromise = Promise.resolve(true);
     let setDefaultPaymentMethodInError = false;
-
-    this.globalLoading.finalize = true;
 
     // call integration submit function if some
     if (
@@ -446,10 +448,13 @@ export default class PciProjectNewPaymentCtrl {
         });
     }
 
+    const projectCreationFn =
+      this.viewOptions.onSubmit || this.manageProjectCreation;
+
     return Promise.all([challengePromise, defaultPaymentMethodPromise]).then(
       () => {
         return !this.model.challenge.error && !setDefaultPaymentMethodInError
-          ? this.manageProjectCreation()
+          ? projectCreationFn()
           : null;
       },
     );

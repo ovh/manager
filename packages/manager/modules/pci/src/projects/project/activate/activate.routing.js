@@ -98,12 +98,10 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
     },
   });
+
   registerPCINewPaymentState($stateProvider, {
     stateName: paymentStateName,
     configStep: false,
-    bindings: {
-      discoveryPromotionVoucherAmount: '@',
-    },
     views: {
       default: `@${paymentStateName}`,
       progress: `progress@${paymentStateName}`,
@@ -123,6 +121,16 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       breadcrumb: () => null,
+      extendViewOptions: /* @ngInject */ (
+        viewOptions,
+        $translate,
+        activateProject,
+      ) => {
+        Object.assign(viewOptions, {
+          submitText: $translate.instant('pci_projects_project_activate_cta'),
+          onSubmit: activateProject,
+        });
+      },
     },
   });
 };
