@@ -7,7 +7,9 @@
 
     <!-- error -->
     <cui-message-container
+        class="sticky-top"
         data-messages="$ctrl.message.list"
+        data-dismissable-types="['info', 'success', 'warning', 'error']"
     ></cui-message-container>
 
     <oui-message type="info" data-ng-if="$ctrl.isCheckingPaymentMethod">
@@ -28,18 +30,6 @@
     <div data-ui-view>
         <!-- voucher -->
         <div class="mb-3" data-ui-view="voucher"></div>
-
-        <!-- main content: payment method (default or register) -->
-        <div
-            class="mb-3"
-            data-ng-if="!$ctrl.isCheckingPaymentMethod"
-            data-ui-view="payment"
-        ></div>
-
-        <div class="text-center" data-ng-if="$ctrl.isCheckingPaymentMethod">
-            <oui-spinner></oui-spinner>
-        </div>
-
         <!-- credits -->
         <div
             class="mb-3"
@@ -53,35 +43,47 @@
         <!-- Digital Launch Pad program (DLP) -->
         <div data-ui-view="dlp"></div>
 
-        <!-- footer -->
-        <div
-            class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3"
+        <form
+            novalidate
+            name="paymentForm"
+            data-ng-submit="$ctrl.onPaymentFormSubmit()"
         >
-            <form
-                novalidate
-                name="paymentForm"
-                data-ng-submit="$ctrl.onPaymentFormSubmit()"
+            <!-- main content: payment method (default or register) -->
+            <div
+                class="mb-3"
+                data-ng-if="!$ctrl.isCheckingPaymentMethod"
+                data-ui-view="payment"
+            ></div>
+
+            <div class="text-center" data-ng-if="$ctrl.isCheckingPaymentMethod">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <!-- footer -->
+            <div
+                class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3"
             >
                 <!--Credit card and PayPal-->
                 <ovh-payment-method-integration
+                    data-disabled="!$ctrl.model.valid || $ctrl.globalLoading.finalize"
                     data-callback-status-param-url-name="paymentStatus"
                     data-payment-method-type="$ctrl.model.paymentMethod"
                     data-on-initialized="$ctrl.onIntegrationInitialized.bind($ctrl)"
                     data-on-submit="$ctrl.onIntegrationSubmit.bind($ctrl)"
                     data-on-submit-error="$ctrl.onIntegrationSubmitError.bind($ctrl)"
                     data-on-submit-success="$ctrl.onIntegrationSubmitSuccess.bind($ctrl)"
-                    data-ng-if="[
-                        $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.REDIRECT,
-                        $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IN_CONTEXT
-                    ].includes($ctrl.model.paymentMethod.integration)"
+                    data-ng-if="
+                        $ctrl.model.paymentMethod.integration === $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.REDIRECT ||
+                        $ctrl.model.paymentMethod.integration === $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IN_CONTEXT
+                    "
                 >
                     <!--Create project btn-->
                     <div class="d-flex">
                         <oui-button
+                            data-disabled="!$ctrl.model.valid || $ctrl.globalLoading.finalize"
                             data-variant="primary"
                             data-type="submit"
                             data-variant-nav="next"
-                            data-disabled="$ctrl.globalLoading.finalize"
                             data-ng-if="!$ctrl.needToCheckCustomerInformations || !$ctrl.isCheckingPaymentMethod"
                         >
                             <span
@@ -150,7 +152,7 @@
                             data-variant="primary"
                             data-type="submit"
                             data-variant-nav="next"
-                            data-disabled="!$ctrl.model.credit"
+                            data-disabled="!$ctrl.model.valid || !$ctrl.model.credit"
                             on-click="$ctrl.sendTrack('new_project_payment_continue')"
                         >
                             <span
@@ -175,7 +177,7 @@
                             type="button"
                             on-click="$ctrl.initComponentInitialParams()"
                             data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.isCheckingPaymentMethod"
-                            disabled="$ctrl.globalLoading.finalize  || $ctrl.model.reloadHandleByComponent"
+                            disabled="!$ctrl.model.valid || $ctrl.globalLoading.finalize  || $ctrl.model.reloadHandleByComponent"
                         >
                             <span
                                 data-translate="pci_project_new_payment_btn_continue_add_credit_card"
@@ -217,7 +219,7 @@
                             type="button"
                             on-click="$ctrl.initComponentInitialParams()"
                             data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.componentInitialParams && !$ctrl.isCheckingPaymentMethod"
-                            disabled="$ctrl.globalLoading.finalize"
+                            disabled="!$ctrl.model.valid || $ctrl.globalLoading.finalize"
                         >
                             <span
                                 data-translate="pci_project_new_payment_btn_continue_sepa_direct_debit"
@@ -231,36 +233,37 @@
                         </oui-spinner>
                     </div>
                 </div>
-            </form>
 
-            <a
-                data-ng-if="!$ctrl.model.paymentMethod.isHandleByComponent() || !$ctrl.componentInitialParams"
-                data-ng-href="{{ $ctrl.step1Link() }}"
-                data-ng-click="$ctrl.sendTrack('new_project_payment_cancel')"
+                <a
+                    data-ng-if="!$ctrl.model.paymentMethod.isHandleByComponent() || !$ctrl.componentInitialParams"
+                    data-ng-href="{{ $ctrl.step1Link() }}"
+                    data-ng-click="$ctrl.sendTrack('new_project_payment_cancel')"
+                >
+                    <span
+                        data-translate="pci_project_new_payment_btn_return"
+                    ></span>
+                </a>
+            </div>
+
+            <h2
+                class="oui-heading_underline"
+                data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && $ctrl.componentInitialParams && $ctrl.model.reloadHandleByComponent"
+                data-translate="pci_project_new_payment_information"
+            ></h2>
+
+            <ovh-payment-method-integration
+                data-disabled="!$ctrl.model.valid"
+                data-ng-if="(($ctrl.model.reloadHandleByComponent && $ctrl.model.paymentMethod.isHandleByComponent() && $ctrl.componentInitialParams) || $ctrl.hasComponentRedirectCallback)"
+                data-payment-method-type="$ctrl.model.paymentMethod"
+                data-callback-status-param-url-name="paymentStatus"
+                data-callback="$ctrl.callback"
+                data-cancel-href="{{ $ctrl.getCancelHref() }}"
+                data-initial-params="$ctrl.componentInitialParams"
+                data-on-submit="$ctrl.onIntegrationSubmit.bind($ctrl)"
+                data-on-submit-error="$ctrl.onIntegrationSubmitError.bind($ctrl)"
+                data-on-submit-success="$ctrl.onIntegrationSubmitSuccess.bind($ctrl)"
             >
-                <span
-                    data-translate="pci_project_new_payment_btn_return"
-                ></span>
-            </a>
-        </div>
-
-        <h2
-            class="oui-heading_underline"
-            data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && $ctrl.componentInitialParams && $ctrl.model.reloadHandleByComponent"
-            data-translate="pci_project_new_payment_information"
-        ></h2>
-
-        <ovh-payment-method-integration
-            data-ng-if="(($ctrl.model.reloadHandleByComponent && $ctrl.model.paymentMethod.isHandleByComponent() && $ctrl.componentInitialParams) || $ctrl.hasComponentRedirectCallback)"
-            data-payment-method-type="$ctrl.model.paymentMethod"
-            data-callback-status-param-url-name="paymentStatus"
-            data-callback="$ctrl.callback"
-            data-cancel-href="{{ $ctrl.getCancelHref() }}"
-            data-initial-params="$ctrl.componentInitialParams"
-            data-on-submit="$ctrl.onIntegrationSubmit.bind($ctrl)"
-            data-on-submit-error="$ctrl.onIntegrationSubmitError.bind($ctrl)"
-            data-on-submit-success="$ctrl.onIntegrationSubmitSuccess.bind($ctrl)"
-        >
-        </ovh-payment-method-integration>
+            </ovh-payment-method-integration>
+        </form>
     </div>
 </div>
