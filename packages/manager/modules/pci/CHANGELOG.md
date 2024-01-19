@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.18.1...@ovh-ux/manager-pci@6.18.2) (2024-01-19)
+
+
+### Bug Fixes
+
+* **pci:** display IP order page ([94ed0b0](https://github.com/ovh/manager/commit/94ed0b024bed6c0f52fee33734e33b60db4e202c))
+
+
+
+
+
 ## [6.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.18.0...@ovh-ux/manager-pci@6.18.1) (2024-01-17)
 
 
