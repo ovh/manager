@@ -1,4 +1,13 @@
-import { chunk, find, get, has, isFunction, isNil, isObject } from 'lodash-es';
+import {
+  chunk,
+  find,
+  get,
+  has,
+  isFunction,
+  isNil,
+  isObject,
+  some,
+} from 'lodash-es';
 
 import {
   DEFAULT_DISPLAY_PER_LINE,
@@ -6,26 +15,13 @@ import {
   DEFAULT_SELECTED_PAYMENT_METHOD_TYPE,
   FALLBACK_IMAGES,
   PAYPAL_PAYMENT_METHOD,
-  PAYMENTS_RUPAY_MESSAGE_FEATURE,
-  CHARGES,
 } from './constants';
 
 export default class OvhPaymentMethodRegisterCtrl {
   /* @ngInject */
-  constructor(
-    $q,
-    $transclude,
-    ovhPaymentMethod,
-    ovhPaymentMethodHelper,
-    ovhFeatureFlipping,
-    coreConfig,
-    OVH_PAYMENT_METHOD_INTEGRATION_TYPE,
-  ) {
-    this.$q = $q;
-    this.$transclude = $transclude;
+  constructor(ovhPaymentMethod, ovhPaymentMethodHelper, coreConfig) {
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
-    this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.coreConfig = coreConfig;
     // other attributes used in view
     this.loading = {
@@ -37,14 +33,6 @@ export default class OvhPaymentMethodRegisterCtrl {
       chunks: null,
     };
     this.PAYPAL_PAYMENT_METHOD = PAYPAL_PAYMENT_METHOD;
-
-    this.registrationCharges = `${CHARGES}${
-      this.coreConfig.getUser().currency.code
-    }`;
-
-    this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
-
-    this.filterPaymentMethod = this.filterPaymentMethod.bind(this);
   }
 
   /* =====================================
@@ -52,32 +40,8 @@ export default class OvhPaymentMethodRegisterCtrl {
   ====================================== */
 
   initAndCheckDefaultBinding() {
-    if (this.forceSetAsDefaultChoice) {
-      this.showSetAsDefaultChoice = true;
-    }
-
     if (isNil(this.model) || !isObject(this.model)) {
       this.model = {};
-    }
-
-    if (this.modelName && this.modelName !== 'selectedPaymentMethodType') {
-      const { [this.modelName]: model } = this.model;
-      delete this.model[this.modelName];
-      Object.defineProperty(this.model, this.modelName, {
-        get() {
-          return this.selectedPaymentMethodType;
-        },
-        set(value) {
-          this.selectedPaymentMethodType = value;
-        },
-      });
-      this.model[this.modelName] = model;
-    }
-
-    if (this.required) {
-      Object.defineProperty(this.model, 'valid', {
-        get: () => this.form.$valid,
-      });
     }
 
     // set an empty list of registered payment methods if not provided
@@ -105,6 +69,16 @@ export default class OvhPaymentMethodRegisterCtrl {
     }
   }
 
+  /* -----  End of Initialization  ------ */
+
+  showSpecificCrossBorderSentenceForCardPayment() {
+    return (
+      this.hasSpecificCrossBorderSentenceForCardPayment &&
+      this.model.selectedPaymentMethodType.type.paymentType ===
+        DEFAULT_SELECTED_PAYMENT_METHOD_TYPE
+    );
+  }
+
   /* ============================
   =            Hooks            =
   ============================= */
@@ -113,22 +87,7 @@ export default class OvhPaymentMethodRegisterCtrl {
     this.initAndCheckDefaultBinding();
 
     this.loading.init = true;
-    this.$q
-      .all([
-        this.getAllAvailablePaymentMethodTypes(),
-        this.getPaymentsRupayMessageFeature(),
-        this.getSpecificCrossBorderSentenceForCardPayment(),
-      ])
-      .finally(() => {
-        this.loading.init = false;
-      });
-  }
 
-  /* =====================================
-  =            API                       =
-  ====================================== */
-
-  getAllAvailablePaymentMethodTypes() {
     return this.ovhPaymentMethod
       .getAllAvailablePaymentMethodTypes()
       .then((paymentMethodsTypes) => {
@@ -141,7 +100,7 @@ export default class OvhPaymentMethodRegisterCtrl {
             const typeBIndex = this.paymentMethodTypesOrder.indexOf(
               typeB.paymentType,
             );
-            return typeAIndex - typeBIndex;
+            return typeAIndex > typeBIndex;
           },
         );
 
@@ -154,14 +113,6 @@ export default class OvhPaymentMethodRegisterCtrl {
           paymentType.icon.data =
             paymentType.icon.data || FALLBACK_IMAGES[paymentType.paymentType];
         });
-
-        // Push unregistered payment methods
-        if (this.unregisteredPaymentMethods) {
-          this.availablePaymentMethodTypes.list = [
-            ...this.availablePaymentMethodTypes.list,
-            ...this.unregisteredPaymentMethods,
-          ];
-        }
 
         // split available payment method types list by chunk of paymentMethodTypesPerLine number
         this.availablePaymentMethodTypes.chunks = chunk(
@@ -180,24 +131,26 @@ export default class OvhPaymentMethodRegisterCtrl {
         );
 
         // set selected payment method type model
-        if (this.automaticSelect || this.automaticSelect === undefined) {
-          if (
-            !has(this.model, 'selectedPaymentMethodType') ||
-            isNil(this.model.selectedPaymentMethodType)
-          ) {
-            this.model.selectedPaymentMethodType = defaultPaymentMethodType;
-          } else if (this.model.selectedPaymentMethodType) {
-            // if the selected payment method type does not exist
-            // set the default one
-            const foundModel = find(this.availablePaymentMethodTypes.list, {
+        if (
+          !has(this.model, 'selectedPaymentMethodType') ||
+          isNil(this.model.selectedPaymentMethodType)
+        ) {
+          this.model.selectedPaymentMethodType = defaultPaymentMethodType;
+        } else if (this.model.selectedPaymentMethodType) {
+          // if the selected payment method type does not exist
+          // set the default one
+          const isModelTypeExists = some(
+            this.availablePaymentMethodTypes.list,
+            {
               paymentType: get(
                 this.model.selectedPaymentMethodType,
                 'paymentType',
               ),
-            });
+            },
+          );
 
-            this.model.selectedPaymentMethodType =
-              foundModel ?? defaultPaymentMethodType;
+          if (!isModelTypeExists) {
+            this.model.selectedPaymentMethodType = defaultPaymentMethodType;
           }
         }
 
@@ -243,39 +196,11 @@ export default class OvhPaymentMethodRegisterCtrl {
           // ... invoke it
           this.onInitializationError()(error);
         }
+      })
+      .finally(() => {
+        this.loading.init = false;
       });
   }
 
-  getPaymentsRupayMessageFeature() {
-    return this.ovhFeatureFlipping
-      .checkFeatureAvailability(PAYMENTS_RUPAY_MESSAGE_FEATURE)
-      .then((featureAvailability) => {
-        this.showRupayMessage = featureAvailability.isFeatureAvailable(
-          PAYMENTS_RUPAY_MESSAGE_FEATURE,
-        );
-      });
-  }
-
-  getSpecificCrossBorderSentenceForCardPayment() {
-    return this.ovhPaymentMethodHelper
-      .hasSpecificCrossBorderSentenceForCardPayment()
-      .then((hasSpecificCrossBorderSentenceForCardPayment) => {
-        // display or not the specific cross border sentence for given subsidiaries
-        this.showSpecificCrossBorderSentenceForCardPayment = hasSpecificCrossBorderSentenceForCardPayment;
-      });
-  }
-
-  /* =====================================
-  =            Methods                   =
-  ====================================== */
-
-  resetForm() {
-    this.model.setAsDefault = false;
-  }
-
-  filterPaymentMethod(paymentMethodType) {
-    return !this.excludedPaymentMethods?.includes?.(
-      paymentMethodType.paymentType,
-    );
-  }
+  /* -----  End of Hooks  ------ */
 }
