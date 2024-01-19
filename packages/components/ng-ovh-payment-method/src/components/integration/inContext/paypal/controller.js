@@ -2,9 +2,19 @@ import { get, merge } from 'lodash-es';
 
 export default class OvhPaymentMethodIntegrationInContextPaypalCtrl {
   /* @ngInject */
-  constructor($timeout, ovhPaymentMethod) {
+  constructor($scope, $timeout, ovhPaymentMethod) {
     this.$timeout = $timeout;
     this.ovhPaymentMethod = ovhPaymentMethod;
+    this.buttonsCtrl = null;
+
+    $scope.$watch(
+      () => this.inContextCtrl.integrationCtrl.disabled,
+      (isIntegrationDisabled) => {
+        this.disabled = isIntegrationDisabled;
+        if (this.disabled) this.disableButtons();
+        else this.enableButtons();
+      },
+    );
   }
 
   /**
@@ -47,5 +57,24 @@ export default class OvhPaymentMethodIntegrationInContextPaypalCtrl {
       .onIntegrationSubmit()
       .then(({ formSessionId }) => formSessionId)
       .catch(() => {});
+  }
+
+  onButtonsInit(_, buttonsCtrl) {
+    this.buttonsCtrl = buttonsCtrl;
+    if (this.inContextCtrl.integrationCtrl.disabled) {
+      this.disableButtons();
+    }
+  }
+
+  disableButtons() {
+    if (this.buttonsCtrl) {
+      this.buttonsCtrl.disable();
+    }
+  }
+
+  enableButtons() {
+    if (this.buttonsCtrl) {
+      this.buttonsCtrl.enable();
+    }
   }
 }
