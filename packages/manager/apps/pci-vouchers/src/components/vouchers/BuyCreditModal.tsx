@@ -69,9 +69,9 @@ export default function BuyCreditModal({
         ref={modal}
       >
         <slot name="content">
-          <span>{t('cpb_vouchers_add_credit_info')}</span>
           {!isPending && (
             <>
+              <span>{t('cpb_vouchers_add_credit_info')}</span>
               <OsdsFormField>
                 <OsdsText
                   slot="label"
