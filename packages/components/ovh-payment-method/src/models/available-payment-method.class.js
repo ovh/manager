@@ -14,12 +14,10 @@ export class AvailablePaymentMethod {
    *  @param {Object} options.icon Informations about the payment method type icon.
    *  @param {String} options.icon.name Name of the icon.
    *  @param {String} options.icon.data Icon in base64.
-   *  @param {String} options.icon.className Icon css class name.
    *  @param {String} options.integration Type of integration of the payment type.
    *  @param {Boolean} options.oneshot Flag indicating if we can use the payment method type
    *                                   for oneshot payment.
    *  @param {String} options.paymentType The name of the payment method type.
-   *  @param {String} options.humanReadableName The human readable name of the payment type.
    *  @param {Boolean} options.registerable Flag indicating if we can register the payment type.
    *  @param {Boolean} options.registerableWithTransaction Flag indicating if we can register the
    *                                                       payment type and in the same time
@@ -56,10 +54,7 @@ export class AvailablePaymentMethod {
      *  The type of the payment method.
      *  @type {PaymentMethodType}
      */
-    this.type = new PaymentMethodType(
-      options.paymentType,
-      options.humanReadableName,
-    );
+    this.type = new PaymentMethodType(options.paymentType);
 
     /**
      *  Flag indicating if we can register the payment type.

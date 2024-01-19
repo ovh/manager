@@ -14,7 +14,6 @@ export default {
     callbackStatusParamUrlName: '@?',
     callback: '<?',
     cancelHref: '@?',
-    disabled: '<?',
     initialParams: '<?',
     onInitialized: '&?',
     onSubmit: '&?',
