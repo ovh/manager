@@ -19,5 +19,25 @@ export const updateVrackServices = async ({
 }: UpdateVrackServicesParams) =>
   apiClient.v2.put<VrackServices>(
     `/vrackServices/resource/${vrackServicesId}`,
-    { checksum, targetSpec },
+    {
+      checksum,
+      targetSpec: {
+        displayName: targetSpec.displayName,
+        subnets:
+          targetSpec.subnets?.map((subnet) => ({
+            cidr: subnet.cidr,
+            displayName: subnet.displayName,
+            serviceRange: {
+              cidr: subnet.serviceRange.cidr,
+              // Need to remove ip configurations
+            },
+            serviceEndpoints:
+              subnet.serviceEndpoints?.map((endpoint) => ({
+                // Need to remove endpoints configurations
+                managedServiceURN: endpoint.managedServiceURN,
+              })) || [],
+            vlan: subnet.vlan,
+          })) || [],
+      },
+    },
   );

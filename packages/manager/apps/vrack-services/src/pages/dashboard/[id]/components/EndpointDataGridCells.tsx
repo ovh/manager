@@ -21,6 +21,15 @@ export const ServiceName: React.FC<DataGridCellProps<string, Endpoint> & {
   return <>{resource?.displayName || resource?.name || resource?.id}</>;
 };
 
+export const ServiceType: React.FC<DataGridCellProps<string, Endpoint> & {
+  iamResources?: IAMResource[];
+}> = ({ iamResources, rowData }) => {
+  const resource = iamResources?.find(
+    (iamResource) => iamResource.urn === rowData.managedServiceURN,
+  );
+  return <>{resource?.type || ''}</>;
+};
+
 export const ActionsCell: React.FC<DataGridCellProps<undefined, Endpoint> & {
   isLoading?: boolean;
   vrackServices?: VrackServices;

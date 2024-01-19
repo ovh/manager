@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsDatagrid } from '@ovhcloud/ods-components/react';
-import { OdsDatagridColumn } from '@ovhcloud/ods-components';
+import { OsdsDatagrid, OsdsMessage } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_TYPE, OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { useParams } from 'react-router-dom';
 import { useShell } from '@ovh-ux/manager-react-core-application';
 import { reactFormatter } from '@/utils/ods-utils';
@@ -20,7 +20,12 @@ export const SubnetDatagrid: React.FC = () => {
   const shell = useShell();
 
   const { data: vrackServices, isError, error } = useVrackService();
-  const { updateVS, isPending, updateError } = useUpdateVrackServices({
+  const {
+    updateVS,
+    isPending,
+    updateError,
+    isErrorVisible,
+  } = useUpdateVrackServices({
     key: id,
     onSuccess: () => {
       setOpenedDeleteModal('');
@@ -75,6 +80,14 @@ export const SubnetDatagrid: React.FC = () => {
 
   return (
     <>
+      {isErrorVisible && (
+        <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
+          {t('updateError', {
+            error: updateError?.response.data.message,
+            interpolation: { escapeValue: false },
+          })}
+        </OsdsMessage>
+      )}
       <OsdsDatagrid
         hasHideableColumns={undefined}
         height={(subnetList.length + 1) * 150}

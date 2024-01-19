@@ -1,4 +1,4 @@
-import { apiClient, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { apiClient } from '@ovh-ux/manager-core-api';
 import {
   AllowedServicesResponse,
   AllowedService,
@@ -8,10 +8,7 @@ import {
 
 export const getVrackListQueryKey = ['get/vrack'];
 
-export const getVrackList = () =>
-  fetchIcebergV6<string>({
-    route: '/vrack',
-  });
+export const getVrackList = () => apiClient.v6.get('/vrack');
 
 export type GetVrackAllowedServicesParams = {
   /** Filter on a specific service family */

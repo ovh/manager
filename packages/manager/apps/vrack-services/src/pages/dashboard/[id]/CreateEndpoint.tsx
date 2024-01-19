@@ -12,7 +12,7 @@ import { useShell } from '@ovh-ux/manager-react-core-application';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   VrackServices,
-  getListingIcebergQueryKey,
+  getVrackServicesResourceListQueryKey,
   getVrackServicesResourceQueryKey,
   updateVrackServices,
   updateVrackServicesQueryKey,
@@ -73,6 +73,7 @@ const EndpointCreationPage: React.FC = () => {
         vrackServicesId: id,
         checksum: vrackServices.data?.checksum,
         targetSpec: {
+          displayName: vrackServices.data?.currentState.displayName,
           subnets: vrackServices.data?.currentState.subnets.map((subnet) =>
             subnet.cidr !== cidr
               ? subnet
@@ -83,20 +84,21 @@ const EndpointCreationPage: React.FC = () => {
                   }),
                 },
           ),
-          displayName: vrackServices.data?.currentState.displayName,
         },
       }),
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: getListingIcebergQueryKey,
-      });
-      await queryClient.invalidateQueries({
-        queryKey: getVrackServicesResourceQueryKey(id),
-      });
-      await shell.tracking.trackEvent({
-        name: 'vrack-services::endpoints::add-success',
-        level2: '',
-      });
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: getVrackServicesResourceListQueryKey,
+        }),
+        queryClient.invalidateQueries({
+          queryKey: getVrackServicesResourceQueryKey(id),
+        }),
+        shell.tracking.trackEvent({
+          name: 'vrack-services::endpoints::add-success',
+          level2: '',
+        }),
+      ]);
       navigate(dashboardUrl);
     },
     onError: async () => {
@@ -117,9 +119,11 @@ const EndpointCreationPage: React.FC = () => {
     });
   }, []);
 
-  if (vrackServices.error || error || serviceListError || iamResourcesError) {
+  if (vrackServices.error || serviceListError || iamResourcesError) {
     return (
-      <ErrorPage error={vrackServices.error || error || serviceListError} />
+      <ErrorPage
+        error={vrackServices.error || serviceListError || iamResourcesError}
+      />
     );
   }
 
@@ -131,6 +135,7 @@ const EndpointCreationPage: React.FC = () => {
       createButtonDataTracking="vrack-services::endpoints::add::confirm"
       formErrorMessage={t('endpointCreationError', {
         error: error?.response.data.message,
+        interpolation: { escapeValue: false },
       })}
       hasFormError={isError}
       goBackLinkLabel={t('goBackLinkLabel')}

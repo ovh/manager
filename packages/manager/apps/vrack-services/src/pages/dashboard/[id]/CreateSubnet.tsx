@@ -21,7 +21,7 @@ import { useShell } from '@ovh-ux/manager-react-core-application';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   VrackServices,
-  getListingIcebergQueryKey,
+  getVrackServicesResourceListQueryKey,
   getVrackServicesResourceQueryKey,
   updateVrackServices,
   updateVrackServicesQueryKey,
@@ -79,32 +79,31 @@ const SubnetCreationPage: React.FC = () => {
         vrackServicesId: id,
         checksum: vrackServices.data?.checksum,
         targetSpec: {
-          subnets: [
-            ...(vrackServices.data?.currentState.subnets || []),
-            {
-              displayName,
-              cidr: cidr || defaultCidr,
-              serviceEndpoints: [],
-              serviceRange: {
-                cidr: serviceRange || defaultServiceRange,
-              },
-              vlan,
-            },
-          ],
           displayName: vrackServices.data?.currentState.displayName,
+          subnets: (vrackServices.data?.currentState.subnets || []).concat({
+            displayName,
+            cidr: cidr || defaultCidr,
+            serviceEndpoints: [],
+            serviceRange: {
+              cidr: serviceRange || defaultServiceRange,
+            },
+            vlan,
+          }),
         },
       }),
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: getListingIcebergQueryKey,
-      });
-      await queryClient.invalidateQueries({
-        queryKey: getVrackServicesResourceQueryKey(id),
-      });
-      await shell.tracking.trackEvent({
-        name: 'vrack-services::subnets::add-success',
-        level2: '',
-      });
+      await Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: getVrackServicesResourceListQueryKey,
+        }),
+        queryClient.invalidateQueries({
+          queryKey: getVrackServicesResourceQueryKey(id),
+        }),
+        shell.tracking.trackEvent({
+          name: 'vrack-services::subnets::add-success',
+          level2: '',
+        }),
+      ]);
       navigate(dashboardUrl);
     },
     onError: async () => {
@@ -125,8 +124,8 @@ const SubnetCreationPage: React.FC = () => {
     });
   }, []);
 
-  if (vrackServices.error || error) {
-    return <ErrorPage error={vrackServices.error || error} />;
+  if (vrackServices.error) {
+    return <ErrorPage error={vrackServices.error} />;
   }
 
   return (
@@ -136,6 +135,7 @@ const SubnetCreationPage: React.FC = () => {
       createButtonDataTracking="vrack-services::subnets::add::confirm"
       formErrorMessage={t('subnetCreationError', {
         error: error?.response.data.message,
+        interpolation: { escapeValue: false },
       })}
       hasFormError={isError}
       goBackLinkLabel={t('goBackLinkLabel')}

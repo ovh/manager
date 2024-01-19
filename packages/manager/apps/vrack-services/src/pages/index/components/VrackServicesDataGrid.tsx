@@ -28,6 +28,7 @@ export const VrackServicesDatagrid: React.FC = () => {
     updateVS,
     isPending,
     isErrorVisible,
+    updateError,
     hideError,
   } = useUpdateVrackServices({ key: 'listing' });
 
@@ -93,7 +94,10 @@ export const VrackServicesDatagrid: React.FC = () => {
           removable
           onOdsRemoveClick={hideError}
         >
-          {t('updateError')}
+          {t('updateError', {
+            error: updateError?.response.data.message,
+            interpolation: { escapeValue: false },
+          })}
         </OsdsMessage>
       )}
       <OsdsDatagrid
