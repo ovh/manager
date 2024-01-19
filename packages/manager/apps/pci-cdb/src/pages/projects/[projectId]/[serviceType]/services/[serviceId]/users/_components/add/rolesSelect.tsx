@@ -1,5 +1,4 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { MinusCircle, PlusCircle } from 'lucide-react';
 import React, { useEffect, useMemo, useRef } from 'react';
@@ -10,7 +9,9 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
@@ -18,13 +19,13 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { useRolesSelectForm } from './useRolesSelectForm';
 
 interface RoleSelectProps {
-  value: string[];
-  onChange: (newRoles: string[]) => void;
+  value: string[] | undefined;
+  onChange: (newRoles: string[] | undefined) => void;
 }
 
 // TODO: get roles from api
@@ -49,53 +50,18 @@ const rolesList = [
 ];
 
 const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
-  ({ value, onChange }) => {
+  ({ value, onChange }, ref) => {
+    if (value === undefined) return <></>;
     const roleInputRef = useRef<HTMLButtonElement>(null);
     const addRoleBtnRef = useRef<HTMLButtonElement>(null);
     const scrollListRef = useRef<HTMLUListElement>(null);
 
-    const roleSchema = z
-      .object(
-        {
-          role: z
-            .string({ required_error: 'Please select a role' })
-            .min(1, { message: 'Please select a role' }),
-          customDB: z
-            .string()
-            .min(1, { message: 'Please add a database name' })
-            .max(32, { message: 'Please add a database name' }),
-        },
-        { description: 'root' },
-      )
-      .refine(
-        (newRole) =>
-          !value.includes(
-            newRole.role.replace('(defined db)', newRole.customDB),
-          ),
-        {
-          message: 'A similar role is already added',
-        },
-      );
-    type ValidationSchema = z.infer<typeof roleSchema>;
-    // generate a form roleSchema
-    const form = useForm<ValidationSchema>({
-      resolver: zodResolver(roleSchema),
-      defaultValues: {
-        role: '',
-        customDB: '',
-      },
+    const { form, schema, currentRole } = useRolesSelectForm({
+      existingRoles: value,
     });
+    type ValidationSchema = z.infer<typeof schema>;
 
-    const currentRole = form.watch('role');
-
-    useEffect(() => {
-      if (!currentRole.includes('(defined db)')) {
-        form.setValue('customDB', 'admin');
-      } else {
-        form.setValue('customDB', '');
-      }
-    }, [currentRole, form]);
-
+    // Scroll to the bottom of the list when a new role is added
     useEffect(() => {
       const scrollContainer = scrollListRef.current;
       if (scrollContainer) {
@@ -115,20 +81,12 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
       ]);
       form.reset();
     };
+
     const handleRemoveRole = (index: number) => {
       const updatedRoles = [...value];
       updatedRoles.splice(index, 1);
       onChange(updatedRoles);
     };
-
-    const availableRoles = useMemo(
-      () =>
-        rolesList.filter((r) => {
-          if (r.includes('(defined db)')) return true;
-          return value.indexOf(r) === -1;
-        }),
-      [value],
-    );
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (event.key === 'Enter') {
@@ -137,6 +95,30 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
         event.preventDefault();
       }
     };
+
+    const getRoleName = (role: string) => {
+      return role.split('@')[0];
+    };
+
+    const availableRoles = useMemo(
+      () => {
+        type AvailableRoles = { admin: string[]; custom: string[] };
+        const defaultValue: AvailableRoles = { admin: [], custom: [] };
+
+        return rolesList.reduce((acc, curr) => {
+          const isCustom = curr.includes('(defined db)');
+
+          if (isCustom) {
+            acc.custom.push(curr);
+          } else if (value.indexOf(curr) === -1) {
+            acc.admin.push(curr); // If not custom, assuming it's an admin role
+          }
+
+          return acc;
+        }, defaultValue);
+      },
+      [rolesList, value], // Include rolesList in the dependency array if it's used inside useMemo
+    );
 
     const errors = useMemo(() => {
       const messages: string[] = [];
@@ -160,19 +142,39 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
               control={form.control}
               name="role"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Role</FormLabel>
+                <FormItem ref={ref}>
                   <FormControl>
                     <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger ref={roleInputRef}>
                         <SelectValue placeholder="Select a role" />
                       </SelectTrigger>
                       <SelectContent>
-                        {availableRoles.map((role) => (
-                          <SelectItem key={role} value={role}>
-                            <Badge>{role}</Badge>
-                          </SelectItem>
-                        ))}
+                        {availableRoles.admin.length > 0 && (
+                          <SelectGroup>
+                            <SelectLabel>Admin roles</SelectLabel>
+                            {availableRoles.admin.map((role) => (
+                              <SelectItem
+                                key={role}
+                                value={role}
+                                className="cursor-pointer"
+                              >
+                                <Badge>{getRoleName(role)}</Badge>
+                              </SelectItem>
+                            ))}
+                          </SelectGroup>
+                        )}
+                        <SelectGroup>
+                          <SelectLabel>Custom roles</SelectLabel>
+                          {availableRoles.custom.map((role) => (
+                            <SelectItem
+                              key={role}
+                              value={role}
+                              className="cursor-pointer"
+                            >
+                              <Badge>{getRoleName(role)}</Badge>
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
                       </SelectContent>
                     </Select>
                   </FormControl>
@@ -188,7 +190,6 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
               name="customDB"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Role</FormLabel>
                   <FormControl>
                     <Input
                       type="text"
@@ -209,7 +210,7 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
             variant={'ghost'}
             type="button"
             onClick={form.handleSubmit(handleAddRole)}
-            className="text-primary"
+            className="text-primary rounded-full p-2 ml-2 hover:text-primary"
           >
             <PlusCircle />
           </Button>
@@ -223,13 +224,12 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
         </div>
         <div>
           <label>Selected Roles:</label>
-          <ScrollArea className="h-72 rounded-md border">
+          <ScrollArea className="h-40 rounded-md border">
             <ul ref={scrollListRef}>
               {value.map((role, index) => (
                 <li key={index} className="flex items-center">
                   <Button
-                    className="text-red-500"
-                    size={'icon'}
+                    className="text-destructive rounded-full p-2 ml-2 hover:text-destructive h-8 w-8"
                     variant={'ghost'}
                     type="button"
                     onClick={() => handleRemoveRole(index)}

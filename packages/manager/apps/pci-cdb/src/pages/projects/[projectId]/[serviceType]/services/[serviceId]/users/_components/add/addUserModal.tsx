@@ -1,6 +1,5 @@
 import { z } from 'zod';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { SubmitHandler } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
@@ -25,6 +24,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import RolesSelect from './rolesSelect';
+import { useAddUserForm } from './useAddUserForm';
 
 interface AddUserModalProps {
   users: GenericUser[];
@@ -42,47 +42,13 @@ const AddUserModal = ({
   onClose,
   onSuccess,
 }: AddUserModalProps) => {
-  // avoid creating duplicate user
-  const usedNames = users.map((u) =>
-    u.username.includes('@') ? u.username.split('@')[0] : u.username,
-  );
-  const nameRules = z
-    .string()
-    .min(1, {
-      message: 'Minimum 1 character',
-    })
-    .max(32, {
-      message: 'Maximum 32 characters',
-    })
-    .regex(/^\w[\w.-]*$/, {
-      message:
-        'Must contain letters and numbers, full stops (.), underscores (_) and dashes (-), must not start with a dash (-) or a full stop (.)',
-    })
-    .refine((value) => !usedNames.includes(value), {
-      message: 'This username is already in use',
-    });
-  const groupRules = z
-    .string()
-    .max(16, { message: 'Maximum 16 characters' })
-    .refine((value) => value === '' || /^\w[\w.-]*$/.test(value), {
-      message:
-        'Must contain letters and numbers, full stops (.), underscores (_) and dashes (-), must not start with a dash (-) or a full stop (.)',
-    })
-    .optional();
-  const rolesRules = z.array(z.string());
-  const schema = z.object({
-    name: nameRules,
-    group: groupRules,
-    roles: rolesRules,
-  });
+  const formOptions = {
+    existingUsers: users,
+    groupInput: service.engine === database.EngineEnum.m3db,
+    rolesInput: service.engine === database.EngineEnum.mongodb,
+  };
+  const { form, schema } = useAddUserForm(formOptions);
   type ValidationSchema = z.infer<typeof schema>;
-  const form = useForm<ValidationSchema>({
-    resolver: zodResolver(schema),
-    defaultValues: {
-      name: '',
-      roles: [],
-    },
-  });
   const createUserMutation = useMutation({
     mutationFn: (user: UserCreation) =>
       createUser(projectId, service.engine, service.id, user),
@@ -138,7 +104,7 @@ const AddUserModal = ({
               )}
             />
             {/* Group (m3db) */}
-            {service.engine === database.EngineEnum.m3db && (
+            {formOptions.groupInput && (
               <FormField
                 control={form.control}
                 name="group"
@@ -157,13 +123,13 @@ const AddUserModal = ({
                 )}
               />
             )}
-            {service.engine === database.EngineEnum.mongodb && (
+            {formOptions.rolesInput && (
               <FormField
                 control={form.control}
                 name="roles"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Group</FormLabel>
+                    <FormLabel>Roles</FormLabel>
                     <FormControl>
                       <RolesSelect {...field} />
                     </FormControl>
