@@ -6,11 +6,13 @@ import {
   GenericTrackingData,
   ImpressionTrackingData,
   PageTrackingData,
+  ProjectModeParams,
 } from './track';
 import {
   AT_INTERNET_CUSTOM_PROPS,
   AT_INTERNET_LEVEL2,
   AT_INTERNET_WEBSITE,
+  PCI_PROJECT_MODE_VALUES,
 } from './constants';
 import { loadManagerTMS } from './manager-tms';
 import { debug } from './utils';
@@ -86,7 +88,20 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
       page_category: params.page_category,
       complete_page_name: params.complete_page_name,
       page_theme: params.page_theme,
+      pci_project_mode: this.setPciProjectModeTracking(
+        params.pciProjectModeParams,
+      ),
     };
+  }
+
+  setPciProjectModeTracking(params: ProjectModeParams) {
+    if (params?.isDiscoveryProject) {
+      return PCI_PROJECT_MODE_VALUES.DISCOVERY;
+    }
+    if (params?.projectId) {
+      return PCI_PROJECT_MODE_VALUES.FULL;
+    }
+    return PCI_PROJECT_MODE_VALUES.NONE;
   }
 
   getImpressionTrackingData(data: LegacyTrackingData): ImpressionTrackingData {

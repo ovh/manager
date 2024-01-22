@@ -172,17 +172,32 @@ export default /* @ngInject */ ($stateProvider) => {
       hasGridscaleLocalzoneRegion: /* @ngInject */ (customerRegions) =>
         customerRegions.some(({ type }) => type === LOCAL_ZONE_REGION),
 
-      trackClick: /* @ngInject */ (atInternet) => (hit) => {
+      trackClick: /* @ngInject */ (
+        atInternet,
+        isDiscoveryProject,
+        projectId,
+      ) => (name) => {
         return atInternet.trackClick({
-          name: hit,
+          name,
           type: 'action',
+          pciProjectModeParams: {
+            isDiscoveryProject,
+            projectId,
+          },
         });
       },
 
-      trackPage: /* @ngInject */ (atInternet) => (hit) => {
+      trackPage: /* @ngInject */ (
+        atInternet,
+        isDiscoveryProject,
+        projectId,
+      ) => (name) => {
         return atInternet.trackPage({
-          name: hit,
-          type: 'action',
+          name,
+          pciProjectModeParams: {
+            isDiscoveryProject,
+            projectId,
+          },
         });
       },
 
