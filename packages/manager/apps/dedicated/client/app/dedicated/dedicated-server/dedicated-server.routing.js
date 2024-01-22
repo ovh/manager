@@ -2,9 +2,15 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('app.dedicated-server', {
       url: '',
-      template: '<div ui-view></div>',
+      component: 'dedicatedServerTabComponent',
       redirectTo: 'app.dedicated-server.index',
       resolve: {
+        currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
+          $state.href($state.current.name, $transition$.params()),
+        allServersLink: /* @ngInject */ ($transition$, $state) =>
+          $state.href('app.dedicated-server.index', $transition$.params()),
+        clustersLink: /* @ngInject */ ($transition$, $state) =>
+          $state.href('app.dedicated-server.cluster', $transition$.params()),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('dedicated_servers_title'),
       },
