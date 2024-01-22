@@ -89,6 +89,9 @@ export default class ProjectController {
   }
 
   onActivateProjectClick() {
+    this.trackClick(
+      'PublicCloud::pci::projects::project::discovery-banner-activate-project',
+    );
     return this.goToDiscoveryProjectActivationPage();
   }
 
