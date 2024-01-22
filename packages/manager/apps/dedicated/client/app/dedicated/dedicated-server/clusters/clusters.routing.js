@@ -33,9 +33,9 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       filter: /* @ngInject */ ($transition$) => $transition$.params().filter,
       orderUrl: /* @ngInject */ (User) => User.getUrlOf('dedicatedOrder'),
-      getClusterDashboardLink: /* @ngInject */ ($state) => ({ iam }) =>
+      getClusterDashboardLink: /* @ngInject */ ($state) => ({ id }) =>
         $state.href('app.dedicated-cluster.cluster', {
-          clusterId: iam.displayName,
+          clusterId: id,
         }),
       dedicatedClusters: /* @ngInject */ ($transition$, iceberg) => {
         const { filter, pageSize, sort, sortOrder } = $transition$.params();
