@@ -9,6 +9,7 @@ export default {
     goToL7PolicyCreation: '<',
     getL7PolicyEditionLink: '<',
     getPoolDetailLinkFromPolicy: '<',
+    goToL7Rules: '<',
     trackL7Base: '<',
   },
   controller,

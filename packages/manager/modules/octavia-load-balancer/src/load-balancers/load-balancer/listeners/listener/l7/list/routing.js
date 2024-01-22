@@ -38,6 +38,14 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           );
         },
+        goToL7Rules: /* @ngInject */ ($state) => (policy) => {
+          $state.href(
+            'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.l7Rules.list',
+            {
+              policyId: policy.id,
+            },
+          );
+        },
         getPoolDetailLinkFromPolicy: /* @ngInject */ (getPoolDetailLink) => (
           policy,
         ) => getPoolDetailLink(policy.redirectPoolId),

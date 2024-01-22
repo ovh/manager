@@ -8,6 +8,6 @@
   "octavia_load_balancer_list_l7_policies_attribute": "Attribut",
   "octavia_load_balancer_list_l7_policies_redirect_code": "Redirect code",
   "octavia_load_balancer_list_l7_policies_actions_edit": "Editer",
-  "octavia_load_balancer_list_l7_policies_actions_create_rule": "Créer une L7 Rule",
+  "octavia_load_balancer_list_l7_policies_actions_manage_rules": "Gérer les L7 Rules",
   "octavia_load_balancer_list_l7_policies_actions_delete": "Supprimer"
 }
