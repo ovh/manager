@@ -5,7 +5,9 @@ export default /* @ngInject */ ($stateProvider) => {
 
   $stateProvider.state(name, {
     url: '/server?page&pageSize&sort&sortOrder&filter',
-    component: 'dedicatedServerServers',
+    views: {
+      containersView: 'dedicatedServerServers',
+    },
     params: {
       page: {
         value: '1',

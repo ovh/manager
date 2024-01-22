@@ -1,0 +1,56 @@
+<div class="dedicated-cluster">
+    <oui-datagrid
+        class="table-striped"
+        id="dg-servers"
+        data-page-size="{{ $ctrl.paginationSize }}"
+        data-rows-loader="$ctrl.loadServers()"
+        data-criteria="$ctrl.criteria"
+        data-on-page-change="$ctrl.onPageChange($pagination)"
+        data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+        data-on-sort-change="$ctrl.onSortChange($sort)"
+    >
+        <oui-datagrid-column
+            data-title=":: 'dedicated_clusters_name' | translate"
+            data-property="iam.displayName"
+            data-filterable
+            data-sortable
+            data-type="string"
+        >
+            <a data-ng-href="{{ $ctrl.getClusterDashboardLink($row) }}"
+                ><span data-ng-bind="$row.iam.displayName"></span
+            ></a>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'dedicated_clusters_model' | translate"
+            data-property="model"
+            data-filterable
+            data-sortable
+            data-type="options"
+            data-type-options="$ctrl.modelEnumFilter"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title=":: 'dedicated_clusters_region' | translate"
+            data-property="region"
+            data-filterable
+            data-sortable
+            data-type="options"
+            data-type-options="$ctrl.regionEnumFilter"
+        >
+        </oui-datagrid-column>
+
+        <oui-datagrid-topbar>
+            <button
+                class="oui-button oui-button_secondary"
+                data-ng-click="$ctrl.gotoOrderUrl()"
+                data-track-on="click"
+                data-track-type="action"
+                data-track-name="dedicated::dedicated::clusters::order"
+            >
+                <span
+                    data-translate="dedicated_clusters_button_server_order"
+                ></span>
+            </button>
+        </oui-datagrid-topbar>
+    </oui-datagrid>
+</div>
