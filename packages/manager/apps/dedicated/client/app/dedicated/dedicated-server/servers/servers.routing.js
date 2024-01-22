@@ -35,13 +35,6 @@ export default /* @ngInject */ ($stateProvider) => {
       orderUrl: /* @ngInject */ (User) => User.getUrlOf('dedicatedOrder'),
       orderEcoRangeUrl: /* @ngInject */ (User) =>
         User.getUrlOf('dedicatedEcoRangeOrder'),
-      featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
-        ovhFeatureFlipping.checkFeatureAvailability([
-          'dedicated-server:order',
-          'dedicated-server:ecoRangeOrderSectionDedicated',
-          'billing:autorenew2016Deployment',
-          'dedicated-server:banner-rbx1-eol',
-        ]),
       isOrderAvailable: /* @ngInject */ (featureAvailability) =>
         featureAvailability?.isFeatureAvailable('dedicated-server:order') ||
         false,
