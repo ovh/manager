@@ -5,7 +5,7 @@ export default {
   bindings: {
     guideUrl: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
   controller,
   template,

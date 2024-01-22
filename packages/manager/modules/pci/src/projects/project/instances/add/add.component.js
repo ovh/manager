@@ -29,7 +29,7 @@ export default {
     isGridscaleLocalzoneAvailable: '<',
     customerRegions: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
   controller,
   template,

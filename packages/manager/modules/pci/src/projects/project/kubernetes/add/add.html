@@ -7,7 +7,8 @@
 
 <pci-activate-project-banner
     data-ng-if="$ctrl.isDiscoveryProject"
-    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage"
+    data-tracking-page-name="'PublicCloud::pci::projects::project::kubernetes::add'"
 ></pci-activate-project-banner>
 
 <form name="kubeAddClusterForm">

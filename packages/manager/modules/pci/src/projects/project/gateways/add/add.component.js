@@ -17,7 +17,7 @@ export default {
     trackClick: '<',
     regionsLink: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
   controller,
   template,

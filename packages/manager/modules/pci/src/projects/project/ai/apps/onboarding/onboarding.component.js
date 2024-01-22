@@ -10,6 +10,6 @@ export default {
     goToAddApp: '<',
     trackApps: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
 };

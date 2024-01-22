@@ -10,6 +10,6 @@ export default {
     goToAddNotebook: '<',
     trackNotebooks: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
 };

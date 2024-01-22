@@ -7,6 +7,6 @@ export default {
   bindings: {
     addUser: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
 };

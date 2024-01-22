@@ -24,6 +24,6 @@ export default {
     trackClick: '<',
     trackPage: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
 };
