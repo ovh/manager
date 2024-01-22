@@ -159,6 +159,9 @@ export default /* @ngInject */ ($stateProvider) => {
       setDefault: /* @ngInject */ (PciProjectsService) => (projectId) =>
         PciProjectsService.setAsDefaultProject(projectId),
 
+      goToDeleteProjectConfirmationModal: ($state) => () =>
+        $state.go('pci.projects.project.edit.remove'),
+
       summary: /* @ngInject */ (cart, orderCart) =>
         cart ? orderCart.getSummary(cart.cartId) : null,
 
