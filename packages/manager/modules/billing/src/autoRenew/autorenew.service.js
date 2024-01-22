@@ -28,6 +28,7 @@ export default class {
     OvhApiEmailExchange,
     OvhApiMeAutorenew,
     OvhHttp,
+    $http,
     ovhPaymentMethod,
   ) {
     this.$q = $q;
@@ -39,6 +40,7 @@ export default class {
     this.OvhApiBillingAutorenewServices = OvhApiBillingAutorenewServices;
     this.OvhApiEmailExchange = OvhApiEmailExchange;
     this.OvhHttp = OvhHttp;
+    this.$http = $http;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.OvhApiMeAutorenew = OvhApiMeAutorenew;
     this.queryParams = {};
@@ -215,6 +217,16 @@ export default class {
         hosting: serviceName,
       },
     });
+  }
+
+  getAttachedDomains(domainName) {
+    return this.$http
+      .get('/hosting/web/attachedDomain', {
+        params: {
+          domain: domainName,
+        },
+      })
+      .then(({ data }) => data);
   }
 
   terminateEmail(serviceName) {
