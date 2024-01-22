@@ -38,30 +38,42 @@ const DeleteModal = ({
   const isButtonDisabled = TERMINATE_TEXT !== terminateText;
 
   const onDelete = () => {
-    onDeleteRancher(selectedRancher.id);
-    toggleModal(false);
+    if (!isButtonDisabled) {
+      onDeleteRancher(selectedRancher.id);
+      toggleModal(false);
+    }
   };
   return (
     <OsdsModal color={ODS_THEME_COLOR_INTENT.warning} dismissible>
       <OsdsText
-        color={ODS_THEME_COLOR_INTENT.primary}
+        color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
         size={ODS_TEXT_SIZE._400}
         className="my-3"
       >
         {t('deleteModalTitle')}
       </OsdsText>
-      <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-        {t('deleteModalDescription', {
-          rancherName: selectedRancher.currentState?.name,
-        })}
-      </OsdsText>
-      <OsdsMessage type={ODS_MESSAGE_TYPE.warning} className="my-4 p-3">
-        {t('deleteModalWarning')}
+      <div className="mt-3">
+        <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+          {t('deleteModalDescription', {
+            rancherName: selectedRancher.currentState?.name,
+          })}
+        </OsdsText>
+      </div>
+      <OsdsMessage type={ODS_MESSAGE_TYPE.warning} className="my-5 p-3">
+        <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="my-3">
+          {t('deleteModalWarning')}
+        </OsdsText>
       </OsdsMessage>
-      <OsdsText color={ODS_THEME_COLOR_INTENT.info} className="my-3">
-        {t('deleteModalTerminateMessage')}
-      </OsdsText>
+      <div className="my-3">
+        <OsdsText
+          color={ODS_THEME_COLOR_INTENT.text}
+          level={ODS_TEXT_LEVEL.heading}
+          size={ODS_TEXT_SIZE._100}
+        >
+          {t('deleteModalTerminateMessage')}
+        </OsdsText>
+      </div>
       <OsdsInput
         type={ODS_INPUT_TYPE.text}
         className="p-3"
@@ -79,7 +91,7 @@ const DeleteModal = ({
         {t('cancel')}
       </OsdsButton>
       <OsdsButton
-        disabled={isButtonDisabled || null}
+        disabled={isButtonDisabled}
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={onDelete}

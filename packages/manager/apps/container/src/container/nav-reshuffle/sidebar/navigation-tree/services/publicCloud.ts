@@ -196,7 +196,7 @@ const pciNode: Node = {
       id: 'pci-containers',
       translation: 'sidebar_pci_containers',
       features: [
-        'rancher',
+        'pci-rancher',
         'kubernetes',
         'load-balancer',
         'private-registry',
