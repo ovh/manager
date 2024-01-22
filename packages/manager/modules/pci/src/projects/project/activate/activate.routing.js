@@ -1,7 +1,7 @@
 import { DISCOVERY_PROMOTION_VOUCHER } from '../project.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.project.activate', {
+  $stateProvider.state('pci.projects.project.activate-project', {
     url: '/activate',
     component: 'pciProjectActivate',
     resolve: {
@@ -42,12 +42,12 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return projectService
           .activateDiscoveryProject(serviceId)
-          .then((res) => {
-            return goToLoadingUpgradePage(
+          .then((res) =>
+            goToLoadingUpgradePage(
               res?.data?.order?.orderId,
               activationVoucherCode,
-            );
-          })
+            ),
+          )
           .catch((err) => displayErrorMessage(err?.data?.message || err));
       },
 
@@ -65,10 +65,15 @@ export default /* @ngInject */ ($stateProvider) => {
         data,
       ) => projectService.claimVoucher(projectId, data),
 
-      displayErrorMessage: /* @ngInject */ (CucCloudMessage, $translate) => (
-        message,
-      ) =>
-        CucCloudMessage.error(
+      displayErrorMessage: /* @ngInject */ (
+        CucCloudMessage,
+        $translate,
+        trackPage,
+      ) => (message) => {
+        trackPage(
+          'PublicCloud::pci::projects::project::activate-project-error',
+        );
+        return CucCloudMessage.error(
           {
             textHtml: $translate.instant(
               'pci_projects_project_activate_message_fail',
@@ -77,8 +82,9 @@ export default /* @ngInject */ ($stateProvider) => {
               },
             ),
           },
-          'pci.projects.project.activate',
-        ),
+          'pci.projects.project.activate-project',
+        );
+      },
     },
   });
 };
