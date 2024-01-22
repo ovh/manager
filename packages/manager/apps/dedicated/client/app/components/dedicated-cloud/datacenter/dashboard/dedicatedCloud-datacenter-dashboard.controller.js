@@ -23,18 +23,51 @@ export default class {
 
   $onInit() {
     this.loading = true;
+    this.pollNsxTaskId = null;
     this.$q
-      .all([this.getNsxDetails(), this.checkForZertoOptionOrder()])
+      .all([
+        this.getNsxDetails(),
+        this.getNsxEdgePendingTask(),
+        this.checkForZertoOptionOrder(),
+      ])
       .finally(() => {
         this.loading = false;
       });
+  }
+
+  $onDestroy() {
+    if (this.pollNsxTaskId) {
+      this.DedicatedCloud.stopResizeNsxTaskPoller(this.pollNsxTaskId);
+    }
+  }
+
+  pollNsxTask(taskId) {
+    this.pollNsxTaskId = taskId;
+    this.DedicatedCloud.datacenterResizeNsxTaskPoller(this.serviceName, taskId)
+      .then(() => {
+        this.getNsxDetails();
+      })
+      .finally(() => {
+        this.pollNsxTaskId = null;
+      });
+  }
+
+  getNsxEdgePendingTask() {
+    return this.DedicatedCloud.getDatacenterPendingResizeNsxTask(
+      this.serviceName,
+      this.datacenter.model.id,
+    ).then((data) => {
+      if (data?.length > 0) {
+        this.pollNsxTask(data[0].taskId);
+      }
+    });
   }
 
   getNsxDetails() {
     return this.DedicatedCloud.getDatacenterInfoNsxt(
       this.serviceName,
       this.datacenter.model.id,
-    ).then(({ data }) => {
+    ).then((data) => {
       this.datacenter.model.edgesCount = data.length;
       this.datacenter.model.edgesLevel = data[0]?.size
         ? capitalize(data[0].size)
