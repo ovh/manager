@@ -10,6 +10,7 @@
                 ><span data-translate="dedicated_servers_all_servers"></span>
             </oui-header-tabs-item>
             <oui-header-tabs-item
+                data-ng-if="$ctrl.isMultiAZAvailable"
                 data-href="{{:: $ctrl.clustersLink }}"
                 data-active="$ctrl.clustersLink === $ctrl.currentActiveLink()"
                 ><span data-translate="dedicated_servers_clusters"></span>
