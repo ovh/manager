@@ -1,44 +1,30 @@
-import get from 'lodash/get';
-import reduce from 'lodash/reduce';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
 
-import { DC_2_ISO, MONITORING_STATUSES } from './servers.constants';
-
-export default class ServersCtrl {
+export default class ClusterCtrl {
   /* @ngInject */
-  constructor($q, $translate, ouiDatagridService) {
+  constructor($q, $translate, $window, ouiDatagridService) {
     this.$q = $q;
     this.$translate = $translate;
+    this.$window = $window;
     this.ouiDatagridService = ouiDatagridService;
   }
-  // comment to use staging
 
   $onInit() {
-    this.dedicatedServers.data = this.dedicatedServers.data.map(
-      this.transformDedicatedServers,
-      this,
-    );
-
     this.criteria = JSON.parse(this.filter).map((criteria) => ({
-      property: get(criteria, 'field') || 'name',
-      operator: get(criteria, 'comparator'),
+      property: criteria.field || 'name',
+      operator: criteria.comparator,
       value: criteria.reference[0],
     }));
 
-    this.stateEnumFilter = this.getEnumFilter(
-      this.serverStateEnum,
-      'server_configuration_state_',
-    );
-
     this.regionEnumFilter = this.getEnumFilterFromCustomerData(
-      this.dedicatedServers.data,
+      this.dedicatedClusters.data,
       'region',
     );
 
     this.modelEnumFilter = this.getEnumFilterFromCustomerData(
-      this.dedicatedServers.data,
-      'commercialRange',
+      this.dedicatedClusters.data,
+      'model',
     );
   }
 
@@ -46,39 +32,8 @@ export default class ServersCtrl {
     return snakeCase(str).toUpperCase();
   }
 
-  static getMonitoringStatus(monitored, noIntervention) {
-    let monitoring = MONITORING_STATUSES.DISABLED;
-    // proactive intervention
-    if (monitored && !noIntervention) {
-      monitoring = MONITORING_STATUSES.PROACTIVE;
-    }
-    // no proactive intervention
-    if (monitored && noIntervention) {
-      monitoring = MONITORING_STATUSES.NOPROACTIVE;
-    }
-    return monitoring;
-  }
-
-  transformDedicatedServers(param) {
-    const server = { ...param };
-    server.monitoringStatus = this.constructor.getMonitoringStatus(
-      server.monitoring,
-      server.noIntervention,
-    );
-    server.city = this.$translate.instant(
-      `server_datacenter_${
-        this.constructor.toUpperSnakeCase(server.datacenter).split('_')[0]
-      }`,
-    );
-    server.country = (
-      DC_2_ISO[
-        this.constructor
-          .toUpperSnakeCase(server.datacenter)
-          .split('_')[0]
-          .toUpperCase()
-      ] || 'none'
-    ).toLowerCase();
-    return server;
+  gotoOrderUrl() {
+    return this.$window.open(this.orderUrl, '_blank');
   }
 
   getEnumFilterFromCustomerData(data, attribute, prefix = null) {
@@ -94,8 +49,7 @@ export default class ServersCtrl {
   getEnumFilter(list, translationPrefix, toUpperSnakeCaseFlag = true) {
     if (translationPrefix === null) {
       return {
-        values: reduce(
-          list,
+        values: list.reduce(
           (result, item) => ({
             ...result,
             [item]: toUpperSnakeCaseFlag
@@ -107,8 +61,7 @@ export default class ServersCtrl {
       };
     }
     return {
-      values: reduce(
-        list,
+      values: list.reduce(
         (result, item) => ({
           ...result,
           [item]: this.$translate.instant(
@@ -135,7 +88,7 @@ export default class ServersCtrl {
     );
 
     return this.$q.resolve({
-      data: get(this.dedicatedServers, 'data'),
+      data: this.dedicatedClusters?.data,
       meta: {
         totalCount: this.paginationTotalCount,
       },
@@ -151,7 +104,7 @@ export default class ServersCtrl {
 
   onCriteriaChange($criteria) {
     const filter = $criteria.map((criteria) => ({
-      field: get(criteria, 'property') || 'name',
+      field: criteria?.property || 'name',
       comparator: criteria.operator,
       reference: [criteria.value],
     }));
