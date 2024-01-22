@@ -97,10 +97,16 @@ export default class ProjectController {
 
   onActivateDiscoveryModalSuccess() {
     this.activateDiscovery = false;
+    this.trackClick(
+      'PublicCloud::pci::projects::project::activate-project-modal::confirm',
+    );
     this.goToDiscoveryProjectActivationPage();
   }
 
   onActivateDiscoveryModalClose() {
+    this.trackClick(
+      'PublicCloud::pci::projects::project::activate-project-modal::cancel',
+    );
     this.activateDiscovery = false;
   }
 }
