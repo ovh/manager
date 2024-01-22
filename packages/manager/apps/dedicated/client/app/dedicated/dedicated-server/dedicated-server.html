@@ -1,0 +1,30 @@
+<div data-ui-view>
+
+    <oui-header
+        class="mb-3"
+        data-heading="{{:: 'dedicated_servers_title' | translate }}"
+    >
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.allServersLink }}"
+                data-active="$ctrl.allServersLink === $ctrl.currentActiveLink()"
+                ><span data-translate="dedicated_servers_all_servers"></span>
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-href="{{:: $ctrl.clustersLink }}"
+                data-active="$ctrl.clustersLink === $ctrl.currentActiveLink()"
+                ><span data-translate="dedicated_servers_clusters"></span>
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-header>
+
+    <!-- RBX1 EOL Banner-->
+    <ovh-manager-rbx-eol-banner
+        data-ng-if="$ctrl.displayRbx1EolBanner.rbx1Eol"
+    ></ovh-manager-rbx-eol-banner>
+
+    <div
+        class="container-fluid w-100 h-100 pt-4 px-md-5"
+        data-ui-view="containersView"
+    ></div>
+</div>

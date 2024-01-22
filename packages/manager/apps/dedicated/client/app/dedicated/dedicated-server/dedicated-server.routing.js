@@ -2,11 +2,30 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('app.dedicated-server', {
       url: '',
-      template: '<div ui-view></div>',
+      component: 'dedicatedServerTabComponent',
       redirectTo: 'app.dedicated-server.index',
       resolve: {
+        currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
+          $state.href($state.current.name, $transition$.params()),
+        allServersLink: /* @ngInject */ ($transition$, $state) =>
+          $state.href('app.dedicated-server.index', $transition$.params()),
+        clustersLink: /* @ngInject */ ($transition$, $state) =>
+          $state.href('app.dedicated-server.cluster', $transition$.params()),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('dedicated_servers_title'),
+        featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+          ovhFeatureFlipping.checkFeatureAvailability([
+            'dedicated-server:order',
+            'dedicated-server:ecoRangeOrderSectionDedicated',
+            'billing:autorenew2016Deployment',
+            'dedicated-server:banner-rbx1-eol',
+          ]),
+        displayRbx1EolBanner: /* @ngInject */ (featureAvailability) => ({
+          rbx1Eol:
+            featureAvailability?.isFeatureAvailable(
+              'dedicated-server:banner-rbx1-eol',
+            ) || false,
+        }),
       },
     })
     .state('app.dedicated-cluster', {
