@@ -1,5 +1,6 @@
 import { TRACKING_SUFFIX } from './constants';
 import { TRACKING_SUFFIX as LISTENERS_TACKING_SUFFIX } from '../../constants';
+import { LISTENER_PROTOCOLS_ENABLING_POLICIES } from '../../list/constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -37,6 +38,35 @@ export default /* @ngInject */ ($stateProvider) => {
           atInternet.trackPage({
             name: `${trackL7Base}::${hit}`,
           }),
+      },
+      onEnter: /* @ngInject */ (
+        $transition$,
+        $state,
+        projectId,
+        region,
+        loadbalancerId,
+      ) => {
+        $transition$
+          .injector()
+          .getAsync('listener')
+          .then((listener) => {
+            // If the listener we try to access is not compatible with L7 Policies
+            // we redirect the user on the listeners list
+            // (it should only happen if the user try to access this page via the url directly)
+            if (
+              !LISTENER_PROTOCOLS_ENABLING_POLICIES.includes(listener.protocol)
+            ) {
+              return $state.go(
+                'octavia-load-balancer.loadbalancer.listeners.list',
+                {
+                  projectId,
+                  region,
+                  loadbalancerId,
+                },
+              );
+            }
+            return null;
+          });
       },
       redirectTo:
         'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.list',
