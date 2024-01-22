@@ -5,6 +5,15 @@ export default /* @ngInject */ ($stateProvider) => {
       component: 'dedicatedServerTabComponent',
       redirectTo: 'app.dedicated-server.index',
       resolve: {
+        featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+          ovhFeatureFlipping.checkFeatureAvailability([
+            'dedicated-server:order',
+            'dedicated-server:ecoRangeOrderSectionDedicated',
+            'billing:autorenew2016Deployment',
+            'dedicated-server:cluster',
+          ]),
+        isMultiAZAvailable: /* @ngInject */ (featureAvailability) =>
+          featureAvailability?.isFeatureAvailable('dedicated-server:cluster'),
         currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
           $state.href($state.current.name, $transition$.params()),
         allServersLink: /* @ngInject */ ($transition$, $state) =>
