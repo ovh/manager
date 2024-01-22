@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.17.1...@ovh-ux/manager-dedicated@19.18.0) (2024-01-22)
+
+
+### Bug Fixes
+
+* **dedicated.license:** use inputted ip to retrieve orderable licenses ([#10583](https://github.com/ovh/manager/issues/10583)) ([9913666](https://github.com/ovh/manager/commit/99136667ed8b321d37c3471bce38bf6ebdbcc3ee))
+
+
+### Features
+
+* **dedicated:** use display name instead of name on server list ([#10632](https://github.com/ovh/manager/issues/10632)) ([6a8da89](https://github.com/ovh/manager/commit/6a8da89032e1867e8a8e3bc419f2baa7620b52e6))
+
+
+
+
+
 ## [19.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.17.0...@ovh-ux/manager-dedicated@19.17.1) (2024-01-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.38.0...@ovh-ux/manager-container-app@0.39.0) (2024-01-22)
+
+
+### Bug Fixes
+
+* **container.sidebar:** post-prod bug fix ([#10635](https://github.com/ovh/manager/issues/10635)) ([5a01440](https://github.com/ovh/manager/commit/5a014401d053a9e73ea7960ef26d8e26655c319e))
+
+
+### Features
+
+* remove dataintegration project ([#10450](https://github.com/ovh/manager/issues/10450)) ([8526862](https://github.com/ovh/manager/commit/8526862140874dedd7aa8898eb7dc17457681312))
+
+
+
+
+
 # [0.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.37.5...@ovh-ux/manager-container-app@0.38.0) (2024-01-04)
 
 
