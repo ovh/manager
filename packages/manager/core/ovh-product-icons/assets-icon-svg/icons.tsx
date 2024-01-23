@@ -13,9 +13,10 @@ import { ReactComponent as TelecomEthernet } from './telecom_ethernet.svg';
 import { ReactComponent as Telephony } from './telephony.svg';
 import { ReactComponent as Hosting } from './hosting.svg';
 import { ReactComponent as Office365 } from './office365.svg';
+import { ReactComponent as Sharepoint } from './sharepoint.svg';
 import { ReactComponent as Exchange } from './exchange.svg';
 
-export { Hosting, Office365, Exchange };
+export { Hosting, Office365, Sharepoint, Exchange };
 export { TelecomEthernet, Telephony };
 
 export {
