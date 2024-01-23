@@ -31,11 +31,11 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
     <div className="flex flex-col mx-auto px-3">
       {!hideHeadingSection && (
         <section className="flex flex-col items-center">
-          <div className="flex justify-center py-3 max-h-28">
+          <div className="flex justify-center py-3 max-h-14">
             <img
-              className="max-h-100px"
               src={imageSrc || placeholderSrc}
               alt=""
+              className="w-64 h-4/6"
             />
           </div>
           <OsdsText

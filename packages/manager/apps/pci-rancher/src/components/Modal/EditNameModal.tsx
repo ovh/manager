@@ -1,13 +1,11 @@
 import {
   OsdsButton,
   OsdsInput,
-  OsdsMessage,
   OsdsModal,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_INPUT_TYPE,
-  ODS_MESSAGE_TYPE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
   OsdsInputCustomEvent,
@@ -21,67 +19,74 @@ import { useTranslation } from 'react-i18next';
 import { RancherService } from '@/api/api.type';
 
 interface DeleteModalProps {
+  rancher: RancherService;
   toggleModal: (showModal: boolean) => void;
-  onDeleteRancher: (rancherId: string) => void;
-  selectedRancher: RancherService;
+  onEditRancher: (rancher: RancherService) => void;
 }
-export const TERMINATE_TEXT = 'TERMINATE';
 
-const DeleteModal = ({
+const EditNameModal = ({
+  rancher,
   toggleModal,
-  onDeleteRancher,
-  selectedRancher,
+  onEditRancher,
 }: DeleteModalProps) => {
   const { t } = useTranslation('pci-rancher/listing');
-  const [terminateText, setTerminateText] = useState('');
+  const [newName, setNewName] = useState(rancher.currentState?.name || '');
 
-  const isButtonDisabled = TERMINATE_TEXT !== terminateText;
+  const isValidName = /^[a-z0-9.-]{3,64}$/i.test(newName);
 
-  const onDelete = () => {
-    onDeleteRancher(selectedRancher.id);
-    toggleModal(false);
+  const isButtonValid = rancher.currentState?.name !== newName && isValidName;
+
+  const onEdit = () => {
+    if (isButtonValid) {
+      onEditRancher({
+        ...rancher,
+        currentState: {
+          ...rancher.currentState,
+          name: newName,
+        } as RancherService['currentState'],
+      } as RancherService);
+      toggleModal(false);
+    }
   };
-
   return (
-    <OsdsModal color={ODS_THEME_COLOR_INTENT.warning} dismissible>
+    <OsdsModal color={ODS_THEME_COLOR_INTENT.info} dismissible>
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
         size={ODS_TEXT_SIZE._400}
         className="my-3"
       >
-        {t('deleteModalTitle')}
+        {t('editNameModalTitle')}
       </OsdsText>
       <div className="mt-3">
         <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-          {t('deleteModalDescription', {
-            rancherName: selectedRancher.currentState?.name,
-          })}
-        </OsdsText>
-      </div>
-      <OsdsMessage type={ODS_MESSAGE_TYPE.warning} className="my-5 p-3">
-        <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="my-3">
-          {t('deleteModalWarning')}
-        </OsdsText>
-      </OsdsMessage>
-      <div className="my-3">
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          level={ODS_TEXT_LEVEL.heading}
-          size={ODS_TEXT_SIZE._100}
-        >
-          {t('deleteModalTerminateMessage')}
+          {t('editNameModalInfo')}
         </OsdsText>
       </div>
       <OsdsInput
         type={ODS_INPUT_TYPE.text}
+        color={
+          isValidName
+            ? ODS_THEME_COLOR_INTENT.info
+            : ODS_THEME_COLOR_INTENT.error
+        }
         className="p-3"
-        value={terminateText}
+        value={newName}
         onOdsValueChange={(
           e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,
-        ) => setTerminateText(e.target.value as string)}
-        aria-label="delete-input"
+        ) => setNewName(e.target.value as string)}
+        aria-label="edit-input"
       />
+      <OsdsText
+        className="my-3"
+        color={
+          isValidName
+            ? ODS_THEME_COLOR_INTENT.primary
+            : ODS_THEME_COLOR_INTENT.error
+        }
+      >
+        {t('editNameModaleHelperInput')}
+      </OsdsText>
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.default}
@@ -90,15 +95,16 @@ const DeleteModal = ({
         {t('cancel')}
       </OsdsButton>
       <OsdsButton
-        disabled={isButtonDisabled}
+        disabled={isButtonValid}
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={onDelete}
+        onClick={onEdit}
+        aria-label="edit-name-rancher"
       >
-        {t('deleteRancher')}
+        {t('editNameRancherCta')}
       </OsdsButton>
     </OsdsModal>
   );
 };
 
-export default DeleteModal;
+export default EditNameModal;
