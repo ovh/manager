@@ -6,6 +6,7 @@ import {
   NUTANIX_INVOICE_TYPE,
   NUTANIX_PERSONAL_LICENSE_EDITION,
   GENERAL_INFO_TILE_TITLE,
+  GUIDE_PACKAGES_URL,
 } from './constants';
 import { CLUSTER_STATUS } from '../../constants';
 
@@ -22,6 +23,9 @@ export default class NutanixGeneralInfoCtrl {
     this.atInternet = atInternet;
     this.TRAVAUX_LINK =
       TRAVAUX_LINK[coreConfig.getRegion()] || TRAVAUX_LINK.DEFAULT;
+    this.NUTANIX_LINK =
+      GUIDE_PACKAGES_URL[coreConfig.getUser().ovhSubsidiary] ||
+      GUIDE_PACKAGES_URL.DEFAULT;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.NutanixService = NutanixService;
     this.REPLICATION_FACTOR_PREFIX = REPLICATION_FACTOR_PREFIX;

@@ -100,7 +100,18 @@
                 data-ng-if="$ctrl.isPackTypeAvailable"
             >
                 <oui-tile-description>
-                    <span data-ng-bind="$ctrl.typeOfPack"></span>
+                    <a
+                        class="oui-link oui-link_icon"
+                        data-ng-href="{{:: $ctrl.NUTANIX_LINK }}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <span data-ng-bind="$ctrl.typeOfPack"></span>
+                        <span
+                            class="oui-icon oui-icon-external-link"
+                            aria-hidden="true"
+                        ></span>
+                    </a>
                 </oui-tile-description>
             </oui-tile-definition>
 
