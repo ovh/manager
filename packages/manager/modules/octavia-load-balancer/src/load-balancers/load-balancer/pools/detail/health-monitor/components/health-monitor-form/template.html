@@ -74,12 +74,12 @@
             class="mb-4 mb-md-0"
             data-inline="true"
             data-label="{{:: $ctrl.LABELS.MAX_RETRIES_DOWN }}"
-            data-label-popover="{{:: 'octavia_load_balancer_health_monitor_form_max_retires_down_tooltip' | translate}}"
+            data-label-popover="{{:: 'octavia_load_balancer_health_monitor_form_max_retries_down_tooltip' | translate}}"
         >
             <oui-numeric
                 name="max-retries-down"
-                data-min="$ctrl.MINMAX.MAX_RETRIES_DOWN.MIN"
-                data-max="$ctrl.MINMAX.MAX_RETRIES_DOWN.MAX"
+                data-min="$ctrl.BOUNDS.MAX_RETRIES_DOWN.MIN"
+                data-max="$ctrl.BOUNDS.MAX_RETRIES_DOWN.MAX"
                 data-model="$ctrl.model.maxRetriesDown"
             >
             </oui-numeric>
@@ -93,7 +93,7 @@
         >
             <oui-numeric
                 name="periodicity"
-                data-min="$ctrl.MINMAX.PERIODICITY.MIN"
+                data-min="$ctrl.BOUNDS.PERIODICITY.MIN"
                 data-model="$ctrl.model.periodicity"
                 data-on-change="$ctrl.onPeriodicityChange(modelValue)"
             >
@@ -107,8 +107,8 @@
             data-label-popover="{{:: 'octavia_load_balancer_health_monitor_form_max_retries_tooltip' | translate}}"
         >
             <oui-numeric
-                data-min="$ctrl.MINMAX.MAX_RETRIES.MIN"
-                data-max="$ctrl.MINMAX.MAX_RETRIES.MAX"
+                data-min="$ctrl.BOUNDS.MAX_RETRIES.MIN"
+                data-max="$ctrl.BOUNDS.MAX_RETRIES.MAX"
                 data-model="$ctrl.model.maxRetries"
                 name="max-retries"
             >
@@ -123,7 +123,7 @@
         >
             <oui-numeric
                 name="timeout"
-                data-min="$ctrl.MINMAX.TIMEOUT.MIN"
+                data-min="$ctrl.BOUNDS.TIMEOUT.MIN"
                 data-max="$ctrl.model.periodicity - 1"
                 data-model="$ctrl.model.timeout"
             >

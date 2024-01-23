@@ -5,7 +5,6 @@ export default {
   bindings: {
     projectId: '<',
     region: '<',
-    poolId: '<',
     pool: '<',
     goBack: '<',
   },

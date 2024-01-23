@@ -3,7 +3,7 @@ import {
   HEALTH_MONITOR_NAME_REGEX,
   HEALTH_MONITOR_TYPE,
   LABELS,
-  MINMAX,
+  BOUNDS,
   POOL_HEALTH_MONITOR_TYPE,
 } from './constants';
 
@@ -12,7 +12,7 @@ export default class OctaviaLoadBalancerHealthMonitorFormCtrl {
   constructor($translate) {
     this.$translate = $translate;
     this.LABELS = LABELS;
-    this.MINMAX = MINMAX;
+    this.BOUNDS = BOUNDS;
     this.NAME_REGEX = HEALTH_MONITOR_NAME_REGEX;
     this.EXPECTED_STATUS_CODE_REGEX = EXPECTED_STATUS_CODE_REGEX;
   }
@@ -30,7 +30,7 @@ export default class OctaviaLoadBalancerHealthMonitorFormCtrl {
         );
 
     this.displayHttpSpecificFields =
-      this.model.type && this.constructor.isTypeIsHttpOrHttps(this.model.type);
+      this.model.type && this.constructor.isTypeHttpOrHttps(this.model.type);
   }
 
   onPeriodicityChange(newPeriodicity) {
@@ -39,7 +39,7 @@ export default class OctaviaLoadBalancerHealthMonitorFormCtrl {
   }
 
   onTypeChange(newType) {
-    if (this.constructor.isTypeIsHttpOrHttps(newType)) {
+    if (this.constructor.isTypeHttpOrHttps(newType)) {
       this.displayHttpSpecificFields = true;
       this.model.urlPath = '/';
       this.model.expectedCode = 200;
@@ -50,7 +50,7 @@ export default class OctaviaLoadBalancerHealthMonitorFormCtrl {
     }
   }
 
-  static isTypeIsHttpOrHttps(type) {
+  static isTypeHttpOrHttps(type) {
     return [HEALTH_MONITOR_TYPE.HTTP, HEALTH_MONITOR_TYPE.HTTPS].includes(type);
   }
 }

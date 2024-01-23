@@ -25,7 +25,7 @@ export default class OctaviaLoadBalancerPoolsDetailHealthMonitorCreateCtrl {
     this.OctaviaLoadBalancerHealthMonitorService.createHealthMonitor(
       this.projectId,
       this.region,
-      this.poolId,
+      this.pool.id,
       this.model,
     )
       .then(() => {

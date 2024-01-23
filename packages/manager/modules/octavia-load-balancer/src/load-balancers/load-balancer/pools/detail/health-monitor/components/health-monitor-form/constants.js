@@ -6,7 +6,7 @@ export const LABELS = {
   URLPATH: 'URL Path',
 };
 
-export const MINMAX = {
+export const BOUNDS = {
   MAX_RETRIES_DOWN: {
     MIN: 1,
     MAX: 10,
@@ -24,7 +24,7 @@ export const MINMAX = {
 };
 
 export const HEALTH_MONITOR_NAME_REGEX = /^[A-Za-z0-9_.-]+$/;
-export const EXPECTED_STATUS_CODE_REGEX = /^[1-5][0-9][0-9]$/;
+export const EXPECTED_STATUS_CODE_REGEX = /^[1-5][0-9]{2}$/;
 
 export const HEALTH_MONITOR_TYPE = {
   HTTP: 'http',
@@ -88,7 +88,7 @@ export const POOL_HEALTH_MONITOR_TYPE = {
 
 export default {
   LABELS,
-  MINMAX,
+  BOUNDS,
   HEALTH_MONITOR_NAME_REGEX,
   POOL_HEALTH_MONITOR_TYPE,
   HEALTH_MONITOR_TYPE,

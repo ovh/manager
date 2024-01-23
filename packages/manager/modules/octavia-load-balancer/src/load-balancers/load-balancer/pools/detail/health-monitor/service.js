@@ -34,11 +34,9 @@ export default class OctaviaLoadBalancerHealthMonitorService {
       };
     }
 
-    return this.$http
-      .post(
-        `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor`,
-        postDatas,
-      )
-      .then(() => this.broadcast('useraccount.security.users.refresh', {}));
+    return this.$http.post(
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor`,
+      postDatas,
+    );
   }
 }
