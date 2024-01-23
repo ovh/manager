@@ -33,6 +33,12 @@ export default class OctaviaLoadBalancerL7Service {
     );
   }
 
+  deletePolicy(projectId, region, policyId) {
+    return this.$http.delete(
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy/${policyId}`,
+    );
+  }
+
   getPolicies(projectId, region, listenerId) {
     return this.$http
       .get(
