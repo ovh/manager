@@ -59,6 +59,16 @@ angular
     trafficService,
   ])
   .config(routing)
+  .config(
+    /* @ngInject */ (atInternetUiRouterPluginProvider) => {
+      atInternetUiRouterPluginProvider.addStateNameFilter((stateName) => {
+        return stateName.replace(
+          'dedicated::dedicated-cluster::cluster::node',
+          'dedicated::dedicated-server::node',
+        );
+      });
+    },
+  )
   .service('ServerTrafficService', trafficService)
   .run(/* @ngTranslationsInject:json ./translations */);
 
