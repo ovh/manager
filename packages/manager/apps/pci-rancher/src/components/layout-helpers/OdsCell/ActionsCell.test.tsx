@@ -3,6 +3,7 @@ import ActionsCell from './ActionsCell';
 import { render, waitFor } from '@/utils/test.provider';
 import { rancherError, rancherMocked } from '@/_mock_/rancher';
 import { RancherService } from '@/api/api.type';
+import listingTranslation from '@/public/translations/pci-rancher/listing/Messages_fr_FR.json';
 
 const setupSpecTest = async (rancherService: RancherService = rancherMocked) =>
   waitFor(() =>
@@ -19,8 +20,8 @@ describe('Actions Cell', () => {
   it('Cell should render correctly manage and delete label', async () => {
     const screen = await setupSpecTest();
 
-    const manageText = screen.getByText('manage');
-    const deleteText = screen.getByText('delete');
+    const manageText = screen.getByText(listingTranslation.manage);
+    const deleteText = screen.getByText(listingTranslation.delete);
 
     expect(manageText).not.toBeNull();
     expect(deleteText).not.toBeNull();
@@ -29,7 +30,7 @@ describe('Actions Cell', () => {
   it('Manage should not be visible if rancher is in error', async () => {
     const screen = await setupSpecTest(rancherError);
 
-    const manageText = screen.queryByText('manage');
+    const manageText = screen.queryByText(listingTranslation.manage);
 
     expect(manageText).toBeNull();
   });

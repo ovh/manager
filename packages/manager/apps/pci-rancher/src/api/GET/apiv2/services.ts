@@ -31,6 +31,11 @@ export const deleteRancherServiceQueryKey = (rancherId: string) => [
   rancherId,
 ];
 
+export const patchRancherServiceQueryKey = (rancherId: string) => [
+  'patch/rancher/resource',
+  rancherId,
+];
+
 export const deleteRancherService = async ({
   rancherId,
   projectId,
@@ -40,6 +45,27 @@ export const deleteRancherService = async ({
 }) => {
   return apiClient.v2.delete(
     getByRancherIdProjectIdQueryKey(projectId, rancherId),
+  );
+};
+
+export const editRancherService = async ({
+  rancherId,
+  projectId,
+  rancher,
+}: {
+  rancherId: string;
+  projectId: string;
+  rancher: Partial<RancherService>;
+}) => {
+  console.log({ rancher });
+  return apiClient.v2.put(
+    getByRancherIdProjectIdQueryKey(projectId, rancherId),
+    {
+      targetSpec: {
+        ...rancher.targetSpec,
+        name: 'rancher1_renamed',
+      },
+    },
   );
 };
 
