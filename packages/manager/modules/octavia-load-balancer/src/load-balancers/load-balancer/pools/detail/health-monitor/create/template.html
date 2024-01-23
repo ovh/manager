@@ -1,9 +1,11 @@
 <div id="octavia-load-balancer-pools-detail-health-monitor-create">
-    <h2 data-translate="octavia_load_balancer_health_monitor_title"></h2>
-    <p data-translate="octavia_load_balancer_health_monitor_description_1"></p>
+    <h2 data-translate="octavia_load_balancer_health_monitor_create_title"></h2>
+    <p
+        data-translate="octavia_load_balancer_health_monitor_create_description_1"
+    ></p>
     <p>
         <span
-            data-translate="octavia_load_balancer_health_monitor_description_2"
+            data-translate="octavia_load_balancer_health_monitor_create_description_2"
         ></span>
         <a
             ng-href="{{::$ctrl.HORIZON_LINK}}"
@@ -11,7 +13,7 @@
             target="_blank"
         >
             <span
-                data-translate="octavia_load_balancer_health_monitor_description_link"
+                data-translate="octavia_load_balancer_health_monitor_create_description_link"
             ></span>
             <span
                 class="oui-icon oui-icon-arrow-right"
@@ -19,4 +21,18 @@
             ></span>
         </a>
     </p>
+
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.loading">
+        <octavia-load-balancer-health-monitor-form
+            data-health-monitor-types="$ctrl.healthMonitorTypes"
+            data-associated-pool="$ctrl.pool"
+            data-model="$ctrl.model"
+            data-submit-label="{{:: 'octavia_load_balancer_health_monitor_create_submit_label' | translate}}"
+            data-on-submit="$ctrl.createHealthMonitor()"
+        ></octavia-load-balancer-health-monitor-form>
+    </div>
 </div>
