@@ -51,6 +51,14 @@ export default class CloudProjectComputeInfrastructureListCtrl {
     );
   }
 
+  getBadgeTooltipText(status) {
+    return status === 'STOPPED' || status === 'SUSPENDED'
+      ? this.$translate.instant(
+          `pci_projects_project_instances_status_${status.toUpperCase()}_TOOLTIP`,
+        )
+      : '';
+  }
+
   checkHelpDisplay() {
     return new Promise((resolve) => {
       if (this.help) {
