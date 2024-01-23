@@ -101,7 +101,7 @@ export default class BillingHistoryBalanceCtrl {
           return this.$q
             .all({
               balance: this.getBalance(),
-              paymentMethods: this.ovhPaymentMethod.getAllPaymentMethods(),
+              paymentMethods: this.ovhPaymentMethod.getPaymentMethods(),
             })
             .then((response) => {
               this.balance = response.balance;
