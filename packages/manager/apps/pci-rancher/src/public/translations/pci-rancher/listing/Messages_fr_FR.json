@@ -1,9 +1,10 @@
 {
   "title": "Listing page",
-  "name": "Name",
-  "serviceLevel": "Service Level",
-  "rancherVersion": "Rancher Version",
-  "numberOfCpu": "Number of CPU",
+  "name": "Nom",
+  "serviceLevel": "Offre",
+  "rancherVersion": "Version du Rancher",
+  "numberOfCpu": "Nombre de CPU",
+  "status": "Status",
   "actions": "Actions",
   "cancel": "Annulez",
   "manage": "Gérer",
@@ -15,7 +16,19 @@
   "deleteModalTerminateMessage": " Entrez « TERMINATE » pour confirmer votre choix.",
   "deleteModalDescription": "Vous ne pourrez pas annuler cette action. Nous détruirons définitivement votre déploiement de Rancher {{ rancherName }} et l'ensemble de sa configuration.",
   "deleteModalWarning": "Nous vous conseillons fortement de détruire et/ou désenregistrer tous les clusters « downstream » (créés ou attachés à Rancher) avant de détruire votre Managed Rancher Service, car vous risquez de perdre l'accès à ces derniers.",
+  "deleteRancherError": " Une erreur est survenue lors de la suppression de votre service Rancher. Merci de réessayer.",
+  "deleteRancherSuccess": "Votre Rancher a bien été supprimé.",
   "rancherStatusUpdating": "Mise à jour de votre Rancher en cours...",
   "rancherStatusDeleting": "Suppression de votre Rancher en cours...",
-  "rancherStatusError": "Une erreur est survenue lors de la mise à jour de votre Rancher."
+  "rancherStatusError": "Une erreur est survenue lors de la mise à jour de votre Rancher.",
+  "editNameModalTitle": "Modifier le nom de votre Rancher",
+  "editNameModalInfo": "Nom du service",
+  "editNameModaleHelperInput": "Le nom du service doit comporter entre 3 et 63 caractères , doit commencer et se terminer par des caractères alphanumériques minuscules (de a à z et de 0 à 9) et peut comporter les signes de ponctuation suivants : '.' et '-'.",
+  "editNameRancherCta": "Modifier",
+
+  "READY": "Ready",
+  "UPDATING": "Updating",
+  "ERROR": "Error",
+
+  "OVHCLOUD_EDITION": "OVHcloud Edition"
 }

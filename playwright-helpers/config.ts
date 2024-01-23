@@ -3,8 +3,8 @@ export const config = {
   accountLoginOrigin: 'https://www.ovh.com',
   ovhLogout: 'https://www.ovh.com/auth/?action=disconnect',
   ovhLoginOrigin: 'https://login.corp.ovh.com',
-  accountLogin: 'accountLogin',
-  email: 'your-ovh-mail@corp.ovh.com',
+  accountLogin: '',
+  email: '',
   password: '',
 };
 

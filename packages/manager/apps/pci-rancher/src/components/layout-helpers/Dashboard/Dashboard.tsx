@@ -88,14 +88,36 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
               panel={tab.name}
               disabled={tab.isDisabled}
             >
-              <NavLink to={tab.to} className="no-underline">
-                {tab.title}
-              </NavLink>
+              {!tab.isDisabled ? (
+                <NavLink to={tab.to} className="no-underline">
+                  <OsdsText
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    level={ODS_TEXT_LEVEL.heading}
+                  >
+                    {tab.title}
+                  </OsdsText>
+                </NavLink>
+              ) : (
+                <OsdsText
+                  level={ODS_TEXT_LEVEL.heading}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                >
+                  {tab.title}
+                </OsdsText>
+              )}
+              {tab.isCommingSoon && (
+                <OsdsChip
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  className="ml-5"
+                >
+                  {t('comming_soon')}
+                </OsdsChip>
+              )}
             </OsdsTabBarItem>
           ))}
         </OsdsTabBar>
       </OsdsTabs>
-      <RancherDetail rancher={rancher} />
+      <RancherDetail rancher={rancher} projectId={projectId} />
       <Outlet />
     </>
   );
