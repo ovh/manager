@@ -45,13 +45,10 @@ export default class {
   }
 
   hasPaymentMean() {
-    return this.ovhPaymentMethod
-      .getAllPaymentMethods()
-      .then((paymentMethods) => {
-        this.hasPaymentMean =
-          isArray(paymentMethods) && !isEmpty(paymentMethods);
-        return this.hasPaymentMean;
-      });
+    return this.ovhPaymentMethod.getPaymentMethods().then((paymentMethods) => {
+      this.hasPaymentMean = isArray(paymentMethods) && !isEmpty(paymentMethods);
+      return this.hasPaymentMean;
+    });
   }
 
   isAutorenewAllowed() {

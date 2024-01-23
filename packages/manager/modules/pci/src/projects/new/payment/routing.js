@@ -122,7 +122,7 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().paymentStatus,
 
       paymentMethods: /* @ngInject */ (ovhPaymentMethod) =>
-        ovhPaymentMethod.getAllPaymentMethods(),
+        ovhPaymentMethod.getPaymentMethods(),
 
       validPaymentMethods: /* @ngInject */ (
         eligibility,

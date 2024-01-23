@@ -44,7 +44,7 @@ export default /* @ngInject */ ($stateProvider) => {
         errors,
       ) =>
         ovhPaymentMethod
-          .getAllPaymentMethods({
+          .getPaymentMethods({
             transform: true,
           })
           .then((paymentMethods) =>

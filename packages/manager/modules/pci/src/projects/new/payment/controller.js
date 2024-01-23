@@ -329,18 +329,16 @@ export default class PciProjectNewPaymentCtrl {
   }
 
   getInprogressValidationPaymentMethod() {
-    return this.ovhPaymentMethod
-      .getAllPaymentMethods()
-      .then((paymentMethods) => {
-        return paymentMethods
-          .reverse()
-          .find(
-            ({ integration, paymentType, status }) =>
-              integration === 'REDIRECT' &&
-              paymentType === 'CREDIT_CARD' &&
-              status === 'CREATED',
-          );
-      });
+    return this.ovhPaymentMethod.getPaymentMethods().then((paymentMethods) => {
+      return paymentMethods
+        .reverse()
+        .find(
+          ({ integration, paymentType, status }) =>
+            integration === 'REDIRECT' &&
+            paymentType === 'CREDIT_CARD' &&
+            status === 'CREATED',
+        );
+    });
   }
 
   /* -----  End of Helpers  ------ */

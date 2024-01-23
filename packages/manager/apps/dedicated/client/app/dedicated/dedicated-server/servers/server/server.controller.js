@@ -380,7 +380,7 @@ export default class ServerCtrl {
         user: this.User.getUser(),
         paymentIds:
           this.worldPart !== 'US'
-            ? this.User.getValidPaymentMeansIds()
+            ? this.User.getValidPaymentMethodIds()
             : this.$q.when([]),
       })
       .then((data) => {
