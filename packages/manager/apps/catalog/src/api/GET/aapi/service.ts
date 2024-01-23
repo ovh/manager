@@ -49,7 +49,10 @@ export const getManagerCatalogList = async () => {
     return response;
   };
   try {
-    return queryClient.fetchQuery(getManagerCatalogListQueryKey, fetchData);
+    return queryClient.fetchQuery({
+      queryKey: getManagerCatalogListQueryKey,
+      queryFn: fetchData,
+    });
   } catch (error) {
     return Promise.reject(error);
   }
