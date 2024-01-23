@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
         }),
     },
     atInternet: {
-      rename: 'dedicated::dedicated-server::cluster::dashboard::nodes',
+      rename: 'dedicated::dedicated-server::cluster::nodes',
     },
   });
 };
