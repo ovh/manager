@@ -3,7 +3,7 @@
     <button
         type="button"
         class="btn btn-default mb-4"
-        data-ng-if="$ctrl.dedicatedCloud.canOrderDatacenter"
+        data-ng-if=":: $ctrl.canOrderDatacenter()"
         data-ng-click="$ctrl.onAddDatacenterClick()"
         data-translate="dedicatedCloud_datacenters_add"
     ></button>
