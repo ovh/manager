@@ -135,7 +135,7 @@ export const getOrderList = ({
     params.append('date.to', dateTo.toISOString());
   }
   return apiClient.v6.get<number[]>(
-    `/me/order${params.size > 0 ? `?${params.toString()}` : ''}`,
+    params.size > 0 ? `/me/order?${params.toString()}` : '/me/order',
   );
 };
 

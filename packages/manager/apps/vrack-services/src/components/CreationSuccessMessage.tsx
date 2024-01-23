@@ -7,7 +7,6 @@ import { useMutationState } from '@tanstack/react-query';
 export type Props = {
   mutationKey: string[];
   message: string;
-  dataTracking?: string;
 };
 
 export const CreationSuccessMessage: React.FC<Props> = ({

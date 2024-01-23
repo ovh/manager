@@ -48,16 +48,16 @@ export const OverviewTab: React.FC = () => {
   } = useUpdateVrackServices({ key: id });
   const shell = useShell();
 
-  if (error) {
-    return <ErrorPage error={error} />;
-  }
-
   React.useEffect(() => {
     shell.tracking.trackPage({
       name: 'vrack-services::dashboard',
       level2: '',
     });
   }, []);
+
+  if (error) {
+    return <ErrorPage error={error} />;
+  }
 
   return (
     <>

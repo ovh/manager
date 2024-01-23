@@ -1,5 +1,5 @@
 import { PathParams } from 'msw';
-import { Handler } from '../../tests/utils/msw-helpers';
+import { Handler } from '../../e2e/utils/msw-helpers';
 import { getParamsFromUrl } from '../../e2e/utils/playwright-helpers';
 import { Cart, Item } from '@/api/order/order.type';
 

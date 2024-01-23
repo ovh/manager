@@ -7,7 +7,6 @@ import { DetailedOrder } from '@/api';
 export type DeliveringMessagesProps = {
   messageKey: string;
   orders?: DetailedOrder[];
-  dataTracking?: string;
 };
 
 export const DeliveringMessages: React.FC<DeliveringMessagesProps> = ({

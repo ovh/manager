@@ -1,4 +1,5 @@
-import { toMswHandlers, Handler } from '../tests/utils/msw-helpers';
+import { BrowserContext } from '@playwright/test';
+import { toMswHandlers, Handler } from '../e2e/utils/msw-helpers';
 import { toPlaywrightMockHandler } from '../e2e/utils/playwright-helpers';
 import { ICustomWorld } from '../../../../../playwright-helpers/custom-world';
 import {
@@ -42,7 +43,7 @@ export const getConfig = (params: ConfigParams): Handler[] =>
 
 export const getMswHandlers = (
   params: ConfigParams = {},
-  additionalConfigs?: Handler[],
+  additionalConfigs: Handler[] = [],
 ) => toMswHandlers(getConfig(params).concat(additionalConfigs));
 
 export const setupPlaywrightHandlers = async (world: ICustomWorld) =>
@@ -52,5 +53,5 @@ export const setupPlaywrightHandlers = async (world: ICustomWorld) =>
       isAuthMocked: true,
     })
       .reverse()
-      .map(toPlaywrightMockHandler(world.context)),
+      .map(toPlaywrightMockHandler(world.context as BrowserContext)),
   );

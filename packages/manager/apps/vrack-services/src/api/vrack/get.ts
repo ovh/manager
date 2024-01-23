@@ -8,7 +8,7 @@ import {
 
 export const getVrackListQueryKey = ['get/vrack'];
 
-export const getVrackList = () => apiClient.v6.get('/vrack');
+export const getVrackList = () => apiClient.v6.get<string[]>('/vrack');
 
 export type GetVrackAllowedServicesParams = {
   /** Filter on a specific service family */

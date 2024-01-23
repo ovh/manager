@@ -1,4 +1,4 @@
-import { Handler } from '../../tests/utils/msw-helpers';
+import { Handler } from '../../e2e/utils/msw-helpers';
 import applicationsResponse from './applications.json';
 import { getConfigurationResponse } from './configuration';
 

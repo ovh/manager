@@ -1,6 +1,6 @@
 import { PathParams } from 'msw';
 import { getParamsFromUrl } from '../../e2e/utils/playwright-helpers';
-import { Handler } from '../../tests/utils/msw-helpers';
+import { Handler } from '../../e2e/utils/msw-helpers';
 import { OrderData, OrderDetail } from '@/api/order';
 
 const orderList = [1, 2, 3];
