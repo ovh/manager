@@ -1,4 +1,4 @@
-import { OdsDatagridColumn } from '@ovhcloud/ods-components';
+import { ODS_MESSAGE_TYPE, OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   OsdsLink,
@@ -7,16 +7,20 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { TFunction, useTranslation } from 'react-i18next';
 import { useNavigate, useParams, useHref } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 
 import { RancherService } from '@/api/api.type';
 import DeleteModal from '@/components/Modal/DeleteModal';
 import ActionsCell from '../OdsCell/ActionsCell';
-import { ProductStatusCell } from '../OdsCell/ProductStatusCell';
+import {
+  DataGridCellProps,
+  ProductStatusCell,
+} from '../OdsCell/ProductStatusCell';
 import ReactFormatter from './OdsFormatter';
 import { deleteRancherService, deleteRancherServiceQueryKey } from '@/api';
+import { RessourceStatus } from '../../../api/api.type';
 
 interface LinkServiceInterface {
   rowData?: RancherService;
@@ -43,7 +47,20 @@ function LinkService({ cellData, rowData, href }: LinkServiceInterface) {
   );
 }
 
-function CpuDisplay({ cellData }: CpuDisplayInterface) {
+function VersionDisplay({
+  cellData,
+  t,
+}: DataGridCellProps<RessourceStatus, RancherService> & { t: TFunction }) {
+  return (
+    <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+      {cellData ? t(cellData) : '-'}
+    </OsdsText>
+  );
+}
+
+function CpuDisplay({
+  cellData,
+}: DataGridCellProps<RessourceStatus, RancherService>) {
   return (
     <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{cellData ?? '-'}</OsdsText>
   );
@@ -52,10 +69,10 @@ function CpuDisplay({ cellData }: CpuDisplayInterface) {
 export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
   const { t } = useTranslation('pci-rancher/listing');
   const { projectId } = useParams();
-
-  const navigate = useNavigate();
   const [showDeleteModal, toggleDeleteModal] = useState(false);
   const [selectedRancher, setSelectedRancher] = useState<RancherService>();
+  const [deleteRancherResponse, setDeleteRancherResponse] =
+    useState<ODS_MESSAGE_TYPE | null>(null);
 
   const { mutate: deleteRancher, isError } = useMutation({
     mutationFn: () =>
@@ -64,6 +81,12 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
         projectId,
       }),
     mutationKey: deleteRancherServiceQueryKey(selectedRancher?.id),
+    onSuccess: () => {
+      setDeleteRancherResponse(ODS_MESSAGE_TYPE.success);
+    },
+    onError: () => {
+      setDeleteRancherResponse(ODS_MESSAGE_TYPE.error);
+    },
   });
 
   const onDeleteRancher = () => deleteRancher();
@@ -82,6 +105,12 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
     {
       title: t('rancherVersion'),
       field: 'targetSpec.version',
+      formatter: ReactFormatter(<VersionDisplay t={t} />),
+    },
+    {
+      title: t('numberOfCpu'),
+      field: 'currentState.usage.orchestratedVcpus',
+      formatter: ReactFormatter(<CpuDisplay />),
     },
     {
       title: t('numberOfCpu'),
@@ -112,6 +141,18 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
         <OsdsMessage color={ODS_THEME_COLOR_INTENT.error}>
           Une erreur est survenue lors de la suppression de votre service
           Rancher. Merci de réessayer.
+        </OsdsMessage>
+      )}
+      {deleteRancherResponse && (
+        <OsdsMessage type={deleteRancherResponse} className="my-4 p-3">
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            className="inline-block"
+          >
+            {deleteRancherResponse === ODS_MESSAGE_TYPE.info
+              ? t('deleteRancherSuccess')
+              : t('deleteRancherError')}
+          </OsdsText>
         </OsdsMessage>
       )}
       {columns && data && data.length > 0 && (
