@@ -93,5 +93,8 @@ export default /* @ngInject */ ($stateProvider) => {
             ? 'app.dedicated-server.index'
             : false,
         ),
+    atInternet: {
+      rename: `dedicated::dedicated-server::index-multiaz`,
+    },
   });
 };
