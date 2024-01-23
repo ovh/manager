@@ -29,7 +29,6 @@ export const webFeatures = [
   'exchange:web-dashboard',
   'office',
   'office-reseller',
-  'sharepoint',
   'web:microsoft',
   'web-paas',
   'cloud-web',
@@ -229,7 +228,7 @@ export default function WebSidebar() {
         label: t('sidebar_microsoft'),
         icon: getIcon('ms-Icon ms-Icon--WindowsLogo'),
         routeMatcher: new RegExp(
-          `^(/configuration)?/(exchange|office|sharepoint)`,
+          `^(/configuration)?/(exchange|office)`,
         ),
         subItems: [
           {
@@ -259,19 +258,6 @@ export default function WebSidebar() {
               const services = await loadServices('/license/office');
               return services.map((service) => ({
                 icon: getIcon('ms-Icon ms-Icon--OfficeLogo'),
-                ...service,
-              }));
-            },
-          },
-          features.sharepoint && {
-            id: 'sharepoint',
-            label: t('sidebar_sharepoint'),
-            icon: getIcon('ms-Icon ms-Icon--SharepointLogo'),
-            routeMatcher: new RegExp(`/sharepoint`),
-            async loader() {
-              const services = await loadServices('/msServices/*/sharepoint');
-              return services.map((service) => ({
-                icon: getIcon('ms-Icon ms-Icon--SharepointLogo'),
                 ...service,
               }));
             },
