@@ -111,37 +111,35 @@ export default function ServerSidebarItemRenderer({
       <button className={style.transparentButton} onClick={handleClick}>
         <span className={style.itemLineAlign}>
           {iconOrSpinner}
-          {item.icon && (
-            <span className={style.iconPadding} aria-hidden="true">
-              {item.icon}
-              <span className={style.textPadding}>{item.depth === 0 ? (
-            <OsdsText
-              level={OdsTextLevel.heading}
-              color={OdsThemeColorIntent.text}
-              size={OdsTextSize._200}
-            >
-              {item.label}
-            </OsdsText>
-          ) : (
-            <OsdsText
-              level={OdsTextLevel.button}
-              color={OdsThemeColorIntent.text}
-              size={OdsTextSize._300}
-            >
-              {item.label}
-            </OsdsText>
-          )}</span>
-            </span>
-          )}
+          <span className={style.iconPadding} aria-hidden="true">
+            {item.icon}
+            <span className={style.textPadding}>{item.depth === 0 ? (
+              <OsdsText
+                level={OdsTextLevel.heading}
+                color={OdsThemeColorIntent.text}
+                size={OdsTextSize._200}
+              >
+                {item.label}
+              </OsdsText>
+            ) : (
+              <OsdsText
+                level={OdsTextLevel.button}
+                color={OdsThemeColorIntent.text}
+                size={OdsTextSize._300}
+              >
+                {item.label}
+              </OsdsText>
+            )}</span>
           </span>
+        </span>
       </button>
     );
   } else {
     const additionalLinkProps = item.isExternal
       ? {
-          target: OdsHTMLAnchorElementTarget._blank,
-          rel: OdsHTMLAnchorElementRel.noopener,
-        }
+        target: OdsHTMLAnchorElementTarget._blank,
+        rel: OdsHTMLAnchorElementRel.noopener,
+      }
       : {};
     itemRender = (
 
@@ -160,20 +158,20 @@ export default function ServerSidebarItemRenderer({
           }}
           className={style.link}
         >
-           {item.depth === 0 ? <OsdsText
-          level={OdsTextLevel.heading}
-          color={OdsThemeColorIntent.text}
-          size={OdsTextSize._200}
-        >
-          <span>{item.label}</span>
-        </OsdsText> : <span className={item.isSelected ? style.linkTextSelected: style.linkText}>{item.label}</span>}
-        {item?.badge && (
-          <span
-            className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
+          {item.depth === 0 ? <OsdsText
+            level={OdsTextLevel.heading}
+            color={OdsThemeColorIntent.text}
+            size={OdsTextSize._200}
           >
-            {item.badge}
-          </span>
-        )}
+            <span>{item.label}</span>
+          </OsdsText> : <span className={item.isSelected ? style.linkTextSelected : style.linkText}>{item.label}</span>}
+          {item?.badge && (
+            <span
+              className={`oui-badge oui-badge_s oui-badge_${item.badge} ${style.menuBadge}`}
+            >
+              {item.badge}
+            </span>
+          )}
         </OsdsLink>
 
       </span>
