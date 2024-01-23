@@ -57,7 +57,6 @@ const Listing: React.FC<ListingProps> = ({ data }) => {
           </span>
         </OsdsButton>
       </div>
-
       <Datagrid data={data} />
     </>
   );

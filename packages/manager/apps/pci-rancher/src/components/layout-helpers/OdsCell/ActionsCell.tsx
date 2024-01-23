@@ -17,11 +17,13 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { DataGridCellProps } from './ProductStatusCell';
 import { RancherService, RessourceStatus } from '@/api/api.type';
 
-const ActionsCell: React.FC<DataGridCellProps<undefined, RancherService> & {
-  isLoading?: boolean;
-  openModal: () => void;
-  setSelectedRancher: (rancher: RancherService) => void;
-}> = ({ isLoading, rowData, openModal, setSelectedRancher }) => {
+const ActionsCell: React.FC<
+  DataGridCellProps<undefined, RancherService> & {
+    isLoading?: boolean;
+    openModal: () => void;
+    setSelectedRancher: (rancher: RancherService) => void;
+  }
+> = ({ isLoading, rowData, openModal, setSelectedRancher }) => {
   const editable = true;
   const { t } = useTranslation('pci-rancher/listing');
 
@@ -29,6 +31,10 @@ const ActionsCell: React.FC<DataGridCellProps<undefined, RancherService> & {
     setSelectedRancher(rowData);
     openModal();
   };
+  const onManage = () => {
+    openModal();
+  };
+
   return (
     <div>
       <OsdsMenu
@@ -39,14 +45,13 @@ const ActionsCell: React.FC<DataGridCellProps<undefined, RancherService> & {
           inline
           circle
           color={ODS_THEME_COLOR_INTENT.info}
-          variant={ODS_BUTTON_VARIANT.flat}
+          variant={ODS_BUTTON_VARIANT.stroked}
           type={ODS_BUTTON_TYPE.button}
           size={ODS_BUTTON_SIZE.sm}
           disabled={isLoading || !editable || undefined}
         >
           <OsdsIcon
-            contrasted
-            color={ODS_THEME_COLOR_INTENT.default}
+            color={ODS_THEME_COLOR_INTENT.primary}
             name={ODS_ICON_NAME.ELLIPSIS}
             size={ODS_ICON_SIZE.xs}
           />
@@ -58,6 +63,7 @@ const ActionsCell: React.FC<DataGridCellProps<undefined, RancherService> & {
               size={ODS_BUTTON_SIZE.sm}
               variant={ODS_BUTTON_VARIANT.ghost}
               text-align="start"
+              onClick={onManage}
             >
               <span slot="start">
                 <span>{t('manage')}</span>
