@@ -2,7 +2,9 @@
   "pci_projects_project_instances_instance_stop_title": "Arrêt de votre instance",
   "pci_projects_project_instances_instance_stop_submit_label": "Confirmer",
   "pci_projects_project_instances_instance_stop_cancel_label": "Annuler",
-  "pci_projects_project_instances_instance_stop_content": "Vous allez arrêter votre instance {{ instance }}. Les ressources dédiées à votre instance Public Cloud sont toujours réservées (adresse IP incluse). Vous pouvez redémarrer votre instance à tout moment. Dans l'intervalle, vous êtes toujours facturé au même prix pour votre instance.",
+  "pci_projects_project_instances_instance_stop_content_1": "Vous allez arrêter votre instance {{ instance }}. Les ressources dédiées sont toujours réservées (adresse IP incluse). Vous pouvez redémarrer votre instance à tout moment.",
+  "pci_projects_project_instances_instance_stop_content_2": "Attention : Cette action entrainent toujours une facturation de l’instance tant que celle-ci n’est pas <strong>supprimée</strong>.",
+  "pci_projects_project_instances_instance_stop_content_link_label": "Pour en savoir plus",
   "pci_projects_project_instances_instance_stop_success_message": "L'instance {{ instance }} a été arrêtée.",
   "pci_projects_project_instances_instance_stop_error_message": "Une erreur est survenue lors de l'arrêt de l'instance {{ instance }} : {{ message }}."
 }

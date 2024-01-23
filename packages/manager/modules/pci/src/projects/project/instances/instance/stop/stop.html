@@ -9,7 +9,15 @@
     data-loading="$ctrl.isLoading"
 >
     <p
-        data-translate="pci_projects_project_instances_instance_stop_content"
+        data-translate="pci_projects_project_instances_instance_stop_content_1"
         data-translate-values="{ instance: $ctrl.instance.name}"
     ></p>
+    <span
+        data-translate="pci_projects_project_instances_instance_stop_content_2"
+    ></span>
+    <a data-ng-href="{{ $ctrl.docLink }}" target="_blank" rel="noopener">
+        <span
+            data-translate="pci_projects_project_instances_instance_stop_content_link_label"
+        ></span>
+    </a>
 </oui-modal>

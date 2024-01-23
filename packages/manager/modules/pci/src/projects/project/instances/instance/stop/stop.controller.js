@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { STOP_INSTANCE_INFO_LINK } from './constants';
 
 export default class PciInstanceStopController {
   /* @ngInject */
@@ -12,6 +13,7 @@ export default class PciInstanceStopController {
     this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
     this.Poller = Poller;
+    this.docLink = STOP_INSTANCE_INFO_LINK;
   }
 
   $onInit() {
