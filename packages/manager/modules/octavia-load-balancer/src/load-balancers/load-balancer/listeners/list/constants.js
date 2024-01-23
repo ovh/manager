@@ -1,8 +1,13 @@
+import { PROTOCOLS } from '../components/listener-form/constants';
+
 export const LISTENER_EDITION_TRACKING_SUFFIX = '::edit';
 
 export const POOL_DETAIL_TRACKING_SUFFIX = '::pool::detail';
 
+export const LISTENER_PROTOCOLS_ENABLING_POLICIES = [PROTOCOLS.HTTP];
+
 export default {
   LISTENER_EDITION_TRACKING_SUFFIX,
   POOL_DETAIL_TRACKING_SUFFIX,
+  LISTENER_PROTOCOLS_ENABLING_POLICIES,
 };

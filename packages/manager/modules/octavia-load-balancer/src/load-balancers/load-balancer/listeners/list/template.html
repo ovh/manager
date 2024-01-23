@@ -40,7 +40,7 @@
         data-prevent-customization
     >
         <a
-            data-ng-href="{{:: $ctrl.getPoolDetailLink($row)}}"
+            data-ng-href="{{:: $ctrl.getPoolDetailLinkFromListener($row)}}"
             data-track-on="click"
             data-track-name="{{:: $ctrl.trackRoot + $ctrl.POOL_DETAIL_TRACKING_SUFFIX}}"
             data-track-type="action"
@@ -95,6 +95,16 @@
         <oui-action-menu-item data-on-click="$ctrl.goToListenerEdition($row)"
             ><span
                 data-translate="octavia_load_balancer_listeners_actions_detail"
+            ></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item
+            data-on-click="$ctrl.goToListenerL7Policies($row)"
+            data-disabled="!$ctrl.constructor.isPoliciesManagementAvailableForListener($row)"
+            data-oui-tooltip="{{::$ctrl.constructor.isPoliciesManagementAvailableForListener($row) ? '' : ('octavia_load_balancer_listeners_policies_unavailable' | translate)}}"
+            data-oui-tooltip-placement="left"
+        >
+            <span
+                data-translate="octavia_load_balancer_listeners_actions_policies"
             ></span>
         </oui-action-menu-item>
         <oui-action-menu-item data-on-click="$ctrl.goToListenerDeletion($row)"
