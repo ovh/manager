@@ -34,6 +34,10 @@ export default /* @ngInject */ ($stateProvider) => {
         },
         breadcrumb: () => null,
       },
+      atInternet: {
+        rename:
+          'dedicated::dedicated-server::cluster::dashboard::edit-display-name',
+      },
     },
   );
 };
