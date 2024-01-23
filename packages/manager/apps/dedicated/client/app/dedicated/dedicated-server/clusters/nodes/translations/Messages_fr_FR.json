@@ -9,7 +9,7 @@
   "dedicated_servers_rack": "Rack",
   "dedicated_servers_monitoring": "État Monitoring",
   "dedicated_servers_region": "Région",
-  "dedicated_servers_zone": "Localisation",
+  "dedicated_servers_zone": "Zone",
   "dedicated_servers_popover_details": "Détails",
   "dedicated_servers_button_server_order": "Commander un serveur dédié",
   "dedicated_servers_button_list_order": "Commander",

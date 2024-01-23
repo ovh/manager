@@ -16,7 +16,11 @@
             data-sortable
             data-type="string"
         >
-            <a data-ng-href="{{ $ctrl.getClusterDashboardLink($row) }}"
+            <a
+                data-ng-href="{{ $ctrl.getClusterDashboardLink($row) }}"
+                data-track-on="click"
+                data-track-type="action"
+                data-track-name="dedicated::dedicated::servers::order-multiaz"
                 ><span data-ng-bind="$row.iam.displayName"></span
             ></a>
         </oui-datagrid-column>
