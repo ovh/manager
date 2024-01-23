@@ -35,7 +35,7 @@ angular.module('App').controller(
         .then(() => {
           // Define necessary variables
           const keyDeleteDomain = `dns-delete-${this.domain.name}`;
-          const validityDate = moment();
+          const validityDate = new Date();
 
           // Store the current date in localStorage for future reference
           window.localStorage.setItem(keyDeleteDomain, validityDate);

@@ -114,11 +114,13 @@ export default class DomainTabZoneDnsCtrl {
     // Proceed only if a value was found
     if (storedValue) {
       // Parse the stored date using moment.js
-      const storedDate = moment(storedValue);
-      const currentDate = moment();
+      const storedDate = new Date(storedValue);
+      const currentDate = new Date();
 
       // Calculate the difference in hours between the current date and the stored date
-      const hoursDifference = currentDate.diff(storedDate, 'hours');
+      const hoursDifference = Math.abs(
+        (currentDate - storedDate) / (1000 * 60 * 60),
+      );
 
       // Check if the difference is 72 hours or less
       if (hoursDifference <= 72) {
