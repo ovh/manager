@@ -215,6 +215,8 @@
         data-cancel-text="{{:: 'pci_projects_project_storages_containers_add_cancel_label' | translate }}"
         data-submit-text="{{:: 'pci_projects_project_storages_containers_add_submit_label' | translate }}"
         name="storage_container_add_name"
+        data-valid="!$ctrl.isDiscoveryProject"
+        data-prevent-next
     >
         <oui-field
             data-size="xl"
