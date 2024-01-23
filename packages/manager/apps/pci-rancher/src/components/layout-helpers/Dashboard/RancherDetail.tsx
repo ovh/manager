@@ -6,6 +6,7 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_MESSAGE_TYPE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -17,130 +18,185 @@ import {
   OsdsLink,
   OsdsText,
   OsdsTile,
+  OsdsMessage,
 } from '@ovhcloud/ods-components/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { RancherService } from '@/api/api.type';
-import { TileBlock } from '@/components/TileBlock/TileBlock';
+import { useMutation } from '@tanstack/react-query';
+import EditNameModal from '../../Modal/EditNameModal';
+import {
+  editRancherService,
+  patchRancherServiceQueryKey,
+} from '../../../api/GET/apiv2/services';
+import { RancherService } from '../../../api/api.type';
+import { TileBlock } from '../../TileBlock/TileBlock';
 
 interface RancherDetailProps {
   rancher: RancherService;
+  projectId: string;
 }
-const RancherDetail = ({ rancher }: RancherDetailProps) => {
+const RancherDetail = ({ rancher, projectId }: RancherDetailProps) => {
   const { t } = useTranslation('pci-rancher/dashboard');
+  const [showEditModal, toggleEditModal] = useState(false);
+  const [editNameResponse, setEditNameResponse] =
+    useState<ODS_MESSAGE_TYPE | null>(null);
+  const { mutate: editRancherName, error } = useMutation({
+    mutationFn: (rancherUpdated: RancherService) =>
+      editRancherService({
+        rancherId: rancher?.id,
+        projectId,
+        rancher: rancherUpdated,
+      }),
+    onSuccess: () => {
+      setEditNameResponse(ODS_MESSAGE_TYPE.success);
+    },
+    onError: () => {
+      setEditNameResponse(ODS_MESSAGE_TYPE.error);
+    },
+    mutationKey: patchRancherServiceQueryKey(rancher?.id),
+  });
+
   const dateUsage = rancher.currentState.usage
     ? new Date(rancher.currentState.usage?.datetime)
     : null;
   const vCpus = rancher.currentState.usage?.orchestratedVcpus;
+
   return (
-    <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 py-6 max-w-3xl">
-      <div className="p-3">
-        <OsdsTile className="w-full h-full flex-col" inline rounded>
-          <div className="flex flex-col w-full">
-            <OsdsText
-              size={ODS_TEXT_SIZE._400}
-              level={ODS_TEXT_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {t('general_informations')}
-            </OsdsText>
-            <OsdsDivider separator />
-            <TileBlock label={t('description')}>
+    <div>
+      {editNameResponse && (
+        <OsdsMessage type={editNameResponse} className="my-4 p-3">
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            className="inline-block"
+          >
+            {editNameResponse === ODS_MESSAGE_TYPE.info
+              ? t('editNameRancherSuccess')
+              : t('editNameRancherError')}
+          </OsdsText>
+        </OsdsMessage>
+      )}
+      <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 py-6 max-w-3xl">
+        {showEditModal && (
+          <EditNameModal
+            rancher={rancher}
+            toggleModal={toggleEditModal}
+            onEditRancher={(r: RancherService) => editRancherName(r)}
+          />
+        )}
+
+        <div className="p-3">
+          <OsdsTile className="w-full h-full flex-col" inline rounded>
+            <div className="flex flex-col w-full">
               <OsdsText
+                size={ODS_TEXT_SIZE._400}
                 level={ODS_TEXT_LEVEL.heading}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_TEXT_SIZE._200}
+                color={ODS_THEME_COLOR_INTENT.text}
               >
-                {rancher.currentState.name}
+                {t('general_informations')}
               </OsdsText>
-              <OsdsIcon
-                className="ml-4 cursor-pointer"
-                name={ODS_ICON_NAME.PEN}
-                size={ODS_ICON_SIZE.xxs}
-                color={ODS_THEME_COLOR_INTENT.primary}
-              />
-            </TileBlock>
-            <TileBlock label={t('rancher_version')}>
-              <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                {rancher.currentState.version}
-              </OsdsText>
-            </TileBlock>
-          </div>
-        </OsdsTile>
-      </div>
-      <div className="p-3">
-        <OsdsTile className="w-full h-full flex-col" inline rounded>
-          <div className="flex flex-col w-full">
-            <OsdsText
-              size={ODS_TEXT_SIZE._400}
-              level={ODS_TEXT_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {t('security_and_access')}
-            </OsdsText>
-            <OsdsDivider separator />
-            <TileBlock label={t('rancher_ui_access')}>
-              <OsdsClipboard value={rancher.currentState.url} />
-              <OsdsButton
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_BUTTON_SIZE.sm}
-                variant={ODS_BUTTON_VARIANT.stroked}
-                className="my-5"
-                inline
-                href={rancher.currentState.url}
-              >
-                {t('rancher_button_acces')}
-              </OsdsButton>
-              <div className="mt-3 flex items-center">
-                <OsdsLink color={ODS_THEME_COLOR_INTENT.primary}>
-                  {t('generate_access')}
-                </OsdsLink>
+              <OsdsDivider separator />
+              <TileBlock label={t('description')}>
+                <OsdsText
+                  level={ODS_TEXT_LEVEL.heading}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  size={ODS_TEXT_SIZE._200}
+                >
+                  {rancher.currentState.name}
+                </OsdsText>
                 <OsdsIcon
+                  aria-label="edit"
                   className="ml-4 cursor-pointer"
-                  name={ODS_ICON_NAME.ARROW_RIGHT}
+                  onClick={() => toggleEditModal(true)}
+                  name={ODS_ICON_NAME.PEN}
                   size={ODS_ICON_SIZE.xxs}
                   color={ODS_THEME_COLOR_INTENT.primary}
                 />
-              </div>
-            </TileBlock>
-          </div>
-        </OsdsTile>
-      </div>
-      <div className="p-3">
-        <OsdsTile className="w-full h-full flex-col" inline rounded>
-          <div className="flex flex-col w-full">
-            <OsdsText
-              size={ODS_TEXT_SIZE._400}
-              level={ODS_TEXT_LEVEL.heading}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
-              {t('consumption')}
-            </OsdsText>
-            <OsdsDivider separator />
-            <TileBlock label={t('service_level')}>
-              <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                {rancher.currentState.plan}
-              </OsdsText>
-            </TileBlock>
-            {!!vCpus && (
-              <TileBlock label={t('count_cpu_orchestrated')}>
-                <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                  {rancher.currentState.usage?.orchestratedVcpus}
-                </OsdsText>
-                {dateUsage && (
-                  <div className="mt-3">
-                    <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                      {t('last_update_date', {
-                        date: format(dateUsage, 'yyyy_MM_dd'),
-                        hour: format(dateUsage, 'HH:mm'),
-                      })}
-                    </OsdsText>
-                  </div>
-                )}
               </TileBlock>
-            )}
-          </div>
-        </OsdsTile>
+              <TileBlock label={t('rancher_version')}>
+                <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                  {rancher.currentState.version}
+                </OsdsText>
+              </TileBlock>
+            </div>
+          </OsdsTile>
+        </div>
+        <div className="p-3">
+          <OsdsTile className="w-full h-full flex-col" inline rounded>
+            <div className="flex flex-col w-full">
+              <OsdsText
+                size={ODS_TEXT_SIZE._400}
+                level={ODS_TEXT_LEVEL.heading}
+                color={ODS_THEME_COLOR_INTENT.text}
+              >
+                {t('security_and_access')}
+              </OsdsText>
+              <OsdsDivider separator />
+              <TileBlock label={t('rancher_ui_access')}>
+                <OsdsClipboard
+                  aria-label="clipboard"
+                  value={rancher.currentState.url}
+                />
+                <OsdsButton
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  size={ODS_BUTTON_SIZE.sm}
+                  variant={ODS_BUTTON_VARIANT.stroked}
+                  className="my-5"
+                  inline
+                  href={rancher.currentState.url}
+                >
+                  {t('rancher_button_acces')}
+                </OsdsButton>
+                <div className="mt-3 flex items-center">
+                  <OsdsLink color={ODS_THEME_COLOR_INTENT.primary}>
+                    {t('generate_access')}
+                  </OsdsLink>
+                  <OsdsIcon
+                    className="ml-4 cursor-pointer"
+                    name={ODS_ICON_NAME.ARROW_RIGHT}
+                    size={ODS_ICON_SIZE.xxs}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                  />
+                </div>
+              </TileBlock>
+            </div>
+          </OsdsTile>
+        </div>
+        <div className="p-3">
+          <OsdsTile className="w-full h-full flex-col" inline rounded>
+            <div className="flex flex-col w-full">
+              <OsdsText
+                size={ODS_TEXT_SIZE._400}
+                level={ODS_TEXT_LEVEL.heading}
+                color={ODS_THEME_COLOR_INTENT.text}
+              >
+                {t('consumption')}
+              </OsdsText>
+              <OsdsDivider separator />
+              <TileBlock label={t('service_level')}>
+                <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                  {rancher.currentState.plan}
+                </OsdsText>
+              </TileBlock>
+              {!!vCpus && (
+                <TileBlock label={t('count_cpu_orchestrated')}>
+                  <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                    {rancher.currentState.usage?.orchestratedVcpus}
+                  </OsdsText>
+                  {dateUsage && (
+                    <div className="mt-3">
+                      <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                        {t('last_update_date', {
+                          date: format(dateUsage, 'yyyy_MM_dd'),
+                          hour: format(dateUsage, 'HH:mm'),
+                        })}
+                      </OsdsText>
+                    </div>
+                  )}
+                </TileBlock>
+              )}
+            </div>
+          </OsdsTile>
+        </div>
       </div>
     </div>
   );

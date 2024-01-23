@@ -113,14 +113,14 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
                   color={ODS_THEME_COLOR_INTENT.primary}
                   className="ml-5"
                 >
-                  Comming soon
+                  {t('comming_soon')}
                 </OsdsChip>
               )}
             </OsdsTabBarItem>
           ))}
         </OsdsTabBar>
       </OsdsTabs>
-      <RancherDetail rancher={rancher} />
+      <RancherDetail rancher={rancher} projectId={projectId} />
       <Outlet />
     </>
   );

@@ -3,7 +3,7 @@ import { Params, useParams } from 'react-router-dom';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
-import usePciProject from '@/hooks/usePciProject';
+import usePciProject from '../../hooks/usePciProject';
 
 export type BreadcrumbHandleParams = {
   data: unknown;
@@ -20,15 +20,18 @@ function Breadcrumb({ items = [] }: BreadcrumbProps): JSX.Element {
   const { data: project } = usePciProject();
 
   const navigation = useNavigation();
-
   const [urlProject, setUrlProject] = useState('');
   useEffect(() => {
-    navigation
-      .getURL('public-cloud', `#/pci/projects/${projectId}`, {})
-      .then((data) => {
-        setUrlProject(data as string);
-      });
-  });
+    const updateNav = async () => {
+      const url = await navigation.getURL(
+        'public-cloud',
+        `#/pci/projects/${projectId}`,
+        {},
+      );
+      setUrlProject(url as string);
+    };
+    updateNav();
+  }, [navigation, projectId]);
 
   return (
     <OsdsBreadcrumb
