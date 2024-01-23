@@ -93,7 +93,9 @@ export default class BmServerComponentsDashboardServiceStatusController {
 
   onMonitoringUpdateClick() {
     this.atInternet.trackClick({
-      name: 'dedicated::dedicated-server::server::dashboard::update-monitoring',
+      name: `dedicated::dedicated-server::${
+        this.serverIsNode ? 'node' : 'server'
+      }::dashboard::update-monitoring`,
       type: 'action',
     });
 
