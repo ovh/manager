@@ -14,6 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $transition$.params().projectId,
       project: /* @ngInject */ ($http, projectId) =>
         $http.get(`/cloud/project/${projectId}`).then(({ data }) => data),
+      apiSpecifications: /* @ngInject */ (OctaviaLoadBalancerService) =>
+        OctaviaLoadBalancerService.getAPISpecifications(),
       goToListingPage: /* @ngInject */ ($state) => () =>
         $state.go('octavia-load-balancer.loadbalancers'),
       breadcrumb: ($translate) => $translate.instant('octavia_load_balancers'),
