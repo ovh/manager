@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.39.0...@ovh-ux/manager-container-app@0.39.1) (2024-01-23)
+
+
+### Bug Fixes
+
+* **container:** fix label display name without icon ([c05a0d8](https://github.com/ovh/manager/commit/c05a0d8440aa648fa990bb7498c4b3b68002cc2b))
+
+
+
+
+
 # [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.38.0...@ovh-ux/manager-container-app@0.39.0) (2024-01-22)
 
 
