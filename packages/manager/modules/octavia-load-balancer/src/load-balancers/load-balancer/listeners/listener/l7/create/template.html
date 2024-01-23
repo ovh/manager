@@ -6,19 +6,17 @@
         data-translate="octavia_load_balancer_create_l7_policy_description"
     ></p>
     <div data-ovh-alert="octavia.alerts.l7Policy.create"></div>
-    <div class="">
-        <div class="text-center" data-ng-if="$ctrl.loading">
-            <oui-spinner></oui-spinner>
-        </div>
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
 
-        <div data-ng-if="!$ctrl.loading">
-            <octavia-load-balancer-l7-policy-form
-                data-model="$ctrl.model"
-                data-redirect-http-codes="$ctrl.redirectHttpCodes"
-                data-pools="$ctrl.pools"
-                data-on-submit="$ctrl.submit()"
-                data-on-cancel="$ctrl.cancel()"
-            ></octavia-load-balancer-l7-policy-form>
-        </div>
+    <div data-ng-if="!$ctrl.loading">
+        <octavia-load-balancer-l7-policy-form
+            data-model="$ctrl.model"
+            data-redirect-http-codes="$ctrl.redirectHttpCodes"
+            data-pools="$ctrl.pools"
+            data-on-submit="$ctrl.submit()"
+            data-on-cancel="$ctrl.cancel()"
+        ></octavia-load-balancer-l7-policy-form>
     </div>
 </div>

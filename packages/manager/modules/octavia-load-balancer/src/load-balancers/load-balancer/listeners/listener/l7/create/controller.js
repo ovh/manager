@@ -26,13 +26,7 @@ export default class OctaviaLoadBalancerCreateL7PolicyCtrl {
       this.projectId,
       this.region,
       this.listenerId,
-      this.model.name,
-      this.model.position,
-      this.model.action,
-      this.model.redirectHttpCode,
-      this.model.redirectPool?.id,
-      this.model.redirectPrefix,
-      this.model.redirectUrl,
+      this.model,
     )
       .then(async (response) => {
         this.trackL7CreatePolicyPage('success');
@@ -53,13 +47,7 @@ export default class OctaviaLoadBalancerCreateL7PolicyCtrl {
       })
       .catch((error) => {
         this.trackL7CreatePolicyPage('error');
-        this.Alerter.error(
-          this.$translate.instant('octavia_load_balancer_global_error', {
-            message: error.data?.message,
-            requestId: error.headers('X-Ovh-Queryid'),
-          }),
-          'octavia.alerts.l7Policy.create',
-        );
+        this.displayErrorAlert(error, 'octavia.alerts.l7Policy.create');
       })
       .finally(() => {
         this.loading = false;

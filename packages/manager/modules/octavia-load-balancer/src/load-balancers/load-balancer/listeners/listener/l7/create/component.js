@@ -12,6 +12,7 @@ export default {
     trackL7CreatePolicyPage: '<',
     getL7RuleCreationLink: '<',
     goBackToL7PoliciesList: '<',
+    displayErrorAlert: '<',
   },
   controller,
   template,

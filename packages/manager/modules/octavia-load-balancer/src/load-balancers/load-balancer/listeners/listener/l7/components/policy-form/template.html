@@ -117,7 +117,8 @@
         <oui-select
             name="pool"
             data-required
-            data-model="$ctrl.model.redirectPool"
+            data-model="$ctrl.model.redirectPoolId"
+            data-value-property="id"
             data-match="name"
             data-items="$ctrl.pools"
             data-placeholder="{{:: 'octavia_load_balancer_create_l7_policy_pool_default' | translate }}"
