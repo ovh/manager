@@ -9,10 +9,12 @@ import create from './create';
 import edit from './edit';
 import deletion from './delete';
 
+import listener from './listener';
+
 const moduleName = 'ovhManagerOctaviaLoadBalancerListeners';
 
 angular
-  .module(moduleName, [list, create, edit, deletion])
+  .module(moduleName, [list, create, edit, deletion, listener])
   .config(routing)
   .component('octaviaLoadBalancerListeners', component)
   .service('OctaviaLoadBalancerListenersService', service)

@@ -19,6 +19,22 @@ export default /* @ngInject */ ($stateProvider) => {
         atInternet.trackPage({
           name: `${trackBase}::${hit}`,
         }),
+      getPoolDetailLink: /* @ngInject */ (
+        coreURLBuilder,
+        projectId,
+        region,
+        loadbalancerId,
+      ) => (poolId) =>
+        coreURLBuilder.buildURL(
+          'public-cloud',
+          '#/pci/projects/:serviceName/octavia-load-balancer/:region/:loadbalancerId/pools/:poolId',
+          {
+            serviceName: projectId,
+            region,
+            loadbalancerId,
+            poolId,
+          },
+        ),
     },
     redirectTo: 'octavia-load-balancer.loadbalancer.listeners.list',
   });
