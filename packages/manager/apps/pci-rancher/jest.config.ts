@@ -2,8 +2,7 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jest-environment-jsdom',
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
-    '^.+\\.jsx?$': 'babel-jest',
+    '^.+\\.(js|jsx|mjs|cjs|ts|tsx)$': 'babel-jest',
   },
   transformIgnorePatterns: [
     'node_modules/(?!lodash-es|@ovhcloud|@stencil|@ovh-ux)',
@@ -15,6 +14,6 @@ module.exports = {
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
       '<rootDir>/src/_mock_/images.tsx',
     '^@/(.*)$': '<rootDir>/src/$1',
-    axios: 'axios/dist/node/axios.cjs',
-  },
+    '/axios/': 'axios/dist/node/axios.cjs',
+   },
 };

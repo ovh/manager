@@ -15,15 +15,13 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { DataGridCellProps } from './ProductStatusCell';
-import { RancherService, RessourceStatus } from '@/api/api.type';
+import { RancherService, RessourceStatus } from '../../../api/api.type';
 
-const ActionsCell: React.FC<
-  DataGridCellProps<undefined, RancherService> & {
-    isLoading?: boolean;
-    openModal: () => void;
-    setSelectedRancher: (rancher: RancherService) => void;
-  }
-> = ({ isLoading, rowData, openModal, setSelectedRancher }) => {
+const ActionsCell: React.FC<DataGridCellProps<undefined, RancherService> & {
+  isLoading?: boolean;
+  openModal: () => void;
+  setSelectedRancher: (rancher: RancherService) => void;
+}> = ({ isLoading, rowData, openModal, setSelectedRancher }) => {
   const editable = true;
   const { t } = useTranslation('pci-rancher/listing');
 
