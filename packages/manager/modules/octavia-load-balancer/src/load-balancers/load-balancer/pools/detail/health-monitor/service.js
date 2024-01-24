@@ -9,9 +9,10 @@ export default class OctaviaLoadBalancerHealthMonitorService {
       .get(
         `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor`,
       )
-      .then(({ data }) =>
-        data.filter((healthMonitor) => healthMonitor.poolId === poolId),
-      );
+      .then(({ data }) => {
+        const [monitor] = data.filter((item) => item.poolId === poolId);
+        return monitor;
+      });
   }
 
   createHealthMonitor(projectId, region, poolId, healthMonitor) {
@@ -37,6 +38,35 @@ export default class OctaviaLoadBalancerHealthMonitorService {
     return this.$http.post(
       `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor`,
       postDatas,
+    );
+  }
+
+  editHealthMonitorName(projectId, region, healthMonitor, name) {
+    const newHealthMonitor = {
+      ...healthMonitor,
+      name,
+    };
+    return this.editHealthMonitor(projectId, region, newHealthMonitor);
+  }
+
+  editHealthMonitor(projectId, region, healthMonitor) {
+    const putDatas = {
+      delay: healthMonitor.delay,
+      httpConfiguration: { ...healthMonitor.httpConfiguration },
+      maxRetries: healthMonitor.maxRetries,
+      maxRetriesDown: healthMonitor.maxRetriesDown,
+      name: healthMonitor.name,
+      timeout: healthMonitor.timeout,
+    };
+
+    putDatas.httpConfiguration.httpVersion = putDatas.httpConfiguration
+      .httpVersion
+      ? putDatas.httpConfiguration.httpVersion
+      : '1.0';
+
+    return this.$http.put(
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor/${healthMonitor.id}`,
+      putDatas,
     );
   }
 }

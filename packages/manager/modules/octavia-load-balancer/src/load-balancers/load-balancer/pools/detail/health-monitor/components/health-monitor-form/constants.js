@@ -1,10 +1,4 @@
-export const LABELS = {
-  MAX_RETRIES_DOWN: 'Max Retries Down',
-  MAX_RETRIES: 'Max Retries',
-  PERIODICITY: 'Periodicity',
-  TIMEOUT: 'Timeout',
-  URLPATH: 'URL Path',
-};
+import { HEALTH_MONITOR_TYPE } from '../../constants';
 
 export const BOUNDS = {
   MAX_RETRIES_DOWN: {
@@ -25,16 +19,6 @@ export const BOUNDS = {
 
 export const HEALTH_MONITOR_NAME_REGEX = /^[A-Za-z0-9_.-]+$/;
 export const EXPECTED_STATUS_CODE_REGEX = /^[1-5][0-9]{2}$/;
-
-export const HEALTH_MONITOR_TYPE = {
-  HTTP: 'http',
-  HTTPS: 'https',
-  PING: 'ping',
-  SCTP: 'sctp',
-  TCP: 'tcp',
-  TLSHELLO: 'tls-hello',
-  UDPCONNECT: 'udp-connect',
-};
 
 export const POOL_HEALTH_MONITOR_TYPE = {
   http: [
@@ -87,9 +71,7 @@ export const POOL_HEALTH_MONITOR_TYPE = {
 };
 
 export default {
-  LABELS,
   BOUNDS,
   HEALTH_MONITOR_NAME_REGEX,
   POOL_HEALTH_MONITOR_TYPE,
-  HEALTH_MONITOR_TYPE,
 };

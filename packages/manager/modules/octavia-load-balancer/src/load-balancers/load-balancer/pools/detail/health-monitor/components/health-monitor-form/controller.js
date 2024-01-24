@@ -1,8 +1,7 @@
+import { LABELS, HEALTH_MONITOR_TYPE } from '../../constants';
 import {
   EXPECTED_STATUS_CODE_REGEX,
   HEALTH_MONITOR_NAME_REGEX,
-  HEALTH_MONITOR_TYPE,
-  LABELS,
   BOUNDS,
   POOL_HEALTH_MONITOR_TYPE,
 } from './constants';
