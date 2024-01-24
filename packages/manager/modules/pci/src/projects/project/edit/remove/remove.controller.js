@@ -8,8 +8,18 @@ export default class {
     this.isLoading = false;
   }
 
+  cancel() {
+    this.trackClick(
+      'PublicCloud::pci::projects::project::edit::remove::cancel',
+    );
+    this.goBack();
+  }
+
   remove() {
     this.isLoading = true;
+    this.trackClick(
+      'PublicCloud::pci::projects::project::edit::remove::confirm',
+    );
 
     const promises = [this.delete()];
 
@@ -22,13 +32,19 @@ export default class {
 
     return Promise.all(promises)
       .then(() => {
-        this.CucCloudMessage.success(
+        this.trackPage(
+          'PublicCloud::pci::projects::project::edit::remove-success',
+        );
+        return this.CucCloudMessage.success(
           this.$translate.instant('pci_projects_project_edit_remove_success'),
           MESSAGES_CONTAINER_NAME,
         );
       })
       .catch(({ data }) => {
-        this.CucCloudMessage.error(
+        this.trackPage(
+          'PublicCloud::pci::projects::project::edit::remove-error',
+        );
+        return this.CucCloudMessage.error(
           this.$translate.instant('pci_projects_project_edit_remove_error', {
             error: data.message,
           }),

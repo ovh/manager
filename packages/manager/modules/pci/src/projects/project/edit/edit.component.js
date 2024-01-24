@@ -18,6 +18,8 @@ export default {
     service: '<',
     iamLink: '<',
     isDiscoveryProject: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
   controller,
   template,
