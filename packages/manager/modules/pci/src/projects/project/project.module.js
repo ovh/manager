@@ -29,7 +29,6 @@ import privateRegistry from './private-registry';
 import storages from './storages';
 import users from './users';
 import vouchers from './vouchers';
-import regions from './regions';
 import routing from './project.routing';
 import training from './training';
 import workflow from './workflow';
@@ -63,7 +62,6 @@ angular
     privateNetworks,
     quota,
     quotaExceedError,
-    regions,
     privateRegistry,
     ngOvhUtils,
     'oui',

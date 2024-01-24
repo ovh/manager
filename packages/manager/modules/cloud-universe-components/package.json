@@ -48,6 +48,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/ng-at-internet": "^5.11.2",
+    "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.1",
     "@ovh-ux/ng-ovh-user-pref": "^2.0.4",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
@@ -56,6 +57,7 @@
     "angular": "^1.5.0",
     "angular-translate": "^2.11.0",
     "angular-ui-bootstrap": "~1.3.3",
-    "ovh-api-services": "^14.0.6"
+    "oclazyload": "^1.1.0",
+    "ovh-api-services": "^17.0.0"
   }
 }
