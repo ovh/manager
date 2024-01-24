@@ -112,7 +112,7 @@
                                     size="l"
                                     block
                                     variant="primary"
-                                    on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+                                    on-click="$ctrl.onActivateProjectClick()"
                                 >
                                     <span
                                         data-translate="pci_projects_project_discovery_banner_cta"
@@ -158,7 +158,7 @@
                                     </div>
                                     <oui-button
                                         variant="primary"
-                                        on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+                                        on-click="$ctrl.onActivateProjectClick()"
                                     >
                                         <span
                                             data-translate="pci_projects_project_discovery_banner_cta"
@@ -240,8 +240,13 @@
                                                         data-ng-href="{{ ::link.href }}"
                                                         target="_blank"
                                                         rel="noopener"
-                                                        data-translate="{{ ::link.description }}"
-                                                    ></a>
+                                                        data-track-on="click"
+                                                        data-track-type="action"
+                                                        data-track-name="{{::link.trackingName }}"
+                                                        ><span
+                                                            data-translate="{{ ::link.description }}"
+                                                        ></span>
+                                                    </a>
                                                 </oui-tile-description>
                                             </oui-tile-definition>
                                         </oui-tile>
@@ -264,8 +269,14 @@
                                                         data-ng-href="{{ ::communitylink.href }}"
                                                         target="_blank"
                                                         rel="noopener"
-                                                        data-translate="{{ ::communitylink.description }}"
-                                                    ></a>
+                                                        data-track-on="click"
+                                                        data-track-type="action"
+                                                        data-track-name="{{::communitylink.trackingName }}"
+                                                        ><span
+                                                            data-translate="{{ ::communitylink.description }}"
+                                                        >
+                                                        </span>
+                                                    </a>
                                                 </oui-tile-description>
                                             </oui-tile-definition>
                                         </oui-tile>
