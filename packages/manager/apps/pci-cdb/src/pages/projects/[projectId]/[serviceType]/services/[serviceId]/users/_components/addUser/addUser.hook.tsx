@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { GenericUser } from '@/data/cdb/users';
+import { USER_CONFIG } from './user.const';
 
 interface UseAddUserFormProps {
   groupInput?: boolean;
@@ -24,13 +25,13 @@ export const useAddUserForm = ({
 
   const nameRules = z
     .string()
-    .min(1, {
-      message: t('min_length_error', { min: 3 }),
+    .min(USER_CONFIG.name.min, {
+      message: t('min_length_error', { min: USER_CONFIG.name.min }),
     })
-    .max(32, {
-      message: t('min_length_error', { max: 32 }),
+    .max(USER_CONFIG.name.max, {
+      message: t('min_length_error', { max: USER_CONFIG.name.max }),
     })
-    .regex(/^\w[\w.-]*$/, {
+    .regex(USER_CONFIG.name.pattern, {
       message:
         'Must contain letters and numbers, full stops (.), underscores (_), and dashes (-), must not start with a dash (-) or a full stop (.)',
     })
@@ -40,8 +41,8 @@ export const useAddUserForm = ({
 
   const groupRules = z
     .string()
-    .max(16, { message: 'Maximum 16 characters' })
-    .refine((value) => value === '' || /^\w[\w.-]*$/.test(value), {
+    .max(USER_CONFIG.group.max, { message: 'Maximum 16 characters' })
+    .refine((value) => value === '' || USER_CONFIG.group.pattern.test(value), {
       message:
         'Must contain letters and numbers, full stops (.), underscores (_) and dashes (-), must not start with a dash (-) or a full stop (.)',
     })
@@ -49,13 +50,26 @@ export const useAddUserForm = ({
 
   const rolesRules = z.array(z.string()).optional();
 
+  const tagsRules = z.array(
+    z
+      .string()
+      .min(USER_CONFIG.name.min, {
+        message: t('min_length_error', { min: USER_CONFIG.name.min }),
+      })
+      .regex(/^[+-][a-z@]{0,253}$/, {
+        message:
+          'Must start by a + or a - and contain only metters, numbers ans arobases (@)',
+      }),
+  ).min(1, { message: 'minimum'});
+
   const schema = z.object({
     name: nameRules,
     group: groupRules,
     roles: rolesRules,
+    tags: tagsRules,
   });
 
-  const defaultValues: ValidationSchema = { name: '' };
+  const defaultValues: ValidationSchema = { name: '', tags: [] };
   if (rolesInput) defaultValues.roles = [];
 
   type ValidationSchema = z.infer<typeof schema>;

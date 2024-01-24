@@ -9,6 +9,7 @@ export type Path =
   | `/projects/:projectId/:serviceType/services`
   | `/projects/:projectId/:serviceType/services/:serviceId`
   | `/projects/:projectId/:serviceType/services/:serviceId/general`
+  | `/projects/:projectId/:serviceType/services/:serviceId/serviceData/hook`
   | `/projects/:projectId/:serviceType/services/:serviceId/users`
   | `/projects/:projectId/:serviceType/services/create`
 
@@ -18,6 +19,7 @@ export type Params = {
   '/projects/:projectId/:serviceType/services': { projectId: string; serviceType: string }
   '/projects/:projectId/:serviceType/services/:serviceId': { projectId: string; serviceType: string; serviceId: string }
   '/projects/:projectId/:serviceType/services/:serviceId/general': { projectId: string; serviceType: string; serviceId: string }
+  '/projects/:projectId/:serviceType/services/:serviceId/serviceData/hook': { projectId: string; serviceType: string; serviceId: string }
   '/projects/:projectId/:serviceType/services/:serviceId/users': { projectId: string; serviceType: string; serviceId: string }
   '/projects/:projectId/:serviceType/services/create': { projectId: string; serviceType: string }
 }

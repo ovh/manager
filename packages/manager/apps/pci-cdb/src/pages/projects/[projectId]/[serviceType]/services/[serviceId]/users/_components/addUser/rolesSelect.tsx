@@ -21,7 +21,8 @@ import {
   FormItem,
   FormMessage,
 } from '@/components/ui/form';
-import { useRolesSelectForm } from './useRolesSelectForm';
+import { useRolesSelectForm } from './rolesSelect.hook';
+import { USER_CONFIG } from './user.const';
 
 interface RoleSelectProps {
   value: string[] | undefined;
@@ -196,8 +197,12 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
                       placeholder="Enter customDB"
                       {...field}
                       onKeyDown={handleKeyDown}
-                      disabled={!currentRole.includes('(defined db)')}
-                      readOnly={!currentRole.includes('(defined db)')}
+                      disabled={
+                        !currentRole.includes(USER_CONFIG.roles.customTag)
+                      }
+                      readOnly={
+                        !currentRole.includes(USER_CONFIG.roles.customTag)
+                      }
                     />
                   </FormControl>
                   <FormMessage />

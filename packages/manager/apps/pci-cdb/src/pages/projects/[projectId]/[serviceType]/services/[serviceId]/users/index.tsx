@@ -1,32 +1,53 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
-import { useOutletContext } from 'react-router-dom';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMutation } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
-import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { useGetUsers } from '@/hooks/api/useGetUsers';
 import { database } from '@/models/database';
 import { DataTable } from '@/components/ui/data-table';
 import { GenericUser, deleteUser, resetUserPassword } from '@/data/cdb/users';
 import { getColumns } from './_components/userListTableColumns';
-import AddUserModal from './_components/add/addUserModal';
+import AddUserModal from './_components/addUser/addUser';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { useServiceData } from '../serviceData.hook';
 
+type Message = {
+  type?: 'default' | 'destructive' | 'success';
+  title: string;
+  content: JSX.Element;
+};
 const UsersPage = () => {
-  const { projectId, serviceId } = useRequiredParams<{
-    projectId: string;
-    serviceId: string;
-  }>();
-  const service = useOutletContext() as database.Service;
-  const usersQuery = useGetUsers(projectId, service.engine, serviceId, {
+  const { projectId, service, serviceQuery } = useServiceData();
+  if (!service) {
+    return <>Loading</>;
+  }
+  const [messages, setMessages] = useState<Message[]>([]);
+  const usersQuery = useGetUsers(projectId, service.engine, service.id, {
     refetchInterval: 30_000,
   });
   const resetPasswordMutation = useMutation({
     mutationFn: (userId: string) =>
-      resetUserPassword(projectId, service.engine, serviceId, userId),
+      resetUserPassword(projectId, service.engine, service.id, userId),
     onSuccess: (data: database.service.UserWithPassword) => {
       usersQuery.refetch();
+      serviceQuery.refetch();
       toast.success(`Your password has been changed to ${data.password}`);
+      setMessages([
+        {
+          type: 'success',
+          title: 'Password reset',
+          content: (
+            <div>
+              Your password has been changed to{' '}
+              <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
+                {data.password}
+              </code>
+            </div>
+          ),
+        },
+        ...messages,
+      ]);
     },
     onError: (error: Error) => {
       toast.error(
@@ -36,9 +57,10 @@ const UsersPage = () => {
   });
   const deleteUserMutation = useMutation({
     mutationFn: (userId: string) =>
-      deleteUser(projectId, service.engine, serviceId, userId),
+      deleteUser(projectId, service.engine, service.id, userId),
     onSuccess: () => {
       usersQuery.refetch();
+      serviceQuery.refetch();
       toast.success(`Your user has been correctly deleted`);
     },
     onError: (error: Error) => {
@@ -59,6 +81,14 @@ const UsersPage = () => {
   });
   return (
     <>
+      <div className="flex flex-col gap-2 mb-2">
+        {messages.map((m, i) => (
+          <Alert variant={m.type} key={i}>
+            <AlertTitle>{m.title}</AlertTitle>
+            <AlertDescription>{m.content}</AlertDescription>
+          </Alert>
+        ))}
+      </div>
       {usersQuery.isSuccess ? (
         <>
           <Button

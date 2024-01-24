@@ -1,16 +1,16 @@
-import { useOutletContext } from 'react-router-dom';
-import { database } from '@/models/database';
+import { useServiceData } from '../serviceData.hook';
 import ServiceMeter from './_components/meter';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useRequiredParams } from '@/hooks/useRequiredParams';
 
 export const Handle = {
   breadcrumb: () => 'Dashboard',
 };
 
 export default function ServiceDashboardPage() {
-  const { projectId } = useRequiredParams<{ projectId: string }>();
-  const service = useOutletContext() as database.Service;
+  const { projectId, service } = useServiceData();
+  if (!service) {
+    return <>Loading</>;
+  }
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">

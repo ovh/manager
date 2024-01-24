@@ -46,7 +46,7 @@ const UserActions = ({
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
               onClick={() => {
-                toast.success('Edition not implemented yet', {
+                toast.error('Edition not implemented yet', {
                   dismissible: true,
                 });
               }}

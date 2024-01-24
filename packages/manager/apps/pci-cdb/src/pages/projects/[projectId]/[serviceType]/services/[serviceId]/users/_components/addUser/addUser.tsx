@@ -18,13 +18,17 @@ import { database } from '@/models/database';
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
 import RolesSelect from './rolesSelect';
-import { useAddUserForm } from './useAddUserForm';
+import { useAddUserForm } from './addUser.hook';
+import { useState } from 'react';
+import { Tag, TagInput } from '@/components/ui/tag/tag-input';
+import TagsInput from '@/components/tags-input';
 
 interface AddUserModalProps {
   users: GenericUser[];
@@ -70,6 +74,9 @@ const AddUserModal = ({
     form.reset();
     onClose();
   };
+
+  const [tags, setTags] = useState<Tag[]>([]);
+  const { setValue } = form;
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
@@ -138,6 +145,44 @@ const AddUserModal = ({
                 )}
               />
             )}
+
+            <FormField
+              control={form.control}
+              name="tags"
+              render={({ field }) => (
+                <FormItem className="flex flex-col items-start">
+                  <FormLabel className="text-left">Topics</FormLabel>
+                  <FormControl>
+                    <TagInput
+                      {...field}
+                      minLength={5}
+                      maxLength={32}
+                      pattern="/^[+-][a-z@]{0,253}$/"
+                      placeholder="Enter a command"
+                      tags={tags}
+                      className="sm:min-w-[450px]"
+                      inputFieldPostion="top"
+                      allowDuplicates={false}
+                      textCase={null}
+                      setTags={(newTags) => {
+                        setTags(newTags);
+                        const t = (newTags as Tag[]).map(tag => tag.text);
+                        form.setValue('tags', t);
+                      }}
+                    />
+                    {/* <TagsInput
+                    {...field}
+                    schema={schema.shape.tags}
+                    />
+                       */}
+                  </FormControl>
+                  <FormDescription>Add a command</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <pre>{JSON.stringify(form.formState.errors, null, 2)}</pre>
+
             <DialogFooter className="flex justify-end">
               <Button type="submit" disabled={createUserMutation.isPending}>
                 Add user

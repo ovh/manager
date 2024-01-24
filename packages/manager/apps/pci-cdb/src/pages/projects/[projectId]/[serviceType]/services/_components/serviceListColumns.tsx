@@ -60,6 +60,9 @@ export const getColumns = ({
             <div className="w-[50px] h-[33px]">
               <img src={`./assets/engines/${engine}.png`} />
             </div>
+            {/* <div className="w-[50px]">
+              <img className="rounded-full" src={`./assets/engines/svg/${engine}.svg`} />
+            </div> */}
             <span className="capitalize whitespace-nowrap">{engine}</span>
           </div>
         );

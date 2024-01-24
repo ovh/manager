@@ -1,19 +1,11 @@
+import { UseQueryResult } from '@tanstack/react-query';
 import { Outlet } from 'react-router-dom';
-import { useRequiredParams } from '@/hooks/useRequiredParams';
-import { H2 } from '@/components/typography';
 import { useGetService } from '@/hooks/api/useGetService';
 import TabsMenu from '@/components/tabs-menu';
-
-const ServiceBreadcrumb = ({
-  projectId,
-  serviceId,
-}: {
-  projectId: string;
-  serviceId: string;
-}) => {
-  const serviceQuery = useGetService(projectId, serviceId);
-  return serviceQuery.data?.description ?? serviceId;
-};
+import { database } from '@/models/database';
+import { useRequiredParams } from '@/hooks/useRequiredParams';
+import { ServiceHeader } from './_components/serviceHeader';
+import { ServiceBreadcrumb } from './_components/serviceBreadcrumb';
 
 export const Handle = {
   breadcrumb: (params: { projectId: string; serviceId: string }) => {
@@ -26,6 +18,10 @@ export const Handle = {
   },
 };
 
+export type ServiceLayoutContext = {
+  service: database.Service;
+  serviceQuery: UseQueryResult<database.Service, Error>;
+};
 export default function ServiceLayout() {
   const { projectId, serviceId } = useRequiredParams<{
     projectId: string;
@@ -34,15 +30,30 @@ export default function ServiceLayout() {
   const serviceQuery = useGetService(projectId, serviceId, {
     refetchInterval: 30_000,
   });
+
+  const service = serviceQuery.data;
+  if (!service) {
+    return (
+      <>
+        <ServiceHeader.Skeleton />
+        <TabsMenu.Skeleton />
+        Loading your service data
+      </>
+    );
+  }
+  const serviceLayoutContext: ServiceLayoutContext = {
+    service,
+    serviceQuery,
+  };
   const tabs = [
     { href: 'general', label: 'Dashboard' },
     { href: 'users', label: 'Users' },
   ];
   return (
     <>
-      <H2>{serviceQuery.data?.description ?? 'Dashboard'}</H2>
+      <ServiceHeader service={service} />
       <TabsMenu tabs={tabs} />
-      {serviceQuery.isSuccess && <Outlet context={serviceQuery.data} />}
+      <Outlet context={serviceLayoutContext} />
     </>
   );
 }
