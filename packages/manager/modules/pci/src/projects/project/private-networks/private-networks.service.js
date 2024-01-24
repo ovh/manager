@@ -19,13 +19,19 @@ export default class {
     this.OvhApiCloudProjectNetworkPrivateSubnet = OvhApiCloudProjectNetworkPrivateSubnet;
   }
 
-  getPrivateNetworks(serviceName) {
+  getPrivateNetworks(serviceName, customerRegions = []) {
     return this.$http
       .get(`/cloud/project/${serviceName}/aggregated/network`)
       .then(({ data }) => {
         const privateNetworks = {};
+        const localZones =
+          customerRegions?.filter(({ type }) => type.includes('localzone')) ||
+          [];
         data.resources.forEach((network) => {
-          if (network.visibility === 'private' && network.vlanId) {
+          if (
+            network.visibility === 'private' &&
+            !localZones?.some((region) => region.name === network.region)
+          ) {
             if (!privateNetworks[network.vlanId]) {
               const { id, region, ...rest } = network;
               privateNetworks[network.vlanId] = {

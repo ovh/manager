@@ -69,8 +69,11 @@ export default /* @ngInject */ ($stateProvider) => {
       createNetwork: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.privateNetwork.add', { projectId }),
       networkId: /* @ngInject */ ($transition$) => $transition$.params().id,
-      privateNetworks: /* @ngInject */ (PciPrivateNetworks, projectId) =>
-        PciPrivateNetworks.getPrivateNetworks(projectId),
+      privateNetworks: /* @ngInject */ (
+        PciPrivateNetworks,
+        projectId,
+        customerRegions,
+      ) => PciPrivateNetworks.getPrivateNetworks(projectId, customerRegions),
       goToAddPublicGateway: /* @ngInject */ (
         $state,
         projectId,
