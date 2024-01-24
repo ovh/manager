@@ -1,15 +1,10 @@
 import React from 'react';
 import RancherDetail from './RancherDetail';
 import { render, waitFor, fireEvent } from '../../../utils/test.provider';
-import { rancherMocked } from '@/_mock_/rancher';
-import { RancherService } from '@/api/api.type';
-import dashboardTranslation from '@/public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
-import listingTranslation from '@/public/translations/pci-rancher/listing/Messages_fr_FR.json';
-
-jest.mock('@tanstack/react-query', () => ({
-  useQuery: jest.fn(() => ({ isLoading: false, data: [] })),
-  useMutation: jest.fn(() => ({ isLoading: false, data: [] })),
-}));
+import { rancherMocked } from '../../../_mock_/rancher';
+import { RancherService } from '../../../api/api.type';
+import dashboardTranslation from '../../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
+import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 
 const setupSpecTest = async (rancherService: RancherService = rancherMocked) =>
   waitFor(() =>

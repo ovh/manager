@@ -38,9 +38,11 @@ interface RancherDetailProps {
 const RancherDetail = ({ rancher, projectId }: RancherDetailProps) => {
   const { t } = useTranslation('pci-rancher/dashboard');
   const [showEditModal, toggleEditModal] = useState(false);
-  const [editNameResponse, setEditNameResponse] =
-    useState<ODS_MESSAGE_TYPE | null>(null);
-  const { mutate: editRancherName, error } = useMutation({
+  const [
+    editNameResponse,
+    setEditNameResponse,
+  ] = useState<ODS_MESSAGE_TYPE | null>(null);
+  const { mutate: editRancherName } = useMutation({
     mutationFn: (rancherUpdated: RancherService) =>
       editRancherService({
         rancherId: rancher?.id,
