@@ -28,14 +28,7 @@
     </oui-message>
 
     <div data-ui-view>
-        <!-- voucher -->
-        <div class="mb-3" data-ui-view="voucher"></div>
-
-        <form
-            novalidate
-            name="paymentForm"
-            data-ng-submit="$ctrl.onPaymentFormSubmit()"
-        >
+        <form novalidate name="paymentForm">
             <!-- main content: payment method (default or register) -->
             <div
                 class="mb-3"
@@ -46,6 +39,9 @@
             <div class="text-center" data-ng-if="$ctrl.isCheckingPaymentMethod">
                 <oui-spinner></oui-spinner>
             </div>
+
+            <!-- voucher -->
+            <div class="mb-3" data-ui-view="voucher"></div>
 
             <!-- credits -->
             <div
@@ -66,7 +62,7 @@
             >
                 <!--Credit card and PayPal-->
                 <ovh-payment-method-integration
-                    data-disabled="!$ctrl.model.valid || $ctrl.globalLoading.finalize"
+                    data-disabled="!($ctrl.model.valid && !$ctrl.globalLoading.finalize)"
                     data-callback-status-param-url-name="paymentStatus"
                     data-payment-method-type="$ctrl.model.paymentMethod"
                     data-on-initialized="$ctrl.onIntegrationInitialized.bind($ctrl)"
@@ -81,9 +77,9 @@
                     <!--Create project btn-->
                     <div class="d-flex">
                         <oui-button
-                            data-disabled="!$ctrl.model.valid || $ctrl.globalLoading.finalize"
+                            data-disabled="!($ctrl.model.valid && !$ctrl.globalLoading.finalize)"
                             data-variant="primary"
-                            data-type="submit"
+                            data-on-click="$ctrl.onPaymentFormSubmit()"
                             data-variant-nav="next"
                             data-ng-if="!$ctrl.needToCheckCustomerInformations || !$ctrl.isCheckingPaymentMethod"
                         >
@@ -127,10 +123,9 @@
                     >
                         <oui-button
                             data-variant="primary"
-                            data-type="submit"
+                            data-on-click="$ctrl.trackOnPaymentFormSubmit('new_project_payment_continue')"
                             data-variant-nav="next"
-                            data-disabled="!$ctrl.model.valid || $ctrl.isInvalidPaymentMethod()"
-                            data-on-click="$ctrl.sendTrack('new_project_payment_continue')"
+                            data-disabled="!($ctrl.model.valid && !$ctrl.isInvalidPaymentMethod())"
                         >
                             <span
                                 data-translate="pci_project_new_payment_btn_continue_default"
@@ -151,10 +146,9 @@
                     >
                         <oui-button
                             data-variant="primary"
-                            data-type="submit"
+                            data-on-click="$ctrl.trackOnPaymentFormSubmit('new_project_payment_continue')"
                             data-variant-nav="next"
-                            data-disabled="!$ctrl.model.valid || !$ctrl.model.credit"
-                            on-click="$ctrl.sendTrack('new_project_payment_continue')"
+                            data-disabled="!($ctrl.model.valid && $ctrl.model.credit)"
                         >
                             <span
                                 data-translate="{{ 'pci_project_new_payment_btn_continue_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
@@ -174,11 +168,11 @@
                         data-ng-if="$ctrl.model.paymentMethod.type.isCreditCard() || $ctrl.model.paymentMethod.type.isRupayCard()"
                     >
                         <oui-button
-                            variant="primary"
-                            type="button"
-                            on-click="$ctrl.initComponentInitialParams()"
+                            data-variant="primary"
+                            data-type="button"
+                            data-on-click="$ctrl.initComponentInitialParams()"
                             data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.isCheckingPaymentMethod"
-                            disabled="!$ctrl.model.valid || $ctrl.globalLoading.finalize  || $ctrl.model.reloadHandleByComponent"
+                            data-disabled="!($ctrl.model.valid && !$ctrl.globalLoading.finalize && !$ctrl.model.reloadHandleByComponent)"
                         >
                             <span
                                 data-translate="pci_project_new_payment_btn_continue_add_credit_card"
@@ -220,7 +214,7 @@
                             type="button"
                             on-click="$ctrl.initComponentInitialParams()"
                             data-ng-if="$ctrl.model.paymentMethod.isHandleByComponent() && !$ctrl.componentInitialParams && !$ctrl.isCheckingPaymentMethod"
-                            disabled="!$ctrl.model.valid || $ctrl.globalLoading.finalize"
+                            disabled="!($ctrl.model.valid && !$ctrl.globalLoading.finalize)"
                         >
                             <span
                                 data-translate="pci_project_new_payment_btn_continue_sepa_direct_debit"
