@@ -24,7 +24,7 @@
                 class="oui-button oui-button_primary"
                 data-ui-sref="pci.projects.new"
                 data-track-on="click"
-                data-track-name="PCI_PROJECTS_ONBOARDING_us_NEW_PROJECT"
+                data-track-name="PCI_PROJECTS_ONBOARDING_NEW_PROJECT"
                 data-track-type="navigation"
             >
                 <span
@@ -67,19 +67,9 @@
     <div class="d-grid gap-1 col-md-6 offset-xs-1 offset-md-3 mb-4 text-center">
         <img class="w-100" data-ng-src="{{ $ctrl.illustration }}" alt="" />
         <div>
-            <account-migration-notification></account-migration-notification>
             <h1 data-translate="pci_projects_onboarding_title"></h1>
             <p data-translate="pci_projects_onboarding_description1"></p>
             <p data-translate="pci_projects_onboarding_description2"></p>
-
-            <!-- HDS checkbox and banner info -->
-            <hds-option
-                data-ng-if="$ctrl.hds.isAvailable && $ctrl.isValidHdsSupportLevel"
-                data-hds="$ctrl.hds"
-                data-model="$ctrl.model"
-                data-on-hds-checkbox-changed="$ctrl.onHdsCheckboxChanged(hdsCheckbox)"
-            >
-            </hds-option>
 
             <!-- contracts -->
             <ovh-contracts-summary
@@ -93,6 +83,7 @@
             <!--Create a project-->
             <oui-button
                 variant="primary"
+                size="m"
                 data-ng-if="!$ctrl.isTrustedZone"
                 data-on-click="$ctrl.onCreateDiscoveryProjectClick()"
                 disabled="!$ctrl.model.agreements || $ctrl.isLoading"
@@ -101,6 +92,9 @@
                     data-translate="pci_projects_onboarding_create_project"
                 ></span>
             </oui-button>
+            <div class="text-center mt-4" data-ng-if="$ctrl.isLoading">
+                <oui-spinner size="s"></oui-spinner>
+            </div>
 
             <!--Call customer-->
             <div data-ng-if="$ctrl.isTrustedZone">
