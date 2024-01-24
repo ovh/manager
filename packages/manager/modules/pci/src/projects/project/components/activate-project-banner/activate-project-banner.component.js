@@ -6,7 +6,7 @@ export default {
   template,
   controller,
   bindings: {
-    trackingPageName: '<',
-    onClick: '<',
+    trackingPageName: '@',
+    onClick: '&',
   },
 };
