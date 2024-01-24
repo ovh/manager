@@ -83,6 +83,8 @@ export class MscTailLogs implements IMscTailLogs {
         this.refreshInterval,
       );
     } else {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       clearInterval(this.intervalId);
     }
   }

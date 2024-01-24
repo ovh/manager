@@ -9,23 +9,21 @@ export type CreateFetchDataFnParams = {
   catchError?: boolean;
 };
 
-export const createFetchDataFn =
-  <T>({
-    params,
-    apiVersion,
-    method,
+export const createFetchDataFn = <T>({
+  params,
+  apiVersion,
+  method,
+  url,
+  catchError,
+}: CreateFetchDataFnParams) => async () => {
+  const response: ResponseData<T> = await apiClient[apiVersion][method](
     url,
-    catchError,
-  }: CreateFetchDataFnParams) =>
-  async () => {
-    const response: ResponseData<T> = await apiClient[apiVersion][method](
-      url,
-      params,
-    );
+    params,
+  );
 
-    if (response?.code?.startsWith('ERR') && !catchError) {
-      throw new Error(response.response?.data.message);
-    }
+  if (response?.code?.startsWith('ERR') && !catchError) {
+    throw new Error(response.response?.data.message);
+  }
 
-    return response;
-  };
+  return response;
+};

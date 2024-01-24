@@ -8,19 +8,21 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React, { useState } from 'react';
 import { TFunction, useTranslation } from 'react-i18next';
-import { useNavigate, useParams, useHref } from 'react-router-dom';
+import { useParams, useHref } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 
-import { RancherService } from '@/api/api.type';
-import DeleteModal from '@/components/Modal/DeleteModal';
+import DeleteModal from '../../../components/Modal/DeleteModal';
 import ActionsCell from '../OdsCell/ActionsCell';
 import {
   DataGridCellProps,
   ProductStatusCell,
 } from '../OdsCell/ProductStatusCell';
 import ReactFormatter from './OdsFormatter';
-import { deleteRancherService, deleteRancherServiceQueryKey } from '@/api';
-import { RessourceStatus } from '../../../api/api.type';
+import {
+  deleteRancherService,
+  deleteRancherServiceQueryKey,
+} from '../../../api';
+import { RessourceStatus, RancherService } from '../../../api/api.type';
 
 interface LinkServiceInterface {
   rowData?: RancherService;
@@ -71,8 +73,10 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
   const { projectId } = useParams();
   const [showDeleteModal, toggleDeleteModal] = useState(false);
   const [selectedRancher, setSelectedRancher] = useState<RancherService>();
-  const [deleteRancherResponse, setDeleteRancherResponse] =
-    useState<ODS_MESSAGE_TYPE | null>(null);
+  const [
+    deleteRancherResponse,
+    setDeleteRancherResponse,
+  ] = useState<ODS_MESSAGE_TYPE | null>(null);
 
   const { mutate: deleteRancher, isError } = useMutation({
     mutationFn: () =>
@@ -106,11 +110,6 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
       title: t('rancherVersion'),
       field: 'targetSpec.version',
       formatter: ReactFormatter(<VersionDisplay t={t} />),
-    },
-    {
-      title: t('numberOfCpu'),
-      field: 'currentState.usage.orchestratedVcpus',
-      formatter: ReactFormatter(<CpuDisplay />),
     },
     {
       title: t('numberOfCpu'),

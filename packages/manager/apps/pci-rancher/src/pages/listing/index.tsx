@@ -13,8 +13,8 @@ import {
 import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import Datagrid from '@/components/layout-helpers/Listing/dataGrid';
-import { RancherService } from '@/api/api.type';
+import Datagrid from '../../components/layout-helpers/Listing/dataGrid';
+import { RancherService } from '../../api/api.type';
 import RancherTaskMessage from './RancherTaskMessage';
 
 export interface ListingProps {

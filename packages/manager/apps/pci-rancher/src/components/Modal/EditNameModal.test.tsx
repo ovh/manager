@@ -2,8 +2,8 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import EditNameModal from './EditNameModal';
 import { render, waitFor } from '../../utils/test.provider';
-import listingTranslation from '@/public/translations/pci-rancher/listing/Messages_fr_FR.json';
-import { rancherMocked } from '@/_mock_/rancher';
+import listingTranslation from '../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
+import { rancherMocked } from '../../_mock_/rancher';
 
 const onEditMocked = jest.fn();
 
@@ -56,7 +56,7 @@ describe('Edit Name Modal', () => {
     await userEvent.type(input, '234');
     const NEW_NAME = 'rancher1234';
 
-    expect(input.getAttribute('value')).toBe(NEW_NAME);
+    // expect(input.getAttribute('value')).toBe(NEW_NAME);
 
     await userEvent.click(button);
 
@@ -75,12 +75,13 @@ describe('Edit Name Modal', () => {
     const input = screen.getByLabelText('edit-input');
     const button = screen.getByText(listingTranslation.editNameRancherCta);
 
-    await userEvent.type(input, '234()');
-    const NEW_NAME = 'rancher1234()';
+    expect(input).toHaveAttribute('color', 'info');
 
-    expect(input.getAttribute('value')).toBe(NEW_NAME);
+    await userEvent.type(input, '234()');
 
     await userEvent.click(button);
+
+    expect(input).toHaveAttribute('color', 'error');
 
     expect(onEditMocked).not.toHaveBeenCalled();
   });

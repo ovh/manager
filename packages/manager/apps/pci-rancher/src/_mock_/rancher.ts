@@ -1,4 +1,4 @@
-import { RancherService, RessourceStatus } from '@/api/api.type';
+import { RancherService, RessourceStatus } from '../api/api.type';
 
 export const rancherMocked: RancherService = {
   id: '123',
