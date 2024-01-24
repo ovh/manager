@@ -1,6 +1,34 @@
 <div id="octavia-load-balancer-pools-detail-health-monitor">
     <div data-ovh-alert="octavia.alerts.healthmonitor"></div>
     <div ui-view>
-        TODO: health monitor dashboard
+        <div class="row d-md-flex">
+            <div class="col-md-4">
+                <oui-tile
+                    data-heading="{{ 'octavia_load_balancer_health_monitor_overview_management_title' | translate }}"
+                >
+                    <oui-tile-button
+                        data-on-click="$ctrl.goToHealthMonitorEdition()"
+                    >
+                        <span
+                            data-translate="octavia_load_balancer_health_monitor_overview_management_edit"
+                        ></span>
+                    </oui-tile-button>
+                    <oui-tile-button
+                        data-on-click="$ctrl.goToHealthMonitorDeletion()"
+                    >
+                        <span
+                            data-translate="octavia_load_balancer_health_monitor_overview_management_delete"
+                        ></span>
+                    </oui-tile-button>
+                </oui-tile>
+            </div>
+            <div class="col-md-4">
+                <oui-tile
+                    heading="{{:: 'octavia_load_balancer_health_monitor_overview_info_title' | translate }}"
+                    class="h-100"
+                >
+                </oui-tile>
+            </div>
+        </div>
     </div>
 </div>

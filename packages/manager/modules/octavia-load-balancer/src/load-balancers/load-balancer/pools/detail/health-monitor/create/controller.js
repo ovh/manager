@@ -29,7 +29,7 @@ export default class OctaviaLoadBalancerPoolsDetailHealthMonitorCreateCtrl {
       this.model,
     )
       .then(() => {
-        this.goBack(true).then(() =>
+        this.goToDashboard(true).then(() =>
           this.Alerter.set(
             'alert-success',
             this.$translate.instant(
