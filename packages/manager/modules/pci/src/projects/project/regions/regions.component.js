@@ -13,6 +13,7 @@ export default {
     getStateName: '<',
     goToRegion: '<',
     isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
   controller,
   template,

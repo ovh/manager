@@ -30,7 +30,7 @@ export default {
     trackPage: '<',
     isMenuSidebarVisible: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '<',
+    goToDiscoveryProjectActivationPage: '&',
     discoveryPromotionVoucherAmount: '<',
     activateDiscovery: '<',
   },
