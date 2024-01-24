@@ -55,6 +55,10 @@ export default class NgAtInternet {
     return this.trackingPlugin.setRegion(region);
   }
 
+  async setPciProjectMode(params) {
+    return this.trackingPlugin.setPciProjectMode(params);
+  }
+
   async setDefaults(def) {
     return this.trackingPlugin.setDefaults(def);
   }
