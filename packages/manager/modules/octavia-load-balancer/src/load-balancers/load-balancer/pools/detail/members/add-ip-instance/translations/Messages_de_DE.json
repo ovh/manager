@@ -1,0 +1,16 @@
+{
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_banner": "Jede Änderung der IP-Adresse einer Instanz nach der Konfiguration muss manuell in die Konfiguration des Pools übertragen werden.",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_action": "Weiter",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_description": "Diese Tabelle enthält die Instanzen Ihres Public-Cloud-Projekts. Wenn Sie diese auswählen, werden ihre IPs als Mitglied konfiguriert.",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_port_title": "Ports Ihrer Instanz-IPs hinzufügen",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_search_not_found": "Keine Instanzen gefunden",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_search_placeholder": "Instanz suchen",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_name_label": "Name",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_ip_label": "IP",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_port_label": "Port",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_duplicate_port_label": "Diesen Port für alle Mitglieder duplizieren",
+  "octavia_load_balancer_pools_detail_members_protocol_port_existing": "Diese IP-Adresse ist bereits mit diesem Port verbunden. Bitte wählen Sie einen anderen Port aus.",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_add_action": "Bestätigen",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_cancel_action": "Abbrechen",
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_aria_label_close": "Schließen"
+}

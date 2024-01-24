@@ -1,0 +1,23 @@
+{
+  "octavia_load_balancer_pools_create_name": "Nazwa poola",
+  "octavia_load_balancer_pools_create_options": "Opcje poola",
+  "octavia_load_balancer_pools_create_algorithm": "Algorytm",
+  "octavia_load_balancer_pools_create_algorithm_tooltip": "Algorytm Load Balancera, który rozdziela ruch pomiędzy użytkownikami poola.",
+  "octavia_load_balancer_pools_create_algorithm_roundRobin": "Rozdziela zapytania równomiernie między kilkoma instancjami.",
+  "octavia_load_balancer_pools_create_algorithm_leastConnections": "Przydziela zapytania do instancji z najmniejszą liczbą aktywnych połączeń.",
+  "octavia_load_balancer_pools_create_algorithm_sourceIP": "Zapytania pochodzące z pojedynczego źródłowego adresu IP są konsekwentnie kierowane do tej samej instancji.",
+  "octavia_load_balancer_pools_create_algorithm_sourceIPPort": "Zapytania pochodzące z pojedynczego źródłowego adresu IP i pojedynczego Portu źródłowego są konsekwentnie kierowane do tej samej instancji.",
+  "octavia_load_balancer_pools_create_protocol": "Protokół",
+  "octavia_load_balancer_pools_create_protocol_tooltip": "Protokół, dla którego ten pool i jego użytkownicy nasłuchują.",
+  "octavia_load_balancer_pools_create_protocol_default": "Wybierz protokół",
+  "octavia_load_balancer_pools_create_session": "Sesja stała",
+  "octavia_load_balancer_pools_create_session_tooltip": "Typ sesji stałej służącej do rozdzielania ruchu między użytkownikami poola.",
+  "octavia_load_balancer_pools_create_persistent_session": "Wybierz sesję stałą",
+  "octavia_load_balancer_pools_create_persistent_session_sourceIP": "Trwałość sesji oparta o źródłowy adres IP.",
+  "octavia_load_balancer_pools_create_persistent_session_httpCookie": "Trwałość sesji oparta na pliku cookie http.",
+  "octavia_load_balancer_pools_create_persistent_session_appCookie": "Trwałość sesji oparta na cookie aplikacji.",
+  "octavia_load_balancer_pools_create_persistent_session_cookie_name": "Nazwa pliku cookie",
+  "octavia_load_balancer_pools_create_cancel": "Anuluj",
+  "octavia_load_balancer_pools_create_submit": "Dodaj",
+  "octavia_load_balancer_pools_create_submit_edition": "Edytuj"
+}
