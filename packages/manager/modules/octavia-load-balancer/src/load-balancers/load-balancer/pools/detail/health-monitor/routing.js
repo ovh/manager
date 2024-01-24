@@ -32,7 +32,15 @@ export default /* @ngInject */ ($stateProvider) => {
             region,
             poolId,
           ),
-        goBack: /* @ngInject */ ($state) => (reload) =>
+        goToHealthMonitorEdition: /* @ngInject */ ($state) => () =>
+          $state.go(
+            'octavia-load-balancer.loadbalancer.pools.detail.health-monitor.edit',
+          ),
+        goToHealthMonitorDeletion: /* @ngInject */ ($state) => () =>
+          $state.go(
+            'octavia-load-balancer.loadbalancer.pools.detail.health-monitor.delete',
+          ),
+        goToDashboard: /* @ngInject */ ($state) => (reload) =>
           $state.go(
             'octavia-load-balancer.loadbalancer.pools.detail.health-monitor',
             {},
