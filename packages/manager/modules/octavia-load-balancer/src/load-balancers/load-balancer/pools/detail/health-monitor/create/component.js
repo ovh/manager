@@ -6,7 +6,7 @@ export default {
     projectId: '<',
     region: '<',
     pool: '<',
-    goBack: '<',
+    goToDashboard: '<',
   },
   controller,
   template,
