@@ -2,6 +2,7 @@ import { TRACKING_NAME } from '../../../../constants';
 import { TRACKING_SUFFIX as LISTENERS_TACKING_SUFFIX } from '../../../constants';
 import { TRACKING_SUFFIX as L7_TACKING_SUFFIX } from '../constants';
 import { TRACKING_SUFFIX } from './constants';
+import { TRACKING_SUFFIX as EDITION_TRACKING_SUFFIX } from '../edit/constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -30,14 +31,24 @@ export default /* @ngInject */ ($stateProvider) => {
             'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.create',
           );
         },
-        getL7PolicyEditionLink: /* @ngInject */ ($state) => (policy) => {
-          $state.href(
+        goToL7PolicyEdition: /* @ngInject */ ($state, trackL7Action) => (
+          policy,
+        ) => {
+          trackL7Action(EDITION_TRACKING_SUFFIX);
+          $state.go(
             'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.edit',
             {
               policyId: policy.id,
             },
           );
         },
+        getL7PolicyEditionLink: /* @ngInject */ ($state) => (policy) =>
+          $state.href(
+            'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.edit',
+            {
+              policyId: policy.id,
+            },
+          ),
         goToL7Rules: /* @ngInject */ ($state) => (policy) => {
           $state.href(
             'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.l7Rules.list',

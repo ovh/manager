@@ -1,4 +1,4 @@
-export default class OctaviaLoadBalancerListenersService {
+export default class OctaviaLoadBalancerL7Service {
   /* @ngInject */
   constructor($http) {
     this.$http = $http;
@@ -37,6 +37,44 @@ export default class OctaviaLoadBalancerListenersService {
     return this.$http
       .get(
         `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy?listenerId=${listenerId}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getPolicy(projectId, region, policyId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy/${policyId}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  updatePolicy(
+    projectId,
+    region,
+    {
+      id,
+      name,
+      position,
+      action,
+      redirectHttpCode,
+      redirectPoolId,
+      redirectPrefix,
+      redirectUrl,
+    },
+  ) {
+    return this.$http
+      .put(
+        `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy/${id}`,
+        {
+          name,
+          position,
+          action,
+          redirectHttpCode,
+          redirectPoolId,
+          redirectPrefix,
+          redirectUrl,
+        },
       )
       .then(({ data }) => data);
   }

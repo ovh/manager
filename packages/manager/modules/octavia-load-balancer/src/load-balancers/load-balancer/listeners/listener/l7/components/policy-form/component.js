@@ -6,6 +6,7 @@ export default {
     model: '=',
     redirectHttpCodes: '<',
     pools: '<',
+    submitLabel: '@?',
     onSubmit: '&',
     onCancel: '&',
   },

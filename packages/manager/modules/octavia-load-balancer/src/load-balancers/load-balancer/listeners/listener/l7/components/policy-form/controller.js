@@ -2,11 +2,19 @@ import { ACTIONS } from '../../constants';
 import { ACTIONS_LIST, URL_PATTERN, URL_PLACEHOLDER } from './constants';
 
 export default class OctaviaLoadBalancerL7PolicyFormCtrl {
-  constructor() {
+  /* @ngInject */
+  constructor($translate) {
+    this.$translate = $translate;
     this.ACTIONS = ACTIONS;
     this.URL_PATTERN = URL_PATTERN;
     this.URL_PLACEHOLDER = URL_PLACEHOLDER;
     this.actions = ACTIONS_LIST;
+  }
+
+  $onInit() {
+    this.submitButtonLabel =
+      this.submitLabel ||
+      this.$translate.instant('octavia_load_balancer_create_l7_policy_submit');
   }
 
   onActionChange(action) {
