@@ -3,7 +3,7 @@ import {
   fetchIceberg,
   IcebergFetchResult,
 } from '@ovh-ux/manager-core-api';
-import { PciProject, RancherService } from '@/api/api.type';
+import { PciProject, RancherService } from '../../api.type';
 
 const getByRancherIdProjectIdQueryKey = (
   projectId: string,
@@ -57,7 +57,6 @@ export const editRancherService = async ({
   projectId: string;
   rancher: Partial<RancherService>;
 }) => {
-  console.log({ rancher });
   return apiClient.v2.put(
     getByRancherIdProjectIdQueryKey(projectId, rancherId),
     {

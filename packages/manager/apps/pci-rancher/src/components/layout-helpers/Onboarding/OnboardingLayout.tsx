@@ -32,11 +32,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
       {!hideHeadingSection && (
         <section className="flex flex-col items-center">
           <div className="flex justify-center py-3 max-h-14">
-            <img
-              src={imageSrc || placeholderSrc}
-              alt=""
-              className="w-64 h-4/6"
-            />
+            <img src={imageSrc || placeholderSrc} alt="" />
           </div>
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.primary}
