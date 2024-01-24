@@ -9,7 +9,7 @@ export default {
     guideTrackingSectionTags: '<',
     trackClick: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
   controller,
   template,

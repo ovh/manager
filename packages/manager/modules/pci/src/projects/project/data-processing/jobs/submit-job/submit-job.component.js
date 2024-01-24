@@ -16,6 +16,6 @@ export default {
     goToObjectStorage: '<',
     goToDashboard: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
 };

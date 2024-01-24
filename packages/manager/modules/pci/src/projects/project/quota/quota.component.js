@@ -19,7 +19,7 @@ export default {
     service: '<',
     iamLink: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
   controller,
   template,

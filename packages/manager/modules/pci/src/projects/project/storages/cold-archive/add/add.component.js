@@ -16,7 +16,7 @@ export default {
     regions: '<',
     goToColdArchiveContainersWithData: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
   controller,
   template,

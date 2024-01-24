@@ -18,7 +18,7 @@ export default {
     getKubeApiErrorId: '<',
     getQuotaBuildUrl: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
   controller,
   template,

@@ -6,7 +6,7 @@ export default {
     guideUrl: '<',
     projectId: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
   controller,
   template,

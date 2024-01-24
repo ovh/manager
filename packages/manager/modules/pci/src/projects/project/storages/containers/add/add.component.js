@@ -17,6 +17,6 @@ export default {
     goBackWithTrackingPage: '<',
     trackPage: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
 };

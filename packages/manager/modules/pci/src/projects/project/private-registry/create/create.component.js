@@ -13,7 +13,7 @@ const component = {
     trackClick: '<',
     user: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
 };
 

@@ -14,6 +14,6 @@ export default {
     catalog: '<',
     volumesAvailability: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
 };

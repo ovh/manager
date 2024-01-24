@@ -11,6 +11,6 @@ export default {
     lab: '<',
     projectId: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
 };

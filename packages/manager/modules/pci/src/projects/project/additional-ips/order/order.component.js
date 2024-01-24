@@ -15,6 +15,6 @@ export default {
     ipFailoverFormattedCatalog: '<',
     trackClick: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
 };

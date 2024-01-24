@@ -7,7 +7,7 @@ export default {
     projectId: '<',
     trackPrivateNetworks: '<',
     isDiscoveryProject: '<',
-    goToDiscoveryProjectActivationPage: '&',
+    goToDiscoveryProjectActivationPage: '<',
   },
   controller,
   template,
