@@ -89,15 +89,30 @@ export default class ProjectController {
   }
 
   onActivateProjectClick() {
+    this.trackClick(
+      'PublicCloud::pci::projects::project::discovery-banner-activate-project',
+    );
     return this.goToDiscoveryProjectActivationPage();
+  }
+
+  onActivateDiscoveryModalDisplay() {
+    return this.trackPage(
+      'PublicCloud::pci::projects::project::discovery-banner-activate-project',
+    );
   }
 
   onActivateDiscoveryModalSuccess() {
     this.activateDiscovery = false;
+    this.trackClick(
+      'PublicCloud::pci::projects::project::activate-project-modal::confirm',
+    );
     this.goToDiscoveryProjectActivationPage();
   }
 
   onActivateDiscoveryModalClose() {
+    this.trackClick(
+      'PublicCloud::pci::projects::project::activate-project-modal::cancel',
+    );
     this.activateDiscovery = false;
   }
 }
