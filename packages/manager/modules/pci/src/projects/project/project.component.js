@@ -27,6 +27,7 @@ export default {
     vouchersCreditDetails: '<',
     guideTrackingSectionTags: '<',
     trackClick: '<',
+    trackPage: '<',
     isMenuSidebarVisible: '<',
     isDiscoveryProject: '<',
     goToDiscoveryProjectActivationPage: '<',
