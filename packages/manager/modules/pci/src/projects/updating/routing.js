@@ -7,15 +7,6 @@ export default /* @ngInject */ ($stateProvider) => {
     views: {
       '@pci': component.name,
     },
-    atInternet: {
-      ignore: true, // this tell AtInternet to not track this state
-    },
-    onEnter: /* @ngInject */ (atInternet, numProjects) => {
-      atInternet.trackPage({
-        name: 'PublicCloud::pci::projects::updating',
-        pciCreationNumProjects: numProjects,
-      });
-    },
     resolve: {
       breadcrumb: () => null,
 
@@ -33,8 +24,6 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => (projectId) => {
         atInternet.trackPage({
           name: 'public-cloud::pci::projects::updated',
-          projectId,
-          ...(voucherCode ? { voucherCode } : {}),
         });
 
         const state = 'pci.projects.project';
@@ -56,8 +45,14 @@ export default /* @ngInject */ ($stateProvider) => {
                 return vouchersCreditDetails[0]?.available_credit?.text || '';
               });
           })
-          .then((voucherCredit) =>
-            voucherCredit
+          .then((voucherCredit) => {
+            atInternet.trackPage({
+              name:
+                'PublicCloud::pci::projects::project::activate-project-success',
+              projectId,
+              ...(voucherCode ? { voucherCode } : {}),
+            });
+            return voucherCredit
               ? CucCloudMessage.success(
                   {
                     textHtml: $translate.instant(
@@ -75,8 +70,8 @@ export default /* @ngInject */ ($stateProvider) => {
                     ),
                   },
                   state,
-                ),
-          );
+                );
+          });
 
         return promise;
       },
@@ -84,12 +79,11 @@ export default /* @ngInject */ ($stateProvider) => {
       onProjectUpdateFail: /* @ngInject */ (
         $state,
         $translate,
-        trackProjectCreationError,
+        atInternet,
       ) => () => {
-        trackProjectCreationError(
-          'updating',
-          'pci_projects_updating_delivery_error',
-        );
+        atInternet.trackPage({
+          name: 'PublicCloud::pci::projects::project::activate-project-error',
+        });
         return $state.go(
           'pci.error',
           {
