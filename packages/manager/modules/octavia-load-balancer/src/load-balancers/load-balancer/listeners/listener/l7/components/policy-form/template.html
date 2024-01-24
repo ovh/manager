@@ -127,7 +127,7 @@
     </oui-field>
     <oui-form-actions
         data-disabled="!policy.$valid"
-        data-submit-text="{{:: 'octavia_load_balancer_create_l7_policy_submit' | translate }}"
+        data-submit-text="{{:: $ctrl.submitButtonLabel }}"
         data-cancel-text="{{:: 'octavia_load_balancer_create_l7_policy_cancel' | translate }}"
         data-on-submit="$ctrl.onSubmit()"
         data-on-cancel="$ctrl.onCancel()"

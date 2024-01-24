@@ -14,7 +14,6 @@
   "octavia_load_balancer_create_l7_policy_http_code_description": "Les requêtes qui correspondent à cette Policy seront redirigées avec ce code de retour HTTP. La valeur du code de retour est 302",
   "octavia_load_balancer_create_l7_policy_pool": "Pool",
   "octavia_load_balancer_create_l7_policy_pool_default": "Sélectionner un pool",
-  "octavia_load_balancer_create_l7_policy_submit": "Ajouter",
-  "octavia_load_balancer_create_l7_policy_submit_edition": "Editer",
+  "octavia_load_balancer_create_l7_policy_submit": "Editer",
   "octavia_load_balancer_create_l7_policy_cancel": "Annuler"
 }

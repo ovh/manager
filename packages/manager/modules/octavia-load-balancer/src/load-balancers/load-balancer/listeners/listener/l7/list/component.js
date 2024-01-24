@@ -7,6 +7,7 @@ export default {
     provisioningStatusBadges: '<',
     operatingStatusBadges: '<',
     goToL7PolicyCreation: '<',
+    goToL7PolicyEdition: '<',
     getL7PolicyEditionLink: '<',
     getPoolDetailLinkFromPolicy: '<',
     goToL7Rules: '<',
