@@ -35,8 +35,17 @@ export default class ProjectEditController {
     this.messages = this.messageHandler.getMessages();
   }
 
+  onDeleteProjectClick() {
+    this.trackClick('PublicCloud::pci::projects::project::edit::remove');
+    this.goToDeleteProjectConfirmationModal();
+  }
+
   submit() {
     this.loading.submit = true;
+
+    this.trackClick(
+      'PublicCloud::pci::projects::project::edit::save-as-default',
+    );
 
     return this.OvhApiCloudProject.v6()
       .put(
@@ -56,11 +65,15 @@ export default class ProjectEditController {
         }
         return null;
       })
-      .then(() => this.onUpdate())
+      .then(() => {
+        this.trackPage('PublicCloud::pci::projects::project::edit-success');
+        return this.onUpdate();
+      })
       .catch(({ data }) => {
+        this.trackPage('PublicCloud::pci::projects::project::edit-error');
         this.CucCloudMessage.error(
           this.$translate.instant('pci_projects_project_edit_update_error', {
-            error: data.message,
+            error: data?.message || '',
           }),
           MESSAGES_CONTAINER_NAME,
         );
