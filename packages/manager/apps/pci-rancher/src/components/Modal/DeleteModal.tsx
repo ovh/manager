@@ -45,7 +45,11 @@ const DeleteModal = ({
   };
 
   return (
-    <OsdsModal color={ODS_THEME_COLOR_INTENT.warning} dismissible>
+    <OsdsModal
+      color={ODS_THEME_COLOR_INTENT.warning}
+      dismissible
+      onOdsModalClose={() => toggleModal(false)}
+    >
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
@@ -92,7 +96,7 @@ const DeleteModal = ({
         {t('cancel')}
       </OsdsButton>
       <OsdsButton
-        disabled={isButtonDisabled}
+        disabled={isButtonDisabled || undefined}
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={onDelete}

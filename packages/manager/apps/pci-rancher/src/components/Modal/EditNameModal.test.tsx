@@ -75,9 +75,13 @@ describe('Edit Name Modal', () => {
     const input = screen.getByLabelText('edit-input');
     const button = screen.getByText(listingTranslation.editNameRancherCta);
 
+    expect(input).toHaveAttribute('color', 'info');
+
     await userEvent.type(input, '234()');
 
     await userEvent.click(button);
+
+    expect(input).toHaveAttribute('color', 'error');
 
     expect(onEditMocked).not.toHaveBeenCalled();
   });

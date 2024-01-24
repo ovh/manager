@@ -57,8 +57,8 @@ describe('Delete Modal', () => {
       await userEvent.type(input, TERMINATE_TEXT);
       await userEvent.click(button);
 
-      // expect(input.getAttribute('value')).toBe(TERMINATE_TEXT);
-      expect(button).toHaveAttribute('disabled', 'false');
+      expect(input.getAttribute('value')).toBe(TERMINATE_TEXT);
+      expect(button).not.toHaveAttribute('disabled', 'false');
 
       expect(onDeleteMocked).toHaveBeenCalledWith(rancherMocked.id);
     });

@@ -36,7 +36,9 @@ const EditNameModal = ({
 
   const isButtonValid = rancher.currentState?.name !== newName && isValidName;
 
+  console.log({ isButtonValid });
   const onEdit = () => {
+    console.log('onEdit', isButtonValid);
     if (isButtonValid) {
       onEditRancher({
         ...rancher,
@@ -49,7 +51,11 @@ const EditNameModal = ({
     }
   };
   return (
-    <OsdsModal color={ODS_THEME_COLOR_INTENT.info} dismissible>
+    <OsdsModal
+      color={ODS_THEME_COLOR_INTENT.info}
+      dismissible
+      onOdsModalClose={() => toggleModal(false)}
+    >
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
@@ -95,7 +101,7 @@ const EditNameModal = ({
         {t('cancel')}
       </OsdsButton>
       <OsdsButton
-        disabled={isButtonValid}
+        disabled={!isButtonValid || undefined}
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={onEdit}

@@ -22,41 +22,23 @@ import {
 } from '@ovhcloud/ods-components/react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useMutation } from '@tanstack/react-query';
 import EditNameModal from '../../Modal/EditNameModal';
-import {
-  editRancherService,
-  patchRancherServiceQueryKey,
-} from '../../../api/GET/apiv2/services';
+
 import { RancherService } from '../../../api/api.type';
 import { TileBlock } from '../../TileBlock/TileBlock';
 
 interface RancherDetailProps {
   rancher: RancherService;
-  projectId: string;
+  editNameResponse: ODS_MESSAGE_TYPE | null;
+  editRancherName: (rancher: RancherService) => void;
 }
-const RancherDetail = ({ rancher, projectId }: RancherDetailProps) => {
+const RancherDetail = ({
+  rancher,
+  editNameResponse,
+  editRancherName,
+}: RancherDetailProps) => {
   const { t } = useTranslation('pci-rancher/dashboard');
   const [showEditModal, toggleEditModal] = useState(false);
-  const [
-    editNameResponse,
-    setEditNameResponse,
-  ] = useState<ODS_MESSAGE_TYPE | null>(null);
-  const { mutate: editRancherName } = useMutation({
-    mutationFn: (rancherUpdated: RancherService) =>
-      editRancherService({
-        rancherId: rancher?.id,
-        projectId,
-        rancher: rancherUpdated,
-      }),
-    onSuccess: () => {
-      setEditNameResponse(ODS_MESSAGE_TYPE.success);
-    },
-    onError: () => {
-      setEditNameResponse(ODS_MESSAGE_TYPE.error);
-    },
-    mutationKey: patchRancherServiceQueryKey(rancher?.id),
-  });
 
   const dateUsage = rancher.currentState.usage
     ? new Date(rancher.currentState.usage?.datetime)

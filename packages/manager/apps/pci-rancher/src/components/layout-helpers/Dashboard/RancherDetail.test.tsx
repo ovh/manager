@@ -8,7 +8,13 @@ import listingTranslation from '../../../public/translations/pci-rancher/listing
 
 const setupSpecTest = async (rancherService: RancherService = rancherMocked) =>
   waitFor(() =>
-    render(<RancherDetail rancher={rancherService} projectId="123" />),
+    render(
+      <RancherDetail
+        rancher={rancherService}
+        editNameResponse={null}
+        editRancherName={jest.fn()}
+      />,
+    ),
   );
 
 describe('RancherDetail', () => {
@@ -63,7 +69,7 @@ describe('RancherDetail', () => {
 
     const descriptionLabel = screen.getByText(dashboardTranslation.consumption);
     const vcpus = screen.getByText(
-      rancherMocked.currentState.usage?.orchestratedVcpus,
+      rancherMocked.currentState.usage?.orchestratedVcpus.toString() ?? '',
     );
 
     expect(descriptionLabel).not.toBeNull();

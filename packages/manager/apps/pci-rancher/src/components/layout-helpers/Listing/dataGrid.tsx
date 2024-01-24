@@ -117,11 +117,6 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
       formatter: ReactFormatter(<CpuDisplay />),
     },
     {
-      title: t('numberOfCpu'),
-      field: 'currentState.usage.orchestratedVcpus',
-      formatter: ReactFormatter(<CpuDisplay />),
-    },
-    {
       title: t('status'),
       field: 'resourceStatus',
       formatter: ReactFormatter(<ProductStatusCell t={t} />),
