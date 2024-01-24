@@ -1,4 +1,4 @@
-export default class OctaviaLoadBalancerPoolsDetailHealthMonitorCreateCtrl {
+export default class OctaviaLoadBalancerPoolsDetailHealthMonitorEditCtrl {
   /* @ngInject */
   constructor(Alerter, OctaviaLoadBalancerHealthMonitorService, $translate) {
     this.Alerter = Alerter;
