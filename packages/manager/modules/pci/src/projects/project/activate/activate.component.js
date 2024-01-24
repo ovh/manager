@@ -5,6 +5,7 @@ export default {
   bindings: {
     isTrustedZone: '<',
     projectId: '<',
+    isDiscoveryProject: '<',
     serviceId: '<',
     discoveryPromotionVoucherAmount: '@',
     activationVoucherCode: '@',

@@ -1,3 +1,19 @@
 export default class PciProjectActivateBannerController {
-  // Will be used for tracking functions
+  /* @ngInject */
+  constructor(atInternet) {
+    this.atInternet = atInternet;
+  }
+
+  $onInit() {
+    this.trackingName = `${this.trackingPageName}::activate-project`;
+
+    this.atInternet.trackPage({
+      name: this.trackingName,
+    });
+  }
+
+  onActivateProjectClick() {
+    this.atInternet.trackClick({ name: this.trackingName });
+    return this.goToDiscoveryProjectActivationPage();
+  }
 }
