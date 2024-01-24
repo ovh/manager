@@ -28,9 +28,9 @@ export default class OctaviaLoadBalancerCreateL7PolicyCtrl {
       this.listenerId,
       this.model,
     )
-      .then(async (response) => {
+      .then((response) => {
         this.trackL7CreatePolicyPage('success');
-        await this.goBackToL7PoliciesList(true).then(() =>
+        this.goBackToL7PoliciesList(true).then(() =>
           this.Alerter.set(
             'alert-success',
             this.$translate.instant(

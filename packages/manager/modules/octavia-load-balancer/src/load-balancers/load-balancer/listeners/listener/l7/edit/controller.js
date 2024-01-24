@@ -8,15 +8,7 @@ export default class OctaviaLoadBalancerCreateL7PolicyCtrl {
 
   $onInit() {
     this.loading = false;
-    this.model = {
-      name: this.policy.name,
-      position: this.policy.position,
-      action: this.policy.action,
-      redirectHttpCode: this.policy.redirectHttpCode,
-      redirectPoolId: this.policy.redirectPoolId,
-      redirectPrefix: this.policy.redirectPrefix,
-      redirectUrl: this.policy.redirectUrl,
-    };
+    this.model = { ...this.policy };
   }
 
   submit() {
@@ -25,12 +17,11 @@ export default class OctaviaLoadBalancerCreateL7PolicyCtrl {
     this.OctaviaLoadBalancerL7Service.updatePolicy(
       this.projectId,
       this.region,
-      this.policy.id,
       this.model,
     )
-      .then(async (response) => {
+      .then((response) => {
         this.trackL7EditPolicyPage('success');
-        await this.goBackToL7PoliciesList(true).then(() =>
+        this.goBackToL7PoliciesList(true).then(() =>
           this.Alerter.set(
             'alert-success',
             this.$translate.instant(
