@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import onboardingImgSrc from '../../assets/onboarding-img.png';
 import { OnboardingLayout } from '../../components/layout-helpers/Onboarding';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
+import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 
 export default function Onboarding() {
   const { t } = useTranslation('pci-rancher/onboarding');

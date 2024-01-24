@@ -21,7 +21,7 @@ function Breadcrumb({ items = [] }: BreadcrumbProps): JSX.Element {
 
   const navigation = useNavigation();
   const [urlProject, setUrlProject] = useState('');
-  useEffect(() => {
+  React.useEffect(() => {
     const updateNav = async () => {
       const url = await navigation.getURL(
         'public-cloud',
