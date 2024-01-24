@@ -13,7 +13,7 @@ export default class PciProjectActivateBannerController {
   }
 
   onActivateProjectClick() {
-    this.atInternet.trackClick({ name: this.trackingName });
-    return this.goToDiscoveryProjectActivationPage();
+    this.atInternet.trackClick({ name: this.trackingName, type: 'action' });
+    return this.onClick();
   }
 }
