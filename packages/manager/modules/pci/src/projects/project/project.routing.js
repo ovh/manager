@@ -62,6 +62,15 @@ export default /* @ngInject */ ($stateProvider) => {
           serviceName: projectId,
         }).$promise;
       },
+      setPciProjectModeTrackingProperty: /* @ngInject */ (
+        atInternet,
+        isDiscoveryProject,
+        projectId,
+      ) =>
+        atInternet.setPciProjectMode({
+          isDiscoveryProject,
+          projectId,
+        }),
 
       serviceId: /* @ngInject */ (service) => service?.serviceId,
 
@@ -172,16 +181,16 @@ export default /* @ngInject */ ($stateProvider) => {
       hasGridscaleLocalzoneRegion: /* @ngInject */ (customerRegions) =>
         customerRegions.some(({ type }) => type === LOCAL_ZONE_REGION),
 
-      trackClick: /* @ngInject */ (atInternet) => (hit) => {
+      trackClick: /* @ngInject */ (atInternet) => (name) => {
         return atInternet.trackClick({
-          name: hit,
+          name,
           type: 'action',
         });
       },
 
-      trackPage: /* @ngInject */ (atInternet) => (hit) => {
+      trackPage: /* @ngInject */ (atInternet) => (name) => {
         return atInternet.trackPage({
-          name: hit,
+          name,
           type: 'action',
         });
       },

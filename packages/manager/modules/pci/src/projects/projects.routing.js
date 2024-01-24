@@ -54,6 +54,12 @@ export default /* @ngInject */ ($stateProvider) => {
       confirmDeletion: /* @ngInject */ ($state) => (project) =>
         $state.go('pci.projects.remove', { projectId: project.project_id }),
 
+      setPciProjectModeTrackingProperty: /* @ngInject */ (atInternet) =>
+        atInternet.setPciProjectMode({
+          isDiscoveryProject: false,
+          projectId: '',
+        }),
+
       deals: /* @ngInject */ ($q, OvhApiCloud) =>
         OvhApiCloud.Aapi()
           .getDeals()
