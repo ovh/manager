@@ -1,13 +1,8 @@
 import React from 'react';
 import Listing, { ListingProps } from './index';
 import { render, waitFor } from '../../utils/test.provider';
-import { RancherService } from '@/api/api.type';
-import listingTranslation from '@/public/translations/pci-rancher/listing/Messages_fr_FR.json';
-
-jest.mock('@tanstack/react-query', () => ({
-  useQuery: jest.fn(() => ({ isLoading: false, data: [] })),
-  useMutation: jest.fn(() => ({ isLoading: false, data: [] })),
-}));
+import { RancherService } from '../../api/api.type';
+import listingTranslation from '../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 
 const setupSpecTest = async (props?: ListingProps) =>
   waitFor(() => render(<Listing {...props} />));
