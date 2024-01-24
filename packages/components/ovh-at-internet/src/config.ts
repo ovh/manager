@@ -15,7 +15,7 @@ export class OvhAtInternetConfig {
    */
   protected enabled = true;
 
-  protected region: string = '';
+  protected region = '';
 
   /**
    * Check if default data has been set.
