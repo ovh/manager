@@ -6,7 +6,7 @@ const moduleName = 'ovhManagerPciProjectsActivateLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('pci.projects.project.activate.**', {
+    $stateProvider.state('pci.projects.project.activate-project.**', {
       url: '/activate',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

@@ -4,7 +4,7 @@ import { registerPCINewState } from '../../new/routing';
 import { registerPCINewPaymentState } from '../../new/payment/routing';
 
 export default /* @ngInject */ ($stateProvider) => {
-  const stateName = 'pci.projects.project.activate';
+  const stateName = 'pci.projects.project.activate-project';
   const paymentStateName = `${stateName}.payment`;
 
   registerPCINewState($stateProvider, {
@@ -59,12 +59,12 @@ export default /* @ngInject */ ($stateProvider) => {
         }
         return projectService
           .activateDiscoveryProject(serviceId)
-          .then((res) => {
-            return goToLoadingUpgradePage(
+          .then((res) =>
+            goToLoadingUpgradePage(
               res?.data?.order?.orderId,
               activationVoucherCode,
-            );
-          })
+            ),
+          )
           .catch((err) => displayErrorMessage(err?.data?.message || err));
       },
 
@@ -82,10 +82,15 @@ export default /* @ngInject */ ($stateProvider) => {
         data,
       ) => projectService.claimVoucher(projectId, data),
 
-      displayErrorMessage: /* @ngInject */ (CucCloudMessage, $translate) => (
-        message,
-      ) =>
-        CucCloudMessage.error(
+      displayErrorMessage: /* @ngInject */ (
+        CucCloudMessage,
+        $translate,
+        trackPage,
+      ) => (message) => {
+        trackPage(
+          'PublicCloud::pci::projects::project::activate-project-error',
+        );
+        return CucCloudMessage.error(
           {
             textHtml: $translate.instant(
               'pci_projects_project_activate_message_fail',
@@ -94,8 +99,9 @@ export default /* @ngInject */ ($stateProvider) => {
               },
             ),
           },
-          'pci.projects.project.activate',
-        ),
+          'pci.projects.project.activate-project',
+        );
+      },
     },
   });
 

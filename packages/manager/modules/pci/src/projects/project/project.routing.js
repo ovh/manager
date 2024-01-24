@@ -222,8 +222,11 @@ export default /* @ngInject */ ($stateProvider) => {
       goToDiscoveryProjectActivationPage: /* @ngInject */ (
         $state,
         projectId,
-      ) => () => {
-        return $state.go('pci.projects.project.activate', {
+      ) => (name) => {
+        if (name) {
+          this.trackClick(name);
+        }
+        return $state.go('pci.projects.project.activate-project', {
           projectId,
         });
       },
