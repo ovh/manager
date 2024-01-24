@@ -16,6 +16,11 @@ export interface LegacyTrackingData {
   [key: string]: any;
 }
 
+export interface PciProjectModeParams {
+  isDiscoveryProject?: boolean;
+  projectId?: string;
+}
+
 export interface GenericTrackingData {
   country: string;
   website?: string;
@@ -32,6 +37,7 @@ export interface GenericTrackingData {
   page_category?: string;
   complete_page_name?: string;
   page_theme?: string;
+  pci_project_mode?: string;
 }
 
 export interface PageTrackingData extends GenericTrackingData {
