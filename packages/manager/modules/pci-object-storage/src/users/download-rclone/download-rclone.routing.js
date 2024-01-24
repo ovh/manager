@@ -5,7 +5,7 @@ import {
   RCLONE_GUIDE,
   REGION_CAPACITY,
   S3_REGION_CAPACITY,
-} from '@ovh-ux/ng-ovh-cloud-universe-components/download-rclone.constants';
+} from './download-rclone.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -32,13 +32,16 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           userId,
         ) => PciStoragesObjectStorageService.get(projectId, userId),
-        regions: /* @ngInject */ (PciProject, projectId) =>
-          PciProject.getStorageRegions(
+        regions: /* @ngInject */ (PciStoragesObjectStorageService, projectId) =>
+          PciStoragesObjectStorageService.getStorageRegions(
             projectId,
             REGION_CAPACITY,
           ).then((regions) => regions.map(({ name }) => name)),
-        storageS3Regions: /* @ngInject */ (PciProject, projectId) =>
-          PciProject.getS3StorageRegions(
+        storageS3Regions: /* @ngInject */ (
+          PciStoragesObjectStorageService,
+          projectId,
+        ) =>
+          PciStoragesObjectStorageService.getS3StorageRegions(
             projectId,
             S3_REGION_CAPACITY,
           ).then((regions) => regions.map(({ name }) => name)),

@@ -12,6 +12,11 @@ export default /* @ngInject */ ($stateProvider) => {
           .checkFeatureAvailability(['public-cloud:block-storage'])
           .then((features) => features);
       },
+      user: /* @ngInject */ (shellClient) => {
+        return shellClient.environment.getEnvironment().then((data) => {
+          return data.user;
+        });
+      },
     },
   });
 
