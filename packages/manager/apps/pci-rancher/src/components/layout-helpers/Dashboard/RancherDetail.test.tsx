@@ -1,19 +1,20 @@
 import React from 'react';
 import RancherDetail from './RancherDetail';
 import { render, waitFor, fireEvent } from '../../../utils/test.provider';
-import { rancherMocked } from '@/_mock_/rancher';
-import { RancherService } from '@/api/api.type';
-import dashboardTranslation from '@/public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
-import listingTranslation from '@/public/translations/pci-rancher/listing/Messages_fr_FR.json';
-
-jest.mock('@tanstack/react-query', () => ({
-  useQuery: jest.fn(() => ({ isLoading: false, data: [] })),
-  useMutation: jest.fn(() => ({ isLoading: false, data: [] })),
-}));
+import { rancherMocked } from '../../../_mock_/rancher';
+import { RancherService } from '../../../api/api.type';
+import dashboardTranslation from '../../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
+import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 
 const setupSpecTest = async (rancherService: RancherService = rancherMocked) =>
   waitFor(() =>
-    render(<RancherDetail rancher={rancherService} projectId="123" />),
+    render(
+      <RancherDetail
+        rancher={rancherService}
+        editNameResponse={null}
+        editRancherName={jest.fn()}
+      />,
+    ),
   );
 
 describe('RancherDetail', () => {
@@ -68,7 +69,7 @@ describe('RancherDetail', () => {
 
     const descriptionLabel = screen.getByText(dashboardTranslation.consumption);
     const vcpus = screen.getByText(
-      rancherMocked.currentState.usage?.orchestratedVcpus,
+      rancherMocked.currentState.usage?.orchestratedVcpus.toString() ?? '',
     );
 
     expect(descriptionLabel).not.toBeNull();

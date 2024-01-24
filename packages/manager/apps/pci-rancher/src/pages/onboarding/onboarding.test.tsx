@@ -3,19 +3,16 @@ import Onboarding from './index';
 import { render, waitFor } from '../../utils/test.provider';
 import onboardingTranslation from '../../public/translations/pci-rancher/onboarding/Messages_fr_FR.json';
 
-const setupSpecTest = async () => waitFor(() => render(<Onboarding />));
-
-jest.mock('@tanstack/react-query', () => ({
-  useQuery: jest.fn(() => ({ isLoading: false, data: [] })),
-  useMutation: jest.fn(() => ({ isLoading: false, data: [] })),
-}));
-
 jest.mock('@ovh-ux/manager-react-shell-client', () => ({
   useNavigation: jest.fn(() => ({
     getURL: jest.fn(() => Promise.resolve('123')),
     data: [],
   })),
 }));
+
+jest.spyOn(React, 'useEffect').mockImplementation((t) => jest.fn(t));
+
+const setupSpecTest = async () => waitFor(() => render(<Onboarding />));
 
 describe('Onboarding', () => {
   it('renders without error', async () => {
