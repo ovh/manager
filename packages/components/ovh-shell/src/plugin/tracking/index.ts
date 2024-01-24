@@ -1,4 +1,8 @@
-import { LegacyTrackingData, TrackingDefaults } from '@ovh-ux/ovh-at-internet';
+import {
+  LegacyTrackingData,
+  TrackingDefaults,
+  PciProjectModeParams,
+} from '@ovh-ux/ovh-at-internet';
 import ShellClient from '../../client/shell-client';
 import { RegionsTrackingConfig } from './tracking';
 
@@ -14,6 +18,7 @@ export interface TrackingAPI {
   trackMVTest(data: LegacyTrackingData): PromiseLike<void>;
   setDefaults(def: TrackingDefaults): PromiseLike<TrackingDefaults>;
   setRegion(region: string): PromiseLike<void>;
+  setPciProjectMode(params: PciProjectModeParams): PromiseLike<void>;
   setConfig(region: string, config: RegionsTrackingConfig): PromiseLike<void>;
 }
 
@@ -83,6 +88,12 @@ export function exposeTrackingAPI(shellClient: ShellClient): TrackingAPI {
         plugin: 'tracking',
         method: 'setRegion',
         args: [region],
+      }),
+    setPciProjectMode: (params: PciProjectModeParams) =>
+      shellClient.invokePluginMethod<void>({
+        plugin: 'tracking',
+        method: 'setPciProjectMode',
+        args: [params],
       }),
     setConfig: (region: string, config: RegionsTrackingConfig) =>
       shellClient.invokePluginMethod<void>({
