@@ -12,11 +12,9 @@ export default class OctaviaLoadBalancerL7PolicyFormCtrl {
   }
 
   $onInit() {
-    this.submitLabel = this.submitLabel
-      ? this.submitLabel
-      : this.$translate.instant(
-          'octavia_load_balancer_create_l7_policy_submit',
-        );
+    this.submitButtonLabel =
+      this.submitLabel ||
+      this.$translate.instant('octavia_load_balancer_create_l7_policy_submit');
   }
 
   onActionChange(action) {
