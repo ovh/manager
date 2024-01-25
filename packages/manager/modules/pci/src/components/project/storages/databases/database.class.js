@@ -116,7 +116,10 @@ export default class Database extends Base {
 
   updateData(data) {
     Object.assign(this, data);
-    this.nodes = data.nodes.map((node) => new Node(node));
+    // only update nodes if they are provided in data
+    if (data.nodes) {
+      this.nodes = data.nodes.map((node) => new Node(node));
+    }
     this.storage.size.sizeInMB = this.storage.size.value;
     if (this.storage.size.unit === 'GB') {
       this.storage.size.sizeInMB *= 1000;
