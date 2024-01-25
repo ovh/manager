@@ -352,7 +352,10 @@ export default class PciProjectNewPaymentCtrl {
   ============================== */
 
   initComponentInitialParams() {
-    this.sendTrack('new_project_payment_continue');
+    this.atInternet.trackClick({
+      name: `${this.viewOptions.trackingPrefix}continue`,
+      type: 'action',
+    });
     this.componentInitialParams = {
       locale: this.coreConfig.getUser().language,
       paymentMethod: this.model.paymentMethod,
@@ -363,7 +366,10 @@ export default class PciProjectNewPaymentCtrl {
 
   onPaymentFormSubmit() {
     this.globalLoading.finalize = true;
-
+    this.atInternet.trackClick({
+      name: `${this.viewOptions.trackingPrefix}continue`,
+      type: 'action',
+    });
     let challengePromise = Promise.resolve(true);
     let defaultPaymentMethodPromise = Promise.resolve(true);
     let setDefaultPaymentMethodInError = false;
