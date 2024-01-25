@@ -79,7 +79,7 @@ export default class PciProjectNewVoucherCtrl {
   submitVoucher() {
     this.loading.check = true;
     this.globalLoading.isVoucherValidating = true;
-    this.trackClick('PublicCloud_new_project::confirm_voucher');
+    this.trackClick(`${this.viewOptions.trackingPrefix}::confirm_voucher`);
 
     return this.checkVoucherValidity(this.model.voucher.value)
       .then((eligibilityOpts) => {
@@ -192,13 +192,13 @@ export default class PciProjectNewVoucherCtrl {
   }
 
   onVoucherFormReset() {
-    this.trackClick('PublicCloud_new_project::delete_voucher');
+    this.trackClick(`${this.viewOptions.trackingPrefix}::delete_voucher`);
     return this.resetVoucher();
   }
 
   onAddVoucherBtnClick() {
     this.formVisible = true;
-    this.trackClick('PublicCloud_new_project::add_voucher');
+    this.trackClick(`${this.viewOptions.trackingPrefix}::add_voucher`);
   }
 
   onVoucherInputChange() {
