@@ -130,8 +130,8 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-badge_success': $value !== 'disabled',
-                    'oui-badge_warning': $value === 'disabled'
+                    'oui-badge_success': $value === 'proactive',
+                    'oui-badge_warning': $value !== 'proactive'
                     }"
                 data-translate="{{:: 'server_configuration_monitoring_status_' + $value }}"
             ></span>
