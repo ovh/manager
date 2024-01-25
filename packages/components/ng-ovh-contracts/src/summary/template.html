@@ -18,9 +18,7 @@
             data-ng-href="{{ contract.url }}"
             rel="noopener"
             target="_blank"
-            data-track-on="click"
-            data-track-type="action"
-            data-track-name="{{ 'PublicCloud::pci::projects::onboarding::contract::' + contract.name }}"
+            data-ng-click="$ctrl.trackContractClick()"
         >
             <span data-ng-bind="contract.name"></span>
             <span
