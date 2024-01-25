@@ -28,5 +28,6 @@
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_major": "Zainstaluj aktualizację główną ({{version}} - build {{build}})",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_minor": "Zainstaluj aktualizację pomocniczą ({{version}} - build {{build}})",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_reschedule_update": "Zmień datę aktualizacji",
-  "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_move": "Przypisz bloki IP do innej usługi"
+  "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_move": "Przypisz bloki IP do innej usługi",
+  "ovhManagerPccDashboardGeneralInformation_commercial_range": "Nazwa oferty"
 }
