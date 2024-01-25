@@ -13,16 +13,23 @@ export default class BmServerComponentsNetbootService {
       .then(({ data }) => data);
   }
 
-  updateRescueMail(serviceName, bootId, rescueMail) {
+  updateRescueInfos(serviceName, bootId, rescueMail, rescueSshKey) {
     return this.$http
       .put(`/dedicated/server/${serviceName}`, {
         bootId,
         rescueMail,
+        rescueSshKey,
       })
       .then(({ data }) => data);
   }
 
   getRescueMail(serviceName) {
+    return this.$http
+      .get(`/dedicated/server/${serviceName}`)
+      .then(({ data }) => data);
+  }
+
+  getServerInfos(serviceName) {
     return this.$http
       .get(`/dedicated/server/${serviceName}`)
       .then(({ data }) => data);

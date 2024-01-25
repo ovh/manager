@@ -270,11 +270,12 @@ export default class Server {
     });
   }
 
-  updateRescueMail(productId, bootId, rescueMail) {
+  updateRescueInfos(productId, bootId, rescueMail, rescueSshKey) {
     return this.put(productId, '', {
       data: {
         bootId,
         rescueMail,
+        rescueSshKey,
       },
       proxypass: true,
       broadcast: 'dedicated.informations.reload',
