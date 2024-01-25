@@ -85,6 +85,11 @@ export default class ActionSelectController {
      * @type {boolean}
      */
     this.required = false;
+
+    /**
+     * Whether to show or not an error message below search input
+     */
+    this.showSearchNotFoundError = false;
   }
 
   /**
@@ -442,6 +447,13 @@ export default class ActionSelectController {
         (currentActionTree) => currentActionTree.value === actionTree.value,
       )
     ] = shadowActionTree;
+
+    // Check if any action of this category contains the searchQuery string
+    this.showSearchNotFoundError = !actionTree.categories.some((category) =>
+      category.actions.some(
+        ({ value }) => value.indexOf(actionTree.searchQuery) > -1,
+      ),
+    );
   }
 
   /**

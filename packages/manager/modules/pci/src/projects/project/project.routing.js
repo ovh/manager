@@ -6,6 +6,7 @@ import {
   ACTIONS,
   LEGACY_PLAN_CODES,
   DOCUMENTATION_LINKS,
+  LOCAL_ZONE_REGION,
 } from './project.constants';
 import { PCI_FEATURES } from '../projects.constant';
 
@@ -136,7 +137,10 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
 
       customerRegions: /* @ngInject */ (PciProject, projectId) =>
-        PciProject.getCustomerRegions(projectId),
+        PciProject.getCustomerRegions(projectId, true),
+
+      hasGridscaleLocalzoneRegion: /* @ngInject */ (customerRegions) =>
+        customerRegions.some(({ type }) => type === LOCAL_ZONE_REGION),
 
       trackClick: /* @ngInject */ (atInternet) => (hit) => {
         return atInternet.trackClick({

@@ -1,6 +1,0 @@
-{
-  "pci_data_integration_onboarding_title": "Data Integration",
-  "pci_data_integration_onboarding_subtitle": "Circolazione dei dati semplificata",
-  "pci_data_integration_onboarding_description": "Vuoi integrare dati e costruire pipeline di dati in tutta semplicità? Automatizza la circolazione dei dati grazie alla soluzione Data Integration. Puoi usufruire di un catalogo di sorgenti e destinazioni per configurare il trasporto dei dati sotto forma di file (Object Storage, HTTP files, SFTP, FTP), database (PostgreSQL, MySQL, MongoDB, Oracle, SQL Server) o all’interno di un motore di ricerca (Elasticsearch, OpenSearch). Per accedere alla nostra beta gratuita, clicca qui.",
-  "pci_data_integration_onboarding_button": "Esplora le integrazioni di dati"
-}

@@ -44,7 +44,7 @@
                             <div class="d-flex">
                                 <span
                                     data-translate="pci_project_flavors_spec_ram"
-                                    data-translate-values="{ ram: (flavor.ram | bytes:2:false:'MB') }"
+                                    data-translate-values="{ ram: (flavor.technicalBlob.memory.size | bytes:0:false:'GB') }"
                                 ></span>
                             </div>
                             <div
@@ -74,11 +74,11 @@
                             </div>
                             <div
                                 class="d-flex"
-                                data-ng-if="flavor.outboundBandwidth"
+                                data-ng-if="flavor.technicalBlob.bandwidth.level"
                             >
                                 <span
                                     data-translate="pci_project_flavors_spec_bandwidth_detail"
-                                    data-translate-values="{ bandwidth : (flavor.outboundBandwidth | number) }"
+                                    data-translate-values="{ bandwidth : (flavor.technicalBlob.bandwidth.level | number) }"
                                 ></span>
                             </div>
                             <div class="d-flex" data-ng-if="flavor.getGpu()">
@@ -91,6 +91,91 @@
                                 <span
                                     data-ng-bind="::flavor.getGpuModel()"
                                 ></span>
+                            </div>
+                        </oui-select-picker-section>
+                        <oui-select-picker-section
+                            data-ng-if="flavor.locationCompatibility.isLocalZone || flavor.locationCompatibility.isGlobalZone"
+                        >
+                            <strong
+                                class="d-block"
+                                data-translate="pci_project_flavors_zone_compatible"
+                            >
+                            </strong>
+                            <div class="row px-3">
+                                <div class="d-flex">
+                                    <span
+                                        data-ng-if="flavor.locationCompatibility.isLocalZone"
+                                        class="oui-badge oui-badge_promotion my-1"
+                                    >
+                                        <span
+                                            data-translate="pci_project_flavors_zone_localzone"
+                                        ></span>
+                                        <button
+                                            type="button"
+                                            class="oui-popover-button"
+                                            data-oui-popover
+                                            data-oui-popover-scope="$ctrl"
+                                            data-oui-popover-template="pci_project_flavors_zone_localzone.html"
+                                        ></button>
+                                        <script
+                                            type="text/ng-template"
+                                            id="pci_project_flavors_zone_localzone.html"
+                                        >
+                                            <span
+                                                class="text-center"
+                                                data-translate="pci_project_flavors_zone_localzone_tooltip"
+                                            ></span>
+                                            <a
+                                                class="oui-link_icon"
+                                                aria-hidden="true"
+                                                data-ng-href="{{$ctrl.localZoneUrl}}"
+                                                target="_blank"
+                                            >
+                                                <span
+                                                    data-translate="pci_project_flavors_zone_tooltip_link"
+                                                ></span>
+                                                <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                                            </a>
+                                        </script>
+                                    </span>
+                                </div>
+                                <div class="d-flex">
+                                    <span
+                                        data-ng-if="flavor.locationCompatibility.isGlobalZone"
+                                        class="oui-badge oui-badge_new my-1"
+                                    >
+                                        <span
+                                            data-translate="pci_project_flavors_zone_global_region"
+                                        ></span>
+                                        <button
+                                            type="button"
+                                            class="oui-popover-button"
+                                            data-oui-popover
+                                            data-oui-popover-scope="$ctrl"
+                                            data-oui-popover-template="pci_project_flavors_zone_globalregions_tooltip.html"
+                                        ></button>
+                                        <script
+                                            type="text/ng-template"
+                                            id="pci_project_flavors_zone_globalregions_tooltip.html"
+                                        >
+                                            <span
+                                                class="text-center"
+                                                data-translate="pci_project_flavors_zone_globalregions_tooltip"
+                                            ></span>
+                                            <a
+                                                class="oui-link_icon"
+                                                aria-hidden="true"
+                                                data-ng-href="{{$ctrl.globalRegionsUrl}}"
+                                                target="_blank"
+                                            >
+                                                <span
+                                                    data-translate="pci_project_flavors_zone_tooltip_link"
+                                                ></span>
+                                                <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                                            </a>
+                                        </script>
+                                    </span>
+                                </div>
                             </div>
                         </oui-select-picker-section>
                         <oui-select-picker-section>

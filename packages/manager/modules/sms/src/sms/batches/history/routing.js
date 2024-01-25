@@ -39,6 +39,15 @@ export default /* @ngInject */ ($stateProvider) => {
           previousState: 'sms.service.batches.history',
         });
       },
+      goToDeleteBatch: /* @ngInject */ ($state, serviceName) => (
+        batchId,
+        batchName,
+      ) =>
+        $state.go('sms.service.batches.history.delete', {
+          serviceName,
+          batchId,
+          batchName,
+        }),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('sms_batches_history_title'),
     },

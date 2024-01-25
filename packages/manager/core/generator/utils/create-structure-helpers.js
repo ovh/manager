@@ -30,8 +30,9 @@ export const createApiQueryFilesActions = ({
  * Copy all templates files in conditional-templates
  * into app/pages folder
  * Corresponding to the template selected
+ * We use the listing as home page
  */
-export const createPages = (templates, appDirectory) =>
+export const createPages = (templates, appDirectory, isApiV6) =>
   templates.map((template) =>
     template === 'listing'
       ? {
@@ -43,7 +44,11 @@ export const createPages = (templates, appDirectory) =>
           force: true,
           templateFile: join(
             appDirectory,
-            `./conditional-templates/${template}/index.tsx.hbs`,
+            `./conditional-templates/${template}/${
+              isApiV6
+                ? 'index-api-v6-pagination-step'
+                : 'index-api-v2-pagination-cursor'
+            }.tsx.hbs`,
           ),
         }
       : {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.9.0...@ovh-ux/manager-iplb@1.9.1) (2024-01-22)
+
+
+### Bug Fixes
+
+* **iplb:** add missing goback on  vrack update ([#10716](https://github.com/ovh/manager/issues/10716)) ([5c36fb2](https://github.com/ovh/manager/commit/5c36fb2a76633df96e0bb5dd79431229aea668f8))
+
+
+
+
+
 # [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.8.1...@ovh-ux/manager-iplb@1.9.0) (2023-11-21)
 
 

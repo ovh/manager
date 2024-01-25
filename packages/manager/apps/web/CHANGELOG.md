@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.10.3...@ovh-ux/manager-web@18.10.4) (2024-01-22)
+
+
+### Bug Fixes
+
+* **web:** display menu depending on root origin ([#10521](https://github.com/ovh/manager/issues/10521)) ([ab79a38](https://github.com/ovh/manager/commit/ab79a38b5c6575f16140392ff10b5ad4d2075cdb))
+
+
+
+
+
+## [18.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.10.2...@ovh-ux/manager-web@18.10.3) (2024-01-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [18.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.10.1...@ovh-ux/manager-web@18.10.2) (2024-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

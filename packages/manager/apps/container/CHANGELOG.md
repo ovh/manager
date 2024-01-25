@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.39.0...@ovh-ux/manager-container-app@0.39.1) (2024-01-23)
+
+
+### Bug Fixes
+
+* **container:** fix label display name without icon ([c05a0d8](https://github.com/ovh/manager/commit/c05a0d8440aa648fa990bb7498c4b3b68002cc2b))
+
+
+
+
+
+# [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.38.0...@ovh-ux/manager-container-app@0.39.0) (2024-01-22)
+
+
+### Bug Fixes
+
+* **container.sidebar:** post-prod bug fix ([#10635](https://github.com/ovh/manager/issues/10635)) ([5a01440](https://github.com/ovh/manager/commit/5a014401d053a9e73ea7960ef26d8e26655c319e))
+
+
+### Features
+
+* remove dataintegration project ([#10450](https://github.com/ovh/manager/issues/10450)) ([8526862](https://github.com/ovh/manager/commit/8526862140874dedd7aa8898eb7dc17457681312))
+
+
+
+
+
+# [0.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.37.5...@ovh-ux/manager-container-app@0.38.0) (2024-01-04)
+
+
+### Features
+
+* **container.sidebar:** remove chakra ui ([#10627](https://github.com/ovh/manager/issues/10627)) ([78a3a90](https://github.com/ovh/manager/commit/78a3a902a5ed6e0edae011b19751319360867c03))
+
+
+
+
+
 ## [0.37.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.37.4...@ovh-ux/manager-container-app@0.37.5) (2023-12-21)
 
 

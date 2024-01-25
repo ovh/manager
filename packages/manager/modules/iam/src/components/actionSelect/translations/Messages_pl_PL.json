@@ -24,5 +24,6 @@
   "iam_action_select_category_count_selection_one_result_one": "({{selected}} wybrana operacja | {{result}} wynik / {{total}})",
   "iam_action_select_category_count_selection_one_result_many": "({{selected}} wybrana operacja | {{result}} wyników / {{total}})",
   "iam_action_select_category_count_result_many": "({{result}} wyników / {{total}})",
-  "iam_action_select_category_count_result_one": "({{result}} wynik / {{total}})"
+  "iam_action_select_category_count_result_one": "({{result}} wynik / {{total}})",
+  "iam_action_select_action_search_error_notfound": "Brak wyników"
 }

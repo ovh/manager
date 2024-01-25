@@ -66,4 +66,10 @@ export default /* @ngInject */ ($http, $timeout, iceberg) => ({
       .put(`/sms/${serviceName}/smpp/allowedIPs`, params)
       .then(({ data }) => data);
   },
+
+  deleteBatchHistory(serviceName, batchId) {
+    return $http
+      .delete(`/sms/${serviceName}/batches/${batchId}`)
+      .then(({ data }) => data);
+  },
 });

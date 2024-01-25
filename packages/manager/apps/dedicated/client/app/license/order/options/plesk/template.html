@@ -1,0 +1,84 @@
+<div class="form-group" data-ng-show="$ctrl.version.options.length > 0">
+    <label for="domainNumber" class="control-label">
+        <span
+            data-translate="license_order_step2_option_PLESK_domainNumber"
+        ></span>
+        <span class="text-danger"> *</span>
+    </label>
+    <select
+        class="form-control"
+        id="domainNumber"
+        name="domainNumber"
+        data-ng-options="domainNumber.value for domainNumber in $ctrl.version.options"
+        data-ng-model="$ctrl.options['PLESK'].domainNumber.value"
+        data-ng-change="$ctrl.onOptionsChange()"
+    >
+        <option
+            value
+            data-ng-disabled="true"
+            data-translate="license_order_common_choose"
+        >
+        </option>
+    </select>
+</div>
+
+<div
+    class="form-group"
+    data-ng-show="$ctrl.version.more.compliantLanguagePack.length > 0"
+>
+    <label
+        for="languagePackNumber"
+        class="control-label"
+        data-translate="license_order_step2_option_PLESK_language_pack"
+    >
+    </label>
+    <select
+        class="form-control"
+        id="languagePackNumber"
+        name="languagePackNumber"
+        data-ng-options="(languagePack === 'unlimited' ? ('license_order_step2_option_PLESK_language_pack_unlimited' | translate) : languagePack) for languagePack in $ctrl.version.more.compliantLanguagePack | orderBy:'toString()'"
+        data-ng-model="$ctrl.options['PLESK'].languagePackNumber.value"
+        data-ng-change="$ctrl.onOptionsChange()"
+    >
+        <option value data-translate="license_order_common_none"> </option>
+    </select>
+</div>
+
+<div
+    class="form-group"
+    data-ng-show="$ctrl.version.more.compliantAntivirus.length > 0"
+>
+    <label
+        for="antivirus"
+        class="control-label"
+        data-translate="license_order_step2_option_PLESK_antivirus"
+    >
+    </label>
+    <select
+        class="form-control"
+        id="antivirus"
+        name="antivirus"
+        data-ng-options="antivirus as (('license_designation_PLESK_options_antivirus_' + antivirus) | translate) for antivirus in $ctrl.version.more.compliantAntivirus"
+        data-ng-model="$ctrl.options['PLESK'].antivirus.value"
+        data-ng-change="$ctrl.onOptionsChange()"
+    >
+        <option value data-translate="license_order_common_none"> </option>
+    </select>
+</div>
+
+<!-- This doesn't seem correct to bind the checkbox value to $ctrl.options['PLESK'].powerpack.value -->
+<!-- Also the two checkbox could be merge into one as agoraEnabled seems to be false only for LABEU -->
+<oui-checkbox
+    data-ng-if="$ctrl.version.more.canHavePowerPack && !$ctrl.agoraEnabled"
+    data-model="$ctrl.options['PLESK'].powerpack.value"
+>
+    <span data-translate="license_order_step2_option_PLESK_powerpack"> </span>
+</oui-checkbox>
+
+<oui-checkbox
+    data-ng-if="$ctrl.version.more.canHavePowerPack && $ctrl.agoraEnabled"
+    data-model="$ctrl.powerpack"
+    data-on-change="$ctrl.onPowerpackOptionChange(modelValue)"
+>
+    <span data-translate="license_order_step2_option_PLESK_powerpack"> </span>
+</oui-checkbox>

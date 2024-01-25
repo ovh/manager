@@ -9,9 +9,7 @@ import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Environment } from '@ovh-ux/manager-config';
-import { defineApplicationVersion } from '@ovh-ux/request-tagger';
-import { UIKitTheme } from '@ovh-ux/manager-themes';
-import { extendTheme, ChakraProvider } from '@chakra-ui/react';
+
 
 import Container from '@/container';
 import { ApplicationProvider } from '@/context';
@@ -28,8 +26,6 @@ import './index.scss';
 if (window.top !== window.self) {
   window.top.location.href = window.self.location.href;
 }
-const theme = extendTheme(UIKitTheme);
-defineApplicationVersion(__VERSION__);
 
 initSso();
 
@@ -76,17 +72,15 @@ initShell().then((shell) => {
 
       root.render(
         <React.StrictMode>
-          <ChakraProvider theme={theme}>
-            <QueryClientProvider client={queryClient}>
-              <ApplicationProvider environment={environment} shell={shell}>
-                <ContainerProvider>
-                  <HashRouter>
-                    <Container />
-                  </HashRouter>
-                </ContainerProvider>
-              </ApplicationProvider>
-            </QueryClientProvider>
-          </ChakraProvider>
+          <QueryClientProvider client={queryClient}>
+            <ApplicationProvider environment={environment} shell={shell}>
+              <ContainerProvider>
+                <HashRouter>
+                  <Container />
+                </HashRouter>
+              </ContainerProvider>
+            </ApplicationProvider>
+          </QueryClientProvider>
         </React.StrictMode>,
       );
     });

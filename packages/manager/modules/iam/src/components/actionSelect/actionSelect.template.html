@@ -123,10 +123,21 @@
                 class="oui-input mr-3"
                 name="actionTree_{{ actionTree.value }}"
                 type="text"
+                data-ng-keyup="event = $event"
                 data-ng-model="actionTree.searchQuery"
                 data-ng-change="$ctrl.filterActions(actionTree)"
                 data-ng-disabled="$ctrl.isWildcardActive"
             />
+            <div
+                data-ng-if="$ctrl.showSearchNotFoundError"
+                class="oui-field_error"
+            >
+                <div class="oui-field__error">
+                    <span
+                        data-translate="iam_action_select_action_search_error_notfound"
+                    ></span>
+                </div>
+            </div>
         </oui-field>
         <!-- </Search> -->
 

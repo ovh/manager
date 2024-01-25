@@ -42,6 +42,7 @@ export const PCI_FEATURES = {
     DISCOVERY: 'instance:flavors-category-discovery',
     IOPS: 'instance:flavors-category-iops',
     BAREMETAL: 'instance:flavors-category-baremetal',
+    GRIDSCALE_LOCALZONE: 'instance:gridscale-local-zone',
   },
   SETTINGS: {
     USERS: 'public-cloud:users',

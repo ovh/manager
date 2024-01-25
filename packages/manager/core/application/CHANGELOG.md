@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.2.3...@ovh-ux/manager-react-core-application@0.3.0) (2024-01-22)
+
+
+### Features
+
+* **tracking:** correcting tracking for osdsselect ([#10323](https://github.com/ovh/manager/issues/10323)) ([040efbc](https://github.com/ovh/manager/commit/040efbccce6211b519e8c6b1fafe186d1fea971f))
+
+
+
+
+
+## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.2.2...@ovh-ux/manager-react-core-application@0.2.3) (2024-01-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-react-core-application
+
+
+
+
+
 ## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.2.1...@ovh-ux/manager-react-core-application@0.2.2) (2023-12-19)
 
 

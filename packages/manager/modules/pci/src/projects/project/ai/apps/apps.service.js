@@ -272,4 +272,10 @@ export default class AppService {
       ? this.PriceFormatter.format(this.getPriceForHour(prices, flavorId) * nb)
       : '';
   }
+
+  dataSync(serviceName, appId, dataSync) {
+    return this.$http
+      .post(`/cloud/project/${serviceName}/ai/app/${appId}/datasync`, dataSync)
+      .then(({ data }) => data);
+  }
 }
