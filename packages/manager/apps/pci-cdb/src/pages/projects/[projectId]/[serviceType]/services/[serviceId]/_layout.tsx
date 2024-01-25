@@ -49,6 +49,14 @@ export default function ServiceLayout() {
     { href: 'general', label: 'Dashboard' },
     { href: 'users', label: 'Users' },
     { href: 'logs', label: 'Logs' },
+    { href: 'backups', label: 'Backups' },
+    { href: 'databases', label: 'Databases' },
+    { href: 'integrations', label: 'Integrations' },
+    { href: 'metrics', label: 'Metrics' },
+    { href: 'namespaces', label: 'Namespaces' },
+    { href: 'pools', label: 'Pools' },
+    { href: 'queries', label: 'Queries' },
+    { href: 'settings', label: 'Settings' },
   ];
   return (
     <>
