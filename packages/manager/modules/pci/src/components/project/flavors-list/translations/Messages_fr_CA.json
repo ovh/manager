@@ -10,12 +10,14 @@
   "pci_project_flavors_category_definition_iops": "Les instances IOPS livrent les transactions disque les plus rapides de la gamme Public Cloud.",
   "pci_project_flavors_category_definition_none": "Pas de modèle disponible pour cette catégorie",
   "pci_project_flavors_disk_size": "L'espace disque est inférieur à celui du modèle actuel",
+
   "pci_project_flavors_spec_ram": "{{ram}} RAM",
   "pci_project_flavors_spec_vCore_details": "{{vcores}} vCores ({{frequency}} GHz)",
   "pci_project_flavors_spec_core_details": "{{vcores}} cores ({{frequency}} GHz)",
   "pci_project_flavors_spec_bandwidth_detail": "{{ bandwidth }} Mbit/s",
   "pci_project_flavors_spec_nvme": "{{capacity}} NVMe",
   "pci_project_flavors_spec_nvme_multiple": "{{count}} x {{capacity}} NVMe",
+
   "pci_project_flavors_price_hourly": "{{price}} HT/heure",
   "pci_project_flavors_price_monthly": "À partir de {{price}} HT/mois",
   "pci_project_flavors_zone_compatible": "Compatible avec",
