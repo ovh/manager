@@ -270,17 +270,6 @@ export default class Server {
     });
   }
 
-  updateRescueMail(productId, bootId, rescueMail) {
-    return this.put(productId, '', {
-      data: {
-        bootId,
-        rescueMail,
-      },
-      proxypass: true,
-      broadcast: 'dedicated.informations.reload',
-    });
-  }
-
   removeHack(productId) {
     return this.put(productId, '', {
       data: {
