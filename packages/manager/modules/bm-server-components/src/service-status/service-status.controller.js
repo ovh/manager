@@ -52,6 +52,7 @@ export default class BmServerComponentsGeneralInformationController {
           this.$translate.instant(
             'dedicated_server_dashboard_remove_hack_success',
           ),
+          true,
         );
       })
       .catch((data) => {
