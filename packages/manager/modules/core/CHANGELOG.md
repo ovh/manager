@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.15.0...@ovh-ux/manager-core@12.15.1) (2024-01-25)
+
+
+### Bug Fixes
+
+* **dedicated.vmware:** new workflow for add vdc ([#10167](https://github.com/ovh/manager/issues/10167)) ([cbf8c11](https://github.com/ovh/manager/commit/cbf8c11b6ccc8eb2877c26bb472fe78fa145a9d2))
+
+
+
+
+
 # [12.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.14.1...@ovh-ux/manager-core@12.15.0) (2023-12-07)
 
 
