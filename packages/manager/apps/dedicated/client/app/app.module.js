@@ -115,7 +115,6 @@ import ip from './ip';
 import ipComponents from './components/ip/ip-components.module';
 
 import dedicatedServer from './dedicated/dedicated-server';
-import dedicatedNas from './dedicated/nas';
 import dedicatedHousing from './dedicated/housing';
 import userContracts from './user-contracts';
 import otrs from './otrs';
@@ -163,7 +162,6 @@ export default async (containerEl, shellClient) => {
         cdn,
         dedicatedCloud,
         dedicatedHousing,
-        dedicatedNas,
         dedicatedServer,
         dedicatedUniverseComponents,
         serverBandwidth,
