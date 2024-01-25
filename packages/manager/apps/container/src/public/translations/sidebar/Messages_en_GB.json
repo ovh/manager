@@ -165,5 +165,6 @@
   "sidebar_pci_analytics_databases": "Databases",
   "sidebar_pci_analytics_data_streaming": "Data Streaming",
   "sidebar_pci_analytics_data_analysis": "Data Analysis",
-  "sidebar_network_security": "Network Security Dashboard"
+  "sidebar_network_security": "Network Security Dashboard",
+  "sidebar_nasha_cdn": "HA-NAS and CDN"
 }
