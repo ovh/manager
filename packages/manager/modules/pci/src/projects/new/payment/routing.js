@@ -37,6 +37,7 @@ export const registerPCINewPaymentState = (
       paymentsPerLine: PAYMENTS_PER_LINE,
       registerExplanationTexts: null,
       submitText: '',
+      trackinPrefix: 'pci_project_new_payment_',
       onSubmit: null,
     },
     resolve,
