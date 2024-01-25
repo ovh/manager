@@ -42,13 +42,6 @@
                                 data-on-go-to-region="$ctrl.goToRegion()"
                             ></pci-announcement-banner>
 
-                            <!--Info about prices change-->
-                            <repricing-banner
-                                data-ng-if="$ctrl.pciFeatures.isFeatureAvailable($ctrl.PCI_FEATURES.BANNERS.REPRICING_BANNER)"
-                                data-projects="$ctrl.projects"
-                                data-track-click="$ctrl.trackClick"
-                            ></repricing-banner>
-
                             <pci-project-billing-change-mediation-banner
                                 data-ng-if="$ctrl.pciFeatures.isFeatureAvailable($ctrl.PCI_FEATURES.BANNERS.BILLING_CHANGE_MEDIATION_BANNER)"
                             ></pci-project-billing-change-mediation-banner>
