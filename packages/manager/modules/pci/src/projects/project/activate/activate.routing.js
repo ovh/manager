@@ -122,6 +122,7 @@ export default /* @ngInject */ ($stateProvider) => {
       subtitlesSize: 4,
       foldVoucher: false,
       denseVoucher: true,
+      trackingPrefix: 'PublicCloud_activate_project',
       paymentsPerLine: (paymentMethods) => paymentMethods.length,
       registerExplanationTexts: { sepa: { banner: 'warning' } },
     },

@@ -53,8 +53,24 @@ export default /* @ngInject */ ($stateProvider) => {
       projectId: /* @ngInject */ ($transition$) =>
         $transition$.params().projectId,
 
-      activateDiscovery: /* @ngInject */ ($transition$, isDiscoveryProject) =>
-        isDiscoveryProject && $transition$.params().activateDiscovery,
+      activateDiscovery: /* @ngInject */ (
+        $transition$,
+        isDiscoveryProject,
+        trackPage,
+      ) => {
+        const isActivateModalDisplayed = $transition$.params()
+          .activateDiscovery;
+
+        if (isDiscoveryProject) {
+          if (isActivateModalDisplayed) {
+            trackPage(
+              'PublicCloud::pci::projects::project::activate-project-modal',
+            );
+          }
+          return isActivateModalDisplayed;
+        }
+        return false;
+      },
 
       project: /* @ngInject */ (OvhApiCloudProject, projectId) => {
         OvhApiCloudProject.v6().resetCache();

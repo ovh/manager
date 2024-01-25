@@ -95,12 +95,6 @@ export default class ProjectController {
     return this.goToDiscoveryProjectActivationPage();
   }
 
-  onActivateDiscoveryModalDisplay() {
-    return this.trackPage(
-      'PublicCloud::pci::projects::project::discovery-banner-activate-project',
-    );
-  }
-
   onActivateDiscoveryModalSuccess() {
     this.activateDiscovery = false;
     this.trackClick(

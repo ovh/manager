@@ -24,6 +24,7 @@ export default class PciProjectNewPaymentCtrl {
     coreConfig,
     coreURLBuilder,
     CucCloudMessage,
+    atInternet,
     pciProjectNew,
     PciProjectsService,
     ovhPaymentMethod,
@@ -38,6 +39,7 @@ export default class PciProjectNewPaymentCtrl {
     this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
     this.CucCloudMessage = CucCloudMessage;
+    this.atInternet = atInternet;
     this.pciProjectNew = pciProjectNew;
     this.PciProjectsService = PciProjectsService;
     this.ovhPaymentMethod = ovhPaymentMethod;
@@ -352,7 +354,10 @@ export default class PciProjectNewPaymentCtrl {
   ============================== */
 
   initComponentInitialParams() {
-    this.sendTrack('new_project_payment_continue');
+    this.atInternet.trackClick({
+      name: `${this.viewOptions.trackingPrefix}continue`,
+      type: 'action',
+    });
     this.componentInitialParams = {
       locale: this.coreConfig.getUser().language,
       paymentMethod: this.model.paymentMethod,
@@ -368,7 +373,10 @@ export default class PciProjectNewPaymentCtrl {
 
   onPaymentFormSubmit() {
     this.globalLoading.finalize = true;
-
+    this.atInternet.trackClick({
+      name: `${this.viewOptions.trackingPrefix}continue`,
+      type: 'action',
+    });
     let challengePromise = Promise.resolve(true);
     let defaultPaymentMethodPromise = Promise.resolve(true);
     let setDefaultPaymentMethodInError = false;
