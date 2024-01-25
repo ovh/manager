@@ -136,7 +136,7 @@ export default class OctaviaLoadBalancerCreateService {
             name: `health-monitor-${listener.healthMonitor.value}`,
             monitorType: listener.healthMonitor.value,
             maxRetries: 4,
-            periodicity: 'PT5S',
+            delay: 5,
             timeout: 4,
             httpConfiguration: {
               httpMethod: 'GET',
