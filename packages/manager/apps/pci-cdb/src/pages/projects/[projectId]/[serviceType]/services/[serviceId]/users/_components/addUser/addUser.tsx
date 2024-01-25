@@ -18,16 +18,13 @@ import { database } from '@/models/database';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
 import RolesSelect from './rolesSelect';
-import { useAddUserForm } from './addUser.hook';
-import { useState } from 'react';
-import { Tag, TagInput } from '@/components/ui/tag/tag-input';
+import { UseAddUserFormProps, useAddUserForm } from './addUser.hook';
 import TagsInput from '@/components/tags-input';
 
 interface AddUserModalProps {
@@ -46,10 +43,9 @@ const AddUserModal = ({
   onClose,
   onSuccess,
 }: AddUserModalProps) => {
-  const formOptions = {
+  const formOptions: UseAddUserFormProps = {
     existingUsers: users,
-    groupInput: service.engine === database.EngineEnum.m3db,
-    rolesInput: service.engine === database.EngineEnum.mongodb,
+    service,
   };
   const { form, schema } = useAddUserForm(formOptions);
   type ValidationSchema = z.infer<typeof schema>;
@@ -74,9 +70,6 @@ const AddUserModal = ({
     form.reset();
     onClose();
   };
-
-  const [tags, setTags] = useState<Tag[]>([]);
-  const { setValue } = form;
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
@@ -111,7 +104,7 @@ const AddUserModal = ({
               )}
             />
             {/* Group (m3db) */}
-            {formOptions.groupInput && (
+            {'group' in schema.shape && (
               <FormField
                 control={form.control}
                 name="group"
@@ -130,7 +123,7 @@ const AddUserModal = ({
                 )}
               />
             )}
-            {formOptions.rolesInput && (
+            {'roles' in schema.shape && (
               <FormField
                 control={form.control}
                 name="roles"
@@ -145,42 +138,120 @@ const AddUserModal = ({
                 )}
               />
             )}
-
-            <FormField
-              control={form.control}
-              name="tags"
-              render={({ field }) => (
-                <FormItem className="flex flex-col items-start">
-                  <FormLabel className="text-left">Topics</FormLabel>
-                  <FormControl>
-                    <TagInput
-                      {...field}
-                      minLength={5}
-                      maxLength={32}
-                      pattern="/^[+-][a-z@]{0,253}$/"
-                      placeholder="Enter a command"
-                      tags={tags}
-                      className="sm:min-w-[450px]"
-                      inputFieldPostion="top"
-                      allowDuplicates={false}
-                      textCase={null}
-                      setTags={(newTags) => {
-                        setTags(newTags);
-                        const t = (newTags as Tag[]).map(tag => tag.text);
-                        form.setValue('tags', t);
-                      }}
-                    />
-                    {/* <TagsInput
-                    {...field}
-                    schema={schema.shape.tags}
-                    />
-                       */}
-                  </FormControl>
-                  <FormDescription>Add a command</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            {'keys' in schema.shape && (
+              <FormField
+                control={form.control}
+                name="keys"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col items-start">
+                    <FormLabel className="text-left">Keys</FormLabel>
+                    <FormControl>
+                      <TagsInput
+                        {...field}
+                        value={field.value!}
+                        onChange={(newTags) => form.setValue('keys', newTags)}
+                        schema={
+                          ('keys' in schema.shape &&
+                            (schema.shape.keys as z.ZodArray<
+                              z.ZodString,
+                              'many'
+                            >).element) ||
+                          undefined
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
+            {'categories' in schema.shape && (
+              <FormField
+                control={form.control}
+                name="categories"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col items-start">
+                    <FormLabel className="text-left">Categories</FormLabel>
+                    <FormControl>
+                      <TagsInput
+                        {...field}
+                        value={field.value!}
+                        onChange={(newTags) =>
+                          form.setValue('categories', newTags)
+                        }
+                        schema={
+                          ('categories' in schema.shape &&
+                            (schema.shape.categories as z.ZodArray<
+                              z.ZodString,
+                              'many'
+                            >).element) ||
+                          undefined
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
+            {'commands' in schema.shape && (
+              <FormField
+                control={form.control}
+                name="commands"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col items-start">
+                    <FormLabel className="text-left">Commands</FormLabel>
+                    <FormControl>
+                      <TagsInput
+                        {...field}
+                        value={field.value!}
+                        onChange={(newTags) =>
+                          form.setValue('commands', newTags)
+                        }
+                        schema={
+                          ('commands' in schema.shape &&
+                            (schema.shape.commands as z.ZodArray<
+                              z.ZodString,
+                              'many'
+                            >).element) ||
+                          undefined
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
+            {'channels' in schema.shape && (
+              <FormField
+                control={form.control}
+                name="channels"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col items-start">
+                    <FormLabel className="text-left">Channels</FormLabel>
+                    <FormControl>
+                      <TagsInput
+                        {...field}
+                        value={field.value!}
+                        onChange={(newTags) =>
+                          form.setValue('channels', newTags)
+                        }
+                        schema={
+                          ('channels' in schema.shape &&
+                            (schema.shape.channels as z.ZodArray<
+                              z.ZodString,
+                              'many'
+                            >).element) ||
+                          undefined
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
             <pre>{JSON.stringify(form.formState.errors, null, 2)}</pre>
 
             <DialogFooter className="flex justify-end">

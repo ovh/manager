@@ -1,123 +1,144 @@
-import React, { useMemo, useState } from 'react';
+import React, { useRef } from 'react';
 import { z } from 'zod';
-import { Input } from './ui/input';
-import { useForm } from 'react-hook-form';
+import { X, PlusCircle } from 'lucide-react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FormField } from './ui/form';
+import { Input } from './ui/input';
+import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
+import { Button } from './ui/button';
 
 interface TagsInputProps {
-  value: string[] | undefined;
-  onChange: (newTags: string[] | undefined) => void;
-  schema: any;
+  value: string[];
+  onChange: (newTags: string[]) => void;
+  min?: number;
+  max?: number;
+  pattern?: RegExp;
+  placeholder?: string;
+  disabled?: boolean;
+  schema?: z.ZodString;
 }
 
 const TagsInput = React.forwardRef<HTMLInputElement, TagsInputProps>(
-  ({ value, schema, onChange }, ref) => {
-    console.log(schema)
+  (
+    {
+      value,
+      onChange,
+      min,
+      max,
+      pattern,
+      placeholder,
+      disabled = false,
+      schema: inputSchema,
+    },
+    ref,
+  ) => {
+    const addTagBtnRef = useRef<HTMLButtonElement>(null);
+    let inputRules = z.string();
+
+    if (inputSchema) {
+      inputRules = inputSchema;
+    } else {
+      if (typeof min === 'number') {
+        inputRules = inputRules.min(min);
+      }
+      if (typeof max === 'number') {
+        inputRules = inputRules.max(max);
+      }
+      if (pattern instanceof RegExp) {
+        inputRules = inputRules.regex(pattern, {
+          message: 'Invalid pattern',
+        });
+      }
+    }
+    const schema = z
+      .object({
+        tag: inputRules,
+      })
+      .refine((newTag) => !value.includes(newTag.tag), {
+        message: 'No duplicate value',
+      });
     type ValidationSchema = z.infer<typeof schema>;
-    const [tagInput, setTagInput] = useState('');
     const form = useForm<ValidationSchema>({
       resolver: zodResolver(schema),
-      defaultValues: [],
+      defaultValues: {
+        tag: '',
+      },
     });
-    if (!value) return <></>;
-
-    const errors = useMemo(() => {
-        const messages: string[] = [];
-        const formErrors = form.formState.errors;
-        Object.keys(formErrors).forEach((key) => {
-          const validKey = key as keyof typeof formErrors;
-          const formError = formErrors[validKey];
-          if (formError && formError.message) {
-            messages.push(formError.message);
-          }
-        });
-  
-        return messages;
-      }, [form.formState.errors]);
 
     const handleAddTag: SubmitHandler<ValidationSchema> = (formValues) => {
-      onChange([
-        ...value,
-        formValues.role.replace('(defined db)', formValues.customDB),
-      ]);
+      const newTags = [...value, formValues.tag];
+      onChange(newTags);
       form.reset();
     };
 
-    const addTag = () => {
-      try {
-        schema.parse([...value, tagInput]);
-        onChange([...value, tagInput]);
-        // setValue('tags', [...value, tagInput]);
-        setTagInput('');
-      } catch (error) {
-        if (error instanceof z.ZodError) {
-          const validationErrors = error.errors.map((err) => err.message);
-          console.error('Tag validation error:', validationErrors);
-        } else {
-          console.error('An unexpected error occurred:', error);
-        }
+    const handleRemoveTag = (index: number) => {
+      const updatedTags = [...value];
+      updatedTags.splice(index, 1);
+      onChange(updatedTags);
+    };
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === 'Enter') {
+        addTagBtnRef.current?.click();
+        event.preventDefault();
       }
     };
 
-    const removeTag = (index: number) => {
-      const newTags = [...value];
-      newTags.splice(index, 1);
-      onChange([...value, tagInput]);
-    };
     return (
-      <div className="flex w-full items-end">
-        {/* <FormField
-              control={form.control}
-              name="tag"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      type="text"
-                      placeholder="Enter customDB"
-                      {...field}
-                      onKeyDown={handleKeyDown}
-                      disabled={
-                        !currentRole.includes(USER_CONFIG.roles.customTag)
-                      }
-                      readOnly={
-                        !currentRole.includes(USER_CONFIG.roles.customTag)
-                      }
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
-        <Input
-          type="text"
-          placeholder="Add a tag"
-          value={tagInput}
-          onChange={(e) => setTagInput(e.target.value)}
-          ref={ref}
-        />
-        <button type="button" onClick={addTag}>
-          Add
-        </button>
-        <div>
-          {errors.map((error, i) => (
-            <span key={i} className="text-sm font-medium text-destructive">
-              {error}
-            </span>
-          ))}
+      <Form {...form}>
+        <div className="w-full flex flex-col gap-2">
+          <FormField
+            control={form.control}
+            name="tag"
+            render={({ field }) => (
+              <>
+                <div className="flex w-full items-end">
+                  <FormItem ref={ref} className="flex-grow">
+                    <FormControl>
+                      <Input
+                        type="text"
+                        placeholder={placeholder}
+                        onKeyDown={handleKeyDown}
+                        disabled={disabled}
+                        {...field}
+                      />
+                    </FormControl>
+                  </FormItem>
+                  <Button
+                    ref={addTagBtnRef}
+                    variant={'ghost'}
+                    type="button"
+                    onClick={form.handleSubmit(handleAddTag)}
+                    className="text-primary rounded-full p-2 ml-2 hover:text-primary"
+                  >
+                    <PlusCircle />
+                  </Button>
+                </div>
+                <FormMessage />
+              </>
+            )}
+          />
+          <div className="flex gap-2 flex-wrap">
+            {value.map((tag, index) => (
+              <div
+                key={index}
+                className="border rounded-sm px-2.5 py-0.5 text-xs flex gap-2 items-center"
+              >
+                <span>{tag}</span>
+                <Button
+                  type="button"
+                  onClick={() => handleRemoveTag(index)}
+                  variant={'ghost'}
+                  size={'icon'}
+                  className="w-3 h-3 p-0"
+                >
+                  <X />
+                </Button>
+              </div>
+            ))}
+          </div>
         </div>
-        <ul>
-          {value.map((tag, index) => (
-            <li key={index}>
-              {tag}{' '}
-              <button type="button" onClick={() => removeTag(index)}>
-                Remove
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      </Form>
     );
   },
 );
