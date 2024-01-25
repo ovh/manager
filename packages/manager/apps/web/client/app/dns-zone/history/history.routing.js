@@ -13,8 +13,10 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     resolve: {
       ...commonResolves,
-      goBack: /* @ngInject */ ($state, $stateParams) => () =>
-        $state.go('app.zone.details.zone-history', $stateParams),
+      goBack: /* @ngInject */ ($state, $transition$) => () =>
+        $state.go('app.zone.details.zone-history', {
+          productId: $transition$.params().productId,
+        }),
     },
     params: {
       selectedDates: null,
@@ -37,6 +39,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: {
         type: 'string',
         value: null,
+        description: 'url used to retrieve the zone data file',
       },
       creationDate: {
         type: 'string',
@@ -44,7 +47,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
     },
     resolve: {
-      url: /* @ngInject */ ($stateParams) => $stateParams.url,
+      url: /* @ngInject */ ($transition$) => $transition$.params().url,
       isCurrentDnsZone: /* @ngInject */ ($stateParams) =>
         $stateParams.isCurrentDnsZone,
       creationDate: /* @ngInject */ ($stateParams) => $stateParams.creationDate,
@@ -131,8 +134,8 @@ export default /* @ngInject */ ($stateProvider) => {
       ) =>
         $state.go('app.zone.details.zone-history.diff-tool-viewer', {
           selectedDates: dnsEntriesForComparison
-            .filter((u) => u.active)
-            .map((u) => u.date),
+            .filter(({ active }) => active)
+            .map(({ date }) => date),
           productId: zoneName,
         }),
     },

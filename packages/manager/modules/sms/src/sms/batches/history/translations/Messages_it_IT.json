@@ -1,5 +1,11 @@
 {
   "sms_batches_history_title": "Statistiche e storico",
   "sms_batches_history_short_number": "Numero che consente la risposta",
-  "sms_batches_history_downloading": "Download in corso..."
+  "sms_batches_history_downloading": "Download in corso...",
+  "sms_batches_history_delete_title": "Eliminazione della cronologia",
+  "sms_batches_history_delete_message": "Vuoi davvero eliminare la campagna SMS {{batchName}}?",
+  "sms_batches_history_delete_cancel": "Annullare",
+  "sms_batches_history_delete_confirm": "Confermare",
+  "sms_batches_history_delete_confirmation_message": "La campagna è stata eliminata correttamente",
+  "sms_batches_history_delete_error_message": "Si è verificato un errore, ti preghiamo di riprovare."
 }

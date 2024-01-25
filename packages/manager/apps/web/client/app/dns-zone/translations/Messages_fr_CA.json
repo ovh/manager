@@ -3,6 +3,7 @@
   "zones_order": "Commander",
   "base_dns_zone": "Zone DNS de base",
   "modified_dns_zone": "Zone DNS modifiée",
+  "modified": "Modifié",
   "dashboard_history_creation_date": "Date de création",
   "dashboard_history_view_zone": "Voir",
   "dashboard_history_current_zone_date": "{{creationDate}} (actuelle)",

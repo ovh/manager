@@ -2,6 +2,7 @@ import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 import legacy from '@vitejs/plugin-legacy';
+import svgr from 'vite-plugin-svgr';
 
 import IframeHmrPlugin from './plugin/iframe-hmr.js';
 import viteOvhDevServerPlugin from './plugin/dev-server.js';
@@ -31,6 +32,7 @@ const getBaseConfig = (config) => {
       }),
       viteOvhDevServerPlugin({ isContainerApp, config: envConfig }),
       IframeHmrPlugin(),
+      svgr(),
     ],
     css: {
       preprocessorOptions: {

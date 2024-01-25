@@ -16,6 +16,7 @@ import {
   CATEGORIES,
   DEFAULT_CATALOG_ENDPOINT,
   LEGACY_FLAVORS,
+  LOCAL_ZONE,
 } from './flavors-list.constants';
 import { TAGS_BLOB } from '../../../constants';
 
@@ -35,6 +36,7 @@ export default class FlavorsList {
     this.CucPriceHelper = CucPriceHelper;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
     this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
+    this.LOCAL_ZONE = LOCAL_ZONE;
   }
 
   getCatalog(endpoint, ovhSubsidiary) {
@@ -64,16 +66,18 @@ export default class FlavorsList {
           catalogEndpoint,
           this.coreConfig.getUser().ovhSubsidiary,
         ),
+        productAvailability: this.getProductAvailability(
+          serviceName,
+          this.coreConfig.getUser().ovhSubsidiary,
+        ),
       })
-      .then(({ flavors, prices, catalog }) => {
+      .then(({ flavors, prices, catalog, productAvailability }) => {
         const hourlyPlanCodes = flavors.filter(
           ({ planCodes }) => !isNil(planCodes.hourly),
         );
         const groupedPlanCodesByName = groupBy(hourlyPlanCodes, 'name');
-
         return map(groupedPlanCodesByName, (groupedFlavors) => {
           const resource = groupedFlavors[0];
-
           return new Flavor({
             ...omit(resource, ['available', 'region']),
             technicalBlob: get(
@@ -107,9 +111,33 @@ export default class FlavorsList {
               ),
               'legacy',
             ),
+            locationCompatibility: this.getlocationCompatibility(
+              productAvailability.plans.find(
+                (plan) => plan.code === resource.planCodes.hourly,
+              ),
+            ),
           });
         });
       });
+  }
+
+  getlocationCompatibility(productAvailability) {
+    return {
+      isLocalZone: productAvailability?.regions.some(
+        (region) => region.type === this.LOCAL_ZONE,
+      ),
+      isGlobalZone: productAvailability?.regions.some(
+        (region) => region.type !== this.LOCAL_ZONE,
+      ),
+    };
+  }
+
+  getProductAvailability(projectId, ovhSubsidiary) {
+    return this.$http
+      .get(`/cloud/project/${projectId}/capabilities/productAvailability`, {
+        params: { ovhSubsidiary },
+      })
+      .then(({ data }) => data);
   }
 
   static mapByFlavorType(flavors, image) {

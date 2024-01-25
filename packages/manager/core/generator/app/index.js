@@ -110,6 +110,8 @@ export default (plop) => {
           data.hasDashboard = data.templates.includes('dashboard');
           data.hasOnboarding = data.templates.includes('onboarding');
 
+          data.isApiV6 = data.apiV6Endpoints.get?.operationList.length
+
           if (data.hasListing) {
             const [listingPath, listingFn] =
               data.listingEndpoint?.split('-') || [];
@@ -128,7 +130,6 @@ export default (plop) => {
             data.dashboardEndpointPath = dashboardPath;
             data.dashboardEndpointFn = dashboardFn;
           }
-
           return data.hasListing;
         },
         validate: (input) => input.length > 0,
@@ -188,7 +189,7 @@ export default (plop) => {
             appDirectory,
           })
           : [];
-      const pages = createPages(templates, appDirectory);
+      const pages = createPages(templates, appDirectory, isApiV6);
       const translations = createTranslations(templates, appName, appDirectory);
       return [
         {

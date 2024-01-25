@@ -1,7 +1,20 @@
-import forEach from 'lodash/forEach';
-import isEmpty from 'lodash/isEmpty';
-import isString from 'lodash/isString';
-import uniqBy from 'lodash/uniqBy';
+import { CSS_BOOTSTRAP_CLASSES } from './exchange.messaging.constants';
+
+const isEmptyObj = (passedObj) =>
+  !(
+    passedObj &&
+    passedObj === Object(passedObj) &&
+    Object.keys(passedObj).length !== 0
+  );
+/**
+ * find uniq values by predicate (fn)
+ * @param arr
+ * @param fn
+ * @param set
+ * @returns {*}
+ */
+const uniqBy = (arr, fn, set = new Set()) =>
+  arr.filter((el) => ((v) => !set.has(v) && set.add(v))(fn(el)));
 
 export default class Messaging {
   resetMessages() {
@@ -17,11 +30,11 @@ export default class Messaging {
     if (failure != null) {
       const value = [failure, failure.data];
 
-      forEach(value, (currentValue) => {
-        if (!isEmpty(currentValue)) {
-          if (isString(currentValue)) {
+      value.forEach((currentValue) => {
+        if (!isEmptyObj(currentValue)) {
+          if (typeof currentValue === 'string') {
             this.messageDetails.push({ id: null, message: currentValue });
-          } else if (isString(currentValue.message)) {
+          } else if (typeof currentValue.message === 'string') {
             this.messageDetails.push({
               id: currentValue.id,
               message: currentValue.message,
@@ -45,19 +58,19 @@ export default class Messaging {
   }
 
   writeInfo(message, details = null) {
-    this.write(message, 'alert-info', details);
+    this.write(message, CSS_BOOTSTRAP_CLASSES.INFO, details);
   }
 
   writeSuccess(message, details = null) {
-    this.write(message, 'alert-success', details);
+    this.write(message, CSS_BOOTSTRAP_CLASSES.SUCCESS, details);
   }
 
   writeWarning(message, details = null) {
-    this.write(message, 'alert-warning', details);
+    this.write(message, CSS_BOOTSTRAP_CLASSES.WARNING, details);
   }
 
   writeError(message, details = null) {
-    this.write(message, 'alert-danger', details);
+    this.write(message, CSS_BOOTSTRAP_CLASSES.DANGER, details);
   }
 
   /**
@@ -72,31 +85,31 @@ export default class Messaging {
   setMessage(message, failure) {
     let messageToSend = message;
     let messageDetails = [];
-    let alertType = 'alert alert-success';
+    let alertSubType = CSS_BOOTSTRAP_CLASSES.SUCCESS;
 
     if (failure != null) {
       if (failure.message != null) {
         messageDetails.push({ id: failure.id, message: failure.message });
-        alertType = 'alert alert-warning';
+        alertSubType = 'alert alert-warning';
 
-        if (isString(failure.type)) {
+        if (typeof failure.type === 'string') {
           switch (failure.type.toUpperCase()) {
             case 'ERROR':
-              alertType += ' alert-danger';
+              alertSubType = CSS_BOOTSTRAP_CLASSES.DANGER;
 
               if (message.ERROR != null || message != null) {
                 messageToSend = message.ERROR || message;
               }
               break;
             case 'PARTIAL':
-              alertType += ' alert-danger';
+              alertSubType = CSS_BOOTSTRAP_CLASSES.DANGER;
 
               if (message.PARTIAL != null || message != null) {
                 messageToSend = message.PARTIAL || message;
               }
               break;
             case 'INFO':
-              alertType += ' alert-success';
+              alertSubType = CSS_BOOTSTRAP_CLASSES.SUCCESS;
 
               if (message.INFO != null || message != null) {
                 messageToSend = message.INFO || message;
@@ -107,24 +120,22 @@ export default class Messaging {
           }
         }
       } else if (failure.messages != null) {
-        if (!isEmpty(failure.messages)) {
-          alertType = 'alert';
-
+        if (!isEmptyObj(failure.messages)) {
           switch (failure.state.toUpperCase()) {
             case 'ERROR':
-              alertType += ' alert-danger';
+              alertSubType = CSS_BOOTSTRAP_CLASSES.DANGER;
               messageToSend = message.ERROR || message;
               break;
             case 'PARTIAL':
-              alertType += ' alert-warning';
+              alertSubType = CSS_BOOTSTRAP_CLASSES.WARNING;
               messageToSend = message.PARTIAL || message;
               break;
             case 'OK':
-              alertType += ' alert-success';
+              alertSubType = CSS_BOOTSTRAP_CLASSES.SUCCESS;
               messageToSend = message.OK || message;
               break;
             default:
-              alertType += ' alert-warning';
+              alertSubType = CSS_BOOTSTRAP_CLASSES.WARNING;
               messageToSend = message;
               break;
           }
@@ -132,7 +143,7 @@ export default class Messaging {
           messageDetails = failure.messages
             .filter(
               (currentMessage) =>
-                isString(currentMessage.type) &&
+                typeof currentMessage.type === 'string' &&
                 currentMessage.type.toUpperCase() !== 'INFO',
             )
             .map((currentMessage) => ({
@@ -141,29 +152,29 @@ export default class Messaging {
             }));
         }
       } else if (failure.status != null) {
-        alertType = 'alert alert-warning';
+        alertSubType = CSS_BOOTSTRAP_CLASSES.WARNING;
 
         switch (failure.status.toUpperCase()) {
           case 'BLOCKED':
           case 'CANCELLED':
           case 'PAUSED':
           case 'ERROR':
-            alertType += ' alert-danger';
+            alertSubType = CSS_BOOTSTRAP_CLASSES.DANGER;
             break;
           case 'TODO':
           case 'DONE':
-            alertType += ' alert-success';
+            alertSubType = CSS_BOOTSTRAP_CLASSES.SUCCESS;
             break;
           default:
         }
       } else if (failure === 'true') {
-        alertType = 'alert alert-success';
+        alertSubType = CSS_BOOTSTRAP_CLASSES.SUCCESS;
         messageDetails = null;
       }
     }
 
     this.message = messageToSend;
     this.messageDetails = messageDetails;
-    this.alertType = alertType;
+    this.alertType = `alert ${alertSubType}`;
   }
 }

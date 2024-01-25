@@ -96,5 +96,15 @@
   "pci_projects_project_instances_windows_private_mode_description3": "Sehen Sie sich die Anleitung an",
   "pci_projects_project_instances_add_flavor_selected_title_without_price": "Gewähltes Modell: {{model}}",
   "pci_projects_project_instances_add_billing_coming_soon_message_title": "Monatliche Preise",
-  "pci_projects_project_instances_add_billing_coming_soon_message_description": "Die monatlichen Preise werden mit der Einführung der Saving Plans in Kürze verfügbar sein."
+  "pci_projects_project_instances_add_billing_coming_soon_message_description": "Die monatlichen Preise werden mit der Einführung der Saving Plans in Kürze verfügbar sein.",
+  "pci_projects_project_instances_add_localPrivateNetwork_sub_title": "Ein privates Netzwerk in einer Local Zone auswählen",
+  "pci_projects_project_instances_add_localPrivateNetwork_label": "Ein privates Netzwerk in einer Local Zone auswählen",
+  "pci_projects_project_instances_add_localPrivateNetwork_add": "Ein neues privates Netzwerk in einer Local Zone erstellen",
+  "pci_projects_project_instances_add_localPrivateNetwork_description": "Mit diesem Modus ist die Instanz einem Ihrer privaten Netzwerke in einer lokalen Zone zugewiesen.",
+  "pci_projects_project_instances_add_localPrivateNetwork_add_public_network_checkbox_label": "Öffentliches Netzwerk",
+  "pci_projects_project_instances_add_localPrivateNetwork_add_public_network_info": "Ihre Instanz verfügt nun über einen öffentlichen Netzwerk-Port, der mit einer IPv4 und einer IPv6 verbunden ist.",
+  "pci_projects_project_instances_add_localPrivateNetwork_placeholder": "Ein privates Netzwerk in einer Local Zone auswählen",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode": "Local Private Mode",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode_description1": "Instanzen im 'Local Private Mode' sind nicht global verbunden. Nur Instanzen derselben Local Zone können über private Netzwerke in Local Zones verbunden werden. Die Local Zones sind nicht mit Ihrem vRack kompatibel.",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode_description2": "Der 'Local Private Mode' unterstützt DHCP, um Ihren Instanzen automatisch IP-Adressen zur Verfügung zu stellen."
 }

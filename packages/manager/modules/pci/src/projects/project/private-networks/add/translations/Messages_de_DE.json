@@ -6,7 +6,7 @@
   "pci_projects_project_network_private_create_configure_mask": "Maske",
   "pci_projects_project_network_private_create_configure_choose_vlan": "VLAN-ID festlegen",
   "pci_projects_project_network_private_create_configure_vlan": "VLAN-ID",
-  "pci_projects_project_network_private_create_configure_vlan_limits": "Zwischen 2 und 4000",
+  "pci_projects_project_network_private_create_configure_vlan_limits": "Zwischen 0 und 4000",
   "pci_projects_project_network_private_create_configure_vlan_taken": "Dieses VLAN ist bereits vergeben.",
   "pci_projects_project_network_private_create_configure_api": "Sie können Ihre IP-Bereiche über die API anpassen.",
   "pci_projects_project_network_private_create_localisation": "Standort",
@@ -35,5 +35,6 @@
   "pci_projects_project_network_private_create_next": "Weiter",
   "pci_projects_project_network_private_create_loading": "Das private Netzwerk wird erstellt. Dies kann einige Minuten dauern",
   "pci_projects_project_network_private_create_success": "Das private Netzwerk wurde erstellt",
-  "pci_projects_project_network_private_create_error": "Bei der Erstellung des privaten Netzwerks ist ein Fehler aufgetreten: {{ message }}"
+  "pci_projects_project_network_private_create_error": "Bei der Erstellung des privaten Netzwerks ist ein Fehler aufgetreten: {{ message }}",
+  "pci_projects_project_network_private_create_vlan_id_warning": "Die VLAN-ID 0 wird standardmäßig für andere Produkte verwendet, auch außerhalb des Public-Cloud-Universums. Private IPs müssen mit Bedacht verwaltet werden."
 }

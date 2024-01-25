@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.7.1...@ovh-ux/manager-iam@1.8.0) (2024-01-22)
+
+
+### Features
+
+* **iam:** create policy action search no result improvement ([#9869](https://github.com/ovh/manager/issues/9869)) ([0758e3c](https://github.com/ovh/manager/commit/0758e3c4ec6f510437d2516db3e675ea20f6c770))
+
+
+
+
+
 ## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.7.0...@ovh-ux/manager-iam@1.7.1) (2023-12-19)
 
 

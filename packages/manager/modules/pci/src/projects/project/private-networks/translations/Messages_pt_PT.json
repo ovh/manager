@@ -11,5 +11,13 @@
   "pci_projects_project_network_private_ip_allocation": "Endereços IP atribuídos",
   "pci_projects_project_network_private_assign_gateway": "Atribuir uma instância Gateway",
   "pci_projects_project_network_private_delete": "Eliminar",
-  "pci_projects_project_network_private_no_data": "Nenhum dado disponível."
+  "pci_projects_project_network_private_no_data": "Nenhum dado disponível.",
+  "pci_projects_project_network_private_global_regions_tab_label": "Global Regions (vRack)",
+  "pci_projects_project_network_private_local_zones_tab_label": "Local Zones",
+  "pci_projects_project_network_private_delete_label": "Eliminar a rede privada",
+  "pci_projects_project_network_private_delete_confirm": "Confirmar",
+  "pci_projects_project_network_private_delete_cancel": "Anular",
+  "pci_projects_project_network_private_delete_confirmation": "Quer mesmo eliminar a rede privada {{name}}?",
+  "pci_projects_project_network_private_delete_success": "A rede privada {{ name }} está a ser eliminada",
+  "pci_projects_project_network_private_delete_error": "Ocorreu um erro ao eliminar a rede privada {{ message }}"
 }

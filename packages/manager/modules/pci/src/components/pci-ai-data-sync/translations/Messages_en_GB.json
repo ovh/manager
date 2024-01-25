@@ -1,0 +1,11 @@
+{
+  "pci_data_sync_title": "Synchronising data manually",
+  "pci_data_sync_confirm": "Sync",
+  "pci_data_sync_cancel": "Cancel",
+  "pci_data_sync_type": "Synchronisation type",
+  "pci_data_sync_type_help": "You can choose between a push, to sync to your data container or a pull, in the opposite direction.",
+  "pci_data_sync_directory": "The following mount directory will be synced: {{ directory }}",
+  "pci_data_sync_all_directory": "All your mount directories will be synced",
+  "pci_data_sync_success_message": "The data has been synced",
+  "pci_data_sync_error_message": "An error has occurred syncing the data: {{ message }}."
+}

@@ -106,6 +106,15 @@ export default async (containerEl, shellClient) => {
         });
       },
     )
+    .config(
+      /* @ngInject */ ($urlRouterProvider) => {
+        $urlRouterProvider.when('/catalog', () => {
+          shellClient.navigation.getURL('catalog', '/').then((url) => {
+            window.top.location.href = url;
+          });
+        });
+      },
+    )
     .run(
       /* @ngInject */ ($transitions) => {
         if (!isTopLevelApplication()) {

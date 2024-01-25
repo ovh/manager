@@ -199,7 +199,9 @@
                                 class="text-center"
                                 data-ng-if="!domain.partial"
                             >
-                                <div data-ng-if="domain.domainValidated">
+                                <div
+                                    data-ng-if="domain.domainValidated && domain.state === stateOk"
+                                >
                                     <button
                                         class="oui-badge oui-badge_error"
                                         type="button"
@@ -254,31 +256,13 @@
 
                                     <!-- dkim -->
                                     <button
-                                        class="oui-badge oui-badge_success"
-                                        data-translate="emailpro_tab_domain_diagnostic_dkim"
-                                        data-ng-if=":: dkimGlobalStatus(domain) === GLOBAL_DKIM_STATUS.OK && !exchange.isMXPlan"
-                                        disabled
-                                    ></button>
-                                    <button
-                                        class="oui-badge oui-background-g-100"
-                                        data-translate="emailpro_tab_domain_diagnostic_dkim"
+                                        class="oui-badge"
+                                        data-ng-class="DKIM_STATUS_CLASS[domain.dkimDiag.state]"
                                         data-ng-click="setAction('emailpro/domain/dkim-autoconfig/emailpro-domain-dkim-autoconfig', {
-                                            domain: domain,
-                                            constant: { GLOBAL_DKIM_STATUS: GLOBAL_DKIM_STATUS },
-                                            dkimStatus: GLOBAL_DKIM_STATUS.NOT_CONFIGURED,
+                                            domain,
                                         })"
-                                        data-ng-if=":: dkimGlobalStatus(domain) === GLOBAL_DKIM_STATUS.NOT_CONFIGURED && !exchange.isMXPlan"
-                                    ></button>
-                                    <button
-                                        class="oui-badge oui-badge_error"
-                                        type="button"
+                                        data-ng-if="!exchange.isMXPlan"
                                         data-translate="emailpro_tab_domain_diagnostic_dkim"
-                                        data-ng-click="setAction('emailpro/domain/dkim-autoconfig/emailpro-domain-dkim-autoconfig', {
-                                            domain: domain,
-                                            constant: { GLOBAL_DKIM_STATUS: GLOBAL_DKIM_STATUS },
-                                            dkimStatus: GLOBAL_DKIM_STATUS.NOK,
-                                        })"
-                                        data-ng-if=":: dkimGlobalStatus(domain) === GLOBAL_DKIM_STATUS.NOK && !exchange.isMXPlan"
                                     ></button>
                                     <!-- end dkim -->
                                 </div>
@@ -319,7 +303,7 @@
                                     ></span>
                                     <span
                                         class="oui-badge oui-badge_info"
-                                        data-ng-if="domain.state === stateCreating && domain.cname == null"
+                                        data-ng-if="domain.state === stateCreating && (domain.cname == null || domain.domainValidated)"
                                         data-translate="emailpro_tab_ACCOUNTS_state_CREATING"
                                     ></span>
                                     <span

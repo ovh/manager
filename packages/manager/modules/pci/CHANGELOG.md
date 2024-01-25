@@ -3,6 +3,77 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.18.2...@ovh-ux/manager-pci@6.19.0) (2024-01-22)
+
+
+### Bug Fixes
+
+* **pci.db:** update private network when changing region ([#10703](https://github.com/ovh/manager/issues/10703)) ([45924a4](https://github.com/ovh/manager/commit/45924a49f5bcf1e814d3ccefc6ee7cb5ca2fea2c))
+
+
+### Features
+
+* **pci.ai:** add manual data sync in notebook and apps ([#10410](https://github.com/ovh/manager/issues/10410)) ([e3b3093](https://github.com/ovh/manager/commit/e3b30938b296a877a20ab3f6d480047b5682aa62))
+* **pci.ai:** stop notebook from dashboard ([#10702](https://github.com/ovh/manager/issues/10702)) ([4ed31d4](https://github.com/ovh/manager/commit/4ed31d463cea5f6c2f495e00e7d59ae4c9b01e76))
+* **pci:** change default CIDR as default gateway to true ([#10574](https://github.com/ovh/manager/issues/10574)) ([3a0647f](https://github.com/ovh/manager/commit/3a0647f859e9f338714e2a470475e6213a54ad2a))
+* **pci:** new payment method ([#10378](https://github.com/ovh/manager/issues/10378)) ([3d87a3e](https://github.com/ovh/manager/commit/3d87a3e702a934d943989f829afd0bdc4f0aecb8))
+* remove dataintegration project ([#10450](https://github.com/ovh/manager/issues/10450)) ([8526862](https://github.com/ovh/manager/commit/8526862140874dedd7aa8898eb7dc17457681312))
+
+
+### Reverts
+
+* Revert "feat(pci): new payment method (#10378)" (#10731) ([dfd1f71](https://github.com/ovh/manager/commit/dfd1f71c02f1e3a24a7c9c4b68f74d2647a96e05)), closes [#10378](https://github.com/ovh/manager/issues/10378) [#10731](https://github.com/ovh/manager/issues/10731)
+
+
+
+
+
+## [6.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.18.1...@ovh-ux/manager-pci@6.18.2) (2024-01-19)
+
+
+### Bug Fixes
+
+* **pci:** display IP order page ([94ed0b0](https://github.com/ovh/manager/commit/94ed0b024bed6c0f52fee33734e33b60db4e202c))
+
+
+
+
+
+## [6.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.18.0...@ovh-ux/manager-pci@6.18.1) (2024-01-17)
+
+
+### Bug Fixes
+
+* **public-cloud:** enable monthly billing ([5dd4646](https://github.com/ovh/manager/commit/5dd464633d41bad68fa8808d1202869282729b4b))
+
+
+
+
+
+# [6.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.17.0...@ovh-ux/manager-pci@6.18.0) (2024-01-16)
+
+
+### Features
+
+* **public-cloud:** add Local Zone ([#10358](https://github.com/ovh/manager/issues/10358)) ([e8dadae](https://github.com/ovh/manager/commit/e8dadae55b2a6b5971ce8fc0fb7ed0c030868d2b))
+* **public-cloud:** patch localzone name ([#10695](https://github.com/ovh/manager/issues/10695)) ([28efee6](https://github.com/ovh/manager/commit/28efee6d0c6934e0aa5b5ab1787e99f7d396f9f1))
+
+
+
+
+
+# [6.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.16.1...@ovh-ux/manager-pci@6.17.0) (2024-01-08)
+
+
+### Features
+
+* **pci.projects:** add private registry us guides ([#10614](https://github.com/ovh/manager/issues/10614)) ([f71cdb8](https://github.com/ovh/manager/commit/f71cdb89fd60a77c86751313715298b8a29943de))
+* **pci:** allow vlan id 0 when creating private network ([#10473](https://github.com/ovh/manager/issues/10473)) ([5cb8a04](https://github.com/ovh/manager/commit/5cb8a0487c2378a6b512a12d2aa4e0b5eee17193))
+
+
+
+
+
 ## [6.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.16.0...@ovh-ux/manager-pci@6.16.1) (2024-01-02)
 
 

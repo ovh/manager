@@ -57,6 +57,7 @@ export default class ExchangeAddDomainController {
       true,
     );
     this.loading = false;
+    this.isOvhDomain = true;
     this.model = {
       name: '',
       displayName: '',
@@ -64,6 +65,7 @@ export default class ExchangeAddDomainController {
       srvParam: true,
       mxParam: false,
       domainType: this.OVH_DOMAIN,
+      autoEnableDKIM: true,
     };
 
     this.search = {
@@ -106,6 +108,7 @@ export default class ExchangeAddDomainController {
       this.model.domainType = this.NON_OVH_DOMAIN;
       this.model.srvParam = false;
       this.model.mxParam = false;
+      this.isOvhDomain = false;
     }
   }
 
@@ -156,6 +159,8 @@ export default class ExchangeAddDomainController {
 
       delete this.model.attachOrganization2010;
     }
+    this.model.autoEnableDKIM = this.model.autoEnableDKIM && this.isOvhDomain;
+    this.model.configureDKIM = this.isOvhDomain;
 
     delete this.model.domainType;
     delete this.model.isUTF8Domain;
@@ -221,6 +226,11 @@ export default class ExchangeAddDomainController {
     this.model.name = '';
   }
 
+  onChangeDomainType() {
+    this.resetName();
+    this.isOvhDomain = this.model.domainType === this.OVH_DOMAIN;
+  }
+
   search() {
     this.resetName();
 
@@ -235,14 +245,13 @@ export default class ExchangeAddDomainController {
   }
 
   checkDomain() {
-    if (this.model.domainType === this.NON_OVH_DOMAIN) {
+    if (!this.isOvhDomain) {
       this.model.srvParam = false;
-      this.services.$rootScope.$broadcast('wizard-goToStep', 3);
     }
   }
 
   checkDomainType() {
-    if (this.model.domainType === this.NON_OVH_DOMAIN) {
+    if (!this.isOvhDomain) {
       this.services.$rootScope.$broadcast('wizard-goToStep', 1);
     }
   }
@@ -262,7 +271,7 @@ export default class ExchangeAddDomainController {
   isNonOvhDomainValid() {
     return (
       this.model.name &&
-      (this.model.domainType !== this.NON_OVH_DOMAIN ||
+      (this.isOvhDomain ||
         this.services.WucValidator.isValidDomain(this.model.displayName))
     );
   }

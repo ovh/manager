@@ -31,8 +31,10 @@ export default /* @ngInject */ (
       isUTF8Domain: false,
       srvParam: false,
       mxParam: false,
+      autoEnableDKIM: true,
       domainType: $scope.ovhDomain,
     };
+    $scope.isOvhDomain = true;
   };
 
   const prepareData = function prepareData(data) {
@@ -47,6 +49,7 @@ export default /* @ngInject */ (
       $scope.model.domainType = $scope.nonOvhDomain;
       $scope.model.srvParam = false;
       $scope.model.mxParam = false;
+      $scope.isOvhDomain = false;
     }
   };
 
@@ -78,6 +81,9 @@ export default /* @ngInject */ (
       }
       delete $scope.model.attachOrganization2010;
     }
+    $scope.model.configureDKIM = $scope.isOvhDomain;
+    $scope.model.autoEnableDKIM =
+      $scope.model.autoEnableDKIM && $scope.isOvhDomain;
 
     delete $scope.model.displayName;
     delete $scope.model.domainType;
@@ -157,8 +163,13 @@ export default /* @ngInject */ (
     $scope.model.name = '';
   };
 
+  $scope.onChangeDomainType = () => {
+    $scope.resetName();
+    $scope.isOvhDomain = $scope.model.domainType === $scope.ovhDomain;
+  };
+
   $scope.checkDomain = function checkDomain() {
-    if ($scope.model.domainType === $scope.nonOvhDomain) {
+    if (!$scope.isOvhDomain) {
       $scope.model.srvParam = false;
     }
   };
@@ -171,8 +182,7 @@ export default /* @ngInject */ (
 
   $scope.isNonOvhDomainValid = function isNonOvhDomainValid() {
     return (
-      $scope.model.domainType !== $scope.nonOvhDomain ||
-      WucValidator.isValidDomain($scope.model.displayName)
+      $scope.isOvhDomain || WucValidator.isValidDomain($scope.model.displayName)
     );
   };
 

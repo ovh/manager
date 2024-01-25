@@ -96,5 +96,15 @@
   "pci_projects_project_instances_windows_private_mode_description3": "Sprawdź przewodnik",
   "pci_projects_project_instances_add_flavor_selected_title_without_price": "Wybrany model: {{model}}",
   "pci_projects_project_instances_add_billing_coming_soon_message_title": "Ceny miesięczne",
-  "pci_projects_project_instances_add_billing_coming_soon_message_description": "Ceny miesięczne będą dostępne wkrótce, wraz z uruchomieniem Saving Plans."
+  "pci_projects_project_instances_add_billing_coming_soon_message_description": "Ceny miesięczne będą dostępne wkrótce, wraz z uruchomieniem Saving Plans.",
+  "pci_projects_project_instances_add_localPrivateNetwork_sub_title": "Wybierz sieć prywatną w Local Zone",
+  "pci_projects_project_instances_add_localPrivateNetwork_label": "Wybierz sieć prywatną w Local Zone",
+  "pci_projects_project_instances_add_localPrivateNetwork_add": "Utwórz nową sieć prywatną w Local Zone",
+  "pci_projects_project_instances_add_localPrivateNetwork_description": "W tym trybie instancja jest podłączona do jednej z Twoich sieci prywatnych w Strefie Lokalnej.",
+  "pci_projects_project_instances_add_localPrivateNetwork_add_public_network_checkbox_label": "Sieć publiczna",
+  "pci_projects_project_instances_add_localPrivateNetwork_add_public_network_info": "Twoja instancja będzie teraz miała publiczny port sieciowy podłączony do IPv4 i IPv6.",
+  "pci_projects_project_instances_add_localPrivateNetwork_placeholder": "Wybierz sieć prywatną w Local Zone",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode": "Local Private Mode",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode_description1": "Instancje w trybie „Local Private Mode” nie są połączone globalnie. Tylko instancje w tej samej Local Zone mogą być połączone za pośrednictwem sieci prywatnych w Local Zones. Local Zones nie są kompatybilne z usługą vRack.",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode_description2": "„Local Private Mode” obsługuje DHCP i automatycznie dostarcza adresy IP do Twoich instancji."
 }

@@ -197,11 +197,43 @@ export default class ExchangeDomains {
       .then(({ data }) => data);
   }
 
+  getDkimSelectorName(organization, serviceName, domain, selector) {
+    return this.services.$http
+      .get(
+        `/email/exchange/${organization}/service/${serviceName}/domain/${domain}/dkim/${selector}`,
+      )
+      .then(({ data }) => data);
+  }
+
+  getDomain(organization, serviceName, domain) {
+    return this.services.$http
+      .get(
+        `/email/exchange/${organization}/service/${serviceName}/domain/${domain}`,
+      )
+      .then(({ data }) => data);
+  }
+
   postDkim(organization, serviceName, domain, params) {
     return this.services.$http
       .post(
         `/email/exchange/${organization}/service/${serviceName}/domain/${domain}/dkim`,
         params,
+      )
+      .then(({ data }) => data);
+  }
+
+  disableDkim(organization, serviceName, domain, selector) {
+    return this.services.$http
+      .post(
+        `/email/exchange/${organization}/service/${serviceName}/domain/${domain}/dkim/${selector}/disable`,
+      )
+      .then(({ data }) => data);
+  }
+
+  enableDkim(organization, serviceName, domain, selector) {
+    return this.services.$http
+      .post(
+        `/email/exchange/${organization}/service/${serviceName}/domain/${domain}/dkim/${selector}/enable`,
       )
       .then(({ data }) => data);
   }

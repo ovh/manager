@@ -1,13 +1,21 @@
+import { URL_INFO } from './project.constants';
+
 export default class {
   /* @ngInject */
-  constructor($http, iceberg) {
+  constructor($http, iceberg, coreConfig) {
     this.project = {};
     this.$http = $http;
     this.iceberg = iceberg;
+    this.coreConfig = coreConfig;
   }
 
   getProjectInfo() {
     return this.project;
+  }
+
+  getDocumentUrl(type) {
+    const { ovhSubsidiary } = this.coreConfig.getUser();
+    return URL_INFO[type][ovhSubsidiary] || URL_INFO[type].DEFAULT;
   }
 
   setProjectInfo(project = {}) {
@@ -25,6 +33,7 @@ export default class {
     const requestHeader = withPaginationMode
       ? {
           'X-Pagination-Mode': 'CachedObjectList-Pages',
+          'X-Pagination-Size': 5000,
         }
       : null;
     return this.$http
