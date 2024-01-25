@@ -28,5 +28,6 @@
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_major": "Instalar la actualización principal ({{version}} - build {{build}})",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_minor": "Instalar la actualización menor ({{version}} - build {{build}})",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_reschedule_update": "Modificar la fecha de actualización",
-  "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_move": "Asociar bloques de IP a otro servicio"
+  "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_move": "Asociar bloques de IP a otro servicio",
+  "ovhManagerPccDashboardGeneralInformation_commercial_range": "Nombre comercial"
 }
