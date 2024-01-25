@@ -141,68 +141,72 @@
             </div>
         </div>
 
-        <div
-            data-wizard-step
-            data-wizard-step-valid="installation.options.validForm && informations.hardwareRaidCompatible && !loader.loading && !loader.loadingForm"
-            data-wizard-step-on-load="$ctrl.loadStep2.bind($ctrl)"
-            data-wizard-step-on-previous="$ctrl.clearErrorPersonalTemplate.bind($ctrl)"
-        >
+        <form id="optionForm" name="optionForm">
             <div
-                class="text-center"
-                data-ng-if="loader.loading || loader.loadingForm"
+                data-wizard-step
+                data-wizard-step-valid="installation.options.validForm
+                                        && informations.hardwareRaidCompatible
+                                        && !loader.loading
+                                        && !loader.loadingForm
+                                        && optionForm.$valid"
+                data-wizard-step-on-previous="$ctrl.clearErrorPersonalTemplate.bind($ctrl)"
+                data-wizard-step-on-load="$ctrl.loadStep2.bind($ctrl)"
             >
-                <oui-spinner></oui-spinner>
-            </div>
+                <div
+                    class="text-center"
+                    data-ng-if="loader.loading || loader.loadingForm"
+                >
+                    <oui-spinner></oui-spinner>
+                </div>
 
-            <div data-ng-hide="loader.loading || loader.loadingForm">
-                <p
-                    data-translate="server_configuration_installation_gabarit_step2_info"
-                ></p>
-                <ul>
-                    <li>
-                        <span
-                            data-translate="server_configuration_installation_gabarit_step2_server"
-                        ></span>
-                        <strong
-                            data-ng-bind="installation.server.name"
-                        ></strong>
-                    </li>
-                    <li>
-                        <span
-                            data-translate="server_configuration_installation_gabarit_step2_os"
-                        ></span>
-                        <strong
-                            data-ng-bind="installation.selectGabarit.displayName"
-                        ></strong>
-                    </li>
-                    <li>
-                        <span
-                            data-translate="server_configuration_installation_gabarit_step2_lang"
-                        ></span>
-                        <strong
-                            data-ng-bind="installation.selectLanguage"
-                        ></strong>
-                    </li>
-                    <li data-ng-if="informations.hardwareRaid">
-                        <span
-                            data-translate="server_configuration_installation_resume_hardwareRaid"
-                        ></span>
-                        <strong
-                            data-ng-if="informations.hardwareRaid.mode"
-                            data-ng-bind-html="'server_configuration_installation_gabarit_step2_hardwareRaid' | translate:{ t0: informations.hardwareRaid.mode, t1: informations.hardwareRaid.disks.length }"
-                        >
-                        </strong>
-                        <strong
-                            data-ng-if="informations.hardwareRaid && !informations.hardwareRaid.mode"
-                            data-translate="customized"
-                        >
-                        </strong>
-                    </li>
-                </ul>
-                <strong
-                    data-translate="server_configuration_installation_form_option"
-                ></strong>
-                <form id="optionForm" role="form" name="optionForm">
+                <div data-ng-hide="loader.loading || loader.loadingForm">
+                    <p
+                        data-translate="server_configuration_installation_gabarit_step2_info"
+                    ></p>
+                    <ul>
+                        <li>
+                            <span
+                                data-translate="server_configuration_installation_gabarit_step2_server"
+                            ></span>
+                            <strong
+                                data-ng-bind="installation.server.name"
+                            ></strong>
+                        </li>
+                        <li>
+                            <span
+                                data-translate="server_configuration_installation_gabarit_step2_os"
+                            ></span>
+                            <strong
+                                data-ng-bind="installation.selectGabarit.displayName"
+                            ></strong>
+                        </li>
+                        <li>
+                            <span
+                                data-translate="server_configuration_installation_gabarit_step2_lang"
+                            ></span>
+                            <strong
+                                data-ng-bind="installation.selectLanguage"
+                            ></strong>
+                        </li>
+                        <li data-ng-if="informations.hardwareRaid">
+                            <span
+                                data-translate="server_configuration_installation_resume_hardwareRaid"
+                            ></span>
+                            <strong
+                                data-ng-if="informations.hardwareRaid.mode"
+                                data-ng-bind-html="'server_configuration_installation_gabarit_step2_hardwareRaid' | translate:{ t0: informations.hardwareRaid.mode, t1: informations.hardwareRaid.disks.length }"
+                            >
+                            </strong>
+                            <strong
+                                data-ng-if="informations.hardwareRaid && !informations.hardwareRaid.mode"
+                                data-translate="customized"
+                            >
+                            </strong>
+                        </li>
+                    </ul>
+                    <strong
+                        data-translate="server_configuration_installation_form_option"
+                    ></strong>
                     <!-- saveGabarit -->
                     <oui-checkbox
                         data-on-change="$ctrl.nameGabaritValidator()"
@@ -448,14 +452,22 @@
                         >
                         </select>
                     </p>
-                </form>
 
-                <p
-                    class="text-danger"
-                    data-ng-if="errorGab.ws"
-                    data-ng-bind-html="errorGab.ws"
-                ></p>
+                    <!-- dynamic inputs form depending on the OS template -->
+                    <server-installation-inputs
+                        data-ng-if="installation.inputs.length > 0"
+                        data-installation="installation"
+                        data-option-form="optionForm"
+                        data-input-rules="inputRules"
+                    ></server-installation-inputs>
+
+                    <p
+                        class="text-danger"
+                        data-ng-if="errorGab.ws"
+                        data-ng-bind-html="errorGab.ws"
+                    ></p>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
