@@ -4,9 +4,9 @@
   "server_monitoring_modal_status_disabled": "Disattivato",
   "server_monitoring_modal_status_proactive": "Attivato con intervento proattivo",
   "server_monitoring_modal_status_no-proactive": "Attivato senza intervento proattivo",
-  "server_monitoring_modal_description_status_disabled": "Il server non è monitorato e in caso di incidente non riceverai alcun alert da parte di OVHcloud.",
-  "server_monitoring_modal_description_status_proactive": "Il tuo server è monitorato e riceverai eventuali notifiche via email all'indirizzo associato all'identificativo del contatto tecnico. In caso di alert, sarà necessario dare il consenso per autorizzare OVHcloud a intervenire direttamente sulla macchina. Un ticket di supporto verrà creato automaticamente per consentirti di seguire lo stato dell’operazione.",
-  "server_monitoring_modal_description_status_no-proactive": "Il tuo server è monitorato e riceverai eventuali notifiche via email all'indirizzo associato all'identificativo del contatto tecnico. OVHcloud non interverrà sulla macchina senza una richiesta diretta da parte tua.",
+  "server_monitoring_modal_description_status_disabled": "Il tuo server non è monitorato. Riceve richieste ICMP ma il monitoraggio ignora il loro risultato in caso di mancata risposta e non riceverai nessuna notifica da parte di OVHcloud in caso di perdita di connettività sulla rete pubblica.",
+  "server_monitoring_modal_description_status_proactive": "Il tuo server è monitorato (test di ping ICMP) e riceverai notifiche via email all'indirizzo associato all'identificativo del tuo contatto tecnico. In caso di notifica di ping ICMP KO, accetti che OVHcloud intervenga direttamente sulla tua macchina. Un ticket di supporto verrà creato automaticamente per consentirti di seguire lo stato dell’operazione.",
+  "server_monitoring_modal_description_status_no-proactive": "Il tuo server è monitorato (test di ping ICMP) e riceverai notifiche via email all'indirizzo associato all'identificativo del tuo contatto tecnico. Se non hai attivato il monitoraggio con intervento proattivo, in caso di ping ICMP KO OVHcloud non effettuerà nessuna operazione sulla tua macchina.",
   "server_monitoring_modal_update_proactive_request_success": "Gli interventi sul server {{serverName}} sono attivi.",
   "server_monitoring_modal_update_no-proactive_request_success": "Gli interventi sono disattivati sul server {{serverName}}.",
   "server_monitoring_modal_update_request_failed": "Si è verificato un errore durante la modifica dell'opzione di monitoring."
