@@ -8,12 +8,6 @@ export default /* @ngInject */ ($stateProvider) => {
     template,
     resolve: {
       breadcrumb: () => null,
-      displayNewHostingOfferSticker: /* @ngInject */ (ovhFeatureFlipping) =>
-        ovhFeatureFlipping
-          .checkFeatureAvailability('hosting:new-offer-sticker')
-          .then((featureAvailability) =>
-            featureAvailability.isFeatureAvailable('hosting:new-offer-sticker'),
-          ),
     },
   });
 };
