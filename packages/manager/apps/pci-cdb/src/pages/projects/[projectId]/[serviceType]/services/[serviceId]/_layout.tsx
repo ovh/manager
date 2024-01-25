@@ -48,6 +48,7 @@ export default function ServiceLayout() {
   const tabs = [
     { href: 'general', label: 'Dashboard' },
     { href: 'users', label: 'Users' },
+    { href: 'logs', label: 'Logs' },
   ];
   return (
     <>

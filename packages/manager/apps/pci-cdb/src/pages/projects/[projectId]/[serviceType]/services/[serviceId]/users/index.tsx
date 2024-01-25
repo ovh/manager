@@ -17,6 +17,11 @@ type Message = {
   title: string;
   content: JSX.Element;
 };
+
+export const Handle = {
+  breadcrumb: () => 'Users',
+};
+
 const UsersPage = () => {
   const { projectId, service, serviceQuery } = useServiceData();
   if (!service) {
