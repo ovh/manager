@@ -26,5 +26,8 @@
   "kubernetes_add_private_network_subnet_description": "Sélectionnez le sous-réseau à utiliser pour votre cluster MKS. Veuillez vous assurer que celui-ci respecte les prérequis réseau du service managé MKS.",
   "kubernetes_add_private_network_subnet_link": "Lire la documentation",
   "kubernetes_add_private_network_subnet_error_no_gateway_ip": "Le sous-réseau sélectionné n'a pas de gateway IP définie. Attention, cela est necessaire si vous souhaitez utiliser des Load Balancer avec une adresse IP publique, vous pouvez créer/selectionner un autre subnet pour votre cluster ou utiliser les paramètres avancés pour définir un subnet dédié à vos Load Balancer.",
-  "kubernetes_add_private_network_subnet_error_default": "Une erreur est survenue lors du chargement des sous-réseaux pour ce réseau privé : {{ error }}."
+  "kubernetes_add_private_network_subnet_error_default": "Une erreur est survenue lors du chargement des sous-réseaux pour ce réseau privé : {{ error }}.",
+  "kubernetes_add_private_network_lb_subnet": "Choisissez un sous-réseau dédié pour vos Load Balancers",
+  "kubernetes_add_private_network_lb_subnet_description": "Il vous est possible de définir un sous-réseau spécifique pour vos Load Balancers. Cela est notamment nécessaire si le sous-réseau choisi pour votre cluster ne respecte pas les prérequis nécessaires à la création de Load Balancer managés OVHcloud.",
+  "kubernetes_add_private_network_lb_subnet_toggler": "Paramètres avancés"
 }
