@@ -3,9 +3,14 @@
     data-ng-init="gateway = $ctrl.network.gateway"
 >
     <h2
+        data-ng-if="!$ctrl.elevateTitle"
         class="oui-field__label"
         data-translate="kubernetes_add_private_network_gateway_management_label"
     ></h2>
+    <h6
+        data-ng-if="$ctrl.elevateTitle"
+        data-translate="kubernetes_add_private_network_gateway_management_label"
+    ></h6>
     <p
         data-translate="kubernetes_add_private_network_gateway_management_description"
     ></p>

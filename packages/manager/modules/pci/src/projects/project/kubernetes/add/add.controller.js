@@ -63,6 +63,14 @@ export default class {
     this.loadMessages();
   }
 
+  get shouldShowSubnetForms() {
+    return (
+      Boolean(this.cluster.network?.private?.id) &&
+      !this.isLoadingPrivateNetworkSubnets &&
+      this.privateNetworkSubnets?.length > 0
+    );
+  }
+
   loadMessages() {
     this.CucCloudMessage.unSubscribe('pci.projects.project.kubernetes.add');
     this.messageHandler = this.CucCloudMessage.subscribe(
@@ -105,6 +113,7 @@ export default class {
       this.cluster.version,
       this.cluster.network.private?.clusterRegion?.openstackId,
       this.cluster.network.private?.subnet?.id,
+      this.cluster.network.private?.lbSubnet?.id,
       this.cluster.network.gateway,
       options,
     )
@@ -177,6 +186,7 @@ export default class {
 
     if (this.cluster.network.private) {
       this.cluster.network.private.subnet = null;
+      this.cluster.network.private.lbSubnet = null;
     }
 
     if (!this.cluster.network.private?.id) {
@@ -221,6 +231,13 @@ export default class {
           ),
         }
       : null;
+  }
+
+  toggleLoadBalancerSubnetForm() {
+    this.isLoadBalancerSubnetFormShown = !this.isLoadBalancerSubnetFormShown;
+    if (!this.isLoadBalancerSubnetFormShown && this.cluster.network.private) {
+      this.cluster.network.private.lbSubnet = null;
+    }
   }
 
   setClusterRegion(isRegionEnabled = false) {
