@@ -2172,7 +2172,8 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.installation.hardwareRaid.arrays;
     if (this.$scope.installation.hardwareRaid.arrays === 1) {
       return this.$scope.installation.hardwareRaid.controller.disks[0].names.slice(
-        this.$scope.installation.hardwareRaid.disks - 1,
+        0,
+        this.$scope.installation.hardwareRaid.disks,
       );
     }
 
@@ -2185,7 +2186,8 @@ export default class ServerInstallationOvhCtrl {
     // ]
     return chunk(
       this.$scope.installation.hardwareRaid.controller.disks[0].names.slice(
-        this.$scope.installation.hardwareRaid.disks - 1,
+        0,
+        this.$scope.installation.hardwareRaid.disks,
       ),
       disksPerArray,
     ).map((elem) => `[${elem.toString()}]`);
