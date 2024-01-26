@@ -130,6 +130,7 @@ export default class Kubernetes {
     region,
     version,
     privateNetworkId,
+    nodesSubnetId,
     gatewayConfig,
     nodepool,
   ) {
@@ -143,6 +144,7 @@ export default class Kubernetes {
       version,
       nodepool,
       ...(privateNetworkId && { privateNetworkId }),
+      ...(nodesSubnetId && { nodesSubnetId }),
       ...(gatewayConfig.enabled && {
         privateNetworkConfiguration: {
           defaultVrackGateway: gatewayConfig.ip,
@@ -275,6 +277,14 @@ export default class Kubernetes {
           type: 'private',
         }),
       );
+  }
+
+  getPrivateNetworkSubnets(projectId, privateNetworkId) {
+    return this.$http
+      .get(
+        `/cloud/project/${projectId}/network/private/${privateNetworkId}/subnet`,
+      )
+      .then(({ data: subnets }) => subnets);
   }
 
   getRegions(projectId, ovhSubsidiary) {
