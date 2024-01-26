@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-enterprise-app",
-  "version": "2.0.14",
+  "version": "2.0.15",
   "private": true,
   "description": "Veeam Enterprise standalone application.",
   "repository": {
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^7.3.0",
-    "@ovh-ux/manager-core": "^12.15.1",
+    "@ovh-ux/manager-core": "^12.15.2",
     "@ovh-ux/manager-ng-layout-helpers": "^2.8.1",
     "@ovh-ux/manager-veeam-enterprise": "^1.9.1",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",

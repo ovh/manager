@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-paas-app",
-  "version": "2.0.15",
+  "version": "2.0.16",
   "private": true,
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   "dependencies": {
     "@ovh-ux/manager-billing-components": "^3.14.3",
     "@ovh-ux/manager-config": "^7.3.0",
-    "@ovh-ux/manager-core": "^12.15.1",
+    "@ovh-ux/manager-core": "^12.15.2",
     "@ovh-ux/manager-ng-layout-helpers": "^2.8.1",
     "@ovh-ux/manager-product-offers": "^5.4.0",
     "@ovh-ux/manager-web-paas": "^1.9.0",

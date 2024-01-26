@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iam-app",
-  "version": "2.0.18",
+  "version": "2.0.19",
   "private": true,
   "description": "IAM standalone application.",
   "repository": {
@@ -21,7 +21,7 @@
   "dependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-config": "^7.3.0",
-    "@ovh-ux/manager-core": "^12.15.1",
+    "@ovh-ux/manager-core": "^12.15.2",
     "@ovh-ux/manager-iam": "^1.8.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.8.1",
     "@ovh-ux/ng-at-internet": "^5.11.2",

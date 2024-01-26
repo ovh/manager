@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.18.1...@ovh-ux/manager-dedicated@19.18.2) (2024-01-26)
+
+
+### Reverts
+
+* Revert "fix(dedicated.vmware): new workflow for add vdc (#10167)" ([9def599](https://github.com/ovh/manager/commit/9def5999b4cb6e7604fcd1174a6fcaaedf109d4b)), closes [#10167](https://github.com/ovh/manager/issues/10167)
+
+
+
+
+
 ## [19.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.18.0...@ovh-ux/manager-dedicated@19.18.1) (2024-01-25)
 
 
