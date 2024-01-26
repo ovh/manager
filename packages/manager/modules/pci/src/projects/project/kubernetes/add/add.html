@@ -69,6 +69,17 @@
             data-valid="$ctrl.isValidNetworkConfig(kubeAddClusterForm['kubernetes_add_private_network'])"
             data-prevent-next="true"
         >
+            <p>
+                <span
+                    data-translate="kubernetes_add_private_network_description"
+                ></span>
+                <a
+                    data-ng-if="$ctrl.displaySelectedPrivateNetwork"
+                    data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
+                    data-translate="kubernetes_add_private_network_add"
+                    target="_top"
+                ></a>
+            </p>
             <!--Select Public/Private network-->
             <oui-field
                 data-label="{{ :: 'kubernetes_add_private_network_label' | translate }}"
@@ -78,25 +89,65 @@
                     data-model="$ctrl.cluster.network.private"
                     data-items="$ctrl.availablePrivateNetworks"
                     data-match="name"
+                    data-on-change="$ctrl.loadPrivateNetworkSubnets()"
                     data-searchable
                 >
                 </oui-select>
+            </oui-field>
+
+            <oui-spinner
+                class="mb-3"
+                data-size="s"
+                data-ng-if="$ctrl.cluster.network.private.id && $ctrl.isLoadingPrivateNetworkSubnets"
+            ></oui-spinner>
+
+            <!--Select subnet-->
+            <div
+                data-ng-if="
+                    $ctrl.cluster.network.private.id &&
+                    !$ctrl.isLoadingPrivateNetworkSubnets &&
+                    $ctrl.privateNetworkSubnets.length
+                "
+            >
+                <h6 data-translate="kubernetes_add_private_network_subnet"></h6>
                 <p>
                     <span
-                        data-translate="kubernetes_add_private_network_description"
+                        data-translate="kubernetes_add_private_network_subnet_description"
                     ></span>
                     <a
-                        data-ng-if="$ctrl.displaySelectedPrivateNetwork"
-                        data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
-                        data-translate="kubernetes_add_private_network_add"
+                        data-ng-href="{{:: $ctrl.addPrivateNetworksSubnetLink }}"
+                        data-translate="kubernetes_add_private_network_subnet_link"
                         target="_top"
                     ></a>
                 </p>
-            </oui-field>
+                <oui-field>
+                    <oui-select
+                        data-name="privateNetworkSubnet"
+                        data-model="$ctrl.cluster.network.private.subnet"
+                        data-items="$ctrl.privateNetworkSubnets"
+                        data-match="id"
+                        data-on-change="$ctrl.onPrivateNetworkSubnetChanged(modelValue)"
+                        data-searchable
+                    >
+                    </oui-select>
+                </oui-field>
+            </div>
+
+            <oui-message
+                data-ng-if="$ctrl.privateNetworkSubnetsError"
+                data-type="{{ $ctrl.privateNetworkSubnetsError.type }}"
+            >
+                <span
+                    data-ng-bind="$ctrl.privateNetworkSubnetsError.message"
+                ></span>
+            </oui-message>
 
             <!--Chose OVHcloud or vRack gateway-->
             <gateway-management-component
-                data-ng-if="$ctrl.cluster.network.private.id"
+                data-ng-if="
+                    $ctrl.cluster.network.private.id &&
+                    !$ctrl.isLoadingPrivateNetworkSubnets
+                "
                 data-network="$ctrl.cluster.network"
             ></gateway-management-component>
         </oui-step-form>
