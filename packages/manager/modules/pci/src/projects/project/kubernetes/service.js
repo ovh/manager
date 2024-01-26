@@ -131,6 +131,7 @@ export default class Kubernetes {
     version,
     privateNetworkId,
     nodesSubnetId,
+    loadBalancerSubnetId,
     gatewayConfig,
     nodepool,
   ) {
@@ -145,6 +146,7 @@ export default class Kubernetes {
       nodepool,
       ...(privateNetworkId && { privateNetworkId }),
       ...(nodesSubnetId && { nodesSubnetId }),
+      ...(loadBalancerSubnetId && { loadBalancerSubnetId }),
       ...(gatewayConfig.enabled && {
         privateNetworkConfiguration: {
           defaultVrackGateway: gatewayConfig.ip,
