@@ -67,6 +67,8 @@ export default /* @ngInject */ ($stateProvider) => {
         return isActivateModalDisplayed;
       },
 
+      isManuallyReviewedByAntiFraud: /* @ngInject */ (PciProject) =>
+        PciProject.isManuallyReviewedByAntiFraud(),
       project: /* @ngInject */ (OvhApiCloudProject, projectId) => {
         OvhApiCloudProject.v6().resetCache();
         return OvhApiCloudProject.v6().get({

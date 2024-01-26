@@ -71,101 +71,13 @@
                                 data-messages="$ctrl.messages"
                             ></cui-message-container>
 
-                            <!-- mobile display -->
-                            <oui-message
+                            <pci-project-dashboard-activate-banner
                                 data-ng-if="$ctrl.isDiscoveryProject"
-                                class="d-block d-sm-none"
-                                data-type="info"
-                            >
-                                <div
-                                    class="d-flex flex-row justify-content-between align-items-center"
-                                >
-                                    <div class="mr-3 mb-3">
-                                        <h6
-                                            data-ng-if="$ctrl.discoveryPromotionVoucherAmount"
-                                            class="m-0"
-                                        >
-                                            <span
-                                                data-translate="pci_projects_project_discovery_banner_promotion_title_1"
-                                            ></span>
-                                            <span
-                                                data-translate="pci_projects_project_discovery_banner_promotion_title_2"
-                                                data-translate-values="{ amount: $ctrl.discoveryPromotionVoucherAmount }"
-                                            >
-                                            </span>
-                                        </h6>
-                                        <h6
-                                            data-ng-if="!$ctrl.discoveryPromotionVoucherAmount"
-                                            class="m-0"
-                                        >
-                                            <span
-                                                data-translate="pci_projects_project_discovery_banner_no_promotion_title"
-                                            ></span>
-                                        </h6>
-                                        <span
-                                            data-translate="pci_projects_project_discovery_banner_description"
-                                        ></span>
-                                    </div>
-                                </div>
-                                <oui-button
-                                    class="d-block d-sm-none"
-                                    size="l"
-                                    block
-                                    variant="primary"
-                                    on-click="$ctrl.onActivateProjectClick()"
-                                >
-                                    <span
-                                        data-translate="pci_projects_project_discovery_banner_cta"
-                                    ></span>
-                                </oui-button>
-                            </oui-message>
+                                data-voucher-amount="$ctrl.discoveryPromotionVoucherAmount"
+                                data-is-manually-reviewed-by-anti-fraud="$ctrl.isManuallyReviewedByAntiFraud"
+                                data-on-click="$ctrl.onActivateProjectClick()"
+                            ></pci-project-dashboard-activate-banner>
 
-                            <!-- Tablet & desktop display -->
-                            <oui-message
-                                data-ng-if="$ctrl.isDiscoveryProject"
-                                class="d-none d-sm-block"
-                                data-type="info"
-                            >
-                                <div
-                                    class="d-flex flex-row justify-content-between align-items-center"
-                                >
-                                    <div class="mr-3 mb-3">
-                                        <h6
-                                            data-ng-if="$ctrl.discoveryPromotionVoucherAmount"
-                                            class="m-0"
-                                        >
-                                            <span
-                                                data-translate="pci_projects_project_discovery_banner_promotion_title_1"
-                                            ></span>
-                                            <span
-                                                class="promotion-value"
-                                                data-translate="pci_projects_project_discovery_banner_promotion_title_2"
-                                                data-translate-values="{ amount: $ctrl.discoveryPromotionVoucherAmount }"
-                                            >
-                                            </span>
-                                        </h6>
-                                        <h6
-                                            data-ng-if="!$ctrl.discoveryPromotionVoucherAmount"
-                                            class="m-0"
-                                        >
-                                            <span
-                                                data-translate="pci_projects_project_discovery_banner_no_promotion_title"
-                                            ></span>
-                                        </h6>
-                                        <span
-                                            data-translate="pci_projects_project_discovery_banner_description"
-                                        ></span>
-                                    </div>
-                                    <oui-button
-                                        variant="primary"
-                                        on-click="$ctrl.onActivateProjectClick()"
-                                    >
-                                        <span
-                                            data-translate="pci_projects_project_discovery_banner_cta"
-                                        ></span>
-                                    </oui-button>
-                                </div>
-                            </oui-message>
                             <div class="container-fluid px-0">
                                 <div class="row">
                                     <div

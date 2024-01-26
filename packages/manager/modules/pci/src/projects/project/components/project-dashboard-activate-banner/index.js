@@ -2,13 +2,12 @@ import angular from 'angular';
 import '@ovh-ux/ng-at-internet';
 import 'angular-translate';
 
-import './project-dashboard-activate-banner.scss';
-import component from './activate-project-banner.component';
+import component from './project-dashboard-activate-banner.component';
 
-const moduleName = 'ovhManagerPciActivateProjectBanner';
+const moduleName = 'ovhManagerPciProjectDashboardActivateBanner';
 angular
   .module(moduleName, ['ngAtInternet', 'pascalprecht.translate'])
-  .component('pciActivateProjectBanner', component)
+  .component('pciProjectDashboardActivateBanner', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
