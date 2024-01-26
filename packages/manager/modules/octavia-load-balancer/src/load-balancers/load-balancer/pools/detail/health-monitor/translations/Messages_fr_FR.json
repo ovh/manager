@@ -7,12 +7,5 @@
   "octavia_load_balancer_health_monitor_detail_overview_info_type": "Type",
   "octavia_load_balancer_health_monitor_detail_overview_info_url_path": "URL Path",
   "octavia_load_balancer_health_monitor_detail_overview_info_expected_code": "Code attendu",
-  "octavia_load_balancer_health_monitor_detail_overview_info_provisioning_status": "Statut d'approvisionnement",
-  "octavia_load_balancer_health_monitor_detail_overview_info_provisioning_status_active": "actif",
-  "octavia_load_balancer_health_monitor_detail_overview_info_provisioning_status_creating": "en cours de création",
-  "octavia_load_balancer_health_monitor_detail_overview_info_provisioning_status_deleted": "supprimé",
-  "octavia_load_balancer_health_monitor_detail_overview_info_provisioning_status_deleting": "en cours de suppression",
-  "octavia_load_balancer_health_monitor_detail_overview_info_provisioning_status_error": "erreur",
-  "octavia_load_balancer_health_monitor_detail_overview_info_provisioning_status_updating": "en cours de mise à jour",
   "octavia_load_balancer_health_monitor_detail_overview_edit_name_success": "Le nom de votre Health Monitor a bien été modifié."
 }

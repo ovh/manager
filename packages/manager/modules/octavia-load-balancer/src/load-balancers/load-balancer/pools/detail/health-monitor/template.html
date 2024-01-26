@@ -129,13 +129,13 @@
                     </oui-tile-definition>
                     <!-- STATUS -->
                     <oui-tile-definition
-                        data-term="{{ :: 'octavia_load_balancer_health_monitor_detail_overview_info_provisioning_status' | translate }}"
+                        data-term="{{ :: 'octavia_load_balancer_provisioning_status' | translate }}"
                     >
                         <oui-tile-description>
                             <span
                                 class="oui-badge"
                                 data-ng-class="$ctrl.provisioningStatusBadges[$ctrl.healthMonitor.provisioningStatus]"
-                                data-ng-bind=":: 'octavia_load_balancer_health_monitor_detail_overview_info_provisioning_status_' + $ctrl.healthMonitor.provisioningStatus | translate"
+                                data-ng-bind=":: 'octavia_load_balancer_provisioning_status_' + $ctrl.healthMonitor.provisioningStatus | translate"
                             ></span>
                         </oui-tile-description>
                     </oui-tile-definition>

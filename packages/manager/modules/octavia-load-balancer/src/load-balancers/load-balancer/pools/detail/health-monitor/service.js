@@ -42,11 +42,10 @@ export default class OctaviaLoadBalancerHealthMonitorService {
   }
 
   editHealthMonitorName(projectId, region, healthMonitor, name) {
-    const newHealthMonitor = {
-      ...healthMonitor,
-      name,
-    };
-    return this.editHealthMonitor(projectId, region, newHealthMonitor);
+    return this.$http.put(
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor/${healthMonitor.id}`,
+      { name },
+    );
   }
 
   editHealthMonitor(projectId, region, healthMonitor) {
@@ -58,11 +57,6 @@ export default class OctaviaLoadBalancerHealthMonitorService {
       name: healthMonitor.name,
       timeout: healthMonitor.timeout,
     };
-
-    putDatas.httpConfiguration.httpVersion = putDatas.httpConfiguration
-      .httpVersion
-      ? putDatas.httpConfiguration.httpVersion
-      : '1.0';
 
     return this.$http.put(
       `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor/${healthMonitor.id}`,
