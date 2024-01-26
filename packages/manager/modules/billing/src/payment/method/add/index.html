@@ -62,7 +62,7 @@
                         data-show-default-explanation-texts="true"
                     />
                     <ovh-payment-method-integration
-                        data-disabled="!$ctrl.isLastStep('paymentMethodType')"
+                        data-ng-if="$ctrl.isLastStep('paymentMethodType')"
                         data-on-initialized="$ctrl.onPaymentMethodIntegrationInitialized.bind($ctrl)"
                         data-on-submit="$ctrl.onPaymentMethodIntegrationSubmit.bind($ctrl)"
                         data-on-submit-error="$ctrl.onPaymentMethodIntegrationSubmitError.bind($ctrl)"
@@ -70,7 +70,6 @@
                         data-payment-method-type="$ctrl.model.selectedPaymentMethodType"
                     >
                         <oui-button
-                            data-disabled="!$ctrl.isLastStep('paymentMethodType')"
                             data-type="submit"
                             data-variant="primary"
                             data-aria-label="common_add"
