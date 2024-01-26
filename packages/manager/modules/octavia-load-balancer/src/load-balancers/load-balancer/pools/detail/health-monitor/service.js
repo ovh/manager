@@ -21,16 +21,16 @@ export default class OctaviaLoadBalancerHealthMonitorService {
       maxRetriesDown: healthMonitor.maxRetriesDown,
       monitorType: healthMonitor.type,
       name: healthMonitor.name,
-      periodicity: `PT${healthMonitor.periodicity}S`,
+      delay: healthMonitor.delay,
       poolId,
       timeout: healthMonitor.timeout,
     };
 
     if (healthMonitor.urlPath && healthMonitor.expectedCode) {
       postDatas.httpConfiguration = {
-        expectedCodes: [healthMonitor.expectedCode],
+        expectedCodes: healthMonitor.expectedCode,
         httpMethod: 'GET',
-        httpVersion: 1.0,
+        httpVersion: '1.0',
         urlPath: healthMonitor.urlPath,
       };
     }

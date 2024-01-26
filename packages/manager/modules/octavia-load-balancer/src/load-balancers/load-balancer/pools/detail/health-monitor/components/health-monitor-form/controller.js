@@ -32,9 +32,8 @@ export default class OctaviaLoadBalancerHealthMonitorFormCtrl {
       this.model.type && this.constructor.isTypeHttpOrHttps(this.model.type);
   }
 
-  onPeriodicityChange(newPeriodicity) {
-    if (this.model.timeout >= newPeriodicity)
-      this.model.timeout = newPeriodicity - 1;
+  onDelayChange(newDelay) {
+    if (this.model.timeout >= newDelay) this.model.timeout = newDelay - 1;
   }
 
   onTypeChange(newType) {
