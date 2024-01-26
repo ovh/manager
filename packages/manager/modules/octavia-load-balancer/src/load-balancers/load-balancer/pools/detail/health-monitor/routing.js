@@ -12,7 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .injector()
           .getAsync('healthMonitor')
           .then((healthMonitor) =>
-            healthMonitor.length === 0
+            !healthMonitor
               ? {
                   state:
                     'octavia-load-balancer.loadbalancer.pools.detail.health-monitor.create',
@@ -39,6 +39,10 @@ export default /* @ngInject */ ($stateProvider) => {
         goToHealthMonitorDeletion: /* @ngInject */ ($state) => () =>
           $state.go(
             'octavia-load-balancer.loadbalancer.pools.detail.health-monitor.delete',
+          ),
+        goToEditName: /* @ngInject */ ($state) => () =>
+          $state.go(
+            'octavia-load-balancer.loadbalancer.pools.detail.health-monitor.edit-name',
           ),
         goToDashboard: /* @ngInject */ ($state) => (reload) =>
           $state.go(
