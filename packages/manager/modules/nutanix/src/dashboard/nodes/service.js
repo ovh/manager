@@ -16,12 +16,6 @@ export default class NutanixNodeService {
     });
   }
 
-  getNodeDetails(nodes) {
-    return this.$q
-      .all(nodes.map((node) => this.NutanixService.getServer(node.server)))
-      .then((res) => res);
-  }
-
   reboot(serviceName) {
     return this.$http
       .post(`/dedicated/server/${serviceName}/reboot`)

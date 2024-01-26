@@ -153,14 +153,7 @@
             <oui-tile-definition
                 term="{{:: 'nutanix_dashboard_cluster_rack' | translate }}"
             >
-                <oui-tile-description
-                    data-ng-if="!$ctrl.cluster.isRackAwareness()"
-                >
-                    <span data-ng-bind="$ctrl.server.rack || '-'"></span>
-                </oui-tile-description>
-                <oui-tile-description
-                    data-ng-if="$ctrl.cluster.isRackAwareness()"
-                >
+                <oui-tile-description>
                     <span data-ng-bind=":: $ctrl.getNodeRacks() || '-'"></span>
                 </oui-tile-description>
             </oui-tile-definition>
