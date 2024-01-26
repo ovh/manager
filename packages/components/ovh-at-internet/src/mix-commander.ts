@@ -2,6 +2,15 @@ import { GenericTrackingData } from './track';
 
 const getMixCommanderScript = (clientId: string, region: string) => `
 window.tC = window.tC || {};
+
+if(sessionStorage["prev_ref"] !== undefined){
+    var temp = new URLSearchParams(document.location.search);
+    Object.defineProperty(document, "referrer", {get : function(){
+        return temp.get('prev_ref');
+    }});
+    sessionStorage["prev_ref"] = undefined;
+}
+
 tC.getParamURL = tC.getParamURL || function(t, e) {
         if (void 0 === t)
             return "";
