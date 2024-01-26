@@ -17,9 +17,14 @@
   "kube_common_flavor_load_error": "Échec du chargement des nœuds: {{message}}",
   "kube_list_network_attached": "Réseau attaché",
   "kube_list_network_public": "Public",
-  "kubernetes_add_private_network": "Choisissez un réseau privé pour ce cluster",
+  "kubernetes_add_private_network": "Configurer un réseau",
   "kubernetes_add_private_network_label": "Réseau privé attaché",
   "kubernetes_add_private_network_none": "Aucun (IPs publiques)",
   "kubernetes_add_private_network_description": "Par défaut, vos nœuds de travail disposent d'une IPv4 publique. Si vous choisissez un réseau privé, les IP publiques de ces nœuds seront utilisées exclusivement pour leur administration/le lien avec le control plane Kubernetes, et vos noeuds se verront attribuer une IP sur le vLAN du réseau privé choisi.",
-  "kubernetes_add_private_network_add": "Créer un réseau privé"
+  "kubernetes_add_private_network_add": "Créer un réseau privé",
+  "kubernetes_add_private_network_subnet": "Choisissez un sous-réseau pour votre cluster",
+  "kubernetes_add_private_network_subnet_description": "Sélectionnez le sous-réseau à utiliser pour votre cluster MKS. Veuillez vous assurer que celui-ci respecte les prérequis réseau du service managé MKS.",
+  "kubernetes_add_private_network_subnet_link": "Lire la documentation",
+  "kubernetes_add_private_network_subnet_error_no_gateway_ip": "Le sous-réseau sélectionné n'a pas de gateway IP définie. Attention, cela est necessaire si vous souhaitez utiliser des Load Balancer avec une adresse IP publique, vous pouvez créer/selectionner un autre subnet pour votre cluster ou utiliser les paramètres avancés pour définir un subnet dédié à vos Load Balancer.",
+  "kubernetes_add_private_network_subnet_error_default": "Une erreur est survenue lors du chargement des sous-réseaux pour ce réseau privé : {{ error }}."
 }
