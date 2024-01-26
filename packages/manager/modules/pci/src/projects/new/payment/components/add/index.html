@@ -12,7 +12,7 @@
     data-default-payment-method-type="{{ $ctrl.model.paymentMethod.paymentType }}"
     data-registered-payment-methods="$ctrl.authorizedPaymentMethods"
     data-unregistered-payment-methods="$ctrl.unregisteredPaymentMethods"
-    data-force-set-as-default-choice="true"
+    data-force-set-as-default-choice="$ctrl.eligibility.isAddPaymentMethodRequired()"
     data-show-default-explanation-texts="true"
     data-default-explanation-texts-options="{
         creditCard: 'info',
@@ -21,7 +21,7 @@
     }"
     data-payment-method-types-per-line="2"
     data-automatic-select="!!$ctrl.model.paymentMethod"
-    data-required="true"
+    data-required="$ctrl.eligibility.isAddPaymentMethodRequired()"
 >
     <ovh-payment-method-register-paypal-explanation-text>
         <oui-message

@@ -185,6 +185,10 @@ export default /* @ngInject */ ($stateProvider) => {
           } else {
             Object.assign(model, { valid: true });
           }
+        } else {
+          Object.assign(model, {
+            valid: eligibility.actionsRequired.length === 0,
+          });
         }
         return defaultPaymentMethod;
       },
