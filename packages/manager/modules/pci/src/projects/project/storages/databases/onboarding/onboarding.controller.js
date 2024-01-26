@@ -4,8 +4,9 @@ import { GUIDES } from './onboarding.constants';
 
 export default class {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, coreConfig) {
     this.$translate = $translate;
+    this.user = coreConfig.getUser();
   }
 
   $onInit() {
@@ -15,7 +16,7 @@ export default class {
       (list, guide) => [
         ...list,
         {
-          ...guide,
+          link: guide.links[this.user.ovhSubsidiary] || guide.links.DEFAULT,
           title: this.$translate.instant(
             `pci_database_guides_${guide.id}_title`,
           ),

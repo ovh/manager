@@ -181,6 +181,8 @@ export const FIRST_STEPS_WITH_DATABASES = {
   WE: 'https://docs.ovh.com/us/en/publiccloud/databases/getting-started/',
   WS: 'https://docs.ovh.com/us/es/publiccloud/databases/getting-started/',
   IN: 'https://docs.ovh.com/asia/en/publiccloud/databases/getting-started/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/20611621210515-Getting-Started-with-Cloud-Databases',
 };
 
 export const MONGO_DB_CAPABILITIES_AND_LIMITATIONS = {
@@ -204,6 +206,8 @@ export const MONGO_DB_CAPABILITIES_AND_LIMITATIONS = {
   WS: 'https://docs.ovh.com/us/es/publiccloud/databases/mongodb/capabilities/',
   IN:
     'https://docs.ovh.com/asia/en/publiccloud/databases/mongodb/capabilities/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/22442835364243-MongoDB-Capabilities-and-Limitations',
 };
 
 export const MYSQL_CAPABILITIES_AND_LIMITATIONS = {
@@ -226,6 +230,8 @@ export const MYSQL_CAPABILITIES_AND_LIMITATIONS = {
   WE: 'https://docs.ovh.com/us/en/publiccloud/databases/mysql/capabilities/',
   WS: 'https://docs.ovh.com/us/es/publiccloud/databases/mysql/capabilities/',
   IN: 'https://docs.ovh.com/asia/en/publiccloud/databases/mysql/capabilities/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/20887483746067-MySQL-Capabilities-and-Limitations',
 };
 
 export const CREATE_A_CLUSTER = {
