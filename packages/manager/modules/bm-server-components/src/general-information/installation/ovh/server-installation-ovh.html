@@ -429,18 +429,23 @@
                     </span>
                     <select
                         class="form-control"
-                        data-ng-show="informations.nbDisk > 1"
+                        data-ng-show="informations.nbDisk > 1
+                                        && ( !installation.hardwareRaid.raid
+                                            || !installation.hardwareRaid.disks
+                                            || !installation.hardwareRaid.arrays)"
                         data-ng-options="nbdisk as nbdisk for nbdisk in $ctrl.getNbDisqueList(informations.nbDisk)"
                         data-ng-model="installation.nbDiskUse"
                         data-ng-disabled="setPartition.indexSet != -1 || newPartition.display"
                     >
                     </select>
                     <strong
-                        data-ng-hide="informations.nbDisk > 1"
-                        data-ng-bind="informations.nbPhysicalDisk"
-                    ></strong
-                    >&nbsp;
-                    <strong data-ng-bind="informations.typeDisk"></strong>&nbsp;
+                        data-ng-hide="informations.nbDisk > 1
+                                        && ( !installation.hardwareRaid.raid
+                                            || !installation.hardwareRaid.disks
+                                            || !installation.hardwareRaid.arrays)"
+                        data-ng-bind="installation.hardwareRaid.disks ? installation.hardwareRaid.disks : 1"
+                    ></strong>
+                    <strong data-ng-bind="informations.typeDisk"></strong>
                     <strong
                         data-ng-show="informations.raidController"
                         data-translate="server_configuration_installation_ovh_step2_raid_hard"
@@ -1832,10 +1837,11 @@
                         </div>
 
                         <!-- nbDisk -->
-                        <div
-                            class="form-inline"
-                            data-ng-show="informations.nbDisk > 1 && !installation.customInstall"
-                        >
+                        <div class="form-inline" data-ng-show="informations.nbDisk > 1
+                                                                  && !installation.customInstall
+                                                                  && ( !installation.hardwareRaid.raid
+                                                                     || !installation.hardwareRaid.disks
+                                                                     || !installation.hardwareRaid.arrays)">
                             <label
                                 for="nbDiskUse"
                                 class="control-label"
