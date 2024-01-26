@@ -18,12 +18,12 @@ import {
   OdsInputValueChangeEvent,
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
-import { useShell } from '@ovh-ux/manager-react-core-application';
+import { useTracking } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { handleClick } from '@/utils/ods-utils';
 import { FormField } from './FormField';
 
-export type VrackDeleteModalProps = {
+export type DeleteModalProps = {
   headline: string;
   description?: string;
   deleteInputLabel: string;
@@ -39,7 +39,7 @@ export type VrackDeleteModalProps = {
 
 const terminateValue = 'TERMINATE';
 
-export const VrackDeleteModal: React.FC<VrackDeleteModalProps> = ({
+export const DeleteModal: React.FC<DeleteModalProps> = ({
   headline,
   description,
   isModalOpen,
@@ -54,7 +54,7 @@ export const VrackDeleteModal: React.FC<VrackDeleteModalProps> = ({
 }) => {
   const { t } = useTranslation('vrack-services');
   const [deleteInput, setDeleteInput] = React.useState('');
-  const shell = useShell();
+  const tracking = useTracking();
   const close = () => {
     setDeleteInput('');
     closeModal();
@@ -62,7 +62,7 @@ export const VrackDeleteModal: React.FC<VrackDeleteModalProps> = ({
 
   React.useEffect(() => {
     if (isModalOpen && onDisplayDataTracking) {
-      shell.tracking.trackPage({
+      tracking.trackPage({
         name: onDisplayDataTracking,
         level2: '',
       });

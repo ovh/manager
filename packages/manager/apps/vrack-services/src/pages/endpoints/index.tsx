@@ -1,5 +1,4 @@
 import React from 'react';
-import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -15,38 +14,31 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useShell } from '@ovh-ux/manager-react-core-application';
+import { useTracking } from '@ovh-ux/manager-react-shell-client';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { OnboardingLayout, PageLayout } from '@/components/layout-helpers';
-import { ErrorPage } from '@/components/Error';
 import { hasSubnet, isEditable, useVrackService } from '@/utils/vs-utils';
 import { EndpointDatagrid } from './components/EndpointDataGrid';
-
-export function breadcrumb() {
-  return i18next.t('vrack-services/dashboard:endpointsTabLabel');
-}
+import { urls } from '@/router/constants';
 
 const Endpoints: React.FC = () => {
   const { t } = useTranslation('vrack-services/endpoints');
-  const { data: vrackServices, error, isLoading } = useVrackService();
+  const { data: vrackServices, isLoading } = useVrackService();
   const { id } = useParams();
   const navigate = useNavigate();
-  const shell = useShell();
+  const tracking = useTracking();
 
-  const navigateToCreateEndpointPage = () => navigate(`/${id}/createendpoint`);
+  const navigateToCreateEndpointPage = () =>
+    navigate(urls.createEndpoint.replace(':id', id));
 
   React.useEffect(() => {
     if (!isLoading) {
-      shell.tracking.trackPage({
+      tracking.trackPage({
         name: 'vrack-services::endpoints',
         level2: '',
       });
     }
   }, [isLoading]);
-
-  if (error) {
-    return <ErrorPage error={error} />;
-  }
 
   if (isLoading) {
     return (

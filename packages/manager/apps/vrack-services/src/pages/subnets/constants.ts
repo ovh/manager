@@ -6,9 +6,7 @@ export const noVlanOptionValue = 'noVlan';
 export const vlanNumberOptionValue = 'vlanNumber';
 export const vlanNumberInputName = 'vlan';
 
-export const subnetSelectName = 'subnet';
-export const serviceTypeSelectName = 'serviceType';
-export const serviceNameSelectName = 'serviceName';
+export const isValidVlanNumber = (vlan: number) => vlan >= 2 && vlan <= 4094;
 
-export const defaultCidr = '10.0.0.0/24';
-export const defaultServiceRange = '10.0.0.0/29';
+export const getSubnetCreationMutationKey = (id: string) =>
+  `create-subnet-${id}`;

@@ -55,11 +55,10 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   secondaryButtonIconPosition = 'end',
   secondaryButtonDisabled,
   secondaryButtonDataTracking,
-  noBreadcrumb,
   children,
 }) => {
   return (
-    <PageLayout noBreacrumb={noBreadcrumb}>
+    <PageLayout noBreacrumb>
       <div className="flex flex-col mx-auto">
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}

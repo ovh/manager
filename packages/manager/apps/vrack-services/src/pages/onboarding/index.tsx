@@ -1,21 +1,25 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { Card, CardProps } from '@ovhcloud/manager-components';
 import { useGuideUtils } from '@/components/GuideLink';
 import { OnboardingLayout } from '@/components/layout-helpers';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
-import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
+import {
+  OrderDescription,
+  getVrackServicesResourceListQueryKey,
+  useOrderPollingStatus,
+} from '@/api';
 
-export function breadcrumb({ params }: BreadcrumbHandleParams) {
-  return params.id;
-}
-
-export default function Onboarding() {
+const OnboardingPage = () => {
   const { t } = useTranslation('vrack-services/onboarding');
   const link = useGuideUtils();
   const navigate = useNavigate();
+  const { data: vrackServicesDeliveringOrders } = useOrderPollingStatus({
+    pollingKey: OrderDescription.vrackServices,
+    queryToInvalidateOnDelivered: getVrackServicesResourceListQueryKey,
+  });
 
   const tileList: CardProps[] = [
     {
@@ -48,6 +52,10 @@ export default function Onboarding() {
     },
   ];
 
+  if (vrackServicesDeliveringOrders?.length > 0) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <OnboardingLayout
       introTitle={t('introTitle')}
@@ -62,11 +70,13 @@ export default function Onboarding() {
       secondaryHref={t('moreInfoButtonLink')}
       secondaryButtonDataTracking="vrack-services::onboarding::discover"
     >
-      <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
         {tileList.map((tile) => (
           <Card key={tile.texts?.title} {...tile} />
         ))}
-      </aside>
+      </section>
     </OnboardingLayout>
   );
-}
+};
+
+export default OnboardingPage;

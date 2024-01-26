@@ -24,8 +24,9 @@ import { PageLayout } from '@/components/layout-helpers/PageLayout';
 import { handleClick } from '@/utils/ods-utils';
 
 export type CreatePageLayoutProps = React.PropsWithChildren<{
-  goBackUrl: string;
-  goBackLinkLabel: string;
+  overviewUrl?: string;
+  goBackUrl?: string;
+  goBackLinkLabel?: string;
   goBackLinkDataTracking?: string;
   title: string;
   description?: string;
@@ -39,6 +40,7 @@ export type CreatePageLayoutProps = React.PropsWithChildren<{
 }>;
 
 export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
+  overviewUrl,
   goBackUrl,
   goBackLinkLabel,
   goBackLinkDataTracking,
@@ -55,23 +57,25 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
 }) => {
   const navigate = useNavigate();
   return (
-    <PageLayout>
-      <OsdsLink
-        className="block mt-4 mb-5"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        data-tracking={goBackLinkDataTracking}
-        {...handleClick(() => navigate(goBackUrl))}
-      >
-        <span slot="start">
-          <OsdsIcon
-            className="mr-4"
-            name={ODS_ICON_NAME.ARROW_LEFT}
-            size={ODS_ICON_SIZE.xs}
-            color={ODS_THEME_COLOR_INTENT.primary}
-          />
-        </span>
-        {goBackLinkLabel}
-      </OsdsLink>
+    <PageLayout items={[{ label: title }]} overviewUrl={overviewUrl}>
+      {goBackUrl && goBackLinkLabel && (
+        <OsdsLink
+          className="block mt-4 mb-5"
+          color={ODS_THEME_COLOR_INTENT.primary}
+          data-tracking={goBackLinkDataTracking}
+          {...handleClick(() => navigate(goBackUrl))}
+        >
+          <span slot="start">
+            <OsdsIcon
+              className="mr-4"
+              name={ODS_ICON_NAME.ARROW_LEFT}
+              size={ODS_ICON_SIZE.xs}
+              color={ODS_THEME_COLOR_INTENT.primary}
+            />
+          </span>
+          {goBackLinkLabel}
+        </OsdsLink>
+      )}
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}

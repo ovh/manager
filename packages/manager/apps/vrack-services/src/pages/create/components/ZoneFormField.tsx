@@ -107,7 +107,10 @@ export const ZoneFormField: React.FC<Props> = ({
                     <div slot="start" className="w-full">
                       <OsdsFlag
                         className="w-11 mx-auto"
-                        iso={zoneNameToIsoCode[zone.name]}
+                        iso={
+                          zoneNameToIsoCode[zone.name] ||
+                          ODS_COUNTRY_ISO_CODE.FR
+                        }
                         lazy
                         assetPath="flags/"
                       />
@@ -126,7 +129,9 @@ export const ZoneFormField: React.FC<Props> = ({
                         size={ODS_TEXT_SIZE._400}
                         level={ODS_TEXT_LEVEL.body}
                         color={ODS_THEME_COLOR_INTENT.text}
-                      >{`${city} (${zone.name})`}</OsdsText>
+                      >
+                        {`${city || ''} (${zone.name})`}
+                      </OsdsText>
                     </div>
                   </OsdsTile>
                 </OsdsRadio>

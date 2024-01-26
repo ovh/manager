@@ -16,8 +16,7 @@ import {
   OsdsMessage,
 } from '@ovhcloud/ods-components/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useAuthentication } from '@ovh-ux/manager-react-core-application';
-import { CountryCode } from '@ovh-ux/manager-config';
+import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 import {
   OrderDescription,
   getDeliveringOrderQueryKey,
@@ -35,7 +34,8 @@ export type CreateVrackProps = {
 
 export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
   const { t } = useTranslation('vrack-services/listing');
-  const { subsidiary } = useAuthentication();
+  const environment = useEnvironment();
+  const user = environment.getUser();
   const queryClient = useQueryClient();
 
   const {
@@ -48,7 +48,7 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
   });
 
   const { mutate: orderNewVrack, isPending, isError } = useMutation({
-    mutationFn: () => orderVrack({ ovhSubsidiary: subsidiary as CountryCode }),
+    mutationFn: () => orderVrack({ ovhSubsidiary: user.ovhSubsidiary }),
     mutationKey: orderVrackQueryKey,
     onSuccess: () => {
       queryClient.invalidateQueries({

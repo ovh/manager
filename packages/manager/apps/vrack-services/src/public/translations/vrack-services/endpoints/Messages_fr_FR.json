@@ -4,7 +4,6 @@
   "createEndpointButtonLabel": "Créer un service endpoint",
   "createPageTitle": "Créer un Service Endpoint",
   "createPageDescription": "Le Service Endpoint vous permet d'exposer vos services managés par OVHcloud sur le vRack, via une ou plusieurs adresses IP, selon le type de service. L'adresse IP du Service Endpoint appartient à la plage d'adresses de service définie dans le sous-réseau sélectionné.",
-  "goBackLinkLabel": "Retour à la page précédente",
   "endpointCreationError": "Erreur lors de la création du service endpoint : {{error}}",
   "emptyDataGridMessage": "Vous n'avez aucun service endpoint pour le moment",
   "serviceTypeLabel": "Type de service",

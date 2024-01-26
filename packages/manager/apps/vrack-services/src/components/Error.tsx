@@ -13,7 +13,10 @@ import {
   ODS_TEXT_SIZE,
   ODS_MESSAGE_TYPE,
 } from '@ovhcloud/ods-components';
-import { useShell } from '@ovh-ux/manager-react-core-application';
+import {
+  useEnvironment,
+  useTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import OOPS from '@/assets/error-banner-oops.png';
 
@@ -40,24 +43,22 @@ export const ErrorPage: React.FC<ErrorBannerProps> = ({ error }) => {
   const { t } = useTranslation('vrack-services/error');
   const navigate = useNavigate();
   const location = useLocation();
-  const shell = useShell();
-  const { tracking, environment } = shell;
-  const env = environment.getEnvironment();
+  const environment = useEnvironment();
+  const tracking = useTracking();
 
   React.useEffect(() => {
     tracking.init(false);
-    env.then((response) => {
-      const { applicationName } = response;
-      const name = `errors::${getTrackingTypology(error)}::${applicationName}`;
+    const name = `errors::${getTrackingTypology(error)}::${
+      environment.applicationName
+    }`;
 
-      tracking.trackPage({
-        name,
-        level2: '81',
-        type: 'navigation',
-        page_category: location.pathname,
-      });
+    tracking.trackPage({
+      name,
+      level2: '81',
+      type: 'navigation',
+      page_category: location.pathname,
     });
-  }, []);
+  }, [environment.applicationName]);
 
   return (
     <div className="mx-auto w-full max-w-[600px] grid h-full overflow-hidden p-5">

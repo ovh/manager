@@ -1,5 +1,4 @@
 import React from 'react';
-import i18next from 'i18next';
 import {
   ODS_SPINNER_SIZE,
   ODS_BUTTON_SIZE,
@@ -17,36 +16,29 @@ import {
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useShell } from '@ovh-ux/manager-react-core-application';
+import { useTracking } from '@ovh-ux/manager-react-shell-client';
 import { OnboardingLayout } from '@/components/layout-helpers/OnboardingLayout';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { isEditable, useVrackService } from '@/utils/vs-utils';
-import { ErrorPage } from '@/components/Error';
 import { PageLayout } from '@/components/layout-helpers';
 import { SubnetDatagrid } from './components/SubnetDataGrid';
-
-export function breadcrumb() {
-  return i18next.t('vrack-services/dashboard:subnetsTabLabel');
-}
+import { urls } from '@/router/constants';
 
 const Subnets: React.FC = () => {
   const { t } = useTranslation('vrack-services/subnets');
-  const { data: vrackServices, error, isLoading } = useVrackService();
+  const { data: vrackServices, isLoading } = useVrackService();
   const { id } = useParams();
   const navigate = useNavigate();
-  const shell = useShell();
+  const tracking = useTracking();
 
-  const navigateToCreateSubnetPage = () => navigate(`/${id}/createsubnet`);
+  const navigateToCreateSubnetPage = () =>
+    navigate(urls.createSubnet.replace(':id', id));
 
   React.useEffect(() => {
     if (!isLoading) {
-      shell.tracking.trackPage({ name: 'vrack-services::subnets', level2: '' });
+      tracking.trackPage({ name: 'vrack-services::subnets', level2: '' });
     }
   }, [isLoading]);
-
-  if (error) {
-    return <ErrorPage error={error} />;
-  }
 
   if (isLoading) {
     return (

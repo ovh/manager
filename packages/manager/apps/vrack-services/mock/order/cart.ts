@@ -121,6 +121,12 @@ export const getCartMocks = ({
     api: 'v6',
   },
   {
+    url: '/order/cart/:cartid/item/:itemid/configuration',
+    method: 'post',
+    response: {},
+    api: 'v6',
+  },
+  {
     url: '/order/cart/:id/checkout',
     method: 'post',
     response: { orderId: 1 },

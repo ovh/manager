@@ -4,7 +4,6 @@ import {
   postOrderCartCartIdVrack,
   postOrderCartCartIdVrackServices,
   postOrderCartCartIdCheckout,
-  postOrderPay,
   postConfigureCartItem,
 } from './services';
 import { Creation } from './order.type';
@@ -32,7 +31,6 @@ export const orderVrack = async (params: Creation) => {
     waiveRetractationPeriod: false,
     autoPayWithPreferredPaymentMethod: false,
   });
-  await postOrderPay(order?.data?.orderId);
 
   return order;
 };
@@ -72,7 +70,6 @@ export const orderVrackServices = async (
     waiveRetractationPeriod: false,
     autoPayWithPreferredPaymentMethod: false,
   });
-  await postOrderPay(order?.data?.orderId);
 
   return order;
 };

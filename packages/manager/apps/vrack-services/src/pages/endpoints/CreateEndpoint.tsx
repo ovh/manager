@@ -2,13 +2,12 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
-import i18next from 'i18next';
 import { OsdsSelect, OsdsSelectOption } from '@ovhcloud/ods-components/react';
 import {
   ODS_SELECT_SIZE,
   OdsSelectValueChangeEvent,
 } from '@ovhcloud/ods-components';
-import { useShell } from '@ovh-ux/manager-react-core-application';
+import { useTracking } from '@ovh-ux/manager-react-shell-client';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   VrackServices,
@@ -22,19 +21,12 @@ import {
   subnetSelectName,
   serviceTypeSelectName,
   serviceNameSelectName,
+  getEndpointCreationMutationKey,
 } from './constants';
 import { useServiceList, useVrackService } from '@/utils/vs-utils';
 import { ErrorPage } from '@/components/Error';
 import { FormField } from '@/components/FormField';
-
-export const isValidVlanNumber = (vlan: number) => vlan >= 2 && vlan <= 4094;
-
-export const getEndpointCreationMutationKey = (id: string) =>
-  `create-endpoint-${id}`;
-
-export function breadcrumb() {
-  return i18next.t('vrack-services/endpoints:createPageTitle');
-}
+import { urls } from '@/router/constants';
 
 const EndpointCreationPage: React.FC = () => {
   const { t } = useTranslation('vrack-services/endpoints');
@@ -49,8 +41,8 @@ const EndpointCreationPage: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const vrackServices = useVrackService();
-  const dashboardUrl = `/${id}/Endpoints`;
-  const shell = useShell();
+  const dashboardUrl = urls.endpoints.replace(':id', id);
+  const tracking = useTracking();
 
   const {
     iamResources,
@@ -94,7 +86,7 @@ const EndpointCreationPage: React.FC = () => {
         queryClient.invalidateQueries({
           queryKey: getVrackServicesResourceQueryKey(id),
         }),
-        shell.tracking.trackEvent({
+        tracking.trackEvent({
           name: 'vrack-services::endpoints::add-success',
           level2: '',
         }),
@@ -102,7 +94,7 @@ const EndpointCreationPage: React.FC = () => {
       navigate(dashboardUrl);
     },
     onError: async () => {
-      await shell.tracking.trackEvent({
+      await tracking.trackEvent({
         name: 'vrack-services::endpoints::add-error',
         level2: '',
       });
@@ -110,7 +102,7 @@ const EndpointCreationPage: React.FC = () => {
   });
 
   React.useEffect(() => {
-    shell.tracking.trackPage({
+    tracking.trackPage({
       name: 'vrack-services::endpoints::add',
       level2: '',
     });
@@ -119,16 +111,13 @@ const EndpointCreationPage: React.FC = () => {
     });
   }, []);
 
-  if (vrackServices.error || serviceListError || iamResourcesError) {
-    return (
-      <ErrorPage
-        error={vrackServices.error || serviceListError || iamResourcesError}
-      />
-    );
+  if (serviceListError || iamResourcesError) {
+    return <ErrorPage error={serviceListError || iamResourcesError} />;
   }
 
   return (
     <CreatePageLayout
+      overviewUrl={dashboardUrl}
       title={t('createPageTitle')}
       description={t('createPageDescription')}
       createButtonLabel={t('createEndpointButtonLabel')}
@@ -138,9 +127,6 @@ const EndpointCreationPage: React.FC = () => {
         interpolation: { escapeValue: false },
       })}
       hasFormError={isError}
-      goBackLinkLabel={t('goBackLinkLabel')}
-      goBackUrl={dashboardUrl}
-      goBackLinkDataTracking="vrack-services::endpoints::add::back"
       onSubmit={() => createEndpoint()}
       isSubmitPending={isPending}
       isFormSubmittable={

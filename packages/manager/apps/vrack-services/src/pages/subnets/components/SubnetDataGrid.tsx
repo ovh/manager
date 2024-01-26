@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { OsdsDatagrid, OsdsMessage } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_TYPE, OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { useParams } from 'react-router-dom';
-import { useShell } from '@ovh-ux/manager-react-core-application';
+import { useTracking } from '@ovh-ux/manager-react-shell-client';
 import { reactFormatter } from '@/utils/ods-utils';
 import { DisplayNameCell, ActionsCell, CidrCell } from './SubnetDataGridCells';
 import { ErrorPage } from '@/components/Error';
 import { useVrackService, useUpdateVrackServices } from '@/utils/vs-utils';
-import { VrackDeleteModal } from '@/components/VrackDeleteModal';
+import { DeleteModal } from '@/components/DeleteModal';
 
 export const SubnetDatagrid: React.FC = () => {
   const { t } = useTranslation('vrack-services/subnets');
@@ -17,7 +17,7 @@ export const SubnetDatagrid: React.FC = () => {
     string | undefined
   >(undefined);
   const { id } = useParams();
-  const shell = useShell();
+  const tracking = useTracking();
 
   const { data: vrackServices, isError, error } = useVrackService();
   const {
@@ -41,7 +41,7 @@ export const SubnetDatagrid: React.FC = () => {
         <DisplayNameCell
           updateVS={updateVS}
           vrackServices={vrackServices}
-          trackEvent={shell.tracking.trackEvent as any}
+          trackEvent={tracking.trackEvent as any}
         />,
       ),
     },
@@ -96,7 +96,7 @@ export const SubnetDatagrid: React.FC = () => {
         rows={subnetList}
         noResultLabel={t('emptyDataGridMessage')}
       />
-      <VrackDeleteModal
+      <DeleteModal
         closeModal={() => setOpenedDeleteModal(undefined)}
         deleteInputLabel={t('modalDeleteInputLabel')}
         headline={t('modalDeleteHeadline')}
@@ -118,13 +118,13 @@ export const SubnetDatagrid: React.FC = () => {
             },
             {
               onSuccess: () => {
-                shell.tracking.trackEvent({
+                tracking.trackEvent({
                   name: 'vrack-services::subnets::delete-success',
                   level2: '',
                 });
               },
               onError: () => {
-                shell.tracking.trackEvent({
+                tracking.trackEvent({
                   name: 'vrack-services::subnets::delete-error',
                   level2: '',
                 });

@@ -13,7 +13,7 @@ import {
   VrackIdCell,
 } from '@/components/VrackServicesDataGridCells';
 import { useUpdateVrackServices, useVrackServicesList } from '@/utils/vs-utils';
-import { VrackDeleteModal } from '@/components/VrackDeleteModal';
+import { DeleteModal } from '@/components/DeleteModal';
 
 export const VrackServicesDatagrid: React.FC = () => {
   const [associateModalVisible, setAssociateModalVisible] = React.useState<
@@ -112,7 +112,7 @@ export const VrackServicesDatagrid: React.FC = () => {
         vrackServicesId={associateModalVisible}
         closeModal={() => setAssociateModalVisible(undefined)}
       />
-      <VrackDeleteModal
+      <DeleteModal
         closeModal={() => setOpenedDeleteModal(undefined)}
         deleteInputLabel={t('modalDeleteInputLabel')}
         headline={t('modalDeleteHeadline')}

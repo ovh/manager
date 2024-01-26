@@ -16,9 +16,9 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  useAuthentication,
-  useShell,
-} from '@ovh-ux/manager-react-core-application';
+  useEnvironment,
+  useTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
@@ -33,27 +33,23 @@ import {
   Zone,
   Order,
 } from '@/api';
-import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
 import { ErrorPage } from '@/components/Error';
 import { ZoneFormField } from './components/ZoneFormField';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import { displayNameInputName } from './constants';
 import { VrackConfirmModal } from './components/VrackConfirmModal';
 
-export function breadcrumb({ params }: BreadcrumbHandleParams) {
-  return params.id;
-}
-
 const CreationPage: React.FC = () => {
   const [selectedZone, setSelectedZone] = React.useState('');
   const [displayName, setDisplayName] = React.useState('');
   const [isModalVisible, setIsModalVisible] = React.useState(false);
   const [shouldOrderVrack, setShouldOrderVrack] = React.useState(false);
-  const { subsidiary } = useAuthentication();
+  const environment = useEnvironment();
+  const user = environment.getUser();
   const { t } = useTranslation('vrack-services/create');
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const shell = useShell();
+  const tracking = useTracking();
 
   const { isLoading: isZoneLoading, isError: hasZoneError, error } = useQuery<
     ApiResponse<Zone[]>,
@@ -74,38 +70,40 @@ const CreationPage: React.FC = () => {
       orderVrackServices({
         displayName,
         selectedZone,
-        ovhSubsidiary: subsidiary as CountryCode,
+        ovhSubsidiary: user.ovhSubsidiary as CountryCode,
       }),
     mutationKey: orderVrackServicesQueryKey,
     onSuccess: async () => {
       if (shouldOrderVrack) {
         try {
-          await orderVrack({ ovhSubsidiary: subsidiary as CountryCode });
-          shell.tracking.trackEvent({
+          await orderVrack({
+            ovhSubsidiary: user.ovhSubsidiary as CountryCode,
+          });
+          await tracking.trackEvent({
             name: 'vrack-services::add::create-vrack-success',
             level2: '',
           });
-          queryClient.invalidateQueries({
+          await queryClient.invalidateQueries({
             queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
           });
         } catch {
-          shell.tracking.trackEvent({
+          await tracking.trackEvent({
             name: 'vrack-services::add::create-vrack-error',
             level2: '',
           });
         }
       }
-      queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: getDeliveringOrderQueryKey(OrderDescription.vrackServices),
       });
-      await shell.tracking.trackEvent({
+      await tracking.trackEvent({
         name: 'vrack-services::add-success',
         level2: '',
       });
       navigate('/');
     },
     onError: async () => {
-      await shell.tracking.trackEvent({
+      await tracking.trackEvent({
         name: 'vrack-services::add-error',
         level2: '',
       });
@@ -113,7 +111,7 @@ const CreationPage: React.FC = () => {
   });
 
   React.useEffect(() => {
-    shell.tracking.trackPage({
+    tracking.trackPage({
       name: 'vrack-services::add',
       level2: '',
     });
@@ -135,9 +133,6 @@ const CreationPage: React.FC = () => {
           interpolation: { escapeValue: false },
         })}
         hasFormError={isCreationError}
-        goBackLinkLabel={t('goBackLinkLabel')}
-        goBackUrl="/"
-        goBackLinkDataTracking="vrack-services::add::back"
         onSubmit={() => setIsModalVisible(true)}
         title={t('title')}
         isSubmitPending={isCreationPending}

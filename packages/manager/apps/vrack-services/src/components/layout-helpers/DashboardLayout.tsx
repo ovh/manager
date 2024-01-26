@@ -24,8 +24,8 @@ import { PageLayout } from './PageLayout';
 import { useVrackService } from '@/utils/vs-utils';
 import { ResourceStatus, updateVrackServicesQueryKey } from '@/api';
 import { CreationSuccessMessage } from '@/components/CreationSuccessMessage';
-import { getSubnetCreationMutationKey } from '@/pages/dashboard/[id]/CreateSubnet';
-import { getEndpointCreationMutationKey } from '@/pages/dashboard/[id]/CreateEndpoint';
+import { getSubnetCreationMutationKey } from '@/pages/subnets/constants';
+import { getEndpointCreationMutationKey } from '@/pages/endpoints/constants';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -106,11 +106,13 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
       <OsdsTabs panel={activePanel}>
         <OsdsTabBar slot="top">
           {tabs.map((tab: DashboardTabItemProps, key: number) => (
-            <OsdsTabBarItem key={`osds-tab-bar-item-${key}`} panel={tab.name}>
-              <NavLink to={tab.to} className="no-underline">
-                {tab.title}
-              </NavLink>
-            </OsdsTabBarItem>
+            <NavLink
+              to={tab.to}
+              className="no-underline"
+              key={`osds-tab-bar-item-${key}`}
+            >
+              <OsdsTabBarItem panel={tab.name}>{tab.title}</OsdsTabBarItem>
+            </NavLink>
           ))}
         </OsdsTabBar>
       </OsdsTabs>

@@ -1,10 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import {
-  useEnvironment,
-  useShell,
-} from '@ovh-ux/manager-react-core-application';
-import {
   OsdsSpinner,
   OsdsMessage,
   OsdsDivider,
@@ -20,6 +16,10 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useParams } from 'react-router-dom';
+import {
+  useEnvironment,
+  useTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ErrorPage } from '@/components/Error';
 import { useUpdateVrackServices, useVrackService } from '@/utils/vs-utils';
 import { formatDateString } from '@/utils/date';
@@ -37,6 +37,7 @@ export const OverviewTab: React.FC = () => {
     string | undefined
   >(undefined);
   const environment = useEnvironment();
+  const tracking = useTracking();
   const urls = environment.getApplicationURLs();
   const { id } = useParams();
   const { data: vrackServices, error, isLoading } = useVrackService();
@@ -46,10 +47,9 @@ export const OverviewTab: React.FC = () => {
     hideError,
     isPending,
   } = useUpdateVrackServices({ key: id });
-  const shell = useShell();
 
   React.useEffect(() => {
-    shell.tracking.trackPage({
+    tracking.trackPage({
       name: 'vrack-services::dashboard',
       level2: '',
     });
@@ -131,3 +131,5 @@ export const OverviewTab: React.FC = () => {
     </>
   );
 };
+
+export default OverviewTab;

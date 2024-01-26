@@ -9,7 +9,6 @@ import {
 } from '@cucumber/cucumber';
 import { env } from 'node:process';
 import { ICustomWorld, CustomWorld } from './custom-world';
-import { login, logout } from './login';
 import { config } from './config';
 
 setDefaultTimeout(30 * 1000);

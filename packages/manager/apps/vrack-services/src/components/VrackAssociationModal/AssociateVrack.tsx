@@ -73,7 +73,6 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
         </OsdsMessage>
       )}
       <OsdsSelect
-        inline
         size={ODS_SELECT_SIZE.md}
         disabled={isPending || undefined}
         onOdsValueChange={(event: OdsSelectValueChangeEvent) =>

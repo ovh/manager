@@ -1,9 +1,6 @@
 import React from 'react';
 import { Region, CountryCode } from '@ovh-ux/manager-config';
-import {
-  useAuthentication,
-  useEnvironment,
-} from '@ovh-ux/manager-react-core-application';
+import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 
 const docUrl = 'https://docs.ovh.com/';
 
@@ -89,14 +86,17 @@ export type UseGuideLinkProps = {
 export function useGuideUtils() {
   const environment = useEnvironment();
   const region = environment.getRegion();
-  const { subsidiary } = useAuthentication();
+  const user = environment.getUser();
   const [linkTabs, setLinkTabs] = React.useState<UseGuideLinkProps>({});
 
   React.useEffect(() => {
     setLinkTabs(
-      getGuideListLink({ region, subsidiary: subsidiary as CountryCode }),
+      getGuideListLink({
+        region,
+        subsidiary: user.ovhSubsidiary as CountryCode,
+      }),
     );
-  }, [region, subsidiary]);
+  }, [region, user.ovhSubsidiary]);
 
   return linkTabs;
 }

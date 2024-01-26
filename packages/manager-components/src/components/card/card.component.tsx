@@ -57,7 +57,7 @@ export const Card = ({
       href={href}
     >
       <OsdsTile
-        className="w-full h-full"
+        style={{ width: '100%', height: '100%' }}
         color={ODS_THEME_COLOR_INTENT.primary}
         rounded
         inline
@@ -65,28 +65,34 @@ export const Card = ({
         dataTracking={trackingLabel}
         hoverable={hoverable}
       >
-        <div className="flex flex-col ">
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           {img?.src && (
             <img
-              className="max-w-full my-3 mx-auto"
+              style={{ maxWidth: '100%', margin: 'var(--ods-size-03) auto' }}
               src={img.src}
               alt={img.alt}
             />
           )}
           <OsdsText
-            className="block"
+            style={{ display: 'block' }}
             level={ODS_TEXT_LEVEL.heading}
             size={ODS_TEXT_SIZE._200}
             color={ODS_THEME_COLOR_INTENT.primary}
           >
             {category}
-            <span className="inline-flex ml-3">
+            <span
+              style={{
+                display: 'inline-flex',
+                marginLeft: 'var(--ods-size-03)',
+              }}
+            >
               {badges?.map((b) => (
                 <OsdsChip
-                  className="mr-1"
                   key={b.text}
+                  style={{ marginRight: 'var(--ods-size-01)' }}
                   color={b.color}
                   size={ODS_ICON_SIZE.sm}
+                  inline
                 >
                   {b.text}
                 </OsdsChip>
@@ -95,7 +101,7 @@ export const Card = ({
           </OsdsText>
 
           <OsdsText
-            className="block mb-5"
+            style={{ display: 'block', marginBottom: 'var(--ods-size-05)' }}
             level={ODS_TEXT_LEVEL.heading}
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.text}
@@ -103,22 +109,18 @@ export const Card = ({
             {title}
           </OsdsText>
           <OsdsText
-            className="block mb-4"
+            style={{ display: 'block', marginBottom: 'var(--ods-size-04)' }}
             level={ODS_TEXT_LEVEL.body}
             size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.default}
           >
             {description}
           </OsdsText>
-          <OsdsLink
-            tabindex="-1"
-            color={ODS_THEME_COLOR_INTENT.primary}
-            href={href}
-          >
+          <OsdsLink color={ODS_THEME_COLOR_INTENT.primary} href={href}>
             {t('see_more_label')}
             <OsdsIcon
               slot="end"
-              className="ml-4"
+              style={{ marginLeft: 'var(--ods-size-04)' }}
               aria-hidden="true"
               size={ODS_ICON_SIZE.xxs}
               name={

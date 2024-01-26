@@ -115,11 +115,6 @@ export const postConfigureCartItem = async ({
     data,
   );
 
-export const postOrderPay = async (orderId: number) =>
-  apiClient.v6.post(`/me/order/${orderId}/pay`, {
-    paymentMethod: { id: '2134' },
-  });
-
 export const getOrderList = ({
   dateFrom,
   dateTo,

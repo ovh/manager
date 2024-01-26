@@ -24,21 +24,14 @@ import {
   OrderDescription,
   getVrackServicesResourceListQueryKey,
 } from '@/api';
-import { VrackServicesDatagrid } from '@/pages/index/components/VrackServicesDataGrid';
-import { BreadcrumbHandleParams } from '@/components/Breadcrumb';
+import { VrackServicesDatagrid } from '@/pages/listing/components/VrackServicesDataGrid';
 import { PageLayout } from '@/components/layout-helpers';
-import { ErrorPage } from '@/components/Error';
 import { DeliveringMessages } from '@/components/DeliveringMessages';
 import { handleClick } from '@/utils/ods-utils';
 import { useVrackServicesList } from '@/utils/vs-utils';
+import { betaVrackServicesLimit } from './constants';
 
-const betaVrackServicesLimit = 20;
-
-export function breadcrumb({ params }: BreadcrumbHandleParams) {
-  return params.id;
-}
-
-export default function ListingPage() {
+const ListingPage: React.FC = () => {
   const { t } = useTranslation('vrack-services/listing');
   const navigate = useNavigate();
   const [reachedBetaLimit, setReachedBetaLimit] = React.useState(false);
@@ -51,15 +44,11 @@ export default function ListingPage() {
     queryToInvalidateOnDelivered: getVrackServicesResourceListQueryKey,
   });
 
-  const { data, isLoading, error } = useVrackServicesList();
+  const { data, isLoading } = useVrackServicesList();
 
   React.useEffect(() => {
     setReachedBetaLimit(data?.data?.length >= betaVrackServicesLimit);
   }, [data?.data]);
-
-  if (error) {
-    return <ErrorPage error={error} />;
-  }
 
   if (
     !isLoading &&
@@ -67,11 +56,11 @@ export default function ListingPage() {
     data?.data.length === 0 &&
     vrackServicesDeliveringOrders?.length === 0
   ) {
-    return <Navigate to="onboarding" />;
+    return <Navigate to="/onboarding" />;
   }
 
   return (
-    <PageLayout>
+    <PageLayout noBreacrumb>
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
@@ -99,7 +88,7 @@ export default function ListingPage() {
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.stroked}
         size={ODS_BUTTON_SIZE.sm}
-        {...handleClick(() => navigate('create'))}
+        {...handleClick(() => navigate('/create'))}
       >
         <OsdsIcon
           className="mr-4"
@@ -123,4 +112,6 @@ export default function ListingPage() {
       )}
     </PageLayout>
   );
-}
+};
+
+export default ListingPage;
