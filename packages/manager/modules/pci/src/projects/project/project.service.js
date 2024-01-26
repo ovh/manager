@@ -2,6 +2,10 @@ import {
   URL_INFO,
   DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
 } from './project.constants';
+import {
+  ORDER_FOLLOW_UP_STEP_ENUM,
+  ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM,
+} from '../projects.constant';
 
 export default class {
   /* @ngInject */
@@ -14,6 +18,46 @@ export default class {
 
   getProjectInfo() {
     return this.project;
+  }
+
+  isManuallyReviewedByAntiFraud() {
+    return this.$http
+      .get(`/cloud/order/?planCode=project.2018`)
+      .then(({ data: orders }) => {
+        const validatingOrder = orders.find(
+          (order) =>
+            order.status.toLowerCase() ===
+            ORDER_FOLLOW_UP_STEP_ENUM.DELIVERING.toLowerCase(),
+        );
+
+        return validatingOrder
+          ? this.getOrderFollowUp(validatingOrder?.orderId)
+          : false;
+      })
+      .then((orderFollowUp) => {
+        if (orderFollowUp) {
+          const deliveringStep = orderFollowUp?.find(
+            (element) => element.step === ORDER_FOLLOW_UP_STEP_ENUM.VALIDATING,
+          );
+          return (
+            deliveringStep?.history.find(
+              (event) =>
+                event.label ===
+                ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM.FRAUD_MANUAL_REVIEW,
+            ) || false
+          );
+        }
+        return false;
+      })
+      .catch(() => {
+        return false;
+      });
+  }
+
+  getOrderFollowUp(orderId) {
+    return this.$http
+      .get(`/me/order/${orderId}/followUp`)
+      .then(({ data }) => data);
   }
 
   getDocumentUrl(type) {
