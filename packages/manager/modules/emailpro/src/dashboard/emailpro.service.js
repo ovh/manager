@@ -1028,6 +1028,15 @@ export default class EmailPro {
     }).then(([associatedDomainName]) => associatedDomainName);
   }
 
+  retrieveMxPlan(serviceName) {
+    return this.OvhHttp.get(
+      `/email/mxplan/${serviceName || this.$stateParams.productId}`,
+      {
+        rootPath: 'apiv6',
+      },
+    ).then((data) => data);
+  }
+
   /**
    * Get managers by group
    */

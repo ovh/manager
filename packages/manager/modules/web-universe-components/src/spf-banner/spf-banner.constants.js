@@ -2,27 +2,27 @@ export const GUIDE_LINKS = {
   CA:
     'https://help.ovhcloud.com/csm/en-ca-dns-spf-record?id=kb_article_view&sysparm_article=KB0051715',
   GB:
-    'https://help.ovhcloud.com/csm/en-gb-dns-spf-record?id=kb_article_view&sysparm_article=KB0051714',
+    'https://help.ovhcloud.com/csm/en-gb-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061404',
   DE:
-    'https://help.ovhcloud.com/csm/de-dns-spf-record?id=kb_article_view&sysparm_article=KB0051699',
+    'https://help.ovhcloud.com/csm/de-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061403',
   ES:
-    'https://help.ovhcloud.com/csm/es-es-dns-spf-record?id=kb_article_view&sysparm_article=KB0051709',
+    'https://help.ovhcloud.com/csm/es-es-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061406',
   FR:
-    'https://help.ovhcloud.com/csm/fr-dns-spf-record?id=kb_article_view&sysparm_article=KB0051712',
+    'https://help.ovhcloud.com/csm/fr-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061410',
   IE:
-    'https://help.ovhcloud.com/csm/en-ie-dns-spf-record?id=kb_article_view&sysparm_article=KB0051701',
+    'https://help.ovhcloud.com/csm/en-ie-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061405',
   IT:
-    'https://help.ovhcloud.com/csm/it-dns-spf-record?id=kb_article_view&sysparm_article=KB0051721',
+    'https://help.ovhcloud.com/csm/it-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061408',
   MA:
-    'https://help.ovhcloud.com/csm/fr-dns-spf-record?id=kb_article_view&sysparm_article=KB0051712',
+    'https://help.ovhcloud.com/csm/fr-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061410',
   PL:
-    'https://help.ovhcloud.com/csm/pl-dns-spf-record?id=kb_article_view&sysparm_article=KB0051716',
+    'https://help.ovhcloud.com/csm/pl-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061407',
   PT:
-    'https://help.ovhcloud.com/csm/pt-dns-spf-record?id=kb_article_view&sysparm_article=KB0051717',
+    'https://help.ovhcloud.com/csm/pt-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061409',
   SN:
-    'https://help.ovhcloud.com/csm/fr-dns-spf-record?id=kb_article_view&sysparm_article=KB0051712',
+    'https://help.ovhcloud.com/csm/fr-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061410',
   TN:
-    'https://help.ovhcloud.com/csm/fr-dns-spf-record?id=kb_article_view&sysparm_article=KB0051712',
+    'https://help.ovhcloud.com/csm/fr-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061410',
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-gb-dns-spf-record?id=kb_article_view&sysparm_article=KB0051714',
 };

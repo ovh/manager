@@ -207,6 +207,12 @@ export default /* @ngInject */ function EmailProCtrl(
           loadPtrv6Tooltip($scope.exchange);
         }
       })
+      .then(async () => {
+        if ($scope.exchange.isMXPlan) {
+          const { isZimbra } = await EmailPro.retrieveMxPlan();
+          $scope.isMxPlanMigrated = isZimbra;
+        }
+      })
       .catch((failure) => {
         $scope.loadingEmailProInformations = false;
         $scope.loadingEmailProError = true;
@@ -511,6 +517,10 @@ export default /* @ngInject */ function EmailProCtrl(
     coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
       searchText: $scope.exchange.domain,
     });
+
+  $scope.isMigratedMxPlan = () => {
+    return $scope.exchange?.isMXPlan && $scope?.isMxPlanMigrated;
+  };
 
   init();
 }

@@ -165,6 +165,7 @@
                     <oui-header-tabs-item
                         href="{{:: disclaimerLink}}"
                         active="disclaimerLink === currentActiveLink()"
+                        ng-if="!isMigratedMxPlan()"
                     >
                         <span data-translate="emailpro_tab_DISCLAIMER"></span>
                     </oui-header-tabs-item>
