@@ -178,7 +178,7 @@ export default /* @ngInject */ function EmailProCtrl(
           ? EmailPro.retrievingAssociatedDomainName($scope.exchange.domain)
           : $q.when();
       })
-      .then((associatedDomainName) => {
+      .then(async (associatedDomainName) => {
         $scope.exchange.associatedDomainName = associatedDomainName;
         $scope.newDisplayName.value = $scope.exchange.displayName;
         $scope.loadingEmailProInformations = false;
@@ -205,6 +205,10 @@ export default /* @ngInject */ function EmailProCtrl(
           loadAaaaTooltip($scope.exchange);
           loadPtrTooltip($scope.exchange);
           loadPtrv6Tooltip($scope.exchange);
+        }
+        if ($scope.exchange.isMXPlan) {
+          const { isZimbra } = await EmailPro.retrieveMxPlan();
+          $scope.isMxPlanMigrated = isZimbra;
         }
       })
       .catch((failure) => {
@@ -511,6 +515,10 @@ export default /* @ngInject */ function EmailProCtrl(
     coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
       searchText: $scope.exchange.domain,
     });
+
+  $scope.isMigratedMxPlan = () => {
+    return $scope.exchange?.isMXPlan && $scope.isMxPlanMigrated;
+  };
 
   init();
 }
