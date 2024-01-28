@@ -67,19 +67,9 @@
     <div class="d-grid gap-1 col-md-6 offset-xs-1 offset-md-3 mb-4 text-center">
         <img class="w-100" data-ng-src="{{ $ctrl.illustration }}" alt="" />
         <div>
-            <account-migration-notification></account-migration-notification>
             <h1 data-translate="pci_projects_onboarding_title"></h1>
             <p data-translate="pci_projects_onboarding_description1"></p>
             <p data-translate="pci_projects_onboarding_description2"></p>
-
-            <!-- HDS checkbox and banner info -->
-            <hds-option
-                data-ng-if="$ctrl.hds.isAvailable && $ctrl.isValidHdsSupportLevel"
-                data-hds="$ctrl.hds"
-                data-model="$ctrl.model"
-                data-on-hds-checkbox-changed="$ctrl.onHdsCheckboxChanged(hdsCheckbox)"
-            >
-            </hds-option>
 
             <!-- contracts -->
             <ovh-contracts-summary
