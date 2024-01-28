@@ -102,6 +102,9 @@
                     data-translate="pci_projects_onboarding_create_project"
                 ></span>
             </oui-button>
+            <div class="text-center mt-4" data-ng-if="$ctrl.isLoading">
+                <oui-spinner size="s"></oui-spinner>
+            </div>
 
             <!--Call customer-->
             <div data-ng-if="$ctrl.isTrustedZone">
