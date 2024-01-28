@@ -206,6 +206,15 @@ export default /* @ngInject */ function EmailProCtrl(
           loadPtrTooltip($scope.exchange);
           loadPtrv6Tooltip($scope.exchange);
         }
+        if ($scope.exchange.isMXPlan) {
+          EmailPro.retrieveMxPlan()
+            .then(({ isZimbra }) => {
+              $scope.isMigratedMxPlan = isZimbra;
+            })
+            .catch(() => {
+              $scope.isMigratedMxPlan = false;
+            });
+        }
       })
       .catch((failure) => {
         $scope.loadingEmailProInformations = false;
