@@ -82,11 +82,13 @@ export const getStencilConfig = ({
       ],
     },
     distCustomElementsBundle: {
-      type: 'dist-custom-elements-bundle',
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      type: 'dist-custom-elements',
       copy: [
         {
-          src: '../../../_common/custom-elements-bundle',
-          dest: 'custom-elements-bundle',
+          src: '../../../_common/custom-elements',
+          dest: 'custom-elements',
           warn: true,
         },
       ],
