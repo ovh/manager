@@ -1,6 +1,6 @@
 import { TRACKING_NAME } from '../../../../constants';
-import { TRACKING_SUFFIX as LISTENERS_TACKING_SUFFIX } from '../../../constants';
-import { TRACKING_SUFFIX as L7_TACKING_SUFFIX } from '../constants';
+import { TRACKING_SUFFIX as LISTENERS_TRACKING_SUFFIX } from '../../../constants';
+import { TRACKING_SUFFIX as L7_TRACKING_SUFFIX } from '../constants';
 import { L7_RULES_LISTING_TRACKING_SUFFIX, TRACKING_SUFFIX } from './constants';
 import { TRACKING_SUFFIX as EDITION_TRACKING_SUFFIX } from '../edit/constants';
 
@@ -63,7 +63,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => getPoolDetailLink(policy.redirectPoolId),
       },
       atInternet: {
-        rename: `${TRACKING_NAME}::${LISTENERS_TACKING_SUFFIX}::${L7_TACKING_SUFFIX}::${TRACKING_SUFFIX}`,
+        rename: `${TRACKING_NAME}::${LISTENERS_TRACKING_SUFFIX}::${L7_TRACKING_SUFFIX}::${TRACKING_SUFFIX}`,
       },
     },
   );
