@@ -3,7 +3,7 @@ import { toast } from 'sonner';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMutation } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
-import { useGetUsers } from '@/hooks/api/useGetUsers';
+import { useGetUsers } from '@/hooks/api/users.api.hooks';
 import { database } from '@/models/database';
 import { DataTable } from '@/components/ui/data-table';
 import { GenericUser, deleteUser, resetUserPassword } from '@/data/cdb/users';

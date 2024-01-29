@@ -22,7 +22,7 @@ import NodesConfig from './cluster-config/nodes-config';
 import StorageConfig from './cluster-config/storage-config';
 import EnginesSelect from './engine/engines-select';
 import PlansSelect from './plan/plans-select';
-import { useGetCatalog } from '@/hooks/api/useGetCatalog';
+import { useGetCatalog } from '@/hooks/api/catalog.api.hooks';
 import { Skeleton } from '@/components/ui/skeleton';
 import { order } from '@/models/catalog';
 import { Switch } from '@/components/ui/switch';

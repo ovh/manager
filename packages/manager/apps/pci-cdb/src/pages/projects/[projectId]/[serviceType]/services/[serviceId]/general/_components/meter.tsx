@@ -1,6 +1,6 @@
 import { database } from '@/models/database';
 import { Progress } from '@/components/ui/progress';
-import { useGetMetric } from '@/hooks/api/useGetMetric';
+import { useGetMetric } from '@/hooks/api/metrics.api.hooks';
 import { Skeleton } from '@/components/ui/skeleton';
 
 interface MeterProps {

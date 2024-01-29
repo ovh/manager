@@ -1,6 +1,6 @@
 import { UseQueryResult } from '@tanstack/react-query';
 import { Outlet } from 'react-router-dom';
-import { useGetService } from '@/hooks/api/useGetService';
+import { useGetService } from '@/hooks/api/services.api.hooks';
 import TabsMenu from '@/components/tabs-menu';
 import { database } from '@/models/database';
 import { useRequiredParams } from '@/hooks/useRequiredParams';

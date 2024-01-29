@@ -1,4 +1,4 @@
-import { useGetService } from '@/hooks/api/useGetService';
+import { useGetService } from '@/hooks/api/services.api.hooks';
 
 export const ServiceBreadcrumb = ({
   projectId,

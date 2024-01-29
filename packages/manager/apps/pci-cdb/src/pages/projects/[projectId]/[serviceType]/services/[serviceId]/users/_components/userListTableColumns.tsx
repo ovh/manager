@@ -6,6 +6,7 @@ import UserStatusBadge from './userStatusBadge';
 
 import UserActions from './userActions';
 import { Badge } from '@/components/ui/badge';
+import FormattedDate from '@/components/table-date';
 
 interface UserListColumnsProps {
   displayGroupCol: boolean;
@@ -59,11 +60,9 @@ export const getColumns = ({
     header: ({ column }) => (
       <SortableHeader column={column}>Creation date</SortableHeader>
     ),
-    cell: ({ row }) => {
-      const user = row.original;
-      // TODO: change locale
-      return new Intl.DateTimeFormat('fr-FR').format(new Date(user.createdAt));
-    },
+    cell: ({ row }) => (
+      <FormattedDate date={new Date(row.original.createdAt)} />
+    ),
   };
   const statusColumn: ColumnDef<GenericUser> = {
     id: 'Status',

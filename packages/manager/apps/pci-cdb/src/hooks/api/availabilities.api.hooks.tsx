@@ -4,7 +4,20 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 import { database } from '@/models/database';
-import { getCapabilities } from '@/data/cdb/availabilities';
+import { getAvailabilities, getCapabilities } from '@/data/cdb/availabilities';
+
+export function useGetAvailabilities(
+  projectId: string,
+  options: QueryObserverOptions = {},
+) {
+  const queryKey = [projectId, 'database/availability'];
+  return useQuery({
+    queryKey,
+    queryFn: () => getAvailabilities(projectId),
+    ...options,
+  }) as UseQueryResult<database.Availability[], Error>;
+}
+
 
 export function useGetCapabilities(
   projectId: string,

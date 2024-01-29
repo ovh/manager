@@ -9,8 +9,10 @@ import OrderFunnel from './_components/order-funnel';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
-import { useGetAvailabilities } from '@/hooks/api/useGetAvailabilities';
-import { useGetCapabilities } from '@/hooks/api/useGetCapabilities';
+import {
+  useGetAvailabilities,
+  useGetCapabilities,
+} from '@/hooks/api/availabilities.api.hooks';
 
 export const Handle = {
   breadcrumb: () => 'pci_cdb_breadcrumb_create',

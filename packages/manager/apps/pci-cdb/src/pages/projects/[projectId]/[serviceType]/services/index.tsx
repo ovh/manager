@@ -4,7 +4,7 @@ import { database } from '@/models/database';
 import { getServiceType } from '@/utils/databaseUtils';
 import Onboarding from './_components/onboarding';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
-import { useGetServices } from '@/hooks/api/useGetServices';
+import { useGetServices } from '@/hooks/api/services.api.hooks'; 
 
 export default function ServicePage() {
   const { projectId, serviceType } = useRequiredParams<{

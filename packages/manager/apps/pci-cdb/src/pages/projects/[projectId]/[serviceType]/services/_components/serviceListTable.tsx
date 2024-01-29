@@ -13,7 +13,6 @@ import UpdateServiceNameModal, {
 } from './updateServiceNameModal';
 import { getColumns } from './serviceListColumns';
 import { H2 } from '@/components/typography';
-import { useLocale } from '@/hooks/useLocale';
 import { UpdateServiceProps, updateService } from '@/data/cdb/service';
 
 interface ServicesListProps {
@@ -30,7 +29,6 @@ export default function ServicesList({
   // define state
   const [isOpenModal, setOpenModal] = useState(false);
   const [editingService, setEditingService] = useState<database.Service>();
-  const lang = useLocale();
 
   // define api links
   const updateServiceNameMutation = useMutation({
@@ -49,7 +47,6 @@ export default function ServicesList({
       setEditingService(service);
       setOpenModal(true);
     },
-    lang: lang.replace('_', '-'),
   });
 
   const onSubmit = (data: UpdateServiceSubmitData) => {

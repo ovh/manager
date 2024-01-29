@@ -14,16 +14,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { SortableHeader } from '@/components/ui/data-table';
+import FormattedDate from '@/components/table-date';
 
 interface ServiceListColumnsProps {
   onRenameClicked: (service: database.Service) => void;
-  lang: string;
 }
-export const getColumns = ({
-  onRenameClicked,
-  lang,
-}: ServiceListColumnsProps) => {
-  const locale = lang.replace('_', '-');
+export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
   const columns: ColumnDef<database.Service>[] = [
     {
       id: 'description/id',
@@ -154,12 +150,9 @@ export const getColumns = ({
       header: ({ column }) => (
         <SortableHeader column={column}>Creation date</SortableHeader>
       ),
-      cell: ({ row }) => {
-        const service = row.original;
-        return new Intl.DateTimeFormat(locale).format(
-          new Date(service.createdAt),
-        );
-      },
+      cell: ({ row }) => (
+        <FormattedDate date={new Date(row.original.createdAt)} />
+      ),
     },
     {
       id: 'Status',

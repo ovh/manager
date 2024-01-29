@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { NetworkTypeEnum } from '@/models/vrack';
-import { useGetNetwork } from './api/useGetNetwork';
-import { useGetSubnet } from './api/useGetSubnet';
+import { useGetNetwork, useGetSubnet } from './api/network.api.hooks';
 
 /**
  * Fetch networks and only return the ones that

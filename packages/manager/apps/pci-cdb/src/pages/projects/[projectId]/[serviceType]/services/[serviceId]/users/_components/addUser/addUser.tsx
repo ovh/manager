@@ -252,7 +252,6 @@ const AddUserModal = ({
                 )}
               />
             )}
-            <pre>{JSON.stringify(form.formState.errors, null, 2)}</pre>
 
             <DialogFooter className="flex justify-end">
               <Button type="submit" disabled={createUserMutation.isPending}>
