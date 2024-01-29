@@ -6,6 +6,7 @@ export default {
     goBack: '<',
     server: '<',
     user: '<',
+    serverIsNode: '<',
   },
   controller,
   template,

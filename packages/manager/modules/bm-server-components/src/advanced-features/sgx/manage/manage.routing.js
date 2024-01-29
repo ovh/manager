@@ -74,8 +74,5 @@ export default /* @ngInject */ ($stateProvider) => {
           'dedicated_server_dashboard_advanced_features_sgx_manage',
         ),
     },
-    atInternet: {
-      rename: 'dedicated::dedicated::server::sgx::manage',
-    },
   });
 };

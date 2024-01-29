@@ -9,6 +9,7 @@ export default {
     server: '<',
     user: '<',
     goDashboard: '<',
+    serverIsNode: '<',
   },
   controller,
   template,

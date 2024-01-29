@@ -19,6 +19,9 @@ export default class DedicatedServerInstallImageConfigDriveCtrl {
 
   $onInit() {
     this.addMetadata();
+    this.trackDocumentation = `dedicated::dedicated::${
+      this.serverIsNode ? 'node' : 'server'
+    }::system-install::personalized-image::configdrive-documentation`;
   }
 
   /* -----  End of Initialization  ------*/

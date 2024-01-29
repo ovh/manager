@@ -4,6 +4,8 @@ export default /* @ngInject */ ($stateProvider) => {
     redirectTo: 'app.dedicated-server.server.dashboard.sgx.introduction',
     resolve: {
       breadcrumb: () => 'SGX',
+      sgxTrackingPrefix: /* @ngInject */ (serverIsNode) =>
+        `dedicated::dedicated::${serverIsNode ? 'node' : 'server'}::sgx`,
     },
   });
 };
