@@ -55,6 +55,7 @@
             class="mb-4 mb-md-0"
             data-label="{{:: 'octavia_load_balancer_health_monitor_form_expected_code' | translate }}"
             data-help-text="{{:: 'octavia_load_balancer_health_monitor_form_expected_code_help' | translate}}"
+            data-label-popover="{{:: 'octavia_load_balancer_health_monitor_form_expected_code_tooltip' | translate }}"
         >
             <div class="oui-input-overlay">
                 <input
@@ -89,13 +90,13 @@
             class="mb-4 mb-md-0"
             data-inline="true"
             data-label="{{:: $ctrl.LABELS.DELAY }}"
-            data-label-popover="{{:: 'octavia_load_balancer_health_monitor_form_periodicity_tooltip' | translate}}"
+            data-label-popover="{{:: 'octavia_load_balancer_health_monitor_form_delay_tooltip' | translate}}"
         >
             <oui-numeric
-                name="periodicity"
-                data-min="$ctrl.BOUNDS.PERIODICITY.MIN"
-                data-model="$ctrl.model.periodicity"
-                data-on-change="$ctrl.onPeriodicityChange(modelValue)"
+                name="delay"
+                data-min="$ctrl.BOUNDS.DELAY.MIN"
+                data-model="$ctrl.model.delay"
+                data-on-change="$ctrl.onDelayChange(modelValue)"
             >
             </oui-numeric>
         </oui-field>
@@ -124,7 +125,7 @@
             <oui-numeric
                 name="timeout"
                 data-min="$ctrl.BOUNDS.TIMEOUT.MIN"
-                data-max="$ctrl.model.periodicity - 1"
+                data-max="$ctrl.model.delay - 1"
                 data-model="$ctrl.model.timeout"
             >
             </oui-numeric>
