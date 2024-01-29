@@ -9,7 +9,7 @@ export const BOUNDS = {
     MIN: 1,
     MAX: 10,
   },
-  PERIODICITY: {
+  DELAY: {
     MIN: 1,
   },
   TIMEOUT: {
@@ -18,7 +18,7 @@ export const BOUNDS = {
 };
 
 export const HEALTH_MONITOR_NAME_REGEX = /^[A-Za-z0-9_.-]+$/;
-export const EXPECTED_STATUS_CODE_REGEX = /^[1-5][0-9]{2}$/;
+export const EXPECTED_STATUS_CODE_REGEX = /^([1-5][0-9]{2}(\s*,\s*[1-5][0-9]{2})*)$|^([1-5][0-9]{2}-[1-5][0-9]{2})$/;
 
 export const POOL_HEALTH_MONITOR_TYPE = {
   http: [

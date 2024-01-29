@@ -14,7 +14,7 @@ export default class OctaviaLoadBalancerPoolsDetailHealthMonitorCreateCtrl {
 
     this.model = {
       maxRetriesDown: 3,
-      periodicity: 5,
+      delay: 5,
       maxRetries: 4,
       timeout: 4,
     };
