@@ -58,18 +58,13 @@ export default /* @ngInject */ ($stateProvider) => {
         isDiscoveryProject,
         trackPage,
       ) => {
-        const isActivateModalDisplayed = $transition$.params()
-          .activateDiscovery;
+        const isActivateModalDisplayed = isDiscoveryProject && $transition$.params().activateDiscovery;
 
-        if (isDiscoveryProject) {
-          if (isActivateModalDisplayed) {
-            trackPage(
-              'PublicCloud::pci::projects::project::activate-project-modal',
-            );
-          }
-          return isActivateModalDisplayed;
+        if (isActivateModalDisplayed) {
+            trackPage('PublicCloud::pci::projects::project::activate-project-modal');
         }
-        return false;
+        
+        return isActivateModalDisplayed;
       },
 
       project: /* @ngInject */ (OvhApiCloudProject, projectId) => {
@@ -238,9 +233,9 @@ export default /* @ngInject */ ($stateProvider) => {
       goToDiscoveryProjectActivationPage: /* @ngInject */ (
         $state,
         projectId,
-      ) => (name) => {
-        if (name) {
-          this.trackClick(name);
+      ) => (tagName) => {
+        if (tagName) {
+          this.trackClick(tagName);
         }
         return $state.go('pci.projects.project.activate', {
           projectId,
