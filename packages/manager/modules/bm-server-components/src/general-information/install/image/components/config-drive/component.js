@@ -8,7 +8,7 @@ export default {
     model: '<',
     trackingPrefix: '<',
     server: '<',
-    serverIsNode: '<',
+    serverType: '<',
   },
   controller,
   template,

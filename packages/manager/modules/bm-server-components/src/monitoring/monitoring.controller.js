@@ -73,9 +73,7 @@ export default class DedicatedServerMonitoringCtrl {
 
   trackClick(hit) {
     return this.atInternet.trackClick({
-      name: `dedicated::dedicated-server::${
-        this.serverIsNode ? 'node' : 'server'
-      }::dashboard::monitoringUpdate::${hit}`,
+      name: `dedicated::dedicated-server::${this.serverType}::dashboard::monitoringUpdate::${hit}`,
       type: 'action',
     });
   }

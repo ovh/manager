@@ -4,7 +4,7 @@ import template from './monitoring.html';
 export default {
   bindings: {
     goBack: '<',
-    serverIsNode: '<?',
+    serverType: '<?',
   },
   controller,
   template,

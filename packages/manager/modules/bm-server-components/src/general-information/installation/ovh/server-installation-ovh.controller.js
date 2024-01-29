@@ -2526,9 +2526,7 @@ export default class ServerInstallationOvhCtrl {
 
   install() {
     this.trackClick(
-      `dedicated::dedicated::${
-        this.serverIsNode ? 'node' : 'server'
-      }::system-install::public-catalog::install`,
+      `dedicated::dedicated::${this.serverType}::system-install::public-catalog::install`,
     );
     if (this.$scope.installation.options.saveGabarit) {
       this.$scope.loader.loading = true;

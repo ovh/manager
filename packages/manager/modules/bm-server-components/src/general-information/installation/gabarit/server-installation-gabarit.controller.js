@@ -79,9 +79,7 @@ export default class ServerInstallationGabaritCtrl {
 
     if (this.$scope.installation.deleteGabarit) {
       this.atInternet.trackPage({
-        name: `dedicated::dedicated::${
-          this.serverIsNode ? 'node' : 'server'
-        }::system-install::existing-template::delete-template`,
+        name: `dedicated::dedicated::${this.serverType}::system-install::existing-template::delete-template`,
         type: 'navigation',
       });
     }
@@ -307,9 +305,7 @@ export default class ServerInstallationGabaritCtrl {
 
   deleteGabarit() {
     this.atInternet.trackClick({
-      name: `dedicated::dedicated::${
-        this.serverIsNode ? 'node' : 'server'
-      }::system-install::existing-template::delete-template::confirm`,
+      name: `dedicated::dedicated::${this.serverType}::system-install::existing-template::delete-template::confirm`,
       type: 'action',
     });
     this.$scope.loader.loading = true;
@@ -338,9 +334,7 @@ export default class ServerInstallationGabaritCtrl {
 
   startInstall() {
     this.atInternet.trackClick({
-      name: `dedicated::dedicated::${
-        this.serverIsNode ? 'node' : 'server'
-      }::system-install::existing-template::install`,
+      name: `dedicated::dedicated::${this.serverType}::system-install::existing-template::install`,
       type: 'action',
     });
 

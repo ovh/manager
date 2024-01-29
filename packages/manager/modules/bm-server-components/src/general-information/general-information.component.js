@@ -10,7 +10,7 @@ export default {
     trackingPrefix: '<',
     goToNetboot: '<?',
     infoServer: '<',
-    serverIsNode: '<',
+    serverType: '<',
   },
   controller,
   template,

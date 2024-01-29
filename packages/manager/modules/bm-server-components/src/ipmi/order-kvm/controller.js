@@ -44,7 +44,7 @@ export default class BmServerComponentsOrderKvmController {
 
   trackBanner(bannerType) {
     this.atInternet.trackPage({
-      name: `${getKvmOrderTrackingPrefix(this.serverIsNode)}-${bannerType}`,
+      name: `${getKvmOrderTrackingPrefix(this.serverType)}-${bannerType}`,
     });
   }
 
@@ -59,7 +59,7 @@ export default class BmServerComponentsOrderKvmController {
   orderKvm() {
     this.pendingOrder = true;
     this.atInternet.trackClick({
-      name: `${getKvmOrderTrackingPrefix(this.serverIsNode)}::confirm`,
+      name: `${getKvmOrderTrackingPrefix(this.serverType)}::confirm`,
       type: 'action',
     });
     this.IpmiService.orderKvm(this.cartId)

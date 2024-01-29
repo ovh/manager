@@ -9,8 +9,8 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       resolve: {
-        sgxTrackingPrefix: /* @ngInject */ (serverIsNode) =>
-          `dedicated::dedicated::${serverIsNode ? 'node' : 'server'}::sgx`,
+        sgxTrackingPrefix: /* @ngInject */ (serverType) =>
+          `dedicated::dedicated::${serverType}::sgx`,
         goBack: /* @ngInject */ ($state) => (params = {}, transitionParams) =>
           $state.go(
             'app.dedicated-server.server.dashboard',

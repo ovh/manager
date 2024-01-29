@@ -9,7 +9,7 @@ export default {
     onSuccess: '&?',
     onError: '&?',
     onGoBack: '&?',
-    serverIsNode: '<?',
+    serverType: '<?',
   },
   controller,
   template,
