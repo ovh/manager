@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.39.1...@ovh-ux/manager-container-app@0.40.0) (2024-01-29)
+
+
+### Features
+
+* **chakra:** replace link color in sidebar ([#10672](https://github.com/ovh/manager/issues/10672)) ([0d2860a](https://github.com/ovh/manager/commit/0d2860a097de76facb389055ae7bd834f34735c5))
+* **dedicated.nas:** api nas deprecated ([#10623](https://github.com/ovh/manager/issues/10623)) ([4a957e0](https://github.com/ovh/manager/commit/4a957e08b590fc24dec3a3c543f1718431cd4406))
+
+
+
+
+
 ## [0.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.39.0...@ovh-ux/manager-container-app@0.39.1) (2024-01-23)
 
 

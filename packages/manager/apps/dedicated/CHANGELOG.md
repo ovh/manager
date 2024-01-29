@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.18.2...@ovh-ux/manager-dedicated@19.19.0) (2024-01-29)
+
+
+### Bug Fixes
+
+* **dedicated:** fix cdn domain translation keys ([#10737](https://github.com/ovh/manager/issues/10737)) ([369d04b](https://github.com/ovh/manager/commit/369d04bdb8c40f83c0130d2dc921d4349a727946))
+* **dedicated:** minor monitoring fixes ([#10535](https://github.com/ovh/manager/issues/10535)) ([fff7c3a](https://github.com/ovh/manager/commit/fff7c3aab9be652ec1672f3c8827c7a4391e8bef))
+* **dedicated:** update us documentation links in datastores ([#10604](https://github.com/ovh/manager/issues/10604)) ([1ee6c7e](https://github.com/ovh/manager/commit/1ee6c7ebba9999ae74d8f14fb1baa2ca1b8fe6c8))
+
+
+### Features
+
+* **dedicated.ip:** select country during ip order for hpc ([#10685](https://github.com/ovh/manager/issues/10685)) ([3216b05](https://github.com/ovh/manager/commit/3216b05a5c08e9c1c2f48a6f299abfcc37dd1d45))
+* **dedicated.nas:** api nas deprecated ([#10623](https://github.com/ovh/manager/issues/10623)) ([4a957e0](https://github.com/ovh/manager/commit/4a957e08b590fc24dec3a3c543f1718431cd4406))
+* **dedicated:** add commercial name in general information tab ([#10642](https://github.com/ovh/manager/issues/10642)) ([a8c99c4](https://github.com/ovh/manager/commit/a8c99c40f353ddc983bd0e10e8e555d7fde1dec4))
+* **dedicated:** implement os-dynamic form in ovh and gabarit wizards ([#10557](https://github.com/ovh/manager/issues/10557)) ([15a8478](https://github.com/ovh/manager/commit/15a84786f42f5941b1a8b51bd40a4c9e5bf0706c))
+
+
+
+
+
 ## [19.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.18.1...@ovh-ux/manager-dedicated@19.18.2) (2024-01-26)
 
 

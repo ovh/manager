@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.14.0...@ovh-ux/manager-sms@8.14.1) (2024-01-29)
+
+
+### Bug Fixes
+
+* **telecom.sms:** refactor and add filter for export ([#10639](https://github.com/ovh/manager/issues/10639)) ([97563a7](https://github.com/ovh/manager/commit/97563a7a0247c0a45fcf52f2b0dc3aa2e2a5cb0f))
+
+
+
+
+
 # [8.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.11...@ovh-ux/manager-sms@8.14.0) (2024-01-08)
 
 

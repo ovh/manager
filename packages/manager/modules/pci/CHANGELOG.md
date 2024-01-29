@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.19.0...@ovh-ux/manager-pci@6.20.0) (2024-01-29)
+
+
+### Bug Fixes
+
+* correctly update service after maintenance and backup time changes ([#10761](https://github.com/ovh/manager/issues/10761)) ([6213774](https://github.com/ovh/manager/commit/62137741ec6faa882d2158997fe973410e8d0502))
+* **public-cloud:** list priavte network with vlanid 0 ([#10760](https://github.com/ovh/manager/issues/10760)) ([da8d005](https://github.com/ovh/manager/commit/da8d005779e59b1f73a1a9e79bae983501529369))
+* **public-cloud:** silently fail when no permission to query instance IP ([#10722](https://github.com/ovh/manager/issues/10722)) ([f961767](https://github.com/ovh/manager/commit/f9617673483c218a3e3d7e4c2abb6802ae9e5012))
+
+
+### Features
+
+* **projects.project:** remove out of date repricing banner ([#10677](https://github.com/ovh/manager/issues/10677)) ([768040d](https://github.com/ovh/manager/commit/768040d958330133ca4bcf0ad63e1c17f9b4639b))
+
+
+
+
+
 # [6.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.18.2...@ovh-ux/manager-pci@6.19.0) (2024-01-22)
 
 

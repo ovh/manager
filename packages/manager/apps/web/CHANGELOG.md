@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.10.6...@ovh-ux/manager-web@18.11.0) (2024-01-29)
+
+
+### Features
+
+* **dns:** remove hint about real target with dot ([#10674](https://github.com/ovh/manager/issues/10674)) ([465fd46](https://github.com/ovh/manager/commit/465fd4693169d142f89bfc04f362e592cdfc431c))
+
+
+### Reverts
+
+* Revert "feat(web): add new hosting offer sticker info" (#10705) ([45b23e5](https://github.com/ovh/manager/commit/45b23e526222a36423902203a387b013e13bab61)), closes [#10705](https://github.com/ovh/manager/issues/10705)
+
+
+
+
+
 ## [18.10.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.10.5...@ovh-ux/manager-web@18.10.6) (2024-01-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

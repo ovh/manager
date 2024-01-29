@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-bm-server-components",
-  "version": "1.11.2",
+  "version": "1.12.0",
   "private": true,
   "description": "OVHcloud BmServerComponents product",
   "repository": {

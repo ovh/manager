@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.5.3...@ovh-ux/manager-telecom@15.5.4) (2024-01-29)
+
+
+### Bug Fixes
+
+* **telecom:** use right attribute for init ([#10709](https://github.com/ovh/manager/issues/10709)) ([0059995](https://github.com/ovh/manager/commit/00599958c461e104e85763bd60f17670a6f6d8e7))
+
+
+
+
+
 ## [15.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.5.2...@ovh-ux/manager-telecom@15.5.3) (2024-01-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
