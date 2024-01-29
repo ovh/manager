@@ -1,6 +1,6 @@
 import { TRACKING_NAME } from '../../../../../constants';
-import { TRACKING_SUFFIX as LISTENERS_TACKING_SUFFIX } from '../../../../constants';
-import { TRACKING_SUFFIX as POLICIES_TACKING_SUFFIX } from '../../constants';
+import { TRACKING_SUFFIX as LISTENERS_TRACKING_SUFFIX } from '../../../../constants';
+import { TRACKING_SUFFIX as POLICIES_TRACKING_SUFFIX } from '../../constants';
 import { TRACKING_SUFFIX } from '../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -52,7 +52,7 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       atInternet: {
-        rename: `${TRACKING_NAME}::${LISTENERS_TACKING_SUFFIX}::${POLICIES_TACKING_SUFFIX}::${TRACKING_SUFFIX}`,
+        rename: `${TRACKING_NAME}::${LISTENERS_TRACKING_SUFFIX}::${POLICIES_TRACKING_SUFFIX}::${TRACKING_SUFFIX}`,
       },
     },
   );
