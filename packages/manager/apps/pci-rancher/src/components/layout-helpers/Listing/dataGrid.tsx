@@ -30,10 +30,6 @@ interface LinkServiceInterface {
   href?: string;
 }
 
-interface CpuDisplayInterface {
-  cellData?: string;
-}
-
 interface DatagridWrapperInterface {
   data: RancherService[];
 }
@@ -42,7 +38,7 @@ function LinkService({ cellData, rowData, href }: LinkServiceInterface) {
   return (
     <OsdsLink
       color={ODS_THEME_COLOR_INTENT.primary}
-      href={`${href}/${rowData.id}`}
+      href={`${href}/${rowData?.id}`}
     >
       {cellData}
     </OsdsLink>
@@ -126,6 +122,7 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
       field: '',
       formatter: ReactFormatter(
         <ActionsCell
+          href={hrefDashboard}
           openModal={() => toggleDeleteModal(true)}
           isLoading={false}
           setSelectedRancher={setSelectedRancher}
