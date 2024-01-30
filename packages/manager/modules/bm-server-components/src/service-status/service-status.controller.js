@@ -36,7 +36,9 @@ export default class BmServerComponentsDashboardServiceStatusController {
 
   canBeTerminate() {
     return (
-      !this.server.isExpired && !this.server.engagement && !this.serverType
+      !this.server.isExpired &&
+      !this.server.engagement &&
+      this.serverType !== 'node'
     );
   }
 
