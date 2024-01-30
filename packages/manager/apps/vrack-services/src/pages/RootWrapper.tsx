@@ -8,13 +8,9 @@ export const RootWrapper = () => {
   const { isError, error } = useVrackServicesList();
   useRouteSynchro();
 
-  if (isError) {
-    return <ErrorPage error={error} />;
-  }
-
   return (
     <React.Suspense>
-      <Outlet />
+      {isError ? <ErrorPage error={error} /> : <Outlet />}
     </React.Suspense>
   );
 };
