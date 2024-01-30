@@ -85,6 +85,13 @@ export default class OctaviaLoadBalancerL7Service {
       .then(({ data }) => data);
   }
 
+  createRule(projectId, region, policyId, model) {
+    return this.$http.post(
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy/${policyId}/l7Rule`,
+      model,
+    );
+  }
+
   getRules(projectId, region, policyId) {
     return this.$http
       .get(
