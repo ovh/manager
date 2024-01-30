@@ -1,4 +1,4 @@
-import { Handler } from '@super-components/_common/msw-helpers';
+import { Handler } from '../../e2e/utils/msw-helpers';
 
 const zoneList = [
   {

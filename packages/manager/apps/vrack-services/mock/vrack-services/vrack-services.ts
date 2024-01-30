@@ -1,6 +1,7 @@
-import { Handler } from '@super-components/_common/msw-helpers';
-import { ResponseData } from '../../src/api/api.type';
-import { UpdateVrackServicesParams } from '../../src/api/vrack-services/vrack-services.type';
+/* eslint-disable import/no-extraneous-dependencies */
+import { PathParams } from 'msw';
+import { Request as PlaywrightRequest } from 'playwright';
+import { getParamsFromUrl, Handler } from '../../e2e/utils';
 import vrackServicesList from './get-vrack-services.json';
 
 export const eligibleManagedServiceResponse = [
@@ -37,19 +38,19 @@ export const getVrackServicesMocks = ({
   },
   {
     url: '/vrackServices/resource/:id',
-    response: ({ params }: { params: { id: string } }) =>
-      vrackServicesList.find(({ id }) => id === params.id),
+    response: (request: Request, params: PathParams) => {
+      return vrackServicesList.find(
+        ({ id }) => id === (params || getParamsFromUrl(request, { id: -1 })).id,
+      );
+    },
     api: 'v2',
   },
   {
     url: '/vrackServices/resource/:id',
-    response: ({
-      params,
-      body,
-    }: {
-      params: { id: string };
-      body: UpdateVrackServicesParams;
-    }) => {
+    response: async (request: Request, params: PathParams) => {
+      const body =
+        (await request.json?.()) ||
+        ((request as unknown) as PlaywrightRequest).postData();
       if (updateKo) {
         return {
           status: 500,
@@ -60,9 +61,11 @@ export const getVrackServicesMocks = ({
               message: 'Update error',
             },
           },
-        } as ResponseData;
+        };
       }
-      const vs = vrackServicesList.find(({ id }) => id === params.id);
+      const vs = vrackServicesList.find(
+        ({ id }) => id === (params || getParamsFromUrl(request, { id: -1 })).id,
+      );
       vs.currentState.displayName = body.targetSpec.displayName;
       vs.currentState.subnets = body.targetSpec.subnets;
       return vs;

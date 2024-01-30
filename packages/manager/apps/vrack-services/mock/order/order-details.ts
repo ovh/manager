@@ -1,4 +1,6 @@
-import { Handler } from '@super-components/_common/msw-helpers';
+import { PathParams } from 'msw';
+import { getParamsFromUrl } from '../../e2e/utils/playwright-helpers';
+import { Handler } from '../../e2e/utils/msw-helpers';
 import { OrderData, OrderDetail } from '@/api/order';
 
 const orderList = [1, 2, 3];
@@ -7,8 +9,8 @@ const orderDetailsVrack = [930000001];
 const orderDetailsVrackServices = [930000002];
 const orderDetailsVrackAndOther = [930000003, 930000001];
 
-const orderDataById: { [orderId: number]: OrderData } = {
-  1: {
+const orderDataById: { [orderId: string]: OrderData } = {
+  '1': {
     expirationDate: '2014-05-22T10:34:02+02:00',
     retractionDate: null,
     priceWithoutTax: {
@@ -34,7 +36,7 @@ const orderDataById: { [orderId: number]: OrderData } = {
       text: '1900.66 €',
     },
   },
-  2: {
+  '2': {
     expirationDate: '2014-05-22T10:34:02+02:00',
     retractionDate: null,
     priceWithoutTax: {
@@ -60,7 +62,7 @@ const orderDataById: { [orderId: number]: OrderData } = {
       text: '1900.66 €',
     },
   },
-  3: {
+  '3': {
     expirationDate: '2014-05-22T10:34:02+02:00',
     retractionDate: null,
     priceWithoutTax: {
@@ -88,8 +90,8 @@ const orderDataById: { [orderId: number]: OrderData } = {
   },
 };
 
-const orderDetailsById: { [detailid: number]: OrderDetail } = {
-  930000001: {
+const orderDetailsById: { [detailid: string]: OrderDetail } = {
+  '930000001': {
     domain: 'pn-0000000',
     detailType: 'INSTALLATION',
     quantity: '1',
@@ -99,7 +101,7 @@ const orderDetailsById: { [detailid: number]: OrderDetail } = {
     description: 'vRack',
     orderDetailId: 930000001,
   },
-  930000002: {
+  '930000002': {
     detailType: 'INSTALLATION',
     quantity: '1',
     totalPrice: { text: '0 PTS', currencyCode: 'points', value: 0 },
@@ -108,7 +110,7 @@ const orderDetailsById: { [detailid: number]: OrderDetail } = {
     description: 'vRack Services',
     orderDetailId: 930000002,
   },
-  930000003: {
+  '930000003': {
     detailType: 'DURATION',
     orderDetailId: 930000003,
     description: 'OS Linux Monthly fees',
@@ -131,13 +133,10 @@ export const getOrderDetailsMocks = ({
 }: GetOrderDetailsMocksParams): Handler[] => [
   {
     url: '/me/order/:id/details/:detailid',
-    response: (data: { url: () => string; params: { detailid: string } }) => {
+    response: (request: Request, params: PathParams) => {
       const detailid =
-        data.params?.detailid ||
-        data
-          .url()
-          .split('/')
-          .pop();
+        (params || getParamsFromUrl(request, { id: -3, detailid: -1 }))
+          ?.detailid || request.url.split('/').pop();
       return orderDetailsById[Number(detailid)] || orderDetailsById[930000003];
     },
     api: 'v6',
@@ -174,8 +173,10 @@ export const getOrderDetailsMocks = ({
   },
   {
     url: '/me/order/:id',
-    response: ({ params }: { params?: { id: number } }) =>
-      orderDataById[params?.id] || orderDataById[1],
+    response: (request: Request, params: PathParams & { id: string }) =>
+      orderDataById[
+        (params || getParamsFromUrl(request, { id: -1 })).id || '1'
+      ],
     api: 'v6',
   },
   {

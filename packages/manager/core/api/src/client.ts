@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosResponse, AxiosError } from 'axios';
 import {
   redirectToLoginPage,
   redirectToLogoutPage,
@@ -64,3 +64,6 @@ v2.interceptors.response.use(null, handleAuthenticationError);
 
 export const apiClient = { v6, aapi, ws, v2 };
 export default apiClient;
+
+export type ApiError = AxiosError<{ message: string }>;
+export type ApiResponse<T> = AxiosResponse<T>;

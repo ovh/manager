@@ -1,5 +1,4 @@
-import { Handler } from '@super-components/_common/msw-helpers';
-import { ResponseData } from '@/api/api.type';
+import { Handler } from '../../e2e/utils/msw-helpers';
 
 export const iamResources = [
   {
@@ -61,7 +60,7 @@ export const getIamMocks = ({ iamKo }: GetIamMocksParams): Handler[] => [
               message: 'IAM error',
             },
           },
-        } as ResponseData;
+        };
       }
       return iamResources;
     },

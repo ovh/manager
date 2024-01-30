@@ -1,12 +1,12 @@
 import React from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import { ApiResponse, ApiError } from '@ovh-ux/manager-core-api';
 import {
   getVrackServicesResourceListQueryKey,
   getVrackServicesResource,
   getVrackServicesResourceQueryKey,
   ResourceStatus,
-  ResponseData,
   VrackServices,
   UpdateVrackServicesParams,
   updateVrackServicesQueryKey,
@@ -23,7 +23,7 @@ import {
 } from '@/api';
 
 export const useVrackServicesList = (refetchInterval = 30000) =>
-  useQuery<ResponseData<VrackServicesWithIAM[]>, ResponseData<Error>>({
+  useQuery<ApiResponse<VrackServicesWithIAM[]>, ApiError>({
     queryKey: getVrackServicesResourceListQueryKey,
     queryFn: () => getVrackServicesResourceList(),
     refetchInterval,
@@ -38,7 +38,7 @@ export const useVrackService = (refetchInterval = 30000) => {
 
   return useQuery<
     VrackServicesWithIAM,
-    ResponseData<Error>,
+    ApiError,
     VrackServicesWithIAM,
     string[]
   >({
@@ -47,7 +47,7 @@ export const useVrackService = (refetchInterval = 30000) => {
       const response = await getVrackServicesResource(id);
       queryClient.setQueryData(
         getVrackServicesResourceListQueryKey,
-        ({ data: listingData, ...rest }: ResponseData<VrackServices[]>) => ({
+        ({ data: listingData, ...rest }: ApiResponse<VrackServices[]>) => ({
           data: listingData.map((vrackServices) =>
             vrackServices.id === response.data.id
               ? response.data
@@ -78,9 +78,11 @@ export const hasSubnet = (vs?: VrackServices) =>
 export const useUpdateVrackServices = ({
   key,
   onSuccess,
+  onError,
 }: {
   key: string;
-  onSuccess?: (result: ResponseData<VrackServices>) => void;
+  onSuccess?: (result: ApiResponse<VrackServices>) => void;
+  onError?: (result: ApiError) => void;
 }) => {
   const [isErrorVisible, setErrorVisible] = React.useState(false);
   const queryClient = useQueryClient();
@@ -91,16 +93,16 @@ export const useUpdateVrackServices = ({
     isError,
     error: updateError,
   } = useMutation<
-    ResponseData<VrackServices>,
-    ResponseData<Error>,
+    ApiResponse<VrackServices>,
+    ApiError,
     UpdateVrackServicesParams
   >({
     mutationKey: updateVrackServicesQueryKey(key),
     mutationFn: updateVrackServices,
-    onSuccess: (result: ResponseData<VrackServices>) => {
+    onSuccess: (result: ApiResponse<VrackServices>) => {
       queryClient.setQueryData(
         getVrackServicesResourceListQueryKey,
-        ({ data: listingData, ...rest }: ResponseData<VrackServices[]>) => ({
+        ({ data: listingData, ...rest }: ApiResponse<VrackServices[]>) => ({
           data: listingData.map((vrackServices) =>
             vrackServices.id === result.data.id ? result.data : vrackServices,
           ),
@@ -109,13 +111,23 @@ export const useUpdateVrackServices = ({
       );
       queryClient.setQueryData(
         getVrackServicesResourceQueryKey(key),
-        (response: ResponseData<VrackServices>) => ({
+        (response: ApiResponse<VrackServices>) => ({
           ...response,
           data: result.data,
         }),
       );
+      if (['listing'].includes(key)) {
+        queryClient.invalidateQueries({
+          queryKey: getVrackServicesResourceListQueryKey,
+        });
+      } else {
+        queryClient.invalidateQueries({
+          queryKey: getVrackServicesResourceQueryKey(key),
+        });
+      }
       onSuccess?.(result);
     },
+    onError,
   });
 
   React.useEffect(() => {
@@ -135,38 +147,59 @@ export const useUpdateVrackServices = ({
 
 export const useServiceList = (vrackServicesId: string) => {
   const [urnList, setUrnList] = React.useState<string[]>([]);
+  const { data: vrackServices } = useVrackService();
 
   const {
     data: serviceListResponse,
     isLoading: isServiceListLoading,
     error: serviceListError,
-  } = useQuery<ResponseData<EligibleManagedService[]>, ResponseData<Error>>({
+  } = useQuery<ApiResponse<EligibleManagedService[]>, ApiError>({
     queryKey: getEligibleManagedServiceListQueryKey(vrackServicesId),
     queryFn: () => getEligibleManagedServiceList(vrackServicesId),
-    staleTime: Infinity,
   });
 
   const {
     data: iamResources,
     isLoading: isIamResourcesLoading,
     error: iamResourcesError,
-  } = useQuery<ResponseData<IAMResource[]>, ResponseData<Error>>({
+    refetch: refetchIamResources,
+  } = useQuery<ApiResponse<IAMResource[]>, ApiError>({
     queryKey: getIamResourceQueryKey(urnList),
     queryFn: () => getIamResource(urnList),
-    enabled: urnList.length > 0,
+    enabled: false,
   });
 
   React.useEffect(() => {
-    setUrnList(
+    setUrnList((urns) =>
       Array.from(
         new Set(
-          serviceListResponse?.data.flatMap(
-            (service) => service.managedServiceURNs,
-          ),
+          serviceListResponse?.data
+            .flatMap((service) => service.managedServiceURNs)
+            .concat(urns),
         ),
       ),
     );
   }, [serviceListResponse?.data]);
+
+  React.useEffect(() => {
+    setUrnList((urns) =>
+      Array.from(
+        new Set(
+          vrackServices?.currentState.subnets
+            .flatMap((subnet) =>
+              subnet.serviceEndpoints.map(
+                (endpoint) => endpoint.managedServiceURN,
+              ),
+            )
+            .concat(urns),
+        ),
+      ),
+    );
+  }, [vrackServices?.checksum]);
+
+  React.useEffect(() => {
+    refetchIamResources();
+  }, [urnList]);
 
   return {
     serviceListResponse,

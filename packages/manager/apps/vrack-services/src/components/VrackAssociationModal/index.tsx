@@ -1,16 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { OsdsModal } from '@ovhcloud/ods-components/modal/react';
+import {
+  OsdsButton,
+  OsdsMessage,
+  OsdsSpinner,
+  OsdsModal,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
+  ODS_MESSAGE_TYPE,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
 import { useAllowedVrackList } from '@/api';
 import { AssociateVrack } from './AssociateVrack';
 import { CreateVrack } from './CreateVrack';

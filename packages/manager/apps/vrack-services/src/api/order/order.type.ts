@@ -1,5 +1,3 @@
-import { CountryCode } from '@ovh-ux/manager-config';
-
 export type Cart = {
   cartId: string;
   description: string;
@@ -13,7 +11,7 @@ export type Creation = {
   description?: string;
   // Date yyyy-mm-ddTZ
   expire?: string;
-  ovhSubsidiary: CountryCode;
+  ovhSubsidiary: string;
 };
 
 export type Price = {
@@ -164,4 +162,12 @@ export type OrderDetail = {
   quantity: string;
   totalPrice: Price;
   unitPrice: Price;
+};
+
+export type ConfigurationItem = {
+  description: string;
+  // Configuration ID
+  id: string;
+  label: string;
+  value: string;
 };

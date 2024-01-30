@@ -20,8 +20,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@playwright-helpers/*": ["../../../../playwright-helpers/*"],
-      "@super-components/*": ["../../../../packages/super-components/*"]
+      "@playwright-helpers/*": ["../../../../playwright-helpers/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

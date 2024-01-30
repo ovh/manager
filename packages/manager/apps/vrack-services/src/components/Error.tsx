@@ -1,16 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
+import {
+  OsdsButton,
+  OsdsText,
+  OsdsMessage,
+} from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components/button';
-import { useShell } from '@ovh-ux/manager-react-core-application';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+  ODS_MESSAGE_TYPE,
+} from '@ovhcloud/ods-components';
+import {
+  useEnvironment,
+  useTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import OOPS from '@/assets/error-banner-oops.png';
-import { ResponseData } from '@/api';
 
 export const TRACKING_LABELS = {
   SERVICE_NOT_FOUND: 'service_not_found',
@@ -19,12 +27,12 @@ export const TRACKING_LABELS = {
 };
 
 export type ErrorBannerProps = {
-  error: ResponseData<Error>;
+  error: ApiError;
 };
 
-function getTrackingTypology(error: ResponseData) {
-  if (error?.detail?.status && Math.floor(error.detail.status / 100) === 4) {
-    return [401, 403].includes(error.detail.status)
+function getTrackingTypology(error: ApiError) {
+  if (error?.status && Math.floor(error.status / 100) === 4) {
+    return [401, 403].includes(error.status)
       ? TRACKING_LABELS.UNAUTHORIZED
       : TRACKING_LABELS.SERVICE_NOT_FOUND;
   }
@@ -35,24 +43,22 @@ export const ErrorPage: React.FC<ErrorBannerProps> = ({ error }) => {
   const { t } = useTranslation('vrack-services/error');
   const navigate = useNavigate();
   const location = useLocation();
-  const shell = useShell();
-  const { tracking, environment } = shell;
-  const env = environment.getEnvironment();
+  const environment = useEnvironment();
+  const tracking = useTracking();
 
-  useEffect(() => {
+  React.useEffect(() => {
     tracking.init(false);
-    env.then((response) => {
-      const { applicationName } = response;
-      const name = `errors::${getTrackingTypology(error)}::${applicationName}`;
+    const name = `errors::${getTrackingTypology(error)}::${
+      environment.applicationName
+    }`;
 
-      tracking.trackPage({
-        name,
-        level2: '81',
-        type: 'navigation',
-        page_category: location.pathname,
-      });
+    tracking.trackPage({
+      name,
+      level2: '81',
+      type: 'navigation',
+      page_category: location.pathname,
     });
-  }, []);
+  }, [environment.applicationName]);
 
   return (
     <div className="mx-auto w-full max-w-[600px] grid h-full overflow-hidden p-5">
@@ -73,11 +79,13 @@ export const ErrorPage: React.FC<ErrorBannerProps> = ({ error }) => {
         >
           <div>
             {t('manager_error_page_default')} <br />
-            {error?.data?.message && <strong>{error.data.message}</strong>}
-            {error?.headers['x-ovh-queryid'] && (
+            {error?.response?.data?.message && (
+              <strong>{error.response.data.message}</strong>
+            )}
+            {error?.response.headers['x-ovh-queryid'] && (
               <p>
                 {t('manager_error_page_detail_code')}
-                {error.headers['x-ovh-queryid']}
+                {error.response.headers['x-ovh-queryid']}
               </p>
             )}
           </div>

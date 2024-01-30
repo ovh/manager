@@ -1,8 +1,8 @@
+import { apiClient } from '@ovh-ux/manager-core-api';
 import {
   UpdateVrackServicesParams,
   VrackServices,
 } from './vrack-services.type';
-import { createFetchDataFn } from '../common';
 
 export const updateVrackServicesQueryKey = (vrackServicesId: string) => [
   'put/vrackServices/resource',
@@ -17,9 +17,27 @@ export const updateVrackServices = async ({
   checksum,
   targetSpec,
 }: UpdateVrackServicesParams) =>
-  createFetchDataFn<VrackServices>({
-    url: `/vrackServices/resource/${vrackServicesId}`,
-    method: 'put',
-    apiVersion: 'v2',
-    params: { checksum, targetSpec },
-  })();
+  apiClient.v2.put<VrackServices>(
+    `/vrackServices/resource/${vrackServicesId}`,
+    {
+      checksum,
+      targetSpec: {
+        displayName: targetSpec.displayName,
+        subnets:
+          targetSpec.subnets?.map((subnet) => ({
+            cidr: subnet.cidr,
+            displayName: subnet.displayName,
+            serviceRange: {
+              cidr: subnet.serviceRange.cidr,
+              // Need to remove ip configurations
+            },
+            serviceEndpoints:
+              subnet.serviceEndpoints?.map((endpoint) => ({
+                // Need to remove endpoints configurations
+                managedServiceURN: endpoint.managedServiceURN,
+              })) || [],
+            vlan: subnet.vlan,
+          })) || [],
+      },
+    },
+  );

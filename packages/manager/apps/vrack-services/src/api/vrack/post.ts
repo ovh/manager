@@ -1,5 +1,5 @@
+import { apiClient } from '@ovh-ux/manager-core-api';
 import { Task } from '../api.type';
-import { createFetchDataFn } from '../common';
 
 export type AssociateVrackServicesParams = {
   /** The internal name of your vrack */
@@ -19,9 +19,4 @@ export const associateVrackServices = async ({
   vrack,
   vrackServices,
 }: AssociateVrackServicesParams) =>
-  createFetchDataFn<Task>({
-    url: `/vrack/${vrack}/vrackServices`,
-    method: 'post',
-    apiVersion: 'v6',
-    params: { vrackServices },
-  })();
+  apiClient.v6.post<Task>(`/vrack/${vrack}/vrackServices`, { vrackServices });

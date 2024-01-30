@@ -1,7 +1,6 @@
 import React from 'react';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { OsdsDivider } from '@ovhcloud/ods-components/divider/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+import { OsdsText, OsdsDivider } from '@ovhcloud/ods-components/react';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 export type TileBlockProps = {

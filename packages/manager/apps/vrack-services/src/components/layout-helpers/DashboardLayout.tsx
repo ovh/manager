@@ -6,23 +6,26 @@ import {
   useNavigate,
   useParams,
 } from 'react-router-dom';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import {
   OsdsTabs,
   OsdsTabBar,
   OsdsTabBarItem,
-} from '@ovhcloud/ods-components/tabs/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+  OsdsMessage,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
 import { PageLayout } from './PageLayout';
 import { useVrackService } from '@/utils/vs-utils';
 import { ResourceStatus, updateVrackServicesQueryKey } from '@/api';
 import { CreationSuccessMessage } from '@/components/CreationSuccessMessage';
-import { getSubnetCreationMutationKey } from '@/pages/dashboard/[id]/CreateSubnet';
-import { getEndpointCreationMutationKey } from '@/pages/dashboard/[id]/CreateEndpoint';
+import { getSubnetCreationMutationKey } from '@/pages/subnets/constants';
+import { getEndpointCreationMutationKey } from '@/pages/endpoints/constants';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -103,11 +106,13 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
       <OsdsTabs panel={activePanel}>
         <OsdsTabBar slot="top">
           {tabs.map((tab: DashboardTabItemProps, key: number) => (
-            <OsdsTabBarItem key={`osds-tab-bar-item-${key}`} panel={tab.name}>
-              <NavLink to={tab.to} className="no-underline">
-                {tab.title}
-              </NavLink>
-            </OsdsTabBarItem>
+            <NavLink
+              to={tab.to}
+              className="no-underline"
+              key={`osds-tab-bar-item-${key}`}
+            >
+              <OsdsTabBarItem panel={tab.name}>{tab.title}</OsdsTabBarItem>
+            </NavLink>
           ))}
         </OsdsTabBar>
       </OsdsTabs>

@@ -1,26 +1,30 @@
 import React from 'react';
 import { TFunction } from 'react-i18next';
-import { UseMutateAsyncFunction } from '@tanstack/react-query';
-import { OsdsLink } from '@ovhcloud/ods-components/link/react';
+import { UseMutateAsyncFunction, QueryClient } from '@tanstack/react-query';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { NavigateFunction } from 'react-router-dom';
-import { OsdsChip } from '@ovhcloud/ods-components/chip/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
-import { OsdsSpinner } from '@ovhcloud/ods-components/spinner/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components/spinner';
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
+import {
+  OsdsSpinner,
+  OsdsIcon,
+  OsdsLink,
+  OsdsButton,
+  OsdsChip,
+} from '@ovhcloud/ods-components/react';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { EditableText } from '@/components/EditableText';
 import {
   ProductStatus,
-  ResponseData,
   UpdateVrackServicesParams,
   VrackServices,
+  getVrackServicesResourceQueryKey,
 } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
@@ -30,26 +34,36 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
   VrackServices
 > & {
   updateVS: UseMutateAsyncFunction<
-    ResponseData<VrackServices>,
-    ResponseData<Error>,
+    ApiResponse<VrackServices>,
+    ApiError,
     UpdateVrackServicesParams
   >;
+  queryClient: QueryClient;
   navigate?: NavigateFunction;
-}> = ({ cellData, rowData, updateVS, navigate }) => {
+}> = ({ cellData, rowData, updateVS, navigate, queryClient }) => {
   const displayName = cellData || rowData?.id;
   return (
     <EditableText
       disabled={!isEditable(rowData)}
       defaultValue={cellData}
       onEditSubmitted={async (value) => {
-        await updateVS({
-          vrackServicesId: rowData.id,
-          checksum: rowData.checksum,
-          targetSpec: {
-            displayName: value || null,
-            subnets: rowData.currentState.subnets || [],
+        await updateVS(
+          {
+            vrackServicesId: rowData.id,
+            checksum: rowData.checksum,
+            targetSpec: {
+              displayName: value || null,
+              subnets: rowData.currentState.subnets || [],
+            },
           },
-        });
+          {
+            onSettled: () => {
+              queryClient.invalidateQueries({
+                queryKey: getVrackServicesResourceQueryKey(rowData.id),
+              });
+            },
+          },
+        );
       }}
     >
       {navigate ? (

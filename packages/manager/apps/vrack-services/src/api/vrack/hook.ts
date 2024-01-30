@@ -6,6 +6,7 @@ import {
   getVrackAllowedServices,
   getVrackAllowedServicesQueryKey,
 } from './get';
+import { AllowedServicesResponse } from '../api.type';
 
 /**
  * @returns List of allowed vRack to be associated to a vRack Services
@@ -24,8 +25,8 @@ export const useAllowedVrackList = (vrackServicesId?: string) => {
 
   const result = useQueries({
     queries:
-      isFetched && vrackListResponse?.data.length > 0
-        ? vrackListResponse.data.map((vrack) => ({
+      isFetched && vrackListResponse?.data && vrackListResponse.data.length > 0
+        ? vrackListResponse?.data.map((vrack) => ({
             queryKey: getVrackAllowedServicesQueryKey({
               vrack,
               serviceFamily,
@@ -48,8 +49,12 @@ export const useAllowedVrackList = (vrackServicesId?: string) => {
     allowedVrackList:
       vrackServicesId && !resultStatus.isLoading && !resultStatus.isError
         ? result.reduce((allowedVrackList, { data }, index) => {
-            if (data.data.vrackServices?.includes(vrackServicesId)) {
-              return allowedVrackList.concat(vrackListResponse.data[index]);
+            if (
+              (data as {
+                data: AllowedServicesResponse;
+              })?.data.vrackServices?.includes(vrackServicesId)
+            ) {
+              return allowedVrackList.concat(vrackListResponse?.data[index]);
             }
             return allowedVrackList;
           }, [] as string[])

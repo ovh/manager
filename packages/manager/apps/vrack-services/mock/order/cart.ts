@@ -1,6 +1,7 @@
-import { Handler } from '@super-components/_common/msw-helpers';
+import { PathParams } from 'msw';
+import { Handler } from '../../e2e/utils/msw-helpers';
+import { getParamsFromUrl } from '../../e2e/utils/playwright-helpers';
 import { Cart, Item } from '@/api/order/order.type';
-import { ResponseData } from '@/api/api.type';
 
 const getCart = (): Cart => {
   const expire = new Date();
@@ -15,8 +16,11 @@ const getCart = (): Cart => {
   };
 };
 
-const getVrackItem = (data: { params: { id: string } }): Item => ({
-  cartId: data?.params?.id,
+const getVrackItem = (
+  request: Request,
+  params: PathParams & { id: string },
+): Item => ({
+  cartId: (params || getParamsFromUrl(request, { id: -2 }))?.id,
   configurations: [],
   duration: 'P1M',
   itemId: 111111111,
@@ -41,8 +45,11 @@ const getVrackItem = (data: { params: { id: string } }): Item => ({
   },
 });
 
-const getVrackServicesItem = (data: { params: { id: string } }): Item => ({
-  cartId: data?.params?.id,
+const getVrackServicesItem = (
+  request: Request,
+  params: PathParams & { id: string },
+): Item => ({
+  cartId: (params || getParamsFromUrl(request, { id: -2 }))?.id,
   configurations: [],
   duration: 'P1M',
   itemId: 222222222,
@@ -84,35 +91,39 @@ export const getCartMocks = ({
   {
     url: '/order/cart/:id/vrackServices',
     method: 'post',
-    response: (data: any) =>
+    response: (request: Request, params: PathParams & { id: string }) =>
       vrackServicesOrderKo
-        ? ({
+        ? {
             status: 403,
             code: 'ERR_VRACK_SERVICES',
-            data: null,
             response: {
               data: { message: 'Error Vrack Services' },
             },
-          } as ResponseData<unknown>)
-        : getVrackServicesItem(data),
+          }
+        : getVrackServicesItem(request, params),
     status: vrackServicesOrderKo ? 403 : 200,
     api: 'v6',
   },
   {
     url: '/order/cart/:id/vrack',
     method: 'post',
-    response: (data: any) =>
+    response: (request: Request, params: PathParams & { id: string }) =>
       vrackOrderKo
-        ? ({
+        ? {
             status: 403,
             code: 'ERR_MAX_VRACKS',
-            data: null,
             response: {
               data: { message: 'You already own 60 vRacks, maximum is 60' },
             },
-          } as ResponseData<unknown>)
-        : getVrackItem(data),
+          }
+        : getVrackItem(request, params),
     status: vrackOrderKo ? 403 : 200,
+    api: 'v6',
+  },
+  {
+    url: '/order/cart/:cartid/item/:itemid/configuration',
+    method: 'post',
+    response: {},
     api: 'v6',
   },
   {

@@ -1,18 +1,14 @@
-import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { apiClient } from '@ovh-ux/manager-core-api';
 import {
   AllowedServicesResponse,
   AllowedService,
   EligibleServicesResponse,
   NonExpiringService,
 } from '../api.type';
-import { createFetchDataFn } from '../common';
 
 export const getVrackListQueryKey = ['get/vrack'];
 
-export const getVrackList = () =>
-  fetchIcebergV6<string>({
-    route: '/vrack',
-  });
+export const getVrackList = () => apiClient.v6.get<string[]>('/vrack');
 
 export type GetVrackAllowedServicesParams = {
   /** Filter on a specific service family */
@@ -35,13 +31,11 @@ export const getVrackAllowedServices = async ({
   vrack,
   serviceFamily,
 }: GetVrackAllowedServicesParams) =>
-  createFetchDataFn<AllowedServicesResponse>({
-    url: `/vrack/${vrack}/allowedServices${
+  apiClient.v6.get<AllowedServicesResponse>(
+    `/vrack/${vrack}/allowedServices${
       serviceFamily ? `?serviceFamily=${serviceFamily}` : ''
     }`,
-    method: 'get',
-    apiVersion: 'v6',
-  })();
+  );
 
 export type GetVrackEligibleServicesParams = {
   /** The internal name of your vrack */
@@ -58,11 +52,9 @@ export const getVrackEligibleServicesQueryKey = ({
 export const getVrackServiceEligibleServices = async ({
   vrack,
 }: GetVrackEligibleServicesParams) =>
-  createFetchDataFn<EligibleServicesResponse>({
-    url: `/vrack/${vrack}/eligibleServices`,
-    method: 'get',
-    apiVersion: 'v6',
-  })();
+  apiClient.v6.get<EligibleServicesResponse>(
+    `/vrack/${vrack}/eligibleServices`,
+  );
 
 export type GetVrackServiceInfosParams = {
   /** The internal name of your vrack */
@@ -79,11 +71,7 @@ export const getVrackServiceInfosQueryKey = ({
 export const getVrackServiceInfos = async ({
   vrack,
 }: GetVrackServiceInfosParams) =>
-  createFetchDataFn<NonExpiringService>({
-    url: `/vrack/${vrack}/serviceInfos`,
-    method: 'get',
-    apiVersion: 'v6',
-  })();
+  apiClient.v6.get<NonExpiringService>(`/vrack/${vrack}/serviceInfos`);
 
 export type GetVrackVrackServicesListParams = {
   /** The internal name of your vrack */
@@ -100,8 +88,4 @@ export const getVrackVrackServicesListQueryKey = ({
 export const getVrackVrackServicesList = async ({
   vrack,
 }: GetVrackVrackServicesListParams) =>
-  createFetchDataFn<string[]>({
-    url: `/vrack/${vrack}/vrackServices`,
-    method: 'get',
-    apiVersion: 'v6',
-  })();
+  apiClient.v6.get<string[]>(`/vrack/${vrack}/vrackServices`);

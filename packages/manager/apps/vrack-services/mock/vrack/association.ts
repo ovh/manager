@@ -1,4 +1,8 @@
-import { Handler } from '@super-components/_common/msw-helpers';
+/* eslint-disable import/no-extraneous-dependencies */
+import { PathParams } from 'msw';
+import { Request as PlaywrightRequest } from 'playwright';
+import { getParamsFromUrl } from '../../e2e/utils/playwright-helpers';
+import { Handler } from '../../e2e/utils/msw-helpers';
 import { AllowedServicesResponse, Status, Task } from '../../src/api/api.type';
 import vrackServicesList from '../vrack-services/get-vrack-services.json';
 
@@ -20,15 +24,17 @@ const getAllowedServicesResponse = (
     .slice(0, nbEligibleVrackServices),
 });
 
-const getAssociationResponse = ({
-  params: { id: vrackId },
-  body: { vrackServices },
-}: {
-  params: { id: string };
-  body: { vrackServices: string };
-}): Task => {
+const getAssociationResponse = async (
+  request: Request,
+  params: PathParams,
+): Promise<Task> => {
   const date = new Date();
   const dateString = date.toISOString();
+  const vrackId = (params || getParamsFromUrl(request, { id: -2 })).id;
+  const json =
+    (await request.json?.()) ||
+    ((request as unknown) as PlaywrightRequest).postData();
+  const { vrackServices } = json;
   return {
     createdAt: dateString,
     errors: [

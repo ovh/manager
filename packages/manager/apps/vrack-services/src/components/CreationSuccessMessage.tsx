@@ -1,7 +1,7 @@
 import React from 'react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components/message';
-import { OsdsMessage } from '@ovhcloud/ods-components/message/react';
+import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
+import { OsdsMessage } from '@ovhcloud/ods-components/react';
 import { useMutationState } from '@tanstack/react-query';
 
 export type Props = {
