@@ -1615,12 +1615,6 @@ export default class Server {
       });
   }
 
-  getBringYourOwnImage(serviceName) {
-    return this.$http
-      .get(`/dedicated/server/${serviceName}/bringYourOwnImage`)
-      .then(({ data }) => data);
-  }
-
   getServices() {
     return this.$http.get('/service', {
       params: {

@@ -9,17 +9,6 @@
         data-wizard-keydown-disabled
     >
         <div data-wizard-step data-wizard-step-on-load="$ctrl.load.bind($ctrl)">
-            <div data-ng-if="!progress.installationTask">
-                <span
-                    data-ng-if="$ctrl.isBringYourOwnImageInit()"
-                    data-translate="server_configuration_installation_progress_info"
-                >
-                </span>
-                <div class="text-center">
-                    <oui-spinner></oui-spinner>
-                </div>
-            </div>
-
             <div data-ng-if="progress.installationTask">
                 <div
                     data-ng-bind-html="'server_configuration_installation_progress_info' | translate "

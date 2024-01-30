@@ -15,9 +15,7 @@ export default class BmServerComponentsGeneralInformationController {
     const { os } = this.server;
     if (!os || Object.values(OPERATING_SYSTEM_ENUM).includes(os)) {
       return this.$translate.instant(
-        os === OPERATING_SYSTEM_ENUM.BRING_YOUR_OWN_IMAGE
-          ? 'dedicated_server_dashboard_distribution_byoi'
-          : 'dedicated_server_dashboard_distribution_none',
+        'dedicated_server_dashboard_distribution_none',
       );
     }
 

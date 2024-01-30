@@ -1,8 +1,0 @@
-{
-  "dedicated_server_install_image_title": "Instalar uma imagem personalizada",
-  "dedicated_server_install_image_explain": "A tecnologia Bring Your Own Image (BYOI) permite-lhe implementar imagens cloud-ready diretamente nos seus servidores dedicados. Assim, poderá utilizar a sua solução bare metal como recurso para estas instalações. Para mais informações, ",
-  "dedicated_server_install_image_doc_link_name": "clique aqui para consultar a documentação.",
-  "dedicated_server_install_image_submit": "Instalar o sistema",
-  "dedicated_server_install_image_launch_install_error": "Ocorreu um erro aquando do lançamento da instalação a partir de uma imagem personalizada.",
-  "dedicated_server_install_image_launch_install_error_dismiss": "Ocultar o erro"
-}
