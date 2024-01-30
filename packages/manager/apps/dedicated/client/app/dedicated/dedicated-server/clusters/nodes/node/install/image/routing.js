@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
     {
       url: '/image',
       views: {
-        '@app.dedicated-cluster': {
+        'rootView@app.dedicated-cluster': {
           component: 'serverInstallImage',
         },
 

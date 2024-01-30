@@ -1,7 +1,4 @@
-import {
-  MONITORING_TRACKING_PREFIX,
-  MONITORING_STATUSES,
-} from './monitoring.constants';
+import { MONITORING_STATUSES } from './monitoring.constants';
 
 export default class DedicatedServerMonitoringCtrl {
   /* @ngInject */
@@ -76,7 +73,7 @@ export default class DedicatedServerMonitoringCtrl {
 
   trackClick(hit) {
     return this.atInternet.trackClick({
-      name: `${MONITORING_TRACKING_PREFIX}::${hit}`,
+      name: `dedicated::dedicated-server::${this.serverType}::dashboard::monitoringUpdate::${hit}`,
       type: 'action',
     });
   }

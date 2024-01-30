@@ -8,6 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
     reloadOnSearch: false,
     redirectTo: 'app.dedicated-server.server.dashboard',
     resolve: {
+      serverType: () => 'server',
       statePrefix: /* @ngInject */ () => 'app.dedicated-server.server',
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),

@@ -16,6 +16,7 @@ export default class DedicatedServerInstallImageCtrl {
   $onInit() {
     this.byoiGuideLink =
       BYOI_GUIDE_URLS[this.user.ovhSubsidiary] || BYOI_GUIDE_URLS.GB;
+    this.trackingByoiDocumentation = `dedicated::dedicated::${this.serverType}::system-install::personalized-image::byoi-documentation`;
   }
 
   /* -----  End of Initialization  ------*/
@@ -26,14 +27,15 @@ export default class DedicatedServerInstallImageCtrl {
 
   onImageFormSubmit() {
     this.atInternet.trackClick({
-      name: `dedicated::dedicated::server::system-install::public-catalog::configdrive::${
+      name: `dedicated::dedicated::${
+        this.serverType
+      }::system-install::public-catalog::configdrive::${
         this.model.configdrive.enable ? 'activate' : 'deactivate'
       }`,
       type: 'action',
     });
     this.atInternet.trackClick({
-      name:
-        'dedicated::dedicated::server::system-install::personalized-image::install',
+      name: `dedicated::dedicated::${this.serverType}::system-install::personalized-image::install`,
       type: 'action',
     });
     this.loaders.launchInstall = true;

@@ -11,7 +11,7 @@ export default {
     ola: '<',
     goToMonitoringUpdate: '<',
     isMonitoringOptionsAvailable: '<',
-    serverIsNode: '<',
+    serverType: '<',
   },
   controller,
   template,

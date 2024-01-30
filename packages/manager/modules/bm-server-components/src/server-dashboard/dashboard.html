@@ -58,6 +58,7 @@
                 data-tracking-prefix="$ctrl.trackingPrefix"
                 data-go-to-netboot="$ctrl.goToNetboot"
                 data-info-server="$ctrl.infoServer"
+                data-server-type="$ctrl.serverType"
             ></server-general-information>
         </div>
 
@@ -82,7 +83,7 @@
                 data-ola="$ctrl.ola"
                 data-go-to-monitoring-update="$ctrl.goToMonitoringUpdate"
                 data-is-monitoring-options-available="$ctrl.isMonitoringOptionsAvailable"
-                data-server-is-node="$ctrl.serverIsNode"
+                data-server-type="$ctrl.serverType"
             ></server-service-status>
         </div>
 
@@ -198,12 +199,13 @@
                 data-go-to-sgx-introduction="$ctrl.goToSgxIntroduction"
                 data-go-to-sgx-manage="$ctrl.goToSgxManage"
                 data-user="$ctrl.user"
+                data-tracking-prefix="$ctrl.trackingPrefix"
             ></server-advanced-features>
         </div>
 
         <!-- Retention Advices -->
         <ovh-advices
-            data-ng-if="!$ctrl.server.isExpired && !$ctrl.serverIsNode"
+            data-ng-if="!$ctrl.server.isExpired && $ctrl.serverType !== 'node'"
             class="col-md-4 mb-3"
             url="/retention/dedicated-server/:serviceName"
             url-params="{ serviceName: $ctrl.server.name }"
@@ -214,7 +216,7 @@
         <!-- Advices -->
         <div
             class="col-md-4 mb-3"
-            data-ng-if="!$ctrl.server.isExpired && !$ctrl.serverIsNode"
+            data-ng-if="!$ctrl.server.isExpired && $ctrl.serverType !== 'node'"
         >
             <ovh-advices
                 service-type="dedicated-server"
