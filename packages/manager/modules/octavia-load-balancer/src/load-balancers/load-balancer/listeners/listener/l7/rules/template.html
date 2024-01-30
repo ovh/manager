@@ -1,0 +1,12 @@
+<oui-header data-heading="{{ $ctrl.listener.name }}"> </oui-header>
+<oui-back-button data-on-click="$ctrl.goToL7PoliciesListingPage()">
+</oui-back-button>
+<div class="container-fluid">
+    <div class="octavia-load-balancer-l7-rules-list">
+        <h2 data-translate="octavia_load_balancer_list_l7_rules_title"></h2>
+
+        <p data-translate="octavia_load_balancer_list_l7_rules_description"></p>
+        <div data-ovh-alert="octavia.alerts.l7Rules"></div>
+        <div data-ui-view="loadbalancerL7RulesView"></div>
+    </div>
+</div>
