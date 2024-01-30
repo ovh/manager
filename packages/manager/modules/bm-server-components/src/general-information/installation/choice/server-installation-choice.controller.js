@@ -28,17 +28,17 @@ export default class ServerInstallationChoiceCtrl {
   goInstall() {
     if (this.choice.value === this.choice.ovh) {
       this.trackPage(
-        'dedicated::dedicated::server::system-install::public-catalog',
+        `dedicated::dedicated::${this.serverType}::system-install::public-catalog`,
       );
       this.$state.go(`${this.statePrefix}.dashboard.installation-ovh`);
     } else if (this.choice.value === this.choice.gabarit) {
       this.trackPage(
-        'dedicated::dedicated::server::system-install::existing-template',
+        `dedicated::dedicated::${this.serverType}::system-install::existing-template`,
       );
       this.$state.go(`${this.statePrefix}.dashboard.installation-gabarit`);
     } else if (this.choice.value === this.choice.image) {
       this.trackPage(
-        'dedicated::dedicated::server::system-install::personalized-image',
+        `dedicated::dedicated::${this.serverType}::system-install::personalized-image`,
       );
       this.$state.go(`${this.statePrefix}.dashboard.install.image`);
     }

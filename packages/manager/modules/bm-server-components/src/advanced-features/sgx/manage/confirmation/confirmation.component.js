@@ -1,4 +1,5 @@
 import template from './confirmation.html';
+import controller from './confirmation.controller';
 
 export default {
   bindings: {
@@ -11,4 +12,5 @@ export default {
     goBack: '<',
   },
   template,
+  controller,
 };

@@ -16,11 +16,7 @@
             data-sortable
             data-type="string"
         >
-            <a
-                data-ng-href="{{ $ctrl.getClusterDashboardLink($row) }}"
-                data-track-on="click"
-                data-track-type="action"
-                data-track-name="dedicated::dedicated::servers::order-multiaz"
+            <a data-ng-href="{{ $ctrl.getClusterDashboardLink($row) }}"
                 ><span data-ng-bind="$row.iam.displayName"></span
             ></a>
         </oui-datagrid-column>
@@ -49,7 +45,7 @@
                 data-ng-click="$ctrl.gotoOrderUrl()"
                 data-track-on="click"
                 data-track-type="action"
-                data-track-name="dedicated::dedicated::clusters::order"
+                data-track-name="dedicated::dedicated::clusters::order-multiaz"
             >
                 <span
                     data-translate="dedicated_clusters_button_server_order"

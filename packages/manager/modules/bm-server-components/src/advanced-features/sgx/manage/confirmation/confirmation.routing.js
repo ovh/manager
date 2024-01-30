@@ -30,9 +30,10 @@ export default /* @ngInject */ ($stateProvider) => {
           goToDashboard,
           serverName,
           type,
+          sgxTrackingPrefix,
         ) => (activationMode, prmrr) => {
           atInternet.trackClick({
-            name: `dedicated::dedicated::server::sgx::manage::confirm::confirm-${snakeCase(
+            name: `${sgxTrackingPrefix}::manage::confirm::confirm-${snakeCase(
               activationMode,
             )}-${prmrr}`,
             type: 'action',
@@ -70,9 +71,6 @@ export default /* @ngInject */ ($stateProvider) => {
             transitionParams,
           ),
         breadcrumb: () => null,
-      },
-      atInternet: {
-        rename: 'dedicated::dedicated::server::sgx::manage::confirm',
       },
     },
   );
