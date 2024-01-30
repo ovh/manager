@@ -6,6 +6,7 @@ export default {
     server: '<',
     user: '<',
     goBack: '<',
+    serverType: '<',
   },
   controller,
   template,

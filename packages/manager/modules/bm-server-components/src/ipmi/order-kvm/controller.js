@@ -1,5 +1,5 @@
 import isFunction from 'lodash/isFunction';
-import { KVM_ORDER_TRACKING_PREFIX } from '../constants';
+import { getKvmOrderTrackingPrefix } from '../constants';
 
 export default class BmServerComponentsOrderKvmController {
   /* @ngInject */
@@ -44,7 +44,7 @@ export default class BmServerComponentsOrderKvmController {
 
   trackBanner(bannerType) {
     this.atInternet.trackPage({
-      name: `${KVM_ORDER_TRACKING_PREFIX}-${bannerType}`,
+      name: `${getKvmOrderTrackingPrefix(this.serverType)}-${bannerType}`,
     });
   }
 
@@ -59,7 +59,7 @@ export default class BmServerComponentsOrderKvmController {
   orderKvm() {
     this.pendingOrder = true;
     this.atInternet.trackClick({
-      name: `${KVM_ORDER_TRACKING_PREFIX}::confirm`,
+      name: `${getKvmOrderTrackingPrefix(this.serverType)}::confirm`,
       type: 'action',
     });
     this.IpmiService.orderKvm(this.cartId)

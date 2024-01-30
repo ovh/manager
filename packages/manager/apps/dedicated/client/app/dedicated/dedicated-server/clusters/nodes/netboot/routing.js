@@ -2,7 +2,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dedicated-cluster.cluster.node.dashboard.netboot', {
     url: '/netboot',
     views: {
-      '@app.dedicated-cluster': {
+      'rootView@app.dedicated-cluster': {
         component: 'dedicatedClusterNodeNetboot',
       },
     },

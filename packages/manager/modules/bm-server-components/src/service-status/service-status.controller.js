@@ -36,7 +36,9 @@ export default class BmServerComponentsDashboardServiceStatusController {
 
   canBeTerminate() {
     return (
-      !this.server.isExpired && !this.server.engagement && !this.serverIsNode
+      !this.server.isExpired &&
+      !this.server.engagement &&
+      this.serverType !== 'node'
     );
   }
 
@@ -93,9 +95,7 @@ export default class BmServerComponentsDashboardServiceStatusController {
 
   onMonitoringUpdateClick() {
     this.atInternet.trackClick({
-      name: `dedicated::dedicated-server::${
-        this.serverIsNode ? 'node' : 'server'
-      }::dashboard::update-monitoring`,
+      name: `dedicated::dedicated-server::${this.serverType}::dashboard::update-monitoring`,
       type: 'action',
     });
 
