@@ -1,3 +1,16 @@
+<p data-translate="octavia_load_balancer_health_monitor_form_description_1"></p>
+<p>
+    <span
+        data-translate="octavia_load_balancer_health_monitor_form_description_2"
+    ></span>
+    <a ng-href="{{::$ctrl.HORIZON_LINK}}" class="oui-link_icon" target="_blank">
+        <span
+            data-translate="octavia_load_balancer_health_monitor_form_description_link"
+        ></span>
+        <span class="oui-icon oui-icon-arrow-right" aria-hidden="true"></span>
+    </a>
+</p>
+
 <form name="healthMonitor" novalidate>
     <oui-field
         size="l"
@@ -27,6 +40,7 @@
             data-model="$ctrl.model.type"
             data-items="$ctrl.healthMonitorTypes"
             data-on-change="$ctrl.onTypeChange(modelValue)"
+            data-disabled="$ctrl.editionMode"
             data-placeholder="{{:: 'octavia_load_balancer_health_monitor_form_type_default' | translate }}"
         >
         </oui-select>
