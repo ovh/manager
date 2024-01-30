@@ -1,0 +1,98 @@
+<oui-datagrid data-rows="$ctrl.rules">
+    <oui-datagrid-topbar>
+        <oui-button
+            data-ng-click="$ctrl.goToL7RuleCreation()"
+            variant="secondary"
+            icon-left="oui-icon-plus"
+        >
+            <span
+                data-translate="octavia_load_balancer_list_l7_rules_add_button"
+            ></span>
+        </oui-button>
+    </oui-datagrid-topbar>
+
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_list_l7_rules_type' | translate"
+        data-property="ruleType"
+        data-sortable
+        data-searchable
+        data-filterable
+        data-type="number"
+        data-prevent-customization
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_list_l7_rules_comparison_type' | translate"
+        data-property="compareType"
+        data-sortable
+        data-searchable
+        data-filterable
+        data-type="string"
+        data-prevent-customization
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_list_l7_rules_key' | translate"
+        data-property="key"
+        data-searchable
+        data-filterable
+        data-type="string"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_list_l7_rules_value' | translate"
+        data-property="value"
+        data-searchable
+        data-filterable
+        data-type="string"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_list_l7_rules_invert' | translate"
+        data-property="invert"
+        data-searchable
+        data-filterable
+        data-type="boolean"
+    >
+        <span
+            class="oui-icon oui-icon-check"
+            aria-hidden="true"
+            data-ng-if="$value"
+        ></span>
+        <span data-ng-if="!$value" data-ng-bind="::'-'"></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_provisioning_status' | translate"
+        data-property="provisioningStatus"
+        data-type="options"
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="$ctrl.provisioningStatusBadges[$value]"
+            data-translate="{{:: 'octavia_load_balancer_provisioning_status_' + $value }}"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_operating_status' | translate"
+        data-property="operatingStatus"
+        data-type="options"
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="$ctrl.operatingStatusBadges[$value]"
+            data-translate="{{:: 'octavia_load_balancer_operating_status_' + $value }}"
+        ></span>
+    </oui-datagrid-column>
+    <oui-action-menu compact data-placement="end">
+        <oui-action-menu-item data-on-click="$ctrl.goToL7RuleEdition($row)">
+            <span
+                data-translate="octavia_load_balancer_list_l7_rules_actions_edit"
+            ></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item data-on-click="$ctrl.goToL7RuleDeletion($row)">
+            <span
+                data-translate="octavia_load_balancer_list_l7_rules_actions_delete"
+            ></span>
+        </oui-action-menu-item>
+    </oui-action-menu>
+</oui-datagrid>
