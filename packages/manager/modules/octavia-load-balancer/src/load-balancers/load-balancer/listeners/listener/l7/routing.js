@@ -1,5 +1,5 @@
 import { TRACKING_SUFFIX } from './constants';
-import { TRACKING_SUFFIX as LISTENERS_TACKING_SUFFIX } from '../../constants';
+import { TRACKING_SUFFIX as LISTENERS_TRACKING_SUFFIX } from '../../constants';
 import { LISTENER_PROTOCOLS_ENABLING_POLICIES } from '../../list/constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -28,7 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
           $state.go('octavia-load-balancer.loadbalancer.listeners.list');
         },
         trackL7Base: /* @ngInject */ (trackRoot) =>
-          `${trackRoot}::${LISTENERS_TACKING_SUFFIX}::${TRACKING_SUFFIX}`,
+          `${trackRoot}::${LISTENERS_TRACKING_SUFFIX}::${TRACKING_SUFFIX}`,
         trackL7Action: /* @ngInject */ (atInternet, trackL7Base) => (hit) =>
           atInternet.trackClick({
             name: `${trackL7Base}::${hit}`,
