@@ -3,6 +3,7 @@ import {
   ORDER_FOLLOW_UP_POLLING_INTERVAL,
   ORDER_FOLLOW_UP_STATUS_ENUM,
   ORDER_FOLLOW_UP_STEP_ENUM,
+  ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM,
 } from '../projects.constant';
 import {
   PCI_HDS_ADDON,
@@ -11,10 +12,11 @@ import {
 
 export default class PciProjectUpdatingCtrl {
   /* @ngInject */
-  constructor($q, $timeout, pciProjectCreating, PciProjectsService) {
+  constructor($q, $timeout, $state, pciProjectCreating, PciProjectsService) {
     // dependencies injections
     this.$q = $q;
     this.$timeout = $timeout;
+    this.$state = $state;
     this.pciProjectCreating = pciProjectCreating;
     this.PciProjectsService = PciProjectsService;
 
@@ -60,6 +62,25 @@ export default class PciProjectUpdatingCtrl {
       });
   }
 
+  static isManuallyReviewedByAntiFraud(followUp) {
+    const validatingOrderStep = followUp.find(
+      (item) =>
+        item.step.toLowerCase() ===
+        ORDER_FOLLOW_UP_STEP_ENUM.VALIDATING.toLowerCase(),
+    );
+
+    if (validatingOrderStep) {
+      return (
+        validatingOrderStep?.history.find(
+          (event) =>
+            event.label ===
+            ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM.FRAUD_MANUAL_REVIEW,
+        ) || false
+      );
+    }
+    return false;
+  }
+
   /* ==============================
   =            Polling            =
   =============================== */
@@ -68,6 +89,16 @@ export default class PciProjectUpdatingCtrl {
     this.orderFollowUpPolling = this.$timeout(() => {
       this.PciProjectsService.getOrderFollowUp(this.orderId)
         .then((followUp) => {
+          if (this.constructor.isManuallyReviewedByAntiFraud(followUp)) {
+            return this.getUpdatedProjectId().then((projectId) =>
+              this.$state.go(
+                'pci.projects.project',
+                { projectId },
+                { reload: true },
+              ),
+            );
+          }
+
           const { status } =
             followUp.find(
               (item) => item.step === ORDER_FOLLOW_UP_STEP_ENUM.DELIVERING,
