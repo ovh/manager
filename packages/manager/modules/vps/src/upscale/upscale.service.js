@@ -2,15 +2,15 @@ import isString from 'lodash/isString';
 
 import { convertLanguageFromOVHToBCP47 } from '@ovh-ux/manager-config';
 
-import { PRICING_MODES } from './upscale.constants';
+import { PRICING_MODES, PRICING_PERIODS } from './upscale.constants';
 
 export default class {
-  static convertPricingMode(pricingMode) {
+  static convertPricingMode(pricingMode, renewPeriod) {
     if (pricingMode.startsWith(PRICING_MODES.UPFRONT)) {
       return PRICING_MODES.UPFRONT;
     }
 
-    return PRICING_MODES.MONTHLY;
+    return PRICING_PERIODS[renewPeriod] || PRICING_MODES.MONTHLY;
   }
 
   /**
