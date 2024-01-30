@@ -56,7 +56,6 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
         const featureSiret = [
           'hub:banner-hub-invite-customer-siret',
           'hub:popup-hub-invite-customer-siret',
-          'hub:banner-iam-invite',
           'hub:banner-iam-ga-availability',
         ];
         return ovhFeatureFlipping
