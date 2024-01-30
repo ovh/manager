@@ -13,6 +13,7 @@ export default {
     goToSgxIntroduction: '<',
     goToSgxManage: '<',
     user: '<',
+    trackingPrefix: '<?',
   },
   controller,
   template,

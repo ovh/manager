@@ -5,7 +5,8 @@ export default {
   bindings: {
     ip: '<',
     user: '<',
-    setAction: '&',
+    goDashboard: '<',
+    serverType: '<',
   },
   controller,
   template,

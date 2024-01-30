@@ -2,6 +2,7 @@ import { STATUS } from '../sgx.constants';
 
 export default class {
   $onInit() {
+    this.trackPage(`${this.sgxTrackingPrefix}::manage`);
     this.formIsValid = false;
 
     this.activationMode = this.initialActivationMode;

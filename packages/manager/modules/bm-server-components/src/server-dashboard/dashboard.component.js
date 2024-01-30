@@ -46,7 +46,7 @@ export default {
     goToDeleteReverseDns: '<',
     goToTrafficOrder: '<',
     goToTrafficCancel: '<',
-    serverIsNode: '<?',
+    serverType: '<?',
   },
   controller,
   template,
