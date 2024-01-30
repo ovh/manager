@@ -17,5 +17,6 @@
   "ovh_payment_method_register_explanation_sepa_direct_debit_digital_signature_info": "To set up a SEPA direct debit, you will need to sign a mandate electronically using a solution provided by Worldline, a service provider authorised to deliver the trusted services defined by the “eDIAS” Regulation No. 910/2014 of 23 July 2014. In this context, the data is sent to Worldline.",
   "ovh_payment_method_register_explanation_selected_paypal_redirect_US": "To finish adding your PayPal account and payment method, click on the PayPal button below. A pop-up window, redirecting you to the secure PayPal server, will open allowing you to enter the required information. ",
   "ovh_payment_method_register_explanation_selected_paypal_redirect": "When you click on the PayPal button, a pop-up window will open in order for you to finish adding your payment method.",
-  "ovh_payment_method_register_explanation_credit_card_registration_charges_info": "A maximum of {{ registrationCharges }} will be charged to your card to confirm that it’s active. This charge will be fully refunded within 48 hours."
+  "ovh_payment_method_register_explanation_credit_card_registration_charges_info": "A maximum of {{ registrationCharges }} will be charged to your card to confirm that it’s active. This charge will be fully refunded within 48 hours.",
+  "ovh_payment_method_register_antifraud_error_message": "Your account information does not allow you to add a payment method. Please contact support for assistance."
 }
