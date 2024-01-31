@@ -23,6 +23,7 @@ export const AVAILABLE_SERVICES = [
   'LOAD_BALANCER',
   'LOGS',
   'NUTANIX',
+  'DEDICATED_CLUSTER',
 ];
 
 export default {
