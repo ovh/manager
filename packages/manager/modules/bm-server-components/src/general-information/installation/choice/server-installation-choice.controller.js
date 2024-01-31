@@ -1,9 +1,12 @@
+import { CUSTOM_IMAGE_GUIDES } from './server-installation-choice.constants';
+
 export default class ServerInstallationChoiceCtrl {
   /* @ngInject */
-  constructor($state, atInternet, ovhFeatureFlipping) {
+  constructor($state, atInternet, ovhFeatureFlipping, coreConfig) {
     this.$state = $state;
     this.atInternet = atInternet;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
+    this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
   }
 
   $onInit() {
@@ -13,6 +16,8 @@ export default class ServerInstallationChoiceCtrl {
       personal: 2,
       image: 3,
     };
+    this.customImageGuide =
+      CUSTOM_IMAGE_GUIDES[this.ovhSubsidiary] || CUSTOM_IMAGE_GUIDES.DEFAULT;
     this.loading = false;
   }
 
