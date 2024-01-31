@@ -1,4 +1,7 @@
 {
+  "octavia_load_balancer_health_monitor_form_description_1": "Le health monitor est utilisé pour déterminer l'intégrité des membres de votre pool. Des contrôles d'intégrité sont exécutés régulièrement sur chaque membre du pool et le résultat de ces contrôles est utilisé pour déterminer si le membre reçoit de nouvelles connexions. Un seul health monitor peut être défini pour chaque pool.",
+  "octavia_load_balancer_health_monitor_form_description_2": "Découvrez des options additionnelles via Horizon.",
+  "octavia_load_balancer_health_monitor_form_description_link": "Découvrir des options",
   "octavia_load_balancer_health_monitor_form_name": "Nom",
   "octavia_load_balancer_health_monitor_form_name_help": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points.",
   "octavia_load_balancer_health_monitor_form_type": "Type",

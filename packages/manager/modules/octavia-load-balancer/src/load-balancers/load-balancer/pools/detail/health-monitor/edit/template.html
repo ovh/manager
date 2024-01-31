@@ -1,3 +1,18 @@
 <div id="octavia-load-balancer-pools-detail-health-monitor-edit">
-    TODO: Health Monitor Edition Page
+    <h2 data-translate="octavia_load_balancer_health_monitor_edit_title"></h2>
+
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.loading">
+        <octavia-load-balancer-health-monitor-form
+            data-associated-pool="$ctrl.pool"
+            data-model="$ctrl.model"
+            data-edition-mode="true"
+            data-submit-label="{{:: 'octavia_load_balancer_health_monitor_edit_submit_label' | translate}}"
+            data-on-submit="$ctrl.editHealthMonitor()"
+            data-on-cancel="$ctrl.goBack()"
+        ></octavia-load-balancer-health-monitor-form>
+    </div>
 </div>

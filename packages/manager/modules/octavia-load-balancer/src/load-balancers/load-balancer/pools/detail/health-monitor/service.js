@@ -48,18 +48,26 @@ export default class OctaviaLoadBalancerHealthMonitorService {
     );
   }
 
-  editHealthMonitor(projectId, region, healthMonitor) {
+  editHealthMonitor(projectId, region, healthMonitorId, model) {
     const putDatas = {
-      delay: healthMonitor.delay,
-      httpConfiguration: { ...healthMonitor.httpConfiguration },
-      maxRetries: healthMonitor.maxRetries,
-      maxRetriesDown: healthMonitor.maxRetriesDown,
-      name: healthMonitor.name,
-      timeout: healthMonitor.timeout,
+      maxRetries: model.maxRetries,
+      maxRetriesDown: model.maxRetriesDown,
+      name: model.name,
+      delay: model.delay,
+      timeout: model.timeout,
     };
 
+    if (model.urlPath && model.expectedCode) {
+      putDatas.httpConfiguration = {
+        expectedCodes: model.expectedCode,
+        httpMethod: 'GET',
+        httpVersion: '1.0',
+        urlPath: model.urlPath,
+      };
+    }
+
     return this.$http.put(
-      `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor/${healthMonitor.id}`,
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor/${healthMonitorId}`,
       putDatas,
     );
   }

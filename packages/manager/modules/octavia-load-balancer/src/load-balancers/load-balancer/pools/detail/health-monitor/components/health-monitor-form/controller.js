@@ -4,6 +4,7 @@ import {
   HEALTH_MONITOR_NAME_REGEX,
   BOUNDS,
   POOL_HEALTH_MONITOR_TYPE,
+  HORIZON_LINK,
 } from './constants';
 
 export default class OctaviaLoadBalancerHealthMonitorFormCtrl {
@@ -14,6 +15,7 @@ export default class OctaviaLoadBalancerHealthMonitorFormCtrl {
     this.BOUNDS = BOUNDS;
     this.NAME_REGEX = HEALTH_MONITOR_NAME_REGEX;
     this.EXPECTED_STATUS_CODE_REGEX = EXPECTED_STATUS_CODE_REGEX;
+    this.HORIZON_LINK = HORIZON_LINK;
   }
 
   $onInit() {
