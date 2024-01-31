@@ -4,14 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc && vite build",
+    "build": "tsc --project tsconfig.build.json && vite build",
     "dev": "vite",
     "lint": "eslint ./src",
     "manager": "yarn --cwd ../../../../ start",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-pci-cdb-app' --include-dependencies -- npm run build --if-present",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci-cdb-app' --include-dependencies -- npm run dev --if-present",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-cdb-app' --include-dependencies -- npm run dev:watch --if-present",
-    "te": "tsc --version"
+    "test": "vitest run"
   },
   "dependencies": {
     "@babel/helper-string-parser": "^7.18.10",
@@ -71,18 +71,28 @@
     "zustand": "^4.4.7"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.23.6",
+    "@jest/globals": "^29.7.0",
     "@ovh-ux/manager-vite-config": "^0.3.0",
+    "@testing-library/dom": "^9.3.3",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^29.5.11",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^1.2.0",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.56.0",
     "postcss": "^8.4.32",
+    "rollup": "^4.4.0",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.3.3",
-    "vite": "^3.0.2"
+    "vite": "^3.0.2",
+    "vitest": "^1.2.0"
   },
   "regions": [
     "CA",
