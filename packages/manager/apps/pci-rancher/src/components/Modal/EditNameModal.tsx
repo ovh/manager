@@ -36,9 +36,7 @@ const EditNameModal = ({
 
   const isButtonValid = rancher.currentState?.name !== newName && isValidName;
 
-  console.log({ isButtonValid });
   const onEdit = () => {
-    console.log('onEdit', isButtonValid);
     if (isButtonValid) {
       onEditRancher({
         ...rancher,

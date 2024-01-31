@@ -6,6 +6,7 @@ import ErrorBanner from '@/components/Error/Error';
 import Loading from '@/components/Loading/Loading';
 import Listing from './listing';
 import { useRanchers } from '@/hooks/useRancher';
+import PageLayout from '@/components/PageLayout/PageLayout';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.serviceName;
@@ -27,13 +28,13 @@ export default function Home() {
   }
 
   return (
-    <div className="m-10">
+    <PageLayout>
       <Suspense fallback={<Loading />}>
         <div className="mb-3">
           <Breadcrumb />
         </div>
         {data?.data && <Listing data={data?.data} />}
       </Suspense>
-    </div>
+    </PageLayout>
   );
 }
