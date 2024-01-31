@@ -24,7 +24,8 @@ export default class OctaviaLoadBalancerHealthMonitorEditNameCtrl {
       this.name,
     )
       .then(() => {
-        return this.goToDashboard(true).then(() =>
+        return this.goToDashboard(true).then(() => {
+          this.isLoading = false;
           this.Alerter.set(
             'alert-success',
             this.$translate.instant(
@@ -32,10 +33,11 @@ export default class OctaviaLoadBalancerHealthMonitorEditNameCtrl {
             ),
             null,
             'octavia.alerts.healthmonitor',
-          ),
-        );
+          );
+        });
       })
       .catch((error) => {
+        this.isLoading = false;
         this.Alerter.error(
           this.$translate.instant('octavia_load_balancer_global_error', {
             message: error.data?.message,
@@ -44,9 +46,6 @@ export default class OctaviaLoadBalancerHealthMonitorEditNameCtrl {
           'octavia.alerts.healthmonitor',
         );
         this.goToDashboard();
-      })
-      .finally(() => {
-        this.isLoading = false;
       });
   }
 }

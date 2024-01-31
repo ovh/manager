@@ -1,3 +1,18 @@
-<div id="octavia-load-balancer-pools-detail-health-monitor-delete">
-    TODO: Health Monitor Delete Page
-</div>
+<oui-modal
+    data-on-dismiss="$ctrl.goToDashboard()"
+    data-primary-action="$ctrl.delete()"
+    data-secondary-action="$ctrl.goToDashboard()"
+    data-type="warning"
+    data-loading="$ctrl.isLoading"
+    data-primary-label="{{:: 'octavia_load_balancer_health_monitor_detail_overview_delete_confirm' | translate }}"
+    data-secondary-label="{{:: 'octavia_load_balancer_health_monitor_detail_overview_delete_cancel' | translate }}"
+    data-heading="{{:: 'octavia_load_balancer_health_monitor_detail_overview_delete_title' | translate }}"
+>
+    <p
+        data-translate="octavia_load_balancer_health_monitor_detail_overview_delete_description"
+        data-translate-values="{
+            healthMonitor: $ctrl.healthMonitor.name,
+            pool: $ctrl.pool.name,
+        }"
+    ></p>
+</oui-modal>

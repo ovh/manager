@@ -8,7 +8,6 @@ export default {
     pool: '<',
     healthMonitor: '<',
     goToDashboard: '<',
-    goBack: '<',
   },
   controller,
   template,
