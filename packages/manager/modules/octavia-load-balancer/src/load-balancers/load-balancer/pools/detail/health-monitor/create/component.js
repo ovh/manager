@@ -7,7 +7,7 @@ export default {
     region: '<',
     pool: '<',
     goToDashboard: '<',
-    goBack: '<',
+    goToPool: '<',
   },
   controller,
   template,

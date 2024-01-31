@@ -3,7 +3,12 @@ export default /* @ngInject */ ($stateProvider) => {
     'octavia-load-balancer.loadbalancer.pools.detail.health-monitor.delete',
     {
       url: '/delete',
-      component: 'octaviaLoadBalancerPoolsDetailHealthMonitorDelete',
+      views: {
+        modal: {
+          component: 'octaviaLoadBalancerPoolsDetailHealthMonitorDelete',
+        },
+      },
+      layout: 'modal',
       resolve: {
         breadcrumb: () => null,
       },
