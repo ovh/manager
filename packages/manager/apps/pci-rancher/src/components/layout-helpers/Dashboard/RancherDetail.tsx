@@ -54,6 +54,12 @@ const RancherDetail = ({
     : null;
   const vCpus = rancher.currentState.usage?.orchestratedVcpus;
 
+  useEffect(() => {
+    if (hasErrorAccessDetail) {
+      toggleGenerateAccessModal(false);
+    }
+  }, [hasErrorAccessDetail]);
+
   return (
     <div>
       {editNameResponse && (
@@ -86,7 +92,7 @@ const RancherDetail = ({
             onEditRancher={(r: RancherService) => editRancherName(r)}
           />
         )}
-        {showGenerateAccesModal && !hasErrorAccessDetail && (
+        {showGenerateAccesModal && (
           <GenerateAccessModal
             rancher={rancher}
             toggleModal={toggleGenerateAccessModal}

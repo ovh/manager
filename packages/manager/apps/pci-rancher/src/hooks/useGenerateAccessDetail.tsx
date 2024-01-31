@@ -20,12 +20,17 @@ const useGenerateAccessDetail = ({
   const [hasErrorAccessDetail, setErrorAccesDetail] = useState<boolean>(false);
 
   const { mutate: generateAccesDetail } = useMutation({
-    mutationFn: () =>
-      generateAccessRancherService({
+    mutationFn: () => {
+      setErrorAccesDetail(false);
+      return generateAccessRancherService({
         rancherId,
         projectId,
-      }),
-    onSuccess: (response) => setAccessDetail(response?.data),
+      });
+    },
+    onSuccess: (response) => {
+      setErrorAccesDetail(false);
+      return setAccessDetail(response?.data);
+    },
     onError: () => setErrorAccesDetail(true),
     mutationKey: postRancherServiceQueryKey(rancherId),
   });
