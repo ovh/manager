@@ -18,7 +18,7 @@ import {
   OdsInputValueChangeEvent,
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
-import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { handleClick } from '@/utils/ods-utils';
 import { FormField } from './FormField';
@@ -54,7 +54,9 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
 }) => {
   const { t } = useTranslation('vrack-services');
   const [deleteInput, setDeleteInput] = React.useState('');
-  const tracking = useTracking();
+  const {
+    shell: { tracking },
+  } = React.useContext(ShellContext);
   const modal = React.useRef<HTMLOsdsModalElement>(null);
   const close = () => {
     setDeleteInput('');
@@ -67,6 +69,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
       tracking.trackPage({
         name: onDisplayDataTracking,
         level2: '0',
+        page: { category: 'pop-up' },
       });
     }
   }, [isModalOpen, onDisplayDataTracking]);

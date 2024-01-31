@@ -14,7 +14,7 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { OnboardingLayout, PageLayout } from '@/components/layout-helpers';
 import { hasSubnet, isEditable, useVrackService } from '@/utils/vs-utils';
@@ -26,7 +26,9 @@ const Endpoints: React.FC = () => {
   const { data: vrackServices, isLoading } = useVrackService();
   const { id } = useParams();
   const navigate = useNavigate();
-  const tracking = useTracking();
+  const {
+    shell: { tracking },
+  } = React.useContext(ShellContext);
 
   const navigateToCreateEndpointPage = () =>
     navigate(urls.createEndpoint.replace(':id', id));

@@ -16,7 +16,7 @@ import {
   OsdsMessage,
 } from '@ovhcloud/ods-components/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OrderDescription,
   getDeliveringOrderQueryKey,
@@ -34,7 +34,7 @@ export type CreateVrackProps = {
 
 export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
   const { t } = useTranslation('vrack-services/listing');
-  const environment = useEnvironment();
+  const { environment } = React.useContext(ShellContext);
   const user = environment.getUser();
   const queryClient = useQueryClient();
 
@@ -42,12 +42,13 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
     data: vrackDeliveringOrders,
     isLoading: areVrackOrdersLoading,
     isError: isVrackOrdersError,
+    error: vrackOrdersError,
   } = useOrderPollingStatus({
     pollingKey: OrderDescription.vrack,
     queryToInvalidateOnDelivered: getVrackListQueryKey,
   });
 
-  const { mutate: orderNewVrack, isPending, isError } = useMutation({
+  const { mutate: orderNewVrack, isPending, isError, error } = useMutation({
     mutationFn: () => orderVrack({ ovhSubsidiary: user.ovhSubsidiary }),
     mutationKey: orderVrackQueryKey,
     onSuccess: () => {
@@ -77,7 +78,10 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
       />
       {(isError || isVrackOrdersError) && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          {t('genericApiError')}
+          {t('genericApiError', {
+            error: error || vrackOrdersError,
+            interpolation: { escapeValue: false },
+          })}
         </OsdsMessage>
       )}
       <OsdsButton

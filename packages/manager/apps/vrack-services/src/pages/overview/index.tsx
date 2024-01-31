@@ -17,10 +17,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useParams } from 'react-router-dom';
-import {
-  useEnvironment,
-  useTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ErrorPage } from '@/components/Error';
 import { useUpdateVrackServices, useVrackService } from '@/utils/vs-utils';
 import { formatDateString } from '@/utils/date';
@@ -37,8 +34,10 @@ export const OverviewTab: React.FC = () => {
   const [associateModalVisible, setAssociateModalVisible] = React.useState<
     string | undefined
   >(undefined);
-  const environment = useEnvironment();
-  const tracking = useTracking();
+  const {
+    environment,
+    shell: { tracking },
+  } = React.useContext(ShellContext);
   const urls = environment.getApplicationURLs();
   const { id } = useParams();
   const queryClient = useQueryClient();

@@ -16,7 +16,7 @@ import {
   OsdsInput,
 } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   VrackServices,
@@ -57,7 +57,9 @@ const SubnetCreationPage: React.FC = () => {
   const navigate = useNavigate();
   const vrackServices = useVrackService();
   const dashboardUrl = urls.subnets.replace(':id', id);
-  const tracking = useTracking();
+  const {
+    shell: { tracking },
+  } = React.useContext(ShellContext);
   const defaultCidr = t('defaultCidr');
   const defaultServiceRange = t('defaultServiceRange');
 

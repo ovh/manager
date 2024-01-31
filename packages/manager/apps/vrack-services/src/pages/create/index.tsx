@@ -15,10 +15,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  useEnvironment,
-  useTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
@@ -44,12 +41,14 @@ const CreationPage: React.FC = () => {
   const [displayName, setDisplayName] = React.useState('');
   const [isModalVisible, setIsModalVisible] = React.useState(false);
   const [shouldOrderVrack, setShouldOrderVrack] = React.useState(false);
-  const environment = useEnvironment();
+  const {
+    environment,
+    shell: { tracking },
+  } = React.useContext(ShellContext);
   const user = environment.getUser();
   const { t } = useTranslation('vrack-services/create');
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const tracking = useTracking();
 
   const {
     isLoading: isRegionLoading,

@@ -7,7 +7,7 @@ import {
   ODS_SELECT_SIZE,
   OdsSelectValueChangeEvent,
 } from '@ovhcloud/ods-components';
-import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   VrackServices,
@@ -42,7 +42,9 @@ const EndpointCreationPage: React.FC = () => {
   const navigate = useNavigate();
   const vrackServices = useVrackService();
   const dashboardUrl = urls.endpoints.replace(':id', id);
-  const tracking = useTracking();
+  const {
+    shell: { tracking },
+  } = React.useContext(ShellContext);
 
   const {
     iamResources,

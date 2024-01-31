@@ -1,10 +1,12 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { useRouting } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 export const useRouteSynchro = () => {
   const location = useLocation();
-  const routing = useRouting();
+  const {
+    shell: { routing },
+  } = React.useContext(ShellContext);
 
   React.useEffect(() => {
     routing.stopListenForHashChange();

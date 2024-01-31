@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { OsdsSpinner, OsdsDatagrid } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE, OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { useParams } from 'react-router-dom';
-import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useQueryClient } from '@tanstack/react-query';
 import { reactFormatter } from '@/utils/ods-utils';
 import { ActionsCell, ServiceName, ServiceType } from './EndpointDataGridCells';
@@ -23,7 +23,9 @@ export const EndpointDatagrid: React.FC = () => {
     string | undefined
   >(undefined);
   const { id } = useParams();
-  const tracking = useTracking();
+  const {
+    shell: { tracking },
+  } = React.useContext(ShellContext);
   const queryClient = useQueryClient();
 
   const { data: vrackServices, isError, error, isLoading } = useVrackService();

@@ -42,7 +42,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
   const [selectedVrack, setSelectedVrack] = React.useState('');
   const queryClient = useQueryClient();
 
-  const { mutate: associateVs, isPending, isError } = useMutation({
+  const { mutate: associateVs, isPending, isError, error } = useMutation({
     mutationFn: () =>
       associateVrackServices({
         vrack: selectedVrack,
@@ -69,7 +69,10 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
       </OsdsText>
       {isError && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          {t('genericApiError')}
+          {t('updateError', {
+            error,
+            interpolation: { escapeValue: false },
+          })}
         </OsdsMessage>
       )}
       <OsdsSelect

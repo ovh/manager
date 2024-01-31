@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { OsdsDatagrid, OsdsMessage } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_TYPE, OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { useParams } from 'react-router-dom';
-import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { reactFormatter } from '@/utils/ods-utils';
 import { DisplayNameCell, ActionsCell, CidrCell } from './SubnetDataGridCells';
 import { ErrorPage } from '@/components/Error';
@@ -17,7 +17,9 @@ export const SubnetDatagrid: React.FC = () => {
     string | undefined
   >(undefined);
   const { id } = useParams();
-  const tracking = useTracking();
+  const {
+    shell: { tracking },
+  } = React.useContext(ShellContext);
 
   const { data: vrackServices, isError, error } = useVrackService();
   const {

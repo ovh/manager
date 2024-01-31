@@ -17,6 +17,7 @@ export const useAllowedVrackList = (vrackServicesId?: string) => {
     data: vrackListResponse,
     isLoading: isVrackListLoading,
     isError: isVrackListError,
+    error: vrackListError,
     isFetched,
   } = useQuery({
     queryKey: getVrackListQueryKey,
@@ -43,6 +44,7 @@ export const useAllowedVrackList = (vrackServicesId?: string) => {
   const resultStatus = {
     isLoading: isVrackListLoading || result.some(({ isLoading }) => isLoading),
     isError: isVrackListError || result.some(({ isError }) => isError),
+    error: vrackListError || result.find(({ error }) => error),
   };
 
   return {

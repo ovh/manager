@@ -16,7 +16,7 @@ import {
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OnboardingLayout } from '@/components/layout-helpers/OnboardingLayout';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { isEditable, useVrackService } from '@/utils/vs-utils';
@@ -29,7 +29,9 @@ const Subnets: React.FC = () => {
   const { data: vrackServices, isLoading } = useVrackService();
   const { id } = useParams();
   const navigate = useNavigate();
-  const tracking = useTracking();
+  const {
+    shell: { tracking },
+  } = React.useContext(ShellContext);
 
   const navigateToCreateSubnetPage = () =>
     navigate(urls.createSubnet.replace(':id', id));

@@ -30,7 +30,7 @@ export const VrackAssociationModal: React.FC<VrackAssociationModalProps> = ({
 }) => {
   const { t } = useTranslation('vrack-services/listing');
   const modal = React.useRef<HTMLOsdsModalElement>(null);
-  const { allowedVrackList, isError, isLoading } = useAllowedVrackList(
+  const { allowedVrackList, isError, isLoading, error } = useAllowedVrackList(
     vrackServicesId,
   );
   const close = () => {
@@ -52,7 +52,10 @@ export const VrackAssociationModal: React.FC<VrackAssociationModalProps> = ({
     >
       {isError && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          {t('genericApiError')}
+          {t('genericApiError', {
+            error,
+            interpolation: { escapeValue: false },
+          })}
         </OsdsMessage>
       )}
       {isLoading && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
