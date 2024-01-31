@@ -44,12 +44,10 @@ angular.module('App').controller(
         BANNER_HOSTING_GUIDE_HELP_LINKS[this.ovhSubsidiary] ||
         BANNER_HOSTING_GUIDE_HELP_LINKS.DEFAULT;
 
-      this.createDatabaseUrl = this.$scope.currentActionData.isPrivateDatabase
-        ? this.coreURLBuilder.buildURL('web', `#/order-cloud-db`)
-        : this.coreURLBuilder.buildURL(
-            'web',
-            `#/hosting/${this.$scope.currentActionData.serviceName}/database/order-public`,
-          );
+      this.createDatabaseUrl = this.coreURLBuilder.buildURL(
+        'web',
+        `#/order-cloud-db`,
+      );
     }
 
     load() {
