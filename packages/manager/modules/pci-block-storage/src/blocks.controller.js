@@ -10,7 +10,6 @@ export default class PciBlockStorageController {
     CucCloudMessage,
     ovhManagerRegionService,
     ovhUserPref,
-    shellClient,
     PciProjectStorageBlockService,
   ) {
     this.$translate = $translate;
@@ -18,7 +17,6 @@ export default class PciBlockStorageController {
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.ovhUserPref = ovhUserPref;
     this.PciProjectStorageBlockService = PciProjectStorageBlockService;
-    this.shellClient = shellClient;
   }
 
   $onInit() {
