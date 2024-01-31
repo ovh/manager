@@ -56,10 +56,10 @@ export const VrackServicesDatagrid: React.FC = () => {
       formatter: reactFormatter(<ProductStatusCell t={t} />),
     },
     {
-      title: t('zone'),
-      field: 'currentState.zone',
+      title: t('region'),
+      field: 'currentState.region',
       isSortable: true,
-      formatter: (zone: string) => t(zone),
+      formatter: (region: string) => t(region),
     },
     {
       title: t('vrackId'),

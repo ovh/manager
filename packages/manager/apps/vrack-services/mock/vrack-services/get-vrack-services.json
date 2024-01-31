@@ -7,7 +7,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "LIM"
+      "region": "LIM"
     },
     "currentTasks": [],
     "id": "vrs-ahc-fw4-od1-efq",
@@ -58,7 +58,7 @@
         }
       ],
       "vrackId": null,
-      "zone": "GRA"
+      "region": "GRA"
     },
     "currentTasks": [],
     "id": "vrs-ar7-72w-poh-3qe",
@@ -94,7 +94,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [
       {
@@ -131,7 +131,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [
       {
@@ -168,7 +168,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lb-b5o",
@@ -187,7 +187,7 @@
       "productStatus": "ACTIVE",
       "subnets": [],
       "vrackId": "pn-00001",
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lb-b5r",
@@ -206,7 +206,7 @@
       "productStatus": "DISABLED",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lb-b5s",
@@ -225,7 +225,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lb-b5t",
@@ -244,7 +244,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lb-b5u",
@@ -263,7 +263,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lb-b5v",
@@ -282,7 +282,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lb-b5x",
@@ -301,7 +301,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7la-b5o",
@@ -320,7 +320,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lc-b5o",
@@ -339,7 +339,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7ld-b5o",
@@ -358,7 +358,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7le-b5o",
@@ -377,7 +377,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lf-b5o",
@@ -396,7 +396,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lg-b5o",
@@ -415,7 +415,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lh-b5o",
@@ -434,7 +434,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7li-b5o",
@@ -453,7 +453,7 @@
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
-      "zone": "RBX"
+      "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lj-b5o",

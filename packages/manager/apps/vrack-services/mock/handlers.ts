@@ -7,7 +7,7 @@ import {
   GetVrackServicesMocksParams,
 } from './vrack-services/vrack-services';
 import { getVracMocks, GetVrackMocksParams } from './vrack/vrack';
-import { getZoneMocks, GetZoneMocksParams } from './vrack-services/zone';
+import { getRegionMocks, GetRegionMocksParams } from './vrack-services/region';
 import { getCartMocks, GetCartMocksParams } from './order/cart';
 import {
   getAssociationMocks,
@@ -24,7 +24,7 @@ export type ConfigParams = GetVrackServicesMocksParams &
   GetAuthenticationMocks &
   GetOrderDetailsMocksParams &
   GetCartMocksParams &
-  GetZoneMocksParams &
+  GetRegionMocksParams &
   GetVrackMocksParams &
   GetAssociationMocksParams &
   GetIamMocksParams;
@@ -33,7 +33,7 @@ export const getConfig = (params: ConfigParams): Handler[] =>
   [
     getAuthenticationMocks,
     getVrackServicesMocks,
-    getZoneMocks,
+    getRegionMocks,
     getVracMocks,
     getAssociationMocks,
     getCartMocks,

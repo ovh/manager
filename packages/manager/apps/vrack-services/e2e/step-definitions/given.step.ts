@@ -15,11 +15,11 @@ Given('User has {word} vRack Services', function(
 });
 
 Given(
-  'User wants to create a vRack Services with name {string} and zone {word}',
-  function(this: ICustomWorld<ConfigParams>, name: string, zone: string) {
+  'User wants to create a vRack Services with name {string} and region {word}',
+  function(this: ICustomWorld<ConfigParams>, name: string, region: string) {
     this.handlersConfig.nbVs = 5;
     this.testContext.inputTexts.displayName = name;
-    this.testContext.inputTexts.selectedZone = zone;
+    this.testContext.inputTexts.selectedRegion = region;
     this.testContext.initialUrl = urls.create;
     this.testContext.errorMessage = creationServiceError.replace(
       '{{error}}',

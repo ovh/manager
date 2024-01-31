@@ -104,8 +104,8 @@ export const OverviewTab: React.FC = () => {
                     t={t}
                   />
                 </TileBlock>
-                <TileBlock label={t('zone')}>
-                  {t(vrackServices?.currentState.zone)}
+                <TileBlock label={t('region')}>
+                  {t(vrackServices?.currentState.region)}
                 </TileBlock>
                 <TileBlock label={t('vrackId')}>
                   <VrackIdCell

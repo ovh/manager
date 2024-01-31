@@ -1,2 +1,2 @@
 export const displayNameInputName = 'displayName';
-export const zoneInputName = 'zone';
+export const regionInputName = 'region';

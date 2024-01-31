@@ -18,33 +18,33 @@ import {
 import { ODS_COUNTRY_ISO_CODE } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  getvrackServicesReferenceZoneListQueryKey,
-  getvrackServicesReferenceZoneList,
+  getvrackServicesReferenceRegionListQueryKey,
+  getvrackServicesReferenceRegionList,
 } from '@/api';
-import { zoneInputName } from '../constants';
+import { regionInputName } from '../constants';
 
 export type Props = {
   isReadOnly?: boolean;
-  selectedZone: string;
-  setSelectedZone: React.Dispatch<React.SetStateAction<string>>;
+  selectedRegion: string;
+  setSelectedRegion: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const zoneNameToIsoCode: { [prop: string]: ODS_COUNTRY_ISO_CODE } = {
+const regionNameToIsoCode: { [prop: string]: ODS_COUNTRY_ISO_CODE } = {
   RBX: ODS_COUNTRY_ISO_CODE.FR,
   LIM: ODS_COUNTRY_ISO_CODE.DE,
   BHS: ODS_COUNTRY_ISO_CODE.CA,
 };
 
-export const ZoneFormField: React.FC<Props> = ({
+export const RegionFormField: React.FC<Props> = ({
   isReadOnly,
-  selectedZone,
-  setSelectedZone,
+  selectedRegion,
+  setSelectedRegion,
 }) => {
   const { t } = useTranslation('vrack-services/create');
 
-  const { data, isLoading: isZoneLoading } = useQuery({
-    queryKey: getvrackServicesReferenceZoneListQueryKey,
-    queryFn: getvrackServicesReferenceZoneList,
+  const { data, isLoading: isRegionLoading } = useQuery({
+    queryKey: getvrackServicesReferenceRegionListQueryKey,
+    queryFn: getvrackServicesReferenceRegionList,
     staleTime: Infinity,
   });
 
@@ -56,7 +56,7 @@ export const ZoneFormField: React.FC<Props> = ({
         size={ODS_TEXT_SIZE._400}
         className="block mt-8 mb-4"
       >
-        {t('zoneLabel')}
+        {t('regionLabel')}
       </OsdsText>
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
@@ -64,9 +64,9 @@ export const ZoneFormField: React.FC<Props> = ({
         size={ODS_TEXT_SIZE._400}
         className="block mb-6"
       >
-        {t('zoneDescription')}
+        {t('regionDescription')}
       </OsdsText>
-      {isZoneLoading ? (
+      {isRegionLoading ? (
         <div className="mb-5">
           <OsdsSpinner inline size={ODS_SPINNER_SIZE.lg} />
         </div>
@@ -74,24 +74,24 @@ export const ZoneFormField: React.FC<Props> = ({
         <OsdsFormField className="mb-5">
           <OsdsRadioGroup
             className="flex overflow-x-auto"
-            name={zoneInputName}
-            value={selectedZone}
+            name={regionInputName}
+            value={selectedRegion}
             required
           >
-            {data?.data?.map((zone) => {
-              const [country, city] = zone.description.split('-');
+            {data?.data?.map((region) => {
+              const [country, city] = region.description.split('-');
               return (
                 <OsdsRadio
                   className="w-[165px] mr-5 mb-5"
-                  id={zone.name}
-                  key={zone.name}
-                  value={zone.name}
-                  name={zoneInputName}
-                  checked={selectedZone === zone.name || undefined}
+                  id={region.code}
+                  key={region.code}
+                  value={region.code}
+                  name={regionInputName}
+                  checked={selectedRegion === region.code || undefined}
                   disabled={isReadOnly || undefined}
                   onKeyDown={(event: React.KeyboardEvent) => {
                     if ([' ', 'Enter'].includes(event.key)) {
-                      setSelectedZone(zone.name);
+                      setSelectedRegion(region.code);
                     }
                   }}
                 >
@@ -99,16 +99,16 @@ export const ZoneFormField: React.FC<Props> = ({
                     className="flex flex-col h-full w-[165px]"
                     hoverable
                     color={ODS_THEME_COLOR_INTENT.primary}
-                    checked={selectedZone === zone.name || undefined}
+                    checked={selectedRegion === region.code || undefined}
                     onClick={() => {
-                      setSelectedZone(zone.name);
+                      setSelectedRegion(region.code);
                     }}
                   >
                     <div slot="start" className="w-full">
                       <OsdsFlag
                         className="w-11 mx-auto"
                         iso={
-                          zoneNameToIsoCode[zone.name] ||
+                          regionNameToIsoCode[region.code] ||
                           ODS_COUNTRY_ISO_CODE.FR
                         }
                         lazy
@@ -130,7 +130,7 @@ export const ZoneFormField: React.FC<Props> = ({
                         level={ODS_TEXT_LEVEL.body}
                         color={ODS_THEME_COLOR_INTENT.text}
                       >
-                        {`${city || ''} (${zone.name})`}
+                        {`${city || ''} (${region.code})`}
                       </OsdsText>
                     </div>
                   </OsdsTile>
