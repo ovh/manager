@@ -13,6 +13,9 @@ const setupSpecTest = async (rancherService: RancherService = rancherMocked) =>
         rancher={rancherService}
         editNameResponse={null}
         editRancherName={jest.fn()}
+        generateAccesDetail={jest.fn()}
+        accessDetail={null}
+        hasErrorAccessDetail={false}
       />,
     ),
   );

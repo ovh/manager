@@ -7,7 +7,9 @@ import Breadcrumb, {
 import ErrorBanner from '@/components/Error/Error';
 import Loading from '@/components/Loading/Loading';
 import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
+import { DashboardTabItemProps } from '../../components/layout-helpers/Dashboard/Dashboard';
 import { useRancher } from '@/hooks/useRancher';
+import PageLayout from '@/components/PageLayout/PageLayout';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.serviceName;
@@ -15,9 +17,9 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 
 export default function DashboardPage() {
   const { t } = useTranslation('pci-rancher/dashboard');
-  const { data } = useRancher();
+  const { data, error, isLoading } = useRancher();
 
-  const tabsList = [
+  const tabsList: DashboardTabItemProps[] = [
     {
       name: 'general_infos',
       title: t('general_informations'),
@@ -28,13 +30,12 @@ export default function DashboardPage() {
       title: t('allowedIps'),
       to: useResolvedPath('Tabs2').pathname,
       isDisabled: true,
+      isComingSoon: true,
     },
   ];
 
-  const { error, isLoading } = {} as any;
-
   if (error) {
-    return <ErrorBanner error={error.response} />;
+    return <ErrorBanner error={error} />;
   }
 
   if (isLoading) {
@@ -46,11 +47,11 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="m-10">
-      <Breadcrumb items={[{ label: data?.data.targetSpec.name }]} />
+    <PageLayout>
       <Suspense fallback={<Loading />}>
+        <Breadcrumb items={[{ label: data?.data.targetSpec.name }]} />
         {data?.data && <Dashboard tabs={tabsList} rancher={data.data} />}
       </Suspense>
-    </div>
+    </PageLayout>
   );
 }

@@ -20,30 +20,45 @@ import {
   OsdsTile,
   OsdsMessage,
 } from '@ovhcloud/ods-components/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import EditNameModal from '../../Modal/EditNameModal';
 
 import { RancherService } from '../../../api/api.type';
 import { TileBlock } from '../../TileBlock/TileBlock';
+import GenerateAccessModal from '../../Modal/GenerateAccesModal';
+import { AccessDetail } from '../../../hooks/useGenerateAccessDetail';
 
 interface RancherDetailProps {
   rancher: RancherService;
   editNameResponse: ODS_MESSAGE_TYPE | null;
   editRancherName: (rancher: RancherService) => void;
+  generateAccesDetail: () => void;
+  accessDetail: AccessDetail;
+  hasErrorAccessDetail: boolean;
 }
 const RancherDetail = ({
   rancher,
   editNameResponse,
   editRancherName,
+  generateAccesDetail,
+  accessDetail,
+  hasErrorAccessDetail,
 }: RancherDetailProps) => {
   const { t } = useTranslation('pci-rancher/dashboard');
   const [showEditModal, toggleEditModal] = useState(false);
+  const [showGenerateAccesModal, toggleGenerateAccessModal] = useState(false);
 
   const dateUsage = rancher.currentState.usage
     ? new Date(rancher.currentState.usage?.datetime)
     : null;
   const vCpus = rancher.currentState.usage?.orchestratedVcpus;
+
+  useEffect(() => {
+    if (hasErrorAccessDetail) {
+      toggleGenerateAccessModal(false);
+    }
+  }, [hasErrorAccessDetail]);
 
   return (
     <div>
@@ -59,12 +74,30 @@ const RancherDetail = ({
           </OsdsText>
         </OsdsMessage>
       )}
+      {hasErrorAccessDetail && (
+        <OsdsMessage type={ODS_MESSAGE_TYPE.error} className="my-4 p-3">
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            className="inline-block"
+          >
+            {t('editNameRancherError')}
+          </OsdsText>
+        </OsdsMessage>
+      )}
       <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 py-6 max-w-3xl">
         {showEditModal && (
           <EditNameModal
             rancher={rancher}
             toggleModal={toggleEditModal}
             onEditRancher={(r: RancherService) => editRancherName(r)}
+          />
+        )}
+        {showGenerateAccesModal && (
+          <GenerateAccessModal
+            rancher={rancher}
+            toggleModal={toggleGenerateAccessModal}
+            onGenerateAccess={() => generateAccesDetail()}
+            accessDetail={accessDetail}
           />
         )}
 
@@ -119,7 +152,10 @@ const RancherDetail = ({
                 <OsdsClipboard
                   aria-label="clipboard"
                   value={rancher.currentState.url}
-                />
+                >
+                  <span slot="success-message">{t('copy')}</span>
+                  <span slot="error-message">{t('error')}</span>
+                </OsdsClipboard>
                 <OsdsButton
                   color={ODS_THEME_COLOR_INTENT.primary}
                   size={ODS_BUTTON_SIZE.sm}
@@ -130,17 +166,19 @@ const RancherDetail = ({
                 >
                   {t('rancher_button_acces')}
                 </OsdsButton>
-                <div className="mt-3 flex items-center">
-                  <OsdsLink color={ODS_THEME_COLOR_INTENT.primary}>
-                    {t('generate_access')}
-                  </OsdsLink>
+                <OsdsLink
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  className="mt-3 flex items-center"
+                  onClick={() => toggleGenerateAccessModal(true)}
+                >
+                  <span>{t('generate_access')}</span>
                   <OsdsIcon
                     className="ml-4 cursor-pointer"
                     name={ODS_ICON_NAME.ARROW_RIGHT}
                     size={ODS_ICON_SIZE.xxs}
                     color={ODS_THEME_COLOR_INTENT.primary}
                   />
-                </div>
+                </OsdsLink>
               </TileBlock>
             </div>
           </OsdsTile>
