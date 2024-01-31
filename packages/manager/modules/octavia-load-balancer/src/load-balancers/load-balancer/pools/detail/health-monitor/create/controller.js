@@ -1,12 +1,9 @@
-import { HORIZON_LINK } from './constants';
-
 export default class OctaviaLoadBalancerPoolsDetailHealthMonitorCreateCtrl {
   /* @ngInject */
   constructor(Alerter, OctaviaLoadBalancerHealthMonitorService, $translate) {
     this.Alerter = Alerter;
     this.OctaviaLoadBalancerHealthMonitorService = OctaviaLoadBalancerHealthMonitorService;
     this.$translate = $translate;
-    this.HORIZON_LINK = HORIZON_LINK;
   }
 
   $onInit() {
@@ -29,7 +26,8 @@ export default class OctaviaLoadBalancerPoolsDetailHealthMonitorCreateCtrl {
       this.model,
     )
       .then(() => {
-        this.goToDashboard(true).then(() =>
+        this.goToDashboard(true).then(() => {
+          this.loading = false;
           this.Alerter.set(
             'alert-success',
             this.$translate.instant(
@@ -38,10 +36,11 @@ export default class OctaviaLoadBalancerPoolsDetailHealthMonitorCreateCtrl {
             ),
             null,
             'octavia.alerts.healthmonitor',
-          ),
-        );
+          );
+        });
       })
       .catch((error) => {
+        this.loading = false;
         this.Alerter.error(
           this.$translate.instant('octavia_load_balancer_global_error', {
             message: error.data?.message,
@@ -49,9 +48,6 @@ export default class OctaviaLoadBalancerPoolsDetailHealthMonitorCreateCtrl {
           }),
           'octavia.alerts.healthmonitor',
         );
-      })
-      .finally(() => {
-        this.loading = false;
       });
   }
 }

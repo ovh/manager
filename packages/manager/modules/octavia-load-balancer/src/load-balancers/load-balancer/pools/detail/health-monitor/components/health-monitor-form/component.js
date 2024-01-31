@@ -5,6 +5,7 @@ export default {
   bindings: {
     associatedPool: '<',
     model: '=',
+    editionMode: '<?',
     onSubmit: '&?',
     submitLabel: '@?',
     onCancel: '&?',
