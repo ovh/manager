@@ -9,6 +9,7 @@ const setupSpecTest = async (rancherService: RancherService = rancherMocked) =>
   waitFor(() =>
     render(
       <ActionsCell
+        href="/rancher"
         setSelectedRancher={() => true}
         openModal={() => true}
         rowData={rancherService}

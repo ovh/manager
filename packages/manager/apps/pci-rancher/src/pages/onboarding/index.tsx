@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import onboardingImgSrc from '../../assets/onboarding-img.png';
 import { OnboardingLayout } from '../../components/layout-helpers/Onboarding';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
+import PageLayout from '@/components/PageLayout/PageLayout';
 
 export default function Onboarding() {
   const { t } = useTranslation('pci-rancher/onboarding');
@@ -10,7 +11,7 @@ export default function Onboarding() {
   const description: string = t('description');
 
   return (
-    <div className="m-10">
+    <PageLayout>
       <Breadcrumb />
       <OnboardingLayout
         title={title}
@@ -21,6 +22,6 @@ export default function Onboarding() {
         moreInfoButtonLabel={t('moreInfoButtonLabel')}
         moreInfoHref={t('moreInfoButtonLink')}
       />
-    </div>
+    </PageLayout>
   );
 }
