@@ -58,6 +58,15 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           );
         },
+        goToL7PolicyDeletion: /* @ngInject */ ($state) => (policy) => {
+          $state.go(
+            'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.list.delete',
+            {
+              policyId: policy.id,
+              policyName: policy.name,
+            },
+          );
+        },
         getPoolDetailLinkFromPolicy: /* @ngInject */ (getPoolDetailLink) => (
           policy,
         ) => getPoolDetailLink(policy.redirectPoolId),

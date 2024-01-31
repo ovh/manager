@@ -11,5 +11,6 @@
   "octavia_load_balancer_list_l7_policies_actions_manage_rules": "Gérer les L7 Rules",
   "octavia_load_balancer_list_l7_policies_actions_delete": "Supprimer",
   "octavia_load_balancer_create_l7_policy_success": "Votre L7 policy {{ policy }} a été créée avec succès. Vous pouvez à présent créer une <a href=\"{{ link }}\">L7 Rule</a>.",
-  "octavia_load_balancer_edit_l7_policy_success": "Votre L7 policy {{ policy }} a été modifiée avec succès."
+  "octavia_load_balancer_edit_l7_policy_success": "Votre L7 policy {{ policy }} a été modifiée avec succès.",
+  "octavia_load_balancer_list_l7_policies_delete_success": "Votre L7 policy {{policy}} a été supprimée avec succès !"
 }
