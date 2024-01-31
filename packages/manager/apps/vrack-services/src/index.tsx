@@ -16,7 +16,10 @@ const init = async (
   appName: string,
   { reloadOnLocaleChange } = { reloadOnLocaleChange: false },
 ) => {
-  if (window.location.href.includes('localhost:9001')) {
+  if (
+    window.location.href.includes('localhost:9001') &&
+    !import.meta.env.VITE_TEST_BDD
+  ) {
     await setupWorker(
       ...getMswHandlers({
         nbVs: 19,

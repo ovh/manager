@@ -34,13 +34,30 @@ export const VrackConfirmModal: React.FC<Props> = ({
   onDeny,
 }) => {
   const { t } = useTranslation('vrack-services/create');
+  const modal = React.useRef<HTMLOsdsModalElement>(null);
+
+  const cancel = () => {
+    onCancel();
+    modal.current.close();
+  };
+
+  const confirm = () => {
+    onConfirm();
+    modal.current.close();
+  };
+
+  const deny = () => {
+    onDeny();
+    modal.current.close();
+  };
 
   return (
     <OsdsModal
+      ref={modal}
       dismissible
       headline={t('modalHeadline')}
       masked={!isModalVisible || undefined}
-      onOdsModalClose={onCancel}
+      onOdsModalClose={cancel}
     >
       <OsdsText
         className="block mb-4"
@@ -72,7 +89,7 @@ export const VrackConfirmModal: React.FC<Props> = ({
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_THEME_COLOR_INTENT.primary}
         data-tracking={cancelDataTracking}
-        {...handleClick(onCancel)}
+        {...handleClick(cancel)}
       >
         {t('modalCancelButtonLabel')}
       </OsdsButton>
@@ -82,7 +99,7 @@ export const VrackConfirmModal: React.FC<Props> = ({
         variant={ODS_BUTTON_VARIANT.stroked}
         color={ODS_THEME_COLOR_INTENT.primary}
         data-tracking={denyDataTracking}
-        {...handleClick(onDeny)}
+        {...handleClick(deny)}
       >
         {t('modalNoVrackButtonLabel')}
       </OsdsButton>
@@ -92,7 +109,7 @@ export const VrackConfirmModal: React.FC<Props> = ({
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.primary}
         data-tracking={confirmDataTracking}
-        {...handleClick(onConfirm)}
+        {...handleClick(confirm)}
       >
         {t('modalConfirmVrackButtonLabel')}
       </OsdsButton>

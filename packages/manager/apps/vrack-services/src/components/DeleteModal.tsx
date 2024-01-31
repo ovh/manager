@@ -55,9 +55,11 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
   const { t } = useTranslation('vrack-services');
   const [deleteInput, setDeleteInput] = React.useState('');
   const tracking = useTracking();
+  const modal = React.useRef<HTMLOsdsModalElement>(null);
   const close = () => {
     setDeleteInput('');
     closeModal();
+    modal.current.close();
   };
 
   React.useEffect(() => {
@@ -71,6 +73,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
 
   return (
     <OsdsModal
+      ref={modal}
       dismissible
       color={ODS_THEME_COLOR_INTENT.warning}
       headline={headline}
