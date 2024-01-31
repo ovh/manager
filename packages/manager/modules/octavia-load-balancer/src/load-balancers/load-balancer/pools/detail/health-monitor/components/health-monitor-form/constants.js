@@ -1,5 +1,8 @@
 import { HEALTH_MONITOR_TYPE } from '../../constants';
 
+export const HORIZON_LINK =
+  'https://horizon.cloud.ovh.net/project/load_balancer';
+
 export const BOUNDS = {
   MAX_RETRIES_DOWN: {
     MIN: 1,
@@ -71,6 +74,7 @@ export const POOL_HEALTH_MONITOR_TYPE = {
 };
 
 export default {
+  HORIZON_LINK,
   BOUNDS,
   HEALTH_MONITOR_NAME_REGEX,
   POOL_HEALTH_MONITOR_TYPE,
