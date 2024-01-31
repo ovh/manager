@@ -7,12 +7,7 @@
   resolved "https://registry.yarnpkg.com/@aashutoshrathi/word-wrap/-/word-wrap-1.2.6.tgz#bd9154aec9983f77b3a034ecaa015c2e4201f6cf"
   integrity sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==
 
-"@adobe/css-tools@^4.0.1":
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/@adobe/css-tools/-/css-tools-4.3.2.tgz#a6abc715fb6884851fca9dad37fc34739a04fd11"
-  integrity sha512-DA5a1C0gD/pLOvhv33YMrbf2FK3oUzwNl9oOJqE4XVjuEtt6XIakRcsd7eLiOSPkp1kTRQGICTA8cKra/vFbjw==
-
-"@adobe/css-tools@^4.3.2":
+"@adobe/css-tools@^4.0.1", "@adobe/css-tools@^4.3.2":
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/@adobe/css-tools/-/css-tools-4.3.2.tgz#a6abc715fb6884851fca9dad37fc34739a04fd11"
   integrity sha512-DA5a1C0gD/pLOvhv33YMrbf2FK3oUzwNl9oOJqE4XVjuEtt6XIakRcsd7eLiOSPkp1kTRQGICTA8cKra/vFbjw==
@@ -215,6 +210,27 @@
     json5 "^2.2.3"
     semver "^6.3.1"
 
+"@babel/core@^7.21.3":
+  version "7.23.9"
+  resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.23.9.tgz#b028820718000f267870822fec434820e9b1e4d1"
+  integrity sha512-5q0175NOjddqpvvzU+kDiSOAk4PfdO6FvwCWoQ6RO7rTzEe8vlo+4HVfcnAREhD4npMs0e9uZypjTwzZPCf/cw==
+  dependencies:
+    "@ampproject/remapping" "^2.2.0"
+    "@babel/code-frame" "^7.23.5"
+    "@babel/generator" "^7.23.6"
+    "@babel/helper-compilation-targets" "^7.23.6"
+    "@babel/helper-module-transforms" "^7.23.3"
+    "@babel/helpers" "^7.23.9"
+    "@babel/parser" "^7.23.9"
+    "@babel/template" "^7.23.9"
+    "@babel/traverse" "^7.23.9"
+    "@babel/types" "^7.23.9"
+    convert-source-map "^2.0.0"
+    debug "^4.1.0"
+    gensync "^1.0.0-beta.2"
+    json5 "^2.2.3"
+    semver "^6.3.1"
+
 "@babel/core@^7.23.5":
   version "7.23.6"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.23.6.tgz#8be77cd77c55baadcc1eae1c33df90ab6d2151d4"
@@ -225,10 +241,10 @@
     "@babel/generator" "^7.23.6"
     "@babel/helper-compilation-targets" "^7.23.6"
     "@babel/helper-module-transforms" "^7.23.3"
-    "@babel/helpers" "^7.23.7"
+    "@babel/helpers" "^7.23.6"
     "@babel/parser" "^7.23.6"
     "@babel/template" "^7.22.15"
-    "@babel/traverse" "^7.23.7"
+    "@babel/traverse" "^7.23.6"
     "@babel/types" "^7.23.6"
     convert-source-map "^2.0.0"
     debug "^4.1.0"
@@ -236,7 +252,7 @@
     json5 "^2.2.3"
     semver "^6.3.1"
 
-"@babel/generator@^7.20.3", "@babel/generator@^7.22.9", "@babel/generator@^7.23.6", "@babel/generator@^7.7.2":
+"@babel/generator@^7.20.3", "@babel/generator@^7.22.15", "@babel/generator@^7.22.9", "@babel/generator@^7.23.6", "@babel/generator@^7.7.2":
   version "7.23.6"
   resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.23.6.tgz#9e1fca4811c77a10580d17d26b57b036133f3c2e"
   integrity sha512-qrSfCYxYQB5owCmGLbl8XRpX1ytXlpueOb0N0UmQwA073KZxejgQTzAmJezxvpwQD9uGtK2shHdi55QT+MbjIw==
@@ -340,7 +356,7 @@
   dependencies:
     "@babel/types" "^7.22.15"
 
-"@babel/helper-module-transforms@^7.23.3":
+"@babel/helper-module-transforms@^7.22.20", "@babel/helper-module-transforms@^7.23.3":
   version "7.23.3"
   resolved "https://registry.yarnpkg.com/@babel/helper-module-transforms/-/helper-module-transforms-7.23.3.tgz#d7d12c3c5d30af5b3c0fcab2a6d5217773e2d0f1"
   integrity sha512-7bBs4ED9OmswdfDzpz4MpWgSrV7FXlc3zIagvLFjS5H+Mk7Snr21vQ6QwrsoCGMfNC4e4LQPdoULEt4ykz0SRQ==
@@ -402,12 +418,12 @@
   dependencies:
     "@babel/types" "^7.22.5"
 
-"@babel/helper-string-parser@^7.18.10", "@babel/helper-string-parser@^7.23.4":
+"@babel/helper-string-parser@^7.18.10", "@babel/helper-string-parser@^7.22.5", "@babel/helper-string-parser@^7.23.4":
   version "7.23.4"
   resolved "https://registry.yarnpkg.com/@babel/helper-string-parser/-/helper-string-parser-7.23.4.tgz#9478c707febcbbe1ddb38a3d91a2e054ae622d83"
   integrity sha512-803gmbQdqwdf4olxrX4AJyFBV/RTr3rSmOj0rKwesmzlfhYNDEs+/iOcznzpNWlJlIlTJC2QfPFcHB6DlzdVLQ==
 
-"@babel/helper-validator-identifier@^7.22.20":
+"@babel/helper-validator-identifier@^7.22.19", "@babel/helper-validator-identifier@^7.22.20":
   version "7.22.20"
   resolved "https://registry.yarnpkg.com/@babel/helper-validator-identifier/-/helper-validator-identifier-7.22.20.tgz#c4ae002c61d2879e724581d96665583dbc1dc0e0"
   integrity sha512-Y4OZ+ytlatR8AI+8KZfKuL5urKp7qey08ha31L8b3BwewJAoJamTzyvxPR/5D+KkdJCGPq/+8TukHBlY10FX9A==
@@ -435,14 +451,14 @@
     "@babel/traverse" "^7.22.15"
     "@babel/types" "^7.22.15"
 
-"@babel/helpers@^7.23.6":
-  version "7.23.6"
-  resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.23.6.tgz#d03af2ee5fb34691eec0cda90f5ecbb4d4da145a"
-  integrity sha512-wCfsbN4nBidDRhpDhvcKlzHWCTlgJYUUdSJfzXb2NuBssDSIjc3xcb+znA7l+zYsFljAcGM0aFkN40cR3lXiGA==
+"@babel/helpers@^7.23.6", "@babel/helpers@^7.23.9":
+  version "7.23.9"
+  resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.23.9.tgz#c3e20bbe7f7a7e10cb9b178384b4affdf5995c7d"
+  integrity sha512-87ICKgU5t5SzOT7sBMfCOZQ2rHjRU+Pcb9BoILMYz600W6DkVRLFBPwQ18gwUVvggqXivaUakpnxWQGbpywbBQ==
   dependencies:
-    "@babel/template" "^7.22.15"
-    "@babel/traverse" "^7.23.7"
-    "@babel/types" "^7.23.6"
+    "@babel/template" "^7.23.9"
+    "@babel/traverse" "^7.23.9"
+    "@babel/types" "^7.23.9"
 
 "@babel/highlight@^7.23.4":
   version "7.23.4"
@@ -457,6 +473,11 @@
   version "7.23.6"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.23.6.tgz#ba1c9e512bda72a47e285ae42aff9d2a635a9e3b"
   integrity sha512-Z2uID7YJ7oNvAI20O9X0bblw7Qqs8Q2hFy0R9tAfnfLkp5MW0UH9eUvnDSnFwKZ0AvgS1ucqR4KzvVHgnke1VQ==
+
+"@babel/parser@^7.22.16", "@babel/parser@^7.23.9":
+  version "7.23.9"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.23.9.tgz#7b903b6149b0f8fa7ad564af646c4c38a77fc44b"
+  integrity sha512-9tcKgqKbs3xGJ+NtKF2ndOBBLVwPjl1SHxPQkd36r3Dlirw3xWUeGaTbqr7uGZcTaxkVNwc+03SVP7aCdWrTlA==
 
 "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@^7.23.3":
   version "7.23.3"
@@ -1319,17 +1340,10 @@
     core-js-pure "^3.30.2"
     regenerator-runtime "^0.14.0"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.14.5", "@babel/runtime@^7.15.4", "@babel/runtime@^7.16.3", "@babel/runtime@^7.17.8", "@babel/runtime@^7.18.3", "@babel/runtime@^7.21.0", "@babel/runtime@^7.22.15", "@babel/runtime@^7.22.5", "@babel/runtime@^7.3.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
+"@babel/runtime@7.22.15", "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.14.5", "@babel/runtime@^7.15.4", "@babel/runtime@^7.16.3", "@babel/runtime@^7.17.8", "@babel/runtime@^7.18.3", "@babel/runtime@^7.21.0", "@babel/runtime@^7.22.15", "@babel/runtime@^7.22.5", "@babel/runtime@^7.23.2", "@babel/runtime@^7.23.7", "@babel/runtime@^7.3.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
   version "7.22.15"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.22.15.tgz#38f46494ccf6cf020bd4eed7124b425e83e523b8"
   integrity sha512-T0O+aa+4w0u06iNmapipJXMV4HoUir03hpx3/YqXXhu9xim3w+dVphjFWl1OH8NbZHw5Lbm9k45drDkgq2VNNA==
-  dependencies:
-    regenerator-runtime "^0.14.0"
-
-"@babel/runtime@^7.23.2", "@babel/runtime@^7.23.5":
-  version "7.23.9"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.23.9.tgz#47791a15e4603bb5f905bc0753801cf21d6345f7"
-  integrity sha512-0CX6F+BI2s9dkUqr08KFrAIZgNFj75rdBU/DjCyYLIaV/quFjkk6T+EJ2LkZHyZTbEV4L5p97mNkUsHl2wLFAw==
   dependencies:
     regenerator-runtime "^0.14.0"
 
@@ -1347,6 +1361,15 @@
     "@babel/parser" "^7.22.15"
     "@babel/types" "^7.22.15"
 
+"@babel/template@^7.23.9":
+  version "7.23.9"
+  resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.23.9.tgz#f881d0487cba2828d3259dcb9ef5005a9731011a"
+  integrity sha512-+xrD2BWLpvHKNmX2QbpdpsBaWnRxahMwJjO+KZk2JOElj5nSmKezyS1B4u+QbHMTX69t4ukm6hh9lsYQ7GHCKA==
+  dependencies:
+    "@babel/code-frame" "^7.23.5"
+    "@babel/parser" "^7.23.9"
+    "@babel/types" "^7.23.9"
+
 "@babel/traverse@^7.1.0", "@babel/traverse@^7.22.15", "@babel/traverse@^7.22.20", "@babel/traverse@^7.22.8", "@babel/traverse@^7.7.0", "@babel/traverse@^7.7.2":
   version "7.22.20"
   resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.22.20.tgz#db572d9cb5c79e02d83e5618b82f6991c07584c9"
@@ -1363,10 +1386,10 @@
     debug "^4.1.0"
     globals "^11.1.0"
 
-"@babel/traverse@^7.23.6":
-  version "7.23.6"
-  resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.23.6.tgz#b53526a2367a0dd6edc423637f3d2d0f2521abc5"
-  integrity sha512-czastdK1e8YByZqezMPFiZ8ahwVMh/ESl9vPgvgdB9AmFMGP5jfpFax74AQgl5zj4XHzqeYAg2l8PuUeRS1MgQ==
+"@babel/traverse@^7.23.6", "@babel/traverse@^7.23.9":
+  version "7.23.9"
+  resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.23.9.tgz#2f9d6aead6b564669394c5ce0f9302bb65b9d950"
+  integrity sha512-I/4UJ9vs90OkBtY6iiiTORVMyIhJ4kAVmsKo9KFc8UOxMeUfi2hvtIBsET5u9GizXE6/GFSuKCTNfgCswuEjRg==
   dependencies:
     "@babel/code-frame" "^7.23.5"
     "@babel/generator" "^7.23.6"
@@ -1374,8 +1397,8 @@
     "@babel/helper-function-name" "^7.23.0"
     "@babel/helper-hoist-variables" "^7.22.5"
     "@babel/helper-split-export-declaration" "^7.22.6"
-    "@babel/parser" "^7.23.6"
-    "@babel/types" "^7.23.6"
+    "@babel/parser" "^7.23.9"
+    "@babel/types" "^7.23.9"
     debug "^4.3.1"
     globals "^11.1.0"
 
@@ -1386,6 +1409,15 @@
   dependencies:
     "@babel/helper-string-parser" "^7.22.5"
     "@babel/helper-validator-identifier" "^7.22.19"
+    to-fast-properties "^2.0.0"
+
+"@babel/types@^7.21.3", "@babel/types@^7.23.4", "@babel/types@^7.23.9":
+  version "7.23.9"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.23.9.tgz#1dd7b59a9a2b5c87f8b41e52770b5ecbf492e002"
+  integrity sha512-dQjSq/7HaSjRM43FFGnv5keM2HsxpmyV1PfaSVm0nzzjwwTmjOe6J4bC8e3+pTEIgHaHj+1ZlLThRJ2auc/w1Q==
+  dependencies:
+    "@babel/helper-string-parser" "^7.23.4"
+    "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
 "@babel/types@^7.23.0", "@babel/types@^7.23.6":
@@ -1401,852 +1433,6 @@
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
-
-"@chakra-ui/accordion@2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/accordion/-/accordion-2.3.1.tgz#a326509e286a5c4e8478de9bc2b4b05017039e6b"
-  integrity sha512-FSXRm8iClFyU+gVaXisOSEw0/4Q+qZbFRiuhIAkVU6Boj0FxAMrlo9a8AV5TuF77rgaHytCdHk0Ng+cyUijrag==
-  dependencies:
-    "@chakra-ui/descendant" "3.1.0"
-    "@chakra-ui/icon" "3.2.0"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-use-controllable-state" "2.1.0"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-    "@chakra-ui/transition" "2.1.0"
-
-"@chakra-ui/alert@2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/alert/-/alert-2.2.1.tgz#69f4fae19e4f8204ae1db906784139d416063d04"
-  integrity sha512-GduIqqWCkvID8hxRlKw29Jp3w93r/E9S30J2F8By3ODon9Bhk1o/KVolcPiSiQvRwKNBJCd/rBTpPpLkB+s7pw==
-  dependencies:
-    "@chakra-ui/icon" "3.2.0"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-    "@chakra-ui/spinner" "2.1.0"
-
-"@chakra-ui/anatomy@2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/anatomy/-/anatomy-2.1.2.tgz#ea66b1841e7195da08ddc862daaa3f3e56e565f5"
-  integrity sha512-pKfOS/mztc4sUXHNc8ypJ1gPWSolWT770jrgVRfolVbYlki8y5Y+As996zMF6k5lewTu6j9DQequ7Cc9a69IVQ==
-
-"@chakra-ui/anatomy@2.2.1", "@chakra-ui/anatomy@^2.0.3":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/anatomy/-/anatomy-2.2.1.tgz#f7ef088dcb8be4f1d075f37101830199fb93f763"
-  integrity sha512-bbmyWTGwQo+aHYDMtLIj7k7hcWvwE7GFVDViLFArrrPhfUTDdQTNqhiDp1N7eh2HLyjNhc2MKXV8s2KTQqkmTg==
-
-"@chakra-ui/avatar@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/avatar/-/avatar-2.3.0.tgz#f018a2714d1e3ba5970bcf66558887925fdfccf4"
-  integrity sha512-8gKSyLfygnaotbJbDMHDiJoF38OHXUYVme4gGxZ1fLnQEdPVEaIWfH+NndIjOM0z8S+YEFnT9KyGMUtvPrBk3g==
-  dependencies:
-    "@chakra-ui/image" "2.1.0"
-    "@chakra-ui/react-children-utils" "2.0.6"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/breadcrumb@2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/breadcrumb/-/breadcrumb-2.2.0.tgz#751bc48498f3c403f97b5d9aae528ebfd405ef48"
-  integrity sha512-4cWCG24flYBxjruRi4RJREWTGF74L/KzI2CognAW/d/zWR0CjiScuJhf37Am3LFbCySP6WSoyBOtTIoTA4yLEA==
-  dependencies:
-    "@chakra-ui/react-children-utils" "2.0.6"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/breakpoint-utils@2.0.8":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/breakpoint-utils/-/breakpoint-utils-2.0.8.tgz#750d3712668b69f6e8917b45915cee0e08688eed"
-  integrity sha512-Pq32MlEX9fwb5j5xx8s18zJMARNHlQZH2VH1RZgfgRDpp7DcEgtRW5AInfN5CfqdHLO1dGxA7I3MqEuL5JnIsA==
-  dependencies:
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/button@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/button/-/button-2.1.0.tgz#623ed32cc92fc8e52492923e9924791fc6f25447"
-  integrity sha512-95CplwlRKmmUXkdEp/21VkEWgnwcx2TOBG6NfYlsuLBDHSLlo5FKIiE2oSi4zXc4TLcopGcWPNcm/NDaSC5pvA==
-  dependencies:
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-    "@chakra-ui/spinner" "2.1.0"
-
-"@chakra-ui/card@2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/card/-/card-2.2.0.tgz#b5e59dc51c171fced76ea76bf26088803b8bc184"
-  integrity sha512-xUB/k5MURj4CtPAhdSoXZidUbm8j3hci9vnc+eZJVDqhDOShNlD6QeniQNRPRys4lWAQLCbFcrwL29C8naDi6g==
-  dependencies:
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/checkbox@2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/checkbox/-/checkbox-2.3.1.tgz#bde33a655a8f033656378e3e95ae0dc4c8e73864"
-  integrity sha512-e6qL9ntVI/Ui6g0+iljUV2chX86YMsXafldpTHBNYDEoNLjGo1lqLFzq3y6zs3iuB3DHI0X7eAG3REmMVs0A0w==
-  dependencies:
-    "@chakra-ui/form-control" "2.1.1"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-types" "2.0.7"
-    "@chakra-ui/react-use-callback-ref" "2.1.0"
-    "@chakra-ui/react-use-controllable-state" "2.1.0"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@chakra-ui/react-use-safe-layout-effect" "2.1.0"
-    "@chakra-ui/react-use-update-effect" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-    "@chakra-ui/visually-hidden" "2.2.0"
-    "@zag-js/focus-visible" "0.16.0"
-
-"@chakra-ui/clickable@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/clickable/-/clickable-2.1.0.tgz#800fa8d10cf45a41fc50a3df32c679a3ce1921c3"
-  integrity sha512-flRA/ClPUGPYabu+/GLREZVZr9j2uyyazCAUHAdrTUEdDYCr31SVGhgh7dgKdtq23bOvAQJpIJjw/0Bs0WvbXw==
-  dependencies:
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/close-button@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/close-button/-/close-button-2.1.1.tgz#995b245c56eb41465a71d8667840c238618a7b66"
-  integrity sha512-gnpENKOanKexswSVpVz7ojZEALl2x5qjLYNqSQGbxz+aP9sOXPfUS56ebyBrre7T7exuWGiFeRwnM0oVeGPaiw==
-  dependencies:
-    "@chakra-ui/icon" "3.2.0"
-
-"@chakra-ui/color-mode@2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/color-mode/-/color-mode-2.2.0.tgz#828d47234c74ba2fb4c5dd63a63331aead20b9f6"
-  integrity sha512-niTEA8PALtMWRI9wJ4LL0CSBDo8NBfLNp4GD6/0hstcm3IlbBHTVKxN6HwSaoNYfphDQLxCjT4yG+0BJA5tFpg==
-  dependencies:
-    "@chakra-ui/react-use-safe-layout-effect" "2.1.0"
-
-"@chakra-ui/control-box@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/control-box/-/control-box-2.1.0.tgz#0f4586797b3154c02463bc5c106782e70c88f04f"
-  integrity sha512-gVrRDyXFdMd8E7rulL0SKeoljkLQiPITFnsyMO8EFHNZ+AHt5wK4LIguYVEq88APqAGZGfHFWXr79RYrNiE3Mg==
-
-"@chakra-ui/counter@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/counter/-/counter-2.1.0.tgz#e413a2f1093a18f847bb7aa240117fde788a59e6"
-  integrity sha512-s6hZAEcWT5zzjNz2JIWUBzRubo9la/oof1W7EKZVVfPYHERnl5e16FmBC79Yfq8p09LQ+aqFKm/etYoJMMgghw==
-  dependencies:
-    "@chakra-ui/number-utils" "2.0.7"
-    "@chakra-ui/react-use-callback-ref" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/css-reset@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/css-reset/-/css-reset-2.3.0.tgz#83e3160a9c2a12431cad0ee27ebfbf3aedc5c9c7"
-  integrity sha512-cQwwBy5O0jzvl0K7PLTLgp8ijqLPKyuEMiDXwYzl95seD3AoeuoCLyzZcJtVqaUZ573PiBdAbY/IlZcwDOItWg==
-
-"@chakra-ui/descendant@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/descendant/-/descendant-3.1.0.tgz#f3b80ed13ffc4bf1d615b3ed5541bd0905375cca"
-  integrity sha512-VxCIAir08g5w27klLyi7PVo8BxhW4tgU/lxQyujkmi4zx7hT9ZdrcQLAted/dAa+aSIZ14S1oV0Q9lGjsAdxUQ==
-  dependencies:
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-
-"@chakra-ui/dom-utils@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/dom-utils/-/dom-utils-2.1.0.tgz#d15df89e458ef19756db04c7cfd084eb552454f0"
-  integrity sha512-ZmF2qRa1QZ0CMLU8M1zCfmw29DmPNtfjR9iTo74U5FPr3i1aoAh7fbJ4qAlZ197Xw9eAW28tvzQuoVWeL5C7fQ==
-
-"@chakra-ui/editable@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/editable/-/editable-3.1.0.tgz#065783c2e3389c3bb9ab0582cb50d38e1dc00fa1"
-  integrity sha512-j2JLrUL9wgg4YA6jLlbU88370eCRyor7DZQD9lzpY95tSOXpTljeg3uF9eOmDnCs6fxp3zDWIfkgMm/ExhcGTg==
-  dependencies:
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-types" "2.0.7"
-    "@chakra-ui/react-use-callback-ref" "2.1.0"
-    "@chakra-ui/react-use-controllable-state" "2.1.0"
-    "@chakra-ui/react-use-focus-on-pointer-down" "2.1.0"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@chakra-ui/react-use-safe-layout-effect" "2.1.0"
-    "@chakra-ui/react-use-update-effect" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/event-utils@2.0.8":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/event-utils/-/event-utils-2.0.8.tgz#e6439ba200825a2f15d8f1973d267d1c00a6d1b4"
-  integrity sha512-IGM/yGUHS+8TOQrZGpAKOJl/xGBrmRYJrmbHfUE7zrG3PpQyXvbLDP1M+RggkCFVgHlJi2wpYIf0QtQlU0XZfw==
-
-"@chakra-ui/focus-lock@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/focus-lock/-/focus-lock-2.1.0.tgz#580e5450fe85356987b9a246abaff8333369c667"
-  integrity sha512-EmGx4PhWGjm4dpjRqM4Aa+rCWBxP+Rq8Uc/nAVnD4YVqkEhBkrPTpui2lnjsuxqNaZ24fIAZ10cF1hlpemte/w==
-  dependencies:
-    "@chakra-ui/dom-utils" "2.1.0"
-    react-focus-lock "^2.9.4"
-
-"@chakra-ui/form-control@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/form-control/-/form-control-2.1.1.tgz#05b06a52432642ddc7ed795bfe127108d160927d"
-  integrity sha512-LJPDzA1ITc3lhd/iDiINqGeca5bJD09PZAjePGEmmZyLPZZi8nPh/iii0RMxvKyJArsTBwXymCh+dEqK9aDzGQ==
-  dependencies:
-    "@chakra-ui/icon" "3.2.0"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-types" "2.0.7"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/hooks@2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/hooks/-/hooks-2.2.1.tgz#b86ce5eeaaab877ddcb11a50842d1227306ace28"
-  integrity sha512-RQbTnzl6b1tBjbDPf9zGRo9rf/pQMholsOudTxjy4i9GfTfz6kgp5ValGjQm2z7ng6Z31N1cnjZ1AlSzQ//ZfQ==
-  dependencies:
-    "@chakra-ui/react-utils" "2.0.12"
-    "@chakra-ui/utils" "2.0.15"
-    compute-scroll-into-view "3.0.3"
-    copy-to-clipboard "3.3.3"
-
-"@chakra-ui/icon@3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/icon/-/icon-3.2.0.tgz#92b9454aa0d561b4994bcd6a1b3bb1fdd5c67bef"
-  integrity sha512-xxjGLvlX2Ys4H0iHrI16t74rG9EBcpFvJ3Y3B7KMQTrnW34Kf7Da/UC8J67Gtx85mTHW020ml85SVPKORWNNKQ==
-  dependencies:
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/icons@^2.0.4", "@chakra-ui/icons@^2.0.6":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/icons/-/icons-2.1.1.tgz#58ff0f9e703f2f4f89debd600ce4e438f43f9c9a"
-  integrity sha512-3p30hdo4LlRZTT5CwoAJq3G9fHI0wDc0pBaMHj4SUn0yomO+RcDRlzhdXqdr5cVnzax44sqXJVnf3oQG0eI+4g==
-  dependencies:
-    "@chakra-ui/icon" "3.2.0"
-
-"@chakra-ui/image@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/image/-/image-2.1.0.tgz#6c205f1ca148e3bf58345b0b5d4eb3d959eb9f87"
-  integrity sha512-bskumBYKLiLMySIWDGcz0+D9Th0jPvmX6xnRMs4o92tT3Od/bW26lahmV2a2Op2ItXeCmRMY+XxJH5Gy1i46VA==
-  dependencies:
-    "@chakra-ui/react-use-safe-layout-effect" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/input@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/input/-/input-2.1.1.tgz#c9666bd1efd7763458bec713fb87cc3f365ec15d"
-  integrity sha512-RQYzQ/qcak3eCuCfvSqc1kEFx0sCcnIeiSi7i0r70CeBnAUK/CP1/4Uz849FpKz81K4z2SikC9MkHPQd8ZpOwg==
-  dependencies:
-    "@chakra-ui/form-control" "2.1.1"
-    "@chakra-ui/object-utils" "2.1.0"
-    "@chakra-ui/react-children-utils" "2.0.6"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/layout@2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/layout/-/layout-2.3.1.tgz#0601c5eb91555d24a7015a7c9d4e01fed2698557"
-  integrity sha512-nXuZ6WRbq0WdgnRgLw+QuxWAHuhDtVX8ElWqcTK+cSMFg/52eVP47czYBE5F35YhnoW2XBwfNoNgZ7+e8Z01Rg==
-  dependencies:
-    "@chakra-ui/breakpoint-utils" "2.0.8"
-    "@chakra-ui/icon" "3.2.0"
-    "@chakra-ui/object-utils" "2.1.0"
-    "@chakra-ui/react-children-utils" "2.0.6"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/lazy-utils@2.0.5":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/lazy-utils/-/lazy-utils-2.0.5.tgz#363c3fa1d421362790b416ffa595acb835e1ae5b"
-  integrity sha512-UULqw7FBvcckQk2n3iPO56TMJvDsNv0FKZI6PlUNJVaGsPbsYxK/8IQ60vZgaTVPtVcjY6BE+y6zg8u9HOqpyg==
-
-"@chakra-ui/live-region@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/live-region/-/live-region-2.1.0.tgz#02b4b1d997075f19a7a9a87187e08c72e82ef0dd"
-  integrity sha512-ZOxFXwtaLIsXjqnszYYrVuswBhnIHHP+XIgK1vC6DePKtyK590Wg+0J0slDwThUAd4MSSIUa/nNX84x1GMphWw==
-
-"@chakra-ui/media-query@3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/media-query/-/media-query-3.3.0.tgz#40f9151dedb6a7af9df3be0474b59a799c92c619"
-  integrity sha512-IsTGgFLoICVoPRp9ykOgqmdMotJG0CnPsKvGQeSFOB/dZfIujdVb14TYxDU4+MURXry1MhJ7LzZhv+Ml7cr8/g==
-  dependencies:
-    "@chakra-ui/breakpoint-utils" "2.0.8"
-    "@chakra-ui/react-env" "3.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/menu@2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/menu/-/menu-2.2.1.tgz#7d9810d435f6b40fa72ed867a33b88a1ef75073f"
-  integrity sha512-lJS7XEObzJxsOwWQh7yfG4H8FzFPRP5hVPN/CL+JzytEINCSBvsCDHrYPQGp7jzpCi8vnTqQQGQe0f8dwnXd2g==
-  dependencies:
-    "@chakra-ui/clickable" "2.1.0"
-    "@chakra-ui/descendant" "3.1.0"
-    "@chakra-ui/lazy-utils" "2.0.5"
-    "@chakra-ui/popper" "3.1.0"
-    "@chakra-ui/react-children-utils" "2.0.6"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-use-animation-state" "2.1.0"
-    "@chakra-ui/react-use-controllable-state" "2.1.0"
-    "@chakra-ui/react-use-disclosure" "2.1.0"
-    "@chakra-ui/react-use-focus-effect" "2.1.0"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@chakra-ui/react-use-outside-click" "2.2.0"
-    "@chakra-ui/react-use-update-effect" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-    "@chakra-ui/transition" "2.1.0"
-
-"@chakra-ui/modal@2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/modal/-/modal-2.3.1.tgz#524dc32b6b4f545b54ae531dbf6c74e1052ee794"
-  integrity sha512-TQv1ZaiJMZN+rR9DK0snx/OPwmtaGH1HbZtlYt4W4s6CzyK541fxLRTjIXfEzIGpvNW+b6VFuFjbcR78p4DEoQ==
-  dependencies:
-    "@chakra-ui/close-button" "2.1.1"
-    "@chakra-ui/focus-lock" "2.1.0"
-    "@chakra-ui/portal" "2.1.0"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-types" "2.0.7"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-    "@chakra-ui/transition" "2.1.0"
-    aria-hidden "^1.2.3"
-    react-remove-scroll "^2.5.6"
-
-"@chakra-ui/number-input@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/number-input/-/number-input-2.1.1.tgz#5308a30e972cd45a017f613996d7d5c1f32bd89f"
-  integrity sha512-B4xwUPyr0NmjGN/dBhOmCD2xjX6OY1pr9GmGH3GQRozMsLAClD3TibwiZetwlyCp02qQqiFwEcZmUxaX88794Q==
-  dependencies:
-    "@chakra-ui/counter" "2.1.0"
-    "@chakra-ui/form-control" "2.1.1"
-    "@chakra-ui/icon" "3.2.0"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-types" "2.0.7"
-    "@chakra-ui/react-use-callback-ref" "2.1.0"
-    "@chakra-ui/react-use-event-listener" "2.1.0"
-    "@chakra-ui/react-use-interval" "2.1.0"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@chakra-ui/react-use-safe-layout-effect" "2.1.0"
-    "@chakra-ui/react-use-update-effect" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/number-utils@2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/number-utils/-/number-utils-2.0.7.tgz#aaee979ca2fb1923a0373a91619473811315db11"
-  integrity sha512-yOGxBjXNvLTBvQyhMDqGU0Oj26s91mbAlqKHiuw737AXHt0aPllOthVUqQMeaYLwLCjGMg0jtI7JReRzyi94Dg==
-
-"@chakra-ui/object-utils@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/object-utils/-/object-utils-2.1.0.tgz#a4ecf9cea92f1de09f5531f53ffdc41e0b19b6c3"
-  integrity sha512-tgIZOgLHaoti5PYGPTwK3t/cqtcycW0owaiOXoZOcpwwX/vlVb+H1jFsQyWiiwQVPt9RkoSLtxzXamx+aHH+bQ==
-
-"@chakra-ui/pin-input@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/pin-input/-/pin-input-2.1.0.tgz#61e6bbf909ec510634307b2861c4f1891a9f8d81"
-  integrity sha512-x4vBqLStDxJFMt+jdAHHS8jbh294O53CPQJoL4g228P513rHylV/uPscYUHrVJXRxsHfRztQO9k45jjTYaPRMw==
-  dependencies:
-    "@chakra-ui/descendant" "3.1.0"
-    "@chakra-ui/react-children-utils" "2.0.6"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-use-controllable-state" "2.1.0"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/popover@2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/popover/-/popover-2.2.1.tgz#89cfd29817abcd204da570073c0f2b4d8072c3a3"
-  integrity sha512-K+2ai2dD0ljvJnlrzesCDT9mNzLifE3noGKZ3QwLqd/K34Ym1W/0aL1ERSynrcG78NKoXS54SdEzkhCZ4Gn/Zg==
-  dependencies:
-    "@chakra-ui/close-button" "2.1.1"
-    "@chakra-ui/lazy-utils" "2.0.5"
-    "@chakra-ui/popper" "3.1.0"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-types" "2.0.7"
-    "@chakra-ui/react-use-animation-state" "2.1.0"
-    "@chakra-ui/react-use-disclosure" "2.1.0"
-    "@chakra-ui/react-use-focus-effect" "2.1.0"
-    "@chakra-ui/react-use-focus-on-pointer-down" "2.1.0"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/popper@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/popper/-/popper-3.1.0.tgz#92a9180c6894763af3b22a6003f9a9d958fe2659"
-  integrity sha512-ciDdpdYbeFG7og6/6J8lkTFxsSvwTdMLFkpVylAF6VNC22jssiWfquj2eyD4rJnzkRFPvIWJq8hvbfhsm+AjSg==
-  dependencies:
-    "@chakra-ui/react-types" "2.0.7"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@popperjs/core" "^2.9.3"
-
-"@chakra-ui/portal@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/portal/-/portal-2.1.0.tgz#9e7f57424d7041738b6563cac80134561080bd27"
-  integrity sha512-9q9KWf6SArEcIq1gGofNcFPSWEyl+MfJjEUg/un1SMlQjaROOh3zYr+6JAwvcORiX7tyHosnmWC3d3wI2aPSQg==
-  dependencies:
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-use-safe-layout-effect" "2.1.0"
-
-"@chakra-ui/progress@2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/progress/-/progress-2.2.0.tgz#67444ea9779631d7c8395b2c9c78e5634f994999"
-  integrity sha512-qUXuKbuhN60EzDD9mHR7B67D7p/ZqNS2Aze4Pbl1qGGZfulPW0PY8Rof32qDtttDQBkzQIzFGE8d9QpAemToIQ==
-  dependencies:
-    "@chakra-ui/react-context" "2.1.0"
-
-"@chakra-ui/provider@2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/provider/-/provider-2.4.1.tgz#0c6c1bab2b50fdf9dfbcbb363df8982988c54d65"
-  integrity sha512-u4g02V9tJ9vVYfkLz5jBn/bKlAyjLdg4Sh3f7uckmYVAZpOL/uUlrStyADrynu3tZhI+BE8XdmXC4zs/SYD7ow==
-  dependencies:
-    "@chakra-ui/css-reset" "2.3.0"
-    "@chakra-ui/portal" "2.1.0"
-    "@chakra-ui/react-env" "3.1.0"
-    "@chakra-ui/system" "2.6.1"
-    "@chakra-ui/utils" "2.0.15"
-
-"@chakra-ui/radio@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/radio/-/radio-2.1.1.tgz#399983ce8a1bbc81e7cddfbaf091f54a1645fb7e"
-  integrity sha512-5JXDVvMWsF/Cprh6BKfcTLbLtRcgD6Wl2zwbNU30nmKIE8+WUfqD7JQETV08oWEzhi3Ea4e5EHvyll2sGx8H3w==
-  dependencies:
-    "@chakra-ui/form-control" "2.1.1"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-types" "2.0.7"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-    "@zag-js/focus-visible" "0.16.0"
-
-"@chakra-ui/react-children-utils@2.0.6":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-children-utils/-/react-children-utils-2.0.6.tgz#6c480c6a60678fcb75cb7d57107c7a79e5179b92"
-  integrity sha512-QVR2RC7QsOsbWwEnq9YduhpqSFnZGvjjGREV8ygKi8ADhXh93C8azLECCUVgRJF2Wc+So1fgxmjLcbZfY2VmBA==
-
-"@chakra-ui/react-context@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-context/-/react-context-2.1.0.tgz#4858be1d5ff1c8ac0a0ec088d93a3b7f1cbbff99"
-  integrity sha512-iahyStvzQ4AOwKwdPReLGfDesGG+vWJfEsn0X/NoGph/SkN+HXtv2sCfYFFR9k7bb+Kvc6YfpLlSuLvKMHi2+w==
-
-"@chakra-ui/react-env@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-env/-/react-env-3.1.0.tgz#7d3c1c05a501bb369524d9f3d38c9325eb16ab50"
-  integrity sha512-Vr96GV2LNBth3+IKzr/rq1IcnkXv+MLmwjQH6C8BRtn3sNskgDFD5vLkVXcEhagzZMCh8FR3V/bzZPojBOyNhw==
-  dependencies:
-    "@chakra-ui/react-use-safe-layout-effect" "2.1.0"
-
-"@chakra-ui/react-types@2.0.7":
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-types/-/react-types-2.0.7.tgz#799c166a44882b23059c8f510eac9bd5d0869ac4"
-  integrity sha512-12zv2qIZ8EHwiytggtGvo4iLT0APris7T0qaAWqzpUGS0cdUtR8W+V1BJ5Ocq+7tA6dzQ/7+w5hmXih61TuhWQ==
-
-"@chakra-ui/react-use-animation-state@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-animation-state/-/react-use-animation-state-2.1.0.tgz#eab661fbafd96804fe867b0df0c27e78feefe6e2"
-  integrity sha512-CFZkQU3gmDBwhqy0vC1ryf90BVHxVN8cTLpSyCpdmExUEtSEInSCGMydj2fvn7QXsz/za8JNdO2xxgJwxpLMtg==
-  dependencies:
-    "@chakra-ui/dom-utils" "2.1.0"
-    "@chakra-ui/react-use-event-listener" "2.1.0"
-
-"@chakra-ui/react-use-callback-ref@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-callback-ref/-/react-use-callback-ref-2.1.0.tgz#a508085f4d9e7d84d4ceffdf5f41745c9ac451d7"
-  integrity sha512-efnJrBtGDa4YaxDzDE90EnKD3Vkh5a1t3w7PhnRQmsphLy3g2UieasoKTlT2Hn118TwDjIv5ZjHJW6HbzXA9wQ==
-
-"@chakra-ui/react-use-controllable-state@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-controllable-state/-/react-use-controllable-state-2.1.0.tgz#8fb6fa2f45d0c04173582ae8297e604ffdb9c7d9"
-  integrity sha512-QR/8fKNokxZUs4PfxjXuwl0fj/d71WPrmLJvEpCTkHjnzu7LnYvzoe2wB867IdooQJL0G1zBxl0Dq+6W1P3jpg==
-  dependencies:
-    "@chakra-ui/react-use-callback-ref" "2.1.0"
-
-"@chakra-ui/react-use-disclosure@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-disclosure/-/react-use-disclosure-2.1.0.tgz#90093eaf45db1bea7a6851dd0ce5cdb3eb66f90a"
-  integrity sha512-Ax4pmxA9LBGMyEZJhhUZobg9C0t3qFE4jVF1tGBsrLDcdBeLR9fwOogIPY9Hf0/wqSlAryAimICbr5hkpa5GSw==
-  dependencies:
-    "@chakra-ui/react-use-callback-ref" "2.1.0"
-
-"@chakra-ui/react-use-event-listener@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-event-listener/-/react-use-event-listener-2.1.0.tgz#afea2645bd9b38f754fc2b8eb858f9bb22385ded"
-  integrity sha512-U5greryDLS8ISP69DKDsYcsXRtAdnTQT+jjIlRYZ49K/XhUR/AqVZCK5BkR1spTDmO9H8SPhgeNKI70ODuDU/Q==
-  dependencies:
-    "@chakra-ui/react-use-callback-ref" "2.1.0"
-
-"@chakra-ui/react-use-focus-effect@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-focus-effect/-/react-use-focus-effect-2.1.0.tgz#963fb790370dfadd51d12666ff2da60706f53a2a"
-  integrity sha512-xzVboNy7J64xveLcxTIJ3jv+lUJKDwRM7Szwn9tNzUIPD94O3qwjV7DDCUzN2490nSYDF4OBMt/wuDBtaR3kUQ==
-  dependencies:
-    "@chakra-ui/dom-utils" "2.1.0"
-    "@chakra-ui/react-use-event-listener" "2.1.0"
-    "@chakra-ui/react-use-safe-layout-effect" "2.1.0"
-    "@chakra-ui/react-use-update-effect" "2.1.0"
-
-"@chakra-ui/react-use-focus-on-pointer-down@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-focus-on-pointer-down/-/react-use-focus-on-pointer-down-2.1.0.tgz#2fbcf6bc7d06d97606747e231a908d5c387ca0cc"
-  integrity sha512-2jzrUZ+aiCG/cfanrolsnSMDykCAbv9EK/4iUyZno6BYb3vziucmvgKuoXbMPAzWNtwUwtuMhkby8rc61Ue+Lg==
-  dependencies:
-    "@chakra-ui/react-use-event-listener" "2.1.0"
-
-"@chakra-ui/react-use-interval@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-interval/-/react-use-interval-2.1.0.tgz#2602c097b3ab74b6644812e4f5efaad621218d98"
-  integrity sha512-8iWj+I/+A0J08pgEXP1J1flcvhLBHkk0ln7ZvGIyXiEyM6XagOTJpwNhiu+Bmk59t3HoV/VyvyJTa+44sEApuw==
-  dependencies:
-    "@chakra-ui/react-use-callback-ref" "2.1.0"
-
-"@chakra-ui/react-use-latest-ref@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-latest-ref/-/react-use-latest-ref-2.1.0.tgz#d1e926130102566ece1d39f8a48ed125e0c8441a"
-  integrity sha512-m0kxuIYqoYB0va9Z2aW4xP/5b7BzlDeWwyXCH6QpT2PpW3/281L3hLCm1G0eOUcdVlayqrQqOeD6Mglq+5/xoQ==
-
-"@chakra-ui/react-use-merge-refs@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-merge-refs/-/react-use-merge-refs-2.1.0.tgz#c0c233527abdbea9a1348269c192012205762314"
-  integrity sha512-lERa6AWF1cjEtWSGjxWTaSMvneccnAVH4V4ozh8SYiN9fSPZLlSG3kNxfNzdFvMEhM7dnP60vynF7WjGdTgQbQ==
-
-"@chakra-ui/react-use-outside-click@2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-outside-click/-/react-use-outside-click-2.2.0.tgz#5570b772a255f6f02b69e967127397c1b5fa3d3c"
-  integrity sha512-PNX+s/JEaMneijbgAM4iFL+f3m1ga9+6QK0E5Yh4s8KZJQ/bLwZzdhMz8J/+mL+XEXQ5J0N8ivZN28B82N1kNw==
-  dependencies:
-    "@chakra-ui/react-use-callback-ref" "2.1.0"
-
-"@chakra-ui/react-use-pan-event@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-pan-event/-/react-use-pan-event-2.1.0.tgz#51c21bc3c0e9e73d1faef5ea4f7e3c3d071a2758"
-  integrity sha512-xmL2qOHiXqfcj0q7ZK5s9UjTh4Gz0/gL9jcWPA6GVf+A0Od5imEDa/Vz+533yQKWiNSm1QGrIj0eJAokc7O4fg==
-  dependencies:
-    "@chakra-ui/event-utils" "2.0.8"
-    "@chakra-ui/react-use-latest-ref" "2.1.0"
-    framesync "6.1.2"
-
-"@chakra-ui/react-use-previous@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-previous/-/react-use-previous-2.1.0.tgz#f6046e6f7398b1e8d7e66ff7ebb8d61c92a2d3d0"
-  integrity sha512-pjxGwue1hX8AFcmjZ2XfrQtIJgqbTF3Qs1Dy3d1krC77dEsiCUbQ9GzOBfDc8pfd60DrB5N2tg5JyHbypqh0Sg==
-
-"@chakra-ui/react-use-safe-layout-effect@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-safe-layout-effect/-/react-use-safe-layout-effect-2.1.0.tgz#3a95f0ba6fd5d2d0aa14919160f2c825f13e686f"
-  integrity sha512-Knbrrx/bcPwVS1TorFdzrK/zWA8yuU/eaXDkNj24IrKoRlQrSBFarcgAEzlCHtzuhufP3OULPkELTzz91b0tCw==
-
-"@chakra-ui/react-use-size@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-size/-/react-use-size-2.1.0.tgz#fcf3070eaade8b4a84af8ce5341c4d5ca0a42bec"
-  integrity sha512-tbLqrQhbnqOjzTaMlYytp7wY8BW1JpL78iG7Ru1DlV4EWGiAmXFGvtnEt9HftU0NJ0aJyjgymkxfVGI55/1Z4A==
-  dependencies:
-    "@zag-js/element-size" "0.10.5"
-
-"@chakra-ui/react-use-timeout@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-timeout/-/react-use-timeout-2.1.0.tgz#24415f54267d7241a3c1d36a5cae4d472834cef7"
-  integrity sha512-cFN0sobKMM9hXUhyCofx3/Mjlzah6ADaEl/AXl5Y+GawB5rgedgAcu2ErAgarEkwvsKdP6c68CKjQ9dmTQlJxQ==
-  dependencies:
-    "@chakra-ui/react-use-callback-ref" "2.1.0"
-
-"@chakra-ui/react-use-update-effect@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-update-effect/-/react-use-update-effect-2.1.0.tgz#5c57cd1f50c2a6a8119e0f57f69510723d69884b"
-  integrity sha512-ND4Q23tETaR2Qd3zwCKYOOS1dfssojPLJMLvUtUbW5M9uW1ejYWgGUobeAiOVfSplownG8QYMmHTP86p/v0lbA==
-
-"@chakra-ui/react-utils@2.0.12":
-  version "2.0.12"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-utils/-/react-utils-2.0.12.tgz#d6b773b9a5b2e51dce61f51ac8a0e9a0f534f479"
-  integrity sha512-GbSfVb283+YA3kA8w8xWmzbjNWk14uhNpntnipHCftBibl0lxtQ9YqMFQLwuFOO0U2gYVocszqqDWX+XNKq9hw==
-  dependencies:
-    "@chakra-ui/utils" "2.0.15"
-
-"@chakra-ui/react@^2.2.4", "@chakra-ui/react@^2.2.6":
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react/-/react-2.8.1.tgz#fd80632b0ef34434443d8999d03d297f130aabcf"
-  integrity sha512-UL9Rtj4DovP3+oVbI06gsdfyJJb+wmS2RYnGNXjW9tsjCyXxjlBw9TAUj0jyOfWe0+zd/4juL8+J+QCwmdhptg==
-  dependencies:
-    "@chakra-ui/accordion" "2.3.1"
-    "@chakra-ui/alert" "2.2.1"
-    "@chakra-ui/avatar" "2.3.0"
-    "@chakra-ui/breadcrumb" "2.2.0"
-    "@chakra-ui/button" "2.1.0"
-    "@chakra-ui/card" "2.2.0"
-    "@chakra-ui/checkbox" "2.3.1"
-    "@chakra-ui/close-button" "2.1.1"
-    "@chakra-ui/control-box" "2.1.0"
-    "@chakra-ui/counter" "2.1.0"
-    "@chakra-ui/css-reset" "2.3.0"
-    "@chakra-ui/editable" "3.1.0"
-    "@chakra-ui/focus-lock" "2.1.0"
-    "@chakra-ui/form-control" "2.1.1"
-    "@chakra-ui/hooks" "2.2.1"
-    "@chakra-ui/icon" "3.2.0"
-    "@chakra-ui/image" "2.1.0"
-    "@chakra-ui/input" "2.1.1"
-    "@chakra-ui/layout" "2.3.1"
-    "@chakra-ui/live-region" "2.1.0"
-    "@chakra-ui/media-query" "3.3.0"
-    "@chakra-ui/menu" "2.2.1"
-    "@chakra-ui/modal" "2.3.1"
-    "@chakra-ui/number-input" "2.1.1"
-    "@chakra-ui/pin-input" "2.1.0"
-    "@chakra-ui/popover" "2.2.1"
-    "@chakra-ui/popper" "3.1.0"
-    "@chakra-ui/portal" "2.1.0"
-    "@chakra-ui/progress" "2.2.0"
-    "@chakra-ui/provider" "2.4.1"
-    "@chakra-ui/radio" "2.1.1"
-    "@chakra-ui/react-env" "3.1.0"
-    "@chakra-ui/select" "2.1.1"
-    "@chakra-ui/skeleton" "2.1.0"
-    "@chakra-ui/skip-nav" "2.1.0"
-    "@chakra-ui/slider" "2.1.0"
-    "@chakra-ui/spinner" "2.1.0"
-    "@chakra-ui/stat" "2.1.1"
-    "@chakra-ui/stepper" "2.3.1"
-    "@chakra-ui/styled-system" "2.9.1"
-    "@chakra-ui/switch" "2.1.1"
-    "@chakra-ui/system" "2.6.1"
-    "@chakra-ui/table" "2.1.0"
-    "@chakra-ui/tabs" "3.0.0"
-    "@chakra-ui/tag" "3.1.1"
-    "@chakra-ui/textarea" "2.1.1"
-    "@chakra-ui/theme" "3.3.0"
-    "@chakra-ui/theme-utils" "2.0.20"
-    "@chakra-ui/toast" "7.0.1"
-    "@chakra-ui/tooltip" "2.3.0"
-    "@chakra-ui/transition" "2.1.0"
-    "@chakra-ui/utils" "2.0.15"
-    "@chakra-ui/visually-hidden" "2.2.0"
-
-"@chakra-ui/select@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/select/-/select-2.1.1.tgz#0792eeebdb82b1710c4527e7e8e2e07c686c714d"
-  integrity sha512-CERDATncv5w05Zo5/LrFtf1yKp1deyMUyDGv6eZvQG/etyukH4TstsuIHt/0GfNXrCF3CJLZ8lINzpv5wayVjQ==
-  dependencies:
-    "@chakra-ui/form-control" "2.1.1"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/shared-utils@2.0.5":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/shared-utils/-/shared-utils-2.0.5.tgz#cb2b49705e113853647f1822142619570feba081"
-  integrity sha512-4/Wur0FqDov7Y0nCXl7HbHzCg4aq86h+SXdoUeuCMD3dSj7dpsVnStLYhng1vxvlbUnLpdF4oz5Myt3i/a7N3Q==
-
-"@chakra-ui/skeleton@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/skeleton/-/skeleton-2.1.0.tgz#e3b25dd3afa330029d6d63be0f7cb8d44ad25531"
-  integrity sha512-JNRuMPpdZGd6zFVKjVQ0iusu3tXAdI29n4ZENYwAJEMf/fN0l12sVeirOxkJ7oEL0yOx2AgEYFSKdbcAgfUsAQ==
-  dependencies:
-    "@chakra-ui/media-query" "3.3.0"
-    "@chakra-ui/react-use-previous" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/skip-nav@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/skip-nav/-/skip-nav-2.1.0.tgz#cac27eecc6eded1e83c8f0cf7445d727739cb325"
-  integrity sha512-Hk+FG+vadBSH0/7hwp9LJnLjkO0RPGnx7gBJWI4/SpoJf3e4tZlWYtwGj0toYY4aGKl93jVghuwGbDBEMoHDug==
-
-"@chakra-ui/slider@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/slider/-/slider-2.1.0.tgz#1caeed18761ba2a390777418cc9389ba25e39bce"
-  integrity sha512-lUOBcLMCnFZiA/s2NONXhELJh6sY5WtbRykPtclGfynqqOo47lwWJx+VP7xaeuhDOPcWSSecWc9Y1BfPOCz9cQ==
-  dependencies:
-    "@chakra-ui/number-utils" "2.0.7"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-types" "2.0.7"
-    "@chakra-ui/react-use-callback-ref" "2.1.0"
-    "@chakra-ui/react-use-controllable-state" "2.1.0"
-    "@chakra-ui/react-use-latest-ref" "2.1.0"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@chakra-ui/react-use-pan-event" "2.1.0"
-    "@chakra-ui/react-use-size" "2.1.0"
-    "@chakra-ui/react-use-update-effect" "2.1.0"
-
-"@chakra-ui/spinner@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/spinner/-/spinner-2.1.0.tgz#aa24a3d692c6ac90714e0f0f82c76c12c78c8e60"
-  integrity sha512-hczbnoXt+MMv/d3gE+hjQhmkzLiKuoTo42YhUG7Bs9OSv2lg1fZHW1fGNRFP3wTi6OIbD044U1P9HK+AOgFH3g==
-  dependencies:
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/stat@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/stat/-/stat-2.1.1.tgz#a204ba915795345996a16c79794d84826d7dcc2d"
-  integrity sha512-LDn0d/LXQNbAn2KaR3F1zivsZCewY4Jsy1qShmfBMKwn6rI8yVlbvu6SiA3OpHS0FhxbsZxQI6HefEoIgtqY6Q==
-  dependencies:
-    "@chakra-ui/icon" "3.2.0"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/stepper@2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/stepper/-/stepper-2.3.1.tgz#a0a0b73e147f202ab4e51cae55dad45489cc89fd"
-  integrity sha512-ky77lZbW60zYkSXhYz7kbItUpAQfEdycT0Q4bkHLxfqbuiGMf8OmgZOQkOB9uM4v0zPwy2HXhe0vq4Dd0xa55Q==
-  dependencies:
-    "@chakra-ui/icon" "3.2.0"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/styled-system@2.9.1":
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/styled-system/-/styled-system-2.9.1.tgz#888a4901b2afa174461259a8875379adb0363934"
-  integrity sha512-jhYKBLxwOPi9/bQt9kqV3ELa/4CjmNNruTyXlPp5M0v0+pDMUngPp48mVLoskm9RKZGE0h1qpvj/jZ3K7c7t8w==
-  dependencies:
-    "@chakra-ui/shared-utils" "2.0.5"
-    csstype "^3.0.11"
-    lodash.mergewith "4.6.2"
-
-"@chakra-ui/switch@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/switch/-/switch-2.1.1.tgz#8049963e6421cdd5eaaac1d20d9febae8d731b62"
-  integrity sha512-cOHIhW5AlLZSFENxFEBYTBniqiduOowa1WdzslP1Fd0usBFaD5iAgOY1Fvr7xKhE8nmzzeMCkPB3XBvUSWnawQ==
-  dependencies:
-    "@chakra-ui/checkbox" "2.3.1"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/system@2.6.1", "@chakra-ui/system@^2.2.4":
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-2.6.1.tgz#22ee50ddc9e1f56b974a0dd42d86108391a2f372"
-  integrity sha512-P5Q/XRWy3f1pXJ7IxDkV+Z6AT7GJeR2JlBnQl109xewVQcBLWWMIp702fFMFw8KZ2ALB/aYKtWm5EmQMddC/tg==
-  dependencies:
-    "@chakra-ui/color-mode" "2.2.0"
-    "@chakra-ui/object-utils" "2.1.0"
-    "@chakra-ui/react-utils" "2.0.12"
-    "@chakra-ui/styled-system" "2.9.1"
-    "@chakra-ui/theme-utils" "2.0.20"
-    "@chakra-ui/utils" "2.0.15"
-    react-fast-compare "3.2.2"
-
-"@chakra-ui/table@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/table/-/table-2.1.0.tgz#20dce14c5e4d70dc7c6c0e87cce9b05907ff8c50"
-  integrity sha512-o5OrjoHCh5uCLdiUb0Oc0vq9rIAeHSIRScc2ExTC9Qg/uVZl2ygLrjToCaKfaaKl1oQexIeAcZDKvPG8tVkHyQ==
-  dependencies:
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/tabs@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/tabs/-/tabs-3.0.0.tgz#854c06880af26158d7c72881c4b5e0453f6c485d"
-  integrity sha512-6Mlclp8L9lqXmsGWF5q5gmemZXOiOYuh0SGT/7PgJVNPz3LXREXlXg2an4MBUD8W5oTkduCX+3KTMCwRrVrDYw==
-  dependencies:
-    "@chakra-ui/clickable" "2.1.0"
-    "@chakra-ui/descendant" "3.1.0"
-    "@chakra-ui/lazy-utils" "2.0.5"
-    "@chakra-ui/react-children-utils" "2.0.6"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-use-controllable-state" "2.1.0"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@chakra-ui/react-use-safe-layout-effect" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/tag@3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/tag/-/tag-3.1.1.tgz#d05284b6549a84d3a08e57eec57df3ad0eebd882"
-  integrity sha512-Bdel79Dv86Hnge2PKOU+t8H28nm/7Y3cKd4Kfk9k3lOpUh4+nkSGe58dhRzht59lEqa4N9waCgQiBdkydjvBXQ==
-  dependencies:
-    "@chakra-ui/icon" "3.2.0"
-    "@chakra-ui/react-context" "2.1.0"
-
-"@chakra-ui/textarea@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/textarea/-/textarea-2.1.1.tgz#3e33404ff8470140e877840a5702a406996a3834"
-  integrity sha512-28bpwgmXg3BzSpg8i1Ao9h7pHaE1j2mBBFJpWaqPgMhS0IHm0BQsqqyWU6PsxxJDvrC4HN6MTzrIL4C1RA1I0A==
-  dependencies:
-    "@chakra-ui/form-control" "2.1.1"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/theme-tools@2.0.17":
-  version "2.0.17"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-tools/-/theme-tools-2.0.17.tgz#9496094336c9480f950c8d7ab6e05f1c19caa955"
-  integrity sha512-Auu38hnihlJZQcPok6itRDBbwof3TpXGYtDPnOvrq4Xp7jnab36HLt7KEXSDPXbtOk3ZqU99pvI1en5LbDrdjg==
-  dependencies:
-    "@chakra-ui/anatomy" "2.1.2"
-    "@chakra-ui/shared-utils" "2.0.5"
-    color2k "^2.0.0"
-
-"@chakra-ui/theme-tools@2.1.1", "@chakra-ui/theme-tools@^2.0.7":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-tools/-/theme-tools-2.1.1.tgz#c7f3072ab533d7abc6a3831666be3c172f992554"
-  integrity sha512-n14L5L3ej3Zy+Xm/kDKO1G6/DkmieT7Li1C7NzMRcUj5C9YybQpyo7IZZ0BBUh3u+OVnKVhNC3d4P2NYDGRXmA==
-  dependencies:
-    "@chakra-ui/anatomy" "2.2.1"
-    "@chakra-ui/shared-utils" "2.0.5"
-    color2k "^2.0.2"
-
-"@chakra-ui/theme-utils@2.0.20":
-  version "2.0.20"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-utils/-/theme-utils-2.0.20.tgz#fdc4947ac4b95c16ff5885707c9a931c43b80cf6"
-  integrity sha512-IkAzSmwBlRIZ3dN2InDz0tf9SldbckVkgwylCobSFmYP8lnMjykL8Lex1BBo9U8UQjZxEDVZ+Qw6SeayKRntOQ==
-  dependencies:
-    "@chakra-ui/shared-utils" "2.0.5"
-    "@chakra-ui/styled-system" "2.9.1"
-    "@chakra-ui/theme" "3.3.0"
-    lodash.mergewith "4.6.2"
-
-"@chakra-ui/theme@3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme/-/theme-3.3.0.tgz#7fe364322e75c7bdfa45b96dd3db6dac7eb8f7ef"
-  integrity sha512-VHY2ax5Wqgfm83U/zYBk0GS0TGD8m41s/rxQgnEq8tU+ug1YZjvOZmtOq/VjfKP/bQraFhCt05zchcxXmDpEYg==
-  dependencies:
-    "@chakra-ui/anatomy" "2.2.1"
-    "@chakra-ui/shared-utils" "2.0.5"
-    "@chakra-ui/theme-tools" "2.1.1"
-
-"@chakra-ui/theme@^2.1.3":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme/-/theme-2.3.0.tgz#bff6c2750e582d046508213b987bc46fff0df223"
-  integrity sha512-CoO7OM2frF6Yu+FRYgzkg3AdsCAjAqrSRxsGrP1x66r8j/b9Cc0z1SzH6IPXfn5w9yqM9j7/36loT1WjWw5z5A==
-  dependencies:
-    "@chakra-ui/anatomy" "2.1.2"
-    "@chakra-ui/shared-utils" "2.0.5"
-    "@chakra-ui/theme-tools" "2.0.17"
-
-"@chakra-ui/toast@7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/toast/-/toast-7.0.1.tgz#11113b9185409ed1dc7a062f0498673f0840a013"
-  integrity sha512-V5JUhw6RZxbGRTijvd5k4iEMLCfbzTLNWbZLZhRZk10YvFfAP5OYfRCm68zpE/t3orN/f+4ZLL3P+Wb4E7oSmw==
-  dependencies:
-    "@chakra-ui/alert" "2.2.1"
-    "@chakra-ui/close-button" "2.1.1"
-    "@chakra-ui/portal" "2.1.0"
-    "@chakra-ui/react-context" "2.1.0"
-    "@chakra-ui/react-use-timeout" "2.1.0"
-    "@chakra-ui/react-use-update-effect" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-    "@chakra-ui/styled-system" "2.9.1"
-    "@chakra-ui/theme" "3.3.0"
-
-"@chakra-ui/tooltip@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/tooltip/-/tooltip-2.3.0.tgz#88e61a2c5a4d99af805840377dc940d3b17c806e"
-  integrity sha512-2s23f93YIij1qEDwIK//KtEu4LLYOslhR1cUhDBk/WUzyFR3Ez0Ee+HlqlGEGfGe9x77E6/UXPnSAKKdF/cpsg==
-  dependencies:
-    "@chakra-ui/dom-utils" "2.1.0"
-    "@chakra-ui/popper" "3.1.0"
-    "@chakra-ui/portal" "2.1.0"
-    "@chakra-ui/react-types" "2.0.7"
-    "@chakra-ui/react-use-disclosure" "2.1.0"
-    "@chakra-ui/react-use-event-listener" "2.1.0"
-    "@chakra-ui/react-use-merge-refs" "2.1.0"
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/transition@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/transition/-/transition-2.1.0.tgz#c8e95564f7ab356e78119780037bae5ad150c7b3"
-  integrity sha512-orkT6T/Dt+/+kVwJNy7zwJ+U2xAZ3EU7M3XCs45RBvUnZDr/u9vdmaM/3D/rOpmQJWgQBwKPJleUXrYWUagEDQ==
-  dependencies:
-    "@chakra-ui/shared-utils" "2.0.5"
-
-"@chakra-ui/utils@2.0.15":
-  version "2.0.15"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/utils/-/utils-2.0.15.tgz#bd800b1cff30eb5a5e8c36fa039f49984b4c5e4a"
-  integrity sha512-El4+jL0WSaYYs+rJbuYFDbjmfCcfGDmRY95GO4xwzit6YAPZBLcR65rOEwLps+XWluZTy1xdMrusg/hW0c1aAA==
-  dependencies:
-    "@types/lodash.mergewith" "4.6.7"
-    css-box-model "1.2.1"
-    framesync "6.1.2"
-    lodash.mergewith "4.6.2"
-
-"@chakra-ui/utils@^2.0.8":
-  version "2.0.14"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/utils/-/utils-2.0.14.tgz#b6776c7a020ea46ed88a8048dfa2b512a1fe95f7"
-  integrity sha512-vYxtAUPY09Ex2Ae2ZvQKA1d2+lMKq/wUaRiqpwmeLfutEQuPQZc3qzQcAIMRQx3wLgXr9BUFDtHgBoOz0XKtZw==
-  dependencies:
-    "@types/lodash.mergewith" "4.6.6"
-    css-box-model "1.2.1"
-    framesync "6.1.2"
-    lodash.mergewith "4.6.2"
-
-"@chakra-ui/visually-hidden@2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/visually-hidden/-/visually-hidden-2.2.0.tgz#9b0ecef8f01263ab808ba3bda7b36a0d91b4d5c1"
-  integrity sha512-KmKDg01SrQ7VbTD3+cPWf/UfpF5MSwm3v7MWi0n5t8HnnadT13MF0MJCDSXbBWnzLv1ZKJ6zlyAOeARWX+DpjQ==
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
@@ -2843,11 +2029,6 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@eslint/js@8.55.0":
-  version "8.55.0"
-  resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.55.0.tgz#b721d52060f369aa259cf97392403cb9ce892ec6"
-  integrity sha512-qQfo2mxH5yVom1kacMtZZJFVdW+E70mqHMJvVg6WTLo+VBuQJ4TojZlfWBjK0ve5BdEeNAVxOsl/nvNMpJOaJA==
-
 "@eslint/js@8.56.0":
   version "8.56.0"
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.56.0.tgz#ef20350fec605a7f7035a01764731b2de0f3782b"
@@ -2895,10 +2076,13 @@
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
 
-"@h6s/calendar@^1.0.5":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@h6s/calendar/-/calendar-1.0.7.tgz#1c4c1742b8f8719db26da828b86adfce1b76aeb5"
-  integrity sha512-Yvcnw/TYbj3jyfHALvEyHBzn9WUYbHN55kELO5b0OOS1Ap9Y9HIxCOvNi1gJyWcMSfpMKYQ4IR5+TXv1dnhpFQ==
+"@generouted/react-router@^1.17.1":
+  version "1.18.2"
+  resolved "https://registry.yarnpkg.com/@generouted/react-router/-/react-router-1.18.2.tgz#6e6d897241dd31214fe95927694046fe941033bf"
+  integrity sha512-HyYgyfsEhUrAS52mtWiUPlW+QV8FVzpQhgvn51aj7htVV6mzr+Y87qOxQJs+mgI2SUTwF3OBrbAmW1irR6LaXA==
+  dependencies:
+    fast-glob "^3.3.2"
+    generouted "^1.18.2"
 
 "@hapi/address@2.x.x":
   version "2.1.4"
@@ -3498,7 +2682,7 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@jridgewell/trace-mapping@^0.3.12":
+"@jridgewell/trace-mapping@^0.3.12", "@jridgewell/trace-mapping@^0.3.20":
   version "0.3.21"
   resolved "https://registry.yarnpkg.com/@jridgewell/trace-mapping/-/trace-mapping-0.3.21.tgz#5dc1df7b3dc4a6209e503a924e1ca56097a2bb15"
   integrity sha512-SRfKmRe1KvYnxjEMtxEr+J4HIeMX5YBg/qhRHpxEIGjhX1rshcHlnFUE9K0GazhVKWM7B+nARSkV8LuvJdJ5/g==
@@ -3510,14 +2694,6 @@
   version "0.3.20"
   resolved "https://registry.yarnpkg.com/@jridgewell/trace-mapping/-/trace-mapping-0.3.20.tgz#72e45707cf240fa6b081d0366f8265b0cd10197f"
   integrity sha512-R8LcPeWZol2zR8mmH3JeKQ6QRCFb7XgUhV9ZlGhHLGyg4wpPiPZNQOOWhFZhxKw8u//yTbNGI42Bx/3paXEQ+Q==
-  dependencies:
-    "@jridgewell/resolve-uri" "^3.1.0"
-    "@jridgewell/sourcemap-codec" "^1.4.14"
-
-"@jridgewell/trace-mapping@^0.3.20":
-  version "0.3.21"
-  resolved "https://registry.yarnpkg.com/@jridgewell/trace-mapping/-/trace-mapping-0.3.21.tgz#5dc1df7b3dc4a6209e503a924e1ca56097a2bb15"
-  integrity sha512-SRfKmRe1KvYnxjEMtxEr+J4HIeMX5YBg/qhRHpxEIGjhX1rshcHlnFUE9K0GazhVKWM7B+nARSkV8LuvJdJ5/g==
   dependencies:
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
@@ -4743,67 +3919,44 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.7.4.tgz#79366e0699674fe6d05eb277dd56d143a6ce36a5"
   integrity sha512-L+bB9qAXMZERs95WM00iMi9N5J8Gpj59X7rRDjO+R321OflHtbWerwDUE5QoML2eeWwt94MY6TghRqjLtmfSkw==
 
-"@ovhcloud/ods-cdk@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-cdk/-/ods-cdk-16.0.1.tgz#bb2a237350fc1014d1e7b7bdba4f119782128749"
-  integrity sha512-k3Ym7u45DAEzLvAjzCDYPHJ7bA/mdvam+DMhF4C/5A/me8khb1ziQibEQaS1cEPbu5435+qFlPlYoqnJUoAZeg==
+"@ovhcloud/ods-cdk@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-cdk/-/ods-cdk-16.6.0.tgz#cacb18cf01c21df8f2c0bf225a6f696dabe7e292"
+  integrity sha512-l5wGJqZE3fz4THRXP8fXJhgef03tckBOo/6rWxJB7GTFYdy911IFGocp3NftyFRiWnzlgXha390jRc+aRPD24Q==
   dependencies:
-    "@ovhcloud/ods-common-theming" "16.0.1"
+    "@ovhcloud/ods-common-theming" "16.6.0"
 
-"@ovhcloud/ods-common-core@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-16.0.1.tgz#912d83fd6b61b82d79cfe5224485b1d4a8f49ae2"
-  integrity sha512-FhTDPYU57rt3jxSNpr7aGSKepXOjKABZxRHmBCKerBBXoJgOO49Lxa5UR62Qu6eWbA1sZ8gOUcmOUeRJGVhbZw==
+"@ovhcloud/ods-cdk@^14.1.1":
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-cdk/-/ods-cdk-14.1.1.tgz#341ed0bfed7f599b253c2d087ba2f15a8915c436"
+  integrity sha512-reePwUvxbOXOdIzHGyeKFhBbMSWiApipNLSrMEBb6cl6Wdv/HOHbv3T+w7xfSACDFhJqLg8okEmtMIU4usvlaw==
 
-"@ovhcloud/ods-common-core@16.6.0", "@ovhcloud/ods-common-core@^16.5.0":
+"@ovhcloud/ods-common-core@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-16.6.0.tgz#dfc466da4e6fe31bc72bb52a501c65c6a47c55ef"
   integrity sha512-T5IjYpnKLOBijQYUpnxKs4P+95MZ8Gp/D5Yr7NDrwa8X86Aqp/f4fOrDeLrCN5UOfN8ANqEkA9L24kI1LabHxw==
 
-"@ovhcloud/ods-common-core@17.0.0", "@ovhcloud/ods-common-core@^17.0.0":
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.0.0.tgz#e0820c213a8c6a0a91ac366cdc0059e600778f42"
-  integrity sha512-MvwtyUC9e8T8OZQzI/74zIEF4FBzOAs75CYPU9GmCIqanx/0ajp5hnjl/PNrlG88SWp4EXpjtZEHEevIaozAAA==
+"@ovhcloud/ods-common-core@17.0.2", "@ovhcloud/ods-common-core@^17.0.2":
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.0.2.tgz#e36dfb10613996b3bc68469535e9c7d4e783cd06"
+  integrity sha512-LKTa2TAycTeUOzYbyunrMqm+nczcVHS7xPKz7zOm/IDI09Iqqdb9z+vaDOVwkHKOP9ZaZvJDMxYJ9Qcs/7+v5Q==
 
-"@ovhcloud/ods-common-core@17.0.1":
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.0.1.tgz#64b109083b8b0b840201ce292103a256c7ef247d"
-  integrity sha512-SsBwP1FEwZEcomAljgJYgP+RElyQc5MgaBZ0fUczR65rrIgrV6TmUxsJ82d4UUIk7EDw2445zOGWJfQYDaKJNw==
-
-"@ovhcloud/ods-common-stencil@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-16.0.1.tgz#ab43bdbdf0d8e2651660ce20406e3b988acfe681"
-  integrity sha512-v7IZOqjUu6NtmhwR2IS4CbEi7X0oZN2HPBwSjIAu1qNWajyfZOpWh/qLKGngBxBLJMqheARJf93g6sGVkO4kqw==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-theme-blue-jeans" "16.0.1"
-    "@stencil/core" "2.18.1"
-
-"@ovhcloud/ods-common-stencil@16.6.0", "@ovhcloud/ods-common-stencil@^16.0.1", "@ovhcloud/ods-common-stencil@^16.5.0":
+"@ovhcloud/ods-common-stencil@16.6.0", "@ovhcloud/ods-common-stencil@^16.0.1":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-16.6.0.tgz#b26d81f6f11b16a3783ee107960bbf334f2bfbbc"
   integrity sha512-Y+GmI95ad67IaSRc/A3FACQQa3RX6LcWlzlvhBFIGqZWNdqjPKjqoQ7qF1yQCHKj1/A/A3M63k5Yo5YLriZCdA==
   dependencies:
-    "@ovhcloud/ods-common-core" "17.0.0"
-    "@ovhcloud/ods-theme-blue-jeans" "17.0.0"
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-theme-blue-jeans" "16.6.0"
     "@stencil/core" "4.7.0"
 
-"@ovhcloud/ods-common-stencil@17.0.0", "@ovhcloud/ods-common-stencil@^17.0.0":
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-17.0.0.tgz#87819bf4f54dea4c949bf761fa5ae697953bab1d"
-  integrity sha512-6St2NdDsjzv0/4hnTithQvDeddBnQ2D1ixQlzBJ6ufCJu419nkCuWd/mYvoNOSFl4ymnJ1M9z1sEZT0vcAml6w==
+"@ovhcloud/ods-common-stencil@17.0.2", "@ovhcloud/ods-common-stencil@^17.0.2":
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-17.0.2.tgz#bb48916244c3dacceced4e5ab2af7301778779bc"
+  integrity sha512-rYpXrEcaDz2S2Fmy+IYn/0SjotnflXVS12JTknVhM2yYlLisTy1C81ZPW1OezbpnCzFT1OQlITwoxaBfVQWq1w==
   dependencies:
-    "@ovhcloud/ods-common-core" "17.0.0"
-    "@ovhcloud/ods-theme-blue-jeans" "17.0.0"
-    "@stencil/core" "4.7.0"
-
-"@ovhcloud/ods-common-stencil@17.0.1":
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-17.0.1.tgz#a505cbb985748d5ec8f948f6838a082491ce5f62"
-  integrity sha512-a4nJTkmMt3PW4+nUP4GE7oqvXmT+wZMp+6pMY71FcvAKV2aZ0fLr/Ms1a0tkz+c6BSkuv6pnMvd1pay492u4iw==
-  dependencies:
-    "@ovhcloud/ods-common-core" "17.0.1"
-    "@ovhcloud/ods-theme-blue-jeans" "17.0.1"
+    "@ovhcloud/ods-common-core" "17.0.2"
+    "@ovhcloud/ods-theme-blue-jeans" "17.0.2"
     "@stencil/core" "4.7.0"
 
 "@ovhcloud/ods-common-testing@^16.0.1":
@@ -4818,36 +3971,15 @@
     puppeteer "10.4.0"
     ts-jest "27.1.5"
 
-"@ovhcloud/ods-common-theming@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-16.0.1.tgz#fbe515ee5c14153edd7b7cbe19dc3a63e2e14620"
-  integrity sha512-s18szlKC6bZwrE/DwGjFA4TaUu68hFGY8UOhkq5OEnKqd/WcEQnxe3/JnMQOm4iCLqXA3bxeo/gCOxU+LKAb/A==
-
-"@ovhcloud/ods-common-theming@16.6.0", "@ovhcloud/ods-common-theming@^16.0.1", "@ovhcloud/ods-common-theming@^16.5.0":
+"@ovhcloud/ods-common-theming@16.6.0", "@ovhcloud/ods-common-theming@^16.0.1":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-16.6.0.tgz#4a004cacceaf6adc2c8dbf81fccaa646fab7640d"
   integrity sha512-uPyvfFH/u4e2+3DChdAJ7Eg2l8x4HofF4XIaZhOcLCjewJF+ZSghIvYillQWVNehPwP9uPhKDvfVGKYyp//mAw==
 
-"@ovhcloud/ods-common-theming@17.0.0", "@ovhcloud/ods-common-theming@^17.0.0":
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.0.0.tgz#01fbea50e77a2acd7a5b436596fef0902228ac15"
-  integrity sha512-/JQkqGgYvXe2A5YNODXPLnjYsXQ0mC89hzYqczv15E4/pOLScrpIBu4PWlH8tscYaKOVEtQUGYyPmvm4yHnwKQ==
-
-"@ovhcloud/ods-common-theming@17.0.1":
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.0.1.tgz#c6e26fb94105640aeca0a4b08d60075ff29ff690"
-  integrity sha512-pmhy2+CG/hWhwxxysR6v0T+3JQXRJrOT4xKIFXc1t7Hjeg+o28J2EEPjJoWUk3BzDxxx6P4rYpw+8OEDeFjvKA==
-
-"@ovhcloud/ods-component-accordion@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-accordion/-/ods-component-accordion-16.0.1.tgz#b94c93074d81549ee5053a550f7735b90a6f6dc4"
-  integrity sha512-J7qEH+R6yiDQbeLLwHpchI/x/Po/k5V4RaOJ6jMhfEZN5rzo/Ue/qPpibshrDbj/kk+NypcPHiEjf2upiRbbTg==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-collapsible" "16.0.1"
-    "@ovhcloud/ods-component-icon" "16.0.1"
+"@ovhcloud/ods-common-theming@17.0.2", "@ovhcloud/ods-common-theming@^17.0.2":
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.0.2.tgz#c35853231f4966fbbd6bbd7308e6f18d071dbd32"
+  integrity sha512-pu6fOKTcjARTyNBMRqeQP4rXbOr4Flx3DiNylQzJqqKwRYHjPZqWLv9qqmtJBJESeJXrdmAyFw6HjvpXvBzjrw==
 
 "@ovhcloud/ods-component-accordion@16.6.0":
   version "16.6.0"
@@ -4859,18 +3991,6 @@
     "@ovhcloud/ods-common-theming" "16.6.0"
     "@ovhcloud/ods-component-collapsible" "16.6.0"
     "@ovhcloud/ods-component-icon" "16.6.0"
-
-"@ovhcloud/ods-component-breadcrumb@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-breadcrumb/-/ods-component-breadcrumb-16.0.1.tgz#b8b03c8efaa2e69f678f5ed51ac0e748d3fc4570"
-  integrity sha512-w3CVdEJy1gpUo1gSa640abPYHpETSkCORyNoCAlDLYBpriXPDZDKaAbU48a7Q/ofXARoN1h1bBQ6q6Ieq7Ttrw==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-icon" "16.0.1"
-    "@ovhcloud/ods-component-link" "16.0.1"
-    "@ovhcloud/ods-component-text" "16.0.1"
 
 "@ovhcloud/ods-component-breadcrumb@16.6.0":
   version "16.6.0"
@@ -4884,15 +4004,6 @@
     "@ovhcloud/ods-component-link" "16.6.0"
     "@ovhcloud/ods-component-text" "16.6.0"
 
-"@ovhcloud/ods-component-button@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-button/-/ods-component-button-16.0.1.tgz#c991409fc36897b7c1fd2595114e15d7384dd4ee"
-  integrity sha512-UuXqbv2aDMh+1jFr7yNdM3TIgROWVQhPQ85FM5It5Is6epeB/HW5c3ayZod06B8GZfpY/c74Ku48zFfPDx65fQ==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-
 "@ovhcloud/ods-component-button@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-button/-/ods-component-button-16.6.0.tgz#0ea33002186517072688b385cf587b04482fd5a9"
@@ -4901,16 +4012,6 @@
     "@ovhcloud/ods-common-core" "16.6.0"
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
-
-"@ovhcloud/ods-component-cart@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-cart/-/ods-component-cart-16.0.1.tgz#4e0bdba550c68992359b36ff715bb20d001ee20b"
-  integrity sha512-JCX7dLZi6j4jJ7EeSMIOvfqdR7dKMDXBMyxn7VbeTZ/M9iCSC+32osV/A5Wv/3s9mgNfAeNZlWynfkm4m9vPug==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-divider" "16.0.1"
 
 "@ovhcloud/ods-component-cart@16.6.0":
   version "16.6.0"
@@ -4922,16 +4023,6 @@
     "@ovhcloud/ods-common-theming" "16.6.0"
     "@ovhcloud/ods-component-divider" "16.6.0"
 
-"@ovhcloud/ods-component-checkbox-button@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-checkbox-button/-/ods-component-checkbox-button-16.0.1.tgz#546ac54eadf95de0cf1e245b02387f4de3dc3e1c"
-  integrity sha512-z+PmHPvVbHI/nwGLG06rb/q6D8LMpdmvguqKSOnYtvixDNPNI9VhF2KyBXh91DHtj+3e6zxmpvXv246K8o+vkw==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-icon" "16.0.1"
-
 "@ovhcloud/ods-component-checkbox-button@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-checkbox-button/-/ods-component-checkbox-button-16.6.0.tgz#2d68cc5b30a70805e2864eab19ec6b037e064e61"
@@ -4942,15 +4033,6 @@
     "@ovhcloud/ods-common-theming" "16.6.0"
     "@ovhcloud/ods-component-icon" "16.6.0"
 
-"@ovhcloud/ods-component-checkbox@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-checkbox/-/ods-component-checkbox-16.0.1.tgz#1332696b12ba35582876d7a50e716ed5290258a7"
-  integrity sha512-wmO2KJ68IAQqQ5aWj4945mhqYl9wGgVKQr0qSjNP6VZOrNEDSeIJOQAUAYpRWJ5ZtmfB6BmZRkH5IS8yrx9tzA==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-
 "@ovhcloud/ods-component-checkbox@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-checkbox/-/ods-component-checkbox-16.6.0.tgz#f301531f015bace0397ab0b3182f2a4ea0d34904"
@@ -4959,16 +4041,6 @@
     "@ovhcloud/ods-common-core" "16.6.0"
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
-
-"@ovhcloud/ods-component-chip@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-chip/-/ods-component-chip-16.0.1.tgz#54e20b975695560fdfe4a662f9ea652a330c8df4"
-  integrity sha512-0eWP8MXQbBF0KFmsxQvr/GucTpj7IoR52Nd4aANUHOH6UedJJAib5lt1rBkIODVihn2zjoN4bjqq8xtjFPGMRg==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-icon" "16.0.1"
 
 "@ovhcloud/ods-component-chip@16.6.0":
   version "16.6.0"
@@ -4979,17 +4051,6 @@
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
     "@ovhcloud/ods-component-icon" "16.6.0"
-
-"@ovhcloud/ods-component-clipboard@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-clipboard/-/ods-component-clipboard-16.0.1.tgz#d528e00db7e9e7416388db6a69cd01ed5c34df62"
-  integrity sha512-tN3m2weJI9237FKvIbYzlScxJsfU5AwVeEUl0gbk//nX+nE6uq1A8bGK1rz/vxxStJgr1Cg2nMFSYYP7DPmLdw==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-icon" "16.0.1"
-    "@ovhcloud/ods-component-input" "16.0.1"
 
 "@ovhcloud/ods-component-clipboard@16.6.0":
   version "16.6.0"
@@ -5003,15 +4064,6 @@
     "@ovhcloud/ods-component-icon" "16.6.0"
     "@ovhcloud/ods-component-input" "16.6.0"
 
-"@ovhcloud/ods-component-code@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-code/-/ods-component-code-16.0.1.tgz#0b23a7d2f083a94f13dbad2744da1880b3522c49"
-  integrity sha512-6tftKewaQoTdraAode9qZ/b2IdaXJrr/zQ1mUUH0jDo6zbeZrg/GaPgVKpDAzdTIYamM353POiqR9AO3PoHnhA==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-
 "@ovhcloud/ods-component-code@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-code/-/ods-component-code-16.6.0.tgz#7e9c888365b917e671d3f8ed1b0d6838d9cabaaf"
@@ -5023,15 +4075,6 @@
     "@ovhcloud/ods-component-button" "16.6.0"
     "@ovhcloud/ods-component-icon" "16.6.0"
 
-"@ovhcloud/ods-component-collapsible@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-collapsible/-/ods-component-collapsible-16.0.1.tgz#2d34f04b14f95f9bc0356f31a90373af6e5a0905"
-  integrity sha512-bpwdWgrDe2QhIY3s4suDdJ6xGVFEXkXfsn+hVFDOtSRES+kEqC+YD46I92da62bWVljGTt+945p1hONKfrw/nQ==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-
 "@ovhcloud/ods-component-collapsible@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-collapsible/-/ods-component-collapsible-16.6.0.tgz#2556f5ea5de0067333dfd3debe977c3e6d992e1b"
@@ -5040,15 +4083,6 @@
     "@ovhcloud/ods-common-core" "16.6.0"
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
-
-"@ovhcloud/ods-component-content-addon@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-content-addon/-/ods-component-content-addon-16.0.1.tgz#fb58425945901a0d2961ef16c0358039b1ea41b5"
-  integrity sha512-JD42mBAVzjkROZR8MiY6jBLrHY6gGLCD3SD6Q18Vvf7gR14cISIv13Rw0fj9PtAemwzFkxdXH4k0jMNmRxhrAg==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
 
 "@ovhcloud/ods-component-content-addon@16.6.0":
   version "16.6.0"
@@ -5087,15 +4121,6 @@
     "@ovhcloud/ods-component-input" "16.6.0"
     vanillajs-datepicker "1.3.3"
 
-"@ovhcloud/ods-component-divider@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-divider/-/ods-component-divider-16.0.1.tgz#9df01a0fd51468ec2826c566aa9048a8c3cad19b"
-  integrity sha512-8M3ww/uB1uXTj5JK61DUHnxLR+zbWnQWpLn6aBRms8OaLKXrfrDBE3cTsAKixlCYtC/X3WLP7G0AsgkJE2rfZQ==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-
 "@ovhcloud/ods-component-divider@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-divider/-/ods-component-divider-16.6.0.tgz#9999e5337aa7802bb75cc548836fae56b41a1feb"
@@ -5104,17 +4129,6 @@
     "@ovhcloud/ods-common-core" "16.6.0"
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
-
-"@ovhcloud/ods-component-flag@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-flag/-/ods-component-flag-16.0.1.tgz#a360d4011d50b18727cbef4521e2dc0212be5362"
-  integrity sha512-/cmWBHvv8dx8u/T3+rxM7nm4i9bakS+TECck4HT4QXR0+XlN9Tex7W/js7RNhpISm1ZUdxIf+4vgNYLlk4NL6A==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    flag-icons "6.6.6"
-    workbox-build "4.3.1"
 
 "@ovhcloud/ods-component-flag@16.6.0":
   version "16.6.0"
@@ -5127,16 +4141,6 @@
     flag-icons "6.6.6"
     workbox-build "4.3.1"
 
-"@ovhcloud/ods-component-form-field@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-form-field/-/ods-component-form-field-16.0.1.tgz#4c10944aa3c95c5bdf821bf21ae339092e4609af"
-  integrity sha512-xpFO+z7xvbhzoTy/dE84Pg1O4CYeykDxLjRi8IHjIHy9kogqkzvrHQr+lHHoNNY/v9Dylhe2BZXMzGOfVhs0Eg==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-text" "16.0.1"
-
 "@ovhcloud/ods-component-form-field@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-form-field/-/ods-component-form-field-16.6.0.tgz#d0b611a416a6bc67f426c04b55db65a1216314a7"
@@ -5147,15 +4151,6 @@
     "@ovhcloud/ods-common-theming" "16.6.0"
     "@ovhcloud/ods-component-text" "16.6.0"
 
-"@ovhcloud/ods-component-icon@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-icon/-/ods-component-icon-16.0.1.tgz#32f1a5b192a5b43c218197422f4e92a8082845aa"
-  integrity sha512-l1CQcsqbqaf6BZbZNfrJq5fRaS42MxbKegyCGnNj+G0EHj3ts8/ACLKJb+b1BQzT2BnQfBiaxm/hwPgWfkFxIw==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-
 "@ovhcloud/ods-component-icon@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-icon/-/ods-component-icon-16.6.0.tgz#b474b4b33dd017ca05940daf946d06a4126671a6"
@@ -5164,17 +4159,6 @@
     "@ovhcloud/ods-common-core" "16.6.0"
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
-
-"@ovhcloud/ods-component-input@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-input/-/ods-component-input-16.0.1.tgz#d1d8dc026e992a10f430e6df313d1c25adcd6519"
-  integrity sha512-lsL62U37Z8kpNf5N8W5fb7Xx23Pf/FJLIgCDmRHmFgVd1d/PZkYC0TqCKjuF7h1SfLrk8T6aq+Kl5C9J9e8XVQ==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-icon" "16.0.1"
-    "@ovhcloud/ods-component-spinner" "16.0.1"
 
 "@ovhcloud/ods-component-input@16.6.0":
   version "16.6.0"
@@ -5187,16 +4171,6 @@
     "@ovhcloud/ods-component-icon" "16.6.0"
     "@ovhcloud/ods-component-spinner" "16.6.0"
     "@ovhcloud/ods-component-text" "16.6.0"
-
-"@ovhcloud/ods-component-link@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-link/-/ods-component-link-16.0.1.tgz#d872ffc0dde39a0022b4112a17b5d5e688901a83"
-  integrity sha512-VVlmKs9d94xpFK9nlC9DzfNKFq1Nr1g5O7oyGleB4XVHP7pk9NAU5su3nux5CIWOeV8diwc0chOrGZjLTtdKHw==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-icon" "16.0.1"
 
 "@ovhcloud/ods-component-link@16.6.0":
   version "16.6.0"
@@ -5217,15 +4191,6 @@
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
 
-"@ovhcloud/ods-component-menu@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-menu/-/ods-component-menu-16.0.1.tgz#2b0797630e68c5ea9e4cb97c0ac1ab875340197f"
-  integrity sha512-dbgyoQgEzXeG1tGn6ylFdUX2frjq2lMXVIKEpjgduouSZVRhq+LgZ9vDAQSjk4BgPXIaoS+FLpjz5T7CN02dfg==
-  dependencies:
-    "@ovhcloud/ods-cdk" "16.0.1"
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-
 "@ovhcloud/ods-component-menu@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-menu/-/ods-component-menu-16.6.0.tgz#1ad8619a80f2c9163bc00a634348498e2d70c2b8"
@@ -5234,16 +4199,6 @@
     "@ovhcloud/ods-cdk" "16.6.0"
     "@ovhcloud/ods-common-core" "16.6.0"
     "@ovhcloud/ods-common-stencil" "16.6.0"
-
-"@ovhcloud/ods-component-message@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-message/-/ods-component-message-16.0.1.tgz#655d082fba4167f48c35d980fa3dd35f9e54f3b7"
-  integrity sha512-5uXd5hMMv2xT5IJeYSQFbZObOXjsgOESUenn6zI2aA210pSzqTRjszl2MzZyV3TbzE06/fjB9QuUKK7TtUyKfw==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-icon" "16.0.1"
 
 "@ovhcloud/ods-component-message@16.6.0":
   version "16.6.0"
@@ -5254,18 +4209,6 @@
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
     "@ovhcloud/ods-component-icon" "16.6.0"
-
-"@ovhcloud/ods-component-modal@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-modal/-/ods-component-modal-16.0.1.tgz#ba88ae0155dda26c1e9b79689f5ba77b49691423"
-  integrity sha512-VzVgsiPFt4O18ZcUXHRxg6jRnr6zXygoktkbW9i2LuRYHSvFYLvI7UJgewtvtGo6hYLLgifxV70goRbX4IdyMw==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-button" "16.0.1"
-    "@ovhcloud/ods-component-icon" "16.0.1"
-    "@ovhcloud/ods-component-text" "16.0.1"
 
 "@ovhcloud/ods-component-modal@16.6.0":
   version "16.6.0"
@@ -5278,20 +4221,6 @@
     "@ovhcloud/ods-component-button" "16.6.0"
     "@ovhcloud/ods-component-icon" "16.6.0"
     "@ovhcloud/ods-component-text" "16.6.0"
-
-"@ovhcloud/ods-component-pagination@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-pagination/-/ods-component-pagination-16.0.1.tgz#a9defa1b017928b51a397cd175a08f6892110c72"
-  integrity sha512-8WzAvM+aHSSvfAc4c/h+vbpXJl9oj4mRiEQwn4q6iQ3ki8zCMxhmCycUJR0oUAoy6FoS8TAss3yFroow5/uDqA==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-button" "16.0.1"
-    "@ovhcloud/ods-component-icon" "16.0.1"
-    "@ovhcloud/ods-component-select" "16.0.1"
-    "@ovhcloud/ods-component-text" "16.0.1"
-    "@ovhcloud/ods-component-tooltip" "16.0.1"
 
 "@ovhcloud/ods-component-pagination@16.6.0":
   version "16.6.0"
@@ -5306,16 +4235,6 @@
     "@ovhcloud/ods-component-select" "16.6.0"
     "@ovhcloud/ods-component-text" "16.6.0"
     "@ovhcloud/ods-component-tooltip" "16.6.0"
-
-"@ovhcloud/ods-component-password@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-password/-/ods-component-password-16.0.1.tgz#385617b7b671f2f490a745acc0580e34fb1f4325"
-  integrity sha512-8Y9cakcBalgZ6zwvTWAIpNdV0UG824UisPh5+Ogcs3nMsFpK1K7G0siOOFKt/HWuqfxKkzSYP+UyShAasjSgIA==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-input" "16.0.1"
 
 "@ovhcloud/ods-component-password@16.6.0":
   version "16.6.0"
@@ -5341,16 +4260,6 @@
     "@ovhcloud/ods-component-text" "16.6.0"
     google-libphonenumber "3.2.33"
 
-"@ovhcloud/ods-component-popover@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-popover/-/ods-component-popover-16.0.1.tgz#f3e7a6a52530b755e3a2a13a828b35a51328d50d"
-  integrity sha512-h8rZxHS9aQT6JypNQudjYzwzQa+DhF3DtdGlvE8ZzEvPegH0u+SiEW1bC2FyeLedUM1BB9XtUxv2qLxtCKLArw==
-  dependencies:
-    "@ovhcloud/ods-cdk" "16.0.1"
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-
 "@ovhcloud/ods-component-popover@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-popover/-/ods-component-popover-16.6.0.tgz#2a485dde5460a945854cd3ef2ce9b2f7d5e21b02"
@@ -5361,15 +4270,6 @@
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
 
-"@ovhcloud/ods-component-progress-bar@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-progress-bar/-/ods-component-progress-bar-16.0.1.tgz#4add79fee21faecf19bba9aa423d99eebbe40025"
-  integrity sha512-yJ3nXHJ2cR63QQldAq0YWB7o52Ovi9OU57DZaseu2AYXyX33y8RnGTieIOeoqUgQwH9acQKcIAsTZ37yUdE0PQ==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-
 "@ovhcloud/ods-component-progress-bar@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-progress-bar/-/ods-component-progress-bar-16.6.0.tgz#6088e5827b16fcf3ccd73a6362e9cf2c876deb27"
@@ -5378,15 +4278,6 @@
     "@ovhcloud/ods-common-core" "16.6.0"
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
-
-"@ovhcloud/ods-component-quantity@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-quantity/-/ods-component-quantity-16.0.1.tgz#d8bffab4ad9ac977043006673061353d7703873c"
-  integrity sha512-mOIG/8beVaxKOkjXpsxpxxT3Db9JiF5sso6Exh94FSrpd8ynQVBWfiXXftwAuoKNLcBKFeXI6Rrrt5YwvY09pw==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
 
 "@ovhcloud/ods-component-quantity@16.6.0":
   version "16.6.0"
@@ -5397,15 +4288,6 @@
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
 
-"@ovhcloud/ods-component-radio-button@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-radio-button/-/ods-component-radio-button-16.0.1.tgz#a8afb89ec95461b80567a66a4750736e3425e3e9"
-  integrity sha512-uNYgAtOSNcskXJtL35tqQ2GJCkU16ogClr4OPM4LMRNpahCJzr5465Ou4MKbsmfg2D5aPkrYSTtzonjsnSbTwA==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-
 "@ovhcloud/ods-component-radio-button@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-radio-button/-/ods-component-radio-button-16.6.0.tgz#7d7b53e74864e30a3d997f0921b70f28f0fdd624"
@@ -5414,15 +4296,6 @@
     "@ovhcloud/ods-common-core" "16.6.0"
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
-
-"@ovhcloud/ods-component-radio@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-radio/-/ods-component-radio-16.0.1.tgz#2c466fa7cba12db488524c24c1664f46ba146655"
-  integrity sha512-s+T/fZSJAhrHoX8MlSQk0Vv3mgewDRxItLmvJJbmJyfjvB4URxzzGPXXLsIxXqGLZUOvjmbMYOG2LXueNnDCKA==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
 
 "@ovhcloud/ods-component-radio@16.6.0":
   version "16.6.0"
@@ -5442,19 +4315,6 @@
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
 
-"@ovhcloud/ods-component-search-bar@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-search-bar/-/ods-component-search-bar-16.0.1.tgz#c5e47bffc814ec72120bf079f81730c67934eb3a"
-  integrity sha512-8rtpL2LolJjNSAIA6c08o425soeM+jF1xwbokZqoZYWptwIUt3fyer0ZYiJeP7WgCSw1akaxVRSTW1H3XEbItw==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-button" "16.0.1"
-    "@ovhcloud/ods-component-icon" "16.0.1"
-    "@ovhcloud/ods-component-input" "16.0.1"
-    "@ovhcloud/ods-component-select" "16.0.1"
-
 "@ovhcloud/ods-component-search-bar@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-search-bar/-/ods-component-search-bar-16.6.0.tgz#762fd75840f4dc75b8b03f0b9e92147d738eca67"
@@ -5468,17 +4328,6 @@
     "@ovhcloud/ods-component-input" "16.6.0"
     "@ovhcloud/ods-component-select" "16.6.0"
 
-"@ovhcloud/ods-component-select@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-select/-/ods-component-select-16.0.1.tgz#ddd9d33b0a0380400b16492298b6182f236a9c92"
-  integrity sha512-dPCIYEM+ktyKxbJSNU5bLWnNkeGZaAgyhsCirKry/IXrJtjJaDzH0rUO1qmPa2PYzK/AVPj9/rd1r5YPKDtnMA==
-  dependencies:
-    "@ovhcloud/ods-cdk" "16.0.1"
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-icon" "16.0.1"
-
 "@ovhcloud/ods-component-select@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-select/-/ods-component-select-16.6.0.tgz#b90a3bc067469c0b003cc02162456dad861b9fed"
@@ -5490,15 +4339,6 @@
     "@ovhcloud/ods-common-theming" "16.6.0"
     "@ovhcloud/ods-component-icon" "16.6.0"
 
-"@ovhcloud/ods-component-skeleton@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-skeleton/-/ods-component-skeleton-16.0.1.tgz#3b286d0650a784268f08de16ad92898ed57549ba"
-  integrity sha512-VLGwgTcvxYDTZgDDr0ZAjj/dnO4CLWUP1aVsuHiHBMSqVlFzAivLZFT2aOKJnozO0Uw800rjJvEXTIVbdmO5Fw==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-
 "@ovhcloud/ods-component-skeleton@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-skeleton/-/ods-component-skeleton-16.6.0.tgz#f75dcb0078783b7a081d57f01e9937d5937edafc"
@@ -5508,15 +4348,6 @@
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
 
-"@ovhcloud/ods-component-spinner@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-spinner/-/ods-component-spinner-16.0.1.tgz#ec95f803699b6733e02bda15be1a3c62d1d11aa9"
-  integrity sha512-DnoBKRPrCZ7j/VcUG5Ih0DxEd7l/WpUom/3Bt0hERq59lQa1pUJaHiay6+kwUoDj7Qod4DNgoxYpHjOlQWLFaQ==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-
 "@ovhcloud/ods-component-spinner@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-spinner/-/ods-component-spinner-16.6.0.tgz#440f606797bfda1243c3d2f79df5c3be7382131b"
@@ -5525,16 +4356,6 @@
     "@ovhcloud/ods-common-core" "16.6.0"
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
-
-"@ovhcloud/ods-component-switch@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-switch/-/ods-component-switch-16.0.1.tgz#0e39c6c71129c093a5b4a6be5ab32606c216e406"
-  integrity sha512-jvndWUe2PLW+FRSiaiZpNwuraN1IXrSUToAKdvinEhKk+DIommIp1UJ99pZndL7ySLw0E4Zxb3iPZUhc++cqhQ==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-    "@ovhcloud/ods-component-radio" "16.0.1"
 
 "@ovhcloud/ods-component-switch@16.6.0":
   version "16.6.0"
@@ -5546,15 +4367,6 @@
     "@ovhcloud/ods-common-theming" "16.6.0"
     "@ovhcloud/ods-component-radio" "16.6.0"
 
-"@ovhcloud/ods-component-tabs@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-tabs/-/ods-component-tabs-16.0.1.tgz#fe63f64b577d4764ceeb194a88acf9f598cb900a"
-  integrity sha512-qp526sxs/Z5heuOT5haPO9hilRBL7R2Prjef1x6z0T05uhu/uDByLJQmHnuvp2pIwP8Hc+L4dFUIziH2SOHkwg==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-
 "@ovhcloud/ods-component-tabs@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-tabs/-/ods-component-tabs-16.6.0.tgz#f7716ae308d7fba66bf0523999f4eb60042d5794"
@@ -5563,15 +4375,6 @@
     "@ovhcloud/ods-common-core" "16.6.0"
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
-
-"@ovhcloud/ods-component-text@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-text/-/ods-component-text-16.0.1.tgz#ef1a3ff4ac83862cc1a05736098d1c930f20013d"
-  integrity sha512-r0iOTV5EkRlI7VjepwEKPCoijzqpkrD/U3zqu4dnGO4sHO6CdCIOA82TWAswXGKC6yliYutgr4PmkXF+PmR6zA==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
 
 "@ovhcloud/ods-component-text@16.6.0":
   version "16.6.0"
@@ -5582,15 +4385,6 @@
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
 
-"@ovhcloud/ods-component-textarea@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-textarea/-/ods-component-textarea-16.0.1.tgz#c312cf2133ee412bc4c4b0a1f386d71217820fff"
-  integrity sha512-hRNGB7g+m7eq+E/LWsQM/Yb2dYyI0Jj+IF8yvoxDma94jEVvUQvKgPa8g87NWnK9s8gq5AicyYxvOsWz5AkhLw==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
-
 "@ovhcloud/ods-component-textarea@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-textarea/-/ods-component-textarea-16.6.0.tgz#09ff070f6a0daa34826c6b2add64156c744b9283"
@@ -5599,15 +4393,6 @@
     "@ovhcloud/ods-common-core" "16.6.0"
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
-
-"@ovhcloud/ods-component-tile@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-tile/-/ods-component-tile-16.0.1.tgz#ec5ccc23a2ad9c3000e86a0a8edb8603a3d0c094"
-  integrity sha512-cihYUe+yXGkpg89IeLwuGrOUDElhx5kmf3IlTPQOjoGvYEs6tBzNNcDI9lmH/I3n0+5Zk5WnXDvMIAn1D5IIKA==
-  dependencies:
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
 
 "@ovhcloud/ods-component-tile@16.6.0":
   version "16.6.0"
@@ -5627,113 +4412,114 @@
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
 
-"@ovhcloud/ods-component-tooltip@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-tooltip/-/ods-component-tooltip-16.0.1.tgz#95b74f3f2d5fe68f488d888f22ebd533c1ec0a20"
-  integrity sha512-TdL6mIoFUzPhNZYyfB/hO/+nRGLLcgztQ/NSdk3h07tUoOp7QElCv3dF0MJm57DRA75X16bYuEc4u95HEAW+tA==
+"@ovhcloud/ods-component-tooltip@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-tooltip/-/ods-component-tooltip-16.6.0.tgz#5de512636335657caaeaf0961f312ee519312a91"
+  integrity sha512-p+rkc4AfXrT+Bf4Zne8UR727NMWQqZIX2t6LPteXO/R7pihNhV6ROl0DOrmvTWmst+4no1CUo0QIMt4j2oc7gQ==
   dependencies:
-    "@ovhcloud/ods-cdk" "16.0.1"
-    "@ovhcloud/ods-common-core" "16.0.1"
-    "@ovhcloud/ods-common-stencil" "16.0.1"
-    "@ovhcloud/ods-common-theming" "16.0.1"
+    "@ovhcloud/ods-cdk" "16.6.0"
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
 
-"@ovhcloud/ods-components@16.0.1", "@ovhcloud/ods-components@^16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-16.0.1.tgz#0a4d2afe3220bf75de14cf41506e1fe5ed9f9d75"
-  integrity sha512-rvuoYwlLpQvRzZ2n4bgi/SjWCnRYd5KxSSPAW8QFaVatvrwBF9D2LNIdRS/oabC9CejLTsAEFo/xluXcoz9sIg==
-  dependencies:
-    "@ovhcloud/ods-component-accordion" "16.0.1"
-    "@ovhcloud/ods-component-breadcrumb" "16.0.1"
-    "@ovhcloud/ods-component-button" "16.0.1"
-    "@ovhcloud/ods-component-cart" "16.0.1"
-    "@ovhcloud/ods-component-checkbox" "16.0.1"
-    "@ovhcloud/ods-component-checkbox-button" "16.0.1"
-    "@ovhcloud/ods-component-chip" "16.0.1"
-    "@ovhcloud/ods-component-clipboard" "16.0.1"
-    "@ovhcloud/ods-component-code" "16.0.1"
-    "@ovhcloud/ods-component-collapsible" "16.0.1"
-    "@ovhcloud/ods-component-content-addon" "16.0.1"
-    "@ovhcloud/ods-component-divider" "16.0.1"
-    "@ovhcloud/ods-component-flag" "16.0.1"
-    "@ovhcloud/ods-component-form-field" "16.0.1"
-    "@ovhcloud/ods-component-icon" "16.0.1"
-    "@ovhcloud/ods-component-input" "16.0.1"
-    "@ovhcloud/ods-component-link" "16.0.1"
-    "@ovhcloud/ods-component-menu" "16.0.1"
-    "@ovhcloud/ods-component-message" "16.0.1"
-    "@ovhcloud/ods-component-modal" "16.0.1"
-    "@ovhcloud/ods-component-pagination" "16.0.1"
-    "@ovhcloud/ods-component-password" "16.0.1"
-    "@ovhcloud/ods-component-popover" "16.0.1"
-    "@ovhcloud/ods-component-progress-bar" "16.0.1"
-    "@ovhcloud/ods-component-quantity" "16.0.1"
-    "@ovhcloud/ods-component-radio" "16.0.1"
-    "@ovhcloud/ods-component-radio-button" "16.0.1"
-    "@ovhcloud/ods-component-search-bar" "16.0.1"
-    "@ovhcloud/ods-component-select" "16.0.1"
-    "@ovhcloud/ods-component-skeleton" "16.0.1"
-    "@ovhcloud/ods-component-spinner" "16.0.1"
-    "@ovhcloud/ods-component-switch" "16.0.1"
-    "@ovhcloud/ods-component-tabs" "16.0.1"
-    "@ovhcloud/ods-component-text" "16.0.1"
-    "@ovhcloud/ods-component-textarea" "16.0.1"
-    "@ovhcloud/ods-component-tile" "16.0.1"
-    "@ovhcloud/ods-component-tooltip" "16.0.1"
-
-"@ovhcloud/ods-components@^16.0.1":
+"@ovhcloud/ods-components@16.6.0", "@ovhcloud/ods-components@^16.0.1":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-16.6.0.tgz#49854f0d69bf69b9d663cff10ad3994becaf0f28"
   integrity sha512-Lg5O9AqxjBXHY9sBuID6Mo3kddEpBLW8k7c7DcTD+t8a2pah6aCEDRo8645xrhCEautHqPYfUhu9GbEov683Kw==
   dependencies:
-    "@ovhcloud/ods-common-core" "17.0.0"
-    "@ovhcloud/ods-common-stencil" "17.0.0"
-    "@ovhcloud/ods-common-theming" "17.0.0"
+    "@ovhcloud/ods-component-accordion" "16.6.0"
+    "@ovhcloud/ods-component-breadcrumb" "16.6.0"
+    "@ovhcloud/ods-component-button" "16.6.0"
+    "@ovhcloud/ods-component-cart" "16.6.0"
+    "@ovhcloud/ods-component-checkbox" "16.6.0"
+    "@ovhcloud/ods-component-checkbox-button" "16.6.0"
+    "@ovhcloud/ods-component-chip" "16.6.0"
+    "@ovhcloud/ods-component-clipboard" "16.6.0"
+    "@ovhcloud/ods-component-code" "16.6.0"
+    "@ovhcloud/ods-component-collapsible" "16.6.0"
+    "@ovhcloud/ods-component-content-addon" "16.6.0"
+    "@ovhcloud/ods-component-datagrid" "16.6.0"
+    "@ovhcloud/ods-component-datepicker" "16.6.0"
+    "@ovhcloud/ods-component-divider" "16.6.0"
+    "@ovhcloud/ods-component-flag" "16.6.0"
+    "@ovhcloud/ods-component-form-field" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+    "@ovhcloud/ods-component-input" "16.6.0"
+    "@ovhcloud/ods-component-link" "16.6.0"
+    "@ovhcloud/ods-component-medium" "16.6.0"
+    "@ovhcloud/ods-component-menu" "16.6.0"
+    "@ovhcloud/ods-component-message" "16.6.0"
+    "@ovhcloud/ods-component-modal" "16.6.0"
+    "@ovhcloud/ods-component-pagination" "16.6.0"
+    "@ovhcloud/ods-component-password" "16.6.0"
+    "@ovhcloud/ods-component-phone-number" "16.6.0"
+    "@ovhcloud/ods-component-popover" "16.6.0"
+    "@ovhcloud/ods-component-progress-bar" "16.6.0"
+    "@ovhcloud/ods-component-quantity" "16.6.0"
+    "@ovhcloud/ods-component-radio" "16.6.0"
+    "@ovhcloud/ods-component-radio-button" "16.6.0"
+    "@ovhcloud/ods-component-range" "16.6.0"
+    "@ovhcloud/ods-component-search-bar" "16.6.0"
+    "@ovhcloud/ods-component-select" "16.6.0"
+    "@ovhcloud/ods-component-skeleton" "16.6.0"
+    "@ovhcloud/ods-component-spinner" "16.6.0"
+    "@ovhcloud/ods-component-switch" "16.6.0"
+    "@ovhcloud/ods-component-tabs" "16.6.0"
+    "@ovhcloud/ods-component-text" "16.6.0"
+    "@ovhcloud/ods-component-textarea" "16.6.0"
+    "@ovhcloud/ods-component-tile" "16.6.0"
+    "@ovhcloud/ods-component-toggle" "16.6.0"
+    "@ovhcloud/ods-component-tooltip" "16.6.0"
 
-"@ovhcloud/ods-components@^17.0.0":
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-17.0.0.tgz#d7598045cd0ccc58be079f7525c976d1445d347a"
-  integrity sha512-ecwgtg3ND7rUY0pGg3nxq7KicY402B076ntP+bGgUcOje2hhc9TYv1zcz8lTohEEEzsslG7PdzecIbEJbbwdjw==
+"@ovhcloud/ods-components@^17.0.2":
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-17.0.2.tgz#db0bd8396467674136c36a1759aeb39c07fc5908"
+  integrity sha512-qjzuMgi0xN6gaupFf5gKZV7PncaQaD8UQu0zyd82/7LAMJOEtjnRdtNM1o71CR0LaNOLYSsUjU8mFy2S92a4lg==
   dependencies:
-    "@ovhcloud/ods-common-core" "17.0.0"
-    "@ovhcloud/ods-common-stencil" "17.0.0"
-    "@ovhcloud/ods-common-theming" "17.0.0"
+    "@ovhcloud/ods-common-core" "17.0.2"
+    "@ovhcloud/ods-common-stencil" "17.0.2"
+    "@ovhcloud/ods-common-theming" "17.0.2"
 
-"@ovhcloud/ods-components@^17.0.1":
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-17.0.1.tgz#07e713fe3646d7f51f591ad1204f4368de1d349b"
-  integrity sha512-llmaslzNFKHsXsZ/zIApdgnbYuRB33Db5D+FaQILLE2890AlcBSwkG8f+OladSDuumheX17PcicNi7wbBr8q5g==
+"@ovhcloud/ods-core@^14.0.1":
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-core/-/ods-core-14.1.1.tgz#dc4881af21e6e49fdd4d27340d96c1fa4439d6bb"
+  integrity sha512-xcLgJTJaiRDArm0uUXQSaBON3A8zVShulT2ChSbjNRW8BXE4dJql0DgVCFDCGnzKU3oKmdM+0wPtdNkWZ1mZyA==
   dependencies:
-    "@ovhcloud/ods-common-core" "17.0.1"
-    "@ovhcloud/ods-common-stencil" "17.0.1"
-    "@ovhcloud/ods-common-theming" "17.0.1"
+    "@ovhcloud/ods-cdk" "^14.1.1"
 
-"@ovhcloud/ods-theme-blue-jeans@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-16.0.1.tgz#c8dfd6df2bed82b115d9a959cb2bb632ba12c63d"
-  integrity sha512-dP6NyvIcOo4Z41p9D+UJShb7xrxtiIclY1D5XDiE4PFV/gb4/cKfsv2Q1FXPuPaWVHjGu7/2gZR2AYtoX5cLXw==
+"@ovhcloud/ods-stencil@^14.0.1":
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-stencil/-/ods-stencil-14.1.1.tgz#c7b85531f2bf243a1b435bd577110a3b483b7ae7"
+  integrity sha512-SWCpMb9PH/w3XsskSNMqvoX1ZoEvwii+jUxRancQIv/ORiDZ0XrRhoe9DoNy9GgT2qdJEiD5znAaluHUB7595g==
   dependencies:
-    "@ovhcloud/ods-common-theming" "16.0.1"
+    "@ovhcloud/ods-theme-blue-jeans" "^14.1.1"
+    "@stencil/core" "~2.18.1"
 
 "@ovhcloud/ods-theme-blue-jeans@16.6.0", "@ovhcloud/ods-theme-blue-jeans@^16.0.1":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-16.6.0.tgz#2f5865857a36adf993771962a823dc6df54b99b9"
   integrity sha512-lgjDPQ58wJcIZocA9XRbRXXJM/Mp7p7uzl4A7Nam49NW4SC3ktJsjf+z8TtBAF19p5sqcjQwayukT0NPIlT4YQ==
   dependencies:
-    "@ovhcloud/ods-common-theming" "17.0.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
 
-"@ovhcloud/ods-theme-blue-jeans@17.0.0", "@ovhcloud/ods-theme-blue-jeans@^17.0.0":
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.0.0.tgz#34a7395d35e70d8272bd095f1d3b048cd5b738c8"
-  integrity sha512-u7aHYWOv1QTL4qUSVizKR9nv/zBDYSHDBIJszlGp095YGfRdNSYe0c6BWFVUgcF5r5CUp9IuvbcxlfSB8PAqmg==
+"@ovhcloud/ods-theme-blue-jeans@17.0.2", "@ovhcloud/ods-theme-blue-jeans@^17.0.2":
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.0.2.tgz#9b74d5ec0315c27a0557caf1be7d240bee62bce8"
+  integrity sha512-101E71301WGQtuRRGrT9HiWLGnaA2c94vstLM87ta+ikwRfs1STHKcro53nnxDvTPiFerJxFynu6Z6NUlNnTYQ==
   dependencies:
-    "@ovhcloud/ods-common-theming" "17.0.0"
+    "@ovhcloud/ods-common-theming" "17.0.2"
 
-"@ovhcloud/ods-theme-blue-jeans@17.0.1", "@ovhcloud/ods-theme-blue-jeans@^17.0.1":
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.0.1.tgz#5ca8f2c5b30942a60ba282b71014afce39842da2"
-  integrity sha512-W+Fm5Y2tm7OiSotXuPgdlR2MwWhOnAmzkANVTraWfL8jY3DmOWW6hKg6/RutvoKMX2klBnxiC0Hs8ljzYHYLNQ==
+"@ovhcloud/ods-theme-blue-jeans@^14.0.1", "@ovhcloud/ods-theme-blue-jeans@^14.1.1":
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-14.1.1.tgz#fd004bd3be6b4ef99f5829a922205f61481becb4"
+  integrity sha512-OIoAuskxS5cabxQ4n7zmWaWfEKE+2DghmfUsNb/XmJoCVSc163le1MkUNqTz2LexSzUa/IS3LTxZBC0fB5TfOg==
   dependencies:
-    "@ovhcloud/ods-common-theming" "17.0.1"
+    "@ovhcloud/ods-theming" "^14.1.1"
+
+"@ovhcloud/ods-theming@^14.0.1", "@ovhcloud/ods-theming@^14.1.1":
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theming/-/ods-theming-14.1.1.tgz#88e911595c682a9b58a0225e6ec780940e53acb6"
+  integrity sha512-on/UOG/Qj6KJ8x4SIyqETRRAn6906255QUyC71Z0J+AG5M3ljoerxquG2qr34iIkXLajgbRV1ekFPLACiKCPMw==
 
 "@ovhcloud/reket-axios-client@^0.2.1":
   version "0.2.1"
@@ -6614,7 +5400,7 @@
     "@babel/helper-module-imports" "^7.10.4"
     "@rollup/pluginutils" "^3.1.0"
 
-"@rollup/plugin-commonjs@^11.0.2":
+"@rollup/plugin-commonjs@11.0.2", "@rollup/plugin-commonjs@^11.0.2":
   version "11.0.2"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-11.0.2.tgz#837cc6950752327cb90177b608f0928a4e60b582"
   integrity sha512-MPYGZr0qdbV5zZj8/2AuomVpnRVXRU5XKXb3HVniwRoRCreGlf5kOE081isNWeiLIi6IYkwTX9zE0/c7V8g81g==
@@ -6678,6 +5464,80 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
+"@rollup/pluginutils@^5.0.4":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-5.1.0.tgz#7e53eddc8c7f483a4ad0b94afb1f7f5fd3c771e0"
+  integrity sha512-XTIWOPPcpvyKI6L1NHo0lFlCyznUEyPmPY1mc3KpPVDYulHSTvyeLNVW00QTLIAFNhR3kYnJTQHeGqU4M3n09g==
+  dependencies:
+    "@types/estree" "^1.0.0"
+    estree-walker "^2.0.2"
+    picomatch "^2.3.1"
+
+"@rollup/rollup-android-arm-eabi@4.9.6":
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/@rollup/rollup-android-arm-eabi/-/rollup-android-arm-eabi-4.9.6.tgz#66b8d9cb2b3a474d115500f9ebaf43e2126fe496"
+  integrity sha512-MVNXSSYN6QXOulbHpLMKYi60ppyO13W9my1qogeiAqtjb2yR4LSmfU2+POvDkLzhjYLXz9Rf9+9a3zFHW1Lecg==
+
+"@rollup/rollup-android-arm64@4.9.6":
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/@rollup/rollup-android-arm64/-/rollup-android-arm64-4.9.6.tgz#46327d5b86420d2307946bec1535fdf00356e47d"
+  integrity sha512-T14aNLpqJ5wzKNf5jEDpv5zgyIqcpn1MlwCrUXLrwoADr2RkWA0vOWP4XxbO9aiO3dvMCQICZdKeDrFl7UMClw==
+
+"@rollup/rollup-darwin-arm64@4.9.6":
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/@rollup/rollup-darwin-arm64/-/rollup-darwin-arm64-4.9.6.tgz#166987224d2f8b1e2fd28ee90c447d52271d5e90"
+  integrity sha512-CqNNAyhRkTbo8VVZ5R85X73H3R5NX9ONnKbXuHisGWC0qRbTTxnF1U4V9NafzJbgGM0sHZpdO83pLPzq8uOZFw==
+
+"@rollup/rollup-darwin-x64@4.9.6":
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/@rollup/rollup-darwin-x64/-/rollup-darwin-x64-4.9.6.tgz#a2e6e096f74ccea6e2f174454c26aef6bcdd1274"
+  integrity sha512-zRDtdJuRvA1dc9Mp6BWYqAsU5oeLixdfUvkTHuiYOHwqYuQ4YgSmi6+/lPvSsqc/I0Omw3DdICx4Tfacdzmhog==
+
+"@rollup/rollup-linux-arm-gnueabihf@4.9.6":
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/@rollup/rollup-linux-arm-gnueabihf/-/rollup-linux-arm-gnueabihf-4.9.6.tgz#09fcd4c55a2d6160c5865fec708a8e5287f30515"
+  integrity sha512-oNk8YXDDnNyG4qlNb6is1ojTOGL/tRhbbKeE/YuccItzerEZT68Z9gHrY3ROh7axDc974+zYAPxK5SH0j/G+QQ==
+
+"@rollup/rollup-linux-arm64-gnu@4.9.6":
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/@rollup/rollup-linux-arm64-gnu/-/rollup-linux-arm64-gnu-4.9.6.tgz#19a3c0b6315c747ca9acf86e9b710cc2440f83c9"
+  integrity sha512-Z3O60yxPtuCYobrtzjo0wlmvDdx2qZfeAWTyfOjEDqd08kthDKexLpV97KfAeUXPosENKd8uyJMRDfFMxcYkDQ==
+
+"@rollup/rollup-linux-arm64-musl@4.9.6":
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/@rollup/rollup-linux-arm64-musl/-/rollup-linux-arm64-musl-4.9.6.tgz#94aaf95fdaf2ad9335983a4552759f98e6b2e850"
+  integrity sha512-gpiG0qQJNdYEVad+1iAsGAbgAnZ8j07FapmnIAQgODKcOTjLEWM9sRb+MbQyVsYCnA0Im6M6QIq6ax7liws6eQ==
+
+"@rollup/rollup-linux-riscv64-gnu@4.9.6":
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/@rollup/rollup-linux-riscv64-gnu/-/rollup-linux-riscv64-gnu-4.9.6.tgz#160510e63f4b12618af4013bddf1761cf9fc9880"
+  integrity sha512-+uCOcvVmFUYvVDr27aiyun9WgZk0tXe7ThuzoUTAukZJOwS5MrGbmSlNOhx1j80GdpqbOty05XqSl5w4dQvcOA==
+
+"@rollup/rollup-linux-x64-gnu@4.9.6":
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/@rollup/rollup-linux-x64-gnu/-/rollup-linux-x64-gnu-4.9.6.tgz#5ac5d068ce0726bd0a96ca260d5bd93721c0cb98"
+  integrity sha512-HUNqM32dGzfBKuaDUBqFB7tP6VMN74eLZ33Q9Y1TBqRDn+qDonkAUyKWwF9BR9unV7QUzffLnz9GrnKvMqC/fw==
+
+"@rollup/rollup-linux-x64-musl@4.9.6":
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/@rollup/rollup-linux-x64-musl/-/rollup-linux-x64-musl-4.9.6.tgz#bafa759ab43e8eab9edf242a8259ffb4f2a57a5d"
+  integrity sha512-ch7M+9Tr5R4FK40FHQk8VnML0Szi2KRujUgHXd/HjuH9ifH72GUmw6lStZBo3c3GB82vHa0ZoUfjfcM7JiiMrQ==
+
+"@rollup/rollup-win32-arm64-msvc@4.9.6":
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-arm64-msvc/-/rollup-win32-arm64-msvc-4.9.6.tgz#1cc3416682e5a20d8f088f26657e6e47f8db468e"
+  integrity sha512-VD6qnR99dhmTQ1mJhIzXsRcTBvTjbfbGGwKAHcu+52cVl15AC/kplkhxzW/uT0Xl62Y/meBKDZvoJSJN+vTeGA==
+
+"@rollup/rollup-win32-ia32-msvc@4.9.6":
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-ia32-msvc/-/rollup-win32-ia32-msvc-4.9.6.tgz#7d2251e1aa5e8a1e47c86891fe4547a939503461"
+  integrity sha512-J9AFDq/xiRI58eR2NIDfyVmTYGyIZmRcvcAoJ48oDld/NTR8wyiPUu2X/v1navJ+N/FGg68LEbX3Ejd6l8B7MQ==
+
+"@rollup/rollup-win32-x64-msvc@4.9.6":
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.9.6.tgz#2c1fb69e02a3f1506f52698cfdc3a8b6386df9a6"
+  integrity sha512-jqzNLhNDvIZOrt69Ce4UjGRpXJBzhUBzawMwnaDAwyHriki3XollsewxWzOzz+4yOFDkuJHtTsZFwMxhYJWmLQ==
+
 "@sinclair/typebox@^0.24.1":
   version "0.24.51"
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.24.51.tgz#645f33fe4e02defe26f2f5c0410e1c094eac7f5f"
@@ -6728,11 +5588,6 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stencil/core@2.18.1", "@stencil/core@~2.18.1":
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.18.1.tgz#f45e99b7abe2a0fa90d3141363601a68df5c08a7"
-  integrity sha512-/fXkh1lwZ+X9JQCw50mPjhBogzEHOBvVC5pLoDLZqodVYK0DGWILM2YLV4dcIUBNEK8/HMDpO/Rq81/rS3mNOw==
-
 "@stencil/core@4.7.0":
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-4.7.0.tgz#e1e7b5b8857184b6ed09b413917919442be6573c"
@@ -6742,6 +5597,11 @@
   version "4.8.2"
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-4.8.2.tgz#def54fa5afd8024125333451ed1dbf00c3f35e62"
   integrity sha512-KdZEAtz9VnqMtXOkf51+8mphyRt0fN/LYgtj5M8gnveGspG8KzoyTDzlWt0wsstWIsJJ21RA1yd3AgMMZiu3MA==
+
+"@stencil/core@~2.18.1":
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.18.1.tgz#f45e99b7abe2a0fa90d3141363601a68df5c08a7"
+  integrity sha512-/fXkh1lwZ+X9JQCw50mPjhBogzEHOBvVC5pLoDLZqodVYK0DGWILM2YLV4dcIUBNEK8/HMDpO/Rq81/rS3mNOw==
 
 "@stencil/postcss@^2.1.0":
   version "2.1.0"
@@ -7588,20 +6448,10 @@
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.36.1.tgz#79f8c1a539d47c83104210be2388813a7af2e524"
   integrity sha512-DJSilV5+ytBP1FbFcEJovv4rnnm/CokuVvrBEtW/Va9DvuJ3HksbXUJEpI0aV1KtuL4ZoO9AVE6PyNLzF7tLeA==
 
-"@tanstack/query-core@5.13.4":
-  version "5.13.4"
-  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.13.4.tgz#50ecd3f721dfb0859528fbb8863268bee24145f0"
-  integrity sha512-8+rJucXvC/xlr4OrxHhEIob/cTlbT4fgmz1VsvB0D12FRStKaXeLORNGcOhSAynRd2NL74SV/Qq0IIb4DedLcA==
-
 "@tanstack/query-core@5.17.9":
   version "5.17.9"
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.17.9.tgz#1dac85c7c674bdfd132fe7cd5cb898921000bdcf"
   integrity sha512-8xcvpWIPaRMDNLMvG9ugcUJMgFK316ZsqkPPbsI+TMZsb10N9jk0B6XgPk4/kgWC2ziHyWR7n7wUhxmD0pChQw==
-
-"@tanstack/query-devtools@5.13.5":
-  version "5.13.5"
-  resolved "https://registry.yarnpkg.com/@tanstack/query-devtools/-/query-devtools-5.13.5.tgz#1f9f9ea198b99b824bcb989c434db9c847b6230b"
-  integrity sha512-effSYz9AWcZ6sNd+c8LCBYFIuDZApoCTXEpRlEYChBZpMz9QUUVMLToThwCyUY49+T5pANL3XxgZf3HV7hwJlg==
 
 "@tanstack/query-devtools@5.17.7":
   version "5.17.7"
@@ -7624,13 +6474,6 @@
   dependencies:
     "@tanstack/query-devtools" "5.17.7"
 
-"@tanstack/react-query-devtools@^5.4.2":
-  version "5.13.5"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query-devtools/-/react-query-devtools-5.13.5.tgz#2b773e99e241b4214435ff1ce85a47e87a945ff7"
-  integrity sha512-FB17B/yPtwnqg+DAdosAM+rFj3t8Pl121MPLiUGgl6jvG0A+U9XN3n39zVbhurbdSFO5jCMkPBlloW4NH5ojrA==
-  dependencies:
-    "@tanstack/query-devtools" "5.13.5"
-
 "@tanstack/react-query@^4.29.3", "@tanstack/react-query@^4.9.0":
   version "4.36.1"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.36.1.tgz#acb589fab4085060e2e78013164868c9c785e5d2"
@@ -7639,13 +6482,6 @@
     "@tanstack/query-core" "4.36.1"
     use-sync-external-store "^1.2.0"
 
-"@tanstack/react-query@^5.0.5":
-  version "5.13.4"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.13.4.tgz#1a2b93a7319f3abd13461b5c5c7cf4eac369f567"
-  integrity sha512-3HjvkFFriEQwffUXtKHPiwkfFXUGbs46YATTzzyK1+Pw6Ekd3kwzS50e45qdamWuEXmXxyo5S1zp534LdFG0Rw==
-  dependencies:
-    "@tanstack/query-core" "5.13.4"
-
 "@tanstack/react-query@^5.14.2":
   version "5.17.9"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.17.9.tgz#74826465c1b2ecde17c6d2f1d03f10b611ac2363"
@@ -7653,12 +6489,12 @@
   dependencies:
     "@tanstack/query-core" "5.17.9"
 
-"@tanstack/react-table@^8.10.7":
-  version "8.10.7"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-table/-/react-table-8.10.7.tgz#733f4bee8cf5aa19582f944dd0fd3224b21e8c94"
-  integrity sha512-bXhjA7xsTcsW8JPTTYlUg/FuBpn8MNjiEPhkNhIGCUR6iRQM2+WEco4OBpvDeVcR9SE+bmWLzdfiY7bCbCSVuA==
+"@tanstack/react-table@^8.11.6":
+  version "8.11.6"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-table/-/react-table-8.11.6.tgz#ae234355eaae230ede95ebcbadb3251482eb6087"
+  integrity sha512-i0heTVZtuHF9VPMwcYoZ21hbzGDmLjxHYemDMvbGpjk5fUZ8nLF3S8qjVRU79XfPW8KK9o7iTU2fGFVQQmxMSQ==
   dependencies:
-    "@tanstack/table-core" "8.10.7"
+    "@tanstack/table-core" "8.11.6"
 
 "@tanstack/react-virtual@^3.0.0-beta.18":
   version "3.0.1"
@@ -7667,15 +6503,15 @@
   dependencies:
     "@tanstack/virtual-core" "3.0.0"
 
-"@tanstack/table-core@8.10.7":
-  version "8.10.7"
-  resolved "https://registry.yarnpkg.com/@tanstack/table-core/-/table-core-8.10.7.tgz#577e8a635048875de4c9d6d6a3c21d26ff9f9d08"
-  integrity sha512-KQk5OMg5OH6rmbHZxuNROvdI+hKDIUxANaHlV+dPlNN7ED3qYQ/WkpY2qlXww1SIdeMlkIhpN/2L00rof0fXFw==
+"@tanstack/table-core@8.11.6":
+  version "8.11.6"
+  resolved "https://registry.yarnpkg.com/@tanstack/table-core/-/table-core-8.11.6.tgz#ab753617b64d72f868f6ea4666059912f0c98441"
+  integrity sha512-69WEY1PaZROaGYUrseng4/4sMYnRGhDe1vM6888CnWekGz/wuCnvqwOoOuKGYivnaiI4BVmZq4WKWhvahyj3/g==
 
-"@tanstack/virtual-core@3.0.0-beta.60":
-  version "3.0.0-beta.60"
-  resolved "https://registry.yarnpkg.com/@tanstack/virtual-core/-/virtual-core-3.0.0-beta.60.tgz#fcac07cb182d41929208899062de8c9510cf42ed"
-  integrity sha512-QlCdhsV1+JIf0c0U6ge6SQmpwsyAT0oQaOSZk50AtEeAyQl9tQrd6qCHAslxQpgphrfe945abvKG8uYvw3hIGA==
+"@tanstack/virtual-core@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@tanstack/virtual-core/-/virtual-core-3.0.0.tgz#637bee36f0cabf96a1d436887c90f138a7e9378b"
+  integrity sha512-SYXOBTjJb05rXa2vl55TTwO40A6wKu0R5i1qQwhJYNDIqaIGF7D0HsLw+pJAyi2OvntlEIVusx3xtbbgSUi6zg==
 
 "@testing-library/dom@^8.5.0":
   version "8.20.1"
@@ -7934,7 +6770,7 @@
     "@types/estree" "*"
     "@types/json-schema" "*"
 
-"@types/estree@*", "@types/estree@^1.0.0":
+"@types/estree@*", "@types/estree@1.0.5", "@types/estree@^1.0.0":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.5.tgz#a6ce3e556e00fd9895dd872dd172ad0d4bd687f4"
   integrity sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==
@@ -8279,7 +7115,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-dom@^18.0.0", "@types/react-dom@^18.2.7":
+"@types/react-dom@^18.0.0":
   version "18.2.17"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.2.17.tgz#375c55fab4ae671bd98448dcfa153268d01d6f64"
   integrity sha512-rvrT/M7Df5eykWFxn6MYt5Pem/Dbyc1N8Y0S9Mrkw2WFCRiqUgw9P7ul2NpwsXCSM1DVdENzdG9J5SreqfAIWg==
@@ -8300,7 +7136,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@>=16", "@types/react@>=16.9.11", "@types/react@^18.0.0", "@types/react@^18.2.15":
+"@types/react@*", "@types/react@>=16", "@types/react@>=16.9.11", "@types/react@^18.0.0":
   version "18.2.45"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.45.tgz#253f4fac288e7e751ab3dc542000fb687422c15c"
   integrity sha512-TtAxCNrlrBp8GoeEp1npd5g+d/OejJHFxS3OWmrPBMFaVQMSN0OFySozJio5BHxTuTeug00AVXVAjfDSfk+lUg==
@@ -8631,7 +7467,7 @@
     "@typescript-eslint/types" "6.14.0"
     eslint-visitor-keys "^3.4.1"
 
-"@uirouter/angularjs@^1.0.22", "@uirouter/angularjs@^1.0.23":
+"@uirouter/angularjs@1.0.23", "@uirouter/angularjs@^1.0.22", "@uirouter/angularjs@^1.0.23":
   version "1.0.23"
   resolved "https://registry.yarnpkg.com/@uirouter/angularjs/-/angularjs-1.0.23.tgz#aeec0f96b0c42187c5044ef244ba6ccb75a5d835"
   integrity sha512-r4hLSw7R3mwXGC5Sq7yxNlBK1sSzQUm/1MzigwwYRHoMO5uKcBPUhxFYx5U7kufP2Xl1165KeZvRsLCh0/Z1ng==
@@ -8683,7 +7519,7 @@
     magic-string "^0.26.7"
     react-refresh "^0.14.0"
 
-"@vitejs/plugin-react@^4.0.3", "@vitejs/plugin-react@^4.2.1":
+"@vitejs/plugin-react@^4.2.1":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-react/-/plugin-react-4.2.1.tgz#744d8e4fcb120fc3dbaa471dadd3483f5a304bb9"
   integrity sha512-oojO9IDc4nCUUi8qIR11KoQm0XFFLIwsRBwHRR4d/88IWghn1y6ckz/bJ8GHDCsYEJee8mDzqtJxh15/cisJNQ==
@@ -8698,6 +7534,69 @@
   version "4.3.1"
   resolved "https://registry.npmjs.org/@vitejs/plugin-vue/-/plugin-vue-4.3.1.tgz#635cf512dd1d5c78adf9e24615696e4918cd9d88"
   integrity sha512-tUBEtWcF7wFtII7ayNiLNDTCE1X1afySEo+XNVMNkFXaThENyCowIEX095QqbJZGTgoOcSVDJGlnde2NG4jtbQ==
+
+"@vitest/coverage-v8@^1.2.0":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@vitest/coverage-v8/-/coverage-v8-1.2.2.tgz#681f4f76de896d0d2484cca32285477e288fec3a"
+  integrity sha512-IHyKnDz18SFclIEEAHb9Y4Uxx0sPKC2VO1kdDCs1BF6Ip4S8rQprs971zIsooLUn7Afs71GRxWMWpkCGZpRMhw==
+  dependencies:
+    "@ampproject/remapping" "^2.2.1"
+    "@bcoe/v8-coverage" "^0.2.3"
+    debug "^4.3.4"
+    istanbul-lib-coverage "^3.2.2"
+    istanbul-lib-report "^3.0.1"
+    istanbul-lib-source-maps "^4.0.1"
+    istanbul-reports "^3.1.6"
+    magic-string "^0.30.5"
+    magicast "^0.3.3"
+    picocolors "^1.0.0"
+    std-env "^3.5.0"
+    test-exclude "^6.0.0"
+    v8-to-istanbul "^9.2.0"
+
+"@vitest/expect@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@vitest/expect/-/expect-1.2.0.tgz#de93f5c32c2781c41415a8c3a6e48e1c023d6613"
+  integrity sha512-H+2bHzhyvgp32o7Pgj2h9RTHN0pgYaoi26Oo3mE+dCi1PAqV31kIIVfTbqMO3Bvshd5mIrJLc73EwSRrbol9Lw==
+  dependencies:
+    "@vitest/spy" "1.2.0"
+    "@vitest/utils" "1.2.0"
+    chai "^4.3.10"
+
+"@vitest/runner@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@vitest/runner/-/runner-1.2.0.tgz#84775f0f5c48620ff1943a45c19863355791c6d9"
+  integrity sha512-vaJkDoQaNUTroT70OhM0NPznP7H3WyRwt4LvGwCVYs/llLaqhoSLnlIhUClZpbF5RgAee29KRcNz0FEhYcgxqA==
+  dependencies:
+    "@vitest/utils" "1.2.0"
+    p-limit "^5.0.0"
+    pathe "^1.1.1"
+
+"@vitest/snapshot@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@vitest/snapshot/-/snapshot-1.2.0.tgz#2fcddb5c6e8a9d2fc9f18ea2f8fd39b1b6e691b4"
+  integrity sha512-P33EE7TrVgB3HDLllrjK/GG6WSnmUtWohbwcQqmm7TAk9AVHpdgf7M3F3qRHKm6vhr7x3eGIln7VH052Smo6Kw==
+  dependencies:
+    magic-string "^0.30.5"
+    pathe "^1.1.1"
+    pretty-format "^29.7.0"
+
+"@vitest/spy@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@vitest/spy/-/spy-1.2.0.tgz#61104de4c19a3addefff021d884c9e20dc17ebcd"
+  integrity sha512-MNxSAfxUaCeowqyyGwC293yZgk7cECZU9wGb8N1pYQ0yOn/SIr8t0l9XnGRdQZvNV/ZHBYu6GO/W3tj5K3VN1Q==
+  dependencies:
+    tinyspy "^2.2.0"
+
+"@vitest/utils@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@vitest/utils/-/utils-1.2.0.tgz#deb9bdc3d094bf47f93a592a6a0b3946aa575e7a"
+  integrity sha512-FyD5bpugsXlwVpTcGLDf3wSPYy8g541fQt14qtzo8mJ4LdEpDKZ9mQy2+qdJm2TZRpjY5JLXihXCgIxiRJgi5g==
+  dependencies:
+    diff-sequences "^29.6.3"
+    estree-walker "^3.0.3"
+    loupe "^2.3.7"
+    pretty-format "^29.7.0"
 
 "@vue/compiler-core@3.3.11":
   version "3.3.11"
@@ -9394,6 +8293,11 @@ acorn@^8.10.0, acorn@^8.2.4, acorn@^8.4.1, acorn@^8.7.1, acorn@^8.8.1, acorn@^8.
   version "8.10.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.10.0.tgz#8be5b3907a67221a81ab23c7889c4c5526b62ec5"
   integrity sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==
+
+acorn@^8.11.2, acorn@^8.11.3:
+  version "8.11.3"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.11.3.tgz#71e0b14e13a4ec160724b38fb7b0f233b1b81d7a"
+  integrity sha512-Y9rRfJG5jcKOE0CLisYbojUjIrIEE7AGMzA/Sm4BslANhbS+cDMpgBdcPT91oJ7OuJ9hYJBx59RjbhxVnrF8Xg==
 
 acorn@^8.9.0:
   version "8.11.2"
@@ -10218,7 +9122,7 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-autoprefixer@^10.0.1, autoprefixer@^10.3.6, autoprefixer@^10.4.13, autoprefixer@^10.4.14, autoprefixer@^10.4.16:
+autoprefixer@^10.3.6, autoprefixer@^10.4.13, autoprefixer@^10.4.14, autoprefixer@^10.4.16:
   version "10.4.16"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-10.4.16.tgz#fad1411024d8670880bdece3970aa72e3572feb8"
   integrity sha512-7vd3UC6xKp0HLfua5IjZlcXvGAGy7cBAXTg2lyQ/8WpNhd6SiZ8Be+xm3FyBSYJx5GKcpRCzBh7RH4/0dnY+uQ==
@@ -11419,6 +10323,13 @@ chartjs-plugin-zoom@^2.0.1:
   dependencies:
     hammerjs "^2.0.8"
 
+check-error@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/check-error/-/check-error-1.0.3.tgz#a6502e4312a7ee969f646e83bb3ddd56281bd694"
+  integrity sha512-iKEoDYaRmd1mxM90a2OEfWhjsjPpYPuQ+lMYsoxB126+t8fw7ySEO48nmDg5COTjxDI65/Y2OWpeEHk3ZOe8zg==
+  dependencies:
+    get-func-name "^2.0.2"
+
 "chokidar@>=3.0.0 <4.0.0", chokidar@^3.0.0, chokidar@^3.4.1, chokidar@^3.4.2, chokidar@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.3.tgz#1cf37c8707b932bd1af1ae22c0432e2acd1903bd"
@@ -11760,11 +10671,6 @@ color-support@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/color-support/-/color-support-1.1.3.tgz#93834379a1cc9a0c61f82f52f0d04322251bd5a2"
   integrity sha512-qiBjkpbMLO/HL68y+lh4q0/O1MZFj2RX6X/KmMa3+gJD3z+WwI1ZzDHysvqHGS3mP6mznPckpXmw1nI9cJjyRg==
-
-color2k@^2.0.0, color2k@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/color2k/-/color2k-2.0.2.tgz#ac2b4aea11c822a6bcb70c768b5a289f4fffcebb"
-  integrity sha512-kJhwH5nAwb34tmyuqq/lgjEKzlFXn1U99NlnB6Ws4qVaERcRUYeYP1cBw6BJ4vxaWStAUEef4WMr7WjOCnBt8w==
 
 colorette@^2.0.10, colorette@^2.0.14, colorette@^2.0.20:
   version "2.0.20"
@@ -12229,7 +11135,7 @@ convert-source-map@^0.3.3:
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-0.3.5.tgz#f1d802950af7dd2631a1febe0596550c86ab3190"
   integrity sha512-+4nRk0k3oEpwUB7/CalD7xE2z4VmtEnnq0GO2IPTkrooTrAhEsWvuLF5iWP1dXrwluki/azwXV1ve7gtYuPldg==
 
-convert-source-map@^1.4.0, convert-source-map@^1.5.0, convert-source-map@^1.6.0:
+convert-source-map@^1.4.0, convert-source-map@^1.5.0, convert-source-map@^1.6.0, convert-source-map@^1.7.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.9.0.tgz#7faae62353fb4213366d0ca98358d22e8368b05f"
   integrity sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==
@@ -13728,7 +12634,7 @@ entities@^2.0.0:
   resolved "https://registry.yarnpkg.com/entities/-/entities-2.2.0.tgz#098dc90ebb83d8dffa089d55256b351d34c4da55"
   integrity sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==
 
-entities@^4.5.0:
+entities@^4.4.0, entities@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/entities/-/entities-4.5.0.tgz#5d268ea5e7113ec74c4d033b79ea5a35a488fb48"
   integrity sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==
@@ -14387,50 +13293,6 @@ eslint@^6.7.2:
     table "^5.2.3"
     text-table "^0.2.0"
     v8-compile-cache "^2.0.3"
-
-eslint@^8.45.0:
-  version "8.55.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.55.0.tgz#078cb7b847d66f2c254ea1794fa395bf8e7e03f8"
-  integrity sha512-iyUUAM0PCKj5QpwGfmCAG9XXbZCWsqP/eWAWrG/W0umvjuLRBECwSFdt+rCntju0xEH7teIABPwXpahftIaTdA==
-  dependencies:
-    "@eslint-community/eslint-utils" "^4.2.0"
-    "@eslint-community/regexpp" "^4.6.1"
-    "@eslint/eslintrc" "^2.1.4"
-    "@eslint/js" "8.55.0"
-    "@humanwhocodes/config-array" "^0.11.13"
-    "@humanwhocodes/module-importer" "^1.0.1"
-    "@nodelib/fs.walk" "^1.2.8"
-    "@ungap/structured-clone" "^1.2.0"
-    ajv "^6.12.4"
-    chalk "^4.0.0"
-    cross-spawn "^7.0.2"
-    debug "^4.3.2"
-    doctrine "^3.0.0"
-    escape-string-regexp "^4.0.0"
-    eslint-scope "^7.2.2"
-    eslint-visitor-keys "^3.4.3"
-    espree "^9.6.1"
-    esquery "^1.4.2"
-    esutils "^2.0.2"
-    fast-deep-equal "^3.1.3"
-    file-entry-cache "^6.0.1"
-    find-up "^5.0.0"
-    glob-parent "^6.0.2"
-    globals "^13.19.0"
-    graphemer "^1.4.0"
-    ignore "^5.2.0"
-    imurmurhash "^0.1.4"
-    is-glob "^4.0.0"
-    is-path-inside "^3.0.3"
-    js-yaml "^4.1.0"
-    json-stable-stringify-without-jsonify "^1.0.1"
-    levn "^0.4.1"
-    lodash.merge "^4.6.2"
-    minimatch "^3.1.2"
-    natural-compare "^1.4.0"
-    optionator "^0.9.3"
-    strip-ansi "^6.0.1"
-    text-table "^0.2.0"
 
 eslint@^8.56.0:
   version "8.56.0"
@@ -15320,15 +14182,10 @@ flat@^5.0.2:
   resolved "https://registry.yarnpkg.com/flat/-/flat-5.0.2.tgz#8ca6fe332069ffa9d324c327198c598259ceb241"
   integrity sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ==
 
-flatpickr@^4.6.3, flatpickr@~4.6.3:
+flatpickr@4.6.9, flatpickr@^4.6.3, flatpickr@~4.5.2, flatpickr@~4.6.3:
   version "4.6.9"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
   integrity sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==
-
-flatpickr@~4.5.2:
-  version "4.5.7"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.7.tgz#6efc0d93c65547aa77294205c67830ebabe3565c"
-  integrity sha512-JqPfihUc9A/j9QAsh6otoARmMyUauPE17vRBEG+ThJwbl8zAq4ssGpxlPK3wWM/i8EFxkHg9UuVo0ds7XluKxw==
 
 flatted@^2.0.0:
   version "2.0.2"
@@ -15352,13 +14209,6 @@ flush-write-stream@^1.0.0:
   dependencies:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
-
-focus-lock@^0.11.6:
-  version "0.11.6"
-  resolved "https://registry.yarnpkg.com/focus-lock/-/focus-lock-0.11.6.tgz#e8821e21d218f03e100f7dc27b733f9c4f61e683"
-  integrity sha512-KSuV3ur4gf2KqMNoZx3nXNVhqCkn42GuTYCX4tXPEwf0MjpFQmNMiN6m7dXaUXgIoivL6/65agoUMg4RLS0Vbg==
-  dependencies:
-    tslib "^2.0.3"
 
 focus-trap@^7.5.4:
   version "7.5.4"
@@ -15653,10 +14503,10 @@ generouted@1.6.4:
   resolved "https://registry.yarnpkg.com/generouted/-/generouted-1.6.4.tgz#6a163418f9881ee389c5159bc7c5f5e8477ff039"
   integrity sha512-ffqRMgYasIOHafAhLu59IIEOgAGU2HZxyIcSE2N5N0b+ZkgXIhBuPBtlQnb5RXN4uKu8DchMtopW93lsuNqbUg==
 
-generouted@^1.17.1:
-  version "1.17.1"
-  resolved "https://registry.yarnpkg.com/generouted/-/generouted-1.17.1.tgz#6e80de6473128a5c25c73f4ee94d4d00946cccf2"
-  integrity sha512-RxdunIMy4cb5vyRnPM6moTQiV5H3crm2EgFLmug3w+w6Rv1Z/mNFgGnGtM43OAmlq5Pn/Kb72SzWnalmN5FCUQ==
+generouted@^1.18.2:
+  version "1.18.2"
+  resolved "https://registry.yarnpkg.com/generouted/-/generouted-1.18.2.tgz#4ffbbde4c581854507d38b83804c9b53aea14731"
+  integrity sha512-cYTSewf2Us8V+TCFUQbLTGVC6yo7ZFO0Gig2/Q+mIgKQBPJ5iaccTK/sCSj9U2cITJJQvTUnCtqdhr8zXCO89g==
 
 gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
@@ -15668,10 +14518,25 @@ get-caller-file@^2.0.1, get-caller-file@^2.0.5:
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-2.0.5.tgz#4f94412a82db32f36e3b0b9741f8a97feb031f7e"
   integrity sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==
 
+get-func-name@^2.0.1, get-func-name@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/get-func-name/-/get-func-name-2.0.2.tgz#0d7cf20cd13fda808669ffa88f4ffc7a3943fc41"
+  integrity sha512-8vXOvuE167CtIc3OyItco7N/dpRtBbYOsPsXCz7X/PMnlGjYjSGuZJgM1Y7mmew7BKf9BqvLX2tnOVy1BBUsxQ==
+
 get-intrinsic@^1.0.2, get-intrinsic@^1.1.1, get-intrinsic@^1.1.3, get-intrinsic@^1.2.0, get-intrinsic@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/get-intrinsic/-/get-intrinsic-1.2.1.tgz#d295644fed4505fc9cde952c37ee12b477a83d82"
   integrity sha512-2DcsyfABl+gVHEfCOaTrWgyt+tb6MSEGmKq+kI5HwLbIYgjgmMcV8KQ41uaKz1xxUcn9tJtgFbQUEVcEbd0FYw==
+  dependencies:
+    function-bind "^1.1.1"
+    has "^1.0.3"
+    has-proto "^1.0.1"
+    has-symbols "^1.0.3"
+
+get-intrinsic@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/get-intrinsic/-/get-intrinsic-1.2.2.tgz#281b7622971123e1ef4b3c90fd7539306da93f3b"
+  integrity sha512-0gSo4ml/0j98Y3lngkFEot/zhiCeWsbYIlZ+uZOVgzLyLaUw7wxUL+nCTP0XJvJg1AXulJRI3UJi8GsbDuxdGA==
   dependencies:
     function-bind "^1.1.2"
     has-proto "^1.0.1"
@@ -16190,15 +15055,10 @@ graphemer@^1.4.0:
   resolved "https://registry.yarnpkg.com/graphemer/-/graphemer-1.4.0.tgz#fb2f1d55e0e3a1849aeffc90c4fa0dd53a0e66c6"
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
 
-graphql@^16.3.0:
+graphql@16.6.0, graphql@^16.3.0, graphql@^16.8.1:
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.6.0.tgz#c2dcffa4649db149f6282af726c8c83f1c7c5fdb"
   integrity sha512-KPIBPDlW7NxrbT/eh4qPXz5FiFdL5UbaA0XUNz2Rp3Z3hqBSkbj0GVjwFDztsWVauZUWsbKHgMg++sk8UX0bkw==
-
-graphql@^16.8.1:
-  version "16.8.1"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.8.1.tgz#1930a965bef1170603702acdb68aedd3f3cf6f07"
-  integrity sha512-59LZHPdGZVh695Ud9lRzPBVTtlX9ZCV150Er2W43ro37wVof0ctenSaskPPjN7lVTIN8mSZt8PHUNKZuNQUuxw==
 
 growly@^1.3.0:
   version "1.3.0"
@@ -16348,6 +15208,11 @@ has-values@^1.0.0:
   dependencies:
     is-number "^3.0.0"
     kind-of "^4.0.0"
+
+has@^1.0.3:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/has/-/has-1.0.4.tgz#2eb2860e000011dae4f1406a86fe80e530fb2ec6"
+  integrity sha512-qdSAmqLF6209RFj4VVItywPMbm3vWylknmB3nvNiUIs72xAimcM8nVYxYr7ncvZq5qzk9MKIZR8ijqD/1QuYjQ==
 
 hash-base@^3.0.0:
   version "3.1.0"
@@ -16790,7 +15655,7 @@ i18next-http-backend@^1.3.0:
   dependencies:
     cross-fetch "3.1.5"
 
-i18next-http-backend@^2.3.0, i18next-http-backend@^2.4.2:
+i18next-http-backend@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/i18next-http-backend/-/i18next-http-backend-2.4.2.tgz#bd53cacaed671e9f38bdcfd46ac9d1763a898186"
   integrity sha512-wKrgGcaFQ4EPjfzBTjzMU0rbFTYpa0S5gv9N/d8WBmWS64+IgJb7cHddMvV+tUkse7vUfco3eVs2lB+nJhPo3w==
@@ -16803,13 +15668,6 @@ i18next@^20.4.0:
   integrity sha512-yCMYTMEJ9ihCwEQQ3phLo7I/Pwycf8uAx+sRHwwk5U9Aui/IZYgQRyMqXafQOw5QQ7DM1Z+WyEXWIqSuJHhG2A==
   dependencies:
     "@babel/runtime" "^7.12.0"
-
-i18next@^23.6.0:
-  version "23.7.9"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-23.7.9.tgz#1c42e7467ac5ee21ca830a0a4d3f9595cd826498"
-  integrity sha512-wturtxTfJLJdLzHhyfxXo2l9Cbu2Iz4wF4065oWThPvdFJMUUG3fhXD3BLCHgrv4VxfScORq0i9sfCdjVPbgiw==
-  dependencies:
-    "@babel/runtime" "^7.23.2"
 
 i18next@^23.7.11:
   version "23.7.16"
@@ -17762,12 +16620,7 @@ isstream@~0.1.2:
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
   integrity sha512-Yljz7ffyPbrLpLngrMtZ7NduUgVvi6wG9RJ9IUcyCd59YQ911PBJphODUcbOVbqYfxe1wuYf/LJ8PauMRwsM/g==
 
-istanbul-lib-coverage@^3.0.0, istanbul-lib-coverage@^3.2.0:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/istanbul-lib-coverage/-/istanbul-lib-coverage-3.2.2.tgz#2d166c4b0644d43a39f04bf6c2edd1e585f31756"
-  integrity sha512-O8dpsF+r0WV/8MNRKfnmrtCWhuKjxrq2w+jpzBL5UZKTi2LeVWnWOmWRxFlesJONmc+wLAGvKQZEOanko0LFTg==
-
-istanbul-lib-coverage@^3.2.2:
+istanbul-lib-coverage@^3.0.0, istanbul-lib-coverage@^3.2.0, istanbul-lib-coverage@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/istanbul-lib-coverage/-/istanbul-lib-coverage-3.2.2.tgz#2d166c4b0644d43a39f04bf6c2edd1e585f31756"
   integrity sha512-O8dpsF+r0WV/8MNRKfnmrtCWhuKjxrq2w+jpzBL5UZKTi2LeVWnWOmWRxFlesJONmc+wLAGvKQZEOanko0LFTg==
@@ -19513,7 +18366,7 @@ locate-path@^7.1.0:
   dependencies:
     p-locate "^6.0.0"
 
-lodash-es@^4.17.11, lodash-es@^4.17.15, lodash-es@^4.17.21:
+lodash-es@4.17.21, lodash-es@^4.17.11, lodash-es@^4.17.15, lodash-es@^4.17.21:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
   integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
@@ -19613,7 +18466,7 @@ lodash.upperfirst@^4.3.1:
   resolved "https://registry.yarnpkg.com/lodash.upperfirst/-/lodash.upperfirst-4.3.1.tgz#1365edf431480481ef0d1c68957a5ed99d49f7ce"
   integrity sha512-sReKOYJIJf74dhJONhU4e0/shzi1trVbSWDOhKYE5XV2O+H7Sb2Dihwuc7xWxVl+DgFPyTqIN3zMfT9cq5iWDg==
 
-lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.7.0, lodash@~4.17.15:
+lodash@4.17.21, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.7.0, lodash@~4.17.15:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -19784,7 +18637,7 @@ magic-string@^0.30.0, magic-string@^0.30.5:
   dependencies:
     "@jridgewell/sourcemap-codec" "^1.4.15"
 
-magicast@^0.3.2:
+magicast@^0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/magicast/-/magicast-0.3.3.tgz#a15760f982deec9dabc5f314e318d7c6bddcb27b"
   integrity sha512-ZbrP1Qxnpoes8sz47AM0z08U+jW6TyRgZzcWy3Ma3vDhJttwMwAFDMMQFobwdBxByBD46JYmxRzeF7w2+wJEuw==
@@ -22338,7 +21191,7 @@ postcss@^7.0.14, postcss@^7.0.2, postcss@^7.0.21, postcss@^7.0.26, postcss@^7.0.
     picocolors "^0.2.1"
     source-map "^0.6.1"
 
-postcss@^8, postcss@^8.2.7, postcss@^8.4.19, postcss@^8.4.21, postcss@^8.4.32:
+postcss@^8.2.7, postcss@^8.4.19, postcss@^8.4.21, postcss@^8.4.32:
   version "8.4.32"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.32.tgz#1dac6ac51ab19adb21b8b34fd2d93a86440ef6c9"
   integrity sha512-D/kj5JNu6oo2EIy+XL/26JEDTlIbB8hw85G8StOE6L74RQAVVP5rej6wxCNqyMbR4RkPfqvezVbPw81Ngd6Kcw==
@@ -22886,13 +21739,6 @@ react-chartjs-2@^5.2.0:
   resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-5.2.0.tgz#43c1e3549071c00a1a083ecbd26c1ad34d385f5d"
   integrity sha512-98iN5aguJyVSxp5U3CblRLH67J8gkfyGNbiK3c+l1QI/G4irHMPQw44aEPmjVag+YKTyQ260NcF82GTQ3bdscA==
 
-react-clientside-effect@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/react-clientside-effect/-/react-clientside-effect-1.2.6.tgz#29f9b14e944a376b03fb650eed2a754dd128ea3a"
-  integrity sha512-XGGGRQAKY+q25Lz9a/4EPqom7WRjz3z9R2k4jhVKA/puQFH/5Nt27vFZYql4m4NVNdUvX8PS3O7r/Zzm7cjUlg==
-  dependencies:
-    "@babel/runtime" "^7.12.13"
-
 react-colorful@^5.1.2:
   version "5.6.1"
   resolved "https://registry.yarnpkg.com/react-colorful/-/react-colorful-5.6.1.tgz#7dc2aed2d7c72fac89694e834d179e32f3da563b"
@@ -22915,27 +21761,15 @@ react-dom@18.2.0, react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
-react-fast-compare@3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.2.tgz#929a97a532304ce9fee4bcae44234f1ce2c21d49"
-  integrity sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==
-
-react-focus-lock@^2.9.4:
-  version "2.9.5"
-  resolved "https://registry.yarnpkg.com/react-focus-lock/-/react-focus-lock-2.9.5.tgz#8a82f4f0128cccc27b9e77a4472e8a22f1b52189"
-  integrity sha512-h6vrdgUbsH2HeD5I7I3Cx1PPrmwGuKYICS+kB9m+32X/9xHRrAbxgvaBpG7BFBN9h3tO+C3qX1QAVESmi4CiIA==
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-    focus-lock "^0.11.6"
-    prop-types "^15.6.2"
-    react-clientside-effect "^1.2.6"
-    use-callback-ref "^1.3.0"
-    use-sidecar "^1.1.2"
-
 react-hook-form@^7.47.0:
   version "7.49.2"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.49.2.tgz#6fb2742e1308020f26cb1915c7012b6c07b11ade"
   integrity sha512-TZcnSc17+LPPVpMRIDNVITY6w20deMdNi6iehTFLV1x8SqThXGwu93HjlUVU09pzFgZH7qZOvLMM7UYf2ShAHA==
+
+react-hook-form@^7.49.2:
+  version "7.49.3"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.49.3.tgz#576a4567f8a774830812f4855e89f5da5830435c"
+  integrity sha512-foD6r3juidAT1cOZzpmD/gOKt7fRsDhXXZ0y28+Al1CHgX+AY1qIN9VSIIItXRq1dN68QrRwl1ORFlwjBaAqeQ==
 
 react-i18next@^11.18.1:
   version "11.18.6"
@@ -22945,7 +21779,7 @@ react-i18next@^11.18.1:
     "@babel/runtime" "^7.14.5"
     html-parse-stringify "^3.0.1"
 
-react-i18next@^13.3.1, react-i18next@^13.5.0:
+react-i18next@^13.5.0:
   version "13.5.0"
   resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-13.5.0.tgz#44198f747628267a115c565f0c736a50a76b1ab0"
   integrity sha512-CFJ5NDGJ2MUyBohEHxljOq/39NQ972rh1ajnadG9BjTk+UXbHLq4z5DKEbEQBDoIhUmmbuS/fIMJKo6VOax1HA==
@@ -23018,17 +21852,6 @@ react-remove-scroll@2.5.5:
     use-callback-ref "^1.3.0"
     use-sidecar "^1.1.2"
 
-react-remove-scroll@^2.5.6:
-  version "2.5.6"
-  resolved "https://registry.yarnpkg.com/react-remove-scroll/-/react-remove-scroll-2.5.6.tgz#7510b8079e9c7eebe00e65a33daaa3aa29a10336"
-  integrity sha512-bO856ad1uDYLefgArk559IzUNeQ6SWH4QnrevIUjH+GczV56giDfl3h0Idptf2oIKxQmd1p9BN25jleKodTALg==
-  dependencies:
-    react-remove-scroll-bar "^2.3.4"
-    react-style-singleton "^2.2.1"
-    tslib "^2.1.0"
-    use-callback-ref "^1.3.0"
-    use-sidecar "^1.1.2"
-
 react-resizable-panels@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/react-resizable-panels/-/react-resizable-panels-2.0.2.tgz#39ff69da387148fdb069746c4a960391464bf2ad"
@@ -23044,14 +21867,6 @@ react-responsive@^9.0.0-beta.6:
     prop-types "^15.6.1"
     shallow-equal "^1.2.1"
 
-react-router-dom@^6.17.0, react-router-dom@^6.3.0:
-  version "6.21.0"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.21.0.tgz#aa4c6bc046a8e8723095bc09b3c0ab2254532712"
-  integrity sha512-1dUdVj3cwc1npzJaf23gulB562ESNvxf7E4x8upNJycqyUm5BRRZ6dd3LrlzhtLaMrwOCO8R0zoiYxdaJx4LlQ==
-  dependencies:
-    "@remix-run/router" "1.14.0"
-    react-router "6.21.0"
-
 react-router-dom@^6.21.0:
   version "6.21.2"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.21.2.tgz#5fba851731a194fa32c31990c4829c5e247f650a"
@@ -23059,6 +21874,14 @@ react-router-dom@^6.21.0:
   dependencies:
     "@remix-run/router" "1.14.2"
     react-router "6.21.2"
+
+react-router-dom@^6.3.0:
+  version "6.21.0"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.21.0.tgz#aa4c6bc046a8e8723095bc09b3c0ab2254532712"
+  integrity sha512-1dUdVj3cwc1npzJaf23gulB562ESNvxf7E4x8upNJycqyUm5BRRZ6dd3LrlzhtLaMrwOCO8R0zoiYxdaJx4LlQ==
+  dependencies:
+    "@remix-run/router" "1.14.0"
+    react-router "6.21.0"
 
 react-router@6.21.0:
   version "6.21.0"
@@ -24053,7 +22876,7 @@ rollup-plugin-peer-deps-external@^2.2.2:
   resolved "https://registry.yarnpkg.com/rollup-plugin-peer-deps-external/-/rollup-plugin-peer-deps-external-2.2.4.tgz#8a420bbfd6dccc30aeb68c9bf57011f2f109570d"
   integrity sha512-AWdukIM1+k5JDdAqV/Cxd+nejvno2FVLVeZ74NKggm3Q5s9cbbcOgUPGdbxPi4BXu7xGaZ8HG12F+thImYu/0g==
 
-rollup-plugin-sass@^1.12.16:
+rollup-plugin-sass@1.12.16, rollup-plugin-sass@^1.12.16:
   version "1.12.16"
   resolved "https://registry.yarnpkg.com/rollup-plugin-sass/-/rollup-plugin-sass-1.12.16.tgz#46fe4c1f73bc08289e3fb4b418fa49525888ba1b"
   integrity sha512-hCX9v9/rkUQ+59ztH8BECSgPGcVSgI31TbsIaJtHdCtcUFoLxSXJDSNQhQnwJwX9FVXL3Uc15Zeti/K25Rwzjg==
@@ -24098,6 +22921,28 @@ rollup@^3.27.1:
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.29.4.tgz#4d70c0f9834146df8705bfb69a9a19c9e1109981"
   integrity sha512-oWzmBZwvYrU0iJHtDmhsm662rC15FRXmcjCk1xD771dFDx5jJ02ufAQQTn0etB2emNk4J9EZg/yWKpsn9BWGRw==
   optionalDependencies:
+    fsevents "~2.3.2"
+
+rollup@^4.2.0, rollup@^4.4.0:
+  version "4.9.6"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-4.9.6.tgz#4515facb0318ecca254a2ee1315e22e09efc50a0"
+  integrity sha512-05lzkCS2uASX0CiLFybYfVkwNbKZG5NFQ6Go0VWyogFTXXbR039UVsegViTntkk4OglHBdF54ccApXRRuXRbsg==
+  dependencies:
+    "@types/estree" "1.0.5"
+  optionalDependencies:
+    "@rollup/rollup-android-arm-eabi" "4.9.6"
+    "@rollup/rollup-android-arm64" "4.9.6"
+    "@rollup/rollup-darwin-arm64" "4.9.6"
+    "@rollup/rollup-darwin-x64" "4.9.6"
+    "@rollup/rollup-linux-arm-gnueabihf" "4.9.6"
+    "@rollup/rollup-linux-arm64-gnu" "4.9.6"
+    "@rollup/rollup-linux-arm64-musl" "4.9.6"
+    "@rollup/rollup-linux-riscv64-gnu" "4.9.6"
+    "@rollup/rollup-linux-x64-gnu" "4.9.6"
+    "@rollup/rollup-linux-x64-musl" "4.9.6"
+    "@rollup/rollup-win32-arm64-msvc" "4.9.6"
+    "@rollup/rollup-win32-ia32-msvc" "4.9.6"
+    "@rollup/rollup-win32-x64-msvc" "4.9.6"
     fsevents "~2.3.2"
 
 rsvp@^4.8.4:
@@ -24245,7 +23090,7 @@ sass-loader@^13.1.0:
   dependencies:
     neo-async "^2.6.2"
 
-sass@^1.56.0, sass@^1.7.2:
+sass@1.56.1, sass@^1.56.0, sass@^1.7.2:
   version "1.56.1"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.56.1.tgz#94d3910cd468fd075fa87f5bb17437a0b617d8a7"
   integrity sha512-VpEyKpyBPCxE7qGDtOcdJ6fFbcpOM+Emu7uZLxVrkX8KVU/Dp5UF7WLvzqRuUhB6mqqQt1xffLoG+AndxTZrCQ==
@@ -25630,19 +24475,24 @@ table@^6.6.0:
     string-width "^4.2.3"
     strip-ansi "^6.0.1"
 
-tailwindcss@^3.3.3:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.3.3.tgz#90da807393a2859189e48e9e7000e6880a736daf"
-  integrity sha512-A0KgSkef7eE4Mf+nKJ83i75TMyq8HqY3qmFIJSWy8bNt0v1lG7jUcpGpoTFxAwYcWOphcTBLPPJg+bDfhDf52w==
+tabulator-tables@5.4.4:
+  version "5.4.4"
+  resolved "https://registry.yarnpkg.com/tabulator-tables/-/tabulator-tables-5.4.4.tgz#799f93f96af0fa06db4900f0cd2f48ac425b1d07"
+  integrity sha512-WqPWLRwrD8UMISUjQqZyj6y9k3ajQBs7eJtRosbt9q8RRkZlYCJYGxLt3L44jEXaQCE5q5EJFbGeDUEDJa1a3w==
+
+tailwind-merge@^2.1.0:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-2.2.1.tgz#3f10f296a2dba1d88769de8244fafd95c3324aeb"
+  integrity sha512-o+2GTLkthfa5YUt4JxPfzMIpQzZ3adD1vLVkvKE1Twl9UAhGsEbIZhHHZVRttyW177S8PDJI3bTQNaebyofK3Q==
   dependencies:
-    "@babel/runtime" "^7.23.5"
+    "@babel/runtime" "^7.23.7"
 
 tailwindcss-animate@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/tailwindcss-animate/-/tailwindcss-animate-1.0.7.tgz#318b692c4c42676cc9e67b19b78775742388bef4"
   integrity sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==
 
-tailwindcss@^3.3.0, tailwindcss@^3.3.3:
+tailwindcss@^3.3.3:
   version "3.3.6"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.3.6.tgz#4dd7986bf4902ad385d90d45fd4b2fa5fab26d5f"
   integrity sha512-AKjF7qbbLvLaPieoKeTjG1+FyNZT6KaJMJPFeQyLfIp7l82ggH1fbHJSsYIvnbTFQOlkh+gBYpyby5GT1LIdLw==
@@ -26500,7 +25350,7 @@ typescript@5.1.3:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
 
-"typescript@^4.6.4 || ^5.2.2", typescript@^5.0.2, typescript@^5.1.3, typescript@^5.3.3:
+"typescript@^4.6.4 || ^5.2.2", typescript@^5.1.3, typescript@^5.3.3:
   version "5.3.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.3.3.tgz#b3ce6ba258e72e6305ba66f5c9b452aaee3ffe37"
   integrity sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==
@@ -27330,7 +26180,7 @@ vite@^3.0.2:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vite@^4.3.6, vite@^4.4.5, vite@^4.5.0, vite@^4.5.1:
+vite@^4.3.6, vite@^4.5.0:
   version "4.5.1"
   resolved "https://registry.yarnpkg.com/vite/-/vite-4.5.1.tgz#3370986e1ed5dbabbf35a6c2e1fb1e18555b968a"
   integrity sha512-AXXFaAJ8yebyqzoNB9fu2pHoo/nWX+xZlaRwoeYUxEqBO+Zj4msE5G+BhGBll9lYEKv9Hfks52PAF2X7qDYXQA==
@@ -27340,6 +26190,17 @@ vite@^4.3.6, vite@^4.4.5, vite@^4.5.0, vite@^4.5.1:
     rollup "^3.27.1"
   optionalDependencies:
     fsevents "~2.3.2"
+
+vite@^5.0.0:
+  version "5.0.12"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.0.12.tgz#8a2ffd4da36c132aec4adafe05d7adde38333c47"
+  integrity sha512-4hsnEkG3q0N4Tzf1+t6NdN9dg/L3BM+q8SWgbSPnJvrgH2kgdyzfVJwbR1ic69/4uMJJ/3dqDZZE5/WwqW8U1w==
+  dependencies:
+    esbuild "^0.19.3"
+    postcss "^8.4.32"
+    rollup "^4.2.0"
+  optionalDependencies:
+    fsevents "~2.3.3"
 
 vitepress@^1.0.0-rc.20:
   version "1.0.0-rc.24"
