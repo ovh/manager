@@ -1,7 +1,7 @@
 import {
   apiClient,
-  fetchIceberg,
-  IcebergFetchResult,
+  fetchIcebergV2,
+  IcebergFetchResultV2,
 } from '@ovh-ux/manager-core-api';
 import { PciProject, RancherService } from '../../api.type';
 
@@ -12,7 +12,7 @@ const getByRancherIdProjectIdQueryKey = (
 
 export const getRancherProjectById = async (
   projectId?: string,
-): Promise<IcebergFetchResult<RancherService>> =>
+): Promise<IcebergFetchResultV2<RancherService>> =>
   apiClient.v2.get(`/publicCloud/project/${projectId}/rancher`);
 
 export const getByRancherIdProjectId = async (
@@ -33,6 +33,11 @@ export const deleteRancherServiceQueryKey = (rancherId: string) => [
 
 export const patchRancherServiceQueryKey = (rancherId: string) => [
   'patch/rancher/resource',
+  rancherId,
+];
+
+export const postRancherServiceQueryKey = (rancherId: string) => [
+  'post/rancher/resource',
   rancherId,
 ];
 
@@ -68,6 +73,18 @@ export const editRancherService = async ({
   );
 };
 
+export const generateAccessRancherService = async ({
+  rancherId,
+  projectId,
+}: {
+  rancherId: string;
+  projectId: string;
+}) => {
+  return apiClient.v2.post(
+    `${getByRancherIdProjectIdQueryKey(projectId, rancherId)}/adminCredentials`,
+  );
+};
+
 export type GetpublicCloudProjectProjectIdParams = {
   /** Project ID */
   projectId?: string;
@@ -86,11 +103,9 @@ export const getpublicCloudReferenceRancherVersionListQueryKey = [
  */
 export const getListingIceberg = async () => {
   try {
-    const List = await fetchIceberg({
+    return fetchIcebergV2({
       route: '/publicCloud/project',
-      apiVersion: 'v2',
     }).then(({ data, status }: any) => ({ data, status }));
-    return List;
   } catch (error) {
     return Promise.reject(error);
   }

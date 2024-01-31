@@ -19,17 +19,15 @@ import { RancherService, RessourceStatus } from '../../../api/api.type';
 
 const ActionsCell: React.FC<DataGridCellProps<undefined, RancherService> & {
   isLoading?: boolean;
+  href: string;
   openModal: () => void;
-  setSelectedRancher: (rancher: RancherService) => void;
-}> = ({ isLoading, rowData, openModal, setSelectedRancher }) => {
+  setSelectedRancher: (rancher?: RancherService) => void;
+}> = ({ isLoading, rowData, openModal, setSelectedRancher, href }) => {
   const editable = true;
   const { t } = useTranslation('pci-rancher/listing');
 
   const onDelete = () => {
     setSelectedRancher(rowData);
-    openModal();
-  };
-  const onManage = () => {
     openModal();
   };
 
@@ -54,14 +52,14 @@ const ActionsCell: React.FC<DataGridCellProps<undefined, RancherService> & {
             size={ODS_ICON_SIZE.xs}
           />
         </OsdsButton>
-        {rowData.resourceStatus !== RessourceStatus.ERROR && (
+        {rowData?.resourceStatus !== RessourceStatus.ERROR && (
           <OsdsMenuItem>
             <OsdsButton
               color={ODS_THEME_COLOR_INTENT.primary}
               size={ODS_BUTTON_SIZE.sm}
               variant={ODS_BUTTON_VARIANT.ghost}
               text-align="start"
-              onClick={onManage}
+              href={`${href}/${rowData?.id}`}
             >
               <span slot="start">
                 <span>{t('manage')}</span>

@@ -55,9 +55,9 @@ const TabBar: FC<{ tabs: DashboardTabItemProps[] }> = ({ tabs }) => {
                 {tab.title}
               </OsdsText>
             )}
-            {tab.isCommingSoon && (
+            {tab.isComingSoon && (
               <OsdsChip color={ODS_THEME_COLOR_INTENT.primary} className="ml-5">
-                {t('comming_soon')}
+                {t('commingSoon')}
               </OsdsChip>
             )}
           </OsdsTabBarItem>

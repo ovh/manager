@@ -52,6 +52,7 @@ const Listing: React.FC<ListingProps> = ({ data }) => {
               name={ODS_ICON_NAME.ADD}
               size={ODS_ICON_SIZE.xxs}
               color={ODS_THEME_COLOR_INTENT.primary}
+              className="mr-4"
             />
             <span>{t('createRancher')}</span>
           </span>
