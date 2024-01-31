@@ -55,6 +55,17 @@ export default /* @ngInject */ ($stateProvider) => {
                 }
               : null,
           ),
+        goToPool: /* @ngInject */ ($state) => (reload) =>
+          $state.go(
+            'octavia-load-balancer.loadbalancer.pools.detail.general-information',
+            {},
+            reload
+              ? {
+                  reload:
+                    'octavia-load-balancer.loadbalancer.pools.detail.general-information',
+                }
+              : null,
+          ),
       },
     },
   );
