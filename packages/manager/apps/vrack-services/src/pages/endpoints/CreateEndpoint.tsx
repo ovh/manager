@@ -88,7 +88,7 @@ const EndpointCreationPage: React.FC = () => {
         }),
         tracking.trackEvent({
           name: 'vrack-services::endpoints::add-success',
-          level2: '',
+          level2: '0',
         }),
       ]);
       navigate(dashboardUrl);
@@ -96,7 +96,7 @@ const EndpointCreationPage: React.FC = () => {
     onError: async () => {
       await tracking.trackEvent({
         name: 'vrack-services::endpoints::add-error',
-        level2: '',
+        level2: '0',
       });
     },
   });
@@ -104,7 +104,7 @@ const EndpointCreationPage: React.FC = () => {
   React.useEffect(() => {
     tracking.trackPage({
       name: 'vrack-services::endpoints::add',
-      level2: '',
+      level2: '0',
     });
     queryClient.invalidateQueries({
       queryKey: updateVrackServicesQueryKey(getEndpointCreationMutationKey(id)),

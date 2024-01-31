@@ -59,13 +59,13 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
           onSuccess: () => {
             trackEvent({
               name: 'vrack-services::subnets::update-success',
-              level2: '',
+              level2: '0',
             });
           },
           onError: () => {
             trackEvent({
               name: 'vrack-services::subnets::update-error',
-              level2: '',
+              level2: '0',
             });
           },
         },

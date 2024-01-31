@@ -36,7 +36,7 @@ const Subnets: React.FC = () => {
 
   React.useEffect(() => {
     if (!isLoading) {
-      tracking.trackPage({ name: 'vrack-services::subnets', level2: '' });
+      tracking.trackPage({ name: 'vrack-services::subnets', level2: '0' });
     }
   }, [isLoading]);
 

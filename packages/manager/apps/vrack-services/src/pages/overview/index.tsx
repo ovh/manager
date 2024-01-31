@@ -53,7 +53,7 @@ export const OverviewTab: React.FC = () => {
   React.useEffect(() => {
     tracking.trackPage({
       name: 'vrack-services::dashboard',
-      level2: '',
+      level2: '0',
     });
   }, []);
 

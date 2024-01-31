@@ -82,7 +82,7 @@ const CreationPage: React.FC = () => {
           });
           await tracking.trackEvent({
             name: 'vrack-services::add::create-vrack-success',
-            level2: '',
+            level2: '0',
           });
           await queryClient.invalidateQueries({
             queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
@@ -90,7 +90,7 @@ const CreationPage: React.FC = () => {
         } catch {
           await tracking.trackEvent({
             name: 'vrack-services::add::create-vrack-error',
-            level2: '',
+            level2: '0',
           });
         }
       }
@@ -99,14 +99,14 @@ const CreationPage: React.FC = () => {
       });
       await tracking.trackEvent({
         name: 'vrack-services::add-success',
-        level2: '',
+        level2: '0',
       });
       navigate('/');
     },
     onError: async () => {
       await tracking.trackEvent({
         name: 'vrack-services::add-error',
-        level2: '',
+        level2: '0',
       });
     },
   });
@@ -114,7 +114,7 @@ const CreationPage: React.FC = () => {
   React.useEffect(() => {
     tracking.trackPage({
       name: 'vrack-services::add',
-      level2: '',
+      level2: '0',
     });
     queryClient.invalidateQueries({ queryKey: orderVrackQueryKey });
     queryClient.invalidateQueries({ queryKey: orderVrackServicesQueryKey });

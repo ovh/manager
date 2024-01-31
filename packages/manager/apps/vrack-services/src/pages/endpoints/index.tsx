@@ -35,7 +35,7 @@ const Endpoints: React.FC = () => {
     if (!isLoading) {
       tracking.trackPage({
         name: 'vrack-services::endpoints',
-        level2: '',
+        level2: '0',
       });
     }
   }, [isLoading]);

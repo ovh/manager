@@ -66,7 +66,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
     if (isModalOpen && onDisplayDataTracking) {
       tracking.trackPage({
         name: onDisplayDataTracking,
-        level2: '',
+        level2: '0',
       });
     }
   }, [isModalOpen, onDisplayDataTracking]);

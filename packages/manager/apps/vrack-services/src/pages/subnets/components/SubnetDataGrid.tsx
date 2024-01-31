@@ -120,13 +120,13 @@ export const SubnetDatagrid: React.FC = () => {
               onSuccess: () => {
                 tracking.trackEvent({
                   name: 'vrack-services::subnets::delete-success',
-                  level2: '',
+                  level2: '0',
                 });
               },
               onError: () => {
                 tracking.trackEvent({
                   name: 'vrack-services::subnets::delete-error',
-                  level2: '',
+                  level2: '0',
                 });
               },
             },

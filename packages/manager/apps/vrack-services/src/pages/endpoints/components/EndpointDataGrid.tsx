@@ -154,13 +154,13 @@ export const EndpointDatagrid: React.FC = () => {
               onSuccess: async () => {
                 await tracking.trackEvent({
                   name: 'vrack-services::endpoints::delete-success',
-                  level2: '',
+                  level2: '0',
                 });
               },
               onError: async () => {
                 await tracking.trackEvent({
                   name: 'vrack-services::endpoints::delete-error',
-                  level2: '',
+                  level2: '0',
                 });
               },
             },
