@@ -28,7 +28,7 @@ export default class OctaviaLoadBalancerHealthMonitorService {
 
     if (healthMonitor.urlPath && healthMonitor.expectedCode) {
       postDatas.httpConfiguration = {
-        expectedCodes: healthMonitor.expectedCode,
+        expectedCodes: healthMonitor.expectedCode.toString(),
         httpMethod: 'GET',
         httpVersion: '1.0',
         urlPath: healthMonitor.urlPath,
@@ -59,7 +59,7 @@ export default class OctaviaLoadBalancerHealthMonitorService {
 
     if (model.urlPath && model.expectedCode) {
       putDatas.httpConfiguration = {
-        expectedCodes: model.expectedCode,
+        expectedCodes: model.expectedCode.toString(),
         httpMethod: 'GET',
         httpVersion: '1.0',
         urlPath: model.urlPath,
@@ -69,6 +69,12 @@ export default class OctaviaLoadBalancerHealthMonitorService {
     return this.$http.put(
       `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor/${healthMonitorId}`,
       putDatas,
+    );
+  }
+
+  deleteHealthMonitor(projectId, region, healthMonitorId) {
+    return this.$http.delete(
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor/${healthMonitorId}`,
     );
   }
 }
