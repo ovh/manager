@@ -1219,10 +1219,10 @@ export namespace database {
     }
     /** Supported metrics query period */
     export enum MetricPeriodEnum {
-      'lastDay' = 'lastDay',
       'lastHour' = 'lastHour',
-      'lastMonth' = 'lastMonth',
+      'lastDay' = 'lastDay',
       'lastWeek' = 'lastWeek',
+      'lastMonth' = 'lastMonth',
       'lastYear' = 'lastYear',
     }
     /** Supported unit types for metrics */
