@@ -9,7 +9,7 @@ export default class IpByoipService {
     return this.$http.get(`/ip/${encodeURIComponent(ip)}/bringYourOwnIp/slice`);
   }
 
-  postSliceBOYIP(ip, size) {
+  postSliceBYOIP(ip, size) {
     return this.$http.post(
       `/ip/${encodeURIComponent(ip)}/bringYourOwnIp/slice`,
       { slicingSize: size },
@@ -23,7 +23,7 @@ export default class IpByoipService {
     );
   }
 
-  postAggregateBOYIP(ip, aggregationIp) {
+  postAggregateBYOIP(ip, aggregationIp) {
     return this.$http.post(
       `/ip/${encodeURIComponent(ip)}/bringYourOwnIp/aggregate`,
       { aggregationIp },

@@ -1,6 +1,6 @@
 export default class IpByoipSliceController {
   /* @ngInject */
-  constructor($scope, IpByoipService) {
+  constructor($scope, IpByoipService, $translate, Alerter) {
     this.$scope = $scope;
     this.IpByoipService = IpByoipService;
     this.ip = $scope.currentActionData.ipBlock;
@@ -8,6 +8,8 @@ export default class IpByoipSliceController {
     this.selectedSize = {};
     this.isLoaded = false;
     this.errorMessage = null;
+    this.Alerter = Alerter;
+    this.$translate = $translate;
   }
 
   $onInit() {
@@ -33,11 +35,14 @@ export default class IpByoipSliceController {
 
   slice() {
     this.isLoaded = false;
-    this.IpByoipService.postSliceBOYIP(
+    this.IpByoipService.postSliceBYOIP(
       this.ip.ipBlock,
       this.selectedSize.slicingSize,
     )
       .then(() => {
+        this.Alerter.success(
+          this.$translate.instant('ip_table_manage_byoip_slice_success'),
+        );
         this.$scope.resetAction();
       })
       .catch(({ data: { message } }) => {

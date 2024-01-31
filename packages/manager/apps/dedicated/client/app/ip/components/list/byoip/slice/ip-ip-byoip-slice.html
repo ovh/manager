@@ -2,19 +2,22 @@
     <div
         data-wizard
         data-wizard-on-cancel="$ctrl.cancelSlice.bind($ctrl)"
+        data-wizard-cancel-button-text="'ip_table_manage_byoip_cancel' | translate"
         data-wizard-on-finish="$ctrl.slice.bind($ctrl)"
         data-wizard-title="('ip_byoip_slice_block_title' | translate) + ' ' + $ctrl.ip.ipBlock"
     >
         <div data-wizard-step data-wizard-step-valid="$ctrl.isLoaded">
-            <div data-ng-show="$ctrl.isLoaded">
+            <div data-ng-if="$ctrl.isLoaded">
                 <oui-message data-type="error" data-ng-show="$ctrl.errorMessage" >
                     <span data-ng-bind="$ctrl.errorMessage"></span>
                 </oui-message>
                 <p data-translate="ip_byoip_slice_set_children_size"></p>
                 <label class="oui-select">
                     <select data-ng-model="$ctrl.selectedSize" class="oui-select__input" >
-                        <option data-ng-repeat="size in $ctrl.ipSizes track by $index" data-ng-value="size">
-                            <span>{{'/' + size.slicingSize}}</span>
+                        <option
+                            data-ng-repeat="size in $ctrl.ipSizes track by $index"
+                            data-ng-value="size"
+                            data-ng-bind="'/' + size.slicingSize">
                         </option>
                     </select>
                     <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
