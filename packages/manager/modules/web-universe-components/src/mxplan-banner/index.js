@@ -1,6 +1,6 @@
 import component from './mxplan-banner.component';
 
-const moduleName = 'ovhManagermxplanBanner';
+const moduleName = 'ovhManagerWucMxplanBanner';
 
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate'])
