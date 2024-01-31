@@ -16,5 +16,12 @@
   "last_update_date": "Dernière mise à jour {{date}} à {{hour}}",
   "editNameRancherSuccess": "Le nom de votre Managed Rancher service a bien été modifié.",
   "editNameRancherError": "Une erreur est survenue. Merci de réessayer ultérieurement.",
-  "comming_soon": "Bientôt disponible"
+  "commingSoon": "Bientôt disponible",
+  "generateAccesModalTitle": "Générer les codes d'accès",
+  "generateAccesModalDescription": "Êtes-vous sûr de vouloir régénérer un nouveau mot de passe pour votre Managed Rancher Service {{rancherName}} ?",
+  "cancel": "Annulez",
+  "close": "Fermer",
+  "confirm": "Confirmer",
+  "copy": "Copié",
+  "error": "Erreur"
 }
