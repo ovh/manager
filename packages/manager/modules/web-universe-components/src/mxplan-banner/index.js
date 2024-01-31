@@ -1,6 +1,6 @@
-import component from './spf-banner.component';
+import component from './mxplan-banner.component';
 
-const moduleName = 'ovhManagerWucSpfBanner';
+const moduleName = 'ovhManagermxplanBanner';
 
 angular
   .module(moduleName, ['oui', 'pascalprecht.translate'])
