@@ -7,12 +7,9 @@ export default class OctaviaLoadBalancerHealthMonitorService {
   getHealthMonitor(projectId, region, poolId) {
     return this.$http
       .get(
-        `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor`,
+        `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor?poolId=${poolId}`,
       )
-      .then(({ data }) => {
-        const [monitor] = data.filter((item) => item.poolId === poolId);
-        return monitor;
-      });
+      .then(({ data: [monitor] }) => monitor);
   }
 
   createHealthMonitor(projectId, region, poolId, healthMonitor) {
