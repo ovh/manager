@@ -7,7 +7,13 @@ export default class OctaviaLoadBalancerPoolsDetailHealthMonitorDeleteCtrl {
     this.isLoading = false;
   }
 
+  cancel() {
+    this.trackDeleteAction('cancel');
+    this.goToDashboard();
+  }
+
   delete() {
+    this.trackDeleteAction('confirm');
     this.loading = true;
     const healthMonitorName = this.healthMonitor.name;
     const poolName = this.pool.name;
@@ -17,6 +23,7 @@ export default class OctaviaLoadBalancerPoolsDetailHealthMonitorDeleteCtrl {
       this.healthMonitor.id,
     )
       .then(() => {
+        this.trackDeletePage('success');
         this.goToPool(true).then(() => {
           this.isLoading = false;
           this.Alerter.set(
@@ -34,6 +41,7 @@ export default class OctaviaLoadBalancerPoolsDetailHealthMonitorDeleteCtrl {
         });
       })
       .catch((error) => {
+        this.trackDeletePage('error');
         this.isLoading = false;
         this.Alerter.error(
           this.$translate.instant('octavia_load_balancer_global_error', {
