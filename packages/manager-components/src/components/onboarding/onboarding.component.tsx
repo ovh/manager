@@ -18,7 +18,7 @@ export type OnboardingLayoutProps = PropsWithChildren<{
   description?: string;
   moreInfoHref?: string;
   moreInfoButtonLabel?: string;
-  onOrderButtonClick: () => void;
+  onOrderButtonClick?: () => void;
   img: {
     src: string;
     width?: number;
