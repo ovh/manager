@@ -120,9 +120,11 @@
   "domains_operations_nicOperation_DomainRegistryDelete": "Eliminación del dominio en el registro",
   "domains_operations_nicOperation_DomainResourceDelete": "Eliminación definitiva del dominio en OVHcloud",
   "domains_operations_nicOperation_DomainUnhold": "Reactivación del dominio",
+  "domain_operations_dashboard_info": "Incluimos a continuación un resumen de las operaciones en curso. En función de la operación, podría ser necesaria su intervención.",
+  "domain_operations_nicOperation_ZoneCreate": "Creación de zona DNS",
+  "operation_tab_DNS": "DNS",
   "domain_operations_dashboard_title": "Operaciones en mis dominios",
   "dns_operations_dashboard_title": "Operaciones en mis DNS",
-  "domain_operations_dashboard_info": "Incluimos a continuación un resumen de las operaciones en curso que requieren su intervención.",
   "domain_operations": "Operación",
   "domain_operations_filters_domain": "Dominio:",
   "domain_operations_filters_dns": "DNS:",
@@ -241,6 +243,5 @@
   "domain_operations_progress_instructions_5": "Si solo uno de los dos emails ha sido validado: tras 5 días sin validación en el otro email, la transferencia pasa a la siguiente etapa.",
   "domain_operations_progress_instructions_6": "Si los dos emails han sido validados: validación y paso a la siguiente etapa en 24 horas.",
   "domain_operations_progress_instructions_7": "Puede ponerse en contacto con el proveedor actual del dominio para solicitar su consentimiento.",
-  "operation_tab_DOMAIN": "Dominio",
-  "operation_tab_DNS": "DNS"
+  "operation_tab_DOMAIN": "Dominio"
 }
