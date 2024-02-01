@@ -24,7 +24,7 @@ export const GUIDE_LINKS = {
   TN:
     'https://help.ovhcloud.com/csm/fr-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061410',
   DEFAULT:
-    'https://help.ovhcloud.com/csm/en-gb-dns-spf-record?id=kb_article_view&sysparm_article=KB0051714',
+    'https://help.ovhcloud.com/csm/en-gb-mx-plan-zimbra-faq?id=kb_article_view&sysparm_article=KB0061404',
 };
 
 export default {

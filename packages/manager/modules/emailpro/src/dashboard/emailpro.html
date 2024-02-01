@@ -122,40 +122,40 @@
         <div data-ng-if="!exchange.isExpired">
             <oui-header-tabs>
                 <oui-header-tabs-item
-                    href="{{:: informationLink }}"
-                    active="informationLink === currentActiveLink()"
+                    data-href="{{:: informationLink }}"
+                    data-active="informationLink === currentActiveLink()"
                 >
                     <span data-translate="emailpro_tab_INFORMATION"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
-                    href="{{:: domainLink }}"
-                    active="domainLink === currentActiveLink()"
+                    data-href="{{:: domainLink }}"
+                    data-active="domainLink === currentActiveLink()"
                 >
                     <span data-translate="emailpro_tab_DOMAIN"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
-                    href="{{:: accountLink }}"
-                    active="accountLink === currentActiveLink()"
+                    data-href="{{:: accountLink }}"
+                    data-active="accountLink === currentActiveLink()"
                 >
                     <span data-translate="emailpro_tab_ACCOUNT"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
                     data-ng-if="mailingListLink"
-                    href="{{:: mailingListLink }}"
-                    active="mailingListLink === currentActiveLink()"
+                    data-href="{{:: mailingListLink }}"
+                    data-active="mailingListLink === currentActiveLink()"
                 >
                     <span data-translate="emailpro_tab_MAILING_LIST"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
                     data-ng-if="redirectionLink"
-                    href="{{:: redirectionLink }}"
-                    active="redirectionLink === currentActiveLink()"
+                    data-href="{{:: redirectionLink }}"
+                    data-active="redirectionLink === currentActiveLink()"
                 >
                     <span data-translate="emailpro_tab_REDIRECTION"></span>
                 </oui-header-tabs-item>
                 <oui-header-tabs-item
-                    href="{{:: externalContactLink }}"
-                    active="externalContactLink === currentActiveLink()"
+                    data-href="{{:: externalContactLink }}"
+                    data-active="externalContactLink === currentActiveLink()"
                 >
                     <span data-translate="emailpro_tab_EXTERNAL_CONTACT"></span>
                 </oui-header-tabs-item>
@@ -163,15 +163,16 @@
                     data-text="{{:: 'emailpro_navigation_more' | translate }}"
                 >
                     <oui-header-tabs-item
-                        href="{{:: disclaimerLink}}"
-                        active="disclaimerLink === currentActiveLink()"
+                        data-ng-if="!exchange.isZimbra"
+                        data-href="{{:: disclaimerLink}}"
+                        data-active="disclaimerLink === currentActiveLink()"
                     >
                         <span data-translate="emailpro_tab_DISCLAIMER"></span>
                     </oui-header-tabs-item>
                     <oui-header-tabs-item
                         data-ng-if="taskLink"
-                        href="{{:: taskLink}}"
-                        active="taskLink === currentActiveLink()"
+                        data-href="{{:: taskLink}}"
+                        data-active="taskLink === currentActiveLink()"
                     >
                         <span data-translate="emailpro_tab_TASKS"></span>
                     </oui-header-tabs-item>
