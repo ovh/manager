@@ -119,5 +119,8 @@
   "domains_operations_nicOperation_DomainAfterMarket": "Transferencia entrante a través del mercado secundario",
   "domains_operations_nicOperation_DomainRegistryDelete": "Eliminación del dominio en el registro",
   "domains_operations_nicOperation_DomainResourceDelete": "Eliminación definitiva del dominio en OVHcloud",
-  "domains_operations_nicOperation_DomainUnhold": "Reactivación del dominio"
+  "domains_operations_nicOperation_DomainUnhold": "Reactivación del dominio",
+  "domain_operations_dashboard_info": "Incluimos a continuación un resumen de las operaciones en curso. En función de la operación, podría ser necesaria su intervención.",
+  "domain_operations_nicOperation_ZoneCreate": "Creación de zona DNS",
+  "operation_tab_DNS": "DNS"
 }

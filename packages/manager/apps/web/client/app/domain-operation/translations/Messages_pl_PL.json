@@ -119,5 +119,8 @@
   "domains_operations_nicOperation_DomainAfterMarket": "Transfer domeny z rynku wtórnego",
   "domains_operations_nicOperation_DomainRegistryDelete": "Usunięcie domeny w rejestrze",
   "domains_operations_nicOperation_DomainResourceDelete": "Definitywne usunięcie domeny w OVHcloud",
-  "domains_operations_nicOperation_DomainUnhold": "Ponowne włączenie domeny"
+  "domains_operations_nicOperation_DomainUnhold": "Ponowne włączenie domeny",
+  "domain_operations_dashboard_info": "Poniżej znajdziesz listę wszystkich operacji w toku. W przypadku niektórych operacji może być konieczne podjęcie określonych działań.",
+  "domain_operations_nicOperation_ZoneCreate": "Tworzenie strefy DNS",
+  "operation_tab_DNS": "DNS"
 }
