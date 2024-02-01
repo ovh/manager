@@ -8,6 +8,8 @@ export default {
     pool: '<',
     healthMonitor: '<',
     goToDashboard: '<',
+    trackEditAction: '<',
+    trackEditPage: '<',
   },
   controller,
   template,
