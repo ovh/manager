@@ -1,7 +1,7 @@
 {
   "domain_operations_dashboard_title": "Opérations sur mes noms de domaine",
   "dns_operations_dashboard_title": "Opérations sur mes dns",
-  "domain_operations_dashboard_info": "Vous trouverez ci-dessous l’ensemble des opérations en cours nécessitant une action de votre part.",
+  "domain_operations_dashboard_info": "Vous trouverez ci-dessous l'ensemble des opérations en cours. Selon l'opération, une action de votre part peut être nécessaire.",
   "domain_operations": "Opération",
   "domain_operations_filters_domain": "Domaine :",
   "domain_operations_filters_dns": "Dns :",
@@ -28,6 +28,7 @@
   "domain_operations_nicOperation_DomainTrade": "Changement de titulaire",
   "domain_operations_nicOperation_DnssecDisable": "Désactivation du DNSSEC",
   "domain_operations_nicOperation_DnssecEnable": "Activation du DNSSEC",
+  "domain_operations_nicOperation_ZoneCreate": "Création de zone DNS",
   "domain_operations_nicOperation_ZoneImport": "Importation de la zone DNS",
   "domain_operations_nicOperation_DomainContactControl": "Vérification des contacts",
   "domain_operations_nicOperation_DomainDnsUpdate": "Mise à jour des DNS",
@@ -124,5 +125,5 @@
   "domain_operations_progress_instructions_6": "Si les deux emails ont été validés : validation et passage à l'étape suivante sous 24 heures.",
   "domain_operations_progress_instructions_7": "Vous pouvez contacter le prestataire actuel de votre domaine afin que celui-ci donne son accord.",
   "operation_tab_DOMAIN": "Domaine",
-  "operation_tab_DNS": "Dns"
+  "operation_tab_DNS": "DNS"
 }

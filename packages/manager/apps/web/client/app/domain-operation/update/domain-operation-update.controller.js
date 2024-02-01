@@ -2,6 +2,7 @@ import clone from 'lodash/clone';
 import isArray from 'lodash/isArray';
 import join from 'lodash/join';
 import map from 'lodash/map';
+import { ALERTER_ID } from '../operation-table/operation-table.constants';
 
 angular.module('App').controller(
   'DomainOperationUpdateCtrl',
@@ -88,7 +89,7 @@ angular.module('App').controller(
                   ].includes(argument.key)
                 ) {
                   argument.keyTranslation = this.$translate.instant(
-                    `domains_operations_update_key_${argument.key}`,
+                    `domain_operations_update_key_${argument.key}`,
                   );
                 }
 
@@ -148,18 +149,18 @@ angular.module('App').controller(
             })
             .catch((err) => {
               this.Alerter.alertFromSWS(
-                this.$translate.instant('domains_operations_error'),
+                this.$translate.instant('domain_operations_error'),
                 err,
-                this.$scope.alerts.main,
+                ALERTER_ID,
               );
               this.$scope.resetAction();
             });
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
-            this.$translate.instant('domains_operations_error'),
+            this.$translate.instant('domain_operations_error'),
             err,
-            this.$scope.alerts.main,
+            ALERTER_ID,
           );
           this.$scope.resetAction();
         });
@@ -231,16 +232,14 @@ angular.module('App').controller(
                     this.$translate.instant(
                       'domain_tab_OPERATION_update_relaunch_success',
                     ),
-                    this.$scope.alerts.main,
+                    ALERTER_ID,
                   ),
                 )
                 .catch((err) =>
                   this.Alerter.alertFromSWS(
-                    this.$translate.instant(
-                      'domains_operations_relaunch_error',
-                    ),
+                    this.$translate.instant('domain_operations_relaunch_error'),
                     err,
-                    this.$scope.alerts.main,
+                    ALERTER_ID,
                   ),
                 );
             case 'cancel':
@@ -251,17 +250,15 @@ angular.module('App').controller(
               ](this.operation.id)
                 .then(() =>
                   this.Alerter.success(
-                    this.$translate.instant(
-                      'domains_operations_cancel_success',
-                    ),
-                    this.$scope.alerts.main,
+                    this.$translate.instant('domain_operations_cancel_success'),
+                    ALERTER_ID,
                   ),
                 )
                 .catch((err) =>
                   this.Alerter.alertFromSWS(
-                    this.$translate.instant('domains_operations_cancel_error'),
+                    this.$translate.instant('domain_operations_cancel_error'),
                     err,
-                    this.$scope.alerts.main,
+                    ALERTER_ID,
                   ),
                 );
             case 'accelerate':
@@ -273,24 +270,24 @@ angular.module('App').controller(
                 .then(() =>
                   this.Alerter.success(
                     this.$translate.instant(
-                      'domains_operations_accelerate_success',
+                      'domain_operations_accelerate_success',
                     ),
-                    this.$scope.alerts.main,
+                    ALERTER_ID,
                   ),
                 )
                 .catch((err) =>
                   this.Alerter.alertFromSWS(
                     this.$translate.instant(
-                      'domains_operations_accelerate_error',
+                      'domain_operations_accelerate_error',
                     ),
                     err,
-                    this.$scope.alerts.main,
+                    ALERTER_ID,
                   ),
                 );
             default:
               this.Alerter.success(
                 this.$translate.instant('domain_tab_OPERATION_update_success'),
-                this.$scope.alerts.main,
+                ALERTER_ID,
               );
               return null;
           }
@@ -299,7 +296,7 @@ angular.module('App').controller(
           this.Alerter.alertFromSWS(
             this.$translate.instant('domain_tab_OPERATION_update_error'),
             err,
-            this.$scope.alerts.main,
+            ALERTER_ID,
           ),
         )
         .finally(() => this.$scope.resetAction());

@@ -1,5 +1,5 @@
 import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
-import { DEFAULT_FILTER_COLUMN } from './operation-table.constants';
+import { ALERTER_ID, DEFAULT_FILTER_COLUMN } from './operation-table.constants';
 
 export default class OperationTableController extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
@@ -64,7 +64,7 @@ export default class OperationTableController extends ListLayoutHelper.ListLayou
 
     this.stepPath = '';
 
-    this.$scope.alerts = { dashboard: 'domains.operations.alerts' };
+    this.alertId = ALERTER_ID;
     this.$scope.resetAction = () => this.$scope.setAction(false);
     this.$scope.setAction = (action, data) => {
       this.$scope.currentAction = action;
