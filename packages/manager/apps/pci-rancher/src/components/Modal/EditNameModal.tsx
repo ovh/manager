@@ -17,6 +17,7 @@ import React, { useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { RancherService } from '@/api/api.type';
+import { isValidRancherName } from '@/utils/rancher';
 
 interface DeleteModalProps {
   rancher: RancherService;
@@ -32,8 +33,7 @@ const EditNameModal = ({
   const { t } = useTranslation('pci-rancher/listing');
   const [newName, setNewName] = useState(rancher.currentState?.name || '');
 
-  const isValidName = /^[a-z0-9.-]{3,64}$/i.test(newName);
-
+  const isValidName = isValidRancherName(newName);
   const isButtonValid = rancher.currentState?.name !== newName && isValidName;
 
   const onEdit = () => {
@@ -68,6 +68,7 @@ const EditNameModal = ({
         </OsdsText>
       </div>
       <OsdsInput
+        aria-label="edit-input"
         type={ODS_INPUT_TYPE.text}
         color={
           isValidName
@@ -79,7 +80,6 @@ const EditNameModal = ({
         onOdsValueChange={(
           e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,
         ) => setNewName(e.target.value as string)}
-        aria-label="edit-input"
       />
       <OsdsText
         className="my-3"

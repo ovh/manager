@@ -1,6 +1,5 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import * as router from 'react-router';
 import { render, waitFor } from '../../utils/test.provider';
 import GenerateAccessModal, {
   GenerateAccessModalProps,
@@ -8,11 +7,12 @@ import GenerateAccessModal, {
 import dashboardTranslation from '../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
 import { rancherMocked } from '../../_mock_/rancher';
 
-const navigate = jest.fn();
+const mockedUsedNavigate = jest.fn();
 
-beforeEach(() => {
-  jest.spyOn(router, 'useNavigate').mockImplementation(() => navigate);
-});
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate,
+}));
 
 const defaultProps: GenerateAccessModalProps = {
   toggleModal: jest.fn(),
@@ -92,6 +92,8 @@ describe('GenerateAccesModal', () => {
 
     expect(defaultProps.onGenerateAccess).not.toHaveBeenCalled();
     expect(defaultProps.toggleModal).not.toHaveBeenCalled();
-    expect(navigate).toHaveBeenCalledWith(rancherMocked.currentState.url);
+    expect(mockedUsedNavigate).toHaveBeenCalledWith(
+      rancherMocked.currentState.url,
+    );
   });
 });

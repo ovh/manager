@@ -13,7 +13,7 @@ import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { AccessDetail } from '../../hooks/useGenerateAccessDetail';
-import { RancherService } from '../../api/api.type';
+import { RancherService } from '@/api/api.type';
 
 export interface GenerateAccessModalProps {
   rancher: RancherService;
@@ -30,7 +30,7 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation('pci-rancher/dashboard');
-  const hasValidAccess = accessDetail?.username && accessDetail?.password;
+  const hasValidAccess = !!accessDetail?.username && !!accessDetail?.password;
 
   const onEdit = () => {
     if (hasValidAccess) {

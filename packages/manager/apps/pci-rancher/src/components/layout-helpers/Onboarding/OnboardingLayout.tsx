@@ -13,7 +13,7 @@ export type OnboardingLayoutProps = {
   imageSrc?: string;
   title: string;
   orderButtonLabel: string;
-  orderHref: string;
+  onClick: () => void;
   description?: string;
   moreInfoHref?: string;
   moreInfoButtonLabel?: string;
@@ -24,7 +24,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   imageSrc,
   title,
   description,
-  orderHref,
+  onClick,
   orderButtonLabel,
 }) => {
   return (
@@ -53,7 +53,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
               <OsdsButton
                 color={ODS_THEME_COLOR_INTENT.primary}
                 size={ODS_BUTTON_SIZE.md}
-                href={orderHref}
+                onClick={onClick}
               >
                 {orderButtonLabel}
               </OsdsButton>

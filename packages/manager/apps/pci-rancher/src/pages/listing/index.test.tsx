@@ -3,8 +3,13 @@ import Listing, { ListingProps } from './index';
 import { render, waitFor } from '../../utils/test.provider';
 import { RancherService } from '../../api/api.type';
 import listingTranslation from '../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
+import { rancherMocked } from '../../_mock_/rancher';
 
-const setupSpecTest = async (props?: ListingProps) =>
+const defaultProps = {
+  data: [rancherMocked],
+};
+
+const setupSpecTest = async (props: ListingProps = defaultProps) =>
   waitFor(() => render(<Listing {...props} />));
 
 describe('Listing Page', () => {

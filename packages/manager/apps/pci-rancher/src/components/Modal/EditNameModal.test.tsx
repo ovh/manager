@@ -77,7 +77,8 @@ describe('Edit Name Modal', () => {
 
     expect(input).toHaveAttribute('color', 'info');
 
-    await userEvent.type(input, '234()');
+    await userEvent.type(input, '2:!34()');
+    await userEvent.type(input, '()');
 
     await userEvent.click(button);
 

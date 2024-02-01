@@ -16,6 +16,7 @@ import RancherDetail from './RancherDetail';
 import TabBar from './TabBar';
 import useEditRancherName from '../../../hooks/useEditRancherName';
 import useGenerateAccessDetail from '../../../hooks/useGenerateAccessDetail';
+import Title from '../../Title/Title';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -52,13 +53,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   return (
     <>
       <div className="py-4">
-        <OsdsText
-          level={ODS_TEXT_LEVEL.heading}
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_TEXT_SIZE._600}
-        >
-          {rancher.currentState.name}
-        </OsdsText>
+        <Title title={rancher.currentState.name} />
       </div>
       <OsdsLink
         href={hrefPrevious}
