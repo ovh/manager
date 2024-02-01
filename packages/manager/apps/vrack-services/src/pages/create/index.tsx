@@ -22,25 +22,25 @@ import {
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
-  getvrackServicesReferenceZoneList,
-  getvrackServicesReferenceZoneListQueryKey,
+  getvrackServicesReferenceRegionList,
+  getvrackServicesReferenceRegionListQueryKey,
   orderVrackServices,
   orderVrackServicesQueryKey,
   orderVrack,
   orderVrackQueryKey,
   getDeliveringOrderQueryKey,
   OrderDescription,
-  Zone,
+  Region,
   Order,
 } from '@/api';
 import { ErrorPage } from '@/components/Error';
-import { ZoneFormField } from './components/ZoneFormField';
+import { RegionFormField } from './components/RegionFormField';
 import { CreatePageLayout } from '@/components/layout-helpers';
 import { displayNameInputName } from './constants';
 import { VrackConfirmModal } from './components/VrackConfirmModal';
 
 const CreationPage: React.FC = () => {
-  const [selectedZone, setSelectedZone] = React.useState('');
+  const [selectedRegion, setSelectedRegion] = React.useState('');
   const [displayName, setDisplayName] = React.useState('');
   const [isModalVisible, setIsModalVisible] = React.useState(false);
   const [shouldOrderVrack, setShouldOrderVrack] = React.useState(false);
@@ -51,12 +51,13 @@ const CreationPage: React.FC = () => {
   const queryClient = useQueryClient();
   const tracking = useTracking();
 
-  const { isLoading: isZoneLoading, isError: hasZoneError, error } = useQuery<
-    ApiResponse<Zone[]>,
-    ApiError
-  >({
-    queryKey: getvrackServicesReferenceZoneListQueryKey,
-    queryFn: getvrackServicesReferenceZoneList,
+  const {
+    isLoading: isRegionLoading,
+    isError: hasRegionError,
+    error,
+  } = useQuery<ApiResponse<Region[]>, ApiError>({
+    queryKey: getvrackServicesReferenceRegionListQueryKey,
+    queryFn: getvrackServicesReferenceRegionList,
     staleTime: Infinity,
   });
 
@@ -69,7 +70,7 @@ const CreationPage: React.FC = () => {
     mutationFn: () =>
       orderVrackServices({
         displayName,
-        selectedZone,
+        selectedRegion,
         ovhSubsidiary: user.ovhSubsidiary as CountryCode,
       }),
     mutationKey: orderVrackServicesQueryKey,
@@ -119,7 +120,7 @@ const CreationPage: React.FC = () => {
     queryClient.invalidateQueries({ queryKey: orderVrackServicesQueryKey });
   }, []);
 
-  if (hasZoneError) {
+  if (hasRegionError) {
     return <ErrorPage error={error} />;
   }
 
@@ -127,7 +128,7 @@ const CreationPage: React.FC = () => {
     <>
       <CreatePageLayout
         createButtonLabel={t('createButtonLabel')}
-        createButtonDataTracking={`vrack-services::add::${selectedZone}::confim`}
+        createButtonDataTracking={`vrack-services::add::${selectedRegion}::confim`}
         formErrorMessage={t('creationServiceError', {
           error: vsCreationError?.response?.data.message,
           interpolation: { escapeValue: false },
@@ -136,7 +137,7 @@ const CreationPage: React.FC = () => {
         onSubmit={() => setIsModalVisible(true)}
         title={t('title')}
         isSubmitPending={isCreationPending}
-        isFormSubmittable={!isZoneLoading && !!selectedZone}
+        isFormSubmittable={!isRegionLoading && !!selectedRegion}
       >
         <OsdsFormField inline>
           <div slot="label">
@@ -160,9 +161,9 @@ const CreationPage: React.FC = () => {
             }
           />
         </OsdsFormField>
-        <ZoneFormField
-          selectedZone={selectedZone}
-          setSelectedZone={setSelectedZone}
+        <RegionFormField
+          selectedRegion={selectedRegion}
+          setSelectedRegion={setSelectedRegion}
           isReadOnly={isCreationPending}
         />
       </CreatePageLayout>

@@ -2,18 +2,18 @@ import { apiClient, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
 import {
   EligibleManagedService,
   VrackServicesWithIAM,
-  Zone,
+  Region,
 } from './vrack-services.type';
 
-export const getvrackServicesReferenceZoneListQueryKey = [
-  'get/vrackServices/reference/zone',
+export const getvrackServicesReferenceRegionListQueryKey = [
+  'get/vrackServices/reference/region',
 ];
 
 /**
- * List all vRack Services zones
+ * List all vRack Services regions
  */
-export const getvrackServicesReferenceZoneList = () =>
-  apiClient.v2.get<Zone[]>('/vrackServices/reference/zone');
+export const getvrackServicesReferenceRegionList = () =>
+  apiClient.v2.get<Region[]>('/vrackServices/reference/region');
 
 export type GetVrackServicesResourceListParams = {
   /** Pagination cursor */

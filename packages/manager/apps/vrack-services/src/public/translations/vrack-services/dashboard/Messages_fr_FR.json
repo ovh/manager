@@ -7,7 +7,7 @@
   "tileTitle": "Informations",
   "displayName": "Nom",
   "productStatus": "Statut",
-  "zone": "Régionalisation",
+  "region": "Régionalisation",
   "vrackId": "Private Network",
   "createdAt": "Date de création",
   "ERI": "London (ERI)",

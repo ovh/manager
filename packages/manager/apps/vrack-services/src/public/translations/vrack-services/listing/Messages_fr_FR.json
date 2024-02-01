@@ -6,7 +6,7 @@
   "emptyDataGridMessage": "Vous n'avez pas encore de vRack Services prêt",
   "displayName": "Nom",
   "productStatus": "Statut",
-  "zone": "Localisation",
+  "region": "Localisation",
   "vrackId": "vRack",
   "createdAt": "Date de création",
   "actions": "",

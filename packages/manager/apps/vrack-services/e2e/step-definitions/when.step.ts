@@ -46,7 +46,9 @@ When(
       ?.locator(`input[name="${displayNameInputName}"]`)
       .fill(this.testContext.inputTexts.displayName);
     await this.page
-      ?.locator(`osds-radio[id="${this.testContext.inputTexts.selectedZone}"]`)
+      ?.locator(
+        `osds-radio[id="${this.testContext.inputTexts.selectedRegion}"]`,
+      )
       .click();
     await this.page?.locator('button[type="submit"]').click();
   },

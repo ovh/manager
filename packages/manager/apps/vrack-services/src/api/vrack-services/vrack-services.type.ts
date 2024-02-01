@@ -1,8 +1,8 @@
 import { Task, IamMetadata } from '../api.type';
 
-export type Zone = {
+export type Region = {
   description: string;
-  name: string;
+  code: string;
 };
 
 export type Endpoint = {
@@ -61,7 +61,7 @@ export type VrackServices = {
     productStatus: ProductStatus;
     subnets: Subnet[];
     vrackId: string | null;
-    zone: string;
+    region: string;
   };
   currentTasks: Task[];
   id: string;

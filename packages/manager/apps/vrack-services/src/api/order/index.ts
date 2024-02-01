@@ -38,7 +38,7 @@ export const orderVrack = async (params: Creation) => {
 export const orderVrackServicesQueryKey = ['/orderVrackServices'];
 
 export const orderVrackServices = async (
-  params: Creation & { displayName?: string; selectedZone: string },
+  params: Creation & { displayName?: string; selectedRegion: string },
 ) => {
   const {
     data: { cartId },
@@ -54,8 +54,8 @@ export const orderVrackServices = async (
   await postConfigureCartItem({
     cartId,
     itemId: cart.data.itemId,
-    label: 'zone',
-    value: params.selectedZone,
+    label: 'region',
+    value: params.selectedRegion,
   });
   if (params.displayName) {
     await postConfigureCartItem({
