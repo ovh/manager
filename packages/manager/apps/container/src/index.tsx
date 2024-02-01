@@ -1,17 +1,6 @@
 import React from 'react';
 
-// Piano Analytics override
-// This code cannot go on another module or it won't override correctly piano's SDK
-// It must be run right before piano's load
-declare global {
-  interface Window {
-    _pac: any;
-  }
-}
-window._pac = window._pac || {};
-window._pac.cookieSecure = "true";
-window._pac.cookieSameSite = "None";
-
+import './helpers/piano-override';
 import 'piano-analytics-js/dist/browser/piano-analytics.js';
 import { createRoot } from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
