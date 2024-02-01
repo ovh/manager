@@ -1,4 +1,4 @@
-import { GUIDE_LINKS } from './spf-banner.constants';
+import { GUIDE_LINKS } from './mxplan-banner.constants';
 
 export default class DedicatedCloudLv1Lv2MigrationBanner {
   /* @ngInject */
