@@ -9,6 +9,8 @@ export default {
     healthMonitor: '<',
     goToDashboard: '<',
     goToPool: '<',
+    trackDeleteAction: '<',
+    trackDeletePage: '<',
   },
   controller,
   template,

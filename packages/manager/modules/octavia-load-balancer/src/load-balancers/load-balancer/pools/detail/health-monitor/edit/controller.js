@@ -29,8 +29,14 @@ export default class OctaviaLoadBalancerPoolsDetailHealthMonitorEditCtrl {
     }
   }
 
+  cancel() {
+    this.trackEditAction('cancel');
+    this.goToDashboard();
+  }
+
   editHealthMonitor() {
     this.loading = true;
+    this.trackEditAction('confirm');
     this.OctaviaLoadBalancerHealthMonitorService.editHealthMonitor(
       this.projectId,
       this.region,
@@ -38,6 +44,7 @@ export default class OctaviaLoadBalancerPoolsDetailHealthMonitorEditCtrl {
       this.model,
     )
       .then(() => {
+        this.trackEditPage('success');
         this.goToDashboard(true).then(() => {
           this.loading = false;
           this.Alerter.set(
@@ -52,6 +59,7 @@ export default class OctaviaLoadBalancerPoolsDetailHealthMonitorEditCtrl {
         });
       })
       .catch((error) => {
+        this.trackEditPage('error');
         this.loading = false;
         this.Alerter.error(
           this.$translate.instant('octavia_load_balancer_global_error', {

@@ -16,7 +16,10 @@ export const HEALTH_MONITOR_TYPE = {
   UDPCONNECT: 'udp-connect',
 };
 
+export const TRACKING_HEALTH_MONITOR_PREFIX = 'health-monitor';
+
 export default {
   LABELS,
   HEALTH_MONITOR_TYPE,
+  TRACKING_HEALTH_MONITOR_PREFIX,
 };

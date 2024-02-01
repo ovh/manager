@@ -8,6 +8,8 @@ export default {
     pool: '<',
     goToDashboard: '<',
     goToPool: '<',
+    trackAddAction: '<',
+    trackAddPage: '<',
   },
   controller,
   template,

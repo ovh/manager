@@ -9,6 +9,7 @@ export default {
     goToEditName: '<',
     operatingStatusBadges: '<',
     provisioningStatusBadges: '<',
+    trackAction: '<',
   },
   template,
   controller,
