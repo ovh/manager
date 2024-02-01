@@ -18,7 +18,7 @@ export default class NashaDashboardPartitionAccessesController {
     this.isLoadingAccesses = false;
     this.accesses = [];
     this.authorizedAccesses = null;
-    this.model = { ip: null, type: null };
+    this.model = { ip: null, type: null, aclDescription: null };
     this.typeOptions = [];
   }
 
@@ -153,7 +153,7 @@ export default class NashaDashboardPartitionAccessesController {
     }
 
     return promise.then(() => {
-      const access = { ip: null, type: null };
+      const access = { ip: null, type: null, aclDescription: null };
       this.accesses.unshift({ ...access, isForm: true });
       this.isAccessFormShown = true;
       this.model = access;
@@ -180,12 +180,13 @@ export default class NashaDashboardPartitionAccessesController {
     const {
       ip: { ip },
       type: { value: type },
+      aclDescription,
     } = this.model;
 
     this.isCreatingAccess = true;
 
     return this.$http
-      .post(`${this.partitionApiUrl}/access`, { ip, type })
+      .post(`${this.partitionApiUrl}/access`, { ip, type, aclDescription })
       .then(({ data: task }) =>
         this.goToTrackTasks({
           tasks: [task],
