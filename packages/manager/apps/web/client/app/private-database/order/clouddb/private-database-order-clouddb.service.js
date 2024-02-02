@@ -1,11 +1,14 @@
 import flatten from 'lodash/flatten';
 
+import groupBy from 'lodash/groupBy';
+import set from 'lodash/set';
 import {
   DATACENTER_CONFIGURATION_KEY,
   ENGINE_CONFIGURATION_KEY,
   PLAN_CODE_TEMPLATE,
   PRODUCT_NAME,
 } from './private-database-order-clouddb.constants';
+import { DB_OFFERS } from '../../../hosting/database/order/public/hosting-database-order-public.constants';
 
 export default class PrivateDatabaseOrderCloudDb {
   /* @ngInject */
@@ -136,5 +139,62 @@ export default class PrivateDatabaseOrderCloudDb {
       .sort((a, b) => {
         return a.value > b.value;
       });
+  }
+
+
+  static getWebCloudCategory(webCloudCatalog) {
+    const offers = webCloudCatalog.plans
+      .filter(({ family }) => family === DB_OFFERS.PRIVATE.FAMILY)
+      .map((dbGroup) => ({
+        ...dbGroup,
+        productSize: dbGroup.product.split('-')[2],
+        tracking: DB_OFFERS.PRIVATE.TRACKING,
+      }));
+
+    // init db engines
+    offers.forEach((dbOffer) => {
+      const dbms = dbOffer.configurations
+        .find(({ name }) => name === 'engine')
+        .values.map((db) => {
+          const [dbName, dbVersion] = db.split('_');
+          return { db, dbName, dbVersion };
+        });
+      const groupedDbms = groupBy(dbms, 'dbName');
+      const engines = Object.keys(groupedDbms).map((dbGroup) => ({
+        dbGroup,
+        versions: groupedDbms[dbGroup],
+      }));
+
+      set(dbOffer, 'engines', engines);
+    });
+
+    return offers;
+  }
+
+  buildDbCategories(catalog, webCloudCatalog) {
+    const webCloudCategory = this.constructor
+      .getWebCloudCategory(webCloudCatalog)
+      .sort(this.constructor.dbOfferSort);
+
+    // const db groups
+    const groupedCategories = {
+      [DB_OFFERS.PRIVATE.CATEGORY]: {
+        versions: webCloudCategory,
+        tracking: DB_OFFERS.PRIVATE.TRACKING,
+        productName: DB_OFFERS.PRIVATE.PRODUCT_NAME,
+      },
+    };
+    return Object.keys(groupedCategories).map((category) => {
+      const { versions, tracking, productName } = groupedCategories[category];
+
+      return {
+        category,
+        versions,
+        tracking,
+        selectVersion: versions[0],
+        selectEngine: null,
+        productName,
+      };
+    });
   }
 }
