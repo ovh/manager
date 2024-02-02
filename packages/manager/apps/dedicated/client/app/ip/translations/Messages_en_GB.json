@@ -780,5 +780,7 @@
   "ip_firewall_destination_port_not_empty_tooltip": "The destination port must be empty when “Fragments” is selected.",
   "ip_firewall_check_errors": "There are errors in the data entered, please check the fields in red.",
   "ip_firewall_rule_status_inactif": "Disabled",
-  "ip_game_mitigation_firewall_rule_add_ports_already_used": "The port (or port range) conflicts with another rule."
+  "ip_game_mitigation_firewall_rule_add_ports_already_used": "The port (or port range) conflicts with another rule.",
+  "ip_table_header_region": "Region",
+  "ip_table_header_region_help": "The region defines the location of the IP address with which the service is associated. In the case of Additional IPs, the region also defines the location of the services on which the IP address can be transferred."
 }

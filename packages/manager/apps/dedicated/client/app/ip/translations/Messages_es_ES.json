@@ -780,5 +780,7 @@
   "ip_firewall_destination_port_not_empty_tooltip": "El puerto de destino debe estar vacío cuando se selecciona la opción «Fragmentos».",
   "ip_firewall_check_errors": "Hay errores en los datos introducidos. Por favor, compruebe los campos marcados en rojo.",
   "ip_firewall_rule_status_inactif": "Inactivo",
-  "ip_game_mitigation_firewall_rule_add_ports_already_used": "El puerto (o el rango de puertos) entra(n) en conflicto con otra regla."
+  "ip_game_mitigation_firewall_rule_add_ports_already_used": "El puerto (o el rango de puertos) entra(n) en conflicto con otra regla.",
+  "ip_table_header_region": "Región",
+  "ip_table_header_region_help": "La región determina la localización de la dirección IP a la que está asociado el servicio. En el caso de las Additional IP, la región también define la localización de los servicios a los que puede transferirse la dirección IP."
 }
