@@ -125,7 +125,10 @@ export default class TelecomPackMigrationBuildingDetailsCtrl {
 
   convertStairs(stair) {
     const stairsModel = {};
-    if (stair.stair === STAIR_FLOOR.unknown) {
+    if (
+      stair.stair === STAIR_FLOOR.unknown ||
+      stair.stair === STAIR_FLOOR.buildingUnknown
+    ) {
       stairsModel.stair = {
         label: this.$translate.instant(
           'telecom_pack_migration_building_details_none',
