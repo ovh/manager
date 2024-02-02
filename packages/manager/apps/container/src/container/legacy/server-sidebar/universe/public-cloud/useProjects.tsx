@@ -32,7 +32,8 @@ export function useProjects() {
   const [currentProject, setCurrentProject] = useState<PciProject>(null);
 
   useEffect(() => {
-    const projectId = (location?.pathname?.match(/\/pci\/projects\/([^/]+)/) ||
+    const projectId = (
+      location?.pathname?.match(/\/pci(?:-[^\/]+)?\/projects\/([^/]+)/) ||
       [])[1];
     setCurrentProject(
       (projects || []).find((project) => project.project_id === projectId),

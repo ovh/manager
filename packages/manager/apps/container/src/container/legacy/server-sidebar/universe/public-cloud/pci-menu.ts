@@ -222,8 +222,8 @@ export function getPciProjectMenu(
           title: 'Databases',
           feature: 'databases',
           href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases-analytics/databases`,
+            '',//'public-cloud',
+            `#/pci-cdb/projects/${projectId}/databases/services`//`#/pci/projects/${projectId}/storages/databases-analytics/databases`,
           ),
         },
         {
@@ -231,8 +231,8 @@ export function getPciProjectMenu(
           title: 'Data Streaming',
           feature: 'databases',
           href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases-analytics/data-streaming`,
+            '',
+            `#/pci-cdb/projects/${projectId}/data-streaming/services`,
           ),
         },
         {
@@ -250,8 +250,8 @@ export function getPciProjectMenu(
           title: 'Data Analysis',
           feature: 'databases',
           href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases-analytics/data-analysis`,
+            '',
+            `#/pci-cdb/projects/${projectId}/data-analysis/services`,
           ),
         },
         {

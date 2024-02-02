@@ -1,0 +1,6 @@
+{
+  "pricing_ht": "{{ price }} {{ unit }} HT",
+  "pricing_ttc": "{{ price }} {{ unit }} TTC",
+  "min_length_error": "Veuillez entrer au moins {{ min }} caractères",
+  "max_length_error": "Veuillez entrer {{ max }} caractères maximum"
+}
