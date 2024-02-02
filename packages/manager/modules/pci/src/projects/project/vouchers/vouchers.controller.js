@@ -6,7 +6,7 @@ export default class CloudprojectbillingvouchersCtrl {
   constructor(
     $q,
     $stateParams,
-    $timeout,
+    $interval,
     $translate,
     CucCloudMessage,
     CloudVouchersService,
@@ -14,7 +14,7 @@ export default class CloudprojectbillingvouchersCtrl {
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
-    this.$timeout = $timeout;
+    this.$interval = $interval;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.CloudVouchersService = CloudVouchersService;
@@ -30,24 +30,24 @@ export default class CloudprojectbillingvouchersCtrl {
   }
 
   $onInit() {
-    return this.pollVouchers()
-      .catch(({ data }) => data.data)
-      .then(({ message }) => {
-        return this.CucCloudMessage.error({
-          text: `${this.$translate.instant(
-            'cpb_vouchers_get_error',
-          )} ${message}`,
-        });
-      });
+    return this.loadVouchers().then(
+      () => !this.skipPolling && this.pollVouchers(),
+    );
   }
 
   $onDestroy() {
+    this.stopPolling();
+  }
+
+  stopPolling() {
+    this.skipPolling = true;
     if (this.vouchersPollingTask) {
-      this.$timeout.cancel(this.vouchersPollingTask);
+      this.$interval.cancel(this.vouchersPollingTask);
+      this.vouchersPollingTask = null;
     }
   }
 
-  pollVouchers() {
+  loadVouchers() {
     return this.CloudVouchersService.getVouchers(
       this.$stateParams.projectId,
       this.deals,
@@ -55,12 +55,28 @@ export default class CloudprojectbillingvouchersCtrl {
       .then((vouchers) => {
         this.vouchers = vouchers;
       })
-      .then(() => {
-        this.vouchersPollingTask = this.$timeout(
-          () => this.pollVouchers(),
-          VOUCHERS_POLLING_INTERVAL,
-        );
-      });
+      .catch(
+        ({
+          data: {
+            data: { message },
+          },
+        }) => {
+          this.CucCloudMessage.error({
+            text: `${this.$translate.instant(
+              'cpb_vouchers_get_error',
+            )} ${message}`,
+          });
+          this.stopPolling();
+          this.vouchers = [];
+        },
+      );
+  }
+
+  pollVouchers() {
+    this.vouchersPollingTask = this.$interval(
+      () => this.loadVouchers(),
+      VOUCHERS_POLLING_INTERVAL,
+    );
   }
 
   addCredit(amount) {
