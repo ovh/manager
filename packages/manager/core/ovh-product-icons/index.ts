@@ -7,6 +7,7 @@ import {
   OFFICE365_SVG,
   PROJECTCLOUD_SVG,
   TELECOMETHERNET_SVG,
+  HEADSET_SVG,
   TELEPHONY_SVG,
   EXCHANGE_SVG,
   IP_SVG,
@@ -23,6 +24,7 @@ import {
 } from './utils/SvgIconWrapper';
 import {
   TelecomEthernet,
+  Headset,
   Telephony,
   Hosting,
   Office365,
@@ -51,6 +53,7 @@ export {
   HOSTING_SVG,
   OFFICE365_SVG,
   PROJECTCLOUD_SVG,
+  HEADSET_SVG,
   TELECOMETHERNET_SVG,
   TELEPHONY_SVG,
   EXCHANGE_SVG,
@@ -65,6 +68,7 @@ export {
   LINECOMMUNICATING_SVG,
   SERVER_SVG,
   TelecomEthernet,
+  Headset,
   Telephony,
   Hosting,
   Office365,

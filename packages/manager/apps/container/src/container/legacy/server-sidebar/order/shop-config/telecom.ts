@@ -1,4 +1,4 @@
-import { OdsIconWrapper, TELEPHONY_SVG, OFFICE365_SVG, TELECOMETHERNET_SVG } from '@ovh-ux/ovh-product-icons/index';
+import { OdsIconWrapper, TELEPHONY_SVG, OFFICE365_SVG, TELECOMETHERNET_SVG, HEADSET_SVG } from '@ovh-ux/ovh-product-icons/index';
 import { OdsIconName } from '@ovhcloud/ods-core';
 import { ShopItem } from '../OrderPopupContent';
 import { getOrderURL } from './order.constants';
@@ -181,6 +181,13 @@ const telecomShopConfig = (
         tracking: 'telecom::orders::freefax::order',
       }
     : null,
+  {
+    label: 'item_headset',
+    icon: HEADSET_SVG,
+    external: true,
+    url: getOrderURL('telephony_accessory_order', region, sub),
+    tracking: 'telecom::orders::telephony-accessories::order',
+  },
 ];
 
 export default telecomShopConfig;

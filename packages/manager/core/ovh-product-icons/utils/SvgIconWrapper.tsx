@@ -47,6 +47,10 @@ const EXCHANGE_SVG = SvgIconWrapper({ name: OvhProductName.EXCHANGE });
 const TELECOMETHERNET_SVG = SvgIconWrapper({
   name: OvhProductName.TELECOMETHERNET,
 });
+const HEADSET_SVG = SvgIconWrapper({
+  name: OvhProductName.HEADSET,
+});
+
 const TELEPHONY_SVG = SvgIconWrapper({ name: OvhProductName.TELEPHONY });
 const SERVER_SVG = SvgIconWrapper({ name: OvhProductName.SERVER });
 const IP_SVG = SvgIconWrapper({ name: OvhProductName.IP });
@@ -66,6 +70,7 @@ export {
   OFFICE365_SVG,
   PROJECTCLOUD_SVG,
   TELECOMETHERNET_SVG,
+  HEADSET_SVG,
   TELEPHONY_SVG,
   EXCHANGE_SVG,
   IP_SVG,
