@@ -150,5 +150,6 @@
   "billing_autorenew_service_renew_requires_mean_and_date": "Um die Aktivierung der automatischen Verlängerung abzuschließen, hinterlegen Sie bitte ein Zahlungsmittel Ihrer Wahl. Danach können Sie das Datum der Abbuchung auswählen.",
   "billing_autorenew_service_activate_alert": "Sie haben für mindestens einen Dienst die automatische Verlängerung eingestellt, diese Option aber noch nicht autorisiert.",
   "autorenew_service_autorenew_day_tooltip_autorenew_2016": "Wenn Sie Dienste mit automatischer Verlängerung nutzen, können Sie den Tag der Verlängerung auswählen. (Diese Option ist nicht mit Bare-Metal- und VPS-Produkten kompatibel, da das Verlängerungsdatum für diese Produktkategorie standardmäßig auf den 1. des Monats festgelegt ist.)",
-  "billing_autorenew_service_activate_alert_renew2016": "Diese Meldung betrifft nicht die Bare-Metal- und VPS-Dienste."
+  "billing_autorenew_service_activate_alert_renew2016": "Diese Meldung betrifft nicht die Bare-Metal- und VPS-Dienste.",
+  "billing_autorenew_service_type_DEDICATED_CLUSTER": "Region 3-AZ"
 }

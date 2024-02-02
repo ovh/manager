@@ -74,6 +74,7 @@
   "billing_autorenew_service_autorenew_contact_filter_all": "Tous",
   "billing_autorenew_service_autorenew_filter": "Filtres",
   "billing_autorenew_service_type_DEDICATED_SERVER": "Serveur Dédié",
+  "billing_autorenew_service_type_DEDICATED_CLUSTER": "Région 3-AZ",
   "billing_autorenew_service_type_dedicated_server": "Serveur Dédié",
   "billing_autorenew_service_type_DEDICATED_HOUSING": "Serveur Housing",
   "billing_autorenew_service_type_DEDICATED_CLOUD": "VMware",

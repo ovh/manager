@@ -5,5 +5,6 @@
   "server_name_edit_common_cancel": "Cancel",
   "server_name_edit_edit_label": "Edit",
   "server_name_edit_success": "Name successfully updated",
-  "server_name_edit_error": "Unable to update the name: {{message}}"
+  "server_name_edit_error": "Unable to update the name: {{message}}",
+  "server_name_edit_common_submit": "Edit"
 }

@@ -5,5 +5,6 @@
   "server_name_edit_common_cancel": "Annulla",
   "server_name_edit_edit_label": "Modifica",
   "server_name_edit_success": "Nome aggiornato correttamente",
-  "server_name_edit_error": "Impossibile aggiornare il nome: {{ message }}"
+  "server_name_edit_error": "Impossibile aggiornare il nome: {{ message }}",
+  "server_name_edit_common_submit": "Modificare"
 }
