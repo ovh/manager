@@ -42,7 +42,6 @@ const SvgIconWrapper: React.FC<SvgIconProps> = ({
 
 const HOSTING_SVG = SvgIconWrapper({ name: OvhProductName.HOSTING });
 const OFFICE365_SVG = SvgIconWrapper({ name: OvhProductName.OFFICE365 });
-const SHAREPOINT_SVG = SvgIconWrapper({ name: OvhProductName.SHAREPOINT });
 const PROJECTCLOUD_SVG = SvgIconWrapper({ name: OvhProductName.PROJECTCLOUD });
 const EXCHANGE_SVG = SvgIconWrapper({ name: OvhProductName.EXCHANGE });
 const TELECOMETHERNET_SVG = SvgIconWrapper({
@@ -65,7 +64,6 @@ const LINECOMMUNICATING_SVG = SvgIconWrapper({
 export {
   HOSTING_SVG,
   OFFICE365_SVG,
-  SHAREPOINT_SVG,
   PROJECTCLOUD_SVG,
   TELECOMETHERNET_SVG,
   TELEPHONY_SVG,

@@ -1,7 +1,7 @@
 import { ShopItem } from '../OrderPopupContent';
 import { getOrderURL, ORDER_URLS } from './order.constants';
 import { OdsIconWrapper } from '@ovh-ux/ovh-product-icons/index';
-import { HOSTING_SVG, EXCHANGE_SVG, OFFICE365_SVG, SHAREPOINT_SVG } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
+import { HOSTING_SVG, EXCHANGE_SVG, OFFICE365_SVG } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 import { OdsIconName } from '@ovhcloud/ods-core';
 
 const webShopConfig = (
@@ -86,14 +86,6 @@ const webShopConfig = (
         url: getOrderURL('orderCsp2', region, sub),
         external: true,
         tracking: 'web::orders::licences-office-reseller::order',
-      }
-    : null,
-  features.sharepoint
-    ? {
-        label: 'order_item_sharepoint',
-        icon: SHAREPOINT_SVG,
-        url: navigation.getURL('web', '#/sharepoint/order'),
-        tracking: 'web::orders::microsoft-sharepoint::order',
       }
     : null,
   features['cloud-database']
