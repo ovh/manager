@@ -7,8 +7,8 @@
 # Applications
 /packages/manager/ @ovh/team-manager-dev
 
-# Super-components
-/packages/super-components @ovh/team-manager-transfo @ovh/su-digital-tools-core-stack
+# Manager-components
+/packages/manager-components @ovh/team-manager-transfo
 
 # React Stack
 *.jsx @ovh/team-manager-transfo @ovh/su-digital-tools-core-stack
