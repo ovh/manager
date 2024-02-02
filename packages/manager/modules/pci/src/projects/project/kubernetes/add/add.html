@@ -70,7 +70,7 @@
             data-prevent-next="true"
         >
             <!--Select Public/Private network-->
-            <h6 data-translate="kubernetes_add_private_network_label"></h6>
+            <h5 data-translate="kubernetes_add_private_network_label"></h5>
             <p>
                 <span
                     data-translate="kubernetes_add_private_network_description"
@@ -101,8 +101,11 @@
             ></oui-spinner>
 
             <!--Select subnet-->
-            <div data-ng-if="$ctrl.shouldShowSubnetForms">
-                <h6 data-translate="kubernetes_add_private_network_subnet"></h6>
+            <div
+                data-ng-if="$ctrl.shouldShowSubnetForms"
+                class="kubernetes-add-private-network-subnet-container"
+            >
+                <h5 data-translate="kubernetes_add_private_network_subnet"></h5>
                 <p>
                     <span
                         data-translate="kubernetes_add_private_network_subnet_description"
@@ -128,6 +131,7 @@
             </div>
 
             <oui-message
+                class="mb-4"
                 data-ng-if="$ctrl.privateNetworkSubnetsError"
                 data-type="{{ $ctrl.privateNetworkSubnetsError.type }}"
             >
@@ -138,17 +142,14 @@
 
             <!--Chose OVHcloud or vRack gateway-->
             <gateway-management-component
-                data-ng-if="
-                    $ctrl.cluster.network.private.id &&
-                    !$ctrl.isLoadingPrivateNetworkSubnets
-                "
+                data-ng-if="$ctrl.cluster.network.private.id && !$ctrl.isLoadingPrivateNetworkSubnets"
                 data-network="$ctrl.cluster.network"
                 data-elevate-title="true"
             ></gateway-management-component>
 
             <!--Select load balancer subnet-->
-            <div data-ng-if="$ctrl.shouldShowSubnetForms">
-                <h6
+            <div class="my-4" data-ng-if="$ctrl.shouldShowSubnetForms">
+                <h5
                     class="d-flex align-items-center"
                     data-ng-click="$ctrl.toggleLoadBalancerSubnetForm()"
                 >
@@ -163,7 +164,7 @@
                             'oui-icon-chevron-down': !$ctrl.isLoadBalancerSubnetFormShown,
                         }"
                     ></span>
-                </h6>
+                </h5>
                 <div data-ng-if="$ctrl.isLoadBalancerSubnetFormShown">
                     <p>
                         <span
