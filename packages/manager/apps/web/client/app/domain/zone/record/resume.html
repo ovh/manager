@@ -26,11 +26,14 @@
     <div data-ng-if="!ctrl.recordConflicts">
         <oui-message type="error">
             <span
-                data-ng-if="ctrl.model.fieldType === 'CNAME'"
+                data-translate="domain_configuration_dns_entry_add_step3_check_warning_info"
+            ></span>
+            <span
+                data-ng-if="ctrl.model.fieldType === 'CNAME' && ctrl.model.subDomainToDisplay"
                 data-translate="domain_configuration_dns_entry_add_step3_check_warning2"
             ></span>
             <span
-                data-ng-if="ctrl.model.fieldType !== 'CNAME'"
+                data-ng-if="ctrl.model.fieldType !== 'CNAME' || !ctrl.model.subDomainToDisplay"
                 data-translate="domain_configuration_dns_entry_add_step3_check_warning3"
             ></span>
         </oui-message>
