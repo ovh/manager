@@ -20,5 +20,8 @@
   "dedicated_servers_datacenter": "Centrum danych",
   "dedicated_servers_country": "Kraj",
   "dedicated_servers_monitoring": "Status Monitoring",
-  "dedicated_servers_popover_details": "Szczegóły"
+  "dedicated_servers_popover_details": "Szczegóły",
+  "dedicated_servers_all_servers": "Wszystkie serwery",
+  "dedicated_servers_clusters": "Klastry 3-AZ",
+  "dedicated_servers_region": "Region"
 }

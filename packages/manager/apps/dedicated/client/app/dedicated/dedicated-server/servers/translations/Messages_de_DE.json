@@ -20,5 +20,8 @@
   "dedicated_servers_datacenter": "Rechenzentrum",
   "dedicated_servers_country": "Land",
   "dedicated_servers_monitoring": "Monitoringstatus",
-  "dedicated_servers_popover_details": "Details"
+  "dedicated_servers_popover_details": "Details",
+  "dedicated_servers_all_servers": "Alle Server",
+  "dedicated_servers_clusters": "3-AZ-Cluster",
+  "dedicated_servers_region": "Region"
 }
