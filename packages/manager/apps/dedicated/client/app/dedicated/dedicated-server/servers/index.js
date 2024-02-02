@@ -32,16 +32,6 @@ angular
               $ocLazyLoad.inject(mod.default || mod),
             );
           },
-        })
-        .state('app.dedicated-server.server.dashboard.**', {
-          url: '',
-          lazyLoad: ($transition$) => {
-            const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
-            return import('./server/dashboard/index.js').then((mod) =>
-              $ocLazyLoad.inject(mod.default || mod),
-            );
-          },
         });
     },
   )
