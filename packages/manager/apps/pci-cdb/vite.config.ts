@@ -3,8 +3,9 @@ import { getBaseConfig } from '@ovh-ux/manager-vite-config';
 import generouted from '@generouted/react-router/plugin';
 
 const baseConfig = getBaseConfig();
-baseConfig.plugins.push(generouted());
+const configWithPlugin = { ...baseConfig };
+configWithPlugin.plugins.push(generouted());
 export default defineConfig({
-  ...baseConfig,
+  ...configWithPlugin,
   root: '',
 });
