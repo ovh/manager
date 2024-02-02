@@ -779,5 +779,7 @@
   "ip_firewall_source_port_not_empty_tooltip": "A porta de origem deve estar vazia quando selecionar « Fragmentos ».",
   "ip_firewall_destination_port_not_empty_tooltip": "A porta de destino deve estar vazia quando selecionar « Fragmentos ».",
   "ip_firewall_check_errors": "Existem erros nos dados introduzidos, queira verificar os campos assinalados a vermelho.",
-  "ip_firewall_rule_status_inactif": "Inativo"
+  "ip_firewall_rule_status_inactif": "Inativo",
+  "ip_table_header_region": "Região",
+  "ip_table_header_region_help": "A região define a localização do endereço IP a que o serviço está associado. No caso dos Additional IP, a região define igualmente a localização dos serviços para onde o endereço IP pode ser transferido."
 }
