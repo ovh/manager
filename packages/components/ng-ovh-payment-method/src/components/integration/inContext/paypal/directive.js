@@ -1,6 +1,7 @@
 import { merge } from 'lodash-es';
 
 import controller from './controller';
+import template from './index.html';
 
 import { PAYPAL_SCRIPT, PAYPAL_BUTTON_OPTIONS } from './constants';
 
@@ -9,6 +10,7 @@ const name = 'ovhPaymentMethodIntegrationInContextPaypal';
 export default {
   name,
   controller,
+  template,
   restrict: 'E',
   bindToController: true,
   controllerAs: '$ctrl',
@@ -31,7 +33,7 @@ export default {
           PAYPAL_BUTTON_OPTIONS,
           renderOptions,
         ),
-        tElement[0],
+        tElement[0].querySelector('.in-context-paypal-container'),
       );
     };
 

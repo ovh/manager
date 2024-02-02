@@ -3,6 +3,8 @@ import head from 'lodash/head';
 import map from 'lodash/map';
 import snakeCase from 'lodash/snakeCase';
 
+import { AvailablePaymentMethod } from '@ovh-ux/ovh-payment-method';
+
 import {
   CREDIT_PROVISIONING,
   PAYMENT_METHOD_AUTHORIZED_ENUM,
@@ -20,11 +22,14 @@ export default class PciProjectNewPaymentMethodAddCtrl {
     coreConfig,
     coreURLBuilder,
     ovhPaymentMethodHelper,
+    OVH_PAYMENT_METHOD_TYPE,
   ) {
     this.$translate = $translate;
     this.$location = $location;
     this.coreConfig = coreConfig;
     this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
+    this.OVH_PAYMENT_METHOD_TYPE = OVH_PAYMENT_METHOD_TYPE;
+
     const { currency, ovhSubsidiary } = this.coreConfig.getUser();
     this.registrationCharges = new Intl.NumberFormat(
       LANGUAGE_OVERRIDE[ovhSubsidiary]
@@ -41,6 +46,8 @@ export default class PciProjectNewPaymentMethodAddCtrl {
     // other attributes
 
     this.authorizedPaymentMethods = null;
+    this.excludedPaymentMethods = [];
+    this.unregisteredPaymentMethods = [];
 
     this.paymentSectionHref = coreURLBuilder.buildURL(
       'dedicated',
@@ -120,20 +127,28 @@ export default class PciProjectNewPaymentMethodAddCtrl {
       this.registerablePaymentMethods,
       (methodType) => paymentMethodsAuthorized.includes(methodType.paymentType),
     );
+    this.excludedPaymentMethods = filter(
+      this.registerablePaymentMethods,
+      (methodType) =>
+        !paymentMethodsAuthorized.includes(methodType.paymentType),
+    ).map((methodType) => methodType.paymentType);
 
     if (
       paymentMethodsAuthorized.includes(
         PAYMENT_METHOD_AUTHORIZED_ENUM.CREDIT.toUpperCase(),
       )
     ) {
-      const PaymentMethodType = head(this.registerablePaymentMethods)
-        .constructor;
-      registerablePaymentMethods.push(
-        new PaymentMethodType({
-          paymentType: PAYMENT_METHOD_AUTHORIZED_ENUM.CREDIT.toUpperCase(),
-          integration: 'NONE',
-        }),
-      );
+      const creditAvailablePaymentMethod = new AvailablePaymentMethod({
+        paymentType: PAYMENT_METHOD_AUTHORIZED_ENUM.CREDIT.toUpperCase(),
+        integration: 'NONE',
+        registerable: false,
+        icon: { className: 'oui-icon oui-icon-add' },
+        humanReadableName: this.$translate.instant(
+          'pci_project_new_payment_method_add_credit',
+        ),
+      });
+      registerablePaymentMethods.push(creditAvailablePaymentMethod);
+      this.unregisteredPaymentMethods.push(creditAvailablePaymentMethod);
     }
 
     const mappedPreferredMethodOrder = map(
@@ -155,6 +170,16 @@ export default class PciProjectNewPaymentMethodAddCtrl {
 
     // set payment method model
     this.preselectPaymentMethod();
+
+    if (
+      !this.pciFeatures.isFeatureAvailable(
+        PCI_FEATURES.PROJECT.PAYEMENT_SEPA_DIRECT_DEBIT,
+      )
+    ) {
+      this.excludedPaymentMethods.push(
+        this.OVH_PAYMENT_METHOD_TYPE.SEPA_DIRECT_DEBIT,
+      );
+    }
 
     return this.ovhPaymentMethodHelper
       .hasSpecificCrossBorderSentenceForCardPayment()

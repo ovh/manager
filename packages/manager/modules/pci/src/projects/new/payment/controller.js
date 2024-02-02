@@ -359,6 +359,11 @@ export default class PciProjectNewPaymentCtrl {
     this.model.reloadHandleByComponent = true;
   }
 
+  trackOnPaymentFormSubmit(tag) {
+    this.sendTrack(tag);
+    return this.onPaymentFormSubmit();
+  }
+
   onPaymentFormSubmit() {
     let challengePromise = Promise.resolve(true);
     let defaultPaymentMethodPromise = Promise.resolve(true);

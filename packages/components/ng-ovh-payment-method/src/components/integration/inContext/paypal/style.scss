@@ -1,0 +1,22 @@
+.in-context-paypal {
+  display: flex;
+  width: 250px;
+  position: relative;
+
+  .in-context-paypal-disabler {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    opacity: 0.5;
+    z-index: 2;
+  }
+
+  .in-context-paypal-container {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+}
