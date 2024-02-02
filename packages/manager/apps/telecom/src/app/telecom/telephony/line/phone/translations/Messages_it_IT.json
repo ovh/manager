@@ -10,9 +10,10 @@
   "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone",
   "telephony_line_phone_actions_line_details_phone_breadcrumb": "Telefono",
   "telephony_line_phone_actions_line_phone_order_phone": "Ordina un telefono VoIP",
-  "telephony_line_phone_actions_line_phone_change_phone": "Modifica il telefono",
+  "telephony_line_phone_actions_line_phone_change_phone": "Cambia telefono",
   "telephony_line_phone_actions_line_phonebook": "Rubrica di contatti",
   "telephony_group_line_phone_section_back_link_target": "gestione del telefono",
   "telephony_line_phone_actions_line_phone_order_attach": "Collegare la linea a un dispositivo attuale",
-  "telephony_line_phone_actions_line_phone_order_detach": "Scollega la linea di un telefono"
+  "telephony_line_phone_actions_line_phone_order_detach": "Scollega la linea di un telefono",
+  "telephony_line_phone_actions_line_order_headset": "Ordina una cuffia"
 }
