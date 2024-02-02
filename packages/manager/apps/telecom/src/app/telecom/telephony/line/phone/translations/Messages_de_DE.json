@@ -14,5 +14,6 @@
   "telephony_line_phone_actions_line_phonebook": "Kontaktlisten",
   "telephony_group_line_phone_section_back_link_target": "Verwaltung des Telefons",
   "telephony_line_phone_actions_line_phone_order_attach": "Die Leitung an eine aktuelle Hardware anhängen",
-  "telephony_line_phone_actions_line_phone_order_detach": "Leitung eines Telefons abtrennen"
+  "telephony_line_phone_actions_line_phone_order_detach": "Leitung eines Telefons abtrennen",
+  "telephony_line_phone_actions_line_order_headset": "Headset bestellen"
 }
