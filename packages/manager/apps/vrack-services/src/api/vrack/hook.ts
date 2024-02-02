@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { useQueries, useQuery } from '@tanstack/react-query';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   getVrackList,
   getVrackListQueryKey,
@@ -19,7 +20,7 @@ export const useAllowedVrackList = (vrackServicesId?: string) => {
     isError: isVrackListError,
     error: vrackListError,
     isFetched,
-  } = useQuery({
+  } = useQuery<ApiResponse<string[]>, ApiError>({
     queryKey: getVrackListQueryKey,
     queryFn: getVrackList,
   });
@@ -44,7 +45,9 @@ export const useAllowedVrackList = (vrackServicesId?: string) => {
   const resultStatus = {
     isLoading: isVrackListLoading || result.some(({ isLoading }) => isLoading),
     isError: isVrackListError || result.some(({ isError }) => isError),
-    error: vrackListError || result.find(({ error }) => error),
+    error:
+      vrackListError ||
+      ((result.find(({ error }) => error) as unknown) as ApiError),
   };
 
   return {

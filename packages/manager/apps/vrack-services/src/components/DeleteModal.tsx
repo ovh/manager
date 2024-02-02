@@ -86,7 +86,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
       {!!error && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
           {t('genericApiError', {
-            error,
+            error: error.response?.data?.message,
             interpolation: { escapeValue: false },
           })}
         </OsdsMessage>

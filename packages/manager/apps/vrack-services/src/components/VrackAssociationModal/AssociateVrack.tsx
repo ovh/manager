@@ -20,10 +20,12 @@ import {
   OsdsButton,
 } from '@ovhcloud/ods-components/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   associateVrackServicesQueryKey,
   associateVrackServices,
   getVrackServicesResourceListQueryKey,
+  Task,
 } from '@/api';
 import { handleClick } from '@/utils/ods-utils';
 
@@ -42,7 +44,10 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
   const [selectedVrack, setSelectedVrack] = React.useState('');
   const queryClient = useQueryClient();
 
-  const { mutate: associateVs, isPending, isError, error } = useMutation({
+  const { mutate: associateVs, isPending, isError, error } = useMutation<
+    ApiResponse<Task>,
+    ApiError
+  >({
     mutationFn: () =>
       associateVrackServices({
         vrack: selectedVrack,
@@ -70,7 +75,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
       {isError && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
           {t('updateError', {
-            error,
+            error: error?.response?.data.message,
             interpolation: { escapeValue: false },
           })}
         </OsdsMessage>

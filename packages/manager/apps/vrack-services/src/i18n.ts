@@ -22,9 +22,9 @@ export default function initI18n(
     .init({
       lng: ovhLocaleToI18next(locale),
       fallbackLng: 'fr-FR',
-      defaultNS: 'common',
+      defaultNS: 'vrack-services',
       supportedLngs: availableLocales.map(ovhLocaleToI18next),
-      ns: ['common'],
+      ns: ['vrack-services', 'vrack-services/listing'],
       postProcess: 'normalize',
       backend: {
         allowMultiLoading: false,
