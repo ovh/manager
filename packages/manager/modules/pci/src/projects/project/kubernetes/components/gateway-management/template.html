@@ -1,39 +1,65 @@
-<div
-    class="oui-box oui-box_light border-0 pl-0 pt-0"
-    data-ng-init="gateway = $ctrl.network.gateway"
->
+<div>
     <h2
         data-ng-if="!$ctrl.elevateTitle"
         class="oui-field__label"
         data-translate="kubernetes_add_private_network_gateway_management_label"
     ></h2>
-    <h6
+    <h5
         data-ng-if="$ctrl.elevateTitle"
         data-translate="kubernetes_add_private_network_gateway_management_label"
-    ></h6>
+    ></h5>
     <p
         data-translate="kubernetes_add_private_network_gateway_management_description"
     ></p>
 
-    <!--Gateway switch-->
-    <oui-switch data-model="gateway.enabled"></oui-switch>
-    <strong
-        data-ng-bind="('kubernetes_add_private_network_gateway_management_gateway_' + gateway.enabled ) | translate"
-    ></strong>
+    <oui-radio-group
+        data-model="$ctrl.network.gateway.enabled"
+        data-on-change="$ctrl.onGatewayChanged()"
+    >
+        <oui-radio data-value="false">
+            <strong
+                data-translate="kubernetes_add_private_network_gateway_management_gateway_public"
+            ></strong>
+        </oui-radio>
+        <oui-radio data-value="true">
+            <strong
+                data-translate="kubernetes_add_private_network_gateway_management_gateway_private"
+            ></strong>
+        </oui-radio>
+    </oui-radio-group>
 
-    <!--Gateway IP address-->
-    <div class="mt-3" data-ng-if="gateway.enabled">
-        <input
-            class="oui-input"
-            id="networkGatewayIp"
-            name="networkGatewayIp"
-            type="text"
-            placeholder="{{:: 'kubernetes_add_private_network_gateway_management_gateway_vrack_field_ip_placeholder' | translate}}"
-            data-ng-model="gateway.ip"
-            data-ng-pattern="$ctrl.GATEWAY_IP_REGEX"
-        />
-        <p
-            data-translate="kubernetes_add_private_network_gateway_management_gateway_vrack_description"
-        ></p>
+    <p
+        class="mt-2"
+        data-ng-if="!$ctrl.network.gateway.enabled"
+        data-translate="kubernetes_add_private_network_gateway_management_gateway_public_description"
+    ></p>
+    <div class="mt-2" data-ng-if="$ctrl.network.gateway.enabled">
+        <p>
+            <span
+                data-translate="kubernetes_add_private_network_gateway_management_gateway_private_description_p1"
+            ></span>
+            <a
+                data-ui-sref="pci.projects.project.gateways"
+                data-translate="kubernetes_add_private_network_gateway_management_gateway_private_description_link"
+            ></a>
+            <span
+                data-translate="kubernetes_add_private_network_gateway_management_gateway_private_description_p2"
+            ></span>
+        </p>
+        <oui-field
+            data-error-messages="{
+                pattern: ('kubernetes_add_private_network_gateway_management_gateway_vrack_field_ip_error_pattern' | translate)
+            }"
+        >
+            <input
+                class="oui-input"
+                id="networkGatewayIp"
+                name="networkGatewayIp"
+                type="text"
+                placeholder="{{:: 'kubernetes_add_private_network_gateway_management_gateway_vrack_field_ip_placeholder' | translate}}"
+                data-ng-model="$ctrl.network.gateway.ip"
+                data-ng-pattern="$ctrl.GATEWAY_IP_REGEX"
+            />
+        </oui-field>
     </div>
 </div>
