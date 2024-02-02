@@ -3,14 +3,14 @@
         data-wizard
         data-wizard-on-cancel="resetAction"
         data-wizard-on-finish="updateOperation"
-        data-wizard-title="'domains_operations_update_title' | translate"
+        data-wizard-title="'domain_operations_update_title' | translate"
     >
         <div
             data-wizard-step
             data-wizard-step-valid="ctrl.updateOperationForm.$valid && ctrl.canContinue"
         >
             <p>
-                <span data-translate="domains_operations_update_comment"></span>
+                <span data-translate="domain_operations_update_comment"></span>
                 <em data-ng-bind="::ctrl.operation.comment"></em>
             </p>
 
@@ -22,7 +22,7 @@
                 <form class="form-horizontal" name="ctrl.updateOperationForm">
                     <div data-ng-if="ctrl.args.length > 0">
                         <p
-                            data-ng-bind-html="'domains_operations_update_info' | translate: { t0: ('domains_operations_nicOperation_' + ctrl.operation['function'] | translate), t1: ctrl.operation.domain }"
+                            data-ng-bind-html="'domain_operations_update_info' | translate: { t0: ('domain_operations_nicOperation_' + ctrl.operation['function'] | translate), t1: ctrl.operation.domain }"
                         ></p>
                         <hr />
                         <div
@@ -73,11 +73,11 @@
                                 >
                                     <a
                                         target="_blank"
-                                        title="{{::('domains_operations_update_nicowner_click_' + arg.key | translate) + ' (' + ('core_new_window' | translate) + ')'}}"
+                                        title="{{::('domain_operations_update_nicowner_click_' + arg.key | translate) + ' (' + ('core_new_window' | translate) + ')'}}"
                                         data-ng-href="{{ ctrl.contactUrl + '/' + arg.value + '/' + (arg.fields.length ? ctrl.constructor.getNicParams(arg) : '')}}"
                                     >
                                         <span
-                                            data-ng-bind="'domains_operations_update_nicowner_click_' + arg.key | translate"
+                                            data-ng-bind="'domain_operations_update_nicowner_click_' + arg.key | translate"
                                         ></span>
                                         <span
                                             class="fa fa-external-link"
@@ -90,7 +90,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <strong
-                                                data-translate="domains_operations_update_document_select_file"
+                                                data-translate="domain_operations_update_document_select_file"
                                             ></strong>
                                         </div>
                                         <div
@@ -121,7 +121,7 @@
                                             </button>
                                             <span
                                                 class="text-danger"
-                                                data-translate="domains_operations_update_document_file_invalid"
+                                                data-translate="domain_operations_update_document_file_invalid"
                                                 data-ng-if="ctrl.filesModel[$index].uploadError"
                                             ></span>
                                         </div>
@@ -130,7 +130,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <strong
-                                                data-translate="domains_operations_update_document_description"
+                                                data-translate="domain_operations_update_document_description"
                                             ></strong>
                                         </div>
                                         <div
@@ -145,7 +145,7 @@
                                     >
                                         <div class="col-md-6">
                                             <strong
-                                                data-translate="domains_operations_update_document_exist"
+                                                data-translate="domain_operations_update_document_exist"
                                             ></strong>
                                         </div>
                                         <div class="col-md-6">
@@ -155,10 +155,10 @@
                                                 target="_blank"
                                             >
                                                 <span
-                                                    data-translate="domains_operations_update_document_exist"
+                                                    data-translate="domain_operations_update_document_exist"
                                                 ></span>
                                                 <span
-                                                    data-translate="domains_operations_update_document_expired"
+                                                    data-translate="domain_operations_update_document_expired"
                                                     data-ng-if="ctrl.documents[arg.value].expirationDate"
                                                 ></span>
                                                 <span
@@ -178,7 +178,7 @@
                                                 class="oui-button oui-button_secondary oui-button_icon-only oui-button_s"
                                                 type="button"
                                                 data-ng-click="ctrl.viewMode[arg.key] = false"
-                                                data-oui-tooltip="{{ 'domains_operations_update_document_edit' | translate }}"
+                                                data-oui-tooltip="{{ 'domain_operations_update_document_edit' | translate }}"
                                             >
                                                 <span
                                                     class="oui-icon oui-icon-pen_concept"
@@ -194,7 +194,7 @@
                                     >
                                         <div class="col-md-6">
                                             <strong
-                                                data-translate="domains_operations_update_document_template"
+                                                data-translate="domain_operations_update_document_template"
                                             ></strong>
                                         </div>
                                         <div class="col-md-6">
@@ -204,7 +204,7 @@
                                                 target="_blank"
                                             >
                                                 <span
-                                                    data-translate="domains_operations_update_document_link"
+                                                    data-translate="domain_operations_update_document_link"
                                                 ></span>
                                                 <span
                                                     class="fa fa-external-link"
@@ -219,7 +219,7 @@
                                     >
                                         <div class="col-md-6">
                                             <strong
-                                                data-translate="domains_operations_update_document_min_size"
+                                                data-translate="domain_operations_update_document_min_size"
                                             ></strong>
                                         </div>
                                         <div
@@ -233,7 +233,7 @@
                                     >
                                         <div class="col-md-6">
                                             <strong
-                                                data-translate="domains_operations_update_document_max_size"
+                                                data-translate="domain_operations_update_document_max_size"
                                             ></strong>
                                         </div>
                                         <div
@@ -247,7 +247,7 @@
                                     >
                                         <div class="col-md-6">
                                             <strong
-                                                data-translate="domains_operations_update_document_accept_format"
+                                                data-translate="domain_operations_update_document_accept_format"
                                             ></strong>
                                         </div>
                                         <div
@@ -290,7 +290,7 @@
                                     <span class="oui-radio__icon"></span>
                                     <span
                                         class="oui-radio__text"
-                                        data-translate="domains_operations_cancel_title"
+                                        data-translate="domain_operations_cancel_title"
                                     ></span>
                                 </span>
                             </label>
@@ -313,7 +313,7 @@
                                     <span class="oui-radio__icon"></span>
                                     <span
                                         class="oui-radio__text"
-                                        data-translate="domains_operations_relaunch_title"
+                                        data-translate="domain_operations_relaunch_title"
                                     ></span>
                                 </span>
                             </label>
@@ -336,7 +336,7 @@
                                     <span class="oui-radio__icon"></span>
                                     <span
                                         class="oui-radio__text"
-                                        data-translate="domains_operations_accelerate_title"
+                                        data-translate="domain_operations_accelerate_title"
                                     ></span>
                                 </span>
                             </label>
@@ -344,7 +344,7 @@
                         <div
                             class="alert alert-warning mt-4"
                             role="alert"
-                            data-translate="domains_operations_accelerate_warning"
+                            data-translate="domain_operations_accelerate_warning"
                             data-ng-if="ctrl.todoOperation === 'accelerate'"
                         ></div>
                     </div>
