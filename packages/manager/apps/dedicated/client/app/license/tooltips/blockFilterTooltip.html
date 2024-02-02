@@ -11,9 +11,8 @@
             class="form-control"
             id="filterIpType"
             name="filterIpType"
-            data-ng-options="type as (('license_order_filter_block_type_' + type) | translate) for type in availableIpBlock.availableIpTypes"
-            data-ng-model="filters.block.type"
-            data-ng-change="recheckIpBlockContained()"
+            data-ng-options="type as (('license_order_filter_block_type_' + type) | translate) for type in $ctrl.availableIpBlock.availableIpTypes"
+            data-ng-model="$ctrl.filters.block.type"
         >
             <option
                 value=""
@@ -34,15 +33,14 @@
             class="form-control"
             id="search"
             name="search"
-            placeholder="{{ license_order_filter_block_search }}"
-            data-ng-model="filters.block.search.$"
-            data-ng-change="recheckIpBlockContained()"
+            placeholder="{{ 'license_order_filter_block_search_placeholder' | translate}}"
+            data-ng-model="$ctrl.filters.block.search.$"
         />
     </div>
     <button
         type="button"
         class="btn btn-default btn-block"
-        data-ng-click="filterBlocks()"
+        data-ng-click="$ctrl.filterBlocks()"
         data-translate="license_order_filter_block_validate"
     ></button>
 </div>

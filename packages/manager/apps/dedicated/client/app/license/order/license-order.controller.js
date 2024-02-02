@@ -3,7 +3,6 @@ import set from 'lodash/set';
 
 export default /* @ngInject */ (
   $q,
-  $filter,
   $scope,
   $timeout,
   $translate,
@@ -50,6 +49,16 @@ export default /* @ngInject */ (
   $scope.ipValid = {
     value: false,
   };
+
+  function setPopoverScope() {
+    const { filterBlocks, availableIpBlock, filters } = $scope;
+
+    $scope.popoverScope = {
+      filterBlocks,
+      availableIpBlock,
+      filters,
+    };
+  }
 
   const getOrderableVersion = function getOrderableVersion() {
     $scope.loaders.orderableVersion = true;
@@ -138,6 +147,7 @@ export default /* @ngInject */ (
       })
       .finally(() => {
         $scope.loaders.ips = false;
+        setPopoverScope();
       });
   }
 
