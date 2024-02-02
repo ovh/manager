@@ -54,6 +54,9 @@
                     ><span
                         data-translate="domain_tab_REDIRECTION_add_step1_www"
                     ></span>
+                    <span
+                        data-ng-bind="'www.' + (ctrl.newRedirection.subdomain ? ctrl.newRedirection.subdomain + '.' : '') + ctrl.newRedirection.domain.displayName"
+                    ></span>
                 </oui-checkbox>
             </form>
         </div>
