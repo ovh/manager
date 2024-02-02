@@ -10,12 +10,9 @@ import DatagridWrapper from '@/components/layout-helpers/Listing/DatagridWrapper
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import Breadcrumb, {
-  BreadcrumbHandleParams,
 } from '@/components/Breadcrumb/Breadcrumb';
 
-export function breadcrumb({ params }: BreadcrumbHandleParams) {
-  return params.serviceName;
-}
+
 
 export default function Listing() {
   const [pageSize] = useState(10);

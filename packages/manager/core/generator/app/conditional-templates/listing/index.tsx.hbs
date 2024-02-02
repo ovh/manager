@@ -5,15 +5,9 @@ import { getListingIceberg } from '@/api';
 import Datagrid from '@/components/layout-helpers/Listing/dataGrid';
 import Loading from '@/components/Loading/Loading';
 import appConfig from '@/{{this.appName}}.config';
-import Breadcrumb, {
-  BreadcrumbHandleParams,
-} from '@/components/Breadcrumb/Breadcrumb';
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 
 import Errors from '@/components/Error/Error';
-
-export function breadcrumb({ params }: BreadcrumbHandleParams) {
-  return params.serviceName;
-}
 
 type ServiceData = {
   serviceName: string;
