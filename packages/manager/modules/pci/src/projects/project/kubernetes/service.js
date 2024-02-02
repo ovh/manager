@@ -149,7 +149,7 @@ export default class Kubernetes {
       ...(loadBalancerSubnetId && { loadBalancerSubnetId }),
       ...(gatewayConfig.enabled && {
         privateNetworkConfiguration: {
-          defaultVrackGateway: gatewayConfig.ip,
+          defaultVrackGateway: gatewayConfig.ip ?? '',
           privateNetworkRoutingAsDefault: gatewayConfig.enabled,
         },
       }),
