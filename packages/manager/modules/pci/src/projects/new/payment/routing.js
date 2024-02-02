@@ -1,5 +1,4 @@
 import filter from 'lodash/filter';
-import find from 'lodash/find';
 import get from 'lodash/get';
 
 import { CREDIT_PROVISIONING } from './components/add/constants';
@@ -167,8 +166,32 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
 
-      defaultPaymentMethod: /* @ngInject */ (paymentMethods) =>
-        find(paymentMethods, { default: true }),
+      defaultPaymentMethod: /* @ngInject */ (
+        paymentMethods,
+        eligibility,
+        model,
+      ) => {
+        const defaultPaymentMethod = paymentMethods.find(
+          (paymentMethod) => paymentMethod.default === true,
+        );
+        if (defaultPaymentMethod) {
+          if (eligibility.isChallengePaymentMethodRequired()) {
+            Object.defineProperty(model, 'valid', {
+              get: () =>
+                model.challenge?.isValid(
+                  defaultPaymentMethod.type.paymentType,
+                ) || false,
+            });
+          } else {
+            Object.assign(model, { valid: true });
+          }
+        } else {
+          Object.assign(model, {
+            valid: eligibility.actionsRequired.length === 0,
+          });
+        }
+        return defaultPaymentMethod;
+      },
 
       registerablePaymentMethods: /* @ngInject */ (ovhPaymentMethod) =>
         ovhPaymentMethod.getAllAvailablePaymentMethodTypes(),
