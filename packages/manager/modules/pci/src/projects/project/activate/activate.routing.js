@@ -134,6 +134,7 @@ export default /* @ngInject */ ($stateProvider) => {
       trackingPrefix: 'PublicCloud_activate_project::',
       paymentsPerLine: (paymentMethods) => paymentMethods.length,
       registerExplanationTexts: { sepa: { banner: 'warning' } },
+      stateName: paymentStateName,
     },
     resolve: {
       breadcrumb: () => null,
