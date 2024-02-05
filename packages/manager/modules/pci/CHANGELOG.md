@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.20.0...@ovh-ux/manager-pci@6.21.0) (2024-02-05)
+
+
+### Bug Fixes
+
+* **pci.storages.databases:** display redis users information ([#10797](https://github.com/ovh/manager/issues/10797)) ([d811298](https://github.com/ovh/manager/commit/d8112989def9204e8f76463d58815a6547be6700))
+* **pci.vouchers:** fix JS error on init and use $interval for polling ([#10818](https://github.com/ovh/manager/issues/10818)) ([2a955a7](https://github.com/ovh/manager/commit/2a955a77579cdfaa72fc6e880020f983da6eabee))
+
+
+### Features
+
+* **pci:** new solution for payment step on PCI > Checkbox ([#10733](https://github.com/ovh/manager/issues/10733)) ([ca45ed9](https://github.com/ovh/manager/commit/ca45ed928684da75ec899377fd3ba093826e7cba))
+
+
+
+
+
 # [6.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.19.0...@ovh-ux/manager-pci@6.20.0) (2024-01-29)
 
 

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.5.5...@ovh-ux/manager-telecom@15.6.0) (2024-02-05)
+
+
+### Bug Fixes
+
+* **telecom:** display success after migrate return ok ([#10784](https://github.com/ovh/manager/issues/10784)) ([ae045dd](https://github.com/ovh/manager/commit/ae045dd5748968bebf6a64a13437d68db0d5cb33))
+
+
+### Features
+
+* **telecom:** add heaset icon and several redirections ([#10615](https://github.com/ovh/manager/issues/10615)) ([d87dde4](https://github.com/ovh/manager/commit/d87dde4069c92aacb646dad3d060324a79a50c84))
+* **telecom:** translation missing on migration/move pack ([#10738](https://github.com/ovh/manager/issues/10738)) ([5385f78](https://github.com/ovh/manager/commit/5385f78bab1f73c07b712c4184ffbe1e03266076))
+
+
+
+
+
 ## [15.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.5.4...@ovh-ux/manager-telecom@15.5.5) (2024-01-31)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

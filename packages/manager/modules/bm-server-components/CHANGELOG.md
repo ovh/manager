@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.12.0...@ovh-ux/manager-bm-server-components@1.12.1) (2024-02-05)
+
+
+### Bug Fixes
+
+* **dedicated.server:** unblocking server banner ([#10775](https://github.com/ovh/manager/issues/10775)) ([96bae44](https://github.com/ovh/manager/commit/96bae44da1c7521234abab5fb50fccfc661b00b3))
+
+
+
+
+
 # [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.11.2...@ovh-ux/manager-bm-server-components@1.12.0) (2024-01-29)
 
 

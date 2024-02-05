@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.11.1...@ovh-ux/manager-web@18.12.0) (2024-02-05)
+
+
+### Features
+
+* **web:** add cdn ip information ([#10742](https://github.com/ovh/manager/issues/10742)) ([e5462b7](https://github.com/ovh/manager/commit/e5462b7c7c4d61423162cbef97459207ddaad310))
+* **web:** split dns and domain api calls with two tabs ([#10405](https://github.com/ovh/manager/issues/10405)) ([fc57a4d](https://github.com/ovh/manager/commit/fc57a4d6e9c5599247671385a29f6a6188117da3))
+
+
+
+
+
 ## [18.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.11.0...@ovh-ux/manager-web@18.11.1) (2024-01-31)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.19.1...@ovh-ux/manager-dedicated@19.19.2) (2024-02-05)
+
+
+### Bug Fixes
+
+* **dedicated:** fix popover filter on license ip order ([#10779](https://github.com/ovh/manager/issues/10779)) ([a6af672](https://github.com/ovh/manager/commit/a6af672f1f782e3fcc51c399d4cfa07c4492c003))
+* **dedicated:** remove redudant server dashboard import ([#10829](https://github.com/ovh/manager/issues/10829)) ([2e61efb](https://github.com/ovh/manager/commit/2e61efb925afd99d24b6cd369f4cc5f8d92f5be2))
+
+
+
+
+
 ## [19.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.19.0...@ovh-ux/manager-dedicated@19.19.1) (2024-01-31)
 
 
