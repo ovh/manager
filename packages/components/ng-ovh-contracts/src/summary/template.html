@@ -18,7 +18,9 @@
             data-ng-href="{{ contract.url }}"
             rel="noopener"
             target="_blank"
-            data-ng-click="$ctrl.trackContractClick()"
+            data-track-on="click"
+            data-track-type="action"
+            data-track-name="{{ $ctrl.trackingPrefix + '::contract::download-contract'}}"
         >
             <span data-ng-bind="contract.name"></span>
             <span

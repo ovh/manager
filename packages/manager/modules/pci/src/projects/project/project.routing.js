@@ -49,21 +49,39 @@ export default /* @ngInject */ ($stateProvider) => {
         return null;
       });
     },
+    atInternet: {
+      ignore: true,
+    },
     resolve: {
       projectId: /* @ngInject */ ($transition$) =>
         $transition$.params().projectId,
-
+      sendPageTracking: /* @ngInject */ (
+        atInternet,
+        isDiscoveryProject,
+        projectId,
+      ) => {
+        atInternet.setPciProjectMode({
+          isDiscoveryProject,
+          projectId,
+        });
+        return atInternet.trackPage({
+          name: `PublicCloud::pci::projects::project`,
+        });
+      },
       activateDiscovery: /* @ngInject */ (
         $transition$,
         isDiscoveryProject,
         trackPage,
       ) => {
-        const isActivateModalDisplayed = isDiscoveryProject && $transition$.params().activateDiscovery;
+        const isActivateModalDisplayed =
+          isDiscoveryProject && $transition$.params().activateDiscovery;
 
         if (isActivateModalDisplayed) {
-            trackPage('PublicCloud::pci::projects::project::activate-project-modal');
+          trackPage(
+            'PublicCloud::pci::projects::project::activate-project-modal',
+          );
         }
-        
+
         return isActivateModalDisplayed;
       },
 

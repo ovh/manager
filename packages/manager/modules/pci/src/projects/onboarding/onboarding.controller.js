@@ -12,6 +12,12 @@ export default class {
     this.atInternet = atInternet;
   }
 
+  $onInit() {
+    this.atInternet.trackPage({
+      name: 'PublicCloud::pci::projects::onboarding',
+    });
+  }
+
   onCreateDiscoveryProjectClick() {
     this.isLoading = true;
     this.atInternet.trackClick({

@@ -7,6 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.onboarding', {
     url: '/onboarding',
     component: 'pciProjectsOnboarding',
+    atInternet: {
+      ignore: true, // this tell AtInternet to not track this state
+    },
     redirectTo: (transition) => {
       const [$q, publicCloud] = ['$q', 'publicCloud'].map((token) =>
         transition.injector().get(token),

@@ -1,5 +1,4 @@
 import template from './template.html';
-import controller from './controller';
 
 const component = {
   bindings: {
@@ -10,7 +9,6 @@ const component = {
     trackingPrefix: '<',
   },
   template,
-  controller,
 };
 
 export default component;
