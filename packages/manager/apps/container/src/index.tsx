@@ -33,6 +33,15 @@ initShell().then((shell) => {
   const environment: Environment = shell
     .getPlugin('environment')
     .getEnvironment();
+  environment.applications['pci-cdb'] = {
+    universe: 'public-cloud',
+    url: "https://www.ovh.com/manager/pci-cdb",
+    publicURL: "https://www.ovh.com/manager/#/pci-cdb",
+    container: {
+      isDefault: false, enabled: true, path: 'pci-cdb',
+      containerURL: ''
+    }
+  };
   const locale = environment.getUserLocale();
   const config = () => import(`./config-${environment.getRegion()}.js`);
 
