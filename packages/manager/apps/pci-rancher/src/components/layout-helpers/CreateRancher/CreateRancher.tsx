@@ -77,10 +77,10 @@ const getRancherPlanDescription = (rancherPlan: RancherPlan['name']) => {
 };
 
 export interface CreateRancherProps {
+  projectId: string;
   plans: RancherPlan[];
   versions: RancherVersion[];
   hasRancherCreationError: boolean;
-  onCancelClick: () => void;
   onCreateRancher: (payload: CreateRancherPayload) => void;
 }
 
@@ -88,9 +88,10 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   plans,
   versions,
   onCreateRancher,
-  onCancelClick,
   hasRancherCreationError,
+  projectId,
 }) => {
+  const navigate = useNavigate();
   const { t } = useTranslation([
     'pci-rancher/dashboard',
     'pci-rancher/listing',
@@ -102,9 +103,17 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const isValidName = rancherName !== '' && isValidRancherName(rancherName);
   const hasInputError = rancherName !== null && !isValidName;
 
+  const onCreateClick = (rancherPayload: CreateRancherPayload) => {
+    onCreateRancher(rancherPayload);
+    navigate(`/pci/projects/${projectId}/rancher`);
+  };
+
+  const onCancelClick = () =>
+    navigate(`/pci/projects/${projectId}/rancher/onboarding`);
+
   return (
     <div className="max-w-3xl">
-      <Title title={t('createRancherTitle')} />
+      <Title>{t('createRancherTitle')}</Title>
       <OsdsMessage
         color={ODS_THEME_COLOR_INTENT.info}
         type={ODS_MESSAGE_TYPE.info}
@@ -128,7 +137,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
       <div>
         <div className="mb-8">
           <Block>
-            <Subtitle title={t('createRancherName')} />
+            <Subtitle>{t('createRancherName')}</Subtitle>
           </Block>
           <Block>
             <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
@@ -152,7 +161,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         </div>
 
         <div className="my-3">
-          <Subtitle title={t('createRancherServiceLevel')} />
+          <Subtitle>{t('createRancherServiceLevel')}</Subtitle>
         </div>
         <Block>
           <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
@@ -174,7 +183,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         </div>
 
         <Block>
-          <Subtitle title={t('createRancherVersion')} />
+          <Subtitle>{t('createRancherVersion')}</Subtitle>
         </Block>
         <Block>
           <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
@@ -216,7 +225,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => {
               if (isValidName) {
-                onCreateRancher({
+                onCreateClick({
                   name: rancherName,
                   version: activeVersion.name,
                   plan: activePlan.name,

@@ -7,10 +7,9 @@ import {
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import React from 'react';
 
-const CommonTitle: React.FC<{
-  title: string;
+const CommonTitle: React.FC<React.PropsWithChildren & {
   typoSize: ODS_THEME_TYPOGRAPHY_SIZE;
-}> = ({ title, typoSize }) => {
+}> = ({ children, typoSize }) => {
   return (
     <OsdsText
       level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
@@ -18,20 +17,24 @@ const CommonTitle: React.FC<{
       color={ODS_THEME_COLOR_INTENT.text}
       hue={ODS_THEME_COLOR_HUE._800}
     >
-      {title}
+      {children}
     </OsdsText>
   );
 };
 
-export const Title: React.FC<{ title: string }> = ({ title }) => {
+export const Title: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
-    <CommonTitle title={title} typoSize={ODS_THEME_TYPOGRAPHY_SIZE._700} />
+    <CommonTitle typoSize={ODS_THEME_TYPOGRAPHY_SIZE._700}>
+      {children}
+    </CommonTitle>
   );
 };
 
-export const Subtitle: React.FC<{ title: string }> = ({ title }) => {
+export const Subtitle: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
-    <CommonTitle title={title} typoSize={ODS_THEME_TYPOGRAPHY_SIZE._500} />
+    <CommonTitle typoSize={ODS_THEME_TYPOGRAPHY_SIZE._500}>
+      {children}
+    </CommonTitle>
   );
 };
 

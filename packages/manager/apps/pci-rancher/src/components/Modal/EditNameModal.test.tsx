@@ -1,7 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import EditNameModal from './EditNameModal';
-import { render, waitFor } from '../../utils/test.provider';
+import { render, waitFor } from '../../utils/test/test.provider';
 import listingTranslation from '../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 import { rancherMocked } from '../../_mock_/rancher';
 

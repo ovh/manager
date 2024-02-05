@@ -1,4 +1,8 @@
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsClipboard,
@@ -82,7 +86,8 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
       )}
       <OsdsButton
         slot="actions"
-        color={ODS_THEME_COLOR_INTENT.default}
+        variant={ODS_BUTTON_VARIANT.stroked}
+        color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => toggleModal(false)}
       >
         {t(hasValidAccess ? 'close' : 'cancel')}

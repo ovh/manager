@@ -13,7 +13,8 @@ export default function Onboarding() {
   const title: string = t('title');
   const description: string = t('description');
 
-  const onClick = () => navigate(`/pci/projects/${projectId}/rancher`);
+  const onOrderButtonClick = () =>
+    navigate(`/pci/projects/${projectId}/rancher/new`);
 
   return (
     <PageLayout>
@@ -23,7 +24,7 @@ export default function Onboarding() {
         imageSrc={onboardingImgSrc}
         description={description}
         orderButtonLabel={t('orderButtonLabel')}
-        onClick={onClick}
+        onOrderButtonClick={onOrderButtonClick}
         moreInfoButtonLabel={t('moreInfoButtonLabel')}
         moreInfoHref={t('moreInfoButtonLink')}
       />

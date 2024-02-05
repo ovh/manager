@@ -6,7 +6,7 @@
   "numberOfCpu": "Nombre de CPU",
   "status": "Status",
   "actions": "Actions",
-  "cancel": "Annulez",
+  "cancel": "Annuler",
   "manage": "Gérer",
   "delete": "Supprimer",
   "rancherTitle": "Managed Rancher Service",
@@ -28,6 +28,7 @@
   "READY": "Ready",
   "UPDATING": "Updating",
   "ERROR": "Error",
+  "DELETING": "Deleting",
 
   "OVHCLOUD_EDITION": "OVHcloud Edition",
   "STANDARD": "Standard"

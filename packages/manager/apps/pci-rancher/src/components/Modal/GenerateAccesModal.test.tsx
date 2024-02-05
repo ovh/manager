@@ -1,6 +1,6 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { render, waitFor } from '../../utils/test.provider';
+import { render, waitFor } from '../../utils/test/test.provider';
 import GenerateAccessModal, {
   GenerateAccessModalProps,
 } from './GenerateAccesModal';

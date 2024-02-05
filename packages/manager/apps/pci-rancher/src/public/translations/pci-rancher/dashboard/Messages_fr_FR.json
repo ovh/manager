@@ -19,7 +19,7 @@
   "comingSoon": "Bientôt disponible",
   "generateAccesModalTitle": "Générer les codes d'accès",
   "generateAccesModalDescription": "Êtes-vous sûr de vouloir régénérer un nouveau mot de passe pour votre Managed Rancher Service {{rancherName}} ?",
-  "cancel": "Annulez",
+  "cancel": "Annuler",
   "close": "Fermer",
   "confirm": "Confirmer",
   "copy": "Copié",

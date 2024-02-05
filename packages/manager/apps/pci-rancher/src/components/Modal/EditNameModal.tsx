@@ -10,6 +10,7 @@ import {
   ODS_TEXT_SIZE,
   OsdsInputCustomEvent,
   OdsInputValueChangeEventDetail,
+  ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -93,7 +94,8 @@ const EditNameModal = ({
       </OsdsText>
       <OsdsButton
         slot="actions"
-        color={ODS_THEME_COLOR_INTENT.default}
+        variant={ODS_BUTTON_VARIANT.stroked}
+        color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => toggleModal(false)}
       >
         {t('cancel')}

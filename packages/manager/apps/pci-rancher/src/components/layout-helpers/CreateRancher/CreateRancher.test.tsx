@@ -2,20 +2,29 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { rancherPlan, rancherVersion } from '@/_mock_/rancher-resource';
 import dashboardTranslation from '../../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
-import { render, waitFor } from '../../../utils/test.provider';
+import { render, waitFor } from '../../../utils/test/test.provider';
 import CreateRancher, { CreateRancherProps } from './CreateRancher';
 
 const onCreateRancher = jest.fn();
-const onCancelClick = jest.fn();
+const mockedUsedNavigate = jest.fn();
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate,
+}));
 
 const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
   waitFor(() =>
     render(
       <CreateRancher
+        projectId="1234"
         onCreateRancher={onCreateRancher}
         plans={rancherPlan}
         versions={rancherVersion}
-        onCancelClick={onCancelClick}
         hasRancherCreationError={false}
         {...props}
       />,
@@ -62,6 +71,9 @@ describe('CreateRancher', () => {
       plan: 'STANDARD',
       version: 'v2.7.6',
     });
+    expect(mockedUsedNavigate).toHaveBeenCalledWith(
+      '/pci/projects/1234/rancher',
+    );
   });
 
   it("Given that I'm configuring the service, I should only have the Standard offer selected, and see the OVHcloud Edition card disabled with a Coming soon label on it.", async () => {
@@ -103,6 +115,8 @@ describe('CreateRancher', () => {
 
     await userEvent.click(cancelButton);
 
-    expect(onCancelClick).toHaveBeenCalled();
+    expect(mockedUsedNavigate).toHaveBeenCalledWith(
+      '/pci/projects/1234/rancher/onboarding',
+    );
   });
 });

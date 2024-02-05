@@ -30,7 +30,7 @@ const Listing: React.FC<ListingProps> = ({ data }) => {
 
   return (
     <>
-      <Title title={t('rancherTitle')} />
+      <Title>{t('rancherTitle')}</Title>
       {tasks.length ? <RancherTaskMessage tasks={tasks} /> : <></>}
       <div className="my-3 mt-5">
         <OsdsButton
