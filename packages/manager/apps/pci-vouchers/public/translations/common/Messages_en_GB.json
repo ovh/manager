@@ -1,0 +1,36 @@
+{
+  "cpb_project_management_credit_vouchers": "Credits & Vouchers",
+  "cpb_vouchers_your_voucher": "Your voucher",
+  "cpb_vouchers_your_voucher_add": "Upload my voucher",
+  "cpb_vouchers_get_error": "Oops. We're unable to display list of vouchers.",
+  "cpb_vouchers_bill_ref": "Bill n° <a href=\"{{url}}\">{{billId}}</a>",
+  "cpb_vouchers_products_all": "All",
+  "cpb_vouchers_name_credit_provisionning": "Cloud credit",
+  "cpb_vouchers_credit_comment": "Public Cloud credit may not be transferred or reimbursed. It has no monetary value and any credit not used within 13 months will be lost.",
+  "common_confirm": "Confirm",
+  "common_cancel": "Cancel",
+  "cpb_vouchers_voucher_cell": "Associated voucher",
+  "cpb_vouchers_name_cell": "Name",
+  "cpb_vouchers_total_credit_cell": "Initial value",
+  "cpb_vouchers_available_credit_cell": "Remaining credit",
+  "cpb_vouchers_validity_from_cell": "Activation date",
+  "cpb_vouchers_validity_to_cell": "Validity date",
+  "cpb_vouchers_products_cell": "Eligible products",
+  "cpb_vouchers_add_button": "Use a voucher",
+  "cpb_vouchers_add_credit_button": "Buy Public Cloud credit",
+  "cpb_vouchers_add_explain_bis": "Whenever an invoice is issued, the amount owed is debited from your Cloud credit (see below), then in turn from your Digital Launch Pad account, and then from your loyalty account. And lastly, your potential debit balance is paid using the payment method we have on file (details regarding those three payment methods are available in the \"Billing\" section of the OVH Control Panel).",
+
+  "common_pagination_of": "on",
+  "common_pagination_results": "results",
+
+  "cpb_vouchers_add_success": "Voucher successfully uploaded.",
+  "cpb_vouchers_add_error": "Oops. We are unable to add this voucher. Please try again.",
+
+  "cpb_vouchers_add_credit_title": "Buy Public Cloud credit",
+  "cpb_vouchers_add_credit_info": "Select the total (ex. VAT) you would like to credit for this project. Once the purchase order has been settled, this credit will be used for bills and project usage invoiced over the following 12 months.",
+  "cpb_vouchers_add_credit_amount": "Amount to credit (ex. VAT {{ currency }})",
+  "cpb_vouchers_add_credit_valid": "Generate a purchase order",
+  "cpb_vouchers_add_credit_success": "The purchase order for your {{ amount }} credit is available <a href=\"{{ url }}\" target=\"_blank\">here</a>.",
+  "cpb_vouchers_add_credit_load_err": "Oops! An error has occurred loading the cloud credit purchase.",
+  "cpb_vouchers_bill_ref": "Bill n° <a href=\"{{url}}\">{{billId}}</a>"
+}
