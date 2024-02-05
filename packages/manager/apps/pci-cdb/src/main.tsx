@@ -41,7 +41,13 @@ const init = async (
   context.shell.ux.setForceAccountSiderBarDisplayOnLargeScreen(true);
   await context.shell.ux.showMenuSidebar();
 
-  ReactDOM.createRoot(document.getElementById('root')!).render(
+
+  const body = document.querySelector('body');
+  const divContainer = document.createElement('div');
+  divContainer.id = 'ovh-app';
+  body?.append(divContainer);
+
+  ReactDOM.createRoot(divContainer!).render(
     <React.StrictMode>
       <ShellProvider client={context}>
         <HidePreloader />

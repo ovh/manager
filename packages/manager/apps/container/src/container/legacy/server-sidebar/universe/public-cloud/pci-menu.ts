@@ -222,8 +222,8 @@ export function getPciProjectMenu(
           title: 'Databases',
           feature: 'databases',
           href: getURL(
-            '',
-            `#/pci-cdb/projects/${projectId}/databases/services`,
+            'pci-cdb',
+            `#/projects/${projectId}/databases/services`,
           ),
         },
         {
@@ -231,8 +231,8 @@ export function getPciProjectMenu(
           title: 'Data Streaming',
           feature: 'databases',
           href: getURL(
-            '',
-            `#/pci-cdb/projects/${projectId}/data-streaming/services`,
+            'pci-cdb',
+            `#/projects/${projectId}/data-streaming/services`,
           ),
         },
         {
@@ -250,8 +250,8 @@ export function getPciProjectMenu(
           title: 'Data Analysis',
           feature: 'databases',
           href: getURL(
-            '',
-            `#/pci-cdb/projects/${projectId}/data-analysis/services`,
+            'pci-cdb',
+            `#/projects/${projectId}/data-analysis/services`,
           ),
         },
         {
