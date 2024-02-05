@@ -82,7 +82,8 @@
     "http-proxy-middleware": "^1.0.4",
     "msw": "^0.38.0",
     "rollup": "^2.7.8",
-    "vite": "^3.0.2"
+    "vite": "^3.0.2",
+    "@types/react": "^18.2.45"
   },
   "regions": [
     "CA",
