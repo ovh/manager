@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { ShellContext } from "../ShellContext";
+import { useContext } from 'react';
+import { ShellContext } from '../ShellContext';
 
 export function useI18n() {
   const { shell } = useContext(ShellContext);
