@@ -14,7 +14,15 @@ export default /* @ngInject */ ($stateProvider) => {
     atInternet: {
       ignore: true, // this tell AtInternet to not track this state
     },
-    onEnter: /* @ngInject */ (atInternet, numProjects) => {
+    onEnter: /* @ngInject */ (
+      atInternet,
+      numProjects,
+      isCreatingDiscoveryProject,
+    ) => {
+      atInternet.setPciProjectMode({
+        isDiscoveryProject: isCreatingDiscoveryProject,
+        projectId: '',
+      });
       atInternet.trackPage({
         name: 'PublicCloud::pci::projects::creating',
         pciCreationNumProjects: numProjects,
@@ -34,7 +42,13 @@ export default /* @ngInject */ ($stateProvider) => {
         isRedirectRequired,
         getTargetedState,
         goToState,
+        isCreatingDiscoveryProject,
       ) => (projectId) => {
+        atInternet.setPciProjectMode({
+          isDiscoveryProject: isCreatingDiscoveryProject,
+          projectId,
+        });
+
         atInternet.trackPage({
           name: 'public-cloud::pci::projects::created',
           projectId,
