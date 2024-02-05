@@ -57,7 +57,7 @@ const OrderFunnel = ({
   const getPrice = (
     catalogPrices: order.publicOrder.Catalog,
     availability: database.Availability | undefined,
-    monthly: boolean = false, 
+    monthly = false,
   ) => {
     if (!availability) return <Skeleton className="w-full h-4" />;
     const prefix = `databases.${availability.engine.toLowerCase()}-${

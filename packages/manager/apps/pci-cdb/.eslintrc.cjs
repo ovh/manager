@@ -13,6 +13,7 @@ module.exports = {
     '__VERSION__': true,
   },
   rules: {
+    'no-unused-vars': 'error',
     'import/extensions': 'off',
     'react/prop-types': 'off',
     'import/prefer-default-export': 'off',
