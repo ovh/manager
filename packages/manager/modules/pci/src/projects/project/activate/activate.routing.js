@@ -24,7 +24,10 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_activate_title'),
-
+      sendPageTracking: /* @ngInject */ (atInternet) =>
+        atInternet.trackPage({
+          name: 'PublicCloud::pci::projects::project::activate-project',
+        }),
       projectId: /* @ngInject */ ($transition$) =>
         $transition$.params().projectId || null,
 

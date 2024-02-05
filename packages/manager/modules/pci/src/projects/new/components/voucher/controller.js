@@ -79,7 +79,7 @@ export default class PciProjectNewVoucherCtrl {
   submitVoucher() {
     this.loading.check = true;
     this.globalLoading.isVoucherValidating = true;
-    this.trackClick(`${this.viewOptions.trackingPrefix}::confirm_voucher`);
+    this.trackClick(`${this.viewOptions.trackingPrefix}confirm_voucher`);
 
     return this.checkVoucherValidity(this.model.voucher.value)
       .then((eligibilityOpts) => {
