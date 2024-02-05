@@ -113,7 +113,7 @@ export default class PciProjectNewPaymentCtrl {
           );
           if (this.model.paymentMethod.isHandleByComponent())
             this.$state.go(
-              'pci.projects.new.payment',
+              this.viewOptions.stateName,
               { skipCallback: true },
               { inherit: false },
             );
@@ -524,7 +524,7 @@ export default class PciProjectNewPaymentCtrl {
     this.hasComponentRedirectCallback = false;
     if (this.model.paymentMethod.isHandleByComponent())
       this.$state.go(
-        'pci.projects.new.payment',
+        this.viewOptions.stateName,
         { skipCallback: true, showError: true },
         { inherit: false },
       );
