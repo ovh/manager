@@ -31,7 +31,6 @@ export function useProjects() {
     retry: 3,
   });
   const [currentProject, setCurrentProject] = useState<PciProject>(null);
-  const [shouldSeeAllProjects, setShouldSeeAllProjects] = useState<boolean>(false);
 
   useEffect(() => {
     const projectId = (location?.pathname?.match(/\/pci\/projects\/([^/]+)/) ||
@@ -39,9 +38,6 @@ export function useProjects() {
     setCurrentProject(
       (projects || []).find((project) => project.project_id === projectId),
     );
-    setShouldSeeAllProjects(
-      !(projects || []).find(({ planCode }) => planCode === 'project.discovery'),
-    )
   }, [projects, location]);
 
   return {
@@ -49,7 +45,6 @@ export function useProjects() {
     projects,
     isError,
     isLoading,
-    shouldSeeAllProjects,
   };
 }
 
