@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useMediaQuery } from 'react-responsive';
 
 import useClickAway from 'react-use/lib/useClickAway';
@@ -20,6 +21,7 @@ function LanguageMenu({
   setUserLocale,
   userLocale = '',
 }: Props): JSX.Element {
+  const { i18n } = useTranslation('language');
   const ref = useRef();
   const shell = useShell();
   const [show, setShow] = useState(false);
@@ -41,6 +43,7 @@ function LanguageMenu({
     shell.getPlugin('i18n').setLocale(locale);
     setShow(false);
     setUserLocale(locale);
+    i18n.changeLanguage(locale);
   };
 
   useEffect(() => {
