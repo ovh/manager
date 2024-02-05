@@ -40,6 +40,7 @@ export const registerPCINewPaymentState = (
       submitText: '',
       trackingPrefix: 'pci_project_new_payment_',
       onSubmit: null,
+      stateName: PCI_NEW_PAYMENT_STATE_NAME,
     },
     resolve,
   } = {},
@@ -244,13 +245,7 @@ export const registerPCINewPaymentState = (
         $state.href('pci.projects'),
 
       reloadPayment: /* @ngInject */ ($state) => () =>
-        $state.go(
-          'pci.projects.new.payment',
-          {},
-          {
-            reload: true,
-          },
-        ),
+        $state.go(stateName, {}, { reload: true }),
 
       onAskCreditPayment: /* @ngInject */ ($state) => () =>
         $state.go('pci.projects.new.payment.credit', {}, { location: false }),
