@@ -1,0 +1,12 @@
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner></oui-spinner>
+</div>
+
+<div data-ng-if="!$ctrl.loading">
+    <octavia-load-balancer-listener-form
+        data-model="$ctrl.model"
+        data-pools="$ctrl.pools"
+        data-on-submit="$ctrl.submit()"
+        data-on-cancel="$ctrl.cancel()"
+    ></octavia-load-balancer-listener-form>
+</div>

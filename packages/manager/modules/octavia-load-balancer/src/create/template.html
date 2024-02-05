@@ -1,0 +1,336 @@
+<div class="mt-5">
+    <oui-header
+        heading="{{:: 'octavia_load_balancer_create_title' | translate }}"
+    ></oui-header>
+    <p data-translate="octavia_load_balancer_create_description"></p>
+    <oui-stepper
+        data-on-finish="$ctrl.createLoadBalancer()"
+        data-current-index="$ctrl.currentStep"
+    >
+        <!-- SIZE FLAVOUR SELECTION -->
+        <oui-step-form
+            data-ng-init="stepSize = $ctrl.stepper.loadBalancerSize"
+            data-name="{{:: stepSize.name}}"
+            data-header="{{:: 'octavia_load_balancer_create_size_title' | translate }}"
+            data-prevent-next="true"
+            data-valid="$ctrl.model.size"
+            data-on-focus="$ctrl.resetCurrentStep()"
+        >
+            <div class="mb-4">
+                <p>
+                    <span
+                        data-translate="octavia_load_balancer_create_size_intro"
+                    ></span>
+                    <a
+                        data-ng-href="{{$ctrl.productPageLink}}"
+                        data-at-internet-click="{name: $ctrl.trackingProductPage}"
+                    >
+                        <span
+                            data-translate="octavia_load_balancer_create_size_intro_link"
+                        >
+                        </span>
+                    </a>
+                </p>
+                <div class="container-fluid d-flex flex-wrap">
+                    <oui-select-picker
+                        class="d-flex col-sm-12 col-md-6 col-xl-3 my-3"
+                        data-ng-repeat="size in $ctrl.sizeFlavour | orderBy:'price' track by $index"
+                        data-label="{{:: 'octavia_load_balancer_create_size_flavour_title' | translate:{sizeCode: size.label} }}"
+                        data-description="{{:: 'octavia_load_balancer_create_size_flavour_description_' + size.code | translate}}"
+                        data-model="$ctrl.model.size"
+                        data-on-change="$ctrl.onSizeChange(size)"
+                        data-variant="light"
+                        data-values="[size]"
+                    >
+                        <oui-select-picker-section>
+                            <div class="text-center">
+                                <ovh-manager-catalog-price
+                                    data-price="size.price"
+                                    data-user="$ctrl.user"
+                                >
+                                </ovh-manager-catalog-price>
+                                <span
+                                    data-translate="octavia_load_balancer_create_size_flavour_price_interval"
+                                ></span>
+                            </div>
+                        </oui-select-picker-section>
+                    </oui-select-picker>
+                </div>
+            </div>
+        </oui-step-form>
+
+        <!-- REGION SELECTION -->
+        <oui-step-form
+            data-ng-init="stepRegion = $ctrl.stepper.loadBalancerRegion"
+            data-name="{{:: stepRegion.name}}"
+            data-header="{{:: 'octavia_load_balancer_create_region_title' | translate }}"
+            data-prevent-next="true"
+            data-on-focus="$ctrl.regionStepFocus()"
+        >
+            <div class="mb-4">
+                <p>
+                    <span
+                        data-translate="octavia_load_balancer_create_region_intro"
+                    ></span>
+                    <a
+                        data-ng-href="{{ $ctrl.regionPageLink }}"
+                        data-at-internet-click="{name: $ctrl.trackingRegionAvailability}"
+                    >
+                        <span
+                            data-translate="octavia_load_balancer_create_region_link"
+                        ></span>
+                    </a>
+                </p>
+                <pci-project-regions-list
+                    data-ng-if="$ctrl.regionsFilteredBySize && $ctrl.regionsFilteredBySize.length > 0"
+                    data-regions="$ctrl.regionsFilteredBySize"
+                    data-selected-region="$ctrl.model.region"
+                    data-on-change="$ctrl.onRegionChange(region)"
+                ></pci-project-regions-list>
+            </div>
+        </oui-step-form>
+
+        <!-- FLOATING IP -->
+        <oui-step-form
+            data-ng-init="stepFloatingIp = $ctrl.stepper.loadBalancerFloatingIp"
+            data-name="{{:: stepFloatingIp.name}}"
+            data-header="{{:: 'octavia_load_balancer_create_floating_ip_title' | translate }}"
+            data-prevent-next="true"
+        >
+            <p
+                class="mb-4"
+                data-translate="octavia_load_balancer_create_floating_ip_intro"
+            ></p>
+            <oui-spinner data-ng-if="$ctrl.floatingIpLoading"></oui-spinner>
+            <div
+                class="container-fluid row"
+                data-ng-if="!$ctrl.floatingIpLoading"
+            >
+                <oui-field
+                    data-label="{{:: 'octavia_load_balancer_create_floating_ip_field' | translate }}"
+                    class="col-lg-4 col-md-6 col-sm-12"
+                >
+                    <oui-select
+                        data-disabled="!$ctrl.floatingIps.length"
+                        data-items="$ctrl.floatingIps"
+                        data-match="displayName"
+                        data-model="$ctrl.model.floatingIp"
+                        data-title="{{:: 'octavia_load_balancer_create_floating_ip_field' | translate }}"
+                        data-placeholder="{{:: 'octavia_load_balancer_create_floating_ip_field' | translate }}"
+                        data-name="{{:: stepPrivateNetwork.name + '_select_floatingip'}}"
+                        on-change="$ctrl.onFloatingIpChange()"
+                        searchable
+                    >
+                    </oui-select>
+                </oui-field>
+            </div>
+
+            <!-- Display message for floating ip creation -->
+            <oui-message
+                data-type="info"
+                data-ng-if="$ctrl.model.floatingIp.type === $ctrl.FLOATING_IP_TYPE.CREATE"
+            >
+                <p
+                    data-translate="octavia_load_balancer_create_floating_ip_new_information"
+                ></p>
+                <p>
+                    <span
+                        data-translate="octavia_load_balancer_create_floating_ip_new_price"
+                    ></span>
+                    <ovh-manager-catalog-price
+                        data-price="$ctrl.catalogFloatingIp.pricings[0].price"
+                        data-user="$ctrl.user"
+                        data-minimum-fraction-digits="5"
+                        data-perform-rounding="false"
+                    >
+                    </ovh-manager-catalog-price>
+                    <span
+                        data-translate="octavia_load_balancer_create_floating_ip_new_price_interval"
+                    ></span>
+                </p>
+            </oui-message>
+
+            <!-- Display message for no floating ip selection -->
+            <oui-message
+                data-type="warning"
+                data-ng-if="$ctrl.model.floatingIp.type === $ctrl.FLOATING_IP_TYPE.NO_IP"
+            >
+                <p
+                    data-translate="octavia_load_balancer_create_floating_ip_no_floating_ip_information"
+                ></p>
+            </oui-message>
+        </oui-step-form>
+
+        <!-- PRIVATE NETWORK SELECTION -->
+        <oui-step-form
+            data-ng-init="stepPrivateNetwork = $ctrl.stepper.loadBalancerPrivateNetwork"
+            data-name="{{:: stepPrivateNetwork.name}}"
+            data-header="{{:: 'octavia_load_balancer_create_private_network_title' | translate }}"
+            data-prevent-next="true"
+            data-valid="$ctrl.isPrivateNetworkStepValid()"
+            data-on-focus="$ctrl.privateNetworkStepFocus()"
+        >
+            <div class="mb-4">
+                <p
+                    data-translate="octavia_load_balancer_create_private_network_intro"
+                ></p>
+            </div>
+            <!-- PRIVATE NETWORKS -->
+            <oui-spinner data-ng-if="$ctrl.privateNetworkLoading"></oui-spinner>
+            <div class="container-fluid row">
+                <oui-field
+                    class="col-lg-4 col-md-6 col-sm-12"
+                    data-label="{{:: 'octavia_load_balancer_create_private_network_field' | translate }}"
+                    data-ng-if="!$ctrl.privateNetworkLoading"
+                >
+                    <oui-select
+                        data-items="$ctrl.privateNetworks"
+                        data-match="name"
+                        data-model="$ctrl.model.privateNetwork"
+                        data-title="{{:: 'octavia_load_balancer_create_private_network_field' | translate }}"
+                        data-placeholder="{{:: 'octavia_load_balancer_create_private_network_field' | translate }}"
+                        data-name="{{:: stepPrivateNetwork.name + '_select'}}"
+                        on-change="$ctrl.getSubnets(modelValue)"
+                        searchable
+                    >
+                    </oui-select>
+                </oui-field>
+            </div>
+
+            <!-- SUBNETS -->
+            <oui-spinner data-ng-if="$ctrl.subnetLoading"></oui-spinner>
+            <div data-ng-if="!$ctrl.subnetLoading">
+                <div class="container-fluid row">
+                    <oui-field
+                        data-label="{{:: 'octavia_load_balancer_create_private_network_field_subnet' | translate }}"
+                        class="col-lg-4 col-md-6 col-sm-12"
+                    >
+                        <oui-select
+                            data-disabled="!$ctrl.subnets.length"
+                            data-items="$ctrl.subnets"
+                            data-match="displayName"
+                            data-model="$ctrl.model.subnet"
+                            data-title="{{:: 'octavia_load_balancer_create_private_network_field_subnet' | translate }}"
+                            data-placeholder="{{:: 'octavia_load_balancer_create_private_network_field_subnet' | translate }}"
+                            data-name="{{:: stepPrivateNetwork.name + '_select_subnet'}}"
+                            on-change="$ctrl.checkGateway(modelValue)"
+                            searchable
+                        >
+                        </oui-select>
+                    </oui-field>
+                </div>
+
+                <!-- Display message if private network have no subnet -->
+                <oui-message
+                    data-type="error"
+                    data-ng-if="$ctrl.subnets && !$ctrl.subnets.length && $ctrl.model.floatingIp.type !== $ctrl.FLOATING_IP_TYPE.NO_IP"
+                >
+                    <p>
+                        <span
+                            data-translate="octavia_load_balancer_create_private_network_no_subnet_text"
+                            data-translate-values="{
+                                createPrivateNetworkLink: $ctrl.privateNetworkCreationLink,
+                                trackLabel: $ctrl.trackingPrivateNetworkCreation
+                            }"
+                            data-translate-compile
+                        ></span>
+                    </p>
+                </oui-message>
+
+                <!-- Display message if subnet have no gateway-->
+                <oui-spinner data-ng-if="$ctrl.gatewayLoading"></oui-spinner>
+                <oui-message
+                    data-type="info"
+                    data-ng-if="!$ctrl.gatewayLoading && $ctrl.model.subnet && !$ctrl.gateways.length && $ctrl.model.floatingIp.type !== $ctrl.FLOATING_IP_TYPE.NO_IP"
+                >
+                    <p
+                        data-translate="octavia_load_balancer_create_private_network_no_gateway_text"
+                    ></p>
+                    <p>
+                        <span
+                            data-translate="octavia_load_balancer_create_private_network_no_gateway_text_price"
+                        ></span>
+                        <ovh-manager-catalog-price
+                            data-price="$ctrl.catalogGateway.pricings[0].price"
+                            data-user="$ctrl.user"
+                            data-minimum-fraction-digits="5"
+                            data-perform-rounding="false"
+                        >
+                        </ovh-manager-catalog-price>
+                        <span
+                            data-translate="octavia_load_balancer_create_gateway_price_interval"
+                        ></span>
+                    </p>
+                </oui-message>
+            </div>
+        </oui-step-form>
+
+        <!-- INSTANCES -->
+        <oui-step-form
+            data-ng-init="stepInstance = $ctrl.stepper.loadBalancerInstance"
+            data-name="{{:: stepInstance.name}}"
+            data-header="{{:: 'octavia_load_balancer_create_instance_title' | translate }}"
+            data-prevent-next="true"
+            data-skippable="true"
+            data-on-skip="$ctrl.skipListeners()"
+        >
+            <p
+                data-translate="octavia_load_balancer_create_instance_intro"
+                data-translate-values="{
+                    linkUrl: $ctrl.gettingStartedLink,
+                    trackLabel: $ctrl.trackingInstanceDocumentation
+                }"
+                data-translate-compile
+            ></p>
+            <oui-message data-type="info">
+                <p
+                    data-translate="octavia_load_balancer_create_instance_banner_text"
+                    data-translate-values="{maxListeners: $ctrl.maxListener, maxInstances: $ctrl.maxInstancesByListener}"
+                ></p>
+                <p>
+                    <b
+                        data-translate="octavia_load_balancer_create_instance_banner_text_bold"
+                    ></b>
+                </p>
+                <p
+                    data-translate="octavia_load_balancer_create_instance_banner_health_monitor_text"
+                ></p>
+            </oui-message>
+            <octavia-load-balancer-instances-table
+                data-project-id="$ctrl.projectId"
+                data-region="$ctrl.model.region"
+                data-listeners="$ctrl.model.listeners"
+                data-max-listener="$ctrl.maxListener"
+                data-max-instances-by-listener="$ctrl.maxInstancesByListener"
+                data-tracking-prefix="$ctrl.trackingInstanceTablePrefix"
+            >
+            </octavia-load-balancer-instances-table>
+        </oui-step-form>
+
+        <!-- NAME -->
+        <oui-step-form
+            data-ng-init="stepName = $ctrl.stepper.loadBalancerName"
+            data-name="{{:: stepName.name}}"
+            data-header="{{:: 'octavia_load_balancer_create_name_title' | translate }}"
+            data-prevent-next="true"
+            data-on-cancel="$ctrl.onCancel()"
+            data-submit-text="{{:: 'octavia_load_balancer_create_submit' | translate }}"
+        >
+            <div class="container-fluid row">
+                <oui-field
+                    data-label="{{:: 'octavia_load_balancer_create_name_field_label' | translate }}"
+                    class="col-lg-4 col-md-6 col-sm-12"
+                >
+                    <input
+                        class="oui-input"
+                        name="{{:: stepName.name + '_select_name'}}"
+                        type="text"
+                        data-ng-model="$ctrl.model.loadBalancerName"
+                        data-ng-maxlength="70"
+                        data-ng-pattern="$ctrl.loadBalancerNameRegex"
+                    />
+                </oui-field>
+            </div>
+        </oui-step-form>
+    </oui-stepper>
+</div>

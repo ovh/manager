@@ -1,4 +1,10 @@
-import { GUIDES, CTA, TRACKING_NAME, TRACKING_CHAPTER_1 } from './constants';
+import {
+  GUIDES,
+  CTA,
+  TRACKING_NAME,
+  TRACKING_CHAPTER_1,
+  PRIVATE_NETWORK_HELP,
+} from './constants';
 import illustration from './assets/public-cloud-network_load-balancer-v2.png';
 
 export default class OctaviaLoadBalancerOnboardingCtrl {
@@ -13,6 +19,8 @@ export default class OctaviaLoadBalancerOnboardingCtrl {
     }));
     this.illustration = illustration;
     this.cta = CTA[ovhSubsidiary] || CTA.DEFAULT;
+    this.privateNetworkHelpUrl =
+      PRIVATE_NETWORK_HELP[ovhSubsidiary] || PRIVATE_NETWORK_HELP.DEFAULT;
     this.atInternet = atInternet;
     this.ctaTrackName = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::add`;
   }
@@ -24,5 +32,13 @@ export default class OctaviaLoadBalancerOnboardingCtrl {
         .replace(/[\s']/g, '_')}`,
       type: 'navigation',
     });
+  }
+
+  createLoadBalancer() {
+    if (this.hasPrivateNetwork) {
+      this.goToLoadBalancerCreation();
+    } else {
+      this.goToNoPrivateNetwork();
+    }
   }
 }
