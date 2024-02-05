@@ -1,0 +1,10 @@
+{
+  "octavia_load_balancer_pools_name": "Nombre",
+  "octavia_load_balancer_pools_protocol": "Protocolo",
+  "octavia_load_balancer_pools_protocol_helper": "Protocolo por el que el pool y sus miembros escuchan.",
+  "octavia_load_balancer_pools_algorithm": "Algoritmo del Load Balancer",
+  "octavia_load_balancer_pools_algorithm_helper": "El algoritmo del Load Balancer que reparte el tráfico entre los miembros del pool.",
+  "octavia_load_balancer_pools_actions_edit": "Editar",
+  "octavia_load_balancer_pools_actions_manage_members": "Administrar los miembros",
+  "octavia_load_balancer_pools_actions_delete": "Eliminar"
+}

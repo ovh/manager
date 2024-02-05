@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-octavia-load-balancer",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "private": true,
   "description": "OVHCloud Octavia load balancer product",
   "repository": {
@@ -12,6 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
+    "@ovh-ux/manager-catalog-price": "^1.7.0",
     "bootstrap4": "twbs/bootstrap#v4.0.0"
   },
   "peerDependencies": {
@@ -19,11 +20,14 @@
     "@ovh-ux/manager-core": "^12.0.0 || ^13.0.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.6.1",
     "@ovh-ux/ng-at-internet": "^5.10.3",
+    "@ovh-ux/ng-ovh-pci-universe-components": "^1.0.0",
+    "@ovh-ux/ng-ovh-utils": "^14.0.21",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.0.0",
-    "@ovh-ux/ui-kit": "^4.4.3",
+    "@ovh-ux/ui-kit": "^6.7.3",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "oclazyload": "^1.1.0"
+    "oclazyload": "^1.1.0",
+    "ovh-ui-kit-bs": "^4.2.0"
   }
 }
