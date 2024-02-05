@@ -19,7 +19,7 @@ export default function PublicCloudSidebar() {
   const reketInstance = useReket();
   const { t } = useTranslation('pci-sidebar');
   const { setIsResponsiveSidebarMenuOpen } = useLegacyContainer();
-  const { currentProject, projects, shouldSeeAllProjects } = useProjects();
+  const { currentProject, projects } = useProjects();
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [projectSearchQuery, setProjectSearchQuery] = useState('');
   const region = shell
@@ -198,7 +198,6 @@ export default function PublicCloudSidebar() {
       <div style={{ height: '100%', overflow: 'scroll' }}>
         <div className="d-flex m-2">
           <h2 className={style.projectTitle}>{currentProject?.description}</h2>
-          {shouldSeeAllProjects && (
             <button
               type="button"
               className={style.menuToggle}
@@ -206,7 +205,6 @@ export default function PublicCloudSidebar() {
             >
               <span className="oui-icon oui-icon-chevron-right"></span>
             </button>
-          )}
         </div>
 
         <ProjectIdCopy id="copy" projectId={currentProject?.project_id} />
