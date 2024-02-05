@@ -1,0 +1,35 @@
+{
+  "cpb_project_management_credit_vouchers": "Crédits & Vouchers",
+  "cpb_vouchers_your_voucher": "Votre voucher",
+  "cpb_vouchers_your_voucher_add": "Ajouter mon voucher",
+  "cpb_vouchers_get_error": "Oups, nous n'arrivons pas à afficher la liste des vouchers.",
+  "cpb_vouchers_products_all": "Tous",
+  "cpb_vouchers_name_credit_provisionning": "Crédit Cloud",
+  "cpb_vouchers_credit_comment": "Le crédit cloud n'est pas transférable, ni remboursable. Il n'a aucune valeur monétaire et tout crédit non utilisé dans les 13 mois sera perdu.",
+  "common_confirm": "Confirmer",
+  "common_cancel": "Annuler",
+  "cpb_vouchers_voucher_cell": "Voucher associé",
+  "cpb_vouchers_name_cell": "Nom",
+  "cpb_vouchers_total_credit_cell": "Valeur initiale",
+  "cpb_vouchers_available_credit_cell": "Crédit restant",
+  "cpb_vouchers_validity_from_cell": "Date d'activation",
+  "cpb_vouchers_validity_to_cell": "Date de validité",
+  "cpb_vouchers_products_cell": "Produits éligibles",
+  "cpb_vouchers_add_button": "Activer un voucher",
+  "cpb_vouchers_add_credit_button": "Acheter du crédit cloud",
+  "cpb_vouchers_add_explain_bis": "A chaque émission de facture, le montant dû est débité de votre crédit Cloud (ci-dessous), puis successivement de votre votre compte Digital LaunchPad puis de votre compte fidélité. Le solde débiteur éventuel est enfin réglé à l'aide de votre moyen paiement enregistré (le détail concernant ces trois derniers modes de paiement est disponible dans la section \"Facturation\" de votre espace client).",
+
+  "common_pagination_of": "sur",
+  "common_pagination_results": "résultats",
+
+  "cpb_vouchers_add_success": "Le voucher a été ajouté avec succès.",
+  "cpb_vouchers_add_error": "Oups, nous n'arrivons pas a ajouter ce voucher. Veuillez réessayer.",
+
+  "cpb_vouchers_add_credit_title": "Acheter du crédit cloud",
+  "cpb_vouchers_add_credit_info": "Choisissez la somme (hors taxes) à créditer sur ce projet. Une fois le bon de commande réglé, ce crédit sera utilisé pour les forfaits et consommations de ce projet pour les factures éditées au cours des 12 prochains mois.",
+  "cpb_vouchers_add_credit_amount": "Somme à créditer (HT {{ currency }})",
+  "cpb_vouchers_add_credit_valid": "Générer un bon de commande",
+  "cpb_vouchers_add_credit_success": "Le bon de commande pour votre crédit de {{ amount }} est disponible <a href=\"{{ url }}\" target=\"_blank\">ici</a>.",
+  "cpb_vouchers_add_credit_load_err": "Oups, une erreur est survenue lors du chargement de l’achat de crédit cloud.",
+  "cpb_vouchers_bill_ref": "Facture n° <a href=\"{{url}}\">{{billId}}</a>"
+}
