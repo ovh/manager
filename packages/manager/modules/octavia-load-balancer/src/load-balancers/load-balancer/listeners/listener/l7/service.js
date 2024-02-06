@@ -92,6 +92,12 @@ export default class OctaviaLoadBalancerL7Service {
     );
   }
 
+  deleteRule(projectId, region, policyId, ruleId) {
+    return this.$http.delete(
+      `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy/${policyId}/l7Rule/${ruleId}`,
+    );
+  }
+
   getRules(projectId, region, policyId) {
     return this.$http
       .get(
