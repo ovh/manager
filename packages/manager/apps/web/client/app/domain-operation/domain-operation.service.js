@@ -71,9 +71,7 @@ export default class {
    */
   updateOperation(opts) {
     return this.$http
-      .put(`/me/task/domain/${opts.id}/argument/${opts.key}`, {
-        data: opts.data,
-      })
+      .put(`/me/task/domain/${opts.id}/argument/${opts.key}`, opts.data)
       .then(({ data }) => data);
   }
 
