@@ -1,8 +1,0 @@
-{
-  "kubernetes_add_private_network_gateway_management_label": "Puerta de enlace de red",
-  "kubernetes_add_private_network_gateway_management_description": "Puede definir una puerta de enlace («gateway») específica para enrutar el tráfico de sus nodos de trabajo (por ejemplo, recuperar imágenes Docker desde un registro).",
-  "kubernetes_add_private_network_gateway_management_gateway_false": "Puerta de enlace de internet de OVHcloud",
-  "kubernetes_add_private_network_gateway_management_gateway_true": "Puerta de enlace desplegada en mi vRack",
-  "kubernetes_add_private_network_gateway_management_gateway_vrack_description": "Dirección IP de su puerta de enlace o «gateway» (deje este campo en blanco si desea utilizar la puerta de enlace definida por DHCP)",
-  "kubernetes_add_private_network_gateway_management_gateway_vrack_field_ip_placeholder": "Introducir una dirección IP"
-}
