@@ -84,7 +84,7 @@ export const useUpdateVrackServices = ({
   onSuccess?: (result: ApiResponse<VrackServices>) => void;
   onError?: (result: ApiError) => void;
 }) => {
-  const [isErrorVisible, setErrorVisible] = React.useState(false);
+  const [isErrorVisible, setIsErrorVisible] = React.useState(false);
   const queryClient = useQueryClient();
 
   const {
@@ -132,7 +132,7 @@ export const useUpdateVrackServices = ({
 
   React.useEffect(() => {
     if (isError) {
-      setErrorVisible(true);
+      setIsErrorVisible(true);
     }
   }, [isError]);
 
@@ -140,7 +140,7 @@ export const useUpdateVrackServices = ({
     updateVS,
     isPending,
     isErrorVisible,
-    hideError: () => setErrorVisible(false),
+    hideError: () => setIsErrorVisible(false),
     updateError,
   };
 };
