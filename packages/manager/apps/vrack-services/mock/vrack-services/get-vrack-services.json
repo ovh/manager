@@ -64,7 +64,6 @@
     "id": "vrs-ar7-72w-poh-3qe",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My.vRack.Services",
       "subnets": [
         {
           "cidr": "192.168.0.0/16",
@@ -127,7 +126,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
@@ -146,7 +144,6 @@
     "id": "vrs-ahz-9t0-7lb-b5l",
     "resourceStatus": "UPDATING",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": [
         {
           "cidr": "172.21.0.0/16",
@@ -164,7 +161,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
@@ -174,7 +170,6 @@
     "id": "vrs-ahz-9t0-7lb-b5o",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
@@ -193,7 +188,6 @@
     "id": "vrs-ahz-9t0-7lb-b5r",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
@@ -202,7 +196,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyDisabledVrackServices",
       "productStatus": "DISABLED",
       "subnets": [],
       "vrackId": null,
@@ -212,7 +205,6 @@
     "id": "vrs-ahz-9t0-7lb-b5s",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
@@ -221,7 +213,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
@@ -231,7 +222,6 @@
     "id": "vrs-ahz-9t0-7lb-b5t",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
@@ -240,7 +230,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
@@ -250,7 +239,6 @@
     "id": "vrs-ahz-9t0-7lb-b5u",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
@@ -259,7 +247,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
@@ -269,7 +256,6 @@
     "id": "vrs-ahz-9t0-7lb-b5v",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
@@ -278,7 +264,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
@@ -288,7 +273,6 @@
     "id": "vrs-ahz-9t0-7lb-b5x",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
@@ -297,7 +281,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
@@ -307,7 +290,6 @@
     "id": "vrs-ahz-9t0-7la-b5o",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
@@ -316,7 +298,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
@@ -326,7 +307,6 @@
     "id": "vrs-ahz-9t0-7lc-b5o",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
@@ -335,7 +315,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
@@ -345,7 +324,6 @@
     "id": "vrs-ahz-9t0-7ld-b5o",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
@@ -354,7 +332,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
@@ -364,7 +341,6 @@
     "id": "vrs-ahz-9t0-7le-b5o",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
@@ -373,7 +349,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
@@ -381,9 +356,8 @@
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lf-b5o",
-    "resourceStatus": "READY",
+    "resourceStatus": "DELETING",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
@@ -392,7 +366,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
@@ -402,7 +375,6 @@
     "id": "vrs-ahz-9t0-7lg-b5o",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
@@ -411,7 +383,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
@@ -421,7 +392,6 @@
     "id": "vrs-ahz-9t0-7lh-b5o",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
@@ -430,7 +400,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
@@ -440,7 +409,6 @@
     "id": "vrs-ahz-9t0-7li-b5o",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"
@@ -449,7 +417,6 @@
     "checksum": "003df9f0d644a36164a7de26ab20bf6c",
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
-      "displayName": "MyVrackServices",
       "productStatus": "DRAFT",
       "subnets": [],
       "vrackId": null,
@@ -459,7 +426,6 @@
     "id": "vrs-ahz-9t0-7lj-b5o",
     "resourceStatus": "READY",
     "targetSpec": {
-      "displayName": "My_Vrack_Services",
       "subnets": []
     },
     "updatedAt": "2023-03-10T09:10:00Z"

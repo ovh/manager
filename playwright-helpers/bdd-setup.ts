@@ -9,7 +9,6 @@ import {
 } from '@cucumber/cucumber';
 import { env } from 'node:process';
 import { ICustomWorld, CustomWorld } from './custom-world';
-import { config } from './config';
 
 setDefaultTimeout(30 * 1000);
 
@@ -23,12 +22,9 @@ BeforeAll(async function beforeAll() {
 
 Before({ timeout: 60 * 1000 }, async function before(this: ICustomWorld) {
   this.handlersConfig = {};
-  this.testContext = { inputTexts: {} };
+  this.testContext = { data: {} };
   this.context = await browser.newContext();
   this.page = await this.context.newPage();
-  await this.page.goto(this.testContext.initialUrl || config.appUrl, {
-    waitUntil: 'load',
-  });
 });
 
 After(async function after(this: ICustomWorld) {

@@ -91,20 +91,20 @@ export const OverviewTab: React.FC = () => {
                 <TileBlock label={t('displayName')}>
                   <DisplayNameCell
                     updateVS={updateVS}
-                    cellData={vrackServices?.currentState.displayName}
+                    cellData={vrackServices?.currentState?.displayName}
                     rowData={vrackServices}
                     queryClient={queryClient}
                   />
                 </TileBlock>
                 <TileBlock label={t('productStatus')}>
                   <ProductStatusCell
-                    cellData={vrackServices?.currentState.productStatus}
+                    cellData={vrackServices?.currentState?.productStatus}
                     rowData={vrackServices}
                     t={t}
                   />
                 </TileBlock>
                 <TileBlock label={t('region')}>
-                  {t(vrackServices?.currentState.region)}
+                  {t(vrackServices?.currentState?.region)}
                 </TileBlock>
                 <TileBlock label={t('vrackId')}>
                   <VrackIdCell

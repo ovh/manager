@@ -19,23 +19,21 @@ export const DeliveringMessages: React.FC<DeliveringMessagesProps> = ({
     <></>
   ) : (
     <>
-      {orders.map((order) => {
-        const date = new Date(order.date);
-        return (
-          <OsdsMessage
-            key={`delivering-message-${order.orderId}`}
-            className="my-5"
-            type={ODS_MESSAGE_TYPE.info}
-          >
-            {t(messageKey, {
-              date: date.toLocaleDateString(i18n.language),
-              time: `${date.getHours()}:${date.getMinutes()}`,
-              status: t(`orderStatus-${order.status}`),
-              interpolation: { escapeValue: false },
-            })}
-          </OsdsMessage>
-        );
-      })}
+      <OsdsMessage className="my-5" type={ODS_MESSAGE_TYPE.info}>
+        {orders.map((order) => {
+          const date = new Date(order.date);
+          return (
+            <div key={`delivering-message-${order.orderId}`}>
+              {t(messageKey, {
+                date: date.toLocaleDateString(i18n.language),
+                time: `${date.getHours()}:${date.getMinutes()}`,
+                status: t(`orderStatus-${order.status}`),
+                interpolation: { escapeValue: false },
+              })}
+            </div>
+          );
+        })}
+      </OsdsMessage>
     </>
   );
 };
