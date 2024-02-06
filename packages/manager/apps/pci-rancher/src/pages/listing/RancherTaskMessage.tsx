@@ -8,21 +8,17 @@ import { RancherTask, RancherTaskType } from '../../api/api.type';
 const RancherTaskMessage = ({ tasks }: { tasks: RancherTask[] }) => {
   const { t } = useTranslation('pci-rancher/listing');
   const tasksMessage = tasks
-    .map((task) => {
-      const isUpdateTask = task?.type === RancherTaskType.RANCHER_UPDATE;
-      return {
-        id: task?.id,
-        type: isUpdateTask ? ODS_MESSAGE_TYPE.info : ODS_MESSAGE_TYPE.warning,
-        message: isUpdateTask
-          ? t('rancherStatusUpdating')
-          : t('rancherStatusError'),
-      };
-    })
-    .filter((task) => task !== null);
+    .filter((task) => task !== null && task !== undefined)
+    ?.filter(({ type }) => type === RancherTaskType.RANCHER_DELETE)
+    .map(({ id }) => ({
+      id,
+      type: ODS_MESSAGE_TYPE.warning,
+      message: t('rancherStatusError'),
+    }));
 
   return (
     <div className="my-6">
-      {tasksMessage.map((task) => (
+      {tasksMessage?.map((task) => (
         <OsdsMessage
           id={task.id}
           type={task.type}

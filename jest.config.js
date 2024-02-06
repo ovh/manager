@@ -1,5 +1,9 @@
 module.exports = {
   preset: 'ts-jest',
+  /*  projects: [
+    '<rootDir>/packages/manager/apps/pci-rancher',
+    '<rootDir>/packages/components/ovh-shell',
+  ], */
   setupFilesAfterEnv: ['<rootDir>/jest/mocks/jest.setup.js'],
   collectCoverageFrom: ['packages/**/*.{js,jsx,ts,tsx}', '!packages/**/*.d.ts'],
   testMatch: [
@@ -22,16 +26,22 @@ module.exports = {
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
       '<rootDir>/jest/mocks/images.tsx',
     '^lodash-es$': 'lodash',
+    // TODO: Fix this custom config to find a good way to handle alias in jest for each folder
+    '^@/(.*)$': '<rootDir>/packages/manager/apps/pci-rancher/src/$1',
+    '@ovh-ux/manager-core-api':
+      '<rootDir>/packages/manager/core/api/src/index.ts',
+    '@ovh-ux/manager-react-shell-client':
+      '<rootDir>/packages/manager/core/shell-client/src/index.tsx',
     '/axios/': 'axios/dist/node/axios.cjs',
     uuid: require.resolve('uuid'),
     nanoid: require.resolve('nanoid'),
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-
   resetMocks: true,
   globals: {
     'ts-jest': {
       isolatedModules: true,
+      diagnostics: false,
     },
   },
   moduleDirectories: ['node_modules'],

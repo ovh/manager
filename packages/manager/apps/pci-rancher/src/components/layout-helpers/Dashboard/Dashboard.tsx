@@ -1,21 +1,17 @@
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { RancherService } from '@/api/api.type';
 import { COMMON_PATH } from '@/routes';
-import RancherDetail from './RancherDetail';
-import TabBar from './TabBar';
 import useEditRancherName from '../../../hooks/useEditRancherName';
 import useGenerateAccessDetail from '../../../hooks/useGenerateAccessDetail';
+import Title from '../../Title/Title';
+import RancherDetail from './RancherDetail';
+import TabBar from './TabBar';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -52,13 +48,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   return (
     <>
       <div className="py-4">
-        <OsdsText
-          level={ODS_TEXT_LEVEL.heading}
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_TEXT_SIZE._600}
-        >
-          {rancher.currentState.name}
-        </OsdsText>
+        <Title>{rancher.currentState.name}</Title>
       </div>
       <OsdsLink
         href={hrefPrevious}

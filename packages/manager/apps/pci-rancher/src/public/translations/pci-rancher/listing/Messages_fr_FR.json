@@ -6,7 +6,7 @@
   "numberOfCpu": "Nombre de CPU",
   "status": "Status",
   "actions": "Actions",
-  "cancel": "Annulez",
+  "cancel": "Annuler",
   "manage": "Gérer",
   "delete": "Supprimer",
   "rancherTitle": "Managed Rancher Service",
@@ -18,7 +18,6 @@
   "deleteModalWarning": "Nous vous conseillons fortement de détruire et/ou désenregistrer tous les clusters « downstream » (créés ou attachés à Rancher) avant de détruire votre Managed Rancher Service, car vous risquez de perdre l'accès à ces derniers.",
   "deleteRancherError": " Une erreur est survenue lors de la suppression de votre service Rancher. Merci de réessayer.",
   "deleteRancherSuccess": "Votre Rancher a bien été supprimé.",
-  "rancherStatusUpdating": "Mise à jour de votre Rancher en cours...",
   "rancherStatusDeleting": "Suppression de votre Rancher en cours...",
   "rancherStatusError": "Une erreur est survenue lors de la mise à jour de votre Rancher.",
   "editNameModalTitle": "Modifier le nom de votre Rancher",
@@ -29,6 +28,8 @@
   "READY": "Ready",
   "UPDATING": "Updating",
   "ERROR": "Error",
+  "DELETING": "Deleting",
 
-  "OVHCLOUD_EDITION": "OVHcloud Edition"
+  "OVHCLOUD_EDITION": "OVHcloud Edition",
+  "STANDARD": "Standard"
 }
