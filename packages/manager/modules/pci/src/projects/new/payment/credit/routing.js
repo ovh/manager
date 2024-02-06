@@ -1,10 +1,26 @@
 import component from './component';
 
-export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.new.payment.credit', {
-    url: '/credit',
+import { PCI_NEW_PAYMENT_STATE_NAME } from '../../routing';
+
+export const registerPCINewPaymentCreditState = (
+  $stateProvider,
+  {
+    stateName = `${PCI_NEW_PAYMENT_STATE_NAME}.credit`,
+    url = '/credit',
+    views = {
+      default: '',
+    },
+    viewOptions = {
+      creditBtnText: null,
+      onCreditBtnClick: null,
+    },
+    resolve,
+  } = {},
+) => {
+  $stateProvider.state(stateName, {
+    url,
     views: {
-      '': component.name,
+      [views.default]: component.name,
     },
     atInternet: {
       ignore: true, // this tell AtInternet to not track this state
@@ -16,7 +32,14 @@ export default /* @ngInject */ ($stateProvider) => {
       });
     },
     resolve: {
-      checkout: (cart, pciProjectNew) => pciProjectNew.checkoutCart(cart),
+      checkout: /* @ngInject */ (cart, pciProjectNew) =>
+        pciProjectNew.checkoutCart(cart),
+      viewOptions: () => viewOptions,
+      ...resolve,
     },
   });
+};
+
+export default /* @ngInject */ ($stateProvider) => {
+  registerPCINewPaymentCreditState($stateProvider);
 };

@@ -12,5 +12,6 @@ export default {
     globalLoading: '<',
     onCartFinalized: '<',
     trackProjectCreationError: '<',
+    viewOptions: '<',
   },
 };

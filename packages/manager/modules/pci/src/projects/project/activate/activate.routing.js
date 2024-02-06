@@ -2,10 +2,12 @@ import { DISCOVERY_PROMOTION_VOUCHER } from '../project.constants';
 
 import { registerPCINewState } from '../../new/routing';
 import { registerPCINewPaymentState } from '../../new/payment/routing';
+import { registerPCINewPaymentCreditState } from '../../new/payment/credit/routing';
 
 export default /* @ngInject */ ($stateProvider) => {
   const stateName = 'pci.projects.project.activate';
   const paymentStateName = `${stateName}.payment`;
+  const paymentCreditStateName = `${paymentStateName}.credit`;
 
   registerPCINewState($stateProvider, {
     redirectIfDiscovery: false,
@@ -149,6 +151,28 @@ export default /* @ngInject */ ($stateProvider) => {
           submitText: $translate.instant('pci_projects_project_activate_cta'),
           onSubmit: activateProject,
           voucherView: Boolean(discoveryPromotionVoucherAmount),
+        });
+      },
+    },
+  });
+
+  registerPCINewPaymentCreditState($stateProvider, {
+    stateName: paymentCreditStateName,
+    views: {
+      default: `payment@${stateName}`,
+    },
+    resolve: {
+      breadcrumb: () => null,
+      extendViewOptions: /* @ngInject */ (
+        viewOptions,
+        $translate,
+        activateProject,
+      ) => {
+        Object.assign(viewOptions, {
+          creditBtnText: $translate.instant(
+            'pci_projects_project_activate_cta',
+          ),
+          onCreditBtnClick: activateProject,
         });
       },
     },
