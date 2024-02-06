@@ -16,7 +16,7 @@ Feature: Configuration page
     Given User wants to create a vRack Services with name "<name>" and region <region>
     Given The order service for vRack Services is <orderVsOk>
     Given The order service for vRack is <orderVrackOk>
-    When User fills the configuration form and click the submit button
+    When User fills the configuration form and clicks the submit button
     Then A modal appear to ask if the user wants to create a new vRack
     When User <acceptOrDenyOrCancel>
     Then User "<returnListing>" on the Listing page

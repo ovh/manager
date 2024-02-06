@@ -1,11 +1,12 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Given } from '@cucumber/cucumber';
 import { ICustomWorld } from '@playwright-helpers/custom-world';
-import { urls } from '../utils';
+import { getUrl } from '../utils';
 import { ConfigParams } from '../../mock/handlers';
-import { OrderStatus, ProductStatus } from '@/api';
+import { OrderStatus, ProductStatus, ResourceStatus } from '@/api';
 import { creationServiceError } from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
 import { updateError } from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
+import vrackServicesList from '../../mock/vrack-services/get-vrack-services.json';
 
 Given('User has {word} vRack Services', function(
   this: ICustomWorld<ConfigParams>,
@@ -18,9 +19,9 @@ Given(
   'User wants to create a vRack Services with name {string} and region {word}',
   function(this: ICustomWorld<ConfigParams>, name: string, region: string) {
     this.handlersConfig.nbVs = 5;
-    this.testContext.inputTexts.displayName = name;
-    this.testContext.inputTexts.selectedRegion = region;
-    this.testContext.initialUrl = urls.create;
+    this.testContext.data.displayName = name;
+    this.testContext.data.selectedRegion = region;
+    this.testContext.initialUrl = getUrl('createVrackServices');
     this.testContext.errorMessage = creationServiceError.replace(
       '{{error}}',
       '.*',
@@ -52,7 +53,7 @@ Given('User is on the Onboarding page', function(
   this: ICustomWorld<ConfigParams>,
 ) {
   this.handlersConfig.nbVs = 1;
-  this.testContext.initialUrl = urls.onboarding;
+  this.testContext.initialUrl = getUrl('onboarding');
 });
 
 Given('User has a vRack Services order delivering', function(
@@ -64,7 +65,23 @@ Given('User has a vRack Services in {word} state', function(
   this: ICustomWorld<ConfigParams>,
   productStatus: ProductStatus,
 ) {
-  this.handlersConfig.nbVs = productStatus === 'DRAFT' ? 1 : 5;
+  this.handlersConfig.nbVs = 19;
+  this.testContext.data.vsIndex = vrackServicesList.findIndex(
+    (v) => v.currentState.productStatus === productStatus,
+  );
+});
+
+Given('User has a vRack Services with a status {word}', function(
+  this: ICustomWorld<ConfigParams>,
+  resourceStatus: ResourceStatus,
+) {
+  this.handlersConfig.nbVs = 19;
+  const vsIndex = vrackServicesList.findIndex(
+    (v) => v.resourceStatus === resourceStatus,
+  );
+
+  this.testContext.data.vsIndex = vsIndex;
+  this.testContext.data.selectedVrackServices = vrackServicesList[vsIndex];
 });
 
 Given('The service to edit a vRack Services is KO', function(
@@ -78,6 +95,7 @@ Given('The service to associate a vRack Services is KO', function(
   this: ICustomWorld<ConfigParams>,
 ) {
   this.handlersConfig.associationKo = true;
+  this.testContext.errorMessage = updateError;
 });
 
 Given(
@@ -93,4 +111,25 @@ Given('User has a vRack order {word}', function(
   orderStatus: OrderStatus,
 ) {
   this.handlersConfig.deliveringVrackOrders = orderStatus === 'delivering';
+});
+
+Given('User selects his vRack Services in the Listing page', function(
+  this: ICustomWorld<ConfigParams>,
+) {
+  this.testContext.initialUrl = getUrl('listing');
+});
+
+Given('User has a vRack Services that {string} a subnet', function(
+  this: ICustomWorld<ConfigParams>,
+  hasSubnet: 'has' | "doesn't have",
+) {
+  this.testContext.initialUrl = getUrl('listing');
+  this.handlersConfig.nbVs = 19;
+  const index = vrackServicesList.findIndex((v) =>
+    hasSubnet === 'has'
+      ? v.currentState.subnets.length > 0
+      : v.currentState.subnets.length === 0,
+  );
+  this.testContext.data.selectedVrackServices = vrackServicesList[index];
+  this.testContext.data.vsIndex = index;
 });
