@@ -83,7 +83,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
       claimDiscoveryVoucher: /* @ngInject */ (projectService, projectId) => (
         data,
-      ) => projectService.claimVoucher(projectId, data),
+      ) =>
+        projectService.claimVoucher(projectId, data).catch((err) => {
+          if (!/VOUCHER_ALREADY_USED/.exec(err.data?.message)) {
+            throw err;
+          }
+        }),
 
       displayErrorMessage: /* @ngInject */ (
         CucCloudMessage,
@@ -125,6 +130,7 @@ export default /* @ngInject */ ($stateProvider) => {
       subtitlesSize: 4,
       foldVoucher: false,
       denseVoucher: true,
+      clearableVoucher: false,
       trackingPrefix: 'PublicCloud_activate_project::',
       paymentsPerLine: (paymentMethods) => paymentMethods.length,
       registerExplanationTexts: { sepa: { banner: 'warning' } },
