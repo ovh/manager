@@ -3,12 +3,12 @@ import angular from 'angular';
 import component from './reset.component';
 import routing from './reset.routing';
 
-import gatewayManagement from '../../../components/gateway-management';
+import networkForm from '../../../components/network-form';
 
 const moduleName = 'ovhManagerPciProjectKubernetesServiceReset';
 
 angular
-  .module(moduleName, [gatewayManagement])
+  .module(moduleName, [networkForm])
   .config(routing)
   .component('pciProjectKubernetesServiceReset', component)
   .run(/* @ngTranslationsInject:json ./translations */);
