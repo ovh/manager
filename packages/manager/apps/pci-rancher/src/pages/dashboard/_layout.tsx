@@ -35,7 +35,11 @@ export default function DashboardPage() {
   ];
 
   if (error) {
-    return <ErrorBanner error={error} />;
+    return (
+      <Suspense>
+        <ErrorBanner error={error} />
+      </Suspense>
+    );
   }
 
   if (isLoading) {
