@@ -1,8 +1,0 @@
-{
-  "kubernetes_add_private_network_gateway_management_label": "Gateway di rete",
-  "kubernetes_add_private_network_gateway_management_description": "È possibile indicare un gateway specifico per instradare il traffico dei nodi di lavoro (ad esempio, recupero di immagini Docker da un registry).",
-  "kubernetes_add_private_network_gateway_management_gateway_false": "Gateway Internet di OVHcloud",
-  "kubernetes_add_private_network_gateway_management_gateway_true": "Gateway implementato nella vRack",
-  "kubernetes_add_private_network_gateway_management_gateway_vrack_description": "Indirizzo IP del gateway (lascia vuoto il campo per utilizzare il gateway definito dal DHCP)",
-  "kubernetes_add_private_network_gateway_management_gateway_vrack_field_ip_placeholder": "Inserisci un indirizzo IP"
-}
