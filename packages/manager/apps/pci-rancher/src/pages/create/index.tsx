@@ -41,10 +41,8 @@ export default function Create() {
         projectId={projectId}
         hasRancherCreationError={hasRancherCreationError}
         onCreateRancher={createRancher}
-        versions={versions?.data.sort((a) =>
-          a.status === 'AVAILABLE' ? -1 : 1,
-        )}
-        plans={plans?.data.sort((a) => (a.status === 'AVAILABLE' ? -1 : 1))}
+        versions={versions?.data.filter((v) => v.status === 'AVAILABLE')}
+        plans={plans?.data}
       />
     </PageLayout>
   );

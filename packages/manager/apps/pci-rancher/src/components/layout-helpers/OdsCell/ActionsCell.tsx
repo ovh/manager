@@ -14,10 +14,10 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { DataGridCellProps } from './ProductStatusCell';
 import { RancherService, RessourceStatus } from '../../../api/api.type';
 
-const ActionsCell: React.FC<DataGridCellProps<undefined, RancherService> & {
+const ActionsCell: React.FC<{
+  rowData?: RancherService;
   isLoading?: boolean;
   href: string;
   openModal: () => void;

@@ -1,9 +1,5 @@
 module.exports = {
   preset: 'ts-jest',
-  /*  projects: [
-    '<rootDir>/packages/manager/apps/pci-rancher',
-    '<rootDir>/packages/components/ovh-shell',
-  ], */
   setupFilesAfterEnv: ['<rootDir>/jest/mocks/jest.setup.js'],
   collectCoverageFrom: ['packages/**/*.{js,jsx,ts,tsx}', '!packages/**/*.d.ts'],
   testMatch: [
@@ -19,7 +15,7 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!lodash-es|@ovhcloud|@stencil|@ovh-ux|uuid|jest-cucumber)',
     '^.+\\.module\\.(css|sass|scss)$',
-    '<rootDir>/node_modules/(?!lodash-es)',
+    '<rootDir>/node_modules/(?!lodash-es|@stencil)',
   ],
   moduleNameMapper: {
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
@@ -47,7 +43,6 @@ module.exports = {
   moduleDirectories: ['node_modules'],
   modulePathIgnorePatterns: [
     '/dist/',
-    '<rootDir>/packages/super-components',
     'packages/manager/apps/container/src/__tests__/navbar/navbar.spec.tsx',
   ],
 };

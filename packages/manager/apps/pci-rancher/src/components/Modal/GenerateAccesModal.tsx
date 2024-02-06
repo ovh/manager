@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { AccessDetail } from '../../hooks/useGenerateAccessDetail';
 import { RancherService } from '@/api/api.type';
+import Modal from './Modal';
 
 export interface GenerateAccessModalProps {
   rancher: RancherService;
@@ -44,10 +45,9 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
     }
   };
   return (
-    <OsdsModal
+    <Modal
       color={ODS_THEME_COLOR_INTENT.info}
-      dismissible
-      onOdsModalClose={() => toggleModal(false)}
+      onClose={() => toggleModal(false)}
     >
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
@@ -100,7 +100,7 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
       >
         {t(hasValidAccess ? 'rancher_button_acces' : 'confirm')}
       </OsdsButton>
-    </OsdsModal>
+    </Modal>
   );
 };
 

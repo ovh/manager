@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { OnboardingLayout } from '@ovhcloud/manager-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import onboardingImgSrc from '../../assets/onboarding-img.png';
-import { OnboardingLayout } from '../../components/layout-helpers/Onboarding';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import PageLayout from '@/components/PageLayout/PageLayout';
 
@@ -25,8 +25,6 @@ export default function Onboarding() {
         description={description}
         orderButtonLabel={t('orderButtonLabel')}
         onOrderButtonClick={onOrderButtonClick}
-        moreInfoButtonLabel={t('moreInfoButtonLabel')}
-        moreInfoHref={t('moreInfoButtonLink')}
       />
     </PageLayout>
   );

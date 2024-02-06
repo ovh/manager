@@ -38,7 +38,8 @@ export default [
             ...lazyRouteConfig(() => import('@/pages/create')),
           },
           {
-            // http://localhost:9000/#/public-cloud/pci/projects/039db9ba696a4072a33074fa63ffa831/rancher/222ce105-a3f7-44c4-a7d3-dbb5983c045d
+            // MOCK : http://localhost:9000/#/public-cloud/pci/projects/039db9ba696a4072a33074fa63ffa831/rancher/222ce105-a3f7-44c4-a7d3-dbb5983c045d
+            // UNMOCK : http://localhost:9000/#/public-cloud/pci/projects/5a6980507c0a40dca362eb9b22d79044/rancher
             path: 'rancher/:rancherId',
             ...lazyRouteConfig(() => import('@/pages/dashboard/_layout')),
           },
