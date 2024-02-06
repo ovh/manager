@@ -69,121 +69,16 @@
             data-valid="$ctrl.isValidNetworkConfig(kubeAddClusterForm['kubernetes_add_private_network'])"
             data-prevent-next="true"
         >
-            <!--Select Public/Private network-->
-            <h5 data-translate="kubernetes_add_private_network_label"></h5>
-            <p>
-                <span
-                    data-translate="kubernetes_add_private_network_description"
-                ></span>
-                <a
-                    data-ng-if="$ctrl.displaySelectedPrivateNetwork"
-                    data-ng-href="{{:: $ctrl.addPrivateNetworksLink }}"
-                    data-translate="kubernetes_add_private_network_add"
-                    target="_top"
-                ></a>
-            </p>
-            <oui-field>
-                <oui-select
-                    data-name="privateNetwork"
-                    data-model="$ctrl.cluster.network.private"
-                    data-items="$ctrl.availablePrivateNetworks"
-                    data-match="name"
-                    data-on-change="$ctrl.loadPrivateNetworkSubnets()"
-                    data-searchable
-                >
-                </oui-select>
-            </oui-field>
-
-            <oui-spinner
-                class="mb-3"
-                data-size="s"
-                data-ng-if="$ctrl.cluster.network.private.id && $ctrl.isLoadingPrivateNetworkSubnets"
-            ></oui-spinner>
-
-            <!--Select subnet-->
-            <div
-                data-ng-if="$ctrl.shouldShowSubnetForms"
-                class="kubernetes-add-private-network-subnet-container"
-            >
-                <h5 data-translate="kubernetes_add_private_network_subnet"></h5>
-                <p>
-                    <span
-                        data-translate="kubernetes_add_private_network_subnet_description"
-                    ></span>
-                    <a
-                        data-ng-href="{{:: $ctrl.addPrivateNetworksSubnetLink }}"
-                        data-translate="kubernetes_add_private_network_subnet_link"
-                        target="_top"
-                    ></a>
-                </p>
-                <oui-field>
-                    <oui-select
-                        data-name="privateNetworkSubnet"
-                        data-model="$ctrl.cluster.network.private.subnet"
-                        data-items="$ctrl.privateNetworkSubnets"
-                        data-match="id"
-                        data-on-change="$ctrl.onPrivateNetworkSubnetChanged(modelValue)"
-                    >
-                        <span data-ng-bind="$item.id"></span> -
-                        <span data-ng-bind="$item.cidr"></span>
-                    </oui-select>
-                </oui-field>
-            </div>
-
-            <oui-message
-                class="mb-4"
-                data-ng-if="$ctrl.privateNetworkSubnetsError"
-                data-type="{{ $ctrl.privateNetworkSubnetsError.type }}"
-            >
-                <span
-                    data-ng-bind="$ctrl.privateNetworkSubnetsError.message"
-                ></span>
-            </oui-message>
-
-            <!--Chose OVHcloud or vRack gateway-->
-            <gateway-management-component
-                data-ng-if="$ctrl.cluster.network.private.id && !$ctrl.isLoadingPrivateNetworkSubnets"
-                data-network="$ctrl.cluster.network"
-                data-elevate-title="true"
-            ></gateway-management-component>
-
-            <!--Select load balancer subnet-->
-            <div class="my-4" data-ng-if="$ctrl.shouldShowSubnetForms">
-                <h5
-                    class="d-flex align-items-center"
-                    data-ng-click="$ctrl.toggleLoadBalancerSubnetForm()"
-                >
-                    <span
-                        data-translate="kubernetes_add_private_network_lb_subnet_toggler"
-                    ></span>
-                    <span
-                        class="kubernetes-add-private-network-lb-subnet-toggler oui-icon ml-2"
-                        aria-hidden="true"
-                        data-ng-class="{
-                            'oui-icon-chevron-up': $ctrl.isLoadBalancerSubnetFormShown,
-                            'oui-icon-chevron-down': !$ctrl.isLoadBalancerSubnetFormShown,
-                        }"
-                    ></span>
-                </h5>
-                <div data-ng-if="$ctrl.isLoadBalancerSubnetFormShown">
-                    <p>
-                        <span
-                            data-translate="kubernetes_add_private_network_lb_subnet_description"
-                        ></span>
-                    </p>
-                    <oui-field>
-                        <oui-select
-                            data-name="privateNetworkLbSubnet"
-                            data-model="$ctrl.cluster.network.private.lbSubnet"
-                            data-items="$ctrl.privateNetworkSubnets"
-                            data-match="id"
-                        >
-                            <span data-ng-bind="$item.id"></span> -
-                            <span data-ng-bind="$item.cidr"></span>
-                        </oui-select>
-                    </oui-field>
-                </div>
-            </div>
+            <kube-network-form
+                data-ng-if="$ctrl.displaySelectedPrivateNetwork"
+                data-region="$ctrl.cluster.region"
+                data-project-id="$ctrl.projectId"
+                data-private-networks="$ctrl.privateNetworks"
+                data-private-network="$ctrl.cluster.network.private"
+                data-subnet="$ctrl.cluster.network.subnet"
+                data-load-balancers-subnet="$ctrl.cluster.network.loadBalancersSubnet"
+                data-gateway="$ctrl.cluster.network.gateway"
+            />
         </oui-step-form>
 
         <!--Select node pool configuration -->
