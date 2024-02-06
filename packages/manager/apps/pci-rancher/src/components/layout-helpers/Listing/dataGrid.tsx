@@ -134,7 +134,10 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
   return (
     <>
       {isError && (
-        <OsdsMessage color={ODS_THEME_COLOR_INTENT.error}>
+        <OsdsMessage
+          color={ODS_THEME_COLOR_INTENT.error}
+          type={ODS_MESSAGE_TYPE.error}
+        >
           Une erreur est survenue lors de la suppression de votre service
           Rancher. Merci de réessayer.
         </OsdsMessage>

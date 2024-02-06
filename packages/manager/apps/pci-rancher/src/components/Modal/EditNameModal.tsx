@@ -10,6 +10,7 @@ import {
   ODS_TEXT_SIZE,
   OsdsInputCustomEvent,
   OdsInputValueChangeEventDetail,
+  ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -17,6 +18,7 @@ import React, { useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { RancherService } from '@/api/api.type';
+import { isValidRancherName } from '@/utils/rancher';
 
 interface DeleteModalProps {
   rancher: RancherService;
@@ -32,8 +34,7 @@ const EditNameModal = ({
   const { t } = useTranslation('pci-rancher/listing');
   const [newName, setNewName] = useState(rancher.currentState?.name || '');
 
-  const isValidName = /^[a-z0-9.-]{3,64}$/i.test(newName);
-
+  const isValidName = isValidRancherName(newName);
   const isButtonValid = rancher.currentState?.name !== newName && isValidName;
 
   const onEdit = () => {
@@ -68,6 +69,7 @@ const EditNameModal = ({
         </OsdsText>
       </div>
       <OsdsInput
+        aria-label="edit-input"
         type={ODS_INPUT_TYPE.text}
         color={
           isValidName
@@ -79,7 +81,6 @@ const EditNameModal = ({
         onOdsValueChange={(
           e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,
         ) => setNewName(e.target.value as string)}
-        aria-label="edit-input"
       />
       <OsdsText
         className="my-3"
@@ -93,7 +94,8 @@ const EditNameModal = ({
       </OsdsText>
       <OsdsButton
         slot="actions"
-        color={ODS_THEME_COLOR_INTENT.default}
+        variant={ODS_BUTTON_VARIANT.stroked}
+        color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => toggleModal(false)}
       >
         {t('cancel')}

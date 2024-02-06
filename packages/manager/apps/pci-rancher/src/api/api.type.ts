@@ -68,6 +68,12 @@ export interface RancherService {
   resourceStatus: RessourceStatus;
 }
 
+export interface CreateRancherPayload {
+  name: string;
+  version: string;
+  plan: string;
+}
+
 export enum RessourceStatus {
   READY = 'READY',
   DISABLED = 'DISABLED',
@@ -75,4 +81,16 @@ export enum RessourceStatus {
   CREATING = 'CREATING',
   DELETING = 'DELETING',
   ERROR = 'ERROR',
+}
+
+export type RancherReferenceStatus = 'AVAILABLE' | 'UNAVAILABLE';
+
+export interface RancherPlan {
+  name: 'OVHCLOUD_EDITION' | 'STANDARD' | string;
+  status: RancherReferenceStatus;
+}
+
+export interface RancherVersion {
+  name: string;
+  status: RancherReferenceStatus;
 }

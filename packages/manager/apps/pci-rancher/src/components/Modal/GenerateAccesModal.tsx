@@ -1,4 +1,8 @@
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsClipboard,
@@ -13,7 +17,7 @@ import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { AccessDetail } from '../../hooks/useGenerateAccessDetail';
-import { RancherService } from '../../api/api.type';
+import { RancherService } from '@/api/api.type';
 
 export interface GenerateAccessModalProps {
   rancher: RancherService;
@@ -30,7 +34,7 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation('pci-rancher/dashboard');
-  const hasValidAccess = accessDetail?.username && accessDetail?.password;
+  const hasValidAccess = !!accessDetail?.username && !!accessDetail?.password;
 
   const onEdit = () => {
     if (hasValidAccess) {
@@ -82,7 +86,8 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
       )}
       <OsdsButton
         slot="actions"
-        color={ODS_THEME_COLOR_INTENT.default}
+        variant={ODS_BUTTON_VARIANT.stroked}
+        color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => toggleModal(false)}
       >
         {t(hasValidAccess ? 'close' : 'cancel')}

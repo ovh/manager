@@ -1,6 +1,6 @@
 import React from 'react';
 import RancherDetail from './RancherDetail';
-import { render, waitFor, fireEvent } from '../../../utils/test.provider';
+import { render, waitFor, fireEvent } from '../../../utils/test/test.provider';
 import { rancherMocked } from '../../../_mock_/rancher';
 import { RancherService } from '../../../api/api.type';
 import dashboardTranslation from '../../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';

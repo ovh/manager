@@ -1,6 +1,6 @@
 import React from 'react';
 import ActionsCell from './ActionsCell';
-import { render, waitFor } from '../../../utils/test.provider';
+import { render, waitFor } from '../../../utils/test/test.provider';
 import { rancherError, rancherMocked } from '../../../_mock_/rancher';
 import { RancherService } from '../../../api/api.type';
 import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';

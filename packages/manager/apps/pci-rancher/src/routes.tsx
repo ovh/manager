@@ -34,7 +34,11 @@ export default [
             ...lazyRouteConfig(() => import('@/pages/onboarding')),
           },
           {
-            // http://localhost:9000/#/pci-rancher/pci/projects/039db9ba696a4072a33074fa63ffa831/rancher/222ce105-a3f7-44c4-a7d3-dbb5983c045d
+            path: 'rancher/new',
+            ...lazyRouteConfig(() => import('@/pages/create')),
+          },
+          {
+            // http://localhost:9000/#/public-cloud/pci/projects/039db9ba696a4072a33074fa63ffa831/rancher/222ce105-a3f7-44c4-a7d3-dbb5983c045d
             path: 'rancher/:rancherId',
             ...lazyRouteConfig(() => import('@/pages/dashboard/_layout')),
           },

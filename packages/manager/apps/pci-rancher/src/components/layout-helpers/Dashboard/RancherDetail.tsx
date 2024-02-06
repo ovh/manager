@@ -24,7 +24,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import EditNameModal from '../../Modal/EditNameModal';
 
-import { RancherService } from '../../../api/api.type';
+import { RancherService } from '@/api/api.type';
 import { TileBlock } from '../../TileBlock/TileBlock';
 import GenerateAccessModal from '../../Modal/GenerateAccesModal';
 import { AccessDetail } from '../../../hooks/useGenerateAccessDetail';
