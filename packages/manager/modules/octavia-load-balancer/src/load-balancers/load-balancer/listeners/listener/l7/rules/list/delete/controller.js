@@ -23,17 +23,18 @@ export default class OctaviaLoadBalancerDeleteL7PolicyCtrl {
     )
       .then(() => {
         this.trackL7RuleDeletePage(`success`);
-        return this.goBack(true).then(() =>
-          this.Alerter.set(
-            'alert-success',
-            this.$translate.instant(
-              'octavia_load_balancer_list_l7_rules_delete_success',
-            ),
-            null,
-            'octavia.alerts.l7Rules',
-          ),
-        );
+        return this.goBack(true);
       })
+      .then(() =>
+        this.Alerter.set(
+          'alert-success',
+          this.$translate.instant(
+            'octavia_load_balancer_list_l7_rules_delete_success',
+          ),
+          null,
+          'octavia.alerts.l7Rules',
+        ),
+      )
       .catch((error) => {
         this.trackL7RuleDeletePage(`error`);
         this.displayErrorAlert(error, 'octavia.alerts.l7Rules');

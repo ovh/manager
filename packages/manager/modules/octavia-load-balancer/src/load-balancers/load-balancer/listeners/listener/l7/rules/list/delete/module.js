@@ -5,12 +5,13 @@ import '@ovh-ux/ng-ui-router-layout';
 import component from './component';
 import routing from './routing';
 
-const moduleName = 'ovhManagerOctaviaLoadbalancerL7RuleDeleteModule';
+const moduleName =
+  'ovhManagerOctaviaLoadbalancerListenersListenerL7RuleDeleteModule';
 
 angular
   .module(moduleName, ['ngUiRouterLayout'])
   .config(routing)
-  .component('octaviaLoadBalancerL7RuleDelete', component)
+  .component('octaviaLoadBalancerListenersListenerL7RuleDelete', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/delete?ruleId',
       views: {
         modal: {
-          component: 'octaviaLoadBalancerL7RuleDelete',
+          component: 'octaviaLoadBalancerListenersListenerL7RuleDelete',
         },
       },
       layout: 'modal',
