@@ -67,7 +67,7 @@ export default class NewAccountFormController {
 
     // Indian subsidiary flag
     this.isIndianSubsidiary = this.user.ovhSubsidiary === IN_SUBSIDIARY;
-    this.isKycValidated =
+    this.isEditionAllowed =
       this.user.kycValidated ||
       (this.kycStatus.status === KYC_STATUS.REQUIRED &&
         this.kycStatus.ticketId);
