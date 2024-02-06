@@ -1,7 +1,7 @@
 import { PathParams } from 'msw';
+import { Cart, Item } from '@ovh-ux/manager-core-order';
 import { Handler } from '../../e2e/utils/msw-helpers';
 import { getParamsFromUrl } from '../../e2e/utils/playwright-helpers';
-import { Cart, Item } from '@/api/order/order.type';
 
 const getCart = (): Cart => {
   const expire = new Date();

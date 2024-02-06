@@ -79,10 +79,12 @@ export const useUpdateVrackServices = ({
   key,
   onSuccess,
   onError,
+  updateTriggerDelay = 5000,
 }: {
   key: string;
   onSuccess?: (result: ApiResponse<VrackServices>) => void;
   onError?: (result: ApiError) => void;
+  updateTriggerDelay?: number;
 }) => {
   const [isErrorVisible, setIsErrorVisible] = React.useState(false);
   const queryClient = useQueryClient();
@@ -99,6 +101,14 @@ export const useUpdateVrackServices = ({
   >({
     mutationKey: updateVrackServicesQueryKey(key),
     mutationFn: updateVrackServices,
+    onSettled: (result) => {
+      queryClient.invalidateQueries({
+        queryKey: getVrackServicesResourceListQueryKey,
+      });
+      queryClient.invalidateQueries({
+        queryKey: getVrackServicesResourceQueryKey(result.data?.id || key),
+      });
+    },
     onSuccess: (result: ApiResponse<VrackServices>) => {
       queryClient.setQueryData(
         getVrackServicesResourceListQueryKey,
@@ -110,21 +120,23 @@ export const useUpdateVrackServices = ({
         }),
       );
       queryClient.setQueryData(
-        getVrackServicesResourceQueryKey(key),
+        getVrackServicesResourceQueryKey(result.data.id),
         (response: ApiResponse<VrackServices>) => ({
           ...response,
           data: result.data,
         }),
       );
-      if (['listing'].includes(key)) {
-        queryClient.invalidateQueries({
+      // Triggers an update in 5seconds for fast operations
+      setTimeout(() => {
+        queryClient.refetchQueries({
           queryKey: getVrackServicesResourceListQueryKey,
+          exact: true,
         });
-      } else {
-        queryClient.invalidateQueries({
-          queryKey: getVrackServicesResourceQueryKey(key),
+        queryClient.refetchQueries({
+          queryKey: getVrackServicesResourceQueryKey(result.data.id),
+          exact: true,
         });
-      }
+      }, updateTriggerDelay);
       onSuccess?.(result);
     },
     onError,

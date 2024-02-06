@@ -22,8 +22,8 @@ import {
 import {
   useOrderPollingStatus,
   OrderDescription,
-  getVrackServicesResourceListQueryKey,
-} from '@/api';
+} from '@ovh-ux/manager-core-order';
+import { getVrackServicesResourceListQueryKey } from '@/api';
 import { VrackServicesDatagrid } from '@/pages/listing/components/VrackServicesDataGrid';
 import { PageLayout } from '@/components/layout-helpers';
 import { DeliveringMessages } from '@/components/DeliveringMessages';

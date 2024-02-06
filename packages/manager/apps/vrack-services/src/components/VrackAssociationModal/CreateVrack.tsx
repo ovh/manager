@@ -9,22 +9,19 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   OsdsText,
   OsdsSpinner,
   OsdsButton,
   OsdsMessage,
 } from '@ovhcloud/ods-components/react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   OrderDescription,
-  getDeliveringOrderQueryKey,
-  getVrackListQueryKey,
-  orderVrack,
-  orderVrackQueryKey,
   useOrderPollingStatus,
-} from '@/api';
+  useOrderURL,
+} from '@ovh-ux/manager-core-order';
+import { getVrackListQueryKey } from '@/api';
 import { DeliveringMessages } from '../DeliveringMessages';
 import { handleClick } from '@/utils/ods-utils';
 
@@ -34,9 +31,7 @@ export type CreateVrackProps = {
 
 export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
   const { t } = useTranslation('vrack-services/listing');
-  const { environment } = React.useContext(ShellContext);
-  const user = environment.getUser();
-  const queryClient = useQueryClient();
+  const vrackOrderUrl = useOrderURL('vrack');
 
   const {
     data: vrackDeliveringOrders,
@@ -46,17 +41,6 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
   } = useOrderPollingStatus({
     pollingKey: OrderDescription.vrack,
     queryToInvalidateOnDelivered: getVrackListQueryKey,
-  });
-
-  const { mutate: orderNewVrack, isPending, isError, error } = useMutation({
-    mutationFn: () => orderVrack({ ovhSubsidiary: user.ovhSubsidiary }),
-    mutationKey: orderVrackQueryKey,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: getDeliveringOrderQueryKey(OrderDescription.vrack),
-      });
-      closeModal();
-    },
   });
 
   return (
@@ -69,17 +53,17 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
       >
         {t('modalVrackCreationDescription')}
       </OsdsText>
-      {(areVrackOrdersLoading || isPending) && (
+      {areVrackOrdersLoading && (
         <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
       )}
       <DeliveringMessages
         messageKey="deliveringVrackMessage"
         orders={vrackDeliveringOrders}
       />
-      {(isError || isVrackOrdersError) && (
+      {isVrackOrdersError && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
           {t('genericApiError', {
-            error: error || vrackOrdersError,
+            error: vrackOrdersError,
             interpolation: { escapeValue: false },
           })}
         </OsdsMessage>
@@ -100,13 +84,13 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
         color={ODS_THEME_COLOR_INTENT.primary}
         disabled={
           areVrackOrdersLoading ||
-          isPending ||
           vrackDeliveringOrders.length > 0 ||
           isVrackOrdersError ||
-          isError ||
           undefined
         }
-        {...handleClick(() => orderNewVrack())}
+        target={OdsHTMLAnchorElementTarget._blank}
+        href={vrackOrderUrl}
+        {...handleClick(closeModal)}
       >
         {t('modalCreateNewVrackButtonLabel')}
       </OsdsButton>

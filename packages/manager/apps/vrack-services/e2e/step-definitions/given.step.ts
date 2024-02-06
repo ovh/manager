@@ -1,9 +1,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Given } from '@cucumber/cucumber';
 import { ICustomWorld } from '@playwright-helpers/custom-world';
+import { OrderStatus } from '@ovh-ux/manager-core-order';
 import { getUrl } from '../utils';
 import { ConfigParams } from '../../mock/handlers';
-import { OrderStatus, ProductStatus, ResourceStatus } from '@/api';
+import { ProductStatus, ResourceStatus } from '@/api';
 import { creationServiceError } from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
 import { updateError } from '../../src/public/translations/vrack-services/listing/Messages_fr_FR.json';
 import vrackServicesList from '../../mock/vrack-services/get-vrack-services.json';

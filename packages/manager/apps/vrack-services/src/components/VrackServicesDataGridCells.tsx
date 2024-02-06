@@ -1,6 +1,6 @@
 import React from 'react';
 import { TFunction } from 'react-i18next';
-import { UseMutateAsyncFunction, QueryClient } from '@tanstack/react-query';
+import { UseMutateAsyncFunction } from '@tanstack/react-query';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { NavigateFunction } from 'react-router-dom';
 import {
@@ -20,12 +20,7 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { EditableText } from '@/components/EditableText';
-import {
-  ProductStatus,
-  UpdateVrackServicesParams,
-  VrackServices,
-  getVrackServicesResourceQueryKey,
-} from '@/api';
+import { ProductStatus, UpdateVrackServicesParams, VrackServices } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
 
@@ -38,32 +33,24 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
     ApiError,
     UpdateVrackServicesParams
   >;
-  queryClient: QueryClient;
   navigate?: NavigateFunction;
-}> = ({ cellData, rowData, updateVS, navigate, queryClient }) => {
+}> = ({ cellData, rowData, updateVS, navigate }) => {
   const displayName = cellData || rowData?.id;
   return (
     <EditableText
       disabled={!isEditable(rowData)}
       defaultValue={cellData}
+      dataTracking="vrack-services::overview::edit"
+      confirmDataTracking="vrack-services::overview::update::confirm"
       onEditSubmitted={async (value) => {
-        await updateVS(
-          {
-            vrackServicesId: rowData.id,
-            checksum: rowData.checksum,
-            targetSpec: {
-              displayName: value || null,
-              subnets: rowData.currentState.subnets || [],
-            },
+        await updateVS({
+          vrackServicesId: rowData.id,
+          checksum: rowData.checksum,
+          targetSpec: {
+            displayName: value || null,
+            subnets: rowData.currentState.subnets || [],
           },
-          {
-            onSettled: () => {
-              queryClient.invalidateQueries({
-                queryKey: getVrackServicesResourceQueryKey(rowData.id),
-              });
-            },
-          },
-        );
+        });
       }}
     >
       {navigate ? (

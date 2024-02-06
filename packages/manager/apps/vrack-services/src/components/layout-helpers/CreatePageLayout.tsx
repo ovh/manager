@@ -34,7 +34,7 @@ export type CreatePageLayoutProps = React.PropsWithChildren<{
   isFormSubmittable?: boolean;
   isSubmitPending?: boolean;
   hasFormError?: boolean;
-  formErrorMessage: string;
+  formErrorMessage?: string;
   createButtonLabel: string;
   createButtonDataTracking?: string;
 }>;

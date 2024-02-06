@@ -8,7 +8,6 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useQueryClient } from '@tanstack/react-query';
 import {
   ODS_SPINNER_SIZE,
   ODS_MESSAGE_TYPE,
@@ -40,7 +39,6 @@ export const OverviewTab: React.FC = () => {
   } = React.useContext(ShellContext);
   const urls = environment.getApplicationURLs();
   const { id } = useParams();
-  const queryClient = useQueryClient();
   const { data: vrackServices, error, isLoading } = useVrackService();
   const {
     updateVS,
@@ -93,7 +91,6 @@ export const OverviewTab: React.FC = () => {
                     updateVS={updateVS}
                     cellData={vrackServices?.currentState?.displayName}
                     rowData={vrackServices}
-                    queryClient={queryClient}
                   />
                 </TileBlock>
                 <TileBlock label={t('productStatus')}>

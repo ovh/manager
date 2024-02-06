@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { Card, CardProps } from '@ovhcloud/manager-components';
+import {
+  OrderDescription,
+  useOrderPollingStatus,
+} from '@ovh-ux/manager-core-order';
 import { useGuideUtils } from '@/components/GuideLink';
 import { OnboardingLayout } from '@/components/layout-helpers';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
-import {
-  OrderDescription,
-  getVrackServicesResourceListQueryKey,
-  useOrderPollingStatus,
-} from '@/api';
+import { getVrackServicesResourceListQueryKey } from '@/api';
 
 const OnboardingPage = () => {
   const { t } = useTranslation('vrack-services/onboarding');
