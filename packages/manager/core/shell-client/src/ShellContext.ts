@@ -2,7 +2,7 @@ import { Environment } from '@ovh-ux/manager-config';
 import { ShellClientApi } from '@ovh-ux/shell';
 import { createContext } from 'react';
 
-type ShellContextType = {
+export type ShellContextType = {
   shell: ShellClientApi;
   environment: Environment;
 };

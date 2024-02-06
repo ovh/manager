@@ -18,7 +18,7 @@ import {
   OdsInputValueChangeEvent,
   ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
-import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { handleClick } from '@/utils/ods-utils';
 import { FormField } from './FormField';
@@ -54,23 +54,29 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
 }) => {
   const { t } = useTranslation('vrack-services');
   const [deleteInput, setDeleteInput] = React.useState('');
-  const tracking = useTracking();
+  const {
+    shell: { tracking },
+  } = React.useContext(ShellContext);
+  const modal = React.useRef<HTMLOsdsModalElement>(null);
   const close = () => {
     setDeleteInput('');
     closeModal();
+    modal.current.close();
   };
 
   React.useEffect(() => {
     if (isModalOpen && onDisplayDataTracking) {
       tracking.trackPage({
         name: onDisplayDataTracking,
-        level2: '',
+        level2: '0',
+        page: { category: 'pop-up' },
       });
     }
   }, [isModalOpen, onDisplayDataTracking]);
 
   return (
     <OsdsModal
+      ref={modal}
       dismissible
       color={ODS_THEME_COLOR_INTENT.warning}
       headline={headline}
@@ -80,7 +86,7 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
       {!!error && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
           {t('genericApiError', {
-            error,
+            error: error.response?.data?.message,
             interpolation: { escapeValue: false },
           })}
         </OsdsMessage>

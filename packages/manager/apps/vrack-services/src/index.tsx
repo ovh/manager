@@ -2,7 +2,7 @@ import { setupWorker } from 'msw/browser';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
-  ShellProvider,
+  ShellContext,
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 import { getMswHandlers } from '../mock/handlers';
@@ -10,13 +10,16 @@ import { App } from './App';
 import initI18n from './i18n';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
 import './global.css';
-import './vite-hmr.ts';
+import './vite-hmr';
 
 const init = async (
   appName: string,
   { reloadOnLocaleChange } = { reloadOnLocaleChange: false },
 ) => {
-  if (window.location.href.includes('localhost:9001')) {
+  if (
+    window.location.href.includes('localhost:9001') &&
+    !import.meta.env.VITE_TEST_BDD
+  ) {
     await setupWorker(
       ...getMswHandlers({
         nbVs: 19,
@@ -53,13 +56,15 @@ const init = async (
     }
   });
 
-  const rootElement = document.getElementById('root') as HTMLElement;
+  const rootElement = document.getElementById('ovh-app');
 
-  ReactDOM.createRoot(rootElement).render(
+  const root = ReactDOM.createRoot(rootElement);
+
+  root.render(
     <React.StrictMode>
-      <ShellProvider client={context}>
+      <ShellContext.Provider value={context}>
         <App />
-      </ShellProvider>
+      </ShellContext.Provider>
     </React.StrictMode>,
   );
 };

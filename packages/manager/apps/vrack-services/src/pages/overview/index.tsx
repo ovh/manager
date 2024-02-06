@@ -17,10 +17,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useParams } from 'react-router-dom';
-import {
-  useEnvironment,
-  useTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ErrorPage } from '@/components/Error';
 import { useUpdateVrackServices, useVrackService } from '@/utils/vs-utils';
 import { formatDateString } from '@/utils/date';
@@ -37,8 +34,10 @@ export const OverviewTab: React.FC = () => {
   const [associateModalVisible, setAssociateModalVisible] = React.useState<
     string | undefined
   >(undefined);
-  const environment = useEnvironment();
-  const tracking = useTracking();
+  const {
+    environment,
+    shell: { tracking },
+  } = React.useContext(ShellContext);
   const urls = environment.getApplicationURLs();
   const { id } = useParams();
   const queryClient = useQueryClient();
@@ -53,7 +52,7 @@ export const OverviewTab: React.FC = () => {
   React.useEffect(() => {
     tracking.trackPage({
       name: 'vrack-services::dashboard',
-      level2: '',
+      level2: '0',
     });
   }, []);
 
@@ -92,20 +91,20 @@ export const OverviewTab: React.FC = () => {
                 <TileBlock label={t('displayName')}>
                   <DisplayNameCell
                     updateVS={updateVS}
-                    cellData={vrackServices?.currentState.displayName}
+                    cellData={vrackServices?.currentState?.displayName}
                     rowData={vrackServices}
                     queryClient={queryClient}
                   />
                 </TileBlock>
                 <TileBlock label={t('productStatus')}>
                   <ProductStatusCell
-                    cellData={vrackServices?.currentState.productStatus}
+                    cellData={vrackServices?.currentState?.productStatus}
                     rowData={vrackServices}
                     t={t}
                   />
                 </TileBlock>
                 <TileBlock label={t('region')}>
-                  {t(vrackServices?.currentState.region)}
+                  {t(vrackServices?.currentState?.region)}
                 </TileBlock>
                 <TileBlock label={t('vrackId')}>
                   <VrackIdCell

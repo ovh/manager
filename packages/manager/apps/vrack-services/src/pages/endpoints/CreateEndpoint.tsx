@@ -7,7 +7,7 @@ import {
   ODS_SELECT_SIZE,
   OdsSelectValueChangeEvent,
 } from '@ovhcloud/ods-components';
-import { useTracking } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   VrackServices,
@@ -42,7 +42,9 @@ const EndpointCreationPage: React.FC = () => {
   const navigate = useNavigate();
   const vrackServices = useVrackService();
   const dashboardUrl = urls.endpoints.replace(':id', id);
-  const tracking = useTracking();
+  const {
+    shell: { tracking },
+  } = React.useContext(ShellContext);
 
   const {
     iamResources,
@@ -88,7 +90,7 @@ const EndpointCreationPage: React.FC = () => {
         }),
         tracking.trackEvent({
           name: 'vrack-services::endpoints::add-success',
-          level2: '',
+          level2: '0',
         }),
       ]);
       navigate(dashboardUrl);
@@ -96,7 +98,7 @@ const EndpointCreationPage: React.FC = () => {
     onError: async () => {
       await tracking.trackEvent({
         name: 'vrack-services::endpoints::add-error',
-        level2: '',
+        level2: '0',
       });
     },
   });
@@ -104,7 +106,7 @@ const EndpointCreationPage: React.FC = () => {
   React.useEffect(() => {
     tracking.trackPage({
       name: 'vrack-services::endpoints::add',
-      level2: '',
+      level2: '0',
     });
     queryClient.invalidateQueries({
       queryKey: updateVrackServicesQueryKey(getEndpointCreationMutationKey(id)),

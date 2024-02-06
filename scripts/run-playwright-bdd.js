@@ -22,10 +22,7 @@ const runTests = async () => {
     server: {
       port: 9001,
     },
-    define: {
-      ...getBaseConfig().define,
-      'process.env.VITE_TEST_BDD': true,
-    },
+    envDir: __dirname,
   });
 
   await server.listen();

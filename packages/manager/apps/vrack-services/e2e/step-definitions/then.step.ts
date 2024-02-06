@@ -15,13 +15,14 @@ import {
   deliveringVrackMessage,
   deliveringVrackServicesMessage,
 } from '../../src/public/translations/vrack-services/Messages_fr_FR.json';
-import { urls } from '../utils';
+import { sleep, getUrl } from '../utils';
 import { ConfigParams } from '../../mock/handlers';
 import vsMocks from '../../mock/vrack-services/get-vrack-services.json';
 import {
   guide1Title,
   guide2Title,
 } from '../../src/public/translations/vrack-services/onboarding/Messages_fr_FR.json';
+import { onboardingDescription } from '../../src/public/translations/vrack-services/subnets/Messages_fr_FR.json';
 
 Then('User sees the create a vRack Services button {word}', async function(
   this: ICustomWorld<ConfigParams>,
@@ -52,9 +53,9 @@ Then('User {string} on the Listing page', async function(
   returnsListing: 'returns' | "doesn't return",
 ) {
   if (returnsListing === 'returns') {
-    await this.page.waitForURL(urls.listing, { waitUntil: 'load' });
+    await this.page.waitForURL(getUrl('listing'), { waitUntil: 'load' });
   } else {
-    expect(this.page.url()).toBe(urls.create);
+    expect(this.page.url()).toBe(getUrl('createVrackServices'));
   }
 });
 
@@ -63,7 +64,9 @@ Then('User sees {word} error message', async function(
   anyErrorMessage: 'an' | 'no',
 ) {
   const error = await this.page.locator('osds-message', {
-    hasText: new RegExp(this.testContext.errorMessage),
+    hasText: new RegExp(
+      this.testContext.errorMessage?.replace(/{{[a-zA-Z]+}}/gm, '.*'),
+    ),
   });
   if (anyErrorMessage === 'an') {
     await expect(error).toBeVisible({ timeout: 300000 });
@@ -73,7 +76,7 @@ Then('User sees {word} error message', async function(
 Then('User gets redirected to Onboarding page', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  await this.page.waitForURL(urls.onboarding, { waitUntil: 'load' });
+  await this.page.waitForURL(getUrl('onboarding'), { waitUntil: 'load' });
 });
 Then('User sees {int} guides on vRack Services', async function(
   this: ICustomWorld,
@@ -92,7 +95,9 @@ Then('User sees {int} guides on vRack Services', async function(
 Then('User navigates to Configuration page', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  await this.page.waitForURL(urls.create, { waitUntil: 'load' });
+  await this.page.waitForURL(getUrl('createVrackServices'), {
+    waitUntil: 'load',
+  });
 });
 
 Then(
@@ -146,13 +151,16 @@ Then('User sees a modal to create a new vRack', async function(
 Then(
   'User sees {word} information message about the order status of his vRack',
   async function(this: ICustomWorld<ConfigParams>, anyMessage: 'an' | 'no') {
-    const message = await this.page.locator('osds-message', {
-      hasText: new RegExp(deliveringVrackMessage.replace(/{date}.*/, '.*')),
-    });
+    await sleep(1000);
+
+    const messageList = await this.page
+      .getByText(new RegExp(deliveringVrackMessage.replace(/{{date}}.*/, '.*')))
+      .all();
+
     if (anyMessage === 'an') {
-      await expect(message).toBeVisible();
+      await expect(messageList.length).toBeGreaterThan(0);
     } else {
-      await expect(message).not.toBeVisible();
+      await expect(messageList.length).toBe(0);
     }
   },
 );
@@ -164,23 +172,63 @@ Then('The button to create a vRack is {word}', async function(
   const button = await this.page.locator('osds-button', {
     hasText: modalCreateNewVrackButtonLabel,
   });
-  if (buttonState === 'enabled') {
-    await expect(button).not.toHaveAttribute('disabled', '');
-  } else {
+  if (buttonState === 'disabled') {
     await expect(button).toHaveAttribute('disabled', '');
+  } else {
+    await expect(button).not.toHaveAttribute('disabled', '');
   }
 });
 
 Then(
-  'User sees the edit and associate a vRack buttons as disabled',
-  async function(this: ICustomWorld<ConfigParams>) {
-    const associateButton = await this.page.locator('osds-button', {
-      hasText: associateVrackButtonLabel,
-    });
-    const editButton = await this.page.locator('osds-button', {
-      has: this.page.locator('osds-icon[name="pen"]'),
-    });
-    await expect(associateButton).toHaveAttribute('disabled', '');
-    await expect(editButton).toHaveAttribute('disabled', '');
+  'User sees the edit and associate a vRack buttons as {word}',
+  async function(
+    this: ICustomWorld<ConfigParams>,
+    buttonState: 'disabled' | 'enabled',
+  ) {
+    await sleep(1000);
+
+    const associateButtonList = await this.page
+      .getByText(associateVrackButtonLabel)
+      .all();
+    const editButtonList = await this.page
+      .locator('osds-button', {
+        has: this.page.locator('osds-icon[name="pen"]'),
+      })
+      .all();
+
+    const buttons =
+      associateButtonList.length > 1
+        ? {
+            associateButton:
+              associateButtonList[this.testContext.data.vsIndex || 0],
+            editButton: editButtonList[this.testContext.data.vsIndex || 0],
+          }
+        : {
+            associateButton: associateButtonList[0],
+            editButton: editButtonList[0],
+          };
+
+    if (buttonState === 'disabled') {
+      await expect(buttons.associateButton).toHaveAttribute('disabled', '');
+      await expect(buttons.editButton).toHaveAttribute('disabled', '');
+    } else {
+      await expect(buttons.associateButton).not.toHaveAttribute('disabled', '');
+      await expect(buttons.editButton).not.toHaveAttribute('disabled', '');
+    }
   },
 );
+
+Then('User sees the subnet {word} page', async function(
+  this: ICustomWorld<ConfigParams>,
+  page: 'Listing' | 'Onboarding',
+) {
+  await sleep(1000);
+
+  if (page === 'Onboarding') {
+    const description = await this.page.getByText(onboardingDescription);
+    expect(description).toBeVisible();
+  } else {
+    const listing = await this.page.locator('osds-datagrid');
+    expect(listing).toBeVisible();
+  }
+});

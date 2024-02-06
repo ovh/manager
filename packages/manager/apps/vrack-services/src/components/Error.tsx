@@ -13,10 +13,7 @@ import {
   ODS_TEXT_SIZE,
   ODS_MESSAGE_TYPE,
 } from '@ovhcloud/ods-components';
-import {
-  useEnvironment,
-  useTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import OOPS from '@/assets/error-banner-oops.png';
 
@@ -43,8 +40,10 @@ export const ErrorPage: React.FC<ErrorBannerProps> = ({ error }) => {
   const { t } = useTranslation('vrack-services/error');
   const navigate = useNavigate();
   const location = useLocation();
-  const environment = useEnvironment();
-  const tracking = useTracking();
+  const {
+    environment,
+    shell: { tracking },
+  } = React.useContext(ShellContext);
 
   React.useEffect(() => {
     tracking.init(false);

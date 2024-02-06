@@ -1,6 +1,6 @@
 import React from 'react';
 import { Region, CountryCode } from '@ovh-ux/manager-config';
-import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 const docUrl = 'https://docs.ovh.com/';
 
@@ -84,7 +84,7 @@ export type UseGuideLinkProps = {
 };
 
 export function useGuideUtils() {
-  const environment = useEnvironment();
+  const { environment } = React.useContext(ShellContext);
   const region = environment.getRegion();
   const user = environment.getUser();
   const [linkTabs, setLinkTabs] = React.useState<UseGuideLinkProps>({});

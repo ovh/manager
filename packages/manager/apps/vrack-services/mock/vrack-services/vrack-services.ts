@@ -32,8 +32,8 @@ export const getVrackServicesMocks = ({
   updateKo,
 }: GetVrackServicesMocksParams): Handler[] => [
   {
-    url: '/vrackServices/resource',
-    response: vrackServicesList.slice(0, nbVs),
+    url: '/vrackServices/resource/:id/eligibleManagedService',
+    response: eligibleManagedServiceResponse.slice(0, nbEligibleService),
     api: 'v2',
   },
   {
@@ -68,6 +68,7 @@ export const getVrackServicesMocks = ({
       );
       vs.currentState.displayName = body.targetSpec.displayName;
       vs.currentState.subnets = body.targetSpec.subnets;
+
       return vs;
     },
     status: updateKo ? 500 : 200,
@@ -75,8 +76,8 @@ export const getVrackServicesMocks = ({
     api: 'v2',
   },
   {
-    url: '/vrackServices/resource/:id/eligibleManagedService',
-    response: eligibleManagedServiceResponse.slice(0, nbEligibleService),
+    url: '/vrackServices/resource',
+    response: vrackServicesList.slice(0, nbVs),
     api: 'v2',
   },
 ];

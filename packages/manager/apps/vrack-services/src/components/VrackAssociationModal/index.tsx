@@ -29,9 +29,14 @@ export const VrackAssociationModal: React.FC<VrackAssociationModalProps> = ({
   closeModal,
 }) => {
   const { t } = useTranslation('vrack-services/listing');
-  const { allowedVrackList, isError, isLoading } = useAllowedVrackList(
+  const modal = React.useRef<HTMLOsdsModalElement>(null);
+  const { allowedVrackList, isError, isLoading, error } = useAllowedVrackList(
     vrackServicesId,
   );
+  const close = () => {
+    closeModal();
+    modal.current.close();
+  };
 
   if (!vrackServicesId) {
     return <></>;
@@ -39,26 +44,30 @@ export const VrackAssociationModal: React.FC<VrackAssociationModalProps> = ({
 
   return (
     <OsdsModal
+      ref={modal}
       dismissible
       headline={t('modalVrackAssociationTitle')}
       masked={!vrackServicesId || undefined}
-      onOdsModalClose={closeModal}
+      onOdsModalClose={close}
     >
       {isError && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          {t('genericApiError')}
+          {t('genericApiError', {
+            error: error?.response?.data.message,
+            interpolation: { escapeValue: false },
+          })}
         </OsdsMessage>
       )}
       {isLoading && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}
       {!isLoading && !isError && allowedVrackList.length > 0 && (
         <AssociateVrack
           vrackServicesId={vrackServicesId}
-          closeModal={closeModal}
+          closeModal={close}
           vrackList={allowedVrackList}
         />
       )}
       {!isLoading && !isError && allowedVrackList.length === 0 && (
-        <CreateVrack closeModal={closeModal} />
+        <CreateVrack closeModal={close} />
       )}
       {(isLoading || isError) && (
         <OsdsButton
@@ -66,7 +75,7 @@ export const VrackAssociationModal: React.FC<VrackAssociationModalProps> = ({
           type={ODS_BUTTON_TYPE.button}
           variant={ODS_BUTTON_VARIANT.ghost}
           color={ODS_THEME_COLOR_INTENT.primary}
-          {...handleClick(closeModal)}
+          {...handleClick(close)}
         >
           {t('modalCancelVrackAssociationButtonLabel')}
         </OsdsButton>

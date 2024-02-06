@@ -22,7 +22,7 @@
   "modalVrackAssociationTitle": "Associer un vRack existant à votre vRack Services",
   "modalVrackAssociationDescription": "Pour que votre vRack Services fonctionne, vous devez l'associer à l'un de vos vRack existants.",
   "modalVrackCreationDescription": "Pour que votre vRack Services fonctionne, vous devez l'associer à l'un de vos vRack existants. Et vous n'en avez aucun de disponible.",
-  "genericApiError": "Un problème est survenue lors de l'opération. Veuillez réessayer ultérieurement.",
+  "genericApiError": "L'erreur suivante est survenue : {{error}}.",
   "modalCancelVrackAssociationButtonLabel": "Annuler",
   "modalCreateNewVrackButtonLabel": "Commander un vRack",
   "vrackSelectPlaceholder": "Sélectionner un vRack",
