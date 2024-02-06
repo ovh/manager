@@ -10,6 +10,17 @@ export default defineConfig({
     environment: 'jsdom',
     coverage: {
       include: ['src'],
+      exclude: [
+        'src/interface',
+        'src/__tests__',
+        'src/guides-header.constants.ts',
+        'src/vite-*.ts',
+        'src/App.tsx',
+        'src/core/ShellRoutingSync.tsx',
+        'src/i18n.ts',
+        'src/main.tsx',
+        'src/routes.tsx',
+      ],
     },
   },
   resolve: {
