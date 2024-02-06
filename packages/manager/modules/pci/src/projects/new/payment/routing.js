@@ -248,7 +248,7 @@ export const registerPCINewPaymentState = (
         $state.go(stateName, {}, { reload: true }),
 
       onAskCreditPayment: /* @ngInject */ ($state) => () =>
-        $state.go('pci.projects.new.payment.credit', {}, { location: false }),
+        $state.go(`${stateName}.credit`, {}, { location: false }),
 
       onCartFinalized: /* @ngInject */ ($state, $window, cart) => ({
         orderId,

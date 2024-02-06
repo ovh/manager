@@ -23,7 +23,7 @@
             data-disabled="$ctrl.globalLoading.finalize"
         >
             <span
-                data-translate="pci_project_new_payment_credit_credit_and_pay"
+                data-ng-bind="$ctrl.viewOptions.creditBtnText || ('pci_project_new_payment_credit_credit_and_pay' | translate)"
             ></span>
         </oui-button>
 
