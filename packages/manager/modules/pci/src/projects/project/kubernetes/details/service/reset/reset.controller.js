@@ -14,26 +14,13 @@ export default class kubernetesResetCtrl {
 
   $onInit() {
     this.isReseting = false;
-    const privateNetworkNone = {
-      id: null,
-      name: this.$translate.instant('kubernetes_add_private_network_none'),
-    };
-    this.availablePrivateNetworks = [
-      privateNetworkNone,
-      ...this.Kubernetes.constructor.getAvailablePrivateNetworks(
-        this.privateNetworks,
-        this.cluster.region,
-      ),
-    ];
-    const currentPrivateNetwork = this.Kubernetes.constructor.getPrivateNetwork(
-      this.availablePrivateNetworks,
-      this.cluster.privateNetworkId,
-    );
     this.model = {
       version: kubernetesResetCtrl.getFormatedVersion(this.cluster.version),
       workerNodesPolicy: WORKER_NODE_POLICIES.DELETE,
       network: {
-        private: currentPrivateNetwork || privateNetworkNone,
+        private: this.cluster.privateNetworkId
+          ? { id: this.cluster.privateNetworkId }
+          : null,
         gateway: {
           enabled: !!this.cluster?.privateNetworkConfiguration
             ?.defaultVrackGateway, // false -> OVHcloud gateway, true -> vRack gateway
@@ -41,6 +28,12 @@ export default class kubernetesResetCtrl {
             this.cluster?.privateNetworkConfiguration?.defaultVrackGateway ||
             '',
         },
+        subnet: this.cluster.nodesSubnetId
+          ? { id: this.cluster.nodesSubnetId }
+          : null,
+        loadBalancersSubnet: this.cluster.loadBalancersSubnetId
+          ? { id: this.cluster.loadBalancersSubnetId }
+          : null,
       },
     };
   }
@@ -58,6 +51,12 @@ export default class kubernetesResetCtrl {
       version: this.model.version,
       workerNodesPolicy: this.model.workerNodesPolicy,
       privateNetworkId: this.model.network.private.clusterRegion?.openstackId,
+      ...(this.model.network.subnet?.id && {
+        nodesSubnetId: this.model.network.subnet?.id,
+      }),
+      ...(this.model.network.loadBalancersSubnet?.id && {
+        loadBalancersSubnetId: this.model.network.loadBalancersSubnet?.id,
+      }),
       ...(this.model.network.gateway.enabled && {
         privateNetworkConfiguration: {
           defaultVrackGateway: this.model.network.gateway.ip,
@@ -89,6 +88,14 @@ export default class kubernetesResetCtrl {
   onResetModalCancel() {
     this.sendKubeTrack('details::service::reset::cancel');
     this.goBack();
+  }
+
+  isNetworkValid() {
+    if (this.kubeClusterReset?.$invalid) {
+      return false;
+    }
+    const { private: privateNetwork, subnet } = this.model.network;
+    return !privateNetwork?.id || Boolean(subnet?.id);
   }
 
   static getFormatedVersion(version) {

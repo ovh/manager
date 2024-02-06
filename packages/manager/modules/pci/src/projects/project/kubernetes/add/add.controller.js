@@ -1,14 +1,10 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
-import some from 'lodash/some';
 
 import Datacenter from '../../../../components/project/regions-list/datacenter.class';
 import { NAME_INPUT_CONSTRAINTS } from '../kubernetes.constants';
 import { TAGS_BLOB } from '../../../../constants';
-import {
-  KUBE_CONTAINER_MESSAGES,
-  KUBE_PRIVATE_NETWORKS_SUBNET_DOC,
-} from './add.constants';
+import { KUBE_CONTAINER_MESSAGES } from './add.constants';
 
 export default class {
   /* @ngInject */
@@ -19,7 +15,6 @@ export default class {
     CucCloudMessage,
     Kubernetes,
     OvhApiCloudProjectKube,
-    coreConfig,
   ) {
     this.$translate = $translate;
     this.$q = $q;
@@ -30,27 +25,22 @@ export default class {
 
     this.inputConstraints = NAME_INPUT_CONSTRAINTS;
     this.KUBE_CONTAINER_MESSAGES = KUBE_CONTAINER_MESSAGES;
-    this.addPrivateNetworksSubnetLink =
-      KUBE_PRIVATE_NETWORKS_SUBNET_DOC[coreConfig.getUser().ovhSubsidiary] ??
-      KUBE_PRIVATE_NETWORKS_SUBNET_DOC.DEFAULT;
   }
 
   $onInit() {
     this.isAdding = false;
-    this.defaultPrivateNetwork = {
-      id: null,
-      name: this.$translate.instant('kubernetes_add_private_network_none'),
-    };
     this.cluster = {
       region: null,
       version: null,
       name: null,
       network: {
-        private: this.defaultPrivateNetwork,
+        private: null,
         gateway: {
           enabled: false, // false -> OVHcloud gateway, true -> vRack gateway
           ip: '',
         },
+        subnet: null,
+        loadBalancersSubnet: null,
       },
       nodePool: {
         antiAffinity: false,
@@ -112,8 +102,8 @@ export default class {
       this.cluster.region.name,
       this.cluster.version,
       this.cluster.network.private?.clusterRegion?.openstackId,
-      this.cluster.network.private?.subnet?.id,
-      this.cluster.network.private?.lbSubnet?.id,
+      this.cluster.network.subnet?.id,
+      this.cluster.network.loadBalancersSubnet?.id,
       this.cluster.network.gateway,
       options,
     )
@@ -163,83 +153,6 @@ export default class {
       });
   }
 
-  loadPrivateNetworks() {
-    this.availablePrivateNetworks = [
-      this.defaultPrivateNetwork,
-      ...this.Kubernetes.constructor.getAvailablePrivateNetworks(
-        this.privateNetworks,
-        this.cluster.region.name,
-      ),
-    ];
-    if (
-      !some(this.availablePrivateNetworks, {
-        id: this.cluster.network.private?.id,
-      })
-    ) {
-      this.cluster.privateNetwork = this.defaultPrivateNetwork;
-    }
-  }
-
-  loadPrivateNetworkSubnets() {
-    this.privateNetworkSubnets = null;
-    this.privateNetworkSubnetsError = null;
-
-    if (this.cluster.network.private) {
-      this.cluster.network.private.subnet = null;
-      this.cluster.network.private.lbSubnet = null;
-    }
-
-    if (!this.cluster.network.private?.id) {
-      return null;
-    }
-
-    this.isLoadingPrivateNetworkSubnets = true;
-
-    return this.Kubernetes.getPrivateNetworkSubnets(
-      this.projectId,
-      this.cluster.network.private.id,
-    )
-      .then((subnets) => {
-        if (!subnets.length) {
-          return;
-        }
-        this.privateNetworkSubnets = subnets;
-        const [firstSubnet] = subnets;
-        this.cluster.network.private.subnet = firstSubnet;
-        this.onPrivateNetworkSubnetChanged(firstSubnet);
-      })
-      .catch((error) => {
-        this.privateNetworkSubnetsError = {
-          type: 'error',
-          message: this.$translate.instant(
-            'kubernetes_add_private_network_subnet_error_default',
-            { error: error.data?.message || error.message },
-          ),
-        };
-      })
-      .finally(() => {
-        this.isLoadingPrivateNetworkSubnets = false;
-      });
-  }
-
-  onPrivateNetworkSubnetChanged({ gatewayIp } = {}) {
-    this.privateNetworkSubnetsError = !gatewayIp
-      ? {
-          type: 'warning',
-          message: this.$translate.instant(
-            'kubernetes_add_private_network_subnet_error_no_gateway_ip',
-          ),
-        }
-      : null;
-  }
-
-  toggleLoadBalancerSubnetForm() {
-    this.isLoadBalancerSubnetFormShown = !this.isLoadBalancerSubnetFormShown;
-    if (!this.isLoadBalancerSubnetFormShown && this.cluster.network.private) {
-      this.cluster.network.private.lbSubnet = null;
-    }
-  }
-
   setClusterRegion(isRegionEnabled = false) {
     this.cluster.region = new Datacenter({
       name: this.cluster.region.name,
@@ -249,15 +162,12 @@ export default class {
   }
 
   isValidNetworkConfig() {
-    return (
-      !this.cluster.network.private?.id ||
-      Boolean(this.cluster.network.private?.subnet?.id)
-    );
+    const { private: privateNetwork, subnet } = this.cluster.network;
+    return !privateNetwork?.id || Boolean(subnet?.id);
   }
 
   onRegionSubmit() {
     this.setClusterRegion();
-    this.loadPrivateNetworks();
 
     if (this.cluster.region.enabled) {
       this.loadFlavors(this.cluster.region.name);

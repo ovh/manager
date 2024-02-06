@@ -1,8 +1,0 @@
-{
-  "kubernetes_add_private_network_gateway_management_label": "Network gateway",
-  "kubernetes_add_private_network_gateway_management_description": "You can specify a specific gateway to route traffic for your worker nodes (e.g. to retrieve Docker images from a registry).",
-  "kubernetes_add_private_network_gateway_management_gateway_false": "OVHcloud Internet Gateway",
-  "kubernetes_add_private_network_gateway_management_gateway_true": "Gateway deployed in vRack",
-  "kubernetes_add_private_network_gateway_management_gateway_vrack_description": "IP address of your gateway (leave empty to use the gateway defined by DHCP)",
-  "kubernetes_add_private_network_gateway_management_gateway_vrack_field_ip_placeholder": "Enter an IP address"
-}
