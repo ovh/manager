@@ -214,7 +214,7 @@ export function getPciProjectMenu(
     {
       id: 'analytics',
       title: 'Databases & Analytics',
-      regions: ['EU', 'CA'],
+      regions: ['EU', 'CA', 'US'],
       subItems: [
 
         {
