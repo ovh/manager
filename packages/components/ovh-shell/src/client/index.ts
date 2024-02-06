@@ -76,7 +76,22 @@ export function initStandaloneClientApi(
         url: window.location.href,
       };
     } else {
-      throw new Error(`Unknown application '${appId}'`);
+      // TODO: remove mock
+      if (appId === 'pci-cdb') {
+        appConfig = {
+          universe: 'public-cloud',
+          url: window.location.href + 'pci-cdb',
+          publicURL: window.location.href + '#/pci-cdb',
+          container: {
+            isDefault: false,
+            enabled: true,
+            path: 'pci-cdb',
+            containerURL: '',
+          },
+        };
+      } else {
+        throw new Error(`Unknown application '${appId}'`);
+      }
     }
   }
 

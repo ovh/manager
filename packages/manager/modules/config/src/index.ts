@@ -48,12 +48,30 @@ export const fetchConfiguration = async (
 
   return Reket.get(configurationURL, configRequestOptions)
     .then((config: Environment) => {
+      // TODO: move to 2API
+      const pciCdbTempConf = {
+        universe: 'public-cloud',
+        url: `${window.location.href}pci-cdb`,
+        publicURL: `${window.location.href}#/pci-cdb`,
+        container: {
+          isDefault: false,
+          enabled: true,
+          path: 'pci-cdb',
+          containerURL: '',
+        },
+      };
       environment.setRegion(config.region);
       environment.setUser(config.user);
-      environment.setApplicationURLs(config.applicationURLs);
+      environment.setApplicationURLs({
+        ...config.applicationURLs,
+        'pci-cdb': `${window.location.href}pci-cdb`,
+      });
       environment.setUniverse(config.universe);
       environment.setMessage(config.message);
-      environment.setApplications(config.applications);
+      environment.setApplications({
+        ...config.applications,
+        'pci-cdb': pciCdbTempConf,
+      });
       return environment;
     })
     .catch((err) => {

@@ -37,11 +37,6 @@ const init = async (
     }
   });
 
-  context.shell.environment.setUniverse('public-cloud');
-  context.shell.ux.setForceAccountSiderBarDisplayOnLargeScreen(true);
-  await context.shell.ux.showMenuSidebar();
-
-
   const body = document.querySelector('body');
   const divContainer = document.createElement('div');
   divContainer.id = 'ovh-app';
