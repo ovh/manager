@@ -1,8 +1,0 @@
-{
-  "kubernetes_add_private_network_gateway_management_label": "Passerelle réseau",
-  "kubernetes_add_private_network_gateway_management_description": "Vous pouvez spécifier une passerelle(\"gateway\") spécifique pour router le trafic de vos noeuds de travail (par exemple récupération d'images Docker depuis un registry).",
-  "kubernetes_add_private_network_gateway_management_gateway_false": "Passerelle Internet OVHcloud",
-  "kubernetes_add_private_network_gateway_management_gateway_true": "Passerelle déployée dans mon vRack",
-  "kubernetes_add_private_network_gateway_management_gateway_vrack_description": "Adresse IP de votre passerelle (gateway) (laisser vide pour utiliser la passerelle définie par DHCP)",
-  "kubernetes_add_private_network_gateway_management_gateway_vrack_field_ip_placeholder": "Saisir une adresse IP"
-}
