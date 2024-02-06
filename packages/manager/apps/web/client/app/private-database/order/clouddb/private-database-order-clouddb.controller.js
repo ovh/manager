@@ -131,7 +131,7 @@ export default class PrivateDatabaseOrderCloudDbCtrl {
   }
 
   onDbCategoryClick(dbCategory) {
-    this.model.dbCategory = dbCategory;
+    this.model.dbCategory = { ...this.model.dbCategory, ...dbCategory };
 
     this.trackClick(
       `${DATABASES_TRACKING.STEP_1.SELECT_DB_CATEGORY}_${dbCategory.tracking}`,
