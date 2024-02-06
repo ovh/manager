@@ -1,8 +1,0 @@
-{
-  "kubernetes_add_private_network_gateway_management_label": "Netzwerk-Gateway",
-  "kubernetes_add_private_network_gateway_management_description": "Sie können einen Gateway festlegen, um den Traffic Ihrer Worker-Nodes zur routen. Zum Beispiel den Abruf von Docker-Images von einer Registry aus.",
-  "kubernetes_add_private_network_gateway_management_gateway_false": "OVHcloud Internet Gateway",
-  "kubernetes_add_private_network_gateway_management_gateway_true": "Gateway in meinem vRack",
-  "kubernetes_add_private_network_gateway_management_gateway_vrack_description": "IP-Adresse Ihres Gateways. Lassen Sie dieses Feld leer, um den DHCP-definierte Gateway zu verwenden.",
-  "kubernetes_add_private_network_gateway_management_gateway_vrack_field_ip_placeholder": "IP-Adresse angeben"
-}
