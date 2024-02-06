@@ -1,7 +1,12 @@
 import React from 'react';
-import { OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  OsdsButton,
+  OsdsDivider,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
+  ODS_DIVIDER_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
@@ -13,7 +18,7 @@ export type OnboardingLayoutProps = {
   imageSrc?: string;
   title: string;
   orderButtonLabel: string;
-  orderHref: string;
+  onOrderButtonClick: () => void;
   description?: string;
   moreInfoHref?: string;
   moreInfoButtonLabel?: string;
@@ -24,15 +29,20 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   imageSrc,
   title,
   description,
-  orderHref,
+  onOrderButtonClick,
   orderButtonLabel,
 }) => {
   return (
-    <div className="flex flex-col mx-auto px-3">
+    <div className="flex flex-col mx-auto px-3 max-w-3xl">
       {!hideHeadingSection && (
         <section className="flex flex-col items-center">
           <div className="flex justify-center py-3 max-h-14">
-            <img src={imageSrc || placeholderSrc} alt="" />
+            <img
+              src={imageSrc || placeholderSrc}
+              alt=""
+              width={500}
+              height={300}
+            />
           </div>
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.primary}
@@ -42,8 +52,10 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
           >
             {title}
           </OsdsText>
+          <OsdsDivider size={ODS_DIVIDER_SIZE.seven} />
           <OsdsText
             level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._100}
             className="block text-center mb-2  max-w-5xl"
           >
             {description}
@@ -53,7 +65,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
               <OsdsButton
                 color={ODS_THEME_COLOR_INTENT.primary}
                 size={ODS_BUTTON_SIZE.md}
-                href={orderHref}
+                onClick={onOrderButtonClick}
               >
                 {orderButtonLabel}
               </OsdsButton>

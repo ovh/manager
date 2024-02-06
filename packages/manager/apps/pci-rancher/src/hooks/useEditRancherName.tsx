@@ -4,7 +4,7 @@ import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import {
   editRancherService,
   patchRancherServiceQueryKey,
-} from '../api/GET/apiv2/services';
+} from '../api/apiv2/services';
 import { RancherService } from '../api/api.type';
 
 const useEditRancherName = ({
@@ -25,12 +25,8 @@ const useEditRancherName = ({
         projectId: projectId as string,
         rancher: rancherUpdated,
       }),
-    onSuccess: () => {
-      setEditNameResponse(ODS_MESSAGE_TYPE.success);
-    },
-    onError: () => {
-      setEditNameResponse(ODS_MESSAGE_TYPE.error);
-    },
+    onSuccess: () => setEditNameResponse(ODS_MESSAGE_TYPE.success),
+    onError: () => setEditNameResponse(ODS_MESSAGE_TYPE.error),
     mutationKey: patchRancherServiceQueryKey(rancherId),
   });
 

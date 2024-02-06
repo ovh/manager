@@ -3,12 +3,26 @@ import {
   fetchIcebergV2,
   IcebergFetchResultV2,
 } from '@ovh-ux/manager-core-api';
-import { PciProject, RancherService } from '../../api.type';
+import {
+  CreateRancherPayload,
+  PciProject,
+  RancherPlan,
+  RancherService,
+  RancherVersion,
+} from '@/api/api.type';
+
+type RancherInfo = 'plan' | 'version';
+
+export const getReferenceRancherInfo = (rancherInfo: RancherInfo) =>
+  `/publicCloud/reference/rancher/${rancherInfo}`;
+
+const getRancherByProjectIdQueryKey = (projectId: string) =>
+  `/publicCloud/project/${projectId}/rancher`;
 
 const getByRancherIdProjectIdQueryKey = (
   projectId: string,
   rancherId: string,
-) => `/publicCloud/project/${projectId}/rancher/${rancherId}`;
+) => `${getRancherByProjectIdQueryKey(projectId)}/${rancherId}`;
 
 export const getRancherProjectById = async (
   projectId?: string,
@@ -40,6 +54,27 @@ export const postRancherServiceQueryKey = (rancherId: string) => [
   'post/rancher/resource',
   rancherId,
 ];
+
+export const createRancherServiceQueryKey = () => ['post/rancher/resource'];
+
+export const getRancherPlan = async () =>
+  apiClient.v2.get<RancherPlan[]>(getReferenceRancherInfo('plan'));
+
+export const getRancherVersion = async () =>
+  apiClient.v2.get<RancherVersion[]>(getReferenceRancherInfo('version'));
+
+export const createRancherService = async ({
+  projectId,
+  data,
+}: {
+  projectId: string;
+  data: CreateRancherPayload;
+}) => {
+  return apiClient.v2.post(getRancherByProjectIdQueryKey(projectId), {
+    ...data,
+    ipRestrictions: [],
+  });
+};
 
 export const deleteRancherService = async ({
   rancherId,
@@ -79,11 +114,10 @@ export const generateAccessRancherService = async ({
 }: {
   rancherId: string;
   projectId: string;
-}) => {
-  return apiClient.v2.post(
+}) =>
+  apiClient.v2.post(
     `${getByRancherIdProjectIdQueryKey(projectId, rancherId)}/adminCredentials`,
   );
-};
 
 export type GetpublicCloudProjectProjectIdParams = {
   /** Project ID */

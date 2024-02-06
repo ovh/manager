@@ -4,10 +4,10 @@ import React, { ComponentType } from 'react';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { MemoryRouter } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
-import dashboardTranslation from '../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
-import onboardingTranslation from '../public/translations/pci-rancher/onboarding/Messages_fr_FR.json';
-import listingTranslation from '../public/translations/pci-rancher/listing/Messages_fr_FR.json';
-import queryClient from '../query.client';
+import dashboardTranslation from '../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
+import onboardingTranslation from '../../public/translations/pci-rancher/onboarding/Messages_fr_FR.json';
+import listingTranslation from '../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
+import queryClient from '../../query.client';
 
 i18n.use(initReactI18next).init({
   lng: 'fr',
