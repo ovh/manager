@@ -5,6 +5,7 @@ import {
   VALUE_REGEX_BY_TYPE,
   RULE_TYPES,
   RULE_COMPARE_TYPES,
+  KEY_REGEX,
 } from './constants';
 
 export default class OctaviaLoadBalancerL7PolicyFormCtrl {
@@ -16,6 +17,7 @@ export default class OctaviaLoadBalancerL7PolicyFormCtrl {
     this.RULE_TYPES = RULE_TYPES;
     this.RULE_TYPES_WITH_KEY = RULE_TYPES_WITH_KEY;
     this.COMPARE_TYPES_AVAILABILITY_BY_TYPE = COMPARE_TYPES_AVAILABILITY_BY_TYPE;
+    this.KEY_REGEX = KEY_REGEX;
   }
 
   $onInit() {

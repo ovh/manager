@@ -12,7 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
         loadbalancerL7RulesView: 'octaviaLoadBalancerL7RulesList',
       },
       resolve: {
-        breadcrumb: () => 'L7 Rules',
+        breadcrumb: () => null,
         rules: /* @ngInject */ (
           OctaviaLoadBalancerL7Service,
           projectId,

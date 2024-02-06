@@ -132,6 +132,8 @@ export const VALUE_REGEX_BY_TYPE = {
   [RULE_TYPES.SSL_DN_FIELD]: '',
 };
 
+export const KEY_REGEX = "^[a-zA-Z0-9!#$%&'*+-.^_`|~]+$";
+
 export default {
   RULE_TYPES,
   RULE_TYPES_LABELS,
@@ -142,4 +144,5 @@ export default {
   RULE_TYPES_WITH_KEY,
   COMPARE_TYPES_AVAILABILITY_BY_TYPE,
   VALUE_REGEX_BY_TYPE,
+  KEY_REGEX,
 };

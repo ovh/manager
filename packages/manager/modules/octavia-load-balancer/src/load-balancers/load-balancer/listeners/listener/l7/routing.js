@@ -36,14 +36,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => (policyId) =>
           coreURLBuilder.buildURL(
             'public-cloud',
-            '#/pci/projects/:serviceName/octavia-load-balancer/:region/:loadbalancerId/listeners/:listenerId/l7/:policyId/rules/create',
-            {
-              serviceName: projectId,
-              region,
-              loadbalancerId,
-              listenerId,
-              policyId,
-            },
+            `#/pci/projects/${projectId}/octavia-load-balancer/${region}/${loadbalancerId}/listeners/${listenerId}/l7/${policyId}/rules/create`,
           ),
         trackL7Base: /* @ngInject */ (trackRoot) =>
           `${trackRoot}::${LISTENERS_TRACKING_SUFFIX}::${TRACKING_SUFFIX}`,
