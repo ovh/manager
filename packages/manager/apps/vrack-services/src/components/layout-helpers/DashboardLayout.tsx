@@ -105,11 +105,11 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
       </div>
       <OsdsTabs panel={activePanel}>
         <OsdsTabBar slot="top">
-          {tabs.map((tab: DashboardTabItemProps, key: number) => (
+          {tabs.map((tab: DashboardTabItemProps) => (
             <NavLink
               to={tab.to}
               className="no-underline"
-              key={`osds-tab-bar-item-${key}`}
+              key={`osds-tab-bar-item-${tab.name}`}
             >
               <OsdsTabBarItem panel={tab.name}>{tab.title}</OsdsTabBarItem>
             </NavLink>

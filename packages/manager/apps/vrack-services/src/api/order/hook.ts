@@ -32,7 +32,7 @@ const toDetailedOrder = async (orderId: number): Promise<DetailedOrder> => {
 
 const getOrderIdListWithDescription = (
   detailedOrderList: DetailedOrder[] = [],
-  orderDetailDescription: string,
+  orderDetailDescription = '',
 ) =>
   detailedOrderList.filter(({ details }) =>
     details.some(({ description }) =>
