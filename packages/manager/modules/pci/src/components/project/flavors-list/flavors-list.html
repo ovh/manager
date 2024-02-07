@@ -1,6 +1,6 @@
 <oui-spinner data-size="s" data-ng-if="$ctrl.isLoading"></oui-spinner>
 
-<div data-ng-if="!$ctrl.isLoading">
+<div class="flavors-list" data-ng-if="!$ctrl.isLoading">
     <oui-tabs
         class="mb-4"
         data-ng-if="!$ctrl.displaySelectedFlavor"
@@ -41,6 +41,13 @@
                         data-required
                     >
                         <oui-select-picker-section>
+                            <span
+                                class="oui-badge oui-badge_new new-flavor-badge"
+                                data-ng-if="$ctrl.constructor.isNewFlavor(flavor)"
+                                data-translate="pci_project_flavors_category_new"
+                            >
+                            </span>
+
                             <div class="d-flex">
                                 <span
                                     data-translate="pci_project_flavors_spec_ram"
