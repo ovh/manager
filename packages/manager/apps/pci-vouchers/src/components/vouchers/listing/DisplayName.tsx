@@ -7,7 +7,11 @@ import DataGridTextCell from '@/components/datagrid/DataGridTextCell';
 import { getBill } from '@/data/bill';
 import style from '@/components/common.module.css';
 
-export default function DisplayName({ voucher }: { voucher: Voucher }) {
+export default function DisplayName({
+  voucher,
+}: {
+  voucher: Pick<Voucher, 'bill' | 'description'>;
+}) {
   const { t } = useTranslation('common');
   if (voucher.bill) {
     const { data } = useQuery({
@@ -30,7 +34,13 @@ export default function DisplayName({ voucher }: { voucher: Voucher }) {
             }}
           ></span>
         )}
-        {!data && <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />}
+        {!data && (
+          <OsdsSpinner
+            inline
+            size={ODS_SPINNER_SIZE.sm}
+            data-testid="spinner"
+          />
+        )}
       </DataGridTextCell>
     );
   }

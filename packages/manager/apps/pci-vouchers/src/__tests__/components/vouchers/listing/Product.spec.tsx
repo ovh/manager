@@ -1,10 +1,10 @@
-import { vi } from 'vitest';
-
-import { render, screen } from '@testing-library/react';
+import { describe, expect, vi } from 'vitest';
+import { render, screen, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import Product from '@/components/vouchers/listing/Product';
 
 vi.mock('react-i18next', () => ({
-  // this mock makes sure any components using the translation hook can use it without a warning being shown
+  // this mock makes sure any components using the translate hook can use it without a warning being shown
   useTranslation: () => {
     return {
       t: (str: string) => str,
@@ -19,15 +19,24 @@ vi.mock('react-i18next', () => ({
   },
 }));
 
-describe('Product vouchers datagrid cell', () => {
-  it('Product components should be rendered correctly a named product', () => {
-    render(<Product product={['a product']} />);
-    const productComponent = screen.getByText('a product');
-    expect(productComponent).toMatchSnapshot();
+describe('Datagrid Listing Product', () => {
+  it('should display list of products', async () => {
+    render(<Product product={['A', 'B']} />);
+
+    const productContent = screen.getByText('A, B');
+
+    await waitFor(() => {
+      expect(productContent).toBeInTheDocument();
+    });
   });
-  it('Product components should be rendered correctly without named product', () => {
+
+  it('should display default text if no product defined', async () => {
     render(<Product product={null} />);
-    const productComponent = screen.getByText('cpb_vouchers_products_all');
-    expect(productComponent).toMatchSnapshot();
+
+    const productContent = screen.getByText('cpb_vouchers_products_all');
+
+    await waitFor(() => {
+      expect(productContent).toBeInTheDocument();
+    });
   });
 });
