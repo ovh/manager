@@ -35,6 +35,8 @@ export const PRIVATE_NETWORK_GUIDE = {
   IE: 'https://docs.ovh.com/ie/en/public-cloud/public-cloud-vrack/',
   QC: 'https://docs.ovh.com/ca/fr/public-cloud/public-cloud-vrack/',
   SG: 'https://docs.ovh.com/sg/en/public-cloud/public-cloud-vrack/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/360002093130-Configuring-vRack-for-Public-Cloud',
 };
 
 export default {
