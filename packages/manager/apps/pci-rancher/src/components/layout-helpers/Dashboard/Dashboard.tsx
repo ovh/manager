@@ -31,7 +31,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   const { projectId } = useParams();
   const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
 
-  const { editRancherName, editNameResponse } = useEditRancherName({
+  const { editRancherName, editNameResponseType } = useEditRancherName({
     projectId: projectId as string,
     rancherId: rancher.id,
   });
@@ -66,7 +66,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
       <TabBar tabs={tabs} />
       <RancherDetail
         rancher={rancher}
-        editNameResponse={editNameResponse}
+        editNameResponseType={editNameResponseType}
         editRancherName={editRancherName}
         generateAccesDetail={generateAccesDetail}
         accessDetail={accessDetail}

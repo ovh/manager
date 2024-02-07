@@ -145,6 +145,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             </OsdsText>
           </Block>
           <OsdsInput
+            placeholder={t('createRancherPlaceholder')}
             aria-label="rancher-name-input"
             type={ODS_INPUT_TYPE.text}
             color={
@@ -163,17 +164,13 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         <div className="my-3">
           <Subtitle>{t('createRancherServiceLevel')}</Subtitle>
         </div>
-        <Block>
-          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-            {t('createRancherServiceLevelTitle')}
-          </OsdsText>
-        </Block>
         <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
           {t('createRancherServiceLevelDescription')}
         </OsdsText>
         <div className="flex my-5">
           {plans?.map((v) => (
             <TileSection
+              key={v.name}
               isActive={v.name === activePlan?.name}
               name={t(v.name)}
               description={t(getRancherPlanDescription(v.name))}
@@ -198,6 +195,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         <div className="flex my-5">
           {versions?.map((v) => (
             <TileSection
+              key={v.name}
               isActive={v.name === activeVersion?.name}
               name={v.name}
               description={

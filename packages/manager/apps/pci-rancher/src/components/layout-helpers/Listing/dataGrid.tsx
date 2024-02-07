@@ -45,10 +45,10 @@ function LinkService({ cellData, rowData, href }: LinkServiceInterface) {
   );
 }
 
-function VersionDisplay({
+function CommonDisplay({
   cellData,
   t,
-}: DataGridCellProps<RessourceStatus, RancherService> & { t: TFunction }) {
+}: DataGridCellProps<RessourceStatus> & { t: TFunction }) {
   return (
     <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
       {cellData ? t(cellData) : '-'}
@@ -56,9 +56,7 @@ function VersionDisplay({
   );
 }
 
-function CpuDisplay({
-  cellData,
-}: DataGridCellProps<RessourceStatus, RancherService>) {
+function CpuDisplay({ cellData }: DataGridCellProps<RessourceStatus>) {
   return (
     <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{cellData ?? '-'}</OsdsText>
   );
@@ -72,21 +70,16 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
   const [
     deleteRancherResponse,
     setDeleteRancherResponse,
-  ] = useState<ODS_MESSAGE_TYPE | null>(null);
+  ] = useState<ODS_MESSAGE_TYPE.error | null>(null);
 
-  const { mutate: deleteRancher, isError } = useMutation({
+  const { mutate: deleteRancher } = useMutation({
     mutationFn: () =>
       deleteRancherService({
         rancherId: selectedRancher?.id,
         projectId,
       }),
     mutationKey: deleteRancherServiceQueryKey(selectedRancher?.id),
-    onSuccess: () => {
-      setDeleteRancherResponse(ODS_MESSAGE_TYPE.success);
-    },
-    onError: () => {
-      setDeleteRancherResponse(ODS_MESSAGE_TYPE.error);
-    },
+    onError: () => setDeleteRancherResponse(ODS_MESSAGE_TYPE.error),
   });
 
   const onDeleteRancher = () => deleteRancher();
@@ -101,11 +94,12 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
     {
       title: t('serviceLevel'),
       field: 'targetSpec.plan',
+      formatter: ReactFormatter(<CommonDisplay t={t} />),
     },
     {
       title: t('rancherVersion'),
       field: 'targetSpec.version',
-      formatter: ReactFormatter(<VersionDisplay t={t} />),
+      formatter: ReactFormatter(<CommonDisplay t={t} />),
     },
     {
       title: t('numberOfCpu'),
@@ -133,24 +127,13 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
 
   return (
     <>
-      {isError && (
-        <OsdsMessage
-          color={ODS_THEME_COLOR_INTENT.error}
-          type={ODS_MESSAGE_TYPE.error}
-        >
-          Une erreur est survenue lors de la suppression de votre service
-          Rancher. Merci de réessayer.
-        </OsdsMessage>
-      )}
       {deleteRancherResponse && (
-        <OsdsMessage type={deleteRancherResponse} className="my-4 p-3">
+        <OsdsMessage type={ODS_MESSAGE_TYPE.error} className="my-4 p-3">
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
             className="inline-block"
           >
-            {deleteRancherResponse === ODS_MESSAGE_TYPE.info
-              ? t('deleteRancherSuccess')
-              : t('deleteRancherError')}
+            {t('deleteRancherError')}
           </OsdsText>
         </OsdsMessage>
       )}

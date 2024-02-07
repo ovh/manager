@@ -14,23 +14,22 @@ const useEditRancherName = ({
   rancherId: string;
   projectId: string;
 }) => {
-  const [
-    editNameResponse,
-    setEditNameResponse,
-  ] = useState<ODS_MESSAGE_TYPE | null>(null);
+  const [editNameResponseType, setEditNameResponseType] = useState<
+    ODS_MESSAGE_TYPE.success | ODS_MESSAGE_TYPE.error | null
+  >(null);
   const { mutate: editRancherName } = useMutation({
     mutationFn: (rancherUpdated: RancherService) =>
       editRancherService({
         rancherId,
-        projectId: projectId as string,
+        projectId,
         rancher: rancherUpdated,
       }),
-    onSuccess: () => setEditNameResponse(ODS_MESSAGE_TYPE.success),
-    onError: () => setEditNameResponse(ODS_MESSAGE_TYPE.error),
+    onSuccess: () => setEditNameResponseType(ODS_MESSAGE_TYPE.success),
+    onError: () => setEditNameResponseType(ODS_MESSAGE_TYPE.error),
     mutationKey: patchRancherServiceQueryKey(rancherId),
   });
 
-  return { editRancherName, editNameResponse };
+  return { editRancherName, editNameResponseType };
 };
 
 export default useEditRancherName;
