@@ -8,7 +8,11 @@ module.exports = {
     '<rootDir>/packages/**/*.{spec,test}.{js,jsx,ts,tsx}',
   ],
   testEnvironment: 'jsdom',
-  testPathIgnorePatterns: ['/node_modules/', '/apps/pci-vouchers/'],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/apps/pci-vouchers/',
+    '/apps/pci-ssh-keys/',
+  ],
   transform: {
     '^.+\\.(js|jsx|mjs|cjs|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
     '^.+\\.scss$': 'jest-scss-transform',
