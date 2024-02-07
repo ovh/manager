@@ -4632,15 +4632,6 @@
   resolved "https://registry.yarnpkg.com/@open-draft/until/-/until-2.1.0.tgz#0acf32f470af2ceaf47f095cdecd40d68666efda"
   integrity sha512-U69T3ItWHvLwGg5eJ0n3I62nWuE6ilHlmz7zM0npLBRvPRd7e6NYmg54vvRtP5mZG7kZqZCFVdsTWo7BPtBujg==
 
-"@ovh-ux/manager-core-api@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.6.0.tgz#45965ed12bb8f52f6b94db64b7059aa5ef7214ef"
-  integrity sha512-BVc9WlmqupAI4eZ99ml11uXqLQHUJ6AWFgnJgFxeXL4cKjN+IUrcdca/iMq19OYmQxz+4HmjlMCDZNy5c5zp1g==
-  dependencies:
-    "@ovh-ux/manager-core-sso" "^0.1.0"
-    "@ovh-ux/request-tagger" "^0.2.0"
-    axios "^1.1.2"
-
 "@ovh-ux/ng-ovh-api-wrappers@^5.0.0", "@ovh-ux/ng-ovh-api-wrappers@^5.1.0":
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-5.1.0.tgz#b8bfef258a4e0860eabf219cb1880ca0a15da687"

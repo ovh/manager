@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
 import LegacyContainer from '@/container/legacy';
@@ -22,6 +22,7 @@ export default function Container(): JSX.Element {
     setChatbotReduced,
   } = useContainer();
   const shell = useShell();
+  const [cookiePolicyApplied, setCookiePolicyApplied] = useState(false);
   const environment: Environment = shell
     .getPlugin('environment')
     .getEnvironment();
@@ -29,6 +30,10 @@ export default function Container(): JSX.Element {
   const { ovhSubsidiary, supportLevel } = environment.getUser();
 
   const isNavReshuffle = betaVersion && useBeta;
+
+  const cookiePolicyHandler = (applied: boolean): void => {
+    setCookiePolicyApplied(applied);
+  }
 
   useEffect(() => {
     if (!isLoading) {
@@ -85,11 +90,12 @@ export default function Container(): JSX.Element {
       <Suspense fallback="">
         <SSOAuthModal />
       </Suspense>
-      <Suspense fallback="">
+      {cookiePolicyApplied && <Suspense fallback="">
         <PaymentModal />
       </Suspense>
+      }
       <Suspense fallback="...">
-        <CookiePolicy shell={shell} />
+        <CookiePolicy shell={shell} onValidate={cookiePolicyHandler} />
       </Suspense>
     </>
   );

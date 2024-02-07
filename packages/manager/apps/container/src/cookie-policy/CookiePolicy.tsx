@@ -24,6 +24,7 @@ import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 type Props = {
   shell: Shell;
+  onValidate: Function
 };
 
 const ModalContent = ({ label }: { label: string }) => (
@@ -37,7 +38,7 @@ const ModalContent = ({ label }: { label: string }) => (
   </OsdsText>
 );
 
-const CookiePolicy = ({ shell }: Props): JSX.Element => {
+const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
   const { t } = useTranslation('cookie-policy');
   const [cookies, setCookies] = useCookies(['MANAGER_TRACKING']);
   const { environment } = useApplication();
@@ -59,22 +60,18 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
     },
   ];
 
-  const accept = () => {
-    setCookies('MANAGER_TRACKING', '1');
-    trackingPlugin.onUserConsentFromModal(true);
+  const validate = (agreed: boolean) => {
+    setCookies('MANAGER_TRACKING', agreed ? 1 : 0);
+    trackingPlugin.onUserConsentFromModal(agreed);
     setShow(false);
-  };
-
-  const deny = () => {
-    setCookies('MANAGER_TRACKING', '0');
-    trackingPlugin.onUserConsentFromModal(false);
-    setShow(false);
-  };
+    onValidate(true);
+  }
 
   useEffect(() => {
+    const isRegionUS = environment.getRegion() === 'US'
     trackingPlugin.setRegion(environment.getRegion());
     // activate tracking if region is US or if tracking consent cookie is valid
-    if (environment.getRegion() === 'US' || cookies.MANAGER_TRACKING === '1') {
+    if (isRegionUS || cookies.MANAGER_TRACKING === '1') {
       trackingPlugin.init(true);
     } else if (cookies.MANAGER_TRACKING == null) {
       trackingPlugin.onConsentModalDisplay();
@@ -82,6 +79,7 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
     } else {
       trackingPlugin.setEnabled(false);
     }
+    onValidate(isRegionUS || cookies.MANAGER_TRACKING);
   }, [show]);
 
   return (
@@ -103,7 +101,6 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
             </div>
             <ul><li><ModalContent label={t('cookie_policy_description_3')} /></li></ul>
             <ModalContent label={t('cookie_policy_description_2')} />
-
             <div>
               <ModalContent label={t('cookie_policy_description_4')} />
               <ModalContent label={t('cookie_policy_description_5')} />
@@ -118,18 +115,19 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
             size={ODS_BUTTON_SIZE.sm}
             variant={ODS_BUTTON_VARIANT.ghost}
             color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={deny}
+            onClick={() => validate(false)}
           >
             {t('cookie_policy_refuse')}
           </OsdsButton>
           <OsdsButton
             slot="actions"
-            onClick={accept}
+            onClick={() => validate(true)}
             data-navi-id="cookie-accept"
             size={ODS_BUTTON_SIZE.sm}
             variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
-          >
+            >
+
             {t('cookie_policy_accept')}
           </OsdsButton>
         </OsdsModal>
