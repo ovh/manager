@@ -1,3 +1,6 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useHref, useNavigate } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -6,13 +9,11 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-components/react';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Navigate, useHref } from 'react-router-dom';
 import { RancherService } from '@/api/api.type';
+import Title from '@/components/Title/Title';
+
 import Datagrid from '../../components/layout-helpers/Listing/dataGrid';
 import RancherTaskMessage from './RancherTaskMessage';
-import Title from '@/components/Title/Title';
 
 export interface ListingProps {
   data: RancherService[];
@@ -21,9 +22,11 @@ export interface ListingProps {
 const Listing: React.FC<ListingProps> = ({ data }) => {
   const { t } = useTranslation('pci-rancher/listing');
   const hrefDashboard = useHref('');
-
+  const navigate = useNavigate();
   if (data.length === 0) {
-    return <Navigate to="/onboarding" />;
+    navigate(
+      `/pci/projects/5a6980507c0a40dca362eb9b22d79044/rancher/onboarding`,
+    );
   }
 
   const tasks = data.map((rancher) => rancher.currentTasks).flat();
@@ -31,7 +34,6 @@ const Listing: React.FC<ListingProps> = ({ data }) => {
   return (
     <>
       <Title>{t('rancherTitle')}</Title>
-      {tasks.length ? <RancherTaskMessage tasks={tasks} /> : <></>}
       <div className="my-3 mt-5">
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
@@ -51,6 +53,7 @@ const Listing: React.FC<ListingProps> = ({ data }) => {
           </span>
         </OsdsButton>
       </div>
+      {tasks.length ? <RancherTaskMessage tasks={tasks} /> : <></>}
       <Datagrid data={data} />
     </>
   );

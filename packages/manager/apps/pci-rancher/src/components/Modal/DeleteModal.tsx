@@ -19,6 +19,7 @@ import React, { useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { RancherService } from '@/api/api.type';
+import Modal from './Modal';
 
 interface DeleteModalProps {
   toggleModal: (showModal: boolean) => void;
@@ -43,10 +44,9 @@ const DeleteModal = ({
   };
 
   return (
-    <OsdsModal
+    <Modal
       color={ODS_THEME_COLOR_INTENT.warning}
-      dismissible
-      onOdsModalClose={() => toggleModal(false)}
+      onClose={() => toggleModal(false)}
     >
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
@@ -101,7 +101,7 @@ const DeleteModal = ({
       >
         {t('deleteRancher')}
       </OsdsButton>
-    </OsdsModal>
+    </Modal>
   );
 };
 

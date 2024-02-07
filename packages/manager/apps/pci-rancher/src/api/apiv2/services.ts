@@ -102,7 +102,7 @@ export const editRancherService = async ({
     {
       targetSpec: {
         ...rancher.targetSpec,
-        name: 'rancher1_renamed',
+        name: rancher.currentState.name,
       },
     },
   );
