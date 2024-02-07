@@ -36,6 +36,7 @@ export default class AgoraIpOrderCtrl {
     User,
     atInternet,
     coreConfig,
+    ovhManagerRegionService,
   ) {
     this.$q = $q;
     this.$rootScope = $rootScope;
@@ -54,12 +55,14 @@ export default class AgoraIpOrderCtrl {
     this.ALERT_ID = ALERT_ID;
     this.region = coreConfig.getRegion();
     this.ovhSubsidiary = coreConfig.getUser().ovhSubsidiary;
+    this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   $onInit() {
     this.model = {
       params: {},
       selectedService: null,
+      selectedServiceRegion: null,
     };
     this.loading = {};
     this.user = this.$state.params.user;
@@ -203,6 +206,37 @@ export default class AgoraIpOrderCtrl {
 
   trackFinalStep() {
     this.trackStep(3);
+  }
+
+  getServiceRegion() {
+    this.model.selectedServiceRegion = null;
+    let request = null;
+    const { serviceName } = this.model.selectedService;
+
+    switch (this.model.selectedService?.type) {
+      case PRODUCT_TYPES.dedicatedServer.typeName:
+        request = this.IpAgoraOrder.getDedicatedServerRegion(serviceName);
+        break;
+      case PRODUCT_TYPES.vps.typeName:
+        request = this.IpAgoraOrder.getVpsServerRegion(serviceName);
+        break;
+      case PRODUCT_TYPES.privateCloud.typeName:
+        request = this.IpAgoraOrder.getDedicatedCloudServerRegion(serviceName);
+        break;
+      default:
+        request = this.$q.when(null);
+        break;
+    }
+
+    request.then((region) => {
+      this.model.selectedServiceRegion =
+        this.model.selectedService?.type ===
+        PRODUCT_TYPES.dedicatedServer.typeName
+          ? this.$translate.instant(`ip_region_${region}`)
+          : this.ovhManagerRegionService.getTranslatedMicroRegionLocation(
+              region,
+            );
+    });
   }
 
   manageLoadIpOffers() {
