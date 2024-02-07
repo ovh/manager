@@ -17,7 +17,7 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 
-import { GUIDES_LIST } from '../../guides-header.constants';
+import { GUIDES_LIST } from '@/guides-header.constants';
 import GuidesHeaderItem from '@/components/guides/GuidesHeaderItem';
 
 export default function GuidesHeader() {

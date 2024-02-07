@@ -1,0 +1,51 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Product vouchers datagrid cell > Product components should be rendered 1`] = `
+<osds-text
+  color="text"
+  level="body"
+  size="400"
+>
+  a product
+</osds-text>
+`;
+
+exports[`Product vouchers datagrid cell > Product components should be rendered correctly 1`] = `
+<osds-text
+  color="text"
+  level="body"
+  size="400"
+>
+  a product
+</osds-text>
+`;
+
+exports[`Product vouchers datagrid cell > Product components should be rendered correctly a named product 1`] = `
+<osds-text
+  color="text"
+  level="body"
+  size="400"
+>
+  a product
+</osds-text>
+`;
+
+exports[`Product vouchers datagrid cell > Product components should be rendered correctly with null 1`] = `
+<osds-text
+  color="text"
+  level="body"
+  size="400"
+>
+  cpb_vouchers_products_all
+</osds-text>
+`;
+
+exports[`Product vouchers datagrid cell > Product components should be rendered correctly without named product 1`] = `
+<osds-text
+  color="text"
+  level="body"
+  size="400"
+>
+  cpb_vouchers_products_all
+</osds-text>
+`;
