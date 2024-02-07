@@ -56,7 +56,6 @@ export default function PageSize({
 
   return (
     <>
-      {pageSizeStrategy.currentPageSize}
       <OsdsSelect
         defaultValue={pageSizeStrategy.currentPageSize}
         onOdsValueChange={({ detail }) =>
