@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.21.0...@ovh-ux/manager-pci@6.22.0) (2024-02-07)
+
+
+### Features
+
+* aiven databases US launch ([ec3f930](https://github.com/ovh/manager/commit/ec3f930addf9d36cb852225edbcce8b1ce9427c8))
+
+
+
+
+
 # [6.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.20.0...@ovh-ux/manager-pci@6.21.0) (2024-02-05)
 
 
