@@ -15,9 +15,10 @@ import { useApplication } from '@/context';
 
 type Props = {
   shell: Shell;
+  onValidate: Function
 };
 
-const CookiePolicy = ({ shell }: Props): JSX.Element => {
+const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
   const { t } = useTranslation('cookie-policy');
   const [cookies, setCookies] = useCookies(['MANAGER_TRACKING']);
   const { environment } = useApplication();
@@ -26,22 +27,18 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
     .user as User;
   const trackingPlugin = shell.getPlugin('tracking');
 
-  const accept = () => {
-    setCookies('MANAGER_TRACKING', 1);
-    trackingPlugin.onUserConsentFromModal(true);
+  const validate = (agreed: boolean): void => {
+    setCookies('MANAGER_TRACKING', agreed ? 1 : 0);
+    trackingPlugin.onUserConsentFromModal(agreed);
     setShow(false);
-  };
-
-  const deny = () => {
-    setCookies('MANAGER_TRACKING', 0);
-    trackingPlugin.onUserConsentFromModal(false);
-    setShow(false);
-  };
+    onValidate(true);
+  }
 
   useEffect(() => {
+    const isRegionUS = environment.getRegion() === 'US'
     trackingPlugin.setRegion(environment.getRegion());
     // activate tracking if region is US or if tracking consent cookie is valid
-    if (environment.getRegion() === 'US' || cookies.MANAGER_TRACKING === '1') {
+    if (isRegionUS || cookies.MANAGER_TRACKING === '1') {
       trackingPlugin.init(true);
     } else if (cookies.MANAGER_TRACKING == null) {
       trackingPlugin.onConsentModalDisplay();
@@ -49,6 +46,7 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
     } else {
       trackingPlugin.setEnabled(false);
     }
+    onValidate(isRegionUS || cookies.MANAGER_TRACKING);
   }, []);
 
   const moreInfoLink = links.moreInfo[ovhSubsidiary];
@@ -98,14 +96,14 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
       <Modal.Footer>
         <div className="banner-buttons w-100 d-flex flex-wrap justify-content-center align-items-center flex-column">
           <button
-            onClick={() => accept()}
+            onClick={() => validate(true)}
             className="accept mb-2 oui-button oui-button_primary"
             data-navi-id="cookie-accept"
           >
             <span>{t('cookie_policy_accept')}</span>
           </button>
           <button
-            onClick={() => deny()}
+            onClick={() => validate(false)}
             className="deny oui-button oui-button_secondary"
           >
             <span>{t('cookie_policy_refuse')}</span>
