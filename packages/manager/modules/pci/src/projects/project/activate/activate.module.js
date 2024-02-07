@@ -9,7 +9,6 @@ import newModule from '../../new/module';
 import component from './activate.component';
 import routing from './activate.routing';
 import projectService from '../project.service';
-import './index.scss';
 
 const moduleName = 'ovhManagerPciProjectActivate';
 
