@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.12.0...@ovh-ux/manager-web@18.13.0) (2024-02-07)
+
+
+### Features
+
+* **web:** remove extra data in call to http ([#10857](https://github.com/ovh/manager/issues/10857)) ([fdecde7](https://github.com/ovh/manager/commit/fdecde777ad20a6a7fe5c6d06201e346a1e18368))
+
+
+
+
+
 # [18.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.11.1...@ovh-ux/manager-web@18.12.0) (2024-02-05)
 
 
