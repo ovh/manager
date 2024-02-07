@@ -55,7 +55,7 @@ export default class ProjectEditController {
           this.setDefault(this.serviceName);
         }
         // isDefault is false, if the default project is this one, we should remove the key
-        if (this.defaultProject.projectId === this.serviceName) {
+        if (this.defaultProject?.projectId === this.serviceName) {
           this.unFavProject();
         }
         return null;
