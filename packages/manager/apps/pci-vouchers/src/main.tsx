@@ -26,7 +26,7 @@ const init = async (
 
   const locales = await context.shell.i18n.getAvailableLocales();
 
-  const i18n = initI18n(
+  const i18n = await initI18n(
     context.environment.getUserLocale(),
     locales.map(({ key }) => key),
   );
