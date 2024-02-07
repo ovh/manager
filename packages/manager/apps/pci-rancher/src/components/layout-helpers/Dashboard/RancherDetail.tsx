@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -31,7 +32,7 @@ import { AccessDetail } from '../../../hooks/useGenerateAccessDetail';
 
 interface RancherDetailProps {
   rancher: RancherService;
-  editNameResponse: ODS_MESSAGE_TYPE | null;
+  editNameResponseType: ODS_MESSAGE_TYPE | null;
   editRancherName: (rancher: RancherService) => void;
   generateAccesDetail: () => void;
   accessDetail: AccessDetail;
@@ -39,7 +40,7 @@ interface RancherDetailProps {
 }
 const RancherDetail = ({
   rancher,
-  editNameResponse,
+  editNameResponseType,
   editRancherName,
   generateAccesDetail,
   accessDetail,
@@ -62,13 +63,13 @@ const RancherDetail = ({
 
   return (
     <div>
-      {editNameResponse && (
-        <OsdsMessage type={editNameResponse} className="my-4 p-3">
+      {editNameResponseType && (
+        <OsdsMessage type={editNameResponseType} className="my-4 p-3">
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
             className="inline-block"
           >
-            {editNameResponse === ODS_MESSAGE_TYPE.info
+            {editNameResponseType === ODS_MESSAGE_TYPE.success
               ? t('editNameRancherSuccess')
               : t('editNameRancherError')}
           </OsdsText>
@@ -160,6 +161,7 @@ const RancherDetail = ({
                   color={ODS_THEME_COLOR_INTENT.primary}
                   size={ODS_BUTTON_SIZE.sm}
                   variant={ODS_BUTTON_VARIANT.stroked}
+                  target={OdsHTMLAnchorElementTarget._blank}
                   className="my-5"
                   inline
                   href={rancher.currentState.url}

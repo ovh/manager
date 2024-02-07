@@ -11,7 +11,7 @@ const setupSpecTest = async (rancherService: RancherService = rancherMocked) =>
     render(
       <RancherDetail
         rancher={rancherService}
-        editNameResponse={null}
+        editNameResponseType={null}
         editRancherName={jest.fn()}
         generateAccesDetail={jest.fn()}
         accessDetail={null}

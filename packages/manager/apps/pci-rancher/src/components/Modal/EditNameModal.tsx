@@ -19,6 +19,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RancherService } from '@/api/api.type';
 import { isValidRancherName } from '@/utils/rancher';
+import Modal from './Modal';
 
 interface DeleteModalProps {
   rancher: RancherService;
@@ -50,10 +51,9 @@ const EditNameModal = ({
     }
   };
   return (
-    <OsdsModal
+    <Modal
       color={ODS_THEME_COLOR_INTENT.info}
-      dismissible
-      onOdsModalClose={() => toggleModal(false)}
+      onClose={() => toggleModal(false)}
     >
       <OsdsText
         color={ODS_THEME_COLOR_INTENT.text}
@@ -109,7 +109,7 @@ const EditNameModal = ({
       >
         {t('editNameRancherCta')}
       </OsdsButton>
-    </OsdsModal>
+    </Modal>
   );
 };
 
