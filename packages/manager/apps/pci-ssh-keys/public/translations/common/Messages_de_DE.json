@@ -1,0 +1,32 @@
+{
+  "pci_projects_project_sshKeys_title": "SSH-Schlüssel",
+  "pci_projects_project_sshKeys_add": "SSH-Schlüssel hinzufügen",
+  "pci_projects_project_sshKeys_name": "Name",
+  "pci_projects_project_sshKeys_public": "Schlüssel",
+  "pci_projects_project_sshKeys_remove": "Diesen Schlüssel löschen",
+  "common_pagination_ofnresults": "von {{TOTAL_ITEMS}} Ergebnissen",
+  "pci_projects_project_sshKeys_remove_title": "SSH-Schlüssel löschen",
+  "pci_projects_project_sshKeys_remove_description": "Dieser Vorgang kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie den Schlüssel {{ name }} löschen möchten?",
+  "pci_projects_project_sshKeys_remove_submit_label": "Löschen",
+  "pci_projects_project_sshKeys_remove_cancel_label": "Abbrechen",
+  "pci_projects_project_sshKeys_remove_success": "Der SSH-Schlüssel wurde erfolgreich gelöscht.",
+  "pci_projects_project_sshKeys_remove_error": "Beim Löschen des SSH-Schlüssels ist ein Fehler aufgetreten: {{ error }}.",
+  "common_confirm": "Bestätigen",
+  "common_cancel": "Abbrechen",
+  "common_clipboard_copied": "Kopiert",
+  "pci_projects_project_sshKeys_add_title": "SSH-Schlüssel hinzufügen",
+  "pci_projects_project_sshKeys_add_submit_label": "Hinzufügen",
+  "pci_projects_project_sshKeys_add_cancel_label": "Abbrechen",
+  "pci_projects_project_sshKeys_add_success": "Der SSH-Schlüssel wurde erfolgreich hinzugefügt",
+  "pci_projects_project_sshKeys_add_error": "Beim Hinzufügen des SSH-Schlüssels ist ein Fehler aufgetreten: {{ error }}",
+  "pci_projects_project_sshKeys_add_name": "Name",
+  "pci_projects_project_sshKeys_add_key": "Schlüssel",
+  "pci_projects_project_sshKeys_add_key_description": "Schlüssel eingeben",
+  "pci_projects_project_sshKeys_add_infos": "Akzeptiert werden SSH-Schlüssel vom Typ RSA, ECDSA und ED25519.",
+
+  "common_pagination_of": "von",
+  "common_pagination_results": "Ergebnisse",
+  "common_pagination_no_results": "Keine Ergebnisse",
+
+  "common_field_error_required": "Bitte füllen Sie dieses Feld aus."
+}

@@ -32,10 +32,12 @@ const DatagridTest = ({
   columns,
   items,
   pageIndex,
+  className,
 }: {
   columns: DatagridColumn<string>[];
   items: string[];
   pageIndex: number;
+  className?: string;
 }) => {
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex,
@@ -52,6 +54,7 @@ const DatagridTest = ({
       sorting={{ id: 'name', desc: false }}
       onPaginationChange={setPagination}
       onSortChange={() => {}}
+      className={className || ''}
     />
   );
 };
@@ -167,4 +170,16 @@ describe('Paginated datagrid component', () => {
     expect(container.querySelectorAll('thead tr').length).toBe(1);
     expect(container.querySelectorAll('tbody tr').length).toBe(1);
   });
+});
+
+it('should disable overflow of table', async () => {
+  const { container } = render(
+    <DatagridTest
+      columns={sampleColumns}
+      items={[]}
+      pageIndex={0}
+      className={'overflow-hidden'}
+    />,
+  );
+  expect(container.querySelectorAll('.overflow-hidden').length).toBe(1);
 });
