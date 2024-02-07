@@ -59,6 +59,8 @@ export interface DatagridProps<T> {
   onPaginationChange?: (pagination: PaginationState) => void;
   /** callback to handle column sorting change events (optional if column sorting is not required) */
   onSortChange?: (sorting: ColumnSort) => void;
+  /** option to add custom CSS class */
+  className?: string;
 }
 
 export const Datagrid = <T extends unknown>({
@@ -67,6 +69,7 @@ export const Datagrid = <T extends unknown>({
   totalItems,
   pagination,
   sorting,
+  className,
   onPaginationChange,
   onSortChange,
 }: DatagridProps<T>) => {
@@ -109,8 +112,8 @@ export const Datagrid = <T extends unknown>({
 
   return (
     <div>
-      <div className={'overflow-x-auto px-[1px]'}>
-        <table className="w-full mb-2">
+      <div className={`contents overflow-x-auto px-[1px] ${className || ''}`}>
+        <table className="w-full border-collapse">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
