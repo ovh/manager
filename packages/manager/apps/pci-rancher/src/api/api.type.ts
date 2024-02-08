@@ -12,6 +12,13 @@ export type ResponseData<T = unknown> = {
   };
 };
 
+export type ErrorResponse = {
+  response: {
+    status: number;
+    data: { message: string };
+  };
+};
+
 export interface PciProject {
   access: string;
   creationDate: string;

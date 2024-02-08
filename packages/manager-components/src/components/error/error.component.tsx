@@ -21,7 +21,7 @@ export const ErrorBanner = ({
   const { t } = useDynamicTranslation('error');
 
   return (
-    <div className="w-full h-full overflow-hidden mx-autogrid p-5">
+    <div className="mx-auto  w-full h-full max-w-[600px] overflow-hidden mx-autogrid p-5">
       <img src={OOPS} alt="OOPS" className="w-full" />
       <div className="py-2">
         <OsdsText size={ODS_TEXT_SIZE._600} level={ODS_TEXT_LEVEL.heading}>
