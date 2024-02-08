@@ -49,9 +49,6 @@ export default /* @ngInject */ ($stateProvider) => {
         return null;
       });
     },
-    atInternet: {
-      ignore: true,
-    },
     resolve: {
       projectId: /* @ngInject */ ($transition$) =>
         $transition$.params().projectId,
@@ -63,9 +60,6 @@ export default /* @ngInject */ ($stateProvider) => {
         atInternet.setPciProjectMode({
           isDiscoveryProject,
           projectId,
-        });
-        return atInternet.trackPage({
-          name: `PublicCloud::pci::projects::project`,
         });
       },
       activateDiscovery: /* @ngInject */ (
