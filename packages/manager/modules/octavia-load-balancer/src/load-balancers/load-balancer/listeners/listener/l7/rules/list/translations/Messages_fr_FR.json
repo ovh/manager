@@ -6,5 +6,6 @@
   "octavia_load_balancer_list_l7_rules_value": "Valeur",
   "octavia_load_balancer_list_l7_rules_invert": "Inverser",
   "octavia_load_balancer_list_l7_rules_actions_edit": "Editer",
-  "octavia_load_balancer_list_l7_rules_actions_delete": "Supprimer"
+  "octavia_load_balancer_list_l7_rules_actions_delete": "Supprimer",
+  "octavia_load_balancer_create_l7_rule_success": "Votre L7 rule a été créée avec succès."
 }

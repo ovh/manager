@@ -12,7 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
         loadbalancerL7RulesView: 'octaviaLoadBalancerL7RulesList',
       },
       resolve: {
-        breadcrumb: () => 'L7 Rules',
+        breadcrumb: () => null,
         rules: /* @ngInject */ (
           OctaviaLoadBalancerL7Service,
           projectId,
@@ -25,7 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => () => {
           trackL7RulesAction('create');
           $state.go(
-            'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.create',
+            'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.l7Rules.create',
           );
         },
         goToL7RuleEdition: /* @ngInject */ ($state, trackL7RulesAction) => (
@@ -33,7 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => {
           trackL7RulesAction('edit');
           $state.go(
-            'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.edit',
+            'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.l7Rules.edit',
             {
               policyId: policy.id,
             },
@@ -44,7 +44,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => {
           trackL7RulesAction('delete');
           $state.go(
-            'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.delete',
+            'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.l7Rules.delete',
             {
               policyId: policy.id,
             },

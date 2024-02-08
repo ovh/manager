@@ -10,7 +10,7 @@ export default /* @ngInject */ ($stateProvider) => {
           'octaviaLoadBalancerL7Rules',
       },
       resolve: {
-        breadcrumb: () => null,
+        breadcrumb: () => 'L7 Rules',
         policyId: /* @ngInject */ ($transition$) =>
           $transition$.params().policyId,
         goToL7PoliciesListingPage: /* @ngInject */ ($state) => () =>
