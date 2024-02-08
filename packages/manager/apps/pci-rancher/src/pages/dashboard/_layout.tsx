@@ -1,10 +1,10 @@
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useResolvedPath } from 'react-router-dom';
+import { useNavigate, useResolvedPath } from 'react-router-dom';
+import { ErrorBanner } from '@ovhcloud/manager-components';
 import Breadcrumb, {
   BreadcrumbHandleParams,
 } from '@/components/Breadcrumb/Breadcrumb';
-import ErrorBanner from '@/components/Error/Error';
 import Loading from '@/components/Loading/Loading';
 import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
 import { DashboardTabItemProps } from '../../components/layout-helpers/Dashboard/Dashboard';
@@ -18,6 +18,7 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 export default function DashboardPage() {
   const { t } = useTranslation('pci-rancher/dashboard');
   const { data, error, isLoading } = useRancher();
+  const navigate = useNavigate();
 
   const tabsList: DashboardTabItemProps[] = [
     {
@@ -37,7 +38,10 @@ export default function DashboardPage() {
   if (error) {
     return (
       <Suspense>
-        <ErrorBanner error={error} />
+        <ErrorBanner
+          onRedirectHome={() => navigate('')}
+          error={error?.response}
+        />
       </Suspense>
     );
   }

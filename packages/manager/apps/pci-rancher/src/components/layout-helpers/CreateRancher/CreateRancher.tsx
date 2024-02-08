@@ -12,10 +12,12 @@ import {
   OsdsChip,
   OsdsInput,
   OsdsMessage,
+  OsdsRadio,
+  OsdsRadioGroup,
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { isValidRancherName } from '@/utils/rancher';
@@ -32,15 +34,22 @@ const TileSection: React.FC<{
   isActive: boolean;
   description?: string;
   chipLabel?: string;
-}> = ({ name, isActive, description, chipLabel }) => (
+  onClick: () => void;
+  isDisabled: boolean;
+}> = ({ name, isActive, description, chipLabel, onClick, isDisabled }) => (
   <OsdsTile
     aria-label={`tile-${name}`}
-    disabled={!isActive || undefined}
+    disabled={isDisabled || undefined}
     checked={isActive || undefined}
     color={
       isActive ? ODS_THEME_COLOR_INTENT.text : ODS_THEME_COLOR_INTENT.default
     }
-    className="w-1/2 mr-5 "
+    className="w-1/2 mr-5"
+    onClick={() => {
+      if (!isDisabled) {
+        onClick();
+      }
+    }}
   >
     <div className="flex flex-col">
       <div className="flex items-center">
@@ -97,11 +106,21 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
     'pci-rancher/listing',
   ]);
   const [rancherName, setRancherName] = useState(null);
+  const [selectedPlan, setSelectedPlan] = useState(null);
+  const [selectedVersion, setSelectedVersion] = useState(null);
 
-  const activeVersion = versions?.filter((v) => v.status === 'AVAILABLE')[0];
-  const activePlan = plans?.filter((v) => v.status === 'AVAILABLE')[0];
   const isValidName = rancherName !== '' && isValidRancherName(rancherName);
   const hasInputError = rancherName !== null && !isValidName;
+
+  useEffect(() => {
+    if (selectedPlan === null && plans?.length) {
+      setSelectedPlan(plans?.filter((v) => v.status === 'AVAILABLE')[0]);
+    }
+
+    if (selectedVersion === null && versions?.length) {
+      setSelectedVersion(versions?.filter((v) => v.status === 'AVAILABLE')[0]);
+    }
+  }, [versions, plans]);
 
   const onCreateClick = (rancherPayload: CreateRancherPayload) => {
     onCreateRancher(rancherPayload);
@@ -171,10 +190,12 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
           {plans?.map((v) => (
             <TileSection
               key={v.name}
-              isActive={v.name === activePlan?.name}
+              isActive={v.name === selectedPlan?.name}
+              isDisabled={v.status !== 'AVAILABLE'}
               name={t(v.name)}
               description={t(getRancherPlanDescription(v.name))}
               chipLabel={v.name === 'OVHCLOUD_EDITION' ? t('comingSoon') : ''}
+              onClick={() => setSelectedPlan(v)}
             />
           ))}
         </div>
@@ -196,13 +217,15 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
           {versions?.map((v) => (
             <TileSection
               key={v.name}
-              isActive={v.name === activeVersion?.name}
+              isActive={v.name === selectedVersion?.name}
               name={v.name}
               description={
-                v.name === activeVersion?.name
+                v.name === selectedVersion?.name
                   ? t('createRancherRecomendedVersion')
                   : undefined
               }
+              isDisabled={v.status !== 'AVAILABLE'}
+              onClick={() => setSelectedVersion(v)}
             />
           ))}
         </div>
@@ -225,8 +248,8 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
               if (isValidName) {
                 onCreateClick({
                   name: rancherName,
-                  version: activeVersion.name,
-                  plan: activePlan.name,
+                  version: selectedVersion.name,
+                  plan: selectedPlan.name,
                 });
               }
             }}
