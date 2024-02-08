@@ -1,5 +1,3 @@
-import filter from 'lodash/filter';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.hosting.dashboard.database.private-sql-activation',
@@ -25,19 +23,16 @@ export default /* @ngInject */ ($stateProvider) => {
         me: /* @ngInject */ (user) => user,
         hosting: /* @ngInject */ ($transition$) =>
           $transition$.params().productId,
-        privateSqlOptions: /* @ngInject */ (availableOptions) =>
-          filter(availableOptions, (option) =>
-            option.planCode.startsWith('private-sql'),
-          ),
-        versions: /* @ngInject */ (PrivateDatabase) =>
-          PrivateDatabase.getOrderableDatabaseVersions('classic'),
+        privateSqlCatalog: /* @ngInject */ (HostingDatabase, me) =>
+          HostingDatabase.getPrivateSqlCatalogForHosting(me.ovhSubsidiary),
+        dbCategories: /* @ngInject */ (privateSqlCatalog, HostingDatabase) =>
+          HostingDatabase.buildPrivateSqlDbCategories(privateSqlCatalog),
         datacenter: /* @ngInject */ (serviceName, getDatacenter) =>
           getDatacenter(serviceName),
         getDatacenter: /* @ngInject */ (Hosting) => async (serviceName) => {
           const { datacenter } = await Hosting.getHosting(serviceName);
           return datacenter;
         },
-
         onError: /* @ngInject */ ($translate, goToHosting) => (error) =>
           goToHosting(
             $translate.instant('privatesql_activation_hosting_error', {
