@@ -95,11 +95,7 @@ export default class PciProjectNewPaymentCtrl {
 
     this.isCheckingPaymentMethod = true;
     return this.pollCheckDefaultPaymentMethod(paymentMethodId)
-      .then(() => {
-        const projectCreationFn =
-          this.viewOptions.onSubmit || this.manageProjectCreation;
-        projectCreationFn();
-      })
+      .then(() => this.createProject())
       .catch((error) => {
         if (error?.status === ORDER_CHECK_PAYMENT_TIMEOUT_OVER) {
           this.hasCheckingError = true;
@@ -461,16 +457,20 @@ export default class PciProjectNewPaymentCtrl {
         });
     }
 
-    const projectCreationFn =
-      this.viewOptions.onSubmit || this.manageProjectCreation;
-
     return Promise.all([challengePromise, defaultPaymentMethodPromise]).then(
       () => {
         return !this.model.challenge.error && !setDefaultPaymentMethodInError
-          ? projectCreationFn()
+          ? this.createProject()
           : null;
       },
     );
+  }
+
+  createProject() {
+    if (this.viewOptions.onSubmit) {
+      return this.viewOptions.onSubmit();
+    }
+    return this.manageProjectCreation();
   }
 
   /* -----  End of Events  ------ */
