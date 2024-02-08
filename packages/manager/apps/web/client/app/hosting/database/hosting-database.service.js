@@ -3,7 +3,18 @@ import forEach from 'lodash/forEach';
 import snakeCase from 'lodash/snakeCase';
 import some from 'lodash/some';
 
-import { PRIVATE_SQL_PLAN_CODE } from './hosting-database.constants';
+import groupBy from 'lodash/groupBy';
+import set from 'lodash/set';
+import {
+  PRIVATE_SQL_PLAN_CODE,
+  PRIVATE_SQL_PLAN_CODE_PREFIX,
+} from './hosting-database.constants';
+import {
+  DB_OFFERS,
+  OFFERS_WITHOUT_START_SQL,
+  REGEX_DB_OFFER_SORT,
+} from './order/public/hosting-database-order-public.constants';
+import { PRODUCT_NAME } from '../../private-database/order/clouddb/private-database-order-clouddb.constants';
 
 angular.module('services').service(
   'HostingDatabase',
@@ -17,6 +28,7 @@ angular.module('services').service(
       OvhHttp,
       Poller,
       OvhApiOrderCatalogPublic,
+      WucOrderCartService,
       iceberg,
     ) {
       this.$http = $http;
@@ -27,7 +39,177 @@ angular.module('services').service(
       this.OvhHttp = OvhHttp;
       this.Poller = Poller;
       this.OvhApiOrderCatalogPublic = OvhApiOrderCatalogPublic;
+      this.WucOrderCartService = WucOrderCartService;
       this.iceberg = iceberg;
+    }
+
+    static getStartSqlCategory(catalog) {
+      return catalog.addons.filter(({ planCode }) =>
+        planCode.startsWith(DB_OFFERS.STARTER.PLAN_CODE_PREFIX),
+      );
+    }
+
+    static getPrivateSqlCategory(catalog) {
+      const offers = catalog.addons
+        .filter(({ planCode }) =>
+          planCode.startsWith(PRIVATE_SQL_PLAN_CODE_PREFIX),
+        )
+        .map((dbGroup) => ({
+          ...dbGroup,
+          productSize: dbGroup.product.split('-')[2],
+          tracking: DB_OFFERS.PRIVATE.TRACKING,
+        }));
+      // init db engines
+      offers.forEach((dbOffer) => {
+        const dbms = dbOffer.configurations
+          .find(({ name }) => name === 'engine')
+          .values.map((db) => {
+            const [dbName, dbVersion] = db.split('_');
+            return { db, dbName, dbVersion };
+          });
+        const groupedDbms = groupBy(dbms, 'dbName');
+        const engines = Object.keys(groupedDbms).map((dbGroup) => ({
+          dbGroup,
+          versions: groupedDbms[dbGroup],
+        }));
+
+        set(dbOffer, 'engines', engines);
+      });
+      return offers;
+    }
+
+    static getWebCloudCategory(webCloudCatalog) {
+      const offers = webCloudCatalog.plans
+        .filter(({ family }) => family === DB_OFFERS.PRIVATE.FAMILY)
+        .map((dbGroup) => ({
+          ...dbGroup,
+          productSize: dbGroup.product.split('-')[2],
+          tracking: DB_OFFERS.PRIVATE.TRACKING,
+        }));
+
+      // init db engines
+      offers.forEach((dbOffer) => {
+        const dbms = dbOffer.configurations
+          .find(({ name }) => name === 'engine')
+          .values.map((db) => {
+            const [dbName, dbVersion] = db.split('_');
+            return { db, dbName, dbVersion };
+          });
+        const groupedDbms = groupBy(dbms, 'dbName');
+        const engines = Object.keys(groupedDbms).map((dbGroup) => ({
+          dbGroup,
+          versions: groupedDbms[dbGroup],
+        }));
+
+        set(dbOffer, 'engines', engines);
+      });
+
+      return offers;
+    }
+
+    static dbOfferSort(a, b) {
+      return (
+        a.planCode.match(REGEX_DB_OFFER_SORT).pop() -
+        b.planCode.match(REGEX_DB_OFFER_SORT).pop()
+      );
+    }
+
+    buildPrivateSqlDbCategories(webCloudCatalog) {
+      const webCloudCategory = this.constructor.getPrivateSqlCategory(
+        webCloudCatalog,
+      );
+      // const db groups
+      const groupedCategories = {
+        [DB_OFFERS.PRIVATE.CATEGORY]: {
+          versions: webCloudCategory,
+          tracking: DB_OFFERS.PRIVATE.TRACKING,
+          productName: DB_OFFERS.PRIVATE.PRODUCT_NAME,
+        },
+      };
+
+      const dbCategories = Object.keys(groupedCategories).map((category) => {
+        const { versions, tracking, productName } = groupedCategories[category];
+
+        return {
+          category,
+          versions,
+          tracking,
+          selectVersion: versions[0],
+          selectEngine: null,
+          productName,
+        };
+      });
+
+      return dbCategories;
+    }
+
+    buildDbCategories(catalog, webCloudCatalog, offer) {
+      let startSqlCategory = null;
+      const webCloudCategory = this.constructor
+        .getWebCloudCategory(webCloudCatalog)
+        .sort(this.constructor.dbOfferSort);
+      if (offer) {
+        startSqlCategory = this.constructor
+          .getStartSqlCategory(catalog)
+          .sort(this.constructor.dbOfferSort);
+      }
+      // const db groups
+      const groupedCategories = offer
+        ? {
+            ...(!OFFERS_WITHOUT_START_SQL.includes(offer) && {
+              [DB_OFFERS.STARTER.CATEGORY]: {
+                versions: startSqlCategory,
+                tracking: DB_OFFERS.STARTER.TRACKING,
+                productName: DB_OFFERS.STARTER.PRODUCT_NAME,
+              },
+            }),
+            [DB_OFFERS.PRIVATE.CATEGORY]: {
+              versions: webCloudCategory,
+              tracking: DB_OFFERS.PRIVATE.TRACKING,
+              productName: DB_OFFERS.PRIVATE.PRODUCT_NAME,
+            },
+          }
+        : {
+            [DB_OFFERS.PRIVATE.CATEGORY]: {
+              versions: webCloudCategory,
+              tracking: DB_OFFERS.PRIVATE.TRACKING,
+              productName: DB_OFFERS.PRIVATE.PRODUCT_NAME,
+            },
+          };
+
+      const dbCategories = Object.keys(groupedCategories).map((category) => {
+        const { versions, tracking, productName } = groupedCategories[category];
+
+        return {
+          category,
+          versions,
+          tracking,
+          selectVersion: versions[0],
+          selectEngine: null,
+          productName,
+        };
+      });
+
+      return dbCategories;
+    }
+
+    getWebCloudCatalog(ovhSubsidiary) {
+      return this.$http
+        .get(`/order/catalog/public/cloudDB?ovhSubsidiary=${ovhSubsidiary}`)
+        .then(({ data }) => data);
+    }
+
+    getPrivateSqlCatalogForHosting(ovhSubsidiary) {
+      return this.$http
+        .get(`/order/catalog/public/webHosting?ovhSubsidiary=${ovhSubsidiary}`)
+        .then(({ data }) => data);
+    }
+
+    getCloudDBCatalog(ovhSubsidiary) {
+      return this.WucOrderCartService.getProductPublicCatalog(
+        ovhSubsidiary,
+        PRODUCT_NAME,
+      );
     }
 
     /**

@@ -2,6 +2,7 @@ export const DATACENTER_CONFIGURATION_KEY = 'dc';
 export const ENGINE_CONFIGURATION_KEY = 'engine';
 export const PLAN_CODE_TEMPLATE = 'cloud-db-xxxx-instance';
 export const PRODUCT_NAME = 'cloudDB';
+export const WEB_HOSTING_PRODUCT_NAME = 'webHosting';
 export const PRESELECTED_DB_CATEGORY = 'private';
 
 export default {
