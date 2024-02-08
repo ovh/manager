@@ -187,15 +187,17 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
           {t('createRancherServiceLevelDescription')}
         </OsdsText>
         <div className="flex my-5">
-          {plans?.map((v) => (
+          {plans?.map((plan) => (
             <TileSection
-              key={v.name}
-              isActive={v.name === selectedPlan?.name}
-              isDisabled={v.status !== 'AVAILABLE'}
-              name={t(v.name)}
-              description={t(getRancherPlanDescription(v.name))}
-              chipLabel={v.name === 'OVHCLOUD_EDITION' ? t('comingSoon') : ''}
-              onClick={() => setSelectedPlan(v)}
+              key={plan.name}
+              isActive={plan.name === selectedPlan?.name}
+              isDisabled={plan.status !== 'AVAILABLE'}
+              name={t(plan.name)}
+              description={t(getRancherPlanDescription(plan.name))}
+              chipLabel={
+                plan.name === 'OVHCLOUD_EDITION' ? t('comingSoon') : ''
+              }
+              onClick={() => setSelectedPlan(plan)}
             />
           ))}
         </div>
@@ -214,18 +216,18 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
           </OsdsText>
         </Block>
         <div className="flex my-5">
-          {versions?.map((v) => (
+          {versions?.map((version) => (
             <TileSection
-              key={v.name}
-              isActive={v.name === selectedVersion?.name}
-              name={v.name}
+              key={version.name}
+              isActive={version.name === selectedVersion?.name}
+              name={version.name}
               description={
-                v.name === selectedVersion?.name
+                version.name === selectedVersion?.name
                   ? t('createRancherRecomendedVersion')
                   : undefined
               }
-              isDisabled={v.status !== 'AVAILABLE'}
-              onClick={() => setSelectedVersion(v)}
+              isDisabled={version.status !== 'AVAILABLE'}
+              onClick={() => setSelectedVersion(version)}
             />
           ))}
         </div>

@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useResolvedPath } from 'react-router-dom';
+import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
 import { ErrorBanner } from '@ovhcloud/manager-components';
 import Breadcrumb, {
   BreadcrumbHandleParams,
@@ -16,6 +16,7 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 }
 
 export default function DashboardPage() {
+  const { projectId } = useParams();
   const { t } = useTranslation('pci-rancher/dashboard');
   const { data, error, isLoading } = useRancher();
   const navigate = useNavigate();
@@ -39,8 +40,9 @@ export default function DashboardPage() {
     return (
       <Suspense>
         <ErrorBanner
-          onRedirectHome={() => navigate('')}
-          error={error?.response}
+          onRedirectHome={() => navigate(`/pci/projects/${projectId}/rancher`)}
+          onReloadPage={() => window.location.reload()}
+          error={error.response}
         />
       </Suspense>
     );

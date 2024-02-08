@@ -15,7 +15,7 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 export default function Home() {
   const { data, isError, error, isLoading } = useRanchers();
 
-  if (isError) {
+  if (isError && error) {
     return <ErrorBanner error={error.response} />;
   }
 
