@@ -57,6 +57,12 @@ export default class PciProjectNewPaymentMethodAddCtrl {
       'dedicated',
       '#/billing/payment/method/add',
     );
+
+    this.defaultExplanationTextsOptions = {
+      creditCard: 'info',
+      rupay: 'info',
+      sepa: { intro: 'warning', banner: 'info' },
+    };
   }
 
   /* ==============================
