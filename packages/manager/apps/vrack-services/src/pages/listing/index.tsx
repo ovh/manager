@@ -22,14 +22,15 @@ import {
 import {
   useOrderPollingStatus,
   OrderDescription,
-  getVrackServicesResourceListQueryKey,
-} from '@/api';
+} from '@ovh-ux/manager-core-order';
+import { getVrackServicesResourceListQueryKey } from '@/api';
 import { VrackServicesDatagrid } from '@/pages/listing/components/VrackServicesDataGrid';
 import { PageLayout } from '@/components/layout-helpers';
 import { DeliveringMessages } from '@/components/DeliveringMessages';
 import { handleClick } from '@/utils/ods-utils';
 import { useVrackServicesList } from '@/utils/vs-utils';
 import { betaVrackServicesLimit } from './constants';
+import { urls } from '@/router/constants';
 
 const ListingPage: React.FC = () => {
   const { t } = useTranslation('vrack-services/listing');
@@ -56,7 +57,7 @@ const ListingPage: React.FC = () => {
     data?.data.length === 0 &&
     vrackServicesDeliveringOrders?.length === 0
   ) {
-    return <Navigate to="/onboarding" />;
+    return <Navigate to={urls.onboarding} />;
   }
 
   return (
@@ -88,7 +89,7 @@ const ListingPage: React.FC = () => {
         color={ODS_THEME_COLOR_INTENT.primary}
         variant={ODS_BUTTON_VARIANT.stroked}
         size={ODS_BUTTON_SIZE.sm}
-        {...handleClick(() => navigate('/create'))}
+        {...handleClick(() => navigate(urls.createVrackServices))}
       >
         <OsdsIcon
           className="mr-4"

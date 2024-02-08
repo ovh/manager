@@ -3,14 +3,15 @@ import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { Card, CardProps } from '@ovhcloud/manager-components';
+import {
+  OrderDescription,
+  useOrderPollingStatus,
+} from '@ovh-ux/manager-core-order';
 import { useGuideUtils } from '@/components/GuideLink';
 import { OnboardingLayout } from '@/components/layout-helpers';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
-import {
-  OrderDescription,
-  getVrackServicesResourceListQueryKey,
-  useOrderPollingStatus,
-} from '@/api';
+import { getVrackServicesResourceListQueryKey } from '@/api';
+import { urls } from '@/router/constants';
 
 const OnboardingPage = () => {
   const { t } = useTranslation('vrack-services/onboarding');
@@ -64,7 +65,7 @@ const OnboardingPage = () => {
       description={t('description')}
       imageSrc={onboardingImgSrc}
       primaryButtonLabel={t('orderButtonLabel')}
-      primaryOnClick={() => navigate('/create')}
+      primaryOnClick={() => navigate(urls.createVrackServices)}
       primaryButtonDataTracking="vrack-services::onboarding::add"
       secondaryButtonLabel={t('moreInfoButtonLabel')}
       secondaryHref={t('moreInfoButtonLink')}

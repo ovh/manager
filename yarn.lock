@@ -6123,7 +6123,7 @@
   dependencies:
     "@tanstack/query-devtools" "5.18.1"
 
-"@tanstack/react-query@^5.12.2":
+"@tanstack/react-query@^5.12.2", "@tanstack/react-query@^5.18.1":
   version "5.18.1"
   resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.18.1.tgz#fd4e7b87260e82c5277355ad64f0e431a9302e02"
   integrity sha512-PdI07BbsahZ+04PxSuDQsQvBWe008eWFk/YYWzt8fvzt2sALUM0TpAJa/DFpqa7+SSo7j1EQR6Jx6znXNHyaXw==
@@ -6599,6 +6599,11 @@
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
+
+"@types/jsurl@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@types/jsurl/-/jsurl-0.1.2.tgz#779ef07e7446c4ec8c78df71a8f276076527dd2f"
+  integrity sha512-uZOjZDzB0x48XKmMvykALaLWZ1xF85BcoI/7K6f+oqNdYtnomXVfQJC7CdJER4GTlgli5zA+QwZc82JulVw4xg==
 
 "@types/liftoff@^4.0.0":
   version "4.0.3"

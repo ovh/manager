@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
+import { urls } from '@/router/constants';
 
 export type BreadcrumbProps = {
   items?: { label: string; href?: string }[];
@@ -22,7 +23,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
       items={[
         {
           label: t('listingCrumb'),
-          onClick: () => navigate('/'),
+          onClick: () => navigate(urls.listing),
         },
         id && {
           label: id,

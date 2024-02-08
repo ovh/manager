@@ -16,6 +16,7 @@ import {
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import OOPS from '@/assets/error-banner-oops.png';
+import { urls } from '@/router/constants';
 
 export const TRACKING_LABELS = {
   SERVICE_NOT_FOUND: 'service_not_found',
@@ -95,14 +96,14 @@ export const ErrorPage: React.FC<ErrorBannerProps> = ({ error }) => {
         <OsdsButton
           color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.ghost}
-          onClick={() => navigate('/', { replace: true })}
+          onClick={() => navigate(urls.listing)}
         >
           {t('manager_error_page_action_home_label')}
         </OsdsButton>
         <OsdsButton
           color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.flat}
-          onClick={() => navigate(location.pathname, { replace: true })}
+          onClick={() => navigate(location.pathname)}
         >
           {t('manager_error_page_action_reload_label')}
         </OsdsButton>

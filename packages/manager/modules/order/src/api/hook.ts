@@ -45,10 +45,9 @@ export enum OrderDescription {
   vrackServices = 'vRack Services',
 }
 
-export const getDeliveringOrderQueryKey = (description: OrderDescription) => [
-  'deliveringOrders',
-  description,
-];
+export const getDeliveringOrderQueryKey = (
+  description: OrderDescription | string,
+) => ['deliveringOrders', description];
 
 const getDeliveringOrderList = async (orderDetailDescription: string) => {
   const todayMinus24Hours = new Date();
@@ -62,7 +61,7 @@ const getDeliveringOrderList = async (orderDetailDescription: string) => {
     }),
   );
   const deliveringOrderList = orderIdsWithStatus
-    .filter(({ status }) => status === 'delivering')
+    .filter(({ status }) => ['delivering', 'checking'].includes(status))
     .map(({ orderId }) => orderId);
 
   const detailedOrderList = await Promise.all(
@@ -83,7 +82,7 @@ export const useOrderPollingStatus = ({
   queryToInvalidateOnDelivered,
   refetchInterval = 120000,
 }: {
-  pollingKey: OrderDescription;
+  pollingKey: OrderDescription | string;
   queryToInvalidateOnDelivered: string[];
   refetchInterval?: number;
 }) => {

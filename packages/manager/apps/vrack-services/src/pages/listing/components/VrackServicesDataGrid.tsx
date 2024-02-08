@@ -1,6 +1,5 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
-import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { OsdsDatagrid, OsdsMessage } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_TYPE, OdsDatagridColumn } from '@ovhcloud/ods-components';
@@ -32,7 +31,6 @@ export const VrackServicesDatagrid: React.FC = () => {
     updateError,
     hideError,
   } = useUpdateVrackServices({ key: 'listing' });
-  const queryClient = useQueryClient();
 
   const { data } = useVrackServicesList();
 
@@ -42,11 +40,7 @@ export const VrackServicesDatagrid: React.FC = () => {
       field: 'currentState.displayName',
       isSortable: true,
       formatter: reactFormatter(
-        <DisplayNameCell
-          navigate={navigate}
-          updateVS={updateVS}
-          queryClient={queryClient}
-        />,
+        <DisplayNameCell navigate={navigate} updateVS={updateVS} />,
       ),
     },
     {

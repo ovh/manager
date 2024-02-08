@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useOrderURL } from '@ovh-ux/manager-core-order';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_TYPE,
@@ -7,14 +8,18 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import {
   OsdsModal,
   OsdsButton,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { handleClick } from '@/utils/ods-utils';
+import { getExpressOrderLink } from '../constants';
 
 export type Props = {
+  displayName?: string;
+  selectedRegion: string;
   isModalVisible?: boolean;
   cancelDataTracking?: string;
   confirmDataTracking?: string;
@@ -25,6 +30,8 @@ export type Props = {
 };
 
 export const VrackConfirmModal: React.FC<Props> = ({
+  displayName,
+  selectedRegion,
   isModalVisible,
   cancelDataTracking,
   confirmDataTracking,
@@ -35,6 +42,7 @@ export const VrackConfirmModal: React.FC<Props> = ({
 }) => {
   const { t } = useTranslation('vrack-services/create');
   const modal = React.useRef<HTMLOsdsModalElement>(null);
+  const orderBaseUrl = useOrderURL('express_review_base');
 
   const cancel = () => {
     onCancel();
@@ -99,6 +107,13 @@ export const VrackConfirmModal: React.FC<Props> = ({
         variant={ODS_BUTTON_VARIANT.stroked}
         color={ODS_THEME_COLOR_INTENT.primary}
         data-tracking={denyDataTracking}
+        target={OdsHTMLAnchorElementTarget._blank}
+        href={getExpressOrderLink({
+          orderBaseUrl,
+          displayName,
+          region: selectedRegion,
+          includeVrackOrder: false,
+        })}
         {...handleClick(deny)}
       >
         {t('modalNoVrackButtonLabel')}
@@ -109,6 +124,13 @@ export const VrackConfirmModal: React.FC<Props> = ({
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.primary}
         data-tracking={confirmDataTracking}
+        target={OdsHTMLAnchorElementTarget._blank}
+        href={getExpressOrderLink({
+          orderBaseUrl,
+          displayName,
+          region: selectedRegion,
+          includeVrackOrder: true,
+        })}
         {...handleClick(confirm)}
       >
         {t('modalConfirmVrackButtonLabel')}
