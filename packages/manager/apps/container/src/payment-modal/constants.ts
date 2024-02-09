@@ -1,3 +1,5 @@
-export const NO_DEFAULT_CARD = 'NO_DEFAULT_CARD';
-export const EXPIRED_CARD = 'EXPIRED_CARD';
-export const SOON_EXPIRED_CARD = 'SOON_EXPIRED_CARD';
+export const PAYMENT_ALERTS = {
+    EXPIRED_CARD: 'expired',
+    NO_DEFAULT: 'no_default',
+    SOON_EXPIRED_CARD: 'soon_expired',
+}

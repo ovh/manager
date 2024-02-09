@@ -27,7 +27,7 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
     .user as User;
   const trackingPlugin = shell.getPlugin('tracking');
 
-  const validate = (agreed: boolean): void => {
+  const validate = (agreed: boolean) => {
     setCookies('MANAGER_TRACKING', agreed ? 1 : 0);
     trackingPlugin.onUserConsentFromModal(agreed);
     setShow(false);
@@ -35,7 +35,7 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
   }
 
   useEffect(() => {
-    const isRegionUS = environment.getRegion() === 'US'
+    const isRegionUS = environment.getRegion() === 'US';
     trackingPlugin.setRegion(environment.getRegion());
     // activate tracking if region is US or if tracking consent cookie is valid
     if (isRegionUS || cookies.MANAGER_TRACKING === '1') {

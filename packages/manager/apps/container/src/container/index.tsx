@@ -22,7 +22,7 @@ export default function Container(): JSX.Element {
     setChatbotReduced,
   } = useContainer();
   const shell = useShell();
-  const [cookiePolicyApplied, setCookiePolicyApplied] = useState(false);
+  const [isCookiePolicyApplied, setIsCookiePolicyApplied] = useState(false);
   const environment: Environment = shell
     .getPlugin('environment')
     .getEnvironment();
@@ -31,9 +31,7 @@ export default function Container(): JSX.Element {
 
   const isNavReshuffle = betaVersion && useBeta;
 
-  const cookiePolicyHandler = (applied: boolean): void => {
-    setCookiePolicyApplied(applied);
-  }
+  const cookiePolicyHandler = (isApplied: boolean): void => setIsCookiePolicyApplied(isApplied);
 
   useEffect(() => {
     if (!isLoading) {
@@ -90,9 +88,10 @@ export default function Container(): JSX.Element {
       <Suspense fallback="">
         <SSOAuthModal />
       </Suspense>
-      {cookiePolicyApplied && <Suspense fallback="">
-        <PaymentModal />
-      </Suspense>
+      {isCookiePolicyApplied && 
+        <Suspense fallback="">
+          <PaymentModal />
+        </Suspense>
       }
       <Suspense fallback="...">
         <CookiePolicy shell={shell} onValidate={cookiePolicyHandler} />
