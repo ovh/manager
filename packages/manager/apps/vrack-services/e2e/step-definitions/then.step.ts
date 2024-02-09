@@ -1,7 +1,7 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
-import { ICustomWorld } from '@playwright-helpers/custom-world';
+import { ICustomWorld } from '@playwright-helpers';
+import { sleep } from '../../../../../../playwright-helpers';
 import { modalDescriptionLine1 } from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
 import {
   createVrackServicesButtonLabel,
@@ -15,7 +15,7 @@ import {
   deliveringVrackMessage,
   deliveringVrackServicesMessage,
 } from '../../src/public/translations/vrack-services/Messages_fr_FR.json';
-import { sleep, getUrl } from '../utils';
+import { getUrl } from '../utils';
 import { ConfigParams } from '../../mock/handlers';
 import vsMocks from '../../mock/vrack-services/get-vrack-services.json';
 import {
@@ -96,6 +96,14 @@ Then('User navigates to Configuration page', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
   await this.page.waitForURL(getUrl('createVrackServices'), {
+    waitUntil: 'load',
+  });
+});
+
+Then('User navigates to Listing page', async function(
+  this: ICustomWorld<ConfigParams>,
+) {
+  await this.page.waitForURL(getUrl('listing'), {
     waitUntil: 'load',
   });
 });

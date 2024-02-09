@@ -10,3 +10,9 @@ Feature: Onboarding page
     Given User is on the Onboarding page
     When User clicks on the vRack Services configuration button
     Then User navigates to Configuration page
+
+  Scenario: Users gets redirected to the Listing page if a vRack Services is ordered
+    Given User is on the Onboarding page
+    Given User does not have any vRack Services
+    When User orders a vRack Services
+    Then User navigates to Listing page

@@ -1,4 +1,4 @@
-import { Handler } from '../../e2e/utils/msw-helpers';
+import { Handler } from '@playwright-helpers';
 import applicationsResponse from './applications.json';
 import { getConfigurationResponse } from './configuration';
 

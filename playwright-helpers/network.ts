@@ -1,6 +1,6 @@
-import apiClient from '@ovh-ux/manager-core-api';
+import { apiClient } from '@ovh-ux/manager-core-api';
 import { BrowserContext, Request as PlaywrightRequest } from '@playwright/test';
-import { Handler } from './msw-helpers';
+import { Handler } from './bdd.type';
 
 export const toPlaywrightMockHandler = (context: BrowserContext) => ({
   url,

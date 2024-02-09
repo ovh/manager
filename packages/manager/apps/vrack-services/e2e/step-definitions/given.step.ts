@@ -1,7 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Given } from '@cucumber/cucumber';
-import { ICustomWorld } from '@playwright-helpers/custom-world';
 import { OrderStatus } from '@ovh-ux/manager-module-order';
+import { ICustomWorld } from '@playwright-helpers';
 import { getUrl } from '../utils';
 import { ConfigParams } from '../../mock/handlers';
 import { ProductStatus, ResourceStatus } from '@/api';
@@ -30,20 +29,6 @@ Given(
   },
 );
 
-Given('The order service for vRack Services is {word}', function(
-  this: ICustomWorld<ConfigParams>,
-  okOrKo: string,
-) {
-  this.handlersConfig.vrackServicesOrderKo = okOrKo === 'KO';
-});
-
-Given('The order service for vRack is {word}', function(
-  this: ICustomWorld<ConfigParams>,
-  okOrKo: string,
-) {
-  this.handlersConfig.vrackOrderKo = okOrKo === 'KO';
-});
-
 Given('User does not have any vRack Services', function(
   this: ICustomWorld<ConfigParams>,
 ) {
@@ -62,6 +47,7 @@ Given('User has a vRack Services order delivering', function(
 ) {
   this.handlersConfig.deliveringVrackServicesOrders = true;
 });
+
 Given('User has a vRack Services in {word} state', function(
   this: ICustomWorld<ConfigParams>,
   productStatus: ProductStatus,

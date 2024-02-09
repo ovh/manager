@@ -1,7 +1,6 @@
-import { PathParams } from 'msw';
-import { Cart, Item } from '@ovh-ux/manager-module-order';
-import { Handler } from '../../e2e/utils/msw-helpers';
-import { getParamsFromUrl } from '../../e2e/utils/playwright-helpers';
+import { Handler } from '../../../../../playwright-helpers';
+import { Cart, Item } from '../src';
+import { getParamsFromUrl } from '../../../../../playwright-helpers/network';
 
 const getCart = (): Cart => {
   const expire = new Date();
@@ -16,10 +15,7 @@ const getCart = (): Cart => {
   };
 };
 
-const getVrackItem = (
-  request: Request,
-  params: PathParams & { id: string },
-): Item => ({
+const getVrackItem = (request: Request, params: { id: string }): Item => ({
   cartId: (params || getParamsFromUrl(request, { id: -2 }))?.id,
   configurations: [],
   duration: 'P1M',
@@ -47,7 +43,7 @@ const getVrackItem = (
 
 const getVrackServicesItem = (
   request: Request,
-  params: PathParams & { id: string },
+  params: { id: string },
 ): Item => ({
   cartId: (params || getParamsFromUrl(request, { id: -2 }))?.id,
   configurations: [],
@@ -91,7 +87,7 @@ export const getCartMocks = ({
   {
     url: '/order/cart/:id/vrackServices',
     method: 'post',
-    response: (request: Request, params: PathParams & { id: string }) =>
+    response: (request: Request, params: { id: string }) =>
       vrackServicesOrderKo
         ? {
             status: 403,
@@ -107,7 +103,7 @@ export const getCartMocks = ({
   {
     url: '/order/cart/:id/vrack',
     method: 'post',
-    response: (request: Request, params: PathParams & { id: string }) =>
+    response: (request: Request, params: { id: string }) =>
       vrackOrderKo
         ? {
             status: 403,

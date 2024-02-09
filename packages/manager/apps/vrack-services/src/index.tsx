@@ -5,7 +5,8 @@ import {
   ShellContext,
   initShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { getMswHandlers } from '../mock/handlers';
+import { toMswHandlers } from '../../../../../playwright-helpers/msw';
+import { getConfig } from '../mock/handlers';
 import { App } from './App';
 import initI18n from './i18n';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
@@ -21,12 +22,15 @@ const init = async (
     !import.meta.env.VITE_TEST_BDD
   ) {
     await setupWorker(
-      ...getMswHandlers({
-        nbVs: 19,
-        deliveringVrackServicesOrders: true,
-        deliveringVrackOrders: false,
-        isAuthMocked: true,
-      }),
+      ...toMswHandlers(
+        getConfig({
+          nbVs: 19,
+          delayedOrders: true,
+          deliveringVrackServicesOrders: true,
+          deliveringVrackOrders: false,
+          isAuthMocked: true,
+        }),
+      ),
     ).start({
       onUnhandledRequest: 'bypass',
     });

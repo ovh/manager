@@ -1,31 +1,6 @@
 import { http, RequestHandler, HttpResponse, delay } from 'msw';
 import { apiClient } from '@ovh-ux/manager-core-api';
-
-const isTest = process.env.NODE_ENV === 'test';
-
-export type Handler = {
-  url: string;
-  response?: any;
-  headers?: HeadersInit;
-  statusText?: string;
-  type?: ResponseType;
-  responseText?: string;
-  delay?: number;
-  method?:
-    | 'get'
-    | 'post'
-    | 'put'
-    | 'delete'
-    | 'all'
-    | 'head'
-    | 'options'
-    | 'patch';
-  status?: number;
-  api?: 'v2' | 'v6' | 'aapi' | 'ws';
-  baseUrl?: string;
-  disabled?: boolean;
-  once?: boolean;
-};
+import { Handler } from './bdd.type';
 
 export const toMswHandlers = (handlers: Handler[] = []): RequestHandler[] =>
   handlers
@@ -51,9 +26,7 @@ export const toMswHandlers = (handlers: Handler[] = []): RequestHandler[] =>
             url.startsWith('/') ? '' : '/'
           }${url}`,
           async ({ request, params, cookies }) => {
-            if (!isTest) {
-              await delay(delayTime);
-            }
+            await delay(delayTime);
             if (responseText) {
               return HttpResponse.text(responseText);
             }

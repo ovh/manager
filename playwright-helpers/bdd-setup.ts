@@ -8,7 +8,8 @@ import {
   setDefaultTimeout,
 } from '@cucumber/cucumber';
 import { env } from 'node:process';
-import { ICustomWorld, CustomWorld } from './custom-world';
+import { CustomWorld } from './custom-world';
+import { ICustomWorld } from './bdd.type';
 
 setDefaultTimeout(30 * 1000);
 

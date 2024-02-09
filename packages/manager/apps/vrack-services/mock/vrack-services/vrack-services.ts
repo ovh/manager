@@ -1,7 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { PathParams } from 'msw';
-import { Request as PlaywrightRequest } from 'playwright';
-import { getParamsFromUrl, Handler } from '../../e2e/utils';
+import { Request as PlaywrightRequest } from '@playwright/test';
+import { Handler } from '@playwright-helpers';
+import { getParamsFromUrl } from '../../../../../../playwright-helpers/network';
 import vrackServicesList from './get-vrack-services.json';
 
 export const eligibleManagedServiceResponse = [

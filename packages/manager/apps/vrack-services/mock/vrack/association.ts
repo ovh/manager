@@ -1,8 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { PathParams } from 'msw';
-import { Request as PlaywrightRequest } from 'playwright';
-import { getParamsFromUrl } from '../../e2e/utils/playwright-helpers';
-import { Handler } from '../../e2e/utils/msw-helpers';
+import { Request as PlaywrightRequest } from '@playwright/test';
+import { Handler } from '@playwright-helpers';
+import { getParamsFromUrl } from '../../../../../../playwright-helpers/network';
 import { AllowedServicesResponse, Status, Task } from '../../src/api/api.type';
 import vrackServicesList from '../vrack-services/get-vrack-services.json';
 

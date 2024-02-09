@@ -1,4 +1,4 @@
-import { Handler } from '../../e2e/utils/msw-helpers';
+import { Handler } from '@playwright-helpers';
 
 export const vrackList = [
   'pn-00001',

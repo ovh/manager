@@ -600,8 +600,8 @@ export function getOrderURL(
   region: string,
   subsidiary: string,
 ) {
-  if (ORDER_URLS?.[region] && ORDER_URLS?.[region]?.[product]) {
-    const urls = ORDER_URLS[region][product];
+  const urls = (ORDER_URLS as any)[region]?.[product];
+  if (urls) {
     const fallback = {
       EU: 'FR',
       CA: 'CA',

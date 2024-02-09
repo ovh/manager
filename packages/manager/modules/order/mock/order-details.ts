@@ -1,7 +1,6 @@
-import { PathParams } from 'msw';
-import { OrderData, OrderDetail } from '@ovh-ux/manager-module-order';
-import { getParamsFromUrl } from '../../e2e/utils/playwright-helpers';
-import { Handler } from '../../e2e/utils/msw-helpers';
+import { Handler } from '../../../../../playwright-helpers';
+import { OrderData, OrderDetail } from '../src';
+import { getParamsFromUrl } from '../../../../../playwright-helpers/network';
 
 const orderList = [1, 2, 3];
 
@@ -123,17 +122,19 @@ const orderDetailsById: { [detailid: string]: OrderDetail } = {
 };
 
 export type GetOrderDetailsMocksParams = {
+  delayedOrders?: boolean;
   deliveringVrackOrders?: boolean;
   deliveringVrackServicesOrders?: boolean;
 };
 
 export const getOrderDetailsMocks = ({
+  delayedOrders,
   deliveringVrackOrders,
   deliveringVrackServicesOrders,
 }: GetOrderDetailsMocksParams): Handler[] => [
   {
     url: '/me/order/:id/details/:detailid',
-    response: (request: Request, params: PathParams) => {
+    response: (request: Request, params: { id: string; detailid: string }) => {
       const detailid =
         (params || getParamsFromUrl(request, { id: -3, detailid: -1 }))
           ?.detailid || request.url.split('/').pop();
@@ -173,11 +174,17 @@ export const getOrderDetailsMocks = ({
   },
   {
     url: '/me/order/:id',
-    response: (request: Request, params: PathParams & { id: string }) =>
+    response: (request: Request, params: { id: string }) =>
       orderDataById[
         (params || getParamsFromUrl(request, { id: -1 })).id || '1'
       ],
     api: 'v6',
+  },
+  {
+    url: '/me/order',
+    response: delayedOrders ? [] : orderList,
+    api: 'v6',
+    once: true,
   },
   {
     url: '/me/order',

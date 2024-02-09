@@ -1,7 +1,9 @@
 import { When } from '@cucumber/cucumber';
-import { ICustomWorld } from '@playwright-helpers/custom-world';
+import { ICustomWorld } from '@playwright-helpers';
+import { sleep } from '../../../../../../playwright-helpers';
 import { vrackList } from '../../mock/vrack/vrack';
-import { ConfigParams, setupPlaywrightHandlers } from '../../mock/handlers';
+import { setupNetwork, getUrl } from '../utils';
+import { ConfigParams } from '../../mock/handlers';
 import {
   associateVrackButtonLabel,
   modalConfirmVrackAssociationButtonLabel,
@@ -13,7 +15,6 @@ import {
   modalConfirmVrackButtonLabel,
   modalNoVrackButtonLabel,
 } from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
-import { sleep, getUrl } from '../utils';
 import { displayNameInputName } from '../../src/pages/create/constants';
 import { subnetsTabLabel } from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
 
@@ -22,24 +23,34 @@ When('User navigates to vRack Services Listing page', async function(
 ) {
   this.handlersConfig.nbVs = this.handlersConfig.nbVs ?? 5;
   this.testContext.initialUrl = getUrl('listing');
-  await setupPlaywrightHandlers(this);
+  await setupNetwork(this);
   await this.page.goto(getUrl('listing'), { waitUntil: 'load' });
 });
 
 When('User clicks on the vRack Services configuration button', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  await setupPlaywrightHandlers(this);
+  await setupNetwork(this);
   await this.page.goto(this.testContext.initialUrl || getUrl('root'), {
     waitUntil: 'load',
   });
   await this.page.locator('osds-button', { hasText: orderButtonLabel }).click();
 });
 
+When('User orders a vRack Services', async function(
+  this: ICustomWorld<ConfigParams>,
+) {
+  this.handlersConfig.deliveringVrackServicesOrders = true;
+  await setupNetwork(this);
+  await this.page.goto(this.testContext.initialUrl || getUrl('root'), {
+    waitUntil: 'load',
+  });
+});
+
 When(
   'User fills the configuration form and clicks the submit button',
   async function(this: ICustomWorld<ConfigParams>) {
-    await setupPlaywrightHandlers(this);
+    await setupNetwork(this);
     await this.page.goto(this.testContext.initialUrl || getUrl('root'), {
       waitUntil: 'load',
     });
@@ -72,7 +83,7 @@ When('User {word}', async function(
 When('User edits the vRack Services name', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  await setupPlaywrightHandlers(this);
+  await setupNetwork(this);
   await this.page.goto(this.testContext.initialUrl || getUrl('root'), {
     waitUntil: 'load',
   });
@@ -98,7 +109,7 @@ When('User edits the vRack Services name', async function(
 When('User clicks on the link to associate a vRack', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  await setupPlaywrightHandlers(this);
+  await setupNetwork(this);
   await this.page.goto(this.testContext.initialUrl || getUrl('root'), {
     waitUntil: 'load',
   });
@@ -130,7 +141,7 @@ When(
 When('User navigates to the vRack Services Overview page', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  await setupPlaywrightHandlers(this);
+  await setupNetwork(this);
   await this.page.goto(this.testContext.initialUrl, { waitUntil: 'load' });
 
   const { selectedVrackServices } = this.testContext.data;
@@ -153,7 +164,7 @@ When('User navigates to the vRack Services Overview page', async function(
 When('User navigates to the vRack Services Subnet page', async function(
   this: ICustomWorld<ConfigParams>,
 ) {
-  await setupPlaywrightHandlers(this);
+  await setupNetwork(this);
   await this.page.goto(this.testContext.initialUrl, { waitUntil: 'load' });
 
   const { selectedVrackServices } = this.testContext.data;

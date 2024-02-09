@@ -13,6 +13,8 @@ import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { getVrackServicesResourceListQueryKey } from '@/api';
 import { urls } from '@/router/constants';
 
+const onboardingRefetchInterval = 30000;
+
 const OnboardingPage = () => {
   const { t } = useTranslation('vrack-services/onboarding');
   const link = useGuideUtils();
@@ -20,6 +22,7 @@ const OnboardingPage = () => {
   const { data: vrackServicesDeliveringOrders } = useOrderPollingStatus({
     pollingKey: OrderDescription.vrackServices,
     queryToInvalidateOnDelivered: getVrackServicesResourceListQueryKey,
+    refetchInterval: onboardingRefetchInterval,
   });
 
   const tileList: CardProps[] = [
