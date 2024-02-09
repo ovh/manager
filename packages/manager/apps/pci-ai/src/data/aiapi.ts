@@ -20,6 +20,7 @@ export interface DataSyncProps {
     },
 };
 
+
 export interface LabelsProps {
     projectId: string,
     notebookId: string,
@@ -202,5 +203,17 @@ export const jobsApi = {
         await apiClient.v6.put(
             `/cloud/project/${projectId}/ai/job/${jobId}/start`,
         )
+    },
+    manualDataSync: async ({
+        projectId,
+        productId,
+        dataSyncSpec,
+    }: DataSyncProps
+    ) => {
+        await apiClient.v6.post(
+            `/cloud/project/${projectId}/ai/job/${productId}/datasync`,
+            dataSyncSpec,
+        )
+            .then((res) => res.data as string);
     },
 };

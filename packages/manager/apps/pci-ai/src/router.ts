@@ -6,6 +6,9 @@ import { components, hooks, utils } from '@generouted/react-router/client'
 export type Path =
   | `/projects/:projectId`
   | `/projects/:projectId/jobs`
+  | `/projects/:projectId/jobs/:jobId`
+  | `/projects/:projectId/jobs/:jobId/attached-data`
+  | `/projects/:projectId/jobs/:jobId/general-information`
   | `/projects/:projectId/notebooks`
   | `/projects/:projectId/notebooks/:notebookId`
   | `/projects/:projectId/notebooks/:notebookId/attached-data`
@@ -15,6 +18,9 @@ export type Path =
 export type Params = {
   '/projects/:projectId': { projectId: string }
   '/projects/:projectId/jobs': { projectId: string }
+  '/projects/:projectId/jobs/:jobId': { projectId: string; jobId: string }
+  '/projects/:projectId/jobs/:jobId/attached-data': { projectId: string; jobId: string }
+  '/projects/:projectId/jobs/:jobId/general-information': { projectId: string; jobId: string }
   '/projects/:projectId/notebooks': { projectId: string }
   '/projects/:projectId/notebooks/:notebookId': { projectId: string; notebookId: string }
   '/projects/:projectId/notebooks/:notebookId/attached-data': { projectId: string; notebookId: string }
