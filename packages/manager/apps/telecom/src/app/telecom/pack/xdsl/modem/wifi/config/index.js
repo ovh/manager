@@ -4,6 +4,7 @@ import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
+import wifiConfigModal from './modal';
 
 import routing from './config.routing';
 
@@ -16,6 +17,7 @@ angular
     'pascalprecht.translate',
     'ovh-api-services',
     'ui.router',
+    wifiConfigModal,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
