@@ -2,7 +2,7 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import DeleteModal, { TERMINATE_TEXT } from './DeleteModal';
 import { render, waitFor } from '../../utils/test/test.provider';
-import { RancherService } from '../../api/api.type';
+import { RancherService } from '@/api/api.type';
 import listingTranslation from '../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 import { rancherMocked } from '../../_mock_/rancher';
 

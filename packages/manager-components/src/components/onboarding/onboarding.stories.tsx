@@ -12,6 +12,9 @@ export const defaultProps: OnboardingLayoutProps = {
   orderButtonLabel: 'Order Now',
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
   moreInfoHref: 'https://example.com/more-info',
+  img: {
+    src: 'https://example.com/image',
+  },
   moreInfoButtonLabel: 'Learn More',
   children: (
     <aside className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
