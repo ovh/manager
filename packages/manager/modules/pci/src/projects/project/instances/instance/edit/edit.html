@@ -170,7 +170,6 @@
     <div
         id="{{::$ctrl.EDIT_PAGE_SECTIONS.IMAGES}}"
         class="mt-4 pt-4 border-top"
-        data-ng-if="!$ctrl.instance.isLocalZone"
     >
         <form
             novalidate
@@ -228,18 +227,6 @@
             </fieldset>
         </form>
     </div>
-    <div
-        id="{{::$ctrl.EDIT_PAGE_SECTIONS.IMAGES}}"
-        class="mt-4 pt-4 border-top"
-        data-ng-if="$ctrl.instance.isLocalZone && $ctrl.imageInformation"
-    >
-        <oui-field
-            data-label="{{ :: 'pci_projects_project_instances_instance_edit_image_label' | translate }}"
-            data-size="auto"
-        >
-            <span data-ng-bind="$ctrl.imageInformation"></span>
-        </oui-field>
-    </div>
 
     <div
         id="{{::$ctrl.EDIT_PAGE_SECTIONS.FLAVORS}}"
@@ -248,7 +235,6 @@
         <form
             novalidate
             name="$ctrl.resizeInstanceForm"
-            data-ng-if="!$ctrl.instance.isLocalZone"
             data-ng-submit="$ctrl.resizeInstanceForm.$valid && $ctrl.resizeInstance()"
         >
             <fieldset data-ng-disabled="$ctrl.isLoading">
@@ -337,62 +323,6 @@
                 ></oui-button>
             </fieldset>
         </form>
-        <div data-ng-if="$ctrl.instance.isLocalZone">
-            <oui-field
-                data-label="{{ :: 'pci_projects_project_instances_instance_edit_flavor_label' | translate }}"
-            >
-                <dl class="oui-tile__definition">
-                    <dt
-                        class="oui-tile__term"
-                        data-translate="pci_projects_project_instances_instance_type_label"
-                    ></dt>
-                    <dd class="oui-tile__description">
-                        <span
-                            data-ng-bind="$ctrl.instance.flavor.name | uppercase"
-                        ></span>
-                    </dd>
-                    <dt
-                        class="oui-tile__term"
-                        data-translate="pci_projects_project_instances_instance_ram_label"
-                    ></dt>
-                    <dd class="oui-tile__description">
-                        <span
-                            data-ng-bind="$ctrl.instance.flavor.ram * 1000 * 1000 | bytes"
-                        ></span>
-                    </dd>
-                    <dt class="oui-tile__term">
-                        <span
-                            data-translate="pci_projects_project_instances_instance_cpu_label"
-                        ></span>
-                    </dt>
-                    <dd class="oui-tile__description">
-                        <span
-                            data-translate="pci_projects_project_instances_instance_cpu_value"
-                            data-translate-values="{ num : $ctrl.instance.flavor.vcpus }"
-                        ></span>
-                    </dd>
-                    <dt
-                        class="oui-tile__term"
-                        data-translate="pci_projects_project_instances_instance_storage_label"
-                    ></dt>
-                    <dd class="oui-tile__description">
-                        <span
-                            data-ng-bind="$ctrl.instance.flavor.disk * 1024 * 1024 * 1024 | bytes:2:'true'"
-                        ></span>
-                    </dd>
-                    <dt
-                        class="oui-tile__term"
-                        data-translate="pci_projects_project_instances_instance_bandwidth_label"
-                    ></dt>
-                    <dd class="oui-tile__description">
-                        <span
-                            data-translate="pci_projects_project_instances_instance_bandwidth_value"
-                            data-translate-values="{ bandwidth : $ctrl.instance.flavor.outboundBandwidth }"
-                        ></span>
-                    </dd>
-                </dl>
-            </oui-field>
-        </div>
     </div>
 
     <div
