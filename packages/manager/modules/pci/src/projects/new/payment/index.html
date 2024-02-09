@@ -42,9 +42,12 @@
             <div class="text-center" data-ng-if="$ctrl.isCheckingPaymentMethod">
                 <oui-spinner></oui-spinner>
             </div>
-
             <!-- voucher -->
-            <div class="mb-3" data-ui-view="voucher"></div>
+            <div
+                class="mb-3"
+                data-ng-if="$ctrl.viewOptions.voucherView"
+                data-ui-view="voucher"
+            ></div>
 
             <!-- credits -->
             <div
