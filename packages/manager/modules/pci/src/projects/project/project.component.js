@@ -33,7 +33,7 @@ export default {
     goToDiscoveryProjectActivationPage: '&',
     discoveryPromotionVoucherAmount: '<',
     activateDiscovery: '<',
-    isManuallyReviewedByAntiFraud: '<',
+    orderStatus: '<',
   },
   controller,
   template,
