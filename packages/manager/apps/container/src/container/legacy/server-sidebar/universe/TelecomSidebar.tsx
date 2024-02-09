@@ -11,10 +11,9 @@ import useServiceLoader from "./useServiceLoader";
 import telecomShopConfig from '../order/shop-config/telecom';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
+import  getIcon  from './GetIcon';
 
-function getIcon(iconClass: string): JSX.Element {
-  return <span className={`${iconClass} mr-1`} aria-hidden="true" />;
-}
+
 
 const features = [
   'sms',

@@ -70,7 +70,6 @@ export default {
       translation: 'sidebar_storage_backup',
       features: [
         'dedicated-nasha',
-        'dedicated-nas',
         'netapp',
         'cloud-disk-array',
         'veeam-cloud-connect',
@@ -85,17 +84,6 @@ export default {
             hash: '#/nasha',
           },
           features: ['dedicated-nasha'],
-        },
-        {
-          id: 'nas',
-          translation: 'sidebar_nas',
-          serviceType: 'DEDICATED_NAS',
-          routing: {
-            application: 'dedicated',
-            hash: '#/nas',
-          },
-          hideIfEmpty: true,
-          features: ['dedicated-nas'],
         },
         {
           id: 'netapp',

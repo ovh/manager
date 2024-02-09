@@ -15,9 +15,10 @@ import { ReactComponent as Hosting } from './hosting.svg';
 import { ReactComponent as Office365 } from './office365.svg';
 import { ReactComponent as Sharepoint } from './sharepoint.svg';
 import { ReactComponent as Exchange } from './exchange.svg';
+import { ReactComponent as Headset } from './headset.svg';
 
 export { Hosting, Office365, Sharepoint, Exchange };
-export { TelecomEthernet, Telephony };
+export { TelecomEthernet, Telephony, Headset };
 
 export {
   ProjectCloud,

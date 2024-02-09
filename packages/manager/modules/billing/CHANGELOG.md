@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.27](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.26...@ovh-ux/manager-billing@0.20.0-alpha.27) (2024-02-05)
+
+
+### Features
+
+* **pci:** new solution for payment step on PCI > Checkbox ([#10733](https://github.com/ovh/manager/issues/10733)) ([ca45ed9](https://github.com/ovh/manager/commit/ca45ed928684da75ec899377fd3ba093826e7cba))
+
+
+
+
+
 # [0.20.0-alpha.26](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.25...@ovh-ux/manager-billing@0.20.0-alpha.26) (2023-12-01)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing

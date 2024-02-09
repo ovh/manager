@@ -1,9 +1,9 @@
 enum OvhProductName {
   HOSTING = 'Hosting',
   OFFICE365 = 'Office365',
-  SHAREPOINT = 'Sharepoint',
   EXCHANGE = 'Exchange',
   TELECOMETHERNET = 'TelecomEthernet',
+  HEADSET = 'Headset',
   TELEPHONY = 'Telephony',
   PROJECTCLOUD = 'ProjectCloud',
   SERVER = 'Server',

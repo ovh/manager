@@ -14,5 +14,6 @@
   "telephony_line_phone_actions_line_phonebook": "Książki adresowe",
   "telephony_group_line_phone_section_back_link_target": "zarządzanie telefonem",
   "telephony_line_phone_actions_line_phone_order_attach": "Przypisz linię do aktualnego sprzętu",
-  "telephony_line_phone_actions_line_phone_order_detach": "Odłącz linię od telefonu"
+  "telephony_line_phone_actions_line_phone_order_detach": "Odłącz linię od telefonu",
+  "telephony_line_phone_actions_line_order_headset": "Zamów zestaw słuchawkowy"
 }

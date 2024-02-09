@@ -48,7 +48,7 @@
                         class="form-control"
                         id="selectedIpBlock"
                         name="selectedIpBlock"
-                        data-ng-options="ip as getBlockDisplay(ip) group by ip.serviceName for ip in availableIpBlock.ips | filter:filters.block.type | filter:filters.block.search"
+                        data-ng-options="ip as getBlockDisplay(ip) group by (ip.serviceName || '--') for ip in availableIpBlock.ips | filter:filters.block.type | filter:filters.block.search"
                         data-ng-model="selected.ipBlock"
                     >
                         <option
@@ -60,11 +60,9 @@
                     <span
                         class="input-group-addon"
                         id="licenseOrderBlockFilters"
-                        data-tooltip-box
-                        data-tb-unique="true"
-                        data-tb-content-template="license/tooltips/blockFilterTooltip.html"
-                        data-tb-hide-on-blur="false"
-                        data-tb-placement="bottom"
+                        oui-popover
+                        oui-popover-scope="popoverScope"
+                        oui-popover-template="license/tooltips/blockFilterTooltip.html"
                     >
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </span>

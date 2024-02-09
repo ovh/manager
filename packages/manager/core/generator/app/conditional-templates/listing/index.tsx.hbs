@@ -1,18 +1,13 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet} from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getListingIceberg } from '@/api';
 import Datagrid from '@/components/layout-helpers/Listing/dataGrid';
 import Loading from '@/components/Loading/Loading';
-import ErrorBanner from '@/components/Error/Error';
 import appConfig from '@/{{this.appName}}.config';
-import Breadcrumb, {
-  BreadcrumbHandleParams,
-} from '@/components/Breadcrumb/Breadcrumb';
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 
-export function breadcrumb({ params }: BreadcrumbHandleParams) {
-  return params.serviceName;
-}
+import Errors from '@/components/Error/Error';
 
 type ServiceData = {
   serviceName: string;
@@ -47,7 +42,8 @@ export default function Listing() {
 
 
   if (isError) {
-    return <ErrorBanner error={error.response} />;
+    return <Errors
+        error={error.response}/>
   }
 
   if (isLoading) {

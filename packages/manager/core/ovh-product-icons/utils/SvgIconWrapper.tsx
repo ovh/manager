@@ -42,12 +42,15 @@ const SvgIconWrapper: React.FC<SvgIconProps> = ({
 
 const HOSTING_SVG = SvgIconWrapper({ name: OvhProductName.HOSTING });
 const OFFICE365_SVG = SvgIconWrapper({ name: OvhProductName.OFFICE365 });
-const SHAREPOINT_SVG = SvgIconWrapper({ name: OvhProductName.SHAREPOINT });
 const PROJECTCLOUD_SVG = SvgIconWrapper({ name: OvhProductName.PROJECTCLOUD });
 const EXCHANGE_SVG = SvgIconWrapper({ name: OvhProductName.EXCHANGE });
 const TELECOMETHERNET_SVG = SvgIconWrapper({
   name: OvhProductName.TELECOMETHERNET,
 });
+const HEADSET_SVG = SvgIconWrapper({
+  name: OvhProductName.HEADSET,
+});
+
 const TELEPHONY_SVG = SvgIconWrapper({ name: OvhProductName.TELEPHONY });
 const SERVER_SVG = SvgIconWrapper({ name: OvhProductName.SERVER });
 const IP_SVG = SvgIconWrapper({ name: OvhProductName.IP });
@@ -65,9 +68,9 @@ const LINECOMMUNICATING_SVG = SvgIconWrapper({
 export {
   HOSTING_SVG,
   OFFICE365_SVG,
-  SHAREPOINT_SVG,
   PROJECTCLOUD_SVG,
   TELECOMETHERNET_SVG,
+  HEADSET_SVG,
   TELEPHONY_SVG,
   EXCHANGE_SVG,
   IP_SVG,

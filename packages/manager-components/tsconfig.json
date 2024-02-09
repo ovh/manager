@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "es2020"],
+    "target": "ES2020",
+    "types": ["vite/client", "node", "jest"],
+    "module": "ESNext",
+    "outDir": "dist",
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node",
+    "isolatedModules": true,
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "jsx": "react-jsx"
+  },
+  "include": ["src", "./src/**/*.ts", "./src/**/*.tsx", "*.spec.tsx"],
+  "exclude": ["./src/**/*.stories.*"]
+}

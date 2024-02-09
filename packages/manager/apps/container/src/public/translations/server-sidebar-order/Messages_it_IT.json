@@ -122,5 +122,6 @@
   "server_sidebar_order_item_internet_adsl_creation_title": "Crea una linea ADSL",
   "server_sidebar_order_item_internet_otb_title": "OverTheBox",
   "server_sidebar_order_item_number_title": "Numero",
-  "server_sidebar_order_item_sap_hana_title": "SAP HANA"
+  "server_sidebar_order_item_sap_hana_title": "SAP HANA",
+  "server_sidebar_item_headset_title": "Cuffia"
 }

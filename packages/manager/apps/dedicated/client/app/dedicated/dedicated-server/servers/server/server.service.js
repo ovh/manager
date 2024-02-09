@@ -997,13 +997,20 @@ export default class Server {
     });
   }
 
-  startInstallation(serviceName, templateName, partitionSchemeName, details) {
+  startInstallation(
+    serviceName,
+    templateName,
+    partitionSchemeName,
+    details,
+    userMetadata = {},
+  ) {
     return this.OvhHttp.post('/dedicated/server/{serviceName}/install/start', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,
       },
       data: {
+        userMetadata,
         details,
         partitionSchemeName,
         templateName,

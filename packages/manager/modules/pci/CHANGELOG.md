@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.21.0...@ovh-ux/manager-pci@6.22.0) (2024-02-07)
+
+
+### Features
+
+* aiven databases US launch ([ec3f930](https://github.com/ovh/manager/commit/ec3f930addf9d36cb852225edbcce8b1ce9427c8))
+
+
+
+
+
+# [6.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.20.0...@ovh-ux/manager-pci@6.21.0) (2024-02-05)
+
+
+### Bug Fixes
+
+* **pci.storages.databases:** display redis users information ([#10797](https://github.com/ovh/manager/issues/10797)) ([d811298](https://github.com/ovh/manager/commit/d8112989def9204e8f76463d58815a6547be6700))
+* **pci.vouchers:** fix JS error on init and use $interval for polling ([#10818](https://github.com/ovh/manager/issues/10818)) ([2a955a7](https://github.com/ovh/manager/commit/2a955a77579cdfaa72fc6e880020f983da6eabee))
+
+
+### Features
+
+* **pci:** new solution for payment step on PCI > Checkbox ([#10733](https://github.com/ovh/manager/issues/10733)) ([ca45ed9](https://github.com/ovh/manager/commit/ca45ed928684da75ec899377fd3ba093826e7cba))
+
+
+
+
+
+# [6.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.19.0...@ovh-ux/manager-pci@6.20.0) (2024-01-29)
+
+
+### Bug Fixes
+
+* correctly update service after maintenance and backup time changes ([#10761](https://github.com/ovh/manager/issues/10761)) ([6213774](https://github.com/ovh/manager/commit/62137741ec6faa882d2158997fe973410e8d0502))
+* **public-cloud:** list priavte network with vlanid 0 ([#10760](https://github.com/ovh/manager/issues/10760)) ([da8d005](https://github.com/ovh/manager/commit/da8d005779e59b1f73a1a9e79bae983501529369))
+* **public-cloud:** silently fail when no permission to query instance IP ([#10722](https://github.com/ovh/manager/issues/10722)) ([f961767](https://github.com/ovh/manager/commit/f9617673483c218a3e3d7e4c2abb6802ae9e5012))
+
+
+### Features
+
+* **projects.project:** remove out of date repricing banner ([#10677](https://github.com/ovh/manager/issues/10677)) ([768040d](https://github.com/ovh/manager/commit/768040d958330133ca4bcf0ad63e1c17f9b4639b))
+
+
+
+
+
 # [6.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.18.2...@ovh-ux/manager-pci@6.19.0) (2024-01-22)
 
 

@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint-app@0.8.17...@ovh-ux/manager-sharepoint-app@0.8.18) (2024-02-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-sharepoint-app
+
+
+
+
+
+## [0.8.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint-app@0.8.16...@ovh-ux/manager-sharepoint-app@0.8.17) (2024-01-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-sharepoint-app
+
+
+
+
+
+## [0.8.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint-app@0.8.15...@ovh-ux/manager-sharepoint-app@0.8.16) (2024-01-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-sharepoint-app
+
+
+
+
+
+## [0.8.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint-app@0.8.14...@ovh-ux/manager-sharepoint-app@0.8.15) (2024-01-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-sharepoint-app
+
+
+
+
+
 ## [0.8.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-sharepoint-app@0.8.13...@ovh-ux/manager-sharepoint-app@0.8.14) (2023-12-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-sharepoint-app

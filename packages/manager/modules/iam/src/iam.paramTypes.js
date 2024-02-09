@@ -11,8 +11,8 @@ import { ENTITY } from './iam.constants';
  */
 
 const urnType = 'urn';
-const urnPattern = /urn:v[0-9]:(?:eu|ca|us):[a-z]+:.+/;
-const urnRegExp = /^urn:v([0-9]):(eu|ca|us):([a-z]+):(.+?)$/;
+const urnPattern = /urn:v[0-9]:(?:eu|ca|us|labeu):[a-z]+:.+/;
+const urnRegExp = /^urn:v([0-9]):(eu|ca|us|labeu):([a-z]+):(.+?)$/;
 
 /**
  * Encode a urn object to a string

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.3.0...@ovh-ux/manager-react-core-application@0.4.0) (2024-02-05)
+
+
+### Features
+
+* add breadcrumb hook ([#10522](https://github.com/ovh/manager/issues/10522)) ([48b1f61](https://github.com/ovh/manager/commit/48b1f61a01adb8ab222163f8a688b7fea7373aba))
+* **core:** add new ODS component on tracking ([#10773](https://github.com/ovh/manager/issues/10773)) ([e21b056](https://github.com/ovh/manager/commit/e21b056f638a2341178e4dabbd7545b4e6cd5400))
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.2.3...@ovh-ux/manager-react-core-application@0.3.0) (2024-01-22)
 
 

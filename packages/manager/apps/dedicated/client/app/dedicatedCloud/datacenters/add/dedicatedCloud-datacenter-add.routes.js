@@ -3,9 +3,15 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/add-datacenter',
     views: {
       'pccView@app.dedicatedCloud.details':
-        'ovhManagerDedicatedCloudDatacenterAdd',
+        'ovhManagerDedicatedCloudVmwareVdcAdd',
     },
     resolve: {
+      orderSapHana: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability(['dedicated-cloud:sapHanaOrder'])
+          .then((feature) =>
+            feature.isFeatureAvailable('dedicated-cloud:sapHanaOrder'),
+          ),
       goBack: /* @ngInject */ ($state, $timeout, productId, setMessage) => (
         message = false,
         type = 'success',
@@ -26,20 +32,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return promise;
       },
-      goUpgradeRange: /* @ngInject */ ($state, productId) => (
-        range,
-        upgradeCode,
-      ) => {
-        return $state.go(
-          'app.dedicatedCloud.details.datacenter.add-datacenter.upgrade-range',
-          { productId, range, upgradeCode },
-        );
-      },
-      onBasicOptionsUpgrade: /* @ngInject */ ($state) => (stateParams) =>
-        $state.go(
-          'app.dedicatedCloud.details.servicePackUpgrade.basicOptions',
-          stateParams,
-        ),
       breadcrumb: () => null,
     },
   });

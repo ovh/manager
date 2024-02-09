@@ -38,6 +38,7 @@ export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalC
 {{/each}}
 {{#ifEq arg1=apiVersion arg2=mainApiPathApiVersion}}
 
+{{#if apiV6Computed}}
 /**
  *  Get listing with iceberg V6
  */
@@ -55,7 +56,9 @@ export const getListingIcebergV6 = async ({ pageSize, page }: { pageSize: number
     return null;
   }
 };
+{{/if}}
 
+{{#if apiV2Computed}}
 /**
  *  Get listing with iceberg V2
  */
@@ -74,5 +77,6 @@ export const getListingIcebergV2 = async ({ pageSize, cursor }: { pageSize: numb
     return null;
   }
 };
+{{/if}}
 
 {{/ifEq}}

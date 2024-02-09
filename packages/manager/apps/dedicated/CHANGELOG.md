@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.19.1...@ovh-ux/manager-dedicated@19.19.2) (2024-02-05)
+
+
+### Bug Fixes
+
+* **dedicated:** fix popover filter on license ip order ([#10779](https://github.com/ovh/manager/issues/10779)) ([a6af672](https://github.com/ovh/manager/commit/a6af672f1f782e3fcc51c399d4cfa07c4492c003))
+* **dedicated:** remove redudant server dashboard import ([#10829](https://github.com/ovh/manager/issues/10829)) ([2e61efb](https://github.com/ovh/manager/commit/2e61efb925afd99d24b6cd369f4cc5f8d92f5be2))
+
+
+
+
+
+## [19.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.19.0...@ovh-ux/manager-dedicated@19.19.1) (2024-01-31)
+
+
+### Bug Fixes
+
+* **dedicated.vmware:** new workflow for add vdc ([#10167](https://github.com/ovh/manager/issues/10167)) ([ae20e7b](https://github.com/ovh/manager/commit/ae20e7b3c02c7b1aa2fc8b742beb76f93fa55740))
+
+
+
+
+
+# [19.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.18.2...@ovh-ux/manager-dedicated@19.19.0) (2024-01-29)
+
+
+### Bug Fixes
+
+* **dedicated:** fix cdn domain translation keys ([#10737](https://github.com/ovh/manager/issues/10737)) ([369d04b](https://github.com/ovh/manager/commit/369d04bdb8c40f83c0130d2dc921d4349a727946))
+* **dedicated:** minor monitoring fixes ([#10535](https://github.com/ovh/manager/issues/10535)) ([fff7c3a](https://github.com/ovh/manager/commit/fff7c3aab9be652ec1672f3c8827c7a4391e8bef))
+* **dedicated:** update us documentation links in datastores ([#10604](https://github.com/ovh/manager/issues/10604)) ([1ee6c7e](https://github.com/ovh/manager/commit/1ee6c7ebba9999ae74d8f14fb1baa2ca1b8fe6c8))
+
+
+### Features
+
+* **dedicated.ip:** select country during ip order for hpc ([#10685](https://github.com/ovh/manager/issues/10685)) ([3216b05](https://github.com/ovh/manager/commit/3216b05a5c08e9c1c2f48a6f299abfcc37dd1d45))
+* **dedicated.nas:** api nas deprecated ([#10623](https://github.com/ovh/manager/issues/10623)) ([4a957e0](https://github.com/ovh/manager/commit/4a957e08b590fc24dec3a3c543f1718431cd4406))
+* **dedicated:** add commercial name in general information tab ([#10642](https://github.com/ovh/manager/issues/10642)) ([a8c99c4](https://github.com/ovh/manager/commit/a8c99c40f353ddc983bd0e10e8e555d7fde1dec4))
+* **dedicated:** implement os-dynamic form in ovh and gabarit wizards ([#10557](https://github.com/ovh/manager/issues/10557)) ([15a8478](https://github.com/ovh/manager/commit/15a84786f42f5941b1a8b51bd40a4c9e5bf0706c))
+
+
+
+
+
+## [19.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.18.1...@ovh-ux/manager-dedicated@19.18.2) (2024-01-26)
+
+
+### Reverts
+
+* Revert "fix(dedicated.vmware): new workflow for add vdc (#10167)" ([9def599](https://github.com/ovh/manager/commit/9def5999b4cb6e7604fcd1174a6fcaaedf109d4b)), closes [#10167](https://github.com/ovh/manager/issues/10167)
+
+
+
+
+
+## [19.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.18.0...@ovh-ux/manager-dedicated@19.18.1) (2024-01-25)
+
+
+### Bug Fixes
+
+* **dedicated.vmware:** new workflow for add vdc ([#10167](https://github.com/ovh/manager/issues/10167)) ([cbf8c11](https://github.com/ovh/manager/commit/cbf8c11b6ccc8eb2877c26bb472fe78fa145a9d2))
+
+
+
+
+
 # [19.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.17.1...@ovh-ux/manager-dedicated@19.18.0) (2024-01-22)
 
 

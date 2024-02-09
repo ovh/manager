@@ -9,10 +9,7 @@ import useServiceLoader from "./useServiceLoader";
 import OrderTrigger from '../order/OrderTrigger';
 import webShopConfig from '../order/shop-config/web';
 import { ShopItem } from '../order/OrderPopupContent';
-
-function getIcon(iconClass: string): JSX.Element {
-  return <span className={`${iconClass} mr-1`} aria-hidden="true" />;
-}
+import getIcon  from './GetIcon';
 
 export const webFeatures = [
   'web:domains',

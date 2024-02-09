@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-octavia-load-balancer-app",
-  "version": "0.2.0",
+  "version": "0.2.3",
   "private": true,
   "description": "OVHcloud OctaviaLoadBalancer app",
   "repository": {
@@ -21,7 +21,7 @@
   "dependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.5.0",
     "@ovh-ux/manager-config": "^7.3.0",
-    "@ovh-ux/manager-core": "^12.15.0",
+    "@ovh-ux/manager-core": "^12.15.3",
     "@ovh-ux/manager-error-page": "^2.3.6",
     "@ovh-ux/manager-ng-layout-helpers": "^2.8.1",
     "@ovh-ux/manager-octavia-load-balancer": "^0.2.0",

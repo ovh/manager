@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.8.0...@ovh-ux/manager-iam@1.8.1) (2024-01-29)
+
+
+### Bug Fixes
+
+* **iam:** add labeu urn regex ([#10720](https://github.com/ovh/manager/issues/10720)) ([f958fdc](https://github.com/ovh/manager/commit/f958fdcc43366617966320d8612ba68733eefe04))
+
+
+
+
+
 # [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.7.1...@ovh-ux/manager-iam@1.8.0) (2024-01-22)
 
 

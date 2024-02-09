@@ -92,7 +92,6 @@ export const API_EXCLUDED = {
     '/metrics',
     '/dedicated/ceph',
     '/dedicated/housing',
-    '/dedicated/nas',
     '/dedicated/nasha',
     '/ip/loadbalancing',
     '/license/office',
