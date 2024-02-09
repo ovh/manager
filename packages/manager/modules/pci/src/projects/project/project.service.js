@@ -1,6 +1,7 @@
 import {
   URL_INFO,
   DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
+  DISCOVERY_PROJECT_ACTIVATION_PLANCODE,
 } from './project.constants';
 import {
   ORDER_FOLLOW_UP_STEP_ENUM,
@@ -118,9 +119,19 @@ export default class {
       .catch(() => []);
   }
 
-  activateDiscoveryProject(serviceId) {
+  activateDiscoveryProject(serviceId, autoPay = true) {
     return this.$http.post(
-      `/services/${serviceId}/upgrade/project.2018/execute`,
+      `/services/${serviceId}/upgrade/${DISCOVERY_PROJECT_ACTIVATION_PLANCODE}/execute`,
+      {
+        ...DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
+        autoPayWithPreferredPaymentMethod: autoPay,
+      },
+    );
+  }
+
+  simulateActivateDiscoveryProject(serviceId) {
+    return this.$http.post(
+      `/services/${serviceId}/upgrade/${DISCOVERY_PROJECT_ACTIVATION_PLANCODE}/simulate`,
       DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
     );
   }

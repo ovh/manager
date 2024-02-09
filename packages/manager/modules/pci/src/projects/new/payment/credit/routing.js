@@ -22,6 +22,9 @@ export const registerPCINewPaymentCreditState = (
     views: {
       [views.default]: component.name,
     },
+    params: {
+      amount: '',
+    },
     atInternet: {
       ignore: true, // this tell AtInternet to not track this state
     },
@@ -32,8 +35,11 @@ export const registerPCINewPaymentCreditState = (
       });
     },
     resolve: {
-      checkout: /* @ngInject */ (cart, pciProjectNew) =>
-        pciProjectNew.checkoutCart(cart),
+      amount: /* @ngInject */ ($transition$, pciProjectNew, cart) =>
+        $transition$.params().amount ||
+        pciProjectNew
+          .checkoutCart(cart)
+          .then((checkout) => checkout.prices.withoutTax.text),
       viewOptions: () => viewOptions,
       ...resolve,
     },

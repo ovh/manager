@@ -39,6 +39,8 @@ export default /* @ngInject */ ($stateProvider) => {
         discoveryPromotionVoucherAmount,
 
       activateProject: /* @ngInject */ (
+        $q,
+        $state,
         serviceId,
         projectService,
         claimDiscoveryVoucher,
@@ -46,31 +48,57 @@ export default /* @ngInject */ ($stateProvider) => {
         voucherAmount,
         goToLoadingUpgradePage,
         displayErrorMessage,
-      ) => () => {
+        globalLoading,
+      ) => ({ simulate = true, autoPay = true } = {}) => {
         const voucherPayload = {
           code: activationVoucherCode,
         };
 
+        let promise = $q.when();
+
         if (voucherAmount) {
-          return claimDiscoveryVoucher(voucherPayload)
-            .then(() => projectService.activateDiscoveryProject(serviceId))
-            .then((res) =>
-              goToLoadingUpgradePage(
-                res.data.order.orderId,
-                activationVoucherCode,
-              ),
-            )
-            .catch((err) => displayErrorMessage(err?.data?.message || err));
+          promise = promise.then(() => claimDiscoveryVoucher(voucherPayload));
         }
-        return projectService
-          .activateDiscoveryProject(serviceId)
-          .then((res) =>
-            goToLoadingUpgradePage(
-              res?.data?.order?.orderId,
-              activationVoucherCode,
-            ),
-          )
-          .catch((err) => displayErrorMessage(err?.data?.message || err));
+
+        if (simulate) {
+          promise = promise.then(() =>
+            projectService
+              .simulateActivateDiscoveryProject(serviceId)
+              .then(({ data: { order } }) => {
+                if (order.prices.withTax.value !== 0) {
+                  Object.assign(globalLoading, { finalize: false });
+                  $state.go(
+                    paymentCreditStateName,
+                    { amount: order.prices.withoutTax.text },
+                    { location: false },
+                  );
+                  return false;
+                }
+                return true;
+              })
+              .catch((err) => displayErrorMessage(err?.data?.message || err)),
+          );
+        } else {
+          promise = promise.then(() => true);
+        }
+
+        return promise.then(
+          (activate) =>
+            activate &&
+            projectService
+              .activateDiscoveryProject(serviceId, autoPay)
+              .then(({ data: { order } }) => {
+                if (!autoPay && order.url) {
+                  window.top.location.href = order.url;
+                  return null;
+                }
+                return goToLoadingUpgradePage(
+                  order.orderId,
+                  activationVoucherCode,
+                );
+              })
+              .catch((err) => displayErrorMessage(err?.data?.message || err)),
+        );
       },
 
       goToLoadingUpgradePage: /* @ngInject */ ($state) => (
@@ -172,7 +200,8 @@ export default /* @ngInject */ ($stateProvider) => {
           creditBtnText: $translate.instant(
             'pci_projects_project_activate_cta',
           ),
-          onCreditBtnClick: activateProject,
+          onCreditBtnClick: () =>
+            activateProject({ simulate: false, autoPay: false }),
         });
       },
     },
