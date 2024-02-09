@@ -1,7 +1,7 @@
 import {
   URL_INFO,
   DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
-  DISCOVERY_PROJECT_ACTIVATION_PLANCODE,
+  FULL_PROJECT_PLANCODE,
 } from './project.constants';
 import {
   ORDER_FOLLOW_UP_STEP_ENUM,
@@ -10,9 +10,10 @@ import {
 
 export default class {
   /* @ngInject */
-  constructor($http, iceberg, coreConfig) {
+  constructor($http, $q, iceberg, coreConfig) {
     this.project = {};
     this.$http = $http;
+    this.$q = $q;
     this.iceberg = iceberg;
     this.coreConfig = coreConfig;
   }
@@ -21,38 +22,71 @@ export default class {
     return this.project;
   }
 
-  isManuallyReviewedByAntiFraud() {
-    return this.$http
-      .get(`/cloud/order/?planCode=project.2018`)
-      .then(({ data: orders }) => {
-        const validatingOrder = orders.find(
-          (order) =>
-            order.status.toLowerCase() ===
-            ORDER_FOLLOW_UP_STEP_ENUM.DELIVERING.toLowerCase(),
-        );
+  getProjectOrderStatus(projectId) {
+    const { VALIDATING } = ORDER_FOLLOW_UP_STEP_ENUM;
+    const {
+      FRAUD_MANUAL_REVIEW,
+      FRAUD_REFUSED,
+      PAYMENT_INITIATED,
+      PAYMENT_RECEIVED,
+    } = ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM;
 
-        return validatingOrder
-          ? this.getOrderFollowUp(validatingOrder?.orderId)
-          : false;
-      })
-      .then((orderFollowUp) => {
-        if (orderFollowUp) {
-          const deliveringStep = orderFollowUp?.find(
-            (element) => element.step === ORDER_FOLLOW_UP_STEP_ENUM.VALIDATING,
-          );
-          return (
-            deliveringStep?.history.find(
-              (event) =>
-                event.label ===
-                ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM.FRAUD_MANUAL_REVIEW,
-            ) || false
-          );
+    const status = {
+      orderId: null,
+      isActivating: false,
+      isManuallyReviewedByAntiFraud: false,
+      isRefusedByAntiFraud: false,
+      voucher: '',
+    };
+
+    return this.$http
+      .get(`/cloud/order/?planCode=${FULL_PROJECT_PLANCODE}`)
+      .then(({ data: orders }) => {
+        const order = orders
+          .sort(({ date: dateA }, { date: dateB }) => (dateB > dateA ? 1 : -1))
+          .find(({ serviceName }) => serviceName === projectId);
+
+        if (order) {
+          status.orderId = order.orderId;
+
+          return this.$q
+            .all({
+              vouchers: this.getVouchersCreditDetails(projectId),
+              followUp: this.getOrderFollowUp(order.orderId),
+            })
+            .then(({ followUp, vouchers: [firstVoucher] }) => {
+              const validatingStepHistory = followUp.find(
+                ({ step }) => step === VALIDATING,
+              )?.history;
+
+              status.voucher = firstVoucher?.voucher || '';
+
+              if (validatingStepHistory) {
+                validatingStepHistory.forEach(({ label }) => {
+                  if (label === PAYMENT_INITIATED || label === PAYMENT_RECEIVED)
+                    status.isActivating = true;
+                  if (label === FRAUD_MANUAL_REVIEW)
+                    status.isManuallyReviewedByAntiFraud = true;
+                  if (label === FRAUD_REFUSED)
+                    status.isRefusedByAntiFraud = true;
+                });
+
+                if (
+                  status.isManuallyReviewedByAntiFraud ||
+                  status.isRefusedByAntiFraud
+                ) {
+                  status.isActivating = false;
+                }
+              }
+
+              return status;
+            })
+            .catch(() => status);
         }
-        return false;
+
+        return status;
       })
-      .catch(() => {
-        return false;
-      });
+      .catch(() => status);
   }
 
   getOrderFollowUp(orderId) {
@@ -121,7 +155,7 @@ export default class {
 
   activateDiscoveryProject(serviceId, autoPay = true) {
     return this.$http.post(
-      `/services/${serviceId}/upgrade/${DISCOVERY_PROJECT_ACTIVATION_PLANCODE}/execute`,
+      `/services/${serviceId}/upgrade/${FULL_PROJECT_PLANCODE}/execute`,
       {
         ...DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
         autoPayWithPreferredPaymentMethod: autoPay,
@@ -131,7 +165,7 @@ export default class {
 
   simulateActivateDiscoveryProject(serviceId) {
     return this.$http.post(
-      `/services/${serviceId}/upgrade/${DISCOVERY_PROJECT_ACTIVATION_PLANCODE}/simulate`,
+      `/services/${serviceId}/upgrade/${FULL_PROJECT_PLANCODE}/simulate`,
       DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
     );
   }

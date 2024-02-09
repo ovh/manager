@@ -3,7 +3,7 @@ import template from './project-dashboard-activate-banner.html';
 export default {
   bindings: {
     voucherAmount: '<',
-    isManuallyReviewedByAntiFraud: '<',
+    orderStatus: '<',
     onClick: '&',
   },
   template,

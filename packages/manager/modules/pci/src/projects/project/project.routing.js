@@ -31,23 +31,38 @@ export default /* @ngInject */ ($stateProvider) => {
       return pciFeatureRedirect(PCI_FEATURES.SETTINGS.PROJECT);
     },
     redirectTo: (transition) => {
-      const projectPromise = transition.injector().getAsync('project');
-      return projectPromise.then((project) => {
-        if (project.status === 'creating') {
-          // for specifying options of redirectTo attribute
-          // we need to return a TargetState which is accessible
-          // through router.stateService.target of transition object
-          return transition.router.stateService.target(
-            'pci.projects.project.creating',
-            transition.params(),
-            {
-              location: false,
-            },
-          );
-        }
+      const injector = transition.injector();
+      const $q = injector.get('$q');
+      const projectPromise = injector.getAsync('project');
+      const orderStatusPromise = injector.getAsync('orderStatus');
+      return $q
+        .all({
+          project: projectPromise,
+          orderStatus: orderStatusPromise,
+        })
+        .then(({ project, orderStatus }) => {
+          const { orderId, isActivating, voucher: voucherCode } = orderStatus;
+          if (isActivating) {
+            return {
+              state: 'pci.projects.updating',
+              params: { orderId, voucherCode },
+            };
+          }
+          if (project.status === 'creating') {
+            // for specifying options of redirectTo attribute
+            // we need to return a TargetState which is accessible
+            // through router.stateService.target of transition object
+            return transition.router.stateService.target(
+              'pci.projects.project.creating',
+              transition.params(),
+              {
+                location: false,
+              },
+            );
+          }
 
-        return null;
-      });
+          return null;
+        });
     },
     resolve: {
       projectId: /* @ngInject */ ($transition$) =>
@@ -78,9 +93,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return isActivateModalDisplayed;
       },
-
-      isManuallyReviewedByAntiFraud: /* @ngInject */ (PciProject) =>
-        PciProject.isManuallyReviewedByAntiFraud(),
+      orderStatus: /* @ngInject */ (PciProject, projectId) =>
+        PciProject.getProjectOrderStatus(projectId),
       project: /* @ngInject */ (OvhApiCloudProject, projectId) => {
         OvhApiCloudProject.v6().resetCache();
         return OvhApiCloudProject.v6().get({
