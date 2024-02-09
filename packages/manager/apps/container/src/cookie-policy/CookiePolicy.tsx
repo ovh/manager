@@ -68,7 +68,7 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
   }
 
   useEffect(() => {
-    const isRegionUS = environment.getRegion() === 'US'
+    const isRegionUS = environment.getRegion() === 'US';
     trackingPlugin.setRegion(environment.getRegion());
     // activate tracking if region is US or if tracking consent cookie is valid
     if (isRegionUS || cookies.MANAGER_TRACKING === '1') {
