@@ -32,6 +32,7 @@ export const registerPCINewPaymentState = (
     viewOptions = {
       title: true,
       subtitlesSize: 2,
+      voucherView: true,
       foldVoucher: true,
       denseVoucher: false,
       clearableVoucher: true,

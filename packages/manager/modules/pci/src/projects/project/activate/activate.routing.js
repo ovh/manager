@@ -128,6 +128,7 @@ export default /* @ngInject */ ($stateProvider) => {
     viewOptions: {
       title: false,
       subtitlesSize: 4,
+      voucherView: true,
       foldVoucher: false,
       denseVoucher: true,
       clearableVoucher: false,
@@ -142,10 +143,12 @@ export default /* @ngInject */ ($stateProvider) => {
         viewOptions,
         $translate,
         activateProject,
+        discoveryPromotionVoucherAmount,
       ) => {
         Object.assign(viewOptions, {
           submitText: $translate.instant('pci_projects_project_activate_cta'),
           onSubmit: activateProject,
+          voucherView: Boolean(discoveryPromotionVoucherAmount),
         });
       },
     },
