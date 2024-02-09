@@ -178,23 +178,24 @@ export default class PrivateNetworksAddCtrl {
   }
 
   loadNetworkDetails() {
-    return this.PciPrivateNetworks.getPrivateNetworks(this.projectId).then(
-      (networks) => {
-        this.networks = networks;
-        this.configureVlanId = !this.isVlanAvailable(DEFAULT_VLAN_ID);
-        this.mandatoryVlanId = this.configureVlanId;
-        if (this.configureVlanId) {
-          const nextVlanId = this.getNextAvailableVlanId();
-          this.VLAN_ID = {
-            MIN: VLAN_ID.MIN,
-            MAX: VLAN_ID.MAX,
-            NEXT_AVAILABLE: nextVlanId,
-          };
-          this.configuration.vlanId = this.VLAN_ID.NEXT_AVAILABLE;
-          this.regenerateNetworkAddress(this.configuration.vlanId);
-        }
-      },
-    );
+    return this.PciPrivateNetworks.getPrivateNetworks(
+      this.projectId,
+      this.customerRegions,
+    ).then((networks) => {
+      this.networks = networks;
+      this.configureVlanId = !this.isVlanAvailable(DEFAULT_VLAN_ID);
+      this.mandatoryVlanId = this.configureVlanId;
+      if (this.configureVlanId) {
+        const nextVlanId = this.getNextAvailableVlanId();
+        this.VLAN_ID = {
+          MIN: VLAN_ID.MIN,
+          MAX: VLAN_ID.MAX,
+          NEXT_AVAILABLE: nextVlanId,
+        };
+        this.configuration.vlanId = this.VLAN_ID.NEXT_AVAILABLE;
+        this.regenerateNetworkAddress(this.configuration.vlanId);
+      }
+    });
   }
 
   getNextAvailableVlanId() {

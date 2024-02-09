@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import datacenterAddComponent from '../../../components/dedicated-cloud/datacenter/add';
+import datacenterAddComponent from '../../../components/dedicated-cloud/datacenter/vmware-vdc-add';
 import routing from './dedicatedCloud-datacenter-add.routes';
 import upgradeRange from './upgrade-range';
 

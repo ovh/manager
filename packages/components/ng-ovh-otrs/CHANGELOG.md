@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.3.1...@ovh-ux/ng-ovh-otrs@9.4.0) (2024-01-29)
+
+
+### Features
+
+* **dedicated.nas:** api nas deprecated ([#10623](https://github.com/ovh/manager/issues/10623)) ([4a957e0](https://github.com/ovh/manager/commit/4a957e08b590fc24dec3a3c543f1718431cd4406))
+
+
+
+
+
 ## [9.3.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-otrs@9.3.0...@ovh-ux/ng-ovh-otrs@9.3.1) (2023-12-05)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-otrs

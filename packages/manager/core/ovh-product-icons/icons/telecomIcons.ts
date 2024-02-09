@@ -1,8 +1,9 @@
-import { TelecomEthernet, Telephony } from '../assets-icon-svg/icons';
+import { TelecomEthernet, Telephony, Headset } from '../assets-icon-svg/icons';
 
 const telecomIcons = {
   TelecomEthernet,
   Telephony,
+  Headset,
 };
 
 export default telecomIcons;

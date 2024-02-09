@@ -16,6 +16,10 @@ export default class {
       MIGRATION_GUIDE.DEFAULT;
   }
 
+  canOrderDatacenter() {
+    return this.dedicatedCloud.canOrderDatacenter && this.addVdcAvailable;
+  }
+
   displayMigrationBanner() {
     return (
       (this.migrationBannerAvailable.firstBanner ||

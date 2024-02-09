@@ -14,5 +14,6 @@
   "telephony_line_phone_actions_line_phonebook": "Diretórios de contactos",
   "telephony_group_line_phone_section_back_link_target": "gestão do telefone",
   "telephony_line_phone_actions_line_phone_order_attach": "Associar a linha a um equipamento atual",
-  "telephony_line_phone_actions_line_phone_order_detach": "Desconectar a linha de um telefone"
+  "telephony_line_phone_actions_line_phone_order_detach": "Desconectar a linha de um telefone",
+  "telephony_line_phone_actions_line_order_headset": "Encomendar um capacete"
 }

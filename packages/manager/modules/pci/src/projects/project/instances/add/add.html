@@ -568,7 +568,7 @@
                 data-translate="pci_projects_project_instances_add_privateNetwork_gateway_detectected_banner_info2"
             ></p>
         </oui-message>
-        <div data-ng-if="$ctrl.isPrivateMode()">
+        <div data-ng-if="$ctrl.isPrivateMode() && !$ctrl.isLocalZone()">
             <oui-checkbox
                 class="mb-3"
                 data-model="$ctrl.isAttachFloatingIP"
@@ -661,7 +661,7 @@
                 </p>
             </oui-message>
         </div>
-        <div data-ng-if="$ctrl.isLocalPrivateMode()">
+        <div data-ng-if="$ctrl.isLocalPrivateMode() && $ctrl.isLocalZone()">
             <oui-checkbox class="mb-3" data-model="$ctrl.isAttachPublicNetwork">
                 <oui-checkbox-label>
                     <span

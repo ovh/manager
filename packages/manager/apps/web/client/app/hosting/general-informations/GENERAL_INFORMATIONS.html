@@ -60,12 +60,12 @@
                                         data-translate="common_ipv4"
                                     ></strong>
                                     <oui-clipboard
-                                        data-model="::hosting.hostingIp"
-                                        data-ng-if="hosting.hostingIp"
+                                        data-model="::hosting.clusterIp"
+                                        data-ng-if="hosting.clusterIp"
                                     ></oui-clipboard>
                                     <span
                                         data-translate="hosting_ipv4_coming_soon"
-                                        data-ng-if="hosting.hostingIp === null"
+                                        data-ng-if="hosting.clusterIp === null"
                                     ></span>
                                 </div>
                                 <div class="col-lg-6">
@@ -375,7 +375,13 @@
                                 data-translate="hosting_dashboard_service_flush_cdn_doing"
                                 data-ng-if="flushCdnState === 'doing'"
                             ></span>
-
+                            <div data-ng-if="hosting.hasCdn">
+                                <span
+                                    data-translate="hosting_dashboard_general_information_cdn_ip"
+                                ></span
+                                >:
+                                <span data-ng-bind="::hosting.hostingIp"></span>
+                            </div>
                             <div
                                 data-ng-if="hosting.hasCdn && $ctrl.isCdnInDeleteAtExpiration"
                             >
@@ -631,11 +637,6 @@
                             <span
                                 class="text-capitalized mr-2"
                                 data-ng-bind=":: $ctrl.getOfferName(hosting.offer)"
-                            ></span>
-                            <span
-                                class="oui-badge oui-badge_success"
-                                data-ng-if=":: $ctrl.hasNewHostingOfferSticker()"
-                                data-ng-bind=":: $ctrl.BADGE_NEW"
                             ></span>
                             <span
                                 class="fa fa-exclamation-triangle text-warning"

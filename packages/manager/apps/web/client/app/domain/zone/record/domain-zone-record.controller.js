@@ -52,7 +52,7 @@ angular.module('App').controller(
       this.recordPreview = '';
 
       // If the ttl is 0 or not set, the ttlSelect is ALWAYS "global"
-      if (this.edit && this.edit.ttl) {
+      if (this?.edit?.ttl) {
         this.model.ttlSelect = 'custom';
         this.model.ttl = parseInt(this.edit.ttl, 10);
       } else {
@@ -684,12 +684,6 @@ angular.module('App').controller(
     switchTargetToAbsolute() {
       this.model.target.target += '.';
       this.setTargetValue(this.model.fieldType);
-    }
-
-    targetIsRelativeDomain() {
-      return (
-        this.model.target.target && /\..*[^.]$/.test(this.model.target.target)
-      );
     }
 
     useSpfOvh() {

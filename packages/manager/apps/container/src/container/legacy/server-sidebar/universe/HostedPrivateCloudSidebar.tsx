@@ -9,10 +9,7 @@ import useServiceLoader from "./useServiceLoader";
 import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
-
-function getIcon(iconClass: string): JSX.Element {
-  return <span className={`${iconClass} mr-1`} aria-hidden="true" />;
-}
+import  getIcon  from './GetIcon';
 
 const features = [
   'dedicated-cloud',

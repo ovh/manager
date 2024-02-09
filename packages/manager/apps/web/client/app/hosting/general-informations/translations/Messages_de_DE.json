@@ -2,5 +2,6 @@
   "hosting_dashboard_useful_links": "Nützliche Links",
   "hosting_dashboard_useful_links_user_logs": "Statistiken der Webseiten",
   "hosting_dashboard_config_tile_options_cdn_cancel_terminate": "Kündigung geplant: {{ endEngagementDate }}",
-  "hosting_dashboard_config_tile_options_cdn_cancel_terminate_link": "Kündigung stornieren"
+  "hosting_dashboard_config_tile_options_cdn_cancel_terminate_link": "Kündigung stornieren",
+  "hosting_dashboard_general_information_cdn_ip": "IP"
 }

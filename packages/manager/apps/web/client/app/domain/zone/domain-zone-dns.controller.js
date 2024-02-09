@@ -233,14 +233,6 @@ export default class DomainTabZoneDnsCtrl {
     }
   }
 
-  targetIsRelativeDomain(domain) {
-    return (
-      domain.target &&
-      indexOf(this.typesToCheck, domain.fieldType) !== -1 &&
-      /\..*[^.]$/.test(domain.target)
-    );
-  }
-
   // checboxes --------------------------------------------------------------
   applySelection() {
     forEach(get(this.zone, 'paginatedZone.records.results'), (item) => {

@@ -681,7 +681,7 @@ export default class PciInstancesAddController {
       modelValue &&
       modelValue.subnet &&
       this.selectedMode.name !== this.instanceModeEnum[1].mode &&
-      !this.isLocalPrivateMode()
+      !this.isLocalZone()
     ) {
       this.getSubnetGateways(modelValue.subnet[0].id)
         .then((data) => {

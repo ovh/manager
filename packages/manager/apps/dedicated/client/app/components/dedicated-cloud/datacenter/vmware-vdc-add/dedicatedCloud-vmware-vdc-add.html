@@ -1,0 +1,76 @@
+<oui-header
+    data-heading="{{ :: 'dedicatedCloud_configuration_add_datacenter_title' | translate }}"
+    data-description="{{ :: 'dedicatedCloud_configuration_add_datacenter_description' | translate }}"
+>
+</oui-header>
+
+<oui-stepper
+    data-on-init="$ctrl.datacentersLoad()"
+    data-on-finish="$ctrl.addDatacenter()"
+>
+    <oui-step-form
+        data-header="{{ :: 'dedicatedCloud_configuration_add_datacenter_step_1_title' | translate }}"
+        data-description="{{ :: 'dedicatedCloud_configuration_add_datacenter_step_1_description' | translate }}"
+        data-on-cancel="$ctrl.onCancel()"
+        data-cancel-text="{{ :: 'dedicatedCloud_configuration_add_datacenter_cta_cancel' | translate }}"
+        data-on-submit="$ctrl.hostsLoad()"
+        data-loading="$ctrl.vdcLoading"
+        data-valid="$ctrl.model.vdc"
+        data-prevent-next
+    >
+        <div class="col-sm-12 mt-2 mb-4 d-flex flex-wrap align-content-stretch">
+            <oui-select-picker
+                data-ng-repeat="datacenter in $ctrl.vdcList track by $index"
+                class="col-md-4"
+                data-model="$ctrl.model.vdc"
+                data-label="{{ :: 'dedicatedCloud_configuration_add_datacenter_card_vdc_' + datacenter.vdc + '_label' | translate }}"
+                data-values="[datacenter]"
+                data-disabled="$ctrl.submitting"
+                data-required
+            >
+                <oui-select-picker-section>
+                    <p
+                        data-translate="{{ :: 'dedicatedCloud_configuration_add_datacenter_card_vdc_' + datacenter.vdc + '_description' }}"
+                    ></p>
+                </oui-select-picker-section>
+            </oui-select-picker>
+        </div>
+    </oui-step-form>
+    <oui-step-form
+        data-header="{{ :: 'dedicatedCloud_configuration_add_datacenter_step_2_title' | translate }}"
+        data-description="{{ :: 'dedicatedCloud_configuration_add_datacenter_step_2_description' | translate }}"
+        data-loading="$ctrl.hostsLoading"
+        data-submit-text="{{ :: 'dedicatedCloud_configuration_add_datacenter_cta_submit' | translate }}"
+        data-on-cancel="$ctrl.onCancel()"
+        data-cancel-text="{{ :: 'dedicatedCloud_configuration_add_datacenter_cta_cancel' | translate }}"
+        data-valid="$ctrl.model.host"
+        data-prevent-next
+    >
+        <oui-message
+            data-ng-if="$ctrl.model.vdc.vdc === $ctrl.VDC_TYPE.NSX"
+            class="mb-3"
+            data-type="info"
+        >
+            <p
+                data-translate="dedicatedCloud_configuration_add_datacenter_message_edge_information"
+            ></p>
+        </oui-message>
+        <div class="col-sm-12 mt-2 mb-4 d-flex flex-wrap align-content-stretch">
+            <oui-select-picker
+                data-ng-repeat="host in $ctrl.hostList track by $index"
+                class="col-md-3"
+                data-model="$ctrl.model.host"
+                data-label="{{ :: 'dedicatedCloud_configuration_add_datacenter_card_host_' + host.name + '_label' | translate }}"
+                data-values="[host]"
+                data-disabled="$ctrl.submitting"
+                data-required
+            >
+                <oui-select-picker-section>
+                    <p
+                        data-translate="{{ :: 'dedicatedCloud_configuration_add_datacenter_card_host_' + host.name + '_description' }}"
+                    ></p>
+                </oui-select-picker-section>
+            </oui-select-picker>
+        </div>
+    </oui-step-form>
+</oui-stepper>

@@ -1,7 +1,6 @@
 import angular from 'angular';
 
-import controller from './telecom-sms-sms-outgoing.controller';
-import template from './telecom-sms-sms-outgoing.html';
+import component from './telecom-sms-sms-outgoing.component';
 
 const moduleName = 'ovhManagerSmsSmsOutgoing';
 
@@ -12,17 +11,18 @@ angular
       url: '/outgoing',
       views: {
         'smsView@sms.service': {
-          template,
-          controller,
-          controllerAs: 'SmsOutgoingCtrl',
+          component: 'ovhManagerSmsSmsOutgoing',
         },
       },
       resolve: {
+        getOutgoingSms: /* @ngInject */ (SmsService, serviceName) => (params) =>
+          SmsService.getOutgoingSms(serviceName, params),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('sms_sms_outgoing_title'),
       },
     });
   })
+  .component('ovhManagerSmsSmsOutgoing', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
