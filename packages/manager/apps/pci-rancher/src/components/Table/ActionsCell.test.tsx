@@ -1,18 +1,19 @@
 import React from 'react';
+import { Row } from '@tanstack/react-table';
 import ActionsCell from './ActionsCell';
-import { render, waitFor } from '../../../utils/test/test.provider';
-import { rancherError, rancherMocked } from '../../../_mock_/rancher';
-import { RancherService } from '../../../api/api.type';
-import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
+import { render, waitFor } from '../../utils/test/test.provider';
+import { rancherError, rancherMocked } from '../../_mock_/rancher';
+import { RancherService } from '@/api/api.type';
+import listingTranslation from '../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 
 const setupSpecTest = async (rancherService: RancherService = rancherMocked) =>
   waitFor(() =>
     render(
       <ActionsCell
-        href="/rancher"
         setSelectedRancher={() => true}
         openModal={() => true}
-        rowData={rancherService}
+        onClickManage={() => true}
+        row={{ original: rancherService } as Row<RancherService>}
       />,
     ),
   );
@@ -29,7 +30,7 @@ describe('Actions Cell', () => {
   });
 
   it('Manage should not be visible if rancher is in error', async () => {
-    const screen = await setupSpecTest(rancherError);
+    const screen = await setupSpecTest(rancherError as RancherService);
 
     const manageText = screen.queryByText(listingTranslation.manage);
 

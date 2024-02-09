@@ -1,19 +1,23 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHref, useNavigate } from 'react-router-dom';
+import { useNavigate, useHref } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
-import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-components/react';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsSpinner,
+} from '@ovhcloud/ods-components/react';
 import { RancherService } from '@/api/api.type';
 import Title from '@/components/Title/Title';
-
-import Datagrid from '../../components/layout-helpers/Listing/dataGrid';
 import RancherTaskMessage from './RancherTaskMessage';
+import TableContainer from '@/components/Table/TableContainer';
 
 export interface ListingProps {
   data: RancherService[];
@@ -30,7 +34,6 @@ const Listing: React.FC<ListingProps> = ({ data }) => {
   }
 
   const tasks = data.map((rancher) => rancher.currentTasks).flat();
-
   return (
     <>
       <Title>{t('rancherTitle')}</Title>
@@ -54,7 +57,11 @@ const Listing: React.FC<ListingProps> = ({ data }) => {
         </OsdsButton>
       </div>
       {tasks.length ? <RancherTaskMessage tasks={tasks} /> : <></>}
-      <Datagrid data={data} />
+      {data ? (
+        <TableContainer data={data} />
+      ) : (
+        <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />
+      )}
     </>
   );
 };
