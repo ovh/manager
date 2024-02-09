@@ -1,6 +1,9 @@
+import illustration from '@/assets/images/sidebar/bare-metal-cloud.png';
 export default {
   id: 'baremetal-cloud',
   translation: 'sidebar_bare_metal_cloud',
+  shortTranslation: 'sidebar_bare_metal_cloud_short',
+  illustration,
   features: ['bare-metal-cloud'],
   routing: {
     application: 'dedicated',

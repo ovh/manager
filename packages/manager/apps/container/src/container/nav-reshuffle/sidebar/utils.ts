@@ -172,6 +172,51 @@ export function findPathToNodeByApp(
   return path;
 }
 
+export const shouldHideElement = (
+  node: Node,
+  count: number | boolean,
+  betaVersion: number,
+) => {
+  if (node.hideIfEmpty && !count) {
+    return true;
+  }
+
+  if (node.forceVisibility) {
+    return false;
+  }
+
+  if (betaVersion === 2) {
+    if (node.id === 'services') return false;
+    if (node.count === false) return false;
+    if (node.hideIfEmpty === false) return false;
+    return !count;
+  }
+
+  return false;
+};
+
+export const debounce = (
+  func: Function,
+  [timer, setTimer]: [ReturnType<typeof setTimeout>, Function],
+  timeout: number = 300,
+) => {
+  return (...args: any[]) => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    setTimer(
+      setTimeout(() => {
+        func.apply(this, args);
+      }, timeout),
+    );
+  };
+};
+
+export const isMobile = () => {
+  const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+  return regex.test(navigator.userAgent);
+};
+
 export default {
   initTree,
   countServices,
