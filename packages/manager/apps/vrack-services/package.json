@@ -23,7 +23,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^7.2.0",
     "@ovh-ux/manager-core-api": "*",
-    "@ovh-ux/manager-core-order": "^0.1.0",
+    "@ovh-ux/manager-module-order": "^0.1.0",
     "@ovh-ux/manager-react-shell-client": "^0.1.0",
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/shell": "^3.0.0",

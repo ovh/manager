@@ -6,7 +6,7 @@ import { Card, CardProps } from '@ovhcloud/manager-components';
 import {
   OrderDescription,
   useOrderPollingStatus,
-} from '@ovh-ux/manager-core-order';
+} from '@ovh-ux/manager-module-order';
 import { useGuideUtils } from '@/components/GuideLink';
 import { OnboardingLayout } from '@/components/layout-helpers';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
@@ -54,7 +54,7 @@ const OnboardingPage = () => {
   ];
 
   if (vrackServicesDeliveringOrders?.length > 0) {
-    return <Navigate to="/" />;
+    return <Navigate to={urls.listing} />;
   }
 
   return (

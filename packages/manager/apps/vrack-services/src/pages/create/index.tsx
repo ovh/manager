@@ -20,7 +20,7 @@ import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   OrderDescription,
   getDeliveringOrderQueryKey,
-} from '@ovh-ux/manager-core-order';
+} from '@ovh-ux/manager-module-order';
 import {
   getvrackServicesReferenceRegionList,
   getvrackServicesReferenceRegionListQueryKey,

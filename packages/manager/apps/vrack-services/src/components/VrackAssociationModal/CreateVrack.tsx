@@ -20,7 +20,7 @@ import {
   OrderDescription,
   useOrderPollingStatus,
   useOrderURL,
-} from '@ovh-ux/manager-core-order';
+} from '@ovh-ux/manager-module-order';
 import { getVrackListQueryKey } from '@/api';
 import { DeliveringMessages } from '../DeliveringMessages';
 import { handleClick } from '@/utils/ods-utils';

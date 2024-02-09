@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useOrderURL } from '@ovh-ux/manager-core-order';
+import { useOrderURL } from '@ovh-ux/manager-module-order';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_TYPE,
@@ -15,7 +15,7 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { handleClick } from '@/utils/ods-utils';
-import { getExpressOrderLink } from '../constants';
+import { getExpressOrderLink } from '../order-utils';
 
 export type Props = {
   displayName?: string;

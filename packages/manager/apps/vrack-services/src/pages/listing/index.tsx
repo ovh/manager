@@ -22,7 +22,7 @@ import {
 import {
   useOrderPollingStatus,
   OrderDescription,
-} from '@ovh-ux/manager-core-order';
+} from '@ovh-ux/manager-module-order';
 import { getVrackServicesResourceListQueryKey } from '@/api';
 import { VrackServicesDatagrid } from '@/pages/listing/components/VrackServicesDataGrid';
 import { PageLayout } from '@/components/layout-helpers';

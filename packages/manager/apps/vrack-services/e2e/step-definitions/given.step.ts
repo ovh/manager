@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Given } from '@cucumber/cucumber';
 import { ICustomWorld } from '@playwright-helpers/custom-world';
-import { OrderStatus } from '@ovh-ux/manager-core-order';
+import { OrderStatus } from '@ovh-ux/manager-module-order';
 import { getUrl } from '../utils';
 import { ConfigParams } from '../../mock/handlers';
 import { ProductStatus, ResourceStatus } from '@/api';

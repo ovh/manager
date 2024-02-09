@@ -1,5 +1,5 @@
 import { PathParams } from 'msw';
-import { Cart, Item } from '@ovh-ux/manager-core-order';
+import { Cart, Item } from '@ovh-ux/manager-module-order';
 import { Handler } from '../../e2e/utils/msw-helpers';
 import { getParamsFromUrl } from '../../e2e/utils/playwright-helpers';
 

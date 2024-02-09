@@ -2,7 +2,7 @@ import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import { OsdsMessage } from '@ovhcloud/ods-components/react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { DetailedOrder } from '@ovh-ux/manager-core-order';
+import { DetailedOrder } from '@ovh-ux/manager-module-order';
 
 export type DeliveringMessagesProps = {
   messageKey: string;
