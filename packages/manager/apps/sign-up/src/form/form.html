@@ -33,7 +33,7 @@
                 data-ng-if="!$ctrl.loading.init"
             >
                 <p
-                    data-translate="sign_up_form_global_information"
+                    data-translate="{{ 'sign_up_form_global_information' + $ctrl.subsidiaryLabelSuffix}}"
                     data-ng-if="$ctrl.isActiveStep('details')"
                 ></p>
                 <div data-ui-view="details"></div>
