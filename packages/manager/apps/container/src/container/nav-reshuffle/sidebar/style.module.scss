@@ -2,10 +2,10 @@
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
 
-$selected: #00185e;
-
 .sidebar {
   @import '@ovh-ux/manager-hub/src/variables.scss';
+  background-color: $p-700;
+  position: relative;
   width: 20rem;
   height: 100%;
   display: flex;
@@ -13,6 +13,27 @@ $selected: #00185e;
   justify-content: flex-end;
   min-width: 20rem;
   color: white;
+
+  &_short {
+    width: 4.5rem;
+    min-width: unset;
+    & .sidebar_menu_items > button{
+      justify-content: center;
+    }
+    & .sidebar_menu ul {
+      text-align: center;
+    }
+    & .subtree {
+      left: 4.5rem;
+    }
+    & .sidebar_toggle_btn {
+      justify-content: center;
+    }
+  }
+
+  &_logo {
+    display: block;
+  }
 
   &_pci_refresh {
     line-height: 1rem;
@@ -22,17 +43,16 @@ $selected: #00185e;
     border: none;
     font-size: 0.9rem;
     color: inherit;
-    border-radius: 10px;
+    border-radius: 0.625em;
     cursor: pointer;
     padding: 0.5rem;
     transition: all 0.3s ease-in-out;
 
     &:hover {
-      background: $selected;
+      background: $p-800;
     }
   }
   &_menu {
-    overflow-y: auto;
     flex: 1;
   }
 
@@ -42,15 +62,21 @@ $selected: #00185e;
     list-style-type: none;
   }
 
+  &_menu_items:hover {
+    background-color: $p-800;
+  }
+
   li {
-    padding-left: 1rem;
-    padding-right: 1rem;
     line-height: 2.3rem;
     vertical-align: middle;
-
+    button {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
     a {
       color: white;
-      font-weight: 400;
+      font-weight: 600;
       display: inline-block;
       width: 100%;
       outline: none;
@@ -66,19 +92,10 @@ $selected: #00185e;
     font-size: 1.3rem;
     font-weight: 600;
     margin: 0;
-    margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-  }
-  @media (max-width: $device-breakpoint-tablet-max-width) {
-    &_logo {
-      margin-top: 3rem;
-    }
   }
 
   &_action {
-    margin: 1.5rem;
-    margin-top: 1rem;
-
     a {
       background-color: white;
       display: inline-block;
@@ -93,27 +110,26 @@ $selected: #00185e;
 
     a:hover {
       text-decoration: none;
-      background-color: #bef1ff;
+      background-color: $p-100;
     }
   }
 
   &_action_icon {
     font-size: 1.5rem;
     vertical-align: bottom !important;
-    margin-right: 0.75rem;
   }
 
   &_chip {
     float: right;
     margin-top: 0.75rem !important;
-    background-color: #bef1ff !important;
-    color: #0050d7 !important;
+    background-color: $p-100 !important;
+    color: $p-500 !important;
   }
 
   &_tag {
     font-weight: normal !important;
     color: white !important;
-    background-color: #4d5592 !important;
+    background-color: $p-800-text !important;
     padding: 0.25rem 0.5rem !important;
   }
 
@@ -128,20 +144,6 @@ $selected: #00185e;
     display: none !important;
   }
 
-  &_back_btn {
-    padding-left: 1rem;
-    display: inline-block;
-    line-height: 1.5rem;
-    vertical-align: bottom;
-    margin-bottom: 0.5rem;
-    font-weight: 400;
-
-    span {
-      font-size: 1.5rem;
-      margin-right: 0.75rem;
-    }
-  }
-
   &_external {
     font-size: 0.75rem;
     margin-left: 0.5rem;
@@ -152,7 +154,7 @@ $selected: #00185e;
   }
 
   &_selected {
-    background-color: $selected;
+    background-color: $p-800;
   }
 
   select {
@@ -161,7 +163,7 @@ $selected: #00185e;
     border-radius: 0.5rem;
     background-color: $p-700;
     color: white;
-    border: 1px solid #0050d7bf;
+    border: 1px solid rgba($p-500, 0.75);
   }
 
   &_clipboard {
@@ -179,4 +181,104 @@ $selected: #00185e;
   li[class^='assistance_header'] {
     cursor: pointer;
   }
+
+  &_toggle_btn {
+    height: 2.5rem;
+    background-color: $p-500;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 0.625em;
+  }
 }
+
+.subtree {
+  width: 100%;
+  height: 100%;
+  background-color: rgba($p-500, 0.50);
+  position: fixed;
+  top: 0;
+  left: 20rem;
+  z-index: 901;
+  &_content {
+    background: $p-800;
+    height: 100%;
+    width: 20rem;
+  }
+  &_list {
+    min-height: 28.125rem;
+    overflow-y: auto;
+  }
+  &_illustration {
+    width: 55%;
+    margin: auto;
+    & > img {
+      width: 100%;
+    }
+  }
+  &_back_btn{
+    display: none;
+    height: 40px;
+    background-color: $p-500;
+    color: white;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 0.625em;
+    width: 100%;
+  }
+  &_section_title{
+    color: $p-200 !important;
+    text-transform: uppercase;
+    font-size: 1rem !important;
+  }
+  &_section{
+    border-bottom: solid 1px $p-200;
+    margin-top: 0.625em;
+  }
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+@media (max-width: $device-breakpoint-tablet-max-width) {
+  .sidebar {
+    padding-top: 4em;
+    width: 100%;
+    min-width: unset;
+    &_logo {
+      display: none;
+    }
+    &_toggle_btn {
+      display: none;
+    }
+  }
+  .subtree {
+    left: 0;
+    width: 100%;
+    &_content {
+      padding-top: 3em;
+      width: 100%;
+    }
+    &_back_btn {
+      display: flex;
+    }
+  }
+}
+
+.button-as-div {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+

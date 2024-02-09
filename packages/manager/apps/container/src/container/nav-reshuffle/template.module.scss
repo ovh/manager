@@ -14,10 +14,7 @@ $z-index-sidebar: 700;
 }
 
 .sidebar {
-  @import '@ovh-ux/manager-hub/src/variables.scss';
-  background-color: $p-700;
   height: 100vh;
-  overflow-y: auto;
 }
 
 .navbar {
@@ -65,6 +62,7 @@ $z-index-sidebar: 700;
   }
   .sidebar {
     position: absolute;
+    width: 100%;
     z-index: $z-index-sidebar;
   }
   .iframeOverlay_visible {
