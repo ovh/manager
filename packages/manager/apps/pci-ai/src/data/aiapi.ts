@@ -7,6 +7,11 @@ export interface NotebookProps {
     notebookId: string,
 };
 
+export interface JobProps {
+    projectId: string,
+    jobId: string,
+};
+
 export interface DataSyncProps {
     projectId: string,
     productId: string,
@@ -146,4 +151,56 @@ export const notebookApi = {
         )
             .then((res) => res.data as string);
     }
+};
+
+export const jobsApi = {
+    getJobs: async (projectId: string) =>
+        apiClient.v6.get(
+            `/cloud/project/${projectId}/ai/job`,
+            {
+                headers: {
+                    'X-Pagination-Mode': 'CachedObjectList-Pages',
+                    'X-Pagination-Size': '50000',
+                    'Pragma': 'no-cache'
+                },
+            },
+        ).then(res => res.data as ai.job.Job[])
+    ,
+    getJob: async (projectId: string, jobId: string) =>
+        apiClient.v6.get(
+            `/cloud/project/${projectId}/ai/job/${jobId}`,
+            {
+                headers: {
+                    'Pragma': 'no-cache'
+                },
+            },
+        ).then(res => res.data as ai.job.Job)
+    ,
+    deleteJob: async ({
+        projectId,
+        jobId,
+    }: JobProps
+    ) => {
+        await apiClient.v6.delete(
+            `/cloud/project/${projectId}/ai/job/${jobId}`,
+        )
+    },
+    stopJob: async ({
+        projectId,
+        jobId,
+    }: JobProps
+    ) => {
+        await apiClient.v6.put(
+            `/cloud/project/${projectId}/ai/job/${jobId}/stop`,
+        )
+    },
+    startJob: async ({
+        projectId,
+        jobId,
+    }: JobProps
+    ) => {
+        await apiClient.v6.put(
+            `/cloud/project/${projectId}/ai/job/${jobId}/start`,
+        )
+    },
 };
