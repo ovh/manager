@@ -1,10 +1,9 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   OsdsButton,
-  OsdsIcon,
   OsdsMenu,
   OsdsMenuItem,
+  OsdsIcon,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
@@ -12,30 +11,30 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
-} from '@ovhcloud/ods-components';
+} from '@ovhcloud/ods-components/';
+import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { RancherService, RessourceStatus } from '../../../api/api.type';
+import { RessourceStatus } from '@/api/api.type';
+import { RancherActionsCell } from './Table.type';
+import './Table.scss';
 
-const ActionsCell: React.FC<{
-  rowData?: RancherService;
-  isLoading?: boolean;
-  href: string;
-  openModal: () => void;
-  setSelectedRancher: (rancher?: RancherService) => void;
-}> = ({ isLoading, rowData, openModal, setSelectedRancher, href }) => {
+export default function ActionsCell({
+  row,
+  openModal,
+  setSelectedRancher,
+  onClickManage,
+}: Readonly<RancherActionsCell>) {
   const editable = true;
   const { t } = useTranslation('pci-rancher/listing');
 
   const onDelete = () => {
-    setSelectedRancher(rowData);
+    setSelectedRancher(row.original);
     openModal();
   };
 
   return (
     <div>
-      <OsdsMenu
-        style={{ position: 'absolute', marginLeft: -10, marginTop: -15 }}
-      >
+      <OsdsMenu className="absolute ml-[-15px] mt-[-15px]">
         <OsdsButton
           slot="menu-title"
           inline
@@ -44,7 +43,7 @@ const ActionsCell: React.FC<{
           variant={ODS_BUTTON_VARIANT.stroked}
           type={ODS_BUTTON_TYPE.button}
           size={ODS_BUTTON_SIZE.sm}
-          disabled={isLoading || !editable || undefined}
+          disabled={!editable || undefined}
         >
           <OsdsIcon
             color={ODS_THEME_COLOR_INTENT.primary}
@@ -52,14 +51,14 @@ const ActionsCell: React.FC<{
             size={ODS_ICON_SIZE.xs}
           />
         </OsdsButton>
-        {rowData?.resourceStatus !== RessourceStatus.ERROR && (
+        {row?.original?.resourceStatus !== RessourceStatus.ERROR && (
           <OsdsMenuItem>
             <OsdsButton
               color={ODS_THEME_COLOR_INTENT.primary}
               size={ODS_BUTTON_SIZE.sm}
               variant={ODS_BUTTON_VARIANT.ghost}
               text-align="start"
-              href={`${href}/${rowData?.id}`}
+              onClick={() => onClickManage(row?.original?.id)}
             >
               <span slot="start">
                 <span>{t('manage')}</span>
@@ -85,6 +84,4 @@ const ActionsCell: React.FC<{
       </OsdsMenu>
     </div>
   );
-};
-
-export default ActionsCell;
+}

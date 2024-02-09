@@ -59,7 +59,7 @@ const DeleteModal = ({
       <div className="mt-3">
         <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
           {t('deleteModalDescription', {
-            rancherName: selectedRancher.currentState?.name,
+            rancherName: selectedRancher.currentState.name,
           })}
         </OsdsText>
       </div>
