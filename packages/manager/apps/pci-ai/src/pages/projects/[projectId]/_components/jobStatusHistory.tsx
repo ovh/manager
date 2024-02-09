@@ -4,7 +4,7 @@ interface HistoryStatusProps {
   history: { date: string; state: ai.job.JobStateEnum }[];
 }
 
-const NotebookStatusHistory = ({ history }: HistoryStatusProps) => {
+const JobStatusHistory = ({ history }: HistoryStatusProps) => {
   return (
     <>
       {history.map((item, index) => (
@@ -24,4 +24,4 @@ const NotebookStatusHistory = ({ history }: HistoryStatusProps) => {
   );
 };
 
-export default NotebookStatusHistory;
+export default JobStatusHistory;

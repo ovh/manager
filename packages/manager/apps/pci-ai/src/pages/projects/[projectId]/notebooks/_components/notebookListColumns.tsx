@@ -15,7 +15,7 @@ import { SortableHeader } from '@/components/ui/data-table';
 import { MoreHorizontal } from 'lucide-react';
 
 import { ai } from '@/models/types';
-import { formattedDuration } from '@/data/notebooks';
+import { formattedDuration } from '@/data/constant';
 import NotebookStatusBadge from './notebookStatusBadge';
 
 

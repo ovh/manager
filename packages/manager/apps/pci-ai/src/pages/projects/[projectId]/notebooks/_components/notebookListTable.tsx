@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { ColumnDef } from '@tanstack/react-table';
+import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/ui/data-table';
@@ -52,8 +53,13 @@ export default function NotebooksList({
     onSuccess: () => {
       //close modale
       setOpenModal(false);
-      //refresh services list
+      toast.success(`Your notebook have been deleted`);
       refetchFn();
+    },
+    onError: (error: Error) => {
+      toast.error(
+        `A error occured while deleting your notebook: ${error.message}`,
+      );
     },
   });
 
@@ -63,8 +69,13 @@ export default function NotebooksList({
     onSuccess: () => {
       //close modale
       setOpenModal(false);
-      //refresh services list
+      toast.success(`Your notebook have been stopped`);
       refetchFn();
+    },
+    onError: (error: Error) => {
+      toast.error(
+        `A error occured while stopping your notebook: ${error.message}`,
+      );
     },
   });
 
@@ -74,8 +85,13 @@ export default function NotebooksList({
     onSuccess: () => {
       //close modale
       setOpenModal(false);
-      //refresh services list
+      toast.success(`Your notebook have been started`);
       refetchFn();
+    },
+    onError: (error: Error) => {
+      toast.error(
+        `A error occured while starting your notebook: ${error.message}`,
+      );
     },
   });
 

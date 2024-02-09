@@ -26,12 +26,10 @@ const GeneralCard = ({ notebook, onLabelUpdate }: GeneralProps) => {
   const [isAddLabelModalOpen, setIsAddLabelModalOpen] = useState(false);
 
   const onSubmit = (data: AddLabelSubmitData) => {
-    console.log(data);
     setIsAddLabelModalOpen(false);
     const newList : Record<string,string> = {...notebook.spec.labels};
     const nouvelElement = { key: data.key, value: data.value};
     newList[nouvelElement.key] = nouvelElement.value;
-    console.log(newList);
     
     addLabelDataMutation.mutate({
       projectId: projectId,

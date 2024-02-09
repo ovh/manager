@@ -19,10 +19,10 @@ import { ArrowRight, MoreVertical } from 'lucide-react';
 
 import { ai } from '@/models/types';
 import { NotebookProps, notebookApi } from '@/data/aiapi';
-import { formattedDuration } from '@/data/notebooks';
+import { formattedDuration } from '@/data/constant';
 
 import NotebookStatusBadge from '../../../_components/notebookStatusBadge';
-import NotebookStatusHistory from './notebookStatus';
+import JobStatusHistory from './../../../../_components/jobStatusHistory';
 import StartNotebookModal, {
   StartNotebookSubmitData,
 } from './../../../_components/startNotebookModal';
@@ -255,7 +255,7 @@ const LifeCycleCard = ({ notebook, onNotebookUpdate }: LifeCycleProps) => {
             <b>Timeline</b>
           </p>
           {notebook.status.lastJobStatus.history && (
-            <NotebookStatusHistory
+            <JobStatusHistory
               history={notebook.status.lastJobStatus.history}
             />
           )}

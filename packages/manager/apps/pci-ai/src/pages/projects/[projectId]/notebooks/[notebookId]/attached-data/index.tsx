@@ -13,8 +13,8 @@ import { DataSyncProps, notebookApi } from '@/data/aiapi';
 import SyncDataModal, {
   SyncDataSubmitData,
 } from '../../../_components/syncDataModal';
-import DataContainersList from './_components/dataContainerListTable';
-import GitRepositoryList from './_components/gitRepositoryListTable';
+import DataContainersList from './../../../_components/dataContainerListTable';
+import GitRepositoryList from './../../../_components/gitRepositoryListTable';
 
 
 export const Handle = {

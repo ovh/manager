@@ -82,7 +82,6 @@ const OrderFunnel = ({
               gpu: flavor.selectedResourceNumber,
             });
       }
-      console.log(orderNb);
       orderNbMut.mutate(orderNb);
     }
   };

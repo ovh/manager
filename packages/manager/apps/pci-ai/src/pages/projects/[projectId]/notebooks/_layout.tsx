@@ -14,6 +14,7 @@ export default function NotebooksLayout() {
   const linkUserToken = `/projects/${projectId}/ai-dashboard/users-tokens`;
   return (
     <>
+      
       <div className="mt-2">
         <Alert variant="default">
           <Info className="h-6 w-6" />

@@ -10,7 +10,7 @@ import {
 import { ArrowUpRightSquare, HelpCircleIcon } from 'lucide-react';
 
 import { ai } from '@/models/types';
-import { displaySizeFormat } from '@/data/notebooks';
+import { displaySizeFormat } from '@/data/constant';
 import ResourceSlider from './resourceSlider';
 
 interface ResourcesProps {

@@ -1,6 +1,6 @@
 import RadioTile from '@/components/radio-tile';
 import { ai } from '@/models/types';
-import { displaySizeFormat } from '@/data/notebooks';
+import { displaySizeFormat } from '@/data/constant';
 
 const FlavorTile = ({
   flavor,
