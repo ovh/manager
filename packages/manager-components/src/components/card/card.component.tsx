@@ -51,11 +51,7 @@ export const Card = ({
   const { t } = useDynamicTranslation('card');
 
   return (
-    <a
-      target={OdsHTMLAnchorElementTarget._blank}
-      rel={OdsHTMLAnchorElementRel.noopener}
-      href={href}
-    >
+    <a target={OdsHTMLAnchorElementTarget._blank} href={href}>
       <OsdsTile
         className="w-full h-full"
         color={ODS_THEME_COLOR_INTENT.primary}
@@ -114,6 +110,7 @@ export const Card = ({
             tabindex="-1"
             color={ODS_THEME_COLOR_INTENT.primary}
             href={href}
+            target={OdsHTMLAnchorElementTarget._blank}
           >
             {t('see_more_label')}
             <OsdsIcon
