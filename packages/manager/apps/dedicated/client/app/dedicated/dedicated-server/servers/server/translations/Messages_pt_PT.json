@@ -852,7 +852,7 @@
   "server_configuration_installation_ovh_step3_scheme": "Esquema de particionamento:",
   "server_consumption_explanation_link": "Mais informações",
   "server_configuration_installation_inputs_title": "Opções específicas:",
-  "server_configuration_installation_inputs_info": "As questões abaixo são específicas ao sistema operativo selecionado ({{t0}}). São escritas unicamente em inglês para serem consistentes com a API.",
+  "server_configuration_installation_inputs_info": "As perguntas seguintes são específicas ao sistema operativo selecionado ({{t0}}): são escritas unicamente em Inglês para serem consistentes com a API",
   "server_configuration_installation_inputs_item_placeholder": "Inserir um valor de tipo {{t0}}",
   "server_configuration_installation_inputs_item_placeholder_example": "Por exemplo: {{t0}}",
   "server_configuration_installation_inputs_item_mandatory": "Este campo é obrigatório",
