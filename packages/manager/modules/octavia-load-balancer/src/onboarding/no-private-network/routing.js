@@ -11,13 +11,14 @@ export default /* @ngInject */ ($stateProvider) => {
         $injector,
         projectId,
         coreURLBuilder,
+        $q,
       ) => () => {
         atInternet.trackClick({
           name: `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::create-private-network::add-private-network`,
           type: 'navigation',
         });
         if ($injector.has('shellClient')) {
-          $injector
+          return $injector
             .get('shellClient')
             .navigation.getURL(
               'public-cloud',
@@ -31,6 +32,7 @@ export default /* @ngInject */ ($stateProvider) => {
           'public-cloud',
           `#/pci/projects/${projectId}/private-networks/new`,
         );
+        return $q.when(null);
       },
     },
     views: {
