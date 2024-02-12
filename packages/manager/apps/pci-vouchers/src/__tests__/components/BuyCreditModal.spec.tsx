@@ -1,3 +1,4 @@
+import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { act, fireEvent, render, screen } from '@testing-library/react';
@@ -6,6 +7,8 @@ import '@testing-library/jest-dom';
 import BuyCreditModal from '@/components/vouchers/BuyCreditModal';
 import { useBuyCredit } from '@/hooks/useVouchers';
 import queryClient from '@/queryClient';
+
+// HTMLElement.prototype.attachInternals = () => {};
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
   useEnvironment: () => ({

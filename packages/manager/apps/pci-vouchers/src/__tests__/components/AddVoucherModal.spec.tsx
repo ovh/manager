@@ -1,3 +1,4 @@
+import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { act, fireEvent, render, screen } from '@testing-library/react';
