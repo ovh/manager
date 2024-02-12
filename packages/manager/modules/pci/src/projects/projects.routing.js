@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
           injector.getAsync('activeProjects'),
           injector.getAsync('isRedirectRequired'),
           injector.getAsync('getTargetedState'),
+          injector.getAsync('onBoardingStateName'),
         ])
         .then(
           ([
@@ -28,9 +29,10 @@ export default /* @ngInject */ ($stateProvider) => {
             activeProjects,
             isRedirectRequired,
             getTargetedState,
+            onBoardingStateName,
           ]) => {
             if (!projects.length) {
-              return 'pci.projects.onboarding';
+              return onBoardingStateName;
             }
 
             // Redirect customer to right page
@@ -200,11 +202,13 @@ export default /* @ngInject */ ($stateProvider) => {
        * @param projects { Array }: projects instance list
        * @returns {(function(*=): (string|boolean))|*}: state where the redirection is going, or false which mean no redirection required
        */
-      pciFeatureRedirect: /* @ngInject */ (pciFeatures, projects) => (
-        feature,
-      ) => {
+      pciFeatureRedirect: /* @ngInject */ (
+        pciFeatures,
+        projects,
+        onBoardingStateName,
+      ) => (feature) => {
         if (pciFeatures.isFeatureAvailable(feature)) {
-          return projects.length ? 'pci.projects' : 'pci.projects.onboarding';
+          return projects.length ? 'pci.projects' : onBoardingStateName;
         }
 
         return true;
@@ -268,6 +272,21 @@ export default /* @ngInject */ ($stateProvider) => {
           pciCreationNumProjects3: numProjects,
         });
       },
+
+      // 2024-02-12 : At the time we introduce the discovery mode,
+      // users who are eligible for the "credit" payment method
+      // cannot upgrade a project from the discovery project plan code
+      // to the full featured project plan code.
+      // These users must use the classic project creation funnel.
+      onBoardingStateName: /* @ngInject */ (OvhApiCloud) =>
+        OvhApiCloud.v6()
+          .getEligibility()
+          .$promise.then(({ paymentMethodsAuthorized }) =>
+            paymentMethodsAuthorized.includes('credit')
+              ? 'pci.projects.new'
+              : 'pci.projects.onboarding',
+          )
+          .catch(() => 'pci.projects.onboarding'),
     },
   });
 };

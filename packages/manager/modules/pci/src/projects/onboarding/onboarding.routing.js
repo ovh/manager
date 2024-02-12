@@ -4,33 +4,47 @@ import { PCI_PROJECT_DISCOVERY_ORDER_CART } from '../new/constants';
 import { PCI_HDS_ADDON } from '../project/project.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.onboarding', {
+  const stateName = 'pci.projects.onboarding';
+  $stateProvider.state(stateName, {
     url: '/onboarding',
     component: 'pciProjectsOnboarding',
     atInternet: {
       ignore: true, // this tell AtInternet to not track this state
     },
     redirectTo: (transition) => {
+      const injector = transition.injector();
       const [$q, publicCloud] = ['$q', 'publicCloud'].map((token) =>
-        transition.injector().get(token),
+        injector.get(token),
       );
       return $q
         .all({
           discoveryProjectId: publicCloud.getDiscoveryProject(),
           defaultProjectId: publicCloud.getDefaultProject(),
           unPaidProjects: publicCloud.getUnpaidProjects(),
+          onBoardingStateName: injector.getAsync('onBoardingStateName'),
         })
-        .then(({ discoveryProjectId, defaultProjectId, unPaidProjects }) => {
-          const projectId = discoveryProjectId || defaultProjectId;
+        .then(
+          ({
+            discoveryProjectId,
+            defaultProjectId,
+            unPaidProjects,
+            onBoardingStateName,
+          }) => {
+            const projectId = discoveryProjectId || defaultProjectId;
 
-          if (unPaidProjects.length) {
-            return { state: 'pci.projects' };
-          }
-          if (projectId) {
-            return { state: 'pci.projects.project', params: { projectId } };
-          }
-          return false;
-        });
+            if (unPaidProjects.length) {
+              return { state: 'pci.projects' };
+            }
+            if (projectId) {
+              return { state: 'pci.projects.project', params: { projectId } };
+            }
+            if (onBoardingStateName !== stateName) {
+              return onBoardingStateName;
+            }
+
+            return false;
+          },
+        );
     },
     resolve: {
       goToCreateDiscoveryProject: /* @ngInject */ ($state) => () =>
