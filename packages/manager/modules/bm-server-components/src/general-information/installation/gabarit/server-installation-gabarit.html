@@ -10,7 +10,7 @@
     >
         <div
             data-wizard-step
-            data-wizard-step-valid="!loader.loading && installation.selectGabarit && installation.selectLanguage"
+            data-wizard-step-valid="!loader.loading && installation.selectGabarit"
             data-wizard-step-on-load="$ctrl.load.bind($ctrl)"
         >
             <div class="text-center" data-ng-if="loader.loading">
@@ -99,19 +99,6 @@
                     </oui-collapsible>
                 </div>
 
-                <oui-field
-                    data-ng-if="installation.selectGabarit && !installation.deleteGabarit"
-                    data-label="{{ 'server_configuration_installation_step1_language' | translate }}"
-                >
-                    <oui-select
-                        data-items="installation.selectGabarit.availableLanguages"
-                        data-model="installation.selectLanguage"
-                        name="selectLanguage"
-                        data-match="language"
-                    >
-                    </oui-select>
-                </oui-field>
-
                 <div data-ng-if="installation.deleteGabarit">
                     <p
                         class="text-danger"
@@ -178,14 +165,6 @@
                             ></span>
                             <strong
                                 data-ng-bind="installation.selectGabarit.displayName"
-                            ></strong>
-                        </li>
-                        <li>
-                            <span
-                                data-translate="server_configuration_installation_gabarit_step2_lang"
-                            ></span>
-                            <strong
-                                data-ng-bind="installation.selectLanguage"
                             ></strong>
                         </li>
                         <li data-ng-if="informations.hardwareRaid">

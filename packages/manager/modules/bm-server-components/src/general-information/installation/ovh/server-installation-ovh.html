@@ -10,7 +10,7 @@
     >
         <div
             data-wizard-step
-            data-wizard-step-valid="!loader.loading && installation.selectDistribution && installation.selectLanguage && !installation.warningExistPartition"
+            data-wizard-step-valid="!loader.loading && installation.selectDistribution && !installation.warningExistPartition"
             data-wizard-step-on-load="$ctrl.loadStep1.bind($ctrl)"
             data-wizard-step-on-next="$ctrl.checkNextStep1.bind($ctrl)"
         >
@@ -122,19 +122,6 @@
                     data-ng-if="!$ctrl.hasVirtualDesktop()"
                     data-ng-bind-html="'server_configuration_installation_ovh_step1_virtual_desktop_not_supported' | translate:{ t0: installation.selectDistribution.displayName, t1: LICENSE_URL }"
                 ></p>
-
-                <oui-field
-                    data-ng-if="installation.selectDistribution && !installation.warningExistPartition"
-                    data-label="{{ 'server_configuration_installation_step1_language' | translate }}"
-                >
-                    <oui-select
-                        data-items="installation.selectDistribution.availableLanguages"
-                        data-model="installation.selectLanguage"
-                        name="selectLanguage"
-                        data-match="language"
-                    >
-                    </oui-select>
-                </oui-field>
 
                 <oui-field
                     data-label="{{ 'server_configuration_installation_ovh_step1_disk_group' | translate }}"
@@ -1532,10 +1519,6 @@
                             <dd
                                 data-ng-bind="installation.selectDistribution.displayName"
                             ></dd>
-                            <dt
-                                data-translate="server_configuration_installation_ovh_step3_lang"
-                            ></dt>
-                            <dd data-ng-bind="installation.selectLanguage"></dd>
                             <dt
                                 data-translate="server_configuration_installation_ovh_step3_disk_group"
                             ></dt>

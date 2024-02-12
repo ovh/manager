@@ -1,14 +1,11 @@
 import moment from 'moment';
 import chunk from 'lodash/chunk';
-import camelCase from 'lodash/camelCase';
 import forEachRight from 'lodash/forEachRight';
 import range from 'lodash/range';
 import set from 'lodash/set';
 import some from 'lodash/some';
 import Inputs from '../../inputs/inputs.class';
-import {
-  INPUTS_RULES
-} from '../../inputs/constants';
+import { INPUTS_RULES } from '../../inputs/constants';
 import {
   MOUNT_POINTS,
   MAX_MOUNT_POINTS,
@@ -138,7 +135,6 @@ export default class ServerInstallationOvhCtrl {
       // saveSelectDistribution : save new distribution if a partition
       // has personnalisation in progress(see setSelectDistribution())
       saveSelectDistribution: null,
-      selectLanguage: null,
       diskGroup: null,
       customInstall: false, // load personnalisation partition screen
       // STEP HARD RAID
@@ -547,8 +543,6 @@ export default class ServerInstallationOvhCtrl {
           .finally(() => {
             this.$scope.loader.loadingCapabilities = false;
           });
-
-        this.$scope.installation.selectLanguage = this.$scope.installation.selectDistribution.defaultLanguage;
       } else {
         this.resetDiskGroup();
       }
@@ -772,7 +766,6 @@ export default class ServerInstallationOvhCtrl {
     this.Server.getOvhPartitionSchemesTemplates(
       this.$stateParams.productId,
       this.$scope.installation.selectDistribution.id,
-      this.$scope.installation.selectLanguage,
       this.$scope.informations.customInstall,
     ).then(
       (partitionSchemesList) => {
@@ -2414,7 +2407,6 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.informations.gabaritName,
       this.$scope.installation.selectPartitionScheme,
       {
-        language: camelCase(this.$scope.installation.selectLanguage),
         customHostname: this.$scope.installation.options.customHostname,
         postInstallationScriptLink: this.$scope.installation.options
           .postInstallationScriptLink,
@@ -2452,8 +2444,7 @@ export default class ServerInstallationOvhCtrl {
           {
             t0: this.$scope.installation.selectDistribution.displayName,
             t1: this.$scope.constants.server.name,
-            t2: this.$scope.installation.selectLanguage,
-            t3: data.message,
+            t2: data.message,
           },
         );
         this.$scope.loader.loading = false;

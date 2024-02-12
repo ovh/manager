@@ -1,12 +1,9 @@
 import moment from 'moment';
 import flatten from 'lodash/flatten';
-import camelCase from 'lodash/camelCase';
 import range from 'lodash/range';
 import set from 'lodash/set';
 import Inputs from '../../inputs/inputs.class';
-import {
-  INPUTS_RULES
-} from '../../inputs/constants';
+import { INPUTS_RULES } from '../../inputs/constants';
 
 export default class ServerInstallationGabaritCtrl {
   /* @ngInject */
@@ -44,7 +41,6 @@ export default class ServerInstallationGabaritCtrl {
 
       selectFamily: null,
       selectGabarit: null,
-      selectLanguage: null,
       selectSoftRaidOnlyMirroring: null,
 
       diskGroupId: null,
@@ -96,7 +92,6 @@ export default class ServerInstallationGabaritCtrl {
     this.$scope.installation.partitionSchemesList = null;
     this.$scope.installation.selectPartitionScheme = null;
     this.$scope.installation.selectFamily = null;
-    this.$scope.installation.selectLanguage = null;
     this.$scope.installation.selectSoftRaidOnlyMirroring = null;
     this.$scope.installation.deleteGabarit = null;
 
@@ -205,7 +200,6 @@ export default class ServerInstallationGabaritCtrl {
 
   setSelectGabarit(gabarit) {
     this.$scope.installation.selectGabarit = gabarit;
-    this.$scope.installation.selectLanguage = this.$scope.installation.selectGabarit.defaultLanguage;
     this.$scope.installation.selectSoftRaidOnlyMirroring = this.$scope.installation.selectGabarit.softRaidOnlyMirroring;
 
     this.$scope.installation.inputs =
@@ -380,7 +374,6 @@ export default class ServerInstallationGabaritCtrl {
       this.$scope.installation.selectGabarit.id,
       this.$scope.installation.selectPartitionScheme,
       {
-        language: camelCase(this.$scope.installation.selectLanguage),
         customHostname: this.$scope.installation.options.customHostname,
         postInstallationScriptLink: this.$scope.installation.options
           .postInstallationScriptLink,
@@ -413,8 +406,7 @@ export default class ServerInstallationGabaritCtrl {
             {
               t0: this.$scope.installation.selectGabarit.displayName,
               t1: this.$scope.installation.server.name,
-              t2: this.$scope.installation.selectLanguage,
-              t3: data.message,
+              t2: data.message,
             },
           );
         },
