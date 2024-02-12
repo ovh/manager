@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.13.0...@ovh-ux/manager-web@18.13.1) (2024-02-12)
+
+
+### Bug Fixes
+
+* **web.domain:** change the order of action buttons in zone section ([#10837](https://github.com/ovh/manager/issues/10837)) ([43727e8](https://github.com/ovh/manager/commit/43727e8fad375a5f9df8c0cbedd14d381f021bbd))
+* **web:** display operation progress([#10883](https://github.com/ovh/manager/issues/10883)) ([1ccb7a7](https://github.com/ovh/manager/commit/1ccb7a78384c2ad81b7dc7af032d40d54ba6e875))
+
+
+
+
+
 # [18.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.12.0...@ovh-ux/manager-web@18.13.0) (2024-02-07)
 
 
