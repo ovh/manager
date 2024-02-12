@@ -10,18 +10,26 @@ import PageLayout from '@/components/PageLayout/PageLayout';
 import CreateRancher from '@/components/layout-helpers/CreateRancher/CreateRancher';
 import useCreateRancher from '@/hooks/useCreateRancher';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
+import { getRanchersUrl } from '@/utils/route';
+import usePciProject from '@/hooks/usePciProject';
+import { PciProjectPlanCode } from '@/api/api.type';
+import { useRanchers } from '@/hooks/useRancher';
 
 export default function Create() {
   const { projectId } = useParams();
   const navigate = useNavigate();
-  const [hasRancherCreationError, setRancherCreationError] = React.useState(
+  const [hasRancherCreationError, setHasRancherCreationError] = React.useState(
     false,
   );
 
+  const { data: project } = usePciProject();
+
+  const { data: ranchers } = useRanchers();
   const { createRancher } = useCreateRancher({
     projectId,
-    onSuccess: () => navigate(`/pci/projects/${projectId}/rancher`),
-    onError: () => setRancherCreationError(true),
+    onMutate: () => setHasRancherCreationError(false),
+    onSuccess: () => navigate(getRanchersUrl(projectId)),
+    onError: () => setHasRancherCreationError(true),
   });
 
   const { data: plans } = useQuery({
@@ -38,11 +46,15 @@ export default function Create() {
     <PageLayout>
       <Breadcrumb />
       <CreateRancher
+        hasSomeRancher={ranchers?.data.length > 0}
         projectId={projectId}
         hasRancherCreationError={hasRancherCreationError}
         onCreateRancher={createRancher}
         versions={versions?.data.filter((v) => v.status === 'AVAILABLE')}
         plans={plans?.data}
+        isProjectDiscoveryMode={
+          project?.planCode === PciProjectPlanCode.DISCOVERY
+        }
       />
     </PageLayout>
   );

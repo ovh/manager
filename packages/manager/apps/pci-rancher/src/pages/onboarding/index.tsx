@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import onboardingImgSrc from '../../assets/onboarding-img.png';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import PageLayout from '@/components/PageLayout/PageLayout';
+import { getCreateRancherUrl } from '@/utils/route';
 
 export default function Onboarding() {
   const { t } = useTranslation('pci-rancher/onboarding');
@@ -13,8 +14,7 @@ export default function Onboarding() {
   const title: string = t('title');
   const description: string = t('description');
 
-  const onOrderButtonClick = () =>
-    navigate(`/pci/projects/${projectId}/rancher/new`);
+  const onOrderButtonClick = () => navigate(getCreateRancherUrl(projectId));
 
   return (
     <PageLayout>

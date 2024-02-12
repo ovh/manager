@@ -14,10 +14,12 @@ const useCreateRancher = ({
   projectId,
   onSuccess,
   onError,
+  onMutate,
 }: {
   projectId: string;
   onSuccess: () => void;
   onError: () => void;
+  onMutate: () => void;
 }) => {
   const { mutate: createRancher, reset } = useMutation({
     mutationFn: (data: CreateRancherPayload) =>
@@ -27,6 +29,7 @@ const useCreateRancher = ({
       }),
     onSuccess,
     onError,
+    onMutate,
     mutationKey: createRancherServiceQueryKey(),
   });
 

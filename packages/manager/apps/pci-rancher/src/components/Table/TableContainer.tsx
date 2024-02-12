@@ -38,19 +38,14 @@ export default function TableContainer({
     deleteRancherResponse,
     setDeleteRancherResponse,
   ] = useState<ODS_MESSAGE_TYPE | null>(null);
-  const { mutate: deleteRancher, isError } = useMutation({
+  const { mutate: deleteRancher } = useMutation({
     mutationFn: () =>
       deleteRancherService({
         rancherId: selectedRancher?.id,
         projectId,
       }),
     mutationKey: deleteRancherServiceQueryKey(selectedRancher?.id),
-    onSuccess: () => {
-      setDeleteRancherResponse(ODS_MESSAGE_TYPE.success);
-    },
-    onError: () => {
-      setDeleteRancherResponse(ODS_MESSAGE_TYPE.error);
-    },
+    onError: () => setDeleteRancherResponse(ODS_MESSAGE_TYPE.error),
   });
 
   const Actions = ({ row }: { row: Row<RancherService> }) => (
@@ -129,7 +124,7 @@ export default function TableContainer({
       {isShowDeleteModal && (
         <DeleteModal
           toggleModal={setIsShowDeleteModal}
-          onDeleteRancher={() => deleteRancher}
+          onDeleteRancher={deleteRancher}
           selectedRancher={selectedRancher}
         />
       )}

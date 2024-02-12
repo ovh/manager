@@ -24,7 +24,7 @@ function HeaderTableTh({ header }: Readonly<RancherTableTh>) {
         <div
           {...{
             className: header.column.getCanSort()
-              ? 'cursor-pointer select-none'
+              ? 'cursor-pointer !justify-start	select-none '
               : '',
             onKeyDown:
               header.id !== 'actions'
@@ -36,7 +36,7 @@ function HeaderTableTh({ header }: Readonly<RancherTableTh>) {
                 : null,
           }}
         >
-          <div>
+          <div className="text-left">
             <OsdsText
               color={ODS_THEME_COLOR_INTENT.text}
               size={ODS_TEXT_SIZE._500}
@@ -107,7 +107,7 @@ function TableComponent({ table }: Readonly<RancherTable>) {
               .getVisibleCells()
               .map((cell: Cell<RancherService, unknown>) => (
                 <td key={cell.id}>
-                  <div>
+                  <div className="text-left">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </div>
                 </td>

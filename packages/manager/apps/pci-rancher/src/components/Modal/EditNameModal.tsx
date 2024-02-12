@@ -59,11 +59,11 @@ const EditNameModal = ({
         color={ODS_THEME_COLOR_INTENT.text}
         level={ODS_TEXT_LEVEL.heading}
         size={ODS_TEXT_SIZE._400}
-        className="my-3"
+        className="my-4"
       >
         {t('editNameModalTitle')}
       </OsdsText>
-      <div className="mt-3">
+      <div className="my-4">
         <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
           {t('editNameModalInfo')}
         </OsdsText>
@@ -82,16 +82,17 @@ const EditNameModal = ({
           e: OsdsInputCustomEvent<OdsInputValueChangeEventDetail>,
         ) => setNewName(e.target.value as string)}
       />
-      <OsdsText
-        className="my-3"
-        color={
-          isValidName
-            ? ODS_THEME_COLOR_INTENT.primary
-            : ODS_THEME_COLOR_INTENT.error
-        }
-      >
-        {t('editNameModaleHelperInput')}
-      </OsdsText>
+      <div className="mt-5">
+        <OsdsText
+          color={
+            isValidName
+              ? ODS_THEME_COLOR_INTENT.text
+              : ODS_THEME_COLOR_INTENT.error
+          }
+        >
+          {t('editNameModaleHelperInput')}
+        </OsdsText>
+      </div>
       <OsdsButton
         slot="actions"
         variant={ODS_BUTTON_VARIANT.stroked}

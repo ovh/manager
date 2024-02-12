@@ -10,6 +10,7 @@ import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
 import { DashboardTabItemProps } from '../../components/layout-helpers/Dashboard/Dashboard';
 import { useRancher } from '@/hooks/useRancher';
 import PageLayout from '@/components/PageLayout/PageLayout';
+import { getRanchersUrl } from '@/utils/route';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.serviceName;
@@ -40,7 +41,7 @@ export default function DashboardPage() {
     return (
       <Suspense>
         <ErrorBanner
-          onRedirectHome={() => navigate(`/pci/projects/${projectId}/rancher`)}
+          onRedirectHome={() => navigate(getRanchersUrl(projectId))}
           onReloadPage={() => window.location.reload()}
           error={error.response}
         />
