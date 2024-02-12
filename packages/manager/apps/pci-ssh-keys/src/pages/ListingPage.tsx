@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 
-import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  OsdsBreadcrumb,
+  OsdsButton,
+  OsdsDivider,
+  OsdsIcon,
+  OsdsSearchBar,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -11,6 +18,12 @@ import {
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 
 import { useTranslation } from 'react-i18next';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+} from '@ovhcloud/ods-components';
 import { useSshKeys } from '@/hooks/useSsh';
 import GuidesHeader from '@/components/guides/GuidesHeader';
 import useProject from '@/hooks/useProject';
@@ -19,6 +32,8 @@ import DataGridTextCell from '@/components/datagrid/DataGridTextCell';
 import useDataGridParams, { PAGE_SIZES } from '@/hooks/useDataGridParams';
 import DataGrid from '@/components/datagrid/DataGrid';
 import Key from '@/components/ssh-keys/listing/Key';
+import RemoveSsh from '@/components/ssh-keys/listing/RemoveSsh.tsx';
+import Notifications from '@/components/Notifications';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -51,6 +66,13 @@ export default function ListingPage() {
         return <Key publicKey={props.publicKey} />;
       },
       label: t('pci_projects_project_sshKeys_public'),
+    },
+    {
+      id: 'actions',
+      cell: (props: SshKey) => {
+        return <RemoveSsh sshId={props.id} />;
+      },
+      label: '',
     },
   ];
 
@@ -102,6 +124,24 @@ export default function ListingPage() {
           {t('pci_projects_project_sshKeys_title')}
         </OsdsText>
         <GuidesHeader></GuidesHeader>
+      </div>
+      <OsdsDivider></OsdsDivider>
+      <Notifications />
+      <div className={'flex items-center justify-between mt-4'}>
+        <OsdsButton
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.stroked}
+          color={ODS_THEME_COLOR_INTENT.primary}
+        >
+          <OsdsIcon
+            size={ODS_ICON_SIZE.xs}
+            name={ODS_ICON_NAME.PLUS}
+            className={'mr-2'}
+            color={ODS_THEME_COLOR_INTENT.primary}
+          />
+          {t('pci_projects_project_sshKeys_add')}
+        </OsdsButton>
+        <OsdsSearchBar className={'w-2/12'} />
       </div>
 
       {!isLoading && !error && (

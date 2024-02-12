@@ -23,7 +23,16 @@ export default [
       {
         path: '',
         ...lazyRouteConfig(() => import('@/pages/ListingPage')),
-        children: [],
+        children: [
+          {
+            path: 'add',
+            ...lazyRouteConfig(() => import('@/pages/AddSshPage')),
+          },
+          {
+            path: ':sshId/remove',
+            ...lazyRouteConfig(() => import('@/pages/RemoveSshPage')),
+          },
+        ],
       },
     ],
   },

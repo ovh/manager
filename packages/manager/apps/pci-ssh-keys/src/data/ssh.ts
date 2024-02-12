@@ -1,6 +1,6 @@
 /// en get cloud/project/{serviceName}/sshkey
 
-import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
+import { v6 } from '@ovh-ux/manager-core-api';
 import { SshKey } from '@/interface';
 
 export type PaginationOptions = {
@@ -19,9 +19,16 @@ export type SshKeysOptions = {
 };
 
 export const getAllSshKeys = async (projectId: string): Promise<SshKey[]> => {
-  const { data } = await fetchIcebergV6<SshKey>({
-    route: `/cloud/project/${projectId}/sshkey`,
-  });
+  const { data } = await v6.get(`/cloud/project/${projectId}/sshkey`);
+
+  return data;
+};
+
+export const getSshKey = async (
+  projectId: string,
+  sshId: string,
+): Promise<SshKey> => {
+  const { data } = await v6.get(`/cloud/project/${projectId}/sshkey/${sshId}`);
 
   return data;
 };
@@ -55,4 +62,8 @@ export const filterSshKeys = (
   }
 
   return data;
+};
+
+export const removeSshKey = async (projectId: string, sshId: string) => {
+  await v6.delete(`/cloud/project/${projectId}/sshkey/${sshId}`);
 };

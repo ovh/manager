@@ -1,17 +1,37 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import {
   filterSshKeys,
   getAllSshKeys,
+  getSshKey,
   paginateResults,
+  removeSshKey,
   SshKeysOptions,
 } from '@/data/ssh';
+import queryClient from '@/queryClient';
+import { SshKey } from '@/interface';
 
-// const VOUCHERS_POLLING_INTERVAL = 5000;
+type RemoveSshProps = {
+  projectId: string;
+  sshId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
 
 export const useAllSshKeys = (projectId: string) => {
   return useQuery({
     queryKey: ['project', projectId, 'sshkeys'],
     queryFn: () => getAllSshKeys(projectId),
+    retry: false,
+    ...{
+      //    keepPreviousData: true,
+    },
+  });
+};
+
+export const useSshKey = (projectId: string, sshId: string) => {
+  return useQuery({
+    queryKey: ['project', projectId, 'sshkey', sshId],
+    queryFn: () => getSshKey(projectId, sshId),
     retry: false,
     ...{
       keepPreviousData: true,
@@ -32,14 +52,27 @@ export const useSshKeys = (
 
   // filtering ssh keys
   const { data: filteredsshKeys } = useQuery({
-    queryKey: ['project', projectId, 'sshkeys', sorting],
+    queryKey: [
+      'project',
+      projectId,
+      'sshkeys',
+      sshkeys?.map(({ id }) => id).join('-'),
+      sorting,
+    ],
     queryFn: () => filterSshKeys(sshkeys || [], sorting),
     enabled: !!sshkeys,
   });
 
   // paginate results
   const { isLoading, error, data } = useQuery({
-    queryKey: ['project', projectId, 'sshkeys', sorting, pagination],
+    queryKey: [
+      'project',
+      projectId,
+      'sshkeys',
+      sshkeys?.map(({ id }) => id).join('-'),
+      sorting,
+      pagination,
+    ],
     queryFn: () => paginateResults(filteredsshKeys || [], pagination),
     enabled: !!filteredsshKeys,
   });
@@ -50,3 +83,36 @@ export const useSshKeys = (
     data,
   };
 };
+
+export function useRemoveSsh({
+  projectId,
+  sshId,
+  onError,
+  onSuccess,
+}: RemoveSshProps) {
+  const mutation = useMutation({
+    mutationFn: () => {
+      return removeSshKey(`${projectId}`, `${sshId}`);
+    },
+    onError,
+    onSuccess: async () => {
+      queryClient.setQueryData(
+        ['project', projectId, 'sshkeys'],
+        (old: SshKey[]) => [...old.filter(({ id }) => id !== sshId)],
+      );
+
+      queryClient.invalidateQueries({
+        queryKey: ['project', projectId, 'sshkeys'],
+        // refetchType: 'all',
+      });
+      onSuccess();
+    },
+  });
+
+  return {
+    remove: () => {
+      return mutation.mutate();
+    },
+    ...mutation,
+  };
+}
