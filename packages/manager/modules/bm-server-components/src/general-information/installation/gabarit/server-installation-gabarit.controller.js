@@ -55,7 +55,6 @@ export default class ServerInstallationGabaritCtrl {
         postInstallationScriptLink: null,
         postInstallationScriptReturn: null,
         sshKeyName: null,
-        useSpla: false,
         validForm: true,
       },
     };
@@ -238,7 +237,6 @@ export default class ServerInstallationGabaritCtrl {
       postInstallationScriptReturn: this.$scope.installation.selectGabarit
         .postInstallationScriptReturn,
       sshKeyName: this.$scope.installation.selectGabarit.sshKeyName,
-      useSpla: false,
       validForm: true,
     };
 
@@ -380,7 +378,6 @@ export default class ServerInstallationGabaritCtrl {
         postInstallationScriptReturn: this.$scope.installation.options
           .postInstallationScriptReturn,
         sshKeyName: this.$scope.installation.options.sshKeyName,
-        useSpla: this.$scope.installation.options.useSpla,
         softRaidDevices:
           this.$scope.informations.nbDisk > 2 &&
           this.$scope.installation.nbDiskUse > 1

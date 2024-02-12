@@ -371,7 +371,6 @@
   "server_configuration_installation_form_postInstallationScriptLink_help": "Vous pouvez indiquer ici l'URL d'un script de post-installation. Il permet de finaliser l'installation de votre système de façon simple. Vous pouvez ainsi facilement configurer vos préférences et installer des logiciels. Attention: le temps d'exécution du script est d'une heure maximum.",
   "server_configuration_installation_form_postInstallationScriptLinkReturn": "Valeur de retour du script :",
   "server_configuration_installation_form_postInstallationScriptLinkReturn_help": "Il s'agit de tout ou une partie du résultat attendu sur la sortie standard suite à l'exécution du script. Vous pouvez laisser ce champs vide mais ceci est déconseillé.",
-  "server_configuration_installation_form_useSpla": "Utiliser licence SPLA",
   "server_configuration_installation_form_ssh": "Clés ssh :",
   "server_configuration_installation_form_ssh_fail": "Impossible d'afficher vos clés ssh",
   "server_configuration_installation_form_ssh_no": "Sans clé SSH",

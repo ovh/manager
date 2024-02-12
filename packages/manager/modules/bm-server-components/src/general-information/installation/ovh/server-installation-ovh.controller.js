@@ -166,7 +166,6 @@ export default class ServerInstallationOvhCtrl {
         postInstallationScriptLink: null,
         postInstallationScriptReturn: null,
         sshKeyName: null,
-        useSpla: false,
         variablePartition: null,
         validForm: true,
       },
@@ -2277,7 +2276,6 @@ export default class ServerInstallationOvhCtrl {
       postInstallationScriptLink: null,
       postInstallationScriptReturn: null,
       sshKeyName: null,
-      useSpla: false,
       variablePartition: null,
       validForm: true,
     };
@@ -2415,7 +2413,6 @@ export default class ServerInstallationOvhCtrl {
           ? this.$scope.installation.options.postInstallationScriptReturn
           : null,
         sshKeyName: this.$scope.installation.options.sshKeyName,
-        useSpla: this.$scope.installation.options.useSpla,
         softRaidDevices:
           this.$scope.informations.nbDisk > 2 &&
           this.$scope.installation.nbDiskUse > 1
