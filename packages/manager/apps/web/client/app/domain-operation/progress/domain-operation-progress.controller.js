@@ -36,7 +36,7 @@ angular.module('App').controller(
 
     getProgress() {
       this.loading = true;
-      return this.Operation.getDomainOperations(this.$stateParams.operationId)
+      return this.Operation.getDomainOperation(this.$stateParams.operationId)
         .then((operation) => {
           this.domain = operation.domain;
           this.creationDate = operation.creationDate;
