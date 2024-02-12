@@ -12,7 +12,7 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 import { OdsInputValueChangeEvent } from '@ovhcloud/ods-components/input';
@@ -41,15 +41,14 @@ export default function BuyCreditModal({
   const { t } = useTranslation('common');
   const env = useEnvironment();
   const [amount, setAmount] = useState(10);
-  const modal = useRef<HTMLOsdsModalElement>(null);
   const { buy, isPending } = useBuyCredit({
     projectId: `${projectId}`,
     onError: (err) => {
-      modal.current?.close();
+      onClose();
       onError(err);
     },
     onSuccess: (response) => {
-      modal.current?.close();
+      onClose();
       onSuccess(response.amount, response.url);
     },
   });
@@ -66,7 +65,6 @@ export default function BuyCreditModal({
       <OsdsModal
         headline={t('cpb_vouchers_add_credit_title')}
         onOdsModalClose={onClose}
-        ref={modal}
       >
         <slot name="content">
           {!isPending && (
@@ -103,9 +101,7 @@ export default function BuyCreditModal({
         <OsdsButton
           slot="actions"
           color={ODS_THEME_COLOR_INTENT.default}
-          onClick={() => {
-            modal.current?.close();
-          }}
+          onClick={onClose}
         >
           {t('common_cancel')}
         </OsdsButton>

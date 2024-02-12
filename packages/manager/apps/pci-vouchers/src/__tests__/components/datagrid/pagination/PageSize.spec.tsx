@@ -1,3 +1,4 @@
+import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
 import {
   fireEvent,
