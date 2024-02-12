@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.19.2...@ovh-ux/manager-dedicated@19.20.0) (2024-02-12)
+
+
+### Features
+
+* update labels for indian account creation and KYC india ([#10675](https://github.com/ovh/manager/issues/10675)) ([92711f5](https://github.com/ovh/manager/commit/92711f5ba3c907fe04aae717ed0a14eb3459ff3a))
+
+
+
+
+
 ## [19.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.19.1...@ovh-ux/manager-dedicated@19.19.2) (2024-02-05)
 
 
