@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-
 import { useShell } from '@/context';
-
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
-
 import { PAYMENT_ALERTS } from './constants';
-
 import './styles.scss';
 
 interface IPaymentMethod {
@@ -28,6 +24,27 @@ interface IPaymentMethod {
   paymentMethodId: number;
 }
 
+const computeAlert = (paymentMethods: IPaymentMethod[]): string => {
+  const hasDefaultPaymentMethod: IPaymentMethod = paymentMethods?.find(currentPaymentMethod => currentPaymentMethod.default);
+  if (!hasDefaultPaymentMethod) {
+    return PAYMENT_ALERTS.NO_DEFAULT;
+  }
+  const currentCreditCard: IPaymentMethod = paymentMethods?.find(currentPaymentMethod => currentPaymentMethod.paymentType === 'CREDIT_CARD');
+  if (currentCreditCard) {
+    const creditCardExpirationDate: Date = new Date(currentCreditCard.expirationDate);
+    if (creditCardExpirationDate.getTime() < Date.now()) {
+      return PAYMENT_ALERTS.EXPIRED_CARD;
+    }
+    const currentDateMinus30Days: Date = new Date();
+    currentDateMinus30Days.setDate(currentDateMinus30Days.getDate() - 30);
+    const isSoonToBeExpireCreditCard: boolean = currentDateMinus30Days.getTime() > Date.now() && creditCardExpirationDate.getTime() > Date.now();
+    if (isSoonToBeExpireCreditCard) {
+      return PAYMENT_ALERTS.SOON_EXPIRED_CARD;
+    }
+  }
+  return null;
+};
+
 const PaymentModal = (): JSX.Element => {
   const [alert, setAlert] = useState('');
   const { t } = useTranslation('payment-modal');
@@ -40,31 +57,10 @@ const PaymentModal = (): JSX.Element => {
 
   const closeHandler = () => setShowPaymentModal(false);
 
-  const computeAlert = (paymentMethods: IPaymentMethod[]): string => {
-    let alert: string = null
-    const hasDefaultPaymentMethod: IPaymentMethod = paymentMethods?.find(currentPaymentMethod => currentPaymentMethod.default);
-    if (!hasDefaultPaymentMethod) {
-      alert = PAYMENT_ALERTS.NO_DEFAULT;
-    } else {
-      const currentCreditCard: IPaymentMethod = paymentMethods?.find(currentPaymentMethod => currentPaymentMethod.paymentType === 'CREDIT_CARD');
-      if (currentCreditCard) {
-        const creditCardExpirationDate: Date = new Date(currentCreditCard.expirationDate);
-        if (creditCardExpirationDate.getTime() < Date.now()) {
-          alert = PAYMENT_ALERTS.EXPIRED_CARD;
-        } else {
-          const currentDateMinus30Days: Date = new Date();
-          currentDateMinus30Days.setDate(currentDateMinus30Days.getDate() - 30);
-          const isSoonToBeExpireCreditCard: boolean = currentDateMinus30Days.getTime() > Date.now() && creditCardExpirationDate.getTime() > Date.now();
-          if (isSoonToBeExpireCreditCard) {
-            alert = PAYMENT_ALERTS.SOON_EXPIRED_CARD;
-          }
-        }
-      }
-    }
-    return alert;
-  };
-
-  const { data: paymentResponse } = useQuery(['me-payment-method'], () => fetchIcebergV6<IPaymentMethod>({ route: '/me/payment/method' }));
+  const { data: paymentResponse } = useQuery({
+    queryKey: ['me-payment-method'],
+    queryFn: () => fetchIcebergV6<IPaymentMethod>({ route: '/me/payment/method' })
+  });
 
   useEffect(() => {
     if (paymentResponse) {
