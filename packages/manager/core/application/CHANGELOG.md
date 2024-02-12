@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.4.0...@ovh-ux/manager-react-core-application@0.5.0) (2024-02-12)
+
+
+### Features
+
+* **core:** feature flipping hook refacto ([#10774](https://github.com/ovh/manager/issues/10774)) ([90c2f13](https://github.com/ovh/manager/commit/90c2f135b1de9ae1e53cdb6b5c8e469bbceb5ba8))
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-react-core-application@0.3.0...@ovh-ux/manager-react-core-application@0.4.0) (2024-02-05)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.6.0...@ovh-ux/manager-telecom@15.7.0) (2024-02-12)
+
+
+### Features
+
+* **modem.config:** display qr code to config modem ([#10770](https://github.com/ovh/manager/issues/10770)) ([5832d58](https://github.com/ovh/manager/commit/5832d58a5c68b007aa624929b1eb8be79f855bdb))
+
+
+
+
+
 # [15.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.5.5...@ovh-ux/manager-telecom@15.6.0) (2024-02-05)
 
 
