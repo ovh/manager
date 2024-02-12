@@ -1,13 +1,15 @@
 @import 'bootstrap4/scss/bootstrap';
-@import '@ovh-ux/manager-hub/src/variables.scss';
+
+$modal-header-bg-color: var(--ods-color-primary-200);
+$modal-header-color: var(--ods-color-primary-800);
 
 .modal-header {
-  background-color: $p-200;
-  color: $p-800
+  background-color: $modal-header-bg-color;
+  color: $modal-header-color;
 }
 
 .btn-close {
-  color: $p-800;
+  color: $modal-header-color;
   background: none;
   border: none;
 }
