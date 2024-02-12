@@ -8,7 +8,7 @@
             ></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-ng-if="!$ctrl.vncDisabled && $ctrl.PciProjectsProjectInstanceService.vncConsoleIsAvailable($ctrl.instance.flavor.type) && !$ctrl.instance.isLocalZone"
+            data-ng-if="!$ctrl.vncDisabled && $ctrl.PciProjectsProjectInstanceService.vncConsoleIsAvailable($ctrl.instance.flavor.type)"
             data-href="{{ $ctrl.consoleLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.consoleLink"
             ><span
@@ -146,7 +146,7 @@
                 </oui-tile-button>
                 <oui-tile-button
                     data-on-click="$ctrl.reinstallInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && !$ctrl.instance.isLocalZone"
+                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'"
                 >
                     <span
                         data-translate="pci_projects_project_instances_instance_action_reinstall_label"
