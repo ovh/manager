@@ -1,7 +1,4 @@
-import { TRACKING_NAME } from '../../../../../constants';
-import { TRACKING_SUFFIX as LISTENERS_TRACKING_SUFFIX } from '../../../../constants';
-import { TRACKING_SUFFIX as POLICIES_TRACKING_SUFFIX } from '../../constants';
-import { TRACKING_SUFFIX } from '../constants';
+import { RULES_TRACKING } from '../../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -19,11 +16,8 @@ export default /* @ngInject */ ($stateProvider) => {
           region,
           policyId,
         ) => OctaviaLoadBalancerL7Service.getRules(projectId, region, policyId),
-        goToL7RuleCreation: /* @ngInject */ (
-          $state,
-          trackL7RulesAction,
-        ) => () => {
-          trackL7RulesAction('create');
+        goToL7RuleCreation: /* @ngInject */ ($state, atInternet) => () => {
+          atInternet.trackClick({ name: RULES_TRACKING.ADD, type: 'action' });
           $state.go(
             'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.l7Rules.create',
           );
@@ -31,7 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
         goToL7RuleEdition: /* @ngInject */ ($state, trackL7RulesAction) => (
           rule,
         ) => {
-          trackL7RulesAction('edit');
+          atInternet.trackClick({ name: RULES_TRACKING.EDIT, type: 'action' });
           $state.go(
             'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.l7Rules.edit',
             {
@@ -39,10 +33,11 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           );
         },
-        goToL7RuleDeletion: /* @ngInject */ ($state, trackL7RulesAction) => (
-          rule,
-        ) => {
-          trackL7RulesAction('delete');
+        goToL7RuleDeletion: /* @ngInject */ ($state, atInternet) => (rule) => {
+          atInternet.trackClick({
+            name: RULES_TRACKING.DELETE,
+            type: 'action',
+          });
           $state.go(
             'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.l7Rules.list.delete',
             {
@@ -52,7 +47,7 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       atInternet: {
-        rename: `${TRACKING_NAME}::${LISTENERS_TRACKING_SUFFIX}::${POLICIES_TRACKING_SUFFIX}::${TRACKING_SUFFIX}`,
+        rename: RULES_TRACKING.RENAME_LIST,
       },
     },
   );

@@ -1,7 +1,5 @@
-import { TRACKING_NAME } from '../../../../constants';
-import { TRACKING_SUFFIX as LISTENERS_TRACKING_SUFFIX } from '../../../constants';
-import { TRACKING_SUFFIX as L7_TRACKING_SUFFIX } from '../constants';
-import { TRACKING_SUFFIX, UNAVAILABLE_POOL_PROTOCOLS } from './constants';
+import { POLICIES_TRACKING } from '../constants';
+import { UNAVAILABLE_POOL_PROTOCOLS } from './constants';
 import { LISTENER_POOL_PROTOCOL_COMBINATION } from '../../../components/listener-form/constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -47,22 +45,14 @@ export default /* @ngInject */ ($stateProvider) => {
                 ),
             ),
           ),
-        trackL7EditPolicyBase: /* @ngInject */ (trackL7Base) =>
-          `${trackL7Base}::${TRACKING_SUFFIX}`,
-        trackL7EditPolicyAction: /* @ngInject */ (
-          atInternet,
-          trackL7EditPolicyBase,
-        ) => (hit) =>
+        trackL7EditPolicyAction: /* @ngInject */ (atInternet) => (hit) =>
           atInternet.trackClick({
-            name: `${trackL7EditPolicyBase}::${hit}`,
+            name: `${POLICIES_TRACKING.EDIT}::${hit}`,
             type: 'action',
           }),
-        trackL7EditPolicyPage: /* @ngInject */ (
-          atInternet,
-          trackL7EditPolicyBase,
-        ) => (hit) =>
+        trackL7EditPolicyPage: /* @ngInject */ (atInternet) => (hit) =>
           atInternet.trackPage({
-            name: `${trackL7EditPolicyBase}-${hit}`,
+            name: `${POLICIES_TRACKING.EDIT}-${hit}`,
           }),
         goBackToL7PoliciesList: /* @ngInject */ ($state) => (reload) =>
           $state.go(
@@ -77,7 +67,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
       },
       atInternet: {
-        rename: `${TRACKING_NAME}::${LISTENERS_TRACKING_SUFFIX}::${L7_TRACKING_SUFFIX}::${TRACKING_SUFFIX}`,
+        rename: POLICIES_TRACKING.RENAME_EDIT,
       },
     },
   );

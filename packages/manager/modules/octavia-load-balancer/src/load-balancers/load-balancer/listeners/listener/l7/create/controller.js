@@ -1,3 +1,5 @@
+import { RULES_TRACKING } from '../constants';
+
 export default class OctaviaLoadBalancerCreateL7PolicyCtrl {
   /* @ngInject */
   constructor(OctaviaLoadBalancerL7Service, Alerter, $translate) {
@@ -38,6 +40,7 @@ export default class OctaviaLoadBalancerCreateL7PolicyCtrl {
               {
                 policy: this.model.name,
                 link: this.getL7RuleCreationLink(id),
+                trackingHit: RULES_TRACKING.ADD_FROM_BANNER,
               },
             ),
             null,

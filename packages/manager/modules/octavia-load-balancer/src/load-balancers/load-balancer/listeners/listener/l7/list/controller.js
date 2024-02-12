@@ -1,11 +1,11 @@
-import { ACTIONS, ACTION_LABELS } from '../constants';
-import { L7_POLICY_EDITION_TRACKING_SUFFIX } from './constants';
+import { ACTIONS, ACTION_LABELS, POLICIES_TRACKING } from '../constants';
 
 export default class OctaviaLoadBalancerL7PoliciesListCtrl {
   constructor() {
     this.ACTIONS = ACTIONS;
     this.ACTION_LABELS = ACTION_LABELS;
-    this.L7_POLICY_EDITION_TRACKING_SUFFIX = L7_POLICY_EDITION_TRACKING_SUFFIX;
+    this.policyEditionTackingHit = POLICIES_TRACKING.EDIT;
+    this.poolDashboardTackingHit = POLICIES_TRACKING.POOL_DASHBOARD;
   }
 
   getAttribute(policy) {
