@@ -16,7 +16,11 @@ export default function Home() {
   const { data, isError, error, isLoading } = useRanchers();
 
   if (isError && error) {
-    return <ErrorBanner error={error.response} />;
+    return (
+      <Suspense>
+        <ErrorBanner error={error.response} />
+      </Suspense>
+    );
   }
 
   if (isLoading) {
