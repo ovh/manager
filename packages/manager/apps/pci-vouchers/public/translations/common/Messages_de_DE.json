@@ -19,7 +19,9 @@
   "cpb_vouchers_add_button": "Gutschein aktivieren",
   "cpb_vouchers_add_credit_button": "Cloud Guthaben aufladen",
   "cpb_vouchers_add_explain_bis": "Bei jeder Rechnungsausstellung wird der Rechnungsbetrag zuerst von Ihrem unten aufgeführten Cloud Guthaben, danach von Ihrem Digital Launch Pad Account und dann Ihrem Treue-Account abgezogen. Eventuell vorhandene Außenstände werden anschließend über Ihr hinterlegtes Zahlungsmittel abgerechnet (Details zu den drei letztgenannten Zahlungsarten finden Sie in Ihrem Kundencenter im Bereich „Abrechnung\").",
-  "common_pagination_ofnresults": "von {{TOTAL_ITEMS}} Ergebnissen",
+
+  "common_pagination_of": "von",
+  "common_pagination_results": "Ergebnisse",
 
   "cpb_vouchers_add_success": "Der Gutschein wurde erfolgreich hinzugefügt.",
   "cpb_vouchers_add_error": "Der Gutschein konnte nicht hinzugefügt werden. Bitte versuchen Sie es erneut.",

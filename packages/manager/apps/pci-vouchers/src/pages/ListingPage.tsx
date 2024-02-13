@@ -32,7 +32,7 @@ import { Notifications } from '@/components/Notifications';
 import GuidesHeader from '@/components/guides/GuidesHeader';
 
 import DataGrid from '@/components/datagrid/DataGrid';
-import useDataGridParams, { PAGE_SIZES } from '@/hooks/useDataGridParams';
+import useDataGridParams from '@/hooks/useDataGridParams';
 import DataGridTextCell from '@/components/datagrid/DataGridTextCell';
 import Credit from '@/components/vouchers/listing/Credit';
 import DisplayName from '@/components/vouchers/listing/DisplayName';
@@ -209,7 +209,6 @@ export default function ListingPage() {
             totalItems={vouchers?.totalRows || 0}
             pagination={pagination}
             pageCount={vouchers?.pageCount || 0}
-            pageSizes={PAGE_SIZES}
             onPaginationChange={onPaginationChange}
             sorting={sorting}
             onSortChange={onSortChange}

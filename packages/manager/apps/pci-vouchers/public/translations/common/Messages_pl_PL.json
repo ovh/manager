@@ -19,7 +19,9 @@
   "cpb_vouchers_add_button": "Dodaj voucher",
   "cpb_vouchers_add_credit_button": "Zamów zasilenie konta cloud",
   "cpb_vouchers_add_explain_bis": "Po wystawieniu faktury kwota do zapłaty jest pobierana z konta cloud, następnie z konta Digital LaunchPad i z konta przedpłaconego. Saldo ujemne jest regulowane za pomocą zarejestrowanego sposobu płatności.",
-  "common_pagination_ofnresults": "z {{TOTAL_ITEMS}} wyników",
+
+  "common_pagination_of": "z",
+  "common_pagination_results": "wyniki",
 
   "cpb_vouchers_add_success": "Voucher został dodany.",
   "cpb_vouchers_add_error": "Wystąpił problem z dodaniem vouchera. Spróbuj ponownie.",

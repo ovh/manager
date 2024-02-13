@@ -19,7 +19,9 @@
   "cpb_vouchers_add_button": "Activar un código promocional",
   "cpb_vouchers_add_credit_button": "Comprar crédito cloud",
   "cpb_vouchers_add_explain_bis": "Cada factura se cargará de forma automática en su crédito cloud (abajo), a continuación en su cuenta Digital Launch Pad y, por último, en su cuenta de fidelidad. El posible saldo deudor se liquidará mediante la forma de pago registrada (en la sección «Facturación» de su área de cliente encontrará información sobre estas tres últimas formas de pago). ",
-  "common_pagination_ofnresults": "de {{TOTAL_ITEMS}} resultados",
+
+  "common_pagination_of": "de",
+  "common_pagination_results": "resultados",
 
   "cpb_vouchers_add_success": "El código promocional se ha añadido correctamente.",
   "cpb_vouchers_add_error": "¡Vaya! No hemos podido añadir el código promocional. Por favor, vuelva a intentarlo.",
