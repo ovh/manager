@@ -12,9 +12,6 @@ const runInContainer = process.env.CONTAINER;
 
 const getBaseConfig = (config) => {
   const envConfig = config || {};
-  if (envConfig.isLABEU) {
-    envConfig.host = 'www.build-ovh.com';
-  }
 
   return {
     base: isContainerApp || !runInContainer ? './' : '/app/',
@@ -43,7 +40,7 @@ const getBaseConfig = (config) => {
       legacy({
         targets: ['defaults'],
       }),
-      viteOvhDevServerPlugin({ isContainerApp, envConfig }),
+      viteOvhDevServerPlugin({ isContainerApp, config: envConfig }),
       IframeHmrPlugin(),
       svgr(),
     ],
