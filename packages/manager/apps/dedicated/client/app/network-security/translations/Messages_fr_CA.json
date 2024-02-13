@@ -57,5 +57,8 @@
   "network_security_dashboard_empty_datagrid": "Nous n'avons constaté aucune activité suspecte pendant la période sélectionnée.",
   "network_security_dashboard_empty_table": "Le service sélectionné n'a pas d'adresse IP associée, veuillez en sélectionner un autre.",
   "network_security_dashboard_invalid_ip": "La valeur saisie pour l'IP est incorrecte.",
-  "network_security_dashboard_refresh": "Raffraîchir les données"
+  "network_security_dashboard_like_this": "Vous aimez ?",
+  "network_security_dashboard_like_this_tooltip": "Vous aimez cette page ? Faites nous part de vos remarques !",
+  "network_security_dashboard_refresh": "Raffraîchir les données",
+  "network_security_dashboard_time_zone": "(Timezone: UTC{{ timeZoneOffset }})"
 }
