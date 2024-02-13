@@ -1225,7 +1225,7 @@ export namespace ai {
         /** Content of the log */
         content?: string;
         /** Datetime of the log */
-        timestamp?: string;
+        timestamp?: Date;
     }
     /** Instance Logs */
     export interface Logs {

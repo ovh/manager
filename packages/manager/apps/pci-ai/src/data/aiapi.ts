@@ -216,4 +216,14 @@ export const jobsApi = {
         )
             .then((res) => res.data as string);
     },
+    getLogs: async (projectId: string, jobId: string) =>
+        apiClient.v6.get(
+            `/cloud/project/${projectId}/ai/job/${jobId}/log`,
+            {
+                headers: {
+                    'Pragma': 'no-cache',
+                },
+            },
+        ).then(res => res.data as ai.Logs)
+    ,
 };

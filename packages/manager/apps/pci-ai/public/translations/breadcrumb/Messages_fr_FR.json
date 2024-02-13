@@ -4,5 +4,6 @@
   "pci_ai_notebook_order_flavor_type_cpu_title": "AI Notebooks Standard (CPU resources)",
   "pci_ai_notebook_order_flavor_type_cpu_description": "A lower price, offering standard performance. Suitable for learning, testing or workloads that only require CPU.",
   "pci_ai_notebook_order_flavor_type_gpu_title": "AI Notebooks Advanced (GPU resources)",
-  "pci_ai_notebook_order_flavor_type_gpu_description": "Powered by up to four GPUs and dozens of CPUs. Delivers higher performance for deep learning and intensive workloads."
+  "pci_ai_notebook_order_flavor_type_gpu_description": "Powered by up to four GPUs and dozens of CPUs. Delivers higher performance for deep learning and intensive workloads.",
+  "pci_ai_breadcrumb_jobs": "AI Training"
 }

@@ -9,6 +9,7 @@ export type Path =
   | `/projects/:projectId/jobs/:jobId`
   | `/projects/:projectId/jobs/:jobId/attached-data`
   | `/projects/:projectId/jobs/:jobId/general-information`
+  | `/projects/:projectId/jobs/:jobId/logs`
   | `/projects/:projectId/notebooks`
   | `/projects/:projectId/notebooks/:notebookId`
   | `/projects/:projectId/notebooks/:notebookId/attached-data`
@@ -21,6 +22,7 @@ export type Params = {
   '/projects/:projectId/jobs/:jobId': { projectId: string; jobId: string }
   '/projects/:projectId/jobs/:jobId/attached-data': { projectId: string; jobId: string }
   '/projects/:projectId/jobs/:jobId/general-information': { projectId: string; jobId: string }
+  '/projects/:projectId/jobs/:jobId/logs': { projectId: string; jobId: string }
   '/projects/:projectId/notebooks': { projectId: string }
   '/projects/:projectId/notebooks/:notebookId': { projectId: string; notebookId: string }
   '/projects/:projectId/notebooks/:notebookId/attached-data': { projectId: string; notebookId: string }
