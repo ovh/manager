@@ -1,7 +1,7 @@
 export type SshKey = {
-  id: string;
+  id?: string;
   name: string;
   publicKey: string;
-  fingerPrint: string;
-  regions: string[];
+  fingerPrint?: string;
+  regions?: string[];
 };

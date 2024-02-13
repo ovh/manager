@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {
+  addSshKey,
   filterSshKeys,
   getAllSshKeys,
   getSshKey,
@@ -13,6 +14,11 @@ import { SshKey } from '@/interface';
 type RemoveSshProps = {
   projectId: string;
   sshId: string;
+  onError: (cause: Error) => void;
+  onSuccess: () => void;
+};
+type AddSshProps = {
+  projectId: string;
   onError: (cause: Error) => void;
   onSuccess: () => void;
 };
@@ -112,6 +118,29 @@ export function useRemoveSsh({
   return {
     remove: () => {
       return mutation.mutate();
+    },
+    ...mutation,
+  };
+}
+
+export function useAddSsh({ projectId, onError, onSuccess }: AddSshProps) {
+  const mutation = useMutation({
+    mutationFn: ({ name, publicKey }: { name: string; publicKey: string }) => {
+      return addSshKey(`${projectId}`, { name, publicKey });
+    },
+    onError,
+    onSuccess: async () => {
+      queryClient.invalidateQueries({
+        queryKey: ['project', projectId, 'sshkeys'],
+        // refetchType: 'all',
+      });
+      onSuccess();
+    },
+  });
+
+  return {
+    add: ({ name, publicKey }: { name: string; publicKey: string }) => {
+      return mutation.mutate({ name, publicKey });
     },
     ...mutation,
   };

@@ -67,3 +67,13 @@ export const filterSshKeys = (
 export const removeSshKey = async (projectId: string, sshId: string) => {
   await v6.delete(`/cloud/project/${projectId}/sshkey/${sshId}`);
 };
+
+export const addSshKey = async (
+  projectId: string,
+  { name, publicKey }: SshKey,
+) => {
+  await v6.post(`/cloud/project/${projectId}/sshkey`, {
+    name,
+    publicKey,
+  });
+};

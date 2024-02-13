@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useHref, useParams } from 'react-router-dom';
 
 import {
   OsdsBreadcrumb,
@@ -32,7 +32,7 @@ import DataGridTextCell from '@/components/datagrid/DataGridTextCell';
 import useDataGridParams, { PAGE_SIZES } from '@/hooks/useDataGridParams';
 import DataGrid from '@/components/datagrid/DataGrid';
 import Key from '@/components/ssh-keys/listing/Key';
-import RemoveSsh from '@/components/ssh-keys/listing/RemoveSsh.tsx';
+import RemoveSsh from '@/components/ssh-keys/listing/RemoveSsh';
 import Notifications from '@/components/Notifications';
 
 export default function ListingPage() {
@@ -70,7 +70,7 @@ export default function ListingPage() {
     {
       id: 'actions',
       cell: (props: SshKey) => {
-        return <RemoveSsh sshId={props.id} />;
+        return <RemoveSsh sshId={`${props.id}`} />;
       },
       label: '',
     },
@@ -99,6 +99,8 @@ export default function ListingPage() {
   const onSortChange = (sorts: { id: string; desc: boolean }[]) => {
     setSorting(sorts[0].id, sorts[0].desc);
   };
+
+  const hrefAdd = useHref(`./add`);
 
   return (
     <>
@@ -132,6 +134,7 @@ export default function ListingPage() {
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
+          href={hrefAdd}
         >
           <OsdsIcon
             size={ODS_ICON_SIZE.xs}
