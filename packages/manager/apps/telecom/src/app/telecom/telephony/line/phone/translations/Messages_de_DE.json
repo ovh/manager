@@ -1,4 +1,5 @@
 {
+  "telephony_line_phone_actions_line_details_phone_breadcrumb": "Telefon",
   "telephony_line_phone_actions_line_details_phon_offer": "Allgemeine Informationen",
   "telephony_line_phone_actions_line_codecs_management": "Codecs",
   "telephony_line_phone_actions_line_interface": "Choix de l'interface",
@@ -6,14 +7,12 @@
   "telephony_line_phone_actions_line_programmable_keys": "Touches programmables",
   "telephony_line_phone_actions_line_phone_upgrade_firmware": "Mise à jour du firmware",
   "telephony_line_phone_actions_line_phone_reboot": "Neu starten",
-  "telephony_line_phone_actions_line_order_accessories": "Commander des accessoires",
-  "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone",
-  "telephony_line_phone_actions_line_details_phone_breadcrumb": "Telefon",
   "telephony_line_phone_actions_line_phone_order_phone": "Ein VoIP Telefon bestellen",
   "telephony_line_phone_actions_line_phone_change_phone": "Telefon wechseln",
+  "telephony_line_phone_actions_line_order_headset": "Headset bestellen",
   "telephony_line_phone_actions_line_phonebook": "Kontaktlisten",
+  "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone",
   "telephony_group_line_phone_section_back_link_target": "Verwaltung des Telefons",
   "telephony_line_phone_actions_line_phone_order_attach": "Die Leitung an eine aktuelle Hardware anhängen",
-  "telephony_line_phone_actions_line_phone_order_detach": "Leitung eines Telefons abtrennen",
-  "telephony_line_phone_actions_line_order_headset": "Headset bestellen"
+  "telephony_line_phone_actions_line_phone_order_detach": "Leitung eines Telefons abtrennen"
 }

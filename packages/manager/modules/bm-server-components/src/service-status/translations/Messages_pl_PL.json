@@ -23,13 +23,12 @@
   "dedicated_server_dashboard_monitoring_status_tooltip_disabled": "W przypadku braku odpowiedzi na test PING zespół OVHcloud nie podejmie interwencji ",
   "dedicated_server_dashboard_monitoring_status_tooltip_proactive": "Interwencja w centrum danych została zlecona",
   "dedicated_server_dashboard_monitoring_status_tooltip_no-proactive": " Interwencja w centrum danych nie została zlecona",
-  "dedicated_server_dashboard_monitoring_cta_setting": "Skonfiguruj",
+  "dedicated_server_dashboard_monitoring_enable_interventions": "Włącz interwencje",
+  "dedicated_server_dashboard_monitoring_disable_interventions": "Wyłącz interwencje",
   "dedicated_server_dashboard_monitoring_services": "Monitorowane usługi",
   "dedicated_server_dashboard_monitoring_services_use": "Konfiguruj monitoring",
   "dedicated_server_dashboard_services_state_links": "Pomocne linki",
   "dedicated_server_dashboard_services_state_links_weathermap": "Weathermap",
   "dedicated_server_dashboard_services_state_links_vms": "VMS",
-  "dedicated_server_dashboard_services_state_links_travaux": "Prace serwisowe OVHcloud",
-  "dedicated_server_dashboard_monitoring_enable_interventions": "Włącz interwencje",
-  "dedicated_server_dashboard_monitoring_disable_interventions": "Wyłącz interwencje"
+  "dedicated_server_dashboard_services_state_links_travaux": "Prace serwisowe OVHcloud"
 }

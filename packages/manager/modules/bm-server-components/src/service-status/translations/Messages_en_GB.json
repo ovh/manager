@@ -23,13 +23,12 @@
   "dedicated_server_dashboard_monitoring_status_tooltip_disabled": "Datacentre intervention disabled in the event of ping test failure",
   "dedicated_server_dashboard_monitoring_status_tooltip_proactive": "Datacentre intervention requested",
   "dedicated_server_dashboard_monitoring_status_tooltip_no-proactive": " Datacentre intervention not requested",
-  "dedicated_server_dashboard_monitoring_cta_setting": "Configure",
+  "dedicated_server_dashboard_monitoring_enable_interventions": "Enable interventions",
+  "dedicated_server_dashboard_monitoring_disable_interventions": "Disable interventions",
   "dedicated_server_dashboard_monitoring_services": "Monitored services",
   "dedicated_server_dashboard_monitoring_services_use": "Monitor my services",
   "dedicated_server_dashboard_services_state_links": "Links",
   "dedicated_server_dashboard_services_state_links_weathermap": "Weathermap",
   "dedicated_server_dashboard_services_state_links_vms": "VMS",
-  "dedicated_server_dashboard_services_state_links_travaux": "Status",
-  "dedicated_server_dashboard_monitoring_enable_interventions": "Enable interventions",
-  "dedicated_server_dashboard_monitoring_disable_interventions": "Disable interventions"
+  "dedicated_server_dashboard_services_state_links_travaux": "Status"
 }

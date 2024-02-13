@@ -23,13 +23,12 @@
   "dedicated_server_dashboard_monitoring_status_tooltip_disabled": "Intervención en datacenter desactivada en caso de no obtener respuesta a PING",
   "dedicated_server_dashboard_monitoring_status_tooltip_proactive": "Intervención en datacenter solicitada",
   "dedicated_server_dashboard_monitoring_status_tooltip_no-proactive": " Intervención en datacenter no solicitada",
-  "dedicated_server_dashboard_monitoring_cta_setting": "Configurar",
+  "dedicated_server_dashboard_monitoring_enable_interventions": "Activar las intervenciones",
+  "dedicated_server_dashboard_monitoring_disable_interventions": "Desactivar las intervenciones",
   "dedicated_server_dashboard_monitoring_services": "Servicios monitorizados",
   "dedicated_server_dashboard_monitoring_services_use": "Monitorizar mis servicios",
   "dedicated_server_dashboard_services_state_links": "Enlaces",
   "dedicated_server_dashboard_services_state_links_weathermap": "Weathermap",
   "dedicated_server_dashboard_services_state_links_vms": "MV",
-  "dedicated_server_dashboard_services_state_links_travaux": "Status",
-  "dedicated_server_dashboard_monitoring_enable_interventions": "Activar las intervenciones",
-  "dedicated_server_dashboard_monitoring_disable_interventions": "Desactivar las intervenciones"
+  "dedicated_server_dashboard_services_state_links_travaux": "Status"
 }

@@ -23,13 +23,12 @@
   "dedicated_server_dashboard_monitoring_status_tooltip_disabled": "Eingriff im Rechenzentrum bei fehlgeschlagenem PING-Test deaktiviert.",
   "dedicated_server_dashboard_monitoring_status_tooltip_proactive": "Eingriff im Rechenzentrum angefordert",
   "dedicated_server_dashboard_monitoring_status_tooltip_no-proactive": " Kein Eingriff im Rechenzentrum angefordert",
-  "dedicated_server_dashboard_monitoring_cta_setting": "Konfigurieren",
+  "dedicated_server_dashboard_monitoring_enable_interventions": "Eingriffe aktivieren",
+  "dedicated_server_dashboard_monitoring_disable_interventions": "Eingriffe deaktivieren",
   "dedicated_server_dashboard_monitoring_services": "Überwachte Dienste",
   "dedicated_server_dashboard_monitoring_services_use": "Meine Dienste überwachen",
   "dedicated_server_dashboard_services_state_links": "Links",
   "dedicated_server_dashboard_services_state_links_weathermap": "Weathermap",
   "dedicated_server_dashboard_services_state_links_vms": "VMS",
-  "dedicated_server_dashboard_services_state_links_travaux": "Maßnahmen",
-  "dedicated_server_dashboard_monitoring_enable_interventions": "Eingriffe aktivieren",
-  "dedicated_server_dashboard_monitoring_disable_interventions": "Eingriffe deaktivieren"
+  "dedicated_server_dashboard_services_state_links_travaux": "Maßnahmen"
 }
