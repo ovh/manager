@@ -40,13 +40,13 @@ export default /* @ngInject */ ($stateProvider) => {
           );
         },
         goToL7RuleDeletion: /* @ngInject */ ($state, trackL7RulesAction) => (
-          policy,
+          rule,
         ) => {
           trackL7RulesAction('delete');
           $state.go(
-            'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.l7Rules.delete',
+            'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.l7Rules.list.delete',
             {
-              policyId: policy.id,
+              ruleId: rule.id,
             },
           );
         },
