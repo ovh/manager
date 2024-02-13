@@ -19,7 +19,7 @@ export default function initI18n(
       lng: locale,
       fallbackLng: 'fr_FR',
       supportedLngs: availablesLocales,
-      ns: ['common', 'pci-rancher/listing'], // namespaces to load by default
+      ns: ['pci-rancher/listing', 'pci-rancher/dashboard'], // namespaces to load by default
       backend: {
         loadPath: (lngs: string[], namespaces: string[]) =>
           `${import.meta.env.BASE_URL}translations/${namespaces[0]}/Messages_${

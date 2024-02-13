@@ -34,7 +34,7 @@ export default function ActionsCell({
 
   return (
     <div>
-      <OsdsMenu className="absolute ml-[-15px] mt-[-15px]">
+      <OsdsMenu className="absolute  mt-[-15px]">
         <OsdsButton
           slot="menu-title"
           inline

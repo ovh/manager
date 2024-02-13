@@ -28,6 +28,7 @@
   "UPDATING": "Updating",
   "ERROR": "Error",
   "DELETING": "Deleting",
+  "CREATING": "Creating",
 
   "OVHCLOUD_EDITION": "OVHcloud Edition",
   "STANDARD": "Standard"
