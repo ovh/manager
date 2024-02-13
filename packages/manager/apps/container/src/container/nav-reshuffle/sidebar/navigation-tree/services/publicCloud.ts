@@ -212,7 +212,7 @@ const pciNode: Node = {
             application: 'public-cloud',
             hash: '#/pci/projects/{projectId}/rancher',
           },
-          features: ['rancher'],
+          features: ['pci-rancher'],
           forceVisibility: true,
         },
         {
