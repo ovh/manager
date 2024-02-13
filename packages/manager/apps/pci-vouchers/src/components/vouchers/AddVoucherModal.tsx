@@ -6,7 +6,11 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_INPUT_TYPE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_INPUT_TYPE,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -81,7 +85,8 @@ export default function AddVoucherModal({
         </slot>
         <OsdsButton
           slot="actions"
-          color={ODS_THEME_COLOR_INTENT.default}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          variant={ODS_BUTTON_VARIANT.ghost}
           onClick={onClose}
         >
           {t('common_cancel')}
