@@ -8,12 +8,10 @@ import {
 import { OsdsPagination } from '@ovhcloud/ods-components/react';
 import { getListingIcebergV6 } from '@/api';
 
+import TableContainer from '@/components/layout-helpers/Listing/TableContainer';
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
-import Breadcrumb, {
-} from '@/components/Breadcrumb/Breadcrumb';
-import DatagridWrapper from '@/components/layout-helpers/Listing/DatagridWrapper';
-
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 const INITAL_PAGE = 1;
 
@@ -66,7 +64,7 @@ export default function Listing() {
       <div className="pt-5 pb-10">
         <Breadcrumb />
         <h2>{{appName}}</h2>
-        <div>{res.length && <DatagridWrapper data={res} />}</div>
+        <div>{res.length > 0 && <TableContainer data={res} />}</div>
         <div className="flex justify-end items-center mt-4">
           {totalPages > 1 && (
             <OsdsPagination
