@@ -18,10 +18,9 @@
   "cpb_vouchers_add_button": "Activer un voucher",
   "cpb_vouchers_add_credit_button": "Acheter du crédit cloud",
   "cpb_vouchers_add_explain_bis": "A chaque émission de facture, le montant dû est débité de votre crédit Cloud (ci-dessous), puis successivement de votre votre compte Digital LaunchPad puis de votre compte fidélité. Le solde débiteur éventuel est enfin réglé à l'aide de votre moyen paiement enregistré (le détail concernant ces trois derniers modes de paiement est disponible dans la section \"Facturation\" de votre espace client).",
-  "common_pagination_nresults": "{{TOTAL_ITEMS}} résultats",
-  "common_pagination_ofnresults": "sur {{TOTAL_ITEMS}} résultats",
-  "common_pagination_previous_page": "Page précédente",
-  "common_pagination_next_page": "Page suivante",
+
+  "common_pagination_of": "sur",
+  "common_pagination_results": "résultats",
 
   "cpb_vouchers_add_success": "Le voucher a été ajouté avec succès.",
   "cpb_vouchers_add_error": "Oups, nous n'arrivons pas a ajouter ce voucher. Veuillez réessayer.",

@@ -19,7 +19,9 @@
   "cpb_vouchers_add_button": "Use a voucher",
   "cpb_vouchers_add_credit_button": "Buy Public Cloud credit",
   "cpb_vouchers_add_explain_bis": "Whenever an invoice is issued, the amount owed is debited from your Cloud credit (see below), then in turn from your Digital Launch Pad account, and then from your loyalty account. And lastly, your potential debit balance is paid using the payment method we have on file (details regarding those three payment methods are available in the \"Billing\" section of the OVH Control Panel).",
-  "common_pagination_ofnresults": "of {{TOTAL_ITEMS}} results",
+
+  "common_pagination_of": "on",
+  "common_pagination_results": "results",
 
   "cpb_vouchers_add_success": "Voucher successfully uploaded.",
   "cpb_vouchers_add_error": "Oops. We are unable to add this voucher. Please try again.",

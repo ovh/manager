@@ -19,7 +19,9 @@
   "cpb_vouchers_add_button": "Attiva un voucher",
   "cpb_vouchers_add_credit_button": "Acquista credito Cloud",
   "cpb_vouchers_add_explain_bis": "Per ogni fattura, verifichiamo che tu abbia un voucher o un altro tipo di credito. L'eventuale importo residuo deve essere saldato utilizzando la modalità di pagamento che hai registrato (i dettagli relativi alle modalità di pagamento sono disponibili nella sezione \"Fatturazione\" del tuo Spazio Cliente OVH).",
-  "common_pagination_ofnresults": "di {{TOTAL_ITEMS}} risultati",
+
+  "common_pagination_of": "su",
+  "common_pagination_results": "risultati",
 
   "cpb_vouchers_add_success": "Il voucher è stato aggiunto correttamente.",
   "cpb_vouchers_add_error": "Impossibile aggiungere questo voucher, ti preghiamo di riprovare.",
