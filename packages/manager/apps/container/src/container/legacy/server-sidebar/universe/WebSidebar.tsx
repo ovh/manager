@@ -312,10 +312,10 @@ export default function WebSidebar() {
       requestType: 'aapi',
     });
 
-  const { data: availability } = useQuery(
-    ['sidebar-web-availability'],
-    getFeatures,
-  );
+  const { data: availability } = useQuery({
+    queryKey: ['sidebar-web-availability'],
+    queryFn: getFeatures,
+  });
 
   useEffect(() => {
     if (availability) {
