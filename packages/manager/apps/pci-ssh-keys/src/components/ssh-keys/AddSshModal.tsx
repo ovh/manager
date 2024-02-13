@@ -104,11 +104,12 @@ export default function AddSshModal({
                   onOdsValueChange={handleInputPublicKeyChange}
                   ariaLabel={t('pci_projects_project_sshKeys_add_key')}
                   data-testid="sshPublicKey"
+                  rows={5}
                   placeholder={t(
                     'pci_projects_project_sshKeys_add_key_description',
                   )}
                 />
-                <OsdsText slot="helper">
+                <OsdsText slot="helper" color={ODS_THEME_COLOR_INTENT.text}>
                   {t('pci_projects_project_sshKeys_add_infos')}
                 </OsdsText>
               </OsdsFormField>
