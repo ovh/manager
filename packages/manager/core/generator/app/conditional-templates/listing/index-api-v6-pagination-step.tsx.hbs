@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Navigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import {
-  OdsSelectValueChangeEvent,
+  OdsPaginationItemPerPageChangedEvent,
 } from '@ovhcloud/ods-components';
 import { OsdsPagination } from '@ovhcloud/ods-components/react';
 import { getListingIcebergV6 } from '@/api';
@@ -52,9 +52,9 @@ export default function Listing() {
 
   if (data?.length === 0) return <Navigate to="onboarding" />;
 
-  const onOdsPageSizeChange = (event: OdsSelectValueChangeEvent) => {
-    if (event?.detail?.value) {
-      const newPageSize = Number(event.detail.value);
+  const onOdsPageSizeChange = (event: OdsPaginationItemPerPageChangedEvent) => {
+    if (event?.detail?.current) {
+      const newPageSize = Number(event.detail.current);
       setPageSize(newPageSize);
       setTotalPages(Math.ceil(data.totalCount / newPageSize));
       setPage(INITAL_PAGE);
@@ -74,8 +74,8 @@ export default function Listing() {
               id="main-pagination"
               totalPages={totalPages}
               totalItems={totalCount}
-              // itemPerPage={pageSize}
-              // onOdsValueChange={onOdsPageSizeChange}
+              defaultItemsPerPage={pageSize}
+              onOdsPaginationItemPerPageChanged={onOdsPageSizeChange}
               onClick={(event: any) => setPage(event.target.current)}
             />
           )}
