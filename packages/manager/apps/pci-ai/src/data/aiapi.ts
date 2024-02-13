@@ -12,6 +12,11 @@ export interface JobProps {
     jobId: string,
 };
 
+export interface AppProps {
+    projectId: string,
+    appId: string,
+};
+
 export interface DataSyncProps {
     projectId: string,
     productId: string,
@@ -227,3 +232,67 @@ export const jobsApi = {
         ).then(res => res.data as ai.Logs)
     ,
 };
+
+export const appsApi = {
+    getApps: async (projectId: string) =>
+        apiClient.v6.get(
+            `/cloud/project/${projectId}/ai/app`,
+            {
+                headers: {
+                    'X-Pagination-Mode': 'CachedObjectList-Pages',
+                    'X-Pagination-Size': '50000',
+                    'Pragma': 'no-cache'
+                },
+            },
+        ).then(res => res.data as ai.app.App[])
+    ,
+    getApp: async (projectId: string, appId: string) =>
+        apiClient.v6.get(
+            `/cloud/project/${projectId}/ai/app/${appId}`,
+            {
+                headers: {
+                    'Pragma': 'no-cache'
+                },
+            },
+        ).then(res => res.data as ai.app.App)
+    ,
+    deleteApp: async ({
+        projectId,
+        appId,
+    }: AppProps
+    ) => {
+        await apiClient.v6.delete(
+            `/cloud/project/${projectId}/ai/app/${appId}`,
+        )
+    },
+    stopApp: async ({
+        projectId,
+        appId,
+    }: AppProps
+    ) => {
+        await apiClient.v6.put(
+            `/cloud/project/${projectId}/ai/app/${appId}/stop`,
+        )
+    },
+    startApp: async ({
+        projectId,
+        appId,
+    }: AppProps
+    ) => {
+        await apiClient.v6.put(
+            `/cloud/project/${projectId}/ai/app/${appId}/start`,
+        )
+    },
+    manualDataSync: async ({
+        projectId,
+        productId,
+        dataSyncSpec,
+    }: DataSyncProps
+    ) => {
+        await apiClient.v6.post(
+            `/cloud/project/${projectId}/ai/app/${productId}/datasync`,
+            dataSyncSpec,
+        )
+            .then((res) => res.data as string);
+    }
+}

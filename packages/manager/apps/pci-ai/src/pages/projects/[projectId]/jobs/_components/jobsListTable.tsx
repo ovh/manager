@@ -108,17 +108,17 @@ export default function JobsList({
       jobId: data.jobId,
     });
   };
-  const handleCloseDeleteNotebookModal = () => {
+  const handleCloseDeleteJobModal = () => {
     setOpenModal(false);
     setDeletingJob(undefined);
   };
 
-  const handleCloseStopNotebookModal = () => {
+  const handleCloseStopJobModal = () => {
     setOpenModal(false);
     setStopingJob(undefined);
   };
 
-  const handleCloseStartNotebookModal = () => {
+  const handleCloseStartJobModal = () => {
     setOpenModal(false);
     setStartingJob(undefined);
   };
@@ -138,7 +138,7 @@ export default function JobsList({
               <Input
                 type="text"
                 id="search"
-                placeholder="Search a notebook"
+                placeholder="Search a job"
                 className="mr-2"
               />
               <Button variant="outline" onClick={() => refetchFn()}>
@@ -152,7 +152,7 @@ export default function JobsList({
           <StartJobModal
             job={startingJob}
             open={isOpenModal}
-            onClose={handleCloseStartNotebookModal}
+            onClose={handleCloseStartJobModal}
             onSubmit={onStartSubmit}
           />
         )}
@@ -160,7 +160,7 @@ export default function JobsList({
           <StopJobModal
             job={stopingJob}
             open={isOpenModal}
-            onClose={handleCloseStopNotebookModal}
+            onClose={handleCloseStopJobModal}
             onSubmit={onStopSubmit}
           />
         )}
@@ -168,7 +168,7 @@ export default function JobsList({
           <DeleteJobModal
             job={deletingJob}
             open={isOpenModal}
-            onClose={handleCloseDeleteNotebookModal}
+            onClose={handleCloseDeleteJobModal}
             onSubmit={onDeleteSubmit}
           />
         )}

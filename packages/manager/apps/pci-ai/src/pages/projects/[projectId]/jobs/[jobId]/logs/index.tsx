@@ -38,12 +38,9 @@ export default function LogsJobPage() {
   //console.log(logsQuery.data?.logs);
   var limitedLogs : ai.LogLine[];
   if (logsQuery.data?.logs.length && logsQuery.data?.logs.length > 500) {
-    console.log(logsQuery.data.logs);
     limitedLogs = logsQuery.data?.logs.slice(-500);
-    console.log(limitedLogs);
   } else {
     limitedLogs = logsQuery.data?.logs || [];
-    console.log(limitedLogs);
   }
   
   
