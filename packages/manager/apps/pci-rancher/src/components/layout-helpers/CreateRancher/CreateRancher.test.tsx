@@ -2,8 +2,10 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { rancherPlan, rancherVersion } from '@/_mock_/rancher-resource';
 import dashboardTranslation from '../../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
+import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 import { render, waitFor } from '../../../utils/test/test.provider';
 import CreateRancher, { CreateRancherProps } from './CreateRancher';
+import { getOnboardingUrl, getRanchersUrl } from '@/utils/route';
 
 const onCreateRancher = jest.fn();
 const mockedUsedNavigate = jest.fn();
@@ -17,6 +19,13 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
+jest.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useNavigation: jest.fn(() => ({
+    getURL: jest.fn(() => Promise.resolve('123')),
+    data: [],
+  })),
+}));
+
 const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
   waitFor(() =>
     render(
@@ -26,6 +35,8 @@ const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
         plans={rancherPlan}
         versions={rancherVersion}
         hasRancherCreationError={false}
+        isProjectDiscoveryMode={false}
+        hasSomeRancher={false}
         {...props}
       />,
     ),
@@ -78,7 +89,7 @@ describe('CreateRancher', () => {
 
   it("Given that I'm configuring the service, I should only have the Standard offer selected, and see the OVHcloud Edition card disabled with a Coming soon label on it.", async () => {
     const screen = await setupSpecTest();
-    const standardPlan = screen.getByText('STANDARD');
+    const standardPlan = screen.getByText(listingTranslation.STANDARD);
 
     expect(standardPlan).not.toBeNull();
   });
@@ -95,7 +106,7 @@ describe('CreateRancher', () => {
 
   it("Given that I'm configuring the service, I should only have the Standard offer selected, and see the OVHcloud Edition card disabled with a Coming soon label on it.", async () => {
     const screen = await setupSpecTest();
-    const planActive = screen.getByLabelText('tile-STANDARD');
+    const planActive = screen.getByLabelText('tile-Standard');
 
     expect(planActive).not.toBeNull();
     expect(planActive).toHaveAttribute('checked');
@@ -109,14 +120,54 @@ describe('CreateRancher', () => {
 
     expect(errorCreateBanner).not.toBeNull();
   });
-  it('Given that I cancel the creation of the Rancher service, I should be redirected to the onboarding page.', async () => {
-    const screen = await setupSpecTest();
-    const cancelButton = screen.getByText(dashboardTranslation.cancel);
 
-    await userEvent.click(cancelButton);
+  describe('Cancel Click', () => {
+    it('Given that I cancel the creation of the Rancher service, I should be redirected to the onboarding page.', async () => {
+      const screen = await setupSpecTest();
+      const cancelButton = screen.getByText(dashboardTranslation.cancel);
 
-    expect(mockedUsedNavigate).toHaveBeenCalledWith(
-      '/pci/projects/1234/rancher/onboarding',
-    );
+      await userEvent.click(cancelButton);
+
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(getOnboardingUrl('1234'));
+    });
+
+    it('Given that I cancel the creation of the Rancher service and i had some rancher, I should be redirected to the listing page.', async () => {
+      const screen = await setupSpecTest({
+        hasSomeRancher: true,
+      });
+      const cancelButton = screen.getByText(dashboardTranslation.cancel);
+
+      await userEvent.click(cancelButton);
+
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(getRanchersUrl('1234'));
+    });
+  });
+
+  describe('Discovery mode', () => {
+    it('Given that I am in a Discovery project, I should not be able to click on the CTA to create a Rancher as it should be disable', async () => {
+      const screen = await setupSpecTest({ isProjectDiscoveryMode: true });
+      const button = screen.getByText(dashboardTranslation.createRancherCTA);
+
+      const input = screen.getByLabelText('rancher-name-input');
+      const confirmButton = screen.getByText(
+        dashboardTranslation.createRancherCTA,
+      );
+
+      await userEvent.type(input, 'MyRancher');
+      await userEvent.click(confirmButton);
+
+      expect(onCreateRancher).not.toHaveBeenCalled();
+
+      expect(button).toBeDisabled();
+    });
+
+    it('Given that I am in a Discovery project, I should see the yellow banner inviting me to activate my project', async () => {
+      const screen = await setupSpecTest({ isProjectDiscoveryMode: true });
+      const banner = screen.getByText(
+        dashboardTranslation.createRancherDiscoveryMode,
+      );
+
+      expect(banner).not.toBeNull();
+    });
   });
 });

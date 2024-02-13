@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Params, useParams } from 'react-router-dom';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';

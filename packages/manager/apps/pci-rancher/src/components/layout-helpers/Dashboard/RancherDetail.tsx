@@ -47,6 +47,8 @@ const RancherDetail = ({
   hasErrorAccessDetail,
 }: RancherDetailProps) => {
   const { t } = useTranslation('pci-rancher/dashboard');
+  const { t: tListing } = useTranslation('pci-rancher/listing');
+
   const [showEditModal, toggleEditModal] = useState(false);
   const [showGenerateAccesModal, toggleGenerateAccessModal] = useState(false);
 
@@ -114,22 +116,25 @@ const RancherDetail = ({
               </OsdsText>
               <OsdsDivider separator />
               <TileBlock label={t('description')}>
-                <OsdsText
-                  level={ODS_TEXT_LEVEL.heading}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  size={ODS_TEXT_SIZE._200}
-                >
-                  {rancher.currentState.name}
-                </OsdsText>
-                <OsdsIcon
-                  aria-label="edit"
-                  className="ml-4 cursor-pointer"
-                  onClick={() => toggleEditModal(true)}
-                  name={ODS_ICON_NAME.PEN}
-                  size={ODS_ICON_SIZE.xxs}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                />
+                <div className="flex">
+                  <OsdsText
+                    level={ODS_TEXT_LEVEL.heading}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    size={ODS_TEXT_SIZE._200}
+                  >
+                    {rancher.currentState.name}
+                  </OsdsText>
+                  <OsdsIcon
+                    aria-label="edit"
+                    className="ml-4 cursor-pointer"
+                    onClick={() => toggleEditModal(true)}
+                    name={ODS_ICON_NAME.PEN}
+                    size={ODS_ICON_SIZE.xxs}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                  />
+                </div>
               </TileBlock>
+
               <TileBlock label={t('rancher_version')}>
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
                   {rancher.currentState.version}
@@ -198,7 +203,7 @@ const RancherDetail = ({
               <OsdsDivider separator />
               <TileBlock label={t('service_level')}>
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                  {rancher.currentState.plan}
+                  {tListing(rancher.currentState.plan)}
                 </OsdsText>
               </TileBlock>
               {!!vCpus && (

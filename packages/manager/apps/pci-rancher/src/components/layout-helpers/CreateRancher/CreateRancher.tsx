@@ -1,5 +1,6 @@
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
+  ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
   ODS_MESSAGE_TYPE,
@@ -12,8 +13,6 @@ import {
   OsdsChip,
   OsdsInput,
   OsdsMessage,
-  OsdsRadio,
-  OsdsRadioGroup,
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
@@ -21,6 +20,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { isValidRancherName } from '@/utils/rancher';
+import { getOnboardingUrl, getRanchersUrl } from '@/utils/route';
 import Title, { Subtitle } from '@/components/Title/Title';
 import Block from '@/components/Block/Block';
 import {
@@ -28,6 +28,7 @@ import {
   RancherPlan,
   RancherVersion,
 } from '@/api/api.type';
+import { useActivatePciProjectURL } from '@/hooks/useActivatePciProjectURL';
 
 const TileSection: React.FC<{
   name: string;
@@ -42,9 +43,9 @@ const TileSection: React.FC<{
     disabled={isDisabled || undefined}
     checked={isActive || undefined}
     color={
-      isActive ? ODS_THEME_COLOR_INTENT.text : ODS_THEME_COLOR_INTENT.default
+      isActive ? ODS_THEME_COLOR_INTENT.primary : ODS_THEME_COLOR_INTENT.default
     }
-    className="w-1/2 mr-5"
+    className="w-1/3 mr-5"
     onClick={() => {
       if (!isDisabled) {
         onClick();
@@ -52,7 +53,7 @@ const TileSection: React.FC<{
     }}
   >
     <div className="flex flex-col">
-      <div className="flex items-center">
+      <div className="flex items-center flex-wrap">
         <OsdsText
           level={ODS_TEXT_LEVEL.heading}
           color={ODS_THEME_COLOR_INTENT.text}
@@ -60,7 +61,10 @@ const TileSection: React.FC<{
           {name}
         </OsdsText>
         {chipLabel ? (
-          <OsdsChip color={ODS_THEME_COLOR_INTENT.primary} className="ml-5">
+          <OsdsChip
+            color={ODS_THEME_COLOR_INTENT.primary}
+            className="sm:my-5 lg:ml-5"
+          >
             {chipLabel}
           </OsdsChip>
         ) : (
@@ -91,6 +95,8 @@ export interface CreateRancherProps {
   versions: RancherVersion[];
   hasRancherCreationError: boolean;
   onCreateRancher: (payload: CreateRancherPayload) => void;
+  isProjectDiscoveryMode?: boolean;
+  hasSomeRancher: boolean;
 }
 
 const CreateRancher: React.FC<CreateRancherProps> = ({
@@ -99,18 +105,22 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   onCreateRancher,
   hasRancherCreationError,
   projectId,
+  isProjectDiscoveryMode,
+  hasSomeRancher,
 }) => {
-  const navigate = useNavigate();
-  const { t } = useTranslation([
-    'pci-rancher/dashboard',
-    'pci-rancher/listing',
-  ]);
   const [rancherName, setRancherName] = useState(null);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [selectedVersion, setSelectedVersion] = useState(null);
 
+  const navigate = useNavigate();
+  const activateProjectUrl = useActivatePciProjectURL(projectId);
+
   const isValidName = rancherName !== '' && isValidRancherName(rancherName);
-  const hasInputError = rancherName !== null && !isValidName;
+  const hasInputError = rancherName !== '' && !isValidName;
+  const isCreateRancherAllowed = isValidName && !isProjectDiscoveryMode;
+
+  const { t } = useTranslation('pci-rancher/dashboard');
+  const { t: tListing } = useTranslation('pci-rancher/listing');
 
   useEffect(() => {
     if (selectedPlan === null && plans?.length) {
@@ -124,15 +134,46 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
 
   const onCreateClick = (rancherPayload: CreateRancherPayload) => {
     onCreateRancher(rancherPayload);
-    navigate(`/pci/projects/${projectId}/rancher`);
+    navigate(getRanchersUrl(projectId));
   };
 
   const onCancelClick = () =>
-    navigate(`/pci/projects/${projectId}/rancher/onboarding`);
+    navigate(
+      hasSomeRancher ? getRanchersUrl(projectId) : getOnboardingUrl(projectId),
+    );
+
+  const onNavigateDiscovery = () => navigate(activateProjectUrl);
 
   return (
-    <div className="max-w-3xl">
+    <div>
       <Title>{t('createRancherTitle')}</Title>
+      {isProjectDiscoveryMode && (
+        <OsdsMessage
+          color={ODS_THEME_COLOR_INTENT.warning}
+          type={ODS_MESSAGE_TYPE.warning}
+          className="my-6"
+        >
+          <div className="flex items-center justify-between">
+            <div>
+              <OsdsText
+                color={ODS_THEME_COLOR_INTENT.warning}
+                className="max-w-2xl"
+              >
+                {t('createRancherDiscoveryMode')} <br />
+              </OsdsText>
+            </div>
+            <div className="ml-4">
+              <OsdsButton
+                size={ODS_BUTTON_SIZE.sm}
+                onClick={onNavigateDiscovery}
+                color={ODS_THEME_COLOR_INTENT.primary}
+              >
+                {t('createRancherDiscoveryModeActive')}
+              </OsdsButton>
+            </div>
+          </div>
+        </OsdsMessage>
+      )}
       <OsdsMessage
         color={ODS_THEME_COLOR_INTENT.info}
         type={ODS_MESSAGE_TYPE.info}
@@ -170,7 +211,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             color={
               hasInputError
                 ? ODS_THEME_COLOR_INTENT.error
-                : ODS_THEME_COLOR_INTENT.info
+                : ODS_THEME_COLOR_INTENT.default
             }
             className="my-3 w-1/3"
             value={rancherName}
@@ -183,16 +224,18 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         <div className="my-3">
           <Subtitle>{t('createRancherServiceLevel')}</Subtitle>
         </div>
-        <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-          {t('createRancherServiceLevelDescription')}
-        </OsdsText>
+        <div className="max-w-3xl">
+          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+            {t('createRancherServiceLevelDescription')}
+          </OsdsText>
+        </div>
         <div className="flex my-5">
           {plans?.map((plan) => (
             <TileSection
               key={plan.name}
               isActive={plan.name === selectedPlan?.name}
               isDisabled={plan.status !== 'AVAILABLE'}
-              name={t(plan.name)}
+              name={tListing(plan.name)}
               description={t(getRancherPlanDescription(plan.name))}
               chipLabel={
                 plan.name === 'OVHCLOUD_EDITION' ? t('comingSoon') : ''
@@ -205,15 +248,13 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         <Block>
           <Subtitle>{t('createRancherVersion')}</Subtitle>
         </Block>
+
         <Block>
-          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-            {t('createRancherVersionTitle')}
-          </OsdsText>
-        </Block>
-        <Block>
-          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-            {t('createRancherVersionDescription')}
-          </OsdsText>
+          <div className="max-w-3xl">
+            <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+              {t('createRancherVersionDescription')}
+            </OsdsText>
+          </div>
         </Block>
         <div className="flex my-5">
           {versions?.map((version) => (
@@ -243,11 +284,11 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             {t('cancel')}
           </OsdsButton>
           <OsdsButton
-            disabled={!isValidName || undefined}
+            disabled={!isCreateRancherAllowed || undefined}
             slot="actions"
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => {
-              if (isValidName) {
+              if (isCreateRancherAllowed) {
                 onCreateClick({
                   name: rancherName,
                   version: selectedVersion.name,

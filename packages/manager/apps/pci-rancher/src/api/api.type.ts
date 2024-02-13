@@ -19,6 +19,10 @@ export type ErrorResponse = {
   };
 };
 
+export enum PciProjectPlanCode {
+  DISCOVERY = 'project.discovery',
+  STANDARD = 'project.2018',
+}
 export interface PciProject {
   access: string;
   creationDate: string;
@@ -27,6 +31,7 @@ export interface PciProject {
   project_id: string;
   status: string;
   unleash: boolean;
+  planCode: PciProjectPlanCode;
 }
 
 export enum RancherTaskType {

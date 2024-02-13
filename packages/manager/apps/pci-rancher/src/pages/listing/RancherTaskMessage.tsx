@@ -23,7 +23,6 @@ const RancherTaskMessage = ({ tasks }: { tasks: RancherTask[] }) => {
           type={task.type}
           className="my-4 p-3"
           key={task.id}
-          removable
         >
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
