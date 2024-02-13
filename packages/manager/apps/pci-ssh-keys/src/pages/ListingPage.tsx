@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
-
 import {
   OsdsBreadcrumb,
   OsdsButton,
+  OsdsChip,
   OsdsDivider,
   OsdsIcon,
   OsdsSearchBar,
@@ -21,6 +21,7 @@ import { useTranslation } from 'react-i18next';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
+  ODS_CHIP_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
@@ -37,11 +38,13 @@ import Notifications from '@/components/Notifications';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
-  // const { t: tError } = useTranslation('error');
-
   const navigation = useNavigation();
   const { projectId } = useParams();
   const [urlProject, setUrlProject] = useState('');
+  const [searchField, setSearchField] = useState('');
+  const [searchQueries, setSearchQueries] = useState<string[]>([]);
+  const { data: project } = useProject(projectId || '');
+
   useEffect(() => {
     navigation
       .getURL('public-cloud', `#/pci/projects/${projectId}`, {})
@@ -49,8 +52,6 @@ export default function ListingPage() {
         setUrlProject(data as string);
       });
   }, [projectId, navigation]);
-
-  const { data: project } = useProject(projectId || '');
 
   const columns = [
     {
@@ -83,10 +84,14 @@ export default function ListingPage() {
     setSorting,
   } = useDataGridParams();
 
-  const { error, data: sshKeys, isLoading } = useSshKeys(projectId || '', {
-    pagination,
-    sorting,
-  });
+  const { error, data: sshKeys, isLoading } = useSshKeys(
+    projectId || '',
+    {
+      pagination,
+      sorting,
+    },
+    searchQueries,
+  );
 
   const onPaginationChange = ({
     page,
@@ -144,11 +149,40 @@ export default function ListingPage() {
           />
           {t('pci_projects_project_sshKeys_add')}
         </OsdsButton>
-        <OsdsSearchBar className={'w-2/12'} />
+        <OsdsSearchBar
+          className={'w-2/12'}
+          value={searchField}
+          onOdsSearchSubmit={({ detail }) => {
+            const { inputValue } = detail;
+            setSearchField('');
+            if (searchQueries.indexOf(inputValue) < 0) {
+              setSearchQueries([...searchQueries, inputValue]);
+            } else {
+              setSearchQueries([...searchQueries]);
+            }
+          }}
+        />
+      </div>
+
+      <div className="flex mt-2">
+        {searchQueries.map((query, index) => (
+          <OsdsChip
+            key={index}
+            className="mr-2"
+            color={ODS_THEME_COLOR_INTENT.primary}
+            variant={ODS_CHIP_VARIANT.flat}
+            removable={true}
+            onOdsChipRemoval={() => {
+              setSearchQueries(searchQueries.filter((_, i) => i !== index));
+            }}
+          >
+            {query}
+          </OsdsChip>
+        ))}
       </div>
 
       {!isLoading && !error && (
-        <div className={'mt-8'}>
+        <div>
           <DataGrid
             columns={columns}
             items={sshKeys?.rows || []}

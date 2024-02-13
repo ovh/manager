@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {
   addSshKey,
@@ -48,46 +49,21 @@ export const useSshKey = (projectId: string, sshId: string) => {
 export const useSshKeys = (
   projectId: string,
   { pagination, sorting }: SshKeysOptions,
+  searchQueries: string[],
 ) => {
   // retrieve All ssh keys from API
-  const {
-    data: sshkeys,
-    error: allSshKeysError,
-    isLoading: allSshKeysLoading,
-  } = useAllSshKeys(projectId);
+  const { data: sshkeys, error, isLoading } = useAllSshKeys(projectId);
 
-  // filtering ssh keys
-  const { data: filteredsshKeys } = useQuery({
-    queryKey: [
-      'project',
-      projectId,
-      'sshkeys',
-      sshkeys?.map(({ id }) => id).join('-'),
-      sorting,
-    ],
-    queryFn: () => filterSshKeys(sshkeys || [], sorting),
-    enabled: !!sshkeys,
-  });
-
-  // paginate results
-  const { isLoading, error, data } = useQuery({
-    queryKey: [
-      'project',
-      projectId,
-      'sshkeys',
-      sshkeys?.map(({ id }) => id).join('-'),
-      sorting,
-      pagination,
-    ],
-    queryFn: () => paginateResults(filteredsshKeys || [], pagination),
-    enabled: !!filteredsshKeys,
-  });
-
-  return {
-    isLoading: allSshKeysLoading || isLoading,
-    error: allSshKeysError || error,
-    data,
-  };
+  return useMemo(() => {
+    return {
+      isLoading,
+      error,
+      data: paginateResults(
+        filterSshKeys(sshkeys || [], sorting, searchQueries),
+        pagination,
+      ),
+    };
+  }, [projectId, sshkeys, sorting, searchQueries]);
 };
 
 export function useRemoveSsh({

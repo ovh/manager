@@ -66,7 +66,7 @@ export default function RemoveSshModal({
         </slot>
         <OsdsButton
           slot="actions"
-          color={ODS_THEME_COLOR_INTENT.default}
+          color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.ghost}
           onClick={onClose}
         >

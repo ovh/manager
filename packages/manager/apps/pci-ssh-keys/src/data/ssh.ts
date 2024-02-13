@@ -50,6 +50,7 @@ export const paginateResults = (
 export const filterSshKeys = (
   sshKeys: SshKey[],
   sorting: SortingOptions,
+  searchQueries?: string[],
 ): SshKey[] => {
   const data = [...sshKeys];
 
@@ -59,6 +60,16 @@ export const filterSshKeys = (
     if (desc) {
       data.reverse();
     }
+  }
+
+  if (searchQueries?.length) {
+    return (data || []).filter(({ name }) => {
+      let matchAll = true;
+      searchQueries.forEach((query) => {
+        matchAll = matchAll && `${name}`.includes(query);
+      });
+      return matchAll;
+    });
   }
 
   return data;
