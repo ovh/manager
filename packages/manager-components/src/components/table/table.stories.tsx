@@ -17,7 +17,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Table, TableProps } from './table.component';
-import { mockColumns, mocksData } from './table.mock';
+import { mockColumns, mockData } from './table.mock';
 
 const DisplayCellMenu = () => (
   <OsdsMenu className="absolute ml-[-15px] mt-[-15px]">
@@ -92,7 +92,7 @@ export const defaultProps: TableProps = {
         </tr>
       </thead>
       <tbody>
-        {mocksData.map((header) => (
+        {mockData.map((header) => (
           <tr key={`${header.firstName}-tr`}>
             {Object.keys(header).map((element) => (
               <td

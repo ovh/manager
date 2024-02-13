@@ -1,27 +1,57 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { getListingIcebergV2 } from '@/api';
-import DatagridWrapper from '@/components/layout-helpers/Listing/DatagridWrapper';
+
+import TableContainer from '@/components/layout-helpers/Listing/TableContainer';
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 export default function Listing() {
+  const { t } = useTranslation('{{appName}}/dashboard');
   const [pageSize] = useState(10);
-
-  const { data, fetchNextPage, hasNextPage, isError, isLoading, error, }: any = useInfiniteQuery({
+  const {
+    data,
+    fetchNextPage,
+    isError,
+    hasNextPage,
+    isLoading,
+    error,
+    isFetching,
+  }: any = useInfiniteQuery({
     initialPageParam: null,
     queryKey: [`servicesListingIceberg`],
-    queryFn: ({ pageParam }) => getListingIcebergV2({ pageSize, cursor: pageParam }),
+    queryFn: ({ pageParam }) =>
+      getListingIcebergV2({ pageSize, cursor: pageParam }),
     staleTime: Infinity,
     getNextPageParam: (lastPage) => lastPage.cursorNext as any,
   });
 
-  const flattenData = data?.pages.map((page: any) => page.data).flat()
+  const tableContainerRef: React.MutableRefObject<HTMLDivElement> = React.useRef<
+    HTMLDivElement
+  >(null);
+
+  const flattenData = React.useMemo(
+    () => data?.pages?.flatMap((page: any) => page.data) ?? [],
+    [data],
+  );
+  const totalFetched = flattenData.length;
+
+  const fetchMoreOnBottomReached = React.useCallback(
+    (containerRefElement?: HTMLDivElement | null) => {
+      if (containerRefElement) {
+        const { scrollHeight, scrollTop, clientHeight } = containerRefElement;
+        if (scrollHeight - scrollTop - clientHeight < 500 && !isFetching) {
+          fetchNextPage();
+        }
+      }
+    },
+    [fetchNextPage, isFetching, totalFetched],
+  );
 
   if (isError) {
     return <ErrorBanner error={error} />;
@@ -41,17 +71,36 @@ export default function Listing() {
     <>
       <Breadcrumb />
       <h2>{{appName}}</h2>
-      <div>{flattenData?.length && <DatagridWrapper data={flattenData} />}</div>
-      <div className="grid justify-items-center my-5">
-        {hasNextPage && <div>
-          <OsdsButton
-            color={ODS_THEME_COLOR_INTENT.info}
-            variant={ODS_BUTTON_VARIANT.stroked}
-            onClick={fetchNextPage}
+      <div className="text-right pr-6 pb-6">
+        <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+          ({flattenData.length} {t('results')})
+        </OsdsText>
+      </div>
+      <div>
+        {flattenData.length && (
+          <div
+            onScroll={(e) => {
+              if (hasNextPage) {
+                fetchMoreOnBottomReached(e.target as HTMLDivElement);
+              }
+            }}
+            ref={tableContainerRef}
+            className={
+              hasNextPage || flattenData.length > 10
+                ? `container overflow-auto relative h-[400px]`
+                : ``
+            }
           >
-            Load more
-          </OsdsButton>
-        </div>}
+            <TableContainer data={flattenData} hasNextPage={hasNextPage} />
+          </div>
+        )}
+        {isFetching && (
+          <div className="text-center pt-3">
+            <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+              {t('loading')}
+            </OsdsText>
+          </div>
+        )}
       </div>
     </>
   );
