@@ -5,7 +5,7 @@ import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Table, TableProps } from './table.component';
-import { mockColumns, mocksData } from './table.mock';
+import { mockColumns, mockData } from './table.mock';
 import { render } from '../../utils/test.provider';
 
 const setupSpecTest = async (
@@ -29,7 +29,7 @@ const setupSpecTest = async (
         </tr>
       </thead>
       <tbody>
-        {mocksData.map((header) => (
+        {mockData.map((header) => (
           <tr key={`${header.firstName}-tr`}>
             {Object.keys(header).map((element) => (
               <td key={header[element]}>{header[element]}</td>
