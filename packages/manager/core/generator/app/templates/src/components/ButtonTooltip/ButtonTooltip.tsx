@@ -51,7 +51,7 @@ const ButtonTooltip: React.FC<ButtonTooltipProps> = (props) => {
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.stroked}
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={handleTooltipToggle}
+        onClick={(event) => handleTooltipToggle(event)}
         circle
       >
         <OsdsIcon
