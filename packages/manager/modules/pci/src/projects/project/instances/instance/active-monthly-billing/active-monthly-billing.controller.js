@@ -1,11 +1,20 @@
 import get from 'lodash/get';
+import { INSTANCE_PRICING_LINKS } from '../../instances.constants';
 
 export default class PciInstanceActiveMonthlyBillingController {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, PciProjectsProjectInstanceService) {
+  constructor(
+    $translate,
+    CucCloudMessage,
+    PciProjectsProjectInstanceService,
+    coreConfig,
+  ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
+    this.instancePricesLink =
+      INSTANCE_PRICING_LINKS[coreConfig.getUser()?.ovhSubsidiary] ||
+      INSTANCE_PRICING_LINKS.DEFAULT;
   }
 
   $onInit() {

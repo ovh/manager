@@ -2,7 +2,8 @@
   "pci_projects_project_instances_instance_active-monthly-billing_title": "Passer au forfait mensuel",
   "pci_projects_project_instances_instance_active-monthly-billing_submit_label": "Confirmer",
   "pci_projects_project_instances_instance_active-monthly-billing_cancel_label": "Annuler",
-  "pci_projects_project_instances_instance_active-monthly-billing_content": "Réduisez le prix de 50% en passant votre instance au forfait mensuel (payé par avance)",
+  "pci_projects_project_instances_instance_active-monthly-billing_content": "Réduisez le montant de votre facture en passant votre instance au forfait mensuel.",
+  "pci_projects_project_instances_instance_active-monthly-billing_content_link": "Voir les prix",
   "pci_projects_project_instances_instance_active-monthly-billing_invoice_alert": "Une facture au prorata des jours restants du mois va être immédiatement éditée.",
   "pci_projects_project_instances_instance_active-monthly-billing_success_message": "L'instance {{ instance }} a été passée au forfait mensuel.",
   "pci_projects_project_instances_instance_active-monthly-billing_error_enable": "Une erreur est survenue lors du passage au forfait mensuel de l'instance {{ instance }} : {{ message }}."
