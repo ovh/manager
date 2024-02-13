@@ -1,4 +1,5 @@
 {
+  "telephony_line_phone_actions_line_details_phone_breadcrumb": "Telefon",
   "telephony_line_phone_actions_line_details_phon_offer": "Informacje ogólne",
   "telephony_line_phone_actions_line_codecs_management": "Codecs",
   "telephony_line_phone_actions_line_interface": "Choix de l'interface",
@@ -6,14 +7,12 @@
   "telephony_line_phone_actions_line_programmable_keys": "Touches programmables",
   "telephony_line_phone_actions_line_phone_upgrade_firmware": "Mise à jour du firmware",
   "telephony_line_phone_actions_line_phone_reboot": "Reboot",
-  "telephony_line_phone_actions_line_order_accessories": "Commander des accessoires",
-  "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone",
-  "telephony_line_phone_actions_line_details_phone_breadcrumb": "Telefon",
   "telephony_line_phone_actions_line_phone_order_phone": "Zamów telefon VoIP",
   "telephony_line_phone_actions_line_phone_change_phone": "Zmień telefon",
+  "telephony_line_phone_actions_line_order_headset": "Zamów zestaw słuchawkowy",
   "telephony_line_phone_actions_line_phonebook": "Książki adresowe",
+  "telephony_group_line_phone_section_back_link": "Retour à la gestion du téléphone",
   "telephony_group_line_phone_section_back_link_target": "zarządzanie telefonem",
   "telephony_line_phone_actions_line_phone_order_attach": "Przypisz linię do aktualnego sprzętu",
-  "telephony_line_phone_actions_line_phone_order_detach": "Odłącz linię od telefonu",
-  "telephony_line_phone_actions_line_order_headset": "Zamów zestaw słuchawkowy"
+  "telephony_line_phone_actions_line_phone_order_detach": "Odłącz linię od telefonu"
 }

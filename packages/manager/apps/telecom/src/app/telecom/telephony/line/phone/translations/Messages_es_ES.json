@@ -1,4 +1,5 @@
 {
+  "telephony_line_phone_actions_line_details_phone_breadcrumb": "Teléfono",
   "telephony_line_phone_actions_line_details_phon_offer": "Información general",
   "telephony_line_phone_actions_line_codecs_management": "Códecs",
   "telephony_line_phone_actions_line_interface": "Selección de la interfaz",
@@ -8,11 +9,9 @@
   "telephony_line_phone_actions_line_phone_reboot": "Reiniciar",
   "telephony_line_phone_actions_line_phone_order_phone": "Contratar un teléfono VoIP",
   "telephony_line_phone_actions_line_phone_change_phone": "Cambiar de teléfono",
-  "telephony_line_phone_actions_line_order_accessories": "Contratar accesorios",
+  "telephony_line_phone_actions_line_order_headset": "Contratar auriculares",
   "telephony_line_phone_actions_line_phonebook": "Agenda de contactos",
   "telephony_group_line_phone_section_back_link": "Volver a la gestión del teléfono",
   "telephony_line_phone_actions_line_phone_order_attach": "Asociar la línea a un dispositivo actual",
-  "telephony_line_phone_actions_line_phone_order_detach": "Desvincular la línea de un teléfono",
-  "telephony_line_phone_actions_line_details_phone_breadcrumb": "Teléfono",
-  "telephony_line_phone_actions_line_order_headset": "Contratar auriculares"
+  "telephony_line_phone_actions_line_phone_order_detach": "Desvincular la línea de un teléfono"
 }
