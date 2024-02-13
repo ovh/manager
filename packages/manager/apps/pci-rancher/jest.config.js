@@ -15,5 +15,7 @@ module.exports = {
       '<rootDir>/src/_mock_/images.tsx',
     '^@/(.*)$': '<rootDir>/src/$1',
     '/axios/': 'axios/dist/node/axios.cjs',
+    uuid: require.resolve('uuid'),
+    nanoid: require.resolve('nanoid'),
   },
 };

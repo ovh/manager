@@ -27,6 +27,7 @@ const Listing: React.FC<ListingProps> = ({ data }) => {
   const { t } = useTranslation('pci-rancher/listing');
   const hrefDashboard = useHref('');
   const navigate = useNavigate();
+
   if (data.length === 0) {
     navigate(
       `/pci/projects/5a6980507c0a40dca362eb9b22d79044/rancher/onboarding`,
@@ -34,6 +35,7 @@ const Listing: React.FC<ListingProps> = ({ data }) => {
   }
 
   const tasks = data.map((rancher) => rancher.currentTasks).flat();
+
   return (
     <>
       <Title>{t('rancherTitle')}</Title>

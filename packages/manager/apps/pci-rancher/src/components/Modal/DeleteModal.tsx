@@ -2,7 +2,6 @@ import {
   OsdsButton,
   OsdsInput,
   OsdsMessage,
-  OsdsModal,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
@@ -23,7 +22,7 @@ import Modal from './Modal';
 
 interface DeleteModalProps {
   toggleModal: (showModal: boolean) => void;
-  onDeleteRancher: (rancherId: string) => void;
+  onDeleteRancher: () => void;
   selectedRancher: RancherService;
 }
 export const TERMINATE_TEXT = 'TERMINATE';
@@ -39,7 +38,7 @@ const DeleteModal = ({
   const isButtonDisabled = TERMINATE_TEXT !== terminateText;
 
   const onDelete = () => {
-    onDeleteRancher(selectedRancher.id);
+    onDeleteRancher();
     toggleModal(false);
   };
 
@@ -56,7 +55,7 @@ const DeleteModal = ({
       >
         {t('deleteModalTitle')}
       </OsdsText>
-      <div className="mt-3">
+      <div className="my-4">
         <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
           {t('deleteModalDescription', {
             rancherName: selectedRancher.currentState.name,
@@ -68,7 +67,7 @@ const DeleteModal = ({
           {t('deleteModalWarning')}
         </OsdsText>
       </OsdsMessage>
-      <div className="my-3">
+      <div className="my-4">
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
           level={ODS_TEXT_LEVEL.heading}
