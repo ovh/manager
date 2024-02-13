@@ -1,5 +1,7 @@
 import React from 'react';
-import { OsdsChip } from '@ovhcloud/ods-components/chip/react';
+import { OsdsChip } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 import { toFilterDisplay } from '@/utils/utils';
 
 interface FilterChipProps {
@@ -20,9 +22,9 @@ const FilterChip = ({
       <OsdsChip
         key={universe}
         className="inline-flex m-3"
-        color="primary"
+        color={ODS_THEME_COLOR_INTENT.primary}
         removable
-        size="sm"
+        size={ODS_CHIP_SIZE.sm}
         onOdsChipRemoval={() => onDeleteUniverse(universe)}
       >
         {toFilterDisplay(universe)}
@@ -32,9 +34,9 @@ const FilterChip = ({
       <OsdsChip
         key={category}
         className="inline-flex m-3"
-        color="primary"
+        color={ODS_THEME_COLOR_INTENT.primary}
         removable
-        size="sm"
+        size={ODS_CHIP_SIZE.sm}
         onOdsChipRemoval={() => onDeleteCategory(category)}
       >
         {toFilterDisplay(category)}
