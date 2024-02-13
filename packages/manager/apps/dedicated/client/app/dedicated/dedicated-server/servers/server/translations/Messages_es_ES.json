@@ -1142,5 +1142,7 @@
   "server_configuration_installation_inputs_bad_required": "Este campo es obligatorio.",
   "server_configuration_installation_inputs_bad_sshPubKey": "La clave pública SSH no es válida: solo se aceptan claves RSA, ECDSA y EdDSA en formato OpenSSH.",
   "server_configuration_installation_inputs_bad_url": "La dirección URL introducida no es válida.",
-  "server_configuration_installation_inputs_bad_uuid": "El UUIDv4 no es válido."
+  "server_configuration_installation_inputs_bad_uuid": "El UUIDv4 no es válido.",
+  "server_configuration_installation_custom_image_info": "Puede instalar un SO desde una imagen personalizada en la siguiente pantalla seleccionando «{{t0}}» en «{{t1}}».",
+  "server_configuration_installation_custom_image_help_link": "Seleccione el tipo de instalación personalizada más adecuado."
 }

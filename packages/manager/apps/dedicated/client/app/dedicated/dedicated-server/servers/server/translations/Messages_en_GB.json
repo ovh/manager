@@ -1142,5 +1142,7 @@
   "server_configuration_installation_inputs_bad_required": "Required field",
   "server_configuration_installation_inputs_bad_sshPubKey": "The SSH public key is invalid: only RSA, ECDSA and EdDSA keys in OpenSSH format are supported",
   "server_configuration_installation_inputs_bad_url": "The URL entered is invalid",
-  "server_configuration_installation_inputs_bad_uuid": "The UUIDv4 is invalid"
+  "server_configuration_installation_inputs_bad_uuid": "The UUIDv4 is invalid",
+  "server_configuration_installation_custom_image_info": "You can install an OS from a custom image on the next screen by choosing \"{{t0}}\" in \"{{t1}}\".",
+  "server_configuration_installation_custom_image_help_link": "Choose the most suitable custom installation type."
 }
