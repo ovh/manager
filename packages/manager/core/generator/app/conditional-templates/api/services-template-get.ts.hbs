@@ -30,7 +30,7 @@ export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalC
     return response;
   };
   try {
-    return queryClient.fetchQuery({{this.functionName}}QueryKey{{#if this.urlParams}}(params){{/if}}, fetchData);
+    return queryClient.fetchQuery({queryKey: {{this.functionName}}QueryKey{{#if this.urlParams}}(params){{/if}}, queryFn: fetchData});
   } catch(error) {
     return Promise.reject(error);
   }
