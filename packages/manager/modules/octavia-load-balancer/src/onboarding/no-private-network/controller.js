@@ -12,17 +12,6 @@ export default class OctaviaLoadBalancerOnboardingCtrl {
     this.coreURLBuilder = coreURLBuilder;
   }
 
-  goToPrivateNetworkCreation() {
-    this.atInternet.trackClick({
-      name: `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::create-private-network::add-private-network`,
-      type: 'navigation',
-    });
-    this.$window.location.href = this.coreURLBuilder.buildURL(
-      'public-cloud',
-      `#/pci/projects/${this.projectId}/private-networks/new`,
-    );
-  }
-
   trackPrivateNetworkHelp() {
     this.atInternet.trackClick({
       name: `${TRACKING_CHAPTER_1}::${TRACKING_NAME}::create-private-network::know-more`,
