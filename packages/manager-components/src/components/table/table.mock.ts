@@ -21,7 +21,7 @@ export const mockColumns = [
   },
 ];
 
-export const mocksData = [
+export const mockData = [
   {
     firstName: 'Kylian',
     lastName: 'Mbappe',
