@@ -4,7 +4,7 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { ODS_BUTTON_VARIANT, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -67,6 +67,7 @@ export default function RemoveSshModal({
         <OsdsButton
           slot="actions"
           color={ODS_THEME_COLOR_INTENT.default}
+          variant={ODS_BUTTON_VARIANT.ghost}
           onClick={onClose}
         >
           {t('common_cancel')}

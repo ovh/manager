@@ -8,6 +8,7 @@ import {
   OsdsTextarea,
 } from '@ovhcloud/ods-components/react';
 import {
+  ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
   ODS_SPINNER_SIZE,
   OdsInputValueChangeEvent,
@@ -103,7 +104,13 @@ export default function AddSshModal({
                   onOdsValueChange={handleInputPublicKeyChange}
                   ariaLabel={t('pci_projects_project_sshKeys_add_key')}
                   data-testid="sshPublicKey"
+                  placeholder={t(
+                    'pci_projects_project_sshKeys_add_key_description',
+                  )}
                 />
+                <OsdsText slot="helper">
+                  {t('pci_projects_project_sshKeys_add_infos')}
+                </OsdsText>
               </OsdsFormField>
             </>
           )}
@@ -112,6 +119,7 @@ export default function AddSshModal({
         <OsdsButton
           slot="actions"
           color={ODS_THEME_COLOR_INTENT.default}
+          variant={ODS_BUTTON_VARIANT.ghost}
           onClick={onClose}
         >
           {t('common_cancel')}
