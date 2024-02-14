@@ -15,7 +15,7 @@ export default {
     trackingPrefix: '<',
     user: '<',
     handleError: '<',
-    nutanixPlans: '<',
+    hardwareInfo: '<',
     getTechnicalDetails: '<',
     isOldCluster: '<',
     isPackTypeAvailable: '<',
