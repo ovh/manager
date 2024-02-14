@@ -7,6 +7,7 @@ import {
   OsdsDivider,
   OsdsIcon,
   OsdsSearchBar,
+  OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
@@ -24,6 +25,7 @@ import {
   ODS_CHIP_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { useSshKeys } from '@/hooks/useSsh';
 import GuidesHeader from '@/components/guides/GuidesHeader';
@@ -180,6 +182,12 @@ export default function ListingPage() {
           </OsdsChip>
         ))}
       </div>
+
+      {isLoading && (
+        <div className="text-center">
+          <OsdsSpinner inline={true} size={ODS_SPINNER_SIZE.md} />
+        </div>
+      )}
 
       {!isLoading && !error && (
         <div>
