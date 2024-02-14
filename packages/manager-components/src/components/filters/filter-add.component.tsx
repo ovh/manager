@@ -1,4 +1,11 @@
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
+import { Filter, FilterComparator } from '@ovh-ux/manager-core-api';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_INPUT_TYPE,
+  ODS_TEXT_LEVEL,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsFormField,
@@ -7,28 +14,22 @@ import {
   OsdsSelectOption,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_INPUT_TYPE,
-  ODS_TEXT_LEVEL,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { Filter, FilterComparator } from '@ovh-ux/manager-core-api';
 import { useTranslation } from 'react-i18next';
+import './translations';
 
-interface ColumnFilter {
+type ColumnFilter = {
   id: string;
   label: string;
   comparators: FilterComparator[];
-}
+};
 
-export interface FilterAddProps {
+export type FilterAddProps = {
   columns: ColumnFilter[];
   onAddFilter: (filter: Filter, column: ColumnFilter) => void;
-}
+};
 
-export default function FilterAdd({ columns, onAddFilter }: FilterAddProps) {
-  const { t } = useTranslation('filter');
+export function FilterAdd({ columns, onAddFilter }: Readonly<FilterAddProps>) {
+  const { t } = useTranslation('filters');
 
   const [selectedId, setSelectedId] = useState(columns?.[0]?.id || '');
   const [selectedComparator, setSelectedComparator] = useState(
@@ -67,9 +68,9 @@ export default function FilterAdd({ columns, onAddFilter }: FilterAddProps) {
         <OsdsSelect
           value={selectedId}
           data-testid="add-filter_select_idColumn"
-          onOdsValueChange={(event) => {
-            setSelectedId(event.detail.value as string);
-          }}
+          onOdsValueChange={(event) =>
+            setSelectedId(event.detail.value as string)
+          }
         >
           {columns.map(({ id, label }) => (
             <OsdsSelectOption key={id} value={id}>
