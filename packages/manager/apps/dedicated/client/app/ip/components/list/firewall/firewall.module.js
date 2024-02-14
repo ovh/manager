@@ -8,6 +8,7 @@ import ruleDeleteTemplate from './rule/delete/ip-ip-firewall-rule-delete.html';
 
 import toggleController from './toggle/ip-ip-firewall-toggle.controller';
 import toggleTemplate from './toggle/ip-ip-firewall-toggle.html';
+import './firewall.styles.scss';
 
 const moduleName = 'ovhManagerIpDashboardFirewall';
 
