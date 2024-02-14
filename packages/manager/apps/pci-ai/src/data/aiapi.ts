@@ -25,13 +25,24 @@ export interface DataSyncProps {
     },
 };
 
-
 export interface LabelsProps {
     projectId: string,
     notebookId: string,
     notebookSpec: {
         labels: Record<string, string>,
     },
+};
+
+export interface LabelsJobProps {
+    projectId: string,
+    jobId: string,
+    labels: Record<string, string>,
+};
+
+export interface LabelsAppProps {
+    projectId: string,
+    appId: string,
+    labels: Record<string, string>,
 };
 
 export interface OrderNbProps {
@@ -231,6 +242,13 @@ export const jobsApi = {
             },
         ).then(res => res.data as ai.Logs)
     ,
+    updateLabel: async ({ projectId, jobId, labels }: LabelsJobProps) => {
+        await apiClient.v6.put(
+            `/cloud/project/${projectId}/ai/job/${jobId}/label`,
+            labels,
+        )
+            .then((res) => res.data as string);
+    },
 };
 
 export const appsApi = {
@@ -294,5 +312,12 @@ export const appsApi = {
             dataSyncSpec,
         )
             .then((res) => res.data as string);
-    }
+    },
+    updateLabel: async ({ projectId, appId, labels }: LabelsAppProps) => {
+        await apiClient.v6.put(
+            `/cloud/project/${projectId}/ai/app/${appId}/label`,
+            labels,
+        )
+            .then((res) => res.data as string);
+    },
 }

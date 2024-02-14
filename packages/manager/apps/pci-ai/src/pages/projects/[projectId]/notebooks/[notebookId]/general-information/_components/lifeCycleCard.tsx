@@ -49,8 +49,8 @@ const LifeCycleCard = ({ notebook, onNotebookUpdate }: LifeCycleProps) => {
     ai.notebook.Notebook
   >();
   const [deletingNotebook, setDeletingNotebook] = useState<
-  ai.notebook.Notebook
->();
+    ai.notebook.Notebook
+  >();
 
   //Start Notebook pop up management
   const onStartClicked = () => {
@@ -80,7 +80,9 @@ const LifeCycleCard = ({ notebook, onNotebookUpdate }: LifeCycleProps) => {
       onNotebookUpdate();
     },
     onError: (error: Error) => {
-      toast.error(`A error occured while launching your notebook: ${error.message}`);
+      toast.error(
+        `A error occured while launching your notebook: ${error.message}`,
+      );
     },
   });
 
@@ -111,7 +113,9 @@ const LifeCycleCard = ({ notebook, onNotebookUpdate }: LifeCycleProps) => {
       onNotebookUpdate();
     },
     onError: (error: Error) => {
-      toast.error(`A error occured while stoping your notebook: ${error.message}`);
+      toast.error(
+        `A error occured while stoping your notebook: ${error.message}`,
+      );
     },
   });
 
@@ -168,7 +172,11 @@ const LifeCycleCard = ({ notebook, onNotebookUpdate }: LifeCycleProps) => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                <DropdownMenuItem disabled={notebook.status.state !== ai.notebook.NotebookStateEnum.STOPPED}
+                <DropdownMenuItem
+                  disabled={
+                    notebook.status.state !==
+                    ai.notebook.NotebookStateEnum.STOPPED
+                  }
                   onClick={() => {
                     onStartClicked();
                   }}
@@ -176,7 +184,11 @@ const LifeCycleCard = ({ notebook, onNotebookUpdate }: LifeCycleProps) => {
                   Start
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem disabled={notebook.status.state !== ai.notebook.NotebookStateEnum.RUNNING}
+                <DropdownMenuItem
+                  disabled={
+                    notebook.status.state !==
+                    ai.notebook.NotebookStateEnum.RUNNING
+                  }
                   onClick={() => {
                     onStopClicked();
                   }}
@@ -225,7 +237,12 @@ const LifeCycleCard = ({ notebook, onNotebookUpdate }: LifeCycleProps) => {
             <b>Runtime</b>
           </p>
           <p>{formattedDuration(notebook.status.duration || 0, false)}</p>
-          <Button variant="link" size="sm" asChild>
+          <Button
+            className="font-semibold hover:bg-primary-100 hover:text-primary"
+            variant="link"
+            size="sm"
+            asChild
+          >
             <Link to="https://www.ovh.com/manager/#/dedicated/billing/history">
               View biling
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -255,9 +272,7 @@ const LifeCycleCard = ({ notebook, onNotebookUpdate }: LifeCycleProps) => {
             <b>Timeline</b>
           </p>
           {notebook.status.lastJobStatus.history && (
-            <JobStatusHistory
-              history={notebook.status.lastJobStatus.history}
-            />
+            <JobStatusHistory history={notebook.status.lastJobStatus.history} />
           )}
         </CardContent>
       </Card>

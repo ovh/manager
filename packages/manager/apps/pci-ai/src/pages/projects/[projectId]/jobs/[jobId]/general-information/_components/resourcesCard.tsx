@@ -7,7 +7,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { ArrowUpRightSquare, HelpCircleIcon } from 'lucide-react';
+import { ArrowRight, HelpCircleIcon } from 'lucide-react';
 
 import { ai } from '@/models/types';
 import { displaySizeFormat } from '@/data/constant';
@@ -49,8 +49,7 @@ const ResourcesCard = ({ job }: ResourcesProps) => {
           {job.spec.resources.gpu !== 0 && (
             <p>
               {job.spec.resources.gpu} x{' '}
-              {displaySizeFormat(job.spec.resources.gpuMemory, false, 0)}{' '}
-              RAM
+              {displaySizeFormat(job.spec.resources.gpuMemory, false, 0)} RAM
             </p>
           )}
         </CardContent>
@@ -62,9 +61,7 @@ const ResourcesCard = ({ job }: ResourcesProps) => {
           {job.spec.resources.gpu !== 0 && (
             <p>CPU : {job.spec.resources.cpu} vCores</p>
           )}
-          <p>
-            RAM : {displaySizeFormat(job.spec.resources.memory, false, 0)}
-          </p>
+          <p>RAM : {displaySizeFormat(job.spec.resources.memory, false, 0)}</p>
           <p>
             Public network:{' '}
             {displaySizeFormat(job.spec.resources.publicNetwork, true, 2)}
@@ -79,11 +76,7 @@ const ResourcesCard = ({ job }: ResourcesProps) => {
           <div className="flex justify-between items-center">
             <p>
               Temporary local storage :{' '}
-              {displaySizeFormat(
-                job.spec.resources.ephemeralStorage,
-                false,
-                0,
-              )}{' '}
+              {displaySizeFormat(job.spec.resources.ephemeralStorage, false, 0)}{' '}
               SSD
             </p>
             <div className="relative inline-block">
@@ -100,18 +93,19 @@ const ResourcesCard = ({ job }: ResourcesProps) => {
         </CardContent>
         <div className="border-slate-200 border-t mx-5 mb-3"></div>
         <CardContent>
-          <p className='mb-2'>
-            <b>Usage monitoring</b>
+          <p className="mb-2">
+            <b>Real-time monitoring</b>
           </p>
           <Button
-            variant="outline"
+            className="font-semibold hover:bg-primary-100 hover:text-primary"
+            variant="link"
+            size="sm"
+            asChild
           >
-            <div className="flex justify-between items-center">
-              <Link to={job.status.monitoringUrl || ''}>
-                Go to graph Dashboard
-              </Link>
-              <ArrowUpRightSquare className="w-4 h-4 ml-2" />
-            </div>
+            <Link to={job.status.monitoringUrl || ''}>
+              Access Dashboard
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Link>
           </Button>
         </CardContent>
       </Card>

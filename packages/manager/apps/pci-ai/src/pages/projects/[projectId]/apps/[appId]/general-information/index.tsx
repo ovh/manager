@@ -11,30 +11,30 @@ export const Handle = {
   breadcrumb: () => 'General information',
 };
 
-export default function AiJobGeneralInformationPage() {
-  const jobQuery = useOutletContext() as UseQueryResult<ai.job.Job, Error>;
+export default function AiAppGeneralInformationPage() {
+  const appQuery = useOutletContext() as UseQueryResult<ai.app.App, Error>;
   return (
     <>
-      {jobQuery.isLoading ? (
-        <p>Loading Job</p>
+      {appQuery.isLoading ? (
+        <p>Loading App</p>
       ) : (
         <div>
-          {jobQuery.data && (
+          {appQuery.data && (
             <div className="grid w-full grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="max-w-full">
                 <GeneralCard
-                  job={jobQuery.data}
-                  onLabelUpdate={() => jobQuery.refetch()}
+                  app={appQuery.data}
+                  onLabelUpdate={() => appQuery.refetch()}
                 />
               </div>
               <div className="w-auto">
                 <LifeCycleCard
-                  job={jobQuery.data}
-                  onJobUpdate={() => jobQuery.refetch()}
+                  app={appQuery.data}
+                  onAppUpdate={() => appQuery.refetch()}
                 />
               </div>
               <div className="w-auto">
-                <ResourcesCard job={jobQuery.data} />
+                <ResourcesCard app={appQuery.data} />
               </div>
             </div>
           )}

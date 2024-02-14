@@ -6,43 +6,42 @@ import { useMutation } from '@tanstack/react-query';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Pencil } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { ArrowRight, Files, Pencil } from 'lucide-react';
 
 import { ai } from '@/models/types';
-import { LabelsProps, notebookApi } from '@/data/aiapi';
+import { LabelsAppProps, appsApi } from '@/data/aiapi';
 
-import NotebookTags from './notebookTags';
+import AppTags from './appTags';
 import AddLabelModal, {
   AddLabelSubmitData,
-} from '@/pages/projects/[projectId]/_components/addLabelModal';
+} from './../../../../_components/addLabelModal';
 
 interface GeneralProps {
-  notebook: ai.notebook.Notebook;
+  app: ai.app.App;
   onLabelUpdate: () => void;
 }
 
-const GeneralCard = ({ notebook, onLabelUpdate }: GeneralProps) => {
+const GeneralCard = ({ app, onLabelUpdate }: GeneralProps) => {
   const { projectId } = useRequiredParams<{ projectId: string }>();
   const [isAddLabelModalOpen, setIsAddLabelModalOpen] = useState(false);
 
   const onSubmit = (data: AddLabelSubmitData) => {
     setIsAddLabelModalOpen(false);
-    const newList: Record<string, string> = { ...notebook.spec.labels };
+    const newList: Record<string, string> = { ...app.spec.labels };
     const nouvelElement = { key: data.key, value: data.value };
     newList[nouvelElement.key] = nouvelElement.value;
 
     addLabelDataMutation.mutate({
       projectId: projectId,
-      notebookId: notebook.id,
-      notebookSpec: {
-        labels: newList,
-      },
+      appId: app.id,
+      labels: newList,
     });
   };
 
   const addLabelDataMutation = useMutation({
-    mutationFn: (addLabelParam: LabelsProps) =>
-      notebookApi.updateNotebook(addLabelParam),
+    mutationFn: (addLabelParam: LabelsAppProps) =>
+      appsApi.updateLabel(addLabelParam),
     onSuccess: () => {
       toast.success(`Your label have been succesfuly added`);
       onLabelUpdate();
@@ -62,27 +61,61 @@ const GeneralCard = ({ notebook, onLabelUpdate }: GeneralProps) => {
           <div className="border-slate-200 border-t mx-5 mb-3"></div>
           <CardContent>
             <p>
-              <b>Live-code-editor</b>
+              <b>Docker Image</b>
+            </p>
+            <p className="mt-2 py-1 bg-slate-100 border-primary border-b">
+              {app.spec.image}
             </p>
             <Button
-              disabled={true}
-              className="font-semibold hover:bg-primary-100 hover:text-primary"
-              variant="link"
-              size="sm"
-              asChild
+              className="mt-2 text-primary bg-white font-semibold hover:bg-primary-100 hover:text-primary"
+              variant="ghost"
             >
-              <Link to={notebook.status.url || ''}>
-                {notebook.spec.env.editorId}
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
+              Update Image
+              <Pencil className="w-4 h-4 ml-3 mb-1" />
             </Button>
+          </CardContent>
+          <div className="border-slate-200 border-t mx-5 mb-3"></div>
+          <CardContent>
+            <p className="mb-2">
+              <b>Access URL (HTTP endpoint)</b>
+            </p>
+            <div className="flex items-center mt-2 py-1 max-w-[450px] text-primary font-semibold  border-primary-100 border hover:bg-primary-100 hover:text-primary-700 hover:border-b-primary">
+              <p className=" flex-1 truncate">{app.status.url}</p>
+              <Files
+                className="w-4 h-4 ml-3 mb-1"
+                onClick={() => {
+                  navigator.clipboard.writeText(app.status.url || '');
+                  toast.success('Access URL saved in clipboard', {
+                    dismissible: true,
+                  });
+                }}
+              />
+            </div>
+          </CardContent>
+          <div className="border-slate-200 border-t mx-5 mb-3"></div>
+          <CardContent>
+            <p className="mb-2">
+              <b>Port</b>
+            </p>
+            <div className="mb-2">
+              <Badge variant="error">{app.spec.defaultHttpPort}</Badge>
+            </div>
+            <div>
+              <Button
+                className="text-primary bg-white font-semibold hover:bg-primary-100 hover:text-primary"
+                variant="ghost"
+              >
+                Update HTTP Port
+                <Pencil className="w-4 h-4 ml-3 mb-1" />
+              </Button>
+            </div>
           </CardContent>
           <div className="border-slate-200 border-t mx-5 mb-3"></div>
           <CardContent>
             <p>
               <b>Attached container</b>
             </p>
-            <p>{notebook.spec.volumes?.length || 0} container(s)</p>
+            <p>{app.spec.volumes?.length || 0} container(s)</p>
             <Button
               className="font-semibold hover:bg-primary-100 hover:text-primary"
               variant="link"
@@ -100,10 +133,10 @@ const GeneralCard = ({ notebook, onLabelUpdate }: GeneralProps) => {
             <p>
               <b>Tags</b>
             </p>
-            {notebook.spec.labels && (
-              <NotebookTags
-                notebookId={notebook.id}
-                tags={notebook.spec.labels}
+            {app.spec.labels && (
+              <AppTags
+                appId={app.id}
+                tags={app.spec.labels}
                 onLabelUpdate={() => onLabelUpdate()}
               />
             )}
@@ -126,26 +159,16 @@ const GeneralCard = ({ notebook, onLabelUpdate }: GeneralProps) => {
           <div className="border-slate-200 border-t mx-5 mb-3"></div>
           <CardContent>
             <p>
-              <b>Environment</b>
-            </p>
-            <p>
-              {notebook.spec.env.frameworkId} -{' '}
-              {notebook.spec.env.frameworkVersion}
-            </p>
-          </CardContent>
-          <div className="border-slate-200 border-t mx-5 mb-3"></div>
-          <CardContent>
-            <p>
               <b>Privacy</b>
             </p>
-            <p>{notebook.spec.unsecureHttp ? 'Public' : 'Private'}</p>
+            <p>{app.spec.unsecureHttp ? 'Public' : 'Private'}</p>
           </CardContent>
           <div className="border-slate-200 border-t mx-5 mb-3"></div>
           <CardContent>
             <p>
               <b>Region</b>
             </p>
-            <p>{notebook.spec.region}</p>
+            <p>{app.spec.region}</p>
           </CardContent>
         </Card>
       </div>

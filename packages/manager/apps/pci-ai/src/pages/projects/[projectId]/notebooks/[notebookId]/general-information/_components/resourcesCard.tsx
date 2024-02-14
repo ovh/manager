@@ -7,7 +7,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { ArrowUpRightSquare, HelpCircleIcon } from 'lucide-react';
+import { ArrowRight, HelpCircleIcon } from 'lucide-react';
 
 import { ai } from '@/models/types';
 import { displaySizeFormat } from '@/data/constant';
@@ -127,20 +127,18 @@ const ResourcesCard = ({ notebook }: ResourcesProps) => {
         <div className="border-slate-200 border-t mx-5 mb-3"></div>
         <CardContent>
           <p>
-            <b>Usage monitoring</b>
+            <b>Real-time monitoring</b>
           </p>
           <Button
-            disabled={
-              notebook.status.state !== ai.notebook.NotebookStateEnum.RUNNING
-            }
-            variant="outline"
+            className="font-semibold hover:bg-primary-100 hover:text-primary"
+            variant="link"
+            size="sm"
+            asChild
           >
-            <div className="flex justify-between items-center">
-              <Link to={notebook.status.monitoringUrl || ''}>
-                Go to graph Dashboard
-              </Link>
-              <ArrowUpRightSquare className="w-4 h-4 ml-2" />
-            </div>
+            <Link to={notebook.status.monitoringUrl || ''}>
+              Access Dashboard
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Link>
           </Button>
         </CardContent>
       </Card>

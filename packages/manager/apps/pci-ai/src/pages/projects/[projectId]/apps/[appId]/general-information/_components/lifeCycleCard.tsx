@@ -18,120 +18,119 @@ import {
 import { ArrowRight, MoreVertical } from 'lucide-react';
 
 import { ai } from '@/models/types';
-import { JobProps, jobsApi } from '@/data/aiapi';
-import { formattedDuration } from '@/data/constant';
+import { AppProps, appsApi } from '@/data/aiapi';
 
-import JobStatusBadge from '../../../_components/jobsStatusBadge';
-import JobStatusHistory from './../../../../_components/jobStatusHistory';
-import StartJobModal, {
-  StartJobSubmitData,
-} from './../../../_components/startJobModal';
-import StopJobModal, {
-  StopJobSubmitData,
-} from './../../../_components/stopJobModal';
-import DeleteJobModal, {
-  DeleteJobSubmitData,
-} from './../../../_components/deleteJobModal';
+import AppsStatusBadge from '../../../_components/appsStatusBadge';
+import StartAppModal, {
+  StartAppSubmitData,
+} from './../../../_components/startAppModal';
+import StopAppModal, {
+  StopAppSubmitData,
+} from './../../../_components/stopAppModal';
+import DeleteAppModal, {
+  DeleteAppSubmitData,
+} from './../../../_components/deleteAppModal';
+import AppStatusHistory from './appStatusHistory';
 
 interface LifeCycleProps {
-  job: ai.job.Job;
-  onJobUpdate: () => void;
+  app: ai.app.App;
+  onAppUpdate: () => void;
 }
 
-const LifeCycleCard = ({ job, onJobUpdate }: LifeCycleProps) => {
+const LifeCycleCard = ({ app, onAppUpdate }: LifeCycleProps) => {
   const { projectId } = useRequiredParams<{ projectId: string }>();
   const navigate = useNavigate();
   const [isOpenModal, setOpenModal] = useState(false);
-  const [startingJob, setStartingJob] = useState<ai.job.Job>();
-  const [stopingJob, setStopingJob] = useState<ai.job.Job>();
-  const [deletingJob, setDeletingJob] = useState<ai.job.Job>();
+  const [startingApp, setStartingApp] = useState<ai.app.App>();
+  const [stopingApp, setStopingApp] = useState<ai.app.App>();
+  const [deletingApp, setDeletingApp] = useState<ai.app.App>();
 
-  //Start Job pop up management
+  //Start app pop up management
   const onStartClicked = () => {
-    setStartingJob(job);
+    setStartingApp(app);
     setOpenModal(true);
   };
 
-  const handleCloseStartJobModal = () => {
+  const handleCloseStartAppModal = () => {
     setOpenModal(false);
-    setStartingJob(undefined);
+    setStartingApp(undefined);
   };
 
-  const onStartSubmit = (data: StartJobSubmitData) => {
-    startJobMutation.mutate({
+  const onStartSubmit = (data: StartAppSubmitData) => {
+    startAppMutation.mutate({
       projectId,
-      jobId: data.jobId,
+      appId: data.appId,
     });
   };
 
-  const startJobMutation = useMutation({
-    mutationFn: (mutationData: JobProps) => jobsApi.startJob(mutationData),
+  const startAppMutation = useMutation({
+    mutationFn: (mutationData: AppProps) => appsApi.startApp(mutationData),
     onSuccess: () => {
       //close modale
       setOpenModal(false);
-      toast.success(`Your job have been launched`);
-      onJobUpdate();
+      toast.success(`Your app have been launched`);
+      onAppUpdate();
     },
     onError: (error: Error) => {
-      toast.error(`A error occured while launching your job: ${error.message}`);
+      toast.error(`A error occured while launching your app: ${error.message}`);
     },
   });
 
-  //Stop job pop up management
+  //Stop app pop up management
   const onStopClicked = () => {
-    setStopingJob(job);
+    setStopingApp(app);
     setOpenModal(true);
   };
 
-  const handleCloseStopJobModal = () => {
+  const handleCloseStopAppModal = () => {
     setOpenModal(false);
-    setStopingJob(undefined);
+    setStopingApp(undefined);
   };
 
-  const onStopSubmit = (data: StopJobSubmitData) => {
-    stopJobMutation.mutate({
+  const onStopSubmit = (data: StopAppSubmitData) => {
+    stopAppMutation.mutate({
       projectId,
-      jobId: data.jobId,
+      appId: data.appId,
     });
   };
 
-  const stopJobMutation = useMutation({
-    mutationFn: (mutationData: JobProps) => jobsApi.stopJob(mutationData),
+  const stopAppMutation = useMutation({
+    mutationFn: (mutationData: AppProps) => appsApi.stopApp(mutationData),
     onSuccess: () => {
       setOpenModal(false);
-      toast.success(`Your job have been stopped`);
-      onJobUpdate();
+      toast.success(`Your app have been stopped`);
+      onAppUpdate();
     },
     onError: (error: Error) => {
-      toast.error(`A error occured while stoping your job: ${error.message}`);
+      toast.error(`A error occured while stoping your app: ${error.message}`);
     },
   });
 
-  //Delete job pop up management
+  //Delete app pop up management
   const onDeleteClicked = () => {
-    setDeletingJob(job);
+    setDeletingApp(app);
     setOpenModal(true);
   };
 
-  const handleCloseDeleteJobModal = () => {
+  const handleCloseDeleteAppModal = () => {
     setOpenModal(false);
-    setDeletingJob(undefined);
+    setDeletingApp(undefined);
   };
 
-  const onDeleteSubmit = (data: DeleteJobSubmitData) => {
-    deleteJobMutation.mutate({
+  const onDeleteSubmit = (data: DeleteAppSubmitData) => {
+    deleteAppMutation.mutate({
       projectId,
-      jobId: data.jobId,
+      appId: data.appId,
     });
   };
 
-  const deleteJobMutation = useMutation({
-    mutationFn: (mutationData: JobProps) => jobsApi.deleteJob(mutationData),
+  const deleteAppMutation = useMutation({
+    mutationFn: (mutationData: AppProps) => appsApi.deleteApp(mutationData),
     onSuccess: () => {
       //close modale
       setOpenModal(false);
-      const jobsPath = `/projects/${projectId}/jobs`;
-      return navigate(jobsPath);
+      const appsPath = `/projects/${projectId}/apps`;
+      return navigate(appsPath);
     },
   });
 
@@ -147,7 +146,7 @@ const LifeCycleCard = ({ job, onJobUpdate }: LifeCycleProps) => {
             <b>Status</b>
           </p>
           <div className="flex justify-between ">
-            {job.status && <JobStatusBadge status={job.status} />}
+            {app.status && <AppsStatusBadge status={app.status} />}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="h-8 w-8 p-0">
@@ -166,7 +165,7 @@ const LifeCycleCard = ({ job, onJobUpdate }: LifeCycleProps) => {
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
-                  disabled={job.status.state !== ai.job.JobStateEnum.RUNNING}
+                  disabled={app.status.state !== ai.app.AppStateEnum.RUNNING}
                   onClick={() => {
                     onStopClicked();
                   }}
@@ -185,27 +184,27 @@ const LifeCycleCard = ({ job, onJobUpdate }: LifeCycleProps) => {
             </DropdownMenu>
           </div>
         </CardContent>
-        {startingJob && (
-          <StartJobModal
-            job={startingJob}
+        {startingApp && (
+          <StartAppModal
+            app={startingApp}
             open={isOpenModal}
-            onClose={handleCloseStartJobModal}
+            onClose={handleCloseStartAppModal}
             onSubmit={onStartSubmit}
           />
         )}
-        {stopingJob && (
-          <StopJobModal
-            job={stopingJob}
+        {stopingApp && (
+          <StopAppModal
+            app={stopingApp}
             open={isOpenModal}
-            onClose={handleCloseStopJobModal}
+            onClose={handleCloseStopAppModal}
             onSubmit={onStopSubmit}
           />
         )}
-        {deletingJob && (
-          <DeleteJobModal
-            job={deletingJob}
+        {deletingApp && (
+          <DeleteAppModal
+            app={deletingApp}
             open={isOpenModal}
-            onClose={handleCloseDeleteJobModal}
+            onClose={handleCloseDeleteAppModal}
             onSubmit={onDeleteSubmit}
           />
         )}
@@ -214,20 +213,18 @@ const LifeCycleCard = ({ job, onJobUpdate }: LifeCycleProps) => {
           <p>
             <b>Info</b>
           </p>
-          <p>{job.status.info.message}</p>
+          {app.status.info.message ? (
+            <p>{app.status.info.message}</p>
+          ) : (
+            <p>{app.status.info.code}</p>
+          )}
         </CardContent>
         <div className="border-slate-200 border-t mx-5 mb-3"></div>
         <CardContent>
           <p>
             <b>Runtime</b>
-          </p>
-          <p>{formattedDuration(job.status.duration || 0, false)}</p>
-          <Button
-            className="font-semibold hover:bg-primary-100 hover:text-primary"
-            variant="link"
-            size="sm"
-            asChild
-          >
+          </p>  
+          <Button variant="link" size="sm" className="font-semibold hover:bg-primary-100 hover:text-primary" asChild>
             <Link to="https://www.ovh.com/manager/#/dedicated/billing/history">
               View biling
               <ArrowRight className="w-4 h-4 ml-2" />
@@ -240,7 +237,7 @@ const LifeCycleCard = ({ job, onJobUpdate }: LifeCycleProps) => {
             <b>Creation date</b>
           </p>
           <p>
-            {job.createdAt &&
+            {app.createdAt &&
               Intl.DateTimeFormat('fr-FR', {
                 day: '2-digit',
                 month: '2-digit',
@@ -248,7 +245,7 @@ const LifeCycleCard = ({ job, onJobUpdate }: LifeCycleProps) => {
                 hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit',
-              }).format(new Date(job.createdAt))}
+              }).format(new Date(app.createdAt))}
           </p>
         </CardContent>
         <div className="border-slate-200 border-t mx-5 mb-3"></div>
@@ -256,8 +253,10 @@ const LifeCycleCard = ({ job, onJobUpdate }: LifeCycleProps) => {
           <p>
             <b>Timeline</b>
           </p>
-          {job.status.history && (
-            <JobStatusHistory history={job.status.history} />
+          {app.status.history && (
+            <AppStatusHistory
+              history={app.status.history}
+            />
           )}
         </CardContent>
       </Card>

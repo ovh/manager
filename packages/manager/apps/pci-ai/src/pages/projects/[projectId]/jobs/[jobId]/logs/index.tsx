@@ -35,7 +35,6 @@ export default function LogsJobPage() {
       });
     }
   }, [logsQuery.isSuccess, logsQuery.data]);
-  //console.log(logsQuery.data?.logs);
   var limitedLogs : ai.LogLine[];
   if (logsQuery.data?.logs.length && logsQuery.data?.logs.length > 500) {
     limitedLogs = logsQuery.data?.logs.slice(-500);

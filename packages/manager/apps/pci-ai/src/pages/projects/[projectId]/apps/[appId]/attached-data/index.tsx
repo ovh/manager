@@ -9,31 +9,41 @@ import { Button } from '@/components/ui/button';
 import { ArrowUpRightSquare } from 'lucide-react';
 
 import { ai } from '@/models/types';
-import { DataSyncProps, jobsApi } from '@/data/aiapi';
+import { DataSyncProps, appsApi } from '@/data/aiapi';
 import SyncDataModal, {
   SyncDataSubmitData,
 } from '../../../_components/syncDataModal';
 import DataContainersList from './../../../_components/dataContainerListTable';
+import GitRepositoryList from './../../../_components/gitRepositoryListTable';
+
 
 export const Handle = {
   breadcrumb: () => 'Attached Data',
 };
 
-export default function AiJobAttachedDataPage() {
-  const { projectId, jobId } = useRequiredParams<{
+export default function AiAppsAttachedDataPage() {
+  const { projectId, appId } = useRequiredParams<{
     projectId: string;
-    jobId: string;
+    appId: string;
   }>();
-  const jobQuery = useOutletContext() as UseQueryResult<
-    ai.job.Job,
+  const appQuery = useOutletContext() as UseQueryResult<
+    ai.app.App,
     Error
   >;
+
+  const dataStoreVolumes = appQuery.data?.spec.volumes?.filter(
+    ({ dataStore }) => dataStore !== undefined,
+  );
+
+  const publicGitVolumes = appQuery.data?.spec.volumes?.filter(
+    ({ publicGit }) => publicGit !== undefined,
+  );
 
   const onSubmit = (data: SyncDataSubmitData) => {
     setIsDataSyncModalOpen(false);
     manualSyncDataMutation.mutate({
       projectId,
-      productId: jobId,
+      productId: appId,
       dataSyncSpec: {
         direction: data.syncType,
       },
@@ -42,7 +52,7 @@ export default function AiJobAttachedDataPage() {
 
   const manualSyncDataMutation = useMutation({
     mutationFn: (dataSyncParam: DataSyncProps) =>
-      jobsApi.manualDataSync(dataSyncParam),
+      appsApi.manualDataSync(dataSyncParam),
     onSuccess: () => {
       toast.success(`Manual data synchronization have been lauchned`);
     },
@@ -54,14 +64,14 @@ export default function AiJobAttachedDataPage() {
   const [isSyncDataModalOpen, setIsDataSyncModalOpen] = useState(false);
   return (
     <>
-      {jobQuery.isLoading ? (
+      {appQuery.isLoading ? (
         <p>Loading attached data</p>
       ) : (
         <div>
           <H3 className='mt-0'>Attach data containers</H3>
           <p className="mt-2">
             If necessary, you can attach OVHcloud Object Storage containers to
-            your job. Once they are attached, they will be temporarily
+            your app. Once they are attached, they will be temporarily
             loaded and cached near your instance, to minimise latency and
             improve performance. The best practice is to attach one container
             with your incoming data, and another with your outgoing data.
@@ -74,7 +84,6 @@ export default function AiJobAttachedDataPage() {
           </Button>
           <div className='mt-4'>
             <Button
-              disabled={jobQuery.data?.spec.volumes?.length === 0}
               onClick={() => setIsDataSyncModalOpen(true)}
               className="mb-2"
               variant="outline"
@@ -89,9 +98,11 @@ export default function AiJobAttachedDataPage() {
             />
           </div>
           <DataContainersList
-            volumes={jobQuery.data?.spec.volumes || []}
-            refetchFn={jobQuery.refetch}
+            volumes={dataStoreVolumes || []}
+            refetchFn={appQuery.refetch}
           />
+          <H3 className='mt-1 mb-2'>Attach public Git repositories</H3>
+          <GitRepositoryList volumes={publicGitVolumes || []} />
         </div>
       )}
     </>
