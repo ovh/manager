@@ -27,7 +27,7 @@ import {
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
-import { useUsers } from '@/hooks/useUser.ts';
+import { useUsers } from '@/hooks/useUser';
 import GuidesHeader from '@/components/guides/GuidesHeader';
 import useProject from '@/hooks/useProject';
 import { User } from '@/interface';
@@ -35,6 +35,9 @@ import DataGridTextCell from '@/components/datagrid/DataGridTextCell';
 import useDataGridParams from '@/hooks/useDataGridParams';
 import DataGrid from '@/components/datagrid/DataGrid';
 import Notifications from '@/components/Notifications';
+import Roles from '@/components/users/listing/Roles';
+import CreationDate from '@/components/users/listing/CreationDate';
+import Status from '@/components/users/listing/Status';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -71,21 +74,21 @@ export default function ListingPage() {
     {
       id: 'roles',
       cell: (props: User) => {
-        return <DataGridTextCell>toto</DataGridTextCell>;
+        return <Roles roles={props.roles} />;
       },
       label: t('pci_projects_project_users_role_label'),
     },
     {
       id: 'creationDate',
       cell: (props: User) => {
-        return <DataGridTextCell>{props.creationDate}</DataGridTextCell>;
+        return <CreationDate date={props.creationDate} />;
       },
       label: t('pci_projects_project_users_createdAt_label'),
     },
     {
       id: 'status',
       cell: (props: User) => {
-        return <DataGridTextCell>{props.status}</DataGridTextCell>;
+        return <Status status={props.status} />;
       },
       label: t('pci_projects_project_users_status_label'),
     },
