@@ -1,0 +1,9 @@
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": ["babel-plugin-transform-import-meta"],
+  "env": {
+    "test": {
+      "presets": ["react-app"]
+    }
+  }
+}
