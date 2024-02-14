@@ -55,33 +55,27 @@ export default class {
               followUp: this.getOrderFollowUp(order.orderId),
             })
             .then(({ followUp, vouchers: [firstVoucher] }) => {
-              const validatingStepHistory = followUp.find(
-                ({ step }) => step === VALIDATING,
-              )?.history;
+              const labels =
+                followUp
+                  .find(({ step }) => step === VALIDATING)
+                  ?.history.map(({ label }) => label) || [];
 
               status.voucher = firstVoucher?.voucher || '';
-
-              if (validatingStepHistory) {
-                validatingStepHistory.forEach(({ label }) => {
-                  if (label === PAYMENT_INITIATED || label === PAYMENT_RECEIVED)
-                    status.isActivating = true;
-                  if (label === FRAUD_MANUAL_REVIEW)
-                    status.isManuallyReviewedByAntiFraud = true;
-                  if (label === FRAUD_REFUSED)
-                    status.isRefusedByAntiFraud = true;
-                });
-
-                if (
-                  status.isManuallyReviewedByAntiFraud ||
-                  status.isRefusedByAntiFraud
-                ) {
-                  status.isActivating = false;
-                }
-              }
+              status.isRefusedByAntiFraud = labels.some(
+                (label) => label === FRAUD_REFUSED,
+              );
+              status.isManuallyReviewedByAntiFraud =
+                !status.isRefusedByAntiFraud &&
+                labels.some((label) => label === FRAUD_MANUAL_REVIEW);
+              status.isActivating =
+                !status.isRefusedByAntiFraud &&
+                !status.isManuallyReviewedByAntiFraud &&
+                labels.some((label) =>
+                  [PAYMENT_INITIATED, PAYMENT_RECEIVED].includes(label),
+                );
 
               return status;
-            })
-            .catch(() => status);
+            });
         }
 
         return status;
