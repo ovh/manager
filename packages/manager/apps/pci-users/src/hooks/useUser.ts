@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import {
   filterUsers,
-  getAllusers,
+  getAllUsers,
   paginateResults,
   UsersOptions,
 } from '@/data/user';
@@ -10,7 +10,7 @@ import {
 export const useAllUsers = (projectId: string) => {
   return useQuery({
     queryKey: ['project', projectId, 'users'],
-    queryFn: () => getAllusers(projectId),
+    queryFn: () => getAllUsers(projectId),
     retry: false,
   });
 };

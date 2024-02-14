@@ -16,7 +16,7 @@ export type UsersOptions = {
   sorting: SortingOptions;
 };
 
-export const getAllusers = async (projectId: string): Promise<User[]> => {
+export const getAllUsers = async (projectId: string): Promise<User[]> => {
   const { data } = await v6.get(`/cloud/project/${projectId}/user`);
 
   return data;
