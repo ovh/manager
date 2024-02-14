@@ -30,7 +30,7 @@ import GuidesHeader from '@/components/guides/GuidesHeader';
 import useProject from '@/hooks/useProject';
 import { SshKey } from '@/interface';
 import DataGridTextCell from '@/components/datagrid/DataGridTextCell';
-import useDataGridParams, { PAGE_SIZES } from '@/hooks/useDataGridParams';
+import useDataGridParams from '@/hooks/useDataGridParams';
 import DataGrid from '@/components/datagrid/DataGrid';
 import Key from '@/components/ssh-keys/listing/Key';
 import RemoveSsh from '@/components/ssh-keys/listing/RemoveSsh';
@@ -189,7 +189,6 @@ export default function ListingPage() {
             totalItems={sshKeys?.totalRows || 0}
             pagination={pagination}
             pageCount={sshKeys?.pageCount || 0}
-            pageSizes={PAGE_SIZES}
             onPaginationChange={onPaginationChange}
             sorting={sorting}
             onSortChange={onSortChange}

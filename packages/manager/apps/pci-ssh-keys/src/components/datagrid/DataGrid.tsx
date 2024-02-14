@@ -6,19 +6,23 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_THEME_COLOR_HUE,
   ODS_THEME_COLOR_INTENT,
 } from '@ovhcloud/ods-common-theming';
-import { OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+import {
+  OsdsIcon,
+  OsdsPagination,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-
-import DataGridPagination from './pagination/Pagination';
 
 type DataGridColumn<T> = {
   id: string;
@@ -33,7 +37,6 @@ type DataGridProps<T> = {
     page: number;
     pageSize: number;
   };
-  pageSizes: number[];
   totalItems: number;
   pageCount: number;
   onPaginationChange: (pagination: { page: number; pageSize: number }) => void;
@@ -47,12 +50,12 @@ export default function DataGrid<T>({
   items,
   pagination,
   pageCount,
-  pageSizes,
   totalItems,
   sorting,
   onPaginationChange,
   onSortChange,
 }: DataGridProps<T>) {
+  const { t } = useTranslation('common');
   const table = useReactTable({
     columns: columns.map(
       (c): ColumnDef<T> => ({
@@ -172,23 +175,30 @@ export default function DataGrid<T>({
         </tbody>
       </table>
 
-      <DataGridPagination
-        numPages={pageCount}
-        currentPage={pagination.page}
-        canPreviousPage={table.getCanPreviousPage()}
-        canNextPage={table.getCanNextPage()}
-        onPageChange={(page) => {
-          if (page !== pagination.page)
-            onPaginationChange({ ...pagination, page });
+      <OsdsPagination
+        current={pagination.page + 1}
+        total-items={totalItems}
+        total-pages={pageCount}
+        default-items-per-page={pagination.pageSize}
+        onOdsPaginationChanged={({ detail }) => {
+          if (detail.current !== detail.oldCurrent) {
+            onPaginationChange({ ...pagination, page: detail.current - 1 });
+          }
         }}
-        numItems={totalItems}
-        currentPageSize={pagination.pageSize}
-        pageSizes={pageSizes}
-        onPageSizeChange={(pageSize) => {
-          if (pageSize !== pagination.pageSize)
-            onPaginationChange({ ...pagination, pageSize, page: 0 });
+        onOdsPaginationItemPerPageChanged={({ detail }) => {
+          if (detail.current !== pagination.pageSize)
+            onPaginationChange({
+              ...pagination,
+              pageSize: detail.current,
+              page: 0,
+            });
         }}
-      />
+      >
+        <span slot="before-total-items">{t('common_pagination_of')}&nbsp;</span>
+        <span slot="after-total-items">
+          &nbsp;{t('common_pagination_results')}
+        </span>
+      </OsdsPagination>
     </div>
   );
 }

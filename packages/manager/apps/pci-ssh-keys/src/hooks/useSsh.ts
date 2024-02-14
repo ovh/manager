@@ -63,7 +63,7 @@ export const useSshKeys = (
         pagination,
       ),
     };
-  }, [projectId, sshkeys, sorting, searchQueries]);
+  }, [sshkeys, sorting, searchQueries]);
 };
 
 export function useRemoveSsh({

@@ -66,7 +66,8 @@ export const filterSshKeys = (
     return (data || []).filter(({ name }) => {
       let matchAll = true;
       searchQueries.forEach((query) => {
-        matchAll = matchAll && `${name}`.includes(query);
+        matchAll =
+          matchAll && `${name}`.toLowerCase().includes(query.toLowerCase());
       });
       return matchAll;
     });
