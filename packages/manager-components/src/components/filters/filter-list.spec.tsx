@@ -1,8 +1,8 @@
-import { vi } from 'vitest';
-import { act, render } from '@testing-library/react';
-import '@testing-library/jest-dom/vitest';
 import { OsdsChip } from '@ovhcloud/ods-components';
-import FilterList, { FilterListProps } from './FilterList';
+import '@testing-library/jest-dom';
+import { act } from '@testing-library/react';
+import { FilterList, FilterListProps } from './filter-list.component';
+import { render } from '../../utils/test.provider';
 
 const renderComponent = (props: FilterListProps) => {
   return render(<FilterList {...props} />);
@@ -12,7 +12,7 @@ describe('FilterList tests', () => {
   it('should not display chips when the filters props is empty', () => {
     const propsWithEmptyFilters = {
       filters: [],
-      onRemoveFilter: vi.fn(),
+      onRemoveFilter: jest.fn(),
     } as FilterListProps;
 
     const { container } = renderComponent(propsWithEmptyFilters);
@@ -30,7 +30,7 @@ describe('FilterList tests', () => {
           label: "Nom d'utilisateur",
         },
       ],
-      onRemoveFilter: vi.fn(),
+      onRemoveFilter: jest.fn(),
     } as FilterListProps;
 
     const { container, getAllByTestId } = renderComponent(
@@ -59,7 +59,7 @@ describe('FilterList tests', () => {
           label: "Nom d'utilisateur",
         },
       ],
-      onRemoveFilter: vi.fn(),
+      onRemoveFilter: jest.fn(),
     } as FilterListProps;
 
     const { container, getAllByTestId } = renderComponent(
@@ -73,7 +73,7 @@ describe('FilterList tests', () => {
   });
 
   it('should call onRemoveFilter function when the chip cross is clicked', () => {
-    const mockOnRemoveFilter = vi.fn();
+    const mockOnRemoveFilter = jest.fn();
     const propsWithOneFiltersItem = {
       filters: [
         {
@@ -88,9 +88,9 @@ describe('FilterList tests', () => {
 
     const { getByTestId } = renderComponent(propsWithOneFiltersItem);
 
-    const filterChipItem = (getByTestId(
+    const filterChipItem = getByTestId(
       'filter-list_chip_item',
-    ) as unknown) as OsdsChip;
+    ) as unknown as OsdsChip;
 
     act(() => {
       filterChipItem.odsChipRemoval.emit();
