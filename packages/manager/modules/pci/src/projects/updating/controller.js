@@ -62,23 +62,21 @@ export default class PciProjectUpdatingCtrl {
       });
   }
 
-  static isManuallyReviewedByAntiFraud(followUp) {
-    const validatingOrderStep = followUp.find(
-      (item) =>
-        item.step.toLowerCase() ===
-        ORDER_FOLLOW_UP_STEP_ENUM.VALIDATING.toLowerCase(),
-    );
-
-    if (validatingOrderStep) {
-      return (
-        validatingOrderStep?.history.find(
-          (event) =>
-            event.label ===
+  static isOrderBlockedByAntiFraud(followUp) {
+    return Boolean(
+      followUp
+        .find(
+          ({ step }) =>
+            step.toLowerCase() ===
+            ORDER_FOLLOW_UP_STEP_ENUM.VALIDATING.toLowerCase(),
+        )
+        ?.history.find(({ label }) =>
+          [
             ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM.FRAUD_MANUAL_REVIEW,
-        ) || false
-      );
-    }
-    return false;
+            ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM.FRAUD_REFUSED,
+          ].includes(label),
+        ),
+    );
   }
 
   /* ==============================
@@ -89,7 +87,7 @@ export default class PciProjectUpdatingCtrl {
     this.orderFollowUpPolling = this.$timeout(() => {
       this.PciProjectsService.getOrderFollowUp(this.orderId)
         .then((followUp) => {
-          if (this.constructor.isManuallyReviewedByAntiFraud(followUp)) {
+          if (this.constructor.isOrderBlockedByAntiFraud(followUp)) {
             return this.getUpdatedProjectId().then((projectId) =>
               this.$state.go(
                 'pci.projects.project',
