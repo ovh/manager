@@ -12,6 +12,7 @@ module.exports = {
     '/node_modules/',
     '/apps/pci-vouchers/',
     '/apps/pci-ssh-keys/',
+    '/apps/pci-users/',
   ],
   transform: {
     '^.+\\.(js|jsx|mjs|cjs|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
