@@ -1,8 +1,18 @@
 export type Role = {
   id: string;
   name: string;
-  description: string;
+  description?: string;
   permissions: string[];
+};
+
+export type Service = {
+  name: string;
+  permissions: Permission[];
+};
+
+export type Permission = {
+  label: string;
+  roles: string[];
 };
 
 export type User = {
