@@ -179,12 +179,9 @@
         data-ng-if="!$ctrl.loadingTechnicalDetails && $ctrl.clusterTechnicalDetails.license.edition !== $ctrl.NUTANIX_PERSONAL_LICENSE_EDITION"
     >
         <nutanix-licence-tile
-            service-name="$ctrl.serviceName"
-            service-id="$ctrl.serviceInfo.serviceId"
-            licence-name="$ctrl.cluster.targetSpec.license"
             pack-type="$ctrl.typeOfPack"
+            hardware-info="$ctrl.hardwareInfo"
             show-pack-type="$ctrl.isPackTypeAvailable"
-            on-error="$ctrl.handleError(error)"
         >
         </nutanix-licence-tile>
     </div>
