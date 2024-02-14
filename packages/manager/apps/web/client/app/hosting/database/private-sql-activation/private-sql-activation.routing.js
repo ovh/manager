@@ -28,8 +28,6 @@ export default /* @ngInject */ ($stateProvider) => {
             me.ovhSubsidiary,
           );
         },
-        // versions: /* @ngInject */ (PrivateDatabase) =>
-        //   PrivateDatabase.getOrderableDatabaseVersions('classic'),
         dbCategories: /* @ngInject */ (privateSqlCatalog, HostingDatabase) => {
           return HostingDatabase.buildPrivateSqlDbCategories(privateSqlCatalog);
         },
@@ -39,7 +37,6 @@ export default /* @ngInject */ ($stateProvider) => {
           const { datacenter } = await Hosting.getHosting(serviceName);
           return datacenter;
         },
-
         onError: /* @ngInject */ ($translate, goToHosting) => (error) =>
           goToHosting(
             $translate.instant('privatesql_activation_hosting_error', {

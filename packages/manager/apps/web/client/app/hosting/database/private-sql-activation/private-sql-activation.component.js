@@ -10,7 +10,6 @@ export default {
     me: '<',
     dbCategories: '<',
     privateSqlCatalog: '<',
-    // privateSqlOptions: '<',
     hosting: '<',
     versions: '<',
     datacenter: '<?',
