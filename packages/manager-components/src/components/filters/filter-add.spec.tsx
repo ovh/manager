@@ -1,8 +1,7 @@
-import { render } from '@testing-library/react';
-import { vi } from 'vitest';
-import '@testing-library/jest-dom/vitest';
 import 'element-internals-polyfill';
-import FilterAdd, { FilterAddProps } from './FilterAdd';
+import '@testing-library/jest-dom';
+import { FilterAdd, FilterAddProps } from './filter-add.component';
+import { render } from '../../utils/test.provider';
 
 const renderComponent = (props: FilterAddProps) => {
   return render(<FilterAdd {...props} />);
@@ -10,7 +9,7 @@ const renderComponent = (props: FilterAddProps) => {
 
 describe('FilterAdd tests', () => {
   it('should deactivate the add filter button when value est undefined', () => {
-    const mockOnAddFilter = vi.fn();
+    const mockOnAddFilter = jest.fn();
     const props = {
       columns: [
         {
@@ -36,7 +35,7 @@ describe('FilterAdd tests', () => {
   });
 
   it('should set the id of first columns items as value of the id select', () => {
-    const mockOnAddFilter = vi.fn();
+    const mockOnAddFilter = jest.fn();
     const props = {
       columns: [
         {

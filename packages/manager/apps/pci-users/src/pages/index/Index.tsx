@@ -36,6 +36,9 @@ import {
   useDatagridSearchParams,
   isDiscoveryProject,
   PciDiscoveryBanner,
+  useColumnFilters,
+  FilterList,
+  FilterAdd,
 } from '@ovhcloud/manager-components';
 import { useUsers } from '@/api/hooks/useUser';
 import useProject from '@/api/hooks/useProject';
@@ -46,9 +49,6 @@ import Status from './Status';
 import Actions from './Actions';
 import RolesMatrix from './components/RolesMatrix/Index';
 import { useAllRoles } from '@/api/hooks/useRole';
-import FilterAdd from '@/components/FilterAdd';
-import FilterList from '@/components/FilterList';
-import useColumnFilters from '@/components/useColumnFilters';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
