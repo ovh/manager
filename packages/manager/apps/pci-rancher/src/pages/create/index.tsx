@@ -24,11 +24,15 @@ export default function Create() {
 
   const { data: project } = usePciProject();
 
-  const { data: ranchers } = useRanchers();
+  const { data: ranchers, refetch: refetchRancherList } = useRanchers();
+
   const { createRancher } = useCreateRancher({
     projectId,
     onMutate: () => setHasRancherCreationError(false),
-    onSuccess: () => navigate(getRanchersUrl(projectId)),
+    onSuccess: () => {
+      refetchRancherList();
+      navigate(getRanchersUrl(projectId));
+    },
     onError: () => setHasRancherCreationError(true),
   });
 
