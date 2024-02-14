@@ -181,7 +181,7 @@ const VirtualAgent: React.FC<ComponentProps<VirtualAgentProps>> = (
                 title={`${title} main view`}
                 src={url}
                 className={`${styles.main_frame} w-100 h-100 border-0`}
-                sandbox="allow-scripts allow-top-navigation allow-forms allow-popups allow-same-origin"
+                sandbox="allow-scripts allow-top-navigation allow-forms allow-popups allow-same-origin allow-downloads"
               ></iframe>
             )}
           </div>
