@@ -56,7 +56,7 @@
                 class="oui-input"
                 name="key"
                 data-ng-required="$ctrl.RULE_TYPES_WITH_KEY.includes($ctrl.model.ruleType)"
-                data-pattern="$ctrl.KEY_REGEX"
+                data-pattern="{{$ctrl.KEY_REGEX}}"
                 data-ng-disabled="!$ctrl.RULE_TYPES_WITH_KEY.includes($ctrl.model.ruleType)"
                 data-ng-model="$ctrl.model.key"
             />
