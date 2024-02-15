@@ -52,6 +52,7 @@ const RancherDetail = ({
   const [showEditModal, toggleEditModal] = useState(false);
   const [showGenerateAccesModal, toggleGenerateAccessModal] = useState(false);
 
+  const { name, version, plan, url } = rancher.currentState;
   const dateUsage = rancher.currentState.usage
     ? new Date(rancher.currentState.usage?.datetime)
     : null;
@@ -122,7 +123,7 @@ const RancherDetail = ({
                     color={ODS_THEME_COLOR_INTENT.primary}
                     size={ODS_TEXT_SIZE._200}
                   >
-                    {rancher.currentState.name}
+                    {name}
                   </OsdsText>
                   <OsdsIcon
                     aria-label="edit"
@@ -137,7 +138,7 @@ const RancherDetail = ({
 
               <TileBlock label={t('rancher_version')}>
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                  {rancher.currentState.version}
+                  {version}
                 </OsdsText>
               </TileBlock>
             </div>
@@ -155,10 +156,7 @@ const RancherDetail = ({
               </OsdsText>
               <OsdsDivider separator />
               <TileBlock label={t('rancher_ui_access')}>
-                <OsdsClipboard
-                  aria-label="clipboard"
-                  value={rancher.currentState.url}
-                >
+                <OsdsClipboard aria-label="clipboard" value={url}>
                   <span slot="success-message">{t('copy')}</span>
                   <span slot="error-message">{t('error')}</span>
                 </OsdsClipboard>
@@ -169,7 +167,7 @@ const RancherDetail = ({
                   target={OdsHTMLAnchorElementTarget._blank}
                   className="my-5"
                   inline
-                  href={rancher.currentState.url}
+                  href={url}
                 >
                   {t('rancher_button_acces')}
                 </OsdsButton>
@@ -203,7 +201,7 @@ const RancherDetail = ({
               <OsdsDivider separator />
               <TileBlock label={t('service_level')}>
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                  {tListing(rancher.currentState.plan)}
+                  {tListing(plan)}
                 </OsdsText>
               </TileBlock>
               {!!vCpus && (

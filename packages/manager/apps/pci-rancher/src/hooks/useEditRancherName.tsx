@@ -10,26 +10,25 @@ import { RancherService } from '../api/api.type';
 const useEditRancherName = ({
   rancherId,
   projectId,
+  onSuccess,
+  onError,
 }: {
   rancherId: string;
   projectId: string;
+  onSuccess: () => void;
+  onError: () => void;
 }) => {
-  const [editNameResponseType, setEditNameResponseType] = useState<
-    ODS_MESSAGE_TYPE.success | ODS_MESSAGE_TYPE.error | null
-  >(null);
-  const { mutate: editRancherName } = useMutation({
+  return useMutation({
     mutationFn: (rancherUpdated: RancherService) =>
       editRancherService({
         rancherId,
         projectId,
         rancher: rancherUpdated,
       }),
-    onSuccess: () => setEditNameResponseType(ODS_MESSAGE_TYPE.success),
-    onError: () => setEditNameResponseType(ODS_MESSAGE_TYPE.error),
+    onSuccess,
+    onError,
     mutationKey: patchRancherServiceQueryKey(rancherId),
   });
-
-  return { editRancherName, editNameResponseType };
 };
 
 export default useEditRancherName;
