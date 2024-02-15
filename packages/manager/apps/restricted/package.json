@@ -23,7 +23,7 @@
     "@ovh-ux/manager-config": "^7.3.0",
     "@ovh-ux/manager-vite-config": "^0.3.0",
     "@ovh-ux/request-tagger": "^0.1.1",
-    "@ovh-ux/ui-kit": "^6.7.4",
+    "@ovh-ux/ui-kit": "^6.7.7",
     "bootstrap": "4.6.0",
     "font-awesome": "^4.7.0",
     "i18next": "^20.4.0",
