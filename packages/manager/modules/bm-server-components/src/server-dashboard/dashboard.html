@@ -68,6 +68,7 @@
                 data-technical-details="$ctrl.technicalDetails"
                 data-go-to-upgrade="$ctrl.goToUpgrade"
                 data-upgrade-task="$ctrl.upgradeTask"
+                data-show-service-actions="$ctrl.serverType !== 'node'"
             ></server-technical-details>
         </div>
 
@@ -90,7 +91,7 @@
         <!-- subscription if don't have technicalDetails -->
         <div
             class="col-md-4 mb-3"
-            data-ng-if="!$ctrl.technicalDetails && !$ctrl.nutanixCluster"
+            data-ng-if="!$ctrl.technicalDetails && !$ctrl.nutanixCluster && $ctrl.serverType !== 'node'"
         >
             <billing-subscription-tile
                 on-error="$ctrl.onBillingInformationError(error)"
@@ -152,7 +153,7 @@
         <!-- subscription if have technicalDetails -->
         <div
             class="col-md-4 mb-3"
-            data-ng-if="$ctrl.technicalDetails && !$ctrl.nutanixCluster"
+            data-ng-if="$ctrl.technicalDetails && !$ctrl.nutanixCluster && $ctrl.serverType !== 'node'"
         >
             <billing-subscription-tile
                 on-error="$ctrl.onBillingInformationError(error)"

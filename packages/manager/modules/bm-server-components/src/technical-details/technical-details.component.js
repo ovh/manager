@@ -7,6 +7,7 @@ export default {
     goToUpgrade: '<',
     upgradeWithTicketAvailable: '<',
     upgradeTask: '<',
+    showServiceActions: '<',
   },
   controller,
   template,
