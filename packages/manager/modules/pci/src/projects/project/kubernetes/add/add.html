@@ -73,6 +73,10 @@
                 data-load-balancers-subnet="$ctrl.cluster.network.loadBalancersSubnet"
                 data-gateway="$ctrl.cluster.network.gateway"
             />
+            <kube-proxy-form
+                data-ng-model="$ctrl.cluster.proxy"
+                data-collapsible="true"
+            />
         </oui-step-form>
 
         <!--Select node pool configuration -->
