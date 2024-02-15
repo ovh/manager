@@ -16,7 +16,7 @@ export type Permission = {
 };
 
 export type User = {
-  id?: string;
+  id?: number;
   username: string;
   creationDate: string;
   description: string;

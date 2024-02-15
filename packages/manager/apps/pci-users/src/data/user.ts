@@ -22,6 +22,15 @@ export const getAllUsers = async (projectId: string): Promise<User[]> => {
   return data;
 };
 
+export const getUser = async (
+  projectId: string,
+  userId: string,
+): Promise<User> => {
+  const { data } = await v6.get(`/cloud/project/${projectId}/user/${userId}`);
+
+  return data;
+};
+
 export const paginateResults = (
   items: User[],
   pagination: PaginationOptions,
@@ -64,4 +73,7 @@ export const filterUsers = (
   }
 
   return data;
+};
+export const removeUser = async (projectId: string, userId: string) => {
+  await v6.delete(`/cloud/project/${projectId}/user/${userId}`);
 };
