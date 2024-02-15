@@ -48,6 +48,7 @@ export default class {
         monthlyBilling: false,
         autoscaling: this.autoscaling,
       },
+      proxy: null,
     };
 
     this.loadMessages();
@@ -106,6 +107,7 @@ export default class {
       this.cluster.network.loadBalancersSubnet?.id,
       this.cluster.network.gateway,
       options,
+      this.cluster.proxy,
     )
       .then(() =>
         this.goBack(this.$translate.instant('kubernetes_add_success')),
