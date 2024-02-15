@@ -14,6 +14,7 @@ import antiAffinity from '../components/anti-affinity';
 import nodePool from '../components/node-pool';
 import autoscaling from '../components/autoscaling';
 import networkForm from '../components/network-form';
+import proxyForm from '../components/proxy-form';
 
 const moduleName = 'ovhManagerPciProjectKubernetesAdd';
 
@@ -29,6 +30,7 @@ angular
     antiAffinity,
     autoscaling,
     networkForm,
+    proxyForm,
   ])
   .config(routing)
   .component('ovhManagerPciProjectKubernetesAdd', component)

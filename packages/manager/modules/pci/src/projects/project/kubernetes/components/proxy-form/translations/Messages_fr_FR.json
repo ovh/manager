@@ -1,0 +1,8 @@
+{
+  "kubernetes_proxy_form": "Paramètres du Kube-Proxy",
+  "kubernetes_proxy_form_description": "IPtables est une solution simple mais potentiellement moins performante à grand échelle, IPVS fournit des performances optimisées mais nécessite que vos applications soient compatibles.",
+  "kubernetes_proxy_form_link": "Pour en savoir plus, consultez ce guide",
+  "kubernetes_proxy_form_ipvs_warn": "Attention après la création du cluster, un changement du mode Kube-Proxy nécessite une réinitilisation du cluster",
+  "kubernetes_proxy_form_ipvs_timeout_invalid": "La valeur minimale est de 5 secondes pour prévenir tout risque d'erreur réseau sur le cluster.",
+  "kubernetes_proxy_form_none": "Aucun"
+}

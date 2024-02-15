@@ -1,0 +1,168 @@
+<ng-form class="kubernetes-proxy-form" name="$ctrl.form">
+    <h5
+        class="d-flex align-items-center"
+        data-ng-if="$ctrl.collapsible"
+        data-ng-class="$ctrl.dense ? 'oui-field__label' : ''"
+        data-ng-click="$ctrl.toggleForm()"
+    >
+        <span data-translate="kubernetes_proxy_form"></span>
+        <span
+            class="kubernetes-proxy-form-toggler oui-icon ml-2"
+            aria-hidden="true"
+            data-ng-class="{
+                'oui-icon-chevron-up': $ctrl.isFormShown,
+                'oui-icon-chevron-down': !$ctrl.isFormShown,
+            }"
+        ></span>
+    </h5>
+    <h5
+        data-ng-if="!$ctrl.collapsible"
+        data-ng-class="$ctrl.dense ? 'oui-field__label' : ''"
+        data-translate="kubernetes_proxy_form"
+    ></h5>
+    <div data-ng-if="$ctrl.isFormShown">
+        <p data-ng-if="!$ctrl.dense">
+            <span data-translate="kubernetes_proxy_form_description"></span>
+            <a
+                data-ng-href="{{:: $ctrl.DOCUMENTATION_LINK }}"
+                target="_blank"
+                rel="noopener"
+            >
+                <span data-translate="kubernetes_proxy_form_link"></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+        </p>
+
+        <oui-field class="kubernetes-proxy-form-radio-field">
+            <oui-radio-group
+                data-model="$ctrl.model.mode"
+                data-on-change="$ctrl.onModeChanged()"
+            >
+                <oui-radio data-value="$ctrl.MODE.iptables">
+                    <strong>IPTables</strong>
+                </oui-radio>
+                <oui-radio data-value="$ctrl.MODE.ipvs">
+                    <strong>IPVS</strong>
+                </oui-radio>
+            </oui-radio-group>
+        </oui-field>
+
+        <!-- iptables -->
+        <div class="container-fluid" data-ng-if="$ctrl.isIPTablesMode">
+            <div class="row">
+                <div class="col-xs-12 col-sm-2">min sync period</div>
+                <div class="col-xs-12 col-sm-2">
+                    <oui-numeric
+                        data-id="minSyncPeriod"
+                        data-name="minSyncPeriod"
+                        data-model="$ctrl.model.values.minSyncPeriod"
+                        data-min="0"
+                    />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-2">sync period</div>
+                <div class="col-xs-12 col-sm-2">
+                    <oui-numeric
+                        data-id="syncPeriod"
+                        data-name="syncPeriod"
+                        data-model="$ctrl.model.values.syncPeriod"
+                        data-min="1"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- ipvs -->
+        <div
+            class="kubernetes-proxy-form-ipvs container-fluid"
+            data-ng-if="$ctrl.isIPVSMode"
+        >
+            <oui-message data-type="warning">
+                <span data-translate="kubernetes_proxy_form_ipvs_warn"></span>
+            </oui-message>
+            <div class="row">
+                <div class="col-xs-12 col-sm-2">min sync period</div>
+                <div class="col-xs-12 col-sm-10">
+                    <oui-numeric
+                        data-id="minSyncPeriod"
+                        data-name="minSyncPeriod"
+                        data-model="$ctrl.model.values.minSyncPeriod"
+                        data-min="0"
+                    />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-2">scheduler</div>
+                <div class="col-xs-12 col-sm-10">
+                    <oui-select
+                        data-name="scheduler"
+                        data-model="$ctrl.model.values.scheduler"
+                        data-items="$ctrl.schedulerItems"
+                        data-match="label"
+                        data-inline
+                    />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-2">sync period</div>
+                <div class="col-xs-12 col-sm-10">
+                    <oui-numeric
+                        data-id="syncPeriod"
+                        data-name="syncPeriod"
+                        data-model="$ctrl.model.values.syncPeriod"
+                        data-min="1"
+                    />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-2">tcpfin timeout</div>
+                <div class="col-xs-12 col-sm-10">
+                    <oui-field
+                        data-error-messages="{ validTimeout: ('kubernetes_proxy_form_ipvs_timeout_invalid'|translate) }"
+                    >
+                        <oui-numeric
+                            data-id="tcpFinTimeout"
+                            data-name="tcpFinTimeout"
+                            data-model="$ctrl.model.values.tcpFinTimeout"
+                            data-min="0"
+                        />
+                    </oui-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-2">tcp timeout</div>
+                <div class="col-xs-12 col-sm-10">
+                    <oui-field
+                        data-error-messages="{ validTimeout: ('kubernetes_proxy_form_ipvs_timeout_invalid'|translate) }"
+                    >
+                        <oui-numeric
+                            data-id="tcpTimeout"
+                            data-name="tcpTimeout"
+                            data-model="$ctrl.model.values.tcpTimeout"
+                            data-min="0"
+                        />
+                    </oui-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-2">udp timeout</div>
+                <div class="col-xs-12 col-sm-10">
+                    <oui-field
+                        data-error-messages="{ validTimeout: ('kubernetes_proxy_form_ipvs_timeout_invalid'|translate) }"
+                    >
+                        <oui-numeric
+                            data-id="udpTimeout"
+                            data-name="udpTimeout"
+                            data-model="$ctrl.model.values.udpTimeout"
+                            data-min="0"
+                        />
+                    </oui-field>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-form>
