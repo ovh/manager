@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/order-tracking-app",
-  "version": "2.7.30",
+  "version": "2.8.0",
   "private": true,
   "description": "Order tracking standalone application.",
   "repository": {
