@@ -8,7 +8,6 @@ export default /* @ngInject */ ($stateProvider) => {
     reloadOnSearch: false,
     redirectTo: 'app.dedicated-server.server.dashboard',
     resolve: {
-      serverType: () => 'server',
       statePrefix: /* @ngInject */ () => 'app.dedicated-server.server',
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
         $state.href($state.current.name, $transition$.params()),
@@ -46,6 +45,14 @@ export default /* @ngInject */ ($stateProvider) => {
         Server.getSelected(serverName).then(
           (swsResponse) => new DedicatedServer(swsResponse),
         ),
+      serverType: (server) => {
+        if (server.iam.tags) {
+          return typeof server.iam.tags['ovh:cluster'] !== 'undefined'
+            ? 'node'
+            : 'server';
+        }
+        return 'server';
+      },
       serverName: /* @ngInject */ ($transition$) =>
         $transition$.params().productId,
       serviceInfos: /* @ngInject */ ($stateParams, Server) =>

@@ -11,7 +11,6 @@ export default /* @ngInject */ ($stateProvider) => {
     },
     redirectTo: 'app.dedicated-cluster.cluster.node.dashboard',
     resolve: {
-      serverIsNode: () => true,
       serverType: () => 'node',
       statePrefix: /* @ngInject */ () => 'app.dedicated-cluster.cluster.node',
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
