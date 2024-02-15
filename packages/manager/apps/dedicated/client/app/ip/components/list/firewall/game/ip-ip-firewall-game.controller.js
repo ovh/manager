@@ -76,7 +76,7 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
 
   self.loading = false;
 
-  self.getProtocoleText = function getProtocoleText(protocol) {
+  self.getProtocolText = function getProtocolText(protocol) {
     return startCase(protocol);
   };
 
