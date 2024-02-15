@@ -38,5 +38,11 @@
   "common_confirm": "Confirmar",
   "common_cancel": "Cancelar",
   "common_pagination_of": "de",
-  "common_pagination_results": "resultados"
+  "common_pagination_results": "resultados",
+  "pci_projects_project_users_delete_title": "Eliminar un usuario",
+  "pci_projects_project_users_delete_submit_label": "Confirmar",
+  "pci_projects_project_users_delete_cancel_label": "Cancelar",
+  "pci_projects_project_users_delete_content": "Eliminar definitivamente el usuario {{ user }}",
+  "pci_projects_project_users_delete_success_message": "Se ha eliminado el usuario {{ user }}.",
+  "pci_projects_project_users_delete_error_delete": "Se ha producido un error al eliminar el usuario {{ user }}: {{ message }}."
 }

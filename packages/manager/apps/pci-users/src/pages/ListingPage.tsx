@@ -38,6 +38,7 @@ import Notifications from '@/components/Notifications';
 import Roles from '@/components/users/listing/Roles';
 import CreationDate from '@/components/users/listing/CreationDate';
 import Status from '@/components/users/listing/Status';
+import Actions from '@/components/users/listing/Actions.tsx';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -94,8 +95,8 @@ export default function ListingPage() {
     },
     {
       id: 'actions',
-      cell: () => {
-        return <></>;
+      cell: (props: User) => {
+        return <Actions user={props} />;
       },
       label: t(''),
     },
