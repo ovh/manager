@@ -52,7 +52,6 @@
     "graphql": "16.6.0",
     "lodash": "4.17.21",
     "lodash-es": "4.17.21",
-    "rollup": "2.79.1",
     "rollup-plugin-sass": "1.12.16",
     "sass": "1.56.1"
   },
