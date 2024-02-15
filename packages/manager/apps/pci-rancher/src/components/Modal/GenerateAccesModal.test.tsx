@@ -44,7 +44,7 @@ describe('GenerateAccesModal', () => {
       ...defaultProps,
       accessDetail: {
         username: 'username',
-        password: 'pwd',
+        password: 'randomtest',
       },
     });
 
@@ -56,7 +56,7 @@ describe('GenerateAccesModal', () => {
 
     expect(copyButton).toHaveAttribute('aria-label', 'clipboard');
     expect(copyButton).toHaveAttribute('value', 'username');
-    expect(password).toHaveAttribute('value', 'pwd');
+    expect(password).toHaveAttribute('value', 'randomtest');
 
     expect(password).not.toBeNull();
   });
@@ -66,7 +66,7 @@ describe('GenerateAccesModal', () => {
       ...defaultProps,
       accessDetail: {
         username: 'username',
-        password: 'pwd',
+        password: 'randomtest',
       },
     });
 
@@ -82,7 +82,7 @@ describe('GenerateAccesModal', () => {
       ...defaultProps,
       accessDetail: {
         username: 'username',
-        password: 'pwd',
+        password: 'randomtest',
       },
     });
 
