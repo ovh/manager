@@ -6,5 +6,6 @@
   "nasha_dashboard_partition_accesses_list_type": "Type",
   "nasha_dashboard_partition_accesses_ip_placeholder": "IP or IP block for your services",
   "nasha_dashboard_partition_accesses_hide_form": "Hide form",
-  "nasha_dashboard_partition_accesses_delete": "Delete the access"
+  "nasha_dashboard_partition_accesses_delete": "Delete the access",
+  "nasha_dashboard_partition_accesses_list_description": "Description"
 }

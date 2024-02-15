@@ -6,5 +6,6 @@
   "nasha_dashboard_partition_accesses_list_type": "Tipo",
   "nasha_dashboard_partition_accesses_ip_placeholder": "IP o classe IP dei tuoi servizi",
   "nasha_dashboard_partition_accesses_hide_form": "Nascondi il modulo",
-  "nasha_dashboard_partition_accesses_delete": "Elimina l'accesso"
+  "nasha_dashboard_partition_accesses_delete": "Elimina l'accesso",
+  "nasha_dashboard_partition_accesses_list_description": "Descrizione"
 }
