@@ -33,6 +33,7 @@ const features = [
   'veeam-enterprise:order',
   'vrack:bare-metal-cloud',
   'vrack:order',
+  'vrack-services',
   'ip-load-balancer',
   'logs-data-platform',
   'dedicated-server:ecoRangeOrder',
@@ -143,7 +144,7 @@ export default function HostedPrivateCloudSidebar() {
         label: t('sidebar_network'),
         icon: getIcon('oui-icon oui-icon-bandwidth_concept'),
         minSearchItems: 0,
-        routeMatcher: new RegExp('^(/ip(/|$)|(/network)?/iplb|/vrack|/cloud-connect)'),
+        routeMatcher: new RegExp('^(/ip(/|$)|(/network)?/iplb|/vrack|/cloud-connect|/vrack-services)'),
         subItems: [
           feature.ip && {
             id: 'hpc-ip',
@@ -185,6 +186,30 @@ export default function HostedPrivateCloudSidebar() {
               return loadServices('/vrack');
             },
           },
+          feature['vrack-services'] && {
+            id: 'dedicated-vrackservices',
+            label: t('sidebar_vrack_services'),
+            icon: getIcon('oui-icon oui-icon-vRack-services_concept'),// TODO Add new icon
+            routeMatcher: new RegExp('^/vrack-services'),
+            // async loader() {
+            //   const services = await loadServices('/vrackServices/resource');//TODO Needs to relook with apiv2 api
+            //   return [
+            //     {
+            //       id: 'vrack_services-all',
+            //       label: t('sidebar_service_all'),
+            //       href: navigation.getURL('dedicated', '#/vrack-services'),
+            //       ignoreSearch: true,
+            //     },
+            //     ...services.map((service) => ({
+            //       ...service,
+            //       href: navigation.getURL(
+            //         'dedicated',
+            //         `#/vrack-services/${service.currentState.vrackId}`,
+            //       ),
+            //     })),
+            //   ];
+            // },
+          },
           feature['cloud-connect'] && {
             id: 'hpc-ovhcloudconnect',
             label: t('sidebar_cloud_connect'),
@@ -221,10 +246,10 @@ export default function HostedPrivateCloudSidebar() {
       requestType: 'aapi',
     });
 
-  const { data: availability } = useQuery(
-    ['sidebar-hpc-availability'],
-    getFeatures,
-  );
+  const { data: availability } = useQuery({
+    queryKey: ['sidebar-hpc-availability'],
+    queryFn: getFeatures,
+  });
 
   useEffect(() => {
     if (availability) {
