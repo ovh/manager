@@ -1,8 +1,8 @@
 {
   "octavia_load_balancer_pools_detail_overview_management_title": "Gestione",
-  "octavia_load_balancer_pools_detail_overview_management_edit": "Modificare",
+  "octavia_load_balancer_pools_detail_overview_management_edit": "Modifica",
   "octavia_load_balancer_pools_detail_overview_management_add_manually": "Aggiungi un membro manualmente",
-  "octavia_load_balancer_pools_detail_overview_management_delete": "Eliminare",
+  "octavia_load_balancer_pools_detail_overview_management_delete": "Elimina",
   "octavia_load_balancer_pools_detail_overview_info_title": "Informazioni",
   "octavia_load_balancer_pools_detail_overview_info_name": "Nome",
   "octavia_load_balancer_pools_detail_overview_info_pool_id": "ID del pool",

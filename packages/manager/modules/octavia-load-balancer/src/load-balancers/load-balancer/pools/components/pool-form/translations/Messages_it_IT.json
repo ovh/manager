@@ -19,5 +19,5 @@
   "octavia_load_balancer_pools_create_persistent_session_cookie_name": "Nome del cookie",
   "octavia_load_balancer_pools_create_cancel": "Annullare",
   "octavia_load_balancer_pools_create_submit": "Aggiungi",
-  "octavia_load_balancer_pools_create_submit_edition": "Modificare"
+  "octavia_load_balancer_pools_create_submit_edition": "Modifica"
 }

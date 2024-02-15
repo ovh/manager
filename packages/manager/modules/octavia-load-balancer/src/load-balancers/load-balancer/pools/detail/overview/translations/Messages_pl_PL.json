@@ -8,7 +8,7 @@
   "octavia_load_balancer_pools_detail_overview_info_pool_id": "ID Poola",
   "octavia_load_balancer_pools_detail_overview_info_listener_id": "ID przypisanego listenera",
   "octavia_load_balancer_pools_detail_overview_info_provisioning_status": "Status zaopatrzenia",
-  "octavia_load_balancer_pools_detail_overview_info_provisioning_status_active": "Aktywny",
+  "octavia_load_balancer_pools_detail_overview_info_provisioning_status_active": "aktywny",
   "octavia_load_balancer_pools_detail_overview_info_provisioning_status_creating": "trwa tworzenie",
   "octavia_load_balancer_pools_detail_overview_info_provisioning_status_deleted": "usunięto",
   "octavia_load_balancer_pools_detail_overview_info_provisioning_status_deleting": "trwa usuwanie",

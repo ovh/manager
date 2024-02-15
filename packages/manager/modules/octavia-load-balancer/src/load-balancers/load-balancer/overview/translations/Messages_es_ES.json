@@ -9,7 +9,7 @@
   "octavia_load_balancer_overview_config_provisioning_status_active": "activo",
   "octavia_load_balancer_overview_config_provisioning_status_creating": "Creando...",
   "octavia_load_balancer_overview_config_provisioning_status_deleted": "Eliminado",
-  "octavia_load_balancer_overview_config_provisioning_status_deleting": "Eliminando...",
+  "octavia_load_balancer_overview_config_provisioning_status_deleting": "eliminando...",
   "octavia_load_balancer_overview_config_provisioning_status_error": "Error",
   "octavia_load_balancer_overview_config_provisioning_status_updating": "Actualizando...",
   "octavia_load_balancer_overview_config_size": "Tamaño",
