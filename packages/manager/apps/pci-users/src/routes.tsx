@@ -25,6 +25,11 @@ export default [
         ...lazyRouteConfig(() => import('@/pages/ListingPage')),
         children: [],
       },
+      {
+        path: 'delete',
+        ...lazyRouteConfig(() => import('@/pages/RemoveUserPage')),
+        children: [],
+      },
     ],
   },
   {
