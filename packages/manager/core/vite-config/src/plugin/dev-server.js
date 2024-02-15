@@ -66,7 +66,7 @@ export default function viteOvhDevServerPlugin({ isContainerApp, envConfig }) {
         // No dev proxy config
       }
 
-      if (env.local2API) {
+      if (env.local2API || envConfig.local2API) {
         app.use(proxy.aapi.context, createProxyMiddleware(proxy.aapi));
       }
 

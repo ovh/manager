@@ -1,4 +1,5 @@
 export declare const getBaseConfig: (config: {
+  local2API?: boolean;
   isLABEU?: boolean;
   host?: string;
   devLoginUrl?: string;
