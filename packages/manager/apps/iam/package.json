@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iam-app",
-  "version": "2.0.21",
+  "version": "2.1.0",
   "private": true,
   "description": "IAM standalone application.",
   "repository": {
@@ -30,7 +30,7 @@
     "@ovh-ux/ng-ovh-http": "^5.1.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.2.1",
     "@ovh-ux/ng-ovh-sso-auth": "^4.8.1",
-    "@ovh-ux/ng-ovh-utils": "^14.1.1",
+    "@ovh-ux/ng-ovh-utils": "^14.2.0",
     "@ovh-ux/ng-shell-tracking": "^0.4.2",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.3.1",
     "@ovh-ux/request-tagger": "^0.1.1",

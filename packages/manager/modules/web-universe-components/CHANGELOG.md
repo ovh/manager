@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.12.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.11.6...@ovh-ux/ng-ovh-web-universe-components@9.12.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
 ## [9.11.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.11.5...@ovh-ux/ng-ovh-web-universe-components@9.11.6) (2023-12-01)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-web-universe-components

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-utils",
-  "version": "14.1.1",
+  "version": "14.2.0",
   "description": "[DEPRECATED] A collection of directives for AngularJS.",
   "keywords": [
     "angularjs",
