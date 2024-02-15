@@ -1,0 +1,5 @@
+export const MEMBER_EDIT_NAME_TRACKING_HIT_SUFFIX = 'edit';
+
+export default {
+  MEMBER_EDIT_NAME_TRACKING_HIT_SUFFIX,
+};

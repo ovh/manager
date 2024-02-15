@@ -1,0 +1,16 @@
+{
+  "octavia_load_balancer_pools_title": "Pool",
+  "octavia_load_balancer_pools_description_part_1": "Un pool rappresenta un gruppo di membri responsabili del backend che condividono una configurazione comune, ad esempio l'algoritmo del Load Balancer, la sonda o la configurazione delle sessioni permanenti.",
+  "octavia_load_balancer_pools_description_part_2": "Scopri le opzioni aggiuntive tramite Horizon.",
+  "octavia_load_balancer_pools_description_part_2_link": "Scopri le opzioni",
+  "octavia_load_balancer_pools_add_button": "Aggiungi un pool",
+  "octavia_load_balancer_pools_create_success": "Il pool {{ pool }} è stato creato correttamente.",
+  "octavia_load_balancer_pools_edit_success": "Il pool {{ pool }} è stato modificato correttamente.",
+  "octavia_load_balancer_pools_enum_algorithm_roundRobin": "Round Robin",
+  "octavia_load_balancer_pools_enum_algorithm_leastConnections": "Least Connections",
+  "octavia_load_balancer_pools_enum_algorithm_sourceIP": "IP sorgente",
+  "octavia_load_balancer_pools_enum_algorithm_sourceIPPort": "Porta IP sorgente",
+  "octavia_load_balancer_pools_enum_persistent_session_sourceIP": "IP sorgente",
+  "octavia_load_balancer_pools_enum_persistent_session_httpCookie": "HTTP Cookie",
+  "octavia_load_balancer_pools_enum_persistent_session_appCookie": "App Cookie"
+}

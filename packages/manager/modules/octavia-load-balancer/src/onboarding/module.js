@@ -8,6 +8,7 @@ import { OnboardingLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
 
 import component from './component';
 import routing from './routing';
+import noPrivateNetwork from './no-private-network';
 
 const moduleName = 'ovhManagerOctaviaLoadBalancerOnboarding';
 
@@ -17,6 +18,7 @@ angular
     'ovhManagerCore',
     'pascalprecht.translate',
     'ui.router',
+    noPrivateNetwork,
     OnboardingLayoutHelper,
   ])
   .config(routing)

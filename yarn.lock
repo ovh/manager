@@ -4095,10 +4095,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^6.7.4":
-  version "6.7.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.7.4.tgz#79366e0699674fe6d05eb277dd56d143a6ce36a5"
-  integrity sha512-L+bB9qAXMZERs95WM00iMi9N5J8Gpj59X7rRDjO+R321OflHtbWerwDUE5QoML2eeWwt94MY6TghRqjLtmfSkw==
+"@ovh-ux/ui-kit@^6.7.7":
+  version "6.7.7"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.7.7.tgz#661c47f8a37a37e93772db54167056beb1369f00"
+  integrity sha512-mp9Sk/Rs4cmW0xtMmLJJPmX+Sc0RrMeZ1NpBoQAmDekxR5Ax5AneH3qHDbGxxF3raSW/QxIN2FMiAeH5Bz/8zg==
 
 "@ovhcloud/ods-cdk@16.6.0":
   version "16.6.0"
@@ -20829,6 +20829,13 @@ outvariant@^1.2.1:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/outvariant/-/outvariant-1.4.0.tgz#e742e4bda77692da3eca698ef5bfac62d9fba06e"
   integrity sha512-AlWY719RF02ujitly7Kk/0QlV+pXGFDHrHf9O2OKqyqgBieaPOIeuSkL8sRK6j2WK+/ZAURq2kZsY0d8JapUiw==
+
+ovh-api-services@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-15.0.0.tgz#37079b051a3120dcacb396b5f57692868aa7c3e8"
+  integrity sha512-77jJFnd1X2lAQmNrZ0OQUpSjRBPY41LM9qqQkPBxMOCDR3PROnpheLWR0oPeNDMNOpJvGqdhAKarfnrbMnd+KA==
+  dependencies:
+    lodash "^4.17.21"
 
 ovh-api-services@^16.0.0:
   version "16.0.0"

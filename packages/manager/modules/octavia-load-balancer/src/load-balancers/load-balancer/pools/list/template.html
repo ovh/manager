@@ -1,0 +1,91 @@
+<oui-datagrid class="table-striped" data-rows="$ctrl.pools">
+    <oui-datagrid-topbar>
+        <oui-button
+            data-ng-click="$ctrl.goToPoolCreation()"
+            variant="secondary"
+            icon-left="oui-icon-plus"
+        >
+            <span
+                data-translate="octavia_load_balancer_pools_add_button"
+            ></span>
+        </oui-button>
+    </oui-datagrid-topbar>
+
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_pools_name' | translate"
+        data-property="name"
+        data-sortable
+        data-searchable
+        data-filterable
+        data-type="string"
+        data-prevent-customization
+    >
+        <a data-ng-href="{{:: $ctrl.getPoolDetailLink($row) }}">
+            {{ ::$value }}
+        </a>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_pools_protocol' | translate"
+        data-property="protocol"
+        data-sortable
+        data-searchable
+        data-filterable
+        data-type="string"
+        data-helper=":: 'octavia_load_balancer_pools_protocol_helper' | translate"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_pools_algorithm' | translate"
+        data-property="algorithm"
+        data-sortable
+        data-searchable
+        data-filterable
+        data-type="string"
+        data-helper=":: 'octavia_load_balancer_pools_algorithm_helper' | translate"
+    >
+        <span
+            data-translate="{{:: 'octavia_load_balancer_pools_enum_algorithm_' + $value }}"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_provisioning_status' | translate"
+        data-property="provisioningStatus"
+        data-sortable
+        data-type="options"
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="$ctrl.provisioningStatusBadges[$value]"
+            data-translate="{{:: 'octavia_load_balancer_provisioning_status_' + $value }}"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_operating_status' | translate"
+        data-property="operatingStatus"
+        data-type="options"
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="$ctrl.operatingStatusBadges[$value]"
+            data-translate="{{:: 'octavia_load_balancer_operating_status_' + $value }}"
+        ></span>
+    </oui-datagrid-column>
+    <oui-action-menu compact data-placement="end">
+        <oui-action-menu-item
+            data-on-click="$ctrl.goToPoolEditionFromList($row)"
+            ><span
+                data-translate="octavia_load_balancer_pools_actions_edit"
+            ></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item data-on-click="$ctrl.goToPoolMembers($row)"
+            ><span
+                data-translate="octavia_load_balancer_pools_actions_manage_members"
+            ></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item data-on-click="$ctrl.goToPoolDeletion($row)"
+            ><span
+                data-translate="octavia_load_balancer_pools_actions_delete"
+            ></span>
+        </oui-action-menu-item>
+    </oui-action-menu>
+</oui-datagrid>

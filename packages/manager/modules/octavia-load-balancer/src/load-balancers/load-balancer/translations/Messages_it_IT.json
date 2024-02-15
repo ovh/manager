@@ -1,0 +1,8 @@
+{
+  "octavia_load_balancer_info_tab_title": "Panoramica",
+  "octavia_load_balancer_listeners_tab_title": "Listeners",
+  "octavia_load_balancer_pools_tab_title": "Pool",
+  "octavia_load_balancer_statistics_tab_title": "Statistiche",
+  "octavia_load_balancer_certificates_tab_title": "Certificati",
+  "octavia_load_balancer_guides_header": "Guide"
+}

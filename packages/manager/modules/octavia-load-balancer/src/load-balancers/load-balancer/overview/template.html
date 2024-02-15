@@ -1,0 +1,119 @@
+<div class="octavia-load-balancer-overview">
+    <div class="row d-md-flex">
+        <div class="col-md-4">
+            <oui-tile
+                heading="{{:: 'octavia_load_balancer_overview_info_title' | translate }}"
+                class="h-100"
+            >
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_overview_info_name' | translate }}"
+                >
+                    <oui-tile-description>
+                        <div class="d-flex align-items-center">
+                            <span data-ng-bind="$ctrl.loadbalancer.name"></span>
+                            <button
+                                class="oui-button oui-button_ghost"
+                                data-ng-click="$ctrl.goToEditName()"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-pen"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_overview_info_region' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind=":: $ctrl.loadbalancer.region"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_overview_info_creation_date' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind=":: $ctrl.loadbalancer.createdAt | date: 'longDate'"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_overview_info_id' | translate }}"
+                >
+                    <oui-tile-description>
+                        <oui-clipboard
+                            data-model="$ctrl.loadbalancer.id"
+                            data-id="loadbalancerId"
+                            data-name="loadbalancerId"
+                        ></oui-clipboard>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+        <div class="col-md-4">
+            <oui-tile
+                heading="{{:: 'octavia_load_balancer_overview_config_title' | translate }}"
+                class="h-100"
+            >
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_overview_config_provisioning_status' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="$ctrl.provisioningStatusBadges[$ctrl.loadbalancer.provisioningStatus]"
+                            data-ng-bind=":: 'octavia_load_balancer_overview_config_provisioning_status_' + $ctrl.loadbalancer.provisioningStatus | translate"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_operating_status' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="$ctrl.operatingStatusBadges[$ctrl.loadbalancer.operatingStatus]"
+                            data-ng-bind=":: 'octavia_load_balancer_operating_status_' + $ctrl.loadbalancer.operatingStatus | translate"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_overview_config_size' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind=":: 'octavia_load_balancer_overview_config_size_' + $ctrl.flavor.name | translate"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_overview_config_private_network' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span data-ng-bind=":: $ctrl.network.name"></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_overview_config_subnet' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span data-ng-bind=":: $ctrl.subnet.cidr"></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_overview_config_private_ip' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            data-ng-bind=":: $ctrl.loadbalancer.vipAddress"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+    </div>
+</div>

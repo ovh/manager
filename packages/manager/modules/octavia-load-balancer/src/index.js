@@ -3,6 +3,8 @@ import '@ovh-ux/ng-ui-router-breadcrumb';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
+
 import './index.scss';
 
 const moduleName = 'ovhManagerOctaviaLoadBalancerLazyLoading';

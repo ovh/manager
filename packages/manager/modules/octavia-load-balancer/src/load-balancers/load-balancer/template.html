@@ -1,0 +1,42 @@
+<oui-header data-heading="{{ $ctrl.loadbalancer.name }}"> </oui-header>
+<div data-ovh-alert="octavia.alerts.loadbalancer"></div>
+<oui-header-tabs>
+    <oui-header-tabs-item
+        data-href="{{:: $ctrl.generalInformationLink }}"
+        data-active="$ctrl.currentActiveLink().startsWith($ctrl.generalInformationLink)"
+    >
+        <span data-translate="octavia_load_balancer_info_tab_title"></span>
+    </oui-header-tabs-item>
+    <oui-header-tabs-item
+        data-href="{{:: $ctrl.listenersLink }}"
+        data-active="$ctrl.currentActiveLink().startsWith($ctrl.listenersLink)"
+    >
+        <span data-translate="octavia_load_balancer_listeners_tab_title"></span>
+    </oui-header-tabs-item>
+    <oui-header-tabs-item
+        data-href="{{:: $ctrl.poolsLink }}"
+        data-active="$ctrl.currentActiveLink().startsWith($ctrl.poolsLink)"
+    >
+        <span data-translate="octavia_load_balancer_pools_tab_title"></span>
+    </oui-header-tabs-item>
+    <oui-header-tabs-item
+        data-href="{{:: $ctrl.statisticsLink }}"
+        data-active="$ctrl.currentActiveLink() === $ctrl.statisticsLink"
+        data-disabled="true"
+    >
+        <span
+            data-translate="octavia_load_balancer_statistics_tab_title"
+        ></span>
+    </oui-header-tabs-item>
+    <oui-header-tabs-item
+        data-href="{{:: $ctrl.certificatesLink }}"
+        data-active="$ctrl.currentActiveLink() === $ctrl.certificatesLink"
+        data-disabled="true"
+    >
+        <span
+            data-translate="octavia_load_balancer_certificates_tab_title"
+        ></span>
+    </oui-header-tabs-item>
+</oui-header-tabs>
+
+<div class="container-fluid mt-4" data-ui-view="loadbalancerView"></div>

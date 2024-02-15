@@ -1,0 +1,30 @@
+<oui-modal
+    data-on-dismiss="$ctrl.cancel()"
+    data-primary-action="$ctrl.update()"
+    data-secondary-action="$ctrl.cancel()"
+    data-type="info"
+    data-loading="$ctrl.isLoading"
+    data-primary-label="{{:: 'octavia_load_balancer_edit_name_confirm' | translate }}"
+    data-secondary-label="{{:: 'octavia_load_balancer_edit_name_cancel' | translate }}"
+    data-heading="{{:: 'octavia_load_balancer_edit_name_title' | translate }}"
+    data-primary-disabled="$ctrl.listenerRenameForm.$invalid"
+>
+    <form id="listenerRenameForm" name="$ctrl.listenerRenameForm">
+        <oui-field
+            size="m"
+            class="mb-4 mb-md-0"
+            data-label="{{:: 'octavia_load_balancer_edit_name_label' | translate }}"
+        >
+            <div class="oui-input-overlay">
+                <input
+                    type="text"
+                    class="oui-input"
+                    name="name"
+                    data-ng-model="$ctrl.name"
+                    data-ng-maxlength="70"
+                    data-ng-pattern="$ctrl.loadBalancerNameRegex"
+                />
+            </div>
+        </oui-field>
+    </form>
+</oui-modal>

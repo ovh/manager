@@ -3,11 +3,15 @@
   "octavia_load_balancer_onboarding_description_1": "Graças ao Load Balancer Public Cloud, tem a possibilidade de reforçar a escalabilidade e a robustez das suas aplicações Public Cloud.",
   "octavia_load_balancer_onboarding_description_2": "De momento, a gestão do Load Balancer Public Cloud não está integrada na Área de Cliente. No entanto, pode encomendá-lo e geri-lo através da linha de comandos e da API OpenStack, bem como através do Terraform.",
   "octavia_load_balancer_onboarding_description_3": "Encontrará abaixo guias para criar e configurar o seu Load Balancer.",
-  "octavia_load_balancer_onboarding_cta": "Descubra o Load Balancer Public Cloud",
+  "octavia_load_balancer_onboarding_cta": "Criar o seu Load Balancer",
   "octavia_load_balancer_onboarding_guide1_title": "Primeiros passos com o Load Balancer",
   "octavia_load_balancer_onboarding_guide1_description": "Saiba como usar um Load Balancer Public Cloud",
   "octavia_load_balancer_onboarding_guide2_title": "Implementar um Load Balancer",
   "octavia_load_balancer_onboarding_guide2_description": "Saiba como configurar um Load Balancer Public Cloud",
   "octavia_load_balancer_onboarding_guide3_title": "Configurar um Load Balancer seguro com o Let's Encrypt",
-  "octavia_load_balancer_onboarding_guide3_description": "Saiba como configurar um Load Balancer Public Cloud seguro com o Let’s Encrypt"
+  "octavia_load_balancer_onboarding_guide3_description": "Saiba como configurar um Load Balancer Public Cloud seguro com o Let’s Encrypt",
+  "octavia_load_balancer_onboarding_private_network_modal_title": "Criar uma rede privada",
+  "octavia_load_balancer_onboarding_private_network_modal_description": "Pela sua conceção, o nosso Load Balancer é-lhe inteiramente dedicado e deve ser lançado numa rede privada, independentemente da arquitetura alvo (Pub-to-Priv, Pub-to-Pub ou Priv-to-Priv).",
+  "octavia_load_balancer_onboarding_private_network_modal_more_link": "Saber mais",
+  "octavia_load_balancer_onboarding_private_network_modal_message": "É necessária uma rede privada para utilizar um Load Balancer, pelo que deve criar uma antes de criar o seu Load Balancer."
 }

@@ -1,0 +1,12 @@
+{
+  "octavia_load_balancer_listeners_create_name": "Name",
+  "octavia_load_balancer_listeners_create_protocol": "Protokoll",
+  "octavia_load_balancer_listeners_create_protocol_tooltip": "Protokoll, für das das Frontend Verbindungen überwacht.",
+  "octavia_load_balancer_listeners_create_protocol_default": "Protokoll auswählen",
+  "octavia_load_balancer_listeners_create_port": "Port",
+  "octavia_load_balancer_listeners_create_pool": "Standardpool (optional)",
+  "octavia_load_balancer_listeners_create_pool_default": "Pool auswählen",
+  "octavia_load_balancer_listeners_create_cancel": "Abbrechen",
+  "octavia_load_balancer_listeners_create_submit": "Hinzufügen",
+  "octavia_load_balancer_listeners_create_submit_edition": "Bearbeiten"
+}
