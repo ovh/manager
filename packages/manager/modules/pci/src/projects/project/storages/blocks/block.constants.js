@@ -45,6 +45,8 @@ export const VOLUME_BLOCK_TRACKING = {
   },
 };
 
+export const LOCAL_ZONE = 'localzone';
+
 export default {
   VOLUME_MAX_SIZE,
   VOLUME_MIN_SIZE,
@@ -53,4 +55,5 @@ export default {
   VOLUME_SNAPSHOT_CONSUMPTION,
   VOLUME_HELP_PREFERENCE_KEY,
   VOLUME_BLOCK_TRACKING,
+  LOCAL_ZONE,
 };
