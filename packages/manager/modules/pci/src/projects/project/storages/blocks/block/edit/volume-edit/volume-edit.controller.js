@@ -9,11 +9,13 @@ export default class PciProjectStorageVolumeEditController {
     $translate,
     ovhManagerRegionService,
     PciProjectStorageBlockService,
+    PciProject,
   ) {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectStorageBlockService = PciProjectStorageBlockService;
+    this.PciProject = PciProject;
   }
 
   $onInit() {
@@ -34,6 +36,9 @@ export default class PciProjectStorageVolumeEditController {
     if (angular.isUndefined(this.displayBootable)) {
       this.displayBootable = false;
     }
+
+    this.globalRegionsUrl = this.PciProject.getDocumentUrl('GLOBAL_REGIONS');
+    this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
 
     this.loading = true;
     return this.$translate

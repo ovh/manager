@@ -20,6 +20,7 @@ import {
   VOLUME_MIN_SIZE,
   VOLUME_SNAPSHOT_CONSUMPTION,
   VOLUME_UNLIMITED_QUOTA,
+  LOCAL_ZONE,
 } from './block.constants';
 
 export default class PciProjectStorageBlockService {
@@ -38,6 +39,7 @@ export default class PciProjectStorageBlockService {
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
     this.OvhApiCloudProjectVolumeSnapshot = OvhApiCloudProjectVolumeSnapshot;
+    this.LOCAL_ZONE = LOCAL_ZONE;
   }
 
   getAll(projectId) {
@@ -93,7 +95,7 @@ export default class PciProjectStorageBlockService {
       );
   }
 
-  get(projectId, storageId) {
+  get(projectId, storageId, customerRegions) {
     return this.OvhApiCloudProject.Volume()
       .v6()
       .get({
@@ -126,14 +128,23 @@ export default class PciProjectStorageBlockService {
           snapshots: this.getVolumeSnapshots(projectId, volume),
         }),
       )
-      .then(
-        ({ attachedTo, volume, snapshots }) =>
-          new BlockStorage({
-            ...volume,
-            attachedTo,
-            snapshots,
-          }),
-      );
+      .then(({ attachedTo, volume, snapshots }) => {
+        const localZones = this.getLocalZones(customerRegions);
+        return new BlockStorage({
+          ...volume,
+          attachedTo,
+          snapshots,
+          isLocalZone: localZones.some(
+            (region) => region.name === volume.region,
+          ),
+        });
+      });
+  }
+
+  getLocalZones(customerRegions = []) {
+    return customerRegions?.filter(({ type }) =>
+      type.includes(this.LOCAL_ZONE),
+    );
   }
 
   attachTo(projectId, storage, instance) {
@@ -406,15 +417,15 @@ export default class PciProjectStorageBlockService {
         }),
       )
       .then(({ quotas, regions }) => {
-        const supportedRegions = filter(regions, (region) =>
+        const supportedRegions = regions.filter((region) =>
           some(get(region, 'services', []), { name: 'volume', status: 'UP' }),
         );
-        return map(
-          supportedRegions,
+        return supportedRegions.map(
           (region) =>
             new Region({
               ...region,
               quota: find(quotas, { region: region.name }),
+              isLocalZone: region.type === this.LOCAL_ZONE,
             }),
         );
       });
