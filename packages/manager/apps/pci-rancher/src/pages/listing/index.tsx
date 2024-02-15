@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useHref } from 'react-router-dom';
+import { useNavigate, useHref, useParams } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -18,6 +18,7 @@ import { RancherService } from '@/api/api.type';
 import Title from '@/components/Title/Title';
 import RancherTaskMessage from './RancherTaskMessage';
 import TableContainer from '@/components/Table/TableContainer';
+import { getOnboardingUrl } from '@/utils/route';
 
 export interface ListingProps {
   data: RancherService[];
@@ -27,12 +28,13 @@ const Listing: React.FC<ListingProps> = ({ data }) => {
   const { t } = useTranslation('pci-rancher/listing');
   const hrefDashboard = useHref('');
   const navigate = useNavigate();
+  const { projectId } = useParams();
 
-  if (data.length === 0) {
-    navigate(
-      `/pci/projects/5a6980507c0a40dca362eb9b22d79044/rancher/onboarding`,
-    );
-  }
+  useEffect(() => {
+    if (data.length === 0) {
+      navigate(getOnboardingUrl(projectId));
+    }
+  }, [projectId, data.length]);
 
   const tasks = data.map((rancher) => rancher.currentTasks).flat();
 

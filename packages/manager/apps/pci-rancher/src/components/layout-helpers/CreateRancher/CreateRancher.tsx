@@ -17,7 +17,7 @@ import {
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { isValidRancherName } from '@/utils/rancher';
 import { getOnboardingUrl, getRanchersUrl } from '@/utils/route';
@@ -52,29 +52,31 @@ const TileSection: React.FC<{
       }
     }}
   >
-    <div className="flex flex-col">
-      <div className="flex items-center flex-wrap">
-        <OsdsText
-          level={ODS_TEXT_LEVEL.heading}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
-          {name}
-        </OsdsText>
-        {chipLabel ? (
-          <OsdsChip
-            color={ODS_THEME_COLOR_INTENT.primary}
-            className="sm:my-5 lg:ml-5"
+    <span slot="start">
+      <div className="flex flex-col">
+        <div className="flex items-center flex-wrap">
+          <OsdsText
+            level={ODS_TEXT_LEVEL.heading}
+            color={ODS_THEME_COLOR_INTENT.text}
           >
-            {chipLabel}
-          </OsdsChip>
-        ) : (
-          <></>
-        )}
+            {name}
+          </OsdsText>
+          {chipLabel ? (
+            <OsdsChip
+              color={ODS_THEME_COLOR_INTENT.primary}
+              className="lg:ml-5"
+            >
+              {chipLabel}
+            </OsdsChip>
+          ) : (
+            <></>
+          )}
+        </div>
+        <Block>
+          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{description}</OsdsText>
+        </Block>
       </div>
-      <Block>
-        <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{description}</OsdsText>
-      </Block>
-    </div>
+    </span>
   </OsdsTile>
 );
 
@@ -134,15 +136,12 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
 
   const onCreateClick = (rancherPayload: CreateRancherPayload) => {
     onCreateRancher(rancherPayload);
-    navigate(getRanchersUrl(projectId));
   };
 
   const onCancelClick = () =>
     navigate(
       hasSomeRancher ? getRanchersUrl(projectId) : getOnboardingUrl(projectId),
     );
-
-  const onNavigateDiscovery = () => navigate(activateProjectUrl);
 
   return (
     <div>
@@ -154,18 +153,17 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
           className="my-6"
         >
           <div className="flex items-center justify-between">
-            <div>
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.warning}
-                className="max-w-2xl"
-              >
-                {t('createRancherDiscoveryMode')} <br />
+            <div className="max-w-3xl">
+              <OsdsText color={ODS_THEME_COLOR_INTENT.warning}>
+                <Trans>
+                  {t('createRancherDiscoveryMode')} <br />
+                </Trans>
               </OsdsText>
             </div>
             <div className="ml-4">
               <OsdsButton
                 size={ODS_BUTTON_SIZE.sm}
-                onClick={onNavigateDiscovery}
+                href={activateProjectUrl}
                 color={ODS_THEME_COLOR_INTENT.primary}
               >
                 {t('createRancherDiscoveryModeActive')}
@@ -180,7 +178,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         className="my-6"
       >
         <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-          {t('createRancherInfoMessage')} <br />
+          <Trans> {t('createRancherInfoMessage')}</Trans> <br />
         </OsdsText>
       </OsdsMessage>
       {hasRancherCreationError && (

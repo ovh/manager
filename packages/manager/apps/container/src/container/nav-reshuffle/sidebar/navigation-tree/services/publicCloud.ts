@@ -215,6 +215,7 @@ const pciNode: Node = {
           },
           features: ['pci-rancher'],
           forceVisibility: true,
+          tag: NodeTag.BETA,
         },
         {
           id: 'pci-kubernetes',
