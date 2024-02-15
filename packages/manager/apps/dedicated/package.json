@@ -86,7 +86,7 @@
     "@ovh-ux/request-tagger": "^0.1.1",
     "@ovh-ux/shell": "^3.0.5",
     "@ovh-ux/sign-up": "^2.13.0",
-    "@ovh-ux/ui-kit": "^6.7.4",
+    "@ovh-ux/ui-kit": "^6.7.7",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "1.7.x",
     "angular-aria": "1.7.x",

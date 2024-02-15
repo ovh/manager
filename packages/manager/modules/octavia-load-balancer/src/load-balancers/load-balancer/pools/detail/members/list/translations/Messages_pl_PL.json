@@ -1,0 +1,8 @@
+{
+  "octavia_load_balancer_pools_detail_members_add_manually": "Dodaj ręcznie",
+  "octavia_load_balancer_pools_detail_members_name": "Nazwa",
+  "octavia_load_balancer_pools_detail_members_address": "Adres IP",
+  "octavia_load_balancer_pools_detail_members_protocol_port": "Port",
+  "octavia_load_balancer_pools_detail_members_edit": "Edytuj",
+  "octavia_load_balancer_pools_detail_members_delete": "Usuń"
+}

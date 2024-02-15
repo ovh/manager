@@ -156,6 +156,7 @@ export function getPciProjectMenu(
           id: 'octavia-load-balancer',
           title: 'Load Balancer',
           feature: 'octavia-load-balancer',
+          badge: 'new',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/octavia-load-balancer`,

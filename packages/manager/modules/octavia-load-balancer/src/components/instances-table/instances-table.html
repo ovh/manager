@@ -1,0 +1,192 @@
+<div id="octavia-instances-table">
+    <oui-button
+        variant="secondary"
+        icon-left="oui-icon-add"
+        disabled="$ctrl.listeners.length >= $ctrl.maxListener"
+        class="mb-2"
+        data-on-click="$ctrl.addListener()"
+    >
+        <span data-translate="octavia_load_balancer_add_listener"></span>
+    </oui-button>
+    <div class="container-fluid">
+        <table class="oui-table">
+            <thead>
+                <tr>
+                    <th class="oui-table__header">
+                        <span
+                            data-translate="octavia_load_balancer_instances_table_listener"
+                        ></span>
+                    </th>
+                    <th class="oui-table__header"></th>
+                    <th class="oui-table__header">
+                        <span
+                            data-translate="octavia_load_balancer_instances_table_pools"
+                        ></span>
+                        <span
+                            class="oui-icon oui-icon-help"
+                            aria-hidden="true"
+                            oui-tooltip="{{:: 'octavia_load_balancer_instances_table_pools_tooltip' | translate }}"
+                        ></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    data-ng-repeat="listener in $ctrl.listeners track by $index"
+                    ng-init="listenerIndex = $index"
+                    class="oui-table__row"
+                >
+                    <td class="oui-table__cell pt-2 pb-2">
+                        <div class="container-fluid">
+                            <div class="row align-items-center">
+                                <div class="col-10">
+                                    <div class="col-xl-8 mb-1">
+                                        <oui-field
+                                            data-label="{{:: 'octavia_load_balancer_instances_table_protocol_label' | translate }}"
+                                            label-popover="{{:: 'octavia_load_balancer_instances_table_protocol_tooltip' | translate }}"
+                                        >
+                                            <oui-select
+                                                data-name="{{ 'select-listener-protocol-' + listenerIndex}}"
+                                                data-model="listener.protocol"
+                                                data-match="name"
+                                                data-items="$ctrl.listenerProtocols"
+                                                data-on-change="$ctrl.constructor.selectListenerProtocol(modelValue, listener)"
+                                                data-required="true"
+                                            >
+                                            </oui-select>
+                                        </oui-field>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <oui-field
+                                            data-label="{{:: 'octavia_load_balancer_instances_table_port_label' | translate }}"
+                                            label-popover="{{:: 'octavia_load_balancer_instances_table_port_tooltip' | translate }}"
+                                            label-popover-size="30"
+                                        >
+                                            <input
+                                                class="oui-input"
+                                                type="number"
+                                                name="{{ 'select-listener-port-' + listenerIndex}}"
+                                                data-ng-model="listener.port"
+                                                data-min="1"
+                                                data-max="65535"
+                                                required
+                                            />
+                                        </oui-field>
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <oui-button
+                                        variant="link"
+                                        data-aria-label="{{:: 'octavia_load_balancer_instances_table_listener_delete' | translate}}"
+                                        data-on-click="$ctrl.deleteListener(listenerIndex)"
+                                        oui-tooltip="{{:: 'octavia_load_balancer_instances_table_listener_delete' | translate }}"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-bin"
+                                            aria-hidden
+                                        ></span>
+                                    </oui-button>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="oui-table__cell">
+                        <span class="oui-icon oui-icon-arrow-right"></span>
+                    </td>
+                    <td class="oui-table__cell pt-2 pb-2">
+                        <div class="container-fluid">
+                            <div class="row align-items-center mb-2">
+                                <div class="col-lg-6">
+                                    <oui-field
+                                        data-label="{{:: 'octavia_load_balancer_instances_table_health_monitor_label' | translate }}"
+                                        label-popover="{{:: 'octavia_load_balancer_instances_table_health_monitor_tooltip' | translate }}"
+                                    >
+                                        <oui-select
+                                            data-name="{{'select-health-monitor-' + $index}}"
+                                            data-model="listener.healthMonitor"
+                                            data-items="listener.protocol.healthMonitors"
+                                            data-match="name"
+                                            data-disabled="$ctrl.constructor.isPoolSectionDisabled(listener)"
+                                        >
+                                        </oui-select>
+                                    </oui-field>
+                                </div>
+                            </div>
+                            <div
+                                data-ng-repeat="instance in listener.instances track by $index"
+                                data-ng-init="instanceIndex = $index"
+                                class="row align-items-start mb-2"
+                            >
+                                <div class="col-lg-6 mb-1">
+                                    <oui-field>
+                                        <oui-select
+                                            data-name="{{'select-instance-' + listenerIndex + '-' + instanceIndex}}"
+                                            data-model="instance.instance"
+                                            data-items="$ctrl.instances"
+                                            data-match="displayName"
+                                            data-on-change="$ctrl.constructor.onInstanceSelected(instance, listener)"
+                                            data-searchable
+                                            data-placeholder="{{:: 'octavia_load_balancer_instances_table_pools_search_instance' | translate }}"
+                                            data-disabled="$ctrl.constructor.isPoolSectionDisabled(listener)"
+                                            data-required="!!instance.port"
+                                        >
+                                        </oui-select>
+                                    </oui-field>
+                                </div>
+
+                                <div class="col-lg-2">
+                                    <oui-field>
+                                        <input
+                                            class="oui-input"
+                                            type="number"
+                                            name="{{'select-instance-port-' + listenerIndex + '-' + instanceIndex}}"
+                                            data-ng-model="instance.port"
+                                            data-min="1"
+                                            data-max="65535"
+                                            data-ng-attr-placeholder="Port"
+                                            data-ng-required="!!instance.instance"
+                                            data-ng-disabled="$ctrl.constructor.isPoolSectionDisabled(listener)"
+                                        />
+                                    </oui-field>
+                                </div>
+
+                                <div class="col-sm-2 col-xs-6">
+                                    <oui-button
+                                        class="pull-right"
+                                        variant="link"
+                                        data-ng-if="instanceIndex !== 0"
+                                        data-aria-label="{{:: 'octavia_load_balancer_instances_table_instance_add' | translate}}"
+                                        oui-tooltip="{{:: 'octavia_load_balancer_instances_table_instance_delete' | translate }}"
+                                        data-disabled="$ctrl.constructor.isPoolSectionDisabled(listener)"
+                                        data-on-click="$ctrl.deleteInstance(listener.instances, instanceIndex)"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-bin"
+                                            aria-hidden
+                                        ></span>
+                                    </oui-button>
+                                </div>
+
+                                <div class="col-2">
+                                    <oui-button
+                                        variant="link"
+                                        data-ng-if="instanceIndex === listener.instances.length - 1"
+                                        data-aria-label="{{:: 'octavia_load_balancer_instances_table_instance_add' | translate}}"
+                                        oui-tooltip="{{:: 'octavia_load_balancer_instances_table_instance_add' | translate }}"
+                                        data-disabled="$ctrl.constructor.isPoolSectionDisabled(listener) || listener.instances.length >= $ctrl.maxInstancesByListener"
+                                        data-on-click="$ctrl.addInstance(listener)"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-add"
+                                            aria-hidden
+                                        ></span>
+                                    </oui-button>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -167,6 +167,7 @@ const pciNode: Node = {
           },
           features: ['octavia-load-balancer'],
           forceVisibility: true,
+          tag: NodeTag.NEW,
         },
         {
           id: 'pci-additional-ips',
