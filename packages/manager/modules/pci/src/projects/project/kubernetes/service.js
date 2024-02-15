@@ -132,6 +132,7 @@ export default class Kubernetes {
     privateNetworkId,
     gatewayConfig,
     nodepool,
+    proxy,
   ) {
     if (nodepool.antiAffinity) {
       set(nodepool, 'maxNodes', ANTI_AFFINITY_MAX_NODES);
@@ -147,6 +148,14 @@ export default class Kubernetes {
         privateNetworkConfiguration: {
           defaultVrackGateway: gatewayConfig.ip,
           privateNetworkRoutingAsDefault: gatewayConfig.enabled,
+        },
+      }),
+      ...(proxy && {
+        kubeProxyMode: proxy.mode,
+        customization: {
+          kubeProxy: {
+            [proxy.mode]: proxy.values,
+          },
         },
       }),
     });

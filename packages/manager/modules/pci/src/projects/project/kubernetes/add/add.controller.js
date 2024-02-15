@@ -51,6 +51,7 @@ export default class {
         monthlyBilling: false,
         autoscaling: this.autoscaling,
       },
+      proxy: null,
     };
 
     this.loadMessages();
@@ -99,6 +100,7 @@ export default class {
       this.cluster.network.private.clusterRegion?.openstackId,
       this.cluster.network.gateway,
       options,
+      this.cluster.proxy,
     )
       .then(() =>
         this.goBack(this.$translate.instant('kubernetes_add_success')),
