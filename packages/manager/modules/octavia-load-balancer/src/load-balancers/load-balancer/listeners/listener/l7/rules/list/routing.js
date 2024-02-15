@@ -29,13 +29,13 @@ export default /* @ngInject */ ($stateProvider) => {
           );
         },
         goToL7RuleEdition: /* @ngInject */ ($state, trackL7RulesAction) => (
-          policy,
+          rule,
         ) => {
           trackL7RulesAction('edit');
           $state.go(
             'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.l7Rules.edit',
             {
-              policyId: policy.id,
+              ruleId: rule.id,
             },
           );
         },
