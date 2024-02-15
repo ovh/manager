@@ -4,7 +4,7 @@
   "octavia_load_balancer_pools_protocol_helper": "Il protocollo per cui questo pool e i suoi membri ascoltano.",
   "octavia_load_balancer_pools_algorithm": "Algoritmo del Load Balancer",
   "octavia_load_balancer_pools_algorithm_helper": "L’algoritmo del Load Balancer che ripartisce il traffico tra i membri del pool.",
-  "octavia_load_balancer_pools_actions_edit": "Modificare",
+  "octavia_load_balancer_pools_actions_edit": "Modifica",
   "octavia_load_balancer_pools_actions_manage_members": "Gestisci i membri",
-  "octavia_load_balancer_pools_actions_delete": "Eliminare"
+  "octavia_load_balancer_pools_actions_delete": "Elimina"
 }
