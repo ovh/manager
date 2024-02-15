@@ -6,16 +6,15 @@ import {
 import {
   OsdsButton,
   OsdsClipboard,
-  OsdsModal,
   OsdsPassword,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import React, { FC } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { AccessDetail } from '../../hooks/useGenerateAccessDetail';
 import { RancherService } from '@/api/api.type';
 import Modal from './Modal';
@@ -33,17 +32,9 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
   onGenerateAccess,
   accessDetail,
 }) => {
-  const navigate = useNavigate();
   const { t } = useTranslation('pci-rancher/dashboard');
   const hasValidAccess = !!accessDetail?.username && !!accessDetail?.password;
 
-  const onEdit = () => {
-    if (hasValidAccess) {
-      navigate(rancher.currentState.url);
-    } else {
-      onGenerateAccess();
-    }
-  };
   return (
     <Modal
       color={ODS_THEME_COLOR_INTENT.info}
@@ -95,8 +86,13 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={onEdit}
         aria-label="edit-name-rancher"
+        {...(hasValidAccess
+          ? {
+              target: OdsHTMLAnchorElementTarget._blank,
+              href: rancher.currentState.url,
+            }
+          : { onClick: onGenerateAccess })}
       >
         {t(hasValidAccess ? 'rancher_button_acces' : 'confirm')}
       </OsdsButton>

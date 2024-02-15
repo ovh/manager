@@ -43,6 +43,7 @@ describe('Delete Modal', () => {
 
       expect(button).toBeDisabled();
     });
+
     it('Should be enabled when TERMINATE is typed', async () => {
       const screen = await setupSpecTest();
 
@@ -55,7 +56,7 @@ describe('Delete Modal', () => {
       expect(input.getAttribute('value')).toBe(TERMINATE_TEXT);
       expect(button).not.toHaveAttribute('disabled', 'false');
 
-      expect(onDeleteMocked).toHaveBeenCalledWith(rancherMocked.id);
+      expect(onDeleteMocked).toHaveBeenCalledWith();
     });
   });
 });

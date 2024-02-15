@@ -1,6 +1,10 @@
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_MESSAGE_TYPE,
+} from '@ovhcloud/ods-components';
 import { OsdsIcon, OsdsLink } from '@ovhcloud/ods-components/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
@@ -24,16 +28,29 @@ export type DashboardTabItemProps = {
 export type DashboardLayoutProps = {
   tabs: DashboardTabItemProps[];
   rancher: RancherService;
+  refetchRancher: () => void;
 };
 
-const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
+const Dashboard: React.FC<DashboardLayoutProps> = ({
+  tabs,
+  rancher,
+  refetchRancher,
+}) => {
   const { t } = useTranslation('pci-rancher/dashboard');
   const { projectId } = useParams();
   const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
+  const [editNameResponseType, setEditNameResponseType] = useState<
+    ODS_MESSAGE_TYPE.success | ODS_MESSAGE_TYPE.error | null
+  >(null);
 
-  const { editRancherName, editNameResponseType } = useEditRancherName({
+  const { mutate: editRancherName } = useEditRancherName({
     projectId: projectId as string,
     rancherId: rancher.id,
+    onSuccess: () => {
+      setEditNameResponseType(ODS_MESSAGE_TYPE.success);
+      refetchRancher();
+    },
+    onError: () => setEditNameResponseType(ODS_MESSAGE_TYPE.error),
   });
 
   const {
