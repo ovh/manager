@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-carbon-calculator-app",
-  "version": "0.2.16",
+  "version": "0.3.0",
   "private": true,
   "description": "OVHcloud CarbonCalculator app",
   "repository": {

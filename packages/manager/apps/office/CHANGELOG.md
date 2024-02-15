@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-office-app@0.8.17...@ovh-ux/manager-office-app@0.9.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
 ## [0.8.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-office-app@0.8.16...@ovh-ux/manager-office-app@0.8.17) (2024-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-office-app

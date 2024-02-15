@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer@1.0.0...@ovh-ux/manager-octavia-load-balancer@1.1.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer@0.1.0...@ovh-ux/manager-octavia-load-balancer@0.2.0) (2024-01-08)
 
 

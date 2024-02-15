@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.42.0...@ovh-ux/manager-container-app@0.43.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
 # [0.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.41.0...@ovh-ux/manager-container-app@0.42.0) (2024-02-07)
 
 
