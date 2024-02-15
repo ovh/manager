@@ -135,7 +135,7 @@
                             name="protocol"
                             class="form-control"
                             data-ng-model="IpGameFirewallCtrl.rule.protocol"
-                            data-ng-options="IpGameFirewallCtrl.getProtocoleText(protocol) for protocol in IpGameFirewallCtrl.enums.protocols"
+                            data-ng-options="IpGameFirewallCtrl.getProtocolText(protocol) for protocol in IpGameFirewallCtrl.enums.protocols"
                             data-ng-change="IpGameFirewallCtrl.selectProtocolDefaultPort()"
                         >
                         </select>
@@ -213,7 +213,7 @@
                     <th
                         scope="row"
                         data-ng-if="!rule.errorMessage"
-                        data-ng-bind="rule.protocol"
+                        data-ng-bind="IpGameFirewallCtrl.getProtocolText(rule.protocol)"
                     ></th>
                     <td
                         data-ng-if="!rule.errorMessage"
