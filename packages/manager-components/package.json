@@ -72,7 +72,7 @@
     "storybook": "7.5.3",
     "ts-jest": "^29.1.1",
     "typescript": "^4.3.2",
-    "vite": "4.4.9",
+    "vite": "3.2.8",
     "vite-plugin-dts": "3.5.1",
     "vitest": "0.34.1"
   },
