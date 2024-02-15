@@ -38,7 +38,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return DedicatedCloud.getDatacenterInfoNsxt(
             serviceName,
             datacenterId,
-          ).then(([data]) => data.size);
+          ).then(([data]) => data?.size);
         },
         nsxtEdgesScalingCapabilities: /* @ngInject */ (
           DedicatedCloud,
@@ -48,7 +48,9 @@ export default /* @ngInject */ ($stateProvider) => {
           return DedicatedCloud.getDatacenterNsxtEdgesScalingCapabilities(
             serviceName,
             datacenterId,
-          ).then(({ data }) => data?.size);
+          )
+            .then(({ data }) => data?.size)
+            .catch(() => []);
         },
         goBackToDashboard: /* @ngInject */ (
           $state,
