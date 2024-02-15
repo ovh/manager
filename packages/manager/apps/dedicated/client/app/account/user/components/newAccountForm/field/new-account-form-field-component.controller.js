@@ -452,7 +452,7 @@ export default class NewAccountFormFieldController {
       Inputs of type text should be disabled if:
       - the input is for customer code
       - if the user in from an indian subsidiary:
-          - his kyc request is not in progress (isEditionAllowed)
+          - his kyc request is in progress (isEditionDisabledByKyc)
           - the input is not for vat (if the customer is of type enterprise)
   */
   canInputFieldDisabled() {
@@ -461,7 +461,7 @@ export default class NewAccountFormFieldController {
     }
     return (
       this.isIndianSubsidiary &&
-      this.isEditionAllowed &&
+      this.isEditionDisabledByKyc &&
       !(
         this.rule.fieldName === this.FIELD_NAME_LIST.vat &&
         this.user.legalform !== USER_TYPE_ENTERPRISE
@@ -477,7 +477,7 @@ export default class NewAccountFormFieldController {
   canDropDownDisabled() {
     if (this.isIndianSubsidiary) {
       return (
-        this.isEditionAllowed &&
+        this.isEditionDisabledByKyc &&
         (this.rule.fieldName === this.FIELD_NAME_LIST.legalform ||
           this.rule.fieldName === this.FIELD_NAME_LIST.country ||
           this.rule.fieldName === this.FIELD_NAME_LIST.area)
