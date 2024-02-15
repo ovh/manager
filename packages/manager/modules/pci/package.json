@@ -44,6 +44,7 @@
     "@ovh-ux/manager-trusted-nic": "^0.0.0 || ^1.0.0",
     "@ovh-ux/ng-at-internet": "^5.9.1",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.3.0",
+    "@ovh-ux/ng-log-to-customer": "^1.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^2.8.2",
     "@ovh-ux/ng-ovh-contracts": "^4.2.1",
