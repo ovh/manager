@@ -87,11 +87,12 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.primary}
         aria-label="edit-name-rancher"
-        href={hasValidAccess ? rancher.currentState.url : undefined}
-        {...(!hasValidAccess ? { onClick: onGenerateAccess } : {})}
         {...(hasValidAccess
-          ? { target: OdsHTMLAnchorElementTarget._blank }
-          : {})}
+          ? {
+              target: OdsHTMLAnchorElementTarget._blank,
+              href: rancher.currentState.url,
+            }
+          : { onClick: onGenerateAccess })}
       >
         {t(hasValidAccess ? 'rancher_button_acces' : 'confirm')}
       </OsdsButton>

@@ -1,3 +1,6 @@
+// PATCH for ODS Component to fix Error: Uncaught [TypeError: _this2.attachInternals is not a function]
+import 'element-internals-polyfill';
+
 require('@testing-library/jest-dom');
 
 const fetchPolyfill = require('whatwg-fetch');
