@@ -1,11 +1,10 @@
-import { WORK_IN_PROGRESS_LINK } from './dashboard.constants';
+import { TRAVAUX_LINK } from './dashboard.constants';
 
 export default class DedicatedClusterDashboard {
   /* @ngInject */
   constructor(coreConfig) {
-    this.WORK_IN_PROGRESS_LINK =
-      WORK_IN_PROGRESS_LINK[coreConfig.getRegion()] ||
-      WORK_IN_PROGRESS_LINK.DEFAULT;
+    this.TRAVAUX_LINK =
+      TRAVAUX_LINK[coreConfig.getRegion()] || TRAVAUX_LINK.DEFAULT;
   }
 
   onBillingInformationError(error) {
