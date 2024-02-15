@@ -12,6 +12,7 @@
   "author": "OVH SAS",
   "type": "module",
   "main": "./src/index.js",
+  "types": "./src/index.d.ts",
   "dependencies": {
     "@ovh-ux/manager-dev-server-config": "^6.0.0",
     "@vitejs/plugin-legacy": "^1.3.2",

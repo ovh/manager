@@ -8,12 +8,16 @@ import IframeHmrPlugin from './plugin/iframe-hmr.js';
 import viteOvhDevServerPlugin from './plugin/dev-server.js';
 
 const isContainerApp = process.cwd().endsWith('container');
+const runInContainer = process.env.CONTAINER;
 
 const getBaseConfig = (config) => {
   const envConfig = config || {};
+  if (envConfig.isLABEU) {
+    envConfig.host = 'www.build-ovh.com';
+  }
 
   return {
-    base: isContainerApp ? './' : '/app/',
+    base: isContainerApp || !runInContainer ? './' : '/app/',
     root: resolve(process.cwd(), 'src'),
     clearScreen: false,
     publicDir: 'public',
@@ -30,7 +34,7 @@ const getBaseConfig = (config) => {
       legacy({
         targets: ['defaults'],
       }),
-      viteOvhDevServerPlugin({ isContainerApp, config: envConfig }),
+      viteOvhDevServerPlugin({ isContainerApp, envConfig }),
       IframeHmrPlugin(),
       svgr(),
     ],
@@ -53,11 +57,11 @@ const getBaseConfig = (config) => {
       sourcemap: true,
     },
     server: {
-      port: process.env.CONTAINER ? 9001 : 9000,
+      port: runInContainer ? 9001 : 9000,
       strictPort: true,
       hmr: {
         host: 'localhost',
-        port: process.env.CONTAINER ? 9001 : 9000,
+        port: runInContainer ? 9001 : 9000,
       },
     },
   };

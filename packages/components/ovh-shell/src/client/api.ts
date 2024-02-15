@@ -5,6 +5,8 @@ import { clientNavigation } from '../plugin/navigation';
 import { exposeTrackingAPI } from '../plugin/tracking';
 import { clientLogger } from '../plugin/logger';
 
+export type ShellClientApi = ReturnType<typeof exposeApi>;
+
 export default function exposeApi(shellClient: ShellClient) {
   const notifyHashChange = () => {
     if (window.parent !== window.self) {
