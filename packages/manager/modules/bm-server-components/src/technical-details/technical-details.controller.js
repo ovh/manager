@@ -35,9 +35,12 @@ export default class BmServerComponentsTechnicalDetailsController {
 
   isRamUpgradable() {
     return (
-      this.upgradeWithTicketAvailable &&
-      this.technicalDetails.memory?.upgradable?.length &&
-      !this.upgradeTask
+      (this.showServiceActions &&
+        this.upgradeWithTicketAvailable &&
+        this.technicalDetails.memory?.upgradable?.length &&
+        !this.upgradeTask) ||
+      (this.showServiceActions &&
+        this.upgradeTask.shouldScheduleUpgrade(this.UPGRADE_TYPE.RAM))
     );
   }
 
@@ -124,9 +127,12 @@ export default class BmServerComponentsTechnicalDetailsController {
 
   isDisksUpgradable() {
     return (
-      this.upgradeWithTicketAvailable &&
-      this.technicalDetails.storage?.upgradable?.length &&
-      !this.upgradeTask
+      (this.showServiceActions &&
+        this.upgradeWithTicketAvailable &&
+        this.technicalDetails.storage?.upgradable?.length &&
+        !this.upgradeTask) ||
+      (this.showServiceActions &&
+        this.upgradeTask.shouldScheduleUpgrade(this.UPGRADE_TYPE.STORAGE))
     );
   }
 
