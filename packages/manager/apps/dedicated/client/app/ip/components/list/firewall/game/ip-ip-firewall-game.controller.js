@@ -294,6 +294,42 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
     });
   }
 
+  function hasPortsAlreadyUsed() {
+    return self.table.rules.some((rule) => {
+      // Check if other rule has no range
+      if (rule.ports.from === rule.ports.to) {
+        // Check if new rule has no range
+        if (self.rule.ports.from === self.rule.ports.to) {
+          // Check if new rule is not already defined
+          if (self.rule.ports.from === rule.ports.from) {
+            return true;
+          }
+        } else if (IpGameFirewall.hasRuleIncludedInNewRule(self.rule, rule)) {
+          // Check if other rule is not included into new rule
+          return true;
+        }
+      } else if (self.rule.ports.from === self.rule.ports.to) {
+        // Check if new rule has no range
+        if (IpGameFirewall.hasNewRuleIncludedInRule(self.rule, rule)) {
+          // Check if new rule is not included into other rule
+          return true;
+        }
+      } else if (
+        IpGameFirewall.hasNewRuleIntoRule(self.rule, rule) ||
+        IpGameFirewall.hasNewRulePortToIntoRule(self.rule, rule) ||
+        IpGameFirewall.hasNewRulePortFromIntoRule(self.rule, rule) ||
+        IpGameFirewall.hasRuleIntoNewRule(self.rule, rule)
+      ) {
+        // Check if the new rule is not into other rules or
+        // Check if the new rule port to is not into other rules or
+        // Check if the new rule port from is not into other rules or
+        // Check if the rule is not into new rule
+        return true;
+      }
+      return false;
+    });
+  }
+
   $scope.$on('ips.gameFirewall.display.remove', (event, ruleId) => {
     changeStateRule(ruleId, self.constantes.DELETE_RULE_PENDING);
 
@@ -415,6 +451,18 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
       Alerter.error(
         $translate.instant(
           'ip_game_mitigation_firewall_rule_add_invalid_parameters',
+        ),
+        alert,
+      );
+      self.loading = false;
+      return;
+    }
+
+    // Check if ports are not already used by other rules
+    if (hasPortsAlreadyUsed()) {
+      Alerter.error(
+        $translate.instant(
+          'ip_game_mitigation_firewall_rule_add_ports_already_used',
         ),
         alert,
       );
