@@ -9,5 +9,6 @@
   "hosting_multisite_statistics_period_month": "Month",
   "hosting_multisite_statistics_period_year": "Year",
   "hosting_multisite_statistics_loading_error": "An error has occurred retrieving the statistics",
-  "hosting_multisite_statistics_upgrade_info": "Update your CDN option to view your CDN statistics"
+  "hosting_multisite_statistics_upgrade_info": "Update your CDN option to view your CDN statistics",
+  "hosting_multisite_statistics_changing_datavis_tool": "The tool for viewing your CDN statistics is changing. You can now find your data <b>on the OVHcloud Web Statistics page</b>, to help you track and improve website traffic"
 }
