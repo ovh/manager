@@ -28,10 +28,13 @@ export const PCI_PROJECT_STEPS = {
 export const PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID =
   'payments:rupay-message';
 
+export const SUPPORT_URL = 'https://help.ovhcloud.com/csm?id=csm_get_help';
+
 export default {
   ELIGIBILITY_ACTION_ENUM,
   ELIGIBILITY_ERROR_IMAGES_SRC,
   PCI_PROJECT_ORDER_CART,
   PCI_PROJECT_STEPS,
   PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID,
+  SUPPORT_URL,
 };
