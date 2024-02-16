@@ -46,11 +46,18 @@ export default class HostingMultisiteStatistisController {
     this.isLoadingStatistics = true;
     this.hasLoadingError = false;
     this.isCdnUpgradeRequired = false;
+    this.migration = false;
+
     return this.getStatistics(domain, period?.value)
       .then((statistics) => {
         this.fillChart(statistics, period?.value);
+        return null;
       })
       .catch(async (error) => {
+        if (error.status >= 500) {
+          this.migration = true;
+          return null;
+        }
         try {
           const { type: cdnType } = await this.getCdnProperties();
           if (error.status === 404 && cdnType === CDN_TYPE_BUSINESS) {
@@ -61,9 +68,11 @@ export default class HostingMultisiteStatistisController {
         } catch (err) {
           this.hasLoadingError = true;
         }
+        return null;
       })
       .finally(() => {
         this.isLoadingStatistics = false;
+        return null;
       });
   }
 
