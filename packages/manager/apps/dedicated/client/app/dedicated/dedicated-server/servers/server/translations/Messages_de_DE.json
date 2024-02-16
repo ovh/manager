@@ -1142,5 +1142,7 @@
   "server_configuration_installation_inputs_bad_required": "Dieses Feld muss ausgefüllt werden.",
   "server_configuration_installation_inputs_bad_sshPubKey": "Der öffentliche SSH-Schlüssel ist ungültig: Es werden nur RSA-, ECDSA- und EdDSA-Schlüssel im OpenSSH-Format akzeptiert",
   "server_configuration_installation_inputs_bad_url": "Die angegebene URL ist ungültig.",
-  "server_configuration_installation_inputs_bad_uuid": "Die UUIDv4 ist ungültig."
+  "server_configuration_installation_inputs_bad_uuid": "Die UUIDv4 ist ungültig.",
+  "server_configuration_installation_custom_image_info": "Auf dem nächsten Bildschirm können Sie ein Betriebssystem von einem personalisierten Image aus installieren, indem Sie in „{{t1}}“ die Option „{{t0}}“ auswählen.",
+  "server_configuration_installation_custom_image_help_link": "Wählen Sie den am besten geeigneten individuellen Installationstyp aus."
 }
