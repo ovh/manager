@@ -75,6 +75,9 @@ export default class NetworkFormController {
   onPrivateNetworkChanged() {
     this.subnet = null;
     this.loadBalancersSubnet = null;
+    if (!this.hasPrivateNetwork) {
+      this.gateway = { enabled: false, ip: '' };
+    }
     return this.hasPrivateNetwork ? this.loadSubnets() : null;
   }
 

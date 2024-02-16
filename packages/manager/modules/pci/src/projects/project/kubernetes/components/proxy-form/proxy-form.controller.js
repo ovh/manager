@@ -81,9 +81,7 @@ export default class ProxyFormController {
       this.proxyForm.tcpTimeout,
       this.proxyForm.udpTimeout,
     ].forEach((control) => {
-      Object.assign(control.$validators, {
-        validTimeout: isTimeoutValid,
-      });
+      Object.assign(control.$validators, { timeout: isTimeoutValid });
     });
   }
 
@@ -96,11 +94,20 @@ export default class ProxyFormController {
       values: Object.entries(this.ngModel.values ?? {}).reduce(
         (object, [key, value]) => ({
           ...object,
-          [key]:
-            key === 'scheduler'
-              ? this.schedulerItems.find((item) => item.value === value) ||
+          [key]: (() => {
+            if (key === 'scheduler')
+              return (
+                this.schedulerItems.find((item) => item.value === value) ||
                 this.schedulerItems[0]
-              : durationToSeconds(value),
+              );
+
+            const seconds = durationToSeconds(value);
+
+            if (/timeout/.test(key.toLowerCase()) && seconds > this.maxTimeout)
+              return this.maxTimeout;
+
+            return seconds;
+          })(),
         }),
         {},
       ),
