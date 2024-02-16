@@ -1,8 +1,0 @@
-{
-  "dedicated_server_install_image_title": "Install custom image",
-  "dedicated_server_install_image_explain": "With Bring Your Own Image (BYOI) technology, you can deploy cloud-ready images directly on your dedicated servers. This way, you can use your bare-metal solution as a resource for these installations. For more information, ",
-  "dedicated_server_install_image_doc_link_name": "click here for our documentation.",
-  "dedicated_server_install_image_submit": "Install the system",
-  "dedicated_server_install_image_launch_install_error": "An error has occurred launching the installation from a custom image.",
-  "dedicated_server_install_image_launch_install_error_dismiss": "Hide error"
-}
