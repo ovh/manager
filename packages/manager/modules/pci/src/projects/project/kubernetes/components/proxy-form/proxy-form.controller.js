@@ -15,7 +15,7 @@ import {
 export default class ProxyFormController {
   /* @ngInject */
   constructor($translate, $scope) {
-    this.form = null;
+    this.proxyForm = null;
     this.model = null;
     this.isFormShown = true;
     this.maxTimeout = durationToSeconds(ONE_YEAR_DURATION);
@@ -31,9 +31,9 @@ export default class ProxyFormController {
     this.watchers = [
       $scope.$watch(
         () =>
-          Boolean(this.form?.tcpFinTimeout) &&
-          Boolean(this.form?.tcpTimeout) &&
-          Boolean(this.form?.udpTimeout),
+          Boolean(this.proxyForm?.tcpFinTimeout) &&
+          Boolean(this.proxyForm?.tcpTimeout) &&
+          Boolean(this.proxyForm?.udpTimeout),
         (isFormReady) => {
           if (isFormReady) this.initializeForm();
         },
@@ -82,9 +82,9 @@ export default class ProxyFormController {
 
   initializeForm() {
     [
-      this.form.tcpFinTimeout,
-      this.form.tcpTimeout,
-      this.form.udpTimeout,
+      this.proxyForm.tcpFinTimeout,
+      this.proxyForm.tcpTimeout,
+      this.proxyForm.udpTimeout,
     ].forEach((control) => {
       Object.assign(control.$validators, {
         validTimeout: isTimeoutValid,
