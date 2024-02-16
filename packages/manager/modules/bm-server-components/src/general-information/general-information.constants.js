@@ -7,7 +7,6 @@ export const URLS = {
 export const OPERATING_SYSTEM_ENUM = {
   NONE_64: 'none_64',
   NONE_32: 'none_32',
-  BRING_YOUR_OWN_IMAGE: 'byoi_32',
 };
 
 export default {

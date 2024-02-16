@@ -1,8 +1,0 @@
-{
-  "dedicated_server_install_image_title": "Ein personalisiertes Image installieren",
-  "dedicated_server_install_image_explain": "Mit der Technologie „Bring Your Own Image“ (BYOI) können Sie Cloud-Ready-Images direkt auf Ihren Dedicated Servern nutzen. So können Sie Ihre Bare-Metal-Lösung als Ressource für diese Installationen verwenden. Für mehr Informationen ",
-  "dedicated_server_install_image_doc_link_name": "klicken Sie hier und nutzen Sie unsere Dokumentation.",
-  "dedicated_server_install_image_submit": "System installieren",
-  "dedicated_server_install_image_launch_install_error": "Beim Start der Installation auf Basis eines personalisierten Images ist ein Fehler aufgetreten.",
-  "dedicated_server_install_image_launch_install_error_dismiss": "Fehler verbergen"
-}

@@ -1,11 +1,3 @@
-export const BYOI_STATUS_ENUM = {
-  DOING: 'doing',
-  DONE: 'done',
-  ERROR: 'error',
-};
-
-export const BYOI_STARTING_MESSAGE = 'starting';
-
 export const PROGRESS_TASK_STATUS = {
   DOING: ['doing'],
   ENDING: ['done'],
@@ -14,6 +6,4 @@ export const PROGRESS_TASK_STATUS = {
 
 export default {
   PROGRESS_TASK_STATUS,
-  BYOI_STARTING_MESSAGE,
-  BYOI_STATUS_ENUM,
 };
