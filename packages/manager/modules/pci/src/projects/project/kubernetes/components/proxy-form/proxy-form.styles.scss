@@ -1,9 +1,21 @@
 .kubernetes-proxy-form {
-  .container-fluid {
-    padding: 0;
-    .col-xs-12 {
-      margin-bottom: 0.5rem;
-      white-space: nowrap;
+  .kubernetes-proxy-form-field {
+    display: table;
+    & > div {
+      display: table-row;
+      & > div {
+        vertical-align: top;
+        display: table-cell;
+        padding-bottom: 0.5rem;
+        &:first-child {
+          padding-top: 0.2rem;
+          padding-right: 0.5rem;
+          white-space: nowrap;
+        }
+      }
+    }
+    .oui-field {
+      margin-bottom: 0 !important;
     }
   }
 
@@ -20,12 +32,6 @@
   .kubernetes-proxy-form-radio-field {
     .oui-field {
       margin-bottom: 1rem !important;
-    }
-  }
-
-  .kubernetes-proxy-form-ipvs {
-    .oui-field {
-      margin-bottom: 0 !important;
     }
   }
 }
