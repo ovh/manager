@@ -1,9 +1,9 @@
-<ng-form class="kubernetes-proxy-form" name="$ctrl.form">
+<ng-form class="kubernetes-proxy-form" name="$ctrl.proxyForm">
     <h5
         class="d-flex align-items-center"
         data-ng-if="$ctrl.collapsible"
-        data-ng-class="$ctrl.dense ? 'oui-field__label' : ''"
-        data-ng-click="$ctrl.toggleForm()"
+        data-ng-class="{ 'oui-field__label': $ctrl.dense }"
+        data-ng-click="!$ctrl.frozen && $ctrl.toggleForm()"
     >
         <span data-translate="kubernetes_proxy_form"></span>
         <span
@@ -17,7 +17,7 @@
     </h5>
     <h5
         data-ng-if="!$ctrl.collapsible"
-        data-ng-class="$ctrl.dense ? 'oui-field__label' : ''"
+        data-ng-class="{ 'oui-field__label': $ctrl.dense }"
         data-translate="kubernetes_proxy_form"
     ></h5>
     <div data-ng-if="$ctrl.isFormShown">

@@ -6,6 +6,7 @@ export default {
   bindings: {
     collapsible: '<',
     dense: '<',
+    frozen: '<',
     /**
      * @type {{
      *   mode: string
