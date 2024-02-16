@@ -59,7 +59,15 @@
             data-title=":: 'netapp_volumes_mount_path' | translate"
             data-property="mountPath"
         >
-            <oui-clipboard name="mountPath" model="$value"></oui-clipboard>
+            <oui-clipboard
+                data-ng-if="$row.mountPath"
+                name="mountPath"
+                model="$value"
+            ></oui-clipboard>
+            <i
+                data-ng-if="!$row.mountPath"
+                translate="netapp_volumes_mount_path_not_configurated"
+            ></i>
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'netapp_volumes_snapshot_policy' | translate"

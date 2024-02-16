@@ -39,5 +39,6 @@
   "netapp_volumes_create_snapshot": "Créer un snapshot",
   "netapp_volumes_manage_snapshots": "Gérer les snapshots",
   "netapp_volumes_manage_acl": "Gérer IP Access (ACL)",
-  "netapp_volumes_delete_volume": "Supprimer le volume"
+  "netapp_volumes_delete_volume": "Supprimer le volume",
+  "netapp_volumes_mount_path_not_configurated": "Non configuré"
 }
