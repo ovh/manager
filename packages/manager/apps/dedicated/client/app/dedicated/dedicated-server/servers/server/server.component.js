@@ -11,6 +11,7 @@ export default {
     specifications: '<',
     user: '<',
     worldPart: '<',
+    bringYourOwnImage: '<',
     nutanixCluster: '<',
   },
   controller,

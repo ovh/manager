@@ -41,7 +41,7 @@
                     <oui-tile-description>
                         <span
                             data-ng-if="$ctrl.server.os"
-                            data-ng-bind="$ctrl.server.os"
+                            data-ng-bind="$ctrl.server.os === 'byoi_32' ? ('server_configuration_distribution_byoi' | translate) : $ctrl.server.os"
                         ></span>
                         <span
                             class="oui-badge oui-badge_warning"

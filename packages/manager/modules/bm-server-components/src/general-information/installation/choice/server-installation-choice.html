@@ -39,26 +39,17 @@
             ></span
         ></oui-radio-label>
     </oui-radio>
-    <div
-        class="alert alert-info mt-4"
-        role="alert"
+
+    <oui-radio
+        data-ng-if="$ctrl.isByoiAvailable"
+        name="choiceInstall"
+        data-model="$ctrl.choice.value"
+        data-value="$ctrl.choice.image"
     >
-        <span
-            data-ng-bind-html="'server_configuration_installation_custom_image_info' | translate:{ t0: '<b>' + ('server_configuration_installation_ovh_desktop_CUSTOMER' | translate) + '</b>', t1: '<b>' + ('server_configuration_installation_ovh_step1_desktop' | translate) + '</b>' }"
-        ></span>
-        <a
-            href="{{::$ctrl.customImageGuide}}"
-            rel="noopener"
-            target="_blank"
-        >
+        <oui-radio-label>
             <span
-                data-translate="server_configuration_installation_custom_image_help_link"
-            ></span>
-            <span
-                class="oui-icon oui-icon-external-link"
-                aria-hidden="true"
-            >
-            </span>
-        </a>
-    </div>
+                data-translate="server_configuration_installation_image"
+            ></span
+        ></oui-radio-label>
+    </oui-radio>
 </oui-modal>
