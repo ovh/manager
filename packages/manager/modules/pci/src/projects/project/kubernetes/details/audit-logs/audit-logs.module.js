@@ -1,5 +1,5 @@
 import angular from 'angular';
-import '@ovh-ux/ng-tail-logs';
+import '@ovh-ux/ng-log-to-customer';
 import '@ovh-ux/ui-kit';
 import '@uirouter/angularjs';
 import 'angular-translate';
@@ -11,7 +11,7 @@ const moduleName = 'ovhManagerPciProjectKubernetesDetailsAuditLogs';
 
 angular
   .module(moduleName, [
-    'ngTailLogs',
+    'ngLogToCustomer',
     'ngTranslateAsyncLoader',
     'oui',
     'pascalprecht.translate',

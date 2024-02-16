@@ -1,0 +1,62 @@
+// stylelint-disable-next-line selector-type-no-unknown
+.log-to-customer {
+  background-color: #122844;
+  color: white;
+  font-family: monospace;
+  position: relative;
+  flex: 0 0 70%;
+
+  &.fullScreen {
+    flex: 1 1 100%;
+  }
+
+  .logs {
+    padding: 10px;
+    height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    font-size: 0.8rem;
+    scroll-behavior: smooth;
+
+    i.cursor {
+      content: '';
+      display: inline-block;
+      background-color: white;
+      vertical-align: top;
+      width: 8px;
+      height: 17px;
+      animation: tail-logs-blink 1s step-end infinite;
+    }
+
+    span.highlight {
+      background-color: yellow;
+      color: #122844;
+    }
+  }
+
+  .bottomBtn {
+    position: absolute;
+    right: 20px;
+    z-index: 10;
+    bottom: 10px;
+  }
+
+  @keyframes tail-logs-blink {
+    0% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+.rightTile {
+  flex: 1;
+}
