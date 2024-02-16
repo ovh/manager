@@ -1,4 +1,8 @@
-import { PROGRESS_TASK_STATUS } from './server-installation-progress.constants';
+import {
+  BYOI_STATUS_ENUM,
+  BYOI_STARTING_MESSAGE,
+  PROGRESS_TASK_STATUS,
+} from './server-installation-progress.constants';
 
 export default class ServerInstallationProgressCtrl {
   /* @ngInject */
@@ -84,23 +88,39 @@ export default class ServerInstallationProgressCtrl {
 
   // Detail of install status
   checkInstallationProgress() {
-    this.Server.progressInstallation(this.$stateParams.productId).then(
-      (task) => {
-        this.$scope.progress.failStatut = false;
+    // if task status is init, it's maybe because of byoi install
+    // (which does not have status response yet).
+    // we have to wait that the message of byoi change from 'starting' to anything else in
+    // order to have a response from status API.
+    if (this.isBringYourOwnImageInit()) {
+      this.startPollReinstall();
+    } else {
+      this.Server.progressInstallation(this.$stateParams.productId).then(
+        (task) => {
+          this.$scope.progress.failStatut = false;
 
-        // doing installation or error installation
-        this.$scope.progress.installationTask = task;
-        this.$scope.progress.nbStep = task.progress.length;
-        this.refreshStepProgress();
-        this.startPollReinstall();
-      },
-      (err) => {
-        if (err.status === 404) {
-          this.reduce();
-        }
-        this.$scope.progress.failStatut = true;
-        this.startPollReinstall();
-      },
+          // doing installation or error installation
+          this.$scope.progress.installationTask = task;
+          this.$scope.progress.nbStep = task.progress.length;
+          this.refreshStepProgress();
+          this.startPollReinstall();
+        },
+        (err) => {
+          if (err.status === 404) {
+            this.reduce();
+          }
+          this.$scope.progress.failStatut = true;
+          this.startPollReinstall();
+        },
+      );
+    }
+  }
+
+  isBringYourOwnImageInit() {
+    return (
+      this.$scope.progress?.task?.status === 'init' &&
+      this.$scope.serverCtrl?.$scope.byoi?.status === BYOI_STATUS_ENUM.DOING &&
+      this.$scope.serverCtrl?.$scope.byoi?.message === BYOI_STARTING_MESSAGE
     );
   }
 

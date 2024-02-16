@@ -65,6 +65,8 @@ export default /* @ngInject */ ($stateProvider) => {
       breadcrumb: /* @ngInject */ (server) => server.displayName,
       trackingPrefix: () => 'dedicated::dedicated::server',
 
+      bringYourOwnImage: /* @ngInject */ ($stateParams, Server) =>
+        Server.getBringYourOwnImage($stateParams.productId).catch(() => null),
       goToServerDetails: /* @ngInject */ ($state, Alerter, serverName) => (
         message = false,
         type = 'DONE',

@@ -10,6 +10,7 @@ import inputs from './inputs';
 import gabarit from './installation/gabarit';
 import ovh from './installation/ovh';
 import progress from './installation/progress';
+import install from './install';
 
 import component from './general-information.component';
 
@@ -26,6 +27,7 @@ angular
     gabarit,
     ovh,
     progress,
+    install,
   ])
   .component('serverGeneralInformation', component)
   .run(/* @ngTranslationsInject:json ./translations */);

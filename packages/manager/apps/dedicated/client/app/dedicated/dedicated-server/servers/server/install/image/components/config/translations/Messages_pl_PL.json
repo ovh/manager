@@ -1,0 +1,15 @@
+{
+  "dedicated_server_install_image_config": "Parametry spersonalizowanego obrazu",
+  "dedicated_server_install_image_config_url": "URL obrazu",
+  "dedicated_server_install_image_config_url_invalid": "Wpisz poprawny adres URL",
+  "dedicated_server_install_image_config_http_header": "Nagłówek http (opcjonalnie)",
+  "dedicated_server_install_image_config_http_header_key": "Klucz",
+  "dedicated_server_install_image_config_http_header_value": "Wartość",
+  "dedicated_server_install_image_config_http_header_add": "Dodaj nagłówek http",
+  "dedicated_server_install_image_config_http_header_delete": "Usuń nagłówek http",
+  "dedicated_server_install_image_config_http_header_explain": "Wymagane tylko do pobrania obrazu",
+  "dedicated_server_install_image_config_image_type": "Typ obrazu",
+  "dedicated_server_install_image_config_checksum_type": "Typ checksum",
+  "dedicated_server_install_image_config_checksum": "Checksum obrazu",
+  "dedicated_server_install_image_config_description": "Opis obrazu (opcjonalnie)"
+}
