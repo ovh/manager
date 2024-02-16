@@ -27,7 +27,6 @@ import 'font-awesome/css/font-awesome.css';
 import 'ovh-common-style/dist/ovh-common-style.css';
 
 import { region } from '@ovh-ux/manager-components';
-import pciUniverseComponents from '@ovh-ux/ng-ovh-pci-universe-components';
 import components from './components';
 import error from './error';
 import projects from './projects';
@@ -58,7 +57,6 @@ const moduleName = 'ovhManagerPci';
 angular
   .module(moduleName, [
     components,
-    pciUniverseComponents,
     error,
     projects,
     'ui.router',
