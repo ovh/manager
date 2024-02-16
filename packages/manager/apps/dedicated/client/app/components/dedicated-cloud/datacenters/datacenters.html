@@ -10,11 +10,18 @@
     <oui-message
         class="mb-3"
         type="info"
-        data-ng-if="$ctrl.migrationBannerAvailable && $ctrl.hasLegacyDatacenter"
+        data-ng-if="$ctrl.displayMigrationBanner()"
     >
         <p
+            data-ng-if="$ctrl.migrationBannerAvailable.firstBanner"
             class="mb-0"
-            data-translate="dedicatedCloud_datacenters_migration_banner"
+            data-translate="dedicatedCloud_datacenters_migration_banner_first"
+            data-translate-values="{ href: $ctrl.migrationGuideUrl }"
+        ></p>
+        <p
+            data-ng-if="$ctrl.migrationBannerAvailable.secondBanner"
+            class="mb-0"
+            data-translate="dedicatedCloud_datacenters_migration_banner_second"
             data-translate-values="{ href: $ctrl.migrationGuideUrl }"
         ></p>
     </oui-message>
