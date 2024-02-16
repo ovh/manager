@@ -1,0 +1,87 @@
+<oui-message type="error" data-ng-if="$ctrl.errorMessage">
+    <span data-ng-bind="$ctrl.errorMessage"></span>
+</oui-message>
+
+<div class="d-flex w-100 flex-wrap">
+    <div
+        class="log-to-customer"
+        data-ng-class="{'fullScreen': $ctrl.fullScreen}"
+    >
+        <div class="d-flex p-2">
+            <div class="oui-input-overlay d-inline-block w-25">
+                <input
+                    class="oui-input"
+                    type="text"
+                    placeholder="{{:: 'search_placeholder' | translate }}"
+                    data-ng-model="$ctrl.searchText"
+                    data-ng-model-options="{ debounce: 500 }"
+                    data-ng-change="$ctrl.handleSearch()"
+                />
+                <span class="oui-icon oui-icon-search"></span>
+            </div>
+            <oui-button
+                data-ng-click="$ctrl.toggleLogs()"
+                data-variant="secondary"
+                class="mx-2"
+            >
+                <span
+                    class="oui-icon oui-icon-pause_concept"
+                    data-ng-class="{'oui-icon-pause_concept' : $ctrl.interval,
+                 'oui-icon-play_concept' : !$ctrl.interval}"
+                ></span>
+            </oui-button>
+
+            <oui-button
+                data-ng-click="$ctrl.clearSession()"
+                data-variant="secondary"
+            >
+                <span data-translate="clear_session"></span>
+            </oui-button>
+
+            <oui-button
+                data-variant="secondary"
+                class="ml-auto"
+                data-ng-if="$ctrl.isRightTileSlotFilled"
+                data-ng-click="$ctrl.fullScreen = !$ctrl.fullScreen"
+            >
+                <span class="oui-icon oui-icon-expansion-arrows_concept"></span>
+            </oui-button>
+        </div>
+        <div class="logs" data-scroll-glue="$ctrl.glued">
+            <div
+                data-translate="list_no_logs"
+                data-ng-if="$ctrl.logs.length === 0"
+            ></div>
+
+            <div data-ng-repeat="log in $ctrl.logs track by $index">
+                <div>
+                    <span data-ng-repeat="key in $ctrl.keys track by key">
+                        <span
+                            data-ng-if="$ctrl.DISPLAY_RULES.HIDE.indexOf(key) === -1"
+                            class="text-break mr-2"
+                            data-ng-class="{
+                             'text-primary' : $ctrl.DISPLAY_RULES.TEXT_PRIMARY.indexOf(key) > -1,
+                             'text-uppercase' : $ctrl.DISPLAY_RULES.UPPERCASE.indexOf(key) > -1
+                             }"
+                            data-ng-bind-html="log[key + '_highlighted']"
+                        ></span>
+                    </span>
+                </div>
+            </div>
+            <i class="cursor"></i>
+        </div>
+        <oui-button
+            data-variant="secondary"
+            class="bottomBtn"
+            data-ng-click="$ctrl.goToBottom()"
+        >
+            <span class="oui-icon oui-icon-arrow-down"></span>
+        </oui-button>
+    </div>
+    <div
+        data-ng-class="{
+         'd-none': !$ctrl.isRightTileSlotFilled,
+         'ml-2': !$ctrl.fullScreen}"
+        data-ng-transclude="tile"
+    ></div>
+</div>
