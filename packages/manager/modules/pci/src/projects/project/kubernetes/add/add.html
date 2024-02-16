@@ -57,14 +57,14 @@
         <oui-step-form
             name="kubernetes_add_private_network"
             data-header="{{:: 'kubernetes_add_private_network' | translate }}"
-            data-on-focus="$ctrl.displaySelectedPrivateNetwork = true"
-            data-on-submit="$ctrl.displaySelectedPrivateNetwork = false"
+            data-on-focus="$ctrl.canEditNetwork = true"
+            data-on-submit="$ctrl.canEditNetwork = false"
             data-editable="!$ctrl.isAdding"
             data-valid="$ctrl.isValidNetworkConfig(kubeAddClusterForm['kubernetes_add_private_network'])"
             data-prevent-next="true"
         >
             <kube-network-form
-                data-ng-if="$ctrl.displaySelectedPrivateNetwork"
+                data-ng-if="$ctrl.cluster.region"
                 data-region="$ctrl.cluster.region"
                 data-project-id="$ctrl.projectId"
                 data-private-networks="$ctrl.privateNetworks"
@@ -72,10 +72,14 @@
                 data-subnet="$ctrl.cluster.network.subnet"
                 data-load-balancers-subnet="$ctrl.cluster.network.loadBalancersSubnet"
                 data-gateway="$ctrl.cluster.network.gateway"
+                data-dense="!$ctrl.canEditNetwork"
+                data-frozen="!$ctrl.canEditNetwork"
             />
             <kube-proxy-form
                 data-ng-model="$ctrl.cluster.proxy"
                 data-collapsible="true"
+                data-dense="!$ctrl.canEditNetwork"
+                data-frozen="!$ctrl.canEditNetwork"
             />
         </oui-step-form>
 
