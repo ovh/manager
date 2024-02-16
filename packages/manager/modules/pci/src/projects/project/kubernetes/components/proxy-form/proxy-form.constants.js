@@ -22,10 +22,13 @@ export const IPVS = {
 
 export const SCHEDULER = ['dh', 'lc', 'nq', 'rr', 'sed', 'sh'];
 
+export const ONE_YEAR_DURATION = 'P1Y';
+
 export default {
   DOCUMENTATION_LINK,
   MODE,
   IPTABLES,
   IPVS,
   SCHEDULER,
+  ONE_YEAR_DURATION,
 };
