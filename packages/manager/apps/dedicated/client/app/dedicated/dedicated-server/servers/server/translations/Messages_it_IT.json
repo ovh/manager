@@ -1142,7 +1142,5 @@
   "server_configuration_installation_inputs_bad_required": "Questo campo è obbligatorio",
   "server_configuration_installation_inputs_bad_sshPubKey": "La chiave pubblica SSH non è valida: sono accettate solo le chiavi RSA, ECDSA e EdDSA in formato OpenSSH",
   "server_configuration_installation_inputs_bad_url": "L'URL inserito non è valido",
-  "server_configuration_installation_inputs_bad_uuid": "L’UUIDv4 non è valido",
-  "server_configuration_installation_custom_image_info": "Potrai installare un OS da un'immagine personalizzata nella prossima schermata, scegliendo \"{{t0}}\" in \"{{t1}}\".",
-  "server_configuration_installation_custom_image_help_link": "Scegli il tipo di installazione personalizzata più appropriato."
+  "server_configuration_installation_inputs_bad_uuid": "L’UUIDv4 non è valido"
 }
