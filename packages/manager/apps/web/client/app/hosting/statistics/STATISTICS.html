@@ -117,61 +117,70 @@
             </div>
         </div>
 
-        <div
-            class="my-5 text-center"
-            data-ng-if="selected.type === 'IN_HTTP_HITS'"
-        >
+        <oui-message class="my-5" data-ng-if="migration" type="info">
             <span
-                class="oui-label d-inline-block mr-2"
-                data-translate="hosting_tab_STATISTICS_aggregate"
-            ></span>
-            <div
-                class="oui-radio oui-radio_inline"
-                data-ng-repeat="option in model.constants.aggregateModes track by option"
+                data-translate="hosting_offer_changing_datavis_tool"
+                data-translate-values="{ url: STATUS_OVHCLOUD_URL }"
             >
-                <input
-                    type="radio"
-                    class="oui-radio__input"
-                    id="aggregateModes-{{$index}}"
-                    name="aggregationModel"
-                    data-ng-change="getStatistics()"
-                    data-ng-model="selected.aggregateMode"
-                    data-ng-value="option"
-                />
-                <label
-                    class="oui-radio__label-container"
-                    for="aggregateModes-{{$index}}"
+            </span>
+        </oui-message>
+        <div data-ng-if="!migration">
+            <div
+                class="my-5 text-center"
+                data-ng-if="selected.type === 'IN_HTTP_HITS'"
+            >
+                <span
+                    class="oui-label d-inline-block mr-2"
+                    data-translate="hosting_tab_STATISTICS_aggregate"
+                ></span>
+                <div
+                    class="oui-radio oui-radio_inline"
+                    data-ng-repeat="option in model.constants.aggregateModes track by option"
                 >
-                    <span class="oui-radio__label">
-                        <span class="oui-radio__icon"></span>
-                        <span
-                            class="oui-radio__text"
-                            data-ng-bind="'hosting_tab_STATISTICS_aggregate_' + option | translate"
-                        ></span>
-                    </span>
-                </label>
+                    <input
+                        type="radio"
+                        class="oui-radio__input"
+                        id="aggregateModes-{{$index}}"
+                        name="aggregationModel"
+                        data-ng-change="getStatistics()"
+                        data-ng-model="selected.aggregateMode"
+                        data-ng-value="option"
+                    />
+                    <label
+                        class="oui-radio__label-container"
+                        for="aggregateModes-{{$index}}"
+                    >
+                        <span class="oui-radio__label">
+                            <span class="oui-radio__icon"></span>
+                            <span
+                                class="oui-radio__text"
+                                data-ng-bind="'hosting_tab_STATISTICS_aggregate_' + option | translate"
+                            ></span>
+                        </span>
+                    </label>
+                </div>
             </div>
+
+            <div
+                class="text-center mt-5"
+                data-ng-if="!hosting.isCloudWeb && !model.datas"
+            >
+                <oui-spinner data-size="l"></oui-spinner>
+            </div>
+
+            <div
+                class="chart-container"
+                style="height: 320px;"
+                data-ng-if="selected.haveDataToDisplay"
+                data-wuc-chartjs="stats.chart"
+            ></div>
+
+            <div
+                class="alert alert-info my-5"
+                role="alert"
+                data-translate="hosting_tab_STATISTICS_none"
+                data-ng-if="hosting.isCloudWeb || (model.datas && !selected.haveDataToDisplay)"
+            ></div>
         </div>
-
-        <div
-            class="text-center mt-5"
-            data-ng-if="!hosting.isCloudWeb && !model.datas"
-        >
-            <oui-spinner data-size="l"></oui-spinner>
-        </div>
-
-        <div
-            class="chart-container"
-            style="height: 320px;"
-            data-ng-if="selected.haveDataToDisplay"
-            data-wuc-chartjs="stats.chart"
-        ></div>
-
-        <div
-            class="alert alert-info my-5"
-            role="alert"
-            data-translate="hosting_tab_STATISTICS_none"
-            data-ng-if="hosting.isCloudWeb || (model.datas && !selected.haveDataToDisplay)"
-        ></div>
     </div>
 </div>
