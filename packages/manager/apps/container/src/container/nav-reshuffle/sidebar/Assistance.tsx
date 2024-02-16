@@ -33,7 +33,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
   const reketInstance = useReket();
   const [selectedItem, setSelectedItem] = useState<string>(null);
 
-  const hasAdvancedSupport = ['EU', 'CA'].includes(environment.getRegion());
+  const isEUCA = ['EU', 'CA'].includes(environment.getRegion());
   const [hasLiveChat, setHashLiveChat] = useState(false);
 
   const { closeNavigationSidebar, openOnboarding } = useProductNavReshuffle();
@@ -80,6 +80,17 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
     trackingPlugin.trackClick({ name: `navbar_v2_${id}`, type: 'navigation' });
   };
 
+  const supportNode = {
+    count: false,
+    translation: 'sidebar_assistance_tickets',
+    routing: !isEUCA ? {
+      application: 'dedicated',
+      hash: '#/ticket',
+    }: null,
+    isExternal: isEUCA,
+    url: isEUCA ? urls.get('support') : null,
+  }
+
   return (
     <ul className="mt-auto">
       <li className="assistance_header" onClick={() => onToggle(!isOpen)}>
@@ -109,17 +120,10 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
             }`}
           >
             <SidebarLink
-              node={{
-                translation: 'sidebar_assistance_tickets',
-                routing: {
-                  application: 'dedicated',
-                  hash: '#/ticket',
-                },
-                count: false,
-              }}
+              node={supportNode}
               onClick={() => {
                 trackNode('assistance_tickets');
-                closeNavigationSidebar();
+                !isEUCA && closeNavigationSidebar();
               }}
             />
           </li>
@@ -134,7 +138,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
               onClick={() => trackNode('assistance_status')}
             />
           </li>
-          {hasAdvancedSupport && (
+          {isEUCA && (
             <li
               className={`${
                 selectedItem === 'support_level' ? style.sidebar_selected : ''

@@ -19,6 +19,8 @@ const useUsefulLinks = (): UseUsefulLinks => {
   const user = environment.getUser();
   const { isLivechatEnabled, setChatbotReduced } = useContainer();
 
+  const isEUCA = ['EU', 'CA'].includes(region);
+
   const getUsefulLinks = (): UsefulLink[] => {
     const trackingPrefix = 'hub::sidebar::useful-links';
     return [
@@ -31,15 +33,15 @@ const useUsefulLinks = (): UseUsefulLinks => {
       },
       ...(isLivechatEnabled
         ? [
-            {
-              id: 'chatbot',
-              action: () => {
-                shell.getPlugin('ux').openLiveChat();
-                setChatbotReduced(false);
-              },
-              icon: 'oui-icon oui-icon-speech-bubble_concept',
+          {
+            id: 'chatbot',
+            action: () => {
+              shell.getPlugin('ux').openLiveChat();
+              setChatbotReduced(false);
             },
-          ]
+            icon: 'oui-icon oui-icon-speech-bubble_concept',
+          },
+        ]
         : []),
       {
         id: 'tasks',
@@ -50,19 +52,21 @@ const useUsefulLinks = (): UseUsefulLinks => {
       },
       {
         id: 'tickets',
-        href: navigation.getURL('dedicated', '#/ticket'),
+        external: isEUCA,
+        href: isEUCA ? constants[region].support.tickets : navigation.getURL('dedicated', '#/ticket'),
         tracking: `${trackingPrefix}::go-to-tickets`,
         icon: 'oui-icon oui-icon-envelop_concept',
       },
-      ...(['EU', 'CA'].includes(region)
+      ...(isEUCA
         ? [
-            {
-              id: 'createTicket',
-              href: navigation.getURL('dedicated', '#/support/tickets/new'),
-              tracking: `${trackingPrefix}::go-to-create-ticket`,
-              icon: 'oui-icon oui-icon-user-support_concept',
-            },
-          ]
+          {
+            id: 'createTicket',
+            external: true,
+            href: constants[region].support.createTicket,
+            tracking: `${trackingPrefix}::go-to-create-ticket`,
+            icon: 'oui-icon oui-icon-user-support_concept',
+          },
+        ]
         : []),
     ];
   };
