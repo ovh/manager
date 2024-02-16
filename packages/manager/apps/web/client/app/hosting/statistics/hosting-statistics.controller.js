@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import head from 'lodash/head';
 import map from 'lodash/map';
 import remove from 'lodash/remove';
+import { STATUS_OVHCLOUD_URL } from '../../constants';
 
 angular
   .module('App')
@@ -18,6 +19,7 @@ angular
       HostingDatabase,
       WucChartjsFactory,
     ) => {
+      $scope.STATUS_OVHCLOUD_URL = STATUS_OVHCLOUD_URL;
       const HOSTING_STATISTICS = {
         type: 'line',
         data: {
@@ -214,10 +216,19 @@ angular
           );
         }
 
-        $q.all(getStatsPromises).then((results) => {
-          $scope.model.datas = results;
-          refreshChart();
-        });
+        $scope.migration = false;
+
+        $q.all(getStatsPromises)
+          .then((results) => {
+            $scope.model.datas = results;
+            refreshChart();
+          })
+          .catch((error) => {
+            if (error.status >= 500) {
+              $scope.migration = true;
+            }
+            throw error;
+          });
       };
 
       function removeSqlStatistics() {

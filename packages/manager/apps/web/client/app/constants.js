@@ -67,8 +67,12 @@ export const DOMAIN_ORDER_URL = {
   },
 };
 
+export const STATUS_OVHCLOUD_URL =
+  'https://web-cloud.status-ovhcloud.com/incidents/bklsmwkj01y8';
+
 export default {
   DOMAIN_ORDER_URL,
   HOSTING_ORDER_URL,
   SANITIZATION,
+  STATUS_OVHCLOUD_URL,
 };

@@ -1,3 +1,4 @@
 {
-  "private_database_metrics": "Métricas"
+  "private_database_metrics": "Métricas",
+  "private_database_metrics_changing_datavis_tool": "A ferramenta de visualização das estatísticas das suas bases de dados evolui e está temporariamente indisponível. <a href=\"{{url}}\" target=\"_blank\">Consulte a página de manutenção</a> para acompanhar o progresso."
 }
