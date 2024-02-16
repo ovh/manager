@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.21.0...@ovh-ux/manager-dedicated@19.22.0) (2024-02-16)
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10824](https://github.com/ovh/manager/issues/10824)) ([ec65f97](https://github.com/ovh/manager/commit/ec65f97f114c5172f8a63f485ececd383fbd9eee))
+
+
+
+
+
 # [19.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.20.0...@ovh-ux/manager-dedicated@19.21.0) (2024-02-15)
 
 
