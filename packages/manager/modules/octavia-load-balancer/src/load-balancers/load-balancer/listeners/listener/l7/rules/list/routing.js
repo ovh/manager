@@ -22,9 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
             'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.l7Rules.create',
           );
         },
-        goToL7RuleEdition: /* @ngInject */ ($state, trackL7RulesAction) => (
-          rule,
-        ) => {
+        goToL7RuleEdition: /* @ngInject */ ($state, atInternet) => (rule) => {
           atInternet.trackClick({ name: RULES_TRACKING.EDIT, type: 'action' });
           $state.go(
             'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.l7Rules.edit',

@@ -4,8 +4,8 @@ export default class OctaviaLoadBalancerL7PoliciesListCtrl {
   constructor() {
     this.ACTIONS = ACTIONS;
     this.ACTION_LABELS = ACTION_LABELS;
-    this.policyEditionTackingHit = POLICIES_TRACKING.EDIT;
-    this.poolDashboardTackingHit = POLICIES_TRACKING.POOL_DASHBOARD;
+    this.policyEditionTrackingHit = POLICIES_TRACKING.EDIT;
+    this.poolDashboardTrackingHit = POLICIES_TRACKING.POOL_DASHBOARD;
   }
 
   getAttribute(policy) {
