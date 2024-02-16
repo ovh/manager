@@ -5,7 +5,6 @@ export default {
   bindings: {
     bandwidthInformations: '<',
     biosSettings: '<',
-    bringYourOwnImage: '<',
     changeOwnerAvailable: '<',
     currentActiveLink: '<',
     isMonitoringOptionsAvailable: '<',
