@@ -28,22 +28,21 @@ export default class ProxyFormController {
       ...SCHEDULER.map((value) => ({ label: value, value })),
     ];
 
-    this.watchers = [
-      $scope.$watch(
-        () =>
-          Boolean(this.proxyForm?.tcpFinTimeout) &&
-          Boolean(this.proxyForm?.tcpTimeout) &&
-          Boolean(this.proxyForm?.udpTimeout),
-        (isFormReady) => {
-          if (isFormReady) this.initializeForm();
-        },
-      ),
-      $scope.$watch(
-        () => this.model,
-        () => this.setNgModelFromModel(),
-        true,
-      ),
-    ];
+    $scope.$watch(
+      () =>
+        Boolean(this.proxyForm?.tcpFinTimeout) &&
+        Boolean(this.proxyForm?.tcpTimeout) &&
+        Boolean(this.proxyForm?.udpTimeout),
+      (isFormReady) => {
+        if (isFormReady) this.initializeForm();
+      },
+    );
+
+    $scope.$watch(
+      () => this.model,
+      () => this.setNgModelFromModel(),
+      true,
+    );
   }
 
   get isIPTablesMode() {
@@ -61,10 +60,6 @@ export default class ProxyFormController {
     if (this.isFormShown && !this.ngModel) {
       this.initializeModel();
     }
-  }
-
-  $onDestroy() {
-    this.watchers.forEach((watcher) => watcher());
   }
 
   $onChanges({ ngModel }) {
