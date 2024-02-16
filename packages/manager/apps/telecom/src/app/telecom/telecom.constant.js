@@ -3,6 +3,7 @@
  */
 angular
   .module('managerApp')
+  .constant('SUPPORT_URL', 'https://help.ovhcloud.com/csm?id=csm_get_help')
   .constant('REDIRECT_V4_HASH', {
     group: {
       // ADMIN
