@@ -12,6 +12,7 @@ export default {
     loadBalancersSubnet: '=',
     gateway: '=',
     dense: '<',
+    frozen: '<',
   },
   controller,
   template,
