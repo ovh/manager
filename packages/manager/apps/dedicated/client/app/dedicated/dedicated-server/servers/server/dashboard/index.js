@@ -29,6 +29,7 @@ import installationChoice from './installation/choice';
 import installationGabarit from './installation/gabarit';
 import installationOvh from './installation/ovh';
 import installationProgress from './installation/progress';
+import install from '../install';
 
 import component from './dashboard.component';
 import routing from './dashboard.routing';
@@ -61,6 +62,7 @@ angular
     installationGabarit,
     installationOvh,
     installationProgress,
+    install,
   ])
   .component('dedicatedServerDashboard', component)
   .config(routing)
