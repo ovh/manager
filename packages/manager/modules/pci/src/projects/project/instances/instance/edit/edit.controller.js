@@ -4,6 +4,7 @@ import { PATTERN } from '../../../../../components/project/instance/name/constan
 import Flavor from '../../../../../components/project/flavors-list/flavor.class';
 import Instance from '../../../../../components/project/instance/instance.class';
 import { EDIT_PAGE_SECTIONS } from '../instance.constants';
+import { INSTANCE_PRICING_LINKS } from '../../instances.constants';
 
 export default class PciInstanceEditController {
   /* @ngInject */
@@ -13,6 +14,7 @@ export default class PciInstanceEditController {
     ovhManagerRegionService,
     PciProjectsProjectInstanceService,
     PciProject,
+    coreConfig,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
@@ -20,6 +22,9 @@ export default class PciInstanceEditController {
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
     this.PciProject = PciProject;
     this.EDIT_PAGE_SECTIONS = EDIT_PAGE_SECTIONS;
+    this.instancePricesLink =
+      INSTANCE_PRICING_LINKS[coreConfig.getUser()?.ovhSubsidiary] ||
+      INSTANCE_PRICING_LINKS.DEFAULT;
   }
 
   $onInit() {
