@@ -1,7 +1,6 @@
 import angular from 'angular';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
-import 'moment';
 
 import component from './proxy-form.component';
 
