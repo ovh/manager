@@ -4,6 +4,7 @@ import {
   IPTABLES,
   IPVS,
   SCHEDULER,
+  ONE_YEAR_DURATION,
 } from './proxy-form.constants';
 import {
   isTimeoutValid,
@@ -17,6 +18,7 @@ export default class ProxyFormController {
     this.form = null;
     this.model = null;
     this.isFormShown = true;
+    this.maxTimeout = durationToSeconds(ONE_YEAR_DURATION);
 
     this.DOCUMENTATION_LINK = DOCUMENTATION_LINK;
     this.MODE = MODE;
@@ -117,7 +119,11 @@ export default class ProxyFormController {
         values: Object.entries(this.model.values ?? {}).reduce(
           (object, [key, value]) => ({
             ...object,
-            [key]: key === 'scheduler' ? value.value : secondsToDuration(value),
+            [key]: (() => {
+              if (key === 'scheduler') return value.value;
+              if (value === this.maxTimeout) return ONE_YEAR_DURATION;
+              return secondsToDuration(value);
+            })(),
           }),
           {},
         ),
