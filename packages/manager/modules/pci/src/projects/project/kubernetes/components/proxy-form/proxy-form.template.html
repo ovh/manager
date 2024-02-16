@@ -51,10 +51,13 @@
         </oui-field>
 
         <!-- iptables -->
-        <div class="container-fluid" data-ng-if="$ctrl.isIPTablesMode">
-            <div class="row">
-                <div class="col-xs-12 col-sm-2">min sync period</div>
-                <div class="col-xs-12 col-sm-2">
+        <div
+            class="kubernetes-proxy-form-field"
+            data-ng-if="$ctrl.isIPTablesMode"
+        >
+            <div>
+                <div>min sync period</div>
+                <div>
                     <oui-numeric
                         data-id="minSyncPeriod"
                         data-name="minSyncPeriod"
@@ -63,9 +66,9 @@
                     />
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-2">sync period</div>
-                <div class="col-xs-12 col-sm-2">
+            <div>
+                <div>sync period</div>
+                <div>
                     <oui-numeric
                         data-id="syncPeriod"
                         data-name="syncPeriod"
@@ -77,93 +80,92 @@
         </div>
 
         <!-- ipvs -->
-        <div
-            class="kubernetes-proxy-form-ipvs container-fluid"
-            data-ng-if="$ctrl.isIPVSMode"
-        >
+        <div data-ng-if="$ctrl.isIPVSMode">
             <oui-message data-type="warning">
                 <span data-translate="kubernetes_proxy_form_ipvs_warn"></span>
             </oui-message>
-            <div class="row">
-                <div class="col-xs-12 col-sm-2">min sync period</div>
-                <div class="col-xs-12 col-sm-10">
-                    <oui-numeric
-                        data-id="minSyncPeriod"
-                        data-name="minSyncPeriod"
-                        data-model="$ctrl.model.values.minSyncPeriod"
-                        data-min="0"
-                    />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-2">scheduler</div>
-                <div class="col-xs-12 col-sm-10">
-                    <oui-select
-                        data-name="scheduler"
-                        data-model="$ctrl.model.values.scheduler"
-                        data-items="$ctrl.schedulerItems"
-                        data-match="label"
-                        data-inline
-                    />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-2">sync period</div>
-                <div class="col-xs-12 col-sm-10">
-                    <oui-numeric
-                        data-id="syncPeriod"
-                        data-name="syncPeriod"
-                        data-model="$ctrl.model.values.syncPeriod"
-                        data-min="1"
-                    />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-2">tcpfin timeout</div>
-                <div class="col-xs-12 col-sm-10">
-                    <oui-field
-                        data-error-messages="{ validTimeout: ('kubernetes_proxy_form_ipvs_timeout_invalid'|translate) }"
-                    >
+            <div class="kubernetes-proxy-form-field">
+                <div>
+                    <div>min sync period</div>
+                    <div>
                         <oui-numeric
-                            data-id="tcpFinTimeout"
-                            data-name="tcpFinTimeout"
-                            data-model="$ctrl.model.values.tcpFinTimeout"
+                            data-id="minSyncPeriod"
+                            data-name="minSyncPeriod"
+                            data-model="$ctrl.model.values.minSyncPeriod"
                             data-min="0"
-                            data-max="$ctrl.maxTimeout"
                         />
-                    </oui-field>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-2">tcp timeout</div>
-                <div class="col-xs-12 col-sm-10">
-                    <oui-field
-                        data-error-messages="{ validTimeout: ('kubernetes_proxy_form_ipvs_timeout_invalid'|translate) }"
-                    >
-                        <oui-numeric
-                            data-id="tcpTimeout"
-                            data-name="tcpTimeout"
-                            data-model="$ctrl.model.values.tcpTimeout"
-                            data-min="0"
-                            data-max="$ctrl.maxTimeout"
+                <div>
+                    <div>scheduler</div>
+                    <div>
+                        <oui-select
+                            data-name="scheduler"
+                            data-model="$ctrl.model.values.scheduler"
+                            data-items="$ctrl.schedulerItems"
+                            data-match="label"
+                            data-inline
                         />
-                    </oui-field>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-2">udp timeout</div>
-                <div class="col-xs-12 col-sm-10">
-                    <oui-field
-                        data-error-messages="{ validTimeout: ('kubernetes_proxy_form_ipvs_timeout_invalid'|translate) }"
-                    >
+                <div>
+                    <div>sync period</div>
+                    <div>
                         <oui-numeric
-                            data-id="udpTimeout"
-                            data-name="udpTimeout"
-                            data-model="$ctrl.model.values.udpTimeout"
-                            data-min="0"
-                            data-max="$ctrl.maxTimeout"
+                            data-id="syncPeriod"
+                            data-name="syncPeriod"
+                            data-model="$ctrl.model.values.syncPeriod"
+                            data-min="1"
                         />
-                    </oui-field>
+                    </div>
+                </div>
+                <div>
+                    <div>tcpfin timeout</div>
+                    <div>
+                        <oui-field
+                            data-error-messages="{ timeout: ('kubernetes_proxy_form_ipvs_timeout_invalid'|translate) }"
+                        >
+                            <oui-numeric
+                                data-id="tcpFinTimeout"
+                                data-name="tcpFinTimeout"
+                                data-model="$ctrl.model.values.tcpFinTimeout"
+                                data-min="0"
+                                data-max="$ctrl.maxTimeout"
+                            />
+                        </oui-field>
+                    </div>
+                </div>
+                <div>
+                    <div>tcp timeout</div>
+                    <div>
+                        <oui-field
+                            data-error-messages="{ timeout: ('kubernetes_proxy_form_ipvs_timeout_invalid'|translate) }"
+                        >
+                            <oui-numeric
+                                data-id="tcpTimeout"
+                                data-name="tcpTimeout"
+                                data-model="$ctrl.model.values.tcpTimeout"
+                                data-min="0"
+                                data-max="$ctrl.maxTimeout"
+                            />
+                        </oui-field>
+                    </div>
+                </div>
+                <div>
+                    <div>udp timeout</div>
+                    <div>
+                        <oui-field
+                            data-error-messages="{ timeout: ('kubernetes_proxy_form_ipvs_timeout_invalid'|translate) }"
+                        >
+                            <oui-numeric
+                                data-id="udpTimeout"
+                                data-name="udpTimeout"
+                                data-model="$ctrl.model.values.udpTimeout"
+                                data-min="0"
+                                data-max="$ctrl.maxTimeout"
+                            />
+                        </oui-field>
+                    </div>
                 </div>
             </div>
         </div>
