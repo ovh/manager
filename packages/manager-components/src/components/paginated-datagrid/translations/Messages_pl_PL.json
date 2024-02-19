@@ -1,0 +1,5 @@
+{
+  "cpb_vouchers_add_success": "Voucher został dodany.",
+  "cpb_vouchers_add_error": "Wystąpił problem z dodaniem vouchera. Spróbuj ponownie.",
+  "common_pagination_no_results": "Brak wyników"
+}
