@@ -20,6 +20,8 @@ import { useTranslation } from 'react-i18next';
 import { RancherService } from '@/api/api.type';
 import { isValidRancherName } from '@/utils/rancher';
 import Modal from './Modal';
+import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
+import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 interface DeleteModalProps {
   rancher: RancherService;
@@ -33,13 +35,15 @@ const EditNameModal = ({
   onEditRancher,
 }: DeleteModalProps) => {
   const { t } = useTranslation('pci-rancher/listing');
+  const trackAction = useTrackingAction();
+  useTrackingPage(TrackingPageView.EditNameModal);
   const [newName, setNewName] = useState(rancher.currentState?.name || '');
-
   const isValidName = isValidRancherName(newName);
   const isButtonValid = rancher.currentState?.name !== newName && isValidName;
 
   const onEdit = () => {
     if (isButtonValid) {
+      trackAction(TrackingPageView.EditNameModal, TrackingEvent.confirm);
       onEditRancher({
         ...rancher,
         currentState: {
@@ -97,7 +101,10 @@ const EditNameModal = ({
         slot="actions"
         variant={ODS_BUTTON_VARIANT.stroked}
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={() => toggleModal(false)}
+        onClick={() => {
+          trackAction(TrackingPageView.EditNameModal, TrackingEvent.cancel);
+          toggleModal(false);
+        }}
       >
         {t('cancel')}
       </OsdsButton>

@@ -26,6 +26,7 @@ import './Table.scss';
 
 export default function TableContainer({
   data,
+  refetchRanchers,
 }: Readonly<RancherDatagridWrapper>) {
   const { t } = useTranslation('pci-rancher/listing');
   const [sorting, setSorting] = useState<SortingState>([]);
@@ -37,7 +38,7 @@ export default function TableContainer({
   const [
     deleteRancherResponse,
     setDeleteRancherResponse,
-  ] = useState<ODS_MESSAGE_TYPE | null>(null);
+  ] = useState<ODS_MESSAGE_TYPE.error | null>(null);
   const { mutate: deleteRancher } = useMutation({
     mutationFn: () =>
       deleteRancherService({
@@ -45,6 +46,7 @@ export default function TableContainer({
         projectId,
       }),
     mutationKey: deleteRancherServiceQueryKey(selectedRancher?.id),
+    onSuccess: () => refetchRanchers(),
     onError: () => setDeleteRancherResponse(ODS_MESSAGE_TYPE.error),
   });
 
@@ -111,7 +113,7 @@ export default function TableContainer({
   return (
     <>
       {deleteRancherResponse && (
-        <OsdsMessage type={ODS_MESSAGE_TYPE.error} className="my-4 p-3">
+        <OsdsMessage type={deleteRancherResponse} className="my-4 p-3">
           <OsdsText
             color={ODS_THEME_COLOR_INTENT.text}
             className="inline-block"

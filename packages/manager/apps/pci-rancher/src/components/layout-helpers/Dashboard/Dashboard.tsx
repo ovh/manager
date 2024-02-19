@@ -16,6 +16,8 @@ import useGenerateAccessDetail from '../../../hooks/useGenerateAccessDetail';
 import Title from '../../Title/Title';
 import RancherDetail from './RancherDetail';
 import TabBar from './TabBar';
+import { useTrackingPage } from '@/hooks/useTrackingPage';
+import { TrackingPageView } from '@/utils/tracking';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -38,6 +40,7 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({
 }) => {
   const { t } = useTranslation('pci-rancher/dashboard');
   const { projectId } = useParams();
+  useTrackingPage(TrackingPageView.DetailRancher);
   const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
   const [editNameResponseType, setEditNameResponseType] = useState<
     ODS_MESSAGE_TYPE.success | ODS_MESSAGE_TYPE.error | null
