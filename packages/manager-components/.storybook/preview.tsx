@@ -1,10 +1,15 @@
 import React, { Suspense, useEffect } from 'react';
 import { I18nextProvider } from 'react-i18next';
+import { odsSetup } from '@ovhcloud/ods-common-core';
 
 import { Preview } from '@storybook/react';
 import '../src/tailwind/theme.css';
 import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
 import i18n from './i18n';
+
+import '@ovhcloud/ods-theme-blue-jeans';
+
+odsSetup();
 
 const preview: Preview = {
   parameters: {
@@ -44,14 +49,14 @@ export const globalTypes = {
     toolbar: {
       icon: 'globe',
       items: [
-        { value: 'fr-FR', title: 'Francais' },
-        { value: 'en-GB', title: 'English' },
-        { value: 'de-DE', title: 'Deutsch' },
-        { value: 'es-ES', title: 'Espagne' },
-        { value: 'it-IT', title: 'Italy' },
-        { value: 'pt-PT', title: 'Portugal' },
-        { value: 'pl-PL', title: 'Poland' },
-        { value: 'fr-CA', title: 'Canada' },
+        { value: 'fr_FR', title: 'Francais' },
+        { value: 'en_GB', title: 'English' },
+        { value: 'de_DE', title: 'Deutsch' },
+        { value: 'es_ES', title: 'Espagne' },
+        { value: 'it_IT', title: 'Italy' },
+        { value: 'pt_PT', title: 'Portugal' },
+        { value: 'pl_PL', title: 'Poland' },
+        { value: 'fr_CA', title: 'Canada' },
       ],
       showName: true,
     },
