@@ -34,17 +34,37 @@ export default class LogToCustomerCtrl {
     this.keys = Object.keys(this.logKeys);
     this.setUrlTimeout = null;
 
-    this.setUrlSource().then(() => !this.errorMessage && this.startLog());
+    this.logKinds = [];
+    this.LogToCustomer.getLogKinds(this.logKindApiUrl)
+      .then((data) => {
+        this.logKinds = data;
+        this.selectedLogKind = data[0]?.name;
+      })
+      .then(() => this.generateTempUrlSource())
+      .then(() => !this.errorMessage && this.startLog())
+      .catch(this.setErrorMessage);
   }
 
   $onDestroy() {
+    this.clearTimeout();
+    if (this.interval) {
+      this.clearInterval();
+    }
+  }
+
+  clearTimeout() {
     if (this.setUrlTimeout) {
       this.$timeout.cancel(this.setUrlTimeout);
     }
+  }
 
-    if (this.interval) {
-      this.stop();
-    }
+  switchLogKind(kind) {
+    this.clearInterval();
+    this.clearSession();
+    this.selectedLogKind = kind;
+    this.generateTempUrlSource().then(
+      () => !this.errorMessage && this.startLog(),
+    );
   }
 
   handleSearch() {
@@ -84,13 +104,13 @@ export default class LogToCustomerCtrl {
 
   toggleLogs() {
     if (this.interval) {
-      this.stop();
+      this.clearInterval();
     } else {
       this.startLog();
     }
   }
 
-  stop() {
+  clearInterval() {
     this.$interval.cancel(this.interval);
     this.interval = null;
   }
@@ -106,7 +126,7 @@ export default class LogToCustomerCtrl {
           this.appendLogs(data);
         })
         .catch(() => {
-          this.stop();
+          this.clearInterval();
           this.setErrorMessage();
         });
     }, 3000);
@@ -159,15 +179,22 @@ export default class LogToCustomerCtrl {
     });
   }
 
-  setUrlSource() {
-    return this.LogToCustomer.getLogSourceUrl(this.source)
+  generateTempUrlSource() {
+    this.errorMessage = null;
+    this.url = null;
+
+    return this.LogToCustomer.getLogSourceUrl(
+      this.logApiUrl,
+      this.selectedLogKind,
+    )
       .then((data) => {
         this.url = data.url;
+        this.clearTimeout();
+
         const expirationConnectionTimeout =
           Date.parse(data.expirationDate) - new Date().getTime() - 300;
-
         this.setUrlTimeout = this.$timeout(() => {
-          this.setUrlSource();
+          this.generateTempUrlSource();
         }, expirationConnectionTimeout);
       })
       .catch(() => {
