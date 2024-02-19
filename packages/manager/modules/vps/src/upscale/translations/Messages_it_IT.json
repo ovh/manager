@@ -48,5 +48,12 @@
   "vps_upscale_elite_upgrade_error": "Si è verificato un errore durante la modifica della configurazione.",
   "vps_upscale_agreements": "Ho letto e accetto le <a target=\"_blank\" href=\"{{conditions}}\" rel=\"noopener\">condizioni generali</a> e l’<a target=\"_blank\" href=\"{{policy}}\" rel=\"noopener\">informativa sulla privacy</a>.",
   "vps_upscale_fail_vps_in_rescue_info": "Non è possibile effettuare l'upgrade del VPS a una soluzione superiore perché risulta attualmente in modalità Rescue.",
-  "vps_upscale_fail_vps_in_rescue_action": "Riavvia il VPS disattivando la modalità Rescue."
+  "vps_upscale_fail_vps_in_rescue_action": "Riavvia il VPS disattivando la modalità Rescue.",
+  "vps_upscale_summary_current_configuration_yearly": "Configurazione attuale per un pagamento annuale",
+  "vps_upscale_summary_final_configuration_yearly": "Configurazione finale per un pagamento annuale",
+  "vps_upscale_summary_price_yearly": "Prezzo proporzionale per l'anno in corso",
+  "vps_upscale_summary_price_yearly_with_payment_method_validation": "Confermando questa scelta ti verrà fatturato un importo di {{ price }}, corrispondente al prorata temporis per l’anno in corso.",
+  "vps_upscale_summary_price_yearly_without_payment_method_validation": "Confermando questa scelta verrai reindirizzato al buono d’ordine da cui sarà possibile pagare l’importo di {{ price }} dovuto per il prorata temporis.",
+  "vps_upscale_success_yearly_with_payment_method": "La richiesta di modifica della gamma è stata presa in carico. Ti è stato fatturato un importo di {{ price }}, corrispondente al prorata temporis per l’anno in corso.",
+  "vps_upscale_elite_upgrade_success_yearly_with_payment_method": "La richiesta di modifica della configurazione è stata presa in carico. Ti è stato fatturato un importo di {{ price }}, corrispondente al prorata temporis per l’anno in corso."
 }
