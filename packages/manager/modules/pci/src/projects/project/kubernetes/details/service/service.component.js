@@ -16,6 +16,7 @@ const component = {
     terminate: '<',
     updateCluster: '<',
     updatePolicy: '<',
+    updateProxy: '<',
     isVersionSupported: '<',
     restrictionsLink: '<',
     loadRestrictions: '<',

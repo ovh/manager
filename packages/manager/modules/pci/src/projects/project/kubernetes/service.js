@@ -369,4 +369,12 @@ export default class Kubernetes {
       .delete(`/cloud/project/${serviceName}/kube/${kubeId}/openIdConnect`)
       .then(({ data }) => data);
   }
+
+  updateProxy(serviceName, kubeId, mode, values) {
+    return this.$http
+      .put(`/cloud/project/${serviceName}/kube/${kubeId}/customization`, {
+        kubeProxy: { [mode]: values },
+      })
+      .then(({ data }) => data);
+  }
 }
