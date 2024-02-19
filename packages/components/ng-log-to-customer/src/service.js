@@ -1,11 +1,24 @@
 export default class LogToCustomerService {
   /* @ngInject */
-  constructor($http) {
+  constructor($http, iceberg) {
     this.$http = $http;
+    this.iceberg = iceberg;
   }
 
-  getLogSourceUrl(source) {
-    return this.$http.post(source).then(({ data }) => data);
+  getLogKinds(url) {
+    return this.iceberg(url)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data }) => data);
+  }
+
+  getLogSourceUrl(source, kind) {
+    return this.$http
+      .post(source, {
+        kind,
+      })
+      .then(({ data }) => data);
   }
 
   getLogs(url) {

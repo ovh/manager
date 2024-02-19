@@ -8,7 +8,8 @@ export default class KubernetesLogsCtrl {
   }
 
   $onInit() {
-    this.logSrcUrl = `/cloud/project/${this.projectId}/kube/${this.kubeId}/auditLogs`;
+    this.logKindApiUrl = `/cloud/project/${this.projectId}/capabilities/kube/log/kind`;
+    this.logApiUrl = `/cloud/project/${this.projectId}/kube/${this.kubeId}/log/url`;
   }
 
   getLogsInfoLink() {

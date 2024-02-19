@@ -9,6 +9,10 @@
         <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
     </a>
 
-    <log-to-customer source="$ctrl.logSrcUrl" log-keys="$ctrl.LOG_KEYS">
+    <log-to-customer
+        data-log-keys="$ctrl.LOG_KEYS"
+        data-log-kind-api-url="$ctrl.logKindApiUrl"
+        data-log-api-url="$ctrl.logApiUrl"
+    >
     </log-to-customer>
 </div>
