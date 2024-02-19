@@ -1,7 +1,7 @@
 <ng-form class="kubernetes-proxy-form" name="$ctrl.proxyForm">
     <h5
         class="d-flex align-items-center"
-        data-ng-if="$ctrl.collapsible"
+        data-ng-if="$ctrl.collapsible && !$ctrl.valuesOnly"
         data-ng-class="{ 'oui-field__label': $ctrl.dense }"
         data-ng-click="!$ctrl.frozen && $ctrl.toggleForm()"
     >
@@ -16,12 +16,12 @@
         ></span>
     </h5>
     <h5
-        data-ng-if="!$ctrl.collapsible"
+        data-ng-if="!$ctrl.collapsible && !$ctrl.valuesOnly"
         data-ng-class="{ 'oui-field__label': $ctrl.dense }"
         data-translate="kubernetes_proxy_form"
     ></h5>
     <div data-ng-if="$ctrl.isFormShown">
-        <p data-ng-if="!$ctrl.dense">
+        <p data-ng-if="!$ctrl.dense && !$ctrl.valuesOnly">
             <span data-translate="kubernetes_proxy_form_description"></span>
             <a
                 data-ng-href="{{:: $ctrl.DOCUMENTATION_LINK }}"
@@ -36,16 +36,23 @@
             </a>
         </p>
 
-        <oui-field class="kubernetes-proxy-form-radio-field">
+        <oui-field
+            data-ng-if="!$ctrl.valuesOnly"
+            class="kubernetes-proxy-form-radio-field"
+        >
             <oui-radio-group
                 data-model="$ctrl.model.mode"
                 data-on-change="$ctrl.onModeChanged()"
             >
-                <oui-radio data-value="$ctrl.MODE.iptables">
-                    <strong>IPTables</strong>
+                <oui-radio data-value="$ctrl.MODE.iptables.value">
+                    <strong
+                        data-ng-bind="$ctrl.MODE.iptables.readableValue"
+                    ></strong>
                 </oui-radio>
-                <oui-radio data-value="$ctrl.MODE.ipvs">
-                    <strong>IPVS</strong>
+                <oui-radio data-value="$ctrl.MODE.ipvs.value">
+                    <strong
+                        data-ng-bind="$ctrl.MODE.ipvs.readableValue"
+                    ></strong>
                 </oui-radio>
             </oui-radio-group>
         </oui-field>
@@ -55,6 +62,10 @@
             class="kubernetes-proxy-form-field"
             data-ng-if="$ctrl.isIPTablesMode"
         >
+            <h5
+                data-ng-if="$ctrl.valuesOnly"
+                data-ng-bind="$ctrl.MODE.iptables.readableValue"
+            ></h5>
             <div>
                 <div>min sync period</div>
                 <div>
@@ -81,6 +92,10 @@
 
         <!-- ipvs -->
         <div data-ng-if="$ctrl.isIPVSMode">
+            <h5
+                data-ng-if="$ctrl.valuesOnly"
+                data-ng-bind="$ctrl.MODE.ipvs.readableValue"
+            ></h5>
             <oui-message data-type="warning">
                 <span data-translate="kubernetes_proxy_form_ipvs_warn"></span>
             </oui-message>
@@ -123,7 +138,7 @@
                     <div>tcpfin timeout</div>
                     <div>
                         <oui-field
-                            data-error-messages="{ timeout: ('kubernetes_proxy_form_ipvs_timeout_invalid'|translate) }"
+                            data-error-messages="{ timeout: ('kubernetes_proxy_form_ipvs_timeout_invalid'|translate: { seconds: $ctrl.TIMEOUT_MIN }) }"
                         >
                             <oui-numeric
                                 data-id="tcpFinTimeout"
@@ -139,7 +154,7 @@
                     <div>tcp timeout</div>
                     <div>
                         <oui-field
-                            data-error-messages="{ timeout: ('kubernetes_proxy_form_ipvs_timeout_invalid'|translate) }"
+                            data-error-messages="{ timeout: ('kubernetes_proxy_form_ipvs_timeout_invalid'|translate: { seconds: $ctrl.TIMEOUT_MIN }) }"
                         >
                             <oui-numeric
                                 data-id="tcpTimeout"
@@ -155,7 +170,7 @@
                     <div>udp timeout</div>
                     <div>
                         <oui-field
-                            data-error-messages="{ timeout: ('kubernetes_proxy_form_ipvs_timeout_invalid'|translate) }"
+                            data-error-messages="{ timeout: ('kubernetes_proxy_form_ipvs_timeout_invalid'|translate: { seconds: $ctrl.TIMEOUT_MIN }) }"
                         >
                             <oui-numeric
                                 data-id="udpTimeout"

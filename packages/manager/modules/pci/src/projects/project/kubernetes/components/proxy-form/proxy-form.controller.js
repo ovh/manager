@@ -5,6 +5,7 @@ import {
   IPVS,
   SCHEDULER,
   ONE_YEAR_DURATION,
+  TIMEOUT_MIN,
 } from './proxy-form.constants';
 import {
   isTimeoutValid,
@@ -22,6 +23,7 @@ export default class ProxyFormController {
 
     this.DOCUMENTATION_LINK = DOCUMENTATION_LINK;
     this.MODE = MODE;
+    this.TIMEOUT_MIN = TIMEOUT_MIN;
 
     this.schedulerItems = [
       { label: $translate.instant('kubernetes_proxy_form_none'), value: null },
@@ -46,11 +48,11 @@ export default class ProxyFormController {
   }
 
   get isIPTablesMode() {
-    return this.model.mode === MODE.iptables;
+    return this.model.mode === MODE.iptables.value;
   }
 
   get isIPVSMode() {
-    return this.model.mode === MODE.ipvs;
+    return this.model.mode === MODE.ipvs.value;
   }
 
   $onInit() {
@@ -70,7 +72,7 @@ export default class ProxyFormController {
 
   initializeModel() {
     this.model = {
-      mode: MODE.iptables,
+      mode: MODE.iptables.value,
       values: { ...IPTABLES },
     };
   }
