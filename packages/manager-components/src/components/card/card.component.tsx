@@ -12,7 +12,6 @@ import {
   OdsHTMLAnchorElementTarget,
   OdsHTMLAnchorElementRel,
 } from '@ovhcloud/ods-common-core';
-
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
 import useDynamicTranslation from '../../translation/useDynamicTranslation';
@@ -37,19 +36,21 @@ export interface CardProps {
     category: string;
   };
   badges?: Badge[];
-  trackingLabel?: string;
   hoverable?: boolean;
+  onClick?: (event: React.MouseEvent) => void;
+  [attribute: string]: any;
 }
 
-export const Card = ({
+export const Card: React.FC<CardProps> = ({
   href,
   isExternalHref,
   img,
   badges,
   texts,
-  trackingLabel,
   hoverable,
-}: CardProps) => {
+  onClick,
+  ...props
+}) => {
   const { title, description, category } = texts;
   const { t } = useDynamicTranslation('card');
 
@@ -58,6 +59,8 @@ export const Card = ({
       target={OdsHTMLAnchorElementTarget._blank}
       href={href}
       className="no-underline"
+      onClick={onClick}
+      {...props}
     >
       <OsdsTile
         className="w-full h-full"
@@ -65,7 +68,6 @@ export const Card = ({
         rounded
         inline
         variant="stroked"
-        dataTracking={trackingLabel}
         hoverable={hoverable}
       >
         <div className="flex flex-col ">

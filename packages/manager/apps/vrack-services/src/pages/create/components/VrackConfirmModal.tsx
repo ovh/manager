@@ -14,6 +14,7 @@ import {
   OsdsButton,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { handleClick } from '@/utils/ods-utils';
 import { getExpressOrderLink } from '../order-utils';
 
@@ -21,6 +22,7 @@ export type Props = {
   displayName?: string;
   selectedRegion: string;
   isModalVisible?: boolean;
+  dataTrackingPath?: string;
   cancelDataTracking?: string;
   confirmDataTracking?: string;
   denyDataTracking?: string;
@@ -33,6 +35,7 @@ export const VrackConfirmModal: React.FC<Props> = ({
   displayName,
   selectedRegion,
   isModalVisible,
+  dataTrackingPath,
   cancelDataTracking,
   confirmDataTracking,
   denyDataTracking,
@@ -41,27 +44,22 @@ export const VrackConfirmModal: React.FC<Props> = ({
   onDeny,
 }) => {
   const { t } = useTranslation('vrack-services/create');
-  const modal = React.useRef<HTMLOsdsModalElement>(null);
   const orderBaseUrl = useOrderURL('express_review_base');
+  const { trackClick } = useOvhTracking();
 
   const cancel = () => {
+    if (cancelDataTracking) {
+      trackClick({
+        path: dataTrackingPath,
+        value: cancelDataTracking,
+        type: 'action',
+      });
+    }
     onCancel();
-    modal.current.close();
-  };
-
-  const confirm = () => {
-    onConfirm();
-    modal.current.close();
-  };
-
-  const deny = () => {
-    onDeny();
-    modal.current.close();
   };
 
   return (
     <OsdsModal
-      ref={modal}
       dismissible
       headline={t('modalHeadline')}
       masked={!isModalVisible || undefined}
@@ -96,7 +94,6 @@ export const VrackConfirmModal: React.FC<Props> = ({
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.ghost}
         color={ODS_THEME_COLOR_INTENT.primary}
-        data-tracking={cancelDataTracking}
         {...handleClick(cancel)}
       >
         {t('modalCancelButtonLabel')}
@@ -106,7 +103,6 @@ export const VrackConfirmModal: React.FC<Props> = ({
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.stroked}
         color={ODS_THEME_COLOR_INTENT.primary}
-        data-tracking={denyDataTracking}
         target={OdsHTMLAnchorElementTarget._blank}
         href={getExpressOrderLink({
           orderBaseUrl,
@@ -114,7 +110,16 @@ export const VrackConfirmModal: React.FC<Props> = ({
           region: selectedRegion,
           includeVrackOrder: false,
         })}
-        {...handleClick(deny)}
+        {...handleClick(() => {
+          if (denyDataTracking) {
+            trackClick({
+              path: dataTrackingPath,
+              value: denyDataTracking,
+              type: 'action',
+            });
+          }
+          onDeny();
+        })}
       >
         {t('modalNoVrackButtonLabel')}
       </OsdsButton>
@@ -123,7 +128,6 @@ export const VrackConfirmModal: React.FC<Props> = ({
         type={ODS_BUTTON_TYPE.button}
         variant={ODS_BUTTON_VARIANT.flat}
         color={ODS_THEME_COLOR_INTENT.primary}
-        data-tracking={confirmDataTracking}
         target={OdsHTMLAnchorElementTarget._blank}
         href={getExpressOrderLink({
           orderBaseUrl,
@@ -131,7 +135,16 @@ export const VrackConfirmModal: React.FC<Props> = ({
           region: selectedRegion,
           includeVrackOrder: true,
         })}
-        {...handleClick(confirm)}
+        {...handleClick(() => {
+          if (confirmDataTracking) {
+            trackClick({
+              path: dataTrackingPath,
+              value: confirmDataTracking,
+              type: 'action',
+            });
+          }
+          onConfirm();
+        })}
       >
         {t('modalConfirmVrackButtonLabel')}
       </OsdsButton>

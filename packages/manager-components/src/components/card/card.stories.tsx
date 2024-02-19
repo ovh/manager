@@ -12,8 +12,7 @@ export const defaultProps: CardProps = {
   href: 'https://ovh.com',
   img: {
     alt: 'offer',
-    src:
-      'https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png',
+    src: 'https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png',
   },
 };
 
@@ -62,10 +61,6 @@ const meta: Meta<typeof Card> = {
     badges: {
       description:
         'Display examples of badges in the story (in the actual code there is a badge slot)',
-    },
-    trackingLabel: {
-      control: 'text',
-      description: 'Tracking label when use click on card',
     },
   },
   args: defaultProps,

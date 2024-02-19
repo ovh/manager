@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { OsdsDatagrid, OsdsMessage } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_TYPE, OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { useParams } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { reactFormatter } from '@/utils/ods-utils';
 import { DisplayNameCell, ActionsCell, CidrCell } from './SubnetDataGridCells';
 import { ErrorPage } from '@/components/Error';
@@ -17,9 +17,7 @@ export const SubnetDatagrid: React.FC = () => {
     string | undefined
   >(undefined);
   const { id } = useParams();
-  const {
-    shell: { tracking },
-  } = React.useContext(ShellContext);
+  const { trackEvent, trackClick } = useOvhTracking();
 
   const { data: vrackServices, isError, error } = useVrackService();
   const {
@@ -43,7 +41,8 @@ export const SubnetDatagrid: React.FC = () => {
         <DisplayNameCell
           updateVS={updateVS}
           vrackServices={vrackServices}
-          trackEvent={tracking.trackEvent as any}
+          trackEvent={trackEvent}
+          trackClick={trackClick}
         />,
       ),
     },
@@ -69,6 +68,7 @@ export const SubnetDatagrid: React.FC = () => {
           openDeleteModal={setOpenedDeleteModal}
           vrackServices={vrackServices}
           isLoading={isPending}
+          trackClick={trackClick}
         />,
       ),
     },
@@ -84,10 +84,7 @@ export const SubnetDatagrid: React.FC = () => {
     <>
       {isErrorVisible && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          {t('updateError', {
-            error: updateError?.response.data.message,
-            interpolation: { escapeValue: false },
-          })}
+          {t('updateError', { error: updateError?.response.data.message })}
         </OsdsMessage>
       )}
       <OsdsDatagrid
@@ -103,9 +100,9 @@ export const SubnetDatagrid: React.FC = () => {
         deleteInputLabel={t('modalDeleteInputLabel')}
         headline={t('modalDeleteHeadline')}
         description={t('modalDeleteDescription')}
-        cancelButtonDataTracking="vrack-services::subnets::delete::cancel"
-        confirmButtonDataTracking="vrack-services::subnets::delete::confirm"
-        onDisplayDataTracking="vrack-services::subnets::delete"
+        dataTrackingPath="subnets::delete"
+        dataTrackingConfirmValue="confirm"
+        dataTrackingCancelValue="cancel"
         onConfirmDelete={() =>
           updateVS(
             {
@@ -120,16 +117,10 @@ export const SubnetDatagrid: React.FC = () => {
             },
             {
               onSuccess: () => {
-                tracking.trackEvent({
-                  name: 'vrack-services::subnets::delete-success',
-                  level2: '0',
-                });
+                trackEvent({ path: 'subnets::delete', value: '-success' });
               },
               onError: () => {
-                tracking.trackEvent({
-                  name: 'vrack-services::subnets::delete-error',
-                  level2: '0',
-                });
+                trackEvent({ path: 'subnets::delete', value: '-error' });
               },
             },
           )

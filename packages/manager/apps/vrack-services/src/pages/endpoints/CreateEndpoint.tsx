@@ -7,7 +7,7 @@ import {
   ODS_SELECT_SIZE,
   OdsSelectValueChangeEvent,
 } from '@ovhcloud/ods-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   VrackServices,
@@ -28,6 +28,8 @@ import { ErrorPage } from '@/components/Error';
 import { FormField } from '@/components/FormField';
 import { urls } from '@/router/constants';
 
+const dataTrackingPath = 'endpoints::add';
+
 const EndpointCreationPage: React.FC = () => {
   const { t } = useTranslation('vrack-services/endpoints');
   const { id } = useParams();
@@ -42,9 +44,7 @@ const EndpointCreationPage: React.FC = () => {
   const navigate = useNavigate();
   const vrackServices = useVrackService();
   const dashboardUrl = urls.endpoints.replace(':id', id);
-  const {
-    shell: { tracking },
-  } = React.useContext(ShellContext);
+  const { trackEvent, trackPage } = useOvhTracking();
 
   const {
     iamResources,
@@ -88,26 +88,17 @@ const EndpointCreationPage: React.FC = () => {
         queryClient.invalidateQueries({
           queryKey: getVrackServicesResourceQueryKey(id),
         }),
-        tracking.trackEvent({
-          name: 'vrack-services::endpoints::add-success',
-          level2: '0',
-        }),
+        trackEvent({ path: dataTrackingPath, value: '-success' }),
       ]);
       navigate(dashboardUrl);
     },
-    onError: async () => {
-      await tracking.trackEvent({
-        name: 'vrack-services::endpoints::add-error',
-        level2: '0',
-      });
+    onError: () => {
+      trackEvent({ path: dataTrackingPath, value: '-error' });
     },
   });
 
   React.useEffect(() => {
-    tracking.trackPage({
-      name: 'vrack-services::endpoints::add',
-      level2: '0',
-    });
+    trackPage({ path: dataTrackingPath });
     queryClient.invalidateQueries({
       queryKey: updateVrackServicesQueryKey(getEndpointCreationMutationKey(id)),
     });
@@ -123,10 +114,10 @@ const EndpointCreationPage: React.FC = () => {
       title={t('createPageTitle')}
       description={t('createPageDescription')}
       createButtonLabel={t('createEndpointButtonLabel')}
-      createButtonDataTracking="vrack-services::endpoints::add::confirm"
+      dataTrackingPath={dataTrackingPath}
+      createButtonDataTracking="::confirm"
       formErrorMessage={t('endpointCreationError', {
         error: error?.response.data.message,
-        interpolation: { escapeValue: false },
       })}
       hasFormError={isError}
       onSubmit={() => createEndpoint()}

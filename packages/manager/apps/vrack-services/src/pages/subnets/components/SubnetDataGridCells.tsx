@@ -14,6 +14,7 @@ import {
   OsdsButton,
 } from '@ovhcloud/ods-components/react';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { TrackingProps } from '@ovh-ux/manager-react-shell-client';
 import { EditableText } from '@/components/EditableText';
 import { Subnet, UpdateVrackServicesParams, VrackServices } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
@@ -31,13 +32,23 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
 > & {
   vrackServices?: VrackServices;
   updateVS: UpdateVS;
-  trackEvent: (data: any) => Promise<void>;
-}> = ({ cellData, rowData, updateVS, vrackServices, trackEvent }) => (
+  trackEvent: (data: TrackingProps) => PromiseLike<void>;
+  trackClick: (prop: TrackingProps) => PromiseLike<void>;
+}> = ({
+  cellData,
+  rowData,
+  updateVS,
+  vrackServices,
+  trackEvent,
+  trackClick,
+}) => (
   <EditableText
     disabled={!isEditable(vrackServices)}
     defaultValue={cellData}
-    dataTracking="vrack-services::subnets::edit-subnet"
-    confirmDataTracking="vrack-services::subnets::update::confirm"
+    dataTrackingPath="subnets"
+    editDataTracking="::edit-subnet"
+    confirmDataTracking="::update::confirm"
+    trackClick={trackClick}
     onEditSubmitted={async (value) => {
       await updateVS(
         {
@@ -57,16 +68,10 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
         },
         {
           onSuccess: () => {
-            trackEvent({
-              name: 'vrack-services::subnets::update-success',
-              level2: '0',
-            });
+            trackEvent({ path: 'subnets::update', value: '-success' });
           },
           onError: () => {
-            trackEvent({
-              name: 'vrack-services::subnets::update-error',
-              level2: '0',
-            });
+            trackEvent({ path: 'subnets::update', value: '-error' });
           },
         },
       );
@@ -85,7 +90,8 @@ export const ActionsCell: React.FC<DataGridCellProps<undefined, Subnet> & {
   isLoading?: boolean;
   vrackServices?: VrackServices;
   openDeleteModal: (cidr: string) => void;
-}> = ({ vrackServices, rowData, isLoading, openDeleteModal }) => (
+  trackClick: (data: TrackingProps) => PromiseLike<void>;
+}> = ({ vrackServices, rowData, isLoading, openDeleteModal, trackClick }) => (
   <OsdsButton
     inline
     circle
@@ -94,8 +100,10 @@ export const ActionsCell: React.FC<DataGridCellProps<undefined, Subnet> & {
     type={ODS_BUTTON_TYPE.button}
     size={ODS_BUTTON_SIZE.sm}
     disabled={isLoading || !isEditable(vrackServices) || undefined}
-    data-tracking="vrack-services::subnets::delete-subnet"
-    {...handleClick(() => openDeleteModal(rowData.cidr))}
+    {...handleClick(() => {
+      trackClick({ path: 'subnets', value: '::delete-subnet', type: 'action' });
+      openDeleteModal(rowData.cidr);
+    })}
   >
     <OsdsIcon
       color={ODS_THEME_COLOR_INTENT.error}

@@ -16,7 +16,10 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useParams } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { ErrorPage } from '@/components/Error';
 import { useUpdateVrackServices, useVrackService } from '@/utils/vs-utils';
 import { formatDateString } from '@/utils/date';
@@ -33,10 +36,8 @@ export const OverviewTab: React.FC = () => {
   const [associateModalVisible, setAssociateModalVisible] = React.useState<
     string | undefined
   >(undefined);
-  const {
-    environment,
-    shell: { tracking },
-  } = React.useContext(ShellContext);
+  const { environment } = React.useContext(ShellContext);
+  const { trackPage, trackClick } = useOvhTracking();
   const urls = environment.getApplicationURLs();
   const { id } = useParams();
   const { data: vrackServices, error, isLoading } = useVrackService();
@@ -48,11 +49,10 @@ export const OverviewTab: React.FC = () => {
   } = useUpdateVrackServices({ key: id });
 
   React.useEffect(() => {
-    tracking.trackPage({
-      name: 'vrack-services::dashboard',
-      level2: '0',
-    });
-  }, []);
+    if (!isLoading) {
+      trackPage({ path: 'dashboard' });
+    }
+  }, [isLoading]);
 
   if (error) {
     return <ErrorPage error={error} />;
@@ -91,6 +91,7 @@ export const OverviewTab: React.FC = () => {
                     updateVS={updateVS}
                     cellData={vrackServices?.currentState?.displayName}
                     rowData={vrackServices}
+                    trackClick={trackClick}
                   />
                 </TileBlock>
                 <TileBlock label={t('productStatus')}>
@@ -109,14 +110,17 @@ export const OverviewTab: React.FC = () => {
                     openAssociationModal={() =>
                       setAssociateModalVisible(vrackServices?.id)
                     }
-                    cellData={vrackServices?.currentState.vrackId}
+                    cellData={vrackServices?.currentState?.vrackId}
                     isLoading={isPending}
                     rowData={vrackServices}
-                    href={`${urls.dedicated}vrack/${vrackServices?.currentState.vrackId}`}
+                    href={`${urls.dedicated}vrack/${vrackServices?.currentState?.vrackId}`}
                   />
                 </TileBlock>
                 <TileBlock label={t('createdAt')}>
-                  {formatDateString(vrackServices?.createdAt, i18n.language)}
+                  {formatDateString(
+                    vrackServices?.createdAt,
+                    i18n.language.replace('_', '-'),
+                  )}
                 </TileBlock>
               </div>
             </OsdsTile>
@@ -124,6 +128,7 @@ export const OverviewTab: React.FC = () => {
         </div>
       </div>
       <VrackAssociationModal
+        dataTrackingPath="dashboard"
         vrackServicesId={associateModalVisible}
         closeModal={() => setAssociateModalVisible(undefined)}
       />

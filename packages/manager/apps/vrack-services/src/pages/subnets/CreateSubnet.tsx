@@ -16,7 +16,7 @@ import {
   OsdsInput,
 } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   VrackServices,
@@ -41,6 +41,8 @@ import { useVrackService } from '@/utils/vs-utils';
 import { FormField } from '@/components/FormField';
 import { urls } from '@/router/constants';
 
+const dataTrackingPath = 'subnets::add';
+
 const SubnetCreationPage: React.FC = () => {
   const { t } = useTranslation('vrack-services/subnets');
   const { id } = useParams();
@@ -57,9 +59,7 @@ const SubnetCreationPage: React.FC = () => {
   const navigate = useNavigate();
   const vrackServices = useVrackService();
   const dashboardUrl = urls.subnets.replace(':id', id);
-  const {
-    shell: { tracking },
-  } = React.useContext(ShellContext);
+  const { trackPage, trackEvent } = useOvhTracking();
   const defaultCidr = t('defaultCidr');
   const defaultServiceRange = t('defaultServiceRange');
 
@@ -93,26 +93,17 @@ const SubnetCreationPage: React.FC = () => {
         await queryClient.invalidateQueries({
           queryKey: getVrackServicesResourceQueryKey(id),
         }),
-        await tracking.trackEvent({
-          name: 'vrack-services::subnets::add-success',
-          level2: '0',
-        }),
+        trackEvent({ path: dataTrackingPath, value: '-succeess' }),
       ]);
       navigate(dashboardUrl);
     },
-    onError: async () => {
-      await tracking.trackEvent({
-        name: 'vrack-services::subnets::add-error',
-        level2: '0',
-      });
+    onError: () => {
+      trackEvent({ path: dataTrackingPath, value: '-error' });
     },
   });
 
   React.useEffect(() => {
-    tracking.trackPage({
-      name: 'vrack-services::subnets::add',
-      level2: '0',
-    });
+    trackPage({ path: dataTrackingPath });
     queryClient.invalidateQueries({
       queryKey: updateVrackServicesQueryKey(getSubnetCreationMutationKey(id)),
     });
@@ -123,10 +114,10 @@ const SubnetCreationPage: React.FC = () => {
       overviewUrl={dashboardUrl}
       title={t('createPageTitle')}
       createButtonLabel={t('createSubnetButtonLabel')}
-      createButtonDataTracking="vrack-services::subnets::add::confirm"
+      dataTrackingPath={dataTrackingPath}
+      createButtonDataTracking="::confirm"
       formErrorMessage={t('subnetCreationError', {
         error: error?.response.data.message,
-        interpolation: { escapeValue: false },
       })}
       hasFormError={isError}
       onSubmit={() => createSubnet()}

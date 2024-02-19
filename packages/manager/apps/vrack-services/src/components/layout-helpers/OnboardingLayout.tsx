@@ -9,6 +9,7 @@ import {
   ODS_ICON_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { PageLayout } from './PageLayout';
 import { handleClick } from '@/utils/ods-utils';
 
@@ -57,6 +58,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   secondaryButtonDataTracking,
   children,
 }) => {
+  const { trackClick } = useOvhTracking();
   return (
     <PageLayout noBreacrumb>
       <div className="flex flex-col mx-auto">
@@ -102,8 +104,18 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
                 color={ODS_THEME_COLOR_INTENT.primary}
                 size={primaryButtonSize}
                 href={primaryHref}
-                data-tracking={primaryButtonDataTracking}
-                {...(primaryOnClick ? handleClick(primaryOnClick) : {})}
+                {...(primaryOnClick
+                  ? handleClick(() => {
+                      if (primaryButtonDataTracking) {
+                        trackClick({
+                          path: 'onboarding',
+                          value: primaryButtonDataTracking,
+                          type: 'action',
+                        });
+                      }
+                      primaryOnClick();
+                    })
+                  : {})}
               >
                 {primaryButtonLabel}
               </OsdsButton>
@@ -116,8 +128,18 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
                 variant={ODS_BUTTON_VARIANT.stroked}
                 size={secondaryButtonSize}
                 href={secondaryHref}
-                data-tracking={secondaryButtonDataTracking}
-                {...(secondaryOnClick ? handleClick(secondaryOnClick) : {})}
+                {...(secondaryOnClick
+                  ? handleClick(() => {
+                      if (secondaryButtonDataTracking) {
+                        trackClick({
+                          path: 'onboarding',
+                          value: secondaryButtonDataTracking,
+                          type: 'action',
+                        });
+                      }
+                      secondaryOnClick();
+                    })
+                  : {})}
               >
                 {secondaryButtonLabel}
                 <span slot={secondaryButtonIconPosition}>

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { OsdsDatagrid, OsdsMessage } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_TYPE, OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { VrackAssociationModal } from '@/components/VrackAssociationModal';
 import { reactFormatter } from '@/utils/ods-utils';
 import {
@@ -23,6 +24,7 @@ export const VrackServicesDatagrid: React.FC = () => {
     string | undefined
   >(undefined);
   const { t, i18n } = useTranslation('vrack-services/listing');
+  const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const {
     updateVS,
@@ -40,7 +42,11 @@ export const VrackServicesDatagrid: React.FC = () => {
       field: 'currentState.displayName',
       isSortable: true,
       formatter: reactFormatter(
-        <DisplayNameCell navigate={navigate} updateVS={updateVS} />,
+        <DisplayNameCell
+          navigate={navigate}
+          updateVS={updateVS}
+          trackClick={trackClick}
+        />,
       ),
     },
     {
@@ -73,7 +79,7 @@ export const VrackServicesDatagrid: React.FC = () => {
       formatter: (createdAt: string) => {
         const date = new Date(createdAt);
         return date.toString() !== 'Invalid Date'
-          ? date.toLocaleDateString(i18n.language)
+          ? date.toLocaleDateString(i18n.language.replace('_', '-'))
           : '-';
       },
     },
@@ -94,10 +100,7 @@ export const VrackServicesDatagrid: React.FC = () => {
           removable
           onOdsRemoveClick={hideError}
         >
-          {t('updateError', {
-            error: updateError?.response.data.message,
-            interpolation: { escapeValue: false },
-          })}
+          {t('updateError', { error: updateError?.response.data.message })}
         </OsdsMessage>
       )}
       <OsdsDatagrid
@@ -109,6 +112,7 @@ export const VrackServicesDatagrid: React.FC = () => {
         noResultLabel={t('emptyDataGridMessage')}
       />
       <VrackAssociationModal
+        dataTrackingPath="listing"
         vrackServicesId={associateModalVisible}
         closeModal={() => setAssociateModalVisible(undefined)}
       />

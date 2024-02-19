@@ -28,10 +28,9 @@ export const DeliveringMessages: React.FC<DeliveringMessagesProps> = ({
             key={`delivering-message-${order.orderId}`}
           >
             {t(messageKey, {
-              date: date.toLocaleDateString(i18n.language),
+              date: date.toLocaleDateString(i18n.language.replace('_', '-')),
               time: `${date.getHours()}:${date.getMinutes()}`,
               status: t(`orderStatus-${order.status}`),
-              interpolation: { escapeValue: false },
             })}
           </OsdsMessage>
         );

@@ -74,10 +74,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({
       </OsdsText>
       {isError && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          {t('updateError', {
-            error: error?.response?.data.message,
-            interpolation: { escapeValue: false },
-          })}
+          {t('updateError', { error: error?.response?.data.message })}
         </OsdsMessage>
       )}
       <OsdsSelect

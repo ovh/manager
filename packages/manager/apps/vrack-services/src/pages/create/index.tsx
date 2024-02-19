@@ -15,12 +15,12 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
   OrderDescription,
   getDeliveringOrderQueryKey,
 } from '@ovh-ux/manager-module-order';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   getvrackServicesReferenceRegionList,
   getvrackServicesReferenceRegionListQueryKey,
@@ -37,12 +37,10 @@ const CreationPage: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = React.useState('');
   const [displayName, setDisplayName] = React.useState('');
   const [isModalVisible, setIsModalVisible] = React.useState(false);
-  const {
-    shell: { tracking },
-  } = React.useContext(ShellContext);
   const { t } = useTranslation('vrack-services/create');
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { trackPage } = useOvhTracking();
 
   const {
     isLoading: isRegionLoading,
@@ -55,10 +53,7 @@ const CreationPage: React.FC = () => {
   });
 
   React.useEffect(() => {
-    tracking.trackPage({
-      name: 'vrack-services::add',
-      level2: '0',
-    });
+    trackPage({ path: 'add' });
   }, []);
 
   if (hasRegionError) {
@@ -69,7 +64,8 @@ const CreationPage: React.FC = () => {
     <>
       <CreatePageLayout
         createButtonLabel={t('createButtonLabel')}
-        createButtonDataTracking={`vrack-services::add::${selectedRegion}::confim`}
+        dataTrackingPath="add"
+        createButtonDataTracking={`::${selectedRegion}::confim`}
         onSubmit={() => setIsModalVisible(true)}
         title={t('title')}
         isFormSubmittable={!isRegionLoading && !!selectedRegion}
@@ -103,7 +99,9 @@ const CreationPage: React.FC = () => {
       <VrackConfirmModal
         displayName={displayName}
         selectedRegion={selectedRegion}
-        confirmDataTracking="vrack-services::add::create-vrack"
+        dataTrackingPath="add"
+        denyDataTracking="::create-vrack"
+        confirmDataTracking="::create-vrack-services"
         onCancel={() => setIsModalVisible(false)}
         onDeny={() => {
           setIsModalVisible(false);

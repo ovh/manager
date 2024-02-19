@@ -19,6 +19,7 @@ import {
   OsdsChip,
 } from '@ovhcloud/ods-components/react';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { TrackingProps } from '@ovh-ux/manager-react-shell-client';
 import { EditableText } from '@/components/EditableText';
 import { ProductStatus, UpdateVrackServicesParams, VrackServices } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
@@ -34,14 +35,17 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
     UpdateVrackServicesParams
   >;
   navigate?: NavigateFunction;
-}> = ({ cellData, rowData, updateVS, navigate }) => {
+  trackClick: (prop: TrackingProps) => PromiseLike<void>;
+}> = ({ cellData, rowData, updateVS, navigate, trackClick }) => {
   const displayName = cellData || rowData?.id;
   return (
     <EditableText
       disabled={!isEditable(rowData)}
       defaultValue={cellData}
-      dataTracking="vrack-services::overview::edit"
-      confirmDataTracking="vrack-services::overview::update::confirm"
+      dataTrackingPath="overview"
+      editDataTracking="::edit"
+      confirmDataTracking="::update::confirm"
+      trackClick={trackClick}
       onEditSubmitted={async (value) => {
         await updateVS({
           vrackServicesId: rowData.id,

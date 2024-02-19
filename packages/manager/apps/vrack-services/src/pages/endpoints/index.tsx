@@ -14,7 +14,7 @@ import {
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { OnboardingLayout, PageLayout } from '@/components/layout-helpers';
 import { hasSubnet, isEditable, useVrackService } from '@/utils/vs-utils';
@@ -26,21 +26,20 @@ const Endpoints: React.FC = () => {
   const { data: vrackServices, isLoading } = useVrackService();
   const { id } = useParams();
   const navigate = useNavigate();
-  const {
-    shell: { tracking },
-  } = React.useContext(ShellContext);
+  const { trackPage, trackClick } = useOvhTracking();
 
-  const navigateToCreateEndpointPage = () =>
+  const navigateToCreateEndpointPage = async () => {
+    trackClick({
+      path: 'endpoints',
+      value: '::create-endpoint',
+      type: 'action',
+    });
     navigate(urls.createEndpoint.replace(':id', id));
+  };
 
   React.useEffect(() => {
-    if (!isLoading) {
-      tracking.trackPage({
-        name: 'vrack-services::endpoints',
-        level2: '0',
-      });
-    }
-  }, [isLoading]);
+    trackPage({ path: 'endpoints' });
+  }, []);
 
   if (isLoading) {
     return (
@@ -68,7 +67,6 @@ const Endpoints: React.FC = () => {
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={navigateToCreateEndpointPage}
-          data-tracking="vrack-services::endpoints::create-endpoint"
         >
           {t('createEndpointButtonLabel')}
           <span slot="start">

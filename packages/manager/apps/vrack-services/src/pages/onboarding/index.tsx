@@ -7,6 +7,7 @@ import {
   OrderDescription,
   useOrderPollingStatus,
 } from '@ovh-ux/manager-module-order';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useGuideUtils } from '@/components/GuideLink';
 import { OnboardingLayout } from '@/components/layout-helpers';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
@@ -19,6 +20,7 @@ const OnboardingPage = () => {
   const { t } = useTranslation('vrack-services/onboarding');
   const link = useGuideUtils();
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
   const { data: vrackServicesDeliveringOrders } = useOrderPollingStatus({
     pollingKey: OrderDescription.vrackServices,
     queryToInvalidateOnDelivered: getVrackServicesResourceListQueryKey,
@@ -33,7 +35,12 @@ const OnboardingPage = () => {
         description: t('guide1Description'),
       },
       href: link?.guideLink1 as string,
-      trackingLabel: `vrack-services::onboarding::docs::${t('guide1Title')}`,
+      onClick: () =>
+        trackClick({
+          path: 'onboarding',
+          value: `::docs::${t('guide1Title')}`,
+          type: 'action',
+        }),
       isExternalHref: true,
       hoverable: true,
       badges: [
@@ -47,7 +54,12 @@ const OnboardingPage = () => {
         description: t('guide2Description'),
       },
       href: link?.guideLink2 as string,
-      trackingLabel: `vrack-services::onboarding::docs::${t('guide2Title')}`,
+      onClick: () =>
+        trackClick({
+          path: 'onboarding',
+          value: `::docs::${t('guide2Title')}`,
+          type: 'action',
+        }),
       isExternalHref: true,
       hoverable: true,
       badges: [
@@ -69,10 +81,10 @@ const OnboardingPage = () => {
       imageSrc={onboardingImgSrc}
       primaryButtonLabel={t('orderButtonLabel')}
       primaryOnClick={() => navigate(urls.createVrackServices)}
-      primaryButtonDataTracking="vrack-services::onboarding::add"
+      primaryButtonDataTracking="::add"
       secondaryButtonLabel={t('moreInfoButtonLabel')}
       secondaryHref={t('moreInfoButtonLink')}
-      secondaryButtonDataTracking="vrack-services::onboarding::discover"
+      secondaryButtonDataTracking="::discover"
     >
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-12">
         {tileList.map((tile) => (

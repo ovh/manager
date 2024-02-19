@@ -21,17 +21,23 @@ import {
   useOrderPollingStatus,
   useOrderURL,
 } from '@ovh-ux/manager-module-order';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { getVrackListQueryKey } from '@/api';
 import { DeliveringMessages } from '../DeliveringMessages';
 import { handleClick } from '@/utils/ods-utils';
 
 export type CreateVrackProps = {
+  dataTrackingPath?: string;
   closeModal: () => void;
 };
 
-export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
+export const CreateVrack: React.FC<CreateVrackProps> = ({
+  closeModal,
+  dataTrackingPath,
+}) => {
   const { t } = useTranslation('vrack-services/listing');
   const vrackOrderUrl = useOrderURL('vrack');
+  const { trackClick } = useOvhTracking();
 
   const {
     data: vrackDeliveringOrders,
@@ -62,10 +68,7 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
       />
       {isVrackOrdersError && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          {t('genericApiError', {
-            error: vrackOrdersError,
-            interpolation: { escapeValue: false },
-          })}
+          {t('genericApiError', { error: vrackOrdersError })}
         </OsdsMessage>
       )}
       <OsdsButton
@@ -90,7 +93,14 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({ closeModal }) => {
         }
         target={OdsHTMLAnchorElementTarget._blank}
         href={vrackOrderUrl}
-        {...handleClick(closeModal)}
+        {...handleClick(() => {
+          trackClick({
+            path: dataTrackingPath,
+            value: '::create-vrack',
+            type: 'action',
+          });
+          closeModal();
+        })}
       >
         {t('modalCreateNewVrackButtonLabel')}
       </OsdsButton>

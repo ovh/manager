@@ -20,6 +20,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { PageLayout } from '@/components/layout-helpers/PageLayout';
 import { handleClick } from '@/utils/ods-utils';
 
@@ -27,7 +28,7 @@ export type CreatePageLayoutProps = React.PropsWithChildren<{
   overviewUrl?: string;
   goBackUrl?: string;
   goBackLinkLabel?: string;
-  goBackLinkDataTracking?: string;
+  dataTrackingPath?: string;
   title: string;
   description?: string;
   onSubmit: React.FormEventHandler;
@@ -43,7 +44,7 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
   overviewUrl,
   goBackUrl,
   goBackLinkLabel,
-  goBackLinkDataTracking,
+  dataTrackingPath,
   title,
   description,
   onSubmit,
@@ -56,14 +57,21 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
   children,
 }) => {
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
   return (
     <PageLayout items={[{ label: title }]} overviewUrl={overviewUrl}>
       {goBackUrl && goBackLinkLabel && (
         <OsdsLink
           className="block mt-4 mb-5"
           color={ODS_THEME_COLOR_INTENT.primary}
-          data-tracking={goBackLinkDataTracking}
-          {...handleClick(() => navigate(goBackUrl))}
+          {...handleClick(() => {
+            trackClick({
+              path: dataTrackingPath,
+              value: '::back',
+              type: 'action',
+            });
+            navigate(goBackUrl);
+          })}
         >
           <span slot="start">
             <OsdsIcon
@@ -108,7 +116,15 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
           color={ODS_THEME_COLOR_INTENT.primary}
           variant={ODS_BUTTON_VARIANT.flat}
           size={ODS_BUTTON_SIZE.sm}
-          data-tracking={createButtonDataTracking}
+          {...handleClick(() => {
+            if (createButtonDataTracking) {
+              trackClick({
+                path: dataTrackingPath,
+                value: createButtonDataTracking,
+                type: 'action',
+              });
+            }
+          })}
         >
           {createButtonLabel}
         </OsdsButton>

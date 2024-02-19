@@ -90,7 +90,6 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
               vrackServices.data?.targetSpec?.subnets?.[
                 vrackServices.data?.targetSpec.subnets.length - 1
               ]?.cidr,
-            interpolation: { escapeValue: false },
           })}
           mutationKey={updateVrackServicesQueryKey(
             getSubnetCreationMutationKey(id),

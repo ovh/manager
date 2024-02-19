@@ -16,7 +16,7 @@ import {
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { OnboardingLayout } from '@/components/layout-helpers/OnboardingLayout';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import { isEditable, useVrackService } from '@/utils/vs-utils';
@@ -29,16 +29,20 @@ const Subnets: React.FC = () => {
   const { data: vrackServices, isLoading } = useVrackService();
   const { id } = useParams();
   const navigate = useNavigate();
-  const {
-    shell: { tracking },
-  } = React.useContext(ShellContext);
+  const { trackPage, trackClick } = useOvhTracking();
 
-  const navigateToCreateSubnetPage = () =>
+  const navigateToCreateSubnetPage = async () => {
+    trackClick({
+      path: 'subnets',
+      value: '::create-subnet',
+      type: 'action',
+    });
     navigate(urls.createSubnet.replace(':id', id));
+  };
 
   React.useEffect(() => {
     if (!isLoading) {
-      tracking.trackPage({ name: 'vrack-services::subnets', level2: '0' });
+      trackPage({ path: 'subnets' });
     }
   }, [isLoading]);
 
@@ -87,7 +91,6 @@ const Subnets: React.FC = () => {
         variant={ODS_BUTTON_VARIANT.stroked}
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={navigateToCreateSubnetPage}
-        data-tracking="vrack-services::subnets::create-subnet"
       >
         {t('createSubnetButtonLabel')}
         <span slot="start">

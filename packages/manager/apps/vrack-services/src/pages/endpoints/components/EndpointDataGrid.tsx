@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { OsdsSpinner, OsdsDatagrid } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE, OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { useParams } from 'react-router-dom';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useQueryClient } from '@tanstack/react-query';
 import { reactFormatter } from '@/utils/ods-utils';
 import { ActionsCell, ServiceName, ServiceType } from './EndpointDataGridCells';
@@ -23,9 +23,7 @@ export const EndpointDatagrid: React.FC = () => {
     string | undefined
   >(undefined);
   const { id } = useParams();
-  const {
-    shell: { tracking },
-  } = React.useContext(ShellContext);
+  const { trackEvent, trackClick } = useOvhTracking();
   const queryClient = useQueryClient();
 
   const { data: vrackServices, isError, error, isLoading } = useVrackService();
@@ -84,6 +82,7 @@ export const EndpointDatagrid: React.FC = () => {
           openDeleteModal={setOpenedDeleteModal}
           vrackServices={vrackServices}
           isLoading={isPending}
+          trackClick={trackClick}
         />,
       ),
     },
@@ -133,9 +132,9 @@ export const EndpointDatagrid: React.FC = () => {
         deleteInputLabel={t('modalDeleteInputLabel')}
         headline={t('modalDeleteHeadline')}
         description={t('modalDeleteDescription')}
-        onDisplayDataTracking="vrack-services::endpoints::delete"
-        confirmButtonDataTracking="vrack-services::endpoints::delete::confirm"
-        cancelButtonDataTracking="vrack-services::endpoints::delete::cancel"
+        dataTrackingPath="endpoints::delete"
+        dataTrackingConfirmValue="confirm"
+        dataTrackingCancelValue="cancel"
         onConfirmDelete={() =>
           updateVS(
             {
@@ -154,16 +153,10 @@ export const EndpointDatagrid: React.FC = () => {
             },
             {
               onSuccess: async () => {
-                await tracking.trackEvent({
-                  name: 'vrack-services::endpoints::delete-success',
-                  level2: '0',
-                });
+                trackEvent({ path: 'endpoints::delete', value: '-success' });
               },
               onError: async () => {
-                await tracking.trackEvent({
-                  name: 'vrack-services::endpoints::delete-error',
-                  level2: '0',
-                });
+                trackEvent({ path: 'endpoints::delete', value: '-error' });
               },
             },
           )
