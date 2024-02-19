@@ -69,6 +69,12 @@ export default /* @ngInject */ ($stateProvider) => {
           { kubeId, projectId },
         ),
 
+      updateProxy: /* @ngInject */ ($state, kubeId, projectId) => () =>
+        $state.go(
+          'pci.projects.project.kubernetes.details.service.updateProxy',
+          { kubeId, projectId },
+        ),
+
       addOidcProvider: /* @ngInject */ ($state, kubeId, projectId) => () =>
         $state.go(
           'pci.projects.project.kubernetes.details.service.add-oidc-provider',

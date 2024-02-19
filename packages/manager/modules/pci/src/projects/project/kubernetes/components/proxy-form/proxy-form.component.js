@@ -21,6 +21,7 @@ export default {
      * } | null}
      */
     ngModel: '<',
+    valuesOnly: '<',
   },
   require: {
     ngModelCtrl: '^ngModel',
