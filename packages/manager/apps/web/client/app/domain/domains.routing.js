@@ -17,7 +17,9 @@ export default /* @ngInject */ ($stateProvider) => {
         .injector()
         .getAsync('resources')
         .then((resources) =>
-          resources.data.length === 0 && !transition.params().filter
+          resources.data.length === 0 &&
+          (!transition.params().filter ||
+            !JSON.parse(transition.params().filter).length)
             ? { state: 'app.domain.onboarding' }
             : false,
         ),
