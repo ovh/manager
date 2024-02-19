@@ -165,7 +165,7 @@ const LifeCycleCard = ({ app, onAppUpdate }: LifeCycleProps) => {
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
-                  disabled={app.status.state !== ai.app.AppStateEnum.RUNNING}
+                  disabled={app.status.state === ai.app.AppStateEnum.STOPPED || app.status.state === ai.app.AppStateEnum.STOPPING}
                   onClick={() => {
                     onStopClicked();
                   }}

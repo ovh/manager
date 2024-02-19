@@ -1,7 +1,6 @@
 import { apiClient } from "@ovh-ux/manager-core-api";
 import { ai } from "@/models/types";
 
-
 export interface NotebookProps {
     projectId: string,
     notebookId: string,
@@ -62,6 +61,22 @@ export interface OrderNbProps {
             gpu?: number,
         },
     };
+};
+
+export interface DockerImageProps {
+    projectId: string,
+    appId: string,
+    imageSpec: {
+        url: string,
+    },
+};
+
+export interface HttpPortProps {
+    projectId: string,
+    appId: string,
+    httpPortSpec: {
+        defaultHttpPort: number,
+    },
 };
 
 export const aiApi = {
@@ -320,4 +335,24 @@ export const appsApi = {
         )
             .then((res) => res.data as string);
     },
+    updateDockerImage: async ({ projectId, appId, imageSpec }: DockerImageProps) => {
+        console.log(imageSpec);
+        await apiClient.v6.put(
+            `/cloud/project/${projectId}/ai/app/${appId}/image`,
+            imageSpec,
+        )
+            .then((res) => res.data as string);
+    },
+    updateHttpPortApp: async ({
+        projectId,
+        appId,
+        httpPortSpec,
+    }: HttpPortProps
+    ) => {
+        await apiClient.v6.put(
+            `/cloud/project/${projectId}/ai/app/${appId}`,
+            httpPortSpec,
+        )
+            .then((res) => res.data as string);
+    }
 }

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -6,12 +7,20 @@ import { ArrowRight, Pencil } from 'lucide-react';
 
 import { ai } from '@/models/types';
 import { displaySizeFormat } from '@/data/constant';
+import UpdateScalingModal from './updatedScalingModal';
+
 
 interface ResourcesProps {
   app: ai.app.App;
 }
 
 const ResourcesCard = ({ app }: ResourcesProps) => {
+  const [isUpdateScalingModalOpen, setIsUpdateScalingModalOpen] = useState(false);
+
+  const onUpdateScalingSubmit = () => {
+    setIsUpdateScalingModalOpen(false);
+  };
+
   return (
     <>
       <Card>
@@ -69,11 +78,18 @@ const ResourcesCard = ({ app }: ResourcesProps) => {
             <div className="basis-1/4">
               <div className="flex justify-end">
                 <Button
+                  onClick={() => setIsUpdateScalingModalOpen(true)}
                   className="text-primary bg-white font-semibold hover:bg-primary-100 hover:text-primary"
                   variant="ghost"
                 >
-                  <Pencil className="w-4 h-4 mb-1" />
+                  <Pencil className="w-4 h-4 mb-1" />{isUpdateScalingModalOpen}
                 </Button>
+                <UpdateScalingModal
+                  app={app}
+                  open={isUpdateScalingModalOpen}
+                  onClose={() => setIsUpdateScalingModalOpen(false)}
+                  onSubmit={onUpdateScalingSubmit}
+                />
               </div>
             </div>
           </div>

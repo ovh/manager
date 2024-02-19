@@ -84,6 +84,7 @@ export default function AiNotebooksAttachedDataPage() {
           </Button>
           <div className='mt-4'>
             <Button
+              disabled={dataStoreVolumes?.length === 0}
               onClick={() => setIsDataSyncModalOpen(true)}
               className="mb-2"
               variant="outline"

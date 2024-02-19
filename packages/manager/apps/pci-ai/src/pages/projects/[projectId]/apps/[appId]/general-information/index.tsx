@@ -24,7 +24,7 @@ export default function AiAppGeneralInformationPage() {
               <div className="max-w-full">
                 <GeneralCard
                   app={appQuery.data}
-                  onLabelUpdate={() => appQuery.refetch()}
+                  onAppUpdate={() => appQuery.refetch()}
                 />
               </div>
               <div className="w-auto">

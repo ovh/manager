@@ -10,23 +10,38 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Files, Pencil } from 'lucide-react';
 
 import { ai } from '@/models/types';
-import { LabelsAppProps, appsApi } from '@/data/aiapi';
+import {
+  DockerImageProps,
+  HttpPortProps,
+  LabelsAppProps,
+  appsApi,
+} from '@/data/aiapi';
 
 import AppTags from './appTags';
 import AddLabelModal, {
   AddLabelSubmitData,
 } from './../../../../_components/addLabelModal';
+import UpdateDockerImageModal, {
+  UpdateDockerImageSubmitData,
+} from './updateDockerImageModal';
+import UpdateHttpPortModal, {
+  UpdateHttpPortSubmitData,
+} from './udpateHttpPortModal';
 
 interface GeneralProps {
   app: ai.app.App;
-  onLabelUpdate: () => void;
+  onAppUpdate: () => void;
 }
 
-const GeneralCard = ({ app, onLabelUpdate }: GeneralProps) => {
+const GeneralCard = ({ app, onAppUpdate }: GeneralProps) => {
   const { projectId } = useRequiredParams<{ projectId: string }>();
   const [isAddLabelModalOpen, setIsAddLabelModalOpen] = useState(false);
+  const [isUpdateImageModalOpen, setIsUpdateImageModalOpen] = useState(false);
+  const [isUpdateHttpPortModalOpen, setIsUpdateHttpPortModalOpen] = useState(
+    false,
+  );
 
-  const onSubmit = (data: AddLabelSubmitData) => {
+  const onLabelUpdateSubmit = (data: AddLabelSubmitData) => {
     setIsAddLabelModalOpen(false);
     const newList: Record<string, string> = { ...app.spec.labels };
     const nouvelElement = { key: data.key, value: data.value };
@@ -44,10 +59,60 @@ const GeneralCard = ({ app, onLabelUpdate }: GeneralProps) => {
       appsApi.updateLabel(addLabelParam),
     onSuccess: () => {
       toast.success(`Your label have been succesfuly added`);
-      onLabelUpdate();
+      onAppUpdate();
     },
     onError: (error: Error) => {
       toast.error(`A error occured while adding your label: ${error.message}`);
+    },
+  });
+
+  const onImageDockerUpdateSubmit = (data: UpdateDockerImageSubmitData) => {
+    setIsUpdateImageModalOpen(false);
+    updateDockerImageDataMutation.mutate({
+      projectId: projectId,
+      appId: app.id,
+      imageSpec: {
+        url: data.dockerImage,
+      },
+    });
+  };
+
+  const updateDockerImageDataMutation = useMutation({
+    mutationFn: (udpateDockerImageParam: DockerImageProps) =>
+      appsApi.updateDockerImage(udpateDockerImageParam),
+    onSuccess: () => {
+      toast.success(`Your App Docker Image have been succesfuly udpated`);
+      onAppUpdate();
+    },
+    onError: (error: Error) => {
+      toast.error(
+        `A error occured while updating your App Docker Image: ${error.message}`,
+      );
+    },
+  });
+
+  const onHttpPortUpdateSubmit = (data: UpdateHttpPortSubmitData) => {
+    setIsUpdateHttpPortModalOpen(false);
+    updateHttpPortDataMutation.mutate({
+      projectId: projectId,
+      appId: app.id,
+      httpPortSpec: {
+        defaultHttpPort: data.httpPort,
+      },
+    });
+  };
+
+  const updateHttpPortDataMutation = useMutation({
+    mutationFn: (udpateHttpPortParam: HttpPortProps) =>
+      appsApi.updateHttpPortApp(udpateHttpPortParam),
+    onSuccess: () => {
+      toast.success(`Your App Http port have been succesfuly udpated`);
+      onAppUpdate();
+    },
+    onError: (error: Error) => {
+      toast.error(
+        `A error occured while updating your App Http port: ${error.message}`,
+      );
     },
   });
 
@@ -67,12 +132,19 @@ const GeneralCard = ({ app, onLabelUpdate }: GeneralProps) => {
               {app.spec.image}
             </p>
             <Button
+              onClick={() => setIsUpdateImageModalOpen(true)}
               className="mt-2 text-primary bg-white font-semibold hover:bg-primary-100 hover:text-primary"
               variant="ghost"
             >
-              Update Image
+              Update Image{isUpdateImageModalOpen}
               <Pencil className="w-4 h-4 ml-3 mb-1" />
             </Button>
+            <UpdateDockerImageModal
+              currentDockerImage={app.spec.image}
+              open={isUpdateImageModalOpen}
+              onClose={() => setIsUpdateImageModalOpen(false)}
+              onSubmit={onImageDockerUpdateSubmit}
+            />
           </CardContent>
           <div className="border-slate-200 border-t mx-5 mb-3"></div>
           <CardContent>
@@ -102,12 +174,19 @@ const GeneralCard = ({ app, onLabelUpdate }: GeneralProps) => {
             </div>
             <div>
               <Button
+                onClick={() => setIsUpdateHttpPortModalOpen(true)}
                 className="text-primary bg-white font-semibold hover:bg-primary-100 hover:text-primary"
                 variant="ghost"
               >
-                Update HTTP Port
+                Update Http Port {isUpdateHttpPortModalOpen}
                 <Pencil className="w-4 h-4 ml-3 mb-1" />
               </Button>
+              <UpdateHttpPortModal
+                currentHttpPort={app.spec.defaultHttpPort || 8080}
+                open={isUpdateHttpPortModalOpen}
+                onClose={() => setIsUpdateHttpPortModalOpen(false)}
+                onSubmit={onHttpPortUpdateSubmit}
+              />
             </div>
           </CardContent>
           <div className="border-slate-200 border-t mx-5 mb-3"></div>
@@ -137,7 +216,7 @@ const GeneralCard = ({ app, onLabelUpdate }: GeneralProps) => {
               <AppTags
                 appId={app.id}
                 tags={app.spec.labels}
-                onLabelUpdate={() => onLabelUpdate()}
+                onLabelUpdate={() => onAppUpdate()}
               />
             )}
             <div className="mt-2">
@@ -152,7 +231,7 @@ const GeneralCard = ({ app, onLabelUpdate }: GeneralProps) => {
               <AddLabelModal
                 open={isAddLabelModalOpen}
                 onClose={() => setIsAddLabelModalOpen(false)}
-                onSubmit={onSubmit}
+                onSubmit={onLabelUpdateSubmit}
               />
             </div>
           </CardContent>
