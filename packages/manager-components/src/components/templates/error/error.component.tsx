@@ -11,7 +11,8 @@ import {
   ODS_TEXT_SIZE,
   ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components';
-import useDynamicTranslation from '../../translation/useDynamicTranslation';
+
+import useDynamicTranslation from '../../../translation/useDynamicTranslation';
 import OOPS from './assets/error-banner-oops.png';
 
 import { ErrorBannerProps } from './error.types';
@@ -38,7 +39,7 @@ export const ErrorBanner = ({
           type={ODS_MESSAGE_TYPE.error}
           data-tracking={labelTracking}
         >
-          <div>
+          <OsdsText color={ODS_THEME_COLOR_INTENT.error}>
             {t('manager_error_page_default')} <br />
             {error?.data?.message && <strong>{error.data.message}</strong>}
             {error?.headers['x-ovh-queryid'] && (
@@ -47,7 +48,7 @@ export const ErrorBanner = ({
                 {error.headers['x-ovh-queryid']}
               </p>
             )}
-          </div>
+          </OsdsText>
         </OsdsMessage>
       </div>
       <div className="text-right overflow-hidden py-2">

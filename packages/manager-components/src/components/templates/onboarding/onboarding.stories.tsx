@@ -4,7 +4,7 @@ import {
   OnboardingLayout,
   OnboardingLayoutProps,
 } from './onboarding.component';
-import { Card } from '../card/card.component';
+import { Card } from '../../navigation/card/card.component';
 
 export const defaultProps: OnboardingLayoutProps = {
   title: 'Welcome to Onboarding',
@@ -44,7 +44,7 @@ export const defaultProps: OnboardingLayoutProps = {
 };
 
 const meta: Meta<typeof OnboardingLayout> = {
-  title: 'Components/Onboarding',
+  title: 'Templates/Onboarding',
   decorators: [(story) => <div>{story()}</div>],
   component: OnboardingLayout,
   argTypes: {},
