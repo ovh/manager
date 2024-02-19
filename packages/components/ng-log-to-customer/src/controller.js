@@ -104,21 +104,13 @@ export default class LogToCustomerCtrl {
 
   toggleLogs() {
     if (this.interval) {
-<<<<<<< HEAD
       this.clearInterval();
-=======
-      this.stop();
->>>>>>> bc22508a3d (feat(pci): log to customer - live tail (#10932))
     } else {
       this.startLog();
     }
   }
 
-<<<<<<< HEAD
   clearInterval() {
-=======
-  stop() {
->>>>>>> bc22508a3d (feat(pci): log to customer - live tail (#10932))
     this.$interval.cancel(this.interval);
     this.interval = null;
   }
@@ -134,11 +126,7 @@ export default class LogToCustomerCtrl {
           this.appendLogs(data);
         })
         .catch(() => {
-<<<<<<< HEAD
           this.clearInterval();
-=======
-          this.stop();
->>>>>>> bc22508a3d (feat(pci): log to customer - live tail (#10932))
           this.setErrorMessage();
         });
     }, 3000);
@@ -191,7 +179,6 @@ export default class LogToCustomerCtrl {
     });
   }
 
-<<<<<<< HEAD
   generateTempUrlSource() {
     this.errorMessage = null;
     this.url = null;
@@ -208,17 +195,6 @@ export default class LogToCustomerCtrl {
           Date.parse(data.expirationDate) - new Date().getTime() - 300;
         this.setUrlTimeout = this.$timeout(() => {
           this.generateTempUrlSource();
-=======
-  setUrlSource() {
-    return this.LogToCustomer.getLogSourceUrl(this.source)
-      .then((data) => {
-        this.url = data.url;
-        const expirationConnectionTimeout =
-          Date.parse(data.expirationDate) - new Date().getTime() - 300;
-
-        this.setUrlTimeout = this.$timeout(() => {
-          this.setUrlSource();
->>>>>>> bc22508a3d (feat(pci): log to customer - live tail (#10932))
         }, expirationConnectionTimeout);
       })
       .catch(() => {
