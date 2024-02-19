@@ -24,13 +24,16 @@
     "@ovhcloud/ods-common-theming": "^17.1.0",
     "@ovhcloud/ods-components": "^17.1.0",
     "@ovhcloud/ods-theme-blue-jeans": "^17.1.0",
+    "@tanstack/react-table": "^8.11.6",
     "babel-preset-react-app": "^10.0.1",
     "i18next": "^20.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "^11.18.1",
+    "react-router-dom": "^6.21.0",
     "sass": "1.71.0",
-    "tailwindcss": "3.3.3"
+    "tailwindcss": "3.3.3",
+    "zustand": "^4.5.0"
   },
   "devDependencies": {
     "@babel/core": "7.22.10",
@@ -39,6 +42,7 @@
     "@storybook/addon-essentials": "7.5.3",
     "@storybook/addon-interactions": "7.5.3",
     "@storybook/addon-links": "7.5.3",
+    "storybook-addon-react-router-v6": "^2.0.10",
     "@storybook/addon-styling": "1.3.6",
     "@storybook/blocks": "7.5.3",
     "@storybook/react": "7.5.3",
