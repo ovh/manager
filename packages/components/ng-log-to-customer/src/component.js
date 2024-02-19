@@ -8,7 +8,8 @@ export default {
     tile: '?rightTile',
   },
   bindings: {
-    source: '<',
+    logApiUrl: '<',
+    logKindApiUrl: '<',
     logKeys: '<',
   },
 };
