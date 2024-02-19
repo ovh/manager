@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { OsdsButton, OsdsText, OsdsLink } from '@ovhcloud/ods-components/react';
-import { useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
@@ -23,6 +23,7 @@ interface FiltersProps {
   setLocalSearchValue: React.Dispatch<React.SetStateAction<string>>;
   setSelectedCategories: React.Dispatch<React.SetStateAction<string[]>>;
   setSelectedUniverses: React.Dispatch<React.SetStateAction<string[]>>;
+  setIsRouterInitialized: React.Dispatch<React.SetStateAction<boolean>>;
   onApply: () => void;
 }
 
@@ -32,13 +33,13 @@ const Filters: React.FC<FiltersProps> = ({
   setLocalSearchValue,
   setSelectedCategories: setParentSelectedCategories,
   setSelectedUniverses: setParentSelectedUniverses,
+  setIsRouterInitialized,
   onApply,
 }) => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedUniverses, setSelectedUniverses] = useState<string[]>([]);
   const [hasInteracted, setHasInteracted] = useState<boolean>(false);
-
-  const location = useLocation();
+  const [searchParams] = useSearchParams();
 
   const setFilters = () => {
     setParentSelectedCategories(selectedCategories);
@@ -48,7 +49,7 @@ const Filters: React.FC<FiltersProps> = ({
 
   useEffect(() => {
     if (products.length > 0) {
-      const { universes, categories } = getFilterParamsFromUrl(location.search);
+      const { universes, categories } = getFilterParamsFromUrl(searchParams);
 
       if (categories.length !== selectedCategories.length) {
         setSelectedCategories(categories);
@@ -58,8 +59,9 @@ const Filters: React.FC<FiltersProps> = ({
         setSelectedUniverses(universes);
         setParentSelectedUniverses(universes);
       }
+      setIsRouterInitialized(true);
     }
-  }, [location.search, products]);
+  }, [searchParams, products]);
 
   // we get the list of available categories and universes from product list
   const universes = getUniverses(products, true);

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import { Card } from '@ovhcloud/manager-components';
 import { OsdsText, OsdsDivider } from '@ovhcloud/ods-components/react';
@@ -20,12 +20,13 @@ import Errors from '@/components/Error/Errors';
 
 export default function Catalog() {
   const { t } = useTranslation('catalog');
-  const navigate = useNavigate();
-
+  const [, setSearchParams] = useSearchParams();
   const [searchText, setSearchText] = React.useState('');
   const [categories, setCategories] = React.useState<string[]>([]);
   const [universes, setUniverses] = React.useState<string[]>([]);
-
+  const [isRouterInitialized, setIsRouterInitialized] = React.useState<boolean>(
+    false,
+  );
   const { results, products, isLoading, error } = useCatalog({
     categories,
     universes,
@@ -34,14 +35,16 @@ export default function Catalog() {
 
   useEffect(() => {
     if (products.length > 0) {
-      const searchParams = getSearchUrlFromFilterParams(
+      const customSearchParams = getSearchUrlFromFilterParams(
         searchText,
         categories,
         universes,
       );
-      navigate({ search: searchParams });
+      if (isRouterInitialized) {
+        setSearchParams(customSearchParams);
+      }
     }
-  }, [searchText, categories, universes, products]);
+  }, [searchText, categories, universes, products, isRouterInitialized]);
 
   const getResultsNumber = () => {
     if (isLoading) return '';
@@ -69,6 +72,7 @@ export default function Catalog() {
         setSelectedCategories={setCategories}
         setSelectedUniverses={setUniverses}
         setSearchValue={setSearchText}
+        setIsRouterInitialized={setIsRouterInitialized}
       />
       <OsdsDivider separator />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-5 pt-3">

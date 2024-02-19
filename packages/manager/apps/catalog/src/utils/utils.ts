@@ -103,11 +103,10 @@ export const getAvailableCategoriesWithCounter = (
 };
 
 export const getFilterParamsFromUrl = (
-  search: string,
+  search: URLSearchParams,
 ): { universes: string[]; categories: string[] } => {
-  const params = new URLSearchParams(search);
-  const universesURL = params.get('universes');
-  const categoriesURL = params.get('categories');
+  const universesURL = search.get('universes');
+  const categoriesURL = search.get('categories');
   const universes = universesURL ? universesURL.split(',') : [];
   const categories = categoriesURL ? categoriesURL.split(',') : [];
   return { universes, categories };
@@ -117,10 +116,10 @@ export const getSearchUrlFromFilterParams = (
   search: string,
   categories: string[],
   universes: string[],
-): string => {
+): URLSearchParams => {
   const params = new URLSearchParams();
   if (search) params.append('q', search);
   if (categories.length > 0) params.append('categories', categories.join(','));
   if (universes.length > 0) params.append('universes', universes.join(','));
-  return params.toString();
+  return params;
 };
