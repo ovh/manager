@@ -1,0 +1,18 @@
+{
+  "title": "Managed Rancher",
+  "description": " El servicio Managed Rancher le permite centralizar la gestión de todos sus clústeres Kubernetes. El servicio Managed Rancher, diseñado en colaboración con SUSE Rancher, permite crear y gestionar el ciclo de vida de sus clústeres administrados o autoadministrados en la infraestructura que usted elija, tanto con OVHcloud como externamente.",
+  "orderButtonLabel": "Crear un servicio Managed Rancher",
+  "orderButtonLink": "/#/dedicated/pci-rancher/order",
+  "moreInfoButtonLabel": "Saber más sobre pci-rancher",
+  "moreInfoButtonLink": "/#/dedicated/pci-rancher/info",
+  "guideCategory": "Guía",
+  "guide1Title": "Primeros pasos con un NAS-HA",
+  "guide1Description": "Cómo gestionar un NAS-HA desde el área de cliente de OVHcloud",
+  "guide1Link": "https://help.ovhcloud.com/csm/es-es-public-cloud-storage-nas-get-started?id=kb_article_view&amp;sysparm_article=KB0046695",
+  "guide2Title": "Montaje de un NAS-HA mediante NFS compartido",
+  "guide2Description": "Cómo conectarse a un NAS-HA utilizando un recurso compartido por NFS",
+  "guide2Link": "https://help.ovhcloud.com/csm/es-es-public-cloud-storage-nas-nfs?id=kb_article_view&amp;sysparm_article=KB0046746",
+  "guide3Title": "Montar un NAS en Windows Server a través de CIFS",
+  "guide3Description": "Cómo montar un NAS en Windows Server a través del protocolo CIFS",
+  "guide3Link": "https://help.ovhcloud.com/csm/es-es-public-cloud-storage-nas-cifs?id=kb_article_view&amp;sysparm_article=KB0046668"
+}
