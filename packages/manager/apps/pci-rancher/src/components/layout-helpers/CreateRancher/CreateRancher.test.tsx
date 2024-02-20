@@ -19,16 +19,6 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
-jest.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigation: jest.fn(() => ({
-    getURL: jest.fn(() => Promise.resolve('123')),
-    data: [],
-  })),
-  useTracking: jest.fn(() => ({
-    trackPage: jest.fn(),
-    trackClick: jest.fn(),
-  })),
-}));
 
 const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
   waitFor(() =>

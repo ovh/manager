@@ -22,6 +22,17 @@ i18n.use(initReactI18next).init({
   ns: ['common'],
 });
 
+jest.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useNavigation: jest.fn(() => ({
+    getURL: jest.fn(() => Promise.resolve('123')),
+    data: [],
+  })),
+  useTracking: jest.fn(() => ({
+    trackPage: jest.fn(),
+    trackClick: jest.fn(),
+  })),
+}));
+
 const Wrappers = ({ children }: { children: React.ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
