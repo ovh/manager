@@ -54,7 +54,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
   getBadgeTooltipText(status) {
     return status === 'STOPPED' || status === 'SUSPENDED'
       ? this.$translate.instant(
-          `pci_projects_project_instances_status_${status.toUpperCase()}_TOOLTIP`,
+          `pci_projects_project_instances_status_${status}_TOOLTIP`,
         )
       : '';
   }

@@ -1,6 +1,43 @@
-export const STOP_INSTANCE_INFO_LINK =
-  'https://help.ovhcloud.com/csm/fr-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051278';
-
+export const STOP_INSTANCE_INFO_LINKS = {
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051262',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051278',
+  MA:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051278',
+  TN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051278',
+  SN:
+    'https://help.ovhcloud.com/csm/fr-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051278',
+  QC:
+    'https://help.ovhcloud.com/csm/fr-ca-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051256',
+  GB:
+    'https://help.ovhcloud.com/csm/en-gb-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051251',
+  IE:
+    'https://help.ovhcloud.com/csm/en-ie-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051249',
+  CA:
+    'https://help.ovhcloud.com/csm/en-ca-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051259',
+  AU:
+    'https://help.ovhcloud.com/csm/en-au-documentation-public-cloud?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938',
+  SG:
+    'https://help.ovhcloud.com/csm/en-sg-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051255',
+  ASIA:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051258',
+  IN:
+    'https://help.ovhcloud.com/csm/asia-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051258',
+  ES:
+    'https://help.ovhcloud.com/csm/es-es-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051263',
+  PT:
+    'https://help.ovhcloud.com/csm/pt-documentation-public-cloud?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938',
+  IT:
+    'https://help.ovhcloud.com/csm/it-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051275',
+  PL:
+    'https://help.ovhcloud.com/csm/pl-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051261',
+  DE:
+    'https://help.ovhcloud.com/csm/de-public-cloud-compute-shelve-pause-instance?id=kb_article_view&sysparm_article=KB0051264',
+  NL:
+    'https://help.ovhcloud.com/csm/en-nl-documentation-public-cloud?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938',
+};
 export default {
-  STOP_INSTANCE_INFO_LINK,
+  STOP_INSTANCE_INFO_LINKS,
 };
