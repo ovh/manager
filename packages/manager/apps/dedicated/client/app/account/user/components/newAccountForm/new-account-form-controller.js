@@ -69,7 +69,7 @@ export default class NewAccountFormController {
     this.isIndianSubsidiary = this.user.ovhSubsidiary === IN_SUBSIDIARY;
     this.isEditionDisabledByKyc =
       this.user.kycValidated ||
-      ([KYC_STATUS.REQUIRED, KYC_STATUS.OPEN].includes(this.kycStatus.status) &&
+      (this.kycStatus.status === KYC_STATUS.OPEN &&
         Boolean(this.kycStatus.ticketId));
     this.newSupportTicketUrl = this.coreURLBuilder.buildURL(
       'dedicated',
