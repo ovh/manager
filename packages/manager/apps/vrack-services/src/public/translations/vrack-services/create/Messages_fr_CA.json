@@ -6,7 +6,6 @@
   "regionLabel": "Région",
   "regionDescription": "vRack Services est un service régional. Vous devez donc choisir dans quelle région vous comptez l'utiliser. Pour bénéficier du Service Endpoint, vous devez sélectionner la région correspondante à votre service managé OVHcloud.",
   "createButtonLabel": "Activer vRack Services",
-  "creationServiceError": "Erreur lors de l'activation de vRack Services : {{error}}",
   "modalHeadline": "Créer un vRack",
   "modalDescriptionLine1": "Pour activer vRack Services, vous devez créer un vRack.",
   "modalDescriptionLine2": "Souhaitez vous commander un vRack en parallèle de l'activation de vRack Services ?",

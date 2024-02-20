@@ -50,6 +50,7 @@
     "@types/jest": "27.x",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.2.0",
+    "c8": "^9.1.0",
     "jest": "27.x",
     "msw": "2.1.7",
     "ts-jest": "27.x",

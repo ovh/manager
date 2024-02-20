@@ -96,7 +96,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
           {primaryButtonLabel && (primaryHref || primaryOnClick) && (
             <OsdsButton
               inline
-              disabled={primaryButtonDisabled}
+              disabled={primaryButtonDisabled || undefined}
               color={ODS_THEME_COLOR_INTENT.primary}
               size={primaryButtonSize}
               href={primaryHref}
@@ -108,7 +108,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
           {secondaryButtonLabel && (secondaryHref || secondaryOnClick) && (
             <OsdsButton
               inline
-              disabled={secondaryButtonDisabled}
+              disabled={secondaryButtonDisabled || undefined}
               color={ODS_THEME_COLOR_INTENT.primary}
               variant={ODS_BUTTON_VARIANT.stroked}
               size={secondaryButtonSize}
