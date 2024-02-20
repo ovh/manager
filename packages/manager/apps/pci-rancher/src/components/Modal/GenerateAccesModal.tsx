@@ -18,6 +18,8 @@ import { useTranslation } from 'react-i18next';
 import { AccessDetail } from '../../hooks/useGenerateAccessDetail';
 import { RancherService } from '@/api/api.type';
 import Modal from './Modal';
+import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
+import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 export interface GenerateAccessModalProps {
   rancher: RancherService;
@@ -33,6 +35,8 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
   accessDetail,
 }) => {
   const { t } = useTranslation('pci-rancher/dashboard');
+  const trackAction = useTrackingAction();
+  useTrackingPage(TrackingPageView.GenerateAccessModal);
   const hasValidAccess = !!accessDetail?.username && !!accessDetail?.password;
 
   return (
@@ -79,7 +83,15 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
         slot="actions"
         variant={ODS_BUTTON_VARIANT.stroked}
         color={ODS_THEME_COLOR_INTENT.primary}
-        onClick={() => toggleModal(false)}
+        onClick={() => {
+          trackAction(
+            TrackingPageView.GenerateAccessModal,
+            hasValidAccess
+              ? TrackingEvent.generateAccessClose
+              : TrackingEvent.generateAccessCancel,
+          );
+          toggleModal(false);
+        }}
       >
         {t(hasValidAccess ? 'close' : 'cancel')}
       </OsdsButton>
@@ -91,8 +103,22 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
           ? {
               target: OdsHTMLAnchorElementTarget._blank,
               href: rancher.currentState.url,
+              onClick: () => {
+                trackAction(
+                  TrackingPageView.GenerateAccessModal,
+                  TrackingEvent.generateAccessConfirm,
+                );
+              },
             }
-          : { onClick: onGenerateAccess })}
+          : {
+              onClick: () => {
+                trackAction(
+                  TrackingPageView.GenerateAccessModal,
+                  TrackingEvent.generateAccessAccessUi,
+                );
+                onGenerateAccess();
+              },
+            })}
       >
         {t(hasValidAccess ? 'rancher_button_acces' : 'confirm')}
       </OsdsButton>

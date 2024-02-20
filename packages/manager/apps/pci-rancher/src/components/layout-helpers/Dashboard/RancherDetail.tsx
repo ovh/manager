@@ -29,6 +29,8 @@ import { RancherService } from '@/api/api.type';
 import { TileBlock } from '../../TileBlock/TileBlock';
 import GenerateAccessModal from '../../Modal/GenerateAccesModal';
 import { AccessDetail } from '../../../hooks/useGenerateAccessDetail';
+import { useTrackingAction } from '@/hooks/useTrackingPage';
+import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 interface RancherDetailProps {
   rancher: RancherService;
@@ -48,7 +50,7 @@ const RancherDetail = ({
 }: RancherDetailProps) => {
   const { t } = useTranslation('pci-rancher/dashboard');
   const { t: tListing } = useTranslation('pci-rancher/listing');
-
+  const trackAction = useTrackingAction();
   const [showEditModal, toggleEditModal] = useState(false);
   const [showGenerateAccesModal, toggleGenerateAccessModal] = useState(false);
 
@@ -63,6 +65,9 @@ const RancherDetail = ({
       toggleGenerateAccessModal(false);
     }
   }, [hasErrorAccessDetail]);
+
+  const onAccessRancherUrl = () =>
+    trackAction(TrackingPageView.DetailRancher, TrackingEvent.accessUi);
 
   return (
     <div>
@@ -167,6 +172,7 @@ const RancherDetail = ({
                   target={OdsHTMLAnchorElementTarget._blank}
                   className="my-5"
                   inline
+                  onClick={onAccessRancherUrl}
                   href={url}
                 >
                   {t('rancher_button_acces')}
@@ -174,7 +180,13 @@ const RancherDetail = ({
                 <OsdsLink
                   color={ODS_THEME_COLOR_INTENT.primary}
                   className="mt-3 flex items-center"
-                  onClick={() => toggleGenerateAccessModal(true)}
+                  onClick={() => {
+                    trackAction(
+                      TrackingPageView.DetailRancher,
+                      TrackingEvent.generateAccess,
+                    );
+                    toggleGenerateAccessModal(true);
+                  }}
                 >
                   <span>{t('generate_access')}</span>
                   <OsdsIcon

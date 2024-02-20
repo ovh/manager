@@ -19,6 +19,8 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RancherService } from '@/api/api.type';
 import Modal from './Modal';
+import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
+import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 interface DeleteModalProps {
   toggleModal: (showModal: boolean) => void;
@@ -34,10 +36,12 @@ const DeleteModal = ({
 }: DeleteModalProps) => {
   const { t } = useTranslation('pci-rancher/listing');
   const [terminateText, setTerminateText] = useState('');
-
+  useTrackingPage(TrackingPageView.DeleteRancherModal);
+  const trackAction = useTrackingAction();
   const isButtonDisabled = TERMINATE_TEXT !== terminateText;
 
   const onDelete = () => {
+    trackAction(TrackingPageView.DeleteRancherModal, TrackingEvent.confirm);
     onDeleteRancher();
     toggleModal(false);
   };
@@ -88,7 +92,14 @@ const DeleteModal = ({
       <OsdsButton
         slot="actions"
         color={ODS_THEME_COLOR_INTENT.default}
-        onClick={() => toggleModal(false)}
+        onClick={() => {
+          trackAction(
+            TrackingPageView.DeleteRancherModal,
+            TrackingEvent.cancel,
+          );
+
+          toggleModal(false);
+        }}
       >
         {t('cancel')}
       </OsdsButton>

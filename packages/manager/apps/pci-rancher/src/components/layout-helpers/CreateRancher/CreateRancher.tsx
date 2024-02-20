@@ -29,6 +29,8 @@ import {
   RancherVersion,
 } from '@/api/api.type';
 import { useActivatePciProjectURL } from '@/hooks/useActivatePciProjectURL';
+import { useTrackingAction } from '@/hooks/useTrackingPage';
+import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 const TileSection: React.FC<{
   name: string;
@@ -123,7 +125,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
 
   const { t } = useTranslation('pci-rancher/dashboard');
   const { t: tListing } = useTranslation('pci-rancher/listing');
-
+  const trackAction = useTrackingAction();
   useEffect(() => {
     if (selectedPlan === null && plans?.length) {
       setSelectedPlan(plans?.filter((v) => v.status === 'AVAILABLE')[0]);
@@ -135,13 +137,16 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   }, [versions, plans]);
 
   const onCreateClick = (rancherPayload: CreateRancherPayload) => {
+    trackAction(TrackingPageView.CreateRancher, TrackingEvent.confirm);
     onCreateRancher(rancherPayload);
   };
 
-  const onCancelClick = () =>
+  const onCancelClick = () => {
+    trackAction(TrackingPageView.CreateRancher, TrackingEvent.cancel);
     navigate(
       hasSomeRancher ? getRanchersUrl(projectId) : getOnboardingUrl(projectId),
     );
+  };
 
   return (
     <div>
