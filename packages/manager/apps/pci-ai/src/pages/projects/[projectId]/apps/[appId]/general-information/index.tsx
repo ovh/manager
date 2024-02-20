@@ -34,7 +34,10 @@ export default function AiAppGeneralInformationPage() {
                 />
               </div>
               <div className="w-auto">
-                <ResourcesCard app={appQuery.data} />
+                <ResourcesCard 
+                  app={appQuery.data} 
+                  onAppUpdate={() => appQuery.refetch()}
+                />
               </div>
             </div>
           )}

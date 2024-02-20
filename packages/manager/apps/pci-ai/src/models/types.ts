@@ -1317,3 +1317,29 @@ export namespace ai {
         "RWD" = "RWD"
     }
 }
+
+export namespace user {
+    export interface User {
+        createdAt: Date;
+        description: string;
+        id: string;
+        openstackId: string;
+        roles: user.Role[];
+        status: UserStatusEnum;
+        username: string;
+    }
+
+    export interface Role {
+        description: string;
+        id: string;
+        name: string;
+        permissions: string[];
+    }
+
+    export enum UserStatusEnum {
+        "CREATING" = "CREATING",
+        "DELETED" = "DELETED",
+        "DELETING" = "DELETING",
+        "OK" = "OK"
+    }
+}

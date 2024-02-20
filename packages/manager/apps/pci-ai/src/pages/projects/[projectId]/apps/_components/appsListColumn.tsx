@@ -16,6 +16,7 @@ import { MoreHorizontal } from 'lucide-react';
 
 import { ai } from '@/models/types';
 import AppsStatusBadge from './appsStatusBadge';
+import ResourcesDeployedColumn from './resourcesDeployedCol';
 
 interface AppsListColumnsProps {
   onDeleteClicked: (app: ai.app.App) => void;
@@ -69,13 +70,13 @@ export const getColumns = ({
     },
     {
       id: 'Resources',
-      accessorFn: (row) =>
-        row.spec.resources.gpu > 0
-          ? row.spec.resources.gpu + ' GPU / ' + row.spec.scalingStrategy?.fixed?.replicas + ' replicas'
-          : row.spec.resources.cpu + ' CPU / ' + row.spec.scalingStrategy?.fixed?.replicas + ' replicas',
+      accessorFn: (row) => row.spec.resources.cpu,
       header: ({ column }) => (
         <SortableHeader column={column}>Resources deployed</SortableHeader>
       ),
+      cell: ({ row }) => {
+        return <ResourcesDeployedColumn app = { row.original } />;
+      },
     },
     {
       id: 'CreationDate',

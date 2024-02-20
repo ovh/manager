@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { toast } from 'sonner';
+import { useRequiredParams } from '@/hooks/useRequiredParams';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,19 +10,38 @@ import { ArrowRight, Pencil } from 'lucide-react';
 
 import { ai } from '@/models/types';
 import { displaySizeFormat } from '@/data/constant';
-import UpdateScalingModal from './updatedScalingModal';
-
+import UpdateScalingModal, { UpdateScalingSubmitData } from './updatedScalingModal';
+import { ScalingStrategyProps, appsApi } from '@/data/aiapi';
 
 interface ResourcesProps {
   app: ai.app.App;
+  onAppUpdate: () => void;
 }
 
-const ResourcesCard = ({ app }: ResourcesProps) => {
+const ResourcesCard = ({ app, onAppUpdate }: ResourcesProps) => {
   const [isUpdateScalingModalOpen, setIsUpdateScalingModalOpen] = useState(false);
-
-  const onUpdateScalingSubmit = () => {
+  const { projectId } = useRequiredParams<{ projectId: string }>();
+  
+  const onUpdateScalingSubmit = (data : UpdateScalingSubmitData) => {
     setIsUpdateScalingModalOpen(false);
+    updateScalingMutation.mutate({
+      projectId: projectId,
+      appId: app.id,
+      scalingStrategyInput: data,
+    })
   };
+
+  const updateScalingMutation = useMutation({
+    mutationFn: (scalingData: ScalingStrategyProps) =>
+      appsApi.updateScalingStrategy(scalingData),
+    onSuccess: () => {
+      toast.success(`Your label have been succesfuly added`);
+      onAppUpdate();
+    },
+    onError: (error: Error) => {
+      toast.error(`A error occured while adding your label: ${error.message}`);
+    },
+  });
 
   return (
     <>

@@ -31,7 +31,7 @@ const ResourceInput = React.forwardRef<HTMLInputElement, ResourceInputProps>(
       <div className="flex flew-row font-semibold">
         <Button
           type="button"
-          disabled={min && (inputValue <= min) ? true : false}
+          disabled={((min || min === 0) && inputValue <= min) || false}
           onClick={() => decrement()}
           variant="default"
           className="w-8 h-8"
@@ -39,16 +39,15 @@ const ResourceInput = React.forwardRef<HTMLInputElement, ResourceInputProps>(
           <Minus className="text-white h-4 w-4" />
         </Button>
         <Input
-          //defaultValue={value}
           ref={ref}
           type="number"
-          onChange={(event) => onChange(+event.target.value)}
+          onChange={(event) => setInputValue(+event.target.value)}
           value={inputValue}
           className="text-primary font-semibold [&::-webkit-inner-spin-button]:appearance-none w-14 h-8 mx-2"
         />
         <Button
           type="button"
-          disabled={max && (inputValue >= max) ? true : false}
+          disabled={(max && inputValue >= max) || false} 
           onClick={() => increment()}
           variant="default"
           className="w-8 h-8"

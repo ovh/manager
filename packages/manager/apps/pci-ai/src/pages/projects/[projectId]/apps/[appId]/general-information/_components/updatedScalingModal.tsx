@@ -36,6 +36,7 @@ export interface UpdateScalingSubmitData {
     replicasMin: number;
     replicasMax: number;
     averageUsageTarget: number;
+    resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum;
   };
 }
 
@@ -124,18 +125,29 @@ const UpdateScalingModal = ({
 
   const submitAndForward: SubmitHandler<ValidationSchema> = (formValues) => {
     form.reset();
-    console.log('form value');
-    console.log(formValues);
-    const fixedScalingData: UpdateScalingSubmitData = {
-      fixed: {
+    const scalingData: UpdateScalingSubmitData = {};
+    if (scaling){
+      scalingData.automatic = {
+        replicasMin: formValues.replicasMin,
+        replicasMax: formValues.replicasMax,
+        averageUsageTarget: formValues.averageUsageTarget,
+        resourceType: formValues.resourceType
+      }
+    }else{
+      scalingData.fixed = {
         replicas: formValues.replicas,
-      },
+      }
     };
-    onSubmit(fixedScalingData);
+    onSubmit(scalingData);
   };
 
   const handleClose = (value: boolean) => {
     if (value) return;
+    if (app.spec.scalingStrategy?.automatic) {
+      setScaling(true);
+    }else{
+      setScaling(false);
+    }
     form.reset();
     onClose();
   };

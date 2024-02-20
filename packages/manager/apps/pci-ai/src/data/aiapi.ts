@@ -1,5 +1,5 @@
 import { apiClient } from "@ovh-ux/manager-core-api";
-import { ai } from "@/models/types";
+import { ai, user } from "@/models/types";
 
 export interface NotebookProps {
     projectId: string,
@@ -79,6 +79,12 @@ export interface HttpPortProps {
     },
 };
 
+export interface ScalingStrategyProps {
+    projectId: string,
+    appId: string,
+    scalingStrategyInput: ai.app.ScalingStrategy
+};
+
 export const aiApi = {
     getRegions: async (projectId: string) => apiClient.v6.get(
         `/cloud/project/${projectId}/ai/capabilities/region`,
@@ -88,6 +94,13 @@ export const aiApi = {
         `/cloud/project/${projectId}/ai/capabilities/region/${region}/flavor`,
     ).then(res => res.data as ai.capabilities.Flavor[])
     ,
+    getTokens: async (projectId: string) => apiClient.v6.get(
+        `/cloud/project/${projectId}/ai/token`,
+    ).then(res => res.data as ai.token.Token[])
+    ,
+    getUsers: async (projectId: string) => apiClient.v6.get(
+        `/cloud/project/${projectId}/user`,
+    ).then(res => res.data as user.User[])
 };
 
 export const notebookApi = {
@@ -354,5 +367,18 @@ export const appsApi = {
             httpPortSpec,
         )
             .then((res) => res.data as string);
+    },
+    updateScalingStrategy: async ({
+        projectId,
+        appId,
+        scalingStrategyInput,
+    }: ScalingStrategyProps
+    ) => {
+        await apiClient.v6.put(
+            `/cloud/project/${projectId}/ai/app/${appId}/scalingstrategy`,
+            scalingStrategyInput,
+        )
+            .then((res) => res.data as string);
     }
 }
+

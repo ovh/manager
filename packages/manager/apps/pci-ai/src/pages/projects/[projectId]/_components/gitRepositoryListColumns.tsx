@@ -3,6 +3,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { SortableHeader } from '@/components/ui/data-table';
 
 import { ai } from '@/models/types';
+import MountDirectoryColumn from './mountDirectoryCol';
 
 export const getColumns = () => {
   const columns: ColumnDef<ai.volume.Volume>[] = [
@@ -17,8 +18,11 @@ export const getColumns = () => {
       id: 'directory',
       accessorFn: (row) => row.mountPath,
       header: ({ column }) => (
-        <SortableHeader column={column}>Mount directory</SortableHeader>
+        <SortableHeader column={column}>Mount Directory</SortableHeader>
       ),
+      cell: ({ row }) => {
+        return <MountDirectoryColumn mountPath = { row.original.mountPath } />;
+      },
     },
     {
       id: 'permission',
