@@ -5,6 +5,17 @@ import { render, waitFor } from '../../utils/test/test.provider';
 import listingTranslation from '../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 import { rancherMocked } from '../../_mock_/rancher';
 
+jest.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useNavigation: jest.fn(() => ({
+    getURL: jest.fn(() => Promise.resolve('123')),
+    data: [],
+  })),
+  useTracking: jest.fn(() => ({
+    trackPage: jest.fn(),
+    trackClick: jest.fn(),
+  })),
+}));
+
 const onEditMocked = jest.fn();
 
 afterEach(() => {

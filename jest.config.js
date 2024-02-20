@@ -27,8 +27,6 @@ module.exports = {
         '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
           '<rootDir>/jest/mocks/images.tsx',
         '^lodash-es$': 'lodash',
-        // TODO: Fix this custom config to find a good way to handle alias in jest for each folder
-        '^@/(.*)$': '<rootDir>/packages/manager/apps/pci-rancher/src/$1',
         '@ovh-ux/manager-core-api':
           '<rootDir>/packages/manager/core/api/src/index.ts',
         '@ovh-ux/manager-react-shell-client':

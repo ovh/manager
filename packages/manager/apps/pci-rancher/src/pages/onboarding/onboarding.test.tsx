@@ -4,6 +4,17 @@ import Onboarding from './index';
 import { render, waitFor } from '../../utils/test/test.provider';
 import onboardingTranslation from '../../public/translations/pci-rancher/onboarding/Messages_fr_FR.json';
 
+jest.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useNavigation: jest.fn(() => ({
+    getURL: jest.fn(() => Promise.resolve('123')),
+    data: [],
+  })),
+  useTracking: jest.fn(() => ({
+    trackPage: jest.fn(),
+    trackClick: jest.fn(),
+  })),
+}));
+
 const mockedUsedNavigate = jest.fn();
 
 jest.mock('react-router-dom', () => ({

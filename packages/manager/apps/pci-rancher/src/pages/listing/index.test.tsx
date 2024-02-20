@@ -1,9 +1,20 @@
 import React from 'react';
 import Listing, { ListingProps } from './index';
-import { render, waitFor } from '../../utils/test/test.provider';
-import { RancherService } from '../../api/api.type';
+import { render, waitFor } from '@/utils/test/test.provider';
+import { RancherService } from '@/api/api.type';
 import listingTranslation from '../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 import { rancherMocked } from '../../_mock_/rancher';
+
+jest.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useNavigation: jest.fn(() => ({
+    getURL: jest.fn(() => Promise.resolve('123')),
+    data: [],
+  })),
+  useTracking: jest.fn(() => ({
+    trackPage: jest.fn(),
+    trackClick: jest.fn(),
+  })),
+}));
 
 const defaultProps = {
   data: [rancherMocked],

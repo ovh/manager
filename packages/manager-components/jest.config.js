@@ -5,6 +5,7 @@ module.exports = {
   ],
   collectCoverageFrom: ['src/components/**/**.component.tsx'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  modulePathIgnorePatterns: ['dist/'],
   moduleNameMapper: {
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
       '<rootDir>/src/_mock_/images.tsx',
