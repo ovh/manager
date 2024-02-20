@@ -1,8 +1,15 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
+import { useGetService } from '@/hooks/api/services.api.hooks';
+import { Skeleton } from '@/components/ui/skeleton';
 
 function ServiceName() {
-  return 'serviceName';
+  const { projectId, serviceId } = useParams();
+  const serviceQuery = useGetService(projectId, serviceId);
+  return serviceQuery.isLoading ? (
+    <Skeleton className="h-4 w-20 inline-block align-middle" />
+  ) : (
+    serviceQuery.data.description
+  );
 }
 
 export function breadcrumb() {
