@@ -5,7 +5,6 @@
   "octavia_load_balancer_pools_detail_members_add_ip_instance_port_title": "Add your instance IP ports",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_search_not_found": "No instances found",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_search_placeholder": "Search for an instance",
-  "octavia_load_balancer_pools_detail_members_add_ip_instance_aria_label_close": "Close",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_name_label": "Name",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_ip_label": "IP",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_port_label": "Port",
@@ -13,5 +12,5 @@
   "octavia_load_balancer_pools_detail_members_protocol_port_existing": "This IP address is already associated with this port. Please choose another port.",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_add_action": "Validate",
   "octavia_load_balancer_pools_detail_members_add_ip_instance_cancel_action": "Cancel",
-  "octavia_load_balancer_pools_detail_members_add_ip_instance_create_success": "Your instances have been added."
+  "octavia_load_balancer_pools_detail_members_add_ip_instance_aria_label_close": "Close"
 }
