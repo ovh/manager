@@ -58,7 +58,6 @@ export const state = {
         .getSsoAuthPendingPromise()
         .then(() => ssoAuthentication.user),
 
-    user: /* @ngInject */ (coreConfig) => coreConfig.getUser(),
     cancelStep: /* @ngInject */ ($location, ssoAuthentication) => () => {
       ssoAuthentication.logout($location.search().onsuccess);
     },
@@ -160,7 +159,8 @@ export const state = {
       });
     },
 
-    subsidiary: /* @ngInject */ ($location) => $location.search().ovhSubsidiary,
+    subsidiary: /* @ngInject */ ($location, coreConfig) =>
+      $location.search().ovhSubsidiary || coreConfig.getUser().ovhSubsidiary,
   },
   atInternet: {
     ignore: true,

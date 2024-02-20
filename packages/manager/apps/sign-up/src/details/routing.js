@@ -17,8 +17,8 @@ export const state = {
         name: `accountcreation::${field}::${value}`,
       });
     },
-    isIndianSubsidiary: /* @ngInject */ (subsidiary, user) =>
-      (subsidiary || user.ovhSubsidiary) === INDIAN_SUBSIDIARY,
+    isIndianSubsidiary: /* @ngInject */ (subsidiary) =>
+      subsidiary === INDIAN_SUBSIDIARY,
   },
   atInternet: {
     rename: 'accountcreation-step2',
