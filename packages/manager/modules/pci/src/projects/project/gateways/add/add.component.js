@@ -16,6 +16,8 @@ export default {
     guideTrackingSectionTags: '<',
     trackClick: '<',
     regionsLink: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
   controller,
   template,

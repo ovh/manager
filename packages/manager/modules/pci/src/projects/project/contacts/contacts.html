@@ -15,6 +15,13 @@
         </oui-guide-menu-item>
     </oui-guide-menu>
 </oui-header>
+
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    data-tracking-page-name="PublicCloud::pci::projects::project::contacts"
+></pci-activate-project-banner>
+
 <div class="container-fluid p-4 bg-light border mb-4">
     <div class="row">
         <div
@@ -71,7 +78,7 @@
         <a
             data-ui-sref="pci.projects.project.contacts.add"
             class="oui-button oui-button_secondary mb-3"
-            data-ng-disabled="$ctrl.loader.rights || $ctrl.data.rightIds === null"
+            data-ng-disabled="$ctrl.loader.rights || $ctrl.data.rightIds === null || $ctrl.isDiscoveryProject"
             data-ng-if="$ctrl.model.isAdmin"
             data-translate="common_add"
         >

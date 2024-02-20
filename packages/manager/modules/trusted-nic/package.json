@@ -13,7 +13,7 @@
   "main": "./src/index.js",
   "peerDependencies": {
     "@ovh-ux/manager-core": "^10.0.0 || ^11.0.0",
-    "@ovh-ux/ui-kit": "^6.5.3",
+    "@ovh-ux/ui-kit": "^6.7.0",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1"
   }

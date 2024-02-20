@@ -7,5 +7,6 @@
   "pci_projects_creating_long_time_wait": "Nel frattempo, puoi consultare le guide disponibili o gli altri tuoi progetti :)",
   "pci_projects_creating_guides": "Guide Public Cloud",
   "pci_projects_creating_other_projects": "I tuoi altri progetti",
-  "pci_projects_creating_delivery_error": "Si è verificato un errore durante la creazione del tuo progetto Public Cloud. Stiamo lavorando per risolvere il problema il prima possibile. Riceverai un messaggio di conferma della corretta creazione. Ti ringraziamo per la pazienza e ci scusiamo sin d’ora per l’eventuale disagio causato."
+  "pci_projects_creating_delivery_error": "Si è verificato un errore durante la creazione del tuo progetto Public Cloud. Stiamo lavorando per risolvere il problema il prima possibile. Riceverai un messaggio di conferma della corretta creazione. Ti ringraziamo per la pazienza e ci scusiamo sin d’ora per l’eventuale disagio causato.",
+  "pci_projects_creating_discovery_project_long_time_wait": "Nel frattempo, consulta le nostre guide :)"
 }

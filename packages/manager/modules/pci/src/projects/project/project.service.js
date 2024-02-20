@@ -1,16 +1,92 @@
-import { URL_INFO } from './project.constants';
+import {
+  URL_INFO,
+  DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
+  FULL_PROJECT_PLANCODE,
+} from './project.constants';
+import {
+  ORDER_FOLLOW_UP_STEP_ENUM,
+  ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM,
+} from '../projects.constant';
 
 export default class {
   /* @ngInject */
-  constructor($http, iceberg, coreConfig) {
+  constructor($http, $q, iceberg, coreConfig) {
     this.project = {};
     this.$http = $http;
+    this.$q = $q;
     this.iceberg = iceberg;
     this.coreConfig = coreConfig;
   }
 
   getProjectInfo() {
     return this.project;
+  }
+
+  getProjectOrderStatus(projectId) {
+    const { VALIDATING } = ORDER_FOLLOW_UP_STEP_ENUM;
+    const {
+      FRAUD_MANUAL_REVIEW,
+      FRAUD_REFUSED,
+      PAYMENT_INITIATED,
+      PAYMENT_RECEIVED,
+    } = ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM;
+
+    const status = {
+      orderId: null,
+      isActivating: false,
+      isManuallyReviewedByAntiFraud: false,
+      isRefusedByAntiFraud: false,
+      voucher: '',
+    };
+
+    return this.$http
+      .get(`/cloud/order/?planCode=${FULL_PROJECT_PLANCODE}`)
+      .then(({ data: orders }) => {
+        const order = orders
+          .sort(({ date: dateA }, { date: dateB }) => (dateB > dateA ? 1 : -1))
+          .find(({ serviceName }) => serviceName === projectId);
+
+        if (order) {
+          status.orderId = order.orderId;
+
+          return this.$q
+            .all({
+              vouchers: this.getVouchersCreditDetails(projectId),
+              followUp: this.getOrderFollowUp(order.orderId),
+            })
+            .then(({ followUp, vouchers: [firstVoucher] }) => {
+              const labels =
+                followUp
+                  .find(({ step }) => step === VALIDATING)
+                  ?.history.map(({ label }) => label) || [];
+
+              status.voucher = firstVoucher?.voucher || '';
+              status.isRefusedByAntiFraud = labels.some(
+                (label) => label === FRAUD_REFUSED,
+              );
+              status.isManuallyReviewedByAntiFraud =
+                !status.isRefusedByAntiFraud &&
+                labels.some((label) => label === FRAUD_MANUAL_REVIEW);
+              status.isActivating =
+                !status.isRefusedByAntiFraud &&
+                !status.isManuallyReviewedByAntiFraud &&
+                labels.some((label) =>
+                  [PAYMENT_INITIATED, PAYMENT_RECEIVED].includes(label),
+                );
+
+              return status;
+            });
+        }
+
+        return status;
+      })
+      .catch(() => status);
+  }
+
+  getOrderFollowUp(orderId) {
+    return this.$http
+      .get(`/me/order/${orderId}/followUp`)
+      .then(({ data }) => data);
   }
 
   getDocumentUrl(type) {
@@ -69,5 +145,26 @@ export default class {
       .execute(null, true)
       .$promise.then(({ data }) => data)
       .catch(() => []);
+  }
+
+  activateDiscoveryProject(serviceId, autoPay = true) {
+    return this.$http.post(
+      `/services/${serviceId}/upgrade/${FULL_PROJECT_PLANCODE}/execute`,
+      {
+        ...DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
+        autoPayWithPreferredPaymentMethod: autoPay,
+      },
+    );
+  }
+
+  simulateActivateDiscoveryProject(serviceId) {
+    return this.$http.post(
+      `/services/${serviceId}/upgrade/${FULL_PROJECT_PLANCODE}/simulate`,
+      DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
+    );
+  }
+
+  claimVoucher(projectId, data) {
+    return this.$http.post(`/cloud/project/${projectId}/credit`, data);
   }
 }

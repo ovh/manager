@@ -42,6 +42,12 @@
         data-messages="$ctrl.messages"
     ></cui-message-container>
 
+    <pci-activate-project-banner
+        data-ng-if="$ctrl.isDiscoveryProject"
+        data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+        data-tracking-page-name="PublicCloud::pci::projects::project::storages::cold_archive::add"
+    ></pci-activate-project-banner>
+
     <!--Region archive storage info-->
     <oui-message data-type="info">
         <span
@@ -69,6 +75,7 @@
             data-user-model="$ctrl.userModel"
             data-archive-model="$ctrl.archiveModel"
             data-users="$ctrl.users"
+            data-is-discovery-project="$ctrl.isDiscoveryProject"
             data-display-link-user-archive-step="linkUserArchiveStep.display"
         ></cold-archive-link-user-archive>
     </oui-step-form>

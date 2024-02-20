@@ -8,14 +8,11 @@ export default /* @ngInject */ function(
   coreURLBuilder,
   CucCloudMessage,
   CucControllerHelper,
-  guideUrl,
   OvhApiCloud,
   OvhApiCloudProjectServiceInfos,
 ) {
   const self = this;
   const serviceName = $stateParams.projectId;
-
-  self.guideUrl = guideUrl;
 
   self.model = {
     owner: '',
@@ -94,7 +91,7 @@ export default /* @ngInject */ function(
    */
 
   self.canChangeContacts = function canChangeContacts() {
-    return coreConfig.isRegion('EU');
+    return coreConfig.isRegion('EU') && !self.isDiscoveryProject;
   };
 
   self.openContacts = function openContacts() {
