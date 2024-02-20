@@ -30,6 +30,12 @@
 
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    data-tracking-page-name="PublicCloud::pci::projects::project::storages::objects::add"
+></pci-activate-project-banner>
+
 <oui-stepper
     data-on-finish="$ctrl.add()"
     data-current-index="$ctrl.currrentStep"
@@ -194,6 +200,7 @@
             data-project-id="$ctrl.projectId"
             data-users="$ctrl.users"
             data-user-model="$ctrl.userModel"
+            data-is-discovery-project="$ctrl.isDiscoveryProject"
             data-field-secret-key-label=":: 'pci_projects_project_storages_containers_add_create_or_linked_user_success_field_secret_key' | translate"
         ></pci-project-storages-create-linked-user>
     </oui-step-form>
@@ -208,6 +215,8 @@
         data-cancel-text="{{:: 'pci_projects_project_storages_containers_add_cancel_label' | translate }}"
         data-submit-text="{{:: 'pci_projects_project_storages_containers_add_submit_label' | translate }}"
         name="storage_container_add_name"
+        data-valid="!$ctrl.isDiscoveryProject"
+        data-prevent-next
     >
         <oui-field
             data-size="xl"
@@ -254,6 +263,8 @@
         data-cancel-text="{{:: 'pci_projects_project_storages_containers_add_cancel_label' | translate }}"
         data-submit-text="{{:: 'pci_projects_project_storages_containers_add_submit_label' | translate }}"
         name="storage_container_add_name"
+        data-valid="!$ctrl.isDiscoveryProject"
+        data-prevent-next
     >
         <oui-field
             data-size="xl"

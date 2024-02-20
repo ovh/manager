@@ -28,6 +28,8 @@ export default {
     hasGridscaleLocalzoneRegion: '<',
     isGridscaleLocalzoneAvailable: '<',
     customerRegions: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
   controller,
   template,

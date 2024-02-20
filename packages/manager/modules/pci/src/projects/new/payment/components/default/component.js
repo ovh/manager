@@ -7,5 +7,6 @@ export default {
   template,
   bindings: {
     defaultPaymentMethod: '<',
+    viewOptions: '<',
   },
 };

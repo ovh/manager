@@ -26,18 +26,26 @@
     <p data-translate="cpb_vouchers_add_explain_bis"></p>
     <p class="mb-4" data-translate="cpb_vouchers_credit_comment"></p>
 
+    <pci-activate-project-banner
+        data-ng-if="$ctrl.isDiscoveryProject"
+        data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+        data-tracking-page-name="PublicCloud::pci::projects::project::vouchers"
+    ></pci-activate-project-banner>
+
     <oui-datagrid data-rows="$ctrl.vouchers">
         <oui-datagrid-topbar>
             <a
                 class="oui-button oui-button_secondary mb-2"
                 data-ui-sref="pci.projects.project.vouchers.add"
                 data-translate="cpb_vouchers_add_button"
+                ng-disabled="$ctrl.isDiscoveryProject"
             >
             </a>
             <a
                 class="oui-button oui-button_secondary"
                 data-ui-sref="pci.projects.project.vouchers.credit"
                 data-translate="cpb_vouchers_add_credit_button"
+                ng-disabled="$ctrl.isDiscoveryProject"
             >
             </a>
         </oui-datagrid-topbar>

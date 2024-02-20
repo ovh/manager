@@ -7,6 +7,8 @@ export default {
     delete: '<',
     goBack: '<',
     unFavProject: '<',
+    trackClick: '<',
+    trackPage: '<',
   },
   controller,
   template,

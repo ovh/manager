@@ -9,16 +9,20 @@
 
 <ul>
     <li
+        class="contract-wrap"
         data-ng-repeat="contract in $ctrl.contracts track by $index"
         data-ng-class="{'d-inline': $ctrl.inlineContracts }"
     >
         <a
-            class="oui-link_icon"
+            class="oui-link_icon contract-wrap"
             data-ng-href="{{ contract.url }}"
             rel="noopener"
             target="_blank"
+            data-track-on="click"
+            data-track-type="action"
+            data-track-name="{{ $ctrl.trackingPrefix + '::contract::download-contract'}}"
         >
-            <span data-ng-bind="contract.name"> </span>
+            <span data-ng-bind="contract.name"></span>
             <span
                 class="m-0 oui-icon oui-icon-external-link"
                 aria-hidden="true"

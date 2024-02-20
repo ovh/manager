@@ -36,5 +36,15 @@
   "pci_projects_project_community_discord_term": "Community",
   "pci_projects_project_community_discord_description": "Talk on Discord",
   "pci_projects_project_documentation_block_storage_term": "Block Storage",
-  "pci_projects_project_documentation_block_storage_description": "Create an external storage device"
+  "pci_projects_project_documentation_block_storage_description": "Create an external storage device",
+  "pci_projects_project_label_discovery": "Discovery mode",
+  "pci_projects_project_activateDiscovery_activate": "Activate project",
+  "pci_projects_project_activateDiscovery_close": "Maybe later",
+  "pci_projects_project_activateDiscovery_heading": "Activate a project",
+  "pci_projects_project_activateDiscovery_info": "Before you create a new project, you must activate this project. Not ready yet? You can continue exploring the Public Cloud universe in Discovery mode.",
+  "pci_projects_project_discovery_banner_promotion_title_1": "Activate your project by adding a payment method and get",
+  "pci_projects_project_discovery_banner_promotion_title_2": " {{ amount }} free credit.",
+  "pci_projects_project_discovery_banner_no_promotion_title": "Start deploying your Cloud resources.",
+  "pci_projects_project_discovery_banner_description": "You are currently in Discovery mode. By activating your project, you can start your cloud resources in minutes.",
+  "pci_projects_project_discovery_banner_cta": "Activate project"
 }
