@@ -5,7 +5,8 @@ export default {
   controller,
   template,
   transclude: {
-    tile: '?rightTile',
+    tile: '?tile',
+    description: '?description',
   },
   bindings: {
     logApiUrl: '<',
