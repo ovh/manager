@@ -1,4 +1,4 @@
-export default class LogToCustomerService {
+export default class LogLiveTailService {
   /* @ngInject */
   constructor($http, iceberg) {
     this.$http = $http;

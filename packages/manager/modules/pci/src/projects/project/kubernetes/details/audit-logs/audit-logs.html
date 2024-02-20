@@ -1,18 +1,9 @@
-<div>
-    <span data-translate="kube_logs_description"></span>
-    <a
-        data-ng-href="{{::$ctrl.getLogsInfoLink()}}"
-        target="_blank"
-        rel="noopener"
-    >
-        <span data-translate="kube_logs_description_link"></span>
-        <span class="oui-icon oui-icon-external-link" aria-hidden="true"></span>
-    </a>
-
-    <log-to-customer
-        data-log-keys="$ctrl.LOG_KEYS"
-        data-log-kind-api-url="$ctrl.logKindApiUrl"
-        data-log-api-url="$ctrl.logApiUrl"
-    >
-    </log-to-customer>
-</div>
+<log-to-customer-live-tail
+    log-kind-api-url="$ctrl.logKindApiUrl"
+    log-api-url="$ctrl.logApiUrl"
+    log-service-guide-link="$ctrl.logServiceGuideLink"
+>
+    <service-description>
+        <span data-translate="kube_logs_description"></span>
+    </service-description>
+</log-to-customer-live-tail>

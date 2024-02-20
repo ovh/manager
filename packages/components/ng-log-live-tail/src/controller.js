@@ -2,18 +2,11 @@ import flatten from 'lodash/flatten';
 import uniqBy from 'lodash/uniqBy.js';
 import { DISPLAY_RULES } from './constants';
 
-export default class LogToCustomerCtrl {
+export default class LogLiveTailCtrl {
   /* @ngInject */
-  constructor(
-    $translate,
-    LogToCustomer,
-    $interval,
-    $timeout,
-    $sce,
-    $transclude,
-  ) {
+  constructor($translate, LogLiveTail, $interval, $timeout, $sce, $transclude) {
     this.$translate = $translate;
-    this.LogToCustomer = LogToCustomer;
+    this.LogLiveTail = LogLiveTail;
     this.$interval = $interval;
     this.$timeout = $timeout;
     this.$sce = $sce;
@@ -28,14 +21,14 @@ export default class LogToCustomerCtrl {
     this.url = null;
     this.DISPLAY_RULES = DISPLAY_RULES;
     this.errorMessage = null;
-    this.isRightTileSlotFilled = this.$transclude.isSlotFilled('tile');
-    this.fullScreen = !this.isRightTileSlotFilled;
+    this.isTileSlotFilled = this.$transclude.isSlotFilled('tile');
+    this.fullScreen = !this.isTileSlotFilled;
 
     this.keys = Object.keys(this.logKeys);
     this.setUrlTimeout = null;
 
     this.logKinds = [];
-    this.LogToCustomer.getLogKinds(this.logKindApiUrl)
+    this.LogLiveTail.getLogKinds(this.logKindApiUrl)
       .then((data) => {
         this.logKinds = data;
         this.selectedLogKind = data[0]?.name;
@@ -121,7 +114,7 @@ export default class LogToCustomerCtrl {
 
   startLog() {
     this.interval = this.$interval(() => {
-      this.LogToCustomer.getLogs(this.url)
+      this.LogLiveTail.getLogs(this.url)
         .then((data) => {
           this.appendLogs(data);
         })
@@ -129,7 +122,7 @@ export default class LogToCustomerCtrl {
           this.clearInterval();
           this.setErrorMessage();
         });
-    }, 3000);
+    }, 2000);
   }
 
   setErrorMessage() {
@@ -183,7 +176,7 @@ export default class LogToCustomerCtrl {
     this.errorMessage = null;
     this.url = null;
 
-    return this.LogToCustomer.getLogSourceUrl(
+    return this.LogLiveTail.getLogSourceUrl(
       this.logApiUrl,
       this.selectedLogKind,
     )
