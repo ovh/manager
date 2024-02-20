@@ -7,7 +7,8 @@ import {
   Link,
 } from 'react-router-dom';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
-import usePciProject from '../../hooks/usePciProject';
+import usePciProject from '@/hooks/api/pciProjects.api.hooks';
+import { Skeleton } from '../ui/skeleton';
 
 export type BreadcrumbHandleParams = {
   data: unknown;
@@ -64,11 +65,13 @@ function Breadcrumb(): JSX.Element {
         className="text-primary-500 font-semibold outiline-none cursor-pointer no-underline hover:text-primary-700 hover:underline"
         href={`${baseUrl}/pci/projects/${projectId}`}
       >
-        {project?.description}
+        {project?.description ?? (
+          <Skeleton className="h-4 w-20 inline-block align-middle" />
+        )}
       </a>
       {breadcrumbData.map((bc, index) => (
         <React.Fragment key={`${index}-${bc.href}`}>
-          <span className="mx-4 text-primary-500 font-semibold">|</span>
+          <span className="mx-2 text-primary-500 font-semibold">|</span>
           {index < breadcrumbData.length - 1 ? (
             <Link
               className="text-primary-500 font-semibold outiline-none cursor-pointer no-underline hover:text-primary-700 hover:underline"
