@@ -7,15 +7,13 @@ const OVH_SUBSIDIARY_ITEM_NAME = 'ovhSubsidiaryCreationForm';
 
 export default class SignUpFormAppCtrl {
   /* @ngInject */
-  constructor($location, atInternet, coreConfig) {
-    this.$location = $location;
+  constructor(atInternet) {
     this.atInternet = atInternet;
     this.isActivityStepVisible = false;
     this.saveError = null;
 
     this.isValid = false;
     this.smsConsent = false;
-    this.user = coreConfig.getUser();
 
     this.loading = {
       init: true,
@@ -112,11 +110,10 @@ export default class SignUpFormAppCtrl {
     this.saveError = null;
     this.loading.init = true;
 
-    const { ovhSubsidiary } = this.$location.search();
-    if (ovhSubsidiary && ovhSubsidiary.match(/^[\w]{2}$/)) {
-      localStorage.setItem(OVH_SUBSIDIARY_ITEM_NAME, ovhSubsidiary);
+    if (this.subsidiary && this.subsidiary.match(/^[\w]{2}$/)) {
+      localStorage.setItem(OVH_SUBSIDIARY_ITEM_NAME, this.subsidiary);
     }
-    const subsidiary = ovhSubsidiary || this.user.ovhSubsidiary;
+    const subsidiary = this.subsidiary || this.user.ovhSubsidiary;
     this.subsidiaryLabelSuffix =
       SUBSIDIARIES_LABEL_SUFFIX[subsidiary] ||
       SUBSIDIARIES_LABEL_SUFFIX.DEFAULT;

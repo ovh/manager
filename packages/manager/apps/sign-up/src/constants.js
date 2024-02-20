@@ -23,8 +23,10 @@ export const HOME_PAGE = {
   WS: 'https://www.ovh.com/us/es/',
 };
 
+export const INDIAN_SUBSIDIARY = 'IN';
+
 export const SUBSIDIARIES_LABEL_SUFFIX = {
-  IN: '_kyc_reminder',
+  [INDIAN_SUBSIDIARY]: '_kyc_reminder',
   DEFAULT: '',
 };
 
@@ -59,4 +61,5 @@ export default {
   SANITIZATION,
   FEATURES,
   SUBSIDIARIES_LABEL_SUFFIX,
+  INDIAN_SUBSIDIARY,
 };
