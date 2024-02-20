@@ -7,10 +7,11 @@ export default {
   template,
   bindings: {
     cart: '<',
-    checkout: '<',
+    amount: '<',
     getCancelHref: '<',
     globalLoading: '<',
     onCartFinalized: '<',
     trackProjectCreationError: '<',
+    viewOptions: '<',
   },
 };

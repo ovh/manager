@@ -7,7 +7,10 @@ import {
   ORDER_FOLLOW_UP_STATUS_ENUM,
   ORDER_FOLLOW_UP_STEP_ENUM,
 } from '../projects.constant';
-import { PCI_HDS_ADDON } from '../project/project.constants';
+import {
+  PCI_HDS_ADDON,
+  PCI_HDS_DISCOVERY_ADDON,
+} from '../project/project.constants';
 
 export default class PciProjectCreatingCtrl {
   /* @ngInject */
@@ -48,7 +51,9 @@ export default class PciProjectCreatingCtrl {
       })
       .then(({ details, orderItemsDetails }) => {
         const itemDetails = orderItemsDetails.find(
-          ({ item }) => item.order.plan.code === PCI_HDS_ADDON.parentPlanCode,
+          ({ item }) =>
+            item.order.plan.code === PCI_HDS_ADDON.parentPlanCode ||
+            item.order.plan.code === PCI_HDS_DISCOVERY_ADDON.parentPlanCode,
         );
         const detail = details.find(
           ({ orderDetailId }) => itemDetails.orderDetailId === orderDetailId,

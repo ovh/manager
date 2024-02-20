@@ -25,6 +25,12 @@
 <!--Messages-->
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    data-tracking-page-name="PublicCloud::pci::projects::project::storages::volume-backup::create-backup"
+></pci-activate-project-banner>
+
 <!--Banner in case no volume-->
 <oui-message data-type="info" data-ng-if="$ctrl.volumes.length === 0">
     <p

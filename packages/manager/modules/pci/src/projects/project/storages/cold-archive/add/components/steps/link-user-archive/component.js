@@ -8,6 +8,7 @@ export default {
     userModel: '<',
     users: '<',
     displayLinkUserArchiveStep: '<',
+    isDiscoveryProject: '<',
   },
   controller,
   template,

@@ -22,6 +22,11 @@
                     </a>
                 </span>
             </oui-message>
+            <pci-activate-project-banner
+                data-ng-if="$ctrl.isDiscoveryProject"
+                data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+                data-tracking-page-name="PublicCloud::pci::projects::project::ai_machine_learning::notebooks::add"
+            ></pci-activate-project-banner>
             <form novalidate>
                 <!-- step 1 - select notebook type -->
                 <h2

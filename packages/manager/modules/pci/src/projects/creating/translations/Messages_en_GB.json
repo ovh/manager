@@ -7,5 +7,6 @@
   "pci_projects_creating_long_time_wait": "In the meantime, feel free to refer to our guides or your other projects.",
   "pci_projects_creating_guides": "Our Public Cloud guides",
   "pci_projects_creating_other_projects": "Your other projects",
-  "pci_projects_creating_delivery_error": "An error has occurred creating your Public Cloud project. We are working to resolve this as soon as possible. You will receive an email confirming that it has been created. Thank you for your patience, and apologies for any inconvenience caused."
+  "pci_projects_creating_delivery_error": "An error has occurred creating your Public Cloud project. We are working to resolve this as soon as possible. You will receive an email confirming that it has been created. Thank you for your patience, and apologies for any inconvenience caused.",
+  "pci_projects_creating_discovery_project_long_time_wait": "In the meantime, feel free to consult our guides :)"
 }

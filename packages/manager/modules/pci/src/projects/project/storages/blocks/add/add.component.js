@@ -13,5 +13,7 @@ export default {
     quotaUrl: '<',
     catalog: '<',
     volumesAvailability: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
 };

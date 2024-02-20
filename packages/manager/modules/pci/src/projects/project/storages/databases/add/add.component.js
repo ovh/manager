@@ -16,6 +16,8 @@ export default {
     user: '<',
     goToCommand: '<',
     redirectTarget: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
   controller,
   template,

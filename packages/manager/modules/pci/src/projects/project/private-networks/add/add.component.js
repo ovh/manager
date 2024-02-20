@@ -7,6 +7,8 @@ export default {
     projectId: '<',
     trackPrivateNetworks: '<',
     customerRegions: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
   controller,
   template,

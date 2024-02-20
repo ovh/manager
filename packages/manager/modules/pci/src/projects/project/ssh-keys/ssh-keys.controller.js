@@ -4,18 +4,10 @@ const MESSAGES_CONTAINER_NAME = 'pci.projects.project.sshKeys';
 
 export default class ProjectSshKeysController {
   /* @ngInject */
-  constructor(
-    $translate,
-    CucCloudMessage,
-    guideUrl,
-    OvhApiCloudProjectSshKey,
-    projectId,
-  ) {
+  constructor($translate, CucCloudMessage, OvhApiCloudProjectSshKey) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.guideUrl = guideUrl;
     this.OvhApiCloudProjectSshKey = OvhApiCloudProjectSshKey;
-    this.projectId = projectId;
 
     this.messageHandler = CucCloudMessage.subscribe(MESSAGES_CONTAINER_NAME, {
       onMessage: () => this.refreshMessage(),

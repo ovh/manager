@@ -486,6 +486,7 @@ const Sidebar = (): JSX.Element => {
                   }}
                   onMenuOpen={() => setIsAssistanceOpen(false)}
                   createLabel={t('sidebar_pci_new')}
+                  seeAllButton={true}
                   seeAllLabel={t('sidebar_pci_all')}
                 />
                 {pciError && (

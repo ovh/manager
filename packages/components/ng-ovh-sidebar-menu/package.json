@@ -47,7 +47,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.12",
-    "@ovh-ux/ui-kit": "^6.5.3",
+    "@ovh-ux/ui-kit": "^6.7.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.9",
     "angular-translate": "^2.18.1",

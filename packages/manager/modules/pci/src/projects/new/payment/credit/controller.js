@@ -9,6 +9,10 @@ export default class PciProjectsNewPaymentCreditCtrl {
   onCreditBtnClick() {
     this.globalLoading.finalize = true;
 
+    if (this.viewOptions.onCreditBtnClick) {
+      return this.viewOptions.onCreditBtnClick();
+    }
+
     return this.pciProjectNew
       .finalizeCart(this.cart)
       .then((order) => this.onCartFinalized(order))

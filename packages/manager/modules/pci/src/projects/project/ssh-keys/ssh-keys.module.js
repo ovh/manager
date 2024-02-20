@@ -9,6 +9,7 @@ import '@ovh-ux/ui-kit';
 import add from './add';
 import remove from './remove';
 
+import component from './ssh-keys.component';
 import routing from './ssh-keys.routing';
 
 const moduleName = 'ovhManagerPciProjectSshKeys';
@@ -23,6 +24,7 @@ angular
     remove,
   ])
   .config(routing)
+  .component('pciProjectSshKeys', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

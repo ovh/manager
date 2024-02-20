@@ -1,4 +1,5 @@
 import PciEligibility from '../../classes/eligibility.class';
+import { DISCOVERY_PROMOTION_VOUCHER } from '../../../project/project.constants';
 
 export default class PciProjectNewVoucherCtrl {
   /* @ngInject */
@@ -43,7 +44,10 @@ export default class PciProjectNewVoucherCtrl {
   }
 
   getStepTrackingCode() {
-    const step = this.steps.find(({ active }) => active);
+    const step = this.steps?.find(({ active }) => active);
+    if (!step) {
+      return '';
+    }
     return step.name === 'configuration' ? 'config' : step.name;
   }
 
@@ -75,7 +79,7 @@ export default class PciProjectNewVoucherCtrl {
   submitVoucher() {
     this.loading.check = true;
     this.globalLoading.isVoucherValidating = true;
-    this.trackClick('PublicCloud_new_project::confirm_voucher');
+    this.trackClick(`${this.viewOptions.trackingPrefix}confirm_voucher`);
 
     return this.checkVoucherValidity(this.model.voucher.value)
       .then((eligibilityOpts) => {
@@ -136,12 +140,7 @@ export default class PciProjectNewVoucherCtrl {
     return this.pciProjectNew
       .removeCartProjectItemVoucher(this.cart)
       .then(() => {
-        this.model.voucher.reset();
-        this.model.voucher.setValue('');
-
-        this.voucherEligibility = null;
-        this.errors.reset = false;
-        this.model.isVoucherRequirePaymentMethod = true;
+        this.clearVoucher();
       })
       .catch(() => {
         this.errors.reset = true;
@@ -154,6 +153,17 @@ export default class PciProjectNewVoucherCtrl {
         this.loading.reset = false;
         this.globalLoading.isVoucherValidating = false;
       });
+  }
+
+  clearVoucher() {
+    this.model.voucher.reset();
+    this.model.voucher.setValue('');
+    this.model.voucher.valid = false;
+    this.voucherEligibility = null;
+    this.errors.reset = false;
+    this.model.isVoucherRequirePaymentMethod = true;
+    this.voucherForm.voucher.$setValidity('voucher', true);
+    this.voucherForm.voucher.$setPristine();
   }
 
   manageResetVoucher() {
@@ -182,13 +192,13 @@ export default class PciProjectNewVoucherCtrl {
   }
 
   onVoucherFormReset() {
-    this.trackClick('PublicCloud_new_project::delete_voucher');
+    this.trackClick(`${this.viewOptions.trackingPrefix}::delete_voucher`);
     return this.resetVoucher();
   }
 
   onAddVoucherBtnClick() {
     this.formVisible = true;
-    this.trackClick('PublicCloud_new_project::add_voucher');
+    this.trackClick(`${this.viewOptions.trackingPrefix}::add_voucher`);
   }
 
   onVoucherInputChange() {
@@ -210,15 +220,22 @@ export default class PciProjectNewVoucherCtrl {
   ============================= */
 
   $onInit() {
+    this.formVisible = !this.viewOptions.foldVoucher;
     const { value, valid } = this.model.voucher;
 
     if (value) {
       if (valid) {
         this.voucherEligibility = this.eligibility;
       }
-
       this.formVisible = true;
       this.$timeout(() => this.setVoucherFormState());
+    } else if (this.isDiscoveryProject) {
+      this.model.voucher.value = DISCOVERY_PROMOTION_VOUCHER;
+      this.submitVoucher().then(() => {
+        if (!this.model.voucher.valid) {
+          this.clearVoucher();
+        }
+      });
     }
   }
 

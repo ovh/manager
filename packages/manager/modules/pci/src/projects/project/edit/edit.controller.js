@@ -38,6 +38,10 @@ export default class ProjectEditController {
   submit() {
     this.loading.submit = true;
 
+    this.trackClick(
+      'PublicCloud::pci::projects::project::edit::save-as-default',
+    );
+
     return this.OvhApiCloudProject.v6()
       .put(
         {
@@ -51,16 +55,20 @@ export default class ProjectEditController {
           this.setDefault(this.serviceName);
         }
         // isDefault is false, if the default project is this one, we should remove the key
-        if (this.defaultProject.projectId === this.serviceName) {
+        if (this.defaultProject?.projectId === this.serviceName) {
           this.unFavProject();
         }
         return null;
       })
-      .then(() => this.onUpdate())
+      .then(() => {
+        this.trackPage('PublicCloud::pci::projects::project::edit-success');
+        return this.onUpdate();
+      })
       .catch(({ data }) => {
+        this.trackPage('PublicCloud::pci::projects::project::edit-error');
         this.CucCloudMessage.error(
           this.$translate.instant('pci_projects_project_edit_update_error', {
-            error: data.message,
+            error: data?.message || '',
           }),
           MESSAGES_CONTAINER_NAME,
         );
