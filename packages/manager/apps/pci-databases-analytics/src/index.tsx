@@ -7,8 +7,6 @@ import {
 import App from './App';
 import initI18n from './i18n';
 
-import './global.css';
-
 import '@/vite-hmr.ts';
 
 const init = async (

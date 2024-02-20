@@ -10,11 +10,7 @@ import { database } from '@/models/database';
 
 function BreadcrumbTitle({ category }: { category: string }) {
   const { t } = useTranslation('pci-databases-analytics');
-  return (
-    <span>
-      {t('crumb')} - {category}
-    </span>
-  );
+  return <span>{t(`crumb-${category}`)}</span>;
 }
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
@@ -55,12 +51,10 @@ function RoutingSynchronisation() {
 }
 
 export default function Layout() {
-  const { t } = useTranslation('pci-databases-analytics');
   return (
     <PageLayout>
       <Breadcrumb />
       <RoutingSynchronisation />
-      <h1>{t('title')}</h1>
       <Outlet />
     </PageLayout>
   );

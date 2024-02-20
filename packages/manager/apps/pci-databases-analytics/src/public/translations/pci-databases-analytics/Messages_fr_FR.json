@@ -1,5 +1,7 @@
 {
-  "title": "Bienvenue uapp",
-  "crumb": "Databases Analytics",
-  "onboarding": "Onboarding"
+  "title": "Databases Analytics",
+  "crumb-operational": "Databases",
+  "crumb-streaming": "Data Streaming",
+  "crumb-analysis": "Data Analysis",
+  "crumb-all": "Databases Analytics"
 }
