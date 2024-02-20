@@ -173,7 +173,12 @@
             data-sortable
         >
             <div class="position-relative">
-                <span data-ng-bind=":: $value.id"></span>
+                <a
+                    class="oui-link_icon"
+                    data-ng-href="{{:: $ctrl.linkToOwnerPage($value.id, $row.domain)}}"
+                >
+                    <span data-ng-bind=":: $value.id"></span>
+                </a>
                 <button
                     type="button"
                     class="oui-popover-button"
@@ -185,10 +190,10 @@
                     data-ng-click="$ctrl.getContactDetails($value.id, $rowIndex)"
                 ></button>
                 <script type="text/ng-template" id="contactDetails.html">
-                    <span data-ng-bind=":: $ctrl.contactPopover.data.firstName + ' ' + $ctrl.contactPopover.data.lastName">
+                    <span data-ng-bind="$ctrl.contactPopover.data.firstName + ' ' + $ctrl.contactPopover.data.lastName">
                     </span>
                     <br />
-                    <span data-ng-bind=":: $ctrl.contactPopover.data.organisationName">
+                    <span data-ng-bind="$ctrl.contactPopover.data.organisationName">
                     </span>
                 </script>
             </div>
