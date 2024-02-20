@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Params, useParams } from 'react-router-dom';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
+import { useNavigation, useTracking } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import usePciProject from '../../hooks/usePciProject';
 

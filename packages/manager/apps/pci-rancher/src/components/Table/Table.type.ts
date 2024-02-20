@@ -3,6 +3,7 @@ import { RancherService } from '../../api/api.type';
 
 export interface RancherDatagridWrapper {
   data: RancherService[];
+  refetchRanchers: () => void;
 }
 
 export interface RancherTable {

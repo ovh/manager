@@ -6,6 +6,8 @@ import onboardingImgSrc from '../../assets/onboarding-img.png';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import PageLayout from '@/components/PageLayout/PageLayout';
 import { getCreateRancherUrl } from '@/utils/route';
+import { useTrackingAction, useTrackingPage } from '@/hooks/useTrackingPage';
+import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 export default function Onboarding() {
   const { t } = useTranslation('pci-rancher/onboarding');
@@ -13,8 +15,12 @@ export default function Onboarding() {
   const { projectId } = useParams();
   const title: string = t('title');
   const description: string = t('description');
-
-  const onOrderButtonClick = () => navigate(getCreateRancherUrl(projectId));
+  useTrackingPage(TrackingPageView.Onboarding);
+  const trackAction = useTrackingAction();
+  const onOrderButtonClick = () => {
+    trackAction(TrackingPageView.Onboarding, TrackingEvent.add);
+    navigate(getCreateRancherUrl(projectId));
+  };
 
   return (
     <PageLayout>

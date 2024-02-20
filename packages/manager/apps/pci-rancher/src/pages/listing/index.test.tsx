@@ -7,6 +7,7 @@ import { rancherMocked } from '../../_mock_/rancher';
 
 const defaultProps = {
   data: [rancherMocked],
+  refetchRanchers: jest.fn(),
 };
 
 const setupSpecTest = async (props: ListingProps = defaultProps) =>
@@ -18,6 +19,7 @@ describe('Listing Page', () => {
       data: [
         { id: '123', currentState: { name: 'Rancher1' } } as RancherService,
       ],
+      refetchRanchers: jest.fn(),
     });
 
     const title = screen.getByText(listingTranslation.rancherTitle);
@@ -29,6 +31,7 @@ describe('Listing Page', () => {
     it('Should display the onboarding page', async () => {
       const screen = await setupSpecTest({
         data: [] as RancherService[],
+        refetchRanchers: jest.fn(),
       });
 
       // TODO: test way to check if onboarding title is displayed
