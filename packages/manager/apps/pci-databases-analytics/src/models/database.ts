@@ -28,7 +28,13 @@ export namespace database {
           value: number;
         };
       }
-    } /** Backups availability of databases engines on cloud projects */
+    }
+    /** Possible action to restrict availabilities */
+    export enum ActionEnum {
+      'fork' = 'fork',
+      'update' = 'update',
+    }
+    /** Backups availability of databases engines on cloud projects */
     export interface Backups {
       /** Defines whether the backups are available for this offer */
       available: boolean;
@@ -66,6 +72,12 @@ export namespace database {
       'STABLE' = 'STABLE',
       'UNAVAILABLE' = 'UNAVAILABLE',
     }
+  }
+  /** Possible target to restrict availabilities */
+  export enum TargetEnum {
+    'flavor' = 'flavor',
+    'plan' = 'plan',
+    'version' = 'version',
   }
   export namespace backup {
     /** Cloud database backup region definition */
@@ -143,6 +155,8 @@ export namespace database {
       }
     } /** Specific database engine capability */
     export interface Engine {
+      /** Category of the engine */
+      category: CategoryEnum;
       /** Default version used for the engine */
       defaultVersion: string;
       /** Description of the engine */
@@ -160,10 +174,14 @@ export namespace database {
     export interface Flavor {
       /** Flavor core number. @deprecated: use specifications.core */
       core: number;
+      /** Defines the lifecycle of the flavor */
+      lifecycle: availability.Lifecycle;
       /** Flavor ram size in GB. @deprecated: use specifications.memory */
       memory: number;
       /** Name of the flavor */
       name: string;
+      /** Display order */
+      order: number;
       /** Technical specifications of the flavor */
       specifications: database.capabilities.flavor.Specifications;
       /** Flavor disk size in GB. @deprecated: use specifications.storage */
@@ -193,8 +211,14 @@ export namespace database {
       backupRetention: string;
       /** Description of the plan */
       description: string;
+      /** Defines the lifecycle of the availability */
+      lifecycle: availability.Lifecycle;
       /** Name of the plan */
       name: string;
+      /** Display order */
+      order: number;
+      /** Display tags */
+      tags: string[];
     }
   }
   export namespace kafka {
@@ -230,6 +254,10 @@ export namespace database {
     export interface Service {
       /** Time on which backups start every day */
       backupTime: string;
+      /** Capabilities of the services */
+      capabilities: Record<service.CapabilityEnum, service.CapabilityActions>;
+      /** Category of the engine */
+      category: CategoryEnum;
       /** Date of the creation of the cluster */
       createdAt: string;
       /** Description of the cluster */
@@ -666,6 +694,10 @@ export namespace database {
       backupTime: string;
       /** Information related to the backups, null if the engine does not support backups */
       backups?: database.service.Backup;
+      /** Capabilities of the services */
+      capabilities: Record<service.CapabilityEnum, service.CapabilityActions>;
+      /** Category of the engine */
+      category: CategoryEnum;
       /** Date of the creation of the cluster */
       createdAt: string;
       /** Description of the cluster */
@@ -922,6 +954,13 @@ export namespace database {
     }
   }
   export namespace service {
+    export namespace capability {
+      /** State of the service capability for the service */
+      export enum StateEnum {
+        'disabled' = 'disabled',
+        'enabled' = 'enabled',
+      }
+    }
     export namespace creation {
       /** Defines the source to fork a cluster from a backup. @deprecated: use forkFrom */
       export interface BackupFork {
@@ -1098,10 +1137,34 @@ export namespace database {
       }
     } /** Cloud database service backups definition */
     export interface Backup {
+      /** Date until PITR is available */
+      pitr?: string;
       /** Regions on which the backups are stored */
       regions: string[];
+      /** Number of retention days for the backups */
+      retentionDays?: number;
       /** Time on which backups start every day */
       time: string;
+    }
+    /** Cloud database service capability actions definition */
+    export interface CapabilityActions {
+      /** Defines if the capability can be created */
+      create?: service.capability.StateEnum;
+      /** Defines if the capability can be deleted */
+      delete?: service.capability.StateEnum;
+      /** Defines if the capability can be read */
+      read?: service.capability.StateEnum;
+      /** Defines if the capability can be updated */
+      update?: service.capability.StateEnum;
+    }
+    /** List of capabilities available for services */
+    export enum CapabilityEnum {
+      'backups' = 'backups',
+      'currentQueries' = 'currentQueries',
+      'databases' = 'databases',
+      'namespaces' = 'namespaces',
+      'queryStatistics' = 'queryStatistics',
+      'users' = 'users',
     }
     /** Certificates definition for cloud project databases */
     export interface Certificates {
@@ -1418,6 +1481,8 @@ export namespace database {
     backupRetentionDays: number;
     /** Defines backups strategy for the availability */
     backups: database.availability.Backups;
+    /** Category of the engine */
+    category: CategoryEnum;
     /** Whether this availability can be used by default */
     default: boolean;
     /** End of life of the product. @deprecated: use lifecycle.endOfLife */
@@ -1481,6 +1546,9 @@ export namespace database {
   export enum BackupTypeEnum {
     'automatic' = 'automatic',
     'manual' = 'manual',
+    'none' = 'none',
+    'pitr' = 'pitr',
+    'snapshot' = 'snapshot',
   }
   /** Capabilities available for the databases engines on cloud projects */
   export interface Capabilities {
@@ -1539,6 +1607,10 @@ export namespace database {
     backupTime: string;
     /** Information related to the backups, null if the engine does not support backups */
     backups?: database.service.Backup;
+    /** Capabilities of the services */
+    capabilities: Record<service.CapabilityEnum, service.CapabilityActions>;
+    /** Category of the engine */
+    category: CategoryEnum;
     /** Date of the creation of the cluster */
     createdAt: string;
     /** Description of the cluster */
