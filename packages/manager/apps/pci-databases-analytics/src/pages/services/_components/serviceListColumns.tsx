@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { SortableHeader } from '@/components/ui/data-table';
 import FormattedDate from '@/components/table-date';
+import { humanizeEngine } from '@/lib/engineNameHelper';
 
 interface ServiceListColumnsProps {
   onRenameClicked: (service: database.Service) => void;
@@ -57,13 +58,14 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
         </SortableHeader>
       ),
       cell: ({ row }) => {
-        const { engine } = row.original;
+        const { engine, version } = row.original;
         return (
           <div className="flex gap-2 items-center">
             <div className="w-[50px] h-[33px]">
               <img src={`./assets/engines/${engine}.png`} />
             </div>
-            <span className="capitalize whitespace-nowrap">{engine}</span>
+            <span className="whitespace-nowrap">{humanizeEngine(engine)}</span>
+            <span>{version}</span>
           </div>
         );
       },
@@ -76,6 +78,10 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
           {t('table-header-plan')}
         </SortableHeader>
       ),
+      cell: ({ row }) => {
+        const { plan } = row.original;
+        return <span className="capitalize">{plan}</span>;
+      },
     },
     {
       id: 'Flavor',
@@ -85,6 +91,10 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
           {t('table-header-flavor')}
         </SortableHeader>
       ),
+      cell: ({ row }) => {
+        const { flavor } = row.original;
+        return <span className="capitalize">{flavor}</span>;
+      },
     },
     {
       id: 'Storage',

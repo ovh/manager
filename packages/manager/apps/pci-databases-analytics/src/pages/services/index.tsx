@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useGetServices } from '@/hooks/api/services.api.hooks';
 import { database } from '@/models/database';
 import ServicesList from './_components/serviceListTable';
+import LegalMentions from '../_components/legalMentions';
 
 const Services = () => {
   const { projectId, category } = useParams();
@@ -14,12 +15,18 @@ const Services = () => {
         category === database.CategoryEnum.all || service.category === category,
     );
   }, [servicesQuery.data, category]);
+  const hasRedisService =
+    filteredServices.filter((s) => s.engine === database.EngineEnum.redis)
+      .length > 0;
   if (servicesQuery.isLoading) return <ServicesList.Skeleton />;
   return (
-    <ServicesList
-      services={filteredServices}
-      refetchFn={servicesQuery.refetch}
-    />
+    <>
+      <ServicesList
+        services={filteredServices}
+        refetchFn={servicesQuery.refetch}
+      />
+      <LegalMentions showRedisMessage={hasRedisService} className="mt-4" />
+    </>
   );
 };
 
