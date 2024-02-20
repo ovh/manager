@@ -43,9 +43,63 @@ export default [
             ),
           },
           {
+            path: 'users',
+            ...lazyRouteConfig(() =>
+              import('@/pages/services/[serviceId]/users'),
+            ),
+          },
+          {
+            path: 'backups',
+            ...lazyRouteConfig(() =>
+              import('@/pages/services/[serviceId]/backups'),
+            ),
+          },
+          {
+            path: 'databases',
+            ...lazyRouteConfig(() =>
+              import('@/pages/services/[serviceId]/databases'),
+            ),
+          },
+          {
+            path: 'namespaces',
+            ...lazyRouteConfig(() =>
+              import('@/pages/services/[serviceId]/namespaces'),
+            ),
+          },
+          {
+            path: 'pools',
+            ...lazyRouteConfig(() =>
+              import('@/pages/services/[serviceId]/pools'),
+            ),
+          },
+          {
+            path: 'queries',
+            ...lazyRouteConfig(() =>
+              import('@/pages/services/[serviceId]/queries'),
+            ),
+          },
+          {
+            path: 'integrations',
+            ...lazyRouteConfig(() =>
+              import('@/pages/services/[serviceId]/integrations'),
+            ),
+          },
+          {
             path: 'metrics',
             ...lazyRouteConfig(() =>
               import('@/pages/services/[serviceId]/metrics'),
+            ),
+          },
+          {
+            path: 'logs',
+            ...lazyRouteConfig(() =>
+              import('@/pages/services/[serviceId]/logs'),
+            ),
+          },
+          {
+            path: 'settings',
+            ...lazyRouteConfig(() =>
+              import('@/pages/services/[serviceId]/settings'),
             ),
           },
         ],
