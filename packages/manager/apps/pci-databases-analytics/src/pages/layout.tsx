@@ -57,14 +57,12 @@ function RoutingSynchronisation() {
 export default function Layout() {
   const { t } = useTranslation('pci-databases-analytics');
   return (
-    <>
-      <PageLayout>
-        <Breadcrumb />
-        <RoutingSynchronisation />
-        <h1>{t('title')}</h1>
-        <Outlet />
-      </PageLayout>
-    </>
+    <PageLayout>
+      <Breadcrumb />
+      <RoutingSynchronisation />
+      <h1>{t('title')}</h1>
+      <Outlet />
+    </PageLayout>
   );
 }
 // operational
