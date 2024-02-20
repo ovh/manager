@@ -1,7 +1,5 @@
-import React from 'react';
-
-const Service = () => {
-  return <p>Dummy Service</p>;
+const Dashboard = () => {
+  return <>dashboard</>;
 };
 
-export default Service;
+export default Dashboard;

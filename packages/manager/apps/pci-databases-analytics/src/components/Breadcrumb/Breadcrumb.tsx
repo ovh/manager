@@ -70,14 +70,14 @@ function Breadcrumb(): JSX.Element {
         )}
       </a>
       {breadcrumbData.map((bc, index) => (
-        <React.Fragment key={`${index}-${bc.href}`}>
+        <React.Fragment key={`${index}-${bc.path}`}>
           <span className="mx-2 text-primary-500 font-semibold">|</span>
           {index < breadcrumbData.length - 1 ? (
             <Link
               className="text-primary-500 font-semibold outiline-none cursor-pointer no-underline hover:text-primary-700 hover:underline"
-              to={bc.href}
+              to={bc.path}
             >
-              {bc.label}
+              <span title={bc.path}>{bc.label}</span>
             </Link>
           ) : (
             <span className="text-primary-500 font-semibold opacity-50 outiline-none cursor-not-allowed no-underline hover:text-primary-700">
