@@ -1,0 +1,13 @@
+{
+  "log_tab_title": "Logs",
+  "log_tile_section_title": "Comment utiliser vos logs",
+  "log_tile_title": "Flux",
+  "log_tile_desc_create_account": "Pour activer ce transfert vous devez d’abord créer un compte Logs Data Platform et un premier flux de données.",
+  "log_tile_desc_create_stream": "Pour activer ce transfert vous devez d’abord créer un premier flux de données dans votre compte Logs Data Platform.",
+  "log_data_platform_guide_link": "En savoir plus sur Logs Data Platform",
+  "log_button_create_account": "Créer un compte",
+  "log_button_create_stream": "Créer un flux de données",
+  "log_button_transfer_stream": "Transférer",
+  "logs_description": "En souscrivant à ce flux, vous pouvez transférer vos logs directement dans Logs Data Platform d'OVHcloud qui vous permet de faire des recherches, créer des alertes et des visualisations ou bien tout simplement les archiver.",
+  "logs_info_link": "En savoir plus"
+}
