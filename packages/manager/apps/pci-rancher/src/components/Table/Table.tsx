@@ -89,7 +89,7 @@ function TableComponent({ table }: Readonly<RancherTable>) {
     <table className="manager-table w-full" cellSpacing={0}>
       <thead>
         {table
-          ?.getHeaderGroups()
+          .getHeaderGroups()
           .map((headerGroup: HeaderGroup<RancherService>) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map(

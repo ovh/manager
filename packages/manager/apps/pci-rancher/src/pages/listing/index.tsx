@@ -19,16 +19,22 @@ import Title from '@/components/Title/Title';
 import RancherTaskMessage from './RancherTaskMessage';
 import TableContainer from '@/components/Table/TableContainer';
 import { getOnboardingUrl } from '@/utils/route';
+import { useTrackingAction } from '@/hooks/useTrackingPage';
+import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 
 export interface ListingProps {
   data: RancherService[];
+  refetchRanchers: () => void;
 }
 
-const Listing: React.FC<ListingProps> = ({ data }) => {
+const Listing: React.FC<ListingProps> = ({ data, refetchRanchers }) => {
   const { t } = useTranslation('pci-rancher/listing');
   const hrefDashboard = useHref('');
   const navigate = useNavigate();
   const { projectId } = useParams();
+  const trackAction = useTrackingAction();
+  const trackClick = () =>
+    trackAction(TrackingPageView.ListingPage, TrackingEvent.add);
 
   useEffect(() => {
     if (data.length === 0) {
@@ -47,6 +53,7 @@ const Listing: React.FC<ListingProps> = ({ data }) => {
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
           inline
+          onClick={trackClick}
           href={`${hrefDashboard}/new`}
         >
           <span slot="start" className="flex justify-center items-center">
@@ -62,7 +69,7 @@ const Listing: React.FC<ListingProps> = ({ data }) => {
       </div>
       {tasks.length ? <RancherTaskMessage tasks={tasks} /> : <></>}
       {data ? (
-        <TableContainer data={data} />
+        <TableContainer data={data} refetchRanchers={refetchRanchers} />
       ) : (
         <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />
       )}
