@@ -236,7 +236,7 @@ export function getPciProjectMenu(
           feature: 'databases',
           href: getURL(
             'public-cloud',
-            `#/pci/projects/${projectId}/storages/databases-analytics/databases`,
+            `#/pci/projects/${projectId}/databases-analytics/operational/services`,
           ),
         },
         {

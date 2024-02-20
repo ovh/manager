@@ -6,6 +6,7 @@ import { database } from '@/models/database';
 
 function ServiceName() {
   const { projectId, serviceId } = useParams();
+  if (!serviceId) return '';
   const serviceQuery = useGetService(projectId, serviceId);
   return serviceQuery.isLoading ? (
     <Skeleton className="h-4 w-20 inline-block align-middle" />
