@@ -30,7 +30,7 @@ describe('Actions Cell', () => {
   });
 
   it('Manage should not be visible if rancher is in error', async () => {
-    const screen = await setupSpecTest(rancherError as RancherService);
+    const screen = await setupSpecTest(rancherError);
 
     const manageText = screen.queryByText(listingTranslation.manage);
 

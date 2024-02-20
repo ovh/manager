@@ -1,7 +1,6 @@
 import {
   OsdsButton,
   OsdsInput,
-  OsdsModal,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {

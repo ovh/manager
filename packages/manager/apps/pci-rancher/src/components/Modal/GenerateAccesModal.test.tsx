@@ -92,8 +92,6 @@ describe('GenerateAccesModal', () => {
 
     expect(defaultProps.onGenerateAccess).not.toHaveBeenCalled();
     expect(defaultProps.toggleModal).not.toHaveBeenCalled();
-    expect(mockedUsedNavigate).toHaveBeenCalledWith(
-      rancherMocked.currentState.url,
-    );
+    expect(button).toHaveAttribute('href', rancherMocked.currentState.url);
   });
 });
