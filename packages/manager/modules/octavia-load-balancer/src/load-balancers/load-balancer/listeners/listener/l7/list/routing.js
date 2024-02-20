@@ -1,4 +1,4 @@
-import { POLICIES_TRACKING, RULES_TRACKING } from '../constants';
+import { POLICIES_TRACKING } from '../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -52,7 +52,10 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           ),
         goToL7Rules: /* @ngInject */ ($state, atInternet) => (policy) => {
-          atInternet.trackClick({ name: RULES_TRACKING.LIST, type: 'action' });
+          atInternet.trackClick({
+            name: POLICIES_TRACKING.MANAGE_RULES,
+            type: 'action',
+          });
           $state.go(
             'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.l7Rules.list',
             {
