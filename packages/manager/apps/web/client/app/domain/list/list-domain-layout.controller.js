@@ -195,7 +195,7 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
   }
 
   static getDNSServers(nameServers) {
-    return nameServers.map((item) => item.name || '').join(', ');
+    return nameServers.map((item) => item.nameServer).join(', ');
   }
 
   getDate(domain, key) {
@@ -247,6 +247,13 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     return this.coreURLBuilder.buildURL(
       'dedicated',
       `#/useraccount/infos/${contactId}`,
+    );
+  }
+
+  linkToOwnerPage(ownerId, domain) {
+    return this.coreURLBuilder.buildURL(
+      'dedicated',
+      `#/contact/${domain}/${ownerId}`,
     );
   }
 
