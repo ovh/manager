@@ -9,11 +9,9 @@ export default /* @ngInject */ ($stateProvider) => {
       transition
         .injector()
         .getAsync('resources')
-        .then((resources) => {
-          return resources.data.length === 0
-            ? { state: 'app.zone.onboarding' }
-            : false;
-        }),
+        .then(({ data }) =>
+          data.length === 0 ? { state: 'app.zone.onboarding' } : false,
+        ),
     resolve: {
       ...ListLayoutHelper.stateResolves,
       schema: /* @ngInject */ ($http) =>
