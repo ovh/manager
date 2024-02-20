@@ -20,5 +20,6 @@ export const useTrackingAction = () => {
     tracking.trackClick({
       name: `${TRACKING_PATH}${page ? `::${page}` : ''}::${action}`,
       level2: '86', // Manager-PublicCloud
+      type: 'action',
     });
 };

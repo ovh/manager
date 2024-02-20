@@ -21,6 +21,7 @@ import TableContainer from '@/components/Table/TableContainer';
 import { getOnboardingUrl } from '@/utils/route';
 import { useTrackingAction } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+import { useTrackingPage } from '../../hooks/useTrackingPage';
 
 export interface ListingProps {
   data: RancherService[];
@@ -29,6 +30,7 @@ export interface ListingProps {
 
 const Listing: React.FC<ListingProps> = ({ data, refetchRanchers }) => {
   const { t } = useTranslation('pci-rancher/listing');
+  useTrackingPage();
   const hrefDashboard = useHref('');
   const navigate = useNavigate();
   const { projectId } = useParams();

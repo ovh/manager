@@ -15,7 +15,7 @@ import { DashboardTabItemProps } from './Dashboard';
 const TabBar: FC<{ tabs: DashboardTabItemProps[] }> = ({ tabs }) => {
   const { t } = useTranslation('pci-rancher/dashboard');
 
-  const [panel, setActivePanel] = useState('');
+  const [activePanel, setActivePanel] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ const TabBar: FC<{ tabs: DashboardTabItemProps[] }> = ({ tabs }) => {
     }
   }, [location.pathname]);
   return (
-    <OsdsTabs panel={panel}>
+    <OsdsTabs panel={activePanel}>
       <OsdsTabBar slot="top">
         {tabs.map((tab: DashboardTabItemProps) => (
           <OsdsTabBarItem

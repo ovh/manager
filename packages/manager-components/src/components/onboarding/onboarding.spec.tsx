@@ -1,6 +1,5 @@
 /* eslint-disable no-return-await */
 /* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
 import { render, waitFor } from '../../utils/test.provider';
 import '@testing-library/jest-dom';
 import {

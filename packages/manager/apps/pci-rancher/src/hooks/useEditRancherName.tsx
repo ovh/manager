@@ -1,6 +1,4 @@
 import { useMutation } from '@tanstack/react-query';
-import { useState } from 'react';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
 import {
   editRancherService,
   patchRancherServiceQueryKey,

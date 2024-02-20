@@ -14,6 +14,8 @@ import { getRanchersUrl } from '@/utils/route';
 import usePciProject from '@/hooks/usePciProject';
 import { PciProjectPlanCode } from '@/api/api.type';
 import { useRanchers } from '@/hooks/useRancher';
+import { useTrackingPage } from '../../hooks/useTrackingPage';
+import { TrackingPageView } from '../../utils/tracking';
 
 export default function Create() {
   const { projectId } = useParams();
@@ -21,6 +23,7 @@ export default function Create() {
   const [hasRancherCreationError, setHasRancherCreationError] = React.useState(
     false,
   );
+  useTrackingPage(TrackingPageView.CreateRancher);
 
   const { data: project } = usePciProject();
 

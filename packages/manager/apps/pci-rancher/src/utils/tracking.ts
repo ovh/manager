@@ -12,6 +12,7 @@ export enum TrackingPageView {
 
 export enum TrackingEvent {
   add = 'add',
+  addConfirm = 'add::confirm',
   cancel = 'cancel',
   confirm = 'confirm',
   accessUi = 'access-ui',

@@ -137,7 +137,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   }, [versions, plans]);
 
   const onCreateClick = (rancherPayload: CreateRancherPayload) => {
-    trackAction(TrackingPageView.CreateRancher, TrackingEvent.confirm);
+    trackAction(TrackingPageView.CreateRancher, TrackingEvent.addConfirm);
     onCreateRancher(rancherPayload);
   };
 

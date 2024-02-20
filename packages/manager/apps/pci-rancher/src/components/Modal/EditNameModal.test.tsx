@@ -56,7 +56,7 @@ describe('Edit Name Modal', () => {
     await userEvent.type(input, '234');
     const NEW_NAME = 'rancher1234';
 
-    // expect(input.getAttribute('value')).toBe(NEW_NAME);
+    expect(input.getAttribute('value')).toBe(NEW_NAME);
 
     await userEvent.click(button);
 

@@ -6,8 +6,9 @@ export function breadcrumb() {
   return i18next.t('pci-rancher:crumb');
 }
 
-export default function App({ children }: { children: React.ReactNode }) {
+const App: React.FC<React.PropsWithChildren> = ({ children }) => {
   useTranslation('pci-rancher');
 
   return <>{children}</>;
-}
+};
+export default App;
