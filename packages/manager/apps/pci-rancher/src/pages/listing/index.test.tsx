@@ -34,7 +34,6 @@ describe('Listing Page', () => {
         refetchRanchers: jest.fn(),
       });
 
-      // TODO: test way to check if onboarding title is displayed
       const title = screen.queryByText('title');
 
       expect(title).toBeNull();

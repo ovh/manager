@@ -16,8 +16,5 @@ export enum TrackingEvent {
   confirm = 'confirm',
   accessUi = 'access-ui',
   generateAccess = 'generate-access',
-  generateAccessClose = 'generate-access::close',
-  generateAccessCancel = 'generate-access::cancel',
-  generateAccessConfirm = 'generate-access::confirm',
-  generateAccessAccessUi = 'generate-access::access-ui',
+  close = 'close',
 }

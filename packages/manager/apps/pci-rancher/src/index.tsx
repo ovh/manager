@@ -48,4 +48,4 @@ const init = async (
   );
 };
 
-init('pci-rancher');
+init('pci-rancher', { reloadOnLocaleChange: true });

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Params, useParams } from 'react-router-dom';
 import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
-import { useNavigation, useTracking } from '@ovh-ux/manager-react-shell-client';
+import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import usePciProject from '../../hooks/usePciProject';
 
@@ -14,7 +14,7 @@ interface BreadcrumbProps {
   items?: { label: string }[];
 }
 
-function Breadcrumb({ items = [] }: BreadcrumbProps): JSX.Element {
+const Breadcrumb: React.FC<BreadcrumbProps> = ({ items = [] }) => {
   const { projectId } = useParams();
   const { t } = useTranslation('pci-rancher/listing');
   const { data: project } = usePciProject();
@@ -47,6 +47,6 @@ function Breadcrumb({ items = [] }: BreadcrumbProps): JSX.Element {
       ]}
     ></OsdsBreadcrumb>
   );
-}
+};
 
 export default Breadcrumb;

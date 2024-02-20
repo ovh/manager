@@ -14,6 +14,15 @@ import { getRanchersUrl } from '@/utils/route';
 import usePciProject from '@/hooks/usePciProject';
 import { PciProjectPlanCode } from '@/api/api.type';
 import { useRanchers } from '@/hooks/useRancher';
+import {
+  useSimpleTrackingPage,
+  useTrackingPage,
+} from '../../hooks/useTrackingPage';
+import {
+  TRACKING_PATH,
+  TrackingEvent,
+  TrackingPageView,
+} from '../../utils/tracking';
 
 export default function Create() {
   const { projectId } = useParams();
@@ -21,6 +30,8 @@ export default function Create() {
   const [hasRancherCreationError, setHasRancherCreationError] = React.useState(
     false,
   );
+  useTrackingPage(TrackingPageView.CreateRancher);
+  const trackingPage = useSimpleTrackingPage();
 
   const { data: project } = usePciProject();
 
@@ -31,9 +42,14 @@ export default function Create() {
     onMutate: () => setHasRancherCreationError(false),
     onSuccess: () => {
       refetchRancherList();
+      trackingPage(`${TRACKING_PATH}::${TrackingEvent.add}-success`);
+
       navigate(getRanchersUrl(projectId));
     },
-    onError: () => setHasRancherCreationError(true),
+    onError: () => {
+      trackingPage(`${TRACKING_PATH}::${TrackingEvent.add}-error`);
+      setHasRancherCreationError(true);
+    },
   });
 
   const { data: plans } = useQuery({

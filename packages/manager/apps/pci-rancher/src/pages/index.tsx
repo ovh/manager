@@ -7,7 +7,6 @@ import Loading from '@/components/Loading/Loading';
 import Listing from './listing';
 import { useRanchers } from '@/hooks/useRancher';
 import PageLayout from '@/components/PageLayout/PageLayout';
-import { useTrackingPage } from '@/hooks/useTrackingPage';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
   return params.serviceName;
@@ -15,7 +14,6 @@ export function breadcrumb({ params }: BreadcrumbHandleParams) {
 
 export default function Home() {
   const { data, isError, error, isLoading, refetch } = useRanchers();
-  useTrackingPage();
 
   if (isError && error) {
     return (

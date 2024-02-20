@@ -6,6 +6,13 @@ import { RancherService } from '../../../api/api.type';
 import dashboardTranslation from '../../../public/translations/pci-rancher/dashboard/Messages_fr_FR.json';
 import listingTranslation from '../../../public/translations/pci-rancher/listing/Messages_fr_FR.json';
 
+jest.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useTracking: jest.fn(() => ({
+    trackPage: jest.fn(),
+    trackClick: jest.fn(),
+  })),
+}));
+
 const setupSpecTest = async (rancherService: RancherService = rancherMocked) =>
   waitFor(() =>
     render(

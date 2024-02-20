@@ -22,18 +22,16 @@ function HeaderTableTh({ header }: Readonly<RancherTableTh>) {
     <th key={header?.id}>
       {header?.isPlaceholder ? null : (
         <div
+          {...(header.id !== 'actions'
+            ? {
+                onClick: header.column.getToggleSortingHandler(),
+                onKeyDown: header.column.getToggleSortingHandler(),
+              }
+            : {})}
           {...{
             className: header.column.getCanSort()
               ? 'cursor-pointer !justify-start	select-none '
               : '',
-            onKeyDown:
-              header.id !== 'actions'
-                ? header.column.getToggleSortingHandler()
-                : null,
-            onClick:
-              header.id !== 'actions'
-                ? header.column.getToggleSortingHandler()
-                : null,
           }}
         >
           <div className="text-left">

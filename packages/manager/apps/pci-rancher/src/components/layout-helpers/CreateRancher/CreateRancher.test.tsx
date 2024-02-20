@@ -24,6 +24,10 @@ jest.mock('@ovh-ux/manager-react-shell-client', () => ({
     getURL: jest.fn(() => Promise.resolve('123')),
     data: [],
   })),
+  useTracking: jest.fn(() => ({
+    trackPage: jest.fn(),
+    trackClick: jest.fn(),
+  })),
 }));
 
 const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
@@ -66,7 +70,7 @@ describe('CreateRancher', () => {
     expect(onCreateRancher).not.toHaveBeenCalled();
   });
 
-  it('Given that I validate the creation of the service, I should be redirected to the product listing page and see the status of the service in the datagrid and success banner', async () => {
+  it('Given that I validate the creation of the service, i should call api with good default value', async () => {
     const screen = await setupSpecTest();
 
     const input = screen.getByLabelText('rancher-name-input');
@@ -82,9 +86,6 @@ describe('CreateRancher', () => {
       plan: 'STANDARD',
       version: 'v2.7.6',
     });
-    expect(mockedUsedNavigate).toHaveBeenCalledWith(
-      '/pci/projects/1234/rancher',
-    );
   });
 
   it("Given that I'm configuring the service, I should only have the Standard offer selected, and see the OVHcloud Edition card disabled with a Coming soon label on it.", async () => {

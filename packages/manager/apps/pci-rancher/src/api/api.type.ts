@@ -98,7 +98,7 @@ export enum RessourceStatus {
 export type RancherReferenceStatus = 'AVAILABLE' | 'UNAVAILABLE';
 
 export interface RancherPlan {
-  name: 'OVHCLOUD_EDITION' | 'STANDARD' | string;
+  name: 'OVHCLOUD_EDITION' | 'STANDARD';
   status: RancherReferenceStatus;
 }
 

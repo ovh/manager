@@ -188,7 +188,13 @@ const RancherDetail = ({
                     toggleGenerateAccessModal(true);
                   }}
                 >
-                  <span>{t('generate_access')}</span>
+                  <OsdsText
+                    level={ODS_TEXT_LEVEL.heading}
+                    color={ODS_THEME_COLOR_INTENT.primary}
+                    size={ODS_TEXT_SIZE._200}
+                  >
+                    {t('generate_access')}
+                  </OsdsText>
                   <OsdsIcon
                     className="ml-4 cursor-pointer"
                     name={ODS_ICON_NAME.ARROW_RIGHT}

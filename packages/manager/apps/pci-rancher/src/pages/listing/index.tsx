@@ -21,26 +21,24 @@ import TableContainer from '@/components/Table/TableContainer';
 import { getOnboardingUrl } from '@/utils/route';
 import { useTrackingAction } from '@/hooks/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
+import { useTrackingPage } from '../../hooks/useTrackingPage';
 
 export interface ListingProps {
   data: RancherService[];
   refetchRanchers: () => void;
 }
 
-const Listing: React.FC<ListingProps> = ({ data, refetchRanchers }) => {
+const ListingTablePage: React.FC<ListingProps> = ({
+  data,
+  refetchRanchers,
+}) => {
   const { t } = useTranslation('pci-rancher/listing');
   const hrefDashboard = useHref('');
-  const navigate = useNavigate();
-  const { projectId } = useParams();
   const trackAction = useTrackingAction();
   const trackClick = () =>
     trackAction(TrackingPageView.ListingPage, TrackingEvent.add);
 
-  useEffect(() => {
-    if (data.length === 0) {
-      navigate(getOnboardingUrl(projectId));
-    }
-  }, [projectId, data.length]);
+  useTrackingPage();
 
   const tasks = data.map((rancher) => rancher.currentTasks).flat();
 
@@ -74,6 +72,23 @@ const Listing: React.FC<ListingProps> = ({ data, refetchRanchers }) => {
         <OsdsSpinner inline size={ODS_SPINNER_SIZE.sm} />
       )}
     </>
+  );
+};
+
+const Listing: React.FC<ListingProps> = ({ data, refetchRanchers }) => {
+  const navigate = useNavigate();
+  const { projectId } = useParams();
+
+  useEffect(() => {
+    if (data.length === 0) {
+      navigate(getOnboardingUrl(projectId));
+    }
+  }, [projectId, data.length]);
+
+  return data.length ? (
+    <ListingTablePage data={data} refetchRanchers={refetchRanchers} />
+  ) : (
+    <></>
   );
 };
 
