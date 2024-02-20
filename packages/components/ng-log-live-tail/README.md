@@ -1,22 +1,22 @@
-# ng-log-to-customer
+# ng-log-live-tail
 
 > AngularJS log to customer module.
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-log-to-customer)](https://www.npmjs.com/package/@ovh-ux/ng-log-to-customer) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-log-to-customer)](https://npmjs.com/package/@ovh-ux/ng-log-to-customer) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-log-to-customer)](https://npmjs.com/package/@ovh-ux/ng-log-to-customer?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-log-to-customer)](https://npmjs.com/package/@ovh-ux/ng-tail-logs?activeTab=dependencies)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/ng-log-live-tail)](https://www.npmjs.com/package/@ovh-ux/ng-log-live-tail) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-log-live-tail)](https://npmjs.com/package/@ovh-ux/ng-log-live-tail) [![Dependencies](https://badgen.net/david/dep/ovh/manager/packages/components/ng-log-live-tail)](https://npmjs.com/package/@ovh-ux/ng-log-live-tail?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh/manager/packages/components/ng-log-live-tail)](https://npmjs.com/package/@ovh-ux/ng-tail-logs?activeTab=dependencies)
 
 Poll a log API for displaying messages
 
 ## Install
 
 ```sh
-$ yarn add @ovh-ux/ng-log-to-customer
+$ yarn add @ovh-ux/ng-log-live-tail
 ```
 
 ## Usage
 
 ```js
 import angular from 'angular';
-import '@ovh-ux/ng-log-to-customer';
+import '@ovh-ux/ng-log-live-tail';
 
 angular.module('myApp', [ngLogToCustomer]).controller(
   'MyCtrl',

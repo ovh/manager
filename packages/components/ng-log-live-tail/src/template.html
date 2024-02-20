@@ -14,11 +14,10 @@
     </button>
 </div>
 
+<div data-ng-transclude="description" class="my-2"></div>
+
 <div class="d-flex w-100 flex-wrap">
-    <div
-        class="log-to-customer"
-        data-ng-class="{'fullScreen': $ctrl.fullScreen}"
-    >
+    <div class="log-live-tail" data-ng-class="{'fullScreen': $ctrl.fullScreen}">
         <div class="d-flex p-2">
             <div class="oui-input-overlay d-inline-block w-25">
                 <input
@@ -53,7 +52,7 @@
             <oui-button
                 data-variant="secondary"
                 class="ml-auto"
-                data-ng-if="$ctrl.isRightTileSlotFilled"
+                data-ng-if="$ctrl.isTileSlotFilled"
                 data-ng-click="$ctrl.fullScreen = !$ctrl.fullScreen"
             >
                 <span class="oui-icon oui-icon-expansion-arrows_concept"></span>
@@ -91,8 +90,9 @@
         </oui-button>
     </div>
     <div
+        class="log-tile"
         data-ng-class="{
-         'd-none': !$ctrl.isRightTileSlotFilled,
+        'd-none': !$ctrl.isTileSlotFilled,
          'ml-2': !$ctrl.fullScreen}"
         data-ng-transclude="tile"
     ></div>

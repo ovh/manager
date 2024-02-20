@@ -1,5 +1,4 @@
 {
   "kube_logs_tab_title": "Logs",
-  "kube_logs_description": "Vous trouverez ici les logs du control-plane de votre cluster Kubernetes. Pour observer vos pods métier, nous vous invitons à suivre la documentation.",
-  "kube_logs_description_link": "En savoir plus."
+  "kube_logs_description": "En transférant les logs d'audit de votre cluster Kubernetes dans Logs Data Platform, vous pouvez les stocker, effectuer des recherches dans vos logs, définir des alertes et construire des tableaux de bord."
 }
