@@ -1,3 +1,3 @@
-# @ovh-ux/manager-pci-rancher-app
+# @ovh-ux/manager-pci-databases-analytics-app
 
-> pci-rancher project
+> pci-databases-analytics project
