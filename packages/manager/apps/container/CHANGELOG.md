@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.43.0...@ovh-ux/manager-container-app@0.44.0) (2024-02-20)
+
+
+### Features
+
+* overriding piano analytics sdk ([#10777](https://github.com/ovh/manager/issues/10777)) ([d7e83ae](https://github.com/ovh/manager/commit/d7e83ae37bb35884ebd5e2e258a0e074c14135fc))
+
+
+
+
+
 # [0.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.42.0...@ovh-ux/manager-container-app@0.43.0) (2024-02-15)
 
 

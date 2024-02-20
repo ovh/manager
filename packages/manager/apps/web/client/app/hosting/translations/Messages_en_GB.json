@@ -7,5 +7,6 @@
   "hostings_offer_performance_1": "Performance 1",
   "hostings_offer_performance_2": "Performance 2",
   "hostings_offer_performance_3": "Performance 3",
-  "hostings_offer_performance_4": "Performance 4"
+  "hostings_offer_performance_4": "Performance 4",
+  "hosting_offer_changing_datavis_tool": "The tool for viewing your web hosting plan’s statistics is changing, and is temporarily unavailable. <a href=\"{{url}}\" target=\"_blank\">Visit the maintenance page</a> to keep up to date with the changes being made."
 }

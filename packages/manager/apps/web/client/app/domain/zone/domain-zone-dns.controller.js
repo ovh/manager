@@ -54,6 +54,8 @@ export default class DomainTabZoneDnsCtrl {
     this.useDefaultsDns = true;
     this.typesToCheck = ['MX', 'NS', 'SRV', 'CNAME']; // Check if target is relative for this type
 
+    this.checkAlertZoneDeleteMessage();
+
     this.$scope.$on('domain.tabs.zonedns.refresh', () => {
       this.hasResult = false;
       this.search.filter = null;
@@ -91,6 +93,51 @@ export default class DomainTabZoneDnsCtrl {
       this.loading.table = true;
     }
     this.$scope.$broadcast('paginationServerSide.loadPage', 1);
+  }
+
+  /**
+   * Checks if there's a localStorage item indicating a recent DNS zone deletion and triggers an alert.
+   *
+   * This function looks for a specific item in the localStorage, identified by a key that combines
+   * a base string ('dns-delete-') with the domain name. The value of this item should be a date
+   * representing when a DNS zone deletion was performed. If this date is within the last 72 hours,
+   * an alert message is displayed. If the date is older than 72 hours, the item is removed from
+   * localStorage, assuming the alert is no longer relevant.
+   */
+  checkAlertZoneDeleteMessage() {
+    // Construct the localStorage key using the domain name
+    const localStorageKey = `dns-delete-${this.domain.name}`;
+
+    // Retrieve the stored value (date) from localStorage
+    const storedValue = window.localStorage.getItem(localStorageKey);
+
+    // Proceed only if a value was found
+    if (storedValue) {
+      // Parse the stored date using moment.js
+      const storedDate = new Date(storedValue);
+      const currentDate = new Date();
+
+      // Calculate the difference in hours between the current date and the stored date
+      const hoursDifference = Math.abs(
+        (currentDate - storedDate) / (1000 * 60 * 60),
+      );
+
+      // Check if the difference is 72 hours or less
+      if (hoursDifference <= 72) {
+        // If within the last 72 hours, display a success alert
+        this.$scope.$evalAsync(() => {
+          this.Alerter.success(
+            this.$translate.instant(
+              'domain_configuration_zonedns_delete_all_success',
+            ),
+            this.$scope.alerts.main,
+          );
+        });
+      } else {
+        // If the stored date is older than 72 hours, remove the item from localStorage
+        window.localStorage.removeItem(localStorageKey);
+      }
+    }
   }
 
   // DNS Data ---------------------------------------------------------------

@@ -4,8 +4,15 @@
     </div>
 
     <div data-ovh-alert="{{alerts.main}}"></div>
-
     <div data-ng-if="!$ctrl.isFetchingMetrics">
+        <oui-message data-ng-if="$ctrl.migration" type="info">
+            <span
+                data-translate="private_database_metrics_changing_datavis_tool"
+                data-translate-values="{ url: $ctrl.STATUS_OVHCLOUD_URL }"
+            >
+            </span>
+        </oui-message>
+
         <div data-ng-repeat="chart in $ctrl.charts track by $index">
             <h2
                 data-ng-bind="'privateDatabase_metrics_' + chart.name  + '_title' | translate"

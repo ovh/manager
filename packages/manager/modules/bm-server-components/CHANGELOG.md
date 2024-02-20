@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.13.1...@ovh-ux/manager-bm-server-components@1.14.0) (2024-02-20)
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10943](https://github.com/ovh/manager/issues/10943)) ([3d0e354](https://github.com/ovh/manager/commit/3d0e3546319682e1efbfd825f77017ed81b7d80c))
+
+
+
+
+
+## [1.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.13.0...@ovh-ux/manager-bm-server-components@1.13.1) (2024-02-16)
+
+
+### Reverts
+
+* Revert "feat(dedicated): remove legacy BringYourOwnImage component (#10824)" ([2d1fff6](https://github.com/ovh/manager/commit/2d1fff6cf6d4c3c6f512d9eac5c446dfe08724a9)), closes [#10824](https://github.com/ovh/manager/issues/10824)
+
+
+
+
+
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.12.1...@ovh-ux/manager-bm-server-components@1.13.0) (2024-02-16)
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10824](https://github.com/ovh/manager/issues/10824)) ([ec65f97](https://github.com/ovh/manager/commit/ec65f97f114c5172f8a63f485ececd383fbd9eee))
+
+
+
+
+
 ## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.12.0...@ovh-ux/manager-bm-server-components@1.12.1) (2024-02-05)
 
 

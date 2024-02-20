@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.3.1...@ovh-ux/manager-catalog-app@1.3.2) (2024-02-20)
+
+
+### Bug Fixes
+
+* **catalog:** improve text design on catalog ([fffa173](https://github.com/ovh/manager/commit/fffa173200b0f95a45c787bbe1e50117c836049c))
+
+
+
+
+
 ## [1.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.3.0...@ovh-ux/manager-catalog-app@1.3.1) (2024-02-12)
 
 

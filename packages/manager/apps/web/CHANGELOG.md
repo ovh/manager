@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.14.0...@ovh-ux/manager-web@18.15.0) (2024-02-20)
+
+
+### Bug Fixes
+
+* **web.domain:** display the domain after also redirect ([b07a74e](https://github.com/ovh/manager/commit/b07a74ea7cbf58b022553ac3f3237a235a8025b2))
+* **web:** fix operation incoming transfer ([5c4e9c6](https://github.com/ovh/manager/commit/5c4e9c6df2cae9647bc4e0fe411c7587966a4c3f))
+
+
+### Features
+
+* **domain:** add alerts for DNS zone deletion ([#10721](https://github.com/ovh/manager/issues/10721)) ([f97b521](https://github.com/ovh/manager/commit/f97b521a61aac0754e99e09d8bdbc9e91e0162eb))
+* **web.hosting:** hide infrastructure cdn and webcloud db statistics… ([#10337](https://github.com/ovh/manager/issues/10337)) ([d820896](https://github.com/ovh/manager/commit/d820896a93062391004f158d5b233b4f962bcf72))
+
+
+
+
+
 # [18.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.13.1...@ovh-ux/manager-web@18.14.0) (2024-02-15)
 
 

@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.24.1...@ovh-ux/manager-pci@6.25.0) (2024-02-20)
+
+
+### Bug Fixes
+
+* **public-cloud:** renamed region list component used by octavia ([2ec64de](https://github.com/ovh/manager/commit/2ec64deed8f6aa23c9c24237d0d320287d7651ca))
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10943](https://github.com/ovh/manager/issues/10943)) ([3d0e354](https://github.com/ovh/manager/commit/3d0e3546319682e1efbfd825f77017ed81b7d80c))
+
+
+
+
+
+## [6.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.24.0...@ovh-ux/manager-pci@6.24.1) (2024-02-16)
+
+
+### Reverts
+
+* Revert "feat(dedicated): remove legacy BringYourOwnImage component (#10824)" ([2d1fff6](https://github.com/ovh/manager/commit/2d1fff6cf6d4c3c6f512d9eac5c446dfe08724a9)), closes [#10824](https://github.com/ovh/manager/issues/10824)
+
+
+
+
+
+# [6.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.23.0...@ovh-ux/manager-pci@6.24.0) (2024-02-16)
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10824](https://github.com/ovh/manager/issues/10824)) ([ec65f97](https://github.com/ovh/manager/commit/ec65f97f114c5172f8a63f485ececd383fbd9eee))
+
+
+
+
+
 # [6.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.22.0...@ovh-ux/manager-pci@6.23.0) (2024-02-15)
 
 
