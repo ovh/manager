@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.8.0...@ovh-ux/manager-telecom@15.8.1) (2024-02-20)
+
+
+### Bug Fixes
+
+* **telecom:** fix modem wifi no qrcode text display ([#10905](https://github.com/ovh/manager/issues/10905)) ([b8f14eb](https://github.com/ovh/manager/commit/b8f14eb9aaaec43c78fd3f9d4e45d22073b318f7))
+
+
+
+
+
 # [15.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.7.0...@ovh-ux/manager-telecom@15.8.0) (2024-02-15)
 
 

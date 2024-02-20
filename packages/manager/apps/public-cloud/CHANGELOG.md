@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.1.2...@ovh-ux/manager-public-cloud@6.1.3) (2024-02-20)
+
+
+### Bug Fixes
+
+* **public-cloud:** renamed region list component used by octavia ([2ec64de](https://github.com/ovh/manager/commit/2ec64deed8f6aa23c9c24237d0d320287d7651ca))
+
+
+
+
+
 ## [6.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.1.1...@ovh-ux/manager-public-cloud@6.1.2) (2024-02-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

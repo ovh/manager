@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer@1.1.0...@ovh-ux/manager-octavia-load-balancer@1.1.1) (2024-02-20)
+
+
+### Bug Fixes
+
+* **octavia:** removed unwanted sentence on onboarding ([3e7ab6d](https://github.com/ovh/manager/commit/3e7ab6dd8f79b097cb68b90a10f981a7f98aa7b4))
+
+
+
+
+
 # [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer@1.0.0...@ovh-ux/manager-octavia-load-balancer@1.1.0) (2024-02-15)
 
 

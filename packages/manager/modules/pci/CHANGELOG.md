@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.24.1...@ovh-ux/manager-pci@6.25.0) (2024-02-20)
+
+
+### Bug Fixes
+
+* **public-cloud:** renamed region list component used by octavia ([2ec64de](https://github.com/ovh/manager/commit/2ec64deed8f6aa23c9c24237d0d320287d7651ca))
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10943](https://github.com/ovh/manager/issues/10943)) ([3d0e354](https://github.com/ovh/manager/commit/3d0e3546319682e1efbfd825f77017ed81b7d80c))
+
+
+
+
+
 ## [6.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.24.0...@ovh-ux/manager-pci@6.24.1) (2024-02-16)
 
 
