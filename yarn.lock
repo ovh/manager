@@ -3919,7 +3919,7 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^6.7.4":
+"@ovh-ux/ui-kit@^6.7.7":
   version "6.7.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.7.8.tgz#ec783cab3ddd9254087127793ca856780e48731b"
   integrity sha512-am96JNK/XOKQkr9mixc1rNt63A1CxHKvjuKxBYgAEl6WQ9Jdlesytcts+Xn8c24kL1lkec4sJfeuDMG/5lhBIw==
@@ -6099,6 +6099,11 @@
     "@babel/runtime" "^7.22.15"
     hoist-non-react-statics "^3.3.2"
 
+"@tanstack/query-core@4.36.1":
+  version "4.36.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.36.1.tgz#79f8c1a539d47c83104210be2388813a7af2e524"
+  integrity sha512-DJSilV5+ytBP1FbFcEJovv4rnnm/CokuVvrBEtW/Va9DvuJ3HksbXUJEpI0aV1KtuL4ZoO9AVE6PyNLzF7tLeA==
+
 "@tanstack/query-core@5.18.1":
   version "5.18.1"
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.18.1.tgz#b653ee354b7f4712d53565ccc5c6d8fb83ec866c"
@@ -6115,6 +6120,14 @@
   integrity sha512-IrzAsodabSkEVBP0DHkuzcmqKFZ0EgG9ocuD/fRIrjYmbqqdHxzNmp2WmAZlkVo7hamA0ZdzvL5sjo1koFzjHA==
   dependencies:
     "@tanstack/query-devtools" "5.18.1"
+
+"@tanstack/react-query@^4.9.0":
+  version "4.36.1"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.36.1.tgz#acb589fab4085060e2e78013164868c9c785e5d2"
+  integrity sha512-y7ySVHFyyQblPl3J3eQBWpXZkliroki3ARnBKsdJchlgt7yJLRDUcf4B8soufgiYt3pEQIkBWBx1N9/ZPIeUWw==
+  dependencies:
+    "@tanstack/query-core" "4.36.1"
+    use-sync-external-store "^1.2.0"
 
 "@tanstack/react-query@^5.12.2", "@tanstack/react-query@^5.18.1":
   version "5.18.1"

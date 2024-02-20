@@ -42,12 +42,12 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       sidebar: /* @ngInject */ ($rootScope) => {
         $rootScope.$broadcast('sidebar:loaded');
       },
-      order: /* @ngInject */ ($q, $http, OrderTracking) =>
-        $http
-          .get('/hub/lastOrder', { serviceType: 'aapi' })
-          .then((data) =>
-            transformOrder($q, data.data.data.lastOrder, OrderTracking),
-          ),
+      order: /* @ngInject */ ($q, $http, OrderTracking) => [],
+      // $http
+      //   .get('/hub/lastOrder', { serviceType: 'aapi' })
+      //   .then((data) =>
+      //     transformOrder($q, data.data.data.lastOrder, OrderTracking),
+      //   ),
       numberOfServices: /* @ngInject */ ($http) =>
         $http
           .get('/services', {
