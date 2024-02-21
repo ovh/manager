@@ -9,7 +9,7 @@ import {
   export function useGetApp(
     projectId: string,
     appId: string,
-    options: QueryObserverOptions = {},
+    options: Omit<QueryObserverOptions, 'queryKey'> = {}
   ) {
     const queryKey = [projectId, 'ai/app', appId];
     return useQuery({

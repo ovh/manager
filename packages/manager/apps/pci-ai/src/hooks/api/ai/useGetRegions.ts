@@ -8,7 +8,7 @@ import {
   
   export function useGetRegions(
     projectId: string,
-    options: QueryObserverOptions = {},
+    options: Omit<QueryObserverOptions, 'queryKey'> = {}
   ) {
     const queryKey = [projectId, '/capabilities/region'];
     return useQuery({

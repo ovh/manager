@@ -349,7 +349,6 @@ export const appsApi = {
             .then((res) => res.data as string);
     },
     updateDockerImage: async ({ projectId, appId, imageSpec }: DockerImageProps) => {
-        console.log(imageSpec);
         await apiClient.v6.put(
             `/cloud/project/${projectId}/ai/app/${appId}/image`,
             imageSpec,

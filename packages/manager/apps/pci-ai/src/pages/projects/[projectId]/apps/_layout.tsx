@@ -21,6 +21,7 @@ export default function NotebooksLayout() {
   const userQuery = useGetUsers(projectId, {
     refetchInterval: 30_000,
   });
+
   const isUserConfigured: boolean =
     userQuery.data?.some((user: user.User) =>
       user.roles.some(

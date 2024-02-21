@@ -8,7 +8,7 @@ import {
   
   export function useGetUsers(
     projectId: string,
-    options: QueryObserverOptions = {},
+    options: Omit<QueryObserverOptions, 'queryKey'> = {}
   ) {
     const queryKey = [projectId, '/user'];
     return useQuery({

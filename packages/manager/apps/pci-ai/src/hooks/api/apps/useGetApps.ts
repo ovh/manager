@@ -3,18 +3,17 @@ import {
     UseQueryResult,
     useQuery,
   } from '@tanstack/react-query';
-  import { notebookApi } from '@/data/aiapi';
+  import { appsApi } from '@/data/aiapi';
   import { ai } from '@/models/types';
   
-  export function useGetNbCapaFrameworks(
+  export function useGetApps(
     projectId: string,
     options: Omit<QueryObserverOptions, 'queryKey'> = {}
   ) {
-    const queryKey = [projectId, '/capabilities/framework'];
+    const queryKey = [projectId, 'ai/apps'];
     return useQuery({
       queryKey,
-      queryFn: () => notebookApi.getNbCapaFrameworks(projectId),
+      queryFn: () => appsApi.getApps(projectId),
       ...options,
-    }) as UseQueryResult<ai.notebook.Framework[], Error>;
+    }) as UseQueryResult<ai.app.App[], Error>;
   }
-  

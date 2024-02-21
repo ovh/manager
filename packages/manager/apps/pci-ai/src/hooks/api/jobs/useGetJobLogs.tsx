@@ -9,7 +9,7 @@ import {
   export function useGetJobLogs(
     projectId: string,
     jobId: string,
-    options: QueryObserverOptions = {},
+    options: Omit<QueryObserverOptions, 'queryKey'> = {}
   ) {
     const queryKey = [projectId, jobId, 'logs'];
     return useQuery({

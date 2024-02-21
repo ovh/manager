@@ -1,25 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
-import { useQuery } from '@tanstack/react-query';
 
 import { ai } from '@/models/types';
-import { appsApi } from '@/data/aiapi';
 import Onboarding from './_components/onboarding';
 import AppsList from './_components/appsListTable';
+import { useGetApps } from '@/hooks/api/apps/useGetApps';
 
 
 export default function AppsPage() {
   const [apps, setApps] = useState<ai.app.App[]>([]);
   const { projectId } = useRequiredParams<{ projectId: string }>();
 
-  const getAppsListQueryKey = ['/apps', projectId];
-
-  const appsQuery = useQuery({
-    queryKey: getAppsListQueryKey,
-    queryFn: () => appsApi.getApps(projectId),
-    refetchInterval: 30_000, // poll services every 30 sec
+  const appsQuery = useGetApps(projectId, {
+    refetchInterval: 30_000,
   });
-
   if (appsQuery.error)
     return <pre>{JSON.stringify(appsQuery.error)}</pre>;
 

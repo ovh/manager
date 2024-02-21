@@ -9,7 +9,7 @@ import {
   export function useGetNotebook(
     projectId: string,
     notebookId: string,
-    options: QueryObserverOptions = {},
+    options: Omit<QueryObserverOptions, 'queryKey'> = {}
   ) {
     const queryKey = [projectId, 'ai/notebook', notebookId];
     return useQuery({

@@ -9,7 +9,7 @@ import {
   export function useGetJob(
     projectId: string,
     jobId: string,
-    options: QueryObserverOptions = {},
+    options: Omit<QueryObserverOptions, 'queryKey'> = {}
   ) {
     const queryKey = [projectId, 'ai/job', jobId];
     return useQuery({

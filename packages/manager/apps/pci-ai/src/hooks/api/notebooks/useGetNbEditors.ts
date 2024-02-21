@@ -8,7 +8,7 @@ import {
   
   export function useGetNbCapaEditor(
     projectId: string,
-    options: QueryObserverOptions = {},
+    options: Omit<QueryObserverOptions, 'queryKey'> = {}
   ) {
     const queryKey = [projectId, '/capabilities/editor'];
     return useQuery({

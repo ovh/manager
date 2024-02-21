@@ -1,23 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
-import { useQuery } from '@tanstack/react-query';
 
 import { ai } from '@/models/types';
-import { jobsApi } from '@/data/aiapi';
 import Onboarding from './_components/onboarding';
 import JobsList from './_components/jobsListTable';
+import { useGetJobs } from '@/hooks/api/jobs/useGetJobs';
 
 
 export default function JobsPage() {
   const [jobs, setJobs] = useState<ai.job.Job[]>([]);
   const { projectId } = useRequiredParams<{ projectId: string }>();
 
-  const getJobsListQueryKey = ['/jobs', projectId];
-
-  const jobsQuery = useQuery({
-    queryKey: getJobsListQueryKey,
-    queryFn: () => jobsApi.getJobs(projectId),
-    refetchInterval: 30_000, // poll services every 30 sec
+  const jobsQuery = useGetJobs(projectId, {
+    refetchInterval: 30_000,
   });
 
   if (jobsQuery.error)

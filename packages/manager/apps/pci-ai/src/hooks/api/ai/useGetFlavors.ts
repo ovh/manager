@@ -9,7 +9,7 @@ import { ai } from '@/models/types';
 export function useGetFlavors (
     projectId: string,
     region: string,
-    options: QueryObserverOptions = {},
+    options: Omit<QueryObserverOptions, 'queryKey'> = {}
 ) {
     const queryKey = [projectId, region, '/flavor'];
     return useQuery({

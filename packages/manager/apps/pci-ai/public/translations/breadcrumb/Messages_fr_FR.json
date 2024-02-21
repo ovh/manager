@@ -6,5 +6,6 @@
   "pci_ai_notebook_order_flavor_type_gpu_title": "AI Notebooks Advanced (GPU resources)",
   "pci_ai_notebook_order_flavor_type_gpu_description": "Powered by up to four GPUs and dozens of CPUs. Delivers higher performance for deep learning and intensive workloads.",
   "pci_ai_breadcrumb_jobs": "AI Training",
-  "pci_ai_breadcrumb_apps": "AI Deploy"
+  "pci_ai_breadcrumb_apps": "AI Deploy",
+  "pci_ai_breadcrumb_ai_dashboard": "AI Dashboard"
 }
