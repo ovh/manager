@@ -15,7 +15,7 @@
 *.tsx @ovh/team-manager-transfo @ovh/su-digital-tools-core-stack
 
 # Continuous Integration and scripts
-.github @ovh/su-digital-tools-core-service-delivery
+.github/workflows @ovh/su-digital-tools-core-service-delivery
 .nvmrc @ovh/su-digital-tools-core-service-delivery
 /scripts/ @ovh/su-digital-tools-core-service-delivery
 /scripts/start-application.js @ovh/team-manager-dev
