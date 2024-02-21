@@ -186,6 +186,8 @@ export namespace database {
       specifications: database.capabilities.flavor.Specifications;
       /** Flavor disk size in GB. @deprecated: use specifications.storage */
       storage: number;
+      /** Display tags */
+      tags: string[];
     }
     /** Integration capability between database engines */
     export interface Integration {
@@ -1713,5 +1715,38 @@ export namespace database {
     operational = 'operational',
     analysis = 'analysis',
     streaming = 'streaming',
+  }
+  /** Suggestion of availability selection */
+  export interface Suggestion {
+    default: boolean;
+    engine: string;
+    flavor: string;
+    plan: string;
+    region: string;
+    version: string;
+  }
+  /** Engines Capabilites */
+  export interface EngineCapabilities {
+    category: CategoryEnum;
+    description: string;
+    lifecycle: database.availability.Lifecycle;
+    name: string;
+    order: number;
+    sslModes: string[];
+    storage: database.capabilities.engine.storage.StrategyEnum;
+    tags: string[];
+    versions: {
+      default: boolean;
+      lifecycle: database.availability.Lifecycle;
+      name: string;
+      tags: string[];
+    }[];
+  }
+  /** Regions Capabilites */
+  export interface RegionCapabilities {
+    lifecycle: database.availability.Lifecycle;
+    name: string;
+    order: number;
+    tags: string[];
   }
 }
