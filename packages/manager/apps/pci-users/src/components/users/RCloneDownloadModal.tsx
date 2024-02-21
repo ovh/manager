@@ -27,7 +27,7 @@ import { useTranslation } from 'react-i18next';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 import { useCallback, useState } from 'react';
-import { useDownloadRCloneConfig, useUser } from '@/hooks/useUser';
+import { useDownloadRCloneConfig } from '@/hooks/useUser';
 import { DOWNLOAD_FILETYPE, RCLONE_GUIDE } from '@/download-rclone.constants';
 import S3StorageRegions from '@/components/users/S3StorageRegions';
 import StorageRegions from '@/components/users/StorageRegions';
@@ -48,7 +48,6 @@ export default function RCloneDownloadModal({
   onError,
 }: RemoveRCloneDownloadModalProps) {
   const { t } = useTranslation('common');
-  const { data: user, isPending } = useUser(projectId || '', userId);
   const { ovhSubsidiary } = useEnvironment().getUser();
   const [fileType, setFileType] = useState(DOWNLOAD_FILETYPE.SWIFT as string);
   const [region, setRegion] = useState('');
@@ -85,39 +84,40 @@ export default function RCloneDownloadModal({
         onOdsModalClose={onClose}
       >
         <slot name="content">
-          {!isPending && !isLoadingDownload && (
+          {!isLoadingDownload && (
             <>
               <OsdsText
                 slot="label"
                 level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
                 color={ODS_THEME_COLOR_INTENT.text}
               >
-                {t('pci_projects_project_users_download-rclone_content', {
-                  user: user?.username,
-                })}
+                {t('pci_projects_project_users_download-rclone_content')}
               </OsdsText>
-
-              <OsdsLink
-                href={rCloneGuideURL}
-                className={'align-text-bottom ml-1'}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                target={OdsHTMLAnchorElementTarget._blank}
-              >
-                <span slot={'start'}>
-                  <OsdsText
-                    size={ODS_THEME_TYPOGRAPHY_SIZE._500}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                  >
-                    {t('pci_projects_project_users_download-rclone_more_link')}
-                  </OsdsText>
-                  <OsdsIcon
-                    name={ODS_ICON_NAME.EXTERNAL_LINK}
-                    color={ODS_THEME_COLOR_INTENT.primary}
-                    size={ODS_ICON_SIZE.xxs}
-                    className={'ml-1'}
-                  ></OsdsIcon>
-                </span>
-              </OsdsLink>
+              {rCloneGuideURL && (
+                <OsdsLink
+                  href={rCloneGuideURL}
+                  className={'align-text-bottom ml-1'}
+                  color={ODS_THEME_COLOR_INTENT.primary}
+                  target={OdsHTMLAnchorElementTarget._blank}
+                >
+                  <span slot={'start'}>
+                    <OsdsText
+                      size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                    >
+                      {t(
+                        'pci_projects_project_users_download-rclone_more_link',
+                      )}
+                    </OsdsText>
+                    <OsdsIcon
+                      name={ODS_ICON_NAME.EXTERNAL_LINK}
+                      color={ODS_THEME_COLOR_INTENT.primary}
+                      size={ODS_ICON_SIZE.xxs}
+                      className={'ml-1'}
+                    ></OsdsIcon>
+                  </span>
+                </OsdsLink>
+              )}
               <OsdsFormField className={'mt-2'}>
                 <OsdsText
                   slot="label"
@@ -205,7 +205,7 @@ export default function RCloneDownloadModal({
               </OsdsFormField>
             </>
           )}
-          {(isPending || isLoadingDownload) && (
+          {isLoadingDownload && (
             <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />
           )}
         </slot>
@@ -221,7 +221,7 @@ export default function RCloneDownloadModal({
           slot="actions"
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => download(region, fileType)}
-          {...(isPending || isLoadingDownload ? { disabled: true } : {})}
+          {...(isLoadingDownload && { disabled: true })}
           data-testid="submitButton"
         >
           {t('pci_projects_project_users_download-rclone_submit_label')}

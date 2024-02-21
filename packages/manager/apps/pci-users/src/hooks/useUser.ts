@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { saveAs } from 'file-saver';
 import {
+  downloadOpenStackConfig,
+  downloadRCloneConfig,
   filterUsers,
   getAllUsers,
   getUser,
@@ -9,12 +11,12 @@ import {
   removeUser,
   UsersOptions,
 } from '@/data/user';
-import { downloadRCloneConfig } from '@/data/region';
 import {
   DOWNLOAD_RCLONE_FILENAME,
   DOWNLOAD_RCLONE_FILETYPE,
   RCLONE_SERVICE_TYPE,
 } from '@/download-rclone.constants';
+import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from '@/download-openrc.constants';
 
 type RemoveUserProps = {
   projectId: string;
@@ -92,9 +94,10 @@ type DownloadRCloneConfigProps = {
 };
 
 const readFile = (data: Blob) => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(reader.error);
     reader.readAsDataURL(data);
   });
 };
@@ -119,6 +122,46 @@ export const useDownloadRCloneConfig = ({
       );
       const data = new Blob([content], { type: DOWNLOAD_RCLONE_FILETYPE });
       saveAs(data, DOWNLOAD_RCLONE_FILENAME);
+      const file = await readFile(data);
+      window.open(file as string, '_blank');
+      onSuccess(file as string);
+    } catch (e) {
+      onError(e as Error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  return {
+    isLoading,
+    download,
+  };
+};
+
+type DownloadOpenStackConfigProps = {
+  projectId: string;
+  userId: string;
+  onError: (cause: Error) => void;
+  onSuccess: (content: string) => void;
+};
+
+export const useDownloadOpenStackConfig = ({
+  projectId,
+  userId,
+  onError,
+  onSuccess,
+}: DownloadOpenStackConfigProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const download = async (region: string, openApiVersion: number) => {
+    try {
+      setIsLoading(true);
+      const { content } = await downloadOpenStackConfig(
+        projectId,
+        userId,
+        region,
+        openApiVersion,
+      );
+      const data = new Blob([content], { type: DOWNLOAD_TYPE });
+      saveAs(data, DOWNLOAD_FILENAME);
       const file = await readFile(data);
       window.open(file as string, '_blank');
       onSuccess(file as string);
