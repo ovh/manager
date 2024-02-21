@@ -39,7 +39,7 @@ const ButtonTooltip: React.FC<ButtonTooltipProps> = (props) => {
   }, []);
 
   const handleTooltipToggle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    event: React.MouseEvent<HTMLOsdsButtonElement, MouseEvent>,
   ) => {
     event.stopPropagation();
     setShowTooltip(!showTooltip);
