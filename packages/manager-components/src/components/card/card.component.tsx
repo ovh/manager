@@ -86,13 +86,14 @@ export const Card: React.FC<CardProps> = ({
             hue={ODS_THEME_COLOR_HUE._500}
           >
             {category}
-            <span className="inline-flex ml-3">
+            <span style={{ marginLeft: 'var(--ods-size-03)' }}>
               {badges?.map((b) => (
                 <OsdsChip
                   className="mr-1"
                   key={b.text}
                   color={b.color}
                   size={ODS_ICON_SIZE.sm}
+                  inline
                 >
                   {b.text}
                 </OsdsChip>

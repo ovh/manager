@@ -48,8 +48,8 @@ export default {
       serviceType: 'VRACKSERVICES',
       badge: 'beta',
       routing: {
-        application: 'dedicated',
-        hash: '#/vrack-services',
+        application: 'vrack-services',
+        hash: '#/'
       },
       features: ['vrack-services'],
     },

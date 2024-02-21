@@ -294,6 +294,7 @@ export default function DedicatedSidebar() {
             id: 'dedicated-vrackservices',
             label: t('sidebar_vrack_services'),
             icon: getIcon('oui-icon oui-icon-vRack-services_concept'),// TODO Add new icon
+            href: navigation.getURL('vrack-services', '#/'),
             routeMatcher: new RegExp('^/vrack-services'),
             // async loader() {
             //   const services = await loadServices('/vrackServices/resource');//TODO Needs to relook with apiv2 api
