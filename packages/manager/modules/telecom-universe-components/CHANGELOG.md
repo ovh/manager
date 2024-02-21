@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.24.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.23.0...@ovh-ux/ng-ovh-telecom-universe-components@7.24.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
 # [7.23.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.22.1...@ovh-ux/ng-ovh-telecom-universe-components@7.23.0) (2024-02-15)
 
 

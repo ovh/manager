@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-enterprise",
-  "version": "1.9.1",
+  "version": "1.10.0",
   "private": true,
   "description": "Veeam Enterprise product.",
   "repository": {

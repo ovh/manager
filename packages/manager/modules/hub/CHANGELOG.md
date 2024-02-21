@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.8.0...@ovh-ux/manager-hub@3.9.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
 # [3.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.7.14...@ovh-ux/manager-hub@3.8.0) (2024-02-15)
 
 

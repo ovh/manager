@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-contracts",
-  "version": "4.4.1",
+  "version": "4.5.0",
   "description": "Component to correctly show contracts in OVHcloud control panels",
   "keywords": [
     "angularjs",

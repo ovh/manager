@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@2.3.6...@ovh-ux/manager-error-page@2.4.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
 ## [2.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-error-page@2.3.5...@ovh-ux/manager-error-page@2.3.6) (2023-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-error-page

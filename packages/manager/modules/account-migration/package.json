@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-account-migration",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "private": true,
   "description": "OVHcloud Migration product",
   "repository": {
