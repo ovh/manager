@@ -30,6 +30,11 @@ export default [
             children: [],
           },
           {
+            path: 'openrc/download',
+            ...lazyRouteConfig(() => import('@/pages/OpenStackDownloadPage')),
+            children: [],
+          },
+          {
             path: 'rclone/download',
             ...lazyRouteConfig(() => import('@/pages/RcloneDownloadPage')),
             children: [],

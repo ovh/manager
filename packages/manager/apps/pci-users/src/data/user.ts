@@ -1,5 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { User } from '@/interface';
+import { OPENRC_VERSION } from '@/download-openrc.constants';
 
 export type PaginationOptions = {
   page: number;
@@ -76,4 +77,35 @@ export const filterUsers = (
 };
 export const removeUser = async (projectId: string, userId: string) => {
   await v6.delete(`/cloud/project/${projectId}/user/${userId}`);
+};
+
+export type DownloadRCloneConfigResult = {
+  content: string;
+};
+export const downloadRCloneConfig = async (
+  projectId: string,
+  userId: string,
+  region: string,
+  service: string,
+): Promise<DownloadRCloneConfigResult> => {
+  const { data } = await v6.get(
+    `/cloud/project/${projectId}/user/${userId}/rclone?region=${region}&service=${service}`,
+  );
+  return data;
+};
+
+export type DownloadOpenStackConfigResult = {
+  content: string;
+};
+export const downloadOpenStackConfig = async (
+  projectId: string,
+  userId: string,
+  region: string,
+  openApiVersion: number,
+): Promise<DownloadOpenStackConfigResult> => {
+  const version = OPENRC_VERSION[`V${openApiVersion}`];
+  const { data } = await v6.get(
+    `/cloud/project/${projectId}/user/${userId}/openrc?region=${region}&version=${version}`,
+  );
+  return data;
 };
