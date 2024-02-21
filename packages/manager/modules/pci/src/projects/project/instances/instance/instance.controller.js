@@ -29,6 +29,18 @@ export default class PciInstanceController {
     );
   }
 
+  formatPrice() {
+    const priceFormater = new Intl.NumberFormat(
+      this.coreConfig.getUserLocale().replace('_', '-'),
+      {
+        style: 'currency',
+        currency: this.coreConfig.getUser().currency.code,
+        maximumFractionDigits: 2, // default is 2. But this rounds off the price
+      },
+    );
+    return priceFormater.format(this.instancePrice?.price.value);
+  }
+
   loadMessages() {
     this.messageHandler = this.CucCloudMessage.subscribe(
       'pci.projects.project.instances.instance',
