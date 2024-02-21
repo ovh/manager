@@ -1,13 +1,11 @@
+import { CLUSTER_STATUS } from '../../constants';
 import {
-  TRAVAUX_LINK,
+  GENERAL_INFO_TILE_TITLE,
+  NUTANIX_PERSONAL_LICENSE_EDITION,
   PRIVATE_BANDWIDTH_SERVICE_PREFIX,
   REPLICATION_FACTOR_PREFIX,
-  TYPE_OF_PACK,
-  NUTANIX_INVOICE_TYPE,
-  NUTANIX_PERSONAL_LICENSE_EDITION,
-  GENERAL_INFO_TILE_TITLE,
+  TRAVAUX_LINK,
 } from './constants';
-import { CLUSTER_STATUS } from '../../constants';
 
 export default class NutanixGeneralInfoCtrl {
   /* @ngInject */
@@ -36,6 +34,7 @@ export default class NutanixGeneralInfoCtrl {
     this.setPrivateBandwidthServiceId();
     this.clusterRedeploying = this.cluster.status === CLUSTER_STATUS.DEPLOYING;
     this.showRedeployWarningModal = false;
+    this.typeOfPack = this.hardwareInfo.license.edition;
   }
 
   loadServicesDetails() {
@@ -48,31 +47,6 @@ export default class NutanixGeneralInfoCtrl {
       .finally(() => {
         this.loadingServicesDetails = false;
       });
-  }
-
-  getPackType() {
-    this.nutanixPlanDetails = this.nutanixPlans.find(
-      (plan) => plan.planCode === this.servicesDetails.billing.plan.code,
-    );
-    if (
-      this.nutanixPlanDetails.invoiceName.includes(
-        NUTANIX_INVOICE_TYPE.STANDARD,
-      )
-    ) {
-      this.typeOfPack = TYPE_OF_PACK.STANDARD_PACK;
-    } else if (
-      this.nutanixPlanDetails.invoiceName.includes(
-        NUTANIX_INVOICE_TYPE.ADVANCED,
-      )
-    ) {
-      this.typeOfPack = TYPE_OF_PACK.ADVANCED_PACK;
-    } else if (
-      this.nutanixPlanDetails.invoiceName.includes(NUTANIX_INVOICE_TYPE.BYOL)
-    ) {
-      this.typeOfPack = TYPE_OF_PACK.BYOL_PACK;
-    } else {
-      this.typeOfPack = this.nutanixPlanDetails.invoiceName;
-    }
   }
 
   setPrivateBandwidthServiceId() {

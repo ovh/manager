@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.22.1...@ovh-ux/manager-dedicated@19.23.0) (2024-02-20)
+
+
+### Bug Fixes
+
+* **dedicated.vmware:** display error field if user name is not correct ([c558bbb](https://github.com/ovh/manager/commit/c558bbb001b44ae9e548b4f699e88d657192eb92))
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10943](https://github.com/ovh/manager/issues/10943)) ([3d0e354](https://github.com/ovh/manager/commit/3d0e3546319682e1efbfd825f77017ed81b7d80c))
+* **pcc.vmware:** a banner to inform vmware customer about nsxv eol ([#10590](https://github.com/ovh/manager/issues/10590)) ([20b20fc](https://github.com/ovh/manager/commit/20b20fc5c647421f6a56ba0348a5afcbfad8b9c3))
+
+
+### Reverts
+
+* Revert "feat(pcc.vmware): a banner to inform vmware customer about nsxv eol (…" ([9fd9160](https://github.com/ovh/manager/commit/9fd91606f207953770e1fe1b3039e7a45ffcb266))
+
+
+
+
+
+## [19.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.22.0...@ovh-ux/manager-dedicated@19.22.1) (2024-02-16)
+
+
+### Reverts
+
+* Revert "feat(dedicated): remove legacy BringYourOwnImage component (#10824)" ([2d1fff6](https://github.com/ovh/manager/commit/2d1fff6cf6d4c3c6f512d9eac5c446dfe08724a9)), closes [#10824](https://github.com/ovh/manager/issues/10824)
+
+
+
+
+
+# [19.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.21.0...@ovh-ux/manager-dedicated@19.22.0) (2024-02-16)
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10824](https://github.com/ovh/manager/issues/10824)) ([ec65f97](https://github.com/ovh/manager/commit/ec65f97f114c5172f8a63f485ececd383fbd9eee))
+
+
+
+
+
 # [19.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.20.0...@ovh-ux/manager-dedicated@19.21.0) (2024-02-15)
 
 

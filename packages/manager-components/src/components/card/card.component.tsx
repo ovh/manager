@@ -1,5 +1,8 @@
 import React from 'react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_THEME_COLOR_HUE,
+  ODS_THEME_COLOR_INTENT,
+} from '@ovhcloud/ods-common-theming';
 import { OsdsText } from '@ovhcloud/ods-components/text/react';
 import { OsdsChip } from '@ovhcloud/ods-components/chip/react';
 import { OsdsLink } from '@ovhcloud/ods-components/link/react';
@@ -53,8 +56,8 @@ export const Card = ({
   return (
     <a
       target={OdsHTMLAnchorElementTarget._blank}
-      rel={OdsHTMLAnchorElementRel.noopener}
       href={href}
+      className="no-underline"
     >
       <OsdsTile
         className="w-full h-full"
@@ -76,8 +79,9 @@ export const Card = ({
           <OsdsText
             className="block"
             level={ODS_TEXT_LEVEL.heading}
-            size={ODS_TEXT_SIZE._200}
+            size={ODS_TEXT_SIZE._400}
             color={ODS_THEME_COLOR_INTENT.primary}
+            hue={ODS_THEME_COLOR_HUE._500}
           >
             {category}
             <span className="inline-flex ml-3">
@@ -97,8 +101,9 @@ export const Card = ({
           <OsdsText
             className="block mb-5"
             level={ODS_TEXT_LEVEL.heading}
-            size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_TEXT_SIZE._500}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            hue={ODS_THEME_COLOR_HUE._900}
           >
             {title}
           </OsdsText>
@@ -106,7 +111,8 @@ export const Card = ({
             className="block mb-4"
             level={ODS_TEXT_LEVEL.body}
             size={ODS_TEXT_SIZE._400}
-            color={ODS_THEME_COLOR_INTENT.default}
+            color={ODS_THEME_COLOR_INTENT.text}
+            hue={ODS_THEME_COLOR_HUE._500}
           >
             {description}
           </OsdsText>
@@ -114,6 +120,7 @@ export const Card = ({
             tabindex="-1"
             color={ODS_THEME_COLOR_INTENT.primary}
             href={href}
+            target={OdsHTMLAnchorElementTarget._blank}
           >
             {t('see_more_label')}
             <OsdsIcon

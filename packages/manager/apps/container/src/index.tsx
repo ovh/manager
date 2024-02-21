@@ -1,4 +1,6 @@
 import React from 'react';
+
+import './helpers/piano-override';
 import 'piano-analytics-js/dist/browser/piano-analytics.js';
 import { createRoot } from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';

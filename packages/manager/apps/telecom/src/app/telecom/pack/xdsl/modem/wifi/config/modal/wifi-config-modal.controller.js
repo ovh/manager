@@ -23,7 +23,7 @@ export default class XdslModemWifiConfigModalCtrl {
         this.qrcode = qrcode ? `data:image/png;base64, ${qrcode}` : '';
       })
       .catch((error) => {
-        if (error.status === 403 && error.statusText === 'Forbidden') {
+        if (error.status === 403) {
           // Display modal with message to inform the customer where to find QR code on modem side
           this.message = this.$translate.instant(
             'xdsl_modem_wifi_config_modal_modem_qrcode',
