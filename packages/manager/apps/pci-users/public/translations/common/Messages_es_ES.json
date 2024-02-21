@@ -44,5 +44,17 @@
   "pci_projects_project_users_delete_cancel_label": "Cancelar",
   "pci_projects_project_users_delete_content": "Eliminar definitivamente el usuario {{ user }}",
   "pci_projects_project_users_delete_success_message": "Se ha eliminado el usuario {{ user }}.",
-  "pci_projects_project_users_delete_error_delete": "Se ha producido un error al eliminar el usuario {{ user }}: {{ message }}."
+  "pci_projects_project_users_delete_error_delete": "Se ha producido un error al eliminar el usuario {{ user }}: {{ message }}.",
+  "pci_projects_project_users_download-rclone_title": "Descargar un archivo de configuración Rclone",
+  "pci_projects_project_users_download-rclone_submit_label": "Descargar",
+  "pci_projects_project_users_download-rclone_cancel_label": "Cancelar",
+  "pci_projects_project_users_download-rclone_content": "Está a punto de descargar un archivo de configuración que le permitirá conectarse con Rclone.",
+  "pci_projects_project_users_download-rclone_more_link": "Más información",
+  "pci_projects_project_users_download-rclone_region_label": "Seleccione la región en la que se aplicará el archivo:",
+  "pci_projects_project_users_download-rclone_region_help": "Por motivos de seguridad, el archivo de configuración no contiene la contraseña. Es necesario editar el archivo de configuración para añadir manualmente la contraseña.",
+  "pci_projects_project_users_download-rclone_success_message": "Ha comenzado la descarga del archivo de configuración Rclone. De lo contrario, ",
+  "pci_projects_project_users_download-rclone_success_message_link": "haga clic aquí.",
+  "pci_projects_project_users_download-rclone_error_rclone": "Se ha producido un error al descargar el archivo de configuración Rclone: {{ message }}.",
+  "pci_projects_project_users_download-rclone_region_label_global": "Seleccione la región en la que se aplicará este archivo (solo se muestran las regiones que ofrecen los servicios Object Storage y Cloud Archive):",
+  "pci_projects_project_users_download-rclone_file_type_label": "Tipo de archivo"
 }
