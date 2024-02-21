@@ -23,7 +23,7 @@ export default function S3StorageRegions({
   );
   const [currentRegion, setCurrentRegion] = useState('');
   useEffect(() => {
-    if (s3StorageRegions) {
+    if (s3StorageRegions?.length) {
       setCurrentRegion(s3StorageRegions[0].name);
       onS3StorageRegionChange(s3StorageRegions[0].name);
     }
