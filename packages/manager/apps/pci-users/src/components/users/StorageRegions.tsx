@@ -21,7 +21,7 @@ export default function StorageRegions({
   const { data: storageRegions, isLoading } = useStorageRegions(`${projectId}`);
   const [currentRegion, setCurrentRegion] = useState('');
   useEffect(() => {
-    if (storageRegions) {
+    if (storageRegions?.length) {
       setCurrentRegion(storageRegions[0].name);
       onStorageRegionChange(storageRegions[0].name);
     }

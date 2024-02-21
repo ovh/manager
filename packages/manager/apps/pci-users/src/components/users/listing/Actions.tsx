@@ -19,13 +19,21 @@ import {
 import { useHref } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 import { User } from '@/interface';
+import { HORIZON_LINK, HORIZON_LINK_TRUSTED } from '@/constants';
 
 export default function Actions({ user }: { user: User }) {
   const { t } = useTranslation('common');
   const hrefRemove = useHref(`./delete?userId=${user.id}`);
-  const hrefRcloneDownload = useHref(`./rclone/download?userId=${user.id}`);
-  const horizonLink = `https://horizon.cloud.ovh.net/auth/login?username=${user.username}`;
+  const hrefRCloneDownload = useHref(`./rclone/download?userId=${user.id}`);
+  const hrefOpenStackDownload = useHref(`./openrc/download?userId=${user.id}`);
+  const horizonLink = (useEnvironment().getUser().isTrusted
+    ? HORIZON_LINK_TRUSTED
+    : HORIZON_LINK)[useEnvironment().getRegion()].replace(
+    '{username}',
+    user.username,
+  );
   return (
     <OsdsMenu>
       <OsdsButton
@@ -69,7 +77,24 @@ export default function Actions({ user }: { user: User }) {
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.ghost}
           color={ODS_THEME_COLOR_INTENT.primary}
-          href={hrefRcloneDownload}
+          href={hrefOpenStackDownload}
+        >
+          <OsdsText
+            size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+            level={ODS_TEXT_LEVEL.button}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            slot={'start'}
+          >
+            {t('pci_projects_project_users_openrc_label')}
+          </OsdsText>
+        </OsdsButton>
+      </OsdsMenuItem>
+      <OsdsMenuItem>
+        <OsdsButton
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.ghost}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          href={hrefRCloneDownload}
         >
           <OsdsText
             size={ODS_THEME_TYPOGRAPHY_SIZE._500}

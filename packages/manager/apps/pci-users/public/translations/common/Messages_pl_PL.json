@@ -56,5 +56,16 @@
   "pci_projects_project_users_download-rclone_success_message_link": "kliknij tutaj",
   "pci_projects_project_users_download-rclone_error_rclone": "Wystąpił błąd podczas pobierania pliku konfiguracyjnego rclone: {{message}}",
   "pci_projects_project_users_download-rclone_region_label_global": "Wybierz region, dla którego chcesz wygenerować plik konfiguracyjny Rclone (wyszczególnione są tylko regiony, w których oferujemy Object Storage i Cloud Archive):",
-  "pci_projects_project_users_download-rclone_file_type_label": "Typ pliku"
+  "pci_projects_project_users_download-rclone_file_type_label": "Typ pliku",
+  "pci_projects_project_users_download-openrc_title": "Pobierz plik konfiguracyjny OpenStack",
+  "pci_projects_project_users_download-openrc_submit_label": "Pobierz",
+  "pci_projects_project_users_download-openrc_cancel_label": "Anuluj",
+  "pci_projects_project_users_download-openrc_content": "Chcesz pobrać plik konfiguracyjny pozwalający na łączenie się z Openstack.",
+  "pci_projects_project_users_download-openrc_more_link": "Więcej informacji",
+  "pci_projects_project_users_download-openrc_region_label": "Wybierz region, dla którego ma zostać zastosowany ten plik:",
+  "pci_projects_project_users_download-openrc_v3_label": "Użyj pliku konfiguracyjnego OpenRC v3",
+  "pci_projects_project_users_download-openrc_success_message": "Rozpoczęło się pobieranie pliku konfiguracyjnego OpenStack. Jeśli tak się nie stało,",
+  "pci_projects_project_users_download-openrc_success_message_link": "kliknij tutaj",
+  "pci_projects_project_users_download-openrc_error_openrc": "Wystąpił błąd podczas pobierania pliku konfiguracyjnego OpenStack: {{ message }}.",
+  "pci_projects_project_users_download-openrc_info_global": "Niektóre usługi, takie jak Object Storage lub Cloud Archive są zlokalizowane w regionach „globalnych” (jak na przykład GRA). Większość innych usług jest zlokalizowana w regionach specjalnych (takich jak GRA5)."
 }
