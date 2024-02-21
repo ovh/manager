@@ -1,0 +1,4 @@
+{
+  "pricing_ht": "{{ price }} {{ unit }} HT",
+  "pricing_ttc": "{{ price }} {{ unit }} TTC"
+}
