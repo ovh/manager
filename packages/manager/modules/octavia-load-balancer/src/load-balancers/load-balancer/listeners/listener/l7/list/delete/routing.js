@@ -1,7 +1,4 @@
-import { TRACKING_HIT_PREFIX } from './constants';
-import { TRACKING_SUFFIX as LISTENERS_TACKING_SUFFIX } from '../../../../constants';
-import { TRACKING_SUFFIX as L7_TACKING_SUFFIX } from '../../constants';
-import { TRACKING_NAME } from '../../../../../constants';
+import { POLICIES_TRACKING } from '../../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -31,13 +28,16 @@ export default /* @ngInject */ ($stateProvider) => {
                 }
               : null,
           ),
-        trackL7PolicyDeleteAction: /* @ngInject */ (trackL7Action) => (hit) =>
-          trackL7Action(`${TRACKING_HIT_PREFIX}::${hit}`),
-        trackL7PolicyDeletePage: /* @ngInject */ (trackL7Page) => (hit) =>
-          trackL7Page(`${TRACKING_HIT_PREFIX}-${hit}`),
+        trackL7PolicyDeleteAction: /* @ngInject */ (atInternet) => (hit) =>
+          atInternet.trackClick({
+            name: `${POLICIES_TRACKING.DELETE}::${hit}`,
+            type: 'action',
+          }),
+        trackL7PolicyDeletePage: /* @ngInject */ (atInternet) => (hit) =>
+          atInternet.trackPage({ name: `${POLICIES_TRACKING.DELETE}-${hit}` }),
       },
       atInternet: {
-        rename: `${TRACKING_NAME}::${LISTENERS_TACKING_SUFFIX}::${L7_TACKING_SUFFIX}::${TRACKING_HIT_PREFIX}`,
+        rename: POLICIES_TRACKING.RENAME_DELETE,
       },
     },
   );

@@ -1,8 +1,4 @@
-import { TRACKING_NAME } from '../../../../constants';
-import { TRACKING_SUFFIX as LISTENERS_TRACKING_SUFFIX } from '../../../constants';
-import { TRACKING_SUFFIX as L7_TRACKING_SUFFIX } from '../constants';
-import { L7_RULES_LISTING_TRACKING_SUFFIX, TRACKING_SUFFIX } from './constants';
-import { TRACKING_SUFFIX as EDITION_TRACKING_SUFFIX } from '../edit/constants';
+import { POLICIES_TRACKING } from '../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -25,16 +21,22 @@ export default /* @ngInject */ ($stateProvider) => {
             region,
             listenerId,
           ),
-        goToL7PolicyCreation: /* @ngInject */ ($state, trackL7Action) => () => {
-          trackL7Action('create');
+        goToL7PolicyCreation: /* @ngInject */ ($state, atInternet) => () => {
+          atInternet.trackClick({
+            name: POLICIES_TRACKING.ADD,
+            type: 'action',
+          });
           $state.go(
             'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.create',
           );
         },
-        goToL7PolicyEdition: /* @ngInject */ ($state, trackL7Action) => (
+        goToL7PolicyEdition: /* @ngInject */ ($state, atInternet) => (
           policy,
         ) => {
-          trackL7Action(EDITION_TRACKING_SUFFIX);
+          atInternet.trackClick({
+            name: POLICIES_TRACKING.EDIT,
+            type: 'action',
+          });
           $state.go(
             'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.edit',
             {
@@ -49,8 +51,11 @@ export default /* @ngInject */ ($stateProvider) => {
               policyId: policy.id,
             },
           ),
-        goToL7Rules: /* @ngInject */ ($state, trackL7Action) => (policy) => {
-          trackL7Action(L7_RULES_LISTING_TRACKING_SUFFIX);
+        goToL7Rules: /* @ngInject */ ($state, atInternet) => (policy) => {
+          atInternet.trackClick({
+            name: POLICIES_TRACKING.MANAGE_RULES,
+            type: 'action',
+          });
           $state.go(
             'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.l7Rules.list',
             {
@@ -58,7 +63,13 @@ export default /* @ngInject */ ($stateProvider) => {
             },
           );
         },
-        goToL7PolicyDeletion: /* @ngInject */ ($state) => (policy) => {
+        goToL7PolicyDeletion: /* @ngInject */ ($state, atInternet) => (
+          policy,
+        ) => {
+          atInternet.trackClick({
+            name: POLICIES_TRACKING.DELETE,
+            type: 'action',
+          });
           $state.go(
             'octavia-load-balancer.loadbalancer.listeners.listener.l7Policies.list.delete',
             {
@@ -72,7 +83,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => getPoolDetailLink(policy.redirectPoolId),
       },
       atInternet: {
-        rename: `${TRACKING_NAME}::${LISTENERS_TRACKING_SUFFIX}::${L7_TRACKING_SUFFIX}::${TRACKING_SUFFIX}`,
+        rename: POLICIES_TRACKING.RENAME_LIST,
       },
     },
   );

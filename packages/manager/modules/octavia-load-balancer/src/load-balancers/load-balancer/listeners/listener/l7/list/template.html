@@ -46,7 +46,7 @@
             <a
                 data-ng-href="{{:: $ctrl.getL7PolicyEditionLink($row)}}"
                 data-track-on="click"
-                data-track-name="{{:: $ctrl.trackL7Base + '::' + $ctrl.L7_POLICY_EDITION_TRACKING_SUFFIX}}"
+                data-track-name="{{:: $ctrl.policyEditionTrackingHit}}"
                 data-track-type="action"
             >
                 <span data-ng-bind="::$value"></span>
@@ -73,7 +73,7 @@
                 data-ng-if="$row.action === $ctrl.ACTIONS.REDIRECT_TO_POOL"
                 data-ng-href="{{:: $ctrl.getPoolDetailLinkFromPolicy($row)}}"
                 data-track-on="click"
-                data-track-name="{{:: $ctrl.trackL7Base + '::' + $ctrl.POOL_EDITION_TRACKING_SUFFIX}}"
+                data-track-name="{{:: $ctrl.poolDashboardTrackingHit}}"
                 data-track-type="action"
             >
                 <span data-ng-bind="::$ctrl.getAttribute($row)"></span>

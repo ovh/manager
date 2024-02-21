@@ -19,7 +19,7 @@ export default class OctaviaLoadBalancerCreateL7PolicyCtrl {
       this.region,
       this.model,
     )
-      .then((response) => {
+      .then(() => {
         this.trackL7EditPolicyPage('success');
         this.goBackToL7PoliciesList(true).then(() =>
           this.Alerter.set(
@@ -28,7 +28,6 @@ export default class OctaviaLoadBalancerCreateL7PolicyCtrl {
               'octavia_load_balancer_edit_l7_policy_success',
               {
                 policy: this.model.name,
-                link: this.getL7RuleCreationLink(response),
               },
             ),
             null,
