@@ -33,14 +33,14 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
 > & {
   vrackServices?: VrackServices;
   updateVS: UpdateVS;
-  trackEvent: (data: TrackingProps) => PromiseLike<void>;
+  trackPage: (data: TrackingProps) => PromiseLike<void>;
   trackClick: (prop: TrackingProps) => PromiseLike<void>;
 }> = ({
   cellData,
   rowData,
   updateVS,
   vrackServices,
-  trackEvent,
+  trackPage,
   trackClick,
 }) => (
   <EditableText
@@ -69,10 +69,10 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
         },
         {
           onSuccess: () => {
-            trackEvent({ path: 'subnets::update', value: '-success' });
+            trackPage({ path: 'subnets::update', value: '-success' });
           },
           onError: () => {
-            trackEvent({ path: 'subnets::update', value: '-error' });
+            trackPage({ path: 'subnets::update', value: '-error' });
           },
         },
       );

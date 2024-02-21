@@ -21,7 +21,7 @@
     "test:e2e:ci": "tsc && node ../../../../scripts/run-playwright-bdd.js --ci"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^7.2.0",
+    "@ovh-ux/manager-config": "^7.3.0",
     "@ovh-ux/manager-core-api": "^0.3.0",
     "@ovh-ux/manager-module-order": "^0.1.0",
     "@ovh-ux/manager-react-shell-client": "^0.1.0",

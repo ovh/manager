@@ -44,7 +44,7 @@ const EndpointCreationPage: React.FC = () => {
   const navigate = useNavigate();
   const vrackServices = useVrackService();
   const dashboardUrl = urls.endpoints.replace(':id', id);
-  const { trackEvent, trackPage } = useOvhTracking();
+  const { trackPage } = useOvhTracking();
 
   const {
     iamResources,
@@ -88,12 +88,12 @@ const EndpointCreationPage: React.FC = () => {
         queryClient.invalidateQueries({
           queryKey: getVrackServicesResourceQueryKey(id),
         }),
-        trackEvent({ path: dataTrackingPath, value: '-success' }),
+        trackPage({ path: dataTrackingPath, value: '-success' }),
       ]);
       navigate(dashboardUrl);
     },
     onError: () => {
-      trackEvent({ path: dataTrackingPath, value: '-error' });
+      trackPage({ path: dataTrackingPath, value: '-error' });
     },
   });
 

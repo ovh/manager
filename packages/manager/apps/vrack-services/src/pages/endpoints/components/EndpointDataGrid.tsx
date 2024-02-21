@@ -28,7 +28,7 @@ export const EndpointDatagrid: React.FC = () => {
     string | undefined
   >(undefined);
   const { id } = useParams();
-  const { trackEvent, trackClick } = useOvhTracking();
+  const { trackPage, trackClick } = useOvhTracking();
   const queryClient = useQueryClient();
 
   const { data: vrackServices, isError, error, isLoading } = useVrackService();
@@ -161,10 +161,10 @@ export const EndpointDatagrid: React.FC = () => {
             },
             {
               onSuccess: async () => {
-                trackEvent({ path: 'endpoints::delete', value: '-success' });
+                trackPage({ path: 'endpoints::delete', value: '-success' });
               },
               onError: async () => {
-                trackEvent({ path: 'endpoints::delete', value: '-error' });
+                trackPage({ path: 'endpoints::delete', value: '-error' });
               },
             },
           )

@@ -22,7 +22,7 @@ export const SubnetDatagrid: React.FC = () => {
     string | undefined
   >(undefined);
   const { id } = useParams();
-  const { trackEvent, trackClick } = useOvhTracking();
+  const { trackPage, trackClick } = useOvhTracking();
 
   const { data: vrackServices, isError, error } = useVrackService();
   const {
@@ -46,7 +46,7 @@ export const SubnetDatagrid: React.FC = () => {
         <DisplayNameCell
           updateVS={updateVS}
           vrackServices={vrackServices}
-          trackEvent={trackEvent}
+          trackPage={trackPage}
           trackClick={trackClick}
         />,
       ),
@@ -123,10 +123,10 @@ export const SubnetDatagrid: React.FC = () => {
             },
             {
               onSuccess: () => {
-                trackEvent({ path: 'subnets::delete', value: '-success' });
+                trackPage({ path: 'subnets::delete', value: '-success' });
               },
               onError: () => {
-                trackEvent({ path: 'subnets::delete', value: '-error' });
+                trackPage({ path: 'subnets::delete', value: '-error' });
               },
             },
           )

@@ -59,7 +59,7 @@ const SubnetCreationPage: React.FC = () => {
   const navigate = useNavigate();
   const vrackServices = useVrackService();
   const dashboardUrl = urls.subnets.replace(':id', id);
-  const { trackPage, trackEvent } = useOvhTracking();
+  const { trackPage } = useOvhTracking();
   const defaultCidr = t('defaultCidr');
   const defaultServiceRange = t('defaultServiceRange');
 
@@ -93,12 +93,12 @@ const SubnetCreationPage: React.FC = () => {
         await queryClient.invalidateQueries({
           queryKey: getVrackServicesResourceQueryKey(id),
         }),
-        trackEvent({ path: dataTrackingPath, value: '-succeess' }),
+        trackPage({ path: dataTrackingPath, value: '-succeess' }),
       ]);
       navigate(dashboardUrl);
     },
     onError: () => {
-      trackEvent({ path: dataTrackingPath, value: '-error' });
+      trackPage({ path: dataTrackingPath, value: '-error' });
     },
   });
 

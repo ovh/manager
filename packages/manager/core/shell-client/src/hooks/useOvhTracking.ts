@@ -103,6 +103,7 @@ export const useOvhTracking = () => {
         getTrackingParams({
           universe,
           applicationName,
+          type: 'display',
           ...props,
         }),
       ),
