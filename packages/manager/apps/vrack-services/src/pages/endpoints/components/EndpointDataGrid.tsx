@@ -7,7 +7,12 @@ import { useParams } from 'react-router-dom';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useQueryClient } from '@tanstack/react-query';
 import { reactFormatter } from '@/utils/ods-utils';
-import { ActionsCell, ServiceName, ServiceType } from './EndpointDataGridCells';
+import {
+  ActionsCell,
+  ServiceName,
+  ServiceType,
+  TextCell,
+} from './EndpointDataGridCells';
 import { ErrorPage } from '@/components/Error';
 import {
   useVrackService,
@@ -49,6 +54,7 @@ export const EndpointDatagrid: React.FC = () => {
       title: t('subnet'),
       field: 'subnet',
       isSortable: true,
+      formatter: reactFormatter(<TextCell />),
     },
     {
       title: t('serviceType'),
@@ -69,10 +75,12 @@ export const EndpointDatagrid: React.FC = () => {
     {
       title: t('ip'),
       field: 'ip',
+      formatter: reactFormatter(<TextCell />),
     },
     {
       title: t('description'),
       field: 'description',
+      formatter: reactFormatter(<TextCell />),
     },
     {
       title: t('actions'),

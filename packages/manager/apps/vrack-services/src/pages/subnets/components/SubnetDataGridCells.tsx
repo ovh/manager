@@ -12,6 +12,7 @@ import {
   OsdsClipboard,
   OsdsIcon,
   OsdsButton,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { TrackingProps } from '@ovh-ux/manager-react-shell-client';
@@ -79,6 +80,10 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
   >
     {cellData}
   </EditableText>
+);
+
+export const TextCell: React.FC<DataGridCellProps<string>> = ({ cellData }) => (
+  <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{cellData ?? ''}</OsdsText>
 );
 
 export const CidrCell: React.FC<DataGridCellProps<

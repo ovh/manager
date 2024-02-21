@@ -6,8 +6,9 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_TEXT_COLOR_INTENT,
 } from '@ovhcloud/ods-components';
-import { OsdsIcon, OsdsButton } from '@ovhcloud/ods-components/react';
+import { OsdsIcon, OsdsButton, OsdsText } from '@ovhcloud/ods-components/react';
 import { TrackingProps } from '@ovh-ux/manager-react-shell-client';
 import { Endpoint, VrackServices, IAMResource } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
@@ -19,7 +20,11 @@ export const ServiceName: React.FC<DataGridCellProps<string, Endpoint> & {
   const resource = iamResources?.find(
     (iamResource) => iamResource.urn === cellData,
   );
-  return <>{resource?.displayName || resource?.name || resource?.id}</>;
+  return (
+    <OsdsText color={ODS_TEXT_COLOR_INTENT.text}>
+      {resource?.displayName || resource?.name || resource?.id}
+    </OsdsText>
+  );
 };
 
 export const ServiceType: React.FC<DataGridCellProps<string, Endpoint> & {
@@ -28,7 +33,11 @@ export const ServiceType: React.FC<DataGridCellProps<string, Endpoint> & {
   const resource = iamResources?.find(
     (iamResource) => iamResource.urn === rowData.managedServiceURN,
   );
-  return <>{resource?.type || ''}</>;
+  return (
+    <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+      {resource?.type || ''}
+    </OsdsText>
+  );
 };
 
 export const ActionsCell: React.FC<DataGridCellProps<undefined, Endpoint> & {
@@ -60,4 +69,8 @@ export const ActionsCell: React.FC<DataGridCellProps<undefined, Endpoint> & {
       size={ODS_ICON_SIZE.xs}
     />
   </OsdsButton>
+);
+
+export const TextCell: React.FC<DataGridCellProps<string>> = ({ cellData }) => (
+  <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{cellData ?? ''}</OsdsText>
 );

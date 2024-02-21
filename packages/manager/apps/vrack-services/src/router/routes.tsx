@@ -16,11 +16,6 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
   };
 };
 
-export const appPrefix =
-  window.location.href.includes('localhost:9001') || !import.meta.env.DEV
-    ? ''
-    : '/vrack-services';
-
 export const routes: RouteObject[] = [
   {
     path: urls.root,

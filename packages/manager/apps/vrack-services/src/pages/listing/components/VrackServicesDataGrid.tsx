@@ -4,7 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { OsdsDatagrid, OsdsMessage } from '@ovhcloud/ods-components/react';
 import { ODS_MESSAGE_TYPE, OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { useNavigate } from 'react-router-dom';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ovhLocaleToI18next,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { VrackAssociationModal } from '@/components/VrackAssociationModal';
 import { reactFormatter } from '@/utils/ods-utils';
 import {
@@ -12,6 +15,8 @@ import {
   ActionsCell,
   ProductStatusCell,
   VrackIdCell,
+  CreatedAtCell,
+  RegionCell,
 } from '@/components/VrackServicesDataGridCells';
 import { useUpdateVrackServices, useVrackServicesList } from '@/utils/vs-utils';
 import { DeleteModal } from '@/components/DeleteModal';
@@ -59,7 +64,7 @@ export const VrackServicesDatagrid: React.FC = () => {
       title: t('region'),
       field: 'currentState.region',
       isSortable: true,
-      formatter: (region: string) => t(region),
+      formatter: reactFormatter(<RegionCell t={t} />),
     },
     {
       title: t('vrackId'),
@@ -76,12 +81,9 @@ export const VrackServicesDatagrid: React.FC = () => {
       title: t('createdAt'),
       field: 'createdAt',
       isSortable: true,
-      formatter: (createdAt: string) => {
-        const date = new Date(createdAt);
-        return date.toString() !== 'Invalid Date'
-          ? date.toLocaleDateString(i18n.language.replace('_', '-'))
-          : '-';
-      },
+      formatter: reactFormatter(
+        <CreatedAtCell locale={ovhLocaleToI18next(i18n.language)} />,
+      ),
     },
     {
       title: t('actions'),

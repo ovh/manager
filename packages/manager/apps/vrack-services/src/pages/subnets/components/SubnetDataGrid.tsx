@@ -6,7 +6,12 @@ import { ODS_MESSAGE_TYPE, OdsDatagridColumn } from '@ovhcloud/ods-components';
 import { useParams } from 'react-router-dom';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { reactFormatter } from '@/utils/ods-utils';
-import { DisplayNameCell, ActionsCell, CidrCell } from './SubnetDataGridCells';
+import {
+  DisplayNameCell,
+  ActionsCell,
+  CidrCell,
+  TextCell,
+} from './SubnetDataGridCells';
 import { ErrorPage } from '@/components/Error';
 import { useVrackService, useUpdateVrackServices } from '@/utils/vs-utils';
 import { DeleteModal } from '@/components/DeleteModal';
@@ -54,11 +59,12 @@ export const SubnetDatagrid: React.FC = () => {
     {
       title: t('serviceRange'),
       field: 'serviceRange.cidr',
+      formatter: reactFormatter(<TextCell />),
     },
     {
       title: t('vlan'),
       field: 'vlan',
-      formatter: (vlan: string) => vlan ?? '',
+      formatter: reactFormatter(<TextCell />),
     },
     {
       title: t('actions'),

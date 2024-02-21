@@ -5,7 +5,7 @@ import { odsSetup } from '@ovhcloud/ods-common-core';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import '@ovhcloud/ods-theme-blue-jeans';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
-import { appPrefix, routes } from '@/router/routes';
+import { routes } from '@/router/routes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,9 +19,7 @@ odsSetup();
 
 export const App: React.FC = () => {
   const { shell } = React.useContext(ShellContext);
-  const router = createHashRouter(routes, {
-    basename: appPrefix,
-  });
+  const router = createHashRouter(routes);
 
   React.useEffect(() => {
     shell.ux.hidePreloader();

@@ -17,6 +17,7 @@ import {
   OsdsLink,
   OsdsButton,
   OsdsChip,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { TrackingProps } from '@ovh-ux/manager-react-shell-client';
@@ -90,6 +91,25 @@ export const ProductStatusCell: React.FC<DataGridCellProps<
   );
 };
 
+export const RegionCell: React.FC<DataGridCellProps<string> & {
+  t: TFunction;
+}> = ({ cellData, t }) => (
+  <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{t(cellData)}</OsdsText>
+);
+
+export const CreatedAtCell: React.FC<DataGridCellProps<string | null> & {
+  locale: string;
+}> = ({ cellData, locale }) => {
+  const date = new Date(cellData);
+  return (
+    <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+      {date.toString() !== 'Invalid Date'
+        ? date.toLocaleDateString(locale)
+        : '-'}
+    </OsdsText>
+  );
+};
+
 export const VrackIdCell: React.FC<DataGridCellProps<
   string | null,
   VrackServices
@@ -102,7 +122,11 @@ export const VrackIdCell: React.FC<DataGridCellProps<
   const editable = isEditable(rowData);
 
   if (cellData) {
-    return href ? <OsdsLink href={href}>{cellData}</OsdsLink> : <>{cellData}</>;
+    return href ? (
+      <OsdsLink href={href}>{cellData}</OsdsLink>
+    ) : (
+      <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{cellData}</OsdsText>
+    );
   }
 
   return (

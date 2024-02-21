@@ -3,6 +3,7 @@ import {
   OsdsInput,
   OsdsButton,
   OsdsIcon,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_INPUT_SIZE,
@@ -13,6 +14,8 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_TEXT_SIZE,
+  ODS_TEXT_LEVEL,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { TrackingProps } from '@ovh-ux/manager-react-shell-client';
@@ -117,8 +120,19 @@ export const EditableText: React.FC<EditableTextProps> = ({
   }
 
   return (
-    <>
-      {children}
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
+      <OsdsText
+        level={ODS_TEXT_LEVEL.body}
+        size={ODS_TEXT_SIZE._800}
+        color={ODS_THEME_COLOR_INTENT.text}
+      >
+        {children}
+      </OsdsText>
       <OsdsButton
         style={{ marginLeft: '4px' }}
         inline
@@ -145,6 +159,6 @@ export const EditableText: React.FC<EditableTextProps> = ({
           size={ODS_ICON_SIZE.xs}
         />
       </OsdsButton>
-    </>
+    </div>
   );
 };
