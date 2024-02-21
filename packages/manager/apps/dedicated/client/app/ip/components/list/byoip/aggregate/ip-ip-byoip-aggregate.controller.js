@@ -1,6 +1,7 @@
+import { TRACKING_PREFIX_AGGREGATE } from '../constants';
 export default class IpByoipAggregateController {
   /* @ngInject */
-  constructor($scope, IpByoipService, Alerter, $translate) {
+  constructor($scope, IpByoipService, Alerter, $translate, atInternet) {
     this.$scope = $scope;
     this.IpByoipService = IpByoipService;
     this.ip = $scope.currentActionData.ipBlock;
@@ -10,9 +11,11 @@ export default class IpByoipAggregateController {
     this.errorMessage = null;
     this.Alerter = Alerter;
     this.$translate = $translate;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
+    this.atInternet.trackPage({ name: TRACKING_PREFIX_AGGREGATE });
     this.IpByoipService.getAvailableAggregationConfigurations(this.ip.ipBlock)
       .then(({ data }) => {
         this.aggregationIps = data;
@@ -28,11 +31,20 @@ export default class IpByoipAggregateController {
       });
   }
 
+  trackClick(hit) {
+    this.atInternet.trackClick({
+      type: 'action',
+      name: `${TRACKING_PREFIX_AGGREGATE}::${hit}`,
+    });
+  }
+
   cancelAggregate() {
+    this.trackClick('cancel');
     this.$scope.resetAction();
   }
 
   aggregate() {
+    this.trackClick('confirm');
     this.isLoaded = false;
     this.IpByoipService.postAggregateBYOIP(
       this.ip.ipBlock,
