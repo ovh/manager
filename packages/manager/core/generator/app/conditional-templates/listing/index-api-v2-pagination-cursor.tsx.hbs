@@ -5,14 +5,10 @@ import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { getListingIcebergV2 } from '@/api';
-
 import DatagridWrapper from '@/components/layout-helpers/Listing/DatagridWrapper';
 import Loading from '@/components/Loading/Loading';
 import ErrorBanner from '@/components/Error/Error';
-import Breadcrumb, {
-} from '@/components/Breadcrumb/Breadcrumb';
-
-
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 
 export default function Listing() {
   const [pageSize] = useState(10);
