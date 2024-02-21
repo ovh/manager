@@ -44,5 +44,17 @@
   "pci_projects_project_users_delete_cancel_label": "Cancelar",
   "pci_projects_project_users_delete_content": "Eliminar o utilizador {{ user }} de forma definitiva",
   "pci_projects_project_users_delete_success_message": "O utilizador {{ user }} foi eliminado.",
-  "pci_projects_project_users_delete_error_delete": "Ocorreu um erro ao eliminar o utilizador {{ user }}: {{ message }}."
+  "pci_projects_project_users_delete_error_delete": "Ocorreu um erro ao eliminar o utilizador {{ user }}: {{ message }}.",
+  "pci_projects_project_users_download-rclone_title": "Transferir um ficheiro de configuração rclone",
+  "pci_projects_project_users_download-rclone_submit_label": "Transferir",
+  "pci_projects_project_users_download-rclone_cancel_label": "Anular",
+  "pci_projects_project_users_download-rclone_content": "Está prestes a descarregar um ficheiro de configuração que lhe permitirá ligar-se com rclone.",
+  "pci_projects_project_users_download-rclone_more_link": "Saber mais",
+  "pci_projects_project_users_download-rclone_region_label": "Selecionar a região onde aplicar este ficheiro:",
+  "pci_projects_project_users_download-rclone_region_help": "Por razões de segurança, o ficheiro de configuração não contém a sua palavra-passe. É necessário editar o ficheiro de configuração para adicionar manualmente a sua palavra-passe.",
+  "pci_projects_project_users_download-rclone_success_message": "O descarregamento do ficheiro de configuração rclone começou. Caso não seja o caso, ",
+  "pci_projects_project_users_download-rclone_success_message_link": "clique aqui",
+  "pci_projects_project_users_download-rclone_error_rclone": "Ocorreu um erro ao descarregar o ficheiro de configuração rclone: {{ message }}.",
+  "pci_projects_project_users_download-rclone_region_label_global": "Selecione a região na qual se aplicará este ficheiro (apenas aparecem as regiões que oferecem os serviços Object Storage e Cloud Archive):",
+  "pci_projects_project_users_download-rclone_file_type_label": "Tipo de ficheiro"
 }

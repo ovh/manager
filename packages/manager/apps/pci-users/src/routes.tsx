@@ -23,12 +23,18 @@ export default [
       {
         path: '',
         ...lazyRouteConfig(() => import('@/pages/ListingPage')),
-        children: [],
-      },
-      {
-        path: 'delete',
-        ...lazyRouteConfig(() => import('@/pages/RemoveUserPage')),
-        children: [],
+        children: [
+          {
+            path: 'delete',
+            ...lazyRouteConfig(() => import('@/pages/RemoveUserPage')),
+            children: [],
+          },
+          {
+            path: 'rclone/download',
+            ...lazyRouteConfig(() => import('@/pages/RcloneDownloadPage')),
+            children: [],
+          },
+        ],
       },
     ],
   },
