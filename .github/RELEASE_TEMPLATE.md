@@ -61,3 +61,13 @@ _to be defined_
 ### :bug: Bug Fixes
 
 _to be defined_
+
+## Transversal
+
+### :sparkles: Features
+
+_to be defined_
+
+### :bug: Bug Fixes
+
+_to be defined_
