@@ -10,6 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_contacts_title'),
+
+      goToAddContact: /* @ngInject */ ($state) => () =>
+        $state.go('pci.projects.project.contacts.add'),
     },
   });
 };

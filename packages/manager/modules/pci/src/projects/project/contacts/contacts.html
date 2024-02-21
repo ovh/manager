@@ -75,14 +75,15 @@
     data-row-loader="$ctrl.transformItem($row)"
 >
     <oui-datagrid-topbar>
-        <a
-            data-ui-sref="pci.projects.project.contacts.add"
-            class="oui-button oui-button_secondary mb-3"
-            data-ng-disabled="$ctrl.loader.rights || $ctrl.data.rightIds === null || $ctrl.isDiscoveryProject"
+        <oui-button
             data-ng-if="$ctrl.model.isAdmin"
-            data-translate="common_add"
+            class="mb-3"
+            data-variant="secondary"
+            data-on-click="$ctrl.goToAddContact()"
+            data-disabled="$ctrl.loader.rights || $ctrl.data.rightIds === null || $ctrl.isDiscoveryProject"
         >
-        </a>
+            <span data-translate="common_add"></span>
+        </oui-button>
     </oui-datagrid-topbar>
     <oui-datagrid-column
         data-property="accountId"
