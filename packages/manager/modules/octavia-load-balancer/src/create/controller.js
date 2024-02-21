@@ -6,17 +6,7 @@ import {
   MAX_LISTENER,
   PRODUCT_LINK,
   REGION_AVAILABILITY_LINK,
-  TRACKING_CHAPTER_1,
-  TRACKING_NAME,
-  TRACKING_INSTANCE_DOCUMENTATION,
-  TRACKING_LOAD_BALANCER_CREATION_CANCEL,
-  TRACKING_LOAD_BALANCER_CREATION_SUBMIT,
-  TRACKING_LOAD_BALANCER_CREATION_SUBMIT_DETAIL,
-  TRACKING_LOAD_BALANCER_CREATION_SUBMIT_ERROR,
-  TRACKING_LOAD_BALANCER_CREATION_SUBMIT_SUCCESS,
-  TRACKING_PRIVATE_NETWORK_CREATION,
-  TRACKING_PRODUCT_PAGE,
-  TRACKING_REGION_AVAILABILITY,
+  LOAD_BALANCER_CREATION_TRACKING,
 } from './constants';
 
 export default class OctaviaLoadBalancerCreateCtrl {
@@ -43,11 +33,15 @@ export default class OctaviaLoadBalancerCreateCtrl {
   }
 
   $onInit() {
-    this.trackingProductPage = TRACKING_PRODUCT_PAGE;
-    this.trackingRegionAvailability = TRACKING_REGION_AVAILABILITY;
-    this.trackingPrivateNetworkCreation = TRACKING_PRIVATE_NETWORK_CREATION;
-    this.trackingInstanceDocumentation = TRACKING_INSTANCE_DOCUMENTATION;
-    this.trackingInstanceTablePrefix = `${TRACKING_CHAPTER_1}::${TRACKING_NAME}`;
+    this.trackingProductPage =
+      LOAD_BALANCER_CREATION_TRACKING.GO_TO_PRODUCT_PAGE;
+    this.trackingRegionAvailability =
+      LOAD_BALANCER_CREATION_TRACKING.GO_TO_REGION_AVAILABILITY;
+    this.trackingPrivateNetworkCreation =
+      LOAD_BALANCER_CREATION_TRACKING.CREATE_PRIVATE_NETWORK;
+    this.trackingInstanceDocumentation =
+      LOAD_BALANCER_CREATION_TRACKING.GO_TO_INSTANCE_DOCUMENTATION;
+    this.trackingInstanceTablePrefix = LOAD_BALANCER_CREATION_TRACKING.ROOT;
 
     this.productPageLink =
       PRODUCT_LINK[this.user.ovhSubsidiary] || PRODUCT_LINK.DEFAULT;
@@ -219,27 +213,39 @@ export default class OctaviaLoadBalancerCreateCtrl {
       });
   }
 
+  trackFinishStep(step) {
+    this.atInternet.trackClick({
+      name: LOAD_BALANCER_CREATION_TRACKING[`FINISH_STEP_${step}`],
+      type: 'action',
+    });
+  }
+
   skipListeners() {
     this.model.listeners = [];
     this.currentStep += 1;
+    this.atInternet.trackClick({
+      name: LOAD_BALANCER_CREATION_TRACKING.SKIP_STEP_5,
+      type: 'action',
+    });
+    return true;
   }
 
   onCancel() {
     this.resetCurrentStep();
     this.atInternet.trackClick({
-      name: TRACKING_LOAD_BALANCER_CREATION_CANCEL,
+      name: LOAD_BALANCER_CREATION_TRACKING.CANCEL,
       type: 'action',
     });
   }
 
   createLoadBalancer() {
     this.atInternet.trackClick({
-      name: TRACKING_LOAD_BALANCER_CREATION_SUBMIT,
+      name: LOAD_BALANCER_CREATION_TRACKING.SUBMIT,
       type: 'action',
     });
 
     this.atInternet.trackClick({
-      name: `${TRACKING_LOAD_BALANCER_CREATION_SUBMIT_DETAIL}::${this.model.size.code}::${this.model.region.name}`,
+      name: `${LOAD_BALANCER_CREATION_TRACKING.CONFIRM}::${this.model.size.code}::${this.model.region.name}`,
       type: 'action',
     });
 
@@ -263,7 +269,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
         );
 
         this.atInternet.trackPage({
-          name: TRACKING_LOAD_BALANCER_CREATION_SUBMIT_SUCCESS,
+          name: LOAD_BALANCER_CREATION_TRACKING.SUCCESS,
         });
 
         this.goToListingPage();
@@ -280,7 +286,7 @@ export default class OctaviaLoadBalancerCreateCtrl {
         this.$anchorScroll();
 
         this.atInternet.trackPage({
-          name: TRACKING_LOAD_BALANCER_CREATION_SUBMIT_ERROR,
+          name: LOAD_BALANCER_CREATION_TRACKING.ERROR,
         });
       });
   }
