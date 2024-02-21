@@ -7,6 +7,7 @@ import Breadcrumb, {
   BreadcrumbHandleParams,
 } from '@/components/Breadcrumb/Breadcrumb';
 import { database } from '@/models/database';
+import { Toaster } from '@/components/ui/toaster';
 
 function BreadcrumbTitle({ category }: { category: string }) {
   const { t } = useTranslation('pci-databases-analytics');
@@ -56,6 +57,7 @@ export default function Layout() {
       <Breadcrumb />
       <RoutingSynchronisation />
       <Outlet />
+      <Toaster />
     </PageLayout>
   );
 }
