@@ -32,7 +32,7 @@ export default function AccountSidebar() {
 
     const menu = [];
 
-    const isEUCA = ['EU', 'CA'].includes(region);
+    const isEUOrCA = ['EU', 'CA'].includes(region);
 
     menu.push({
       id: 'back-to-home',
@@ -104,7 +104,7 @@ export default function AccountSidebar() {
       });
     }
 
-    if (isEUCA) {
+    if (isEUOrCA) {
       menu.push({
         id: 'my-contacts',
         label: t('sidebar_account_contacts'),
@@ -125,9 +125,9 @@ export default function AccountSidebar() {
     menu.push({
       id: 'my-support-tickets',
       label: t('sidebar_assistance_tickets'),
-      isExternal: isEUCA,
+      isExternal: isEUOrCA,
       
-      href: isEUCA ? constants[region].support.tickets : navigation.getURL('dedicated', '/ticket'),
+      href: isEUOrCA ? constants[region].support.tickets : navigation.getURL('dedicated', '/ticket'),
       routeMatcher: new RegExp('^/(ticket|support)'),
     });
 

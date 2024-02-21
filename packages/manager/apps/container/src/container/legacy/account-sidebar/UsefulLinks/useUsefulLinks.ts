@@ -19,7 +19,7 @@ const useUsefulLinks = (): UseUsefulLinks => {
   const user = environment.getUser();
   const { isLivechatEnabled, setChatbotReduced } = useContainer();
 
-  const isEUCA = ['EU', 'CA'].includes(region);
+  const isEUOrCA = ['EU', 'CA'].includes(region);
 
   const getUsefulLinks = (): UsefulLink[] => {
     const trackingPrefix = 'hub::sidebar::useful-links';
@@ -52,12 +52,12 @@ const useUsefulLinks = (): UseUsefulLinks => {
       },
       {
         id: 'tickets',
-        external: isEUCA,
-        href: isEUCA ? constants[region].support.tickets : navigation.getURL('dedicated', '#/ticket'),
+        external: isEUOrCA,
+        href: isEUOrCA ? constants[region].support.tickets : navigation.getURL('dedicated', '#/ticket'),
         tracking: `${trackingPrefix}::go-to-tickets`,
         icon: 'oui-icon oui-icon-envelop_concept',
       },
-      ...(isEUCA
+      ...(isEUOrCA
         ? [
           {
             id: 'createTicket',

@@ -33,7 +33,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
   const reketInstance = useReket();
   const [selectedItem, setSelectedItem] = useState<string>(null);
 
-  const isEUCA = ['EU', 'CA'].includes(environment.getRegion());
+  const isEUOrCA = ['EU', 'CA'].includes(environment.getRegion());
   const [hasLiveChat, setHashLiveChat] = useState(false);
 
   const { closeNavigationSidebar, openOnboarding } = useProductNavReshuffle();
@@ -80,17 +80,6 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
     trackingPlugin.trackClick({ name: `navbar_v2_${id}`, type: 'navigation' });
   };
 
-  const supportNode = {
-    count: false,
-    translation: 'sidebar_assistance_tickets',
-    routing: !isEUCA ? {
-      application: 'dedicated',
-      hash: '#/ticket',
-    }: null,
-    isExternal: isEUCA,
-    url: isEUCA ? urls.get('support') : null,
-  }
-
   return (
     <ul className="mt-auto">
       <li className="assistance_header" onClick={() => onToggle(!isOpen)}>
@@ -120,10 +109,19 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
             }`}
           >
             <SidebarLink
-              node={supportNode}
+              node={{
+                count: false,
+                translation: 'sidebar_assistance_tickets',
+                routing: !isEUOrCA ? {
+                  application: 'dedicated',
+                  hash: '#/ticket',
+                }: null,
+                isExternal: isEUOrCA,
+                url: isEUOrCA ? urls.get('support') : null,
+              }}
               onClick={() => {
                 trackNode('assistance_tickets');
-                !isEUCA && closeNavigationSidebar();
+                !isEUOrCA && closeNavigationSidebar();
               }}
             />
           </li>
@@ -138,7 +136,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
               onClick={() => trackNode('assistance_status')}
             />
           </li>
-          {isEUCA && (
+          {isEUOrCA && (
             <li
               className={`${
                 selectedItem === 'support_level' ? style.sidebar_selected : ''
