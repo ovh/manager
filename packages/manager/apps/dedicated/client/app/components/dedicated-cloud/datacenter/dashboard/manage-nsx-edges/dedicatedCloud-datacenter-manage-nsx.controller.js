@@ -1,4 +1,7 @@
-import { NSX_RESOURCES } from './dedicatedCloud-datacenter-manage-nsx.constants';
+import {
+  NSX_RESOURCES,
+  TRACKING_SUFFIX,
+} from './dedicatedCloud-datacenter-manage-nsx.constants';
 import { EDGES_SIZES } from '../../../datacenters/datacenter.constants';
 
 export default class {
@@ -8,6 +11,7 @@ export default class {
     this.$translate = $translate;
     this.coreURLBuilder = coreURLBuilder;
     this.NSX_RESOURCES = NSX_RESOURCES;
+    this.TRACKING_SUFFIX = TRACKING_SUFFIX;
   }
 
   $onInit() {
@@ -24,6 +28,7 @@ export default class {
   }
 
   changeNsxSize() {
+    this.trackClick(this.TRACKING_SUFFIX.CONFIRM);
     this.loading = true;
     this.DedicatedCloud.resizeNsxtEdgeCluster(
       this.serviceName,
@@ -31,6 +36,7 @@ export default class {
       this.selectedNsxLevel,
     )
       .then(() => {
+        this.trackPage(this.TRACKING_SUFFIX.CONFIRM_SUCCESS);
         this.goBack(
           this.$translate.instant('dedicatedCloud_manage_nsx_edge_success'),
         );
@@ -42,6 +48,7 @@ export default class {
           )}`,
           'danger',
         );
+        this.trackPage(this.TRACKING_SUFFIX.CONFIRM_ERROR);
       })
       .finally(() => {
         this.loading = false;

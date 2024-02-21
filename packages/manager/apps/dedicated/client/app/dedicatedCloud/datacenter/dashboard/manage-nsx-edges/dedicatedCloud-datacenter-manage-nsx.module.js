@@ -7,6 +7,10 @@ const moduleName = 'ovhManagerDedicatedCloudDatacenterManageNsxEdges';
 
 angular
   .module(moduleName, [datacenterManageNsxEdgesComponent])
+  .constant(
+    'NSX_TRACKING_PREFIX',
+    'dedicated::dedicatedCloud::details::datacenter::details::dashboard::nsx',
+  )
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

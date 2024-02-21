@@ -15,6 +15,9 @@
     <a
         class="oui-link oui-link_icon"
         data-ng-href="{{:: $ctrl.datastoreOrderLink }}"
+        data-track-on="click"
+        data-track-type="action"
+        data-track-name="{{:: $ctrl.trackingPrefix + $ctrl.TRACKING_SUFFIX.ORDER_HOST}}"
         target="_blank"
         rel="noopener"
     >
@@ -25,6 +28,9 @@
     <a
         class="oui-link oui-link_icon"
         data-ng-href="{{:: $ctrl.hostOrderLink }}"
+        data-track-on="click"
+        data-track-type="action"
+        data-track-name="{{:: $ctrl.trackingPrefix + $ctrl.TRACKING_SUFFIX.ADD_HOST}}"
         target="_blank"
         rel="noopener"
     >
