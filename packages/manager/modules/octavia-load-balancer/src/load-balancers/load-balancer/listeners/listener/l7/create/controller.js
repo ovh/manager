@@ -30,21 +30,22 @@ export default class OctaviaLoadBalancerCreateL7PolicyCtrl {
     )
       .then(({ data: { id } }) => {
         this.trackL7CreatePolicyPage('success');
-        this.goBackToL7PoliciesList(true).then(() =>
-          this.Alerter.set(
-            'alert-success',
-            this.$translate.instant(
-              'octavia_load_balancer_create_l7_policy_success',
-              {
-                policy: this.model.name,
-                link: this.getL7RuleCreationLink(id),
-              },
-            ),
-            null,
-            'octavia.alerts.l7Policies',
-          ),
-        );
+        return this.goBackToL7PoliciesList(true).then(() => id);
       })
+      .then((id) =>
+        this.Alerter.set(
+          'alert-success',
+          this.$translate.instant(
+            'octavia_load_balancer_create_l7_policy_success',
+            {
+              policy: this.model.name,
+              link: this.getL7RuleCreationLink(id),
+            },
+          ),
+          null,
+          'octavia.alerts.l7Policies',
+        ),
+      )
       .catch((error) => {
         this.trackL7CreatePolicyPage('error');
         this.displayErrorAlert(error, 'octavia.alerts.l7Policy.create');

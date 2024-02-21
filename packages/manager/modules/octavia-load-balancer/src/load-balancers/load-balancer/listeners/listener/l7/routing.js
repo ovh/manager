@@ -1,5 +1,3 @@
-import { TRACKING_SUFFIX } from './constants';
-import { TRACKING_SUFFIX as LISTENERS_TRACKING_SUFFIX } from '../../constants';
 import { LISTENER_PROTOCOLS_ENABLING_POLICIES } from '../../list/constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -38,17 +36,6 @@ export default /* @ngInject */ ($stateProvider) => {
             'public-cloud',
             `#/pci/projects/${projectId}/octavia-load-balancer/${region}/${loadbalancerId}/listeners/${listenerId}/l7/${policyId}/rules/create`,
           ),
-        trackL7Base: /* @ngInject */ (trackRoot) =>
-          `${trackRoot}::${LISTENERS_TRACKING_SUFFIX}::${TRACKING_SUFFIX}`,
-        trackL7Action: /* @ngInject */ (atInternet, trackL7Base) => (hit) =>
-          atInternet.trackClick({
-            name: `${trackL7Base}::${hit}`,
-            type: 'action',
-          }),
-        trackL7Page: /* @ngInject */ (atInternet, trackL7Base) => (hit) =>
-          atInternet.trackPage({
-            name: `${trackL7Base}::${hit}`,
-          }),
       },
       onEnter: /* @ngInject */ (
         $transition$,
