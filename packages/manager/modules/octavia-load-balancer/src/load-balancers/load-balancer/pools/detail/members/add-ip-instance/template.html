@@ -70,75 +70,79 @@
         data-on-focus="$ctrl.onStep2Focus()"
         data-on-cancel="$ctrl.cancel()"
     >
-        <div
-            class="oui-box box-member mb-4"
-            data-ng-repeat="member in $ctrl.model.members track by $index"
-            ng-init="memberIndex = $index"
-        >
-            <div class="row align-items-center">
-                <oui-field
-                    class="col-lg-5 col-md-5 col-sm-12"
-                    data-label="{{:: 'octavia_load_balancer_pools_detail_members_add_ip_instance_name_label' | translate }}"
+        <div class="row">
+            <div class="col-md-8">
+                <div
+                    class="oui-box box-member mb-4"
+                    data-ng-repeat="member in $ctrl.model.members track by $index"
+                    ng-init="memberIndex = $index"
                 >
-                    <div class="oui-input-overlay">
-                        <input
-                            type="text"
-                            class="oui-input"
-                            name="{{:: 'member-name-' + memberIndex}}"
-                            data-ng-model="member.name"
-                        />
+                    <div class="row align-items-start">
+                        <oui-field
+                            class="col-lg-5 col-md-12 col-sm-12 mb-md-2 mb-sm-2"
+                            data-label="{{:: 'octavia_load_balancer_pools_detail_members_add_ip_instance_name_label' | translate }}"
+                        >
+                            <div class="oui-input-overlay">
+                                <input
+                                    type="text"
+                                    class="oui-input"
+                                    name="{{:: 'member-name-' + memberIndex}}"
+                                    data-ng-model="member.name"
+                                />
+                            </div>
+                        </oui-field>
+                        <oui-field
+                            class="col-lg-4 col-md-8 col-sm-12 mb-sm-2"
+                            data-label="{{:: 'octavia_load_balancer_pools_detail_members_add_ip_instance_ip_label' | translate }}"
+                        >
+                            <div class="oui-input-overlay">
+                                <input
+                                    type="text"
+                                    class="oui-input"
+                                    name="{{:: 'member-ip-' + memberIndex}}"
+                                    data-ng-model="member.address"
+                                    data-ng-disabled="true"
+                                />
+                            </div>
+                        </oui-field>
+                        <oui-field
+                            class="col-lg-3 col-md-4 col-sm-12"
+                            data-label="{{:: 'octavia_load_balancer_pools_detail_members_add_ip_instance_port_label' | translate }}"
+                            data-label-popover="{{:: 'octavia_load_balancer_pools_detail_members_protocol_port_tooltip' | translate }}"
+                            data-error-messages="{ existing: ('octavia_load_balancer_pools_detail_members_protocol_port_existing' | translate) }"
+                        >
+                            <input
+                                class="oui-input"
+                                type="number"
+                                name="{{:: 'member-port-' + memberIndex}}"
+                                data-ng-model="member.protocolPort"
+                                data-ng-model-options="{ allowInvalid: true }"
+                                data-min="1"
+                                data-max="65535"
+                                data-ng-disabled="$ctrl.duplicatePort && memberIndex !== 0"
+                                data-ng-change="$ctrl.onPortChange(memberIndex)"
+                                data-ui-validate="{ existing: '!$ctrl.isIpAlreadyAssociatedWithPort(member.address, $value)' }"
+                                required
+                            />
+                        </oui-field>
                     </div>
-                </oui-field>
-                <oui-field
-                    class="col-lg-4 col-md-4 col-sm-12"
-                    data-label="{{:: 'octavia_load_balancer_pools_detail_members_add_ip_instance_ip_label' | translate }}"
-                >
-                    <div class="oui-input-overlay">
-                        <input
-                            type="text"
-                            class="oui-input"
-                            name="{{:: 'member-ip-' + memberIndex}}"
-                            data-ng-model="member.address"
-                            data-ng-disabled="true"
-                        />
-                    </div>
-                </oui-field>
-                <oui-field
-                    class="col-lg-3 col-md-3 col-sm-12"
-                    data-label="{{:: 'octavia_load_balancer_pools_detail_members_add_ip_instance_port_label' | translate }}"
-                    data-label-popover="{{:: 'octavia_load_balancer_pools_detail_members_protocol_port_tooltip' | translate }}"
-                    data-error-messages="{ existing: ('octavia_load_balancer_pools_detail_members_protocol_port_existing' | translate) }"
-                >
-                    <input
-                        class="oui-input"
-                        type="number"
-                        name="{{:: 'member-port-' + memberIndex}}"
-                        data-ng-model="member.protocolPort"
-                        data-ng-model-options="{ allowInvalid: true }"
-                        data-min="1"
-                        data-max="65535"
-                        data-ng-disabled="$ctrl.duplicatePort && memberIndex !== 0"
-                        data-ng-change="$ctrl.onPortChange(memberIndex)"
-                        data-ui-validate="{ existing: '!$ctrl.isIpAlreadyAssociatedWithPort(member.address, $value)' }"
-                        required
-                    />
-                </oui-field>
-            </div>
-            <oui-field
-                class="mt-2"
-                data-ng-if="memberIndex === 0 && $ctrl.model.members.length > 1"
-            >
-                <oui-checkbox
-                    data-name="duplicatePort"
-                    data-model="$ctrl.duplicatePort"
-                    data-on-change="$ctrl.onDuplicatePortChange(modelValue)"
-                >
-                    <span
-                        data-translate="octavia_load_balancer_pools_detail_members_add_ip_instance_duplicate_port_label"
+                    <oui-field
+                        class="mt-2"
+                        data-ng-if="memberIndex === 0 && $ctrl.model.members.length > 1"
                     >
-                    </span>
-                </oui-checkbox>
-            </oui-field>
+                        <oui-checkbox
+                            data-name="duplicatePort"
+                            data-model="$ctrl.duplicatePort"
+                            data-on-change="$ctrl.onDuplicatePortChange(modelValue)"
+                        >
+                            <span
+                                data-translate="octavia_load_balancer_pools_detail_members_add_ip_instance_duplicate_port_label"
+                            >
+                            </span>
+                        </oui-checkbox>
+                    </oui-field>
+                </div>
+            </div>
         </div>
     </oui-step-form>
 </oui-stepper>
