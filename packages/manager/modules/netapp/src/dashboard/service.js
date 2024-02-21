@@ -20,30 +20,37 @@ export default class NetAppDashboardService {
   getVrackServices(id) {
     return this.Apiv2Service.httpApiv2({
       method: 'get',
-      url: `/engine/api/v2/vrack-services/resource${id ? `/${id}` : ''}`,
+      url: `/engine/api/v2/vrackServices/resource${id ? `/${id}` : ''}`,
     });
   }
 
   getNetworkInformations(serviceName) {
-    // TODO: To mock until API is ready (STORAGE-8593)
     return this.$http
-      .get(`/storage/netapp/${serviceName}/network`)
+      .get(`/storage/netapp/${serviceName}/network?detail=true`)
       .then(({ data: networkData }) => {
         if (networkData.length === 0) return null;
         const network = networkData[0];
-        if (network.vrackServicesURN)
+        if (network.vRackServicesURN)
           return this.populateStorageNetwork(network);
         return network;
       });
   }
 
   populateStorageNetwork(network) {
-    if (!network.vrackServicesURN) return this.$q.resolve(network);
-    return this.getVrackServices(network.vrackServicesURN).then(({ data }) => {
+    if (!network.vRackServicesURN) return this.$q.resolve(network);
+    const vRackServicesId = this.constructor.getVrackServicesIdFromUrn(
+      network.vRackServicesURN,
+    );
+    return this.getVrackServices(vRackServicesId).then(({ data }) => {
       const populatedNetwork = network;
+      populatedNetwork.vRackServicesId = vRackServicesId;
       populatedNetwork.vrackServices = data;
       return populatedNetwork;
     });
+  }
+
+  static getVrackServicesIdFromUrn(urn) {
+    return urn.split(':').pop();
   }
 
   static getAttachedSubnetAndEndpoint(networkInformations, storage) {
@@ -62,7 +69,7 @@ export default class NetAppDashboardService {
 
   startNetworkPolling(storage, pollingType) {
     return this.Poller.poll(
-      `/storage/netapp/${storage.id}/network`,
+      `/storage/netapp/${storage.id}/network?detail=true`,
       {},
       {
         namespace: `network_${storage.id}_${pollingType}`,

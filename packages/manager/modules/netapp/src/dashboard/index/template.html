@@ -58,7 +58,7 @@
                     ></span>
                 </oui-tile-description>
             </oui-tile-definition>
-            <div data-ng-if="$ctrl.networkInformations.vrackServicesURN">
+            <div data-ng-if="$ctrl.networkInformations.vRackServicesURN">
                 <oui-tile-definition
                     term="{{:: 'netapp_dashboard_network_configuration_vrack_id' | translate }}"
                 >
@@ -124,7 +124,7 @@
             <oui-tile-button
                 data-ng-if="
                     $ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.ASSOCIATED
-                    || ($ctrl.networkInformations.vrackServicesURN
+                    || ($ctrl.networkInformations.vRackServicesURN
                     && !$ctrl.networkInformations.vrackServices.currentState.vrackId
                     && $ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.TO_CONFIGURE)"
                 data-on-click="$ctrl.goToDeleteNetworkConfiguration()"

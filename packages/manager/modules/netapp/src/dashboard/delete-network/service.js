@@ -6,11 +6,11 @@ export default class NetAppNetworkDeleteService {
 
   deleteEndpoint(storage, networkInformations) {
     const { vrackServices } = networkInformations;
-    const vrackServicesId = networkInformations.vrackServicesURN;
     const serviceURN = storage.iam.urn;
 
-    // Deep copy currentState to create targetSpec
-    const targetSpec = angular.copy(vrackServices.currentState);
+    // Deep copy targetSpec
+    const targetSpec = angular.copy(vrackServices.targetSpec);
+
     // Search in subnets the service endpoint to remove
     targetSpec.subnets.some((subnet) => {
       const indexEndpointToremove = subnet.serviceEndpoints.findIndex(
@@ -20,12 +20,17 @@ export default class NetAppNetworkDeleteService {
       subnet.serviceEndpoints.splice(indexEndpointToremove, 1);
       return true;
     });
-    // Replace the target spec and update the vrack services
-    vrackServices.targetSpec = targetSpec;
+
+    // create the payload
+    const payload = {
+      checksum: vrackServices.checksum,
+      targetSpec,
+    };
+
     return this.Apiv2Service.httpApiv2({
       method: 'put',
-      url: `/engine/api/v2/vrack-services/resource/${vrackServicesId}`,
-      data: vrackServices,
+      url: `/engine/api/v2/vrackServices/resource/${vrackServices.id}`,
+      data: payload,
     });
   }
 }

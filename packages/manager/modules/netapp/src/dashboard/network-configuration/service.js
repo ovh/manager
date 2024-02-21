@@ -11,7 +11,7 @@ export default class NetAppNetworkConfigurationService {
 
   getAllowedVrackServices(vrackId) {
     return this.$http
-      .get(`/vrack/${vrackId}/allowedServices`)
+      .get(`/vrack/${vrackId}/allowedServices?serviceFamily=vrackServices`)
       .then(({ data }) => data);
   }
 
@@ -19,27 +19,28 @@ export default class NetAppNetworkConfigurationService {
     return this.VRACK_ORDER_URLS[subsidiary] || this.VRACK_ORDER_URLS.DEFAULT;
   }
 
-  linkVrackServiceToEfs(vrackId, vrackService, subnet, efs) {
-    const vs = vrackService;
-    // create deep copy of currentState
-    vs.targetSpec = angular.copy(vs.currentState);
+  linkVrackServiceToEfs(vrackId, vs, subnet, efs) {
+    const vrackServices = vs;
+
+    // create deep copy of targetSpec
+    const targetSpec = angular.copy(vrackServices.targetSpec);
 
     // Search the subnet to modify within the vrackServices subnets array
-    const subnetToModify = vs.targetSpec.subnets.find(
+    const subnetToModify = targetSpec.subnets.find(
       (vrSubnet) => vrSubnet.cidr === subnet.cidr,
     );
 
     // Add the EFS urn as a service endpoint of the selected subnet
     subnetToModify.serviceEndpoints.push({
-      managedServiceUrn: efs.iam.urn,
+      managedServiceURN: efs.iam.urn,
     });
 
     let promise;
 
     // If the vrack services don't already have associated vrack, we do the vRack association
-    if (!vs.targetSpec.vrackId) {
+    if (!targetSpec.vrackId) {
       promise = this.$http.post(`/vrack/${vrackId}/vrackServices`, {
-        vrackServices: vs.id,
+        vrackServices: vrackServices.id,
       });
     } else {
       promise = this.$q.resolve();
@@ -62,8 +63,11 @@ export default class NetAppNetworkConfigurationService {
       .then((vrackAssociationStatus) =>
         this.Apiv2Service.httpApiv2({
           method: 'put',
-          url: `/engine/api/v2/vrack-services/resource/${vs.id}`,
-          data: vs,
+          url: `/engine/api/v2/vrackServices/resource/${vs.id}`,
+          data: {
+            checksum: vrackServices.checksum,
+            targetSpec,
+          },
         }).then(({ data }) => ({
           ...vrackAssociationStatus,
           data,
