@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.28...@ovh-ux/manager-billing@0.20.0-alpha.29) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
 # [0.20.0-alpha.28](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.27...@ovh-ux/manager-billing@0.20.0-alpha.28) (2024-02-15)
 
 
