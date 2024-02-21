@@ -75,7 +75,7 @@ export default class OctaviaLoadBalancerPoolsDetailMembersAddIpInstanceCtrl {
   }
 
   onStep2Focus() {
-    this.duplicatePort = false;
+    this.duplicatePort = true;
     this.model.members = this.displayedInstances.reduce(
       (instances, instance) => {
         if (instance.checked) {
