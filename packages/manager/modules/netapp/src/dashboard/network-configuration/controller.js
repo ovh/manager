@@ -85,12 +85,10 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
       this.selectedSubnet = noSubnet;
       this.disableSubnetField = true;
     } else {
-      this.subnets.forEach((subnet) => {
-        if (!subnet.displayName) {
-          // eslint-disable-next-line no-param-reassign
-          subnet.displayName = subnet.cidr;
-        }
-      });
+      this.subnets = this.subnets.map((subnet) => ({
+        ...subnet,
+        displayName: subnet.displayName ? subnet.displayName : subnet.cidr,
+      }));
       this.disableSubnetField = false;
     }
   }
