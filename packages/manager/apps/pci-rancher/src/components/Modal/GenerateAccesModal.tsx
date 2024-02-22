@@ -86,9 +86,7 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
         onClick={() => {
           trackAction(
             TrackingPageView.GenerateAccessModal,
-            hasValidAccess
-              ? TrackingEvent.generateAccessClose
-              : TrackingEvent.generateAccessCancel,
+            hasValidAccess ? TrackingEvent.close : TrackingEvent.cancel,
           );
           toggleModal(false);
         }}
@@ -112,10 +110,7 @@ const GenerateAccessModal: FC<GenerateAccessModalProps> = ({
             }
           : {
               onClick: () => {
-                trackAction(
-                  TrackingPageView.GenerateAccessModal,
-                  TrackingEvent.generateAccessAccessUi,
-                );
+                trackAction(TrackingPageView.confirm, TrackingEvent.accessUi);
                 onGenerateAccess();
               },
             })}

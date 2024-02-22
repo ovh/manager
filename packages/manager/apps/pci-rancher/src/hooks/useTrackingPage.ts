@@ -2,24 +2,40 @@ import { useTracking } from '@ovh-ux/manager-react-shell-client';
 import { useEffect } from 'react';
 import { TRACKING_PATH, TrackingPageView } from '@/utils/tracking';
 
-export const useTrackingPage = (page?: TrackingPageView) => {
+const MANAGER_PUBLIC_CLOUD = '86';
+
+export const useSimpleTrackingAction = () => {
   const tracking = useTracking();
 
-  useEffect(() => {
-    tracking.trackPage({
-      name: `${TRACKING_PATH}${page ? `::${page}` : ''}`,
-      level2: '86', // Manager-PublicCloud
+  return (trackingName: string) =>
+    tracking.trackClick({
+      name: trackingName,
+      level2: MANAGER_PUBLIC_CLOUD,
+      type: 'action',
     });
+};
+
+export const useSimpleTrackingPage = () => {
+  const tracking = useTracking();
+
+  return (trackingName: string) =>
+    tracking.trackPage({
+      name: trackingName,
+      level2: MANAGER_PUBLIC_CLOUD,
+    });
+};
+
+export const useTrackingPage = (page?: TrackingPageView) => {
+  const trackPage = useSimpleTrackingPage();
+
+  useEffect(() => {
+    trackPage(`${TRACKING_PATH}${page ? `::${page}` : ''}`);
   }, [page]);
 };
 
 export const useTrackingAction = () => {
-  const tracking = useTracking();
+  const trackAction = useSimpleTrackingAction();
 
   return (page?: TrackingPageView, action?: string) =>
-    tracking.trackClick({
-      name: `${TRACKING_PATH}${page ? `::${page}` : ''}::${action}`,
-      level2: '86', // Manager-PublicCloud
-      type: 'action',
-    });
+    trackAction(`${TRACKING_PATH}${page ? `::${page}` : ''}::${action}`);
 };

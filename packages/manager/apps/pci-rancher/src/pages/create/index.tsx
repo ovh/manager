@@ -14,8 +14,13 @@ import { getRanchersUrl } from '@/utils/route';
 import usePciProject from '@/hooks/usePciProject';
 import { PciProjectPlanCode } from '@/api/api.type';
 import { useRanchers } from '@/hooks/useRancher';
-import { useTrackingPage } from '../../hooks/useTrackingPage';
-import { TrackingPageView } from '../../utils/tracking';
+import {
+  useSimpleTrackingPage,
+  useTrackingAction,
+  useTrackingPage,
+} from '../../hooks/useTrackingPage';
+import { TrackingEvent, TrackingPageView } from '../../utils/tracking';
+import { useTracking } from '@ovh-ux/manager-react-shell-client';
 
 export default function Create() {
   const { projectId } = useParams();
@@ -24,6 +29,8 @@ export default function Create() {
     false,
   );
   useTrackingPage(TrackingPageView.CreateRancher);
+  const trackAction = useTrackingAction();
+  const trackingPage = useSimpleTrackingPage();
 
   const { data: project } = usePciProject();
 
@@ -34,9 +41,19 @@ export default function Create() {
     onMutate: () => setHasRancherCreationError(false),
     onSuccess: () => {
       refetchRancherList();
+      trackAction(
+        trackingPage(
+          `${TrackingPageView.CreateRancher}::${TrackingEvent.add}-success}`,
+        ),
+      );
       navigate(getRanchersUrl(projectId));
     },
-    onError: () => setHasRancherCreationError(true),
+    onError: () => {
+      trackingPage(
+        `${TrackingPageView.CreateRancher}::${TrackingEvent.add}-error}`,
+      );
+      setHasRancherCreationError(true);
+    },
   });
 
   const { data: plans } = useQuery({
