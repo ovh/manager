@@ -7,17 +7,20 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { AvailabilitiesHookOutput } from '@/hooks/useAvailabilities';
 import { formatStorage } from '@/lib/bytesHelper';
 import { Flavor } from '@/models/order-funnel';
 
 interface FlavorsSelectProps {
-  model: AvailabilitiesHookOutput;
+  flavors: Flavor[];
+  value: string;
+  onChange: (newFlavor: string) => void;
   showMonthlyPrice?: boolean;
 }
 
 const FlavorsSelect = ({
-  model,
+  flavors,
+  value,
+  onChange,
   showMonthlyPrice = false,
 }: FlavorsSelectProps) => {
   const Storage = ({ flavor }: { flavor: Flavor }) => {
@@ -70,7 +73,7 @@ const FlavorsSelect = ({
         </TableRow>
       </TableHeader>
       <TableBody>
-        {model.listFlavors
+        {flavors
           .sort((a, b) => a.order - b.order)
           .map((flavor) => (
             <TableRow
@@ -79,21 +82,21 @@ const FlavorsSelect = ({
               onKeyDown={(e) => handleKeyDown(e, flavor.name)}
               key={flavor.name}
               className={`border border-primary-100 hover:bg-primary-50 cursor-pointer text-[#4d5592] ${
-                model.flavor === flavor.name ? 'bg-[#DEF8FF] font-bold' : ''
+                value === flavor.name ? 'bg-[#DEF8FF] font-bold' : ''
               }`}
             >
               <td className="hidden">
                 <input
                   type="radio"
                   name="flavor-select"
-                  onChange={(e) => model.setFlavor(e.target.value)}
+                  onChange={(e) => onChange(e.target.value)}
                   className="hidden"
                   id={`flavor-${flavor.name}`}
                   value={flavor.name}
-                  checked={model.flavor === flavor.name}
+                  checked={value === flavor.name}
                 />
               </td>
-              <TableCell className="text-[#4d5592] border border-primary-100">
+              <TableCell className="text-[#4d5592] border border-primary-100 capitalize">
                 {flavor.name}
               </TableCell>
               <TableCell className="text-[#4d5592] border border-primary-100">

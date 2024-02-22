@@ -1,35 +1,36 @@
-import { useEffect, useState } from 'react';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { H4 } from '@/components/typography';
-import { AvailabilitiesHookOutput } from '@/hooks/useAvailabilities';
+import { formatStorage } from '@/lib/bytesHelper';
+import { database } from '@/models/database';
 
 interface StorageConfigProps {
-  model: AvailabilitiesHookOutput;
+  availability: database.Availability;
+  value: number;
+  onChange: (newValue: number) => void;
 }
-const StorageConfig = ({ model }: StorageConfigProps) => {
-  const [nbStorage, setNbStorage] = useState(
-    model.availability?.specifications.storage?.minimum.value || 0,
-  );
-  useEffect(() => {
-    setNbStorage(
-      model.availability?.specifications.storage?.minimum.value || 0,
-    );
-  }, [model.availability]);
-  if (!model.availability?.specifications.storage) return <></>;
-  const { storage, flavor } = model.availability.specifications;
+const DEFAULT_UNIT = 'GB';
+const StorageConfig = ({
+  availability,
+  value,
+  onChange,
+}: StorageConfigProps) => {
+  if (!availability.specifications.storage) return <></>;
+  const { storage, flavor } = availability.specifications;
   const { minimum, maximum, step } = storage;
   if (maximum.value === 0 || minimum.value === maximum.value || !step) {
     return <></>;
   }
+  const minAddable = 0;
+  const maxAddable = maximum.value - minimum.value;
   return (
     <div>
       <H4>Stockage additionnel</H4>
       <p>
-        Votre modèle de nœud {flavor} inclut {minimum.value} {minimum.unit} de
+        Votre modèle de nœud {flavor} inclut {formatStorage(minimum)} de
         stockage auxquels vous pouvez ajouter jusqu'à{' '}
-        {maximum.value - minimum.value} {minimum.unit} de stockage
-        supplémentaire par pas de {step.value} {step.unit}.
+        {formatStorage({ value: maxAddable, unit: DEFAULT_UNIT })} de stockage
+        supplémentaire par pas de {formatStorage(step)}.
       </p>
       <Label htmlFor="storage-select">
         Sélectionnez le stockage additionnel du cluster
@@ -38,22 +39,28 @@ const StorageConfig = ({ model }: StorageConfigProps) => {
         <div className="flex justify-between mb-2">
           <span>Aucun</span>
           <span>
-            {maximum.value - minimum.value} {maximum.unit}
+            {formatStorage({
+              value: maxAddable,
+              unit: DEFAULT_UNIT,
+            })}
           </span>
         </div>
         <Slider
-          onValueChange={([newValue]) => setNbStorage(newValue)}
+          onValueChange={([newValue]) => onChange(newValue)}
           id="storage-select"
           name="storage-select"
           defaultValue={[minimum.value]}
-          value={[nbStorage]}
-          min={minimum.value}
-          max={maximum.value}
+          value={[value]}
+          min={minAddable}
+          max={maxAddable}
           step={step?.value || 1}
         />
         <div className="flex w-full justify-center mt-2">
           <span className="font-bold">
-            {nbStorage - minimum.value} {minimum.unit}
+            {formatStorage({
+              value,
+              unit: DEFAULT_UNIT,
+            })}
           </span>
         </div>
       </div>
