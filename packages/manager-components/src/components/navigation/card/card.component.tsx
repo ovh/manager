@@ -4,25 +4,18 @@ import {
   ODS_THEME_COLOR_HUE,
 } from '@ovhcloud/ods-common-theming';
 
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { OsdsText, OsdsChip, OsdsTile } from '@ovhcloud/ods-components/react';
 
-import {
-  OsdsText,
-  OsdsChip,
-  OsdsTile,
-  OsdsLink,
-  OsdsIcon,
-} from '@ovhcloud/ods-components/react';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 import {
   ODS_CHIP_SIZE,
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
   ODS_TILE_VARIANT,
-  ODS_ICON_SIZE,
-  ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
-import useDynamicTranslation from '../../translation/useDynamicTranslation';
+import { LinkType, Links } from '../../typography';
+import useDynamicTranslation from '../../../translation/useDynamicTranslation';
 
 export interface Badge {
   text: string;
@@ -123,26 +116,12 @@ export const Card = ({
           >
             {description}
           </OsdsText>
-          <OsdsLink
+
+          <Links
             tab-index="-1"
-            color={ODS_THEME_COLOR_INTENT.primary}
-            href={href}
-            target={OdsHTMLAnchorElementTarget._blank}
-          >
-            {t('see_more_label')}
-            <OsdsIcon
-              slot="end"
-              className="ml-4"
-              aria-hidden="true"
-              size={ODS_ICON_SIZE.xxs}
-              name={
-                isExternalHref
-                  ? ODS_ICON_NAME.EXTERNAL_LINK
-                  : ODS_ICON_NAME.ARROW_RIGHT
-              }
-              color={ODS_THEME_COLOR_INTENT.primary}
-            />
-          </OsdsLink>
+            label={t('see_more_label')}
+            type={isExternalHref ? LinkType.external : LinkType.next}
+          />
         </div>
       </OsdsTile>
     </a>

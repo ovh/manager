@@ -7,14 +7,15 @@
     "outDir": "dist",
     "allowJs": false,
     "skipLibCheck": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "Node",
     "isolatedModules": true,
     "declaration": true,
     "declarationDir": "./dist/types",
-    "jsx": "react-jsx"
+    "jsx": "react"
   },
-  "include": ["src", "./src/**/*.ts", "./src/**/*.tsx", "*.spec.tsx"],
+  "files": ["global.d.ts"],
+  "include": ["src/**/*", "*.spec.tsx"],
   "exclude": ["./src/**/*.stories.*"]
 }

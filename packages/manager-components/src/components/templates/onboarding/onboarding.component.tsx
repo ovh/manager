@@ -8,7 +8,6 @@ import {
 } from '@ovhcloud/ods-components';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-
 import placeholderSrc from './assets/placeholder.png';
 
 export type OnboardingLayoutProps = PropsWithChildren<{
