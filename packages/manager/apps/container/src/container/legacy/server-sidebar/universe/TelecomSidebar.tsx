@@ -178,7 +178,7 @@ export default function TelecomSidebar() {
                         })
                         .map((service) => ({
                           ...service,
-                          keywords: service.extraParams?.type,
+                          keywords: service.extraParams?.type + service.searchParams?.toString(),
                           icon: service.extraParams?.type && (
                             <span className={style.telecomLabel}>
                               {t([
