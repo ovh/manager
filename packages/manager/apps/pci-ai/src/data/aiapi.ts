@@ -85,6 +85,29 @@ export interface ScalingStrategyProps {
     scalingStrategyInput: ai.app.ScalingStrategy
 };
 
+export interface UserCreationProps {
+    projectId: string,
+    userInput: {
+        description: string,
+        role: string,
+    }
+};
+
+export interface TokenGenerationProps {
+    projectId: string,
+    tokenInput: {
+        name: string,
+        labelSelector?: string,
+        role: string,
+        region: string,
+    }
+}
+
+export interface TokenProps {
+    projectId: string,
+    tokenId: string,
+}
+
 export const aiApi = {
     getRegions: async (projectId: string) => apiClient.v6.get(
         `/cloud/project/${projectId}/ai/capabilities/region`,
@@ -101,6 +124,48 @@ export const aiApi = {
     getUsers: async (projectId: string) => apiClient.v6.get(
         `/cloud/project/${projectId}/user`,
     ).then(res => res.data as user.User[])
+    ,
+    addUser: async ({
+        projectId,
+        userInput,
+    }: UserCreationProps
+    ) => 
+        await apiClient.v6.post(
+            `/cloud/project/${projectId}/user`,
+            userInput,
+        )
+            .then((res) => res.data as user.User)
+    ,
+    generateToken: async ({
+        projectId,
+        tokenInput,
+    }: TokenGenerationProps
+    ) => 
+        await apiClient.v6.post(
+            `/cloud/project/${projectId}/ai/token`,
+            tokenInput,
+        )
+            .then((res) => res.data as ai.token.Token)
+    ,
+    regenerateToken: async ({
+        projectId,
+        tokenId,
+    }: TokenProps
+    ) => 
+        await apiClient.v6.post(
+            `/cloud/project/${projectId}/ai/token/${tokenId}/renew`,
+        )
+            .then((res) => res.data as ai.token.Token)
+    ,
+    deleteToken: async ({
+        projectId,
+        tokenId,
+    }: TokenProps
+    ) => {
+        await apiClient.v6.delete(
+            `/cloud/project/${projectId}/ai/token/${tokenId}`,
+        )
+    },
 };
 
 export const notebookApi = {
@@ -166,36 +231,36 @@ export const notebookApi = {
         productId,
         dataSyncSpec,
     }: DataSyncProps
-    ) => {
+    ) => 
         await apiClient.v6.post(
             `/cloud/project/${projectId}/ai/notebook/${productId}/datasync`,
             dataSyncSpec,
         )
-            .then((res) => res.data as string);
-    },
+            .then((res) => res.data as string)
+    ,
     orderNotebook: async ({
         projectId,
         notebookSpec,
     }: OrderNbProps
-    ) => {
+    ) => 
         await apiClient.v6.post(
             `/cloud/project/${projectId}/ai/notebook/`,
             notebookSpec,
         )
-            .then((res) => res.data as string);
-    },
+            .then((res) => res.data as string)
+    ,
     updateNotebook: async ({
         projectId,
         notebookId,
         notebookSpec,
     }: LabelsProps
-    ) => {
+    ) => 
         await apiClient.v6.put(
             `/cloud/project/${projectId}/ai/notebook/${notebookId}`,
             notebookSpec,
         )
-            .then((res) => res.data as string);
-    }
+            .then((res) => res.data as string)
+    
 };
 
 export const jobsApi = {
@@ -253,13 +318,13 @@ export const jobsApi = {
         productId,
         dataSyncSpec,
     }: DataSyncProps
-    ) => {
+    ) => 
         await apiClient.v6.post(
             `/cloud/project/${projectId}/ai/job/${productId}/datasync`,
             dataSyncSpec,
         )
-            .then((res) => res.data as string);
-    },
+            .then((res) => res.data as string)
+    ,
     getLogs: async (projectId: string, jobId: string) =>
         apiClient.v6.get(
             `/cloud/project/${projectId}/ai/job/${jobId}/log`,
@@ -270,13 +335,13 @@ export const jobsApi = {
             },
         ).then(res => res.data as ai.Logs)
     ,
-    updateLabel: async ({ projectId, jobId, labels }: LabelsJobProps) => {
+    updateLabel: async ({ projectId, jobId, labels }: LabelsJobProps) => 
         await apiClient.v6.put(
             `/cloud/project/${projectId}/ai/job/${jobId}/label`,
             labels,
         )
-            .then((res) => res.data as string);
-    },
+            .then((res) => res.data as string)
+    ,
 };
 
 export const appsApi = {
@@ -334,50 +399,49 @@ export const appsApi = {
         productId,
         dataSyncSpec,
     }: DataSyncProps
-    ) => {
+    ) => 
         await apiClient.v6.post(
             `/cloud/project/${projectId}/ai/app/${productId}/datasync`,
             dataSyncSpec,
         )
-            .then((res) => res.data as string);
-    },
-    updateLabel: async ({ projectId, appId, labels }: LabelsAppProps) => {
+            .then((res) => res.data as string)
+    ,
+    updateLabel: async ({ projectId, appId, labels }: LabelsAppProps) => 
         await apiClient.v6.put(
             `/cloud/project/${projectId}/ai/app/${appId}/label`,
             labels,
         )
-            .then((res) => res.data as string);
-    },
-    updateDockerImage: async ({ projectId, appId, imageSpec }: DockerImageProps) => {
+            .then((res) => res.data as string)
+    ,
+    updateDockerImage: async ({ projectId, appId, imageSpec }: DockerImageProps) => 
         await apiClient.v6.put(
             `/cloud/project/${projectId}/ai/app/${appId}/image`,
             imageSpec,
         )
-            .then((res) => res.data as string);
-    },
+            .then((res) => res.data as string)
+    ,
     updateHttpPortApp: async ({
         projectId,
         appId,
         httpPortSpec,
     }: HttpPortProps
-    ) => {
+    ) => 
         await apiClient.v6.put(
             `/cloud/project/${projectId}/ai/app/${appId}`,
             httpPortSpec,
         )
-            .then((res) => res.data as string);
-    },
+            .then((res) => res.data as string)
+    ,
     updateScalingStrategy: async ({
         projectId,
         appId,
         scalingStrategyInput,
     }: ScalingStrategyProps
-    ) => {
+    ) => 
         await apiClient.v6.put(
             `/cloud/project/${projectId}/ai/app/${appId}/scalingstrategy`,
             scalingStrategyInput,
         )
-            .then((res) => res.data as string);
-    }
+            .then((res) => res.data as string)
 }
 

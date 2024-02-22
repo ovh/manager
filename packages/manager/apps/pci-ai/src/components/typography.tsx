@@ -28,7 +28,7 @@ function H4({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
 
 function P ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
     const baseClassName =
-      'scroll-m-20 text-xl font-semibold tracking-tight';
+      'scroll-m-20 text-base leading-6 tracking-tight';
     return <h4 className={cn(baseClassName, className)} {...props} />;
 }
 export { H1, H2, H3, H4, P };

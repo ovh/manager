@@ -1,3 +1,5 @@
+import { ai } from "@/models/types"
+
 export function displaySizeFormat (bytes: any, si = false, dp = 1) {
     // param si True to use metric (SI) units, aka powers of 1000. False to use binary (IEC), aka powers of 1024.
     // param dp Number of decimal places to display.
@@ -51,5 +53,12 @@ export function formattedDuration (duration : number, wrap : boolean) {
         
           return formattedDuration || 'moins d\'une seconde';
     }
+}
 
+export function formattedTokenRole (tokenRole : ai.TokenRoleEnum) {
+    if (tokenRole === ai.TokenRoleEnum.ai_training_operator) {
+        return "AI Platform - Operator";
+    }else if (tokenRole === ai.TokenRoleEnum.ai_training_read) {
+        return "AI Platform - Read Only"
+    }
 }

@@ -7,17 +7,18 @@ import { useGetNotebooks } from '@/hooks/api/notebooks/useGetNotebooks';
 import { useGetJobs } from '@/hooks/api/jobs/useGetJobs';
 import { useGetApps } from '@/hooks/api/apps/useGetApps';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
-import { useGetTokens } from '@/hooks/api/ai/useGetTokens';
-import { useGetUsers } from '@/hooks/api/ai/useGetUsers';
 import { ai, user } from '@/models/types';
 import BillingConsumption from './_components/billingConsumption';
 import UserTokenConfiguration from './_components/userTokenConfiguration';
+import { DashboardLayoutContext } from '../_layout';
+import { useOutletContext } from 'react-router-dom';
 export const Handle = {
   breadcrumb: () => 'Dashboard',
 };
 
 export default function DashboardHomePage() {
   const { projectId } = useRequiredParams<{ projectId: string }>();
+  const { usersQuery, tokensQuery } = useOutletContext() as DashboardLayoutContext;
   const appsQuery = useGetApps(projectId, {
     refetchInterval: 30_000,
   });
@@ -28,38 +29,35 @@ export default function DashboardHomePage() {
     refetchInterval: 30_000,
   });
 
-  const tokensQuery = useGetTokens(projectId, {
-    refetchInterval: 30_000,
-  });
-  const usersQuery = useGetUsers(projectId, {
-    refetchInterval: 30_000,
-  });
+  const jobs : ai.job.Job[] = jobsQuery.data || [];
+  const notebooks : ai.notebook.Notebook[] = notebooksQuery.data || [];
+  const apps: ai.app.App[] = appsQuery.data || [];
 
   const runningApps: number =
-    appsQuery.data?.filter(
+    apps.filter(
       (app: ai.app.App) => app.status.state === ai.app.AppStateEnum.RUNNING,
     ).length || 0;
-  const stoppedApps: number = (appsQuery.data?.length || 0) - runningApps;
+  const stoppedApps: number = (apps.length || 0) - runningApps;
 
   const runningJobs: number =
-    jobsQuery.data?.filter(
+    jobs.filter(
       (job: ai.job.Job) =>
         job.status.state === ai.job.JobStateEnum.RUNNING ||
         job.status.state === ai.job.JobStateEnum.RESTARTING,
     ).length || 0;
-  const stoppedJobs: number = (jobsQuery.data?.length || 0) - runningJobs;
+  const stoppedJobs: number = (jobs.length || 0) - runningJobs;
 
   const runningNotebooks: number =
-    notebooksQuery.data?.filter(
+    notebooks.filter(
       (notebook: ai.notebook.Notebook) =>
         notebook.status.state === ai.notebook.NotebookStateEnum.RESTARTING ||
         notebook.status.state === ai.notebook.NotebookStateEnum.RUNNING,
     ).length || 0;
   const stoppedNotebooks: number =
-    (notebooksQuery.data?.length || 0) - runningNotebooks;
+    (notebooks.length || 0) - runningNotebooks;
 
   const activeTokens : number = tokensQuery.data?.length || 0; 
-  const activeUsers : number = usersQuery.data?.filter((user : user.User) => user.roles.find((role : user.Role) => role.description === "AI Training Operator" || role.description === "AI Training Reader")).length || 0;
+  const activeUsers : number = usersQuery.data?.filter((user : user.User) => user.roles.find((role : user.Role) => role.name === ai.TokenRoleEnum.ai_training_operator || role.name === ai.TokenRoleEnum.ai_training_read)).length || 0;
 
   return (
     <>

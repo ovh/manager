@@ -1,6 +1,11 @@
 import TabsMenu from '@/components/tabs-menu';
 import { H2 } from '@/components/typography';
 import { Button } from '@/components/ui/button';
+import { useGetTokens } from '@/hooks/api/ai/useGetTokens';
+import { useGetUsers } from '@/hooks/api/ai/useGetUsers';
+import { useRequiredParams } from '@/hooks/useRequiredParams';
+import { ai, user } from '@/models/types';
+import { UseQueryResult } from '@tanstack/react-query';
 import { ArrowRight } from 'lucide-react';
 import { Link, Outlet } from 'react-router-dom';
 
@@ -8,7 +13,19 @@ export const Handle = {
   breadcrumb: () => 'pci_ai_breadcrumb_ai_dashboard',
 };
 
+export type DashboardLayoutContext = {
+  tokensQuery: UseQueryResult<ai.token.Token[], Error>;
+  usersQuery: UseQueryResult<user.User[], Error>;
+};
+
 export default function AiDashboardLayout() {
+  const { projectId } = useRequiredParams<{ projectId: string }>();
+  const tokensQuery = useGetTokens(projectId, {
+    refetchInterval: 30_000,
+  });
+  const usersQuery = useGetUsers(projectId, {
+    refetchInterval: 30_000,
+  });
     const servicePriceLink : string = "https://www.ovhcloud.com/fr/public-cloud/prices/#ai-&-machine-learning"
     const tabs = [
         { href: 'home', label: 'Dashboard' },
@@ -17,6 +34,11 @@ export default function AiDashboardLayout() {
         { href: 'datastore', label: 'Datastore' },
         { href: 'cli', label: 'Command Line Interface' },
       ];
+    
+      const dashboardLayoutContext: DashboardLayoutContext = {
+        usersQuery: usersQuery,
+        tokensQuery: tokensQuery,
+      };
     return (
     <>
       <H2>AI Dashboard</H2>
@@ -42,7 +64,7 @@ export default function AiDashboardLayout() {
         </Link>
       </Button>
       <TabsMenu tabs={tabs} />
-      <Outlet />
+      <Outlet context={dashboardLayoutContext}/>
     </>
   );
 }

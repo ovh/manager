@@ -5,22 +5,24 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-sm text-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap text-md font-medium ring-offset-background transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary-700",
+        default: "rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground hover:bg-primary-700",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border text-primary border-primary border-2 bg-white font-semibold hover:bg-primary-100",
+          "rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 border text-primary border-primary border-2 bg-white font-semibold hover:bg-primary-100",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4",
+          "rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-accent hover:text-accent-foreground",
+        transparent: "rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        link: "rounded-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 text-primary underline-offset-4",
+        combobox: "focus-visible:border-b-primary border-primary-100 border hover:bg-primary-100 hover:text-primary-700 hover:border-b-primary"
       },
       size: {
-        default: "h-10 px-4 py-2 rounded-md",
+        default: "h-10 px-4 py-2",
         sm: "h-8 rounded-md px-2",
         lg: "h-11 rounded-sm px-8",
         icon: "h-10 w-10",

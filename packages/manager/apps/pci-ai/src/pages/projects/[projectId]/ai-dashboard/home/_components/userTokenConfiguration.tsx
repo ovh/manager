@@ -45,7 +45,7 @@ export default function UserTokenConfiguration({
             size="sm"
             asChild
           >
-            <Link to="./users-tokens">
+            <Link to="./../users-tokens">
               Manage users and application tokens
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>

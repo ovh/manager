@@ -16,14 +16,14 @@ export const Handle = {
 export default function NotebooksLayout() {
   const { projectId } = useRequiredParams<{ projectId: string }>();
   const linkUserToken = `/projects/${projectId}/ai-dashboard/users-tokens`;
-  const tokenQuery = useGetTokens(projectId, {
+  const tokensQuery = useGetTokens(projectId, {
     refetchInterval: 30_000,
   });
-  const userQuery = useGetUsers(projectId, {
+  const usersQuery = useGetUsers(projectId, {
     refetchInterval: 30_000,
   });
   const isUserConfigured: boolean =
-    userQuery.data?.some((user: user.User) =>
+    usersQuery.data?.some((user: user.User) =>
       user.roles.some(
         (role: user.Role) => role.name === 'ai_training_operator',
       ),
@@ -33,7 +33,7 @@ export default function NotebooksLayout() {
     <>
       {!(
         isUserConfigured ||
-        (tokenQuery.data && tokenQuery.data?.length > 0)
+        (tokensQuery.data && tokensQuery.data?.length > 0)
       ) && (
         <div className="mt-2">
           <Alert variant="default">

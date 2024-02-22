@@ -1320,11 +1320,12 @@ export namespace ai {
 
 export namespace user {
     export interface User {
-        createdAt: Date;
+        createdDate: Date;
         description: string;
         id: string;
         openstackId: string;
         roles: user.Role[];
+        password?: string;
         status: UserStatusEnum;
         username: string;
     }
