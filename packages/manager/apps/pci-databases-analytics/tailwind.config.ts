@@ -223,14 +223,12 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
-      // borderRadius: {
-      //   none: '0',
-      //   sm: 'var(--ods-size-border-radius-01)',
-      //   DEFAULT: 'var(--ods-size-border-radius-01)',
-      //   md: 'var(--ods-size-border-radius-02)',
-      //   lg: 'var(--ods-size-border-radius-02)',
-      //   full: '100%',
-      // },
+      borderRadius: {
+        sm: 'var(--ods-size-border-radius-01)',
+        DEFAULT: 'var(--ods-size-border-radius-01)',
+        md: 'var(--ods-size-border-radius-02)',
+        lg: 'var(--ods-size-border-radius-02)',
+      },
       keyframes: {
         'accordion-down': {
           from: { height: 0 },
