@@ -6,10 +6,10 @@ export default /* @ngInject */ ($stateProvider) => {
       component: 'hostingDatabasePrivateSqlActivation',
       redirectTo: (transition) =>
         Promise.all([
-          transition.injector().getAsync('HostingDatabase'),
+          transition.injector().getAsync('PrivateSql'),
           transition.injector().getAsync('hosting'),
-        ]).then(([HostingDatabase, hosting]) =>
-          HostingDatabase.getHasPrivateSqlToActivate(
+        ]).then(([PrivateSql, hosting]) =>
+          PrivateSql.getHasPrivateSqlToActivate(
             hosting,
           ).then((hasPrivateSqlToActivate) =>
             hasPrivateSqlToActivate
@@ -18,21 +18,13 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
         ),
       resolve: {
-        catalog: /* @ngInject */ (HostingDatabase) =>
-          HostingDatabase.getWebhostingCatalog(),
         me: /* @ngInject */ (user) => user,
         hosting: /* @ngInject */ ($transition$) =>
           $transition$.params().productId,
-        privateSqlCatalog: /* @ngInject */ (HostingDatabase, me) =>
-          HostingDatabase.getPrivateSqlCatalogForHosting(me.ovhSubsidiary),
-        dbCategories: /* @ngInject */ (privateSqlCatalog, HostingDatabase) =>
-          HostingDatabase.buildPrivateSqlDbCategories(privateSqlCatalog),
-        datacenter: /* @ngInject */ (serviceName, getDatacenter) =>
-          getDatacenter(serviceName),
-        getDatacenter: /* @ngInject */ (Hosting) => async (serviceName) => {
-          const { datacenter } = await Hosting.getHosting(serviceName);
-          return datacenter;
-        },
+        privateSqlCatalog: /* @ngInject */ (PrivateSql, me) =>
+          PrivateSql.getPrivateSqlCatalogForHosting(me.ovhSubsidiary),
+        dbCategories: /* @ngInject */ (privateSqlCatalog, PrivateSql) =>
+          PrivateSql.buildPrivateSqlDbCategories(privateSqlCatalog),
         onError: /* @ngInject */ ($translate, goToHosting) => (error) =>
           goToHosting(
             $translate.instant('privatesql_activation_hosting_error', {

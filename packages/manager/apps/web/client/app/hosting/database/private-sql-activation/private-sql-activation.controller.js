@@ -8,7 +8,6 @@ import {
   DB_OFFERS,
   ENGINE_CONFIGURATION_KEY,
 } from '../order/public/hosting-database-order-public.constants';
-import { DATABASES_TRACKING } from '../../hosting.constants';
 import {
   PRESELECTED_DB_CATEGORY,
   WEBHOSTING_PRODUCT_NAME,
@@ -16,9 +15,8 @@ import {
 
 export default class PrivateSqlActivationController {
   /* @ngInject */
-  constructor($q, atInternet, $translate) {
+  constructor($q, $translate) {
     this.$q = $q;
-    this.atInternet = atInternet;
     this.$translate = $translate;
   }
 
@@ -39,7 +37,6 @@ export default class PrivateSqlActivationController {
       workflowType: workflowConstants.WORKFLOW_TYPES.ORDER,
     };
 
-    this.acceptContracts = false;
     this.model = {
       dbCategory: {},
     };
@@ -82,7 +79,8 @@ export default class PrivateSqlActivationController {
 
   isValidDbConfig() {
     const { selectEngine } = this.model.dbCategory;
-    return selectEngine?.selectEngineVersion;
+    const { selectEngineVersion } = selectEngine || {};
+    return !!selectEngineVersion;
   }
 
   getRightCatalogConfig() {
@@ -94,19 +92,8 @@ export default class PrivateSqlActivationController {
     };
   }
 
-  trackClick(hit) {
-    this.atInternet.trackClick({
-      name: hit,
-      type: 'action',
-    });
-  }
-
   onDbCategoryClick(dbCategory) {
-    this.model.dbCategory = { ...this.model.dbCategory, ...dbCategory };
-
-    this.trackClick(
-      `${DATABASES_TRACKING.STEP_1.SELECT_DB_CATEGORY}_${dbCategory.tracking}`,
-    );
+    this.model.dbCategory = dbCategory;
   }
 
   onDbCategoryEngineClick(db) {
@@ -114,12 +101,5 @@ export default class PrivateSqlActivationController {
       dbGroup: db.dbName,
       selectEngineVersion: db,
     };
-    this.trackClick(
-      `${DATABASES_TRACKING.STEP_2.SELECT_DB_ENGINE}_${db.dbName}`,
-    );
-  }
-
-  onGoToNextStepClick() {
-    this.trackClick(DATABASES_TRACKING.STEP_2.GO_TO_NEXT_STEP);
   }
 }

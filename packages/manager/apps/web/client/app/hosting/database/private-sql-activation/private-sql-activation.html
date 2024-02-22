@@ -13,8 +13,7 @@
     <oui-step-form
         data-header="{{:: 'privatesql_activation_step_1' | translate }}"
         data-valid="$ctrl.isValidDbConfig()"
-        data-editable="$ctrl.options.isEditable"
-        data-on-submit="$ctrl.onGoToNextStepClick()"
+        data-prevent-next="true"
     >
         <web-hosting-database-order-db-categories-offers
             data-user="$ctrl.me"
