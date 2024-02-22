@@ -4,6 +4,7 @@
   "nasha_dashboard_partition_accesses_subtitle": "Liste des accès",
   "nasha_dashboard_partition_accesses_create": "Ajouter un nouvel accès",
   "nasha_dashboard_partition_accesses_list_type": "Type",
+  "nasha_dashboard_partition_accesses_list_description": "Description",
   "nasha_dashboard_partition_accesses_ip_placeholder": "IP ou IP/Block de vos services",
   "nasha_dashboard_partition_accesses_hide_form": "Cacher le formulaire",
   "nasha_dashboard_partition_accesses_delete": "Supprimer l'accès"
