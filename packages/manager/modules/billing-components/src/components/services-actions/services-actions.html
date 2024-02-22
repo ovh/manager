@@ -111,8 +111,31 @@
     </div>
     <!-- /Exchange -->
 
+    <!-- Pack XDSL -->
     <div
-        data-ng-if="(!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt() && !$ctrl.service.hasPendingResiliation()"
+        data-ng-if="$ctrl.service.serviceType === $ctrl.SERVICE_TYPE.PACK_XDSL && ((!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt() && !$ctrl.service.hasPendingResiliation())"
+    >
+        <oui-action-menu-item
+            ng-if="$ctrl.resiliateLink && $ctrl.service.hasAdminRights($ctrl.user.auth.account)"
+            href="{{:: $ctrl.resiliateLink }}"
+            on-click="$ctrl.trackAction('go-to-resiliate')"
+            data-navi-id="go-to-resiliate"
+            top
+        >
+            <span
+                data-ng-if="!$ctrl.service.hasEngagement()"
+                data-translate="billing_services_actions_menu_resiliate"
+            ></span>
+            <span
+                data-ng-if="$ctrl.service.hasEngagement()"
+                data-translate="billing_services_actions_menu_resiliate_my_engagement"
+            ></span>
+        </oui-action-menu-item>
+    </div>
+    <!-- /Pack XDSL -->
+
+    <div
+        data-ng-if="$ctrl.service.serviceType !== $ctrl.SERVICE_TYPE.PACK_XDSL && (!$ctrl.service.shouldDeleteAtExpiration() || !$ctrl.service.isResiliated()) && !$ctrl.service.hasDebt() && !$ctrl.service.hasPendingResiliation()"
     >
         <oui-action-menu-item
             ng-if="$ctrl.resiliateLink && $ctrl.service.hasAdminRights($ctrl.user.auth.account)"
