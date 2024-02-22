@@ -13,6 +13,4 @@ const customRender = (
 ): RenderResult =>
   render(ui, { wrapper: Wrappers as ComponentType, ...options });
 
-export * from '@testing-library/react';
-
 export { customRender as render };

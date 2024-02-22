@@ -1,9 +1,8 @@
-/* eslint-disable no-return-await */
-import React from 'react';
+import { waitFor } from '@testing-library/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { Card, CardProps } from './card.component';
 import { defaultProps } from './card.stories';
-import { render, waitFor } from '../../utils/test.provider';
+import { render } from '../../../utils/test.provider';
 
 const setupSpecTest = async (customProps?: Partial<CardProps>) =>
   waitFor(() => render(<Card {...defaultProps} {...customProps} />));

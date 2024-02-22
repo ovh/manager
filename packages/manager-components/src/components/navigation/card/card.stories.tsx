@@ -12,12 +12,13 @@ export const defaultProps: CardProps = {
   href: 'https://ovh.com',
   img: {
     alt: 'offer',
-    src: 'https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png',
+    src:
+      'https://www.ovhcloud.com/sites/default/files/styles/offer_range_card/public/2021-06/1886_AI_Notebook1_Hero_600x400.png',
   },
 };
 
 const meta: Meta<typeof Card> = {
-  title: 'Atoms/Card',
+  title: 'Navigation/Card',
   decorators: [
     // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle
     (Story) => (
