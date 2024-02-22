@@ -71,7 +71,7 @@ export default function ServicesList({
       <>
         <div>
           <div className="flex justify-between w-100 mb-2 items-end">
-            <Button variant="outline" asChild>
+            <Button variant="outline" size="sm" className="text-base" asChild>
               <Link to="./new">
                 <Plus className="w-4 h-4 mr-2" />
                 {t('create-new-service')}
