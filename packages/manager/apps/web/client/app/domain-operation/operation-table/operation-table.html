@@ -86,35 +86,30 @@
             data-ng-bind="'domain_operations_statusOperation_' +  $row.status | translate"
         >
         </span>
-        <span
-            data-oui-tooltip="{{:: 'domain_operations_no_action' | translate }}"
-            data-oui-tooltip-enable="{{!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate}}"
-            data-oui-tooltip-placement="left"
-        >
-            <oui-action-menu
-                data-compact
-                data-disabled="!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate && $row.function !== 'DomainIncomingTransfer'"
-                data-placement="end"
-            >
-                <oui-action-menu-item
-                    data-on-click="setAction('domain-operation/update/domain-operation-update', $row)"
-                    data-disabled="!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate"
-                >
-                    <span
-                        data-translate="domain_operations_tab_popover_update"
-                    ></span>
-                </oui-action-menu-item>
-                <oui-action-menu-item
-                    data-ng-href="#/{{$ctrl.type}}/operation/progress/{{$row.id}}"
-                    data-ng-if="$row.function === 'DomainIncomingTransfer'"
-                >
-                    <span
-                        data-translate="domain_operations_tab_popover_progress"
-                    ></span>
-                </oui-action-menu-item>
-            </oui-action-menu>
-        </span>
     </oui-datagrid-column>
+    <oui-action-menu
+        data-compact
+        data-disabled="!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate && $row.function !== 'DomainIncomingTransfer'"
+        data-placement="end"
+        data-oui-tooltip="{{:: 'domain_operations_no_action' | translate }}"
+        data-oui-tooltip-enable="{{!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate}}"
+        data-oui-tooltip-placement="left"
+    >
+        <oui-action-menu-item
+            data-on-click="setAction('domain-operation/update/domain-operation-update', $row)"
+            data-disabled="!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate"
+        >
+            <span data-translate="domain_operations_tab_popover_update"></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item
+            data-ng-href="#/{{$ctrl.type}}/operation/progress/{{$row.id}}"
+            data-ng-if="$row.function === 'DomainIncomingTransfer'"
+        >
+            <span
+                data-translate="domain_operations_tab_popover_progress"
+            ></span>
+        </oui-action-menu-item>
+    </oui-action-menu>
 </oui-datagrid>
 <oui-datagrid
     data-ng-if="$ctrl.type==='dns'"
