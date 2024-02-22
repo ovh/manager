@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { User } from '@/interface';
 import { OPENRC_VERSION } from '@/download-openrc.constants';
+import { OpenStackTokenResponse, User } from '@/interface';
 
 export type PaginationOptions = {
   page: number;
@@ -75,6 +75,7 @@ export const filterUsers = (
 
   return data;
 };
+
 export const removeUser = async (projectId: string, userId: string) => {
   await v6.delete(`/cloud/project/${projectId}/user/${userId}`);
 };
@@ -106,6 +107,20 @@ export const downloadOpenStackConfig = async (
   const version = OPENRC_VERSION[`V${openApiVersion}`];
   const { data } = await v6.get(
     `/cloud/project/${projectId}/user/${userId}/openrc?region=${region}&version=${version}`,
+  );
+  return data;
+};
+
+export const generateOpenStackToken = async (
+  projectId: string,
+  userId: string,
+  password: string,
+): Promise<OpenStackTokenResponse> => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/user/${userId}/token`,
+    {
+      password,
+    },
   );
   return data;
 };
