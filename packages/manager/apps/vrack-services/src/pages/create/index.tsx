@@ -20,7 +20,6 @@ import {
   OrderDescription,
   getDeliveringOrderQueryKey,
 } from '@ovh-ux/manager-module-order';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   getvrackServicesReferenceRegionList,
   getvrackServicesReferenceRegionListQueryKey,
@@ -40,7 +39,6 @@ const CreationPage: React.FC = () => {
   const { t } = useTranslation('vrack-services/create');
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { trackPage } = useOvhTracking();
 
   const {
     isLoading: isRegionLoading,
@@ -51,10 +49,6 @@ const CreationPage: React.FC = () => {
     queryFn: getvrackServicesReferenceRegionList,
     staleTime: Infinity,
   });
-
-  React.useEffect(() => {
-    trackPage({ path: 'add' });
-  }, []);
 
   if (hasRegionError) {
     return <ErrorPage error={error} />;

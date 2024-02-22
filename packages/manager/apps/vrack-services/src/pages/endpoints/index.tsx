@@ -26,7 +26,7 @@ const Endpoints: React.FC = () => {
   const { data: vrackServices, isLoading } = useVrackService();
   const { id } = useParams();
   const navigate = useNavigate();
-  const { trackPage, trackClick } = useOvhTracking();
+  const { trackClick } = useOvhTracking();
 
   const navigateToCreateEndpointPage = async () => {
     trackClick({
@@ -36,10 +36,6 @@ const Endpoints: React.FC = () => {
     });
     navigate(urls.createEndpoint.replace(':id', id));
   };
-
-  React.useEffect(() => {
-    trackPage({ path: 'endpoints' });
-  }, []);
 
   if (isLoading) {
     return (

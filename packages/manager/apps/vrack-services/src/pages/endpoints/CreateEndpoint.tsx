@@ -26,9 +26,9 @@ import {
 import { useServiceList, useVrackService } from '@/utils/vs-utils';
 import { ErrorPage } from '@/components/Error';
 import { FormField } from '@/components/FormField';
-import { urls } from '@/router/constants';
+import { urls, pageTrackingLabels } from '@/router/constants';
 
-const dataTrackingPath = 'endpoints::add';
+const dataTrackingPath = pageTrackingLabels[urls.createEndpoint];
 
 const EndpointCreationPage: React.FC = () => {
   const { t } = useTranslation('vrack-services/endpoints');
@@ -98,7 +98,6 @@ const EndpointCreationPage: React.FC = () => {
   });
 
   React.useEffect(() => {
-    trackPage({ path: dataTrackingPath });
     queryClient.invalidateQueries({
       queryKey: updateVrackServicesQueryKey(getEndpointCreationMutationKey(id)),
     });

@@ -6,12 +6,15 @@ import {
   OsdsMessage,
   OsdsSpinner,
   OsdsModal,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
   ODS_MESSAGE_TYPE,
   ODS_SPINNER_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { useAllowedVrackList } from '@/api';
 import { AssociateVrack } from './AssociateVrack';
@@ -50,7 +53,13 @@ export const VrackAssociationModal: React.FC<VrackAssociationModalProps> = ({
     >
       {isError && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          {t('genericApiError', { error: error?.response?.data.message })}
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('genericApiError', { error: error?.response?.data.message })}
+          </OsdsText>
         </OsdsMessage>
       )}
       {isLoading && <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} />}

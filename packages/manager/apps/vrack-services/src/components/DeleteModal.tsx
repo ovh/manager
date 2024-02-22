@@ -17,6 +17,7 @@ import {
   ODS_INPUT_TYPE,
   OdsInputValueChangeEvent,
   ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -81,7 +82,13 @@ export const DeleteModal: React.FC<DeleteModalProps> = ({
     >
       {!!error && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          {t('genericApiError', { error: error.response?.data?.message })}
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('genericApiError', { error: error.response?.data?.message })}
+          </OsdsText>
         </OsdsMessage>
       )}
       <OsdsText

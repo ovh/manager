@@ -39,9 +39,9 @@ import {
 } from './constants';
 import { useVrackService } from '@/utils/vs-utils';
 import { FormField } from '@/components/FormField';
-import { urls } from '@/router/constants';
+import { urls, pageTrackingLabels } from '@/router/constants';
 
-const dataTrackingPath = 'subnets::add';
+const dataTrackingPath = pageTrackingLabels[urls.createSubnet];
 
 const SubnetCreationPage: React.FC = () => {
   const { t } = useTranslation('vrack-services/subnets');
@@ -103,7 +103,6 @@ const SubnetCreationPage: React.FC = () => {
   });
 
   React.useEffect(() => {
-    trackPage({ path: dataTrackingPath });
     queryClient.invalidateQueries({
       queryKey: updateVrackServicesQueryKey(getSubnetCreationMutationKey(id)),
     });

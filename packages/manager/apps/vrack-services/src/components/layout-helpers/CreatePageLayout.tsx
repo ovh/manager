@@ -136,7 +136,13 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
       )}
       {hasFormError && (
         <OsdsMessage className="mt-5" type={ODS_MESSAGE_TYPE.error}>
-          {formErrorMessage}
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {formErrorMessage}
+          </OsdsText>
         </OsdsMessage>
       )}
     </PageLayout>

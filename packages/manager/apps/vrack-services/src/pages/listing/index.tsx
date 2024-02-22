@@ -79,7 +79,13 @@ const ListingPage: React.FC = () => {
       </OsdsText>
       {reachedBetaLimit && (
         <OsdsMessage className="my-4" type={ODS_MESSAGE_TYPE.info}>
-          {t('betaVrackServicesLimitMessage')}
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('betaVrackServicesLimitMessage')}
+          </OsdsText>
         </OsdsMessage>
       )}
       <OsdsButton

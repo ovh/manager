@@ -81,7 +81,13 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
           ResourceStatus.ERROR,
         ].includes(vrackServices.data?.resourceStatus) && (
           <OsdsMessage type={ODS_MESSAGE_TYPE.info} className="mb-8">
-            {t('vrackServicesNotReadyInfoMessage')}
+            <OsdsText
+              level={ODS_TEXT_LEVEL.body}
+              size={ODS_TEXT_SIZE._400}
+              color={ODS_THEME_COLOR_INTENT.text}
+            >
+              {t('vrackServicesNotReadyInfoMessage')}
+            </OsdsText>
           </OsdsMessage>
         )}
         <CreationSuccessMessage

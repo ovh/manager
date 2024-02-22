@@ -77,7 +77,11 @@ export const ErrorPage: React.FC<ErrorBannerProps> = ({ error }) => {
           color={ODS_THEME_COLOR_INTENT.error}
           type={ODS_MESSAGE_TYPE.error}
         >
-          <div>
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
             {t('manager_error_page_default')} <br />
             {error?.response?.data?.message && (
               <strong>{error.response.data.message}</strong>
@@ -88,7 +92,7 @@ export const ErrorPage: React.FC<ErrorBannerProps> = ({ error }) => {
                 {error.response.headers['x-ovh-queryid']}
               </p>
             )}
-          </div>
+          </OsdsText>
         </OsdsMessage>
       </div>
 

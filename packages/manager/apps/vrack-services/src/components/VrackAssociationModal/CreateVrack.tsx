@@ -68,7 +68,13 @@ export const CreateVrack: React.FC<CreateVrackProps> = ({
       />
       {isVrackOrdersError && (
         <OsdsMessage type={ODS_MESSAGE_TYPE.error}>
-          {t('genericApiError', { error: vrackOrdersError })}
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('genericApiError', { error: vrackOrdersError })}
+          </OsdsText>
         </OsdsMessage>
       )}
       <OsdsButton

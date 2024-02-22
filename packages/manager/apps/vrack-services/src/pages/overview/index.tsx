@@ -37,7 +37,7 @@ export const OverviewTab: React.FC = () => {
     string | undefined
   >(undefined);
   const { environment } = React.useContext(ShellContext);
-  const { trackPage, trackClick } = useOvhTracking();
+  const { trackClick } = useOvhTracking();
   const urls = environment.getApplicationURLs();
   const { id } = useParams();
   const { data: vrackServices, error, isLoading } = useVrackService();
@@ -47,12 +47,6 @@ export const OverviewTab: React.FC = () => {
     hideError,
     isPending,
   } = useUpdateVrackServices({ key: id });
-
-  React.useEffect(() => {
-    if (!isLoading) {
-      trackPage({ path: 'dashboard' });
-    }
-  }, [isLoading]);
 
   if (error) {
     return <ErrorPage error={error} />;
@@ -66,7 +60,13 @@ export const OverviewTab: React.FC = () => {
           removable
           onOdsRemoveClick={hideError}
         >
-          {t('updateError')}
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('updateError')}
+          </OsdsText>
         </OsdsMessage>
       )}
       <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-6">

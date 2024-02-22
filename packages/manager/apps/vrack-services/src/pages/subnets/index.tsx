@@ -6,12 +6,15 @@ import {
   ODS_MESSAGE_TYPE,
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import {
   OsdsMessage,
   OsdsIcon,
   OsdsButton,
   OsdsSpinner,
+  OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -29,7 +32,7 @@ const Subnets: React.FC = () => {
   const { data: vrackServices, isLoading } = useVrackService();
   const { id } = useParams();
   const navigate = useNavigate();
-  const { trackPage, trackClick } = useOvhTracking();
+  const { trackClick } = useOvhTracking();
 
   const navigateToCreateSubnetPage = async () => {
     trackClick({
@@ -39,12 +42,6 @@ const Subnets: React.FC = () => {
     });
     navigate(urls.createSubnet.replace(':id', id));
   };
-
-  React.useEffect(() => {
-    if (!isLoading) {
-      trackPage({ path: 'subnets' });
-    }
-  }, [isLoading]);
 
   if (isLoading) {
     return (
@@ -78,7 +75,13 @@ const Subnets: React.FC = () => {
   return (
     <PageLayout noBreacrumb>
       <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.info}>
-        {t('betaSubnetLimitMessage')}
+        <OsdsText
+          level={ODS_TEXT_LEVEL.body}
+          size={ODS_TEXT_SIZE._400}
+          color={ODS_THEME_COLOR_INTENT.text}
+        >
+          {t('betaSubnetLimitMessage')}
+        </OsdsText>
       </OsdsMessage>
       <OsdsButton
         // Disabled because for the beta user can only have 1 subnet per vRack Services

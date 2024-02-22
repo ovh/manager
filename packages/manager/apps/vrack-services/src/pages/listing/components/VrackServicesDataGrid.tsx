@@ -1,8 +1,18 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { OsdsDatagrid, OsdsMessage } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_TYPE, OdsDatagridColumn } from '@ovhcloud/ods-components';
+import {
+  OsdsDatagrid,
+  OsdsMessage,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+  OdsDatagridColumn,
+} from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useNavigate } from 'react-router-dom';
 import {
   ovhLocaleToI18next,
@@ -102,7 +112,13 @@ export const VrackServicesDatagrid: React.FC = () => {
           removable
           onOdsRemoveClick={hideError}
         >
-          {t('updateError', { error: updateError?.response.data.message })}
+          <OsdsText
+            level={ODS_TEXT_LEVEL.body}
+            size={ODS_TEXT_SIZE._400}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {t('updateError', { error: updateError?.response.data.message })}
+          </OsdsText>
         </OsdsMessage>
       )}
       <OsdsDatagrid
