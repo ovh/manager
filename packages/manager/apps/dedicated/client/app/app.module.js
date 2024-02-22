@@ -60,6 +60,7 @@ import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
+import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
@@ -181,6 +182,7 @@ export default async (containerEl, shellClient) => {
         ngAtInternetUiRouterPlugin,
         ngOvhApiWrappers,
         ngOvhBrowserAlert,
+        ngOvhCloudUniverseComponents,
         ngOvhFeatureFlipping,
         ngOvhHttp,
         ngOvhProxyRequest,
