@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { redirect, useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useGetServices } from '@/hooks/api/services.api.hooks';
 import { database } from '@/models/database';
 import ServicesList from './_components/serviceListTable';
@@ -8,7 +8,6 @@ import LegalMentions from '../_components/legalMentions';
 
 const Services = () => {
   const { projectId, category } = useParams();
-  const navigate = useNavigate();
   const servicesQuery = useGetServices(projectId, { refetchInterval: 30_000 });
   const filteredServices = useMemo(() => {
     if (!servicesQuery.data) return [];
