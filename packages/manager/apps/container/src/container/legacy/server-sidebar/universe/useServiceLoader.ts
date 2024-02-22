@@ -26,6 +26,7 @@ export default function useServiceLoader(appId: string) {
           label: service.displayName,
           extraParams: service.extraParams,
           stateParams: service.stateParams || [],
+          searchParams: service.searchParams || [],
           href: navigation.getURL(appId, service.url || service.baseUrl || ''),
           parentName: service.parentName,
           serviceName: service.serviceName,
