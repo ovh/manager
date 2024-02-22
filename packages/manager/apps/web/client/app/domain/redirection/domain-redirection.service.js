@@ -7,10 +7,11 @@ angular.module('services').service(
      * @param {Object} Domain
      * @param {Object} OvhHttp
      */
-    constructor($stateParams, Domain, OvhHttp) {
+    constructor($stateParams, Domain, OvhHttp, $http) {
       this.productId = $stateParams.productId;
       this.OvhHttp = OvhHttp;
       this.Domain = Domain;
+      this.$http = $http;
     }
 
     /**
@@ -29,7 +30,7 @@ angular.module('services').service(
           rootPath: 'apiv6',
           data,
         },
-      ).then(() => this.Domain.refreshZoneState);
+      ).then(() => this.refreshZone(this.productId));
     }
 
     /**
@@ -45,7 +46,11 @@ angular.module('services').service(
           rootPath: 'apiv6',
           data,
         },
-      ).then(() => this.Domain.refreshZoneState);
+      ).then(() => this.refreshZone(this.productId));
+    }
+
+    refreshZone(zoneName) {
+      return this.$http.post(`/domain/zone/${zoneName}/refresh`);
     }
   },
 );
