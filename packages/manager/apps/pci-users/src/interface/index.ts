@@ -24,3 +24,19 @@ export type User = {
   status: string;
   roles: Role[];
 };
+
+export interface Endpoint {
+  region_id: string;
+  type: string;
+  url: string;
+}
+
+export interface OpenStackTokenResponse {
+  'X-Auth-Token': string;
+  token: {
+    catalog: {
+      type: string;
+      endpoints: Endpoint[];
+    }[];
+  };
+}
