@@ -13,8 +13,8 @@ module.exports = {
       ],
       testEnvironment: 'jest-environment-jsdom',
       transform: {
-        '^.+\\.(js|jsx|mjs|cjs|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
-        '^.+\\.scss$': 'jest-scss-transform',
+        '^.+\\.(js|jsx|mjs|cjs|ts|tsx|scss)$':
+          '<rootDir>/node_modules/babel-jest',
         '^.+\\.css$': '<rootDir>/jest/mocks/cssMock.js',
       },
       transformIgnorePatterns: [
