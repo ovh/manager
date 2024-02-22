@@ -1,289 +1,296 @@
 <div data-ui-view>
     <div data-ovh-alert="userUsers"></div>
 
-    <oui-message data-ng-if="!$ctrl.identityProvider" data-type="info">
-        <span
-            class="d-block"
-            data-translate="user_users_info"
-            data-translate-values="{customerCode: $ctrl.me.customerCode}"
-        >
-        </span>
-        <span
-            data-ng-if="$ctrl.users.length !== 0 && !$ctrl.usersLoading"
-            data-translate="user_users_info_example"
-            data-translate-values="{customerCode: $ctrl.me.customerCode, login: $ctrl.users[0].login}"
-        >
-        </span>
-    </oui-message>
-
-    <oui-message
-        data-ng-if="$ctrl.identityProvider != null"
-        data-type="info"
-        class="mb-4"
+    <div
+        data-ng-if="$ctrl.identityProvider == null || !$ctrl.identityProvider.disableUsers"
     >
-        <span
-            class="d-block"
-            data-translate="user_users_sso_info"
-            data-translate-values="{nichandle: $ctrl.me.nichandle}"
-        >
-        </span>
-    </oui-message>
+        <h4
+            class="mb-4 border-bottom ng-scope"
+            data-translate="user_users_users_section_title"
+        ></h4>
 
-    <!-- USER ADD BTN -->
-    <button
-        id="btnAddUser"
-        type="button"
-        class="btn btn-primary my-4"
-        data-ng-click="setAction('users/add/user-users-add', user)"
-        data-ng-disabled="$ctrl.usersLoading"
-        data-ng-class="{'disabled': $ctrl.usersLoading}"
-        data-ng-if="$ctrl.identityProvider == null"
-    >
-        <span data-translate="user_users_add_user"></span>
-    </button>
-
-    <!-- CONNECT SSO BTN -->
-    <button
-        id="btnSso"
-        type="button"
-        class="btn btn-primary float-right my-4"
-        data-ng-click="setAction('users/sso/add/user-users-sso-add', user)"
-        data-ng-disabled="$ctrl.usersLoading"
-        data-ng-class="{'disabled': $ctrl.usersLoading}"
-        data-ng-if="$ctrl.identityProvider == null"
-    >
-        <span data-translate="user_users_sso_add"></span>
-    </button>
-
-    <h4
-        class="mb-4 border-bottom ng-scope"
-        data-translate="user_users_sso_section_title"
-        data-ng-if="$ctrl.identityProvider != null"
-    ></h4>
-
-    <!-- USERS LIST -->
-    <div data-ng-if="$ctrl.identityProvider == null" class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th data-translate="user_users_login" scope="col"></th>
-                    <th data-translate="user_users_group" scope="col"></th>
-                    <th
-                        data-translate="user_users_creation_date"
-                        scope="col"
-                    ></th>
-                    <th
-                        data-translate="user_users_last_password_update_date"
-                        scope="col"
-                    ></th>
-                    <th
-                        data-translate="user_users_status"
-                        colspan="2"
-                        scope="col"
-                    ></th>
-                </tr>
-            </thead>
-            <tbody data-ng-show="$ctrl.usersLoading">
-                <tr>
-                    <td colspan="6" class="text-center">
-                        <oui-spinner data-size="s"></oui-spinner>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody
-                data-ng-show="$ctrl.users.length === 0 && !$ctrl.usersLoading"
+        <oui-message data-type="info">
+            <span
+                class="d-block"
+                data-translate="user_users_info"
+                data-translate-values="{customerCode: $ctrl.me.customerCode}"
             >
-                <tr>
-                    <td
-                        colspan="6"
-                        class="text-center font-italic"
-                        data-translate="user_users_table_empty"
-                    ></td>
-                </tr>
-            </tbody>
-            <tbody data-ng-show="$ctrl.users.length > 0 && !$ctrl.usersLoading">
-                <tr data-ng-repeat="user in $ctrl.users track by $index">
-                    <td>
-                        <strong class="d-block" data-ng-bind="user.login">
-                        </strong>
-                        <span
-                            class="text-muted"
-                            data-ng-bind="user.description"
-                        >
-                        </span>
-                    </td>
-                    <td data-ng-bind="user.group"></td>
-                    <td data-ng-bind="user.creation | date"></td>
-                    <td data-ng-bind="user.passwordLastUpdate | date"></td>
-                    <td>
-                        <span
-                            class="label"
-                            data-ng-class="{
-                                         'label-success': user.status === 'OK',
-                                         'label-danger': user.status === 'DISABLED'
-                                         }"
-                            data-ng-bind="'user_users_status_' + user.status | translate"
-                        >
-                        </span>
-                    </td>
+            </span>
+            <span
+                data-ng-if="$ctrl.users.length !== 0 && !$ctrl.usersLoading"
+                data-translate="user_users_info_example"
+                data-translate-values="{customerCode: $ctrl.me.customerCode, login: $ctrl.users[0].login}"
+            >
+            </span>
+        </oui-message>
 
-                    <td class="text-right">
-                        <div data-uib-dropdown data-dropdown-append-to-body>
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                data-uib-dropdown-toggle
+        <!-- USER ADD BTN -->
+        <button
+            id="btnAddUser"
+            type="button"
+            class="btn btn-primary my-4"
+            data-ng-click="setAction('users/add/user-users-add', user)"
+            data-ng-disabled="$ctrl.usersLoading"
+            data-ng-class="{'disabled': $ctrl.usersLoading}"
+        >
+            <span data-translate="user_users_add_user"></span>
+        </button>
+
+        <!-- CONNECT SSO BTN -->
+        <button
+            id="btnSso"
+            type="button"
+            class="btn btn-primary float-right my-4"
+            data-ng-click="setAction('users/sso/add/user-users-sso-add', user)"
+            data-ng-disabled="$ctrl.usersLoading"
+            data-ng-class="{'disabled': $ctrl.usersLoading}"
+            data-ng-if="$ctrl.identityProvider == null"
+        >
+            <span data-translate="user_users_sso_add"></span>
+        </button>
+
+        <!-- USERS LIST -->
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th data-translate="user_users_login" scope="col"></th>
+                        <th data-translate="user_users_group" scope="col"></th>
+                        <th
+                            data-translate="user_users_creation_date"
+                            scope="col"
+                        ></th>
+                        <th
+                            data-translate="user_users_last_password_update_date"
+                            scope="col"
+                        ></th>
+                        <th
+                            data-translate="user_users_status"
+                            colspan="2"
+                            scope="col"
+                        ></th>
+                    </tr>
+                </thead>
+                <tbody data-ng-show="$ctrl.usersLoading">
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            <oui-spinner data-size="s"></oui-spinner>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-show="$ctrl.users.length === 0 && !$ctrl.usersLoading"
+                >
+                    <tr>
+                        <td
+                            colspan="6"
+                            class="text-center font-italic"
+                            data-translate="user_users_table_empty"
+                        ></td>
+                    </tr>
+                </tbody>
+                <tbody
+                    data-ng-show="$ctrl.users.length > 0 && !$ctrl.usersLoading"
+                >
+                    <tr data-ng-repeat="user in $ctrl.users track by $index">
+                        <td>
+                            <strong class="d-block" data-ng-bind="user.login">
+                            </strong>
+                            <span
+                                class="text-muted"
+                                data-ng-bind="user.description"
                             >
-                                <span
-                                    class="ovh-font ovh-font-dots align-top"
-                                    aria-hidden="true"
+                            </span>
+                        </td>
+                        <td data-ng-bind="user.group"></td>
+                        <td data-ng-bind="user.creation | date"></td>
+                        <td data-ng-bind="user.passwordLastUpdate | date"></td>
+                        <td>
+                            <span
+                                class="label"
+                                data-ng-class="{
+                                            'label-success': user.status === 'OK',
+                                            'label-danger': user.status === 'DISABLED'
+                                            }"
+                                data-ng-bind="'user_users_status_' + user.status | translate"
+                            >
+                            </span>
+                        </td>
+
+                        <td class="text-right">
+                            <div data-uib-dropdown data-dropdown-append-to-body>
+                                <button
+                                    type="button"
+                                    class="btn btn-link"
+                                    data-uib-dropdown-toggle
                                 >
-                                </span>
-                            </button>
-                            <ul
-                                data-uib-dropdown-menu
-                                class="dropdown-menu dropdown-menu-right"
-                            >
-                                <li>
-                                    <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        data-ng-click="setAction('users/update/user-users-update', user)"
-                                        data-translate="user_users_update"
-                                    ></button>
-                                </li>
-                                <li>
-                                    <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        data-ng-click="setAction('users/delete/user-users-delete', user)"
-                                        data-translate="user_users_delete"
-                                    ></button>
-                                </li>
-                                <li data-ng-if="user.status === 'DISABLED'">
-                                    <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        data-ng-click="setAction('users/enable/user-users-enable', user)"
-                                        data-translate="user_users_enable"
-                                    ></button>
-                                </li>
-                                <li data-ng-if="user.status === 'OK'">
-                                    <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        data-ng-click="setAction('users/disable/user-users-disable', user)"
-                                        data-translate="user_users_disable"
-                                    ></button>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                                    <span
+                                        class="ovh-font ovh-font-dots align-top"
+                                        aria-hidden="true"
+                                    >
+                                    </span>
+                                </button>
+                                <ul
+                                    data-uib-dropdown-menu
+                                    class="dropdown-menu dropdown-menu-right"
+                                >
+                                    <li>
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ng-click="setAction('users/update/user-users-update', user)"
+                                            data-translate="user_users_update"
+                                        ></button>
+                                    </li>
+                                    <li>
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ng-click="setAction('users/delete/user-users-delete', user)"
+                                            data-translate="user_users_delete"
+                                        ></button>
+                                    </li>
+                                    <li data-ng-if="user.status === 'DISABLED'">
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ng-click="setAction('users/enable/user-users-enable', user)"
+                                            data-translate="user_users_enable"
+                                        ></button>
+                                    </li>
+                                    <li data-ng-if="user.status === 'OK'">
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ng-click="setAction('users/disable/user-users-disable', user)"
+                                            data-translate="user_users_disable"
+                                        ></button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- USERS PAGINATION -->
+        <div
+            data-pagination-front
+            data-items="$ctrl.userIds"
+            data-paginated-items="$ctrl.users"
+            data-current-page="currentPage"
+            data-items-per-page="itemsPerPage"
+            data-nb-pages="nbPages"
+            data-transform-item="$ctrl.onTransformItem(item)"
+            data-on-transform-item-done="$ctrl.onTransformItemDone(items)"
+            data-page-placeholder="{{  'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
+            data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
+        ></div>
     </div>
 
-    <!-- USERS PAGINATION -->
-    <div
-        data-ng-if="$ctrl.identityProvider == null"
-        data-pagination-front
-        data-items="$ctrl.userIds"
-        data-paginated-items="$ctrl.users"
-        data-current-page="currentPage"
-        data-items-per-page="itemsPerPage"
-        data-nb-pages="nbPages"
-        data-transform-item="$ctrl.onTransformItem(item)"
-        data-on-transform-item-done="$ctrl.onTransformItemDone(items)"
-        data-page-placeholder="{{  'pagination_page' | translate:{ t0: currentPage, t1: nbPages } }}"
-        data-item-per-page-placeholder="{{ 'pagination_display' | translate }}"
-    ></div>
+    <!-- SSO configuration part -->
+    <div data-ng-if="$ctrl.identityProvider != null">
+        <h4
+            class="mb-4 border-bottom ng-scope"
+            data-translate="user_users_sso_section_title"
+        ></h4>
 
-    <!-- SSO IDENTITY PROVIDER -->
-    <div data-ng-show="$ctrl.identityProvider != null" class="table-responsive">
-        <table
-            class="table table-hover"
-            aria-label="{{:: 'user_users_sso_table_description' | translate }}"
-        >
-            <thead>
-                <tr>
-                    <th
-                        data-translate="user_users_sso_service_url"
-                        scope="col"
-                    ></th>
-                    <th
-                        data-translate="user_users_sso_creation_date"
-                        scope="col"
-                    ></th>
-                    <th
-                        data-translate="user_users_sso_last_update_date"
-                        colspan="2"
-                        scope="col"
-                    ></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <a
-                            data-ng-bind="$ctrl.identityProvider.ssoServiceUrl"
-                            data-ng-href="{{ '#/useraccount/users/sso' }}"
-                        >
-                        </a>
-                    </td>
-                    <td
-                        data-ng-bind="$ctrl.identityProvider.creation | date"
-                    ></td>
-                    <td
-                        data-ng-bind="$ctrl.identityProvider.lastUpdate | date"
-                    ></td>
+        <oui-message data-type="info" class="mb-4">
+            <span
+                class="d-block"
+                data-translate="user_users_sso_info"
+                data-translate-values="{nichandle: $ctrl.me.customerCode}"
+            >
+            </span>
+        </oui-message>
 
-                    <td class="text-right">
-                        <div data-uib-dropdown data-dropdown-append-to-body>
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                data-uib-dropdown-toggle
+        <!-- SSO IDENTITY PROVIDER -->
+        <div class="table-responsive">
+            <table
+                class="table table-hover"
+                aria-label="{{:: 'user_users_sso_table_description' | translate }}"
+            >
+                <thead>
+                    <tr>
+                        <th
+                            data-translate="user_users_sso_service_url"
+                            scope="col"
+                        ></th>
+                        <th
+                            data-translate="user_users_sso_creation_date"
+                            scope="col"
+                        ></th>
+                        <th
+                            data-translate="user_users_sso_last_update_date"
+                            colspan="2"
+                            scope="col"
+                        ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a
+                                data-ng-bind="$ctrl.identityProvider.ssoServiceUrl"
+                                data-ng-href="{{ '#/useraccount/users/sso' }}"
                             >
-                                <span
-                                    class="ovh-font ovh-font-dots align-top"
-                                    aria-hidden="true"
+                            </a>
+                        </td>
+                        <td
+                            data-ng-bind="$ctrl.identityProvider.creation | date"
+                        ></td>
+                        <td
+                            data-ng-bind="$ctrl.identityProvider.lastUpdate | date"
+                        ></td>
+
+                        <td class="text-right">
+                            <div data-uib-dropdown data-dropdown-append-to-body>
+                                <button
+                                    type="button"
+                                    class="btn btn-link"
+                                    data-uib-dropdown-toggle
                                 >
-                                </span>
-                            </button>
-                            <ul
-                                data-uib-dropdown-menu
-                                class="dropdown-menu dropdown-menu-right"
-                            >
-                                <li>
-                                    <a
-                                        data-translate="user_users_sso_details"
-                                        data-ng-href="{{ '#/useraccount/users/sso' }}"
+                                    <span
+                                        class="ovh-font ovh-font-dots align-top"
+                                        aria-hidden="true"
                                     >
-                                    </a>
-                                </li>
-                                <li>
-                                    <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        data-ng-click="setAction('users/sso/update/user-users-sso-update', user)"
-                                        data-translate="user_users_sso_update"
-                                    ></button>
-                                </li>
-                                <li>
-                                    <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        data-ng-click="setAction('users/sso/delete/user-users-sso-delete', user)"
-                                        data-translate="user_users_sso_delete"
-                                    ></button>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                                    </span>
+                                </button>
+                                <ul
+                                    data-uib-dropdown-menu
+                                    class="dropdown-menu dropdown-menu-right"
+                                >
+                                    <li>
+                                        <a
+                                            data-translate="user_users_sso_details"
+                                            data-ng-href="{{ '#/useraccount/users/sso' }}"
+                                        >
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ng-click="setAction('users/sso/update/user-users-sso-update', user)"
+                                            data-translate="user_users_sso_update"
+                                        ></button>
+                                    </li>
+                                    <li>
+                                        <button
+                                            type="button"
+                                            class="btn btn-link"
+                                            data-ng-click="setAction('users/sso/delete/user-users-sso-delete', user)"
+                                            data-translate="user_users_sso_delete"
+                                        ></button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <h4
@@ -291,7 +298,7 @@
         data-translate="user_users_groups_section_title"
     ></h4>
 
-    <!-- GROUPS ADD BTN -->
+    <!-- GROUPS add BTN -->
     <button
         type="button"
         class="btn btn-primary mb-4"
