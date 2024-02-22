@@ -1,0 +1,39 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-action="$ctrl.linkVrack()"
+    data-primary-disabled="$ctrl.disableVrackField || !$ctrl.selectedVrack"
+    data-secondary-action="$ctrl.goBack()"
+    data-type="info"
+    data-primary-label="{{:: 'netapp_vrack_configuration_associate_button' | translate }}"
+    data-secondary-label="{{:: 'netapp_vrack_configuration_cancel_button' | translate }}"
+    data-heading="{{:: 'netapp_vrack_configuration_title' | translate }}"
+>
+    <oui-field label="{{:: $ctrl.LABELS.VRACK }}">
+        <oui-select
+            data-items="$ctrl.availableVracks"
+            data-match="internalName"
+            data-model="$ctrl.selectedVrack"
+            data-searchable="true"
+            data-placeholder="{{:: 'netapp_vrack_configuration_vrack_field_placeholder' | translate }}"
+            data-disabled="$ctrl.disableVrackField"
+            name="vrack"
+        >
+            <span data-ng-bind="$item.internalName"></span>
+        </oui-select>
+        <div class="mt-2">
+            <small class="d-flex flex-row align-items-center">
+                <span
+                    data-translate="netapp_vrack_configuration_create_vrack_text"
+                ></span>
+                <button
+                    class="oui-button oui-button_secondary ml-2"
+                    data-ng-click="$ctrl.goToVrackOrder($event)"
+                >
+                    <span
+                        data-translate="netapp_vrack_configuration_create_button"
+                    ></span>
+                </button>
+            </small>
+        </div>
+    </oui-field>
+</oui-modal>
