@@ -8,7 +8,7 @@ angular
   .module(moduleName, [])
   .component('hostingDatabasePrivateSqlActivation', privateSqlActivation)
   .config(privateSqlActivationRouting)
-  .service('PrivateSql', service)
+  .service('HostingDatabasePrivateSql', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
