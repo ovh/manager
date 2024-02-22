@@ -1,6 +1,11 @@
 import { order } from './catalog';
 import { database } from './database';
 
+export interface EngineWithVersion {
+  engine: string;
+  version: string;
+}
+
 export interface Engine {
   name: string;
   description: string;
@@ -9,6 +14,7 @@ export interface Engine {
   tags: string[];
   default: boolean;
   defaultVersion: string;
+  storageMode: database.capabilities.engine.storage.StrategyEnum;
   versions: Version[];
 }
 
