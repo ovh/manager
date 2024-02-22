@@ -1,3 +1,5 @@
+import { Pricing } from '@ovh-ux/manager-models';
+
 export default class PciInstanceController {
   /* @ngInject */
   constructor(
@@ -30,15 +32,16 @@ export default class PciInstanceController {
   }
 
   formatPrice() {
-    const priceFormater = new Intl.NumberFormat(
-      this.coreConfig.getUserLocale().replace('_', '-'),
+    const { getUser, getUserLocale } = this.coreConfig;
+    return new Pricing(
       {
-        style: 'currency',
-        currency: this.coreConfig.getUser().currency.code,
-        maximumFractionDigits: 2, // default is 2. But this rounds off the price
+        price: {
+          value: this.instancePrice?.price.value,
+          currencyCode: getUser().currency.code,
+        },
       },
-    );
-    return priceFormater.format(this.instancePrice?.price.value);
+      getUserLocale(),
+    ).getPriceAsText();
   }
 
   loadMessages() {
