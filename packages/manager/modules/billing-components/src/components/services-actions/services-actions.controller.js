@@ -99,6 +99,13 @@ export default class ServicesActionsCtrl {
           { serviceName: this.service.serviceId },
         );
         break;
+      case SERVICE_TYPE.PACK_XDSL:
+        this.resiliateLink = this.coreURLBuilder.buildURL(
+          'telecom',
+          '#/pack/:serviceName',
+          { serviceName: this.service.serviceId },
+        );
+        break;
       case SERVICE_TYPE.ALL_DOM:
         this.resiliateLink = this.service.canResiliateByEndRule()
           ? resiliationByEndRuleLink
