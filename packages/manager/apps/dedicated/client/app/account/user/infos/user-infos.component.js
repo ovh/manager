@@ -4,6 +4,7 @@ import template from './user-infos.html';
 export default {
   bindings: {
     fieldToFocus: '<',
+    kycStatus: '<',
   },
   template,
   controller,

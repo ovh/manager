@@ -9,6 +9,7 @@ export default {
     onSubmit: '&', // on create callback
     userAccountServiceInfos: '<',
     fieldToFocus: '<',
+    kycStatus: '<',
   },
   template,
   controller,
