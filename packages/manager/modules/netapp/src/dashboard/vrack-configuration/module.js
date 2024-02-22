@@ -8,7 +8,7 @@ import component from './component';
 import routing from './routing';
 import service from './service';
 
-const moduleName = 'ovhManagerNetAppVrackConfigurationModule';
+const moduleName = 'ovhManagerNetappVrackConfigurationModule';
 
 angular
   .module(moduleName, [
@@ -18,7 +18,7 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('ovhManagerNetAppVrackConfiguration', component)
+  .component('ovhManagerNetappVrackConfiguration', component)
   .service('NetappVrackConfigurationService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 

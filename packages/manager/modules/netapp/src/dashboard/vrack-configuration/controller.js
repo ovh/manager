@@ -1,6 +1,6 @@
 import { LABELS } from './constants';
 
-export default class OvhManagerNetAppVrackConfigurationCtrl {
+export default class OvhManagerNetappVrackConfigurationCtrl {
   /* @ngInject */
   constructor($translate, Alerter, NetappVrackConfigurationService) {
     this.$translate = $translate;

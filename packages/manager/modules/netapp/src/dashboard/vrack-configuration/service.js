@@ -10,15 +10,12 @@ export default class NetAppVrackConfigurationService {
   }
 
   filterAllowedVrack(vracks, vrackServicesId) {
-    const allowedServicesPromises = [];
-    vracks.forEach((vrack) => {
-      allowedServicesPromises.push(
-        this.getAllowedVrackServices(vrack.internalName).then((data) => ({
-          ...data,
-          vrack,
-        })),
-      );
-    });
+    const allowedServicesPromises = vracks.map((vrack) =>
+      this.getAllowedVrackServices(vrack.internalName).then((data) => ({
+        ...data,
+        vrack,
+      })),
+    );
 
     return this.$q
       .all(allowedServicesPromises)

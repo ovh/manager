@@ -73,12 +73,10 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
 
   onVrackServiceSelected(vrackService) {
     this.selectedSubnet = null;
-    this.subnets = angular
-      .copy(vrackService.currentState.subnets || [])
-      .map((subnet) => ({
-        ...subnet,
-        displayName: subnet.displayName ?? subnet.cidr,
-      }));
+    this.subnets = (vrackService.currentState.subnets || []).map((subnet) => ({
+      ...subnet,
+      displayName: subnet.displayName ?? subnet.cidr,
+    }));
 
     if (!this.subnets.length) {
       const noSubnet = {

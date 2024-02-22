@@ -5,7 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '/vrack-configuration',
     views: {
       modal: {
-        component: 'ovhManagerNetAppVrackConfiguration',
+        component: 'ovhManagerNetappVrackConfiguration',
       },
     },
     layout: 'modal',
