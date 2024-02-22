@@ -39,6 +39,13 @@ export default [
             ...lazyRouteConfig(() => import('@/pages/RcloneDownloadPage')),
             children: [],
           },
+          {
+            path: 'token/generate',
+            ...lazyRouteConfig(() =>
+              import('@/pages/GenerateOpenStackTokenPage'),
+            ),
+            children: [],
+          },
         ],
       },
     ],

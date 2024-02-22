@@ -5,6 +5,7 @@ import {
   downloadOpenStackConfig,
   downloadRCloneConfig,
   filterUsers,
+  generateOpenStackToken,
   getAllUsers,
   getUser,
   paginateResults,
@@ -17,6 +18,7 @@ import {
   RCLONE_SERVICE_TYPE,
 } from '@/download-rclone.constants';
 import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from '@/download-openrc.constants';
+import { OpenStackTokenResponse } from '@/interface';
 
 type RemoveUserProps = {
   projectId: string;
@@ -174,5 +176,34 @@ export const useDownloadOpenStackConfig = ({
   return {
     isLoading,
     download,
+  };
+};
+
+interface GenerateOpenStackTokenProps {
+  projectId: string;
+  userId: string;
+  password: string;
+  onError: (cause: Error) => void;
+  onSuccess: (token: OpenStackTokenResponse) => void;
+}
+
+export const useGenerateOpenStackToken = ({
+  projectId,
+  userId,
+  password,
+  onError,
+  onSuccess,
+}: GenerateOpenStackTokenProps) => {
+  const mutation = useMutation({
+    mutationFn: () => generateOpenStackToken(projectId, userId, password),
+    onError,
+    onSuccess,
+  });
+
+  return {
+    generate: () => {
+      return mutation.mutate();
+    },
+    ...mutation,
   };
 };
