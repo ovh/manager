@@ -3,6 +3,11 @@
         data-heading="{{ :: 'dedicated_servers_title' | translate }}"
     ></oui-header>
 
+    <!-- RBX1 EOL Banner-->
+    <ovh-manager-rbx-eol-banner
+        data-ng-if="$ctrl.displayRbx1EolBanner.rbx1Eol"
+    ></ovh-manager-rbx-eol-banner>
+
     <ovh-manager-auto-renew-2016-deployment-banner
         data-show="$ctrl.isAutorenew2016DeploymentBannerAvailable"
     ></ovh-manager-auto-renew-2016-deployment-banner>
