@@ -167,7 +167,7 @@ export default class PciProjectInstanceService {
             })
             .$promise.catch(() => []),
           privateNetworks: isLocalZone
-            ? this.getLocalZonePrivateNetworks(projectId)
+            ? this.getAllAvailablePrivateNetworks(projectId)
             : this.getPrivateNetworks(projectId),
           ipReverse: this.getReverseIp(instance),
         });
@@ -472,7 +472,7 @@ export default class PciProjectInstanceService {
   }
 
   getCompatiblesLocalPrivateNetworks(projectId, instance, customerRegions) {
-    return this.getLocalZonePrivateNetworks(projectId, instance.region).then(
+    return this.getAllAvailablePrivateNetworks(projectId, instance.region).then(
       (networks) => {
         const localZones = this.getLocalZones(customerRegions);
         return networks.filter(
@@ -480,13 +480,17 @@ export default class PciProjectInstanceService {
             !instance.privateNetworks
               .map(({ id }) => id)
               .includes(network.id) &&
-            localZones.some((region) => region.name === network.region),
+            localZones.some(
+              (region) =>
+                region.name === network.region &&
+                region.name === instance.region,
+            ),
         );
       },
     );
   }
 
-  getLocalZonePrivateNetworks(serviceName) {
+  getAllAvailablePrivateNetworks(serviceName) {
     return this.$http
       .get(`/cloud/project/${serviceName}/aggregated/network`)
       .then(({ data }) => {
