@@ -45,6 +45,7 @@
   "pci_projects_project_users_delete_content": "Eliminar o utilizador {{ user }} de forma definitiva",
   "pci_projects_project_users_delete_success_message": "O utilizador {{ user }} foi eliminado.",
   "pci_projects_project_users_delete_error_delete": "Ocorreu um erro ao eliminar o utilizador {{ user }}: {{ message }}.",
+
   "pci_projects_project_users_download-rclone_title": "Transferir um ficheiro de configuração rclone",
   "pci_projects_project_users_download-rclone_submit_label": "Transferir",
   "pci_projects_project_users_download-rclone_cancel_label": "Anular",
@@ -57,6 +58,7 @@
   "pci_projects_project_users_download-rclone_error_rclone": "Ocorreu um erro ao descarregar o ficheiro de configuração rclone: {{ message }}.",
   "pci_projects_project_users_download-rclone_region_label_global": "Selecione a região na qual se aplicará este ficheiro (apenas aparecem as regiões que oferecem os serviços Object Storage e Cloud Archive):",
   "pci_projects_project_users_download-rclone_file_type_label": "Tipo de ficheiro",
+
   "pci_projects_project_users_download-openrc_title": "Descarregar o ficheiro de configuração OpenStack",
   "pci_projects_project_users_download-openrc_submit_label": "Transferir",
   "pci_projects_project_users_download-openrc_cancel_label": "Anular",
@@ -67,5 +69,20 @@
   "pci_projects_project_users_download-openrc_success_message": "O descarregamento do ficheiro de configuração OpenStack começou, caso não seja o caso",
   "pci_projects_project_users_download-openrc_success_message_link": "clique aqui",
   "pci_projects_project_users_download-openrc_error_openrc": "Ocorreu um erro ao descarregar o ficheiro de configuração OpenStack: {{ message }}.",
-  "pci_projects_project_users_download-openrc_info_global": "Alguns serviços como o Object Storage e Cloud Archive estão localizados em regiões denominadas “globais” (como GRA, por exemplo). A maioria dos outros serviços estão localizados em regiões específicas (como GRA5, por exemplo)."
+  "pci_projects_project_users_download-openrc_info_global": "Alguns serviços como o Object Storage e Cloud Archive estão localizados em regiões denominadas “globais” (como GRA, por exemplo). A maioria dos outros serviços estão localizados em regiões específicas (como GRA5, por exemplo).",
+
+  "pci_projects_project_users_openstack-token_title": "Gerar um token OpenStack",
+  "pci_projects_project_users_openstack-token_submit_label": "Gerar",
+  "pci_projects_project_users_openstack-token_close_label": "Encerrar",
+  "pci_projects_project_users_openstack-token_cancel_label": "Anular",
+  "pci_projects_project_users_openstack-token_content": "Para poder gerar um token OpenStack, introduza a palavra-passe do utilizador {{ user }}.",
+  "pci_projects_project_users_openstack-token_password_label": "Palavra-passe",
+  "pci_projects_project_users_openstack-token_token_label": "O token OpenStack que permite identificar os seus pedidos HTTP (X-Auth-Token) é:",
+  "pci_projects_project_users_openstack-token_token_guide_content": "Encontre um exemplo de utilização",
+  "pci_projects_project_users_openstack-token_token_guide_link": "neste manual",
+  "pci_projects_project_users_openstack-token_token_alert_message": "Anote estes identificadores. Deixarão de estar acessíveis na próxima atualização.",
+  "pci_projects_project_users_openstack-token_token_catalog_region_label": "Região",
+  "pci_projects_project_users_openstack-token_token_catalog_type_label": "Serviço",
+  "pci_projects_project_users_openstack-token_token_catalog_endpoint_label": "Endpoint",
+  "pci_projects_project_users_openstack-token_error_save": "Ocorreu um erro ao gerar o token OpenStack para o utilizador {{ user }}: {{ message }}."
 }
