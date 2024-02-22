@@ -1,8 +1,6 @@
-/* eslint-disable no-return-await */
-/* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
-import { render, waitFor } from '../../utils/test.provider';
 import '@testing-library/jest-dom';
+import { waitFor } from '@testing-library/react';
+import { render } from '../../../utils/test.provider';
 import {
   OnboardingLayout,
   OnboardingLayoutProps,
@@ -10,7 +8,7 @@ import {
 import { defaultProps } from './onboarding.stories';
 
 const setupSpecTest = async (customProps?: Partial<OnboardingLayoutProps>) =>
-  await waitFor(() =>
+  waitFor(() =>
     render(<OnboardingLayout {...defaultProps} {...customProps} />),
   );
 
