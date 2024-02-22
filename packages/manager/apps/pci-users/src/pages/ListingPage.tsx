@@ -38,7 +38,7 @@ import Notifications from '@/components/Notifications';
 import Roles from '@/components/users/listing/Roles';
 import CreationDate from '@/components/users/listing/CreationDate';
 import Status from '@/components/users/listing/Status';
-import Actions from '@/components/users/listing/Actions.tsx';
+import Actions from '@/components/users/listing/Actions';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -75,7 +75,7 @@ export default function ListingPage() {
     {
       id: 'roles',
       cell: (props: User) => {
-        return <Roles roles={props.roles} />;
+        return <Roles roles={props.roles || []} />;
       },
       label: t('pci_projects_project_users_role_label'),
     },

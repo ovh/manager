@@ -111,6 +111,16 @@ export const downloadOpenStackConfig = async (
   return data;
 };
 
+export const regeneratePassword = async (
+  projectId: string,
+  userId: string,
+): Promise<User> => {
+  const { data } = await v6.post(
+    `/cloud/project/${projectId}/user/${userId}/regeneratePassword`,
+  );
+  return data;
+};
+
 export const generateOpenStackToken = async (
   projectId: string,
   userId: string,
