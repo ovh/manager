@@ -25,7 +25,7 @@ const getOdsMessageColor = (type: NotificationType) => {
 export function OdsNotification({ notification }: OdsNotificationProps) {
   return (
     <OsdsMessage
-      className={style.linkContainer}
+      className={`${style.linkContainer} mb-4`}
       type={getOdsMessageColor(notification.type)}
     >
       {notification.content}
