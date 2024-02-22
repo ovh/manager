@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { saveAs } from 'file-saver';
+import queryClient from '@/queryClient';
 import {
   downloadOpenStackConfig,
   downloadRCloneConfig,
@@ -9,6 +10,7 @@ import {
   getAllUsers,
   getUser,
   paginateResults,
+  regeneratePassword,
   removeUser,
   UsersOptions,
 } from '@/data/user';
@@ -18,7 +20,7 @@ import {
   RCLONE_SERVICE_TYPE,
 } from '@/download-rclone.constants';
 import { DOWNLOAD_FILENAME, DOWNLOAD_TYPE } from '@/download-openrc.constants';
-import { OpenStackTokenResponse } from '@/interface';
+import { OpenStackTokenResponse, User } from '@/interface';
 
 type RemoveUserProps = {
   projectId: string;
@@ -205,5 +207,37 @@ export const useGenerateOpenStackToken = ({
       return mutation.mutate();
     },
     ...mutation,
+  };
+};
+
+type RegenerateProps = {
+  projectId: string;
+  userId: string;
+  onError: (cause: Error) => void;
+  onSuccess: (user: User) => void;
+};
+export const useRegeneratePassword = ({
+  projectId,
+  userId,
+  onError,
+  onSuccess,
+}: RegenerateProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const regenerate = async () => {
+    try {
+      const user = await regeneratePassword(projectId, userId);
+      queryClient.invalidateQueries({
+        queryKey: ['project', projectId, 'users'],
+      });
+      onSuccess(user);
+    } catch (e) {
+      onError(e as Error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  return {
+    isLoading,
+    regenerate,
   };
 };
