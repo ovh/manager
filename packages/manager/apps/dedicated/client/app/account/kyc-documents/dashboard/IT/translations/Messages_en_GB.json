@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_IT": "Photocopy of the front and back of a valid identity document (passport, national ID card).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_IT": "Proof of address with your full name and the address, as indicated in your profile, dated within the last 3 months (e.g., electricity or gas bill)",
+  "documents_dashboard_document_CORPORATE_ID_IT": "Certificate of company registration with the Chamber of Commerce dated within the last 3 months, or any corresponding document.",
+  "documents_dashboard_document_ADMINISTRATION_ID_IT": "Certificate of company registration with the Chamber of Commerce dated within the last 3 months, or any corresponding document.",
+  "documents_dashboard_document_ASSOCIATION_ID_IT": "A copy of the company’s articles of association or similar document.",
+  "documents_dashboard_document_individual_OTHER_IT": "Useful documents containing information about your circumstances (residential address, change of address, etc.)",
+  "documents_dashboard_document_corporation_OTHER_IT": "If you are not listed in the company’s certificate of registration with the Chamber of Commerce or the articles of association, you can attach a photocopy of the proof of identity of any person listed in official documents.",
+  "documents_dashboard_document_association_OTHER_IT": "If you are not listed in the company’s certificate of registration with the Chamber of Commerce or the articles of association, you can attach a photocopy of the proof of identity of any person listed in official documents.",
+  "documents_dashboard_document_administration_OTHER_IT": "If you are not listed in the company’s certificate of registration with the Chamber of Commerce or the articles of association, you can attach a photocopy of the proof of identity of any person listed in official documents.",
+  "documents_dashboard_document_other_OTHER_IT": "Useful documents containing information about your circumstances (residential address, change of address, etc.)"
+}

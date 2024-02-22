@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_FR": "Uma cópia frente e verso do seu documento de identificação (passaporte, cartão de cidadão)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_FR": "Um comprovativo de morada com menos de 3 meses, em seu nome e com o endereço indicado no seu perfil",
+  "documents_dashboard_document_CORPORATE_ID_FR": "KBIS com menos de 3 meses",
+  "documents_dashboard_document_ADMINISTRATION_ID_FR": "Uma ficha INSEE",
+  "documents_dashboard_document_ASSOCIATION_ID_FR": "Extrato de publicação no Diário da República e a ata mais recente de reunião",
+  "documents_dashboard_document_individual_OTHER_FR": "Qualquer documento útil para compreender a sua situação (alojamento, mudança, etc.)",
+  "documents_dashboard_document_corporation_OTHER_FR": "Se não for mencionado no documento de identificação da sua empresa, envie-nos uma cópia do documento de identificação de uma pessoa que nele conste.",
+  "documents_dashboard_document_association_OTHER_FR": "Se não for mencionado no documento de identificação da sua empresa/estatuto da associação, envie-nos uma cópia do documento de identificação de uma pessoa que nele conste.",
+  "documents_dashboard_document_administration_OTHER_FR": "Se não for mencionado no documento de identificação da sua empresa/estatuto da associação, envie-nos uma cópia do documento de identificação de uma pessoa que nele conste.",
+  "documents_dashboard_document_other_OTHER_FR": "Qualquer documento útil para compreender a sua situação (alojamento, mudança, etc.)"
+}

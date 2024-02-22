@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_IT": "Copia fronte e retro di un documento di riconoscimento in corso di validità (passaporto, carta d'identità nazionale)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_IT": "Giustificativo di domicilio datato meno di 3 mesi, a te intestato e in cui compaia l’indirizzo fornito (per es. fattura o bolletta della luce, gas, etc.)",
+  "documents_dashboard_document_CORPORATE_ID_IT": "Visura camerale datata meno di 3 mesi o documento corrispondente",
+  "documents_dashboard_document_ADMINISTRATION_ID_IT": "Visura camerale datata meno di 3 mesi o documento corrispondente",
+  "documents_dashboard_document_ASSOCIATION_ID_IT": "Copia dell’Atto Costitutivo o documento similare",
+  "documents_dashboard_document_individual_OTHER_IT": "Qualsiasi documento utile a comprendere la tua situazione attuale (domicilio, trasferimento, etc.)",
+  "documents_dashboard_document_corporation_OTHER_IT": "Se il tuo nome non compare nella visura camerale o nello Statuto dell'Associazione, è possibile allegare una copia del documento d'identità di una persona presente nella documentazione ufficiale.",
+  "documents_dashboard_document_association_OTHER_IT": "Se il tuo nome non compare nella visura camerale o nello Statuto dell'Associazione, è possibile allegare una copia del documento d'identità di una persona presente nella documentazione ufficiale.",
+  "documents_dashboard_document_administration_OTHER_IT": "Se il tuo nome non compare nella visura camerale o nello Statuto dell'Associazione, è possibile allegare una copia del documento d'identità di una persona presente nella documentazione ufficiale.",
+  "documents_dashboard_document_other_OTHER_IT": "Qualsiasi documento utile a comprendere la tua situazione attuale (domicilio, trasferimento, etc.)"
+}

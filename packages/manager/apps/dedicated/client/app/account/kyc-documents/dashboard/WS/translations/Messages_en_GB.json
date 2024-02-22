@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_ES": "Photocopy of the front and back of your proof of identity (passport, national ID card)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_ES": "Proof of address with your full name and the address indicated in your profile, dated within the last 3 months (bank statement, utility bill, etc.)",
+  "documents_dashboard_document_CORPORATE_ID_ES": "Updated company TIN card or associated tax documents.",
+  "documents_dashboard_document_ADMINISTRATION_ID_ES": "Proof of registration of the company’s social security contributions (national insurance) or similar schemes.",
+  "documents_dashboard_document_ASSOCIATION_ID_ES": "Copy of notice published in the national gazette or associated supporting document.",
+  "documents_dashboard_document_individual_OTHER_ES": "Useful documents containing information about your circumstances (e.g., residential address, change of address)",
+  "documents_dashboard_document_corporation_OTHER_ES": "If you are not listed in the trade and companies register or articles of association, you can attach a photocopy of the proof of identity of any person listed in the official documentation.",
+  "documents_dashboard_document_association_OTHER_ES": "If you are not listed in the certificate of incorporation or articles of association, you can attach a photocopy of the proof of identity of any person listed therein.",
+  "documents_dashboard_document_administration_OTHER_ES": "If you are not listed in the trade and companies register or articles of association, you can attach a photocopy of the proof of identity of any person listed in the official documentation.",
+  "documents_dashboard_document_other_OTHER_ES": "Useful documents containing information about your circumstances (residential address, change of address, etc.)"
+}

@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_DEFAULT": "A photocopy (front and back) of a government-issued identity document (passport, national ID card, driving license, etc.)",
+  "documents_dashboard_document_PROOF_OF_ADRESS_DEFAULT": "Proof of billing with your name and address (dated within the last 3 months), such as a bank statement or utility bill (electricity, gas, etc.)",
+  "documents_dashboard_document_CORPORATE_ID_DEFAULT": "A copy of the company’s certificate of incorporation, tax clearance certificate or any official document (dated within the last 3 months), serving as proof that your organisation/entity exists.",
+  "documents_dashboard_document_ADMINISTRATION_ID_DEFAULT": "A copy of the company’s certificate of incorporation, tax clearance certificate or any official document (dated within the last 3 months), serving as proof that your organisation/entity exists.",
+  "documents_dashboard_document_ASSOCIATION_ID_DEFAULT": "A copy of the company’s certificate of incorporation, tax clearance certificate or any official document (dated within the last 3 months), serving as proof that your organisation/entity exists.",
+  "documents_dashboard_document_individual_OTHER_DEFAULT": "Useful documents containing information about your circumstances (residential address, change of address)",
+  "documents_dashboard_document_corporation_OTHER_DEFAULT": "If you are not mentioned in certificate of incorporation, articles of association or official documents, you can provide a photocopy of the proof of identity of any person listed in any relevant documentation.",
+  "documents_dashboard_document_association_OTHER_DEFAULT": "If you are not mentioned in certificate of incorporation, articles of association or official documents, you can provide a photocopy of the proof of identity of any person listed in any relevant documentation.",
+  "documents_dashboard_document_administration_OTHER_DEFAULT": "If you are not mentioned in certificate of incorporation, articles of association or official documents, you can provide a photocopy of the proof of identity of any person listed in any relevant documentation.",
+  "documents_dashboard_document_other_OTHER_DEFAULT": "Useful documents containing information about your circumstances (residential address, change of address, etc.)"
+}

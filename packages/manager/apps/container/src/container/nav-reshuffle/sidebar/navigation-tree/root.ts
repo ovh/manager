@@ -53,7 +53,16 @@ const root: Node = {
             hash: '#/identity-documents',
           },
           count: false,
-          features: ['additional-ips'],
+          features: ['identity-documents'],
+        },
+        {
+          id: 'account_kyc_documents',
+          translation: 'sidebar_account_kyc_documents',
+          routing: {
+            application: 'dedicated',
+            hash: '#/documents',
+          },
+          count: false,
         },
         {
           id: 'account_contacts',

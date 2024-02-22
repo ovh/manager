@@ -1,0 +1,12 @@
+{
+  "documents_dashboard_document_ID_PL": "Kopia obu stron dokumentu tożsamości (paszport, dowód osobisty).",
+  "documents_dashboard_document_PROOF_OF_ADRESS_PL": "Dokument potwierdzający miejsce zamieszkania, nie starszy niż 3 miesiące, zawierający Twoje imię, nazwisko oraz adres wskazany w profilu (wyciąg bankowy, faktura za media, etc.)",
+  "documents_dashboard_document_CORPORATE_ID_PL": "Aktualny dokument rejestrowy firmy powiązanej z adresem wskazanym w Twoim profilu, np.: odpis z KRS, wpis do CEIDG, zaświadczenie o nadaniu numeru NIP, zaświadczenie o nadaniu numeru REGON.",
+  "documents_dashboard_document_ADMINISTRATION_ID_PL": "Wpis do rejestru podmiotów prowadzących określoną działalność ",
+  "documents_dashboard_document_ASSOCIATION_ID_PL": "Wpis do rejestru podmiotów prowadzących określoną działalność ",
+  "documents_dashboard_document_individual_OTHER_PL": "Wszelkie dokumenty przydatne do zrozumienia Twojej sytuacji (dotyczące zakwaterowania, przeprowadzki, etc.).",
+  "documents_dashboard_document_corporation_OTHER_PL": "W celu ułatwienia procesu walidacji prosimy o zapewnienie dobrej jakości załączonych dokumentów (czarno-białe kserokopie oraz pliki z zewnętrznych serwisów udostępniania nie są akceptowane).",
+  "documents_dashboard_document_association_OTHER_PL": "W celu ułatwienia weryfikacji prosimy o zapewnienie dobrej jakości załączonych dokumentów (czarno-białe kopie oraz pliki z zewnętrznych serwisów udostępniania nie są akceptowane).",
+  "documents_dashboard_document_administration_OTHER_PL": "W celu ułatwienia weryfikacji prosimy o zapewnienie dobrej jakości załączonych dokumentów (czarno-białe kopie oraz pliki z zewnętrznych serwisów udostępniania nie są akceptowane).",
+  "documents_dashboard_document_other_OTHER_PL": "Wszelkie dokumenty przydatne do zrozumienia Twojej sytuacje (zakwaterowanie, przeprowadzka, etc.)"
+}
