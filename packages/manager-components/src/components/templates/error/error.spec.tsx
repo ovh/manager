@@ -1,6 +1,5 @@
-/* eslint-disable no-return-await */
-import React from 'react';
-import { render, waitFor } from '../../utils/test.provider';
+import { waitFor } from '@testing-library/react';
+import { render } from '../../../utils/test.provider';
 import { ErrorBanner } from './error.component';
 import { ErrorObject, ErrorBannerProps } from './error.types';
 import { defaultProps } from './error.stories';
@@ -9,7 +8,7 @@ const setupSpecTest = async (
   customProps?: Partial<ErrorBannerProps>,
   error?: ErrorObject,
 ) =>
-  await waitFor(() =>
+  waitFor(() =>
     render(
       <ErrorBanner error={error ?? defaultProps.error} {...customProps} />,
     ),

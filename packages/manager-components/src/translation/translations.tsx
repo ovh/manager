@@ -13,7 +13,7 @@ export async function getTranslations({
 }): Promise<Translations> {
   try {
     return await import(
-      `../components/${componentName}/translations/Messages_${locale?.replace(
+      `../public/translations/${componentName}/Messages_${locale?.replace(
         '-',
         '_',
       )}.json`
