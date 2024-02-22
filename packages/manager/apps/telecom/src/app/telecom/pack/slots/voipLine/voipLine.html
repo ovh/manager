@@ -62,6 +62,14 @@
                     class="btn btn-default btn-block"
                     data-ui-sref="telecom.packs.pack.voipLine-activation"
                     data-translate="common_order_activate_service"
+                    data-ng-if="service.packStatus !== 'inCreation'"
+                >
+                </a>
+                <a
+                    class="btn btn-default btn-block"
+                    data-translate="common_order_activate_service"
+                    disabled="true"
+                    data-ng-if="service.packStatus === 'inCreation'"
                 >
                 </a>
             </div>
