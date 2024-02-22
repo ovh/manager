@@ -25,6 +25,7 @@
     "@ovhcloud/ods-components": "^17.1.0",
     "@ovhcloud/ods-theme-blue-jeans": "^17.1.0",
     "babel-preset-react-app": "^10.0.1",
+    "sass": "1.71.0",
     "i18next": "^20.4.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
