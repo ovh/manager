@@ -56,5 +56,16 @@
   "pci_projects_project_users_download-rclone_success_message_link": "clique aqui",
   "pci_projects_project_users_download-rclone_error_rclone": "Ocorreu um erro ao descarregar o ficheiro de configuração rclone: {{ message }}.",
   "pci_projects_project_users_download-rclone_region_label_global": "Selecione a região na qual se aplicará este ficheiro (apenas aparecem as regiões que oferecem os serviços Object Storage e Cloud Archive):",
-  "pci_projects_project_users_download-rclone_file_type_label": "Tipo de ficheiro"
+  "pci_projects_project_users_download-rclone_file_type_label": "Tipo de ficheiro",
+  "pci_projects_project_users_download-openrc_title": "Descarregar o ficheiro de configuração OpenStack",
+  "pci_projects_project_users_download-openrc_submit_label": "Transferir",
+  "pci_projects_project_users_download-openrc_cancel_label": "Anular",
+  "pci_projects_project_users_download-openrc_content": "Vai efetuar o download do ficheiro de configuração que permite a sua ligação ao OpenStack.",
+  "pci_projects_project_users_download-openrc_more_link": "Mais informação",
+  "pci_projects_project_users_download-openrc_region_label": "Selecionar a região para aplicar o ficheiro:",
+  "pci_projects_project_users_download-openrc_v3_label": "Utilizar o ficheiro de configuração OpenRC v3",
+  "pci_projects_project_users_download-openrc_success_message": "O descarregamento do ficheiro de configuração OpenStack começou, caso não seja o caso",
+  "pci_projects_project_users_download-openrc_success_message_link": "clique aqui",
+  "pci_projects_project_users_download-openrc_error_openrc": "Ocorreu um erro ao descarregar o ficheiro de configuração OpenStack: {{ message }}.",
+  "pci_projects_project_users_download-openrc_info_global": "Alguns serviços como o Object Storage e Cloud Archive estão localizados em regiões denominadas “globais” (como GRA, por exemplo). A maioria dos outros serviços estão localizados em regiões específicas (como GRA5, por exemplo)."
 }
