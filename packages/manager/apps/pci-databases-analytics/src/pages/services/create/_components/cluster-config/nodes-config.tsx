@@ -1,22 +1,20 @@
-import { useState } from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { H4 } from '@/components/typography';
-import { AvailabilitiesHookOutput } from '@/hooks/useAvailabilities';
 
 interface NodesConfigProps {
-  model: AvailabilitiesHookOutput;
+  value: number;
+  onChange: (newValue: number) => void;
+  minimum: number;
+  maximum: number;
 }
-const NodesConfig = ({ model }: NodesConfigProps) => {
-  const [nbNodes, setNbNodes] = useState(
-    model.availability?.specifications.nodes.minimum,
-  );
-  if (!model.availability) return <></>;
-  const {
-    minimum: minNodeNumber,
-    maximum: maxNodeNumber,
-  } = model.availability.specifications.nodes;
-  if (minNodeNumber === maxNodeNumber) {
+const NodesConfig = ({
+  value,
+  onChange,
+  minimum,
+  maximum,
+}: NodesConfigProps) => {
+  if (minimum === maximum) {
     return <></>;
   }
   return (
@@ -28,10 +26,10 @@ const NodesConfig = ({ model }: NodesConfigProps) => {
       <Input
         name="node-number-select"
         type="number"
-        min={minNodeNumber}
-        max={maxNodeNumber}
-        value={nbNodes}
-        onChange={(e) => setNbNodes(+e.target.value)}
+        min={minimum}
+        max={maximum}
+        value={value}
+        onChange={(e) => onChange(e.target.valueAsNumber)}
       />
     </div>
   );

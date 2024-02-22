@@ -4,7 +4,7 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 import { database } from '@/models/database';
-import { getService, getServices } from '@/api/apiv2/databases/service';
+import { getService, getServices } from '@/api/databases/service';
 
 export function useGetService(
   projectId: string,

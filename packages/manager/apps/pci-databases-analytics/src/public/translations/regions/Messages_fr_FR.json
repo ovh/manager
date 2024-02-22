@@ -62,5 +62,6 @@
   "region_continent_SGP": "Asie du Sud-Est",
   "region_continent_SYD": "Océanie",
   "region_continent_US": "États-Unis",
-  "region_continent_SHA": "Europe de l'Ouest"
+  "region_continent_SHA": "Europe de l'Ouest",
+  "region_continent_all": "Toutes les localisations"
 }

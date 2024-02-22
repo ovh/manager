@@ -10,7 +10,7 @@ import {
   getEnginesCapabilities,
   getRegionsCapabilities,
   getSuggestions,
-} from '@/api/apiv2/databases/availabilities';
+} from '@/api/databases/availabilities';
 
 export function useGetAvailabilities(
   projectId: string,

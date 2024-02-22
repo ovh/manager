@@ -3,7 +3,7 @@ import {
   UseQueryResult,
   useQuery,
 } from '@tanstack/react-query';
-import { catalogApi } from '@/api/apiv2/catalog';
+import { catalogApi } from '@/api/catalog';
 import { order } from '@/models/catalog';
 
 export function useGetCatalog(

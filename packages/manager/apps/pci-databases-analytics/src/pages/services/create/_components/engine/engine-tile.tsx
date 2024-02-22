@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import RadioTile from '@/components/radio-tile';
 import VersionSelector from './engine-tile-version';
 import { Engine, Version } from '@/models/order-funnel';
+import { humanizeEngine } from '@/lib/engineNameHelper';
+import { database } from '@/models/database';
 
 export const EngineTile = ({
   engine,
@@ -31,7 +33,7 @@ export const EngineTile = ({
     >
       <div className="flex justify-between items-center">
         <h3 className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}>
-          {engine.name}
+          {humanizeEngine(engine.name as database.EngineEnum)}
         </h3>
         <img
           className="block w-[60px] h-[40px]"

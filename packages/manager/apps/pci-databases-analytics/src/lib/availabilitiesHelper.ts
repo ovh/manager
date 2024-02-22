@@ -4,7 +4,7 @@ import { database } from '@/models/database';
 import { Engine, Flavor, Plan, Region, Version } from '@/models/order-funnel';
 import { compareStorage } from './bytesHelper';
 
-function updatePlanStorageRange(
+function updatePlanStorage(
   availability: database.Availability,
   treePlan: Plan,
 ) {
@@ -31,15 +31,10 @@ function updatePlanStorageRange(
   }
 }
 
-function updatePlanSpecRange(
-  availability: database.Availability,
-  capabilities: database.Capabilities,
+function updatePlanCpu(
   treePlan: Plan,
+  flavorSpec: database.capabilities.Flavor,
 ) {
-  const flavorSpec = capabilities.flavors.find(
-    (f) => f.name === availability.specifications.flavor,
-  );
-  // update cpu
   if (flavorSpec.specifications.core) {
     if (!treePlan.cpu) {
       treePlan.cpu = {
@@ -52,7 +47,12 @@ function updatePlanSpecRange(
     if (flavorSpec.specifications.core > treePlan.cpu.maximum)
       treePlan.cpu.maximum = flavorSpec.specifications.core;
   }
-  // update ram
+}
+
+function updatePlanRam(
+  treePlan: Plan,
+  flavorSpec: database.capabilities.Flavor,
+) {
   if (flavorSpec.specifications.memory) {
     if (!treePlan.ram) {
       treePlan.ram = {
@@ -69,14 +69,21 @@ function updatePlanSpecRange(
     )
       treePlan.ram.maximum = flavorSpec.specifications.memory;
   }
-  // update nodes
+}
+
+function updatePlanNodes(treePlan: Plan, availability: database.Availability) {
   if (availability.specifications.nodes.minimum < treePlan.nodes.minimum) {
     treePlan.nodes.minimum = availability.specifications.nodes.minimum;
   }
   if (availability.specifications.nodes.maximum > treePlan.nodes.maximum) {
     treePlan.nodes.maximum = availability.specifications.nodes.maximum;
   }
-  // update networks
+}
+
+function updatePlanNetworks(
+  treePlan: Plan,
+  availability: database.Availability,
+) {
   treePlan.networks = [
     ...new Set([...treePlan.networks, availability.specifications.network]),
   ];
@@ -101,6 +108,7 @@ const mapEngine = (
       order: engineCapability.order,
       default: engineSuggestion.default,
       defaultVersion: engineSuggestion.version,
+      storageMode: engineCapability.storage,
       versions: [],
     };
     tree.push(treeEngine);
@@ -163,9 +171,14 @@ const mapPlan = (
     treeVersion.plans.push(treePlan);
   }
   // once the plan is in the tree, we can compute range values
-  // Storage
-  updatePlanStorageRange(availability, treePlan);
-  updatePlanSpecRange(availability, capabilities, treePlan);
+  const flavorSpec = capabilities.flavors.find(
+    (f) => f.name === availability.specifications.flavor,
+  );
+  updatePlanStorage(availability, treePlan);
+  updatePlanCpu(treePlan, flavorSpec);
+  updatePlanRam(treePlan, flavorSpec);
+  updatePlanNodes(treePlan, availability);
+  updatePlanNetworks(treePlan, availability);
   return treePlan;
 };
 
