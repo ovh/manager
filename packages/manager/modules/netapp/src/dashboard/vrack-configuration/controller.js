@@ -10,7 +10,7 @@ export default class OvhManagerNetAppVrackConfigurationCtrl {
   }
 
   $onInit() {
-    if (!this.availableVracks?.length) {
+    if (!this.availableVracks.length) {
       const noVrack = {
         internalName: this.$translate.instant(
           'netapp_vrack_configuration_no_vrack_field',
