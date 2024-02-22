@@ -26,7 +26,16 @@ export default /* @ngInject */ ($stateProvider) => {
         trackClick('create-volume');
         return $state.go('netapp.dashboard.volumes.create');
       },
-      goToNetworkConfiguration: /* @ngInject */ ($state, trackClick) => () => {
+      goToNetworkConfiguration: /* @ngInject */ (
+        $state,
+        trackClick,
+        networkInformations,
+      ) => () => {
+        if (networkInformations.vRackServicesURN) {
+          trackClick('configure-vrack');
+          return $state.go('netapp.dashboard.index.vrack');
+        }
+
         trackClick('configure-network');
         return $state.go('netapp.dashboard.network');
       },

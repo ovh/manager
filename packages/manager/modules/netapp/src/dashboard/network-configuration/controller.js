@@ -73,9 +73,12 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
 
   onVrackServiceSelected(vrackService) {
     this.selectedSubnet = null;
-    this.subnets = angular.copy(vrackService.currentState.subnets);
+    this.subnets = (vrackService.currentState.subnets || []).map((subnet) => ({
+      ...subnet,
+      displayName: subnet.displayName ?? subnet.cidr,
+    }));
 
-    if (!this.subnets?.length) {
+    if (!this.subnets.length) {
       const noSubnet = {
         displayName: this.$translate.instant(
           'netapp_network_configuration_no_subnet_field',
@@ -85,12 +88,6 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
       this.selectedSubnet = noSubnet;
       this.disableSubnetField = true;
     } else {
-      this.subnets.forEach((subnet) => {
-        if (!subnet.displayName) {
-          // eslint-disable-next-line no-param-reassign
-          subnet.displayName = subnet.cidr;
-        }
-      });
       this.disableSubnetField = false;
     }
   }
