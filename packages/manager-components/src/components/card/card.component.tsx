@@ -1,20 +1,27 @@
 import React from 'react';
 import {
-  ODS_THEME_COLOR_HUE,
   ODS_THEME_COLOR_INTENT,
+  ODS_THEME_COLOR_HUE,
 } from '@ovhcloud/ods-common-theming';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { OsdsChip } from '@ovhcloud/ods-components/chip/react';
-import { OsdsLink } from '@ovhcloud/ods-components/link/react';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
-import { OsdsTile } from '@ovhcloud/ods-components/tile/react';
-import {
-  OdsHTMLAnchorElementTarget,
-  OdsHTMLAnchorElementRel,
-} from '@ovhcloud/ods-common-core';
 
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+
+import {
+  OsdsText,
+  OsdsChip,
+  OsdsTile,
+  OsdsLink,
+  OsdsIcon,
+} from '@ovhcloud/ods-components/react';
+
+import {
+  ODS_CHIP_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+  ODS_TILE_VARIANT,
+  ODS_ICON_SIZE,
+  ODS_ICON_NAME,
+} from '@ovhcloud/ods-components';
 import useDynamicTranslation from '../../translation/useDynamicTranslation';
 
 export interface Badge {
@@ -64,8 +71,8 @@ export const Card = ({
         color={ODS_THEME_COLOR_INTENT.primary}
         rounded
         inline
-        variant="stroked"
-        dataTracking={trackingLabel}
+        variant={ODS_TILE_VARIANT.stroked}
+        data-tracking={trackingLabel}
         hoverable={hoverable}
       >
         <div className="flex flex-col ">
@@ -90,7 +97,7 @@ export const Card = ({
                   className="mr-1"
                   key={b.text}
                   color={b.color}
-                  size={ODS_ICON_SIZE.sm}
+                  size={ODS_CHIP_SIZE.sm}
                 >
                   {b.text}
                 </OsdsChip>
@@ -117,7 +124,7 @@ export const Card = ({
             {description}
           </OsdsText>
           <OsdsLink
-            tabindex="-1"
+            tab-index="-1"
             color={ODS_THEME_COLOR_INTENT.primary}
             href={href}
             target={OdsHTMLAnchorElementTarget._blank}
