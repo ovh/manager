@@ -6,6 +6,12 @@ export interface EngineWithVersion {
   version: string;
 }
 
+export interface NetworkOptionValue {
+  type: database.NetworkTypeEnum;
+  networkId?: string;
+  subnetId?: string;
+}
+
 export interface Engine {
   name: string;
   description: string;
