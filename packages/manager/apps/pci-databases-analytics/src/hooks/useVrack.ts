@@ -9,12 +9,15 @@ import { useGetNetwork, useGetSubnet } from './api/network.api.hooks';
  * @param region the short name for the region (ex: GRA, BHS)
  * @returns states for network and subnet selection, networks and subnets lists, queries statuses
  */
-export function useVrack(projectId: string, region: string) {
-  const [selectedNetwork, setSelectedNetwork] = useState<string>('');
-  const [selectedSubnet, setSelectedSubnet] = useState<string>('');
+export function useVrack(
+  projectId: string,
+  region: string,
+  networkId?: string,
+) {
+  const [id, setId] = useState(networkId);
   // define queries
   const networkQuery = useGetNetwork(projectId);
-  const subnetQuery = useGetSubnet(projectId, selectedNetwork, {
+  const subnetQuery = useGetSubnet(projectId, networkId, {
     enabled: false,
   });
   // create lists based on queries responses
@@ -30,27 +33,17 @@ export function useVrack(projectId: string, region: string) {
     [networkQuery.data, region],
   );
   const subnets = useMemo(() => subnetQuery.data || [], [subnetQuery.data]);
-  // pre select first item of the lists on change
-  useEffect(() => {
-    setSelectedNetwork(networks[0]?.id || '');
-  }, [networks]);
-  useEffect(() => {
-    setSelectedSubnet(subnets[0]?.id || '');
-  }, [subnets]);
   // fetch the subnets of the selected network when selected
   useEffect(() => {
-    if (selectedNetwork.length > 0) {
+    if (id) {
       subnetQuery.refetch();
     }
-  }, [selectedNetwork]);
+  }, [id]);
   return {
     networkQuery,
     subnetQuery,
-    selectedNetwork,
-    setSelectedNetwork,
     networks,
-    selectedSubnet,
-    setSelectedSubnet,
     subnets,
+    setId,
   };
 }
