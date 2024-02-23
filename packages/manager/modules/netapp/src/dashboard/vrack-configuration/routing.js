@@ -53,21 +53,6 @@ export default /* @ngInject */ ($stateProvider) => {
           vracks,
           networkInformations.vRackServicesId,
         ),
-      goToVrackOrder: /* @ngInject */ (
-        $window,
-        coreConfig,
-        NetappVrackConfigurationService,
-        trackClick,
-      ) => (event) => {
-        event.preventDefault();
-        trackClick('add-vrack');
-        $window.open(
-          NetappVrackConfigurationService.getVrackOrderUrl(
-            coreConfig.getUser().ovhSubsidiary,
-          ),
-          '_blank',
-        );
-      },
     },
     atInternet: {
       rename: 'netapp::dashboard::configure-vrack',

@@ -1,22 +1,15 @@
-import { VRACK_ORDER_URLS } from './constants';
-
 export default class NetAppNetworkConfigurationService {
   /* @ngInject */
   constructor($http, $q, Apiv2Service) {
     this.$http = $http;
     this.$q = $q;
     this.Apiv2Service = Apiv2Service;
-    this.VRACK_ORDER_URLS = VRACK_ORDER_URLS;
   }
 
   getAllowedVrackServices(vrackId) {
     return this.$http
       .get(`/vrack/${vrackId}/allowedServices?serviceFamily=vrackServices`)
       .then(({ data }) => data);
-  }
-
-  getVrackOrderUrl(subsidiary) {
-    return this.VRACK_ORDER_URLS[subsidiary] || this.VRACK_ORDER_URLS.DEFAULT;
   }
 
   linkVrackServiceToEfs(vrackId, vs, subnet, efs) {

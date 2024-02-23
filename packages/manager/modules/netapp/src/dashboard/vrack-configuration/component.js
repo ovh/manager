@@ -7,7 +7,6 @@ export default {
     trackClick: '<',
     trackSuccess: '<',
     trackError: '<',
-    goToVrackOrder: '<',
     availableVracks: '<',
     networkInformations: '<',
   },

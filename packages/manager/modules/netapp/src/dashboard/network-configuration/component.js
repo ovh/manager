@@ -11,7 +11,6 @@ export default {
     vracks: '<',
     createVrackServiceLink: '<',
     createSubnetLink: '<',
-    goToVrackOrder: '<',
     storage: '<',
   },
   template,
