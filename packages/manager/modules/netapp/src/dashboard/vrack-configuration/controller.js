@@ -2,11 +2,21 @@ import { LABELS } from './constants';
 
 export default class OvhManagerNetappVrackConfigurationCtrl {
   /* @ngInject */
-  constructor($translate, Alerter, NetappVrackConfigurationService) {
+  constructor(
+    $translate,
+    $window,
+    Alerter,
+    coreConfig,
+    NetAppDashboardService,
+    NetappVrackConfigurationService,
+  ) {
     this.$translate = $translate;
     this.Alerter = Alerter;
+    this.NetAppDashboardService = NetAppDashboardService;
     this.NetappVrackConfigurationService = NetappVrackConfigurationService;
     this.LABELS = LABELS;
+    this.$window = $window;
+    this.user = coreConfig.getUser();
   }
 
   $onInit() {
@@ -20,6 +30,17 @@ export default class OvhManagerNetappVrackConfigurationCtrl {
       this.selectedVrack = noVrack;
       this.disableVrackField = true;
     }
+  }
+
+  goToVrackOrder(event) {
+    event.preventDefault();
+    this.trackClick('add-vrack');
+    this.$window.open(
+      this.NetAppDashboardService.constructor.getVrackOrderUrl(
+        this.user.ovhSubsidiary,
+      ),
+      '_blank',
+    );
   }
 
   linkVrack() {
