@@ -5,8 +5,7 @@ export default {
   bindings: {
     goBack: '<',
     trackClick: '<',
-    trackSuccess: '<',
-    trackError: '<',
+    trackPage: '<',
     availableVracks: '<',
     networkInformations: '<',
   },
