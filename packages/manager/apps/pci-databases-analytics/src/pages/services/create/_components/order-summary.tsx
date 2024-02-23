@@ -6,31 +6,25 @@ import { Engine, Flavor, Plan, Region, Version } from '@/models/order-funnel';
 import { Skeleton } from '@/components/ui/skeleton';
 
 interface OrderSummaryProps {
-  engine: Engine;
-  version: Version;
-  plan: Plan;
-  region: Region;
-  flavor: Flavor;
-  nbNodes: number;
-  additionalStorage: number;
+  order: {
+    engine: Engine;
+    version: Version;
+    plan: Plan;
+    region: Region;
+    flavor: Flavor;
+    nodes: number;
+    additionalStorage: number;
+    name: string;
+  };
   onSectionClicked: (target: string) => void;
 }
-const OrderSummary = ({
-  engine,
-  version,
-  plan,
-  region,
-  flavor,
-  nbNodes,
-  additionalStorage,
-  onSectionClicked,
-}: OrderSummaryProps) => {
+const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t: tRegions } = useTranslation('regions');
   return (
     <div>
       <div>
         <b>Nom :</b>
-        <span>nameToGenerate</span>
+        <span>{order.name}</span>
         <span>i</span>
       </div>
       <div>
@@ -42,20 +36,20 @@ const OrderSummary = ({
           >
             Service :
           </button>
-          {engine ? (
+          {order.engine ? (
             <div className="flex items-center">
-              {humanizeEngine(engine.name as database.EngineEnum)}
+              {humanizeEngine(order.engine.name as database.EngineEnum)}
               <img
                 className="block w-[60px] h-[40px]"
-                src={`./assets/engines/${engine.name}.png`}
+                src={`./assets/engines/${order.engine.name}.png`}
               />
             </div>
           ) : (
             <Skeleton className="h-4 w-40" />
           )}
         </div>
-        {version ? (
-          <div className="pl-4">Version {version.name}</div>
+        {order.version ? (
+          <div className="pl-4">Version {order.version.name}</div>
         ) : (
           <Skeleton className="h-4 w-20" />
         )}
@@ -68,7 +62,11 @@ const OrderSummary = ({
         >
           Offre :
         </button>
-        {plan ? <span>{plan.name}</span> : <Skeleton className="h-4 w-20" />}
+        {order.plan ? (
+          <span>{order.plan.name}</span>
+        ) : (
+          <Skeleton className="h-4 w-20" />
+        )}
       </div>
       <div>
         <button
@@ -78,10 +76,10 @@ const OrderSummary = ({
         >
           Datacentre :
         </button>
-        {region ? (
+        {order.region ? (
           <span>
-            {tRegions(`region_${region.name}_micro`, {
-              micro: region.name,
+            {tRegions(`region_${order.region.name}_micro`, {
+              micro: order.region.name,
             })}
           </span>
         ) : (
@@ -96,11 +94,11 @@ const OrderSummary = ({
         >
           Modèle de nœud :
         </button>
-        {flavor ? (
+        {order.flavor ? (
           <>
-            <span>{flavor.name}</span>
-            <span>{flavor.vcores} vCores</span>
-            <span>{formatStorage(flavor.ram)} RAM</span>
+            <span>{order.flavor.name}</span>
+            <span>{order.flavor.vcores} vCores</span>
+            <span>{formatStorage(order.flavor.ram)} RAM</span>
           </>
         ) : (
           <>
@@ -118,14 +116,15 @@ const OrderSummary = ({
         >
           Cluster :
         </button>
-        <span>{nbNodes} nœuds</span>
-        {flavor?.storage && (
+        <span>{order.nodes} nœuds</span>
+        {order.flavor?.storage && (
           <span>
             {formatStorage({
-              value: additionalStorage + flavor.storage.minimum.value,
-              unit: flavor.storage.minimum.unit,
+              value:
+                order.additionalStorage + order.flavor.storage.minimum.value,
+              unit: order.flavor.storage.minimum.unit,
             })}{' '}
-            (dont {formatStorage(flavor.storage.minimum)} inclus)
+            (dont {formatStorage(order.flavor.storage.minimum)} inclus)
           </span>
         )}
       </div>
