@@ -184,7 +184,7 @@ export default class NetAppDashboardService {
           (vrackAllowedServices) =>
             (vrackServicesId &&
               vrackAllowedServices.vrackServices.includes(vrackServicesId)) ||
-            vrackAllowedServices.vrackServices.length,
+            (!vrackServicesId && vrackAllowedServices.vrackServices.length),
         ),
         ...allowedVracksWithAssociatedVrs,
       ].sort((a, b) => (a.vrack.internalName < b.vrack.internalName ? -1 : 1)),

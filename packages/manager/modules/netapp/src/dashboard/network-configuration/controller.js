@@ -63,8 +63,8 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
   onVrackSelected() {
     this.disableVrackServicesField = false;
     this.selectedVrackService = null;
-    this.filteredVrackServices = this.vrackServices.filter((vrs) =>
-      this.selectedVrack.vrackServices.includes(vrs.id),
+    this.filteredVrackServices = this.vrackServices.filter(({ id }) =>
+      this.selectedVrack.vrackServices.includes(id),
     );
     if (!this.filteredVrackServices.length) {
       const noVrackServices = {
