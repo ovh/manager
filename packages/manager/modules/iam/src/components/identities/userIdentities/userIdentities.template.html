@@ -1,0 +1,108 @@
+<section>
+    <iam-select-modal
+        data-current-identities="$ctrl.identities"
+        data-ng-if="$ctrl.isSelectingUsers"
+        data-close="$ctrl.closeSelectUsersModal"
+        data-get-options="$ctrl.getUserList"
+        data-on-add-options="$ctrl.addUsers"
+        data-heading="{{:: 'iam_identities_users_modal_title' | translate}}"
+        data-empty-state-message="{{:: 'iam_identities_users_modal_empty_state' | translate}}"
+        data-search-placeholder="{{:: 'iam_identities_users_modal_search_placeholder' | translate}}"
+        data-search-filter="$ctrl.userSearchFilter"
+    >
+        <iam-checkbox-value>
+            <span data-ng-bind="$parent.option.login"></span>
+        </iam-checkbox-value>
+        <iam-checkbox-description>
+            <div>
+                <span data-translate="iam_identities_users_email"></span>
+                <b data-ng-bind="$parent.option.email"></b>
+            </div>
+            <div>
+                <span data-translate="iam_identities_users_group"></span>
+                <b data-ng-bind="$parent.option.group"></b>
+            </div>
+            <div>
+                <span data-translate="iam_identities_users_status"></span>
+
+                <b
+                    data-ng-bind="'iam_identities_users_status_' + $parent.option.status | translate"
+                >
+                </b>
+            </div>
+            <div>
+                <span data-translate="iam_identities_urn"></span>
+                <b data-ng-bind="$parent.option.urn"></b>
+            </div>
+        </iam-checkbox-description>
+    </iam-select-modal>
+    <h5 data-translate="iam_identities_users_title"></h5>
+    <oui-datagrid
+        rows="$ctrl.users"
+        pagination-mode="arrows"
+        empty-placeholder="{{:: 'iam_identities_users_empty' | translate}}"
+    >
+        <oui-datagrid-topbar>
+            <oui-button
+                data-variant="secondary"
+                data-on-click="$ctrl.openSelectUsersModal()"
+                data-disabled="$ctrl.readOnly"
+            >
+                <span data-translate="iam_identities_users_add"></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column title="'iam_identities_users_user' | translate">
+            <div data-ng-bind="$row.login"></div>
+            <div
+                class="oui-color-aw-500"
+                data-ng-bind="$row.message"
+                data-ng-if="$row.message"
+            ></div>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="'iam_identities_users_group' | translate"
+            property="group"
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title="'iam_identities_users_status' | translate"
+            property="status"
+        >
+            <span
+                class="label"
+                data-ng-class="{
+                     'label-success': $row.status === 'OK',
+                     'label-danger': $row.status === 'DISABLED'
+                     }"
+                data-ng-bind="'iam_identities_users_status_' + $row.status | translate"
+            >
+            </span>
+        </oui-datagrid-column>
+        <oui-datagrid-row-detail>
+            <dl class="oui-description">
+                <dt
+                    data-ng-if="$row.description"
+                    data-translate="iam_identities_users_description"
+                ></dt>
+                <dd
+                    data-ng-if="$row.description"
+                    data-ng-bind="$row.description"
+                ></dd>
+                <dt data-translate="iam_identities_urn"></dt>
+                <dd data-ng-bind="$row.urn"></dd>
+                <dt
+                    data-ng-if="$row.email"
+                    data-translate="iam_identities_users_email"
+                ></dt>
+                <dd data-ng-if="$row.email" data-ng-bind="$row.email"></dd>
+            </dl>
+        </oui-datagrid-row-detail>
+        <oui-action-menu text="Actions">
+            <oui-action-menu-item
+                on-click="$ctrl.removeIdentity($row.urn)"
+                data-disabled="$ctrl.readOnly"
+            >
+                <span data-translate="iam_identities_delete"> </span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</section>

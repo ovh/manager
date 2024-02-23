@@ -64,6 +64,7 @@ export default class CreatePolicyController {
       actions: { selection: [], isWildcardActive: false },
       description: '',
       name: '',
+      identities: [],
       resources: { selection: [], types: [] },
       resourceGroups: [],
     };
@@ -198,6 +199,7 @@ export default class CreatePolicyController {
       this.model.actions.isWildcardActive = Boolean(wildcardAction);
       this.model.name = this.policy.name;
       this.model.description = this.policy.description;
+      this.model.identities = this.policy.identities;
       this.model.resources.selection = this.policy.resources
         .filter(({ resource }) => Boolean(resource))
         .map(({ urn, resource }) => ({ ...resource, urn }));
@@ -330,6 +332,26 @@ export default class CreatePolicyController {
     return this.$q.when(true);
   }
 
+  // IDENTITIES
+
+  /**
+   * Called back when identities are added from the SelectModal
+   * @param {string[]}
+   */
+  addIdentities = (identitiesUrn) => {
+    this.model.identities = [...this.model.identities, ...identitiesUrn];
+  };
+
+  /**
+   * Called back when an identity is remove from a list
+   * @param {string}
+   */
+  removeIdentity = (identityUrn) => {
+    this.model.identities = this.model.identities.filter(
+      (i) => i !== identityUrn,
+    );
+  };
+
   /**
    * Called back when the form is submitted
    * @returns {Promise}
@@ -396,9 +418,9 @@ export default class CreatePolicyController {
    */
   toAPI() {
     return {
-      identities: this.policy?.identities || [],
       name: this.model.name,
       description: this.model.description,
+      identities: this.model.identities,
       permissions: {
         allow: this.model.actions.isWildcardActive
           ? [{ action: WILDCARD }]

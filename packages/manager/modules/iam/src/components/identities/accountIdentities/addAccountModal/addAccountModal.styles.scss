@@ -1,0 +1,6 @@
+@import '@ovh-ux/ui-kit/dist/scss/_tokens';
+
+.content {
+  display: flex;
+  gap: $base-spacing-small;
+}
