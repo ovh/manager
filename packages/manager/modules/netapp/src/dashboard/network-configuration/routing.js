@@ -64,21 +64,6 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       createVrackServiceLink: /* @ngInject */ () => 'TODO',
       createSubnetLink: /* @ngInject */ () => 'TODO',
-      goToVrackOrder: /* @ngInject */ (
-        $window,
-        coreConfig,
-        NetappNetworkConfigurationService,
-        trackClick,
-      ) => (event) => {
-        event.preventDefault();
-        trackClick('add-vrack');
-        $window.open(
-          NetappNetworkConfigurationService.getVrackOrderUrl(
-            coreConfig.getUser().ovhSubsidiary,
-          ),
-          '_blank',
-        );
-      },
     },
     atInternet: {
       rename: 'netapp::dashboard::configure-network',

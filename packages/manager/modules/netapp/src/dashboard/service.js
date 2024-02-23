@@ -1,4 +1,9 @@
-import { FETCH_INTERVAL, NETWORK_STATUS, POLLING_TYPE } from './constants';
+import {
+  FETCH_INTERVAL,
+  NETWORK_STATUS,
+  POLLING_TYPE,
+  VRACK_ORDER_URLS,
+} from './constants';
 
 export default class NetAppDashboardService {
   /* @ngInject */
@@ -86,5 +91,9 @@ export default class NetAppDashboardService {
 
   stopNetworkPolling(storage, pollingType) {
     this.Poller.kill({ namespace: `network_${storage.id}_${pollingType}` });
+  }
+
+  static getVrackOrderUrl(subsidiary) {
+    return VRACK_ORDER_URLS[subsidiary] || VRACK_ORDER_URLS.DEFAULT;
   }
 }
