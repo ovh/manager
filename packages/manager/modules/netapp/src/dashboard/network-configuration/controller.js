@@ -1,4 +1,4 @@
-import { LABELS, TRACKING_BASE } from './constants';
+import { LABELS } from '../constants';
 
 export default class OvhManagerNetAppNetworkConfigurationCtrl {
   /* @ngInject */
@@ -15,7 +15,6 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
     this.NetAppDashboardService = NetAppDashboardService;
     this.NetappNetworkConfigurationService = NetappNetworkConfigurationService;
     this.LABELS = LABELS;
-    this.TRACKING_BASE = TRACKING_BASE;
     this.$window = $window;
     this.user = coreConfig.getUser();
   }
@@ -63,7 +62,7 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
     this.disableVrackServicesField = false;
     this.selectedVrackService = null;
     this.vrackServicesLoader = true;
-    this.NetappNetworkConfigurationService.getAllowedVrackServices(
+    this.NetAppDashboardService.getAllowedVrackServices(
       this.selectedVrack.internalName,
     )
       .then((services) => {
@@ -123,7 +122,7 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
       this.storage,
     )
       .then((data) => {
-        this.trackSuccess();
+        this.trackPage('success');
         this.goBack().then(() => {
           this.Alerter.success(
             this.$translate.instant(
@@ -148,7 +147,7 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
         });
       })
       .catch((error) => {
-        this.trackError();
+        this.trackPage('error');
         this.Alerter.error(
           this.$translate.instant('netapp_dashboard_global_error', {
             message: error?.data?.message || error.message,

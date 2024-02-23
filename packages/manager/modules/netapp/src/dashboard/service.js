@@ -15,6 +15,11 @@ export default class NetAppDashboardService {
     this.iceberg = iceberg;
   }
 
+  /**
+   * Get vrack list or resource from api
+   * @param {*} id
+   * @returns vrack list or resource from api
+   */
   getVracks(id) {
     return this.iceberg(`/vrack${id ? `/${id}` : ''}`)
       .query()
@@ -22,6 +27,11 @@ export default class NetAppDashboardService {
       .execute().$promise;
   }
 
+  /**
+   * Get vrack services list or resource from api
+   * @param {*} id
+   * @returns vrack services list or resource
+   */
   getVrackServices(id) {
     return this.Apiv2Service.httpApiv2({
       method: 'get',
@@ -29,6 +39,12 @@ export default class NetAppDashboardService {
     });
   }
 
+  /**
+   * GET storage network detail API call
+   * and populate with detailled vrack services
+   * @param {*} serviceName
+   * @returns network object
+   */
   getNetworkInformations(serviceName) {
     return this.$http
       .get(`/storage/netapp/${serviceName}/network?detail=true`)
@@ -41,6 +57,12 @@ export default class NetAppDashboardService {
       });
   }
 
+  /**
+   * Get vrack Service URN from storage network
+   * and populate network with detailled vrack services
+   * @param {*} network
+   * @returns network object populated with vrack services
+   */
   populateStorageNetwork(network) {
     if (!network.vRackServicesURN) return this.$q.resolve(network);
     const vRackServicesId = this.constructor.getVrackServicesIdFromUrn(
@@ -54,10 +76,21 @@ export default class NetAppDashboardService {
     });
   }
 
+  /**
+   * Parse URN to retrieve ID
+   * @param {*} urn
+   * @returns id retrieved from URN
+   */
   static getVrackServicesIdFromUrn(urn) {
     return urn.split(':').pop();
   }
 
+  /**
+   * Get attached subnet / endpoint of storage
+   * @param {*} networkInformations
+   * @param {*} storage
+   * @returns object with attached subnet and attached endpoint
+   */
   static getAttachedSubnetAndEndpoint(networkInformations, storage) {
     let attachedEndpoint = {};
     const attachedSubnet = networkInformations.vrackServices
@@ -72,6 +105,15 @@ export default class NetAppDashboardService {
     return { attachedSubnet, attachedEndpoint };
   }
 
+  // POLLING MANAGEMENT FUNCTIONS
+  /**
+   * Polling on storage network detail
+   * Stop polling when status change from to_configure when associating
+   * Stop polling when status change from associated when dissociating
+   * @param {*} storage
+   * @param {*} pollingType
+   * @returns
+   */
   startNetworkPolling(storage, pollingType) {
     return this.Poller.poll(
       `/storage/netapp/${storage.id}/network?detail=true`,
@@ -92,8 +134,50 @@ export default class NetAppDashboardService {
   stopNetworkPolling(storage, pollingType) {
     this.Poller.kill({ namespace: `network_${storage.id}_${pollingType}` });
   }
+  // END POLLING MANAGEMENT FUNCTIONS
 
+  /**
+   * Get vrack express order Link
+   * @param {*} subsidiary
+   * @returns string corresponding to the order link
+   */
   static getVrackOrderUrl(subsidiary) {
     return VRACK_ORDER_URLS[subsidiary] || VRACK_ORDER_URLS.DEFAULT;
+  }
+
+  /**
+   * Filter allowed vracks depending of the vrack services
+   * @param {*} vracks array of vrack
+   * @param {*} vrackServicesId
+   * @returns array of vrack available for association for the vrack services id in parameter
+   */
+  filterAllowedVrack(vracks, vrackServicesId) {
+    const allowedServicesPromises = vracks.map((vrack) =>
+      this.getAllowedVrackServices(vrack.internalName).then((data) => ({
+        ...data,
+        vrack,
+      })),
+    );
+
+    return this.$q
+      .all(allowedServicesPromises)
+      .then((data) =>
+        data
+          .filter((vrackAllowedServices) =>
+            vrackAllowedServices.vrackServices.includes(vrackServicesId),
+          )
+          .map((availableVrack) => ({ ...availableVrack.vrack })),
+      );
+  }
+
+  /**
+   * Get allowed services api call
+   * @param {*} vrackId
+   * @returns result of allowed vrack services for a vrack
+   */
+  getAllowedVrackServices(vrackId) {
+    return this.$http
+      .get(`/vrack/${vrackId}/allowedServices?serviceFamily=vrackServices`)
+      .then(({ data }) => data);
   }
 }

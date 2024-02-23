@@ -1,4 +1,4 @@
-import { LABELS } from './constants';
+import { LABELS } from '../constants';
 
 export default class OvhManagerNetappVrackConfigurationCtrl {
   /* @ngInject */
@@ -51,7 +51,7 @@ export default class OvhManagerNetappVrackConfigurationCtrl {
       this.networkInformations.vRackServicesId,
     )
       .then(() => {
-        this.trackSuccess();
+        this.trackPage('success');
         this.goBack().then(() => {
           this.Alerter.success(
             this.$translate.instant(
@@ -61,7 +61,7 @@ export default class OvhManagerNetappVrackConfigurationCtrl {
         });
       })
       .catch((error) => {
-        this.trackError();
+        this.trackPage('error');
         this.goBack().then(() => {
           this.Alerter.error(
             this.$translate.instant(
