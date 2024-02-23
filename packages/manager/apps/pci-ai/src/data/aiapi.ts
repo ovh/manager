@@ -93,6 +93,16 @@ export interface UserCreationProps {
     }
 };
 
+export interface RegistryCreationProps {
+    projectId: string,
+    registryInput: {
+        region: string,
+        username: string,
+        password: string,
+        url: string,
+    }
+};
+
 export interface TokenGenerationProps {
     projectId: string,
     tokenInput: {
@@ -106,6 +116,11 @@ export interface TokenGenerationProps {
 export interface TokenProps {
     projectId: string,
     tokenId: string,
+}
+
+export interface RegistryProps {
+    projectId: string,
+    registryId: string,
 }
 
 export const aiApi = {
@@ -166,6 +181,30 @@ export const aiApi = {
             `/cloud/project/${projectId}/ai/token/${tokenId}`,
         )
     },
+    getRegistries: async (projectId: string) => apiClient.v6.get(
+        `/cloud/project/${projectId}/ai/registry`,
+    ).then(res => res.data as ai.registry.Registry[])
+    ,
+    deleteRegistry: async ({
+        projectId,
+        registryId,
+    }: RegistryProps
+    ) => {
+        await apiClient.v6.delete(
+            `/cloud/project/${projectId}/ai/registry/${registryId}`,
+        )
+    },
+    addRegistry: async ({
+        projectId,
+        registryInput,
+    }: RegistryCreationProps
+    ) => 
+        await apiClient.v6.post(
+            `/cloud/project/${projectId}/ai/registry`,
+            registryInput,
+        )
+            .then((res) => res.data as string)
+    ,
 };
 
 export const notebookApi = {

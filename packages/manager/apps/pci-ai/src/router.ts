@@ -6,7 +6,9 @@ import { components, hooks, utils } from '@generouted/react-router/client'
 export type Path =
   | `/projects/:projectId`
   | `/projects/:projectId/ai-dashboard`
+  | `/projects/:projectId/ai-dashboard/cli`
   | `/projects/:projectId/ai-dashboard/home`
+  | `/projects/:projectId/ai-dashboard/registries`
   | `/projects/:projectId/ai-dashboard/users-tokens`
   | `/projects/:projectId/apps`
   | `/projects/:projectId/apps/:appId`
@@ -26,7 +28,9 @@ export type Path =
 export type Params = {
   '/projects/:projectId': { projectId: string }
   '/projects/:projectId/ai-dashboard': { projectId: string }
+  '/projects/:projectId/ai-dashboard/cli': { projectId: string }
   '/projects/:projectId/ai-dashboard/home': { projectId: string }
+  '/projects/:projectId/ai-dashboard/registries': { projectId: string }
   '/projects/:projectId/ai-dashboard/users-tokens': { projectId: string }
   '/projects/:projectId/apps': { projectId: string }
   '/projects/:projectId/apps/:appId': { projectId: string; appId: string }

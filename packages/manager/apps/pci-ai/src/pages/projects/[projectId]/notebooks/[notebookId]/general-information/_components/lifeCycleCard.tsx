@@ -15,7 +15,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-import { ArrowRight, MoreVertical } from 'lucide-react';
+import { ArrowRight, CircleEllipsis } from 'lucide-react';
 
 import { ai } from '@/models/types';
 import { NotebookProps, notebookApi } from '@/data/aiapi';
@@ -165,9 +165,9 @@ const LifeCycleCard = ({ notebook, onNotebookUpdate }: LifeCycleProps) => {
             )}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="h-8 w-8 p-0">
+                <Button variant="ghost" className="h-10 w-10 p-0">
                   <span className="sr-only">Open menu</span>
-                  <MoreVertical className="h-4 w-4" />
+                  <CircleEllipsis className="h-8 w-8" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -238,8 +238,7 @@ const LifeCycleCard = ({ notebook, onNotebookUpdate }: LifeCycleProps) => {
           </p>
           <p>{formattedDuration(notebook.status.duration || 0, false)}</p>
           <Button
-            className="font-semibold hover:bg-primary-100 hover:text-primary"
-            variant="link"
+            variant="linkBis"
             size="sm"
             asChild
           >

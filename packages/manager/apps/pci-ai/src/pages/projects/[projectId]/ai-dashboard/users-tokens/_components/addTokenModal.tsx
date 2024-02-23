@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { z } from 'zod';
 
 import { cn } from '@/lib/utils';
@@ -36,10 +35,9 @@ import { Check, ChevronDown } from 'lucide-react';
 import { ai } from '@/models/types';
 import { formattedTokenRole } from '@/data/constant';
 import { Input } from '@/components/ui/input';
-import { useGetRegions } from '@/hooks/api/ai/useGetRegions';
 import { Badge } from '@/components/ui/badge';
 
-export interface addTokenSubmitData {
+export interface AddTokenSubmitData {
   name: string;
   label?: string;
   userRole: string;
@@ -47,17 +45,14 @@ export interface addTokenSubmitData {
 }
 
 interface AddTokenModalProps {
+  regionsList: ai.capabilities.Region[];
   open: boolean;
   onClose: () => void;
-  onSubmit: (data: addTokenSubmitData) => void;
+  onSubmit: (data: AddTokenSubmitData) => void;
 }
 
-const AddTokenModal = ({ open, onClose, onSubmit }: AddTokenModalProps) => {
-  const { projectId } = useRequiredParams<{ projectId: string }>();
-  const regionsQuery = useGetRegions(projectId, {
-    refetchInterval: 30_000,
-  });
-  const regionsList = regionsQuery.data || [];
+const AddTokenModal = ({ regionsList, open, onClose, onSubmit }: AddTokenModalProps) => {
+
   // define the schema for the form
   const schema = z.object({
     name: z
@@ -190,6 +185,7 @@ const AddTokenModal = ({ open, onClose, onSubmit }: AddTokenModalProps) => {
                       <FormControl>
                         <Button
                           variant="combobox"
+                          size="combobox"
                           role="combobox"
                           className={cn(
                             'justify-between',
@@ -247,6 +243,7 @@ const AddTokenModal = ({ open, onClose, onSubmit }: AddTokenModalProps) => {
                       <FormControl>
                         <Button
                           variant="combobox"
+                          size="combobox"
                           role="combobox"
                           className={cn(
                             'justify-between',

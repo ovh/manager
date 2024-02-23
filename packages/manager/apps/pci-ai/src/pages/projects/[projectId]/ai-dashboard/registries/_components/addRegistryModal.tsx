@@ -33,30 +33,45 @@ import {
 import { Check, ChevronDown } from 'lucide-react';
 
 import { ai } from '@/models/types';
-import { formattedTokenRole } from '@/data/constant';
 import { Input } from '@/components/ui/input';
 
-export interface AddUserSubmitData {
-  description: string;
-  userRole : string;
+export interface AddRegistrySubmitData {
+  region: string;
+  username: string;
+  password: string;
+  dockerUrl: string;
 }
 
-interface AddUserModalProps {
+interface AddRegistryModalProps {
+  regionsList: ai.capabilities.Region[];
   open: boolean;
   onClose: () => void;
-  onSubmit: (data: AddUserSubmitData) => void;
+  onSubmit: (data: AddRegistrySubmitData) => void;
 }
 
-const AddUserModal = ({ open, onClose, onSubmit }: AddUserModalProps) => {
+const AddRegistryModal = ({
+  regionsList,
+  open,
+  onClose,
+  onSubmit,
+}: AddRegistryModalProps) => {
   // define the schema for the form
   const schema = z.object({
-    description: z
-        .string()
-        .min(1)
-        .max(30),
-    userRole: z.string({
-      required_error: 'Please select a user role',
+    region: z.string({
+      required_error: 'Please select a region',
     }),
+    username: z
+      .string()
+      .min(1)
+      .max(50),
+    password: z
+      .string()
+      .min(1)
+      .max(50),
+    dockerUrl: z
+      .string()
+      .min(1)
+      .max(50),
   });
 
   type ValidationSchema = z.infer<typeof schema>;
@@ -65,8 +80,10 @@ const AddUserModal = ({ open, onClose, onSubmit }: AddUserModalProps) => {
   const form = useForm<ValidationSchema>({
     resolver: zodResolver(schema),
     defaultValues: {
-      description: "",
-      userRole: formattedTokenRole(ai.TokenRoleEnum.ai_training_operator),
+      region: regionsList[0]?.id || 'GRA',
+      username: '',
+      password: '',
+      dockerUrl: '',
     },
   });
 
@@ -74,15 +91,12 @@ const AddUserModal = ({ open, onClose, onSubmit }: AddUserModalProps) => {
   const submitAndForward: SubmitHandler<ValidationSchema> = (formValues) => {
     form.reset();
     onSubmit({
-      description: formValues.description,
-      userRole: userRoleList.find((user) => user.value === formValues.userRole)?.key || "",
+      username: formValues.username,
+      password: formValues.password,
+      dockerUrl: formValues.dockerUrl,
+      region: formValues.region,
     });
   };
-
-  const userRoleList = [
-    { key: ai.TokenRoleEnum.ai_training_operator, value: formattedTokenRole(ai.TokenRoleEnum.ai_training_operator)},
-    { key: ai.TokenRoleEnum.ai_training_read, value: formattedTokenRole(ai.TokenRoleEnum.ai_training_read) },
-  ];
 
   const handleClose = (value: boolean) => {
     if (value) return;
@@ -91,31 +105,20 @@ const AddUserModal = ({ open, onClose, onSubmit }: AddUserModalProps) => {
   };
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={handleClose}
-    >
+    <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent>
-        <DialogTitle>Create an AI user</DialogTitle>
+        <DialogTitle>Create an AI token</DialogTitle>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(submitAndForward)} className="space-y-8">
-          <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel>Description</FormLabel>
-                    <Input {...field} />
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+          <form
+            onSubmit={form.handleSubmit(submitAndForward)}
+            className="space-y-8"
+          >
             <FormField
               control={form.control}
-              name="userRole"
+              name="region"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel>Role</FormLabel>
+                  <FormLabel>Region</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
@@ -129,35 +132,35 @@ const AddUserModal = ({ open, onClose, onSubmit }: AddUserModalProps) => {
                           )}
                         >
                           {field.value
-                            ? userRoleList.find(
-                                (userRole) => userRole.value === field.value,
-                              )?.value
-                            : 'Select your Role'}
+                            ? regionsList.find(
+                                (region) => region.id === field.value,
+                              )?.id
+                            : 'Select your region'}
                           <ChevronDown className="text-primary ml-2 h-4 w-4 shrink-0 opacity-50" />
                         </Button>
                       </FormControl>
                     </PopoverTrigger>
                     <PopoverContent className="p-0">
                       <Command>
-                        <CommandInput placeholder="Search role type" />
+                        <CommandInput placeholder="Search region" />
                         <CommandGroup>
-                          {userRoleList.map((userRole) => (
+                          {regionsList.map((region) => (
                             <CommandItem
-                              value={userRole.value}
-                              key={userRole.key}
+                              value={region.id}
+                              key={region.id}
                               onSelect={() => {
-                                form.setValue('userRole', userRole.value || '');
+                                form.setValue('region', region.id || '');
                               }}
                             >
                               <Check
                                 className={cn(
                                   'mr-2 h-4 w-4',
-                                  userRole.value === field.value
+                                  region.id === field.value
                                     ? 'opacity-100'
                                     : 'opacity-0',
                                 )}
                               />
-                              {userRole.value}
+                              {region.id}
                             </CommandItem>
                           ))}
                         </CommandGroup>
@@ -168,9 +171,42 @@ const AddUserModal = ({ open, onClose, onSubmit }: AddUserModalProps) => {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel>Username</FormLabel>
+                  <Input {...field} />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel>Password</FormLabel>
+                  <Input type="password" {...field} />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="dockerUrl"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel>Private Docker Registry URL</FormLabel>
+                  <Input {...field} />
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <DialogFooter className="flex justify-end">
               <DialogClose></DialogClose>
-              <Button type="submit">Add User</Button>
+              <Button type="submit">Create</Button>
             </DialogFooter>
           </form>
         </Form>
@@ -179,4 +215,4 @@ const AddUserModal = ({ open, onClose, onSubmit }: AddUserModalProps) => {
   );
 };
 
-export default AddUserModal;
+export default AddRegistryModal;

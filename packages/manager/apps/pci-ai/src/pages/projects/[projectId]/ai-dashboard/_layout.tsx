@@ -1,6 +1,7 @@
 import TabsMenu from '@/components/tabs-menu';
 import { H2 } from '@/components/typography';
 import { Button } from '@/components/ui/button';
+import { useGetRegions } from '@/hooks/api/ai/useGetRegions';
 import { useGetTokens } from '@/hooks/api/ai/useGetTokens';
 import { useGetUsers } from '@/hooks/api/ai/useGetUsers';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
@@ -16,6 +17,7 @@ export const Handle = {
 export type DashboardLayoutContext = {
   tokensQuery: UseQueryResult<ai.token.Token[], Error>;
   usersQuery: UseQueryResult<user.User[], Error>;
+  regionsQuery: UseQueryResult<ai.capabilities.Region[], Error>;
 };
 
 export default function AiDashboardLayout() {
@@ -26,6 +28,10 @@ export default function AiDashboardLayout() {
   const usersQuery = useGetUsers(projectId, {
     refetchInterval: 30_000,
   });
+  const regionsQuery = useGetRegions(projectId, {
+    refetchInterval: 30_000,
+  });
+
     const servicePriceLink : string = "https://www.ovhcloud.com/fr/public-cloud/prices/#ai-&-machine-learning"
     const tabs = [
         { href: 'home', label: 'Dashboard' },
@@ -38,6 +44,7 @@ export default function AiDashboardLayout() {
       const dashboardLayoutContext: DashboardLayoutContext = {
         usersQuery: usersQuery,
         tokensQuery: tokensQuery,
+        regionsQuery: regionsQuery,
       };
     return (
     <>

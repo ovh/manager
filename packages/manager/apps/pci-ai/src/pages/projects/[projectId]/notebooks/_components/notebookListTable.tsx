@@ -156,14 +156,14 @@ export default function NotebooksList({
                 <Plus className="w-4 h-4 mr-2" /> Create a new Notebooks
               </Link>
             </Button>
-            <div className="flex">
+            <div className="flex gap-2">
               <Input
                 type="text"
                 id="search"
                 placeholder="Search a notebook"
                 className="mr-2"
               />
-              <Button variant="outline" onClick={() => refetchFn()}>
+              <Button variant="outline" size="icon" onClick={() => refetchFn()}>
                 <RefreshCcw className="w-4 h-4" />
               </Button>
             </div>

@@ -130,8 +130,7 @@ const ResourcesCard = ({ notebook }: ResourcesProps) => {
             <b>Real-time monitoring</b>
           </p>
           <Button
-            className="font-semibold hover:bg-primary-100 hover:text-primary"
-            variant="link"
+            variant="linkBis"
             size="sm"
             asChild
           >

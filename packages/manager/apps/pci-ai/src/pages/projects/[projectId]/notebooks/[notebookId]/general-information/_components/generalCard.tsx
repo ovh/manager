@@ -66,8 +66,7 @@ const GeneralCard = ({ notebook, onLabelUpdate }: GeneralProps) => {
             </p>
             <Button
               disabled={true}
-              className="font-semibold hover:bg-primary-100 hover:text-primary"
-              variant="link"
+              variant="linkBis"
               size="sm"
               asChild
             >
@@ -84,8 +83,7 @@ const GeneralCard = ({ notebook, onLabelUpdate }: GeneralProps) => {
             </p>
             <p>{notebook.spec.volumes?.length || 0} container(s)</p>
             <Button
-              className="font-semibold hover:bg-primary-100 hover:text-primary"
-              variant="link"
+              variant="linkBis"
               size="sm"
               asChild
             >

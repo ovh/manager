@@ -5,9 +5,9 @@ import { useState } from 'react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
-import { Plus, RefreshCcw, XCircle } from 'lucide-react';
+import { Plus, RefreshCcw } from 'lucide-react';
 
-import { H2, H3, P } from '@/components/typography';
+import { H2, H3 } from '@/components/typography';
 
 import { DashboardLayoutContext } from '../_layout';
 import { ai, user } from '@/models/types';
@@ -20,20 +20,14 @@ import {
 import TokensList, {
   RegenerateTokenSubmitData,
 } from './_components/tokensListTable';
-import AddUserModal, { addUserSubmitData } from './_components/addUserModal';
+import AddUserModal, { AddUserSubmitData } from './_components/addUserModal';
 import { Input } from '@/components/ui/input';
-import AddTokenModal, { addTokenSubmitData } from './_components/addTokenModal';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import AddTokenModal, { AddTokenSubmitData } from './_components/addTokenModal';
 import { DeleteTokenSubmitData } from './_components/deleteTokenModal';
+import AlertMessage, { Message } from '../../_components/alertMessage';
 
 export const Handle = {
   breadcrumb: () => 'Users & Tokens',
-};
-
-type Message = {
-  type?: 'default' | 'destructive' | 'success';
-  title: string;
-  content: JSX.Element;
 };
 
 export default function DashboardHomePage() {
@@ -44,6 +38,7 @@ export default function DashboardHomePage() {
   const {
     usersQuery,
     tokensQuery,
+    regionsQuery,
   } = useOutletContext() as DashboardLayoutContext;
   const activeUsers: number =
     usersQuery.data?.filter((user: user.User) =>
@@ -61,7 +56,7 @@ export default function DashboardHomePage() {
     usersQuery.refetch();
   };
 
-  const onAddUserSubmit = (data: addUserSubmitData) => {
+  const onAddUserSubmit = (data: AddUserSubmitData) => {
     setIsAddUserModalOpen(false);
     addUserDataMutation.mutate({
       projectId: projectId,
@@ -101,7 +96,7 @@ export default function DashboardHomePage() {
     },
   });
 
-  const onAddTokenSubmit = (data: addTokenSubmitData) => {
+  const onAddTokenSubmit = (data: AddTokenSubmitData) => {
     setIsAddTokenModalOpen(false);
     addTokenDataMutation.mutate({
       projectId: projectId,
@@ -200,28 +195,19 @@ export default function DashboardHomePage() {
     },
   });
 
+  const deleteMessages = () => {
+    console.log('inDeleteMessages');
+    setMessages([]);
+  };
+
   return (
     <>
-      <div className="flex flex-col gap-2 mb-2">
-        {messages.map((m, i) => (
-          <Alert variant={m.type} key={i}>
-            <AlertTitle>{m.title}</AlertTitle>
-            <AlertDescription>{m.content}</AlertDescription>
-            <Button
-              onClick={() => setMessages([])}
-              className="w-4 h-4 absolute right-2 top-2"
-              variant="transparent"
-            >
-              <XCircle className="w-4 h-4"></XCircle>
-            </Button>
-          </Alert>
-        ))}
-      </div>
+      <AlertMessage messages={messages} deleteMessages={deleteMessages} />
       <H2>Authentication and secure access</H2>
-      <P>
+      <p>
         Your data and business security is paramount. This is why you are
         required to provide additional authentication when using AI Tools.
-      </P>
+      </p>
       <H3>Manage access with Public Cloud users</H3>
       <p>
         When you work with our tools, you need to authenticate yourself through
@@ -247,7 +233,7 @@ export default function DashboardHomePage() {
           variant="default"
           size="sm"
         >
-          <Plus className="stroke-[4px] w-4 h-4 mr-2" />
+          <Plus className="w-4 h-4 mr-2" />
           Create an AI user{isAddUserModalOpen}
         </Button>
         <AddUserModal
@@ -270,14 +256,17 @@ export default function DashboardHomePage() {
           variant="default"
           size="sm"
         >
-          <Plus className="stroke-[4px] w-4 h-4 mr-2" />
+          <Plus className="w-4 h-4 mr-2" />
           Create a token{isAddTokenModalOpen}
         </Button>
-        <AddTokenModal
-          open={isAddTokenModalOpen}
-          onClose={() => setIsAddTokenModalOpen(false)}
-          onSubmit={onAddTokenSubmit}
-        />
+        {regionsQuery.data && (
+          <AddTokenModal
+            regionsList={regionsQuery.data}
+            open={isAddTokenModalOpen}
+            onClose={() => setIsAddTokenModalOpen(false)}
+            onSubmit={onAddTokenSubmit}
+          />
+        )}
         <div className="flex">
           <Input
             type="text"
