@@ -77,7 +77,7 @@ const VersionSelector = ({
                   onSelect={(value) => {
                     const versionFromName = versions.find(
                       (v) => v.name === value,
-                    )!;
+                    );
                     onChange(versionFromName);
                     setOpen(false);
                   }}

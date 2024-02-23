@@ -1,8 +1,21 @@
 import { useEffect, useState, useMemo } from 'react';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useParams } from 'react-router';
 import { database } from '@/models/database';
-import { Engine, Flavor, Plan, Region, Version } from '@/models/order-funnel';
+import {
+  Engine,
+  Flavor,
+  NetworkOptionValue,
+  Plan,
+  Region,
+  Version,
+} from '@/models/order-funnel';
 import { order } from '@/models/catalog';
 import { createTree } from '@/lib/availabilitiesHelper';
+import { generateName } from '@/lib/nameGenerator';
+import { useVrack } from './useVrack';
 
 const getSuggestedItemOrDefault = (
   suggestion: database.Suggestion,
@@ -30,16 +43,78 @@ export function useOrderFunnel(
   suggestions: database.Suggestion[],
   catalog: order.publicOrder.Catalog,
 ) {
-  const [engineWithVersion, setEngineWithVersion] = useState({
-    engine: '',
-    version: '',
+  const { projectId } = useParams();
+  const orderSchema = z.object({
+    engineWithVersion: z.object({
+      engine: z.string(),
+      version: z.string(),
+    }),
+    plan: z.string(),
+    region: z.string(),
+    flavor: z.string(),
+    additionalStorage: z.number(),
+    nbNodes: z.number(),
+    ipRestrictions: z
+      .array(
+        z.object({
+          ip: z.string(),
+          description: z.string(),
+        }),
+      )
+      .min(1, 'please confugure at least 1 ip'),
+    network: z
+      .object({
+        type: z.enum([
+          database.NetworkTypeEnum.public,
+          database.NetworkTypeEnum.private,
+        ]),
+        networkId: z.string().optional(),
+        subnetId: z.string().optional(),
+      })
+      .refine(
+        (data) => {
+          if (data.type === database.NetworkTypeEnum.private) {
+            return data.networkId !== undefined && data.subnetId !== undefined;
+          }
+          return true;
+        },
+        {
+          message:
+            "For private network, both 'networkId' and 'subnetId' are required.",
+        },
+      ),
+    name: z.string(),
   });
-  const [plan, setPlan] = useState('');
-  const [region, setRegion] = useState('');
-  const [flavor, setFlavor] = useState('');
+  const form = useForm({
+    resolver: zodResolver(orderSchema),
+    defaultValues: {
+      name: generateName(),
+      engineWithVersion: { engine: '', version: '' },
+      plan: '',
+      region: '',
+      flavor: '',
+      nbNodes: 0,
+      additionalStorage: 0,
+      ipRestrictions: [],
+      network: {
+        type: database.NetworkTypeEnum.public,
+        networkId: undefined,
+        subnetId: undefined,
+      } as NetworkOptionValue,
+    },
+  });
 
-  const [nbNodes, setNbNodes] = useState(0);
-  const [additionalStorage, setAdditionalStorage] = useState(0);
+  const name = form.watch('name');
+  const engineWithVersion = form.watch('engineWithVersion');
+  const plan = form.watch('plan');
+  const region = form.watch('region');
+  const flavor = form.watch('flavor');
+  const nbNodes = form.watch('nbNodes');
+  const additionalStorage = form.watch('additionalStorage');
+  const ips = form.watch('ipRestrictions');
+  const network = form.watch('network');
+
+  const networksData = useVrack(projectId, region, network.networkId);
 
   const [price, setPrice] = useState({
     hourly: { price: 0, tax: 0 },
@@ -159,11 +234,12 @@ export function useOrderFunnel(
     const { defaultVersion } = defaultEngine;
     engineAndVersion.engine = defaultEngine.name;
     engineAndVersion.version = defaultVersion;
-    setEngineWithVersion(engineAndVersion);
+    form.setValue('engineWithVersion', engineAndVersion);
   }, [listEngines]);
   // update plan
   useEffect(() => {
-    setPlan(
+    form.setValue(
+      'plan',
       getSuggestedItemOrDefault(
         suggestions.find((s) => s.engine === engineWithVersion.engine),
         'plan',
@@ -174,11 +250,12 @@ export function useOrderFunnel(
   // update nodes when plan changes
   useEffect(() => {
     if (!planObject) return;
-    setNbNodes(planObject.nodes.minimum);
+    form.setValue('nbNodes', planObject.nodes.minimum);
   }, [plan, listPlans]);
   // update region
   useEffect(() => {
-    setRegion(
+    form.setValue(
+      'region',
       getSuggestedItemOrDefault(
         suggestions.find((s) => s.engine === engineWithVersion.engine),
         'region',
@@ -189,7 +266,8 @@ export function useOrderFunnel(
   }, [listRegions, suggestions, engineWithVersion.engine, region]);
   // update flavor
   useEffect(() => {
-    setFlavor(
+    form.setValue(
+      'flavor',
       getSuggestedItemOrDefault(
         suggestions.find((s) => s.engine === engineWithVersion.engine),
         'flavor',
@@ -200,40 +278,35 @@ export function useOrderFunnel(
   }, [listFlavors, suggestions, engineWithVersion.engine, flavor]);
   // reset storage when flavor is changed
   useEffect(() => {
-    setAdditionalStorage(0);
+    form.setValue('additionalStorage', 0);
   }, [flavor]);
 
+  useEffect(() => {
+    if (network.networkId) networksData.setId(network.networkId);
+  }, [network.networkId]);
+
   return {
-    form: {
-      engineWithVersion,
-      setEngineWithVersion,
-      plan,
-      setPlan,
-      region,
-      setRegion,
-      flavor,
-      setFlavor,
-      nbNodes,
-      setNbNodes,
-      additionalStorage,
-      setAdditionalStorage,
-    },
+    form,
     lists: {
       engines: listEngines,
       plans: listPlans,
       regions: listRegions,
       flavors: listFlavors,
+      networks: networksData.networks,
+      subnets: networksData.subnets,
     },
     result: {
       availability,
       price,
+      name,
       engine: engineObject,
-      verion: versionObject,
+      version: versionObject,
       plan: planObject,
       region: regionObject,
       flavor: flavorObject,
       nodes: nbNodes,
       additionalStorage,
+      ipRestrictions: ips,
     },
   };
 }

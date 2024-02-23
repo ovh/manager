@@ -6,7 +6,6 @@ import onboardingImgSrc from '../../../public/assets/onboarding-image.png';
 const Onboarding = () => {
   const { t } = useTranslation('pci-databases-analytics/services/onboarding');
   const navigate = useNavigate();
-  const { projectId } = useParams();
   const title: string = t('title');
   const description: string = t('description');
   // useTrackingPage(TrackingPageView.Onboarding);

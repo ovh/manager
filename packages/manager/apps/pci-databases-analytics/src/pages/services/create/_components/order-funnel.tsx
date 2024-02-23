@@ -1,5 +1,5 @@
-import { FormEvent, useState } from 'react';
-import { H3 } from '@/components/typography';
+import { useState } from 'react';
+import { H3, H4 } from '@/components/typography';
 import { useOrderFunnel } from '@/hooks/useOrderFunnel';
 import { order } from '@/models/catalog';
 import { database } from '@/models/database';
@@ -24,6 +24,15 @@ import { Switch } from '@/components/ui/switch';
 import Price from '@/components/price';
 import OrderSummary from './order-summary';
 import NetworkOptions from './cluster-options/network-options';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import IpsRestrictionsForm from './cluster-options/ips-restrictions-form';
 
 interface OrderFunnelProps {
   availabilities: database.Availability[];
@@ -52,25 +61,31 @@ const OrderFunnel = ({
   );
   const [showMonthlyPrice, setshowMonthlyPrice] = useState(false);
   const { toast } = useToast();
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    toast({
-      title: 'Deployment in progress',
-      description: (
-        <div className="flex flex-col">
-          <span>{new Date().toDateString()}</span>
-          <span>Engine: {model.form.engineWithVersion.engine}</span>
-          <span>Version: {model.form.engineWithVersion.version}</span>
-          <span>Plan: {model.form.plan}</span>
-          <span>Region: {model.form.region}</span>
-          <span>Flavor: {model.form.flavor}</span>
-          <span>nbNodes: {model.form.nbNodes}</span>
-          <span>additionalStorage: {model.form.additionalStorage}</span>
-          <span>network: {}</span>
-        </div>
-      ),
-    });
-  };
+
+  const hasNodeSelection =
+    model.result.plan &&
+    model.result.plan.nodes.minimum !== model.result.plan.nodes.maximum;
+  const hasStorageSelection =
+    model.result.flavor &&
+    model.result.flavor.storage &&
+    model.result.flavor.storage.minimum.value !==
+      model.result.flavor.storage.maximum.value;
+
+  const onSubmit = model.form.handleSubmit(
+    (data) => {
+      toast({
+        title: 'form submitted',
+        description: <div>{JSON.stringify(data)}</div>,
+      });
+    },
+    (error) => {
+      toast({
+        title: 'form submitted',
+        variant: 'destructive',
+        description: <div>{JSON.stringify(error)}</div>,
+      });
+    },
+  );
 
   const scrollToDiv = (target: string) => {
     const div = document.getElementById(target);
@@ -91,130 +106,256 @@ const OrderFunnel = ({
         </a>{' '}
         first.
       </p>
-      <form
-        className="grid grid-cols-1 lg:grid-cols-4 gap-4"
-        onSubmit={handleSubmit}
-      >
-        <div className="col-span-1 md:col-span-3">
-          <section id="engine">
-            <H3>Engine</H3>
-            <EnginesSelect
-              engines={model.lists.engines}
-              value={model.form.engineWithVersion}
-              onChange={(newEngineWithVersion) =>
-                model.form.setEngineWithVersion(newEngineWithVersion)
-              }
-            />
-          </section>
-          <section id="plan">
-            <H3>Plan</H3>
-            <PlansSelect
-              plans={model.lists.plans}
-              value={model.form.plan}
-              onChange={(newPlan) => model.form.setPlan(newPlan)}
-              showMonthlyPrice={showMonthlyPrice}
-            />
-          </section>
-          <section id="region"></section>
-          <H3>Region</H3>
-          <RegionsSelect
-            regions={model.lists.regions}
-            onChange={(newRegion) => model.form.setRegion(newRegion)}
-            value={model.form.region}
-          />
-          <section id="flavor"></section>
-          <H3>Flavor</H3>
-          <FlavorsSelect
-            flavors={model.lists.flavors}
-            value={model.form.flavor}
-            onChange={(newFlavor) => model.form.setFlavor(newFlavor)}
-            showMonthlyPrice={showMonthlyPrice}
-          />
-          {model.result.availability &&
-            (model.result.plan?.nodes.minimum !==
-              model.result.plan?.nodes.maximum ||
-              model.result.flavor?.storage?.minimum !==
-                model.result.flavor?.storage?.maximum) && (
-              <section id="cluster">
-                <H3>Cluster config</H3>
-                <div className="flex flex-col gap-4">
-                  <NodesConfig
-                    minimum={model.result.plan.nodes.minimum}
-                    maximum={model.result.plan.nodes.maximum}
-                    value={model.form.nbNodes}
-                    onChange={(newNbNodes) => model.form.setNbNodes(newNbNodes)}
-                  />
-                  <StorageConfig
-                    availability={model.result.availability}
-                    value={model.form.additionalStorage}
-                    onChange={(newStorage) =>
-                      model.form.setAdditionalStorage(newStorage)
-                    }
-                  />
-                </div>
-              </section>
-            )}
-          <section id="options">
-            <H3>Options</H3>
-            <NetworkOptions
-              region={model.form.region}
-              networkType={database.NetworkTypeEnum.private}
-              onNetworkTypeChange={() => {}}
-            />
-          </section>
-        </div>
+      <Form {...model.form}>
+        <form
+          className="grid grid-cols-1 lg:grid-cols-4 gap-4"
+          onSubmit={onSubmit}
+        >
+          <div className="col-span-1 md:col-span-3">
+            <section id="engine">
+              <FormField
+                control={model.form.control}
+                name="engineWithVersion"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Engine</FormLabel>
+                    <FormControl>
+                      <EnginesSelect
+                        {...field}
+                        engines={model.lists.engines}
+                        value={field.value}
+                        onChange={(newEngineWithVersion) =>
+                          model.form.setValue(
+                            'engineWithVersion',
+                            newEngineWithVersion,
+                          )
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </section>
+            <section id="plan">
+              <FormField
+                control={model.form.control}
+                name="plan"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Plan</FormLabel>
+                    <FormControl>
+                      <PlansSelect
+                        {...field}
+                        plans={model.lists.plans}
+                        value={field.value}
+                        onChange={(newPlan) =>
+                          model.form.setValue('plan', newPlan)
+                        }
+                        showMonthlyPrice={showMonthlyPrice}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </section>
+            <section id="region">
+              <FormField
+                control={model.form.control}
+                name="region"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Region</FormLabel>
+                    <FormControl>
+                      <RegionsSelect
+                        {...field}
+                        regions={model.lists.regions}
+                        value={field.value}
+                        onChange={(newRegion) =>
+                          model.form.setValue('region', newRegion)
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </section>
 
-        <Card className="sticky mt-16 top-8 h-fit shadow-lg">
-          <CardHeader>
-            <CardTitle>Votre commande</CardTitle>
-            <CardDescription>Configuration de votre service</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <OrderSummary
-              engine={model.result.engine}
-              flavor={model.result.flavor}
-              additionalStorage={model.result.additionalStorage}
-              nbNodes={model.result.nodes}
-              plan={model.result.plan}
-              region={model.result.region}
-              version={model.result.verion}
-              onSectionClicked={(section) => scrollToDiv(section)}
-            />
-            <div>
-              <div className="flex flex-col">
-                <div className="flex items-center space-x-2 mb-2">
-                  <Switch
-                    className="rounded-xl"
-                    id="price-unit"
-                    checked={showMonthlyPrice}
-                    onCheckedChange={(checked) => setshowMonthlyPrice(checked)}
-                  />
-                  <Label htmlFor="availabilities-table">Monthly prices</Label>
-                </div>
-                <div className="flex items-baseline">
-                  <Price
-                    decimals={showMonthlyPrice ? 2 : 3}
-                    priceInUcents={
-                      model.result.price[
-                        showMonthlyPrice ? 'monthly' : 'hourly'
-                      ].price
-                    }
-                    taxInUcents={
-                      model.result.price[
-                        showMonthlyPrice ? 'monthly' : 'hourly'
-                      ].tax
-                    }
-                  />
-                  {showMonthlyPrice ? '/mois' : '/heure'}
+            <section id="flavor">
+              <FormField
+                control={model.form.control}
+                name="flavor"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Flavor</FormLabel>
+                    <FormControl>
+                      <FlavorsSelect
+                        {...field}
+                        flavors={model.lists.flavors}
+                        value={field.value}
+                        onChange={(newFlavor) =>
+                          model.form.setValue('flavor', newFlavor)
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </section>
+
+            {model.result.availability &&
+              (hasNodeSelection || hasStorageSelection) && (
+                <section id="cluster">
+                  <H3>Cluster config</H3>
+                  <div className="divide-y-4">
+                    {hasNodeSelection && (
+                      <FormField
+                        control={model.form.control}
+                        name="nbNodes"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Nodes</FormLabel>
+                            <FormControl>
+                              <NodesConfig
+                                {...field}
+                                minimum={model.result.plan.nodes.minimum}
+                                maximum={model.result.plan.nodes.maximum}
+                                value={field.value}
+                                onChange={(newNbNodes) =>
+                                  model.form.setValue('nbNodes', newNbNodes)
+                                }
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    )}
+                    {hasStorageSelection && (
+                      <FormField
+                        control={model.form.control}
+                        name="additionalStorage"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Storage</FormLabel>
+                            <FormControl>
+                              <StorageConfig
+                                {...field}
+                                availability={model.result.availability}
+                                value={field.value}
+                                onChange={(newStorage) =>
+                                  model.form.setValue(
+                                    'additionalStorage',
+                                    newStorage,
+                                  )
+                                }
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    )}
+                  </div>
+                </section>
+              )}
+            <section id="options">
+              <H3>Options</H3>
+              <FormField
+                control={model.form.control}
+                name="network"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>network</FormLabel>
+                    <FormControl>
+                      <NetworkOptions
+                        {...field}
+                        value={field.value}
+                        onChange={(newNetwork) =>
+                          model.form.setValue('network', newNetwork)
+                        }
+                        networks={model.lists.networks}
+                        subnets={model.lists.subnets}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <H4>IPs restrictions</H4>
+              <FormField
+                control={model.form.control}
+                name="ipRestrictions"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>ipRestrictions</FormLabel>
+                    <FormControl>
+                      <IpsRestrictionsForm
+                        {...field}
+                        value={field.value}
+                        onChange={(newIps) =>
+                          model.form.setValue('ipRestrictions', newIps)
+                        }
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </section>
+          </div>
+
+          <Card className="sticky lg:mt-16 top-8 h-fit shadow-lg">
+            <CardHeader>
+              <CardTitle>Votre commande</CardTitle>
+              <CardDescription>Configuration de votre service</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <OrderSummary
+                order={model.result}
+                onSectionClicked={(section) => scrollToDiv(section)}
+              />
+              <div>
+                <div className="flex flex-col">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <Switch
+                      className="rounded-xl"
+                      id="price-unit"
+                      checked={showMonthlyPrice}
+                      onCheckedChange={(checked) =>
+                        setshowMonthlyPrice(checked)
+                      }
+                    />
+                    <Label htmlFor="availabilities-table">Monthly prices</Label>
+                  </div>
+                  <div className="flex items-baseline">
+                    <Price
+                      decimals={showMonthlyPrice ? 2 : 3}
+                      priceInUcents={
+                        model.result.price[
+                          showMonthlyPrice ? 'monthly' : 'hourly'
+                        ].price
+                      }
+                      taxInUcents={
+                        model.result.price[
+                          showMonthlyPrice ? 'monthly' : 'hourly'
+                        ].tax
+                      }
+                    />
+                    {showMonthlyPrice ? '/mois' : '/heure'}
+                  </div>
                 </div>
               </div>
-            </div>
-          </CardContent>
-          <CardFooter className="flex justify-between">
-            <Button className="w-full">Commander</Button>
-          </CardFooter>
-        </Card>
-      </form>
+            </CardContent>
+            <CardFooter className="flex justify-between">
+              <Button className="w-full">Commander</Button>
+            </CardFooter>
+          </Card>
+        </form>
+      </Form>
     </>
   );
 };

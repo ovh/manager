@@ -1,1 +1,1 @@
-export * from './apiv2/projects';
+export * from './projects';
