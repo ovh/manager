@@ -92,6 +92,11 @@ export const VRACK_ORDER_URLS = {
     "https://www.ovh.ie/order/express/#/new/express/resume?products=~(~(planCode~'vrack~quantity~1~productId~'vrack))",
 };
 
+export const LABELS = {
+  VRACK: 'vRack',
+  VRACK_SERVICE: 'vRack Service',
+};
+
 export default {
   MINIMUM_VOLUME_SIZE,
   COMMIT_IMPRESSION_TRACKING_DATA,
@@ -101,4 +106,5 @@ export default {
   POLLING_TYPE,
   VRACK_SERVICES_STATUS,
   VRACK_ORDER_URLS,
+  LABELS,
 };
