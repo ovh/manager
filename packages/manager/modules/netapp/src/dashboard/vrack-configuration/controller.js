@@ -1,4 +1,4 @@
-import { LABELS } from './constants';
+import { LABELS } from '../constants';
 
 export default class OvhManagerNetappVrackConfigurationCtrl {
   /* @ngInject */

@@ -1,4 +1,4 @@
-import { LABELS, TRACKING_BASE } from './constants';
+import { LABELS } from '../constants';
 
 export default class OvhManagerNetAppNetworkConfigurationCtrl {
   /* @ngInject */
@@ -15,7 +15,6 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
     this.NetAppDashboardService = NetAppDashboardService;
     this.NetappNetworkConfigurationService = NetappNetworkConfigurationService;
     this.LABELS = LABELS;
-    this.TRACKING_BASE = TRACKING_BASE;
     this.$window = $window;
     this.user = coreConfig.getUser();
   }
