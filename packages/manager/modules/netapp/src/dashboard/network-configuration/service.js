@@ -6,12 +6,6 @@ export default class NetAppNetworkConfigurationService {
     this.Apiv2Service = Apiv2Service;
   }
 
-  getAllowedVrackServices(vrackId) {
-    return this.$http
-      .get(`/vrack/${vrackId}/allowedServices?serviceFamily=vrackServices`)
-      .then(({ data }) => data);
-  }
-
   linkVrackServiceToEfs(vrackId, vs, subnet, efs) {
     const vrackServices = vs;
 

@@ -25,13 +25,9 @@ export default /* @ngInject */ ($stateProvider) => {
           type: 'action',
           name: `${TRACKING_BASE}::${tracker}`,
         }),
-      trackSuccess: /* @ngInject */ (atInternet) => () =>
+      trackPage: /* @ngInject */ (atInternet) => (tracker) =>
         atInternet.trackPage({
-          name: `${TRACKING_BASE}-success`,
-        }),
-      trackError: /* @ngInject */ (atInternet) => () =>
-        atInternet.trackPage({
-          name: `${TRACKING_BASE}-error`,
+          name: `${TRACKING_BASE}-${tracker}`,
         }),
       goBack: /* @ngInject */ ($state, trackClick) => (trackingAction) => {
         trackClick(trackingAction);
@@ -45,11 +41,11 @@ export default /* @ngInject */ ($stateProvider) => {
           })),
         ),
       availableVracks: /* @ngInject */ (
-        NetappVrackConfigurationService,
+        NetAppDashboardService,
         vracks,
         networkInformations,
       ) =>
-        NetappVrackConfigurationService.filterAllowedVrack(
+        NetAppDashboardService.filterAllowedVrack(
           vracks,
           networkInformations.vRackServicesId,
         ),
