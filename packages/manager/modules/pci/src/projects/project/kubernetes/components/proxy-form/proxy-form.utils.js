@@ -1,7 +1,7 @@
 import { TIMEOUT_MIN } from './proxy-form.constants';
 
 export const isTimeoutValid = (timeout) =>
-  timeout === 0 || timeout > TIMEOUT_MIN;
+  timeout === 0 || timeout >= TIMEOUT_MIN;
 
 export const durationToSeconds = (duration) =>
   typeof duration === 'string' ? moment.duration(duration).asSeconds() : 0;
