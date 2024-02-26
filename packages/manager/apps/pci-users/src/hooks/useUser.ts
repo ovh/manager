@@ -9,6 +9,7 @@ import {
   generateOpenStackToken,
   getAllUsers,
   getUser,
+  getUserRoles,
   paginateResults,
   regeneratePassword,
   removeUser,
@@ -33,6 +34,14 @@ export const useAllUsers = (projectId: string) => {
   return useQuery({
     queryKey: ['project', projectId, 'users'],
     queryFn: () => getAllUsers(projectId),
+    retry: false,
+  });
+};
+
+export const useUserRoles = (projectId: string, userId: string) => {
+  return useQuery({
+    queryKey: ['project', projectId, 'users', 'roles'],
+    queryFn: () => getUserRoles(projectId, userId),
     retry: false,
   });
 };
