@@ -20,6 +20,10 @@ import { OnboardingLayout, PageLayout } from '@/components/layout-helpers';
 import { hasSubnet, isEditable, useVrackService } from '@/utils/vs-utils';
 import { EndpointDatagrid } from './components/EndpointDataGrid';
 import { urls } from '@/router/constants';
+import { IamAuthorizationsRequest } from '@/api';
+import { useIamAuthorizationCheckService } from '@/utils/iam-utils';
+import checkPermsUtils from '@/utils/check-perms-utils';
+import { vrackServicesActions } from '@/api/iam/actions';
 
 const Endpoints: React.FC = () => {
   const { t } = useTranslation('vrack-services/endpoints');
@@ -29,6 +33,16 @@ const Endpoints: React.FC = () => {
   const {
     shell: { tracking },
   } = React.useContext(ShellContext);
+  const [
+    iamAuthorizationsRequest,
+    setIamAuthorizationsRequest,
+  ] = React.useState<IamAuthorizationsRequest>({
+    resourceURNs: [],
+    actionsPage: [],
+  });
+  const IAMAuthorizations = useIamAuthorizationCheckService(
+    iamAuthorizationsRequest,
+  );
 
   const navigateToCreateEndpointPage = () =>
     navigate(urls.createEndpoint.replace(':id', id));
@@ -41,6 +55,15 @@ const Endpoints: React.FC = () => {
       });
     }
   }, [isLoading]);
+
+  React.useEffect(() => {
+    if (vrackServices) {
+      iamAuthorizationsRequest.resourceURNs = [vrackServices.iam.urn];
+      setIamAuthorizationsRequest(iamAuthorizationsRequest);
+    } else {
+      // navigate('/');
+    }
+  }, [vrackServices]);
 
   if (isLoading) {
     return (
@@ -61,7 +84,15 @@ const Endpoints: React.FC = () => {
     return (
       <PageLayout noBreacrumb>
         <OsdsButton
-          disabled={!isEditable(vrackServices) || undefined}
+          disabled={
+            (!isEditable(vrackServices) &&
+              checkPermsUtils({
+                iamAuthorizations: IAMAuthorizations.authorizations,
+                urn: vrackServices.iam.urn,
+                action: vrackServicesActions.API_OVH.RESOURCE.EDIT,
+              })) ||
+            undefined
+          }
           className="my-4"
           inline
           size={ODS_BUTTON_SIZE.sm}
@@ -95,7 +126,14 @@ const Endpoints: React.FC = () => {
       secondaryButtonSize={ODS_BUTTON_SIZE.sm}
       secondaryButtonIconPosition="start"
       secondaryButtonDisabled={
-        !isEditable(vrackServices) || !hasSubnet(vrackServices) || undefined
+        !isEditable(vrackServices) ||
+        !hasSubnet(vrackServices) ||
+        undefined ||
+        checkPermsUtils({
+          iamAuthorizations: IAMAuthorizations.authorizations,
+          urn: vrackServices.iam.urn,
+          action: vrackServicesActions.API_OVH.RESOURCE.EDIT,
+        })
       }
       title={t('onboardingTitle')}
       description={t('onboardingDescription')}

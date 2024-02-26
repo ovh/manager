@@ -10,6 +10,7 @@ import {
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
+  IamAuthorizationsRequest,
   VrackServices,
   getVrackServicesResourceListQueryKey,
   getVrackServicesResourceQueryKey,
@@ -27,8 +28,24 @@ import { useServiceList, useVrackService } from '@/utils/vs-utils';
 import { ErrorPage } from '@/components/Error';
 import { FormField } from '@/components/FormField';
 import { urls } from '@/router/constants';
+import { useIamAuthorizationCheckService } from '@/utils/iam-utils';
+import { vrackServicesActions } from '@/api/iam/actions';
+import checkPermsUtils from '@/utils/check-perms-utils';
 
 const EndpointCreationPage: React.FC = () => {
+  const [
+    iamAuthorizationsRequest,
+    setIamAuthorizationsRequest,
+  ] = React.useState<IamAuthorizationsRequest>({
+    resourceURNs: [],
+    actionsPage: [
+      vrackServicesActions.API_OVH.RESOURCE.ELIGIBLE_MANAGED_SERVICE.GET,
+      vrackServicesActions.API_OVH.RESOURCE.EDIT,
+    ],
+  });
+  const IAMAuthorizations = useIamAuthorizationCheckService(
+    iamAuthorizationsRequest,
+  );
   const { t } = useTranslation('vrack-services/endpoints');
   const { id } = useParams();
   const [serviceType, setServiceType] = React.useState<string | undefined>(
@@ -45,6 +62,18 @@ const EndpointCreationPage: React.FC = () => {
   const {
     shell: { tracking },
   } = React.useContext(ShellContext);
+
+  React.useEffect(() => {
+    console.log(vrackServices);
+    if (vrackServices.data) {
+      iamAuthorizationsRequest.resourceURNs = [vrackServices.data.iam.urn];
+      setIamAuthorizationsRequest(iamAuthorizationsRequest);
+    } else {
+      // navigate('/');
+    }
+  }, [vrackServices.data]);
+
+  React.useEffect(() => {}, [IAMAuthorizations]);
 
   const {
     iamResources,
@@ -132,7 +161,15 @@ const EndpointCreationPage: React.FC = () => {
       onSubmit={() => createEndpoint()}
       isSubmitPending={isPending}
       isFormSubmittable={
-        !vrackServices.isLoading && !!cidr && !!managedServiceURN && !isPending
+        !vrackServices.isLoading &&
+        !!cidr &&
+        !!managedServiceURN &&
+        !isPending &&
+        !checkPermsUtils({
+          iamAuthorizations: IAMAuthorizations.authorizations,
+          urn: vrackServices?.data.urn,
+          action: vrackServicesActions.API_OVH.RESOURCE.EDIT,
+        })
       }
     >
       <FormField label={t('serviceTypeLabel')} isLoading={isServiceListLoading}>

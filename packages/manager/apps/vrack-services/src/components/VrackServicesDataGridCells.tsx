@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { TFunction } from 'react-i18next';
 import { UseMutateAsyncFunction } from '@tanstack/react-query';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -23,6 +23,7 @@ import { EditableText } from '@/components/EditableText';
 import { ProductStatus, UpdateVrackServicesParams, VrackServices } from '@/api';
 import { DataGridCellProps, handleClick } from '@/utils/ods-utils';
 import { isEditable } from '@/utils/vs-utils';
+import IamWrapper from '@/utils/IamWrapper';
 
 export const DisplayNameCell: React.FC<DataGridCellProps<
   string | undefined,
@@ -34,7 +35,8 @@ export const DisplayNameCell: React.FC<DataGridCellProps<
     UpdateVrackServicesParams
   >;
   navigate?: NavigateFunction;
-}> = ({ cellData, rowData, updateVS, navigate }) => {
+  action?: string;
+}> = ({ cellData, rowData, updateVS, navigate, action }) => {
   const displayName = cellData || rowData?.id;
   return (
     <EditableText
@@ -94,25 +96,35 @@ export const VrackIdCell: React.FC<DataGridCellProps<
   openAssociationModal: (id: string) => void;
   label: string;
   href?: string;
-}> = ({ cellData, rowData, isLoading, openAssociationModal, label, href }) => {
+  action?: string;
+}> = ({
+  cellData,
+  rowData,
+  isLoading,
+  openAssociationModal,
+  label,
+  href,
+  action,
+}) => {
   const editable = isEditable(rowData);
-
   if (cellData) {
     return href ? <OsdsLink href={href}>{cellData}</OsdsLink> : <>{cellData}</>;
   }
 
   return (
-    <OsdsButton
-      inline
-      color={ODS_THEME_COLOR_INTENT.primary}
-      variant={ODS_BUTTON_VARIANT.stroked}
-      type={ODS_BUTTON_TYPE.button}
-      size={ODS_BUTTON_SIZE.sm}
-      disabled={isLoading || !editable || undefined}
-      {...handleClick(() => openAssociationModal(rowData.id))}
-    >
-      {label}
-    </OsdsButton>
+    <IamWrapper action={action} urn={rowData?.iam.urn}>
+      <OsdsButton
+        inline
+        color={ODS_THEME_COLOR_INTENT.primary}
+        variant={ODS_BUTTON_VARIANT.stroked}
+        type={ODS_BUTTON_TYPE.button}
+        size={ODS_BUTTON_SIZE.sm}
+        disabled={isLoading || !editable || undefined}
+        {...handleClick(() => openAssociationModal(rowData.id))}
+      >
+        {label}
+      </OsdsButton>
+    </IamWrapper>
   );
 };
 

@@ -33,6 +33,28 @@ export const VrackServicesDatagrid: React.FC = () => {
   } = useUpdateVrackServices({ key: 'listing' });
 
   const { data } = useVrackServicesList();
+  /*   const [
+    iamAuthorizationsRequest,
+    setIamAuthorizationsRequest,
+  ] = React.useState<IamAuthorizationsRequest>();
+  const IAMAuthorizations = useIAM({
+    authorizationsRequest: iamAuthorizationsRequest,
+  });
+
+  React.useEffect(() => {
+    const resourceURNs = data.data.map(
+      (vrackServices: { iam: { urn: any } }) => {
+        return vrackServices.iam.urn;
+      },
+    );
+    setIamAuthorizationsRequest({
+      resourceURNs,
+      actionsPage: [
+        vrackServicesActions.API_OVH.RESOURCE.EDIT,
+        vrackServicesActions.API_OVH.RESOURCE.GET,
+      ],
+    });
+  }, [data]); */
 
   const columns: OdsDatagridColumn[] = [
     {

@@ -69,6 +69,7 @@ export type VrackServices = {
   targetSpec: TargetSpec;
   // yyyy-mm-ddTZ
   updatedAt: string;
+  iam: IamMetadata;
 };
 
 export type VrackServicesWithIAM = VrackServices & IamMetadata;
