@@ -22,9 +22,11 @@ export default class OvhManagerNetappVrackConfigurationCtrl {
   $onInit() {
     if (!this.availableVracks.length) {
       const noVrack = {
-        internalName: this.$translate.instant(
-          'netapp_vrack_configuration_no_vrack_field',
-        ),
+        vrack: {
+          internalName: this.$translate.instant(
+            'netapp_vrack_configuration_no_vrack_field',
+          ),
+        },
       };
       this.availableVracks.push(noVrack);
       this.selectedVrack = noVrack;
@@ -47,7 +49,7 @@ export default class OvhManagerNetappVrackConfigurationCtrl {
     this.trackClick('confirm');
 
     this.NetappVrackConfigurationService.linkVrackToVrackServices(
-      this.selectedVrack.internalName,
+      this.selectedVrack.vrack.internalName,
       this.networkInformations.vRackServicesId,
     )
       .then(() => {

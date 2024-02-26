@@ -25,7 +25,7 @@ export default class NetAppNetworkConfigurationService {
     let promise;
 
     // If the vrack services don't already have associated vrack, we do the vRack association
-    if (!targetSpec.vrackId) {
+    if (!vrackServices.currentState.vrackId) {
       promise = this.$http.post(`/vrack/${vrackId}/vrackServices`, {
         vrackServices: vrackServices.id,
       });

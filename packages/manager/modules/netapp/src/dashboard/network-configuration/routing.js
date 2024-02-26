@@ -38,6 +38,12 @@ export default /* @ngInject */ ($stateProvider) => {
             internalName: vrack.iam.urn.split(':').pop(),
           })),
         ),
+      availableVracks: /* @ngInject */ (
+        NetAppDashboardService,
+        vracks,
+        vrackServices,
+      ) =>
+        NetAppDashboardService.filterAllowedVrack(vracks, null, vrackServices),
       vrackServices: /* @ngInject */ (NetAppDashboardService) =>
         NetAppDashboardService.getVrackServices().then(({ data }) =>
           data.reduce((vrackServicesArray, vs) => {
