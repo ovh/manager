@@ -1,10 +1,9 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useNotifications } from '@/hooks/useNotifications';
-import RemoveUserModal from '@/components/users/RemoveUserModal';
-import { useUser } from '@/hooks/useUser';
+import useNotifications from '@/hooks/useNotifications';
+import EditRolesModal from '@/components/users/EditRolesModal';
 
-export default function RemoveSshPage() {
+export default function EditRolesPage() {
   const { projectId } = useParams();
   const [searchParams] = useSearchParams();
   const { t } = useTranslation('common');
@@ -13,27 +12,21 @@ export default function RemoveSshPage() {
   const onClose = () => {
     navigate('..');
   };
-  const userId = searchParams.get('userId');
-  const { data: user } = useUser(projectId || '', `${userId}`);
+  const userId = searchParams.get('userId') as number | null;
   return (
     <>
-      <RemoveUserModal
+      <EditRolesModal
         projectId={`${projectId}`}
-        userId={`${userId}`}
+        userId={userId || 0}
         onClose={() => onClose()}
         onSuccess={() => {
-          addSuccess(
-            t('pci_projects_project_users_delete_success_message', {
-              user: user?.username,
-            }),
-          );
+          addSuccess(t('pci_projects_project_users_roles_edit_success'));
         }}
         onError={(error: Error) => {
           addError(
             <>
-              {t('pci_projects_project_users_delete_error_delete', {
+              {t('pci_projects_project_users_roles_edit_error', {
                 message: error && error.message,
-                user: user?.username,
               })}
             </>,
           );

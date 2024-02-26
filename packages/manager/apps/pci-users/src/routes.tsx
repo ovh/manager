@@ -46,6 +46,11 @@ export default [
             ),
             children: [],
           },
+          {
+            path: 'edit',
+            ...lazyRouteConfig(() => import('@/pages/EditRolesPage')),
+            children: [],
+          },
         ],
       },
     ],
