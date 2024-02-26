@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { NetworkTypeEnum } from '@/models/network';
 import { useGetNetwork, useGetSubnet } from './api/network.api.hooks';
 
@@ -7,14 +7,14 @@ import { useGetNetwork, useGetSubnet } from './api/network.api.hooks';
  * are private and in the provided region
  * @param projectId the cloud project id
  * @param region the short name for the region (ex: GRA, BHS)
- * @returns states for network and subnet selection, networks and subnets lists, queries statuses
+ * @param networkId the network used for subnets query
+ * @returns Filtered Networks and subnets lists, queries statuses
  */
 export function useVrack(
   projectId: string,
   region: string,
   networkId?: string,
 ) {
-  const [id, setId] = useState(networkId);
   // define queries
   const networkQuery = useGetNetwork(projectId);
   const subnetQuery = useGetSubnet(projectId, networkId, {
@@ -35,15 +35,14 @@ export function useVrack(
   const subnets = useMemo(() => subnetQuery.data || [], [subnetQuery.data]);
   // fetch the subnets of the selected network when selected
   useEffect(() => {
-    if (id) {
+    if (networkId) {
       subnetQuery.refetch();
     }
-  }, [id]);
+  }, [networkId]);
   return {
     networkQuery,
     subnetQuery,
     networks,
     subnets,
-    setId,
   };
 }
