@@ -17,8 +17,8 @@ import {
   FEATURES,
   IN_SUBSIDIARY,
   USER_TYPE_ENTERPRISE,
-  NEW_SUPPORT_TICKET_PARAMS,
   SUBSIDIARIES_VAT_FIELD_OVERRIDE,
+  SUPPORT_URL,
 } from './new-account-form-component.constants';
 
 export default class NewAccountFormController {
@@ -35,7 +35,6 @@ export default class NewAccountFormController {
     $anchorScroll,
     $scope,
     ovhFeatureFlipping,
-    coreURLBuilder,
   ) {
     this.$q = $q;
     this.$http = $http;
@@ -58,7 +57,6 @@ export default class NewAccountFormController {
     this.$scope = $scope;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.SECTIONS = SECTIONS;
-    this.coreURLBuilder = coreURLBuilder;
   }
 
   $onInit() {
@@ -66,14 +64,7 @@ export default class NewAccountFormController {
 
     // Indian subsidiary flag
     this.isIndianSubsidiary = this.user.ovhSubsidiary === IN_SUBSIDIARY;
-    this.newSupportTicketUrl = this.coreURLBuilder.buildURL(
-      'dedicated',
-      '#/support/tickets/new',
-      {
-        categoryName: NEW_SUPPORT_TICKET_PARAMS.categoryName,
-        preFetchData: NEW_SUPPORT_TICKET_PARAMS.preFetchData,
-      },
-    );
+    this.newSupportTicketUrl = SUPPORT_URL;
 
     // backup of original model
     this.originalModel = angular.copy(this.model);
