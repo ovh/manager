@@ -180,11 +180,10 @@ export default class NetAppDashboardService {
         // If we search the available vrack for a unique vrack services,
         // we filter the vrack with this vrack services in the allowed services
         // else we remove the vrack without allowed vrack services from the list
-        ...data.filter(
-          (vrackAllowedServices) =>
-            (vrackServicesId &&
-              vrackAllowedServices.vrackServices.includes(vrackServicesId)) ||
-            (!vrackServicesId && vrackAllowedServices.vrackServices.length),
+        ...data.filter((vrackAllowedServices) =>
+          vrackServicesId
+            ? vrackAllowedServices.vrackServices.includes(vrackServicesId)
+            : !!vrackAllowedServices.vrackServices.length,
         ),
         ...allowedVracksWithAssociatedVrs,
       ].sort((a, b) => (a.vrack.internalName < b.vrack.internalName ? -1 : 1)),
