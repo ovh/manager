@@ -13,3 +13,18 @@ export const getAllRoles = async (
 
   return data;
 };
+
+export const updateRoles = async (
+  projectId: string,
+  userId: number,
+  rolesIds: string[],
+): Promise<GetAllRoleResponse> => {
+  const { data } = await v6.put(
+    `/cloud/project/${projectId}/user/${userId}/role`,
+    {
+      rolesIds,
+    },
+  );
+
+  return data;
+};
