@@ -18,7 +18,10 @@ export const Handle = {
 
 export default function DashboardHomePage() {
   const { projectId } = useRequiredParams<{ projectId: string }>();
-  const { usersQuery, tokensQuery } = useOutletContext() as DashboardLayoutContext;
+  const {
+    usersQuery,
+    tokensQuery,
+  } = useOutletContext() as DashboardLayoutContext;
   const appsQuery = useGetApps(projectId, {
     refetchInterval: 30_000,
   });
@@ -29,8 +32,8 @@ export default function DashboardHomePage() {
     refetchInterval: 30_000,
   });
 
-  const jobs : ai.job.Job[] = jobsQuery.data || [];
-  const notebooks : ai.notebook.Notebook[] = notebooksQuery.data || [];
+  const jobs: ai.job.Job[] = jobsQuery.data || [];
+  const notebooks: ai.notebook.Notebook[] = notebooksQuery.data || [];
   const apps: ai.app.App[] = appsQuery.data || [];
 
   const runningApps: number =
@@ -53,12 +56,19 @@ export default function DashboardHomePage() {
         notebook.status.state === ai.notebook.NotebookStateEnum.RESTARTING ||
         notebook.status.state === ai.notebook.NotebookStateEnum.RUNNING,
     ).length || 0;
-  const stoppedNotebooks: number =
-    (notebooks.length || 0) - runningNotebooks;
+  const stoppedNotebooks: number = (notebooks.length || 0) - runningNotebooks;
 
-  const activeTokens : number = tokensQuery.data?.length || 0; 
-  const activeUsers : number = usersQuery.data?.filter((user : user.User) => user.roles.find((role : user.Role) => role.name === ai.TokenRoleEnum.ai_training_operator || role.name === ai.TokenRoleEnum.ai_training_read)).length || 0;
+  const activeTokens: number = tokensQuery.data?.length || 0;
+  const activeUsers: number =
+    usersQuery.data?.filter((user: user.User) =>
+      user.roles.find(
+        (role: user.Role) =>
+          role.name === ai.TokenRoleEnum.ai_training_operator ||
+          role.name === ai.TokenRoleEnum.ai_training_read,
+      ),
+    ).length || 0;
 
+  const objStorageLink: string = `#/pci/project/${projectId}/storages/objects`;
   return (
     <>
       <div className="grid w-full grid-cols-1 sm:grid-cols-4 gap-4">
@@ -67,7 +77,8 @@ export default function DashboardHomePage() {
             imgLink={store}
             title="1. Store"
             titleLink="Object Storage"
-            link="/objectStorage"
+            isExternalLink={true}
+            link={objStorageLink}
           />
         </div>
         <div className="w-auto">
@@ -76,6 +87,7 @@ export default function DashboardHomePage() {
             title="2. Explore"
             titleLink="AI Notebooks"
             link="./../../notebooks"
+            isExternalLink={false}
             activeServices={runningNotebooks}
             stoppedServices={stoppedNotebooks}
           />
@@ -86,6 +98,7 @@ export default function DashboardHomePage() {
             title="3. Train"
             titleLink="AI Training"
             link="./../../jobs"
+            isExternalLink={false}
             activeServices={runningJobs}
             stoppedServices={stoppedJobs}
           />
@@ -96,14 +109,18 @@ export default function DashboardHomePage() {
             title="4. Deploy"
             titleLink="AI Deploy"
             link="./../../apps"
+            isExternalLink={false}
             activeServices={runningApps}
             stoppedServices={stoppedApps}
           />
         </div>
       </div>
       <div className="grid w-full grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
-        <BillingConsumption />
-        <UserTokenConfiguration activeTokens={activeTokens} activeUsers={activeUsers} />
+        <BillingConsumption projectId={projectId} />
+        <UserTokenConfiguration
+          activeTokens={activeTokens}
+          activeUsers={activeUsers}
+        />
       </div>
     </>
   );

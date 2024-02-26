@@ -1,8 +1,12 @@
 import { Button } from '@/components/ui/button';
+import { useNavigate } from '@/hooks/useNavigation';
 import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
-export default function BillingConsumption() {
+interface BillingProps {
+  projectId: string;
+}
+
+export default function BillingConsumption({projectId} : BillingProps) {
   return (
     <>
       <div className="flex flex-col">
@@ -18,17 +22,18 @@ export default function BillingConsumption() {
             </p>
           </div>
           <div className="border-slate-200 border-t mx-5 my-3"></div>
-          <Button
-            className="font-semibold hover:bg-primary-100 hover:text-primary ml-4"
-            variant="link"
-            size="sm"
-            asChild
+          <Button className="ml-2" variant="linkBis" size="sm" asChild>
+          <a
+            href={useNavigate(
+              'public-cloud',
+              `#/pci/project/${projectId}/billing`,
+              {},
+            )}
           >
-            <Link to="./billing">
-              View attached data
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
-          </Button>
+            View billing details
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </a>
+        </Button>
         </div>
       </div>
     </>

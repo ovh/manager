@@ -1,5 +1,5 @@
 import { H3, H4 } from '@/components/typography';
-import { Badge } from '@/components/ui/badge';
+import { Alert } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import {
   Command,
@@ -31,7 +31,7 @@ const SharedRegistry = ({ projectId, regionsList }: SharedRegistryProps) => {
   return (
     <>
       <H3>Shared Docker Registries</H3>
-      <Badge className="my-3 text-base py-2 font-normal" variant="warning">
+      <Alert className="my-3 text-base py-2 font-normal" variant="warning">
         <div className="flex flew-row items-center">
           <AlertTriangle className="w-6 h-6 mx-3" />
           <p>
@@ -41,7 +41,7 @@ const SharedRegistry = ({ projectId, regionsList }: SharedRegistryProps) => {
             your private registry to store your own images.
           </p>
         </div>
-      </Badge>
+      </Alert>
       <div className="flex gap-3">
         <p>Select the region you want to use:</p>
         <Popover open={open} onOpenChange={setOpen}>

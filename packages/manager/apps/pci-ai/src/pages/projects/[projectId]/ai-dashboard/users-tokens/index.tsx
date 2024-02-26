@@ -1,11 +1,11 @@
 import { useRequiredParams } from '@/hooks/useRequiredParams';
-import { Link, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
-import { Plus, RefreshCcw } from 'lucide-react';
+import { ArrowRight, Plus, RefreshCcw } from 'lucide-react';
 
 import { H2, H3 } from '@/components/typography';
 
@@ -25,6 +25,7 @@ import { Input } from '@/components/ui/input';
 import AddTokenModal, { AddTokenSubmitData } from './_components/addTokenModal';
 import { DeleteTokenSubmitData } from './_components/deleteTokenModal';
 import AlertMessage, { Message } from '../../_components/alertMessage';
+import { useNavigate } from '@/hooks/useNavigation';
 
 export const Handle = {
   breadcrumb: () => 'Users & Tokens',
@@ -218,19 +219,11 @@ export default function DashboardHomePage() {
         applications. In order to freely experiment, you must choose at least an
         “Admin” or “AI” role.
       </p>
-      <div className="flex flew-row gap-2 mt-3">
-        <Button
-          className="border-primary border-2 font-semibold hover:bg-primary-100 hover:text-primary"
-          variant="link"
-          size="sm"
-          asChild
-        >
-          <Link to="./../users">Manage my AI users ({activeUsers})</Link>
-        </Button>
+      <div className="flex flew-row gap-3 mt-3">
         <Button
           onClick={() => setIsAddUserModalOpen(true)}
           className="font-semibold"
-          variant="default"
+          variant="outline"
           size="sm"
         >
           <Plus className="w-4 h-4 mr-2" />
@@ -241,6 +234,18 @@ export default function DashboardHomePage() {
           onClose={() => setIsAddUserModalOpen(false)}
           onSubmit={onAddUserSubmit}
         />
+        <Button className="mb-4" variant="linkBis" size="sm" asChild>
+          <a
+            href={useNavigate(
+              'public-cloud',
+              `#/pci/project/${projectId}/users`,
+              {},
+            )}
+          >
+            Manage my AI users ({activeUsers})
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </a>
+        </Button>
       </div>
       <H3>Manage access via application tokens</H3>
       <p>
@@ -253,7 +258,7 @@ export default function DashboardHomePage() {
         <Button
           onClick={() => setIsAddTokenModalOpen(true)}
           className="font-semibold"
-          variant="default"
+          variant="outline"
           size="sm"
         >
           <Plus className="w-4 h-4 mr-2" />

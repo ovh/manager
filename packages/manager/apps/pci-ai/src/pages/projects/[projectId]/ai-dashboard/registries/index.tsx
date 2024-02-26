@@ -1,5 +1,5 @@
 import { toast } from 'sonner';
-import { Link, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { useGetRegistries } from '@/hooks/api/ai/useGetRegistries';
 import { useMutation } from '@tanstack/react-query';
@@ -20,6 +20,7 @@ import AddRegistryModal, {
 } from './_components/addRegistryModal';
 import AlertMessage, { Message } from '../../_components/alertMessage';
 import SharedRegistry from './_components/sharedDockerRegistries';
+import { useNavigate } from '@/hooks/useNavigation';
 
 export default function DashboardRegistriesPage() {
   const { projectId } = useRequiredParams<{ projectId: string }>();
@@ -121,16 +122,17 @@ export default function DashboardRegistriesPage() {
         service is available via the high-performance OVHcloud network to
         optimise your deployments.
       </p>
-      <Button
-        variant="link"
-        size="sm"
-        className="mt-1 mb-3 font-semibold hover:bg-primary-100 hover:text-primary"
-        asChild
-      >
-        <Link to={'./ManageRegistries'}>
+      <Button className="mb-4" variant="linkBis" size="sm" asChild>
+        <a
+          href={useNavigate(
+            'public-cloud',
+            `#/pci/project/${projectId}/private-registry`,
+            {},
+          )}
+        >
           Manage my Managed Private Registries
           <ArrowRight className="w-4 h-4 ml-2" />
-        </Link>
+        </a>
       </Button>
       <p>You can also use your own Docker Registry.</p>
       <div className="flex justify-between w-100 mb-2 items-end">
@@ -167,7 +169,9 @@ export default function DashboardRegistriesPage() {
         registries={registriesQuery.data || []}
         onDeleteSubmit={onDeleteRegistrySubmit}
       />
-      {regionsQuery.data && <SharedRegistry projectId={projectId} regionsList={regionsQuery.data} />}
+      {regionsQuery.data && (
+        <SharedRegistry projectId={projectId} regionsList={regionsQuery.data} />
+      )}
     </>
   );
 }
