@@ -1199,7 +1199,7 @@ export namespace database {
       /** Service disk size  */
       size: number;
       /** Service disk size  */
-      type: string;
+      type?: string;
     }
     /** Defines the endpoint object in a cluster */
     export interface Endpoint {
@@ -1663,7 +1663,7 @@ export namespace database {
     /** Description of the cluster */
     description: string;
     /** Disk attributes of the cluster */
-    disk: database.service.Disk;
+    disk?: database.service.Disk;
     /** Backup from which the new service is created */
     forkFrom?: database.service.creation.ForkFrom;
     /** IP Blocks authorized to access to the cluster */
