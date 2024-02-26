@@ -13,7 +13,7 @@
     <oui-tile-definition
         term="{{:: 'server_support_open_tickets' | translate }}"
     >
-        <oui-tile-description>
+        <oui-tile-description data-ng-if="!$ctrl.isSupportExternalWithLinks">
             <span data-ng-if="$ctrl.numberOfTickets === 0">0</span>
             <a
                 class="oui-link_icon"
@@ -32,6 +32,38 @@
                     <span data-translate="server_support_create_ticket"></span>
                     <span
                         class="oui-icon oui-icon-arrow-right align-middle d-inline-block"
+                        aria-hidden="true"
+                    ></span>
+                </a>
+            </div>
+        </oui-tile-description>
+        <oui-tile-description data-ng-if="$ctrl.isSupportExternalWithLinks">
+            <span data-ng-if="!$ctrl.numberOfTickets">0</span>
+            <a
+                class="oui-link_icon"
+                data-ng-if="$ctrl.numberOfTickets > 0"
+                data-ng-href="{{ $ctrl.viewTicketsUrl }}"
+                data-on-click="$ctrl.trackClick('go-to-view-tickets')"
+                target="_blank"
+                rel="noopener"
+            >
+                <span data-ng-bind="$ctrl.numberOfTickets"></span>
+                <span
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                ></span>
+            </a>
+            <div class="mt-1">
+                <a
+                    class="oui-link_icon"
+                    data-ng-href="{{:: $ctrl.createNewTicketUrl }}"
+                    data-on-click="$ctrl.trackClick('go-to-create-ticket')"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span data-translate="server_support_create_ticket"></span>
+                    <span
+                        class="oui-icon oui-icon-external-link"
                         aria-hidden="true"
                     ></span>
                 </a>
