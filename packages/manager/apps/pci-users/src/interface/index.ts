@@ -20,9 +20,10 @@ export type User = {
   username: string;
   creationDate: string;
   description: string;
-  openstackId: string;
+  openstackId?: string;
   status: string;
-  roles: Role[];
+  roles?: Role[];
+  password?: string;
 };
 
 export interface Endpoint {
