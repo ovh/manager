@@ -4,11 +4,18 @@ import { TEXT_FOR_MODAL, ACTION_TYPE, RMA_NEW_TYPE } from './rma.constants';
 
 export default class TelecomTelephonyLineAssistRmaCtrl {
   /* @ngInject */
-  constructor($translate, lineAssistRmaService, TucToast, TucToastError) {
+  constructor(
+    $translate,
+    lineAssistRmaService,
+    TucToast,
+    TucToastError,
+    SUPPORT_URL,
+  ) {
     this.$translate = $translate;
     this.lineAssistRmaService = lineAssistRmaService;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
+    this.SUPPORT_URL = SUPPORT_URL;
   }
 
   $onInit() {
@@ -116,7 +123,8 @@ export default class TelecomTelephonyLineAssistRmaCtrl {
   }
 
   equipmentOutOfOrder() {
-    window.location.href = this.urlNewTicket;
+    window.open(this.SUPPORT_URL, '_blank', 'noopener');
+    this.resetModalInfo();
   }
 
   keepingLine(rma) {
