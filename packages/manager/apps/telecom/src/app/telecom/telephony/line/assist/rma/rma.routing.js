@@ -15,8 +15,6 @@ export default /* @ngInject */ ($stateProvider) => {
           $transition$.params().billingAccount,
         serviceName: /* @ngInject */ ($transition$) =>
           $transition$.params().serviceName,
-        urlNewTicket: /* @ngInject */ (coreURLBuilder) =>
-          coreURLBuilder.buildURL('dedicated', '#/support/tickets/new'),
         reloadPage: /* @ngInject */ (
           $state,
           billingAccount,
