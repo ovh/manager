@@ -16,3 +16,24 @@ export type IAMResource = {
    */
   urn: string;
 };
+
+export type IamActionsAuthorizations = {
+  authorizedActions: string[];
+  unauthorizedActions: string[];
+};
+
+export type IamAuthorizationsResponse = {
+  resourceURN: string;
+  authorizedActions: string[];
+  unauthorizedActions: string[];
+};
+
+export type IamAuthorizationsRequest = {
+  resourceURNs: string[];
+  actionsPage: string[];
+};
+
+export type IamActions = {
+  authorizedActions: string[];
+  unauthorizedActions: string[];
+};

@@ -1,5 +1,11 @@
 import React from 'react';
-import { OsdsIcon, OsdsText, OsdsButton } from '@ovhcloud/ods-components/react';
+import {
+  OsdsIcon,
+  OsdsText,
+  OsdsButton,
+  OsdsTooltip,
+  OsdsTooltipContent,
+} from '@ovhcloud/ods-components/react';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,

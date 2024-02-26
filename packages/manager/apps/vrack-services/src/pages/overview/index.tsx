@@ -15,20 +15,26 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ErrorPage } from '@/components/Error';
 import { useUpdateVrackServices, useVrackService } from '@/utils/vs-utils';
 import { formatDateString } from '@/utils/date';
 import {
+  DisplayNameCell,
   ProductStatusCell,
   VrackIdCell,
-  DisplayNameCell,
 } from '@/components/VrackServicesDataGridCells';
 import { TileBlock } from '@/components/TileBlock';
 import { VrackAssociationModal } from '@/components/VrackAssociationModal';
+import { IamContext } from '@/utils/IamContext';
+import { IamAuthorizationsRequest } from '@/api';
+import { useIamAuthorizationCheckService } from '@/utils/iam-utils';
+import { vrackServicesActions } from '@/api/iam/actions';
+import { urls as constUrls } from '@/router/constants';
 
 export const OverviewTab: React.FC = () => {
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation('vrack-services/dashboard');
   const [associateModalVisible, setAssociateModalVisible] = React.useState<
     string | undefined
@@ -40,6 +46,16 @@ export const OverviewTab: React.FC = () => {
   const urls = environment.getApplicationURLs();
   const { id } = useParams();
   const { data: vrackServices, error, isLoading } = useVrackService();
+  const [
+    iamAuthorizationsRequest,
+    setIamAuthorizationsRequest,
+  ] = React.useState<IamAuthorizationsRequest>({
+    resourceURNs: [],
+    actionsPage: [],
+  });
+  const IAMAuthorizations = useIamAuthorizationCheckService(
+    iamAuthorizationsRequest,
+  );
   const {
     updateVS,
     isErrorVisible,
@@ -57,9 +73,22 @@ export const OverviewTab: React.FC = () => {
   if (error) {
     return <ErrorPage error={error} />;
   }
+  React.useEffect(() => {
+    if (vrackServices) {
+      setIamAuthorizationsRequest({
+        resourceURNs: [vrackServices.iam.urn],
+        actionsPage: [
+          vrackServicesActions.API_OVH.RESOURCE.EDIT,
+          vrackServicesActions.API_OVH.RESOURCE.GET,
+        ],
+      });
+    } else if (!isLoading) {
+      navigate(constUrls.listing);
+    }
+  }, [vrackServices]);
 
   return (
-    <>
+    <IamContext.Provider value={IAMAuthorizations.authorizations}>
       {isErrorVisible && (
         <OsdsMessage
           type={ODS_MESSAGE_TYPE.error}
@@ -91,6 +120,7 @@ export const OverviewTab: React.FC = () => {
                     updateVS={updateVS}
                     cellData={vrackServices?.currentState?.displayName}
                     rowData={vrackServices}
+                    action={vrackServicesActions.API_OVH.RESOURCE.EDIT}
                   />
                 </TileBlock>
                 <TileBlock label={t('productStatus')}>
@@ -112,7 +142,8 @@ export const OverviewTab: React.FC = () => {
                     cellData={vrackServices?.currentState.vrackId}
                     isLoading={isPending}
                     rowData={vrackServices}
-                    href={`${urls.dedicated}vrack/${vrackServices?.currentState.vrackId}`}
+                    href={`${urls.dedicated}vrack/${vrackServices?.currentState?.vrackId}`}
+                    action={vrackServicesActions.API_OVH.RESOURCE.VRACK.ATTACH}
                   />
                 </TileBlock>
                 <TileBlock label={t('createdAt')}>
@@ -127,7 +158,7 @@ export const OverviewTab: React.FC = () => {
         vrackServicesId={associateModalVisible}
         closeModal={() => setAssociateModalVisible(undefined)}
       />
-    </>
+    </IamContext.Provider>
   );
 };
 

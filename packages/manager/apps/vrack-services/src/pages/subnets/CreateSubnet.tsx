@@ -19,6 +19,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import {
+  IamAuthorizationsRequest,
   VrackServices,
   getVrackServicesResourceListQueryKey,
   getVrackServicesResourceQueryKey,
@@ -40,8 +41,21 @@ import {
 import { useVrackService } from '@/utils/vs-utils';
 import { FormField } from '@/components/FormField';
 import { urls } from '@/router/constants';
+import { useIamAuthorizationCheckService } from '@/utils/iam-utils';
+import { vrackServicesActions } from '@/api/iam/actions';
+import checkPermsUtils from '@/utils/check-perms-utils';
 
 const SubnetCreationPage: React.FC = () => {
+  const [
+    iamAuthorizationsRequest,
+    setIamAuthorizationsRequest,
+  ] = React.useState<IamAuthorizationsRequest>({
+    resourceURNs: [],
+    actionsPage: [vrackServicesActions.API_OVH.RESOURCE.EDIT],
+  });
+  const IAMAuthorizations = useIamAuthorizationCheckService(
+    iamAuthorizationsRequest,
+  );
   const { t } = useTranslation('vrack-services/subnets');
   const { id } = useParams();
   const [displayName, setDisplayName] = React.useState<string | undefined>(
@@ -62,6 +76,15 @@ const SubnetCreationPage: React.FC = () => {
   } = React.useContext(ShellContext);
   const defaultCidr = t('defaultCidr');
   const defaultServiceRange = t('defaultServiceRange');
+
+  React.useEffect(() => {
+    if (vrackServices.data) {
+      iamAuthorizationsRequest.resourceURNs = [vrackServices.data.iam.urn];
+      setIamAuthorizationsRequest(iamAuthorizationsRequest);
+    } else {
+      // navigate('/');
+    }
+  }, [vrackServices.data]);
 
   const { mutate: createSubnet, isPending, isError, error } = useMutation<
     ApiResponse<VrackServices>,
@@ -134,7 +157,12 @@ const SubnetCreationPage: React.FC = () => {
       isFormSubmittable={
         !vrackServices.isLoading &&
         !isPending &&
-        (!hasVlan || isValidVlanNumber(vlan))
+        (!hasVlan || isValidVlanNumber(vlan)) &&
+        !checkPermsUtils({
+          iamAuthorizations: IAMAuthorizations.authorizations,
+          urn: vrackServices?.data?.urn,
+          action: vrackServicesActions.API_OVH.RESOURCE.EDIT,
+        })
       }
     >
       <FormField label={t('subnetNameLabel')}>
