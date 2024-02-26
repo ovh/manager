@@ -449,7 +449,7 @@ export default class PciProjectStorageBlockService {
     const consumptionVolumeAddons = catalog.addons.filter(
       (addon) =>
         volumeAddonsIds.includes(addon.planCode) &&
-        addon.planCode.endsWith('consumption'),
+        addon.planCode.includes('consumption'),
     );
 
     return this.$q.when(consumptionVolumeAddons);
