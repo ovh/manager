@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.3.3...@ovh-ux/manager-catalog-app@1.4.0) (2024-02-26)
+
+
+### Features
+
+* **manager-components:** add dashboard components ([#10871](https://github.com/ovh/manager/issues/10871)) ([6e65fe8](https://github.com/ovh/manager/commit/6e65fe8b7b82569f74106984b600b25ddfae54a8))
+
+
+
+
+
 ## [1.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.3.2...@ovh-ux/manager-catalog-app@1.3.3) (2024-02-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-catalog-app

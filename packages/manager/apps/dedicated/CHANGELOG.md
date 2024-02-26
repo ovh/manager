@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.23.1...@ovh-ux/manager-dedicated@19.24.0) (2024-02-26)
+
+
+### Features
+
+* **dedicated.account:** enable fields while kyc is not validated ([#10844](https://github.com/ovh/manager/issues/10844)) ([a8cec03](https://github.com/ovh/manager/commit/a8cec03bf6c22c202744dc1c243bf5163e46efb2))
+* **dedicated:** a banner to inform vmware customer about nsxv eol ([#10952](https://github.com/ovh/manager/issues/10952)) ([2c4bae0](https://github.com/ovh/manager/commit/2c4bae0f2cd3cd8a71c472b7260f0ebc5551e62f))
+* eol rbx1 banner ([#10626](https://github.com/ovh/manager/issues/10626)) ([1003ee6](https://github.com/ovh/manager/commit/1003ee6571fa8be088cde1c665d01797a7348a83))
+* **iam:** enabling both local and federated accounts ([#10728](https://github.com/ovh/manager/issues/10728)) ([86934c5](https://github.com/ovh/manager/commit/86934c59cddeafcd04d944ab11cedafd89b2db22))
+
+
+
+
+
 ## [19.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.23.0...@ovh-ux/manager-dedicated@19.23.1) (2024-02-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
