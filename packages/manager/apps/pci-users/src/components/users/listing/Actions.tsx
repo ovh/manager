@@ -28,6 +28,7 @@ import useNotifications from '@/hooks/useNotifications';
 export default function Actions({ user }: { user: User }) {
   const { t } = useTranslation('common');
   const hrefRemove = useHref(`./delete?userId=${user.id}`);
+  const hrefEditRole = useHref(`./edit?userId=${user.id}`);
   const hrefRCloneDownload = useHref(`./rclone/download?userId=${user.id}`);
   const hrefOpenStackDownload = useHref(`./openrc/download?userId=${user.id}`);
   const hrefGenerateOpenStackToken = useHref(
@@ -163,6 +164,23 @@ export default function Actions({ user }: { user: User }) {
             slot={'start'}
           >
             {t('pci_projects_project_users_token_label')}
+          </OsdsText>
+        </OsdsButton>
+      </OsdsMenuItem>
+      <OsdsMenuItem>
+        <OsdsButton
+          size={ODS_BUTTON_SIZE.sm}
+          variant={ODS_BUTTON_VARIANT.ghost}
+          color={ODS_THEME_COLOR_INTENT.primary}
+          href={hrefEditRole}
+        >
+          <OsdsText
+            size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+            level={ODS_TEXT_LEVEL.button}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            slot={'start'}
+          >
+            {t('pci_projects_project_users_roles_label')}
           </OsdsText>
         </OsdsButton>
       </OsdsMenuItem>

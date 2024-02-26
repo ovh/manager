@@ -84,5 +84,10 @@
   "pci_projects_project_users_openstack-token_token_catalog_region_label": "Região",
   "pci_projects_project_users_openstack-token_token_catalog_type_label": "Serviço",
   "pci_projects_project_users_openstack-token_token_catalog_endpoint_label": "Endpoint",
-  "pci_projects_project_users_openstack-token_error_save": "Ocorreu um erro ao gerar o token OpenStack para o utilizador {{ user }}: {{ message }}."
+  "pci_projects_project_users_openstack-token_error_save": "Ocorreu um erro ao gerar o token OpenStack para o utilizador {{ user }}: {{ message }}.",
+  "pci_projects_project_users_roles": "Editar as funções",
+  "pci_projects_project_users_roles_cancel": "Anular",
+  "pci_projects_project_users_roles_edit": "Validar",
+  "pci_projects_project_users_roles_edit_success": "Alterou os direitos do utilizador. As alterações não são instantâneas e poderão demorar até 10 minutos até serem aplicadas.",
+  "pci_projects_project_users_roles_edit_error": "Ocorreu um erro ao atualizar as funções do utilizador {{ message }}"
 }
