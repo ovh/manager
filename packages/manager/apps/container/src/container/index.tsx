@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
 import LegacyContainer from '@/container/legacy';
@@ -9,6 +9,7 @@ import { ProductNavReshuffleProvider } from '@/core/product-nav-reshuffle';
 import { ProgressProvider } from '@/context/progress';
 import CookiePolicy from '@/cookie-policy/CookiePolicy';
 import SSOAuthModal from '@/sso-auth-modal/SSOAuthModal';
+import PaymentModal from '@/payment-modal/PaymentModal';
 import LiveChat from '@/components/LiveChat';
 
 export default function Container(): JSX.Element {
@@ -21,6 +22,7 @@ export default function Container(): JSX.Element {
     setChatbotReduced,
   } = useContainer();
   const shell = useShell();
+  const [isCookiePolicyApplied, setIsCookiePolicyApplied] = useState(false);
   const environment: Environment = shell
     .getPlugin('environment')
     .getEnvironment();
@@ -28,6 +30,8 @@ export default function Container(): JSX.Element {
   const { ovhSubsidiary, supportLevel } = environment.getUser();
 
   const isNavReshuffle = betaVersion && useBeta;
+
+  const cookiePolicyHandler = (isApplied: boolean): void => setIsCookiePolicyApplied(isApplied);
 
   useEffect(() => {
     if (!isLoading) {
@@ -84,8 +88,13 @@ export default function Container(): JSX.Element {
       <Suspense fallback="">
         <SSOAuthModal />
       </Suspense>
+      {isCookiePolicyApplied && 
+        <Suspense fallback="">
+          <PaymentModal />
+        </Suspense>
+      }
       <Suspense fallback="...">
-        <CookiePolicy shell={shell} />
+        <CookiePolicy shell={shell} onValidate={cookiePolicyHandler} />
       </Suspense>
     </>
   );
