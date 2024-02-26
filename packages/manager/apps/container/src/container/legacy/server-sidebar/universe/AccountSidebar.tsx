@@ -10,6 +10,7 @@ import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import { features } from './DedicatedSidebar';
+import constants from '../../account-sidebar/UsefulLinks/constants';
 
 const kycIndiaFeature = 'identity-documents';
 const kycFraudFeature = 'procedures:fraud';
@@ -35,6 +36,8 @@ export default function AccountSidebar() {
       return menu;
     }
 
+    const isEUOrCA = ['EU', 'CA'].includes(region);
+
     menu.push({
       id: 'back-to-home',
       label: t('sidebar_back_home'),
@@ -50,7 +53,7 @@ export default function AccountSidebar() {
 
     if (availability[kycIndiaFeature]) {
       const { status } = await reketInstance.get(`/me/procedure/identity`);
-      if (['required','open'].includes(status)) {
+      if (['required', 'open'].includes(status)) {
         menu.push({
           id: 'my-identity-documents',
           label: t('sidebar_account_identity_documents'),
@@ -111,7 +114,7 @@ export default function AccountSidebar() {
       });
     }
 
-    if (['EU', 'CA'].includes(region)) {
+    if (isEUOrCA) {
       menu.push({
         id: 'my-contacts',
         label: t('sidebar_account_contacts'),
@@ -132,10 +135,9 @@ export default function AccountSidebar() {
     menu.push({
       id: 'my-support-tickets',
       label: t('sidebar_assistance_tickets'),
-      href: navigation.getURL(
-        'dedicated',
-        region === 'US' ? '/ticket' : '/support',
-      ),
+      isExternal: isEUOrCA,
+      
+      href: isEUOrCA ? constants[region].support.tickets : navigation.getURL('dedicated', '/ticket'),
       routeMatcher: new RegExp('^/(ticket|support)'),
     });
 
