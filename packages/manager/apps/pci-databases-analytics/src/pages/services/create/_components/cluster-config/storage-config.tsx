@@ -1,7 +1,6 @@
 import React from 'react';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
-import { H4 } from '@/components/typography';
 import { formatStorage } from '@/lib/bytesHelper';
 import { database } from '@/models/database';
 
@@ -23,7 +22,6 @@ const StorageConfig = React.forwardRef<HTMLInputElement, StorageConfigProps>(
     const maxAddable = maximum.value - minimum.value;
     return (
       <div>
-        <H4>Stockage additionnel</H4>
         <p>
           Votre modèle de nœud {flavor} inclut {formatStorage(minimum)} de
           stockage auxquels vous pouvez ajouter jusqu'à{' '}
