@@ -1,4 +1,5 @@
 export const VERSION_ENUM_KEY = "models['cloud.kube.VersionEnum'].enum";
+export const UPDATE_POLICY_KEY = "models['cloud.kube.UpdatePolicyEnum'].enum";
 export const ANTI_AFFINITY_MAX_NODES = 5;
 export const SCALE_DEFAULT_VALUES = {
   LOWEST_MIN_VALUE: 0,
@@ -19,4 +20,5 @@ export default {
   ANTI_AFFINITY_MAX_NODES,
   SCALE_DEFAULT_VALUES,
   KUBE_PRODUCT_ID,
+  UPDATE_POLICY_KEY,
 };

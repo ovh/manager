@@ -1,0 +1,10 @@
+{
+  "kube_update_policy_picker_always_update_label": "Sécurité maximale",
+  "kube_update_policy_picker_always_update_description": "Applique les mises à jour de sécurité ('patch version') à votre service Kubernetes, pour garantir la sécurité et la stabilité du service. La mise à jour peut entraîner une indisponibilité de vos nœuds pendant quelques minutes, le temps que nous effectuions la mise à jour progressive.",
+  "kube_update_policy_picker_minimal_downtime_label": "Indisponibilité minimale",
+  "kube_update_policy_picker_minimal_downtime_description": "Applique les mises à jour de sécurité ('patch version') à votre service Kubernetes, pour garantir la sécurité et la stabilité du service. Si nous ne pouvons pas éviter les temps d'arrêt lors d'une mise à jour progressive de vos nœuds, nous vous le signalerons. Nous vous conseillons de dimensionner votre cluster pour qu'il puisse être mis à jour à tout moment.",
+  "kube_update_policy_picker_never_update_label": "Ne pas mettre à jour",
+  "kube_update_policy_picker_never_update_description": "Nous ne recommandons pas ce choix. OVHcloud se réserve le droit de mettre à jour les composants Kubernetes ou vos nœuds de manière exceptionnelle, dans des cas critiques qui limitent la sécurité de notre infrastructure.",
+  "kube_update_policy_picker_documentation_text": "Pour en savoir plus sur les politiques de sécurité de Managed Kubernetes Service.",
+  "kube_update_policy_picker_documentation_link": "Consultez la documentation"
+}

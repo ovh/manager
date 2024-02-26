@@ -19,6 +19,7 @@ export default {
     getQuotaBuildUrl: '<',
     isDiscoveryProject: '<',
     goToDiscoveryProjectActivationPage: '&',
+    updatePolicies: '<',
   },
   controller,
   template,

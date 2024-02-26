@@ -132,6 +132,7 @@ export default class Kubernetes {
     privateNetworkId,
     gatewayConfig,
     nodepool,
+    updatePolicy,
   ) {
     if (nodepool.antiAffinity) {
       set(nodepool, 'maxNodes', ANTI_AFFINITY_MAX_NODES);
@@ -149,6 +150,7 @@ export default class Kubernetes {
           privateNetworkRoutingAsDefault: gatewayConfig.enabled,
         },
       }),
+      updatePolicy,
     });
   }
 

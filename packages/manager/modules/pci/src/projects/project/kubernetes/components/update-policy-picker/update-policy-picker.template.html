@@ -1,0 +1,30 @@
+<p data-ng-if="$ctrl.documentation">
+    <span data-translate="kube_update_policy_picker_documentation_text"></span>
+    <a
+        class="d-inline-flex"
+        target="_blank"
+        rel="noopener"
+        data-ng-href="{{:: $ctrl.documentationLink }}"
+    >
+        <span
+            data-translate="kube_update_policy_picker_documentation_link"
+        ></span>
+        <span
+            class="oui-icon oui-icon-external-link pl-1"
+            aria-hidden="true"
+        ></span>
+    </a>
+</p>
+<div class="row">
+    <oui-select-picker
+        class="d-inline-block col-md-6 col-lg-4 my-3"
+        data-ng-repeat="updatePolicy in ($ctrl.frozen ? [$ctrl.updatePolicy] : $ctrl.updatePolicies) track by updatePolicy"
+        data-name="updatePolicy"
+        data-model="$ctrl.updatePolicy"
+        data-variant="light"
+        data-values="[updatePolicy]"
+        data-label="{{ ('kube_update_policy_picker_' + updatePolicy.toLowerCase() + '_label') | translate }}"
+        data-ng-attr-description="{{ $ctrl.frozen ? null : (('kube_update_policy_picker_' + updatePolicy.toLowerCase() + '_description') | translate) }}"
+        data-required
+    />
+</div>

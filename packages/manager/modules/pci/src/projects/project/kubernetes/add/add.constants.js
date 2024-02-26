@@ -1,9 +1,11 @@
 export const READY_STATUS = 'READY';
 export const DEFAULT_NODE_COUNT = 3;
 export const KUBE_CONTAINER_MESSAGES = 'kubeContainerMessages';
+export const KUBE_DEFAULT_UPDATE_POLICY = 'ALWAYS_UPDATE';
 
 export default {
   READY_STATUS,
   DEFAULT_NODE_COUNT,
   KUBE_CONTAINER_MESSAGES,
+  KUBE_DEFAULT_UPDATE_POLICY,
 };

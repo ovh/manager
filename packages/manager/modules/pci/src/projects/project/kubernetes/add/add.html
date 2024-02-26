@@ -59,6 +59,24 @@
             </pci-project-versions-list>
         </oui-step-form>
 
+        <!--Select kube update policy-->
+        <oui-step-form
+            name="kubernetes_add_update_policy"
+            data-header="{{:: 'kubernetes_add_update_policy_title' | translate }}"
+            data-editable="!$ctrl.isAdding"
+            data-valid="$ctrl.cluster.updatePolicy"
+            data-navigation="$ctrl.cluster.updatePolicy"
+            data-on-focus="$ctrl.canEditUpdatePolicy = true"
+            data-on-submit="$ctrl.canEditUpdatePolicy = false"
+        >
+            <pci-project-kube-update-policy-picker
+                data-update-policy="$ctrl.cluster.updatePolicy"
+                data-update-policies="$ctrl.updatePolicies"
+                data-frozen="!$ctrl.canEditUpdatePolicy"
+                data-documentation="$ctrl.canEditUpdatePolicy"
+            />
+        </oui-step-form>
+
         <!--Select private network -->
         <oui-step-form
             name="kubernetes_add_private_network"
