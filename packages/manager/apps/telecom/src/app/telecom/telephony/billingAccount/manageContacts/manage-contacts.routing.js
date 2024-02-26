@@ -14,11 +14,6 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('telephony_group_manage_contacts_breadcrumb'),
-
-      newSupportTicketLink: /* @ngInject */ (coreConfig, coreURLBuilder) =>
-        coreConfig.isRegion(['EU', 'CA'])
-          ? coreURLBuilder.buildURL('dedicated', '#/support/tickets/new')
-          : '',
     },
   });
 };
