@@ -4,5 +4,17 @@
   "kubernetes_proxy_form_link": "Pour en savoir plus, consultez ce guide",
   "kubernetes_proxy_form_ipvs_warn": "Attention après la création du cluster, un changement du mode Kube-Proxy nécessite une réinitilisation du cluster",
   "kubernetes_proxy_form_ipvs_timeout_invalid": "La valeur minimale est de {{ seconds }} secondes pour prévenir tout risque d'erreur réseau sur le cluster.",
-  "kubernetes_proxy_form_none": "Aucun"
+  "kubernetes_proxy_form_none": "Aucun",
+  "kubernetes_proxy_form_ipvs_scheduler_rr_label": "Round-Robin (rr)",
+  "kubernetes_proxy_form_ipvs_scheduler_rr_description": "Répartit équitablement le trafic réseau entre les nœuds",
+  "kubernetes_proxy_form_ipvs_scheduler_lc_label": "Least Connection (lc)",
+  "kubernetes_proxy_form_ipvs_scheduler_lc_description": "Dirige le trafic réseau vers les nœuds ayant le moins de connexions actives",
+  "kubernetes_proxy_form_ipvs_scheduler_dh_label": "Destination Hashing (dh)",
+  "kubernetes_proxy_form_ipvs_scheduler_dh_description": "Dirige le trafic réseau en fonction des adresses IP de destination des connexions",
+  "kubernetes_proxy_form_ipvs_scheduler_sh_label": "Source Hashing (sh)",
+  "kubernetes_proxy_form_ipvs_scheduler_sh_description": "Dirige le trafic réseau en fonction des adresses IP sources des connexions",
+  "kubernetes_proxy_form_ipvs_scheduler_sed_label": "Shortest Expected Delay (sed)",
+  "kubernetes_proxy_form_ipvs_scheduler_sed_description": "Dirige le trafic réseau vers les nœuds ayant le temps de réponse attendu le plus court",
+  "kubernetes_proxy_form_ipvs_scheduler_nq_label": "Never Queue (nq)",
+  "kubernetes_proxy_form_ipvs_scheduler_nq_description": "Dirige le trafic réseau vers les nœuds n'ayant aucune connexion active. Bascule en Shortest Expected Delay (sed) le cas échéant"
 }

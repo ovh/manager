@@ -1,3 +1,5 @@
+@import 'bootstrap4';
+
 .kubernetes-proxy-form {
   .kubernetes-proxy-form-field {
     display: table;
@@ -17,6 +19,9 @@
     .oui-field {
       margin-bottom: 0 !important;
     }
+    .ui-select-dropdown {
+      min-width: 30rem;
+    }
   }
 
   .kubernetes-proxy-form-toggler {
@@ -32,6 +37,17 @@
   .kubernetes-proxy-form-radio-field {
     .oui-field {
       margin-bottom: 1rem !important;
+    }
+  }
+}
+
+@media screen and (max-width: map-get($grid-breakpoints, 'md')) {
+  .kubernetes-proxy-form {
+    .kubernetes-proxy-form-field {
+      .ui-select-dropdown {
+        min-width: 70vw;
+        translate: -30%;
+      }
     }
   }
 }

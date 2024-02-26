@@ -120,7 +120,22 @@
                             data-items="$ctrl.schedulerItems"
                             data-match="label"
                             data-inline
-                        />
+                        >
+                            <span data-ng-if="$item.value">
+                                <strong
+                                    class="d-block"
+                                    data-translate="{{:: ('kubernetes_proxy_form_ipvs_scheduler_' + $item.value + '_label') }}"
+                                ></strong>
+                                <span
+                                    data-translate="{{:: ('kubernetes_proxy_form_ipvs_scheduler_' + $item.value + '_description') }}"
+                                ></span>
+                            </span>
+                            <span data-ng-if="!$item.value">
+                                <span
+                                    data-translate="kubernetes_proxy_form_none"
+                                ></span>
+                            </span>
+                        </oui-select>
                     </div>
                 </div>
                 <div>
