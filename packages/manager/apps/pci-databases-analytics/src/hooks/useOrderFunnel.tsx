@@ -175,6 +175,14 @@ export function useOrderFunnel(
     () => listFlavors.find((f) => f.name === flavor),
     [listFlavors, flavor],
   );
+  const networkObject = useMemo(
+    () => ({
+      type: network.type,
+      network: networksData.networks.find((n) => n.id === network.networkId),
+      subnet: networksData.subnets.find((s) => s.id === network.subnetId),
+    }),
+    [network, networksData],
+  );
 
   // find the availability corresponding to selected items
   const availability: database.Availability | undefined = useMemo(
@@ -281,12 +289,34 @@ export function useOrderFunnel(
     form.setValue('additionalStorage', 0);
   }, [flavor]);
 
+  // upate the network selection when network list changes
   useEffect(() => {
-    if (network.networkId) networksData.setId(network.networkId);
-  }, [network.networkId]);
+    const newNetworkValues = { ...network };
+    newNetworkValues.networkId = networksData.networks[0]?.id ?? undefined;
+    form.setValue('network', newNetworkValues);
+  }, [networksData.networks]);
+  // upadte the sublist selection when subnet list changes
+  useEffect(() => {
+    const newNetworkValues = { ...network };
+    newNetworkValues.subnetId = networksData.subnets[0]?.id ?? undefined;
+    form.setValue('network', newNetworkValues);
+  }, [networksData.subnets]);
+  // set network to public if it is the only value possible
+  useEffect(() => {
+    if (
+      planObject &&
+      !planObject.networks.includes(database.NetworkTypeEnum.private)
+    ) {
+      form.setValue('network', { type: database.NetworkTypeEnum.public });
+    }
+  }, [planObject]);
 
   return {
     form,
+    queries: {
+      networks: networksData.networkQuery,
+      subnets: networksData.subnetQuery,
+    },
     lists: {
       engines: listEngines,
       plans: listPlans,
@@ -307,6 +337,7 @@ export function useOrderFunnel(
       nodes: nbNodes,
       additionalStorage,
       ipRestrictions: ips,
+      network: networkObject,
     },
   };
 }
