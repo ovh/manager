@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.45.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.45.0...@ovh-ux/manager-container-app@0.45.1) (2024-02-26)
+
+
+### Bug Fixes
+
+* **container:** fix route matcher for web domain operation ([#10967](https://github.com/ovh/manager/issues/10967)) ([7afadf2](https://github.com/ovh/manager/commit/7afadf2443607735eb26739ad2e6817f90fdfb32))
+* **container:** search by mac address for telephony ([#10941](https://github.com/ovh/manager/issues/10941)) ([3c8ed54](https://github.com/ovh/manager/commit/3c8ed5499fc76993bc7df4d5832236ee1cbc7fac))
+
+
+
+
+
 # [0.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.44.0...@ovh-ux/manager-container-app@0.45.0) (2024-02-21)
 
 

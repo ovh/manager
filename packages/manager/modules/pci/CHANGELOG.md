@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.26.0...@ovh-ux/manager-pci@6.27.0) (2024-02-26)
+
+
+### Bug Fixes
+
+* **pci:** list private network which in same zone as instance ([#10959](https://github.com/ovh/manager/issues/10959)) ([9434716](https://github.com/ovh/manager/commit/943471676584d541855ddef595f7e70f1593f984))
+
+
+### Features
+
+* **pci:** gridscale ga m1 changes ([#10881](https://github.com/ovh/manager/issues/10881)) ([a10fde7](https://github.com/ovh/manager/commit/a10fde7bad6e11ba26f69a319839efc1cf26ba0d))
+
+
+
+
+
 # [6.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.25.0...@ovh-ux/manager-pci@6.26.0) (2024-02-21)
 
 

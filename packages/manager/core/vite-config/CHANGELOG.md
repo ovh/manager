@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.3.0...@ovh-ux/manager-vite-config@0.4.0) (2024-02-26)
+
+
+### Features
+
+* make it easy to target LABEU instead of PROD api ([#10878](https://github.com/ovh/manager/issues/10878)) ([f7e5045](https://github.com/ovh/manager/commit/f7e5045545056cdf6d3164e08ec63d08e5ed747e))
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.2.1...@ovh-ux/manager-vite-config@0.3.0) (2024-01-04)
 
 

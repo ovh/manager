@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.15.1...@ovh-ux/manager-web@18.15.2) (2024-02-26)
+
+
+### Bug Fixes
+
+* **web:** correct the display of domain contact info ([#10968](https://github.com/ovh/manager/issues/10968)) ([b7f65b1](https://github.com/ovh/manager/commit/b7f65b1cac4c7195b7498cde23544e60f7abfbf0))
+
+
+
+
+
 ## [18.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.15.0...@ovh-ux/manager-web@18.15.1) (2024-02-21)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

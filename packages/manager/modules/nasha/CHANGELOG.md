@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.10.0...@ovh-ux/manager-nasha@2.11.0) (2024-02-26)
+
+
+### Features
+
+* **dedficated:** add nasha acl description ([#10825](https://github.com/ovh/manager/issues/10825)) ([b07e357](https://github.com/ovh/manager/commit/b07e35777c6e59427c443485999e358caed0d9a7))
+
+
+
+
+
 # [2.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.9.0...@ovh-ux/manager-nasha@2.10.0) (2024-02-21)
 
 

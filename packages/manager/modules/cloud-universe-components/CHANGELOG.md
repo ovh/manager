@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.11.0...@ovh-ux/ng-ovh-cloud-universe-components@2.12.0) (2024-02-26)
+
+
+### Features
+
+* eol rbx1 banner ([#10626](https://github.com/ovh/manager/issues/10626)) ([1003ee6](https://github.com/ovh/manager/commit/1003ee6571fa8be088cde1c665d01797a7348a83))
+
+
+
+
+
 # [2.11.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.10.0...@ovh-ux/ng-ovh-cloud-universe-components@2.11.0) (2024-02-21)
 
 

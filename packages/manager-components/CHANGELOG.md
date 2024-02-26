@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.1.1...@ovhcloud/manager-components@1.2.0) (2024-02-26)
+
+### Features
+
+- **manager-components:** add dashboard components ([#10871](https://github.com/ovh/manager/issues/10871)) ([6e65fe8](https://github.com/ovh/manager/commit/6e65fe8b7b82569f74106984b600b25ddfae54a8))
+- **manager-components:** add ods version 17.1.0 ([#10956](https://github.com/ovh/manager/issues/10956)) ([21d3888](https://github.com/ovh/manager/commit/21d3888fa64eb9d87027dd1ad954e1db5b64cb9d))
+- **manager-components:** add table component ([#10899](https://github.com/ovh/manager/issues/10899)) ([8ff7056](https://github.com/ovh/manager/commit/8ff705627f63c005470ac3eec6b7a54c6ba425c1))
+
 ## [1.1.1](https://github.com/ovh/manager/compare/@ovhcloud/manager-components@1.1.0...@ovhcloud/manager-components@1.1.1) (2024-02-20)
 
 ### Bug Fixes

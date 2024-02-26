@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.14.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.13.0...@ovh-ux/ng-ovh-web-universe-components@9.14.0) (2024-02-26)
+
+
+### Features
+
+* **web.domain:** add a guide for dns history ([#10621](https://github.com/ovh/manager/issues/10621)) ([e44131a](https://github.com/ovh/manager/commit/e44131a49aa48f4b1a1b83789f4d28f97071d1b0))
+
+
+
+
+
 # [9.13.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.12.0...@ovh-ux/ng-ovh-web-universe-components@9.13.0) (2024-02-21)
 
 
