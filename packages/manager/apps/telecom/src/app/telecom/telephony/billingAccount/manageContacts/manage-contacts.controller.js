@@ -15,17 +15,16 @@ export default /* @ngInject */ function TelecomTelephonyBillingAccountManageCont
   OvhApiTelephony,
   OvhApiMe,
   TelephonyMediator,
-  OvhApiPackXdslVoipLine,
   TucToast,
   TucToastError,
-  newSupportTicketLink,
+  SUPPORT_URL,
 ) {
   const self = this;
 
   const contactAttributes = ['contactAdmin', 'contactBilling', 'contactTech'];
 
   self.hasAnyLimitedModifications = false;
-  self.newSupportTicketLink = newSupportTicketLink;
+  self.newSupportTicketLink = SUPPORT_URL;
 
   function getGroupContacts() {
     const { billingAccount } = $stateParams;
