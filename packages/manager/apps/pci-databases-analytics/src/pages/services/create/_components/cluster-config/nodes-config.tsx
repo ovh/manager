@@ -1,7 +1,6 @@
 import React from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
-import { H4 } from '@/components/typography';
 
 interface NodesConfigProps {
   value: number;
@@ -16,7 +15,6 @@ const NodesConfig = React.forwardRef<HTMLInputElement, NodesConfigProps>(
     }
     return (
       <div>
-        <H4>Nombre de noeuds</H4>
         <Label htmlFor="node-number-select">
           Sélectionnez le nombre de nœuds du cluster
         </Label>

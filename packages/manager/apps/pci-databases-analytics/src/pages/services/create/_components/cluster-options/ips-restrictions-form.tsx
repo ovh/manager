@@ -20,6 +20,11 @@ interface IpsRestrictionsFormProps {
   onChange: (newIps: database.IpRestrictionCreation[]) => void;
 }
 
+const formatIpMask = (ipBlock: string) => {
+  const [ip, mask] = ipBlock.split('/');
+  return `${ip}/${mask || '32'}`;
+};
+
 const IpsRestrictionsForm = React.forwardRef<
   HTMLInputElement,
   IpsRestrictionsFormProps
@@ -33,18 +38,11 @@ const IpsRestrictionsForm = React.forwardRef<
           message: 'Invalid IP Address',
         },
       )
-      .refine((newIp) => !value.some((existingIp) => existingIp.ip === newIp), {
-        message: 'IP address is already configured',
-      })
       .refine(
-        (newIp) => {
-          const [ip, mask] = newIp.split('/');
-          return !value.some((existingIp) =>
-            existingIp.ip.includes(`${ip}/${mask || '32'}`),
-          );
-        },
+        (newIp) =>
+          !value.some((existingIp) => existingIp.ip === formatIpMask(newIp)),
         {
-          message: 'IP address with same mask already configured',
+          message: 'IP address is already configured',
         },
       ),
     description: z.string().max(255),
@@ -57,8 +55,13 @@ const IpsRestrictionsForm = React.forwardRef<
   const onSubmit: SubmitHandler<database.IpRestrictionCreation> = (
     data: database.IpRestrictionCreation,
   ) => {
-    const newIps = [...value, data];
+    const formattedIp = {
+      ...data,
+      ip: formatIpMask(data.ip),
+    };
+    const newIps = [...value, formattedIp];
     onChange(newIps);
+    form.reset();
   };
 
   const removeIp = (indexToRemove: number) => {
@@ -76,7 +79,7 @@ const IpsRestrictionsForm = React.forwardRef<
             defaultValue=""
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Engine</FormLabel>
+                <FormLabel>ip</FormLabel>
                 <FormControl>
                   <Input placeholder="0.0.0.0/32" {...field} ref={ref} />
                 </FormControl>

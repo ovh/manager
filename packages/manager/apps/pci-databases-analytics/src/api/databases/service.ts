@@ -17,6 +17,15 @@ export const getService = async (projectId: string, serviceId: string) =>
     .get(`/cloud/project/${projectId}/database/service/${serviceId}`)
     .then((res) => res.data as database.Service);
 
+export const addService = async (
+  projectId: string,
+  engine: database.EngineEnum,
+  serviceInfo: database.ServiceCreation,
+) =>
+  apiClient.v6
+    .post(`/cloud/project/${projectId}/database/${engine}`, serviceInfo)
+    .then((res) => res.data as database.Service);
+
 // define which values can be updated in the update service endpoint
 export interface UpdateServiceProps {
   projectId: string;

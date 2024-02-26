@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { H3, H4 } from '@/components/typography';
+import { useNavigate } from 'react-router-dom';
+import { H4 } from '@/components/typography';
 import { useOrderFunnel } from '@/hooks/useOrderFunnel';
 import { order } from '@/models/catalog';
 import { database } from '@/models/database';
@@ -33,6 +34,11 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import IpsRestrictionsForm from './cluster-options/ips-restrictions-form';
+import { cn } from '@/lib/utils';
+import {
+  ServiceCreationWithEngine,
+  useAddService,
+} from '@/hooks/api/services.api.hooks';
 
 interface OrderFunnelProps {
   availabilities: database.Availability[];
@@ -60,7 +66,23 @@ const OrderFunnel = ({
     catalog,
   );
   const [showMonthlyPrice, setshowMonthlyPrice] = useState(false);
+  const navigate = useNavigate();
   const { toast } = useToast();
+  const { addService, isPending: isPendingAddService } = useAddService({
+    onError: (err) => {
+      toast({
+        title: 'Error while creating service',
+        variant: 'destructive',
+        description: err.message,
+      });
+    },
+    onSuccess: (service) => {
+      toast({
+        title: 'Service successfuly created',
+      });
+      navigate(`../${service.id}`);
+    },
+  });
 
   const hasNodeSelection =
     model.result.plan &&
@@ -73,16 +95,49 @@ const OrderFunnel = ({
 
   const onSubmit = model.form.handleSubmit(
     (data) => {
-      toast({
-        title: 'form submitted',
-        description: <div>{JSON.stringify(data)}</div>,
-      });
+      // data has been validated, create payload and submit post request
+      const serviceInfos: ServiceCreationWithEngine = {
+        description: data.name,
+        engine: data.engineWithVersion.engine as database.EngineEnum,
+        nodesPattern: {
+          flavor: data.flavor,
+          number: data.nbNodes,
+          region: data.region,
+        },
+        plan: data.plan,
+        version: data.engineWithVersion.version,
+        ipRestrictions: data.ipRestrictions,
+      };
+      if (data.network.type === database.NetworkTypeEnum.private) {
+        // endpoint does not expect the network id, but the linked openstackId instead
+        const networkOpenstackId = model.result.network.network.regions.find(
+          (r) => r.region.includes(data.region),
+        ).openstackId;
+        serviceInfos.networkId = networkOpenstackId;
+        serviceInfos.subnetId = data.network.subnetId;
+      }
+      if (model.result.flavor.storage) {
+        serviceInfos.disk = {
+          size:
+            model.result.flavor.storage.minimum.value + data.additionalStorage,
+        };
+      }
+      addService(serviceInfos);
     },
     (error) => {
       toast({
-        title: 'form submitted',
+        title: 'Incorrect form values',
         variant: 'destructive',
-        description: <div>{JSON.stringify(error)}</div>,
+        description: (
+          <div>
+            <p>Some errors were found in the form:</p>
+            <ul className="list-inside list-disc">
+              {Object.keys(error).map((key) => (
+                <li>{error[key as keyof typeof error].message}</li>
+              ))}
+            </ul>
+          </div>
+        ),
       });
     },
   );
@@ -94,10 +149,12 @@ const OrderFunnel = ({
     }
   };
 
+  const classNameLabel = 'scroll-m-20 text-xl font-semibold';
+
   return (
     <>
       <h3 className="font-bold text-3xl mb-5">Create a database service</h3>
-      <p>
+      <p className="mb-2">
         Create a database service available in your Public Cloud project. If you
         would like to use a private network that does not yet exist, please
         create{' '}
@@ -111,14 +168,14 @@ const OrderFunnel = ({
           className="grid grid-cols-1 lg:grid-cols-4 gap-4"
           onSubmit={onSubmit}
         >
-          <div className="col-span-1 md:col-span-3">
+          <div className="col-span-1 md:col-span-3 divide-y-[1rem] divide-transparent">
             <section id="engine">
               <FormField
                 control={model.form.control}
                 name="engineWithVersion"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Engine</FormLabel>
+                    <FormLabel className={classNameLabel}>Engine</FormLabel>
                     <FormControl>
                       <EnginesSelect
                         {...field}
@@ -143,7 +200,7 @@ const OrderFunnel = ({
                 name="plan"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Plan</FormLabel>
+                    <FormLabel className={classNameLabel}>Plan</FormLabel>
                     <FormControl>
                       <PlansSelect
                         {...field}
@@ -166,7 +223,7 @@ const OrderFunnel = ({
                 name="region"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Region</FormLabel>
+                    <FormLabel className={classNameLabel}>Region</FormLabel>
                     <FormControl>
                       <RegionsSelect
                         {...field}
@@ -189,7 +246,7 @@ const OrderFunnel = ({
                 name="flavor"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Flavor</FormLabel>
+                    <FormLabel className={classNameLabel}>Flavor</FormLabel>
                     <FormControl>
                       <FlavorsSelect
                         {...field}
@@ -208,90 +265,101 @@ const OrderFunnel = ({
 
             {model.result.availability &&
               (hasNodeSelection || hasStorageSelection) && (
-                <section id="cluster">
-                  <H3>Cluster config</H3>
-                  <div className="divide-y-4">
-                    {hasNodeSelection && (
-                      <FormField
-                        control={model.form.control}
-                        name="nbNodes"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Nodes</FormLabel>
-                            <FormControl>
-                              <NodesConfig
-                                {...field}
-                                minimum={model.result.plan.nodes.minimum}
-                                maximum={model.result.plan.nodes.maximum}
-                                value={field.value}
-                                onChange={(newNbNodes) =>
-                                  model.form.setValue('nbNodes', newNbNodes)
-                                }
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    )}
-                    {hasStorageSelection && (
-                      <FormField
-                        control={model.form.control}
-                        name="additionalStorage"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Storage</FormLabel>
-                            <FormControl>
-                              <StorageConfig
-                                {...field}
-                                availability={model.result.availability}
-                                value={field.value}
-                                onChange={(newStorage) =>
-                                  model.form.setValue(
-                                    'additionalStorage',
-                                    newStorage,
-                                  )
-                                }
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    )}
-                  </div>
+                <section id="cluster" className="divide-y-4 divide-transparent">
+                  <H4>Cluster configuration</H4>
+                  {hasNodeSelection && (
+                    <FormField
+                      control={model.form.control}
+                      name="nbNodes"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className={cn(classNameLabel, 'text-lg')}>
+                            Nodes
+                          </FormLabel>
+                          <FormControl>
+                            <NodesConfig
+                              {...field}
+                              minimum={model.result.plan.nodes.minimum}
+                              maximum={model.result.plan.nodes.maximum}
+                              value={field.value}
+                              onChange={(newNbNodes) =>
+                                model.form.setValue('nbNodes', newNbNodes)
+                              }
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  )}
+                  {hasStorageSelection && (
+                    <FormField
+                      control={model.form.control}
+                      name="additionalStorage"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className={cn(classNameLabel, 'text-lg')}>
+                            Storage
+                          </FormLabel>
+                          <FormControl>
+                            <StorageConfig
+                              {...field}
+                              availability={model.result.availability}
+                              value={field.value}
+                              onChange={(newStorage) =>
+                                model.form.setValue(
+                                  'additionalStorage',
+                                  newStorage,
+                                )
+                              }
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  )}
                 </section>
               )}
-            <section id="options">
-              <H3>Options</H3>
-              <FormField
-                control={model.form.control}
-                name="network"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>network</FormLabel>
-                    <FormControl>
-                      <NetworkOptions
-                        {...field}
-                        value={field.value}
-                        onChange={(newNetwork) =>
-                          model.form.setValue('network', newNetwork)
-                        }
-                        networks={model.lists.networks}
-                        subnets={model.lists.subnets}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <H4>IPs restrictions</H4>
+            <section id="options" className="divide-y-4 divide-transparent">
+              <H4>Options</H4>
+              {model.result.plan && (
+                <FormField
+                  control={model.form.control}
+                  name="network"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={cn(classNameLabel, 'text-lg')}>
+                        network
+                      </FormLabel>
+                      <FormControl>
+                        <NetworkOptions
+                          {...field}
+                          value={field.value}
+                          onChange={(newNetwork) => {
+                            console.log(newNetwork);
+                            model.form.setValue('network', newNetwork);
+                          }}
+                          networks={model.lists.networks}
+                          subnets={model.lists.subnets}
+                          networkQuery={model.queries.networks}
+                          subnetQuery={model.queries.subnets}
+                          availableNetworks={model.result.plan.networks}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
               <FormField
                 control={model.form.control}
                 name="ipRestrictions"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>ipRestrictions</FormLabel>
+                    <FormLabel className={cn(classNameLabel, 'text-lg')}>
+                      ipRestrictions
+                    </FormLabel>
                     <FormControl>
                       <IpsRestrictionsForm
                         {...field}
@@ -308,7 +376,7 @@ const OrderFunnel = ({
             </section>
           </div>
 
-          <Card className="sticky lg:mt-16 top-8 h-fit shadow-lg">
+          <Card className="sticky top-4 h-fit shadow-lg">
             <CardHeader>
               <CardTitle>Votre commande</CardTitle>
               <CardDescription>Configuration de votre service</CardDescription>
@@ -351,7 +419,9 @@ const OrderFunnel = ({
               </div>
             </CardContent>
             <CardFooter className="flex justify-between">
-              <Button className="w-full">Commander</Button>
+              <Button className="w-full" disabled={isPendingAddService}>
+                Commander
+              </Button>
             </CardFooter>
           </Card>
         </form>
