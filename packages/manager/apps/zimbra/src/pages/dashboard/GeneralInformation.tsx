@@ -1,7 +1,7 @@
 import React from 'react';
 import { OsdsTile } from '@ovhcloud/ods-components/react';
 
-function Tabs1() {
+function GeneralInformation() {
   return (
     <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 py-6">
       <div className="p-3">
@@ -17,4 +17,4 @@ function Tabs1() {
   );
 }
 
-export default Tabs1;
+export default GeneralInformation;

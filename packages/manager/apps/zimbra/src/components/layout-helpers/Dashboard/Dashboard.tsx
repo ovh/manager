@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {
-  OsdsText,
   OsdsTabs,
   OsdsTabBar,
   OsdsTabBarItem,
 } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -36,26 +33,16 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs }) => {
 
   return (
     <>
-      <div className="py-4">
-        <OsdsText
-          level={ODS_TEXT_LEVEL.heading}
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_TEXT_SIZE._600}
-        >
-          {location.pathname.split('/')[2]}
-        </OsdsText>
-      </div>
       <OsdsTabs panel={panel}>
         <OsdsTabBar slot="top">
           {tabs.map((tab: DashboardTabItemProps) => (
-            <OsdsTabBarItem
+            <NavLink
               key={`osds-tab-bar-item-${tab.name}`}
-              panel={tab.name}
+              to={tab.to}
+              className="no-underline"
             >
-              <NavLink to={tab.to} className="no-underline">
-                {tab.title}
-              </NavLink>
-            </OsdsTabBarItem>
+              <OsdsTabBarItem panel={tab.name}>{tab.title}</OsdsTabBarItem>
+            </NavLink>
           ))}
         </OsdsTabBar>
       </OsdsTabs>

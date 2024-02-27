@@ -1,5 +1,12 @@
 {
-  "title": "Dashboard page",
+  "title": "Zimbra",
+  "header_guides": "Guides",
+  "guides_title_1": "FAQ sur la solution Zimbra OVHcloud",
   "error_service": "No services info",
-  "general_informations": "Informations générales"
+  "general_informations": "Informations générales",
+  "organization": "Organisation",
+  "domain": "Domaine",
+  "email_accounts": "Comptes email",
+  "mailing_list": "Mailing list",
+  "redirections": "Redirections"
 }
