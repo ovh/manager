@@ -21,7 +21,7 @@ const TabsMenu = ({ tabs }: TabsMenuProps) => {
             onClick={(event) => tab.disabled && event.preventDefault()}
             end={tab.end}
             to={tab.href}
-            key={index}
+            key={`${tab.label}-${index}`}
             className={({ isActive }) =>
               cn(
                 'whitespace-nowrap w-fit text-primary-500 text-base font-semibold m-0 py-2 hover:text-primary-700',

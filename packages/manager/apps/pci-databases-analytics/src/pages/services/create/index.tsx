@@ -62,7 +62,6 @@ const Service = () => {
   }
   return (
     <>
-      <p>Create a Service</p>
       {loading ? (
         <Skeleton className="h-4 w-32" />
       ) : (
