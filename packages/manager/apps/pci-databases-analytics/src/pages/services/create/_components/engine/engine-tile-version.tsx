@@ -16,6 +16,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Version } from '@/models/order-funnel';
+import { Span } from '@/components/typography';
 
 interface VersionSelectorProps {
   versions: Version[];
@@ -83,7 +84,7 @@ const VersionSelector = ({
                   }}
                 >
                   <div className="flex flex-row justify-between w-full cursor-pointer overflow-hidden">
-                    <span>{engineVersion.name}</span>
+                    <Span>{engineVersion.name}</Span>
                     <div className="ml-2 flex gap-1">
                       {engineVersion.tags.map((tag) => (
                         <Badge key={tag}>{tag}</Badge>
