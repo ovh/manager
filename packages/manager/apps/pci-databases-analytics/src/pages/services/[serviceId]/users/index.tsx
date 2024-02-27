@@ -1,9 +1,11 @@
+import { P } from '@/components/typography';
+
 export function breadcrumb() {
   return 'Users';
 }
 
 const Users = () => {
-  return <p>Users</p>;
+  return <P>Users</P>;
 };
 
 export default Users;

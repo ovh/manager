@@ -14,6 +14,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { P, Span } from '@/components/typography';
 
 interface IpsRestrictionsFormProps {
   value: database.IpRestrictionCreation[];
@@ -121,11 +122,11 @@ const IpsRestrictionsForm = React.forwardRef<
             >
               <MinusCircle />
             </Button>
-            {ip.ip} {ip.description && <span>- {ip.description}</span>}
+            {ip.ip} {ip.description && <Span>- {ip.description}</Span>}
           </li>
         ))}
       </ul>
-      <p>Total configured IPs: {value.length}</p>
+      <P>Total configured IPs: {value.length}</P>
     </Form>
   );
 });
