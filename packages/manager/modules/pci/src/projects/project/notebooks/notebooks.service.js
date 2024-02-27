@@ -156,4 +156,13 @@ export default class NotebookService {
       .get(`/cloud/project/${serviceName}/sshkey`)
       .then(({ data }) => data);
   }
+
+  dataSync(serviceName, notebookId, dataSync) {
+    return this.$http
+      .post(
+        `/cloud/project/${serviceName}/ai/notebook/${notebookId}/datasync`,
+        dataSync,
+      )
+      .then(({ data }) => data);
+  }
 }

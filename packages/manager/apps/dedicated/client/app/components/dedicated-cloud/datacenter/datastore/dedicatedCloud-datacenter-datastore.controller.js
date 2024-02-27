@@ -17,17 +17,16 @@ export default class {
     DedicatedCloud,
     ovhManagerPccDatacenterService,
     ovhManagerPccDatacenterDatastoreService,
+    coreConfig,
   ) {
     this.$q = $q;
     this.DedicatedCloud = DedicatedCloud;
     this.ovhManagerPccDatacenterService = ovhManagerPccDatacenterService;
     this.ovhManagerPccDatacenterDatastoreService = ovhManagerPccDatacenterDatastoreService;
     this.DEDICATED_CLOUD_DATACENTER = DEDICATED_CLOUD_DATACENTER;
-    this.guides = get(
-      DEDICATED_CLOUD_DATASTORE_GUIDES,
-      $translate.use(),
-      DEDICATED_CLOUD_DATASTORE_GUIDES.en_GB,
-    );
+    this.guides =
+      DEDICATED_CLOUD_DATASTORE_GUIDES[coreConfig.getUser()?.ovhSubsidiary] ||
+      DEDICATED_CLOUD_DATASTORE_GUIDES.DEFAULT;
   }
 
   $onInit() {

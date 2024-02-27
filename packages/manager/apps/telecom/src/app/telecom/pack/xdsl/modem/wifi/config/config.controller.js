@@ -243,4 +243,11 @@ export default /* @ngInject */ function XdslModemWifiConfigCtrl(
         },
       );
   };
+
+  self.showQRcode = function showQRcode(row) {
+    $state.go('telecom.packs.pack.xdsl.line.modem.wifi.config', {
+      wifiName: row.wifiName,
+      ssid: row.SSID,
+    });
+  };
 }

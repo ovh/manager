@@ -1,6 +1,7 @@
 {
   "iam_action_select_action_custom_heading": "Actions ajoutées manuellement",
   "iam_action_select_action_search_label": "Rechercher une action",
+  "iam_action_select_action_search_error_notfound": "Aucun résultat",
   "iam_action_select_all_actions_description": "Toutes les actions existantes et à venir sur tous les types de produits seront autorisées",
   "iam_action_select_all_actions_label": "Autoriser toutes les actions",
   "iam_action_select_category_count_selection_many_result_one": "({{ selected }} actions sélectionnées | {{ result }} résultat / {{ total }})",

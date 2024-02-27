@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.5.0...@ovh-ux/manager-generator@0.6.0) (2024-02-05)
+
+
+### Features
+
+* add breadcrumb hook ([#10522](https://github.com/ovh/manager/issues/10522)) ([48b1f61](https://github.com/ovh/manager/commit/48b1f61a01adb8ab222163f8a688b7fea7373aba))
+* **manager-components:** add react lib manager components ([#10595](https://github.com/ovh/manager/issues/10595)) ([44b43b3](https://github.com/ovh/manager/commit/44b43b360057aacf5fb6bf7ca93e501216f92c08))
+
+
+
+
+
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.4.0...@ovh-ux/manager-generator@0.5.0) (2024-01-08)
+
+
+### Features
+
+* **generator:** add pagination v2 cursor and fix pagination v6 ([#10379](https://github.com/ovh/manager/issues/10379)) ([4fd7800](https://github.com/ovh/manager/commit/4fd7800c51e0fc224520e9c90126879c4c550247))
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-generator@0.3.0...@ovh-ux/manager-generator@0.4.0) (2023-12-19)
 
 

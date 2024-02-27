@@ -17,6 +17,7 @@ export default {
     guideUrl: '<',
     guideTrackingSectionTags: '<',
     trackClick: '<',
+    trackPage: '<',
     hardRebootInstance: '<',
     help: '<',
     instanceLink: '<',
@@ -47,5 +48,7 @@ export default {
     goToRegion: '<',
     floatingIpsLink: '<',
     catalog: '<',
+    isGridscaleLocalzoneAvailable: '<',
+    hasGridscaleLocalzoneRegion: '<',
   },
 };

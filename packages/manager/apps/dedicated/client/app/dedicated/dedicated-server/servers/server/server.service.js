@@ -997,13 +997,20 @@ export default class Server {
     });
   }
 
-  startInstallation(serviceName, templateName, partitionSchemeName, details) {
+  startInstallation(
+    serviceName,
+    templateName,
+    partitionSchemeName,
+    details,
+    userMetadata = {},
+  ) {
     return this.OvhHttp.post('/dedicated/server/{serviceName}/install/start', {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,
       },
       data: {
+        userMetadata,
         details,
         partitionSchemeName,
         templateName,
@@ -1606,12 +1613,6 @@ export default class Server {
 
         return `${cpu.description}, ${memory.invoiceName}`;
       });
-  }
-
-  getBringYourOwnImage(serviceName) {
-    return this.$http
-      .get(`/dedicated/server/${serviceName}/bringYourOwnImage`)
-      .then(({ data }) => data);
   }
 
   getServices() {

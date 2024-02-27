@@ -3,6 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.3.1...@ovh-ux/manager-hub-app@5.4.0) (2024-02-26)
+
+
+### Features
+
+* eol rbx1 banner ([#10626](https://github.com/ovh/manager/issues/10626)) ([1003ee6](https://github.com/ovh/manager/commit/1003ee6571fa8be088cde1c665d01797a7348a83))
+
+
+
+
+
+## [5.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.3.0...@ovh-ux/manager-hub-app@5.3.1) (2024-02-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+# [5.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.2.9...@ovh-ux/manager-hub-app@5.3.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
+## [5.2.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.2.8...@ovh-ux/manager-hub-app@5.2.9) (2024-02-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [5.2.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.2.7...@ovh-ux/manager-hub-app@5.2.8) (2024-01-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [5.2.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.2.6...@ovh-ux/manager-hub-app@5.2.7) (2024-01-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [5.2.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.2.5...@ovh-ux/manager-hub-app@5.2.6) (2024-01-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
+## [5.2.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.2.4...@ovh-ux/manager-hub-app@5.2.5) (2024-01-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-hub-app
+
+
+
+
+
 ## [5.2.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@5.2.3...@ovh-ux/manager-hub-app@5.2.4) (2023-12-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app

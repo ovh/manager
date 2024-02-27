@@ -96,5 +96,15 @@
   "pci_projects_project_instances_windows_private_mode_description3": "consulte nuestra guía.",
   "pci_projects_project_instances_add_flavor_selected_title_without_price": "Modelo seleccionado: {{model}}",
   "pci_projects_project_instances_add_billing_coming_soon_message_title": "Precios mensuales",
-  "pci_projects_project_instances_add_billing_coming_soon_message_description": "Los precios mensuales estarán disponibles próximamente con la llegada de los Saving Plans."
+  "pci_projects_project_instances_add_billing_coming_soon_message_description": "Los precios mensuales estarán disponibles próximamente con la llegada de los Saving Plans.",
+  "pci_projects_project_instances_add_localPrivateNetwork_sub_title": "Seleccionar una red privada en una Local Zone",
+  "pci_projects_project_instances_add_localPrivateNetwork_label": "Seleccionar una red privada en una Local Zone",
+  "pci_projects_project_instances_add_localPrivateNetwork_add": "Crear una nueva red privada en una Local Zone",
+  "pci_projects_project_instances_add_localPrivateNetwork_description": "Con este modo, la instancia está asociada a una de sus redes privadas en una Local Zone.",
+  "pci_projects_project_instances_add_localPrivateNetwork_add_public_network_checkbox_label": "Red pública",
+  "pci_projects_project_instances_add_localPrivateNetwork_add_public_network_info": "A partir de ahora su instancia tendrá un puerto de red público asociado a una IPv4 y una IPv6.",
+  "pci_projects_project_instances_add_localPrivateNetwork_placeholder": "Seleccionar una red privada en una Local Zone",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode": "Local Private Mode",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode_description1": "Las instancias en «Local Private Mode» no están conectadas a escala global. Solo las instancias de una misma Local Zone pueden conectarse a través de redes privadas en las zonas locales. Las Local Zones no son compatibles con su vRack.",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode_description2": "El «Local Private Mode» utiliza el DHCP para proporcionar automáticamente un direccionamiento IP a sus instancias."
 }

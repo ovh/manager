@@ -1,13 +1,8 @@
-import {
-  DomainDNSIcon,
-  OVHFontDomain,
-  OVHFontHosting,
-  OVHFontMail,
-  OVHFontDB,
-  PartnerPlatformSHIcon,
-} from '@ovh-ux/manager-themes';
 import { ShopItem } from '../OrderPopupContent';
 import { getOrderURL, ORDER_URLS } from './order.constants';
+import { OdsIconWrapper } from '@ovh-ux/ovh-product-icons/index';
+import { HOSTING_SVG, EXCHANGE_SVG, OFFICE365_SVG } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
+import { OdsIconName } from '@ovhcloud/ods-core';
 
 const webShopConfig = (
   navigation: any,
@@ -18,7 +13,7 @@ const webShopConfig = (
   features['web:domains'] && ORDER_URLS[region].orderDomain
     ? {
         label: 'item_domains',
-        icon: OVHFontDomain,
+        icon: OdsIconWrapper({ name: OdsIconName.WORLD_CONCEPT }),
         url: getOrderURL('orderDomain', region, sub),
         external: true,
         tracking: 'web::orders::domain-name::order',
@@ -27,7 +22,7 @@ const webShopConfig = (
   features['web:domains:zone']
     ? {
         label: 'order_item_zone',
-        icon: DomainDNSIcon,
+        icon: OdsIconWrapper({ name: OdsIconName.DNS_ANYCAST_CONCEPT }),
         url: navigation.getURL('web', '#/zone/new'),
         tracking: 'web::orders::dns-zone::order',
       }
@@ -35,7 +30,7 @@ const webShopConfig = (
   features.hosting && ORDER_URLS[region].orderHosting
     ? {
         label: 'item_hostings',
-        icon: OVHFontHosting,
+        icon: HOSTING_SVG,
         url: getOrderURL('orderHosting', region, sub),
         external: true,
         tracking: 'web::orders::web-hosting::order',
@@ -44,7 +39,7 @@ const webShopConfig = (
   features['cloud-web'] && ORDER_URLS[region].orderCloudWeb
     ? {
         label: 'order_item_cloudWeb',
-        icon: OVHFontHosting,
+        icon: HOSTING_SVG,
         url: getOrderURL('orderCloudWeb', region, sub),
         external: true,
         tracking: 'web::orders::cloud-web::order',
@@ -53,7 +48,7 @@ const webShopConfig = (
   features['email-pro'] && ORDER_URLS[region].orderEmailPro
     ? {
         label: 'order_item_emailPro',
-        icon: OVHFontMail,
+        icon: OdsIconWrapper({ name: OdsIconName.ENVELOP_CONCEPT }),
         url: getOrderURL('orderEmailPro', region, sub),
         external: true,
         tracking: 'web::orders::email-pro::order',
@@ -62,7 +57,7 @@ const webShopConfig = (
   features['emails:mxplan:order']
     ? {
         label: 'order_item_mxplan',
-        icon: OVHFontMail,
+        icon: OdsIconWrapper({ name: OdsIconName.ENVELOP_CONCEPT }),
         url: navigation.getURL('web', '#/configuration/mx_plan'),
         tracking: 'web::orders::mx-plan::order',
       }
@@ -70,7 +65,7 @@ const webShopConfig = (
   features['exchange:web-dashboard']
     ? {
         label: 'order_item_exchange',
-        icon: 'ms-Icon ms-Icon--ExchangeLogo',
+        icon: EXCHANGE_SVG,
         url: navigation.getURL('web', '#/exchange/order'),
         tracking: 'web::orders::email-microsoft-exchange::order',
       }
@@ -78,7 +73,7 @@ const webShopConfig = (
   features.office && ORDER_URLS[region].orderOffice
     ? {
         label: 'order_item_office',
-        icon: 'ms-Icon ms-Icon--OfficeLogo',
+        icon: OFFICE365_SVG,
         url: getOrderURL('orderOffice', region, sub),
         tracking: 'web::orders::licences-office::order',
         external: true,
@@ -87,7 +82,7 @@ const webShopConfig = (
   features['office-reseller'] && ORDER_URLS[region].orderCsp2
     ? {
         label: 'order_item_csp2',
-        icon: 'ms-Icon ms-Icon--OfficeLogo',
+        icon: OFFICE365_SVG,
         url: getOrderURL('orderCsp2', region, sub),
         external: true,
         tracking: 'web::orders::licences-office-reseller::order',
@@ -96,7 +91,7 @@ const webShopConfig = (
   features['cloud-database']
     ? {
         label: 'order_item_cloudDatabase',
-        icon: OVHFontDB,
+        icon: OdsIconWrapper({ name: OdsIconName.DATABASE_CONCEPT }),
         url: navigation.getURL('web', '#/order-cloud-db'),
         tracking: 'web::orders::cloud-db::order',
       }
@@ -104,11 +99,10 @@ const webShopConfig = (
   features['web-paas']
     ? {
         label: 'order_item_web_paas',
-        icon: PartnerPlatformSHIcon,
+        icon: OdsIconWrapper({ name: OdsIconName.PARTNER_PLATFORMSH_CONCEPT }),
         url: navigation.getURL('web', '#/paas/webpaas/new'),
         tracking: 'web::orders::web-paas::order',
       }
     : null,
 ];
-
 export default webShopConfig;

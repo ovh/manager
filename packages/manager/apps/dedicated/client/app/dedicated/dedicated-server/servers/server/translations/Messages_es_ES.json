@@ -1130,5 +1130,19 @@
   "server_configuration_installation_ovh_desktop_BACKUP": "Copia de seguridad",
   "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Aunque el conjunto de discos seleccionado contenga {{t0}} discos, el sistema operativo elegido solo puede instalarse en 2 discos como máximo.",
   "server_configuration_installation_ovh_step3_scheme": "Esquema de partición:",
-  "server_consumption_explanation_link": "Más información"
+  "server_consumption_explanation_link": "Más información",
+  "server_configuration_installation_inputs_title": "Opciones específicas:",
+  "server_configuration_installation_inputs_info": "Las siguientes preguntas son específicas del sistema operativo seleccionado ({{t0}}). Para garantizar su consistencia con la API, solo están disponibles en inglés",
+  "server_configuration_installation_inputs_item_placeholder": "Insertar un valor de tipo {{t0}}",
+  "server_configuration_installation_inputs_item_placeholder_example": "Por ejemplo: {{t0}}",
+  "server_configuration_installation_inputs_item_mandatory": "Este campo es obligatorio.",
+  "server_configuration_installation_inputs_bad_email": "La dirección de correo electrónico introducida no es válida.",
+  "server_configuration_installation_inputs_bad_hexstring": "La cadena de caracteres solo puede contener cifras y letras comprendidas entre «a» y «f».",
+  "server_configuration_installation_inputs_bad_ip": "La dirección IPv4 introducida no es válida.",
+  "server_configuration_installation_inputs_bad_required": "Este campo es obligatorio.",
+  "server_configuration_installation_inputs_bad_sshPubKey": "La clave pública SSH no es válida: solo se aceptan claves RSA, ECDSA y EdDSA en formato OpenSSH.",
+  "server_configuration_installation_inputs_bad_url": "La dirección URL introducida no es válida.",
+  "server_configuration_installation_inputs_bad_uuid": "El UUIDv4 no es válido.",
+  "server_configuration_installation_custom_image_info": "Puede instalar un SO desde una imagen personalizada en la siguiente pantalla seleccionando «{{t0}}» en «{{t1}}».",
+  "server_configuration_installation_custom_image_help_link": "Seleccione el tipo de instalación personalizada más adecuado."
 }

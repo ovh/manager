@@ -18,7 +18,7 @@
         variant="primary"
         data-ng-if="!$ctrl.hasSubmitted && $ctrl.isComponentLoaded"
         on-click="$ctrl.submit()"
-        disabled="!$ctrl.isInputsValid"
+        disabled="$ctrl.componentCtrl.integrationCtrl.disabled || !$ctrl.isInputsValid"
     >
         <span
             data-translate="ovh_payment_method_integration_component_adyen_validate"

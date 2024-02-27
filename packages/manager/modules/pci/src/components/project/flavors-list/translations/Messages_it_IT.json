@@ -20,5 +20,12 @@
   "pci_project_flavors_quota_manage": "Gestisci la quota",
   "pci_project_flavors_category_new": "Nuovo",
   "pci_project_flavors_category_definition_discovery": "Le istanze con risorse condivise (Discovery) sono adatte per le fasi di test e validazione e per gli ambienti di sviluppo. Le performance possono variare leggermente nel corso del tempo.",
-  "pci_project_flavors_spec_vCore_details": "{{vcores}} vCore ({{frequency}} GHz)"
+  "pci_project_flavors_spec_vCore_details": "{{vcores}} vCore ({{frequency}} GHz)",
+  "pci_project_flavors_category_definition_localzone": "Istanze Local Zone",
+  "pci_project_flavors_zone_compatible": "Compatibile con",
+  "pci_project_flavors_zone_localzone": "Local Zone",
+  "pci_project_flavors_zone_global_region": "Global Region",
+  "pci_project_flavors_zone_localzone_tooltip": "Le Local Zone sono un nuovo tipo di localizzazione che supporta una parte del nostro catalogo di prodotti Public Cloud. Prevediamo di aumentare gradualmente il numero di Local Zone disponibili nel mondo nei prossimi anni.",
+  "pci_project_flavors_zone_globalregions_tooltip": "Le Global Region sono supportate da uno o più datacenter gestiti da OVHcloud. Ogni Region fornisce una o più Availability Zone con il catalogo completo di servizi OVHcloud.",
+  "pci_project_flavors_zone_tooltip_link": "Scopri di più"
 }

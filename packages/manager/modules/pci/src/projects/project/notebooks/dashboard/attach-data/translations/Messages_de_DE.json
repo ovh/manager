@@ -12,5 +12,7 @@
   "pci_notebooks_tab_attach_data_page_title_git": "Öffentliche Git-Repositorys anhängen",
   "pci_notebooks_tab_attach_data_page_volumes_column_git_url": "URL des Git-Repositorys",
   "pci_notebooks_tab_attach_data_page_volumes_git_none": "Es sind keine Git-Repositorys angehängt",
-  "pci_notebooks_tab_attach_data_page_volumes_column_prefix": "Präfix"
+  "pci_notebooks_tab_attach_data_page_volumes_column_prefix": "Präfix",
+  "pci_notebooks_tab_attach_data_page_volumes_sync_data": "Daten manuell synchronisieren",
+  "pci_notebooks_tab_attach_data_page_volumes_all_data": "Globale Datensynchronisierung"
 }

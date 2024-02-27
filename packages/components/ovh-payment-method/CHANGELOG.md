@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-payment-method@0.3.1...@ovh-ux/ovh-payment-method@0.4.0) (2024-02-05)
+
+
+### Features
+
+* **pci:** new solution for payment step on PCI > Checkbox ([#10733](https://github.com/ovh/manager/issues/10733)) ([ca45ed9](https://github.com/ovh/manager/commit/ca45ed928684da75ec899377fd3ba093826e7cba))
+
+
+
+
+
 ## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/ovh-payment-method@0.3.0...@ovh-ux/ovh-payment-method@0.3.1) (2023-12-05)
 
 **Note:** Version bump only for package @ovh-ux/ovh-payment-method

@@ -82,4 +82,40 @@ export default class PublicCloud {
       return null;
     });
   }
+
+  getDiscoveryProject() {
+    return this.getProjects([
+      {
+        field: 'planCode',
+        comparator: 'eq',
+        reference: 'project.discovery',
+      },
+      {
+        field: 'status',
+        comparator: 'eq',
+        reference: 'ok',
+      },
+    ]).then((projects) => {
+      if (projects?.length) {
+        const [{ project_id: projectId }] = projects;
+        return projectId;
+      }
+      return null;
+    });
+  }
+
+  getUnpaidProjects() {
+    return this.getServices([
+      {
+        field: 'route.path',
+        comparator: 'eq',
+        reference: '/cloud/project/{serviceName}',
+      },
+      {
+        field: 'billing.lifecycle.current.state',
+        comparator: 'eq',
+        reference: 'unpaid',
+      },
+    ]);
+  }
 }

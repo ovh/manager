@@ -16,12 +16,8 @@ export default class {
       MIGRATION_GUIDE.DEFAULT;
   }
 
-  displayMigrationBanner() {
-    return (
-      (this.migrationBannerAvailable.firstBanner ||
-        this.migrationBannerAvailable.secondBanner) &&
-      this.hasLegacyDatacenter
-    );
+  canOrderDatacenter() {
+    return this.dedicatedCloud.canOrderDatacenter && this.addVdcAvailable;
   }
 
   getRight(order) {

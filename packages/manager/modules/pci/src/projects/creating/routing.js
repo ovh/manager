@@ -3,6 +3,7 @@ import get from 'lodash/get';
 import component from './component';
 
 import { GUIDE_URLS } from './constants';
+import { DISCOVERY_PROJECT_PLANCODE } from '../project/project.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.creating', {
@@ -13,7 +14,15 @@ export default /* @ngInject */ ($stateProvider) => {
     atInternet: {
       ignore: true, // this tell AtInternet to not track this state
     },
-    onEnter: /* @ngInject */ (atInternet, numProjects) => {
+    onEnter: /* @ngInject */ (
+      atInternet,
+      numProjects,
+      isCreatingDiscoveryProject,
+    ) => {
+      atInternet.setPciProjectMode({
+        isDiscoveryProject: isCreatingDiscoveryProject,
+        projectId: '',
+      });
       atInternet.trackPage({
         name: 'PublicCloud::pci::projects::creating',
         pciCreationNumProjects: numProjects,
@@ -33,7 +42,13 @@ export default /* @ngInject */ ($stateProvider) => {
         isRedirectRequired,
         getTargetedState,
         goToState,
+        isCreatingDiscoveryProject,
       ) => (projectId) => {
+        atInternet.setPciProjectMode({
+          isDiscoveryProject: isCreatingDiscoveryProject,
+          projectId,
+        });
+
         atInternet.trackPage({
           name: 'public-cloud::pci::projects::created',
           projectId,
@@ -76,11 +91,21 @@ export default /* @ngInject */ ($stateProvider) => {
 
       orderId: /* @ngInject */ ($transition$) => $transition$.params().orderId,
 
+      order: /* @ngInject */ (orderId, pciProjectCreating) =>
+        pciProjectCreating.getOrderDetails(orderId, { extension: true }),
+
       orderStatus: /* @ngInject */ (orderId, pciProjectCreating) =>
         pciProjectCreating.getOrderStatus(orderId),
 
       voucherCode: /* @ngInject */ ($transition$) =>
         $transition$.params().voucherCode,
+
+      isCreatingDiscoveryProject: /* @ngInject */ (order) =>
+        Boolean(
+          order.find(
+            (item) => item.order?.plan.code === DISCOVERY_PROJECT_PLANCODE,
+          ),
+        ),
     },
   });
 };

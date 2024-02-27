@@ -52,11 +52,11 @@ const Filters: React.FC<FiltersProps> = ({
     if (products.length > 0) {
       const { universes, categories } = getFilterParamsFromUrl(location.search);
 
-      if (categories.length > 0) {
+      if (categories.length !== selectedCategories.length) {
         setSelectedCategories(categories);
         setParentSelectedCategories(categories);
       }
-      if (universes.length > 0) {
+      if (universes.length !== selectedUniverses.length) {
         setSelectedUniverses(universes);
         setParentSelectedUniverses(universes);
       }

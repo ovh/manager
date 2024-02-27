@@ -3,6 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer-app@0.3.2...@ovh-ux/manager-octavia-load-balancer-app@0.3.3) (2024-02-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-octavia-load-balancer-app
+
+
+
+
+
+## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer-app@0.3.1...@ovh-ux/manager-octavia-load-balancer-app@0.3.2) (2024-02-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-octavia-load-balancer-app
+
+
+
+
+
+## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer-app@0.3.0...@ovh-ux/manager-octavia-load-balancer-app@0.3.1) (2024-02-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-octavia-load-balancer-app
+
+
+
+
+
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer-app@0.2.3...@ovh-ux/manager-octavia-load-balancer-app@0.3.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
+## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer-app@0.2.2...@ovh-ux/manager-octavia-load-balancer-app@0.2.3) (2024-01-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-octavia-load-balancer-app
+
+
+
+
+
+## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer-app@0.2.1...@ovh-ux/manager-octavia-load-balancer-app@0.2.2) (2024-01-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-octavia-load-balancer-app
+
+
+
+
+
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer-app@0.2.0...@ovh-ux/manager-octavia-load-balancer-app@0.2.1) (2024-01-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-octavia-load-balancer-app
+
+
+
+
+
+# [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer-app@0.1.10...@ovh-ux/manager-octavia-load-balancer-app@0.2.0) (2024-01-08)
+
+
+### Features
+
+* **octavia:** fixed link in onboarding page for us ([#10586](https://github.com/ovh/manager/issues/10586)) ([a940050](https://github.com/ovh/manager/commit/a9400504707961a69d63ca56775d4775dc90fa86))
+
+
+
+
+
 ## [0.1.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-octavia-load-balancer-app@0.1.9...@ovh-ux/manager-octavia-load-balancer-app@0.1.10) (2023-12-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-octavia-load-balancer-app

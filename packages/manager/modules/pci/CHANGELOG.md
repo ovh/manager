@@ -3,6 +3,199 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.26.0...@ovh-ux/manager-pci@6.27.0) (2024-02-26)
+
+
+### Bug Fixes
+
+* **pci:** list private network which in same zone as instance ([#10959](https://github.com/ovh/manager/issues/10959)) ([9434716](https://github.com/ovh/manager/commit/943471676584d541855ddef595f7e70f1593f984))
+
+
+### Features
+
+* **pci:** gridscale ga m1 changes ([#10881](https://github.com/ovh/manager/issues/10881)) ([a10fde7](https://github.com/ovh/manager/commit/a10fde7bad6e11ba26f69a319839efc1cf26ba0d))
+
+
+
+
+
+# [6.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.25.0...@ovh-ux/manager-pci@6.26.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
+# [6.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.24.1...@ovh-ux/manager-pci@6.25.0) (2024-02-20)
+
+
+### Bug Fixes
+
+* **public-cloud:** renamed region list component used by octavia ([2ec64de](https://github.com/ovh/manager/commit/2ec64deed8f6aa23c9c24237d0d320287d7651ca))
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10943](https://github.com/ovh/manager/issues/10943)) ([3d0e354](https://github.com/ovh/manager/commit/3d0e3546319682e1efbfd825f77017ed81b7d80c))
+
+
+
+
+
+## [6.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.24.0...@ovh-ux/manager-pci@6.24.1) (2024-02-16)
+
+
+### Reverts
+
+* Revert "feat(dedicated): remove legacy BringYourOwnImage component (#10824)" ([2d1fff6](https://github.com/ovh/manager/commit/2d1fff6cf6d4c3c6f512d9eac5c446dfe08724a9)), closes [#10824](https://github.com/ovh/manager/issues/10824)
+
+
+
+
+
+# [6.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.23.0...@ovh-ux/manager-pci@6.24.0) (2024-02-16)
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10824](https://github.com/ovh/manager/issues/10824)) ([ec65f97](https://github.com/ovh/manager/commit/ec65f97f114c5172f8a63f485ececd383fbd9eee))
+
+
+
+
+
+# [6.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.22.0...@ovh-ux/manager-pci@6.23.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
+# [6.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.21.0...@ovh-ux/manager-pci@6.22.0) (2024-02-07)
+
+
+### Features
+
+* aiven databases US launch ([ec3f930](https://github.com/ovh/manager/commit/ec3f930addf9d36cb852225edbcce8b1ce9427c8))
+
+
+
+
+
+# [6.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.20.0...@ovh-ux/manager-pci@6.21.0) (2024-02-05)
+
+
+### Bug Fixes
+
+* **pci.storages.databases:** display redis users information ([#10797](https://github.com/ovh/manager/issues/10797)) ([d811298](https://github.com/ovh/manager/commit/d8112989def9204e8f76463d58815a6547be6700))
+* **pci.vouchers:** fix JS error on init and use $interval for polling ([#10818](https://github.com/ovh/manager/issues/10818)) ([2a955a7](https://github.com/ovh/manager/commit/2a955a77579cdfaa72fc6e880020f983da6eabee))
+
+
+### Features
+
+* **pci:** new solution for payment step on PCI > Checkbox ([#10733](https://github.com/ovh/manager/issues/10733)) ([ca45ed9](https://github.com/ovh/manager/commit/ca45ed928684da75ec899377fd3ba093826e7cba))
+
+
+
+
+
+# [6.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.19.0...@ovh-ux/manager-pci@6.20.0) (2024-01-29)
+
+
+### Bug Fixes
+
+* correctly update service after maintenance and backup time changes ([#10761](https://github.com/ovh/manager/issues/10761)) ([6213774](https://github.com/ovh/manager/commit/62137741ec6faa882d2158997fe973410e8d0502))
+* **public-cloud:** list priavte network with vlanid 0 ([#10760](https://github.com/ovh/manager/issues/10760)) ([da8d005](https://github.com/ovh/manager/commit/da8d005779e59b1f73a1a9e79bae983501529369))
+* **public-cloud:** silently fail when no permission to query instance IP ([#10722](https://github.com/ovh/manager/issues/10722)) ([f961767](https://github.com/ovh/manager/commit/f9617673483c218a3e3d7e4c2abb6802ae9e5012))
+
+
+### Features
+
+* **projects.project:** remove out of date repricing banner ([#10677](https://github.com/ovh/manager/issues/10677)) ([768040d](https://github.com/ovh/manager/commit/768040d958330133ca4bcf0ad63e1c17f9b4639b))
+
+
+
+
+
+# [6.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.18.2...@ovh-ux/manager-pci@6.19.0) (2024-01-22)
+
+
+### Bug Fixes
+
+* **pci.db:** update private network when changing region ([#10703](https://github.com/ovh/manager/issues/10703)) ([45924a4](https://github.com/ovh/manager/commit/45924a49f5bcf1e814d3ccefc6ee7cb5ca2fea2c))
+
+
+### Features
+
+* **pci.ai:** add manual data sync in notebook and apps ([#10410](https://github.com/ovh/manager/issues/10410)) ([e3b3093](https://github.com/ovh/manager/commit/e3b30938b296a877a20ab3f6d480047b5682aa62))
+* **pci.ai:** stop notebook from dashboard ([#10702](https://github.com/ovh/manager/issues/10702)) ([4ed31d4](https://github.com/ovh/manager/commit/4ed31d463cea5f6c2f495e00e7d59ae4c9b01e76))
+* **pci:** change default CIDR as default gateway to true ([#10574](https://github.com/ovh/manager/issues/10574)) ([3a0647f](https://github.com/ovh/manager/commit/3a0647f859e9f338714e2a470475e6213a54ad2a))
+* **pci:** new payment method ([#10378](https://github.com/ovh/manager/issues/10378)) ([3d87a3e](https://github.com/ovh/manager/commit/3d87a3e702a934d943989f829afd0bdc4f0aecb8))
+* remove dataintegration project ([#10450](https://github.com/ovh/manager/issues/10450)) ([8526862](https://github.com/ovh/manager/commit/8526862140874dedd7aa8898eb7dc17457681312))
+
+
+### Reverts
+
+* Revert "feat(pci): new payment method (#10378)" (#10731) ([dfd1f71](https://github.com/ovh/manager/commit/dfd1f71c02f1e3a24a7c9c4b68f74d2647a96e05)), closes [#10378](https://github.com/ovh/manager/issues/10378) [#10731](https://github.com/ovh/manager/issues/10731)
+
+
+
+
+
+## [6.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.18.1...@ovh-ux/manager-pci@6.18.2) (2024-01-19)
+
+
+### Bug Fixes
+
+* **pci:** display IP order page ([94ed0b0](https://github.com/ovh/manager/commit/94ed0b024bed6c0f52fee33734e33b60db4e202c))
+
+
+
+
+
+## [6.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.18.0...@ovh-ux/manager-pci@6.18.1) (2024-01-17)
+
+
+### Bug Fixes
+
+* **public-cloud:** enable monthly billing ([5dd4646](https://github.com/ovh/manager/commit/5dd464633d41bad68fa8808d1202869282729b4b))
+
+
+
+
+
+# [6.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.17.0...@ovh-ux/manager-pci@6.18.0) (2024-01-16)
+
+
+### Features
+
+* **public-cloud:** add Local Zone ([#10358](https://github.com/ovh/manager/issues/10358)) ([e8dadae](https://github.com/ovh/manager/commit/e8dadae55b2a6b5971ce8fc0fb7ed0c030868d2b))
+* **public-cloud:** patch localzone name ([#10695](https://github.com/ovh/manager/issues/10695)) ([28efee6](https://github.com/ovh/manager/commit/28efee6d0c6934e0aa5b5ab1787e99f7d396f9f1))
+
+
+
+
+
+# [6.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.16.1...@ovh-ux/manager-pci@6.17.0) (2024-01-08)
+
+
+### Features
+
+* **pci.projects:** add private registry us guides ([#10614](https://github.com/ovh/manager/issues/10614)) ([f71cdb8](https://github.com/ovh/manager/commit/f71cdb89fd60a77c86751313715298b8a29943de))
+* **pci:** allow vlan id 0 when creating private network ([#10473](https://github.com/ovh/manager/issues/10473)) ([5cb8a04](https://github.com/ovh/manager/commit/5cb8a0487c2378a6b512a12d2aa4e0b5eee17193))
+
+
+
+
+
 ## [6.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.16.0...@ovh-ux/manager-pci@6.16.1) (2024-01-02)
 
 

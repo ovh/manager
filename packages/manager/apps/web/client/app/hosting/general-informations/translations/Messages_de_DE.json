@@ -4,5 +4,6 @@
   "hosting_dashboard_general_informations_cdn_banner": "Die Option „Shared CDN“ für Ihre Hostings wird weiterentwickelt! Es sind neue Funktionen verfügbar.",
   "hosting_dashboard_general_informations_cdn_banner_cta": "Ihr CDN migrieren",
   "hosting_dashboard_config_tile_options_cdn_cancel_terminate": "Kündigung geplant: {{ endEngagementDate }}",
-  "hosting_dashboard_config_tile_options_cdn_cancel_terminate_link": "Kündigung stornieren"
+  "hosting_dashboard_config_tile_options_cdn_cancel_terminate_link": "Kündigung stornieren",
+  "hosting_dashboard_general_information_cdn_ip": "IP"
 }

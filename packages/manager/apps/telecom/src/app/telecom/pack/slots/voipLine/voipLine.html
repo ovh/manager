@@ -21,6 +21,16 @@
         class="oui-tile__body"
         data-ng-if="!loaders.services && VoipLine.services.length > 0"
     >
+        <div class="oui-tile__body oui-tile__item_button">
+            <a
+                class="oui-button oui-button_icon-right oui-button_secondary oui-button_block"
+                data-ui-sref="telecom.orders.accessories"
+            >
+                <span data-translate="pack_xdsl_line_order_headset"></span>
+                <i class="oui-icon oui-icon-chevron-right" aria-hidden="true">
+                </i>
+            </a>
+        </div>
         <div
             class="oui-tile__item oui-tile__item_button"
             data-ng-repeat="service in VoipLine.services track by service.domain"
@@ -52,6 +62,14 @@
                     class="btn btn-default btn-block"
                     data-ui-sref="telecom.packs.pack.voipLine-activation"
                     data-translate="common_order_activate_service"
+                    data-ng-if="service.packStatus !== 'inCreation'"
+                >
+                </a>
+                <a
+                    class="btn btn-default btn-block"
+                    data-translate="common_order_activate_service"
+                    disabled="true"
+                    data-ng-if="service.packStatus === 'inCreation'"
                 >
                 </a>
             </div>

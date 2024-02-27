@@ -322,6 +322,9 @@ export const ORDER_URLS: Record<
       ES: 'https://www.ovh.es/sharepoint/?range=mail',
       FR: 'https://www.ovhtelecom.fr/sharepoint/?range=mail',
     },
+    telephony_accessory_order: {
+      FR: 'https://www.ovhtelecom.fr/manager/#/telecom/orders/accessories',
+    },
     telephony_voip: {
       FR: 'https://www.ovhtelecom.fr/telephonie/voip/',
     },

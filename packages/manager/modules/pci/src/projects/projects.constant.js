@@ -42,6 +42,7 @@ export const PCI_FEATURES = {
     DISCOVERY: 'instance:flavors-category-discovery',
     IOPS: 'instance:flavors-category-iops',
     BAREMETAL: 'instance:flavors-category-baremetal',
+    GRIDSCALE_LOCALZONE: 'instance:gridscale-local-zone',
   },
   SETTINGS: {
     USERS: 'public-cloud:users',
@@ -74,7 +75,6 @@ export const PCI_FEATURES = {
   BANNERS: {
     BILLING_CHANGE_MEDIATION_BANNER:
       'public-cloud:project:billing-change-mediation-banner',
-    REPRICING_BANNER: 'public-cloud:project:repricing-banner',
   },
   OTHERS: {
     PUBLIC_CLOUD: 'public-cloud',
@@ -189,6 +189,9 @@ export const ORDER_FOLLOW_UP_STEP_ENUM = {
 export const ORDER_FOLLOW_UP_HISTORY_STATUS_ENUM = {
   FRAUD_DOCS_REQUESTED: 'FRAUD_DOCS_REQUESTED',
   FRAUD_MANUAL_REVIEW: 'FRAUD_MANUAL_REVIEW',
+  FRAUD_REFUSED: 'FRAUD_REFUSED',
+  PAYMENT_INITIATED: 'PAYMENT_INITIATED',
+  PAYMENT_RECEIVED: 'PAYMENT_RECEIVED',
 };
 
 export const ORDER_CHECK_PAYMENT_TIMEOUT_OVER =

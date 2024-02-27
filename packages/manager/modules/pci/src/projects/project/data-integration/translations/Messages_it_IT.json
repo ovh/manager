@@ -1,7 +1,0 @@
-{
-  "pci_data_integration_title": "Data Integration",
-  "pci_data_integration_description": "Scopri l'offerta Data Integration e configura i tuoi primi job di estrazione e caricamento dei dati. Puoi usufruire di un catalogo di sorgenti e destinazioni per configurare in semplicità il trasporto dei dati sotto forma di file (Object Storage, HTTP files, SFTP, FTP), database (PostgreSQL, MySQL, MongoDB, Oracle, SQL Server) o all’interno di un motore di ricerca (Elasticsearch, OpenSearch).",
-  "pci_data_integration_description_lab_link": "Attualmente in beta gratuita",
-  "pci_data_integration_tab_dashboard": "Dashboard",
-  "pci_data_integration_tab_cli": "Command Line Interface"
-}

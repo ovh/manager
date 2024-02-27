@@ -171,6 +171,14 @@ export default class AgoraIpOrderCtrl {
   }
 
   loadPrivateCloudIpOffers(serviceName) {
+    const countries = this.orderableIpCountries.map((code) => {
+      return {
+        code: code.toUpperCase(),
+        description: this.$translate.instant(`country_${code.toUpperCase()}`),
+        icon: `oui-flag oui-flag_${code}`,
+      };
+    });
+
     return this.IpAgoraOrder.getPrivateCloudIpOffers(serviceName).then(
       (ipOffers) => {
         this.blockIpOffers = ipOffers.map((offer) => {
@@ -179,6 +187,7 @@ export default class AgoraIpOrderCtrl {
           return {
             ...offer,
             productShortName: offer.productName,
+            countries,
             price: price.price,
             productDisplayName: `${offer.productName} - ${price.price.text}`,
             duration: 'P1M', // @todo use price.duration when api is fixed
@@ -363,7 +372,6 @@ export default class AgoraIpOrderCtrl {
     this.model.params.selectedQuantity = this.minSize;
     this.model.params.selectedOrganisation = null;
     this.model.params.selectedCountry = null;
-
     if (get(this.model, 'params.selectedOffer.countries.length') === 1) {
       this.model.params.selectedCountry = head(
         get(this.model, 'params.selectedOffer.countries'),

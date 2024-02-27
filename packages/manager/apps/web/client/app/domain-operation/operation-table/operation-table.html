@@ -1,0 +1,238 @@
+<oui-header
+    data-ng-if="$ctrl.header"
+    class="mb-2"
+    data-heading="{{:: $ctrl.header }}"
+></oui-header>
+<div data-ng-bind-html="$ctrl.description"></div>
+
+<div data-ovh-alert="{{ $ctrl.alertId }}"></div>
+
+<oui-datagrid
+    data-ng-if="$ctrl.type==='domain'"
+    id="{{ $ctrl.id }}"
+    data-empty-placeholder="{{:: 'domains_empty' | translate }}"
+    data-page-size="{{ $ctrl.paginationSize }}"
+    data-rows-loader="$ctrl.loadPage()"
+    data-row-loader="$ctrl.loadResource($row)"
+    data-criteria="$ctrl.criteria"
+    data-on-page-change="$ctrl.onPageChange($pagination)"
+    data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+    data-on-sort-change="$ctrl.onSortChange($sort)"
+    data-columns="$ctrl.columnsConfig"
+    data-on-columns-parameters-change="$ctrl.onColumnChange(id, columns)"
+    data-page="{{ $ctrl.paginationNumber }}"
+    customizable
+>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_domain' | translate"
+        data-property="domain"
+        data-type="string"
+        data-sortable
+        data-filterable
+        data-searchable
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_function' | translate"
+        data-property="function"
+        data-type="options"
+        data-type-options="$ctrl.operationFunctionColumnOptions"
+        data-filterable
+        data-sortable
+    >
+        <span
+            data-ng-bind="'domain_operations_nicOperation_' +  $row.function | translate"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_comment' | translate"
+        data-property="comment"
+        data-type="string"
+        data-type-options="$ctrl.domainSuspensionStateColumnOptions"
+        data-filterable
+        data-sortable
+    >
+    </oui-datagrid-column>
+
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_todoDate' | translate"
+        data-property="todoDate"
+    >
+        <span data-ng-bind="$row.todoDate | date:'short'"> </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_lastUpdate' | translate"
+        data-property="lastUpdate"
+    >
+        <span data-ng-bind="$row.lastUpdate | date:'short'"> </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_doneDate' | translate"
+        data-property="doneDate"
+    >
+        <span data-ng-bind="$row.doneDate | date:'short'"> </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_status' | translate"
+        data-property="status"
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="{
+                'oui-badge_info': $row.status === 'todo' || $row.status === 'doing' || $row.status === 'cancelled',
+                'oui-badge_error': $row.status === 'error',
+                'oui-badge_success': $row.status === 'done'
+              }"
+            data-ng-bind="'domain_operations_statusOperation_' +  $row.status | translate"
+        >
+        </span>
+        <span
+            data-oui-tooltip="{{:: 'domain_operations_no_action' | translate }}"
+            data-oui-tooltip-enable="{{!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate}}"
+            data-oui-tooltip-placement="left"
+        >
+            <oui-action-menu
+                data-compact
+                data-disabled="!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate && $row.function !== 'DomainIncomingTransfer'"
+                data-placement="end"
+            >
+                <oui-action-menu-item
+                    data-on-click="setAction('domain-operation/update/domain-operation-update', $row)"
+                    data-disabled="!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate"
+                >
+                    <span
+                        data-translate="domain_operations_tab_popover_update"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-href="#/{{$ctrl.type}}/operation/progress/{{$row.id}}"
+                    data-ng-if="$row.function === 'DomainIncomingTransfer'"
+                >
+                    <span
+                        data-translate="domain_operations_tab_popover_progress"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </span>
+    </oui-datagrid-column>
+</oui-datagrid>
+<oui-datagrid
+    data-ng-if="$ctrl.type==='dns'"
+    id="{{ $ctrl.id }}"
+    data-empty-placeholder="{{:: 'domains_empty' | translate }}"
+    data-page-size="{{ $ctrl.paginationSize }}"
+    data-rows-loader="$ctrl.loadPage()"
+    data-row-loader="$ctrl.loadResource($row)"
+    data-criteria="$ctrl.criteria"
+    data-on-page-change="$ctrl.onPageChange($pagination)"
+    data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+    data-on-sort-change="$ctrl.onSortChange($sort)"
+    data-columns="$ctrl.columnsConfig"
+    data-on-columns-parameters-change="$ctrl.onColumnChange(id, columns)"
+    data-page="{{ $ctrl.paginationNumber }}"
+    customizable
+>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_domain' | translate"
+        data-property="zone"
+        data-type="string"
+        data-sortable
+        data-filterable
+        data-searchable
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_function' | translate"
+        data-property="function"
+        data-type="options"
+        data-type-options="$ctrl.operationFunctionColumnOptions"
+        data-filterable
+        data-sortable
+    >
+        <span
+            data-ng-bind="'domain_operations_nicOperation_' +  $row.function | translate"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_comment' | translate"
+        data-property="comment"
+        data-type="string"
+        data-type-options="$ctrl.domainSuspensionStateColumnOptions"
+        data-filterable
+        data-sortable
+    >
+    </oui-datagrid-column>
+
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_todoDate' | translate"
+        data-property="todoDate"
+    >
+        <span data-ng-bind="$row.todoDate | date:'short'"> </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_lastUpdate' | translate"
+        data-property="lastUpdate"
+    >
+        <span data-ng-bind="$row.lastUpdate | date:'short'"> </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_doneDate' | translate"
+        data-property="doneDate"
+    >
+        <span data-ng-bind="$row.doneDate | date:'short'"> </span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title="::'domain_operations_table_header_status' | translate"
+        data-property="status"
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="{
+                'oui-badge_info': $row.status === 'todo' || $row.status === 'doing' || $row.status === 'cancelled',
+                'oui-badge_error': $row.status === 'error',
+                'oui-badge_success': $row.status === 'done'
+              }"
+            data-ng-bind="'domain_operations_statusOperation_' +  $row.status | translate"
+        >
+        </span>
+        <span
+            data-oui-tooltip="{{:: 'domain_operations_no_action' | translate }}"
+            data-oui-tooltip-enable="{{!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate}}"
+            data-oui-tooltip-placement="left"
+        >
+            <oui-action-menu
+                data-compact
+                data-disabled="!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate && $row.function !== 'DomainIncomingTransfer'"
+                data-placement="end"
+            >
+                <oui-action-menu-item
+                    data-on-click="setAction('domain-operation/update/domain-operation-update', $row)"
+                    data-disabled="!$row.canCancel && !$row.canRelaunch && !$row.canAccelerate"
+                >
+                    <span
+                        data-translate="domain_operations_tab_popover_update"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-href="#/domain/operation/progress/{{$row.id}}"
+                    data-ng-if="$row.function === 'DomainIncomingTransfer'"
+                >
+                    <span
+                        data-translate="domain_operations_tab_popover_progress"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </span>
+    </oui-datagrid-column>
+</oui-datagrid>
+
+<div id="currentAction" class="modal fade currentAction" role="dialog">
+    <div class="modal-dialog">
+        <div
+            id="modal-container"
+            class="modal-content"
+            data-ng-include="$ctrl.stepPath"
+        ></div>
+        <div id="modal-help" class="help4wizards"></div>
+    </div>
+</div>

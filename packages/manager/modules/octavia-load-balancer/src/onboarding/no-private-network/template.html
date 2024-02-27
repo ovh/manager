@@ -1,0 +1,29 @@
+<oui-modal
+    data-type="info"
+    data-heading="{{:: 'octavia_load_balancer_onboarding_private_network_modal_title' | translate }}"
+    data-primary-action="$ctrl.goToPrivateNetworkCreation()"
+    data-primary-label="{{:: 'octavia_load_balancer_onboarding_private_network_modal_title' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <span
+        class="mb-0"
+        data-translate="octavia_load_balancer_onboarding_private_network_modal_description"
+    ></span>
+    <a
+        class="oui-link_icon"
+        data-ng-href="{{:: $ctrl.privateNetworkHelpUrl }}"
+        data-ng-click="$ctrl.trackPrivateNetworkHelp()"
+        target="_blank"
+        rel="noopener"
+    >
+        <span
+            data-translate="octavia_load_balancer_onboarding_private_network_modal_more_link"
+        ></span>
+    </a>
+
+    <oui-message data-type="warning" class="mt-4">
+        <span
+            data-translate="octavia_load_balancer_onboarding_private_network_modal_message"
+        ></span>
+    </oui-message>
+</oui-modal>

@@ -47,6 +47,8 @@ export const SSD_DISK_TYPES = [/ssd/, /nvme/, /iops/, /baremetal/, /d2/];
 
 export const DEFAULT_CATALOG_ENDPOINT = '/order/catalog/public/cloud';
 
+export const LOCAL_ZONE = 'localzone';
+
 export default {
   CATEGORIES,
   DEFAULT_OS,
@@ -54,4 +56,5 @@ export default {
   LEGACY_FLAVORS,
   SSD_DISK_TYPES,
   DEFAULT_CATALOG_ENDPOINT,
+  LOCAL_ZONE,
 };

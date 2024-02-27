@@ -1,5 +1,3 @@
-import get from 'lodash/get';
-
 export default class UserAccountUsersSsoUpdateCtrl {
   /* @ngInject */
   constructor($scope, UseraccountUsersService, Alerter, $translate) {
@@ -15,9 +13,11 @@ export default class UserAccountUsersSsoUpdateCtrl {
       metadata: null,
       userAttributeName: null,
       groupAttributeName: null,
+      disableUsers: false,
     };
     this.newGroupAttributeName = '';
     this.newUserAttributeName = '';
+    this.enableLocalUsers = true;
   }
 
   $onInit() {
@@ -34,6 +34,7 @@ export default class UserAccountUsersSsoUpdateCtrl {
 
     this.identityProvider.groupAttributeName = this.newGroupAttributeName;
     this.identityProvider.userAttributeName = this.newUserAttributeName;
+    this.identityProvider.disableUsers = !this.enableLocalUsers;
 
     this.usersService
       .updateIdentityProvider(this.identityProvider)
@@ -46,10 +47,20 @@ export default class UserAccountUsersSsoUpdateCtrl {
         );
       })
       .catch((err) => {
+        if (err.status === 403) {
+          return this.alerter.warning(
+            `${this.$translate.instant(
+              'user_users_sso_update_error_message',
+            )} ${this.$translate.instant('user_need_rights_message')} ${
+              err.data.details.unauthorizedActionsByIAM
+            }`,
+            'userUsers',
+          );
+        }
         return this.alerter.error(
-          `${this.$translate.instant(
-            'user_users_sso_update_error_message',
-          )} ${get(err, 'message', err)}`,
+          `${this.$translate.instant('user_users_sso_update_error_message')} ${
+            err.data.message
+          }`,
           'userUsers',
         );
       })
@@ -66,6 +77,7 @@ export default class UserAccountUsersSsoUpdateCtrl {
         this.identityProvider = identityProvider;
         this.newGroupAttributeName = this.identityProvider.groupAttributeName;
         this.newUserAttributeName = this.identityProvider.userAttributeName;
+        this.enableLocalUsers = !this.identityProvider.disableUsers;
       })
       .catch(() => {
         this.identityProvider = null;

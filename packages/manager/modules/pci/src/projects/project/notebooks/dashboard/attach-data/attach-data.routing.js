@@ -11,6 +11,39 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goBack: /* @ngInject */ (notebook, goToNotebook) => (message, type) =>
         goToNotebook(notebook, message, type),
+
+      goBackToAttachData: /* @ngInject */ ($state, CucCloudMessage) => (
+        message = false,
+        type = 'success',
+      ) => {
+        const reload = message && type === 'success';
+        const state = 'pci.projects.project.notebooks.dashboard.attach-data';
+        const promise = $state.go(state, {}, { reload });
+        if (message) {
+          promise.then(() => {
+            CucCloudMessage[type](message, state);
+          });
+        }
+        return promise;
+      },
+
+      goToManualDataSync: /* @ngInject */ ($state, projectId) => (
+        volumeId,
+        directory,
+      ) =>
+        $state.go(
+          'pci.projects.project.notebooks.dashboard.attach-data.data-sync',
+          {
+            projectId,
+            volumeId,
+            directory,
+          },
+        ),
+      dataSync: /* @ngInject */ (projectId, notebook, NotebookService) => (
+        datasyncParam,
+      ) => {
+        return NotebookService.dataSync(projectId, notebook.id, datasyncParam);
+      },
     },
     atInternet: {
       rename:

@@ -16,5 +16,8 @@ export default {
     isRedirectRequired: '<',
     getTargetedState: '<',
     goToState: '<',
+    onProjectCreated: '<',
+    isDiscoveryProject: '<',
+    isCreatingDiscoveryProject: '<',
   },
 };

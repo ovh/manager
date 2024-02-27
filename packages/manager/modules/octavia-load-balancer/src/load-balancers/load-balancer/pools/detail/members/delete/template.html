@@ -1,0 +1,15 @@
+<oui-modal
+    data-on-dismiss="$ctrl.cancel()"
+    data-primary-action="$ctrl.delete()"
+    data-secondary-action="$ctrl.cancel()"
+    data-type="warning"
+    data-loading="$ctrl.isLoading"
+    data-primary-label="{{:: 'octavia_load_balancer_pools_members_delete_confirm' | translate }}"
+    data-secondary-label="{{:: 'octavia_load_balancer_pools_members_delete_cancel' | translate }}"
+    data-heading="{{:: 'octavia_load_balancer_pools_members_delete_title' | translate }}"
+>
+    <p
+        data-translate="octavia_load_balancer_pools_members_delete_description"
+        data-translate-values="{ member: $ctrl.memberName }"
+    ></p>
+</oui-modal>

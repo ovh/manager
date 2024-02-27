@@ -1,4 +1,3 @@
-import map from 'lodash/map';
 import set from 'lodash/set';
 
 export default class CloudVouchersService {
@@ -24,16 +23,17 @@ export default class CloudVouchersService {
     return this.iceberg('/cloud/project/:serviceName/credit')
       .query()
       .expand('CachedObjectList-Pages')
+      .sort('id', 'DESC')
       .execute({ serviceName: projectId })
       .$promise.then(({ data }) => data)
       .then((vouchers) => {
-        const promises = map(vouchers, (voucher) =>
+        const promises = vouchers.map((voucher) =>
           voucher.bill ? this.futureVoucherWithPdfUrl(voucher) : voucher,
         );
         return this.$q
           .all(promises)
           .then(() =>
-            map(vouchers, (voucher) =>
+            vouchers.map((voucher) =>
               offer ? { ...voucher, ...offer.voucher } : voucher,
             ),
           );

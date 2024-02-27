@@ -1,0 +1,23 @@
+<div data-ng-if="!$ctrl.showRupayMessage">
+    <p
+        data-translate="ovh_payment_method_register_explanation_credit_card_selected_explain_generic"
+    ></p>
+    <p>
+        <span
+            data-translate="ovh_payment_method_register_explanation_credit_card_selected"
+        ></span>
+        <span
+            data-ng-if="$ctrl.showSpecificCrossBorderSentenceForCardPayment"
+            data-translate="ovh_payment_method_register_explanation_credit_card_selected_explain_ovh_transaction"
+        ></span>
+    </p>
+    <p
+        data-ng-if="$ctrl.model.selectedPaymentMethodType.isLegacy() && $ctrl.model.selectedPaymentMethodType.integration !== $ctrl.OVH_PAYMENT_METHOD_INTEGRATION_TYPE.IFRAME_VANTIV"
+        data-translate="ovh_payment_method_register_explanation_selected_common_redirect"
+    ></p>
+</div>
+<div data-ng-if="$ctrl.showRupayMessage">
+    <div
+        data-ng-include="'ng-ovh-payment-method/creditCardChargesExplanationText.html'"
+    ></div>
+</div>

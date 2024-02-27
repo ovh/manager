@@ -1,0 +1,248 @@
+<!-- dynamic inputs form depending on the OS template -->
+<div class="mt-4 mb-4">
+    <h5 data-translate="server_configuration_installation_inputs_title"></h5>
+</div>
+<div class="oui-message oui-message_info">
+    <span
+        class="oui-message__icon oui-icon oui-icon-info-circle"
+        aria-hidden="true"
+    >
+    </span>
+    <p
+        class="oui-message__body"
+        data-translate="server_configuration_installation_inputs_info"
+        data-translate-values="{ t0: $ctrl.installation.selectDistribution.description }"
+    ></p>
+</div>
+<div
+    class="form-group mt-4"
+    data-ng-repeat="input in $ctrl.installation.inputs"
+    data-ng-switch="input.type"
+>
+    <oui-field
+        class="fix-help-block"
+        data-ng-class="{'oui-select oui-select_inline': input.type === 'enum','oui-field_error': $ctrl.optionForm[input.name].$invalid && $ctrl.optionForm.$dirty}"
+    >
+        <!-- all header -->
+        <label class="oui-field__label">
+            <span data-ng-bind="input.description"></span
+            ><span
+                data-ng-if="input.mandatory"
+                class="oui-color-ae-500"
+                oui-tooltip="{{:: 'server_configuration_installation_inputs_item_mandatory' | translate }}"
+                oui-tooltip-placement="right"
+                >&nbsp;*</span
+            >
+        </label>
+        <!-- enum -->
+        <select
+            data-ng-switch-when="enum"
+            class="form-control form-inline"
+            data-ng-options="item as item for item in {{:: input.enum}}"
+            name="{{input.name}}"
+            data-ng-model="$ctrl.installation.input[input.name]"
+            data-ng-required="input.mandatory"
+        >
+        </select>
+        <!-- boolean -->
+        <!-- require doesn't exist in that situation-->
+        <oui-switch
+            data-ng-switch-when="boolean"
+            data-model="$ctrl.installation.input[input.name]"
+            name="{{input.name}}"
+        >
+        </oui-switch>
+        <!-- date -->
+        <!-- require doesn't work-->
+        <oui-calendar
+            data-ng-switch-when="date"
+            class="oui-input_s"
+            model="$ctrl.installation.input[input.name]"
+            week-numbers
+            format="{{$ctrl.inputRules.date.format}}"
+            placeholder="{{$ctrl.inputRules.date.placeholder}}"
+            name="{{input.name}}"
+        >
+        </oui-calendar>
+        <!-- time -->
+        <!-- require doesn't work-->
+        <oui-timepicker
+            data-ng-switch-when="time"
+            class="oui-input_s"
+            model="$ctrl.installation.input[input.name]"
+            enable-seconds
+            format="{{$ctrl.inputRules.time.format}}"
+            placeholder="{{$ctrl.inputRules.time.placeholder}}"
+            name="{{input.name}}"
+        >
+        </oui-timepicker>
+        <!-- text -->
+        <textarea
+            data-ng-switch-when="text"
+            class="form-control"
+            data-ng-model="$ctrl.installation.input[input.name]"
+            data-ng-required="input.mandatory"
+            rows="{{$ctrl.inputRules.text.maxsize}}"
+            name="{{input.name}}"
+            placeholder="{{:: 'server_configuration_installation_inputs_item_placeholder' | translate:{ t0: 'text' } }}"
+        >
+        </textarea>
+        <!-- sshPubKey -->
+        <div
+            data-ng-switch-when="sshPubKey"
+            class="float-right sshkey-switch"
+            data-sshkey-switch
+            data-sshkey-switch-key="{{$ctrl.installation.input[input.name]}}"
+        ></div>
+        <textarea
+            data-ng-switch-when="sshPubKey"
+            class="oui-input form-control"
+            data-ng-model="$ctrl.installation.input[input.name]"
+            data-ng-required="input.mandatory"
+            rows="{{$ctrl.inputRules.sshPubKey.maxsize}}"
+            name="{{input.name}}"
+            data-ng-pattern="$ctrl.inputRules.sshPubKey.pattern"
+            placeholder="{{:: 'server_configuration_installation_inputs_item_placeholder' | translate:{ t0: 'sshPubKey' } }}. {{:: 'server_configuration_installation_inputs_item_placeholder_example' | translate:{ t0: $ctrl.inputRules.sshPubKey.placeholder } }}"
+        >
+        </textarea>
+        <!-- keyValue -->
+        <!-- custom validation error messages not implemented -->
+        <div data-ng-switch-when="keyValue">
+            <oui-inline-adder
+                name="{{input.name}}"
+                id="form"
+                on-add="$ctrl.keyValueAdd(form, input.name)"
+                on-remove="$ctrl.keyValueRemove(form, input.name)"
+            >
+                <oui-inline-adder-row>
+                    <oui-inline-adder-field>
+                        <oui-field label="Key">
+                            <input
+                                class="oui-input form-control"
+                                type="text"
+                                name="key"
+                                data-ng-model="key"
+                                data-ng-required="input.mandatory && $ctrl.installation.input[input.name].length === 0"
+                                data-ng-init="key = $ctrl.keyValueInit(input.name, 'key')"
+                                placeholder="{{:: 'server_configuration_installation_inputs_item_placeholder' | translate:{ t0: 'key' } }}"
+                                data-ng-pattern="$ctrl.inputRules.keyValue.key.pattern"
+                                maxlength="{{$ctrl.inputRules.keyValue.key.maxsize}}"
+                            />
+                        </oui-field>
+                    </oui-inline-adder-field>
+                    <oui-inline-adder-field>
+                        <oui-field label="Value">
+                            <input
+                                class="oui-input form-control"
+                                type="text"
+                                name="value"
+                                data-ng-model="value"
+                                data-ng-required="input.mandatory && $ctrl.installation.input[input.name].length === 0"
+                                data-ng-init="value = $ctrl.keyValueInit(input.name, 'value')"
+                                placeholder="{{:: 'server_configuration_installation_inputs_item_placeholder' | translate:{ t0: 'value' } }}"
+                                data-ng-pattern="$ctrl.inputRules.keyValue.value.pattern"
+                                maxlength="{{$ctrl.inputRules.keyValue.value.maxsize}}"
+                            />
+                        </oui-field>
+                    </oui-inline-adder-field>
+                </oui-inline-adder-row>
+            </oui-inline-adder>
+        </div>
+        <!-- number -->
+        <oui-numeric
+            data-ng-switch-when="number"
+            model="$ctrl.installation.input[input.name]"
+            required="input.mandatory"
+            name="{{input.name}}"
+        >
+        </oui-numeric>
+        <!-- ip -->
+        <input
+            data-ng-switch-when="ip"
+            class="oui-input oui-input_s form-control"
+            data-ng-model="$ctrl.installation.input[input.name]"
+            data-ng-required="input.mandatory"
+            type="text"
+            maxlength="{{$ctrl.inputRules.ip.maxsize}}"
+            data-ng-pattern="$ctrl.inputRules.ip.pattern"
+            name="{{input.name}}"
+            placeholder="{{$ctrl.inputRules.ip.placeholder}}"
+        />
+        <!-- uuid -->
+        <input
+            data-ng-switch-when="uuid"
+            class="oui-input oui-input_l form-control"
+            data-ng-model="$ctrl.installation.input[input.name]"
+            data-ng-required="input.mandatory"
+            data-ng-pattern="$ctrl.inputRules.uuid.pattern"
+            name="{{input.name}}"
+            type="text"
+            maxlength="{{$ctrl.inputRules.uuid.maxsize}}"
+            placeholder="{{:: 'server_configuration_installation_inputs_item_placeholder' | translate:{ t0: 'uuid' } }}"
+        />
+        <!-- hexstring -->
+        <input
+            data-ng-switch-when="hexstring"
+            class="oui-input form-control"
+            data-ng-model="$ctrl.installation.input[input.name]"
+            data-ng-required="input.mandatory"
+            data-ng-pattern="$ctrl.inputRules.hexstring.pattern"
+            name="{{input.name}}"
+            type="text"
+            maxlength="{{$ctrl.inputRules.hexstring.maxsize}}"
+            placeholder="{{:: 'server_configuration_installation_inputs_item_placeholder' | translate:{ t0: 'hexstring' } }}"
+        />
+        <!-- url -->
+        <!-- native HTML url type is too permissive -->
+        <input
+            data-ng-switch-when="url"
+            class="oui-input form-control"
+            data-ng-model="$ctrl.installation.input[input.name]"
+            data-ng-required="input.mandatory"
+            data-ng-pattern="$ctrl.inputRules.url.pattern"
+            name="{{input.name}}"
+            type="text"
+            maxlength="{{$ctrl.inputRules.url.maxsize}}"
+            placeholder="{{:: 'server_configuration_installation_inputs_item_placeholder' | translate:{ t0: 'url' } }}"
+        />
+        <!-- email -->
+        <!-- native HTML email type is too permissive -->
+        <input
+            data-ng-switch-when="email"
+            class="oui-input form-control"
+            data-ng-model="$ctrl.installation.input[input.name]"
+            data-ng-required="input.mandatory"
+            data-ng-pattern="$ctrl.inputRules.email.pattern"
+            name="{{input.name}}"
+            type="text"
+            maxlength="{{$ctrl.inputRules.email.maxsize}}"
+            placeholder="{{:: 'server_configuration_installation_inputs_item_placeholder' | translate:{ t0: 'email' } }}"
+        />
+        <!-- else: string -->
+        <!-- should also work if we decide to define a new input type -->
+        <input
+            data-ng-switch-default
+            class="oui-input form-control"
+            data-ng-model="$ctrl.installation.input[input.name]"
+            data-ng-required="input.mandatory"
+            name="{{input.name}}"
+            type="{{input.type}}"
+            maxlength="{{ $ctrl.inputRules[input.type].maxsize ? $ctrl.inputRules[input.type].maxsize : $ctrl.inputRules.default.maxsize }}"
+            placeholder="{{:: 'server_configuration_installation_inputs_item_placeholder' | translate:{ t0: input.type } }}"
+        />
+        <span
+            class="help-block"
+            role="alert"
+            data-ng-if="$ctrl.optionForm[input.name].$invalid"
+        >
+            <span
+                class="oui-field__error"
+                data-ng-repeat="(error, value) in $ctrl.optionForm[input.name].$error"
+                data-ng-bind="('server_configuration_installation_inputs_bad_'
+                + error) | ducTranslateAlt: ('server_configuration_installation_inputs_bad_'
+                + input.type | ducTranslateAlt: error )"
+            >
+            </span>
+        </span>
+    </oui-field>
+</div>

@@ -1,0 +1,15 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-action="$ctrl.delete()"
+    data-secondary-action="$ctrl.goBack()"
+    data-type="info"
+    data-loading="$ctrl.isLoading"
+    data-primary-label="{{:: 'sms_batches_history_delete_confirm' | translate }}"
+    data-secondary-label="{{:: 'sms_batches_history_delete_cancel' | translate }}"
+    data-heading="{{:: 'sms_batches_history_delete_title' | translate }}"
+>
+    <p
+        data-translate="sms_batches_history_delete_message"
+        data-translate-values="{ batchName: $ctrl.batchName }"
+    ></p>
+</oui-modal>

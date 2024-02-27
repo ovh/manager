@@ -45,9 +45,9 @@ const waitForProducts = async (
   await page.waitForFunction(
     ({ selector, expectedCount }) =>
       document.querySelectorAll(selector).length === expectedCount,
-    { selector: 'msc-tile', expectedCount: expectedProductCount },
+    { selector: 'card', expectedCount: expectedProductCount },
   );
-  return page.$$('msc-tile');
+  return page.$$('');
 };
 
 const validateProductCategories = async (
@@ -117,4 +117,29 @@ test('should show "No results found" when filters match no products', async ({
 
   const elements = await page.$$('osds-text.text-center');
   expect(await elements[0].textContent()).toBe(translation.no_result);
+});
+
+test('should display chips when filter is enabled', async ({ page }) => {
+  await clickButtonByName(page, 'filterButton');
+  await clickCheckboxByName(page, 'checkbox-universe-BareMetalCloud');
+  await clickButtonByName(page, 'applyFilterButton');
+
+  await waitForProducts(page, 5);
+  const elements = await page.$$('osds-chip');
+
+  expect(await elements[0].textContent()).toBe('Bare Metal Cloud');
+});
+
+test('should clear all filters when chip is remove', async ({ page }) => {
+  await clickButtonByName(page, 'filterButton');
+  await clickCheckboxByName(page, 'checkbox-universe-BareMetalCloud');
+  await clickButtonByName(page, 'applyFilterButton');
+
+  await waitForProducts(page, 5);
+
+  const elements = await page.$$('osds-chip');
+  const chipBareMetalCloud = elements[0];
+  if (chipBareMetalCloud) await chipBareMetalCloud.click();
+
+  await waitForProducts(page, 40);
 });

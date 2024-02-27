@@ -26,6 +26,7 @@ import {
   FLAVORS_BAREMETAL,
   PUBLIC_NETWORK,
   PUBLIC_NETWORK_BAREMETAL,
+  LOCAL_ZONE_REGION,
 } from './add.constants';
 
 export default class PciInstancesAddController {
@@ -41,6 +42,7 @@ export default class PciInstancesAddController {
     PciPublicGatewaysService,
     PciProjectAdditionalIpService,
     atInternet,
+    PciProject,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -63,6 +65,8 @@ export default class PciInstancesAddController {
     this.currency = coreConfig.getUser().currency.symbol;
     this.PciProjectAdditionalIpService = PciProjectAdditionalIpService;
     this.FLOATING_IP_AVAILABILITY_INFO_LINK = FLOATING_IP_AVAILABILITY_INFO_LINK;
+    this.LOCAL_ZONE_REGION = LOCAL_ZONE_REGION;
+    this.PciProject = PciProject;
   }
 
   $onInit() {
@@ -78,8 +82,12 @@ export default class PciInstancesAddController {
 
     this.quota = null;
     this.flavor = null;
+    this.disableNetwork = false;
 
     this.loadMessages();
+
+    this.globalRegionsUrl = this.PciProject.getDocumentUrl('GLOBAL_REGIONS');
+    this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
 
     this.model = {
       flavorGroup: null,
@@ -113,6 +121,7 @@ export default class PciInstancesAddController {
       this.addInstancesSuccessMessage ||
       'pci_projects_project_instances_add_success_multiple_message';
 
+    this.availableLocalPrivateNetworks = [this.defaultPrivateNetwork];
     this.modes = this.instanceModeEnum.map(({ mode }) => {
       return {
         name: mode,
@@ -127,11 +136,13 @@ export default class PciInstancesAddController {
         ),
       };
     });
+
     this.selectedFloatingIP = null;
     this.loadMessages();
     [this.selectedMode] = this.modes;
     this.showAddPrivateNetworkModalForm = false;
     this.isAttachFloatingIP = false;
+    this.isAttachPublicNetwork = false;
     this.isCreateFloatingIPClicked = false;
     this.subnetGateways = [];
     this.isCustomNetwork = false;
@@ -171,7 +182,6 @@ export default class PciInstancesAddController {
       this.coreConfig.getUser().ovhSubsidiary,
     ).then((productCapability) => {
       const productRegionsAllowed = productCapability?.plans[0]?.regions;
-
       Object.entries(this.regions).forEach(([continent, locationsMap]) => {
         // Create datacenters continent groups
         this.availableRegions[continent] = {};
@@ -184,12 +194,15 @@ export default class PciInstancesAddController {
           // it is in a region where we have the capability to add an instance
           // and the selected flavor is available for the datacenter region
           datacenters.forEach((datacenter) => {
+            // If productAvailibility of the Product is not enabled it means Product is not activated in that region
+            // in this case Enabled = false and we need to skip checking available regions from flavorGroup
             const isDatacenterAvailable = !!productRegionsAllowed.find(
               (productRegion) =>
                 productRegion.name === datacenter.name &&
-                this.model.flavorGroup.availableRegions.includes(
+                (this.model.flavorGroup.availableRegions.includes(
                   productRegion.name,
-                ),
+                ) ||
+                  !productRegion.enabled),
             );
             if (isDatacenterAvailable) {
               this.availableRegions[continent][location].push(datacenter);
@@ -313,6 +326,19 @@ export default class PciInstancesAddController {
       this.selectedPrivateNetwork = this.defaultPrivateNetwork;
     }
     this.getPrivateNetworkSubnet();
+    if (this.isLocalZone()) {
+      this.PciProjectsProjectInstanceService.getLocalPrivateNetworks(
+        this.projectId,
+        this.model.datacenter.name,
+      )
+        .then((network) => {
+          this.availableLocalPrivateNetworks = network;
+          this.getLocalPrivateNetworkSubnet();
+        })
+        .catch((error) =>
+          this.CucCloudMessage.error(get(error, 'data.message')),
+        );
+    }
   }
 
   getPrivateNetworkSubnet() {
@@ -392,7 +418,17 @@ export default class PciInstancesAddController {
   }
 
   onInstanceFocus() {
+    if (this.isLocalZone() && !this.selectedPrivateNetwork.id) {
+      // Display default selection for local private mode
+      this.selectedPrivateNetwork = {
+        id: '',
+        name: this.$translate.instant(
+          'pci_projects_project_instances_add_localPrivateNetwork_placeholder',
+        ),
+      };
+    }
     if (!isEmpty(this.model.datacenter)) {
+      this.disableNetwork = this.isLocalZone();
       this.quota = new Quota(this.model.datacenter.quota.instance);
       this.generateInstanceName();
       if (
@@ -408,6 +444,38 @@ export default class PciInstancesAddController {
       }
     }
     return this.$q.when();
+  }
+
+  getLocalPrivateNetworkSubnet() {
+    return this.$q
+      .all(
+        this.availableLocalPrivateNetworks.map((privateNetwork) => {
+          if (privateNetwork.id) {
+            return this.PciProjectsProjectInstanceService.getLocalPrivateNetworkSubnets(
+              this.projectId,
+              this.model.datacenter.name,
+              privateNetwork.id,
+            ).then((data) => {
+              return {
+                ...privateNetwork,
+                subnet: [
+                  {
+                    ...data,
+                    ipPools: data.allocationPools,
+                  },
+                ],
+              };
+            });
+          }
+          return privateNetwork;
+        }),
+      )
+      .then((data) => {
+        this.availableLocalPrivateNetworks = [
+          this.defaultPrivateNetwork,
+          ...data.filter(({ subnet }) => subnet?.length > 0),
+        ];
+      });
   }
 
   generateInstanceName() {
@@ -549,10 +617,27 @@ export default class PciInstancesAddController {
         ),
       };
     }
+    if (this.isLocalPrivateMode()) {
+      this.isAttachPublicNetwork = false;
+      this.selectedPrivateNetwork = {
+        id: '',
+        name: this.$translate.instant(
+          'pci_projects_project_instances_add_localPrivateNetwork_placeholder',
+        ),
+      };
+    }
   }
 
   isPrivateMode() {
     return this.selectedMode.name === this.instanceModeEnum[1].mode;
+  }
+
+  isLocalPrivateMode() {
+    return this.selectedMode.name === this.instanceModeEnum[2].mode;
+  }
+
+  isLocalZone() {
+    return this.model?.datacenter?.type === this.LOCAL_ZONE_REGION;
   }
 
   onFloatingIpChange(value) {
@@ -572,7 +657,7 @@ export default class PciInstancesAddController {
           networkId: get(this.selectedPrivateNetwork, 'id'),
         },
       ];
-      if (!this.isPrivateMode()) {
+      if (!this.isPrivateMode() && !this.isLocalPrivateMode()) {
         this.instance.networks = [
           ...this.instance.networks,
           {
@@ -595,7 +680,8 @@ export default class PciInstancesAddController {
     if (
       modelValue &&
       modelValue.subnet &&
-      this.selectedMode.name !== this.instanceModeEnum[1].mode
+      this.selectedMode.name !== this.instanceModeEnum[1].mode &&
+      !this.isLocalZone()
     ) {
       this.getSubnetGateways(modelValue.subnet[0].id)
         .then((data) => {
@@ -678,16 +764,28 @@ export default class PciInstancesAddController {
   }
 
   showNetworkNavigation() {
-    if (!this.isPrivateMode()) {
+    if (this.isPrivateMode()) {
       return (
-        !this.isGatewayLoading &&
-        this.subnetGateways &&
-        this.subnetGateways.length === 0
+        this.selectedPrivateNetwork.id !== '' &&
+        (!this.isAttachFloatingIP || this.selectedFloatingIP)
       );
     }
+
+    if (this.isLocalPrivateMode()) {
+      return this.selectedPrivateNetwork.id !== '';
+    }
+
+    if (
+      this.isLocalZone() &&
+      !(this.isPrivateMode() || this.isLocalPrivateMode())
+    ) {
+      return false;
+    }
+
     return (
-      this.selectedPrivateNetwork.id !== '' &&
-      (!this.isAttachFloatingIP || this.selectedFloatingIP)
+      !this.isGatewayLoading &&
+      this.subnetGateways &&
+      this.subnetGateways.length === 0
     );
   }
 
@@ -758,6 +856,36 @@ export default class PciInstancesAddController {
     if (!this.isLinuxImageType()) {
       this.instance.userData = null;
     }
+    if (this.isLocalPrivateMode()) {
+      const publicNetworkAlreadyExist = this.instance.networks.some(
+        (instanceNetwork) => {
+          return this.publicNetwork?.find(
+            (network) => network.id === instanceNetwork.networkId,
+          );
+        },
+      );
+      if (this.isAttachPublicNetwork && !publicNetworkAlreadyExist) {
+        // if attach check box is ticked, add public network if not added one
+        this.instance.networks = [
+          ...this.instance.networks,
+          {
+            networkId: this.publicNetwork?.find(
+              (network) => network.name === PUBLIC_NETWORK,
+            )?.id,
+          },
+        ];
+      }
+      if (!this.isAttachPublicNetwork && publicNetworkAlreadyExist) {
+        // if attach check box is not ticked, remove public network if already added one
+        this.instance.networks = this.instance.networks.filter(
+          (instanceNetwork) => {
+            return !this.publicNetwork?.find(
+              (network) => network.id === instanceNetwork.networkId,
+            );
+          },
+        );
+      }
+    }
 
     if (
       this.PciProjectsProjectInstanceService.automatedBackupIsAvailable(
@@ -772,6 +900,8 @@ export default class PciInstancesAddController {
       };
     }
 
+    // @TODO: GS Use post /cloud/project/{serviceName}/region/{regionName}/instance
+    // for local zone instance creation
     return this.PciProjectsProjectInstanceService.save(
       this.projectId,
       this.instance,
@@ -945,5 +1075,11 @@ export default class PciInstancesAddController {
     return this.cucUcentsToCurrencyFilter(
       get(this.prices, `${BANDWIDTH_OUT}.${region.name}`).price,
     );
+  }
+
+  displayNetwork(mode, type) {
+    if (type === this.LOCAL_ZONE_REGION) return mode !== 'public_mode';
+    if (type !== this.LOCAL_ZONE_REGION) return mode !== 'local_private_mode';
+    return true;
   }
 }

@@ -6,6 +6,9 @@ import {
   ACTIONS,
   LEGACY_PLAN_CODES,
   DOCUMENTATION_LINKS,
+  LOCAL_ZONE_REGION,
+  DISCOVERY_PROJECT_PLANCODE,
+  DISCOVERY_PROMOTION_VOUCHER,
 } from './project.constants';
 import { PCI_FEATURES } from '../projects.constant';
 
@@ -13,7 +16,14 @@ const isLegacy = (planCode) => LEGACY_PLAN_CODES.includes(planCode);
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project', {
-    url: '/{projectId:[0-9a-zA-Z]{32}}',
+    url: '/{projectId:[0-9a-zA-Z]{32}}?activateDiscovery',
+    params: {
+      activateDiscovery: {
+        type: 'bool',
+        value: false,
+        squash: true,
+      },
+    },
     views: {
       '@pci': 'pciProject',
     },
@@ -21,32 +31,87 @@ export default /* @ngInject */ ($stateProvider) => {
       return pciFeatureRedirect(PCI_FEATURES.SETTINGS.PROJECT);
     },
     redirectTo: (transition) => {
-      const projectPromise = transition.injector().getAsync('project');
-      return projectPromise.then((project) => {
-        if (project.status === 'creating') {
-          // for specifying options of redirectTo attribute
-          // we need to return a TargetState which is accessible
-          // through router.stateService.target of transition object
-          return transition.router.stateService.target(
-            'pci.projects.project.creating',
-            transition.params(),
-            {
-              location: false,
-            },
-          );
-        }
+      const injector = transition.injector();
+      const $q = injector.get('$q');
+      const projectPromise = injector.getAsync('project');
+      const orderStatusPromise = injector.getAsync('orderStatus');
+      return $q
+        .all({
+          project: projectPromise,
+          orderStatus: orderStatusPromise,
+        })
+        .then(({ project, orderStatus }) => {
+          const { orderId, isActivating, voucher: voucherCode } = orderStatus;
+          if (isActivating) {
+            return {
+              state: 'pci.projects.updating',
+              params: { orderId, voucherCode },
+            };
+          }
+          if (project.status === 'creating') {
+            // for specifying options of redirectTo attribute
+            // we need to return a TargetState which is accessible
+            // through router.stateService.target of transition object
+            return transition.router.stateService.target(
+              'pci.projects.project.creating',
+              transition.params(),
+              {
+                location: false,
+              },
+            );
+          }
 
-        return null;
-      });
+          return null;
+        });
     },
     resolve: {
       projectId: /* @ngInject */ ($transition$) =>
         $transition$.params().projectId,
+      sendPageTracking: /* @ngInject */ (
+        atInternet,
+        isDiscoveryProject,
+        projectId,
+      ) => {
+        atInternet.setPciProjectMode({
+          isDiscoveryProject,
+          projectId,
+        });
+      },
+      activateDiscovery: /* @ngInject */ (
+        $transition$,
+        isDiscoveryProject,
+        trackPage,
+      ) => {
+        const isActivateModalDisplayed =
+          isDiscoveryProject && $transition$.params().activateDiscovery;
 
-      project: /* @ngInject */ (OvhApiCloudProject, projectId) =>
-        OvhApiCloudProject.v6().get({
+        if (isActivateModalDisplayed) {
+          trackPage(
+            'PublicCloud::pci::projects::project::activate-project-modal',
+          );
+        }
+
+        return isActivateModalDisplayed;
+      },
+      orderStatus: /* @ngInject */ (PciProject, projectId) =>
+        PciProject.getProjectOrderStatus(projectId),
+      project: /* @ngInject */ (OvhApiCloudProject, projectId) => {
+        OvhApiCloudProject.v6().resetCache();
+        return OvhApiCloudProject.v6().get({
           serviceName: projectId,
-        }).$promise,
+        }).$promise;
+      },
+      setPciProjectModeTrackingProperty: /* @ngInject */ (
+        atInternet,
+        isDiscoveryProject,
+        projectId,
+      ) =>
+        atInternet.setPciProjectMode({
+          isDiscoveryProject,
+          projectId,
+        }),
+
+      serviceId: /* @ngInject */ (service) => service?.serviceId,
 
       quotas: /* @ngInject */ (loadQuotas) => loadQuotas(),
 
@@ -78,6 +143,20 @@ export default /* @ngInject */ ($stateProvider) => {
 
       getQuotaUrl: /* @ngInject */ ($state) => () =>
         $state.href('pci.projects.project.quota'),
+
+      isDiscoveryProject: /* @ngInject */ (project) =>
+        project.planCode === DISCOVERY_PROJECT_PLANCODE,
+
+      discoveryPromotionVoucherAmount: /* @ngInject */ (
+        pciProjectNew,
+        project,
+      ) =>
+        project.planCode === DISCOVERY_PROJECT_PLANCODE
+          ? pciProjectNew
+              .checkEligibility(DISCOVERY_PROMOTION_VOUCHER)
+              .then((response) => response.voucher?.credit?.text)
+              .catch(() => '')
+          : '',
 
       guideUrl: /* @ngInject */ (user) => {
         Object.keys(GUIDES_LIST).forEach((key) => {
@@ -136,18 +215,21 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
 
       customerRegions: /* @ngInject */ (PciProject, projectId) =>
-        PciProject.getCustomerRegions(projectId),
+        PciProject.getCustomerRegions(projectId, true),
 
-      trackClick: /* @ngInject */ (atInternet) => (hit) => {
+      hasGridscaleLocalzoneRegion: /* @ngInject */ (customerRegions) =>
+        customerRegions.some(({ type }) => type === LOCAL_ZONE_REGION),
+
+      trackClick: /* @ngInject */ (atInternet) => (name) => {
         return atInternet.trackClick({
-          name: hit,
+          name,
           type: 'action',
         });
       },
 
-      trackPage: /* @ngInject */ (atInternet) => (hit) => {
+      trackPage: /* @ngInject */ (atInternet) => (name) => {
         return atInternet.trackPage({
-          name: hit,
+          name,
           type: 'action',
         });
       },
@@ -172,6 +254,18 @@ export default /* @ngInject */ ($stateProvider) => {
 
       goToRegion: /* @ngInject */ ($state, projectId) => () => {
         return $state.go('pci.projects.project.regions', {
+          projectId,
+        });
+      },
+
+      goToDiscoveryProjectActivationPage: /* @ngInject */ (
+        $state,
+        projectId,
+      ) => (tagName) => {
+        if (tagName) {
+          this.trackClick(tagName);
+        }
+        return $state.go('pci.projects.project.activate', {
           projectId,
         });
       },

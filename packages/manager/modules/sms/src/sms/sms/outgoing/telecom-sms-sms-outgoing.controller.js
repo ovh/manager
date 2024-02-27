@@ -1,17 +1,17 @@
 import angular from 'angular';
-import filter from 'lodash/filter';
-import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
-import sortBy from 'lodash/sortBy';
-
-import 'moment';
 
 import readController from './read/telecom-sms-sms-outgoing-read.controller';
 import readTemplate from './read/telecom-sms-sms-outgoing-read.html';
 import removeController from './remove/telecom-sms-sms-outgoing-remove.controller';
 import removeTemplate from './remove/telecom-sms-sms-outgoing-remove.html';
 
-export default class {
+import {
+  DEFAULT_FILTER_COLUMN,
+  SORT_ORDER,
+} from './telecom-sms-sms-outgoing.constant';
+
+export default class TelecomSmsSmsOutgoingCtrl {
   /* @ngInject */
   constructor(
     $scope,
@@ -27,6 +27,7 @@ export default class {
     tucDebounce,
     TucToast,
     TucToastError,
+    ouiDatagridService,
   ) {
     this.$scope = $scope;
     this.$stateParams = $stateParams;
@@ -45,20 +46,13 @@ export default class {
     this.tucDebounce = tucDebounce;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
+    this.ouiDatagridService = ouiDatagridService;
   }
 
   $onInit() {
     this.outgoing = {
-      raw: [],
-      paginated: null,
-      selected: {},
-      orderBy: 'creationDatetime',
-      orderDesc: true,
-      filterBy: {
-        receiver: undefined,
-        sender: undefined,
-      },
-      showFilter: false,
+      selected: [],
+      customCriteriaDates: null,
       isLoading: false,
       isReading: false,
       isExporting: false,
@@ -67,47 +61,51 @@ export default class {
     };
 
     this.outgoing.isLoading = true;
-    this.fetchOutgoingSms()
-      .then((outgoing) => {
-        this.outgoing.raw = angular.copy(outgoing);
-      })
-      .catch((err) => {
-        this.TucToastError(err);
-      })
-      .finally(() => {
-        this.outgoing.isLoading = false;
-      });
-
-    this.getDebouncedOutgoings = this.tucDebounce(
-      this.refresh.bind(this),
-      500,
-      false,
-    );
 
     this.$scope.$on('$destroy', () => {
       this.$timeout.cancel(this.outgoing.poller);
     });
   }
 
-  /**
-   * Fetch outgoing sms.
-   * @return {Promise}
-   */
-  fetchOutgoingSms() {
-    let sender = this.outgoing.filterBy.sender || null;
-    if (
-      sender ===
-      this.$translate.instant('sms_sms_outgoing_number_allowed_response')
-    ) {
-      sender = '';
-    }
-    return this.api.smsOutgoing
-      .query({
-        serviceName: this.$stateParams.serviceName,
-        receiver: this.outgoing.filterBy.receiver || null,
-        sender,
-      })
-      .$promise.then((outgoing) => sortBy(outgoing).reverse());
+  fetchOutgoingSms({ offset, pageSize, sort, criteria }) {
+    const defaultFilterColumn = DEFAULT_FILTER_COLUMN;
+    const filters = TelecomSmsSmsOutgoingCtrl.criteriaMap(
+      criteria,
+      defaultFilterColumn,
+    );
+
+    const params = {
+      offset,
+      pageSize,
+      sort: sort.property,
+      sortOrder: SORT_ORDER[sort.dir],
+      filters,
+      defaultFilterColumn,
+    };
+
+    return this.getOutgoingSms(params).then(({ data, meta }) => {
+      this.totalCount = Number(meta.totalCount);
+      this.outgoing.isLoading = false;
+      return {
+        data,
+        meta,
+      };
+    });
+  }
+
+  static criteriaMap(criteria, defaultFilterColumn) {
+    return criteria.map((filter) => ({
+      field: filter.property || defaultFilterColumn,
+      comparator: filter.operator,
+      reference: [filter.value],
+    }));
+  }
+
+  refreshOutgoingSmsGrid() {
+    return this.ouiDatagridService.refresh(
+      'telecom-sms-outgoing-datagrid',
+      true,
+    );
   }
 
   /**
@@ -125,75 +123,67 @@ export default class {
   }
 
   /**
-   * Get details.
-   * @param  {Object} id
+   * Get Ptts if !== 1.
+   * @param  {Object} sms
    * @return {Promise}
    */
-  getDetails(id) {
+  getPtts(sms) {
     this.outgoing.isLoading = true;
-    return this.api.smsOutgoing
-      .get({
-        serviceName: this.$stateParams.serviceName,
-        id,
+    return this.api.smsJobs
+      .getPtts({
+        ptt: sms.ptt,
       })
-      .$promise.then((outgoing) => {
-        if (isEmpty(outgoing.sender)) {
-          set(outgoing, 'isShortNumber', true);
-          set(
-            outgoing,
-            'sender',
-            this.$translate.instant('sms_sms_outgoing_number_allowed_response'),
-          );
-        }
-        return this.api.smsJobs
-          .getPtts({
-            ptt: outgoing.ptt,
-          })
-          .$promise.then((ptt) => {
-            set(outgoing, 'status', ptt.comment);
-            return outgoing;
-          });
+      .$promise.then((ptt) => {
+        set(sms, 'status', ptt.comment);
+        return sms;
       });
   }
 
-  /**
-   * Toggle show filter.
-   */
-  toggleShowFilter() {
-    this.outgoing.showFilter = !this.outgoing.showFilter;
-    this.outgoing.filterBy = {
-      receiver: undefined,
-      sender: undefined,
-    };
-    if (this.outgoing.showFilter === false) {
-      this.refresh();
-    }
+  onRowSelect($row, $rows) {
+    this.outgoing.selected = $rows;
   }
 
-  /**
-   * Toggle order.
-   */
-  toggleOrder() {
-    this.outgoing.orderDesc = !this.outgoing.orderDesc;
-    this.outgoing.raw.reverse();
-  }
-
-  onTransformItemDone() {
-    this.outgoing.isLoading = false;
-  }
-
-  /**
-   * Get all selected outgoing sms.
-   * @return {Array}
-   */
-  getSelection() {
-    return filter(
-      this.outgoing.paginated,
-      (outgoing) =>
-        outgoing &&
-        this.outgoing.selected &&
-        this.outgoing.selected[outgoing.id],
+  onCriteriaChange(criteria) {
+    const criteriaDate = criteria.filter(
+      (filter) => filter.property === 'creationDatetime',
     );
+    if (criteriaDate.length > 0) {
+      this.outgoing.customCriteriaDates = criteriaDate.reduce(
+        (acc, current) => {
+          let newAcc = { ...acc };
+          const date = current.value;
+          const fromDate = moment(`${date}T00:00:00`).toISOString();
+          const toDate = moment(`${date}T23:59:59`).toISOString();
+          switch (current.operator) {
+            case 'is':
+              newAcc = {
+                ...acc,
+                'creationDatetime.from': fromDate,
+                'creationDatetime.to': toDate,
+              };
+              break;
+            case 'isBefore':
+              newAcc = {
+                ...acc,
+                'creationDatetime.to': toDate,
+              };
+              break;
+            case 'isAfter':
+              newAcc = {
+                ...acc,
+                'creationDatetime.from': fromDate,
+              };
+              break;
+            default:
+              newAcc = { ...acc };
+          }
+          return newAcc;
+        },
+        {},
+      );
+    } else {
+      this.outgoing.customCriteriaDates = null;
+    }
   }
 
   /**
@@ -201,7 +191,7 @@ export default class {
    * @return {Promise}
    */
   deleteSelectedOutgoing() {
-    const outgoings = this.getSelection();
+    const outgoings = this.outgoing.selected;
     const queries = outgoings.map(
       (outgoing) =>
         this.api.smsOutgoing.delete({
@@ -217,8 +207,8 @@ export default class {
     return this.$q
       .all(queries)
       .then(() => {
-        this.outgoing.selected = {};
-        return this.refresh();
+        this.outgoing.selected = [];
+        this.refreshOutgoingSmsGrid();
       })
       .catch((err) => {
         this.TucToastError(err);
@@ -262,7 +252,7 @@ export default class {
       resolve: { outgoingSms: () => outgoingSms },
     });
     modal.result
-      .then(() => this.refresh())
+      .then(() => this.refreshOutgoingSmsGrid())
       .catch((error) => {
         if (error && error.type === 'API') {
           this.TucToast.error(
@@ -283,11 +273,10 @@ export default class {
     return this.api.sms
       .getDocument({
         serviceName: this.$stateParams.serviceName,
-        'creationDatetime.from': moment()
-          .subtract(1, 'years')
-          .format(),
-        'creationDatetime.to': moment().format(),
         wayType: 'outgoing',
+        ...(this.outgoing.customCriteriaDates && {
+          ...this.outgoing.customCriteriaDates,
+        }),
       })
       .$promise.then((smsDoc) => {
         // 1. We need to poll to know if the size of the document is not empty.
@@ -318,26 +307,6 @@ export default class {
       })
       .finally(() => {
         this.outgoing.isExporting = false;
-      });
-  }
-
-  /**
-   * Refresh outgoing sms list.
-   * @return {Promise}
-   */
-  refresh() {
-    this.api.smsOutgoing.resetAllCache();
-    this.api.smsJobs.resetAllCache();
-    this.outgoing.isLoading = true;
-    return this.fetchOutgoingSms()
-      .then((outgoing) => {
-        this.outgoing.raw = angular.copy(outgoing);
-      })
-      .catch((err) => {
-        this.TucToastError(err);
-      })
-      .finally(() => {
-        this.outgoing.isLoading = false;
       });
   }
 }

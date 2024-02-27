@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.15.0...@ovh-ux/manager-sms@8.16.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
+# [8.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.14.1...@ovh-ux/manager-sms@8.15.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
+## [8.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.14.0...@ovh-ux/manager-sms@8.14.1) (2024-01-29)
+
+
+### Bug Fixes
+
+* **telecom.sms:** refactor and add filter for export ([#10639](https://github.com/ovh/manager/issues/10639)) ([97563a7](https://github.com/ovh/manager/commit/97563a7a0247c0a45fcf52f2b0dc3aa2e2a5cb0f))
+
+
+
+
+
+# [8.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.11...@ovh-ux/manager-sms@8.14.0) (2024-01-08)
+
+
+### Features
+
+* **telecom:** delete batch history ([#10314](https://github.com/ovh/manager/issues/10314)) ([1a71933](https://github.com/ovh/manager/commit/1a7193334d2344e4d74c11730c2de17323186b2b))
+
+
+
+
+
 ## [8.13.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.13.10...@ovh-ux/manager-sms@8.13.11) (2023-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-sms

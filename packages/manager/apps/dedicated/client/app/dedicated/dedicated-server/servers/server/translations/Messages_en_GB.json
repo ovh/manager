@@ -1130,5 +1130,19 @@
   "server_configuration_installation_ovh_desktop_BACKUP": "Backup",
   "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Even if the selected disk group contains {{t0}} disks, the chosen operating system can only be installed on up to 2 disks",
   "server_configuration_installation_ovh_step3_scheme": "Partitioning scheme:",
-  "server_consumption_explanation_link": "More details"
+  "server_consumption_explanation_link": "More details",
+  "server_configuration_installation_inputs_title": "Specific options:",
+  "server_configuration_installation_inputs_info": "The following questions are specific to the operating system selected ({{t0}})",
+  "server_configuration_installation_inputs_item_placeholder": "Insert a value of type {{t0}}",
+  "server_configuration_installation_inputs_item_placeholder_example": "For example: {{t0}}",
+  "server_configuration_installation_inputs_item_mandatory": "This field is mandatory",
+  "server_configuration_installation_inputs_bad_email": "The email address entered is not valid",
+  "server_configuration_installation_inputs_bad_hexstring": "Character string must contain only numbers and letters between A and F",
+  "server_configuration_installation_inputs_bad_ip": "The IPv4 address entered is not valid",
+  "server_configuration_installation_inputs_bad_required": "Required field",
+  "server_configuration_installation_inputs_bad_sshPubKey": "The SSH public key is invalid: only RSA, ECDSA and EdDSA keys in OpenSSH format are supported",
+  "server_configuration_installation_inputs_bad_url": "The URL entered is invalid",
+  "server_configuration_installation_inputs_bad_uuid": "The UUIDv4 is invalid",
+  "server_configuration_installation_custom_image_info": "You can install an OS from a custom image on the next screen by choosing \"{{t0}}\" in \"{{t1}}\".",
+  "server_configuration_installation_custom_image_help_link": "Choose the most suitable custom installation type."
 }

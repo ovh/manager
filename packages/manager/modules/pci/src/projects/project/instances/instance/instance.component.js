@@ -41,11 +41,13 @@ export default {
     firewallLink: '<',
     ipMitigationLink: '<',
     gotToNetworks: '<',
+    gotToLocalPrivateNetworks: '<',
     attachPrivateNetwork: '<',
     scheduleAutoBackup: '<',
     guideUrl: '<',
     guideTrackingSectionTags: '<',
     trackClick: '<',
     vncDisabled: '<',
+    hourlyPriceInformation: '<',
   },
 };

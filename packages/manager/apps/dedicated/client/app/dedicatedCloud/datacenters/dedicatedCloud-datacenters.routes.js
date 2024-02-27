@@ -8,18 +8,21 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       addDatacenter: /* @ngInject */ ($state) => () =>
         $state.go('app.dedicatedCloud.details.datacenter.add-datacenter'),
-      migrationBannerAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
-        const firstBannerFeature = 'dedicated-cloud:migrationBannerFirst';
-        const secondBannerFeature = 'dedicated-cloud:migrationBannerSecond';
-        return ovhFeatureFlipping
-          .checkFeatureAvailability([firstBannerFeature, secondBannerFeature])
-          .then((result) => {
-            return {
-              firstBanner: result.isFeatureAvailable(firstBannerFeature),
-              secondBanner: result.isFeatureAvailable(secondBannerFeature),
-            };
-          });
-      },
+      featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability([
+            'dedicated-cloud:canAddVirtualDatacenter',
+            'dedicated-cloud:migrationBanner'
+          ])
+          .then((result) => result),
+      addVdcAvailable: /* @ngInject */ (featureAvailability) =>
+        featureAvailability.isFeatureAvailable(
+          'dedicated-cloud:canAddVirtualDatacenter',
+        ),
+      migrationBannerAvailable: /* @ngInject */ (featureAvailability) => (
+        featureAvailability.isFeatureAvailable(
+        'dedicated-cloud:migrationBanner',
+      )),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('dedicated_cloud_datacenters'),
       trackClick: /* @ngInject */ (atInternet, trackingPrefix) => (click) => {

@@ -12,17 +12,21 @@ export default class PciInstanceEditController {
     CucCloudMessage,
     ovhManagerRegionService,
     PciProjectsProjectInstanceService,
+    PciProject,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.ovhManagerRegionService = ovhManagerRegionService;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
+    this.PciProject = PciProject;
     this.EDIT_PAGE_SECTIONS = EDIT_PAGE_SECTIONS;
   }
 
   $onInit() {
     this.isLoading = false;
     this.instanceNamePattern = PATTERN;
+    this.globalRegionsUrl = this.PciProject.getDocumentUrl('GLOBAL_REGIONS');
+    this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
 
     this.editInstance = new Instance({
       ...this.instance,

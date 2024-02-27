@@ -20,5 +20,12 @@
   "pci_project_flavors_quota_manage": "Zarządzaj limitami",
   "pci_project_flavors_category_new": "Nowość",
   "pci_project_flavors_category_definition_discovery": "Instancje ze współdzielonymi zasobami (Discovery) świetnie sprawdzają się w przypadku testów, procedur i środowisk deweloperskich. Ich wydajność może się nieznacznie zmieniać w czasie.",
-  "pci_project_flavors_spec_vCore_details": "{{vcores}} vCores ({{frequency}} GHz)"
+  "pci_project_flavors_spec_vCore_details": "{{vcores}} vCores ({{frequency}} GHz)",
+  "pci_project_flavors_category_definition_localzone": "Instancje Local Zones",
+  "pci_project_flavors_zone_compatible": "Kompatybilny z",
+  "pci_project_flavors_zone_localzone": "Local Zones",
+  "pci_project_flavors_zone_global_region": "Global Regions",
+  "pci_project_flavors_zone_localzone_tooltip": "Local Zones to nowy rodzaj lokalizacji, obsługujących część naszego portfolio produktów Public Cloud. W ciągu najbliższych kilku lat będziemy stopniowo zwiększać liczbę Local Zones na świecie.",
+  "pci_project_flavors_zone_globalregions_tooltip": "Global Regions są obsługiwane przez jedno lub kilka centrów danych zarządzanych przez OVHCloud. Każdy region obejmuje jedną lub kilka Availability Zones, wraz z pełnym portfolio usług OVHCloud.",
+  "pci_project_flavors_zone_tooltip_link": "Dowiedz się więcej"
 }

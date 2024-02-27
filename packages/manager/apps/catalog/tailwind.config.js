@@ -1,6 +1,14 @@
+import path from 'path';
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    path.join(
+      path.dirname(require.resolve('@ovhcloud/manager-components')),
+      '**/*.{js,jsx,ts,tsx}',
+    ),
+  ],
   theme: {
     extend: {},
     screens: {

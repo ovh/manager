@@ -9,6 +9,8 @@ export const APP_TYPES = {
   GPU: 'gpu',
 };
 
+export const APP_DATA_SYNC_TYPES = ['push', 'pull'];
+
 export const APP_STATUS = {
   QUEUED: 'QUEUED',
   INITIALIZING: 'INITIALIZING',
@@ -130,4 +132,5 @@ export default {
   APP_PARTNER_PRESET_LICENSING,
   APP_PARTNER_VOXIST_DETAILS,
   APP_USERS_TOKENS_BANNER_TRACKING,
+  APP_DATA_SYNC_TYPES,
 };

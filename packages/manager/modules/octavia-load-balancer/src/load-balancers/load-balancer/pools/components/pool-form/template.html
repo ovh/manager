@@ -1,0 +1,117 @@
+<form name="listener" novalidate>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-label="{{:: 'octavia_load_balancer_pools_create_name' | translate }}"
+    >
+        <div class="oui-input-overlay">
+            <input
+                type="text"
+                class="oui-input"
+                name="name"
+                data-required
+                data-ng-model="$ctrl.model.name"
+            />
+        </div>
+    </oui-field>
+    <fieldset>
+        <legend
+            class="h2"
+            data-translate="octavia_load_balancer_pools_create_options"
+        ></legend>
+        <oui-field
+            size="m"
+            class="mb-4 mb-md-0"
+            data-label="{{:: 'octavia_load_balancer_pools_create_algorithm' | translate }}"
+            data-label-popover="{{:: 'octavia_load_balancer_pools_create_algorithm_tooltip' | translate }}"
+        >
+            <oui-select
+                name="algorithm"
+                data-required
+                data-match="label"
+                data-model="$ctrl.model.algorithm"
+                data-items="$ctrl.algorithms"
+            >
+            </oui-select>
+            <span
+                class="help-block"
+                data-translate="{{ 'octavia_load_balancer_pools_create_algorithm_' + $ctrl.model.algorithm.value }}"
+            ></span>
+        </oui-field>
+        <oui-field
+            size="m"
+            class="mb-4 mb-md-0"
+            data-label="{{:: 'octavia_load_balancer_pools_create_protocol' | translate }}"
+            data-label-popover="{{:: 'octavia_load_balancer_pools_create_protocol_tooltip' | translate }}"
+        >
+            <oui-select
+                name="protocol"
+                data-required
+                data-disabled="$ctrl.isEditing"
+                data-model="$ctrl.model.protocol"
+                data-items="$ctrl.protocols"
+                data-on-change="$ctrl.onProtocolChange(modelValue)"
+                data-placeholder="{{:: 'octavia_load_balancer_pools_create_protocol_default' | translate }}"
+            >
+            </oui-select>
+        </oui-field>
+        <oui-field
+            size="m"
+            class="mb-4 mb-md-0"
+            data-inline="true"
+            data-label="{{:: 'octavia_load_balancer_pools_create_session' | translate }}"
+            data-label-popover="{{:: 'octavia_load_balancer_pools_create_session_tooltip' | translate }}"
+        >
+            <oui-switch
+                name="session"
+                data-model="$ctrl.model.hasSession"
+                data-on-change="$ctrl.onHasSessionChange(modelValue)"
+            >
+            </oui-switch>
+        </oui-field>
+        <oui-field
+            size="m"
+            class="mb-4 mb-md-0"
+            data-label="{{:: 'octavia_load_balancer_pools_create_persistent_session' | translate }}"
+            data-ng-if="$ctrl.model.hasSession"
+        >
+            <oui-select
+                name="persistent-session"
+                data-required
+                data-model="$ctrl.model.persistentSession"
+                data-match="label"
+                data-items="$ctrl.availableSessionPersistenceTypes"
+                data-on-change="$ctrl.onPersistentSessionTypeChange(modelValue)"
+            >
+            </oui-select>
+            <span
+                class="help-block"
+                data-translate="{{ 'octavia_load_balancer_pools_create_persistent_session_' + $ctrl.model.persistentSession.value }}"
+            ></span>
+        </oui-field>
+        <oui-field
+            size="m"
+            class="mb-4 mb-md-0"
+            data-label="{{:: 'octavia_load_balancer_pools_create_persistent_session_cookie_name' | translate }}"
+            data-ng-if="$ctrl.model.persistentSession.value === $ctrl.APP_COOKIE_SESSION_PERSISTENCE"
+        >
+            <div class="oui-input-overlay">
+                <input
+                    type="text"
+                    class="oui-input"
+                    name="cookie-name"
+                    data-required
+                    data-ng-model="$ctrl.model.cookieName"
+                    placeholder="{{:: 'octavia_load_balancer_pools_create_persistent_session_cookie_name' | translate}}"
+                />
+            </div>
+        </oui-field>
+    </fieldset>
+    <oui-form-actions
+        data-disabled="!listener.$valid"
+        data-submit-text="{{:: 'octavia_load_balancer_pools_create_submit' + ($ctrl.isEditing ? '_edition' : '') | translate }}"
+        data-cancel-text="{{:: 'octavia_load_balancer_pools_create_cancel' | translate }}"
+        data-on-submit="$ctrl.onSubmit()"
+        data-on-cancel="$ctrl.onCancel()"
+    ></oui-form-actions>
+</form>

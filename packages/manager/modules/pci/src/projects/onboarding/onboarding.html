@@ -1,4 +1,8 @@
-<div class="pci_projects_onboarding w-100 h-100" style="overflow: auto;">
+<div
+    ng-if="$ctrl.isUsRegion"
+    class="pci_projects_onboarding_us w-100 h-100"
+    style="overflow: auto;"
+>
     <!--Trusted zone badge-->
     <div class="text-center mt-3">
         <ovh-manager-trusted-nic-label
@@ -9,10 +13,10 @@
     <div class="row">
         <div class="col-md-6 p-5">
             <account-migration-notification></account-migration-notification>
-            <h1 data-translate="pci_projects_onboarding_title"></h1>
-            <p data-translate="pci_projects_onboarding_description1"></p>
-            <p data-translate="pci_projects_onboarding_description2"></p>
-            <p data-translate="pci_projects_onboarding_description3"></p>
+            <h1 data-translate="pci_projects_onboarding_us_title"></h1>
+            <p data-translate="pci_projects_onboarding_us_description1"></p>
+            <p data-translate="pci_projects_onboarding_us_description2"></p>
+            <p data-translate="pci_projects_onboarding_us_description3"></p>
 
             <!--Create a project-->
             <a
@@ -24,9 +28,73 @@
                 data-track-type="navigation"
             >
                 <span
-                    data-translate="pci_projects_onboarding_create_project"
+                    data-translate="pci_projects_onboarding_us_create_project"
                 ></span>
             </a>
+
+            <!--Call customer-->
+            <div data-ng-if="$ctrl.isTrustedZone">
+                <p
+                    class="m-0 font-weight-bold"
+                    data-translate="pci_projects_onboarding_us_banner_trusted_customer_info_1"
+                ></p>
+                <p
+                    class="m-0 font-weight-bold"
+                    data-translate="pci_projects_onboarding_us_banner_trusted_customer_info_2"
+                ></p>
+            </div>
+        </div>
+    </div>
+    <img
+        class="d-none d-lg-block"
+        data-ng-src="{{ $ctrl.illustrationUs }}"
+        alt=""
+    />
+</div>
+
+<div
+    ng-if="!$ctrl.isUsRegion"
+    class="pci_projects_onboarding w-100 h-100"
+    style="overflow: auto;"
+>
+    <!--Trusted zone badge-->
+    <div class="text-center mt-3">
+        <ovh-manager-trusted-nic-label
+            data-ng-if="$ctrl.isTrustedZone"
+        ></ovh-manager-trusted-nic-label>
+    </div>
+
+    <div class="d-grid gap-1 col-md-6 offset-xs-1 offset-md-3 mb-4 text-center">
+        <img class="w-100" data-ng-src="{{ $ctrl.illustration }}" alt="" />
+        <div>
+            <h1 data-translate="pci_projects_onboarding_title"></h1>
+            <p data-translate="pci_projects_onboarding_description1"></p>
+            <p data-translate="pci_projects_onboarding_description2"></p>
+
+            <!-- contracts -->
+            <ovh-contracts-summary
+                data-inline-items="true"
+                data-items="$ctrl.summary.contracts"
+                data-model="$ctrl.model.agreements"
+                data-name="agreements"
+                data-tracking-prefix="'PublicCloud::pci::projects::onboarding'"
+            >
+            </ovh-contracts-summary>
+
+            <!--Create a project-->
+            <oui-button
+                variant="primary"
+                data-ng-if="!$ctrl.isTrustedZone"
+                data-on-click="$ctrl.onCreateDiscoveryProjectClick()"
+                disabled="!$ctrl.model.agreements || $ctrl.isLoading"
+            >
+                <span
+                    data-translate="pci_projects_onboarding_create_project"
+                ></span>
+            </oui-button>
+            <div class="text-center mt-4" data-ng-if="$ctrl.isLoading">
+                <oui-spinner size="s"></oui-spinner>
+            </div>
 
             <!--Call customer-->
             <div data-ng-if="$ctrl.isTrustedZone">
@@ -41,9 +109,4 @@
             </div>
         </div>
     </div>
-    <img
-        class="d-none d-lg-block"
-        data-ng-src="{{ $ctrl.illustration }}"
-        alt=""
-    />
 </div>

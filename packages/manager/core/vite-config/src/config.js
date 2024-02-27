@@ -2,6 +2,7 @@ import { dirname, join, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import react from '@vitejs/plugin-react';
 import legacy from '@vitejs/plugin-legacy';
+import svgr from 'vite-plugin-svgr';
 
 import IframeHmrPlugin from './plugin/iframe-hmr.js';
 import viteOvhDevServerPlugin from './plugin/dev-server.js';
@@ -10,6 +11,9 @@ const isContainerApp = process.cwd().endsWith('container');
 
 const getBaseConfig = (config) => {
   const envConfig = config || {};
+  if (envConfig.isLABEU) {
+    envConfig.host = 'www.build-ovh.com';
+  }
 
   return {
     base: isContainerApp ? './' : '/app/',
@@ -29,8 +33,9 @@ const getBaseConfig = (config) => {
       legacy({
         targets: ['defaults'],
       }),
-      viteOvhDevServerPlugin({ isContainerApp, config: envConfig }),
+      viteOvhDevServerPlugin({ isContainerApp, envConfig }),
       IframeHmrPlugin(),
+      svgr(),
     ],
     css: {
       preprocessorOptions: {

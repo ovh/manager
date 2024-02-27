@@ -96,6 +96,14 @@ export default /* @ngInject */ function TelecomTelephonyLineManagementCtrl(
           'telephony_line_management_actions_line_to_number',
         ),
       },
+      {
+        name: 'line_order_accessories',
+        sref:
+          'telecom.telephony.billingAccount.line.dashboard.phone.accessories',
+        text: $translate.instant(
+          'telephony_line_phone_actions_line_order_headset',
+        ),
+      },
     ];
 
     if (taskCount) {

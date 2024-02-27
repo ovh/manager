@@ -75,6 +75,25 @@
             >
                 <span data-ng-bind="$row.cache"></span>
             </oui-datagrid-column>
+            <oui-action-menu data-compact data-placement="left-start">
+                <oui-action-menu-item
+                    data-on-click="$ctrl.manualDataSync($row)"
+                >
+                    <span
+                        data-translate="pci_notebooks_tab_attach_data_page_volumes_sync_data"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+            <oui-datagrid-topbar>
+                <oui-button
+                    data-variant="primary"
+                    data-on-click="$ctrl.manualDataSync()"
+                >
+                    <span
+                        data-translate="pci_notebooks_tab_attach_data_page_volumes_all_data"
+                    ></span>
+                </oui-button>
+            </oui-datagrid-topbar>
         </oui-datagrid>
 
         <!--Title and description-->

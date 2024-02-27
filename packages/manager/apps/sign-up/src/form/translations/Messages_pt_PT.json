@@ -6,5 +6,6 @@
   "sign_up_form_next_button": "Etapa seguinte",
   "sign_up_form_submit_button": "Criar uma conta",
   "sign_up_form_submit_error": "Ups! Ocorreu um erro ao criar a conta.",
-  "sign_up_form_global_information": "Para poder encomendar, não se esqueça de introduzir todas as suas informações."
+  "sign_up_form_global_information": "Para poder encomendar, não se esqueça de introduzir todas as suas informações.",
+  "sign_up_form_global_information_kyc_reminder": "Não se esqueça de introduzir todas as informações e certifique-se de que os seus dados pessoais correspondem ao nome e endereço que constam nos seus documentos oficiais, para que possa efetuar uma encomenda."
 }

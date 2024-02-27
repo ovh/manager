@@ -1,0 +1,62 @@
+import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { OsdsButton } from '@ovhcloud/ods-components/button/react';
+import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components/button';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { getListingIcebergV2 } from '@/api';
+
+import DatagridWrapper from '@/components/layout-helpers/Listing/DatagridWrapper';
+import Loading from '@/components/Loading/Loading';
+import ErrorBanner from '@/components/Error/Error';
+import Breadcrumb, {
+} from '@/components/Breadcrumb/Breadcrumb';
+
+
+
+export default function Listing() {
+  const [pageSize] = useState(10);
+
+  const { data, fetchNextPage, hasNextPage, isError, isLoading, error, }: any = useInfiniteQuery({
+    initialPageParam: null,
+    queryKey: [`servicesListingIceberg`],
+    queryFn: ({ pageParam }) => getListingIcebergV2({ pageSize, cursor: pageParam }),
+    staleTime: Infinity,
+    getNextPageParam: (lastPage) => lastPage.cursorNext as any,
+  });
+
+  const flattenData = data?.pages.map((page: any) => page.data).flat()
+
+  if (isError) {
+    return <ErrorBanner error={error} />;
+  }
+
+  if (isLoading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
+
+  if (data?.length === 0) return <Navigate to="onboarding" />;
+
+  return (
+    <>
+      <Breadcrumb />
+      <h2>{{appName}}</h2>
+      <div>{flattenData?.length && <DatagridWrapper data={flattenData} />}</div>
+      <div className="grid justify-items-center my-5">
+        {hasNextPage && <div>
+          <OsdsButton
+            color={ODS_THEME_COLOR_INTENT.info}
+            variant={ODS_BUTTON_VARIANT.stroked}
+            onClick={fetchNextPage}
+          >
+            Load more
+          </OsdsButton>
+        </div>}
+      </div>
+    </>
+  );
+}

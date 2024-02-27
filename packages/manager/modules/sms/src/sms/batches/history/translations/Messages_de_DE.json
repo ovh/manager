@@ -1,5 +1,11 @@
 {
   "sms_batches_history_title": "Statistiken und History",
   "sms_batches_history_short_number": "Nummer, die Antworten erlaubt",
-  "sms_batches_history_downloading": "Wird heruntergeladen…"
+  "sms_batches_history_downloading": "Wird heruntergeladen…",
+  "sms_batches_history_delete_title": "Verlauf löschen",
+  "sms_batches_history_delete_message": "Möchten Sie die SMS-Kampagne {{batchName}} wirklich löschen?",
+  "sms_batches_history_delete_cancel": "Abbrechen",
+  "sms_batches_history_delete_confirm": "Bestätigen",
+  "sms_batches_history_delete_confirmation_message": "Ihre Kampagne wurde erfolgreich gelöscht.",
+  "sms_batches_history_delete_error_message": "Es ist ein Fehler aufgetreten, bitte versuchen Sie es erneut."
 }

@@ -42,6 +42,8 @@ export const NOTEBOOK_FLAVOR_TYPE = {
   CPU: 'CPU',
 };
 
+export const NOTEBOOK_DATA_SYNC_TYPES = ['push', 'pull'];
+
 export const NOTEBOOK_FRAMEWORK_INFO = {
   DEFAULT: 'https://discord.com/invite/vXVurFfwe9',
 };
@@ -77,4 +79,5 @@ export default {
   NOTEBOOK_FREE_WORKSPACE_STORAGE_DEFAULT,
   NOTEBOOK_MINUTES_IN_HOUR,
   NOTEBOOK_MAX_PROGRESS_VALUE,
+  NOTEBOOK_DATA_SYNC_TYPES,
 };

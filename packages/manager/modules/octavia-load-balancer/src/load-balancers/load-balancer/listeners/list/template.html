@@ -1,0 +1,106 @@
+<oui-datagrid data-rows="$ctrl.listeners">
+    <oui-datagrid-topbar>
+        <oui-button
+            data-ng-click="$ctrl.goToListenerCreation()"
+            variant="secondary"
+            icon-left="oui-icon-plus"
+        >
+            <span
+                data-translate="octavia_load_balancer_listeners_add_button"
+            ></span>
+        </oui-button>
+    </oui-datagrid-topbar>
+
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_listeners_name' | translate"
+        data-property="name"
+        data-sortable
+        data-searchable
+        data-filterable
+        data-type="string"
+        data-prevent-customization
+    >
+        <a
+            data-ng-href="{{:: $ctrl.getListenerEditionLink($row)}}"
+            data-track-on="click"
+            data-track-name="{{:: $ctrl.trackBase + $ctrl.LISTENER_EDITION_TRACKING_SUFFIX}}"
+            data-track-type="action"
+        >
+            <span data-ng-bind="::$value"></span>
+        </a>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_listeners_default_pool' | translate"
+        data-property="defaultPoolId"
+        data-sortable
+        data-searchable
+        data-filterable
+        data-type="string"
+        data-helper=":: 'octavia_load_balancer_listeners_default_pool_helper' | translate"
+        data-prevent-customization
+    >
+        <a
+            data-ng-href="{{:: $ctrl.getPoolDetailLink($row)}}"
+            data-track-on="click"
+            data-track-name="{{:: $ctrl.trackRoot + $ctrl.POOL_DETAIL_TRACKING_SUFFIX}}"
+            data-track-type="action"
+        >
+            <span data-ng-bind="::$value"></span>
+        </a>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_listeners_protocol' | translate"
+        data-property="protocol"
+        data-sortable
+        data-searchable
+        data-filterable
+        data-type="string"
+        data-helper=":: 'octavia_load_balancer_listeners_protocol_helper' | translate"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_listeners_port' | translate"
+        data-property="port"
+        data-sortable
+        data-searchable
+        data-filterable
+        data-type="number"
+        data-helper=":: 'octavia_load_balancer_listeners_port_helper' | translate"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_provisioning_status' | translate"
+        data-property="provisioningStatus"
+        data-sortable
+        data-type="options"
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="$ctrl.provisioningStatusBadges[$value]"
+            data-translate="{{:: 'octavia_load_balancer_provisioning_status_' + $value }}"
+        ></span>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        data-title=":: 'octavia_load_balancer_operating_status' | translate"
+        data-property="operatingStatus"
+        data-type="options"
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="$ctrl.operatingStatusBadges[$value]"
+            data-translate="{{:: 'octavia_load_balancer_operating_status_' + $value }}"
+        ></span>
+    </oui-datagrid-column>
+    <oui-action-menu compact data-placement="end">
+        <oui-action-menu-item data-on-click="$ctrl.goToListenerEdition($row)"
+            ><span
+                data-translate="octavia_load_balancer_listeners_actions_detail"
+            ></span>
+        </oui-action-menu-item>
+        <oui-action-menu-item data-on-click="$ctrl.goToListenerDeletion($row)"
+            ><span
+                data-translate="octavia_load_balancer_listeners_actions_delete"
+            ></span>
+        </oui-action-menu-item>
+    </oui-action-menu>
+</oui-datagrid>

@@ -97,7 +97,10 @@ export default class MoveBuildingDetailsCtrl {
 
   convertStairs(stair) {
     const stairsModel = {};
-    if (stair.stair === STAIR_FLOOR.unknown) {
+    if (
+      stair.stair === STAIR_FLOOR.unknown ||
+      stair.stair === STAIR_FLOOR.buildingUnknown
+    ) {
       stairsModel.stair = {
         label: this.$translate.instant('pack_move_building_details_none'),
         value: stair.stair,

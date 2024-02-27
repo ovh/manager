@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.4.1...@ovh-ux/sign-up-app@3.4.2) (2024-02-26)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [3.4.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.4.0...@ovh-ux/sign-up-app@3.4.1) (2024-02-21)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+# [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.3.0...@ovh-ux/sign-up-app@3.4.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
+# [3.3.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.2.4...@ovh-ux/sign-up-app@3.3.0) (2024-02-12)
+
+
+### Features
+
+* update labels for indian account creation and KYC india ([#10675](https://github.com/ovh/manager/issues/10675)) ([92711f5](https://github.com/ovh/manager/commit/92711f5ba3c907fe04aae717ed0a14eb3459ff3a))
+
+
+
+
+
+## [3.2.4](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.2.3...@ovh-ux/sign-up-app@3.2.4) (2024-01-31)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [3.2.3](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.2.2...@ovh-ux/sign-up-app@3.2.3) (2024-01-26)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [3.2.2](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.2.1...@ovh-ux/sign-up-app@3.2.2) (2024-01-25)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
 ## [3.2.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@3.2.0...@ovh-ux/sign-up-app@3.2.1) (2023-12-28)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app

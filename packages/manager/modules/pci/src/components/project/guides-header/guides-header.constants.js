@@ -181,6 +181,8 @@ export const FIRST_STEPS_WITH_DATABASES = {
   WE: 'https://docs.ovh.com/us/en/publiccloud/databases/getting-started/',
   WS: 'https://docs.ovh.com/us/es/publiccloud/databases/getting-started/',
   IN: 'https://docs.ovh.com/asia/en/publiccloud/databases/getting-started/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/20611621210515-Getting-Started-with-Cloud-Databases',
 };
 
 export const MONGO_DB_CAPABILITIES_AND_LIMITATIONS = {
@@ -204,6 +206,8 @@ export const MONGO_DB_CAPABILITIES_AND_LIMITATIONS = {
   WS: 'https://docs.ovh.com/us/es/publiccloud/databases/mongodb/capabilities/',
   IN:
     'https://docs.ovh.com/asia/en/publiccloud/databases/mongodb/capabilities/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/22442835364243-MongoDB-Capabilities-and-Limitations',
 };
 
 export const MYSQL_CAPABILITIES_AND_LIMITATIONS = {
@@ -226,6 +230,8 @@ export const MYSQL_CAPABILITIES_AND_LIMITATIONS = {
   WE: 'https://docs.ovh.com/us/en/publiccloud/databases/mysql/capabilities/',
   WS: 'https://docs.ovh.com/us/es/publiccloud/databases/mysql/capabilities/',
   IN: 'https://docs.ovh.com/asia/en/publiccloud/databases/mysql/capabilities/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/20887483746067-MySQL-Capabilities-and-Limitations',
 };
 
 export const CREATE_A_CLUSTER = {
@@ -273,6 +279,8 @@ export const FAQ_MANAGED_PRIVATE_REGISTRY = {
   FR: 'https://docs.ovh.com/fr/private-registry/managed-private-registry-faq/',
   GB:
     'https://docs.ovh.com/gb/en/private-registry/managed-private-registry-faq/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/19578611382931-FAQ-Managed-Private-Registry-Harbor-',
   IE:
     'https://docs.ovh.com/ie/en/private-registry/managed-private-registry-faq/',
   DEFAULT:
@@ -294,6 +302,8 @@ export const FAQ_MANAGED_PRIVATE_REGISTRY = {
 export const CREATE_A_MANAGED_PRIVATE_REGISTER = {
   GB:
     'https://docs.ovh.com/gb/en/private-registry/creating-a-private-registry/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/19464979390099-Creating-a-Private-Registry-Harbor-',
   IE:
     'https://docs.ovh.com/ie/en/private-registry/creating-a-private-registry/',
   DEFAULT:
@@ -315,6 +325,8 @@ export const CREATE_A_MANAGED_PRIVATE_REGISTER = {
 export const CREATE_AND_USE_A_PRIVATE_IMAGE = {
   GB:
     'https://docs.ovh.com/gb/en/private-registry/creating-and-using-a-private-image/',
+  US:
+    'https://support.us.ovhcloud.com/hc/en-us/articles/19618059634579-Creating-and-Using-a-Docker-Image-Stored-in-an-OVHcloud-Managed-Private-Registry-Harbor-',
   IE:
     'https://docs.ovh.com/ie/en/private-registry/creating-and-using-a-private-image/',
   DEFAULT:

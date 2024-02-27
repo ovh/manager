@@ -17,6 +17,8 @@ export default {
     sendKubeTrack: '<',
     getKubeApiErrorId: '<',
     getQuotaBuildUrl: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
   controller,
   template,

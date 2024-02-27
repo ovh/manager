@@ -8,6 +8,11 @@
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
+    <pci-activate-project-banner
+        data-ng-if="$ctrl.isDiscoveryProject"
+        data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+        data-tracking-page-name="PublicCloud::pci::projects::project::privateNetwork::add"
+    ></pci-activate-project-banner>
 
     <oui-stepper
         data-current-index="$ctrl.currentIndex"
@@ -31,14 +36,14 @@
         </oui-step-form>
         <oui-step-form
             name="private_network_add_select_configuration"
-            data-valid="$ctrl.privateNetworkName"
-            data-prevent-next="true"
+            data-valid="$ctrl.privateNetworkName && !$ctrl.isDiscoveryProject"
             data-header="{{:: 'pci_projects_project_network_private_create_configure' | translate }}"
             data-loading="$ctrl.loaders.configStep"
             data-on-focus="$ctrl.onConfigurePrivateNetworkInit()"
             data-submit-text="{{ ( $ctrl.configuration.createGateway ? 'pci_projects_project_network_private_create_next' : 'pci_projects_project_network_private_create_submit' )| translate }}"
             data-position="1"
             data-editable="!$ctrl.loaders.isSubmitting"
+            data-prevent-next
         >
             <oui-field
                 data-label="{{:: ('pci_projects_project_network_private_create_name' | translate)}}"
@@ -53,7 +58,7 @@
                     data-required
                 />
             </oui-field>
-            <section>
+            <section data-ng-if="!$ctrl.configuration.region.isLocalZone">
                 <oui-checkbox
                     data-model="$ctrl.configuration.createGateway"
                     name="create-public-gateway"
@@ -89,7 +94,7 @@
                     ></p>
                 </div>
             </section>
-            <section>
+            <section data-ng-if="!$ctrl.configuration.region.isLocalZone">
                 <h6
                     data-translate="pci_projects_project_network_private_create_layer_2_options"
                 ></h6>
@@ -106,6 +111,14 @@
                     <p
                         data-translate="pci_projects_project_network_private_create_vlan_tip"
                     ></p>
+                    <oui-message
+                        data-ng-if="$ctrl.configureVlanId && $ctrl.configuration.vlanId === 0"
+                        data-type="warning"
+                    >
+                        <p
+                            data-translate="pci_projects_project_network_private_create_vlan_id_warning"
+                        ></p>
+                    </oui-message>
                     <oui-field
                         data-ng-if="$ctrl.configureVlanId"
                         aria-describedby="vlanTakenError"

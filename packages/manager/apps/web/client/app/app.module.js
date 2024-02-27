@@ -89,9 +89,11 @@ import errorPage from './error-page/error-page.module';
 import hosting from './hosting';
 import privateDatabase from './private-database';
 import zone from './domain/zone/zone.module';
+import domainOperationTable from './domain-operation/operation-table/operation-table.module';
 
 import hostingEmail from './hosting/email';
 import hostingEmailActivateModule from './hosting/email/activate';
+import ovhManagerDomainOperationModule from './domain-operation/domain-operation.module';
 
 import wucAlldom from './components/alldom';
 import wucAutorenewInvite from './components/autorenew-invite';
@@ -182,8 +184,10 @@ export default async (containerEl, shellClient) => {
         hosting,
         privateDatabase,
         zone,
+        domainOperationTable,
         hostingEmail,
         hostingEmailActivateModule,
+        ovhManagerDomainOperationModule,
         WebPaas,
         wucAlldom,
         wucAutorenewInvite,

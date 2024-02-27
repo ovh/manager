@@ -7,5 +7,6 @@
   "hostings_offer_performance_1": "Performance 1",
   "hostings_offer_performance_2": "Performance 2",
   "hostings_offer_performance_3": "Performance 3",
-  "hostings_offer_performance_4": "Performance 4"
+  "hostings_offer_performance_4": "Performance 4",
+  "hosting_offer_changing_datavis_tool": "L'outil de visualisation des statistiques de votre hébergement web évolue et est temporairement indisponible. <a href=\"{{url}}\" target=\"_blank\">Consultez la page de maintenance</a> poursuivre la progression des travaux."
 }

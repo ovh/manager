@@ -3,6 +3,148 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [18.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.15.1...@ovh-ux/manager-web@18.15.2) (2024-02-26)
+
+
+### Bug Fixes
+
+* **web:** correct the display of domain contact info ([#10968](https://github.com/ovh/manager/issues/10968)) ([b7f65b1](https://github.com/ovh/manager/commit/b7f65b1cac4c7195b7498cde23544e60f7abfbf0))
+
+
+
+
+
+## [18.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.15.0...@ovh-ux/manager-web@18.15.1) (2024-02-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [18.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.14.0...@ovh-ux/manager-web@18.15.0) (2024-02-20)
+
+
+### Bug Fixes
+
+* **web.domain:** display the domain after also redirect ([b07a74e](https://github.com/ovh/manager/commit/b07a74ea7cbf58b022553ac3f3237a235a8025b2))
+* **web:** fix operation incoming transfer ([5c4e9c6](https://github.com/ovh/manager/commit/5c4e9c6df2cae9647bc4e0fe411c7587966a4c3f))
+
+
+### Features
+
+* **domain:** add alerts for DNS zone deletion ([#10721](https://github.com/ovh/manager/issues/10721)) ([f97b521](https://github.com/ovh/manager/commit/f97b521a61aac0754e99e09d8bdbc9e91e0162eb))
+* **web.hosting:** hide infrastructure cdn and webcloud db statistics… ([#10337](https://github.com/ovh/manager/issues/10337)) ([d820896](https://github.com/ovh/manager/commit/d820896a93062391004f158d5b233b4f962bcf72))
+
+
+
+
+
+# [18.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.13.1...@ovh-ux/manager-web@18.14.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
+## [18.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.13.0...@ovh-ux/manager-web@18.13.1) (2024-02-12)
+
+
+### Bug Fixes
+
+* **web.domain:** change the order of action buttons in zone section ([#10837](https://github.com/ovh/manager/issues/10837)) ([43727e8](https://github.com/ovh/manager/commit/43727e8fad375a5f9df8c0cbedd14d381f021bbd))
+* **web:** display operation progress([#10883](https://github.com/ovh/manager/issues/10883)) ([1ccb7a7](https://github.com/ovh/manager/commit/1ccb7a78384c2ad81b7dc7af032d40d54ba6e875))
+
+
+
+
+
+# [18.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.12.0...@ovh-ux/manager-web@18.13.0) (2024-02-07)
+
+
+### Features
+
+* **web:** remove extra data in call to http ([#10857](https://github.com/ovh/manager/issues/10857)) ([fdecde7](https://github.com/ovh/manager/commit/fdecde777ad20a6a7fe5c6d06201e346a1e18368))
+
+
+
+
+
+# [18.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.11.1...@ovh-ux/manager-web@18.12.0) (2024-02-05)
+
+
+### Features
+
+* **web:** add cdn ip information ([#10742](https://github.com/ovh/manager/issues/10742)) ([e5462b7](https://github.com/ovh/manager/commit/e5462b7c7c4d61423162cbef97459207ddaad310))
+* **web:** split dns and domain api calls with two tabs ([#10405](https://github.com/ovh/manager/issues/10405)) ([fc57a4d](https://github.com/ovh/manager/commit/fc57a4d6e9c5599247671385a29f6a6188117da3))
+
+
+
+
+
+## [18.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.11.0...@ovh-ux/manager-web@18.11.1) (2024-01-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [18.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.10.6...@ovh-ux/manager-web@18.11.0) (2024-01-29)
+
+
+### Features
+
+* **dns:** remove hint about real target with dot ([#10674](https://github.com/ovh/manager/issues/10674)) ([465fd46](https://github.com/ovh/manager/commit/465fd4693169d142f89bfc04f362e592cdfc431c))
+
+
+### Reverts
+
+* Revert "feat(web): add new hosting offer sticker info" (#10705) ([45b23e5](https://github.com/ovh/manager/commit/45b23e526222a36423902203a387b013e13bab61)), closes [#10705](https://github.com/ovh/manager/issues/10705)
+
+
+
+
+
+## [18.10.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.10.5...@ovh-ux/manager-web@18.10.6) (2024-01-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [18.10.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.10.4...@ovh-ux/manager-web@18.10.5) (2024-01-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [18.10.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.10.3...@ovh-ux/manager-web@18.10.4) (2024-01-22)
+
+
+### Bug Fixes
+
+* **web:** display menu depending on root origin ([#10521](https://github.com/ovh/manager/issues/10521)) ([ab79a38](https://github.com/ovh/manager/commit/ab79a38b5c6575f16140392ff10b5ad4d2075cdb))
+
+
+
+
+
+## [18.10.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.10.2...@ovh-ux/manager-web@18.10.3) (2024-01-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [18.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.10.1...@ovh-ux/manager-web@18.10.2) (2024-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

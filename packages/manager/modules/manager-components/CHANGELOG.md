@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.10.0...@ovh-ux/manager-components@1.11.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
+# [1.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.9.1...@ovh-ux/manager-components@1.10.0) (2024-01-16)
+
+
+### Features
+
+* **public-cloud:** add Local Zone ([#10358](https://github.com/ovh/manager/issues/10358)) ([e8dadae](https://github.com/ovh/manager/commit/e8dadae55b2a6b5971ce8fc0fb7ed0c030868d2b))
+* **public-cloud:** patch localzone name ([#10695](https://github.com/ovh/manager/issues/10695)) ([28efee6](https://github.com/ovh/manager/commit/28efee6d0c6934e0aa5b5ab1787e99f7d396f9f1))
+
+
+
+
+
 ## [1.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.9.0...@ovh-ux/manager-components@1.9.1) (2023-10-16)
 
 

@@ -51,6 +51,81 @@
                             >
                             </a>
                         </oui-select-picker-section>
+                        <oui-select-picker-section
+                            data-ng-if="regions[0].isLocalZone !== undefined"
+                        >
+                            <span
+                                data-ng-if="regions[0].isLocalZone"
+                                class="oui-badge oui-badge_promotion"
+                            >
+                                <span
+                                    data-translate="pci_project_flavors_zone_localzone"
+                                ></span>
+                                <button
+                                    type="button"
+                                    class="oui-popover-button"
+                                    data-oui-popover
+                                    data-oui-popover-scope="$ctrl"
+                                    data-oui-popover-template="pci_project_flavors_zone_localzone.html"
+                                ></button>
+                                <script
+                                    type="text/ng-template"
+                                    id="pci_project_flavors_zone_localzone.html"
+                                >
+                                    <span
+                                        class="text-center"
+                                        data-translate="pci_project_flavors_zone_localzone_tooltip"
+                                    ></span>
+                                    <a
+                                        class="oui-link_icon"
+                                        aria-hidden="true"
+                                        data-ng-href="{{$ctrl.localZoneUrl}}"
+                                        target="_blank"
+                                    >
+                                        <span
+                                            data-translate="pci_project_flavors_zone_tooltip_link"
+                                        ></span>
+                                        <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                                    </a>
+                                </script>
+                            </span>
+
+                            <span
+                                data-ng-if="!regions[0].isLocalZone"
+                                class="oui-badge oui-badge_new"
+                            >
+                                <span
+                                    data-translate="pci_project_flavors_zone_global_region"
+                                ></span>
+                                <button
+                                    type="button"
+                                    class="oui-popover-button"
+                                    data-oui-popover
+                                    data-oui-popover-scope="$ctrl"
+                                    data-oui-popover-template="pci_project_flavors_zone_globalregions_tooltip.html"
+                                ></button>
+                                <script
+                                    type="text/ng-template"
+                                    id="pci_project_flavors_zone_globalregions_tooltip.html"
+                                >
+                                    <span
+                                        class="text-center"
+                                        data-translate="pci_project_flavors_zone_globalregions_tooltip"
+                                    ></span>
+                                    <a
+                                        class="oui-link_icon"
+                                        aria-hidden="true"
+                                        data-ng-href="{{$ctrl.globalRegionsUrl}}"
+                                        target="_blank"
+                                    >
+                                        <span
+                                            data-translate="pci_project_flavors_zone_tooltip_link"
+                                        ></span>
+                                        <span class="oui-icon oui-icon-external-link ml-0" aria-hidden="true"></span>
+                                    </a>
+                                </script>
+                            </span>
+                        </oui-select-picker-section>
                     </oui-select-picker>
                 </div>
             </div>

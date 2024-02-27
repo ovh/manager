@@ -4,6 +4,7 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 import capitalize from 'lodash/capitalize';
+import omit from 'lodash/omit';
 import animateScrollTo from 'animated-scroll-to';
 import { ENGINE_LOGOS } from '../databases.constants';
 import { PRIVATE_NETWORK_GUIDE } from './add.constants';
@@ -17,6 +18,7 @@ export default class {
     $timeout,
     $document,
     $anchorScroll,
+    coreConfig,
     CucCloudMessage,
     DatabaseService,
     ovhManagerRegionService,
@@ -31,6 +33,7 @@ export default class {
     this.ENGINE_LOGOS = ENGINE_LOGOS;
     this.nameGenerator = nameGenerator;
     this.capitalize = capitalize;
+    this.user = coreConfig.getUser();
   }
 
   $onInit() {
@@ -81,6 +84,12 @@ export default class {
           horizontal: false,
         }
       : null;
+
+    // For US only, remove Mongo from guides
+    this.filteredGuides =
+      this.user.ovhSubsidiary === 'US'
+        ? omit(this.guideUrl.databases, 'mongo_db_capabilities_and_limitations')
+        : this.guideUrl.databases;
   }
 
   /**
@@ -189,7 +198,10 @@ export default class {
   }
 
   updateRegion(region) {
-    this.model.region = region;
+    if (this.model.region.name !== region.name) {
+      this.model.region = region;
+      this.model.privateNetwork = null;
+    }
     this.model.flavor = this.getSyncFlavor(region);
     this.updateFlavor(this.model.flavor);
   }
@@ -205,7 +217,10 @@ export default class {
       this.model.usePrivateNetwork = false;
       this.model.subnet = null;
       this.model.privateNetwork = null;
-    } else if (!this.model.usePrivateNetwork) {
+    } else if (
+      !this.model.usePrivateNetwork ||
+      this.model.privateNetwork === null
+    ) {
       this.model.privateNetwork = this.defaultPrivateNetwork;
       this.model.subnet = null;
 

@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.13.0...@ovh-ux/manager-nutanix@1.14.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.12.1...@ovh-ux/manager-nutanix@1.13.0) (2024-02-20)
+
+
+### Bug Fixes
+
+* **dedicated.nutanix:** fix missing type of pack label ([13a07d5](https://github.com/ovh/manager/commit/13a07d5f7c717a25b8d02e8e3ee2420ff3804874))
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10943](https://github.com/ovh/manager/issues/10943)) ([3d0e354](https://github.com/ovh/manager/commit/3d0e3546319682e1efbfd825f77017ed81b7d80c))
+
+
+
+
+
+## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.12.0...@ovh-ux/manager-nutanix@1.12.1) (2024-02-16)
+
+
+### Reverts
+
+* Revert "feat(dedicated): remove legacy BringYourOwnImage component (#10824)" ([2d1fff6](https://github.com/ovh/manager/commit/2d1fff6cf6d4c3c6f512d9eac5c446dfe08724a9)), closes [#10824](https://github.com/ovh/manager/issues/10824)
+
+
+
+
+
+# [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.11.1...@ovh-ux/manager-nutanix@1.12.0) (2024-02-16)
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10824](https://github.com/ovh/manager/issues/10824)) ([ec65f97](https://github.com/ovh/manager/commit/ec65f97f114c5172f8a63f485ececd383fbd9eee))
+
+
+
+
+
 ## [1.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.11.0...@ovh-ux/manager-nutanix@1.11.1) (2024-01-02)
 
 

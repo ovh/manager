@@ -99,6 +99,7 @@ angular
             format: 'json',
           },
           resolve: {
+            goBack: /* @ngInject */ ($state) => () => $state.go('^'),
             breadcrumb: /* @ngInject */ ($translate) =>
               $translate.instant('iplb_vrack_private_network_edit_title'),
           },

@@ -7,6 +7,7 @@ import '@ovh-ux/ui-kit';
 
 import component from './attach-data.component';
 import routing from './attach-data.routing';
+import dataSync from './data-sync';
 
 const moduleName = 'ovhManagerPciNotebookAttachData';
 
@@ -17,6 +18,7 @@ angular
     'pascalprecht.translate',
     'oui',
     'ui.router',
+    dataSync,
   ])
   .config(routing)
   .component('ovhManagerPciProjectNotebookAttachData', component)

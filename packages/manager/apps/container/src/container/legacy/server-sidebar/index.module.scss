@@ -1,6 +1,7 @@
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_colors';
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_fonts';
 @import '@ovh-ux/ui-kit/dist/scss/tokens/_globals';
+@import '@ovhcloud/ods-theme-blue-jeans/index.css';
 @import './constants.scss';
 
 :export {
@@ -19,6 +20,10 @@
   > div.container:first-child {
     top: 0;
   }
+}
+
+.orderButtonContent {
+  margin-left: 10px;
 }
 
 @media (max-width: $device-breakpoint-tablet-max-width) {
@@ -48,53 +53,17 @@
   }
 }
 
-.sticky {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 1rem;
-  background-color: white;
-}
-
 .orderButton ~ .sticky {
   top: 4rem;
 }
 
-.menuItem {
-  height: $menu-row-height;
-  line-height: $menu-row-height;
-  a {
-    display: block;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    line-height: $menu-row-height;
-    vertical-align: middle;
-    color: $menu-text-color;
-    font-weight: 400;
-  }
-  a:hover {
-    color: $menu-text-color;
-  }
-  a:focus {
-    outline: initial;
-  }
-  button {
-    width: 100%;
-    text-align: left;
-    font-weight: bold;
-    color: $menu-text-color;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  button:hover {
-    color: $menu-text-color;
-  }
-}
+
+
 
 .orderButton {
   display: block;
+  width: 100%;
+  padding: 10px;
 }
 
 .subButton {
@@ -114,11 +83,20 @@
 .menuItemIcon {
   display: block;
   float: left;
-  min-width: 1.75rem;
+  padding-left: 15px;
   height: $menu-row-height;
   line-height: $menu-row-height;
   text-align: center;
-  overflow: hidden;
+  padding-right: 8px;
+}
+
+.menuItemSelected {
+  background-color: #e6f5fc;
+  width: 450px;
+}
+
+.menuItem{
+  line-height: $menu-row-height;
 }
 
 .searchField {
@@ -149,11 +127,13 @@
     background-color: #eff9fd;
     border-bottom-color: #89d7f8;
   }
+  .orderButtonContent {
+    padding-inline-start: 2px;
+    flex: 1;
+    text-align: left;
+  }
 }
 
-.menuItemSelected {
-  background-color: #e6f5fc;
-}
 
 .telecomLabel {
   font-size: 0.75rem;
@@ -175,4 +155,92 @@
   @media (min-width: $device-breakpoint-tablet-max-width) {
     opacity: 0;
   }
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.orderTrigger {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.iconOds{
+  padding-left: 10px;
+}
+
+.iconContainerStyle{
+  display: flex;
+  align-items: center;
+}
+.itemLink {
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+}
+
+.linkTextSelected {
+  font-weight: bold;
+}
+
+
+
+.linkText {
+  font-weight: normal;
+}
+
+.sticky {
+  position: relative;
+  background-color: white;
+  height: 35px;
+}
+
+.noSticky {
+  position: relative;
+
+}
+
+.itemLineAlign {
+  align-items: center;
+  justify-content: flex-start;
+  white-space: nowrap;
+}
+
+.spinnerLoading {
+  padding-left: 130px;
+}
+
+.subItem{
+  padding-left: 10px;
+
+}
+
+.iconPadding {
+  padding-left: 4px;
+  vertical-align: middle;
+}
+.textPadding {
+  padding-left: 8px;
+}
+.spinnerLoadingItem {
+  vertical-align: middle;
+}
+
+.transparentButton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.iconStyleColor{
+  color:#4D5592;
 }

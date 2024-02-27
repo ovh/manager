@@ -12,6 +12,7 @@ export default class ServersCtrl {
     this.$translate = $translate;
     this.ouiDatagridService = ouiDatagridService;
   }
+  // comment to use staging
 
   $onInit() {
     this.dedicatedServers.data = this.dedicatedServers.data.map(

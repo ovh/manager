@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.3.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.2.0...@ovh-ux/ng-ovh-utils@14.3.0) (2024-02-26)
+
+
+### Features
+
+* **iam:** enabling both local and federated accounts ([#10728](https://github.com/ovh/manager/issues/10728)) ([86934c5](https://github.com/ovh/manager/commit/86934c59cddeafcd04d944ab11cedafd89b2db22))
+
+
+
+
+
+# [14.2.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.1.1...@ovh-ux/ng-ovh-utils@14.2.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
 ## [14.1.1](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-utils@14.1.0...@ovh-ux/ng-ovh-utils@14.1.1) (2023-12-05)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-utils

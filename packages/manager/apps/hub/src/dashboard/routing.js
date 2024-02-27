@@ -1,22 +1,5 @@
 import { filter, get, groupBy, map, reverse, sortBy } from 'lodash-es';
 
-const getProducts = (services, order, catalog) => {
-  return get(services, 'data.count') === 0 && !order
-    ? groupBy(
-        filter(catalog.data, ({ highlight }) => highlight),
-        'universe',
-      )
-    : reverse(
-        sortBy(
-          map(services.data?.data, (service, productType) => ({
-            ...service,
-            productType,
-          })),
-          'count',
-        ),
-      );
-};
-
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.dashboard', {
     url: '/?expand',
@@ -34,14 +17,32 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
             serviceType: 'aapi',
           })
           .then((data) => data.data.data.services),
-      catalog: /* @ngInject */ ($http) =>
-        $http
-          .get('/hub/catalog', {
-            serviceType: 'aapi',
-          })
-          .then((data) => data.data.data.catalog),
-      products: /* @ngInject */ ($http, order, services, catalog) =>
-        getProducts(services, order, catalog),
+      products: /* @ngInject */ ($http, $q, order, services) => {
+        if (get(services, 'data.count') === 0 && !order) {
+          return $http
+            .get('/hub/catalog', {
+              serviceType: 'aapi',
+            })
+            .then((data) => {
+              const { catalog } = data.data.data;
+              return groupBy(
+                filter(catalog.data, ({ highlight }) => highlight),
+                'universe',
+              );
+            });
+        }
+        return $q.resolve(
+          reverse(
+            sortBy(
+              map(services.data?.data, (service, productType) => ({
+                ...service,
+                productType,
+              })),
+              'count',
+            ),
+          ),
+        );
+      },
       trackingPrefix: () => 'hub::dashboard',
       expandProducts: /* @ngInject */ ($state) => (expand) =>
         $state.go('.', {
@@ -51,15 +52,16 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       hideBreadcrumb: () => true,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('manager_hub_dashboard'),
-      callFeatureAvailabiltySiret: /* @ngInject */ (ovhFeatureFlipping) => {
-        const featureSiret = [
+      callFeatureAvailabilty: /* @ngInject */ (ovhFeatureFlipping) => {
+        const featuresName = [
           'hub:banner-hub-invite-customer-siret',
           'hub:popup-hub-invite-customer-siret',
           'hub:banner-iam-invite',
           'hub:banner-iam-ga-availability',
+          'hub:banner-rbx1-eol',
         ];
         return ovhFeatureFlipping
-          .checkFeatureAvailability(featureSiret)
+          .checkFeatureAvailability(featuresName)
           .then((features) => {
             return features;
           });

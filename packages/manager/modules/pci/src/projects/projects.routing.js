@@ -20,6 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
           injector.getAsync('activeProjects'),
           injector.getAsync('isRedirectRequired'),
           injector.getAsync('getTargetedState'),
+          injector.getAsync('onBoardingStateName'),
         ])
         .then(
           ([
@@ -28,9 +29,10 @@ export default /* @ngInject */ ($stateProvider) => {
             activeProjects,
             isRedirectRequired,
             getTargetedState,
+            onBoardingStateName,
           ]) => {
             if (!projects.length) {
-              return 'pci.projects.onboarding';
+              return onBoardingStateName;
             }
 
             // Redirect customer to right page
@@ -53,6 +55,12 @@ export default /* @ngInject */ ($stateProvider) => {
 
       confirmDeletion: /* @ngInject */ ($state) => (project) =>
         $state.go('pci.projects.remove', { projectId: project.project_id }),
+
+      setPciProjectModeTrackingProperty: /* @ngInject */ (atInternet) =>
+        atInternet.setPciProjectMode({
+          isDiscoveryProject: false,
+          projectId: '',
+        }),
 
       deals: /* @ngInject */ ($q, OvhApiCloud) =>
         OvhApiCloud.Aapi()
@@ -133,16 +141,18 @@ export default /* @ngInject */ ($stateProvider) => {
 
       projects: /* @ngInject */ (PciProjectsService) =>
         PciProjectsService.getProjects().then((projects) =>
-          projects.sort((project1, project2) => {
-            const project1SuspendedOrDebt =
-              project1.isSuspended() || project1.hasPendingDebt();
-            const project2SuspendedOrDebt =
-              project2.isSuspended() || project2.hasPendingDebt();
-            if (project1SuspendedOrDebt === project2SuspendedOrDebt) {
-              return 0;
-            }
-            return project1SuspendedOrDebt ? -1 : 1;
-          }),
+          projects
+            .filter((project) => !project.isTerminated())
+            .sort((project1, project2) => {
+              const project1SuspendedOrDebt =
+                project1.isSuspended() || project1.hasPendingDebt();
+              const project2SuspendedOrDebt =
+                project2.isSuspended() || project2.hasPendingDebt();
+              if (project1SuspendedOrDebt === project2SuspendedOrDebt) {
+                return 0;
+              }
+              return project1SuspendedOrDebt ? -1 : 1;
+            }),
         ),
 
       activeProjects: /* @ngInject */ (projects) => {
@@ -180,17 +190,25 @@ export default /* @ngInject */ ($stateProvider) => {
         return pciFeatures.isFeatureAvailable(PCI_FEATURES.OTHERS.TRUSTED_ZONE);
       },
 
+      isGridscaleLocalzoneAvailable: /* @ngInject */ (pciFeatures) => {
+        return pciFeatures.isFeatureAvailable(
+          PCI_FEATURES.INSTANCE_FLAVORS_CATEGORY.GRIDSCALE_LOCALZONE,
+        );
+      },
+
       /**
        * This function can be used to know if feature is accessible or not
        * @param pciFeatures { ovhFeatureFlipping }: feature flipping instance
        * @param projects { Array }: projects instance list
        * @returns {(function(*=): (string|boolean))|*}: state where the redirection is going, or false which mean no redirection required
        */
-      pciFeatureRedirect: /* @ngInject */ (pciFeatures, projects) => (
-        feature,
-      ) => {
+      pciFeatureRedirect: /* @ngInject */ (
+        pciFeatures,
+        projects,
+        onBoardingStateName,
+      ) => (feature) => {
         if (pciFeatures.isFeatureAvailable(feature)) {
-          return projects.length ? 'pci.projects' : 'pci.projects.onboarding';
+          return projects.length ? 'pci.projects' : onBoardingStateName;
         }
 
         return true;
@@ -243,13 +261,32 @@ export default /* @ngInject */ ($stateProvider) => {
       trackProjectCreationError: /* @ngInject */ (atInternet, numProjects) => (
         step,
         errorMessage,
-      ) =>
-        atInternet.trackPage({
+      ) => {
+        if (!step) {
+          return null;
+        }
+        return atInternet.trackPage({
           name: 'PublicCloud_project_creation_error_message',
           pciCreationStep: step,
           pciCreationErrorMessage: errorMessage,
           pciCreationNumProjects3: numProjects,
-        }),
+        });
+      },
+
+      // 2024-02-12 : At the time we introduce the discovery mode,
+      // users who are eligible for the "credit" payment method
+      // cannot upgrade a project from the discovery project plan code
+      // to the full featured project plan code.
+      // These users must use the classic project creation funnel.
+      onBoardingStateName: /* @ngInject */ (OvhApiCloud) =>
+        OvhApiCloud.v6()
+          .getEligibility()
+          .$promise.then(({ paymentMethodsAuthorized }) =>
+            paymentMethodsAuthorized.includes('credit')
+              ? 'pci.projects.new'
+              : 'pci.projects.onboarding',
+          )
+          .catch(() => 'pci.projects.onboarding'),
     },
   });
 };

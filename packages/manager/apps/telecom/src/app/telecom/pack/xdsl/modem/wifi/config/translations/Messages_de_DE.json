@@ -45,5 +45,12 @@
   "xdsl_modem_wifi_write_error": "Oups ! Nous n'avons pas pu mettre à jour votre wifi.",
   "xdsl_modem_wifi_config_info": "Une modification de configuration d'un réseau Wi-Fi est déjà en cours. Les modifications que vous allez apporter seront appliquées une fois cette modification terminée.",
   "xdsl_modem_wifi_WPA2andWPA3": "WPA2 und WPA3",
-  "xdsl_modem_wifi_WPA3": "WPA3"
+  "xdsl_modem_wifi_WPA3": "WPA3",
+  "xdsl_modem_wifi_config_show": "QR-Code anzeigen",
+  "xdsl_modem_wifi_config_modal_title": "WiFi Zugang",
+  "xdsl_modem_wifi_config_modal_description": "Den QR-Code mit Ihrem Smartphone scannen, um sich einzuloggen",
+  "xdsl_modem_wifi_config_modal_qrcode": "QR-Code für den Zugriff auf Ihr WLAN",
+  "xdsl_modem_wifi_config_modal_ssid": "SSID",
+  "xdsl_modem_wifi_config_modal_wifi_name": "WLAN-Name:",
+  "xdsl_modem_wifi_config_modal_modem_qrcode": "Der Hauptschlüssel wurde noch nicht geändert, Sie können den QR-Code Ihres Modems direkt verwenden."
 }

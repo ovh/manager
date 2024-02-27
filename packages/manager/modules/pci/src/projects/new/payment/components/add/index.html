@@ -1,124 +1,34 @@
-<div class="pci-project-new-payment-method-add">
-    <!--Info about save payment mean-->
-    <div class="mb-3">
-        <span
-            data-translate="pci_project_new_payment_method_save_explain_part_1"
-        ></span>
-        <span
-            class="font-weight-bold"
-            data-translate="pci_project_new_payment_method_save_explain_part_2"
-        >
-        </span>
-    </div>
-
-    <!--Payment methods-->
-    <div class="row">
-        <oui-select-picker
-            class="col-md-6 m-0 mb-3"
-            data-ng-repeat="authorizedPaymentMethod in $ctrl.authorizedPaymentMethods track by $index"
-            data-ng-if="$ctrl.isAuthorizedToUseSepaDirectDebit(authorizedPaymentMethod)"
-            data-disabled="$ctrl.globalLoading.finalize"
-            data-name="paymentType"
-            data-model="$ctrl.model.paymentMethod"
-            data-values="[authorizedPaymentMethod]"
-            data-on-change="$ctrl.onPaymentTypeRadioChange()"
-        >
-            <oui-select-picker-label class="w-100 text-center">
-                <span
-                    data-ng-bind=":: $ctrl.getPaymentMethodTypeText(authorizedPaymentMethod)"
-                ></span>
-            </oui-select-picker-label>
-        </oui-select-picker>
-    </div>
-    <p
-        data-ng-if="$ctrl.showSpecificCrossBorderSentenceForCardPayment()"
-        data-translate="pci_project_new_payment_method_add_credit_card_explain_ovh_transaction"
-    ></p>
-    <!--Credit card info banner-->
-    <oui-message
-        class="text-justify"
-        data-type="info"
-        data-ng-if="$ctrl.model.paymentMethod.type.isCreditCard() && !$ctrl.isDisplayableRupayCreditCardInfoBanner"
-    >
-        <span
-            class="font-weight-bold"
-            data-translate="pci_project_new_payment_method_add_credit_card_info_part_1"
-        ></span>
-        <span
-            data-translate="pci_project_new_payment_method_add_credit_card_info_part_2"
-        ></span>
-    </oui-message>
-
-    <!--Credit card / RuPay info banner for Indian customer-->
-    <oui-message
-        class="text-justify"
-        data-type="info"
-        data-ng-if="($ctrl.model.paymentMethod.type.isCreditCard() || $ctrl.model.paymentMethod.type.isRupayCard()) && $ctrl.isDisplayableRupayCreditCardInfoBanner"
-    >
-        <span
-            data-translate="pci_project_new_payment_method_add_credit_card_registration_charges_info"
-            data-translate-values="{ 'registrationCharges' : $ctrl.registrationCharges }"
-        ></span>
-    </oui-message>
-
-    <!--PAYPAL charged tax info banner-->
-    <oui-message
-        class="text-justify"
-        data-type="warning"
-        data-ng-if="$ctrl.isDisplayablePaypalChargeBanner && $ctrl.model.paymentMethod.type.isPaypal()"
-    >
-        <span
-            data-translate="pci_project_new_payment_method_add_warning_paypal_account"
-            data-translate-values="{ amount: ($ctrl.getPayPalChargeAmount() + $ctrl.customerCurrency) }"
-        ></span>
-    </oui-message>
-
-    <!--BANK-ACCOUNT info banner-->
-    <div data-ng-if="$ctrl.model.paymentMethod.paymentType !== 'CREDIT'">
-        <oui-message
-            data-type="warning"
-            data-ng-if="$ctrl.model.paymentMethod.type.isBankAccount()"
-        >
-            <span
-                data-translate="pci_project_new_payment_method_add_warning_bank_account"
-            ></span>
-        </oui-message>
-
-        <p>
-            <small
-                data-ng-if="$ctrl.model.paymentMethod && !$ctrl.model.paymentMethod.type.isCreditCard() && !$ctrl.model.paymentMethod.type.isRupayCard()"
-                data-translate="{{ 'pci_project_new_payment_method_add_info_' + $ctrl.model.paymentMethod.paymentType.toLowerCase() }}"
-                data-translate-values="{ paymentMethodSection: $ctrl.paymentSectionHref }"
-            >
-            </small>
-        </p>
-    </div>
-
-    <!--SEPA banner info-->
-    <div
-        class="text-justify"
-        data-ng-if="$ctrl.model.paymentMethod.type.isSepaDirectDebit()"
-    >
-        <!--Description-->
-        <p
-            data-translate="pci_project_new_payment_method_add_info_sepa_direct_debit_main_info"
-            data-translate-values="{ break: '<br>' }"
-        ></p>
-
-        <!--Redirection to Worldline banner info-->
-        <oui-message data-type="warning">
-            <span
-                data-translate="pci_project_new_payment_method_add_info_sepa_direct_debit_redirect_warn"
-                data-translate-values="{ break: '<br>' }"
-            ></span>
-        </oui-message>
-
-        <!--Data collect banner info-->
-        <oui-message data-type="info">
-            <span
-                data-translate="pci_project_new_payment_method_add_info_sepa_direct_debit_collect_data_info"
-                data-translate-values="{ break: '<br>' }"
-            ></span>
-        </oui-message>
-    </div>
+<div class="mb-3">
+    <span
+        data-translate="pci_project_new_payment_method_save_explain_part_1"
+    ></span>
+    <strong
+        data-translate="pci_project_new_payment_method_save_explain_part_2"
+    ></strong>
 </div>
+<ovh-payment-method-register
+    data-model="$ctrl.model"
+    data-model-name="paymentMethod"
+    data-default-payment-method-type="{{ $ctrl.model.paymentMethod.paymentType }}"
+    data-registered-payment-methods="$ctrl.authorizedPaymentMethods"
+    data-unregistered-payment-methods="$ctrl.unregisteredPaymentMethods"
+    data-force-set-as-default-choice="$ctrl.eligibility.isAddPaymentMethodRequired()"
+    data-show-default-explanation-texts="true"
+    data-default-explanation-texts-options="$ctrl.viewOptions.registerExplanationTexts || $ctrl.defaultExplanationTextsOptions"
+    data-payment-method-types-per-line="$ctrl.paymentsPerLine"
+    data-automatic-select="!!$ctrl.model.paymentMethod"
+    data-required="$ctrl.eligibility.isAddPaymentMethodRequired()"
+>
+    <ovh-payment-method-register-paypal-explanation-text>
+        <oui-message
+            class="text-justify"
+            data-type="warning"
+            data-ng-if="$ctrl.isDisplayablePaypalChargeBanner && $ctrl.model.paymentMethod.type.isPaypal()"
+        >
+            <span
+                data-translate="pci_project_new_payment_method_add_warning_paypal_account"
+                data-translate-values="{ amount: ($ctrl.getPayPalChargeAmount() + $ctrl.customerCurrency) }"
+            ></span>
+        </oui-message>
+    </ovh-payment-method-register-paypal-explanation-text>
+</ovh-payment-method-register>

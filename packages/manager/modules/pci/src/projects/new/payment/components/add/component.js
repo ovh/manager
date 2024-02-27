@@ -14,5 +14,6 @@ export default {
     registerablePaymentMethods: '<',
     pciFeatures: '<',
     isDisplayableRupayCreditCardInfoBanner: '<',
+    viewOptions: '<',
   },
 };

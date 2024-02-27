@@ -96,5 +96,15 @@
   "pci_projects_project_instances_windows_private_mode_description3": "Please refer to this guide",
   "pci_projects_project_instances_add_flavor_selected_title_without_price": "Template chosen: {{model}}",
   "pci_projects_project_instances_add_billing_coming_soon_message_title": "Monthly prices",
-  "pci_projects_project_instances_add_billing_coming_soon_message_description": "With the launch of Saving Plans, we will soon be able to bill you monthly."
+  "pci_projects_project_instances_add_billing_coming_soon_message_description": "With the launch of Saving Plans, we will soon be able to bill you monthly.",
+  "pci_projects_project_instances_add_localPrivateNetwork_sub_title": "Select a private network in a Local Zone",
+  "pci_projects_project_instances_add_localPrivateNetwork_label": "Select a private network in a Local Zone",
+  "pci_projects_project_instances_add_localPrivateNetwork_add": "Create a new private network in a Local Zone",
+  "pci_projects_project_instances_add_localPrivateNetwork_description": "This mode connects the instance to one of your private networks in a Local Zone.",
+  "pci_projects_project_instances_add_localPrivateNetwork_add_public_network_checkbox_label": "Public network",
+  "pci_projects_project_instances_add_localPrivateNetwork_add_public_network_info": "Your instance will now have a public network port connected to an IPv4 and an IPv6.",
+  "pci_projects_project_instances_add_localPrivateNetwork_placeholder": "Select a private network in a Local Zone",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode": "Local Private Mode",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode_description1": "Instances in “Local Private Mode” are not globally connected. Only instances in the same Local Zone can be connected via private networks in Local Zones. Local Zones are not compatible with your vRack.",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode_description2": "“Local Private Mode” uses DHCP to automatically provide IP addresses to your instances."
 }

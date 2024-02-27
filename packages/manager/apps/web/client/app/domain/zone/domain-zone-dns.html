@@ -369,14 +369,6 @@
                                         <span
                                             data-ng-bind="record.targetToDisplay"
                                         ></span>
-                                        <span
-                                            class="fa fa-exclamation-triangle text-warning ml-2"
-                                            aria-hidden="true"
-                                            data-ng-if="ctrlDomainTabZoneDns.targetIsRelativeDomain(record)"
-                                            data-oui-tooltip-placement="bottom"
-                                            data-oui-tooltip="{{:: 'domain_configuration_dns_entry_relative_warning_title' | translate }}&nbsp;&laquo;&nbsp;{{record.targetToDisplay}}.{{record.zoneToDisplay}}&nbsp;&raquo;&nbsp;"
-                                        >
-                                        </span>
                                     </td>
                                     <td class="text-right">
                                         <oui-action-menu
@@ -426,16 +418,8 @@
                     <button
                         class="btn btn-block btn-default"
                         type="button"
-                        data-translate="domain_configuration_dns_entry_see_dns_history_button"
-                        data-ng-click="ctrlDomainTabZoneDns.navigateToZoneHistory()"
-                        data-ng-if="!ctrlDomainTabZoneDns.loading.table && ctrlDomainTabZoneDns.hasResult"
-                    ></button>
-                    <button
-                        class="btn btn-block btn-default"
-                        type="button"
-                        data-translate="domain_configuration_zonedns_reset_title_button"
-                        data-ng-click="setAction('zone/reset/domain-zone-reset', ctrlDomainTabZoneDns.domain)"
-                        data-ng-if="ctrlDomainTabZoneDns.allowModification"
+                        data-translate="domain_tab_ZONE_default_import_button"
+                        data-ng-click="setAction('zone/import-text/domain-zone-import-text', ctrlDomainTabZoneDns.domain)"
                     ></button>
                     <button
                         class="btn btn-block btn-default"
@@ -448,8 +432,16 @@
                     <button
                         class="btn btn-block btn-default"
                         type="button"
-                        data-translate="domain_tab_ZONE_default_import_button"
-                        data-ng-click="setAction('zone/import-text/domain-zone-import-text', ctrlDomainTabZoneDns.domain)"
+                        data-translate="domain_configuration_dns_entry_see_dns_history_button"
+                        data-ng-click="ctrlDomainTabZoneDns.navigateToZoneHistory()"
+                        data-ng-if="!ctrlDomainTabZoneDns.loading.table && ctrlDomainTabZoneDns.hasResult"
+                    ></button>
+                    <button
+                        class="btn btn-block btn-default"
+                        type="button"
+                        data-translate="domain_configuration_zonedns_reset_title_button"
+                        data-ng-click="setAction('zone/reset/domain-zone-reset', ctrlDomainTabZoneDns.domain)"
+                        data-ng-if="ctrlDomainTabZoneDns.allowModification"
                     ></button>
                     <button
                         class="btn btn-block btn-default"

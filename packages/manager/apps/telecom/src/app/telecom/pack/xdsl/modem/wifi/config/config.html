@@ -94,9 +94,16 @@
 
                     <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item
-                            on-click="ConfigWifiCtrl.setSelectedWifi($row)"
+                            data-on-click="ConfigWifiCtrl.setSelectedWifi($row)"
                         >
                             <span data-translate="edit"></span>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            data-on-click="ConfigWifiCtrl.showQRcode($row)"
+                        >
+                            <span
+                                data-translate="xdsl_modem_wifi_config_show"
+                            ></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-datagrid>

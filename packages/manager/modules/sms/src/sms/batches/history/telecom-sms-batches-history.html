@@ -5,6 +5,7 @@
 </header>
 
 <section class="container-fluid">
+    <tuc-toast-message></tuc-toast-message>
     <oui-message
         type="success"
         data-ng-if="$ctrl.hasCancelled"
@@ -104,6 +105,12 @@
                 disabled="$ctrl.isDownloading"
             >
                 <span data-translate="sms_batches_download"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-on-click="$ctrl.goToDeleteBatch($row.id, $row.name)"
+                disabled="$ctrl.isDownloading"
+            >
+                <span data-translate="sms_batches_delete"></span>
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>

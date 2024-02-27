@@ -6,7 +6,7 @@
   "pci_projects_project_network_private_create_configure_mask": "Maska:",
   "pci_projects_project_network_private_create_configure_choose_vlan": "Wybierz ID sieci VLAN",
   "pci_projects_project_network_private_create_configure_vlan": "ID sieci VLAN:",
-  "pci_projects_project_network_private_create_configure_vlan_limits": "Wartość między 2 a 4000",
+  "pci_projects_project_network_private_create_configure_vlan_limits": "Wartość między 0 a 4000",
   "pci_projects_project_network_private_create_configure_vlan_taken": "Ta sieć VLAN jest już zajęta.",
   "pci_projects_project_network_private_create_configure_api": "Możesz dostosować Twoje zakresy adresów za pomocą API.",
   "pci_projects_project_network_private_create_localisation": "Lokalizacja",
@@ -35,5 +35,6 @@
   "pci_projects_project_network_private_create_next": "Dalej",
   "pci_projects_project_network_private_create_loading": "Trwa tworzenie prywatnej sieci. Może to zająć kilka minut.",
   "pci_projects_project_network_private_create_success": "Prywatna sieć została utworzona.",
-  "pci_projects_project_network_private_create_error": "Wystąpił błąd podczas tworzenia sieci prywatnej: {{ message }}"
+  "pci_projects_project_network_private_create_error": "Wystąpił błąd podczas tworzenia sieci prywatnej: {{ message }}",
+  "pci_projects_project_network_private_create_vlan_id_warning": "Identyfikator VLAN 0 jest domyślnie używany w innych produktach, w tym także tych spoza środowiska Public Cloud. Prywatnymi adresami IP należy zarządzać ostrożnie."
 }

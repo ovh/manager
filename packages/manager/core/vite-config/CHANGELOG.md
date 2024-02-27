@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.3.0...@ovh-ux/manager-vite-config@0.4.0) (2024-02-26)
+
+
+### Features
+
+* make it easy to target LABEU instead of PROD api ([#10878](https://github.com/ovh/manager/issues/10878)) ([f7e5045](https://github.com/ovh/manager/commit/f7e5045545056cdf6d3164e08ec63d08e5ed747e))
+
+
+
+
+
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.2.1...@ovh-ux/manager-vite-config@0.3.0) (2024-01-04)
+
+
+### Features
+
+* **container.sidebar:** remove chakra ui ([#10627](https://github.com/ovh/manager/issues/10627)) ([78a3a90](https://github.com/ovh/manager/commit/78a3a902a5ed6e0edae011b19751319360867c03))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-vite-config@0.2.0...@ovh-ux/manager-vite-config@0.2.1) (2023-09-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-vite-config

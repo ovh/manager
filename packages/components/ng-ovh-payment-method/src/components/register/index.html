@@ -1,107 +1,158 @@
-<div>
-    <!-- Introduction Text -->
-    <div data-ng-transclude="introductionText"></div>
+<ng-form name="$ctrl.form">
+    <div>
+        <!-- Introduction Text -->
+        <div data-ng-transclude="introductionText"></div>
 
-    <!-- Payment method type choice -->
-    <div class="text-center" data-ng-if="$ctrl.loading.init">
-        <oui-spinner></oui-spinner>
-    </div>
+        <!-- Payment method type choice -->
+        <div class="text-center" data-ng-if="$ctrl.loading.init">
+            <oui-spinner></oui-spinner>
+        </div>
 
-    <div
-        class="row"
-        data-ng-if="!$ctrl.loading.init"
-        data-ng-repeat="paymentTypeChunk in $ctrl.availablePaymentMethodTypes.chunks track by $index"
-    >
         <div
-            class="mb-3"
-            data-ng-class="'col-md-6 col-lg-' + (12 / $ctrl.paymentMethodTypesPerLine)"
-            data-ng-repeat="paymentMethodType in paymentTypeChunk track by $index"
+            class="row"
+            data-ng-if="!$ctrl.loading.init"
+            data-ng-repeat="paymentTypeChunk in $ctrl.availablePaymentMethodTypes.chunks track by $index"
         >
-            <oui-radio
-                class="h-100"
-                data-thumbnail
-                data-value="paymentMethodType"
-                data-model="$ctrl.model.selectedPaymentMethodType"
+            <div
+                class="mb-3"
+                data-ng-class="'col-md-6 col-lg-' + (12 / $ctrl.paymentMethodTypesPerLine)"
+                data-ng-repeat="paymentMethodType in paymentTypeChunk | filter: $ctrl.filterPaymentMethod track by $index"
             >
+                <oui-radio
+                    class="h-100"
+                    data-thumbnail
+                    data-value="paymentMethodType"
+                    data-model="$ctrl.model.selectedPaymentMethodType"
+                    data-on-change="$ctrl.resetForm()"
+                    data-required="$ctrl.required"
+                >
+                    <div
+                        data-ng-bind="$ctrl.ovhPaymentMethodHelper.getPaymentMethodTypeText(paymentMethodType)"
+                    ></div>
+                    <img
+                        class="payment-method-type-icon"
+                        data-ng-if="paymentMethodType.icon.data"
+                        data-ng-src="{{ paymentMethodType.icon.data }}"
+                        data-ng-attr-alt="{{ :: paymentMethodType.paymentType.text }}"
+                        alt
+                    />
+                    <span
+                        data-ng-if="paymentMethodType.icon.className"
+                        data-ng-class="paymentMethodType.icon.className"
+                        aria-hidden="true"
+                    ></span>
+                </oui-radio>
+            </div>
+        </div>
+
+        <!-- Default payment method type choice explanations -->
+        <div
+            data-ng-if="
+                $ctrl.showDefaultExplanationTexts &&
+                paymentType === $ctrl.model.selectedPaymentMethodType.paymentType
+            "
+            data-ng-repeat="(paymentType, paymentName) in {
+                CREDIT_CARD: 'creditCard',
+                SEPA_DIRECT_DEBIT: 'sepa',
+                PAYPAL: 'paypal',
+                RUPAY: 'rupay',
+            }"
+        >
+            <div data-ng-transclude="{{ paymentName }}ExplanationText">
                 <div
-                    data-ng-bind="$ctrl.ovhPaymentMethodHelper.getPaymentMethodTypeText(paymentMethodType)"
+                    data-ng-include="'ng-ovh-payment-method/' + paymentName + 'ExplanationTextContainer.html'"
                 ></div>
-                <img
-                    class="payment-method-type-icon"
-                    data-ng-if="paymentMethodType.icon.data"
-                    data-ng-src="{{ paymentMethodType.icon.data }}"
-                    data-ng-attr-alt="{{ :: paymentMethodType.paymentType.text }}"
-                    alt
-                />
-            </oui-radio>
+            </div>
+            <div
+                data-ng-if="$ctrl.$transclude.isSlotFilled(paymentName + 'ExplanationText')"
+                data-ng-include="'ng-ovh-payment-method/' + paymentName + 'ExplanationTextContainer.html'"
+            ></div>
+        </div>
+
+        <!-- Slot for custom method type choice explanation -->
+        <div
+            data-ng-if="!$ctrl.showDefaultExplanationTexts"
+            data-ng-transclude="explanationText"
+        ></div>
+
+        <!-- set as default -->
+        <div
+            class="mt-3"
+            data-ng-if="
+                $ctrl.model.selectedPaymentMethodType.registerable &&
+                $ctrl.showSetAsDefaultChoice &&
+                !$ctrl.coreConfig.isRegion('US')
+            "
+        >
+            <p
+                data-ng-if="$ctrl.registeredPaymentMethods.length === 0 && $ctrl.automaticDefault"
+                data-translate="ovh_payment_method_register_force_as_default"
+            ></p>
+            <oui-field>
+                <oui-checkbox
+                    name="setAsDefault"
+                    data-model="$ctrl.model.setAsDefault"
+                    data-ng-if="$ctrl.registeredPaymentMethods.length > 0 || !$ctrl.automaticDefault"
+                    data-required="$ctrl.forceSetAsDefaultChoice"
+                >
+                    <span
+                        data-translate="ovh_payment_method_register_set_as_default_choice"
+                    ></span>
+                </oui-checkbox>
+            </oui-field>
+
+            <oui-message class="mb-3 text-justify" type="info">
+                <span
+                    data-translate="{{:: $ctrl.hasDefaultPaymentMethod ? 'ovh_payment_method_register_set_as_default_choice_information_has_default_payment_method' : 'ovh_payment_method_register_set_as_default_choice_information_no_default_payment_method_ovh_sas' }}"
+                ></span>
+                <span
+                    data-translate="ovh_payment_method_register_set_as_default_choice_information"
+                ></span>
+            </oui-message>
+        </div>
+        <div
+            data-ng-if="
+                $ctrl.model.selectedPaymentMethodType.registerable &&
+                $ctrl.showSetAsDefaultChoice &&
+                $ctrl.coreConfig.isRegion('US')
+            "
+        >
+            <p
+                data-ng-if="$ctrl.registeredPaymentMethods.length === 0 && $ctrl.automaticDefault"
+            >
+                <span
+                    data-ng-if="$ctrl.model.selectedPaymentMethodType.type.paymentType === $ctrl.PAYPAL_PAYMENT_METHOD"
+                    data-translate="ovh_payment_method_register_force_as_default_paypal_US"
+                ></span>
+                <span
+                    data-ng-if="$ctrl.model.selectedPaymentMethodType.type.paymentType !== $ctrl.PAYPAL_PAYMENT_METHOD"
+                    data-translate="ovh_payment_method_register_force_as_default"
+                ></span>
+            </p>
+
+            <oui-field>
+                <oui-checkbox
+                    name="setAsDefault"
+                    class="mb-3"
+                    data-model="$ctrl.model.setAsDefault"
+                    data-ng-if="$ctrl.registeredPaymentMethods.length > 0 || !$ctrl.automaticDefault"
+                    data-required="$ctrl.forceSetAsDefaultChoice"
+                >
+                    <span
+                        data-translate="ovh_payment_method_register_set_as_default_choice"
+                    ></span>
+                </oui-checkbox>
+            </oui-field>
+
+            <oui-message
+                class="mb-3"
+                data-ng-if="$ctrl.model.setAsDefault && ($ctrl.registeredPaymentMethods.length > 0 || !$ctrl.automaticDefault)"
+                type="info"
+            >
+                <span
+                    data-translate="ovh_payment_method_register_set_as_default_choice_information_US"
+                ></span>
+            </oui-message>
         </div>
     </div>
-
-    <!-- Payment method type choice explanation -->
-    <div data-ng-transclude="explanationText"></div>
-
-    <!-- set as default -->
-    <div
-        data-ng-if="$ctrl.showSetAsDefaultChoice && !$ctrl.coreConfig.isRegion('US')"
-    >
-        <p
-            data-ng-if="$ctrl.registeredPaymentMethods.length === 0 && $ctrl.automaticDefault"
-            data-translate="ovh_payment_method_register_force_as_default"
-        ></p>
-
-        <oui-checkbox
-            class="mb-3"
-            data-model="$ctrl.model.setAsDefault"
-            data-ng-if="$ctrl.registeredPaymentMethods.length > 0 || !$ctrl.automaticDefault"
-        >
-            <span
-                data-translate="ovh_payment_method_register_set_as_default_choice"
-            ></span>
-        </oui-checkbox>
-
-        <oui-message class="mb-3 text-justify" type="info">
-            <span
-                data-translate="{{:: $ctrl.hasDefaultPaymentMethod ? 'ovh_payment_method_register_set_as_default_choice_information_has_default_payment_method' : 'ovh_payment_method_register_set_as_default_choice_information_no_default_payment_method_ovh_sas' }}"
-            ></span>
-            <span
-                data-translate="ovh_payment_method_register_set_as_default_choice_information"
-            ></span>
-        </oui-message>
-    </div>
-    <div
-        data-ng-if="$ctrl.showSetAsDefaultChoice && $ctrl.coreConfig.isRegion('US')"
-    >
-        <p
-            data-ng-if="$ctrl.registeredPaymentMethods.length === 0 && $ctrl.automaticDefault"
-        >
-            <span
-                data-ng-if="$ctrl.model.selectedPaymentMethodType.type.paymentType === $ctrl.PAYPAL_PAYMENT_METHOD"
-                data-translate="ovh_payment_method_register_force_as_default_paypal_US"
-            ></span>
-            <span
-                data-ng-if="$ctrl.model.selectedPaymentMethodType.type.paymentType !== $ctrl.PAYPAL_PAYMENT_METHOD"
-                data-translate="ovh_payment_method_register_force_as_default"
-            ></span>
-        </p>
-
-        <oui-checkbox
-            class="mb-3"
-            data-model="$ctrl.model.setAsDefault"
-            data-ng-if="$ctrl.registeredPaymentMethods.length > 0 || !$ctrl.automaticDefault"
-        >
-            <span
-                data-translate="ovh_payment_method_register_set_as_default_choice"
-            ></span>
-        </oui-checkbox>
-
-        <oui-message
-            class="mb-3"
-            data-ng-if="$ctrl.model.setAsDefault && ($ctrl.registeredPaymentMethods.length > 0 || !$ctrl.automaticDefault)"
-            type="info"
-        >
-            <span
-                data-translate="ovh_payment_method_register_set_as_default_choice_information_US"
-            ></span>
-        </oui-message>
-    </div>
-</div>
+</ng-form>

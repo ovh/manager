@@ -3,6 +3,203 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.23.1...@ovh-ux/manager-dedicated@19.24.0) (2024-02-26)
+
+
+### Features
+
+* **dedicated.account:** enable fields while kyc is not validated ([#10844](https://github.com/ovh/manager/issues/10844)) ([a8cec03](https://github.com/ovh/manager/commit/a8cec03bf6c22c202744dc1c243bf5163e46efb2))
+* **dedicated:** a banner to inform vmware customer about nsxv eol ([#10952](https://github.com/ovh/manager/issues/10952)) ([2c4bae0](https://github.com/ovh/manager/commit/2c4bae0f2cd3cd8a71c472b7260f0ebc5551e62f))
+* eol rbx1 banner ([#10626](https://github.com/ovh/manager/issues/10626)) ([1003ee6](https://github.com/ovh/manager/commit/1003ee6571fa8be088cde1c665d01797a7348a83))
+* **iam:** enabling both local and federated accounts ([#10728](https://github.com/ovh/manager/issues/10728)) ([86934c5](https://github.com/ovh/manager/commit/86934c59cddeafcd04d944ab11cedafd89b2db22))
+
+
+
+
+
+## [19.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.23.0...@ovh-ux/manager-dedicated@19.23.1) (2024-02-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [19.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.22.1...@ovh-ux/manager-dedicated@19.23.0) (2024-02-20)
+
+
+### Bug Fixes
+
+* **dedicated.vmware:** display error field if user name is not correct ([c558bbb](https://github.com/ovh/manager/commit/c558bbb001b44ae9e548b4f699e88d657192eb92))
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10943](https://github.com/ovh/manager/issues/10943)) ([3d0e354](https://github.com/ovh/manager/commit/3d0e3546319682e1efbfd825f77017ed81b7d80c))
+* **pcc.vmware:** a banner to inform vmware customer about nsxv eol ([#10590](https://github.com/ovh/manager/issues/10590)) ([20b20fc](https://github.com/ovh/manager/commit/20b20fc5c647421f6a56ba0348a5afcbfad8b9c3))
+
+
+### Reverts
+
+* Revert "feat(pcc.vmware): a banner to inform vmware customer about nsxv eol (…" ([9fd9160](https://github.com/ovh/manager/commit/9fd91606f207953770e1fe1b3039e7a45ffcb266))
+
+
+
+
+
+## [19.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.22.0...@ovh-ux/manager-dedicated@19.22.1) (2024-02-16)
+
+
+### Reverts
+
+* Revert "feat(dedicated): remove legacy BringYourOwnImage component (#10824)" ([2d1fff6](https://github.com/ovh/manager/commit/2d1fff6cf6d4c3c6f512d9eac5c446dfe08724a9)), closes [#10824](https://github.com/ovh/manager/issues/10824)
+
+
+
+
+
+# [19.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.21.0...@ovh-ux/manager-dedicated@19.22.0) (2024-02-16)
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10824](https://github.com/ovh/manager/issues/10824)) ([ec65f97](https://github.com/ovh/manager/commit/ec65f97f114c5172f8a63f485ececd383fbd9eee))
+
+
+
+
+
+# [19.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.20.0...@ovh-ux/manager-dedicated@19.21.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
+# [19.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.19.2...@ovh-ux/manager-dedicated@19.20.0) (2024-02-12)
+
+
+### Features
+
+* update labels for indian account creation and KYC india ([#10675](https://github.com/ovh/manager/issues/10675)) ([92711f5](https://github.com/ovh/manager/commit/92711f5ba3c907fe04aae717ed0a14eb3459ff3a))
+
+
+
+
+
+## [19.19.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.19.1...@ovh-ux/manager-dedicated@19.19.2) (2024-02-05)
+
+
+### Bug Fixes
+
+* **dedicated:** fix popover filter on license ip order ([#10779](https://github.com/ovh/manager/issues/10779)) ([a6af672](https://github.com/ovh/manager/commit/a6af672f1f782e3fcc51c399d4cfa07c4492c003))
+* **dedicated:** remove redudant server dashboard import ([#10829](https://github.com/ovh/manager/issues/10829)) ([2e61efb](https://github.com/ovh/manager/commit/2e61efb925afd99d24b6cd369f4cc5f8d92f5be2))
+
+
+
+
+
+## [19.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.19.0...@ovh-ux/manager-dedicated@19.19.1) (2024-01-31)
+
+
+### Bug Fixes
+
+* **dedicated.vmware:** new workflow for add vdc ([#10167](https://github.com/ovh/manager/issues/10167)) ([ae20e7b](https://github.com/ovh/manager/commit/ae20e7b3c02c7b1aa2fc8b742beb76f93fa55740))
+
+
+
+
+
+# [19.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.18.2...@ovh-ux/manager-dedicated@19.19.0) (2024-01-29)
+
+
+### Bug Fixes
+
+* **dedicated:** fix cdn domain translation keys ([#10737](https://github.com/ovh/manager/issues/10737)) ([369d04b](https://github.com/ovh/manager/commit/369d04bdb8c40f83c0130d2dc921d4349a727946))
+* **dedicated:** minor monitoring fixes ([#10535](https://github.com/ovh/manager/issues/10535)) ([fff7c3a](https://github.com/ovh/manager/commit/fff7c3aab9be652ec1672f3c8827c7a4391e8bef))
+* **dedicated:** update us documentation links in datastores ([#10604](https://github.com/ovh/manager/issues/10604)) ([1ee6c7e](https://github.com/ovh/manager/commit/1ee6c7ebba9999ae74d8f14fb1baa2ca1b8fe6c8))
+
+
+### Features
+
+* **dedicated.ip:** select country during ip order for hpc ([#10685](https://github.com/ovh/manager/issues/10685)) ([3216b05](https://github.com/ovh/manager/commit/3216b05a5c08e9c1c2f48a6f299abfcc37dd1d45))
+* **dedicated.nas:** api nas deprecated ([#10623](https://github.com/ovh/manager/issues/10623)) ([4a957e0](https://github.com/ovh/manager/commit/4a957e08b590fc24dec3a3c543f1718431cd4406))
+* **dedicated:** add commercial name in general information tab ([#10642](https://github.com/ovh/manager/issues/10642)) ([a8c99c4](https://github.com/ovh/manager/commit/a8c99c40f353ddc983bd0e10e8e555d7fde1dec4))
+* **dedicated:** implement os-dynamic form in ovh and gabarit wizards ([#10557](https://github.com/ovh/manager/issues/10557)) ([15a8478](https://github.com/ovh/manager/commit/15a84786f42f5941b1a8b51bd40a4c9e5bf0706c))
+
+
+
+
+
+## [19.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.18.1...@ovh-ux/manager-dedicated@19.18.2) (2024-01-26)
+
+
+### Reverts
+
+* Revert "fix(dedicated.vmware): new workflow for add vdc (#10167)" ([9def599](https://github.com/ovh/manager/commit/9def5999b4cb6e7604fcd1174a6fcaaedf109d4b)), closes [#10167](https://github.com/ovh/manager/issues/10167)
+
+
+
+
+
+## [19.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.18.0...@ovh-ux/manager-dedicated@19.18.1) (2024-01-25)
+
+
+### Bug Fixes
+
+* **dedicated.vmware:** new workflow for add vdc ([#10167](https://github.com/ovh/manager/issues/10167)) ([cbf8c11](https://github.com/ovh/manager/commit/cbf8c11b6ccc8eb2877c26bb472fe78fa145a9d2))
+
+
+
+
+
+# [19.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.17.1...@ovh-ux/manager-dedicated@19.18.0) (2024-01-22)
+
+
+### Bug Fixes
+
+* **dedicated.license:** use inputted ip to retrieve orderable licenses ([#10583](https://github.com/ovh/manager/issues/10583)) ([9913666](https://github.com/ovh/manager/commit/99136667ed8b321d37c3471bce38bf6ebdbcc3ee))
+
+
+### Features
+
+* **dedicated:** use display name instead of name on server list ([#10632](https://github.com/ovh/manager/issues/10632)) ([6a8da89](https://github.com/ovh/manager/commit/6a8da89032e1867e8a8e3bc419f2baa7620b52e6))
+
+
+
+
+
+## [19.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.17.0...@ovh-ux/manager-dedicated@19.17.1) (2024-01-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [19.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.16.2...@ovh-ux/manager-dedicated@19.17.0) (2024-01-04)
+
+
+### Features
+
+* **container.sidebar:** remove chakra ui ([#10627](https://github.com/ovh/manager/issues/10627)) ([78a3a90](https://github.com/ovh/manager/commit/78a3a902a5ed6e0edae011b19751319360867c03))
+
+
+
+
+
+## [19.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.16.1...@ovh-ux/manager-dedicated@19.16.2) (2024-01-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 ## [19.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.16.0...@ovh-ux/manager-dedicated@19.16.1) (2024-01-02)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms",
-  "version": "8.13.11",
+  "version": "8.16.0",
   "private": true,
   "description": "SMS product.",
   "repository": {
@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.0.1",
-    "@ovh-ux/ui-kit": "^6.7.4",
+    "@ovh-ux/ui-kit": "^6.7.7",
     "bootstrap": "~3.3.7"
   },
   "peerDependencies": {
@@ -34,12 +34,14 @@
     "@ovh-ux/ng-ovh-telecom-universe-components": "^6.0.0 || ^7.0.0",
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.0.4",
     "@ovh-ux/ng-pagination-front": "^10.1.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.1.7",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
     "@ovh-ux/ng-ui-router-layout": "^4.1.0",
-    "@ovh-ux/ui-kit": "^6.5.3",
+    "@ovh-ux/ui-kit": "^6.7.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-messages": "^1.7.6",
+    "angular-translate": "^2.11.0",
     "angular-ui-validate": "^1.2.3",
     "font-awesome": "4.7.0",
     "moment": "^2.24.0",

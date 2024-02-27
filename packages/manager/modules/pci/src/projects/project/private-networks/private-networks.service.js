@@ -19,17 +19,24 @@ export default class {
     this.OvhApiCloudProjectNetworkPrivateSubnet = OvhApiCloudProjectNetworkPrivateSubnet;
   }
 
-  getPrivateNetworks(serviceName) {
+  getPrivateNetworks(serviceName, customerRegions = []) {
     return this.$http
       .get(`/cloud/project/${serviceName}/aggregated/network`)
       .then(({ data }) => {
         const privateNetworks = {};
+        const localZones =
+          customerRegions?.filter(({ type }) => type.includes('localzone')) ||
+          [];
         data.resources.forEach((network) => {
-          if (network.visibility === 'private') {
+          if (
+            network.visibility === 'private' &&
+            !localZones?.some((region) => region.name === network.region)
+          ) {
             if (!privateNetworks[network.vlanId]) {
               const { id, region, ...rest } = network;
               privateNetworks[network.vlanId] = {
                 ...rest,
+                region,
                 subnets: [{ region, networkId: id }],
               };
             } else {
@@ -42,6 +49,35 @@ export default class {
           }
         });
         return sortBy(Object.values(privateNetworks), 'vlanId');
+      });
+  }
+
+  getLocalPrivateNetworks(serviceName, customerRegions) {
+    return this.$http
+      .get(`/cloud/project/${serviceName}/aggregated/network`)
+      .then(({ data }) => {
+        const localZones = customerRegions.filter(({ type }) =>
+          type.includes('localzone'),
+        );
+        const localZoneNetworks = data.resources.filter((network) => {
+          return (
+            network.visibility === 'private' &&
+            localZones.some((region) => region.name === network.region)
+          );
+        });
+
+        return this.$q.all(
+          localZoneNetworks.map((network) =>
+            this.getSubnets(serviceName, network.region, network.id).then(
+              (subnet) => {
+                const allocatedIp = subnet.allocationPools
+                  .map((ipPool) => `${ipPool.start} - ${ipPool.end}`)
+                  .join(' ,');
+                return { allocatedIp, ...subnet, ...network };
+              },
+            ),
+          ),
+        );
       });
   }
 

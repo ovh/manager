@@ -1,7 +1,7 @@
 <oui-header data-heading="{{:: 'pci_database_add_title' | translate }}">
     <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
         <oui-guide-menu-item
-            data-ng-repeat="guide in $ctrl.guideUrl.databases track by $index"
+            data-ng-repeat="guide in $ctrl.filteredGuides track by $index"
             data-href="{{:: guide.url }}"
             data-on-click="$ctrl.trackClick($ctrl.guideTrackingSectionTags.databases + guide.tracking)"
             data-external
@@ -30,6 +30,12 @@
     ></a>
     <span data-translate="pci_database_add_description3"></span>
 </p>
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    data-tracking-page-name="PublicCloud::pci::projects::project::storages::databases::add"
+></pci-activate-project-banner>
+
 <div class="row">
     <div class="col-lg-9">
         <form novalidate>
@@ -529,7 +535,7 @@
                     variant="primary"
                     block
                     on-click="$ctrl.createDatabase()"
-                    disabled="!$ctrl.isNetworkSelected() || $ctrl.processingOrder"
+                    disabled="!$ctrl.isNetworkSelected() || $ctrl.processingOrder || $ctrl.isDiscoveryProject"
                 >
                     <span
                         data-ng-if="!$ctrl.processingOrder"

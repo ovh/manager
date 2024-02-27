@@ -1,0 +1,107 @@
+<div data-ui-view>
+    <div class="octavia-load-balancers">
+        <oui-header
+            data-heading="{{ :: 'octavia_load_balancers_title' | translate }}"
+        ></oui-header>
+
+        <oui-datagrid
+            class="table-striped"
+            data-rows="$ctrl.resources"
+            data-customizable
+        >
+            <oui-datagrid-topbar>
+                <oui-button
+                    data-ng-click="$ctrl.goToCreatePage()"
+                    variant="secondary"
+                    icon-left="oui-icon-plus"
+                >
+                    <span
+                        data-translate="octavia_load_balancers_add_button"
+                    ></span>
+                </oui-button>
+            </oui-datagrid-topbar>
+
+            <oui-datagrid-column
+                data-title=":: 'octavia_load_balancer_name' | translate"
+                data-property="name"
+                data-filterable
+                data-sortable
+                data-type="string"
+                data-prevent-customization
+                class="lb-name-column"
+            >
+                <text-accordion class="lb-name-column">
+                    <a
+                        data-ng-href="{{:: $ctrl.dashboardPageLink($row)}}"
+                        data-track-on="click"
+                        data-track-name="{{:: $ctrl.dashboardPageTracking}}"
+                        data-track-type="action"
+                        data-ng-bind="$value"
+                    >
+                    </a>
+                </text-accordion>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'octavia_load_balancer_region' | translate"
+                data-property="region"
+                data-sortable
+                data-type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'octavia_load_balancer_ip' | translate"
+                data-property="vipAddress"
+                data-sortable
+                data-type="string"
+            >
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'octavia_load_balancer_creation_date' | translate"
+                data-property="createdAt"
+                data-sortable
+            >
+                <span
+                    data-ng-bind="$row.createdAt | date:'dd/MM/yyyy hh:mm'"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'octavia_load_balancer_provisioning_status' | translate"
+                data-property="provisioningStatus"
+                data-sortable
+                data-type="options"
+            >
+                <span
+                    class="oui-badge"
+                    data-ng-class="$ctrl.provisioningStatusBadges[$value]"
+                    data-translate="{{:: 'octavia_load_balancer_provisioning_status_' + $value }}"
+                ></span>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title=":: 'octavia_load_balancer_operating_status' | translate"
+                data-property="operatingStatus"
+                data-sortable
+                data-type="options"
+            >
+                <span
+                    class="oui-badge"
+                    data-ng-class="$ctrl.operatingStatusBadges[$value]"
+                    data-translate="{{:: 'octavia_load_balancer_operating_status_' + $value }}"
+                ></span>
+            </oui-datagrid-column>
+            <oui-action-menu compact data-placement="end">
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToDashboardPage($row)"
+                    ><span
+                        data-translate="octavia_load_balancer_actions_detail"
+                    ></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    data-on-click="$ctrl.goToDeleteLoadBalancer($row)"
+                    ><span
+                        data-translate="octavia_load_balancer_actions_delete"
+                    ></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid>
+    </div>
+</div>

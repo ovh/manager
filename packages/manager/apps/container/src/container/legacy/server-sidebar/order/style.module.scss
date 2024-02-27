@@ -11,6 +11,7 @@
   z-index: $sidebar-z-index + 2;
   border-radius: 8px;
   box-shadow: 0 0 6px 0 rgba(0, 14, 156, 0.2);
+  margin-top: 5px;
 
   @media (max-width: $device-breakpoint-tablet-max-width) {
     top: 4rem !important;
@@ -36,13 +37,21 @@
   position: absolute;
   top: 8px;
   right: 8px;
+
   button {
     color: #2859c0;
   }
 
-  @media (min-width: $device-breakpoint-tablet-max-width + 1px) {
+  @media (min-width: 48em) {
     display: none;
   }
+}
+.transparentButton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
 }
 
 .popupItemExternalLink {
@@ -52,3 +61,8 @@
 .popupItem:hover .popupItemExternalLink {
   visibility: visible;
 }
+
+.buttonMenu {
+  width: auto;
+}
+

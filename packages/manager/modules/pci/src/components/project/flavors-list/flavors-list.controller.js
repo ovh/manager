@@ -9,16 +9,19 @@ import { TAGS_BLOB } from '../../../constants';
 
 export default class FlavorsListController {
   /* @ngInject */
-  constructor($filter, $q, $state, coreConfig, PciProjectFlavors) {
+  constructor($filter, $q, $state, coreConfig, PciProjectFlavors, PciProject) {
     this.$filter = $filter;
     this.$q = $q;
     this.$state = $state;
     this.coreConfig = coreConfig;
     this.PciProjectFlavors = PciProjectFlavors;
+    this.PciProject = PciProject;
   }
 
   $onInit() {
     this.quotaUrl = this.$state.href('pci.projects.project.quota');
+    this.globalRegionsUrl = this.PciProject.getDocumentUrl('GLOBAL_REGIONS');
+    this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
     this.isLoading = true;
     this.flavorCount = this.flavorCount || 1;
     return this.$q

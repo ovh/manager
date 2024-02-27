@@ -1,0 +1,32 @@
+<oui-modal
+    data-heading="{{:: 'xdsl_modem_wifi_config_modal_title' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+>
+    <div data-ng-if="$ctrl.qrcode" class="d-flex flex-column">
+        <p data-translate="xdsl_modem_wifi_config_modal_description"></p>
+        <div class="d-flex flex-row">
+            <div class="d-flex justify-content-center">
+                <img
+                    src="{{$ctrl.qrcode}}"
+                    alt="{{'xdsl_modem_wifi_config_modal_qrcode' | translate}}"
+                />
+            </div>
+            <div class="d-flex flex-column justify-content-center ml-5">
+                <span>
+                    <label
+                        data-translate="xdsl_modem_wifi_config_modal_ssid"
+                    ></label>
+                    <span data-ng-bind="$ctrl.ssid"></span>
+                </span>
+                <span>
+                    <label
+                        data-translate="xdsl_modem_wifi_config_modal_wifi_name"
+                    ></label>
+                    <span data-ng-bind="$ctrl.wifiName"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <p data-ng-if="$ctrl.message" data-ng-bind=":: $ctrl.message"></p>
+</oui-modal>

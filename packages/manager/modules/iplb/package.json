@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-iplb",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "private": true,
   "description": "IP Load Balancer product.",
   "repository": {
@@ -28,7 +28,7 @@
     "@ovh-ux/ng-ovh-sidebar-menu": "^10.3.0",
     "@ovh-ux/ng-translate-async-loader": "^2.1.7",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
-    "@ovh-ux/ui-kit": "^6.5.3",
+    "@ovh-ux/ui-kit": "^6.7.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-chart.js": "^1.1.1",

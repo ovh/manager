@@ -1,15 +1,24 @@
 import React, { useCallback, useState } from 'react';
-import {
-  Button,
-  chakra,
-  Stack,
-  ComponentWithAs,
-  IconProps,
-  Box,
-} from '@chakra-ui/react';
-import { ChevronLeftIcon } from '@ovh-ux/manager-themes';
 import { useTranslation } from 'react-i18next';
 import { useShell } from '@/context';
+import {
+  OsdsButton,
+  OsdsIcon,
+  OsdsText,
+  OsdsLink,
+} from '@ovhcloud/ods-stencil/components/react/';
+import {
+  OdsIconName,
+  OdsIconSize,
+  OdsButtonVariant,
+  OdsHTMLAnchorElementTarget,
+  OdsTextSize,
+  OdsTextLevel,
+} from '@ovhcloud/ods-core';
+import { OdsThemeColorIntent } from '@ovhcloud/ods-theming';
+
+import './OrderPopupContent.scss';
+import '@ovhcloud/ods-theme-blue-jeans/index.css';
 import style from './style.module.scss';
 
 export interface ShopSubItem {
@@ -19,15 +28,68 @@ export interface ShopSubItem {
   external?: boolean;
   tracking?: string;
 }
+
 export interface ShopItem {
   external?: boolean;
   url?: string;
-  icon: string | ComponentWithAs<'svg', IconProps>;
+  icon: any;
   label: string;
   subMenu?: Array<ShopSubItem>;
   feature?: string;
   tracking?: string;
 }
+const OpenLayout = ({ as, item, href, target, onClick, tabIndex }: any) => {
+  const Component = as === 'a' ? 'a' : 'button';
+
+  return (
+    <Component
+      href={as === 'a' ? href : undefined}
+      target={as === 'a' ? target : undefined}
+      onClick={onClick}
+      className={as === 'button' ? 'buttonOrder' : ''}
+      tabIndex={tabIndex}
+    >
+      <OpenLayoutContent item={item} />
+    </Component>
+  );
+};
+
+const OpenLayoutContent = ({ item, tabIndex }: any) => {
+  const { t } = useTranslation('server-sidebar-order');
+  return (
+    <>
+      <OsdsButton
+        circle
+        color={OdsThemeColorIntent.primary}
+        tabIndex={tabIndex}
+      >
+        <div className="order-popup-content-icon" aria-hidden="true">
+          {item.icon}
+        </div>
+      </OsdsButton>
+      <div className="order-popup-content-label">
+        <OsdsText
+          size={OdsTextSize._300}
+          color={OdsThemeColorIntent.primary}
+          level={OdsTextLevel.subheading}
+        >
+          {t(`server_sidebar_${item.label}_title`)}
+        </OsdsText>
+      </div>
+      {item.external && (
+        <span className="order-popup-content-external-link">
+          <OsdsIcon
+            name={OdsIconName.EXTERNAL_LINK}
+            size={OdsIconSize.xxs}
+            color={OdsThemeColorIntent.primary}
+          />
+        </span>
+      )}
+    </>
+  );
+};
+
+
 
 const OrderPopupContent = ({
   shopItems,
@@ -40,67 +102,6 @@ const OrderPopupContent = ({
   const [currentMenu, setCurrentMenu] = useState([]);
   const { t } = useTranslation('server-sidebar-order');
   const shell = useShell();
-
-  const iconStyles = {
-    width: '36px',
-    height: '36px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  };
-
-  const containerIconStyles = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '3',
-    borderRadius: 'full',
-    color: '#2859c0',
-    transitionProperty: 'common',
-    transitionDuration: 'normal',
-  };
-
-  const glyphIconStyles = {
-    fontSize: '2rem',
-    textDecoration: 'none',
-  };
-
-  const itemStyles = (showAfter: boolean) => {
-    const itemAfterStyles = showAfter
-      ? {
-          _after: {
-            content: '""',
-            position: 'absolute',
-            height: '50%',
-            width: '1px',
-            bg: 'gray.200',
-            top: '1rem',
-            right: '0',
-          },
-        }
-      : {};
-    return {
-      display: 'flex',
-      position: 'relative',
-      paddingTop: '2.5',
-      paddingBottom: '1.5',
-      _hover: {
-        textDecoration: 'none',
-        '>div': {
-          background: '#2859c0',
-          color: 'uikit.0',
-        },
-      },
-      _focusVisible: {
-        '>div': {
-          background: '#2859c0',
-          color: 'uikit.0',
-        },
-      },
-      ...itemAfterStyles,
-    };
-  };
-
   const hideMenu = useCallback(() => setShowListMenu(false), [setShowListMenu]);
 
   const onItemSelect = useCallback(
@@ -117,41 +118,53 @@ const OrderPopupContent = ({
   );
 
   return showListMenu ? (
-    <Stack>
-      <Button
-        variant="ghost"
-        justifyContent="start"
-        borderRadius="0"
-        boxShadow="none !important"
+    <>
+      <OsdsButton
+        flex
+        variant={OdsButtonVariant.ghost}
+        color={OdsThemeColorIntent.primary}
+        className={style.buttonMenu}
         onClick={hideMenu}
       >
-        <ChevronLeftIcon />
-        {t('sidebar_order_menu_back')}
-      </Button>
+        <span slot="start">
+          <OsdsIcon name={OdsIconName.CHEVRON_LEFT}
+            size={OdsIconSize.xs}
+            color={OdsThemeColorIntent.primary}></OsdsIcon>
+          {t('sidebar_order_menu_back')}
+        </span>
+      </OsdsButton>
+
       {currentMenu.map(
         (item) =>
           item && (
-            <Button
-              key={item.label}
-              as="a"
-              target={item.external ? '_blank' : '_top'}
-              href={item.url}
-              variant="ghost"
-              justifyContent="start"
-              borderRadius="0"
-              boxShadow="none !important"
-              onClick={onItemSelect(item)}
-            >
-              {t(`server_sidebar_${item.label}_title`)}
-            </Button>
+            <div key={`current-menu-${item.label}`} className={style.toto}>
+              <OsdsButton
+                flex
+                key={item.label}
+                href={item.url}
+                variant={OdsButtonVariant.ghost}
+                color={OdsThemeColorIntent.primary}
+                className={style.buttonMenu}
+                onClick={() => onItemSelect(item)}
+                target={
+                  item.external
+                    ? OdsHTMLAnchorElementTarget['_blank']
+                    : OdsHTMLAnchorElementTarget['_top']
+                }
+              >
+                <OsdsLink color={OdsThemeColorIntent.primary}>
+                  {t(`server_sidebar_${item.label}_title`)}
+                </OsdsLink>
+              </OsdsButton>
+            </div>
           ),
       )}
-    </Stack>
+    </>
   ) : (
-    <Box role="list" display="flex" flexFlow="row wrap">
+    <div className="order-popup-content">
       {shopItems
         .filter((item) => !!item)
-        .map((item, key) => {
+        .map((item, index) => {
           const props: Record<string, unknown> =
             item.subMenu?.length > 0
               ? {
@@ -160,66 +173,18 @@ const OrderPopupContent = ({
                     setShowListMenu(true);
                     setCurrentMenu(item.subMenu);
                   },
+                  tabIndex: index + 1,
                 }
               : {
                   as: 'a',
                   href: item.url,
                   target: item.external ? '_blank' : '_top',
                   onClick: onItemSelect(item),
+                  tabIndex: index + 1,
                 };
-          return (
-            <Stack
-              {...props}
-              key={`shop-item-${key}`}
-              sx={itemStyles((key + 1) % 3 !== 0)}
-              alignItems="center"
-              width="33.33%"
-              borderBottom={
-                key >= Math.ceil(shopItems.length / 3) * 3 - 3
-                  ? ''
-                  : '1px solid'
-              }
-              borderColor="gray.200"
-              className={style.popupItem}
-            >
-              {typeof item.icon === 'string' ? (
-                <chakra.div sx={containerIconStyles}>
-                  <chakra.div sx={iconStyles}>
-                    <chakra.span
-                      className={item.icon}
-                      sx={glyphIconStyles}
-                    ></chakra.span>
-                  </chakra.div>
-                </chakra.div>
-              ) : (
-                <chakra.div sx={containerIconStyles}>
-                  <item.icon sx={iconStyles} />
-                </chakra.div>
-              )}
-              <chakra.span
-                fontWeight="600"
-                color="#2859c0"
-                display="flex"
-                textAlign="center"
-                className="mt-0"
-              >
-                {t(`server_sidebar_${item.label}_title`)}
-              </chakra.span>
-              {item.external && (
-                <span
-                  className={`external-link oui-icon oui-icon-external-link ${style.popupItemExternalLink}`}
-                  style={{
-                    position: 'absolute',
-                    right: '1rem',
-                    fontSize: '0.75rem',
-                    marginTop: '0',
-                  }}
-                ></span>
-              )}
-            </Stack>
-          );
+          return <OpenLayout item={item} key={`open-layout-${item.label}`} {...props} />;
         })}
-    </Box>
+    </div>
   );
 };
 

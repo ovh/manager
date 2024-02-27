@@ -3,11 +3,8 @@ import template from './template.html';
 
 export default {
   bindings: {
-    serviceName: '<',
-    serviceId: '<',
-    licenceName: '<',
-    onError: '&?',
     packType: '<',
+    hardwareInfo: '<',
     showPackType: '<',
   },
   controller,

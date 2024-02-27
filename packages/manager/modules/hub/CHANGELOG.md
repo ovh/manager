@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.8.0...@ovh-ux/manager-hub@3.9.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
+# [3.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.7.14...@ovh-ux/manager-hub@3.8.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
 ## [3.7.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub@3.7.13...@ovh-ux/manager-hub@3.7.14) (2023-12-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub

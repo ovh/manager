@@ -14,6 +14,7 @@ export default {
     goToDetails: '<',
     serviceName: '<',
     trackClick: '<',
+    goToDeleteBatch: '<',
   },
   controller,
   name: 'ovhManagerSmsBatchesHistoryComponent',

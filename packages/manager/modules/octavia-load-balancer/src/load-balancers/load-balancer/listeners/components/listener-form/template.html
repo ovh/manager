@@ -1,0 +1,74 @@
+<form name="listener" novalidate>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-label="{{:: 'octavia_load_balancer_listeners_create_name' | translate }}"
+    >
+        <div class="oui-input-overlay">
+            <input
+                type="text"
+                class="oui-input"
+                name="name"
+                data-required
+                data-ng-model="$ctrl.model.name"
+            />
+        </div>
+    </oui-field>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-label="{{:: 'octavia_load_balancer_listeners_create_protocol' | translate }}"
+        data-label-popover="{{:: 'octavia_load_balancer_listeners_create_protocol_tooltip' | translate }}"
+    >
+        <oui-select
+            name="protocol"
+            data-required
+            data-disabled="$ctrl.isEditing"
+            data-model="$ctrl.model.protocol"
+            data-items="$ctrl.protocols"
+            data-on-change="$ctrl.onProtocolChange()"
+            data-placeholder="{{:: 'octavia_load_balancer_listeners_create_protocol_default' | translate }}"
+        >
+        </oui-select>
+    </oui-field>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-label="{{:: 'octavia_load_balancer_listeners_create_port' | translate }}"
+    >
+        <div class="oui-input-overlay">
+            <input
+                type="number"
+                class="oui-input"
+                name="port"
+                data-required
+                data-ng-disabled="$ctrl.isEditing"
+                data-ng-model="$ctrl.model.port"
+                data-min="1"
+                data-max="65535"
+            />
+        </div>
+    </oui-field>
+    <oui-field
+        size="m"
+        class="mb-4 mb-md-0"
+        data-label="{{:: 'octavia_load_balancer_listeners_create_pool' | translate }}"
+    >
+        <oui-select
+            name="pool"
+            data-model="$ctrl.model.pool"
+            data-match="name"
+            data-items="$ctrl.filteredPools"
+            data-disabled="!$ctrl.filteredPools.length"
+            data-placeholder="{{:: 'octavia_load_balancer_listeners_create_pool_default' | translate }}"
+        >
+        </oui-select>
+    </oui-field>
+    <oui-form-actions
+        data-disabled="!listener.$valid"
+        data-submit-text="{{:: 'octavia_load_balancer_listeners_create_submit' + ($ctrl.isEditing ? '_edition' : '') | translate }}"
+        data-cancel-text="{{:: 'octavia_load_balancer_listeners_create_cancel' | translate }}"
+        data-on-submit="$ctrl.onSubmit()"
+        data-on-cancel="$ctrl.onCancel()"
+    ></oui-form-actions>
+</form>

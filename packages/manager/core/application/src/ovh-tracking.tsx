@@ -12,6 +12,7 @@ const OSDS_COMPONENT = [
   'OSDS-CHECKBOX-BUTTON',
   'OSDS-CHIP',
   'OSDS-CLIPBOARD',
+  'OSDS-DATEPICKER',
   'OSDS-INPUT',
   'OSDS-LINK',
   'OSDS-MODAL',
@@ -119,9 +120,12 @@ export default function OvhTracking() {
   const ovhTrackSelectOption = (event) => {
     const element = event.target as HTMLElement;
     const closestWithTracking = element.closest(`[${'data-tracking'}]`);
-    const trackingValue = closestWithTracking.getAttribute('data-tracking');
-    if (trackingValue) {
-      ovhTrackingSendClick(trackingValue);
+
+    if (closestWithTracking) {
+      const trackingValue = closestWithTracking.getAttribute('data-tracking');
+      if (trackingValue) {
+        ovhTrackingSendClick(trackingValue);
+      }
     }
   };
 

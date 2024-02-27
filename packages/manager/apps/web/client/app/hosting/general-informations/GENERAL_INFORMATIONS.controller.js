@@ -5,8 +5,6 @@ import isObject from 'lodash/isObject';
 import {
   CDN_ADVANCED,
   QUOTA_DECIMAL_PRECISION,
-  BADGES,
-  HOSTING_FREE_100_M_OFFER,
 } from './general-informations.constants';
 import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
 import { NEW_OFFERS_NAME } from '../hosting.constants';
@@ -35,8 +33,6 @@ export default class HostingGeneralInformationsCtrl {
     hostingSSLCertificate,
     OvhApiScreenshot,
     user,
-    displayNewHostingOfferSticker,
-    HOSTING_NEW_OFFER_UPGRADES,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -60,14 +56,9 @@ export default class HostingGeneralInformationsCtrl {
     this.hostingSSLCertificate = hostingSSLCertificate;
     this.OvhApiScreenshot = OvhApiScreenshot;
     this.user = user;
-    this.displayNewHostingOfferSticker = displayNewHostingOfferSticker;
 
-    this.HOSTING_NEW_OFFERS_WITH_STICKER = HOSTING_NEW_OFFER_UPGRADES.concat([
-      HOSTING_FREE_100_M_OFFER,
-    ]);
     this.CDN_ADVANCED = CDN_ADVANCED;
     this.CDN_VERSION_V1 = HOSTING_CDN_ORDER_CDN_VERSION_V1;
-    this.BADGE_NEW = BADGES.NEW;
   }
 
   $onInit() {
@@ -377,15 +368,5 @@ export default class HostingGeneralInformationsCtrl {
       : `hosting_dashboard_service_offer_${offer}`;
 
     return this.$translate.instant(translateKey);
-  }
-
-  hasNewHostingOfferSticker() {
-    const {
-      hosting: { offer },
-    } = this.$scope;
-    return (
-      this.displayNewHostingOfferSticker &&
-      this.HOSTING_NEW_OFFERS_WITH_STICKER.includes(offer)
-    );
   }
 }

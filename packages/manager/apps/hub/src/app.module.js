@@ -12,6 +12,7 @@ import { isString, get, has } from 'lodash-es';
 
 import '@ovh-ux/ui-kit';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
+import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ovhManagerHub from '@ovh-ux/manager-hub';
@@ -60,6 +61,7 @@ export default async (containerEl, shellClient) => {
         dashboard,
         errorPage,
         'ngAnimate',
+        ngOvhCloudUniverseComponents,
         ngOvhFeatureFlipping,
         ngUiRouterBreadcrumb,
         'oui',
@@ -103,6 +105,15 @@ export default async (containerEl, shellClient) => {
         });
         ssoAuthenticationProvider.setOnLogout(() => {
           shellClient.auth.logout();
+        });
+      },
+    )
+    .config(
+      /* @ngInject */ ($urlRouterProvider) => {
+        $urlRouterProvider.when('/catalog', () => {
+          shellClient.navigation.getURL('catalog', '/').then((url) => {
+            window.top.location.href = url;
+          });
         });
       },
     )

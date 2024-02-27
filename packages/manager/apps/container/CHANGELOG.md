@@ -3,6 +3,125 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.45.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.45.0...@ovh-ux/manager-container-app@0.45.1) (2024-02-26)
+
+
+### Bug Fixes
+
+* **container:** fix route matcher for web domain operation ([#10967](https://github.com/ovh/manager/issues/10967)) ([7afadf2](https://github.com/ovh/manager/commit/7afadf2443607735eb26739ad2e6817f90fdfb32))
+* **container:** search by mac address for telephony ([#10941](https://github.com/ovh/manager/issues/10941)) ([3c8ed54](https://github.com/ovh/manager/commit/3c8ed5499fc76993bc7df4d5832236ee1cbc7fac))
+
+
+
+
+
+# [0.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.44.0...@ovh-ux/manager-container-app@0.45.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
+# [0.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.43.0...@ovh-ux/manager-container-app@0.44.0) (2024-02-20)
+
+
+### Features
+
+* overriding piano analytics sdk ([#10777](https://github.com/ovh/manager/issues/10777)) ([d7e83ae](https://github.com/ovh/manager/commit/d7e83ae37bb35884ebd5e2e258a0e074c14135fc))
+
+
+
+
+
+# [0.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.42.0...@ovh-ux/manager-container-app@0.43.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
+# [0.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.41.0...@ovh-ux/manager-container-app@0.42.0) (2024-02-07)
+
+
+### Features
+
+* aiven databases US launch ([ec3f930](https://github.com/ovh/manager/commit/ec3f930addf9d36cb852225edbcce8b1ce9427c8))
+
+
+
+
+
+# [0.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.40.0...@ovh-ux/manager-container-app@0.41.0) (2024-02-05)
+
+
+### Features
+
+* **manager-components:** add react lib manager components ([#10595](https://github.com/ovh/manager/issues/10595)) ([44b43b3](https://github.com/ovh/manager/commit/44b43b360057aacf5fb6bf7ca93e501216f92c08))
+* **telecom:** add heaset icon and several redirections ([#10615](https://github.com/ovh/manager/issues/10615)) ([d87dde4](https://github.com/ovh/manager/commit/d87dde4069c92aacb646dad3d060324a79a50c84))
+* **web:** remove sharepoint from orders ([#10749](https://github.com/ovh/manager/issues/10749)) ([138c738](https://github.com/ovh/manager/commit/138c73866fea7b7d2035c658bfa0c530970f2fa7))
+
+
+
+
+
+# [0.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.39.1...@ovh-ux/manager-container-app@0.40.0) (2024-01-29)
+
+
+### Features
+
+* **chakra:** replace link color in sidebar ([#10672](https://github.com/ovh/manager/issues/10672)) ([0d2860a](https://github.com/ovh/manager/commit/0d2860a097de76facb389055ae7bd834f34735c5))
+* **dedicated.nas:** api nas deprecated ([#10623](https://github.com/ovh/manager/issues/10623)) ([4a957e0](https://github.com/ovh/manager/commit/4a957e08b590fc24dec3a3c543f1718431cd4406))
+
+
+
+
+
+## [0.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.39.0...@ovh-ux/manager-container-app@0.39.1) (2024-01-23)
+
+
+### Bug Fixes
+
+* **container:** fix label display name without icon ([c05a0d8](https://github.com/ovh/manager/commit/c05a0d8440aa648fa990bb7498c4b3b68002cc2b))
+
+
+
+
+
+# [0.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.38.0...@ovh-ux/manager-container-app@0.39.0) (2024-01-22)
+
+
+### Bug Fixes
+
+* **container.sidebar:** post-prod bug fix ([#10635](https://github.com/ovh/manager/issues/10635)) ([5a01440](https://github.com/ovh/manager/commit/5a014401d053a9e73ea7960ef26d8e26655c319e))
+
+
+### Features
+
+* remove dataintegration project ([#10450](https://github.com/ovh/manager/issues/10450)) ([8526862](https://github.com/ovh/manager/commit/8526862140874dedd7aa8898eb7dc17457681312))
+
+
+
+
+
+# [0.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.37.5...@ovh-ux/manager-container-app@0.38.0) (2024-01-04)
+
+
+### Features
+
+* **container.sidebar:** remove chakra ui ([#10627](https://github.com/ovh/manager/issues/10627)) ([78a3a90](https://github.com/ovh/manager/commit/78a3a902a5ed6e0edae011b19751319360867c03))
+
+
+
+
+
 ## [0.37.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.37.4...@ovh-ux/manager-container-app@0.37.5) (2023-12-21)
 
 

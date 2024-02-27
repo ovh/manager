@@ -2,6 +2,12 @@
 
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    data-tracking-page-name="PublicCloud::pci::projects::project::storages::blocks::add"
+></pci-activate-project-banner>
+
 <div>
     <oui-stepper data-on-finish="$ctrl.add()">
         <!--Regions list-->

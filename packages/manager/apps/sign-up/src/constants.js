@@ -23,6 +23,11 @@ export const HOME_PAGE = {
   WS: 'https://www.ovh.com/us/es/',
 };
 
+export const SUBSIDIARIES_LABEL_SUFFIX = {
+  IN: '_kyc_reminder',
+  DEFAULT: '',
+};
+
 const LOGO_CONFIG = {
   default: 'assets/img/logo/logo-ovhcloud.png',
   set:
@@ -53,4 +58,5 @@ export default {
   LOGO_SRC,
   SANITIZATION,
   FEATURES,
+  SUBSIDIARIES_LABEL_SUFFIX,
 };

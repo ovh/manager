@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-dashboard",
-  "version": "6.4.13",
+  "version": "6.5.0",
   "private": true,
   "description": "Telecom dashboard section.",
   "repository": {
@@ -23,7 +23,7 @@
     "@ovh-ux/ng-ovh-telecom-universe-components": "^6.0.0 || ^7.0.0",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.1.6",
     "@ovh-ux/ng-ui-router-title": "^3.0.4",
-    "@ovh-ux/ui-kit": "^6.5.3",
+    "@ovh-ux/ui-kit": "^6.7.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",

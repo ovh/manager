@@ -61,8 +61,8 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-badge_success': $ctrl.server.monitored,
-                    'oui-badge_warning': !$ctrl.server.monitored
+                    'oui-badge_success': $ctrl.server.monitored && !$ctrl.server.noIntervention,
+                    'oui-badge_warning': !$ctrl.server.monitored || $ctrl.server.noIntervention
                 }"
                 data-translate="dedicated_server_dashboard_monitoring_status_{{$ctrl.getMonitoringStatus()}}"
                 data-oui-tooltip="{{ ('dedicated_server_dashboard_monitoring_status_tooltip_' + $ctrl.getMonitoringStatus()) | translate }}"
@@ -76,7 +76,12 @@
                 data-on-click="$ctrl.onMonitoringUpdateClick()"
             >
                 <span
-                    data-translate="dedicated_server_dashboard_monitoring_cta_setting"
+                    data-translate="dedicated_server_dashboard_monitoring_enable_interventions"
+                    data-ng-if="!$ctrl.server.monitored || $ctrl.server.noIntervention"
+                ></span>
+                <span
+                    data-translate="dedicated_server_dashboard_monitoring_disable_interventions"
+                    data-ng-if="$ctrl.server.monitored && !$ctrl.server.noIntervention"
                 ></span>
             </oui-button>
         </oui-tile-description>

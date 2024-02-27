@@ -18,6 +18,7 @@
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_reschedule_update": "Modifier la date de mise à jour",
 
   "ovhManagerPccDashboardGeneralInformation_location_term": "Localisation",
+  "ovhManagerPccDashboardGeneralInformation_commercial_range": "Nom commercial",
 
   "ovhManagerPccDashboardGeneralInformation_accessPolicy_term": "Politique d'accès",
   "ovhManagerPccDashboardGeneralInformation_accessPolicy_definition_FILTERED": "Restreinte",

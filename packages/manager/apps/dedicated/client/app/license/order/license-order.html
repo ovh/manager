@@ -48,7 +48,7 @@
                         class="form-control"
                         id="selectedIpBlock"
                         name="selectedIpBlock"
-                        data-ng-options="ip as getBlockDisplay(ip) group by ip.serviceName for ip in availableIpBlock.ips | filter:filters.block.type | filter:filters.block.search"
+                        data-ng-options="ip as getBlockDisplay(ip) group by (ip.serviceName || '--') for ip in availableIpBlock.ips | filter:filters.block.type | filter:filters.block.search"
                         data-ng-model="selected.ipBlock"
                     >
                         <option
@@ -60,11 +60,9 @@
                     <span
                         class="input-group-addon"
                         id="licenseOrderBlockFilters"
-                        data-tooltip-box
-                        data-tb-unique="true"
-                        data-tb-content-template="license/tooltips/blockFilterTooltip.html"
-                        data-tb-hide-on-blur="false"
-                        data-tb-placement="bottom"
+                        oui-popover
+                        oui-popover-scope="popoverScope"
+                        oui-popover-template="license/tooltips/blockFilterTooltip.html"
                     >
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </span>
@@ -90,8 +88,9 @@
                     name="targetIp"
                     data-ng-show="!oneIp"
                     data-ng-model="selected.ip"
-                    data-ng-change="ipIsValid();"
+                    data-ng-change="getOrderableVersion()"
                     data-ng-disabled="selected.ipBlock === null"
+                    data-ui-validate="{ valid: 'ipIsValid($value)' }"
                 />
                 <p
                     class="form-control-static"
@@ -101,25 +100,17 @@
             </div>
 
             <div data-ng-switch="orderType">
-                <div data-ng-switch-when="LEGACY">
-                    <div
-                        data-ng-include="'license/order/license-order-legacy.html'"
-                    ></div>
-                </div>
-                <div data-ng-switch-when="DEDICATED">
-                    <div
-                        data-ng-include="'license/order/license-order-dedicated.html'"
-                    ></div>
-                </div>
                 <div data-ng-switch-when="VPS">
                     <div
                         data-ng-include="'license/order/license-order-vps.html'"
                     ></div>
                 </div>
                 <div data-ng-switch-default>
-                    <div
-                        data-ng-include="'license/order/license-order-legacy.html'"
-                    ></div>
+                    <ovh-manager-license-order-legacy
+                        data-ip="selected.ip"
+                        data-user="user"
+                        data-set-action="setAction(action, data)"
+                    ></ovh-manager-license-order-legacy>
                 </div>
             </div>
         </div>

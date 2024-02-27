@@ -10,6 +10,7 @@ export default class PciInstanceAttachPrivateNetworkController {
 
   $onInit() {
     this.selectedPrivateNetworks = [];
+    this.selectedLocalPrivateNetworks = [];
     this.isLoading = false;
   }
 

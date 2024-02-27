@@ -4,9 +4,9 @@
   "server_monitoring_modal_status_disabled": "Disabled",
   "server_monitoring_modal_status_proactive": "Enabled with proactive intervention",
   "server_monitoring_modal_status_no-proactive": "Enabled without proactive intervention",
-  "server_monitoring_modal_description_status_disabled": "Your server is not monitored, and you will not receive any alerts from OVHcloud in the event of an incident.",
-  "server_monitoring_modal_description_status_proactive": "Your server is monitored, and you will receive email alerts to the address linked to your technical contact’s ID. You authorize OVHcloud to intervene directly on your machine in the event of alerts. A support ticket is automatically created, so you can follow up with your ticket.",
-  "server_monitoring_modal_description_status_no-proactive": "Your server is monitored, and you will receive email alerts to the address linked to your technical contact’s ID. OVHcloud will not intervene on your machine without a direct request from you.",
+  "server_monitoring_modal_description_status_disabled": "Your server is not monitored. It can receive ICMP requests, but the monitoring will ignore their results if there is no response, and you will not receive any alerts from OVHcloud if connection to public network is lost.",
+  "server_monitoring_modal_description_status_proactive": "Your server is monitored (ICMP ping test). You will receive alerts sent to the email address linked to your technical contact's ID. You have authorised OVHcloud to resolve issues on your machine when there is an ICMP ping unavailable alert. A support ticket is automatically created, so you can follow up with your ticket.",
+  "server_monitoring_modal_description_status_no-proactive": "Your server is monitored (ICMP ping test). You will receive alerts sent to the email address linked to your technical contact's ID. Without proactive intervention enabled, OVHcloud will not resolve issues on your machine when there is an ICMP unavailable ping alert.",
   "server_monitoring_modal_update_proactive_request_success": "Interventions are enabled on the {{serverName}} server.",
   "server_monitoring_modal_update_no-proactive_request_success": "Interventions are disabled on the {{serverName}} server.",
   "server_monitoring_modal_update_request_failed": "An error has occurred changing the monitoring option."

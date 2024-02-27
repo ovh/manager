@@ -5,7 +5,6 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/informations',
       params: {
         user: null,
-        type: null,
       },
       views: {
         modal: {

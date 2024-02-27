@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Spinner } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { useShell } from '@/context';
 import ServerSidebarVirtual from './SidebarVirtual';
+import style from './index.module.scss';
 import {
   filterBySearch,
   flattenMenu,
@@ -11,6 +10,9 @@ import {
   updateSearchFields,
   updateSidebarItemLabel,
 } from './sidebarMenu';
+import { useLocation } from 'react-router-dom';
+import { OsdsSpinner } from '@ovhcloud/ods-stencil/components/react';
+import { OdsSpinnerMode, OdsSpinnerSize } from '@ovhcloud/ods-core';
 
 export default function ServerSidebar({ menu }: { menu: SidebarMenuItem }) {
   const [items, setItems] = useState<SidebarMenuItem[]>([]);
@@ -49,15 +51,8 @@ export default function ServerSidebar({ menu }: { menu: SidebarMenuItem }) {
 
   return menu ? (
     <ServerSidebarVirtual items={items} onMenuChange={refreshMenu} />
+
   ) : (
-    <div className="text-center">
-      <Spinner
-        as="span"
-        animation="border"
-        role="status"
-        aria-hidden="true"
-        className="mt-4 mx-auto"
-      />
-    </div>
+    <OsdsSpinner mode={OdsSpinnerMode.INDETERMINATE} size={OdsSpinnerSize.md} className={style.spinnerLoading} />
   );
 }

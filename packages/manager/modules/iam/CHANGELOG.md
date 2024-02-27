@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.8.1...@ovh-ux/manager-iam@1.9.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
+## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.8.0...@ovh-ux/manager-iam@1.8.1) (2024-01-29)
+
+
+### Bug Fixes
+
+* **iam:** add labeu urn regex ([#10720](https://github.com/ovh/manager/issues/10720)) ([f958fdc](https://github.com/ovh/manager/commit/f958fdcc43366617966320d8612ba68733eefe04))
+
+
+
+
+
+# [1.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.7.1...@ovh-ux/manager-iam@1.8.0) (2024-01-22)
+
+
+### Features
+
+* **iam:** create policy action search no result improvement ([#9869](https://github.com/ovh/manager/issues/9869)) ([0758e3c](https://github.com/ovh/manager/commit/0758e3c4ec6f510437d2516db3e675ea20f6c770))
+
+
+
+
+
 ## [1.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.7.0...@ovh-ux/manager-iam@1.7.1) (2023-12-19)
 
 

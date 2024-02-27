@@ -3,6 +3,151 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.2.0...@ovh-ux/manager-public-cloud@6.2.1) (2024-02-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+# [6.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.1.3...@ovh-ux/manager-public-cloud@6.2.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
+## [6.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.1.2...@ovh-ux/manager-public-cloud@6.1.3) (2024-02-20)
+
+
+### Bug Fixes
+
+* **public-cloud:** renamed region list component used by octavia ([2ec64de](https://github.com/ovh/manager/commit/2ec64deed8f6aa23c9c24237d0d320287d7651ca))
+
+
+
+
+
+## [6.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.1.1...@ovh-ux/manager-public-cloud@6.1.2) (2024-02-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [6.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.1.0...@ovh-ux/manager-public-cloud@6.1.1) (2024-02-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+# [6.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.0.36...@ovh-ux/manager-public-cloud@6.1.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
+## [6.0.36](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.0.35...@ovh-ux/manager-public-cloud@6.0.36) (2024-02-07)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [6.0.35](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.0.34...@ovh-ux/manager-public-cloud@6.0.35) (2024-02-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [6.0.34](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.0.33...@ovh-ux/manager-public-cloud@6.0.34) (2024-01-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [6.0.33](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.0.32...@ovh-ux/manager-public-cloud@6.0.33) (2024-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [6.0.32](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.0.31...@ovh-ux/manager-public-cloud@6.0.32) (2024-01-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [6.0.31](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.0.30...@ovh-ux/manager-public-cloud@6.0.31) (2024-01-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [6.0.30](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.0.29...@ovh-ux/manager-public-cloud@6.0.30) (2024-01-22)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [6.0.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.0.28...@ovh-ux/manager-public-cloud@6.0.29) (2024-01-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [6.0.28](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.0.27...@ovh-ux/manager-public-cloud@6.0.28) (2024-01-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [6.0.27](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.0.26...@ovh-ux/manager-public-cloud@6.0.27) (2024-01-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [6.0.26](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.0.25...@ovh-ux/manager-public-cloud@6.0.26) (2024-01-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
 ## [6.0.25](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.0.24...@ovh-ux/manager-public-cloud@6.0.25) (2024-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

@@ -202,7 +202,7 @@
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
-                data-ng-if="$ctrl.isAdditionalIpsAvailable && $ctrl.PciProjectsProjectInstanceService.additionalIpsIsAvailable($row.flavor.type)"
+                data-ng-if="$ctrl.isAdditionalIpsAvailable && $ctrl.PciProjectsProjectInstanceService.additionalIpsIsAvailable($row.flavor.type) && !$row.isLocalZone"
                 data-disabled="$row.hasPublicIpV4() && $row.hasPublicIpV6()"
                 data-on-click="$ctrl.assignFloatingIp($row)"
             >
@@ -212,7 +212,7 @@
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-on-click="$ctrl.enableMonthlyBillingInstance($row)"
-                data-ng-if="$ctrl.constructor.displayMonthlyBillingUpgradeOption($row)"
+                data-ng-if="$ctrl.constructor.displayMonthlyBillingUpgradeOption($row) && !$row.isLocalZone"
             >
                 <span
                     data-translate="pci_projects_project_instances_activeMonthlyBilling_label"
@@ -221,7 +221,7 @@
             <oui-action-menu-item
                 data-disabled="!$row.canCreateOrScheduleBackup()"
                 data-on-click="$ctrl.createBackupInstance($row)"
-                data-ng-if="$row.statusGroup === 'ACTIVE'"
+                data-ng-if="$row.statusGroup === 'ACTIVE' && !$row.isLocalZone"
             >
                 <span
                     data-translate="pci_projects_project_instances_createBackup_label"
@@ -231,7 +231,7 @@
                 data-disabled="!$row.canCreateOrScheduleBackup()"
                 data-on-click="$ctrl.scheduleAutoBackup($row)"
                 data-ng-if="$row.statusGroup === 'ACTIVE' &&
-                    $ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($row.flavor.type)"
+                    $ctrl.PciProjectsProjectInstanceService.automatedBackupIsAvailable($row.flavor.type) && !$row.isLocalZone"
             >
                 <span
                     data-translate="pci_projects_project_instances_autobackup_label"
@@ -260,7 +260,7 @@
             <oui-action-menu-divider></oui-action-menu-divider>
             <oui-action-menu-item
                 data-on-click="$ctrl.startRescueInstance($row)"
-                data-ng-if="$row.statusGroup === 'ACTIVE'"
+                data-ng-if="$row.statusGroup === 'ACTIVE' && !$row.isLocalZone"
             >
                 <span
                     data-translate="pci_projects_project_instances_rescue_label"
@@ -268,7 +268,7 @@
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-on-click="$ctrl.endRescueInstance($row)"
-                data-ng-if="$row.status === 'RESCUE'"
+                data-ng-if="$row.status === 'RESCUE' && !$row.isLocalZone"
             >
                 <span
                     data-translate="pci_projects_project_instances_rescueEnd_label"
@@ -295,12 +295,14 @@
             <oui-action-menu-item
                 data-disabled="!$row.canBeShelved() || !$ctrl.PciProjectsProjectInstanceService.suspendIsAvailable($row.flavor.type)"
                 data-on-click="$ctrl.shelveInstance($row)"
+                data-ng-if="!$row.isLocalZone"
             >
                 <span
                     data-translate="pci_projects_project_instances_shelve_label"
                 ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
+                data-ng-if="!$row.isLocalZone"
                 data-disabled="!$row.canBeUnshelved()"
                 data-on-click="$ctrl.unshelveInstance($row)"
             >
@@ -311,7 +313,7 @@
             <oui-action-menu-divider></oui-action-menu-divider>
             <oui-action-menu-item
                 data-on-click="$ctrl.resumeInstance($row)"
-                data-ng-if="$row.status === 'SUSPENDED'"
+                data-ng-if="$row.status === 'SUSPENDED' && !$row.isLocalZone"
             >
                 <span
                     data-translate="pci_projects_project_instances_resume_label"

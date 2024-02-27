@@ -1,0 +1,50 @@
+<oui-modal
+    data-on-dismiss="$ctrl.goBack()"
+    data-primary-label="{{:: 'pci_data_sync_confirm' | translate}}"
+    data-primary-action="$ctrl.syncData()"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{:: 'pci_data_sync_cancel' | translate}}"
+    data-loading="$ctrl.processing"
+    data-heading="{{:: 'pci_data_sync_title' | translate}}"
+>
+    <oui-field
+        data-label="{{:: 'pci_data_sync_type' | translate  }}"
+        data-label-popover="{{:: 'pci_data_sync_type_help' | translate }}"
+    >
+        <label class="oui-select">
+            <select
+                name="type"
+                id="type"
+                class="oui-select__input"
+                data-ng-model="$ctrl.currentDataSyncType"
+                required
+            >
+                <option
+                    data-ng-repeat="type in $ctrl.dataSyncType"
+                    data-ng-value="type"
+                    data-ng-bind="type"
+                >
+                </option>
+            </select>
+            <span
+                class="oui-icon oui-icon-chevron-down"
+                aria-hidden="true"
+            ></span>
+        </label>
+    </oui-field>
+    <div data-ng-if="$ctrl.volumeId">
+        <oui-message class="mt-2" data-type="info">
+            <span
+                data-translate="pci_data_sync_directory"
+                data-translate-values="{ directory: $ctrl.directory }"
+            ></span>
+        </oui-message>
+    </div>
+    <div data-ng-if="!$ctrl.volumeId">
+        <oui-message class="mt-2" data-type="info">
+            <span
+                data-ng-bind=":: 'pci_data_sync_all_directory' | translate"
+            ></span>
+        </oui-message>
+    </div>
+</oui-modal>

@@ -3,6 +3,11 @@
         data-heading="{{ :: 'dedicated_servers_title' | translate }}"
     ></oui-header>
 
+    <!-- RBX1 EOL Banner-->
+    <ovh-manager-rbx-eol-banner
+        data-ng-if="$ctrl.displayRbx1EolBanner.rbx1Eol"
+    ></ovh-manager-rbx-eol-banner>
+
     <ovh-manager-auto-renew-2016-deployment-banner
         data-show="$ctrl.isAutorenew2016DeploymentBannerAvailable"
     ></ovh-manager-auto-renew-2016-deployment-banner>
@@ -29,14 +34,14 @@
         </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'dedicated_servers_name' | translate"
-            data-property="name"
+            data-property="iam.displayName"
             data-filterable
             data-sortable
             data-type="string"
             data-prevent-customization
         >
             <a data-ng-href="{{ $ctrl.getServerDashboardLink($row) }}"
-                >{{$value}}</a
+                >{{ $row.iam.displayName }}</a
             >
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -130,8 +135,8 @@
             <span
                 class="oui-badge"
                 data-ng-class="{
-                    'oui-badge_success': $value !== 'disabled',
-                    'oui-badge_warning': $value === 'disabled'
+                    'oui-badge_success': $value === 'proactive',
+                    'oui-badge_warning': $value !== 'proactive'
                     }"
                 data-translate="{{:: 'server_configuration_monitoring_status_' + $value }}"
             ></span>

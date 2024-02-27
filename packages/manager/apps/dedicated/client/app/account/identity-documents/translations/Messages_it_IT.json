@@ -23,5 +23,7 @@
   "user_account_identity_documents_legal_info3": "Per maggiori informazioni sul trattamento dei tuoi dati personali e per conoscere i tuoi diritti, consulta la nostra <a href=\"{{ link }}\" target=\"_blank\">Politica di utilizzo dei dati personali.</a>",
   "user_account_identity_documents_verification_in_progress_info": "Il trattamento dei documenti è attualmente in fase di analisi da parte dei nostri team.",
   "user_account_identity_documents_verification_waiting_info": "La tua richiesta è stata analizzata ma necessita di ulteriori documenti. Consulta il ticket di supporto.",
-  "user_account_identity_documents_selection_file_format_invalid": "Formato di file non supportato. Utilizza uno dei formati accettati: jpg, jpeg, pdf e png"
+  "user_account_identity_documents_selection_file_format_invalid": "Formato di file non supportato. Utilizza uno dei formati accettati: jpg, jpeg, pdf e png",
+  "user_account_identity_documents_intro_ensure_correspondance": "Assicurati che i tuoi dati personali coincidano con il nome e l’indirizzo che appaiono nei documenti ufficiali.",
+  "user_account_identity_documents_intro_kyc_reminder": "Assicurati che i tuoi dati personali coincidano con il nome e l’indirizzo che appaiono nei documenti ufficiali."
 }

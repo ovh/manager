@@ -22,7 +22,13 @@ export default /* @ngInject */ ($stateProvider) => {
         PciProjectsProjectInstanceService,
         projectId,
         instanceId,
-      ) => PciProjectsProjectInstanceService.get(projectId, instanceId),
+        customerRegions,
+      ) =>
+        PciProjectsProjectInstanceService.get(
+          projectId,
+          instanceId,
+          customerRegions,
+        ),
 
       region: /* @ngInject */ ($http, $q, instance, projectId) =>
         $q
@@ -52,7 +58,13 @@ export default /* @ngInject */ ($stateProvider) => {
           );
         });
       },
-
+      imageInformation: /* @ngInject */ ($http, projectId, instance) => {
+        if (!instance.image) return null;
+        return $http
+          .get(`/cloud/project/${projectId}/image/${instance.image?.id}`)
+          .then(({ data }) => `${data.name} - ${data.status}`)
+          .catch(() => null);
+      },
       goBack: /* @ngInject */ (goToInstance) => goToInstance,
     },
   });

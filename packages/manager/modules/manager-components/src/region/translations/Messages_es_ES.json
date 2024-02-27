@@ -50,5 +50,17 @@
   "manager_components_region_continent_SYD": "Oceanía",
   "manager_components_region_continent_US": "Estados Unidos",
   "manager_components_region_SHA_micro": "Gravelines (SHADOW-EU-1)",
-  "manager_components_region_continent_SHA": "Europa Occidental"
+  "manager_components_region_continent_SHA": "Europa Occidental",
+  "manager_components_region_GS": "GS",
+  "manager_components_region_MAD": "Madrid",
+  "manager_components_region_BRU": "Bruselas",
+  "manager_components_region_GS_micro": "Gridscale ({{ micro }})",
+  "manager_components_region_MAD_micro": "Madrid ({{ micro }})",
+  "manager_components_region_BRU_micro": "Bruselas ({{ micro }})",
+  "manager_components_region_location_GS": "Europa Occidental",
+  "manager_components_region_location_MAD": "Europa Occidental",
+  "manager_components_region_location_BRU": "Europa Occidental",
+  "manager_components_region_continent_GS": "Europa Occidental",
+  "manager_components_region_continent_MAD": "Europa Occidental",
+  "manager_components_region_continent_BRU": "Europa Occidental"
 }

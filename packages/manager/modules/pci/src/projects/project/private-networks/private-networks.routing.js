@@ -1,8 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
-
-import { VRACK_OPERATION_COMPLETED_STATUS } from './private-networks.constants';
 import { PCI_FEATURES } from '../../projects.constant';
+import { VRACK_OPERATION_COMPLETED_STATUS } from './private-networks.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.privateNetwork', {
@@ -21,38 +20,60 @@ export default /* @ngInject */ ($stateProvider) => {
         .then((operation) => {
           if (isObject(operation)) {
             return VRACK_OPERATION_COMPLETED_STATUS.includes(operation.status)
-              ? false
+              ? {
+                  state: 'pci.projects.project.privateNetwork.globalRegions',
+                }
               : { state: 'pci.projects.project.privateNetwork.vrack' };
           }
-
           return transition
             .injector()
             .getAsync('vrack')
-            .then((vrack) =>
-              isEmpty(vrack)
-                ? { state: 'pci.projects.project.privateNetwork.vrack' }
-                : false,
-            );
+            .then((vrack) => {
+              if (isEmpty(vrack)) {
+                return { state: 'pci.projects.project.privateNetwork.vrack' };
+              }
+
+              return transition
+                .injector()
+                .getAsync('privateNetworks')
+                .then((privateNetworks) => {
+                  // Navigate by default to globalzone
+                  if (privateNetworks.length > 0) {
+                    return {
+                      state:
+                        'pci.projects.project.privateNetwork.globalRegions',
+                    };
+                  }
+
+                  // if Zero private networks check for local private network
+                  // if Zero local private network display onboarding page
+                  // if not navigate to localzone
+                  return transition
+                    .injector()
+                    .getAsync('localPrivateNetworks')
+                    .then((localPrivateNetworks) => {
+                      return localPrivateNetworks.length > 0
+                        ? {
+                            state:
+                              'pci.projects.project.privateNetwork.localZone',
+                          }
+                        : {
+                            state:
+                              'pci.projects.project.privateNetwork.globalRegions',
+                          };
+                    });
+                });
+            });
         }),
     resolve: {
       createNetwork: /* @ngInject */ ($state, projectId) => () =>
         $state.go('pci.projects.project.privateNetwork.add', { projectId }),
-
-      deleteSubnet: /* @ngInject */ (
-        $state,
-        projectId,
-        trackPrivateNetworks,
-      ) => (networkId, region) => {
-        trackPrivateNetworks(`table-option-menu::delete`);
-        return $state.go('pci.projects.project.privateNetwork.delete', {
-          projectId,
-          networkId,
-          region,
-        });
-      },
       networkId: /* @ngInject */ ($transition$) => $transition$.params().id,
-      privateNetworks: /* @ngInject */ (PciPrivateNetworks, projectId) =>
-        PciPrivateNetworks.getPrivateNetworks(projectId),
+      privateNetworks: /* @ngInject */ (
+        PciPrivateNetworks,
+        projectId,
+        customerRegions,
+      ) => PciPrivateNetworks.getPrivateNetworks(projectId, customerRegions),
       goToAddPublicGateway: /* @ngInject */ (
         $state,
         projectId,
@@ -87,6 +108,22 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('pci.projects.project.gateways', {
           projectId,
         }),
+      globalRegionsLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.privateNetwork.globalRegions', {
+          projectId,
+        }),
+      currentActiveLink: /* @ngInject */ ($transition$, $state) => () =>
+        $state.href($state.current.name, $transition$.params()),
+      localZoneLink: /* @ngInject */ ($state, projectId) =>
+        $state.href('pci.projects.project.privateNetwork.localZone', {
+          projectId,
+        }),
+      localPrivateNetworks: /* @ngInject */ (
+        PciPrivateNetworks,
+        projectId,
+        customerRegions,
+      ) =>
+        PciPrivateNetworks.getLocalPrivateNetworks(projectId, customerRegions),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_network_private'),
 
@@ -139,6 +176,34 @@ export default /* @ngInject */ ($stateProvider) => {
           default:
             trackClick(name);
         }
+      },
+      goToLocalPrivateNetworks: /* @ngInject */ (
+        $state,
+        CucCloudMessage,
+        projectId,
+      ) => (message = false, type = 'success') => {
+        const reload = message && type === 'success';
+
+        const promise = $state.go(
+          'pci.projects.project.privateNetwork.localZone',
+          {
+            projectId,
+          },
+          {
+            reload,
+          },
+        );
+
+        if (message) {
+          promise.then(() =>
+            CucCloudMessage[type](
+              message,
+              'pci.projects.project.privateNetwork',
+            ),
+          );
+        }
+
+        return promise;
       },
 
       trackClick: /* @ngInject */ (atInternet) => (hit, type = 'action') => {

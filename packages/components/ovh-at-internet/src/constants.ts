@@ -50,13 +50,21 @@ export const AT_INTERNET_CUSTOM_PROPS: Record<string, string> = {
   accountSmsConsent: 'account_sms_consent',
   accountPhoneType: 'account_phone_type',
   accountcreationSiretProvided: 'accountcreation_siret_provided',
+  pciProjectMode: 'pci_project_mode',
 };
 
 export const TMS_SCRIPT_URL = 'https://analytics.ovh.com/ovh/ovh_manager.js';
+
+export const PCI_PROJECT_MODE_VALUES: Record<string, string> = {
+  DISCOVERY: 'discovery',
+  FULL: 'full',
+  NONE: '',
+};
 
 export default {
   AT_INTERNET_CUSTOM_PROPS,
   AT_INTERNET_LEVEL2,
   AT_INTERNET_WEBSITE,
   TMS_SCRIPT_URL,
+  PCI_PROJECT_MODE_VALUES,
 };

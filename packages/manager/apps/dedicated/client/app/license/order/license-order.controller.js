@@ -1,10 +1,8 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
-import values from 'lodash/values';
 
 export default /* @ngInject */ (
   $q,
-  $filter,
   $scope,
   $timeout,
   $translate,
@@ -52,6 +50,16 @@ export default /* @ngInject */ (
     value: false,
   };
 
+  function setPopoverScope() {
+    const { filterBlocks, availableIpBlock, filters } = $scope;
+
+    $scope.popoverScope = {
+      filterBlocks,
+      availableIpBlock,
+      filters,
+    };
+  }
+
   const getOrderableVersion = function getOrderableVersion() {
     $scope.loaders.orderableVersion = true;
 
@@ -81,7 +89,6 @@ export default /* @ngInject */ (
       $scope.selectedType = {
         value: null,
       };
-      $scope.nbLicence.value = values($scope.types).length || 0;
     }
   };
 
@@ -109,9 +116,6 @@ export default /* @ngInject */ (
 
   function init() {
     $scope.agoraEnabled = licenseFeatureAvailability.allowLicenseAgoraOrder();
-    $scope.powerpackModel = {
-      value: false,
-    };
     $scope.loaders.ips = true;
 
     if ($scope.agoraEnabled) {
@@ -143,28 +147,30 @@ export default /* @ngInject */ (
       })
       .finally(() => {
         $scope.loaders.ips = false;
+        setPopoverScope();
       });
   }
 
-  $scope.ipIsValid = function ipIsValid() {
-    const block = $scope.selected.ipBlock.block.split('/');
-    const mask = block[1];
-    const range = block[0];
-    let ip = null;
+  $scope.ipIsValid = function ipIsValid(ip) {
+    if ($scope.selected?.ipBlock?.block) {
+      const block = $scope.selected.ipBlock.block.split('/');
+      const mask = block[1];
+      const range = block[0];
 
-    try {
-      if (ipaddr.isValid($scope.selected.ip)) {
-        ip = ipaddr.parse($scope.selected.ip);
-        $scope.ipValid.value = ip.match(ipaddr.parse(range), mask);
-      } else {
+      try {
+        if (ipaddr.isValid(ip)) {
+          const ipToValidate = ipaddr.parse(ip);
+          $scope.ipValid.value = ipToValidate.match(ipaddr.parse(range), mask);
+        } else {
+          $scope.ipValid.value = false;
+        }
+      } catch (e) {
         $scope.ipValid.value = false;
+        throw e;
       }
-    } catch (e) {
-      $scope.ipValid.value = false;
-      throw e;
     }
 
-    getOrderableVersion();
+    return $scope.ipValid.value;
   };
 
   $scope.$watch('selected.ipBlock', (nv) => {

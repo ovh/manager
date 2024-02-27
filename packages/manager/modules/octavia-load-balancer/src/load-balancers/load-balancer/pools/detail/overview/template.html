@@ -1,0 +1,157 @@
+<div class="octavia-load-balancer-pools-detail-overview">
+    <div class="row d-md-flex">
+        <div class="col-md-4">
+            <oui-tile
+                data-heading="{{ 'octavia_load_balancer_pools_detail_overview_management_title' | translate }}"
+            >
+                <oui-tile-button
+                    data-on-click="$ctrl.goToPoolEditionFromOverview($ctrl.pool)"
+                >
+                    <span
+                        data-translate="octavia_load_balancer_pools_detail_overview_management_edit"
+                    ></span>
+                </oui-tile-button>
+                <oui-tile-button data-on-click="$ctrl.goToAddMemberManually()">
+                    <span
+                        data-translate="octavia_load_balancer_pools_detail_overview_management_add_manually"
+                    ></span>
+                </oui-tile-button>
+                <oui-tile-button
+                    data-on-click="$ctrl.goToAddMemberFromInstances()"
+                >
+                    <span
+                        data-translate="octavia_load_balancer_pools_detail_add_ips_instances"
+                    ></span>
+                </oui-tile-button>
+                <oui-tile-button data-on-click="$ctrl.goToDelete($ctrl.pool)">
+                    <span
+                        data-translate="octavia_load_balancer_pools_detail_overview_management_delete"
+                    ></span>
+                </oui-tile-button>
+            </oui-tile>
+        </div>
+        <div class="col-md-4">
+            <oui-tile
+                heading="{{:: 'octavia_load_balancer_pools_detail_overview_info_title' | translate }}"
+                class="h-100"
+            >
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_pools_detail_overview_info_name' | translate }}"
+                >
+                    <oui-tile-description>
+                        <div class="d-flex align-items-center">
+                            <span data-ng-bind="$ctrl.pool.name"></span>
+                            <button
+                                class="oui-button oui-button_ghost"
+                                data-ng-click="$ctrl.goToEditName()"
+                            >
+                                <span
+                                    class="oui-icon oui-icon-pen"
+                                    aria-hidden="true"
+                                ></span>
+                            </button>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_pools_detail_overview_info_pool_id' | translate }}"
+                >
+                    <oui-tile-description>
+                        <oui-clipboard
+                            data-model="$ctrl.pool.id"
+                            data-id="poolId"
+                            data-name="poolId"
+                        ></oui-clipboard>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_pools_detail_overview_info_listener_id' | translate }}"
+                    data-ng-if="$ctrl.pool.listenerId"
+                >
+                    <oui-tile-description>
+                        <oui-clipboard
+                            data-model="$ctrl.pool.listenerId"
+                            data-id="listenerId"
+                            data-name="listenerId"
+                        ></oui-clipboard>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_pools_detail_overview_info_provisioning_status' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="$ctrl.provisioningStatusBadges[$ctrl.pool.provisioningStatus]"
+                            data-ng-bind=":: 'octavia_load_balancer_pools_detail_overview_info_provisioning_status_' + $ctrl.pool.provisioningStatus | translate"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_operating_status' | translate }}"
+                >
+                    <oui-tile-description>
+                        <span
+                            class="oui-badge"
+                            data-ng-class="$ctrl.operatingStatusBadges[$ctrl.pool.operatingStatus]"
+                            data-ng-bind=":: 'octavia_load_balancer_operating_status_' + $ctrl.pool.operatingStatus | translate"
+                        ></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+        <div class="col-md-4">
+            <oui-tile
+                heading="{{:: 'octavia_load_balancer_pools_detail_overview_options_title' | translate }}"
+                class="h-100"
+            >
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_pools_detail_overview_options_algorithm' | translate }}"
+                >
+                    <oui-tile-description>
+                        <div class="d-flex align-items-center">
+                            <span
+                                data-ng-bind=":: 'octavia_load_balancer_pools_enum_algorithm_' + $ctrl.pool.algorithm | translate"
+                            ></span>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_pools_detail_overview_options_protocol' | translate }}"
+                >
+                    <oui-tile-description>
+                        <div class="d-flex align-items-center">
+                            <span
+                                data-ng-bind="$ctrl.pool.protocol"
+                                class="text-uppercase"
+                            ></span>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_pools_detail_overview_session_persistence' | translate }}"
+                >
+                    <oui-tile-description>
+                        <div class="d-flex align-items-center">
+                            <span
+                                data-ng-bind="($ctrl.pool.sessionPersistence.type === 'disabled') ? ('octavia_load_balancer_pools_detail_overview_session_persistence_disabled' | translate ) : $ctrl.pool.sessionPersistence.type"
+                            ></span>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <oui-tile-definition
+                    data-term="{{ :: 'octavia_load_balancer_pools_detail_overview_cookie_name' | translate }}"
+                    data-ng-if="$ctrl.pool.sessionPersistence.type !== 'disabled'"
+                >
+                    <oui-tile-description>
+                        <div class="d-flex align-items-center">
+                            <span
+                                data-ng-bind="$ctrl.pool.sessionPersistence.cookieName"
+                            ></span>
+                        </div>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+    </div>
+</div>

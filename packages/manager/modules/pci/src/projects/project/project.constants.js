@@ -75,6 +75,8 @@ export const ACTIONS = [
   },
 ];
 
+const PROJECT_PAGE_TRACKING_NAME = 'PublicCloud::pci::projects::project';
+
 export const DOCUMENTATION_LINKS = [
   {
     term: 'pci_projects_project_documentation_getting_started_term',
@@ -83,12 +85,14 @@ export const DOCUMENTATION_LINKS = [
     href:
       'https://docs.ovh.com/gb/en/public-cloud/public-cloud-essential-information/',
     feature: PCI_FEATURES.LINKS.CLOUD_ESSENTIAL_INFORMATION,
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::docs-pci-basics`,
   },
   {
     term: 'pci_projects_project_documentation_interface_term',
     description: 'pci_projects_project_documentation_interface_description',
     href: 'https://docs.ovh.com/gb/en/public-cloud/public-cloud-interface/',
     feature: PCI_FEATURES.LINKS.PUBLIC_CLOUD_INTERFACE,
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::docs-pci-interface`,
   },
   {
     term: 'pci_projects_project_documentation_instances_term',
@@ -96,6 +100,7 @@ export const DOCUMENTATION_LINKS = [
     href:
       'https://docs.ovh.com/gb/en/public-cloud/get-started-with-a-public-cloud-instance/',
     feature: PCI_FEATURES.LINKS.START_PCI_INSTANCE,
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::docs-get-started-with-instances`,
   },
   {
     term: 'pci_projects_project_documentation_billing_term',
@@ -103,18 +108,21 @@ export const DOCUMENTATION_LINKS = [
     href:
       'https://docs.ovh.com/gb/en/public-cloud/information-on-cloud-billing-options/',
     feature: PCI_FEATURES.LINKS.CLOUD_BILLING_OPTIONS,
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::docs-billing`,
   },
   {
     term: 'pci_projects_project_documentation_guides_term',
     description: 'pci_projects_project_documentation_guides_description',
     href: 'https://docs.ovh.com/gb/en/',
     feature: PCI_FEATURES.LINKS.ALL_GUIDES,
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::docs-all-guides`,
   },
   {
     term: 'pci_projects_project_documentation_block_storage_term',
     description: 'pci_projects_project_documentation_block_storage_description',
     href: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002157044',
     feature: PCI_FEATURES.LINKS.START_WITH_BLOCK_STORAGE,
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::docs_start_with_block_storage`,
   },
 ];
 
@@ -124,12 +132,14 @@ export const COMMUNITY_LINKS = [
     description: 'pci_projects_project_community_roadmap_description',
     href: 'https://github.com/ovh/public-cloud-roadmap/projects',
     regions: ['EU', 'CA'],
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::community-roadmap`,
   },
   {
     term: 'pci_projects_project_community_discord_term',
     description: 'pci_projects_project_community_discord_description',
     href: 'https://discord.com/invite/C9VVJZxxd6',
     regions: ['EU', 'CA'],
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::community-discord`,
   },
 ];
 export const API_GUIDES = {
@@ -156,6 +166,8 @@ export const TERRAFORM_GUIDES = {
   SG: 'https://docs.ovh.com/sg/en/publiccloud/databases/order-terraform/',
 };
 
+export const DISCOVERY_PROMOTION_VOUCHER = 'FREETRIAL';
+
 export const DATABASE_CREATION_GUIDES =
   'https://github.com/ovh/public-cloud-databases-examples';
 
@@ -168,7 +180,82 @@ export const PCI_HDS_ADDON = {
   planCode: 'certification.hds.2018',
 };
 
+export const PCI_HDS_DISCOVERY_ADDON = {
+  productName: 'cloud',
+  family: 'certification-hds',
+  parentPlanCode: 'project.discovery',
+  planCodeScope: 'certification.hds',
+  certifiedProject: 'publiccloud-certification-hds',
+  planCode: 'certification.hds.2018',
+};
+
 export const LEGACY_PLAN_CODES = ['project.legacy', 'project.2018'];
+
+export const LOCAL_ZONE_REGION = 'localzone';
+
+export const LOCAL_ZONE_INFO_URL = {
+  DEFAULT: 'https://ovhcloud.com/en/public-cloud/local-zone-compute/',
+  ASIA: 'https://ovhcloud.com/asia/public-cloud/local-zone-compute/',
+  DE: 'https://ovhcloud.com/de/public-cloud/local-zone-compute/',
+  ES: 'https://www.ovhcloud.com/es-es/public-cloud/local-zone-compute/',
+  IE: 'https://ovhcloud.com/en-ie/public-cloud/local-zone-compute/',
+  IT: 'https://ovhcloud.com/it/public-cloud/local-zone-compute/',
+  NL: 'https://ovhcloud.com/nl/public-cloud/local-zone-compute/',
+  PL: 'https://ovhcloud.com/pl/public-cloud/local-zone-compute/',
+  PT: 'https://ovhcloud.com/pt/public-cloud/local-zone-compute/',
+  GB: 'https://ovhcloud.com/en-gb/public-cloud/local-zone-compute/',
+  CA: 'https://ovhcloud.com/en-ca/public-cloud/local-zone-compute/',
+  QC: 'https://ovhcloud.com/fr-ca/public-cloud/local-zone-compute/',
+  MA: 'https://ovhcloud.com/fr-ma/public-cloud/local-zone-compute/',
+  SN: 'https://ovhcloud.com/fr-sn/public-cloud/local-zone-compute/',
+  TN: 'https://ovhcloud.com/fr-tn/public-cloud/local-zone-compute/',
+  AU: 'https://ovhcloud.com/en-au/public-cloud/local-zone-compute/',
+  SG: 'https://ovhcloud.com/en-sg/public-cloud/local-zone-compute/',
+  FR: 'https://ovhcloud.com/fr/public-cloud/local-zone-compute/',
+  WE: 'https://ovhcloud.com/us-en/public-cloud/local-zone-compute/',
+  WS: 'https://ovhcloud.com/us-en/public-cloud/local-zone-compute/',
+  US: 'https://us.ovhcloud.com/public-cloud/local-zone-compute/',
+};
+
+export const GLOBAL_REGIONS_INFO_URL = {
+  DEFAULT: 'https://ovhcloud.com/en/public-cloud/compute/',
+  ASIA: 'https://ovhcloud.com/asia/public-cloud/compute/',
+  DE: 'https://ovhcloud.com/de/public-cloud/compute/',
+  ES: 'https://www.ovhcloud.com/es-es/public-cloud/compute/',
+  IE: 'https://ovhcloud.com/en-ie/public-cloud/compute/',
+  IT: 'https://ovhcloud.com/it/public-cloud/compute/',
+  NL: 'https://ovhcloud.com/nl/public-cloud/compute/',
+  PL: 'https://ovhcloud.com/pl/public-cloud/compute/',
+  PT: 'https://ovhcloud.com/pt/public-cloud/compute/',
+  GB: 'https://ovhcloud.com/en-gb/public-cloud/compute/',
+  CA: 'https://ovhcloud.com/en-ca/public-cloud/compute/',
+  QC: 'https://ovhcloud.com/fr-ca/public-cloud/compute/',
+  MA: 'https://ovhcloud.com/fr-ma/public-cloud/compute/',
+  SN: 'https://ovhcloud.com/fr-sn/public-cloud/compute/',
+  TN: 'https://ovhcloud.com/fr-tn/public-cloud/compute/',
+  AU: 'https://ovhcloud.com/en-au/public-cloud/compute/',
+  SG: 'https://ovhcloud.com/en-sg/public-cloud/compute/',
+  FR: 'https://ovhcloud.com/fr/public-cloud/compute/',
+  WS: 'https://ovhcloud.com/us-en/public-cloud/compute/',
+  US: 'https://us.ovhcloud.com/public-cloud/compute/',
+  WE: 'https://ovhcloud.com/us-en/public-cloud/compute/',
+};
+
+export const URL_INFO = {
+  GLOBAL_REGIONS: GLOBAL_REGIONS_INFO_URL,
+  LOCAL_ZONE: LOCAL_ZONE_INFO_URL,
+};
+
+export const DISCOVERY_PROJECT_PLANCODE = 'project.discovery';
+
+export const DISCOVERY_PROJECT_ACTIVATION_PAYLOAD = {
+  autoPayWithPreferredPaymentMethod: true,
+  duration: 'P1M',
+  pricingMode: 'default',
+  quantity: 1,
+};
+
+export const FULL_PROJECT_PLANCODE = 'project.2018';
 
 export default {
   PRODUCT_IMAGES,
@@ -181,4 +268,10 @@ export default {
   TERRAFORM_GUIDES,
   DATABASE_CREATION_GUIDES,
   PCI_FEATURES,
+  LOCAL_ZONE_REGION,
+  URL_INFO,
+  DISCOVERY_PROJECT_PLANCODE,
+  DISCOVERY_PROMOTION_VOUCHER,
+  DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
+  FULL_PROJECT_PLANCODE,
 };

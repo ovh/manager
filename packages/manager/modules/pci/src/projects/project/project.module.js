@@ -14,6 +14,8 @@ import contacts from './contacts';
 import creating from './creating';
 import dataProcessing from './data-processing';
 import edit from './edit';
+import activate from './activate';
+import components from './components';
 import additionalIps from './additional-ips';
 import inactive from './inactive';
 import instances from './instances';
@@ -38,8 +40,8 @@ import pciMaintenanceBanner from '../../components/pci-maintenance-banner';
 import aiDashboard from './ai-dashboard';
 import projectComponent from './project.component';
 import service from './project.service';
-import dataIntegration from './data-integration';
-
+import pciProjectNew from '../new/service';
+import orderCart from '../order-cart.service';
 import gateways from './gateways';
 
 import './project.less';
@@ -55,6 +57,8 @@ angular
     creating,
     dataProcessing,
     edit,
+    activate,
+    components,
     additionalIps,
     inactive,
     instances,
@@ -82,11 +86,12 @@ angular
     pciMaintenanceBanner,
     gateways,
     aiDashboard,
-    dataIntegration,
   ])
   .config(routing)
   .component('pciProject', projectComponent)
   .run(/* @ngTranslationsInject:json ./translations */)
+  .service('orderCart', orderCart)
+  .service('pciProjectNew', pciProjectNew)
   .service('PciProject', service);
 
 export default moduleName;

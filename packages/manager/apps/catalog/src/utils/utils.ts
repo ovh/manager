@@ -2,6 +2,8 @@ import { Product } from '@/api';
 
 type ProductKey = 'universe' | 'category' | 'name';
 
+export const toFilterDisplay = (label: string) => label.replaceAll('_', ' ');
+
 export const toFilterValue = (label: string) =>
   label.replace(/,/gm, '{coma}').replace(/\s/gm, '_');
 

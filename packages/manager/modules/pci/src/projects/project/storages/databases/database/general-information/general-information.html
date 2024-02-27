@@ -525,24 +525,6 @@
                     </oui-tile-description>
                 </oui-tile-definition>
             </oui-tile>
-            <oui-tile
-                data-heading="{{:: 'pci_databases_general_information_support_title' | translate }}"
-            >
-                <oui-tile-definition
-                    data-term="{{:: 'pci_databases_general_information_support_level_label' | translate }}"
-                >
-                    <oui-tile-description>
-                        <span
-                            data-translate="{{:: $ctrl.supportLevel | translate }}"
-                        ></span>
-                    </oui-tile-description>
-                </oui-tile-definition>
-                <oui-tile-button data-ng-click="$ctrl.goToSupportPage()">
-                    <span
-                        data-translate="pci_databases_general_information_support_create_ticket_label"
-                    ></span>
-                </oui-tile-button>
-            </oui-tile>
         </div>
         <div class="col-md">
             <dashboard-integration

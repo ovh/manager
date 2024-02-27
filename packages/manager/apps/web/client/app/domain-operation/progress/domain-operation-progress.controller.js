@@ -5,18 +5,12 @@ import findIndex from 'lodash/findIndex';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import set from 'lodash/set';
+import { ALERTER_ID } from '../operation-table/operation-table.constants';
 
 angular.module('App').controller(
   'DomainOperationProgressCtrl',
   class DomainOperationProgressCtrl {
-    constructor(
-      $scope,
-      $stateParams,
-      $translate,
-      Alerter,
-      domainOperationService,
-    ) {
-      this.$scope = $scope;
+    constructor($stateParams, $translate, Alerter, domainOperationService) {
       this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.Alerter = Alerter;
@@ -24,7 +18,6 @@ angular.module('App').controller(
     }
 
     $onInit() {
-      this.$scope.alerts = { dashboard: 'domains.operations.alerts' };
       this.currentStepIndex = 0;
       this.loading = false;
       this.progress = null;
@@ -43,7 +36,7 @@ angular.module('App').controller(
 
     getProgress() {
       this.loading = true;
-      return this.Operation.getOperation(this.$stateParams.operationId)
+      return this.Operation.getDomainOperation(this.$stateParams.operationId)
         .then((operation) => {
           this.domain = operation.domain;
           this.creationDate = operation.creationDate;
@@ -89,7 +82,7 @@ angular.module('App').controller(
           this.Alerter.alertFromSWS(
             this.$translate.instant('domains_operations_error'),
             err,
-            this.$scope.alerts.main,
+            ALERTER_ID,
           ),
         )
         .finally(() => {

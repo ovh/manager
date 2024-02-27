@@ -2,27 +2,22 @@ import React, { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, useResolvedPath } from 'react-router-dom';
 import { useQueries } from '@tanstack/react-query';
-import Breadcrumb, {
-  BreadcrumbHandleParams,
-} from '@/components/Breadcrumb/Breadcrumb';
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import { {{dashboardEndpointFn}}, {{dashboardEndpointFn}}ServiceInfos, {{dashboardEndpointFn}}QueryKey, {{dashboardEndpointFn}}ServiceInfosQueryKey } from '@/api';
 import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
 import Loading from '@/components/Loading/Loading';
-import ErrorBanner from '@/components/Error/Error';
-
-export function breadcrumb({ params }: BreadcrumbHandleParams) {
-  return params.serviceName;
-}
+import Errors from '@/components/Error/Error';
 
 export default function DashboardPage() {
   const { t } = useTranslation('{{appName}}/dashboard');
   const { serviceName } = useParams();
+  {{#if this.isApiV6}}
   const results: any = useQueries({
     queries: [
-      { queryKey: [{{dashboardEndpointFn}}QueryKey({ serviceName })], queryFn: () => {{dashboardEndpointFn}}({ serviceName }), staleTime: Infinity, },
-      { queryKey: [{{dashboardEndpointFn}}ServiceInfosQueryKey({ serviceName })], queryFn: () => {{dashboardEndpointFn}}ServiceInfos({ serviceName }), staleTime: Infinity, },
+      { queryKey: [{{dashboardEndpointFn}}QueryKey({ serviceName })], queryFn: () => {{dashboardEndpointFn}}({ serviceName }), staleTime: Infinity, }
     ],
   });
+  {{/if}}
 
   const tabsList = [
     {
@@ -37,15 +32,19 @@ export default function DashboardPage() {
     },
   ];
 
+  {{#if this.isApiV6}}
   const { error, isLoading, } = results[0];
 
   if (error) {
-    return <ErrorBanner error={error.response} />;
+    return <Errors
+        error={error.response}
+      />;
   }
 
   if (isLoading) {
     return (<div><Loading /></div>)
   }
+  {{/if}}
 
   return (
     <div>

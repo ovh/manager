@@ -44,6 +44,16 @@ export default class FlavorBillingController {
   }
 
   formatPrice(price) {
+    if (!this.PriceFormatter && this.hourlyPriceInformation) {
+      this.PriceFormatter = new Intl.NumberFormat(
+        this.coreConfig.getUserLocale().replace('_', '-'),
+        {
+          style: 'currency',
+          currency: this.hourlyPriceInformation.currencyCode,
+          maximumFractionDigits: 5, // default is 2. But this rounds off the price
+        },
+      );
+    }
     return this.PriceFormatter.format(this.getPrice(price));
   }
 

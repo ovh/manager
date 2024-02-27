@@ -5,13 +5,14 @@ import isString from 'lodash/isString';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import '@ovh-ux/ui-kit';
 import '@ovh-ux/ng-at-internet';
+import 'angular-ui-validate';
 import { isTopLevelApplication } from '@ovh-ux/manager-config';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
-import OctaviaLoadBalancer from '../../../modules/octavia-load-balancer/src';
+import OctaviaLoadBalancer from '@ovh-ux/manager-octavia-load-balancer';
 import errorPage from './error';
 
 import TRACKING from './tracking/at-internet.constants';
@@ -123,6 +124,7 @@ export default async (containerEl, shellClient) => {
         ngOvhSsoAuth,
         ngUiRouterBreadcrumb,
         'oui',
+        'ui.validate',
         uiRouter,
         errorPage,
         OctaviaLoadBalancer,

@@ -26,5 +26,6 @@
   "sms_batches_error": "Se ha producido un error: {{error}}",
   "sms_batches_delete_success": "Se ha eliminado correctamente.",
   "sms_batches_details": "Ver el detalle",
-  "sms_batches_breadcrumb": "Gestión de campañas"
+  "sms_batches_breadcrumb": "Gestión de campañas",
+  "sms_batches_delete": "Eliminar"
 }

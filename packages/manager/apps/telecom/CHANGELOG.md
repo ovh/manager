@@ -3,6 +3,118 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.8.2...@ovh-ux/manager-telecom@15.9.0) (2024-02-26)
+
+
+### Features
+
+* **telecom:** disable activate service button ([#10874](https://github.com/ovh/manager/issues/10874)) ([243d263](https://github.com/ovh/manager/commit/243d263552063909aaf78db6cadf04657f783688))
+
+
+
+
+
+## [15.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.8.1...@ovh-ux/manager-telecom@15.8.2) (2024-02-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.8.0...@ovh-ux/manager-telecom@15.8.1) (2024-02-20)
+
+
+### Bug Fixes
+
+* **telecom:** fix modem wifi no qrcode text display ([#10905](https://github.com/ovh/manager/issues/10905)) ([b8f14eb](https://github.com/ovh/manager/commit/b8f14eb9aaaec43c78fd3f9d4e45d22073b318f7))
+
+
+
+
+
+# [15.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.7.0...@ovh-ux/manager-telecom@15.8.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
+# [15.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.6.0...@ovh-ux/manager-telecom@15.7.0) (2024-02-12)
+
+
+### Features
+
+* **modem.config:** display qr code to config modem ([#10770](https://github.com/ovh/manager/issues/10770)) ([5832d58](https://github.com/ovh/manager/commit/5832d58a5c68b007aa624929b1eb8be79f855bdb))
+
+
+
+
+
+# [15.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.5.5...@ovh-ux/manager-telecom@15.6.0) (2024-02-05)
+
+
+### Bug Fixes
+
+* **telecom:** display success after migrate return ok ([#10784](https://github.com/ovh/manager/issues/10784)) ([ae045dd](https://github.com/ovh/manager/commit/ae045dd5748968bebf6a64a13437d68db0d5cb33))
+
+
+### Features
+
+* **telecom:** add heaset icon and several redirections ([#10615](https://github.com/ovh/manager/issues/10615)) ([d87dde4](https://github.com/ovh/manager/commit/d87dde4069c92aacb646dad3d060324a79a50c84))
+* **telecom:** translation missing on migration/move pack ([#10738](https://github.com/ovh/manager/issues/10738)) ([5385f78](https://github.com/ovh/manager/commit/5385f78bab1f73c07b712c4184ffbe1e03266076))
+
+
+
+
+
+## [15.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.5.4...@ovh-ux/manager-telecom@15.5.5) (2024-01-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.5.3...@ovh-ux/manager-telecom@15.5.4) (2024-01-29)
+
+
+### Bug Fixes
+
+* **telecom:** use right attribute for init ([#10709](https://github.com/ovh/manager/issues/10709)) ([0059995](https://github.com/ovh/manager/commit/00599958c461e104e85763bd60f17670a6f6d8e7))
+
+
+
+
+
+## [15.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.5.2...@ovh-ux/manager-telecom@15.5.3) (2024-01-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.5.1...@ovh-ux/manager-telecom@15.5.2) (2024-01-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.5.0...@ovh-ux/manager-telecom@15.5.1) (2024-01-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
 # [15.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.4.2...@ovh-ux/manager-telecom@15.5.0) (2023-12-19)
 
 

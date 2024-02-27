@@ -1,375 +1,167 @@
 <section class="telecom-sms-sms-outgoing">
-    <header>
-        <tuc-section-back-link
-            data-tuc-section-back-link-to-state="sms.service.sms"
-            data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}"
-        >
-        </tuc-section-back-link>
-        <h1 data-translate="sms_sms_outgoing_title"></h1>
-    </header>
+    <oui-header heading="{{ 'sms_sms_outgoing_title' | translate }}">
+        <oui-back-button data-state="sms.service.sms"> </oui-back-button>
+    </oui-header>
 
     <tuc-toast-message></tuc-toast-message>
 
-    <div class="mb-3 clearfix">
-        <div class="btn-group float-left mr-3" data-uib-dropdown>
+    <oui-datagrid
+        id="telecom-sms-outgoing-datagrid"
+        data-rows-loader="$ctrl.fetchOutgoingSms($config)"
+        data-row-loader="$ctrl.getPtts($row)"
+        data-on-row-select="$ctrl.onRowSelect($row, $rows)"
+        data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+        page-size="10"
+        page-size-max="100"
+        selectable-rows
+    >
+        <oui-datagrid-topbar>
             <button
-                id="btn-sms-outgoing-actions"
                 type="button"
-                class="oui-button oui-button_dropdown"
-                data-uib-dropdown-toggle
+                class="oui-button oui-button_secondary"
+                data-ng-click="$ctrl.exportHistory()"
+                data-ng-disabled="$ctrl.totalCount === 0 || $ctrl.outgoing.isExporting"
             >
-                <span data-translate="sms_common_actions"></span>
                 <span
-                    class="oui-icon oui-icon-chevron-down"
+                    class="oui-icon mr-2 oui-icon-download_concept"
                     aria-hidden="true"
                 ></span>
+                <span data-translate="sms_sms_outgoing_download_history">
+                </span>
             </button>
-            <ul
-                class="dropdown-menu"
-                role="menu"
-                aria-labelledby="btn-sms-outgoing-actions"
-                data-uib-dropdown-menu
+            <button
+                type="button"
+                class="oui-button oui-button_secondary"
+                data-ng-disabled="$ctrl.outgoing.selected.length === 0 || $ctrl.outgoing.isDeleting"
+                data-ng-click="$ctrl.deleteSelectedOutgoing()"
             >
-                <li role="menuitem">
-                    <button
-                        type="button"
-                        class="btn btn-link"
-                        data-ng-click="SmsOutgoingCtrl.exportHistory()"
-                        data-ng-disabled="!SmsOutgoingCtrl.outgoing.raw.length || SmsOutgoingCtrl.outgoing.isExporting"
-                        data-translate="sms_common_download"
-                        data-oui-tooltip="{{:: 'sms_sms_outgoing_download_history' | translate }}"
-                        data-oui-tooltip-placement="right"
-                    ></button>
-                </li>
-                <li role="menuitem">
-                    <button
-                        type="button"
-                        class="btn btn-link"
-                        data-ng-click="SmsOutgoingCtrl.refresh()"
-                        data-ng-disabled="SmsOutgoingCtrl.outgoing.isDeleting"
-                        data-translate="sms_common_refresh"
-                        data-oui-tooltip="{{:: 'sms_common_refresh_data' | translate }}"
-                        data-oui-tooltip-placement="right"
-                    ></button>
-                </li>
-            </ul>
-        </div>
-        <button
-            type="button"
-            class="btn btn-default float-left"
-            data-ng-disabled="SmsOutgoingCtrl.getSelection().length === 0 || SmsOutgoingCtrl.outgoing.isDeleting"
-            data-ng-click="SmsOutgoingCtrl.deleteSelectedOutgoing()"
-        >
-            <span
-                class="oui-icon mr-2 oui-icon-trash_concept"
-                aria-hidden="true"
-                data-ng-if="!SmsOutgoingCtrl.outgoing.isDeleting"
-            >
-            </span>
-            <oui-spinner
-                class="ml-2"
-                data-ng-if="SmsOutgoingCtrl.outgoing.isDeleting"
-                data-size="s"
-            >
-            </oui-spinner>
-            <span
-                data-ng-pluralize
-                data-count="SmsOutgoingCtrl.getSelection().length"
-                data-when="{
+                <span
+                    class="oui-icon mr-2 oui-icon-trash_concept"
+                    aria-hidden="true"
+                    data-ng-if="!$ctrl.outgoing.isDeleting"
+                >
+                </span>
+                <oui-spinner
+                    class="ml-2"
+                    data-ng-if="$ctrl.outgoing.isDeleting"
+                    data-size="s"
+                >
+                </oui-spinner>
+                <span
+                    data-ng-pluralize
+                    data-count="$ctrl.outgoing.selected.length"
+                    data-when="{
                           '0': ('sms_sms_outgoing_delete' | translate),
                           'one': ('sms_sms_outgoing_delete' | translate),
                           'other': ('sms_sms_outgoing_delete_plural' | translate:{ count: {} })
                       }"
+                >
+                </span>
+            </button>
+
+            <button
+                type="button"
+                class="oui-button oui-button_secondary float-right"
+                data-ng-click="$ctrl.refreshOutgoingSmsGrid()"
+            >
+                <span class="oui-icon oui-icon-refresh"></span>
+            </button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            title="'sms_sms_outgoing_label_date' | translate"
+            property="creationDatetime"
+            type="date"
+            filterable
+            sortable="desc"
+        >
+            <span
+                data-ng-bind="$row.creationDatetime | date: 'dd/MM/yyyy'"
+            ></span
+            ><br />
+            <span
+                data-ng-bind="$row.creationDatetime | date: 'HH:mm:ss'"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="'sms_sms_outgoing_label_sender' | translate"
+            property="sender"
+            filterable
+            sortable
+        >
+            <span data-ng-if="$row.sender" data-ng-bind="$row.sender"> </span>
+            <span
+                data-ng-if="!$row.sender"
+                data-oui-tooltip="{{ ::'sms_sms_outgoing_number_allowed_response_fr_only' | translate }}"
+                data-translate="sms_sms_outgoing_number_allowed_response"
+            >
+            </span
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title="'sms_sms_outgoing_label_receiver' | translate"
+            property="receiver"
+            filterable
+            sortable
+        ></oui-datagrid-column>
+        <oui-datagrid-column
+            title="'sms_sms_outgoing_label_tariff_code' | translate"
+            property="tariffCode"
+            sortable
+        >
+            <span data-ng-bind="$row.tariffCode || '-'"></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="'sms_sms_outgoing_label_message' | translate"
+            property="message"
+            filterable
+            sortable
+        >
+            <span data-ng-if="$row.message.length >= 25">
+                <span
+                    data-ng-bind="$row.message | limitTo: 25"
+                    data-oui-tooltip="{{ $row.message }}"
+                >
+                </span
+                >…
+            </span>
+            <span
+                data-ng-if="$row.message.length < 25"
+                data-ng-bind="$row.message"
             >
             </span>
-        </button>
-        <button
-            type="button"
-            class="btn btn-default float-right"
-            data-ng-if="SmsOutgoingCtrl.outgoing.raw.length || SmsOutgoingCtrl.outgoing.showFilter"
-            data-ng-click="SmsOutgoingCtrl.toggleShowFilter()"
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="'sms_sms_outgoing_label_status' | translate"
+            property="deliveryReceipt"
         >
-            <i
-                class="ovh-font"
-                data-ng-class="{
-                       'ovh-font-filter': !SmsOutgoingCtrl.outgoing.showFilter,
-                       'ovh-font-wrong': SmsOutgoingCtrl.outgoing.showFilter
-                }"
-            ></i>
-            <span class="ml-2" data-translate="sms_common_filter"></span>
-        </button>
-    </div>
-    <div class="row mb-3" data-ng-if="SmsOutgoingCtrl.outgoing.showFilter">
-        <div class="col-sm-offset-4 col-sm-4">
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <span
-                        class="ovh-font ovh-font-phone"
-                        aria-hidden="true"
-                    ></span>
-                    <span
-                        class="sr-only"
-                        data-translate="sms_sms_outgoing_label_sender"
-                    ></span>
-                </span>
-                <input
-                    class="form-control"
-                    type="text"
-                    autofocus
-                    data-ng-model="SmsOutgoingCtrl.outgoing.filterBy.sender"
-                    data-ng-change="SmsOutgoingCtrl.getDebouncedOutgoings()"
-                    data-translate-attr="{ placeholder: 'sms_sms_outgoing_label_sender' }"
-                />
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <span
-                        class="ovh-font ovh-font-phone"
-                        aria-hidden="true"
-                    ></span>
-                    <span
-                        class="sr-only"
-                        data-translate="sms_sms_outgoing_label_receiver"
-                    ></span>
-                </span>
-                <input
-                    class="form-control"
-                    type="text"
-                    data-ng-model="SmsOutgoingCtrl.outgoing.filterBy.receiver"
-                    data-ng-change="SmsOutgoingCtrl.getDebouncedOutgoings()"
-                    data-translate-attr="{ placeholder: 'sms_sms_outgoing_label_receiver' }"
-                />
-            </div>
-        </div>
-    </div>
-    <div class="table-responsive">
-        <table
-            class="table"
-            data-ng-class="{
-                       'table-hover table-striped': SmsOutgoingCtrl.outgoing.raw.length > 1
-                   }"
-        >
-            <thead>
-                <tr>
-                    <th scope="col" width="40px">
-                        <input
-                            type="checkbox"
-                            data-ng-if="SmsOutgoingCtrl.outgoing.paginated.length"
-                            data-ng-disabled="SmsOutgoingCtrl.outgoing.isDeleting"
-                            data-ovh-checkbox-table
-                            data-ovh-checkbox-table-ids-all="SmsOutgoingCtrl.outgoing.paginated"
-                            data-ovh-checkbox-table-ids-page="SmsOutgoingCtrl.outgoing.paginated"
-                            data-ovh-checkbox-table-ids-selected="SmsOutgoingCtrl.outgoing.selected"
-                            data-ovh-checkbox-table-id="id"
-                        />
-                    </th>
-                    <th scope="col">
-                        <button
-                            type="button"
-                            class="btn btn-link p-0"
-                            data-ng-disabled="!SmsOutgoingCtrl.outgoing.paginated.length"
-                            data-ng-click="SmsOutgoingCtrl.toggleOrder()"
-                        >
-                            <span
-                                data-translate="sms_sms_outgoing_label_date"
-                            ></span>
-                            <span
-                                class="oui-icon align-baseline"
-                                aria-hidden="true"
-                                data-ng-class="{
-                                          'oui-icon-arrow-down': SmsOutgoingCtrl.outgoing.orderBy !== 'creationDatetime',
-                                          'oui-icon-arrow-down': SmsOutgoingCtrl.outgoing.orderBy === 'creationDatetime' && SmsOutgoingCtrl.outgoing.orderDesc,
-                                          'oui-icon-arrow-up': SmsOutgoingCtrl.outgoing.orderBy === 'creationDatetime' && !SmsOutgoingCtrl.outgoing.orderDesc
-                                      }"
-                            >
-                            </span>
-                        </button>
-                    </th>
-                    <th
-                        scope="col"
-                        data-translate="sms_sms_outgoing_label_sender"
-                    ></th>
-                    <th
-                        scope="col"
-                        data-translate="sms_sms_outgoing_label_receiver"
-                    ></th>
-                    <th
-                        scope="col"
-                        data-translate="sms_sms_outgoing_label_tariff_code"
-                    ></th>
-                    <th
-                        scope="col"
-                        data-translate="sms_sms_outgoing_label_message"
-                    ></th>
-                    <th
-                        scope="col"
-                        data-translate="sms_sms_outgoing_label_status"
-                    ></th>
-                    <th
-                        scope="col"
-                        class="text-right"
-                        data-translate="sms_common_actions"
-                    ></th>
-                </tr>
-            </thead>
-            <tbody
-                data-ng-if="!SmsOutgoingCtrl.outgoing.isLoading && SmsOutgoingCtrl.outgoing.raw.length"
+            <span
+                data-ng-if="$row.deliveryReceipt === 1"
+                data-translate="sms_sms_outgoing_status_delivered"
             >
-                <tr
-                    data-ng-repeat="sms in SmsOutgoingCtrl.outgoing.paginated | orderBy:SmsOutgoingCtrl.outgoing.orderBy:SmsOutgoingCtrl.outgoing.orderDesc track by sms.id"
+            </span>
+            <span data-ng-if="$row.deliveryReceipt !== 1">
+                <span data-ng-if="$row.status.length >= 20">
+                    <span
+                        data-ng-bind="$row.status | limitTo: 20"
+                        data-oui-tooltip="{{ $row.status }}"
+                    >
+                    </span
+                    >…
+                </span>
+                <span
+                    data-ng-if="$row.status.length < 20"
+                    data-ng-bind="$row.status"
                 >
-                    <td>
-                        <input
-                            type="checkbox"
-                            data-ng-disabled="SmsOutgoingCtrl.outgoing.isDeleting"
-                            data-ng-model="SmsOutgoingCtrl.outgoing.selected[sms.id]"
-                        />
-                    </td>
-                    <td>
-                        <span
-                            data-ng-bind="sms.creationDatetime | date: 'dd/MM/yyyy'"
-                        ></span
-                        ><br />
-                        <span
-                            data-ng-bind="sms.creationDatetime | date: 'HH:mm:ss'"
-                        ></span>
-                    </td>
-                    <td>
-                        <span
-                            data-ng-if="!sms.isShortNumber"
-                            data-ng-bind="sms.sender"
-                        >
-                        </span>
-                        <span
-                            data-ng-if="sms.isShortNumber"
-                            data-oui-tooltip="{{ ::'sms_sms_outgoing_number_allowed_response_fr_only' | translate }}"
-                            data-translate="sms_sms_outgoing_number_allowed_response"
-                        >
-                        </span>
-                    </td>
-                    <td data-ng-bind="sms.receiver"></td>
-                    <td data-ng-bind="sms.tariffCode || '-'"></td>
-                    <td>
-                        <span data-ng-if="sms.message.length >= 25">
-                            <span
-                                data-ng-bind="sms.message | limitTo: 25"
-                                data-oui-tooltip="{{ sms.message }}"
-                            >
-                            </span
-                            >…
-                        </span>
-                        <span
-                            data-ng-if="sms.message.length < 25"
-                            data-ng-bind="sms.message"
-                        >
-                        </span>
-                    </td>
-                    <td>
-                        <span
-                            data-ng-if="sms.deliveryReceipt === 1"
-                            data-translate="sms_sms_outgoing_status_delivered"
-                        >
-                        </span>
-                        <span data-ng-if="sms.deliveryReceipt !== 1">
-                            <span data-ng-if="sms.status.length >= 20">
-                                <span
-                                    data-ng-bind="sms.status | limitTo: 20"
-                                    data-oui-tooltip="{{ sms.status }}"
-                                >
-                                </span
-                                >…
-                            </span>
-                            <span
-                                data-ng-if="sms.status.length < 20"
-                                data-ng-bind="sms.status"
-                            >
-                            </span>
-                            <span data-ng-if="!sms.status.length">-</span>
-                        </span>
-                    </td>
-                    <td class="text-right">
-                        <div
-                            class="btn-group"
-                            data-uib-dropdown
-                            data-dropdown-append-to-body
-                        >
-                            <button
-                                id="btn-sms-outgoing-action-{{ index }}"
-                                type="button"
-                                class="btn btn-link"
-                                data-uib-dropdown-toggle
-                            >
-                                <span
-                                    class="ovh-font ovh-font-dots"
-                                    aria-hidden="true"
-                                ></span>
-                                <span
-                                    class="sr-only"
-                                    data-translate="sms_common_actions"
-                                >
-                                </span>
-                            </button>
-                            <ul
-                                class="dropdown-menu dropdown-menu-right"
-                                role="menu"
-                                aria-labelledby="btn-sms-outgoing-action-{{ index }}"
-                                data-uib-dropdown-menu
-                            >
-                                <li role="menuitem">
-                                    <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        data-ng-click="SmsOutgoingCtrl.read(sms)"
-                                        data-translate="sms_sms_outgoing_read_title"
-                                    ></button>
-                                </li>
-                                <li role="menuitem">
-                                    <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        data-ng-click="SmsOutgoingCtrl.remove(sms)"
-                                        data-translate="sms_delete"
-                                    ></button>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody data-ng-if="SmsOutgoingCtrl.outgoing.isLoading">
-                <tr>
-                    <td colspan="8" class="text-center">
-                        <oui-spinner data-size="s"></oui-spinner>
-                    </td>
-                </tr>
-            </tbody>
-            <tbody
-                data-ng-if="!SmsOutgoingCtrl.outgoing.isLoading && !SmsOutgoingCtrl.outgoing.raw.length"
-            >
-                <tr>
-                    <td
-                        class="text-center"
-                        colspan="8"
-                        data-translate="sms_sms_outgoing_empty"
-                    ></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div
-        class="mt-2"
-        data-ng-show="!SmsOutgoingCtrl.outgoing.isLoading && SmsOutgoingCtrl.outgoing.raw.length"
-        data-pagination-front
-        data-items="SmsOutgoingCtrl.outgoing.raw"
-        data-paginated-items="SmsOutgoingCtrl.outgoing.paginated"
-        data-current-page="currentPage"
-        data-nb-pages="nbPages"
-        data-items-per-page="SmsOutgoingCtrl.outgoing.perPage"
-        data-transform-item="SmsOutgoingCtrl.getDetails(item)"
-        data-on-transform-item-done="SmsOutgoingCtrl.onTransformItemDone(items)"
-        data-page-placeholder="{{ 'sms_common_pagination_page' | translate: { currentPage: currentPage, nbPages: nbPages } }}"
-        data-item-per-page-placeholder="{{ 'sms_common_pagination_display' | translate }}"
-    ></div>
+                </span>
+                <span data-ng-if="!$row.status.length">-</span>
+            </span>
+        </oui-datagrid-column>
+        <oui-action-menu align="end" compact>
+            <oui-action-menu-item data-on-click="$ctrl.read($row)"
+                ><span data-translate="sms_sms_outgoing_read_title"></span
+            ></oui-action-menu-item>
+            <oui-action-menu-item data-on-click="$ctrl.remove($row)"
+                ><span data-translate="sms_delete"></span
+            ></oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
 </section>

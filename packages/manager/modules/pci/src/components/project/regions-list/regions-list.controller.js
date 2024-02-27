@@ -8,14 +8,17 @@ import uniq from 'lodash/uniq';
 
 export default class RegionsListController {
   /* @ngInject */
-  constructor($state, $translate, ovhManagerRegionService) {
+  constructor($state, $translate, PciProject, ovhManagerRegionService) {
     this.$state = $state;
     this.$translate = $translate;
+    this.PciProject = PciProject;
     this.ovhManagerRegionService = ovhManagerRegionService;
   }
 
   $onInit() {
     this.loading = true;
+    this.globalRegionsUrl = this.PciProject.getDocumentUrl('GLOBAL_REGIONS');
+    this.localZoneUrl = this.PciProject.getDocumentUrl('LOCAL_ZONE');
     this.$translate.refresh().finally(() => {
       this.loading = false;
     });
@@ -52,6 +55,7 @@ export default class RegionsListController {
       name: region.name,
       continentCode: region.continentCode,
       hasEnoughQuota: region.hasEnoughQuota(),
+      isLocalZone: region.isLocalZone,
     }));
 
     const allContinents = this.$translate.instant(

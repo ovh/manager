@@ -1,0 +1,28 @@
+<div class="octavia-load-balancer-listeners">
+    <h2 data-translate="octavia_load_balancer_listeners_title"></h2>
+
+    <p
+        class="mb-0"
+        data-translate="octavia_load_balancer_listeners_description_part_1"
+    ></p>
+    <p>
+        <span
+            data-translate="octavia_load_balancer_listeners_description_part_2"
+        ></span>
+        <a
+            href="{{ $ctrl.discoverLink }}"
+            data-track-on="click"
+            data-track-name="{{:: $ctrl.trackBase + '::goto-discover-options' }}"
+            data-track-type="action"
+            target="_blank"
+            rel="noopener"
+        >
+            <span
+                data-translate="octavia_load_balancer_listeners_description_part_2_link"
+            ></span>
+        </a>
+    </p>
+    <div data-ovh-alert="octavia.alerts.listeners"></div>
+
+    <div class="container-fluid" data-ui-view="loadbalancerListenersView"></div>
+</div>

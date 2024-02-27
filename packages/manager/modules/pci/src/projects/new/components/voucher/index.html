@@ -1,8 +1,12 @@
-<div class="pci-project-new-voucher">
+<div
+    class="pci-project-new-voucher"
+    data-ng-class="{ 'dense': $ctrl.viewOptions.denseVoucher }"
+>
     <!--Voucher title-->
     <h2
         class="oui-heading_underline"
         data-translate="pci_projects_new_voucher_title"
+        data-ng-class="'h' + $ctrl.viewOptions.subtitlesSize"
     ></h2>
 
     <button
@@ -20,11 +24,10 @@
         </span>
     </oui-message>
 
-    <form
+    <ng-form
         class="voucher-form oui-box h-100 d-lg-flex justify-content-between align-items-center no-transition"
         data-ng-if="$ctrl.formVisible"
         name="$ctrl.voucherForm"
-        data-ng-submit="$ctrl.onVoucherFormSubmit()"
     >
         <div
             class="oui-field w-100 mt-3 mb-0"
@@ -52,9 +55,10 @@
                 />
 
                 <oui-button
-                    data-type="submit"
+                    data-type="button"
                     data-aria-label="{{ :: 'pci_projects_new_voucher_form_add_title' | translate }}"
                     data-disabled="!$ctrl.canAddVoucher()"
+                    data-on-click="$ctrl.onVoucherFormSubmit()"
                 >
                     <span
                         data-translate="pci_projects_new_voucher_form_add"
@@ -74,9 +78,11 @@
 
                 <!--Reset voucher-->
                 <oui-button
-                    size="l"
-                    variant="link"
-                    disabled="$ctrl.loading.reset"
+                    data-ng-if="$ctrl.viewOptions.clearableVoucher"
+                    data-type="button"
+                    data-size="l"
+                    data-variant="link"
+                    data-disabled="$ctrl.loading.reset"
                     data-on-click="$ctrl.onVoucherFormReset()"
                 >
                     <span class="oui-icon oui-icon-trash"></span>
@@ -102,5 +108,5 @@
                 <span data-translate="{{ $ctrl.getVoucherError() }}"></span>
             </span>
         </div>
-    </form>
+    </ng-form>
 </div>

@@ -26,6 +26,20 @@
                 data-ng-if="!$ctrl.loader"
             >
                 <div class="form-group">
+                    <input
+                        type="checkbox"
+                        id="enableUsers"
+                        name="enableUsers"
+                        data-ng-model="$ctrl.enableLocalUsers"
+                    />
+                    <label for="enableUsers" style="display: inline-block">
+                        <span
+                            data-translate="user_users_sso_modal_group_local_users_to_enable"
+                        ></span>
+                    </label>
+                </div>
+
+                <div class="form-group">
                     <label
                         class="control-label"
                         for="userAttributeName"

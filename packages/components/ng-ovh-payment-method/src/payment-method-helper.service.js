@@ -30,12 +30,15 @@ export default class OvhPaymentMethodHelperService {
   }
 
   getPaymentMethodTypeText(typeParam) {
-    return this.$translate.instant(
-      `ovh_payment_type_${get(
-        typeParam,
-        'paymentType',
-        typeParam,
-      ).toLowerCase()}`,
+    return (
+      typeParam?.type?.humanReadableName ||
+      this.$translate.instant(
+        `ovh_payment_type_${get(
+          typeParam,
+          'paymentType',
+          typeParam,
+        ).toLowerCase()}`,
+      )
     );
   }
 

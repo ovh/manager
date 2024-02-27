@@ -14,15 +14,11 @@
         ></p>
         <p
             class="text-left"
-            data-translate="octavia_load_balancer_onboarding_description_2"
-        ></p>
-        <p
-            class="text-left"
             data-translate="octavia_load_balancer_onboarding_description_3"
         ></p>
         <a
             class="oui-button oui-button_primary oui-button_l text-light"
-            href="{{:: $ctrl.cta }}"
+            data-ng-click="$ctrl.createLoadBalancer()"
             target="_blank"
             data-track-on="click"
             data-track-name="{{:: $ctrl.ctaTrackName }}"

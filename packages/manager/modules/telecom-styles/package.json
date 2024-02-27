@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-styles",
-  "version": "4.6.8",
+  "version": "4.7.0",
   "private": true,
   "description": "[DEPRECATED] - Collection of stylesheets for the Telecom control panel.",
   "repository": {
@@ -12,7 +12,7 @@
   "author": "OVH SAS",
   "main": "./src/index.js",
   "dependencies": {
-    "@ovh-ux/ui-kit": "^6.7.4",
+    "@ovh-ux/ui-kit": "^6.7.7",
     "bootstrap": "~3.3.7",
     "ovh-ui-kit-bs": "^4.2.0"
   },

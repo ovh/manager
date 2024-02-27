@@ -1,4 +1,4 @@
-<oui-header heading="{{:: 'domains_operations_progress_title' | translate }}">
+<oui-header heading="{{:: 'domain_operations_progress_title' | translate }}">
 </oui-header>
 
 <a
@@ -18,7 +18,7 @@
 
 <div data-ng-if="!ctrlDomainOperationProgress.loading">
     <header class="mb-5" data-ng-if="ctrlDomainOperationProgress.domain">
-        <span data-translate="domains_operations_progress_domain"></span>
+        <span data-translate="domain_operations_progress_domain"></span>
         <h2 data-ng-bind="ctrlDomainOperationProgress.domain"></h2>
     </header>
 
@@ -26,14 +26,14 @@
         <div class="row">
             <div
                 class="col-md-6"
-                data-translate="domains_operations_progress_start"
+                data-translate="domain_operations_progress_start"
             ></div>
             <div
                 class="col-md-6 text-right"
                 data-ng-if="ctrlDomainOperationProgress.progress.progress !== 100"
             >
                 <span
-                    data-translate="domains_operations_progress_estimated_end"
+                    data-translate="domain_operations_progress_estimated_end"
                 ></span
                 ><br />
                 <strong
@@ -60,7 +60,7 @@
                         data-ng-bind="ctrlDomainOperationProgress.creationDate | date:'mediumDate'"
                     ></strong>
                     <span
-                        data-translate="domains_operations_progress_step_first"
+                        data-translate="domain_operations_progress_step_first"
                         data-ng-if="ctrlDomainOperationProgress.currentStepIndex <= 0"
                     ></span>
                 </li>
@@ -74,7 +74,7 @@
                             data-ng-bind="ctrlDomainOperationProgress.progress.lastUpdateDate | date:'mediumDate'"
                         ></strong>
                         <span
-                            data-ng-bind=":: 'domains_operations_progress_step_' + ctrlDomainOperationProgress.progress.currentStep.step | translate"
+                            data-ng-bind=":: 'domain_operations_progress_step_' + ctrlDomainOperationProgress.progress.currentStep.step | translate"
                         ></span>
                     </span>
                 </li>
@@ -87,7 +87,7 @@
                             data-ng-if="ctrlDomainOperationProgress.doneDate"
                         ></strong>
                         <span
-                            data-translate="domains_operations_progress_step_end"
+                            data-translate="domain_operations_progress_step_end"
                         ></span>
                     </span>
                 </li>
@@ -101,7 +101,7 @@
     >
         <h2
             class="mb-2"
-            data-translate="domains_operations_progress_stepDetail"
+            data-translate="domain_operations_progress_stepDetail"
         ></h2>
         <div class="oui-box">
             <div class="row">
@@ -109,10 +109,10 @@
                     <div class="mb-4">
                         <h3
                             class="mb-0"
-                            data-ng-bind=":: 'domains_operations_progress_step_' + ctrlDomainOperationProgress.progress.currentStep.step | translate"
+                            data-ng-bind=":: 'domain_operations_progress_step_' + ctrlDomainOperationProgress.progress.currentStep.step | translate"
                         ></h3>
                         <div
-                            data-ng-bind-html=":: 'domains_operations_progress_lastUpdated' | translate: { t0: (ctrlDomainOperationProgress.progress.lastUpdateDate | date:'mediumDate'), t1: (ctrlDomainOperationProgress.progress.lastUpdateDate | date:'shortTime') }"
+                            data-ng-bind-html=":: 'domain_operations_progress_lastUpdated' | translate: { t0: (ctrlDomainOperationProgress.progress.lastUpdateDate | date:'mediumDate'), t1: (ctrlDomainOperationProgress.progress.lastUpdateDate | date:'shortTime') }"
                         ></div>
                     </div>
                     <div class="oui-box oui-box_light">
@@ -124,7 +124,7 @@
                                 >
                                     <span
                                         class="oui-list__header"
-                                        data-translate="domains_operations_progress_validation_admin"
+                                        data-translate="domain_operations_progress_validation_admin"
                                     ></span>
                                 </li>
                                 <li
@@ -133,14 +133,14 @@
                                 >
                                     <span
                                         class="oui-list__header"
-                                        data-translate="domains_operations_progress_validation_whois"
+                                        data-translate="domain_operations_progress_validation_whois"
                                     ></span>
                                 </li>
                             </ul>
                         </div>
                         <hr class="my-3" />
                         <strong
-                            data-translate="domains_operations_progress_timeout"
+                            data-translate="domain_operations_progress_timeout"
                             data-translate-values="{ t0: ctrlDomainOperationProgress.timeleft }"
                             data-ng-if="ctrlDomainOperationProgress.timeleft"
                         ></strong>
@@ -149,37 +149,37 @@
                 <div class="col-md-6">
                     <h3
                         class="mb-4"
-                        data-translate="domains_operations_progress_instructions"
+                        data-translate="domain_operations_progress_instructions"
                         data-ng-if="ctrlDomainOperationProgress.currentStepIndex < 3"
                     ></h3>
                     <ul
                         data-ng-if="ctrlDomainOperationProgress.currentStepIndex === 0"
                     >
                         <li
-                            data-translate="domains_operations_progress_instructions_1"
+                            data-translate="domain_operations_progress_instructions_1"
                         ></li>
                         <li
-                            data-translate="domains_operations_progress_instructions_2"
+                            data-translate="domain_operations_progress_instructions_2"
                         ></li>
                     </ul>
                     <ul
                         data-ng-if="ctrlDomainOperationProgress.currentStepIndex === 1"
                     >
                         <li
-                            data-translate="domains_operations_progress_instructions_3"
+                            data-translate="domain_operations_progress_instructions_3"
                         ></li>
                         <li
-                            data-translate="domains_operations_progress_instructions_4"
+                            data-translate="domain_operations_progress_instructions_4"
                         ></li>
                         <li
-                            data-translate="domains_operations_progress_instructions_5"
+                            data-translate="domain_operations_progress_instructions_5"
                         ></li>
                         <li
-                            data-translate="domains_operations_progress_instructions_6"
+                            data-translate="domain_operations_progress_instructions_6"
                         ></li>
                     </ul>
                     <p
-                        data-translate="domains_operations_progress_instructions_7"
+                        data-translate="domain_operations_progress_instructions_7"
                         data-ng-if="ctrlDomainOperationProgress.currentStepIndex === 2"
                     ></p>
                 </div>

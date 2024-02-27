@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.2](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.8.1...@ovh-ux/order-tracking-app@2.8.2) (2024-02-26)
+
+**Note:** Version bump only for package @ovh-ux/order-tracking-app
+
+
+
+
+
+## [2.8.1](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.8.0...@ovh-ux/order-tracking-app@2.8.1) (2024-02-21)
+
+**Note:** Version bump only for package @ovh-ux/order-tracking-app
+
+
+
+
+
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.7.30...@ovh-ux/order-tracking-app@2.8.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
+## [2.7.30](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.7.29...@ovh-ux/order-tracking-app@2.7.30) (2024-01-31)
+
+**Note:** Version bump only for package @ovh-ux/order-tracking-app
+
+
+
+
+
+## [2.7.29](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.7.28...@ovh-ux/order-tracking-app@2.7.29) (2024-01-26)
+
+**Note:** Version bump only for package @ovh-ux/order-tracking-app
+
+
+
+
+
+## [2.7.28](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.7.27...@ovh-ux/order-tracking-app@2.7.28) (2024-01-25)
+
+**Note:** Version bump only for package @ovh-ux/order-tracking-app
+
+
+
+
+
 ## [2.7.27](https://github.com/ovh/manager/compare/@ovh-ux/order-tracking-app@2.7.26...@ovh-ux/order-tracking-app@2.7.27) (2023-12-28)
 
 **Note:** Version bump only for package @ovh-ux/order-tracking-app

@@ -1,0 +1,15 @@
+<div
+    data-ng-if="!$ctrl.defaultExplanationTextsOptions.sepa.intro"
+    data-ng-include="'ng-ovh-payment-method/sepaExplanationTextIntro.html'"
+></div>
+<oui-message
+    data-ng-if="$ctrl.defaultExplanationTextsOptions.sepa.intro"
+    data-type="{{ $ctrl.defaultExplanationTextsOptions.sepa.intro }}"
+>
+    <div
+        data-ng-include="'ng-ovh-payment-method/sepaExplanationTextIntro.html'"
+    ></div>
+</oui-message>
+<div
+    data-ng-include="'ng-ovh-payment-method/sepaExplanationTextBanner.html'"
+></div>

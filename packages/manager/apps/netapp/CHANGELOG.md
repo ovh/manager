@@ -3,6 +3,73 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp-app@0.7.1...@ovh-ux/manager-netapp-app@0.7.2) (2024-02-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp-app
+
+
+
+
+
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp-app@0.7.0...@ovh-ux/manager-netapp-app@0.7.1) (2024-02-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp-app
+
+
+
+
+
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp-app@0.6.21...@ovh-ux/manager-netapp-app@0.7.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
+## [0.6.21](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp-app@0.6.20...@ovh-ux/manager-netapp-app@0.6.21) (2024-02-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp-app
+
+
+
+
+
+## [0.6.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp-app@0.6.19...@ovh-ux/manager-netapp-app@0.6.20) (2024-01-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp-app
+
+
+
+
+
+## [0.6.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp-app@0.6.18...@ovh-ux/manager-netapp-app@0.6.19) (2024-01-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp-app
+
+
+
+
+
+## [0.6.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp-app@0.6.17...@ovh-ux/manager-netapp-app@0.6.18) (2024-01-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp-app
+
+
+
+
+
+## [0.6.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp-app@0.6.16...@ovh-ux/manager-netapp-app@0.6.17) (2024-01-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-netapp-app
+
+
+
+
+
 ## [0.6.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp-app@0.6.15...@ovh-ux/manager-netapp-app@0.6.16) (2023-12-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp-app

@@ -7,6 +7,7 @@ export interface PciProject {
   description: string;
   project_id: string;
   status: string;
+  planCode: string;
 }
 
 export function useProjects() {

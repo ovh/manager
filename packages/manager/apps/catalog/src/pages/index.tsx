@@ -1,21 +1,19 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import i18next from 'i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { OsdsText } from '@ovhcloud/ods-components/text/react/';
 import { OsdsDivider } from '@ovhcloud/ods-components/divider/react/';
-import { MscTile } from '@ovhcloud/msc-react-tile';
-import { Locale } from '@ovhcloud/msc-utils';
+import { Card } from '@ovhcloud/manager-components';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_SIZE,
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 
+import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { Product } from '@/api';
 import { getSearchUrlFromFilterParams } from '@/utils/utils';
-import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
 import { useCatalog } from '@/hooks/useCatalog';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import Loading from '../components/Loading/Loading';
@@ -24,7 +22,6 @@ import Errors from '@/components/Error/Errors';
 export default function Catalog() {
   const { t } = useTranslation('catalog');
   const navigate = useNavigate();
-  const lang = i18next.language as Locale;
 
   const [searchText, setSearchText] = React.useState('');
   const [categories, setCategories] = React.useState<string[]>([]);
@@ -68,6 +65,8 @@ export default function Catalog() {
       </OsdsText>
       <SearchBar
         products={products}
+        universes={universes}
+        categories={categories}
         setSelectedCategories={setCategories}
         setSelectedUniverses={setUniverses}
         setSearchValue={setSearchText}
@@ -77,18 +76,19 @@ export default function Catalog() {
         {isLoading && <Loading />}
         {!isLoading && results.length > 0 && (
           <>
-            {results.map((item: Product, index: number) => (
-              <MscTile
+            {results.map((item: Product) => (
+              <Card
                 key={`${item.productName
                   .replace(' ', '')
                   .trim()}-${item.universe.replace(' ', '').trim()}`}
-                tileTitle={item.name}
-                category={item.category}
-                tileDescription={item.description}
+                texts={{
+                  title: item.name,
+                  category: item.category,
+                  description: item.description,
+                }}
                 href={item.order}
                 hoverable
-                data-tracking={`manager_product_cards::more_info::${item.productName}`}
-                locale={lang}
+                trackingLabel={`manager_product_cards::more_info::${item.productName}`}
               />
             ))}
           </>

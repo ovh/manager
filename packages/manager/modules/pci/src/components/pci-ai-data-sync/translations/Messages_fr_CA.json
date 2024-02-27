@@ -1,0 +1,11 @@
+{
+  "pci_data_sync_title": "Synchronisation manuelle des données",
+  "pci_data_sync_confirm": "Synchroniser",
+  "pci_data_sync_cancel": "Annuler",
+  "pci_data_sync_type": "Type de synchronisation",
+  "pci_data_sync_type_help": "Vous pouvez choisir entre une synchronisation de type push, vers votre conteneur de données ou de type pull, dans l'autre sens.",
+  "pci_data_sync_directory": "La synchronisation sera effectuée sur le répertoire de montage suivant : {{ directory }}",
+  "pci_data_sync_all_directory": "La synchronisation sere effecutée sur l'ensemble de vos répertoires de montage",
+  "pci_data_sync_success_message": "Les données ont été synchronisées avec succés",
+  "pci_data_sync_error_message": "Une erreur est survenue lors de la synchronisation des données : {{ message }}."
+}

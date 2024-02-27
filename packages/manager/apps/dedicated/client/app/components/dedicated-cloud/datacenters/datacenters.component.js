@@ -12,6 +12,7 @@ export default {
     setMessage: '<',
     usesLegacyOrder: '<',
     migrationBannerAvailable: '<',
+    addVdcAvailable: '<',
   },
   controller,
   template,

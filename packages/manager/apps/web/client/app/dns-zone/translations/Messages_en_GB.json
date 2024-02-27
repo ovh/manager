@@ -18,5 +18,6 @@
   "dashboard_history_restore_modal_primary_label": "Restore",
   "dashboard_history_restore_modal_secondary_label": "Cancel",
   "dashboard_history_restore_modal_warning_message": "Important! The current zone will be deleted. The new zone selected will be restored",
-  "dashboard_history_restore_modal_info_message": "The reset on the DNS zone will take a few moments. Please note that the change may take up to 24 hours to propagate."
+  "dashboard_history_restore_modal_info_message": "The reset on the DNS zone will take a few moments. Please note that the change may take up to 24 hours to propagate.",
+  "modified": "Modified"
 }

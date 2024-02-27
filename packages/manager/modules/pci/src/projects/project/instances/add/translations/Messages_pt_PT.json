@@ -96,5 +96,15 @@
   "pci_projects_project_instances_windows_private_mode_description3": "consulte este guia",
   "pci_projects_project_instances_add_flavor_selected_title_without_price": "Modelo escolhido: {{model}}",
   "pci_projects_project_instances_add_billing_coming_soon_message_title": "Preços mensais",
-  "pci_projects_project_instances_add_billing_coming_soon_message_description": "Os preços mensais estarão disponíveis em breve com a chegada dos Saving Plans."
+  "pci_projects_project_instances_add_billing_coming_soon_message_description": "Os preços mensais estarão disponíveis em breve com a chegada dos Saving Plans.",
+  "pci_projects_project_instances_add_localPrivateNetwork_sub_title": "Selecionar uma rede privada numa Local Zone",
+  "pci_projects_project_instances_add_localPrivateNetwork_label": "Selecionar uma rede privada numa Local Zone",
+  "pci_projects_project_instances_add_localPrivateNetwork_add": "Criar uma nova rede privada numa Local Zone",
+  "pci_projects_project_instances_add_localPrivateNetwork_description": "Com este modo, a instância está associada a uma das suas redes privadas numa Local Zone.",
+  "pci_projects_project_instances_add_localPrivateNetwork_add_public_network_checkbox_label": "Rede pública",
+  "pci_projects_project_instances_add_localPrivateNetwork_add_public_network_info": "A sua instância terá agora uma porta de rede pública ligada a um IPv4 e um IPv6.",
+  "pci_projects_project_instances_add_localPrivateNetwork_placeholder": "Selecionar uma rede privada numa Local Zone",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode": "Local Private mode",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode_description1": "As instâncias em 'Local Private Mode' não estão ligadas globalmente. Apenas as instâncias da mesma Local Zone podem ser ligadas através de redes privadas nas Local Zones. As Local Zones não são compatíveis com o seu vRack.",
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode_description2": "O 'Local Private Mode' toma a cargo o DHCP para fornecer automaticamente um endereço IP às suas instâncias."
 }

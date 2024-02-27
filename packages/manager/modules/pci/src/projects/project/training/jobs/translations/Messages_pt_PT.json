@@ -89,5 +89,7 @@
   "pci_projects_project_training_jobs_add_banner_user_token_description": "Para usar as AI Tools, certifique-se de que utiliza um utilizador AI configurado ou um token.",
   "pci_projects_project_training_jobs_add_banner_user_token_description_link": "Gerir os meus utilizadores AI e tokens",
   "pci_projects_project_training_jobs_add_banner_object_storage_description": "Se deseja associar um container ao seu job, recomendamos que o crie previamente na interface Object Storage.",
-  "pci_projects_project_training_jobs_add_banner_object_storage_description_link": "Criar um container de objetos"
+  "pci_projects_project_training_jobs_add_banner_object_storage_description_link": "Criar um container de objetos",
+  "pci_projects_project_training_jobs_submit_add_volume_container_add": "Adicionar um container de objetos",
+  "pci_projects_project_training_jobs_submit_add_volume_container_delete": "Eliminar o container de objetos"
 }

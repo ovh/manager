@@ -16,5 +16,7 @@
   "pci_app_data_permission": "Permiso",
   "pci_app_permission_RO": "Solo lectura",
   "pci_app_permission_RW": "Lectura y escritura",
-  "pci_app_data_cache": "Caché"
+  "pci_app_data_cache": "Caché",
+  "pci_apps_tab_attach_data_sync_data": "Sincronizar los datos manualmente",
+  "pci_apps_tab_attach_data_sync_all_data": "Sincronización global de los datos"
 }

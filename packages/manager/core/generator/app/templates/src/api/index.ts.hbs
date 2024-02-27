@@ -1,6 +1,6 @@
-{{#each apiV6Endpoints}}
+{{#each apiV6Computed}}
 export * from './{{uppercase @key}}/apiv6/services';
 {{/each}}
-{{#each apiV2Endpoints}}
+{{#each apiV2Computed}}
 export * from './{{uppercase @key}}/apiv2/services';
 {{/each}}

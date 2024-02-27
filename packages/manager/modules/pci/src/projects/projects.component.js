@@ -28,6 +28,8 @@ export default {
     sendTrack: '<',
     trackClick: '<',
     trackProjectCreationError: '<',
+    isGridscaleLocalzoneAvailable: '<',
+    hasGridscaleLocalzoneRegion: '<',
   },
   controller,
   template,

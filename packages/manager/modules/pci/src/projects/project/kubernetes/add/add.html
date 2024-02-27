@@ -5,6 +5,12 @@
     data-messages="$ctrl.messages"
 ></cui-message-container>
 
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    data-tracking-page-name="PublicCloud::pci::projects::project::kubernetes::add"
+></pci-activate-project-banner>
+
 <form name="kubeAddClusterForm">
     <oui-stepper data-current-index="$ctrl.currentStep">
         <!--Select region-->
@@ -189,10 +195,11 @@
         <oui-step-form
             data-header="{{:: 'kubernetes_add_name_title' | translate }}"
             data-editable="!$ctrl.isAdding"
-            data-valid="$ctrl.cluster.name"
+            data-valid="$ctrl.cluster.name && !$ctrl.isDiscoveryProject"
             data-navigation="$ctrl.cluster.name"
             data-on-submit="$ctrl.create()"
             name="kubernetes_add_name"
+            data-prevent-next
         >
             <oui-field
                 data-size="m"

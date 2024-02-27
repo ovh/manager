@@ -1,12 +1,5 @@
-import {
-  OVHFontPhone,
-  OVHFontDomain,
-  OVHFontHashtag,
-  OVHFontMail,
-  OVHFontMessage,
-  OVHFontTelecomEthernet,
-  OVHFontPrint,
-} from '@ovh-ux/manager-themes';
+import { OdsIconWrapper, TELEPHONY_SVG, OFFICE365_SVG, TELECOMETHERNET_SVG, HEADSET_SVG } from '@ovh-ux/ovh-product-icons/index';
+import { OdsIconName } from '@ovhcloud/ods-core';
 import { ShopItem } from '../OrderPopupContent';
 import { getOrderURL } from './order.constants';
 
@@ -19,7 +12,7 @@ const telephony = (
   features.telephony
     ? {
         label: 'item_telephony',
-        icon: OVHFontPhone,
+        icon: TELEPHONY_SVG,
         subMenu: [
           {
             label: 'order_item_telephony_voip',
@@ -50,7 +43,7 @@ const telephony = (
 
 const email = (region: string, sub: string): ShopItem => ({
   label: 'order_item_email',
-  icon: OVHFontMail,
+  icon: OdsIconWrapper({ name: OdsIconName.ENVELOP_CONCEPT }),
   subMenu: [
     {
       label: 'order_item_email_exchange',
@@ -69,7 +62,7 @@ const email = (region: string, sub: string): ShopItem => ({
 
 const office = (region: string, sub: string): ShopItem => ({
   label: 'order_item_office365',
-  icon: 'ms-Icon ms-Icon--OfficeLogo',
+  icon: OFFICE365_SVG,
   subMenu: [
     {
       label: 'order_item_office365_business',
@@ -95,7 +88,7 @@ const sms = (
   features.sms
     ? {
         label: 'item_sms',
-        icon: OVHFontMessage,
+        icon: OdsIconWrapper({ name: OdsIconName.SMS_CONCEPT }),
         subMenu: [
           features['sms:order']
             ? {
@@ -125,14 +118,14 @@ const telecomShopConfig = (
   features.telephony
     ? {
         label: 'order_item_number',
-        icon: OVHFontHashtag,
+        icon: OdsIconWrapper({ name: OdsIconName.HASHTAG_CONCEPT }),
         url: navigation.getURL('telecom', '#/orders/orders/alias'),
         tracking: 'telecom::orders::number::order',
       }
     : null,
   {
     label: 'order_item_domain',
-    icon: OVHFontDomain,
+    icon: OdsIconWrapper({ name: OdsIconName.WORLD_CONCEPT }),
     external: true,
     url: getOrderURL('domain', region, sub),
     tracking: 'telecom::orders::domain-name::order',
@@ -140,7 +133,7 @@ const telecomShopConfig = (
   features.pack
     ? {
         label: 'order_item_internet',
-        icon: OVHFontTelecomEthernet,
+        icon: TELECOMETHERNET_SVG,
         subMenu: [
           {
             label: 'order_item_internet_xdsl',
@@ -182,12 +175,19 @@ const telecomShopConfig = (
   features.fax
     ? {
         label: 'item_fax',
-        icon: OVHFontPrint,
+        icon: OdsIconWrapper({ name: OdsIconName.PRINTER_CONCEPT }),
         external: true,
         url: getOrderURL('faxOrder', region, sub),
         tracking: 'telecom::orders::freefax::order',
       }
     : null,
+  {
+    label: 'item_headset',
+    icon: HEADSET_SVG,
+    external: true,
+    url: getOrderURL('telephony_accessory_order', region, sub),
+    tracking: 'telecom::orders::telephony-accessories::order',
+  },
 ];
 
 export default telecomShopConfig;

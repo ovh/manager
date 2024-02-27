@@ -9,10 +9,7 @@ import useServiceLoader from "./useServiceLoader";
 import OrderTrigger from '../order/OrderTrigger';
 import webShopConfig from '../order/shop-config/web';
 import { ShopItem } from '../order/OrderPopupContent';
-
-function getIcon(iconClass: string): JSX.Element {
-  return <span className={`${iconClass} mr-1`} aria-hidden="true" />;
-}
+import getIcon  from './GetIcon';
 
 export const webFeatures = [
   'web:domains',
@@ -79,6 +76,7 @@ export default function WebSidebar() {
               id: 'domain_operations',
               label: t('sidebar_domain_operations'),
               href: navigation.getURL('web', '#/domain/operation'),
+              routeMatcher: new RegExp('^(/configuration)?/domain/operation'),
               icon: getIcon('ovh-font ovh-font-config'),
               ignoreSearch: true,
             },

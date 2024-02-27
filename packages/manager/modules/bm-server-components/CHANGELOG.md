@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.14.0...@ovh-ux/manager-bm-server-components@1.15.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.13.1...@ovh-ux/manager-bm-server-components@1.14.0) (2024-02-20)
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10943](https://github.com/ovh/manager/issues/10943)) ([3d0e354](https://github.com/ovh/manager/commit/3d0e3546319682e1efbfd825f77017ed81b7d80c))
+
+
+
+
+
+## [1.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.13.0...@ovh-ux/manager-bm-server-components@1.13.1) (2024-02-16)
+
+
+### Reverts
+
+* Revert "feat(dedicated): remove legacy BringYourOwnImage component (#10824)" ([2d1fff6](https://github.com/ovh/manager/commit/2d1fff6cf6d4c3c6f512d9eac5c446dfe08724a9)), closes [#10824](https://github.com/ovh/manager/issues/10824)
+
+
+
+
+
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.12.1...@ovh-ux/manager-bm-server-components@1.13.0) (2024-02-16)
+
+
+### Features
+
+* **dedicated:** remove legacy BringYourOwnImage component ([#10824](https://github.com/ovh/manager/issues/10824)) ([ec65f97](https://github.com/ovh/manager/commit/ec65f97f114c5172f8a63f485ececd383fbd9eee))
+
+
+
+
+
+## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.12.0...@ovh-ux/manager-bm-server-components@1.12.1) (2024-02-05)
+
+
+### Bug Fixes
+
+* **dedicated.server:** unblocking server banner ([#10775](https://github.com/ovh/manager/issues/10775)) ([96bae44](https://github.com/ovh/manager/commit/96bae44da1c7521234abab5fb50fccfc661b00b3))
+
+
+
+
+
+# [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.11.2...@ovh-ux/manager-bm-server-components@1.12.0) (2024-01-29)
+
+
+### Bug Fixes
+
+* **dedicated:** hardware raid configuration not taken into account ([#10570](https://github.com/ovh/manager/issues/10570)) ([800ce2b](https://github.com/ovh/manager/commit/800ce2b758dc7225a286b32b574254119dc5368a))
+* **dedicated:** minor monitoring fixes ([#10535](https://github.com/ovh/manager/issues/10535)) ([fff7c3a](https://github.com/ovh/manager/commit/fff7c3aab9be652ec1672f3c8827c7a4391e8bef))
+
+
+### Features
+
+* **dedicated:** implement os-dynamic form in ovh and gabarit wizards ([#10557](https://github.com/ovh/manager/issues/10557)) ([15a8478](https://github.com/ovh/manager/commit/15a84786f42f5941b1a8b51bd40a4c9e5bf0706c))
+
+
+
+
+
 ## [1.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.11.1...@ovh-ux/manager-bm-server-components@1.11.2) (2023-12-28)
 
 

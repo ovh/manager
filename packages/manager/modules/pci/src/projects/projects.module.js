@@ -11,6 +11,7 @@ import trustedNic from '@ovh-ux/manager-trusted-nic';
 import guidesHeader from '../components/project/guides-header';
 
 import creatingProject from './creating';
+import updatingProject from './updating';
 import newProject from './new';
 import onboarding from './onboarding';
 import project from './project';
@@ -33,6 +34,7 @@ angular
     trustedNic,
     guidesHeader,
     creatingProject,
+    updatingProject,
     newProject,
     onboarding,
     project,

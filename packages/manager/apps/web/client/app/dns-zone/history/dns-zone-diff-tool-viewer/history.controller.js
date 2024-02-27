@@ -72,8 +72,9 @@ export default class DomainDnsZoneHistoryController {
       matching: 'none',
       synchronisedScroll: false,
       rawTemplates: {
-        'tag-file-changed':
-          '<span class="d2h-tag d2h-changed d2h-changed-tag">Modifé</span>',
+        'tag-file-changed': `<span class="d2h-tag d2h-changed d2h-changed-tag">${this.$translate.instant(
+          'modified',
+        )}</span>`,
       },
     });
     document.getElementById('destination-elem-id').innerHTML = innerHTML;

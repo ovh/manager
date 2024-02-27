@@ -28,5 +28,6 @@
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_major": "Die große Aktualisierung installieren ({{version}} - build {{build}})",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_update_minor": "Die kleine Aktualisierung installieren ({{version}} - build {{build}})",
   "ovhManagerPccDashboardGeneralInformation_softwareSolution_reschedule_update": "Datum der Aktualisierung ändern",
-  "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_move": "IP-Blöcke mit einem anderen Dienst verbinden"
+  "ovhManagerPccDashboardGeneralInformation_numberOfIPBlocks_actionMenu_move": "IP-Blöcke mit einem anderen Dienst verbinden",
+  "ovhManagerPccDashboardGeneralInformation_commercial_range": "Kommerzieller Name"
 }

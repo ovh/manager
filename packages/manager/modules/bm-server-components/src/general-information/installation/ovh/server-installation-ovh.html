@@ -429,18 +429,23 @@
                     </span>
                     <select
                         class="form-control"
-                        data-ng-show="informations.nbDisk > 1"
+                        data-ng-show="informations.nbDisk > 1
+                                        && ( !installation.hardwareRaid.raid
+                                            || !installation.hardwareRaid.disks
+                                            || !installation.hardwareRaid.arrays)"
                         data-ng-options="nbdisk as nbdisk for nbdisk in $ctrl.getNbDisqueList(informations.nbDisk)"
                         data-ng-model="installation.nbDiskUse"
                         data-ng-disabled="setPartition.indexSet != -1 || newPartition.display"
                     >
                     </select>
                     <strong
-                        data-ng-hide="informations.nbDisk > 1"
-                        data-ng-bind="informations.nbPhysicalDisk"
-                    ></strong
-                    >&nbsp;
-                    <strong data-ng-bind="informations.typeDisk"></strong>&nbsp;
+                        data-ng-hide="informations.nbDisk > 1
+                                        && ( !installation.hardwareRaid.raid
+                                            || !installation.hardwareRaid.disks
+                                            || !installation.hardwareRaid.arrays)"
+                        data-ng-bind="installation.hardwareRaid.disks ? installation.hardwareRaid.disks : 1"
+                    ></strong>
+                    <strong data-ng-bind="informations.typeDisk"></strong>
                     <strong
                         data-ng-show="informations.raidController"
                         data-translate="server_configuration_installation_ovh_step2_raid_hard"
@@ -1301,287 +1306,288 @@
             </div>
         </div>
 
-        <div
-            data-wizard-step
-            data-wizard-step-valid="!errorInst.ws
-                                     && !configError.raidDiskUse
-                                     && installation.options.validForm
-                                     && !loader.loading"
-            data-wizard-step-on-previous="$ctrl.checkCustomPrevFinal.bind($ctrl)"
-            data-wizard-step-on-load="$ctrl.checkIntegrity.bind($ctrl)"
-        >
-            <div class="text-center" data-ng-if="loader.loading">
-                <oui-spinner></oui-spinner>
-            </div>
-            <div data-ng-if="!loader.loading">
-                <p
-                    data-translate="server_configuration_installation_ovh_step3_info"
-                ></p>
-
-                <p
-                    class="form-inline"
-                    data-ng-show="installation.partitionSchemesList.length > 1 && installation.noPartitioning"
-                >
-                    <label
-                        for="selectPartitionScheme"
-                        class="control-label"
-                        data-translate="server_configuration_installation_ovh_step3_scheme"
-                    >
-                    </label>
-                    <select
-                        class="form-control"
-                        id="selectPartitionScheme"
-                        name="selectPartitionScheme"
-                        data-ng-options="partitionScheme as partitionScheme for partitionScheme in installation.partitionSchemesList"
-                        data-ng-model="installation.selectPartitionScheme"
-                        data-ng-change="$ctrl.showPartition()"
-                    >
-                    </select>
-                </p>
-
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th
-                                    scope="col"
-                                    data-ng-if="!informations.softRaidOnlyMirroring"
-                                >
-                                    <span
-                                        class="icon-question-sign icon-white"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_order_help' | translate }}"
-                                        data-oui-tooltip-placement="right"
-                                    >
-                                    </span>
-                                </th>
-                                <th
-                                    data-ng-if="!informations.softRaidOnlyMirroring"
-                                    scope="col"
-                                    data-translate="server_configuration_installation_ovh_step2_type"
-                                ></th>
-                                <th
-                                    scope="col"
-                                    data-translate="server_configuration_installation_ovh_step2_file_system"
-                                ></th>
-                                <th
-                                    scope="col"
-                                    data-ng-if="!informations.softRaidOnlyMirroring"
-                                    data-translate="server_configuration_installation_ovh_step2_mount_point"
-                                ></th>
-                                <th
-                                    scope="col"
-                                    data-ng-if="!informations.softRaidOnlyMirroring"
-                                    data-translate="server_configuration_installation_ovh_step2_volume_name"
-                                ></th>
-                                <th
-                                    scope="col"
-                                    data-ng-if="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
-                                >
-                                    <span
-                                        data-translate="server_configuration_installation_ovh_step2_raid"
-                                    ></span>
-                                    <span
-                                        class="icon-question-sign icon-white"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_raid_help' | translate }}"
-                                        data-oui-tooltip-placement="left"
-                                    >
-                                    </span>
-                                </th>
-
-                                <th scope="col">
-                                    <span
-                                        data-translate="server_configuration_installation_ovh_step2_available_size"
-                                    ></span>
-                                    <span
-                                        class="icon-question-sign icon-white"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_size_help' | translate }}"
-                                        data-oui-tooltip-placement="left"
-                                    >
-                                    </span>
-                                </th>
-                                <th
-                                    scope="col"
-                                    data-ng-if="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
-                                >
-                                    <span
-                                        data-translate="server_configuration_installation_ovh_step2_size"
-                                    ></span>
-                                    <span
-                                        class="icon-question-sign icon-white"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_size_help' | translate }}"
-                                        data-oui-tooltip-placement="left"
-                                    >
-                                    </span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr
-                                data-ng-repeat="partition in installation.partitionSchemeModels | orderBy:'orderTable' track by $index"
-                            >
-                                <th
-                                    data-ng-if="!informations.softRaidOnlyMirroring"
-                                    scope="row"
-                                    data-ng-bind="partition.order"
-                                ></th>
-                                <td
-                                    data-ng-if="!informations.softRaidOnlyMirroring"
-                                    data-translate="{{ 'server_configuration_installation_' + partition.typePartition }}"
-                                ></td>
-                                <td>
-                                    <span
-                                        data-ng-if="partition.fileSystem == constants.warningNone"
-                                    >
-                                        -
-                                    </span>
-                                    <span
-                                        data-ng-if="partition.fileSystem != constants.warningNone"
-                                        data-translate="{{ 'server_configuration_installation_' + partition.fileSystem }}"
-                                    >
-                                    </span>
-                                </td>
-                                <td
-                                    data-ng-if="!informations.softRaidOnlyMirroring"
-                                    data-ng-bind="partition.mountPoint"
-                                ></td>
-                                <td
-                                    data-ng-if="!informations.softRaidOnlyMirroring"
-                                >
-                                    <span
-                                        data-ng-if="partition.typePartition != constants.warningLV && partition.fileSystem != constants.warningZFS"
-                                    >
-                                        -
-                                    </span>
-                                    <span
-                                        data-ng-if="partition.typePartition == constants.warningLV || partition.fileSystem == constants.warningZFS"
-                                        data-ng-bind="partition.volumeName"
-                                    >
-                                    </span>
-                                </td>
-                                <td
-                                    data-ng-if="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
-                                >
-                                    <span
-                                        data-ng-if="partition.fileSystem == constants.warningSwap"
-                                    >
-                                        -
-                                    </span>
-                                    <span
-                                        data-ng-if="partition.fileSystem != constants.warningSwap"
-                                        data-ng-bind="partition.raid.replace('_', '')"
-                                    >
-                                    </span>
-                                    <span
-                                        class="icon-warning"
-                                        data-ng-if="partition.hasWarning"
-                                        data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_error_raid_diskUse_icon' | translate }}"
-                                        data-oui-tooltip-placement="top"
-                                    >
-                                    </span>
-                                </td>
-                                <td>
-                                    <span
-                                        data-ng-if="partition.fileSystem == constants.warningSwap"
-                                        data-ng-bind="installation.nbDiskUse"
-                                    >
-                                    </span>
-                                    <span
-                                        data-ng-if="partition.fileSystem == constants.warningSwap"
-                                    >
-                                        x
-                                    </span>
-                                    <span
-                                        data-ng-if="partition.fileSystem == constants.warningSwap"
-                                        data-ng-bind="$ctrl.getDisplaySize(partition.partitionSize)"
-                                    >
-                                    </span>
-                                    <span
-                                        data-ng-if="partition.fileSystem != constants.warningSwap"
-                                        data-ng-bind="$ctrl.getDisplaySize(partition.partitionSize)"
-                                    >
-                                    </span>
-                                </td>
-                                <td
-                                    data-ng-if="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
-                                    data-ng-bind="$ctrl.getRealDisplaySize({ partition: partition })"
-                                ></td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <form id="optionForm" name="optionForm">
+            <div
+                data-wizard-step
+                data-wizard-step-valid="!errorInst.ws
+                                        && !configError.raidDiskUse
+                                        && installation.options.validForm
+                                        && !loader.loading
+                                        && optionForm.$valid"
+                data-wizard-step-on-previous="$ctrl.checkCustomPrevFinal.bind($ctrl)"
+                data-wizard-step-on-load="$ctrl.checkIntegrity.bind($ctrl)"
+            >
+                <div class="text-center" data-ng-if="loader.loading">
+                    <oui-spinner></oui-spinner>
                 </div>
+                <div data-ng-hide="loader.loading || loader.loadingForm">
+                    <p
+                        data-translate="server_configuration_installation_ovh_step3_info"
+                    ></p>
 
-                <div class="mt-4">
-                    <h5
-                        data-translate="server_configuration_installation_resume"
-                    ></h5>
-                    <dl>
-                        <dt
-                            data-translate="server_configuration_installation_ovh_step3_server"
-                        ></dt>
-                        <dd data-ng-bind="constants.server.name"></dd>
-                        <dt
-                            data-translate="server_configuration_installation_ovh_step3_os"
-                        ></dt>
-                        <dd
-                            data-ng-bind="installation.selectDistribution.displayName"
-                        ></dd>
-                        <dt
-                            data-translate="server_configuration_installation_ovh_step3_lang"
-                        ></dt>
-                        <dd data-ng-bind="installation.selectLanguage"></dd>
-                        <dt
-                            data-translate="server_configuration_installation_ovh_step3_disk_group"
-                        ></dt>
-                        <dd
-                            data-ng-bind="installation.diskGroup.description"
-                        ></dd>
-                        <dt
-                            data-translate="server_configuration_installation_ovh_step3_custom"
-                        ></dt>
-                        <dd>
-                            <span
-                                data-ng-if="installation.customInstall"
-                                data-translate="wizard_yes"
-                            >
-                            </span>
-                            <span
-                                data-ng-if="!installation.customInstall"
-                                data-translate="wizard_no"
-                            >
-                            </span>
-                        </dd>
-                    </dl>
+                    <p
+                        class="form-inline"
+                        data-ng-show="installation.partitionSchemesList.length > 1 && installation.noPartitioning"
+                    >
+                        <label
+                            for="selectPartitionScheme"
+                            class="control-label"
+                            data-translate="server_configuration_installation_ovh_step3_scheme"
+                        >
+                        </label>
+                        <select
+                            class="form-control"
+                            id="selectPartitionScheme"
+                            name="selectPartitionScheme"
+                            data-ng-options="partitionScheme as partitionScheme for partitionScheme in installation.partitionSchemesList"
+                            data-ng-model="installation.selectPartitionScheme"
+                            data-ng-change="$ctrl.showPartition()"
+                        >
+                        </select>
+                    </p>
 
-                    <div data-ng-if="installation.hardwareRaid.raid">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th
+                                        scope="col"
+                                        data-ng-if="!informations.softRaidOnlyMirroring"
+                                    >
+                                        <span
+                                            class="icon-question-sign icon-white"
+                                            data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_order_help' | translate }}"
+                                            data-oui-tooltip-placement="right"
+                                        >
+                                        </span>
+                                    </th>
+                                    <th
+                                        data-ng-if="!informations.softRaidOnlyMirroring"
+                                        scope="col"
+                                        data-translate="server_configuration_installation_ovh_step2_type"
+                                    ></th>
+                                    <th
+                                        scope="col"
+                                        data-translate="server_configuration_installation_ovh_step2_file_system"
+                                    ></th>
+                                    <th
+                                        scope="col"
+                                        data-ng-if="!informations.softRaidOnlyMirroring"
+                                        data-translate="server_configuration_installation_ovh_step2_mount_point"
+                                    ></th>
+                                    <th
+                                        scope="col"
+                                        data-ng-if="!informations.softRaidOnlyMirroring"
+                                        data-translate="server_configuration_installation_ovh_step2_volume_name"
+                                    ></th>
+                                    <th
+                                        scope="col"
+                                        data-ng-if="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
+                                    >
+                                        <span
+                                            data-translate="server_configuration_installation_ovh_step2_raid"
+                                        ></span>
+                                        <span
+                                            class="icon-question-sign icon-white"
+                                            data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_raid_help' | translate }}"
+                                            data-oui-tooltip-placement="left"
+                                        >
+                                        </span>
+                                    </th>
+
+                                    <th scope="col">
+                                        <span
+                                            data-translate="server_configuration_installation_ovh_step2_available_size"
+                                        ></span>
+                                        <span
+                                            class="icon-question-sign icon-white"
+                                            data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_available_size_help' | translate }}"
+                                            data-oui-tooltip-placement="left"
+                                        >
+                                        </span>
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        data-ng-if="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
+                                    >
+                                        <span
+                                            data-translate="server_configuration_installation_ovh_step2_size"
+                                        ></span>
+                                        <span
+                                            class="icon-question-sign icon-white"
+                                            data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_size_help' | translate }}"
+                                            data-oui-tooltip-placement="left"
+                                        >
+                                        </span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    data-ng-repeat="partition in installation.partitionSchemeModels | orderBy:'orderTable' track by $index"
+                                >
+                                    <th
+                                        data-ng-if="!informations.softRaidOnlyMirroring"
+                                        scope="row"
+                                        data-ng-bind="partition.order"
+                                    ></th>
+                                    <td
+                                        data-ng-if="!informations.softRaidOnlyMirroring"
+                                        data-translate="{{ 'server_configuration_installation_' + partition.typePartition }}"
+                                    ></td>
+                                    <td>
+                                        <span
+                                            data-ng-if="partition.fileSystem == constants.warningNone"
+                                        >
+                                            -
+                                        </span>
+                                        <span
+                                            data-ng-if="partition.fileSystem != constants.warningNone"
+                                            data-translate="{{ 'server_configuration_installation_' + partition.fileSystem }}"
+                                        >
+                                        </span>
+                                    </td>
+                                    <td
+                                        data-ng-if="!informations.softRaidOnlyMirroring"
+                                        data-ng-bind="partition.mountPoint"
+                                    ></td>
+                                    <td
+                                        data-ng-if="!informations.softRaidOnlyMirroring"
+                                    >
+                                        <span
+                                            data-ng-if="partition.typePartition != constants.warningLV && partition.fileSystem != constants.warningZFS"
+                                        >
+                                            -
+                                        </span>
+                                        <span
+                                            data-ng-if="partition.typePartition == constants.warningLV || partition.fileSystem == constants.warningZFS"
+                                            data-ng-bind="partition.volumeName"
+                                        >
+                                        </span>
+                                    </td>
+                                    <td
+                                        data-ng-if="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
+                                    >
+                                        <span
+                                            data-ng-if="partition.fileSystem == constants.warningSwap"
+                                        >
+                                            -
+                                        </span>
+                                        <span
+                                            data-ng-if="partition.fileSystem != constants.warningSwap"
+                                            data-ng-bind="partition.raid.replace('_', '')"
+                                        >
+                                        </span>
+                                        <span
+                                            class="icon-warning"
+                                            data-ng-if="partition.hasWarning"
+                                            data-oui-tooltip="{{:: 'server_configuration_installation_ovh_step2_error_raid_diskUse_icon' | translate }}"
+                                            data-oui-tooltip-placement="top"
+                                        >
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span
+                                            data-ng-if="partition.fileSystem == constants.warningSwap"
+                                            data-ng-bind="installation.nbDiskUse"
+                                        >
+                                        </span>
+                                        <span
+                                            data-ng-if="partition.fileSystem == constants.warningSwap"
+                                        >
+                                            x
+                                        </span>
+                                        <span
+                                            data-ng-if="partition.fileSystem == constants.warningSwap"
+                                            data-ng-bind="$ctrl.getDisplaySize(partition.partitionSize)"
+                                        >
+                                        </span>
+                                        <span
+                                            data-ng-if="partition.fileSystem != constants.warningSwap"
+                                            data-ng-bind="$ctrl.getDisplaySize(partition.partitionSize)"
+                                        >
+                                        </span>
+                                    </td>
+                                    <td
+                                        data-ng-if="installation.nbDiskUse > 1 && !informations.raidController && !informations.softRaidOnlyMirroring"
+                                        data-ng-bind="$ctrl.getRealDisplaySize({ partition: partition })"
+                                    ></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mt-4">
                         <h5
-                            data-translate="server_configuration_installation_resume_hardwareRaid"
+                            data-translate="server_configuration_installation_resume"
                         ></h5>
                         <dl>
                             <dt
-                                data-translate="server_configuration_installation_ovh_stephardraid_label_controllers"
+                                data-translate="server_configuration_installation_ovh_step3_server"
+                            ></dt>
+                            <dd data-ng-bind="constants.server.name"></dd>
+                            <dt
+                                data-translate="server_configuration_installation_ovh_step3_os"
                             ></dt>
                             <dd
-                                data-ng-bind="installation.hardwareRaid.controller.model + ' (' + installation.hardwareRaid.controller.type + ')'"
+                                data-ng-bind="installation.selectDistribution.displayName"
                             ></dd>
                             <dt
-                                data-translate="server_configuration_installation_ovh_stephardraid_label_disks"
+                                data-translate="server_configuration_installation_ovh_step3_lang"
+                            ></dt>
+                            <dd data-ng-bind="installation.selectLanguage"></dd>
+                            <dt
+                                data-translate="server_configuration_installation_ovh_step3_disk_group"
                             ></dt>
                             <dd
-                                data-ng-bind="installation.hardwareRaid.disks"
+                                data-ng-bind="installation.diskGroup.description"
                             ></dd>
                             <dt
-                                data-translate="server_configuration_installation_ovh_stephardraid_label_raid"
+                                data-translate="server_configuration_installation_ovh_step3_custom"
                             ></dt>
-                            <dd
-                                data-ng-bind="installation.hardwareRaid.raid"
-                            ></dd>
+                            <dd>
+                                <span
+                                    data-ng-if="installation.customInstall"
+                                    data-translate="wizard_yes"
+                                >
+                                </span>
+                                <span
+                                    data-ng-if="!installation.customInstall"
+                                    data-translate="wizard_no"
+                                >
+                                </span>
+                            </dd>
                         </dl>
-                    </div>
 
-                    <h5
-                        data-translate="server_configuration_installation_form_option"
-                    ></h5>
-                    <form id="optionForm" name="optionForm">
+                        <div data-ng-if="installation.hardwareRaid.raid">
+                            <h5
+                                data-translate="server_configuration_installation_resume_hardwareRaid"
+                            ></h5>
+                            <dl>
+                                <dt
+                                    data-translate="server_configuration_installation_ovh_stephardraid_label_controllers"
+                                ></dt>
+                                <dd
+                                    data-ng-bind="installation.hardwareRaid.controller.model + ' (' + installation.hardwareRaid.controller.type + ')'"
+                                ></dd>
+                                <dt
+                                    data-translate="server_configuration_installation_ovh_stephardraid_label_disks"
+                                ></dt>
+                                <dd
+                                    data-ng-bind="installation.hardwareRaid.disks"
+                                ></dd>
+                                <dt
+                                    data-translate="server_configuration_installation_ovh_stephardraid_label_raid"
+                                ></dt>
+                                <dd
+                                    data-ng-bind="installation.hardwareRaid.raid"
+                                ></dd>
+                            </dl>
+                        </div>
+
+                        <h5
+                            data-translate="server_configuration_installation_form_option"
+                        ></h5>
                         <!-- saveGabarit -->
                         <label>
                             <span
@@ -1607,8 +1613,8 @@
                             class="form-group"
                             data-ng-show="installation.options.saveGabarit == true"
                             data-ng-class="{
-                                 'has-error': optionForm.gabaritNameSave.$invalid && optionForm.$dirty
-                             }"
+                                    'has-error': optionForm.gabaritNameSave.$invalid && optionForm.$dirty
+                                }"
                         >
                             <label
                                 for="gabaritNameSave"
@@ -1704,8 +1710,8 @@
                         <div
                             class="form-group"
                             data-ng-class="{
-                                 'has-error': optionForm.postInstallationScriptLink.$invalid && optionForm.$dirty
-                             }"
+                                    'has-error': optionForm.postInstallationScriptLink.$invalid && optionForm.$dirty
+                                }"
                         >
                             <label
                                 for="postInstallationScriptLink"
@@ -1831,10 +1837,11 @@
                         </div>
 
                         <!-- nbDisk -->
-                        <div
-                            class="form-inline"
-                            data-ng-show="informations.nbDisk > 1 && !installation.customInstall"
-                        >
+                        <div class="form-inline" data-ng-show="informations.nbDisk > 1
+                                                                  && !installation.customInstall
+                                                                  && ( !installation.hardwareRaid.raid
+                                                                     || !installation.hardwareRaid.disks
+                                                                     || !installation.hardwareRaid.arrays)">
                             <label
                                 for="nbDiskUse"
                                 class="control-label"
@@ -1878,21 +1885,33 @@
                                 data-translate-values="{ t0: installation.options.variablePartition.mountPoint }"
                             ></p>
                         </div>
-                    </form>
-                </div>
-                <div data-ng-if="errorInst.ws">
-                    <p class="text-danger" data-ng-bind-html="errorInst.ws"></p>
+                    </div>
+
+                    <!-- dynamic inputs form depending on the OS template -->
+                    <server-installation-inputs
+                        data-ng-if="installation.inputs.length > 0"
+                        data-installation="installation"
+                        data-option-form="optionForm"
+                        data-input-rules="inputRules"
+                    ></server-installation-inputs>
+
+                    <div data-ng-if="errorInst.ws">
+                        <p
+                            class="text-danger"
+                            data-ng-bind-html="errorInst.ws"
+                        ></p>
+                        <p
+                            data-ng-if="errorInst.ws"
+                            data-translate="server_configuration_installation_ovh_step3_error_integrity_info"
+                        ></p>
+                    </div>
                     <p
-                        data-ng-if="errorInst.ws"
-                        data-translate="server_configuration_installation_ovh_step3_error_integrity_info"
+                        class="text-danger"
+                        data-ng-if="errorInst.wsinstall"
+                        data-ng-bind-html="errorInst.wsinstall"
                     ></p>
                 </div>
-                <p
-                    class="text-danger"
-                    data-ng-if="errorInst.wsinstall"
-                    data-ng-bind-html="errorInst.wsinstall"
-                ></p>
             </div>
-        </div>
+        </form>
     </div>
 </div>

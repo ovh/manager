@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.14.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.13.0...@ovh-ux/ng-ovh-web-universe-components@9.14.0) (2024-02-26)
+
+
+### Features
+
+* **web.domain:** add a guide for dns history ([#10621](https://github.com/ovh/manager/issues/10621)) ([e44131a](https://github.com/ovh/manager/commit/e44131a49aa48f4b1a1b83789f4d28f97071d1b0))
+
+
+
+
+
+# [9.13.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.12.0...@ovh-ux/ng-ovh-web-universe-components@9.13.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
+# [9.12.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.11.6...@ovh-ux/ng-ovh-web-universe-components@9.12.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
 ## [9.11.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.11.5...@ovh-ux/ng-ovh-web-universe-components@9.11.6) (2023-12-01)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-web-universe-components

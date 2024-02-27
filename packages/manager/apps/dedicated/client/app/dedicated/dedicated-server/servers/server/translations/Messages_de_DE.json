@@ -1130,5 +1130,19 @@
   "server_configuration_installation_ovh_desktop_BACKUP": "Backup",
   "server_configuration_installation_ovh_step2_type_disk_warning_windows": "Auch wenn das ausgewählte Disk-Array {{t0}} Festplatten enthält, kann das gewählte Betriebssystem nur auf maximal 2 Festplatten installiert werden.",
   "server_configuration_installation_ovh_step3_scheme": "Partitionierungsschema:",
-  "server_consumption_explanation_link": "Mehr erfahren"
+  "server_consumption_explanation_link": "Mehr erfahren",
+  "server_configuration_installation_inputs_title": "Spezifische Optionen:",
+  "server_configuration_installation_inputs_info": "Die unten stehenden Fragen beziehen sich speziell auf das ausgewählte Betriebssystem ({{t0}}). Zwecks Konsistenz mit der API sind sie nur auf Englisch verfasst.",
+  "server_configuration_installation_inputs_item_placeholder": "Wert vom Typ {{t0}} einfügen",
+  "server_configuration_installation_inputs_item_placeholder_example": "Zum Beispiel: {{t0}}",
+  "server_configuration_installation_inputs_item_mandatory": "Dieses Feld ist ein Pflichtfeld.",
+  "server_configuration_installation_inputs_bad_email": "Die eingegebene E-Mail-Adresse ist ungültig.",
+  "server_configuration_installation_inputs_bad_hexstring": "Die Zeichenfolge darf nur aus Zahlen und Buchstaben zwischen A und F bestehen.",
+  "server_configuration_installation_inputs_bad_ip": "Die eingegebene IPv4-Adresse ist ungültig.",
+  "server_configuration_installation_inputs_bad_required": "Dieses Feld muss ausgefüllt werden.",
+  "server_configuration_installation_inputs_bad_sshPubKey": "Der öffentliche SSH-Schlüssel ist ungültig: Es werden nur RSA-, ECDSA- und EdDSA-Schlüssel im OpenSSH-Format akzeptiert",
+  "server_configuration_installation_inputs_bad_url": "Die angegebene URL ist ungültig.",
+  "server_configuration_installation_inputs_bad_uuid": "Die UUIDv4 ist ungültig.",
+  "server_configuration_installation_custom_image_info": "Auf dem nächsten Bildschirm können Sie ein Betriebssystem von einem personalisierten Image aus installieren, indem Sie in „{{t1}}“ die Option „{{t0}}“ auswählen.",
+  "server_configuration_installation_custom_image_help_link": "Wählen Sie den am besten geeigneten individuellen Installationstyp aus."
 }

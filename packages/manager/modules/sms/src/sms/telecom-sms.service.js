@@ -1,3 +1,5 @@
+import { ListLayoutHelper } from '@ovh-ux/manager-ng-layout-helpers';
+
 export default /* @ngInject */ ($http, $timeout, iceberg) => ({
   getDocument(serviceName, from, to, batchId = null) {
     return $http({
@@ -65,5 +67,107 @@ export default /* @ngInject */ ($http, $timeout, iceberg) => ({
     return $http
       .put(`/sms/${serviceName}/smpp/allowedIPs`, params)
       .then(({ data }) => data);
+  },
+
+  deleteBatchHistory(serviceName, batchId) {
+    return $http
+      .delete(`/sms/${serviceName}/batches/${batchId}`)
+      .then(({ data }) => data);
+  },
+
+  getOutgoingSms(serviceName, icebergParams = {}, apiParams = {}) {
+    const newIcebergParams = { ...icebergParams };
+    let newApiParams = { ...apiParams };
+    const creationDatetime = icebergParams.filters.filter(
+      (filter) => filter.field === 'creationDatetime',
+    );
+    if (creationDatetime.length > 0) {
+      newApiParams = {
+        ...apiParams,
+        ...creationDatetime.reduce((acc, current) => {
+          let newAcc = { ...acc };
+          const [date] = current.reference;
+          const fromDate = moment(`${date}T00:00:00`).toISOString();
+          const toDate = moment(`${date}T23:59:59`).toISOString();
+          switch (current.comparator) {
+            case 'is':
+              newAcc = {
+                ...acc,
+                'creationDatetime.from': fromDate,
+                'creationDatetime.to': toDate,
+              };
+              break;
+            case 'isBefore':
+              newAcc = {
+                ...acc,
+                'creationDatetime.to': toDate,
+              };
+              break;
+            case 'isAfter':
+              newAcc = {
+                ...acc,
+                'creationDatetime.from': fromDate,
+              };
+              break;
+            default:
+              newAcc = { ...acc };
+          }
+          return newAcc;
+        }, {}),
+      };
+      newIcebergParams.filters = icebergParams.filters.filter(
+        (filter) => filter.field !== 'creationDatetime',
+      );
+    }
+    return this.icebergQuery(
+      `/sms/${serviceName}/outgoing`,
+      newIcebergParams,
+      newApiParams,
+    );
+  },
+
+  icebergQuery(url, icebergParams, apiParams = {}) {
+    const {
+      filters,
+      pageSize,
+      offset,
+      sort,
+      sortOrder,
+      defaultFilterColumn,
+    } = icebergParams;
+
+    let request = iceberg(url, apiParams)
+      .query()
+      .expand('CachedObjectList-Pages')
+      .limit(pageSize)
+      .offset(Math.ceil(offset / (pageSize || 1)))
+      .sort(sort || defaultFilterColumn, sortOrder);
+
+    if (filters?.length > 0) {
+      request = this.filterIceberg(request, filters);
+    }
+
+    return request.execute(null).$promise.then(({ data, headers }) => ({
+      data,
+      meta: {
+        totalCount: headers['x-pagination-elements'],
+        currentOffset:
+          headers['x-pagination-number'] * headers['X-Pagination-Size'],
+        pageCount: headers['x-pagination-total'],
+        pageSize: headers['x-pagination-size'],
+      },
+    }));
+  },
+
+  filterIceberg(request, filters) {
+    let filterRequest = request;
+    filters.forEach(({ field, comparator, reference }) => {
+      filterRequest = filterRequest.addFilter(
+        field,
+        ListLayoutHelper.FILTER_OPERATORS[comparator],
+        ListLayoutHelper.mapFilterForIceberg(comparator, reference),
+      );
+    });
+    return filterRequest;
   },
 });

@@ -5,6 +5,10 @@ import forEachRight from 'lodash/forEachRight';
 import range from 'lodash/range';
 import set from 'lodash/set';
 import some from 'lodash/some';
+import Inputs from '../../inputs/inputs.class';
+import {
+  INPUTS_RULES
+} from '../../inputs/constants';
 import {
   MOUNT_POINTS,
   MAX_MOUNT_POINTS,
@@ -42,6 +46,8 @@ export default class ServerInstallationOvhCtrl {
   }
 
   $onInit() {
+    this.$scope.inputRules = INPUTS_RULES;
+
     this.$scope.LICENSE_URL = this.coreURLBuilder.buildURL(
       'dedicated',
       '#/configuration/license',
@@ -503,6 +509,9 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.installation.customInstall = false;
       this.$scope.installation.nbDiskUse = 1;
     }
+
+    this.$scope.installation.inputs = distribution?.inputs;
+
     // if saveSelectDistribution is not null, a partition has personnalisation
     // in progress and confirmation to delete is already display
     if (this.$scope.installation.saveSelectDistribution && !bypass) {
@@ -681,8 +690,7 @@ export default class ServerInstallationOvhCtrl {
         this.$scope.installation.partitionSchemeModels =
           partitionSchemeModels.results;
 
-        // get total use size (remainingSize),
-        // assign random color
+        // get total use size (remainingSize)
         // rename order by orderTable
         this.$scope.installation.partitionSchemeModels.forEach((partition) => {
           set(partition, 'orderTable', angular.copy(partition.order));
@@ -2164,7 +2172,8 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.installation.hardwareRaid.arrays;
     if (this.$scope.installation.hardwareRaid.arrays === 1) {
       return this.$scope.installation.hardwareRaid.controller.disks[0].names.slice(
-        this.$scope.installation.hardwareRaid.disks - 1,
+        0,
+        this.$scope.installation.hardwareRaid.disks,
       );
     }
 
@@ -2177,7 +2186,8 @@ export default class ServerInstallationOvhCtrl {
     // ]
     return chunk(
       this.$scope.installation.hardwareRaid.controller.disks[0].names.slice(
-        this.$scope.installation.hardwareRaid.disks - 1,
+        0,
+        this.$scope.installation.hardwareRaid.disks,
       ),
       disksPerArray,
     ).map((elem) => `[${elem.toString()}]`);
@@ -2278,6 +2288,7 @@ export default class ServerInstallationOvhCtrl {
       variablePartition: null,
       validForm: true,
     };
+    this.$scope.installation.userMetadata = [];
 
     if (
       this.$scope.installation.customInstall &&
@@ -2397,6 +2408,7 @@ export default class ServerInstallationOvhCtrl {
 
   startInstall() {
     this.$scope.loader.loading = true;
+    const inputs = new Inputs(this.$scope.installation.inputs);
     this.Server.startInstallation(
       this.$stateParams.productId,
       this.$scope.informations.gabaritName,
@@ -2422,6 +2434,7 @@ export default class ServerInstallationOvhCtrl {
           !this.$scope.informations.raidController,
         diskGroupId: this.$scope.installation.diskGroup.diskGroupId || null,
       },
+      inputs.answersHash2userMetadata(this.$scope.installation.input),
     ).then(
       (task) => {
         set(task, 'id', task.taskId);

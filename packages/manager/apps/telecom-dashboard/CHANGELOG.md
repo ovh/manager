@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@7.1.1...@ovh-ux/manager-telecom-dashboard-app@7.1.2) (2024-02-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom-dashboard-app
+
+
+
+
+
+## [7.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@7.1.0...@ovh-ux/manager-telecom-dashboard-app@7.1.1) (2024-02-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom-dashboard-app
+
+
+
+
+
+# [7.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@7.0.17...@ovh-ux/manager-telecom-dashboard-app@7.1.0) (2024-02-15)
+
+
+### Features
+
+* **octavia:** octavia mvp setup ([e60cb2d](https://github.com/ovh/manager/commit/e60cb2d4bff27616b5f37d64334816105a830e8f))
+
+
+
+
+
+## [7.0.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@7.0.16...@ovh-ux/manager-telecom-dashboard-app@7.0.17) (2024-01-31)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom-dashboard-app
+
+
+
+
+
+## [7.0.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@7.0.15...@ovh-ux/manager-telecom-dashboard-app@7.0.16) (2024-01-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom-dashboard-app
+
+
+
+
+
+## [7.0.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@7.0.14...@ovh-ux/manager-telecom-dashboard-app@7.0.15) (2024-01-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom-dashboard-app
+
+
+
+
+
 ## [7.0.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom-dashboard-app@7.0.13...@ovh-ux/manager-telecom-dashboard-app@7.0.14) (2023-12-13)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom-dashboard-app

@@ -23,6 +23,7 @@ module.exports = {
     'prettier/prettier': 'warn',
     'import/extensions': 'off',
     'import/no-cycle': 'off',
+    'import/prefer-default-export': 'off'
   },
   ignorePatterns: [
     '**/vendor/**',

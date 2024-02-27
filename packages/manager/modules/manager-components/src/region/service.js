@@ -8,7 +8,28 @@ export default class ovhManagerRegionService {
   }
 
   static getMacroRegion(region) {
-    const macro = /[\D]{2,3}/.exec(region);
+    const localZonePattern = /^lz/i;
+    let macro;
+    if (
+      localZonePattern.test(
+        region
+          .split('-')
+          ?.slice(2)
+          ?.join('-'),
+      )
+    ) {
+      // The pattern for local zone is <geo_location>-LZ-<datacenter>-<letter>
+      // geo_location is EU-WEST, EU-SOUTH, maybe ASIA-WEST in the future
+      // datacenter: MAD, BRU
+      macro = /[\D]{2,3}/.exec(
+        region
+          .split('-')
+          ?.slice(3)
+          ?.join('-'),
+      );
+    } else {
+      macro = /[\D]{2,3}/.exec(region);
+    }
     return macro ? macro[0].replace('-', '').toUpperCase() : '';
   }
 
@@ -27,6 +48,9 @@ export default class ovhManagerRegionService {
       SBG: this.$translate.instant('manager_components_region_SBG'),
       BHS: this.$translate.instant('manager_components_region_BHS'),
       GRA: this.$translate.instant('manager_components_region_GRA'),
+      GS: this.$translate.instant('manager_components_region_GS'),
+      MAD: this.$translate.instant('manager_components_region_MAD'),
+      BRU: this.$translate.instant('manager_components_region_BRU'),
       WAW: this.$translate.instant('manager_components_region_WAW'),
       DE: this.$translate.instant('manager_components_region_DE'),
       UK: this.$translate.instant('manager_components_region_UK'),

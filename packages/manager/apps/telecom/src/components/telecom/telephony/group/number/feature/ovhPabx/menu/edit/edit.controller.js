@@ -276,7 +276,10 @@ export default /* @ngInject */ function telephonyNumberOvhPabxMenuEditCtrl(
     // set invalid sound type
     if (self.menu.invalidSoundTts) {
       self.model.invalidSoundType = 'tts';
-    } else if (self.invalidSound || !self.menuCtrl.ovhPabx.isTtsAvailable()) {
+    } else if (
+      self.menuCtrl.menu.invalidSound ||
+      !self.menuCtrl.ovhPabx.isTtsAvailable()
+    ) {
       self.model.invalidSoundType = 'sound';
     } else {
       self.model.invalidSoundType = 'none';

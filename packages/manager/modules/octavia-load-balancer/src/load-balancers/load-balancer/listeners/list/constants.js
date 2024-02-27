@@ -1,0 +1,8 @@
+export const LISTENER_EDITION_TRACKING_SUFFIX = '::edit';
+
+export const POOL_DETAIL_TRACKING_SUFFIX = '::pool::detail';
+
+export default {
+  LISTENER_EDITION_TRACKING_SUFFIX,
+  POOL_DETAIL_TRACKING_SUFFIX,
+};

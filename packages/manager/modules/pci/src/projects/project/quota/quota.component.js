@@ -18,6 +18,8 @@ export default {
     serviceOptions: '<',
     service: '<',
     iamLink: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
   controller,
   template,

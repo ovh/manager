@@ -57,6 +57,22 @@ export default {
       TN: 'https://www.ovh.com/tn/order/express/#/express/review',
       DEFAULT: 'https://www.ovh.ie/order/express/#/express/review',
     },
+    order: {
+      DE: 'https://www.ovh.de/order/',
+      EN: 'https://www.ovh.co.uk/order/',
+      ES: 'https://www.ovh.es/order/',
+      FR: 'https://www.ovh.com/fr/order/',
+      GB: 'https://www.ovh.co.uk/order/',
+      IE: 'https://www.ovh.ie/order/',
+      IT: 'https://www.ovh.it/order/',
+      MA: 'https://www.ovh.com/ma/order/',
+      NL: 'https://www.ovh.nl/order/',
+      PL: 'https://www.ovh.pl/order/',
+      PT: 'https://www.ovh.pt/order/',
+      SN: 'https://www.ovh.sn/order/',
+      TN: 'https://www.ovh.com/tn/order/',
+      DEFAULT: 'https://www.ovh.ie/order/',
+    },
   },
   CA: {
     guides: {
@@ -92,6 +108,17 @@ export default {
       WS: 'https://us.ovh.com/es/order/express/#/express/review',
       DEFAULT: 'https://us.ovh.com/us/order/express/#/express/review',
     },
+    order: {
+      ASIA: 'https://ca.ovh.com/asia/order/',
+      IN: 'https://ca.ovh.com/in/order/',
+      AU: 'https://ca.ovh.com/au/order/',
+      CA: 'https://ca.ovh.com/en/order/',
+      QC: 'https://ca.ovh.com/fr/order/',
+      SG: 'https://ca.ovh.com/sg/order/',
+      WE: 'https://us.ovh.com/us/order/',
+      WS: 'https://us.ovh.com/es/order/',
+      DEFAULT: 'https://us.ovh.com/us/order/',
+    },
   },
   US: {
     guides: {
@@ -104,5 +131,6 @@ export default {
     },
     tasks: '',
     expressOrder: 'https://us.ovhcloud.com/order/express/#/express/review',
+    order: 'https://us.ovhcloud.com/order/',
   },
 };

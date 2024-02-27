@@ -110,6 +110,8 @@ export default (plop) => {
           data.hasDashboard = data.templates.includes('dashboard');
           data.hasOnboarding = data.templates.includes('onboarding');
 
+          data.isApiV6 = data.apiV6Endpoints.get?.operationList.length
+
           if (data.hasListing) {
             const [listingPath, listingFn] =
               data.listingEndpoint?.split('-') || [];
@@ -129,26 +131,35 @@ export default (plop) => {
             data.dashboardEndpointFn = dashboardFn;
           }
 
+          let apiV6Computed = {};
+          if (data.mainApiPathApiVersion === 'v6') {
+            apiV6Computed = data.isGenerateAllApi ? data.apiV6Endpoints : {
+              get: {
+                ...data.apiV6Endpoints.get,
+                operationList: data.apiV6Endpoints.get?.operationList?.filter(({ apiPath }) => [data.listingEndpointPath, data.dashboardEndpointPath].includes(apiPath))
+              }
+            }
+          }
+
+          let apiV2Computed = {}
+          if (data.mainApiPathApiVersion === 'v2') {
+            apiV2Computed = data.isGenerateAllApi ? data.apiV2Endpoints : {
+              get: {
+                ...data.apiV2Endpoints.get,
+                operationList: data.apiV2Endpoints.get?.operationList?.filter(({ apiPath }) => [data.listingEndpointPath, data.dashboardEndpointPath].includes(apiPath) || apiPath.includes('/serviceInfos'))
+              }
+            }
+          }
+          data.apiV2Computed = apiV2Computed;
+          data.apiV6Computed = apiV6Computed;
+
           return data.hasListing;
         },
         validate: (input) => input.length > 0,
       },
     ],
-    actions: ({ apiV6Endpoints, apiV2Endpoints, templates, appName, listingEndpointPath, dashboardEndpointPath, isGenerateAllApi }) => {
-      const apiV2Computed = isGenerateAllApi ? apiV2Endpoints : {
-        get: {
-          ...apiV2Endpoints.get,
-          operationList: apiV2Endpoints.get?.operationList?.filter(({ apiPath }) => [listingEndpointPath, dashboardEndpointPath].includes(apiPath))
-        }
-      }
-
-      const apiV6Computed = isGenerateAllApi ? apiV6Endpoints : {
-        get: {
-          ...apiV6Endpoints.get,
-          operationList: apiV6Endpoints.get?.operationList?.filter(({ apiPath }) => [listingEndpointPath, dashboardEndpointPath].includes(apiPath) || apiPath.includes('/serviceInfos'))
-        }
-      }
-
+    actions: ({ apiV6Endpoints, apiV2Endpoints, templates, appName, apiV6Computed, apiV2Computed, isApiV6 }) => {
+ 
       const apiV2Files =
         Object.keys(apiV2Endpoints).length > 0
           ? createApiQueryFilesActions({
@@ -157,6 +168,7 @@ export default (plop) => {
             appDirectory,
           })
           : [];
+
       const apiV6Files =
         Object.keys(apiV6Endpoints).length > 0
           ? createApiQueryFilesActions({
@@ -165,7 +177,8 @@ export default (plop) => {
             appDirectory,
           })
           : [];
-      const pages = createPages(templates, appDirectory);
+      
+      const pages = createPages(templates, appDirectory, isApiV6);
       const translations = createTranslations(templates, appName, appDirectory);
       return [
         {

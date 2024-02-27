@@ -13,6 +13,7 @@ import tasks from '../tasks/tasks.module';
 import webhosting from '../webhosting';
 import webhostingEnable from '../general-informations/webhosting-enable/enable.module';
 import zoneActivation from '../general-informations/activateZone/activate.module';
+import historyModule from '../../dns-zone/history/history.module';
 
 import dnsZone from '../../dns-zone';
 
@@ -36,6 +37,7 @@ angular
     webhosting,
     webhostingEnable,
     zoneActivation,
+    historyModule,
   ])
   .config(routing)
   .config(generalInformationsState)

@@ -204,7 +204,7 @@ export default class TelecomPackMigrationConfirmCtrl {
     return this.TucPackMigrationProcess.startMigration()
       .then((migrationTask) => {
         this.process.migrationTaskId = migrationTask.id;
-        this.process.currentStep = 'migration';
+        this.isMigrationOK = true;
       })
       .catch((error) => {
         this.TucToast.error(

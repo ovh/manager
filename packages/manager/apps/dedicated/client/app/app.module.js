@@ -60,6 +60,7 @@ import { registerAtInternet } from '@ovh-ux/ng-shell-tracking';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhBrowserAlert from '@ovh-ux/ng-ovh-browser-alert';
+import ngOvhCloudUniverseComponents from '@ovh-ux/ng-ovh-cloud-universe-components';
 import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhFeatureFlipping from '@ovh-ux/ng-ovh-feature-flipping';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
@@ -115,7 +116,6 @@ import ip from './ip';
 import ipComponents from './components/ip/ip-components.module';
 
 import dedicatedServer from './dedicated/dedicated-server';
-import dedicatedNas from './dedicated/nas';
 import dedicatedHousing from './dedicated/housing';
 import userContracts from './user-contracts';
 import otrs from './otrs';
@@ -163,7 +163,6 @@ export default async (containerEl, shellClient) => {
         cdn,
         dedicatedCloud,
         dedicatedHousing,
-        dedicatedNas,
         dedicatedServer,
         dedicatedUniverseComponents,
         serverBandwidth,
@@ -183,6 +182,7 @@ export default async (containerEl, shellClient) => {
         ngAtInternetUiRouterPlugin,
         ngOvhApiWrappers,
         ngOvhBrowserAlert,
+        ngOvhCloudUniverseComponents,
         ngOvhFeatureFlipping,
         ngOvhHttp,
         ngOvhProxyRequest,

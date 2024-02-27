@@ -42,7 +42,6 @@ export const features = [
   'public-cloud:contacts',
   'public-cloud:project-settings',
   'ai-dashboard',
-  'data-integration',
 ];
 
 export function getPciProjectMenu(
@@ -157,6 +156,7 @@ export function getPciProjectMenu(
           id: 'octavia-load-balancer',
           title: 'Load Balancer',
           feature: 'octavia-load-balancer',
+          badge: 'new',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/octavia-load-balancer`,
@@ -215,7 +215,7 @@ export function getPciProjectMenu(
     {
       id: 'analytics',
       title: 'Databases & Analytics',
-      regions: ['EU', 'CA'],
+      regions: ['EU', 'CA', 'US'],
       subItems: [
 
         {
@@ -234,16 +234,6 @@ export function getPciProjectMenu(
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/storages/databases-analytics/data-streaming`,
-          ),
-        },
-        {
-          id: 'data-integration',
-          title: 'Data Integration',
-          badge: 'beta',
-          feature: 'data-integration',
-          href: getURL(
-            'public-cloud',
-            `#/pci/projects/${projectId}/data-integration`,
           ),
         },
         {
