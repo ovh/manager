@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { H4 } from '@/components/typography';
+import { Info } from 'lucide-react';
+import { A, H3, H4, P } from '@/components/typography';
 import { useOrderFunnel } from '@/hooks/useOrderFunnel';
 import { order } from '@/models/catalog';
 import { database } from '@/models/database';
@@ -39,6 +40,7 @@ import {
   ServiceCreationWithEngine,
   useAddService,
 } from '@/hooks/api/services.api.hooks';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 
 interface OrderFunnelProps {
   availabilities: database.Availability[];
@@ -130,10 +132,12 @@ const OrderFunnel = ({
         variant: 'destructive',
         description: (
           <div>
-            <p>Some errors were found in the form:</p>
+            <P className="text-white font-semibold">
+              Some errors were found in the form:
+            </P>
             <ul className="list-inside list-disc">
               {Object.keys(error).map((key) => (
-                <li>{error[key as keyof typeof error].message}</li>
+                <li key={key}>{error[key as keyof typeof error].message}</li>
               ))}
             </ul>
           </div>
@@ -153,16 +157,18 @@ const OrderFunnel = ({
 
   return (
     <>
-      <h3 className="font-bold text-3xl mb-5">Create a database service</h3>
-      <p className="mb-2">
-        Create a database service available in your Public Cloud project. If you
-        would like to use a private network that does not yet exist, please
-        create{' '}
-        <a className="text-primary font-bold" href="#">
-          a private network or subnet
-        </a>{' '}
-        first.
-      </p>
+      <H3 className="font-bold text-3xl mb-5">Create a database service</H3>
+      <P className="mb-2">
+        Create a database service available in your Public Cloud project.
+      </P>
+      <Alert variant="info" className="mb-2">
+        <Info className="size-4" />
+        <AlertDescription>
+          If you would like to use a private network that does not yet exist,
+          please create <A href="#">a private network or subnet</A> first.
+        </AlertDescription>
+      </Alert>
+
       <Form {...model.form}>
         <form
           className="grid grid-cols-1 lg:grid-cols-4 gap-4"
