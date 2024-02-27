@@ -1,5 +1,3 @@
-import template from './softphone.html';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'telecom.telephony.billingAccount.line.dashboard.softphone',
@@ -7,7 +5,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/softphone',
       views: {
         'lineInnerView@telecom.telephony.billingAccount.line.dashboard': {
-          template,
+          component: 'ovhManagerTelecomTelephonyLineSoftphoneComponent',
         },
       },
       resolve: {

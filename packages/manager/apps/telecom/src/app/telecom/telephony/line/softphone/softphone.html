@@ -1,23 +1,24 @@
-<oui-tile
+<oui-collapsible
+    data-expanded="false"
     data-heading="{{ 'telephony_line_softphone_download_links_title' | translate }}"
 >
-    <oui-tile-definition
-        data-term="{{ 'telephony_line_softphone_download_links_description_label' | translate }}"
+    <span
+        data-translate="telephony_line_softphone_download_links_description_label"
     >
-    </oui-tile-definition>
-</oui-tile>
-<oui-tile
-    class="mt-3"
+    </span>
+</oui-collapsible>
+<oui-collapsible
+    class="custom-collapsible-no-click mt-3"
+    expanded="true"
     data-heading="{{ 'telephony_line_softphone_configure_title' | translate }}"
 >
-    <oui-tile-description
-        ><span
-            data-translate="telephony_line_softphone_configure_description"
-        ></span
-    ></oui-tile-description>
-</oui-tile>
-<oui-tile
-    class="mt-3"
+    <span
+        data-translate="telephony_line_softphone_configure_description"
+    ></span>
+</oui-collapsible>
+<oui-collapsible
+    class="custom-collapsible-no-click mt-3"
+    expanded="true"
     data-heading="{{ 'telephony_line_softphone_theme_title' | translate }}"
 >
-</oui-tile>
+</oui-collapsible>
