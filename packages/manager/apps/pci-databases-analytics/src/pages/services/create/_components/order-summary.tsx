@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import { database } from '@/models/database';
 import { formatStorage } from '@/lib/bytesHelper';
@@ -6,6 +6,7 @@ import { Engine, Flavor, Plan, Region, Version } from '@/models/order-funnel';
 import { Skeleton } from '@/components/ui/skeleton';
 import { P, Span } from '@/components/typography';
 import { Network, Subnet } from '@/models/network';
+import { Button } from '@/components/ui/button';
 
 interface OrderSummaryProps {
   order: {
@@ -27,22 +28,25 @@ interface OrderSummaryProps {
 }
 const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
   const { t: tRegions } = useTranslation('regions');
+  const { t } = useTranslation('pci-databases-analytics/services/new');
   return (
-    <div>
+    <div className="grid grid-cols-1 gap-2">
       <div>
-        <b>Nom :</b>
+        <b>{t('summaryFieldNameLabel')}</b>
         <Span>{order.name}</Span>
         <Span>i</Span>
       </div>
       <div>
         <div className="flex">
-          <button
+          <Button
+            variant={'link'}
+            size={'link'}
             type="button"
             onClick={() => onSectionClicked('engine')}
             className="font-bold"
           >
-            Service :
-          </button>
+            {t('summaryFieldEngineLabel')}
+          </Button>
           {order.engine ? (
             <div className="flex items-center">
               <Span>{`${humanizeEngine(
@@ -59,13 +63,15 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
         </div>
       </div>
       <div>
-        <button
+        <Button
+          variant={'link'}
+          size={'link'}
           type="button"
           onClick={() => onSectionClicked('plan')}
           className="font-bold"
         >
-          Offre :
-        </button>
+          {t('summaryFieldPlanLabel')}
+        </Button>
         {order.plan ? (
           <Span>{order.plan.name}</Span>
         ) : (
@@ -73,13 +79,15 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
         )}
       </div>
       <div>
-        <button
+        <Button
+          variant={'link'}
+          size={'link'}
           type="button"
           onClick={() => onSectionClicked('region')}
           className="font-bold"
         >
-          Datacentre :
-        </button>
+          {t('summaryFieldRegionLabel')}
+        </Button>
         {order.region ? (
           <Span>
             {tRegions(`region_${order.region.name}_micro`, {
@@ -91,18 +99,26 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
         )}
       </div>
       <div>
-        <button
+        <Button
+          variant={'link'}
+          size={'link'}
           type="button"
           onClick={() => onSectionClicked('flavor')}
           className="font-bold"
         >
-          Modèle de nœud :
-        </button>
+          {t('summaryFieldFlavorLabel')}
+        </Button>
         {order.flavor ? (
           <>
             <Span>{order.flavor.name}</Span>
-            <Span>{order.flavor.vcores} vCores</Span>
-            <Span>{formatStorage(order.flavor.ram)} RAM</Span>
+            <P>
+              {t('summaryFieldFlavorCores', { count: order.flavor.vcores })}
+            </P>
+            <P>
+              {t('summaryFieldFlavorMemory', {
+                memory: formatStorage(order.flavor.ram),
+              })}
+            </P>
           </>
         ) : (
           <>
@@ -113,44 +129,48 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
         )}
       </div>
       <div>
-        <button
+        <Button
+          variant={'link'}
+          size={'link'}
           type="button"
           onClick={() => onSectionClicked('cluster')}
           className="font-bold"
         >
-          Cluster :
-        </button>
-        <Span>{order.nodes} nœuds</Span>
+          {t('summaryFieldClusterLabel')}
+        </Button>
+        <P>{t('summaryFieldFlavorCores', { count: order.nodes })}</P>
         {order.flavor?.storage && (
-          <Span>
+          <P>
             {formatStorage({
               value:
                 order.additionalStorage + order.flavor.storage.minimum.value,
               unit: order.flavor.storage.minimum.unit,
             })}{' '}
             (dont {formatStorage(order.flavor.storage.minimum)} inclus)
-          </Span>
+          </P>
         )}
       </div>
       <div>
-        <button
+        <Button
+          variant={'link'}
+          size={'link'}
           type="button"
           onClick={() => onSectionClicked('options')}
           className="font-bold"
         >
-          Type de réseau :
-        </button>
+          {t('summaryFieldNetworkLabel')}
+        </Button>
         <Span>{order.network.type}</Span>
         {order.network.type === database.NetworkTypeEnum.private && (
           <div className="ml-4">
             <P>
-              Network:{' '}
+              {t('summaryFieldNetworNetwork')}:{' '}
               {order.network.network?.name || (
                 <Span className="text-red-500">-</Span>
               )}
             </P>
             <P>
-              Subnet:{' '}
+              {t('summaryFieldNetworSubnet')}{' '}
               {order.network.subnet?.cidr || (
                 <Span className="text-red-500">-</Span>
               )}

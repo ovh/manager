@@ -17,6 +17,7 @@ export default function initI18n(
     })
     .init({
       lng: locale,
+      debug: true,
       fallbackLng: 'fr_FR',
       supportedLngs: availablesLocales,
       ns: ['pci-databases-analytics'], // namespaces to load by default
@@ -27,6 +28,16 @@ export default function initI18n(
           }.json`,
       },
       postProcess: 'normalize',
+    })
+    .then(() => {
+      // plurals are set for locales like this: en-GB, so our locale en_GB is not found.
+      // We copy the rules for each available locale
+      availablesLocales.forEach((l) => {
+        i18n.services.pluralResolver.addRule(
+          l,
+          i18n.services.pluralResolver.getRule(l.replace('_', '-')),
+        );
+      });
     });
 
   return i18n;
