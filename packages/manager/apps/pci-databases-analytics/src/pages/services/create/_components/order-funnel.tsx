@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Info } from 'lucide-react';
+import { Trans, useTranslation } from 'react-i18next';
 import { A, H3, H4, P } from '@/components/typography';
 import { useOrderFunnel } from '@/hooks/useOrderFunnel';
 import { order } from '@/models/catalog';
@@ -70,6 +70,7 @@ const OrderFunnel = ({
   const [showMonthlyPrice, setshowMonthlyPrice] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslation('pci-databases-analytics/services/new');
   const { addService, isPending: isPendingAddService } = useAddService({
     onError: (err) => {
       toast({
@@ -157,17 +158,14 @@ const OrderFunnel = ({
 
   return (
     <>
-      <H3 className="font-bold text-3xl mb-5">Create a database service</H3>
+      <H3 className="font-bold text-3xl mb-5">{t('title')}</H3>
       <P className="mb-2">
-        Create a database service available in your Public Cloud project.
+        <Trans
+          t={t}
+          i18nKey={'description'}
+          components={{ anchor: <A href="/"></A> }}
+        ></Trans>
       </P>
-      <Alert variant="info" className="mb-2">
-        <Info className="size-4" />
-        <AlertDescription>
-          If you would like to use a private network that does not yet exist,
-          please create <A href="#">a private network or subnet</A> first.
-        </AlertDescription>
-      </Alert>
 
       <Form {...model.form}>
         <form
@@ -181,7 +179,10 @@ const OrderFunnel = ({
                 name="engineWithVersion"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={classNameLabel}>Engine</FormLabel>
+                    <FormLabel className={classNameLabel}>
+                      {t('fieldEngineLabel')}
+                    </FormLabel>
+                    <P>{t('fieldEngineDescription')}</P>
                     <FormControl>
                       <EnginesSelect
                         {...field}
@@ -206,7 +207,9 @@ const OrderFunnel = ({
                 name="plan"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={classNameLabel}>Plan</FormLabel>
+                    <FormLabel className={classNameLabel}>
+                      {t('fieldPlanLabel')}
+                    </FormLabel>
                     <FormControl>
                       <PlansSelect
                         {...field}
@@ -229,7 +232,9 @@ const OrderFunnel = ({
                 name="region"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={classNameLabel}>Region</FormLabel>
+                    <FormLabel className={classNameLabel}>
+                      {t('fieldRegionLabel')}
+                    </FormLabel>
                     <FormControl>
                       <RegionsSelect
                         {...field}
@@ -252,7 +257,10 @@ const OrderFunnel = ({
                 name="flavor"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className={classNameLabel}>Flavor</FormLabel>
+                    <FormLabel className={classNameLabel}>
+                      {t('fieldFlavorLabel')}
+                    </FormLabel>
+                    <P>{t('fieldFlavorDescription')}</P>
                     <FormControl>
                       <FlavorsSelect
                         {...field}
@@ -272,7 +280,7 @@ const OrderFunnel = ({
             {model.result.availability &&
               (hasNodeSelection || hasStorageSelection) && (
                 <section id="cluster" className="divide-y-4 divide-transparent">
-                  <H4>Cluster configuration</H4>
+                  <H4>{t('sectionClusterTitle')}</H4>
                   {hasNodeSelection && (
                     <FormField
                       control={model.form.control}
@@ -280,7 +288,7 @@ const OrderFunnel = ({
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className={cn(classNameLabel, 'text-lg')}>
-                            Nodes
+                            {t('fieldNodesLabel')}
                           </FormLabel>
                           <FormControl>
                             <NodesConfig
@@ -305,7 +313,7 @@ const OrderFunnel = ({
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className={cn(classNameLabel, 'text-lg')}>
-                            Storage
+                            {t('fieldStorageLabel')}
                           </FormLabel>
                           <FormControl>
                             <StorageConfig
@@ -328,7 +336,7 @@ const OrderFunnel = ({
                 </section>
               )}
             <section id="options" className="divide-y-4 divide-transparent">
-              <H4>Options</H4>
+              <H4>{t('sectionOptionsTitle')}</H4>
               {model.result.plan && (
                 <FormField
                   control={model.form.control}
@@ -336,7 +344,7 @@ const OrderFunnel = ({
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className={cn(classNameLabel, 'text-lg')}>
-                        network
+                        {t('fieldNetworkLabel')}
                       </FormLabel>
                       <FormControl>
                         <NetworkOptions
@@ -364,7 +372,7 @@ const OrderFunnel = ({
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className={cn(classNameLabel, 'text-lg')}>
-                      ipRestrictions
+                      {t('fieldIpsLabel')}
                     </FormLabel>
                     <FormControl>
                       <IpsRestrictionsForm
@@ -384,8 +392,7 @@ const OrderFunnel = ({
 
           <Card className="sticky top-4 h-fit shadow-lg">
             <CardHeader>
-              <CardTitle>Votre commande</CardTitle>
-              <CardDescription>Configuration de votre service</CardDescription>
+              <CardTitle>{t('summaryTitle')}</CardTitle>
             </CardHeader>
             <CardContent>
               <OrderSummary
@@ -426,7 +433,7 @@ const OrderFunnel = ({
             </CardContent>
             <CardFooter className="flex justify-between">
               <Button className="w-full" disabled={isPendingAddService}>
-                Commander
+                {t('orderButton')}
               </Button>
             </CardFooter>
           </Card>
