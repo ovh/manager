@@ -109,14 +109,17 @@ export const CHART = {
             display: true,
             source: 'auto',
             autoSkip: true,
-            callback: (val) => {
+            callback: (val, index) => {
               const { language } = navigator;
               const dateTimeFormat = new Intl.DateTimeFormat(language, {
                 hourCycle: 'h23',
                 timeStyle: 'medium',
                 dateStyle: 'short',
               });
-              return dateTimeFormat.format(new Date(val));
+              // Display one label out of 5
+              return index % 5 === 0
+                ? dateTimeFormat.format(new Date(val))
+                : '';
             },
           },
         },
