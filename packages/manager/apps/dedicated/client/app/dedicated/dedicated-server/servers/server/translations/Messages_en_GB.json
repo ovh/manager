@@ -520,7 +520,6 @@
   "server_configuration_installation_progress_cancel_button_cancel": "Cancel",
   "server_configuration_installation_progress_installation_error": "An error has occurred during the installation. The installation has been stopped. You will need to restart the {{t0}} server installation: {{t1}}",
   "server_configuration_installation_progress_installation_error2": "An error has occurred during the installation. The installation has been stopped. You may need to reinstall your {{t0}} server if the installation process started to delete your data: {{t1}}",
-  "server_configuration_installation_image": "Install from custom image",
   "server_order_bandwidth_title": "Order bandwidth",
   "server_order_bandwidth_vrack_title": "Order bandwidth",
   "server_order_bandwidth_not_available": "No type of bandwidth can be ordered on the {{t0}} server",

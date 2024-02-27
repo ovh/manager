@@ -1,7 +1,6 @@
 {
   "octavia_load_balancer_onboarding_title": "Distribuisci il carico delle tue applicazioni tra più istanze",
   "octavia_load_balancer_onboarding_description_1": "Il Load Balancer Public Cloud permette di aumentare la scalabilità e la resistenza delle applicazioni Public Cloud.",
-  "octavia_load_balancer_onboarding_description_2": "La gestione del Load Balancer Public Cloud non è al momento integrata nello Spazio Cliente. Tuttavia, puoi ordinarlo e gestirlo tramite riga di comando, API OpenStack e Terraform.",
   "octavia_load_balancer_onboarding_description_3": "Consulta le guide relative alla creazione e alla configurazione di un Load Balancer.",
   "octavia_load_balancer_onboarding_cta": "Crea un Load Balancer",
   "octavia_load_balancer_onboarding_guide1_title": "Primi passi con il Load Balancer",

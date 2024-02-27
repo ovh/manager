@@ -6,7 +6,6 @@
   "server_configuration_description_housing": "Housing",
   "server_configuration_distribution": "System (OS)",
   "server_configuration_distribution_none": "Nicht installiert",
-  "server_configuration_distribution_byoi": "BringYourOwnImage",
   "server_configuration_installation_no_public_network": "Die auf Ihrem Server angewandte Netzwerkkonfiguration ermöglicht keinen Zugang zum öffentlichen Netzwerk. Daher kann kein Betriebssystem auf diesem Server (re)installiert werden. Um diese Aktion zu ermöglichen, ändern Sie bitte Ihre Netzwerkkonfiguration im Tab \"Netzwerk-Interfaces\".",
   "server_configuration_installation_button": "Installieren",
   "server_configuration_boot": "Boot",

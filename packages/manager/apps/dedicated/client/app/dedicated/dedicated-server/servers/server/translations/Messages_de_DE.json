@@ -520,7 +520,6 @@
   "server_configuration_installation_progress_cancel_button_cancel": "Abbrechen",
   "server_configuration_installation_progress_installation_error": "Bei der Installation ist ein Fehler aufgetreten Die Installation wurde angehalten. Die Installation des Servers {{t0}} muss neu gestartet werden: {{t1}}",
   "server_configuration_installation_progress_installation_error2": "Bei der Installation ist ein Fehler aufgetreten Die Installation wurde angehalten. Es kann sein, dass Ihr Server {{t0}} neu installiert werden muss, falls der Installationsprozess bereits mit dem Löschen Ihrer Daten begonnen hatte: {{t1}}",
-  "server_configuration_installation_image": "Installation auf Basis eines personalisierten Images",
   "server_order_bandwidth_title": "Bandbreite bestellen",
   "server_order_bandwidth_vrack_title": "Bandbreite bestellen",
   "server_order_bandwidth_not_available": "Für den Server {{t0}} kann keiner der Bandbreitentypen bestellt werden",

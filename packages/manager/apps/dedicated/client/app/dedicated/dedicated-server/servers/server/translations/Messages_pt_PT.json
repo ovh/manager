@@ -520,7 +520,6 @@
   "server_configuration_installation_progress_cancel_button_cancel": "Cancelar",
   "server_configuration_installation_progress_installation_error": "Erro ao processar instalação. A instalação foi interrompida. Deve recomeçar a instalação do seu servidor {{t0}}: {{t1}}",
   "server_configuration_installation_progress_installation_error2": "Erro ao processar instalação. A instalação foi interrompida. É possível que tenha de reinstalar o seu servidor {{t0}} caso a instalação já tenha começado a eliminar os seus dados: {{t1}}",
-  "server_configuration_installation_image": "Instalar a partir de uma imagem personalizada",
   "server_order_bandwidth_title": "Encomendar largura de banda",
   "server_order_bandwidth_vrack_title": "Encomendar largura de banda",
   "server_order_bandwidth_not_available": "Nenhum tipo de largura de banda pode ser encomendada para o servidor {{t0}}",

@@ -520,7 +520,6 @@
   "server_configuration_installation_progress_cancel_button_cancel": "Cancelar",
   "server_configuration_installation_progress_installation_error": "Se ha producido un error durante la instalación. Se ha detenido la instalación. Es necesario volver a instalar el servidor {{t0}} : {{t1}}",
   "server_configuration_installation_progress_installation_error2": "Se ha producido un error durante la instalación. Se ha detenido la instalación. Si la instalación ha empezado a eliminar los datos, es posible que tenga que reinstalar el servidor {{t0}}: {{t1}}.",
-  "server_configuration_installation_image": "Instalar desde una imagen personalizada",
   "server_order_bandwidth_title": "Contratar ancho de banda",
   "server_order_bandwidth_vrack_title": "Contratar ancho de banda",
   "server_order_bandwidth_not_available": "No es posible contratar ancho de banda para el servidor {{t0}}.",

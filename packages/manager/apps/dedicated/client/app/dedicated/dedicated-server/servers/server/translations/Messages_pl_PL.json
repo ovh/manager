@@ -520,7 +520,6 @@
   "server_configuration_installation_progress_cancel_button_cancel": "Anuluj",
   "server_configuration_installation_progress_installation_error": "Wystąpił błąd podczas instalacji. Instalacja została wstrzymana. Należy rozpocząć od nowa instalację serwera {{t0}}: {{t1}}.",
   "server_configuration_installation_progress_installation_error2": "Wystąpił błąd podczas instalacji. Instalacja została wstrzymana. Możliwe, że będziesz musiał wykonać reinstalację serwera {{t0}}, jeśli w wyniku instalacji nastąpiło usunięcie danych: {{t1}}.",
-  "server_configuration_installation_image": "Instalacja z wykorzystaniem spersonalizowanego obrazu",
   "server_order_bandwidth_title": "Zamów przepustowość",
   "server_order_bandwidth_vrack_title": "Zamów przepustowość",
   "server_order_bandwidth_not_available": "Nie możesz zamówić żadnego typu przepustowości dla serwera {{t0}}.",
