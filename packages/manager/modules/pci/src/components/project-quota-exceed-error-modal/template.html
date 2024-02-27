@@ -1,7 +1,7 @@
 <form
     id="eligibilityWarning"
     name="eligibilityWarning"
-    data-ng-submit="$ctrl.submitAction()"
+    data-ng-submit="$ctrl.submitLink ? $ctrl.submitAction() : $ctrl.goBack()"
     novalidate
 >
     <oui-modal

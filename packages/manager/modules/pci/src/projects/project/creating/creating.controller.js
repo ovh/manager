@@ -2,7 +2,7 @@ import { SLIDE_ANIMATION_INTERVAL, SLIDE_IMAGES } from './creating.constants';
 
 export default class ProjectCreatingCtrl {
   /* @ngInject */
-  constructor($q, $timeout, coreURLBuilder, Poller) {
+  constructor($q, $timeout, Poller) {
     // dependencies injections
     this.$q = $q;
     this.$timeout = $timeout;
@@ -18,8 +18,6 @@ export default class ProjectCreatingCtrl {
       currentIndex: 0,
       list: SLIDE_IMAGES,
     };
-
-    this.supportUrl = coreURLBuilder.buildURL('dedicated', '#/support');
   }
 
   startOrderPolling() {
