@@ -1,5 +1,5 @@
 import React from 'react';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import { within } from '@testing-library/react';
 import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
