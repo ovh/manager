@@ -4,6 +4,8 @@ import { database } from '@/models/database';
 import { formatStorage } from '@/lib/bytesHelper';
 import { Engine, Flavor, Plan, Region, Version } from '@/models/order-funnel';
 import { Skeleton } from '@/components/ui/skeleton';
+import { P, Span } from '@/components/typography';
+import { Network, Subnet } from '@/models/network';
 
 interface OrderSummaryProps {
   order: {
@@ -15,6 +17,11 @@ interface OrderSummaryProps {
     nodes: number;
     additionalStorage: number;
     name: string;
+    network: {
+      type: database.NetworkTypeEnum;
+      network?: Network;
+      subnet?: Subnet;
+    };
   };
   onSectionClicked: (target: string) => void;
 }
@@ -24,8 +31,8 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
     <div>
       <div>
         <b>Nom :</b>
-        <span>{order.name}</span>
-        <span>i</span>
+        <Span>{order.name}</Span>
+        <Span>i</Span>
       </div>
       <div>
         <div className="flex">
@@ -38,9 +45,11 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
           </button>
           {order.engine ? (
             <div className="flex items-center">
-              {humanizeEngine(order.engine.name as database.EngineEnum)}
+              <Span>{`${humanizeEngine(
+                order.engine.name as database.EngineEnum,
+              )} ${order.version.name}`}</Span>
               <img
-                className="block w-[60px] h-[40px]"
+                className="block w-[30px] h-[20px]"
                 src={`./assets/engines/${order.engine.name}.png`}
               />
             </div>
@@ -48,11 +57,6 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
             <Skeleton className="h-4 w-40" />
           )}
         </div>
-        {order.version ? (
-          <div className="pl-4">Version {order.version.name}</div>
-        ) : (
-          <Skeleton className="h-4 w-20" />
-        )}
       </div>
       <div>
         <button
@@ -63,7 +67,7 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
           Offre :
         </button>
         {order.plan ? (
-          <span>{order.plan.name}</span>
+          <Span>{order.plan.name}</Span>
         ) : (
           <Skeleton className="h-4 w-20" />
         )}
@@ -77,11 +81,11 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
           Datacentre :
         </button>
         {order.region ? (
-          <span>
+          <Span>
             {tRegions(`region_${order.region.name}_micro`, {
               micro: order.region.name,
             })}
-          </span>
+          </Span>
         ) : (
           <Skeleton className="h-4 w-20" />
         )}
@@ -96,9 +100,9 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
         </button>
         {order.flavor ? (
           <>
-            <span>{order.flavor.name}</span>
-            <span>{order.flavor.vcores} vCores</span>
-            <span>{formatStorage(order.flavor.ram)} RAM</span>
+            <Span>{order.flavor.name}</Span>
+            <Span>{order.flavor.vcores} vCores</Span>
+            <Span>{formatStorage(order.flavor.ram)} RAM</Span>
           </>
         ) : (
           <>
@@ -116,16 +120,16 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
         >
           Cluster :
         </button>
-        <span>{order.nodes} nœuds</span>
+        <Span>{order.nodes} nœuds</Span>
         {order.flavor?.storage && (
-          <span>
+          <Span>
             {formatStorage({
               value:
                 order.additionalStorage + order.flavor.storage.minimum.value,
               unit: order.flavor.storage.minimum.unit,
             })}{' '}
             (dont {formatStorage(order.flavor.storage.minimum)} inclus)
-          </span>
+          </Span>
         )}
       </div>
       <div>
@@ -136,7 +140,23 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
         >
           Type de réseau :
         </button>
-        <span>TODO</span>
+        <Span>{order.network.type}</Span>
+        {order.network.type === database.NetworkTypeEnum.private && (
+          <div className="ml-4">
+            <P>
+              Network:{' '}
+              {order.network.network?.name || (
+                <Span className="text-red-500">-</Span>
+              )}
+            </P>
+            <P>
+              Subnet:{' '}
+              {order.network.subnet?.cidr || (
+                <Span className="text-red-500">-</Span>
+              )}
+            </P>
+          </div>
+        )}
       </div>
     </div>
   );
