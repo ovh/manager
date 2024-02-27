@@ -1,11 +1,21 @@
 import React from 'react';
 import { UseQueryResult } from '@tanstack/react-query';
+import { Network as NetworkIcon } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Network, NetworkTypeEnum, Subnet } from '@/models/network';
 import { NetworkOptionValue } from '@/models/order-funnel';
 import { database } from '@/models/database';
 import { Skeleton } from '@/components/ui/skeleton';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { A, P } from '@/components/typography';
 
 interface NetworkOptionsProps {
   value: NetworkOptionValue;
@@ -40,28 +50,44 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
 
       if (networks.length > 0) {
         return (
-          <select
+          <Select
             name="networkId"
-            className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 justify-between"
             value={value.networkId}
-            onChange={(event) =>
+            onValueChange={(newNetworkId) =>
               onChange({
                 ...value,
-                networkId: event.target.value,
+                networkId: newNetworkId,
                 subnetId: undefined,
               })
             }
           >
-            {networks.map((network: Network, index: number) => (
-              <option key={index} value={network.id}>
-                {network.name}
-              </option>
-            ))}
-          </select>
+            <SelectTrigger>
+              <SelectValue placeholder="Select a network" />
+            </SelectTrigger>
+            <SelectContent>
+              {networks.map((network: Network, index: number) => (
+                <SelectItem key={index} value={network.id}>
+                  {network.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         );
       }
 
-      return <p>You don't have a network for this region</p>;
+      return (
+        <Alert variant="warning">
+          <NetworkIcon className="h-4 w-4" />
+          <AlertTitle>No network found</AlertTitle>
+          <AlertDescription>
+            You don't have a network for this region. Please use this link to
+            create one:{' '}
+            <A href="" disabled>
+              create a private network
+            </A>
+          </AlertDescription>
+        </Alert>
+      );
     };
 
     const renderSubnetSelect = () => {
@@ -71,45 +97,62 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
 
       if (subnets.length > 0) {
         return (
-          <select
+          <Select
             name="subnetId"
-            className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 justify-between"
             value={value.subnetId}
-            onChange={(event) =>
+            onValueChange={(newSubnetId) =>
               onChange({
                 ...value,
-                subnetId: event.target.value,
+                subnetId: newSubnetId,
               })
             }
           >
-            {subnets.map((subnet, index) => (
-              <option key={index} value={subnet.id}>
-                {subnet.cidr}
-              </option>
-            ))}
-          </select>
+            <SelectTrigger>
+              <SelectValue placeholder="Select a subnet" />
+            </SelectTrigger>
+            <SelectContent>
+              {subnets.map((subnet, index) => (
+                <SelectItem key={index} value={subnet.id}>
+                  {subnet.cidr}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         );
       }
 
-      return <p>You don't have a subnet for this region</p>;
+      return (
+        <Alert variant="warning">
+          <NetworkIcon className="h-4 w-4" />
+          <AlertTitle>No subnet found</AlertTitle>
+          <AlertDescription>
+            You don't have a subnet for this region attached to the selected
+            network. Please visit the network section to configure your
+            networks: <A href="">create a private network</A>
+          </AlertDescription>
+        </Alert>
+      );
     };
 
     const renderNetworkOptions = () => {
       if (!hasPrivateNetwork) {
-        return <p>Cette offre n'est pas compatible avec les réseaux privés</p>;
+        return <P>Cette offre n'est pas compatible avec les réseaux privés</P>;
       }
 
       if (value.type === database.NetworkTypeEnum.private) {
         return (
           <>
-            <div className="flex items-center mb-2">
-              <label className="mr-2">Network:</label>
+            <div>
+              <Label>Network</Label>
               {renderNetworkSelect()}
             </div>
-            <div className="flex items-center mb-2">
-              <label className="mr-2">Subnet:</label>
-              {renderSubnetSelect()}
-            </div>
+            {networkQuery.isFetching ||
+              (networks.length > 0 && (
+                <div>
+                  <Label>Subnet</Label>
+                  {renderSubnetSelect()}
+                </div>
+              ))}
           </>
         );
       }

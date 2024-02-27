@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
-import {
-  Params,
-  useParams,
-  useLocation,
-  useMatches,
-  Link,
-} from 'react-router-dom';
+import { Params, useParams, useLocation, useMatches } from 'react-router-dom';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import usePciProject from '@/hooks/api/pciProjects.api.hooks';
 import { Skeleton } from '../ui/skeleton';
+import { Link, A } from '../typography';
 
 export type BreadcrumbHandleParams = {
   data: unknown;
@@ -61,22 +56,16 @@ function Breadcrumb(): JSX.Element {
 
   return (
     <>
-      <a
-        className="text-primary-500 font-semibold outiline-none cursor-pointer no-underline hover:text-primary-700 hover:underline"
-        href={`${baseUrl}/pci/projects/${projectId}`}
-      >
+      <A href={`${baseUrl}/pci/projects/${projectId}`}>
         {project?.description ?? (
           <Skeleton className="h-4 w-20 inline-block align-middle" />
         )}
-      </a>
+      </A>
       {breadcrumbData.map((bc, index) => (
         <React.Fragment key={`${index}-${bc.path}`}>
           <span className="mx-2 text-primary-500 font-semibold">|</span>
           {index < breadcrumbData.length - 1 ? (
-            <Link
-              className="text-primary-500 font-semibold outiline-none cursor-pointer no-underline hover:text-primary-700 hover:underline"
-              to={bc.path}
-            >
+            <Link to={bc.path}>
               <span title={bc.path}>{bc.label}</span>
             </Link>
           ) : (

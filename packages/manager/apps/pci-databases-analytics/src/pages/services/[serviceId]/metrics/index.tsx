@@ -1,9 +1,11 @@
+import { P } from '@/components/typography';
+
 export function breadcrumb() {
   return 'Metrics';
 }
 
 const Metrics = () => {
-  return <p>metrics</p>;
+  return <P>metrics</P>;
 };
 
 export default Metrics;

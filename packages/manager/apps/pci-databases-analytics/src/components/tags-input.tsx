@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from './ui/input';
 import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
 import { Button } from './ui/button';
+import { Span } from './typography';
 
 interface TagsInputProps {
   value: string[];
@@ -124,10 +125,10 @@ const TagsInput = React.forwardRef<HTMLInputElement, TagsInputProps>(
             <div className="flex gap-2 flex-wrap">
               {value.map((tag, index) => (
                 <div
-                  key={index}
+                  key={`${tag}-${index}`}
                   className="border rounded-sm px-2.5 py-0.5 text-xs flex gap-2 items-center"
                 >
-                  <span>{tag}</span>
+                  <Span>{tag}</Span>
                   <Button
                     type="button"
                     onClick={() => handleRemoveTag(index)}

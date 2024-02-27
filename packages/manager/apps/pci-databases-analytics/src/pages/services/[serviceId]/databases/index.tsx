@@ -1,9 +1,11 @@
+import { P } from '@/components/typography';
+
 export function breadcrumb() {
   return 'Databases';
 }
 
 const Databases = () => {
-  return <p>Databases</p>;
+  return <P>Databases</P>;
 };
 
 export default Databases;

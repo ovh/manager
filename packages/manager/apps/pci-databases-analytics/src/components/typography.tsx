@@ -1,34 +1,168 @@
 import * as React from 'react';
+import { LinkProps, Link as RouterLink } from 'react-router-dom';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OsdsText } from '@ovhcloud/ods-components/react';
 import { cn } from '@/lib/utils';
 
-function H1({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
-  const baseClassName =
-    'scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl';
-  return <h1 className={cn(baseClassName, className)} {...props} />;
+function H1({
+  className,
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLHeadingElement>) {
+  const baseClassName = 'block';
+  return (
+    <OsdsText
+      color={ODS_THEME_COLOR_INTENT.text}
+      level={ODS_TEXT_LEVEL.heading}
+      size={ODS_TEXT_SIZE._800}
+      className={cn(baseClassName, className)}
+    >
+      {children}
+    </OsdsText>
+  );
 }
 
-function H2({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
-  const baseClassName =
-    'mt-3 scroll-m-20 pb-3 text-3xl font-semibold tracking-tight transition-colors first:mt-0';
-  return <h2 className={cn(baseClassName, className)} {...props} />;
+function H2({ className, children }: React.HTMLAttributes<HTMLHeadingElement>) {
+  const baseClassName = 'block';
+  return (
+    <OsdsText
+      color={ODS_THEME_COLOR_INTENT.text}
+      level={ODS_TEXT_LEVEL.heading}
+      size={ODS_TEXT_SIZE._600}
+      className={cn(baseClassName, className)}
+    >
+      {children}
+    </OsdsText>
+  );
 }
 
-function H3({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
-  const baseClassName =
-    'mt-8 scroll-m-20 text-2xl font-semibold tracking-tight mb-2';
-  return <h3 className={cn(baseClassName, className)} {...props} />;
+function H3({ className, children }: React.HTMLAttributes<HTMLHeadingElement>) {
+  const baseClassName = 'block';
+  return (
+    <OsdsText
+      color={ODS_THEME_COLOR_INTENT.text}
+      level={ODS_TEXT_LEVEL.heading}
+      size={ODS_TEXT_SIZE._500}
+      className={cn(baseClassName, className)}
+    >
+      {children}
+    </OsdsText>
+  );
 }
 
-function H4({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
-  const baseClassName = 'scroll-m-20 text-xl font-semibold tracking-tight';
-  return <h4 className={cn(baseClassName, className)} {...props} />;
+function H4({ className, children }: React.HTMLAttributes<HTMLHeadingElement>) {
+  const baseClassName = 'block';
+  return (
+    <OsdsText
+      color={ODS_THEME_COLOR_INTENT.text}
+      level={ODS_TEXT_LEVEL.heading}
+      size={ODS_TEXT_SIZE._400}
+      className={cn(baseClassName, className)}
+    >
+      {children}
+    </OsdsText>
+  );
 }
 
+function H5({ className, children }: React.HTMLAttributes<HTMLHeadingElement>) {
+  const baseClassName = 'block';
+  return (
+    <OsdsText
+      color={ODS_THEME_COLOR_INTENT.text}
+      level={ODS_TEXT_LEVEL.heading}
+      size={ODS_TEXT_SIZE._200}
+      className={cn(baseClassName, className)}
+    >
+      {children}
+    </OsdsText>
+  );
+}
 function P({
   className,
-  ...props
+  children,
 }: React.HTMLAttributes<HTMLParagraphElement>) {
-  const baseClassName = 'leading-7 [&:not(:first-child)]:mt-6';
-  return <h4 className={cn(baseClassName, className)} {...props} />;
+  const baseClassName = 'block';
+  return (
+    <OsdsText
+      color={ODS_THEME_COLOR_INTENT.text}
+      className={cn(baseClassName, className)}
+    >
+      {children}
+    </OsdsText>
+  );
 }
-export { H1, H2, H3, H4, P };
+
+function A({
+  className,
+  children,
+  disabled,
+  ...props
+}: React.AnchorHTMLAttributes<HTMLAnchorElement> & { disabled?: boolean }) {
+  const baseClassName =
+    'text-primary-500 font-semibold outiline-none cursor-pointer no-underline hover:text-primary-700 hover:underline';
+  const disabledClass = 'opacity-50 cursor-not-allowed hover:text-primary-500';
+  const combinedClassName = cn(
+    baseClassName,
+    className,
+    disabled && disabledClass,
+  );
+  if (disabled) {
+    const { href, onClick, tabIndex, ...otherProps } = props;
+    return (
+      <a
+        className={combinedClassName}
+        {...otherProps}
+        aria-disabled="true"
+        tabIndex={-1}
+      >
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <a className={combinedClassName} {...props}>
+      {children}
+    </a>
+  );
+}
+
+function Span({ className, children }: React.HTMLAttributes<HTMLSpanElement>) {
+  const baseClassName = 'inline';
+  return (
+    <OsdsText
+      color={ODS_THEME_COLOR_INTENT.text}
+      className={cn(baseClassName, className)}
+    >
+      {children}
+    </OsdsText>
+  );
+}
+
+function Link({
+  className,
+  disabled,
+  children,
+  ...props
+}: LinkProps & { disabled?: boolean }) {
+  const baseClassName =
+    'text-primary-500 font-semibold outiline-none cursor-pointer no-underline hover:text-primary-700 hover:underline';
+  const disabledClass = 'opacity-50 cursor-not-allowed hover:text-primary-500';
+  const combinedClassName = cn(
+    baseClassName,
+    className,
+    disabled && disabledClass,
+  );
+  return (
+    <RouterLink
+      className={combinedClassName}
+      {...props}
+      onClick={(e) => disabled && e.preventDefault()}
+    >
+      {children}
+    </RouterLink>
+  );
+}
+export { H1, H2, H3, H4, H5, P, A, Span, Link };

@@ -1,9 +1,11 @@
+import { P } from '@/components/typography';
+
 export function breadcrumb() {
   return 'Namespaces';
 }
 
 const Namespaces = () => {
-  return <p>Namespaces</p>;
+  return <P>Namespaces</P>;
 };
 
 export default Namespaces;

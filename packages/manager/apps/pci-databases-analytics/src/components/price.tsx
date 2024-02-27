@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Span } from './typography';
 
 interface PriceProps {
   priceInUcents: number;
@@ -7,7 +8,6 @@ interface PriceProps {
 }
 const Price = ({ priceInUcents, taxInUcents, decimals = 2 }: PriceProps) => {
   const { t } = useTranslation('pricing');
-  // TODO: handle languages (both display and user subsidiary)
   const unit = '€';
   const ucentToEur = 100_000_000;
   const price = priceInUcents / ucentToEur;
@@ -22,12 +22,12 @@ const Price = ({ priceInUcents, taxInUcents, decimals = 2 }: PriceProps) => {
   };
   return (
     <>
-      <span className="font-bold">
+      <Span className="font-bold">
         {t('pricing_ht', { price: formatPrice(price), unit })}
-      </span>
-      <span className="text-xs mx-2">
+      </Span>
+      <Span className="text-xs mx-2">
         ({t('pricing_ttc', { price: formatPrice(priceWithTax), unit })})
-      </span>
+      </Span>
     </>
   );
 };

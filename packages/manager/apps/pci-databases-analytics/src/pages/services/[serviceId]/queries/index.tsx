@@ -1,9 +1,11 @@
+import { P } from '@/components/typography';
+
 export function breadcrumb() {
   return 'Queries';
 }
 
 const Queries = () => {
-  return <p>Queries</p>;
+  return <P>Queries</P>;
 };
 
 export default Queries;

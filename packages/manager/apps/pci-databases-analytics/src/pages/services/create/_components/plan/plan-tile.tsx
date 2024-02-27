@@ -1,5 +1,6 @@
 import Price from '@/components/price';
 import RadioTile from '@/components/radio-tile';
+import { H3, H4, H5, P, Span } from '@/components/typography';
 import { formatStorage } from '@/lib/bytesHelper';
 import { database } from '@/models/database';
 import { Plan } from '@/models/order-funnel';
@@ -27,11 +28,11 @@ export const PlanTile = ({
     >
       <div className="flex flex-col justify-between h-full">
         <div>
-          <h3
+          <H5
             className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}
           >
             {plan.name}
-          </h3>
+          </H5>
           <RadioTile.Separator />
         </div>
         <div className="text-xs flex flex-col">
@@ -39,12 +40,12 @@ export const PlanTile = ({
           {plan.cpu && <PlanTile.Cpu cpu={plan.cpu} />}
           {plan.storage && <PlanTile.Storage storage={plan.storage} />}
           <PlanTile.Nodes nodes={plan.nodes} />
-          {plan.backups && <span>Sauvegarde manuelles et automatiques</span>}
-          {hasPrivateNetwork && <span>Réseaux privés</span>}
+          {plan.backups && <Span>Sauvegarde manuelles et automatiques</Span>}
+          {hasPrivateNetwork && <Span>Réseaux privés</Span>}
         </div>
         <div>
           <RadioTile.Separator />
-          <p className="text-sm">
+          <P className="text-sm">
             A partir de{' '}
             <Price
               priceInUcents={
@@ -56,7 +57,7 @@ export const PlanTile = ({
               decimals={showMonthlyPrice ? 2 : 3}
             />
             <b>/heure</b>
-          </p>
+          </P>
         </div>
       </div>
     </RadioTile>
@@ -66,43 +67,43 @@ export const PlanTile = ({
 PlanTile.Ram = function PlanTilesRam({ ram }: Partial<Plan>) {
   if (ram.minimum.value === ram.maximum.value) {
     return (
-      <span>
+      <Span>
         {ram.minimum.value} {ram.minimum.unit} RAM
-      </span>
+      </Span>
     );
   }
   return (
-    <span>
+    <Span>
       De {formatStorage(ram.minimum)} à {formatStorage(ram.maximum)} RAM
-    </span>
+    </Span>
   );
 };
 PlanTile.Cpu = function PlanTilesCpu({ cpu }: Partial<Plan>) {
   if (cpu.minimum === cpu.maximum) {
     return (
-      <span>
+      <Span>
         {cpu.minimum} {cpu.minimum === 1 ? 'vCore' : 'vCores'}
-      </span>
+      </Span>
     );
   }
   return (
-    <span>
+    <Span>
       De {cpu.minimum} à {cpu.maximum} vCores
-    </span>
+    </Span>
   );
 };
 PlanTile.Nodes = function PlanTilesNodes({ nodes }: Partial<Plan>) {
   if (nodes.minimum === nodes.maximum) {
     return (
-      <span>
+      <Span>
         {nodes.minimum} {nodes.minimum === 1 ? 'nœud' : 'nœuds'}
-      </span>
+      </Span>
     );
   }
   return (
-    <span>
+    <Span>
       De {nodes.minimum} à {nodes.maximum} nœuds
-    </span>
+    </Span>
   );
 };
 
@@ -111,13 +112,13 @@ PlanTile.Storage = function PlanTileStorage({ storage }: Partial<Plan>) {
     storage.minimum.value === storage.maximum.value &&
     storage.minimum.unit === storage.maximum.unit
   ) {
-    return <span>{formatStorage(storage.minimum)} de stockage</span>;
+    return <Span>{formatStorage(storage.minimum)} de stockage</Span>;
   }
   return (
-    <span>
+    <Span>
       De {formatStorage(storage.minimum)} à {formatStorage(storage.maximum)} de
       stockage
-    </span>
+    </Span>
   );
 };
 

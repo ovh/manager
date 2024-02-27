@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import RadioTile from '@/components/radio-tile';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Region } from '@/models/order-funnel';
+import { Span } from '@/components/typography';
 
 interface RegionsSelectProps {
   regions: Region[];
@@ -59,11 +60,11 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
                   value={region.name}
                   checked={region.name === value}
                 >
-                  <span
+                  <Span
                     className={`${region.name === value ? 'font-bold' : ''}`}
                   >
                     {region.label}
-                  </span>
+                  </Span>
                 </RadioTile>
               ))}
           </div>

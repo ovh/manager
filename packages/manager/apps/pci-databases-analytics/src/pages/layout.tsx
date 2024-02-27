@@ -8,10 +8,11 @@ import Breadcrumb, {
 } from '@/components/Breadcrumb/Breadcrumb';
 import { database } from '@/models/database';
 import { Toaster } from '@/components/ui/toaster';
+import { Span } from '@/components/typography';
 
 function BreadcrumbTitle({ category }: { category: string }) {
   const { t } = useTranslation('pci-databases-analytics');
-  return <span>{t(`crumb-${category}`)}</span>;
+  return t(`crumb-${category}`);
 }
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {

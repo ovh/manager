@@ -30,10 +30,9 @@ const RadioTile = ({ children, className, ...props }: RadioTileProps) => {
       <label
         htmlFor={id}
         tabIndex={0}
-        role="button"
         onKeyDown={handleLabelKeyDown}
         className={cn(
-          `w-full group text-[#4d5592] border-2 border-primary-100 rounded-md p-4 hover:shadow-sm hover:border-primary-600 hover:bg-primary-100 ${
+          `w-full group text-[#4d5592] border-2 border-primary-100 rounded-md p-4 hover:shadow-sm hover:border-primary-600 hover:bg-primary-100 cursor-pointer ${
             props.checked
               ? 'border-primary-600 bg-primary-100 selected'
               : 'bg-white'

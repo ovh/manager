@@ -4,6 +4,7 @@ import VersionSelector from './engine-tile-version';
 import { Engine, Version } from '@/models/order-funnel';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import { database } from '@/models/database';
+import { H5, P } from '@/components/typography';
 
 export const EngineTile = ({
   engine,
@@ -32,15 +33,15 @@ export const EngineTile = ({
       checked={selected}
     >
       <div className="flex justify-between items-center">
-        <h3 className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}>
+        <H5 className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}>
           {humanizeEngine(engine.name as database.EngineEnum)}
-        </h3>
+        </H5>
         <img
           className="block w-[60px] h-[40px]"
           src={`./assets/engines/${engine.name}.png`}
         />
       </div>
-      <p className="text-sm">{engine.description}</p>
+      <P className="text-sm">{engine.description}</P>
       <RadioTile.Separator />
       <VersionSelector
         versions={engine.versions}

@@ -1,9 +1,11 @@
+import { P } from '@/components/typography';
+
 export function breadcrumb() {
   return 'Integrations';
 }
 
 const Integrations = () => {
-  return <p>Integrations</p>;
+  return <P>Integrations</P>;
 };
 
 export default Integrations;
