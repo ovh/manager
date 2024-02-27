@@ -17,7 +17,7 @@
     "@ovh-ux/manager-config": "^7.3.0",
     "@ovh-ux/manager-core-api": "^0.3.0",
     "@ovh-ux/manager-react-shell-client": "^0.0.0",
-    "@ovh-ux/shell": "3.0.5",
+    "@ovh-ux/shell": "3.1.0",
     "@ovhcloud/ods-common-core": "^17.1.0",
     "@ovhcloud/ods-common-stencil": "^17.1.0",
     "@ovhcloud/ods-common-theming": "^17.1.0",
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
-    "@ovh-ux/manager-vite-config": "^0.3.0",
+    "@ovh-ux/manager-vite-config": "^0.4.0",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",

@@ -10,6 +10,7 @@ import {
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
   ODS_SPINNER_SIZE,
+  OdsInputValueChangeEvent,
 } from '@ovhcloud/ods-components';
 import {
   ODS_THEME_COLOR_INTENT,
@@ -17,7 +18,6 @@ import {
 } from '@ovhcloud/ods-common-theming';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { OdsInputValueChangeEvent } from '@ovhcloud/ods-components/input';
 import { useAddVoucher } from '@/hooks/useVouchers';
 
 interface AddVoucherModalProps {

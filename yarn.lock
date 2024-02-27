@@ -4095,10 +4095,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@^6.7.4":
-  version "6.7.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.7.4.tgz#79366e0699674fe6d05eb277dd56d143a6ce36a5"
-  integrity sha512-L+bB9qAXMZERs95WM00iMi9N5J8Gpj59X7rRDjO+R321OflHtbWerwDUE5QoML2eeWwt94MY6TghRqjLtmfSkw==
+"@ovh-ux/ui-kit@^6.7.7":
+  version "6.7.8"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.7.8.tgz#ec783cab3ddd9254087127793ca856780e48731b"
+  integrity sha512-am96JNK/XOKQkr9mixc1rNt63A1CxHKvjuKxBYgAEl6WQ9Jdlesytcts+Xn8c24kL1lkec4sJfeuDMG/5lhBIw==
 
 "@ovhcloud/ods-cdk@16.6.0":
   version "16.6.0"
@@ -4112,7 +4112,7 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-cdk/-/ods-cdk-14.1.1.tgz#341ed0bfed7f599b253c2d087ba2f15a8915c436"
   integrity sha512-reePwUvxbOXOdIzHGyeKFhBbMSWiApipNLSrMEBb6cl6Wdv/HOHbv3T+w7xfSACDFhJqLg8okEmtMIU4usvlaw==
 
-"@ovhcloud/ods-common-core@16.6.0", "@ovhcloud/ods-common-core@^16.6.0":
+"@ovhcloud/ods-common-core@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-16.6.0.tgz#dfc466da4e6fe31bc72bb52a501c65c6a47c55ef"
   integrity sha512-T5IjYpnKLOBijQYUpnxKs4P+95MZ8Gp/D5Yr7NDrwa8X86Aqp/f4fOrDeLrCN5UOfN8ANqEkA9L24kI1LabHxw==
@@ -4122,7 +4122,7 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.1.0.tgz#e7aa2d1d1cd65a2e063c7798109d5b944e565aa4"
   integrity sha512-Kfn8qgfWh97qGrdqWRPgde4pW/pL8qrHxHKZs2RZabgVMRbQ6K3Dkl1yKJXjo5U0SMoh8oWmO0JbnWk5k+MOvA==
 
-"@ovhcloud/ods-common-stencil@16.6.0", "@ovhcloud/ods-common-stencil@^16.6.0":
+"@ovhcloud/ods-common-stencil@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-16.6.0.tgz#b26d81f6f11b16a3783ee107960bbf334f2bfbbc"
   integrity sha512-Y+GmI95ad67IaSRc/A3FACQQa3RX6LcWlzlvhBFIGqZWNdqjPKjqoQ7qF1yQCHKj1/A/A3M63k5Yo5YLriZCdA==
@@ -4140,10 +4140,10 @@
     "@ovhcloud/ods-theme-blue-jeans" "17.1.0"
     "@stencil/core" "4.12.0"
 
-"@ovhcloud/ods-common-testing@^16.6.0":
-  version "16.6.0"
-  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-testing/-/ods-common-testing-16.6.0.tgz#f299eae57437d1ddd3a51908370b46b352dc4089"
-  integrity sha512-eI7K5fe5f8+BRqPZp8wMv50cF4+JiBw3uLDRrSWKRLbq+rKDs+v2Ep0xObFDNHstZdVEaqW920by8QhmEgGS/Q==
+"@ovhcloud/ods-common-testing@^17.1.0":
+  version "17.1.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-testing/-/ods-common-testing-17.1.0.tgz#2e9cfb5799a053b87f88834185122ec35fa31ae8"
+  integrity sha512-dpdsfpFhoPGuxZeBLep7cjiXKE0dVW3KNIAi15sKhdU6JDvpGn68RzH5s/kmp2JetgWRv1Xq2SjWejOxMHVjWA==
   dependencies:
     "@jest/types" "27.1.1"
     "@types/jest" "27.5.2"
@@ -4152,7 +4152,7 @@
     puppeteer "10.4.0"
     ts-jest "27.1.5"
 
-"@ovhcloud/ods-common-theming@16.6.0", "@ovhcloud/ods-common-theming@^16.6.0":
+"@ovhcloud/ods-common-theming@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-16.6.0.tgz#4a004cacceaf6adc2c8dbf81fccaa646fab7640d"
   integrity sha512-uPyvfFH/u4e2+3DChdAJ7Eg2l8x4HofF4XIaZhOcLCjewJF+ZSghIvYillQWVNehPwP9uPhKDvfVGKYyp//mAw==
@@ -4603,7 +4603,7 @@
     "@ovhcloud/ods-common-stencil" "16.6.0"
     "@ovhcloud/ods-common-theming" "16.6.0"
 
-"@ovhcloud/ods-components@16.6.0", "@ovhcloud/ods-components@^16.6.0":
+"@ovhcloud/ods-components@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-16.6.0.tgz#49854f0d69bf69b9d663cff10ad3994becaf0f28"
   integrity sha512-Lg5O9AqxjBXHY9sBuID6Mo3kddEpBLW8k7c7DcTD+t8a2pah6aCEDRo8645xrhCEautHqPYfUhu9GbEov683Kw==
@@ -4676,7 +4676,7 @@
     "@ovhcloud/ods-theme-blue-jeans" "^14.1.1"
     "@stencil/core" "~2.18.1"
 
-"@ovhcloud/ods-theme-blue-jeans@16.6.0", "@ovhcloud/ods-theme-blue-jeans@^16.6.0":
+"@ovhcloud/ods-theme-blue-jeans@16.6.0":
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-16.6.0.tgz#2f5865857a36adf993771962a823dc6df54b99b9"
   integrity sha512-lgjDPQ58wJcIZocA9XRbRXXJM/Mp7p7uzl4A7Nam49NW4SC3ktJsjf+z8TtBAF19p5sqcjQwayukT0NPIlT4YQ==
@@ -6472,6 +6472,20 @@
     dom-accessibility-api "^0.5.9"
     lz-string "^1.5.0"
     pretty-format "^27.0.2"
+
+"@testing-library/jest-dom@6.4.2":
+  version "6.4.2"
+  resolved "https://registry.yarnpkg.com/@testing-library/jest-dom/-/jest-dom-6.4.2.tgz#38949f6b63722900e2d75ba3c6d9bf8cffb3300e"
+  integrity sha512-CzqH0AFymEMG48CpzXFriYYkOjk6ZGPCLMhW9e9jg3KMCn5OfJecF8GtGW7yGfR/IgCe3SX8BSwjdzI6BBbZLw==
+  dependencies:
+    "@adobe/css-tools" "^4.3.2"
+    "@babel/runtime" "^7.9.2"
+    aria-query "^5.0.0"
+    chalk "^3.0.0"
+    css.escape "^1.5.1"
+    dom-accessibility-api "^0.6.3"
+    lodash "^4.17.15"
+    redent "^3.0.0"
 
 "@testing-library/jest-dom@^5.14.1":
   version "5.17.0"
@@ -20549,6 +20563,13 @@ outvariant@^1.2.1:
   resolved "https://registry.yarnpkg.com/outvariant/-/outvariant-1.4.0.tgz#e742e4bda77692da3eca698ef5bfac62d9fba06e"
   integrity sha512-AlWY719RF02ujitly7Kk/0QlV+pXGFDHrHf9O2OKqyqgBieaPOIeuSkL8sRK6j2WK+/ZAURq2kZsY0d8JapUiw==
 
+ovh-api-services@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-15.0.0.tgz#37079b051a3120dcacb396b5f57692868aa7c3e8"
+  integrity sha512-77jJFnd1X2lAQmNrZ0OQUpSjRBPY41LM9qqQkPBxMOCDR3PROnpheLWR0oPeNDMNOpJvGqdhAKarfnrbMnd+KA==
+  dependencies:
+    lodash "^4.17.21"
+
 ovh-api-services@^16.0.0:
   version "16.0.0"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-16.0.0.tgz#5d3f8ef29bbdae90b2982c3e06b8f77438029413"
@@ -23363,7 +23384,7 @@ sass-loader@^13.2.2:
   dependencies:
     neo-async "^2.6.2"
 
-sass@1.56.1, sass@^1.56.0, sass@^1.7.2:
+sass@1.56.1, sass@1.71.0, sass@^1.56.0, sass@^1.7.2:
   version "1.56.1"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.56.1.tgz#94d3910cd468fd075fa87f5bb17437a0b617d8a7"
   integrity sha512-VpEyKpyBPCxE7qGDtOcdJ6fFbcpOM+Emu7uZLxVrkX8KVU/Dp5UF7WLvzqRuUhB6mqqQt1xffLoG+AndxTZrCQ==

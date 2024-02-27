@@ -37,6 +37,8 @@ import DataGridTextCell from '@/components/datagrid/DataGridTextCell';
 import Credit from '@/components/vouchers/listing/Credit';
 import DisplayName from '@/components/vouchers/listing/DisplayName';
 import Validity from '@/components/vouchers/listing/Validity';
+import { isDiscoveryProject } from '@/data/project';
+import ActivateProjectBanner from '@/components/activate-project-banner/ActivateProjectBanner.tsx';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -175,12 +177,16 @@ export default function ListingPage() {
       >
         {t('cpb_vouchers_credit_comment')}
       </OsdsText>
+
+      {isDiscoveryProject(project) && <ActivateProjectBanner />}
+
       <div className={'flex mb-3 mt-6'}>
         <OsdsButton
           size={ODS_BUTTON_SIZE.sm}
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
-          href={hrefAdd}
+          href={!isDiscoveryProject(project) ? hrefAdd : ''}
+          {...(!isDiscoveryProject(project) ? {} : { disabled: true })}
         >
           {t('cpb_vouchers_add_button')}
         </OsdsButton>
@@ -189,7 +195,8 @@ export default function ListingPage() {
           variant={ODS_BUTTON_VARIANT.stroked}
           color={ODS_THEME_COLOR_INTENT.primary}
           className={'ml-0.5'}
-          href={hrefCredit}
+          href={!isDiscoveryProject(project) ? hrefCredit : ''}
+          {...(!isDiscoveryProject(project) ? {} : { disabled: true })}
         >
           {t('cpb_vouchers_add_credit_button')}
         </OsdsButton>
