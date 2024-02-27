@@ -8,6 +8,7 @@ import './global.css';
 
 import queryClient from './query.client';
 import Router from './Router';
+import { P } from './components/typography';
 
 odsSetup();
 
@@ -19,7 +20,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <React.Suspense fallback={<p>Loading</p>}>
+      <React.Suspense fallback={<P>Loading</P>}>
         <Router />
       </React.Suspense>
     </QueryClientProvider>
