@@ -1,9 +1,11 @@
+import { P } from '@/components/typography';
+
 export function breadcrumb() {
   return 'Settings';
 }
 
 const Settings = () => {
-  return <p>Settings</p>;
+  return <P>Settings</P>;
 };
 
 export default Settings;

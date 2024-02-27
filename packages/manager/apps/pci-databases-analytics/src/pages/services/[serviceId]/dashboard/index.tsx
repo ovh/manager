@@ -1,5 +1,7 @@
+import { P } from '@/components/typography';
+
 const Dashboard = () => {
-  return <>dashboard</>;
+  return <P>dashboard</P>;
 };
 
 export default Dashboard;

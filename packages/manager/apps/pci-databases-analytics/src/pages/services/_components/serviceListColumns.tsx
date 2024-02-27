@@ -17,6 +17,7 @@ import {
 import { SortableHeader } from '@/components/ui/data-table';
 import FormattedDate from '@/components/table-date';
 import { humanizeEngine } from '@/lib/engineNameHelper';
+import { Span } from '@/components/typography';
 
 interface ServiceListColumnsProps {
   onRenameClicked: (service: database.Service) => void;
@@ -44,7 +45,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
             >
               <Link to={id}>{description}</Link>
             </Button>
-            <span className="text-sm whitespace-nowrap">{id}</span>
+            <Span className="text-sm whitespace-nowrap">{id}</Span>
           </div>
         );
       },
@@ -64,8 +65,8 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
             <div className="w-[50px] h-[33px]">
               <img src={`./assets/engines/${engine}.png`} />
             </div>
-            <span className="whitespace-nowrap">{humanizeEngine(engine)}</span>
-            <span>{version}</span>
+            <Span className="whitespace-nowrap">{humanizeEngine(engine)}</Span>
+            <Span>{version}</Span>
           </div>
         );
       },
@@ -80,7 +81,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
       ),
       cell: ({ row }) => {
         const { plan } = row.original;
-        return <span className="capitalize">{plan}</span>;
+        return <Span className="capitalize">{plan}</Span>;
       },
     },
     {
@@ -93,7 +94,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
       ),
       cell: ({ row }) => {
         const { flavor } = row.original;
-        return <span className="capitalize">{flavor}</span>;
+        return <Span className="capitalize">{flavor}</Span>;
       },
     },
     {
@@ -106,9 +107,13 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
       ),
       cell: ({ row }) => {
         const service = row.original;
-        return service.storage && service.storage.size.value > 0
-          ? `${service.storage.size.value} ${service.storage.size.unit}`
-          : '-';
+        return (
+          <Span>
+            {service.storage && service.storage.size.value > 0
+              ? `${service.storage.size.value} ${service.storage.size.unit}`
+              : '-'}
+          </Span>
+        );
       },
     },
     {
@@ -120,7 +125,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
         </SortableHeader>
       ),
       cell: ({ row }) => (
-        <>{tRegions(`region_${row.original.nodes[0].region}`)}</>
+        <Span>{tRegions(`region_${row.original.nodes[0].region}`)}</Span>
       ),
     },
     {
@@ -161,7 +166,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
                   break;
               }
               return (
-                <span
+                <Span
                   className={`inline-block w-5 h-5 ${color} rounded-full`}
                   key={i}
                 />
@@ -180,7 +185,9 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
         </SortableHeader>
       ),
       cell: ({ row }) => (
-        <FormattedDate date={new Date(row.original.createdAt)} />
+        <Span>
+          <FormattedDate date={new Date(row.original.createdAt)} />
+        </Span>
       ),
     },
     {
@@ -204,7 +211,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
+                <Span className="sr-only">Open menu</Span>
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>

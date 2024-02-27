@@ -3,6 +3,7 @@ import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { formatStorage } from '@/lib/bytesHelper';
 import { database } from '@/models/database';
+import { P, Span } from '@/components/typography';
 
 interface StorageConfigProps {
   availability: database.Availability;
@@ -22,24 +23,24 @@ const StorageConfig = React.forwardRef<HTMLInputElement, StorageConfigProps>(
     const maxAddable = maximum.value - minimum.value;
     return (
       <div>
-        <p>
+        <P>
           Votre modèle de nœud {flavor} inclut {formatStorage(minimum)} de
           stockage auxquels vous pouvez ajouter jusqu'à{' '}
           {formatStorage({ value: maxAddable, unit: DEFAULT_UNIT })} de stockage
           supplémentaire par pas de {formatStorage(step)}.
-        </p>
+        </P>
         <Label htmlFor="storage-select">
           Sélectionnez le stockage additionnel du cluster
         </Label>
         <div className="flex flex-col">
           <div className="flex justify-between mb-2">
-            <span>Aucun</span>
-            <span>
+            <Span>Aucun</Span>
+            <Span>
               {formatStorage({
                 value: maxAddable,
                 unit: DEFAULT_UNIT,
               })}
-            </span>
+            </Span>
           </div>
           <Slider
             ref={ref}
@@ -53,12 +54,12 @@ const StorageConfig = React.forwardRef<HTMLInputElement, StorageConfigProps>(
             step={step?.value || 1}
           />
           <div className="flex w-full justify-center mt-2">
-            <span className="font-bold">
+            <Span className="font-bold">
               {formatStorage({
                 value,
                 unit: DEFAULT_UNIT,
               })}
-            </span>
+            </Span>
           </div>
         </div>
       </div>
