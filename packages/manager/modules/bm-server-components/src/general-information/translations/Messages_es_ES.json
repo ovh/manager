@@ -7,7 +7,6 @@
   "dedicated_server_dashboard_upgrade_badge": "Novedad",
   "dedicated_server_dashboard_distribution": "Sistema operativo (SO)",
   "dedicated_server_dashboard_distribution_none": "No hay ningún sistema operativo instalado en su servidor.",
-  "dedicated_server_dashboard_distribution_byoi": "BringYourOwnImage",
   "dedicated_server_dashboard_installation_no_public_network": "No es posible instalar o reinstalar un SO en el servidor, ya que la configuración de red seleccionada no tiene acceso a la red pública. Para desbloquear esta acción, modifique su configuración de red en la pestaña «Interfaces de red».",
   "dedicated_server_dashboard_reinstallation_button": "Reinstalar",
   "dedicated_server_dashboard_installation_button": "Instalar",

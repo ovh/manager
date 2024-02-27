@@ -6,7 +6,6 @@
   "server_configuration_description_housing": "Housing",
   "server_configuration_distribution": "Sistema operativo",
   "server_configuration_distribution_none": "Non installato",
-  "server_configuration_distribution_byoi": "BringYourOwnImage",
   "server_configuration_installation_no_public_network": "Non è possibile installare/reinstallare un OS sul server perché la configurazione di rete applicata sulla macchina non consente l'accesso alla rete pubblica. Per effettuare l’operazione è necessario modificare la configurazione di rete nella scheda \"Interfacce di rete\".",
   "server_configuration_installation_button": "Installa",
   "server_configuration_boot": "Boot",

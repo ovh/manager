@@ -7,7 +7,6 @@
   "dedicated_server_dashboard_upgrade_badge": "Nuovo",
   "dedicated_server_dashboard_distribution": "Sistema operativo (OS)",
   "dedicated_server_dashboard_distribution_none": "Sul tuo server non è installato nessun sistema operativo",
-  "dedicated_server_dashboard_distribution_byoi": "BringYourOwnImage",
   "dedicated_server_dashboard_installation_no_public_network": "Non è possibile installare/reinstallare un OS sul server perché la configurazione di rete applicata sulla macchina non consente l'accesso alla rete pubblica. Per effettuare l’operazione è necessario modificare la configurazione di rete nella scheda \"Interfacce di rete\".",
   "dedicated_server_dashboard_reinstallation_button": "Reinstalla",
   "dedicated_server_dashboard_installation_button": "Installa",

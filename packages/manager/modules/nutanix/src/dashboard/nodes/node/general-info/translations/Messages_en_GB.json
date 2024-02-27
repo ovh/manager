@@ -6,7 +6,6 @@
   "server_configuration_description_housing": "Hosting",
   "server_configuration_distribution": "System (OS)",
   "server_configuration_distribution_none": "Not installed",
-  "server_configuration_distribution_byoi": "BringYourOwnImage",
   "server_configuration_installation_no_public_network": "Since the network configuration applied on your server does not give access to the public network, you cannot install/reinstall an OS on it. To unblock this action, please modify your network configuration in the “network interfaces” tab",
   "server_configuration_installation_button": "Install",
   "server_configuration_boot": "Boot",

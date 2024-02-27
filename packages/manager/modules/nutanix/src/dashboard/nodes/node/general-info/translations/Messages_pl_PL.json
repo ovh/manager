@@ -6,7 +6,6 @@
   "server_configuration_description_housing": "Housing",
   "server_configuration_distribution": "System (OS)",
   "server_configuration_distribution_none": "Nie zainstalowany",
-  "server_configuration_distribution_byoi": "BringYourOwnImage",
   "server_configuration_installation_no_public_network": "Ponieważ konfiguracja sieci zastosowana na Twoim serwerze nie umożliwia dostępu do sieci publicznej, nie można na nim zainstalować ani ponownie zainstalować systemu operacyjnego. Aby odblokować tę operację, zmień konfigurację sieci w zakładce „interfejsy sieciowe”.",
   "server_configuration_installation_button": "Instaluj",
   "server_configuration_boot": "Boot",

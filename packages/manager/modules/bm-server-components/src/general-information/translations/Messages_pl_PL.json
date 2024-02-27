@@ -7,7 +7,6 @@
   "dedicated_server_dashboard_upgrade_badge": "Nowość",
   "dedicated_server_dashboard_distribution": "System operacyjny (OS)",
   "dedicated_server_dashboard_distribution_none": "Na Twoim serwerze nie jest zainstalowany żaden system operacyjny",
-  "dedicated_server_dashboard_distribution_byoi": "BringYourOwnImage",
   "dedicated_server_dashboard_installation_no_public_network": "Ponieważ konfiguracja sieci zastosowana na Twoim serwerze nie umożliwia dostępu do sieci publicznej, nie można na nim zainstalować ani ponownie zainstalować systemu operacyjnego. Aby odblokować tę operację, zmień konfigurację sieci w zakładce „interfejsy sieciowe”.",
   "dedicated_server_dashboard_reinstallation_button": "Reinstaluj",
   "dedicated_server_dashboard_installation_button": "Instaluj",
