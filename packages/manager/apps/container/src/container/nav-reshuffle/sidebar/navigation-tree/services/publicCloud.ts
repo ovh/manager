@@ -197,6 +197,7 @@ const pciNode: Node = {
       id: 'pci-containers',
       translation: 'sidebar_pci_containers',
       features: [
+        'pci-rancher',
         'kubernetes',
         'load-balancer',
         'private-registry',
@@ -204,6 +205,18 @@ const pciNode: Node = {
       ],
       forceVisibility: true,
       children: [
+        {
+          id: 'pci-rancher',
+          translation: 'sidebar_pci_rancher',
+          serviceType: 'CLOUD_PROJECT_KUBE',
+          routing: {
+            application: 'public-cloud',
+            hash: '#/pci/projects/{projectId}/rancher',
+          },
+          features: ['pci-rancher'],
+          forceVisibility: true,
+          tag: NodeTag.BETA,
+        },
         {
           id: 'pci-kubernetes',
           translation: 'sidebar_pci_kubernetes',
