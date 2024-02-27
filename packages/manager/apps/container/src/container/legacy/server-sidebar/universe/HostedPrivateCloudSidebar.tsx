@@ -154,7 +154,6 @@ export default function HostedPrivateCloudSidebar() {
           },
           feature['network-security'] && {
             id: 'hpc-network-security',
-            badge: 'beta',
             label: t('sidebar_network_security'),
             icon: getIcon('oui-icon oui-icon-shield_concept'),
             href: navigation.getURL('dedicated', '#/network-security'),

@@ -1,12 +1,9 @@
-import isObject from 'lodash/isObject';
 import findIndex from 'lodash/findIndex';
 import remove from 'lodash/remove';
 import startCase from 'lodash/startCase';
 
 import {
   IP_MITIGATION_RULE_PROTOCOL_PORT,
-  ALLOWED_LANGUAGES,
-  BASE_URL_SURVEY,
   GAME_GUIDE_LINKS,
   GAME_TRACKING_PREFIX,
 } from './ip-ip-firewall-game.constants';
@@ -96,25 +93,6 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   };
 
   self.loading = false;
-
-  function initializeUrlSurvey() {
-    // Get default language
-    const defaultLanguage = Object.keys(ALLOWED_LANGUAGES).find(
-      (key) => ALLOWED_LANGUAGES[key].isDefault,
-    );
-    const userLanguage = coreConfig.getUserLanguage();
-
-    const languageToUse = isObject(ALLOWED_LANGUAGES[userLanguage])
-      ? userLanguage
-      : defaultLanguage;
-
-    // Get user
-    const user = coreConfig.getUser();
-
-    // Build url for survey link
-    const surveyUrl = `${BASE_URL_SURVEY}${languageToUse}&nic=${user.nichandle}`;
-    return surveyUrl;
-  }
 
   self.getProtocoleText = function getProtocoleText(protocol) {
     return startCase(protocol);
@@ -215,8 +193,6 @@ export default /* @ngInject */ function IpGameFirewallCtrl(
   }
 
   function init(params) {
-    self.surveyUrl = initializeUrlSurvey();
-
     self.tracking = {
       'game-firewall-add-rule': `${GAME_TRACKING_PREFIX}::add-rule`,
       'game-firewall-add-rule-confirm': `${GAME_TRACKING_PREFIX}::add-rule-confirm`,

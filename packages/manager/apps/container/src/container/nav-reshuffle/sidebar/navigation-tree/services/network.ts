@@ -34,7 +34,6 @@ export default {
       id: 'dedicated-network-security',
       translation: 'sidebar_network_security',
       serviceType: 'NETWORK_SECURITY',
-      badge: 'beta',
       routing: {
         application: 'dedicated',
         hash: '#/network-security',

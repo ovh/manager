@@ -1,7 +1,7 @@
 {
   "network_security_title": "Network",
   "network_security_dashboard_breadcrumb": "Network Security Dashboard",
-  "network_security_dashboard_title": "Tableau de bord Anti-DDoS (bêta)",
+  "network_security_dashboard_title": "Tableau de bord Anti-DDoS",
   "network_security_dashboard_guides": "Guides",
   "network_security_dashboard_header_content_survey": "En surveillant constamment le trafic réseau, nous observons un certain nombre d’activités suspectes. Pour chacune d’entre elles, le trafic réseau entrant est redirigé de manière transparente via nos centres de nettoyage pour une analyse plus approfondie et un éventuel nettoyage des attaquants afin de fournir la meilleure expérience sans interruption.",
   "network_security_dashboard_header_content_note": "Veuillez noter que les adresses IP sources ne sont pas exposées ici car elles ne sont pas fiables pour la plupart des attaques (c'est-à-dire les attaques par usurpation d'identité ou par réflexion).",
@@ -57,7 +57,5 @@
   "network_security_dashboard_empty_datagrid": "Nous n'avons constaté aucune activité suspecte pendant la période sélectionnée.",
   "network_security_dashboard_empty_table": "Le service sélectionné n'a pas d'adresse IP associée, veuillez en sélectionner un autre.",
   "network_security_dashboard_invalid_ip": "La valeur saisie pour l'IP est incorrecte.",
-  "network_security_dashboard_like_this": "Vous aimez ?",
-  "network_security_dashboard_like_this_tooltip": "Vous aimez cette page ? Faites nous part de vos remarques !",
   "network_security_dashboard_refresh": "Raffraîchir les données"
 }
