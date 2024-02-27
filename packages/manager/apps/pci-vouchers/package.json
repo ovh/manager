@@ -18,6 +18,7 @@
     "@ovh-ux/manager-core-api": "^0.3.0",
     "@ovh-ux/manager-react-shell-client": "^0.0.0",
     "@ovh-ux/shell": "3.1.0",
+    "@ovh-ux/url-builder": "1.1.1",
     "@ovhcloud/ods-common-core": "^17.1.0",
     "@ovhcloud/ods-common-stencil": "^17.1.0",
     "@ovhcloud/ods-common-theming": "^17.1.0",

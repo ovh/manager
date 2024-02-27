@@ -38,7 +38,7 @@ import Credit from '@/components/vouchers/listing/Credit';
 import DisplayName from '@/components/vouchers/listing/DisplayName';
 import Validity from '@/components/vouchers/listing/Validity';
 import { isDiscoveryProject } from '@/data/project';
-import ActivateProjectBanner from '@/components/activate-project-banner/ActivateProjectBanner.tsx';
+import ActivateProjectBanner from '@/components/activate-project-banner/ActivateProjectBanner';
 
 export default function ListingPage() {
   const { t } = useTranslation('common');
@@ -178,7 +178,9 @@ export default function ListingPage() {
         {t('cpb_vouchers_credit_comment')}
       </OsdsText>
 
-      {isDiscoveryProject(project) && <ActivateProjectBanner />}
+      {isDiscoveryProject(project) && (
+        <ActivateProjectBanner projectId={projectId} />
+      )}
 
       <div className={'flex mb-3 mt-6'}>
         <OsdsButton

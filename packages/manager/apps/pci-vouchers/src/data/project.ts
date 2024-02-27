@@ -15,11 +15,7 @@ export const DISCOVERY_PROJECT_PLANCODE = 'project.discovery';
 
 export const getProject = async (projectId: string): Promise<Project> => {
   const response = await v6.get(`/cloud/project/${projectId}`);
-  const project = response.data as Project;
-
-  project.planCode = DISCOVERY_PROJECT_PLANCODE;
-
-  return project;
+  return response.data as Project;
 };
 
 export const isDiscoveryProject = (project: Project | undefined) => {
