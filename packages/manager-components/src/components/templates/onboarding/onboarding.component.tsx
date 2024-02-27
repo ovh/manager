@@ -12,18 +12,22 @@ import placeholderSrc from './assets/placeholder.png';
 
 export type OnboardingLayoutProps = PropsWithChildren<{
   hideHeadingSection?: boolean;
-  imageSrc?: string;
   title: string;
   orderButtonLabel: string;
-  orderHref: string;
+  orderHref?: string;
   description?: string;
   moreInfoHref?: string;
   moreInfoButtonLabel?: string;
+  onOrderButtonClick?: () => void;
+  img: {
+    src: string;
+    width?: number;
+    height?: number;
+  };
 }>;
 
 export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   hideHeadingSection,
-  imageSrc,
   title,
   description,
   orderHref,
@@ -31,6 +35,8 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
   moreInfoHref,
   moreInfoButtonLabel,
   children,
+  onOrderButtonClick,
+  img,
 }) => {
   return (
     <div className="flex flex-col mx-auto px-3">
@@ -39,8 +45,10 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
           <div className="flex justify-center py-3 max-h-28">
             <img
               className="max-h-150px"
-              src={imageSrc ?? placeholderSrc}
+              src={img.src ?? placeholderSrc}
               alt=""
+              width={img.width}
+              height={img.height}
             />
           </div>
           <OsdsText
@@ -63,6 +71,7 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
                 color={ODS_THEME_COLOR_INTENT.primary}
                 size={ODS_BUTTON_SIZE.md}
                 href={orderHref}
+                onClick={onOrderButtonClick}
               >
                 {orderButtonLabel}
               </OsdsButton>
@@ -74,7 +83,6 @@ export const OnboardingLayout: React.FC<OnboardingLayoutProps> = ({
                   color={ODS_THEME_COLOR_INTENT.primary}
                   variant={ODS_BUTTON_VARIANT.stroked}
                   size={ODS_BUTTON_SIZE.md}
-                  href={moreInfoHref}
                 >
                   {moreInfoButtonLabel}
                 </OsdsButton>
