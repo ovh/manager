@@ -7,6 +7,7 @@ import {
   NUTANIX_PERSONAL_LICENSE_EDITION,
   GENERAL_INFO_TILE_TITLE,
   GUIDE_PACKAGES_URL,
+  TRACKING,
 } from './constants';
 import { CLUSTER_STATUS } from '../../constants';
 
@@ -40,6 +41,7 @@ export default class NutanixGeneralInfoCtrl {
     this.setPrivateBandwidthServiceId();
     this.clusterRedeploying = this.cluster.status === CLUSTER_STATUS.DEPLOYING;
     this.showRedeployWarningModal = false;
+    this.TRACKING = TRACKING;
   }
 
   loadServicesDetails() {

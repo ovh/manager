@@ -63,7 +63,7 @@
                         data-ng-disabled="$ctrl.clusterRedeploying"
                         data-track-on="click"
                         data-track-type="action"
-                        data-track-name="hpc::nutanix::cluster::redeploy-cluster"
+                        data-track-name="{{:: $ctrl.TRACKING.REDEPLOY_CLUSTER}}"
                     >
                         <span
                             class="align-middle"
@@ -88,8 +88,13 @@
                         data-ng-href="{{:: $ctrl.cluster.targetSpec.controlPanelURL }}"
                         target="_blank"
                         rel="noopener"
-                        data-translate="nutanix_dashboard_cluster_access_admin_interface"
+                        data-track-on="click"
+                        data-track-name="{{:: $ctrl.TRACKING.ACCESS_PRISM}}"
+                        data-track-type="action"
                     >
+                        <span
+                            data-translate="nutanix_dashboard_cluster_access_admin_interface"
+                        ></span>
                     </a>
                 </oui-tile-description>
             </oui-tile-definition>
@@ -105,6 +110,9 @@
                         data-ng-href="{{:: $ctrl.NUTANIX_LINK }}"
                         target="_blank"
                         rel="noopener"
+                        data-track-on="click"
+                        data-track-name="{{:: $ctrl.TRACKING.ACCESS_NUTANIX}}"
+                        data-track-type="action"
                     >
                         <span data-ng-bind="$ctrl.typeOfPack"></span>
                         <span
