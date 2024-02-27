@@ -31,7 +31,7 @@
                   !$ctrl.loaders.deleting
                 )
                 &&
-                serviceType !== 'dedicatedServerInterface'
+                serviceType !== $ctrl.SERVICES_NAMES.DSI_SERVICE
 "
             data-ng-class="{ 'vrack__service-type_expanded': $ctrl.getAccordionState('available', 'types', $index) }"
         >
@@ -94,7 +94,7 @@
             <!--            dedicated cloud or managed bare metal -->
             <ul
                 class="vrack__service-group-list vrack__service_type_{{serviceType}}"
-                data-ng-if="serviceType === 'dedicatedCloud' || serviceType === 'managedBareMetal'"
+                data-ng-if="[$ctrl.SERVICE_NAMES.DCLOUD_SERVICE, $ctrl.SERVICE_NAMES.MBM_SERVICE].includes(serviceType)"
             >
                 <li
                     class="vrack__service-group"
