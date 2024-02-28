@@ -259,7 +259,7 @@ const setPrices = (
     };
   }
 
-  if (flavor.storage && flavor.storage.step) {
+  if (flavor.storage?.step) {
     const storagePrefix = `databases.${availability.engine.toLowerCase()}-${
       availability.plan
     }`;
