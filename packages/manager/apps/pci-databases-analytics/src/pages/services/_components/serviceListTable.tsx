@@ -27,7 +27,7 @@ export default function ServicesList({
 }: ServicesListProps) {
   const { t } = useTranslation('pci-databases-analytics/services');
   // define state
-  const [isOpenModal, setOpenModal] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const [editingService, setEditingService] = useState<database.Service>();
 
   //   // define api links
@@ -36,7 +36,7 @@ export default function ServicesList({
   //       updateService(mutationData),
   //     onSuccess: () => {
   //       // close modale
-  //       setOpenModal(false);
+  //       setIsOpenModal(false);
   //       // refresh services list
   //       refetchFn();
   //     },
@@ -45,7 +45,7 @@ export default function ServicesList({
   const columns: ColumnDef<database.Service>[] = getColumns({
     onRenameClicked: (service: database.Service) => {
       setEditingService(service);
-      setOpenModal(true);
+      setIsOpenModal(true);
     },
   });
 
@@ -61,7 +61,7 @@ export default function ServicesList({
   //   };
 
   const handleCloseUpdateServiceNameModal = () => {
-    setOpenModal(false);
+    setIsOpenModal(false);
     setEditingService(undefined);
   };
 

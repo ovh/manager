@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import { database } from '@/models/database';
 import { formatStorage } from '@/lib/bytesHelper';
@@ -55,6 +55,7 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
               <img
                 className="block w-[30px] h-[20px]"
                 src={`./assets/engines/${order.engine.name}.png`}
+                alt={order.engine.name}
               />
             </div>
           ) : (
