@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useParams } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { database } from '@/models/database';
 import {
   Engine,
@@ -43,6 +44,7 @@ export function useOrderFunnel(
   suggestions: database.Suggestion[],
   catalog: order.publicOrder.Catalog,
 ) {
+  const { t } = useTranslation('pci-databases-analytics/services/new');
   const { projectId } = useParams();
   const orderSchema = z.object({
     engineWithVersion: z.object({
@@ -54,14 +56,12 @@ export function useOrderFunnel(
     flavor: z.string(),
     additionalStorage: z.number(),
     nbNodes: z.number(),
-    ipRestrictions: z
-      .array(
-        z.object({
-          ip: z.string(),
-          description: z.string(),
-        }),
-      )
-      .min(1, 'please confugure at least 1 ip'),
+    ipRestrictions: z.array(
+      z.object({
+        ip: z.string(),
+        description: z.string(),
+      }),
+    ),
     network: z
       .object({
         type: z.enum([
@@ -79,8 +79,7 @@ export function useOrderFunnel(
           return true;
         },
         {
-          message:
-            "For private network, both 'networkId' and 'subnetId' are required.",
+          message: t('errorNetworkFieldMissingId'),
         },
       ),
     name: z.string(),

@@ -1,12 +1,27 @@
 import { useTranslation } from 'react-i18next';
+import {
+  Boxes,
+  Cloud,
+  Cloudy,
+  Cpu,
+  HardDrive,
+  Hash,
+  HelpCircle,
+  MemoryStick,
+} from 'lucide-react';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import { database } from '@/models/database';
-import { formatStorage } from '@/lib/bytesHelper';
+import { addStorage, formatStorage } from '@/lib/bytesHelper';
 import { Engine, Flavor, Plan, Region, Version } from '@/models/order-funnel';
 import { Skeleton } from '@/components/ui/skeleton';
 import { P, Span } from '@/components/typography';
 import { Network, Subnet } from '@/models/network';
 import { Button } from '@/components/ui/button';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 interface OrderSummaryProps {
   order: {
@@ -18,88 +33,128 @@ interface OrderSummaryProps {
     nodes: number;
     additionalStorage: number;
     name: string;
+    ipRestrictions: {
+      ip: string;
+      description: string;
+    }[];
     network: {
       type: database.NetworkTypeEnum;
       network?: Network;
       subnet?: Subnet;
     };
   };
-  onSectionClicked: (target: string) => void;
+  onSectionClicked?: (target: string) => void;
 }
-const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
-  const { t: tRegions } = useTranslation('regions');
+
+const NameDetails = ({ order }: OrderSummaryProps) => {
   const { t } = useTranslation('pci-databases-analytics/services/new');
   return (
-    <div className="grid grid-cols-1 gap-2">
-      <div>
-        <b>{t('summaryFieldNameLabel')}</b>
-        <Span>{order.name}</Span>
-        <Span>i</Span>
-      </div>
-      <div>
-        <div className="flex">
-          <Button
-            variant={'link'}
-            size={'link'}
-            type="button"
-            onClick={() => onSectionClicked('engine')}
-            className="font-bold"
-          >
-            {t('summaryFieldEngineLabel')}
-          </Button>
-          {order.engine ? (
-            <div className="flex items-center">
-              <Span>{`${humanizeEngine(
-                order.engine.name as database.EngineEnum,
-              )} ${order.version.name}`}</Span>
-              <img
-                className="block w-[30px] h-[20px]"
-                src={`./assets/engines/${order.engine.name}.png`}
-                alt={order.engine.name}
-              />
-            </div>
-          ) : (
-            <Skeleton className="h-4 w-40" />
-          )}
-        </div>
-      </div>
-      <div>
+    <div className="flex items-center gap-2">
+      <b>{t('summaryFieldNameLabel')}</b>
+      <Span>{order.name}</Span>
+      <Popover>
+        <PopoverTrigger>
+          <HelpCircle className="size-4" />
+        </PopoverTrigger>
+        <PopoverContent>
+          <P>{t('summaryFieldNameInfo')}</P>
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+};
+const EngineDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-databases-analytics/services/new');
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
         <Button
           variant={'link'}
           size={'link'}
           type="button"
-          onClick={() => onSectionClicked('plan')}
+          onClick={() => onSectionClicked('engine')}
           className="font-bold"
         >
-          {t('summaryFieldPlanLabel')}
+          {t('summaryFieldEngineLabel')}
         </Button>
-        {order.plan ? (
-          <Span>{order.plan.name}</Span>
-        ) : (
-          <Skeleton className="h-4 w-20" />
+        {order.engine && (
+          <>
+            <Span>
+              {humanizeEngine(order.engine.name as database.EngineEnum)}
+            </Span>
+            <img
+              className="block w-9 h-6"
+              src={`./assets/engines/${order.engine.name}.png`}
+              alt={order.engine.name}
+            />
+          </>
         )}
       </div>
-      <div>
-        <Button
-          variant={'link'}
-          size={'link'}
-          type="button"
-          onClick={() => onSectionClicked('region')}
-          className="font-bold"
-        >
-          {t('summaryFieldRegionLabel')}
-        </Button>
-        {order.region ? (
+      <div className="flex items-start pl-4 gap-2">
+        <Hash className="size-4" />
+        {order.version?.name ? (
           <Span>
-            {tRegions(`region_${order.region.name}_micro`, {
-              micro: order.region.name,
-            })}
+            {t('summaryFieldEngineVersion', { version: order.version?.name })}
           </Span>
         ) : (
-          <Skeleton className="h-4 w-20" />
+          <Skeleton className="h-4 w-16" />
         )}
       </div>
-      <div>
+    </div>
+  );
+};
+const PlanDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-databases-analytics/services/new');
+  return (
+    <div className="flex items-center gap-2">
+      <Button
+        variant={'link'}
+        size={'link'}
+        type="button"
+        onClick={() => onSectionClicked('plan')}
+        className="font-bold"
+      >
+        {t('summaryFieldPlanLabel')}
+      </Button>
+      {order.plan ? (
+        <Span className="capitalize">{order.plan.name}</Span>
+      ) : (
+        <Skeleton className="h-4 w-20" />
+      )}
+    </div>
+  );
+};
+const RegionDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-databases-analytics/services/new');
+  const { t: tRegions } = useTranslation('regions');
+  return (
+    <div className="flex items-center gap-2">
+      <Button
+        variant={'link'}
+        size={'link'}
+        type="button"
+        onClick={() => onSectionClicked('region')}
+        className="font-bold"
+      >
+        {t('summaryFieldRegionLabel')}
+      </Button>
+      {order.region ? (
+        <Span>
+          {tRegions(`region_${order.region.name}_micro`, {
+            micro: order.region.name,
+          })}
+        </Span>
+      ) : (
+        <Skeleton className="h-4 w-20" />
+      )}
+    </div>
+  );
+};
+const FlavorDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-databases-analytics/services/new');
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-2">
         <Button
           variant={'link'}
           size={'link'}
@@ -110,48 +165,88 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
           {t('summaryFieldFlavorLabel')}
         </Button>
         {order.flavor ? (
-          <>
-            <Span>{order.flavor.name}</Span>
-            <P>
-              {t('summaryFieldFlavorCores', { count: order.flavor.vcores })}
-            </P>
-            <P>
-              {t('summaryFieldFlavorMemory', {
-                memory: formatStorage(order.flavor.ram),
-              })}
-            </P>
-          </>
+          <Span className="capitalize">{order.flavor.name}</Span>
         ) : (
-          <>
-            <Skeleton className="h-4 w-20" />
-            <Skeleton className="h-4 w-20" />
-            <Skeleton className="h-4 w-20" />
-          </>
+          <Skeleton className="h-4 w-20" />
         )}
       </div>
+      {(order.flavor?.vcores > 0 || order.flavor?.ram.value > 0) && (
+        <div>
+          {order.flavor.vcores > 0 && (
+            <div className="flex items-start pl-4 gap-2">
+              <Cpu className="size-4" />
+              <Span>
+                {t('summaryFieldFlavorCores', { count: order.flavor.vcores })}
+              </Span>
+            </div>
+          )}
+          {order.flavor.ram.value > 0 && (
+            <div className="flex items-start pl-4 gap-2">
+              <MemoryStick className="size-4" />
+              <Span>
+                {t('summaryFieldFlavorMemory', {
+                  memory: formatStorage(order.flavor.ram),
+                })}
+              </Span>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+const ClusterDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-databases-analytics/services/new');
+  const totalStorage = order.flavor?.storage
+    ? addStorage(order.flavor.storage.minimum, {
+        value: order.additionalStorage,
+        unit: 'GB',
+      })
+    : { unit: 'GB', value: 0 };
+  return (
+    <div className="flex items-start flex-col gap-2">
+      <Button
+        variant={'link'}
+        size={'link'}
+        type="button"
+        onClick={() => onSectionClicked('cluster')}
+        className="font-bold"
+      >
+        {t('summaryFieldClusterLabel')}
+      </Button>
       <div>
-        <Button
-          variant={'link'}
-          size={'link'}
-          type="button"
-          onClick={() => onSectionClicked('cluster')}
-          className="font-bold"
-        >
-          {t('summaryFieldClusterLabel')}
-        </Button>
-        <P>{t('summaryFieldFlavorCores', { count: order.nodes })}</P>
+        <div className="flex items-start pl-4 gap-2">
+          <Boxes className="size-4" />
+          <Span>{t('summaryFieldClusterNodes', { count: order.nodes })}</Span>
+        </div>
         {order.flavor?.storage && (
-          <P>
-            {formatStorage({
-              value:
-                order.additionalStorage + order.flavor.storage.minimum.value,
-              unit: order.flavor.storage.minimum.unit,
-            })}{' '}
-            (dont {formatStorage(order.flavor.storage.minimum)} inclus)
-          </P>
+          <div className="flex items-start pl-4 gap-2">
+            <HardDrive className="size-4" />
+            {order.additionalStorage > 0 ? (
+              <Span>
+                {t('summaryFieldClusterStorageExtra', {
+                  storage: formatStorage(totalStorage),
+                  includedStorage: formatStorage(order.flavor.storage.minimum),
+                })}
+              </Span>
+            ) : (
+              <Span>
+                {t('summaryFieldClusterStorage', {
+                  storage: formatStorage(order.flavor.storage.minimum),
+                })}
+              </Span>
+            )}
+          </div>
         )}
       </div>
-      <div>
+    </div>
+  );
+};
+const NetworkrDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-databases-analytics/services/new');
+  return (
+    <div className="flex items-start flex-col gap-2">
+      <div className="divide-x-[0.5rem] divide-transparent">
         <Button
           variant={'link'}
           size={'link'}
@@ -161,24 +256,71 @@ const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
         >
           {t('summaryFieldNetworkLabel')}
         </Button>
-        <Span>{order.network.type}</Span>
-        {order.network.type === database.NetworkTypeEnum.private && (
-          <div className="ml-4">
-            <P>
-              {t('summaryFieldNetworNetwork')}:{' '}
-              {order.network.network?.name || (
-                <Span className="text-red-500">-</Span>
-              )}
-            </P>
-            <P>
-              {t('summaryFieldNetworSubnet')}{' '}
-              {order.network.subnet?.cidr || (
-                <Span className="text-red-500">-</Span>
-              )}
-            </P>
-          </div>
-        )}
+        <Span>{t(`summaryFieldNetwork-${order.network.type}`)}</Span>
       </div>
+      {order.network.type === database.NetworkTypeEnum.private && (
+        <div>
+          <div className="flex items-start pl-4 gap-2 flex-wrap">
+            <Cloud className="size-4" />
+            <Span>{t('summaryFieldNetworkNetwork')}</Span>
+            {order.network.network ? (
+              <Span>{order.network.network.name}</Span>
+            ) : (
+              <Span className="text-red-500">
+                {t('summaryFieldNetworNone')}
+              </Span>
+            )}
+          </div>
+          <div className="flex items-start pl-4 gap-2">
+            <Cloudy className="size-4" />
+            <Span>{t('summaryFieldNetworSubnet')}</Span>
+            {order.network.subnet ? (
+              <Span>{order.network.subnet.cidr}</Span>
+            ) : (
+              <Span className="text-red-500">
+                {t('summaryFieldNetworNone')}
+              </Span>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+const IpsDetails = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  const { t } = useTranslation('pci-databases-analytics/services/new');
+  return (
+    <div className="flex items-center gap-2">
+      <Button
+        variant={'link'}
+        size={'link'}
+        type="button"
+        onClick={() => onSectionClicked('options')}
+        className="font-bold"
+      >
+        {t('summaryFieldIpsLabel')}
+      </Button>
+      <Span>
+        {t(`summaryFieldIps`, {
+          count: order.ipRestrictions.length,
+          context: `${order.ipRestrictions.length}`,
+        })}
+      </Span>
+    </div>
+  );
+};
+
+const OrderSummary = ({ order, onSectionClicked }: OrderSummaryProps) => {
+  return (
+    <div className="grid grid-cols-1 gap-2">
+      <NameDetails order={order} />
+      <EngineDetails order={order} onSectionClicked={onSectionClicked} />
+      <PlanDetails order={order} onSectionClicked={onSectionClicked} />
+      <RegionDetails order={order} onSectionClicked={onSectionClicked} />
+      <FlavorDetails order={order} onSectionClicked={onSectionClicked} />
+      <ClusterDetails order={order} onSectionClicked={onSectionClicked} />
+      <NetworkrDetails order={order} onSectionClicked={onSectionClicked} />
+      <IpsDetails order={order} onSectionClicked={onSectionClicked} />
     </div>
   );
 };
