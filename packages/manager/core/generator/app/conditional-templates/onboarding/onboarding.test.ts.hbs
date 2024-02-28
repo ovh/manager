@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
+import { config } from '@playwright-helpers/config';
 import '@playwright-helpers/login';
-import config from '@playwright-helpers/config';
 
 test('Onboarding page should be present', async ({ page }) => {
   const onboardingPath = '/#/onboarding';

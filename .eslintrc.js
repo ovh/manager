@@ -101,11 +101,20 @@ module.exports = {
       },
     },
     {
-      files: ['*.test.ts'],
+      files: [
+        '*.test.ts',
+        '*.step.ts',
+        '*.spec.ts',
+        '*.test.tsx',
+        '*.spec.tsx',
+      ],
       extends: [
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
       ],
+      rules: {
+        'func-names': 'off',
+      },
       env: {
         mocha: true,
         node: true,
