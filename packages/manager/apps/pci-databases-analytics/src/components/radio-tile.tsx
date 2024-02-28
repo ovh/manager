@@ -7,7 +7,7 @@ interface RadioTileProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 const RadioTile = ({ children, className, ...props }: RadioTileProps) => {
   const id = useId();
-  const handleLabelKeyDown = (e: React.KeyboardEvent<HTMLLabelElement>) => {
+  const handleLabelKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       const inputElement = document.getElementById(
         id,
@@ -18,7 +18,13 @@ const RadioTile = ({ children, className, ...props }: RadioTileProps) => {
     }
   };
   return (
-    <div className="flex">
+    <div
+      className={cn('flex', {})}
+      role="radio"
+      aria-checked={props.checked}
+      tabIndex={0}
+      onKeyDown={handleLabelKeyDown}
+    >
       <input
         onChange={(e) => (props.onChange ? props.onChange(e) : null)}
         className="hidden"
@@ -29,8 +35,6 @@ const RadioTile = ({ children, className, ...props }: RadioTileProps) => {
       />
       <label
         htmlFor={id}
-        tabIndex={0}
-        onKeyDown={handleLabelKeyDown}
         className={cn(
           `w-full group text-[#4d5592] border-2 border-primary-100 rounded-md p-4 hover:shadow-sm hover:border-primary-600 hover:bg-primary-100 cursor-pointer ${
             props.checked
