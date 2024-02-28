@@ -24,17 +24,8 @@ export const {{this.functionName}}QueryKey = {{#if this.urlParams}}(params: {{pa
  * {{this.description}}
  */
 {{/if}}
-export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalCase this.functionName}}Params{{/if}}): Promise<{{this.responseType}}> => {
-  const fetchData = async () => {
-    const response: any = await apiClient.{{this.apiVersion}}.{{this.httpMethod}}({{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}});
-    return response;
-  };
-  try {
-    return queryClient.fetchQuery({{this.functionName}}QueryKey{{#if this.urlParams}}(params){{/if}}, fetchData);
-  } catch(error) {
-    return Promise.reject(error);
-  }
-};
+export const {{this.functionName}} = async ({{#if this.params}}params: {{pascalCase this.functionName}}Params{{/if}}): Promise<{{this.responseType}}> =>
+  apiClient.{{this.apiVersion}}.{{this.httpMethod}}({{#if this.urlParams}}`{{this.url}}`{{else}}'{{this.url}}'{{/if}}{{#if this.bodyParams}}, { data: params }{{/if}});
 {{/each}}
 {{#ifEq arg1=apiVersion arg2=mainApiPathApiVersion}}
 
