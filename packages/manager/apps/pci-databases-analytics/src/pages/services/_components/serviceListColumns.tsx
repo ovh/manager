@@ -63,7 +63,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
         return (
           <div className="flex gap-2 items-center">
             <div className="w-[50px] h-[33px]">
-              <img src={`./assets/engines/${engine}.png`} />
+              <img src={`./assets/engines/${engine}.png`} alt={engine} />
             </div>
             <Span className="whitespace-nowrap">{humanizeEngine(engine)}</Span>
             <Span>{version}</Span>
@@ -141,7 +141,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
         return (
           <div className="grid grid-cols-3 gap-1 justify-center w-fit">
             {service.nodes.map((node, i) => {
-              let color = 'bg-gray-500';
+              let color: string;
               switch (node.status) {
                 case database.StatusEnum.UPDATING:
                 case database.StatusEnum.PENDING:
@@ -168,7 +168,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
               return (
                 <Span
                   className={`inline-block w-5 h-5 ${color} rounded-full`}
-                  key={i}
+                  key={node.id}
                 />
               );
             })}
