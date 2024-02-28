@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { OPENRC_VERSION } from '@/download-openrc.constants';
-import { OpenStackTokenResponse, User } from '@/interface';
+import { OpenStackTokenResponse, Role, User } from '@/interface';
 
 export type PaginationOptions = {
   page: number;
@@ -28,6 +28,17 @@ export const getUser = async (
   userId: string,
 ): Promise<User> => {
   const { data } = await v6.get(`/cloud/project/${projectId}/user/${userId}`);
+
+  return data;
+};
+
+export const getUserRoles = async (
+  projectId: string,
+  userId: string,
+): Promise<Role[]> => {
+  const { data } = await v6.get(
+    `/cloud/project/${projectId}/user/${userId}/role`,
+  );
 
   return data;
 };
