@@ -24,8 +24,8 @@ const Price = ({ priceInUcents, taxInUcents, decimals = 2 }: PriceProps) => {
     <>
       <Span className="font-bold">
         {t('pricing_ht', { price: formatPrice(price), unit })}
-      </Span>
-      <Span className="text-xs mx-2">
+      </Span>{' '}
+      <Span className="text-xs">
         ({t('pricing_ttc', { price: formatPrice(priceWithTax), unit })})
       </Span>
     </>
