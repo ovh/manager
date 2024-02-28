@@ -17,10 +17,10 @@ export default function initI18n(
     })
     .init({
       lng: locale,
-      debug: true,
+      debug: false,
       fallbackLng: 'fr_FR',
       supportedLngs: availablesLocales,
-      ns: ['pci-databases-analytics'], // namespaces to load by default
+      ns: ['pci-databases-analytics', 'bytes'], // namespaces to load by default
       backend: {
         loadPath: (lngs: string[], namespaces: string[]) =>
           `${import.meta.env.BASE_URL}translations/${namespaces[0]}/Messages_${
