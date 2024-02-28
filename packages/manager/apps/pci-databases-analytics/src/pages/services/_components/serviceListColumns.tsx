@@ -140,7 +140,7 @@ export const getColumns = ({ onRenameClicked }: ServiceListColumnsProps) => {
         const service = row.original;
         return (
           <div className="grid grid-cols-3 gap-1 justify-center w-fit">
-            {service.nodes.map((node, i) => {
+            {service.nodes.map((node) => {
               let color: string;
               switch (node.status) {
                 case database.StatusEnum.UPDATING:

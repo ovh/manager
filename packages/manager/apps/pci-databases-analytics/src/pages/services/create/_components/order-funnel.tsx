@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
-import { A, H3, H4, P } from '@/components/typography';
+import { H3, H4, OvhLink, P } from '@/components/typography';
 import { useOrderFunnel } from '@/hooks/useOrderFunnel';
 import { order } from '@/models/catalog';
 import { database } from '@/models/database';
@@ -20,9 +20,6 @@ import RegionsSelect from './region/region-select';
 import FlavorsSelect from './flavor/flavor-select';
 import StorageConfig from './cluster-config/storage-config';
 import NodesConfig from './cluster-config/nodes-config';
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
-import Price from '@/components/price';
 import OrderSummary from './order-summary';
 import NetworkOptions from './cluster-options/network-options';
 import {
@@ -39,6 +36,8 @@ import {
   ServiceCreationWithEngine,
   useAddService,
 } from '@/hooks/api/services.api.hooks';
+import PriceUnitSwitch from '@/components/price-unit-switch';
+import OrderPrice from './order-price';
 
 interface OrderFunnelProps {
   availabilities: database.Availability[];
@@ -67,19 +66,20 @@ const OrderFunnel = ({
   );
   const [showMonthlyPrice, setShowMonthlyPrice] = useState(false);
   const navigate = useNavigate();
+  const { projectId } = useParams();
   const { toast } = useToast();
   const { t } = useTranslation('pci-databases-analytics/services/new');
   const { addService, isPending: isPendingAddService } = useAddService({
     onError: (err) => {
       toast({
-        title: 'Error while creating service',
+        title: t('errorCreatingService'),
         variant: 'destructive',
         description: err.message,
       });
     },
     onSuccess: (service) => {
       toast({
-        title: 'Service successfuly created',
+        title: t('successCreatingService'),
       });
       navigate(`../${service.id}`);
     },
@@ -126,19 +126,14 @@ const OrderFunnel = ({
     },
     (error) => {
       toast({
-        title: 'Incorrect form values',
+        title: t('errorFormTitle'),
         variant: 'destructive',
         description: (
-          <div>
-            <P className="text-white font-semibold">
-              Some errors were found in the form:
-            </P>
-            <ul className="list-inside list-disc">
-              {Object.keys(error).map((key) => (
-                <li key={key}>{error[key as keyof typeof error].message}</li>
-              ))}
-            </ul>
-          </div>
+          <ul className="list-inside list-disc">
+            {Object.keys(error).map((key) => (
+              <li key={key}>{error[key as keyof typeof error].message}</li>
+            ))}
+          </ul>
         ),
       });
     },
@@ -160,7 +155,14 @@ const OrderFunnel = ({
         <Trans
           t={t}
           i18nKey={'description'}
-          components={{ anchor: <A href="/"></A> }}
+          components={{
+            anchor: (
+              <OvhLink
+                application="public-cloud"
+                path={`#/pci/projects/${projectId}/private-networks`}
+              ></OvhLink>
+            ),
+          }}
         ></Trans>
       </P>
 
@@ -276,7 +278,10 @@ const OrderFunnel = ({
 
             {model.result.availability &&
               (hasNodeSelection || hasStorageSelection) && (
-                <section id="cluster" className="divide-y-4 divide-transparent">
+                <section
+                  id="cluster"
+                  className="divide-y-[1rem] divide-transparent"
+                >
                   <H4>{t('sectionClusterTitle')}</H4>
                   {hasNodeSelection && (
                     <FormField
@@ -332,7 +337,10 @@ const OrderFunnel = ({
                   )}
                 </section>
               )}
-            <section id="options" className="divide-y-4 divide-transparent">
+            <section
+              id="options"
+              className="divide-y-[1rem] divide-transparent"
+            >
               <H4>{t('sectionOptionsTitle')}</H4>
               {model.result.plan && (
                 <FormField
@@ -347,10 +355,9 @@ const OrderFunnel = ({
                         <NetworkOptions
                           {...field}
                           value={field.value}
-                          onChange={(newNetwork) => {
-                            console.log(newNetwork);
-                            model.form.setValue('network', newNetwork);
-                          }}
+                          onChange={(newNetwork) =>
+                            model.form.setValue('network', newNetwork)
+                          }
                           networks={model.lists.networks}
                           subnets={model.lists.subnets}
                           networkQuery={model.queries.networks}
@@ -391,42 +398,19 @@ const OrderFunnel = ({
             <CardHeader>
               <CardTitle>{t('summaryTitle')}</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="grid grid-cols-1 gap-2">
               <OrderSummary
                 order={model.result}
                 onSectionClicked={(section) => scrollToDiv(section)}
               />
-              <div>
-                <div className="flex flex-col">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <Switch
-                      className="rounded-xl"
-                      id="price-unit"
-                      checked={showMonthlyPrice}
-                      onCheckedChange={(checked) =>
-                        setShowMonthlyPrice(checked)
-                      }
-                    />
-                    <Label htmlFor="availabilities-table">Monthly prices</Label>
-                  </div>
-                  <div className="flex items-baseline">
-                    <Price
-                      decimals={showMonthlyPrice ? 2 : 3}
-                      priceInUcents={
-                        model.result.price[
-                          showMonthlyPrice ? 'monthly' : 'hourly'
-                        ].price
-                      }
-                      taxInUcents={
-                        model.result.price[
-                          showMonthlyPrice ? 'monthly' : 'hourly'
-                        ].tax
-                      }
-                    />
-                    {showMonthlyPrice ? '/mois' : '/heure'}
-                  </div>
-                </div>
-              </div>
+              <PriceUnitSwitch
+                showMonthly={showMonthlyPrice}
+                onChange={(newPriceUnit) => setShowMonthlyPrice(newPriceUnit)}
+              />
+              <OrderPrice
+                showMonthly={showMonthlyPrice}
+                prices={model.result.price}
+              />
             </CardContent>
             <CardFooter className="flex justify-between">
               <Button className="w-full" disabled={isPendingAddService}>
