@@ -39,7 +39,7 @@ const Service = () => {
     const targetValue = searchParams.get('target');
     try {
       const targetObject = JSON.parse(targetValue);
-      if (targetObject && targetObject.steps) {
+      if (targetObject?.steps) {
         const stepsObject = targetObject.steps;
         suggestions = suggestions.map((s) =>
           s.engine === stepsObject.STEP_1

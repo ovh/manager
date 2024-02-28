@@ -233,9 +233,9 @@ DataTable.Skeleton = function DataTableSkeleton({
     <Table>
       <TableHeader className="bg-primary-100 text-primary-700">
         <TableRow className="hover:bg-primary-100">
-          {Array.from({ length: columns }).map((_col, iColHead) => (
+          {Array.from({ length: columns }).map((colHead, iColHead) => (
             <TableHead
-              key={iColHead}
+              key={`${colHead}${iColHead}`}
               className="text-primary-foreground first:rounded-tl-sm last:rounded-tr-sm"
             >
               <Skeleton
@@ -246,10 +246,10 @@ DataTable.Skeleton = function DataTableSkeleton({
         </TableRow>
       </TableHeader>
       <TableBody className="border border-primary-100">
-        {Array.from({ length: rows }).map((_row, iRow) => (
-          <TableRow key={iRow}>
-            {Array.from({ length: columns }).map((_col, iCol) => (
-              <TableCell key={iCol}>
+        {Array.from({ length: rows }).map((row, iRow) => (
+          <TableRow key={`${row}${iRow}`}>
+            {Array.from({ length: columns }).map((col, iCol) => (
+              <TableCell key={`${col}${iCol}`}>
                 <Skeleton
                   style={{ width: `${width}px`, height: `${height}px` }}
                 />

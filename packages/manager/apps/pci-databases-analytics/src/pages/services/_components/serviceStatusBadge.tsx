@@ -8,7 +8,7 @@ const ServiceStatusBadge = ({
   status: database.Service['status'];
 }) => {
   const { t } = useTranslation('pci-databases-analytics/services/status');
-  let variant = badgeVariants({ variant: 'default' });
+  let variant: string;
   switch (status) {
     case 'CREATING':
     case 'DELETING':

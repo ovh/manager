@@ -8,10 +8,7 @@ const Onboarding = () => {
   const navigate = useNavigate();
   const title: string = t('title');
   const description: string = t('description');
-  // useTrackingPage(TrackingPageView.Onboarding);
-  // const trackAction = useTrackingAction();
   const onOrderButtonClick = () => {
-    // trackAction(TrackingPageView.Onboarding, TrackingEvent.add);
     navigate('new');
   };
   return (
