@@ -62,7 +62,7 @@ const Subnets: React.FC = () => {
         secondaryButtonIcon={ODS_ICON_NAME.ADD}
         secondaryButtonSize={ODS_BUTTON_SIZE.sm}
         secondaryButtonIconPosition="start"
-        secondaryButtonDisabled={!isEditable(vrackServices) || undefined}
+        secondaryButtonDisabled={!isEditable(vrackServices)}
         secondaryButtonDataTracking="vrack-services::subnets::create-subnet"
         title={t('onboardingTitle')}
         description={t('onboardingDescription')}

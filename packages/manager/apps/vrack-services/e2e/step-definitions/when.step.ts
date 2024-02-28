@@ -17,6 +17,14 @@ import {
 } from '../../src/public/translations/vrack-services/create/Messages_fr_FR.json';
 import { displayNameInputName } from '../../src/pages/create/constants';
 import { subnetsTabLabel } from '../../src/public/translations/vrack-services/dashboard/Messages_fr_FR.json';
+import {
+  subnetNamePlaceholder,
+  cidrPlaceholder,
+  serviceRangePlaceholder,
+  createSubnetButtonLabel,
+  vlanSelectVlanOptionLabel,
+  vlanNumberLabel,
+} from '../../src/public/translations/vrack-services/subnets/Messages_fr_FR.json';
 
 When('User navigates to vRack Services Listing page', async function(
   this: ICustomWorld<ConfigParams>,
@@ -186,3 +194,37 @@ When('User navigates to the vRack Services Subnet page', async function(
     waitUntil: 'load',
   });
 });
+
+When(
+  'User navigate to subnet creation page, fills the form and clicks the submit button',
+  async function(this: ICustomWorld<ConfigParams>) {
+    await setupNetwork(this);
+
+    const { selectedVrackServices } = this.testContext.data;
+
+    await this.page.goto(getUrl('createSubnet', selectedVrackServices.id), {
+      waitUntil: 'load',
+    });
+
+    await this.page
+      .getByPlaceholder(subnetNamePlaceholder)
+      .fill(this.testContext.data.name);
+    await this.page
+      .getByLabel(cidrPlaceholder)
+      .fill(this.testContext.data.name);
+    await this.page
+      .getByLabel(serviceRangePlaceholder)
+      .fill(this.testContext.data.name);
+    if (this.testContext.data.vlan) {
+      await this.page.getByLabel(vlanSelectVlanOptionLabel).click();
+      await sleep();
+      await this.page
+        .getByLabel(vlanNumberLabel)
+        .fill(this.testContext.data.name);
+    }
+
+    await sleep(10000);
+
+    await this.page.getByText(createSubnetButtonLabel).click();
+  },
+);

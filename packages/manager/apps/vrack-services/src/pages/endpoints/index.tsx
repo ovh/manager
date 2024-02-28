@@ -89,7 +89,7 @@ const Endpoints: React.FC = () => {
       secondaryButtonSize={ODS_BUTTON_SIZE.sm}
       secondaryButtonIconPosition="start"
       secondaryButtonDisabled={
-        !isEditable(vrackServices) || !hasSubnet(vrackServices) || undefined
+        !isEditable(vrackServices) || !hasSubnet(vrackServices)
       }
       title={t('onboardingTitle')}
       description={t('onboardingDescription')}

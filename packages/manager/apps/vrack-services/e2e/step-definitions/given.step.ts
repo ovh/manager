@@ -71,18 +71,24 @@ Given('User has a vRack Services with a status {word}', function(
   this.testContext.data.selectedVrackServices = vrackServicesList[vsIndex];
 });
 
-Given('The service to edit a vRack Services is KO', function(
+Given('The service to edit a vRack Services is {word}', function(
   this: ICustomWorld<ConfigParams>,
+  okOrKo: 'OK' | 'KO',
 ) {
-  this.handlersConfig.updateKo = true;
-  this.testContext.errorMessage = updateError;
+  this.handlersConfig.updateKo = okOrKo === 'KO';
+  if (this.handlersConfig.updateKo) {
+    this.testContext.errorMessage = updateError;
+  }
 });
 
-Given('The service to associate a vRack Services is KO', function(
+Given('The service to associate a vRack Services is {word}', function(
   this: ICustomWorld<ConfigParams>,
+  okOrKo: 'OK' | 'KO',
 ) {
-  this.handlersConfig.associationKo = true;
-  this.testContext.errorMessage = updateError;
+  this.handlersConfig.associationKo = okOrKo === 'KO';
+  if (this.handlersConfig.associationKo) {
+    this.testContext.errorMessage = updateError;
+  }
 });
 
 Given(
@@ -120,3 +126,41 @@ Given('User has a vRack Services that {string} a subnet', function(
   this.testContext.data.selectedVrackServices = vrackServicesList[index];
   this.testContext.data.vsIndex = index;
 });
+
+Given(
+  'User has a vRack Services that {string} a subnet and a status {word}',
+  function(
+    this: ICustomWorld<ConfigParams>,
+    hasSubnet: 'has' | "doesn't have",
+    resourceStatus: ResourceStatus,
+  ) {
+    this.testContext.initialUrl = getUrl('listing');
+    this.handlersConfig.nbVs = 19;
+    const index = vrackServicesList.findIndex(
+      (v) =>
+        (hasSubnet === 'has'
+          ? v.currentState.subnets.length > 0
+          : v.currentState.subnets.length === 0) &&
+        v.resourceStatus === resourceStatus,
+    );
+
+    this.testContext.data.selectedVrackServices = vrackServicesList[index];
+    this.testContext.data.vsIndex = index;
+  },
+);
+
+Given(
+  'User wants to create a subnet with name {word} and CIDR {word} and service range {word} and vlan {word}',
+  function(
+    this: ICustomWorld<ConfigParams>,
+    name: string,
+    cidr: string,
+    serviceRange: string,
+    vlan: string,
+  ) {
+    this.testContext.data.name = name;
+    this.testContext.data.cidr = cidr;
+    this.testContext.data.serviceRange = serviceRange;
+    this.testContext.data.vlan = vlan;
+  },
+);

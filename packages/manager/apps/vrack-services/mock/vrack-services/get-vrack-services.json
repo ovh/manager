@@ -214,13 +214,39 @@
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
       "productStatus": "DRAFT",
-      "subnets": [],
+      "subnets": [
+        {
+          "cidr": "192.168.0.0/16",
+          "displayName": "My.Subnet",
+          "serviceEndpoints": [
+            {
+              "managedServiceURN": "urn:v1:eu:resource:storageNetApp:examples-00e1-4a3d-ae89-ac145675c8bb"
+            },
+            {
+              "managedServiceURN": "urn:v1:eu:resource:storageNetApp:examples-a77c-478e-93ce-06aa94cbd9d1"
+            }
+          ],
+          "serviceRange": {
+            "cidr": "192.168.0.0/29"
+          },
+          "vlan": 30
+        }
+      ],
       "vrackId": null,
       "region": "RBX"
     },
-    "currentTasks": [],
+    "currentTasks": [
+      {
+        "createdAt": "2023-03-10T08:00:00Z",
+        "id": "ope-a4i-a5y-dof-pt7",
+        "link": "/v2/vrackServices/resource/vrs-asp-dtl-lym-wza",
+        "status": "ERROR",
+        "type": "VrackServicesUpdate",
+        "progress": []
+      }
+    ],
     "id": "vrs-ahz-9t0-7lb-b5t",
-    "resourceStatus": "READY",
+    "resourceStatus": "ERROR",
     "targetSpec": {
       "subnets": []
     },
@@ -248,15 +274,32 @@
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
       "productStatus": "DRAFT",
-      "subnets": [],
+      "subnets": [
+        {
+          "cidr": "192.168.0.0/16",
+          "displayName": "My.Subnet",
+          "serviceEndpoints": [
+            {
+              "managedServiceURN": "urn:v1:eu:resource:storageNetApp:examples-00e1-4a3d-ae89-ac145675c8bb"
+            },
+            {
+              "managedServiceURN": "urn:v1:eu:resource:storageNetApp:examples-a77c-478e-93ce-06aa94cbd9d1"
+            }
+          ],
+          "serviceRange": {
+            "cidr": "192.168.0.0/29"
+          },
+          "vlan": 30
+        }
+      ],
       "vrackId": null,
       "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7lb-b5v",
-    "resourceStatus": "READY",
+    "resourceStatus": "UPDATING",
     "targetSpec": {
-      "subnets": []
+      "displayName": "new name"
     },
     "updatedAt": "2023-03-10T09:10:00Z"
   },
@@ -282,16 +325,31 @@
     "createdAt": "2023-03-10T09:00:00Z",
     "currentState": {
       "productStatus": "DRAFT",
-      "subnets": [],
+      "subnets": [
+        {
+          "cidr": "192.168.0.0/16",
+          "displayName": "My.Subnet",
+          "serviceEndpoints": [
+            {
+              "managedServiceURN": "urn:v1:eu:resource:storageNetApp:examples-00e1-4a3d-ae89-ac145675c8bb"
+            },
+            {
+              "managedServiceURN": "urn:v1:eu:resource:storageNetApp:examples-a77c-478e-93ce-06aa94cbd9d1"
+            }
+          ],
+          "serviceRange": {
+            "cidr": "192.168.0.0/29"
+          },
+          "vlan": 30
+        }
+      ],
       "vrackId": null,
       "region": "RBX"
     },
     "currentTasks": [],
     "id": "vrs-ahz-9t0-7la-b5o",
-    "resourceStatus": "READY",
-    "targetSpec": {
-      "subnets": []
-    },
+    "resourceStatus": "DELETING",
+    "targetSpec": {},
     "updatedAt": "2023-03-10T09:10:00Z"
   },
   {

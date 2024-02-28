@@ -22,7 +22,10 @@ import {
   guide1Title,
   guide2Title,
 } from '../../src/public/translations/vrack-services/onboarding/Messages_fr_FR.json';
-import { onboardingDescription } from '../../src/public/translations/vrack-services/subnets/Messages_fr_FR.json';
+import {
+  onboardingDescription,
+  createSubnetButtonLabel,
+} from '../../src/public/translations/vrack-services/subnets/Messages_fr_FR.json';
 
 Then('User sees the create a vRack Services button {word}', async function(
   this: ICustomWorld<ConfigParams>,
@@ -238,5 +241,17 @@ Then('User sees the subnet {word} page', async function(
   } else {
     const listing = await this.page.locator('osds-datagrid');
     expect(listing).toBeVisible();
+  }
+});
+
+Then('User sees the create a subnet button {word}', async function(
+  this: ICustomWorld<ConfigParams>,
+  buttonState: 'enabled' | 'disabled',
+) {
+  const button = await this.page.getByText(createSubnetButtonLabel);
+  if (buttonState === 'enabled') {
+    await expect(button).not.toHaveAttribute('disabled', '');
+  } else {
+    await expect(button).toHaveAttribute('disabled', '');
   }
 });
