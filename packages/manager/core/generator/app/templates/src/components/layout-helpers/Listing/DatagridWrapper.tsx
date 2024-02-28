@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { OsdsDatagrid } from '@ovhcloud/ods-components/datagrid/react';
-import { OsdsLink } from '@ovhcloud/ods-components/link/react';
+import { OsdsDatagrid, OsdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import appConfig from '@/{{appName}}.config';
 import ConfigInterface from '@/configInterface';
@@ -56,7 +55,7 @@ export default function DatagridWrapper({ data }: DatagridWrapperInterface) {
       {columns && data && data.length > 0 && (
         <OsdsDatagrid
           hasHideableColumns={undefined}
-          height="500"
+          height={550}
           columns={columns}
           rows={data}
         />
