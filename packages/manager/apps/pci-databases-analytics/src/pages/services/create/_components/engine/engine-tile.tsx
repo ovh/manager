@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import RadioTile from '@/components/radio-tile';
 import VersionSelector from './engine-tile-version';
 import { Engine, Version } from '@/models/order-funnel';
@@ -17,6 +18,9 @@ export const EngineTile = ({
   selected: boolean;
   onChange: (engine: Engine, version: Version) => void;
 }) => {
+  const { t } = useTranslation(
+    'pci-databases-analytics/components/engine-tile',
+  );
   const [selectedVersion, setSelectedVersion] = useState<Version>(version);
   const handleEngineClick = () => {
     onChange(engine, selectedVersion);
@@ -42,7 +46,9 @@ export const EngineTile = ({
           alt={engine.name}
         />
       </div>
-      <P className="text-sm">{engine.description}</P>
+      <P className="text-sm">
+        {t(`description-${engine.name}`, engine.description)}
+      </P>
       <RadioTile.Separator />
       <VersionSelector
         versions={engine.versions}
