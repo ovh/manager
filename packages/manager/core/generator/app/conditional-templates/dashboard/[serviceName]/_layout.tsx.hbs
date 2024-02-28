@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams, useResolvedPath } from 'react-router-dom';
 import { useQueries } from '@tanstack/react-query';
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
-import { {{dashboardEndpointFn}}, {{dashboardEndpointFn}}ServiceInfos, {{dashboardEndpointFn}}QueryKey, {{dashboardEndpointFn}}ServiceInfosQueryKey } from '@/api';
+import { {{dashboardEndpointFn}}, {{dashboardEndpointFn}}QueryKey } from '@/api';
 import Dashboard from '@/components/layout-helpers/Dashboard/Dashboard';
 import Loading from '@/components/Loading/Loading';
 import Errors from '@/components/Error/Error';
@@ -36,9 +36,13 @@ export default function DashboardPage() {
   const { error, isLoading, } = results[0];
 
   if (error) {
-    return <Errors
-        error={error.response}
-      />;
+    return (
+      <div className="flex justify-center">
+        <div className="w-3/5">
+          <Errors error={error.response} />
+        </div>
+      </div>
+    );
   }
 
   if (isLoading) {
