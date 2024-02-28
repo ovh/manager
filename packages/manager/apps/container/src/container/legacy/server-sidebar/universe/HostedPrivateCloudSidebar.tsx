@@ -220,10 +220,10 @@ export default function HostedPrivateCloudSidebar() {
       requestType: 'aapi',
     });
 
-  const { data: availability } = useQuery(
-    ['sidebar-hpc-availability'],
-    getFeatures,
-  );
+  const { data: availability } = useQuery({
+    queryKey: ['sidebar-hpc-availability'],
+    queryFn: getFeatures,
+  });
 
   useEffect(() => {
     if (availability) {

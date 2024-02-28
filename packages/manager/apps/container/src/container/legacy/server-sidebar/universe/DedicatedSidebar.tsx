@@ -372,10 +372,10 @@ export default function DedicatedSidebar() {
       requestType: 'aapi',
     });
 
-  const { data: availability } = useQuery(
-    ['sidebar-dedicated-availability'],
-    getFeatures,
-  );
+  const { data: availability } = useQuery({
+    queryKey: ['sidebar-dedicated-availability'],
+    queryFn: getFeatures,
+  });
 
   useEffect(() => {
     if (availability) {
