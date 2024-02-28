@@ -1,0 +1,13 @@
+{
+  "description-mongodb": "Système de gestion de base de données orienté documents",
+  "description-mysql": "Système de gestion de base de données relationnelle",
+  "description-postgresql": "Système de gestion de base de données relationnelle et objet",
+  "description-redis": "Système de stockage de données clé-valeur en mémoire",
+  "description-cassandra": "Système de stockage de données NoSQL distribué",
+  "description-m3db": "Système de stockage de séries temporelles",
+  "description-m3aggregator": "Système d'agrégation et de ré-échantillonnage de séries temporelles",
+  "versionTag-new": "Nouveau",
+  "versionTag-soonDeprecated": "Bientôt déprécié",
+  "selectAVersion": "Selectionnez une version",
+  "noVersionFound": "Aucune version trouvée"
+}
