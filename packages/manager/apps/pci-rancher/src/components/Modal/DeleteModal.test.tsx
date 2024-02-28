@@ -31,10 +31,6 @@ describe('Delete Modal', () => {
     expect(title).not.toBeNull();
   });
 
-  describe('Cancel Button', () => {
-    it('should call toggleModal when clicked and close modal', async () => {});
-  });
-
   describe('Delete Button', () => {
     it('Should be disable', async () => {
       const screen = await setupSpecTest();
