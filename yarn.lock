@@ -4345,7 +4345,7 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-16.6.0.tgz#4a004cacceaf6adc2c8dbf81fccaa646fab7640d"
   integrity sha512-uPyvfFH/u4e2+3DChdAJ7Eg2l8x4HofF4XIaZhOcLCjewJF+ZSghIvYillQWVNehPwP9uPhKDvfVGKYyp//mAw==
 
-"@ovhcloud/ods-common-theming@17.1.0", "@ovhcloud/ods-common-theming@^17.0.2", "@ovhcloud/ods-common-theming@^17.1.0":
+"@ovhcloud/ods-common-theming@17.1.0", "@ovhcloud/ods-common-theming@^17.1.0":
   version "17.1.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.1.0.tgz#300d71e085fafccf25969c2d90eb828144c36e23"
   integrity sha512-HYtaVO3LXyrSf1gOVMQihAzAW+27WfFH6UN2Jf+I0YKZfUgqvlHOXjcQJYim/bCQ4A1Ptkc3QgiEfYrspQxvDA==
@@ -4871,7 +4871,7 @@
   dependencies:
     "@ovhcloud/ods-common-theming" "16.6.0"
 
-"@ovhcloud/ods-theme-blue-jeans@17.1.0", "@ovhcloud/ods-theme-blue-jeans@^17.0.2", "@ovhcloud/ods-theme-blue-jeans@^17.1.0":
+"@ovhcloud/ods-theme-blue-jeans@17.1.0", "@ovhcloud/ods-theme-blue-jeans@^17.1.0":
   version "17.1.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-theme-blue-jeans/-/ods-theme-blue-jeans-17.1.0.tgz#5f887ea7dc9589ad75fdc25482c2603e6c4b220d"
   integrity sha512-tZE/b0IGbmUY/Y/G2GXR4QLWacSKQwUSp0c3xFGqwqVnZunZZto0GloHn+EZHFtGhMI/6bwB5dYZsSDOLCqPhw==
@@ -9471,12 +9471,7 @@ angular-ui-utils@angular-ui/ui-utils#0.2.3:
   version "0.0.0"
   resolved "https://codeload.github.com/angular-ui/ui-utils/tar.gz/125cb72d692f9f116454f338f6a5471f3088f9b9"
 
-angular-ui-validate@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/angular-ui-validate/-/angular-ui-validate-1.2.3.tgz#beb141f64409bfddba65c12f7581b893ddf59321"
-  integrity sha512-RiBd6JEt/zXXbSQMZ6j+0b5xxQfh2P9VFqDPaFEqOO68P/sindp318EQ59BoFn/DnQ3qI+b9MQQGv24sGZhZ2A==
-
-angular-ui-validate@angular-ui/ui-validate#~1.2.2:
+angular-ui-validate@^1.2.3, angular-ui-validate@angular-ui/ui-validate#~1.2.2:
   version "1.2.3"
   resolved "https://codeload.github.com/angular-ui/ui-validate/tar.gz/0d982055360032be2421b969fa1c83bf053e735a"
 
