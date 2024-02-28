@@ -6,6 +6,7 @@ import {
   REPLICATION_FACTOR_PREFIX,
   TRAVAUX_LINK,
   GUIDE_PACKAGES_URL,
+  TRACKING,
 } from './constants';
 
 export default class NutanixGeneralInfoCtrl {
@@ -39,6 +40,7 @@ export default class NutanixGeneralInfoCtrl {
     this.clusterRedeploying = this.cluster.status === CLUSTER_STATUS.DEPLOYING;
     this.showRedeployWarningModal = false;
     this.typeOfPack = this.hardwareInfo.license.edition;
+    this.TRACKING = TRACKING;
   }
 
   loadServicesDetails() {

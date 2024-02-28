@@ -39,6 +39,15 @@ export const FEATURES = {
   PACK_TYPE: 'nutanix:pack-type',
 };
 
+const TRACKING_PREFIX = 'hpc::nutanix::cluster';
+
+export const TRACKING = {
+  DASHBOARD: `${TRACKING_PREFIX}::dahboard`,
+  REDEPLOY_CLUSTER: `${TRACKING_PREFIX}::redeploy-cluster`,
+  ACCESS_PRISM: `${TRACKING_PREFIX}::access-prism-central`,
+  ACCESS_NUTANIX: `${TRACKING_PREFIX}::link-nutanix-website`,
+};
+
 export default {
   TRAVAUX_LINK,
   PRIVATE_BANDWIDTH_SERVICE_PREFIX,
@@ -46,4 +55,5 @@ export default {
   NUTANIX_PERSONAL_LICENSE_EDITION,
   GENERAL_INFO_TILE_TITLE,
   FEATURES,
+  TRACKING,
 };
