@@ -5,6 +5,7 @@ import uiRouter from '@uirouter/angularjs';
 import angularTranslate from 'angular-translate';
 
 import eligibilityAddress from './move-eligibility-address.component';
+import service from './move-eligibility-address.service';
 
 const moduleName = 'ovhManagerTelecomPackMoveEligibilityAddress';
 
@@ -15,6 +16,7 @@ angular
     angularTranslate,
     'oui',
   ])
-  .component('packMoveEligibilityAddress', eligibilityAddress);
+  .component('packMoveEligibilityAddress', eligibilityAddress)
+  .service('moveEligibilityAddressService', service);
 
 export default moduleName;
