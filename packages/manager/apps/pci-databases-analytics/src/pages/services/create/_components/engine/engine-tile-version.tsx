@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronsUpDown } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import {
   Popover,
   PopoverContent,
@@ -14,7 +15,7 @@ import {
   CommandList,
 } from '@/components/ui/command';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Badge, BadgeProps } from '@/components/ui/badge';
 import { Version } from '@/models/order-funnel';
 import { Span } from '@/components/typography';
 
@@ -31,7 +32,19 @@ const VersionSelector = ({
   onChange,
 }: VersionSelectorProps) => {
   const [open, setOpen] = useState(false);
-
+  const { t } = useTranslation(
+    'pci-databases-analytics/components/engine-tile',
+  );
+  const getTagVariant = (tag: string): BadgeProps['variant'] => {
+    switch (tag) {
+      case 'new':
+        return 'success';
+      case 'soonDeprecated':
+        return 'warning';
+      default:
+        return 'info';
+    }
+  };
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <div className="hidden">
@@ -67,9 +80,9 @@ const VersionSelector = ({
       </PopoverTrigger>
       <PopoverContent className="p-0" side="bottom" align="end">
         <Command>
-          <CommandInput placeholder="Select a version" />
+          <CommandInput placeholder={t('selectAVersion')} />
           <CommandList>
-            <CommandEmpty>No version found.</CommandEmpty>
+            <CommandEmpty>{t('noVersionFound')}</CommandEmpty>
             <CommandGroup>
               {versions.map((engineVersion) => (
                 <CommandItem
@@ -87,7 +100,9 @@ const VersionSelector = ({
                     <Span>{engineVersion.name}</Span>
                     <div className="ml-2 flex gap-1">
                       {engineVersion.tags.map((tag) => (
-                        <Badge key={tag}>{tag}</Badge>
+                        <Badge key={tag} variant={getTagVariant(tag)}>
+                          {t(`versionTag-${tag}`, tag)}
+                        </Badge>
                       ))}
                     </div>
                   </div>
