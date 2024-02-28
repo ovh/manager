@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Outlet, useLocation, redirect } from 'react-router-dom';
 import { useRouting } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +8,6 @@ import Breadcrumb, {
 } from '@/components/Breadcrumb/Breadcrumb';
 import { database } from '@/models/database';
 import { Toaster } from '@/components/ui/toaster';
-import { Span } from '@/components/typography';
 
 function BreadcrumbTitle({ category }: { category: string }) {
   const { t } = useTranslation('pci-databases-analytics');

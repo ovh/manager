@@ -1,6 +1,6 @@
 import Price from '@/components/price';
 import RadioTile from '@/components/radio-tile';
-import { H3, H4, H5, P, Span } from '@/components/typography';
+import { H5, P, Span } from '@/components/typography';
 import { formatStorage } from '@/lib/bytesHelper';
 import { database } from '@/models/database';
 import { Plan } from '@/models/order-funnel';
