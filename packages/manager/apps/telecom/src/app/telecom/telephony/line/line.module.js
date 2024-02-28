@@ -12,6 +12,7 @@ import contact from './contact';
 import fax from './fax';
 import management from './management';
 import phone from './phone';
+import softphone from './softphone';
 import tones from './tones';
 
 import routing from './line.routing';
@@ -32,6 +33,7 @@ angular
     fax,
     management,
     phone,
+    softphone,
     tones,
   ])
   .config(routing)
