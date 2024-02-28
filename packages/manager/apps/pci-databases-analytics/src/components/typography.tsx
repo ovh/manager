@@ -106,6 +106,7 @@ function A({
     disabled && disabledClass,
   );
   if (disabled) {
+    // eslint-disable-next-line no-unused-vars
     const { href, onClick, tabIndex, ...otherProps } = props;
     return (
       <a

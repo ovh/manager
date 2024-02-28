@@ -65,7 +65,7 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
               <SelectValue placeholder="Select a network" />
             </SelectTrigger>
             <SelectContent>
-              {networks.map((network: Network, index: number) => (
+              {networks.map((network: Network) => (
                 <SelectItem key={network.id} value={network.id}>
                   {network.name}
                 </SelectItem>
@@ -111,7 +111,7 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
               <SelectValue placeholder="Select a subnet" />
             </SelectTrigger>
             <SelectContent>
-              {subnets.map((subnet, index) => (
+              {subnets.map((subnet) => (
                 <SelectItem key={subnet.id} value={subnet.id}>
                   {subnet.cidr}
                 </SelectItem>

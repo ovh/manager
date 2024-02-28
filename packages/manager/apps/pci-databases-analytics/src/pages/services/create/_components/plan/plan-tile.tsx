@@ -1,7 +1,8 @@
+import { useTranslation } from 'react-i18next';
 import Price from '@/components/price';
 import RadioTile from '@/components/radio-tile';
 import { H5, P, Span } from '@/components/typography';
-import { formatStorage } from '@/lib/bytesHelper';
+import { compareStorage, formatStorage } from '@/lib/bytesHelper';
 import { database } from '@/models/database';
 import { Plan } from '@/models/order-funnel';
 
@@ -16,6 +17,9 @@ export const PlanTile = ({
   onChange: (newPlan: string) => void;
   showMonthlyPrice: boolean;
 }) => {
+  const { t } = useTranslation('pci-databases-analytics/components/plan-tile');
+  const { t: tPricing } = useTranslation('pricing');
+  const pricingUnit = showMonthlyPrice ? 'monthly' : 'hourly';
   const hasPrivateNetwork = plan.networks.includes(
     database.NetworkTypeEnum.private,
   );
@@ -36,27 +40,23 @@ export const PlanTile = ({
           <RadioTile.Separator />
         </div>
         <div className="text-xs flex flex-col">
-          {plan.ram && <PlanTile.Ram ram={plan.ram} />}
-          {plan.cpu && <PlanTile.Cpu cpu={plan.cpu} />}
-          {plan.storage && <PlanTile.Storage storage={plan.storage} />}
+          <PlanTile.Ram ram={plan.ram} />
+          <PlanTile.Cpu cpu={plan.cpu} />
+          <PlanTile.Storage storage={plan.storage} />
           <PlanTile.Nodes nodes={plan.nodes} />
-          {plan.backups && <Span>Sauvegarde manuelles et automatiques</Span>}
-          {hasPrivateNetwork && <Span>Réseaux privés</Span>}
+          {plan.backups && <Span>{t('backupsSpec')}</Span>}
+          {hasPrivateNetwork && <Span>{t('privateNetworkSpec')}</Span>}
         </div>
         <div>
           <RadioTile.Separator />
           <P className="text-sm">
-            A partir de{' '}
+            <Span>{t('priceStartingFrom')} </Span>
             <Price
-              priceInUcents={
-                plan.minPricing[showMonthlyPrice ? 'monthly' : 'hourly'].price
-              }
-              taxInUcents={
-                plan.minPricing[showMonthlyPrice ? 'monthly' : 'hourly'].tax
-              }
+              priceInUcents={plan.minPricing[pricingUnit].price}
+              taxInUcents={plan.minPricing[pricingUnit].tax}
               decimals={showMonthlyPrice ? 2 : 3}
             />
-            <b>/heure</b>
+            <b> {tPricing(`pricing_unit_${pricingUnit}`)}</b>
           </P>
         </div>
       </div>
@@ -65,59 +65,72 @@ export const PlanTile = ({
 };
 
 PlanTile.Ram = function PlanTilesRam({ ram }: Partial<Plan>) {
-  if (ram.minimum.value === ram.maximum.value) {
+  const { t } = useTranslation('pci-databases-analytics/components/plan-tile');
+  if (!ram || ram.maximum.value === 0) return <></>;
+  if (compareStorage(ram.minimum, ram.maximum) === 0) {
     return (
-      <Span>
-        {ram.minimum.value} {ram.minimum.unit} RAM
-      </Span>
+      <Span>{t('memorySpec', { memory: formatStorage(ram.minimum) })}</Span>
     );
   }
   return (
     <Span>
-      De {formatStorage(ram.minimum)} à {formatStorage(ram.maximum)} RAM
+      {t('memorySpecRange', {
+        min: formatStorage(ram.minimum),
+        max: formatStorage(ram.maximum),
+      })}
     </Span>
   );
 };
 PlanTile.Cpu = function PlanTilesCpu({ cpu }: Partial<Plan>) {
+  const { t } = useTranslation('pci-databases-analytics/components/plan-tile');
+  if (!cpu || cpu.maximum === 0) return <></>;
   if (cpu.minimum === cpu.maximum) {
-    return (
-      <Span>
-        {cpu.minimum} {cpu.minimum === 1 ? 'vCore' : 'vCores'}
-      </Span>
-    );
+    return <Span>{t('cpuSpec', { count: cpu.minimum })}</Span>;
   }
   return (
     <Span>
-      De {cpu.minimum} à {cpu.maximum} vCores
+      {t('cpuSpecRange', {
+        min: cpu.minimum,
+        max: cpu.maximum,
+      })}
     </Span>
   );
 };
 PlanTile.Nodes = function PlanTilesNodes({ nodes }: Partial<Plan>) {
+  const { t } = useTranslation('pci-databases-analytics/components/plan-tile');
+  if (!nodes || nodes.maximum === 0) return <></>;
   if (nodes.minimum === nodes.maximum) {
-    return (
-      <Span>
-        {nodes.minimum} {nodes.minimum === 1 ? 'nœud' : 'nœuds'}
-      </Span>
-    );
+    return <Span>{t('nodeSpec', { count: nodes.minimum })}</Span>;
   }
   return (
     <Span>
-      De {nodes.minimum} à {nodes.maximum} nœuds
+      {t('nodeSpecRange', {
+        min: nodes.minimum,
+        max: nodes.maximum,
+      })}
     </Span>
   );
 };
 
 PlanTile.Storage = function PlanTileStorage({ storage }: Partial<Plan>) {
+  const { t } = useTranslation('pci-databases-analytics/components/plan-tile');
+  if (!storage || storage.maximum.value === 0) return <></>;
   if (
     storage.minimum.value === storage.maximum.value &&
     storage.minimum.unit === storage.maximum.unit
   ) {
-    return <Span>{formatStorage(storage.minimum)} de stockage</Span>;
+    return (
+      <Span>
+        {t('storageSpec', { storage: formatStorage(storage.minimum) })}
+      </Span>
+    );
   }
   return (
     <Span>
-      De {formatStorage(storage.minimum)} à {formatStorage(storage.maximum)} de
-      stockage
+      {t('storageSpecRange', {
+        min: formatStorage(storage.minimum),
+        max: formatStorage(storage.maximum),
+      })}
     </Span>
   );
 };
