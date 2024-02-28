@@ -1,22 +1,10 @@
 <div>
     <div data-ovh-alert="{{alerts.main}}"></div>
-    <oui-back-button href="{{:: ctrlDumps.databaseLink }}">
-        <span data-translate="common_back"></span>
-    </oui-back-button>
     <div>
         <span data-translate="database_tabs_dumps_change"></span>
         <strong data-ng-bind="bdd.name"></strong>
     </div>
     <oui-datagrid data-rows="ctrlDumps.databaseDumps">
-        <oui-datagrid-column
-            data-title="'database_tabs_dumps_snapshot_date' | translate"
-            data-property="snapshotDate"
-            data-sortable
-            data-filterable
-            data-type="date"
-        >
-            <span data-ng-bind="::ctrlDumps.getDate($value)"></span>
-        </oui-datagrid-column>
         <oui-datagrid-column
             data-title="'database_tabs_dumps_creation_date' | translate"
             data-property="creationDate"
@@ -42,7 +30,6 @@
         <oui-datagrid-column
             data-title="'database_tabs_dumps_deletion_date' | translate"
             data-property="deletionDate"
-            data-sortable
         >
             <span data-ng-bind="$row.deletionDate | date:'medium'"></span>
         </oui-datagrid-column>
