@@ -6,23 +6,25 @@ import isEmpty from 'lodash/isEmpty';
 export default class DatabaseDumpsCtrl {
   /* @ngInject */
   constructor(
-    $scope,
+    Alerter,
+    coreConfig,
+    databaseLink,
+    HostingDatabase,
     $q,
+    $scope,
     $stateParams,
     $translate,
     $window,
-    Alerter,
-    HostingDatabase,
-    coreConfig,
   ) {
-    this.$scope = $scope;
+    this.alerter = Alerter;
+    this.coreConfig = coreConfig;
+    this.databaseLink = databaseLink;
+    this.hostingDatabase = HostingDatabase;
     this.$q = $q;
+    this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.$window = $window;
-    this.alerter = Alerter;
-    this.hostingDatabase = HostingDatabase;
-    this.coreConfig = coreConfig;
   }
 
   $onInit() {
