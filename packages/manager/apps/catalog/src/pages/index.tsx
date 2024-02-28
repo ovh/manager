@@ -88,7 +88,7 @@ export default function Catalog() {
                 }}
                 href={item.order}
                 hoverable
-                trackingLabel={`manager_product_cards::more_info::${item.productName}`}
+                data-tracking={`catalog::manager_product_cards::more_info::${item.productName}`}
               />
             ))}
           </>

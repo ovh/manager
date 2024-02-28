@@ -8,6 +8,7 @@ export default {
     'ip-load-balancer',
     'dedicated-cdn',
     'network-security',
+    'vrack-services',
   ],
   children: [
     {
@@ -40,6 +41,17 @@ export default {
         hash: '#/network-security',
       },
       features: ['network-security'],
+    },
+    {
+      id: 'ovhvrack-services',
+      translation: 'sidebar_vrack_services',
+      serviceType: 'VRACKSERVICES',
+      badge: 'beta',
+      routing: {
+        application: 'vrack-services',
+        hash: '#/'
+      },
+      features: ['vrack-services'],
     },
     {
       id: 'ovhcloud-connect',
