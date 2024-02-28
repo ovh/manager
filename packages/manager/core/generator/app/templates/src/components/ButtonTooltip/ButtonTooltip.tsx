@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { OsdsIcon } from '@ovhcloud/ods-components/icon/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components/icon';
+import { OsdsButton, OsdsIcon } from '@ovhcloud/ods-components/react';
 import {
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
   ODS_BUTTON_TYPE,
   ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components/button';
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 interface TooltipItem {
@@ -39,7 +39,7 @@ const ButtonTooltip: React.FC<ButtonTooltipProps> = (props) => {
   }, []);
 
   const handleTooltipToggle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    event: React.MouseEvent<HTMLOsdsButtonElement, MouseEvent>,
   ) => {
     event.stopPropagation();
     setShowTooltip(!showTooltip);
