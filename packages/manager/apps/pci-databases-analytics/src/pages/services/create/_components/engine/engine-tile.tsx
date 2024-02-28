@@ -39,6 +39,7 @@ export const EngineTile = ({
         <img
           className="block w-[60px] h-[40px]"
           src={`./assets/engines/${engine.name}.png`}
+          alt={engine.name}
         />
       </div>
       <P className="text-sm">{engine.description}</P>

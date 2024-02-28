@@ -10,7 +10,6 @@ import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -40,7 +39,6 @@ import {
   ServiceCreationWithEngine,
   useAddService,
 } from '@/hooks/api/services.api.hooks';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 
 interface OrderFunnelProps {
   availabilities: database.Availability[];
@@ -67,7 +65,7 @@ const OrderFunnel = ({
     suggestions,
     catalog,
   );
-  const [showMonthlyPrice, setshowMonthlyPrice] = useState(false);
+  const [showMonthlyPrice, setShowMonthlyPrice] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
   const { t } = useTranslation('pci-databases-analytics/services/new');
@@ -91,8 +89,7 @@ const OrderFunnel = ({
     model.result.plan &&
     model.result.plan.nodes.minimum !== model.result.plan.nodes.maximum;
   const hasStorageSelection =
-    model.result.flavor &&
-    model.result.flavor.storage &&
+    model.result.flavor?.storage &&
     model.result.flavor.storage.minimum.value !==
       model.result.flavor.storage.maximum.value;
 
@@ -407,7 +404,7 @@ const OrderFunnel = ({
                       id="price-unit"
                       checked={showMonthlyPrice}
                       onCheckedChange={(checked) =>
-                        setshowMonthlyPrice(checked)
+                        setShowMonthlyPrice(checked)
                       }
                     />
                     <Label htmlFor="availabilities-table">Monthly prices</Label>

@@ -12,7 +12,7 @@ interface RegionsSelectProps {
 }
 const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
   ({ regions, value, onChange }, ref) => {
-    const [selectedContinentIndex, setSelectectedContinentIndex] = useState(0);
+    const [selectedContinentIndex, setSelectedContinentIndex] = useState(0);
     const { t } = useTranslation('regions');
     const mappedRegions = regions
       .sort((a, b) => a.order - b.order)
@@ -32,7 +32,7 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
       <div ref={ref}>
         <Tabs
           defaultValue="0"
-          onValueChange={(v) => setSelectectedContinentIndex(+v)}
+          onValueChange={(v) => setSelectedContinentIndex(+v)}
         >
           <TabsList className="flex bg-white justify-start p-0">
             {continents.map((continent, index) => (
