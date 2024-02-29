@@ -64,8 +64,13 @@ export default /* @ngInject */ ($stateProvider) => {
             return vrackServicesArray;
           }, []),
         ),
-      createVrackServiceLink: /* @ngInject */ () => 'TODO',
-      createSubnetLink: /* @ngInject */ () => 'TODO',
+      createVrackServiceLink: /* @ngInject */ (coreURLBuilder) =>
+        coreURLBuilder.buildURL('vrack-services', `#/create`),
+      createSubnetLink: /* @ngInject */ (coreURLBuilder) => (vrackServicesId) =>
+        coreURLBuilder.buildURL(
+          'vrack-services',
+          `#/${vrackServicesId}/createsubnet`,
+        ),
     },
     atInternet: {
       rename: 'netapp::dashboard::configure-network',

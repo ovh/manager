@@ -85,7 +85,7 @@
                 >
                     <oui-tile-description>
                         <a
-                            data-ng-href="{{:: $ctrl.vrackServicesLink}}"
+                            data-ng-href="{{ $ctrl.vrackServicesLink($ctrl.networkInformations.vrackServices.id)}}"
                             data-ng-bind=":: $ctrl.networkInformations.vrackServices.id"
                         ></a>
                     </oui-tile-description>
