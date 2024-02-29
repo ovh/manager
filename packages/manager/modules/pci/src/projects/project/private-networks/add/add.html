@@ -121,12 +121,8 @@
                     </oui-message>
                     <oui-field
                         data-ng-if="$ctrl.configureVlanId"
-                        aria-describedby="vlanTakenError"
                         data-label="{{:: 'pci_projects_project_network_private_create_configure_vlan' | translate }}"
                         data-help-text="{{:: '(' + ('pci_projects_project_network_private_create_configure_vlan_limits' | translate) + ')' }}"
-                        data-ng-class="{
-                            'oui-field_error': !$ctrl.isVlanAvailable($ctrl.configuration.vlanId)
-                        }"
                     >
                         <oui-numeric
                             name="vlanId"
@@ -136,22 +132,15 @@
                             data-on-change="$ctrl.regenerateNetworkAddress(modelValue)"
                         >
                         </oui-numeric>
-                        <div
-                            class="oui-field__error"
-                            data-ng-if="!$ctrl.isVlanAvailable($ctrl.configuration.vlanId)"
-                            id="vlanTakenError"
-                        >
-                            <span role="alert">
-                                <span
-                                    class="oui-icon oui-icon-error"
-                                    aria-hidden="true"
-                                ></span>
-                                <span
-                                    data-translate="pci_projects_project_network_private_create_configure_vlan_taken"
-                                ></span>
-                            </span>
-                        </div>
                     </oui-field>
+                    <oui-message
+                        type="warning"
+                        data-ng-if="!$ctrl.isVlanAvailable($ctrl.configuration.vlanId)"
+                    >
+                        <span
+                            data-translate="pci_projects_project_network_private_create_configure_vlan_taken"
+                        ></span>
+                    </oui-message>
                 </div>
             </section>
             <section>
