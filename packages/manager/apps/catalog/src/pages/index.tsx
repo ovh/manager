@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
+import { OsdsText } from '@ovhcloud/ods-components/text/react/';
+import { OsdsDivider } from '@ovhcloud/ods-components/divider/react/';
 import { Card } from '@ovhcloud/manager-components';
-import { OsdsText, OsdsDivider } from '@ovhcloud/ods-components/react';
 import {
   ODS_THEME_COLOR_INTENT,
+  ODS_THEME_SIZE,
   ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb';
@@ -56,7 +57,7 @@ export default function Catalog() {
       <br />
       <OsdsText
         level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-        size={ODS_THEME_TYPOGRAPHY_SIZE._600}
+        size={ODS_THEME_SIZE._600}
         color={ODS_THEME_COLOR_INTENT.text}
         className="mb-3"
       >
