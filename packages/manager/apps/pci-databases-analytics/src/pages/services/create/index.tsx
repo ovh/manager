@@ -12,9 +12,15 @@ import { useGetCatalog } from '@/hooks/api/catalog.api.hooks';
 import LegalMentions from '@/pages/_components/legalMentions';
 import OrderFunnel from './_components/order-funnel';
 import { database } from '@/models/database';
+import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
 
 export function breadcrumb() {
-  return 'New';
+  return (
+    <BreadcrumbItem
+      translationKey={`breadcrumb`}
+      namespace="pci-databases-analytics/services/new"
+    />
+  );
 }
 
 const Service = () => {
