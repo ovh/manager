@@ -35,40 +35,46 @@ export default class NetworkFormController {
     );
   }
 
-  $onInit() {
-    this.privateNetworks = [
-      {
-        id: null,
-        name: this.$translate.instant('kubernetes_network_form_none'),
-      },
-      ...KubernetesService.getAvailablePrivateNetworks(
-        this.privateNetworks,
-        this.region.name,
-      ),
-    ];
+  $onChanges({ region }) {
+    if (!this.boundPrivateNetworks) {
+      this.boundPrivateNetworks = [...this.privateNetworks];
+    }
 
-    if (this.hasPrivateNetwork) {
-      const foundPrivateNetwork = KubernetesService.getPrivateNetwork(
-        this.privateNetworks,
-        this.privateNetwork.id,
-      );
-      if (foundPrivateNetwork) {
-        this.privateNetwork = foundPrivateNetwork;
-        this.loadSubnets({
-          ...(this.hasSubnet && {
-            selectSubnet: (subnets) =>
-              subnets.find(({ id }) => this.subnet.id === id),
-          }),
-          ...(this.hasLoadBalancersSubnet && {
-            selectLoadBalancersSubnet: (subnets) =>
-              subnets.find(({ id }) => this.loadBalancersSubnet.id === id),
-          }),
-        }).then(() => {
-          this.isLoadBalancersSubnetShown = this.hasLoadBalancersSubnet;
-        });
+    if (region?.currentValue) {
+      this.privateNetworks = [
+        {
+          id: null,
+          name: this.$translate.instant('kubernetes_network_form_none'),
+        },
+        ...KubernetesService.getAvailablePrivateNetworks(
+          this.boundPrivateNetworks,
+          this.region.name,
+        ),
+      ];
+
+      if (this.hasPrivateNetwork) {
+        const foundPrivateNetwork = KubernetesService.getPrivateNetwork(
+          this.privateNetworks,
+          this.privateNetwork.id,
+        );
+        if (foundPrivateNetwork) {
+          this.privateNetwork = foundPrivateNetwork;
+          this.loadSubnets({
+            ...(this.hasSubnet && {
+              selectSubnet: (subnets) =>
+                subnets.find(({ id }) => this.subnet.id === id),
+            }),
+            ...(this.hasLoadBalancersSubnet && {
+              selectLoadBalancersSubnet: (subnets) =>
+                subnets.find(({ id }) => this.loadBalancersSubnet.id === id),
+            }),
+          }).then(() => {
+            this.isLoadBalancersSubnetShown = this.hasLoadBalancersSubnet;
+          });
+        }
+      } else {
+        [this.privateNetwork] = this.privateNetworks;
       }
-    } else {
-      [this.privateNetwork] = this.privateNetworks;
     }
   }
 
