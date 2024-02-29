@@ -1,12 +1,12 @@
+import { ovhUrl } from '@/components/ovhNavigation';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from '@/hooks/useNavigation';
 import { ArrowRight } from 'lucide-react';
 
 interface BillingProps {
   projectId: string;
 }
 
-export default function BillingConsumption({projectId} : BillingProps) {
+export default function BillingConsumption({ projectId }: BillingProps) {
   return (
     <>
       <div className="flex flex-col">
@@ -23,17 +23,17 @@ export default function BillingConsumption({projectId} : BillingProps) {
           </div>
           <div className="border-slate-200 border-t mx-5 my-3"></div>
           <Button className="ml-2" variant="linkBis" size="sm" asChild>
-          <a
-            href={useNavigate(
-              'public-cloud',
-              `#/pci/project/${projectId}/billing`,
-              {},
-            )}
-          >
-            View billing details
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </a>
-        </Button>
+            <a
+              href={ovhUrl(
+                'public-cloud',
+                `#/pci/project/${projectId}/billing`,
+                {},
+              )}
+            >
+              View billing details
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+          </Button>
         </div>
       </div>
     </>

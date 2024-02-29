@@ -1,3 +1,4 @@
+import { ovhUrl } from '@/components/ovhNavigation';
 import { H3, H4 } from '@/components/typography';
 import { Alert } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
@@ -12,7 +13,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { useNavigate } from '@/hooks/useNavigation';
 import { cn } from '@/lib/utils';
 import { ai } from '@/models/types';
 import { AlertTriangle, Check, ChevronDown, HelpCircle } from 'lucide-react';
@@ -32,8 +32,8 @@ const SharedRegistry = ({ projectId, regionsList }: SharedRegistryProps) => {
     <>
       <H3>Shared Docker Registries</H3>
       <Alert className="my-3 text-base py-2 font-normal" variant="warning">
-        <div className="flex flew-row items-center">
-          <AlertTriangle className="w-6 h-6 mx-3" />
+        <div className="flex items-start gap-3">
+          <AlertTriangle className="w-6 h-6" />
           <p>
             By default, we store private images of your jobs on a Docker
             Registry managed by OVHcloud, and shared with our customers. The
@@ -111,7 +111,7 @@ const SharedRegistry = ({ projectId, regionsList }: SharedRegistryProps) => {
       <div className="my-2">
         <div className="flex gap-1">
           <p>You can authenticate on the platform via all</p>
-          <a className="text-primary font-semibold" href={useNavigate('public-cloud',`#/pci/project/${projectId}/users`,{})}>configured users</a>
+          <a className="text-primary font-semibold" href={ovhUrl('public-cloud',`#/pci/project/${projectId}/users`,{})}>configured users</a>
           <p>within the same Public Cloud project.</p>
         </div>
 

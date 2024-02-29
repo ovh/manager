@@ -123,6 +123,41 @@ export interface RegistryProps {
     registryId: string,
 }
 
+export interface DatastoreProps {
+    projectId: string,
+    regionId: string,
+    alias: string,
+}
+
+export interface DatastoreCreationProps {
+    projectId: string,
+    regionId: string,
+    datastoreInput: {
+        alias: string;
+        type: string;
+        owner: string;
+        endpoint: string;
+        credentials: {
+            git?: {
+                basicAuth?: {
+                    username?: string;
+                    password?: string;
+                };
+                sshKeypair?: {
+                    privateKey?: string;
+                    publicKey?: string;
+                };
+            };
+            s3?: {
+                accessKey?: string;
+                secretKey?: string;
+                region?: string;
+            };
+        }
+    }
+};
+
+
 export const aiApi = {
     getRegions: async (projectId: string) => apiClient.v6.get(
         `/cloud/project/${projectId}/ai/capabilities/region`,
@@ -144,7 +179,7 @@ export const aiApi = {
         projectId,
         userInput,
     }: UserCreationProps
-    ) => 
+    ) =>
         await apiClient.v6.post(
             `/cloud/project/${projectId}/user`,
             userInput,
@@ -155,7 +190,7 @@ export const aiApi = {
         projectId,
         tokenInput,
     }: TokenGenerationProps
-    ) => 
+    ) =>
         await apiClient.v6.post(
             `/cloud/project/${projectId}/ai/token`,
             tokenInput,
@@ -166,7 +201,7 @@ export const aiApi = {
         projectId,
         tokenId,
     }: TokenProps
-    ) => 
+    ) =>
         await apiClient.v6.post(
             `/cloud/project/${projectId}/ai/token/${tokenId}/renew`,
         )
@@ -198,13 +233,39 @@ export const aiApi = {
         projectId,
         registryInput,
     }: RegistryCreationProps
-    ) => 
+    ) =>
         await apiClient.v6.post(
             `/cloud/project/${projectId}/ai/registry`,
             registryInput,
         )
             .then((res) => res.data as string)
     ,
+    getDatastores: async (projectId: string, region: string) => apiClient.v6.get(
+        `/cloud/project/${projectId}/ai/data/region/${region}/alias`,
+    ).then(res => res.data as ai.DataStore[])
+    ,
+    addDatastore: async ({
+        projectId,
+        regionId,
+        datastoreInput
+    }: DatastoreCreationProps
+    ) =>
+        await apiClient.v6.post(
+            `/cloud/project/${projectId}/ai/data/region/${regionId}/alias`,
+            datastoreInput,
+        )
+            .then((res) => res.data as string)
+    ,
+    deleteDatastore: async ({
+        projectId,
+        regionId,
+        alias,
+    }: DatastoreProps
+    ) => {
+        await apiClient.v6.delete(
+            `/cloud/project/${projectId}/ai/data/region/${regionId}/alias/${alias}`,
+        )
+    },
 };
 
 export const notebookApi = {
@@ -270,7 +331,7 @@ export const notebookApi = {
         productId,
         dataSyncSpec,
     }: DataSyncProps
-    ) => 
+    ) =>
         await apiClient.v6.post(
             `/cloud/project/${projectId}/ai/notebook/${productId}/datasync`,
             dataSyncSpec,
@@ -281,7 +342,7 @@ export const notebookApi = {
         projectId,
         notebookSpec,
     }: OrderNbProps
-    ) => 
+    ) =>
         await apiClient.v6.post(
             `/cloud/project/${projectId}/ai/notebook/`,
             notebookSpec,
@@ -293,13 +354,13 @@ export const notebookApi = {
         notebookId,
         notebookSpec,
     }: LabelsProps
-    ) => 
+    ) =>
         await apiClient.v6.put(
             `/cloud/project/${projectId}/ai/notebook/${notebookId}`,
             notebookSpec,
         )
             .then((res) => res.data as string)
-    
+
 };
 
 export const jobsApi = {
@@ -357,7 +418,7 @@ export const jobsApi = {
         productId,
         dataSyncSpec,
     }: DataSyncProps
-    ) => 
+    ) =>
         await apiClient.v6.post(
             `/cloud/project/${projectId}/ai/job/${productId}/datasync`,
             dataSyncSpec,
@@ -374,7 +435,7 @@ export const jobsApi = {
             },
         ).then(res => res.data as ai.Logs)
     ,
-    updateLabel: async ({ projectId, jobId, labels }: LabelsJobProps) => 
+    updateLabel: async ({ projectId, jobId, labels }: LabelsJobProps) =>
         await apiClient.v6.put(
             `/cloud/project/${projectId}/ai/job/${jobId}/label`,
             labels,
@@ -438,21 +499,21 @@ export const appsApi = {
         productId,
         dataSyncSpec,
     }: DataSyncProps
-    ) => 
+    ) =>
         await apiClient.v6.post(
             `/cloud/project/${projectId}/ai/app/${productId}/datasync`,
             dataSyncSpec,
         )
             .then((res) => res.data as string)
     ,
-    updateLabel: async ({ projectId, appId, labels }: LabelsAppProps) => 
+    updateLabel: async ({ projectId, appId, labels }: LabelsAppProps) =>
         await apiClient.v6.put(
             `/cloud/project/${projectId}/ai/app/${appId}/label`,
             labels,
         )
             .then((res) => res.data as string)
     ,
-    updateDockerImage: async ({ projectId, appId, imageSpec }: DockerImageProps) => 
+    updateDockerImage: async ({ projectId, appId, imageSpec }: DockerImageProps) =>
         await apiClient.v6.put(
             `/cloud/project/${projectId}/ai/app/${appId}/image`,
             imageSpec,
@@ -464,7 +525,7 @@ export const appsApi = {
         appId,
         httpPortSpec,
     }: HttpPortProps
-    ) => 
+    ) =>
         await apiClient.v6.put(
             `/cloud/project/${projectId}/ai/app/${appId}`,
             httpPortSpec,
@@ -476,7 +537,7 @@ export const appsApi = {
         appId,
         scalingStrategyInput,
     }: ScalingStrategyProps
-    ) => 
+    ) =>
         await apiClient.v6.put(
             `/cloud/project/${projectId}/ai/app/${appId}/scalingstrategy`,
             scalingStrategyInput,

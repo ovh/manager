@@ -1,6 +1,6 @@
+import { ovhUrl } from '@/components/ovhNavigation';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from '@/hooks/useNavigation';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ export default function ServicesConsumption({
         <p className="font-semibold">{title}</p>
         <Button className="mb-2" variant="linkBis" size="sm" asChild>
           {isExternalLink ? (
-            <a href={useNavigate('public-cloud', link, {})}>
+            <a href={ovhUrl('public-cloud', link, {})}>
               {titleLink}
               <ArrowRight className="w-4 h-4 ml-2" />
             </a>

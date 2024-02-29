@@ -25,7 +25,7 @@ import { Input } from '@/components/ui/input';
 import AddTokenModal, { AddTokenSubmitData } from './_components/addTokenModal';
 import { DeleteTokenSubmitData } from './_components/deleteTokenModal';
 import AlertMessage, { Message } from '../../_components/alertMessage';
-import { useNavigate } from '@/hooks/useNavigation';
+import { ovhUrl } from '@/components/ovhNavigation';
 
 export const Handle = {
   breadcrumb: () => 'Users & Tokens',
@@ -197,7 +197,6 @@ export default function DashboardHomePage() {
   });
 
   const deleteMessages = () => {
-    console.log('inDeleteMessages');
     setMessages([]);
   };
 
@@ -236,7 +235,7 @@ export default function DashboardHomePage() {
         />
         <Button className="mb-4" variant="linkBis" size="sm" asChild>
           <a
-            href={useNavigate(
+            href={ovhUrl(
               'public-cloud',
               `#/pci/project/${projectId}/users`,
               {},

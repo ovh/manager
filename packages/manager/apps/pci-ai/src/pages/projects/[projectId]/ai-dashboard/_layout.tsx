@@ -1,10 +1,10 @@
+import { ovhUrl } from '@/components/ovhNavigation';
 import TabsMenu from '@/components/tabs-menu';
 import { H2 } from '@/components/typography';
 import { Button } from '@/components/ui/button';
 import { useGetRegions } from '@/hooks/api/ai/useGetRegions';
 import { useGetTokens } from '@/hooks/api/ai/useGetTokens';
 import { useGetUsers } from '@/hooks/api/ai/useGetUsers';
-import { useNavigate } from '@/hooks/useNavigation';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { ai, user } from '@/models/types';
 import { UseQueryResult } from '@tanstack/react-query';
@@ -61,7 +61,7 @@ export default function AiDashboardLayout() {
       <p>Discover our full AI Tools range!</p>
       <Button className='mb-4' variant="linkBis" size="sm" asChild>
         <a
-          href={useNavigate(
+          href={ovhUrl(
             'public-cloud',
             `#/pci/project/${projectId}/prices/#ai-&-machine-learning`,
             {},

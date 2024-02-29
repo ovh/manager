@@ -20,7 +20,7 @@ import AddRegistryModal, {
 } from './_components/addRegistryModal';
 import AlertMessage, { Message } from '../../_components/alertMessage';
 import SharedRegistry from './_components/sharedDockerRegistries';
-import { useNavigate } from '@/hooks/useNavigation';
+import { ovhUrl } from '@/components/ovhNavigation';
 
 export default function DashboardRegistriesPage() {
   const { projectId } = useRequiredParams<{ projectId: string }>();
@@ -56,7 +56,6 @@ export default function DashboardRegistriesPage() {
       RegistriesRefetch();
     },
     onError: (error: Error) => {
-      console.log(error);
       toast.error(
         `A error occured while creating your registry: ${error.message}`,
       );
@@ -124,7 +123,7 @@ export default function DashboardRegistriesPage() {
       </p>
       <Button className="mb-4" variant="linkBis" size="sm" asChild>
         <a
-          href={useNavigate(
+          href={ovhUrl(
             'public-cloud',
             `#/pci/project/${projectId}/private-registry`,
             {},

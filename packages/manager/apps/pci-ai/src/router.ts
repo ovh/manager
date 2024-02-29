@@ -7,6 +7,7 @@ export type Path =
   | `/projects/:projectId`
   | `/projects/:projectId/ai-dashboard`
   | `/projects/:projectId/ai-dashboard/cli`
+  | `/projects/:projectId/ai-dashboard/datastore`
   | `/projects/:projectId/ai-dashboard/home`
   | `/projects/:projectId/ai-dashboard/registries`
   | `/projects/:projectId/ai-dashboard/users-tokens`
@@ -29,6 +30,7 @@ export type Params = {
   '/projects/:projectId': { projectId: string }
   '/projects/:projectId/ai-dashboard': { projectId: string }
   '/projects/:projectId/ai-dashboard/cli': { projectId: string }
+  '/projects/:projectId/ai-dashboard/datastore': { projectId: string }
   '/projects/:projectId/ai-dashboard/home': { projectId: string }
   '/projects/:projectId/ai-dashboard/registries': { projectId: string }
   '/projects/:projectId/ai-dashboard/users-tokens': { projectId: string }
