@@ -1,0 +1,9 @@
+{
+  "tableHeadType": "Type",
+  "tableHeadCores": "vCores",
+  "tableHeadMemory": "Mémoire",
+  "tableHeadStorage": "Stockage utile",
+  "tableHeadPrice-hourly": "Coût/heure/nœud (estimé)",
+  "tableHeadPrice-monthly": "Coût/mois/nœud (estimé)",
+  "tableCellStorageRange": "De {{min}} à {{max}}"
+}
