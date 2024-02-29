@@ -18,9 +18,7 @@ export const EngineTile = ({
   selected: boolean;
   onChange: (engine: Engine, version: Version) => void;
 }) => {
-  const { t } = useTranslation(
-    'pci-databases-analytics/components/engine-tile',
-  );
+  const { t } = useTranslation('pci-databases-analytics/components/engine');
   const [selectedVersion, setSelectedVersion] = useState<Version>(version);
   const handleEngineClick = () => {
     onChange(engine, selectedVersion);

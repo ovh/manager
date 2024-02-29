@@ -1,6 +1,8 @@
 import React from 'react';
 import { UseQueryResult } from '@tanstack/react-query';
-import { Network as NetworkIcon } from 'lucide-react';
+import { HelpCircle, Network as NetworkIcon } from 'lucide-react';
+import { Trans, useTranslation } from 'react-i18next';
+import { useParams } from 'react-router';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Network, NetworkTypeEnum, Subnet } from '@/models/network';
@@ -15,7 +17,12 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { A, P } from '@/components/typography';
+import { A, OvhLink, P } from '@/components/typography';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 interface NetworkOptionsProps {
   value: NetworkOptionValue;
@@ -39,6 +46,10 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
     },
     ref,
   ) => {
+    const { projectId } = useParams();
+    const { t } = useTranslation(
+      'pci-databases-analytics/components/order-options',
+    );
     const hasPrivateNetwork = availableNetworks.includes(
       database.NetworkTypeEnum.private,
     );
@@ -62,7 +73,7 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
             }
           >
             <SelectTrigger>
-              <SelectValue placeholder="Select a network" />
+              <SelectValue placeholder={t('networkInputPlaceholder')} />
             </SelectTrigger>
             <SelectContent>
               {networks.map((network: Network) => (
@@ -78,13 +89,20 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
       return (
         <Alert variant="warning">
           <NetworkIcon className="h-4 w-4" />
-          <AlertTitle>No network found</AlertTitle>
+          <AlertTitle>{t('noNetworkFoundTitle')}</AlertTitle>
           <AlertDescription>
-            You don't have a network for this region. Please use this link to
-            create one:{' '}
-            <A href="" disabled>
-              create a private network
-            </A>
+            <Trans
+              t={t}
+              i18nKey={'noNetworkFoundDescription'}
+              components={{
+                anchor: (
+                  <OvhLink
+                    application="public-cloud"
+                    path={`#/pci/projects/${projectId}/private-networks/new`}
+                  ></OvhLink>
+                ),
+              }}
+            ></Trans>
           </AlertDescription>
         </Alert>
       );
@@ -108,7 +126,7 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
             }
           >
             <SelectTrigger>
-              <SelectValue placeholder="Select a subnet" />
+              <SelectValue placeholder={'subnetInputPlaceholder'} />
             </SelectTrigger>
             <SelectContent>
               {subnets.map((subnet) => (
@@ -124,32 +142,40 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
       return (
         <Alert variant="warning">
           <NetworkIcon className="h-4 w-4" />
-          <AlertTitle>No subnet found</AlertTitle>
+          <AlertTitle>{t('noNetworkFoundTitle')}</AlertTitle>
           <AlertDescription>
-            You don't have a subnet for this region attached to the selected
-            network. Please visit the network section to configure your
-            networks: <A href="">create a private network</A>
+            <Trans
+              t={t}
+              i18nKey={'noNetworkFoundDescription'}
+              components={{
+                anchor: (
+                  <OvhLink
+                    application="public-cloud"
+                    path={`#/pci/projects/${projectId}/gateway/new`}
+                  ></OvhLink>
+                ),
+              }}
+            ></Trans>
           </AlertDescription>
         </Alert>
       );
     };
-
     const renderNetworkOptions = () => {
       if (!hasPrivateNetwork) {
-        return <P>Cette offre n'est pas compatible avec les réseaux privés</P>;
+        return <P>{t('noPrivateNetworkOffer')}</P>;
       }
 
       if (value.type === database.NetworkTypeEnum.private) {
         return (
           <>
             <div>
-              <Label>Network</Label>
+              <Label>{t('networkInputLabel')}</Label>
               {renderNetworkSelect()}
             </div>
             {networkQuery.isFetching ||
               (networks.length > 0 && (
                 <div>
-                  <Label>Subnet</Label>
+                  <Label>{t('subnetInputLabel')}</Label>
                   {renderSubnetSelect()}
                 </div>
               ))}
@@ -180,7 +206,15 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
               value={database.NetworkTypeEnum.public}
               id="public-network"
             />
-            <Label htmlFor="public-network">Réseau public (Internet)</Label>
+            <Label htmlFor="public-network">{t('networkType-public')}</Label>
+            <Popover>
+              <PopoverTrigger>
+                <HelpCircle className="size-4" />
+              </PopoverTrigger>
+              <PopoverContent>
+                <P>{t('networkDescription-public')}</P>
+              </PopoverContent>
+            </Popover>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem
@@ -193,9 +227,32 @@ const NetworkOptions = React.forwardRef<HTMLInputElement, NetworkOptionsProps>(
               htmlFor="private-network-radio"
               className="peer-disabled:text-gray-500 peer-disabled:opacity-50"
             >
-              Réseau privé (vRack)
+              {t('networkType-private')}
             </Label>
+            <Popover>
+              <PopoverTrigger>
+                <HelpCircle className="size-4" />
+              </PopoverTrigger>
+              <PopoverContent>
+                <P>{t('networkDescription-private')}</P>
+              </PopoverContent>
+            </Popover>
           </div>
+          <P>
+            <Trans
+              t={t}
+              i18nKey={'networkConfigurationLink'}
+              components={{
+                anchor: (
+                  <A
+                    href="https://docs.ovh.com/fr/public-cloud/public-cloud-vrack/"
+                    target="_blank"
+                    rel="noopener"
+                  ></A>
+                ),
+              }}
+            ></Trans>
+          </P>
         </RadioGroup>
         {renderNetworkOptions()}
       </>
