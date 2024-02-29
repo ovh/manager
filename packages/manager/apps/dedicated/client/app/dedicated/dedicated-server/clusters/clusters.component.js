@@ -14,6 +14,7 @@ export default {
     paginationTotalCount: '<',
     sort: '<',
     sortOrder: '<',
+    isMultiAZAvailable: '<',
   },
   controller,
   template,
