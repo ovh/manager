@@ -26,8 +26,12 @@ const getByRancherIdProjectIdQueryKey = (
 
 export const getRancherProjectById = async (
   projectId?: string,
-): Promise<IcebergFetchResultV2<RancherService>> =>
-  apiClient.v2.get(`/publicCloud/project/${projectId}/rancher`);
+): Promise<RancherService[]> => {
+  const response = await apiClient.v2.get(
+    `/publicCloud/project/${projectId}/rancher`,
+  );
+  return response.data;
+};
 
 export const getByRancherIdProjectId = async (
   projectId?: string,

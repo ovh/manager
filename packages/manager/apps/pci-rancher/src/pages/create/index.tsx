@@ -12,8 +12,8 @@ import useCreateRancher from '@/hooks/useCreateRancher';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import { getRanchersUrl } from '@/utils/route';
 import usePciProject from '@/hooks/usePciProject';
-import { PciProjectPlanCode } from '@/api/api.type';
-import { useRanchers } from '@/hooks/useRancher';
+import { PciProjectPlanCode, RancherService } from '@/api/api.type';
+import { ranchersQueryKey, useRanchers } from '@/hooks/useRancher';
 import {
   useSimpleTrackingPage,
   useTrackingPage,
@@ -23,6 +23,7 @@ import {
   TrackingEvent,
   TrackingPageView,
 } from '../../utils/tracking';
+import queryClient from '@/query.client';
 
 export default function Create() {
   const { projectId } = useParams();
@@ -35,15 +36,18 @@ export default function Create() {
 
   const { data: project } = usePciProject();
 
-  const { data: ranchers, refetch: refetchRancherList } = useRanchers();
+  const { data: ranchers } = useRanchers();
+  const ranchersQueryKeyValue = ranchersQueryKey(projectId);
 
-  const { createRancher } = useCreateRancher({
+  const { mutate: createRancher, status } = useCreateRancher({
     projectId,
     onMutate: () => setHasRancherCreationError(false),
-    onSuccess: () => {
-      refetchRancherList();
+    onSuccess: (data: { data: RancherService }) => {
+      queryClient.setQueryData(
+        ranchersQueryKeyValue,
+        (old: RancherService[]) => [...old, data.data],
+      );
       trackingPage(`${TRACKING_PATH}::${TrackingEvent.add}-success`);
-
       navigate(getRanchersUrl(projectId));
     },
     onError: () => {
@@ -66,7 +70,8 @@ export default function Create() {
     <PageLayout>
       <Breadcrumb />
       <CreateRancher
-        hasSomeRancher={ranchers?.data.length > 0}
+        isCreateRancherLoading={status === 'pending'}
+        hasSomeRancher={ranchers?.length > 0}
         projectId={projectId}
         hasRancherCreationError={hasRancherCreationError}
         onCreateRancher={createRancher}
