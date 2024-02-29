@@ -98,7 +98,11 @@ const VersionSelector = ({
                     <Span>{engineVersion.name}</Span>
                     <div className="ml-2 flex gap-1">
                       {engineVersion.tags.map((tag) => (
-                        <Badge key={tag} variant={getTagVariant(tag)}>
+                        <Badge
+                          key={tag}
+                          variant={getTagVariant(tag)}
+                          className="text-xs h-4"
+                        >
                           {t(`versionTag-${tag}`, tag)}
                         </Badge>
                       ))}

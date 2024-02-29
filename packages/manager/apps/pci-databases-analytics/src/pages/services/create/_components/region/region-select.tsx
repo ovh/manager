@@ -4,6 +4,7 @@ import RadioTile from '@/components/radio-tile';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Region } from '@/models/order-funnel';
 import { Span } from '@/components/typography';
+import { Badge, BadgeProps } from '@/components/ui/badge';
 
 interface RegionsSelectProps {
   regions: Region[];
@@ -14,11 +15,21 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
   ({ regions, value, onChange }, ref) => {
     const [selectedContinentIndex, setSelectedContinentIndex] = useState(0);
     const { t } = useTranslation('regions');
+    const getTagVariant = (tag: string): BadgeProps['variant'] => {
+      switch (tag) {
+        case 'new':
+          return 'success';
+        case 'soonDeprecated':
+          return 'warning';
+        default:
+          return 'info';
+      }
+    };
     const mappedRegions = regions
       .sort((a, b) => a.order - b.order)
       .map((r) => ({
         name: r.name,
-        // regionItem: r,
+        tags: r.tags,
         label: t(`region_${r.name}_micro`, { micro: r.name }),
         continent: t(`region_continent_${r.name}`),
       }));
@@ -60,11 +71,24 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
                   value={region.name}
                   checked={region.name === value}
                 >
-                  <Span
-                    className={`${region.name === value ? 'font-bold' : ''}`}
-                  >
-                    {region.label}
-                  </Span>
+                  <div className="flex w-full gap-2 justify-between">
+                    <Span
+                      className={`${region.name === value ? 'font-bold' : ''}`}
+                    >
+                      {region.label}
+                    </Span>
+                    <div className="flex gap-1">
+                      {region.tags.map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant={getTagVariant(tag)}
+                          className="text-xs h-4"
+                        >
+                          {t(`regionTag-${tag}`, tag)}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
                 </RadioTile>
               ))}
           </div>
