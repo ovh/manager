@@ -143,7 +143,7 @@ export default function HostedPrivateCloudSidebar() {
         label: t('sidebar_network'),
         icon: getIcon('oui-icon oui-icon-bandwidth_concept'),
         minSearchItems: 0,
-        routeMatcher: new RegExp('^(/ip(/|$)|/network-security|(/network)?/iplb|/vrack|/cloud-connect)'),
+        routeMatcher: new RegExp('^(/ip(/|$)|(/network)?/iplb|/vrack|/cloud-connect)'),
         subItems: [
           feature.ip && {
             id: 'hpc-ip',

@@ -247,7 +247,7 @@ export default function DedicatedSidebar() {
         label: t('sidebar_network'),
         icon: getIcon('oui-icon oui-icon-bandwidth_concept'),
         minSearchItems: 0,
-        routeMatcher: new RegExp('^(/ip(/|$)|/network-security|/vrack|/cloud-connect|(/network)?/iplb)'),
+        routeMatcher: new RegExp('^(/ip(/|$)|/vrack|/cloud-connect|(/network)?/iplb)'),
         subItems: [
           feature.ip && {
             id: 'dedicated-ip',
