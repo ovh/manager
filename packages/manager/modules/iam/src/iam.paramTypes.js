@@ -12,24 +12,7 @@ import { ENTITY, IDENTITY_TYPE } from './iam.constants';
 
 const urnType = 'urn';
 const urnPattern = /urn:v[0-9]:(?:eu|ca|us|labeu):[a-z]+:.+/;
-const urnRegExp = /^urn:v([0-9]):(eu|ca|us|labeu):([a-z]+):(.+?)$/;
 const urnIdentityRegExp = /^urn:v([0-9]):(eu|ca|us|labeu):([a-z]+):([a-z]+):(.+?)$/;
-
-/**
- * Encode a urn object to a string
- * @param {Object} object
- * @returns {string}
- */
-const encodeUrn = (object) => {
-  const { version, region, entity, components } = object;
-  return [
-    'urn',
-    `v${version}`,
-    region.toLowerCase(),
-    entity,
-    ...components,
-  ].join(':');
-};
 
 /**
  * @typedef {Object} UrnIdentityObject
@@ -129,27 +112,6 @@ const decodeIdentityUrn = (urn) => {
 };
 
 /**
- * Decode a urn object from a string
- * @param {string} string
- * @returns {Object}
- */
-const decodeUrn = (string) => {
-  const [match, version, region, entity, components] =
-    urnRegExp.exec(string) || [];
-  if (!match) {
-    return null;
-  }
-  const splittedComponents = components.split(':');
-  return {
-    version: parseInt(version, 10),
-    region: region.toUpperCase(),
-    entity,
-    components: splittedComponents,
-    componentsString: splittedComponents.slice(1).join(':'),
-  };
-};
-
-/**
  * Whether the given object is of type urn
  * @param {Object} object
  * @returns {boolean}
@@ -174,8 +136,6 @@ const isUrn = (object) => {
 const areUrnEquals = (urnA, urnB) => urnA === urnB || isEqual(urnA, urnB);
 
 const urn = {
-  decode: decodeUrn,
-  encode: encodeUrn,
   equals: areUrnEquals,
   is: isUrn,
   pattern: urnPattern,
@@ -204,14 +164,7 @@ const uuid = {
   type: uuidType,
 };
 
-export {
-  decodeUrn,
-  encodeIdentityUrn,
-  decodeIdentityUrn,
-  encodeUrn,
-  uuidType,
-  urnType,
-};
+export { encodeIdentityUrn, decodeIdentityUrn, uuidType, urnType };
 
 export default {
   urn,

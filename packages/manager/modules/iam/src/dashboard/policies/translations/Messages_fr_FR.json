@@ -1,8 +1,6 @@
 {
   "iam_policies_datagrid_action_delete_policy": "Supprimer la politique",
-  "iam_policies_datagrid_action_edit_identities": "Gérer les identités associées",
   "iam_policies_datagrid_action_edit_policy": "Modifier la politique",
-  "iam_policies_datagrid_action_read_identities": "Consulter les identités associées",
   "iam_policies_datagrid_action_read_policy": "Voir la politique",
   "iam_policies_datagrid_column_actions": "Nombre d'actions",
   "iam_policies_datagrid_column_identities": "Nombre d'identités",

@@ -31,19 +31,6 @@ export default class PoliciesController extends AbstractCursorDatagridController
   }
 
   /**
-   * Go to policy's identities edition
-   * @param {string} id The policy id
-   * @returns {Promise}
-   */
-  editIdentities({ id }) {
-    this.trackClick(TAG.POLICIES__MANAGE_IDENTITIES);
-    return this.goTo({
-      name: 'iam.identities',
-      params: { policy: id },
-    });
-  }
-
-  /**
    * Go to policy edition
    * @param {string} id The policy id
    * @returns {Promise}
