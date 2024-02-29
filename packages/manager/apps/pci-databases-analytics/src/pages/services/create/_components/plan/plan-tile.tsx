@@ -17,7 +17,7 @@ export const PlanTile = ({
   onChange: (newPlan: string) => void;
   showMonthlyPrice: boolean;
 }) => {
-  const { t } = useTranslation('pci-databases-analytics/components/plan-tile');
+  const { t } = useTranslation('pci-databases-analytics/components/plan');
   const { t: tPricing } = useTranslation('pricing');
   const pricingUnit = showMonthlyPrice ? 'monthly' : 'hourly';
   const hasPrivateNetwork = plan.networks.includes(
@@ -65,7 +65,7 @@ export const PlanTile = ({
 };
 
 PlanTile.Ram = function PlanTilesRam({ ram }: Partial<Plan>) {
-  const { t } = useTranslation('pci-databases-analytics/components/plan-tile');
+  const { t } = useTranslation('pci-databases-analytics/components/plan');
   if (!ram || ram.maximum.value === 0) return <></>;
   if (compareStorage(ram.minimum, ram.maximum) === 0) {
     return (
@@ -82,7 +82,7 @@ PlanTile.Ram = function PlanTilesRam({ ram }: Partial<Plan>) {
   );
 };
 PlanTile.Cpu = function PlanTilesCpu({ cpu }: Partial<Plan>) {
-  const { t } = useTranslation('pci-databases-analytics/components/plan-tile');
+  const { t } = useTranslation('pci-databases-analytics/components/plan');
   if (!cpu || cpu.maximum === 0) return <></>;
   if (cpu.minimum === cpu.maximum) {
     return <Span>{t('cpuSpec', { count: cpu.minimum })}</Span>;
@@ -97,7 +97,7 @@ PlanTile.Cpu = function PlanTilesCpu({ cpu }: Partial<Plan>) {
   );
 };
 PlanTile.Nodes = function PlanTilesNodes({ nodes }: Partial<Plan>) {
-  const { t } = useTranslation('pci-databases-analytics/components/plan-tile');
+  const { t } = useTranslation('pci-databases-analytics/components/plan');
   if (!nodes || nodes.maximum === 0) return <></>;
   if (nodes.minimum === nodes.maximum) {
     return <Span>{t('nodeSpec', { count: nodes.minimum })}</Span>;
@@ -113,7 +113,7 @@ PlanTile.Nodes = function PlanTilesNodes({ nodes }: Partial<Plan>) {
 };
 
 PlanTile.Storage = function PlanTileStorage({ storage }: Partial<Plan>) {
-  const { t } = useTranslation('pci-databases-analytics/components/plan-tile');
+  const { t } = useTranslation('pci-databases-analytics/components/plan');
   if (!storage || storage.maximum.value === 0) return <></>;
   if (
     storage.minimum.value === storage.maximum.value &&

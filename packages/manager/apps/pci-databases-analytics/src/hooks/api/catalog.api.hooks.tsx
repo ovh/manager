@@ -5,13 +5,14 @@ import {
 } from '@tanstack/react-query';
 import { catalogApi } from '@/api/catalog';
 import { order } from '@/models/catalog';
+import { useUser } from '../useUser';
 
 export function useGetCatalog(
   options: Omit<QueryObserverOptions, 'queryKey'> = {},
 ) {
-  // TODO: get user subsidiary
+  const user = useUser();
   const product = 'cloud';
-  const subsidiary = 'FR';
+  const subsidiary = user?.ovhSubsidiary ?? 'FR';
   const queryKey = ['order/catalog/public/cloud', subsidiary, product];
   return useQuery({
     queryKey,
