@@ -1,23 +1,8 @@
 import { test, expect, Page, ElementHandle } from '@playwright/test';
 import '@playwright-helpers/login';
 import * as translation from '../src/public/translations/catalog/Messages_en_GB.json';
-
-const clickButtonByName = async (page: Page, name: string): Promise<void> => {
-  const buttons = await page.$$('osds-button');
-
-  const targetButton = await Promise.all(
-    buttons.map(async (button: ElementHandle) => {
-      const buttonName = await button.evaluate((el: Element) =>
-        el.getAttribute('name'),
-      );
-      return buttonName === name ? button : null;
-    }),
-  ).then((results) => results.find(Boolean));
-
-  if (targetButton) {
-    await targetButton.click();
-  }
-};
+import * as filterTranslation from '../src/public/translations/catalog/filters/Messages_en_GB.json';
+import * as searchTranslation from '../src/public/translations/catalog/search/Messages_en_GB.json';
 
 const clickCheckboxByName = async (page: Page, name: string): Promise<void> => {
   const checkboxes = await page.$$('osds-checkbox');
@@ -34,6 +19,7 @@ const clickCheckboxByName = async (page: Page, name: string): Promise<void> => {
   if (targetCheckbox) {
     await targetCheckbox.click();
   } else {
+    // eslint-disable-next-line no-console
     console.warn(`Checkbox with name "${name}" not found.`);
   }
 };
@@ -45,9 +31,9 @@ const waitForProducts = async (
   await page.waitForFunction(
     ({ selector, expectedCount }) =>
       document.querySelectorAll(selector).length === expectedCount,
-    { selector: 'card', expectedCount: expectedProductCount },
+    { selector: 'osds-tile', expectedCount: expectedProductCount },
   );
-  return page.$$('');
+  return page.$$('osds-tile');
 };
 
 const validateProductCategories = async (
@@ -55,13 +41,10 @@ const validateProductCategories = async (
   expectedCategories: string[],
 ): Promise<void> => {
   const checks = products.map(async (product, index) => {
-    const tileTypeElement = await product.$('.tile-type');
-    expect(tileTypeElement).toBeTruthy();
-
-    const tileTypeText = await tileTypeElement?.textContent();
-    expect(tileTypeText?.trim()).toBe(expectedCategories[index]);
-
-    expect(await product.$('.tile-title')).toBeTruthy();
+    const tileTypeElement = await product.$$('osds-text');
+    expect(await tileTypeElement[0].textContent()).toBe(
+      expectedCategories[index],
+    );
   });
 
   await Promise.all(checks);
@@ -70,46 +53,58 @@ const validateProductCategories = async (
 test('should filter results based on Bare Metal Cloud universe', async ({
   page,
 }) => {
-  await clickButtonByName(page, 'filterButton');
-  await clickCheckboxByName(page, 'checkbox-universe-BareMetalCloud');
-  await clickButtonByName(page, 'applyFilterButton');
-
+  await page
+    .getByText(searchTranslation.manager_catalog_search_filter_button)
+    .click();
+  await clickCheckboxByName(page, 'checkbox-universe-Bare_Metal_Cloud');
+  await page
+    .getByText(filterTranslation.manager_catalog_filters_button_apply)
+    .click();
   const products = await waitForProducts(page, 5);
   await validateProductCategories(products, [
     'Dedicated Servers',
     'Virtual Private Servers',
     'Managed Bare Metal',
-    'Storage and Backup (BMC)',
-    'Storage and Backup (BMC)',
+    'Storage and Backup',
+    'Storage and Backup',
   ]);
 });
 
 test('should clear all filters when Clear All button is clicked', async ({
   page,
 }) => {
-  await clickButtonByName(page, 'filterButton');
-  await clickCheckboxByName(page, 'checkbox-universe-BareMetalCloud');
-  await clickButtonByName(page, 'applyFilterButton');
+  await page
+    .getByText(searchTranslation.manager_catalog_search_filter_button)
+    .click();
+  await clickCheckboxByName(page, 'checkbox-universe-Bare_Metal_Cloud');
+  await page
+    .getByText(filterTranslation.manager_catalog_filters_button_apply)
+    .click();
 
   await waitForProducts(page, 5);
-
-  await clickButtonByName(page, 'filterButton');
+  await page
+    .getByText(searchTranslation.manager_catalog_search_filter_button)
+    .click();
 
   const links = await page.$$('osds-link');
   const resetFilterLink = links[0];
   if (resetFilterLink) await resetFilterLink.click();
 
-  await waitForProducts(page, 40);
+  await waitForProducts(page, 41);
 });
 
 // Scenario: No results after filtering
 test('should show "No results found" when filters match no products', async ({
   page,
 }) => {
-  await clickButtonByName(page, 'filterButton');
-  await clickCheckboxByName(page, 'checkbox-universe-BareMetalCloud');
-  await clickCheckboxByName(page, 'checkbox-category-AI&machinelearning');
-  await clickButtonByName(page, 'applyFilterButton');
+  await page
+    .getByText(searchTranslation.manager_catalog_search_filter_button)
+    .click();
+  await clickCheckboxByName(page, 'checkbox-universe-Bare_Metal_Cloud');
+  await clickCheckboxByName(page, 'checkbox-category-AI_&_machine_learning');
+  await page
+    .getByText(filterTranslation.manager_catalog_filters_button_apply)
+    .click();
 
   await waitForProducts(page, 0);
 
@@ -120,9 +115,13 @@ test('should show "No results found" when filters match no products', async ({
 });
 
 test('should display chips when filter is enabled', async ({ page }) => {
-  await clickButtonByName(page, 'filterButton');
-  await clickCheckboxByName(page, 'checkbox-universe-BareMetalCloud');
-  await clickButtonByName(page, 'applyFilterButton');
+  await page
+    .getByText(searchTranslation.manager_catalog_search_filter_button)
+    .click();
+  await clickCheckboxByName(page, 'checkbox-universe-Bare_Metal_Cloud');
+  await page
+    .getByText(filterTranslation.manager_catalog_filters_button_apply)
+    .click();
 
   await waitForProducts(page, 5);
   const elements = await page.$$('osds-chip');
@@ -131,15 +130,18 @@ test('should display chips when filter is enabled', async ({ page }) => {
 });
 
 test('should clear all filters when chip is remove', async ({ page }) => {
-  await clickButtonByName(page, 'filterButton');
-  await clickCheckboxByName(page, 'checkbox-universe-BareMetalCloud');
-  await clickButtonByName(page, 'applyFilterButton');
+  await page
+    .getByText(searchTranslation.manager_catalog_search_filter_button)
+    .click();
+  await clickCheckboxByName(page, 'checkbox-universe-Bare_Metal_Cloud');
+  await page
+    .getByText(filterTranslation.manager_catalog_filters_button_apply)
+    .click();
 
   await waitForProducts(page, 5);
 
-  const elements = await page.$$('osds-chip');
-  const chipBareMetalCloud = elements[0];
-  if (chipBareMetalCloud) await chipBareMetalCloud.click();
+  const element = page.locator('osds-chip osds-icon');
+  if (element) await element.click();
 
-  await waitForProducts(page, 40);
+  await waitForProducts(page, 41);
 });
