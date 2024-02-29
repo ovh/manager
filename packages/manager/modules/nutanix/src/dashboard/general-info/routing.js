@@ -1,4 +1,4 @@
-import { FEATURES } from './constants';
+import { FEATURES, TRACKING } from './constants';
 
 const STATUS_DONE = 'DONE';
 export default /* @ngInject */ ($stateProvider) => {
@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
     url: '',
     component: 'nutanixGeneralInfo',
     resolve: {
-      trackingPrefix: /* @ngInject */ () => 'hpc::nutanix::cluster::dashboard',
+      trackingPrefix: /* @ngInject */ () => TRACKING.DASHBOARD,
       goToEditName: /* @ngInject */ ($state) => (displayName) =>
         $state.go('nutanix.dashboard.general-info.edit-display-name', {
           displayName,
@@ -55,7 +55,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .catch(() => false),
     },
     atInternet: {
-      rename: 'hpc::nutanix::cluster::dashboard',
+      rename: TRACKING.DASHBOARD,
     },
   });
 };
