@@ -164,6 +164,8 @@
         >
             <span
                 class="oui-badge"
+                data-oui-tooltip="{{ $ctrl.getStatusTooltipText($row.status) }}"
+                data-oui-tooltip-placement="top-start"
                 data-ng-class="{
                     'oui-badge_success': ($row.statusGroup === 'ACTIVE'),
                     'oui-badge_warning': ($row.statusGroup === 'PENDING'),
