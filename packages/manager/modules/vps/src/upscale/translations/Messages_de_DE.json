@@ -48,5 +48,12 @@
   "vps_upscale_elite_upgrade_error": "Bei der Änderung der Konfiguration ist ein Fehler aufgetreten.",
   "vps_upscale_agreements": "Ich nehme die <a target=\"_blank\" href=\"{{conditions}}\" rel=\"noopener\">allgemeinen Geschäftsbedingungen</a> und die <a target=\"_blank\" href=\"{{policy}}\" rel=\"noopener\">Datenschutzbestimmungen</a> an.",
   "vps_upscale_fail_vps_in_rescue_info": "Ihr VPS befindet sich im Rescue-Modus. Ein Wechsel zu einem umfangreicheren Angebot ist daher nicht möglich.",
-  "vps_upscale_fail_vps_in_rescue_action": "Bitte deaktivieren Sie den Rescue-Modus und starten Sie Ihren VPS neu."
+  "vps_upscale_fail_vps_in_rescue_action": "Bitte deaktivieren Sie den Rescue-Modus und starten Sie Ihren VPS neu.",
+  "vps_upscale_summary_current_configuration_yearly": "Aktuelle Konfiguration für eine jährliche Zahlung",
+  "vps_upscale_summary_final_configuration_yearly": "Finale Konfiguration für eine jährliche Zahlung",
+  "vps_upscale_summary_price_yearly": "Anteiliger Preis für das laufende Jahr",
+  "vps_upscale_summary_price_yearly_with_payment_method_validation": "Wenn Sie diese Auswahl bestätigen, werden Ihnen anteilig {{ price }} für das laufende Jahr berechnet.",
+  "vps_upscale_summary_price_yearly_without_payment_method_validation": "Wenn Sie diese Auswahl bestätigen, werden Sie zu einem Bestellschein weitergeleitet. Dort können Sie den anteiligen Betrag von {{ price }} bezahlen.",
+  "vps_upscale_success_yearly_with_payment_method": "Der Wechsel zur neuen Reihe wurde registriert. Ihnen wurden anteilig {{ price }} für das laufende Jahr berechnet.",
+  "vps_upscale_elite_upgrade_success_yearly_with_payment_method": "Die Änderung der Konfiguration wurde registriert. Ihnen wurden anteilig {{ price }} für das laufende Jahr berechnet."
 }

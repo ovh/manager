@@ -12,13 +12,8 @@
     <span class="d-flex flex-row justify-content-between">
         <span class="vps-upscale-summary-price__price-label">
             <strong
-                data-ng-if="$ctrl.paymentType === $ctrl.paymentTypes.MONTHLY"
-                data-translate="vps_upscale_summary_price_monthly"
+                data-translate="{{'vps_upscale_summary_price_' + $ctrl.paymentType}}"
             ></strong>
-            <span
-                data-ng-if="$ctrl.paymentType === $ctrl.paymentTypes.UPFRONT"
-                data-translate="vps_upscale_summary_price_upfront"
-            ></span>
         </span>
         <span
             class="vps-upscale-summary-price__price-value ml-3"
