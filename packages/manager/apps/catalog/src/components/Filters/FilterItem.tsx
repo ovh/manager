@@ -1,14 +1,9 @@
 import React from 'react';
-import {
-  OsdsText,
-  OsdsCheckbox,
-  OsdsCheckboxButton,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  ODS_CHECKBOX_BUTTON_SIZE,
-} from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/text/react';
+import { OsdsCheckbox } from '@ovhcloud/ods-components/checkbox/react';
+import { OsdsCheckboxButton } from '@ovhcloud/ods-components/checkbox-button/react';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+import { ODS_CHECKBOX_BUTTON_SIZE } from '@ovhcloud/ods-components/checkbox-button';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { toFilterValue } from '@/utils/utils';
 

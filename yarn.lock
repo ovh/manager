@@ -1814,7 +1814,7 @@
     core-js-pure "^3.30.2"
     regenerator-runtime "^0.14.0"
 
-"@babel/runtime@7.22.15", "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.14.5", "@babel/runtime@^7.15.4", "@babel/runtime@^7.16.3", "@babel/runtime@^7.17.8", "@babel/runtime@^7.18.3", "@babel/runtime@^7.21.0", "@babel/runtime@^7.22.15", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
+"@babel/runtime@7.22.15", "@babel/runtime@^7.1.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.14.5", "@babel/runtime@^7.15.4", "@babel/runtime@^7.16.3", "@babel/runtime@^7.17.8", "@babel/runtime@^7.18.3", "@babel/runtime@^7.21.0", "@babel/runtime@^7.22.15", "@babel/runtime@^7.3.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
   version "7.22.15"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.22.15.tgz#38f46494ccf6cf020bd4eed7124b425e83e523b8"
   integrity sha512-T0O+aa+4w0u06iNmapipJXMV4HoUir03hpx3/YqXXhu9xim3w+dVphjFWl1OH8NbZHw5Lbm9k45drDkgq2VNNA==
@@ -2733,6 +2733,38 @@
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
   integrity sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==
+
+"@hapi/address@2.x.x":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"
+  integrity sha512-QD1PhQk+s31P1ixsX0H0Suoupp3VMXzIVMSwobR3F3MSUO2YCV0B7xqLcUw/Bh8yuvd3LhpyqLQWTNcRmp6IdQ==
+
+"@hapi/bourne@1.x.x":
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@hapi/bourne/-/bourne-1.3.2.tgz#0a7095adea067243ce3283e1b56b8a8f453b242a"
+  integrity sha512-1dVNHT76Uu5N3eJNTYcvxee+jzX4Z9lfciqRRHCU27ihbUcYi+iSc2iml5Ke1LXe1SyJCLA0+14Jh4tXJgOppA==
+
+"@hapi/hoek@8.x.x", "@hapi/hoek@^8.3.0":
+  version "8.5.1"
+  resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-8.5.1.tgz#fde96064ca446dec8c55a8c2f130957b070c6e06"
+  integrity sha512-yN7kbciD87WzLGc5539Tn0sApjyiGHAJgKvG9W8C7O+6c7qmoQMfVs0W4bX17eqz6C78QJqqFrtgdK5EWf6Qow==
+
+"@hapi/joi@^15.0.0":
+  version "15.1.1"
+  resolved "https://registry.yarnpkg.com/@hapi/joi/-/joi-15.1.1.tgz#c675b8a71296f02833f8d6d243b34c57b8ce19d7"
+  integrity sha512-entf8ZMOK8sc+8YfeOlM8pCfg3b5+WZIKBfUaaJT8UsjAAPjartzxIYm3TIbjvA4u+u++KbcXD38k682nVHDAQ==
+  dependencies:
+    "@hapi/address" "2.x.x"
+    "@hapi/bourne" "1.x.x"
+    "@hapi/hoek" "8.x.x"
+    "@hapi/topo" "3.x.x"
+
+"@hapi/topo@3.x.x":
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/@hapi/topo/-/topo-3.1.6.tgz#68d935fa3eae7fdd5ab0d7f953f3205d8b2bfc29"
+  integrity sha512-tAag0jEcjwH+P2quUfipd7liWCNX2F8NvYjQp2wtInsZxnMlypdw0FtAOLxtvvkO+GSRRbmNi8m/5y42PQJYCQ==
+  dependencies:
+    "@hapi/hoek" "^8.3.0"
 
 "@hutson/parse-repository-url@^3.0.0":
   version "3.0.2"
@@ -4689,15 +4721,36 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-6.7.7.tgz#661c47f8a37a37e93772db54167056beb1369f00"
   integrity sha512-mp9Sk/Rs4cmW0xtMmLJJPmX+Sc0RrMeZ1NpBoQAmDekxR5Ax5AneH3qHDbGxxF3raSW/QxIN2FMiAeH5Bz/8zg==
 
+"@ovhcloud/ods-cdk@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-cdk/-/ods-cdk-16.6.0.tgz#cacb18cf01c21df8f2c0bf225a6f696dabe7e292"
+  integrity sha512-l5wGJqZE3fz4THRXP8fXJhgef03tckBOo/6rWxJB7GTFYdy911IFGocp3NftyFRiWnzlgXha390jRc+aRPD24Q==
+  dependencies:
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
 "@ovhcloud/ods-cdk@^14.1.1":
   version "14.1.1"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-cdk/-/ods-cdk-14.1.1.tgz#341ed0bfed7f599b253c2d087ba2f15a8915c436"
   integrity sha512-reePwUvxbOXOdIzHGyeKFhBbMSWiApipNLSrMEBb6cl6Wdv/HOHbv3T+w7xfSACDFhJqLg8okEmtMIU4usvlaw==
 
+"@ovhcloud/ods-common-core@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-16.6.0.tgz#dfc466da4e6fe31bc72bb52a501c65c6a47c55ef"
+  integrity sha512-T5IjYpnKLOBijQYUpnxKs4P+95MZ8Gp/D5Yr7NDrwa8X86Aqp/f4fOrDeLrCN5UOfN8ANqEkA9L24kI1LabHxw==
+
 "@ovhcloud/ods-common-core@17.1.0", "@ovhcloud/ods-common-core@^17.1.0":
   version "17.1.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-core/-/ods-common-core-17.1.0.tgz#e7aa2d1d1cd65a2e063c7798109d5b944e565aa4"
   integrity sha512-Kfn8qgfWh97qGrdqWRPgde4pW/pL8qrHxHKZs2RZabgVMRbQ6K3Dkl1yKJXjo5U0SMoh8oWmO0JbnWk5k+MOvA==
+
+"@ovhcloud/ods-common-stencil@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-stencil/-/ods-common-stencil-16.6.0.tgz#b26d81f6f11b16a3783ee107960bbf334f2bfbbc"
+  integrity sha512-Y+GmI95ad67IaSRc/A3FACQQa3RX6LcWlzlvhBFIGqZWNdqjPKjqoQ7qF1yQCHKj1/A/A3M63k5Yo5YLriZCdA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-theme-blue-jeans" "16.6.0"
+    "@stencil/core" "4.7.0"
 
 "@ovhcloud/ods-common-stencil@17.1.0":
   version "17.1.0"
@@ -4730,7 +4783,497 @@
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-common-theming/-/ods-common-theming-17.1.0.tgz#300d71e085fafccf25969c2d90eb828144c36e23"
   integrity sha512-HYtaVO3LXyrSf1gOVMQihAzAW+27WfFH6UN2Jf+I0YKZfUgqvlHOXjcQJYim/bCQ4A1Ptkc3QgiEfYrspQxvDA==
 
-"@ovhcloud/ods-components@17.1.0", "@ovhcloud/ods-components@^17.1.0":
+"@ovhcloud/ods-component-accordion@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-accordion/-/ods-component-accordion-16.6.0.tgz#c3690df5247a0a84cf3455e6fa63c27f014ad39e"
+  integrity sha512-obmTZ2xR7aARDNTpp6Q2CWGMqDUEgFsLSakLSHfufE0H8+/+fRcU86Q6PgtCkhEcJQuAvQ0JUKrpkWu7EWUtEg==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-collapsible" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+
+"@ovhcloud/ods-component-breadcrumb@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-breadcrumb/-/ods-component-breadcrumb-16.6.0.tgz#134166584ac023676d782b05c36e24002ae9f9b0"
+  integrity sha512-nSp2Ede+UAHIBxwlGWAIE/KivBJXfXJqKiM4EYC8WYW/1DSsrJ9XlIk6vLob+hiGal+zwLAMISuaNZLLWBxy+g==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+    "@ovhcloud/ods-component-link" "16.6.0"
+    "@ovhcloud/ods-component-text" "16.6.0"
+
+"@ovhcloud/ods-component-button@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-button/-/ods-component-button-16.6.0.tgz#0ea33002186517072688b385cf587b04482fd5a9"
+  integrity sha512-d188suc3gYjyUfii266yh07zKA+ng7D1InbjXuBcYMMB6/lTpS6mV8g6ZtwJfKyJRUNtNsvMAPo2S3g2VsptdQ==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-cart@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-cart/-/ods-component-cart-16.6.0.tgz#f740dce8676ade1a2dbb2b1380d3e2b5cbde416f"
+  integrity sha512-IH/45dQgHvmPn7n7ybfxsQ2KESJ4QLmm9OIC+Y7tq/TMSWmAACpJJPqePI5CBzigDiNr3ZZ2OZ3Xy0vnz72DYA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-divider" "16.6.0"
+
+"@ovhcloud/ods-component-checkbox-button@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-checkbox-button/-/ods-component-checkbox-button-16.6.0.tgz#2d68cc5b30a70805e2864eab19ec6b037e064e61"
+  integrity sha512-1RWCnWra9mVlSPkBUoFl/yk8cwk8r3+RFdPPWIYF0Yip6KMq1TENdn+43F9+jZSuRQXUsiheWHPnkImyj40mxw==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+
+"@ovhcloud/ods-component-checkbox@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-checkbox/-/ods-component-checkbox-16.6.0.tgz#f301531f015bace0397ab0b3182f2a4ea0d34904"
+  integrity sha512-sF82R1qedM2cFOAhALovahMLlc4xxF/Rf5U03SlVgRPxSDBYYxPX0ng0DO61ZkkWHwhhtAPoEj6JgFDJpXsZ+w==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-chip@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-chip/-/ods-component-chip-16.6.0.tgz#17d9f4d331136a7acba7348dfbbe20edf245c629"
+  integrity sha512-b0ly06oYl/7Sq+wHvIN+ZvvIO3rODq2YYNG35C/Jm1mJ3jgYVO+lBWiqU6gjXXzZT3d2xEkDHXKJCQP69BcmTA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+
+"@ovhcloud/ods-component-clipboard@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-clipboard/-/ods-component-clipboard-16.6.0.tgz#73087a7bfbd8f8476013f2b17f2f591e697ea8aa"
+  integrity sha512-YCwJjeAMkFJ8M9fuV+H7FVE2NBdOXb/80hayIgIlpWjfTcrG9vnDD+2FOHhhFISNXmTqXBS2hT2VKJEGnzowXg==
+  dependencies:
+    "@ovhcloud/ods-cdk" "16.6.0"
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+    "@ovhcloud/ods-component-input" "16.6.0"
+
+"@ovhcloud/ods-component-code@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-code/-/ods-component-code-16.6.0.tgz#7e9c888365b917e671d3f8ed1b0d6838d9cabaaf"
+  integrity sha512-1cTsSdsu/4D43gET7YkkpXm5AgXz2xJyVreohkOJmoaweqxT2s1dJRsSZbRWlFk8IGqroday4cNxvrl2eRkqSg==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-button" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+
+"@ovhcloud/ods-component-collapsible@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-collapsible/-/ods-component-collapsible-16.6.0.tgz#2556f5ea5de0067333dfd3debe977c3e6d992e1b"
+  integrity sha512-daqhS5IUBHwsv7BVZNgNQn8YqTdYTfGzXOSBlO4K7OeqO3XaSJSZybHoWntr385djEbKJg+IYU/8D9bL1yzpeg==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-content-addon@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-content-addon/-/ods-component-content-addon-16.6.0.tgz#0f0f82ebac712af86871e40edf1c913703c8218b"
+  integrity sha512-82p0v39mqH+PcgL8AYmQLkuPu8bAXSx3BuxkC4efxyR9dXSnWCgcAkNhLhJXMVshX2g2upEyjBfIdaORE31IwA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-datagrid@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-datagrid/-/ods-component-datagrid-16.6.0.tgz#aca52e2940d00006db200520699900a3b7b9ccdc"
+  integrity sha512-bpXXfsU3V2XTMGJKYdjeX83nR9v/1AJ/Zy/0rHAVe2AlAPIJbTfMc21goRN1Deg+oH4eJnR8mykrWE7yFoDKkA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-button" "16.6.0"
+    "@ovhcloud/ods-component-checkbox" "16.6.0"
+    "@ovhcloud/ods-component-checkbox-button" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+    "@ovhcloud/ods-component-popover" "16.6.0"
+    "@ovhcloud/ods-component-text" "16.6.0"
+    tabulator-tables "5.4.4"
+
+"@ovhcloud/ods-component-datepicker@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-datepicker/-/ods-component-datepicker-16.6.0.tgz#d608b5cd4544513002008731fdc4eade67115410"
+  integrity sha512-QP/pPecDw3+eHToIIdy5/Igk2N6PlGRpqVa1VvyBZo2+bi9MFTRMSLnsem8KSEHl1YG4UC54gY3Wc6YMb70xiA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+    "@ovhcloud/ods-component-input" "16.6.0"
+    vanillajs-datepicker "1.3.3"
+
+"@ovhcloud/ods-component-divider@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-divider/-/ods-component-divider-16.6.0.tgz#9999e5337aa7802bb75cc548836fae56b41a1feb"
+  integrity sha512-zI5hNJemdN7mVPuCNjzvX9SEI9e4OyyyfnB5WKssNft88o7038GdgXf5BjhD3pCxmsF+/Zw7Dm42SYltNZt+2Q==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-flag@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-flag/-/ods-component-flag-16.6.0.tgz#febdef943f10349f21d94b79883a2d28ad7f9e04"
+  integrity sha512-M+AtolHWiQar35weRUjQ2aaKvqjCjIt0tLqBO4R9YChrbapUfQsMSsXkVhgFavBt7TdFQazj4Vs4Jg4ATLIYmA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    flag-icons "6.6.6"
+    workbox-build "4.3.1"
+
+"@ovhcloud/ods-component-form-field@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-form-field/-/ods-component-form-field-16.6.0.tgz#d0b611a416a6bc67f426c04b55db65a1216314a7"
+  integrity sha512-V30BgS7KSczrMai5t065fAf3/Oma0eIHjmj0MBB8PcxP7HQSvev32/IXh59IKIh36t06yNuk9IgvrWGlxAeE/A==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-text" "16.6.0"
+
+"@ovhcloud/ods-component-icon@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-icon/-/ods-component-icon-16.6.0.tgz#b474b4b33dd017ca05940daf946d06a4126671a6"
+  integrity sha512-/waV13piC+aIp2wa+oScxpHBU0qALkMH/D26CABTS6wgBp7u0pEyOOtBJgHo4cOvumlBQwjiw15xT3DICsr5pw==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-input@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-input/-/ods-component-input-16.6.0.tgz#524893bc9183e2fafc95dbc5686e72feb2469cc9"
+  integrity sha512-m7qY0v4rLAdp8OhvLu06ZiIomgI67TRDrXmCwCLnbAHQORwzXE+RhITx/+M9Zudg8acnN7GkWHNaqodXqauaBw==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+    "@ovhcloud/ods-component-spinner" "16.6.0"
+    "@ovhcloud/ods-component-text" "16.6.0"
+
+"@ovhcloud/ods-component-link@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-link/-/ods-component-link-16.6.0.tgz#20b494927dca3655155822910c715d0a63327189"
+  integrity sha512-4Ch+SF72hTBu+PM9CBnDlJYJ7E2AHoPRRzmjNqAd3r8QzSoBHoue+OOmM8xAeEUOr7a1Rr2x39EA0c7az7u1AA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+
+"@ovhcloud/ods-component-medium@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-medium/-/ods-component-medium-16.6.0.tgz#73c7197e3ed497791dd512f94d4e376d0517152f"
+  integrity sha512-KZU37/SwxHfUniMqRtsHlhTmi2kyM1CeNpAxv9ZuDBkZkerhgch5r2ZBr4HzPaSVWZjj1GgSAd/vswKAoatNMA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-menu@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-menu/-/ods-component-menu-16.6.0.tgz#1ad8619a80f2c9163bc00a634348498e2d70c2b8"
+  integrity sha512-MJQlYuxDAQvC9z0Q1Pny+gEKiKHKKu2fSfv9ZrBZecAiYkpq4czxF+NfmFBCAT/ucCAfTF3RA48Ead9yDWn0Fg==
+  dependencies:
+    "@ovhcloud/ods-cdk" "16.6.0"
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+
+"@ovhcloud/ods-component-message@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-message/-/ods-component-message-16.6.0.tgz#accb126380c69fdd1de979df1df02a9a9db3f6f7"
+  integrity sha512-Q2B0yqKxs6mFTWuCJLx6f+a0Zn+ibhLkZGNpFQNJg/0A5JQ/WGJz26NWL2AgctCv4s93DYzXTgyPE4I7mWdOUQ==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+
+"@ovhcloud/ods-component-modal@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-modal/-/ods-component-modal-16.6.0.tgz#0dd9204910388154060e5d42faa1d04b65e8979f"
+  integrity sha512-nqHR9aQTWYd/FvUmJfCpjKhAKx07Ylmb2i5uRiJ6ObWGVlvF4LNoZJF5quwaB2LKMQzvmHCmrZ/JK6mYbwVXcg==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-button" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+    "@ovhcloud/ods-component-text" "16.6.0"
+
+"@ovhcloud/ods-component-pagination@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-pagination/-/ods-component-pagination-16.6.0.tgz#569dfddf941e736d5c8c84cdc41926476ff0b273"
+  integrity sha512-J8Kc3JjLbfClLDAygvtmd/ZcXGwursTUmkr+Du/X0l0B+JdxNgp02ammFXI2LFAssjZBqAhzjHZlCM/8grq3kg==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-button" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+    "@ovhcloud/ods-component-select" "16.6.0"
+    "@ovhcloud/ods-component-text" "16.6.0"
+    "@ovhcloud/ods-component-tooltip" "16.6.0"
+
+"@ovhcloud/ods-component-password@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-password/-/ods-component-password-16.6.0.tgz#0b43b75448cb92bef400ccc1243057b11d2f0d07"
+  integrity sha512-Rnv/NN4FEk5vuW0CyLla/70j0AnCQQL1wgk2OKdDmrX9xcL1V8jm++y7V8sebUTqiL2izbMyDSkr08NacET1QA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-input" "16.6.0"
+
+"@ovhcloud/ods-component-phone-number@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-phone-number/-/ods-component-phone-number-16.6.0.tgz#fd8d647e4e51f6510d86540676c64826205189c7"
+  integrity sha512-QTy8ssjwiMMCfCEVWMUxXVvMsc8s9WgH/LZtql9IVZh2+rYK1XyQiTMva/zlnN0KNNyVdqdqvNJbRfkMZ6EpDA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-flag" "16.6.0"
+    "@ovhcloud/ods-component-input" "16.6.0"
+    "@ovhcloud/ods-component-select" "16.6.0"
+    "@ovhcloud/ods-component-text" "16.6.0"
+    google-libphonenumber "3.2.33"
+
+"@ovhcloud/ods-component-popover@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-popover/-/ods-component-popover-16.6.0.tgz#2a485dde5460a945854cd3ef2ce9b2f7d5e21b02"
+  integrity sha512-JWtVCCxBiPw6vC+Ieq7poAS0ViUGyDB71HocmZ6LbKXXutSENoN8g9QdMVIJy6Pe2tIjkjimeQ/5gp1w6jWVDA==
+  dependencies:
+    "@ovhcloud/ods-cdk" "16.6.0"
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-progress-bar@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-progress-bar/-/ods-component-progress-bar-16.6.0.tgz#6088e5827b16fcf3ccd73a6362e9cf2c876deb27"
+  integrity sha512-ELeTl2TEvoFcx3CwTcc52IC0t4BybDYR9lJgWWOv9ZsrfP7LOqHbEbvzFNWN3PhtlEVVd0Clx7aRv0iQdVJ/yQ==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-quantity@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-quantity/-/ods-component-quantity-16.6.0.tgz#93fc334e8f0dd46386464216845334c6eca30c48"
+  integrity sha512-02Gvy84kv4D3UQcTPXIKE3S7NZTos+5wNM5bwGc07T4rNdM6JKuoLZZ9Mkk2UR4wU9CvyCg82RuvI+cgJWcVwA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-radio-button@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-radio-button/-/ods-component-radio-button-16.6.0.tgz#7d7b53e74864e30a3d997f0921b70f28f0fdd624"
+  integrity sha512-ySSN3vS2kvDzuJ2rU8gOZCM27YlV4jhtHg22+ZMahcYd6wk/3TqcECA/kmDVewvLXjRaOTdQKe6ngrljADn6Pw==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-radio@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-radio/-/ods-component-radio-16.6.0.tgz#e67d7f2d61bd762caa108d468447d90c971d3d08"
+  integrity sha512-9wBw3AQcO/7XVY7tRsvYVld+EmO2tHxERvi1t6Zmo7N9v+LU8ye69AykKDZzMtO9zUt7XkpFz/O1kAuP4lFBkQ==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-range@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-range/-/ods-component-range-16.6.0.tgz#2ce443783b78d5210169079e3589c8e47b35810f"
+  integrity sha512-kiXIk+NE7aE+tiVQbpS+nt/Q1SXhkeN18eQwB+ClursZaIE+n89SAqtldISvfdpfXmdnCIHE1FGEL/zcXUWbDQ==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-search-bar@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-search-bar/-/ods-component-search-bar-16.6.0.tgz#762fd75840f4dc75b8b03f0b9e92147d738eca67"
+  integrity sha512-VyjJaHciZJCQ27PfChapJnRdyy7wq3BkLnTFSJggAnHtyjyJ+/Zox3Y6Y5b1oOjj6MXP+UftE0T4QV3FYlMxIA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-button" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+    "@ovhcloud/ods-component-input" "16.6.0"
+    "@ovhcloud/ods-component-select" "16.6.0"
+
+"@ovhcloud/ods-component-select@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-select/-/ods-component-select-16.6.0.tgz#b90a3bc067469c0b003cc02162456dad861b9fed"
+  integrity sha512-+X2nWKlkPmakqSeba7InAN42OUXFI/+d7/WoofiHF/gJkFD86qcEH3yTAQcOKP8JIHmwxsltK0EQ2UY2pj41kA==
+  dependencies:
+    "@ovhcloud/ods-cdk" "16.6.0"
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+
+"@ovhcloud/ods-component-skeleton@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-skeleton/-/ods-component-skeleton-16.6.0.tgz#f75dcb0078783b7a081d57f01e9937d5937edafc"
+  integrity sha512-1Arr+DhACYw5D2oTIKUxxuZwuGuXDUcWuuwjbCQXJDQEjMSg4YN+VKr5wFTMKeQTvhfvPKU/u2mhJkBNx2zzMQ==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-spinner@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-spinner/-/ods-component-spinner-16.6.0.tgz#440f606797bfda1243c3d2f79df5c3be7382131b"
+  integrity sha512-6pGInRTFv8a4yLW4JO6m621do93DEP7wiMMq7go6XpHQHNzJCzViSjzuQ46FLRXXx7E49dwwLiKyWe8DYwnPIg==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-switch@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-switch/-/ods-component-switch-16.6.0.tgz#8bea6ecc30cdd1397d08060c57d87d74a3224974"
+  integrity sha512-Qh6igCI9TBF+R7i1Zfc7ZtzVERQs+iRUquJz9Jf8WuhuK47QkEg/Wpt3kLhOg5Ri1CYkaYDl1UZiEI96Nn9rVA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+    "@ovhcloud/ods-component-radio" "16.6.0"
+
+"@ovhcloud/ods-component-tabs@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-tabs/-/ods-component-tabs-16.6.0.tgz#f7716ae308d7fba66bf0523999f4eb60042d5794"
+  integrity sha512-wW2iRyfeZigMAFkq+Ta+aU0flU63F50R9UySKU4OQmrJR9Am+cSux0qDSM13nM9/QGhYT9Q0shenU9FRa/CoHA==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-text@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-text/-/ods-component-text-16.6.0.tgz#5112242de4595ce87272c3ec73d07fd3ca81d519"
+  integrity sha512-r1EFVgdOHlWez04hM6Bo6GzrzTa+imU7JDRtShipRBDmqmfc/OqDjIBKecGAttWWcCWjqo/+kTnh6wq5uiBinQ==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-textarea@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-textarea/-/ods-component-textarea-16.6.0.tgz#09ff070f6a0daa34826c6b2add64156c744b9283"
+  integrity sha512-V+uDspugfKazmM3fywPZyLh29TJ/jj7W7P/n3uzXD4heI33RA0Xp/5RDleAtJ1woAxhGLvMKLNimZU3rIimefw==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-tile@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-tile/-/ods-component-tile-16.6.0.tgz#251261be339d65de4b74c6d9a47faf7a42e37a99"
+  integrity sha512-oDMgvq/RXPEH6SpYFSoaa0k5iqDN9THWslOFxXTaV31zsSwwFKpYfyftpihX4rbSW+pIKWlPFa7Jj5WOad2mRQ==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-toggle@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-toggle/-/ods-component-toggle-16.6.0.tgz#62978ce26def6c247af489a7554100a2e317c983"
+  integrity sha512-549mBC7chckdYRQ/0T0QSs+onHk1PBZwVCJDu4cObQyjIu3Q0NJKoo7W4Er2q+8R9WMXaQ0Ow7BClu6p/dipGw==
+  dependencies:
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-component-tooltip@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-component-tooltip/-/ods-component-tooltip-16.6.0.tgz#5de512636335657caaeaf0961f312ee519312a91"
+  integrity sha512-p+rkc4AfXrT+Bf4Zne8UR727NMWQqZIX2t6LPteXO/R7pihNhV6ROl0DOrmvTWmst+4no1CUo0QIMt4j2oc7gQ==
+  dependencies:
+    "@ovhcloud/ods-cdk" "16.6.0"
+    "@ovhcloud/ods-common-core" "16.6.0"
+    "@ovhcloud/ods-common-stencil" "16.6.0"
+    "@ovhcloud/ods-common-theming" "16.6.0"
+
+"@ovhcloud/ods-components@16.6.0":
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-16.6.0.tgz#49854f0d69bf69b9d663cff10ad3994becaf0f28"
+  integrity sha512-Lg5O9AqxjBXHY9sBuID6Mo3kddEpBLW8k7c7DcTD+t8a2pah6aCEDRo8645xrhCEautHqPYfUhu9GbEov683Kw==
+  dependencies:
+    "@ovhcloud/ods-component-accordion" "16.6.0"
+    "@ovhcloud/ods-component-breadcrumb" "16.6.0"
+    "@ovhcloud/ods-component-button" "16.6.0"
+    "@ovhcloud/ods-component-cart" "16.6.0"
+    "@ovhcloud/ods-component-checkbox" "16.6.0"
+    "@ovhcloud/ods-component-checkbox-button" "16.6.0"
+    "@ovhcloud/ods-component-chip" "16.6.0"
+    "@ovhcloud/ods-component-clipboard" "16.6.0"
+    "@ovhcloud/ods-component-code" "16.6.0"
+    "@ovhcloud/ods-component-collapsible" "16.6.0"
+    "@ovhcloud/ods-component-content-addon" "16.6.0"
+    "@ovhcloud/ods-component-datagrid" "16.6.0"
+    "@ovhcloud/ods-component-datepicker" "16.6.0"
+    "@ovhcloud/ods-component-divider" "16.6.0"
+    "@ovhcloud/ods-component-flag" "16.6.0"
+    "@ovhcloud/ods-component-form-field" "16.6.0"
+    "@ovhcloud/ods-component-icon" "16.6.0"
+    "@ovhcloud/ods-component-input" "16.6.0"
+    "@ovhcloud/ods-component-link" "16.6.0"
+    "@ovhcloud/ods-component-medium" "16.6.0"
+    "@ovhcloud/ods-component-menu" "16.6.0"
+    "@ovhcloud/ods-component-message" "16.6.0"
+    "@ovhcloud/ods-component-modal" "16.6.0"
+    "@ovhcloud/ods-component-pagination" "16.6.0"
+    "@ovhcloud/ods-component-password" "16.6.0"
+    "@ovhcloud/ods-component-phone-number" "16.6.0"
+    "@ovhcloud/ods-component-popover" "16.6.0"
+    "@ovhcloud/ods-component-progress-bar" "16.6.0"
+    "@ovhcloud/ods-component-quantity" "16.6.0"
+    "@ovhcloud/ods-component-radio" "16.6.0"
+    "@ovhcloud/ods-component-radio-button" "16.6.0"
+    "@ovhcloud/ods-component-range" "16.6.0"
+    "@ovhcloud/ods-component-search-bar" "16.6.0"
+    "@ovhcloud/ods-component-select" "16.6.0"
+    "@ovhcloud/ods-component-skeleton" "16.6.0"
+    "@ovhcloud/ods-component-spinner" "16.6.0"
+    "@ovhcloud/ods-component-switch" "16.6.0"
+    "@ovhcloud/ods-component-tabs" "16.6.0"
+    "@ovhcloud/ods-component-text" "16.6.0"
+    "@ovhcloud/ods-component-textarea" "16.6.0"
+    "@ovhcloud/ods-component-tile" "16.6.0"
+    "@ovhcloud/ods-component-toggle" "16.6.0"
+    "@ovhcloud/ods-component-tooltip" "16.6.0"
+
+"@ovhcloud/ods-components@^17.1.0":
   version "17.1.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-components/-/ods-components-17.1.0.tgz#ab03d69ec5d6fd05a1afd2a7f59815bb2110d800"
   integrity sha512-DQqEmHKOCFiV6BHklKuiwQ7tct+YwaKP5S3N+Nu2K6F2T+LxgJ3B8ck28RiBFkxEHiLRi2m0etroIOvF1s5LIw==
@@ -5566,6 +6109,11 @@
   version "4.12.0"
   resolved "https://registry.yarnpkg.com/@stencil/core/-/core-4.12.0.tgz#bd87f314ce1c98174077514a161f8bcd6e9f2fc0"
   integrity sha512-qAQcfNmp2sdxAh1DlyUhHfDmIUS7mhI+5LAhPphg74zK9sKgFL5vpLzgjs0wohpjlmI4msgJFYiRB8lxVPqjPg==
+
+"@stencil/core@4.7.0":
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-4.7.0.tgz#e1e7b5b8857184b6ed09b413917919442be6573c"
+  integrity sha512-hl3hD5FA8F9kZiDJSus08Kno1QRl+fXeMBzrl5DjWAzAu0JHxL1AqTph5oQSekjvkSahaa8JtsXnHRZU93eivg==
 
 "@stencil/core@~2.18.1":
   version "2.18.1"
@@ -9717,6 +10265,13 @@ babel-eslint@^10.1.0:
     eslint-visitor-keys "^1.0.0"
     resolve "^1.12.0"
 
+babel-extract-comments@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/babel-extract-comments/-/babel-extract-comments-1.0.0.tgz#0a2aedf81417ed391b85e18b4614e693a0351a21"
+  integrity sha512-qWWzi4TlddohA91bFwgt6zO/J0X+io7Qp184Fw0m2JYRSTZnJbFR8+07KmzudHCZgOiKRCrjhylwv9Xd8gfhVQ==
+  dependencies:
+    babylon "^6.18.0"
+
 babel-jest@^26.6.3:
   version "26.6.3"
   resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-26.6.3.tgz#d87d25cb0037577a0c89f82e5755c5d293c01056"
@@ -9849,6 +10404,11 @@ babel-plugin-polyfill-regenerator@^0.5.2:
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.4.2"
 
+babel-plugin-syntax-object-rest-spread@^6.8.0:
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-syntax-object-rest-spread/-/babel-plugin-syntax-object-rest-spread-6.13.0.tgz#fd6536f2bce13836ffa3a5458c4903a597bb3bf5"
+  integrity sha512-C4Aq+GaAj83pRQ0EFgTvw5YO6T3Qz2KGrNRwIj9mSoNHVvdZY4KO2uA6HNtNXCw993iSZnckY1aLW8nOi8i4+w==
+
 babel-plugin-transform-import-meta@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-import-meta/-/babel-plugin-transform-import-meta-2.2.1.tgz#eb5b79019ff0a9157b94d8280955121189a2964b"
@@ -9856,6 +10416,14 @@ babel-plugin-transform-import-meta@^2.2.1:
   dependencies:
     "@babel/template" "^7.4.4"
     tslib "^2.4.0"
+
+babel-plugin-transform-object-rest-spread@^6.26.0:
+  version "6.26.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-object-rest-spread/-/babel-plugin-transform-object-rest-spread-6.26.0.tgz#0f36692d50fef6b7e2d4b3ac1478137a963b7b06"
+  integrity sha512-ocgA9VJvyxwt+qJB0ncxV8kb/CjfTcECUY4tQ5VT7nP6Aohzobm8CDFaQ5FHdvZQzLmf0sgDxB8iRXZXxwZcyA==
+  dependencies:
+    babel-plugin-syntax-object-rest-spread "^6.8.0"
+    babel-runtime "^6.26.0"
 
 babel-plugin-transform-react-remove-prop-types@^0.4.24:
   version "0.4.24"
@@ -9943,7 +10511,7 @@ babel-runtime@^6.26.0:
     core-js "^2.4.0"
     regenerator-runtime "^0.11.0"
 
-babylon@^6.9.1:
+babylon@^6.18.0, babylon@^6.9.1:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
   integrity sha512-q/UEjfGJ2Cm3oKV71DJz9d25TPnq5rhBVL2Q4fA5wcC3jcrdn7+SssEybFIxwAvvP+YCsCYNKughoF33GxgycQ==
@@ -11298,6 +11866,11 @@ common-path-prefix@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/common-path-prefix/-/common-path-prefix-3.0.0.tgz#7d007a7e07c58c4b4d5f433131a19141b29f11e0"
   integrity sha512-QE33hToZseCH3jS0qN96O/bSh3kaw/h+Tq7ngyY9eWDUnTlTNUyqfqvCXioLe5Na5jFsL78ra/wuBU4iuEgd4w==
+
+common-tags@^1.8.0:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/common-tags/-/common-tags-1.8.2.tgz#94ebb3c076d26032745fd54face7f688ef5ac9c6"
+  integrity sha512-gk/Z852D2Wtb//0I+kRFNKKE9dIIVirjoqPoA1wJU+XePVXZfGeBpk45+A1rKO4Q43prqWBNY/MiIeRLbPWUaA==
 
 commondir@^1.0.1:
   version "1.0.1"
@@ -14868,6 +15441,11 @@ flag-icon-css@~0.8.5:
   resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-0.8.6.tgz#7dab89f99040c2a1113108132a1eab8c1dea44c4"
   integrity sha512-OQdsWTHoPB1gi79Be6mLgKD1GprOLur/Qv370nh91+Lrw0rIhGMjYc+CVgS05ZhjaMYn/CEQUNreW4SN1giQQw==
 
+flag-icons@6.6.6:
+  version "6.6.6"
+  resolved "https://registry.yarnpkg.com/flag-icons/-/flag-icons-6.6.6.tgz#9ddff81e1126778ca6a5a1e0e2cfac2e865f2cb7"
+  integrity sha512-4lHDKxldnQ7q617pf9Dx9nAetT+9zcMpUexbRrc9kjLw9KJgZ83zA5Dky3Vv7ZDzUjAiZ46x/cy5P0HnEnqA2A==
+
 flagged-respawn@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/flagged-respawn/-/flagged-respawn-2.0.0.tgz#abf39719dcfe1ac06c86c9466081c541c682987b"
@@ -15083,6 +15661,15 @@ fs-extra@11.1.1, fs-extra@^11.1.0:
     jsonfile "^6.0.1"
     universalify "^2.0.0"
 
+fs-extra@^4.0.2:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-4.0.3.tgz#0d852122e5bc5beb453fb028e9c0c9bf36340c94"
+  integrity sha512-q6rbdDd1o2mAnQreO7YADIxf/Whx4AHBiRf6d+/cVT8h44ss+lHgxf1FemcqDnQt9X3ct4McHr+JMGlYSsK7Cg==
+  dependencies:
+    graceful-fs "^4.1.2"
+    jsonfile "^4.0.0"
+    universalify "^0.1.0"
+
 fs-extra@^7.0.0, fs-extra@~7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-7.0.1.tgz#4f189c44aa123b895f722804f55ea23eadc348e9"
@@ -15262,6 +15849,11 @@ get-npm-tarball-url@^2.0.3:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/get-npm-tarball-url/-/get-npm-tarball-url-2.1.0.tgz#cbd6bb25884622bc3191c761466c93ac83343213"
   integrity sha512-ro+DiMu5DXgRBabqXupW38h7WPZ9+Ad8UjwhvsmmN8w1sU7ab0nzAXvVZ4kqYg57OrqomRtJvepX5/xvFKNtjA==
+
+get-own-enumerable-property-symbols@^3.0.0:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/get-own-enumerable-property-symbols/-/get-own-enumerable-property-symbols-3.0.2.tgz#b5fde77f22cbe35f390b4e089922c50bce6ef664"
+  integrity sha512-I0UBV/XOz1XkIJHEUDMZAbzCThU/H8DxmSfmdGcKPnVhu2VfFqr34jr9777IyaTYvxjedWhqVIilEDsCdP5G6g==
 
 get-package-type@^0.1.0:
   version "0.1.0"
@@ -15724,6 +16316,11 @@ good-listener@^1.2.2:
   integrity sha512-goW1b+d9q/HIwbVYZzZ6SsTr4IgE+WA44A0GmPIQstuOrgsFcT7VEJ48nmr9GaRtNu0XTKacFLGnBPAM6Afouw==
   dependencies:
     delegate "^3.1.2"
+
+google-libphonenumber@3.2.33:
+  version "3.2.33"
+  resolved "https://registry.yarnpkg.com/google-libphonenumber/-/google-libphonenumber-3.2.33.tgz#948b877914eb7f35fc6d311220472bf9bd6b27d4"
+  integrity sha512-1QKCvAlfq8zY1mviORI9lDzM3I/hwm9+h0CwYBTLq59DBbSHMd5zBOLqHZFiBLicRpwIz46Nynvbywj1XApKvA==
 
 gopd@^1.0.1:
   version "1.0.1"
@@ -17164,7 +17761,7 @@ is-number@^7.0.0:
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
   integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
 
-is-obj@^1.0.0:
+is-obj@^1.0.0, is-obj@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-obj/-/is-obj-1.0.1.tgz#3e4729ac1f5fde025cd7d83a896dab9f4f67db0f"
   integrity sha512-l4RyHgRqGN4Y3+9JHVrNqO+tN0rV5My76uW5/nuO4K1b6vw5G8d/cmFjP9tRfEsdhZNt0IFdZuK/c2Vr4Nb+Qg==
@@ -17252,6 +17849,11 @@ is-regex@^1.1.4:
   dependencies:
     call-bind "^1.0.2"
     has-tostringtag "^1.0.0"
+
+is-regexp@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-regexp/-/is-regexp-1.0.0.tgz#fd2d883545c46bac5a633e7b9a09e87fa2cb5069"
+  integrity sha512-7zjFAPO4/gwyQAAgRRmqeEeyIICSdmCqa3tsVHMdBzaXXRiqopZL4Cyghg/XulGWrtABTpbnYYzzIRffLkP4oA==
 
 is-regexp@^2.0.0:
   version "2.1.0"
@@ -19591,6 +20193,11 @@ lodash-es@4.17.21, lodash-es@^4.17.11, lodash-es@^4.17.15, lodash-es@^4.17.21:
   resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
   integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
+lodash._reinterpolate@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
+  integrity sha512-xYHt68QRoYGjeeM/XOE1uJtvXQAgvszfBhjV4yvsQH0u2i9I6cI6c6/eG4Hh3UAOVn0y/xAXwmTzEay49Q//HA==
+
 lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
@@ -19660,6 +20267,21 @@ lodash.startcase@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.startcase/-/lodash.startcase-4.4.0.tgz#9436e34ed26093ed7ffae1936144350915d9add8"
   integrity sha512-+WKqsK294HMSc2jEbNgpHpd0JfIBhp7rEV4aqXWqFr6AlXov+SlcgB1Fv01y2kGe3Gc8nMW7VA0SrGuSkRfIEg==
+
+lodash.template@^4.4.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.template/-/lodash.template-4.5.0.tgz#f976195cf3f347d0d5f52483569fe8031ccce8ab"
+  integrity sha512-84vYFxIkmidUiFxidA/KjjH9pAycqW+h980j7Fuz5qxRtO9pgB7MDFTdys1N7A5mcucRiDyEq4fusljItR1T/A==
+  dependencies:
+    lodash._reinterpolate "^3.0.0"
+    lodash.templatesettings "^4.0.0"
+
+lodash.templatesettings@^4.0.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.templatesettings/-/lodash.templatesettings-4.2.0.tgz#e481310f049d3cf6d47e912ad09313b154f0fb33"
+  integrity sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ==
+  dependencies:
+    lodash._reinterpolate "^3.0.0"
 
 lodash.truncate@^4.4.2:
   version "4.4.2"
@@ -22690,6 +23312,11 @@ prettier@^2.6.2, prettier@^2.8.0:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
   integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
 
+pretty-bytes@^5.1.0:
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-5.6.0.tgz#356256f643804773c82f64723fe78c92c62beaeb"
+  integrity sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==
+
 pretty-error@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/pretty-error/-/pretty-error-4.0.0.tgz#90a703f46dd7234adb46d0f84823e9d1cb8f10d6"
@@ -25574,6 +26201,15 @@ stringify-entities@^4.0.0:
     character-entities-html4 "^2.0.0"
     character-entities-legacy "^3.0.0"
 
+stringify-object@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/stringify-object/-/stringify-object-3.3.0.tgz#703065aefca19300d3ce88af4f5b3956d7556629"
+  integrity sha512-rHqiFh1elqCQ9WPLIC8I0Q/g/wj5J1eMkyoiD6eoQApWHP0FtlK7rqnhmabL5VUY9JQCcqwwvlOaSuutekgyrw==
+  dependencies:
+    get-own-enumerable-property-symbols "^3.0.0"
+    is-obj "^1.0.1"
+    is-regexp "^1.0.0"
+
 "strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
@@ -25611,6 +26247,14 @@ strip-bom@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/strip-bom/-/strip-bom-4.0.0.tgz#9c3505c1db45bcedca3d9cf7a16f5c5aa3901878"
   integrity sha512-3xurFv5tEgii33Zi8Jtp55wEIILR9eh34FAW00PZf+JnSsTmV/ioewSgQl97JHvgjoRGwPShsWm+IdrxB35d0w==
+
+strip-comments@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/strip-comments/-/strip-comments-1.0.2.tgz#82b9c45e7f05873bee53f37168af930aa368679d"
+  integrity sha512-kL97alc47hoyIQSV165tTt9rG5dn4w1dNnBhOQ3bOU1Nc1hel09jnXANaHJ7vzHLd4Ju8kseDGzlev96pghLFw==
+  dependencies:
+    babel-extract-comments "^1.0.0"
+    babel-plugin-transform-object-rest-spread "^6.26.0"
 
 strip-dirs@^2.0.0:
   version "2.1.0"
@@ -25951,6 +26595,11 @@ table@^6.6.0:
     slice-ansi "^4.0.0"
     string-width "^4.2.3"
     strip-ansi "^6.0.1"
+
+tabulator-tables@5.4.4:
+  version "5.4.4"
+  resolved "https://registry.yarnpkg.com/tabulator-tables/-/tabulator-tables-5.4.4.tgz#799f93f96af0fa06db4900f0cd2f48ac425b1d07"
+  integrity sha512-WqPWLRwrD8UMISUjQqZyj6y9k3ajQBs7eJtRosbt9q8RRkZlYCJYGxLt3L44jEXaQCE5q5EJFbGeDUEDJa1a3w==
 
 tailwindcss@3.3.3:
   version "3.3.3"
@@ -27599,6 +28248,11 @@ validator@^3.39.0:
   resolved "https://registry.yarnpkg.com/validator/-/validator-3.43.0.tgz#96464b992d4196833d97a194bf40b19ff54bae05"
   integrity sha512-H9RMa5elH0361QGFKeZiIWxN0YJDKL9rblzaXVFEKrKkL9hROcg/4f5rJ90SLTjai0IPmN18v9LkH//wwN93bA==
 
+vanillajs-datepicker@1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/vanillajs-datepicker/-/vanillajs-datepicker-1.3.3.tgz#3dfc209a4e15a6564cd04e692068b11e6dbd09af"
+  integrity sha512-O7eeSSyZ9aeTcy6X9NBswNvWZRRvKIl2F20sbYvL1L32+1fMpiIPD3TvDF4hrU0ezXspHPgGFyvbFkoXIBs83w==
+
 vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
@@ -28426,6 +29080,132 @@ wordwrap@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
   integrity sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==
+
+workbox-background-sync@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/workbox-background-sync/-/workbox-background-sync-4.3.1.tgz#26821b9bf16e9e37fd1d640289edddc08afd1950"
+  integrity sha512-1uFkvU8JXi7L7fCHVBEEnc3asPpiAL33kO495UMcD5+arew9IbKW2rV5lpzhoWcm/qhGB89YfO4PmB/0hQwPRg==
+  dependencies:
+    workbox-core "^4.3.1"
+
+workbox-broadcast-update@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/workbox-broadcast-update/-/workbox-broadcast-update-4.3.1.tgz#e2c0280b149e3a504983b757606ad041f332c35b"
+  integrity sha512-MTSfgzIljpKLTBPROo4IpKjESD86pPFlZwlvVG32Kb70hW+aob4Jxpblud8EhNb1/L5m43DUM4q7C+W6eQMMbA==
+  dependencies:
+    workbox-core "^4.3.1"
+
+workbox-build@4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/workbox-build/-/workbox-build-4.3.1.tgz#414f70fb4d6de47f6538608b80ec52412d233e64"
+  integrity sha512-UHdwrN3FrDvicM3AqJS/J07X0KXj67R8Cg0waq1MKEOqzo89ap6zh6LmaLnRAjpB+bDIz+7OlPye9iii9KBnxw==
+  dependencies:
+    "@babel/runtime" "^7.3.4"
+    "@hapi/joi" "^15.0.0"
+    common-tags "^1.8.0"
+    fs-extra "^4.0.2"
+    glob "^7.1.3"
+    lodash.template "^4.4.0"
+    pretty-bytes "^5.1.0"
+    stringify-object "^3.3.0"
+    strip-comments "^1.0.2"
+    workbox-background-sync "^4.3.1"
+    workbox-broadcast-update "^4.3.1"
+    workbox-cacheable-response "^4.3.1"
+    workbox-core "^4.3.1"
+    workbox-expiration "^4.3.1"
+    workbox-google-analytics "^4.3.1"
+    workbox-navigation-preload "^4.3.1"
+    workbox-precaching "^4.3.1"
+    workbox-range-requests "^4.3.1"
+    workbox-routing "^4.3.1"
+    workbox-strategies "^4.3.1"
+    workbox-streams "^4.3.1"
+    workbox-sw "^4.3.1"
+    workbox-window "^4.3.1"
+
+workbox-cacheable-response@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/workbox-cacheable-response/-/workbox-cacheable-response-4.3.1.tgz#f53e079179c095a3f19e5313b284975c91428c91"
+  integrity sha512-Rp5qlzm6z8IOvnQNkCdO9qrDgDpoPNguovs0H8C+wswLuPgSzSp9p2afb5maUt9R1uTIwOXrVQMmPfPypv+npw==
+  dependencies:
+    workbox-core "^4.3.1"
+
+workbox-core@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/workbox-core/-/workbox-core-4.3.1.tgz#005d2c6a06a171437afd6ca2904a5727ecd73be6"
+  integrity sha512-I3C9jlLmMKPxAC1t0ExCq+QoAMd0vAAHULEgRZ7kieCdUd919n53WC0AfvokHNwqRhGn+tIIj7vcb5duCjs2Kg==
+
+workbox-expiration@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/workbox-expiration/-/workbox-expiration-4.3.1.tgz#d790433562029e56837f341d7f553c4a78ebe921"
+  integrity sha512-vsJLhgQsQouv9m0rpbXubT5jw0jMQdjpkum0uT+d9tTwhXcEZks7qLfQ9dGSaufTD2eimxbUOJfWLbNQpIDMPw==
+  dependencies:
+    workbox-core "^4.3.1"
+
+workbox-google-analytics@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/workbox-google-analytics/-/workbox-google-analytics-4.3.1.tgz#9eda0183b103890b5c256e6f4ea15a1f1548519a"
+  integrity sha512-xzCjAoKuOb55CBSwQrbyWBKqp35yg1vw9ohIlU2wTy06ZrYfJ8rKochb1MSGlnoBfXGWss3UPzxR5QL5guIFdg==
+  dependencies:
+    workbox-background-sync "^4.3.1"
+    workbox-core "^4.3.1"
+    workbox-routing "^4.3.1"
+    workbox-strategies "^4.3.1"
+
+workbox-navigation-preload@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/workbox-navigation-preload/-/workbox-navigation-preload-4.3.1.tgz#29c8e4db5843803b34cd96dc155f9ebd9afa453d"
+  integrity sha512-K076n3oFHYp16/C+F8CwrRqD25GitA6Rkd6+qAmLmMv1QHPI2jfDwYqrytOfKfYq42bYtW8Pr21ejZX7GvALOw==
+  dependencies:
+    workbox-core "^4.3.1"
+
+workbox-precaching@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/workbox-precaching/-/workbox-precaching-4.3.1.tgz#9fc45ed122d94bbe1f0ea9584ff5940960771cba"
+  integrity sha512-piSg/2csPoIi/vPpp48t1q5JLYjMkmg5gsXBQkh/QYapCdVwwmKlU9mHdmy52KsDGIjVaqEUMFvEzn2LRaigqQ==
+  dependencies:
+    workbox-core "^4.3.1"
+
+workbox-range-requests@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/workbox-range-requests/-/workbox-range-requests-4.3.1.tgz#f8a470188922145cbf0c09a9a2d5e35645244e74"
+  integrity sha512-S+HhL9+iTFypJZ/yQSl/x2Bf5pWnbXdd3j57xnb0V60FW1LVn9LRZkPtneODklzYuFZv7qK6riZ5BNyc0R0jZA==
+  dependencies:
+    workbox-core "^4.3.1"
+
+workbox-routing@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/workbox-routing/-/workbox-routing-4.3.1.tgz#a675841af623e0bb0c67ce4ed8e724ac0bed0cda"
+  integrity sha512-FkbtrODA4Imsi0p7TW9u9MXuQ5P4pVs1sWHK4dJMMChVROsbEltuE79fBoIk/BCztvOJ7yUpErMKa4z3uQLX+g==
+  dependencies:
+    workbox-core "^4.3.1"
+
+workbox-strategies@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/workbox-strategies/-/workbox-strategies-4.3.1.tgz#d2be03c4ef214c115e1ab29c9c759c9fe3e9e646"
+  integrity sha512-F/+E57BmVG8dX6dCCopBlkDvvhg/zj6VDs0PigYwSN23L8hseSRwljrceU2WzTvk/+BSYICsWmRq5qHS2UYzhw==
+  dependencies:
+    workbox-core "^4.3.1"
+
+workbox-streams@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/workbox-streams/-/workbox-streams-4.3.1.tgz#0b57da70e982572de09c8742dd0cb40a6b7c2cc3"
+  integrity sha512-4Kisis1f/y0ihf4l3u/+ndMkJkIT4/6UOacU3A4BwZSAC9pQ9vSvJpIi/WFGQRH/uPXvuVjF5c2RfIPQFSS2uA==
+  dependencies:
+    workbox-core "^4.3.1"
+
+workbox-sw@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/workbox-sw/-/workbox-sw-4.3.1.tgz#df69e395c479ef4d14499372bcd84c0f5e246164"
+  integrity sha512-0jXdusCL2uC5gM3yYFT6QMBzKfBr2XTk0g5TPAV4y8IZDyVNDyj1a8uSXy3/XrvkVTmQvLN4O5k3JawGReXr9w==
+
+workbox-window@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/workbox-window/-/workbox-window-4.3.1.tgz#ee6051bf10f06afa5483c9b8dfa0531994ede0f3"
+  integrity sha512-C5gWKh6I58w3GeSc0wp2Ne+rqVw8qwcmZnQGpjiek8A2wpbxSJb1FdCoQVO+jDJs35bFgo/WETgl1fqgsxN0Hg==
+  dependencies:
+    workbox-core "^4.3.1"
 
 worker-farm@^1.7.0:
   version "1.7.0"
