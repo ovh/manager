@@ -1,21 +1,21 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation, redirect } from 'react-router-dom';
 import { useRouting } from '@ovh-ux/manager-react-shell-client';
-import { useTranslation } from 'react-i18next';
 import PageLayout from '@/components/PageLayout/PageLayout';
 import Breadcrumb, {
   BreadcrumbHandleParams,
 } from '@/components/Breadcrumb/Breadcrumb';
 import { database } from '@/models/database';
 import { Toaster } from '@/components/ui/toaster';
-
-function BreadcrumbTitle({ category }: { category: string }) {
-  const { t } = useTranslation('pci-databases-analytics');
-  return t(`crumb-${category}`);
-}
+import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
 
 export function breadcrumb({ params }: BreadcrumbHandleParams) {
-  return <BreadcrumbTitle category={params.category} />;
+  return (
+    <BreadcrumbItem
+      translationKey={`crumb-${params.category}`}
+      namespace="pci-databases-analytics"
+    />
+  );
 }
 
 interface ServiceCategoryLayoutProps {
