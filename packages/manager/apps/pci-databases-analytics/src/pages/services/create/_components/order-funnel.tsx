@@ -263,6 +263,7 @@ const OrderFunnel = ({
                     <FormControl>
                       <FlavorsSelect
                         {...field}
+                        showMonthlyPrice={showMonthlyPrice}
                         flavors={model.lists.flavors}
                         value={field.value}
                         onChange={(newFlavor) =>
