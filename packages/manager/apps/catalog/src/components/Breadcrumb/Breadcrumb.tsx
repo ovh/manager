@@ -1,5 +1,5 @@
 import React from 'react';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/breadcrumb/react';
+import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
 import { useBreadcrumb } from '@ovh-ux/manager-react-core-application';
 
 function Breadcrumb(): JSX.Element {
