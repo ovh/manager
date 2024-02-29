@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { OsdsButton } from '@ovhcloud/ods-components/button/react';
-import { OsdsText } from '@ovhcloud/ods-components/text/react';
-import { OsdsLink } from '@ovhcloud/ods-components/link/react';
+import { OsdsButton, OsdsText, OsdsLink } from '@ovhcloud/ods-components/react';
 import { useLocation } from 'react-router-dom';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components/text';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 import FilterItem from './FilterItem';
@@ -172,7 +170,6 @@ const Filters: React.FC<FiltersProps> = ({
             {t('manager_catalog_filters_reset')}
           </OsdsLink>
           <OsdsButton
-            name="applyFilterButton"
             disabled={!hasInteracted || undefined}
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => setFilters()}
