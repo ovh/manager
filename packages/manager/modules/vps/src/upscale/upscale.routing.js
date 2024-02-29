@@ -9,6 +9,8 @@ export default /* @ngInject */ function($stateProvider) {
         CORE_URLS.agreements[coreConfig.getRegion()],
       serviceInfos: /* @ngInject */ ($http, serviceName) =>
         $http.get(`/vps/${serviceName}/serviceInfos`).then(({ data }) => data),
+      pricingRenewPeriod: /* @ngInject */ (serviceInfos) =>
+        serviceInfos.renew?.period,
       getUpscaleInformation: /* @ngInject */ (
         serviceInfos,
         VpsUpgradeService,

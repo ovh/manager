@@ -48,5 +48,12 @@
   "vps_upscale_elite_upgrade_error": "An error has occurred modifying the configuration.",
   "vps_upscale_agreements": "I accept the <a target=\"_blank\" href=\"{{conditions}}\" rel=\"noopener\">Terms & conditions</a>, and the <a target=\"_blank\" href=\"{{policy}}\" rel=\"noopener\">privacy policy</a>.",
   "vps_upscale_fail_vps_in_rescue_info": "You cannot upgrade your VPS to a higher solution, as it is currently in rescue mode.",
-  "vps_upscale_fail_vps_in_rescue_action": "Please reboot your VPS beforehand by disabling rescue mode."
+  "vps_upscale_fail_vps_in_rescue_action": "Please reboot your VPS beforehand by disabling rescue mode.",
+  "vps_upscale_summary_current_configuration_yearly": "Current setup for an annual payment",
+  "vps_upscale_summary_final_configuration_yearly": "Final setup for an annual payment",
+  "vps_upscale_summary_price_yearly": "Prorated price for the current year",
+  "vps_upscale_summary_price_yearly_with_payment_method_validation": "By confirming this choice, you will be billed {{ price }} on a prorated basis for the remainder of this year.",
+  "vps_upscale_summary_price_yearly_without_payment_method_validation": "By confirming this choice, you will be redirected to a purchase order to pay a sum of {{ price }}, due on a prorated basis.",
+  "vps_upscale_success_yearly_with_payment_method": "Your range upgrade has been processed. You have been billed {{ price }} on a prorated basis for the remainder of this year.",
+  "vps_upscale_elite_upgrade_success_yearly_with_payment_method": "The configuration change has been processed. You have been billed {{ price }} on a prorated basis for the remainder of this year."
 }
