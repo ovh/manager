@@ -103,4 +103,18 @@ export default class CloudProjectComputeInfrastructureListCtrl {
   getIpsForTooltip = (ipsList) => {
     return ipsList.map(({ ip }) => ip).join(', ');
   };
+
+  getStatusTooltipText(status) {
+    const openStackStatusWithTooltip = [
+      'PAUSED',
+      'SHELVED',
+      'SHELVED_OFFLOADED',
+      'SUSPENDED',
+    ];
+    return openStackStatusWithTooltip.includes(status)
+      ? this.$translate.instant(
+          `pci_projects_project_instances_status_${status}_TOOLTIP`,
+        )
+      : null;
+  }
 }
