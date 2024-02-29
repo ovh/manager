@@ -426,6 +426,30 @@ export default class LogsStreamsService {
   }
 
   /**
+   * copies stream ID to clipboard.
+   *
+   * @param {any} stream
+   * @memberof LogsStreamsService
+   */
+  copyStreamId(stream) {
+    const error = this.CucControllerHelper.constructor.copyToClipboard(
+      stream.streamId,
+    );
+    if (error) {
+      this.CucCloudMessage.error(
+        this.$translate.instant('logs_streams_copy_id_error', {
+          stream: stream.title,
+          stream_id: stream.streamId,
+        }),
+      );
+    } else {
+      this.CucCloudMessage.info(
+        this.$translate.instant('logs_streams_copy_id_success'),
+      );
+    }
+  }
+
+  /**
    * Extracts X-OVH-TOKEN token from given stream.
    * Throws exception on UI if token was not found.
    * @param {object} stream
