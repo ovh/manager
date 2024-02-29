@@ -863,15 +863,14 @@ export default class Server {
     });
   }
 
-  getOvhPartitionSchemesTemplates(serviceName, template, lang, customeInstall) {
+  getOvhPartitionSchemesTemplates(serviceName, template, customeInstall) {
     return this.OvhHttp.get(
-      '/sws/dedicated/server/{serviceName}/installation/{template}/{lang}/partitionSchemes',
+      '/sws/dedicated/server/{serviceName}/installation/{template}/partitionSchemes',
       {
         rootPath: '2api',
         urlParams: {
           serviceName,
           template,
-          lang,
           customeInstall,
         },
       },
