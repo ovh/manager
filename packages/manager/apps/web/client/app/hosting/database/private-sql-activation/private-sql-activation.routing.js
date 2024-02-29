@@ -1,5 +1,3 @@
-import filter from 'lodash/filter';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
     'app.hosting.dashboard.database.private-sql-activation',
@@ -8,10 +6,10 @@ export default /* @ngInject */ ($stateProvider) => {
       component: 'hostingDatabasePrivateSqlActivation',
       redirectTo: (transition) =>
         Promise.all([
-          transition.injector().getAsync('HostingDatabase'),
+          transition.injector().getAsync('HostingDatabasePrivateSql'),
           transition.injector().getAsync('hosting'),
-        ]).then(([HostingDatabase, hosting]) =>
-          HostingDatabase.getHasPrivateSqlToActivate(
+        ]).then(([HostingDatabasePrivateSql, hosting]) =>
+          HostingDatabasePrivateSql.getHasPrivateSqlToActivate(
             hosting,
           ).then((hasPrivateSqlToActivate) =>
             hasPrivateSqlToActivate
@@ -20,24 +18,20 @@ export default /* @ngInject */ ($stateProvider) => {
           ),
         ),
       resolve: {
-        catalog: /* @ngInject */ (HostingDatabase) =>
-          HostingDatabase.getWebhostingCatalog(),
         me: /* @ngInject */ (user) => user,
         hosting: /* @ngInject */ ($transition$) =>
           $transition$.params().productId,
-        privateSqlOptions: /* @ngInject */ (availableOptions) =>
-          filter(availableOptions, (option) =>
-            option.planCode.startsWith('private-sql'),
+        privateSqlCatalog: /* @ngInject */ (HostingDatabasePrivateSql, me) =>
+          HostingDatabasePrivateSql.getPrivateSqlCatalogForHosting(
+            me.ovhSubsidiary,
           ),
-        versions: /* @ngInject */ (PrivateDatabase) =>
-          PrivateDatabase.getOrderableDatabaseVersions('classic'),
-        datacenter: /* @ngInject */ (serviceName, getDatacenter) =>
-          getDatacenter(serviceName),
-        getDatacenter: /* @ngInject */ (Hosting) => async (serviceName) => {
-          const { datacenter } = await Hosting.getHosting(serviceName);
-          return datacenter;
-        },
-
+        dbCategories: /* @ngInject */ (
+          privateSqlCatalog,
+          HostingDatabasePrivateSql,
+        ) =>
+          HostingDatabasePrivateSql.buildPrivateSqlDbCategories(
+            privateSqlCatalog,
+          ),
         onError: /* @ngInject */ ($translate, goToHosting) => (error) =>
           goToHosting(
             $translate.instant('privatesql_activation_hosting_error', {
