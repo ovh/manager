@@ -96,6 +96,7 @@
         </oui-tile-definition>
 
         <server-bandwidth-dashboard
+            data-ng-if="!!$ctrl.vrackInfos && $ctrl.specifications.vrack.bandwidth && $ctrl.specifications.vrack.bandwidth.value !== 0"
             data-bandwidth-option="$ctrl.bandwidthInformations.bandwidthOption"
             data-bandwidth-vrack-option="$ctrl.bandwidthInformations.bandwidthVrackOptions"
             data-bandwidth-vrack-order-option="$ctrl.bandwidthInformations.bandwidthVrackOrderOptions"
@@ -211,7 +212,7 @@
 
         <!-- vRack -->
         <oui-tile-definition
-            data-ng-if="!!$ctrl.vrackInfos"
+            data-ng-if="!!$ctrl.vrackInfos && $ctrl.specifications.vrack.bandwidth && $ctrl.specifications.vrack.bandwidth.value !== 0"
             data-term="{{:: 'server_network_vrack' | translate}}"
         >
             <oui-tile-description>
