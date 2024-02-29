@@ -103,6 +103,10 @@ export default class FlavorsListController {
     return flavor?.tagsBlob?.includes(TAGS_BLOB.COMING_SOON);
   }
 
+  static isNewFlavor(flavor) {
+    return flavor?.tagsBlob?.includes(TAGS_BLOB.IS_NEW);
+  }
+
   findFlavor() {
     if (this.defaultFlavor) {
       forEach(this.flavors, (flavorCategory) => {

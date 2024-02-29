@@ -7,6 +7,7 @@ import '@ovh-ux/ui-kit';
 
 import component from './flavors-list.component';
 import service from './flavors-list.service';
+import './flavor-group.scss';
 
 const moduleName = 'ovhManagerPciFlavorsList';
 
