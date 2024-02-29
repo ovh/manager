@@ -1,0 +1,19 @@
+{
+  "title": "Métriques",
+  "breadcrumb": "Métriques",
+  "description": "Pour vous aider à suivre et piloter votre instance de base de données, vous trouverez ses principales métriques et statistiques ci-dessous. Leur durée de rétention dépend de votre offre de service.",
+  "autoRefreshInputLabel": "Auto-Refresh",
+  "interval-lastHour": "1H",
+  "interval-lastDay": "1D",
+  "interval-lastWeek": "1W",
+  "interval-lastMonth": "1M",
+  "interval-lastYear": "1Y",
+  "metricName-cpu_usage_percent": "CPU utilisé (%)",
+  "metricName-disk_usage_percent": "CPU utilisé (%)",
+  "metricName-diskio_read": "Nb d'IOPS (lecture)",
+  "metricName-diskio_writes": "Nb d'IOPS (écriture)",
+  "metricName-mem_usage_percent": "Mémoire utilisée (%)",
+  "metricName-mem_usage": "Mémoire utilisée (Mo)",
+  "metricName-net_receive": "Réception réseau (Mo/s)",
+  "metricName-net_send": "Transmission réseau (Mo/s)"
+}
