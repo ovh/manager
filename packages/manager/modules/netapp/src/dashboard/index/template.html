@@ -86,8 +86,11 @@
                     <oui-tile-description>
                         <a
                             data-ng-href="{{ $ctrl.vrackServicesLink($ctrl.networkInformations.vrackServices.id)}}"
-                            data-ng-bind=":: $ctrl.networkInformations.vrackServices.id"
-                        ></a>
+                        >
+                            <span
+                                data-ng-bind=":: $ctrl.networkInformations.vrackServices.currentState.displayName || $ctrl.networkInformations.vrackServices.id"
+                            ></span>
+                        </a>
                     </oui-tile-description>
                 </oui-tile-definition>
                 <oui-tile-definition
