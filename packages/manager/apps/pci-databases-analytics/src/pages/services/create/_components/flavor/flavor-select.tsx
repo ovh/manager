@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Price from '@/components/price';
 import {
   Table,
@@ -20,17 +21,22 @@ interface FlavorsSelectProps {
 
 const FlavorsSelect = React.forwardRef<HTMLInputElement, FlavorsSelectProps>(
   ({ flavors, value, onChange, showMonthlyPrice = false }, ref) => {
+    const { t } = useTranslation('pci-databases-analytics/components/flavor');
+    const priceUnit = showMonthlyPrice ? 'monthly' : 'hourly';
+    const decimals = showMonthlyPrice ? 2 : 3;
     const Storage = ({ flavor }: { flavor: Flavor }) => {
       const { storage } = flavor;
       if (!storage) return '-';
       if (
         storage.minimum.value === storage.maximum.value &&
         storage.minimum.unit === storage.maximum.unit
-      )
+      ) {
         return formatStorage(storage.minimum);
-      return `De ${formatStorage(storage.minimum)} à ${formatStorage(
-        storage.maximum,
-      )}`;
+      }
+      return t('tableCellStorageRange', {
+        min: formatStorage(storage.minimum),
+        max: formatStorage(storage.maximum),
+      });
     };
     const clickInput = (flavorName: string) => {
       const inputElement = document.getElementById(
@@ -54,19 +60,19 @@ const FlavorsSelect = React.forwardRef<HTMLInputElement, FlavorsSelectProps>(
           <TableHeader>
             <TableRow className="bg-primary-100 hover:bg-primary-10">
               <TableHead className="font-bold text-base text-[#4d5592]">
-                Type
+                {t('tableHeadType')}
               </TableHead>
               <TableHead className="font-bold text-base text-[#4d5592]">
-                vCores
+                {t('tableHeadCores')}
               </TableHead>
               <TableHead className="font-bold text-base text-[#4d5592]">
-                Mémoire
+                {t('tableHeadMemory')}
               </TableHead>
               <TableHead className="font-bold text-base text-[#4d5592]">
-                Stockage utile
+                {t('tableHeadStorage')}
               </TableHead>
               <TableHead className="font-bold text-base text-[#4d5592]">
-                Coût/heure/nœud (estimé)
+                {t(`tableHeadPrice-${priceUnit}`)}
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -101,24 +107,16 @@ const FlavorsSelect = React.forwardRef<HTMLInputElement, FlavorsSelectProps>(
                     {flavor.vcores ?? '-'}
                   </TableCell>
                   <TableCell className="text-[#4d5592] border border-primary-100">
-                    {flavor.ram
-                      ? `${flavor.ram.value} ${flavor.ram.unit}`
-                      : '-'}
+                    {flavor.ram ? `${formatStorage(flavor.ram)}` : '-'}
                   </TableCell>
                   <TableCell className="text-[#4d5592] border border-primary-100">
                     <Storage flavor={flavor} />
                   </TableCell>
                   <TableCell className="text-[#4d5592] border border-primary-100">
                     <Price
-                      priceInUcents={
-                        flavor.pricing[showMonthlyPrice ? 'monthly' : 'hourly']
-                          .price
-                      }
-                      taxInUcents={
-                        flavor.pricing[showMonthlyPrice ? 'monthly' : 'hourly']
-                          .tax
-                      }
-                      decimals={showMonthlyPrice ? 2 : 3}
+                      priceInUcents={flavor.pricing[priceUnit].price}
+                      taxInUcents={flavor.pricing[priceUnit].tax}
+                      decimals={decimals}
                     />
                   </TableCell>
                 </TableRow>

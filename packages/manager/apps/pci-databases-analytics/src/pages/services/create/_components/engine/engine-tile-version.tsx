@@ -32,9 +32,7 @@ const VersionSelector = ({
   onChange,
 }: VersionSelectorProps) => {
   const [open, setOpen] = useState(false);
-  const { t } = useTranslation(
-    'pci-databases-analytics/components/engine-tile',
-  );
+  const { t } = useTranslation('pci-databases-analytics/components/engine');
   const getTagVariant = (tag: string): BadgeProps['variant'] => {
     switch (tag) {
       case 'new':
