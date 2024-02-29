@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 
@@ -10,14 +11,13 @@ interface NodesConfigProps {
 }
 const NodesConfig = React.forwardRef<HTMLInputElement, NodesConfigProps>(
   ({ value, onChange, minimum, maximum }, ref) => {
+    const { t } = useTranslation('pci-databases-analytics/components/cluster');
     if (minimum === maximum) {
       return <></>;
     }
     return (
       <div>
-        <Label htmlFor="node-number-select">
-          Sélectionnez le nombre de nœuds du cluster
-        </Label>
+        <Label htmlFor="node-number-select">{t('inputNodeLabel')}</Label>
         <Input
           ref={ref}
           name="node-number-select"

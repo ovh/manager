@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { MinusCircle, PlusCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { database } from '@/models/database';
@@ -30,17 +31,20 @@ const IpsRestrictionsForm = React.forwardRef<
   HTMLInputElement,
   IpsRestrictionsFormProps
 >(({ value, onChange }, ref) => {
+  const { t } = useTranslation(
+    'pci-databases-analytics/components/order-options',
+  );
   const ipSchema = z.object({
     ip: z
       .string()
       .regex(/^(?:\d{1,3}\.){3}\d{1,3}(\/\d{1,2})?$/, {
-        message: 'Invalid IP Address',
+        message: t('invalidIpError'),
       })
       .refine(
         (newIp) =>
           !value.some((existingIp) => existingIp.ip === formatIpMask(newIp)),
         {
-          message: 'IP address is already configured',
+          message: t('existingIpError'),
         },
       ),
     description: z.string().max(255),
@@ -77,7 +81,7 @@ const IpsRestrictionsForm = React.forwardRef<
             defaultValue=""
             render={({ field }) => (
               <FormItem>
-                <FormLabel>ip</FormLabel>
+                <FormLabel>{t('ipFieldLabel')}</FormLabel>
                 <FormControl>
                   <Input placeholder="0.0.0.0/32" {...field} ref={ref} />
                 </FormControl>
@@ -91,7 +95,7 @@ const IpsRestrictionsForm = React.forwardRef<
             defaultValue=""
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel>{t('ipDescriptionFieldLabel')}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -123,7 +127,12 @@ const IpsRestrictionsForm = React.forwardRef<
           </li>
         ))}
       </ul>
-      <P>Total configured IPs: {value.length}</P>
+      <P>
+        {t('numberOfConfiguredIps', {
+          count: value.length,
+          context: `${value.length}`,
+        })}
+      </P>
     </Form>
   );
 });
