@@ -1,4 +1,5 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useOutletContext, useParams } from 'react-router-dom';
+import { UseQueryResult } from '@tanstack/react-query';
 import { useGetService } from '@/hooks/api/services.api.hooks';
 import { Skeleton } from '@/components/ui/skeleton';
 import LegalMentions from '@/pages/_components/legalMentions';
@@ -21,6 +22,17 @@ export function breadcrumb() {
   return <ServiceName />;
 }
 
+// Share data with the child routes
+type ServiceLayoutContext = {
+  service: database.Service;
+  serviceQuery: UseQueryResult<database.Service, Error>;
+};
+export function useServiceData() {
+  const { projectId, category } = useParams();
+  const { service, serviceQuery } = useOutletContext() as ServiceLayoutContext;
+  return { projectId, category, service, serviceQuery };
+}
+
 export default function ServiceLayout() {
   const { projectId, serviceId } = useParams();
   const serviceQuery = useGetService(projectId, serviceId, {
@@ -37,6 +49,10 @@ export default function ServiceLayout() {
       </>
     );
   }
+  const serviceLayoutContext: ServiceLayoutContext = {
+    service,
+    serviceQuery,
+  };
   const tabs = [
     { href: '', label: 'Dashboard', end: true },
     service.capabilities.users && {
@@ -75,7 +91,7 @@ export default function ServiceLayout() {
     <>
       <ServiceHeader service={service} />
       <TabsMenu tabs={tabs} />
-      <Outlet />
+      <Outlet context={serviceLayoutContext} />
       <LegalMentions
         showRedisMessage={
           serviceQuery.data?.engine === database.EngineEnum.redis
