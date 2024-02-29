@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { formatStorage } from '@/lib/bytesHelper';
@@ -13,6 +14,7 @@ interface StorageConfigProps {
 const DEFAULT_UNIT = 'GB';
 const StorageConfig = React.forwardRef<HTMLInputElement, StorageConfigProps>(
   ({ availability, value, onChange }, ref) => {
+    const { t } = useTranslation('pci-databases-analytics/components/cluster');
     if (!availability.specifications.storage) return <></>;
     const { storage, flavor } = availability.specifications;
     const { minimum, maximum, step } = storage;
@@ -24,17 +26,20 @@ const StorageConfig = React.forwardRef<HTMLInputElement, StorageConfigProps>(
     return (
       <div>
         <P>
-          Votre modèle de nœud {flavor} inclut {formatStorage(minimum)} de
-          stockage auxquels vous pouvez ajouter jusqu'à{' '}
-          {formatStorage({ value: maxAddable, unit: DEFAULT_UNIT })} de stockage
-          supplémentaire par pas de {formatStorage(step)}.
+          {t('storageFlavorDescription', {
+            flavor,
+            includedStorage: formatStorage(minimum),
+            maxAdditionalStorage: formatStorage({
+              value: maxAddable,
+              unit: DEFAULT_UNIT,
+            }),
+            step: formatStorage(step),
+          })}
         </P>
-        <Label htmlFor="storage-select">
-          Sélectionnez le stockage additionnel du cluster
-        </Label>
+        <Label htmlFor="storage-select">{t('inputStorageLabel')}</Label>
         <div className="flex flex-col">
           <div className="flex justify-between mb-2">
-            <Span>Aucun</Span>
+            <Span>{t('inputStorageNoneValue')}</Span>
             <Span>
               {formatStorage({
                 value: maxAddable,

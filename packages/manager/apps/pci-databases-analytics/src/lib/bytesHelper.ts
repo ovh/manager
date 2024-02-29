@@ -23,9 +23,9 @@ export function addStorage(a: Storage, b: Storage): Storage {
   // Convert both storages to the unit with the highest index
   const maxUnitIndex = Math.max(units.indexOf(a.unit), units.indexOf(b.unit));
   const aValueInMaxUnit =
-    a.value * 1024 ** (maxUnitIndex - units.indexOf(a.unit));
+    a.value * 1000 ** (maxUnitIndex - units.indexOf(a.unit));
   const bValueInMaxUnit =
-    b.value * 1024 ** (maxUnitIndex - units.indexOf(b.unit));
+    b.value * 1000 ** (maxUnitIndex - units.indexOf(b.unit));
 
   // Perform addition
   const sumValue = aValueInMaxUnit + bValueInMaxUnit;
@@ -43,9 +43,9 @@ export function subtractStorage(a: Storage, b: Storage): Storage {
   // Convert both storages to the unit with the highest index
   const maxUnitIndex = Math.max(units.indexOf(a.unit), units.indexOf(b.unit));
   const aValueInMaxUnit =
-    a.value * 1024 ** (maxUnitIndex - units.indexOf(a.unit));
+    a.value * 1000 ** (maxUnitIndex - units.indexOf(a.unit));
   const bValueInMaxUnit =
-    b.value * 1024 ** (maxUnitIndex - units.indexOf(b.unit));
+    b.value * 1000 ** (maxUnitIndex - units.indexOf(b.unit));
 
   // Perform subtraction
   const diffValue = aValueInMaxUnit - bValueInMaxUnit;
@@ -67,8 +67,8 @@ export function formatStorage(
   let size = storage.value;
   let unitIndex = units.indexOf(storage.unit);
 
-  while (size >= 1024 && unitIndex < units.length - 1) {
-    size /= 1024;
+  while (size >= 1000 && unitIndex < units.length - 1) {
+    size /= 1000;
     unitIndex += 1;
   }
 
