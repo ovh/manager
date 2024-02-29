@@ -12,6 +12,7 @@ export default {
     performUpscale: '<',
     scrollToTop: '<',
     upscaleOptions: '<',
+    pricingRenewPeriod: '<',
     vps: '<stateVps',
     goBack: '<',
   },
