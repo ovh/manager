@@ -31,5 +31,6 @@
   "billing_main_history_debt_automatically_collected": "Kwota <strong>{{t0}}</strong> zostanie pobrana z Twojego domyślnego sposobu płatności.",
   "billing_main_history_table_export_success": "Otrzymasz e-mail z linkiem do pobrania wyeksportowanych faktur. Czas pobierania będzie zależał od liczby faktur.",
   "billing_main_history_table_export_error": "Wystąpił błąd podczas zlecania eksportu faktur. {{message}} ",
-  "billing_main_history": "Faktury"
+  "billing_main_history": "Faktury",
+  "billing_main_history_table_balance_status_WRITE_OFF": "Strata"
 }
