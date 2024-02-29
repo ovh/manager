@@ -2,9 +2,20 @@
     <div data-ovh-alert="{{alerts.main}}"></div>
 
     <oui-datagrid
+        id="{{:: taskCtrl.datagridId }}"
         data-rows="taskCtrl.taskDetails"
         data-row-loader="taskCtrl.transformItem($row)"
     >
+        <oui-datagrid-topbar>
+            <oui-button
+                type="button"
+                class="float-right"
+                data-on-click="taskCtrl.getTasks()"
+                data-disabled="taskCtrl.isLoading"
+            >
+                <span class="oui-icon oui-icon-refresh"></span>
+            </oui-button>
+        </oui-datagrid-topbar>
         <oui-datagrid-column
             data-title="'privateDatabase_tabs_tasks_name' | translate"
             data-property="function"

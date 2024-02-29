@@ -1,3 +1,5 @@
+import { PRIVATE_DATABASE_TASK_TABLE_ID } from './private-database.constants';
+
 angular.module('App').controller(
   'PrivateDatabaseTasksCtrl',
   class PrivateDatabaseTasksCtrl {
@@ -7,6 +9,7 @@ angular.module('App').controller(
       this.productId = $stateParams.productId;
       this.privateDatabaseService = PrivateDatabase;
       this.alerter = Alerter;
+      this.datagridId = PRIVATE_DATABASE_TASK_TABLE_ID;
     }
 
     $onInit() {
@@ -15,7 +18,7 @@ angular.module('App').controller(
 
     getTasks() {
       this.taskDetails = null;
-
+      this.isLoading = true;
       return this.privateDatabaseService
         .getTasks(this.productId)
         .then((ids) => {
@@ -26,6 +29,9 @@ angular.module('App').controller(
             this.$translate.instant('privateDatabase_configuration_error'),
             this.$scope.alerts.main,
           );
+        })
+        .finally(() => {
+          this.isLoading = false;
         });
     }
 
