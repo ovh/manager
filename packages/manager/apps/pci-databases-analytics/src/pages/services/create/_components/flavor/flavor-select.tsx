@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/table';
 import { formatStorage } from '@/lib/bytesHelper';
 import { Flavor } from '@/models/order-funnel';
+import { Badge, BadgeProps } from '@/components/ui/badge';
 
 interface FlavorsSelectProps {
   flavors: Flavor[];
@@ -24,6 +25,18 @@ const FlavorsSelect = React.forwardRef<HTMLInputElement, FlavorsSelectProps>(
     const { t } = useTranslation('pci-databases-analytics/components/flavor');
     const priceUnit = showMonthlyPrice ? 'monthly' : 'hourly';
     const decimals = showMonthlyPrice ? 2 : 3;
+
+    const getTagVariant = (tag: string): BadgeProps['variant'] => {
+      switch (tag) {
+        case 'new':
+          return 'success';
+        case 'soonDeprecated':
+          return 'warning';
+        default:
+          return 'info';
+      }
+    };
+
     const Storage = ({ flavor }: { flavor: Flavor }) => {
       const { storage } = flavor;
       if (!storage) return '-';
@@ -101,7 +114,20 @@ const FlavorsSelect = React.forwardRef<HTMLInputElement, FlavorsSelectProps>(
                     />
                   </td>
                   <TableCell className="text-[#4d5592] border border-primary-100 capitalize">
-                    {flavor.name}
+                    <div className="flex gap-2 w-full justify-between">
+                      {flavor.name}
+                      <div className="hidden md:flex gap-1">
+                        {flavor.tags.map((tag) => (
+                          <Badge
+                            key={tag}
+                            variant={getTagVariant(tag)}
+                            className="text-xs h-4"
+                          >
+                            {t(`flavorTag-${tag}`, tag)}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
                   </TableCell>
                   <TableCell className="text-[#4d5592] border border-primary-100">
                     {flavor.vcores ?? '-'}
