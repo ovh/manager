@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.46.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.46.0...@ovh-ux/manager-container-app@0.46.1) (2024-02-29)
+
+
+### Bug Fixes
+
+* **menu:** highlighted network security dashboard menu ([#10927](https://github.com/ovh/manager/issues/10927)) ([fa2ae98](https://github.com/ovh/manager/commit/fa2ae983a8f2292d4ea1eb2c93f8ea272843f971))
+
+
+
+
+
 # [0.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.45.1...@ovh-ux/manager-container-app@0.46.0) (2024-02-28)
 
 
