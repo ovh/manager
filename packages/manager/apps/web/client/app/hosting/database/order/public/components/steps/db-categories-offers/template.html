@@ -54,18 +54,14 @@
 </div>
 
 <!--DB engines-->
-<div
-    class="row"
-    data-ng-if="$ctrl.getDbEngines().length > 0"
-    data-ng-init="dbCategory = $ctrl.model.dbCategory"
->
+<div class="row" data-ng-if="$ctrl.getDbEngines().length > 0">
     <oui-select-picker
         class="d-inline-block col-sm-12 col-md-3 my-3"
-        data-ng-repeat="dbEngine in ::dbCategory.selectVersion.engines track by dbEngine.dbGroup"
+        data-ng-repeat="dbEngine in $ctrl.model.dbCategory.selectVersion.engines"
         data-values="[dbEngine]"
         data-id="db-engine-{{dbEngine.dbGroup}}"
         data-name="db-engine-{{dbEngine.dbGroup}}"
-        data-model="dbCategory.selectEngine"
+        data-model="$ctrl.model.dbCategory.selectEngine"
         data-variant="light"
     >
         <oui-select-picker-label class="w-100 d-flex">

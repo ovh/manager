@@ -12,34 +12,16 @@
 >
     <oui-step-form
         data-header="{{:: 'privatesql_activation_step_1' | translate }}"
-        data-editable="$ctrl.options.isEditable"
+        data-valid="$ctrl.isValidDbConfig()"
+        data-prevent-next="true"
     >
-        <oui-field
-            data-label="{{:: 'privatesql_activation_price_select' | translate }}"
-            data-size="xl"
-        >
-            <oui-select
-                data-name="optionSelect"
-                data-model="$ctrl.options.value"
-                data-items="$ctrl.options.values"
-                data-match="display"
-                data-required
-            >
-            </oui-select>
-        </oui-field>
-        <oui-field
-            data-size="xl"
-            data-label="{{:: 'privatesql_activation_version_select' | translate }}"
-        >
-            <oui-select
-                name="versionSelect"
-                data-model="$ctrl.version"
-                data-items="$ctrl.versions"
-                data-match="label"
-                data-searchable
-                data-required
-            >
-            </oui-select>
-        </oui-field>
+        <web-hosting-database-order-db-categories-offers
+            data-user="$ctrl.me"
+            data-db-categories="$ctrl.dbCategories"
+            data-preselect-db-category="$ctrl.preselectDbCategory"
+            data-on-db-category-click="$ctrl.onDbCategoryClick(dbCategory)"
+            data-on-db-category-engine-click="$ctrl.onDbCategoryEngineClick(dbEngine)"
+            data-model="$ctrl.model"
+        ></web-hosting-database-order-db-categories-offers>
     </oui-step-form>
 </ovh-manager-product-offers>
