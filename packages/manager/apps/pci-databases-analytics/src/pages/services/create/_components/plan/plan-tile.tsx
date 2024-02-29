@@ -5,6 +5,7 @@ import { H5, P, Span } from '@/components/typography';
 import { compareStorage, formatStorage } from '@/lib/bytesHelper';
 import { database } from '@/models/database';
 import { Plan } from '@/models/order-funnel';
+import { Badge, BadgeProps } from '@/components/ui/badge';
 
 export const PlanTile = ({
   plan,
@@ -23,6 +24,16 @@ export const PlanTile = ({
   const hasPrivateNetwork = plan.networks.includes(
     database.NetworkTypeEnum.private,
   );
+  const getTagVariant = (tag: string): BadgeProps['variant'] => {
+    switch (tag) {
+      case 'new':
+        return 'success';
+      case 'soonDeprecated':
+        return 'warning';
+      default:
+        return 'info';
+    }
+  };
   return (
     <RadioTile
       name="plan-select"
@@ -32,11 +43,24 @@ export const PlanTile = ({
     >
       <div className="flex flex-col justify-between h-full">
         <div>
-          <H5
-            className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}
-          >
-            {plan.name}
-          </H5>
+          <div className="flex justify-between w-full">
+            <H5
+              className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}
+            >
+              {plan.name}
+            </H5>
+            <div>
+              {plan.tags.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant={getTagVariant(tag)}
+                  className="text-xs h-4"
+                >
+                  {t(`planTag-${tag}`, tag)}
+                </Badge>
+              ))}
+            </div>
+          </div>
           <RadioTile.Separator />
         </div>
         <div className="text-xs flex flex-col">

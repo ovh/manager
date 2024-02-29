@@ -6,6 +6,7 @@ import { Engine, Version } from '@/models/order-funnel';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import { database } from '@/models/database';
 import { H5, P } from '@/components/typography';
+import { Badge, BadgeProps } from '@/components/ui/badge';
 
 export const EngineTile = ({
   engine,
@@ -26,7 +27,16 @@ export const EngineTile = ({
   useEffect(() => {
     onChange(engine, selectedVersion);
   }, [selectedVersion]);
-
+  const getTagVariant = (tag: string): BadgeProps['variant'] => {
+    switch (tag) {
+      case 'new':
+        return 'success';
+      case 'soonDeprecated':
+        return 'warning';
+      default:
+        return 'info';
+    }
+  };
   return (
     <RadioTile
       name="engine-select"
@@ -35,9 +45,24 @@ export const EngineTile = ({
       checked={selected}
     >
       <div className="flex justify-between items-center">
-        <H5 className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}>
-          {humanizeEngine(engine.name as database.EngineEnum)}
-        </H5>
+        <div className="flex gap-2">
+          <H5
+            className={`capitalize ${selected ? 'font-bold' : 'font-normal'}`}
+          >
+            {humanizeEngine(engine.name as database.EngineEnum)}
+          </H5>
+          <div className="flex gap-1">
+            {engine.tags.map((tag) => (
+              <Badge
+                key={tag}
+                variant={getTagVariant(tag)}
+                className="text-xs h-4"
+              >
+                {t(`planTag-${tag}`, tag)}
+              </Badge>
+            ))}
+          </div>
+        </div>
         <img
           className="block w-[60px] h-[40px]"
           src={`./assets/engines/${engine.name}.png`}
