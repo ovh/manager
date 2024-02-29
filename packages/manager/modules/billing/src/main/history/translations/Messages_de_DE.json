@@ -31,5 +31,6 @@
   "billing_main_history_debt_automatically_collected": "Ein Betrag in Höhe von <strong>{{t0}}</strong> wird von Ihrem Standard-Zahlungsmittel abgebucht. ",
   "billing_main_history_table_export_success": "Wir werden Ihnen eine E-Mail mit dem Link zum Download zuschicken, über den Sie Ihre exportierten Rechnungen abrufen können. Je nach Anzahl der Rechnungen kann dies einige Minuten in Anspruch nehmen.",
   "billing_main_history_table_export_error": "Bei der Anfrage nach Export Ihrer Rechnungen ist ein Fehler aufgetreten. {{ message }}.",
-  "billing_main_history": "Meine Rechnungen"
+  "billing_main_history": "Meine Rechnungen",
+  "billing_main_history_table_balance_status_WRITE_OFF": "Abschreibung"
 }

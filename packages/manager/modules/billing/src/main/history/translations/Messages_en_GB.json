@@ -31,5 +31,6 @@
   "billing_main_history_debt_automatically_collected": "A total of <strong>{{t0}}</strong> will be withdrawn from your default payment method.",
   "billing_main_history_table_export_success": "We will send you an email containing a download link, which you can use to retrieve your exported bills. Depending on the number of bills you want to retrieve, this may take a few minutes.",
   "billing_main_history_table_export_error": "An error has occurred requesting an export of your bills. {{ message }}",
-  "billing_main_history": "My bills"
+  "billing_main_history": "My bills",
+  "billing_main_history_table_balance_status_WRITE_OFF": "Loss"
 }
