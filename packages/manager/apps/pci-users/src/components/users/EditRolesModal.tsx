@@ -18,7 +18,7 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
 } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useUserRoles } from '@/hooks/useUser';
 import { useAllRoles, useUpdateUserRoles } from '@/hooks/useRole';
 
@@ -67,9 +67,7 @@ export default function EditRolesModal({
       );
     }
   }, [userRoles]);
-  const isPending = useMemo(() => {
-    return isPendingUserRoles || isPendingRoles || isPendingUpdate;
-  }, [isPendingUserRoles, isPendingRoles, isPendingUpdate]);
+  const isPending = isPendingUserRoles || isPendingRoles || isPendingUpdate;
   return (
     <>
       <OsdsModal
@@ -134,7 +132,7 @@ export default function EditRolesModal({
           color={ODS_THEME_COLOR_INTENT.primary}
           onClick={() => update(userRoleId)}
           {...(isPending ? { disabled: true } : {})}
-          data-testid="submitButton"
+          data-testid="submitRolesEditButton"
         >
           {t('pci_projects_project_users_roles_edit')}
         </OsdsButton>
