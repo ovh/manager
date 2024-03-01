@@ -1,20 +1,15 @@
-import { useMutation } from '@tanstack/react-query';
 import { Plus } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useMemo } from 'react';
 import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { DataTable } from '@/components/ui/data-table';
 import { database } from '@/models/database';
 import { Skeleton } from '@/components/ui/skeleton';
-
-// import UpdateServiceNameModal, {
-//   UpdateServiceSubmitData,
-// } from './updateServiceNameModal';
 import { getColumns } from './serviceListColumns';
-import { H2 } from '@/components/typography';
-// import { UpdateServiceProps, updateService } from '@/data/cdb/service';
+import { H2, Link } from '@/components/typography';
+import { useModale } from '@/hooks/useModale';
+import RenameService from '../[serviceId]/_components/renameService';
 
 interface ServicesListProps {
   services: database.Service[];
@@ -26,44 +21,18 @@ export default function ServicesList({
   refetchFn,
 }: ServicesListProps) {
   const { t } = useTranslation('pci-databases-analytics/services');
-  // define state
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const [editingService, setEditingService] = useState<database.Service>();
 
-  //   // define api links
-  //   const updateServiceNameMutation = useMutation({
-  //     mutationFn: (mutationData: UpdateServiceProps) =>
-  //       updateService(mutationData),
-  //     onSuccess: () => {
-  //       // close modale
-  //       setIsOpenModal(false);
-  //       // refresh services list
-  //       refetchFn();
-  //     },
-  //   });
+  const renameModale = useModale('rename');
+  const editingService = useMemo(
+    () => services.find((s) => s.id === renameModale.value),
+    [renameModale.value, services],
+  );
 
   const columns: ColumnDef<database.Service>[] = getColumns({
     onRenameClicked: (service: database.Service) => {
-      setEditingService(service);
-      setIsOpenModal(true);
+      renameModale.open(service.id);
     },
   });
-
-  //   const onSubmit = (data: UpdateServiceSubmitData) => {
-  //     updateServiceNameMutation.mutate({
-  //       projectId,
-  //       serviceEngine: data.serviceEngine,
-  //       serviceId: data.serviceId,
-  //       data: {
-  //         description: data.description,
-  //       },
-  //     });
-  //   };
-
-  const handleCloseUpdateServiceNameModal = () => {
-    setIsOpenModal(false);
-    setEditingService(undefined);
-  };
 
   return (
     <>
@@ -72,7 +41,7 @@ export default function ServicesList({
         <div>
           <div className="flex justify-between w-100 mb-2 items-end">
             <Button variant="outline" size="sm" className="text-base" asChild>
-              <Link to="./new">
+              <Link to="./new" className="hover:no-underline">
                 <Plus className="w-4 h-4 mr-2" />
                 {t('create-new-service')}
               </Link>
@@ -80,15 +49,17 @@ export default function ServicesList({
           </div>
           <DataTable columns={columns} data={services} pageSize={25} />
         </div>
-        {/* {editingService && (
-          <UpdateServiceNameModal
+
+        {editingService && (
+          <RenameService
+            controller={renameModale.controller}
             service={editingService}
-            open={isOpenModal}
-            onClose={handleCloseUpdateServiceNameModal}
-            disabled={updateServiceNameMutation.status === 'pending'}
-            onSubmit={onSubmit}
+            onSuccess={() => {
+              renameModale.close();
+              refetchFn();
+            }}
           />
-        )} */}
+        )}
       </>
     </>
   );

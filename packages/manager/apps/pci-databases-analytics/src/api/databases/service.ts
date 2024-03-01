@@ -29,7 +29,7 @@ export const addService = async (
 // define which values can be updated in the update service endpoint
 export interface UpdateServiceProps {
   projectId: string;
-  serviceEngine: string;
+  engine: database.EngineEnum;
   serviceId: string;
   data: Partial<
     Pick<
@@ -50,14 +50,10 @@ export interface UpdateServiceProps {
 
 export const updateService = async ({
   projectId,
-  serviceEngine,
+  engine,
   serviceId,
   data,
-}: UpdateServiceProps) => {
-  await apiClient.v6
-    .put(
-      `/cloud/project/${projectId}/database/${serviceEngine}/${serviceId}`,
-      data,
-    )
-    .then((res) => res.data as database.Service[]);
-};
+}: UpdateServiceProps) =>
+  apiClient.v6
+    .put(`/cloud/project/${projectId}/database/${engine}/${serviceId}`, data)
+    .then((res) => res.data as database.Service);
