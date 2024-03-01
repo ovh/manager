@@ -6,7 +6,13 @@ import {
 } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { database } from '@/models/database';
-import { addService, getService, getServices } from '@/api/databases/service';
+import {
+  UpdateServiceProps,
+  addService,
+  getService,
+  getServices,
+  updateService,
+} from '@/api/databases/service';
 
 export function useGetService(
   projectId: string,
@@ -33,14 +39,14 @@ export function useGetServices(
   }) as UseQueryResult<database.Service[], Error>;
 }
 
-interface AddServiceProps {
+interface MutateServiceProps {
   onError: (cause: Error) => void;
   onSuccess: (service: database.Service) => void;
 }
 export interface ServiceCreationWithEngine extends database.ServiceCreation {
   engine: database.EngineEnum;
 }
-export function useAddService({ onError, onSuccess }: AddServiceProps) {
+export function useAddService({ onError, onSuccess }: MutateServiceProps) {
   const { projectId } = useParams();
   const mutation = useMutation({
     mutationFn: (serviceAndEngine: ServiceCreationWithEngine) => {
@@ -53,6 +59,22 @@ export function useAddService({ onError, onSuccess }: AddServiceProps) {
 
   return {
     addService: (serviceAndEngine: ServiceCreationWithEngine) => {
+      return mutation.mutate(serviceAndEngine);
+    },
+    ...mutation,
+  };
+}
+
+export function useUpdateService({ onError, onSuccess }: MutateServiceProps) {
+  const mutation = useMutation({
+    mutationFn: (serviceUpdate: UpdateServiceProps) =>
+      updateService(serviceUpdate),
+    onError,
+    onSuccess,
+  });
+
+  return {
+    updateService: (serviceAndEngine: UpdateServiceProps) => {
       return mutation.mutate(serviceAndEngine);
     },
     ...mutation,
