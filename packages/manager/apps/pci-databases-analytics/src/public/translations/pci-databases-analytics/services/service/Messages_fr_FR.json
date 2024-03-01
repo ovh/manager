@@ -1,0 +1,11 @@
+{
+  "renameServiceToastErrorTitle": "Erreur lors du changement de nom de votre service",
+  "renameServiceToastSuccessTitle": "Service renommé",
+  "renameServiceToastSuccessDescription": "Le nom de votre service a été mis à jour.",
+  "renameServiceErrorMinLength": "Veuillez entrer au moins {{min}} caractères",
+  "renameServiceErrorMaxLength": "Veuillez entrer au maximum {{max}} caractères",
+  "renameServiceTitle": "Modifier le nom",
+  "renameServiceDescription": "Modifie le nom affiché dans l'en-tête",
+  "renameServiceNameInputLabel": "Nom",
+  "renameServiceNameSubmit": "Modifier"
+}
