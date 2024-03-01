@@ -141,25 +141,26 @@ export const PaginatedDatagrid = <T extends unknown>({
                           )}
                         </>
                       </OsdsText>
-                      {header.column.getIsSorted() && (
-                        <span
-                          className={`align-middle inline-block h-4 ${
+                      <span
+                        className={`align-middle inline-block h-4 ${
+                          (header.column.getIsSorted() as string) === 'asc'
+                            ? '-mt-5'
+                            : '-mt-9'
+                        }`}
+                      >
+                        <OsdsIcon
+                          size={ODS_ICON_SIZE.sm}
+                          color={ODS_THEME_COLOR_INTENT.primary}
+                          className={
+                            header.column.getIsSorted() ? '' : 'invisible'
+                          }
+                          name={
                             (header.column.getIsSorted() as string) === 'asc'
-                              ? '-mt-5'
-                              : '-mt-9'
-                          }`}
-                        >
-                          <OsdsIcon
-                            size={ODS_ICON_SIZE.sm}
-                            color={ODS_THEME_COLOR_INTENT.primary}
-                            name={
-                              (header.column.getIsSorted() as string) === 'asc'
-                                ? ODS_ICON_NAME.SORT_UP
-                                : ODS_ICON_NAME.SORT_DOWN
-                            }
-                          />
-                        </span>
-                      )}
+                              ? ODS_ICON_NAME.SORT_UP
+                              : ODS_ICON_NAME.SORT_DOWN
+                          }
+                        />
+                      </span>
                     </div>
                   )}
                 </th>
