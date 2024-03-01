@@ -151,23 +151,8 @@ export default class NetAppDashboardService {
    * @param {*} vrackServicesId
    * @returns array of vrack available for association for the vrack services id in parameter
    */
-  filterAllowedVrack(vracks, vrackServicesId, vrackServices) {
-    // vrack already associated to user vrack services are available for efs association
-    const allowedVracksWithAssociatedVrs = [];
-    if (vrackServices?.length) {
-      vrackServices.forEach((vrs) => {
-        if (vrs.currentState.vrackId) {
-          allowedVracksWithAssociatedVrs.push({
-            vrackServices: [vrs.id],
-            vrack: vracks.find(
-              (vrack) => vrack.internalName === vrs.currentState.vrackId,
-            ),
-          });
-        }
-      });
-    }
-
-    // For other vracks, we check if they have allowed services to add them in the available list
+  filterAllowedVrack(vracks, vrackServicesId) {
+    // Check if user vracks have allowed services to add them in the available list
     const allowedServicesPromises = vracks.map((vrack) =>
       this.getAllowedVrackServices(vrack.internalName).then((data) => ({
         ...data,
@@ -175,19 +160,13 @@ export default class NetAppDashboardService {
       })),
     );
 
-    return this.$q.all(allowedServicesPromises).then((data) =>
-      [
-        // If we search the available vrack for a unique vrack services,
-        // we filter the vrack with this vrack services in the allowed services
-        // else we remove the vrack without allowed vrack services from the list
-        ...data.filter((vrackAllowedServices) =>
-          vrackServicesId
-            ? vrackAllowedServices.vrackServices.includes(vrackServicesId)
-            : !!vrackAllowedServices.vrackServices.length,
+    return this.$q
+      .all(allowedServicesPromises)
+      .then((data) =>
+        data.filter((vrackAllowedServices) =>
+          vrackAllowedServices.vrackServices.includes(vrackServicesId),
         ),
-        ...allowedVracksWithAssociatedVrs,
-      ].sort((a, b) => (a.vrack.internalName < b.vrack.internalName ? -1 : 1)),
-    );
+      );
   }
 
   /**
