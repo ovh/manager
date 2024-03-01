@@ -26,6 +26,30 @@
     >
         <oui-datagrid-topbar data-ng-if="$ctrl.topbarOptions">
             <topbar-cta data-options="$ctrl.topbarOptions"></topbar-cta>
+            <div class="d-inline" data-ng-if="$ctrl.resources.data.length">
+                <oui-button
+                    data-variant="secondary"
+                    data-disabled="!$ctrl.selectedRows.length"
+                    data-ng-click="$ctrl.goToRestoreRenew($ctrl.selectedRows)"
+                >
+                    <span data-translate="domains_action_restore_renew"></span>
+                </oui-button>
+
+                <oui-button
+                    data-variant="secondary"
+                    data-ng-click="$ctrl.setActionMultiple('export-csv/domains-export-to-csv')"
+                    data-ng-disabled="$ctrl.loading.domainsExportCsv"
+                >
+                    <span
+                        data-translate="domains_dashboard_button_export"
+                        data-ng-if="!$ctrl.loading.domainsExportCsv"
+                    ></span>
+                    <span
+                        data-translate="domains_dashboard_tooltip_export_csv_creation_doing"
+                        data-ng-if="$ctrl.loading.domainsExportCsv"
+                    ></span>
+                </oui-button>
+            </div>
         </oui-datagrid-topbar>
         <oui-datagrid-column
             data-title="::'domains_column_domain' | translate"
@@ -336,31 +360,6 @@
             </oui-action-menu-item>
         </oui-action-menu>
     </oui-datagrid>
-
-    <div class="mt-5" data-ng-if="$ctrl.resources.data.length">
-        <oui-button
-            data-variant="secondary"
-            data-disabled="!$ctrl.selectedRows.length"
-            data-ng-click="$ctrl.goToRestoreRenew($ctrl.selectedRows)"
-        >
-            <span data-translate="domains_action_restore_renew"></span>
-        </oui-button>
-
-        <oui-button
-            data-variant="secondary"
-            data-ng-click="$ctrl.setActionMultiple('export-csv/domains-export-to-csv')"
-            data-ng-disabled="$ctrl.loading.domainsExportCsv"
-        >
-            <span
-                data-translate="domains_dashboard_button_export"
-                data-ng-if="!$ctrl.loading.domainsExportCsv"
-            ></span>
-            <span
-                data-translate="domains_dashboard_tooltip_export_csv_creation_doing"
-                data-ng-if="$ctrl.loading.domainsExportCsv"
-            ></span>
-        </oui-button>
-    </div>
 
     <div
         id="currentAction"
