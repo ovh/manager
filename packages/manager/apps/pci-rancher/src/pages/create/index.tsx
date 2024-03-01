@@ -39,7 +39,7 @@ export default function Create() {
   const { data: ranchers } = useRanchers();
   const ranchersQueryKeyValue = ranchersQueryKey(projectId);
 
-  const { mutate: createRancher, status } = useCreateRancher({
+  const { mutate: createRancher, isPending } = useCreateRancher({
     projectId,
     onMutate: () => setHasRancherCreationError(false),
     onSuccess: (data: { data: RancherService }) => {
@@ -70,7 +70,7 @@ export default function Create() {
     <PageLayout>
       <Breadcrumb />
       <CreateRancher
-        isCreateRancherLoading={status === 'pending'}
+        isCreateRancherLoading={isPending}
         hasSomeRancher={ranchers?.length > 0}
         projectId={projectId}
         hasRancherCreationError={hasRancherCreationError}

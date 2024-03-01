@@ -1,8 +1,4 @@
-import {
-  apiClient,
-  fetchIcebergV2,
-  IcebergFetchResultV2,
-} from '@ovh-ux/manager-core-api';
+import { apiClient, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
 import {
   CreateRancherPayload,
   PciProject,
