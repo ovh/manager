@@ -117,7 +117,7 @@ export default function BuyCreditModal({
           onClick={() => buy(amount)}
           data-testid="submitButton"
         >
-          {t('common_confirm')}
+          {t('cpb_vouchers_add_credit_valid')}
         </OsdsButton>
       </OsdsModal>
     </>
