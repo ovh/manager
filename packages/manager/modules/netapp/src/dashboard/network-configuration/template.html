@@ -30,8 +30,8 @@
         >
             <oui-field label="{{:: $ctrl.LABELS.VRACK }}" size="xl">
                 <oui-select
-                    data-items="$ctrl.availableVracks"
-                    data-match="vrack.internalName"
+                    data-items="$ctrl.vracks"
+                    data-match="internalName"
                     data-model="$ctrl.selectedVrack"
                     data-searchable="true"
                     data-placeholder="{{:: 'netapp_network_configuration_vrack_field_placeholder' | translate }}"
