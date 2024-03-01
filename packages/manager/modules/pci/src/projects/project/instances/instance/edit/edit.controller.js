@@ -23,7 +23,7 @@ export default class PciInstanceEditController {
     this.PciProject = PciProject;
     this.EDIT_PAGE_SECTIONS = EDIT_PAGE_SECTIONS;
     this.instancePricesLink =
-      INSTANCE_PRICING_LINKS[coreConfig.getUser()?.ovhSubsidiary] ||
+      INSTANCE_PRICING_LINKS[coreConfig.getUser().ovhSubsidiary] ||
       INSTANCE_PRICING_LINKS.DEFAULT;
   }
 

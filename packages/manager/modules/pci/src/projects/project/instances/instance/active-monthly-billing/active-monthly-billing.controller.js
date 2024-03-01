@@ -13,7 +13,7 @@ export default class PciInstanceActiveMonthlyBillingController {
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
     this.instancePricesLink =
-      INSTANCE_PRICING_LINKS[coreConfig.getUser()?.ovhSubsidiary] ||
+      INSTANCE_PRICING_LINKS[coreConfig.getUser().ovhSubsidiary] ||
       INSTANCE_PRICING_LINKS.DEFAULT;
   }
 

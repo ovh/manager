@@ -70,7 +70,7 @@ export default class PciInstancesAddController {
     this.LOCAL_ZONE_REGION = LOCAL_ZONE_REGION;
     this.PciProject = PciProject;
     this.instancePricesLink =
-      INSTANCE_PRICING_LINKS[coreConfig.getUser()?.ovhSubsidiary] ||
+      INSTANCE_PRICING_LINKS[this.user.ovhSubsidiary] ||
       INSTANCE_PRICING_LINKS.DEFAULT;
   }
 
