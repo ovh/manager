@@ -34,12 +34,11 @@ const RandomWidthSkeletons = ({
     () =>
       `${Math.floor(Math.random() * (maxWidth - minWidth + 1)) + minWidth}rem`,
   );
-
   return (
     <ul className="divide-y-4 divide-transparent">
       {randomWidths.map((width, index) => (
         <li key={index}>
-          <Skeleton className={`h-4 w-[${width}]`} />
+          <Skeleton className={'h-4'} style={{ width }} />
         </li>
       ))}
     </ul>
@@ -80,9 +79,9 @@ const Logs = () => {
         <Label htmlFor="poll-logs">{t('autoRefreshInputLabel')}</Label>
       </div>
       <ScrollArea className="p-2 h-[500px] bg-[#122844]">
-        <ul ref={listLogRef}>
-          {logsQuery.isSuccess ? (
-            logsQuery.data.map((log, index) => (
+        {logsQuery.isSuccess ? (
+          <ul ref={listLogRef}>
+            {logsQuery.data.map((log, index) => (
               <li
                 className="whitespace-pre text-white font-mono text-sm"
                 key={index}
@@ -91,11 +90,11 @@ const Logs = () => {
                 <span>{log.hostname}</span>
                 <span>{log.message}</span>
               </li>
-            ))
-          ) : (
-            <RandomWidthSkeletons itemCount={24} minWidth={9} maxWidth={20} />
-          )}
-        </ul>
+            ))}
+          </ul>
+        ) : (
+          <RandomWidthSkeletons itemCount={24} minWidth={9} maxWidth={20} />
+        )}
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
     </>
