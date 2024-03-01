@@ -117,7 +117,9 @@
                 </oui-tile-definition>
             </div>
             <oui-tile-button
-                data-ng-if="$ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.TO_CONFIGURE"
+                data-ng-if="
+                    $ctrl.networkInformations.status === $ctrl.NETWORK_STATUS.TO_CONFIGURE
+                    && !$ctrl.networkInformations.vrackServices"
                 data-on-click="$ctrl.goToNetworkConfiguration()"
             >
                 <span
