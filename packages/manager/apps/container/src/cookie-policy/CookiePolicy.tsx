@@ -1,21 +1,41 @@
 import React, { useState, useEffect } from 'react';
-
 import { Shell } from '@ovh-ux/shell';
-import { Modal } from 'react-bootstrap';
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
 import { User } from '@ovh-ux/manager-config';
-
 import ovhCloudLogo from './assets/logo-ovhcloud.png';
 import links from './links';
-import './style.scss';
-import modalStyle from './cookie-modal.module.scss';
-
 import { useApplication } from '@/context';
+import { Subtitle, Links, LinksProps } from '@ovhcloud/manager-components';
+import {
+  OsdsButton,
+  OsdsModal,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_TEXT_COLOR_HUE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 
 type Props = {
   shell: Shell;
 };
+
+const ModalContent = ({ label }: { label: string }) => (
+  <OsdsText
+    level={ODS_TEXT_LEVEL.caption}
+    color={ODS_THEME_COLOR_INTENT.text}
+    size={ODS_TEXT_SIZE._300}
+    hue={ODS_TEXT_COLOR_HUE._500}
+  >
+    {label}
+  </OsdsText>
+);
 
 const CookiePolicy = ({ shell }: Props): JSX.Element => {
   const { t } = useTranslation('cookie-policy');
@@ -26,14 +46,27 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
     .user as User;
   const trackingPlugin = shell.getPlugin('tracking');
 
+  const linksArray: LinksProps[] = [
+    {
+      href: links.moreInfo[ovhSubsidiary],
+      label: t('cookie_policy_description_1_more_informations'),
+      target: OdsHTMLAnchorElementTarget._blank,
+    },
+    {
+      href: links.changeOpinionLink[ovhSubsidiary],
+      label: t('cookie_policy_description_5_link'),
+      target: OdsHTMLAnchorElementTarget._blank,
+    },
+  ];
+
   const accept = () => {
-    setCookies('MANAGER_TRACKING', 1);
+    setCookies('MANAGER_TRACKING', '1');
     trackingPlugin.onUserConsentFromModal(true);
     setShow(false);
   };
 
   const deny = () => {
-    setCookies('MANAGER_TRACKING', 0);
+    setCookies('MANAGER_TRACKING', '0');
     trackingPlugin.onUserConsentFromModal(false);
     setShow(false);
   };
@@ -49,70 +82,59 @@ const CookiePolicy = ({ shell }: Props): JSX.Element => {
     } else {
       trackingPlugin.setEnabled(false);
     }
-  }, []);
-
-  const moreInfoLink = links.moreInfo[ovhSubsidiary];
-  const clickHereLink = links.changeOpinionLink[ovhSubsidiary];
-
-  const moreInfoHtml = () => {
-    return {
-      __html: t('cookie_policy_description_1', {
-        url: moreInfoLink,
-      }),
-    };
-  };
-  const clickHereHtml = () => {
-    return {
-      __html: t('cookie_policy_description_5', {
-        url: clickHereLink,
-      }),
-    };
-  };
+  }, [show]);
 
   return (
-    <Modal
-      size="lg"
-      show={show}
-      backdrop="static"
-      keyboard={false}
-      animation={false}
-    >
-      <Modal.Body>
-        <div className="p-1">
-          <div className="img-wrapper w-100 d-flex justify-content-center align-items-center">
-            <img src={ovhCloudLogo} alt="ovh-cloud-logo" />
-          </div>
-          <h4 className={`${modalStyle.title} text-center`}>
-            {t('cookie_policy_title')}
-          </h4>
-          <p dangerouslySetInnerHTML={moreInfoHtml()}></p>
-          <ul className={modalStyle.list}>
-            <li>{t('cookie_policy_description_3')}</li>
-          </ul>
-          <p className="mb-3">{t('cookie_policy_description_2')}</p>
-          <span>{t('cookie_policy_description_4')}</span>
+    <>
+      {show && (
+        <OsdsModal dismissible onOdsModalClose={() => setShow(false)}>
+          <div className="p-1">
+            <div className="w-full flex justify-center items-center">
+              <img src={ovhCloudLogo} alt="ovh-cloud-logo" />
+            </div>
+            <div className="text-center m-4">
+              <Subtitle>{t('cookie_policy_title')}</Subtitle>
+            </div>
+            <div className='mb-3'>
+              <ModalContent label={t('cookie_policy_description_1')} />
+              <span className="inline-block">
+                <Links href={linksArray[0].href} label={linksArray[0].label} />
+              </span>
+            </div>
+            <ul><li><ModalContent label={t('cookie_policy_description_3')} /></li></ul>
+            <ModalContent label={t('cookie_policy_description_2')} />
 
-          <span dangerouslySetInnerHTML={clickHereHtml()}></span>
-        </div>
-      </Modal.Body>
-      <Modal.Footer>
-        <div className="banner-buttons w-100 d-flex flex-wrap justify-content-center align-items-center flex-column">
-          <button
-            onClick={() => accept()}
-            className="accept mb-2 oui-button oui-button_primary"
+            <div>
+              <ModalContent label={t('cookie_policy_description_4')} />
+              <ModalContent label={t('cookie_policy_description_5')} />
+              <span className="inline-block">
+                <Links href={linksArray[0].href} label={linksArray[1].label} />
+              </span>
+            </div>
+          </div>
+
+          <OsdsButton
+            slot="actions"
+            size={ODS_BUTTON_SIZE.sm}
+            variant={ODS_BUTTON_VARIANT.ghost}
+            color={ODS_THEME_COLOR_INTENT.primary}
+            onClick={deny}
+          >
+            {t('cookie_policy_refuse')}
+          </OsdsButton>
+          <OsdsButton
+            slot="actions"
+            onClick={accept}
             data-navi-id="cookie-accept"
+            size={ODS_BUTTON_SIZE.sm}
+            variant={ODS_BUTTON_VARIANT.flat}
+            color={ODS_THEME_COLOR_INTENT.primary}
           >
-            <span>{t('cookie_policy_accept')}</span>
-          </button>
-          <button
-            onClick={() => deny()}
-            className="deny oui-button oui-button_secondary"
-          >
-            <span>{t('cookie_policy_refuse')}</span>
-          </button>
-        </div>
-      </Modal.Footer>
-    </Modal>
+            {t('cookie_policy_accept')}
+          </OsdsButton>
+        </OsdsModal>
+      )}
+    </>
   );
 };
 
