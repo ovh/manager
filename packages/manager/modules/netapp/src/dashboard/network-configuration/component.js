@@ -7,7 +7,7 @@ export default {
     trackClick: '<',
     trackPage: '<',
     vrackServices: '<',
-    availableVracks: '<',
+    vracks: '<',
     createVrackServiceLink: '<',
     createSubnetLink: '<',
     storage: '<',
