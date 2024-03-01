@@ -58,7 +58,6 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId,
         getFloatingIps,
         customerRegions,
-        hasGridscaleLocalzoneRegion,
       ) =>
         $q
           .all({
@@ -66,7 +65,7 @@ export default /* @ngInject */ ($stateProvider) => {
               projectId,
               customerRegions,
             ),
-            floatingIps: hasGridscaleLocalzoneRegion ? [] : getFloatingIps(),
+            floatingIps: getFloatingIps(),
           })
           .then(({ instances, floatingIps }) => {
             const updatedInstances = map(instances, (instance) => ({
