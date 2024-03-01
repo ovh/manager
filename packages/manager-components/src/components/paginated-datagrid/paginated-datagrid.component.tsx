@@ -205,6 +205,7 @@ export const PaginatedDatagrid = <T extends unknown>({
       {pagination && (
         <OsdsPagination
           current={pagination.pageIndex + 1}
+          className={'flex justify-end'}
           total-items={totalItems}
           total-pages={pageCount}
           default-items-per-page={pagination.pageSize}
