@@ -43,7 +43,7 @@ const Metrics = () => {
               {metricPeriods.map((periodValue, index) => (
                 <Button
                   variant={period === periodValue ? 'default' : 'outline'}
-                  key={index}
+                  key={periodValue}
                   onClick={() => setPeriod(periodValue)}
                   size={'sm'}
                   className={cn('rounded-none border-r-0', {
@@ -66,9 +66,9 @@ const Metrics = () => {
               <Label htmlFor="poll-metrics">{t('autoRefreshInputLabel')}</Label>
             </div>
           </div>
-          {metricsQuery.data.map((metric, index) => (
+          {metricsQuery.data.map((metric) => (
             <MetricChart
-              key={index}
+              key={metric}
               metric={metric}
               period={period}
               poll={poll}
