@@ -81,6 +81,11 @@ export default class OvhManagerNetAppNetworkConfigurationCtrl {
     }
   }
 
+  focusVrackStep() {
+    this.selectedVrackService = null;
+    this.selectedSubnet = null;
+  }
+
   onVrackServiceSelected(vrackService) {
     this.selectedSubnet = null;
     this.subnets = (vrackService.currentState.subnets || []).map((subnet) => ({
