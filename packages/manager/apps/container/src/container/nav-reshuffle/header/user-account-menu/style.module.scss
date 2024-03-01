@@ -7,6 +7,7 @@
 }
 
 .menuContent {
+  & > div { border-radius: 0.5rem; }
   strong {
     font-weight: 600;
   }
@@ -83,20 +84,6 @@
     border-radius: 16px;
   }
 
-  .oui-badge {
-    &_error {
-      color: $ae-500;
-    }
-
-    &_warning {
-      color: $aw-500;
-    }
-
-    &_success {
-      color: $as-500;
-    }
-  }
-
   .oui-icon {
     color: $p-800;
   }
@@ -109,6 +96,12 @@
 .myAccountIcon {
   font-size: 1rem !important;
   vertical-align: top !important;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: $device-breakpoint-tablet-max-width) {
