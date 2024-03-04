@@ -46,20 +46,18 @@ const VersionSelector = ({
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <div className="hidden">
-        {versions
-          .sort((a, b) => a.order - b.order)
-          .map((engineVersion) => (
-            <input
-              type="radio"
-              name="version-select"
-              value={engineVersion.name}
-              key={engineVersion.name}
-              readOnly
-              checked={
-                isEngineSelected && engineVersion.name === selectedVersion.name
-              }
-            />
-          ))}
+        {versions.map((engineVersion) => (
+          <input
+            type="radio"
+            name="version-select"
+            value={engineVersion.name}
+            key={engineVersion.name}
+            readOnly
+            checked={
+              isEngineSelected && engineVersion.name === selectedVersion.name
+            }
+          />
+        ))}
       </div>
       <PopoverTrigger asChild>
         <Button
