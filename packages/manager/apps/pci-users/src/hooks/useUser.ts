@@ -3,6 +3,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { saveAs } from 'file-saver';
 import queryClient from '@/queryClient';
 import {
+  createUser,
   downloadOpenStackConfig,
   downloadRCloneConfig,
   filterUsers,
@@ -235,7 +236,7 @@ export const useRegeneratePassword = ({
   const regenerate = async () => {
     try {
       const user = await regeneratePassword(projectId, userId);
-      queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: ['project', projectId, 'users'],
       });
       onSuccess(user);
@@ -248,5 +249,43 @@ export const useRegeneratePassword = ({
   return {
     isLoading,
     regenerate,
+  };
+};
+
+type CreateUserProps = {
+  projectId: string;
+  onError: (cause: Error) => void;
+  onSuccess: (data: User) => void;
+};
+type NewUserData = {
+  description: string;
+  roles: string[];
+};
+export const useCreateUser = ({
+  projectId,
+  onError,
+  onSuccess,
+}: CreateUserProps) => {
+  const mutation = useMutation({
+    mutationFn: (userData: NewUserData) =>
+      createUser(projectId, userData.description, userData.roles),
+    onSuccess: async (data: User) => {
+      const updatedUsers = [
+        ...(queryClient.getQueryData(['project', projectId, 'users']) as Array<
+          never
+        >),
+        data,
+      ];
+      queryClient.setQueryData(['project', projectId, 'users'], updatedUsers);
+      onSuccess(data);
+    },
+    onError,
+  });
+
+  return {
+    create: (userData: NewUserData) => {
+      return mutation.mutate(userData);
+    },
+    ...mutation,
   };
 };

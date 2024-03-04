@@ -88,7 +88,10 @@ export const filterUsers = (
 };
 
 export const removeUser = async (projectId: string, userId: string) => {
-  await v6.delete(`/cloud/project/${projectId}/user/${userId}`);
+  const { data } = await v6.delete(
+    `/cloud/project/${projectId}/user/${userId}`,
+  );
+  return data;
 };
 
 export type DownloadRCloneConfigResult = {
@@ -143,5 +146,17 @@ export const generateOpenStackToken = async (
       password,
     },
   );
+  return data;
+};
+
+export const createUser = async (
+  projectId: string,
+  description: string,
+  roles: string[],
+): Promise<User> => {
+  const { data } = await v6.post(`/cloud/project/${projectId}/user/`, {
+    description,
+    roles,
+  });
   return data;
 };

@@ -89,5 +89,12 @@
   "pci_projects_project_users_roles_cancel": "Abbrechen",
   "pci_projects_project_users_roles_edit": "Bestätigen",
   "pci_projects_project_users_roles_edit_success": "Sie haben die Benutzerrechte erfolgreich bearbeitet. Die Änderungen sind nicht sofort wirksam und es kann bis zu 10 Minuten dauern, bis sie umgesetzt sind.",
-  "pci_projects_project_users_roles_edit_error": "Bei der Aktualisierung der Benutzerrollen ist ein Fehler aufgetreten: {{ message }}"
+  "pci_projects_project_users_roles_edit_error": "Bei der Aktualisierung der Benutzerrollen ist ein Fehler aufgetreten: {{ message }}",
+
+  "pci_projects_project_users_add_title": "Benutzer hinzufügen",
+  "pci_projects_project_users_add_submit_label": "Weiter",
+  "pci_projects_project_users_add_cancel_label": "Abbrechen",
+  "pci_projects_project_users_add_description_label": "Beschreibung des Benutzers",
+
+  "pci_projects_project_users_add_description_error" : "Bitte füllen Sie dieses Feld aus."
 }

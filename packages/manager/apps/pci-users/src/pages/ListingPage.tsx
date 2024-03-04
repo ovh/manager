@@ -27,6 +27,7 @@ import {
   ODS_ICON_SIZE,
   ODS_SPINNER_SIZE,
 } from '@ovhcloud/ods-components';
+import { Notifications } from '@ovhcloud/manager-components';
 import { useUsers } from '@/hooks/useUser';
 import GuidesHeader from '@/components/guides/GuidesHeader';
 import useProject from '@/hooks/useProject';
@@ -34,7 +35,6 @@ import { User } from '@/interface';
 import DataGridTextCell from '@/components/datagrid/DataGridTextCell';
 import useDataGridParams from '@/hooks/useDataGridParams';
 import DataGrid from '@/components/datagrid/DataGrid';
-import Notifications from '@/components/Notifications';
 import Roles from '@/components/users/listing/Roles';
 import CreationDate from '@/components/users/listing/CreationDate';
 import Status from '@/components/users/listing/Status';
@@ -130,7 +130,7 @@ export default function ListingPage() {
     setSorting(sorts[0].id, sorts[0].desc);
   };
 
-  const hrefAdd = useHref(`./add`);
+  const hrefAdd = useHref(`./new`);
 
   return (
     <>
