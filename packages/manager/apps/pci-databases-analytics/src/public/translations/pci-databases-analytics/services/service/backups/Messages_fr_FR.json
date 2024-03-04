@@ -1,0 +1,10 @@
+{
+  "title": "Backups",
+  "breadcrumb": "Backups",
+  "description": "Vous trouverez ci-dessous la liste de vos sauvegardes. Vous pouvez restaurer ou fork chacune d'entre elles. Ces sauvegardes glissantes sont conservées pour le bon maintien opérationnel de votre service.",
+  "tableHeadName": "Nom",
+  "tableHeadLocation": "Localisation",
+  "tableHeadCreationDate": "Date de création",
+  "tableHeadNExpiryDate": "Date d'expiration",
+  "tableHeadStatus": "Status"
+}
