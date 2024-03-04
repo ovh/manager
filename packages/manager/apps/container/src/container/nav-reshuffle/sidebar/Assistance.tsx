@@ -28,7 +28,6 @@ const AssistanceSidebar: React.FC = (): JSX.Element => {
   const trackingPlugin = shell.getPlugin('tracking');
   const reketInstance = useReket();
 
-  const isEUOrCA = ['EU', 'CA'].includes(environment.getRegion());
   const [hasLiveChat, setHashLiveChat] = useState(false);
   const [hasCarbonCalculator, setHasCarbonCalculator] = useState(false);
 
