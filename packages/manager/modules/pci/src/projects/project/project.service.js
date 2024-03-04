@@ -2,6 +2,7 @@ import {
   URL_INFO,
   DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
   FULL_PROJECT_PLANCODE,
+  LOCAL_ZONE_REGION,
 } from './project.constants';
 import {
   ORDER_FOLLOW_UP_STEP_ENUM,
@@ -16,6 +17,7 @@ export default class {
     this.$q = $q;
     this.iceberg = iceberg;
     this.coreConfig = coreConfig;
+    this.LOCAL_ZONE_REGION = LOCAL_ZONE_REGION;
   }
 
   getProjectInfo() {
@@ -92,6 +94,17 @@ export default class {
   getDocumentUrl(type) {
     const { ovhSubsidiary } = this.coreConfig.getUser();
     return URL_INFO[type][ovhSubsidiary] || URL_INFO[type].DEFAULT;
+  }
+
+  getLocalZones(customerRegions = []) {
+    return customerRegions?.filter(({ type }) =>
+      type.includes(this.LOCAL_ZONE_REGION),
+    );
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  checkIsLocalZone(localZones, regionName) {
+    return localZones.some((region) => region.name === regionName);
   }
 
   setProjectInfo(project = {}) {

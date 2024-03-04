@@ -20,14 +20,16 @@ import {
   VOLUME_MIN_SIZE,
   VOLUME_SNAPSHOT_CONSUMPTION,
   VOLUME_UNLIMITED_QUOTA,
-  LOCAL_ZONE,
 } from './block.constants';
+
+import { LOCAL_ZONE_REGION } from '../../project.constants';
 
 export default class PciProjectStorageBlockService {
   /* @ngInject */
   constructor(
     $http,
     $q,
+    PciProject,
     CucPriceHelper,
     OvhApiCloudProject,
     OvhApiCloudProjectQuota,
@@ -35,11 +37,12 @@ export default class PciProjectStorageBlockService {
   ) {
     this.$http = $http;
     this.$q = $q;
+    this.PciProject = PciProject;
     this.CucPriceHelper = CucPriceHelper;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
     this.OvhApiCloudProjectVolumeSnapshot = OvhApiCloudProjectVolumeSnapshot;
-    this.LOCAL_ZONE = LOCAL_ZONE;
+    this.LOCAL_ZONE_REGION = LOCAL_ZONE_REGION;
   }
 
   getAll(projectId) {
@@ -129,22 +132,17 @@ export default class PciProjectStorageBlockService {
         }),
       )
       .then(({ attachedTo, volume, snapshots }) => {
-        const localZones = this.getLocalZones(customerRegions);
+        const localZones = this.PciProject.getLocalZones(customerRegions);
         return new BlockStorage({
           ...volume,
           attachedTo,
           snapshots,
-          isLocalZone: localZones.some(
-            (region) => region.name === volume.region,
+          isLocalZone: this.PciProject.checkIsLocalZone(
+            localZones,
+            volume.region,
           ),
         });
       });
-  }
-
-  getLocalZones(customerRegions = []) {
-    return customerRegions?.filter(({ type }) =>
-      type.includes(this.LOCAL_ZONE),
-    );
   }
 
   attachTo(projectId, storage, instance) {
@@ -425,7 +423,7 @@ export default class PciProjectStorageBlockService {
             new Region({
               ...region,
               quota: find(quotas, { region: region.name }),
-              isLocalZone: region.type === this.LOCAL_ZONE,
+              isLocalZone: region.type === this.LOCAL_ZONE_REGION,
             }),
         );
       });
