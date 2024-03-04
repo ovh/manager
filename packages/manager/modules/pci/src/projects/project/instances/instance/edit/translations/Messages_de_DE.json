@@ -3,10 +3,10 @@
   "pci_projects_project_instances_instance_edit_region_label": "Standort",
   "pci_projects_project_instances_instance_edit_sshKey_label": "SSH-Schlüssel",
   "pci_projects_project_instances_instance_edit_privateNetwork_label": "Verbundene(s) private(s) Netzwerk(e)",
-  "pci_projects_project_instances_instance_edit_reboot_message": "Während dieses Vorgangs wird der Server neu gestartet und ist deshalb für einige Sekunden nicht verfügbar.",
+  "pci_projects_project_instances_instance_edit_reboot_message": "Während dieses Vorgangs muss der Server neu gestartet werden. Daher ist er für einige Sekunden nicht verfügbar.",
   "pci_projects_project_instances_instance_edit_reinstall_message": "Sämtliche Daten werden gelöscht!",
   "pci_projects_project_instances_instance_edit_name_label": "Name der Instanz",
-  "pci_projects_project_instances_instance_edit_name_help": "Darf ausschließlich Ziffern, Buchstaben, Unterstriche, Gedankenstriche und Punkte enthalten.",
+  "pci_projects_project_instances_instance_edit_name_help": "Darf ausschließlich Zahlen, Buchstaben, Unterstriche, Gedankenstriche und Punkte enthalten.",
   "pci_projects_project_instances_instance_edit_name_submit_label": "Namen ändern",
   "pci_projects_project_instances_instance_edit_name_success_message": "Die Instanz {{ instance }} wurde aktualisiert.",
   "pci_projects_project_instances_instance_edit_name_error_put": "Bei der Aktualisierung der Instanz {{ instance }} ist ein Fehler aufgetreten: {{ message }}",
@@ -23,7 +23,7 @@
   "pci_projects_project_instances_instance_edit_flex": "Flexible Instanz",
   "pci_projects_project_instances_instance_flex_edit_help": "Die Auswahl der Flex-Option erzwingt einen Storage mit 50 GB Speicherplatz, was schnellere Snapshots und ein Downgrade zu einem späteren Zeitpunkt ermöglicht",
   "pci_projects_project_instances_instance_edit_billing_label": "Abrechnungszeitraum",
-  "pci_projects_project_instances_instance_edit_billing_montly_discount_message": "Die Monatspauschale wird ab dem Start der Instanz berechnet und Sie sparen 50 % der Serverkosten.",
+  "pci_projects_project_instances_instance_edit_billing_montly_discount_message": "Verringern Sie den Rechnungsbetrag, indem Sie Ihre Instanz auf die monatliche Abrechnung umstellen.",
   "pci_projects_project_instances_instance_edit_billing_short_period_message": "Wenn Sie Ihre Instanz nur für kurze Zeit nutzen, empfehlen wir Ihnen die Abrechnung nach Stunden. Sie können später jederzeit auf monatliche Abrechnung umstellen.",
   "pci_projects_project_instances_instance_edit_billing_submit_label": "Abrechnungszeitraum ändern",
   "pci_projects_project_instances_instance_edit_billing_success_message": "Die Instanz {{ instance }} wurde auf monatliche Abrechnung umgestellt.",
@@ -36,5 +36,6 @@
   "pci_projects_project_instances_instance_edit_billing_anti_affinity_coming_soon_message_description": "Die monatlichen Preise werden mit der Einführung der Saving Plans in Kürze verfügbar sein.",
   "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p1": "Die monatliche Abrechnung ist für die neuen Instanzen (b3, c3, r3) nicht verfügbar.",
   "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p2": "So führt jede Migration von der alten auf die neue Reihe zwingend zu einer Umstellung auf die stündliche Abrechnung.",
-  "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p3": "Die monatliche Abrechnung für Ihren laufenden Monat ist weiterhin fällig."
+  "pci_projects_project_instances_instance_edit_loosing_monthly_plan_p3": "Die monatliche Abrechnung für Ihren laufenden Monat ist weiterhin fällig.",
+  "pci_projects_project_instances_instance_edit_billing_montly_discount_message_link": "Preise anzeigen"
 }

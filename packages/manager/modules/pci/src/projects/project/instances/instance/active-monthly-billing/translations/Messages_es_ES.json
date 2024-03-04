@@ -1,9 +1,10 @@
 {
- "pci_projects_project_instances_instance_active-monthly-billing_title": "Cambiar a tarifa mensual",
- "pci_projects_project_instances_instance_active-monthly-billing_submit_label": "Confirmar",
- "pci_projects_project_instances_instance_active-monthly-billing_cancel_label": "Cancelar",
- "pci_projects_project_instances_instance_active-monthly-billing_content": "Ahorre un 50% en el precio de la instancia cambiando a tarifa mensual (con pago por adelantado).",
- "pci_projects_project_instances_instance_active-monthly-billing_invoice_alert": "Se emitirá inmediatamente una factura de la parte proporcional al período restante del mes actual.",
- "pci_projects_project_instances_instance_active-monthly-billing_success_message": "Se ha cambiado la instancia {{ instance }} a tarifa mensual.",
- "pci_projects_project_instances_instance_active-monthly-billing_error_enable": "Se ha producido un error al cambiar la instancia {{ instance }} a tarifa mensual: {{ message }}."
+  "pci_projects_project_instances_instance_active-monthly-billing_title": "Cambiar a tarifa mensual",
+  "pci_projects_project_instances_instance_active-monthly-billing_submit_label": "Confirmar",
+  "pci_projects_project_instances_instance_active-monthly-billing_cancel_label": "Cancelar",
+  "pci_projects_project_instances_instance_active-monthly-billing_content": "Ahorre en la factura de su instancia pasando a la tarifa mensual.",
+  "pci_projects_project_instances_instance_active-monthly-billing_invoice_alert": "Se emitirá inmediatamente una factura de la parte proporcional al período restante del mes actual.",
+  "pci_projects_project_instances_instance_active-monthly-billing_success_message": "Se ha cambiado la instancia {{ instance }} a facturación mensual.",
+  "pci_projects_project_instances_instance_active-monthly-billing_error_enable": "Se ha producido un error al activar la facturación mensual de la instancia {{ instance }}: {{ message }}.",
+  "pci_projects_project_instances_instance_active-monthly-billing_content_link": "Ver los precios"
 }

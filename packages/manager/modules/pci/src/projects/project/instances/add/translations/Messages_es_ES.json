@@ -8,8 +8,8 @@
   "pci_projects_project_instances_add_region_datacenter_title": "Región",
   "pci_projects_project_instances_add_region_display_nonavailable": "Mostrar las localizaciones no disponibles",
   "pci_project_instances_instance_add_region_error": "Se ha producido un error al cargar las regiones disponibles.",
-  "pci_project_instances_instance_add_region_activate": "Esta región todavía no está activada. Puede activarla en la pestaña <a href='{{regionsLink}}'>Quota and Localisation</a> y, a continuación, volver a crear su instancia.",
-  "pci_project_instances_instance_add_region_quota": "No hay cuotas disponibles en esta localización. Para continuar, <a href='{{quotaLink}}'>aumente su cuota</a>.",
+  "pci_project_instances_instance_add_region_activate": "Esta región todavía no está activada. Puede activarla en la pestaña <a href='{{regionsLink}}'>Quota and localisation</a> y volver a crear su instancia.",
+  "pci_project_instances_instance_add_region_quota": "No hay cuotas disponibles en esta localización. Deberá <a href='{{quotaLink}}'>aumentar su cuota</a> para continuar.",
   "pci_project_instances_instance_add_region_unavailable": "Estas localizaciones están disponibles en otros modelos.",
   "pci_project_instances_instance_add_choose_model": "Cambiar de modelo",
   "pci_project_instances_instance_add_region_bandwidth_extra": "El tráfico de red público saliente de las instancias está incluido en todas las localizaciones, excepto en las regiones de Asia-Pacífico (Singapur y Sídney). En estas dos regiones, cada proyecto de Public Cloud incluye 1 TB mensual de tráfico público saliente. Una vez superado este límite, cada GB de tráfico saliente adicional tiene un precio de {{ price }}. El tráfico de red entrante desde la red pública está incluido en todos los casos y en todas las regiones.",
@@ -40,7 +40,7 @@
   "pci_projects_project_instances_add_privateNetwork_private_mode_description2": "Tenga en cuenta que, para un acceso SSH desde internet, necesitará una Floating IP u otra instancia (denominada SSH-Proxy).",
   "pci_projects_project_instances_add_privateNetwork_label": "Seleccionar una red privada",
   "pci_projects_project_instances_add_privateNetwork_placeholder": "Seleccione una red privada",
-  "pci_projects_project_instances_add_privateNetwork_none": "Ninguna",
+  "pci_projects_project_instances_add_privateNetwork_none": "Ninguno",
   "pci_projects_project_instances_add_privateNetwork_description": "En este modo, la instancia estará asociada a una de las redes privadas locales.",
   "pci_projects_project_instances_add_privateNetwork_add": "Crear una nueva red privada",
   "pci_projects_project_instances_add_privateNetwork_gateway_detectected_banner_info1": "Ya hay un servicio Gateway dentro de la red privada seleccionada. Si esta última no es compatible con el modo de red seleccionado, podría tener un comportamiento de red inesperado.",
@@ -57,7 +57,7 @@
   "pci_projects_project_instances_add_automated_backup_recommended": "Recomendado",
   "pci_projects_project_instances_add_automated_backup_infos": "Esta funcionalidad permite realizar un backup de su instancia de forma automática, con la frecuencia que usted elija.",
   "pci_projects_project_instances_add_billing_title": "Seleccione un período de facturación",
-  "pci_projects_project_instances_add_billing_montly_discount_message": "La tarifa mensual se calcula desde el inicio de la instancia y permite ahorrar un 50% en el precio del servidor.",
+  "pci_projects_project_instances_add_billing_montly_discount_message": "Ahorre en la factura de su instancia pasando a la tarifa mensual.",
   "pci_projects_project_instances_add_billing_short_period_message": "Para utilizar una instancia durante un período breve de tiempo, le recomendamos que elija la facturación por horas. Si más adelante lo necesita, puede cambiar a tarifa mensual.",
   "pci_projects_project_instances_add_billing_monthly_label": "Mensual",
   "pci_projects_project_instances_add_billing_hourly_label": "Por horas",
@@ -106,5 +106,6 @@
   "pci_projects_project_instances_add_localPrivateNetwork_placeholder": "Seleccionar una red privada en una Local Zone",
   "pci_projects_project_instances_add_privateNetwork_local_private_mode": "Local Private Mode",
   "pci_projects_project_instances_add_privateNetwork_local_private_mode_description1": "Las instancias en «Local Private Mode» no están conectadas a escala global. Solo las instancias de una misma Local Zone pueden conectarse a través de redes privadas en las zonas locales. Las Local Zones no son compatibles con su vRack.",
-  "pci_projects_project_instances_add_privateNetwork_local_private_mode_description2": "El «Local Private Mode» utiliza el DHCP para proporcionar automáticamente un direccionamiento IP a sus instancias."
+  "pci_projects_project_instances_add_privateNetwork_local_private_mode_description2": "El «Local Private Mode» utiliza el DHCP para proporcionar automáticamente un direccionamiento IP a sus instancias.",
+  "pci_projects_project_instances_add_billing_montly_discount_message_link": "Ver los precios"
 }
