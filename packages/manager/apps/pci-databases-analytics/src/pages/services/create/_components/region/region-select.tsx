@@ -25,14 +25,12 @@ const RegionsSelect = React.forwardRef<HTMLInputElement, RegionsSelectProps>(
           return 'info';
       }
     };
-    const mappedRegions = regions
-      .sort((a, b) => a.order - b.order)
-      .map((r) => ({
-        name: r.name,
-        tags: r.tags,
-        label: t(`region_${r.name}_micro`, { micro: r.name }),
-        continent: t(`region_continent_${r.name}`),
-      }));
+    const mappedRegions = regions.map((r) => ({
+      name: r.name,
+      tags: r.tags,
+      label: t(`region_${r.name}_micro`, { micro: r.name }),
+      continent: t(`region_continent_${r.name}`),
+    }));
     const continents = [
       ...new Set([
         t(`region_continent_all`),

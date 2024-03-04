@@ -15,7 +15,7 @@ export function useGetMetrics(
   const queryKey = [projectId, 'database', engine, serviceId, 'metric'];
   return useQuery({
     queryKey,
-    queryFn: () => getMetrics(projectId, engine, serviceId),
+    queryFn: () => getMetrics({ projectId, engine, serviceId }),
     ...options,
   }) as UseQueryResult<string[], Error>;
 }
@@ -39,7 +39,7 @@ export function useGetMetric(
   ];
   return useQuery({
     queryKey,
-    queryFn: () => getMetric(projectId, engine, serviceId, metric, period),
+    queryFn: () => getMetric({ projectId, engine, serviceId, metric, period }),
     ...options,
   }) as UseQueryResult<database.service.Metric, Error>;
 }
