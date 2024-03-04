@@ -18,9 +18,9 @@ import {
   IN_SUBSIDIARY,
   USER_TYPE_ENTERPRISE,
   SUBSIDIARIES_VAT_FIELD_OVERRIDE,
-  SUPPORT_URL,
 } from './new-account-form-component.constants';
 import { KYC_STATUS } from '../../../identity-documents/user-identity-documents.constant';
+import { SUPPORT_URLS } from '../../user.constants';
 
 export default class NewAccountFormController {
   /* @ngInject */
@@ -69,7 +69,7 @@ export default class NewAccountFormController {
       this.user.kycValidated ||
       (this.kycStatus.status === KYC_STATUS.OPEN &&
         Boolean(this.kycStatus.ticketId));
-    this.newSupportTicketUrl = SUPPORT_URL;
+    this.newSupportTicketUrl = SUPPORT_URLS.createTicket;
 
     // backup of original model
     this.originalModel = angular.copy(this.model);
