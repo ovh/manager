@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { addVoucher, buyCredit, BuyCreditResult } from '@/data/voucher';
 import {
@@ -59,25 +60,16 @@ export const useVouchers = (
     isLoading: allVouchersLoading,
   } = useAllVouchers(projectId);
 
-  // filtering Vouchers
-  const { data: filteredVouchers } = useQuery({
-    queryKey: ['project', projectId, 'vouchers', sorting],
-    queryFn: () => filterVouchers(vouchers || [], sorting),
-    enabled: !!vouchers,
-  });
-
-  // paginate results
-  const { isLoading, error, data } = useQuery({
-    queryKey: ['project', projectId, 'vouchers', sorting, pagination],
-    queryFn: () => paginateResults(filteredVouchers || [], pagination),
-    enabled: !!filteredVouchers,
-  });
-
-  return {
-    isLoading: allVouchersLoading || isLoading,
-    error: allVouchersError || error,
-    data,
-  };
+  return useMemo(() => {
+    return {
+      isLoading: allVouchersLoading,
+      error: allVouchersError,
+      data: paginateResults(
+        filterVouchers(vouchers || [], sorting),
+        pagination,
+      ),
+    };
+  }, [vouchers, sorting, pagination]);
 };
 
 export type BuyCreditProps = {
