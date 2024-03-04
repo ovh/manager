@@ -60,5 +60,13 @@
   "network_security_dashboard_like_this": "¿Le gusta?",
   "network_security_dashboard_like_this_tooltip": "¿Le gusta esta página? ¡Envíenos sus comentarios!",
   "network_security_dashboard_refresh": "Actualizar los datos",
-  "network_security_dashboard_time_zone": "(Zona horaria: UTC{{ timeZoneOffset }})"
+  "network_security_dashboard_time_zone": "(Zona horaria: UTC{{ timeZoneOffset }})",
+  "network_security_dashboard_filter_6_hours": "6 horas",
+  "network_security_dashboard_filter_24_hours": "24 horas",
+  "network_security_dashboard_filter_7_days": "7 días",
+  "network_security_dashboard_filter_14_days": "14 días",
+  "network_security_dashboard_filter_day": "Día",
+  "network_security_dashboard_filter_week": "Semana",
+  "network_security_dashboard_filter_month": "Mes",
+  "network_security_dashboard_filter_year": "Año"
 }
