@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0-alpha.30](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.29...@ovh-ux/manager-billing@0.20.0-alpha.30) (2024-03-04)
+
+
+### Features
+
+* **billing:** handle the new billing debt status translation ([#11004](https://github.com/ovh/manager/issues/11004)) ([44eb3c4](https://github.com/ovh/manager/commit/44eb3c49cecb09974ee8ff0f522c748d4931caa2))
+
+
+
+
+
 # [0.20.0-alpha.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.20.0-alpha.28...@ovh-ux/manager-billing@0.20.0-alpha.29) (2024-02-21)
 
 

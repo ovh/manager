@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.14.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.13.0...@ovh-ux/ng-ovh-payment-method@9.14.0) (2024-03-04)
+
+
+### Features
+
+* **ng-ovh-payment-method:** handle antifraud error case ([#10225](https://github.com/ovh/manager/issues/10225)) ([3073bae](https://github.com/ovh/manager/commit/3073baef5b2a3cca2dfdd1d076600ce292a9625d))
+
+
+
+
+
 # [9.13.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-payment-method@9.12.0...@ovh-ux/ng-ovh-payment-method@9.13.0) (2024-02-21)
 
 

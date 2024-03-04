@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nutanix-app",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "private": true,
   "description": "OVHcloud Nutanix app",
   "repository": {
@@ -19,19 +19,19 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-nutanix-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-bm-server-components": "^1.15.0",
+    "@ovh-ux/manager-bm-server-components": "^1.16.0",
     "@ovh-ux/manager-components": "^1.11.0",
     "@ovh-ux/manager-config": "^7.3.0",
     "@ovh-ux/manager-core": "^12.16.0",
     "@ovh-ux/manager-error-page": "^2.4.0",
     "@ovh-ux/manager-ng-layout-helpers": "^2.9.0",
-    "@ovh-ux/manager-nutanix": "^1.14.0",
+    "@ovh-ux/manager-nutanix": "^1.15.0",
     "@ovh-ux/ng-at-internet": "^5.11.3",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^3.5.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.1",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
-    "@ovh-ux/ng-ovh-payment-method": "^9.13.0",
+    "@ovh-ux/ng-ovh-payment-method": "^9.14.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.2.1",
     "@ovh-ux/ng-ovh-sso-auth": "^4.8.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.1",

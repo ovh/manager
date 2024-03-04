@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [18.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.15.3...@ovh-ux/manager-web@18.16.0) (2024-03-04)
+
+
+### Bug Fixes
+
+* **web:** add a refresh zone after redirection modification ([#11007](https://github.com/ovh/manager/issues/11007)) ([8713bc1](https://github.com/ovh/manager/commit/8713bc17078c864d99339833d8678669d94785a2))
+
+
+### Features
+
+* **web:** webcloud db activation funnel uniformization ([#10920](https://github.com/ovh/manager/issues/10920)) ([513ed03](https://github.com/ovh/manager/commit/513ed0367499982048346d188c4a6feed4ac6e00))
+
+
+
+
+
 ## [18.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@18.15.2...@ovh-ux/manager-web@18.15.3) (2024-02-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
