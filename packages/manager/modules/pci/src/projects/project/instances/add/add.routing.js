@@ -1,4 +1,3 @@
-import find from 'lodash/find';
 import { FLAVORS_FEATURES_FLIPPING_MAP } from '../instances.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -8,25 +7,6 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('pci_projects_project_instances_add_title'),
-
-      offer: /* @ngInject */ ($q, deals, iceberg, projectId) =>
-        deals.active
-          ? iceberg('/cloud/project/:serviceName/credit')
-              .query()
-              .expand('CachedObjectList-Pages')
-              .execute({ serviceName: projectId })
-              .$promise.then(({ data }) =>
-                find(data, (voucher) =>
-                  deals.descriptionPattern.test(voucher.description),
-                ),
-              )
-              .then((vouchers) =>
-                deals.display.includes('instance-creation-price') && vouchers
-                  ? deals
-                  : null,
-              )
-              .catch(() => null)
-          : $q.when(null),
 
       privateNetworks: /* @ngInject */ (
         PciProjectsProjectInstanceService,
