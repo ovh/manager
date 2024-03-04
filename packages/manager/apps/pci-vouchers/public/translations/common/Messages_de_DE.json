@@ -32,5 +32,8 @@
   "cpb_vouchers_add_credit_valid": "Bestellschein erstellen",
   "cpb_vouchers_add_credit_success": "Der Bestellschein für Ihr Guthaben in Höhe von {{ amount }} ist <a href=\"{{ url }}\" target=\"_blank\">hier</a> verfügbar.",
   "cpb_vouchers_add_credit_load_err": "Beim Laden des Cloud-Guthabens ist ein Fehler aufgetreten.",
-  "cpb_vouchers_bill_ref": "Rechnung Nr. <a href=\"{{url}}\">{{billId}}</a>"
+  "cpb_vouchers_bill_ref": "Rechnung Nr. <a href=\"{{url}}\">{{billId}}</a>",
+  "common_field_error_required": "Bitte füllen Sie dieses Feld aus.",
+  "common_field_error_number": "Bitte geben Sie einen gültigen Zahlenwert ein.",
+  "common_field_error_min": "Bitte geben Sie einen Wert größer oder gleich {{min}} ein."
 }
