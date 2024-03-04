@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.46.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.46.1...@ovh-ux/manager-container-app@0.46.2) (2024-03-04)
+
+
+### Bug Fixes
+
+* **livechat:** allow transcript download ([#10913](https://github.com/ovh/manager/issues/10913)) ([8b77d3d](https://github.com/ovh/manager/commit/8b77d3d04b64e5ac86205615f64586162e915570))
+* **menu:** highlighted network security dashboard menu ([#11062](https://github.com/ovh/manager/issues/11062)) ([801fe47](https://github.com/ovh/manager/commit/801fe472bf3c275d4560cfdfab25ee4ab24bf769))
+
+
+### Reverts
+
+* Revert "fix(menu): highlighted network security dashboard menu (#10927)" (#11059) ([a47054c](https://github.com/ovh/manager/commit/a47054c4838c3d3e9aa2391871a2d6a82cca8135)), closes [#10927](https://github.com/ovh/manager/issues/10927) [#11059](https://github.com/ovh/manager/issues/11059)
+
+
+
+
+
 ## [0.46.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.46.0...@ovh-ux/manager-container-app@0.46.1) (2024-02-29)
 
 

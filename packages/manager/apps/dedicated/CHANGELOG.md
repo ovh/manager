@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.24.1...@ovh-ux/manager-dedicated@19.25.0) (2024-03-04)
+
+
+### Features
+
+* **dedicated:** remove hard-coded os language notion ([#10954](https://github.com/ovh/manager/issues/10954)) ([cc88016](https://github.com/ovh/manager/commit/cc8801683c50d4c00f88cf650b7b3dfd6622d0f9))
+
+
+
+
+
 ## [19.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@19.24.0...@ovh-ux/manager-dedicated@19.24.1) (2024-02-28)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
