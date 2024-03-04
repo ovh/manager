@@ -29,13 +29,6 @@ interface BuyCreditModalProps {
   onError: (cause: Error) => void;
 }
 
-const isValidInputAmount = (amount: number) => {
-  if (Number.isNaN(amount)) return false;
-  if (!/^\d{1,8}$/.test(`${amount}`)) return false;
-  if (Number(amount) <= 0) return false;
-  return true;
-};
-
 export default function BuyCreditModal({
   projectId,
   onClose,
@@ -57,9 +50,15 @@ export default function BuyCreditModal({
     },
   });
 
+  const isMinimalAmount = !Number.isNaN(amount) && amount >= 1;
+
+  const isValidInputAmount = !!(
+    !Number.isNaN(amount) && /^\d{1,8}$/.test(`${amount}`)
+  );
+
   const handleInputChange = useCallback(
     (event: OdsInputValueChangeEvent) => {
-      setAmount(Number(`${event.detail.value}`));
+      setAmount(parseInt(`${event.detail.value}`, 10));
     },
     [setAmount],
   );
@@ -90,9 +89,39 @@ export default function BuyCreditModal({
                   value={amount}
                   onOdsValueChange={handleInputChange}
                   ariaLabel={t('cpb_vouchers_your_voucher')}
-                  className={'border'}
+                  {...(isValidInputAmount && isMinimalAmount
+                    ? {}
+                    : { color: ODS_THEME_COLOR_INTENT.error })}
+                  className={`border ${
+                    isValidInputAmount && isMinimalAmount
+                      ? ''
+                      : 'border-red-500'
+                  }`}
+                  {...(isValidInputAmount && isMinimalAmount
+                    ? {}
+                    : { error: true })}
                   data-testid="amountInput"
                 />
+
+                {!isMinimalAmount && (
+                  <OsdsText
+                    slot={'helper'}
+                    color={ODS_THEME_COLOR_INTENT.error}
+                  >
+                    {t('common_field_error_min', {
+                      min: 1,
+                    })}
+                  </OsdsText>
+                )}
+
+                {!isValidInputAmount && (
+                  <OsdsText
+                    slot={'helper'}
+                    color={ODS_THEME_COLOR_INTENT.error}
+                  >
+                    {t('common_field_error_number')}
+                  </OsdsText>
+                )}
               </OsdsFormField>
             </>
           )}
@@ -113,7 +142,7 @@ export default function BuyCreditModal({
         <OsdsButton
           slot="actions"
           color={ODS_THEME_COLOR_INTENT.primary}
-          {...(isValidInputAmount(amount) ? {} : { disabled: true })}
+          {...(isValidInputAmount && isMinimalAmount ? {} : { disabled: true })}
           onClick={() => buy(amount)}
           data-testid="submitButton"
         >
