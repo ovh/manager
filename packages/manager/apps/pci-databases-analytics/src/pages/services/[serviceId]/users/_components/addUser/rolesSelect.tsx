@@ -56,7 +56,6 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
     const { t } = useTranslation(
       'pci-databases-analytics/services/service/users',
     );
-    if (value === undefined) return <></>;
     const roleInputRef = useRef<HTMLButtonElement>(null);
     const addRoleBtnRef = useRef<HTMLButtonElement>(null);
     const scrollListRef = useRef<HTMLUListElement>(null);
@@ -131,7 +130,7 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
       Object.keys(formErrors).forEach((key) => {
         const validKey = key as keyof typeof formErrors;
         const formError = formErrors[validKey];
-        if (formError && formError.message) {
+        if (formError?.message) {
           messages.push(formError.message);
         }
       });
@@ -232,7 +231,10 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
         </div>
         <div>
           {errors.map((error, i) => (
-            <span key={i} className="text-sm font-medium text-destructive">
+            <span
+              key={`${error}-${i}`}
+              className="text-sm font-medium text-destructive"
+            >
               {error}
             </span>
           ))}
@@ -242,7 +244,7 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
           <ScrollArea className="h-40 rounded-md border">
             <ul ref={scrollListRef}>
               {value.map((role, index) => (
-                <li key={index} className="flex items-center">
+                <li key={role} className="flex items-center">
                   <Button
                     className="text-destructive rounded-full p-2 ml-2 hover:text-destructive h-8 w-8"
                     variant={'ghost'}
