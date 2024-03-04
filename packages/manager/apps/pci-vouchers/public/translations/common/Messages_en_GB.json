@@ -32,5 +32,8 @@
   "cpb_vouchers_add_credit_valid": "Generate a purchase order",
   "cpb_vouchers_add_credit_success": "The purchase order for your {{ amount }} credit is available <a href=\"{{ url }}\" target=\"_blank\">here</a>.",
   "cpb_vouchers_add_credit_load_err": "Oops! An error has occurred loading the cloud credit purchase.",
-  "cpb_vouchers_bill_ref": "Bill n° <a href=\"{{url}}\">{{billId}}</a>"
+  "cpb_vouchers_bill_ref": "Bill n° <a href=\"{{url}}\">{{billId}}</a>",
+  "common_field_error_required": "Please fill in this field.",
+  "common_field_error_number": "Please enter a valid numeric value.",
+  "common_field_error_min": "Please enter a value greater than or equal to {{min}}."
 }
