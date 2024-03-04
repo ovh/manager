@@ -1,11 +1,12 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { database } from '@/models/database';
+import { ServiceData } from '.';
 
-export const getServiceDatabases = async (
-  projectId: string,
-  engine: database.EngineEnum,
-  serviceId: string,
-) =>
+export const getServiceDatabases = async ({
+  projectId,
+  engine,
+  serviceId,
+}: ServiceData) =>
   apiClient.v6
     .get(
       `/cloud/project/${projectId}/database/${engine}/${serviceId}/database`,
@@ -19,10 +20,7 @@ export const getServiceDatabases = async (
     )
     .then((res) => res.data as database.service.Database[]);
 
-export interface AddDatabaseProps {
-  projectId: string;
-  engine: database.EngineEnum;
-  serviceId: string;
+export interface AddDatabaseProps extends ServiceData {
   name: string;
 }
 export const addDatabase = async ({
@@ -40,10 +38,7 @@ export const addDatabase = async ({
     )
     .then((res) => res.data as database.service.Database);
 
-export interface DeleteDatabaseProps {
-  projectId: string;
-  engine: database.EngineEnum;
-  serviceId: string;
+export interface DeleteDatabaseProps extends ServiceData {
   databaseId: string;
 }
 export const deleteDatabase = async ({

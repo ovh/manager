@@ -1,11 +1,116 @@
-import { P } from '@/components/typography';
+import { ColumnDef } from '@tanstack/react-table';
+import { useTranslation } from 'react-i18next';
+import { Plus } from 'lucide-react';
+import { useState } from 'react';
+import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
+import { H2 } from '@/components/typography';
+import { useServiceData } from '../layout';
+import { useGetUsers } from '@/hooks/api/users.api.hooks';
+import { GenericUser } from '@/api/databases/users';
+import { database } from '@/models/database';
+import { getColumns } from './_components/usersTableColumns';
+import { Button } from '@/components/ui/button';
+import { DataTable } from '@/components/ui/data-table';
+import { useModale } from '@/hooks/useModale';
+import DeleteUser from './_components/deleteUser';
+import ResetUserPassword from './_components/resetUserPassword';
+import AddUserModal from './_components/addUser';
 
 export function breadcrumb() {
-  return 'Users';
+  return (
+    <BreadcrumbItem
+      translationKey="breadcrumb"
+      namespace="pci-databases-analytics/services/service/users"
+    />
+  );
 }
 
 const Users = () => {
-  return <P>Users</P>;
+  const { t } = useTranslation(
+    'pci-databases-analytics/services/service/users',
+  );
+  const { projectId, service, serviceQuery } = useServiceData();
+  const addModale = useModale('add');
+  const deleteModale = useModale('delete');
+  const resetPasswordModale = useModale('reset-password');
+  const usersQuery = useGetUsers(projectId, service.engine, service.id, {
+    refetchInterval: 30_000,
+  });
+  const columns: ColumnDef<GenericUser>[] = getColumns({
+    displayGroupCol: service.engine === database.EngineEnum.m3db,
+    displayRolesCol: service.engine === database.EngineEnum.mongodb,
+    onDeleteClicked: (user: GenericUser) => {
+      deleteModale.open(user.id);
+    },
+    onResetPasswordClicked: (user: GenericUser) => {
+      resetPasswordModale.open(user.id);
+    },
+  });
+
+  const userToDelete = usersQuery.data?.find(
+    (u) => u.id === deleteModale.value,
+  );
+  const userToResetPassword = usersQuery.data?.find(
+    (u) => u.id === resetPasswordModale.value,
+  );
+  return (
+    <>
+      <H2 className="mb-2">{t('title')}</H2>
+
+      <Button
+        variant={'outline'}
+        size="sm"
+        className="text-base mb-2"
+        disabled={
+          service.capabilities.users?.create ===
+          database.service.capability.StateEnum.disabled
+        }
+        onClick={() => addModale.open()}
+      >
+        <Plus className="size-4 mr-2" />
+        {t('addButtonLabel')}
+      </Button>
+
+      {usersQuery.isSuccess ? (
+        <DataTable columns={columns} data={usersQuery.data} pageSize={25} />
+      ) : (
+        <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
+      )}
+
+      <AddUserModal
+        controller={addModale.controller}
+        service={service}
+        users={usersQuery.data || []}
+        onSuccess={() => {
+          addModale.close();
+          usersQuery.refetch();
+          serviceQuery.refetch();
+        }}
+      />
+      {userToDelete && (
+        <DeleteUser
+          controller={deleteModale.controller}
+          service={service}
+          user={userToDelete}
+          onSuccess={() => {
+            deleteModale.close();
+            usersQuery.refetch();
+            serviceQuery.refetch();
+          }}
+        />
+      )}
+      {userToResetPassword && (
+        <ResetUserPassword
+          controller={resetPasswordModale.controller}
+          service={service}
+          user={userToResetPassword}
+          onClose={() => {
+            serviceQuery.refetch();
+          }}
+        />
+      )}
+    </>
+  );
 };
 
 export default Users;
