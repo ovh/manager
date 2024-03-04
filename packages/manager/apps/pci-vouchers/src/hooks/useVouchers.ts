@@ -7,6 +7,7 @@ import {
   paginateResults,
   VouchersOptions,
 } from '@/data/vouchers';
+import queryClient from '@/queryClient';
 
 type AddVoucherProps = {
   projectId: string;
@@ -24,7 +25,12 @@ export function useAddVoucher({
       return addVoucher(`${projectId}`, code);
     },
     onError,
-    onSuccess,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['project', projectId, 'vouchers'],
+      });
+      onSuccess();
+    },
   });
 
   return {
@@ -39,10 +45,9 @@ export function useAddVoucher({
 
 export const useAllVouchers = (projectId: string) => {
   return useQuery({
-    queryKey: ['project', projectId, 'voucher'],
+    queryKey: ['project', projectId, 'vouchers'],
     queryFn: () => getAllVouchers(projectId),
     retry: false,
-    // refetchInterval: VOUCHERS_POLLING_INTERVAL,
     ...{
       keepPreviousData: true,
     },
