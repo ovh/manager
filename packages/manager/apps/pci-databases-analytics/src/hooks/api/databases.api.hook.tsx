@@ -22,7 +22,7 @@ export function useGetDatabases(
   const queryKey = [projectId, 'database', engine, serviceId, 'database'];
   return useQuery({
     queryKey,
-    queryFn: () => getServiceDatabases(projectId, engine, serviceId),
+    queryFn: () => getServiceDatabases({ projectId, engine, serviceId }),
     ...options,
   }) as UseQueryResult<database.service.Database[], Error>;
 }
