@@ -1,3 +1,5 @@
+import { SUPPORT_URLS } from '../user.constants';
+
 export default /* @ngInject */ function UserAccountEmailsController(
   $q,
   $location,
@@ -5,8 +7,6 @@ export default /* @ngInject */ function UserAccountEmailsController(
   $translate,
   AccountUserEmailsService,
   Alerter,
-  coreURLBuilder,
-  shellClient,
 ) {
   const self = this;
 
@@ -28,11 +28,7 @@ export default /* @ngInject */ function UserAccountEmailsController(
 
     $scope.getEmailIds();
 
-    shellClient.navigation
-      .getURL('dedicated', '#/support')
-      .then((supportUrl) => {
-        $scope.SUPPORT_URL = supportUrl;
-      });
+    $scope.SUPPORT_URL = SUPPORT_URLS.viewTickets;
   };
 
   $scope.getEmailIds = (refresh) => {

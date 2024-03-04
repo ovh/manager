@@ -10,6 +10,7 @@ export default {
     onRefresh: '&?',
     hideAction: '<?',
     hideHeading: '<?',
+    isHrefExternal: '<?',
   },
   template,
   transclude: true,
