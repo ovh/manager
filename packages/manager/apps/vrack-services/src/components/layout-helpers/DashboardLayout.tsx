@@ -20,10 +20,10 @@ import {
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
+import { useMutationState } from '@tanstack/react-query';
 import { PageLayout } from './PageLayout';
 import { useVrackService } from '@/utils/vs-utils';
 import { ResourceStatus, updateVrackServicesQueryKey } from '@/api';
-import { CreationSuccessMessage } from '@/components/CreationSuccessMessage';
 import { getSubnetCreationMutationKey } from '@/pages/subnets/constants';
 import { getEndpointCreationMutationKey } from '@/pages/endpoints/constants';
 
@@ -44,6 +44,22 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
   const vrackServices = useVrackService();
   const location = useLocation();
   const navigate = useNavigate();
+  const endpointCreationMutations = useMutationState({
+    filters: {
+      mutationKey: updateVrackServicesQueryKey(
+        getEndpointCreationMutationKey(id),
+      ),
+      exact: true,
+    },
+  });
+  const subnetCreationMutations = useMutationState({
+    filters: {
+      mutationKey: updateVrackServicesQueryKey(
+        getSubnetCreationMutationKey(id),
+      ),
+      exact: true,
+    },
+  });
 
   React.useEffect(() => {
     const activeTab = tabs.find((tab) => tab.to === location.pathname);
@@ -87,26 +103,21 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
               color={ODS_THEME_COLOR_INTENT.text}
             >
               {t('vrackServicesNotReadyInfoMessage')}
+              {subnetCreationMutations[0]?.status === 'success' &&
+                t('subnetCreationOnGoing', {
+                  name:
+                    vrackServices.data?.targetSpec?.subnets?.[
+                      vrackServices.data?.targetSpec.subnets.length - 1
+                    ]?.displayName ||
+                    vrackServices.data?.targetSpec?.subnets?.[
+                      vrackServices.data?.targetSpec.subnets.length - 1
+                    ]?.cidr,
+                })}
+              {endpointCreationMutations[0]?.status === 'success' &&
+                t('endpointCreationOnGoing')}
             </OsdsText>
           </OsdsMessage>
         )}
-        <CreationSuccessMessage
-          message={t('subnetCreationSuccess', {
-            cidr:
-              vrackServices.data?.targetSpec?.subnets?.[
-                vrackServices.data?.targetSpec.subnets.length - 1
-              ]?.cidr,
-          })}
-          mutationKey={updateVrackServicesQueryKey(
-            getSubnetCreationMutationKey(id),
-          )}
-        />
-        <CreationSuccessMessage
-          message={t('endpointCreationSuccess')}
-          mutationKey={updateVrackServicesQueryKey(
-            getEndpointCreationMutationKey(id),
-          )}
-        />
       </div>
       <OsdsTabs panel={activePanel}>
         <OsdsTabBar slot="top">
