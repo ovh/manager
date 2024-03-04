@@ -392,8 +392,6 @@ export const FEATURES = {
 export const IN_SUBSIDIARY = 'IN';
 export const USER_TYPE_ENTERPRISE = 'corporation';
 
-export const SUPPORT_URL = 'https://help.ovhcloud.com/csm?id=csm_get_help';
-
 export default {
   ENUM_TRANSLATION_RULES,
   MODEL_DEBOUNCE_DELAY,
@@ -410,5 +408,4 @@ export default {
   FEATURES,
   IN_SUBSIDIARY,
   USER_TYPE_ENTERPRISE,
-  SUPPORT_URL,
 };

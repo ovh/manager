@@ -60,10 +60,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
       appHash.startsWith('/useraccount/support/level')
     ) {
       setSelectedItem('support_level');
-    } else if (
-      appId === 'dedicated' &&
-      (appHash.startsWith('/ticket') || appHash.startsWith('/support/tickets'))
-    ) {
+    } else if (appId === 'dedicated' && appHash.startsWith('/ticket')) {
       setSelectedItem('tickets');
     }
   }, [containerURL]);
@@ -104,9 +101,8 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
             />
           </li>
           <li
-            className={`${
-              selectedItem === 'tickets' ? style.sidebar_selected : ''
-            }`}
+            className={`${selectedItem === 'tickets' ? style.sidebar_selected : ''
+              }`}
           >
             <SidebarLink
               node={{
@@ -115,7 +111,7 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
                 routing: !isEUOrCA ? {
                   application: 'dedicated',
                   hash: '#/ticket',
-                }: null,
+                } : null,
                 isExternal: isEUOrCA,
                 url: isEUOrCA ? urls.get('support') : null,
               }}
@@ -138,9 +134,8 @@ const AssistanceSidebar: React.FC<ComponentProps<Props>> = ({
           </li>
           {isEUOrCA && (
             <li
-              className={`${
-                selectedItem === 'support_level' ? style.sidebar_selected : ''
-              }`}
+              className={`${selectedItem === 'support_level' ? style.sidebar_selected : ''
+                }`}
             >
               <SidebarLink
                 node={{
