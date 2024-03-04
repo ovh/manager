@@ -28,7 +28,7 @@ const Databases = () => {
   );
   const addModale = useModale('add');
   const deleteModale = useModale('delete');
-  const { projectId, service } = useServiceData();
+  const { projectId, service, serviceQuery } = useServiceData();
   const databasesQuery = useGetDatabases(
     projectId,
     service.engine,
@@ -51,6 +51,10 @@ const Databases = () => {
         variant={'outline'}
         size="sm"
         className="text-base mb-2"
+        disabled={
+          service.capabilities.databases?.create ===
+          database.service.capability.StateEnum.disabled
+        }
         onClick={() => addModale.open()}
       >
         <Plus className="w-4 h-4 mr-2" />
@@ -58,13 +62,7 @@ const Databases = () => {
       </Button>
 
       {databasesQuery.isSuccess ? (
-        <>
-          <DataTable
-            columns={columns}
-            data={databasesQuery.data}
-            pageSize={25}
-          />
-        </>
+        <DataTable columns={columns} data={databasesQuery.data} pageSize={25} />
       ) : (
         <DataTable.Skeleton columns={3} rows={5} width={100} height={16} />
       )}
@@ -75,6 +73,7 @@ const Databases = () => {
         onSuccess={() => {
           addModale.close();
           databasesQuery.refetch();
+          serviceQuery.refetch();
         }}
       />
 

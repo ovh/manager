@@ -17,11 +17,13 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { database } from '@/models/database';
+import { useServiceData } from '../../layout';
 
 interface DatabasesTableColumnsProps {
   onDeleteClick: (db: database.service.Database) => void;
 }
 export const getColumns = ({ onDeleteClick }: DatabasesTableColumnsProps) => {
+  const { service } = useServiceData();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/databases',
   );
@@ -50,7 +52,11 @@ export const getColumns = ({ onDeleteClick }: DatabasesTableColumnsProps) => {
                   <DropdownMenuContent align="end">
                     <TooltipTrigger className="w-full">
                       <DropdownMenuItem
-                        disabled={row.original.default}
+                        disabled={
+                          row.original.default ||
+                          service.capabilities.databases?.delete ===
+                            database.service.capability.StateEnum.disabled
+                        }
                         onClick={() => {
                           onDeleteClick(row.original);
                         }}

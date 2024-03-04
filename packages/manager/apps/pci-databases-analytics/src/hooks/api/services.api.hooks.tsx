@@ -22,7 +22,7 @@ export function useGetService(
   const queryKey = [projectId, 'database/service', serviceId];
   return useQuery({
     queryKey,
-    queryFn: () => getService(projectId, serviceId),
+    queryFn: () => getService({ projectId, serviceId }),
     ...options,
   }) as UseQueryResult<database.Service, Error>;
 }
@@ -34,7 +34,7 @@ export function useGetServices(
   const queryKey = [projectId, 'database/service'];
   return useQuery({
     queryKey,
-    queryFn: () => getServices(projectId),
+    queryFn: () => getServices({ projectId }),
     ...options,
   }) as UseQueryResult<database.Service[], Error>;
 }
@@ -51,7 +51,7 @@ export function useAddService({ onError, onSuccess }: MutateServiceProps) {
   const mutation = useMutation({
     mutationFn: (serviceAndEngine: ServiceCreationWithEngine) => {
       const { engine, ...serviceInfo } = serviceAndEngine;
-      return addService(projectId, engine, serviceInfo);
+      return addService({ projectId, engine, serviceInfo });
     },
     onError,
     onSuccess,

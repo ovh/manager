@@ -15,7 +15,7 @@ export function useGetServiceLogs(
   const queryKey = [projectId, 'database', engine, serviceId, 'logs'];
   return useQuery({
     queryKey,
-    queryFn: () => getServiceLogs(projectId, engine, serviceId),
+    queryFn: () => getServiceLogs({ projectId, engine, serviceId }),
     ...options,
   }) as UseQueryResult<database.service.LogEntry[], Error>;
 }
