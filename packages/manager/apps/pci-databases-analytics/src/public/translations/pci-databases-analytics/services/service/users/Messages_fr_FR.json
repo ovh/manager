@@ -1,5 +1,6 @@
 {
   "title": "Utilisateurs & Rôles",
+  "breadcrumb": "Utilisateurs & Rôles",
   "addButtonLabel": "Ajouter un utilisateur",
   "tableHeadName": "Nom d'utilisateur",
   "tableHeadGroup": "Groupe",

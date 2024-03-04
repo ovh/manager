@@ -2,7 +2,7 @@ import { Badge, badgeVariants } from '@/components/ui/badge';
 import { database } from '@/models/database';
 
 const UserStatusBadge = ({ status }: { status: database.StatusEnum }) => {
-  let variant = badgeVariants({ variant: 'default' });
+  let variant;
   switch (status) {
     case 'CREATING':
     case 'DELETING':
