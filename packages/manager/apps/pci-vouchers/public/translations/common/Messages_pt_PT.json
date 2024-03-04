@@ -32,5 +32,8 @@
   "cpb_vouchers_add_credit_valid": "Gerar uma nota de encomenda",
   "cpb_vouchers_add_credit_success": "A nota de encomenda para o seu crédito de {{ amount }} está disponível <a href=\"{{ url }}\" target=\"_blank\">aqui</a>.",
   "cpb_vouchers_add_credit_load_err": "Lamentamos, mas ocorreu um erro ao adquirir o crédito cloud.",
-  "cpb_vouchers_bill_ref": "Fatura n° <a href=\"{{url}}\">{{billId}}</a>"
+  "cpb_vouchers_bill_ref": "Fatura n° <a href=\"{{url}}\">{{billId}}</a>",
+  "common_field_error_required": "Preencha o campo.",
+  "common_field_error_number": "Introduza um valor numérico válido.",
+  "common_field_error_min": "Introduza um valor superior ou igual a {{min}}."
 }
