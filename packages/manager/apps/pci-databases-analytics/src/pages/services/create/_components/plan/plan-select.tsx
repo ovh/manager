@@ -16,17 +16,15 @@ const PlansSelect = React.forwardRef<HTMLInputElement, PlansSelectProps>(
         ref={ref}
         className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2"
       >
-        {plans
-          .sort((a, b) => a.order - b.order)
-          .map((plan) => (
-            <PlanTile
-              showMonthlyPrice={showMonthlyPrice}
-              key={plan.name}
-              plan={plan}
-              selected={value === plan.name}
-              onChange={(newValue: string) => onChange(newValue)}
-            />
-          ))}
+        {plans.map((plan) => (
+          <PlanTile
+            showMonthlyPrice={showMonthlyPrice}
+            key={plan.name}
+            plan={plan}
+            selected={value === plan.name}
+            onChange={(newValue: string) => onChange(newValue)}
+          />
+        ))}
       </div>
     );
   },

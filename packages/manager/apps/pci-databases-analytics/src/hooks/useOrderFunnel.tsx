@@ -130,7 +130,10 @@ export function useOrderFunnel(
         regionCapabilities,
         suggestions,
         catalog,
-      ),
+      ).map((e) => ({
+        versions: e.versions.sort((a, b) => a.order - b.order),
+        ...e,
+      })),
     [availabilities, capabilities],
   );
   // Create the list of available plans
@@ -139,17 +142,23 @@ export function useOrderFunnel(
       listEngines
         ?.find((e: Engine) => e.name === engineWithVersion.engine)
         ?.versions.find((v: Version) => v.name === engineWithVersion.version)
-        ?.plans || [],
+        ?.plans.sort((a, b) => a.order - b.order) || [],
     [listEngines, engineWithVersion],
   );
   // Create the list of available regions
   const listRegions = useMemo(
-    () => listPlans?.find((p: Plan) => p.name === plan)?.regions || [],
+    () =>
+      listPlans
+        ?.find((p: Plan) => p.name === plan)
+        ?.regions.sort((a, b) => a.order - b.order) || [],
     [listPlans, plan],
   );
   // Create the list of available flavors
   const listFlavors = useMemo(
-    () => listRegions?.find((r: Region) => r.name === region)?.flavors || [],
+    () =>
+      listRegions
+        ?.find((r: Region) => r.name === region)
+        ?.flavors.sort((a, b) => a.order - b.order) || [],
     [listRegions, region],
   );
 
