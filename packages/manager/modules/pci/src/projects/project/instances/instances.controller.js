@@ -1,6 +1,9 @@
 import isEmpty from 'lodash/isEmpty';
 
-import { INSTANCE_HELP_REFERENCE_KEY } from './instances.constants';
+import {
+  INSTANCE_HELP_REFERENCE_KEY,
+  OPENSTACK_INSTANCE_STATUS,
+} from './instances.constants';
 import { getCriteria } from '../project.utils';
 
 export default class CloudProjectComputeInfrastructureListCtrl {
@@ -106,10 +109,10 @@ export default class CloudProjectComputeInfrastructureListCtrl {
 
   getStatusTooltipText(status) {
     const openStackStatusWithTooltip = [
-      'PAUSED',
-      'SHELVED',
-      'SHELVED_OFFLOADED',
-      'SUSPENDED',
+      OPENSTACK_INSTANCE_STATUS.PAUSED,
+      OPENSTACK_INSTANCE_STATUS.SHELVED,
+      OPENSTACK_INSTANCE_STATUS.SHELVED_OFFLOADED,
+      OPENSTACK_INSTANCE_STATUS.SUSPENDED,
     ];
     return openStackStatusWithTooltip.includes(status)
       ? this.$translate.instant(
