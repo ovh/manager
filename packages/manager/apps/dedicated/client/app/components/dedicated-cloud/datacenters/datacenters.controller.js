@@ -20,14 +20,6 @@ export default class {
     return this.dedicatedCloud.canOrderDatacenter && this.addVdcAvailable;
   }
 
-  displayMigrationBanner() {
-    return (
-      (this.migrationBannerAvailable.firstBanner ||
-        this.migrationBannerAvailable.secondBanner) &&
-      this.hasLegacyDatacenter
-    );
-  }
-
   getRight(order) {
     return this.dedicatedCloud
       ? !includes(this.dedicatedCloud.orderRight, order)

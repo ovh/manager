@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.27.0...@ovh-ux/manager-pci@6.28.0) (2024-03-04)
+
+
+### Features
+
+* **pci:** new warning for vlan id already used ([#10601](https://github.com/ovh/manager/issues/10601)) ([714cdac](https://github.com/ovh/manager/commit/714cdacceb30920a886ae785f49ecbb795a860e9))
+* **project.flavor-list:** add badge for the new flavor selector ([#10861](https://github.com/ovh/manager/issues/10861)) ([0fc96e0](https://github.com/ovh/manager/commit/0fc96e043d14668581f6f3bd8af1d6abd2c4e827))
+
+
+
+
+
+# [6.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.26.0...@ovh-ux/manager-pci@6.27.0) (2024-02-26)
+
+
+### Bug Fixes
+
+* **pci:** list private network which in same zone as instance ([#10959](https://github.com/ovh/manager/issues/10959)) ([9434716](https://github.com/ovh/manager/commit/943471676584d541855ddef595f7e70f1593f984))
+
+
+### Features
+
+* **pci:** gridscale ga m1 changes ([#10881](https://github.com/ovh/manager/issues/10881)) ([a10fde7](https://github.com/ovh/manager/commit/a10fde7bad6e11ba26f69a319839efc1cf26ba0d))
+
+
+
+
+
+# [6.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.25.0...@ovh-ux/manager-pci@6.26.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
 # [6.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.24.1...@ovh-ux/manager-pci@6.25.0) (2024-02-20)
 
 

@@ -23,5 +23,7 @@ export default {
     onDocumentationClick: '<',
     trackClick: '<',
     trackPage: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
   },
 };

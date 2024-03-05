@@ -75,6 +75,8 @@ export const ACTIONS = [
   },
 ];
 
+const PROJECT_PAGE_TRACKING_NAME = 'PublicCloud::pci::projects::project';
+
 export const DOCUMENTATION_LINKS = [
   {
     term: 'pci_projects_project_documentation_getting_started_term',
@@ -83,12 +85,14 @@ export const DOCUMENTATION_LINKS = [
     href:
       'https://docs.ovh.com/gb/en/public-cloud/public-cloud-essential-information/',
     feature: PCI_FEATURES.LINKS.CLOUD_ESSENTIAL_INFORMATION,
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::docs-pci-basics`,
   },
   {
     term: 'pci_projects_project_documentation_interface_term',
     description: 'pci_projects_project_documentation_interface_description',
     href: 'https://docs.ovh.com/gb/en/public-cloud/public-cloud-interface/',
     feature: PCI_FEATURES.LINKS.PUBLIC_CLOUD_INTERFACE,
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::docs-pci-interface`,
   },
   {
     term: 'pci_projects_project_documentation_instances_term',
@@ -96,6 +100,7 @@ export const DOCUMENTATION_LINKS = [
     href:
       'https://docs.ovh.com/gb/en/public-cloud/get-started-with-a-public-cloud-instance/',
     feature: PCI_FEATURES.LINKS.START_PCI_INSTANCE,
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::docs-get-started-with-instances`,
   },
   {
     term: 'pci_projects_project_documentation_billing_term',
@@ -103,18 +108,21 @@ export const DOCUMENTATION_LINKS = [
     href:
       'https://docs.ovh.com/gb/en/public-cloud/information-on-cloud-billing-options/',
     feature: PCI_FEATURES.LINKS.CLOUD_BILLING_OPTIONS,
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::docs-billing`,
   },
   {
     term: 'pci_projects_project_documentation_guides_term',
     description: 'pci_projects_project_documentation_guides_description',
     href: 'https://docs.ovh.com/gb/en/',
     feature: PCI_FEATURES.LINKS.ALL_GUIDES,
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::docs-all-guides`,
   },
   {
     term: 'pci_projects_project_documentation_block_storage_term',
     description: 'pci_projects_project_documentation_block_storage_description',
     href: 'https://support.us.ovhcloud.com/hc/en-us/articles/360002157044',
     feature: PCI_FEATURES.LINKS.START_WITH_BLOCK_STORAGE,
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::docs_start_with_block_storage`,
   },
 ];
 
@@ -124,12 +132,14 @@ export const COMMUNITY_LINKS = [
     description: 'pci_projects_project_community_roadmap_description',
     href: 'https://github.com/ovh/public-cloud-roadmap/projects',
     regions: ['EU', 'CA'],
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::community-roadmap`,
   },
   {
     term: 'pci_projects_project_community_discord_term',
     description: 'pci_projects_project_community_discord_description',
     href: 'https://discord.com/invite/C9VVJZxxd6',
     regions: ['EU', 'CA'],
+    trackingName: `${PROJECT_PAGE_TRACKING_NAME}::community-discord`,
   },
 ];
 export const API_GUIDES = {
@@ -156,6 +166,8 @@ export const TERRAFORM_GUIDES = {
   SG: 'https://docs.ovh.com/sg/en/publiccloud/databases/order-terraform/',
 };
 
+export const DISCOVERY_PROMOTION_VOUCHER = 'FREETRIAL';
+
 export const DATABASE_CREATION_GUIDES =
   'https://github.com/ovh/public-cloud-databases-examples';
 
@@ -163,6 +175,15 @@ export const PCI_HDS_ADDON = {
   productName: 'cloud',
   family: 'certification-hds',
   parentPlanCode: 'project.2018',
+  planCodeScope: 'certification.hds',
+  certifiedProject: 'publiccloud-certification-hds',
+  planCode: 'certification.hds.2018',
+};
+
+export const PCI_HDS_DISCOVERY_ADDON = {
+  productName: 'cloud',
+  family: 'certification-hds',
+  parentPlanCode: 'project.discovery',
   planCodeScope: 'certification.hds',
   certifiedProject: 'publiccloud-certification-hds',
   planCode: 'certification.hds.2018',
@@ -225,6 +246,17 @@ export const URL_INFO = {
   LOCAL_ZONE: LOCAL_ZONE_INFO_URL,
 };
 
+export const DISCOVERY_PROJECT_PLANCODE = 'project.discovery';
+
+export const DISCOVERY_PROJECT_ACTIVATION_PAYLOAD = {
+  autoPayWithPreferredPaymentMethod: true,
+  duration: 'P1M',
+  pricingMode: 'default',
+  quantity: 1,
+};
+
+export const FULL_PROJECT_PLANCODE = 'project.2018';
+
 export default {
   PRODUCT_IMAGES,
   ACTIONS,
@@ -238,4 +270,8 @@ export default {
   PCI_FEATURES,
   LOCAL_ZONE_REGION,
   URL_INFO,
+  DISCOVERY_PROJECT_PLANCODE,
+  DISCOVERY_PROMOTION_VOUCHER,
+  DISCOVERY_PROJECT_ACTIVATION_PAYLOAD,
+  FULL_PROJECT_PLANCODE,
 };

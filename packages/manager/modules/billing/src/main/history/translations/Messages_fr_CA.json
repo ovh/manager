@@ -23,6 +23,7 @@
   "billing_main_history_table_balance_status_REFUNDED": "Remboursée",
   "billing_main_history_table_balance_status_TO_BE_PAID": "À régler",
   "billing_main_history_table_balance_status_UNMATURED": "À régler",
+  "billing_main_history_table_balance_status_WRITE_OFF": "Mise en perte",
   "billing_main_history_table_download_html": "Voir la version HTML",
   "billing_main_history_table_download_pdf": "Voir la version PDF",
   "billing_main_history_table_download_pdf_beta": "Voir la version PDF (Beta)",

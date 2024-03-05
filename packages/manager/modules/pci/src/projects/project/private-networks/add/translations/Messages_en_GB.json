@@ -7,7 +7,7 @@
   "pci_projects_project_network_private_create_configure_choose_vlan": "Set a VLAN ID",
   "pci_projects_project_network_private_create_configure_vlan": "VLAN ID",
   "pci_projects_project_network_private_create_configure_vlan_limits": "Between 0 and 4000",
-  "pci_projects_project_network_private_create_configure_vlan_taken": "This VLAN is already taken.",
+  "pci_projects_project_network_private_create_configure_vlan_taken": "Using the same VLAN id for several private networks involves carefully managing the private IPs. Using a non-overlapping DHCP pool allocation can be one way to address this issue.",
   "pci_projects_project_network_private_create_configure_api": "You can customise your ranges via the API.",
   "pci_projects_project_network_private_create_localisation": "Region",
   "pci_projects_project_network_private_create_name": "Private Network Name",

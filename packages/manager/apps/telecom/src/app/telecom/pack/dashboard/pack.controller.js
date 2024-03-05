@@ -58,6 +58,11 @@ export default class PackCtrl {
           this.services = reduce(
             orderBy(this.frames, ['index']),
             (all, elt, index) => {
+              const element = elt;
+
+              // Add pack status to element
+              element.packStatus = this.pack.informations.status;
+
               // transform a  [1 x l] matrix to a [2 x l/2] matrix
               let line = [];
               if (index % 2) {
@@ -65,7 +70,7 @@ export default class PackCtrl {
               } else {
                 all.push(line);
               }
-              line.push(elt);
+              line.push(element);
               return all;
             },
             [],

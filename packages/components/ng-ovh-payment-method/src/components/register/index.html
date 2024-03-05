@@ -76,12 +76,23 @@
         ></div>
 
         <!-- set as default -->
+        <oui-message
+            class="mb-3"
+            data-ng-if="$ctrl.paymentMethodsTypes.length === 0"
+            type="error"
+        >
+            <span
+                data-translate="ovh_payment_method_register_antifraud_error_message"
+            ></span>
+        </oui-message>
         <div
             class="mt-3"
             data-ng-if="
                 $ctrl.model.selectedPaymentMethodType.registerable &&
                 $ctrl.showSetAsDefaultChoice &&
-                !$ctrl.coreConfig.isRegion('US')
+                !$ctrl.coreConfig.isRegion('US') && 
+                $ctrl.paymentMethodsTypes.length > 0 && 
+                !$ctrl.loading.init
             "
         >
             <p
@@ -114,7 +125,9 @@
             data-ng-if="
                 $ctrl.model.selectedPaymentMethodType.registerable &&
                 $ctrl.showSetAsDefaultChoice &&
-                $ctrl.coreConfig.isRegion('US')
+                $ctrl.coreConfig.isRegion('US') &&
+                $ctrl.paymentMethodsTypes.length > 0 && 
+                !$ctrl.loading.init
             "
         >
             <p

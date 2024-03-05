@@ -31,5 +31,6 @@
   "billing_main_history_debt_automatically_collected": "Un importo di <strong>{{t0}}</strong> verrà addebitato sulla tua modalità di pagamento predefinita.",
   "billing_main_history_table_export_success": "Riceverai un’email con il link da cui sarà possibile scaricare le fatture esportate. In base al numero di fatture, l’operazione potrebbe richiedere alcuni minuti.",
   "billing_main_history_table_export_error": "Si è verificato un errore durante la richiesta di esportazione delle fatture: {{ message }}",
-  "billing_main_history": "Le tue fatture"
+  "billing_main_history": "Le tue fatture",
+  "billing_main_history_table_balance_status_WRITE_OFF": "Stornato"
 }

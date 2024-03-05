@@ -20,6 +20,7 @@ import {
   NEW_SUPPORT_TICKET_PARAMS,
   SUBSIDIARIES_VAT_FIELD_OVERRIDE,
 } from './new-account-form-component.constants';
+import { KYC_STATUS } from '../../../identity-documents/user-identity-documents.constant';
 
 export default class NewAccountFormController {
   /* @ngInject */
@@ -66,6 +67,10 @@ export default class NewAccountFormController {
 
     // Indian subsidiary flag
     this.isIndianSubsidiary = this.user.ovhSubsidiary === IN_SUBSIDIARY;
+    this.isEditionDisabledByKyc =
+      this.user.kycValidated ||
+      (this.kycStatus.status === KYC_STATUS.OPEN &&
+        Boolean(this.kycStatus.ticketId));
     this.newSupportTicketUrl = this.coreURLBuilder.buildURL(
       'dedicated',
       '#/support/tickets/new',

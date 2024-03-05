@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.15.3...@ovh-ux/manager-core@12.16.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
 ## [12.15.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-core@12.15.2...@ovh-ux/manager-core@12.15.3) (2024-01-31)
 
 

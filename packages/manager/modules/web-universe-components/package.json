@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-web-universe-components",
-  "version": "9.12.0",
+  "version": "9.14.0",
   "private": true,
   "description": "Collection of components for the Web control panel.",
   "repository": {
@@ -27,7 +27,7 @@
     "@ovh-ux/ng-ovh-user-pref": "^2.0.4",
     "@ovh-ux/ng-ovh-utils": "^14.0.17",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
-    "@ovh-ux/ui-kit": "^6.5.3",
+    "@ovh-ux/ui-kit": "^6.7.0",
     "@uirouter/angularjs": "^1.0.0",
     "URIjs": "^1.14.0",
     "angular": "^1.6.10",

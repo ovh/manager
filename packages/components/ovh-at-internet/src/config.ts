@@ -1,6 +1,7 @@
 import { isEmpty } from 'lodash-es';
-import { LegacyTrackingData } from './track';
+import { LegacyTrackingData, PciProjectModeParams } from './track';
 import { debug } from './utils';
+import { PCI_PROJECT_MODE_VALUES } from './constants';
 
 export type TrackingDefaults = Partial<LegacyTrackingData>;
 
@@ -15,7 +16,7 @@ export class OvhAtInternetConfig {
    */
   protected enabled = true;
 
-  protected region: string = '';
+  protected region = '';
 
   /**
    * Check if default data has been set.
@@ -61,6 +62,16 @@ export class OvhAtInternetConfig {
   protected setEnabled(state: boolean): void {
     this.enabled = state;
     debug(`tracking ${state ? 'enabled' : 'disable'}`);
+  }
+
+  protected setPciProjectMode(params: PciProjectModeParams) {
+    if (params?.isDiscoveryProject) {
+      this.defaults.pciProjectMode = PCI_PROJECT_MODE_VALUES.DISCOVERY;
+    } else if (params?.projectId) {
+      this.defaults.pciProjectMode = PCI_PROJECT_MODE_VALUES.FULL;
+    } else {
+      this.defaults.pciProjectMode = PCI_PROJECT_MODE_VALUES.NONE;
+    }
   }
 }
 

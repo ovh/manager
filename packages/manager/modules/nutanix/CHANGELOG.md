@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.14.0...@ovh-ux/manager-nutanix@1.15.0) (2024-03-04)
+
+
+### Features
+
+* **dedicated.nutanix:** make nutanix package clickable link ([#10838](https://github.com/ovh/manager/issues/10838)) ([e197e73](https://github.com/ovh/manager/commit/e197e733b500591191c31a344adb9cf971615151))
+
+
+
+
+
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.13.0...@ovh-ux/manager-nutanix@1.14.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
 # [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@1.12.1...@ovh-ux/manager-nutanix@1.13.0) (2024-02-20)
 
 

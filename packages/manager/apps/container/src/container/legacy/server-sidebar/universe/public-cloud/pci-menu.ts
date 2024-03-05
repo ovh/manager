@@ -34,6 +34,7 @@ export const features = [
   'data-processing',
   'logs-data-platform',
   'horizon',
+  'pci-rancher',
   'public-cloud:users',
   'public-cloud:quota',
   'public-cloud:ssh-keys',
@@ -183,6 +184,16 @@ export function getPciProjectMenu(
       id: 'containers',
       title: 'Containers & Orchestration',
       subItems: [
+        {
+          id: 'rancher',
+          title: 'Managed Rancher Service',
+          feature: 'pci-rancher',
+          href: getURL(
+            'public-cloud',
+            `#/pci/projects/${projectId}/rancher`,
+          ),
+          badge: 'beta',
+        },
         {
           id: 'kubernetes',
           title: 'Managed Kubernetes Service',

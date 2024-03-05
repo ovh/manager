@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.46.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.46.1...@ovh-ux/manager-container-app@0.46.2) (2024-03-04)
+
+
+### Bug Fixes
+
+* **livechat:** allow transcript download ([#10913](https://github.com/ovh/manager/issues/10913)) ([8b77d3d](https://github.com/ovh/manager/commit/8b77d3d04b64e5ac86205615f64586162e915570))
+* **menu:** highlighted network security dashboard menu ([#11062](https://github.com/ovh/manager/issues/11062)) ([801fe47](https://github.com/ovh/manager/commit/801fe472bf3c275d4560cfdfab25ee4ab24bf769))
+
+
+### Reverts
+
+* Revert "fix(menu): highlighted network security dashboard menu (#10927)" (#11059) ([a47054c](https://github.com/ovh/manager/commit/a47054c4838c3d3e9aa2391871a2d6a82cca8135)), closes [#10927](https://github.com/ovh/manager/issues/10927) [#11059](https://github.com/ovh/manager/issues/11059)
+
+
+
+
+
+## [0.46.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.46.0...@ovh-ux/manager-container-app@0.46.1) (2024-02-29)
+
+
+### Bug Fixes
+
+* **menu:** highlighted network security dashboard menu ([#10927](https://github.com/ovh/manager/issues/10927)) ([fa2ae98](https://github.com/ovh/manager/commit/fa2ae983a8f2292d4ea1eb2c93f8ea272843f971))
+
+
+
+
+
+# [0.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.45.1...@ovh-ux/manager-container-app@0.46.0) (2024-02-28)
+
+
+### Features
+
+* **pci-rancher:** add rancher project + rancher in menu ([#10628](https://github.com/ovh/manager/issues/10628)) ([545ac71](https://github.com/ovh/manager/commit/545ac719b60602f6b53bbdc54d0dc9a704ea7bf8))
+
+
+
+
+
+## [0.45.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.45.0...@ovh-ux/manager-container-app@0.45.1) (2024-02-26)
+
+
+### Bug Fixes
+
+* **container:** fix route matcher for web domain operation ([#10967](https://github.com/ovh/manager/issues/10967)) ([7afadf2](https://github.com/ovh/manager/commit/7afadf2443607735eb26739ad2e6817f90fdfb32))
+* **container:** search by mac address for telephony ([#10941](https://github.com/ovh/manager/issues/10941)) ([3c8ed54](https://github.com/ovh/manager/commit/3c8ed5499fc76993bc7df4d5832236ee1cbc7fac))
+
+
+
+
+
+# [0.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.44.0...@ovh-ux/manager-container-app@0.45.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
 # [0.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.43.0...@ovh-ux/manager-container-app@0.44.0) (2024-02-20)
 
 

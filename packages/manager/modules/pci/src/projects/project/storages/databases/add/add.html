@@ -30,6 +30,12 @@
     ></a>
     <span data-translate="pci_database_add_description3"></span>
 </p>
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    data-tracking-page-name="PublicCloud::pci::projects::project::storages::databases::add"
+></pci-activate-project-banner>
+
 <div class="row">
     <div class="col-lg-9">
         <form novalidate>
@@ -529,7 +535,7 @@
                     variant="primary"
                     block
                     on-click="$ctrl.createDatabase()"
-                    disabled="!$ctrl.isNetworkSelected() || $ctrl.processingOrder"
+                    disabled="!$ctrl.isNetworkSelected() || $ctrl.processingOrder || $ctrl.isDiscoveryProject"
                 >
                     <span
                         data-ng-if="!$ctrl.processingOrder"

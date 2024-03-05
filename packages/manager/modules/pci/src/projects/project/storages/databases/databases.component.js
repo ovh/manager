@@ -28,6 +28,7 @@ export default {
     customerRegions: '<',
     databasesRegions: '<',
     type: '<',
+    isDiscoveryProject: '<',
   },
   controller,
   template,

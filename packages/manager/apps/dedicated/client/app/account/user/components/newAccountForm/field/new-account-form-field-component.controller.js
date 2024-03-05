@@ -449,17 +449,24 @@ export default class NewAccountFormFieldController {
   }
 
   /*
-      inputField disability rules:
-      if the user is from Indian subsidiary or if the field is customer code
-      if the field is vat and the user is from Indian subsidiary and is ENTERPRISE 
+      Inputs of type text should be disabled if:
+      - the input is for customer code
+      - if the user in from an indian subsidiary:
+          - his kyc request is in progress (isEditionDisabledByKyc)
+          - the input is not for vat (if the customer is of type enterprise)
   */
   canInputFieldDisabled() {
-    if (this.isIndianSubsidiary)
-      return !(
+    if (this.rule.fieldName === this.FIELD_NAME_LIST.customerCode) {
+      return true;
+    }
+    return (
+      this.isIndianSubsidiary &&
+      this.isEditionDisabledByKyc &&
+      !(
         this.rule.fieldName === this.FIELD_NAME_LIST.vat &&
         this.user.legalform !== USER_TYPE_ENTERPRISE
-      );
-    return this.rule.fieldName === this.FIELD_NAME_LIST.customerCode;
+      )
+    );
   }
 
   /*
@@ -469,10 +476,11 @@ export default class NewAccountFormFieldController {
   */
   canDropDownDisabled() {
     if (this.isIndianSubsidiary) {
-      return !!(
-        this.rule.fieldName === this.FIELD_NAME_LIST.legalform ||
-        this.rule.fieldName === this.FIELD_NAME_LIST.country ||
-        this.rule.fieldName === this.FIELD_NAME_LIST.area
+      return (
+        this.isEditionDisabledByKyc &&
+        (this.rule.fieldName === this.FIELD_NAME_LIST.legalform ||
+          this.rule.fieldName === this.FIELD_NAME_LIST.country ||
+          this.rule.fieldName === this.FIELD_NAME_LIST.area)
       );
     }
     return false;

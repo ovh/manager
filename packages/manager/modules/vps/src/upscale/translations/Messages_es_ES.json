@@ -47,5 +47,12 @@
   "vps_upscale_elite_upgrade_success_without_payment_method": "La <a class=\"oui-link\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">orden de pedido</a> se ha generado correctamente. La configuración se modificará una vez realizado el pago.",
   "vps_upscale_elite_upgrade_error": "Se ha producido un error al modificar la configuración.",
   "vps_upscale_fail_vps_in_rescue_info": "No es posible pasar a un modelo superior de VPS, ya que el servidor está actualmente en modo de rescate.",
-  "vps_upscale_fail_vps_in_rescue_action": "Por favor, reinicie el VPS desactivando previamente el modo de rescate."
+  "vps_upscale_fail_vps_in_rescue_action": "Por favor, reinicie el VPS desactivando previamente el modo de rescate.",
+  "vps_upscale_summary_current_configuration_yearly": "Configuración actual con pago anual",
+  "vps_upscale_summary_final_configuration_yearly": "Configuración final con pago anual",
+  "vps_upscale_summary_price_yearly": "Precio proporcional para el año en curso",
+  "vps_upscale_summary_price_yearly_with_payment_method_validation": "Al validar su elección, deberá abonar un importe de {{ price }} proporcional al período restante del año en curso.",
+  "vps_upscale_summary_price_yearly_without_payment_method_validation": "Al validar su elección, será redirigido a una orden de pedido, donde deberá abonar un importe de {{ price }} proporcional al período restante.",
+  "vps_upscale_success_yearly_with_payment_method": "El cambio de gama se ha realizado correctamente. Deberá abonar un importe de {{ price }} proporcional al período restante del año en curso.",
+  "vps_upscale_elite_upgrade_success_yearly_with_payment_method": "La configuración se ha modificado correctamente. Deberá abonar un importe de {{ price }} proporcional al período restante del año en curso."
 }

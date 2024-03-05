@@ -1,3 +1,9 @@
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    data-tracking-page-name="PublicCloud::pci::projects::project::training::onboarding"
+></pci-activate-project-banner>
+
 <manager-on-boarding-layout
     guides="$ctrl.guides"
     data-image-source="$ctrl.illustration"
@@ -24,7 +30,7 @@
     <button
         type="button"
         class="oui-button oui-button_primary mt-2"
-        data-ng-disabled="!$ctrl.labAccepted"
+        data-ng-disabled="!$ctrl.labAccepted || $ctrl.isDiscoveryProject"
         data-ng-click="$ctrl.submit()"
         data-track-on="click"
         data-track-name="public-cloud::pci::projects::project::training::onboarding::start"

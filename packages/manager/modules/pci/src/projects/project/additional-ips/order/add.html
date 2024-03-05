@@ -9,6 +9,12 @@
         data-messages="$ctrl.messages"
     ></cui-message-container>
 
+    <pci-activate-project-banner
+        data-ng-if="$ctrl.isDiscoveryProject"
+        data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+        data-tracking-page-name="PublicCloud::pci::projects::project::additional-ips::add"
+    ></pci-activate-project-banner>
+
     <div data-ng-if="$ctrl.loadingDefaultValues">
         <oui-spinner size="l"></oui-spinner>
     </div>

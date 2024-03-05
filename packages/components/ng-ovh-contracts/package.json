@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-contracts",
-  "version": "4.4.1",
+  "version": "4.5.0",
   "description": "Component to correctly show contracts in OVHcloud control panels",
   "keywords": [
     "angularjs",
@@ -42,7 +42,7 @@
     "@ovh-ux/component-rollup-config": "^13.0.1"
   },
   "peerDependencies": {
-    "@ovh-ux/ui-kit": "^6.5.3",
+    "@ovh-ux/ui-kit": "^6.7.0",
     "angular": "^1.6.10",
     "angular-translate": "^2.17.0",
     "angular-ui-bootstrap": "~1.3.3",

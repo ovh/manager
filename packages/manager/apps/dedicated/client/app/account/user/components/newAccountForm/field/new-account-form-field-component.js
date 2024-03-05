@@ -9,6 +9,7 @@ export default {
     rule: '<', // api rule
     fieldset: '<', // parent form fieldset
     isIndianSubsidiary: '<',
+    isEditionDisabledByKyc: '<',
   },
   template,
   controller,

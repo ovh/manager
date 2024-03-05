@@ -17,6 +17,7 @@ export default {
     guideUrl: '<',
     guideTrackingSectionTags: '<',
     trackClick: '<',
+    trackPage: '<',
     hardRebootInstance: '<',
     help: '<',
     instanceLink: '<',

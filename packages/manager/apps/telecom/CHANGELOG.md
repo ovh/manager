@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [15.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.9.1...@ovh-ux/manager-telecom@15.9.2) (2024-03-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [15.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.9.0...@ovh-ux/manager-telecom@15.9.1) (2024-02-28)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+# [15.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.8.2...@ovh-ux/manager-telecom@15.9.0) (2024-02-26)
+
+
+### Features
+
+* **telecom:** disable activate service button ([#10874](https://github.com/ovh/manager/issues/10874)) ([243d263](https://github.com/ovh/manager/commit/243d263552063909aaf78db6cadf04657f783688))
+
+
+
+
+
+## [15.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.8.1...@ovh-ux/manager-telecom@15.8.2) (2024-02-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
 ## [15.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@15.8.0...@ovh-ux/manager-telecom@15.8.1) (2024-02-20)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub",
-  "version": "3.8.0",
+  "version": "3.9.0",
   "private": true,
   "description": "Set of components for Manager Hub",
   "repository": {
@@ -32,7 +32,7 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.6.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.5",
     "@ovh-ux/ng-translate-async-loader": "^2.1.4",
-    "@ovh-ux/ui-kit": "^6.5.3",
+    "@ovh-ux/ui-kit": "^6.7.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",

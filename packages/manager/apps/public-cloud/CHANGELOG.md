@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.2.2...@ovh-ux/manager-public-cloud@6.2.3) (2024-03-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [6.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.2.1...@ovh-ux/manager-public-cloud@6.2.2) (2024-02-28)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+## [6.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.2.0...@ovh-ux/manager-public-cloud@6.2.1) (2024-02-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
+# [6.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.1.3...@ovh-ux/manager-public-cloud@6.2.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
 ## [6.1.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@6.1.2...@ovh-ux/manager-public-cloud@6.1.3) (2024-02-20)
 
 

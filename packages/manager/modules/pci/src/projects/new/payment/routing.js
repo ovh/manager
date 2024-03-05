@@ -1,87 +1,123 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 
-import { CREDIT_PROVISIONING } from './components/add/constants';
+import {
+  CREDIT_PROVISIONING,
+  PAYMENTS_PER_LINE,
+} from './components/add/constants';
 import {
   PCI_PROJECT_STEPS,
   PAYMENT_RUPAY_CREDIT_CARD_CHARGES_FEATURE_ID,
 } from '../constants';
 
+import { PCI_NEW_PAYMENT_STATE_NAME } from '../routing';
+
 import component from './component';
 
-export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('pci.projects.new.payment', {
-    url:
-      '/payment?paymentStatus&paymentType&redirectResult&paymentMethodId&transactionId',
+export const registerPCINewPaymentState = (
+  $stateProvider,
+  {
+    stateName = PCI_NEW_PAYMENT_STATE_NAME,
+    url = '/payment',
+    configStep = true,
+    views = {
+      default: '',
+      progress: 'progress',
+      payment: 'payment',
+      credits: 'credits',
+      challenge: 'challenge',
+      voucher: 'voucher',
+      dlp: 'dlp',
+    },
+    viewOptions = {
+      title: true,
+      subtitlesSize: 2,
+      voucherView: true,
+      foldVoucher: true,
+      denseVoucher: false,
+      clearableVoucher: true,
+      paymentsPerLine: PAYMENTS_PER_LINE,
+      registerExplanationTexts: null,
+      submitText: '',
+      trackingPrefix: 'pci_project_new_payment_',
+      onSubmit: null,
+      stateName: PCI_NEW_PAYMENT_STATE_NAME,
+    },
+    resolve,
+  } = {},
+) => {
+  const onEnter = (atInternet, numProjects, model) => {
+    atInternet.trackPage({
+      name: 'PublicCloud::pci::projects::new::payment',
+      pciCreationNumProjects: numProjects,
+    });
+    if (model.voucher.valid) {
+      atInternet.trackPage({
+        name: `PublicCloud_new_project_free_voucher::${model.voucher.value}::payment`,
+      });
+    }
+  };
+
+  $stateProvider.state(stateName, {
+    url: `${url}?paymentStatus&paymentType&redirectResult&paymentMethodId&transactionId`,
     params: {
       skipCallback: null,
       showError: null,
     },
     views: {
       '': component.name,
-
-      'progress@pci.projects.new.payment': 'pciProjectNewProgress',
-
-      'payment@pci.projects.new.payment': {
-        componentProvider: /* @ngInject */ (
-          defaultPaymentMethod,
-          validPaymentMethods,
-        ) => {
-          if (defaultPaymentMethod) {
-            return 'pciProjectNewPaymentDefault';
-          }
-          if (validPaymentMethods.length) {
-            return 'pciProjectNewPaymentChoose';
-          }
-
-          return 'pciProjectNewPaymentRegister';
-        },
+      ...(configStep && {
+        [`${views.progress}@${stateName}`]: 'pciProjectNewProgress',
+      }),
+      [`${views.credits}@${stateName}`]: 'pciProjectNewPaymentCreditType',
+      [`${views.voucher}@${stateName}`]: 'pciProjectNewVoucher',
+      [`${views.payment}@${stateName}`]: {
+        componentProvider: /* @ngInject */ (defaultPaymentMethod) =>
+          defaultPaymentMethod
+            ? 'pciProjectNewPaymentDefault'
+            : 'pciProjectNewPaymentRegister',
       },
-
-      'credits@pci.projects.new.payment': 'pciProjectNewPaymentCreditType',
-
-      'challenge@pci.projects.new.payment': {
+      [`${views.challenge}@${stateName}`]: {
         componentProvider: /* @ngInject */ (eligibility) =>
           eligibility.isChallengePaymentMethodRequired()
             ? 'pciProjectNewPaymentChallenge'
             : null,
       },
-
-      'voucher@pci.projects.new.payment': 'pciProjectNewVoucher',
-
-      'dlp@pci.projects.new.payment': {
+      [`${views.dlp}@${stateName}`]: {
         componentProvider: /* @ngInject */ (dlpStatus) =>
           dlpStatus ? 'pciProjectNewPaymentDlp' : null,
       },
     },
     atInternet: {
-      ignore: true, // this tell AtInternet to not track this state
+      ignore: true,
     },
-    onEnter: /* @ngInject */ (
-      atInternet,
-      activeStep,
-      step,
-      numProjects,
-      model,
-    ) => {
-      activeStep(step.name);
-      atInternet.trackPage({
-        name: 'PublicCloud::pci::projects::new::payment',
-        pciCreationNumProjects: numProjects,
-      });
-      if (model.voucher.valid) {
-        atInternet.trackPage({
-          name: `PublicCloud_new_project_free_voucher::${model.voucher.value}::payment`,
-        });
-      }
-    },
+    ...(configStep && {
+      onEnter: /* @ngInject */ (
+        atInternet,
+        activeStep,
+        step,
+        numProjects,
+        model,
+      ) => {
+        activeStep(step.name);
+        onEnter(atInternet, numProjects, model);
+      },
+    }),
+    ...(!configStep && {
+      onEnter: /* @ngInject */ (atInternet, numProjects, model) => {
+        onEnter(atInternet, numProjects, model);
+      },
+    }),
     resolve: {
       skipCallback: /* @ngInject */ ($transition$) =>
         $transition$.params().skipCallback,
+
       showError: /* @ngInject */ ($transition$) =>
         $transition$.params().showError,
+
       callback: /* @ngInject */ ($location, $transition$) =>
         $transition$.params().skipCallback ? {} : $location.search(),
+
       displayErrorMessageOnIntegrationSubmitError: /* @ngInject */ (
         $translate,
         skipCallback,
@@ -95,6 +131,7 @@ export default /* @ngInject */ ($stateProvider) => {
           );
         }
       },
+
       isDisplayablePaypalChargeBanner: /* @ngInject */ (ovhFeatureFlipping) => {
         const paypalChargeId = 'public-cloud:paypal-charge';
         return ovhFeatureFlipping
@@ -136,6 +173,7 @@ export default /* @ngInject */ ($stateProvider) => {
         eligibility.setValidPaymentMethods(validPaymentMethods);
         return validPaymentMethods;
       },
+
       isDisplayableRupayCreditCardInfoBanner: /* @ngInject */ (
         ovhFeatureFlipping,
       ) =>
@@ -207,30 +245,20 @@ export default /* @ngInject */ ($stateProvider) => {
       getCancelHref: /* @ngInject */ ($state) => () =>
         $state.href('pci.projects'),
 
-      step1Link: /* @ngInject */ ($state) => () => $state.href('^'),
-
       reloadPayment: /* @ngInject */ ($state) => () =>
-        $state.go(
-          'pci.projects.new.payment',
-          {},
-          {
-            reload: true,
-          },
-        ),
+        $state.go(stateName, {}, { reload: true }),
 
       onAskCreditPayment: /* @ngInject */ ($state) => () =>
-        $state.go('pci.projects.new.payment.credit', {}, { location: false }),
+        $state.go(`${stateName}.credit`, {}, { location: false }),
 
       onCartFinalized: /* @ngInject */ ($state, $window, cart) => ({
         orderId,
         prices,
-        url,
+        url: redirectUrl,
       }) => {
         if (cart.creditOption || prices.withTax.value !== 0) {
-          // if credit has been added or total checkout is not equal to 0
-          // redirect to order url
-          window.top.location.href = url;
-          return url;
+          window.top.location.href = redirectUrl;
+          return redirectUrl;
         }
 
         return $state.go(
@@ -249,15 +277,27 @@ export default /* @ngInject */ ($stateProvider) => {
         );
       },
 
-      onProgressStepClick: /* @ngInject */ ($state) => ({ name, active }) => {
-        if (name === PCI_PROJECT_STEPS.CONFIGURATION && !active) {
-          return $state.go('^');
-        }
+      ...(configStep && {
+        step1Link: /* @ngInject */ ($state) => () => $state.href('^'),
 
-        return null;
-      },
+        onProgressStepClick: /* @ngInject */ ($state) => ({ name, active }) => {
+          if (name === PCI_PROJECT_STEPS.CONFIGURATION && !active) {
+            return $state.go('^');
+          }
 
-      step: /* @ngInject */ (getStep) => getStep(PCI_PROJECT_STEPS.PAYMENT),
+          return null;
+        },
+
+        step: /* @ngInject */ (getStep) => getStep(PCI_PROJECT_STEPS.PAYMENT),
+      }),
+
+      viewOptions: () => viewOptions,
+
+      ...resolve,
     },
   });
+};
+
+export default /* @ngInject */ ($stateProvider) => {
+  registerPCINewPaymentState($stateProvider);
 };

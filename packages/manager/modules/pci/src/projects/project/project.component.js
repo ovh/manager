@@ -4,6 +4,7 @@ import template from './project.html';
 export default {
   bindings: {
     projectId: '<',
+    serviceId: '<',
     quotas: '<',
     project: '<',
     projects: '<',
@@ -26,7 +27,13 @@ export default {
     vouchersCreditDetails: '<',
     guideTrackingSectionTags: '<',
     trackClick: '<',
+    trackPage: '<',
     isMenuSidebarVisible: '<',
+    isDiscoveryProject: '<',
+    goToDiscoveryProjectActivationPage: '&',
+    discoveryPromotionVoucherAmount: '<',
+    activateDiscovery: '<',
+    orderStatus: '<',
   },
   controller,
   template,

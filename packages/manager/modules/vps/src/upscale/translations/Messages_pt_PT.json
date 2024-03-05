@@ -48,5 +48,12 @@
   "vps_upscale_elite_upgrade_error": "Ocorreu um erro ao alterar a configuração.",
   "vps_upscale_agreements": "Aceito as <a target=\"_blank\" href=\"{{conditions}}\" rel=\"noopener\">condições gerais</a> e a <a target=\"_blank\" href=\"{{policy}}\" rel=\"noopener\">política de confidencialidade</a>.",
   "vps_upscale_fail_vps_in_rescue_info": "Não pode fazer evoluir o seu VPS para uma oferta superior, pois este está atualmente em modo rescue.",
-  "vps_upscale_fail_vps_in_rescue_action": "Reinicie o seu VPS, desativando o modo rescue."
+  "vps_upscale_fail_vps_in_rescue_action": "Reinicie o seu VPS, desativando o modo rescue.",
+  "vps_upscale_summary_current_configuration_yearly": "Configuração atual para um pagamento anual",
+  "vps_upscale_summary_final_configuration_yearly": "Configuração final para um pagamento anual",
+  "vps_upscale_summary_price_yearly": "Preço proporcional para o ano em curso",
+  "vps_upscale_summary_price_yearly_with_payment_method_validation": "Ao validar esta escolha, o montante de {{ price }} será faturado numa base pro rata temporis para o ano em curso.",
+  "vps_upscale_summary_price_yearly_without_payment_method_validation": "Ao validar esta escolha, será redirecionado para uma nota de encomenda para pagar o montante de {{ price }} numa base pro rata temporis.",
+  "vps_upscale_success_yearly_with_payment_method": "A alteração da gama foi registada. Foi faturado o montante de {{ price }} numa base pro rata temporis para o ano em curso.",
+  "vps_upscale_elite_upgrade_success_yearly_with_payment_method": "A alteração da configuração foi registada. Foi faturado o montante de {{ price }} numa base pro rata temporis para o ano em curso."
 }

@@ -76,7 +76,10 @@ export default function PublicCloudSidebar() {
   const onCreateProjectClick = useCallback(() => {
     shell
       .getPlugin('tracking')
-      .trackClick('public-cloud_project-listing_create-instance');
+      .trackClick({
+        name: 'public-cloud_project-listing_create-instance',
+        type: 'action',
+      });
   }, [shell]);
 
   const onMenuItemClick = useCallback(
@@ -195,13 +198,13 @@ export default function PublicCloudSidebar() {
       <div style={{ height: '100%', overflow: 'scroll' }}>
         <div className="d-flex m-2">
           <h2 className={style.projectTitle}>{currentProject?.description}</h2>
-          <button
-            type="button"
-            className={style.menuToggle}
-            onClick={onShowAllProjectClick}
-          >
-            <span className="oui-icon oui-icon-chevron-right"></span>
-          </button>
+            <button
+              type="button"
+              className={style.menuToggle}
+              onClick={onShowAllProjectClick}
+            >
+              <span className="oui-icon oui-icon-chevron-right"></span>
+            </button>
         </div>
 
         <ProjectIdCopy id="copy" projectId={currentProject?.project_id} />

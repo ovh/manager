@@ -18,6 +18,7 @@ export default class ProjectController {
     OvhApiCloudProject,
     ovhFeatureFlipping,
     PciProject,
+    CucCloudMessage,
   ) {
     this.$scope = $scope;
     this.$state = $state;
@@ -29,6 +30,7 @@ export default class ProjectController {
     this.coreConfig = coreConfig;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
     this.PciProject = PciProject;
+    this.CucCloudMessage = CucCloudMessage;
 
     const filterByRegion = (list) =>
       list.filter(
@@ -47,6 +49,20 @@ export default class ProjectController {
     );
 
     this.PciProject.setProjectInfo(this.project);
+    this.loadMessages();
+  }
+
+  loadMessages() {
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'pci.projects.project',
+      {
+        onMessage: () => this.refreshMessages(),
+      },
+    );
+  }
+
+  refreshMessages() {
+    this.messages = this.messageHandler.getMessages();
   }
 
   isDisplayableLink({ availableForTrustedZone }) {
@@ -70,5 +86,27 @@ export default class ProjectController {
     return items.reduce((features, item) => {
       return [...features, item.feature].filter((feature) => !!feature);
     }, []);
+  }
+
+  onActivateProjectClick() {
+    this.trackClick(
+      'PublicCloud::pci::projects::project::discovery-banner-activate-project',
+    );
+    return this.goToDiscoveryProjectActivationPage();
+  }
+
+  onActivateDiscoveryModalSuccess() {
+    this.activateDiscovery = false;
+    this.trackClick(
+      'PublicCloud::pci::projects::project::activate-project-modal::confirm',
+    );
+    this.goToDiscoveryProjectActivationPage();
+  }
+
+  onActivateDiscoveryModalClose() {
+    this.trackClick(
+      'PublicCloud::pci::projects::project::activate-project-modal::cancel',
+    );
+    this.activateDiscovery = false;
   }
 }
