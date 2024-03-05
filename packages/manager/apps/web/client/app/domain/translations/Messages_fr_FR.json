@@ -4,7 +4,7 @@
   "domains_empty": "Aucun résultat",
   "domains_column_domain": "Nom de domaine",
   "domains_column_domains_status": "Statut",
-  "domains_column_domains_tech_state": "État technique",
+  "domains_column_domains_tech_state": "États techniques",
   "domains_column_domains_transfer_lock_status": "Verrouillage",
   "domains_column_domains_dnssec_supported": "DNSECC",
   "domains_column_domains_renewal_mode": "Mode de renouvellement",
