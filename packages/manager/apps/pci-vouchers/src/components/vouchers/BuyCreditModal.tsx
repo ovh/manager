@@ -55,7 +55,7 @@ export default function BuyCreditModal({
   const isValidInputAmount = !!(
     !Number.isNaN(amount) &&
     amount > 0 &&
-    amount < 1_00_000_000
+    amount <= 200_000
   );
 
   const handleInputChange = useCallback(
