@@ -37,7 +37,10 @@ const Users = () => {
   });
   const columns: ColumnDef<GenericUser>[] = getColumns({
     displayGroupCol: service.engine === database.EngineEnum.m3db,
-    displayRolesCol: service.engine === database.EngineEnum.mongodb,
+    displayRolesCol: [
+      database.EngineEnum.mongodb,
+      database.EngineEnum.postgresql,
+    ].includes(service.engine),
     onDeleteClicked: (user: GenericUser) => {
       deleteModale.open(user.id);
     },
