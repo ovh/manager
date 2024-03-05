@@ -1,4 +1,4 @@
-import { H3, P } from '@/components/typography';
+import { H3 } from '@/components/typography';
 
 export function breadcrumb() {
   return 'Settings';
