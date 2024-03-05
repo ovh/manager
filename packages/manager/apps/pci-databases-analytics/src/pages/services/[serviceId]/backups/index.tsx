@@ -7,6 +7,7 @@ import { useServiceData } from '../layout';
 import { getColumns } from './_components/backupsTableColumns';
 import { DataTable } from '@/components/ui/data-table';
 import { useGetBackups } from '@/hooks/api/backups.api.hooks';
+import { POLLING } from '@/configuration/polling';
 
 export function breadcrumb() {
   return (
@@ -26,7 +27,7 @@ const Backups = () => {
   );
   const { projectId, service } = useServiceData();
   const backupsQuery = useGetBackups(projectId, service.engine, service.id, {
-    refetchInterval: 30_000,
+    refetchInterval: POLLING.BACKUPS,
   });
   const columns = getColumns();
   return (
@@ -34,18 +35,16 @@ const Backups = () => {
       <H2 className="mb-2">{t('title')}</H2>
       <P className="mb-2">{t('description')}</P>
       {backupsQuery.isSuccess ? (
-        <>
-          <DataTable
-            columns={columns}
-            data={backupsQuery.data.map((backup) => ({
-              ...backup,
-              expiricyDate: add(new Date(backup.createdAt), {
-                days: service.backups.retentionDays,
-              }),
-            }))}
-            pageSize={25}
-          />
-        </>
+        <DataTable
+          columns={columns}
+          data={backupsQuery.data.map((backup) => ({
+            ...backup,
+            expiricyDate: add(new Date(backup.createdAt), {
+              days: service.backups.retentionDays,
+            }),
+          }))}
+          pageSize={25}
+        />
       ) : (
         <DataTable.Skeleton columns={5} rows={5} width={100} height={16} />
       )}
