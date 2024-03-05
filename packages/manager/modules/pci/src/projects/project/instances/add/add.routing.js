@@ -113,10 +113,16 @@ export default /* @ngInject */ ($stateProvider) => {
           const [hourlyPriceObj] = floatingIpProducts.find(({ planCode }) =>
             planCode.includes('hour'),
           )?.pricings;
+          const publicIpProducts = data.addons.filter(
+            ({ product }) => product === 'publiccloud-publicip-ip',
+          );
           return {
-            product: floatingIpProducts[0].product,
-            pricePerMonth: monthlyPriceObj.price,
-            pricePerHour: hourlyPriceObj.price,
+            defaultFloatingIp: {
+              product: floatingIpProducts[0].product,
+              pricePerMonth: monthlyPriceObj.price,
+              pricePerHour: hourlyPriceObj.price,
+            },
+            publicIpProducts,
           };
         }),
       addInstanceTrackPrefix: /* @ngInject */ () =>
