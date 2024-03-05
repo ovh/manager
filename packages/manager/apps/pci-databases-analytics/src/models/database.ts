@@ -1165,8 +1165,11 @@ export namespace database {
       'currentQueries' = 'currentQueries',
       'databases' = 'databases',
       'namespaces' = 'namespaces',
+      'integrations' = 'integrations',
       'queryStatistics' = 'queryStatistics',
       'users' = 'users',
+      'advancedConfiguration' = 'advancedConfiguration',
+      'connectionPools' = 'connectionPools',
     }
     /** Certificates definition for cloud project databases */
     export interface Certificates {

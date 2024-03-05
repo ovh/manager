@@ -6,6 +6,7 @@ import LegalMentions from '@/pages/_components/legalMentions';
 import { database } from '@/models/database';
 import { ServiceHeader } from './_components/serviceHeader';
 import TabsMenu from '@/components/tabs-menu';
+import { POLLING } from '@/configuration/polling';
 
 function ServiceName() {
   const { projectId, serviceId } = useParams();
@@ -36,7 +37,7 @@ export function useServiceData() {
 export default function ServiceLayout() {
   const { projectId, serviceId } = useParams();
   const serviceQuery = useGetService(projectId, serviceId, {
-    refetchInterval: 30_000,
+    refetchInterval: POLLING.SERVICE,
   });
 
   const service = serviceQuery.data;
@@ -75,13 +76,21 @@ export default function ServiceLayout() {
       label: 'Namespaces',
       disabled: !service.capabilities.namespaces.read,
     },
-    { href: 'pools', label: 'Pools' },
+    service.capabilities.connectionPools && {
+      href: 'pools',
+      label: 'Pools',
+      disabled: !service.capabilities.connectionPools.read,
+    },
     service.capabilities.queryStatistics && {
       href: 'queries',
       label: 'Queries',
       disabled: !service.capabilities.queryStatistics.read,
     },
-    { href: 'integrations', label: 'Integrations' },
+    service.capabilities.integrations && {
+      href: 'integrations',
+      label: 'Integrations',
+      disabled: !service.capabilities.integrations.read,
+    },
     { href: 'metrics', label: 'Metrics' },
     { href: 'logs', label: 'Logs' },
     { href: 'settings', label: 'Settings' },
