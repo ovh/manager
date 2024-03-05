@@ -69,7 +69,7 @@ export default function WebSidebar() {
               id: 'domain_list',
               label: t('sidebar_domain_list'),
               href: navigation.getURL('web', '#/domain'),
-              icon: getIcon('ovh-font ovh-font-network'),
+              icon: getIcon('oui-icon oui-icon-list'),
               ignoreSearch: true,
             },
             {

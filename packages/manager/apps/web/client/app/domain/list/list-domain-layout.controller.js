@@ -6,10 +6,12 @@ import {
   DOMAIN_OBJECT_KEYS,
   DOMAIN_STATUS,
   DOMAIN_SUSPENSION_STATE,
+  DOMAIN_SUSPENSION_STATE_CLASS,
   DOMAIN_NAME_SERVER_TYPE,
   DOMAIN_TRANSFER_LOCK_STATE,
+  DOMAIN_TRANSFER_LOCK_STATE_CLASS,
   DOMAIN_DNSSEC_STATE,
-  DOMAINS_BADGES_DNSSEC_STATE,
+  DOMAIN_DNSSEC_STATE_CLASS,
   DOMAINS_BADGES_STATUS,
   DOMAIN_RENEWAL_MODE,
   DOMAINS_BADGES_RENEWAL_MODE,
@@ -38,10 +40,12 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
     this.DOMAIN_STATUS = DOMAIN_STATUS;
     this.DOMAIN_RENEWABLE_STATE = DOMAIN_RENEWABLE_STATE;
     this.DOMAIN_SUSPENSION_STATE = DOMAIN_SUSPENSION_STATE;
+    this.DOMAIN_SUSPENSION_STATE_CLASS = DOMAIN_SUSPENSION_STATE_CLASS;
     this.DOMAIN_NAME_SERVER_TYPE = DOMAIN_NAME_SERVER_TYPE;
     this.DOMAIN_TRANSFER_LOCK_STATE = DOMAIN_TRANSFER_LOCK_STATE;
+    this.DOMAIN_TRANSFER_LOCK_STATE_CLASS = DOMAIN_TRANSFER_LOCK_STATE_CLASS;
     this.DOMAIN_DNSSEC_STATE = DOMAIN_DNSSEC_STATE;
-    this.DOMAINS_BADGES_DNSSEC_STATE = DOMAINS_BADGES_DNSSEC_STATE;
+    this.DOMAIN_DNSSEC_STATE_CLASS = DOMAIN_DNSSEC_STATE_CLASS;
     this.DOMAINS_BADGES_STATUS = DOMAINS_BADGES_STATUS;
     this.DOMAIN_RENEWAL_MODE = DOMAIN_RENEWAL_MODE;
     this.DOMAINS_BADGES_RENEWAL_MODE = DOMAINS_BADGES_RENEWAL_MODE;
@@ -70,20 +74,6 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
       domainsExportCsv: false,
     };
 
-    this.columnsConfig = [
-      { name: 'domain', sortable: this.getSorting('domain') },
-      { name: 'state', sortable: this.getSorting('state') },
-      { name: 'suspensionState', sortable: this.getSorting('suspensionState') },
-      {
-        name: 'transferLockStatus',
-        sortable: this.getSorting('transferLockStatus'),
-      },
-      { name: 'dnssecState', sortable: this.getSorting('dnssecState') },
-      { name: 'renewalState', sortable: this.getSorting('renewalState') },
-      { name: 'whoisOwner', sortable: this.getSorting('whoisOwner') },
-      { name: 'nameServerType', sortable: this.getSorting('nameServerType') },
-    ];
-
     this.domainStateColumnOptions = {
       hideOperators: true,
       values: this.domainStateEnum.reduce(
@@ -104,35 +94,6 @@ export default class ListDomainLayoutCtrl extends ListLayoutHelper.ListLayoutCtr
         }),
         {},
       ),
-    };
-
-    this.domainSuspensionStateColumnOptions = {
-      hideOperators: true,
-      values: this.domainSuspensionStateEnum.reduce(
-        (options, status) => ({
-          ...options,
-          [status]: this.$translate.instant(
-            `domains_suspension_state_${status}`,
-          ),
-        }),
-        {},
-      ),
-    };
-
-    this.domainTransferLockStateColumnOptions = {
-      hideOperators: true,
-      values: this.domainLockStatusEnum.map((status) => ({
-        status: this.$translate.instant(
-          `domains_transfer_lock_status_${status}`,
-        ),
-      })),
-    };
-
-    this.domainDnssecStateColumnOptions = {
-      hideOperators: true,
-      values: this.domainDnssecStateEnum.map((status) => ({
-        status: this.$translate.instant(`domains_dnssec_state_${status}`),
-      })),
     };
 
     this.domainNameServerTypeColumnOptions = {
