@@ -9,7 +9,7 @@
   "interval-lastMonth": "1M",
   "interval-lastYear": "1Y",
   "metricName-cpu_usage_percent": "CPU utilisé (%)",
-  "metricName-disk_usage_percent": "CPU utilisé (%)",
+  "metricName-disk_usage_percent": "Espace disque utilisé (%)",
   "metricName-diskio_read": "Nb d'IOPS (lecture)",
   "metricName-diskio_writes": "Nb d'IOPS (écriture)",
   "metricName-mem_usage_percent": "Mémoire utilisée (%)",

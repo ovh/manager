@@ -5,10 +5,13 @@ import { database } from '@/models/database';
 import ServicesList from './_components/serviceListTable';
 import Onboarding from './_components/onboarding';
 import LegalMentions from '../_components/legalMentions';
+import { POLLING } from '@/configuration/polling';
 
 const Services = () => {
   const { projectId, category } = useParams();
-  const servicesQuery = useGetServices(projectId, { refetchInterval: 30_000 });
+  const servicesQuery = useGetServices(projectId, {
+    refetchInterval: POLLING.SERVICES,
+  });
   const filteredServices = useMemo(() => {
     if (!servicesQuery.data) return [];
     return servicesQuery.data.filter(

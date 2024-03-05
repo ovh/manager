@@ -15,7 +15,7 @@ interface TabsMenuProps {
 const TabsMenu = ({ tabs }: TabsMenuProps) => {
   return (
     <ScrollArea className="pb-4">
-      <div className="flex">
+      <div className="flex border-b border-[#e6f5fc]">
         {tabs.map((tab, index) => (
           <NavLink
             onClick={(event) => tab.disabled && event.preventDefault()}

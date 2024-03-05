@@ -10,6 +10,7 @@ import { Switch } from '@/components/ui/switch';
 import MetricChart from './_components/metricChart';
 import { useGetMetrics } from '@/hooks/api/metrics.api.hooks';
 import { cn } from '@/lib/utils';
+import { POLLING } from '@/configuration/polling';
 
 export function breadcrumb() {
   return (
@@ -72,7 +73,7 @@ const Metrics = () => {
               metric={metric}
               period={period}
               poll={poll}
-              pollInterval={30_000}
+              pollInterval={POLLING.METRICS}
             />
           ))}
         </>

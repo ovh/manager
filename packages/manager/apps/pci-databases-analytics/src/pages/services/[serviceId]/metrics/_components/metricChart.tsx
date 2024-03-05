@@ -93,14 +93,6 @@ const MetricChart = ({
             y: {
               display: true,
               position: 'left',
-              beginAtZero:
-                metricQuery.data.units ===
-                database.service.MetricUnitEnum.PERCENT,
-              max:
-                metricQuery.data.units ===
-                database.service.MetricUnitEnum.PERCENT
-                  ? 100
-                  : undefined,
               grid: {
                 display: false,
               },
