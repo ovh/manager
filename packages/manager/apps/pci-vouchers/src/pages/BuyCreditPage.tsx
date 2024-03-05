@@ -15,8 +15,8 @@ export default function BuyCreditPage() {
   return (
     <>
       <BuyCreditModal
-        projectId={`${projectId}`}
-        onClose={() => onClose()}
+        projectId={projectId}
+        onClose={onClose}
         onSuccess={(amount, url) => {
           addSuccess(
             <span
