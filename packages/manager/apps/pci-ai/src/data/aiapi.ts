@@ -45,8 +45,6 @@ export interface LabelsAppProps {
 };
 
 export interface OrderNbProps {
-    projectId: string,
-    notebookSpec: {
         env: {
             editorId: string,
             frameworkId: string,
@@ -60,7 +58,6 @@ export interface OrderNbProps {
             cpu?: number,
             gpu?: number,
         },
-    };
 };
 
 export interface DockerImageProps {
@@ -157,6 +154,10 @@ export interface DatastoreCreationProps {
     }
 };
 
+export const getRegions = async (projectId: string) =>
+  apiClient.v6
+    .get(`/cloud/project/${projectId}/ai/capabilities/region`)
+    .then((res) => res.data as ai.capabilities.Region[]);
 
 export const aiApi = {
     getRegions: async (projectId: string) => apiClient.v6.get(
@@ -338,16 +339,25 @@ export const notebookApi = {
         )
             .then((res) => res.data as string)
     ,
-    orderNotebook: async ({
-        projectId,
-        notebookSpec,
-    }: OrderNbProps
+    orderNotebook: async (
+        projectId: string,
+        notebookSpec : OrderNbProps,
     ) =>
-        await apiClient.v6.post(
+        apiClient.v6.post(
             `/cloud/project/${projectId}/ai/notebook/`,
             notebookSpec,
         )
-            .then((res) => res.data as string)
+            .then((res) => res.data as ai.notebook.Notebook)
+    ,
+    cliCommandNotebook: async (
+        projectId: string,
+        notebookSpec : OrderNbProps,
+    ) =>
+        apiClient.v6.post(
+            `/cloud/project/${projectId}/ai/notebook/command`,
+            notebookSpec,
+        )
+            .then((res) => res.data as ai.Command)
     ,
     updateNotebook: async ({
         projectId,

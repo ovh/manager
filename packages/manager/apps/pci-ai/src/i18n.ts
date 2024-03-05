@@ -19,7 +19,7 @@ export default function initI18n(
       lng: locale,
       fallbackLng: 'fr_FR',
       supportedLngs: availablesLocales,
-      ns: ['common'], // namespaces to load by default
+      ns: ['pci-ai'], // namespaces to load by default
       backend: {
         loadPath: (lngs: string[], namespaces: string[]) =>
           `${import.meta.env.BASE_URL}translations/${namespaces[0]}/Messages_${
@@ -27,6 +27,16 @@ export default function initI18n(
           }.json`,
       },
       postProcess: 'normalize',
+    })
+    .then(() => {
+      // plurals are set for locales like this: en-GB, so our locale en_GB is not found.
+      // We copy the rules for each available locale
+      availablesLocales.forEach((l) => {
+        i18n.services.pluralResolver.addRule(
+          l,
+          i18n.services.pluralResolver.getRule(l.replace('_', '-')),
+        );
+      });
     });
 
   return i18n;

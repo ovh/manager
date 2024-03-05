@@ -24,6 +24,7 @@ export type Path =
   | `/projects/:projectId/notebooks/:notebookId`
   | `/projects/:projectId/notebooks/:notebookId/attached-data`
   | `/projects/:projectId/notebooks/:notebookId/general-information`
+  | `/projects/:projectId/notebooks/create`
   | `/projects/:projectId/notebooks/new`
 
 export type Params = {
@@ -47,6 +48,7 @@ export type Params = {
   '/projects/:projectId/notebooks/:notebookId': { projectId: string; notebookId: string }
   '/projects/:projectId/notebooks/:notebookId/attached-data': { projectId: string; notebookId: string }
   '/projects/:projectId/notebooks/:notebookId/general-information': { projectId: string; notebookId: string }
+  '/projects/:projectId/notebooks/create': { projectId: string }
   '/projects/:projectId/notebooks/new': { projectId: string }
 }
 

@@ -6,6 +6,10 @@ import { H3 } from '@/components/typography';
 import { DataTable } from '@/components/ui/data-table';
 import OrderFunnel from './_components/order-funnel';
 
+export const Handle = {
+  breadcrumb: () => 'pci_ai_breadcrumb_notebooks_order',
+};
+
 const OrderNotebookPage = () => {
   const { projectId } = useRequiredParams<{ projectId: string }>();
   const regionsQuery = useGetRegions(projectId);

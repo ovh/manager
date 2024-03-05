@@ -230,7 +230,7 @@ module.exports = {
         DEFAULT: 'var(--ods-size-border-radius-01)',
         md: 'var(--ods-size-border-radius-02)',
         lg: 'var(--ods-size-border-radius-02)',
-        full: '50%',
+        //full: '50%',
       },
       keyframes: {
         'accordion-down': {

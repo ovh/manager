@@ -3,7 +3,7 @@ import {
     UseQueryResult,
     useQuery,
   } from '@tanstack/react-query';
-  import { aiApi } from '@/data/aiapi';
+  import { aiApi, getRegions } from '@/data/aiapi';
   import { ai } from '@/models/types';
   
   export function useGetRegions(
@@ -13,7 +13,7 @@ import {
     const queryKey = [projectId, '/capabilities/region'];
     return useQuery({
       queryKey,
-      queryFn: () => aiApi.getRegions(projectId),
+      queryFn: () => getRegions(projectId),
       ...options,
     }) as UseQueryResult<ai.capabilities.Region[], Error>;
   }

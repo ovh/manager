@@ -12,6 +12,9 @@ import BillingConsumption from './_components/billingConsumption';
 import UserTokenConfiguration from './_components/userTokenConfiguration';
 import { DashboardLayoutContext } from '../_layout';
 import { useOutletContext } from 'react-router-dom';
+import { useGetCurrentUsage } from '@/hooks/api/cloud/useGetCurrentUsage';
+import { billingView } from '@/models/usage';
+import { DateToString, aiToolsType } from '@/data/constant';
 export const Handle = {
   breadcrumb: () => 'Dashboard',
 };
@@ -30,6 +33,10 @@ export default function DashboardHomePage() {
   });
   const jobsQuery = useGetJobs(projectId, {
     refetchInterval: 30_000,
+  });
+
+  const currentUsageQuery = useGetCurrentUsage(projectId, {
+    refetchInterval: 60_000,
   });
 
   const jobs: ai.job.Job[] = jobsQuery.data || [];
@@ -67,6 +74,19 @@ export default function DashboardHomePage() {
           role.name === ai.TokenRoleEnum.ai_training_read,
       ),
     ).length || 0;
+
+  const globalCurrentUsage: billingView.TypedResources[] =
+    currentUsageQuery.data?.resourcesUsage?.filter(
+      (res) =>
+        res.type === aiToolsType.APP ||
+        res.type === aiToolsType.JOB ||
+        res.type === aiToolsType.NOTEBOOK,
+    ) || [];
+  
+  const appCurrentUsage: number = globalCurrentUsage.find((res) => res.type === aiToolsType.APP)?.totalPrice || 0.0;
+  const notebookCurrentUsage: number = globalCurrentUsage.find((res) => res.type === aiToolsType.NOTEBOOK)?.totalPrice || 0.0;
+  const jobCurrentUsage: number = globalCurrentUsage.find((res) => res.type === aiToolsType.JOB)?.totalPrice || 0.0;
+  const nextPaymentDate: string = DateToString(currentUsageQuery.data?.period.to) || ''; 
 
   const objStorageLink: string = `#/pci/project/${projectId}/storages/objects`;
   return (
@@ -116,7 +136,13 @@ export default function DashboardHomePage() {
         </div>
       </div>
       <div className="grid w-full grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
-        <BillingConsumption projectId={projectId} />
+        <BillingConsumption 
+          projectId={projectId} 
+          jobUsage={jobCurrentUsage}
+          appUsage={appCurrentUsage}
+          notebookUsage={notebookCurrentUsage}
+          nextPaiement={nextPaymentDate}
+          />
         <UserTokenConfiguration
           activeTokens={activeTokens}
           activeUsers={activeUsers}

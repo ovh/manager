@@ -1343,4 +1343,13 @@ export namespace user {
         "DELETING" = "DELETING",
         "OK" = "OK"
     }
+
+    export interface SSHKey {
+        /**Region SSHKey */ 
+        fingerPrint: string;
+        id: string;
+        name: string;
+        publicKey: string;
+        region: string;
+    }
 }
