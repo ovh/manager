@@ -1,0 +1,79 @@
+<section>
+    <iam-select-modal
+        data-current-identities="$ctrl.identities"
+        data-ng-if="$ctrl.isSelectingGroups"
+        data-close="$ctrl.closeSelectGroupsModal"
+        data-get-options="$ctrl.getAccountGroups"
+        data-on-add-options="$ctrl.addGroups"
+        data-heading="{{:: 'iam_identities_groups_modal_title' | translate}}"
+        data-empty-state-message="{{:: 'iam_identities_groups_modal_empty_state' | translate}}"
+        data-search-placeholder="{{:: 'iam_identities_groups_modal_search_placeholder' | translate}}"
+        data-search-filter="$ctrl.groupSearchFilter"
+    >
+        <iam-checkbox-value>
+            <span data-ng-bind="$parent.option.name"></span>
+        </iam-checkbox-value>
+        <iam-checkbox-description>
+            <div>
+                <span data-translate="iam_identities_groups_description"></span>
+                <b data-ng-bind="$parent.option.description"></b>
+            </div>
+            <div>
+                <span data-translate="iam_identities_groups_role"></span>
+                <b data-ng-bind="$parent.option.role"></b>
+            </div>
+            <div>
+                <span data-translate="iam_identities_urn"></span>
+                <b data-ng-bind="$parent.option.urn"></b>
+            </div>
+        </iam-checkbox-description>
+    </iam-select-modal>
+    <h5 data-translate="iam_identities_groups_title"></h5>
+    <oui-datagrid
+        rows="$ctrl.groups"
+        pagination-mode="arrows"
+        empty-placeholder="{{:: 'iam_identities_groups_empty' | translate}}"
+    >
+        <oui-datagrid-topbar>
+            <oui-button
+                data-variant="secondary"
+                data-on-click="$ctrl.openSelectGroupsModal()"
+                data-disabled="$ctrl.readOnly"
+            >
+                <span data-translate="iam_identities_groups_add"></span>
+            </oui-button>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column title="'iam_identities_groups_group' | translate">
+            <div data-ng-bind="$row.name"></div>
+            <div
+                class="oui-color-aw-500"
+                data-ng-bind="$row.message"
+                data-ng-if="$row.message"
+            ></div>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            title="'iam_identities_groups_description' | translate"
+            property="description"
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-row-detail>
+            <dl class="oui-description">
+                <dt data-translate="iam_identities_urn"></dt>
+                <dd data-ng-bind="$row.urn"></dd>
+                <dt
+                    data-ng-if="$row.role"
+                    data-translate="iam_identities_groups_role"
+                ></dt>
+                <dd data-ng-if="$row.role" data-ng-bind="$row.role"></dd>
+            </dl>
+        </oui-datagrid-row-detail>
+        <oui-action-menu text="Actions">
+            <oui-action-menu-item
+                on-click="$ctrl.removeIdentity($row.urn)"
+                data-disabled="$ctrl.readOnly"
+            >
+                <span data-translate="iam_identities_delete"> </span>
+            </oui-action-menu-item>
+        </oui-action-menu>
+    </oui-datagrid>
+</section>

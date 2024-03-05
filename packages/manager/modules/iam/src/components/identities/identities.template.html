@@ -1,0 +1,29 @@
+<h3 data-translate="iam_identities_title"></h3>
+<p data-translate="iam_identities_description"></p>
+<!-- USERS IDENTITIES -->
+<iam-user-identities
+    data-identities="$ctrl.userIdentities"
+    data-add-identities="$ctrl.addIdentities"
+    data-remove-identity="$ctrl.removeIdentity"
+    data-read-only="$ctrl.readOnly"
+></iam-user-identities>
+<!-- USER GROUP IDENTITIES -->
+<iam-group-identities
+    data-identities="$ctrl.groupIdentities"
+    data-add-identities="$ctrl.addIdentities"
+    data-remove-identity="$ctrl.removeIdentity"
+    data-read-only="$ctrl.readOnly"
+></iam-group-identities>
+<!-- SERVICE ACCOUNT IDENTITIES -->
+<iam-service-account-identities
+    data-identities="$ctrl.serviceAccountIdentities"
+    data-remove-identity="$ctrl.removeIdentity"
+    data-read-only="$ctrl.readOnly"
+></iam-service-account-identities>
+<!-- ACCOUNT IDENTITIES -->
+<iam-account-identities
+    data-identities="$ctrl.accountIdentities"
+    data-add-identities="$ctrl.addIdentities"
+    data-remove-identity="$ctrl.removeIdentity"
+    data-read-only="$ctrl.readOnly"
+></iam-account-identities>

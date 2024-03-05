@@ -1,0 +1,32 @@
+<div class="modal d-block" tabindex="-1" data-ng-mouseup=":: $ctrl.close()">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <oui-modal
+                data-heading="{{:: 'iam_identities_accounts_add' | translate}}"
+                data-on-dismiss="$ctrl.close()"
+                data-ng-mouseup="$event.stopPropagation()"
+            >
+                <div class="content">
+                    <input
+                        type="text"
+                        class="oui-input"
+                        placeholder="{{:: 'iam_identities_accounts_add_account_Modal_placeholder' | translate }}"
+                        data-ng-model="$ctrl.accountInput"
+                        data-ng-keypress="$ctrl.onEnterInputAddAccount($event)"
+                    />
+                    <oui-button
+                        type="button"
+                        data-variant="primary"
+                        data-on-click="$ctrl.onAddAccount($ctrl.accountInput)"
+                        disabled="!$ctrl.accountInput"
+                    >
+                        <span
+                            data-translate="iam_identities_accounts_add_account_Modal_add"
+                        ></span>
+                    </oui-button>
+                </div>
+            </oui-modal>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>

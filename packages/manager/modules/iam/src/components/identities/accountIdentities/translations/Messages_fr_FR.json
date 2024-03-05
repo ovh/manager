@@ -1,0 +1,8 @@
+{
+  "iam_identities_accounts_title": "Autres comptes client OVHcloud",
+  "iam_identities_accounts_empty": "Aucun compte client OVHcloud",
+  "iam_identities_accounts_name": "Identifiant de compte",
+  "iam_identities_accounts_add": "Ajouter un compte",
+  "iam_identities_accounts_add_account_Modal_placeholder": "Identifiant de compte (ex: xx1111-ovh)",
+  "iam_identities_accounts_add_account_Modal_add": "Ajouter"
+}

@@ -1,0 +1,64 @@
+<div class="modal d-block" tabindex="-1" data-ng-mouseup=":: $ctrl.close()">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <oui-modal
+                data-heading="{{ $ctrl.heading }}"
+                data-on-dismiss="$ctrl.close()"
+                data-ng-mouseup="$event.stopPropagation()"
+                data-loading="$ctrl.isLoading"
+            >
+                <div class="selectModal--container">
+                    <oui-search
+                        model="q"
+                        placeholder="{{$ctrl.searchPlaceholder}}"
+                        on-change="$ctrl.onChangeSearch(modelValue)"
+                        data-on-reset="$ctrl.onReset()"
+                    >
+                    </oui-search>
+                    <div class="selectModal--content">
+                        <oui-message type="error" data-ng-if="$ctrl.error">
+                            <span data-ng-bind="$ctrl.error"></span>
+                        </oui-message>
+                        <oui-message
+                            type="info"
+                            data-ng-if="!$ctrl.options.length"
+                        >
+                            <span data-ng-bind="$ctrl.emptyStateMessage"></span>
+                        </oui-message>
+                        <oui-checkbox
+                            data-ng-repeat="option in $ctrl.options | filter: $ctrl.filter as results track by $index"
+                            data-model="option.selected"
+                            thumbnail
+                        >
+                            <oui-checkbox-value
+                                data-ng-transclude="checkboxValue"
+                            >
+                            </oui-checkbox-value>
+                            <oui-checkbox-description
+                                data-ng-transclude="checkboxDescription"
+                            ></oui-checkbox-description>
+                        </oui-checkbox>
+                    </div>
+                    <div class="selectModal--footer">
+                        <oui-button
+                            type="button"
+                            variant="secondary"
+                            data-ng-click="$ctrl.close()"
+                            ><span
+                                data-translate="iam_select_modal_cancel"
+                            ></span
+                        ></oui-button>
+                        <oui-button
+                            type="button"
+                            variant="primary"
+                            data-ng-click="$ctrl.onAddSelectedOptions()"
+                        >
+                            <span data-translate="iam_select_modal_add"></span>
+                        </oui-button>
+                    </div>
+                </div>
+            </oui-modal>
+        </div>
+    </div>
+    <div class="oui-modal-backdrop"></div>
+</div>
