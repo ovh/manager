@@ -14,6 +14,7 @@ import { useModale } from '@/hooks/useModale';
 import DeleteUser from './_components/deleteUser';
 import ResetUserPassword from './_components/resetUserPassword';
 import AddUserModal from './_components/addUser';
+import { POLLING } from '@/configuration/polling';
 
 export function breadcrumb() {
   return (
@@ -33,7 +34,7 @@ const Users = () => {
   const deleteModale = useModale('delete');
   const resetPasswordModale = useModale('reset-password');
   const usersQuery = useGetUsers(projectId, service.engine, service.id, {
-    refetchInterval: 30_000,
+    refetchInterval: POLLING.USERS,
   });
   const columns: ColumnDef<GenericUser>[] = getColumns({
     displayGroupCol: service.engine === database.EngineEnum.m3db,
