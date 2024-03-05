@@ -1,9 +1,4 @@
 {
-  "iam_delete_entity_identity_error": "Une erreur est survenue lors de la suppression de l'identité : {{ message }}",
-  "iam_delete_entity_identity_heading": "Suppression d'une identité",
-  "iam_delete_entity_identity_name": "Suppression de l'identité :",
-  "iam_delete_entity_identity_success": "L'identité a bien été supprimée",
-  "iam_delete_entity_identity_warn": "Êtes-vous sûr.e de vouloir supprimer l'identité liée à cette politique. Vous ne supprimez pas l'utilisateur, mais uniquement son lien avec la politique.",
   "iam_delete_entity_policy_error": "Une erreur est survenue lors de la suppression de la politique : {{ message }}",
   "iam_delete_entity_policy_field": "Veuillez écrire le mot \"{{ statement }}\" pour supprimer votre polique",
   "iam_delete_entity_policy_heading": "Suppression d'une politique",
