@@ -49,6 +49,6 @@ export interface User {
   certificates: string[];
   auth: Auth;
   isTrusted: boolean;
-  isPartener?: boolean;
+  isPartner?: boolean;
   enterprise: boolean;
 }
