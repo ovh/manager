@@ -24,38 +24,23 @@ import {
 } from '@/components/ui/form';
 import { useRolesSelectForm } from './rolesSelect.hook';
 import { USER_CONFIG } from './user.const';
+import { useGetRoles } from '@/hooks/api/users.api.hooks';
+import { useServiceData } from '../../../layout';
+import { Skeleton } from '@/components/ui/skeleton';
+import { database } from '@/models/database';
 
 interface RoleSelectProps {
   value: string[] | undefined;
   onChange: (newRoles: string[] | undefined) => void;
 }
 
-// TODO: get roles from api
-const rolesList = [
-  'backup@admin',
-  'clusterAdmin@admin',
-  'clusterManager@admin',
-  'clusterMonitor@admin',
-  'dbAdmin@(defined db)',
-  'dbAdminAnyDatabase@admin',
-  'dbOwner@(defined db)',
-  'enableSharding@(defined db)',
-  'hostManager@admin',
-  'read@(defined db)',
-  'readAnyDatabase@admin',
-  'readWrite@(defined db)',
-  'readWriteAnyDatabase@admin',
-  'restore@admin',
-  'root@admin',
-  'userAdmin@(defined db)',
-  'userAdminAnyDatabase@admin',
-];
-
 const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
   ({ value, onChange }, ref) => {
     const { t } = useTranslation(
       'pci-databases-analytics/services/service/users',
     );
+    const { projectId, service } = useServiceData();
+    const rolesQuery = useGetRoles(projectId, service.engine, service.id);
     const roleInputRef = useRef<HTMLButtonElement>(null);
     const addRoleBtnRef = useRef<HTMLButtonElement>(null);
     const scrollListRef = useRef<HTMLUListElement>(null);
@@ -108,8 +93,8 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
       () => {
         type AvailableRoles = { admin: string[]; custom: string[] };
         const defaultValue: AvailableRoles = { admin: [], custom: [] };
-
-        return rolesList.reduce((acc, curr) => {
+        if (!rolesQuery.data) return defaultValue;
+        return rolesQuery.data.reduce((acc, curr) => {
           const isCustom = curr.includes('(defined db)');
 
           if (isCustom) {
@@ -121,7 +106,7 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
           return acc;
         }, defaultValue);
       },
-      [rolesList, value], // Include rolesList in the dependency array if it's used inside useMemo
+      [rolesQuery.data, value], // Include rolesList in the dependency array if it's used inside useMemo
     );
 
     const errors = useMemo(() => {
@@ -138,6 +123,12 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
       return messages;
     }, [form.formState.errors]);
 
+    if (rolesQuery.isFetching) {
+      return <Skeleton className="w-full h-56" />;
+    }
+
+    const hideDatabase = service.engine === database.EngineEnum.postgresql;
+
     return (
       <>
         <div className="flex w-full items-end">
@@ -148,7 +139,14 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
               render={({ field }) => (
                 <FormItem ref={ref}>
                   <FormControl>
-                    <Select value={field.value} onValueChange={field.onChange}>
+                    <Select
+                      value={field.value}
+                      onValueChange={field.onChange}
+                      disabled={
+                        availableRoles.admin.length === 0 &&
+                        availableRoles.custom.length === 0
+                      }
+                    >
                       <SelectTrigger ref={roleInputRef}>
                         <SelectValue
                           placeholder={t('addUserRoleInputPlaceholder')}
@@ -171,20 +169,22 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
                             ))}
                           </SelectGroup>
                         )}
-                        <SelectGroup>
-                          <SelectLabel>
-                            {t('addUserRoleInputCustomRoles')}
-                          </SelectLabel>
-                          {availableRoles.custom.map((role) => (
-                            <SelectItem
-                              key={role}
-                              value={role}
-                              className="cursor-pointer"
-                            >
-                              <Badge>{getRoleName(role)}</Badge>
-                            </SelectItem>
-                          ))}
-                        </SelectGroup>
+                        {availableRoles.custom.length > 0 && (
+                          <SelectGroup>
+                            <SelectLabel>
+                              {t('addUserRoleInputCustomRoles')}
+                            </SelectLabel>
+                            {availableRoles.custom.map((role) => (
+                              <SelectItem
+                                key={role}
+                                value={role}
+                                className="cursor-pointer"
+                              >
+                                <Badge>{getRoleName(role)}</Badge>
+                              </SelectItem>
+                            ))}
+                          </SelectGroup>
+                        )}
                       </SelectContent>
                     </Select>
                   </FormControl>
@@ -193,32 +193,36 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
               )}
             />
           </div>
-          <span className="p-2">@</span>
-          <div>
-            <FormField
-              control={form.control}
-              name="customDB"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input
-                      type="text"
-                      placeholder={t('addUserRoleDatabaseInputPlaceholder')}
-                      {...field}
-                      onKeyDown={handleKeyDown}
-                      disabled={
-                        !currentRole.includes(USER_CONFIG.roles.customTag)
-                      }
-                      readOnly={
-                        !currentRole.includes(USER_CONFIG.roles.customTag)
-                      }
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+          {!hideDatabase && (
+            <>
+              <span className="p-2">@</span>
+              <div>
+                <FormField
+                  control={form.control}
+                  name="customDB"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          type="text"
+                          placeholder={t('addUserRoleDatabaseInputPlaceholder')}
+                          {...field}
+                          onKeyDown={handleKeyDown}
+                          disabled={
+                            !currentRole.includes(USER_CONFIG.roles.customTag)
+                          }
+                          readOnly={
+                            !currentRole.includes(USER_CONFIG.roles.customTag)
+                          }
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </>
+          )}
           <Button
             ref={addRoleBtnRef}
             variant={'ghost'}
