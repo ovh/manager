@@ -31,5 +31,6 @@
   "billing_main_history_debt_automatically_collected": "La cantidad de <strong>{{t0}}</strong> se cargará a su forma de pago por defecto.",
   "billing_main_history_table_export_success": "Recibirá un mensaje de correo electrónico con un enlace desde el que podrá descargar las facturas exportadas. En función del número de facturas, esta operación puede tardar unos minutos.",
   "billing_main_history_table_export_error": "Se ha producido un error al solicitar la exportación de sus facturas. {{ message }}",
-  "billing_main_history": "Mis facturas"
+  "billing_main_history": "Mis facturas",
+  "billing_main_history_table_balance_status_WRITE_OFF": "Cancelada"
 }

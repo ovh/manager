@@ -1,5 +1,5 @@
 import React from 'react';
-import { OsdsSkeleton } from '@ovhcloud/ods-components/skeleton/react';
+import { OsdsSkeleton } from '@ovhcloud/ods-components/react';
 
 interface LoadingFilterItemProps {
   lineNumber?: number;

@@ -132,6 +132,7 @@ export default class OvhPaymentMethodRegisterCtrl {
     return this.ovhPaymentMethod
       .getAllAvailablePaymentMethodTypes()
       .then((paymentMethodsTypes) => {
+        this.paymentMethodsTypes = paymentMethodsTypes;
         // sort available payment method types with the paymentMethodTypesOrder binding
         this.availablePaymentMethodTypes.list = paymentMethodsTypes.sort(
           (typeA, typeB) => {

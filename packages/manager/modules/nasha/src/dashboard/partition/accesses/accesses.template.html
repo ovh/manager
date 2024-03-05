@@ -75,6 +75,25 @@
                     <span data-ng-bind="$item.label"></span>
                 </oui-select>
             </oui-datagrid-column>
+            <oui-datagrid-column
+                data-property="aclDescription"
+                data-title=":: ('nasha_dashboard_partition_accesses_list_description' | translate)"
+                data-type="string"
+                data-filterable
+            >
+                <span
+                    data-ng-if="!$row.isForm"
+                    data-ng-bind="$row.aclDescription || '-'"
+                ></span>
+                <input
+                    data-ng-if="$row.isForm"
+                    id="aclDescription"
+                    type="text"
+                    class="oui-input oui-input_xl"
+                    name="aclDescription"
+                    data-ng-model="$ctrl.model.aclDescription"
+                />
+            </oui-datagrid-column>
             <oui-datagrid-column>
                 <div
                     data-ng-if="$row.isForm"

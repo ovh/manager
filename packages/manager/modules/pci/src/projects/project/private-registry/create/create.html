@@ -1,5 +1,12 @@
 <h2 data-translate="private_registry_create"></h2>
 <oui-spinner data-ng-if="$ctrl.loading" data-size="s"></oui-spinner>
+
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    data-tracking-page-name="PublicCloud::pci::projects::project::private-registry::create"
+></pci-activate-project-banner>
+
 <oui-stepper data-ng-if="!$ctrl.loading">
     <oui-step-form
         data-header="{{:: 'private_registry_create_region' | translate }}"
@@ -16,6 +23,7 @@
     <oui-step-form
         data-header="{{:: 'private_registry_create_name_cluster' | translate }}"
         data-on-submit="$ctrl.trackClick('PCI_PROJECTS_PRIVATEREGISTRY_CREATE_VERSION_NEXT')"
+        data-prevent-next
     >
         <oui-field
             label="{{ ::'private_registry_create_name_label' | translate }}"
@@ -40,6 +48,8 @@
         data-on-submit="$ctrl.create()"
         data-submit-text="{{ ::'private_registry_create_button' | translate }}"
         data-cancel-text="{{:: 'private_registry_common_cancel' | translate }}"
+        data-valid="!$ctrl.isDiscoveryProject"
+        data-prevent-next
     >
         <div class="mb-4">
             <pci-private-registry-upgrade-plan

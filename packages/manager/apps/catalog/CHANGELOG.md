@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.4.1...@ovh-ux/manager-catalog-app@1.5.0) (2024-02-29)
+
+
+### Features
+
+* **catalog:** update ods components lib version to 17.1.0 ([#10666](https://github.com/ovh/manager/issues/10666)) ([5cb5757](https://github.com/ovh/manager/commit/5cb5757166847add97b3d515ac22e7be88eeaddf))
+
+
+
+
+
+## [1.4.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.4.0...@ovh-ux/manager-catalog-app@1.4.1) (2024-02-28)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+# [1.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.3.3...@ovh-ux/manager-catalog-app@1.4.0) (2024-02-26)
+
+
+### Features
+
+* **manager-components:** add dashboard components ([#10871](https://github.com/ovh/manager/issues/10871)) ([6e65fe8](https://github.com/ovh/manager/commit/6e65fe8b7b82569f74106984b600b25ddfae54a8))
+
+
+
+
+
+## [1.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.3.2...@ovh-ux/manager-catalog-app@1.3.3) (2024-02-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
 ## [1.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.3.1...@ovh-ux/manager-catalog-app@1.3.2) (2024-02-20)
 
 

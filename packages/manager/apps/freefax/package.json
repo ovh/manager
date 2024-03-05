@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-freefax-app",
-  "version": "8.0.21",
+  "version": "8.0.24",
   "private": true,
   "description": "Freefax standalone application.",
   "repository": {
@@ -19,24 +19,24 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-freefax-app' --include-dependencies -- npm run dev:watch --if-present"
   },
   "dependencies": {
-    "@ovh-ux/manager-advices": "^1.7.1",
+    "@ovh-ux/manager-advices": "^1.8.0",
     "@ovh-ux/manager-config": "^7.3.0",
-    "@ovh-ux/manager-core": "^12.15.3",
-    "@ovh-ux/manager-freefax": "^7.8.3",
-    "@ovh-ux/manager-ng-layout-helpers": "^2.8.1",
+    "@ovh-ux/manager-core": "^12.16.0",
+    "@ovh-ux/manager-freefax": "^7.9.0",
+    "@ovh-ux/manager-ng-layout-helpers": "^2.9.0",
     "@ovh-ux/manager-telecom-styles": "^4.7.0",
-    "@ovh-ux/ng-at-internet": "^5.11.2",
+    "@ovh-ux/ng-at-internet": "^5.11.3",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.1.1",
-    "@ovh-ux/ng-ovh-contracts": "^4.4.1",
+    "@ovh-ux/ng-ovh-contracts": "^4.5.0",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.1",
     "@ovh-ux/ng-ovh-http": "^5.1.1",
-    "@ovh-ux/ng-ovh-order-tracking": "^2.3.2",
-    "@ovh-ux/ng-ovh-payment-method": "^9.12.0",
+    "@ovh-ux/ng-ovh-order-tracking": "^2.4.0",
+    "@ovh-ux/ng-ovh-payment-method": "^9.14.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.2.1",
     "@ovh-ux/ng-ovh-sso-auth": "^4.8.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.1",
-    "@ovh-ux/ng-ovh-telecom-universe-components": "^7.23.0",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^7.24.0",
     "@ovh-ux/ng-ovh-ui-confirm-modal": "^2.1.1",
     "@ovh-ux/ng-tail-logs": "^2.1.1",
     "@ovh-ux/ng-translate-async-loader": "^2.2.1",
@@ -79,7 +79,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^7.0.1",
+    "@ovh-ux/manager-webpack-config": "^7.0.2",
     "webpack-merge": "^4.2.2"
   },
   "regions": [

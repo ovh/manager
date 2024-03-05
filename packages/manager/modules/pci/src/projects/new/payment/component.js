@@ -29,5 +29,6 @@ export default {
     trackProjectCreationError: '<',
     onProgressStepClick: '<',
     isDisplayableRupayCreditCardInfoBanner: '<',
+    viewOptions: '<',
   },
 };

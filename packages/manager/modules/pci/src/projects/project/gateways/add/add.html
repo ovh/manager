@@ -20,6 +20,7 @@
             </oui-guide-menu-item>
         </oui-guide-menu>
     </oui-header>
+
     <p
         data-translate="pci_projects_project_public_gateways_add_description1"
     ></p>
@@ -49,6 +50,11 @@
 <div data-ng-if="$ctrl.loadingDefaultValues">
     <oui-spinner size="s"></oui-spinner>
 </div>
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    data-tracking-page-name="PublicCloud::pci::projects::project::gateways::add"
+></pci-activate-project-banner>
 <oui-stepper
     data-on-finish="$ctrl.add()"
     data-ng-if="!$ctrl.loadingDefaultValues"
@@ -128,8 +134,8 @@
         data-editable="!$ctrl.isLoading"
         data-submit-text="{{:: 'pci_projects_project_public_gateways_add_submit_label' | translate }}"
         name="public_gateways_add_private_network"
-        data-valid="$ctrl.selectedPrivateNetwork.id || $ctrl.selectedPrivateNetwork.isCustom"
-        data-prevent-next="true"
+        data-valid="($ctrl.selectedPrivateNetwork.id || $ctrl.selectedPrivateNetwork.isCustom) && !$ctrl.isDiscoveryProject"
+        data-prevent-next
     >
         <p
             data-translate="pci_projects_project_public_gateways_add_attach_private_network_to_public_gateway_intro1"

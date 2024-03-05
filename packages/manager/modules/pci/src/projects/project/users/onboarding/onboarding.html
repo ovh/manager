@@ -1,3 +1,8 @@
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    data-tracking-page-name="PublicCloud::pci::projects::project::users::onboarding"
+></pci-activate-project-banner>
 <manager-on-boarding-layout guides="$ctrl.guides">
     <h1 data-translate="pci_projects_project_users_onboarding_title"></h1>
     <p data-translate="pci_projects_project_users_onboarding_content1"></p>
@@ -7,7 +12,11 @@
     <p data-translate="pci_projects_project_users_onboarding_content3"></p>
     <p data-translate="pci_projects_project_users_onboarding_content4"></p>
 
-    <oui-button data-variant="primary" data-on-click="$ctrl.addUser()">
+    <oui-button
+        data-variant="primary"
+        data-on-click="$ctrl.addUser()"
+        data-disabled="$ctrl.isDiscoveryProject"
+    >
         <span
             data-translate="pci_projects_project_users_onboarding_action_label"
         ></span>

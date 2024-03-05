@@ -1,5 +1,5 @@
 {
   "ovhManagerPccDashboardOptionsDescriptionsBasicOption_name_vrops": "vRealize Operations (vROps)",
-  "ovhManagerPccDashboardOptionsDescriptionsBasicOption_name_nsx": "NSX Data Center para vSphere (NSX-V)",
-  "ovhManagerPccDashboardOptionsDescriptionsBasicOption_name_nsx_eol": "O VMware e a OVHcloud acabarão com o suporte do NSX-v a 15/01/2024."
+  "ovhManagerPccDashboardOptionsDescriptionsBasicOption_presentation": "Descobrir",
+  "ovhManagerPccDashboardOptionsDescriptionsBasicOption_name_nsx_eol": "O VMware e a OVHcloud acabarão com o suporte do NSX-v a 31/07/2024."
 }

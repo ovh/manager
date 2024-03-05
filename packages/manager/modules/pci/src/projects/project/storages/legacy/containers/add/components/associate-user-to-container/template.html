@@ -29,7 +29,7 @@
         <oui-button
             data-variant="secondary"
             data-icon-left="oui-icon-plus"
-            data-disabled="$ctrl.disabled"
+            data-disabled="$ctrl.disabled || $ctrl.isDiscoveryProject"
             data-on-click="$ctrl.onCreateModeClicked()"
         >
             <span

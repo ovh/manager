@@ -14,12 +14,8 @@
     data-unregistered-payment-methods="$ctrl.unregisteredPaymentMethods"
     data-force-set-as-default-choice="$ctrl.eligibility.isAddPaymentMethodRequired()"
     data-show-default-explanation-texts="true"
-    data-default-explanation-texts-options="{
-        creditCard: 'info',
-        rupay: 'info',
-        sepa: { intro: 'warning', banner: 'info' },
-    }"
-    data-payment-method-types-per-line="2"
+    data-default-explanation-texts-options="$ctrl.viewOptions.registerExplanationTexts || $ctrl.defaultExplanationTextsOptions"
+    data-payment-method-types-per-line="$ctrl.paymentsPerLine"
     data-automatic-select="!!$ctrl.model.paymentMethod"
     data-required="$ctrl.eligibility.isAddPaymentMethodRequired()"
 >

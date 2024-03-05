@@ -3,71 +3,103 @@ import {
   workflowConstants,
 } from '@ovh-ux/manager-product-offers';
 
-import { WEBHOSTING_PRODUCT_NAME } from '../hosting-database.constants';
+import {
+  DATACENTER_CONFIGURATION_KEY,
+  DB_OFFERS,
+  ENGINE_CONFIGURATION_KEY,
+} from '../order/public/hosting-database-order-public.constants';
+import {
+  PRESELECTED_DB_CATEGORY,
+  WEBHOSTING_PRODUCT_NAME,
+} from './private-sql-activation.constants';
 
 export default class PrivateSqlActivationController {
   /* @ngInject */
-  constructor($q, $translate, OvhApiHostingWeb) {
+  constructor($q, $translate) {
     this.$q = $q;
     this.$translate = $translate;
-    this.OvhApiHostingWeb = OvhApiHostingWeb;
   }
 
   $onInit() {
+    this.preselectDbCategory = PRESELECTED_DB_CATEGORY;
+    const { catalog, catalogItemTypeName } = this.getRightCatalogConfig(true);
     this.productOffers = {
       pricingType: pricingConstants.PRICING_CAPACITIES.RENEW,
       workflowOptions: {
-        catalog: this.catalog,
-        catalogItemTypeName: workflowConstants.CATALOG_ITEM_TYPE_NAMES.ADDON,
+        catalog,
+        catalogItemTypeName,
         productName: WEBHOSTING_PRODUCT_NAME,
-        serviceNameToAddProduct: this.hosting,
-        getPlanCode: () => this.getPlanCode(),
-        onGetConfiguration: () => this.getConfiguration(),
+        serviceNameToAddProduct: this.getServiceNameToAddProduct.bind(this),
+        getPlanCode: this.getPlanCode.bind(this),
+        getRightCatalogConfig: this.getRightCatalogConfig.bind(this),
+        onGetConfiguration: this.getConfiguration.bind(this),
       },
       workflowType: workflowConstants.WORKFLOW_TYPES.ORDER,
     };
 
-    this.options = {
-      isEditable: true,
-      values: this.getOptionsValues(),
+    this.model = {
+      dbCategory: {},
     };
-
-    this.acceptContracts = false;
-  }
-
-  getConfiguration() {
-    const conf = [
-      {
-        label: 'dc',
-        value: this.datacenter,
-      },
-      {
-        label: 'engine',
-        value: this.version.id,
-      },
-    ];
-    return conf;
   }
 
   getPlanCode() {
-    return this.options.value.planCode;
+    const { selectVersion, selectEngine } = this.model.dbCategory;
+    const { selectEngineVersion } = selectEngine || {};
+
+    return selectEngineVersion?.planCode || selectVersion?.planCode;
   }
 
-  getPlanCodeDisplay(planCode) {
-    const diskSpace = planCode.split('-')[2];
-    return this.$translate.instant('privatesql_activation_option_private-sql', {
-      diskSpace,
-    });
+  getServiceNameToAddProduct() {
+    return this.hosting;
   }
 
-  getOptionsValues() {
-    return this.privateSqlOptions.map((e) => ({
-      display: this.getPlanCodeDisplay(e.planCode),
-      planCode: e.planCode,
-    }));
+  getConfiguration() {
+    const { productName } = this.model.dbCategory;
+    if (productName === DB_OFFERS.PRIVATE.PRODUCT_NAME) {
+      const { db } = this.model.dbCategory.selectEngine.selectEngineVersion;
+      const [
+        datacenterValue,
+      ] = this.model.dbCategory.selectVersion.configurations.find(
+        (item) => item.name === DATACENTER_CONFIGURATION_KEY,
+      )?.values;
+
+      return [
+        {
+          label: ENGINE_CONFIGURATION_KEY,
+          value: db,
+        },
+        {
+          label: DATACENTER_CONFIGURATION_KEY,
+          value: datacenterValue,
+        },
+      ];
+    }
+    return [];
   }
 
-  getOrderState(state) {
-    this.options.isEditable = !state.isLoading;
+  isValidDbConfig() {
+    const { selectEngine } = this.model.dbCategory;
+    const { selectEngineVersion } = selectEngine || {};
+    return !!selectEngineVersion;
+  }
+
+  getRightCatalogConfig() {
+    const { ADDON } = workflowConstants.CATALOG_ITEM_TYPE_NAMES;
+
+    return {
+      catalog: this.privateSqlCatalog,
+      catalogItemTypeName: ADDON,
+    };
+  }
+
+  onDbCategoryClick(dbCategory) {
+    this.model.dbCategory = dbCategory;
+  }
+
+  onDbCategoryEngineClick(db) {
+    this.model.dbCategory.selectEngine = {
+      dbGroup: db.dbName,
+      selectEngineVersion: db,
+    };
   }
 }

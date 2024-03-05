@@ -5,6 +5,12 @@
     data-messages="$ctrl.messages"
 ></cui-message-container>
 
+<pci-activate-project-banner
+    data-ng-if="$ctrl.isDiscoveryProject"
+    data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+    data-tracking-page-name="PublicCloud::pci::projects::project::instances::add"
+></pci-activate-project-banner>
+
 <oui-stepper data-current-index="$ctrl.currentStep">
     <oui-step-form
         id="flavor"
@@ -307,7 +313,6 @@
         name="instances_add_configuration"
     >
         <oui-field
-            data-ng-if="!$ctrl.isLocalZone()"
             data-label="{{ 'pci_projects_project_instances_add_numInstances_label' | translate }}"
             data-label-popover="{{ 'pci_projects_project_instances_add_same_numInstances_configuration' | translate }}"
         >
@@ -341,7 +346,7 @@
             class="mb-4"
             model="$ctrl.model.isInstanceFlex"
             name="instance-flex"
-            data-ng-if="$ctrl.model.flavorGroup.hasFlexOption() && !$ctrl.isLocalZone()"
+            data-ng-if="$ctrl.model.flavorGroup.hasFlexOption()"
             data-on-change="$ctrl.onFlexChange(modelValue)"
         >
             <oui-checkbox-label>

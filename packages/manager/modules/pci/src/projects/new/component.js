@@ -12,5 +12,6 @@ export default {
     getSummary: '<',
     trackProjectCreationError: '<',
     model: '<',
+    viewOptions: '<',
   },
 };

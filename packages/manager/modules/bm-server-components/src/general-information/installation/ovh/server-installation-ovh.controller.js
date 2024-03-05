@@ -1,6 +1,5 @@
 import moment from 'moment';
 import chunk from 'lodash/chunk';
-import camelCase from 'lodash/camelCase';
 import forEachRight from 'lodash/forEachRight';
 import range from 'lodash/range';
 import set from 'lodash/set';
@@ -136,7 +135,6 @@ export default class ServerInstallationOvhCtrl {
       // saveSelectDistribution : save new distribution if a partition
       // has personnalisation in progress(see setSelectDistribution())
       saveSelectDistribution: null,
-      selectLanguage: null,
       diskGroup: null,
       customInstall: false, // load personnalisation partition screen
       // STEP HARD RAID
@@ -168,7 +166,6 @@ export default class ServerInstallationOvhCtrl {
         postInstallationScriptLink: null,
         postInstallationScriptReturn: null,
         sshKeyName: null,
-        useSpla: false,
         variablePartition: null,
         validForm: true,
       },
@@ -545,8 +542,6 @@ export default class ServerInstallationOvhCtrl {
           .finally(() => {
             this.$scope.loader.loadingCapabilities = false;
           });
-
-        this.$scope.installation.selectLanguage = this.$scope.installation.selectDistribution.defaultLanguage;
       } else {
         this.resetDiskGroup();
       }
@@ -770,7 +765,6 @@ export default class ServerInstallationOvhCtrl {
     this.Server.getOvhPartitionSchemesTemplates(
       this.$stateParams.productId,
       this.$scope.installation.selectDistribution.id,
-      this.$scope.installation.selectLanguage,
       this.$scope.informations.customInstall,
     ).then(
       (partitionSchemesList) => {
@@ -2282,7 +2276,6 @@ export default class ServerInstallationOvhCtrl {
       postInstallationScriptLink: null,
       postInstallationScriptReturn: null,
       sshKeyName: null,
-      useSpla: false,
       variablePartition: null,
       validForm: true,
     };
@@ -2412,7 +2405,6 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.informations.gabaritName,
       this.$scope.installation.selectPartitionScheme,
       {
-        language: camelCase(this.$scope.installation.selectLanguage),
         customHostname: this.$scope.installation.options.customHostname,
         postInstallationScriptLink: this.$scope.installation.options
           .postInstallationScriptLink,
@@ -2421,7 +2413,6 @@ export default class ServerInstallationOvhCtrl {
           ? this.$scope.installation.options.postInstallationScriptReturn
           : null,
         sshKeyName: this.$scope.installation.options.sshKeyName,
-        useSpla: this.$scope.installation.options.useSpla,
         softRaidDevices:
           this.$scope.informations.nbDisk > 2 &&
           this.$scope.installation.nbDiskUse > 1
@@ -2450,8 +2441,7 @@ export default class ServerInstallationOvhCtrl {
           {
             t0: this.$scope.installation.selectDistribution.displayName,
             t1: this.$scope.constants.server.name,
-            t2: this.$scope.installation.selectLanguage,
-            t3: data.message,
+            t2: data.message,
           },
         );
         this.$scope.loader.loading = false;

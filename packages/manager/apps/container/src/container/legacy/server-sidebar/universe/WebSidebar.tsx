@@ -76,6 +76,7 @@ export default function WebSidebar() {
               id: 'domain_operations',
               label: t('sidebar_domain_operations'),
               href: navigation.getURL('web', '#/domain/operation'),
+              routeMatcher: new RegExp('^(/configuration)?/domain/operation'),
               icon: getIcon('ovh-font ovh-font-config'),
               ignoreSearch: true,
             },

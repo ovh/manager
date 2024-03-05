@@ -24,6 +24,7 @@ export default class PciProjectNewPaymentCtrl {
     coreConfig,
     coreURLBuilder,
     CucCloudMessage,
+    atInternet,
     pciProjectNew,
     PciProjectsService,
     ovhPaymentMethod,
@@ -38,6 +39,7 @@ export default class PciProjectNewPaymentCtrl {
     this.coreConfig = coreConfig;
     this.coreURLBuilder = coreURLBuilder;
     this.CucCloudMessage = CucCloudMessage;
+    this.atInternet = atInternet;
     this.pciProjectNew = pciProjectNew;
     this.PciProjectsService = PciProjectsService;
     this.ovhPaymentMethod = ovhPaymentMethod;
@@ -93,9 +95,7 @@ export default class PciProjectNewPaymentCtrl {
 
     this.isCheckingPaymentMethod = true;
     return this.pollCheckDefaultPaymentMethod(paymentMethodId)
-      .then(() => {
-        this.manageProjectCreation();
-      })
+      .then(() => this.createProject())
       .catch((error) => {
         if (error?.status === ORDER_CHECK_PAYMENT_TIMEOUT_OVER) {
           this.hasCheckingError = true;
@@ -109,7 +109,7 @@ export default class PciProjectNewPaymentCtrl {
           );
           if (this.model.paymentMethod.isHandleByComponent())
             this.$state.go(
-              'pci.projects.new.payment',
+              this.viewOptions.stateName,
               { skipCallback: true },
               { inherit: false },
             );
@@ -350,7 +350,10 @@ export default class PciProjectNewPaymentCtrl {
   ============================== */
 
   initComponentInitialParams() {
-    this.sendTrack('new_project_payment_continue');
+    this.atInternet.trackClick({
+      name: `${this.viewOptions.trackingPrefix}continue`,
+      type: 'action',
+    });
     this.componentInitialParams = {
       locale: this.coreConfig.getUser().language,
       paymentMethod: this.model.paymentMethod,
@@ -365,11 +368,14 @@ export default class PciProjectNewPaymentCtrl {
   }
 
   onPaymentFormSubmit() {
+    this.globalLoading.finalize = true;
+    this.atInternet.trackClick({
+      name: `${this.viewOptions.trackingPrefix}continue`,
+      type: 'action',
+    });
     let challengePromise = Promise.resolve(true);
     let defaultPaymentMethodPromise = Promise.resolve(true);
     let setDefaultPaymentMethodInError = false;
-
-    this.globalLoading.finalize = true;
 
     // call integration submit function if some
     if (
@@ -454,10 +460,17 @@ export default class PciProjectNewPaymentCtrl {
     return Promise.all([challengePromise, defaultPaymentMethodPromise]).then(
       () => {
         return !this.model.challenge.error && !setDefaultPaymentMethodInError
-          ? this.manageProjectCreation()
+          ? this.createProject()
           : null;
       },
     );
+  }
+
+  createProject() {
+    if (this.viewOptions.onSubmit) {
+      return this.viewOptions.onSubmit();
+    }
+    return this.manageProjectCreation();
   }
 
   /* -----  End of Events  ------ */
@@ -499,22 +512,33 @@ export default class PciProjectNewPaymentCtrl {
   }
 
   onIntegrationSubmitError() {
-    this.CucCloudMessage.error(
-      this.$translate.instant('pci_project_new_payment_create_error'),
-      'pci.projects.new.payment',
+    const errorMessage = this.$translate.instant(
+      'pci_project_new_payment_create_error',
     );
+    this.CucCloudMessage.error(errorMessage, 'pci.projects.new.payment');
     this.trackProjectCreationError(
       'payment',
       'pci_project_new_payment_create_error',
     );
     this.componentInitialParams = null;
     this.hasComponentRedirectCallback = false;
-    if (this.model.paymentMethod.isHandleByComponent())
-      this.$state.go(
-        'pci.projects.new.payment',
-        { skipCallback: true, showError: true },
-        { inherit: false },
-      );
+    if (this.model.paymentMethod.isHandleByComponent()) {
+      const reload = this.$state.current.name === this.viewOptions.stateName;
+      this.$state
+        .go(
+          this.viewOptions.stateName,
+          { skipCallback: true, showError: true },
+          reload ? { reload: true } : { inherit: false },
+        )
+        .then(() => {
+          if (reload) {
+            this.CucCloudMessage.error(
+              errorMessage,
+              'pci.projects.new.payment',
+            );
+          }
+        });
+    }
   }
 
   /* -----  End of Callbacks  ------ */

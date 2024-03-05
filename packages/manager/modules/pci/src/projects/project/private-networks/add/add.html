@@ -8,6 +8,11 @@
     <cui-message-container
         data-messages="$ctrl.messages"
     ></cui-message-container>
+    <pci-activate-project-banner
+        data-ng-if="$ctrl.isDiscoveryProject"
+        data-on-click="$ctrl.goToDiscoveryProjectActivationPage()"
+        data-tracking-page-name="PublicCloud::pci::projects::project::privateNetwork::add"
+    ></pci-activate-project-banner>
 
     <oui-stepper
         data-current-index="$ctrl.currentIndex"
@@ -31,14 +36,14 @@
         </oui-step-form>
         <oui-step-form
             name="private_network_add_select_configuration"
-            data-valid="$ctrl.privateNetworkName"
-            data-prevent-next="true"
+            data-valid="$ctrl.privateNetworkName && !$ctrl.isDiscoveryProject"
             data-header="{{:: 'pci_projects_project_network_private_create_configure' | translate }}"
             data-loading="$ctrl.loaders.configStep"
             data-on-focus="$ctrl.onConfigurePrivateNetworkInit()"
             data-submit-text="{{ ( $ctrl.configuration.createGateway ? 'pci_projects_project_network_private_create_next' : 'pci_projects_project_network_private_create_submit' )| translate }}"
             data-position="1"
             data-editable="!$ctrl.loaders.isSubmitting"
+            data-prevent-next
         >
             <oui-field
                 data-label="{{:: ('pci_projects_project_network_private_create_name' | translate)}}"
@@ -116,12 +121,8 @@
                     </oui-message>
                     <oui-field
                         data-ng-if="$ctrl.configureVlanId"
-                        aria-describedby="vlanTakenError"
                         data-label="{{:: 'pci_projects_project_network_private_create_configure_vlan' | translate }}"
                         data-help-text="{{:: '(' + ('pci_projects_project_network_private_create_configure_vlan_limits' | translate) + ')' }}"
-                        data-ng-class="{
-                            'oui-field_error': !$ctrl.isVlanAvailable($ctrl.configuration.vlanId)
-                        }"
                     >
                         <oui-numeric
                             name="vlanId"
@@ -131,22 +132,15 @@
                             data-on-change="$ctrl.regenerateNetworkAddress(modelValue)"
                         >
                         </oui-numeric>
-                        <div
-                            class="oui-field__error"
-                            data-ng-if="!$ctrl.isVlanAvailable($ctrl.configuration.vlanId)"
-                            id="vlanTakenError"
-                        >
-                            <span role="alert">
-                                <span
-                                    class="oui-icon oui-icon-error"
-                                    aria-hidden="true"
-                                ></span>
-                                <span
-                                    data-translate="pci_projects_project_network_private_create_configure_vlan_taken"
-                                ></span>
-                            </span>
-                        </div>
                     </oui-field>
+                    <oui-message
+                        type="warning"
+                        data-ng-if="!$ctrl.isVlanAvailable($ctrl.configuration.vlanId)"
+                    >
+                        <span
+                            data-translate="pci_projects_project_network_private_create_configure_vlan_taken"
+                        ></span>
+                    </oui-message>
                 </div>
             </section>
             <section>

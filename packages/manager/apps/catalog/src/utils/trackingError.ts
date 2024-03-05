@@ -1,9 +1,7 @@
 import { useShell } from '@ovh-ux/manager-react-core-application';
 import { useLocation } from 'react-router-dom';
-import {
-  ErrorMessage,
-  TRACKING_LABELS,
-} from '@ovhcloud/manager-components/src/components/error/error.types';
+
+import { ErrorMessage, TRACKING_LABELS } from '@ovhcloud/manager-components';
 
 export interface ErrorObject {
   [key: string]: any;

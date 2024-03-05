@@ -31,5 +31,6 @@
   "billing_main_history_debt_automatically_collected": "Será debitada a importância de <strong>{{t0}}</strong> usando o método de pagamento predefinido.",
   "billing_main_history_table_export_success": "Receberá um e-mail com uma ligação a partir da qual poderá descarregar as faturas exportadas. Consoante o número de faturas, este processo poderá demorar alguns minutos.",
   "billing_main_history_table_export_error": "Ocorreu um erro ao solicitar a exportação das suas faturas: {{ message }}",
-  "billing_main_history": "As minhas faturas"
+  "billing_main_history": "As minhas faturas",
+  "billing_main_history_table_balance_status_WRITE_OFF": "Cancelada"
 }

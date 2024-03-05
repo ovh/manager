@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.15.0...@ovh-ux/manager-bm-server-components@1.16.0) (2024-03-04)
+
+
+### Bug Fixes
+
+* **dedicated:** add margin to button at service status card ([#10985](https://github.com/ovh/manager/issues/10985)) ([8e5d565](https://github.com/ovh/manager/commit/8e5d565be2a8a71a4699194e262ff24e4403d89b))
+
+
+### Features
+
+* **dedicated:** remove hard-coded os language notion ([#10954](https://github.com/ovh/manager/issues/10954)) ([cc88016](https://github.com/ovh/manager/commit/cc8801683c50d4c00f88cf650b7b3dfd6622d0f9))
+* **dedicated:** remove vrack form network tile if no bandwidth ([#10643](https://github.com/ovh/manager/issues/10643)) ([9638822](https://github.com/ovh/manager/commit/96388224ec0b73cea2dc7c0193ba64268588ff00))
+
+
+
+
+
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.14.0...@ovh-ux/manager-bm-server-components@1.15.0) (2024-02-21)
+
+
+### Features
+
+* **pci:** enable discovery mode on pci project ([#10398](https://github.com/ovh/manager/issues/10398)) ([9c53a2c](https://github.com/ovh/manager/commit/9c53a2c4c661a17d2b492fc18c031ab09291bee8))
+
+
+
+
+
 # [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@1.13.1...@ovh-ux/manager-bm-server-components@1.14.0) (2024-02-20)
 
 

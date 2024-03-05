@@ -6,6 +6,7 @@ const component = {
     inlineContracts: '<inlineItems',
     model: '=',
     name: '@?',
+    trackingPrefix: '<',
   },
   template,
 };

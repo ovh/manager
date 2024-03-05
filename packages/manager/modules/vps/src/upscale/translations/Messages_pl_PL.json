@@ -48,5 +48,12 @@
   "vps_upscale_elite_upgrade_error": "Wystąpił błąd podczas modyfikowania konfiguracji.",
   "vps_upscale_agreements": "Akceptuję <a target=\"_blank\" href=\"{{conditions}}\" rel=\"noopener\">ogólen warunki korzystania z usługi</a> i <a target=\"_blank\" href=\"{{policy}}\" rel=\"noopener\">politykę poufności</a>.",
   "vps_upscale_fail_vps_in_rescue_info": "Nie możesz zmienić oferty VPS na wyższą, ponieważ znajduje się on obecnie w trybie rescue.",
-  "vps_upscale_fail_vps_in_rescue_action": "Prosimy o ponowne uruchomienie serwera VPS poprzez wyłączenie trybu rescue."
+  "vps_upscale_fail_vps_in_rescue_action": "Prosimy o ponowne uruchomienie serwera VPS poprzez wyłączenie trybu rescue.",
+  "vps_upscale_summary_current_configuration_yearly": "Aktualna konfiguracja objęta płatnością roczną",
+  "vps_upscale_summary_final_configuration_yearly": "Ostateczna konfiguracja objęta płatnością roczną",
+  "vps_upscale_summary_price_yearly": "Proporcjonalna należność za bieżący rok",
+  "vps_upscale_summary_price_yearly_with_payment_method_validation": "Kiedy zatwierdzisz ten wybór, naliczymy proporcjonalną płatność za bieżący rok w wysokości {{price}}.",
+  "vps_upscale_summary_price_yearly_without_payment_method_validation": "Po zatwierdzeniu tego wyboru zostaniesz przekierowany do zamówienia, abyś mógł zrealizować proporcjonalną płatność w wysokości {{price}} za dni miesiąca pozostałe do końca umowy.",
+  "vps_upscale_success_yearly_with_payment_method": "Zmiana gamy została przyjęta. Naliczyliśmy proporcjonalną płatność za bieżący rok w wysokości {{price}}.",
+  "vps_upscale_elite_upgrade_success_yearly_with_payment_method": "Zmiana konfiguracji została przyjęta. Naliczyliśmy proporcjonalną płatność za bieżący rok w wysokości {{price}}."
 }
