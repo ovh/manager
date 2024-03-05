@@ -9,6 +9,7 @@ import { useGetServiceLogs } from '@/hooks/api/logs.api.hooks';
 import { useServiceData } from '../layout';
 import { Skeleton } from '@/components/ui/skeleton';
 import BreadcrumbItem from '@/components/Breadcrumb/BreadcrumbItem';
+import { POLLING } from '@/configuration/polling';
 
 export function breadcrumb() {
   return (
@@ -51,7 +52,7 @@ const Logs = () => {
   const listLogRef = useRef<HTMLUListElement>(null);
   const { projectId, service } = useServiceData();
   const logsQuery = useGetServiceLogs(projectId, service.engine, service.id, {
-    refetchInterval: poll ? 30_000 : false,
+    refetchInterval: poll ? POLLING.LOGS : false,
   });
   // scroll to the bottom on data update
   useEffect(() => {
