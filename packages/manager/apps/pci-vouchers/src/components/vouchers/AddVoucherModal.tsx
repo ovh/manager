@@ -67,7 +67,7 @@ export default function AddVoucherModal({
                 <OsdsText
                   slot="label"
                   level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                  color={ODS_THEME_COLOR_INTENT.default}
+                  color={ODS_THEME_COLOR_INTENT.text}
                 >
                   {t('cpb_vouchers_your_voucher')}
                 </OsdsText>
