@@ -131,7 +131,7 @@ export function useOrderFunnel(
         suggestions,
         catalog,
       ).map((e) => ({
-        versions: e.versions.sort((a, b) => a.order - b.order),
+        versions: e.versions.toSorted((a, b) => a.order - b.order),
         ...e,
       })),
     [availabilities, capabilities],
