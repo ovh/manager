@@ -14,8 +14,8 @@ export default function AddVoucherPage() {
   return (
     <>
       <AddVoucherModal
-        projectId={`${projectId}`}
-        onClose={() => onClose()}
+        projectId={projectId}
+        onClose={onClose}
         onSuccess={() => {
           addSuccess(t('cpb_vouchers_add_success'));
         }}
