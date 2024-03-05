@@ -1,0 +1,23 @@
+{
+  "title": "Intégrations",
+  "breadcrumb": "Intégrations",
+  "description": "L'intégration de services vous permet de connecter différentes solutions.",
+  "addButtonLabel": "Ajouter une intégration",
+  "tableHeadSource": "Source",
+  "tableHeadDestination": "Destination",
+  "tableHeadType": "Type",
+  "tableHeadStatus": "Statut",
+  "tableActionDelete": "Supprimer",
+  "deleteIntegrationTitle": "Supprimer une intégration",
+  "deleteIntegrationDescription": "Vous allez supprimer votre intégration {{type}}. Souhaitez-vous continuer ?",
+  "deleteIntegrationButtonCancel": "Annuler",
+  "deleteIntegrationButtonConfirm": "Confirmer",
+  "deleteIntegrationToastErrorTitle": "Une erreur est survenue lors de la suppression de votre intégration",
+  "deleteIntegrationToastSuccessTitle": "Succès",
+  "deleteIntegrationToastSuccessDescription": "Votre intégration de type {{type}} a correctement été supprimée",
+  "addIntegrationToastErrorTitle": "",
+  "addIntegrationToastSuccessTitle": "",
+  "addIntegrationToastSuccessDescription": "",
+  "addIntegrationTitle": "",
+  "addIntegrationDescription": ""
+}

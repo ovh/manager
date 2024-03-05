@@ -32,7 +32,7 @@ const CurrentQueries = () => {
       refetchInterval: poll ? POLLING.CURRENT_QUERIES : false,
     },
   );
-  const { cancelCurrentQuery, isPending } = useCancelCurrentQuery({
+  const { cancelCurrentQuery } = useCancelCurrentQuery({
     onError: (err) => {
       toast.toast({
         title: t('currentQueryTerminateToastErrorTitle'),

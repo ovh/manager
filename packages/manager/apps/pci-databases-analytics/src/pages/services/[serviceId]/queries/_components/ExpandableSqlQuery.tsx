@@ -53,7 +53,7 @@ export const ExpandableSqlQuery: React.FC<ExpandableSqlQueryProps> = ({
               </div>
             )}
             {isOpen && (
-              <CollapsibleContent className="font-mono text-sm">
+              <CollapsibleContent className="font-mono text-sm whitespace-pre-line">
                 {sqlQuery}
               </CollapsibleContent>
             )}
