@@ -30,26 +30,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $http.get('/domain.json').then(({ data: schema }) => schema),
       domainStateEnum: /* @ngInject */ (schema) =>
         schema.models['domain.DomainStateEnum'].enum,
-      domainRenewalModeEnum: () =>
-        // @TODO get enum from schema.models when API is available
-        [
-          'automatic_renew',
-          'manual_renew',
-          'cancellation_requested',
-          'cancellation_complete',
-          'unpaid',
-          'expired',
-        ],
-      domainDnssecStateEnum: () =>
-        // @TODO get enum from schema.models when API is available
-        ['enabled', 'disabled', 'not_supported'],
-      domainSuspensionStateEnum: /* @ngInject */ (schema) =>
-        schema.models['domain.DomainSuspensionStateEnum'].enum,
-      domainLockStatusEnum: /* @ngInject */ (schema) =>
-        schema.models['domain.DomainLockStatusEnum'].enum,
+      domainRenewalModeEnum: /* @ngInject */ (schema) =>
+        schema.models['domain.RenewalStateEnum'].enum,
       domainNsTypeEnum: /* @ngInject */ (schema) =>
-        schema.models['domain.DomainNsTypeEnum'].enum,
-      dataModel: () => 'domain.Domain',
+        schema.models['domain.nameServer.NameServerTypeEnum'].enum,
+      dataModel: () => 'domain.DomainServiceWithIAM',
       defaultFilterColumn: () => 'domain',
       header: /* @ngInject */ ($translate) =>
         $translate.instant('domains_title'),
