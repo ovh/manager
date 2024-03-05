@@ -166,7 +166,6 @@ export default class ServerInstallationOvhCtrl {
         customHostname: null,
         postInstallationScriptLink: null,
         postInstallationScriptReturn: null,
-        sshKeyName: null,
         variablePartition: null,
         validForm: true,
       },
@@ -229,7 +228,6 @@ export default class ServerInstallationOvhCtrl {
 
     this.$scope.loader = {
       loading: false,
-      loadingForm: false,
       loadingCapabilities: false,
     };
 
@@ -280,11 +278,6 @@ export default class ServerInstallationOvhCtrl {
     this.$scope.bar = {
       progress: [],
       total: 0,
-    };
-
-    this.$scope.sshList = {
-      model: [],
-      error: false,
     };
 
     // If the diskGroup is not the first disk group, we need to disable raid setup if it is enabled.
@@ -448,20 +441,7 @@ export default class ServerInstallationOvhCtrl {
         );
       });
 
-    this.$scope.loader.loadingForm = true;
-    const getSshKeys = this.Server.getSshKey(this.$stateParams.productId).then(
-      (data) => {
-        this.$scope.sshList.error = false;
-        this.$scope.sshList.model = data;
-        this.$scope.loader.loadingForm = false;
-      },
-      () => {
-        this.$scope.sshList.error = true;
-        this.$scope.loader.loadingForm = false;
-      },
-    );
-
-    this.$q.all([getHardRaid, getOvhTemplates, getSshKeys]).finally(() => {
+    this.$q.all([getHardRaid, getOvhTemplates]).finally(() => {
       this.$scope.loader.loading = false;
     });
   }
@@ -2276,7 +2256,6 @@ export default class ServerInstallationOvhCtrl {
       customHostname: null,
       postInstallationScriptLink: null,
       postInstallationScriptReturn: null,
-      sshKeyName: null,
       variablePartition: null,
       validForm: true,
     };
@@ -2413,7 +2392,6 @@ export default class ServerInstallationOvhCtrl {
           .postInstallationScriptLink
           ? this.$scope.installation.options.postInstallationScriptReturn
           : null,
-        sshKeyName: this.$scope.installation.options.sshKeyName,
         softRaidDevices:
           this.$scope.informations.nbDisk > 2 &&
           this.$scope.installation.nbDiskUse > 1
@@ -2499,7 +2477,6 @@ export default class ServerInstallationOvhCtrl {
           .postInstallationScriptLink
           ? this.$scope.installation.options.postInstallationScriptReturn
           : null,
-        sshKeyName: this.$scope.installation.options.sshKeyName,
       },
     ).then(
       () => {
