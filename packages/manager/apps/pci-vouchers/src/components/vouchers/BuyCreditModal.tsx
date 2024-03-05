@@ -75,11 +75,11 @@ export default function BuyCreditModal({
           {!isPending && (
             <>
               <span>{t('cpb_vouchers_add_credit_info')}</span>
-              <OsdsFormField>
+              <OsdsFormField className={'pt-4'}>
                 <OsdsText
                   slot="label"
                   level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                  color={ODS_THEME_COLOR_INTENT.default}
+                  color={ODS_THEME_COLOR_INTENT.text}
                 >
                   {t('cpb_vouchers_add_credit_amount', {
                     currency: env.user?.currency?.symbol,
