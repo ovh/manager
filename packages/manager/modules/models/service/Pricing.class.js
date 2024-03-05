@@ -12,7 +12,7 @@ export default class Pricing {
     this.locale = locale;
 
     this.price.text = price.text || this.getPriceAsText();
-
+    this.price.maximumFractionDigits = price.maximumFractionDigits || 2;
     this.monthlyPriceValue = this.price.value / this.interval;
   }
 
@@ -21,6 +21,7 @@ export default class Pricing {
       style: 'currency',
       currency: this.price.currencyCode,
       currencyDisplay: 'narrowSymbol',
+      maximumFractionDigits: this.price.maximumFractionDigits,
     }).format(price);
   }
 

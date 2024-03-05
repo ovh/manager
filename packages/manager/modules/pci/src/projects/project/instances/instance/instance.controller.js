@@ -38,6 +38,7 @@ export default class PciInstanceController {
         price: {
           value: this.instancePrice?.price.value,
           currencyCode: getUser().currency.code,
+          maximumFractionDigits: 3,
         },
       },
       getUserLocale(),
