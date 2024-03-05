@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import { useModale } from '@/hooks/useModale';
 import AddDatabase from './_components/addDatabase';
 import DeleteDatabase from './_components/deleteDatabase';
+import { POLLING } from '@/configuration/polling';
 
 export function breadcrumb() {
   return (
@@ -34,7 +35,7 @@ const Databases = () => {
     service.engine,
     service.id,
     {
-      refetchInterval: 30_000,
+      refetchInterval: POLLING.DATABASES,
     },
   );
   const deletingDatabase = databasesQuery.data?.find(
