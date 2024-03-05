@@ -10,10 +10,11 @@ import validator from 'validator';
 
 export default class MailingLists {
   /* @ngInject */
-  constructor($rootScope, $q, $stateParams, OvhHttp, Poller) {
+  constructor($rootScope, $q, $stateParams, $timeout, OvhHttp, Poller) {
     this.$rootScope = $rootScope;
     this.$q = $q;
     this.$stateParams = $stateParams;
+    this.$timeout = $timeout;
     this.OvhHttp = OvhHttp;
     this.Poller = Poller;
 
@@ -80,25 +81,31 @@ export default class MailingLists {
     });
   }
 
-  updateMailingList(serviceName, name, data) {
-    return this.$q
-      .all({
-        mailingList: this.OvhHttp.put(
-          `/email/domain/${serviceName}/mailingList/${name}`,
-          {
-            rootPath: 'apiv6',
-            data: data.infos,
-            broadcast: 'hosting.tabs.mailingLists.refresh',
-          },
-        ),
-        options: this.changeOptions(serviceName, name, {
-          options: data.options,
-        }),
+  updateMailingList(serviceName, name, { infos, options, timer }) {
+    return this.OvhHttp.put(
+      `/email/domain/${serviceName}/mailingList/${name}`,
+      {
+        rootPath: 'apiv6',
+        data: infos,
+      },
+    )
+      .then(() => {
+        // use timeout in order to proceed to the first update safely
+        // before proceeding to a new update on the same object (fix http error 409)
+        const deferred = this.$q.defer();
+        this.$timeout(() => {
+          this.changeOptions(serviceName, name, {
+            options,
+          })
+            .then((opts) => deferred.resolve(opts))
+            .catch((error) => deferred.reject(error));
+        }, timer);
+        return deferred.promise;
       })
-      .then(({ options }) => {
-        if (get(options, 'id', false)) {
+      .then((opts) => {
+        if (get(opts, 'id', false)) {
           this.pollState(serviceName, {
-            id: options.id,
+            id: opts.id,
             mailingList: name,
             successStates: ['noState'],
             namespace: 'mailingLists.update.poll',
