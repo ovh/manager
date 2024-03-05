@@ -1,103 +1,69 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
-import { RefreshCw, RotateCcw } from 'lucide-react';
-import { useGetQueryStatistics } from '@/hooks/api/queries.api.hooks';
+import { RotateCcw } from 'lucide-react';
+import {
+  useGetQueryStatistics,
+  useResetQueryStatistics,
+} from '@/hooks/api/queries.api.hooks';
 import { useServiceData } from '../../layout';
-import { DataTable, SortableHeader } from '@/components/ui/data-table';
+import { DataTable } from '@/components/ui/data-table';
 import { database } from '@/models/database';
-import { ExpandableSqlQuery } from './ExpandableSqlQuery';
 import { H3, P } from '@/components/typography';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
+import { getColumns } from './queryStatisticsTableColumns';
 
 const QueryStatistics = () => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/queries',
   );
   const { projectId, service } = useServiceData();
+  const toast = useToast();
   const queryStatisticsQuery = useGetQueryStatistics(
     projectId,
     service.engine,
     service.id,
   );
+  const { resetQueryStatistics, isPending } = useResetQueryStatistics({
+    onError: (err) => {
+      toast.toast({
+        title: t('queryStatistcsResetToastErrorTitle'),
+        variant: 'destructive',
+        description: err.message,
+      });
+    },
+    onSuccess: () => {
+      queryStatisticsQuery.refetch();
+      toast.toast({
+        title: t('queryStatistcsResetToastSuccesTitle'),
+      });
+    },
+  });
 
-  const columns: ColumnDef<database.postgresql.querystatistics.Query>[] = [
-    {
-      id: 'query',
-      header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeadName')}</SortableHeader>
-      ),
-      accessorFn: (row) => row.query,
-      cell: ({ row }) => <ExpandableSqlQuery sqlQuery={row.original.query} />,
-    },
-    {
-      id: 'rows',
-      header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeadRows')}</SortableHeader>
-      ),
-      accessorFn: (row) => row.rows,
-    },
-    {
-      id: 'calls',
-      header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeadCalls')}</SortableHeader>
-      ),
-      accessorFn: (row) => row.calls,
-    },
-    {
-      id: 'minTime',
-      header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeadMinTime')}</SortableHeader>
-      ),
-      accessorFn: (row) => row.minTime.toFixed(2),
-    },
-    {
-      id: 'maxTime',
-      header: ({ column }) => (
-        <SortableHeader column={column}>{t('tableHeadMaxTime')}</SortableHeader>
-      ),
-      accessorFn: (row) => row.maxTime.toFixed(2),
-    },
+  const handleResetButtonClicked = () => {
+    resetQueryStatistics({
+      projectId,
+      engine: service.engine,
+      serviceId: service.id,
+    });
+  };
 
-    {
-      id: 'meamTime',
-      header: ({ column }) => (
-        <SortableHeader column={column}>
-          {t('tableHeadMeanTime')}
-        </SortableHeader>
-      ),
-      accessorFn: (row) => row.meanTime.toFixed(2),
-    },
-
-    {
-      id: 'stdDevTime',
-      header: ({ column }) => (
-        <SortableHeader column={column}>
-          {t('tableHeadStDevTime')}
-        </SortableHeader>
-      ),
-      accessorFn: (row) => row.stddevTime.toFixed(2),
-    },
-    {
-      id: 'totalTime',
-      header: ({ column }) => (
-        <SortableHeader column={column}>
-          {t('tableHeadTotalTime')}
-        </SortableHeader>
-      ),
-      accessorFn: (row) => row.totalTime.toFixed(2),
-    },
-  ];
+  const columns: ColumnDef<
+    database.postgresql.querystatistics.Query
+  >[] = getColumns();
   return (
     <>
-      <H3 className="mb-2">Statistiques de requêtes</H3>
-      <P className="mb-2">
-        Les statistiques de requêtes rassemblent les statistiques collectées
-        dans les schémas de performance. Elles permettent de monitorer les
-        évènements serveurs (par exemple, la synchronisation, les tables
-        temporaires, les index, les jointures,...)
-      </P>
-      <Button variant="outline" size="sm" className="mb-2">
-        <RotateCcw className="size-4 mr-2" /> Réinitialiser
+      <H3 className="mb-2">{t('queryStatisticsTitle')}</H3>
+      <P className="mb-2">{t('queryStatisticsDescription')}</P>
+      <Button
+        variant="outline"
+        size="sm"
+        className="mb-2"
+        onClick={() => handleResetButtonClicked()}
+        disabled={isPending}
+      >
+        <RotateCcw className="size-4 mr-2" />
+        {t('queryStatisticsResetButton')}
       </Button>
       {queryStatisticsQuery.isSuccess ? (
         <DataTable
